@@ -13,25 +13,21 @@
  * @license  http://opensource.org/licenses/BSD-3-Clause 3-clause BSD
  * @link     https://github.com/firebase/php-jwt
  */
-/**
- * JSON Web Token implementation, based on this spec:
- * http://tools.ietf.org/html/draft-ietf-oauth-json-web-token-06
- *
- * @category Authentication
- * @package  Authentication_JWT
- * @author   Neuman Vong <neuman@twilio.com>
- * @author   Anant Narayanan <anant@php.net>
- * @license  http://opensource.org/licenses/BSD-3-Clause 3-clause BSD
- * @link     https://github.com/firebase/php-jwt
- */
 class JWT
 {
+    static $methods = array(
+        'HS256' => array('hash_hmac', 'SHA256'),
+        'HS512' => array('hash_hmac', 'SHA512'),
+        'HS384' => array('hash_hmac', 'SHA384'),
+        'RS256' => array('openssl', 'SHA256'),
+    );
+
     /**
      * Decodes a JWT string into a PHP object.
      *
-     * @param string      $jwt    The JWT
-     * @param string|null $key    The secret key
-     * @param bool        $verify Don't skip verification process 
+     * @param string      $jwt       The JWT
+     * @param string|Array|null $key The secret key, or map of keys
+     * @param bool        $verify    Don't skip verification process
      *
      * @return object      The JWT's payload as a PHP object
      * @throws UnexpectedValueException Provided JWT was invalid
@@ -58,7 +54,14 @@ class JWT
             if (empty($header->alg)) {
                 throw new DomainException('Empty algorithm');
             }
-            if ($sig != JWT::sign("$headb64.$bodyb64", $key, $header->alg)) {
+            if (is_array($key)) {
+                if(isset($header->kid)) {
+                    $key = $key[$header->kid];
+                } else {
+                    throw new DomainException('"kid" empty, unable to lookup correct key');
+                }
+            }
+            if (!JWT::verify("$headb64.$bodyb64", $sig, $key, $header->alg)) {
                 throw new UnexpectedValueException('Signature verification failed');
             }
             // Check token expiry time if defined.
@@ -81,10 +84,12 @@ class JWT
      * @uses jsonEncode
      * @uses urlsafeB64Encode
      */
-    public static function encode($payload, $key, $algo = 'HS256')
+    public static function encode($payload, $key, $algo = 'HS256', $keyId = null)
     {
         $header = array('typ' => 'JWT', 'alg' => $algo);
-
+        if($keyId !== null) {
+            $header['kid'] = $keyId;
+        }
         $segments = array();
         $segments[] = JWT::urlsafeB64Encode(JWT::jsonEncode($header));
         $segments[] = JWT::urlsafeB64Encode(JWT::jsonEncode($payload));
@@ -99,25 +104,61 @@ class JWT
     /**
      * Sign a string with a given key and algorithm.
      *
-     * @param string $msg    The message to sign
-     * @param string $key    The secret key
-     * @param string $method The signing algorithm. Supported
-     *                       algorithms are 'HS256', 'HS384' and 'HS512'
+     * @param string $msg          The message to sign
+     * @param string|resource $key The secret key
+     * @param string $method       The signing algorithm. Supported algorithms
+     *                               are 'HS256', 'HS384', 'HS512' and 'RS256'
      *
      * @return string          An encrypted message
      * @throws DomainException Unsupported algorithm was specified
      */
     public static function sign($msg, $key, $method = 'HS256')
     {
-        $methods = array(
-            'HS256' => 'sha256',
-            'HS384' => 'sha384',
-            'HS512' => 'sha512',
-        );
-        if (empty($methods[$method])) {
+        if (empty(self::$methods[$method])) {
             throw new DomainException('Algorithm not supported');
         }
-        return hash_hmac($methods[$method], $msg, $key, true);
+        list($function, $algo) = self::$methods[$method];
+        switch($function) {
+            case 'hash_hmac':
+                return hash_hmac($algo, $msg, $key, true);
+            case 'openssl':
+                $signature = '';
+                $success = openssl_sign($msg, $signature, $key, $algo);
+                if(!$success) {
+                    throw new DomainException("OpenSSL unable to sign data");
+                } else {
+                    return $signature;
+                }
+        }
+    }
+
+    /**
+     * Verify a signature with the mesage, key and method. Not all methods
+     * are symmetric, so we must have a separate verify and sign method.
+     * @param string $msg the original message
+     * @param string $signature
+     * @param string|resource $key for HS*, a string key works. for RS*, must be a resource of an openssl public key
+     * @param string $method
+     * @return bool
+     * @throws DomainException Invalid Algorithm or OpenSSL failure
+     */
+    public static function verify($msg, $signature, $key, $method = 'HS256') {
+        if (empty(self::$methods[$method])) {
+            throw new DomainException('Algorithm not supported');
+        }
+        list($function, $algo) = self::$methods[$method];
+        switch($function) {
+            case 'openssl':
+                $success = openssl_verify($msg, $signature, $key, $algo);
+                if(!$success) {
+                    throw new DomainException("OpenSSL unable to verify data: " . openssl_error_string());
+                } else {
+                    return $signature;
+                }
+            case 'hash_hmac':
+            default:
+                return $signature === hash_hmac($algo, $msg, $key, true);
+        }
     }
 
     /**
