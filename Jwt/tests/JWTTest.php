@@ -75,6 +75,16 @@ class JWTTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($decoded->message, 'abc');
     }
 
+    public function testValidTokenWithList()
+    {
+        $payload = array(
+            "message" => "abc",
+            "exp" => time() + 20); // time in the future
+        $encoded = JWT::encode($payload, 'my_key');
+        $decoded = JWT::decode($encoded, 'my_key', array('HS256', 'HS512'));
+        $this->assertEquals($decoded->message, 'abc');
+    }
+
     public function testValidTokenWithNbf()
     {
         $payload = array(
@@ -115,5 +125,26 @@ class JWTTest extends PHPUnit_Framework_TestCase
         $msg = JWT::encode('abc', $keys['1'], 'HS256', '1');
         $decoded = JWT::decode($msg, $keys, array('HS256'));
         $this->assertEquals($decoded, 'abc');
+    }
+
+    public function testNoneAlgorithm()
+    {
+        $msg = JWT::encode('abc', 'my_key');
+        $this->setExpectedException('DomainException');
+        JWT::decode($msg, 'my_key', array('none'));
+    }
+
+    public function testIncorrectAlgorithm()
+    {
+        $msg = JWT::encode('abc', 'my_key');
+        $this->setExpectedException('DomainException');
+        JWT::decode($msg, 'my_key', array('RS256'));
+    }
+
+    public function testMissingAlgorithm()
+    {
+        $msg = JWT::encode('abc', 'my_key');
+        $this->setExpectedException('DomainException');
+        JWT::decode($msg, 'my_key');
     }
 }
