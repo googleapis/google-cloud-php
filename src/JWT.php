@@ -1,5 +1,10 @@
 <?php
 
+namespace Firebase\JWT;
+use \DomainException;
+use \UnexpectedValueException;
+use \DateTime;
+
 /**
  * JSON Web Token implementation, based on this spec:
  * http://tools.ietf.org/html/draft-ietf-oauth-json-web-token-06
