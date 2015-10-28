@@ -1,0 +1,35 @@
+{
+  "name": "google/gcloud-client",
+  "type": "library",
+  "description": "Google Cloud Client Library",
+    "keywords": [
+    "google apis client",
+    "google api client",
+    "google apis",
+    "google api",
+    "google",
+    "google cloud platform",
+    "google cloud",
+    "cloud"
+  ],
+  "homepage": "http://github.com/GoogleCloudPlatform/gcloud-php",
+  "license": "Apache-2.0",
+  "authors": [
+    {
+      "name": "Dave Supplee",
+      "email": "dwsupplee@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.4"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "4.8.*",
+    "squizlabs/php_codesniffer": "2.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Google\\Cloud\\": "src"
+    }
+  }
+}
