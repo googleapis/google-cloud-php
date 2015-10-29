@@ -1,5 +1,5 @@
 {
-  "name": "google/gcloud-client",
+  "name": "google/gcloud",
   "type": "library",
   "description": "Google Cloud Client Library",
     "keywords": [
