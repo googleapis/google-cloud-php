@@ -30,11 +30,6 @@ class StreamReader
     const BASE_URL = 'http://169.254.169.254/computeMetadata/v1/';
 
     /**
-     * The default host name for metadata.
-     */
-    const HOST = 'metadata.google.internal';
-
-    /**
      * The header whose presence indicates GCE presence.
      */
     const FLAVOR_HEADER = 'Metadata-Flavor: Google';
@@ -65,24 +60,5 @@ class StreamReader
     {
         $url = self::BASE_URL.$path;
         return file_get_contents($url, false, $this->context);
-    }
-
-    /**
-     * A method to detect whether it's running on Compute Engine or not.
-     */
-    public function onGCE()
-    {
-        // We use the hostname for failing faster on non-gce environment.
-        $url = 'http://'.self::HOST;
-        $result = @file_get_contents($url, false, $this->context);
-        if ($result == false) {
-            return false;
-        }
-        foreach ($http_response_header as $k => $v) {
-            if ($v == 'Metadata-Flavor: Google') {
-                return true;
-            }
-        }
-        return false;
     }
 }

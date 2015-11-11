@@ -44,11 +44,6 @@ class Metadata
     private $projectId;
 
     /**
-     * Whether or not running on GCE.
-     */
-    private $onGCE;
-
-    /**
      * We use StreamReader for the default implementation for fetching the URL.
      */
     public function __construct()
@@ -81,17 +76,6 @@ class Metadata
             $this->projectId = $this->reader->read('project/project-id');
         }
         return $this->projectId;
-    }
-
-    /**
-     * This method detects whether or not running on GCE.
-     */
-    public function onGCE()
-    {
-        if (! isset($this->onGCE)) {
-            $this->onGCE = $this->reader->onGCE();
-        }
-        return $this->onGCE;
     }
 
     /**

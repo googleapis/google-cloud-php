@@ -29,7 +29,7 @@ class ComputeMetadataTest extends \PHPUnit_Framework_TestCase
         $this->metadata = new Metadata();
         $this->mock = $this->getMockBuilder(
             '\Google\Cloud\Compute\Metadata\Readers\StreamReader')
-            ->setMethods(array('read', 'onGCE'))
+            ->setMethods(array('read'))
             ->getmock();
         $this->metadata->setReader($this->mock);
     }
@@ -70,17 +70,5 @@ class ComputeMetadataTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expected_val, $project_id);
         // Ensure this value is cached thus we `read` only once.
         $this->metadata->getProjectId();
-    }
-
-    public function testIsRunningOnGCE()
-    {
-        $expected_val = true;
-        $this->mock->expects($this->once())
-            ->method('onGCE')
-            ->willReturn($expected_val);
-        $onGCE = $this->metadata->onGCE();
-        $this->assertEquals($expected_val, $onGCE);
-        // Ensure this value is cached thus we call onGCE only once.
-        $this->metadata->onGCE();
     }
 }
