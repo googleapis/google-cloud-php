@@ -20,7 +20,10 @@ namespace Google\Cloud\Compute;
 use Google\Cloud\Compute\Metadata\Readers\StreamReader;
 
 /**
- * A library for accessing the GCE metadata.
+ * A library for accessing the Google Compute Engine (GCE) metadata.
+ *
+ * The metadata is available from Google Compute Engine instances and
+ * App Engine Managed VMs instances.
  *
  * You can get the GCE metadata values very easily like:
  *
