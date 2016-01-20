@@ -1,0 +1,755 @@
+{
+  "bucketAccessControls": {
+    "methods": {
+      "delete": {
+        "path": "b/{bucket}/acl/{entity}",
+        "httpMethod": "DELETE",
+        "parameters": {
+          "bucket": {
+            "type": "string",
+            "required": true,
+            "location": "path"
+          },
+          "entity": {
+            "type": "string",
+            "required": true,
+            "location": "path"
+          }
+        }
+      },
+      "get": {
+        "path": "b/{bucket}/acl/{entity}",
+        "httpMethod": "GET",
+        "parameters": {
+          "bucket": {
+            "type": "string",
+            "required": true,
+            "location": "path"
+          },
+          "entity": {
+            "type": "string",
+            "required": true,
+            "location": "path"
+          }
+        }
+      },
+      "insert": {
+        "path": "b/{bucket}/acl",
+        "httpMethod": "POST",
+        "parameters": {
+          "bucket": {
+            "type": "string",
+            "required": true,
+            "location": "path"
+          },
+          "entity": {
+            "type": "string",
+            "required": true,
+            "location": "body"
+          },
+          "role": {
+            "type": "string",
+            "required": true,
+            "location": "body"
+          }
+        }
+      },
+      "list": {
+        "path": "b/{bucket}/acl",
+        "httpMethod": "GET",
+        "parameters": {
+          "bucket": {
+            "type": "string",
+            "required": true,
+            "location": "path"
+          }
+        }
+      },
+      "patch": {
+        "path": "b/{bucket}/acl/{entity}",
+        "httpMethod": "PATCH",
+        "parameters": {
+          "bucket": {
+            "type": "string",
+            "required": true,
+            "location": "path"
+          },
+          "entity": {
+            "type": "string",
+            "required": true,
+            "location": "path"
+          },
+          "role": {
+            "type": "string",
+            "location": "body"
+          }
+        }
+      }
+    }
+  },
+  "buckets": {
+    "methods": {
+      "delete": {
+        "path": "b/{bucket}",
+        "httpMethod": "DELETE",
+        "parameters": {
+          "bucket": {
+            "type": "string",
+            "required": true,
+            "location": "path"
+          },
+          "ifMetagenerationMatch": {
+            "type": "string",
+            "location": "query"
+          },
+          "ifMetagenerationNotMatch": {
+            "type": "string",
+            "location": "query"
+          }
+        }
+      },
+      "get": {
+        "path": "b/{bucket}",
+        "httpMethod": "GET",
+        "parameters": {
+          "bucket": {
+            "type": "string",
+            "required": true,
+            "location": "path"
+          },
+          "ifMetagenerationMatch": {
+            "type": "string",
+            "location": "query"
+          },
+          "ifMetagenerationNotMatch": {
+            "type": "string",
+            "location": "query"
+          },
+          "projection": {
+            "type": "string",
+            "location": "query"
+          }
+        }
+      },
+      "insert": {
+        "path": "b",
+        "httpMethod": "POST",
+        "parameters": {
+          "predefinedAcl": {
+            "type": "string",
+            "location": "query"
+          },
+          "predefinedDefaultObjectAcl": {
+            "type": "string",
+            "location": "query"
+          },
+          "project": {
+            "type": "string",
+            "required": true,
+            "location": "query"
+          },
+          "projection": {
+            "type": "string",
+            "location": "query"
+          },
+          "name": {
+            "type": "string",
+            "required": true,
+            "location": "body"
+          },
+          "acl": {
+            "type": "array",
+            "location": "body"
+          },
+          "cors": {
+            "type": "array",
+            "location": "body"
+          },
+          "defaultObjectAcl": {
+            "type": "array",
+            "location": "body"
+          },
+          "lifecycle": {
+            "type": "object",
+            "location": "body"
+          },
+          "location": {
+            "type": "string",
+            "location": "body"
+          },
+          "logging": {
+            "type": "object",
+            "location": "body"
+          },
+          "storageClass": {
+            "type": "string",
+            "location": "body"
+          },
+          "versioning": {
+            "type": "object",
+            "location": "body"
+          },
+          "website": {
+            "type": "object",
+            "location": "body"
+          }
+        }
+      },
+      "list": {
+        "path": "b",
+        "httpMethod": "GET",
+        "parameters": {
+          "maxResults": {
+            "type": "integer",
+            "minimum": "0",
+            "location": "query"
+          },
+          "pageToken": {
+            "type": "string",
+            "location": "query"
+          },
+          "prefix": {
+            "type": "string",
+            "location": "query"
+          },
+          "project": {
+            "type": "string",
+            "required": true,
+            "location": "query"
+          },
+          "projection": {
+            "type": "string",
+            "location": "query"
+          }
+        }
+      },
+      "patch": {
+        "path": "b/{bucket}",
+        "httpMethod": "PATCH",
+        "parameters": {
+          "bucket": {
+            "type": "string",
+            "required": true,
+            "location": "path"
+          },
+          "ifMetagenerationMatch": {
+            "type": "string",
+            "location": "query"
+          },
+          "ifMetagenerationNotMatch": {
+            "type": "string",
+            "location": "query"
+          },
+          "predefinedAcl": {
+            "type": "string",
+            "location": "query"
+          },
+          "predefinedDefaultObjectAcl": {
+            "type": "string",
+            "location": "query"
+          },
+          "projection": {
+            "type": "string",
+            "location": "query"
+          },
+          "acl": {
+            "type": "array",
+            "location": "body"
+          },
+          "cors": {
+            "type": "array",
+            "location": "body"
+          },
+          "defaultObjectAcl": {
+            "type": "array",
+            "location": "body"
+          },
+          "lifecycle": {
+            "type": "object",
+            "location": "body"
+          },
+          "logging": {
+            "type": "object",
+            "location": "body"
+          },
+          "versioning": {
+            "type": "object",
+            "location": "body"
+          },
+          "website": {
+            "type": "object",
+            "location": "body"
+          }
+        }
+      }
+    }
+  },
+  "defaultObjectAccessControls": {
+    "methods": {
+      "delete": {
+        "path": "b/{bucket}/defaultObjectAcl/{entity}",
+        "httpMethod": "DELETE",
+        "parameters": {
+          "bucket": {
+            "type": "string",
+            "required": true,
+            "location": "path"
+          },
+          "entity": {
+            "type": "string",
+            "required": true,
+            "location": "path"
+          }
+        }
+      },
+      "get": {
+        "path": "b/{bucket}/defaultObjectAcl/{entity}",
+        "httpMethod": "GET",
+        "parameters": {
+          "bucket": {
+            "type": "string",
+            "required": true,
+            "location": "path"
+          },
+          "entity": {
+            "type": "string",
+            "required": true,
+            "location": "path"
+          }
+        }
+      },
+      "insert": {
+        "path": "b/{bucket}/defaultObjectAcl",
+        "httpMethod": "POST",
+        "parameters": {
+          "bucket": {
+            "type": "string",
+            "required": true,
+            "location": "path"
+          },
+          "entity": {
+            "type": "string",
+            "required": true,
+            "location": "body"
+          },
+          "role": {
+            "type": "string",
+            "required": true,
+            "location": "body"
+          }
+        }
+      },
+      "list": {
+        "path": "b/{bucket}/defaultObjectAcl",
+        "httpMethod": "GET",
+        "parameters": {
+          "bucket": {
+            "type": "string",
+            "required": true,
+            "location": "path"
+          },
+          "ifMetagenerationMatch": {
+            "type": "string",
+            "location": "query"
+          },
+          "ifMetagenerationNotMatch": {
+            "type": "string",
+            "location": "query"
+          }
+        }
+      },
+      "patch": {
+        "path": "b/{bucket}/defaultObjectAcl/{entity}",
+        "httpMethod": "PATCH",
+        "parameters": {
+          "bucket": {
+            "type": "string",
+            "required": true,
+            "location": "path"
+          },
+          "entity": {
+            "type": "string",
+            "required": true,
+            "location": "path"
+          },
+          "role": {
+            "type": "string",
+            "location": "body"
+          }
+        }
+      }
+    }
+  },
+  "objectAccessControls": {
+    "methods": {
+      "delete": {
+        "path": "b/{bucket}/o/{object}/acl/{entity}",
+        "httpMethod": "DELETE",
+        "parameters": {
+          "bucket": {
+            "type": "string",
+            "required": true,
+            "location": "path"
+          },
+          "entity": {
+            "type": "string",
+            "required": true,
+            "location": "path"
+          },
+          "generation": {
+            "type": "string",
+            "location": "query"
+          },
+          "object": {
+            "type": "string",
+            "required": true,
+            "location": "path"
+          }
+        }
+      },
+      "get": {
+        "path": "b/{bucket}/o/{object}/acl/{entity}",
+        "httpMethod": "GET",
+        "parameters": {
+          "bucket": {
+            "type": "string",
+            "required": true,
+            "location": "path"
+          },
+          "entity": {
+            "type": "string",
+            "required": true,
+            "location": "path"
+          },
+          "generation": {
+            "type": "string",
+            "location": "query"
+          },
+          "object": {
+            "type": "string",
+            "required": true,
+            "location": "path"
+          }
+        }
+      },
+      "insert": {
+        "path": "b/{bucket}/o/{object}/acl",
+        "httpMethod": "POST",
+        "parameters": {
+          "bucket": {
+            "type": "string",
+            "required": true,
+            "location": "path"
+          },
+          "generation": {
+            "type": "string",
+            "location": "query"
+          },
+          "object": {
+            "type": "string",
+            "required": true,
+            "location": "path"
+          },
+          "entity": {
+            "type": "string",
+            "required": true,
+            "location": "body"
+          },
+          "role": {
+            "type": "string",
+            "required": true,
+            "location": "body"
+          }
+        }
+      },
+      "list": {
+        "path": "b/{bucket}/o/{object}/acl",
+        "httpMethod": "GET",
+        "parameters": {
+          "bucket": {
+            "type": "string",
+            "required": true,
+            "location": "path"
+          },
+          "generation": {
+            "type": "string",
+            "location": "query"
+          },
+          "object": {
+            "type": "string",
+            "required": true,
+            "location": "path"
+          }
+        }
+      },
+      "patch": {
+        "path": "b/{bucket}/o/{object}/acl/{entity}",
+        "httpMethod": "PATCH",
+        "parameters": {
+          "bucket": {
+            "type": "string",
+            "required": true,
+            "location": "path"
+          },
+          "entity": {
+            "type": "string",
+            "required": true,
+            "location": "path"
+          },
+          "generation": {
+            "type": "string",
+            "format": "int64",
+            "location": "query"
+          },
+          "object": {
+            "type": "string",
+            "required": true,
+            "location": "path"
+          },
+          "role": {
+            "type": "string",
+            "location": "body"
+          }
+        }
+      }
+    }
+  },
+  "objects": {
+    "methods": {
+      "delete": {
+        "path": "b/{bucket}/o/{object}",
+        "httpMethod": "DELETE",
+        "parameters": {
+          "bucket": {
+            "type": "string",
+            "required": true,
+            "location": "path"
+          },
+          "generation": {
+            "type": "string",
+            "location": "query"
+          },
+          "ifGenerationMatch": {
+            "type": "string",
+            "location": "query"
+          },
+          "ifGenerationNotMatch": {
+            "type": "string",
+            "location": "query"
+          },
+          "ifMetagenerationMatch": {
+            "type": "string",
+            "location": "query"
+          },
+          "ifMetagenerationNotMatch": {
+            "type": "string",
+            "location": "query"
+          },
+          "object": {
+            "type": "string",
+            "required": true,
+            "location": "path"
+          }
+        }
+      },
+      "get": {
+        "path": "b/{bucket}/o/{object}",
+        "httpMethod": "GET",
+        "parameters": {
+          "bucket": {
+            "type": "string",
+            "required": true,
+            "location": "path"
+          },
+          "generation": {
+            "type": "string",
+            "location": "query"
+          },
+          "ifGenerationMatch": {
+            "type": "string",
+            "location": "query"
+          },
+          "ifGenerationNotMatch": {
+            "type": "string",
+            "location": "query"
+          },
+          "ifMetagenerationMatch": {
+            "type": "string",
+            "location": "query"
+          },
+          "ifMetagenerationNotMatch": {
+            "type": "string",
+            "location": "query"
+          },
+          "object": {
+            "type": "string",
+            "required": true,
+            "location": "path"
+          },
+          "projection": {
+            "type": "string",
+            "location": "query"
+          }
+        }
+      },
+      "insert": {
+        "path": "b/{bucket}/o",
+        "httpMethod": "POST",
+        "parameters": {
+          "bucket": {
+            "type": "string",
+            "required": true,
+            "location": "path"
+          },
+          "contentEncoding": {
+            "type": "string",
+            "location": "query"
+          },
+          "ifGenerationMatch": {
+            "type": "string",
+            "location": "query"
+          },
+          "ifGenerationNotMatch": {
+            "type": "string",
+            "location": "query"
+          },
+          "ifMetagenerationMatch": {
+            "type": "string",
+            "location": "query"
+          },
+          "ifMetagenerationNotMatch": {
+            "type": "string",
+            "location": "query"
+          },
+          "name": {
+            "type": "string",
+            "location": "query"
+          },
+          "predefinedAcl": {
+            "type": "string",
+            "location": "query"
+          },
+          "projection": {
+            "type": "string",
+            "location": "query"
+          }
+        }
+      },
+      "list": {
+        "path": "b/{bucket}/o",
+        "httpMethod": "GET",
+        "parameters": {
+          "bucket": {
+            "type": "string",
+            "required": true,
+            "location": "path"
+          },
+          "delimiter": {
+            "type": "string",
+            "location": "query"
+          },
+          "maxResults": {
+            "type": "integer",
+            "location": "query"
+          },
+          "pageToken": {
+            "type": "string",
+            "location": "query"
+          },
+          "prefix": {
+            "type": "string",
+            "location": "query"
+          },
+          "projection": {
+            "type": "string",
+            "location": "query"
+          },
+          "versions": {
+            "type": "boolean",
+            "location": "query"
+          }
+        }
+      },
+      "patch": {
+        "path": "b/{bucket}/o/{object}",
+        "httpMethod": "PATCH",
+        "parameters": {
+          "bucket": {
+            "type": "string",
+            "required": true,
+            "location": "path"
+          },
+          "generation": {
+            "type": "string",
+            "location": "query"
+          },
+          "ifGenerationMatch": {
+            "type": "string",
+            "location": "query"
+          },
+          "ifGenerationNotMatch": {
+            "type": "string",
+            "location": "query"
+          },
+          "ifMetagenerationMatch": {
+            "type": "string",
+            "location": "query"
+          },
+          "ifMetagenerationNotMatch": {
+            "type": "string",
+            "location": "query"
+          },
+          "object": {
+            "type": "string",
+            "required": true,
+            "location": "path"
+          },
+          "predefinedAcl": {
+            "type": "string",
+            "location": "query"
+          },
+          "projection": {
+            "type": "string",
+            "location": "query"
+          },
+          "acl": {
+            "type": "array",
+            "location": "body"
+          },
+          "cacheControl": {
+            "type": "string",
+            "location": "body"
+          },
+          "contentDisposition": {
+            "type": "string",
+            "location": "body"
+          },
+          "contentEncoding": {
+            "type": "string",
+            "location": "body"
+          },
+          "contentLanguage": {
+            "type": "string",
+            "location": "body"
+          },
+          "contentType": {
+            "type": "string",
+            "location": "body"
+          },
+          "crc32c": {
+            "type": "string",
+            "location": "body"
+          },
+          "md5Hash": {
+            "type": "string",
+            "location": "body"
+          },
+          "metadata": {
+            "type": "object",
+            "location": "body"
+          }
+        }
+      }
+    }
+  }
+}
