@@ -61,7 +61,6 @@ class HttpRequestWrapper
         try {
             return $httpHandler($signedRequest, $options);
         } catch (\Exception $ex) {
-            var_dump((string)$ex->getResponse()->getBody());
             $this->handleException($ex);
         }
     }
