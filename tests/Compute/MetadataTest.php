@@ -15,11 +15,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-namespace Google\Cloud\tests;
+namespace Google\Cloud\Tests\Compute;
 
 use Google\Cloud\Compute\Metadata;
 
-class ComputeMetadataTest extends \PHPUnit_Framework_TestCase
+class MetadataTest extends \PHPUnit_Framework_TestCase
 {
     protected $mock;
     protected $metadata;
