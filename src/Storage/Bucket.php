@@ -104,7 +104,7 @@ class Bucket
     }
 
     /**
-     * Upload data from a file.
+     * Upload data from a stream.
      *
      * Example:
      * ```
@@ -115,7 +115,7 @@ class Bucket
      * );
      * ```
      *
-     * @param mixed $data
+     * @param resource|StreamInterface $data
      * @param string $destination Name of where the file will be stored.
      * @param array $options Configuration options.
      * @return Object
