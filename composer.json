@@ -23,15 +23,15 @@
   "require": {
     "php": ">=5.5",
     "rize/uri-template": "~0.3",
-    "google/auth": "*",
-    "guzzlehttp/guzzle": "6",
-    "guzzlehttp/psr7": "*",
-    "psr/http-message": "*"
+    "google/auth": "0.5",
+    "guzzlehttp/guzzle": "~5.2|~6.0",
+    "guzzlehttp/psr7": "1.2.*",
+    "psr/http-message": "1.0.*",
   },
   "require-dev": {
     "phpunit/phpunit": "4.8.*",
     "squizlabs/php_codesniffer": "2.*",
-    "phpdocumentor/phpdocumentor": "*"
+    "phpdocumentor/phpdocumentor": "2.*"
   },
   "autoload": {
     "psr-4": {
