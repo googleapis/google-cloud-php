@@ -53,12 +53,39 @@ class Acl
         $this->aclOptions = $identity + ['type' => $type];
     }
 
+    /**
+     * Delete access controls on a Bucket or Object for a specified entity.
+     *
+     * Example:
+     * ```
+     * $acl->delete('allAuthenticatedUsers');
+     * ```
+     *
+     * @param string $entity The entity to delete.
+     * @param array $options Configuration options.
+     * @return void
+     */
     public function delete($entity, array $options = [])
     {
         $aclOptions = $this->aclOptions + ['entity' => $entity];
         $this->connection->deleteAcl($options + $aclOptions);
     }
 
+    /**
+     * Get access controls on a Bucket or Object. By default this will return
+     * all available access controls. You may optionally specify a single entity
+     * to return details for as well.
+     *
+     * Example:
+     * ```
+     * $acl->get(['entity' => 'allAuthenticatedUsers']);
+     * ```
+     *
+     * @param array $options Configuration options. {
+     *     @type string $entity The entity to fetch.
+     * }
+     * @return array
+     */
     public function get(array $options = [])
     {
         if (isset($options['entity'])) {
@@ -69,6 +96,20 @@ class Acl
         return $response['items'];
     }
 
+    /**
+     * Add access controls on a Bucket or Object.
+     *
+     * Example:
+     * ```
+     * $acl->add('allAuthenticatedUsers', 'WRITER');
+     * ```
+     *
+     * @param string $entity The entity to add access controls to.
+     * @param string $role The permissions to add for the specified entity. May
+     *        be one of 'OWNER', 'READER', or 'WRITER'.
+     * @param array $options Configuration options.
+     * @return array
+     */
     public function add($entity, $role, array $options = [])
     {
         $aclOptions = $this->aclOptions + [
@@ -79,6 +120,20 @@ class Acl
         return $this->connection->insertAcl($options + $aclOptions);
     }
 
+    /**
+     * Update access controls on a Bucket or Object.
+     *
+     * Example:
+     * ```
+     * $acl->update('allAuthenticatedUsers', 'READER');
+     * ```
+     *
+     * @param string $entity The entity to update access controls for.
+     * @param string $role The permissions to update for the specified entity.
+     *        May be one of 'OWNER', 'READER', or 'WRITER'.
+     * @param array $options Configuration options.
+     * @return array
+     */
     public function update($entity, $role, array $options = [])
     {
         $aclOptions = $this->aclOptions + [
