@@ -128,9 +128,7 @@ class Bucket
             'name' => $destination
         ]);
 
-        $objectIdentity = $this->identity + ['object' => $destination];
-
-        return new Object($this->connection, $objectIdentity, $response);
+        return new Object($this->connection, $destination, $this->identity['bucket'], null, $response);
     }
 
     /**
