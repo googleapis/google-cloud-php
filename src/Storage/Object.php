@@ -208,7 +208,6 @@ class Object
      */
     public function downloadToFile($path, array $options = [])
     {
-        // @todo consider abstracting this out
         Psr7\copy_to_stream(
             $this->connection->downloadObject($options + $this->identity),
             Psr7\stream_for(fopen($path, 'w'))
