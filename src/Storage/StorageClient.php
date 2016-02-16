@@ -79,8 +79,7 @@ class StorageClient
      * ```
      * // Get all buckets beginning with the prefix 'album'.
      * $buckets = $client->buckets([
-     *     'prefix' => 'album',
-     *     'fields' => 'items/name,nextPageToken'
+     *     'prefix' => 'album'
      * ]);
      *
      * foreach ($buckets as $bucket) {
