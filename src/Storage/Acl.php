@@ -22,6 +22,10 @@ use Google\Cloud\Storage\Connection\ConnectionInterface;
 // @todo finish docs
 class Acl
 {
+    const ROLE_READER = 'READER';
+    const ROLE_WRITER = 'WRITER';
+    const ROLE_OWNER = 'OWNER';
+
     /**
      * @var ConnectionInterface
      */
