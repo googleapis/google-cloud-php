@@ -169,7 +169,6 @@ class Bucket
     }
 
     /**
-     * @todo investigate abstracting the generator logic
      * Fetches all objects in the bucket.
      *
      * Example:
