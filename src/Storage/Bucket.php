@@ -104,23 +104,23 @@ class Bucket
     }
 
     /**
-     * Upload data from a stream.
+     * Upload data.
      *
      * Example:
      * ```
-     * $bucket->uploadFromStream(
+     * $bucket->upload(
      *     fopen('image.jpg', 'r'),
      *     'image.jpg',
      *     ['contentType' => 'image/jpeg']
      * );
      * ```
      *
-     * @param resource|StreamInterface $data
+     * @param string|resource|StreamInterface $data
      * @param string $destination Name of where the file will be stored.
      * @param array $options Configuration options.
      * @return Object
      */
-    public function uploadFromStream($data, $destination, array $options = [])
+    public function upload($data, $destination, array $options = [])
     {
         $response = $this->connection->uploadObject($options + [
             'bucket' => $this->identity['bucket'],
