@@ -19,7 +19,9 @@ namespace Google\Cloud\Storage;
 
 use Google\Cloud\Storage\Connection\ConnectionInterface;
 
-// @todo finish docs
+/**
+ * acl description
+ */
 class Acl
 {
     const ROLE_READER = 'READER';
@@ -85,7 +87,9 @@ class Acl
      * $acl->get(['entity' => 'allAuthenticatedUsers']);
      * ```
      *
-     * @param array $options Configuration options. {
+     * @param array $options {
+     *     Configuration options.
+     *
      *     @type string $entity The entity to fetch.
      * }
      * @return array

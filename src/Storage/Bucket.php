@@ -20,7 +20,11 @@ namespace Google\Cloud\Storage;
 use Google\Cloud\Storage\Acl;
 use Google\Cloud\Storage\Connection\ConnectionInterface;
 use Google\Cloud\Storage\Object;
+use Psr\Http\Message\StreamInterface;
 
+/**
+ * bucket description
+ */
 class Bucket
 {
     /**
@@ -156,7 +160,9 @@ class Bucket
      * ```
      *
      * @param string $name The name of the object to request.
-     * @param array $options Configuration options. {
+     * @param array $options {
+     *     Configuration options.
+     *
      *     @type string $generation Request a specific revision of the object.
      * }
      * @return Object
@@ -184,7 +190,9 @@ class Bucket
      * }
      * ```
      *
-     * @param array $options Configuration options. {
+     * @param array $options {
+     *     Configuration options.
+     *
      *     @type string $delimiter Returns results in a directory-like mode.
      *           Results will contain only objects whose names, aside from the
      *           prefix, do not contain delimiter. Objects whose names, aside
@@ -228,7 +236,8 @@ class Bucket
      * $bucket->delete();
      * ```
      *
-     * @param array $options Configuration options. {
+     * @param array $options {
+     *     Configuration options.
      *     @type string $ifMetagenerationMatch If set, only deletes the bucket
      *           if its metageneration matches this value.
      *     @type string $ifMetagenerationNotMatch If set, only deletes the
@@ -245,9 +254,6 @@ class Bucket
      * Update the bucket. Upon receiving a result the local bucket's data will
      * be updated.
      *
-     * @link https://goo.gl/KgufNr Learn more about configuring request options
-     *       at the bucket patch API documentation.
-     *
      * Example:
      * ```
      * // Enable logging on an existing bucket.
@@ -259,7 +265,12 @@ class Bucket
      * ]);
      * ```
      *
-     * @param array $options Configuration options. {
+     * @see https://goo.gl/KgufNr Learn more about configuring request options
+     *       at the bucket patch API documentation.
+     *
+     * @param array $options {
+     *     Configuration options.
+     *
      *     @type string $ifMetagenerationMatch Makes the return of the bucket
      *           metadata conditional on whether the bucket's current
      *           metageneration matches the given value.
@@ -304,7 +315,9 @@ class Bucket
      * var_dump($info['location']);
      * ```
      *
-     * @param array $options Configuration options. {
+     * @param array $options {
+     *     Configuration options.
+     *
      *     @type bool $force If true fetches fresh data, otherwise returns data
      *           stored locally if it exists.
      *     @type string $ifMetagenerationMatch Makes the return of the bucket

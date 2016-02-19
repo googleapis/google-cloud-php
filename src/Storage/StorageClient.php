@@ -38,7 +38,7 @@ class StorageClient
     private $projectId;
 
     /**
-     * Pass in an array of configuration parameters to construct your client.
+     * Create a storage client.
      *
      * Example:
      * ```

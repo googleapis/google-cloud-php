@@ -40,7 +40,9 @@ class Client
      * ]);
      * ```
      *
-     * @param array $config Configuration options. {
+     * @param array $config {
+     *     Configuration options.
+     *
      *     @type callable $httpHandler Override the default http handler.
      *     @type string $keyFilePath The full path to your service account
      *           credentials .json file retrieved from the Google Developers

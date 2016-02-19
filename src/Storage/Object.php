@@ -21,6 +21,9 @@ use Google\Cloud\Storage\Acl;
 use Google\Cloud\Storage\Connection\ConnectionInterface;
 use GuzzleHttp\Psr7;
 
+/**
+ * object description
+ */
 class Object
 {
     /**
@@ -101,7 +104,9 @@ class Object
      * $object->delete();
      * ```
      *
-     * @param array $options Configuration options. {
+     * @param array $options {
+     *     Configuration options.
+     *
      *     @type string $ifGenerationMatch Makes the operation conditional on
      *           whether the object's current generation matches the given
      *           value.
@@ -126,9 +131,6 @@ class Object
      * Update the object. Upon receiving a result the local object's data will
      * be updated.
      *
-     * @link https://goo.gl/UBFXDs Learn more about configuring request options
-     *       at the object patch API documentation.
-     *
      * Example:
      * ```
      * // Add custom metadata to an existing object.
@@ -139,7 +141,12 @@ class Object
      * ]);
      * ```
      *
-     * @param array $options Configuration options. {
+     * @see https://goo.gl/UBFXDs Learn more about configuring request options
+     *       at the object patch API documentation.
+     *
+     * @param array $options {
+     *     Configuration options.
+     *
      *     @type string $ifGenerationMatch Makes the operation conditional on
      *           whether the object's current generation matches the given
      *           value.
@@ -223,7 +230,9 @@ class Object
      * var_dump($info['metadata']);
      * ```
      *
-     * @param array $options Configuration options. {
+     * @param array $options {
+     *     Configuration options.
+     *
      *     @type bool $force If true fetches fresh data, otherwise returns data
      *           stored locally if it exists.
      *     @type string $ifGenerationMatch Makes the operation conditional on
