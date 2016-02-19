@@ -64,12 +64,12 @@ class StorageClient
     /**
      * Lazily instantiates a bucket.
      *
-     * @param string $bucketName The name of the bucket to request.
+     * @param string $name The name of the bucket to request.
      * @return Bucket
      */
-    public function bucket($bucketName)
+    public function bucket($name)
     {
-        return new Bucket($this->connection, $bucketName);
+        return new Bucket($this->connection, $name);
     }
 
     /**

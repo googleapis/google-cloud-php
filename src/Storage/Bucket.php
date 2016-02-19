@@ -155,17 +155,17 @@ class Bucket
      * $object = $bucket->object('file.txt');
      * ```
      *
-     * @param string $objectName The name of the object to request.
+     * @param string $name The name of the object to request.
      * @param array $options Configuration options. {
      *     @type string $generation Request a specific revision of the object.
      * }
      * @return Object
      */
-    public function object($objectName, array $options = [])
+    public function object($name, array $options = [])
     {
         $generation = isset($options['generation']) ? $options['generation'] : null;
 
-        return new Object($this->connection, $objectName, $this->identity['bucket'], $generation);
+        return new Object($this->connection, $name, $this->identity['bucket'], $generation);
     }
 
     /**
