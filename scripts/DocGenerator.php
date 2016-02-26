@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2015 Google Inc. All Rights Reserved.
+ * Copyright 2016 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,45 +15,92 @@
  * limitations under the License.
  */
 
-require 'vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
 
+use phpDocumentor\Reflection\DocBlock\Description;
+use phpDocumentor\Reflection\DocBlock\Tag\SeeTag;
 use phpDocumentor\Reflection\FileReflector;
 
+/**
+ * Parses given files and builds JSON documentation.
+ */
 class DocGenerator
 {
     private $currentFile;
     private $files;
+    private $outputPath;
 
-    public function __construct($files)
+    /**
+     * @param array $files
+     */
+    public function __construct(array $files, $outputPath)
     {
         $this->files = $files;
+        $this->outputPath = $outputPath;
+        $this->markdown = \Parsedown::instance();
     }
 
+    /**
+     * Generates JSON documentation from provided files.
+     *
+     * @return void
+     */
     public function generate()
     {
         foreach ($this->files as $file) {
-            $this->currentFile = $file;
+            $this->currentFile = substr(str_replace(__DIR__, '', $file), 3);
+            $jsonOutputPath = $this->buildOutputPath();
             $fileReflector = new FileReflector($file);
             $fileReflector->process();
-            $document = $this->buildClass($fileReflector->getClasses()[0]);
+            $reflector = isset($fileReflector->getClasses()[0]) ? $fileReflector->getClasses()[0] : $fileReflector->getInterfaces()[0];
 
-            // @todo output json
+            $document = $this->buildDocument($reflector);
+
+            if (!is_dir(dirname($jsonOutputPath))) {
+                mkdir(dirname($jsonOutputPath), 0777, true);
+            }
+
+            file_put_contents($jsonOutputPath, json_encode($document));
         }
     }
 
-    private function buildClass($class)
+    private function buildDocument($reflector)
     {
-        $namespaceParts = explode('\\', $class->getName());
-        $name = end($namespaceParts);
+        $name = $reflector->getShortName();
+        $title = explode('\\', $reflector->getNamespace());
+        $title[] = $name;
 
         return [
-            'id' => lcfirst($name),
+            'id' => strtolower($name),
             'metadata' => [
                 'name' => $name,
-                'description' => $class->getDocBlock()->getText()
+                'title' => $title,
+                'description' => $this->buildDescription($reflector->getDocBlock())
             ],
-            'methods' => $this->buildMethods($class->getMethods())
+            'methods' => $this->buildMethods($reflector->getMethods())
         ];
+    }
+
+    private function buildDescription($docBlock, $content = null)
+    {
+        if ($content === null) {
+            $content = $docBlock->getText();
+        }
+
+        $desc = new Description($content, $docBlock);
+        $parsedContents = $desc->getParsedContents();
+
+        // convert inline {@see} tag to custom type link
+        foreach ($parsedContents as &$content) {
+            if ($content instanceof Seetag) {
+                $reference = $content->getReference();
+                if (substr_compare($reference, 'Gcloud', 0, 6) === 0) {
+                    $content = $this->buildLink($reference);
+                }
+            }
+        }
+
+        return $this->markdown->parse(implode('', $parsedContents));
     }
 
     private function buildMethods($methods)
@@ -74,11 +121,15 @@ class DocGenerator
         $params = $docBlock->getTagsByName('param');
         $exceptions = $docBlock->getTagsByName('throws');
         $returns = $docBlock->getTagsByName('return');
-        $docText = null;
+        $docText = '';
         $examples = null;
 
+        $parts = explode('Example:', $fullDescription);
+
+        $docText = $parts[0];
+
         if (strpos($fullDescription, 'Example:') !== false) {
-            list($docText, $examples) = explode('Example:', $fullDescription);
+            $examples = $parts[1];
         }
 
         return [
@@ -86,7 +137,7 @@ class DocGenerator
                 'constructor' => $method->getName() === '__construct' ? true : false,
                 'name' => $method->getName(),
                 'source' => $this->currentFile . '#L' . $method->getLineNumber(),
-                'description' => trim($docText),
+                'description' => $this->buildDescription($docBlock, $docText),
                 'examples' => $this->buildExamples($examples),
                 'resources' => $this->buildResources($resources)
             ],
@@ -106,16 +157,28 @@ class DocGenerator
 
         $exampleParts = explode('```', $examples);
 
-        foreach ($exampleParts as $key => $example) {
+        foreach ($exampleParts as $example) {
             $example = trim($example);
+            $caption = '';
 
             if (strlen($example) === 0) {
                 continue;
             }
 
+            $lines = explode(PHP_EOL, $example);
+
+            foreach ($lines as $key => $line) {
+                if (substr($line, 0, 2) === '//') {
+                    $caption .= $this->markdown->parse(substr($line, 3));
+                    unset($lines[$key]);
+                } else {
+                    break;
+                }
+            }
+
             $examplesArray[] = [
-                'caption' => '', // @todo
-                'code' => $example
+                'caption' => $caption,
+                'code' => implode(PHP_EOL, $lines)
             ];
         }
 
@@ -140,7 +203,6 @@ class DocGenerator
         return $resourcesArray;
     }
 
-    // @todo refactor
     private function buildParams($params)
     {
         if (count($params) === 0) {
@@ -151,33 +213,34 @@ class DocGenerator
 
         foreach ($params as $param) {
             $description = $param->getDescription();
-            $nestedParamsArray = null;
+            $nestedParamsArray = [];
 
             if ($param->getType() === 'array' && $this->hasNestedParams($description)) {
-                $description = trim(substr($description, 1, -1));
+                $description = substr($description, 1, -1);
                 $nestedParams = explode('@type', $description);
                 $description = trim(array_shift($nestedParams));
-                $nestedParamsArray = $this->buildNestedParams($nestedParams, $param->getVariableName());
+                $nestedParamsArray = $this->buildNestedParams($nestedParams, $param);
             }
 
             $paramsArray[] = [
                 'name' => substr($param->getVariableName(), 1),
-                'description' => $description,
-                'types' => $param->getTypes(),
+                'description' => $this->buildDescription($param->getDocBlock(), $description),
+                'types' => $this->handleTypes($param->getTypes()),
                 'optional' => null, // @todo
                 'nullable' => null // @todo
             ];
 
-            if ($nestedParamsArray) {
-                $paramsArray += $nestedParamsArray;
-            }
+            $paramsArray = array_merge($paramsArray, $nestedParamsArray);
         }
 
         return $paramsArray;
     }
 
-    // @todo refactor
-    private function buildNestedParams($nestedParams, $parentParamName)
+    /**
+     * PHPDoc has no support for nested params currently. this is a workaround
+     * until it is implemented.
+     */
+    private function buildNestedParams($nestedParams, $origParam)
     {
         $paramsArray = [];
 
@@ -185,10 +248,12 @@ class DocGenerator
             list($type, $name, $description) = explode(' ', trim($param), 3);
             $name = substr($name, 1);
             $description = preg_replace('/\s+/', ' ', $description);
+            $types = explode('|', $type);
+
             $paramsArray[] = [
-                'name' => substr($parentParamName, 1) . '.' . $name,
-                'description' => $description,
-                'types' => explode('|', $type),
+                'name' => substr($origParam->getVariableName(), 1) . '.' . $name,
+                'description' => $this->buildDescription($origParam->getDocBlock(), $description),
+                'types' => $this->handleTypes($types),
                 'optional' => null, // @todo
                 'nullable' => null //@todo
             ];
@@ -238,11 +303,48 @@ class DocGenerator
 
         foreach ($returns as $return) {
             $returnsArray[] = [
-                'types' => $return->getTypes(),
+                'types' => $this->handleTypes($return->getTypes()),
                 'description' => $return->getDescription()
             ];
         }
 
         return $returnsArray;
+    }
+
+    private function handleTypes($types)
+    {
+        foreach ($types as &$type) {
+            if (substr_compare($type, '\Gcloud', 0, 7) === 0) {
+                $type = $this->buildLink($type);
+            }
+        }
+
+        return $types;
+    }
+
+    private function buildLink($content)
+    {
+        if ($content[0] === '\\') {
+            $content = substr($content, 1);
+        }
+
+        $displayName = $content;
+        $content = substr($content, 7);
+        $parts = explode('::', $content);
+        $content = strtolower(str_replace('\\', '/', $parts[0]));
+
+        if (isset($parts[1])) {
+            $content .= '#' . str_replace('()', '', $parts[1]);
+        }
+
+        return '<a data-custom-type="' . $content . '">' . $displayName . '</a>';
+    }
+
+    private function buildOutputPath()
+    {
+        $pathInfo = pathinfo($this->currentFile);
+        $jsonOutputPath =  $this->outputPath . substr($pathInfo['dirname'] . '/' . $pathInfo['filename'] . '.json', 4);
+
+        return strtolower($jsonOutputPath);
     }
 }

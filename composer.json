@@ -35,7 +35,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Google\\Cloud\\": "src"
+      "Gcloud\\": "src"
     }
   }
 }

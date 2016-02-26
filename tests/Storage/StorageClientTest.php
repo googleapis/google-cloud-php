@@ -15,9 +15,9 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Storage;
+namespace Gcloud\Tests\Storage;
 
-use Google\Cloud\Storage\StorageClient;
+use Gcloud\Storage\StorageClient;
 use Prophecy\Argument;
 
 class StorageClientTest extends \PHPUnit_Framework_TestCase
@@ -26,14 +26,14 @@ class StorageClientTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->connection = $this->prophesize('Google\Cloud\Storage\Connection\ConnectionInterface');
+        $this->connection = $this->prophesize('Gcloud\Storage\Connection\ConnectionInterface');
     }
 
     public function testGetBucket()
     {
         $client = new StorageClient($this->connection->reveal(), 'projectId');
 
-        $this->assertInstanceOf('Google\Cloud\Storage\Bucket', $client->bucket('myBucket'));
+        $this->assertInstanceOf('Gcloud\Storage\Bucket', $client->bucket('myBucket'));
     }
 
     public function testGetsBucketsWithoutToken()
@@ -77,6 +77,6 @@ class StorageClientTest extends \PHPUnit_Framework_TestCase
         $this->connection->createBucket(Argument::any())->willReturn(['name' => 'bucket']);
         $client = new StorageClient($this->connection->reveal(), 'projectId');
 
-        $this->assertInstanceOf('Google\Cloud\Storage\Bucket', $client->createBucket('bucket'));
+        $this->assertInstanceOf('Gcloud\Storage\Bucket', $client->createBucket('bucket'));
     }
 }

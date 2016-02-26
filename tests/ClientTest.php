@@ -1,6 +1,6 @@
 <?php
 
-namespace Google\Cloud\Tests;
+namespace Gcloud\Tests;
 
 class ClientTest extends \PHPUnit_Framework_TestCase
 {

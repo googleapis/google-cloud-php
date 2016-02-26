@@ -41,7 +41,7 @@
   "services": [{
     "title": "Gcloud",
     "id": "gcloud",
-    "contents": "client.json"
+    "contents": "gcloud.json"
   }, {
     "title": "Storage",
     "id": "storage",

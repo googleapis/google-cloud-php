@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2015 Google Inc. All Rights Reserved.
+ * Copyright 2016 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,11 +15,16 @@
  * limitations under the License.
  */
 
-require 'DocGenerator.php';
+require __DIR__ . '/DocGenerator.php';
 
-$files = [
-    'src/Storage/Bucket.php'
-];
+$directoryIterator = new RecursiveDirectoryIterator(__DIR__ . '/../src');
+$iterator = new RecursiveIteratorIterator($directoryIterator);
+$regexIterator = new RegexIterator($iterator, '/^.+\.php$/i', RecursiveRegexIterator::GET_MATCH);
+$files = [];
 
-$generator = new DocGenerator($files);
+foreach ($regexIterator as $item) {
+    array_push($files, $item[0]);
+}
+
+$generator = new DocGenerator($files, __DIR__ . '/../docs/json/master');
 $generator->generate();

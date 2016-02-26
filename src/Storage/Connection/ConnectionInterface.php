@@ -15,39 +15,91 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Storage\Connection;
+namespace Gcloud\Storage\Connection;
 
+/**
+ * Represents a connection to
+ * [Cloud Storage](https://cloud.google.com/storage/).
+ */
 interface ConnectionInterface
 {
+    /**
+     * @param array $options
+     */
     public function deleteAcl(array $options = []);
 
+    /**
+     * @param array $options
+     */
     public function getAcl(array $options = []);
 
+    /**
+     * @param array $options
+     */
     public function listAcl(array $options = []);
 
+    /**
+     * @param array $options
+     */
     public function insertAcl(array $options = []);
 
+    /**
+     * @param array $options
+     */
     public function patchAcl(array $options = []);
 
+    /**
+     * @param array $options
+     */
     public function deleteBucket(array $options = []);
 
+    /**
+     * @param array $options
+     */
     public function getBucket(array $options = []);
 
+    /**
+     * @param array $options
+     */
     public function listBuckets(array $options = []);
 
+    /**
+     * @param array $options
+     */
     public function createBucket(array $options = []);
 
+    /**
+     * @param array $options
+     */
     public function patchBucket(array $options = []);
 
+    /**
+     * @param array $options
+     */
     public function deleteObject(array $options = []);
 
+    /**
+     * @param array $options
+     */
     public function getObject(array $options = []);
 
+    /**
+     * @param array $options
+     */
     public function listObjects(array $options = []);
 
+    /**
+     * @param array $options
+     */
     public function patchObject(array $options = []);
 
+    /**
+     * @param array $options
+     */
     public function downloadObject(array $options = []);
 
+    /**
+     * @param array $options
+     */
     public function uploadObject(array $options = []);
 }

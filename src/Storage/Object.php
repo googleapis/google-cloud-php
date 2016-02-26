@@ -15,43 +15,44 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Storage;
+namespace Gcloud\Storage;
 
-use Google\Cloud\Storage\Acl;
-use Google\Cloud\Storage\Connection\ConnectionInterface;
+use Gcloud\Storage\Connection\ConnectionInterface;
 use GuzzleHttp\Psr7;
 
 /**
- * object description
+ * Objects are the individual pieces of data that you store in Google Cloud
+ * Storage.
  */
 class Object
 {
     /**
-     * @var ConnectionInterface
+     * @var ConnectionInterface Represents a connection to Cloud Storage.
      */
     private $connection;
 
     /**
-     * @var array
+     * @var array The object's metadata.
      */
     private $data;
 
     /**
-     * @var array
+     * @var array The object's identity.
      */
     private $identity;
 
     /**
-     * @var Acl
+     * @var Acl ACL for the object.
      */
     private $acl;
 
     /**
-     * @param ConnectionInterface $connection
-     * @param string $name
-     * @param string $bucket
-     * @param string $generation
-     * @param array $data
+     * @param ConnectionInterface $connection Represents a connection to Cloud
+     *        Storage.
+     * @param string $name The object's name.
+     * @param string $bucket The name of the bucket the object is contained in.
+     * @param string $generation The generation of the object.
+     * @param array $data The object's metadata.
      */
     public function __construct(ConnectionInterface $connection, $name, $bucket, $generation = null, array $data = null)
     {
@@ -68,6 +69,15 @@ class Object
     /**
      * Configure ACL for this object.
      *
+     * Example:
+     * ```
+     * use Gcloud\Storage\Acl;
+     *
+     * $acl = $object->acl();
+     * $acl->add('allAuthenticatedUsers', Acl::ROLE_READER);
+     * ```
+     *
+     * @see https://cloud.google.com/storage/docs/access-control More about Access Control Lists
      * @return Acl
      */
     public function acl()
@@ -143,7 +153,6 @@ class Object
      *
      * @see https://goo.gl/UBFXDs Learn more about configuring request options
      *       at the object patch API documentation.
-     *
      * @param array $options {
      *     Configuration options.
      *
@@ -227,7 +236,7 @@ class Object
      * Example:
      * ```
      * $info = $object->getInfo();
-     * var_dump($info['metadata']);
+     * echo $info['metadata'];
      * ```
      *
      * @param array $options {
@@ -266,7 +275,7 @@ class Object
      *
      * Example:
      * ```
-     * var_dump($object->getName());
+     * echo $object->getName();
      * ```
      *
      * @return string
