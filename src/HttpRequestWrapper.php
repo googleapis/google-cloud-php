@@ -22,6 +22,7 @@ use Google\Auth\CredentialsLoader;
 use Google\Auth\HttpHandler\HttpHandlerFactory;
 use GuzzleHttp\Psr7;
 use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
 
 /**
  * The HttpRequestWrapper is responsible for delivering and signing requests.
@@ -73,9 +74,8 @@ class HttpRequestWrapper
         callable $httpHandler = null,
         callable $authHttpHandler = null
     ) {
-        $handler = HttpHandlerFactory::build();
-        $this->httpHandler = $httpHandler ?: $handler;
-        $this->authHttpHandler = $authHttpHandler ?: $handler;
+        $this->httpHandler = $httpHandler ?: HttpHandlerFactory::build();
+        $this->authHttpHandler = $authHttpHandler ?: $this->httpHandler;
         $this->scopes = $scopes;
 
         if ($keyFile || $keyFilePath) {
@@ -88,7 +88,7 @@ class HttpRequestWrapper
      *
      * @param RequestInterface $request Psr7 request.
      * @param array $options HTTP specific configuration options.
-     * @return RequestInterface
+     * @return ResponseInterface
      */
     public function send(RequestInterface $request, array $options = [])
     {
