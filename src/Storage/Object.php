@@ -15,9 +15,9 @@
  * limitations under the License.
  */
 
-namespace Gcloud\Storage;
+namespace Google\Gcloud\Storage;
 
-use Gcloud\Storage\Connection\ConnectionInterface;
+use Google\Gcloud\Storage\Connection\ConnectionInterface;
 use GuzzleHttp\Psr7;
 
 /**
@@ -71,7 +71,7 @@ class Object
      *
      * Example:
      * ```
-     * use Gcloud\Storage\Acl;
+     * use Google\Gcloud\Storage\Acl;
      *
      * $acl = $object->acl();
      * $acl->add('allAuthenticatedUsers', Acl::ROLE_READER);

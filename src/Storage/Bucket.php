@@ -15,9 +15,9 @@
  * limitations under the License.
  */
 
-namespace Gcloud\Storage;
+namespace Google\Gcloud\Storage;
 
-use Gcloud\Storage\Connection\ConnectionInterface;
+use Google\Gcloud\Storage\Connection\ConnectionInterface;
 use Psr\Http\Message\StreamInterface;
 
 /**
@@ -71,7 +71,7 @@ class Bucket
      *
      * Example:
      * ```
-     * use Gcloud\Storage\Acl;
+     * use Google\Gcloud\Storage\Acl;
      *
      * $acl = $bucket->acl();
      * $acl->add('allAuthenticatedUsers', Acl::ROLE_READER);
@@ -91,7 +91,7 @@ class Bucket
      *
      * Example:
      * ```
-     * use Gcloud\Storage\Acl;
+     * use Google\Gcloud\Storage\Acl;
      *
      * $acl = $bucket->defaultAcl();
      * $acl->add('allAuthenticatedUsers', Acl::ROLE_READER);
@@ -146,7 +146,7 @@ class Bucket
      *
      *      @type string $contentType The content type.
      * }
-     * @return \Gcloud\Storage\Object
+     * @return \Google\Gcloud\Storage\Object
      */
     public function upload($data, $destination, array $options = [])
     {
@@ -168,7 +168,7 @@ class Bucket
      *
      * @param string $path Path to the file to be uploaded.
      * @param array $options Configuration options.
-     * @return \Gcloud\Storage\Object
+     * @return \Google\Gcloud\Storage\Object
      */
     public function uploadFromPath($path, array $options = [])
     {
@@ -178,7 +178,7 @@ class Bucket
     /**
      * Lazily instantiates an object. There are no network requests made at this
      * point. To see the operations that can be performed on an object please
-     * see {@see Gcloud\Storage\Object}.
+     * see {@see Google\Gcloud\Storage\Object}.
      *
      * Example:
      * ```
@@ -191,7 +191,7 @@ class Bucket
      *
      *     @type string $generation Request a specific revision of the object.
      * }
-     * @return \Gcloud\Storage\Object
+     * @return \Google\Gcloud\Storage\Object
      */
     public function object($name, array $options = [])
     {

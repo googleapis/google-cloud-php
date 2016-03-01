@@ -15,9 +15,9 @@
  * limitations under the License.
  */
 
-namespace Gcloud\Storage;
+namespace Google\Gcloud\Storage;
 
-use Gcloud\Storage\Connection\ConnectionInterface;
+use Google\Gcloud\Storage\Connection\ConnectionInterface;
 
 /**
  * Google Cloud Storage client. Allows you to store and retrieve data on
@@ -40,12 +40,12 @@ class StorageClient
 
     /**
      * Create a storage client. The preferred way to access this client is to
-     * use {@see Gcloud\Gcloud::storage()}.
+     * use {@see Google\Gcloud\Gcloud::storage()}.
      *
      * Example:
      * ```
-     * use Gcloud\Storage\Connection\REST;
-     * use Gcloud\Storage\StorageClient;
+     * use Google\Gcloud\Storage\Connection\REST;
+     * use Google\Gcloud\Storage\StorageClient;
      *
      * $storage = new StorageClient(
      *     new REST(),
@@ -67,7 +67,7 @@ class StorageClient
     /**
      * Lazily instantiates a bucket. There are no network requests made at this
      * point. To see the operations that can be performed on a bucket please
-     * see {@see Gcloud\Storage\Bucket}.
+     * see {@see Google\Gcloud\Storage\Bucket}.
      *
      * Example:
      * ```

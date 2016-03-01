@@ -15,9 +15,9 @@
  * limitations under the License.
  */
 
-namespace Gcloud\Storage;
+namespace Google\Gcloud\Storage;
 
-use Gcloud\Storage\Connection\ConnectionInterface;
+use Google\Gcloud\Storage\Connection\ConnectionInterface;
 
 /**
  * Google Cloud Storage uses access control lists (ACLs) to manage bucket and
@@ -66,8 +66,8 @@ class Acl
     }
 
     /**
-     * Delete access controls on a {@see Gcloud\Storage\Bucket} or
-     * {@see Gcloud\Storage\Object} for a specified entity.
+     * Delete access controls on a {@see Google\Gcloud\Storage\Bucket} or
+     * {@see Google\Gcloud\Storage\Object} for a specified entity.
      *
      * Example:
      * ```
@@ -85,8 +85,8 @@ class Acl
     }
 
     /**
-     * Get access controls on a {@see Gcloud\Storage\Bucket} or
-     * {@see Gcloud\Storage\Object}. By default this will return all available
+     * Get access controls on a {@see Google\Gcloud\Storage\Bucket} or
+     * {@see Google\Gcloud\Storage\Object}. By default this will return all available
      * access controls. You may optionally specify a single entity to return
      * details for as well.
      *
@@ -113,8 +113,8 @@ class Acl
     }
 
     /**
-     * Add access controls on a {@see Gcloud\Storage\Bucket} or
-     * {@see Gcloud\Storage\Object}.
+     * Add access controls on a {@see Google\Gcloud\Storage\Bucket} or
+     * {@see Google\Gcloud\Storage\Object}.
      *
      * Example:
      * ```
@@ -138,8 +138,8 @@ class Acl
     }
 
     /**
-     * Update access controls on a {@see Gcloud\Storage\Bucket} or
-     * {@see Gcloud\Storage\Object}.
+     * Update access controls on a {@see Google\Gcloud\Storage\Bucket} or
+     * {@see Google\Gcloud\Storage\Object}.
      *
      * Example:
      * ```

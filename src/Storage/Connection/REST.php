@@ -15,10 +15,10 @@
  * limitations under the License.
  */
 
-namespace Gcloud\Storage\Connection;
+namespace Google\Gcloud\Storage\Connection;
 
-use Gcloud\HttpRequestWrapper;
-use Gcloud\Storage\Connection\ConnectionInterface;
+use Google\Gcloud\HttpRequestWrapper;
+use Google\Gcloud\Storage\Connection\ConnectionInterface;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Request;
 use Rize\UriTemplate;

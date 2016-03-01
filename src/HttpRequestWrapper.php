@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Gcloud;
+namespace Google\Gcloud;
 
 use Google\Auth\ApplicationDefaultCredentials;
 use Google\Auth\CredentialsLoader;

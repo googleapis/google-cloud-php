@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Gcloud\Storage\Connection;
+namespace Google\Gcloud\Storage\Connection;
 
 /**
  * Represents a connection to

@@ -15,10 +15,10 @@
  * limitations under the License.
  */
 
-namespace Gcloud;
+namespace Google\Gcloud;
 
-use Gcloud\Storage\Connection\REST;
-use Gcloud\Storage\StorageClient;
+use Google\Gcloud\Storage\Connection\REST;
+use Google\Gcloud\Storage\StorageClient;
 
 /**
  * Gcloud is the official way to interact with the
@@ -50,7 +50,7 @@ class Gcloud
      *
      * Example:
      * ```
-     * use Gcloud\Gcloud;
+     * use Google\Gcloud\Gcloud;
      *
      * $gcloud = new Gcloud([
      *     'keyFilePath' => '/path/to/key/file.json',
@@ -85,7 +85,7 @@ class Gcloud
      *
      * Example:
      * ```
-     * use Gcloud\Gcloud;
+     * use Google\Gcloud\Gcloud;
      *
      * // Create a Gcloud instance using application default credentials.
      * $gcloud = new Gcloud([
@@ -96,7 +96,7 @@ class Gcloud
      * ```
      *
      * @param array $config Configuration options. See
-     *        {@see Gcloud\Gcloud::__construct()} for the available options.
+     *        {@see Google\Gcloud\Gcloud::__construct()} for the available options.
      * @return StorageClient
      */
     public function storage(array $config = [])

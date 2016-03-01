@@ -15,9 +15,9 @@
  * limitations under the License.
  */
 
-namespace Gcloud\Tests\Storage;
+namespace Google\Gcloud\Tests\Storage;
 
-use Gcloud\Storage\Bucket;
+use Google\Gcloud\Storage\Bucket;
 use Prophecy\Argument;
 
 class BucketTest extends \PHPUnit_Framework_TestCase
@@ -26,21 +26,21 @@ class BucketTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->connection = $this->prophesize('Gcloud\Storage\Connection\ConnectionInterface');
+        $this->connection = $this->prophesize('Google\Gcloud\Storage\Connection\ConnectionInterface');
     }
 
     public function testGetsAcl()
     {
         $bucket = new Bucket($this->connection->reveal(), 'bucket');
 
-        $this->assertInstanceOf('Gcloud\Storage\Acl', $bucket->acl());
+        $this->assertInstanceOf('Google\Gcloud\Storage\Acl', $bucket->acl());
     }
 
     public function testGetsDefaultAcl()
     {
         $bucket = new Bucket($this->connection->reveal(), 'bucket');
 
-        $this->assertInstanceOf('Gcloud\Storage\Acl', $bucket->defaultAcl());
+        $this->assertInstanceOf('Google\Gcloud\Storage\Acl', $bucket->defaultAcl());
     }
 
     public function testDoesExistTrue()
@@ -63,7 +63,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
     {
         $bucket = new Bucket($this->connection->reveal(), 'bucket');
 
-        $this->assertInstanceOf('Gcloud\Storage\Object', $bucket->object('peter-venkman.jpg'));
+        $this->assertInstanceOf('Google\Gcloud\Storage\Object', $bucket->object('peter-venkman.jpg'));
     }
 
     public function testInstantiateObjectWithGeneration()
@@ -74,7 +74,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
             'generation' => '5'
         ]);
 
-        $this->assertInstanceOf('Gcloud\Storage\Object', $object);
+        $this->assertInstanceOf('Google\Gcloud\Storage\Object', $object);
     }
 
     public function testGetsObjectsWithoutToken()
