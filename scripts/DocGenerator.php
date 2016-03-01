@@ -94,7 +94,7 @@ class DocGenerator
         foreach ($parsedContents as &$content) {
             if ($content instanceof Seetag) {
                 $reference = $content->getReference();
-                if (substr_compare($reference, 'Gcloud', 0, 6) === 0) {
+                if (substr_compare($reference, 'Google\Gcloud', 0, 13) === 0) {
                     $content = $this->buildLink($reference);
                 }
             }
@@ -314,7 +314,7 @@ class DocGenerator
     private function handleTypes($types)
     {
         foreach ($types as &$type) {
-            if (substr_compare($type, '\Gcloud', 0, 7) === 0) {
+            if (substr_compare($type, '\Google\Gcloud', 0, 14) === 0) {
                 $type = $this->buildLink($type);
             }
         }
