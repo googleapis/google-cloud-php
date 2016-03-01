@@ -15,11 +15,17 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Storage;
+namespace Google\Gcloud\Storage;
 
-use Google\Cloud\Storage\Connection\ConnectionInterface;
+use Google\Gcloud\Storage\Connection\ConnectionInterface;
 
-// @todo finish docs
+/**
+ * Google Cloud Storage uses access control lists (ACLs) to manage bucket and
+ * object access. ACLs are the mechanism you use to share objects with other
+ * users and allow other users to access your buckets and objects. For more
+ * information please see the overview on
+ * [access-control](https://cloud.google.com/storage/docs/access-control).
+ */
 class Acl
 {
     const ROLE_READER = 'READER';
@@ -27,19 +33,21 @@ class Acl
     const ROLE_OWNER = 'OWNER';
 
     /**
-     * @var ConnectionInterface
+     * @var ConnectionInterface Represents a connection to Cloud Storage.
      */
     private $connection;
 
     /**
-     * @var array
+     * @var array ACL specific options.
      */
     private $aclOptions;
 
     /**
-     * @param ConnectionInterface $connection
-     * @param string $type
-     * @param array $identity
+     * @param ConnectionInterface $connection Represents a connection to
+     *        Cloud Storage.
+     * @param string $type The type of access control this instance applies to.
+     * @param array $identity Represents which bucket, file, or generation this
+     *        instance applies to.
      */
     public function __construct(ConnectionInterface $connection, $type, array $identity)
     {
@@ -58,7 +66,8 @@ class Acl
     }
 
     /**
-     * Delete access controls on a Bucket or Object for a specified entity.
+     * Delete access controls on a {@see Google\Gcloud\Storage\Bucket} or
+     * {@see Google\Gcloud\Storage\Object} for a specified entity.
      *
      * Example:
      * ```
@@ -76,16 +85,19 @@ class Acl
     }
 
     /**
-     * Get access controls on a Bucket or Object. By default this will return
-     * all available access controls. You may optionally specify a single entity
-     * to return details for as well.
+     * Get access controls on a {@see Google\Gcloud\Storage\Bucket} or
+     * {@see Google\Gcloud\Storage\Object}. By default this will return all available
+     * access controls. You may optionally specify a single entity to return
+     * details for as well.
      *
      * Example:
      * ```
      * $acl->get(['entity' => 'allAuthenticatedUsers']);
      * ```
      *
-     * @param array $options Configuration options. {
+     * @param array $options {
+     *     Configuration options.
+     *
      *     @type string $entity The entity to fetch.
      * }
      * @return array
@@ -101,7 +113,8 @@ class Acl
     }
 
     /**
-     * Add access controls on a Bucket or Object.
+     * Add access controls on a {@see Google\Gcloud\Storage\Bucket} or
+     * {@see Google\Gcloud\Storage\Object}.
      *
      * Example:
      * ```
@@ -125,7 +138,8 @@ class Acl
     }
 
     /**
-     * Update access controls on a Bucket or Object.
+     * Update access controls on a {@see Google\Gcloud\Storage\Bucket} or
+     * {@see Google\Gcloud\Storage\Object}.
      *
      * Example:
      * ```

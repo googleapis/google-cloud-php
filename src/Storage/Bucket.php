@@ -15,43 +15,47 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Storage;
+namespace Google\Gcloud\Storage;
 
-use Google\Cloud\Storage\Acl;
-use Google\Cloud\Storage\Connection\ConnectionInterface;
-use Google\Cloud\Storage\Object;
+use Google\Gcloud\Storage\Connection\ConnectionInterface;
+use Psr\Http\Message\StreamInterface;
 
+/**
+ * Buckets are the basic containers that hold your data. Everything that you
+ * store in Google Cloud Storage must be contained in a bucket.
+ */
 class Bucket
 {
     /**
-     * @var ConnectionInterface
+     * @var ConnectionInterface Represents a connection to Cloud Storage.
      */
     private $connection;
 
     /**
-     * @var array
+     * @var array The bucket's identity.
      */
     private $identity;
 
     /**
-     * @var array
+     * @var array The bucket's metadata.
      */
     private $data;
 
     /**
-     * @var Acl
+     * @var Acl ACL for the bucket.
      */
     private $acl;
 
     /**
-     * @var Acl
+     * @var Acl Default ACL for objects created within the bucket.
      */
     private $defaultAcl;
 
     /**
-     * @param ConnectionInterface $connection
-     * @param string $name
-     * @param array $data
+     * @param ConnectionInterface $connection Represents a connection to Cloud
+     *        Storage.
+     * @param string $name The bucket's name.
+     * @param array $data The bucket's metadata.
      */
     public function __construct(ConnectionInterface $connection, $name, array $data = null)
     {
@@ -65,7 +69,17 @@ class Bucket
     /**
      * Configure ACL for this bucket.
      *
-     * @return Acl
+     * Example:
+     * ```
+     * use Google\Gcloud\Storage\Acl;
+     *
+     * $acl = $bucket->acl();
+     * $acl->add('allAuthenticatedUsers', Acl::ROLE_READER);
+     * ```
+     *
+     * @see https://cloud.google.com/storage/docs/access-control More about Access Control Lists
+     * @return Acl An ACL instance configured to handle the bucket's access
+     *         control policies.
      */
     public function acl()
     {
@@ -75,7 +89,17 @@ class Bucket
     /**
      * Configure default object ACL for this bucket.
      *
-     * @return Acl
+     * Example:
+     * ```
+     * use Google\Gcloud\Storage\Acl;
+     *
+     * $acl = $bucket->defaultAcl();
+     * $acl->add('allAuthenticatedUsers', Acl::ROLE_READER);
+     * ```
+     *
+     * @see https://cloud.google.com/storage/docs/access-control More about Access Control Lists
+     * @return Acl An ACL instance configured to handle the bucket's default
+     *         object access control policies.
      */
     public function defaultAcl()
     {
@@ -95,7 +119,7 @@ class Bucket
     public function exists()
     {
         try {
-            $resp = $this->connection->getBucket($this->identity + ['fields' => 'name']);
+            $this->connection->getBucket($this->identity + ['fields' => 'name']);
         } catch (\Exception $ex) {
             return false;
         }
@@ -117,8 +141,12 @@ class Bucket
      *
      * @param string|resource|StreamInterface $data
      * @param string $destination Name of where the file will be stored.
-     * @param array $options Configuration options.
-     * @return Object
+     * @param array $options {
+     *      Configuration options.
+     *
+     *      @type string $contentType The content type.
+     * }
+     * @return \Google\Gcloud\Storage\Object
      */
     public function upload($data, $destination, array $options = [])
     {
@@ -140,7 +168,7 @@ class Bucket
      *
      * @param string $path Path to the file to be uploaded.
      * @param array $options Configuration options.
-     * @return Object
+     * @return \Google\Gcloud\Storage\Object
      */
     public function uploadFromPath($path, array $options = [])
     {
@@ -148,7 +176,9 @@ class Bucket
     }
 
     /**
-     * Lazily instantiates an object.
+     * Lazily instantiates an object. There are no network requests made at this
+     * point. To see the operations that can be performed on an object please
+     * see {@see Google\Gcloud\Storage\Object}.
      *
      * Example:
      * ```
@@ -156,10 +186,12 @@ class Bucket
      * ```
      *
      * @param string $name The name of the object to request.
-     * @param array $options Configuration options. {
+     * @param array $options {
+     *     Configuration options.
+     *
      *     @type string $generation Request a specific revision of the object.
      * }
-     * @return Object
+     * @return \Google\Gcloud\Storage\Object
      */
     public function object($name, array $options = [])
     {
@@ -184,7 +216,9 @@ class Bucket
      * }
      * ```
      *
-     * @param array $options Configuration options. {
+     * @param array $options {
+     *     Configuration options.
+     *
      *     @type string $delimiter Returns results in a directory-like mode.
      *           Results will contain only objects whose names, aside from the
      *           prefix, do not contain delimiter. Objects whose names, aside
@@ -228,7 +262,8 @@ class Bucket
      * $bucket->delete();
      * ```
      *
-     * @param array $options Configuration options. {
+     * @param array $options {
+     *     Configuration options.
      *     @type string $ifMetagenerationMatch If set, only deletes the bucket
      *           if its metageneration matches this value.
      *     @type string $ifMetagenerationNotMatch If set, only deletes the
@@ -245,9 +280,6 @@ class Bucket
      * Update the bucket. Upon receiving a result the local bucket's data will
      * be updated.
      *
-     * @link https://goo.gl/KgufNr Learn more about configuring request options
-     *       at the bucket patch API documentation.
-     *
      * Example:
      * ```
      * // Enable logging on an existing bucket.
@@ -259,7 +291,11 @@ class Bucket
      * ]);
      * ```
      *
-     * @param array $options Configuration options. {
+     * @see https://goo.gl/KgufNr Learn more about configuring request options
+     *       at the bucket patch API documentation.
+     * @param array $options {
+     *     Configuration options.
+     *
      *     @type string $ifMetagenerationMatch Makes the return of the bucket
      *           metadata conditional on whether the bucket's current
      *           metageneration matches the given value.
@@ -301,10 +337,12 @@ class Bucket
      * Example:
      * ```
      * $info = $bucket->getInfo();
-     * var_dump($info['location']);
+     * echo $info['location'];
      * ```
      *
-     * @param array $options Configuration options. {
+     * @param array $options {
+     *     Configuration options.
+     *
      *     @type bool $force If true fetches fresh data, otherwise returns data
      *           stored locally if it exists.
      *     @type string $ifMetagenerationMatch Makes the return of the bucket
@@ -332,7 +370,8 @@ class Bucket
      *
      * Example:
      * ```
-     * var_dump($bucket->getName());
+     * $name $bucket->getName();
+     * echo $name;
      * ```
      *
      * @return string

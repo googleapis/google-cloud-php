@@ -15,9 +15,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-namespace Google\Cloud\Compute;
+namespace Google\Gcloud\Compute;
 
-use Google\Cloud\Compute\Metadata\Readers\StreamReader;
+use Google\Gcloud\Compute\Metadata\Readers\StreamReader;
 
 /**
  * A library for accessing the Google Compute Engine (GCE) metadata.
@@ -27,7 +27,7 @@ use Google\Cloud\Compute\Metadata\Readers\StreamReader;
  *
  * You can get the GCE metadata values very easily like:
  *
- * use Google\Cloud\Compute\Metadata;
+ * use Google\Gcloud\Compute\Metadata;
  *
  * $metadata = new Metadata();
  * $project_id = $metadata->getProjectId();

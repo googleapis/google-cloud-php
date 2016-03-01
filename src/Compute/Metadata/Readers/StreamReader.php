@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-namespace Google\Cloud\Compute\Metadata\Readers;
+namespace Google\Gcloud\Compute\Metadata\Readers;
 
 /**
  * A class only reading the metadata URL with an appropriate header.

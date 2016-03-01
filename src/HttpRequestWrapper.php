@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud;
+namespace Google\Gcloud;
 
 use Google\Auth\ApplicationDefaultCredentials;
 use Google\Auth\CredentialsLoader;
@@ -23,39 +23,76 @@ use Google\Auth\HttpHandler\HttpHandlerFactory;
 use GuzzleHttp\Psr7;
 use Psr\Http\Message\RequestInterface;
 
-// @todo finish!
+/**
+ * The HttpRequestWrapper is responsible for delivering and signing requests.
+ */
 class HttpRequestWrapper
 {
+    /**
+     * @var array Credentials used to sign requests.
+     */
     private $credentials;
+
+    /**
+     * @var callable A handler used to deliver Psr7 requests.
+     */
     private $httpHandler;
-    private $scope;
+
+    /**
+     * @var callable A handler used to deliver Psr7 requests specifically for
+     * authentication.
+     */
+    private $authHttpHandler;
+
+    /**
+     * @var StreamInterface Points to the keyfile downloaded from the Google
+     * Developer's Console.
+     */
     private $keyFileStream;
 
-    public function __construct(array $config = [])
-    {
-        if (!array_key_exists('scope', $config)) {
-            return \InvalidArgumentException('A scope is required.');
-        }
+    /**
+     * @var array Scopes to be used for the request.
+     */
+    private $scopes = [];
 
-        $config = $config + [
-            'httpHandler' => null,
-            'keyFilePath' => null,
-            'keyFile' => null
-        ];
+    /**
+     * @param string $keyFile The contents of the service account credentials
+     *        .json file retrieved from the Google Developers Console.
+     * @param string $keyFilePath The full path to your service account
+     *        credentials .json file retrieved from the Google Developers
+     *        Console.
+     * @param array $scopes Scopes to be used for the request.
+     * @param callable $httpHandler A handler used to deliver Psr7 requests.
+     * @param callable $authHttpHandler A handler used to deliver Psr7 requests
+     *        specifically for authentication.
+     */
+    public function __construct(
+        $keyFile = null,
+        $keyFilePath = null,
+        array $scopes = [],
+        callable $httpHandler = null,
+        callable $authHttpHandler = null
+    ) {
+        $handler = HttpHandlerFactory::build();
+        $this->httpHandler = $httpHandler ?: $handler;
+        $this->authHttpHandler = $authHttpHandler ?: $handler;
+        $this->scopes = $scopes;
 
-        $this->scope = $config['scope'];
-        $this->httpHandler = $config['httpHandler'] ?: HttpHandlerFactory::build();
-
-        if ($config['keyFile'] || $config['keyFilePath']) {
-            $keyFile = $config['keyFile'] ?: fopen($config['keyFilePath'], 'r');
-            $this->keyFileStream = Psr7\stream_for($keyFile);
+        if ($keyFile || $keyFilePath) {
+            $this->keyFileStream = Psr7\stream_for($keyFile ?: fopen($keyFilePath, 'r'));
         }
     }
 
+    /**
+     * Deliver the request.
+     *
+     * @param RequestInterface $request Psr7 request.
+     * @param array $options HTTP specific configuration options.
+     * @return RequestInterface
+     */
     public function send(RequestInterface $request, array $options = [])
     {
         $httpHandler = $this->httpHandler;
-
         $signedRequest = $this->signRequest($request);
 
         try {
@@ -65,15 +102,15 @@ class HttpRequestWrapper
         }
     }
 
-    private function signRequest(RequestInterface $request)
+    /**
+     * Sign the request.
+     *
+     * @param RequestInterface $request Psr7 request.
+     * @return RequestInterface
+     */
+    public function signRequest(RequestInterface $request)
     {
-        if (!$this->credentials) {
-            $this->credentials = $this->fetchCredentials();
-        }
-
-        $expiry = $this->credentials['created_at'] + $this->credentials['expires_in'];
-
-        if ($expiry < time()) {
+        if (!$this->credentials || $credentials['expiry'] < time()) {
             $this->credentials = $this->fetchCredentials();
         }
 
@@ -84,21 +121,32 @@ class HttpRequestWrapper
         ]);
     }
 
+    /**
+     * Fetches credentials.
+     *
+     * @return array
+     */
     private function fetchCredentials()
     {
         if ($this->keyFileStream) {
-            $credentialsFetcher = CredentialsLoader::makeCredentials($this->scope, $this->keyFileStream);
+            $credentialsFetcher = CredentialsLoader::makeCredentials($this->scopes, $this->keyFileStream);
         } else {
-            $credentialsFetcher = ApplicationDefaultCredentials::getCredentials($this->scope);
+            $credentialsFetcher = ApplicationDefaultCredentials::getCredentials($this->scopes);
         }
 
-        $credentials = $credentialsFetcher->fetchAuthToken($this->httpHandler);
-        $credentials['created_at'] = time();
+        $credentials = $credentialsFetcher->fetchAuthToken($this->authHttpHandler);
+        $credentials['expiry'] = time() + $this->credentials['expires_in'];
 
         return $credentials;
     }
 
-    // @todo map to custom exceptions
+    /**
+     * Maps encountered exceptions to local exceptions.
+     *
+     * @param \Exception $ex
+     * @throws \Exception
+     * @todo map to custom exceptions
+     */
     private function handleException(\Exception $ex)
     {
         switch ($ex->getCode()) {

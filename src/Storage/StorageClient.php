@@ -15,10 +15,9 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Storage;
+namespace Google\Gcloud\Storage;
 
-use Google\Cloud\Storage\Bucket;
-use Google\Cloud\Storage\Connection\ConnectionInterface;
+use Google\Gcloud\Storage\Connection\ConnectionInterface;
 
 /**
  * Google Cloud Storage client. Allows you to store and retrieve data on
@@ -27,31 +26,35 @@ use Google\Cloud\Storage\Connection\ConnectionInterface;
  */
 class StorageClient
 {
+    const DEFAULT_SCOPE = 'https://www.googleapis.com/auth/devstorage.full_control';
+
     /**
-     * @var ConnectionInterface
+     * @var ConnectionInterface Represents a connection to Cloud Storage.
      */
     private $connection;
 
     /**
-     * @var string
+     * @var string The project ID created in the Google Developers Console.
      */
     private $projectId;
 
     /**
-     * Pass in an array of configuration parameters to construct your client.
+     * Create a storage client. The preferred way to access this client is to
+     * use {@see Google\Gcloud\Gcloud::storage()}.
      *
      * Example:
      * ```
-     * use Google\Cloud\Storage\Connection\REST;
-     * use Google\Cloud\Storage\StorageClient;
+     * use Google\Gcloud\Storage\Connection\REST;
+     * use Google\Gcloud\Storage\StorageClient;
      *
-     * $client = new StorageClient(
+     * $storage = new StorageClient(
      *     new REST(),
      *     'myAwesomeProject'
      * );
      * ```
      *
-     * @param ConnectionInterface $connection
+     * @param ConnectionInterface $connection Represents a connection to Cloud
+     *        Storage.
      * @param string $projectId The project ID created in the Google Developers
      *        Console.
      */
@@ -62,7 +65,14 @@ class StorageClient
     }
 
     /**
-     * Lazily instantiates a bucket.
+     * Lazily instantiates a bucket. There are no network requests made at this
+     * point. To see the operations that can be performed on a bucket please
+     * see {@see Google\Gcloud\Storage\Bucket}.
+     *
+     * Example:
+     * ```
+     * $storage->bucket('myBucket');
+     * ```
      *
      * @param string $name The name of the bucket to request.
      * @return Bucket
@@ -77,8 +87,12 @@ class StorageClient
      *
      * Example:
      * ```
+     * $buckets = $storage->buckets();
+     * ```
+     *
+     * ```
      * // Get all buckets beginning with the prefix 'album'.
-     * $buckets = $client->buckets([
+     * $buckets = $storage->buckets([
      *     'prefix' => 'album'
      * ]);
      *
@@ -87,7 +101,9 @@ class StorageClient
      * }
      * ```
      *
-     * @param array $options Configuration options. {
+     * @param array $options {
+     *     Configuration options.
+     *
      *     @type integer $maxResults Maximum number of results to return per
      *           request.
      *     @type string $prefix Filter results with this prefix.
@@ -114,15 +130,18 @@ class StorageClient
     }
 
     /**
-     * Create a bucket.
-     *
-     * @link https://goo.gl/PNTqTh Learn more about configuring request options
-     *       at the bucket insert API documentation.
+     * Create a bucket. Bucket names must be unique as Cloud Storage uses a flat
+     * namespace. For more information please see
+     * [bucket name requirements](https://cloud.google.com/storage/docs/naming#requirements)
      *
      * Example:
      * ```
+     * $bucket = $storage->createBucket('bucket');
+     * ```
+     *
+     * ```
      * // Create a bucket with logging enabled.
-     * $bucket = $client->createBucket('myBeautifulBucket', [
+     * $bucket = $storage->createBucket('myBeautifulBucket', [
      *     'logging' => [
      *         'logBucket' => 'bucketToLogTo',
      *         'logObjectPrefix' => 'myPrefix'
@@ -130,8 +149,12 @@ class StorageClient
      * ]);
      * ```
      *
+     * @see https://goo.gl/PNTqTh Learn more about configuring request options
+     *       at the bucket insert API documentation.
      * @param string $name Name of the bucket to be created.
-     * @param array $options Configuration options. {
+     * @param array $options {
+     *     Configuration options.
+     *
      *     @type string $predefinedAcl Apply a predefined set of access controls
      *           to this bucket.
      *     @type string $predefinedDefaultObjectAcl Apply a predefined set of

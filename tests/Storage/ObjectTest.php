@@ -15,9 +15,9 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Storage;
+namespace Google\Gcloud\Tests\Storage;
 
-use Google\Cloud\Storage\Object;
+use Google\Gcloud\Storage\Object;
 use Prophecy\Argument;
 
 class ObjectTest extends \PHPUnit_Framework_TestCase
@@ -26,14 +26,14 @@ class ObjectTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->connection = $this->prophesize('Google\Cloud\Storage\Connection\ConnectionInterface');
+        $this->connection = $this->prophesize('Google\Gcloud\Storage\Connection\ConnectionInterface');
     }
 
     public function testGetAcl()
     {
         $object = new Object($this->connection->reveal(), 'object.txt', 'bucket');
 
-        $this->assertInstanceOf('Google\Cloud\Storage\Acl', $object->acl());
+        $this->assertInstanceOf('Google\Gcloud\Storage\Acl', $object->acl());
     }
 
     public function testDoesExistTrue()
