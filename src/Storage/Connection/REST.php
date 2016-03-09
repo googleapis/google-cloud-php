@@ -225,7 +225,7 @@ class REST implements ConnectionInterface
     private function loadServiceDefinition()
     {
         return json_decode(
-            file_get_contents('ServiceDefinition/storage-v1.json', true),
+            file_get_contents(__DIR__ . '/ServiceDefinition/storage-v1.json', true),
             true
         );
     }
@@ -240,7 +240,7 @@ class REST implements ConnectionInterface
     {
         // @todo quick POC. need to tighten this up
         $action = $this->service[$resource]['methods'][$method];
-        $template = new UriTemplate();
+        $template = new UriTemplate(self::BASE_URI);
         $path = [];
         $query = [];
         $body = [];
@@ -260,7 +260,7 @@ class REST implements ConnectionInterface
         }
 
         $uri = $this->buildUri(
-            $template->expand($action['path'], self::BASE_URI . $path),
+            $template->expand($action['path'], $path),
             $query
         );
 
