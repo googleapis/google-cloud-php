@@ -110,7 +110,7 @@ class HttpRequestWrapper
      */
     public function signRequest(RequestInterface $request)
     {
-        if (!$this->credentials || $credentials['expiry'] < time()) {
+        if (!$this->credentials || $this->credentials['expiry'] < time()) {
             $this->credentials = $this->fetchCredentials();
         }
 
