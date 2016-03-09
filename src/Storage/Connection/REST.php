@@ -225,7 +225,7 @@ class REST implements ConnectionInterface
     private function loadServiceDefinition()
     {
         return json_decode(
-            file_get_contents('ServiceDefinition/storage-v1.json', true),
+            file_get_contents(__DIR__ . '/ServiceDefinition/storage-v1.json', true),
             true
         );
     }
