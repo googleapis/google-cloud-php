@@ -104,6 +104,19 @@ class RequestWrapperTest extends \PHPUnit_Framework_TestCase
         );
     }
 
+    /**
+     * @dataProvider keyFileCredentialsProvider
+     */
+    public function testCredentialsFromKeyFileStreamCanBeReadMultipleTimes($wrapperConfig)
+    {
+        $requestWrapper = new RequestWrapper($wrapperConfig);
+
+        $requestWrapper->getCredentialsFetcher();
+        $credentials = $requestWrapper->getCredentialsFetcher();
+
+        $this->assertInstanceOf('Google\Auth\FetchAuthTokenInterface', $credentials);
+    }
+
     public function credentialsProvider()
     {
         $config = [
@@ -127,6 +140,25 @@ class RequestWrapperTest extends \PHPUnit_Framework_TestCase
             [$config + ['keyFilePath' => $keyFilePath]], //keyFilePath
             [$config + ['credentialsFetcher' => $credentialsFetcher->reveal()]], // user supplied fetcher
             [$config] // application default
+        ];
+    }
+
+    public function keyFileCredentialsProvider()
+    {
+        $config = [
+            'authHttpHandler' => function ($request, $options = []) {
+                return new Response(200, [], json_encode(['access_token' => 'abc']));
+            },
+            'httpHandler' => function ($request, $options = []) {
+                return new Response(200, []);
+            }
+        ];
+
+        $keyFilePath = __DIR__ . '/fixtures/json-key-fixture.json';
+
+        return [
+            [$config + ['keyFile' => file_get_contents($keyFilePath)]], // keyFile
+            [$config + ['keyFilePath' => $keyFilePath]], //keyFilePath
         ];
     }
 
