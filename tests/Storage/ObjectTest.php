@@ -15,9 +15,10 @@
  * limitations under the License.
  */
 
-namespace Google\Gcloud\Tests\Storage;
+namespace Google\Cloud\Tests\Storage;
 
-use Google\Gcloud\Storage\Object;
+use Google\Cloud\Storage\Object;
+use GuzzleHttp\Psr7;
 use Prophecy\Argument;
 
 class ObjectTest extends \PHPUnit_Framework_TestCase
@@ -26,14 +27,14 @@ class ObjectTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->connection = $this->prophesize('Google\Gcloud\Storage\Connection\ConnectionInterface');
+        $this->connection = $this->prophesize('Google\Cloud\Storage\Connection\ConnectionInterface');
     }
 
     public function testGetAcl()
     {
         $object = new Object($this->connection->reveal(), 'object.txt', 'bucket');
 
-        $this->assertInstanceOf('Google\Gcloud\Storage\Acl', $object->acl());
+        $this->assertInstanceOf('Google\Cloud\Storage\Acl', $object->acl());
     }
 
     public function testDoesExistTrue()
@@ -72,14 +73,22 @@ class ObjectTest extends \PHPUnit_Framework_TestCase
 
     public function testDownloadsAsString()
     {
-        $stream = $this->prophesize('Psr\Http\Message\StreamInterface');
-        $stream->__toString()->willReturn($string = 'abcdefg');
-
-        $this->connection->downloadObject(Argument::any())->willReturn($stream->reveal());
+        $stream = Psr7\stream_for($string = 'abcdefg');
+        $this->connection->downloadObject(Argument::any())->willReturn($stream);
 
         $object = new Object($this->connection->reveal(), 'object.txt', 'bucket');
 
         $this->assertEquals($string, $object->downloadAsString());
+    }
+
+    public function testDownloadsToFile()
+    {
+        $stream = Psr7\stream_for($string = 'abcdefg');
+        $this->connection->downloadObject(Argument::any())->willReturn($stream);
+
+        $object = new Object($this->connection->reveal(), 'object.txt', 'bucket');
+
+        $this->assertEquals($string, $object->downloadToFile('php://temp')->getContents());
     }
 
     public function testGetsInfo()

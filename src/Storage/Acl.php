@@ -15,9 +15,9 @@
  * limitations under the License.
  */
 
-namespace Google\Gcloud\Storage;
+namespace Google\Cloud\Storage;
 
-use Google\Gcloud\Storage\Connection\ConnectionInterface;
+use Google\Cloud\Storage\Connection\ConnectionInterface;
 
 /**
  * Google Cloud Storage uses access control lists (ACLs) to manage bucket and
@@ -66,13 +66,20 @@ class Acl
     }
 
     /**
-     * Delete access controls on a {@see Google\Gcloud\Storage\Bucket} or
-     * {@see Google\Gcloud\Storage\Object} for a specified entity.
+     * Delete access controls on a {@see Google\Cloud\Storage\Bucket} or
+     * {@see Google\Cloud\Storage\Object} for a specified entity.
      *
      * Example:
      * ```
      * $acl->delete('allAuthenticatedUsers');
      * ```
+     *
+     * @see https://cloud.google.com/storage/docs/json_api/v1/bucketAccessControls/delete BucketAccessControls delete
+     * API documentation.
+     * @see https://cloud.google.com/storage/docs/json_api/v1/defaultObjectAccessControls/delete
+     * DefaultObjectAccessControls delete API documentation.
+     * @see https://cloud.google.com/storage/docs/json_api/v1/objectAccessControls/delete ObjectAccessControls delete
+     * API documentation.
      *
      * @param string $entity The entity to delete.
      * @param array $options Configuration options.
@@ -85,8 +92,8 @@ class Acl
     }
 
     /**
-     * Get access controls on a {@see Google\Gcloud\Storage\Bucket} or
-     * {@see Google\Gcloud\Storage\Object}. By default this will return all available
+     * Get access controls on a {@see Google\Cloud\Storage\Bucket} or
+     * {@see Google\Cloud\Storage\Object}. By default this will return all available
      * access controls. You may optionally specify a single entity to return
      * details for as well.
      *
@@ -94,6 +101,13 @@ class Acl
      * ```
      * $acl->get(['entity' => 'allAuthenticatedUsers']);
      * ```
+     *
+     * @see https://cloud.google.com/storage/docs/json_api/v1/bucketAccessControls/get BucketAccessControls get API
+     * documentation.
+     * @see https://cloud.google.com/storage/docs/json_api/v1/defaultObjectAccessControls/get
+     * DefaultObjectAccessControls get API documentation.
+     * @see https://cloud.google.com/storage/docs/json_api/v1/objectAccessControls/get ObjectAccessControls get API
+     * documentation.
      *
      * @param array $options {
      *     Configuration options.
@@ -113,13 +127,20 @@ class Acl
     }
 
     /**
-     * Add access controls on a {@see Google\Gcloud\Storage\Bucket} or
-     * {@see Google\Gcloud\Storage\Object}.
+     * Add access controls on a {@see Google\Cloud\Storage\Bucket} or
+     * {@see Google\Cloud\Storage\Object}.
      *
      * Example:
      * ```
      * $acl->add('allAuthenticatedUsers', 'WRITER');
      * ```
+     *
+     * @see https://cloud.google.com/storage/docs/json_api/v1/bucketAccessControls/insert BucketAccessControls insert
+     * API documentation.
+     * @see https://cloud.google.com/storage/docs/json_api/v1/defaultObjectAccessControls/insert
+     * DefaultObjectAccessControls insert API documentation.
+     * @see https://cloud.google.com/storage/docs/json_api/v1/objectAccessControls/insert ObjectAccessControls insert
+     * API documentation.
      *
      * @param string $entity The entity to add access controls to.
      * @param string $role The permissions to add for the specified entity. May
@@ -138,13 +159,20 @@ class Acl
     }
 
     /**
-     * Update access controls on a {@see Google\Gcloud\Storage\Bucket} or
-     * {@see Google\Gcloud\Storage\Object}.
+     * Update access controls on a {@see Google\Cloud\Storage\Bucket} or
+     * {@see Google\Cloud\Storage\Object}.
      *
      * Example:
      * ```
      * $acl->update('allAuthenticatedUsers', 'READER');
      * ```
+     *
+     * @see https://cloud.google.com/storage/docs/json_api/v1/bucketAccessControls/patch BucketAccessControls patch API
+     * documentation.
+     * @see https://cloud.google.com/storage/docs/json_api/v1/defaultObjectAccessControls/patch
+     * DefaultObjectAccessControls patch API documentation.
+     * @see https://cloud.google.com/storage/docs/json_api/v1/objectAccessControls/patch ObjectAccessControls patch
+     * API documentation.
      *
      * @param string $entity The entity to update access controls for.
      * @param string $role The permissions to update for the specified entity.

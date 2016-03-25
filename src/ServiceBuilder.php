@@ -15,29 +15,28 @@
  * limitations under the License.
  */
 
-namespace Google\Gcloud;
+namespace Google\Cloud;
 
-use Google\Gcloud\Storage\Connection\REST;
-use Google\Gcloud\Storage\StorageClient;
+use Google\Auth\HttpHandler\HttpHandlerFactory;
+use Google\Cloud\Storage\StorageClient;
 
 /**
- * Gcloud is the official way to interact with the
- * [Google Cloud Platform](https://cloud.google.com/). Google Cloud Platform is
- * a set of modular cloud-based services that allow you to create anything from
- * simple websites to complex applications.
+ * Google Cloud Platform is a set of modular cloud-based services that allow you
+ * to create anything from simple websites to complex applications.
  *
  * This API aims to expose access to these services in a way that is intuitive
- * and easy to use for PHP enthusiasts. The Gcloud instance exposes factory
- * methods which grant access to the various services contained within the API.
+ * and easy to use for PHP enthusiasts. The ServiceBuilder instance exposes
+ * factory methods which grant access to the various services contained within
+ * the API.
  *
  * Configuration is simple. Pass in an array of configuration options to the
  * constructor up front which can be shared between clients or specify the
  * options for the specific services you wish to access, e.g. Datastore, or
  * Storage.
  */
-class Gcloud
+class ServiceBuilder
 {
-    const VERSION = '0.0.0';
+    const VERSION = '0.1.0';
 
     /**
      * @var array Configuration options to be used between clients.
@@ -50,9 +49,9 @@ class Gcloud
      *
      * Example:
      * ```
-     * use Google\Gcloud\Gcloud;
+     * use Google\Cloud\ServiceBuilder;
      *
-     * $gcloud = new Gcloud([
+     * $builder = new ServiceBuilder([
      *     'keyFilePath' => '/path/to/key/file.json',
      *     'projectId' => 'myAwesomeProject'
      * ]);
@@ -61,21 +60,25 @@ class Gcloud
      * @param array $config {
      *     Configuration options.
      *
-     *     @type callable $httpHandler Override the default http handler.
-     *     @type callable $authHttpHandler Override the default http handler
-     *           used to fetch credentials.
+     *     @type string $projectId The project ID from the Google Developer's
+     *           Console.
+     *     @type callable $authHttpHandler A handler used to deliver Psr7
+     *           requests specifically for authentication.
+     *     @type callable $httpHandler A handler used to deliver Psr7 requests.
+     *     @type string $keyFile The contents of the service account
+     *           credentials .json file retrieved from the Google Developer's
+     *           Console.
      *     @type string $keyFilePath The full path to your service account
      *           credentials .json file retrieved from the Google Developers
      *           Console.
-     *     @type string $keyFile The contents of the service account credentials
-     *           .json file retrieved from the Google Developers Console.
-     *     @type string $projectId The project ID created in the Google
-     *           Developers Console.
+     *     @type int $retries Number of retries for a failed request. Defaults
+     *           to 3.
+     *     @type array $scopes Scopes to be used for the request.
      * }
      */
     public function __construct(array $config = [])
     {
-        $this->config = $config;
+        $this->config = $this->resolveConfig($config);
     }
 
     /**
@@ -85,48 +88,39 @@ class Gcloud
      *
      * Example:
      * ```
-     * use Google\Gcloud\Gcloud;
+     * use Google\Cloud\ServiceBuilder;
      *
-     * // Create a Gcloud instance using application default credentials.
-     * $gcloud = new Gcloud([
+     * // Create a storage client using application default credentials.
+     * $builder = new ServiceBuilder([
      *     'projectId' => 'myAwesomeProject'
      * ]);
      *
-     * $storage = $gcloud->storage();
+     * $storage = $builder->storage();
      * ```
      *
      * @param array $config Configuration options. See
-     *        {@see Google\Gcloud\Gcloud::__construct()} for the available options.
+     *        {@see Google\Cloud\ServiceBuilder::__construct()} for the available options.
      * @return StorageClient
      */
     public function storage(array $config = [])
     {
-        if (!$config) {
-            $config = $this->config;
+        $config = $config ? $this->resolveConfig($config) : $this->config;
+
+        return new StorageClient($config);
+    }
+
+    /**
+     * Resolves configuration options.
+     *
+     * @param array $config
+     * @return array
+     */
+    private function resolveConfig(array $config)
+    {
+        if (!isset($config['httpHandler'])) {
+            $config['httpHandler'] = HttpHandlerFactory::build();
         }
 
-        if (!isset($config['projectId'])) {
-            throw new \InvalidArgumentException('A projectId is required.');
-        }
-
-        $config = $config + [
-            'keyFile' => null,
-            'keyFilePath' => null,
-            'httpHandler' => null,
-            'authHttpHandler' => null
-        ];
-
-        $httpWrapper = new HttpRequestWrapper(
-            $config['keyFile'],
-            $config['keyFilePath'],
-            [StorageClient::DEFAULT_SCOPE],
-            $config['httpHandler'],
-            $config['authHttpHandler']
-        );
-
-        return new StorageClient(
-            new REST($httpWrapper),
-            $config['projectId']
-        );
+        return $config;
     }
 }

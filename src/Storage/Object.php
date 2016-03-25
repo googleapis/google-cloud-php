@@ -15,10 +15,11 @@
  * limitations under the License.
  */
 
-namespace Google\Gcloud\Storage;
+namespace Google\Cloud\Storage;
 
-use Google\Gcloud\Storage\Connection\ConnectionInterface;
+use Google\Cloud\Storage\Connection\ConnectionInterface;
 use GuzzleHttp\Psr7;
+use Psr\Http\Message\StreamInterface;
 
 /**
  * Objects are the individual pieces of data that you store in Google Cloud
@@ -63,6 +64,7 @@ class Object
             'object' => $name,
             'generation' => $generation
         ];
+
         $this->acl = new Acl($this->connection, 'objectAccessControls', $this->identity);
     }
 
@@ -71,13 +73,14 @@ class Object
      *
      * Example:
      * ```
-     * use Google\Gcloud\Storage\Acl;
+     * use Google\Cloud\Storage\Acl;
      *
      * $acl = $object->acl();
      * $acl->add('allAuthenticatedUsers', Acl::ROLE_READER);
      * ```
      *
      * @see https://cloud.google.com/storage/docs/access-control More about Access Control Lists
+     *
      * @return Acl
      */
     public function acl()
@@ -113,6 +116,8 @@ class Object
      * ```
      * $object->delete();
      * ```
+     *
+     * @see https://cloud.google.com/storage/docs/json_api/v1/objects/delete Objects delete API documentation.
      *
      * @param array $options {
      *     Configuration options.
@@ -151,8 +156,10 @@ class Object
      * ]);
      * ```
      *
-     * @see https://goo.gl/UBFXDs Learn more about configuring request options
-     *       at the object patch API documentation.
+     * @see https://cloud.google.com/storage/docs/json_api/v1/objects/patch Objects patch API documentation.
+     *
+     * @param array $metadata The available options for metadata are outlined
+     *        at the [JSON API docs](https://cloud.google.com/storage/docs/json_api/v1/objects#resource)
      * @param array $options {
      *     Configuration options.
      *
@@ -174,20 +181,12 @@ class Object
      *           be either 'full' or 'noAcl'.
      *     @type string $fields Selector which will cause the response to only
      *           return the specified fields.
-     *     @type array $acl Access controls on the object.
-     *     @type string $cacheControl Cache-Control directive for the object
-     *           data.
-     *     @type string $contentDisposition Content-Disposition of the object
-     *           data.
-     *     @type string $contentEncoding Content-Encoding of the object data.
-     *     @type string $contentLanguage Content-Language of the object data.
-     *     @type string $contentType Content-Type of the object data.
-     *     @type string $metadata User-provided metadata, in key/value pairs.
      * }
      * @return array
      */
-    public function update(array $options = [])
+    public function update(array $metadata, array $options = [])
     {
+        $options += $metadata;
         $this->data = $this->connection->patchObject($options + $this->identity);
 
         return $this->data;
@@ -220,14 +219,20 @@ class Object
      *
      * @param string $path Path to download file to.
      * @param array $options Configuration options.
-     * @return void
+     * @return StreamInterface
      */
     public function downloadToFile($path, array $options = [])
     {
+        $destination = Psr7\stream_for(fopen($path, 'w'));
+
         Psr7\copy_to_stream(
             $this->connection->downloadObject($options + $this->identity),
-            Psr7\stream_for(fopen($path, 'w'))
+            $destination
         );
+
+        $destination->seek(0);
+
+        return $destination;
     }
 
     /**
@@ -238,6 +243,8 @@ class Object
      * $info = $object->getInfo();
      * echo $info['metadata'];
      * ```
+     *
+     * @see https://cloud.google.com/storage/docs/json_api/v1/objects/get Objects get API documentation.
      *
      * @param array $options {
      *     Configuration options.

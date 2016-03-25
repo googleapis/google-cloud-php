@@ -15,9 +15,9 @@
  * limitations under the License.
  */
 
-namespace Google\Gcloud\Tests\Compute;
+namespace Google\Cloud\Tests\Compute;
 
-use Google\Gcloud\Compute\Metadata;
+use Google\Cloud\Compute\Metadata;
 
 class MetadataTest extends \PHPUnit_Framework_TestCase
 {
@@ -28,7 +28,7 @@ class MetadataTest extends \PHPUnit_Framework_TestCase
     {
         $this->metadata = new Metadata();
         $this->mock = $this->getMockBuilder(
-            '\Google\Gcloud\Compute\Metadata\Readers\StreamReader')
+            '\Google\Cloud\Compute\Metadata\Readers\StreamReader')
             ->setMethods(array('read'))
             ->getmock();
         $this->metadata->setReader($this->mock);

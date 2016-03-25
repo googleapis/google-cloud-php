@@ -1,0 +1,36 @@
+{
+  "schemas": {
+    "MyReference": {
+      "type": "object",
+      "properties": {
+        "referenceProp": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "resources": {
+    "myResource": {
+      "methods": {
+        "myMethod": {
+          "path": "{pathParam}",
+          "httpMethod": "POST",
+          "parameters": {
+            "queryParam": {
+              "type": "string",
+              "location": "query"
+            },
+            "pathParam": {
+              "type": "string",
+              "required": true,
+              "location": "path"
+            }
+          },
+          "request": {
+            "$ref": "MyReference"
+          }
+        }
+      }
+    }
+  }
+}

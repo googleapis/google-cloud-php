@@ -15,9 +15,9 @@
  * limitations under the License.
  */
 
-namespace Google\Gcloud\Tests\Storage;
+namespace Google\Cloud\Tests\Storage;
 
-use Google\Gcloud\Storage\Acl;
+use Google\Cloud\Storage\Acl;
 use Prophecy\Argument;
 
 class AclTest extends \PHPUnit_Framework_TestCase
@@ -26,7 +26,7 @@ class AclTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->connection = $this->prophesize('Google\Gcloud\Storage\Connection\ConnectionInterface');
+        $this->connection = $this->prophesize('Google\Cloud\Storage\Connection\ConnectionInterface');
     }
 
     /**
