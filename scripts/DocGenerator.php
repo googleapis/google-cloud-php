@@ -22,7 +22,7 @@ use phpDocumentor\Reflection\DocBlock\Tag\SeeTag;
 use phpDocumentor\Reflection\FileReflector;
 
 /**
- * Parses given files and builds JSON documentation.
+ * Parses given files and builds documentation for our common docs site.
  */
 class DocGenerator
 {
@@ -47,14 +47,20 @@ class DocGenerator
      */
     public function generate()
     {
+        $types = [];
+
         foreach ($this->files as $file) {
             $this->currentFile = substr(str_replace(__DIR__, '', $file), 3);
             $jsonOutputPath = $this->buildOutputPath();
             $fileReflector = new FileReflector($file);
             $fileReflector->process();
-            $reflector = isset($fileReflector->getClasses()[0]) ? $fileReflector->getClasses()[0] : $fileReflector->getInterfaces()[0];
+            $document = $this->buildDocument($this->getReflector($fileReflector));
 
-            $document = $this->buildDocument($reflector);
+            $types[] = [
+                'id' => $document['id'],
+                'title' => $document['title'],
+                'contents' => $document['id'] . '.json'
+            ];
 
             if (!is_dir(dirname($jsonOutputPath))) {
                 mkdir(dirname($jsonOutputPath), 0777, true);
@@ -62,21 +68,39 @@ class DocGenerator
 
             file_put_contents($jsonOutputPath, json_encode($document));
         }
+
+        file_put_contents($this->outputPath . '/types.json', json_encode($types));
+    }
+
+    private function getReflector($fileReflector)
+    {
+        if (isset($fileReflector->getClasses()[0])) {
+            return $fileReflector->getClasses()[0];
+        }
+
+        if (isset($fileReflector->getInterfaces()[0])) {
+            return $fileReflector->getInterfaces()[0];
+        }
+
+        if (isset($fileReflector->getTraits()[0])) {
+            return $fileReflector->getTraits()[0];
+        }
     }
 
     private function buildDocument($reflector)
     {
         $name = $reflector->getShortName();
-        $title = explode('\\', $reflector->getNamespace());
-        $title[] = $name;
+        $id = substr($reflector->getName(), 14);
+        $id = str_replace('\\', '/', $id);
+        // @todo see if there is a better way to determine the type
+        $type = end(explode('_', get_class($reflector->getNode())));
 
         return [
-            'id' => strtolower($name),
-            'metadata' => [
-                'name' => $name,
-                'title' => $title,
-                'description' => $this->buildDescription($reflector->getDocBlock())
-            ],
+            'id' => strtolower($id),
+            'type' => strtolower($type),
+            'title' => $reflector->getNamespace() . '\\' . $name,
+            'name' => $name,
+            'description' => $this->buildDescription($reflector->getDocBlock()),
             'methods' => $this->buildMethods($reflector->getMethods())
         ];
     }
@@ -94,7 +118,7 @@ class DocGenerator
         foreach ($parsedContents as &$content) {
             if ($content instanceof Seetag) {
                 $reference = $content->getReference();
-                if (substr_compare($reference, 'Google\Gcloud', 0, 13) === 0) {
+                if (substr_compare($reference, 'Google\Cloud', 0, 12) === 0) {
                     $content = $this->buildLink($reference);
                 }
             }
@@ -133,14 +157,13 @@ class DocGenerator
         }
 
         return [
-            'metadata' => [
-                'constructor' => $method->getName() === '__construct' ? true : false,
-                'name' => $method->getName(),
-                'source' => $this->currentFile . '#L' . $method->getLineNumber(),
-                'description' => $this->buildDescription($docBlock, $docText),
-                'examples' => $this->buildExamples($examples),
-                'resources' => $this->buildResources($resources)
-            ],
+            'id' => $method->getName(),
+            'type' => $method->getName() === '__construct' ? 'constructor' : 'instance',
+            'name' => $method->getName(),
+            'source' => $this->currentFile . '#L' . $method->getLineNumber(),
+            'description' => $this->buildDescription($docBlock, $docText),
+            'examples' => $this->buildExamples($examples),
+            'resources' => $this->buildResources($resources),
             'params' => $this->buildParams($params),
             'exceptions' => $this->buildExceptions($exceptions),
             'returns' => $this->buildReturns($returns)
@@ -314,7 +337,7 @@ class DocGenerator
     private function handleTypes($types)
     {
         foreach ($types as &$type) {
-            if (substr_compare($type, '\Google\Gcloud', 0, 14) === 0) {
+            if (substr_compare($type, '\Google\Cloud', 0, 13) === 0) {
                 $type = $this->buildLink($type);
             }
         }

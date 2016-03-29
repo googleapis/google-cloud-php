@@ -1,7 +1,9 @@
 # Google Cloud PHP Client
+[![Travis Build Status](https://travis-ci.org/GoogleCloudPlatform/gcloud-php.svg)](https://travis-ci.org/GoogleCloudPlatform/gcloud-php/)
+
 > Idiomatic PHP client for [Google Cloud Platform](https://cloud.google.com/) services.
 
-[![Travis Build Status](https://travis-ci.org/GoogleCloudPlatform/gcloud-php.svg)](https://travis-ci.org/GoogleCloudPlatform/gcloud-php/)
+Please note this library is currently under active development. Any release versioned 0.x.y is subject to backwards incompatiable changes at any time.
 
 ## Contributing
 

@@ -15,32 +15,34 @@
  * limitations under the License.
  */
 
-namespace Google\Gcloud\Tests\Storage;
+namespace Google\Cloud\Tests\Storage;
 
-use Google\Gcloud\Storage\Bucket;
+use Google\Cloud\Storage\Bucket;
 use Prophecy\Argument;
 
 class BucketTest extends \PHPUnit_Framework_TestCase
 {
-    public $connection;
+    private $connection;
+    private $resumableUploader;
 
     public function setUp()
     {
-        $this->connection = $this->prophesize('Google\Gcloud\Storage\Connection\ConnectionInterface');
+        $this->connection = $this->prophesize('Google\Cloud\Storage\Connection\ConnectionInterface');
+        $this->resumableUploader = $this->prophesize('Google\Cloud\Upload\ResumableUploader');
     }
 
     public function testGetsAcl()
     {
         $bucket = new Bucket($this->connection->reveal(), 'bucket');
 
-        $this->assertInstanceOf('Google\Gcloud\Storage\Acl', $bucket->acl());
+        $this->assertInstanceOf('Google\Cloud\Storage\Acl', $bucket->acl());
     }
 
     public function testGetsDefaultAcl()
     {
         $bucket = new Bucket($this->connection->reveal(), 'bucket');
 
-        $this->assertInstanceOf('Google\Gcloud\Storage\Acl', $bucket->defaultAcl());
+        $this->assertInstanceOf('Google\Cloud\Storage\Acl', $bucket->defaultAcl());
     }
 
     public function testDoesExistTrue()
@@ -59,11 +61,57 @@ class BucketTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($bucket->exists());
     }
 
+    public function testUploadData()
+    {
+        $this->resumableUploader->upload()->willReturn([
+            'name' => 'file.txt',
+            'generation' => 123
+        ]);
+        $this->connection->insertObject(Argument::any())->willReturn($this->resumableUploader);
+        $bucket = new Bucket($this->connection->reveal(), 'bucket');
+
+        $this->assertInstanceOf(
+            'Google\Cloud\Storage\Object',
+            $bucket->upload('some data to upload', ['name' => 'data.txt'])
+        );
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testUploadDataAsStringWithNoName()
+    {
+        $bucket = new Bucket($this->connection->reveal(), 'bucket');
+
+        $bucket->upload('some more data');
+    }
+
+    public function testGetResumableUploader()
+    {
+        $this->connection->insertObject(Argument::any())->willReturn($this->resumableUploader->reveal());
+        $bucket = new Bucket($this->connection->reveal(), 'bucket');
+
+        $this->assertInstanceOf(
+            'Google\Cloud\Upload\ResumableUploader',
+            $bucket->getResumableUploader('some data to upload', ['name' => 'data.txt'])
+        );
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testGetResumableUploaderWithStringWithNoName()
+    {
+        $bucket = new Bucket($this->connection->reveal(), 'bucket');
+
+        $bucket->getResumableUploader('some more data');
+    }
+
     public function testGetObject()
     {
         $bucket = new Bucket($this->connection->reveal(), 'bucket');
 
-        $this->assertInstanceOf('Google\Gcloud\Storage\Object', $bucket->object('peter-venkman.jpg'));
+        $this->assertInstanceOf('Google\Cloud\Storage\Object', $bucket->object('peter-venkman.jpg'));
     }
 
     public function testInstantiateObjectWithGeneration()
@@ -74,7 +122,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
             'generation' => '5'
         ]);
 
-        $this->assertInstanceOf('Google\Gcloud\Storage\Object', $object);
+        $this->assertInstanceOf('Google\Cloud\Storage\Object', $object);
     }
 
     public function testGetsObjectsWithoutToken()

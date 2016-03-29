@@ -1,5 +1,5 @@
 {
-  "name": "google/gcloud",
+  "name": "google/cloud",
   "type": "library",
   "description": "Google Cloud Client Library",
     "keywords": [
@@ -35,7 +35,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Google\\Gcloud\\": "src"
+      "Google\\Cloud\\": "src"
     }
   }
 }

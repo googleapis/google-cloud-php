@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Gcloud\Storage\Connection;
+namespace Google\Cloud\Storage\Connection;
 
 /**
  * Represents a connection to
@@ -24,82 +24,82 @@ namespace Google\Gcloud\Storage\Connection;
 interface ConnectionInterface
 {
     /**
-     * @param array $options
+     * @param array $args
      */
-    public function deleteAcl(array $options = []);
+    public function deleteAcl(array $args = []);
 
     /**
-     * @param array $options
+     * @param array $args
      */
-    public function getAcl(array $options = []);
+    public function getAcl(array $args = []);
 
     /**
-     * @param array $options
+     * @param array $args
      */
-    public function listAcl(array $options = []);
+    public function listAcl(array $args = []);
 
     /**
-     * @param array $options
+     * @param array $args
      */
-    public function insertAcl(array $options = []);
+    public function insertAcl(array $args = []);
 
     /**
-     * @param array $options
+     * @param array $args
      */
-    public function patchAcl(array $options = []);
+    public function patchAcl(array $args = []);
 
     /**
-     * @param array $options
+     * @param array $args
      */
-    public function deleteBucket(array $options = []);
+    public function deleteBucket(array $args = []);
 
     /**
-     * @param array $options
+     * @param array $args
      */
-    public function getBucket(array $options = []);
+    public function getBucket(array $args = []);
 
     /**
-     * @param array $options
+     * @param array $args
      */
-    public function listBuckets(array $options = []);
+    public function listBuckets(array $args = []);
 
     /**
-     * @param array $options
+     * @param array $args
      */
-    public function createBucket(array $options = []);
+    public function insertBucket(array $args = []);
 
     /**
-     * @param array $options
+     * @param array $args
      */
-    public function patchBucket(array $options = []);
+    public function patchBucket(array $args = []);
 
     /**
-     * @param array $options
+     * @param array $args
      */
-    public function deleteObject(array $options = []);
+    public function deleteObject(array $args = []);
 
     /**
-     * @param array $options
+     * @param array $args
      */
-    public function getObject(array $options = []);
+    public function getObject(array $args = []);
 
     /**
-     * @param array $options
+     * @param array $args
      */
-    public function listObjects(array $options = []);
+    public function listObjects(array $args = []);
 
     /**
-     * @param array $options
+     * @param array $args
      */
-    public function patchObject(array $options = []);
+    public function patchObject(array $args = []);
 
     /**
-     * @param array $options
+     * @param array $args
      */
-    public function downloadObject(array $options = []);
+    public function downloadObject(array $args = []);
 
     /**
-     * @param array $options
+     * @param array $args
      */
-    public function uploadObject(array $options = []);
+    public function insertObject(array $args = []);
 }

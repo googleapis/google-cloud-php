@@ -15,9 +15,11 @@
  * limitations under the License.
  */
 
-namespace Google\Gcloud\Storage;
+namespace Google\Cloud\Storage;
 
-use Google\Gcloud\Storage\Connection\ConnectionInterface;
+use Google\Cloud\Storage\Connection\ConnectionInterface;
+use Google\Cloud\Upload\ResumableUploader;
+use GuzzleHttp\Psr7;
 use Psr\Http\Message\StreamInterface;
 
 /**
@@ -71,13 +73,14 @@ class Bucket
      *
      * Example:
      * ```
-     * use Google\Gcloud\Storage\Acl;
+     * use Google\Cloud\Storage\Acl;
      *
      * $acl = $bucket->acl();
      * $acl->add('allAuthenticatedUsers', Acl::ROLE_READER);
      * ```
      *
      * @see https://cloud.google.com/storage/docs/access-control More about Access Control Lists
+     *
      * @return Acl An ACL instance configured to handle the bucket's access
      *         control policies.
      */
@@ -91,7 +94,7 @@ class Bucket
      *
      * Example:
      * ```
-     * use Google\Gcloud\Storage\Acl;
+     * use Google\Cloud\Storage\Acl;
      *
      * $acl = $bucket->defaultAcl();
      * $acl->add('allAuthenticatedUsers', Acl::ROLE_READER);
@@ -128,57 +131,143 @@ class Bucket
     }
 
     /**
-     * Upload data.
+     * Upload your data in a simple fashion. Uploads will default to being
+     * resumable if the file size is greater than 5mb.
      *
      * Example:
      * ```
      * $bucket->upload(
-     *     fopen('image.jpg', 'r'),
-     *     'image.jpg',
-     *     ['contentType' => 'image/jpeg']
+     *     fopen('image.jpg', 'r')
      * );
      * ```
      *
-     * @param string|resource|StreamInterface $data
-     * @param string $destination Name of where the file will be stored.
-     * @param array $options {
-     *      Configuration options.
+     * ```
+     * $options = [
+     *     'resumable' => true,
+     *     'name' => '/images/image.jpg',
+     *     'metadata' => [
+     *         'contentLanguage' => 'en'
+     *     ]
+     * ];
      *
-     *      @type string $contentType The content type.
+     * $bucket->upload(
+     *     fopen('image.jpg', 'r'),
+     *     $options
+     * );
+     * ```
+     *
+     * @see https://cloud.google.com/storage/docs/json_api/v1/how-tos/upload#resumable Learn more about resumable
+     * uploads.
+     * @see https://cloud.google.com/storage/docs/json_api/v1/objects/insert Objects insert API documentation.
+     *
+     * @param string|resource|StreamInterface $data The data to be uploaded.
+     * @param array $options {
+     *     Configuration options.
+     *
+     *     @type string $name The name of the destination.
+     *     @type bool $resumable Indicates whether or not the upload will be
+     *           performed in a resumable fashion.
+     *     @type bool $validate Indicates whether or not validation will be
+     *           applied using md5 hashing functionality. If true and the
+     *           calculated hash does not match that of the upstream server the
+     *           upload will be rejected.
+     *     @type int $chunkSize If provided the upload will be done in chunks.
+     *           The size must be in multiples of 262144 bytes. With chunking
+     *           you have increased reliability at the risk of higher overhead.
+     *           It is recommended to not use chunking.
+     *     @type string $predefinedAcl Predefined ACL to apply to the object.
+     *           Defaults to private. Acceptable values include,
+     *           authenticatedRead, bucketOwnerFullControl, bucketOwnerRead,
+     *           private, projectPrivate, and publicRead.
+     *     @type array $metadata The available options for metadata are outlined
+     *           at the [JSON API docs](https://cloud.google.com/storage/docs/json_api/v1/objects/insert#request)
      * }
-     * @return \Google\Gcloud\Storage\Object
+     * @return \Google\Cloud\Storage\Object
+     * @throws \InvalidArgumentException
      */
-    public function upload($data, $destination, array $options = [])
+    public function upload($data, array $options = [])
     {
-        $response = $this->connection->uploadObject($options + [
-            'bucket' => $this->identity['bucket'],
-            'data' => $data,
-            'name' => $destination
-        ]);
+        if (is_string($data) && !isset($options['name'])) {
+            throw new \InvalidArgumentException('A name is required when data is of type string.');
+        }
 
-        return new Object($this->connection, $destination, $this->identity['bucket'], null, $response);
+        $response = $this->connection->insertObject($options + [
+            'bucket' => $this->identity['bucket'],
+            'data' => $data
+        ])->upload();
+
+        return new Object(
+            $this->connection,
+            $response['name'],
+            $this->identity['bucket'],
+            $response['generation'],
+            $response
+        );
     }
 
     /**
-     * Upload
+     * Get a resumable uploader which can provide greater control over the
+     * upload process. This is recommended when dealing with large files where
+     * reliability is key.
      *
      * Example:
      * ```
+     * $uploader = $bucket->getResumableUploader(
+     *     fopen('image.jpg', 'r')
+     * );
+     *
+     * try {
+     *     $uploader->upload();
+     * } catch (GoogleException $ex) {
+     *     $resumeUri = $uploader->getResumeUri();
+     *     $uploader->resume($resumeUri);
+     * }
      * ```
      *
-     * @param string $path Path to the file to be uploaded.
-     * @param array $options Configuration options.
-     * @return \Google\Gcloud\Storage\Object
+     * @see https://cloud.google.com/storage/docs/json_api/v1/how-tos/upload#resumable Learn more about resumable
+     * uploads.
+     * @see https://cloud.google.com/storage/docs/json_api/v1/objects/insert Objects insert API documentation.
+     *
+     * @param string|resource|StreamInterface $data The data to be uploaded.
+     * @param array $options {
+     *     Configuration options.
+     *
+     *     @type string $name The name of the destination.
+     *     @type bool $validate Indicates whether or not validation will be
+     *           applied using md5 hashing functionality. If true and the
+     *           calculated hash does not match that of the upstream server the
+     *           upload will be rejected.
+     *     @type int $chunkSize If provided the upload will be done in chunks.
+     *           The size must be in multiples of 262144 bytes. With chunking
+     *           you have increased reliability at the risk of higher overhead.
+     *           It is recommended to not use chunking.
+     *     @type string $predefinedAcl Predefined ACL to apply to the object.
+     *           Defaults to private. Acceptable values include
+     *           authenticatedRead, bucketOwnerFullControl, bucketOwnerRead,
+     *           private, projectPrivate, and publicRead.
+     *     @type array $metadata The available options for metadata are outlined
+     *           at the [JSON API docs](https://cloud.google.com/storage/docs/json_api/v1/objects/insert#request)
+     * }
+     * @return ResumableUploader
+     * @throws \InvalidArgumentException
      */
-    public function uploadFromPath($path, array $options = [])
+    public function getResumableUploader($data, array $options = [])
     {
+        if (is_string($data) && !isset($options['name'])) {
+            throw new \InvalidArgumentException('A name is required when data is of type string.');
+        }
 
+        return $this->connection->insertObject($options + [
+            'bucket' => $this->identity['bucket'],
+            'data' => $data,
+            'resumable' => true
+        ]);
     }
 
     /**
      * Lazily instantiates an object. There are no network requests made at this
      * point. To see the operations that can be performed on an object please
-     * see {@see Google\Gcloud\Storage\Object}.
+     * see {@see Google\Cloud\Storage\Object}.
      *
      * Example:
      * ```
@@ -191,7 +280,7 @@ class Bucket
      *
      *     @type string $generation Request a specific revision of the object.
      * }
-     * @return \Google\Gcloud\Storage\Object
+     * @return \Google\Cloud\Storage\Object
      */
     public function object($name, array $options = [])
     {
@@ -215,6 +304,8 @@ class Bucket
      *     var_dump($object->getName());
      * }
      * ```
+     *
+     * @see https://cloud.google.com/storage/docs/json_api/v1/objects/list Objects list API documentation.
      *
      * @param array $options {
      *     Configuration options.
@@ -240,13 +331,14 @@ class Bucket
     public function objects(array $options = [])
     {
         $options['pageToken'] = null;
+        $includeVersions = isset($options['versions']) ? $options['versions'] : false;
 
         do {
             $response = $this->connection->listObjects($options + $this->identity);
 
             foreach ($response['items'] as $object) {
-                // @todo when versions === true pass generation
-                yield new Object($this->connection, $object['name'], $this->identity['bucket'], null, $object);
+                $generation = $includeVersions ? $object['generation'] : null;
+                yield new Object($this->connection, $object['name'], $this->identity['bucket'], $generation, $object);
             }
 
             $options['pageToken'] = isset($response['nextPageToken']) ? $response['nextPageToken'] : null;
@@ -261,6 +353,8 @@ class Bucket
      * ```
      * $bucket->delete();
      * ```
+     *
+     * @see https://cloud.google.com/storage/docs/json_api/v1/buckets/delete Buckets delete API documentation.
      *
      * @param array $options {
      *     Configuration options.
@@ -291,8 +385,8 @@ class Bucket
      * ]);
      * ```
      *
-     * @see https://goo.gl/KgufNr Learn more about configuring request options
-     *       at the bucket patch API documentation.
+     * @see https://cloud.google.com/storage/docs/json_api/v1/buckets/patch Buckets patch API documentation.
+     *
      * @param array $options {
      *     Configuration options.
      *
@@ -339,6 +433,8 @@ class Bucket
      * $info = $bucket->getInfo();
      * echo $info['location'];
      * ```
+     *
+     * @see https://cloud.google.com/storage/docs/json_api/v1/buckets/get Buckets get API documentation.
      *
      * @param array $options {
      *     Configuration options.

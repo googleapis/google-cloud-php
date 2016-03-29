@@ -15,23 +15,24 @@
  * limitations under the License.
  */
 
-namespace Google\Gcloud\Storage;
+namespace Google\Cloud\Storage;
 
-use Google\Gcloud\Storage\Connection\ConnectionInterface;
+use Google\Cloud\ClientInterface;
+use Google\Cloud\ClientTrait;
+use Google\Cloud\Storage\Connection\Rest;
 
 /**
  * Google Cloud Storage client. Allows you to store and retrieve data on
  * Google's infrastructure. Find more information at
  * [Google Cloud Storage API docs](https://developers.google.com/storage).
  */
-class StorageClient
+class StorageClient implements ClientInterface
 {
-    const DEFAULT_SCOPE = 'https://www.googleapis.com/auth/devstorage.full_control';
+    use ClientTrait;
 
-    /**
-     * @var ConnectionInterface Represents a connection to Cloud Storage.
-     */
-    private $connection;
+    const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/devstorage.full_control';
+    const READ_ONLY_SCOPE = 'https://www.googleapis.com/auth/devstorage.read_only';
+    const READ_WRITE_SCOPE = 'https://www.googleapis.com/auth/devstorage.read_write';
 
     /**
      * @var string The project ID created in the Google Developers Console.
@@ -39,35 +40,55 @@ class StorageClient
     private $projectId;
 
     /**
-     * Create a storage client. The preferred way to access this client is to
-     * use {@see Google\Gcloud\Gcloud::storage()}.
+     * Create a storage client.
      *
      * Example:
      * ```
-     * use Google\Gcloud\Storage\Connection\REST;
-     * use Google\Gcloud\Storage\StorageClient;
+     * use Google\Cloud\Storage\StorageClient;
      *
      * $storage = new StorageClient(
-     *     new REST(),
+     *     new Rest(),
      *     'myAwesomeProject'
      * );
      * ```
      *
-     * @param ConnectionInterface $connection Represents a connection to Cloud
-     *        Storage.
-     * @param string $projectId The project ID created in the Google Developers
-     *        Console.
+     * @param array $config {
+     *     Configuration options.
+     *
+     *     @type string $projectId The project ID from the Google Developer's
+     *           Console.
+     *     @type callable $authHttpHandler A handler used to deliver Psr7
+     *           requests specifically for authentication.
+     *     @type callable $httpHandler A handler used to deliver Psr7 requests.
+     *     @type string $keyFile The contents of the service account
+     *           credentials .json file retrieved from the Google Developers
+     *           Console.
+     *     @type string $keyFilePath The full path to your service account
+     *           credentials .json file retrieved from the Google Developers
+     *           Console.
+     *     @type int $retries Number of retries for a failed request. Defaults
+     *           to 3.
+     *     @type array $scopes Scopes to be used for the request.
+     * }
      */
-    public function __construct(ConnectionInterface $connection, $projectId)
+    public function __construct(array $config = [])
     {
-        $this->connection = $connection;
-        $this->projectId = $projectId;
+        if (!isset($config['projectId'])) {
+            throw new \InvalidArgumentException('A projectId is required.');
+        }
+
+        if (!isset($config['scopes'])) {
+            $config['scopes'] = [self::FULL_CONTROL_SCOPE];
+        }
+
+        $this->setConnection(new Rest($config));
+        $this->projectId = $config['projectId'];
     }
 
     /**
      * Lazily instantiates a bucket. There are no network requests made at this
      * point. To see the operations that can be performed on a bucket please
-     * see {@see Google\Gcloud\Storage\Bucket}.
+     * see {@see Google\Cloud\Storage\Bucket}.
      *
      * Example:
      * ```
@@ -100,6 +121,8 @@ class StorageClient
      *     var_dump($bucket->name());
      * }
      * ```
+     *
+     * @see https://cloud.google.com/storage/docs/json_api/v1/buckets/list Buckets list API documentation.
      *
      * @param array $options {
      *     Configuration options.
@@ -149,8 +172,8 @@ class StorageClient
      * ]);
      * ```
      *
-     * @see https://goo.gl/PNTqTh Learn more about configuring request options
-     *       at the bucket insert API documentation.
+     * @see https://cloud.google.com/storage/docs/json_api/v1/buckets/insert Buckets insert API documentation.
+     *
      * @param string $name Name of the bucket to be created.
      * @param array $options {
      *     Configuration options.
@@ -184,7 +207,7 @@ class StorageClient
      */
     public function createBucket($name, array $options = [])
     {
-        $response = $this->connection->createBucket($options + ['name' => $name, 'project' => $this->projectId]);
+        $response = $this->connection->insertBucket($options + ['name' => $name, 'project' => $this->projectId]);
         return new Bucket($this->connection, $name, $response);
     }
 }

@@ -15,9 +15,9 @@
  * limitations under the License.
  */
 
-namespace Google\Gcloud\Tests\Storage;
+namespace Google\Cloud\Tests\Storage;
 
-use Google\Gcloud\Storage\StorageClient;
+use Google\Cloud\Storage\StorageClient;
 use Prophecy\Argument;
 
 class StorageClientTest extends \PHPUnit_Framework_TestCase
@@ -26,14 +26,14 @@ class StorageClientTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->connection = $this->prophesize('Google\Gcloud\Storage\Connection\ConnectionInterface');
+        $this->connection = $this->prophesize('Google\Cloud\Storage\Connection\ConnectionInterface');
+        $this->client = new StorageClient(['projectId' => 'project']);
     }
 
     public function testGetBucket()
     {
-        $client = new StorageClient($this->connection->reveal(), 'projectId');
-
-        $this->assertInstanceOf('Google\Gcloud\Storage\Bucket', $client->bucket('myBucket'));
+        $this->client->setConnection($this->connection->reveal());
+        $this->assertInstanceOf('Google\Cloud\Storage\Bucket', $this->client->bucket('myBucket'));
     }
 
     public function testGetsBucketsWithoutToken()
@@ -44,8 +44,8 @@ class StorageClientTest extends \PHPUnit_Framework_TestCase
             ]
         ]);
 
-        $client = new StorageClient($this->connection->reveal(), 'projectId');
-        $buckets = iterator_to_array($client->buckets());
+        $this->client->setConnection($this->connection->reveal());
+        $buckets = iterator_to_array($this->client->buckets());
 
         $this->assertEquals('bucket1', $buckets[0]->getName());
     }
@@ -66,17 +66,17 @@ class StorageClientTest extends \PHPUnit_Framework_TestCase
             ]
         );
 
-        $client = new StorageClient($this->connection->reveal(), 'projectId');
-        $bucket = iterator_to_array($client->buckets());
+        $this->client->setConnection($this->connection->reveal());
+        $bucket = iterator_to_array($this->client->buckets());
 
         $this->assertEquals('bucket2', $bucket[1]->getName());
     }
 
     public function testCreatesBucket()
     {
-        $this->connection->createBucket(Argument::any())->willReturn(['name' => 'bucket']);
-        $client = new StorageClient($this->connection->reveal(), 'projectId');
+        $this->connection->insertBucket(Argument::any())->willReturn(['name' => 'bucket']);
+        $this->client->setConnection($this->connection->reveal());
 
-        $this->assertInstanceOf('Google\Gcloud\Storage\Bucket', $client->createBucket('bucket'));
+        $this->assertInstanceOf('Google\Cloud\Storage\Bucket', $this->client->createBucket('bucket'));
     }
 }
