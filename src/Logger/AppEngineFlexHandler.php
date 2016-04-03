@@ -16,6 +16,7 @@
  */
 namespace Google\Cloud\Logger;
 
+use Monolog\Formatter\FormatterInterface;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 
