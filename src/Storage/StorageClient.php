@@ -40,16 +40,15 @@ class StorageClient implements ClientInterface
     private $projectId;
 
     /**
-     * Create a storage client.
+     * Create a Storage client.
      *
      * Example:
      * ```
      * use Google\Cloud\Storage\StorageClient;
      *
-     * $storage = new StorageClient(
-     *     new Rest(),
-     *     'myAwesomeProject'
-     * );
+     * $storage = new StorageClient([
+     *     'projectId' => 'myAwesomeProject'
+     * ]);
      * ```
      *
      * @param array $config {
