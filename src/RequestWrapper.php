@@ -173,6 +173,7 @@ class RequestWrapper
         }
 
         if ($this->keyFileStream) {
+            $this->keyFileStream->rewind();
             return CredentialsLoader::makeCredentials($this->scopes, $this->keyFileStream);
         }
 
