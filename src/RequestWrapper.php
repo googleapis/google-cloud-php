@@ -155,7 +155,7 @@ class RequestWrapper
         try {
             return $backoff->execute($this->httpHandler, [$signedRequest, $httpOptions]);
         } catch (\Exception $ex) {
-            throw new GoogleException($ex->getMessage(), $ex->getCode(), $ex);
+            throw new GoogleException($ex->getMessage(), $ex->getCode());
         }
     }
 
@@ -225,7 +225,7 @@ class RequestWrapper
         try {
             $credentials = $this->getCredentialsFetcher()->fetchAuthToken($this->authHttpHandler);
         } catch (\Exception $ex) {
-            throw new GoogleException($ex->getMessage(), $ex->getCode(), $ex);
+            throw new GoogleException($ex->getMessage(), $ex->getCode());
         }
 
         $credentials['expiry'] = time() + $this->credentials['expires_in'];

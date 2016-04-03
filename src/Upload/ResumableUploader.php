@@ -115,8 +115,7 @@ class ResumableUploader extends AbstractUploader
             } catch (GoogleException $ex) {
                 throw new GoogleException(
                     "Upload failed. Please use this URI to resume your upload: $this->resumeUri",
-                    $ex->getCode(),
-                    $ex
+                    $ex->getCode()
                 );
             }
 
