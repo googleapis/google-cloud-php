@@ -1,0 +1,12 @@
+{
+    "name": "google/gax",
+    "type": "library",
+    "description": "Google API Extensions for PHP",
+    "keywords": ["google"],
+    "homepage": "https://gapi.git.corp.google.com/gapi-gax-php/",
+    "license": "Apache-2.0",
+    "require": {
+        "php": ">=5.4",
+        "google/auth": "0.7",
+    }
+}
