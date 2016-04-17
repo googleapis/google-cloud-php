@@ -95,23 +95,14 @@ abstract class AbstractUploader
             'httpOptions' => null,
             'retries' => null
         ]);
+
         $this->contentType = isset($options['contentType'])
             ? $options['contentType']
-            : $this->getContentTypeFromFilename($this->data->getMetadata('uri'));
+            : 'application/octet-stream';
     }
 
     /**
      * @return array
      */
     abstract public function upload();
-
-    /**
-     * Determines the content type.
-     *
-     * @param string $filename
-     */
-    private function getContentTypeFromFilename($filename)
-    {
-        return Psr7\mimetype_from_filename($filename) ?: 'application/octet-stream';
-    }
 }
