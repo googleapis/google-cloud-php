@@ -264,7 +264,7 @@ class Rest implements ConnectionInterface
         unset($args['name']);
         $args['contentType'] = isset($args['metadata']['contentType'])
             ? $args['metadata']['contentType']
-            : null;
+            : Psr7\mimetype_from_filename($args['metadata']['name']);
 
         $uploaderOptionKeys = [
             'httpOptions',
