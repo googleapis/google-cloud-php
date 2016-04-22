@@ -31,10 +31,6 @@
  */
 namespace Google\GAX;
 
-use Grpc;
-
-require_once __DIR__ . '/../vendor/autoload.php';
-
 /**
  * Creates a function wrapper that provides extra functionalities such as retry and bundling.
  */
@@ -81,7 +77,7 @@ class ApiCallable
                 $nextApiCall = self::setTimeout($apiCall, $timeoutMillis);
                 list($response, $status) =
                     call_user_func_array($nextApiCall, func_get_args());
-                if ($status->code == Grpc\STATUS_OK) {
+                if ($status->code == \Grpc\STATUS_OK) {
                     return array($response, $status);
                 }
                 if (!in_array($status->code, $retrySettings->getRetryableCodes())) {
