@@ -236,7 +236,7 @@ class Object
     }
 
     /**
-     * Retrieves the objects's details.
+     * Retrieves the object's details.
      *
      * Example:
      * ```
@@ -278,7 +278,7 @@ class Object
     }
 
     /**
-     * Retrieves the objects's name.
+     * Retrieves the object's name.
      *
      * Example:
      * ```
@@ -290,5 +290,20 @@ class Object
     public function getName()
     {
         return $this->identity['object'];
+    }
+
+    /**
+     * Retrieves the object's identity.
+     *
+     * Example:
+     * ```
+     * echo $object->getIdentity()['object'];
+     * ```
+     *
+     * @return string
+     */
+    public function getIdentity()
+    {
+        return $this->identity;
     }
 }

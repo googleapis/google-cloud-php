@@ -21,33 +21,38 @@ use Google\Cloud\ServiceBuilder;
 
 class ServiceBuilderTest extends \PHPUnit_Framework_TestCase
 {
-    public function testBuildsStorageClientWithGlobalConfig()
+    /**
+     * @dataProvider serviceProvider
+     */
+    public function testBuildsClients($serviceName, $expectedClient)
     {
-        $gcloud = new ServiceBuilder(['projectId' => 'myProject']);
-
-        $this->assertInstanceOf('Google\Cloud\Storage\StorageClient', $gcloud->storage());
-    }
-
-    public function testBuildsStorageClientWithOverriddenConfig()
-    {
-        $gcloud = new ServiceBuilder();
-        $storage = $gcloud->storage([
+        $serviceBuilder = new ServiceBuilder(['projectId' => 'myProject']);
+        $config = [
             'projectId' => 'myProject',
             'scopes' => ['somescope'],
             'httpHandler' => function() {
                 return;
             }
-        ]);
+        ];
 
-        $this->assertInstanceOf('Google\Cloud\Storage\StorageClient', $storage);
+        $globalConfigClient = $serviceBuilder->$serviceName();
+        $localConfigClient = $serviceBuilder->$serviceName($config);
+
+        $this->assertInstanceOf($expectedClient, $globalConfigClient);
+        $this->assertInstanceOf($expectedClient, $localConfigClient);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
-    public function testStorageThrowsExceptionWithoutProjectId()
+    public function serviceProvider()
     {
-        $gcloud = new ServiceBuilder();
-        $gcloud->storage();
+        return [
+            [
+                'storage',
+                'Google\Cloud\Storage\StorageClient'
+            ],
+            [
+                'bigQuery',
+                'Google\Cloud\BigQuery\BigQueryClient'
+            ]
+        ];
     }
 }

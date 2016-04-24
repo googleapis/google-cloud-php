@@ -17,8 +17,7 @@
 
 namespace Google\Cloud\Storage;
 
-use Google\Cloud\ClientInterface;
-use Google\Cloud\ClientTrait;
+use Google\Cloud\Storage\Connection\ConnectionInterface;
 use Google\Cloud\Storage\Connection\Rest;
 
 /**
@@ -26,13 +25,16 @@ use Google\Cloud\Storage\Connection\Rest;
  * Google's infrastructure. Find more information at
  * [Google Cloud Storage API docs](https://developers.google.com/storage).
  */
-class StorageClient implements ClientInterface
+class StorageClient
 {
-    use ClientTrait;
-
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/devstorage.full_control';
     const READ_ONLY_SCOPE = 'https://www.googleapis.com/auth/devstorage.read_only';
     const READ_WRITE_SCOPE = 'https://www.googleapis.com/auth/devstorage.read_write';
+
+    /**
+     * @var ConnectionInterface $connection Represents a connection to Storage.
+     */
+    protected $connection;
 
     /**
      * @var string The project ID created in the Google Developers Console.
@@ -80,7 +82,7 @@ class StorageClient implements ClientInterface
             $config['scopes'] = [self::FULL_CONTROL_SCOPE];
         }
 
-        $this->setConnection(new Rest($config));
+        $this->connection = new Rest($config);
         $this->projectId = $config['projectId'];
     }
 

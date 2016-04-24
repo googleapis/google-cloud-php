@@ -18,8 +18,8 @@
 
 namespace Google\Cloud\Tests;
 
-use Google\Cloud\ClientInterface;
 use Google\Cloud\RequestWrapper;
+use Google\Cloud\ServiceBuilder;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use Prophecy\Argument;
@@ -167,7 +167,7 @@ class RequestWrapperTest extends \PHPUnit_Framework_TestCase
         $requestWrapper = new RequestWrapper([
             'httpHandler' => function ($request, $options = []) {
                 $userAgent = $request->getHeaderLine('User-Agent');
-                $this->assertEquals('gcloud-php ' . ClientInterface::VERSION, $userAgent);
+                $this->assertEquals('gcloud-php ' . ServiceBuilder::VERSION, $userAgent);
                 return new Response(200);
             },
             'accessToken' => 'abc'

@@ -466,8 +466,7 @@ class Bucket
      *
      * Example:
      * ```
-     * $name $bucket->getName();
-     * echo $name;
+     * echo $bucket->getName();
      * ```
      *
      * @return string

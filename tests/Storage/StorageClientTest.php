@@ -27,7 +27,7 @@ class StorageClientTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->connection = $this->prophesize('Google\Cloud\Storage\Connection\ConnectionInterface');
-        $this->client = new StorageClient(['projectId' => 'project']);
+        $this->client = new StorageTestClient(['projectId' => 'project']);
     }
 
     public function testGetBucket()
@@ -78,5 +78,13 @@ class StorageClientTest extends \PHPUnit_Framework_TestCase
         $this->client->setConnection($this->connection->reveal());
 
         $this->assertInstanceOf('Google\Cloud\Storage\Bucket', $this->client->createBucket('bucket'));
+    }
+}
+
+class StorageTestClient extends StorageClient
+{
+    public function setConnection($connection)
+    {
+        $this->connection = $connection;
     }
 }

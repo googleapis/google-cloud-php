@@ -29,6 +29,10 @@ abstract class AbstractUploader
 {
     use UriTrait;
 
+    const UPLOAD_TYPE_RESUMABLE = 'resumable';
+    const UPLOAD_TYPE_MULTIPART = 'multipart';
+    const RESUMABLE_LIMIT = 5000000;
+
     /**
      * @var RequestWrapper
      */
