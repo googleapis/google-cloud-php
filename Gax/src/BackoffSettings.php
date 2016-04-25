@@ -131,7 +131,7 @@ class BackoffSettings
             'rpcTimeoutMultiplier', 'maxRpcTimeoutMillis', 'totalTimeoutMillis');
         foreach ($requiredFields as $field) {
             if (empty($settings[$field])) {
-                throw new \Exception("$field is required for BackoffSettings");
+                throw new \InvalidArgumentException("$field is required for BackoffSettings");
             }
         }
     }

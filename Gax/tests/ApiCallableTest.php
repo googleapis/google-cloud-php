@@ -38,197 +38,156 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
 {
     public function testBaseCall()
     {
-        $isInvoked = false;
         $request = "request";
-        $metadata = array();
-        $options = array();
-        $callable = function ($actualParam1, $actualParam2, $actualParam3)
-            use ($request, $metadata, $options, &$isInvoked) {
-            $this->assertEquals($actualParam1, $request);
-            $this->assertEquals($actualParam2, $metadata);
-            $isInvoked = true;
-            return new MockGrpcCall(null);
-        };
-        $apiCall = ApiCallable::createApiCall($callable, 1000);
-        $apiCall($request, $metadata, $options);
-        $this->assertTrue($isInvoked);
-    }
+        $metadata = [];
+        $options = ['call_credentials_callback' => 'fake_callback'];
+        $response = "response";
+        $stub = MockStub::create($response);
 
-    public function testBaseCallResponse()
-    {
-        $isInvoked = false;
-        $response = array("response", "status");
-        $callable = function ($actualParam1, $actualParam2, $actualParam3)
-            use ($response, &$isInvoked){
-            $isInvoked = true;
-            return new MockGrpcCall($response);
-        };
-        $apiCall = ApiCallable::createApiCall($callable, 1000);
-        $actualResponse = $apiCall("request", array(), array());
+        $apiCall = ApiCallable::createApiCall($stub, 'takeAction');
+        $actualResponse = $apiCall($request, $metadata, $options);
+
         $this->assertEquals($response, $actualResponse);
-        $this->assertTrue($isInvoked);
+
+        $actualCalls = $stub->actualCalls;
+        $this->assertEquals(1, count($actualCalls));
+        $this->assertEquals($request, $actualCalls[0]['request']);
+        $this->assertEquals($metadata, $actualCalls[0]['metadata']);
+        $this->assertEquals($options, $actualCalls[0]['options']);
     }
 
     public function testTimeout()
     {
-        $isInvoked = false;
-        $timeout = 1500;
-        $callable = function ($request, $metadata, $options) use ($timeout, &$isInvoked) {
-            $this->assertTrue(array_key_exists('timeout', $options));
-            $this->assertEquals($options['timeout'], $timeout);
-            $isInvoked = true;
-            return new MockGrpcCall(null);
-        };
-        $apiCall = ApiCallable::createApiCall($callable, $timeout);
+        $request = "request";
+        $response = "response";
+        $stub = MockStub::create($response);
 
-        $metadata = array();
-        $options = array();
-        $apiCall("request", $metadata, $options);
-        $this->assertTrue($isInvoked);
+        $options = ['timeout' => 1500];
+        $apiCall = ApiCallable::createApiCall($stub, 'takeAction', $options);
+        $actualResponse = $apiCall($request, [], []);
+
+        $this->assertEquals($response, $actualResponse);
+
+        $actualCalls = $stub->actualCalls;
+        $this->assertEquals(1, count($actualCalls));
+        $this->assertEquals($request, $actualCalls[0]['request']);
+        $this->assertEquals([], $actualCalls[0]['metadata']);
+        $this->assertEquals(['timeout' => 1500], $actualCalls[0]['options']);
     }
 
     public function testRetryNoRetryableCode()
     {
-        $callCount = 0;
-        $isExceptionRaised = false;
-        $callable = function ($request, $metadata, $options)
-            use (&$callCount) {
-            $callCount += 1;
-            return new MockGrpcCall(array("response",
-                new MockStatus(Grpc\STATUS_DEADLINE_EXCEEDED)));
-        };
-        $backoffSettings = new BackoffSettings(array(
+        $request = "request";
+        $response = "response";
+        $status = new MockStatus(\Grpc\STATUS_DEADLINE_EXCEEDED, 'Deadline Exceeded');
+        $stub = MockStub::createWithResponseSequence([[$response, $status]]);
+        $backoffSettings = new BackoffSettings([
             'initialRetryDelayMillis' => 100,
             'retryDelayMultiplier' => 1.3,
             'maxRetryDelayMillis' => 400,
             'initialRpcTimeoutMillis' => 150,
             'rpcTimeoutMultiplier' => 2,
             'maxRpcTimeoutMillis' => 600,
-            'totalTimeoutMillis' => 2000
-        ));
-        $retrySettings = new RetrySettings(
-            array(),
-            $backoffSettings);
-        try {
-            $apiCall = ApiCallable::createRetryableApiCall($callable, $retrySettings);
-            list($response, $status) = $apiCall("request", array(), array());
-        } catch (\Exception $e) {
-            $isExceptionRaised = true;
-        }
-        $this->assertEquals($callCount, 1);
-        $this->assertTrue($isExceptionRaised);
-    }
+            'totalTimeoutMillis' => 2000]);
+        $retrySettings = new RetrySettings([], $backoffSettings);
+        $options = ['retrySettings' => $retrySettings];
 
-    public function testBackoffSettingsMissingFields()
-    {
         $isExceptionRaised = false;
         try {
-            $backoffSettings = new BackoffSettings(array(
-                'initialRetryDelayMillis' => 100,
-                'retryDelayMultiplier' => 1.3,
-                'initialRpcTimeoutMillis' => 150,
-                'rpcTimeoutMultiplier' => 2,
-                'maxRpcTimeoutMillis' => 600,
-                'totalTimeoutMillis' => 2000
-            ));
+            $apiCall = ApiCallable::createApiCall($stub, 'takeAction', $options);
+            $response = $apiCall($request, [], []);
         } catch (\Exception $e) {
             $isExceptionRaised = true;
         }
+
+        $actualCalls = $stub->actualCalls;
+        $this->assertEquals(1, count($actualCalls));
+        $this->assertEquals($request, $actualCalls[0]['request']);
+
         $this->assertTrue($isExceptionRaised);
     }
 
     public function testRetryBackoff()
     {
-        $callCount = 0;
-        $isFirstTryInvoked = false;
-        $isSecondTryInvoked = false;
+        $request = "request";
         $responseA = "requestA";
         $responseB = "requestB";
         $responseC = "requestC";
-        $callable = function ($request, $metadata, $options)
-            use (&$callCount, $responseA, $responseB, $responseC,
-                &$isFirstTryInvoked, &$isSecondTryInvoked) {
-            $callCount += 1;
-            if ($callCount == 1) {
-                // First try
-                $this->assertTrue(array_key_exists('timeout', $options));
-                $this->assertEquals(150, $options['timeout']);
-                $isFirstTryInvoked = true;
-                return new MockGrpcCall(array($responseA,
-                                        new MockStatus(Grpc\STATUS_DEADLINE_EXCEEDED)));
-            } else if ($callCount == 2) {
-                // Second try
-                $this->assertTrue(array_key_exists('timeout', $options));
-                $this->assertEquals(300, $options['timeout']);
-                $isSecondTryInvoked = true;
-                return new MockGrpcCall(array($responseB,
-                                        new MockStatus(Grpc\STATUS_DEADLINE_EXCEEDED)));
-            } else if ($callCount == 3) {
-                // Second try
-                $this->assertTrue(array_key_exists('timeout', $options));
-                $this->assertEquals(500, $options['timeout']);
-                $isSecondTryInvoked = true;
-                return new MockGrpcCall(array($responseC,
-                                        new MockStatus(Grpc\STATUS_OK)));
-            }
-        };
-        $backoffSettings = new BackoffSettings(array(
+        $responseSequence = [
+            [$responseA, new MockStatus(Grpc\STATUS_DEADLINE_EXCEEDED, 'Deadline Exceeded')],
+            [$responseB, new MockStatus(Grpc\STATUS_DEADLINE_EXCEEDED, 'Deadline Exceeded')],
+            [$responseC, new MockStatus(Grpc\STATUS_OK, '')]
+                             ];
+        $stub = MockStub::createWithResponseSequence($responseSequence);
+        $backoffSettings = new BackoffSettings([
             'initialRetryDelayMillis' => 100,
             'retryDelayMultiplier' => 1.3,
             'maxRetryDelayMillis' => 400,
             'initialRpcTimeoutMillis' => 150,
             'rpcTimeoutMultiplier' => 2,
             'maxRpcTimeoutMillis' => 500,
-            'totalTimeoutMillis' => 2000
-        ));
+            'totalTimeoutMillis' => 2000]);
         $retrySettings = new RetrySettings(
-            array(Grpc\STATUS_DEADLINE_EXCEEDED),
+            [Grpc\STATUS_DEADLINE_EXCEEDED],
             $backoffSettings);
-        $apiCall = ApiCallable::createRetryableApiCall($callable, $retrySettings);
-        list($response, $status) = $apiCall("request", array(), array());
-        $this->assertEquals($responseC, $response);
-        $this->assertEquals($callCount, 3);
-        $this->assertTrue($isFirstTryInvoked);
-        $this->assertTrue($isSecondTryInvoked);
+        $options = ['retrySettings' => $retrySettings];
+        $apiCall = ApiCallable::createApiCall($stub, 'takeAction', $options);
+        $actualResponse = $apiCall($request, [], []);
+
+        $this->assertEquals($responseC, $actualResponse);
+
+        $actualCalls = $stub->actualCalls;
+        $this->assertEquals(3, count($actualCalls));
+
+        $this->assertEquals($request, $actualCalls[0]['request']);
+        $this->assertEquals(['timeout' => 150], $actualCalls[0]['options']);
+
+        $this->assertEquals($request, $actualCalls[1]['request']);
+        $this->assertEquals(['timeout' => 300], $actualCalls[1]['options']);
+
+        $this->assertEquals($request, $actualCalls[2]['request']);
+        $this->assertEquals(['timeout' => 500], $actualCalls[2]['options']);
     }
 
     public function testRetryTimeoutExceeds()
     {
-        $callCount = 0;
-        $isExceptionRaised = false;
-        $isFirstTryInvoked = false;
-        $isSecondTryInvoked = false;
-        $callable = function ($request, $metadata, $options)
-            use (&$callCount) {
-            $callCount += 1;
-            return new MockGrpcCall(array("response",
-                new MockStatus(Grpc\STATUS_DEADLINE_EXCEEDED)));
-        };
-        $backoffSettings = new BackoffSettings(array(
+        $request = "request";
+        $response = "response";
+        $status = new MockStatus(\Grpc\STATUS_DEADLINE_EXCEEDED, 'Deadline Exceeded');
+        $stub = MockStub::createWithResponseSequence([[$response, $status]]);
+        $backoffSettings = new BackoffSettings([
             'initialRetryDelayMillis' => 1000,
             'retryDelayMultiplier' => 1.3,
             'maxRetryDelayMillis' => 4000,
             'initialRpcTimeoutMillis' => 150,
             'rpcTimeoutMultiplier' => 2,
             'maxRpcTimeoutMillis' => 600,
-            'totalTimeoutMillis' => 3000
-        ));
+            'totalTimeoutMillis' => 3000]);
         $retrySettings = new RetrySettings(
-            array(Grpc\STATUS_DEADLINE_EXCEEDED),
+            [Grpc\STATUS_DEADLINE_EXCEEDED],
             $backoffSettings);
+        $options = ['retrySettings' => $retrySettings];
+
+        $raisedException = null;
         try {
-            $apiCall = ApiCallable::createRetryableApiCall($callable, $retrySettings);
-            list($response, $status) = $apiCall("request", array(), array());
-        } catch (\Exception $e) {
-            $isExceptionRaised = true;
+            $apiCall = ApiCallable::createApiCall($stub, 'takeAction', $options);
+            $response = $apiCall($request, [], []);
+        } catch (\Google\GAX\ApiException $e) {
+            $raisedException = $e;
         }
-        $this->assertEquals($callCount, 3);
-        $this->assertTrue($isExceptionRaised);
+
+        $actualCalls = $stub->actualCalls;
+        $this->assertEquals(3, count($actualCalls));
+        $this->assertEquals($request, $actualCalls[0]['request']);
+
+        $this->assertTrue(!empty($raisedException));
+        $this->assertEquals(\Grpc\STATUS_DEADLINE_EXCEEDED, $raisedException->getCode());
     }
 }
 
 class MockGrpcCall
 {
+    // this will be an array of [responseObject, status]
     private $response;
     public function __construct($response)
     {
@@ -244,8 +203,60 @@ class MockGrpcCall
 class MockStatus
 {
     public $code;
-    public function __construct($code)
+    public $details;
+    public function __construct($code, $details)
     {
         $this->code = $code;
+        $this->details = $details;
+    }
+}
+
+class MockStub
+{
+    // invariant: count($responseSequence) >= 1
+    private $responseSequence;
+
+    public $actualCalls;
+
+    private function __construct()
+    {
+        $this->actualCalls = [];
+    }
+
+    public function create($responseObject)
+    {
+        $stub = new MockStub();
+        $status = new MockStatus(\Grpc\STATUS_OK, '');
+        $stub->responseSequence = [[$responseObject, $status]];
+        return $stub;
+    }
+
+    /**
+     * Creates a sequence such that the responses are returned in order,
+     * and once there is only one left, it is repeated indefinitely.
+     */
+    public static function createWithResponseSequence($sequence)
+    {
+        if (count($sequence) == 0) {
+            throw new \InvalidArgumentException("createResponseSequence: need at least 1 response");
+        }
+        $stub = new MockStub();
+        $stub->responseSequence = $sequence;
+        return $stub;
+    }
+
+    public function takeAction($request, $metadata = array(), $options = array())
+    {
+        $actualCall = [
+            'request' => $request,
+            'metadata' => $metadata,
+            'options' => $options];
+        array_push($this->actualCalls, $actualCall);
+        if (count($this->responseSequence) == 1) {
+            return new MockGrpcCall($this->responseSequence[0]);
+        } else {
+            $response = array_shift($this->responseSequence);
+            return new MockGrpcCall($response);
+        }
     }
 }
