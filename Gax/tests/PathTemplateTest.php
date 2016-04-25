@@ -137,10 +137,10 @@ class PathTemplateTest extends PHPUnit_Framework_TestCase
             $template->match('bar/foo/foo/foo/bar'));
     }
 
-    public function testInstantiateAtomicResource()
+    public function testRenderAtomicResource()
     {
         $template = new PathTemplate('buckets/*/*/*/objects/*');
-        $url = $template->instantiate(
+        $url = $template->render(
             ['$0' => 'f', '$1' => 'o', '$2' => 'o', '$3' => 'google.com:a-b']);
         $this->assertEquals($url, 'buckets/f/o/o/objects/google.com:a-b');
     }
@@ -148,16 +148,16 @@ class PathTemplateTest extends PHPUnit_Framework_TestCase
     /**
      * @expectedException \Google\GAX\ValidationException
      */
-    public function testInstantiateFailWhenTooFewVariables()
+    public function testRenderFailWhenTooFewVariables()
     {
         $template = new PathTemplate('buckets/*/*/*/objects/*');
-        $template->instantiate(['$0' => 'f', '$1' => 'l', '$2' => 'o']);
+        $template->render(['$0' => 'f', '$1' => 'l', '$2' => 'o']);
     }
 
-    public function testInstantiateWithUnboundInMiddle()
+    public function testRenderWithUnboundInMiddle()
     {
         $template = new PathTemplate('bar/**/foo/*');
-        $url = $template->instantiate(['$0' => '1/2', '$1' => '3']);
+        $url = $template->render(['$0' => '1/2', '$1' => '3']);
         $this->assertEquals($url, 'bar/1/2/foo/3');
     }
 
@@ -181,12 +181,12 @@ class PathTemplateTest extends PHPUnit_Framework_TestCase
     public function testSubstitutionOddChars()
     {
         $template = new PathTemplate('projects/{project}/topics/{topic}');
-        $url = $template->instantiate(
+        $url = $template->render(
             ['project' => 'google.com:proj-test', 'topic' => 'some-topic']);
         $this->assertEquals($url,
             'projects/google.com:proj-test/topics/some-topic');
         $template = new PathTemplate('projects/{project}/topics/{topic}');
-        $url = $template->instantiate(
+        $url = $template->render(
             ['project' => 'g.,;:~`!@#$%^&()+-', 'topic' => 'sdf<>,.?[]']);
         $this->assertEquals($url,
             'projects/g.,;:~`!@#$%^&()+-/topics/sdf<>,.?[]');
