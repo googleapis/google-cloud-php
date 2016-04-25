@@ -74,16 +74,16 @@ class PathTemplate implements Countable
     }
 
     /**
-     * Instantiates a path template using the provided bindings.
+     * Renders a path template using the provided bindings.
      *
      * @param array $bindings An array matching var names to binding strings.
      *
      * @throws ValidationException if a key isn't provided or if a sub-template
      *    can't be parsed.
      *
-     * @return string An instantiated representation of this path template.
+     * @return string A rendered representation of this path template.
      */
-    public function instantiate($bindings)
+    public function render($bindings)
     {
         $out = [];
         $binding = false;
@@ -92,7 +92,7 @@ class PathTemplate implements Countable
                 if (!array_key_exists($segment->literal, $bindings)) {
                     throw new ValidationException(
                         sprintf(
-                            'instantiate error: value for key "%s" not '.
+                            'render error: value for key "%s" not '.
                             'provided',
                             $segment->literal));
                 }
@@ -162,7 +162,7 @@ class PathTemplate implements Countable
         if (($pathIndex != count($pathList)) || ($pathIndex != $segmentCount)) {
             throw new ValidationException(
                 sprintf(
-                    'match error: could not instantiate a path template '.
+                    'match error: could not render a path template '.
                     'from %s',
                     $path));
         }
