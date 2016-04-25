@@ -75,40 +75,60 @@ class ApiCallable
 
             while ($currentTimeMillis < $deadlineMillis) {
                 $nextApiCall = self::setTimeout($apiCall, $timeoutMillis);
-                list($response, $status) =
-                    call_user_func_array($nextApiCall, func_get_args());
-                if ($status->code == \Grpc\STATUS_OK) {
-                    return array($response, $status);
+                try {
+                    return call_user_func_array($nextApiCall, func_get_args());
+                } catch (ApiException $e) {
+                    if (!in_array($e->getCode(), $retrySettings->getRetryableCodes())) {
+                        throw $e;
+                    }
+                } catch (\Exception $e) {
+                    throw $e;
                 }
-                if (!in_array($status->code, $retrySettings->getRetryableCodes())) {
-                    // TODO(shinfan): Implement API exception for PHP.
-                    throw new \Exception("API exception");
-                }
+                // TODO don't sleep if the failure was a timeout
+                // TODO (2) use usleep
                 sleep($delayMillis / 1000);
+                // TODO use microtime()
                 $currentTimeMillis = time() * 1000;
                 $delayMillis = min($delayMillis * $delayMult, $maxDelayMillis);
                 $timeoutMillis = min($timeoutMillis * $timeoutMult,
                                      $maxTimeoutMillis,
                                      $deadlineMillis - $currentTimeMillis);
             }
-            throw new \Exception("Retry total timeout exceeded.");
+            throw new ApiException("Retry total timeout exceeded.", \Grpc\STATUS_DEADLINE_EXCEEDED);
         };
         return $inner;
     }
 
-    public static function createApiCall($callable, $timeout)
+    /**
+     * @param \Grpc\BaseStub $stub the gRPC stub to make calls through.
+     * @param string $methodName the method name on the stub to call.
+     * @param array $options {
+     *     @type \Google\GAX\RetrySettings $retrySettings
+     *           Retry settings to use for this method. If present, then
+     *           $timeout is ignored.
+     *     @type integer $timeout
+     *           Timeout to use for the call. Only used if $retrySettings
+     *           is not set.
+     * }
+     */
+    public static function createApiCall($stub, $methodName, $options = [])
     {
-        $apiCall = function() use ($callable) {
-            return call_user_func_array($callable, func_get_args())->wait();
-        };
-        return self::setTimeout($apiCall, $timeout);
-    }
+        $apiCall = function() use ($stub, $methodName) {
+            list($response, $status) =
+                call_user_func_array(array($stub, $methodName), func_get_args())->wait();
 
-    public static function createRetryableApiCall($callable, $retrySettings)
-    {
-        $apiCall = function() use ($callable) {
-            return call_user_func_array($callable, func_get_args())->wait();
+            if ($status->code == \Grpc\STATUS_OK) {
+                return $response;
+            } else {
+                throw new ApiException($status->details, $status->code);
+            }
         };
-        return self::setRetry($apiCall, $retrySettings);
+        if (isset($options['retrySettings'])) {
+            return self::setRetry($apiCall, $options['retrySettings']);
+        } else if (isset($options['timeout'])) {
+            return self::setTimeout($apiCall, $options['timeout']);
+        } else {
+            return $apiCall;
+        }
     }
 }
