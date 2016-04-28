@@ -31,16 +31,56 @@
  */
 namespace Google\GAX;
 
-use Exception;
+use InvalidArgumentException;
 
-class ApiException extends Exception
+/**
+ * Holds the description information used for page streaming.
+ *
+ * @param array $descriptor {
+ *     Required.
+ *
+ *     @type string $requestPageTokenField The page token field in the request object.
+ *     @type string $responsePageTokenField The page token field in the response object.
+ *     @type string $resourceField The resource field in the response object.
+ * }
+ */
+class PageStreamingDescriptor
 {
-    public function __construct($message, $code, \Exception $previous = null) {
-        parent::__construct($message, $code, $previous);
+    private $requestPageTokenField;
+    private $responsePageTokenField;
+    private $resourceField;
+
+    function __construct($descriptor)
+    {
+        self::validate($descriptor);
+        $this->requestPageTokenField = $descriptor['requestPageTokenField'];
+        $this->responsePageTokenField = $descriptor['responsePageTokenField'];
+        $this->resourceField = $descriptor['resourceField'];
     }
 
-    // custom string representation of object
-    public function __toString() {
-        return __CLASS__ . ": [{$this->code}]: {$this->message}\n";
+    public function getRequestPageTokenField()
+    {
+        return $this->requestPageTokenField;
+    }
+
+    public function getResponsePageTokenField()
+    {
+        return $this->responsePageTokenField;
+    }
+
+    public function getResourceField()
+    {
+        return $this->resourceField;
+    }
+
+    private static function validate($descriptor)
+    {
+        $requiredFields = ['requestPageTokenField', 'responsePageTokenField', 'resourceField'];
+        foreach ($requiredFields as $field) {
+            if (empty($descriptor[$field])) {
+                throw new InvalidArgumentException(
+                    "$field is required for PageStreamingDescriptor");
+            }
+        }
     }
 }

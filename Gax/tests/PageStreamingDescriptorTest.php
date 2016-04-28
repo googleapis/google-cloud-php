@@ -29,18 +29,21 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-namespace Google\GAX;
 
-use Exception;
+use Google\GAX\PageStreamingDescriptor;
 
-class ApiException extends Exception
+class PageStreamingDescriptorTest extends PHPUnit_Framework_TestCase
 {
-    public function __construct($message, $code, \Exception $previous = null) {
-        parent::__construct($message, $code, $previous);
-    }
-
-    // custom string representation of object
-    public function __toString() {
-        return __CLASS__ . ": [{$this->code}]: {$this->message}\n";
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function testMissingFields()
+    {
+        $descriptor = new PageStreamingDescriptor([
+            'requestPageTokenField' => 'nextPageToken',
+            // Missing field
+            // 'responsePageTokenField' => 'nextPageToken',
+            'resourceField' => 'resource'
+        ]);
     }
 }

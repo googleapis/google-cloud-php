@@ -29,18 +29,16 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-namespace Google\GAX;
 
-use Exception;
+namespace Google\GAX\Testing;
 
-class ApiException extends Exception
+class MockStatus
 {
-    public function __construct($message, $code, \Exception $previous = null) {
-        parent::__construct($message, $code, $previous);
-    }
-
-    // custom string representation of object
-    public function __toString() {
-        return __CLASS__ . ": [{$this->code}]: {$this->message}\n";
+    public $code;
+    public $details;
+    public function __construct($code, $details)
+    {
+        $this->code = $code;
+        $this->details = $details;
     }
 }

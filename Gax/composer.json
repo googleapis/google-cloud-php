@@ -14,7 +14,8 @@
     },
     "autoload": {
         "psr-4": {
-          "Google\\GAX\\":"src/"
+          "Google\\GAX\\":"src/",
+          "Google\\GAX\\Testing\\":"src/testing/"
         }
     }
 }
