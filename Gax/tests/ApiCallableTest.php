@@ -33,6 +33,12 @@
 use Google\GAX\ApiCallable;
 use Google\GAX\RetrySettings;
 use Google\GAX\BackoffSettings;
+use Google\GAX\PageStreamingDescriptor;
+
+use Google\GAX\Testing\MockStub;
+use Google\GAX\Testing\MockStatus;
+use Google\GAX\Testing\MockRequest;
+use Google\GAX\Testing\MockResponse;
 
 class ApiCallableTest extends PHPUnit_Framework_TestCase
 {
@@ -46,7 +52,6 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
 
         $apiCall = ApiCallable::createApiCall($stub, 'takeAction');
         $actualResponse = $apiCall($request, $metadata, $options);
-
         $this->assertEquals($response, $actualResponse);
 
         $actualCalls = $stub->actualCalls;
@@ -171,8 +176,8 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
         $raisedException = null;
         try {
             $apiCall = ApiCallable::createApiCall($stub, 'takeAction', $options);
-            $response = $apiCall($request, [], []);
-        } catch (\Google\GAX\ApiException $e) {
+            $response = $apiCall('request', [], []);
+        } catch (\Exception $e) {
             $raisedException = $e;
         }
 
@@ -183,80 +188,73 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
         $this->assertTrue(!empty($raisedException));
         $this->assertEquals(\Grpc\STATUS_DEADLINE_EXCEEDED, $raisedException->getCode());
     }
-}
 
-class MockGrpcCall
-{
-    // this will be an array of [responseObject, status]
-    private $response;
-    public function __construct($response)
+    public function testPageStreamingNoTimeout()
     {
-        $this->response = $response;
-    }
-
-    public function wait()
-    {
-        return $this->response;
-    }
-}
-
-class MockStatus
-{
-    public $code;
-    public $details;
-    public function __construct($code, $details)
-    {
-        $this->code = $code;
-        $this->details = $details;
-    }
-}
-
-class MockStub
-{
-    // invariant: count($responseSequence) >= 1
-    private $responseSequence;
-
-    public $actualCalls;
-
-    private function __construct()
-    {
-        $this->actualCalls = [];
-    }
-
-    public function create($responseObject)
-    {
-        $stub = new MockStub();
-        $status = new MockStatus(\Grpc\STATUS_OK, '');
-        $stub->responseSequence = [[$responseObject, $status]];
-        return $stub;
-    }
-
-    /**
-     * Creates a sequence such that the responses are returned in order,
-     * and once there is only one left, it is repeated indefinitely.
-     */
-    public static function createWithResponseSequence($sequence)
-    {
-        if (count($sequence) == 0) {
-            throw new \InvalidArgumentException("createResponseSequence: need at least 1 response");
+        $request = MockRequest::createPageStreamingRequest('token');
+        $responseA = MockResponse::createPageStreamingResponse('nextPageToken1', 'resource1');
+        $responseB = MockResponse::createPageStreamingResponse('nextPageToken2', 'resource2');
+        $responseC = MockResponse::createPageStreamingResponse(null, 'resource3');
+        $responseSequence = [
+            [$responseA, new MockStatus(Grpc\STATUS_OK, '')],
+            [$responseB, new MockStatus(Grpc\STATUS_OK, '')],
+            [$responseC, new MockStatus(Grpc\STATUS_OK, '')]
+                             ];
+        $stub = MockStub::createWithResponseSequence($responseSequence);
+        $descriptor = new PageStreamingDescriptor([
+            'requestPageTokenField' => 'pageToken',
+            'responsePageTokenField' => 'nextPageToken',
+            'resourceField' => 'resource'
+        ]);
+        $options = [
+            'pageStreamingDescriptor' => $descriptor
+        ];
+        $apiCall = ApiCallable::createApiCall($stub, 'takeAction', $options);
+        $resources = $apiCall($request, [], []);
+        $this->assertEquals(0, count($stub->actualCalls));
+        $actualResources = [];
+        $actualTokens = [];
+        foreach ($resources as $request => $resource) {
+            array_push($actualTokens, $request->pageToken);
+            array_push($actualResources, $resource);
         }
-        $stub = new MockStub();
-        $stub->responseSequence = $sequence;
-        return $stub;
+        $this->assertEquals(3, count($stub->actualCalls));
+        $this->assertEquals(['resource1', 'resource2', 'resource3'], $actualResources);
+        $this->assertEquals(['token', 'nextPageToken1', 'nextPageToken2'], $actualTokens);
     }
 
-    public function takeAction($request, $metadata = array(), $options = array())
+    public function testPageStreamingWithTimeout()
     {
-        $actualCall = [
-            'request' => $request,
-            'metadata' => $metadata,
-            'options' => $options];
-        array_push($this->actualCalls, $actualCall);
-        if (count($this->responseSequence) == 1) {
-            return new MockGrpcCall($this->responseSequence[0]);
-        } else {
-            $response = array_shift($this->responseSequence);
-            return new MockGrpcCall($response);
+        $request = MockRequest::createPageStreamingRequest('token');
+        $responseA = MockResponse::createPageStreamingResponse('nextPageToken1', 'resource1');
+        $responseB = MockResponse::createPageStreamingResponse('nextPageToken2', 'resource2');
+        $responseC = MockResponse::createPageStreamingResponse(null, 'resource3');
+        $responseSequence = [
+            [$responseA, new MockStatus(Grpc\STATUS_OK, '')],
+            [$responseB, new MockStatus(Grpc\STATUS_OK, '')],
+            [$responseC, new MockStatus(Grpc\STATUS_OK, '')]
+                             ];
+        $stub = MockStub::createWithResponseSequence($responseSequence);
+        $descriptor = new PageStreamingDescriptor([
+            'requestPageTokenField' => 'pageToken',
+            'responsePageTokenField' => 'nextPageToken',
+            'resourceField' => 'resource'
+        ]);
+        $options = [
+            'pageStreamingDescriptor' => $descriptor,
+            'timeout' => 1000,
+        ];
+        $apiCall = ApiCallable::createApiCall($stub, 'takeAction', $options);
+        $resources = $apiCall($request, [], []);
+        $this->assertEquals(0, count($stub->actualCalls));
+        $actualResources = [];
+        $actualTokens = [];
+        foreach ($resources as $request => $resource) {
+            array_push($actualTokens, $request->pageToken);
+            array_push($actualResources, $resource);
         }
+        $this->assertEquals(3, count($stub->actualCalls));
+        $this->assertEquals(['resource1', 'resource2', 'resource3'], $actualResources);
+        $this->assertEquals(['token', 'nextPageToken1', 'nextPageToken2'], $actualTokens);
     }
 }

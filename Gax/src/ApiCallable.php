@@ -31,6 +31,10 @@
  */
 namespace Google\GAX;
 
+use Grpc;
+use Exception;
+use InvalidArgumentException;
+
 /**
  * Creates a function wrapper that provides extra functionalities such as retry and bundling.
  */
@@ -40,14 +44,15 @@ class ApiCallable
     const GRPC_CALLABLE_OPTION_INDEX = 2;
     const GRPC_RESPONSE_STATUS_INDEX = 1;
 
+    const MS_PER_SECOND = 1000;
+
     private static function setTimeout($apiCall, $timeout)
     {
         $inner = function() use ($apiCall, $timeout) {
             $params = func_get_args();
             if (count($params) != self::GRPC_CALLABLE_PARAM_COUNT ||
                 gettype($params[self::GRPC_CALLABLE_OPTION_INDEX]) != 'array') {
-                // TODO(shinfan): Throw ApiException here.
-                echo 'Something went wrong.';
+                throw new InvalidArgumentException('Options argument is not found.');
             } else {
                 $params[self::GRPC_CALLABLE_OPTION_INDEX]['timeout'] = $timeout;
             }
@@ -70,7 +75,7 @@ class ApiCallable
 
             $delayMillis = $backoffSettings->getInitialRetryDelayMillis();
             $timeoutMillis = $backoffSettings->getInitialRpcTimeoutMillis();
-            $currentTimeMillis = time() * 1000;
+            $currentTimeMillis = microtime(true) * self::MS_PER_SECOND;
             $deadlineMillis = $currentTimeMillis + $totalTimeoutMillis;
 
             while ($currentTimeMillis < $deadlineMillis) {
@@ -81,20 +86,29 @@ class ApiCallable
                     if (!in_array($e->getCode(), $retrySettings->getRetryableCodes())) {
                         throw $e;
                     }
-                } catch (\Exception $e) {
+                } catch (Exception $e) {
                     throw $e;
                 }
                 // TODO don't sleep if the failure was a timeout
-                // TODO (2) use usleep
-                sleep($delayMillis / 1000);
-                // TODO use microtime()
-                $currentTimeMillis = time() * 1000;
+                usleep($delayMillis * self::MS_PER_SECOND);
+                $currentTimeMillis = microtime(true) * self::MS_PER_SECOND;
                 $delayMillis = min($delayMillis * $delayMult, $maxDelayMillis);
                 $timeoutMillis = min($timeoutMillis * $timeoutMult,
                                      $maxTimeoutMillis,
                                      $deadlineMillis - $currentTimeMillis);
             }
             throw new ApiException("Retry total timeout exceeded.", \Grpc\STATUS_DEADLINE_EXCEEDED);
+        };
+        return $inner;
+    }
+
+    private static function setPageStreaming($callable, $pageStreamingDescriptor, $timeout)
+    {
+        $inner = function() use ($callable, $pageStreamingDescriptor, $timeout) {
+            if (isset($timeout)) {
+                $callable = self::setTimeout($callable, $timeout);
+            }
+            return new PageAccessor(func_get_args(), $callable, $pageStreamingDescriptor);
         };
         return $inner;
     }
@@ -109,6 +123,8 @@ class ApiCallable
      *     @type integer $timeout
      *           Timeout to use for the call. Only used if $retrySettings
      *           is not set.
+     *     @type \Google\GAX\PageStreamingDescriptor
+     *           Descriptor of page streaming configuration of this method.
      * }
      */
     public static function createApiCall($stub, $methodName, $options = [])
@@ -123,7 +139,13 @@ class ApiCallable
                 throw new ApiException($status->details, $status->code);
             }
         };
-        if (isset($options['retrySettings'])) {
+        if (isset($options['pageStreamingDescriptor'])) {
+            $timeout = null;
+            if (isset($options['timeout'])) {
+                $timeout = $options['timeout'];
+            }
+            return self::setPageStreaming($apiCall, $options['pageStreamingDescriptor'], $timeout);
+        } else if (isset($options['retrySettings'])) {
             return self::setRetry($apiCall, $options['retrySettings']);
         } else if (isset($options['timeout'])) {
             return self::setTimeout($apiCall, $options['timeout']);
