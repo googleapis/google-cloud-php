@@ -56,18 +56,6 @@ use InvalidArgumentException;
  * timeout by the timeout multiplier, but if that results in a deadline after the
  * total timeout, then a new timeout value is computed which will terminate the call
  * when the total time is up.
-
- * @param array $settings {
- *     Required. Settings for configuring the backoff settings
- *
- *     @type integer $initialRetryDelayMillis The initial delay of retry in milliseconds.
- *     @type integer $retryDelayMultiplier The exponential multiplier of retry delay.
- *     @type integer $maxRetryDelayMillis The max delay of retry in milliseconds.
- *     @type integer $initialRpcTimeoutMillis The initial timeout of rpc call in milliseconds.
- *     @type integer $rpcTimeoutMultiplier The exponential multiplier of rpc timeout.
- *     @type integer $maxRpcTimeoutMillis The max timout of rpc call in milliseconds.
- *     @type integer $totalTimeoutMillis The max accumulative timeout in total.
- * }
  */
 class BackoffSettings
 {
@@ -79,7 +67,48 @@ class BackoffSettings
     private $maxRpcTimeoutMillis;
     private $totalTimeoutMillis;
 
-    function __construct($settings)
+    /**
+     * Constructs an instance from snake-case parameters.
+     *
+     * @param array $settings {
+     *     Required. Settings for configuring the backoff settings
+     *
+     *     @type integer $initial_retry_delay_millis The initial delay of retry in milliseconds.
+     *     @type integer $retry_delay_multiplier The exponential multiplier of retry delay.
+     *     @type integer $max_retry_delay_millis The max delay of retry in milliseconds.
+     *     @type integer $initial_rpc_timeout_millis The initial timeout of rpc call in milliseconds.
+     *     @type integer $rpc_timeout_multiplier The exponential multiplier of rpc timeout.
+     *     @type integer $max_rpc_timeout_millis The max timout of rpc call in milliseconds.
+     *     @type integer $total_timeout_millis The max accumulative timeout in total.
+     * }
+     */
+    public static function fromSnakeCase($settings)
+    {
+        $camelCaseSettings = [];
+        foreach ($settings as $key => $value) {
+            $wordsKey = str_replace('_', ' ', $key);
+            $camelCaseKey = str_replace(' ', '', ucwords($wordsKey));
+            $camelCaseSettings[lcfirst($camelCaseKey)] = $value;
+        }
+        return new BackoffSettings($camelCaseSettings);
+    }
+
+    /**
+     * Constructs an instance.
+     *
+     * @param array $settings {
+     *     Required. Settings for configuring the backoff settings
+     *
+     *     @type integer $initialRetryDelayMillis The initial delay of retry in milliseconds.
+     *     @type integer $retryDelayMultiplier The exponential multiplier of retry delay.
+     *     @type integer $maxRetryDelayMillis The max delay of retry in milliseconds.
+     *     @type integer $initialRpcTimeoutMillis The initial timeout of rpc call in milliseconds.
+     *     @type integer $rpcTimeoutMultiplier The exponential multiplier of rpc timeout.
+     *     @type integer $maxRpcTimeoutMillis The max timout of rpc call in milliseconds.
+     *     @type integer $totalTimeoutMillis The max accumulative timeout in total.
+     * }
+     */
+    public function __construct($settings)
     {
         self::validate($settings);
         $this->initialRetryDelayMillis = $settings['initialRetryDelayMillis'];
