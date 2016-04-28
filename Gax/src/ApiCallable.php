@@ -31,6 +31,10 @@
  */
 namespace Google\GAX;
 
+use Grpc;
+use Exception;
+use InvalidArgumentException;
+
 /**
  * Creates a function wrapper that provides extra functionalities such as retry and bundling.
  */
@@ -46,8 +50,7 @@ class ApiCallable
             $params = func_get_args();
             if (count($params) != self::GRPC_CALLABLE_PARAM_COUNT ||
                 gettype($params[self::GRPC_CALLABLE_OPTION_INDEX]) != 'array') {
-                // TODO(shinfan): Throw ApiException here.
-                echo 'Something went wrong.';
+                throw new InvalidArgumentException('Options argument is not found.');
             } else {
                 $params[self::GRPC_CALLABLE_OPTION_INDEX]['timeout'] = $timeout;
             }
@@ -81,7 +84,7 @@ class ApiCallable
                     if (!in_array($e->getCode(), $retrySettings->getRetryableCodes())) {
                         throw $e;
                     }
-                } catch (\Exception $e) {
+                } catch (Exception $e) {
                     throw $e;
                 }
                 // TODO don't sleep if the failure was a timeout
@@ -99,6 +102,14 @@ class ApiCallable
         return $inner;
     }
 
+    private static function setPageStreaming($callable, $pageStreamingDescriptor)
+    {
+        $inner = function() use ($callable, $pageStreamingDescriptor) {
+            return new PageAccessor(func_get_args(), $callable, $pageStreamingDescriptor);
+        };
+        return $inner;
+    }
+
     /**
      * @param \Grpc\BaseStub $stub the gRPC stub to make calls through.
      * @param string $methodName the method name on the stub to call.
@@ -109,6 +120,8 @@ class ApiCallable
      *     @type integer $timeout
      *           Timeout to use for the call. Only used if $retrySettings
      *           is not set.
+     *     @type \Google\GAX\PageStreamingDescriptor
+     *           Descriptor of page-streaming related fields of this method.
      * }
      */
     public static function createApiCall($stub, $methodName, $options = [])
@@ -124,11 +137,14 @@ class ApiCallable
             }
         };
         if (isset($options['retrySettings'])) {
-            return self::setRetry($apiCall, $options['retrySettings']);
+            $apiCall = self::setRetry($apiCall, $options['retrySettings']);
         } else if (isset($options['timeout'])) {
-            return self::setTimeout($apiCall, $options['timeout']);
-        } else {
-            return $apiCall;
+            $apiCall = self::setTimeout($apiCall, $options['timeout']);
         }
+        if (isset($options['pageStreamingDescriptor'])) {
+            $apiCall = self::setPageStreaming(
+                $apiCall, $options['pageStreamingDescriptor']);
+        }
+        return $apiCall;
     }
 }

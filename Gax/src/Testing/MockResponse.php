@@ -29,18 +29,19 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-namespace Google\GAX;
 
-use Exception;
+namespace Google\GAX\Testing;
 
-class ApiException extends Exception
+class MockResponse
 {
-    public function __construct($message, $code, \Exception $previous = null) {
-        parent::__construct($message, $code, $previous);
-    }
+    public $nextPageToken;
+    public $resource;
 
-    // custom string representation of object
-    public function __toString() {
-        return __CLASS__ . ": [{$this->code}]: {$this->message}\n";
+    public static function createPageStreamingResponse($nextPageToken, $resource)
+    {
+        $response = new MockResponse();
+        $response->nextPageToken = $nextPageToken;
+        $response->resource = $resource;
+        return $response;
     }
 }
