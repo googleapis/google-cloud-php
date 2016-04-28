@@ -29,56 +29,53 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+
 namespace Google\GAX;
 
 /**
- * Holds the parameters for retry and timeout logic with exponential backoff. Actual
- * implementation of the logic is elsewhere.
- *
- * The intent of these settings is to be used with a call to a remote server, which
- * could either fail (and return an error code) or not respond (and cause a timeout).
- * When there is a failure or timeout, the logic should keep trying until the total
- * timeout has passed.
+ * Holds constants necessary for interacting with gRPC.
  */
-class RetrySettings
+class GrpcConstants
 {
-    private $backoffSettings;
-    private $retryableCodes;
-    private $inherit;
+    private static $statusCodeNames;
 
     /**
-     * Create a special instance that indicates that the retry settings should
-     * be inherited from defaults.
+     * This should not be called outside of the implementation file.
      */
-    public static function inherit()
+    static function initClass()
     {
-        $retrySettings = new RetrySettings(null, null);
-        $retrySettings->inherit = true;
-        return $retrySettings;
+        if (!empty($statusCodeNames)) {
+            throw new Exception("GrpcConstants::initClass called more than once");
+        }
+        self::$statusCodeNames = [
+            'ABORTED' => \Grpc\STATUS_ABORTED,
+            'ALREADY_EXISTS' => \Grpc\STATUS_ALREADY_EXISTS,
+            'CANCELLED' => \Grpc\STATUS_CANCELLED,
+            'DATA_LOSS' => \Grpc\STATUS_DATA_LOSS,
+            'DEADLINE_EXCEEDED' => \Grpc\STATUS_DEADLINE_EXCEEDED,
+            'FAILED_PRECONDITION' => \Grpc\STATUS_FAILED_PRECONDITION,
+            'INTERNAL' => \Grpc\STATUS_INTERNAL,
+            'INVALID_ARGUMENT' => \Grpc\STATUS_INVALID_ARGUMENT,
+            'NOT_FOUND' => \Grpc\STATUS_NOT_FOUND,
+            'OK' => \Grpc\STATUS_OK,
+            'OUT_OF_RANGE' => \Grpc\STATUS_OUT_OF_RANGE,
+            'PERMISSION_DENIED' => \Grpc\STATUS_PERMISSION_DENIED,
+            'RESOURCE_EXHAUSTED' => \Grpc\STATUS_RESOURCE_EXHAUSTED,
+            'UNAUTHENTICATED' => \Grpc\STATUS_UNAUTHENTICATED,
+            'UNAVAILABLE' => \Grpc\STATUS_UNAVAILABLE,
+            'UNIMPLEMENTED' => \Grpc\STATUS_UNIMPLEMENTED,
+            'UNKNOWN' => \Grpc\STATUS_UNKNOWN
+        ];
     }
 
     /**
-     * Construct an instance.
+     * Provides an array that maps from status code name to an object
+     * representing that status code.
      */
-    public function __construct($retryableCodes, $backoffSettings)
+    public static function getStatusCodeNames()
     {
-        $this->retryableCodes = $retryableCodes;
-        $this->backoffSettings = $backoffSettings;
-        $this->inherit = false;
-    }
-
-    public function getRetryableCodes()
-    {
-        return $this->retryableCodes;
-    }
-
-    public function getBackoffSettings()
-    {
-        return $this->backoffSettings;
-    }
-
-    public function shouldInherit()
-    {
-        return $this->inherit;
+        return self::$statusCodeNames;
     }
 }
+
+GrpcConstants::initClass();

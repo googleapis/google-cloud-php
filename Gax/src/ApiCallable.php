@@ -44,22 +44,23 @@ class ApiCallable
     const GRPC_CALLABLE_OPTION_INDEX = 2;
     const GRPC_RESPONSE_STATUS_INDEX = 1;
 
-    private static function setTimeout($apiCall, $timeout)
+    private static function setTimeout($apiCall, $timeoutMillis)
     {
-        $inner = function() use ($apiCall, $timeout) {
+        $inner = function() use ($apiCall, $timeoutMillis) {
             $params = func_get_args();
             if (count($params) != self::GRPC_CALLABLE_PARAM_COUNT ||
                 gettype($params[self::GRPC_CALLABLE_OPTION_INDEX]) != 'array') {
                 throw new InvalidArgumentException('Options argument is not found.');
             } else {
-                $params[self::GRPC_CALLABLE_OPTION_INDEX]['timeout'] = $timeout;
+                $timeoutMicros = $timeoutMillis * 1000;
+                $params[self::GRPC_CALLABLE_OPTION_INDEX]['timeout'] = $timeoutMicros;
             }
             return call_user_func_array($apiCall, $params);
         };
         return $inner;
     }
 
-    private static function setRetry($apiCall, $retrySettings)
+    private static function setRetry($apiCall, RetrySettings $retrySettings)
     {
         $inner = function() use ($apiCall, $retrySettings) {
             $backoffSettings = $retrySettings->getBackoffSettings();
@@ -113,18 +114,9 @@ class ApiCallable
     /**
      * @param \Grpc\BaseStub $stub the gRPC stub to make calls through.
      * @param string $methodName the method name on the stub to call.
-     * @param array $options {
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *           Retry settings to use for this method. If present, then
-     *           $timeout is ignored.
-     *     @type integer $timeout
-     *           Timeout to use for the call. Only used if $retrySettings
-     *           is not set.
-     *     @type \Google\GAX\PageStreamingDescriptor
-     *           Descriptor of page-streaming related fields of this method.
-     * }
+     * @param \Google\GAX\CallSettings the call settings to use for this call.
      */
-    public static function createApiCall($stub, $methodName, $options = [])
+    public static function createApiCall($stub, $methodName, CallSettings $settings)
     {
         $apiCall = function() use ($stub, $methodName) {
             list($response, $status) =
@@ -136,15 +128,19 @@ class ApiCallable
                 throw new ApiException($status->details, $status->code);
             }
         };
-        if (isset($options['retrySettings'])) {
-            $apiCall = self::setRetry($apiCall, $options['retrySettings']);
-        } else if (isset($options['timeout'])) {
-            $apiCall = self::setTimeout($apiCall, $options['timeout']);
+
+        $retrySettings = $settings->getRetrySettings();
+        if (!is_null($retrySettings) && !is_null($retrySettings->getRetryableCodes())) {
+            $apiCall = self::setRetry($apiCall, $settings->getRetrySettings());
+        } else if ($settings->getTimeoutMillis() > 0) {
+            $apiCall = self::setTimeout($apiCall, $settings->getTimeoutMillis());
         }
-        if (isset($options['pageStreamingDescriptor'])) {
+
+        if (!is_null($settings->getPageStreamingDescriptor())) {
             $apiCall = self::setPageStreaming(
-                $apiCall, $options['pageStreamingDescriptor']);
+                $apiCall, $settings->getPageStreamingDescriptor());
         }
+
         return $apiCall;
     }
 }

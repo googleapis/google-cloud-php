@@ -31,10 +31,10 @@
  */
 
 use Google\GAX\ApiCallable;
-use Google\GAX\RetrySettings;
 use Google\GAX\BackoffSettings;
+use Google\GAX\CallSettings;
 use Google\GAX\PageStreamingDescriptor;
-
+use Google\GAX\RetrySettings;
 use Google\GAX\Testing\MockStub;
 use Google\GAX\Testing\MockStatus;
 use Google\GAX\Testing\MockRequest;
@@ -50,7 +50,8 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
         $response = "response";
         $stub = MockStub::create($response);
 
-        $apiCall = ApiCallable::createApiCall($stub, 'takeAction');
+        $callSettings = new CallSettings([]);
+        $apiCall = ApiCallable::createApiCall($stub, 'takeAction', $callSettings);
         $actualResponse = $apiCall($request, $metadata, $options);
         $this->assertEquals($response, $actualResponse);
 
@@ -67,8 +68,8 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
         $response = "response";
         $stub = MockStub::create($response);
 
-        $options = ['timeout' => 1500];
-        $apiCall = ApiCallable::createApiCall($stub, 'takeAction', $options);
+        $callSettings = new CallSettings(['timeoutMillis' => 1500]);
+        $apiCall = ApiCallable::createApiCall($stub, 'takeAction', $callSettings);
         $actualResponse = $apiCall($request, [], []);
 
         $this->assertEquals($response, $actualResponse);
@@ -77,7 +78,7 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(1, count($actualCalls));
         $this->assertEquals($request, $actualCalls[0]['request']);
         $this->assertEquals([], $actualCalls[0]['metadata']);
-        $this->assertEquals(['timeout' => 1500], $actualCalls[0]['options']);
+        $this->assertEquals(['timeout' => 1500000], $actualCalls[0]['options']);
     }
 
     public function testRetryNoRetryableCode()
@@ -95,11 +96,11 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
             'maxRpcTimeoutMillis' => 600,
             'totalTimeoutMillis' => 2000]);
         $retrySettings = new RetrySettings([], $backoffSettings);
-        $options = ['retrySettings' => $retrySettings];
+        $callSettings = new CallSettings(['retrySettings' => $retrySettings]);
 
         $isExceptionRaised = false;
         try {
-            $apiCall = ApiCallable::createApiCall($stub, 'takeAction', $options);
+            $apiCall = ApiCallable::createApiCall($stub, 'takeAction', $callSettings);
             $response = $apiCall($request, [], []);
         } catch (\Exception $e) {
             $isExceptionRaised = true;
@@ -135,8 +136,8 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
         $retrySettings = new RetrySettings(
             [Grpc\STATUS_DEADLINE_EXCEEDED],
             $backoffSettings);
-        $options = ['retrySettings' => $retrySettings];
-        $apiCall = ApiCallable::createApiCall($stub, 'takeAction', $options);
+        $callSettings = new CallSettings(['retrySettings' => $retrySettings]);
+        $apiCall = ApiCallable::createApiCall($stub, 'takeAction', $callSettings);
         $actualResponse = $apiCall($request, [], []);
 
         $this->assertEquals($responseC, $actualResponse);
@@ -145,13 +146,13 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(3, count($actualCalls));
 
         $this->assertEquals($request, $actualCalls[0]['request']);
-        $this->assertEquals(['timeout' => 150], $actualCalls[0]['options']);
+        $this->assertEquals(['timeout' => 150000], $actualCalls[0]['options']);
 
         $this->assertEquals($request, $actualCalls[1]['request']);
-        $this->assertEquals(['timeout' => 300], $actualCalls[1]['options']);
+        $this->assertEquals(['timeout' => 300000], $actualCalls[1]['options']);
 
         $this->assertEquals($request, $actualCalls[2]['request']);
-        $this->assertEquals(['timeout' => 500], $actualCalls[2]['options']);
+        $this->assertEquals(['timeout' => 500000], $actualCalls[2]['options']);
     }
 
     public function testRetryTimeoutExceeds()
@@ -171,13 +172,13 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
         $retrySettings = new RetrySettings(
             [Grpc\STATUS_DEADLINE_EXCEEDED],
             $backoffSettings);
-        $options = ['retrySettings' => $retrySettings];
+        $callSettings = new CallSettings(['retrySettings' => $retrySettings]);
 
         $raisedException = null;
         try {
-            $apiCall = ApiCallable::createApiCall($stub, 'takeAction', $options);
-            $response = $apiCall('request', [], []);
-        } catch (\Exception $e) {
+            $apiCall = ApiCallable::createApiCall($stub, 'takeAction', $callSettings);
+            $response = $apiCall($request, [], []);
+        } catch (\Google\GAX\ApiException $e) {
             $raisedException = $e;
         }
 
@@ -206,10 +207,9 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
             'responsePageTokenField' => 'nextPageToken',
             'resourceField' => 'resource'
         ]);
-        $options = [
-            'pageStreamingDescriptor' => $descriptor
-        ];
-        $apiCall = ApiCallable::createApiCall($stub, 'takeAction', $options);
+        $callSettings = CallSettings::createInternal(
+            ['pageStreamingDescriptor' => $descriptor]);
+        $apiCall = ApiCallable::createApiCall($stub, 'takeAction', $callSettings);
         $resources = $apiCall($request, [], []);
         $this->assertEquals(0, count($stub->actualCalls));
         $actualResources = [];
@@ -241,11 +241,10 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
             'responsePageTokenField' => 'nextPageToken',
             'resourceField' => 'resource'
         ]);
-        $options = [
-            'pageStreamingDescriptor' => $descriptor,
-            'timeout' => 1000,
-        ];
-        $apiCall = ApiCallable::createApiCall($stub, 'takeAction', $options);
+        $callSettings = CallSettings::createInternal(
+            ['timeout' => 1000,
+             'pageStreamingDescriptor' => $descriptor]);
+        $apiCall = ApiCallable::createApiCall($stub, 'takeAction', $callSettings);
         $resources = $apiCall($request, [], []);
         $this->assertEquals(0, count($stub->actualCalls));
         $actualResources = [];
