@@ -29,18 +29,33 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-namespace Google\GAX;
 
-use Exception;
+use Google\GAX\PageAccessor;
+use Google\GAX\PageStreamingDescriptor;
+use Google\GAX\Testing\MockStub;
+use Google\GAX\Testing\MockStatus;
+use Google\GAX\Testing\MockRequest;
+use Google\GAX\Testing\MockResponse;
 
-class ApiException extends Exception
+class PageAccessorTest extends PHPUnit_Framework_TestCase
 {
-    public function __construct($message, $code, \Exception $previous = null) {
-        parent::__construct($message, $code, $previous);
-    }
-
-    // custom string representation of object
-    public function __toString() {
-        return __CLASS__ . ": [{$this->code}]: {$this->message}\n";
+    public function testNextPageToken()
+    {
+        $mockRequest = MockRequest::createPageStreamingRequest('mockToken');
+        $descriptor = new PageStreamingDescriptor([
+            'requestPageTokenField' => 'pageToken',
+            'responsePageTokenField' => 'nextPageToken',
+            'resourceField' => 'resource'
+        ]);
+        $response = MockResponse::createPageStreamingResponse('nextPageToken1', ['resource1']);
+        $stub = MockStub::create($response);
+        $mockApiCall = function() use ($stub) {
+            list($response, $status) =
+                call_user_func_array(array($stub, 'takeAction'), func_get_args())->wait();
+            return $response;
+        };
+        $pageAccessor = new PageAccessor([$mockRequest, [], []], $mockApiCall, $descriptor);
+        $this->assertEquals($pageAccessor->nextPageToken(), 'nextPageToken1');
+        $this->assertEquals($pageAccessor->currentPageValues(), ['resource1']);
     }
 }
