@@ -31,8 +31,6 @@
  */
 namespace Google\GAX;
 
-use InvalidArgumentException;
-
 /**
  * Holds the parameters used for exponential backoff logic.
  *
@@ -128,12 +126,12 @@ class BackoffSettings
 
     private static function validate($settings)
     {
-        $requiredFields = ['initialRetryDelayMillis',
+        $requiredFields = array('initialRetryDelayMillis',
             'retryDelayMultiplier', 'maxRetryDelayMillis', 'initialRpcTimeoutMillis',
-            'rpcTimeoutMultiplier', 'maxRpcTimeoutMillis', 'totalTimeoutMillis'];
+            'rpcTimeoutMultiplier', 'maxRpcTimeoutMillis', 'totalTimeoutMillis');
         foreach ($requiredFields as $field) {
             if (empty($settings[$field])) {
-                throw new InvalidArgumentException("$field is required for BackoffSettings");
+                throw new \InvalidArgumentException("$field is required for BackoffSettings");
             }
         }
     }
