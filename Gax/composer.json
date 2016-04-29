@@ -3,8 +3,8 @@
     "type": "library",
     "description": "Google API Extensions for PHP",
     "keywords": ["google"],
-    "homepage": "https://gapi.git.corp.google.com/gapi-gax-php/",
-    "license": "Apache-2.0",
+    "homepage": "https://github.com/googleapis/gax-php",
+    "license": "BSD-3-Clause",
     "require": {
         "php": ">=5.4",
         "google/auth": "0.7"
