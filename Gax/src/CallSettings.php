@@ -32,7 +32,7 @@
 
 namespace Google\GAX;
 
-use \InvalidArgumentException;
+use InvalidArgumentException;
 
 /**
  * Encapsulates the call settings for an API call.
@@ -43,7 +43,6 @@ class CallSettings
 
     private $timeoutMillis;
     private $retrySettings;
-    private $pageStreamingDescriptor;
 
     /**
      * Constructs an array mapping method names to CallSettings.
@@ -64,7 +63,7 @@ class CallSettings
      *     have a retry configured.
      */
     public static function load($serviceName, $clientConfig, $retryingOverrides,
-                                $statusCodes, $timeoutMillis, $pageStreamingDescriptors)
+                                $statusCodes, $timeoutMillis)
     {
         $callSettings = [];
 
@@ -81,15 +80,9 @@ class CallSettings
                 $retrySettings = $retryingOverrides[$phpMethodKey];
             }
 
-            $pageStreamingDescriptor = null;
-            if (array_key_exists($phpMethodKey, $pageStreamingDescriptors)) {
-                $pageStreamingDescriptor = $pageStreamingDescriptors[$phpMethodKey];
-            }
-
-            $callSettings[$phpMethodKey] =
-                    self::createInternal(['timeoutMillis' => $timeoutMillis,
-                                          'retrySettings' => $retrySettings,
-                                          'pageStreamingDescriptor' => $pageStreamingDescriptor]);
+            $callSettings[$phpMethodKey] = new CallSettings(
+                ['timeoutMillis' => $timeoutMillis,
+                 'retrySettings' => $retrySettings]);
         }
         return $callSettings;
     }
@@ -143,30 +136,19 @@ class CallSettings
     }
 
     /**
-     * Used internally to create instances of CallSettings.
-     */
-    public static function createInternal($settings)
-    {
-        $callSettings = new CallSettings($settings);
-        if (array_key_exists('pageStreamingDescriptor', $settings)) {
-            $callSettings->pageStreamingDescriptor = $settings['pageStreamingDescriptor'];
-        }
-        return $callSettings;
-    }
-
-    /**
      * Construct an instance.
      *
      * @param array $options {
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *           Retry settings to use for this method. If present, then
-     *           $timeout is ignored.
-     *     @type integer $timeoutMillis
-     *           Timeout to use for the call. Only used if $retrySettings
-     *           is not set.
+     *    Optional.
+     *    @type \Google\GAX\RetrySettings $retrySettings
+     *          Retry settings to use for this method. If present, then
+     *          $timeout is ignored.
+     *    @type integer $timeoutMillis
+     *          Timeout to use for the call. Only used if $retrySettings
+     *          is not set.
      * }
      */
-    public function __construct($settings)
+    public function __construct($settings = [])
     {
         $this->timeoutMillis = self::INHERIT_TIMEOUT;
         $this->retrySettings = RetrySettings::inherit();
@@ -177,7 +159,6 @@ class CallSettings
         if (array_key_exists('retrySettings', $settings)) {
             $this->retrySettings = $settings['retrySettings'];
         }
-        $this->pageStreamingDescriptor = null;
     }
 
     public function getTimeoutMillis()
@@ -190,13 +171,8 @@ class CallSettings
         return $this->retrySettings;
     }
 
-    public function getPageStreamingDescriptor()
-    {
-        return $this->pageStreamingDescriptor;
-    }
-
     /**
-     * Returns a new CallSettings merged from this and a CallOptions object.
+     * Returns a new CallSettings merged from this and another CallSettings object.
      *
      * @param CallSettings $otherSettings
      *     A CallSettings whose values override those in this object. If
@@ -205,28 +181,22 @@ class CallSettings
     public function merge(CallSettings $otherSettings = null)
     {
         if (is_null($otherSettings)) {
-            return self::createInternal([
+            return new CallSettings([
                 'timeoutMillis' => $this->timeoutMillis,
-                'retrySettings' => $this->retrySettings,
-                'pageStreamingDescriptor' => $this->pageStreamingDescriptor]);
+                'retrySettings' => $this->retrySettings]);
         } else {
-            if ($otherSettings->getTimeoutMillis() == self::INHERIT_TIMEOUT) {
-                $timeoutMillis = $this->timeoutMillis;
-            } else {
+            $timeoutMillis = $this->timeoutMillis;
+            if ($otherSettings->getTimeoutMillis() != self::INHERIT_TIMEOUT) {
                 $timeoutMillis = $otherSettings->getTimeoutMillis();
             }
-
-            if (!is_null($otherSettings->getRetrySettings())
-                && $otherSettings->getRetrySettings()->shouldInherit()) {
-                $retrySettings = $this->retrySettings;
-            } else {
+            $retrySettings = $this->retrySettings;
+            if (is_null($otherSettings->getRetrySettings())
+                || !$otherSettings->getRetrySettings()->shouldInherit()) {
                 $retrySettings = $otherSettings->getRetrySettings();
             }
-
             return new CallSettings([
                 'timeoutMillis' => $timeoutMillis,
-                'retrySettings' => $retrySettings,
-                'pageStreamingDescriptor' => $this->pageStreamingDescriptor]);
+                'retrySettings' => $retrySettings]);
         }
     }
 }

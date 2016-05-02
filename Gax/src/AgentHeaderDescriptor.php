@@ -29,58 +29,65 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+
 namespace Google\GAX;
 
 use InvalidArgumentException;
 
 /**
- * Holds the description information used for page streaming.
+ * Encapsulates the custom GAPIC header information.
  */
-class PageStreamingDescriptor
+class AgentHeaderDescriptor
 {
-    private $requestPageTokenField;
-    private $responsePageTokenField;
-    private $resourceField;
+    const AGENT_HEADER_KEY = 'x-google-apis-agent';
+
+    private $clientName;
+    private $clientVersion;
+    private $codeGenName;
+    private $codeGenVersion;
+    private $gaxVersion;
+    private $phpVersion;
 
     /**
-     * @param array $descriptor {
+     * @param array $headerInfo {
      *     Required.
      *
-     *     @type string $requestPageTokenField the page token field in the request object.
-     *     @type string $responsePageTokenField the page token field in the response object.
-     *     @type string $resourceField the resource field in the response object.
+     *     @type string $clientName the name of the client application.
+     *     @type string $clientVersion the version of the client application.
+     *     @type string $codeGenName the code generator name of the client library.
+     *     @type string $codeGenVersion the code generator version of the client library.
+     *     @type string $gaxVersion the GAX version.
+     *     @type string $phpVersion the PHP version.
      * }
      */
-    function __construct($descriptor)
+    public function __construct($headerInfo)
     {
-        self::validate($descriptor);
-        $this->requestPageTokenField = $descriptor['requestPageTokenField'];
-        $this->responsePageTokenField = $descriptor['responsePageTokenField'];
-        $this->resourceField = $descriptor['resourceField'];
+        $this->clientName = $headerInfo['clientName'];
+        $this->clientVersion = $headerInfo['clientVersion'];
+        $this->codeGenName = $headerInfo['codeGenName'];
+        $this->codeGenVersion = $headerInfo['codeGenVersion'];
+        $this->gaxVersion = $headerInfo['gaxVersion'];
+        $this->phpVersion = $headerInfo['phpVersion'];
     }
 
-    public function getRequestPageTokenField()
+    /**
+     * Returns an associative array that contains GAPIC header metadata.
+     */
+    public function getHeader()
     {
-        return $this->requestPageTokenField;
-    }
-
-    public function getResponsePageTokenField()
-    {
-        return $this->responsePageTokenField;
-    }
-
-    public function getResourceField()
-    {
-        return $this->resourceField;
+        return [self::AGENT_HEADER_KEY => "$this->clientName/$this->clientVersion;".
+            "$this->codeGenName/$this->codeGenVersion;gax/$this->gaxVersion;".
+            "php/$this->phpVersion"];
     }
 
     private static function validate($descriptor)
     {
-        $requiredFields = ['requestPageTokenField', 'responsePageTokenField', 'resourceField'];
+        $requiredFields = ['clientName', 'clientVersion', 'codeGenName',
+            'codeGenVersion', 'gaxVersion', 'phpVersion'];
         foreach ($requiredFields as $field) {
             if (empty($descriptor[$field])) {
                 throw new InvalidArgumentException(
-                    "$field is required for PageStreamingDescriptor");
+                    "$field is required for AgentHeaderDescriptor");
             }
         }
     }
