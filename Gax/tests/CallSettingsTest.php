@@ -68,14 +68,6 @@ $inputConfig = [
     ]
 ];
 
-$pageStreamingDescriptors = [
-    'pageStreamingMethod' => new PageStreamingDescriptor([
-        'requestPageTokenField' => 'page_token',
-        'responsePageTokenField' => 'next_page_token',
-        'resourceField' => 'wheels'
-    ])
-];
-
 $statusCodes = ['code_a' => 'code_val_a',
                 'code_b' => 'code_val_b',
                 'code_c' => 'code_val_c'];
@@ -93,12 +85,11 @@ class CallSettingsTest extends PHPUnit_Framework_TestCase
 {
     public function testConstructSettings()
     {
-        global $serviceName, $inputConfig, $statusCodes, $pageStreamingDescriptors;
+        global $serviceName, $inputConfig, $statusCodes;
 
         $defaultCallSettings =
                 CallSettings::load(
-                    $serviceName, $inputConfig, [], $statusCodes, 30,
-                    $pageStreamingDescriptors);
+                    $serviceName, $inputConfig, [], $statusCodes, 30);
         $simpleMethod = $defaultCallSettings['simpleMethod'];
         $this->assertEquals(30, $simpleMethod->getTimeoutMillis());
         $simpleMethodRetry = $simpleMethod->getRetrySettings();
@@ -107,7 +98,6 @@ class CallSettingsTest extends PHPUnit_Framework_TestCase
         $pageStreamingMethod = $defaultCallSettings['pageStreamingMethod'];
         $pageStreamingMethodRetry = $pageStreamingMethod->getRetrySettings();
         $this->assertEquals(['code_val_c'], $pageStreamingMethodRetry->getRetryableCodes());
-        $this->assertEquals('wheels', $pageStreamingMethod->getPageStreamingDescriptor()->getResourceField());
     }
 
     public function testConstructSettingsOverride()
@@ -118,8 +108,7 @@ class CallSettingsTest extends PHPUnit_Framework_TestCase
         $retryingOverride = ['simpleMethod' => null];
         $defaultCallSettings =
                 CallSettings::load(
-                    $serviceName, $inputConfig, $retryingOverride, $statusCodes, 30,
-                    $pageStreamingDescriptors);
+                    $serviceName, $inputConfig, $retryingOverride, $statusCodes, 30);
         $simpleMethod = $defaultCallSettings['simpleMethod'];
         $this->assertEquals(30, $simpleMethod->getTimeoutMillis());
         $simpleMethodRetry = $simpleMethod->getRetrySettings();

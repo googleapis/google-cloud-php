@@ -31,6 +31,7 @@
  */
 
 use Google\GAX\ApiCallable;
+use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\BackoffSettings;
 use Google\GAX\CallSettings;
 use Google\GAX\PageStreamingDescriptor;
@@ -207,9 +208,9 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
             'responsePageTokenField' => 'nextPageToken',
             'resourceField' => 'resource'
         ]);
-        $callSettings = CallSettings::createInternal(
-            ['pageStreamingDescriptor' => $descriptor]);
-        $apiCall = ApiCallable::createApiCall($stub, 'takeAction', $callSettings);
+        $callSettings = new CallSettings();
+        $apiCall = ApiCallable::createApiCall(
+            $stub, 'takeAction', $callSettings, ['pageStreamingDescriptor' => $descriptor]);
         $resources = $apiCall($request, [], []);
         $this->assertEquals(0, count($stub->actualCalls));
         $actualResources = [];
@@ -241,10 +242,9 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
             'responsePageTokenField' => 'nextPageToken',
             'resourceField' => 'resource'
         ]);
-        $callSettings = CallSettings::createInternal(
-            ['timeout' => 1000,
-             'pageStreamingDescriptor' => $descriptor]);
-        $apiCall = ApiCallable::createApiCall($stub, 'takeAction', $callSettings);
+        $callSettings = new CallSettings(['timeout' => 1000]);
+        $apiCall = ApiCallable::createApiCall(
+            $stub, 'takeAction', $callSettings, ['pageStreamingDescriptor' => $descriptor]);
         $resources = $apiCall($request, [], []);
         $this->assertEquals(0, count($stub->actualCalls));
         $actualResources = [];
@@ -257,5 +257,27 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(['resource1', 'resource2', 'resource3', 'resource4'], $actualResources);
         $this->assertEquals(['token', 'nextPageToken1', 'nextPageToken2', 'nextPageToken2'],
             $actualTokens);
+    }
+
+    public function testCustomHeader()
+    {
+        $stub = MockStub::create(new MockResponse());
+        $headerDescriptor = new AgentHeaderDescriptor([
+            'clientName' => 'testClient',
+            'clientVersion' => '0.0.0',
+            'codeGenName' => 'testCodeGen',
+            'codeGenVersion' => '0.9.0',
+            'gaxVersion' => '1.0.0',
+            'phpVersion' => '5.5.0',
+        ]);
+        $apiCall = ApiCallable::createApiCall(
+            $stub, 'takeAction', new CallSettings(), ['headerDescriptor' => $headerDescriptor]);
+        $resources = $apiCall(new MockRequest(), [], []);
+        $actualCalls = $stub->actualCalls;
+        $this->assertEquals(1, count($actualCalls));
+        $expectedMetadata = [
+            'x-google-apis-agent' => 'testClient/0.0.0;testCodeGen/0.9.0;gax/1.0.0;php/5.5.0'
+        ];
+        $this->assertEquals($expectedMetadata, $actualCalls[0]['metadata']);
     }
 }
