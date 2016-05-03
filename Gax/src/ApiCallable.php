@@ -121,9 +121,12 @@ class ApiCallable
                 throw new InvalidArgumentException('Metadata argument is not found.');
             } else {
                 $metadata = $params[self::GRPC_CALLABLE_METADATA_INDEX];
-                $params[self::GRPC_CALLABLE_METADATA_INDEX] =
-                    array_merge($metadata, $headerDescriptor->getHeader());
-                call_user_func_array($callable, $params);
+                $headers = $headerDescriptor->getHeader();
+                if (array_key_exists('headers', $metadata)) {
+                    $headers = array_merge($headers, $metadata['headers']);
+                }
+                $params[self::GRPC_CALLABLE_METADATA_INDEX]['headers'] = $headers;
+                return call_user_func_array($callable, $params);
             }
         };
         return $inner;
@@ -146,7 +149,6 @@ class ApiCallable
         $apiCall = function() use ($stub, $methodName) {
             list($response, $status) =
                 call_user_func_array(array($stub, $methodName), func_get_args())->wait();
-
             if ($status->code == \Grpc\STATUS_OK) {
                 return $response;
             } else {
