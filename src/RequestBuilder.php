@@ -40,13 +40,20 @@ class RequestBuilder
     private $baseUri;
 
     /**
+     * @var array
+     */
+    private $resourceRoot;
+
+    /**
      * @param string $servicePath
      * @param string $baseUri
+     * @param array  $resourceRoot
      */
-    public function __construct($servicePath, $baseUri)
+    public function __construct($servicePath, $baseUri, array $resourceRoot = [])
     {
         $this->service = $this->loadServiceDefinition($servicePath);
         $this->baseUri = $baseUri;
+        $this->resourceRoot = $resourceRoot;
     }
 
     /**
@@ -61,11 +68,18 @@ class RequestBuilder
      */
     public function build($resource, $method, array $options = [])
     {
-        if (!isset($this->service['resources'][$resource]['methods'][$method])) {
-            throw new \InvalidArgumentException('Provided action ' . $method . ' does not exist.');
+        $root = $this->resourceRoot;
+
+        array_push($root, 'resources', $resource, 'methods', $method);
+
+        $action = $this->service;
+        foreach ($root as $rootItem) {
+            if (!isset($action[$rootItem])) {
+                throw new \InvalidArgumentException('Provided path item ' . $rootItem . ' does not exist.');
+            }
+            $action = $action[$rootItem];
         }
 
-        $action = $this->service['resources'][$resource]['methods'][$method];
         $path = [];
         $query = [];
         $body = [];
