@@ -21,6 +21,7 @@ use Google\Cloud\RequestBuilder;
 use Google\Cloud\RequestWrapper;
 use Google\Cloud\RestTrait;
 use Google\Cloud\Storage\Connection\ConnectionInterface;
+use Google\Cloud\Upload\AbstractUploader;
 use Google\Cloud\Upload\MultipartUploader;
 use Google\Cloud\Upload\ResumableUploader;
 use Google\Cloud\UriTrait;
@@ -36,9 +37,6 @@ class Rest implements ConnectionInterface
     use RestTrait;
     use UriTrait;
 
-    const UPLOAD_TYPE_RESUMABLE = 'resumable';
-    const UPLOAD_TYPE_MULTIPART = 'multipart';
-    const RESUMABLE_LIMIT = 5000000;
     const BASE_URI = 'https://www.googleapis.com/storage/v1/';
     const UPLOAD_URI = 'https://www.googleapis.com/upload/storage/v1/b/{bucket}/o{?query*}';
     const DOWNLOAD_URI = 'https://storage.googleapis.com/{bucket}/{object}{?query*}';
@@ -205,12 +203,15 @@ class Rest implements ConnectionInterface
     {
         $args = $this->resolveUploadOptions($args);
         $isResumable = $args['resumable'];
+        $uploadType = $isResumable
+            ? AbstractUploader::UPLOAD_TYPE_RESUMABLE
+            : AbstractUploader::UPLOAD_TYPE_MULTIPART;
 
         $uriParams = [
             'bucket' => $args['bucket'],
             'query' => [
                 'predefinedAcl' => $args['predefinedAcl'],
-                'uploadType' => $isResumable ? self::UPLOAD_TYPE_RESUMABLE : self::UPLOAD_TYPE_MULTIPART
+                'uploadType' => $uploadType
             ]
         ];
 
@@ -248,7 +249,7 @@ class Rest implements ConnectionInterface
         $args['data'] = Psr7\stream_for($args['data']);
 
         if ($args['resumable'] === null) {
-            $args['resumable'] = $args['data']->getSize() > self::RESUMABLE_LIMIT;
+            $args['resumable'] = $args['data']->getSize() > AbstractUploader::RESUMABLE_LIMIT;
         }
 
         if (!$args['name']) {

@@ -18,6 +18,7 @@
 namespace Google\Cloud;
 
 use Google\Auth\HttpHandler\HttpHandlerFactory;
+use Google\Cloud\BigQuery\BigQueryClient;
 use Google\Cloud\Storage\StorageClient;
 
 /**
@@ -104,9 +105,33 @@ class ServiceBuilder
      */
     public function storage(array $config = [])
     {
-        $config = $config ? $this->resolveConfig($config) : $this->config;
+        return new StorageClient($config ? $this->resolveConfig($config) : $this->config);
+    }
 
-        return new StorageClient($config);
+    /**
+     * Google Cloud BigQuery client. Allows you to create, manage, share and query
+     * data. Find more information at
+     * [Google Cloud BigQuery Docs](https://cloud.google.com/bigquery/what-is-bigquery).
+     *
+     * Example:
+     * ```
+     * use Google\Cloud\ServiceBuilder;
+     *
+     * // Create a BigQuery client using application default credentials.
+     * $builder = new ServiceBuilder([
+     *     'projectId' => 'myAwesomeProject'
+     * ]);
+     *
+     * $bigQuery = $builder->bigQuery();
+     * ```
+     *
+     * @param array $config Configuration options. See
+     *        {@see Google\Cloud\ServiceBuilder::__construct()} for the available options.
+     * @return BigQueryClient
+     */
+    public function bigQuery(array $config = [])
+    {
+        return new BigQueryClient($config ? $this->resolveConfig($config) : $this->config);
     }
 
     /**

@@ -124,4 +124,12 @@ class ObjectTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals($name, $object->getName());
     }
+
+    public function testGetsIdentity()
+    {
+        $object = new Object($this->connection->reveal(), $name = 'object.txt', $bucketName = 'bucket');
+
+        $this->assertEquals($name, $object->getIdentity()['object']);
+        $this->assertEquals($bucketName, $object->getIdentity()['bucket']);
+    }
 }
