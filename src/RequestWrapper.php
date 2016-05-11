@@ -21,7 +21,7 @@ use Google\Auth\ApplicationDefaultCredentials;
 use Google\Auth\CredentialsLoader;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Auth\HttpHandler\HttpHandlerFactory;
-use Google\Cloud\Exception\GoogleException;
+use Google\Cloud\Exception;
 use Google\Cloud\ExponentialBackoff;
 use GuzzleHttp\Psr7;
 use Psr\Http\Message\RequestInterface;
@@ -155,7 +155,7 @@ class RequestWrapper
         try {
             return $backoff->execute($this->httpHandler, [$signedRequest, $httpOptions]);
         } catch (\Exception $ex) {
-            throw new GoogleException($ex->getMessage(), $ex->getCode());
+            throw $this->convertToGoogleException($ex);
         }
     }
 
@@ -225,11 +225,36 @@ class RequestWrapper
         try {
             $credentials = $this->getCredentialsFetcher()->fetchAuthToken($this->authHttpHandler);
         } catch (\Exception $ex) {
-            throw new GoogleException($ex->getMessage(), $ex->getCode());
+            throw $this->convertToGoogleException($ex);
         }
 
         $credentials['expiry'] = time() + $this->credentials['expires_in'];
 
         return $credentials;
+    }
+
+    /**
+     * Convert any exception to a Google Exception.
+     *
+     * @param  \Exception $ex
+     * @param  GoogleException
+     */
+    private function convertToGoogleException(\Exception $ex)
+    {
+        switch ($ex->getCode()) {
+            case 404:
+                $exception = Exception\NotFoundException::class;
+                break;
+
+            case 409:
+                $exception = Exception\ConflictException::class;
+                break;
+
+            default:
+                $exception = Exception\GoogleException::class;
+                break;
+        }
+
+        return new $exception($ex->getMessage(), $ex->getCode(), $ex);
     }
 }

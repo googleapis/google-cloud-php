@@ -46,12 +46,14 @@ class ServiceBuilderTest extends \PHPUnit_Framework_TestCase
     {
         return [
             [
-                'storage',
-                'Google\Cloud\Storage\StorageClient'
-            ],
-            [
                 'bigQuery',
                 'Google\Cloud\BigQuery\BigQueryClient'
+            ], [
+                'pubsub',
+                'Google\Cloud\PubSub\PubSubClient'
+            ], [
+                'storage',
+                'Google\Cloud\Storage\StorageClient'
             ]
         ];
     }

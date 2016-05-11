@@ -17,10 +17,49 @@
 
 namespace Google\Cloud\Exception;
 
+use Exception;
+
 /**
  * Exception thrown when a request fails.
  */
-class GoogleException extends \Exception
+class GoogleException extends Exception
 {
+    /**
+     * @var Exception
+     */
+    private $serviceException;
 
+    /**
+     * Handle previous exceptions differently here.
+     *
+     * @param  string    $message
+     * @param  int       $code
+     * @param  Exception $serviceException
+     */
+    public function __construct($message, $code = null, Exception $serviceException = null)
+    {
+        $this->serviceException = $serviceException;
+
+        parent::__construct($message, $code);
+    }
+
+    /**
+     * If $serviceException is set, return true.
+     *
+     * @return bool
+     */
+    public function hasServiceException()
+    {
+        return ($this->serviceException);
+    }
+
+    /**
+     * Return the service exception object.
+     *
+     * @return Exception
+     */
+    public function getServiceException()
+    {
+        return $this->serviceException;
+    }
 }

@@ -213,4 +213,36 @@ class RequestWrapperTest extends \PHPUnit_Framework_TestCase
             new Request('GET', 'http://www.example.com')
         );
     }
+
+    /**
+     * @expectedException Google\Cloud\Exception\NotFoundException
+     */
+    public function testThrowsNotFoundException()
+    {
+        $requestWrapper = new RequestWrapper([
+            'httpHandler' => function ($request, $options = []) {
+                throw new \Exception('', 404);
+            }
+        ]);
+
+        $requestWrapper->send(
+            new Request('GET', 'http://www.example.com')
+        );
+    }
+
+    /**
+     * @expectedException Google\Cloud\Exception\ConflictException
+     */
+    public function testThrowsConflictException()
+    {
+        $requestWrapper = new RequestWrapper([
+            'httpHandler' => function ($request, $options = []) {
+                throw new \Exception('', 409);
+            }
+        ]);
+
+        $requestWrapper->send(
+            new Request('GET', 'http://www.example.com')
+        );
+    }
 }
