@@ -178,9 +178,11 @@ class PubSubClientTest extends \PHPUnit_Framework_TestCase
 
     public function testSubscription()
     {
-        $subscription = $this->client->subscription('subscription-name', 'topic-name', [
-            'foo' => 'bar'
-        ]);
+        $this->connection->getSubscription(Argument::any())->shouldBeCalledTimes(1)->willReturn(['foo' => 'bar']);
+
+        $this->client->setConnection($this->connection->reveal());
+
+        $subscription = $this->client->subscription('subscription-name', 'topic-name');
 
         $info = $subscription->info();
 

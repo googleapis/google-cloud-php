@@ -95,6 +95,30 @@ class Rest implements ConnectionInterface
     }
 
     /**
+     * @param  array $args
+     */
+    public function getTopicIamPolicy(array $args)
+    {
+        return $this->send('topics', 'getIamPolicy', $args);
+    }
+
+    /**
+     * @param  array $args
+     */
+    public function setTopicIamPolicy(array $args)
+    {
+        return $this->send('topics', 'setIamPolicy', $args);
+    }
+
+    /**
+     * @param  array $args
+     */
+    public function testTopicIamPermissions(array $args)
+    {
+        return $this->send('topics', 'testIamPermissions', $args);
+    }
+
+    /**
      * @param array $args
      */
     public function createSubscription(array $args)
@@ -156,5 +180,29 @@ class Rest implements ConnectionInterface
     public function acknowledge(array $args)
     {
         return $this->send('subscriptions', 'acknowledge', $args);
+    }
+
+    /**
+     * @param  array $args
+     */
+    public function getSubscriptionIamPolicy(array $args)
+    {
+        return $this->send('subscriptions', 'getIamPolicy', $args);
+    }
+
+    /**
+     * @param  array $args
+     */
+    public function setSubscriptionIamPolicy(array $args)
+    {
+        return $this->send('subscriptions', 'setIamPolicy', $args);
+    }
+
+    /**
+     * @param  array $args
+     */
+    public function testSubscriptionIamPermissions(array $args)
+    {
+        return $this->send('subscriptions', 'testIamPermissions', $args);
     }
 }

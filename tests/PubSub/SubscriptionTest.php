@@ -19,6 +19,7 @@ namespace Google\Cloud\Tests\PubSub;
 
 use Generator;
 use Google\Cloud\Exception\NotFoundException;
+use Google\Cloud\Iam\Iam;
 use Google\Cloud\PubSub\Subscription;
 use Prophecy\Argument;
 
@@ -425,5 +426,17 @@ class SubscriptionTest extends \PHPUnit_Framework_TestCase
         );
 
         $subscription->modifyPushConfig($config, ['foo' => 'bar']);
+    }
+
+    public function testIam()
+    {
+        $subscription = new Subscription(
+            $this->connection->reveal(),
+            'subscription-name',
+            'topic-name',
+            'project-id'
+        );
+
+        $this->assertInstanceOf(Iam::class, $subscription->iam());
     }
 }

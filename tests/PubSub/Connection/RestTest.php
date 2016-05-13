@@ -76,6 +76,9 @@ class RestTest extends \PHPUnit_Framework_TestCase
             ['listTopics'],
             ['publishMessage'],
             ['listSubscriptionsByTopic'],
+            ['getTopicIamPolicy'],
+            ['setTopicIamPolicy'],
+            ['testTopicIamPermissions'],
             ['createSubscription'],
             ['getSubscription'],
             ['listSubscriptions'],
@@ -84,6 +87,9 @@ class RestTest extends \PHPUnit_Framework_TestCase
             ['pull'],
             ['modifyAckDeadline'],
             ['acknowledge'],
+            ['getSubscriptionIamPolicy'],
+            ['setSubscriptionIamPolicy'],
+            ['testSubscriptionIamPermissions'],
         ];
     }
 }
