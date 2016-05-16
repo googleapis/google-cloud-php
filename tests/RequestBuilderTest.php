@@ -68,6 +68,28 @@ class RequestBuilderTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('{"referenceProp":"reference"}', (string) $request->getBody());
     }
 
+    public function testBuildsNestedRequestWithStringSplitting()
+    {
+        $builder = new RequestBuilder(
+            __DIR__ . '/fixtures/service-fixture.json',
+            'http://www.example.com/',
+            ['resources', 'projects', 'otherThing']
+        );
+
+        $parameters = [
+            'queryParam' => 'query',
+            'pathParam' => 'path',
+            'referenceProp' => 'reference'
+        ];
+
+        $request = $builder->build('myOtherResource.resources.evenMoreNestedThing', 'evenMoreNestedResource', $parameters);
+        $uri = $request->getUri();
+
+        $this->assertEquals('/path', $uri->getPath());
+        $this->assertEquals('queryParam=query', $uri->getQuery());
+        $this->assertEquals('{"referenceProp":"reference"}', (string) $request->getBody());
+    }
+
     /**
      * @expectedException InvalidArgumentException
      */

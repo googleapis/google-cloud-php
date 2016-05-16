@@ -70,7 +70,9 @@ class RequestBuilder
     {
         $root = $this->resourceRoot;
 
-        array_push($root, 'resources', $resource, 'methods', $method);
+        array_push($root, 'resources');
+        $root = array_merge($root, explode('.', $resource));
+        array_push($root, 'methods', $method);
 
         $action = $this->service;
         foreach ($root as $rootItem) {

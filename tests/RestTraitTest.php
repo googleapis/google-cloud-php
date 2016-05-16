@@ -30,7 +30,7 @@ class RestTraitTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->implementation = new RestTraitImplementation;
+        $this->implementation = $this->getObjectForTrait(RestTrait::class);
         $this->requestWrapper = $this->prophesize('Google\Cloud\RequestWrapper');
         $this->requestBuilder = $this->prophesize('Google\Cloud\RequestBuilder');
         $this->requestBuilder->build(Argument::cetera())
@@ -66,9 +66,4 @@ class RestTraitTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(json_decode($responseBody, true), $actualResponse);
     }
-}
-
-class RestTraitImplementation
-{
-    use RestTrait;
 }

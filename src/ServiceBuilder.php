@@ -19,6 +19,7 @@ namespace Google\Cloud;
 
 use Google\Auth\HttpHandler\HttpHandlerFactory;
 use Google\Cloud\BigQuery\BigQueryClient;
+use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\Storage\StorageClient;
 
 /**
@@ -132,6 +133,32 @@ class ServiceBuilder
     public function bigQuery(array $config = [])
     {
         return new BigQueryClient($config ? $this->resolveConfig($config) : $this->config);
+    }
+
+    /**
+     * Google Cloud Pub/Sub client. Allows you to send and receive
+     * messages between independent applications. Find more information at
+     * [Google Cloud Pub/Sub docs](https://cloud.google.com/pubsub/docs/).
+     *
+     * Example:
+     * ```
+     * use Google\Cloud\ServiceBuilder;
+     *
+     * // Create a storage client using application default credentials.
+     * $builder = new ServiceBuilder([
+     *     'projectId' => 'myAwesomeProject'
+     * ]);
+     *
+     * $pubsub = $builder->pubsub();
+     * ```
+     *
+     * @param array $config Configuration options. See
+     *        {@see Google\Cloud\ServiceBuilder::__construct()} for the available options.
+     * @return PubSubClient
+     */
+    public function pubsub(array $config = [])
+    {
+        return new PubSubClient($config ? $this->resolveConfig($config) : $this->config);
     }
 
     /**

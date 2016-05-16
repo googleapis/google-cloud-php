@@ -25,7 +25,7 @@ class UriTraitTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->implementation = new UriTraitImplementation;
+        $this->implementation = $this->getObjectForTrait(UriTrait::class);
     }
 
     public function testExpandsUri()
@@ -57,9 +57,4 @@ class UriTraitTest extends \PHPUnit_Framework_TestCase
             ['?narf=true', ['narf' => true]]
         ];
     }
-}
-
-class UriTraitImplementation
-{
-    use UriTrait;
 }
