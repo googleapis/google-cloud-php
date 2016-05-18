@@ -10,4 +10,7 @@
       <directory suffix=".php">src</directory>
     </whitelist>
   </filter>
+  <logging>
+    <log type="coverage-clover" target="build/clover.xml"/>
+  </logging>
 </phpunit>
