@@ -93,7 +93,8 @@ class DocGenerator
         $id = substr($reflector->getName(), 14);
         $id = str_replace('\\', '/', $id);
         // @todo see if there is a better way to determine the type
-        $type = end(explode('_', get_class($reflector->getNode())));
+        $parts = explode('_', get_class($reflector->getNode()));
+        $type = end($parts);
 
         return [
             'id' => strtolower($id),
@@ -131,6 +132,10 @@ class DocGenerator
     {
         $methodArray = [];
         foreach ($methods as $method) {
+            if ($method->getVisibility() !== 'public') {
+                continue;
+            }
+
             $methodArray[] = $this->buildMethod($method);
         }
 
@@ -181,13 +186,15 @@ class DocGenerator
         $exampleParts = explode('```', $examples);
 
         foreach ($exampleParts as $example) {
-            $example = trim($example);
             $caption = '';
 
             if (strlen($example) === 0) {
                 continue;
             }
 
+            // strip the syntax highlighting, it won't be used in the doc site
+            $example = ltrim($example, 'php');
+            $example = trim($example);
             $lines = explode(PHP_EOL, $example);
 
             foreach ($lines as $key => $line) {
@@ -327,7 +334,7 @@ class DocGenerator
         foreach ($returns as $return) {
             $returnsArray[] = [
                 'types' => $this->handleTypes($return->getTypes()),
-                'description' => $return->getDescription()
+                'description' => $this->markdown->parse($return->getDescription())
             ];
         }
 
@@ -352,15 +359,20 @@ class DocGenerator
         }
 
         $displayName = $content;
-        $content = substr($content, 7);
+        $content = substr($content, 13);
         $parts = explode('::', $content);
-        $content = strtolower(str_replace('\\', '/', $parts[0]));
+        $type = strtolower(str_replace('\\', '/', $parts[0]));
+
+        $openTag = '<a data-custom-type="' . $type . '"';
 
         if (isset($parts[1])) {
-            $content .= '#' . str_replace('()', '', $parts[1]);
+            $method = str_replace('()', '', $parts[1]);
+            $openTag .= ' data-method="' . $method . '">';
+        } else {
+            $openTag .= '>';
         }
 
-        return '<a data-custom-type="' . $content . '">' . $displayName . '</a>';
+        return $openTag . $displayName . '</a>';
     }
 
     private function buildOutputPath()

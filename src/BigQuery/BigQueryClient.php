@@ -342,6 +342,7 @@ class BigQueryClient
      *
      * @see https://cloud.google.com/bigquery/docs/reference/v2/datasets/insert Datasets insert API documentation.
      *
+     * @param string $id The id of the dataset to create.
      * @param array $options {
      *     Configuration options.
      *
