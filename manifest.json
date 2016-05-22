@@ -1,0 +1,16 @@
+{
+  "lang": "php",
+  "friendlyLang": "PHP",
+  "libraryTitle": "Google Cloud Client Library",
+  "defaultService": "servicebuilder",
+  "markdown": "php",
+  "versions": [
+    "master"
+  ],
+  "content": "json",
+  "home": "home.html",
+  "package": {
+    "title": "Packagist",
+    "href": "https://packagist.org/packages/google/cloud"
+  }
+}
