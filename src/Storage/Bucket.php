@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Storage;
 
+use Google\Cloud\Exception\NotFoundException;
 use Google\Cloud\Storage\Connection\ConnectionInterface;
 use Google\Cloud\Upload\ResumableUploader;
 use GuzzleHttp\Psr7;
@@ -123,7 +124,7 @@ class Bucket
     {
         try {
             $this->connection->getBucket($this->identity + ['fields' => 'name']);
-        } catch (\Exception $ex) {
+        } catch (NotFoundException $ex) {
             return false;
         }
 

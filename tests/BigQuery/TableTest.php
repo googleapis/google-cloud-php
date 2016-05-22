@@ -20,6 +20,7 @@ namespace Google\Cloud\Tests\BigQuery;
 use Google\Cloud\BigQuery\Connection\ConnectionInterface;
 use Google\Cloud\BigQuery\Job;
 use Google\Cloud\BigQuery\Table;
+use Google\Cloud\Exception\NotFoundException;
 use Google\Cloud\Storage\Connection\ConnectionInterface as StorageConnectionInterface;
 use Google\Cloud\Storage\Object;
 use Google\Cloud\Upload\AbstractUploader;
@@ -90,7 +91,8 @@ class TableTest extends \PHPUnit_Framework_TestCase
 
     public function testDoesExistFalse()
     {
-        $this->connection->getTable(Argument::any())->willThrow(new \Exception(null, 404))
+        $this->connection->getTable(Argument::any())
+            ->willThrow(new NotFoundException(null))
             ->shouldBeCalledTimes(1);
         $table = $this->getTable($this->connection);
 

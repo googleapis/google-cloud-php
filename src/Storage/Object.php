@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Storage;
 
+use Google\Cloud\Exception\NotFoundException;
 use Google\Cloud\Storage\Connection\ConnectionInterface;
 use GuzzleHttp\Psr7;
 use Psr\Http\Message\StreamInterface;
@@ -102,7 +103,7 @@ class Object
     {
         try {
             $this->connection->getObject($this->identity + ['fields' => 'name']);
-        } catch (\Exception $ex) {
+        } catch (NotFoundException $ex) {
             return false;
         }
 

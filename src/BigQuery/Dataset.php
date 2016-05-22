@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\BigQuery;
 
+use Google\Cloud\Exception\NotFoundException;
 use Google\Cloud\BigQuery\Connection\ConnectionInterface;
 
 /**
@@ -71,12 +72,8 @@ class Dataset
     {
         try {
             $this->connection->getDataset($this->identity + ['fields' => 'datasetReference']);
-        } catch (\Exception $ex) {
-            if ($ex->getCode() === 404) {
-                return false;
-            }
-
-            throw $ex;
+        } catch (NotFoundException $ex) {
+            return false;
         }
 
         return true;
