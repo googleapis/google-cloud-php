@@ -36,7 +36,8 @@
   "require-dev": {
     "phpunit/phpunit": "4.8.*",
     "squizlabs/php_codesniffer": "2.*",
-    "phpdocumentor/phpdocumentor": "2.8.*"
+    "phpdocumentor/phpdocumentor": "2.8.*",
+    "satooshi/php-coveralls": "~1.0"
   },
   "autoload": {
     "psr-4": {

@@ -17,8 +17,8 @@
 
 namespace Google\Cloud\PubSub;
 
-use Google\Cloud\Exception\GoogleException;
 use Google\Cloud\Iam\Iam;
+use Google\Cloud\Exception\NotFoundException;
 use Google\Cloud\PubSub\Connection\ConnectionInterface;
 use Google\Cloud\PubSub\Connection\IamTopic;
 use InvalidArgumentException;
@@ -177,9 +177,8 @@ class Topic
     {
         try {
             $this->info($options);
-
             return true;
-        } catch (GoogleException $e) {
+        } catch (NotFoundException $e) {
             return false;
         }
     }

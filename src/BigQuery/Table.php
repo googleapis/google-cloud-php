@@ -18,6 +18,7 @@
 namespace Google\Cloud\BigQuery;
 
 use Google\Cloud\BigQuery\Connection\ConnectionInterface;
+use Google\Cloud\Exception\NotFoundException;
 use Google\Cloud\Storage\Object;
 
 /**
@@ -77,12 +78,8 @@ class Table
     {
         try {
             $this->connection->getTable($this->identity + ['fields' => 'tableReference']);
-        } catch (\Exception $ex) {
-            if ($ex->getCode() === 404) {
-                return false;
-            }
-
-            throw $ex;
+        } catch (NotFoundException $ex) {
+            return false;
         }
 
         return true;
