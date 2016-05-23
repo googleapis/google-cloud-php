@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Tests\Storage;
 
+use Google\Cloud\Exception\NotFoundException;
 use Google\Cloud\Storage\Object;
 use GuzzleHttp\Psr7;
 use Prophecy\Argument;
@@ -47,7 +48,7 @@ class ObjectTest extends \PHPUnit_Framework_TestCase
 
     public function testDoesExistFalse()
     {
-        $this->connection->getObject(Argument::any())->willThrow(new \Exception());
+        $this->connection->getObject(Argument::any())->willThrow(new NotFoundException(null));
         $object = new Object($this->connection->reveal(), 'object.txt', 'bucket');
 
         $this->assertFalse($object->exists());

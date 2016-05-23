@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\BigQuery;
 
+use Google\Cloud\Exception\NotFoundException;
 use Google\Cloud\BigQuery\Connection\ConnectionInterface;
 
 /**
@@ -72,12 +73,8 @@ class Job
     {
         try {
             $this->connection->getJob($this->identity + ['fields' => 'jobReference']);
-        } catch (\Exception $ex) {
-            if ($ex->getCode() === 404) {
-                return false;
-            }
-
-            throw $ex;
+        } catch (NotFoundException $ex) {
+            return false;
         }
 
         return true;

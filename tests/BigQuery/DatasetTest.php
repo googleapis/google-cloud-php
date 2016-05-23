@@ -20,6 +20,7 @@ namespace Google\Cloud\Tests\BigQuery;
 use Google\Cloud\BigQuery\Connection\ConnectionInterface;
 use Google\Cloud\BigQuery\Dataset;
 use Google\Cloud\BigQuery\Table;
+use Google\Cloud\Exception\NotFoundException;
 use Prophecy\Argument;
 
 class DatasetTest extends \PHPUnit_Framework_TestCase
@@ -54,7 +55,7 @@ class DatasetTest extends \PHPUnit_Framework_TestCase
     public function testDoesExistFalse()
     {
         $this->connection->getDataset(Argument::any())
-            ->willThrow(new \Exception(null, 404))
+            ->willThrow(new NotFoundException(null))
             ->shouldBeCalledTimes(1);
         $dataset = $this->getDataset($this->connection);
 

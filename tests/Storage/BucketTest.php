@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Tests\Storage;
 
+use Google\Cloud\Exception\NotFoundException;
 use Google\Cloud\Storage\Bucket;
 use Prophecy\Argument;
 
@@ -55,7 +56,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
 
     public function testDoesExistFalse()
     {
-        $this->connection->getBucket(Argument::any())->willThrow(new \Exception());
+        $this->connection->getBucket(Argument::any())->willThrow(new NotFoundException(null));
         $bucket = new Bucket($this->connection->reveal(), 'bucket');
 
         $this->assertFalse($bucket->exists());
