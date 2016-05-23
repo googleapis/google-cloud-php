@@ -504,9 +504,8 @@ class Subscription
      * ```
      *
      * @param  array $pushConfig {
-     *     Push delivery configuration
-     *
-     *     See [PushConfig](https://cloud.google.com/pubsub/reference/rest/v1/projects.subscriptions#PushConfig)
+     *     Push delivery configuration. See
+     *     [PushConfig](https://cloud.google.com/pubsub/reference/rest/v1/projects.subscriptions#PushConfig)
      *     for more details.
      *
      *     @type string $pushEndpoint A URL locating the endpoint to which

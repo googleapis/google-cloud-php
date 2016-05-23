@@ -18,7 +18,16 @@
 namespace Google\Cloud\Iam;
 
 /**
- * IAM client.
+ * IAM Manager
+ *
+ * This class is not meant to be used directly. It should be accessed
+ * through other objects which support IAM.
+ *
+ * Note that examples make use of the PubSub API, and the
+ * {@see Google\Cloud\PubSub\Topic} class.
+ *
+ * Policies can be created using the {@see Google\Cloud\Iam\PolicyBuilder} to
+ * help ensure their validity.
  */
 class Iam
 {
@@ -38,38 +47,9 @@ class Iam
     private $policy;
 
     /**
-     * Create an IAM handler.
-     *
-     * This class is not meant to be used directly. It should be accessed
-     * through other objects which support IAM.
-     *
-     * Note that examples make use of the PubSub API, and the
-     * {@see Google\Cloud\PubSub\Topic} class.
-     *
-     * Example:
-     * ```
-     * use Google\Cloud\ServiceBuilder;
-     *
-     * $cloud = new ServiceBuilder([
-     *     'projectId' => 'my-awesome-project'
-     * ]);
-     *
-     * $pubsub = $cloud->pubsub();
-     * $topic = $pubsub->topic('my-topic-name');
-     * $policy = $topic->iam()->policy();
-     *
-     * echo "<h1>Users with permissions on this topic:</h1>
-     * foreach ($policy['bindings'] as $binding) {
-     *     echo '<h3>'. $binding['role'] .'</h3>';
-     *
-     *     foreach ($binding['members'] as $member) {
-     *         echo $member .'<br>';
-     *     }
-     * }
-     * ```
-     *
      * @param  IamConnectionInterface $connection
      * @param  string $resource
+     * @access private
      */
     public function __construct(IamConnectionInterface $connection, $resource)
     {
@@ -137,7 +117,7 @@ class Iam
      * Invalid permissions will raise a BadRequestException.
      *
      * A list of allowed permissions can be found in the
-     * [https://cloud.google.com/pubsub/access_control#permissions](access control documentation).
+     * [access control documentation](https://cloud.google.com/pubsub/access_control#permissions).
      *
      * Example:
      * ```
