@@ -15,6 +15,7 @@
     "autoload": {
         "psr-4": {
           "Google\\GAX\\":"src/"
-        }
+        },
+        "classmap": ["src/generated"]
     }
 }
