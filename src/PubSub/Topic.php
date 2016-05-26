@@ -127,7 +127,7 @@ class Topic
     public function create(array $options = [])
     {
         $this->info = $this->connection->createTopic($options + [
-            'topic' => $this->name
+            'name' => $this->name
         ]);
 
         return $this->info;
