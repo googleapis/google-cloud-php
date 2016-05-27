@@ -34,7 +34,7 @@ class PubSubClient
     /**
      * @var ConnectionInterface
      */
-    private $connection;
+    protected $connection;
 
     /**
      * @var string The project ID created in the Google Developers Console.

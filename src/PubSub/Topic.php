@@ -33,7 +33,7 @@ class Topic
     /**
      * @var ConnectionInterface A connection to the Google Cloud Platform API
      */
-    private $connection;
+    protected $connection;
 
     /**
      * @var string The topic name
@@ -89,7 +89,7 @@ class Topic
      *         Platform service
      * @param  string $name The topic name
      * @param  string $projectId The project Id
-     * @param  array $info [A representation of a Topic](https://cloud.google.com/pubsub/reference/rest/v1/projects.topics)
+     * @param  array $info [A Topic](https://cloud.google.com/pubsub/reference/rest/v1/projects.topics)
      */
     public function __construct(
         ConnectionInterface $connection,

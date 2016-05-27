@@ -36,7 +36,7 @@ class Subscription
     /**
      * @var ConnectionInterface
      */
-    private $connection;
+    protected $connection;
 
     /**
      * @var string
