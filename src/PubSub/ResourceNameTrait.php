@@ -6,7 +6,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -19,6 +19,9 @@ namespace Google\Cloud\PubSub;
 
 use InvalidArgumentException;
 
+/**
+ * Trait which provides helpers around PubSub resource names.
+ */
 trait ResourceNameTrait
 {
     /**
@@ -43,21 +46,14 @@ trait ResourceNameTrait
      * Convert a fully-qualified name into a simple name.
      *
      * Example:
-     * ```php
-     * use Google\Cloud\ServiceBuilder;
-     *
-     * $cloud = new ServiceBuilder([
-     *      'projectId' => 'my-awesome-project'
-     * ]);
-     *
-     * $pubsub = $cloud->pubsub();
+     * ```
      * $topic = $pubsub->topic('projects/my-awesome-project/topics/my-topic-name');
      * echo $topic->pluckName('topic', $name); // `my-topic-name`
      * ```
      *
      * @param  string $name
      * @return string
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
     public function pluckName($type, $name)
     {
@@ -78,14 +74,7 @@ trait ResourceNameTrait
      * the API.
      *
      * Example:
-     * ```php
-     * use Google\Cloud\ServiceBuilder;
-     *
-     * $cloud = new ServiceBuilder([
-     *      'projectId' => 'my-awesome-project'
-     * ]);
-     *
-     * $pubsub = $cloud->pubsub();
+     * ```
      * $topic = $pubsub->topic('my-topic-name');
      * echo $topic->formatName('topic', $name); // `projects/my-awesome-project/topics/my-topic-name`
      * ```
@@ -94,7 +83,7 @@ trait ResourceNameTrait
      * @param  string $name
      * @param  string $projectId
      * @return string
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
     public function formatName($type, $name, $projectId = null)
     {
@@ -112,24 +101,17 @@ trait ResourceNameTrait
      * Check if a name of a give type is a fully-qualified resource name.
      *
      * Example:
-     * ```php
-     * use Google\Cloud\ServiceBuilder;
-     *
-     * $cloud = new ServiceBuilder([
-     *      'projectId' => 'my-awesome-project'
-     * ]);
-     *
-     * $pubsub = $cloud->pubsub();
+     * ```
      * $topic = $pubsub->topic('my-topic-name');
      * if ($topic->isFullyQualifiedName('project', 'projects/my-awesome-project/topics/my-topic-name')) {
-     *      // do stuff
+     *     // do stuff
      * }
      * ```
      *
      * @param  string $type
      * @param  string $name
      * @return bool
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
     public function isFullyQualifiedName($type, $name)
     {

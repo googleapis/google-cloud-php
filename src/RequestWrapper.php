@@ -242,12 +242,20 @@ class RequestWrapper
     private function convertToGoogleException(\Exception $ex)
     {
         switch ($ex->getCode()) {
+            case 400:
+                $exception = Exception\BadRequestException::class;
+                break;
+
             case 404:
                 $exception = Exception\NotFoundException::class;
                 break;
 
             case 409:
                 $exception = Exception\ConflictException::class;
+                break;
+
+            case 500:
+                $exception = Exception\ServerException::class;
                 break;
 
             default:

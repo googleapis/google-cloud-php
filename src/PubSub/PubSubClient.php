@@ -32,6 +32,11 @@ class PubSubClient
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/pubsub';
 
     /**
+     * @var ConnectionInterface
+     */
+    protected $connection;
+
+    /**
      * @var string The project ID created in the Google Developers Console.
      */
     private $projectId;
@@ -40,7 +45,7 @@ class PubSubClient
      * Create a PubSub client.
      *
      * Example:
-     * ```php
+     * ```
      * use Google\Cloud\ServiceBuilder;
      *
      * $cloud = new ServiceBuilder([
@@ -94,48 +99,38 @@ class PubSubClient
     /**
      * Create a topic.
      *
-     * Unlike {@see PubSubClient::topic()}, this method will send an API call to
+     * Unlike {@see Google\Cloud\PubSub\PubSubClient::topic()}, this method will send an API call to
      * create the topic. If the topic already exists, an exception will be
-     * thrown. When in doubt, use {@see PubSubClient::topic()}.
+     * thrown. When in doubt, use {@see Google\Cloud\PubSub\PubSubClient::topic()}.
      *
      * Example:
-     * ```php
-     * use Google\Cloud\PubSub\StorageClient;
-     *
-     * $pubsub = new PubSubClient([
-     *     'projectId' => 'my-awesome-project'
-     * ]);
-     *
+     * ```
      * $topic = $pubsub->createTopic('my-new-topic');
      * echo $topic->info()['name']; // `projects/my-awesome-project/topics/my-new-topic`
      * ```
      *
-     * @param  string $name    The topic name
-     * @param  array  $options Configuration Options
+     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.topics/create Create Topic API Documentation
+     *
+     * @param  string $name The topic name
+     * @param  array $options Configuration Options
      * @return Topic
      */
     public function createTopic($name, array $options = [])
     {
-        $topic = $this->topic($name);
+        $topic = $this->topicFactory($name);
         $topic->create($options);
 
         return $topic;
     }
 
     /**
-     * Get a topic by its name.
+     * Lazily instantiate a topic with a topic name.
      *
      * No API requests are made by this method. If you want to create a new
-     * topic, use {@see Topic::createTopic()}.
+     * topic, use {@see Google\Cloud\PubSub\Topic::createTopic()}.
      *
      * Example:
-     * ```php
-     * use Google\Cloud\PubSub\StorageClient;
-     *
-     * $pubsub = new PubSubClient([
-     *     'projectId' => 'my-awesome-project'
-     * ]);
-     *
+     * ```
      * // No API request yet!
      * $topic = $pubsub->topic('my-new-topic');
      *
@@ -144,35 +139,28 @@ class PubSubClient
      * ```
      *
      * @param  string $name The topic name
-     * @param  array  $info Information about the topic. Used internally to
-     *         populate topic objects with an API result. Should be
-     *         an instance of[https://cloud.google.com/pubsub/reference/rest/v1/projects.topics#Topic](Topic).
      * @return Topic
      */
-    public function topic($name, array $info = null)
+    public function topic($name)
     {
-        return new Topic($this->connection, $name, $this->projectId, $info);
+        return $this->topicFactory($name);
     }
 
     /**
      * Get a list of the topics registered to your project.
      *
      * Example:
-     * ```php
-     * use Google\Cloud\PubSub\StorageClient;
-     *
-     * $pubsub = new PubSubClient([
-     *     'projectId' => 'my-awesome-project'
-     * ]);
-     *
+     * ```
      * $topics = $pubsub->topics();
      * foreach ($topics as $topic) {
-     *      $info = $topic->info();
-     *      echo $info['name']; // `projects/my-awesome-project/topics/<topic-name>`
+     *     $info = $topic->info();
+     *     echo $info['name']; // `projects/my-awesome-project/topics/<topic-name>`
      * }
      * ```
      *
-     * @param  array     $options {
+     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.topics/list List Topics API Documentation
+     *
+     * @param  array $options {
      *     Configuration Options
      *
      *     @type int $pageSize Maximum number of results to return per
@@ -190,7 +178,7 @@ class PubSubClient
             ]);
 
             foreach ($response['topics'] as $topic) {
-                yield $this->topic($topic['name'], $topic);
+                yield $this->topicFactory($topic['name'], $topic);
             }
 
             // If there's a page token, we'll request the next page.
@@ -204,73 +192,53 @@ class PubSubClient
      * Create a Subscription. If the subscription does not exist, it will be
      * created.
      *
-     * Use {@see PubSubClient::subscription()} to create a subscription object
+     * Use {@see Google\Cloud\PubSub\PubSubClient::subscription()} to create a subscription object
      * without any API requests. If the topic already exists, an exception will
-     * be thrown. When in doubt, use {@see PubSubClient::subscription()}.
+     * be thrown. When in doubt, use {@see Google\Cloud\PubSub\PubSubClient::subscription()}.
      *
      * Example:
-     * ```php
-     * use Google\Cloud\ServiceBuilder;
-     *
-     * $pubsub = new PubSubClient([
-     *     'projectId' => 'my-awesome-project'
-     * ]);
-     *
+     * ```
      * // Create a subscription. If it doesn't exist in the API, it will be created.
      * $subscription = $pubsub->subscribe('my-new-subscription', 'my-topic-name');
      * ```
      *
-     * @param  string       $name      A subscription name
-     * @param  string       $topicName The topic to which the new subscription will be subscribed.
-     * @param  array        $options Please see {@see Subscription::create()} for configuration details.
+     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.subscriptions/create Create Subscription API
+     *      Documentation
+     *
+     * @param  string $name A subscription name
+     * @param  string $topicName The topic to which the new subscription will be subscribed.
+     * @param  array  $options Please see {@see Google\Cloud\PubSub\Subscription::create()} for configuration details.
      * @return Subscription
      */
     public function subscribe($name, $topicName, array $options = [])
     {
-        $subscription = $this->subscription($name, $topicName);
+        $subscription = $this->subscriptionFactory($name, $topicName);
         $subscription->create($options);
 
         return $subscription;
     }
 
     /**
-     * Get a single subscription by its name.
+     * Lazily instantiate a subscription with a subscription name.
      *
      * This method will NOT perform any API calls. If you wish to create a new
-     * subscription, use {@see PubSubClient::subscribe()}.
+     * subscription, use {@see Google\Cloud\PubSub\PubSubClient::subscribe()}.
+     *
+     * Unless you are sure the subscription exists, you should check its
+     * existence before using it.
      *
      * Example:
-     * ```php
-     * use Google\Cloud\PubSub\StorageClient;
-     *
-     * $pubsub = new PubSubClient([
-     *     'projectId' => 'my-awesome-project'
-     * ]);
-     *
-     * // Create a subscription object. You should check if it exists before
-     * // using it, unless you're sure it's there.
+     * ```
      * $subscription = $pubsub->subscription('my-new-subscription');
      * ```
      *
-     * @param  string       $name      The subscription name
-     * @param  string       $topicName The topic name
-     * @param  array        $info      Information about the subscription. Used
-     *         to populate subscriptons with an api result. Should be an instance
-     *         of [https://cloud.google.com/pubsub/reference/rest/v1/projects.subscriptions#Subscription](Subscription).
+     * @param  string $name The subscription name
+     * @param  string $topicName The topic name
      * @return Subscription
      */
-    public function subscription(
-        $name,
-        $topicName = null,
-        array $info = null
-    ) {
-        return new Subscription(
-            $this->connection,
-            $name,
-            $topicName,
-            $this->projectId,
-            $info
-        );
+    public function subscription($name, $topicName = null)
+    {
+        return $this->subscriptionFactory($name, $topicName);
     }
 
     /**
@@ -278,19 +246,16 @@ class PubSubClient
      * topics.
      *
      * Example:
-     * ```php
-     * use Google\Cloud\PubSub\StorageClient;
-     *
-     * $pubsub = new PubSubClient([
-     *     'projectId' => 'my-awesome-project'
-     * ]);
-     *
+     * ```
      * $subscriptions = $pubsub->subscriptions();
      * foreach ($subscriptions as $subscription) {
      *      $info = $subscription->info();
      *      echo $info['name']; // `projects/my-awesome-project/subscriptions/<subscription-name>`
      * }
      * ```
+     *
+     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.subscriptions/list List Subscriptions API
+     *      Documentation
      *
      * @param  array $options {
      *     Configuration Options
@@ -310,7 +275,7 @@ class PubSubClient
             ]);
 
             foreach ($response['subscriptions'] as $subscription) {
-                yield $this->subscription(
+                yield $this->subscriptionFactory(
                     $subscription['name'],
                     $subscription['topic'],
                     $subscription
@@ -322,5 +287,40 @@ class PubSubClient
                 ? $response['nextPageToken']
                 : null;
         } while ($options['pageToken']);
+    }
+
+    /**
+     * Create an instance of a topic
+     *
+     * @param  string $name The topic name
+     * @param  array  $info Information about the topic. Used internally to
+     *         populate topic objects with an API result. Should be
+     *         an instance of [Topic](https://cloud.google.com/pubsub/reference/rest/v1/projects.topics#Topic).
+     * @return Topic
+     */
+    private function topicFactory($name, array $info = null)
+    {
+        return new Topic($this->connection, $name, $this->projectId, $info);
+    }
+
+    /**
+     * Create a subscription instance.
+     *
+     * @param  string $name The subscription name
+     * @param  string $topicName The topic name
+     * @param  array  $info Information about the subscription. Used
+     *         to populate subscriptons with an api result. Should be an instance
+     *         of [Subscription](https://cloud.google.com/pubsub/reference/rest/v1/projects.subscriptions#Subscription).
+     * @return Subscription
+     */
+    private function subscriptionFactory($name, $topicName = null, array $info = null)
+    {
+        return new Subscription(
+            $this->connection,
+            $name,
+            $topicName,
+            $this->projectId,
+            $info
+        );
     }
 }

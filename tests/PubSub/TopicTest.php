@@ -19,6 +19,7 @@ namespace Google\Cloud\Tests\PubSub;
 
 use Generator;
 use Google\Cloud\Exception\NotFoundException;
+use Google\Cloud\Iam\Iam;
 use Google\Cloud\PubSub\Subscription;
 use Google\Cloud\PubSub\Topic;
 use Prophecy\Argument;
@@ -290,10 +291,9 @@ class TopicTest extends \PHPUnit_Framework_TestCase
             'project-name'
         );
 
-        $subscription = $topic->subscription('subscription-name', ['name' => 'subscription-name']);
+        $subscription = $topic->subscription('subscription-name');
 
         $this->assertInstanceOf(Subscription::class, $subscription);
-        $this->assertEquals('subscription-name', $subscription->info()['name']);
     }
 
     public function testSubscriptions()
@@ -380,5 +380,16 @@ class TopicTest extends \PHPUnit_Framework_TestCase
         }
 
         $this->assertEquals(6, count($arr));
+    }
+
+    public function testIam()
+    {
+        $topic = new Topic(
+            $this->connection->reveal(),
+            'topic-name',
+            'project-name'
+        );
+
+        $this->assertInstanceOf(Iam::class, $topic->iam());
     }
 }

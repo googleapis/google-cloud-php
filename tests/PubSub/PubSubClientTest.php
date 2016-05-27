@@ -18,6 +18,7 @@
 namespace Google\Cloud\Tests\PubSub;
 
 use Generator;
+use Google\Cloud\PubSub\Connection\ConnectionInterface;
 use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\PubSub\Subscription;
 use Google\Cloud\PubSub\Topic;
@@ -27,9 +28,11 @@ class PubSubClientTest extends \PHPUnit_Framework_TestCase
 {
     private $connection;
 
+    private $client;
+
     public function setUp()
     {
-        $this->connection = $this->prophesize('Google\Cloud\PubSub\Connection\ConnectionInterface');
+        $this->connection = $this->prophesize(ConnectionInterface::class);
 
         $this->client = new PubSubClientStub(['projectId' => 'project']);
     }
@@ -178,9 +181,11 @@ class PubSubClientTest extends \PHPUnit_Framework_TestCase
 
     public function testSubscription()
     {
-        $subscription = $this->client->subscription('subscription-name', 'topic-name', [
-            'foo' => 'bar'
-        ]);
+        $this->connection->getSubscription(Argument::any())->shouldBeCalledTimes(1)->willReturn(['foo' => 'bar']);
+
+        $this->client->setConnection($this->connection->reveal());
+
+        $subscription = $this->client->subscription('subscription-name', 'topic-name');
 
         $info = $subscription->info();
 

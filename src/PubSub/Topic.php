@@ -6,7 +6,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -17,8 +17,10 @@
 
 namespace Google\Cloud\PubSub;
 
+use Google\Cloud\Iam\Iam;
 use Google\Cloud\Exception\NotFoundException;
 use Google\Cloud\PubSub\Connection\ConnectionInterface;
+use Google\Cloud\PubSub\Connection\IamTopic;
 use InvalidArgumentException;
 
 /**
@@ -27,6 +29,11 @@ use InvalidArgumentException;
 class Topic
 {
     use ResourceNameTrait;
+
+    /**
+     * @var ConnectionInterface A connection to the Google Cloud Platform API
+     */
+    protected $connection;
 
     /**
      * @var string The topic name
@@ -39,26 +46,26 @@ class Topic
     private $projectId;
 
     /**
-     * @var ConnectionInterface A connection to the Google Cloud Platform API
-     */
-    private $connection;
-
-    /**
      * @var array
      */
     private $info;
 
     /**
+     * @var Iam
+     */
+    private $iam;
+
+    /**
      * Create a PubSub topic.
      *
      * Example:
-     * ```php
-     * use Google\Cloud\ServiceBuilder
+     * ```
+     * use Google\Cloud\ServiceBuilder;
      *
      * // The idiomatic way to get a Topic instance would be through PubSubClient:
      *
      * $client = new ServiceBuilder([
-     *      'projectId' => 'my-awesome-project'
+     *     'projectId' => 'my-awesome-project'
      * ]);
      *
      * $pubsub = $client->pubsub();
@@ -72,18 +79,17 @@ class Topic
      *
      * // You can also pass a fully-qualified topic name:
      * $topic = new Topic(
-     *      $connection,
-     *      'projects/my-awesome-project/topics/my-topic-name',
-     *      'my-awesome-project'
+     *     $connection,
+     *     'projects/my-awesome-project/topics/my-topic-name',
+     *     'my-awesome-project'
      * );
      * ```
      *
-     * @param  ConnectionInterface $connection (optional) A connection to the
-     *         Google Cloud Platform service
+     * @param  ConnectionInterface $connection A connection to the Google Cloud
+     *         Platform service
      * @param  string $name The topic name
      * @param  string $projectId The project Id
-     * @param  array [https://cloud.google.com/pubsub/reference/rest/v1/projects.topics#Topic](A representation of a
-     *         Topic)
+     * @param  array $info [A Topic](https://cloud.google.com/pubsub/reference/rest/v1/projects.topics)
      */
     public function __construct(
         ConnectionInterface $connection,
@@ -101,25 +107,23 @@ class Topic
         } else {
             $this->name = $this->formatName('topic', $name, $projectId);
         }
+
+        $iamConnection = new IamTopic($this->connection);
+        $this->iam = new Iam($iamConnection, $this->name);
     }
 
     /**
      * Create a topic.
      *
      * Example:
-     * ```php
-     * use Google\Cloud\ServiceBuilder;
-     *
-     * $cloud = new ServiceBuilder([
-     *      'projectId' => 'my-awesome-project'
-     * ]);
-     *
-     * $pubsub = $cloud->pubsub();
+     * ```
      * $topic = $pubsub->topic('my-topic-name');
      * if ($topic->create()) {
-     *      echo 'Topic Created!';
+     *     echo 'Topic Created!';
      * }
      * ```
+     *
+     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.topics/create Create Topic API Documentation
      *
      * @param  array $options Configuration Options
      * @return array Topic information
@@ -137,18 +141,13 @@ class Topic
      * Delete a topic.
      *
      * Example:
-     * ```php
-     * use Google\Cloud\ServiceBuilder;
-     *
-     * $cloud = new ServiceBuilder([
-     *      'projectId' => 'my-awesome-project'
-     * ]);
-     *
-     * $pubsub = $cloud->pubsub();
+     * ```
      * $topic = $pubsub->topic('my-topic-name');
      *
      * $topic->delete();
      * ```
+     *
+     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.topics/delete Delete Topic API Documentation
      *
      * @param  array $options Configuration Options
      * @return void
@@ -165,21 +164,13 @@ class Topic
      *
      * Service errors will NOT bubble up from this method. It will always return
      * a boolean value. If you want to check for errors, use
-     * {@see Topic::info()}.
+     * {@see Google\Cloud\PubSub\Topic::info()}.
      *
      * Example:
-     * ```php
-     * use Google\Cloud\ServiceBuilder;
-     *
-     * $cloud = new ServiceBuilder([
-     *      'projectId' => 'my-awesome-project'
-     * ]);
-     *
-     * $pubsub = $cloud->pubsub();
-     *
+     * ```
      * $topic = $pubsub->topic('my-topic-name');
      * if ($topic->exists()) {
-     *      // do stuff
+     *     // do stuff
      * }
      * ```
      *
@@ -206,26 +197,19 @@ class Topic
      * may find that Topic::exists() is a better fit for a true/false check.
      *
      * This method will use the previously cached result, if available. To force
-     * a refresh from the API, use {@see Topic::reload()}.
+     * a refresh from the API, use {@see Google\Cloud\Pubsub\Topic::reload()}.
      *
      * Example:
-     * ```php
-     * use Google\Cloud\ServiceBuilder;
-     *
-     * $cloud = new ServiceBuilder([
-     *      'projectId' => 'my-awesome-project'
-     * ]);
-     *
-     * $pubsub = $cloud->pubsub();
-     *
+     * ```
      * $topic = $pubsub->topic('my-topic-name');
      * $info = $topic->info();
      * echo $info['name']; // projects/my-awesome-project/topics/my-topic-name
      * ```
      *
+     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.topics/get Get Topic API Documentation
+     *
      * @param  array $options Configuration Options
-     * @return array [https://cloud.google.com/pubsub/reference/rest/v1/projects.topics#Topic](A representation of a
-     *         Topic)
+     * @return array [A representation of a Topic](https://cloud.google.com/pubsub/reference/rest/v1/projects.topics)
      */
     public function info(array $options = [])
     {
@@ -246,27 +230,20 @@ class Topic
      * may find that Topic::exists() is a better fit for a true/false check.
      *
      * This method will retrieve a new result from the API. To use a previously
-     * cached result, if one exists, use {@see Topic::info()}.
+     * cached result, if one exists, use {@see Google\Cloud\Pubsub\Topic::info()}.
      *
      * Example:
-     * ```php
-     * use Google\Cloud\ServiceBuilder;
-     *
-     * $cloud = new ServiceBuilder([
-     *      'projectId' => 'my-awesome-project'
-     * ]);
-     *
-     * $pubsub = $cloud->pubsub();
-     *
+     * ```
      * $topic = $pubsub->topic('my-topic-name');
      * $topic->reload();
      * $info = $topic->info();
      * echo $info['name']; // projects/my-awesome-project/topics/my-topic-name
      * ```
      *
+     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.topics/get Get Topic API Documentation
+     *
      * @param  array $options Configuration Options
-     * @return array [https://cloud.google.com/pubsub/reference/rest/v1/projects.topics#Topic](A representation of a
-     *         Topic)
+     * @return array [A representation of a Topic](https://cloud.google.com/pubsub/reference/rest/v1/projects.topics)
      */
     public function reload(array $options = [])
     {
@@ -281,40 +258,29 @@ class Topic
      * $message must provide at least one of `data` and `attributes` members.
      *
      * Example:
-     * ```php
-     * use Google\Cloud\ServiceBuilder;
-     *
-     * $cloud = new ServiceBuilder([
-     *      'projectId' => 'my-awesome-project'
-     * ]);
-     *
-     * $pubsub = $cloud->pubsub();
-     *
+     * ```
      * $topic = $pubsub->topic('my-topic-name');
      * $topic->publish([
-     *      'data' => New User Registered',
-     *      'attributes' => [
-     *          'id' => 1,
-     *          'userName' => 'John',
-     *          'location' => 'Detroit'
-     *      ]
+     *     'data' => 'New User Registered',
+     *     'attributes' => [
+     *         'id' => 1,
+     *         'userName' => 'John',
+     *         'location' => 'Detroit'
+     *     ]
      * ]);
      * ```
-     * @param  string $message {
-     *     [https://cloud.google.com/pubsub/reference/rest/v1/PubsubMessage](Message Format)
      *
-     *     @type string $data       The message payload
-     *     @type array  $attributes An array containing a list of key/value
-     *                              pairs
-     * }
-     * @param  array  $options {
-     *     Configuration Options
+     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.topics/publish Publish Message API Documentation
      *
-     *     @type bool $encode True by default. If set to false, the message data
-     *           will not be base64-encoded. Only turn this off if you have
-     *           already encoded your message data.
+     * @param  string $message [Message Format](https://cloud.google.com/pubsub/reference/rest/v1/PubsubMessage)
+     * @param  array $options {
+     *      Configuration Options
+     *
+     *      @type bool $encode True by default. If set to false, the message data
+     *            will not be base64-encoded. Only turn this off if you have
+     *            already encoded your message data.
      * }
-     * @return array  A list of message IDs
+     * @return array A list of message IDs
      */
     public function publish(array $message, array $options = [])
     {
@@ -325,44 +291,34 @@ class Topic
      * Publish multiple messages at once.
      *
      * Example:
-     * ```php
-     * use Google\Cloud\ServiceBuilder;
-     *
-     * $cloud = new ServiceBuilder([
-     *      'projectId' => 'my-awesome-project'
-     * ]);
-     *
-     * $pubsub = $cloud->pubsub();
-     *
+     * ```
      * $topic = $pubsub->topic('my-topic-name');
      * $topic->publishBatch([
-     *      [
-     *          'data' => New User Registered',
-     *          'attributes' => [
-     *              'id' => 1,
-     *              'userName' => 'John',
-     *              'location' => 'Detroit'
-     *          ]
-     *      ], [
-     *          'data' => New User Registered',
-     *          'attributes' => [
-     *              'id' => 2,
-     *              'userName' => 'Steve',
-     *              'location' => 'Mountain View'
-     *          ]
-     *      ]
+     *     [
+     *         'data' => 'New User Registered',
+     *         'attributes' => [
+     *             'id' => 1,
+     *             'userName' => 'John',
+     *             'location' => 'Detroit'
+     *         ]
+     *     ], [
+     *         'data' => 'New User Registered',
+     *         'attributes' => [
+     *             'id' => 2,
+     *             'userName' => 'Steve',
+     *             'location' => 'Mountain View'
+     *         ]
+     *     ]
      * ]);
      * ```
      *
-     * @param  array $messages {
-     *     A list of messages. Each message must be in the correct format.
+     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.topics/publish Publish Message API Documentation
      *
-     *     If provided, $data will be base64 encoded before being published,
-     *     unless `$options['encode']` is set to false. (See below for more
-     *     details.)
-     *
-     *     @type array [https://cloud.google.com/pubsub/reference/rest/v1/PubsubMessage Message](Format)
-     * }
+     * @param  array $messages A list of messages. Each message must be in the correct
+     *         [Message Format](https://cloud.google.com/pubsub/reference/rest/v1/PubsubMessage).
+     *         If provided, $data will be base64 encoded before being published,
+     *         unless `$options['encode']` is set to false. (See below for more
+     *         details.)
      * @param  array $options {
      *     Configuration Options
      *
@@ -390,27 +346,22 @@ class Topic
      * Create a subscription to the topic.
      *
      * Example:
-     * ```php
-     * use Google\Cloud\ServiceBuilder;
-     *
-     * $cloud = new ServiceBuilder([
-     *      'projectId' => 'my-awesome-project'
-     * ]);
-     *
-     * $pubsub = $cloud->pubsub();
-     *
+     * ```
      * $topic = $pubsub->topic('my-topic-name');
      *
      * $topic->subscribe('my-new-subscription');
      * ```
      *
-     * @param  string $name
-     * @param  array  $options Please see {@see Subscription::create()} for configuration details.
+     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.subscriptions/create Create Subscription API
+     *      Documentation
+     *
+     * @param  string $name The subscription name
+     * @param  array  $options Please see {@see Google\Cloud\PubSub\Subscription::create()} for configuration details.
      * @return Subscription
      */
     public function subscribe($name, array $options = [])
     {
-        $subscription = $this->subscription($name);
+        $subscription = $this->subscriptionFactory($name);
 
         $subscription->create($options);
 
@@ -422,49 +373,25 @@ class Topic
      * Subscription object that you can use to interact with the API.
      *
      * Example:
-     * ```php
-     * use Google\Cloud\ServiceBuilder;
-     *
-     * $cloud = new ServiceBuilder([
-     *      'projectId' => 'my-awesome-project'
-     * ]);
-     *
-     * $pubsub = $cloud->pubsub();
-     *
+     * ```
      * $topic = $pubsub->topic('my-topic-name');
      *
      * $topic->subscribe('my-new-subscription');
      * ```
      *
-     * @param  string $name
-     * @param  array $info  [https://cloud.google.com/pubsub/reference/rest/v1/projects.subscriptions#Subscription](A
-     *         representation of a Subscription)
+     * @param  string $name The subscription name
      * @return Subscription
      */
-    public function subscription($name, array $info = null)
+    public function subscription($name)
     {
-        return new Subscription(
-            $this->connection,
-            $name,
-            $this->name,
-            $this->projectId,
-            $info
-        );
+        return $this->subscriptionFactory($name);
     }
 
     /**
      * Retrieve a list of active subscriptions to the current topic.
      *
      * Example:
-     * ```php
-     * use Google\Cloud\ServiceBuilder;
-     *
-     * $cloud = new ServiceBuilder([
-     *      'projectId' => 'my-awesome-project'
-     * ]);
-     *
-     * $pubsub = $cloud->pubsub();
-     *
+     * ```
      * $topic = $pubsub->topic('my-topic-name');
      *
      * $subscriptions = $topic->subscriptions();
@@ -473,12 +400,15 @@ class Topic
      * }
      * ```
      *
-     * @param  array     $options {
+     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.topics.subscriptions/list List Topic
+     *      Subscriptions API Documentation
+     *
+     * @param  array $options {
      *     Configuration Options
      *
      *     @type int $pageSize Maximum number of subscriptions to return.
      * }
-     * @return Generator Populated with Subscription objects
+     * @return \Generator Populated with Subscription objects
      */
     public function subscriptions(array $options = [])
     {
@@ -490,7 +420,7 @@ class Topic
             ]);
 
             foreach ($response['subscriptions'] as $subscription) {
-                yield $this->subscription($subscription['name'], $subscription);
+                yield $this->subscriptionFactory($subscription['name'], $subscription);
             }
 
             // If there's a page token, we'll request the next page.
@@ -501,9 +431,35 @@ class Topic
     }
 
     /**
+     * Manage the IAM policy for the current Topic.
+     *
+     * Example:
+     * ```
+     * $topic = $pubsub->topic('my-topic-name');
+     *
+     * $currentPolicy = $topic->iam()->policy();
+     * ```
+     *
+     * @see https://cloud.google.com/pubsub/access_control PubSub Access Control Documentation
+     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.topics/getIamPolicy Get Topic IAM Policy API
+     *      Documentation
+     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.topics/setIamPolicy Set Topic IAM Policy API
+     *      Documentation
+     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.topics/testIamPermissions Test Topic Permissions
+     *      API Documentation
+     *
+     * @return Iam
+     */
+    public function iam()
+    {
+        return $this->iam;
+    }
+
+    /**
      * Present a nicer debug result to people using php 5.6 or greater.
      * @return array
      * @codeCoverageIgnore
+     * @access private
      */
     public function __debugInfo()
     {
@@ -519,7 +475,7 @@ class Topic
      * Ensure that the message is in a correct format,
      * base64_encode the data, and error if the input is too wrong to proceed.
      * @param  array $message
-     * @param  bool  $encode
+     * @param  bool $encode
      * @return array The message data
      * @throws \InvalidArgumentException
      */
@@ -537,5 +493,25 @@ class Topic
         }
 
         return $message;
+    }
+
+    /**
+     * Create a new subscription instance with the given name and optional
+     * subscription data.
+     *
+     * @param  string $name
+     * @param  array $info  [A representation of a
+     *         Subscription)[https://cloud.google.com/pubsub/reference/rest/v1/projects.subscriptions#Subscription]
+     * @return Subscription
+     */
+    private function subscriptionFactory($name, array $info = null)
+    {
+        return new Subscription(
+            $this->connection,
+            $name,
+            $this->name,
+            $this->projectId,
+            $info
+        );
     }
 }

@@ -56,6 +56,21 @@ interface ConnectionInterface
     /**
      * @param  array $args
      */
+    public function getTopicIamPolicy(array $args);
+
+    /**
+     * @param  array $args
+     */
+    public function setTopicIamPolicy(array $args);
+
+    /**
+     * @param  array $args
+     */
+    public function testTopicIamPermissions(array $args);
+
+    /**
+     * @param  array $args
+     */
     public function createSubscription(array $args);
 
     /**
@@ -92,4 +107,19 @@ interface ConnectionInterface
      * @param  array $args
      */
     public function acknowledge(array $args);
+
+    /**
+     * @param  array $args
+     */
+    public function getSubscriptionIamPolicy(array $args);
+
+    /**
+     * @param  array $args
+     */
+    public function setSubscriptionIamPolicy(array $args);
+
+    /**
+     * @param  array $args
+     */
+    public function testSubscriptionIamPermissions(array $args);
 }
