@@ -136,6 +136,14 @@ class DocGenerator
                 continue;
             }
 
+            $access = $method->getDocBlock()->getTagsByName('access');
+
+            if (!empty($access)) {
+                if ($access[0]->getContent() === 'private') {
+                    continue;
+                }
+            }
+
             $methodArray[] = $this->buildMethod($method);
         }
 
