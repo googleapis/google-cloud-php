@@ -31,6 +31,11 @@ class Topic
     use ResourceNameTrait;
 
     /**
+     * @var ConnectionInterface A connection to the Google Cloud Platform API
+     */
+    private $connection;
+
+    /**
      * @var string The topic name
      */
     private $name;
@@ -39,11 +44,6 @@ class Topic
      * @var string The project ID
      */
     private $projectId;
-
-    /**
-     * @var ConnectionInterface A connection to the Google Cloud Platform API
-     */
-    private $connection;
 
     /**
      * @var array
@@ -85,11 +85,11 @@ class Topic
      * );
      * ```
      *
-     * @param  ConnectionInterface $connection (optional) A connection to the
-     *         Google Cloud Platform service
+     * @param  ConnectionInterface $connection A connection to the Google Cloud
+     *         Platform service
      * @param  string $name The topic name
      * @param  string $projectId The project Id
-     * @param  array [A representation of a Topic](https://cloud.google.com/pubsub/reference/rest/v1/projects.topics)
+     * @param  array $info [A representation of a Topic](https://cloud.google.com/pubsub/reference/rest/v1/projects.topics)
      */
     public function __construct(
         ConnectionInterface $connection,
@@ -203,7 +203,7 @@ class Topic
      * ```
      *
      * @param  array $options Configuration Options
-     * @return array [A representation of a Topic)[https://cloud.google.com/pubsub/reference/rest/v1/projects.topics]
+     * @return array [A representation of a Topic](https://cloud.google.com/pubsub/reference/rest/v1/projects.topics)
      */
     public function info(array $options = [])
     {

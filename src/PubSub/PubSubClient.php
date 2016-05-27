@@ -32,6 +32,11 @@ class PubSubClient
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/pubsub';
 
     /**
+     * @var ConnectionInterface
+     */
+    private $connection;
+
+    /**
      * @var string The project ID created in the Google Developers Console.
      */
     private $projectId;
@@ -212,10 +217,11 @@ class PubSubClient
      * This method will NOT perform any API calls. If you wish to create a new
      * subscription, use {@see Google\Cloud\PubSub\PubSubClient::subscribe()}.
      *
+     * Unless you are sure the subscription exists, you should check its
+     * existence before using it.
+     *
      * Example:
      * ```
-     * // Create a subscription object. You should check if it exists before
-     * // using it, unless you're sure it's there.
      * $subscription = $pubsub->subscription('my-new-subscription');
      * ```
      *
@@ -281,6 +287,7 @@ class PubSubClient
      *         populate topic objects with an API result. Should be
      *         an instance of [Topic](https://cloud.google.com/pubsub/reference/rest/v1/projects.topics#Topic).
      * @return Topic
+     * @access private
      */
     private function topicFactory($name, array $info = null)
     {
@@ -296,6 +303,7 @@ class PubSubClient
      *         to populate subscriptons with an api result. Should be an instance
      *         of [Subscription](https://cloud.google.com/pubsub/reference/rest/v1/projects.subscriptions#Subscription).
      * @return Subscription
+     * @access private
      */
     private function subscriptionFactory($name, $topicName = null, array $info = null)
     {

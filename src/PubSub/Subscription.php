@@ -34,6 +34,11 @@ class Subscription
     const MAX_MESSAGES = 1000;
 
     /**
+     * @var ConnectionInterface
+     */
+    private $connection;
+
+    /**
      * @var string
      */
     private $name;
@@ -47,11 +52,6 @@ class Subscription
      * @var string
      */
     private $projectId;
-
-    /**
-     * @var ConnectionInterface
-     */
-    private $connection;
 
     /**
      * @var array
@@ -108,7 +108,7 @@ class Subscription
      * );
      * ```
      *
-     * @param  ConnectionInterface The service connection object
+     * @param  ConnectionInterface $connection The service connection object
      * @param  string $name The subscription name
      * @param  string $topicName The topic name the subscription is attached to
      * @param  string $projectId The current project
