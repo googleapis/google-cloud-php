@@ -165,6 +165,9 @@ class Subscription
      * $result = $subscription->create();
      * ```
      *
+     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.subscriptions/create Create Subscription API
+     *      Documentation
+     *
      * @param  array $options {
      *     Configuration Options
      *
@@ -205,6 +208,9 @@ class Subscription
      * $subscription = $pubsub->subscription('my-new-subscription');
      * $subscription->delete();
      * ```
+     *
+     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.subscriptions/delete Delete Subscription API
+     *      Documentation
      *
      * @param  array $options Configuration Options.
      * @return void
@@ -261,6 +267,9 @@ class Subscription
      * echo $info['name']; // `projects/my-awesome-project/subscriptions/my-new-subscription`
      * ```
      *
+     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.subscriptions/get Get Subscription API
+     *      Documentation
+     *
      * @param  array $options Configuration Options
      * @return array Subscription data
      */
@@ -287,6 +296,9 @@ class Subscription
      * echo $info['name']; // `projects/my-awesome-project/subscriptions/my-new-subscription`
      * ```
      *
+     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.subscriptions/get Get Subscription API
+     *      Documentation
+     *
      * @param  array $options Configuration Options
      * @return array Subscription data
      */
@@ -308,6 +320,9 @@ class Subscription
      *     echo $message['data'];
      * }
      * ```
+     *
+     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.subscriptions/pull Pull Subscriptions API
+     *      Documentation
      *
      * @param  array $options {
      *      Configuration Options
@@ -370,6 +385,9 @@ class Subscription
      * }
      * ```
      *
+     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.subscriptions/acknowledge Acknowledge Message API
+     *      Documentation
+     *
      * @param  int $ackId A message's ackId
      * @param  array $options Configuration Options
      * @return void
@@ -399,6 +417,9 @@ class Subscription
      *     $subscription->acknowledgeBatch($ackIds);
      * }
      * ```
+     *
+     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.subscriptions/acknowledge Acknowledge Message API
+     *      Documentation
      *
      * @param  array $ackIds An array of message ackIds.
      * @param  array $options Configuration Options
@@ -433,6 +454,9 @@ class Subscription
      *     break;
      * }
      * ```
+     *
+     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.subscriptions/modifyAckDeadline Modify Ack
+     *      Deadline API Documentation
      *
      * @param  string $ackId An acknowledgement ID
      * @param  int $seconds The new ack deadline with respect to the time
@@ -475,6 +499,9 @@ class Subscription
      * $subscription->acknowledge($ackIds);
      * ```
      *
+     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.subscriptions/modifyAckDeadline Modify Ack
+     *      Deadline API Documentation
+     *
      * @param  string $ackIds List of acknowledgment IDs.
      * @param  int $seconds The new ack deadline with respect to the time
      *         this request was sent to the Pub/Sub system. Must be >= 0. For
@@ -504,6 +531,9 @@ class Subscription
      *     'pushEndpoint' => 'https://www.example.com/foo/bar'
      * ]);
      * ```
+     *
+     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.subscriptions/modifyPushConfig Modify Push Config
+     *      API Documentation
      *
      * @param  array $pushConfig {
      *     Push delivery configuration. See
@@ -535,6 +565,14 @@ class Subscription
      *
      * $currentPolicy = $subscription->iam()->policy();
      * ```
+     *
+     * @see https://cloud.google.com/pubsub/access_control PubSub Access Control Documentation
+     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.subscriptions/getIamPolicy Get Subscription IAM
+     *      Policy API Documentation
+     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.subscriptions/setIamPolicy Set Subscription IAM
+     *      Policy API Documentation
+     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.subscriptions/testIamPermissions Test
+     *      Subscription Permissions API Documentation
      *
      * @return Iam
      */

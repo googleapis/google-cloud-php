@@ -110,7 +110,7 @@ class PolicyBuilder
      * $builder->addBinding('roles/admin', [ 'user:admin@domain.com' ]);
      * ```
      *
-     * @param  string $role
+     * @param  string $role A valid role for the service
      * @param  array  $members An array of members to assign to the binding
      * @return PolicyBuilder
      * @throws InvalidArgumentException
@@ -137,7 +137,9 @@ class PolicyBuilder
      * $builder->setEtag($oldPolicy['etag']);
      * ```
      *
-     * @param  string $etag
+     * @param  string $etag used for optimistic concurrency control as a way to help prevent simultaneous updates of a
+     *         policy from overwriting each other. It is strongly suggested that updates to existing policies make use
+     *         of the etag to avoid race conditions.
      * @return PolicyBuilder
      */
     public function setEtag($etag)
@@ -155,7 +157,7 @@ class PolicyBuilder
      * $builder->setVersion(1);
      * ```
      *
-     * @param  int $version
+     * @param  int $version Version of the Policy. The default version is 0.
      * @return PolicyBuilder
      */
     public function setVersion($version)

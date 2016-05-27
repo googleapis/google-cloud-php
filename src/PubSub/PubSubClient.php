@@ -109,6 +109,8 @@ class PubSubClient
      * echo $topic->info()['name']; // `projects/my-awesome-project/topics/my-new-topic`
      * ```
      *
+     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.topics/create Create Topic API Documentation
+     *
      * @param  string $name The topic name
      * @param  array $options Configuration Options
      * @return Topic
@@ -122,7 +124,7 @@ class PubSubClient
     }
 
     /**
-     * Get a topic by its name.
+     * Lazily instantiate a topic with a topic name.
      *
      * No API requests are made by this method. If you want to create a new
      * topic, use {@see Google\Cloud\PubSub\Topic::createTopic()}.
@@ -155,6 +157,8 @@ class PubSubClient
      *     echo $info['name']; // `projects/my-awesome-project/topics/<topic-name>`
      * }
      * ```
+     *
+     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.topics/list List Topics API Documentation
      *
      * @param  array $options {
      *     Configuration Options
@@ -198,6 +202,9 @@ class PubSubClient
      * $subscription = $pubsub->subscribe('my-new-subscription', 'my-topic-name');
      * ```
      *
+     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.subscriptions/create Create Subscription API
+     *      Documentation
+     *
      * @param  string $name A subscription name
      * @param  string $topicName The topic to which the new subscription will be subscribed.
      * @param  array  $options Please see {@see Google\Cloud\PubSub\Subscription::create()} for configuration details.
@@ -212,7 +219,7 @@ class PubSubClient
     }
 
     /**
-     * Instantiate a subscription by its name.
+     * Lazily instantiate a subscription with a subscription name.
      *
      * This method will NOT perform any API calls. If you wish to create a new
      * subscription, use {@see Google\Cloud\PubSub\PubSubClient::subscribe()}.
@@ -246,6 +253,9 @@ class PubSubClient
      *      echo $info['name']; // `projects/my-awesome-project/subscriptions/<subscription-name>`
      * }
      * ```
+     *
+     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.subscriptions/list List Subscriptions API
+     *      Documentation
      *
      * @param  array $options {
      *     Configuration Options

@@ -123,6 +123,8 @@ class Topic
      * }
      * ```
      *
+     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.topics/create Create Topic API Documentation
+     *
      * @param  array $options Configuration Options
      * @return array Topic information
      */
@@ -144,6 +146,8 @@ class Topic
      *
      * $topic->delete();
      * ```
+     *
+     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.topics/delete Delete Topic API Documentation
      *
      * @param  array $options Configuration Options
      * @return void
@@ -202,6 +206,8 @@ class Topic
      * echo $info['name']; // projects/my-awesome-project/topics/my-topic-name
      * ```
      *
+     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.topics/get Get Topic API Documentation
+     *
      * @param  array $options Configuration Options
      * @return array [A representation of a Topic](https://cloud.google.com/pubsub/reference/rest/v1/projects.topics)
      */
@@ -234,6 +240,8 @@ class Topic
      * echo $info['name']; // projects/my-awesome-project/topics/my-topic-name
      * ```
      *
+     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.topics/get Get Topic API Documentation
+     *
      * @param  array $options Configuration Options
      * @return array [A representation of a Topic](https://cloud.google.com/pubsub/reference/rest/v1/projects.topics)
      */
@@ -261,6 +269,9 @@ class Topic
      *     ]
      * ]);
      * ```
+     *
+     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.topics/publish Publish Message API Documentation
+     *
      * @param  string $message [Message Format](https://cloud.google.com/pubsub/reference/rest/v1/PubsubMessage)
      * @param  array $options {
      *      Configuration Options
@@ -301,6 +312,8 @@ class Topic
      * ]);
      * ```
      *
+     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.topics/publish Publish Message API Documentation
+     *
      * @param  array $messages A list of messages. Each message must be in the correct
      *         [Message Format](https://cloud.google.com/pubsub/reference/rest/v1/PubsubMessage).
      *         If provided, $data will be base64 encoded before being published,
@@ -338,6 +351,9 @@ class Topic
      *
      * $topic->subscribe('my-new-subscription');
      * ```
+     *
+     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.subscriptions/create Create Subscription API
+     *      Documentation
      *
      * @param  string $name The subscription name
      * @param  array  $options Please see {@see Google\Cloud\PubSub\Subscription::create()} for configuration details.
@@ -384,6 +400,9 @@ class Topic
      * }
      * ```
      *
+     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.topics.subscriptions/list List Topic
+     *      Subscriptions API Documentation
+     *
      * @param  array $options {
      *     Configuration Options
      *
@@ -420,6 +439,14 @@ class Topic
      *
      * $currentPolicy = $topic->iam()->policy();
      * ```
+     *
+     * @see https://cloud.google.com/pubsub/access_control PubSub Access Control Documentation
+     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.topics/getIamPolicy Get Topic IAM Policy API
+     *      Documentation
+     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.topics/setIamPolicy Set Topic IAM Policy API
+     *      Documentation
+     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.topics/testIamPermissions Test Topic Permissions
+     *      API Documentation
      *
      * @return Iam
      */
