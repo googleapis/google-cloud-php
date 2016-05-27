@@ -60,7 +60,7 @@ class Topic
      *
      * Example:
      * ```
-     * use Google\Cloud\ServiceBuilder
+     * use Google\Cloud\ServiceBuilder;
      *
      * // The idiomatic way to get a Topic instance would be through PubSubClient:
      *
@@ -253,7 +253,7 @@ class Topic
      * ```
      * $topic = $pubsub->topic('my-topic-name');
      * $topic->publish([
-     *     'data' => New User Registered',
+     *     'data' => 'New User Registered',
      *     'attributes' => [
      *         'id' => 1,
      *         'userName' => 'John',
@@ -284,14 +284,14 @@ class Topic
      * $topic = $pubsub->topic('my-topic-name');
      * $topic->publishBatch([
      *     [
-     *         'data' => New User Registered',
+     *         'data' => 'New User Registered',
      *         'attributes' => [
      *             'id' => 1,
      *             'userName' => 'John',
      *             'location' => 'Detroit'
      *         ]
      *     ], [
-     *         'data' => New User Registered',
+     *         'data' => 'New User Registered',
      *         'attributes' => [
      *             'id' => 2,
      *             'userName' => 'Steve',
@@ -339,7 +339,7 @@ class Topic
      * $topic->subscribe('my-new-subscription');
      * ```
      *
-     * @param  string $name
+     * @param  string $name The subscription name
      * @param  array  $options Please see {@see Google\Cloud\PubSub\Subscription::create()} for configuration details.
      * @return Subscription
      */
@@ -363,7 +363,7 @@ class Topic
      * $topic->subscribe('my-new-subscription');
      * ```
      *
-     * @param  string $name
+     * @param  string $name The subscription name
      * @return Subscription
      */
     public function subscription($name)

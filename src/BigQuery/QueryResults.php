@@ -126,7 +126,7 @@ class QueryResults
 
     /**
      * Checks the query's completeness. Useful in combination with
-     * {@see QueryResults::reload} to poll for query status.
+     * {@see Google\Cloud\BigQuery\QueryResults::reload} to poll for query status.
      *
      * Example:
      * ```

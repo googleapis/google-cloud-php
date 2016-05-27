@@ -368,7 +368,7 @@ class Subscription
      * }
      * ```
      *
-     * @param  int $ackId
+     * @param  int $ackId A message's ackId
      * @param  array $options Configuration Options
      * @return void
      */
@@ -398,7 +398,7 @@ class Subscription
      * }
      * ```
      *
-     * @param  array $ackIds
+     * @param  array $ackIds An array of message ackIds.
      * @param  array $options Configuration Options
      * @return void
      */

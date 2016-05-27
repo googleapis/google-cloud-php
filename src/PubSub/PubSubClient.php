@@ -287,7 +287,6 @@ class PubSubClient
      *         populate topic objects with an API result. Should be
      *         an instance of [Topic](https://cloud.google.com/pubsub/reference/rest/v1/projects.topics#Topic).
      * @return Topic
-     * @access private
      */
     private function topicFactory($name, array $info = null)
     {
@@ -303,7 +302,6 @@ class PubSubClient
      *         to populate subscriptons with an api result. Should be an instance
      *         of [Subscription](https://cloud.google.com/pubsub/reference/rest/v1/projects.subscriptions#Subscription).
      * @return Subscription
-     * @access private
      */
     private function subscriptionFactory($name, $topicName = null, array $info = null)
     {
