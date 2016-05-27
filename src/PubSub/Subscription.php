@@ -373,8 +373,10 @@ class Subscription
                 'subscription' => $this->name
             ]);
 
-            foreach ($response['receivedMessages'] as $message) {
-                yield $message;
+            if (isset($response['receivedMessages'])) {
+                foreach ($response['receivedMessages'] as $message) {
+                    yield $message;
+                }
             }
 
             // If there's a page token, we'll request the next page.
