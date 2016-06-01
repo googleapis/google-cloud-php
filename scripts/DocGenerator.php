@@ -386,8 +386,9 @@ class DocGenerator
     private function buildOutputPath()
     {
         $pathInfo = pathinfo($this->currentFile);
-        $jsonOutputPath =  $this->outputPath . substr($pathInfo['dirname'] . '/' . $pathInfo['filename'] . '.json', 4);
+        $servicePath = substr($pathInfo['dirname'] . '/' . $pathInfo['filename'] . '.json', 4);
+        $servicePath = strtolower($servicePath);
 
-        return strtolower($jsonOutputPath);
+        return $this->outputPath . $servicePath;
     }
 }
