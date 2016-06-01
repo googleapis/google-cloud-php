@@ -18,7 +18,7 @@ function pushDocs () {
     git config user.email "travis@travis-ci.org"
     git commit -m "Updating docs for ${1}"
     git status
-    git push https://${GH_OAUTH_TOKEN}@github.com/${GH_OWNER}/${GH_PROJECT_NAME} HEAD:gh-pages
+    # git push https://${GH_OAUTH_TOKEN}@github.com/${GH_OWNER}/${GH_PROJECT_NAME} HEAD:gh-pages
   else
     echo "Nothing to commit."
   fi
