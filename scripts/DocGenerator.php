@@ -62,6 +62,7 @@ class DocGenerator
                 'contents' => $document['id'] . '.json'
             ];
 
+            var_dump($jsonOutputPath);
             if (!is_dir(dirname($jsonOutputPath))) {
                 mkdir(dirname($jsonOutputPath), 0777, true);
             }
