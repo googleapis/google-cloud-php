@@ -18,6 +18,7 @@
 namespace Google\Cloud\Storage;
 
 use Google\Cloud\Storage\Connection\ConnectionInterface;
+use InvalidArgumentException;
 
 /**
  * Google Cloud Storage uses access control lists (ACLs) to manage bucket and
@@ -48,6 +49,7 @@ class Acl
      * @param string $type The type of access control this instance applies to.
      * @param array $identity Represents which bucket, file, or generation this
      *        instance applies to.
+     * @throws InvalidArgumentException Thrown when an invalid type is passed in.
      */
     public function __construct(ConnectionInterface $connection, $type, array $identity)
     {
@@ -58,7 +60,7 @@ class Acl
         ];
 
         if (!in_array($type, $validTypes)) {
-            throw new \InvalidArgumentException('type must be one of the following: ' . implode(', ', $validTypes));
+            throw new InvalidArgumentException('type must be one of the following: ' . implode(', ', $validTypes));
         }
 
         $this->connection = $connection;
