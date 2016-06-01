@@ -3,7 +3,11 @@
 set -ev
 
 function pushDocs () {
+  echo "doc dir before generation:"
+  find docs
   composer docs
+  echo "doc dir after generation:"
+  find docs
   git submodule add -f -b gh-pages https://${GH_OAUTH_TOKEN}@github.com/${GH_OWNER}/${GH_PROJECT_NAME} ghpages
   mkdir -p ghpages/json/${1}
   cp -R docs/json/master/* ghpages/json/${1}
