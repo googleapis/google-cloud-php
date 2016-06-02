@@ -30,9 +30,19 @@ use Psr\Http\Message\StreamInterface;
 class Bucket
 {
     /**
+     * @var Acl ACL for the bucket.
+     */
+    private $acl;
+
+    /**
      * @var ConnectionInterface Represents a connection to Cloud Storage.
      */
     private $connection;
+
+    /**
+     * @var Acl Default ACL for objects created within the bucket.
+     */
+    private $defaultAcl;
 
     /**
      * @var array The bucket's identity.
@@ -42,29 +52,19 @@ class Bucket
     /**
      * @var array The bucket's metadata.
      */
-    private $data;
-
-    /**
-     * @var Acl ACL for the bucket.
-     */
-    private $acl;
-
-    /**
-     * @var Acl Default ACL for objects created within the bucket.
-     */
-    private $defaultAcl;
+    private $info;
 
     /**
      * @param ConnectionInterface $connection Represents a connection to Cloud
      *        Storage.
      * @param string $name The bucket's name.
-     * @param array $data The bucket's metadata.
+     * @param array $info The bucket's metadata.
      */
-    public function __construct(ConnectionInterface $connection, $name, array $data = null)
+    public function __construct(ConnectionInterface $connection, $name, array $info = null)
     {
         $this->connection = $connection;
         $this->identity = ['bucket' => $name];
-        $this->data = $data;
+        $this->info = $info;
         $this->acl = new Acl($this->connection, 'bucketAccessControls', $this->identity);
         $this->defaultAcl = new Acl($this->connection, 'defaultObjectAccessControls', $this->identity);
     }
@@ -302,7 +302,7 @@ class Bucket
      * ]);
      *
      * foreach ($objects as $object) {
-     *     var_dump($object->getName());
+     *     var_dump($object->name());
      * }
      * ```
      *
@@ -421,17 +421,16 @@ class Bucket
      */
     public function update(array $options = [])
     {
-        $this->data = $this->connection->patchBucket($options + $this->identity);
-
-        return $this->data;
+        return $this->info = $this->connection->patchBucket($options + $this->identity);
     }
 
     /**
-     * Retrieves the bucket's details.
+     * Retrieves the bucket's details. If no bucket data is cached a network
+     * request will be made to retrieve it.
      *
      * Example:
      * ```
-     * $info = $bucket->getInfo();
+     * $info = $bucket->info();
      * echo $info['location'];
      * ```
      *
@@ -440,8 +439,6 @@ class Bucket
      * @param array $options {
      *     Configuration options.
      *
-     *     @type bool $force If true fetches fresh data, otherwise returns data
-     *           stored locally if it exists.
      *     @type string $ifMetagenerationMatch Makes the return of the bucket
      *           metadata conditional on whether the bucket's current
      *           metageneration matches the given value.
@@ -453,13 +450,44 @@ class Bucket
      * }
      * @return array
      */
-    public function getInfo(array $options = [])
+    public function info(array $options = [])
     {
-        if (!$this->data || isset($options['force'])) {
-            $this->data = $this->connection->getBucket($options + $this->identity);
+        if (!$this->info) {
+            $this->reload($options);
         }
 
-        return $this->data;
+        return $this->info;
+    }
+
+    /**
+     * Triggers a network request to reload the bucket's details.
+     *
+     * Example:
+     * ```
+     * $bucket->reload();
+     * $info = $bucket->info();
+     * echo $info['location'];
+     * ```
+     *
+     * @see https://cloud.google.com/storage/docs/json_api/v1/buckets/get Buckets get API documentation.
+     *
+     * @param array $options {
+     *     Configuration options.
+     *
+     *     @type string $ifMetagenerationMatch Makes the return of the bucket
+     *           metadata conditional on whether the bucket's current
+     *           metageneration matches the given value.
+     *     @type string $ifMetagenerationNotMatch Makes the return of the bucket
+     *           metadata conditional on whether the bucket's current
+     *           metageneration does not match the given value.
+     *     @type string $projection Determines which properties to return. May
+     *           be either 'full' or 'noAcl'.
+     * }
+     * @return array
+     */
+    public function reload(array $options = [])
+    {
+        return $this->info = $this->connection->getBucket($options + $this->identity);
     }
 
     /**
@@ -467,12 +495,12 @@ class Bucket
      *
      * Example:
      * ```
-     * echo $bucket->getName();
+     * echo $bucket->name();
      * ```
      *
      * @return string
      */
-    public function getName()
+    public function name()
     {
         return $this->identity['bucket'];
     }

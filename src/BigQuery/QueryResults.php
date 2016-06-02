@@ -32,14 +32,14 @@ class QueryResults
     private $connection;
 
     /**
-     * @var array The query result's metadata.
-     */
-    private $data;
-
-    /**
      * @var array The query result's identity.
      */
     private $identity;
+
+    /**
+     * @var array The query result's metadata.
+     */
+    private $info;
 
     /**
      * @var array The options to use when reloading query data.
@@ -49,19 +49,19 @@ class QueryResults
     /**
      * This class should be not instantiated directly, but as a result of
      * calling {@see Google\Cloud\BigQuery\BigQueryClient::runQuery} or
-     * {@see Google\Cloud\BigQuery\Job::getQueryResults}.
+     * {@see Google\Cloud\BigQuery\Job::queryResults}.
      *
      * @param ConnectionInterface $connection Represents a connection to
      *        BigQuery.
      * @param string $jobId The job's ID.
      * @param string $projectId The project's ID.
-     * @param array $data The query result's metadata.
+     * @param array $info The query result's metadata.
      * @param array $reloadOptions The options to use when reloading query data.
      */
-    public function __construct(ConnectionInterface $connection, $jobId, $projectId, array $data, array $reloadOptions)
+    public function __construct(ConnectionInterface $connection, $jobId, $projectId, array $info, array $reloadOptions)
     {
         $this->connection = $connection;
-        $this->data = $data;
+        $this->info = $info;
         $this->reloadOptions = $reloadOptions;
         $this->identity = [
             'jobId' => $jobId,
@@ -79,7 +79,7 @@ class QueryResults
      * $isComplete = $queryResults->isComplete();
      *
      * if ($isComplete) {
-     *     $rows = $queryResults->getRows();
+     *     $rows = $queryResults->rows();
      *
      *     foreach ($rows as $row) {
      *         echo $row['name'];
@@ -91,22 +91,22 @@ class QueryResults
      * @return array
      * @throws GoogleException Thrown if the query has not yet completed.
      */
-    public function getRows(array $options = [])
+    public function rows(array $options = [])
     {
         if (!$this->isComplete()) {
             throw new GoogleException('The query has not completed yet.');
         }
 
-        if (!isset($this->data['rows'])) {
+        if (!isset($this->info['rows'])) {
             return;
         }
 
-        $schema = $this->data['schema']['fields'];
+        $schema = $this->info['schema']['fields'];
 
         while (true) {
-            $options['pageToken'] = isset($this->data['pageToken']) ? $this->data['pageToken'] : null;
+            $options['pageToken'] = isset($this->info['pageToken']) ? $this->info['pageToken'] : null;
 
-            foreach ($this->data['rows'] as $row) {
+            foreach ($this->info['rows'] as $row) {
                 $mergedRow = [];
 
                 foreach ($row['f'] as $key => $value) {
@@ -120,7 +120,7 @@ class QueryResults
                 return;
             }
 
-            $this->data = $this->connection->getQueryResults($options + $this->identity);
+            $this->info = $this->connection->getQueryResults($options + $this->identity);
         }
     }
 
@@ -145,7 +145,7 @@ class QueryResults
      */
     public function isComplete()
     {
-        return $this->data['jobComplete'];
+        return $this->info['jobComplete'];
     }
 
     /**
@@ -153,7 +153,7 @@ class QueryResults
      *
      * Example:
      * ```
-     * $info = $queryResults->getInfo();
+     * $info = $queryResults->info();
      * echo $info['totalBytesProcessed'];
      * ```
      *
@@ -162,9 +162,9 @@ class QueryResults
      *
      * @return array
      */
-    public function getInfo()
+    public function info()
     {
-        return $this->data;
+        return $this->info;
     }
 
     /**
@@ -172,7 +172,7 @@ class QueryResults
      *
      * Useful when needing to poll an incomplete query
      * for status. Configuration options will be inherited from
-     * {@see Google\Cloud\BigQuery\Job::getQueryResults} or
+     * {@see Google\Cloud\BigQuery\Job::queryResults} or
      * {@see Google\Cloud\BigQuery\BigQueryClient::runQuery}, but they can be
      * overridden if needed.
      *
@@ -200,7 +200,7 @@ class QueryResults
     public function reload(array $options = [])
     {
         $options += $this->identity;
-        return $this->data = $this->connection->getQueryResults($options + $this->reloadOptions);
+        return $this->info = $this->connection->getQueryResults($options + $this->reloadOptions);
     }
 
     /**
@@ -210,12 +210,12 @@ class QueryResults
      *
      * Example:
      * ```
-     * echo $queryResults->getIdentity()['projectId'];
+     * echo $queryResults->identity()['projectId'];
      * ```
      *
      * @return array
      */
-    public function getIdentity()
+    public function identity()
     {
         return $this->identity;
     }

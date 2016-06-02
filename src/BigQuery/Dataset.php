@@ -32,26 +32,26 @@ class Dataset
     private $connection;
 
     /**
-     * @var array The dataset's metadata.
-     */
-    private $data;
-
-    /**
      * @var array The dataset's identity.
      */
     private $identity;
+
+    /**
+     * @var array The dataset's metadata.
+     */
+    private $info;
 
     /**
      * @param ConnectionInterface $connection Represents a connection to
      *        BigQuery.
      * @param string $id The dataset's ID.
      * @param string $projectId The project's ID.
-     * @param array $data The dataset's metadata.
+     * @param array $info The dataset's metadata.
      */
-    public function __construct(ConnectionInterface $connection, $id, $projectId, array $data = [])
+    public function __construct(ConnectionInterface $connection, $id, $projectId, array $info = [])
     {
         $this->connection = $connection;
-        $this->data = $data;
+        $this->info = $info;
         $this->identity = [
             'datasetId' => $id,
             'projectId' => $projectId
@@ -121,9 +121,9 @@ class Dataset
     public function update(array $metadata, array $options = [])
     {
         $options += $metadata;
-        $this->data = $this->connection->patchDataset($options + $this->identity);
+        $this->info = $this->connection->patchDataset($options + $this->identity);
 
-        return $this->data;
+        return $this->info;
     }
 
     /**
@@ -152,7 +152,7 @@ class Dataset
      * $tables = $dataset->tables();
      *
      * foreach ($tables as $table) {
-     *     var_dump($table->getId());
+     *     var_dump($table->id());
      * }
      * ```
      *
@@ -236,7 +236,7 @@ class Dataset
      *
      * Example:
      * ```
-     * $info = $dataset->getInfo();
+     * $info = $dataset->info();
      * echo $info['friendlyName'];
      * ```
      *
@@ -245,13 +245,13 @@ class Dataset
      * @param array $options Configuration options.
      * @return array
      */
-    public function getInfo(array $options = [])
+    public function info(array $options = [])
     {
-        if (!$this->data) {
+        if (!$this->info) {
             $this->reload($options);
         }
 
-        return $this->data;
+        return $this->info;
     }
 
     /**
@@ -260,7 +260,7 @@ class Dataset
      * Example:
      * ```
      * $dataset->reload();
-     * $info = $dataset->getInfo();
+     * $info = $dataset->info();
      * echo $info['friendlyName'];
      * ```
      *
@@ -271,11 +271,7 @@ class Dataset
      */
     public function reload(array $options = [])
     {
-        if (!$this->data) {
-            $this->data = $this->connection->getDataset($options + $this->identity);
-        }
-
-        return $this->data;
+        return $this->info = $this->connection->getDataset($options + $this->identity);
     }
 
     /**
@@ -283,12 +279,12 @@ class Dataset
      *
      * Example:
      * ```
-     * echo $dataset->getId();
+     * echo $dataset->id();
      * ```
      *
      * @return string
      */
-    public function getId()
+    public function id()
     {
         return $this->identity['datasetId'];
     }
@@ -300,12 +296,12 @@ class Dataset
      *
      * Example:
      * ```
-     * echo $dataset->getIdentity()['projectId'];
+     * echo $dataset->identity()['projectId'];
      * ```
      *
      * @return array
      */
-    public function getIdentity()
+    public function identity()
     {
         return $this->identity;
     }

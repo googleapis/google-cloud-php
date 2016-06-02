@@ -47,7 +47,7 @@ class StorageClientTest extends \PHPUnit_Framework_TestCase
         $this->client->setConnection($this->connection->reveal());
         $buckets = iterator_to_array($this->client->buckets());
 
-        $this->assertEquals('bucket1', $buckets[0]->getName());
+        $this->assertEquals('bucket1', $buckets[0]->name());
     }
 
     public function testGetsBucketsWithToken()
@@ -69,7 +69,7 @@ class StorageClientTest extends \PHPUnit_Framework_TestCase
         $this->client->setConnection($this->connection->reveal());
         $bucket = iterator_to_array($this->client->buckets());
 
-        $this->assertEquals('bucket2', $bucket[1]->getName());
+        $this->assertEquals('bucket2', $bucket[1]->name());
     }
 
     public function testCreatesBucket()

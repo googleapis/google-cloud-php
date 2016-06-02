@@ -69,7 +69,7 @@ class ObjectTest extends \PHPUnit_Framework_TestCase
 
         $object->update($data);
 
-        $this->assertEquals($data['contentType'], $object->getInfo()['contentType']);
+        $this->assertEquals($data['contentType'], $object->info()['contentType']);
     }
 
     public function testDownloadsAsString()
@@ -102,10 +102,10 @@ class ObjectTest extends \PHPUnit_Framework_TestCase
         ];
         $object = new Object($this->connection->reveal(), 'object.txt', 'bucket', null, $objectInfo);
 
-        $this->assertEquals($objectInfo, $object->getInfo());
+        $this->assertEquals($objectInfo, $object->info());
     }
 
-    public function testGetsInfoWithForce()
+    public function testGetsInfoWithReload()
     {
         $objectInfo = [
             'name' => 'object.txt',
@@ -113,24 +113,26 @@ class ObjectTest extends \PHPUnit_Framework_TestCase
             'etag' => 'ABC',
             'kind' => 'storage#object'
         ];
-        $this->connection->getObject(Argument::any())->willReturn($objectInfo);
-        $object = new Object($this->connection->reveal(), 'object.txt', 'bucket', null, $objectInfo);
+        $this->connection->getObject(Argument::any())
+            ->willReturn($objectInfo)
+            ->shouldBeCalledTimes(1);
+        $object = new Object($this->connection->reveal(), 'object.txt', 'bucket');
 
-        $this->assertEquals($objectInfo, $object->getInfo(['force' => true]));
+        $this->assertEquals($objectInfo, $object->info());
     }
 
     public function testGetsName()
     {
         $object = new Object($this->connection->reveal(), $name = 'object.txt', 'bucket');
 
-        $this->assertEquals($name, $object->getName());
+        $this->assertEquals($name, $object->name());
     }
 
     public function testGetsIdentity()
     {
         $object = new Object($this->connection->reveal(), $name = 'object.txt', $bucketName = 'bucket');
 
-        $this->assertEquals($name, $object->getIdentity()['object']);
-        $this->assertEquals($bucketName, $object->getIdentity()['bucket']);
+        $this->assertEquals($name, $object->identity()['object']);
+        $this->assertEquals($bucketName, $object->identity()['bucket']);
     }
 }

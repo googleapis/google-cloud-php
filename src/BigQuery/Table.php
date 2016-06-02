@@ -36,14 +36,14 @@ class Table
     private $connection;
 
     /**
-     * @var array The table's metadata
-     */
-    private $data;
-
-    /**
      * @var array The table's identity.
      */
     private $identity;
+
+    /**
+     * @var array The table's metadata
+     */
+    private $info;
 
     /**
      * @param ConnectionInterface $connection Represents a connection to
@@ -51,12 +51,12 @@ class Table
      * @param string $id The table's id.
      * @param string $datasetId The dataset's id.
      * @param string $projectId The project's id.
-     * @param array $data The table's metadata.
+     * @param array $info The table's metadata.
      */
-    public function __construct(ConnectionInterface $connection, $id, $datasetId, $projectId, array $data = [])
+    public function __construct(ConnectionInterface $connection, $id, $datasetId, $projectId, array $info = [])
     {
         $this->connection = $connection;
-        $this->data = $data;
+        $this->info = $info;
         $this->identity = [
             'tableId' => $id,
             'datasetId' => $datasetId,
@@ -91,7 +91,7 @@ class Table
      *
      * Example:
      * ```
-     * foreach ($table->getRows() as $row) {
+     * foreach ($table->rows() as $row) {
      *     echo $row['name'];
      * }
      * ```
@@ -106,10 +106,10 @@ class Table
      * }
      * @return \Generator
      */
-    public function getRows(array $options = [])
+    public function rows(array $options = [])
     {
         $options['pageToken'] = null;
-        $schema = $this->getInfo()['schema']['fields'];
+        $schema = $this->info()['schema']['fields'];
 
         do {
             $response = $this->connection->listTableData($options + $this->identity);
@@ -161,7 +161,7 @@ class Table
             'copy',
             $this->identity['projectId'],
             [
-                'destinationTable' => $destination->getIdentity(),
+                'destinationTable' => $destination->identity(),
                 'sourceTable' => $this->identity
             ],
             $options
@@ -196,7 +196,7 @@ class Table
      */
     public function export(Object $destination, array $options = [])
     {
-        $objIdentity = $destination->getIdentity();
+        $objIdentity = $destination->identity();
         $config = $this->buildJobConfig(
             'extract',
             $this->identity['projectId'],
@@ -281,7 +281,7 @@ class Table
      */
     public function loadFromStorage(Object $object, array $options = [])
     {
-        $objIdentity = $object->getIdentity();
+        $objIdentity = $object->identity();
         $options['jobConfig']['sourceUris'] = ['gs://' . $objIdentity['bucket'] . '/' . $objIdentity['object']];
 
         return $this->load(null, $options);
@@ -293,7 +293,7 @@ class Table
      *
      * Example:
      * ```
-     * $info = $table->getInfo();
+     * $info = $table->info();
      * echo $info['friendlyName'];
      * ```
      *
@@ -302,13 +302,13 @@ class Table
      * @param array $options Configuration options.
      * @return array
      */
-    public function getInfo(array $options = [])
+    public function info(array $options = [])
     {
-        if (!$this->data) {
+        if (!$this->info) {
             $this->reload($options);
         }
 
-        return $this->data;
+        return $this->info;
     }
 
     /**
@@ -317,7 +317,7 @@ class Table
      * Example:
      * ```
      * $table->reload();
-     * $info = $table->getInfo();
+     * $info = $table->info();
      * echo $info['friendlyName'];
      * ```
      *
@@ -328,7 +328,7 @@ class Table
      */
     public function reload(array $options = [])
     {
-        return $this->data = $this->connection->getTable($options + $this->identity);
+        return $this->info = $this->connection->getTable($options + $this->identity);
     }
 
     /**
@@ -336,12 +336,12 @@ class Table
      *
      * Example:
      * ```
-     * echo $table->getId();
+     * echo $table->id();
      * ```
      *
      * @return string
      */
-    public function getId()
+    public function id()
     {
         return $this->identity['tableId'];
     }
@@ -353,12 +353,12 @@ class Table
      *
      * Example:
      * ```
-     * echo $table->getIdentity()['projectId'];
+     * echo $table->identity()['projectId'];
      * ```
      *
      * @return array
      */
-    public function getIdentity()
+    public function identity()
     {
         return $this->identity;
     }
