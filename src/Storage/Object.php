@@ -29,14 +29,14 @@ use Psr\Http\Message\StreamInterface;
 class Object
 {
     /**
+     * @var Acl ACL for the object.
+     */
+    private $acl;
+
+    /**
      * @var ConnectionInterface Represents a connection to Cloud Storage.
      */
     private $connection;
-
-    /**
-     * @var array The object's metadata.
-     */
-    private $data;
 
     /**
      * @var array The object's identity.
@@ -44,9 +44,9 @@ class Object
     private $identity;
 
     /**
-     * @var Acl ACL for the object.
+     * @var array The object's metadata.
      */
-    private $acl;
+    private $info;
 
     /**
      * @param ConnectionInterface $connection Represents a connection to Cloud
@@ -54,12 +54,12 @@ class Object
      * @param string $name The object's name.
      * @param string $bucket The name of the bucket the object is contained in.
      * @param string $generation The generation of the object.
-     * @param array $data The object's metadata.
+     * @param array $info The object's metadata.
      */
-    public function __construct(ConnectionInterface $connection, $name, $bucket, $generation = null, array $data = null)
+    public function __construct(ConnectionInterface $connection, $name, $bucket, $generation = null, array $info = null)
     {
         $this->connection = $connection;
-        $this->data = $data;
+        $this->info = $info;
         $this->identity = [
             'bucket' => $bucket,
             'object' => $name,
@@ -188,9 +188,7 @@ class Object
     public function update(array $metadata, array $options = [])
     {
         $options += $metadata;
-        $this->data = $this->connection->patchObject($options + $this->identity);
-
-        return $this->data;
+        return $this->info = $this->connection->patchObject($options + $this->identity);
     }
 
     /**
@@ -237,11 +235,12 @@ class Object
     }
 
     /**
-     * Retrieves the object's details.
+     * Retrieves the object's details. If no object data is cached a network
+     * request will be made to retrieve it.
      *
      * Example:
      * ```
-     * $info = $object->getInfo();
+     * $info = $object->info();
      * echo $info['metadata'];
      * ```
      *
@@ -250,8 +249,6 @@ class Object
      * @param array $options {
      *     Configuration options.
      *
-     *     @type bool $force If true fetches fresh data, otherwise returns data
-     *           stored locally if it exists.
      *     @type string $ifGenerationMatch Makes the operation conditional on
      *           whether the object's current generation matches the given
      *           value.
@@ -269,13 +266,50 @@ class Object
      * }
      * @return array
      */
-    public function getInfo(array $options = [])
+    public function info(array $options = [])
     {
-        if (!$this->data || isset($options['force'])) {
-            $this->data = $this->connection->getObject($options + $this->identity);
+        if (!$this->info) {
+            $this->reload($options);
         }
 
-        return $this->data;
+        return $this->info;
+    }
+
+    /**
+     * Triggers a network request to reload the object's details.
+     *
+     * Example:
+     * ```
+     * $object->reload();
+     * $info = $object->info();
+     * echo $info['location'];
+     * ```
+     *
+     * @see https://cloud.google.com/storage/docs/json_api/v1/objects/get Objects get API documentation.
+     *
+     * @param array $options {
+     *     Configuration options.
+     *
+     *     @type string $ifGenerationMatch Makes the operation conditional on
+     *           whether the object's current generation matches the given
+     *           value.
+     *     @type string $ifGenerationNotMatch Makes the operation conditional on
+     *           whether the object's current generation does not match the
+     *           given value.
+     *     @type string $ifMetagenerationMatch Makes the operation conditional
+     *           on whether the object's current metageneration matches the
+     *           given value.
+     *     @type string $ifMetagenerationNotMatch Makes the operation
+     *           conditional on whether the object's current metageneration does
+     *           not match the given value.
+     *     @type string $projection Determines which properties to return. May
+     *           be either 'full' or 'noAcl'.
+     * }
+     * @return array
+     */
+    public function reload(array $options = [])
+    {
+        return $this->info = $this->connection->getObject($options + $this->identity);
     }
 
     /**
@@ -283,12 +317,12 @@ class Object
      *
      * Example:
      * ```
-     * echo $object->getName();
+     * echo $object->name();
      * ```
      *
      * @return string
      */
-    public function getName()
+    public function name()
     {
         return $this->identity['object'];
     }
@@ -298,12 +332,12 @@ class Object
      *
      * Example:
      * ```
-     * echo $object->getIdentity()['object'];
+     * echo $object->identity()['object'];
      * ```
      *
      * @return string
      */
-    public function getIdentity()
+    public function identity()
     {
         return $this->identity;
     }

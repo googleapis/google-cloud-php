@@ -137,7 +137,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
         $bucket = new Bucket($this->connection->reveal(), 'bucket');
         $objects = iterator_to_array($bucket->objects());
 
-        $this->assertEquals('file.txt', $objects[0]->getName());
+        $this->assertEquals('file.txt', $objects[0]->name());
     }
 
     public function testGetsObjectsWithToken()
@@ -159,7 +159,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
         $bucket = new Bucket($this->connection->reveal(), 'bucket');
         $objects = iterator_to_array($bucket->objects());
 
-        $this->assertEquals('file2.txt', $objects[1]->getName());
+        $this->assertEquals('file2.txt', $objects[1]->name());
     }
 
     public function testDelete()
@@ -186,7 +186,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
 
         $bucket->update($versioningData);
 
-        $this->assertTrue($bucket->getInfo()['versioning']['enabled']);
+        $this->assertTrue($bucket->info()['versioning']['enabled']);
     }
 
     public function testGetsInfo()
@@ -198,7 +198,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
         ];
         $bucket = new Bucket($this->connection->reveal(), 'bucket', $bucketInfo);
 
-        $this->assertEquals($bucketInfo, $bucket->getInfo());
+        $this->assertEquals($bucketInfo, $bucket->info());
     }
 
     public function testGetsInfoWithForce()
@@ -208,16 +208,18 @@ class BucketTest extends \PHPUnit_Framework_TestCase
             'etag' => 'ABC',
             'kind' => 'storage#bucket'
         ];
-        $this->connection->getBucket(Argument::any())->willReturn($bucketInfo);
+        $this->connection->getBucket(Argument::any())
+            ->willReturn($bucketInfo)
+            ->shouldBeCalledTimes(1);
         $bucket = new Bucket($this->connection->reveal(), 'bucket');
 
-        $this->assertEquals($bucketInfo, $bucket->getInfo(['force' => true]));
+        $this->assertEquals($bucketInfo, $bucket->info());
     }
 
     public function testGetsName()
     {
         $bucket = new Bucket($this->connection->reveal(), $name = 'bucket');
 
-        $this->assertEquals($name, $bucket->getName());
+        $this->assertEquals($name, $bucket->name());
     }
 }

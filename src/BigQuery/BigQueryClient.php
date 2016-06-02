@@ -105,7 +105,7 @@ class BigQueryClient
      *     $isComplete = $queryResults->isComplete(); // check the query's status
      * }
      *
-     * foreach ($queryResults->getRows() as $row) {
+     * foreach ($queryResults->rows() as $row) {
      *     echo $row['name'];
      * }
      * ```
@@ -159,7 +159,7 @@ class BigQueryClient
      * $job = $bigQuery->runQueryAsJob('SELECT * FROM [bigquery-public-data:usa_names.usa_1910_2013]');
      *
      * $isComplete = false;
-     * $queryResults = $job->getQueryResults();
+     * $queryResults = $job->queryResults();
      *
      * while (!$isComplete) {
      *     sleep(1); // let's wait for a moment...
@@ -167,7 +167,7 @@ class BigQueryClient
      *     $isComplete = $queryResults->isComplete(); // check the query's status
      * }
      *
-     * foreach ($queryResults->getRows() as $row) {
+     * foreach ($queryResults->rows() as $row) {
      *     echo $row['name'];
      * }
      * ```
@@ -227,7 +227,7 @@ class BigQueryClient
      * ]);
      *
      * foreach ($jobs as $job) {
-     *     var_dump($job->getId());
+     *     var_dump($job->id());
      * }
      * ```
      *
@@ -294,7 +294,7 @@ class BigQueryClient
      * $datasets = $bigQuery->datasets();
      *
      * foreach ($datasets as $dataset) {
-     *     var_dump($dataset->getId());
+     *     var_dump($dataset->id());
      * }
      * ```
      *

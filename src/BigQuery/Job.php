@@ -33,26 +33,26 @@ class Job
     private $connection;
 
     /**
-     * @var array The job's metadata
-     */
-    private $data;
-
-    /**
      * @var array The job's identity.
      */
     private $identity;
+
+    /**
+     * @var array The job's metadata
+     */
+    private $info;
 
     /**
      * @param ConnectionInterface $connection Represents a connection to
      *        BigQuery.
      * @param string $id The job's ID.
      * @param string $projectId The project's ID.
-     * @param array $data The job's metadata.
+     * @param array $info The job's metadata.
      */
-    public function __construct(ConnectionInterface $connection, $id, $projectId, array $data = [])
+    public function __construct(ConnectionInterface $connection, $id, $projectId, array $info = [])
     {
         $this->connection = $connection;
-        $this->data = $data;
+        $this->info = $info;
         $this->identity = [
             'jobId' => $id,
             'projectId' => $projectId
@@ -114,7 +114,7 @@ class Job
      * Example:
      * ```
      * $job = $bigQuery->runQueryAsJob('SELECT * FROM [bigquery-public-data:usa_names.usa_1910_2013]');
-     * $queryResults = $job->getQueryResults();
+     * $queryResults = $job->queryResults();
      * ```
      *
      * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs/getQueryResults
@@ -130,7 +130,7 @@ class Job
      * }
      * @return array
      */
-    public function getQueryResults(array $options = [])
+    public function queryResults(array $options = [])
     {
         $response = $this->connection->getQueryResults($options + $this->identity);
 
@@ -164,7 +164,7 @@ class Job
      */
     public function isComplete(array $options = [])
     {
-        return $this->getInfo($options)['status']['state'] === 'DONE';
+        return $this->info($options)['status']['state'] === 'DONE';
     }
 
     /**
@@ -173,7 +173,7 @@ class Job
      *
      * Example:
      * ```
-     * $info = $job->getInfo();
+     * $info = $job->info();
      * echo $info['statistics']['startTime'];
      * ```
      *
@@ -182,13 +182,13 @@ class Job
      * @param array $options Configuration options.
      * @return array
      */
-    public function getInfo(array $options = [])
+    public function info(array $options = [])
     {
-        if (!$this->data) {
+        if (!$this->info) {
             $this->reload($options);
         }
 
-        return $this->data;
+        return $this->info;
     }
 
     /**
@@ -209,7 +209,7 @@ class Job
      */
     public function reload(array $options = [])
     {
-        return $this->data = $this->connection->getJob($options + $this->identity);
+        return $this->info = $this->connection->getJob($options + $this->identity);
     }
 
     /**
@@ -217,12 +217,12 @@ class Job
      *
      * Example:
      * ```
-     * echo $job->getId();
+     * echo $job->id();
      * ```
      *
      * @return string
      */
-    public function getId()
+    public function id()
     {
         return $this->identity['jobId'];
     }
@@ -234,12 +234,12 @@ class Job
      *
      * Example:
      * ```
-     * echo $job->getIdentity()['projectId'];
+     * echo $job->identity()['projectId'];
      * ```
      *
      * @return array
      */
-    public function getIdentity()
+    public function identity()
     {
         return $this->identity;
     }
