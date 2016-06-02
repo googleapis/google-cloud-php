@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Storage;
 
+use Google\Cloud\ClientTrait;
 use Google\Cloud\Storage\Connection\ConnectionInterface;
 use Google\Cloud\Storage\Connection\Rest;
 
@@ -27,6 +28,8 @@ use Google\Cloud\Storage\Connection\Rest;
  */
 class StorageClient
 {
+    use ClientTrait;
+
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/devstorage.full_control';
     const READ_ONLY_SCOPE = 'https://www.googleapis.com/auth/devstorage.read_only';
     const READ_WRITE_SCOPE = 'https://www.googleapis.com/auth/devstorage.read_write';
@@ -35,11 +38,6 @@ class StorageClient
      * @var ConnectionInterface $connection Represents a connection to Storage.
      */
     protected $connection;
-
-    /**
-     * @var string The project ID created in the Google Developers Console.
-     */
-    private $projectId;
 
     /**
      * Create a Storage client.
@@ -74,16 +72,11 @@ class StorageClient
      */
     public function __construct(array $config = [])
     {
-        if (!isset($config['projectId'])) {
-            throw new \InvalidArgumentException('A projectId is required.');
-        }
-
         if (!isset($config['scopes'])) {
             $config['scopes'] = [self::FULL_CONTROL_SCOPE];
         }
 
-        $this->connection = new Rest($config);
-        $this->projectId = $config['projectId'];
+        $this->connection = new Rest($this->configureAuthentication($config));
     }
 
     /**

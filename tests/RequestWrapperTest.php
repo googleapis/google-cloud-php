@@ -195,9 +195,6 @@ class RequestWrapperTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    /**
-     * @expectedException Google\Cloud\Exception\GoogleException
-     */
     public function testThrowsExceptionWhenFetchingCredentialsFails()
     {
         $requestWrapper = new RequestWrapper([

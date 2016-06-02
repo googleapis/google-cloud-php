@@ -20,7 +20,7 @@ namespace Google\Cloud\Exception;
 /**
  * Exception thrown when a resource is not found.
  */
-class NotFoundException extends GoogleException
+class NotFoundException extends ServiceException
 {
 
 }
