@@ -194,16 +194,19 @@ class DocGenerator
         $exampleParts = explode('```', $examples);
 
         foreach ($exampleParts as $example) {
+            $example = trim($example);
             $caption = '';
 
             if (strlen($example) === 0) {
                 continue;
             }
 
-            // strip the syntax highlighting, it won't be used in the doc site
-            $example = ltrim($example, 'php');
-            $example = trim($example);
             $lines = explode(PHP_EOL, $example);
+
+            // strip the syntax highlighting, it won't be used in the doc site
+            if (substr($lines[0], 0, 3) === 'php') {
+                unset($lines[0]);
+            }
 
             foreach ($lines as $key => $line) {
                 if (substr($line, 0, 2) === '//') {
