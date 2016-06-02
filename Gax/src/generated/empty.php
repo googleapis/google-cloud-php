@@ -5,7 +5,7 @@
 
 namespace google\protobuf {
 
-  class Empty extends \DrSlump\Protobuf\Message {
+  class EmptyC extends \DrSlump\Protobuf\Message {
 
 
     /** @var \Closure[] */
