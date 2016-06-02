@@ -136,7 +136,7 @@ class RequestWrapperTest extends \PHPUnit_Framework_TestCase
             ->willReturn(['access_token' => 'abc']);
 
         return [
-            [$config + ['keyFile' => file_get_contents($keyFilePath)]], // keyFile
+            [$config + ['keyFile' => json_decode(file_get_contents($keyFilePath), true)]], // keyFile
             [$config + ['keyFilePath' => $keyFilePath]], //keyFilePath
             [$config + ['credentialsFetcher' => $credentialsFetcher->reveal()]], // user supplied fetcher
             [$config] // application default
@@ -157,7 +157,7 @@ class RequestWrapperTest extends \PHPUnit_Framework_TestCase
         $keyFilePath = __DIR__ . '/fixtures/json-key-fixture.json';
 
         return [
-            [$config + ['keyFile' => file_get_contents($keyFilePath)]], // keyFile
+            [$config + ['keyFile' => json_decode(file_get_contents($keyFilePath), true)]], // keyFile
             [$config + ['keyFilePath' => $keyFilePath]], //keyFilePath
         ];
     }
@@ -195,6 +195,9 @@ class RequestWrapperTest extends \PHPUnit_Framework_TestCase
         );
     }
 
+    /**
+     * @expectedException Google\Cloud\Exception\GoogleException
+     */
     public function testThrowsExceptionWhenFetchingCredentialsFails()
     {
         $requestWrapper = new RequestWrapper([

@@ -109,12 +109,11 @@ class RequestWrapper
             'httpHandler' => null,
             'httpOptions' => [],
             'keyFile' => null,
-            'keyFilePath' => null,
             'retries' => null,
             'scopes' => null
         ];
 
-        if (!$config['credentialsFetcher'] instanceof FetchAuthTokenInterface) {
+        if ($config['credentialsFetcher'] && !$config['credentialsFetcher'] instanceof FetchAuthTokenInterface) {
             throw new \InvalidArgumentException('credentialsFetcher must implement FetchAuthTokenInterface.');
         }
 
@@ -125,6 +124,7 @@ class RequestWrapper
         $this->httpOptions = $config['httpOptions'];
         $this->retries = $config['retries'];
         $this->scopes = $config['scopes'];
+        $this->keyFile = $config['keyFile'];
     }
 
     /**
@@ -168,9 +168,8 @@ class RequestWrapper
             return $this->credentialsFetcher;
         }
 
-        if ($this->keyFileStream) {
-            $this->keyFileStream->rewind();
-            return CredentialsLoader::makeCredentials($this->scopes, $this->keyFileStream);
+        if ($this->keyFile) {
+            return CredentialsLoader::makeCredentials($this->scopes, $this->keyFile);
         }
 
         return ApplicationDefaultCredentials::getCredentials($this->scopes, $this->authHttpHandler);
@@ -219,7 +218,7 @@ class RequestWrapper
     private function fetchCredentials()
     {
         try {
-            $credentials = $this->credentialsFetcher->fetchAuthToken($this->authHttpHandler);
+            $credentials = $this->getCredentialsFetcher()->fetchAuthToken($this->authHttpHandler);
         } catch (\Exception $ex) {
             throw $this->convertToGoogleException($ex);
         }

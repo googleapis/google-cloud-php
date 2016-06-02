@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Exception;
 
+use Exception;
+
 /**
  * Exception thrown when a request fails.
  */

@@ -40,7 +40,6 @@ trait ClientTrait
     private function configureAuthentication(array $config)
     {
         $config['keyFile'] = $this->getKeyFile($config);
-        $config['credentialsFetcher'] = $this->getCredentials($config);
 
         $this->projectId = $this->detectProjectId($config);
 
@@ -97,28 +96,6 @@ trait ClientTrait
 
         return CredentialsLoader::fromEnv()
             ?: CredentialsLoader::fromWellKnownFile();
-    }
-
-    /**
-     * Create an instance of CredentialsLoader from a keyfile.
-     *
-     * @param  array $config
-     * @return CredentialsLoader
-     */
-    private function getCredentials(array $config)
-    {
-        if ($config['keyFile']) {
-            return CredentialsLoader::makeCredentials($config['scopes'], $config['keyFile']);
-        }
-
-        try {
-            return ApplicationDefaultCredentials::getCredentials(
-                $config['scopes'],
-                $authHttpHandler
-            );
-        } catch (\DomainException $ex) {
-            throw new GoogleException($ex->getMessage(), $ex->getCode(), $ex);
-        }
     }
 
     /**
