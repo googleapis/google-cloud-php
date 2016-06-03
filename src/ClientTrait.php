@@ -65,16 +65,7 @@ trait ClientTrait
         $config += [
             'keyFile' => null,
             'keyFilePath' => null,
-            'scopes' => null,
-            'authHttpHandler' => null,
-            'httpHandler' => null,
         ];
-
-        if (!$config['httpHandler']) {
-            $config['httpHandler'] = HttpHandlerFactory::build();
-        }
-
-        $authHttpHandler = $config['authHttpHandler'] ?: $config['httpHandler'];
 
         if ($config['keyFile']) {
             return $config['keyFile'];
