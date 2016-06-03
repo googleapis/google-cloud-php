@@ -92,9 +92,6 @@ class RequestWrapper
      *           credentials .json file retrieved from the Google Developers
      *           Console.
      *     @type array $httpOptions HTTP client specific configuration options.
-     *     @type string $keyFilePath The full path to your service account
-     *           credentials .json file retrieved from the Google Developers
-     *           Console.
      *     @type int $retries Number of retries for a failed request. Defaults
      *           to 3.
      *     @type array $scopes Scopes to be used for the request.
@@ -232,7 +229,7 @@ class RequestWrapper
      * Convert any exception to a Google Exception.
      *
      * @param  \Exception $ex
-     * @param  GoogleException
+     * @return  GoogleException
      */
     private function convertToGoogleException(\Exception $ex)
     {

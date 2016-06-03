@@ -19,7 +19,9 @@ namespace Google\Cloud;
 
 use Google\Auth\ApplicationDefaultCredentials;
 use Google\Auth\CredentialsLoader;
+use Google\Auth\Credentials\GCECredentials;
 use Google\Auth\HttpHandler\HttpHandlerFactory;
+use Google\Cloud\Compute\Metadata;
 use Google\Cloud\Exception\ConfigException;
 use Google\Cloud\Exception\GoogleException;
 use GuzzleHttp\Psr7;
@@ -59,6 +61,8 @@ trait ClientTrait
      * 5. Exception. :(
      *
      * @param  array $config
+     * @return array Key data
+     * @throws GoogleException
      */
     private function getKeyFile(array $config = [])
     {
@@ -96,7 +100,9 @@ trait ClientTrait
      * 1. If $config['projectId'] is set, use that.
      * 2. If $config['keyFile'] is set, attempt to retrieve a project ID from
      *    that.
-     * 3. Throw exception.
+     * 3. If code is running on compute engine, try to get the project ID from
+     *    the metadata store
+     * 4. Throw exception.
      *
      * @param  array $config
      * @return string
@@ -106,14 +112,24 @@ trait ClientTrait
     {
         $config += [
             'projectId' => null,
+            'httpHandler' => null,
+            'keyFile' => null,
         ];
 
         if ($config['projectId']) {
             return $config['projectId'];
         }
 
-        if ($config['keyFile'] && isset($config['keyFile']['project_id'])) {
+        if (isset($config['keyFile']['project_id'])) {
             return $config['keyFile']['project_id'];
+        }
+
+        if (GCECredentials::onGce($config['httpHandler'])) {
+            $metadata = new Metadata();
+            $projectId = $metadata->getProjectId();
+            if ($projectId) {
+                return $projectId;
+            }
         }
 
         throw new GoogleException(
