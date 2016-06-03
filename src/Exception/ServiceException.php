@@ -50,7 +50,7 @@ class ServiceException extends GoogleException
      */
     public function hasServiceException()
     {
-        return ($this->serviceException);
+        return (bool) $this->serviceException;
     }
 
     /**
