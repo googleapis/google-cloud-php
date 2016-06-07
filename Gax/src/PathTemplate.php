@@ -32,9 +32,6 @@
 
 namespace Google\GAX;
 
-ini_set('error_reporting', E_ALL);
-ini_set('display_errors', true);
-
 use Exception;
 use Countable;
 use Jison\Segment;
