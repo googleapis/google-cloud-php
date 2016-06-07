@@ -646,8 +646,14 @@ class SubscriberApi
      *
      * @throws Google\GAX\ApiException if the remote call fails
      */
-    public function modifyAckDeadline($subscription, $ackIds, $ackDeadlineSeconds, $optionalArgs = [], $callSettings = [])
-    {
+    public function modifyAckDeadline(
+        $subscription,
+        $ackIds,
+        $ackDeadlineSeconds,
+        $optionalArgs = [],
+        $callSettings = []
+    ) {
+    
         $request = new ModifyAckDeadlineRequest();
         $request->setSubscription($subscription);
         foreach ($ackIds as $elem) {
