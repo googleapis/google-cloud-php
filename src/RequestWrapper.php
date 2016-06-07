@@ -65,10 +65,10 @@ class RequestWrapper
     private $httpOptions;
 
     /**
-     * @var StreamInterface Points to the keyfile downloaded from the Google
-     * Developer's Console.
+     * @var array The contents of the service account
+     * credentials .json file retrieved from the Google Developers Console.
      */
-    private $keyFileStream;
+    private $keyFile;
 
     /**
      * @var int Number of retries for a failed request. Defaults to 3.
@@ -229,7 +229,7 @@ class RequestWrapper
      * Convert any exception to a Google Exception.
      *
      * @param  \Exception $ex
-     * @return  GoogleException
+     * @return  ServiceException
      */
     private function convertToGoogleException(\Exception $ex)
     {
@@ -251,7 +251,7 @@ class RequestWrapper
                 break;
 
             default:
-                $exception = Exception\GoogleException::class;
+                $exception = Exception\ServiceException::class;
                 break;
         }
 

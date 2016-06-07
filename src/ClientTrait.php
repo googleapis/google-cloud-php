@@ -22,7 +22,6 @@ use Google\Auth\CredentialsLoader;
 use Google\Auth\Credentials\GCECredentials;
 use Google\Auth\HttpHandler\HttpHandlerFactory;
 use Google\Cloud\Compute\Metadata;
-use Google\Cloud\Exception\ConfigException;
 use Google\Cloud\Exception\GoogleException;
 use GuzzleHttp\Psr7;
 
@@ -113,7 +112,6 @@ trait ClientTrait
         $config += [
             'projectId' => null,
             'httpHandler' => null,
-            'keyFile' => null,
         ];
 
         if ($config['projectId']) {
