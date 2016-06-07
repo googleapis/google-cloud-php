@@ -258,11 +258,13 @@ class PublisherApi
         $clientConfigJsonString = file_get_contents('./resources/publisher_client_config.json');
         $clientConfig = json_decode($clientConfigJsonString, true);
         $this->defaultCallSettings =
-                CallSettings::load('google.pubsub.v1.Publisher',
-                                   $clientConfig,
-                                   $options['retryingOverride'],
-                                   GrpcConstants::getStatusCodeNames(),
-                                   $options['timeoutMillis']);
+                CallSettings::load(
+                    'google.pubsub.v1.Publisher',
+                    $clientConfig,
+                    $options['retryingOverride'],
+                    GrpcConstants::getStatusCodeNames(),
+                    $options['timeoutMillis']
+                );
 
         $this->scopes = $options['scopes'];
 
@@ -278,7 +280,8 @@ class PublisherApi
             $generatedCreateStub,
             $options['serviceAddress'],
             $options['port'],
-            $createStubOptions);
+            $createStubOptions
+        );
     }
 
     /**
@@ -328,9 +331,14 @@ class PublisherApi
         $request->setName($name);
 
         $mergedSettings = $this->defaultCallSettings['createTopic']->merge(
-            new CallSettings($callSettings));
+            new CallSettings($callSettings)
+        );
         $callable = ApiCallable::createApiCall(
-            $this->stub, 'CreateTopic', $mergedSettings, $this->descriptors['createTopic']);
+            $this->stub,
+            'CreateTopic',
+            $mergedSettings,
+            $this->descriptors['createTopic']
+        );
 
         return $callable(
             $request,
@@ -390,9 +398,14 @@ class PublisherApi
         }
 
         $mergedSettings = $this->defaultCallSettings['publish']->merge(
-            new CallSettings($callSettings));
+            new CallSettings($callSettings)
+        );
         $callable = ApiCallable::createApiCall(
-            $this->stub, 'Publish', $mergedSettings, $this->descriptors['publish']);
+            $this->stub,
+            'Publish',
+            $mergedSettings,
+            $this->descriptors['publish']
+        );
 
         return $callable(
             $request,
@@ -442,9 +455,14 @@ class PublisherApi
         $request->setTopic($topic);
 
         $mergedSettings = $this->defaultCallSettings['getTopic']->merge(
-            new CallSettings($callSettings));
+            new CallSettings($callSettings)
+        );
         $callable = ApiCallable::createApiCall(
-            $this->stub, 'GetTopic', $mergedSettings, $this->descriptors['getTopic']);
+            $this->stub,
+            'GetTopic',
+            $mergedSettings,
+            $this->descriptors['getTopic']
+        );
 
         return $callable(
             $request,
@@ -501,9 +519,14 @@ class PublisherApi
         }
 
         $mergedSettings = $this->defaultCallSettings['listTopics']->merge(
-            new CallSettings($callSettings));
+            new CallSettings($callSettings)
+        );
         $callable = ApiCallable::createApiCall(
-            $this->stub, 'ListTopics', $mergedSettings, $this->descriptors['listTopics']);
+            $this->stub,
+            'ListTopics',
+            $mergedSettings,
+            $this->descriptors['listTopics']
+        );
 
         return $callable(
             $request,
@@ -560,9 +583,14 @@ class PublisherApi
         }
 
         $mergedSettings = $this->defaultCallSettings['listTopicSubscriptions']->merge(
-            new CallSettings($callSettings));
+            new CallSettings($callSettings)
+        );
         $callable = ApiCallable::createApiCall(
-            $this->stub, 'ListTopicSubscriptions', $mergedSettings, $this->descriptors['listTopicSubscriptions']);
+            $this->stub,
+            'ListTopicSubscriptions',
+            $mergedSettings,
+            $this->descriptors['listTopicSubscriptions']
+        );
 
         return $callable(
             $request,
@@ -614,9 +642,14 @@ class PublisherApi
         $request->setTopic($topic);
 
         $mergedSettings = $this->defaultCallSettings['deleteTopic']->merge(
-            new CallSettings($callSettings));
+            new CallSettings($callSettings)
+        );
         $callable = ApiCallable::createApiCall(
-            $this->stub, 'DeleteTopic', $mergedSettings, $this->descriptors['deleteTopic']);
+            $this->stub,
+            'DeleteTopic',
+            $mergedSettings,
+            $this->descriptors['deleteTopic']
+        );
 
         return $callable(
             $request,

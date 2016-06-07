@@ -295,11 +295,13 @@ class SubscriberApi
         $clientConfigJsonString = file_get_contents('./resources/subscriber_client_config.json');
         $clientConfig = json_decode($clientConfigJsonString, true);
         $this->defaultCallSettings =
-                CallSettings::load('google.pubsub.v1.Subscriber',
-                                   $clientConfig,
-                                   $options['retryingOverride'],
-                                   GrpcConstants::getStatusCodeNames(),
-                                   $options['timeoutMillis']);
+                CallSettings::load(
+                    'google.pubsub.v1.Subscriber',
+                    $clientConfig,
+                    $options['retryingOverride'],
+                    GrpcConstants::getStatusCodeNames(),
+                    $options['timeoutMillis']
+                );
 
         $this->scopes = $options['scopes'];
 
@@ -315,7 +317,8 @@ class SubscriberApi
             $generatedCreateStub,
             $options['serviceAddress'],
             $options['port'],
-            $createStubOptions);
+            $createStubOptions
+        );
     }
 
     /**
@@ -403,9 +406,14 @@ class SubscriberApi
         }
 
         $mergedSettings = $this->defaultCallSettings['createSubscription']->merge(
-            new CallSettings($callSettings));
+            new CallSettings($callSettings)
+        );
         $callable = ApiCallable::createApiCall(
-            $this->stub, 'CreateSubscription', $mergedSettings, $this->descriptors['createSubscription']);
+            $this->stub,
+            'CreateSubscription',
+            $mergedSettings,
+            $this->descriptors['createSubscription']
+        );
 
         return $callable(
             $request,
@@ -455,9 +463,14 @@ class SubscriberApi
         $request->setSubscription($subscription);
 
         $mergedSettings = $this->defaultCallSettings['getSubscription']->merge(
-            new CallSettings($callSettings));
+            new CallSettings($callSettings)
+        );
         $callable = ApiCallable::createApiCall(
-            $this->stub, 'GetSubscription', $mergedSettings, $this->descriptors['getSubscription']);
+            $this->stub,
+            'GetSubscription',
+            $mergedSettings,
+            $this->descriptors['getSubscription']
+        );
 
         return $callable(
             $request,
@@ -514,9 +527,14 @@ class SubscriberApi
         }
 
         $mergedSettings = $this->defaultCallSettings['listSubscriptions']->merge(
-            new CallSettings($callSettings));
+            new CallSettings($callSettings)
+        );
         $callable = ApiCallable::createApiCall(
-            $this->stub, 'ListSubscriptions', $mergedSettings, $this->descriptors['listSubscriptions']);
+            $this->stub,
+            'ListSubscriptions',
+            $mergedSettings,
+            $this->descriptors['listSubscriptions']
+        );
 
         return $callable(
             $request,
@@ -568,9 +586,14 @@ class SubscriberApi
         $request->setSubscription($subscription);
 
         $mergedSettings = $this->defaultCallSettings['deleteSubscription']->merge(
-            new CallSettings($callSettings));
+            new CallSettings($callSettings)
+        );
         $callable = ApiCallable::createApiCall(
-            $this->stub, 'DeleteSubscription', $mergedSettings, $this->descriptors['deleteSubscription']);
+            $this->stub,
+            'DeleteSubscription',
+            $mergedSettings,
+            $this->descriptors['deleteSubscription']
+        );
 
         return $callable(
             $request,
@@ -633,9 +656,14 @@ class SubscriberApi
         $request->setAckDeadlineSeconds($ackDeadlineSeconds);
 
         $mergedSettings = $this->defaultCallSettings['modifyAckDeadline']->merge(
-            new CallSettings($callSettings));
+            new CallSettings($callSettings)
+        );
         $callable = ApiCallable::createApiCall(
-            $this->stub, 'ModifyAckDeadline', $mergedSettings, $this->descriptors['modifyAckDeadline']);
+            $this->stub,
+            'ModifyAckDeadline',
+            $mergedSettings,
+            $this->descriptors['modifyAckDeadline']
+        );
 
         return $callable(
             $request,
@@ -695,9 +723,14 @@ class SubscriberApi
         }
 
         $mergedSettings = $this->defaultCallSettings['acknowledge']->merge(
-            new CallSettings($callSettings));
+            new CallSettings($callSettings)
+        );
         $callable = ApiCallable::createApiCall(
-            $this->stub, 'Acknowledge', $mergedSettings, $this->descriptors['acknowledge']);
+            $this->stub,
+            'Acknowledge',
+            $mergedSettings,
+            $this->descriptors['acknowledge']
+        );
 
         return $callable(
             $request,
@@ -763,9 +796,14 @@ class SubscriberApi
         }
 
         $mergedSettings = $this->defaultCallSettings['pull']->merge(
-            new CallSettings($callSettings));
+            new CallSettings($callSettings)
+        );
         $callable = ApiCallable::createApiCall(
-            $this->stub, 'Pull', $mergedSettings, $this->descriptors['pull']);
+            $this->stub,
+            'Pull',
+            $mergedSettings,
+            $this->descriptors['pull']
+        );
 
         return $callable(
             $request,
@@ -826,9 +864,14 @@ class SubscriberApi
         $request->setPushConfig($pushConfig);
 
         $mergedSettings = $this->defaultCallSettings['modifyPushConfig']->merge(
-            new CallSettings($callSettings));
+            new CallSettings($callSettings)
+        );
         $callable = ApiCallable::createApiCall(
-            $this->stub, 'ModifyPushConfig', $mergedSettings, $this->descriptors['modifyPushConfig']);
+            $this->stub,
+            'ModifyPushConfig',
+            $mergedSettings,
+            $this->descriptors['modifyPushConfig']
+        );
 
         return $callable(
             $request,
