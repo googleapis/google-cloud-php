@@ -65,10 +65,10 @@ class RequestWrapper
     private $httpOptions;
 
     /**
-     * @var StreamInterface Points to the keyfile downloaded from the Google
-     * Developer's Console.
+     * @var array The contents of the service account
+     * credentials .json file retrieved from the Google Developers Console.
      */
-    private $keyFileStream;
+    private $keyFile;
 
     /**
      * @var int Number of retries for a failed request. Defaults to 3.
@@ -92,9 +92,6 @@ class RequestWrapper
      *           credentials .json file retrieved from the Google Developers
      *           Console.
      *     @type array $httpOptions HTTP client specific configuration options.
-     *     @type string $keyFilePath The full path to your service account
-     *           credentials .json file retrieved from the Google Developers
-     *           Console.
      *     @type int $retries Number of retries for a failed request. Defaults
      *           to 3.
      *     @type array $scopes Scopes to be used for the request.
@@ -109,7 +106,6 @@ class RequestWrapper
             'httpHandler' => null,
             'httpOptions' => [],
             'keyFile' => null,
-            'keyFilePath' => null,
             'retries' => null,
             'scopes' => null
         ];
@@ -125,10 +121,7 @@ class RequestWrapper
         $this->httpOptions = $config['httpOptions'];
         $this->retries = $config['retries'];
         $this->scopes = $config['scopes'];
-
-        if ($config['keyFile'] || $config['keyFilePath']) {
-            $this->keyFileStream = Psr7\stream_for($config['keyFile'] ?: fopen($config['keyFilePath'], 'r'));
-        }
+        $this->keyFile = $config['keyFile'];
     }
 
     /**
@@ -172,9 +165,8 @@ class RequestWrapper
             return $this->credentialsFetcher;
         }
 
-        if ($this->keyFileStream) {
-            $this->keyFileStream->rewind();
-            return CredentialsLoader::makeCredentials($this->scopes, $this->keyFileStream);
+        if ($this->keyFile) {
+            return CredentialsLoader::makeCredentials($this->scopes, $this->keyFile);
         }
 
         return ApplicationDefaultCredentials::getCredentials($this->scopes, $this->authHttpHandler);
@@ -237,7 +229,7 @@ class RequestWrapper
      * Convert any exception to a Google Exception.
      *
      * @param  \Exception $ex
-     * @param  GoogleException
+     * @return  ServiceException
      */
     private function convertToGoogleException(\Exception $ex)
     {
@@ -259,7 +251,7 @@ class RequestWrapper
                 break;
 
             default:
-                $exception = Exception\GoogleException::class;
+                $exception = Exception\ServiceException::class;
                 break;
         }
 

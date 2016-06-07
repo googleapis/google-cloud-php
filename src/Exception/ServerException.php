@@ -21,7 +21,7 @@ namespace Google\Cloud\Exception;
  * Exception thrown when a request fails due to an error on the server.
  * In REST context, this exception indicates a status code 500.
  */
-class ServerException extends GoogleException
+class ServerException extends ServiceException
 {
 
 }

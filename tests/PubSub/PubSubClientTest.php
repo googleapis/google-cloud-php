@@ -37,14 +37,6 @@ class PubSubClientTest extends \PHPUnit_Framework_TestCase
         $this->client = new PubSubClientStub(['projectId' => 'project']);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
-    public function testWithMissingProjectId()
-    {
-        new PubSubClient([]);
-    }
-
     public function testCreateTopic()
     {
         $topicName = 'test-topic';

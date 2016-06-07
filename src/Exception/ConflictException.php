@@ -21,7 +21,7 @@ namespace Google\Cloud\Exception;
  * Exception thrown when a request fails due to a conflict.
  * In REST context, this exception indicates a status code 409.
  */
-class ConflictException extends GoogleException
+class ConflictException extends ServiceException
 {
 
 }

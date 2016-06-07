@@ -38,14 +38,6 @@ class BigQueryClientTest extends \PHPUnit_Framework_TestCase
         $this->client = new BigQueryTestClient(['projectId' => $this->projectId]);
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
-    public function testThrowsExceptionWithoutProjectId()
-    {
-        $client = new BigQueryClient();
-    }
-
     public function testRunsQuery()
     {
         $this->connection->query(Argument::any())
