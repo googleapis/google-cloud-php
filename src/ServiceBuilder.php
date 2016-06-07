@@ -35,6 +35,9 @@ use Google\Cloud\Storage\StorageClient;
  * constructor up front which can be shared between clients or specify the
  * options for the specific services you wish to access, e.g. Datastore, or
  * Storage.
+ *
+ * Please note that all examples below take advantage of
+ * [Application Default Credentials](https://developers.google.com/identity/protocols/application-default-credentials).
  */
 class ServiceBuilder
 {
@@ -54,7 +57,6 @@ class ServiceBuilder
      * use Google\Cloud\ServiceBuilder;
      *
      * $builder = new ServiceBuilder([
-     *     'keyFilePath' => '/path/to/key/file.json',
      *     'projectId' => 'myAwesomeProject'
      * ]);
      * ```
@@ -92,7 +94,6 @@ class ServiceBuilder
      * ```
      * use Google\Cloud\ServiceBuilder;
      *
-     * // Create a Storage client using application default credentials.
      * $builder = new ServiceBuilder([
      *     'projectId' => 'myAwesomeProject'
      * ]);
@@ -118,7 +119,6 @@ class ServiceBuilder
      * ```
      * use Google\Cloud\ServiceBuilder;
      *
-     * // Create a BigQuery client using application default credentials.
      * $builder = new ServiceBuilder([
      *     'projectId' => 'myAwesomeProject'
      * ]);
@@ -144,7 +144,6 @@ class ServiceBuilder
      * ```
      * use Google\Cloud\ServiceBuilder;
      *
-     * // Create a PubSub client using application default credentials.
      * $builder = new ServiceBuilder([
      *     'projectId' => 'myAwesomeProject'
      * ]);
