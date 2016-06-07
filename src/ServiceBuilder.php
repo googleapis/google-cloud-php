@@ -92,7 +92,7 @@ class ServiceBuilder
      * ```
      * use Google\Cloud\ServiceBuilder;
      *
-     * // Create a storage client using application default credentials.
+     * // Create a Storage client using application default credentials.
      * $builder = new ServiceBuilder([
      *     'projectId' => 'myAwesomeProject'
      * ]);
@@ -144,7 +144,7 @@ class ServiceBuilder
      * ```
      * use Google\Cloud\ServiceBuilder;
      *
-     * // Create a storage client using application default credentials.
+     * // Create a PubSub client using application default credentials.
      * $builder = new ServiceBuilder([
      *     'projectId' => 'myAwesomeProject'
      * ]);
