@@ -4,7 +4,7 @@
 
 > Idiomatic PHP client for [Google Cloud Platform](https://cloud.google.com/) services.
 
-Please note this library is currently under active development. Any release versioned 0.x.y is subject to backwards incompatiable changes at any time.
+Please note this library is currently under active development. Any release versioned 0.x.y is subject to backwards incompatible changes at any time.
 
 ## Contributing
 
