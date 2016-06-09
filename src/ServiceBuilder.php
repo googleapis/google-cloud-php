@@ -19,6 +19,7 @@ namespace Google\Cloud;
 
 use Google\Auth\HttpHandler\HttpHandlerFactory;
 use Google\Cloud\BigQuery\BigQueryClient;
+use Google\Cloud\Logging\LoggingClient;
 use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\Storage\StorageClient;
 
@@ -158,6 +159,32 @@ class ServiceBuilder
     public function pubsub(array $config = [])
     {
         return new PubSubClient($config ? $this->resolveConfig($config) : $this->config);
+    }
+
+    /**
+     * Google Stackdriver Logging client. Allows you to store, search, analyze,
+     * monitor, and alert on log data and events from Google Cloud Platform and
+     * Amazon Web Services. Find more information at
+     * [Google Stackdriver Logging docs](https://cloud.google.com/logging/docs/).
+     *
+     * Example:
+     * ```
+     * use Google\Cloud\ServiceBuilder;
+     *
+     * $builder = new ServiceBuilder([
+     *     'projectId' => 'myAwesomeProject'
+     * ]);
+     *
+     * $logging = $builder->logging();
+     * ```
+     *
+     * @param array $config Configuration options. See
+     *        {@see Google\Cloud\ServiceBuilder::__construct()} for the available options.
+     * @return LoggingClient
+     */
+    public function logging(array $config = [])
+    {
+        return new LoggingClient($config ? $this->resolveConfig($config) : $this->config);
     }
 
     /**

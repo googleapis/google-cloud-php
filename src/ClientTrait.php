@@ -25,6 +25,9 @@ use Google\Cloud\Compute\Metadata;
 use Google\Cloud\Exception\GoogleException;
 use GuzzleHttp\Psr7;
 
+/**
+ * Provides functionality common to each service client.
+ */
 trait ClientTrait
 {
     /**
