@@ -79,7 +79,7 @@ class DatasetTest extends \PHPUnit_Framework_TestCase
         $dataset = $this->getDataset($this->connection, ['friendlyName' => 'another name']);
         $dataset->update($updateData);
 
-        $this->assertEquals($updateData['friendlyName'], $dataset->getInfo()['friendlyName']);
+        $this->assertEquals($updateData['friendlyName'], $dataset->info()['friendlyName']);
     }
 
     public function testGetsTable()
@@ -113,7 +113,7 @@ class DatasetTest extends \PHPUnit_Framework_TestCase
         $dataset = $this->getDataset($this->connection);
         $tables = iterator_to_array($dataset->tables());
 
-        $this->assertEquals($this->tableId, $tables[0]->getId());
+        $this->assertEquals($this->tableId, $tables[0]->id());
     }
 
     public function testGetsTablesWithToken()
@@ -137,7 +137,7 @@ class DatasetTest extends \PHPUnit_Framework_TestCase
         $dataset = $this->getDataset($this->connection);
         $tables = iterator_to_array($dataset->tables());
 
-        $this->assertEquals($this->tableId, $tables[1]->getId());
+        $this->assertEquals($this->tableId, $tables[1]->id());
     }
 
     public function testCreatesTable()
@@ -166,7 +166,7 @@ class DatasetTest extends \PHPUnit_Framework_TestCase
         $this->connection->getDataset(Argument::any())->shouldNotBeCalled();
         $dataset = $this->getDataset($this->connection, $datasetInfo);
 
-        $this->assertEquals($datasetInfo, $dataset->getInfo());
+        $this->assertEquals($datasetInfo, $dataset->info());
     }
 
     public function testGetsInfoWithReload()
@@ -177,21 +177,21 @@ class DatasetTest extends \PHPUnit_Framework_TestCase
             ->shouldBeCalledTimes(1);
         $dataset = $this->getDataset($this->connection);
 
-        $this->assertEquals($datasetInfo, $dataset->getInfo());
+        $this->assertEquals($datasetInfo, $dataset->info());
     }
 
     public function testGetsId()
     {
         $dataset = $this->getDataset($this->connection);
 
-        $this->assertEquals($this->datasetId, $dataset->getId());
+        $this->assertEquals($this->datasetId, $dataset->id());
     }
 
     public function testGetsIdentity()
     {
         $dataset = $this->getDataset($this->connection);
 
-        $this->assertEquals($this->datasetId, $dataset->getIdentity()['datasetId']);
-        $this->assertEquals($this->projectId, $dataset->getIdentity()['projectId']);
+        $this->assertEquals($this->datasetId, $dataset->identity()['datasetId']);
+        $this->assertEquals($this->projectId, $dataset->identity()['projectId']);
     }
 }

@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\PubSub;
 
+use Google\Cloud\ClientTrait;
 use Google\Cloud\PubSub\Connection\Rest;
 use InvalidArgumentException;
 
@@ -27,6 +28,7 @@ use InvalidArgumentException;
  */
 class PubSubClient
 {
+    use ClientTrait;
     use ResourceNameTrait;
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/pubsub';
@@ -35,11 +37,6 @@ class PubSubClient
      * @var ConnectionInterface
      */
     protected $connection;
-
-    /**
-     * @var string The project ID created in the Google Developers Console.
-     */
-    private $projectId;
 
     /**
      * Create a PubSub client.
@@ -84,16 +81,11 @@ class PubSubClient
      */
     public function __construct(array $config = [])
     {
-        if (!isset($config['projectId'])) {
-            throw new InvalidArgumentException('A projectId is required.');
-        }
-
         if (!isset($config['scopes'])) {
             $config['scopes'] = [self::FULL_CONTROL_SCOPE];
         }
 
-        $this->connection = new Rest($config);
-        $this->projectId = $config['projectId'];
+        $this->connection = new Rest($this->configureAuthentication($config));
     }
 
     /**

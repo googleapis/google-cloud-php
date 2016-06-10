@@ -55,7 +55,7 @@ class QueryResultsTest extends \PHPUnit_Framework_TestCase
         unset($this->queryData['rows']);
         $this->connection->getQueryResults()->shouldNotBeCalled();
         $queryResults = $this->getQueryResults($this->connection, $this->queryData);
-        $queryResults->getRows()->next();
+        $queryResults->rows()->next();
     }
 
     public function testGetsRowsWithNoResults()
@@ -63,7 +63,7 @@ class QueryResultsTest extends \PHPUnit_Framework_TestCase
         $this->connection->getQueryResults()->shouldNotBeCalled();
         unset($this->queryData['rows']);
         $queryResults = $this->getQueryResults($this->connection, $this->queryData);
-        $rows = iterator_to_array($queryResults->getRows());
+        $rows = iterator_to_array($queryResults->rows());
 
         $this->assertEmpty($rows);
     }
@@ -72,7 +72,7 @@ class QueryResultsTest extends \PHPUnit_Framework_TestCase
     {
         $this->connection->getQueryResults()->shouldNotBeCalled();
         $queryResults = $this->getQueryResults($this->connection, $this->queryData);
-        $rows = iterator_to_array($queryResults->getRows());
+        $rows = iterator_to_array($queryResults->rows());
 
         $this->assertEquals('Alton', $rows[0]['first_name']);
     }
@@ -86,7 +86,7 @@ class QueryResultsTest extends \PHPUnit_Framework_TestCase
             $this->connection,
             $this->queryData + ['pageToken' => 'abcd']
         );
-        $rows = iterator_to_array($queryResults->getRows());
+        $rows = iterator_to_array($queryResults->rows());
 
         $this->assertEquals('Alton', $rows[1]['first_name']);
     }
@@ -110,7 +110,7 @@ class QueryResultsTest extends \PHPUnit_Framework_TestCase
     {
         $queryResults = $this->getQueryResults($this->connection, $this->queryData);
 
-        $this->assertEquals($this->queryData, $queryResults->getInfo());
+        $this->assertEquals($this->queryData, $queryResults->info());
     }
 
     public function testReloadsInfo()
@@ -127,7 +127,7 @@ class QueryResultsTest extends \PHPUnit_Framework_TestCase
     {
         $queryResults = $this->getQueryResults($this->connection);
 
-        $this->assertEquals($this->jobId, $queryResults->getIdentity()['jobId']);
-        $this->assertEquals($this->projectId, $queryResults->getIdentity()['projectId']);
+        $this->assertEquals($this->jobId, $queryResults->identity()['jobId']);
+        $this->assertEquals($this->projectId, $queryResults->identity()['projectId']);
     }
 }

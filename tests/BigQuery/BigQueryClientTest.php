@@ -38,14 +38,6 @@ class BigQueryClientTest extends \PHPUnit_Framework_TestCase
         $this->client = new BigQueryTestClient(['projectId' => $this->projectId]);
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
-    public function testThrowsExceptionWithoutProjectId()
-    {
-        $client = new BigQueryClient();
-    }
-
     public function testRunsQuery()
     {
         $this->connection->query(Argument::any())
@@ -59,7 +51,7 @@ class BigQueryClientTest extends \PHPUnit_Framework_TestCase
         $queryResults = $this->client->runQuery('someQuery');
 
         $this->assertInstanceOf(QueryResults::class, $queryResults);
-        $this->assertEquals($this->jobId, $queryResults->getIdentity()['jobId']);
+        $this->assertEquals($this->jobId, $queryResults->identity()['jobId']);
     }
 
     public function testRunsQueryAsJob()
@@ -77,7 +69,7 @@ class BigQueryClientTest extends \PHPUnit_Framework_TestCase
         ]);
 
         $this->assertInstanceOf(Job::class, $job);
-        $this->assertEquals($this->jobId, $job->getId());
+        $this->assertEquals($this->jobId, $job->id());
     }
 
     public function testGetsJob()
@@ -111,7 +103,7 @@ class BigQueryClientTest extends \PHPUnit_Framework_TestCase
         $this->client->setConnection($this->connection->reveal());
         $jobs = iterator_to_array($this->client->jobs());
 
-        $this->assertEquals($this->jobId, $jobs[0]->getId());
+        $this->assertEquals($this->jobId, $jobs[0]->id());
     }
 
     public function testGetsJobsWithToken()
@@ -135,7 +127,7 @@ class BigQueryClientTest extends \PHPUnit_Framework_TestCase
         $this->client->setConnection($this->connection->reveal());
         $job = iterator_to_array($this->client->jobs());
 
-        $this->assertEquals($this->jobId, $job[1]->getId());
+        $this->assertEquals($this->jobId, $job[1]->id());
     }
 
     public function testGetsDataset()
@@ -169,7 +161,7 @@ class BigQueryClientTest extends \PHPUnit_Framework_TestCase
         $this->client->setConnection($this->connection->reveal());
         $datasets = iterator_to_array($this->client->datasets());
 
-        $this->assertEquals($this->datasetId, $datasets[0]->getId());
+        $this->assertEquals($this->datasetId, $datasets[0]->id());
     }
 
     public function testGetsDatasetsWithToken()
@@ -193,7 +185,7 @@ class BigQueryClientTest extends \PHPUnit_Framework_TestCase
         $this->client->setConnection($this->connection->reveal());
         $dataset = iterator_to_array($this->client->datasets());
 
-        $this->assertEquals($this->datasetId, $dataset[1]->getId());
+        $this->assertEquals($this->datasetId, $dataset[1]->id());
     }
 
     public function testCreatesDataset()
