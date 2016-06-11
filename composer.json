@@ -60,5 +60,7 @@
   },
   "scripts": {
     "docs": "php scripts/docs.php"
-  }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
 }
