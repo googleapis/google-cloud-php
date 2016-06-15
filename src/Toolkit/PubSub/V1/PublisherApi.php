@@ -45,8 +45,7 @@ use google\pubsub\v1\Topic;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
  *
- * <pre>
- * <code>
+ * ```
  * try {
  *     $publisherApi = new PublisherApi();
  *     $formattedName = PublisherApi::formatTopicName("[PROJECT]", "[TOPIC]");
@@ -56,8 +55,7 @@ use google\pubsub\v1\Topic;
  *         $publisherApi->close();
  *     }
  * }
- * </code>
- * </pre>
+ * ```
  *
  * Many parameters require resource names to be formatted in a particular way. To assist
  * with these names, this class includes a format method for each type of name, and additionally
@@ -288,7 +286,7 @@ class PublisherApi
      * Creates the given topic with the given name.
      *
      * Sample code:
-     * <pre><code>
+     * ```
      * try {
      *     $publisherApi = new PublisherApi();
      *     $formattedName = PublisherApi::formatTopicName("[PROJECT]", "[TOPIC]");
@@ -298,7 +296,7 @@ class PublisherApi
      *         $publisherApi->close();
      *     }
      * }
-     * </code></pre>
+     * ```
      *
      * @param string $name         The name of the topic. It must have the format
      *                             `"projects/{project}/topics/{topic}"`. `{topic}` must start with a letter,
@@ -347,12 +345,12 @@ class PublisherApi
     }
 
     /**
-     * Adds one or more messages to the topic. Returns `NOT_FOUND` if the topic
+     * Adds one or more messages to the topic. Generates `NOT_FOUND` if the topic
      * does not exist. The message payload must not be empty; it must contain
      *  either a non-empty data field, or at least one attribute.
      *
      * Sample code:
-     * <pre><code>
+     * ```
      * try {
      *     $publisherApi = new PublisherApi();
      *     $formattedTopic = PublisherApi::formatTopicName("[PROJECT]", "[TOPIC]");
@@ -366,16 +364,16 @@ class PublisherApi
      *         $publisherApi->close();
      *     }
      * }
-     * </code></pre>
+     * ```
      *
-     * @param string $topic        The messages in the request will be published on this topic.
-     * @param array  $messages     The messages to publish.
-     * @param array  $optionalArgs {
-     *                             Optional. There are no optional parameters for this method yet;
-     *                             this $optionalArgs parameter reserves a spot for future ones.
-     *                             }
-     * @param array  $callSettings {
-     *                             Optional.
+     * @param string          $topic        The messages in the request will be published on this topic.
+     * @param PubsubMessage[] $messages     The messages to publish.
+     * @param array           $optionalArgs {
+     *                                      Optional. There are no optional parameters for this method yet;
+     *                                      this $optionalArgs parameter reserves a spot for future ones.
+     *                                      }
+     * @param array           $callSettings {
+     *                                      Optional.
      *
      *    @var Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
@@ -417,7 +415,7 @@ class PublisherApi
      * Gets the configuration of a topic.
      *
      * Sample code:
-     * <pre><code>
+     * ```
      * try {
      *     $publisherApi = new PublisherApi();
      *     $formattedTopic = PublisherApi::formatTopicName("[PROJECT]", "[TOPIC]");
@@ -427,7 +425,7 @@ class PublisherApi
      *         $publisherApi->close();
      *     }
      * }
-     * </code></pre>
+     * ```
      *
      * @param string $topic        The name of the topic to get.
      * @param array  $optionalArgs {
@@ -474,11 +472,11 @@ class PublisherApi
      * Lists matching topics.
      *
      * Sample code:
-     * <pre><code>
+     * ```
      * try {
      *     $publisherApi = new PublisherApi();
      *     $formattedProject = PublisherApi::formatProjectName("[PROJECT]");
-     *     for ($publisherApi->listTopics($formattedProject) as element) {
+     *     foreach ($publisherApi->listTopics($formattedProject) as $element) {
      *         // doThingsWith(element);
      *     }
      * } finally {
@@ -486,7 +484,7 @@ class PublisherApi
      *         $publisherApi->close();
      *     }
      * }
-     * </code></pre>
+     * ```
      *
      * @param string $project      The name of the cloud project that topics belong to.
      * @param array  $optionalArgs {
@@ -538,11 +536,11 @@ class PublisherApi
      * Lists the name of the subscriptions for this topic.
      *
      * Sample code:
-     * <pre><code>
+     * ```
      * try {
      *     $publisherApi = new PublisherApi();
      *     $formattedTopic = PublisherApi::formatTopicName("[PROJECT]", "[TOPIC]");
-     *     for ($publisherApi->listTopicSubscriptions($formattedTopic) as element) {
+     *     foreach ($publisherApi->listTopicSubscriptions($formattedTopic) as $element) {
      *         // doThingsWith(element);
      *     }
      * } finally {
@@ -550,7 +548,7 @@ class PublisherApi
      *         $publisherApi->close();
      *     }
      * }
-     * </code></pre>
+     * ```
      *
      * @param string $topic        The name of the topic that subscriptions are attached to.
      * @param array  $optionalArgs {
@@ -599,14 +597,14 @@ class PublisherApi
     }
 
     /**
-     * Deletes the topic with the given name. Returns `NOT_FOUND` if the topic
+     * Deletes the topic with the given name. Generates `NOT_FOUND` if the topic
      * does not exist. After a topic is deleted, a new topic may be created with
      * the same name; this is an entirely new topic with none of the old
      * configuration or subscriptions. Existing subscriptions to this topic are
      * not deleted, but their `topic` field is set to `_deleted-topic_`.
      *
      * Sample code:
-     * <pre><code>
+     * ```
      * try {
      *     $publisherApi = new PublisherApi();
      *     $formattedTopic = PublisherApi::formatTopicName("[PROJECT]", "[TOPIC]");
@@ -616,7 +614,7 @@ class PublisherApi
      *         $publisherApi->close();
      *     }
      * }
-     * </code></pre>
+     * ```
      *
      * @param string $topic        Name of the topic to delete.
      * @param array  $optionalArgs {

@@ -47,8 +47,7 @@ use google\pubsub\v1\Subscription;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
  *
- * <pre>
- * <code>
+ * ```
  * try {
  *     $subscriberApi = new SubscriberApi();
  *     $formattedName = SubscriberApi::formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
@@ -59,8 +58,7 @@ use google\pubsub\v1\Subscription;
  *         $subscriberApi->close();
  *     }
  * }
- * </code>
- * </pre>
+ * ```
  *
  * Many parameters require resource names to be formatted in a particular way. To assist
  * with these names, this class includes a format method for each type of name, and additionally
@@ -322,15 +320,15 @@ class SubscriberApi
     }
 
     /**
-     * Creates a subscription to a given topic for a given subscriber.
-     * If the subscription already exists, returns `ALREADY_EXISTS`.
-     * If the corresponding topic doesn't exist, returns `NOT_FOUND`.
+     * Creates a subscription to a given topic.
+     * If the subscription already exists, generates `ALREADY_EXISTS`.
+     * If the corresponding topic doesn't exist, generates `NOT_FOUND`.
      *
      * If the name is not provided in the request, the server will assign a random
      * name for this subscription on the same project as the topic.
      *
      * Sample code:
-     * <pre><code>
+     * ```
      * try {
      *     $subscriberApi = new SubscriberApi();
      *     $formattedName = SubscriberApi::formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
@@ -341,7 +339,7 @@ class SubscriberApi
      *         $subscriberApi->close();
      *     }
      * }
-     * </code></pre>
+     * ```
      *
      * @param string $name         The name of the subscription. It must have the format
      *                             `"projects/{project}/subscriptions/{subscription}"`. `{subscription}` must
@@ -350,8 +348,6 @@ class SubscriberApi
      *                             plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters
      *                             in length, and it must not start with `"goog"`.
      * @param string $topic        The name of the topic from which this subscription is receiving messages.
-     *                             The value of this field will be `_deleted-topic_` if the topic has been
-     *                             deleted.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -424,8 +420,11 @@ class SubscriberApi
     /**
      * Gets the configuration details of a subscription.
      *
+     * If the topic of a subscription has been deleted, the subscription itself is
+     * not deleted, but the value of the `topic` field is set to `_deleted-topic_`.
+     *
      * Sample code:
-     * <pre><code>
+     * ```
      * try {
      *     $subscriberApi = new SubscriberApi();
      *     $formattedSubscription = SubscriberApi::formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
@@ -435,7 +434,7 @@ class SubscriberApi
      *         $subscriberApi->close();
      *     }
      * }
-     * </code></pre>
+     * ```
      *
      * @param string $subscription The name of the subscription to get.
      * @param array  $optionalArgs {
@@ -481,12 +480,15 @@ class SubscriberApi
     /**
      * Lists matching subscriptions.
      *
+     * If the topic of a subscription has been deleted, the subscription itself is
+     * not deleted, but the value of the `topic` field is set to `_deleted-topic_`.
+     *
      * Sample code:
-     * <pre><code>
+     * ```
      * try {
      *     $subscriberApi = new SubscriberApi();
      *     $formattedProject = SubscriberApi::formatProjectName("[PROJECT]");
-     *     for ($subscriberApi->listSubscriptions($formattedProject) as element) {
+     *     foreach ($subscriberApi->listSubscriptions($formattedProject) as $element) {
      *         // doThingsWith(element);
      *     }
      * } finally {
@@ -494,7 +496,7 @@ class SubscriberApi
      *         $subscriberApi->close();
      *     }
      * }
-     * </code></pre>
+     * ```
      *
      * @param string $project      The name of the cloud project that subscriptions belong to.
      * @param array  $optionalArgs {
@@ -544,13 +546,13 @@ class SubscriberApi
 
     /**
      * Deletes an existing subscription. All pending messages in the subscription
-     * are immediately dropped. Calls to `Pull` after deletion will return
+     * are immediately dropped. Calls to `Pull` after deletion will generate
      * `NOT_FOUND`. After a subscription is deleted, a new one may be created with
      * the same name, but the new one has no association with the old
      * subscription, or its topic unless the same topic is specified.
      *
      * Sample code:
-     * <pre><code>
+     * ```
      * try {
      *     $subscriberApi = new SubscriberApi();
      *     $formattedSubscription = SubscriberApi::formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
@@ -560,7 +562,7 @@ class SubscriberApi
      *         $subscriberApi->close();
      *     }
      * }
-     * </code></pre>
+     * ```
      *
      * @param string $subscription The subscription to delete.
      * @param array  $optionalArgs {
@@ -608,7 +610,7 @@ class SubscriberApi
      * processing was interrupted.
      *
      * Sample code:
-     * <pre><code>
+     * ```
      * try {
      *     $subscriberApi = new SubscriberApi();
      *     $formattedSubscription = SubscriberApi::formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
@@ -620,21 +622,21 @@ class SubscriberApi
      *         $subscriberApi->close();
      *     }
      * }
-     * </code></pre>
+     * ```
      *
-     * @param string $subscription       The name of the subscription.
-     * @param array  $ackIds             List of acknowledgment IDs.
-     * @param int    $ackDeadlineSeconds The new ack deadline with respect to the time this request was sent to
-     *                                   the Pub/Sub system. Must be >= 0. For example, if the value is 10, the new
-     *                                   ack deadline will expire 10 seconds after the `ModifyAckDeadline` call
-     *                                   was made. Specifying zero may immediately make the message available for
-     *                                   another pull request.
-     * @param array  $optionalArgs       {
-     *                                   Optional. There are no optional parameters for this method yet;
-     *                                   this $optionalArgs parameter reserves a spot for future ones.
-     *                                   }
-     * @param array  $callSettings       {
-     *                                   Optional.
+     * @param string   $subscription       The name of the subscription.
+     * @param string[] $ackIds             List of acknowledgment IDs.
+     * @param int      $ackDeadlineSeconds The new ack deadline with respect to the time this request was sent to
+     *                                     the Pub/Sub system. Must be >= 0. For example, if the value is 10, the new
+     *                                     ack deadline will expire 10 seconds after the `ModifyAckDeadline` call
+     *                                     was made. Specifying zero may immediately make the message available for
+     *                                     another pull request.
+     * @param array    $optionalArgs       {
+     *                                     Optional. There are no optional parameters for this method yet;
+     *                                     this $optionalArgs parameter reserves a spot for future ones.
+     *                                     }
+     * @param array    $callSettings       {
+     *                                     Optional.
      *
      *    @var Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
@@ -653,7 +655,6 @@ class SubscriberApi
         $optionalArgs = [],
         $callSettings = []
     ) {
-    
         $request = new ModifyAckDeadlineRequest();
         $request->setSubscription($subscription);
         foreach ($ackIds as $elem) {
@@ -687,7 +688,7 @@ class SubscriberApi
      * than once will not result in an error.
      *
      * Sample code:
-     * <pre><code>
+     * ```
      * try {
      *     $subscriberApi = new SubscriberApi();
      *     $formattedSubscription = SubscriberApi::formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
@@ -698,17 +699,17 @@ class SubscriberApi
      *         $subscriberApi->close();
      *     }
      * }
-     * </code></pre>
+     * ```
      *
-     * @param string $subscription The subscription whose message is being acknowledged.
-     * @param array  $ackIds       The acknowledgment ID for the messages being acknowledged that was returned
-     *                             by the Pub/Sub system in the `Pull` response. Must not be empty.
-     * @param array  $optionalArgs {
-     *                             Optional. There are no optional parameters for this method yet;
-     *                             this $optionalArgs parameter reserves a spot for future ones.
-     *                             }
-     * @param array  $callSettings {
-     *                             Optional.
+     * @param string   $subscription The subscription whose message is being acknowledged.
+     * @param string[] $ackIds       The acknowledgment ID for the messages being acknowledged that was returned
+     *                               by the Pub/Sub system in the `Pull` response. Must not be empty.
+     * @param array    $optionalArgs {
+     *                               Optional. There are no optional parameters for this method yet;
+     *                               this $optionalArgs parameter reserves a spot for future ones.
+     *                               }
+     * @param array    $callSettings {
+     *                               Optional.
      *
      *    @var Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
@@ -746,12 +747,12 @@ class SubscriberApi
 
     /**
      * Pulls messages from the server. Returns an empty list if there are no
-     * messages available in the backlog. The server may return `UNAVAILABLE` if
+     * messages available in the backlog. The server may generate `UNAVAILABLE` if
      * there are too many concurrent pull requests pending for the given
      * subscription.
      *
      * Sample code:
-     * <pre><code>
+     * ```
      * try {
      *     $subscriberApi = new SubscriberApi();
      *     $formattedSubscription = SubscriberApi::formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
@@ -762,7 +763,7 @@ class SubscriberApi
      *         $subscriberApi->close();
      *     }
      * }
-     * </code></pre>
+     * ```
      *
      * @param string $subscription The subscription from which messages should be pulled.
      * @param int    $maxMessages  The maximum number of messages returned for this request. The Pub/Sub
@@ -773,8 +774,7 @@ class SubscriberApi
      *     @var bool $returnImmediately If this is specified as true the system will respond immediately even if
      *           it is not able to return a message in the `Pull` response. Otherwise the
      *           system is allowed to wait until at least one message is available rather
-     *           than returning no messages. The client may cancel the request if it does
-     *           not wish to wait any longer for the response.
+     *           than returning no messages.
      * }
      *
      * @param array $callSettings {
@@ -826,7 +826,7 @@ class SubscriberApi
      * continuously through the call regardless of changes to the `PushConfig`.
      *
      * Sample code:
-     * <pre><code>
+     * ```
      * try {
      *     $subscriberApi = new SubscriberApi();
      *     $formattedSubscription = SubscriberApi::formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
@@ -837,7 +837,7 @@ class SubscriberApi
      *         $subscriberApi->close();
      *     }
      * }
-     * </code></pre>
+     * ```
      *
      * @param string     $subscription The name of the subscription.
      * @param PushConfig $pushConfig   The push configuration for future deliveries.
