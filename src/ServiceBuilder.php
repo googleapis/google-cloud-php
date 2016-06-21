@@ -22,6 +22,7 @@ use Google\Cloud\BigQuery\BigQueryClient;
 use Google\Cloud\Logging\LoggingClient;
 use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\Storage\StorageClient;
+use Google\Cloud\Vision\VisionClient;
 
 /**
  * Google Cloud Platform is a set of modular cloud-based services that allow you
@@ -159,6 +160,11 @@ class ServiceBuilder
     public function pubsub(array $config = [])
     {
         return new PubSubClient($config ? $this->resolveConfig($config) : $this->config);
+    }
+
+    public function vision(array $config = [])
+    {
+        return new VisionClient($config ? $this->resolveConfig($config) : $this->config);
     }
 
     /**
