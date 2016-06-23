@@ -18,7 +18,7 @@
 namespace Google\Cloud\Vision;
 
 use Google\Cloud\ClientTrait;
-use Google\Cloud\Storage\Object;
+use Google\Cloud\Storage\Object as StorageObject;
 use Google\Cloud\Vision\Connection\Rest;
 use InvalidArgumentException;
 
@@ -88,18 +88,25 @@ class VisionClient
         $this->connection = new Rest($this->configureAuthentication($config));
     }
 
-    public function upload($image)
+    public function image($image, array $features = [], array $options = [])
     {
-        return $this->annotate([$image]);
+        return new Image($image, $features, $options);
     }
 
-    public function object(Object $object)
+    public function annotate(Image $image, array $options = [])
     {
-        return $this->annotate([$object]);
+        return $this->annotateBatch([$image], $options);
     }
 
-    public function annotate(array $images)
+    public function annotateBatch(array $images, array $options = [])
     {
-        return new Annotate($this->connection, $images);
+        $requests = [];
+        foreach ($images as $image) {
+            $requests[] = $image->requestObject();
+        }
+
+        return $this->connection->annotate([
+            'requests' => $requests
+        ] + $options);
     }
 }
