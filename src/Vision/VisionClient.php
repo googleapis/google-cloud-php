@@ -93,6 +93,16 @@ class VisionClient
         return new Image($image, $features, $options);
     }
 
+    public function images(array $images, array $features = [], array $options = [])
+    {
+        $result = [];
+        foreach ($images as $image) {
+            $result[] = $this->image($image, $features, $options);
+        }
+
+        return $result;
+    }
+
     public function annotate(Image $image, array $options = [])
     {
         return $this->annotateBatch([$image], $options);
@@ -102,6 +112,10 @@ class VisionClient
     {
         $requests = [];
         foreach ($images as $image) {
+            if (!$image instanceof Image) {
+                throw new InvalidArgumentException('$images must be an array of type Image');
+            }
+
             $requests[] = $image->requestObject();
         }
 
