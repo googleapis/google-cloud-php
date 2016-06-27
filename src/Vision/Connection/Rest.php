@@ -22,6 +22,10 @@ use Google\Cloud\RequestWrapper;
 use Google\Cloud\RestTrait;
 use Google\Cloud\UriTrait;
 
+/**
+ * Implementation of the
+ * [Google Cloud Vision JSON API](https://cloud.google.com/vision/reference/rest/).
+ */
 class Rest implements ConnectionInterface
 {
     use RestTrait;
@@ -41,6 +45,9 @@ class Rest implements ConnectionInterface
         ));
     }
 
+    /**
+     * @param array $args
+     */
     public function annotate(array $args)
     {
         return $this->send('images', 'annotate', $args);

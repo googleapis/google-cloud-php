@@ -162,6 +162,24 @@ class ServiceBuilder
         return new PubSubClient($config ? $this->resolveConfig($config) : $this->config);
     }
 
+    /**
+     * Google Cloud Vision client. Allows you to understand the content of an
+     * image, classify images into categories, detect text, objects, faces and
+     * more. Find more information at [Google Cloud Vision docs](https://cloud.google.com/vision/docs/).
+     *
+     * Example:
+     * ```
+     * use Google\Cloud\ServiceBuilder;
+     *
+     * $builder = new ServiceBuilder();
+     *
+     * $vision = $builder->vision();
+     * ```
+     *
+     * @param array $config Configuration options. See
+     *        {@see Google\Cloud\ServiceBuilder::__construct()} for the available options.
+     * @return VisionClient
+     */
     public function vision(array $config = [])
     {
         return new VisionClient($config ? $this->resolveConfig($config) : $this->config);

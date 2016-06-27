@@ -23,5 +23,8 @@ namespace Google\Cloud\Vision\Connection;
  */
 interface ConnectionInterface
 {
+    /**
+     * @param array $args
+     */
     public function annotate(array $args);
 }

@@ -23,8 +23,9 @@ use Google\Cloud\Vision\Connection\Rest;
 use InvalidArgumentException;
 
 /**
- * Google Cloud Vision client. Allows you to send and receive
- * messages between independent applications. Find more information at
+ * Google Cloud Vision client. Allows you to understand the content of an image,
+ * classify images into categories, detect text, objects, faces and more. Find
+ * more information at
  * [Google Cloud Vision docs](https://cloud.google.com/vision/docs/).
  */
 class VisionClient
@@ -50,7 +51,9 @@ class VisionClient
      * ]);
      *
      * $vision = $cloud->vision();
+     * ```
      *
+     * ```
      * // The Vision client can also be instantianted directly.
      * use Google\Cloud\Vision\VisionClient;
      *
@@ -88,12 +91,97 @@ class VisionClient
         $this->connection = new Rest($this->configureAuthentication($config));
     }
 
-    public function image($image, array $features = [], array $options = [])
+    /**
+     * Create an instance of Image with required features and options.
+     *
+     * This method should be used to configure a single image, or when a set of
+     * images requires different settings for each member of the set. If you
+     * have a set of images which all will use the same settings,
+     * {@see Google\Cloud\Vision\VisionClient::images()} may be quicker and
+     * simpler to use.
+     *
+     * This method will not perform any service requests.
+     *
+     * For more information, including best practices and examples detailing
+     * other usage such as `$imageContext`, see {@see Google\Cloud\Vision\Image::__construct()}.
+     *
+     * Example:
+     * ```
+     * $imageResource = fopen(__DIR__ .'/assets/family-photo.jpg', 'r');
+     *
+     * $image = $vision->image($imageResource, [
+     *     'FACE_DETECTION'
+     * ]);
+     * ```
+     *
+     * ```
+     * // Setting maxResults for a feature
+     *
+     * $imageResource = fopen(__DIR__ .'/assets/family-photo.jpg', 'r');
+     *
+     * $image = $vision->image($imageResource, [
+     *     'FACE_DETECTION'
+     * ], [
+     *     'maxResults' => [
+     *         'FACE_DETECTION' => 1
+     *     ]
+     * ])
+     * ```
+     *
+     * @param  mixed $image An image to configure with the given settings. This
+     *         parameter will accept a resource, a string of bytes, or an
+     *         instance of {@see Google\Cloud\Storage\Object}.
+     * @param  array $features A list of cloud vision features to apply to the
+     *         image.
+     * @param  array $options See {@see Google\Cloud\Vision\Image::__construct()} for
+     *         configuration details.
+     * @return Image
+     */
+    public function image($image, array $features, array $options = [])
     {
         return new Image($image, $features, $options);
     }
 
-    public function images(array $images, array $features = [], array $options = [])
+    /**
+     * Create an array of type Image with required features and options set for
+     * each member of the set.
+     *
+     * This method is useful for quickly configuring every member of a set of
+     * images with the same features and options. Should you need to provide
+     * different features or options for one or more members of the set,
+     * {@see Google\Cloud\Vision\VisionClient::image()} is a better choice.
+     *
+     * This method will not perform any service requests.
+     *
+     * For more information, including best practices and examples detailing
+     * other usage such as `$imageContext`, see {@see Google\Cloud\Vision\Image::__construct()}.
+     *
+     * Example:
+     * ```
+     * // In the example below, both images will have the same settings applied.
+     * // They will both run face detection and return up to 10 results.
+     *
+     * $familyPhotoResource = fopen(__DIR__ .'/assets/family-photo.jpg', 'r');
+     * $weddingPhotoResource = fopen(__DIR__ .'/assets/wedding-photo.jpg', 'r');
+     *
+     * $images = $vision->images([$familyPhotoResource, $weddingPhotoResource], [
+     *     'FACE_DETECTION'
+     * ], [
+     *     'maxResults' => [
+     *         'FACE_DETECTION' => 10
+     *     ]
+     * ]);
+     * ```
+     *
+     * @param  array $images An array of images to configure with the given settings.
+     *         Each member of the set can be a resource, a string of bytes, or an instance of
+     *         {@see Google\Cloud\Storage\Object}.
+     * @param  array $features A list of cloud vision features to apply to each image.
+     * @param  array $options See {@see Google\Cloud\Vision\Image::__construct()} for
+     *         configuration details.
+     * @return array
+     */
+    public function images(array $images, array $features, array $options = [])
     {
         $result = [];
         foreach ($images as $image) {
@@ -103,11 +191,48 @@ class VisionClient
         return $result;
     }
 
+    /**
+     * Annotate a single image.
+     *
+     * Do the work!
+     *
+     * Example:
+     * ```
+     * $familyPhotoResource = fopen(__DIR__ .'/assets/family-photo.jpg', 'r');
+     *
+     * $image = $vision->image($familyPhotoResource, [
+     *     'FACE_DETECTION'
+     * ]);
+     *
+     * $result = $vision->annotate($image);
+     * ```
+     *
+     * @param  Image $image The image to annotate
+     * @param  array $options Configuration options
+     * @return array
+     *         [AnnotateImageResponse](https://cloud.google.com/vision/reference/rest/v1/images/annotate#response-body)
+     */
     public function annotate(Image $image, array $options = [])
     {
         return $this->annotateBatch([$image], $options);
     }
 
+    /**
+     * Annotate a set of images.
+     *
+     * Do more work!
+     *
+     * Example:
+     * ```
+     * // Usage example
+     * ```
+     *
+     * @param  array $images An array consisting of instances of
+     *         {@see Google\Cloud\Vision\Image}.
+     * @param  array $options Configuration Options
+     * @return array
+     *         [AnnotateImageResponse](https://cloud.google.com/vision/reference/rest/v1/images/annotate#response-body)
+     */
     public function annotateBatch(array $images, array $options = [])
     {
         $requests = [];
