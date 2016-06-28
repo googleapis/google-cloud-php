@@ -214,7 +214,9 @@ class VisionClient
      */
     public function annotate(Image $image, array $options = [])
     {
-        return $this->annotateBatch([$image], $options);
+        foreach ($this->annotateBatch([$image], $options) as $annotation) {
+            return $annotation;
+        }
     }
 
     /**
@@ -230,8 +232,7 @@ class VisionClient
      * @param  array $images An array consisting of instances of
      *         {@see Google\Cloud\Vision\Image}.
      * @param  array $options Configuration Options
-     * @return array
-     *         [AnnotateImageResponse](https://cloud.google.com/vision/reference/rest/v1/images/annotate#response-body)
+     * @return \Generator
      */
     public function annotateBatch(array $images, array $options = [])
     {
@@ -244,8 +245,14 @@ class VisionClient
             $requests[] = $image->requestObject();
         }
 
-        return $this->connection->annotate([
+        $res = $this->connection->annotate([
             'requests' => $requests
         ] + $options);
+
+        if (isset($res['responses'])) {
+            foreach ($res['responses'] as $response) {
+                yield new Annotation($response);
+            }
+        }
     }
 }

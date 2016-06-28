@@ -96,13 +96,20 @@ class DocGenerator
         $parts = explode('_', get_class($reflector->getNode()));
         $type = end($parts);
 
+        $docBlock = $reflector->getDocBlock();
+        $methods = $reflector->getMethods();
+
+        if (is_null($docBlock)) {
+            throw new \Exception(sprintf('%s has no description', $reflector->getName()));
+        }
+
         return [
             'id' => strtolower($id),
             'type' => strtolower($type),
             'title' => $reflector->getNamespace() . '\\' . $name,
             'name' => $name,
-            'description' => $this->buildDescription($reflector->getDocBlock()),
-            'methods' => $this->buildMethods($reflector->getMethods())
+            'description' => $this->buildDescription($docBlock),
+            'methods' => $this->buildMethods($methods, $name)
         ];
     }
 
@@ -128,15 +135,20 @@ class DocGenerator
         return $this->markdown->parse(implode('', $parsedContents));
     }
 
-    private function buildMethods($methods)
+    private function buildMethods($methods, $className)
     {
         $methodArray = [];
-        foreach ($methods as $method) {
+        foreach ($methods as $name => $method) {
             if ($method->getVisibility() !== 'public') {
                 continue;
             }
 
-            $access = $method->getDocBlock()->getTagsByName('access');
+            $docBlock = $method->getDocBlock();
+            if (is_null($docBlock)) {
+                throw new \Exception(sprintf('%s::%s has no description', $className, $name));
+            }
+
+            $access = $docBlock->getTagsByName('access');
 
             if (!empty($access)) {
                 if ($access[0]->getContent() === 'private') {
