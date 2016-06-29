@@ -17,6 +17,168 @@
 
 namespace Google\Cloud\Vision\Annotation;
 
+use Google\Cloud\Exception\GoogleException;
+use Google\Cloud\Vision\Annotation\Face\Landmarks;
+
+/**
+ * Represents a face annotation result
+ *
+ * @method array boundingPoly() {
+ *     The bounding polygon around the face.
+ *
+ *     Example:
+ *     ```
+ *     $annotation = $vision->annotate($image);
+ *     $face = $annotation->faces()[0];
+ *     print_R($face->boundingPoly());
+ *     ```
+ * }
+ * @method array fdBoundingPoly() {
+ *     Bounding polygon around the face.
+ *
+ *     Tighter than `boundingPoly` and encloses only the skin part of the face.
+ *
+ *     Example:
+ *     ```
+ *     $annotation = $vision->annotate($image);
+ *     $face = $annotation->faces()[0];
+ *     print_R($face->fdBoundingPoly());
+ *     ```
+ * }
+ * @method float rollAngle() {
+ *     Roll angle.
+ *
+ *     Indicates the amount of clockwise/anti-clockwise rotation of the face.
+ *     Range [-180,180]
+ *
+ *     Example:
+ *     ```
+ *     $annotation = $vision->annotate($image);
+ *     $face = $annotation->faces()[0];
+ *     print_R($face->rollAngle());
+ *     ```
+ * }
+ * @method float panAngle() {
+ *     Yaw angle.
+ *
+ *     Indicates the leftward/rightward angle that the face is pointing. Range
+ *     [-180,180]
+ *
+ *     Example:
+ *     ```
+ *     $annotation = $vision->annotate($image);
+ *     $face = $annotation->faces()[0];
+ *     print_R($face->panAngle());
+ *     ```
+ * }
+ * @method float tiltAngle() {
+ *     Pitch angle.
+ *
+ *     Indicates the upwards/downwards angle that the face is pointing. Range
+ *     [-180,180]
+ *
+ *     Example:
+ *     ```
+ *     $annotation = $vision->annotate($image);
+ *     $face = $annotation->faces()[0];
+ *     print_R($face->tiltAngle());
+ *     ```
+ * }
+ * @method float detectionConfidence() {
+ *     The detection confidence.
+ *
+ *     Range [0,1]
+ *
+ *     Example:
+ *     ```
+ *     $annotation = $vision->annotate($image);
+ *     $face = $annotation->faces()[0];
+ *     print_R($face->detectionConfidence());
+ *     ```
+ * }
+ * @method float landmarkingConfidence() {
+ *     Face landmarking confidence.
+ *
+ *     Range [0,1]
+ *
+ *     Example:
+ *     ```
+ *     $annotation = $vision->annotate($image);
+ *     $face = $annotation->faces()[0];
+ *     print_R($face->landmarkingConfidence());
+ *     ```
+ * }
+ * @method string joyLikelihood() {
+ *     Joy likelihood.
+ *
+ *     Example:
+ *     ```
+ *     $annotation = $vision->annotate($image);
+ *     $face = $annotation->faces()[0];
+ *     print_R($face->joyLikelihood());
+ *     ```
+ * }
+ * @method string sorrowLikelihood() {
+ *     Sorrow likelihood.
+ *
+ *     Example:
+ *     ```
+ *     $annotation = $vision->annotate($image);
+ *     $face = $annotation->faces()[0];
+ *     print_R($face->sorrowLikelihood());
+ *     ```
+ * }
+ * @method string angerLikelihood() {
+ *     Anger likelihood.
+ *
+ *     Example:
+ *     ```
+ *     $annotation = $vision->annotate($image);
+ *     $face = $annotation->faces()[0];
+ *     print_R($face->angerLikelihood());
+ *     ```
+ * }
+ * @method string surpriseLikelihood() {
+ *     Surprise likelihood.
+ *
+ *     Example:
+ *     ```
+ *     $annotation = $vision->annotate($image);
+ *     $face = $annotation->faces()[0];
+ *     print_R($face->surpriseLikelihood());
+ *     ```
+ * }
+ * @method string underExposedLikelihood() {
+ *     Under exposure likelihood.
+ *
+ *     Example:
+ *     ```
+ *     $annotation = $vision->annotate($image);
+ *     $face = $annotation->faces()[0];
+ *     print_R($face->underExposedLikelihood());
+ *     ```
+ * }
+ * @method string blurredLikelihood() {
+ *     Blurred likelihood.
+ *
+ *     Example:
+ *     ```
+ *     $annotation = $vision->annotate($image);
+ *     $face = $annotation->faces()[0];
+ *     print_R($face->blurredLikelihood());
+ *     ```
+ * }
+ * @method string headwearLikelihood() {
+ *     Headwear likelihood.
+ *
+ *     Example:
+ *     ```
+ *     $annotation = $vision->annotate($image);
+ *     $face = $annotation->faces()[0];
+ *     print_R($face->headwearLikelihood());
+ *     ```
+ * }
+ */
 class Face implements FeatureInterface
 {
     use FeatureTrait;
@@ -26,129 +188,196 @@ class Face implements FeatureInterface
     public function __construct(array $result)
     {
         $this->result = $result;
-    }
-
-    public function leftEye()
-    {
-        return $this->getLandmark('LEFT_EYE');
-    }
-
-    public function leftEyePupil()
-    {
-        return $this->getLandmark('LEFT_EYE_PUPIL');
-    }
-
-    public function leftEyeBoundaries()
-    {
-        return [
-            'left' => $this->getLandmark('LEFT_EYE_LEFT_CORNER'),
-            'top' => $this->getLandmark('LEFT_EYE_TOP_BOUNDARY'),
-            'right' => $this->getLandmark('LEFT_EYE_RIGHT_CORNER'),
-            'bottom' => $this->getLandmark('LEFT_EYE_BOTTOM_BOUNDARY')
-        ];
-    }
-
-    public function leftEyebrow()
-    {
-        return [
-            'left' => $this->getLandmark('LEFT_OF_LEFT_EYEBROW'),
-            'right' => $this->getLandmark('RIGHT_OF_LEFT_EYEBROW'),
-            'upperMidpoint' => $this->getLandmark('LEFT_EYEBROW_UPPER_MIDPOINT')
-        ];
-    }
-
-    public function rightEye()
-    {
-        return $this->getLandmark('RIGHT_EYE');
-    }
-
-    public function rightEyePupil()
-    {
-        return $this->getLandmark('RIGHT_EYE_PUPIL');
-    }
-
-    public function rightEyeBoundaries()
-    {
-        return [
-            'left' => $this->getLandmark('RIGHT_EYE_LEFT_CORNER'),
-            'top' => $this->getLandmark('RIGHT_EYE_TOP_BOUNDARY'),
-            'right' => $this->getLandmark('RIGHT_EYE_RIGHT_CORNER'),
-            'bottom' => $this->getLandmark('RIGHT_EYE_BOTTOM_BOUNDARY')
-        ];
-    }
-
-    public function rightEyebrow()
-    {
-        return [
-            'left' => $this->getLandmark('LEFT_OF_RIGHT_EYEBROW'),
-            'right' => $this->getLandmark('RIGHT_OF_RIGHT_EYEBROW'),
-            'upperMidpoint' => $this->getLandmark('RIGHT_EYEBROW_UPPER_MIDPOINT')
-        ];
-    }
-
-    public function midpointBetweenEyes()
-    {
-        return $this->getLandmark('MIDPOINT_BETWEEN_EYES');
-    }
-
-    public function lips()
-    {
-        return [
-            'upper' => $this->getLandmark('UPPER_LIP'),
-            'lower' => $this->getLandmark('LOWER_LIP')
-        ];
-    }
-
-    public function mouth()
-    {
-        return [
-            'left' => $this->getLandmark('MOUTH_LEFT'),
-            'right' => $this->getLandmark('MOUTH_RIGHT'),
-            'center' => $this->getLandmark('MOUTH_CENTER')
-        ];
-    }
-
-    public function nose()
-    {
-        return [
-            'tip' => $this->getLandmark('NOSE_TIP'),
-            'bottomRight' => $this->getLandmark('NOSE_BOTTOM_RIGHT'),
-            'bottomLeft' => $this->getLandmark('NOSE_BOTTOM_LEFT'),
-            'bottomCenter' => $this->getLandmark('NOSE_BOTTOM_CENTER')
-        ];
+        $this->landmarks = new Landmarks($result['landmarks']);
     }
 
     /**
-     * @todo should this be earTragions?
+     * @return Landmarks
      */
-    public function ears()
+    public function landmarks()
     {
-        return [
-            'left' => $this->getLandmark('LEFT_EAR_TRAGION'),
-            'right' => $this->getLandmark('RIGHT_EAR_TRAGION')
-        ];
+        return $this->landmarks;
     }
 
-    public function forehead()
+    /**
+     * Check whether the face is joyful.
+     *
+     * Example:
+     * ```
+     * $annotation = $vision->annotate($image);
+     * $face = $annotation->faces()[0];
+     *
+     * if ($face->isJoyful()) {
+     *     echo "Face is Joyful";
+     * }
+     * ```
+     *
+     * @param  string $strength Value should be one of "low", "medium" or "high".
+     *         Recommended usage is via `Face::STRENGTH_*` constants. Defaults
+     *         to "low". Higher strength will result in fewer `true` results,
+     *         but fewer false positives.
+     * @return bool
+     */
+    public function isJoyful($strength = self::STRENGTH_LOW)
     {
-        return $this->getLandmark('FOREHEAD_GLABELLA');
+        return $this->likelihood('joyLikelihood', $strength);
     }
 
-    public function chin()
+    /**
+     * Check whether the face is sorrowful.
+     *
+     * Example:
+     * ```
+     * $annotation = $vision->annotate($image);
+     * $face = $annotation->faces()[0];
+     *
+     * if ($face->isSorrowful()) {
+     *     echo "Face is Sorrowful";
+     * }
+     * ```
+     *
+     * @param  string $strength Value should be one of "low", "medium" or "high".
+     *         Recommended usage is via `Face::STRENGTH_*` constants. Defaults
+     *         to "low". Higher strength will result in fewer `true` results,
+     *         but fewer false positives.
+     * @return bool
+     */
+    public function isSorrowful($strength = self::STRENGTH_LOW)
     {
-        return [
-            'gnathion' => $this->getLandmark('CHIN_GNATHION'),
-            'left' => $this->getLandmark('CHIN_LEFT_GONION'),
-            'right' => $this->getLandmark('CHIN_RIGHT_GONION')
-        ];
+        return $this->likelihood('sorrowLikelihood', $strength);
     }
 
-    private function getLandmark($type)
+    /**
+     * Check whether the face is angry.
+     *
+     * Example:
+     * ```
+     * $annotation = $vision->annotate($image);
+     * $face = $annotation->faces()[0];
+     *
+     * if ($face->isAngry()) {
+     *     echo "Face is Angry";
+     * }
+     * ```
+     *
+     * @param  string $strength Value should be one of "low", "medium" or "high".
+     *         Recommended usage is via `Face::STRENGTH_*` constants. Defaults
+     *         to "low". Higher strength will result in fewer `true` results,
+     *         but fewer false positives.
+     * @return bool
+     */
+    public function isAngry($strength = self::STRENGTH_LOW)
     {
-        $result = array_filter($this->result['landmarks'], function ($landmark) use ($type) {
-            return $type === $landmark['type'];
-        });
+        return $this->likelihood('angerLikelihood', $strength);
+    }
 
-        return array_shift($result);
+    /**
+     * Check whether the face is surprised.
+     *
+     * Example:
+     * ```
+     * $annotation = $vision->annotate($image);
+     * $face = $annotation->faces()[0];
+     *
+     * if ($face->isSurprised()) {
+     *     echo "Face is Surprised";
+     * }
+     * ```
+     *
+     * @param  string $strength Value should be one of "low", "medium" or "high".
+     *         Recommended usage is via `Face::STRENGTH_*` constants. Defaults
+     *         to "low". Higher strength will result in fewer `true` results,
+     *         but fewer false positives.
+     * @return bool
+     */
+    public function isSurprised($strength = self::STRENGTH_LOW)
+    {
+        return $this->likelihood('surpriseLikelihood', $strength);
+    }
+
+    /**
+     * Check whether the face is under exposed.
+     *
+     * Example:
+     * ```
+     * $annotation = $vision->annotate($image);
+     * $face = $annotation->faces()[0];
+     *
+     * if ($face->isUnderExposed()) {
+     *     echo "Face is Under Exposed";
+     * }
+     * ```
+     *
+     * @param  string $strength Value should be one of "low", "medium" or "high".
+     *         Recommended usage is via `Face::STRENGTH_*` constants. Defaults
+     *         to "low". Higher strength will result in fewer `true` results,
+     *         but fewer false positives.
+     * @return bool
+     */
+    public function isUnderExposed($strength = self::STRENGTH_LOW)
+    {
+        return $this->likelihood('underExposedLikelihood', $strength);
+    }
+
+    /**
+     * Check whether the face is blurred.
+     *
+     * Example:
+     * ```
+     * $annotation = $vision->annotate($image);
+     * $face = $annotation->faces()[0];
+     *
+     * if ($face->isBlurred()) {
+     *     echo "Face is Blurred";
+     * }
+     * ```
+     *
+     * @param  string $strength Value should be one of "low", "medium" or "high".
+     *         Recommended usage is via `Face::STRENGTH_*` constants. Defaults
+     *         to "low". Higher strength will result in fewer `true` results,
+     *         but fewer false positives.
+     * @return bool
+     */
+    public function isBlurred($strength = self::STRENGTH_LOW)
+    {
+        return $this->likelihood('blurredLikelihood', $strength);
+    }
+
+    /**
+     * Check whether the person is wearing headwear.
+     *
+     * Example:
+     * ```
+     * $annotation = $vision->annotate($image);
+     * $face = $annotation->faces()[0];
+     *
+     * if ($face->hasHeadwear()) {
+     *     echo "Face has Headwear";
+     * }
+     * ```
+     *
+     * @param  string $strength Value should be one of "low", "medium" or "high".
+     *         Recommended usage is via `Face::STRENGTH_*` constants. Defaults
+     *         to "low". Higher strength will result in fewer `true` results,
+     *         but fewer false positives.
+     * @return bool
+     */
+    public function hasHeadwear($strength = self::STRENGTH_LOW)
+    {
+        return $this->likelihood('headwearLikelihood', $strength);
+    }
+
+    /**
+     * @access private
+     */
+    public function __call($name, array $args)
+    {
+        if (isset($this->result['name'])) {
+            return $this->result['name'];
+        }
+
+        trigger_error(sprintf(
+            'Call to undefined method %s::%s', __CLASS__, $name
+        ), E_USER_ERROR);
     }
 }

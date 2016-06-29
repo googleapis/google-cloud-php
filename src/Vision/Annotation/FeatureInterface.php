@@ -17,7 +17,11 @@
 
 namespace Google\Cloud\Vision\Annotation;
 
-interface AnnotationInterface
+interface FeatureInterface
 {
-    public function result();
+    const STRENGTH_HIGH = 'high';
+    const STRENGTH_MEDIUM = 'medium';
+    const STRENGTH_LOW = 'low';
+
+    public function info();
 }
