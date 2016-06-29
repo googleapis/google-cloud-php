@@ -181,6 +181,7 @@ use Google\Cloud\Vision\Annotation\Face\Landmarks;
  */
 class Face implements FeatureInterface
 {
+    use CallTrait;
     use FeatureTrait;
 
     private $result;
@@ -365,19 +366,5 @@ class Face implements FeatureInterface
     public function hasHeadwear($strength = self::STRENGTH_LOW)
     {
         return $this->likelihood('headwearLikelihood', $strength);
-    }
-
-    /**
-     * @access private
-     */
-    public function __call($name, array $args)
-    {
-        if (isset($this->result['name'])) {
-            return $this->result['name'];
-        }
-
-        trigger_error(sprintf(
-            'Call to undefined method %s::%s', __CLASS__, $name
-        ), E_USER_ERROR);
     }
 }
