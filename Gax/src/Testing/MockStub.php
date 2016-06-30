@@ -44,7 +44,7 @@ class MockStub
         $this->actualCalls = [];
     }
 
-    public function create($responseObject)
+    public static function create($responseObject)
     {
         $stub = new MockStub();
         $status = new MockStatus(\Grpc\STATUS_OK, '');
