@@ -18,7 +18,6 @@
 namespace Google\Cloud\Vision;
 
 use Google\Cloud\ClientTrait;
-use Google\Cloud\Storage\Object as StorageObject;
 use Google\Cloud\Vision\Connection\Rest;
 use InvalidArgumentException;
 
@@ -80,7 +79,7 @@ class VisionClient
      *           to 3.
      *     @type array $scopes Scopes to be used for the request.
      * }
-     * @throws \InvalidArgumentException
+     * @throws Google\Cloud\Exception\GoogleException
      */
     public function __construct(array $config = [])
     {

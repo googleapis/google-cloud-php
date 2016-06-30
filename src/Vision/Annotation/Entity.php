@@ -146,8 +146,39 @@ class Entity implements FeatureInterface
     use CallTrait;
     use FeatureTrait;
 
+    /**
+     * @var array
+     */
     private $results;
 
+    /**
+     * Create an entity annotation result.
+     *
+     * This class is created internally by {@see Google\Cloud\Vision\Annotation} and is used to represent various
+     * annotation feature results.
+     *
+     * This class should not be instantiated outside the gcloud-php library.
+     *
+     * @see Google\Cloud\Vision\Annotation::landmarks()
+     * @see Google\Cloud\Vision\Annotation::logos()
+     * @see Google\Cloud\Vision\Annotation::labels()
+     * @see Google\Cloud\Vision\Annotation::text()
+     *
+     * Example:
+     * ```
+     * use Google\Cloud\ServiceBuilder;
+     *
+     * $cloud = new ServiceBuilder();
+     * $vision = $cloud->vision();
+     *
+     * $image = $vision->image(fopen(__DIR__ .'/assets/family-photo.jpg', 'r'), [ 'imageProperties' ]);
+     * $annotation = $vision->annotate($image);
+     *
+     * $landmarks = $annotation->landmarks();
+     * ```
+     *
+     * @param array $result The entity annotation result
+     */
     public function __construct(array $results)
     {
         $this->results = $results;

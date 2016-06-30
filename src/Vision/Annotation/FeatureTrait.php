@@ -17,44 +17,23 @@
 
 namespace Google\Cloud\Vision\Annotation;
 
-use Google\Cloud\Exception\GoogleException;
-
+/**
+ * Provide shared functionality for features
+ */
 trait FeatureTrait
 {
-    private $likelihoodLevels = [
-        FeatureInterface::LIKELIHOOD_HIGH => [
-            'VERY_LIKELY'
-        ],
-        FeatureInterface::LIKELIHOOD_MEDIUM => [
-            'VERY_LIKELY',
-            'LIKELY'
-        ],
-        FeatureInterface::LIKELIHOOD_LOW => [
-            'VERY_LIKELY',
-            'LIKELY',
-            'POSSIBLE'
-        ]
-    ];
-
-    public function result()
+    /**
+     * Get the raw annotation result
+     *
+     * Example:
+     * ```
+     * $annotation->faces()[0]->info();
+     * ```
+     * 
+     * @return array
+     */
+    public function info()
     {
         return $this->result;
-    }
-
-    private function likelihood($property, $strength)
-    {
-        if (!array_key_exists($strength, $this->likelihoodLevels)) {
-            throw new GoogleException(sprintf(
-                'Given strength %s is not a valid value', $strength
-            ));
-        }
-
-        $levels = $this->likelihoodLevels[$strength];
-
-        if (in_array($this->result[$property], $levels)) {
-            return true;
-        }
-
-        return false;
     }
 }

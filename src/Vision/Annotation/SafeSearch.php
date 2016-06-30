@@ -25,8 +25,6 @@ namespace Google\Cloud\Vision\Annotation;
  *
  *     Example:
  *     ```
- *     $annotation = $vision->annotate($image);
- *     $safeSearch = $annotation->safeSearch();
  *     echo $safeSearch->adult();
  *     ```
  * }
@@ -36,8 +34,6 @@ namespace Google\Cloud\Vision\Annotation;
  *
  *     Example:
  *     ```
- *     $annotation = $vision->annotate($image);
- *     $safeSearch = $annotation->safeSearch();
  *     echo $safeSearch->spoof();
  *     ```
  * }
@@ -46,8 +42,6 @@ namespace Google\Cloud\Vision\Annotation;
  *
  *     Example:
  *     ```
- *     $annotation = $vision->annotate($image);
- *     $safeSearch = $annotation->safeSearch();
  *     echo $safeSearch->medical();
  *     ```
  * }
@@ -56,8 +50,6 @@ namespace Google\Cloud\Vision\Annotation;
  *
  *     Example:
  *     ```
- *     $annotation = $vision->annotate($image);
- *     $safeSearch = $annotation->safeSearch();
  *     echo $safeSearch->violence();
  *     ```
  * }
@@ -66,9 +58,32 @@ class SafeSearch implements FeatureInterface
 {
     use CallTrait;
     use FeatureTrait;
+    use LikelihoodTrait;
 
     private $results;
 
+    /**
+     * Create a SafeSearch annotation result
+     *
+     * This class is instantiated internally and is used to represent the result of Cloud Vision's SafeSearch annotation
+     * feature. It should not be instantiated directly. For complete usage instructions, please refer to
+     * {@see Google\Cloud\Vision\Annotation::safeSearch()}.
+     *
+     * Example:
+     * ```
+     * use Google\Cloud\ServiceBuilder;
+     *
+     * $cloud = new ServiceBuilder();
+     * $vision = $cloud->vision();
+     *
+     * $image = $vision->image(fopen(__DIR__ .'/assets/family-photo.jpg', 'r'), [ 'safeSearch' ]);
+     * $annotation = $vision->annotate($image);
+     *
+     * $safeSearch = $annotation->safeSearch();
+     * ```
+     *
+     * @param array $results The SafeSearch annotation result
+     */
     public function __construct(array $results)
     {
         $this->results = $results;
@@ -79,9 +94,6 @@ class SafeSearch implements FeatureInterface
      *
      * Example:
      * ```
-     * $annotation = $vision->annotate($image);
-     * $safeSearch = $annotation->safeSearch();
-     *
      * if ($safeSearch->isAdult()) {
      *     echo "Image contains adult content.";
      * }
@@ -103,9 +115,6 @@ class SafeSearch implements FeatureInterface
      *
      * Example:
      * ```
-     * $annotation = $vision->annotate($image);
-     * $safeSearch = $annotation->safeSearch();
-     *
      * if ($safeSearch->isSpoof()) {
      *     echo "Image contains spoofed content.";
      * }
@@ -127,9 +136,6 @@ class SafeSearch implements FeatureInterface
      *
      * Example:
      * ```
-     * $annotation = $vision->annotate($image);
-     * $safeSearch = $annotation->safeSearch();
-     *
      * if ($safeSearch->medical()) {
      *     echo "Image contains medical content.";
      * }
@@ -151,9 +157,6 @@ class SafeSearch implements FeatureInterface
      *
      * Example:
      * ```
-     * $annotation = $vision->annotate($image);
-     * $safeSearch = $annotation->safeSearch();
-     *
      * if ($safeSearch->isViolent()) {
      *     echo "Image contains violent content.";
      * }

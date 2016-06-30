@@ -17,11 +17,17 @@
 
 namespace Google\Cloud\Vision\Annotation;
 
+/**
+ * Define shared functionality for annotation features.
+ */
 interface FeatureInterface
 {
     const STRENGTH_HIGH = 'high';
     const STRENGTH_MEDIUM = 'medium';
     const STRENGTH_LOW = 'low';
 
+    /**
+     * @return array
+     */
     public function info();
 }

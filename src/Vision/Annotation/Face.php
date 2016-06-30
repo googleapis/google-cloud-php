@@ -17,7 +17,6 @@
 
 namespace Google\Cloud\Vision\Annotation;
 
-use Google\Cloud\Exception\GoogleException;
 use Google\Cloud\Vision\Annotation\Face\Landmarks;
 
 /**
@@ -183,9 +182,41 @@ class Face implements FeatureInterface
 {
     use CallTrait;
     use FeatureTrait;
+    use LikelihoodTrait;
 
+    /**
+     * @var array
+     */
     private $result;
 
+    /**
+     * @var Landmarks
+     */
+    private $landmarks;
+
+    /**
+     * Create an Face result.
+     *
+     * This class is created internally by {@see Google\Cloud\Vision\Annotation}.
+     * See {@see Google\Cloud\Vision\Annotation::faces()} for full usage details.
+     * This class should not be instantiated outside the gcloud-php library.
+     *
+     * Example:
+     * ```
+     * use Google\Cloud\ServiceBuilder;
+     *
+     * $cloud = new ServiceBuilder();
+     * $vision = $cloud->vision();
+     *
+     * $image = $vision->image(fopen(__DIR__ .'/assets/family-photo.jpg', 'r'), [ 'imageProperties' ]);
+     * $annotation = $vision->annotate($image);
+     *
+     * $faces = $annotation->faces();
+     * $firstFace = $faces[0];
+     * ```
+     *
+     * @param array $result The face annotation result
+     */
     public function __construct(array $result)
     {
         $this->result = $result;
@@ -193,6 +224,12 @@ class Face implements FeatureInterface
     }
 
     /**
+     * Returns an object detailing facial landmarks and their location.
+     *
+     * Example:
+     * ```
+     * $leftEye = $firstFace->leftEye();
+     * ```
      * @return Landmarks
      */
     public function landmarks()
@@ -205,10 +242,7 @@ class Face implements FeatureInterface
      *
      * Example:
      * ```
-     * $annotation = $vision->annotate($image);
-     * $face = $annotation->faces()[0];
-     *
-     * if ($face->isJoyful()) {
+     * if ($firstFace->isJoyful()) {
      *     echo "Face is Joyful";
      * }
      * ```
@@ -229,10 +263,7 @@ class Face implements FeatureInterface
      *
      * Example:
      * ```
-     * $annotation = $vision->annotate($image);
-     * $face = $annotation->faces()[0];
-     *
-     * if ($face->isSorrowful()) {
+     * if ($firstFace->isSorrowful()) {
      *     echo "Face is Sorrowful";
      * }
      * ```
@@ -256,7 +287,7 @@ class Face implements FeatureInterface
      * $annotation = $vision->annotate($image);
      * $face = $annotation->faces()[0];
      *
-     * if ($face->isAngry()) {
+     * if ($firstFace->isAngry()) {
      *     echo "Face is Angry";
      * }
      * ```
@@ -277,10 +308,7 @@ class Face implements FeatureInterface
      *
      * Example:
      * ```
-     * $annotation = $vision->annotate($image);
-     * $face = $annotation->faces()[0];
-     *
-     * if ($face->isSurprised()) {
+     * if ($firstFace->isSurprised()) {
      *     echo "Face is Surprised";
      * }
      * ```
@@ -301,10 +329,7 @@ class Face implements FeatureInterface
      *
      * Example:
      * ```
-     * $annotation = $vision->annotate($image);
-     * $face = $annotation->faces()[0];
-     *
-     * if ($face->isUnderExposed()) {
+     * if ($firstFace->isUnderExposed()) {
      *     echo "Face is Under Exposed";
      * }
      * ```
@@ -325,10 +350,7 @@ class Face implements FeatureInterface
      *
      * Example:
      * ```
-     * $annotation = $vision->annotate($image);
-     * $face = $annotation->faces()[0];
-     *
-     * if ($face->isBlurred()) {
+     * if ($firstFace->isBlurred()) {
      *     echo "Face is Blurred";
      * }
      * ```
@@ -349,10 +371,7 @@ class Face implements FeatureInterface
      *
      * Example:
      * ```
-     * $annotation = $vision->annotate($image);
-     * $face = $annotation->faces()[0];
-     *
-     * if ($face->hasHeadwear()) {
+     * if ($firstFace->hasHeadwear()) {
      *     echo "Face has Headwear";
      * }
      * ```
