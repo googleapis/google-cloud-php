@@ -8,7 +8,7 @@
     "require": {
         "php": ">=5.5",
         "google/auth": "0.7",
-        "grpc/grpc": "dev-release-0_13"
+        "grpc/grpc": "v0.15.0"
     },
     "require-dev": {
         "phpunit/phpunit": "4.8.*"
@@ -18,5 +18,7 @@
           "Google\\GAX\\":"src/"
         },
         "classmap": ["src/generated"]
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }

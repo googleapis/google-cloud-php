@@ -1,6 +1,12 @@
 Google API Extensions for PHP
 =================================
 
+[![Build Status](https://img.shields.io/travis/googleapis/gax-php.svg)]
+(https://travis-ci.org/googleapis/gax-php)
+
+[![Code Coverage](https://img.shields.io/codecov/c/github/googleapis/gax-php.svg)]
+(https://codecov.io/github/googleapis/gax-php)
+
 Google API Extensions for PHP (gax-php) is a set of modules which aids
 the development of APIs for clients based on [gRPC][] and Google API
 conventions.

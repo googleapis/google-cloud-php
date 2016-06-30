@@ -86,7 +86,7 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
     {
         $request = "request";
         $response = "response";
-        $status = new MockStatus(\Grpc\STATUS_DEADLINE_EXCEEDED, 'Deadline Exceeded');
+        $status = new MockStatus(Grpc\STATUS_DEADLINE_EXCEEDED, 'Deadline Exceeded');
         $stub = MockStub::createWithResponseSequence([[$response, $status]]);
         $backoffSettings = new BackoffSettings([
             'initialRetryDelayMillis' => 100,
@@ -160,7 +160,7 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
     {
         $request = "request";
         $response = "response";
-        $status = new MockStatus(\Grpc\STATUS_DEADLINE_EXCEEDED, 'Deadline Exceeded');
+        $status = new MockStatus(Grpc\STATUS_DEADLINE_EXCEEDED, 'Deadline Exceeded');
         $stub = MockStub::createWithResponseSequence([[$response, $status]]);
         $backoffSettings = new BackoffSettings([
             'initialRetryDelayMillis' => 1000,
@@ -188,7 +188,7 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($request, $actualCalls[0]['request']);
 
         $this->assertTrue(!empty($raisedException));
-        $this->assertEquals(\Grpc\STATUS_DEADLINE_EXCEEDED, $raisedException->getCode());
+        $this->assertEquals(Grpc\STATUS_DEADLINE_EXCEEDED, $raisedException->getCode());
     }
 
     public function testPageStreamingNoTimeout()
