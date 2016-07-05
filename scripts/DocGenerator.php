@@ -17,6 +17,7 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
+use phpDocumentor\Reflection\DocBlock;
 use phpDocumentor\Reflection\DocBlock\Description;
 use phpDocumentor\Reflection\DocBlock\Tag\SeeTag;
 use phpDocumentor\Reflection\FileReflector;
@@ -97,6 +98,11 @@ class DocGenerator
         $type = end($parts);
 
         $docBlock = $reflector->getDocBlock();
+
+        $magicMethods = array_filter($docBlock->getTags(), function ($tag) {
+            return ($tag->getName() === 'method');
+        });
+
         $methods = $reflector->getMethods();
 
         if (is_null($docBlock)) {
@@ -109,7 +115,10 @@ class DocGenerator
             'title' => $reflector->getNamespace() . '\\' . $name,
             'name' => $name,
             'description' => $this->buildDescription($docBlock),
-            'methods' => $this->buildMethods($methods, $name)
+            'methods' => array_merge(
+                $this->buildMethods($methods, $name),
+                $this->buildMagicMethods($magicMethods, $name)
+            )
         ];
     }
 
@@ -162,6 +171,21 @@ class DocGenerator
         return $methodArray;
     }
 
+    private function buildMagicMethods($magicMethods, $className)
+    {
+        $methodArray = [];
+        foreach ($magicMethods as $method) {
+            $docBlock = $method->getDocBlock();
+            if (is_null($docBlock)) {
+                throw new \Exception(sprintf('%s::%s (magic method) has no description', $className, $name));
+            }
+
+            $methodArray[] = $this->buildMagicMethod($method);
+        }
+
+        return $methodArray;
+    }
+
     private function buildMethod($method)
     {
         $docBlock = $method->getDocBlock();
@@ -186,6 +210,39 @@ class DocGenerator
             'type' => $method->getName() === '__construct' ? 'constructor' : 'instance',
             'name' => $method->getName(),
             'source' => $this->currentFile . '#L' . $method->getLineNumber(),
+            'description' => $this->buildDescription($docBlock, $docText),
+            'examples' => $this->buildExamples($examples),
+            'resources' => $this->buildResources($resources),
+            'params' => $this->buildParams($params),
+            'exceptions' => $this->buildExceptions($exceptions),
+            'returns' => $this->buildReturns($returns)
+        ];
+    }
+
+    private function buildMagicMethod($magicMethod)
+    {
+        $docBlock = new DocBlock(trim(substr($magicMethod->getDescription(), 1, -1)));
+        $fullDescription = $docBlock->getText();
+        $resources = $docBlock->getTagsByName('see');
+        $params = $docBlock->getTagsByName('param');
+        $exceptions = $docBlock->getTagsByName('throws');
+        $returns = $docBlock->getTagsByName('return');
+        $docText = '';
+        $examples = null;
+
+        $parts = explode('Example:', $fullDescription);
+
+        $docText = $parts[0];
+
+        if (strpos($fullDescription, 'Example:') !== false) {
+            $examples = $parts[1];
+        }
+
+        return [
+            'id' => $magicMethod->getMethodName(),
+            'type' => $magicMethod->getMethodName() === '__construct' ? 'constructor' : 'instance',
+            'name' => $magicMethod->getMethodName(),
+            'source' => $this->currentFile,
             'description' => $this->buildDescription($docBlock, $docText),
             'examples' => $this->buildExamples($examples),
             'resources' => $this->buildResources($resources),
@@ -362,6 +419,14 @@ class DocGenerator
         }
 
         return $returnsArray;
+    }
+
+    public function buildMagicReturns($return)
+    {
+        return [
+            'types' => $this->handleTypes([$return]),
+            'description' => null
+        ];
     }
 
     private function handleTypes($types)

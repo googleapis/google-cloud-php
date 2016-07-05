@@ -20,54 +20,58 @@ namespace Google\Cloud\Vision\Annotation;
 /**
  * Represents an entity annotation
  *
- * @method string mid() {
+ * @method mid() {
  *     Opaque entity ID.
  *
  *     Some IDs might be available in Knowledge Graph(KG).
  *
- *     @see https://developers.google.com/knowledge-graph/ Knowledge Graph
- *
  *     Example:
  *     ```
- *     $annotation = $vision->annotate($image);
  *     $text = $annotation->text()[0];
  *     print_r($text->mid());
  *     ```
+ *
+ *     @see https://developers.google.com/knowledge-graph/ Knowledge Graph
+ *
+ *     @return string
  * }
- * @method string locale() {
+ * @method locale() {
  *     The language code for the locale in which the entity textual description
  *     (next field) is expressed.
  *
  *     Example:
  *     ```
- *     $annotation = $vision->annotate($image);
  *     $text = $annotation->text()[0];
  *     print_r($text->locale());
  *     ```
+ *
+ *     @return string
  * }
- * @method string description() {
+ * @method description() {
  *     Entity textual description, expressed in its locale language.
  *
  *     Example:
  *     ```
- *     $annotation = $vision->annotate($image);
  *     $text = $annotation->text()[0];
  *     print_r($text->description());
  *     ```
+ *
+ *     @return string
  * }
- * @method float score() {
+ * @method score() {
  *     Overall score of the result.
  *
  *     Range [0, 1].
  *
  *     Example:
  *     ```
- *     $annotation = $vision->annotate($image);
  *     $text = $annotation->text()[0];
  *     print_r($text->score());
  *     ```
+ *
+ *     @return float
  * }
- * @method float confidence() {
+ * @method confidence() {
  *     The accuracy of the entity detection in an image.
  *
  *     For example, for an image containing 'Eiffel Tower,' this field
@@ -77,12 +81,13 @@ namespace Google\Cloud\Vision\Annotation;
  *
  *     Example:
  *     ```
- *     $annotation = $vision->annotate($image);
  *     $text = $annotation->text()[0];
  *     print_r($text->confidence());
  *     ```
+ *
+ *     @return float
  * }
- * @method float topicality() {
+ * @method topicality() {
  *     The relevancy of the ICA (Image Content Annotation) label to the image.
  *
  *     For example, the relevancy of 'tower' to an image containing
@@ -94,12 +99,13 @@ namespace Google\Cloud\Vision\Annotation;
  *
  *     Example:
  *     ```
- *     $annotation = $vision->annotate($image);
  *     $text = $annotation->text()[0];
  *     print_r($text->topicality());
  *     ```
+ *
+ *     @return float
  * }
- * @method array boundingPoly() {
+ * @method boundingPoly() {
  *     Image region to which this entity belongs.
  *
  *     Not filled currently for LABEL_DETECTION features. For TEXT_DETECTION
@@ -109,12 +115,13 @@ namespace Google\Cloud\Vision\Annotation;
  *
  *     Example:
  *     ```
- *     $annotation = $vision->annotate($image);
  *     $text = $annotation->text()[0];
  *     print_r($text->boundingPoly());
  *     ```
+ *
+ *     @return array
  * }
- * @method array locations() {
+ * @method locations() {
  *     The location information for the detected entity.
  *
  *     Multiple LocationInfo elements can be present since one location may
@@ -124,21 +131,23 @@ namespace Google\Cloud\Vision\Annotation;
  *
  *     Example:
  *     ```
- *     $annotation = $vision->annotate($image);
  *     $text = $annotation->text()[0];
  *     print_r($text->locations());
  *     ```
+ *
+ *     @return array
  * }
- * @method array properties() {
+ * @method properties() {
  *     Some entities can have additional optional Property fields. For example a
  *     different kind of score or string that qualifies the entity.
  *
  *     Example:
  *     ```
- *     $annotation = $vision->annotate($image);
  *     $text = $annotation->text()[0];
  *     print_r($text->properties());
  *     ```
+ *
+ *     @return array
  * }
  */
 class Entity implements FeatureInterface
@@ -173,8 +182,6 @@ class Entity implements FeatureInterface
      *
      * $image = $vision->image(fopen(__DIR__ .'/assets/family-photo.jpg', 'r'), [ 'imageProperties' ]);
      * $annotation = $vision->annotate($image);
-     *
-     * $landmarks = $annotation->landmarks();
      * ```
      *
      * @see https://cloud.google.com/vision/reference/rest/v1/images/annotate#entityannotation EntityAnnotation

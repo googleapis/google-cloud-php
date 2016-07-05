@@ -22,7 +22,7 @@ use Google\Cloud\Vision\Annotation\Face\Landmarks;
 /**
  * Represents a face annotation result
  *
- * @method array boundingPoly() {
+ * @method boundingPoly() {
  *     The bounding polygon around the face.
  *
  *     Example:
@@ -31,8 +31,10 @@ use Google\Cloud\Vision\Annotation\Face\Landmarks;
  *     $face = $annotation->faces()[0];
  *     print_R($face->boundingPoly());
  *     ```
+ *
+ *     @return array
  * }
- * @method array fdBoundingPoly() {
+ * @method fdBoundingPoly() {
  *     Bounding polygon around the face.
  *
  *     Tighter than `boundingPoly` and encloses only the skin part of the face.
@@ -43,8 +45,10 @@ use Google\Cloud\Vision\Annotation\Face\Landmarks;
  *     $face = $annotation->faces()[0];
  *     print_R($face->fdBoundingPoly());
  *     ```
+ *
+ *     @return array
  * }
- * @method float rollAngle() {
+ * @method rollAngle() {
  *     Roll angle.
  *
  *     Indicates the amount of clockwise/anti-clockwise rotation of the face.
@@ -56,8 +60,10 @@ use Google\Cloud\Vision\Annotation\Face\Landmarks;
  *     $face = $annotation->faces()[0];
  *     print_R($face->rollAngle());
  *     ```
+ *
+ *     @return float
  * }
- * @method float panAngle() {
+ * @method panAngle() {
  *     Yaw angle.
  *
  *     Indicates the leftward/rightward angle that the face is pointing. Range
@@ -69,8 +75,10 @@ use Google\Cloud\Vision\Annotation\Face\Landmarks;
  *     $face = $annotation->faces()[0];
  *     print_R($face->panAngle());
  *     ```
+ *
+ *     @return float
  * }
- * @method float tiltAngle() {
+ * @method tiltAngle() {
  *     Pitch angle.
  *
  *     Indicates the upwards/downwards angle that the face is pointing. Range
@@ -82,8 +90,10 @@ use Google\Cloud\Vision\Annotation\Face\Landmarks;
  *     $face = $annotation->faces()[0];
  *     print_R($face->tiltAngle());
  *     ```
+ *
+ *     @return float
  * }
- * @method float detectionConfidence() {
+ * @method detectionConfidence() {
  *     The detection confidence.
  *
  *     Range [0,1]
@@ -94,8 +104,10 @@ use Google\Cloud\Vision\Annotation\Face\Landmarks;
  *     $face = $annotation->faces()[0];
  *     print_R($face->detectionConfidence());
  *     ```
+ *
+ *     @return float
  * }
- * @method float landmarkingConfidence() {
+ * @method landmarkingConfidence() {
  *     Face landmarking confidence.
  *
  *     Range [0,1]
@@ -106,77 +118,94 @@ use Google\Cloud\Vision\Annotation\Face\Landmarks;
  *     $face = $annotation->faces()[0];
  *     print_R($face->landmarkingConfidence());
  *     ```
+ *
+ *     @return float
  * }
- * @method string joyLikelihood() {
+ * @method joyLikelihood() {
  *     Joy likelihood.
  *
  *     Example:
  *     ```
  *     $annotation = $vision->annotate($image);
  *     $face = $annotation->faces()[0];
- *     print_R($face->joyLikelihood());
+ *     echo $face->joyLikelihood();
  *     ```
+ *
+ *     @return string
  * }
- * @method string sorrowLikelihood() {
+ * @method sorrowLikelihood() {
  *     Sorrow likelihood.
  *
  *     Example:
  *     ```
  *     $annotation = $vision->annotate($image);
  *     $face = $annotation->faces()[0];
- *     print_R($face->sorrowLikelihood());
+ *     echo $face->sorrowLikelihood();
  *     ```
+ *
+ *     @return string
  * }
- * @method string angerLikelihood() {
+ * @method angerLikelihood() {
  *     Anger likelihood.
  *
  *     Example:
  *     ```
  *     $annotation = $vision->annotate($image);
  *     $face = $annotation->faces()[0];
- *     print_R($face->angerLikelihood());
+ *     echo $face->angerLikelihood();
  *     ```
+ *
+ *     @return string
  * }
- * @method string surpriseLikelihood() {
+ * @method surpriseLikelihood() {
  *     Surprise likelihood.
  *
  *     Example:
  *     ```
  *     $annotation = $vision->annotate($image);
  *     $face = $annotation->faces()[0];
- *     print_R($face->surpriseLikelihood());
+ *     echo $face->surpriseLikelihood();
  *     ```
+ *
+ *     @return string
  * }
- * @method string underExposedLikelihood() {
+ * @method underExposedLikelihood() {
  *     Under exposure likelihood.
  *
  *     Example:
  *     ```
  *     $annotation = $vision->annotate($image);
  *     $face = $annotation->faces()[0];
- *     print_R($face->underExposedLikelihood());
+ *     echo $face->underExposedLikelihood();
  *     ```
+ *
+ *     @return string
  * }
- * @method string blurredLikelihood() {
+ * @method blurredLikelihood() {
  *     Blurred likelihood.
  *
  *     Example:
  *     ```
  *     $annotation = $vision->annotate($image);
  *     $face = $annotation->faces()[0];
- *     print_R($face->blurredLikelihood());
+ *     echo $face->blurredLikelihood();
  *     ```
+ *
+ *     @return string
  * }
- * @method string headwearLikelihood() {
+ * @method headwearLikelihood() {
  *     Headwear likelihood.
  *
  *     Example:
  *     ```
  *     $annotation = $vision->annotate($image);
  *     $face = $annotation->faces()[0];
- *     print_R($face->headwearLikelihood());
+ *     echo $face->headwearLikelihood();
  *     ```
+ *
+ *     @return string
  * }
+ * @package foo
  */
 class Face implements FeatureInterface
 {

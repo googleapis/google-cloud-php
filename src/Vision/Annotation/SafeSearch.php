@@ -20,15 +20,17 @@ namespace Google\Cloud\Vision\Annotation;
 /**
  * Represents a SafeSearch annotation result
  *
- * @method string adult() {
+ * @method adult() {
  *     Represents the adult contents likelihood for the image.
  *
  *     Example:
  *     ```
  *     echo $safeSearch->adult();
  *     ```
+ *
+ *     @return string
  * }
- * @method string spoof() {
+ * @method spoof() {
  *     Spoof likelihood. The likelihood that an obvious modification was made to
  *     the image's canonical version to make it appear funny or offensive.
  *
@@ -36,22 +38,28 @@ namespace Google\Cloud\Vision\Annotation;
  *     ```
  *     echo $safeSearch->spoof();
  *     ```
+ *
+ *     @return string
  * }
- * @method string medical() {
+ * @method medical() {
  *     Likelihood this is a medical image.
  *
  *     Example:
  *     ```
  *     echo $safeSearch->medical();
  *     ```
+ *
+ *     @return string
  * }
- * @method string violence() {
+ * @method violence() {
  *     Violence likelihood.
  *
  *     Example:
  *     ```
  *     echo $safeSearch->violence();
  *     ```
+ *
+ *     @return string
  * }
  */
 class SafeSearch implements FeatureInterface
