@@ -228,7 +228,7 @@ class Face implements FeatureInterface
      *
      * Example:
      * ```
-     * $leftEye = $firstFace->leftEye();
+     * $leftEye = $firstFace->landmarks()->leftEye();
      * ```
      * @return Landmarks
      */
@@ -284,9 +284,6 @@ class Face implements FeatureInterface
      *
      * Example:
      * ```
-     * $annotation = $vision->annotate($image);
-     * $face = $annotation->faces()[0];
-     *
      * if ($firstFace->isAngry()) {
      *     echo "Face is Angry";
      * }

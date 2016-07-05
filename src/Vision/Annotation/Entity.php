@@ -159,10 +159,10 @@ class Entity implements FeatureInterface
      *
      * This class should not be instantiated outside the gcloud-php library.
      *
-     * @see Google\Cloud\Vision\Annotation::landmarks()
-     * @see Google\Cloud\Vision\Annotation::logos()
-     * @see Google\Cloud\Vision\Annotation::labels()
-     * @see Google\Cloud\Vision\Annotation::text()
+     * Entities are returned by {@see Google\Cloud\Vision\Annotation::landmarks()},
+     * {@see Google\Cloud\Vision\Annotation::logos()},
+     * {@see Google\Cloud\Vision\Annotation::labels()} and
+     * {@see Google\Cloud\Vision\Annotation::text()}.
      *
      * Example:
      * ```
@@ -176,6 +176,8 @@ class Entity implements FeatureInterface
      *
      * $landmarks = $annotation->landmarks();
      * ```
+     *
+     * @see https://cloud.google.com/vision/reference/rest/v1/images/annotate#entityannotation EntityAnnotation
      *
      * @param array $result The entity annotation result
      */

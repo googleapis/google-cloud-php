@@ -149,12 +149,14 @@ class Image
      * ```
      *
      * @see https://cloud.google.com/vision/docs/image-best-practices Best Practices
+     * @see https://cloud.google.com/vision/docs/pricing Pricing
      *
-     * @param  mixed $image An image to configure with the given settings. This
-     *         parameter will accept a resource, a string of bytes, or an
-     *         instance of {@see Google\Cloud\Storage\Object}.
-     * @param  array $features A list of cloud vision features to apply to the
-     *         image.
+     * @param  resource|string|Object $image An image to configure with the given
+     *         settings. This parameter will accept a resource, a string of
+     *         bytes, or an instance of {@see Google\Cloud\Storage\Object}.
+     * @param  array $features A list of cloud vision
+     *         [features](https://cloud.google.com/vision/reference/rest/v1/images/annotate#type)
+     *         to apply to the image.
      * @param  array $options {
      *     Configuration Options
      *
@@ -211,11 +213,11 @@ class Image
      * $requestObj = $image->requestObject();
      * ```
      *
-     * @see https://cloud.google.com/vision/reference/rest/v1/images/annotate#annotateimagerequest
+     * @see https://cloud.google.com/vision/reference/rest/v1/images/annotate#annotateimagerequest AnnotateImageRequest
      *
-     * @param  bool $encode If set to true, image bytes will be base64-encoded.
+     * @param  bool $encode If set to true, image bytes will be base64-encoded
+     *         (required for json/rest requests)
      * @return array
-     * [AnnotateImageRequest](https://cloud.google.com/vision/reference/rest/v1/images/annotate#annotateimagerequest)
      */
     public function requestObject($encode = true)
     {
@@ -232,7 +234,7 @@ class Image
      * The return result will vary depending on whether the given image is a
      * storage object or not.
      *
-     * @see https://cloud.google.com/vision/reference/rest/v1/images/annotate#image
+     * @see https://cloud.google.com/vision/reference/rest/v1/images/annotate#image Image
      *
      * @param  bool $encode If set to true, image bytes will be base64-encoded
      * @return array [Image](https://cloud.google.com/vision/reference/rest/v1/images/annotate#image)

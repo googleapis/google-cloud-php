@@ -100,7 +100,7 @@ class SafeSearch implements FeatureInterface
      * ```
      *
      * @param  string $strength Value should be one of "low", "medium" or "high".
-     *         Recommended usage is via `Face::STRENGTH_*` constants. Defaults
+     *         Recommended usage is via `SafeSearch::STRENGTH_*` constants. Defaults
      *         to "low". Higher strength will result in fewer `true` results,
      *         but fewer false positives.
      * @return bool
@@ -121,7 +121,7 @@ class SafeSearch implements FeatureInterface
      * ```
      *
      * @param  string $strength Value should be one of "low", "medium" or "high".
-     *         Recommended usage is via `Face::STRENGTH_*` constants. Defaults
+     *         Recommended usage is via `SafeSearch::STRENGTH_*` constants. Defaults
      *         to "low". Higher strength will result in fewer `true` results,
      *         but fewer false positives.
      * @return bool
@@ -142,7 +142,7 @@ class SafeSearch implements FeatureInterface
      * ```
      *
      * @param  string $strength Value should be one of "low", "medium" or "high".
-     *         Recommended usage is via `Face::STRENGTH_*` constants. Defaults
+     *         Recommended usage is via `SafeSearch::STRENGTH_*` constants. Defaults
      *         to "low". Higher strength will result in fewer `true` results,
      *         but fewer false positives.
      * @return bool
@@ -163,7 +163,7 @@ class SafeSearch implements FeatureInterface
      * ```
      *
      * @param  string $strength Value should be one of "low", "medium" or "high".
-     *         Recommended usage is via `Face::STRENGTH_*` constants. Defaults
+     *         Recommended usage is via `SafeSearch::STRENGTH_*` constants. Defaults
      *         to "low". Higher strength will result in fewer `true` results,
      *         but fewer false positives.
      * @return bool

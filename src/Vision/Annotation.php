@@ -145,9 +145,12 @@ class Annotation
      *
      * Example:
      * ```
-     * $annotation = $vision->annotate($image);
      * $info = $annotation->info();
      * ```
+     *
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/vision/reference/rest/v1/images/annotate#annotateimageresponse AnnotateImageResponse
+     * @codingStandardsIgnoreEnd
      *
      * @return array
      */
@@ -161,12 +164,10 @@ class Annotation
      *
      * Example:
      * ```
-     * $annotation = $vision->annotate($image);
      * $faces = $annotation->faces();
-     * $firstFace = $faces[0];
      * ```
      *
-     * @return array
+     * @return Face[]
      */
     public function faces()
     {
@@ -178,7 +179,7 @@ class Annotation
      *
      * Example:
      * ```
-     * $
+     * $landmarks = $annotation->landmarks();
      * ```
      *
      * @return Entity[]
@@ -193,7 +194,7 @@ class Annotation
      *
      * Example:
      * ```
-     * // Example here
+     * $logos = $annotation->logos();
      * ```
      *
      * @return Entity[]
@@ -208,7 +209,7 @@ class Annotation
      *
      * Example:
      * ```
-     * // Example here
+     * $labels = $annotation->labels();
      * ```
      *
      * @return Entity[]
@@ -223,7 +224,7 @@ class Annotation
      *
      * Example:
      * ```
-     * // Example here
+     * $text = $annotation->text();
      * ```
      *
      * @return Entity[]
@@ -238,7 +239,7 @@ class Annotation
      *
      * Example:
      * ```
-     * // Example here
+     * $safeSearch = $annotation->safeSearch();
      * ```
      *
      * @return SafeSearch
@@ -253,7 +254,7 @@ class Annotation
      *
      * Example:
      * ```
-     * // Example here
+     * $properties = $annotation->imageProperties();
      * ```
      *
      * @return ImageProperties
@@ -268,8 +269,10 @@ class Annotation
      *
      * Example:
      * ```
-     * // Example here
+     * $error = $annotation->error();
      * ```
+     *
+     * @see https://cloud.google.com/vision/reference/rest/v1/images/annotate#status Status Format
      *
      * @return array
      */

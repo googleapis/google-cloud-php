@@ -63,7 +63,9 @@ class ImageProperties implements FeatureInterface
      * ```
      * $colors = $properties->colors();
      * ```
-     * 
+     *
+     * @see https://cloud.google.com/vision/reference/rest/v1/images/annotate#colorinfo ColorInfo
+     *
      * @return array
      */
     public function colors()

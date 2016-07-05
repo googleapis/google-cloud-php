@@ -45,9 +45,7 @@ class VisionClient
      * ```
      * use Google\Cloud\ServiceBuilder;
      *
-     * $cloud = new ServiceBuilder([
-     *     'projectId' => 'my-awesome-project'
-     * ]);
+     * $cloud = new ServiceBuilder();
      *
      * $vision = $cloud->vision();
      * ```
@@ -56,9 +54,7 @@ class VisionClient
      * // The Vision client can also be instantianted directly.
      * use Google\Cloud\Vision\VisionClient;
      *
-     * $vision = new VisionClient([
-     *     'projectId' => 'my-awesome-project'
-     * ]);
+     * $vision = new VisionClient();
      * ```
      *
      * @param array $config {
@@ -91,7 +87,7 @@ class VisionClient
     }
 
     /**
-     * Create an instance of Image with required features and options.
+     * Create an instance of {@see Google\Cloud\Vision\Image} with required features and options.
      *
      * This method should be used to configure a single image, or when a set of
      * images requires different settings for each member of the set. If you
@@ -99,7 +95,9 @@ class VisionClient
      * {@see Google\Cloud\Vision\VisionClient::images()} may be quicker and
      * simpler to use.
      *
-     * This method will not perform any service requests.
+     * This method will not perform any service requests, and is meant to be
+     * used to configure a request prior to calling
+     * {@see Google\Cloud\Vision\VisionClient::annotate()}.
      *
      * For more information, including best practices and examples detailing
      * other usage such as `$imageContext`, see {@see Google\Cloud\Vision\Image::__construct()}.
@@ -127,11 +125,12 @@ class VisionClient
      * ])
      * ```
      *
-     * @param  mixed $image An image to configure with the given settings. This
-     *         parameter will accept a resource, a string of bytes, or an
-     *         instance of {@see Google\Cloud\Storage\Object}.
-     * @param  array $features A list of cloud vision features to apply to the
-     *         image.
+     * @param  resource|string|Object $image An image to configure with the given
+     *         settings. This parameter will accept a resource, a string of
+     *         bytes, or an instance of {@see Google\Cloud\Storage\Object}.
+     * @param  array $features A list of cloud vision
+     *         [features](https://cloud.google.com/vision/reference/rest/v1/images/annotate#type)
+     *         to apply to the image.
      * @param  array $options See {@see Google\Cloud\Vision\Image::__construct()} for
      *         configuration details.
      * @return Image
@@ -142,7 +141,7 @@ class VisionClient
     }
 
     /**
-     * Create an array of type Image with required features and options set for
+     * Create an array of type {@see Google\Cloud\Vision\Image} with required features and options set for
      * each member of the set.
      *
      * This method is useful for quickly configuring every member of a set of
@@ -150,7 +149,9 @@ class VisionClient
      * different features or options for one or more members of the set,
      * {@see Google\Cloud\Vision\VisionClient::image()} is a better choice.
      *
-     * This method will not perform any service requests.
+     * This method will not perform any service requests, and is meant to be
+     * used to configure a request prior to calling
+     * {@see Google\Cloud\Vision\VisionClient::annotateBatch()}.
      *
      * For more information, including best practices and examples detailing
      * other usage such as `$imageContext`, see {@see Google\Cloud\Vision\Image::__construct()}.
@@ -172,13 +173,13 @@ class VisionClient
      * ]);
      * ```
      *
-     * @param  array $images An array of images to configure with the given settings.
+     * @param  Image[] $images An array of images to configure with the given settings.
      *         Each member of the set can be a resource, a string of bytes, or an instance of
      *         {@see Google\Cloud\Storage\Object}.
      * @param  array $features A list of cloud vision features to apply to each image.
      * @param  array $options See {@see Google\Cloud\Vision\Image::__construct()} for
      *         configuration details.
-     * @return array
+     * @return Image[]
      */
     public function images(array $images, array $features, array $options = [])
     {
@@ -193,8 +194,6 @@ class VisionClient
     /**
      * Annotate a single image.
      *
-     * Do the work!
-     *
      * Example:
      * ```
      * $familyPhotoResource = fopen(__DIR__ .'/assets/family-photo.jpg', 'r');
@@ -208,8 +207,7 @@ class VisionClient
      *
      * @param  Image $image The image to annotate
      * @param  array $options Configuration options
-     * @return array
-     *         [AnnotateImageResponse](https://cloud.google.com/vision/reference/rest/v1/images/annotate#response-body)
+     * @return Annotation
      */
     public function annotate(Image $image, array $options = [])
     {
@@ -221,14 +219,24 @@ class VisionClient
     /**
      * Annotate a set of images.
      *
-     * Do more work!
-     *
      * Example:
      * ```
-     * // Usage example
+     * $images = [];
+     *
+     * $familyPhotoResource = fopen(__DIR__ .'/assets/family-photo.jpg', 'r');
+     * $images[] = $vision->image($familyPhotoResource, [
+     *     'FACE_DETECTION'
+     * ]);
+     *
+     * $eiffelTowerResource = fopen(__DIR__ .'/assets/eiffel-tower.jpg', 'r');
+     * $images[] = $vision->image($eiffelTowerResource, [
+     *     'LANDMARK_DETECTION'
+     * ]);
+     *
+     * $result = $vision->annotateBatch($images);
      * ```
      *
-     * @param  array $images An array consisting of instances of
+     * @param  Image[] $images An array consisting of instances of
      *         {@see Google\Cloud\Vision\Image}.
      * @param  array $options Configuration Options
      * @return \Generator
