@@ -86,13 +86,15 @@ class RequestBuilder
         $query = [];
         $body = [];
 
-        foreach ($action['parameters'] as $parameter => $parameterOptions) {
-            if ($parameterOptions['location'] === 'path' && array_key_exists($parameter, $options)) {
-                $path[$parameter] = $options[$parameter];
-            }
+        if (isset($action['parameters'])) {
+            foreach ($action['parameters'] as $parameter => $parameterOptions) {
+                if ($parameterOptions['location'] === 'path' && array_key_exists($parameter, $options)) {
+                    $path[$parameter] = $options[$parameter];
+                }
 
-            if ($parameterOptions['location'] === 'query' && array_key_exists($parameter, $options)) {
-                $query[$parameter] = $options[$parameter];
+                if ($parameterOptions['location'] === 'query' && array_key_exists($parameter, $options)) {
+                    $query[$parameter] = $options[$parameter];
+                }
             }
         }
 
