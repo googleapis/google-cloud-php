@@ -42,7 +42,7 @@ use Google\Cloud\Storage\StorageClient;
  */
 class ServiceBuilder
 {
-    const VERSION = '0.3.0';
+    const VERSION = '0.4.0';
 
     /**
      * @var array Configuration options to be used between clients.
