@@ -19,16 +19,20 @@ namespace Google\Cloud\Vision\Annotation;
 
 /**
  * Represents the imageProperties feature result
+ *
+ * @method info() {
+ *     Get the raw annotation result
+ *
+ *     Example:
+ *     ```
+ *     $info = $properties->info();
+ *     ```
+ *
+ *     @return array
+ * }
  */
-class ImageProperties implements FeatureInterface
+class ImageProperties extends AbstractFeature
 {
-    use FeatureTrait;
-
-    /**
-     * @var array
-     */
-    private $result;
-
     /**
      * Create an ImageProperties result.
      *
@@ -49,11 +53,11 @@ class ImageProperties implements FeatureInterface
      * $properties = $annotation->imageProperties();
      * ```
      *
-     * @param array $result The imageProperties annotation result
+     * @param array $info The imageProperties annotation result
      */
-    public function __construct(array $result)
+    public function __construct(array $info)
     {
-        $this->result = $result;
+        $this->info = $info;
     }
 
     /**
@@ -70,6 +74,6 @@ class ImageProperties implements FeatureInterface
      */
     public function colors()
     {
-        return $this->result['dominantColors']['colors'];
+        return $this->info['dominantColors']['colors'];
     }
 }

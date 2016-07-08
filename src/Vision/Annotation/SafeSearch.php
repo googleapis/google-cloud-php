@@ -61,14 +61,21 @@ namespace Google\Cloud\Vision\Annotation;
  *
  *     @return string
  * }
+ * @method info() {
+ *     Get the raw annotation result
+ *
+ *     Example:
+ *     ```
+ *     $info = $safeSearch->info();
+ *     ```
+ *
+ *     @return array
+ * }
  */
-class SafeSearch implements FeatureInterface
+class SafeSearch extends AbstractFeature
 {
     use CallTrait;
-    use FeatureTrait;
     use LikelihoodTrait;
-
-    private $results;
 
     /**
      * Create a SafeSearch annotation result
@@ -90,11 +97,11 @@ class SafeSearch implements FeatureInterface
      * $safeSearch = $annotation->safeSearch();
      * ```
      *
-     * @param array $results The SafeSearch annotation result
+     * @param array $info The SafeSearch annotation result
      */
-    public function __construct(array $results)
+    public function __construct(array $info)
     {
-        $this->results = $results;
+        $this->info = $info;
     }
 
     /**
@@ -115,7 +122,7 @@ class SafeSearch implements FeatureInterface
      */
     public function isAdult($strength = self::STRENGTH_LOW)
     {
-        return $this->likelihood($this->results['adult'], $strength);
+        return $this->likelihood($this->info['adult'], $strength);
     }
 
     /**
@@ -136,7 +143,7 @@ class SafeSearch implements FeatureInterface
      */
     public function isSpoof($strength = self::STRENGTH_LOW)
     {
-        return $this->likelihood($this->results['spoof'], $strength);
+        return $this->likelihood($this->info['spoof'], $strength);
     }
 
     /**
@@ -157,7 +164,7 @@ class SafeSearch implements FeatureInterface
      */
     public function isMedical($strength = self::STRENGTH_LOW)
     {
-        return $this->likelihood($this->results['medical'], $strength);
+        return $this->likelihood($this->info['medical'], $strength);
     }
 
     /**
@@ -178,6 +185,6 @@ class SafeSearch implements FeatureInterface
      */
     public function isViolent($strength = self::STRENGTH_LOW)
     {
-        return $this->likelihood($this->results['violence'], $strength);
+        return $this->likelihood($this->info['violence'], $strength);
     }
 }

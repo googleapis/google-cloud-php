@@ -211,9 +211,13 @@ class VisionClient
      */
     public function annotate(Image $image, array $options = [])
     {
+        $res = null;
         foreach ($this->annotateBatch([$image], $options) as $annotation) {
-            return $annotation;
+            $res = $annotation;
+            break;
         }
+
+        return $res;
     }
 
     /**
@@ -256,6 +260,17 @@ class VisionClient
             'requests' => $requests
         ] + $options);
 
+        return $this->respond($res);
+    }
+
+    /**
+     * Generate a response to an annotation request.
+     *
+     * @param array $res The response object
+     * @return \Generator
+     */
+    private function respond(array $res)
+    {
         if (isset($res['responses'])) {
             foreach ($res['responses'] as $response) {
                 yield new Annotation($response);

@@ -27,8 +27,6 @@ use Google\Cloud\Vision\Annotation\Face\Landmarks;
  *
  *     Example:
  *     ```
- *     $annotation = $vision->annotate($image);
- *     $face = $annotation->faces()[0];
  *     print_R($face->boundingPoly());
  *     ```
  *
@@ -41,8 +39,6 @@ use Google\Cloud\Vision\Annotation\Face\Landmarks;
  *
  *     Example:
  *     ```
- *     $annotation = $vision->annotate($image);
- *     $face = $annotation->faces()[0];
  *     print_R($face->fdBoundingPoly());
  *     ```
  *
@@ -56,8 +52,6 @@ use Google\Cloud\Vision\Annotation\Face\Landmarks;
  *
  *     Example:
  *     ```
- *     $annotation = $vision->annotate($image);
- *     $face = $annotation->faces()[0];
  *     print_R($face->rollAngle());
  *     ```
  *
@@ -71,8 +65,6 @@ use Google\Cloud\Vision\Annotation\Face\Landmarks;
  *
  *     Example:
  *     ```
- *     $annotation = $vision->annotate($image);
- *     $face = $annotation->faces()[0];
  *     print_R($face->panAngle());
  *     ```
  *
@@ -86,8 +78,6 @@ use Google\Cloud\Vision\Annotation\Face\Landmarks;
  *
  *     Example:
  *     ```
- *     $annotation = $vision->annotate($image);
- *     $face = $annotation->faces()[0];
  *     print_R($face->tiltAngle());
  *     ```
  *
@@ -100,8 +90,6 @@ use Google\Cloud\Vision\Annotation\Face\Landmarks;
  *
  *     Example:
  *     ```
- *     $annotation = $vision->annotate($image);
- *     $face = $annotation->faces()[0];
  *     print_R($face->detectionConfidence());
  *     ```
  *
@@ -114,8 +102,6 @@ use Google\Cloud\Vision\Annotation\Face\Landmarks;
  *
  *     Example:
  *     ```
- *     $annotation = $vision->annotate($image);
- *     $face = $annotation->faces()[0];
  *     print_R($face->landmarkingConfidence());
  *     ```
  *
@@ -126,8 +112,6 @@ use Google\Cloud\Vision\Annotation\Face\Landmarks;
  *
  *     Example:
  *     ```
- *     $annotation = $vision->annotate($image);
- *     $face = $annotation->faces()[0];
  *     echo $face->joyLikelihood();
  *     ```
  *
@@ -138,8 +122,6 @@ use Google\Cloud\Vision\Annotation\Face\Landmarks;
  *
  *     Example:
  *     ```
- *     $annotation = $vision->annotate($image);
- *     $face = $annotation->faces()[0];
  *     echo $face->sorrowLikelihood();
  *     ```
  *
@@ -150,8 +132,6 @@ use Google\Cloud\Vision\Annotation\Face\Landmarks;
  *
  *     Example:
  *     ```
- *     $annotation = $vision->annotate($image);
- *     $face = $annotation->faces()[0];
  *     echo $face->angerLikelihood();
  *     ```
  *
@@ -162,8 +142,6 @@ use Google\Cloud\Vision\Annotation\Face\Landmarks;
  *
  *     Example:
  *     ```
- *     $annotation = $vision->annotate($image);
- *     $face = $annotation->faces()[0];
  *     echo $face->surpriseLikelihood();
  *     ```
  *
@@ -174,8 +152,6 @@ use Google\Cloud\Vision\Annotation\Face\Landmarks;
  *
  *     Example:
  *     ```
- *     $annotation = $vision->annotate($image);
- *     $face = $annotation->faces()[0];
  *     echo $face->underExposedLikelihood();
  *     ```
  *
@@ -186,8 +162,6 @@ use Google\Cloud\Vision\Annotation\Face\Landmarks;
  *
  *     Example:
  *     ```
- *     $annotation = $vision->annotate($image);
- *     $face = $annotation->faces()[0];
  *     echo $face->blurredLikelihood();
  *     ```
  *
@@ -198,25 +172,26 @@ use Google\Cloud\Vision\Annotation\Face\Landmarks;
  *
  *     Example:
  *     ```
- *     $annotation = $vision->annotate($image);
- *     $face = $annotation->faces()[0];
  *     echo $face->headwearLikelihood();
  *     ```
  *
  *     @return string
  * }
- * @package foo
+ * @method info() {
+ *     Get the raw annotation result
+ *
+ *     Example:
+ *     ```
+ *     $info = $face->info();
+ *     ```
+ *
+ *     @return array
+ * }
  */
-class Face implements FeatureInterface
+class Face extends AbstractFeature
 {
     use CallTrait;
-    use FeatureTrait;
     use LikelihoodTrait;
-
-    /**
-     * @var array
-     */
-    private $result;
 
     /**
      * @var Landmarks
@@ -237,19 +212,19 @@ class Face implements FeatureInterface
      * $cloud = new ServiceBuilder();
      * $vision = $cloud->vision();
      *
-     * $image = $vision->image(fopen(__DIR__ .'/assets/family-photo.jpg', 'r'), [ 'imageProperties' ]);
+     * $image = $vision->image(fopen(__DIR__ .'/assets/family-photo.jpg', 'r'), [ 'FACE_DETECTION' ]);
      * $annotation = $vision->annotate($image);
      *
      * $faces = $annotation->faces();
-     * $firstFace = $faces[0];
+     * $face = $faces[0];
      * ```
      *
-     * @param array $result The face annotation result
+     * @param array $info The face annotation result
      */
-    public function __construct(array $result)
+    public function __construct(array $info)
     {
-        $this->result = $result;
-        $this->landmarks = new Landmarks($result['landmarks']);
+        $this->info = $info;
+        $this->landmarks = new Landmarks($info['landmarks']);
     }
 
     /**
@@ -257,7 +232,7 @@ class Face implements FeatureInterface
      *
      * Example:
      * ```
-     * $leftEye = $firstFace->landmarks()->leftEye();
+     * $leftEye = $face->landmarks()->leftEye();
      * ```
      * @return Landmarks
      */
@@ -271,7 +246,7 @@ class Face implements FeatureInterface
      *
      * Example:
      * ```
-     * if ($firstFace->isJoyful()) {
+     * if ($face->isJoyful()) {
      *     echo "Face is Joyful";
      * }
      * ```
@@ -292,7 +267,7 @@ class Face implements FeatureInterface
      *
      * Example:
      * ```
-     * if ($firstFace->isSorrowful()) {
+     * if ($face->isSorrowful()) {
      *     echo "Face is Sorrowful";
      * }
      * ```
@@ -313,7 +288,7 @@ class Face implements FeatureInterface
      *
      * Example:
      * ```
-     * if ($firstFace->isAngry()) {
+     * if ($face->isAngry()) {
      *     echo "Face is Angry";
      * }
      * ```
@@ -334,7 +309,7 @@ class Face implements FeatureInterface
      *
      * Example:
      * ```
-     * if ($firstFace->isSurprised()) {
+     * if ($face->isSurprised()) {
      *     echo "Face is Surprised";
      * }
      * ```
@@ -355,7 +330,7 @@ class Face implements FeatureInterface
      *
      * Example:
      * ```
-     * if ($firstFace->isUnderExposed()) {
+     * if ($face->isUnderExposed()) {
      *     echo "Face is Under Exposed";
      * }
      * ```
@@ -376,7 +351,7 @@ class Face implements FeatureInterface
      *
      * Example:
      * ```
-     * if ($firstFace->isBlurred()) {
+     * if ($face->isBlurred()) {
      *     echo "Face is Blurred";
      * }
      * ```
@@ -397,7 +372,7 @@ class Face implements FeatureInterface
      *
      * Example:
      * ```
-     * if ($firstFace->hasHeadwear()) {
+     * if ($face->hasHeadwear()) {
      *     echo "Face has Headwear";
      * }
      * ```

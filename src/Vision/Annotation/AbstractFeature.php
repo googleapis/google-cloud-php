@@ -20,8 +20,13 @@ namespace Google\Cloud\Vision\Annotation;
 /**
  * Provide shared functionality for features
  */
-trait FeatureTrait
+abstract class AbstractFeature implements FeatureInterface
 {
+    /**
+     * @var array
+     */
+    protected $info;
+
     /**
      * Get the raw annotation result
      *
@@ -29,11 +34,12 @@ trait FeatureTrait
      * ```
      * $annotation->faces()[0]->info();
      * ```
-     * 
+     *
      * @return array
+     * @access private
      */
     public function info()
     {
-        return $this->result;
+        return $this->info;
     }
 }

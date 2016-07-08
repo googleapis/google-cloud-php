@@ -30,7 +30,7 @@ class Annotation
     /**
      * @var array
      */
-    private $result;
+    private $info;
 
     /**
      * @var array
@@ -91,52 +91,62 @@ class Annotation
      * echo get_class($annotation); // Google\Cloud\Vision\Annotation
      * ```
      *
-     * @param array $result The annotation result
+     * @param array $info The annotation result
      */
-    public function __construct($result)
+    public function __construct($info)
     {
-        if (isset($result['faceAnnotations'])) {
+        $this->info = $info;
+
+        if (isset($info['faceAnnotations'])) {
             $this->faces = [];
 
-            foreach ($result['faceAnnotations'] as $face) {
+            foreach ($info['faceAnnotations'] as $face) {
                 $this->faces[] = new Face($face);
             }
         }
 
-        if (isset($result['landmarkAnnotations'])) {
+        if (isset($info['landmarkAnnotations'])) {
             $this->landmarks = [];
 
-            foreach ($result['landmarkAnnotations'] as $landmark) {
+            foreach ($info['landmarkAnnotations'] as $landmark) {
                 $this->landmarks[] = new Entity($landmark);
             }
         }
 
-        if (isset($result['logoAnnotations'])) {
+        if (isset($info['logoAnnotations'])) {
             $this->logos = [];
 
-            foreach ($result['logoAnnotations'] as $logo) {
+            foreach ($info['logoAnnotations'] as $logo) {
                 $this->logos[] = new Entity($logo);
             }
         }
 
-        if (isset($result['labelAnnotations'])) {
+        if (isset($info['labelAnnotations'])) {
             $this->labels = [];
 
-            foreach ($result['labelAnnotations'] as $label) {
+            foreach ($info['labelAnnotations'] as $label) {
                 $this->labels[] = new Entity($label);
             }
         }
 
-        if (isset($result['safeSearchAnnotation'])) {
-            $this->safeSearch = new SafeSearch($result['safeSearchAnnotation']);
+        if (isset($info['textAnnotations'])) {
+            $this->text = [];
+
+            foreach ($info['textAnnotations'] as $text) {
+                $this->text[] = new Entity($text);
+            }
         }
 
-        if (isset($result['imagePropertiesAnnotation'])) {
-            $this->imageProperties = new ImageProperties($result['imagePropertiesAnnotation']);
+        if (isset($info['safeSearchAnnotation'])) {
+            $this->safeSearch = new SafeSearch($info['safeSearchAnnotation']);
         }
 
-        if (isset($result['error'])) {
-            $this->error = $result['error'];
+        if (isset($info['imagePropertiesAnnotation'])) {
+            $this->imageProperties = new ImageProperties($info['imagePropertiesAnnotation']);
+        }
+
+        if (isset($info['error'])) {
+            $this->error = $info['error'];
         }
     }
 
@@ -156,7 +166,7 @@ class Annotation
      */
     public function info()
     {
-        return $this->result;
+        return $this->info;
     }
 
     /**

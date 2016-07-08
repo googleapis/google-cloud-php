@@ -56,7 +56,7 @@ trait LikelihoodTrait
 
         $levels = $this->likelihoodLevels[$strength];
 
-        if (in_array($this->result[$property], $levels)) {
+        if (in_array($this->info[$property], $levels)) {
             return true;
         }
 

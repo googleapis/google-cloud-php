@@ -38,7 +38,7 @@ class Image
     /**
      * @var string
      */
-    private $imageType;
+    private $type;
 
     /**
      * @var array
@@ -69,7 +69,7 @@ class Image
      *
      * Please review [Pricing](https://cloud.google.com/vision/docs/pricing)
      * before use, as a separate charge is incurred for each feature performed
-     * on an image.
+     * on an image. When practical, caching of results is certainly recommended.
      *
      * The Cloud Vision API supports a variety of image file formats, including
      * JPEG, PNG8, PNG24, Animated GIF (first frame only), and RAW.
@@ -95,7 +95,7 @@ class Image
      * ```
      *
      * ```
-     * // Images can also be created directly
+     * // Images can be created directly
      * use Google\Cloud\Vision\Image;
      *
      * $imageResource = fopen(__DIR__ .'/assets/family-photo.jpg', 'r');
@@ -105,7 +105,7 @@ class Image
      * ```
      *
      * ```
-     * // Image data can also be given as a string
+     * // Image data can be given as a string
      *
      * $fileContents = file_get_contents(__DIR__ .'/assets/family-photo.jpg');
      * $image = new Image($fileContents, [
@@ -114,7 +114,7 @@ class Image
      * ```
      *
      * ```
-     * // Files stored in Google Cloud Storage can also be used.
+     * // Files stored in Google Cloud Storage can be used.
      *
      * $file = $cloud->storage()->bucket('my-test-bucket')->object('family-photo.jpg');
      * $image = $vision->image($file, [
@@ -148,6 +148,19 @@ class Image
      * ]);
      * ```
      *
+     * ```
+     * // gcloud-php also offers shortcut names which can be used in place of the longer feature names offered by Cloud Vision.
+     * $image = new Image($imageResource, [
+     *     'faces',      // Corresponds to `FACE_DETECTION`
+     *     'landmarks',  // Corresponds to `LANDMARK_DETECTION`
+     *     'logos',      // Corresponds to `LOGO_DETECTION`
+     *     'labels',     // Corresponds to `LABEL_DETECTION`
+     *     'text',       // Corresponds to `TEXT_DETECTION`
+     *     'safeSearch', // Corresponds to `SAFE_SEARCH_DETECTION`
+     *     'properties'  // Corresponds to `IMAGE_PROPERTIES`
+     * ]);
+     * ```
+     *
      * @see https://cloud.google.com/vision/docs/image-best-practices Best Practices
      * @see https://cloud.google.com/vision/docs/pricing Pricing
      *
@@ -156,7 +169,11 @@ class Image
      *         bytes, or an instance of {@see Google\Cloud\Storage\Object}.
      * @param  array $features A list of cloud vision
      *         [features](https://cloud.google.com/vision/reference/rest/v1/images/annotate#type)
-     *         to apply to the image.
+     *         to apply to the image. gcloud-php provides a set of abbreviated
+     *         names which can be used in the interest of brevity in place of
+     *         the names offered by the cloud vision service. These names are
+     *         `faces`, `landmarks`, `logos`, `labels`, `text`, `safeSearch`
+     *         and `properties`.
      * @param  array $options {
      *     Configuration Options
      *
@@ -186,13 +203,13 @@ class Image
             $identity = $image->identity();
             $uri = sprintf('gs://%s/%s', $identity['bucket'], $identity['object']);
 
-            $this->imageType = self::TYPE_STORAGE;
+            $this->type = self::TYPE_STORAGE;
             $this->image = $uri;
         } elseif (is_string($image)) {
-            $this->imageType = self::TYPE_STRING;
+            $this->type = self::TYPE_STRING;
             $this->image = $image;
         } else {
-            $this->imageType = self::TYPE_BYTES;
+            $this->type = self::TYPE_BYTES;
             $this->image = new Stream($image);
         }
     }
@@ -231,8 +248,8 @@ class Image
     /**
      * Create an image object.
      *
-     * The return result will vary depending on whether the given image is a
-     * storage object or not.
+     * The structure of the returned array will vary depending on whether the
+     * given image is a storage object or not.
      *
      * @see https://cloud.google.com/vision/reference/rest/v1/images/annotate#image Image
      *
@@ -241,7 +258,7 @@ class Image
      */
     private function imageObject($encode)
     {
-        if ($this->imageType === self::TYPE_BYTES) {
+        if ($this->type === self::TYPE_BYTES) {
             $bytes = (string) $this->image;
 
             return [
@@ -249,7 +266,7 @@ class Image
             ];
         }
 
-        if ($this->imageType === self::TYPE_STRING) {
+        if ($this->type === self::TYPE_STRING) {
             $string = $this->image;
 
             return [

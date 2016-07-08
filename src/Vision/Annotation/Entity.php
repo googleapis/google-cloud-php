@@ -27,8 +27,7 @@ namespace Google\Cloud\Vision\Annotation;
  *
  *     Example:
  *     ```
- *     $text = $annotation->text()[0];
- *     print_r($text->mid());
+ *     echo $text->mid();
  *     ```
  *
  *     @see https://developers.google.com/knowledge-graph/ Knowledge Graph
@@ -41,8 +40,7 @@ namespace Google\Cloud\Vision\Annotation;
  *
  *     Example:
  *     ```
- *     $text = $annotation->text()[0];
- *     print_r($text->locale());
+ *     echo $text->locale();
  *     ```
  *
  *     @return string
@@ -52,8 +50,7 @@ namespace Google\Cloud\Vision\Annotation;
  *
  *     Example:
  *     ```
- *     $text = $annotation->text()[0];
- *     print_r($text->description());
+ *     echo $text->description();
  *     ```
  *
  *     @return string
@@ -65,8 +62,7 @@ namespace Google\Cloud\Vision\Annotation;
  *
  *     Example:
  *     ```
- *     $text = $annotation->text()[0];
- *     print_r($text->score());
+ *     echo $text->score();
  *     ```
  *
  *     @return float
@@ -81,8 +77,7 @@ namespace Google\Cloud\Vision\Annotation;
  *
  *     Example:
  *     ```
- *     $text = $annotation->text()[0];
- *     print_r($text->confidence());
+ *     echo $text->confidence();
  *     ```
  *
  *     @return float
@@ -99,8 +94,7 @@ namespace Google\Cloud\Vision\Annotation;
  *
  *     Example:
  *     ```
- *     $text = $annotation->text()[0];
- *     print_r($text->topicality());
+ *     echo $text->topicality();
  *     ```
  *
  *     @return float
@@ -115,7 +109,6 @@ namespace Google\Cloud\Vision\Annotation;
  *
  *     Example:
  *     ```
- *     $text = $annotation->text()[0];
  *     print_r($text->boundingPoly());
  *     ```
  *
@@ -131,7 +124,6 @@ namespace Google\Cloud\Vision\Annotation;
  *
  *     Example:
  *     ```
- *     $text = $annotation->text()[0];
  *     print_r($text->locations());
  *     ```
  *
@@ -143,22 +135,25 @@ namespace Google\Cloud\Vision\Annotation;
  *
  *     Example:
  *     ```
- *     $text = $annotation->text()[0];
  *     print_r($text->properties());
  *     ```
  *
  *     @return array
  * }
+ * @method info() {
+ *     Get the raw annotation result
+ *
+ *     Example:
+ *     ```
+ *     $info = $text->info();
+ *     ```
+ *
+ *     @return array
+ * }
  */
-class Entity implements FeatureInterface
+class Entity extends AbstractFeature
 {
     use CallTrait;
-    use FeatureTrait;
-
-    /**
-     * @var array
-     */
-    private $results;
 
     /**
      * Create an entity annotation result.
@@ -182,14 +177,16 @@ class Entity implements FeatureInterface
      *
      * $image = $vision->image(fopen(__DIR__ .'/assets/family-photo.jpg', 'r'), [ 'imageProperties' ]);
      * $annotation = $vision->annotate($image);
+     *
+     * $text = $annotation->text()[0];
      * ```
      *
      * @see https://cloud.google.com/vision/reference/rest/v1/images/annotate#entityannotation EntityAnnotation
      *
      * @param array $result The entity annotation result
      */
-    public function __construct(array $results)
+    public function __construct(array $info)
     {
-        $this->results = $results;
+        $this->info = $info;
     }
 }

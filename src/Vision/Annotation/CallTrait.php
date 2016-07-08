@@ -27,8 +27,8 @@ trait CallTrait
      */
     public function __call($name, array $args)
     {
-        if (isset($this->results[$name])) {
-            return $this->results[$name];
+        if (isset($this->info[$name])) {
+            return $this->info[$name];
         }
 
         trigger_error(sprintf(

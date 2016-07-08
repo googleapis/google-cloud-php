@@ -27,7 +27,7 @@ class Landmarks
     /**
      * @var array
      */
-    private $result;
+    private $info;
 
     /**
      * Create a landmarks results object.
@@ -52,11 +52,11 @@ class Landmarks
      * $landmarks = $firstFace->landmarks();
      * ```
      *
-     * @param  array $result The face landmark results
+     * @param  array $info The face landmark results
      */
-    public function __construct(array $result)
+    public function __construct(array $info)
     {
-        $this->result = $result;
+        $this->info = $info;
     }
 
     /**
@@ -462,7 +462,7 @@ class Landmarks
 
     private function getLandmark($type)
     {
-        $result = array_filter($this->result, function ($landmark) use ($type) {
+        $result = array_filter($this->info, function ($landmark) use ($type) {
             return $type === $landmark['type'];
         });
 
