@@ -214,6 +214,7 @@ class VisionClient
     public function annotate(Image $image, array $options = [])
     {
         $res = $this->annotateBatch([$image], $options);
+        $res->rewind();
         return $res->current();
     }
 
