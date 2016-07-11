@@ -18,7 +18,22 @@
 namespace Google\Cloud\Vision\Annotation;
 
 /**
- * Represents an entity annotation
+ * Represents an entity annotation. Entities are created by several
+ * [Google Cloud Vision](https://cloud.google.com/vision/docs/) features, namely
+ * `LANDMARK_DETECTION`, `LOGO_DETECTION`, `LABEL_DETECTION` and `TEXT_DETECTION`.
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\ServiceBuilder;
+ *
+ * $cloud = new ServiceBuilder();
+ * $vision = $cloud->vision();
+ *
+ * $image = $vision->image(fopen(__DIR__ .'/assets/family-photo.jpg', 'r'), [ 'imageProperties' ]);
+ * $annotation = $vision->annotate($image);
+ *
+ * $text = $annotation->text()[0];
+ * ```
  *
  * @method mid() {
  *     Opaque entity ID.
@@ -168,22 +183,9 @@ class Entity extends AbstractFeature
      * {@see Google\Cloud\Vision\Annotation::labels()} and
      * {@see Google\Cloud\Vision\Annotation::text()}.
      *
-     * Example:
-     * ```
-     * use Google\Cloud\ServiceBuilder;
-     *
-     * $cloud = new ServiceBuilder();
-     * $vision = $cloud->vision();
-     *
-     * $image = $vision->image(fopen(__DIR__ .'/assets/family-photo.jpg', 'r'), [ 'imageProperties' ]);
-     * $annotation = $vision->annotate($image);
-     *
-     * $text = $annotation->text()[0];
-     * ```
-     *
      * @see https://cloud.google.com/vision/reference/rest/v1/images/annotate#entityannotation EntityAnnotation
      *
-     * @param array $result The entity annotation result
+     * @param array $info The entity annotation result
      */
     public function __construct(array $info)
     {

@@ -26,6 +26,15 @@ use InvalidArgumentException;
  * classify images into categories, detect text, objects, faces and more. Find
  * more information at
  * [Google Cloud Vision docs](https://cloud.google.com/vision/docs/).
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\ServiceBuilder;
+ *
+ * $cloud = new ServiceBuilder();
+ *
+ * $vision = $cloud->vision();
+ * ```
  */
 class VisionClient
 {
@@ -43,15 +52,6 @@ class VisionClient
      *
      * Example:
      * ```
-     * use Google\Cloud\ServiceBuilder;
-     *
-     * $cloud = new ServiceBuilder();
-     *
-     * $vision = $cloud->vision();
-     * ```
-     *
-     * ```
-     * // The Vision client can also be instantianted directly.
      * use Google\Cloud\Vision\VisionClient;
      *
      * $vision = new VisionClient();
@@ -134,6 +134,7 @@ class VisionClient
      * @param  array $options See {@see Google\Cloud\Vision\Image::__construct()} for
      *         configuration details.
      * @return Image
+     * @throws InvalidArgumentException
      */
     public function image($image, array $features, array $options = [])
     {
@@ -180,6 +181,7 @@ class VisionClient
      * @param  array $options See {@see Google\Cloud\Vision\Image::__construct()} for
      *         configuration details.
      * @return Image[]
+     * @throws InvalidArgumentException
      */
     public function images(array $images, array $features, array $options = [])
     {
@@ -211,13 +213,8 @@ class VisionClient
      */
     public function annotate(Image $image, array $options = [])
     {
-        $res = null;
-        foreach ($this->annotateBatch([$image], $options) as $annotation) {
-            $res = $annotation;
-            break;
-        }
-
-        return $res;
+        $res = $this->annotateBatch([$image], $options);
+        return $res->current();
     }
 
     /**
@@ -250,7 +247,7 @@ class VisionClient
         $requests = [];
         foreach ($images as $image) {
             if (!$image instanceof Image) {
-                throw new InvalidArgumentException('$images must be an array of type Image');
+                throw new InvalidArgumentException('$images must be of type Image[].');
             }
 
             $requests[] = $image->requestObject();

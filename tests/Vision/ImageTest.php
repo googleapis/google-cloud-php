@@ -63,6 +63,14 @@ class ImageTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($res['features'], [ ['type' => 'LANDMARK_DETECTION'] ]);
     }
 
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testWithInvalidType()
+    {
+        new Image([], ['landmarks']);
+    }
+
     public function testMaxResults()
     {
         $bytes = 'foo';

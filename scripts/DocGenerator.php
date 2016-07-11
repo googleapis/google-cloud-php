@@ -115,6 +115,7 @@ class DocGenerator
             'title' => $reflector->getNamespace() . '\\' . $name,
             'name' => $name,
             'description' => $this->buildDescription($docBlock),
+            'resources' => $this->buildResources($docBlock->getTagsByName('see')),
             'methods' => array_merge(
                 $this->buildMethods($methods, $name),
                 $this->buildMagicMethods($magicMethods, $name)

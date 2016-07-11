@@ -19,10 +19,41 @@ namespace Google\Cloud\Vision;
 
 use Google\Cloud\Storage\Object;
 use Guzzle\Stream\Stream;
+use InvalidArgumentException;
 
 /**
  * Represents an image to be annotated using
- * [Google Cloud Vision](https://cloud.google.com/vision)
+ * [Google Cloud Vision](https://cloud.google.com/vision).
+ *
+ * Please review [Pricing](https://cloud.google.com/vision/docs/pricing)
+ * before use, as a separate charge is incurred for each feature performed
+ * on an image. When practical, caching of results is certainly recommended.
+ *
+ * The Cloud Vision API supports a variety of image file formats, including
+ * JPEG, PNG8, PNG24, Animated GIF (first frame only), and RAW.
+ *
+ * Cloud Vision sets upper limits on file size as well as on the total
+ * combined size of all images in a request. Reducing your file size can
+ * significantly improve throughput; however, be careful not to reduce image
+ * quality in the process. See
+ * [Best Practices - Image Sizing](https://cloud.google.com/vision/docs/image-best-practices#image_sizing)
+ * for current file size limits.
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\ServiceBuilder;
+ *
+ * $cloud = new ServiceBuilder();
+ * $vision = $cloud->vision();
+ *
+ * $imageResource = fopen(__DIR__ .'/assets/family-photo.jpg', 'r');
+ * $image = $vision->image($imageResource, [
+ *     'FACE_DETECTION'
+ * ]);
+ * ```
+ *
+ * @see https://cloud.google.com/vision/docs/image-best-practices Best Practices
+ * @see https://cloud.google.com/vision/docs/pricing Pricing
  */
 class Image
 {
@@ -67,35 +98,8 @@ class Image
     /**
      * Create an image with all required configuration.
      *
-     * Please review [Pricing](https://cloud.google.com/vision/docs/pricing)
-     * before use, as a separate charge is incurred for each feature performed
-     * on an image. When practical, caching of results is certainly recommended.
-     *
-     * The Cloud Vision API supports a variety of image file formats, including
-     * JPEG, PNG8, PNG24, Animated GIF (first frame only), and RAW.
-     *
-     * Cloud Vision sets upper limits on file size as well as on the total
-     * combined size of all images in a request. Reducing your file size can
-     * significantly improve throughput; however, be careful not to reduce image
-     * quality in the process. See
-     * [Best Practices - Image Sizing](https://cloud.google.com/vision/docs/image-best-practices#image_sizing)
-     * for current file size limits.
-     *
      * Example:
      * ```
-     * use Google\Cloud\ServiceBuilder;
-     *
-     * $cloud = new ServiceBuilder();
-     * $vision = $cloud->vision();
-     *
-     * $imageResource = fopen(__DIR__ .'/assets/family-photo.jpg', 'r');
-     * $image = $vision->image($imageResource, [
-     *     'FACE_DETECTION'
-     * ]);
-     * ```
-     *
-     * ```
-     * // Images can be created directly
      * use Google\Cloud\Vision\Image;
      *
      * $imageResource = fopen(__DIR__ .'/assets/family-photo.jpg', 'r');
@@ -161,9 +165,6 @@ class Image
      * ]);
      * ```
      *
-     * @see https://cloud.google.com/vision/docs/image-best-practices Best Practices
-     * @see https://cloud.google.com/vision/docs/pricing Pricing
-     *
      * @param  resource|string|Object $image An image to configure with the given
      *         settings. This parameter will accept a resource, a string of
      *         bytes, or an instance of {@see Google\Cloud\Storage\Object}.
@@ -189,6 +190,7 @@ class Image
      *           [ImageContext](https://cloud.google.com/vision/reference/rest/v1/images/annotate#imagecontext)
      *           for full usage details.
      * }
+     * @throws InvalidArgumentException
      */
     public function __construct($image, array $features, array $options = [])
     {
@@ -208,9 +210,14 @@ class Image
         } elseif (is_string($image)) {
             $this->type = self::TYPE_STRING;
             $this->image = $image;
-        } else {
+        } elseif (is_resource($image)) {
             $this->type = self::TYPE_BYTES;
             $this->image = new Stream($image);
+        } else {
+            throw new InvalidArgumentException(
+                'Given image is not valid. ' .
+                'Image must be a string of bytes, a google storage object, or a resource.'
+            );
         }
     }
 

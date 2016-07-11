@@ -22,7 +22,34 @@ use Google\Cloud\Vision\Annotation\AbstractFeature;
 /**
  * Describes landmarks on a face (eyes, nose, chin, etc).
  *
+ * Example:
+ * ```
+ * use Google\Cloud\ServiceBuilder;
+ *
+ * $cloud = new ServiceBuilder();
+ * $vision = $cloud->vision();
+ *
+ * $image = $vision->image(fopen(__DIR__ .'/assets/family-photo.jpg', 'r'), ['FACE_DETECTION']);
+ * $annotation = $vision->annotate($image);
+ *
+ * $faces = $annotation->faces();
+ * $firstFace = $faces[0];
+ *
+ * $landmarks = $firstFace->landmarks();
+ * ```
+ *
  * @see https://cloud.google.com/vision/reference/rest/v1/images/annotate#type_1 Face Landmark Types
+ *
+ * @method info() {
+ *     Get the raw landmarks annotation result
+ *
+ *     Example:
+ *     ```
+ *     $info = $landmarks->info();
+ *     ```
+ *
+ *     @return array
+ * }
  */
 class Landmarks extends AbstractFeature
 {
@@ -32,22 +59,6 @@ class Landmarks extends AbstractFeature
      * This class should not be instantiated directly. It is created internally
      * by the Cloud Vision service wrapper to represent FACE_DETECTION annotation
      * results and provide helpful convenience to users.
-     *
-     * Example:
-     * ```
-     * use Google\Cloud\ServiceBuilder;
-     *
-     * $cloud = new ServiceBuilder();
-     * $vision = $cloud->vision();
-     *
-     * $image = $vision->image(fopen(__DIR__ .'/assets/family-photo.jpg', 'r'), ['FACE_DETECTION']);
-     * $annotation = $vision->annotate($image);
-     *
-     * $faces = $annotation->faces();
-     * $firstFace = $faces[0];
-     *
-     * $landmarks = $firstFace->landmarks();
-     * ```
      *
      * @param  array $info The face landmark results
      */
@@ -107,7 +118,7 @@ class Landmarks extends AbstractFeature
      * ```
      * $positions = $landmarks->leftEye();
      * foreach ($positions as $name => $pos) {
-     *     echo "Position Type: $name";
+     *     echo "Position Type: ". $name;
      *     echo "x position: ". $pos['x'];
      *     echo "y position: ". $pos['y'];
      *     echo "z position: ". $pos['z'];
@@ -139,7 +150,7 @@ class Landmarks extends AbstractFeature
      * ```
      * $positions = $landmarks->leftEyebrow();
      * foreach ($positions as $name => $pos) {
-     *     echo "Position Type: $name";
+     *     echo "Position Type: ". $name;
      *     echo "x position: ". $pos['x'];
      *     echo "y position: ". $pos['y'];
      *     echo "z position: ". $pos['z'];
@@ -210,7 +221,7 @@ class Landmarks extends AbstractFeature
      * ```
      * $positions = $landmarks->rightEyeBoundaries();
      * foreach ($positions as $name => $pos) {
-     *     echo "Position Type: $name";
+     *     echo "Position Type: ". $name;
      *     echo "x position: ". $pos['x'];
      *     echo "y position: ". $pos['y'];
      *     echo "z position: ". $pos['z'];
@@ -242,7 +253,7 @@ class Landmarks extends AbstractFeature
      * ```
      * $positions = $landmarks->rightEyebrow();
      * foreach ($positions as $name => $pos) {
-     *     echo "Position Type: $name";
+     *     echo "Position Type: ". $name;
      *     echo "x position: ". $pos['x'];
      *     echo "y position: ". $pos['y'];
      *     echo "z position: ". $pos['z'];
@@ -293,7 +304,7 @@ class Landmarks extends AbstractFeature
      * ```
      * $positions = $landmarks->lips();
      * foreach ($positions as $name => $pos) {
-     *     echo "Position Type: $name";
+     *     echo "Position Type: ". $name;
      *     echo "x position: ". $pos['x'];
      *     echo "y position: ". $pos['y'];
      *     echo "z position: ". $pos['z'];
@@ -323,7 +334,7 @@ class Landmarks extends AbstractFeature
      * ```
      * $positions = $landmarks->mouth();
      * foreach ($positions as $name => $pos) {
-     *     echo "Position Type: $name";
+     *     echo "Position Type: ". $name;
      *     echo "x position: ". $pos['x'];
      *     echo "y position: ". $pos['y'];
      *     echo "z position: ". $pos['z'];
@@ -354,7 +365,7 @@ class Landmarks extends AbstractFeature
      * ```
      * $positions = $landmarks->nose();
      * foreach ($positions as $name => $pos) {
-     *     echo "Position Type: $name";
+     *     echo "Position Type: ". $name;
      *     echo "x position: ". $pos['x'];
      *     echo "y position: ". $pos['y'];
      *     echo "z position: ". $pos['z'];
@@ -386,7 +397,7 @@ class Landmarks extends AbstractFeature
      * ```
      * $positions = $landmarks->ears();
      * foreach ($positions as $name => $pos) {
-     *     echo "Position Type: $name";
+     *     echo "Position Type: ". $name;
      *     echo "x position: ". $pos['x'];
      *     echo "y position: ". $pos['y'];
      *     echo "z position: ". $pos['z'];
@@ -437,7 +448,7 @@ class Landmarks extends AbstractFeature
      * ```
      * $positions = $landmarks->chin();
      * foreach ($positions as $name => $pos) {
-     *     echo "Position Type: $name";
+     *     echo "Position Type: ". $name;
      *     echo "x position: ". $pos['x'];
      *     echo "y position: ". $pos['y'];
      *     echo "z position: ". $pos['z'];

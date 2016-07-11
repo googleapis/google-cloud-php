@@ -23,7 +23,23 @@ use Google\Cloud\Vision\Annotation\ImageProperties;
 use Google\Cloud\Vision\Annotation\SafeSearch;
 
 /**
- * Represents a Cloud Vision image annotation result
+ * Represents a [Google Cloud Vision](https://cloud.google.com/vision) image
+ * annotation result.
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\ServiceBuilder;
+ *
+ * $cloud = new ServiceBuilder();
+ * $vision = $cloud->vision();
+ *
+ * $imageResource = fopen(__DIR__ .'/assets/family-photo.jpg', 'r');
+ * $image = $vision->image($imageResource, [
+ *     'FACE_DETECTION'
+ * ]);
+ *
+ * $annotation = $vision->annotate($image);
+ * ```
  */
 class Annotation
 {
@@ -78,18 +94,7 @@ class Annotation
      * This class represents a single image annotation response from Cloud Vision. If multiple images were tested at
      * once, the result will be an array of Annotation instances.
      *
-     * Example:
-     * ```
-     * use Google\Cloud\ServiceBuilder;
-     *
-     * $cloud = new ServiceBuilder();
-     * $vision = $cloud->vision();
-     *
-     * $image = $vision->image(fopen(__DIR__ .'/assets/family-photo.jpg', 'r', [ 'faces' ]);
-     * $annotation = $vision->annotate($image);
-     *
-     * echo get_class($annotation); // Google\Cloud\Vision\Annotation
-     * ```
+     * This class is not intended to be instantiated outside the gcloud-php library.
      *
      * @param array $info The annotation result
      */

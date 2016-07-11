@@ -22,6 +22,20 @@ use Google\Cloud\Vision\Annotation\Face\Landmarks;
 /**
  * Represents a face annotation result
  *
+ * Example:
+ * ```
+ * use Google\Cloud\ServiceBuilder;
+ *
+ * $cloud = new ServiceBuilder();
+ * $vision = $cloud->vision();
+ *
+ * $image = $vision->image(fopen(__DIR__ .'/assets/family-photo.jpg', 'r'), [ 'FACE_DETECTION' ]);
+ * $annotation = $vision->annotate($image);
+ *
+ * $faces = $annotation->faces();
+ * $face = $faces[0];
+ * ```
+ *
  * @method boundingPoly() {
  *     The bounding polygon around the face.
  *
@@ -204,20 +218,6 @@ class Face extends AbstractFeature
      * This class is created internally by {@see Google\Cloud\Vision\Annotation}.
      * See {@see Google\Cloud\Vision\Annotation::faces()} for full usage details.
      * This class should not be instantiated outside the gcloud-php library.
-     *
-     * Example:
-     * ```
-     * use Google\Cloud\ServiceBuilder;
-     *
-     * $cloud = new ServiceBuilder();
-     * $vision = $cloud->vision();
-     *
-     * $image = $vision->image(fopen(__DIR__ .'/assets/family-photo.jpg', 'r'), [ 'FACE_DETECTION' ]);
-     * $annotation = $vision->annotate($image);
-     *
-     * $faces = $annotation->faces();
-     * $face = $faces[0];
-     * ```
      *
      * @param array $info The face annotation result
      */

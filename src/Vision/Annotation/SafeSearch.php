@@ -20,6 +20,19 @@ namespace Google\Cloud\Vision\Annotation;
 /**
  * Represents a SafeSearch annotation result
  *
+ * Example:
+ * ```
+ * use Google\Cloud\ServiceBuilder;
+ *
+ * $cloud = new ServiceBuilder();
+ * $vision = $cloud->vision();
+ *
+ * $image = $vision->image(fopen(__DIR__ .'/assets/family-photo.jpg', 'r'), [ 'safeSearch' ]);
+ * $annotation = $vision->annotate($image);
+ *
+ * $safeSearch = $annotation->safeSearch();
+ * ```
+ *
  * @method adult() {
  *     Represents the adult contents likelihood for the image.
  *
@@ -83,19 +96,6 @@ class SafeSearch extends AbstractFeature
      * This class is instantiated internally and is used to represent the result of Cloud Vision's SafeSearch annotation
      * feature. It should not be instantiated directly. For complete usage instructions, please refer to
      * {@see Google\Cloud\Vision\Annotation::safeSearch()}.
-     *
-     * Example:
-     * ```
-     * use Google\Cloud\ServiceBuilder;
-     *
-     * $cloud = new ServiceBuilder();
-     * $vision = $cloud->vision();
-     *
-     * $image = $vision->image(fopen(__DIR__ .'/assets/family-photo.jpg', 'r'), [ 'safeSearch' ]);
-     * $annotation = $vision->annotate($image);
-     *
-     * $safeSearch = $annotation->safeSearch();
-     * ```
      *
      * @param array $info The SafeSearch annotation result
      */
