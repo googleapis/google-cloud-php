@@ -17,18 +17,15 @@
 
 namespace Google\Cloud\Vision\Annotation\Face;
 
+use Google\Cloud\Vision\Annotation\AbstractFeature;
+
 /**
  * Describes landmarks on a face (eyes, nose, chin, etc).
  *
  * @see https://cloud.google.com/vision/reference/rest/v1/images/annotate#type_1 Face Landmark Types
  */
-class Landmarks
+class Landmarks extends AbstractFeature
 {
-    /**
-     * @var array
-     */
-    private $info;
-
     /**
      * Create a landmarks results object.
      *

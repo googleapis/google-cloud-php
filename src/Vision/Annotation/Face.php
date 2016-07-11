@@ -259,7 +259,7 @@ class Face extends AbstractFeature
      */
     public function isJoyful($strength = self::STRENGTH_LOW)
     {
-        return $this->likelihood('joyLikelihood', $strength);
+        return $this->likelihood($this->info['joyLikelihood'], $strength);
     }
 
     /**
@@ -280,7 +280,7 @@ class Face extends AbstractFeature
      */
     public function isSorrowful($strength = self::STRENGTH_LOW)
     {
-        return $this->likelihood('sorrowLikelihood', $strength);
+        return $this->likelihood($this->info['sorrowLikelihood'], $strength);
     }
 
     /**
@@ -301,7 +301,7 @@ class Face extends AbstractFeature
      */
     public function isAngry($strength = self::STRENGTH_LOW)
     {
-        return $this->likelihood('angerLikelihood', $strength);
+        return $this->likelihood($this->info['angerLikelihood'], $strength);
     }
 
     /**
@@ -322,7 +322,7 @@ class Face extends AbstractFeature
      */
     public function isSurprised($strength = self::STRENGTH_LOW)
     {
-        return $this->likelihood('surpriseLikelihood', $strength);
+        return $this->likelihood($this->info['surpriseLikelihood'], $strength);
     }
 
     /**
@@ -343,7 +343,7 @@ class Face extends AbstractFeature
      */
     public function isUnderExposed($strength = self::STRENGTH_LOW)
     {
-        return $this->likelihood('underExposedLikelihood', $strength);
+        return $this->likelihood($this->info['underExposedLikelihood'], $strength);
     }
 
     /**
@@ -364,7 +364,7 @@ class Face extends AbstractFeature
      */
     public function isBlurred($strength = self::STRENGTH_LOW)
     {
-        return $this->likelihood('blurredLikelihood', $strength);
+        return $this->likelihood($this->info['blurredLikelihood'], $strength);
     }
 
     /**
@@ -385,6 +385,6 @@ class Face extends AbstractFeature
      */
     public function hasHeadwear($strength = self::STRENGTH_LOW)
     {
-        return $this->likelihood('headwearLikelihood', $strength);
+        return $this->likelihood($this->info['headwearLikelihood'], $strength);
     }
 }

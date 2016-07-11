@@ -149,7 +149,7 @@ class Image
      * ```
      *
      * ```
-     * // gcloud-php also offers shortcut names which can be used in place of the longer feature names offered by Cloud Vision.
+     * // gcloud-php also offers shortcut names which can be used in place of the longer feature names.
      * $image = new Image($imageResource, [
      *     'faces',      // Corresponds to `FACE_DETECTION`
      *     'landmarks',  // Corresponds to `LANDMARK_DETECTION`

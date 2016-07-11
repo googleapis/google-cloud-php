@@ -15,26 +15,24 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Vision\Annotation;
+namespace Google\Cloud\Tests\Vision\Annotation;
+
+use Google\Cloud\Vision\Annotation\Entity;
 
 /**
- * Provide magic method support for fetching values from results
+ * @group vision
  */
-trait CallTrait
+class EntityTest extends \PHPUnit_Framework_TestCase
 {
-    /**
-     * @access private
-     */
-    public function __call($name, array $args)
+    public function testEntity()
     {
-        if (!isset($this->info()[$name])) {
-            trigger_error(sprintf(
-                'Call to undefined method %s::%s',
-                __CLASS__,
-                $name
-            ), E_USER_ERROR);
-        }
+        $res = [
+            'foo' => 'bar'
+        ];
 
-        return $this->info()[$name];
+        $e = new Entity($res);
+
+        $this->assertEquals($res, $e->info());
+        $this->assertEquals('bar', $e->foo());
     }
 }

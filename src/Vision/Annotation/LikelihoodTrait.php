@@ -16,7 +16,8 @@
  */
 
 namespace Google\Cloud\Vision\Annotation;
-use Google\Cloud\Exception\GoogleException;
+
+use InvalidArgumentException;
 
 /**
  * Provide likelihood functionality to annotation features.
@@ -42,21 +43,22 @@ trait LikelihoodTrait
     ];
 
     /**
-     * @param  string $property The property name
+     * @param  string $value The value name
      * @param  string $strength The strength to test with
      * @return bool
      */
-    private function likelihood($property, $strength)
+    private function likelihood($value, $strength)
     {
         if (!array_key_exists($strength, $this->likelihoodLevels)) {
-            throw new GoogleException(sprintf(
-                'Given strength %s is not a valid value', $strength
+            throw new InvalidArgumentException(sprintf(
+                'Given strength %s is not a valid value',
+                $strength
             ));
         }
 
         $levels = $this->likelihoodLevels[$strength];
 
-        if (in_array($this->info[$property], $levels)) {
+        if (in_array($value, $levels)) {
             return true;
         }
 
