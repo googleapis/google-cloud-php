@@ -8,3 +8,4 @@ build/artifacts/
 artifacts/
 .idea
 .metadata
+coverage.xml
