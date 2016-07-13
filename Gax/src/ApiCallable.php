@@ -99,7 +99,7 @@ class ApiCallable
                                      $maxTimeoutMillis,
                                      $deadlineMillis - $currentTimeMillis);
             }
-            throw new ApiException("Retry total timeout exceeded.", \Grpc\STATUS_DEADLINE_EXCEEDED);
+            throw new ApiException("Retry total timeout exceeded.", Grpc\STATUS_DEADLINE_EXCEEDED);
         };
         return $inner;
     }
@@ -133,14 +133,14 @@ class ApiCallable
     }
 
     /**
-     * @param \Grpc\BaseStub $stub the gRPC stub to make calls through.
+     * @param Grpc\BaseStub $stub the gRPC stub to make calls through.
      * @param string $methodName the method name on the stub to call.
-     * @param \Google\GAX\CallSettings $settings the call settings to use for this call.
+     * @param Google\GAX\CallSettings $settings the call settings to use for this call.
      * @param array $options {
      *     Optional.
-     *     @type \Google\GAX\PageStreamingDescriptor $pageStreamingDescriptor
+     *     @type Google\GAX\PageStreamingDescriptor $pageStreamingDescriptor
      *           the descriptor used for page-streaming.
-     *     @type \Google\GAX\AgentHeaderDescriptor $headerDescriptor
+     *     @type Google\GAX\AgentHeaderDescriptor $headerDescriptor
      *           the descriptor used for creating GAPIC header.
      * }
      */
@@ -149,7 +149,7 @@ class ApiCallable
         $apiCall = function() use ($stub, $methodName) {
             list($response, $status) =
                 call_user_func_array(array($stub, $methodName), func_get_args())->wait();
-            if ($status->code == \Grpc\STATUS_OK) {
+            if ($status->code == Grpc\STATUS_OK) {
                 return $response;
             } else {
                 throw new ApiException($status->details, $status->code);

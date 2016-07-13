@@ -32,21 +32,8 @@
 
 namespace Google\GAX;
 
-use Exception;
+use Google\GAX\Jison\Segment;
 use Countable;
-use Jison\Segment;
-use Jison\JisonParser;
-
-require_once 'Segment.php';
-require_once 'JisonParser.php';
-
-// define globals so they can be accessed from JisonParser.php
-$GLOBALS['gax_path_template_segment_count'] = 0;
-$GLOBALS['gax_path_template_binding_count'] = 0;
-
-class ValidationException extends Exception
-{
-}
 
 class PathTemplate implements Countable
 {
@@ -57,7 +44,7 @@ class PathTemplate implements Countable
     {
         $parser = new Parser();
         $this->segments = $parser->parse($data);
-        $this->segmentCount = $parser->segmentCount;
+        $this->segmentCount = $parser->getSegmentCount();
     }
 
     public function __toString()
@@ -189,55 +176,5 @@ class PathTemplate implements Countable
         }
         // Remove leading '/'
         return substr($template, 1);
-    }
-}
-
-class Parser
-{
-    private $parser = null;
-
-    public $segmentCount = 0;
-    public $bindingVarCount = 0;
-
-    public function __construct()
-    {
-        $this->parser = new JisonParser();
-    }
-
-    /**
-     * Returns an array of path template segments parsed from data.
-     *
-     * @param string $data A path template string
-     *
-     * @throws ValidationException when $data cannot be parsed
-     *
-     * @return array An array of Segment
-     */
-    public function parse($data)
-    {
-        try {
-            $GLOBALS['gax_path_template_segment_count'] = 0;
-            $GLOBALS['gax_path_template_binding_count'] = 0;
-            $segments = $this->parser->parse($data);
-            $this->segmentCount = $GLOBALS['gax_path_template_segment_count'];
-            $this->bindingVarCount = $GLOBALS['gax_path_template_binding_count'];
-            // Validation step: checks that there are no nested bindings.
-            $pathWildcard = false;
-            foreach ($segments as $segment) {
-                if ($segment->kind == Segment::TERMINAL &&
-                        $segment->literal == '**') {
-                    if ($pathWildcard) {
-                        throw new ValidationException(
-                            'validation error: path template cannot contain '.
-                            'more than one path wildcard');
-                    }
-                    $pathWildcard = true;
-                }
-            }
-
-            return $segments;
-        } catch (Exception $e) {
-            throw new ValidationException('Exception in parser', 0, $e);
-        }
     }
 }

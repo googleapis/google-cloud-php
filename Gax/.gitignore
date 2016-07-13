@@ -9,3 +9,4 @@ artifacts/
 .idea
 .metadata
 coverage.xml
+src/Jison/Parser.js

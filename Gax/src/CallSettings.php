@@ -140,7 +140,7 @@ class CallSettings
      *
      * @param array $options {
      *    Optional.
-     *    @type \Google\GAX\RetrySettings $retrySettings
+     *    @type Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this method. If present, then
      *          $timeout is ignored.
      *    @type integer $timeoutMillis

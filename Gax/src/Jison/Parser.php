@@ -30,13 +30,13 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 /* Jison generated parser */
-namespace Jison;
+namespace Google\GAX\Jison;
 use Exception;
 
 
 
 
-class JisonParser
+class Parser
 {
     public $symbols = array();
     public $terminals = array();
@@ -421,64 +421,63 @@ class JisonParser
 
 switch ($yystate) {
 case 1: case 2:
+    return $s[$o]->text;
 
-            return get_object_vars($s[$o])['text'];
-        
 break;
 case 3: case 5:
 
-            $t1 = get_object_vars($s[$o-2])['text'];
-            $t3 = get_object_vars($s[$o])['text'];
-            $thisS = array_merge($t1, $t3);
-        
+    $t1 = $s[$o-2]->text;
+    $t3 = $s[$o]->text;
+    $thisS = array_merge($t1, $t3);
+
 break;
 case 4: case 6: case 7: case 8:
+    $thisS = $s[$o]->text;
 
-            $thisS = get_object_vars($s[$o])['text'];
-        
 break;
 case 9: case 10: case 11:
 
-            $t1 = get_object_vars($s[$o])['text'];
-            $GLOBALS['gax_path_template_segment_count'] += 1;
-            $thisS = [new Segment(GAX_PATH_TEMPLATE_TERMINAL, $t1)];
-        
+    $t1 = $s[$o]->text;
+    Segment::incrementSegmentCount();
+    $thisS = [new Segment(Segment::TERMINAL, $t1)];
+
 break;
 case 12:
 
-            $t1 = get_object_vars($s[$o])['text'];
-            if (in_array($t1[0]['literal'], ['*', '**'])) {
-                $thisS = [
-                        new Segment(GAX_PATH_TEMPLATE_BINDING,
-                            sprintf('$%d', $GLOBALS['gax_path_template_binding_count'])),
-                        $t1[0],
-                        new Segment(GAX_PATH_TEMPLATE_END_BINDING, '')
-                    ];
-                $GLOBALS['gax_path_template_binding_count'] += 1;
-            } else {
-                $thisS = $t1;
-            }
-        
+    $t1 = $s[$o]->text;
+    if (in_array($t1[0]['literal'], ['*', '**'])) {
+        $thisS = [
+            new Segment(Segment::BINDING,
+                sprintf('$%d', Segment::getBindingCount())),
+            $t1[0],
+            new Segment(Segment::END_BINDING, '')
+        ];
+        Segment::incrementBindingCount();
+    } else {
+        $thisS = $t1;
+    }
+
 break;
 case 13:
 
-            $t2 = get_object_vars($s[$o-3])['text'];
-            $t4 = get_object_vars($s[$o-1])['text'];
-            $tmp = [new Segment(GAX_PATH_TEMPLATE_BINDING, $t2)];
-            $tmp = array_merge($tmp, $t4);
-            array_push($tmp, new Segment(GAX_PATH_TEMPLATE_END_BINDING, ''));
-            $thisS = $tmp;
-        
+    $t2 = $s[$o-3]->text;
+    $t4 = $s[$o-1]->text;
+    $tmp = [new Segment(Segment::BINDING, $t2)];
+    $tmp = array_merge($tmp, $t4);
+    array_push($tmp, new Segment(Segment::END_BINDING, ''));
+    $thisS = $tmp;
+
 break;
 case 14:
 
-            $t2 = get_object_vars($s[$o-1])['text'];
-            $thisS = [
-                    new Segment(GAX_PATH_TEMPLATE_BINDING, $t2),
-                    new Segment(GAX_PATH_TEMPLATE_TERMINAL, '*'),
-                    new Segment(GAX_PATH_TEMPLATE_END_BINDING, '')];
-            $GLOBALS['gax_path_template_segment_count'] += 1;
-        
+    $t2 = $s[$o-1]->text;
+    $thisS = [
+        new Segment(Segment::BINDING, $t2),
+        new Segment(Segment::TERMINAL, '*'),
+        new Segment(Segment::END_BINDING, '')
+    ];
+    Segment::incrementSegmentCount();
+
 break;
 }
 

@@ -179,7 +179,7 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
         try {
             $apiCall = ApiCallable::createApiCall($stub, 'takeAction', $callSettings);
             $response = $apiCall($request, [], []);
-        } catch (\Google\GAX\ApiException $e) {
+        } catch (Google\GAX\ApiException $e) {
             $raisedException = $e;
         }
 

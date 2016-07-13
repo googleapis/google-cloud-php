@@ -31,8 +31,8 @@
  */
 namespace Google\GAX;
 
-use \Google\Auth\ApplicationDefaultCredentials;
-use \Grpc\ChannelCredentials;
+use Google\Auth\ApplicationDefaultCredentials;
+use Grpc\ChannelCredentials;
 
 /**
  * Class that provides helpful utility functions for bootstrapping a gRPC client.
@@ -84,10 +84,10 @@ class GrpcBootstrap {
      * @param array $options {
      *     Optional. Options for configuring the gRPC stub.
      *
-     *     @type \Grpc\ChannelCredentials $sslCreds
+     *     @type Grpc\ChannelCredentials $sslCreds
      *           A `ChannelCredentials` for use with an SSL-enabled channel.
      *           Default: a credentials object returned from
-     *           \Grpc\ChannelCredentials::createSsl()
+     *           Grpc\ChannelCredentials::createSsl()
      * }
      */
     public function createStub($generatedCreateStub, $serviceAddress, $port, $options = array())
