@@ -30,14 +30,9 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace Jison;
+namespace Google\GAX\Jison;
 
 use ArrayObject;
-
-// define constants so they can be access from JisonParser.php
-define('GAX_PATH_TEMPLATE_BINDING', 1);
-define('GAX_PATH_TEMPLATE_END_BINDING', 2);
-define('GAX_PATH_TEMPLATE_TERMINAL', 3);
 
 /**
  * This class represents a segment in a path template.
@@ -46,12 +41,15 @@ define('GAX_PATH_TEMPLATE_TERMINAL', 3);
  */
 class Segment extends ArrayObject
 {
-    const BINDING = GAX_PATH_TEMPLATE_BINDING;
-    const END_BINDING = GAX_PATH_TEMPLATE_END_BINDING;
-    const TERMINAL = GAX_PATH_TEMPLATE_TERMINAL;
+    const BINDING = 1;
+    const END_BINDING = 2;
+    const TERMINAL = 3;
 
     public $kind;
     public $literal;
+
+    private static $bindingCount = 0;
+    private static $segmentCount = 0;
 
     public function __construct($kind, $literal)
     {
@@ -59,5 +57,35 @@ class Segment extends ArrayObject
         $this->literal = $literal;
         $this['kind'] = $kind;
         $this['literal'] = $literal;
+    }
+
+    public static function getBindingCount()
+    {
+        return self::$bindingCount;
+    }
+
+    public static function incrementBindingCount()
+    {
+        self::$bindingCount++;
+    }
+
+    public static function resetBindingCount()
+    {
+        self::$bindingCount = 0;
+    }
+
+    public static function getSegmentCount()
+    {
+        return self::$segmentCount;
+    }
+
+    public static function incrementSegmentCount()
+    {
+        self::$segmentCount++;
+    }
+
+    public static function resetSegmentCount()
+    {
+        self::$segmentCount = 0;
     }
 }

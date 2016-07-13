@@ -48,8 +48,8 @@ use RuntimeException;
  *     @type array the metadata
  *     @type array the options of the API call
  * }
- * @param \Google\GAX\ApiCallable $callable the callable object that makes the API method calls.
- * @param \Google\GAX\PageStreamingDescriptor $pageStreamingDescriptor the descriptor that
+ * @param Google\GAX\ApiCallable $callable the callable object that makes the API method calls.
+ * @param Google\GAX\PageStreamingDescriptor $pageStreamingDescriptor the descriptor that
  *     contains the field names related to page-streaming.
  */
 class PageAccessor implements Iterator

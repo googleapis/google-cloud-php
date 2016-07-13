@@ -41,7 +41,7 @@ class PathTemplateTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \Google\GAX\ValidationException
+     * @expectedException Google\GAX\ValidationException
      */
     public function testFailInvalidToken()
     {
@@ -49,7 +49,7 @@ class PathTemplateTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \Google\GAX\ValidationException
+     * @expectedException Google\GAX\ValidationException
      */
     public function testFailWhenImpossibleMatch01()
     {
@@ -58,7 +58,7 @@ class PathTemplateTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \Google\GAX\ValidationException
+     * @expectedException Google\GAX\ValidationException
      */
     public function testFailWhenImpossibleMatch02()
     {
@@ -67,7 +67,7 @@ class PathTemplateTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \Google\GAX\ValidationException
+     * @expectedException Google\GAX\ValidationException
      */
     public function testFailMismatchedLiteral()
     {
@@ -76,7 +76,7 @@ class PathTemplateTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \Google\GAX\ValidationException
+     * @expectedException Google\GAX\ValidationException
      */
     public function testFailWhenMultiplePathWildcards()
     {
@@ -84,7 +84,7 @@ class PathTemplateTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \Google\GAX\ValidationException
+     * @expectedException Google\GAX\ValidationException
      */
     public function testFailIfInnerBinding()
     {
@@ -92,7 +92,7 @@ class PathTemplateTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \Google\GAX\ValidationException
+     * @expectedException Google\GAX\ValidationException
      */
     public function testFailUnexpectedEof()
     {
@@ -146,7 +146,7 @@ class PathTemplateTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \Google\GAX\ValidationException
+     * @expectedException Google\GAX\ValidationException
      */
     public function testRenderFailWhenTooFewVariables()
     {

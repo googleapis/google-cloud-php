@@ -32,6 +32,8 @@
 
 namespace Google\GAX;
 
+use Grpc;
+
 /**
  * Holds constants necessary for interacting with gRPC.
  */
@@ -42,29 +44,29 @@ class GrpcConstants
     /**
      * This should not be called outside of the implementation file.
      */
-    static function initClass()
+    private static function initStatusCodeNames()
     {
         if (!empty($statusCodeNames)) {
-            throw new Exception("GrpcConstants::initClass called more than once");
+            throw new Exception("GrpcConstants::initStatusCodeNames called more than once");
         }
         self::$statusCodeNames = [
-            'ABORTED' => \Grpc\STATUS_ABORTED,
-            'ALREADY_EXISTS' => \Grpc\STATUS_ALREADY_EXISTS,
-            'CANCELLED' => \Grpc\STATUS_CANCELLED,
-            'DATA_LOSS' => \Grpc\STATUS_DATA_LOSS,
-            'DEADLINE_EXCEEDED' => \Grpc\STATUS_DEADLINE_EXCEEDED,
-            'FAILED_PRECONDITION' => \Grpc\STATUS_FAILED_PRECONDITION,
-            'INTERNAL' => \Grpc\STATUS_INTERNAL,
-            'INVALID_ARGUMENT' => \Grpc\STATUS_INVALID_ARGUMENT,
-            'NOT_FOUND' => \Grpc\STATUS_NOT_FOUND,
-            'OK' => \Grpc\STATUS_OK,
-            'OUT_OF_RANGE' => \Grpc\STATUS_OUT_OF_RANGE,
-            'PERMISSION_DENIED' => \Grpc\STATUS_PERMISSION_DENIED,
-            'RESOURCE_EXHAUSTED' => \Grpc\STATUS_RESOURCE_EXHAUSTED,
-            'UNAUTHENTICATED' => \Grpc\STATUS_UNAUTHENTICATED,
-            'UNAVAILABLE' => \Grpc\STATUS_UNAVAILABLE,
-            'UNIMPLEMENTED' => \Grpc\STATUS_UNIMPLEMENTED,
-            'UNKNOWN' => \Grpc\STATUS_UNKNOWN
+            'ABORTED' => Grpc\STATUS_ABORTED,
+            'ALREADY_EXISTS' => Grpc\STATUS_ALREADY_EXISTS,
+            'CANCELLED' => Grpc\STATUS_CANCELLED,
+            'DATA_LOSS' => Grpc\STATUS_DATA_LOSS,
+            'DEADLINE_EXCEEDED' => Grpc\STATUS_DEADLINE_EXCEEDED,
+            'FAILED_PRECONDITION' => Grpc\STATUS_FAILED_PRECONDITION,
+            'INTERNAL' => Grpc\STATUS_INTERNAL,
+            'INVALID_ARGUMENT' => Grpc\STATUS_INVALID_ARGUMENT,
+            'NOT_FOUND' => Grpc\STATUS_NOT_FOUND,
+            'OK' => Grpc\STATUS_OK,
+            'OUT_OF_RANGE' => Grpc\STATUS_OUT_OF_RANGE,
+            'PERMISSION_DENIED' => Grpc\STATUS_PERMISSION_DENIED,
+            'RESOURCE_EXHAUSTED' => Grpc\STATUS_RESOURCE_EXHAUSTED,
+            'UNAUTHENTICATED' => Grpc\STATUS_UNAUTHENTICATED,
+            'UNAVAILABLE' => Grpc\STATUS_UNAVAILABLE,
+            'UNIMPLEMENTED' => Grpc\STATUS_UNIMPLEMENTED,
+            'UNKNOWN' => Grpc\STATUS_UNKNOWN
         ];
     }
 
@@ -74,8 +76,9 @@ class GrpcConstants
      */
     public static function getStatusCodeNames()
     {
+        if (!self::$statusCodeNames) {
+            self::initStatusCodeNames();
+        }
         return self::$statusCodeNames;
     }
 }
-
-GrpcConstants::initClass();

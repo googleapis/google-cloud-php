@@ -51,7 +51,7 @@ stable.
 Repository Structure
 -------
 
-All code lives under src/ and is contained in the \Google\GAX namespace.
+All code lives under src/ and is contained in the `Google\GAX` namespace.
 
 
 License
