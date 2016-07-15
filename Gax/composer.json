@@ -7,8 +7,8 @@
     "license": "BSD-3-Clause",
     "require": {
         "php": ">=5.5",
-        "google/auth": "0.7",
-        "grpc/grpc": "v0.15.0"
+        "google/auth": "0.9",
+        "grpc/grpc": "v0.15.2"
     },
     "require-dev": {
         "phpunit/phpunit": "4.8.*"
