@@ -146,6 +146,21 @@ class Subscription
     }
 
     /**
+     * Get the subscription name
+     *
+     * Example:
+     * ```
+     * echo $subscription->name();
+     * ```
+     *
+     * @return string
+     */
+    public function name()
+    {
+        return $this->name;
+    }
+
+    /**
      * Execute a service request creating the subscription.
      *
      * The suggested way of creating a subscription is by calling through
