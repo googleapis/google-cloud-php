@@ -32,6 +32,12 @@ class SubscriptionTest extends \PHPUnit_Framework_TestCase
         $this->connection = $this->prophesize('Google\Cloud\PubSub\Connection\ConnectionInterface');
     }
 
+    public function testName()
+    {
+        $subscription = new Subscription($this->connection->reveal(), 'test-subscription-name', 'test-topic-name', 'my-project');
+        $this->assertEquals($subscription->name(), 'projects/my-project/subscriptions/test-subscription-name');
+    }
+
     public function testCreate()
     {
         $this->connection->createSubscription(Argument::withEntry('foo', 'bar'))

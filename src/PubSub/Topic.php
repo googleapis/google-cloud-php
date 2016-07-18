@@ -113,6 +113,21 @@ class Topic
     }
 
     /**
+     * Get the topic name
+     *
+     * Example:
+     * ```
+     * echo $topic->name();
+     * ```
+     *
+     * @return string
+     */
+    public function name()
+    {
+        return $this->name;
+    }
+
+    /**
      * Create a topic.
      *
      * Example:
@@ -420,7 +435,7 @@ class Topic
             ]);
 
             foreach ($response['subscriptions'] as $subscription) {
-                yield $this->subscriptionFactory($subscription['name'], $subscription);
+                yield $this->subscriptionFactory($subscription);
             }
 
             // If there's a page token, we'll request the next page.

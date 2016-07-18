@@ -33,6 +33,12 @@ class TopicTest extends \PHPUnit_Framework_TestCase
         $this->connection = $this->prophesize('Google\Cloud\PubSub\Connection\ConnectionInterface');
     }
 
+    public function testName()
+    {
+        $topic = new Topic($this->connection->reveal(), 'test-topic-name', 'my-project');
+        $this->assertEquals($topic->name(), 'projects/my-project/topics/test-topic-name');
+    }
+
     public function testCreate()
     {
         $this->connection->createTopic(Argument::withEntry('foo', 'bar'))
@@ -299,16 +305,9 @@ class TopicTest extends \PHPUnit_Framework_TestCase
     public function testSubscriptions()
     {
         $subscriptionResult = [
-            [
-                'name' => 'projects/project-name/subscriptions/subscription-a',
-                'topic' => 'projects/project-name/topics/topic-name'
-            ], [
-                'name' => 'projects/project-name/subscriptions/subscription-b',
-                'topic' => 'projects/project-name/topics/topic-name'
-            ], [
-                'name' => 'projects/project-name/subscriptions/subscription-c',
-                'topic' => 'projects/project-name/topics/topic-name'
-            ]
+            'projects/project-name/subscriptions/subscription-a',
+            'projects/project-name/subscriptions/subscription-b',
+            'projects/project-name/subscriptions/subscription-c',
         ];
 
         $this->connection->listSubscriptionsByTopic(Argument::withEntry('foo', 'bar'))
@@ -330,24 +329,17 @@ class TopicTest extends \PHPUnit_Framework_TestCase
 
         $arr = iterator_to_array($subscriptions);
         $this->assertInstanceOf(Subscription::class, $arr[0]);
-        $this->assertEquals($arr[0]->info()['name'], $subscriptionResult[0]['name']);
-        $this->assertEquals($arr[1]->info()['name'], $subscriptionResult[1]['name']);
-        $this->assertEquals($arr[2]->info()['name'], $subscriptionResult[2]['name']);
+        $this->assertEquals($arr[0]->name(), $subscriptionResult[0]);
+        $this->assertEquals($arr[1]->name(), $subscriptionResult[1]);
+        $this->assertEquals($arr[2]->name(), $subscriptionResult[2]);
     }
 
     public function testSubscriptionsPaged()
     {
         $subscriptionResult = [
-            [
-                'name' => 'projects/project-name/subscriptions/subscription-a',
-                'topic' => 'projects/project-name/topics/topic-name'
-            ], [
-                'name' => 'projects/project-name/subscriptions/subscription-b',
-                'topic' => 'projects/project-name/topics/topic-name'
-            ], [
-                'name' => 'projects/project-name/subscriptions/subscription-c',
-                'topic' => 'projects/project-name/topics/topic-name'
-            ]
+            'projects/project-name/subscriptions/subscription-a',
+            'projects/project-name/subscriptions/subscription-b',
+            'projects/project-name/subscriptions/subscription-c',
         ];
 
         $this->connection->listSubscriptionsByTopic(Argument::that(function ($options) {
