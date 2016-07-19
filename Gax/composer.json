@@ -17,7 +17,7 @@
         "psr-4": {
           "Google\\GAX\\":"src/"
         },
-        "classmap": ["src/generated"]
+        "classmap": ["src/generated", "src/generated/well-known-types"]
     },
     "minimum-stability": "dev",
     "prefer-stable": true
