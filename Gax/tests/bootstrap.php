@@ -30,6 +30,11 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/mocks/MockRequest.php';
+require_once __DIR__ . '/mocks/MockResponse.php';
+require_once __DIR__ . '/mocks/MockStatus.php';
+require_once __DIR__ . '/mocks/MockStub.php';
+
 date_default_timezone_set('UTC');
 ini_set('error_reporting', E_ALL);
 ini_set('display_errors', '1');
