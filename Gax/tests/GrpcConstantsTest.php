@@ -44,4 +44,18 @@ class GrpcConstantsTest extends PHPUnit_Framework_TestCase
         // test getting the status code names again does not throw exception
         GrpcConstants::getStatusCodeNames();
     }
+
+    /**
+     * @expectedException Exception
+     * @expectedExceptionMessage GrpcConstants::initStatusCodeNames called more than once
+     */
+    public function testInitStatusCodeNamesThrowsException()
+    {
+        $statusCodeNames = GrpcConstants::getStatusCodeNames();
+
+        $reflection = new ReflectionClass('Google\GAX\GrpcConstants');
+        $method = $reflection->getMethod('initStatusCodeNames');
+        $method->setAccessible(true);
+        $method->invoke(new GrpcConstants);
+    }
 }
