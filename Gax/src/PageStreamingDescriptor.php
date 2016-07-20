@@ -51,7 +51,7 @@ class PageStreamingDescriptor
      *     @type string $resourceField the resource field in the response object.
      * }
      */
-    function __construct($descriptor)
+    public function __construct($descriptor)
     {
         self::validate($descriptor);
         $this->requestPageTokenField = $descriptor['requestPageTokenField'];
@@ -80,7 +80,8 @@ class PageStreamingDescriptor
         foreach ($requiredFields as $field) {
             if (empty($descriptor[$field])) {
                 throw new InvalidArgumentException(
-                    "$field is required for PageStreamingDescriptor");
+                    "$field is required for PageStreamingDescriptor"
+                );
             }
         }
     }

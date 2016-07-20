@@ -60,7 +60,8 @@ class PageAccessor implements Iterator
     private $currentResponse = null;
     private $currentIterator = null;
 
-    public function __construct($params, $callable, $pageStreamingDescriptor) {
+    public function __construct($params, $callable, $pageStreamingDescriptor)
+    {
         if (empty($params) || !is_object($params[0])) {
             throw new InvalidArgumentException('First argument must be a request object.');
         }
@@ -75,7 +76,8 @@ class PageAccessor implements Iterator
     /**
      * Returns the token that can be used to fetch the next page.
      */
-    public function nextPageToken() {
+    public function nextPageToken()
+    {
         $responsePageTokenField = $this->pageStreamingDescriptor->getResponsePageTokenField();
         return $this->getResponse()->$responsePageTokenField;
     }
@@ -83,35 +85,41 @@ class PageAccessor implements Iterator
     /**
      * Returns the resources of the current page.
      */
-    public function currentPageValues() {
+    public function currentPageValues()
+    {
         $resourceField = $this->pageStreamingDescriptor->getResourceField();
         return $this->getResponse()->$resourceField;
     }
 
-    function rewind() {
+    public function rewind()
+    {
         $request = $this->parameters[0];
         $requestPageTokenField = $this->pageStreamingDescriptor->getRequestPageTokenField();
         $request->$requestPageTokenField = $this->initialToken;
         $this->currentIterator = null;
     }
 
-    function current() {
+    public function current()
+    {
         return $this->getIterator()->current();
     }
 
-    function next() {
+    public function next()
+    {
         $iterator = $this->getIterator();
         if (isset($iterator)) {
             $this->getIterator()->next();
         }
     }
 
-    function valid() {
+    public function valid()
+    {
         $iterator = $this->getIterator();
         return isset($iterator);
     }
 
-    function key() {
+    public function key()
+    {
         // Returns the request object as the key.
         return $this->parameters[0];
     }
@@ -119,7 +127,8 @@ class PageAccessor implements Iterator
     /**
      * Returns the response object of current page.
      */
-    private function getResponse() {
+    private function getResponse()
+    {
         if (!isset($this->currentResponse)) {
             $this->currentResponse = call_user_func_array($this->callable, $this->parameters);
         }
@@ -129,18 +138,20 @@ class PageAccessor implements Iterator
     /**
      * Returns a valid iterator of current page. If the current iterator is not valid, fetch next.
      */
-    private function getIterator() {
+    private function getIterator()
+    {
         if (!isset($this->currentIterator)) {
             $resourceField = $this->pageStreamingDescriptor->getResourceField();
             $resources = new ArrayObject($this->getResponse()->$resourceField);
             $this->currentIterator = $resources->getIterator();
-        } else if (!$this->currentIterator->valid()) {
+        } elseif (!$this->currentIterator->valid()) {
             $this->currentIterator = $this->nextIterator();
         }
         return $this->currentIterator;
     }
 
-    private function nextIterator() {
+    private function nextIterator()
+    {
         $requestPageTokenField = $this->pageStreamingDescriptor->getRequestPageTokenField();
         $nextPageToken = $this->nextPageToken();
         if (isset($nextPageToken)) {

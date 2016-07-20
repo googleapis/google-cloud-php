@@ -47,7 +47,7 @@ class ApiCallable
 
     private static function setTimeout($apiCall, $timeoutMillis)
     {
-        $inner = function() use ($apiCall, $timeoutMillis) {
+        $inner = function () use ($apiCall, $timeoutMillis) {
             $params = func_get_args();
             if (count($params) != self::GRPC_CALLABLE_PARAM_COUNT ||
                 !is_array($params[self::GRPC_CALLABLE_OPTION_INDEX])) {
@@ -63,7 +63,7 @@ class ApiCallable
 
     private static function setRetry($apiCall, RetrySettings $retrySettings)
     {
-        $inner = function() use ($apiCall, $retrySettings) {
+        $inner = function () use ($apiCall, $retrySettings) {
             $backoffSettings = $retrySettings->getBackoffSettings();
 
             // Initialize retry parameters
@@ -95,9 +95,11 @@ class ApiCallable
                 // TODO use microtime()
                 $currentTimeMillis = time() * 1000;
                 $delayMillis = min($delayMillis * $delayMult, $maxDelayMillis);
-                $timeoutMillis = min($timeoutMillis * $timeoutMult,
-                                     $maxTimeoutMillis,
-                                     $deadlineMillis - $currentTimeMillis);
+                $timeoutMillis = min(
+                    $timeoutMillis * $timeoutMult,
+                    $maxTimeoutMillis,
+                    $deadlineMillis - $currentTimeMillis
+                );
             }
             throw new ApiException("Retry total timeout exceeded.", Grpc\STATUS_DEADLINE_EXCEEDED);
         };
@@ -106,7 +108,7 @@ class ApiCallable
 
     private static function setPageStreaming($callable, $pageStreamingDescriptor)
     {
-        $inner = function() use ($callable, $pageStreamingDescriptor) {
+        $inner = function () use ($callable, $pageStreamingDescriptor) {
             return new PageAccessor(func_get_args(), $callable, $pageStreamingDescriptor);
         };
         return $inner;
@@ -114,7 +116,7 @@ class ApiCallable
 
     private static function setCustomHeader($callable, $headerDescriptor)
     {
-        $inner = function() use ($callable, $headerDescriptor) {
+        $inner = function () use ($callable, $headerDescriptor) {
             $params = func_get_args();
             if (count($params) != self::GRPC_CALLABLE_PARAM_COUNT ||
                 !is_array($params[self::GRPC_CALLABLE_METADATA_INDEX])) {
@@ -146,7 +148,7 @@ class ApiCallable
      */
     public static function createApiCall($stub, $methodName, CallSettings $settings, $options = [])
     {
-        $apiCall = function() use ($stub, $methodName) {
+        $apiCall = function () use ($stub, $methodName) {
             list($response, $status) =
                 call_user_func_array(array($stub, $methodName), func_get_args())->wait();
             if ($status->code == Grpc\STATUS_OK) {
@@ -159,7 +161,7 @@ class ApiCallable
         $retrySettings = $settings->getRetrySettings();
         if (!is_null($retrySettings) && !is_null($retrySettings->getRetryableCodes())) {
             $apiCall = self::setRetry($apiCall, $settings->getRetrySettings());
-        } else if ($settings->getTimeoutMillis() > 0) {
+        } elseif ($settings->getTimeoutMillis() > 0) {
             $apiCall = self::setTimeout($apiCall, $settings->getTimeoutMillis());
         }
 

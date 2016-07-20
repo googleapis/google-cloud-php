@@ -37,11 +37,13 @@ use Grpc\ChannelCredentials;
 /**
  * Class that provides helpful utility functions for bootstrapping a gRPC client.
  */
-class GrpcBootstrap {
+class GrpcBootstrap
+{
     /**
      * Provides a default instance of GrpcBootstrap.
      */
-    public static function defaultInstance() {
+    public static function defaultInstance()
+    {
         return new GrpcBootstrap();
     }
 
@@ -54,7 +56,7 @@ class GrpcBootstrap {
     public function createCallCredentialsCallback($scopes)
     {
         $authCredentials = $this->getADCCredentials($scopes);
-        $callback = function($context) use ($authCredentials) {
+        $callback = function ($context) use ($authCredentials) {
             return $authCredentials->updateMetadata([], $context->service_url);
         };
         return $callback;
