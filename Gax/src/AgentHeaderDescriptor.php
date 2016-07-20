@@ -87,7 +87,8 @@ class AgentHeaderDescriptor
         foreach ($requiredFields as $field) {
             if (empty($descriptor[$field])) {
                 throw new InvalidArgumentException(
-                    "$field is required for AgentHeaderDescriptor");
+                    "$field is required for AgentHeaderDescriptor"
+                );
             }
         }
     }

@@ -62,9 +62,14 @@ class CallSettings
      *     The timeout (in milliseconds) to use for calls that don't
      *     have a retry configured.
      */
-    public static function load($serviceName, $clientConfig, $retryingOverrides,
-                                $statusCodes, $timeoutMillis)
-    {
+    public static function load(
+        $serviceName,
+        $clientConfig,
+        $retryingOverrides,
+        $statusCodes,
+        $timeoutMillis
+    ) {
+    
         $callSettings = [];
 
         $serviceConfig = $clientConfig['interfaces'][$serviceName];
@@ -74,20 +79,25 @@ class CallSettings
             if (self::inheritRetrySettings($retryingOverrides, $phpMethodKey)) {
                 $retrySettings =
                         self::constructRetry(
-                            $methodConfig, $statusCodes,
-                            $serviceConfig['retry_codes'], $serviceConfig['retry_params']);
+                            $methodConfig,
+                            $statusCodes,
+                            $serviceConfig['retry_codes'],
+                            $serviceConfig['retry_params']
+                        );
             } else {
                 $retrySettings = $retryingOverrides[$phpMethodKey];
             }
 
             $callSettings[$phpMethodKey] = new CallSettings(
                 ['timeoutMillis' => $timeoutMillis,
-                 'retrySettings' => $retrySettings]);
+                'retrySettings' => $retrySettings]
+            );
         }
         return $callSettings;
     }
 
-    private static function inheritRetrySettings($retryingOverrides, $phpMethodKey) {
+    private static function inheritRetrySettings($retryingOverrides, $phpMethodKey)
+    {
         if (empty($retryingOverrides)) {
             return true;
         }
@@ -102,9 +112,13 @@ class CallSettings
         return $retrySettings->shouldInherit();
     }
 
-    private static function constructRetry($methodConfig, $statusCodes,
-                                           $retryCodes, $retryParams)
-    {
+    private static function constructRetry(
+        $methodConfig,
+        $statusCodes,
+        $retryCodes,
+        $retryParams
+    ) {
+    
         $codes = [];
         if (!empty($retryCodes)) {
             foreach ($retryCodes as $retryCodesName => $retryCodeList) {

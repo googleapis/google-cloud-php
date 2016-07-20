@@ -78,10 +78,14 @@ class PathTemplate implements Countable
                         sprintf(
                             'render error: value for key "%s" not '.
                             'provided',
-                            $segment->literal));
+                            $segment->literal
+                        )
+                    );
                 }
-                $out = array_merge($out,
-                    (new self($bindings[$segment->literal]))->segments);
+                $out = array_merge(
+                    $out,
+                    (new self($bindings[$segment->literal]))->segments
+                );
                 $binding = true;
             } elseif ($segment->kind == Segment::END_BINDING) {
                 $binding = false;
@@ -127,15 +131,19 @@ class PathTemplate implements Countable
                 } elseif ($segment->literal == '**') {
                     $length = count($pathList) - $segmentCount + 1;
                     $segmentCount += count($pathList) - $segmentCount;
-                    $bindings[$currentVar] = implode('/',
-                        array_slice($pathList, $pathIndex, $length));
+                    $bindings[$currentVar] = implode(
+                        '/',
+                        array_slice($pathList, $pathIndex, $length)
+                    );
                     $pathIndex += $length;
                 } elseif ($segment->literal != $pathItem) {
                     throw new ValidationException(
                         sprintf(
                             'mismatched literal: "%s" != "%s"',
                             $segment->literal,
-                            $pathItem));
+                            $pathItem
+                        )
+                    );
                 } else {
                     $pathIndex += 1;
                 }
@@ -148,7 +156,9 @@ class PathTemplate implements Countable
                 sprintf(
                     'match error: could not render a path template '.
                     'from %s',
-                    $path));
+                    $path
+                )
+            );
         }
 
         return $bindings;

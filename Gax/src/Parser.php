@@ -68,7 +68,8 @@ class Parser
                     if ($pathWildcard) {
                         throw new ValidationException(
                             'validation error: path template cannot contain '.
-                            'more than one path wildcard');
+                            'more than one path wildcard'
+                        );
                     }
                     $pathWildcard = true;
                 }

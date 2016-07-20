@@ -35,12 +35,14 @@ use Exception;
 
 class ApiException extends Exception
 {
-    public function __construct($message, $code, \Exception $previous = null) {
+    public function __construct($message, $code, \Exception $previous = null)
+    {
         parent::__construct($message, $code, $previous);
     }
 
     // custom string representation of object
-    public function __toString() {
+    public function __toString()
+    {
         return __CLASS__ . ": [{$this->code}]: {$this->message}\n";
     }
 }
