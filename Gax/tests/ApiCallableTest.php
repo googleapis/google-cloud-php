@@ -175,9 +175,17 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
             $backoffSettings);
         $callSettings = new CallSettings(['retrySettings' => $retrySettings]);
 
+        // Use time function that simulates 1100ms elapsing with each call to the stub
+        $incrementMillis = 1100;
+        $timeFuncMillis = function() use ($stub, $incrementMillis) {
+            $actualCalls = count($stub->actualCalls);
+            return $actualCalls * $incrementMillis;
+        };
+
         $raisedException = null;
         try {
-            $apiCall = ApiCallable::createApiCall($stub, 'takeAction', $callSettings);
+            $apiCall = ApiCallable::createApiCall(
+                $stub, 'takeAction', $callSettings, ['timeFuncMillis' => $timeFuncMillis]);
             $response = $apiCall($request, [], []);
         } catch (Google\GAX\ApiException $e) {
             $raisedException = $e;
