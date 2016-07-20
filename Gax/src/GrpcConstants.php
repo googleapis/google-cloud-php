@@ -46,8 +46,8 @@ class GrpcConstants
      */
     private static function initStatusCodeNames()
     {
-        if (!empty($statusCodeNames)) {
-            throw new Exception("GrpcConstants::initStatusCodeNames called more than once");
+        if (!empty(self::$statusCodeNames)) {
+            throw new \Exception("GrpcConstants::initStatusCodeNames called more than once");
         }
         self::$statusCodeNames = [
             'ABORTED' => Grpc\STATUS_ABORTED,
