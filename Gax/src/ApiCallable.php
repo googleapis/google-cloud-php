@@ -64,7 +64,7 @@ class ApiCallable
     private static function setRetry($apiCall, RetrySettings $retrySettings, $timeFuncMillis)
     {
         if (!isset($timeFuncMillis)) {
-            $timeFuncMillis = function() {
+            $timeFuncMillis = function () {
                 return microtime(true) / 1000.0;
             };
         }
