@@ -111,12 +111,15 @@ class DocGenerator
             throw new \Exception(sprintf('%s has no description', $reflector->getName()));
         }
 
+        $split = $this->splitDescription($docBlock->getText());
+
         return [
             'id' => strtolower($id),
             'type' => strtolower($type),
             'title' => $reflector->getNamespace() . '\\' . $name,
             'name' => $name,
-            'description' => $this->buildDescription($docBlock),
+            'description' => $this->buildDescription($docBlock, $split['description']),
+            'examples' => $this->buildExamples($split['examples']),
             'resources' => $this->buildResources($docBlock->getTagsByName('see')),
             'methods' => array_merge(
                 $this->buildMethods($methods, $name),
@@ -134,17 +137,21 @@ class DocGenerator
         $desc = new Description($content, $docBlock);
         $parsedContents = $desc->getParsedContents();
 
-        // convert inline {@see} tag to custom type link
-        foreach ($parsedContents as &$content) {
-            if ($content instanceof Seetag) {
-                $reference = $content->getReference();
-                if (substr_compare($reference, 'Google\Cloud', 0, 12) === 0) {
-                    $content = $this->buildLink($reference);
+        if (count($parsedContents) > 1) {
+            // convert inline {@see} tag to custom type link
+            foreach ($parsedContents as &$part) {
+                if ($part instanceof Seetag) {
+                    $reference = $part->getReference();
+                    if (substr_compare($reference, 'Google\Cloud', 0, 12) === 0) {
+                        $part = $this->buildLink($reference);
+                    }
                 }
             }
+
+            $content = implode('', $parsedContents);
         }
 
-        return $this->markdown->parse(implode('', $parsedContents));
+        return $this->markdown->parse($content);
     }
 
     private function buildMethods($methods, $className)
@@ -200,21 +207,15 @@ class DocGenerator
         $docText = '';
         $examples = null;
 
-        $parts = explode('Example:', $fullDescription);
-
-        $docText = $parts[0];
-
-        if (strpos($fullDescription, 'Example:') !== false) {
-            $examples = $parts[1];
-        }
+        $split = $this->splitDescription($fullDescription);
 
         return [
             'id' => $method->getName(),
             'type' => $method->getName() === '__construct' ? 'constructor' : 'instance',
             'name' => $method->getName(),
             'source' => $this->currentFile . '#L' . $method->getLineNumber(),
-            'description' => $this->buildDescription($docBlock, $docText),
-            'examples' => $this->buildExamples($examples),
+            'description' => $this->buildDescription($docBlock, $split['description']),
+            'examples' => $this->buildExamples($split['examples']),
             'resources' => $this->buildResources($resources),
             'params' => $this->buildParams($params),
             'exceptions' => $this->buildExceptions($exceptions),
@@ -326,6 +327,7 @@ class DocGenerator
 
         foreach ($params as $param) {
             $description = $param->getDescription();
+
             $nestedParamsArray = [];
 
             if ($param->getType() === 'array' && $this->hasNestedParams($description)) {
@@ -456,6 +458,21 @@ class DocGenerator
         }
 
         return $openTag . $displayName . '</a>';
+    }
+
+    private function splitDescription($description)
+    {
+        $parts = explode('Example:', $description);
+        $examples = null;
+
+        if (strpos($description, 'Example:') !== false) {
+            $examples = $parts[1];
+        }
+
+        return [
+            'description' => $parts[0],
+            'examples' => $examples
+        ];
     }
 
     private function buildOutputPath()
