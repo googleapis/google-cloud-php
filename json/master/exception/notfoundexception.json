@@ -1,1 +1,1 @@
-{"id":"exception\/notfoundexception","type":"class","title":"Google\\Cloud\\Exception\\NotFoundException","name":"NotFoundException","description":"<p>Exception thrown when a resource is not found.<\/p>","methods":[]}
+{"id":"exception\/notfoundexception","type":"class","title":"Google\\Cloud\\Exception\\NotFoundException","name":"NotFoundException","description":"<p>Exception thrown when a resource is not found.<\/p>","resources":[],"methods":[]}
