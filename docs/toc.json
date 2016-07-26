@@ -97,6 +97,17 @@
         "title": "Object",
         "type": "storage/object"
       }]
+    },
+    {
+      "title": "Vision",
+      "type": "vision/visionclient",
+      "nav": [{
+        "title": "Image",
+        "type": "vision/image"
+      }, {
+        "title": "Annotation",
+        "type": "vision/annotation"
+      }]
     }
   ]
 }
