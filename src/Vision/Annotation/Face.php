@@ -217,7 +217,7 @@ class Face extends AbstractFeature
      *
      * This class is created internally by {@see Google\Cloud\Vision\Annotation}.
      * See {@see Google\Cloud\Vision\Annotation::faces()} for full usage details.
-     * This class should not be instantiated outside the gcloud-php library.
+     * This class should not be instantiated outside the externally.
      *
      * @param array $info The face annotation result
      */

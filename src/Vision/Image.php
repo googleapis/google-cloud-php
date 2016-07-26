@@ -18,7 +18,7 @@
 namespace Google\Cloud\Vision;
 
 use Google\Cloud\Storage\Object;
-use Guzzle\Stream\Stream;
+use GuzzleHttp\Psr7;
 use InvalidArgumentException;
 
 /**
@@ -92,7 +92,7 @@ class Image
         'labels'     => 'LABEL_DETECTION',
         'text'       => 'TEXT_DETECTION',
         'safeSearch' => 'SAFE_SEARCH_DETECTION',
-        'properties' => 'IMAGE_PROPERTIES'
+        'imageProperties' => 'IMAGE_PROPERTIES'
     ];
 
     /**
@@ -153,15 +153,15 @@ class Image
      * ```
      *
      * ```
-     * // gcloud-php also offers shortcut names which can be used in place of the longer feature names.
+     * // The client library also offers shortcut names which can be used in place of the longer feature names.
      * $image = new Image($imageResource, [
-     *     'faces',      // Corresponds to `FACE_DETECTION`
-     *     'landmarks',  // Corresponds to `LANDMARK_DETECTION`
-     *     'logos',      // Corresponds to `LOGO_DETECTION`
-     *     'labels',     // Corresponds to `LABEL_DETECTION`
-     *     'text',       // Corresponds to `TEXT_DETECTION`
-     *     'safeSearch', // Corresponds to `SAFE_SEARCH_DETECTION`
-     *     'properties'  // Corresponds to `IMAGE_PROPERTIES`
+     *     'faces',          // Corresponds to `FACE_DETECTION`
+     *     'landmarks',      // Corresponds to `LANDMARK_DETECTION`
+     *     'logos',          // Corresponds to `LOGO_DETECTION`
+     *     'labels',         // Corresponds to `LABEL_DETECTION`
+     *     'text',           // Corresponds to `TEXT_DETECTION`
+     *     'safeSearch',     // Corresponds to `SAFE_SEARCH_DETECTION`
+     *     'imagePoperties'  // Corresponds to `IMAGE_PROPERTIES`
      * ]);
      * ```
      *
@@ -170,11 +170,11 @@ class Image
      *         bytes, or an instance of {@see Google\Cloud\Storage\Object}.
      * @param  array $features A list of cloud vision
      *         [features](https://cloud.google.com/vision/reference/rest/v1/images/annotate#type)
-     *         to apply to the image. gcloud-php provides a set of abbreviated
+     *         to apply to the image. Google Cloud Platform Client Library provides a set of abbreviated
      *         names which can be used in the interest of brevity in place of
      *         the names offered by the cloud vision service. These names are
      *         `faces`, `landmarks`, `logos`, `labels`, `text`, `safeSearch`
-     *         and `properties`.
+     *         and `imageProperties`.
      * @param  array $options {
      *     Configuration Options
      *
@@ -212,7 +212,7 @@ class Image
             $this->image = $image;
         } elseif (is_resource($image)) {
             $this->type = self::TYPE_BYTES;
-            $this->image = new Stream($image);
+            $this->image = Psr7\stream_for($image);
         } else {
             throw new InvalidArgumentException(
                 'Given image is not valid. ' .

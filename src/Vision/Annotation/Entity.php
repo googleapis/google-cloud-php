@@ -29,7 +29,7 @@ namespace Google\Cloud\Vision\Annotation;
  * $cloud = new ServiceBuilder();
  * $vision = $cloud->vision();
  *
- * $image = $vision->image(fopen(__DIR__ .'/assets/family-photo.jpg', 'r'), [ 'imageProperties' ]);
+ * $image = $vision->image(fopen(__DIR__ .'/assets/family-photo.jpg', 'r'), [ 'text' ]);
  * $annotation = $vision->annotate($image);
  *
  * $text = $annotation->text()[0];
@@ -176,7 +176,7 @@ class Entity extends AbstractFeature
      * This class is created internally by {@see Google\Cloud\Vision\Annotation} and is used to represent various
      * annotation feature results.
      *
-     * This class should not be instantiated outside the gcloud-php library.
+     * This class should not be instantiated externally.
      *
      * Entities are returned by {@see Google\Cloud\Vision\Annotation::landmarks()},
      * {@see Google\Cloud\Vision\Annotation::logos()},

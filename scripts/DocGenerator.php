@@ -86,6 +86,8 @@ class DocGenerator
         if (isset($fileReflector->getTraits()[0])) {
             return $fileReflector->getTraits()[0];
         }
+
+        throw new \Exception('Could not get reflector for '. $this->currentFile);
     }
 
     private function buildDocument($reflector)
@@ -420,14 +422,6 @@ class DocGenerator
         }
 
         return $returnsArray;
-    }
-
-    public function buildMagicReturns($return)
-    {
-        return [
-            'types' => $this->handleTypes([$return]),
-            'description' => null
-        ];
     }
 
     private function handleTypes($types)

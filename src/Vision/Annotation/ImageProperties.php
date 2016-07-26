@@ -30,7 +30,7 @@ namespace Google\Cloud\Vision\Annotation;
  * $image = $vision->image(fopen(__DIR__ .'/assets/family-photo.jpg', 'r'), [ 'imageProperties' ]);
  * $annotation = $vision->annotate($image);
  *
- * $properties = $annotation->imageProperties();
+ * $imageProperties = $annotation->imageProperties();
  * ```
  *
  * @method info() {
@@ -38,7 +38,7 @@ namespace Google\Cloud\Vision\Annotation;
  *
  *     Example:
  *     ```
- *     $info = $properties->info();
+ *     $info = $imageProperties->info();
  *     ```
  *
  *     @return array
@@ -51,7 +51,7 @@ class ImageProperties extends AbstractFeature
      *
      * This class is created internally by {@see Google\Cloud\Vision\Annotation}.
      * See {@see Google\Cloud\Vision\Annotation::imageProperties()} for full usage details.
-     * This class should not be instantiated outside the gcloud-php library.
+     * This class should not be instantiated outside the externally.
      *
      * @param array $info The imageProperties annotation result
      */
@@ -65,7 +65,7 @@ class ImageProperties extends AbstractFeature
      *
      * Example:
      * ```
-     * $colors = $properties->colors();
+     * $colors = $imageProperties->colors();
      * ```
      *
      * @see https://cloud.google.com/vision/reference/rest/v1/images/annotate#colorinfo ColorInfo

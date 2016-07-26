@@ -93,7 +93,7 @@ class ImageTest extends \PHPUnit_Framework_TestCase
             'labels'     => 'LABEL_DETECTION',
             'text'       => 'TEXT_DETECTION',
             'safeSearch' => 'SAFE_SEARCH_DETECTION',
-            'properties' => 'IMAGE_PROPERTIES'
+            'imageProperties' => 'IMAGE_PROPERTIES'
         ];
 
         $bytes = 'foo';

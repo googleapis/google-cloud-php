@@ -94,7 +94,7 @@ class Annotation
      * This class represents a single image annotation response from Cloud Vision. If multiple images were tested at
      * once, the result will be an array of Annotation instances.
      *
-     * This class is not intended to be instantiated outside the gcloud-php library.
+     * This class is not intended to be instantiated outside the Google Cloud Platform Client Library.
      *
      * @param array $info The annotation result
      */
@@ -167,7 +167,7 @@ class Annotation
      * @see https://cloud.google.com/vision/reference/rest/v1/images/annotate#annotateimageresponse AnnotateImageResponse
      * @codingStandardsIgnoreEnd
      *
-     * @return array
+     * @return array|null
      */
     public function info()
     {
@@ -182,7 +182,7 @@ class Annotation
      * $faces = $annotation->faces();
      * ```
      *
-     * @return Face[]
+     * @return Face[]|null
      */
     public function faces()
     {
@@ -197,7 +197,7 @@ class Annotation
      * $landmarks = $annotation->landmarks();
      * ```
      *
-     * @return Entity[]
+     * @return Entity[]|null
      */
     public function landmarks()
     {
@@ -212,7 +212,7 @@ class Annotation
      * $logos = $annotation->logos();
      * ```
      *
-     * @return Entity[]
+     * @return Entity[]|null
      */
     public function logos()
     {
@@ -227,7 +227,7 @@ class Annotation
      * $labels = $annotation->labels();
      * ```
      *
-     * @return Entity[]
+     * @return Entity[]|null
      */
     public function labels()
     {
@@ -242,7 +242,7 @@ class Annotation
      * $text = $annotation->text();
      * ```
      *
-     * @return Entity[]
+     * @return Entity[]|null
      */
     public function text()
     {
@@ -257,7 +257,7 @@ class Annotation
      * $safeSearch = $annotation->safeSearch();
      * ```
      *
-     * @return SafeSearch
+     * @return SafeSearch|null
      */
     public function safeSearch()
     {
@@ -272,7 +272,7 @@ class Annotation
      * $properties = $annotation->imageProperties();
      * ```
      *
-     * @return ImageProperties
+     * @return ImageProperties|null
      */
     public function imageProperties()
     {
@@ -289,7 +289,7 @@ class Annotation
      *
      * @see https://cloud.google.com/vision/reference/rest/v1/images/annotate#status Status Format
      *
-     * @return array
+     * @return array|null
      */
     public function error()
     {

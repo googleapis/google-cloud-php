@@ -104,6 +104,9 @@
       "nav": [{
         "title": "Image",
         "type": "vision/image"
+      }, {
+        "title": "Annotation",
+        "type": "vision/annotation"
       }]
     }
   ]
