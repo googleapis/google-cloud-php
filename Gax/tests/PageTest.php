@@ -30,32 +30,57 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-use Google\GAX\PageAccessor;
+use Google\GAX\Page;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\Testing\MockStub;
 use Google\GAX\Testing\MockStatus;
 use Google\GAX\Testing\MockRequest;
 use Google\GAX\Testing\MockResponse;
 
-class PageAccessorTest extends PHPUnit_Framework_TestCase
+class PageTest extends PHPUnit_Framework_TestCase
 {
-    public function testNextPageToken()
-    {
-        $mockRequest = MockRequest::createPageStreamingRequest('mockToken');
+    private static function createPage($responseSequence) {
+        $mockRequest = MockRequest::createPageStreamingRequest('token');
+        $stub = MockStub::createWithResponseSequence($responseSequence);
         $descriptor = new PageStreamingDescriptor([
             'requestPageTokenField' => 'pageToken',
             'responsePageTokenField' => 'nextPageToken',
             'resourceField' => 'resource'
         ]);
-        $response = MockResponse::createPageStreamingResponse('nextPageToken1', ['resource1']);
-        $stub = MockStub::create($response);
         $mockApiCall = function() use ($stub) {
             list($response, $status) =
                 call_user_func_array(array($stub, 'takeAction'), func_get_args())->wait();
             return $response;
         };
-        $pageAccessor = new PageAccessor([$mockRequest, [], []], $mockApiCall, $descriptor);
-        $this->assertEquals($pageAccessor->nextPageToken(), 'nextPageToken1');
-        $this->assertEquals($pageAccessor->currentPageValues(), ['resource1']);
+        return new Page([$mockRequest, [], []], $mockApiCall, $descriptor);
+    }
+
+    public function testNextPageMethods() {
+        $responseA = MockResponse::createPageStreamingResponse('nextPageToken1', ['resource1']);
+        $responseB = MockResponse::createPageStreamingResponse('', ['resource2']);
+        $page = PageTest::createPage([
+            [$responseA, new MockStatus(Grpc\STATUS_OK, '')],
+            [$responseB, new MockStatus(Grpc\STATUS_OK, '')],
+        ]);
+
+        $this->assertEquals($page->hasNextPage(), true);
+        $this->assertEquals($page->getNextPageToken(), 'nextPageToken1');
+
+        $nextPage = $page->getNextPage();
+
+        $this->assertEquals($nextPage->hasNextPage(), false);
+        $this->assertEquals($nextPage->getNextPageToken(), '');
+    }
+
+    public function testPageElementMethods() {
+        $response = MockResponse::createPageStreamingResponse('nextPageToken1',
+            ['resource1', 'resource2', 'resource3']);
+        $page = PageTest::createPage([
+            [$response, new MockStatus(Grpc\STATUS_OK, '')],
+        ]);
+
+        $this->assertEquals($page->getPageElementCount(), 3);
+        $results = iterator_to_array($page);
+        $this->assertEquals($results, ['resource1', 'resource2', 'resource3']);
     }
 }
