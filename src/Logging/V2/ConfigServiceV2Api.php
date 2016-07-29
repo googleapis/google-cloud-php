@@ -20,13 +20,13 @@
  * and updates to that file get reflected here through a refresh process.
  */
 
-namespace Google\Cloud\Logging\V2;
+namespace Google\Cloud\Toolkit\Logging\V2;
 
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
+use Google\GAX\GrpcBootstrap;
 use Google\GAX\GrpcConstants;
-use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
 use google\logging\v2\ConfigServiceV2Client;
@@ -47,7 +47,7 @@ use google\logging\v2\UpdateSinkRequest;
  * ```
  * try {
  *     $configServiceV2Api = new ConfigServiceV2Api();
- *     $formattedParent = ConfigServiceV2Api::formatParentName("[PROJECT]");
+ *     $formattedParent = ConfigServiceV2Api::formatProjectName("[PROJECT]");
  *     foreach ($configServiceV2Api->listSinks($formattedParent) as $element) {
  *         // doThingsWith(element);
  *     }
@@ -84,10 +84,10 @@ class ConfigServiceV2Api
     const _CODEGEN_NAME = 'GAPIC';
     const _CODEGEN_VERSION = '0.0.0';
 
-    private static $parentNameTemplate;
+    private static $projectNameTemplate;
     private static $sinkNameTemplate;
 
-    private $grpcCredentialsHelper;
+    private $grpcBootstrap;
     private $stub;
     private $scopes;
     private $defaultCallSettings;
@@ -95,11 +95,11 @@ class ConfigServiceV2Api
 
     /**
      * Formats a string containing the fully-qualified path to represent
-     * a parent resource.
+     * a project resource.
      */
-    public static function formatParentName($project)
+    public static function formatProjectName($project)
     {
-        return self::getParentNameTemplate()->render([
+        return self::getProjectNameTemplate()->render([
             'project' => $project,
         ]);
     }
@@ -118,11 +118,11 @@ class ConfigServiceV2Api
 
     /**
      * Parses the project from the given fully-qualified path which
-     * represents a parent resource.
+     * represents a project resource.
      */
-    public static function parseProjectFromParentName($parentName)
+    public static function parseProjectFromProjectName($projectName)
     {
-        return self::getParentNameTemplate()->match($parentName)['project'];
+        return self::getProjectNameTemplate()->match($projectName)['project'];
     }
 
     /**
@@ -143,13 +143,13 @@ class ConfigServiceV2Api
         return self::getSinkNameTemplate()->match($sinkName)['sink'];
     }
 
-    private static function getParentNameTemplate()
+    private static function getProjectNameTemplate()
     {
-        if (self::$parentNameTemplate == null) {
-            self::$parentNameTemplate = new PathTemplate('projects/{project}');
+        if (self::$projectNameTemplate == null) {
+            self::$projectNameTemplate = new PathTemplate('projects/{project}');
         }
 
-        return self::$parentNameTemplate;
+        return self::$projectNameTemplate;
     }
 
     private static function getSinkNameTemplate()
@@ -166,7 +166,6 @@ class ConfigServiceV2Api
         $listSinksPageStreamingDescriptor =
                 new PageStreamingDescriptor([
                     'requestPageTokenField' => 'page_token',
-                    'requestPageSizeField' => 'page_size',
                     'responsePageTokenField' => 'next_page_token',
                     'resourceField' => 'sinks',
                 ]);
@@ -185,28 +184,28 @@ class ConfigServiceV2Api
      * @param array $options {
      *                       Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress The domain name of the API remote host.
+     *     @var string $serviceAddress The domain name of the API remote host.
      *                                  Default 'logging.googleapis.com'.
-     *     @type mixed $port The port on which to connect to the remote host. Default 443.
-     *     @type Grpc\ChannelCredentials $sslCreds
+     *     @var mixed $port The port on which to connect to the remote host. Default 443.
+     *     @var Grpc\ChannelCredentials $sslCreds
      *           A `ChannelCredentials` for use with an SSL-enabled channel.
      *           Default: a credentials object returned from
      *           Grpc\ChannelCredentials::createSsl()
-     *     @type array $scopes A string array of scopes to use when acquiring credentials.
+     *     @var array $scopes A string array of scopes to use when acquiring credentials.
      *                         Default the scopes for the Google Cloud Logging API.
-     *     @type array $retryingOverride
+     *     @var array $retryingOverride
      *           An associative array of string => RetryOptions, where the keys
      *           are method names (e.g. 'createFoo'), that overrides default retrying
      *           settings. A value of null indicates that the method in question should
      *           not retry.
-     *     @type int $timeoutMillis The timeout in milliseconds to use for calls
+     *     @var int $timeoutMillis The timeout in milliseconds to use for calls
      *                              that don't use retries. For calls that use retries,
      *                              set the timeout in RetryOptions.
      *                              Default: 30000 (30 seconds)
-     *     @type string $appName The codename of the calling service. Default 'gax'.
-     *     @type string $appVersion The version of the calling service.
+     *     @var string $appName The codename of the calling service. Default 'gax'.
+     *     @var string $appVersion The version of the calling service.
      *                              Default: the current version of GAX.
-     *     @type Google\Auth\CredentialsLoader $credentialsLoader
+     *     @var Google\Auth\CredentialsLoader $credentialsLoader
      *                              A CredentialsLoader object created using the
      *                              Google\Auth library.
      * }
@@ -256,7 +255,7 @@ class ConfigServiceV2Api
 
         // TODO load the client config in a more package-friendly way
         // https://github.com/googleapis/toolkit/issues/332
-        $clientConfigJsonString = file_get_contents(__DIR__.'/resources/config_service_v2_client_config.json');
+        $clientConfigJsonString = file_get_contents('./resources/config_service_v2_client_config.json');
         $clientConfig = json_decode($clientConfigJsonString, true);
         $this->defaultCallSettings =
                 CallSettings::load(
@@ -276,9 +275,11 @@ class ConfigServiceV2Api
         if (!empty($options['sslCreds'])) {
             $createStubOptions['sslCreds'] = $options['sslCreds'];
         }
-        $grpcCredentialsHelperOptions = array_diff_key($options, $defaultOptions);
-        $this->grpcCredentialsHelper = new GrpcCredentialsHelper($this->scopes, $grpcCredentialsHelperOptions);
-        $this->stub = $this->grpcCredentialsHelper->createStub(
+        $grpcBootstrapOptions = array_intersect_key($options, [
+            'credentialsLoader' => null,
+        ]);
+        $this->grpcBootstrap = new GrpcBootstrap($this->scopes, $grpcBootstrapOptions);
+        $this->stub = $this->grpcBootstrap->createStub(
             $generatedCreateStub,
             $options['serviceAddress'],
             $options['port'],
@@ -293,7 +294,7 @@ class ConfigServiceV2Api
      * ```
      * try {
      *     $configServiceV2Api = new ConfigServiceV2Api();
-     *     $formattedParent = ConfigServiceV2Api::formatParentName("[PROJECT]");
+     *     $formattedParent = ConfigServiceV2Api::formatProjectName("[PROJECT]");
      *     foreach ($configServiceV2Api->listSinks($formattedParent) as $element) {
      *         // doThingsWith(element);
      *     }
@@ -309,19 +310,19 @@ class ConfigServiceV2Api
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type string $pageToken
+     *     @var string $pageToken
      *          A page token is used to specify a page of values to be returned.
      *          If no page token is specified (the default), the first page
      *          of values will be returned. Any page token used here must have
      *          been generated by a previous call to the API.
-     *     @type int $pageSize
+     *     @var int $pageSize
      *          The maximum number of resources contained in the underlying API
      *          response. The API may return fewer values in a page, even if
      *          there are additional values to be retrieved.
-     *     @type Google\GAX\RetrySettings $retrySettings
+     *     @var Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
+     *     @var int $timeoutMillis
      *          Timeout to use for this call. Only used if $retrySettings
      *          is not set.
      * }
@@ -378,10 +379,10 @@ class ConfigServiceV2Api
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type Google\GAX\RetrySettings $retrySettings
+     *     @var Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
+     *     @var int $timeoutMillis
      *          Timeout to use for this call. Only used if $retrySettings
      *          is not set.
      * }
@@ -418,7 +419,7 @@ class ConfigServiceV2Api
      * ```
      * try {
      *     $configServiceV2Api = new ConfigServiceV2Api();
-     *     $formattedParent = ConfigServiceV2Api::formatParentName("[PROJECT]");
+     *     $formattedParent = ConfigServiceV2Api::formatProjectName("[PROJECT]");
      *     $sink = new LogSink();
      *     $response = $configServiceV2Api->createSink($formattedParent, $sink);
      * } finally {
@@ -437,10 +438,10 @@ class ConfigServiceV2Api
      * @param array   $optionalArgs {
      *                              Optional.
      *
-     *     @type Google\GAX\RetrySettings $retrySettings
+     *     @var Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
+     *     @var int $timeoutMillis
      *          Timeout to use for this call. Only used if $retrySettings
      *          is not set.
      * }
@@ -500,10 +501,10 @@ class ConfigServiceV2Api
      * @param array   $optionalArgs {
      *                              Optional.
      *
-     *     @type Google\GAX\RetrySettings $retrySettings
+     *     @var Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
+     *     @var int $timeoutMillis
      *          Timeout to use for this call. Only used if $retrySettings
      *          is not set.
      * }
@@ -555,10 +556,10 @@ class ConfigServiceV2Api
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type Google\GAX\RetrySettings $retrySettings
+     *     @var Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
+     *     @var int $timeoutMillis
      *          Timeout to use for this call. Only used if $retrySettings
      *          is not set.
      * }
@@ -597,6 +598,6 @@ class ConfigServiceV2Api
 
     private function createCredentialsCallback()
     {
-        return $this->grpcCredentialsHelper->createCallCredentialsCallback();
+        return $this->grpcBootstrap->createCallCredentialsCallback();
     }
 }
