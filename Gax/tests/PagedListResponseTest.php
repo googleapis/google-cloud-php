@@ -30,20 +30,32 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace Google\GAX\Testing;
+use Google\GAX\PagedListResponse;
+use Google\GAX\PageStreamingDescriptor;
+use Google\GAX\Testing\MockStub;
+use Google\GAX\Testing\MockStatus;
+use Google\GAX\Testing\MockRequest;
+use Google\GAX\Testing\MockResponse;
 
-class MockRequest
+class PagedListResponseTest extends PHPUnit_Framework_TestCase
 {
-    public $pageToken;
-
-    public static function createPageStreamingRequest($pageToken)
-    {
-        $request = new MockRequest();
-        $request->pageToken = $pageToken;
-        return $request;
-    }
-
-    public function setPageSize($pageSize) {
-        // do nothing
+    public function testNextPageToken() {
+        $mockRequest = MockRequest::createPageStreamingRequest('mockToken');
+        $descriptor = new PageStreamingDescriptor([
+            'requestPageTokenField' => 'pageToken',
+            'responsePageTokenField' => 'nextPageToken',
+            'resourceField' => 'resource'
+        ]);
+        $response = MockResponse::createPageStreamingResponse('nextPageToken1', ['resource1']);
+        $stub = MockStub::create($response);
+        $mockApiCall = function() use ($stub) {
+            list($response, $status) =
+                call_user_func_array(array($stub, 'takeAction'), func_get_args())->wait();
+            return $response;
+        };
+        $pageAccessor = new PagedListResponse([$mockRequest, [], []], $mockApiCall, $descriptor);
+        $page = $pageAccessor->getPage();
+        $this->assertEquals($page->getNextPageToken(), 'nextPageToken1');
+        $this->assertEquals(iterator_to_array($page->getIterator()), ['resource1']);
     }
 }
