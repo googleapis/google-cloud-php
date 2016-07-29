@@ -16,11 +16,11 @@
 /*
  * GENERATED CODE WARNING
  * This file was generated from the file
- * https://github.com/google/googleapis/blob/master/google/pubsub/v1/pubsub.proto
+ * https://github.com/google/googleapis/blob/master/google/logging/v2/logging_config.proto
  * and updates to that file get reflected here through a refresh process.
  */
 
-namespace Google\Cloud\Toolkit\PubSub\V1;
+namespace Google\Cloud\Toolkit\Logging\V2;
 
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
@@ -29,30 +29,31 @@ use Google\GAX\GrpcBootstrap;
 use Google\GAX\GrpcConstants;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
-use google\pubsub\v1\DeleteTopicRequest;
-use google\pubsub\v1\GetTopicRequest;
-use google\pubsub\v1\ListTopicSubscriptionsRequest;
-use google\pubsub\v1\ListTopicsRequest;
-use google\pubsub\v1\PublishRequest;
-use google\pubsub\v1\PublisherClient;
-use google\pubsub\v1\PubsubMessage;
-use google\pubsub\v1\Topic;
+use google\logging\v2\ConfigServiceV2Client;
+use google\logging\v2\CreateSinkRequest;
+use google\logging\v2\DeleteSinkRequest;
+use google\logging\v2\GetSinkRequest;
+use google\logging\v2\ListSinksRequest;
+use google\logging\v2\LogSink;
+use google\logging\v2\UpdateSinkRequest;
 
 /**
- * Service Description: The service that an application uses to manipulate topics, and to send
- * messages to a topic.
+ * Service Description: Service for configuring sinks used to export log entries outside Stackdriver
+ * Logging.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
  *
  * ```
  * try {
- *     $publisherApi = new PublisherApi();
- *     $formattedName = PublisherApi::formatTopicName("[PROJECT]", "[TOPIC]");
- *     $response = $publisherApi->createTopic($formattedName);
+ *     $configServiceV2Api = new ConfigServiceV2Api();
+ *     $formattedParent = ConfigServiceV2Api::formatProjectName("[PROJECT]");
+ *     foreach ($configServiceV2Api->listSinks($formattedParent) as $element) {
+ *         // doThingsWith(element);
+ *     }
  * } finally {
- *     if (isset($publisherApi)) {
- *         $publisherApi->close();
+ *     if (isset($configServiceV2Api)) {
+ *         $configServiceV2Api->close();
  *     }
  * }
  * ```
@@ -62,12 +63,12 @@ use google\pubsub\v1\Topic;
  * a parse method to extract the individual identifiers contained within names that are
  * returned.
  */
-class PublisherApi
+class ConfigServiceV2Api
 {
     /**
      * The default address of the service.
      */
-    const SERVICE_ADDRESS = 'pubsub.googleapis.com';
+    const SERVICE_ADDRESS = 'logging.googleapis.com';
 
     /**
      * The default port of the service.
@@ -84,7 +85,7 @@ class PublisherApi
     const _CODEGEN_VERSION = '0.0.0';
 
     private static $projectNameTemplate;
-    private static $topicNameTemplate;
+    private static $sinkNameTemplate;
 
     private $grpcBootstrap;
     private $stub;
@@ -105,13 +106,13 @@ class PublisherApi
 
     /**
      * Formats a string containing the fully-qualified path to represent
-     * a topic resource.
+     * a sink resource.
      */
-    public static function formatTopicName($project, $topic)
+    public static function formatSinkName($project, $sink)
     {
-        return self::getTopicNameTemplate()->render([
+        return self::getSinkNameTemplate()->render([
             'project' => $project,
-            'topic' => $topic,
+            'sink' => $sink,
         ]);
     }
 
@@ -126,20 +127,20 @@ class PublisherApi
 
     /**
      * Parses the project from the given fully-qualified path which
-     * represents a topic resource.
+     * represents a sink resource.
      */
-    public static function parseProjectFromTopicName($topicName)
+    public static function parseProjectFromSinkName($sinkName)
     {
-        return self::getTopicNameTemplate()->match($topicName)['project'];
+        return self::getSinkNameTemplate()->match($sinkName)['project'];
     }
 
     /**
-     * Parses the topic from the given fully-qualified path which
-     * represents a topic resource.
+     * Parses the sink from the given fully-qualified path which
+     * represents a sink resource.
      */
-    public static function parseTopicFromTopicName($topicName)
+    public static function parseSinkFromSinkName($sinkName)
     {
-        return self::getTopicNameTemplate()->match($topicName)['topic'];
+        return self::getSinkNameTemplate()->match($sinkName)['sink'];
     }
 
     private static function getProjectNameTemplate()
@@ -151,33 +152,26 @@ class PublisherApi
         return self::$projectNameTemplate;
     }
 
-    private static function getTopicNameTemplate()
+    private static function getSinkNameTemplate()
     {
-        if (self::$topicNameTemplate == null) {
-            self::$topicNameTemplate = new PathTemplate('projects/{project}/topics/{topic}');
+        if (self::$sinkNameTemplate == null) {
+            self::$sinkNameTemplate = new PathTemplate('projects/{project}/sinks/{sink}');
         }
 
-        return self::$topicNameTemplate;
+        return self::$sinkNameTemplate;
     }
 
     private static function getPageStreamingDescriptors()
     {
-        $listTopicsPageStreamingDescriptor =
+        $listSinksPageStreamingDescriptor =
                 new PageStreamingDescriptor([
                     'requestPageTokenField' => 'page_token',
                     'responsePageTokenField' => 'next_page_token',
-                    'resourceField' => 'topics',
-                ]);
-        $listTopicSubscriptionsPageStreamingDescriptor =
-                new PageStreamingDescriptor([
-                    'requestPageTokenField' => 'page_token',
-                    'responsePageTokenField' => 'next_page_token',
-                    'resourceField' => 'subscriptions',
+                    'resourceField' => 'sinks',
                 ]);
 
         $pageStreamingDescriptors = [
-            'listTopics' => $listTopicsPageStreamingDescriptor,
-            'listTopicSubscriptions' => $listTopicSubscriptionsPageStreamingDescriptor,
+            'listSinks' => $listSinksPageStreamingDescriptor,
         ];
 
         return $pageStreamingDescriptors;
@@ -191,14 +185,14 @@ class PublisherApi
      *                       Optional. Options for configuring the service API wrapper.
      *
      *     @var string $serviceAddress The domain name of the API remote host.
-     *                                  Default 'pubsub.googleapis.com'.
+     *                                  Default 'logging.googleapis.com'.
      *     @var mixed $port The port on which to connect to the remote host. Default 443.
      *     @var Grpc\ChannelCredentials $sslCreds
      *           A `ChannelCredentials` for use with an SSL-enabled channel.
      *           Default: a credentials object returned from
      *           Grpc\ChannelCredentials::createSsl()
      *     @var array $scopes A string array of scopes to use when acquiring credentials.
-     *                         Default the scopes for the Google Cloud Pub/Sub API.
+     *                         Default the scopes for the Google Cloud Logging API.
      *     @var array $retryingOverride
      *           An associative array of string => RetryOptions, where the keys
      *           are method names (e.g. 'createFoo'), that overrides default retrying
@@ -220,7 +214,10 @@ class PublisherApi
     {
         $defaultScopes = [
             'https://www.googleapis.com/auth/cloud-platform',
-            'https://www.googleapis.com/auth/pubsub',
+            'https://www.googleapis.com/auth/cloud-platform.read-only',
+            'https://www.googleapis.com/auth/logging.admin',
+            'https://www.googleapis.com/auth/logging.read',
+            'https://www.googleapis.com/auth/logging.write',
         ];
         $defaultOptions = [
             'serviceAddress' => self::SERVICE_ADDRESS,
@@ -245,12 +242,11 @@ class PublisherApi
 
         $defaultDescriptors = ['headerDescriptor' => $headerDescriptor];
         $this->descriptors = [
-            'createTopic' => $defaultDescriptors,
-            'publish' => $defaultDescriptors,
-            'getTopic' => $defaultDescriptors,
-            'listTopics' => $defaultDescriptors,
-            'listTopicSubscriptions' => $defaultDescriptors,
-            'deleteTopic' => $defaultDescriptors,
+            'listSinks' => $defaultDescriptors,
+            'getSink' => $defaultDescriptors,
+            'createSink' => $defaultDescriptors,
+            'updateSink' => $defaultDescriptors,
+            'deleteSink' => $defaultDescriptors,
         ];
         $pageStreamingDescriptors = self::getPageStreamingDescriptors();
         foreach ($pageStreamingDescriptors as $method => $pageStreamingDescriptor) {
@@ -259,11 +255,11 @@ class PublisherApi
 
         // TODO load the client config in a more package-friendly way
         // https://github.com/googleapis/toolkit/issues/332
-        $clientConfigJsonString = file_get_contents('./resources/publisher_client_config.json');
+        $clientConfigJsonString = file_get_contents('./resources/config_service_v2_client_config.json');
         $clientConfig = json_decode($clientConfigJsonString, true);
         $this->defaultCallSettings =
                 CallSettings::load(
-                    'google.pubsub.v1.Publisher',
+                    'google.logging.v2.ConfigServiceV2',
                     $clientConfig,
                     $options['retryingOverride'],
                     GrpcConstants::getStatusCodeNames(),
@@ -273,7 +269,7 @@ class PublisherApi
         $this->scopes = $options['scopes'];
 
         $generatedCreateStub = function ($hostname, $opts) {
-            return new PublisherClient($hostname, $opts);
+            return new ConfigServiceV2Client($hostname, $opts);
         };
         $createStubOptions = [];
         if (!empty($options['sslCreds'])) {
@@ -292,208 +288,37 @@ class PublisherApi
     }
 
     /**
-     * Creates the given topic with the given name.
+     * Lists sinks.
      *
      * Sample code:
      * ```
      * try {
-     *     $publisherApi = new PublisherApi();
-     *     $formattedName = PublisherApi::formatTopicName("[PROJECT]", "[TOPIC]");
-     *     $response = $publisherApi->createTopic($formattedName);
-     * } finally {
-     *     if (isset($publisherApi)) {
-     *         $publisherApi->close();
-     *     }
-     * }
-     * ```
-     *
-     * @param string $name         The name of the topic. It must have the format
-     *                             `"projects/{project}/topics/{topic}"`. `{topic}` must start with a letter,
-     *                             and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`),
-     *                             underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent
-     *                             signs (`%`). It must be between 3 and 255 characters in length, and it
-     *                             must not start with `"goog"`.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @var Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @var int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
-     * }
-     *
-     * @return google\pubsub\v1\Topic
-     *
-     * @throws Google\GAX\ApiException if the remote call fails
-     */
-    public function createTopic($name, $optionalArgs = [])
-    {
-        $request = new Topic();
-        $request->setName($name);
-
-        $mergedSettings = $this->defaultCallSettings['createTopic']->merge(
-            new CallSettings($optionalArgs)
-        );
-        $callable = ApiCallable::createApiCall(
-            $this->stub,
-            'CreateTopic',
-            $mergedSettings,
-            $this->descriptors['createTopic']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
-    }
-
-    /**
-     * Adds one or more messages to the topic. Returns `NOT_FOUND` if the topic
-     * does not exist. The message payload must not be empty; it must contain
-     *  either a non-empty data field, or at least one attribute.
-     *
-     * Sample code:
-     * ```
-     * try {
-     *     $publisherApi = new PublisherApi();
-     *     $formattedTopic = PublisherApi::formatTopicName("[PROJECT]", "[TOPIC]");
-     *     $data = "";
-     *     $messagesElement = new PubsubMessage();
-     *     $messagesElement->setData($data);
-     *     $messages = [$messagesElement];
-     *     $response = $publisherApi->publish($formattedTopic, $messages);
-     * } finally {
-     *     if (isset($publisherApi)) {
-     *         $publisherApi->close();
-     *     }
-     * }
-     * ```
-     *
-     * @param string          $topic        The messages in the request will be published on this topic.
-     * @param PubsubMessage[] $messages     The messages to publish.
-     * @param array           $optionalArgs {
-     *                                      Optional.
-     *
-     *     @var Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @var int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
-     * }
-     *
-     * @return google\pubsub\v1\PublishResponse
-     *
-     * @throws Google\GAX\ApiException if the remote call fails
-     */
-    public function publish($topic, $messages, $optionalArgs = [])
-    {
-        $request = new PublishRequest();
-        $request->setTopic($topic);
-        foreach ($messages as $elem) {
-            $request->addMessages($elem);
-        }
-
-        $mergedSettings = $this->defaultCallSettings['publish']->merge(
-            new CallSettings($optionalArgs)
-        );
-        $callable = ApiCallable::createApiCall(
-            $this->stub,
-            'Publish',
-            $mergedSettings,
-            $this->descriptors['publish']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
-    }
-
-    /**
-     * Gets the configuration of a topic.
-     *
-     * Sample code:
-     * ```
-     * try {
-     *     $publisherApi = new PublisherApi();
-     *     $formattedTopic = PublisherApi::formatTopicName("[PROJECT]", "[TOPIC]");
-     *     $response = $publisherApi->getTopic($formattedTopic);
-     * } finally {
-     *     if (isset($publisherApi)) {
-     *         $publisherApi->close();
-     *     }
-     * }
-     * ```
-     *
-     * @param string $topic        The name of the topic to get.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @var Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @var int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
-     * }
-     *
-     * @return google\pubsub\v1\Topic
-     *
-     * @throws Google\GAX\ApiException if the remote call fails
-     */
-    public function getTopic($topic, $optionalArgs = [])
-    {
-        $request = new GetTopicRequest();
-        $request->setTopic($topic);
-
-        $mergedSettings = $this->defaultCallSettings['getTopic']->merge(
-            new CallSettings($optionalArgs)
-        );
-        $callable = ApiCallable::createApiCall(
-            $this->stub,
-            'GetTopic',
-            $mergedSettings,
-            $this->descriptors['getTopic']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
-    }
-
-    /**
-     * Lists matching topics.
-     *
-     * Sample code:
-     * ```
-     * try {
-     *     $publisherApi = new PublisherApi();
-     *     $formattedProject = PublisherApi::formatProjectName("[PROJECT]");
-     *     foreach ($publisherApi->listTopics($formattedProject) as $element) {
+     *     $configServiceV2Api = new ConfigServiceV2Api();
+     *     $formattedParent = ConfigServiceV2Api::formatProjectName("[PROJECT]");
+     *     foreach ($configServiceV2Api->listSinks($formattedParent) as $element) {
      *         // doThingsWith(element);
      *     }
      * } finally {
-     *     if (isset($publisherApi)) {
-     *         $publisherApi->close();
+     *     if (isset($configServiceV2Api)) {
+     *         $configServiceV2Api->close();
      *     }
      * }
      * ```
      *
-     * @param string $project      The name of the cloud project that topics belong to.
+     * @param string $parent       Required. The resource name containing the sinks.
+     *                             Example: `"projects/my-logging-project"`.
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @var int $pageSize
-     *          Maximum number of topics to return.
      *     @var string $pageToken
      *          A page token is used to specify a page of values to be returned.
      *          If no page token is specified (the default), the first page
      *          of values will be returned. Any page token used here must have
      *          been generated by a previous call to the API.
+     *     @var int $pageSize
+     *          The maximum number of resources contained in the underlying API
+     *          response. The API may return fewer values in a page, even if
+     *          there are additional values to be retrieved.
      *     @var Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
@@ -506,25 +331,25 @@ class PublisherApi
      *
      * @throws Google\GAX\ApiException if the remote call fails
      */
-    public function listTopics($project, $optionalArgs = [])
+    public function listSinks($parent, $optionalArgs = [])
     {
-        $request = new ListTopicsRequest();
-        $request->setProject($project);
-        if (isset($optionalArgs['pageSize'])) {
-            $request->setPageSize($optionalArgs['pageSize']);
-        }
+        $request = new ListSinksRequest();
+        $request->setParent($parent);
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
         }
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
 
-        $mergedSettings = $this->defaultCallSettings['listTopics']->merge(
+        $mergedSettings = $this->defaultCallSettings['listSinks']->merge(
             new CallSettings($optionalArgs)
         );
         $callable = ApiCallable::createApiCall(
             $this->stub,
-            'ListTopics',
+            'ListSinks',
             $mergedSettings,
-            $this->descriptors['listTopics']
+            $this->descriptors['listSinks']
         );
 
         return $callable(
@@ -534,94 +359,23 @@ class PublisherApi
     }
 
     /**
-     * Lists the name of the subscriptions for this topic.
+     * Gets a sink.
      *
      * Sample code:
      * ```
      * try {
-     *     $publisherApi = new PublisherApi();
-     *     $formattedTopic = PublisherApi::formatTopicName("[PROJECT]", "[TOPIC]");
-     *     foreach ($publisherApi->listTopicSubscriptions($formattedTopic) as $element) {
-     *         // doThingsWith(element);
-     *     }
+     *     $configServiceV2Api = new ConfigServiceV2Api();
+     *     $formattedSinkName = ConfigServiceV2Api::formatSinkName("[PROJECT]", "[SINK]");
+     *     $response = $configServiceV2Api->getSink($formattedSinkName);
      * } finally {
-     *     if (isset($publisherApi)) {
-     *         $publisherApi->close();
+     *     if (isset($configServiceV2Api)) {
+     *         $configServiceV2Api->close();
      *     }
      * }
      * ```
      *
-     * @param string $topic        The name of the topic that subscriptions are attached to.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @var int $pageSize
-     *          Maximum number of subscription names to return.
-     *     @var string $pageToken
-     *          A page token is used to specify a page of values to be returned.
-     *          If no page token is specified (the default), the first page
-     *          of values will be returned. Any page token used here must have
-     *          been generated by a previous call to the API.
-     *     @var Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @var int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
-     * }
-     *
-     * @return Google\GAX\PagedListResponse
-     *
-     * @throws Google\GAX\ApiException if the remote call fails
-     */
-    public function listTopicSubscriptions($topic, $optionalArgs = [])
-    {
-        $request = new ListTopicSubscriptionsRequest();
-        $request->setTopic($topic);
-        if (isset($optionalArgs['pageSize'])) {
-            $request->setPageSize($optionalArgs['pageSize']);
-        }
-        if (isset($optionalArgs['pageToken'])) {
-            $request->setPageToken($optionalArgs['pageToken']);
-        }
-
-        $mergedSettings = $this->defaultCallSettings['listTopicSubscriptions']->merge(
-            new CallSettings($optionalArgs)
-        );
-        $callable = ApiCallable::createApiCall(
-            $this->stub,
-            'ListTopicSubscriptions',
-            $mergedSettings,
-            $this->descriptors['listTopicSubscriptions']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
-    }
-
-    /**
-     * Deletes the topic with the given name. Returns `NOT_FOUND` if the topic
-     * does not exist. After a topic is deleted, a new topic may be created with
-     * the same name; this is an entirely new topic with none of the old
-     * configuration or subscriptions. Existing subscriptions to this topic are
-     * not deleted, but their `topic` field is set to `_deleted-topic_`.
-     *
-     * Sample code:
-     * ```
-     * try {
-     *     $publisherApi = new PublisherApi();
-     *     $formattedTopic = PublisherApi::formatTopicName("[PROJECT]", "[TOPIC]");
-     *     $publisherApi->deleteTopic($formattedTopic);
-     * } finally {
-     *     if (isset($publisherApi)) {
-     *         $publisherApi->close();
-     *     }
-     * }
-     * ```
-     *
-     * @param string $topic        Name of the topic to delete.
+     * @param string $sinkName     The resource name of the sink to return.
+     *                             Example: `"projects/my-project-id/sinks/my-sink-id"`.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -633,21 +387,198 @@ class PublisherApi
      *          is not set.
      * }
      *
+     * @return google\logging\v2\LogSink
+     *
      * @throws Google\GAX\ApiException if the remote call fails
      */
-    public function deleteTopic($topic, $optionalArgs = [])
+    public function getSink($sinkName, $optionalArgs = [])
     {
-        $request = new DeleteTopicRequest();
-        $request->setTopic($topic);
+        $request = new GetSinkRequest();
+        $request->setSinkName($sinkName);
 
-        $mergedSettings = $this->defaultCallSettings['deleteTopic']->merge(
+        $mergedSettings = $this->defaultCallSettings['getSink']->merge(
             new CallSettings($optionalArgs)
         );
         $callable = ApiCallable::createApiCall(
             $this->stub,
-            'DeleteTopic',
+            'GetSink',
             $mergedSettings,
-            $this->descriptors['deleteTopic']
+            $this->descriptors['getSink']
+        );
+
+        return $callable(
+            $request,
+            [],
+            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+    }
+
+    /**
+     * Creates a sink.
+     *
+     * Sample code:
+     * ```
+     * try {
+     *     $configServiceV2Api = new ConfigServiceV2Api();
+     *     $formattedParent = ConfigServiceV2Api::formatProjectName("[PROJECT]");
+     *     $sink = new LogSink();
+     *     $response = $configServiceV2Api->createSink($formattedParent, $sink);
+     * } finally {
+     *     if (isset($configServiceV2Api)) {
+     *         $configServiceV2Api->close();
+     *     }
+     * }
+     * ```
+     *
+     * @param string $parent The resource in which to create the sink.
+     *                       Example: `"projects/my-project-id"`.
+     *
+     * The new sink must be provided in the request.
+     * @param LogSink $sink         The new sink, which must not have an identifier that already
+     *                              exists.
+     * @param array   $optionalArgs {
+     *                              Optional.
+     *
+     *     @var Google\GAX\RetrySettings $retrySettings
+     *          Retry settings to use for this call. If present, then
+     *          $timeoutMillis is ignored.
+     *     @var int $timeoutMillis
+     *          Timeout to use for this call. Only used if $retrySettings
+     *          is not set.
+     * }
+     *
+     * @return google\logging\v2\LogSink
+     *
+     * @throws Google\GAX\ApiException if the remote call fails
+     */
+    public function createSink($parent, $sink, $optionalArgs = [])
+    {
+        $request = new CreateSinkRequest();
+        $request->setParent($parent);
+        $request->setSink($sink);
+
+        $mergedSettings = $this->defaultCallSettings['createSink']->merge(
+            new CallSettings($optionalArgs)
+        );
+        $callable = ApiCallable::createApiCall(
+            $this->stub,
+            'CreateSink',
+            $mergedSettings,
+            $this->descriptors['createSink']
+        );
+
+        return $callable(
+            $request,
+            [],
+            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+    }
+
+    /**
+     * Creates or updates a sink.
+     *
+     * Sample code:
+     * ```
+     * try {
+     *     $configServiceV2Api = new ConfigServiceV2Api();
+     *     $formattedSinkName = ConfigServiceV2Api::formatSinkName("[PROJECT]", "[SINK]");
+     *     $sink = new LogSink();
+     *     $response = $configServiceV2Api->updateSink($formattedSinkName, $sink);
+     * } finally {
+     *     if (isset($configServiceV2Api)) {
+     *         $configServiceV2Api->close();
+     *     }
+     * }
+     * ```
+     *
+     * @param string $sinkName The resource name of the sink to update.
+     *                         Example: `"projects/my-project-id/sinks/my-sink-id"`.
+     *
+     * The updated sink must be provided in the request and have the
+     * same name that is specified in `sinkName`.  If the sink does not
+     * exist, it is created.
+     * @param LogSink $sink         The updated sink, whose name must be the same as the sink
+     *                              identifier in `sinkName`.  If `sinkName` does not exist, then
+     *                              this method creates a new sink.
+     * @param array   $optionalArgs {
+     *                              Optional.
+     *
+     *     @var Google\GAX\RetrySettings $retrySettings
+     *          Retry settings to use for this call. If present, then
+     *          $timeoutMillis is ignored.
+     *     @var int $timeoutMillis
+     *          Timeout to use for this call. Only used if $retrySettings
+     *          is not set.
+     * }
+     *
+     * @return google\logging\v2\LogSink
+     *
+     * @throws Google\GAX\ApiException if the remote call fails
+     */
+    public function updateSink($sinkName, $sink, $optionalArgs = [])
+    {
+        $request = new UpdateSinkRequest();
+        $request->setSinkName($sinkName);
+        $request->setSink($sink);
+
+        $mergedSettings = $this->defaultCallSettings['updateSink']->merge(
+            new CallSettings($optionalArgs)
+        );
+        $callable = ApiCallable::createApiCall(
+            $this->stub,
+            'UpdateSink',
+            $mergedSettings,
+            $this->descriptors['updateSink']
+        );
+
+        return $callable(
+            $request,
+            [],
+            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+    }
+
+    /**
+     * Deletes a sink.
+     *
+     * Sample code:
+     * ```
+     * try {
+     *     $configServiceV2Api = new ConfigServiceV2Api();
+     *     $formattedSinkName = ConfigServiceV2Api::formatSinkName("[PROJECT]", "[SINK]");
+     *     $configServiceV2Api->deleteSink($formattedSinkName);
+     * } finally {
+     *     if (isset($configServiceV2Api)) {
+     *         $configServiceV2Api->close();
+     *     }
+     * }
+     * ```
+     *
+     * @param string $sinkName     The resource name of the sink to delete.
+     *                             Example: `"projects/my-project-id/sinks/my-sink-id"`.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @var Google\GAX\RetrySettings $retrySettings
+     *          Retry settings to use for this call. If present, then
+     *          $timeoutMillis is ignored.
+     *     @var int $timeoutMillis
+     *          Timeout to use for this call. Only used if $retrySettings
+     *          is not set.
+     * }
+     *
+     * @throws Google\GAX\ApiException if the remote call fails
+     */
+    public function deleteSink($sinkName, $optionalArgs = [])
+    {
+        $request = new DeleteSinkRequest();
+        $request->setSinkName($sinkName);
+
+        $mergedSettings = $this->defaultCallSettings['deleteSink']->merge(
+            new CallSettings($optionalArgs)
+        );
+        $callable = ApiCallable::createApiCall(
+            $this->stub,
+            'DeleteSink',
+            $mergedSettings,
+            $this->descriptors['deleteSink']
         );
 
         return $callable(

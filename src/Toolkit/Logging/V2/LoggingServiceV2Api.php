@@ -16,11 +16,11 @@
 /*
  * GENERATED CODE WARNING
  * This file was generated from the file
- * https://github.com/google/googleapis/blob/master/google/pubsub/v1/pubsub.proto
+ * https://github.com/google/googleapis/blob/master/google/logging/v2/logging.proto
  * and updates to that file get reflected here through a refresh process.
  */
 
-namespace Google\Cloud\Toolkit\PubSub\V1;
+namespace Google\Cloud\Toolkit\Logging\V2;
 
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
@@ -29,30 +29,29 @@ use Google\GAX\GrpcBootstrap;
 use Google\GAX\GrpcConstants;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
-use google\pubsub\v1\DeleteTopicRequest;
-use google\pubsub\v1\GetTopicRequest;
-use google\pubsub\v1\ListTopicSubscriptionsRequest;
-use google\pubsub\v1\ListTopicsRequest;
-use google\pubsub\v1\PublishRequest;
-use google\pubsub\v1\PublisherClient;
-use google\pubsub\v1\PubsubMessage;
-use google\pubsub\v1\Topic;
+use google\api\MonitoredResource;
+use google\logging\v2\DeleteLogRequest;
+use google\logging\v2\ListLogEntriesRequest;
+use google\logging\v2\ListMonitoredResourceDescriptorsRequest;
+use google\logging\v2\LogEntry;
+use google\logging\v2\LoggingServiceV2Client;
+use google\logging\v2\WriteLogEntriesRequest;
+use google\logging\v2\WriteLogEntriesRequest\LabelsEntry;
 
 /**
- * Service Description: The service that an application uses to manipulate topics, and to send
- * messages to a topic.
+ * Service Description: Service for ingesting and querying logs.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
  *
  * ```
  * try {
- *     $publisherApi = new PublisherApi();
- *     $formattedName = PublisherApi::formatTopicName("[PROJECT]", "[TOPIC]");
- *     $response = $publisherApi->createTopic($formattedName);
+ *     $loggingServiceV2Api = new LoggingServiceV2Api();
+ *     $formattedLogName = LoggingServiceV2Api::formatLogName("[PROJECT]", "[LOG]");
+ *     $loggingServiceV2Api->deleteLog($formattedLogName);
  * } finally {
- *     if (isset($publisherApi)) {
- *         $publisherApi->close();
+ *     if (isset($loggingServiceV2Api)) {
+ *         $loggingServiceV2Api->close();
  *     }
  * }
  * ```
@@ -62,12 +61,12 @@ use google\pubsub\v1\Topic;
  * a parse method to extract the individual identifiers contained within names that are
  * returned.
  */
-class PublisherApi
+class LoggingServiceV2Api
 {
     /**
      * The default address of the service.
      */
-    const SERVICE_ADDRESS = 'pubsub.googleapis.com';
+    const SERVICE_ADDRESS = 'logging.googleapis.com';
 
     /**
      * The default port of the service.
@@ -84,7 +83,7 @@ class PublisherApi
     const _CODEGEN_VERSION = '0.0.0';
 
     private static $projectNameTemplate;
-    private static $topicNameTemplate;
+    private static $logNameTemplate;
 
     private $grpcBootstrap;
     private $stub;
@@ -105,13 +104,13 @@ class PublisherApi
 
     /**
      * Formats a string containing the fully-qualified path to represent
-     * a topic resource.
+     * a log resource.
      */
-    public static function formatTopicName($project, $topic)
+    public static function formatLogName($project, $log)
     {
-        return self::getTopicNameTemplate()->render([
+        return self::getLogNameTemplate()->render([
             'project' => $project,
-            'topic' => $topic,
+            'log' => $log,
         ]);
     }
 
@@ -126,20 +125,20 @@ class PublisherApi
 
     /**
      * Parses the project from the given fully-qualified path which
-     * represents a topic resource.
+     * represents a log resource.
      */
-    public static function parseProjectFromTopicName($topicName)
+    public static function parseProjectFromLogName($logName)
     {
-        return self::getTopicNameTemplate()->match($topicName)['project'];
+        return self::getLogNameTemplate()->match($logName)['project'];
     }
 
     /**
-     * Parses the topic from the given fully-qualified path which
-     * represents a topic resource.
+     * Parses the log from the given fully-qualified path which
+     * represents a log resource.
      */
-    public static function parseTopicFromTopicName($topicName)
+    public static function parseLogFromLogName($logName)
     {
-        return self::getTopicNameTemplate()->match($topicName)['topic'];
+        return self::getLogNameTemplate()->match($logName)['log'];
     }
 
     private static function getProjectNameTemplate()
@@ -151,33 +150,33 @@ class PublisherApi
         return self::$projectNameTemplate;
     }
 
-    private static function getTopicNameTemplate()
+    private static function getLogNameTemplate()
     {
-        if (self::$topicNameTemplate == null) {
-            self::$topicNameTemplate = new PathTemplate('projects/{project}/topics/{topic}');
+        if (self::$logNameTemplate == null) {
+            self::$logNameTemplate = new PathTemplate('projects/{project}/logs/{log}');
         }
 
-        return self::$topicNameTemplate;
+        return self::$logNameTemplate;
     }
 
     private static function getPageStreamingDescriptors()
     {
-        $listTopicsPageStreamingDescriptor =
+        $listLogEntriesPageStreamingDescriptor =
                 new PageStreamingDescriptor([
                     'requestPageTokenField' => 'page_token',
                     'responsePageTokenField' => 'next_page_token',
-                    'resourceField' => 'topics',
+                    'resourceField' => 'entries',
                 ]);
-        $listTopicSubscriptionsPageStreamingDescriptor =
+        $listMonitoredResourceDescriptorsPageStreamingDescriptor =
                 new PageStreamingDescriptor([
                     'requestPageTokenField' => 'page_token',
                     'responsePageTokenField' => 'next_page_token',
-                    'resourceField' => 'subscriptions',
+                    'resourceField' => 'resource_descriptors',
                 ]);
 
         $pageStreamingDescriptors = [
-            'listTopics' => $listTopicsPageStreamingDescriptor,
-            'listTopicSubscriptions' => $listTopicSubscriptionsPageStreamingDescriptor,
+            'listLogEntries' => $listLogEntriesPageStreamingDescriptor,
+            'listMonitoredResourceDescriptors' => $listMonitoredResourceDescriptorsPageStreamingDescriptor,
         ];
 
         return $pageStreamingDescriptors;
@@ -191,14 +190,14 @@ class PublisherApi
      *                       Optional. Options for configuring the service API wrapper.
      *
      *     @var string $serviceAddress The domain name of the API remote host.
-     *                                  Default 'pubsub.googleapis.com'.
+     *                                  Default 'logging.googleapis.com'.
      *     @var mixed $port The port on which to connect to the remote host. Default 443.
      *     @var Grpc\ChannelCredentials $sslCreds
      *           A `ChannelCredentials` for use with an SSL-enabled channel.
      *           Default: a credentials object returned from
      *           Grpc\ChannelCredentials::createSsl()
      *     @var array $scopes A string array of scopes to use when acquiring credentials.
-     *                         Default the scopes for the Google Cloud Pub/Sub API.
+     *                         Default the scopes for the Google Cloud Logging API.
      *     @var array $retryingOverride
      *           An associative array of string => RetryOptions, where the keys
      *           are method names (e.g. 'createFoo'), that overrides default retrying
@@ -220,7 +219,10 @@ class PublisherApi
     {
         $defaultScopes = [
             'https://www.googleapis.com/auth/cloud-platform',
-            'https://www.googleapis.com/auth/pubsub',
+            'https://www.googleapis.com/auth/cloud-platform.read-only',
+            'https://www.googleapis.com/auth/logging.admin',
+            'https://www.googleapis.com/auth/logging.read',
+            'https://www.googleapis.com/auth/logging.write',
         ];
         $defaultOptions = [
             'serviceAddress' => self::SERVICE_ADDRESS,
@@ -245,12 +247,10 @@ class PublisherApi
 
         $defaultDescriptors = ['headerDescriptor' => $headerDescriptor];
         $this->descriptors = [
-            'createTopic' => $defaultDescriptors,
-            'publish' => $defaultDescriptors,
-            'getTopic' => $defaultDescriptors,
-            'listTopics' => $defaultDescriptors,
-            'listTopicSubscriptions' => $defaultDescriptors,
-            'deleteTopic' => $defaultDescriptors,
+            'deleteLog' => $defaultDescriptors,
+            'writeLogEntries' => $defaultDescriptors,
+            'listLogEntries' => $defaultDescriptors,
+            'listMonitoredResourceDescriptors' => $defaultDescriptors,
         ];
         $pageStreamingDescriptors = self::getPageStreamingDescriptors();
         foreach ($pageStreamingDescriptors as $method => $pageStreamingDescriptor) {
@@ -259,11 +259,11 @@ class PublisherApi
 
         // TODO load the client config in a more package-friendly way
         // https://github.com/googleapis/toolkit/issues/332
-        $clientConfigJsonString = file_get_contents('./resources/publisher_client_config.json');
+        $clientConfigJsonString = file_get_contents('./resources/logging_service_v2_client_config.json');
         $clientConfig = json_decode($clientConfigJsonString, true);
         $this->defaultCallSettings =
                 CallSettings::load(
-                    'google.pubsub.v1.Publisher',
+                    'google.logging.v2.LoggingServiceV2',
                     $clientConfig,
                     $options['retryingOverride'],
                     GrpcConstants::getStatusCodeNames(),
@@ -273,7 +273,7 @@ class PublisherApi
         $this->scopes = $options['scopes'];
 
         $generatedCreateStub = function ($hostname, $opts) {
-            return new PublisherClient($hostname, $opts);
+            return new LoggingServiceV2Client($hostname, $opts);
         };
         $createStubOptions = [];
         if (!empty($options['sslCreds'])) {
@@ -292,27 +292,24 @@ class PublisherApi
     }
 
     /**
-     * Creates the given topic with the given name.
+     * Deletes a log and all its log entries.
+     * The log will reappear if it receives new entries.
      *
      * Sample code:
      * ```
      * try {
-     *     $publisherApi = new PublisherApi();
-     *     $formattedName = PublisherApi::formatTopicName("[PROJECT]", "[TOPIC]");
-     *     $response = $publisherApi->createTopic($formattedName);
+     *     $loggingServiceV2Api = new LoggingServiceV2Api();
+     *     $formattedLogName = LoggingServiceV2Api::formatLogName("[PROJECT]", "[LOG]");
+     *     $loggingServiceV2Api->deleteLog($formattedLogName);
      * } finally {
-     *     if (isset($publisherApi)) {
-     *         $publisherApi->close();
+     *     if (isset($loggingServiceV2Api)) {
+     *         $loggingServiceV2Api->close();
      *     }
      * }
      * ```
      *
-     * @param string $name         The name of the topic. It must have the format
-     *                             `"projects/{project}/topics/{topic}"`. `{topic}` must start with a letter,
-     *                             and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`),
-     *                             underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent
-     *                             signs (`%`). It must be between 3 and 255 characters in length, and it
-     *                             must not start with `"goog"`.
+     * @param string $logName      Required. The resource name of the log to delete.  Example:
+     *                             `"projects/my-project/logs/syslog"`.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -324,23 +321,21 @@ class PublisherApi
      *          is not set.
      * }
      *
-     * @return google\pubsub\v1\Topic
-     *
      * @throws Google\GAX\ApiException if the remote call fails
      */
-    public function createTopic($name, $optionalArgs = [])
+    public function deleteLog($logName, $optionalArgs = [])
     {
-        $request = new Topic();
-        $request->setName($name);
+        $request = new DeleteLogRequest();
+        $request->setLogName($logName);
 
-        $mergedSettings = $this->defaultCallSettings['createTopic']->merge(
+        $mergedSettings = $this->defaultCallSettings['deleteLog']->merge(
             new CallSettings($optionalArgs)
         );
         $callable = ApiCallable::createApiCall(
             $this->stub,
-            'CreateTopic',
+            'DeleteLog',
             $mergedSettings,
-            $this->descriptors['createTopic']
+            $this->descriptors['deleteLog']
         );
 
         return $callable(
@@ -350,32 +345,50 @@ class PublisherApi
     }
 
     /**
-     * Adds one or more messages to the topic. Returns `NOT_FOUND` if the topic
-     * does not exist. The message payload must not be empty; it must contain
-     *  either a non-empty data field, or at least one attribute.
+     * Writes log entries to Stackdriver Logging.  All log entries are
+     * written by this method.
      *
      * Sample code:
      * ```
      * try {
-     *     $publisherApi = new PublisherApi();
-     *     $formattedTopic = PublisherApi::formatTopicName("[PROJECT]", "[TOPIC]");
-     *     $data = "";
-     *     $messagesElement = new PubsubMessage();
-     *     $messagesElement->setData($data);
-     *     $messages = [$messagesElement];
-     *     $response = $publisherApi->publish($formattedTopic, $messages);
+     *     $loggingServiceV2Api = new LoggingServiceV2Api();
+     *     $entries = [];
+     *     $response = $loggingServiceV2Api->writeLogEntries($entries);
      * } finally {
-     *     if (isset($publisherApi)) {
-     *         $publisherApi->close();
+     *     if (isset($loggingServiceV2Api)) {
+     *         $loggingServiceV2Api->close();
      *     }
      * }
      * ```
      *
-     * @param string          $topic        The messages in the request will be published on this topic.
-     * @param PubsubMessage[] $messages     The messages to publish.
-     * @param array           $optionalArgs {
-     *                                      Optional.
+     * @param LogEntry[] $entries Required. The log entries to write. The log entries must have values for
+     *                            all required fields.
      *
+     * To improve throughput and to avoid exceeding the quota limit for calls
+     * to `entries.write`, use this field to write multiple log entries at once
+     * rather than  // calling this method for each log entry.
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @var string $logName
+     *          Optional. A default log resource name for those log entries in `entries`
+     *          that do not specify their own `logName`.  Example:
+     *          `"projects/my-project/logs/syslog"`.  See
+     *          [LogEntry][google.logging.v2.LogEntry].
+     *     @var MonitoredResource $resource
+     *          Optional. A default monitored resource for those log entries in `entries`
+     *          that do not specify their own `resource`.
+     *     @var array $labels
+     *          Optional. User-defined `key:value` items that are added to
+     *          the `labels` field of each log entry in `entries`, except when a log
+     *          entry specifies its own `key:value` item with the same key.
+     *          Example: `{ "size": "large", "color":"red" }`
+     *     @var bool $partialSuccess
+     *          Optional. Whether valid entries should be written even if some other
+     *          entries fail due to INVALID_ARGUMENT or PERMISSION_DENIED errors. If any
+     *          entry is not written, the response status will be the error associated
+     *          with one of the failed entries and include error details in the form of
+     *          WriteLogEntriesPartialErrors.
      *     @var Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
@@ -384,26 +397,39 @@ class PublisherApi
      *          is not set.
      * }
      *
-     * @return google\pubsub\v1\PublishResponse
+     * @return google\logging\v2\WriteLogEntriesResponse
      *
      * @throws Google\GAX\ApiException if the remote call fails
      */
-    public function publish($topic, $messages, $optionalArgs = [])
+    public function writeLogEntries($entries, $optionalArgs = [])
     {
-        $request = new PublishRequest();
-        $request->setTopic($topic);
-        foreach ($messages as $elem) {
-            $request->addMessages($elem);
+        $request = new WriteLogEntriesRequest();
+        foreach ($entries as $elem) {
+            $request->addEntries($elem);
+        }
+        if (isset($optionalArgs['logName'])) {
+            $request->setLogName($optionalArgs['logName']);
+        }
+        if (isset($optionalArgs['resource'])) {
+            $request->setResource($optionalArgs['resource']);
+        }
+        if (isset($optionalArgs['labels'])) {
+            foreach ($optionalArgs['labels'] as $key => $value) {
+                $request->addLabels((new LabelsEntry())->setKey($key)->setValue($value));
+            }
+        }
+        if (isset($optionalArgs['partialSuccess'])) {
+            $request->setPartialSuccess($optionalArgs['partialSuccess']);
         }
 
-        $mergedSettings = $this->defaultCallSettings['publish']->merge(
+        $mergedSettings = $this->defaultCallSettings['writeLogEntries']->merge(
             new CallSettings($optionalArgs)
         );
         $callable = ApiCallable::createApiCall(
             $this->stub,
-            'Publish',
+            'WriteLogEntries',
             $mergedSettings,
-            $this->descriptors['publish']
+            $this->descriptors['writeLogEntries']
         );
 
         return $callable(
@@ -413,82 +439,46 @@ class PublisherApi
     }
 
     /**
-     * Gets the configuration of a topic.
+     * Lists log entries.  Use this method to retrieve log entries from Cloud
+     * Logging.  For ways to export log entries, see
+     * [Exporting Logs](/logging/docs/export).
      *
      * Sample code:
      * ```
      * try {
-     *     $publisherApi = new PublisherApi();
-     *     $formattedTopic = PublisherApi::formatTopicName("[PROJECT]", "[TOPIC]");
-     *     $response = $publisherApi->getTopic($formattedTopic);
-     * } finally {
-     *     if (isset($publisherApi)) {
-     *         $publisherApi->close();
-     *     }
-     * }
-     * ```
-     *
-     * @param string $topic        The name of the topic to get.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @var Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @var int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
-     * }
-     *
-     * @return google\pubsub\v1\Topic
-     *
-     * @throws Google\GAX\ApiException if the remote call fails
-     */
-    public function getTopic($topic, $optionalArgs = [])
-    {
-        $request = new GetTopicRequest();
-        $request->setTopic($topic);
-
-        $mergedSettings = $this->defaultCallSettings['getTopic']->merge(
-            new CallSettings($optionalArgs)
-        );
-        $callable = ApiCallable::createApiCall(
-            $this->stub,
-            'GetTopic',
-            $mergedSettings,
-            $this->descriptors['getTopic']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
-    }
-
-    /**
-     * Lists matching topics.
-     *
-     * Sample code:
-     * ```
-     * try {
-     *     $publisherApi = new PublisherApi();
-     *     $formattedProject = PublisherApi::formatProjectName("[PROJECT]");
-     *     foreach ($publisherApi->listTopics($formattedProject) as $element) {
+     *     $loggingServiceV2Api = new LoggingServiceV2Api();
+     *     $projectIds = [];
+     *     foreach ($loggingServiceV2Api->listLogEntries($projectIds) as $element) {
      *         // doThingsWith(element);
      *     }
      * } finally {
-     *     if (isset($publisherApi)) {
-     *         $publisherApi->close();
+     *     if (isset($loggingServiceV2Api)) {
+     *         $loggingServiceV2Api->close();
      *     }
      * }
      * ```
      *
-     * @param string $project      The name of the cloud project that topics belong to.
-     * @param array  $optionalArgs {
-     *                             Optional.
+     * @param string[] $projectIds   Required. One or more project IDs or project numbers from which to retrieve
+     *                               log entries.  Examples of a project ID: `"my-project-1A"`, `"1234567890"`.
+     * @param array    $optionalArgs {
+     *                               Optional.
      *
+     *     @var string $filter
+     *          Optional. An [advanced logs filter](/logging/docs/view/advanced_filters).
+     *          The filter is compared against all log entries in the projects specified by
+     *          `projectIds`.  Only entries that match the filter are retrieved.  An empty
+     *          filter matches all log entries.
+     *     @var string $orderBy
+     *          Optional. How the results should be sorted.  Presently, the only permitted
+     *          values are `"timestamp asc"` (default) and `"timestamp desc"`. The first
+     *          option returns entries in order of increasing values of
+     *          `LogEntry.timestamp` (oldest first), and the second option returns entries
+     *          in order of decreasing timestamps (newest first).  Entries with equal
+     *          timestamps are returned in order of `LogEntry.insertId`.
      *     @var int $pageSize
-     *          Maximum number of topics to return.
+     *          The maximum number of resources contained in the underlying API
+     *          response. The API may return fewer values in a page, even if
+     *          there are additional values to be retrieved.
      *     @var string $pageToken
      *          A page token is used to specify a page of values to be returned.
      *          If no page token is specified (the default), the first page
@@ -506,10 +496,18 @@ class PublisherApi
      *
      * @throws Google\GAX\ApiException if the remote call fails
      */
-    public function listTopics($project, $optionalArgs = [])
+    public function listLogEntries($projectIds, $optionalArgs = [])
     {
-        $request = new ListTopicsRequest();
-        $request->setProject($project);
+        $request = new ListLogEntriesRequest();
+        foreach ($projectIds as $elem) {
+            $request->addProjectIds($elem);
+        }
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+        if (isset($optionalArgs['orderBy'])) {
+            $request->setOrderBy($optionalArgs['orderBy']);
+        }
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -517,14 +515,14 @@ class PublisherApi
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $mergedSettings = $this->defaultCallSettings['listTopics']->merge(
+        $mergedSettings = $this->defaultCallSettings['listLogEntries']->merge(
             new CallSettings($optionalArgs)
         );
         $callable = ApiCallable::createApiCall(
             $this->stub,
-            'ListTopics',
+            'ListLogEntries',
             $mergedSettings,
-            $this->descriptors['listTopics']
+            $this->descriptors['listLogEntries']
         );
 
         return $callable(
@@ -534,29 +532,30 @@ class PublisherApi
     }
 
     /**
-     * Lists the name of the subscriptions for this topic.
+     * Lists the monitored resource descriptors used by Stackdriver Logging.
      *
      * Sample code:
      * ```
      * try {
-     *     $publisherApi = new PublisherApi();
-     *     $formattedTopic = PublisherApi::formatTopicName("[PROJECT]", "[TOPIC]");
-     *     foreach ($publisherApi->listTopicSubscriptions($formattedTopic) as $element) {
+     *     $loggingServiceV2Api = new LoggingServiceV2Api();
+     *
+     *     foreach ($loggingServiceV2Api->listMonitoredResourceDescriptors() as $element) {
      *         // doThingsWith(element);
      *     }
      * } finally {
-     *     if (isset($publisherApi)) {
-     *         $publisherApi->close();
+     *     if (isset($loggingServiceV2Api)) {
+     *         $loggingServiceV2Api->close();
      *     }
      * }
      * ```
      *
-     * @param string $topic        The name of the topic that subscriptions are attached to.
-     * @param array  $optionalArgs {
-     *                             Optional.
+     * @param array $optionalArgs {
+     *                            Optional.
      *
      *     @var int $pageSize
-     *          Maximum number of subscription names to return.
+     *          The maximum number of resources contained in the underlying API
+     *          response. The API may return fewer values in a page, even if
+     *          there are additional values to be retrieved.
      *     @var string $pageToken
      *          A page token is used to specify a page of values to be returned.
      *          If no page token is specified (the default), the first page
@@ -574,10 +573,9 @@ class PublisherApi
      *
      * @throws Google\GAX\ApiException if the remote call fails
      */
-    public function listTopicSubscriptions($topic, $optionalArgs = [])
+    public function listMonitoredResourceDescriptors($optionalArgs = [])
     {
-        $request = new ListTopicSubscriptionsRequest();
-        $request->setTopic($topic);
+        $request = new ListMonitoredResourceDescriptorsRequest();
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -585,69 +583,14 @@ class PublisherApi
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $mergedSettings = $this->defaultCallSettings['listTopicSubscriptions']->merge(
+        $mergedSettings = $this->defaultCallSettings['listMonitoredResourceDescriptors']->merge(
             new CallSettings($optionalArgs)
         );
         $callable = ApiCallable::createApiCall(
             $this->stub,
-            'ListTopicSubscriptions',
+            'ListMonitoredResourceDescriptors',
             $mergedSettings,
-            $this->descriptors['listTopicSubscriptions']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
-    }
-
-    /**
-     * Deletes the topic with the given name. Returns `NOT_FOUND` if the topic
-     * does not exist. After a topic is deleted, a new topic may be created with
-     * the same name; this is an entirely new topic with none of the old
-     * configuration or subscriptions. Existing subscriptions to this topic are
-     * not deleted, but their `topic` field is set to `_deleted-topic_`.
-     *
-     * Sample code:
-     * ```
-     * try {
-     *     $publisherApi = new PublisherApi();
-     *     $formattedTopic = PublisherApi::formatTopicName("[PROJECT]", "[TOPIC]");
-     *     $publisherApi->deleteTopic($formattedTopic);
-     * } finally {
-     *     if (isset($publisherApi)) {
-     *         $publisherApi->close();
-     *     }
-     * }
-     * ```
-     *
-     * @param string $topic        Name of the topic to delete.
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @var Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @var int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
-     * }
-     *
-     * @throws Google\GAX\ApiException if the remote call fails
-     */
-    public function deleteTopic($topic, $optionalArgs = [])
-    {
-        $request = new DeleteTopicRequest();
-        $request->setTopic($topic);
-
-        $mergedSettings = $this->defaultCallSettings['deleteTopic']->merge(
-            new CallSettings($optionalArgs)
-        );
-        $callable = ApiCallable::createApiCall(
-            $this->stub,
-            'DeleteTopic',
-            $mergedSettings,
-            $this->descriptors['deleteTopic']
+            $this->descriptors['listMonitoredResourceDescriptors']
         );
 
         return $callable(

@@ -114,7 +114,8 @@ class SubscriberApi
     public static function formatSubscriptionName($project, $subscription)
     {
         return self::getSubscriptionNameTemplate()->render([
-            'project' => $project, 'subscription' => $subscription,
+            'project' => $project,
+            'subscription' => $subscription,
         ]);
     }
 
@@ -125,7 +126,8 @@ class SubscriberApi
     public static function formatTopicName($project, $topic)
     {
         return self::getTopicNameTemplate()->render([
-            'project' => $project, 'topic' => $topic,
+            'project' => $project,
+            'topic' => $topic,
         ]);
     }
 
@@ -245,13 +247,16 @@ class SubscriberApi
      *     @var string $appName The codename of the calling service. Default 'gax'.
      *     @var string $appVersion The version of the calling service.
      *                              Default: the current version of GAX.
+     *     @var Google\Auth\CredentialsLoader $credentialsLoader
+     *                              A CredentialsLoader object created using the
+     *                              Google\Auth library.
      * }
      */
     public function __construct($options = [])
     {
         $defaultScopes = [
-            'https://www.googleapis.com/auth/pubsub',
             'https://www.googleapis.com/auth/cloud-platform',
+            'https://www.googleapis.com/auth/pubsub',
         ];
         $defaultOptions = [
             'serviceAddress' => self::SERVICE_ADDRESS,
@@ -261,6 +266,7 @@ class SubscriberApi
             'timeoutMillis' => self::DEFAULT_TIMEOUT_MILLIS,
             'appName' => 'gax',
             'appVersion' => self::_GAX_VERSION,
+            'credentialsLoader' => null,
         ];
         $options = array_merge($defaultOptions, $options);
 
@@ -290,6 +296,7 @@ class SubscriberApi
         }
 
         // TODO load the client config in a more package-friendly way
+        // https://github.com/googleapis/toolkit/issues/332
         $clientConfigJsonString = file_get_contents('./resources/subscriber_client_config.json');
         $clientConfig = json_decode($clientConfigJsonString, true);
         $this->defaultCallSettings =
@@ -310,7 +317,10 @@ class SubscriberApi
         if (!empty($options['sslCreds'])) {
             $createStubOptions['sslCreds'] = $options['sslCreds'];
         }
-        $this->grpcBootstrap = GrpcBootstrap::defaultInstance();
+        $grpcBootstrapOptions = array_intersect_key($options, [
+            'credentialsLoader' => null,
+        ]);
+        $this->grpcBootstrap = new GrpcBootstrap($this->scopes, $grpcBootstrapOptions);
         $this->stub = $this->grpcBootstrap->createStub(
             $generatedCreateStub,
             $options['serviceAddress'],
@@ -320,9 +330,9 @@ class SubscriberApi
     }
 
     /**
-     * Creates a subscription to a given topic.
-     * If the subscription already exists, generates `ALREADY_EXISTS`.
-     * If the corresponding topic doesn't exist, generates `NOT_FOUND`.
+     * Creates a subscription to a given topic for a given subscriber.
+     * If the subscription already exists, returns `ALREADY_EXISTS`.
+     * If the corresponding topic doesn't exist, returns `NOT_FOUND`.
      *
      * If the name is not provided in the request, the server will assign a random
      * name for this subscription on the same project as the topic.
@@ -348,39 +358,38 @@ class SubscriberApi
      *                             plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters
      *                             in length, and it must not start with `"goog"`.
      * @param string $topic        The name of the topic from which this subscription is receiving messages.
+     *                             The value of this field will be `_deleted-topic_` if the topic has been
+     *                             deleted.
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @var PushConfig $pushConfig If push delivery is used with this subscription, this field is
-     *           used to configure it. An empty `pushConfig` signifies that the subscriber
-     *           will pull and ack messages using API methods.
-     *     @var int $ackDeadlineSeconds This value is the maximum time after a subscriber receives a message
-     *           before the subscriber should acknowledge the message. After message
-     *           delivery but before the ack deadline expires and before the message is
-     *           acknowledged, it is an outstanding message and will not be delivered
-     *           again during that time (on a best-effort basis).
+     *     @var PushConfig $pushConfig
+     *          If push delivery is used with this subscription, this field is
+     *          used to configure it. An empty `pushConfig` signifies that the subscriber
+     *          will pull and ack messages using API methods.
+     *     @var int $ackDeadlineSeconds
+     *          This value is the maximum time after a subscriber receives a message
+     *          before the subscriber should acknowledge the message. After message
+     *          delivery but before the ack deadline expires and before the message is
+     *          acknowledged, it is an outstanding message and will not be delivered
+     *          again during that time (on a best-effort basis).
      *
-     *           For pull subscriptions, this value is used as the initial value for the ack
-     *           deadline. To override this value for a given message, call
-     *           `ModifyAckDeadline` with the corresponding `ack_id` if using
-     *           pull.
+     *          For pull subscriptions, this value is used as the initial value for the ack
+     *          deadline. To override this value for a given message, call
+     *          `ModifyAckDeadline` with the corresponding `ack_id` if using
+     *          pull.
      *
-     *           For push delivery, this value is also used to set the request timeout for
-     *           the call to the push endpoint.
+     *          For push delivery, this value is also used to set the request timeout for
+     *          the call to the push endpoint.
      *
-     *           If the subscriber never acknowledges the message, the Pub/Sub
-     *           system will eventually redeliver the message.
+     *          If the subscriber never acknowledges the message, the Pub/Sub
+     *          system will eventually redeliver the message.
      *
-     *           If this parameter is not set, the default value of 10 seconds is used.
-     * }
-     *
-     * @param array $callSettings {
-     *                            Optional.
-     *
-     *    @var Google\GAX\RetrySettings $retrySettings
+     *          If this parameter is not set, the default value of 10 seconds is used.
+     *     @var Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
-     *          $timeout is ignored.
-     *    @var int $timeoutMillis
+     *          $timeoutMillis is ignored.
+     *     @var int $timeoutMillis
      *          Timeout to use for this call. Only used if $retrySettings
      *          is not set.
      * }
@@ -389,7 +398,7 @@ class SubscriberApi
      *
      * @throws Google\GAX\ApiException if the remote call fails
      */
-    public function createSubscription($name, $topic, $optionalArgs = [], $callSettings = [])
+    public function createSubscription($name, $topic, $optionalArgs = [])
     {
         $request = new Subscription();
         $request->setName($name);
@@ -402,7 +411,7 @@ class SubscriberApi
         }
 
         $mergedSettings = $this->defaultCallSettings['createSubscription']->merge(
-            new CallSettings($callSettings)
+            new CallSettings($optionalArgs)
         );
         $callable = ApiCallable::createApiCall(
             $this->stub,
@@ -420,9 +429,6 @@ class SubscriberApi
     /**
      * Gets the configuration details of a subscription.
      *
-     * If the topic of a subscription has been deleted, the subscription itself is
-     * not deleted, but the value of the `topic` field is set to `_deleted-topic_`.
-     *
      * Sample code:
      * ```
      * try {
@@ -438,16 +444,12 @@ class SubscriberApi
      *
      * @param string $subscription The name of the subscription to get.
      * @param array  $optionalArgs {
-     *                             Optional. There are no optional parameters for this method yet;
-     *                             this $optionalArgs parameter reserves a spot for future ones.
-     *                             }
-     * @param array  $callSettings {
      *                             Optional.
      *
-     *    @var Google\GAX\RetrySettings $retrySettings
+     *     @var Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
-     *          $timeout is ignored.
-     *    @var int $timeoutMillis
+     *          $timeoutMillis is ignored.
+     *     @var int $timeoutMillis
      *          Timeout to use for this call. Only used if $retrySettings
      *          is not set.
      * }
@@ -456,13 +458,13 @@ class SubscriberApi
      *
      * @throws Google\GAX\ApiException if the remote call fails
      */
-    public function getSubscription($subscription, $optionalArgs = [], $callSettings = [])
+    public function getSubscription($subscription, $optionalArgs = [])
     {
         $request = new GetSubscriptionRequest();
         $request->setSubscription($subscription);
 
         $mergedSettings = $this->defaultCallSettings['getSubscription']->merge(
-            new CallSettings($callSettings)
+            new CallSettings($optionalArgs)
         );
         $callable = ApiCallable::createApiCall(
             $this->stub,
@@ -479,9 +481,6 @@ class SubscriberApi
 
     /**
      * Lists matching subscriptions.
-     *
-     * If the topic of a subscription has been deleted, the subscription itself is
-     * not deleted, but the value of the `topic` field is set to `_deleted-topic_`.
      *
      * Sample code:
      * ```
@@ -502,34 +501,38 @@ class SubscriberApi
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @var int $pageSize Maximum number of subscriptions to return.
-     * }
-     *
-     * @param array $callSettings {
-     *                            Optional.
-     *
-     *    @var Google\GAX\RetrySettings $retrySettings
+     *     @var int $pageSize
+     *          Maximum number of subscriptions to return.
+     *     @var string $pageToken
+     *          A page token is used to specify a page of values to be returned.
+     *          If no page token is specified (the default), the first page
+     *          of values will be returned. Any page token used here must have
+     *          been generated by a previous call to the API.
+     *     @var Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
-     *          $timeout is ignored.
-     *    @var int $timeoutMillis
+     *          $timeoutMillis is ignored.
+     *     @var int $timeoutMillis
      *          Timeout to use for this call. Only used if $retrySettings
      *          is not set.
      * }
      *
-     * @return Google\GAX\PageAccessor
+     * @return Google\GAX\PagedListResponse
      *
      * @throws Google\GAX\ApiException if the remote call fails
      */
-    public function listSubscriptions($project, $optionalArgs = [], $callSettings = [])
+    public function listSubscriptions($project, $optionalArgs = [])
     {
         $request = new ListSubscriptionsRequest();
         $request->setProject($project);
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
 
         $mergedSettings = $this->defaultCallSettings['listSubscriptions']->merge(
-            new CallSettings($callSettings)
+            new CallSettings($optionalArgs)
         );
         $callable = ApiCallable::createApiCall(
             $this->stub,
@@ -546,7 +549,7 @@ class SubscriberApi
 
     /**
      * Deletes an existing subscription. All pending messages in the subscription
-     * are immediately dropped. Calls to `Pull` after deletion will generate
+     * are immediately dropped. Calls to `Pull` after deletion will return
      * `NOT_FOUND`. After a subscription is deleted, a new one may be created with
      * the same name, but the new one has no association with the old
      * subscription, or its topic unless the same topic is specified.
@@ -566,29 +569,25 @@ class SubscriberApi
      *
      * @param string $subscription The subscription to delete.
      * @param array  $optionalArgs {
-     *                             Optional. There are no optional parameters for this method yet;
-     *                             this $optionalArgs parameter reserves a spot for future ones.
-     *                             }
-     * @param array  $callSettings {
      *                             Optional.
      *
-     *    @var Google\GAX\RetrySettings $retrySettings
+     *     @var Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
-     *          $timeout is ignored.
-     *    @var int $timeoutMillis
+     *          $timeoutMillis is ignored.
+     *     @var int $timeoutMillis
      *          Timeout to use for this call. Only used if $retrySettings
      *          is not set.
      * }
      *
      * @throws Google\GAX\ApiException if the remote call fails
      */
-    public function deleteSubscription($subscription, $optionalArgs = [], $callSettings = [])
+    public function deleteSubscription($subscription, $optionalArgs = [])
     {
         $request = new DeleteSubscriptionRequest();
         $request->setSubscription($subscription);
 
         $mergedSettings = $this->defaultCallSettings['deleteSubscription']->merge(
-            new CallSettings($callSettings)
+            new CallSettings($optionalArgs)
         );
         $callable = ApiCallable::createApiCall(
             $this->stub,
@@ -632,29 +631,20 @@ class SubscriberApi
      *                                     was made. Specifying zero may immediately make the message available for
      *                                     another pull request.
      * @param array    $optionalArgs       {
-     *                                     Optional. There are no optional parameters for this method yet;
-     *                                     this $optionalArgs parameter reserves a spot for future ones.
-     *                                     }
-     * @param array    $callSettings       {
      *                                     Optional.
      *
-     *    @var Google\GAX\RetrySettings $retrySettings
+     *     @var Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
-     *          $timeout is ignored.
-     *    @var int $timeoutMillis
+     *          $timeoutMillis is ignored.
+     *     @var int $timeoutMillis
      *          Timeout to use for this call. Only used if $retrySettings
      *          is not set.
      * }
      *
      * @throws Google\GAX\ApiException if the remote call fails
      */
-    public function modifyAckDeadline(
-        $subscription,
-        $ackIds,
-        $ackDeadlineSeconds,
-        $optionalArgs = [],
-        $callSettings = []
-    ) {
+    public function modifyAckDeadline($subscription, $ackIds, $ackDeadlineSeconds, $optionalArgs = [])
+    {
         $request = new ModifyAckDeadlineRequest();
         $request->setSubscription($subscription);
         foreach ($ackIds as $elem) {
@@ -663,7 +653,7 @@ class SubscriberApi
         $request->setAckDeadlineSeconds($ackDeadlineSeconds);
 
         $mergedSettings = $this->defaultCallSettings['modifyAckDeadline']->merge(
-            new CallSettings($callSettings)
+            new CallSettings($optionalArgs)
         );
         $callable = ApiCallable::createApiCall(
             $this->stub,
@@ -705,23 +695,19 @@ class SubscriberApi
      * @param string[] $ackIds       The acknowledgment ID for the messages being acknowledged that was returned
      *                               by the Pub/Sub system in the `Pull` response. Must not be empty.
      * @param array    $optionalArgs {
-     *                               Optional. There are no optional parameters for this method yet;
-     *                               this $optionalArgs parameter reserves a spot for future ones.
-     *                               }
-     * @param array    $callSettings {
      *                               Optional.
      *
-     *    @var Google\GAX\RetrySettings $retrySettings
+     *     @var Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
-     *          $timeout is ignored.
-     *    @var int $timeoutMillis
+     *          $timeoutMillis is ignored.
+     *     @var int $timeoutMillis
      *          Timeout to use for this call. Only used if $retrySettings
      *          is not set.
      * }
      *
      * @throws Google\GAX\ApiException if the remote call fails
      */
-    public function acknowledge($subscription, $ackIds, $optionalArgs = [], $callSettings = [])
+    public function acknowledge($subscription, $ackIds, $optionalArgs = [])
     {
         $request = new AcknowledgeRequest();
         $request->setSubscription($subscription);
@@ -730,7 +716,7 @@ class SubscriberApi
         }
 
         $mergedSettings = $this->defaultCallSettings['acknowledge']->merge(
-            new CallSettings($callSettings)
+            new CallSettings($optionalArgs)
         );
         $callable = ApiCallable::createApiCall(
             $this->stub,
@@ -747,7 +733,7 @@ class SubscriberApi
 
     /**
      * Pulls messages from the server. Returns an empty list if there are no
-     * messages available in the backlog. The server may generate `UNAVAILABLE` if
+     * messages available in the backlog. The server may return `UNAVAILABLE` if
      * there are too many concurrent pull requests pending for the given
      * subscription.
      *
@@ -771,19 +757,16 @@ class SubscriberApi
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @var bool $returnImmediately If this is specified as true the system will respond immediately even if
-     *           it is not able to return a message in the `Pull` response. Otherwise the
-     *           system is allowed to wait until at least one message is available rather
-     *           than returning no messages.
-     * }
-     *
-     * @param array $callSettings {
-     *                            Optional.
-     *
-     *    @var Google\GAX\RetrySettings $retrySettings
+     *     @var bool $returnImmediately
+     *          If this is specified as true the system will respond immediately even if
+     *          it is not able to return a message in the `Pull` response. Otherwise the
+     *          system is allowed to wait until at least one message is available rather
+     *          than returning no messages. The client may cancel the request if it does
+     *          not wish to wait any longer for the response.
+     *     @var Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
-     *          $timeout is ignored.
-     *    @var int $timeoutMillis
+     *          $timeoutMillis is ignored.
+     *     @var int $timeoutMillis
      *          Timeout to use for this call. Only used if $retrySettings
      *          is not set.
      * }
@@ -792,7 +775,7 @@ class SubscriberApi
      *
      * @throws Google\GAX\ApiException if the remote call fails
      */
-    public function pull($subscription, $maxMessages, $optionalArgs = [], $callSettings = [])
+    public function pull($subscription, $maxMessages, $optionalArgs = [])
     {
         $request = new PullRequest();
         $request->setSubscription($subscription);
@@ -802,7 +785,7 @@ class SubscriberApi
         }
 
         $mergedSettings = $this->defaultCallSettings['pull']->merge(
-            new CallSettings($callSettings)
+            new CallSettings($optionalArgs)
         );
         $callable = ApiCallable::createApiCall(
             $this->stub,
@@ -847,30 +830,26 @@ class SubscriberApi
      * messages to be pulled and acknowledged - effectively pausing
      * the subscription if `Pull` is not called.
      * @param array $optionalArgs {
-     *                            Optional. There are no optional parameters for this method yet;
-     *                            this $optionalArgs parameter reserves a spot for future ones.
-     *                            }
-     * @param array $callSettings {
      *                            Optional.
      *
-     *    @var Google\GAX\RetrySettings $retrySettings
+     *     @var Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
-     *          $timeout is ignored.
-     *    @var int $timeoutMillis
+     *          $timeoutMillis is ignored.
+     *     @var int $timeoutMillis
      *          Timeout to use for this call. Only used if $retrySettings
      *          is not set.
      * }
      *
      * @throws Google\GAX\ApiException if the remote call fails
      */
-    public function modifyPushConfig($subscription, $pushConfig, $optionalArgs = [], $callSettings = [])
+    public function modifyPushConfig($subscription, $pushConfig, $optionalArgs = [])
     {
         $request = new ModifyPushConfigRequest();
         $request->setSubscription($subscription);
         $request->setPushConfig($pushConfig);
 
         $mergedSettings = $this->defaultCallSettings['modifyPushConfig']->merge(
-            new CallSettings($callSettings)
+            new CallSettings($optionalArgs)
         );
         $callable = ApiCallable::createApiCall(
             $this->stub,
@@ -896,6 +875,6 @@ class SubscriberApi
 
     private function createCredentialsCallback()
     {
-        return $this->grpcBootstrap->createCallCredentialsCallback($this->scopes);
+        return $this->grpcBootstrap->createCallCredentialsCallback();
     }
 }
