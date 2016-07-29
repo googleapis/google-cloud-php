@@ -20,7 +20,7 @@
  * and updates to that file get reflected here through a refresh process.
  */
 
-namespace Google\Cloud\Toolkit\PubSub\V1;
+namespace Google\Cloud\PubSub\V1;
 
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;

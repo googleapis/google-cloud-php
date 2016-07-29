@@ -20,7 +20,7 @@
  * and updates to that file get reflected here through a refresh process.
  */
 
-namespace Google\Cloud\Toolkit\Logging\V2;
+namespace Google\Cloud\Logging\V2;
 
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
