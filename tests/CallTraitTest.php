@@ -15,14 +15,10 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Vision\Annotation;
+namespace Google\Cloud\Test;
 
-use Google\Cloud\Vision\Annotation\AbstractFeature;
-use Google\Cloud\Vision\Annotation\CallTrait;
+use Google\Cloud\CallTrait;
 
-/**
- * @group vision
- */
 class CallTraitTest extends \PHPUnit_Framework_TestCase
 {
     public function testCall()
@@ -43,12 +39,17 @@ class CallTraitTest extends \PHPUnit_Framework_TestCase
     }
 }
 
-class CallTraitStub extends AbstractFeature
+class CallTraitStub
 {
     use CallTrait;
 
     public function __construct(array $data)
     {
         $this->info = $data;
+    }
+
+    public function info()
+    {
+        return $this->info;
     }
 }

@@ -161,7 +161,7 @@ class Image
      *     'labels',         // Corresponds to `LABEL_DETECTION`
      *     'text',           // Corresponds to `TEXT_DETECTION`
      *     'safeSearch',     // Corresponds to `SAFE_SEARCH_DETECTION`
-     *     'imagePoperties'  // Corresponds to `IMAGE_PROPERTIES`
+     *     'imageProperties'  // Corresponds to `IMAGE_PROPERTIES`
      * ]);
      * ```
      *

@@ -1,0 +1,337 @@
+<?php
+/**
+ * Copyright 2016 Google Inc. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+namespace Google\Cloud\NaturalLanguage;
+
+use Google\Cloud\ClientTrait;
+use Google\Cloud\NaturalLanguage\Connection\Rest;
+use Google\Cloud\Storage\Object;
+
+/**
+ * Google Cloud Natural Language client. Provides natural language understanding
+ * technologies to developers, including sentiment analysis, entity recognition,
+ * and syntax analysis. Currently only English, Spanish, and Japanese textual
+ * context are supported. Find more information at
+ * [Google Cloud Natural Language docs](https://cloud.google.com/natural-language/docs/).
+ */
+class NaturalLanguageClient
+{
+    use ClientTrait;
+
+    const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/cloud-platform';
+
+    /**
+     * @var array
+     */
+    private $featureShortNames = [
+        'syntax'    => 'extractSyntax',
+        'entities'  => 'extractEntities',
+        'sentiment' => 'extractDocumentSentiment'
+    ];
+
+    /**
+     * @var ConnectionInterface
+     */
+    protected $connection;
+
+    /**
+     * Create a NaturalLanguage client.
+     *
+     * Example:
+     * ```
+     * use Google\Cloud\ServiceBuilder;
+     *
+     * $cloud = new ServiceBuilder([
+     *     'projectId' => 'my-awesome-project'
+     * ]);
+     *
+     * $language = $cloud->naturalLanguage();
+     * ```
+     *
+     * ```
+     * // The NaturalLanguage client can also be instantianted directly.
+     * use Google\Cloud\NaturalLanguage\NaturalLanguageClient;
+     *
+     * $naturalLanguage = new NaturalLanguageClient([
+     *     'projectId' => 'my-awesome-project'
+     * ]);
+     * ```
+     *
+     * @param array $config {
+     *     Configuration Options.
+     *
+     *     @type string $projectId The project ID from the Google Developer's
+     *           Console.
+     *     @type callable $authHttpHandler A handler used to deliver Psr7
+     *           requests specifically for authentication.
+     *     @type callable $httpHandler A handler used to deliver Psr7 requests.
+     *     @type string $keyFile The contents of the service account
+     *           credentials .json file retrieved from the Google Developers
+     *           Console.
+     *     @type string $keyFilePath The full path to your service account
+     *           credentials .json file retrieved from the Google Developers
+     *           Console.
+     *     @type int $retries Number of retries for a failed request. Defaults
+     *           to 3.
+     *     @type array $scopes Scopes to be used for the request.
+     * }
+     * @throws \InvalidArgumentException
+     */
+    public function __construct(array $config = [])
+    {
+        if (!isset($config['scopes'])) {
+            $config['scopes'] = [self::FULL_CONTROL_SCOPE];
+        }
+
+        $this->connection = new Rest($this->configureAuthentication($config));
+    }
+
+    /**
+     * Finds named entities (currently finds proper names) in the text, entity
+     * types, salience, mentions for each entity, and other properties in the
+     * document.
+     *
+     * Example:
+     * ```
+     * $document = $language->analyzeEntities('Google Cloud Platform is a powerful tool.');
+     *
+     * foreach ($document->entities() as $entity) {
+     *     echo $entity['type'];
+     * }
+     * ```
+     *
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/natural-language/reference/rest/v1beta1/documents/analyzeEntities Analyze Entities API documentation
+     * @codingStandardsIgnoreEnd
+     *
+     * @param string|Object $content The content to analyze.
+     * @param array $options {
+     *     Configuration options.
+     *
+     *     @type string $type The document type. Acceptable values are
+     *           `PLAIN_TEXT` or `HTML`. Defaults to `PLAIN_TEXT`.
+     *     @type string $language The language of the document. Both ISO
+     *           (e.g., en, es) and BCP-47 (e.g., en-US, es-ES) language codes
+     *           are accepted. Defaults to English.
+     *     @type string $encodingType The text encoding type used by the API to
+     *           calculate offsets. Acceptable values are `NONE`, `UTF8`,
+     *           `UTF16` and `UTF32`. Defaults to `UTF8`.
+     * }
+     * @return Document
+     */
+    public function analyzeEntities($content, array $options = [])
+    {
+        return new Document(
+            $this->connection->analyzeEntities(
+                $this->formatRequest($content, $options)
+            )
+        );
+    }
+
+    /**
+     * Analyzes the sentiment of the provided document. Currently only supports
+     * English text.
+     *
+     * Example:
+     * ```
+     * $document = $language->analyzeSentiment('Google Cloud Platform is a powerful tool.');
+     * $sentiment = $document->sentiment();
+     *
+     * if ($sentiment['polarity'] > 0) {
+     *     echo 'This is a positive message.';
+     * }
+     * ```
+     *
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/natural-language/reference/rest/v1beta1/documents/analyzeSentiment Analyze Sentiment API documentation
+     * @codingStandardsIgnoreEnd
+     *
+     * @param string|Object $content The content to analyze.
+     * @param array $options {
+     *     Configuration options.
+     *
+     *     @type string $type The document type. Acceptable values are
+     *           `PLAIN_TEXT` or `HTML`. Defaults to `PLAIN_TEXT`.
+     *     @type string $language The language of the document. Both ISO
+     *           (e.g., en, es) and BCP-47 (e.g., en-US, es-ES) language codes
+     *           are accepted. Defaults to English.
+     * }
+     * @return Document
+     */
+    public function analyzeSentiment($content, array $options = [])
+    {
+        return new Document(
+            $this->connection->analyzeSentiment(
+                $this->formatRequest($content, $options)
+            )
+        );
+    }
+
+    /**
+     * Analyzes the document and provides a full set of text annotations. This
+     * method wraps
+     * {@see Google\Cloud\NaturalLanguage\NaturalLanguageClient::annotateText()}.
+     *
+     * Example:
+     * ```
+     * $document = $language->analyzeSyntax('Google Cloud Platform is a powerful tool.');
+     *
+     * foreach ($document->sentences() as $sentence) {
+     *     echo $sentence['text']['beginOffset'];
+     * }
+     * ```
+     *
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/natural-language/reference/rest/v1beta1/documents/annotateText Annotate Text API documentation
+     * @codingStandardsIgnoreEnd
+     *
+     * @param string|Object $content The content to analyze.
+     * @param array $options {
+     *     Configuration options.
+     *
+     *     @type string $type The document type. Acceptable values are
+     *           `PLAIN_TEXT` or `HTML`. Defaults to `PLAIN_TEXT`.
+     *     @type string $language The language of the document. Both ISO
+     *           (e.g., en, es) and BCP-47 (e.g., en-US, es-ES) language codes
+     *           are accepted. Defaults to English.
+     *     @type string $encodingType The text encoding type used by the API to
+     *           calculate offsets. Acceptable values are `NONE`, `UTF8`,
+     *           `UTF16` and `UTF32`. Defaults to `UTF8`.
+     * }
+     * @return Document
+     */
+    public function analyzeSyntax($content, array $options = [])
+    {
+        $options['features'] = ['syntax'];
+        return $this->annotateText($content, $options);
+    }
+
+    /**
+     * Analyzes the document and provides a full set of text annotations,
+     * including semantic, syntactic, and sentiment information. Please note
+     * that English is currently the only support language for the `sentiment`
+     * feature.
+     *
+     * Example:
+     * ```
+     * // Annotate text with all features enabled.
+     * $document = $language->annotateText('Google Cloud Platform is a powerful tool.');
+     * $sentiment = $document->sentiment();
+     *
+     * echo $sentiment['magnitude'];
+     * ```
+     *
+     * ```
+     * // Annotate text with syntax and sentiment features enabled.
+     * $document = $language->annotateText('Google Cloud Platform is a powerful tool.', [
+     *     'features' => ['syntax', 'sentiment']
+     * ]);
+     *
+     * foreach ($document->tokens() as $token) {
+     *     echo $token['text']['beginOffset'];
+     * }
+     * ```
+     *
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/natural-language/reference/rest/v1beta1/documents/annotateText Annotate Text API documentation
+     * @codingStandardsIgnoreEnd
+     *
+     * @param string|Object $content The content to annotate.
+     * @param array $options {
+     *     Configuration options.
+     *
+     *     @type array $features Features to apply to the request. Valid values
+     *           are `syntax`, `sentiment`, and `entities`. If no features are
+     *           provided the request will run with all three enabled.
+     *     @type string $type The document type. Acceptable values are
+     *           `PLAIN_TEXT` or `HTML`. Defaults to `PLAIN_TEXT`.
+     *     @type string $language The language of the document. Both ISO
+     *           (e.g., en, es) and BCP-47 (e.g., en-US, es-ES) language codes
+     *           are accepted. Defaults to English.
+     *     @type string $encodingType The text encoding type used by the API to
+     *           calculate offsets. Acceptable values are `NONE`, `UTF8`,
+     *           `UTF16` and `UTF32`. Defaults to `UTF8`.
+     * }
+     * @return Document
+     */
+    public function annotateText($content, array $options = [])
+    {
+        $features = isset($options['features'])
+            ? $options['features']
+            : array_values($this->featureShortNames);
+        $options['features'] = $this->normalizeFeatures($features);
+
+        return new Document(
+            $this->connection->annotateText(
+                $this->formatRequest($content, $options)
+            )
+        );
+    }
+
+    /**
+     * Configures features in a way the API expects.
+     *
+     * @param array $features An array of features to normalize.
+     * @return array
+     */
+    private function normalizeFeatures(array $features)
+    {
+        $results = [];
+
+        foreach ($features as $feature) {
+            $featureName = array_key_exists($feature, $this->featureShortNames)
+                ? $this->featureShortNames[$feature]
+                : $feature;
+
+            $results[$featureName] = true;
+        }
+
+        return $results;
+    }
+
+    /**
+     * Formats the request for the API.
+     *
+     * @param string|Object $content The content to analyze.
+     * @param array $options Configuration options.
+     * @return array
+     */
+    private function formatRequest($content, array $options)
+    {
+        $docOptions = ['type', 'language', 'content', 'gcsContentUri'];
+        $options += [
+            'encodingType' => 'UTF8',
+            'type' => 'PLAIN_TEXT'
+        ];
+
+        if ($content instanceof Object) {
+            $objIdentity = $content->identity();
+            $options['gcsContentUri'] = 'gs://' . $objIdentity['bucket'] . '/' . $objIdentity['object'];
+        } else {
+            $options['content'] = $content;
+        }
+
+        foreach ($options as $option => $value) {
+            if (in_array($option, $docOptions)) {
+                $options['document'][$option] = $value;
+                unset($options[$option]);
+            }
+        }
+
+        return $options;
+    }
+}

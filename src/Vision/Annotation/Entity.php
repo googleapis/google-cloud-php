@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Vision\Annotation;
 
+use Google\Cloud\CallTrait;
+
 /**
  * Represents an entity annotation. Entities are created by several
  * [Google Cloud Vision](https://cloud.google.com/vision/docs/) features, namely

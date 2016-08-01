@@ -54,6 +54,15 @@ class ServiceBuilderTest extends \PHPUnit_Framework_TestCase
             ], [
                 'storage',
                 'Google\Cloud\Storage\StorageClient'
+            ], [
+                'vision',
+                'Google\Cloud\Vision\VisionClient'
+            ], [
+                'naturalLanguage',
+                'Google\Cloud\NaturalLanguage\NaturalLanguageClient'
+            ], [
+                'logging',
+                'Google\Cloud\Logging\LoggingClient'
             ]
         ];
     }

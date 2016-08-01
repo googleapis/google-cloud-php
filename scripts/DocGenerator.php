@@ -327,7 +327,6 @@ class DocGenerator
 
         foreach ($params as $param) {
             $description = $param->getDescription();
-
             $nestedParamsArray = [];
 
             if ($param->getType() === 'array' && $this->hasNestedParams($description)) {
@@ -429,6 +428,12 @@ class DocGenerator
     private function handleTypes($types)
     {
         foreach ($types as &$type) {
+            // object is a PHPDoc keyword so it is not capable of detecting the context
+            // https://github.com/phpDocumentor/ReflectionDocBlock/blob/2.0.4/src/phpDocumentor/Reflection/DocBlock/Type/Collection.php#L37
+            if ($type === 'Object') {
+                $type = '\Google\Cloud\Storage\Object';
+            }
+
             if (substr_compare($type, '\Google\Cloud', 0, 13) === 0) {
                 $type = $this->buildLink($type);
             }

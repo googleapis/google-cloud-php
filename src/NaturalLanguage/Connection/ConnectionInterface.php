@@ -15,26 +15,29 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Vision\Annotation;
+namespace Google\Cloud\NaturalLanguage\Connection;
 
 /**
- * Provide magic method support for fetching values from results
+ * Represents a connection to
+ * [Google Natural Language](https://cloud.google.com/natural-language/).
  */
-trait CallTrait
+interface ConnectionInterface
 {
     /**
-     * @access private
+     * @param array $args
+     * @return array
      */
-    public function __call($name, array $args)
-    {
-        if (!isset($this->info()[$name])) {
-            trigger_error(sprintf(
-                'Call to undefined method %s::%s',
-                __CLASS__,
-                $name
-            ), E_USER_ERROR);
-        }
+    public function analyzeEntities(array $args = []);
 
-        return $this->info()[$name];
-    }
+    /**
+     * @param array $args
+     * @return array
+     */
+    public function analyzeSentiment(array $args = []);
+
+    /**
+     * @param array $args
+     * @return array
+     */
+    public function annotateText(array $args = []);
 }

@@ -73,9 +73,17 @@
       }]
     },
     {
+      "title": "Natural Language",
+      "type": "naturallanguage/naturallanguageclient",
+      "nav": [{
+        "title": "Document",
+        "type": "naturallanguage/document"
+      }]
+    },
+    {
       "title": "PubSub",
       "type": "pubsub/pubsubclient",
-      "nav" : [{
+      "nav": [{
         "title": "Subscription",
         "type": "pubsub/subscription"
       },
