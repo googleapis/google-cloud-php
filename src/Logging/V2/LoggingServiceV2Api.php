@@ -25,8 +25,8 @@ namespace Google\Cloud\Logging\V2;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
-use Google\GAX\GrpcBootstrap;
 use Google\GAX\GrpcConstants;
+use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
 use google\api\MonitoredResource;
@@ -85,7 +85,7 @@ class LoggingServiceV2Api
     private static $projectNameTemplate;
     private static $logNameTemplate;
 
-    private $grpcBootstrap;
+    private $grpcCredentialsHelper;
     private $stub;
     private $scopes;
     private $defaultCallSettings;
@@ -189,28 +189,28 @@ class LoggingServiceV2Api
      * @param array $options {
      *                       Optional. Options for configuring the service API wrapper.
      *
-     *     @var string $serviceAddress The domain name of the API remote host.
+     *     @type string $serviceAddress The domain name of the API remote host.
      *                                  Default 'logging.googleapis.com'.
-     *     @var mixed $port The port on which to connect to the remote host. Default 443.
-     *     @var Grpc\ChannelCredentials $sslCreds
+     *     @type mixed $port The port on which to connect to the remote host. Default 443.
+     *     @type Grpc\ChannelCredentials $sslCreds
      *           A `ChannelCredentials` for use with an SSL-enabled channel.
      *           Default: a credentials object returned from
      *           Grpc\ChannelCredentials::createSsl()
-     *     @var array $scopes A string array of scopes to use when acquiring credentials.
+     *     @type array $scopes A string array of scopes to use when acquiring credentials.
      *                         Default the scopes for the Google Cloud Logging API.
-     *     @var array $retryingOverride
+     *     @type array $retryingOverride
      *           An associative array of string => RetryOptions, where the keys
      *           are method names (e.g. 'createFoo'), that overrides default retrying
      *           settings. A value of null indicates that the method in question should
      *           not retry.
-     *     @var int $timeoutMillis The timeout in milliseconds to use for calls
+     *     @type int $timeoutMillis The timeout in milliseconds to use for calls
      *                              that don't use retries. For calls that use retries,
      *                              set the timeout in RetryOptions.
      *                              Default: 30000 (30 seconds)
-     *     @var string $appName The codename of the calling service. Default 'gax'.
-     *     @var string $appVersion The version of the calling service.
+     *     @type string $appName The codename of the calling service. Default 'gax'.
+     *     @type string $appVersion The version of the calling service.
      *                              Default: the current version of GAX.
-     *     @var Google\Auth\CredentialsLoader $credentialsLoader
+     *     @type Google\Auth\CredentialsLoader $credentialsLoader
      *                              A CredentialsLoader object created using the
      *                              Google\Auth library.
      * }
@@ -279,11 +279,9 @@ class LoggingServiceV2Api
         if (!empty($options['sslCreds'])) {
             $createStubOptions['sslCreds'] = $options['sslCreds'];
         }
-        $grpcBootstrapOptions = array_intersect_key($options, [
-            'credentialsLoader' => null,
-        ]);
-        $this->grpcBootstrap = new GrpcBootstrap($this->scopes, $grpcBootstrapOptions);
-        $this->stub = $this->grpcBootstrap->createStub(
+        $grpcCredentialsHelperOptions = array_diff_key($options, $defaultOptions);
+        $this->grpcCredentialsHelper = new GrpcCredentialsHelper($this->scopes, $grpcCredentialsHelperOptions);
+        $this->stub = $this->grpcCredentialsHelper->createStub(
             $generatedCreateStub,
             $options['serviceAddress'],
             $options['port'],
@@ -313,10 +311,10 @@ class LoggingServiceV2Api
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @var Google\GAX\RetrySettings $retrySettings
+     *     @type Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
-     *     @var int $timeoutMillis
+     *     @type int $timeoutMillis
      *          Timeout to use for this call. Only used if $retrySettings
      *          is not set.
      * }
@@ -370,29 +368,29 @@ class LoggingServiceV2Api
      * @param array $optionalArgs {
      *                            Optional.
      *
-     *     @var string $logName
+     *     @type string $logName
      *          Optional. A default log resource name for those log entries in `entries`
      *          that do not specify their own `logName`.  Example:
      *          `"projects/my-project/logs/syslog"`.  See
      *          [LogEntry][google.logging.v2.LogEntry].
-     *     @var MonitoredResource $resource
+     *     @type MonitoredResource $resource
      *          Optional. A default monitored resource for those log entries in `entries`
      *          that do not specify their own `resource`.
-     *     @var array $labels
+     *     @type array $labels
      *          Optional. User-defined `key:value` items that are added to
      *          the `labels` field of each log entry in `entries`, except when a log
      *          entry specifies its own `key:value` item with the same key.
      *          Example: `{ "size": "large", "color":"red" }`
-     *     @var bool $partialSuccess
+     *     @type bool $partialSuccess
      *          Optional. Whether valid entries should be written even if some other
      *          entries fail due to INVALID_ARGUMENT or PERMISSION_DENIED errors. If any
      *          entry is not written, the response status will be the error associated
      *          with one of the failed entries and include error details in the form of
      *          WriteLogEntriesPartialErrors.
-     *     @var Google\GAX\RetrySettings $retrySettings
+     *     @type Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
-     *     @var int $timeoutMillis
+     *     @type int $timeoutMillis
      *          Timeout to use for this call. Only used if $retrySettings
      *          is not set.
      * }
@@ -463,31 +461,31 @@ class LoggingServiceV2Api
      * @param array    $optionalArgs {
      *                               Optional.
      *
-     *     @var string $filter
+     *     @type string $filter
      *          Optional. An [advanced logs filter](/logging/docs/view/advanced_filters).
      *          The filter is compared against all log entries in the projects specified by
      *          `projectIds`.  Only entries that match the filter are retrieved.  An empty
      *          filter matches all log entries.
-     *     @var string $orderBy
+     *     @type string $orderBy
      *          Optional. How the results should be sorted.  Presently, the only permitted
      *          values are `"timestamp asc"` (default) and `"timestamp desc"`. The first
      *          option returns entries in order of increasing values of
      *          `LogEntry.timestamp` (oldest first), and the second option returns entries
      *          in order of decreasing timestamps (newest first).  Entries with equal
      *          timestamps are returned in order of `LogEntry.insertId`.
-     *     @var int $pageSize
+     *     @type int $pageSize
      *          The maximum number of resources contained in the underlying API
      *          response. The API may return fewer values in a page, even if
      *          there are additional values to be retrieved.
-     *     @var string $pageToken
+     *     @type string $pageToken
      *          A page token is used to specify a page of values to be returned.
      *          If no page token is specified (the default), the first page
      *          of values will be returned. Any page token used here must have
      *          been generated by a previous call to the API.
-     *     @var Google\GAX\RetrySettings $retrySettings
+     *     @type Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
-     *     @var int $timeoutMillis
+     *     @type int $timeoutMillis
      *          Timeout to use for this call. Only used if $retrySettings
      *          is not set.
      * }
@@ -552,19 +550,19 @@ class LoggingServiceV2Api
      * @param array $optionalArgs {
      *                            Optional.
      *
-     *     @var int $pageSize
+     *     @type int $pageSize
      *          The maximum number of resources contained in the underlying API
      *          response. The API may return fewer values in a page, even if
      *          there are additional values to be retrieved.
-     *     @var string $pageToken
+     *     @type string $pageToken
      *          A page token is used to specify a page of values to be returned.
      *          If no page token is specified (the default), the first page
      *          of values will be returned. Any page token used here must have
      *          been generated by a previous call to the API.
-     *     @var Google\GAX\RetrySettings $retrySettings
+     *     @type Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
-     *     @var int $timeoutMillis
+     *     @type int $timeoutMillis
      *          Timeout to use for this call. Only used if $retrySettings
      *          is not set.
      * }
@@ -610,6 +608,6 @@ class LoggingServiceV2Api
 
     private function createCredentialsCallback()
     {
-        return $this->grpcBootstrap->createCallCredentialsCallback();
+        return $this->grpcCredentialsHelper->createCallCredentialsCallback();
     }
 }

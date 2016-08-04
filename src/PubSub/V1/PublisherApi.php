@@ -25,8 +25,8 @@ namespace Google\Cloud\PubSub\V1;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
-use Google\GAX\GrpcBootstrap;
 use Google\GAX\GrpcConstants;
+use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
 use google\pubsub\v1\DeleteTopicRequest;
@@ -86,7 +86,7 @@ class PublisherApi
     private static $projectNameTemplate;
     private static $topicNameTemplate;
 
-    private $grpcBootstrap;
+    private $grpcCredentialsHelper;
     private $stub;
     private $scopes;
     private $defaultCallSettings;
@@ -190,28 +190,28 @@ class PublisherApi
      * @param array $options {
      *                       Optional. Options for configuring the service API wrapper.
      *
-     *     @var string $serviceAddress The domain name of the API remote host.
+     *     @type string $serviceAddress The domain name of the API remote host.
      *                                  Default 'pubsub.googleapis.com'.
-     *     @var mixed $port The port on which to connect to the remote host. Default 443.
-     *     @var Grpc\ChannelCredentials $sslCreds
+     *     @type mixed $port The port on which to connect to the remote host. Default 443.
+     *     @type Grpc\ChannelCredentials $sslCreds
      *           A `ChannelCredentials` for use with an SSL-enabled channel.
      *           Default: a credentials object returned from
      *           Grpc\ChannelCredentials::createSsl()
-     *     @var array $scopes A string array of scopes to use when acquiring credentials.
+     *     @type array $scopes A string array of scopes to use when acquiring credentials.
      *                         Default the scopes for the Google Cloud Pub/Sub API.
-     *     @var array $retryingOverride
+     *     @type array $retryingOverride
      *           An associative array of string => RetryOptions, where the keys
      *           are method names (e.g. 'createFoo'), that overrides default retrying
      *           settings. A value of null indicates that the method in question should
      *           not retry.
-     *     @var int $timeoutMillis The timeout in milliseconds to use for calls
+     *     @type int $timeoutMillis The timeout in milliseconds to use for calls
      *                              that don't use retries. For calls that use retries,
      *                              set the timeout in RetryOptions.
      *                              Default: 30000 (30 seconds)
-     *     @var string $appName The codename of the calling service. Default 'gax'.
-     *     @var string $appVersion The version of the calling service.
+     *     @type string $appName The codename of the calling service. Default 'gax'.
+     *     @type string $appVersion The version of the calling service.
      *                              Default: the current version of GAX.
-     *     @var Google\Auth\CredentialsLoader $credentialsLoader
+     *     @type Google\Auth\CredentialsLoader $credentialsLoader
      *                              A CredentialsLoader object created using the
      *                              Google\Auth library.
      * }
@@ -279,11 +279,9 @@ class PublisherApi
         if (!empty($options['sslCreds'])) {
             $createStubOptions['sslCreds'] = $options['sslCreds'];
         }
-        $grpcBootstrapOptions = array_intersect_key($options, [
-            'credentialsLoader' => null,
-        ]);
-        $this->grpcBootstrap = new GrpcBootstrap($this->scopes, $grpcBootstrapOptions);
-        $this->stub = $this->grpcBootstrap->createStub(
+        $grpcCredentialsHelperOptions = array_diff_key($options, $defaultOptions);
+        $this->grpcCredentialsHelper = new GrpcCredentialsHelper($this->scopes, $grpcCredentialsHelperOptions);
+        $this->stub = $this->grpcCredentialsHelper->createStub(
             $generatedCreateStub,
             $options['serviceAddress'],
             $options['port'],
@@ -316,10 +314,10 @@ class PublisherApi
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @var Google\GAX\RetrySettings $retrySettings
+     *     @type Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
-     *     @var int $timeoutMillis
+     *     @type int $timeoutMillis
      *          Timeout to use for this call. Only used if $retrySettings
      *          is not set.
      * }
@@ -376,10 +374,10 @@ class PublisherApi
      * @param array           $optionalArgs {
      *                                      Optional.
      *
-     *     @var Google\GAX\RetrySettings $retrySettings
+     *     @type Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
-     *     @var int $timeoutMillis
+     *     @type int $timeoutMillis
      *          Timeout to use for this call. Only used if $retrySettings
      *          is not set.
      * }
@@ -432,10 +430,10 @@ class PublisherApi
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @var Google\GAX\RetrySettings $retrySettings
+     *     @type Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
-     *     @var int $timeoutMillis
+     *     @type int $timeoutMillis
      *          Timeout to use for this call. Only used if $retrySettings
      *          is not set.
      * }
@@ -487,17 +485,17 @@ class PublisherApi
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @var int $pageSize
+     *     @type int $pageSize
      *          Maximum number of topics to return.
-     *     @var string $pageToken
+     *     @type string $pageToken
      *          A page token is used to specify a page of values to be returned.
      *          If no page token is specified (the default), the first page
      *          of values will be returned. Any page token used here must have
      *          been generated by a previous call to the API.
-     *     @var Google\GAX\RetrySettings $retrySettings
+     *     @type Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
-     *     @var int $timeoutMillis
+     *     @type int $timeoutMillis
      *          Timeout to use for this call. Only used if $retrySettings
      *          is not set.
      * }
@@ -555,17 +553,17 @@ class PublisherApi
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @var int $pageSize
+     *     @type int $pageSize
      *          Maximum number of subscription names to return.
-     *     @var string $pageToken
+     *     @type string $pageToken
      *          A page token is used to specify a page of values to be returned.
      *          If no page token is specified (the default), the first page
      *          of values will be returned. Any page token used here must have
      *          been generated by a previous call to the API.
-     *     @var Google\GAX\RetrySettings $retrySettings
+     *     @type Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
-     *     @var int $timeoutMillis
+     *     @type int $timeoutMillis
      *          Timeout to use for this call. Only used if $retrySettings
      *          is not set.
      * }
@@ -625,10 +623,10 @@ class PublisherApi
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @var Google\GAX\RetrySettings $retrySettings
+     *     @type Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
-     *     @var int $timeoutMillis
+     *     @type int $timeoutMillis
      *          Timeout to use for this call. Only used if $retrySettings
      *          is not set.
      * }
@@ -667,6 +665,6 @@ class PublisherApi
 
     private function createCredentialsCallback()
     {
-        return $this->grpcBootstrap->createCallCredentialsCallback();
+        return $this->grpcCredentialsHelper->createCallCredentialsCallback();
     }
 }

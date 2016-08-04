@@ -25,8 +25,8 @@ namespace Google\Cloud\PubSub\V1;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
-use Google\GAX\GrpcBootstrap;
 use Google\GAX\GrpcConstants;
+use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
 use google\pubsub\v1\AcknowledgeRequest;
@@ -90,7 +90,7 @@ class SubscriberApi
     private static $subscriptionNameTemplate;
     private static $topicNameTemplate;
 
-    private $grpcBootstrap;
+    private $grpcCredentialsHelper;
     private $stub;
     private $scopes;
     private $defaultCallSettings;
@@ -226,28 +226,28 @@ class SubscriberApi
      * @param array $options {
      *                       Optional. Options for configuring the service API wrapper.
      *
-     *     @var string $serviceAddress The domain name of the API remote host.
+     *     @type string $serviceAddress The domain name of the API remote host.
      *                                  Default 'pubsub.googleapis.com'.
-     *     @var mixed $port The port on which to connect to the remote host. Default 443.
-     *     @var Grpc\ChannelCredentials $sslCreds
+     *     @type mixed $port The port on which to connect to the remote host. Default 443.
+     *     @type Grpc\ChannelCredentials $sslCreds
      *           A `ChannelCredentials` for use with an SSL-enabled channel.
      *           Default: a credentials object returned from
      *           Grpc\ChannelCredentials::createSsl()
-     *     @var array $scopes A string array of scopes to use when acquiring credentials.
+     *     @type array $scopes A string array of scopes to use when acquiring credentials.
      *                         Default the scopes for the Google Cloud Pub/Sub API.
-     *     @var array $retryingOverride
+     *     @type array $retryingOverride
      *           An associative array of string => RetryOptions, where the keys
      *           are method names (e.g. 'createFoo'), that overrides default retrying
      *           settings. A value of null indicates that the method in question should
      *           not retry.
-     *     @var int $timeoutMillis The timeout in milliseconds to use for calls
+     *     @type int $timeoutMillis The timeout in milliseconds to use for calls
      *                              that don't use retries. For calls that use retries,
      *                              set the timeout in RetryOptions.
      *                              Default: 30000 (30 seconds)
-     *     @var string $appName The codename of the calling service. Default 'gax'.
-     *     @var string $appVersion The version of the calling service.
+     *     @type string $appName The codename of the calling service. Default 'gax'.
+     *     @type string $appVersion The version of the calling service.
      *                              Default: the current version of GAX.
-     *     @var Google\Auth\CredentialsLoader $credentialsLoader
+     *     @type Google\Auth\CredentialsLoader $credentialsLoader
      *                              A CredentialsLoader object created using the
      *                              Google\Auth library.
      * }
@@ -317,11 +317,9 @@ class SubscriberApi
         if (!empty($options['sslCreds'])) {
             $createStubOptions['sslCreds'] = $options['sslCreds'];
         }
-        $grpcBootstrapOptions = array_intersect_key($options, [
-            'credentialsLoader' => null,
-        ]);
-        $this->grpcBootstrap = new GrpcBootstrap($this->scopes, $grpcBootstrapOptions);
-        $this->stub = $this->grpcBootstrap->createStub(
+        $grpcCredentialsHelperOptions = array_diff_key($options, $defaultOptions);
+        $this->grpcCredentialsHelper = new GrpcCredentialsHelper($this->scopes, $grpcCredentialsHelperOptions);
+        $this->stub = $this->grpcCredentialsHelper->createStub(
             $generatedCreateStub,
             $options['serviceAddress'],
             $options['port'],
@@ -363,11 +361,11 @@ class SubscriberApi
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @var PushConfig $pushConfig
+     *     @type PushConfig $pushConfig
      *          If push delivery is used with this subscription, this field is
      *          used to configure it. An empty `pushConfig` signifies that the subscriber
      *          will pull and ack messages using API methods.
-     *     @var int $ackDeadlineSeconds
+     *     @type int $ackDeadlineSeconds
      *          This value is the maximum time after a subscriber receives a message
      *          before the subscriber should acknowledge the message. After message
      *          delivery but before the ack deadline expires and before the message is
@@ -386,10 +384,10 @@ class SubscriberApi
      *          system will eventually redeliver the message.
      *
      *          If this parameter is not set, the default value of 10 seconds is used.
-     *     @var Google\GAX\RetrySettings $retrySettings
+     *     @type Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
-     *     @var int $timeoutMillis
+     *     @type int $timeoutMillis
      *          Timeout to use for this call. Only used if $retrySettings
      *          is not set.
      * }
@@ -446,10 +444,10 @@ class SubscriberApi
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @var Google\GAX\RetrySettings $retrySettings
+     *     @type Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
-     *     @var int $timeoutMillis
+     *     @type int $timeoutMillis
      *          Timeout to use for this call. Only used if $retrySettings
      *          is not set.
      * }
@@ -501,17 +499,17 @@ class SubscriberApi
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @var int $pageSize
+     *     @type int $pageSize
      *          Maximum number of subscriptions to return.
-     *     @var string $pageToken
+     *     @type string $pageToken
      *          A page token is used to specify a page of values to be returned.
      *          If no page token is specified (the default), the first page
      *          of values will be returned. Any page token used here must have
      *          been generated by a previous call to the API.
-     *     @var Google\GAX\RetrySettings $retrySettings
+     *     @type Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
-     *     @var int $timeoutMillis
+     *     @type int $timeoutMillis
      *          Timeout to use for this call. Only used if $retrySettings
      *          is not set.
      * }
@@ -571,10 +569,10 @@ class SubscriberApi
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @var Google\GAX\RetrySettings $retrySettings
+     *     @type Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
-     *     @var int $timeoutMillis
+     *     @type int $timeoutMillis
      *          Timeout to use for this call. Only used if $retrySettings
      *          is not set.
      * }
@@ -633,10 +631,10 @@ class SubscriberApi
      * @param array    $optionalArgs       {
      *                                     Optional.
      *
-     *     @var Google\GAX\RetrySettings $retrySettings
+     *     @type Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
-     *     @var int $timeoutMillis
+     *     @type int $timeoutMillis
      *          Timeout to use for this call. Only used if $retrySettings
      *          is not set.
      * }
@@ -697,10 +695,10 @@ class SubscriberApi
      * @param array    $optionalArgs {
      *                               Optional.
      *
-     *     @var Google\GAX\RetrySettings $retrySettings
+     *     @type Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
-     *     @var int $timeoutMillis
+     *     @type int $timeoutMillis
      *          Timeout to use for this call. Only used if $retrySettings
      *          is not set.
      * }
@@ -757,16 +755,16 @@ class SubscriberApi
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @var bool $returnImmediately
+     *     @type bool $returnImmediately
      *          If this is specified as true the system will respond immediately even if
      *          it is not able to return a message in the `Pull` response. Otherwise the
      *          system is allowed to wait until at least one message is available rather
      *          than returning no messages. The client may cancel the request if it does
      *          not wish to wait any longer for the response.
-     *     @var Google\GAX\RetrySettings $retrySettings
+     *     @type Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
-     *     @var int $timeoutMillis
+     *     @type int $timeoutMillis
      *          Timeout to use for this call. Only used if $retrySettings
      *          is not set.
      * }
@@ -832,10 +830,10 @@ class SubscriberApi
      * @param array $optionalArgs {
      *                            Optional.
      *
-     *     @var Google\GAX\RetrySettings $retrySettings
+     *     @type Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
-     *     @var int $timeoutMillis
+     *     @type int $timeoutMillis
      *          Timeout to use for this call. Only used if $retrySettings
      *          is not set.
      * }
@@ -875,6 +873,6 @@ class SubscriberApi
 
     private function createCredentialsCallback()
     {
-        return $this->grpcBootstrap->createCallCredentialsCallback();
+        return $this->grpcCredentialsHelper->createCallCredentialsCallback();
     }
 }
