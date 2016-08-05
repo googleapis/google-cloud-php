@@ -23,6 +23,17 @@ use Google\Cloud\CallTrait;
  * Annotations represent the result of a request against the
  * [Google Cloud Natural Language API](https://cloud.google.com/natural-language/docs).
  *
+ * This class is created internally by
+ * {@see Google\Cloud\NaturalLanguage\NaturalLanguageClient} and is used to
+ * represent various document analyzation results. It should not be instantiated
+ * externally.
+ *
+ * Annotations are returned by
+ * {@see Google\Cloud\NaturalLanguage\NaturalLanguageClient::analyzeEntities()},
+ * {@see Google\Cloud\NaturalLanguage\NaturalLanguageClient::analyzeSentiment()},
+ * {@see Google\Cloud\NaturalLanguage\NaturalLanguageClient::analyzeSyntax()} and
+ * {@see Google\Cloud\NaturalLanguage\NaturalLanguageClient::annotateText()}.
+ *
  * @method sentences() {
  *     Returns an array of sentences found in the document.
  *
@@ -92,18 +103,6 @@ class Annotation
     /**
      * Create an annotation.
      *
-     * This class is created internally by
-     * {@see Google\Cloud\NaturalLanguage\NaturalLanguageClient} and is used to
-     * represent various document analyzation results.
-     *
-     * This class should not be instantiated externally.
-     *
-     * Annotations are returned by
-     * {@see Google\Cloud\NaturalLanguage\NaturalLanguageClient::analyzeEntities()},
-     * {@see Google\Cloud\NaturalLanguage\NaturalLanguageClient::analyzeSentiment()},
-     * {@see Google\Cloud\NaturalLanguage\NaturalLanguageClient::analyzeSyntax()} and
-     * {@see Google\Cloud\NaturalLanguage\NaturalLanguageClient::annotateText()}.
-     *
      * @param array $info The annotation's metadata.
      */
     public function __construct(array $info = [])
@@ -156,7 +155,7 @@ class Annotation
      *
      * Example:
      * ```
-     * $tokens = $annotation->fetchTokensByTag('NOUN');
+     * $tokens = $annotation->tokensByTag('NOUN');
      *
      * foreach ($tokens as $token) {
      *     echo $token['lemma'];
@@ -169,7 +168,7 @@ class Annotation
      *
      * @return array|null
      */
-    public function fetchTokensByTag($tag)
+    public function tokensByTag($tag)
     {
         return $this->filter(
             $this->tokens(),
@@ -183,7 +182,7 @@ class Annotation
      *
      * Example:
      * ```
-     * $tokens = $annotation->fetchTokensByLabel('P');
+     * $tokens = $annotation->tokensByLabel('P');
      *
      * foreach ($tokens as $token) {
      *     echo $token['lemma'];
@@ -196,7 +195,7 @@ class Annotation
      *
      * @return array|null
      */
-    public function fetchTokensByLabel($label)
+    public function tokensByLabel($label)
     {
         return $this->filter(
             $this->tokens(),
@@ -210,7 +209,7 @@ class Annotation
      *
      * Example:
      * ```
-     * $entities = $annotation->fetchEntitiesByType('PERSON');
+     * $entities = $annotation->entitiesByType('PERSON');
      *
      * foreach ($entities as $entity) {
      *     echo $entity['name'];
@@ -223,7 +222,7 @@ class Annotation
      *
      * @return array|null
      */
-    public function fetchEntitiesByType($type)
+    public function entitiesByType($type)
     {
         return $this->filter(
             $this->entities(),

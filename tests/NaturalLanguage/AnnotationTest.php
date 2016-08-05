@@ -81,16 +81,16 @@ class DocumentTest extends \PHPUnit_Framework_TestCase
 
     public function testFetchesTokensByTag()
     {
-        $this->assertEquals($this->token, $this->annotation->fetchTokensByTag('ADJ')[0]);
+        $this->assertEquals($this->token, $this->annotation->tokensByTag('ADJ')[0]);
     }
 
     public function testFetchesTokensByLabel()
     {
-        $this->assertEquals($this->token, $this->annotation->fetchTokensByLabel('P')[0]);
+        $this->assertEquals($this->token, $this->annotation->tokensByLabel('P')[0]);
     }
 
     public function testFetchesEntitiesByType()
     {
-        $this->assertEquals($this->entity, $this->annotation->fetchEntitiesByType('PERSON')[0]);
+        $this->assertEquals($this->entity, $this->annotation->entitiesByType('PERSON')[0]);
     }
 }

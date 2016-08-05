@@ -76,8 +76,8 @@
       "title": "Natural Language",
       "type": "naturallanguage/naturallanguageclient",
       "nav": [{
-        "title": "Document",
-        "type": "naturallanguage/document"
+        "title": "Annotation",
+        "type": "naturallanguage/annotation"
       }]
     },
     {
