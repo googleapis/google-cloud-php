@@ -16,5 +16,5 @@ script:
     - vendor/bin/phpcs --standard=PSR2 src/
 
 after_success:
-    - travis_retry php vendor/bin/coveralls -v
+    - bash <(curl -s https://codecov.io/bash)
     - ./scripts/deploy-docs.sh

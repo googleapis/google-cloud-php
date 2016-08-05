@@ -1,5 +1,6 @@
 # Google Cloud PHP Client
-[![Travis Build Status](https://travis-ci.org/GoogleCloudPlatform/gcloud-php.svg?branch=master)](https://travis-ci.org/GoogleCloudPlatform/gcloud-php/) [![Coverage Status](https://coveralls.io/repos/github/GoogleCloudPlatform/gcloud-php/badge.svg?branch=master)](https://coveralls.io/github/GoogleCloudPlatform/gcloud-php?branch=master)
+[![Travis Build Status](https://travis-ci.org/GoogleCloudPlatform/gcloud-php.svg?branch=master)](https://travis-ci.org/GoogleCloudPlatform/gcloud-php/) [![codecov](https://codecov.io/gh/googlecloudplatform/gcloud-php/branch/master/graph/badge.svg)](https://codecov.io/gh/googlecloudplatform/gcloud-php)
+
 
 
 > Idiomatic PHP client for [Google Cloud Platform](https://cloud.google.com/) services.
