@@ -218,7 +218,8 @@ class Dataset
 
         $response = $this->connection->insertTable([
             'projectId' => $this->identity['projectId'],
-            'datasetReference' => $this->identity + ['tableId' => $id]
+            'datasetId' => $this->identity['datasetId'],
+            'tableReference' => $this->identity + ['tableId' => $id]
         ] + $options);
 
         return new Table(
