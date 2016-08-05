@@ -17,14 +17,14 @@
 
 namespace Google\Cloud\Tests\NaturalLanguage;
 
-use Google\Cloud\NaturalLanguage\Document;
+use Google\Cloud\NaturalLanguage\Annotation;
 
 /**
  * @group naturalLanguage
  */
 class DocumentTest extends \PHPUnit_Framework_TestCase
 {
-    private $document;
+    private $annotation;
     private $entity;
     private $info;
     private $token;
@@ -66,31 +66,31 @@ class DocumentTest extends \PHPUnit_Framework_TestCase
             'sentences' => [],
             'language' => 'en'
         ];
-        $this->document = new Document($this->info);
+        $this->annotation = new annotation($this->info);
     }
 
     public function testGetSentiment()
     {
-        $this->assertEquals(1, $this->document->sentiment()['polarity']);
+        $this->assertEquals(1, $this->annotation->sentiment()['polarity']);
     }
 
     public function testGetInfo()
     {
-        $this->assertEquals($this->info, $this->document->info());
+        $this->assertEquals($this->info, $this->annotation->info());
     }
 
     public function testFetchesTokensByTag()
     {
-        $this->assertEquals($this->token, $this->document->fetchTokensByTag('ADJ')[0]);
+        $this->assertEquals($this->token, $this->annotation->fetchTokensByTag('ADJ')[0]);
     }
 
     public function testFetchesTokensByLabel()
     {
-        $this->assertEquals($this->token, $this->document->fetchTokensByLabel('P')[0]);
+        $this->assertEquals($this->token, $this->annotation->fetchTokensByLabel('P')[0]);
     }
 
     public function testFetchesEntitiesByType()
     {
-        $this->assertEquals($this->entity, $this->document->fetchEntitiesByType('PERSON')[0]);
+        $this->assertEquals($this->entity, $this->annotation->fetchEntitiesByType('PERSON')[0]);
     }
 }

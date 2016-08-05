@@ -107,9 +107,9 @@ class NaturalLanguageClient
      *
      * Example:
      * ```
-     * $document = $language->analyzeEntities('Google Cloud Platform is a powerful tool.');
+     * $annotation = $language->analyzeEntities('Google Cloud Platform is a powerful tool.');
      *
-     * foreach ($document->entities() as $entity) {
+     * foreach ($annotation->entities() as $entity) {
      *     echo $entity['type'];
      * }
      * ```
@@ -131,11 +131,11 @@ class NaturalLanguageClient
      *           calculate offsets. Acceptable values are `NONE`, `UTF8`,
      *           `UTF16` and `UTF32`. Defaults to `UTF8`.
      * }
-     * @return Document
+     * @return Annotation
      */
     public function analyzeEntities($content, array $options = [])
     {
-        return new Document(
+        return new Annotation(
             $this->connection->analyzeEntities(
                 $this->formatRequest($content, $options)
             )
@@ -148,8 +148,8 @@ class NaturalLanguageClient
      *
      * Example:
      * ```
-     * $document = $language->analyzeSentiment('Google Cloud Platform is a powerful tool.');
-     * $sentiment = $document->sentiment();
+     * $annotation = $language->analyzeSentiment('Google Cloud Platform is a powerful tool.');
+     * $sentiment = $annotation->sentiment();
      *
      * if ($sentiment['polarity'] > 0) {
      *     echo 'This is a positive message.';
@@ -170,11 +170,11 @@ class NaturalLanguageClient
      *           (e.g., en, es) and BCP-47 (e.g., en-US, es-ES) language codes
      *           are accepted. Defaults to English.
      * }
-     * @return Document
+     * @return Annotation
      */
     public function analyzeSentiment($content, array $options = [])
     {
-        return new Document(
+        return new Annotation(
             $this->connection->analyzeSentiment(
                 $this->formatRequest($content, $options)
             )
@@ -188,9 +188,9 @@ class NaturalLanguageClient
      *
      * Example:
      * ```
-     * $document = $language->analyzeSyntax('Google Cloud Platform is a powerful tool.');
+     * $annotation = $language->analyzeSyntax('Google Cloud Platform is a powerful tool.');
      *
-     * foreach ($document->sentences() as $sentence) {
+     * foreach ($annotation->sentences() as $sentence) {
      *     echo $sentence['text']['beginOffset'];
      * }
      * ```
@@ -212,7 +212,7 @@ class NaturalLanguageClient
      *           calculate offsets. Acceptable values are `NONE`, `UTF8`,
      *           `UTF16` and `UTF32`. Defaults to `UTF8`.
      * }
-     * @return Document
+     * @return Annotation
      */
     public function analyzeSyntax($content, array $options = [])
     {
@@ -229,19 +229,19 @@ class NaturalLanguageClient
      * Example:
      * ```
      * // Annotate text with all features enabled.
-     * $document = $language->annotateText('Google Cloud Platform is a powerful tool.');
-     * $sentiment = $document->sentiment();
+     * $annotation = $language->annotateText('Google Cloud Platform is a powerful tool.');
+     * $sentiment = $annotation->sentiment();
      *
      * echo $sentiment['magnitude'];
      * ```
      *
      * ```
      * // Annotate text with syntax and sentiment features enabled.
-     * $document = $language->annotateText('Google Cloud Platform is a powerful tool.', [
+     * $annotation = $language->annotateText('Google Cloud Platform is a powerful tool.', [
      *     'features' => ['syntax', 'sentiment']
      * ]);
      *
-     * foreach ($document->tokens() as $token) {
+     * foreach ($annotation->tokens() as $token) {
      *     echo $token['text']['beginOffset'];
      * }
      * ```
@@ -266,7 +266,7 @@ class NaturalLanguageClient
      *           calculate offsets. Acceptable values are `NONE`, `UTF8`,
      *           `UTF16` and `UTF32`. Defaults to `UTF8`.
      * }
-     * @return Document
+     * @return Annotation
      */
     public function annotateText($content, array $options = [])
     {
@@ -275,7 +275,7 @@ class NaturalLanguageClient
             : array_values($this->featureShortNames);
         $options['features'] = $this->normalizeFeatures($features);
 
-        return new Document(
+        return new Annotation(
             $this->connection->annotateText(
                 $this->formatRequest($content, $options)
             )

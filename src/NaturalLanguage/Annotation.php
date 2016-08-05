@@ -20,7 +20,7 @@ namespace Google\Cloud\NaturalLanguage;
 use Google\Cloud\CallTrait;
 
 /**
- * Documents represent the result of a request against the
+ * Annotations represent the result of a request against the
  * [Google Cloud Natural Language API](https://cloud.google.com/natural-language/docs).
  *
  * @method sentences() {
@@ -28,7 +28,7 @@ use Google\Cloud\CallTrait;
  *
  *     Example:
  *     ```
- *     foreach ($document->sentences() as $sentence) {
+ *     foreach ($annotation->sentences() as $sentence) {
  *         echo $sentence['text']['content'];
  *     }
  *     ```
@@ -44,7 +44,7 @@ use Google\Cloud\CallTrait;
  *
  *     Example:
  *     ```
- *     foreach ($document->tokens() as $token) {
+ *     foreach ($annotation->tokens() as $token) {
  *         echo $token['text']['content'];
  *     }
  *     ```
@@ -60,7 +60,7 @@ use Google\Cloud\CallTrait;
  *
  *     Example:
  *     ```
- *     foreach ($document->entities() as $entity) {
+ *     foreach ($annotation->entities() as $entity) {
  *         echo $entity['type'];
  *     }
  *     ```
@@ -74,23 +74,23 @@ use Google\Cloud\CallTrait;
  *
  *     Example:
  *     ```
- *     echo $document->language();
+ *     echo $annotation->language();
  *     ```
  *
  *     @return string
  * }
  */
-class Document
+class Annotation
 {
     use CallTrait;
 
     /**
-     * @var array The document's metadata.
+     * @var array The annotation's metadata.
      */
     private $info;
 
     /**
-     * Create a document result.
+     * Create an annotation.
      *
      * This class is created internally by
      * {@see Google\Cloud\NaturalLanguage\NaturalLanguageClient} and is used to
@@ -98,13 +98,13 @@ class Document
      *
      * This class should not be instantiated externally.
      *
-     * Documents are returned by
+     * Annotations are returned by
      * {@see Google\Cloud\NaturalLanguage\NaturalLanguageClient::analyzeEntities()},
      * {@see Google\Cloud\NaturalLanguage\NaturalLanguageClient::analyzeSentiment()},
      * {@see Google\Cloud\NaturalLanguage\NaturalLanguageClient::analyzeSyntax()} and
      * {@see Google\Cloud\NaturalLanguage\NaturalLanguageClient::annotateText()}.
      *
-     * @param array $info The document's metadata.
+     * @param array $info The annotation's metadata.
      */
     public function __construct(array $info = [])
     {
@@ -116,7 +116,7 @@ class Document
      *
      * Example:
      * ```
-     * $info = $document->info();
+     * $info = $annotation->info();
      * ```
      *
      * @codingStandardsIgnoreStart
@@ -135,7 +135,7 @@ class Document
      *
      * Example:
      * ```
-     * $sentiment = $document->sentiment();
+     * $sentiment = $annotation->sentiment();
      *
      * if ($sentiment['polarity'] > 0) {
      *    echo 'This is a positive message.';
@@ -156,7 +156,7 @@ class Document
      *
      * Example:
      * ```
-     * $tokens = $document->fetchTokensByTag('NOUN');
+     * $tokens = $annotation->fetchTokensByTag('NOUN');
      *
      * foreach ($tokens as $token) {
      *     echo $token['lemma'];
@@ -183,7 +183,7 @@ class Document
      *
      * Example:
      * ```
-     * $tokens = $document->fetchTokensByLabel('P');
+     * $tokens = $annotation->fetchTokensByLabel('P');
      *
      * foreach ($tokens as $token) {
      *     echo $token['lemma'];
@@ -210,7 +210,7 @@ class Document
      *
      * Example:
      * ```
-     * $entities = $document->fetchEntitiesByType('PERSON');
+     * $entities = $annotation->fetchEntitiesByType('PERSON');
      *
      * foreach ($entities as $entity) {
      *     echo $entity['name'];

@@ -17,8 +17,8 @@
 
 namespace Google\Cloud\Tests\NaturalLanguage;
 
+use Google\Cloud\NaturalLanguage\Annotation;
 use Google\Cloud\NaturalLanguage\Connection\ConnectionInterface;
-use Google\Cloud\NaturalLanguage\Document;
 use Google\Cloud\NaturalLanguage\NaturalLanguageClient;
 use Google\Cloud\Storage\Object;
 use Prophecy\Argument;
@@ -49,9 +49,9 @@ class NaturalLanguageClientTest extends \PHPUnit_Framework_TestCase
             ->willReturn([])
             ->shouldBeCalledTimes(1);
         $this->client->setConnection($this->connection->reveal());
-        $document = $this->client->analyzeEntities($content, $options);
+        $annotation = $this->client->analyzeEntities($content, $options);
 
-        $this->assertInstanceOf(Document::class, $document);
+        $this->assertInstanceOf(Annotation::class, $annotation);
     }
 
     /**
@@ -66,9 +66,9 @@ class NaturalLanguageClientTest extends \PHPUnit_Framework_TestCase
             ->willReturn([])
             ->shouldBeCalledTimes(1);
         $this->client->setConnection($this->connection->reveal());
-        $document = $this->client->analyzeSentiment($content, $options);
+        $annotation = $this->client->analyzeSentiment($content, $options);
 
-        $this->assertInstanceOf(Document::class, $document);
+        $this->assertInstanceOf(Annotation::class, $annotation);
     }
 
     /**
@@ -86,9 +86,9 @@ class NaturalLanguageClientTest extends \PHPUnit_Framework_TestCase
             ->willReturn([])
             ->shouldBeCalledTimes(1);
         $this->client->setConnection($this->connection->reveal());
-        $document = $this->client->analyzeSyntax($content, $options);
+        $annotation = $this->client->analyzeSyntax($content, $options);
 
-        $this->assertInstanceOf(Document::class, $document);
+        $this->assertInstanceOf(Annotation::class, $annotation);
     }
 
     /**
@@ -109,9 +109,9 @@ class NaturalLanguageClientTest extends \PHPUnit_Framework_TestCase
             ->willReturn([])
             ->shouldBeCalledTimes(1);
         $this->client->setConnection($this->connection->reveal());
-        $document = $this->client->annotateText($content, $options);
+        $annotation = $this->client->annotateText($content, $options);
 
-        $this->assertInstanceOf(Document::class, $document);
+        $this->assertInstanceOf(Annotation::class, $annotation);
     }
 
     public function analyzeDataProvider()
