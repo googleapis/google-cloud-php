@@ -117,7 +117,7 @@ class RequestBuilder
             $action['httpMethod'],
             $uri,
             ['Content-Type' => 'application/json'],
-            $body ? json_encode($body) : []
+            $body ? json_encode($body) : null
         );
     }
 
