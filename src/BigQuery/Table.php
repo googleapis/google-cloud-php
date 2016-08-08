@@ -94,10 +94,12 @@ class Table
      * ```
      *
      * @see https://cloud.google.com/bigquery/docs/reference/v2/tables/delete Tables delete API documentation.
+     *
+     * @param array $options Configuration options.
      */
-    public function delete()
+    public function delete(array $options = [])
     {
-        $this->connection->deleteTable($this->identity);
+        $this->connection->deleteTable($options + $this->identity);
     }
 
     /**
