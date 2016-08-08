@@ -99,6 +99,14 @@ class TableTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($table->exists());
     }
 
+    public function testDelete()
+    {
+        $this->connection->deleteTable(Argument::any())
+            ->shouldBeCalledTimes(1);
+        $table = $this->getTable($this->connection);
+        $this->assertNull($table->delete());
+    }
+
     public function testGetsRowsWithNoResults()
     {
         $this->connection->getTable(Argument::any())
