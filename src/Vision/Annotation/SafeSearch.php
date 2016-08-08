@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Vision\Annotation;
 
+use Google\Cloud\CallTrait;
+
 /**
  * Represents a SafeSearch annotation result
  *
