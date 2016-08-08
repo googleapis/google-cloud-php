@@ -44,7 +44,7 @@ use Google\Cloud\Vision\VisionClient;
  */
 class ServiceBuilder
 {
-    const VERSION = '0.5.1';
+    const VERSION = '0.6.0';
 
     /**
      * @var array Configuration options to be used between clients.
