@@ -57,6 +57,12 @@ interface ConnectionInterface
      * @param array $args
      * @return array
      */
+    public function deleteTable(array $args = []);
+
+    /**
+     * @param array $args
+     * @return array
+     */
     public function getTable(array $args = []);
 
     /**
