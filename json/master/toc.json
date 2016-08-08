@@ -73,9 +73,17 @@
       }]
     },
     {
+      "title": "Natural Language",
+      "type": "naturallanguage/naturallanguageclient",
+      "nav": [{
+        "title": "Annotation",
+        "type": "naturallanguage/annotation"
+      }]
+    },
+    {
       "title": "PubSub",
       "type": "pubsub/pubsubclient",
-      "nav" : [{
+      "nav": [{
         "title": "Subscription",
         "type": "pubsub/subscription"
       },
