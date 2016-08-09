@@ -336,7 +336,7 @@ class Table
      * @param array $row Key/value set of data matching the table's schema.
      * @param array $options {
      *     Please see
-     *     {@see Google\Cloud\BigQuery\Table::__insertRows} for the
+     *     {@see Google\Cloud\BigQuery\Table::insertRows()} for the
      *     other available configuration options.
      *
      *     @type string $insertId Used to

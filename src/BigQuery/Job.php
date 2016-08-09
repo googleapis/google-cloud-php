@@ -145,7 +145,7 @@ class Job
 
     /**
      * Checks the job's completeness. Useful in combination with
-     * {@see Google\Cloud\BigQuery\Job::reload} to poll for job status.
+     * {@see Google\Cloud\BigQuery\Job::reload()} to poll for job status.
      *
      * Example:
      * ```

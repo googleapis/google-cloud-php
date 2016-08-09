@@ -57,7 +57,7 @@ class PsrLogger implements LoggerInterface
      * ```
      *
      * @param string $message The message to log.
-     * @param array $context Please see {@see Google\Cloud\Logging\PsrLogger::log}
+     * @param array $context Please see {@see Google\Cloud\Logging\PsrLogger::log()}
      *        for the available options.
      */
     public function emergency($message, array $context = [])
@@ -74,7 +74,7 @@ class PsrLogger implements LoggerInterface
      * ```
      *
      * @param string $message The message to log.
-     * @param array $context Please see {@see Google\Cloud\Logging\PsrLogger::log}
+     * @param array $context Please see {@see Google\Cloud\Logging\PsrLogger::log()}
      *        for the available options.
      */
     public function alert($message, array $context = [])
@@ -91,7 +91,7 @@ class PsrLogger implements LoggerInterface
      * ```
      *
      * @param string $message The message to log.
-     * @param array $context Please see {@see Google\Cloud\Logging\PsrLogger::log}
+     * @param array $context Please see {@see Google\Cloud\Logging\PsrLogger::log()}
      *        for the available options.
      */
     public function critical($message, array $context = [])
@@ -108,7 +108,7 @@ class PsrLogger implements LoggerInterface
      * ```
      *
      * @param string $message The message to log.
-     * @param array $context Please see {@see Google\Cloud\Logging\PsrLogger::log}
+     * @param array $context Please see {@see Google\Cloud\Logging\PsrLogger::log()}
      *        for the available options.
      */
     public function error($message, array $context = [])
@@ -125,7 +125,7 @@ class PsrLogger implements LoggerInterface
      * ```
      *
      * @param string $message The message to log.
-     * @param array $context Please see {@see Google\Cloud\Logging\PsrLogger::log}
+     * @param array $context Please see {@see Google\Cloud\Logging\PsrLogger::log()}
      *        for the available options.
      */
     public function warning($message, array $context = [])
@@ -142,7 +142,7 @@ class PsrLogger implements LoggerInterface
      * ```
      *
      * @param string $message The message to log.
-     * @param array $context Please see {@see Google\Cloud\Logging\PsrLogger::log}
+     * @param array $context Please see {@see Google\Cloud\Logging\PsrLogger::log()}
      *        for the available options.
      */
     public function notice($message, array $context = [])
@@ -159,7 +159,7 @@ class PsrLogger implements LoggerInterface
      * ```
      *
      * @param string $message The message to log.
-     * @param array $context Please see {@see Google\Cloud\Logging\PsrLogger::log}
+     * @param array $context Please see {@see Google\Cloud\Logging\PsrLogger::log()}
      *        for the available options.
      */
     public function info($message, array $context = [])
@@ -176,7 +176,7 @@ class PsrLogger implements LoggerInterface
      * ```
      *
      * @param string $message The message to log.
-     * @param array $context Please see {@see Google\Cloud\Logging\PsrLogger::log}
+     * @param array $context Please see {@see Google\Cloud\Logging\PsrLogger::log()}
      *        for the available options.
      */
     public function debug($message, array $context = [])
