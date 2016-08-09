@@ -42,6 +42,9 @@
         "title": "Dataset",
         "type": "bigquery/dataset"
       }, {
+        "title": "InsertResponse",
+        "type": "bigquery/insertresponse"
+      }, {
         "title": "Job",
         "type": "bigquery/job"
       }, {
