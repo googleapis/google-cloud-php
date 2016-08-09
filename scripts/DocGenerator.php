@@ -185,9 +185,9 @@ class DocGenerator
     {
         $methodArray = [];
         foreach ($magicMethods as $method) {
-            $docBlock = $method->getDocBlock();
-            if (is_null($docBlock)) {
-                throw new \Exception(sprintf('%s::%s (magic method) has no description', $className, $name));
+            $description = $method->getDescription();
+            if (is_null($description)) {
+                throw new \Exception(sprintf('%s::%s (magic method) has no description', $className, $method->getMethodName()));
             }
 
             $methodArray[] = $this->buildMagicMethod($method);
@@ -225,7 +225,7 @@ class DocGenerator
 
     private function buildMagicMethod($magicMethod)
     {
-        $docBlock = new DocBlock(trim(substr($magicMethod->getDescription(), 1, -1)));
+        $docBlock = new DocBlockStripSpaces(substr($magicMethod->getDescription(), 1, -1));
         $fullDescription = $docBlock->getText();
         $resources = $docBlock->getTagsByName('see');
         $params = $docBlock->getTagsByName('param');
@@ -487,5 +487,25 @@ class DocGenerator
         $servicePath = strtolower($servicePath);
 
         return $this->outputPath . $servicePath;
+    }
+}
+
+class DocBlockStripSpaces extends DocBlock
+{
+    /**
+     * Strips extra whitespace from the DocBlock comment.
+     *
+     * @param string $comment String containing the comment text.
+     * @param int $spaces The number of spaces to strip.
+     *
+     * @return string
+     */
+    public function cleanInput($comment, $spaces = 4)
+    {
+        $lines = array_map(function ($line) use ($spaces) {
+            return substr($line, $spaces);
+        }, explode(PHP_EOL, $comment));
+
+        return trim(implode(PHP_EOL, $lines));
     }
 }
