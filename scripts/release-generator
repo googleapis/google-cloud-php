@@ -1,0 +1,105 @@
+#!/usr/bin/env php
+<?php
+
+require __DIR__ . '/../vendor/autoload.php';
+
+use Symfony\Component\Console\Application;
+use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
+
+if (!class_exists(Application::class)) {
+    throw new RuntimeException(
+        'Symfony Console Component not installed. ' .
+        'run "composer install" or "composer update", making sure not to ' .
+        'exclude dev dependencies, and try again.'
+    );
+}
+
+class ReleaseGenerator extends Command
+{
+    const PATH_MANIFEST = 'docs/manifest.json';
+    const PATH_SERVICE_BUILDER = 'src/ServiceBuilder.php';
+
+    protected function configure()
+    {
+        $this->setName('release')
+             ->setDescription('Prepares a new release')
+             ->addArgument('version', InputArgument::REQUIRED, 'The new version number');
+    }
+
+    protected function execute(InputInterface $input, OutputInterface $output)
+    {
+        if (strpos($input->getArgument('version'), 'v') === 0) {
+            throw new RuntimeException('Please do not include the `v` version prefix.');
+        }
+
+        $output->writeln(sprintf(
+            'Adding version %s to Documentation Manifest.',
+            $input->getArgument('version')
+        ));
+
+        $this->addToManifest($input->getArgument('version'));
+
+        $output->writeln(sprintf(
+            'Setting ServiceBuilder version constant to %s.',
+            $input->getArgument('version')
+        ));
+
+        $this->updateServiceBuilder($input->getArgument('version'));
+
+        $output->writeln(sprintf(
+            'Release %s generated!',
+            $input->getArgument('version')
+        ));
+    }
+
+    private function addToManifest($version)
+    {
+        $path = __DIR__ .'/../'. self::PATH_MANIFEST;
+        if (!file_exists($path)) {
+            throw new RuntimeException('Manifest file not found at '. $path);
+        }
+
+        $manifest = json_decode(file_get_contents($path), true);
+
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            throw new RuntimeException('Could not decode manifest json');
+        }
+
+        array_unshift($manifest['versions'], 'v'. $version);
+
+        $result = file_put_contents($path, json_encode($manifest, JSON_PRETTY_PRINT));
+
+        if (!$result) {
+            throw new RuntimeException('File write failed');
+        }
+    }
+
+    private function updateServiceBuilder($version)
+    {
+        $path = __DIR__ .'/../'. self::PATH_SERVICE_BUILDER;
+        if (!file_exists($path)) {
+            throw new RuntimeException('ServiceBuilder not found at '. $path);
+        }
+
+        $sb = file_get_contents($path);
+
+        $replacement = sprintf("const VERSION = '%s';", $version);
+
+        $sb = preg_replace("/const VERSION = '[0-9.]{0,}'\;/", $replacement, $sb);
+
+        $result = file_put_contents($path, $sb);
+
+        if (!$result) {
+            throw new RuntimeException('File write failed');
+        }
+    }
+}
+
+$release = new ReleaseGenerator;
+
+$app = new Application;
+$app->add($release);
+$app->run();
