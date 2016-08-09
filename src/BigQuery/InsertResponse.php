@@ -21,8 +21,8 @@ namespace Google\Cloud\BigQuery;
  * Represents the result of streaming data into a table.
  *
  * This class should be not instantiated directly, but as a result of calling
- * {@see Google\Cloud\BigQuery\Table::insertRow} or
- * {@see Google\Cloud\BigQuery\Table::insertRows}.
+ * {@see Google\Cloud\BigQuery\Table::insertRow()} or
+ * {@see Google\Cloud\BigQuery\Table::insertRows()}.
  */
 class InsertResponse
 {

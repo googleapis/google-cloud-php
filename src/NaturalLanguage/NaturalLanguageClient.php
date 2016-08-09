@@ -66,7 +66,7 @@ class NaturalLanguageClient
      * // The NaturalLanguage client can also be instantianted directly.
      * use Google\Cloud\NaturalLanguage\NaturalLanguageClient;
      *
-     * $naturalLanguage = new NaturalLanguageClient([
+     * $language = new NaturalLanguageClient([
      *     'projectId' => 'my-awesome-project'
      * ]);
      * ```

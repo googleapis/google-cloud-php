@@ -48,8 +48,8 @@ class QueryResults
 
     /**
      * This class should be not instantiated directly, but as a result of
-     * calling {@see Google\Cloud\BigQuery\BigQueryClient::runQuery} or
-     * {@see Google\Cloud\BigQuery\Job::queryResults}.
+     * calling {@see Google\Cloud\BigQuery\BigQueryClient::runQuery()} or
+     * {@see Google\Cloud\BigQuery\Job::queryResults()}.
      *
      * @param ConnectionInterface $connection Represents a connection to
      *        BigQuery.
@@ -126,7 +126,7 @@ class QueryResults
 
     /**
      * Checks the query's completeness. Useful in combination with
-     * {@see Google\Cloud\BigQuery\QueryResults::reload} to poll for query status.
+     * {@see Google\Cloud\BigQuery\QueryResults::reload()} to poll for query status.
      *
      * Example:
      * ```
@@ -172,8 +172,8 @@ class QueryResults
      *
      * Useful when needing to poll an incomplete query
      * for status. Configuration options will be inherited from
-     * {@see Google\Cloud\BigQuery\Job::queryResults} or
-     * {@see Google\Cloud\BigQuery\BigQueryClient::runQuery}, but they can be
+     * {@see Google\Cloud\BigQuery\Job::queryResults()} or
+     * {@see Google\Cloud\BigQuery\BigQueryClient::runQuery()}, but they can be
      * overridden if needed.
      *
      * Example:

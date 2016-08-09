@@ -83,8 +83,8 @@ class Logger
 
     /**
      * Creates an entry which which can be written to a log. In order to write
-     * the entry to the log please use {@see Google\Cloud\Logging\Logger::write}
-     * or {@see Google\Cloud\Logging\Logger::writeBatch}.
+     * the entry to the log please use {@see Google\Cloud\Logging\Logger::write()}
+     * or {@see Google\Cloud\Logging\Logger::writeBatch()}.
      *
      * Example:
      * ```
