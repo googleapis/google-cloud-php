@@ -18,6 +18,7 @@
 namespace Google\Cloud\Tests\BigQuery;
 
 use Google\Cloud\BigQuery\Connection\ConnectionInterface;
+use Google\Cloud\BigQuery\InsertResponse;
 use Google\Cloud\BigQuery\Job;
 use Google\Cloud\BigQuery\Table;
 use Google\Cloud\Exception\NotFoundException;
@@ -276,6 +277,75 @@ class TableTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf(Job::class, $job);
         $this->assertEquals($this->insertJobResponse, $job->info());
+    }
+
+    public function testInsertsRow()
+    {
+        $insertId = '1';
+        $rowData = ['key' => 'value'];
+        $expectedArguments = [
+            'tableId' => $this->tableId,
+            'projectId' => $this->projectId,
+            'datasetId' => $this->datasetId,
+            'rows' => [
+                [
+                    'json' => $rowData,
+                    'insertId' => $insertId
+                ]
+            ]
+        ];
+        $this->connection->insertAllTableData($expectedArguments)
+            ->willReturn([])
+            ->shouldBeCalledTimes(1);
+        $table = $this->getTable($this->connection);
+
+        $insertResponse = $table->insertRow($rowData, [
+            'insertId' => $insertId
+        ]);
+
+        $this->assertInstanceOf(InsertResponse::class, $insertResponse);
+        $this->assertTrue($insertResponse->isSuccessful());
+    }
+
+    public function testInsertsRows()
+    {
+        $insertId = '1';
+        $data = ['key' => 'value'];
+        $rowData = [
+            [
+                'insertId' => $insertId,
+                'data' => $data
+            ]
+        ];
+        $expectedArguments = [
+            'tableId' => $this->tableId,
+            'projectId' => $this->projectId,
+            'datasetId' => $this->datasetId,
+            'rows' => [
+                [
+                    'json' => $data,
+                    'insertId' => $insertId
+                ]
+            ]
+        ];
+        $this->connection->insertAllTableData($expectedArguments)
+            ->willReturn([])
+            ->shouldBeCalledTimes(1);
+        $table = $this->getTable($this->connection);
+
+        $insertResponse = $table->insertRows($rowData);
+
+        $this->assertInstanceOf(InsertResponse::class, $insertResponse);
+        $this->assertTrue($insertResponse->isSuccessful());
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function testInsertRowsThrowsException()
+    {
+        $table = $this->getTable($this->connection);
+        $table->insertRows([[], []]);
     }
 
     public function testGetsInfo()

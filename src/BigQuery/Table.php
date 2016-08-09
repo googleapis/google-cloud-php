@@ -305,6 +305,143 @@ class Table
     }
 
     /**
+     * Insert a record into the table without running a load job.
+     *
+     * Example:
+     * ```
+     * $row = [
+     *     'city' => 'Detroit',
+     *     'state' => 'MI'
+     * ];
+     *
+     * $insertResponse = $table->insertRow($row, [
+     *     'insertId' => '1'
+     * ]);
+     *
+     * if (!$insertResponse->isSuccessful()) {
+     *     $row = $insertResponse->failedRows()[0];
+     *
+     *     print_r($row['rowData']);
+     *
+     *     foreach ($row['errors'] as $error) {
+     *         echo $error['reason'] . ': ' . $error['message'] . PHP_EOL;
+     *     }
+     * }
+     * ```
+     *
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/bigquery/docs/reference/v2/tabledata/insertAll Tabledata insertAll API Documentation.
+     * @see https://cloud.google.com/bigquery/streaming-data-into-bigquery Streaming data into BigQuery.
+     *
+     * @param array $row Key/value set of data matching the table's schema.
+     * @param array $options {
+     *     Please see
+     *     {@see Google\Cloud\BigQuery\Table::__insertRows} for the
+     *     other available configuration options.
+     *
+     *     @type string $insertId Used to
+     *           [ensure data consistency](https://cloud.google.com/bigquery/streaming-data-into-bigquery#dataconsistency).
+     * }
+     * @return InsertResponse
+     * @throws \InvalidArgumentException
+     * @codingStandardsIgnoreEnd
+     */
+    public function insertRow(array $row, array $options = [])
+    {
+        $row = ['data' => $row];
+
+        if (isset($options['insertId'])) {
+            $row['insertId'] = $options['insertId'];
+            unset($options['insertId']);
+        }
+
+        return $this->insertRows([$row], $options);
+    }
+
+    /**
+     * Insert records into the table without running a load job.
+     *
+     * Example:
+     * ```
+     * $rows = [
+     *     [
+     *         'insertId' => '1',
+     *         'data' => [
+     *             'city' => 'Detroit',
+     *             'state' => 'MI'
+     *         ]
+     *     ],
+     *     [
+     *         'insertId' => '2',
+     *         'data' => [
+     *             'city' => 'New York',
+     *             'state' => 'NY'
+     *         ]
+     *     ]
+     * ];
+     *
+     * $insertResponse = $table->insertRows($rows);
+     *
+     * if (!$insertResponse->isSuccessful()) {
+     *     foreach ($insertResponse->failedRows() as $row) {
+     *         print_r($row['rowData']);
+     *
+     *         foreach ($row['errors'] as $error) {
+     *             echo $error['reason'] . ': ' . $error['message'] . PHP_EOL;
+     *         }
+     *     }
+     * }
+     * ```
+     *
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/bigquery/docs/reference/v2/tabledata/insertAll Tabledata insertAll API Documentation.
+     * @see https://cloud.google.com/bigquery/streaming-data-into-bigquery Streaming data into BigQuery.
+     *
+     * @param array $rows The rows to insert. Each item in the array must
+     *        contain a `data` key which is to hold a key/value array with data
+     *        matching the schema of the table. Optionally, one may also provide
+     *        an `insertId` key which will be used to
+     *        [ensure data consistency](https://cloud.google.com/bigquery/streaming-data-into-bigquery#dataconsistency).
+     * @param array $options {
+     *     Configuration options.
+     *
+     *     @type bool $skipInvalidRows Insert all valid rows of a request, even
+     *           if invalid rows exist. The default value is `false`, which
+     *           causes the entire request to fail if any invalid rows exist.
+     *     @type bool $ignoreUnknownValues Accept rows that contain values that
+     *           do not match the schema. The unknown values are ignored.
+     *           Default is `false`, which treats unknown values as errors.
+     *     @type string $templateSuffix If specified, treats the destination
+     *           table as a base template, and inserts the rows into an instance
+     *           table named "{destination}{templateSuffix}". BigQuery will
+     *           manage creation of the instance table, using the schema of the
+     *           base template table. See
+     *           [Creating tables automatically using template tables](https://cloud.google.com/bigquery/streaming-data-into-bigquery#template-tables)
+     *           for considerations when working with templates tables.
+     * }
+     * @return InsertResponse
+     * @throws \InvalidArgumentException
+     * @codingStandardsIgnoreEnd
+     */
+    public function insertRows(array $rows, array $options = [])
+    {
+        foreach ($rows as $row) {
+            if (!isset($row['data'])) {
+                throw new \InvalidArgumentException('A row must have a data key.');
+            }
+
+            $row['json'] = $row['data'];
+            unset($row['data']);
+            $options['rows'][] = $row;
+        }
+
+        return new InsertResponse(
+            $this->connection->insertAllTableData($this->identity + $options),
+            $options['rows']
+        );
+    }
+
+    /**
      * Retrieves the table's details. If no table data is cached a network
      * request will be made to retrieve it.
      *
