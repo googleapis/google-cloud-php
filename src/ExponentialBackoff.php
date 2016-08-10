@@ -35,24 +35,6 @@ class ExponentialBackoff
     private $delayFunction;
 
     /**
-     * @var array
-     */
-    private $httpRetryCodes = [
-        500,
-        502,
-        503,
-        504
-    ];
-
-    /**
-     * @var array
-     */
-    private $httpRetryMessages = [
-        'rateLimitExceeded',
-        'userRateLimitExceeded'
-    ];
-
-    /**
      * @param int $retries Number of retries for a failed request.
      */
     public function __construct($retries = null)
@@ -71,10 +53,11 @@ class ExponentialBackoff
      *
      * @param callable $function
      * @param array $arguments
+     * @param callable $retryFunction
      * @return mixed
      * @throws \Exception The last exception caught while retrying.
      */
-    public function execute(callable $function, array $arguments = [])
+    public function execute(callable $function, array $arguments = [], $retryFunction = null)
     {
         $delayFunction = $this->delayFunction;
         $retryAttempt = 0;
@@ -84,7 +67,7 @@ class ExponentialBackoff
             try {
                 return call_user_func_array($function, $arguments);
             } catch (\Exception $exception) {
-                if (!$this->shouldRetry($exception)) {
+                if ($retryFunction && !call_user_func($retryFunction, $exception)) {
                     throw $exception;
                 }
 
@@ -117,33 +100,5 @@ class ExponentialBackoff
             mt_rand(0, 1000000) + (pow(2, $attempt) * 1000000),
             self::MAX_DELAY_MICROSECONDS
         );
-    }
-
-    /**
-     * Determines whether or not the request should be retried.
-     *
-     * @param \Exception $ex
-     * @return bool
-     */
-    private function shouldRetry(\Exception $ex)
-    {
-        $statusCode = $ex->getCode();
-        $message = json_decode($ex->getMessage(), true);
-
-        if (in_array($statusCode, $this->httpRetryCodes)) {
-            return true;
-        }
-
-        if (!isset($message['error']['errors'])) {
-            return false;
-        }
-
-        foreach ($message['error']['errors'] as $error) {
-            if (in_array($error['reason'], $this->httpRetryMessages)) {
-                return true;
-            }
-        }
-
-        return false;
     }
 }

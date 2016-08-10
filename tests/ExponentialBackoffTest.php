@@ -71,19 +71,21 @@ class ExponentialBackoffTest extends \PHPUnit_Framework_TestCase
         ];
     }
 
-    public function testThrowsExceptionWithNonRetryableError()
+    public function testThrowsExceptionWhenRetryFunctionReturnsFalse()
     {
-        $nonRetryableErrorMessage = '{"error": {"errors": [{"reason": "notAGoodEnoughReason"}]}}';
         $actualAttempts = 0;
         $hasTriggeredException = false;
         $backoff = new ExponentialBackoff();
         $backoff->setDelayFunction($this->delayFunction);
+        $retryFunction = function(\Exception $ex) {
+            return false;
+        };
 
         try {
-            $backoff->execute(function () use (&$actualAttempts, $nonRetryableErrorMessage) {
+            $backoff->execute(function () use (&$actualAttempts) {
                 $actualAttempts++;
-                throw new \Exception($nonRetryableErrorMessage, 429);
-            });
+                throw new \Exception();
+            }, [], $retryFunction);
         } catch (\Exception $ex) {
             $hasTriggeredException = true;
         }
