@@ -159,13 +159,12 @@ class RequestWrapper
     {
         $retries = isset($options['retries']) ? $options['retries'] : $this->retries;
         $httpOptions = isset($options['httpOptions']) ? $options['httpOptions'] : $this->httpOptions;
-        $backoff = new ExponentialBackoff($retries);
+        $backoff = new ExponentialBackoff($retries, $this->getRetryFunction());
 
         $signedRequest = $this->signRequest($request);
-        $retryFunction = $this->getRetryFunction();
 
         try {
-            return $backoff->execute($this->httpHandler, [$signedRequest, $httpOptions], $retryFunction);
+            return $backoff->execute($this->httpHandler, [$signedRequest, $httpOptions]);
         } catch (\Exception $ex) {
             throw $this->convertToGoogleException($ex);
         }

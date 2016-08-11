@@ -32,14 +32,21 @@ class ExponentialBackoff
     /**
      * @var callable
      */
+    private $retryFunction;
+
+    /**
+     * @var callable
+     */
     private $delayFunction;
 
     /**
      * @param int $retries Number of retries for a failed request.
+     * @param callable $retryFunction returns bool for whether or not to retry
      */
-    public function __construct($retries = null)
+    public function __construct($retries = null, callable $retryFunction = null)
     {
         $this->retries = $retries !== null ? (int) $retries : 3;
+        $this->retryFunction = $retryFunction;
         // @todo revisit this approach
         // @codeCoverageIgnoreStart
         $this->delayFunction = function ($delay) {
@@ -53,11 +60,10 @@ class ExponentialBackoff
      *
      * @param callable $function
      * @param array $arguments
-     * @param callable $retryFunction
      * @return mixed
      * @throws \Exception The last exception caught while retrying.
      */
-    public function execute(callable $function, array $arguments = [], $retryFunction = null)
+    public function execute(callable $function, array $arguments = [])
     {
         $delayFunction = $this->delayFunction;
         $retryAttempt = 0;
@@ -67,8 +73,10 @@ class ExponentialBackoff
             try {
                 return call_user_func_array($function, $arguments);
             } catch (\Exception $exception) {
-                if ($retryFunction && !call_user_func($retryFunction, $exception)) {
-                    throw $exception;
+                if ($this->retryFunction) {
+                    if (!call_user_func($this->retryFunction, $exception)) {
+                        throw $exception;
+                    }
                 }
 
                 $delayFunction($this->calculateDelay($retryAttempt));

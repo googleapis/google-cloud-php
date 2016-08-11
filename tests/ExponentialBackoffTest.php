@@ -75,17 +75,17 @@ class ExponentialBackoffTest extends \PHPUnit_Framework_TestCase
     {
         $actualAttempts = 0;
         $hasTriggeredException = false;
-        $backoff = new ExponentialBackoff();
-        $backoff->setDelayFunction($this->delayFunction);
         $retryFunction = function(\Exception $ex) {
             return false;
         };
+        $backoff = new ExponentialBackoff(null, $retryFunction);
+        $backoff->setDelayFunction($this->delayFunction);
 
         try {
             $backoff->execute(function () use (&$actualAttempts) {
                 $actualAttempts++;
                 throw new \Exception();
-            }, [], $retryFunction);
+            });
         } catch (\Exception $ex) {
             $hasTriggeredException = true;
         }
