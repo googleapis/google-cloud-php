@@ -9,7 +9,7 @@
     <whitelist>
       <directory suffix=".php">src</directory>
       <exclude>
-        <directory suffix=".php">src/Logging/V2</directory>
+        <directory suffix=".php">src/*/V[!a-zA-Z]*</directory>
       </exclude>
     </whitelist>
   </filter>
