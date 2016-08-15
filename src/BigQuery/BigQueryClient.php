@@ -325,6 +325,46 @@ class BigQueryClient
     }
 
     /**
+     * Fetches all BigQuery projects.
+     *
+     * Example:
+     * ```
+     * $projects = $bigQuery->projects();
+     *
+     * foreach ($projects as $project) {
+     *     var_dump($project['id']);
+     * }
+     * ```
+     *
+     * @see https://cloud.google.com/bigquery/docs/reference/v2/projects Projects list API documentation.
+     *
+     * @param array $options {
+     *     Configuration options.
+     *
+     *     @type int $maxResults Maximum number of results to return.
+     * }
+     * @return \Generator
+     */
+    public function projects(array $options = [])
+    {
+        $options['pageToken'] = null;
+
+        do {
+            $response = $this->connection->listProjects($options);
+
+            if (!isset($response['projects'])) {
+                return;
+            }
+
+            foreach ($response['projects'] as $project) {
+                yield $project;
+            }
+
+            $options['pageToken'] = isset($response['nextPageToken']) ? $response['nextPageToken'] : null;
+        } while ($options['pageToken']);
+    }
+
+    /**
      * Creates a dataset.
      *
      * Example:

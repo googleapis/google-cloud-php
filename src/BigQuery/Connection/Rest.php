@@ -56,6 +56,15 @@ class Rest implements ConnectionInterface
      * @param array $args
      * @return array
      */
+    public function listProjects(array $args = [])
+    {
+        return $this->send('projects', 'list', $args);
+    }
+
+    /**
+     * @param array $args
+     * @return array
+     */
     public function deleteDataset(array $args = [])
     {
         return $this->send('datasets', 'delete', $args);
