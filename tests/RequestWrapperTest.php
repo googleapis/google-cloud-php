@@ -277,4 +277,27 @@ class RequestWrapperTest extends \PHPUnit_Framework_TestCase
             new Request('GET', 'http://www.example.com')
         );
     }
+
+    public function testThrowsExceptionWithNonRetryableError()
+    {
+        $nonRetryableErrorMessage = '{"error": {"errors": [{"reason": "notAGoodEnoughReason"}]}}';
+        $actualAttempts = 0;
+        $hasTriggeredException = false;
+        $requestWrapper = new RequestWrapper([
+            'httpHandler' => function () use (&$actualAttempts, $nonRetryableErrorMessage) {
+                $actualAttempts++;
+                throw new \Exception($nonRetryableErrorMessage, 429);
+            }
+        ]);
+        try {
+            $requestWrapper->send(
+                new Request('GET', 'http://www.example.com')
+            );
+        } catch (\Exception $ex) {
+            $hasTriggeredException = true;
+        }
+
+        $this->assertTrue($hasTriggeredException);
+        $this->assertEquals(1, $actualAttempts);
+    }
 }

@@ -73,7 +73,25 @@ class RequestWrapper
     /**
      * @var int Number of retries for a failed request. Defaults to 3.
      */
+
     private $retries;
+    /**
+     * @var array
+     */
+    private $httpRetryCodes = [
+        500,
+        502,
+        503,
+        504
+    ];
+
+    /**
+     * @var array
+     */
+    private $httpRetryMessages = [
+        'rateLimitExceeded',
+        'userRateLimitExceeded'
+    ];
 
     /**
      * @var array Scopes to be used for the request.
@@ -141,7 +159,7 @@ class RequestWrapper
     {
         $retries = isset($options['retries']) ? $options['retries'] : $this->retries;
         $httpOptions = isset($options['httpOptions']) ? $options['httpOptions'] : $this->httpOptions;
-        $backoff = new ExponentialBackoff($retries);
+        $backoff = new ExponentialBackoff($retries, $this->getRetryFunction());
 
         $signedRequest = $this->signRequest($request);
 
@@ -256,5 +274,40 @@ class RequestWrapper
         }
 
         return new $exception($ex->getMessage(), $ex->getCode(), $ex);
+    }
+
+
+
+    /**
+     * Determines whether or not the request should be retried.
+     *
+     * @param \Exception $ex
+     * @return bool
+     */
+    private function getRetryFunction()
+    {
+        $httpRetryCodes = $this->httpRetryCodes;
+        $httpRetryMessages = $this->httpRetryMessages;
+        return function (\Exception $ex) use ($httpRetryCodes, $httpRetryMessages) {
+            $statusCode = $ex->getCode();
+
+            if (in_array($statusCode, $httpRetryCodes)) {
+                return true;
+            }
+
+            $message = json_decode($ex->getMessage(), true);
+
+            if (!isset($message['error']['errors'])) {
+                return false;
+            }
+
+            foreach ($message['error']['errors'] as $error) {
+                if (in_array($error['reason'], $httpRetryMessages)) {
+                    return true;
+                }
+            }
+
+            return false;
+        };
     }
 }
