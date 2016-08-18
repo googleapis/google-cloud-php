@@ -347,7 +347,9 @@ class Subscription
      *            wait until new messages are available.
      *      @type int  $maxMessages Limit the amount of messages pulled.
      * }
-     * @return \Generator
+     * @codeStandardsIgnoreStart
+     * @return \Generator<array> [ReceivedMessage](https://cloud.google.com/pubsub/reference/rest/v1/projects.subscriptions/pull#ReceivedMessage)
+     * @codeStandardsIgnoreEnd
      */
     public function pull(array $options = [])
     {

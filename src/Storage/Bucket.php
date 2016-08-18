@@ -327,7 +327,7 @@ class Bucket
      *     @type string $fields Selector which will cause the response to only
      *           return the specified fields.
      * }
-     * @return \Generator
+     * @return \Generator<Google\Cloud\Storage\Object>
      */
     public function objects(array $options = [])
     {

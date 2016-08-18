@@ -423,7 +423,7 @@ class Topic
      *
      *     @type int $pageSize Maximum number of subscriptions to return.
      * }
-     * @return \Generator Populated with Subscription objects
+     * @return \Generator<Google\Cloud\PubSub\Subscription>
      */
     public function subscriptions(array $options = [])
     {

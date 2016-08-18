@@ -437,6 +437,16 @@ class DocGenerator
             if (substr_compare($type, '\Google\Cloud', 0, 13) === 0) {
                 $type = $this->buildLink($type);
             }
+
+            $matches = [];
+            if (preg_match('/\\\\?Generator\<(.*?)\>/', $type, $matches)) {
+                $typeLink = $matches[1];
+                if (strpos($matches[1], '\\') !== FALSE) {
+                    $typeLink = $this->buildLink($matches[1]);
+                }
+
+                $type = sprintf(htmlentities('Generator<%s>'), $typeLink);
+            }
         }
 
         return $types;

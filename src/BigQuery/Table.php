@@ -121,7 +121,7 @@ class Table
      *     @type int $maxResults Maximum number of results to return.
      *     @type int $startIndex Zero-based index of the starting row.
      * }
-     * @return \Generator
+     * @return \Generator<array>
      */
     public function rows(array $options = [])
     {
