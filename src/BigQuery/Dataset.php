@@ -163,7 +163,7 @@ class Dataset
      *
      *     @type int $maxResults Maximum number of results to return.
      * }
-     * @return \Generator
+     * @return \Generator<Google\Cloud\BigQuery\Table>
      */
     public function tables(array $options = [])
     {

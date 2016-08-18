@@ -158,7 +158,7 @@ class PubSubClient
      *     @type int $pageSize Maximum number of results to return per
      *           request.
      * }
-     * @return Generator
+     * @return Generator<Google\Cloud\PubSub\Topic>
      */
     public function topics(array $options = [])
     {
@@ -255,7 +255,7 @@ class PubSubClient
      *     @type int $pageSize Maximum number of results to return per
      *           request.
      * }
-     * @return \Generator
+     * @return \Generator<Google\Cloud\PubSub\Subscription>
      */
     public function subscriptions(array $options = [])
     {

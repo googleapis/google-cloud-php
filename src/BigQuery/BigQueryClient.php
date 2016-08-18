@@ -234,7 +234,7 @@ class BigQueryClient
      *     @type string $stateFilter Filter for job state. Maybe be either
      *           `done`, `pending`, or `running`.
      * }
-     * @return \Generator
+     * @return \Generator<Google\Cloud\BigQuery\Job>
      */
     public function jobs(array $options = [])
     {
@@ -298,7 +298,7 @@ class BigQueryClient
      *     @type bool $all Whether to list all datasets, including hidden ones.
      *     @type int $maxResults Maximum number of results to return.
      * }
-     * @return \Generator
+     * @return \Generator<Google\Cloud\BigQuery\Dataset>
      */
     public function datasets(array $options = [])
     {

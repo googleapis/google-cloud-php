@@ -164,7 +164,7 @@ class LoggingClient
      *
      *     @type int $pageSize The maximum number of results to return per request.
      * }
-     * @return \Generator
+     * @return \Generator<Google\Cloud\Logging\Sink>
      */
     public function sinks(array $options = [])
     {
@@ -253,7 +253,7 @@ class LoggingClient
      *
      *     @type int $pageSize The maximum number of results to return per request.
      * }
-     * @return \Generator
+     * @return \Generator<Google\Cloud\Logging\Metric>
      */
     public function metrics(array $options = [])
     {
@@ -314,7 +314,7 @@ class LoggingClient
      *     @type int $pageSize The maximum number of results to return per
      *           request.
      * }
-     * @return \Generator
+     * @return \Generator<Google\Cloud\Logging\Entry>
      */
     public function entries(array $options = [])
     {

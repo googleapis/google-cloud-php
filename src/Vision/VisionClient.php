@@ -241,7 +241,7 @@ class VisionClient
      * @param  Image[] $images An array consisting of instances of
      *         {@see Google\Cloud\Vision\Image}.
      * @param  array $options Configuration Options
-     * @return \Generator
+     * @return \Generator<Google\Cloud\Vision\Annotation>
      */
     public function annotateBatch(array $images, array $options = [])
     {
@@ -265,7 +265,7 @@ class VisionClient
      * Generate a response to an annotation request.
      *
      * @param array $res The response object
-     * @return \Generator
+     * @return \Generator<Google\Cloud\Vision\Annotation>
      */
     private function respond(array $res)
     {
