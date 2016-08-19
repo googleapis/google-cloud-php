@@ -18,6 +18,7 @@
 namespace Google\Cloud\NaturalLanguage;
 
 use Google\Cloud\ClientTrait;
+use Google\Cloud\NaturalLanguage\Connection\ConnectionInterface;
 use Google\Cloud\NaturalLanguage\Connection\Rest;
 use Google\Cloud\Storage\StorageObject;
 

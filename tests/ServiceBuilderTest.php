@@ -65,6 +65,9 @@ class ServiceBuilderTest extends \PHPUnit_Framework_TestCase
                 'pubsub',
                 'Google\Cloud\PubSub\PubSubClient'
             ], [
+                'speech',
+                'Google\Cloud\Speech\SpeechClient'
+            ], [
                 'storage',
                 'Google\Cloud\Storage\StorageClient'
             ], [
@@ -76,6 +79,9 @@ class ServiceBuilderTest extends \PHPUnit_Framework_TestCase
             ], [
                 'logging',
                 'Google\Cloud\Logging\LoggingClient'
+            ], [
+                'datastore',
+                'Google\Cloud\Datastore\DatastoreClient'
             ]
         ];
     }

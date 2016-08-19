@@ -22,7 +22,7 @@ use Google\Cloud\NaturalLanguage\Annotation;
 /**
  * @group naturalLanguage
  */
-class DocumentTest extends \PHPUnit_Framework_TestCase
+class AnnotationTest extends \PHPUnit_Framework_TestCase
 {
     private $annotation;
     private $entity;
