@@ -25,6 +25,9 @@ use Google\Cloud\UriTrait;
 /**
  * Implementation of the
  * [Google Pub/Sub REST API](https://cloud.google.com/pubsub/reference/rest/).
+ *
+ * The `PUBSUB_EMULATOR_HOST` environment variable from the gcloud SDK is
+ * honored, otherwise the actual API endpoint will be used.
  */
 class Rest implements ConnectionInterface
 {
@@ -41,7 +44,7 @@ class Rest implements ConnectionInterface
         $this->setRequestWrapper(new RequestWrapper($config));
         $this->setRequestBuilder(new RequestBuilder(
             __DIR__ . '/ServiceDefinition/pubsub-v1.json',
-            self::BASE_URI,
+            getenv('PUBSUB_EMULATOR_HOST') ?: self::BASE_URI,
             ['resources', 'projects']
         ));
     }
