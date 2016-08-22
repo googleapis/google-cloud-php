@@ -1,8 +1,8 @@
-# How to contribute to gcloud
+# How to contribute to google-cloud-php
 
-Thank you for your interest in contributing to [gcloud](https://github.com/GoogleCloudPlatform). The APIs of the [Google Cloud Platform](https://cloud.google.com/) constitute a huge offering that continues to expand at a rapid pace. Because there is so much work to do to make the gcloud libraries the best-ever way to access these APIs, we desperately need your help. Your contributions are more than just welcome, they are essential.
+Thank you for your interest in contributing to [google-cloud-php](https://github.com/GoogleCloudPlatform). The APIs of the [Google Cloud Platform](https://cloud.google.com/) constitute a huge offering that continues to expand at a rapid pace. Because there is so much work to do to make the google-cloud-php libraries the best-ever way to access these APIs, we desperately need your help. Your contributions are more than just welcome, they are essential.
 
-Therefore, out of respect for your time and effort, we are trying hard to make contributing to gcloud a safe, efficient, and well-defined process. If you encounter any difficulty during the process, do not hesitate to [get in touch](/troubleshooting/readme.md).
+Therefore, out of respect for your time and effort, we are trying hard to make contributing to google-cloud-php a safe, efficient, and well-defined process. If you encounter any difficulty during the process, do not hesitate to [get in touch](/troubleshooting/readme.md).
 
 ## Signing the Contributor License Agreement (CLA)
 
@@ -17,13 +17,13 @@ You (and your authorized signer, if corporate) can sign the CLA electronically. 
 
 ## Opening an issue
 
-If you've tried everything in our [Troubleshooting](/troubleshooting/readme.md) guide and are still running into problems, it is probably time to open a GitHub issue. GitHub provides a guide, [Mastering Issues](https://guides.github.com/features/issues/), that is useful if you are unfamiliar with the process. Here are the specific steps for opening a gcloud issue:
+If you've tried everything in our [Troubleshooting](/troubleshooting/readme.md) guide and are still running into problems, it is probably time to open a GitHub issue. GitHub provides a guide, [Mastering Issues](https://guides.github.com/features/issues/), that is useful if you are unfamiliar with the process. Here are the specific steps for opening a google-cloud-php issue:
 
 1. Go to the project issues page on GitHub.
 1. Click the green `New Issue` button located in the upper right corner.
 1. In the title field, write a single phrase that identifies your issue, including service, class, and method names if appropriate.
 1. In the main editor, describe your issue. The details of your description will vary depending on your issue type, as follows:
-    * `bug` - Document the steps to reproduce. List relevant details about your environment, especially your Ruby version. Include the full stack trace (backtrace) if there is an exception.
+    * `bug` - Document the steps to reproduce. List relevant details about your environment, especially your PHP version. Include the full stack trace (backtrace) if there is an exception.
     * `enhancement` - Put on your salesman hat and sell your proposed feature. If you can, link to some compelling external examples.
     * `docs` - Helping us improve the project documentation should not be a hassle. Just quickly let us know where the problem is, and jot down a suggestion or two for making things better.
 1. Click the submit button.
@@ -41,9 +41,9 @@ The GitHub project issues page is the place to look for shovel-ready work. Here 
 
 If you can't find anything actionable, be sure to check back again in a week or so.
 
-## Making changes to gcloud
+## Making changes to google-cloud-php
 
-The following is a high-level overview of how to contribute to a gcloud client library:
+The following is a high-level overview of how to contribute to a google-cloud-php client library:
 
 1. [Open an issue](#opening-an-issue) to ensure that your work is coordinated with the efforts of others.
 
