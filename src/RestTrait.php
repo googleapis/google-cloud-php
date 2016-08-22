@@ -81,4 +81,23 @@ trait RestTrait
             true
         );
     }
+
+    /**
+     * When emulators are enabled, use them as the service host
+     *
+     * @param string $baseUri
+     * @param string $emulatorHost
+     * @return string
+     */
+    public function getEmulatorBaseUri($baseUri, $emulatorHost = null)
+    {
+        if ($emulatorHost) {
+            $emulatorUriComponents = parse_url($emulatorHost);
+            $emulatorUriComponents = array_merge(['scheme' => 'http', 'port' => ''], $emulatorUriComponents);
+            $baseUri = "{$emulatorUriComponents['scheme']}://{$emulatorUriComponents['host']}";
+            $baseUri .= $emulatorUriComponents['port'] ? ":{$emulatorUriComponents['port']}/" : '/';
+        }
+
+        return $baseUri;
+    }
 }
