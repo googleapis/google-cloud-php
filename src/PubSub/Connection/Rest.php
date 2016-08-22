@@ -43,11 +43,12 @@ class Rest implements ConnectionInterface
     {
         $baseUri = self::BASE_URI;
 
-        $pubSubEmulatorHost = getenv('PUBSUB_EMULATOR_HOST');
-        if ($pubSubEmulatorHost && $uriComponents = parse_url($pubSubEmulatorHost)) {
-            $uriComponents = array_merge(['scheme' => 'http', 'port' => ''], $uriComponents);
-            $baseUri = "{$uriComponents['scheme']}://{$uriComponents['host']}";
-            $baseUri .= $uriComponents['port'] ? ":{$uriComponents['port']}/" : '/';
+        $emulatorHost = getenv('PUBSUB_EMULATOR_HOST');
+        $emulatorUriComponents = parse_url($emulatorHost);
+        if ($emulatorHost && $emulatorUriComponents) {
+            $emulatorUriComponents = array_merge(['scheme' => 'http', 'port' => ''], $emulatorUriComponents);
+            $baseUri = "{$emulatorUriComponents['scheme']}://{$emulatorUriComponents['host']}";
+            $baseUri .= $emulatorUriComponents['port'] ? ":{$emulatorUriComponents['port']}/" : '/';
             $config['shouldSignRequest'] = false;
         }
 
