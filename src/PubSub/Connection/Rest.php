@@ -41,10 +41,20 @@ class Rest implements ConnectionInterface
      */
     public function __construct(array $config = [])
     {
+        $baseUri = self::BASE_URI;
+
+        $pubSubEmulatorHost = getenv('PUBSUB_EMULATOR_HOST');
+        if ($pubSubEmulatorHost && $uriComponents = parse_url($pubSubEmulatorHost)) {
+            $uriComponents = array_merge(['scheme' => 'http', 'port' => ''], $uriComponents);
+            $baseUri = "{$uriComponents['scheme']}://{$uriComponents['host']}";
+            $baseUri .= $uriComponents['port'] ? ":{$uriComponents['port']}/" : '/';
+            $config['shouldSignRequest'] = false;
+        }
+
         $this->setRequestWrapper(new RequestWrapper($config));
         $this->setRequestBuilder(new RequestBuilder(
             __DIR__ . '/ServiceDefinition/pubsub-v1.json',
-            getenv('PUBSUB_EMULATOR_HOST') ?: self::BASE_URI,
+            $baseUri,
             ['resources', 'projects']
         ));
     }
