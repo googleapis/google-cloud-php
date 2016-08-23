@@ -2,6 +2,7 @@
   "lang": "php",
   "friendlyLang": "PHP",
   "libraryTitle": "Google Cloud Client Library",
+  "moduleName": "google-cloud-php",
   "defaultService": "servicebuilder",
   "markdown": "php",
   "versions": [
