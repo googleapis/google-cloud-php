@@ -1,11 +1,10 @@
 # Google Cloud PHP Client
-[![Travis Build Status](https://travis-ci.org/GoogleCloudPlatform/gcloud-php.svg?branch=master)](https://travis-ci.org/GoogleCloudPlatform/gcloud-php/)
-[![Coverage Status](https://coveralls.io/repos/github/GoogleCloudPlatform/gcloud-php/badge.svg?branch=master)](https://coveralls.io/github/GoogleCloudPlatform/gcloud-php?branch=master)
+[![Travis Build Status](https://travis-ci.org/GoogleCloudPlatform/google-cloud-php.svg?branch=master)](https://travis-ci.org/GoogleCloudPlatform/google-cloud-php/) [![codecov](https://codecov.io/gh/googlecloudplatform/google-cloud-php/branch/master/graph/badge.svg)](https://codecov.io/gh/googlecloudplatform/google-cloud-php)
 
 > Idiomatic PHP client for [Google Cloud Platform](https://cloud.google.com/) services.
 
-* [Homepage](http://googlecloudplatform.github.io/gcloud-php)
-* [API Documentation](http://googlecloudplatform.github.io/gcloud-php/#/docs)
+* [Homepage](http://googlecloudplatform.github.io/google-cloud-php)
+* [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs)
 
 This client supports the following Google Cloud Platform services:
 
@@ -26,7 +25,7 @@ $ composer require google/cloud
 
 ## Google BigQuery
 
-- [API Documentation](http://googlecloudplatform.github.io/gcloud-php/#/docs/latest/bigquery/bigqueryclient)
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/bigquery/bigqueryclient)
 - [Official Documentation](https://cloud.google.com/bigquery/docs)
 
 #### Preview
@@ -60,7 +59,7 @@ foreach ($queryResults->rows() as $row) {
 
 ## Google Stackdriver Logging
 
-- [API Documentation](http://googlecloudplatform.github.io/gcloud-php/#/docs/latest/logging/loggingclient)
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/logging/loggingclient)
 - [Official Documentation](https://cloud.google.com/logging/docs)
 
 #### Preview
@@ -100,7 +99,7 @@ foreach ($entries as $entry) {
 
 ## Google Cloud Natural Language
 
-- [API Documentation](http://googlecloudplatform.github.io/gcloud-php/#/docs/latest/naturallanguage/naturallanguageclient)
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/naturallanguage/naturallanguageclient)
 - [Official Documentation](https://cloud.google.com/natural-language/docs)
 
 #### Preview
@@ -139,7 +138,7 @@ foreach ($tokens as $token) {
 
 ## Google Cloud Pub/Sub
 
-- [API Documentation](http://googlecloudplatform.github.io/gcloud-php/#/docs/latest/pubsub/pubsubclient)
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/pubsub/pubsubclient)
 - [Official Documentation](https://cloud.google.com/pubsub/docs)
 
 #### Preview
@@ -177,7 +176,7 @@ foreach ($messages as $message) {
 
 ## Google Cloud Storage
 
-- [API Documentation](http://googlecloudplatform.github.io/gcloud-php/#/docs/latest/storage/storageclient)
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/storage/storageclient)
 - [Official Documentation](https://cloud.google.com/storage/docs)
 
 #### Preview
@@ -205,7 +204,7 @@ $object->downloadToFile('/data/file_backup.txt');
 
 ## Google Cloud Vision
 
-- [API Documentation](http://googlecloudplatform.github.io/gcloud-php/#/docs/latest/vision/visionclient)
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/vision/visionclient)
 - [Official Documentation](https://cloud.google.com/vision/docs)
 
 #### Preview
