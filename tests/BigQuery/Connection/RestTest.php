@@ -67,6 +67,7 @@ class RestTest extends \PHPUnit_Framework_TestCase
     public function methodProvider()
     {
         return [
+            ['listProjects'],
             ['deleteDataset'],
             ['patchDataset'],
             ['getDataset'],
