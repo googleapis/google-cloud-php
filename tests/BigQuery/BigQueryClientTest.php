@@ -207,6 +207,35 @@ class BigQueryClientTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf(Dataset::class, $dataset);
     }
+
+    public function testGetsProjectsWithNoResults()
+    {
+        $this->connection->listProjects(Argument::any())
+            ->willReturn([])
+            ->shouldBeCalledTimes(1);
+
+        $this->client->setConnection($this->connection->reveal());
+        $projects = iterator_to_array($this->client->projects());
+
+        $this->assertEmpty($projects);
+    }
+
+    public function testGetsProjectsWithoutToken()
+    {
+        $this->connection->listProjects(Argument::any())
+            ->willReturn([
+                'projects' => [
+                    ['id' => $this->projectId]
+                ]
+            ])
+            ->shouldBeCalledTimes(1);
+
+        $this->client->setConnection($this->connection->reveal());
+        $projects = iterator_to_array($this->client->projects());
+
+        $this->assertEquals($this->projectId, $projects[0]['id']);
+    }
+
 }
 
 class BigQueryTestClient extends BigQueryClient
