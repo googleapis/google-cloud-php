@@ -46,7 +46,7 @@ use google\logging\v2\UpdateLogMetricRequest;
  * ```
  * try {
  *     $metricsServiceV2Api = new MetricsServiceV2Api();
- *     $formattedParent = MetricsServiceV2Api::formatProjectName("[PROJECT]");
+ *     $formattedParent = MetricsServiceV2Api::formatParentName("[PROJECT]");
  *     foreach ($metricsServiceV2Api->listLogMetrics($formattedParent) as $element) {
  *         // doThingsWith(element);
  *     }
@@ -83,7 +83,7 @@ class MetricsServiceV2Api
     const _CODEGEN_NAME = 'GAPIC';
     const _CODEGEN_VERSION = '0.0.0';
 
-    private static $projectNameTemplate;
+    private static $parentNameTemplate;
     private static $metricNameTemplate;
 
     private $grpcCredentialsHelper;
@@ -94,11 +94,11 @@ class MetricsServiceV2Api
 
     /**
      * Formats a string containing the fully-qualified path to represent
-     * a project resource.
+     * a parent resource.
      */
-    public static function formatProjectName($project)
+    public static function formatParentName($project)
     {
-        return self::getProjectNameTemplate()->render([
+        return self::getParentNameTemplate()->render([
             'project' => $project,
         ]);
     }
@@ -117,11 +117,11 @@ class MetricsServiceV2Api
 
     /**
      * Parses the project from the given fully-qualified path which
-     * represents a project resource.
+     * represents a parent resource.
      */
-    public static function parseProjectFromProjectName($projectName)
+    public static function parseProjectFromParentName($parentName)
     {
-        return self::getProjectNameTemplate()->match($projectName)['project'];
+        return self::getParentNameTemplate()->match($parentName)['project'];
     }
 
     /**
@@ -142,13 +142,13 @@ class MetricsServiceV2Api
         return self::getMetricNameTemplate()->match($metricName)['metric'];
     }
 
-    private static function getProjectNameTemplate()
+    private static function getParentNameTemplate()
     {
-        if (self::$projectNameTemplate == null) {
-            self::$projectNameTemplate = new PathTemplate('projects/{project}');
+        if (self::$parentNameTemplate == null) {
+            self::$parentNameTemplate = new PathTemplate('projects/{project}');
         }
 
-        return self::$projectNameTemplate;
+        return self::$parentNameTemplate;
     }
 
     private static function getMetricNameTemplate()
@@ -165,6 +165,7 @@ class MetricsServiceV2Api
         $listLogMetricsPageStreamingDescriptor =
                 new PageStreamingDescriptor([
                     'requestPageTokenField' => 'page_token',
+                    'requestPageSizeField' => 'page_size',
                     'responsePageTokenField' => 'next_page_token',
                     'resourceField' => 'metrics',
                 ]);
@@ -254,7 +255,7 @@ class MetricsServiceV2Api
 
         // TODO load the client config in a more package-friendly way
         // https://github.com/googleapis/toolkit/issues/332
-        $clientConfigJsonString = file_get_contents(__DIR__ . '/resources/metrics_service_v2_client_config.json');
+        $clientConfigJsonString = file_get_contents(__DIR__.'/resources/metrics_service_v2_client_config.json');
         $clientConfig = json_decode($clientConfigJsonString, true);
         $this->defaultCallSettings =
                 CallSettings::load(
@@ -291,7 +292,7 @@ class MetricsServiceV2Api
      * ```
      * try {
      *     $metricsServiceV2Api = new MetricsServiceV2Api();
-     *     $formattedParent = MetricsServiceV2Api::formatProjectName("[PROJECT]");
+     *     $formattedParent = MetricsServiceV2Api::formatParentName("[PROJECT]");
      *     foreach ($metricsServiceV2Api->listLogMetrics($formattedParent) as $element) {
      *         // doThingsWith(element);
      *     }
@@ -416,7 +417,7 @@ class MetricsServiceV2Api
      * ```
      * try {
      *     $metricsServiceV2Api = new MetricsServiceV2Api();
-     *     $formattedParent = MetricsServiceV2Api::formatProjectName("[PROJECT]");
+     *     $formattedParent = MetricsServiceV2Api::formatParentName("[PROJECT]");
      *     $metric = new LogMetric();
      *     $response = $metricsServiceV2Api->createLogMetric($formattedParent, $metric);
      * } finally {
