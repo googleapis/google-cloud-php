@@ -2,7 +2,7 @@
   "name": "google/cloud",
   "type": "library",
   "description": "Google Cloud Client Library",
-    "keywords": [
+  "keywords": [
     "google apis client",
     "google api client",
     "google apis",
@@ -10,9 +10,18 @@
     "google",
     "google cloud platform",
     "google cloud",
-    "cloud"
+    "cloud",
+    "bigquery",
+    "big query",
+    "stackdriver logging",
+    "natural language",
+    "pubsub",
+    "pub/sub",
+    "storage",
+    "gcs",
+    "vision"
   ],
-  "homepage": "http://github.com/GoogleCloudPlatform/gcloud-php",
+  "homepage": "http://github.com/GoogleCloudPlatform/google-cloud-php",
   "license": "Apache-2.0",
   "authors": [
     {
