@@ -39,7 +39,8 @@ use Google\GAX\Testing\MockResponse;
 
 class PageTest extends PHPUnit_Framework_TestCase
 {
-    private static function createPage($responseSequence) {
+    private static function createPage($responseSequence)
+    {
         $mockRequest = MockRequest::createPageStreamingRequest('token');
         $stub = MockStub::createWithResponseSequence($responseSequence);
         $descriptor = new PageStreamingDescriptor([
@@ -55,7 +56,8 @@ class PageTest extends PHPUnit_Framework_TestCase
         return new Page([$mockRequest, [], []], $mockApiCall, $descriptor);
     }
 
-    public function testNextPageMethods() {
+    public function testNextPageMethods()
+    {
         $responseA = MockResponse::createPageStreamingResponse('nextPageToken1', ['resource1']);
         $responseB = MockResponse::createPageStreamingResponse('', ['resource2']);
         $page = PageTest::createPage([
@@ -72,7 +74,39 @@ class PageTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($nextPage->getNextPageToken(), '');
     }
 
-    public function testPageElementMethods() {
+    /**
+     * @expectedException Google\GAX\ValidationException
+     * @expectedExceptionMessage Could not complete getNextPage operation
+     */
+    public function testNextPageMethodsFailWithNoNextPage()
+    {
+        $responseA = MockResponse::createPageStreamingResponse('', ['resource1']);
+        $page = PageTest::createPage([
+            [$responseA, new MockStatus(Grpc\STATUS_OK, '')],
+        ]);
+
+        $this->assertEquals($page->hasNextPage(), false);
+        $page->getNextPage();
+    }
+
+    /**
+     * @expectedException Google\GAX\ValidationException
+     * @expectedExceptionMessage pageSize argument was defined, but the method does not
+     */
+    public function testNextPageMethodsFailWithPageSizeUnsupported()
+    {
+        $responseA = MockResponse::createPageStreamingResponse('nextPageToken1', ['resource1']);
+        $responseB = MockResponse::createPageStreamingResponse('', ['resource2']);
+        $page = PageTest::createPage([
+            [$responseA, new MockStatus(Grpc\STATUS_OK, '')],
+            [$responseB, new MockStatus(Grpc\STATUS_OK, '')],
+        ]);
+
+        $page->getNextPage(3);
+    }
+
+    public function testPageElementMethods()
+    {
         $response = MockResponse::createPageStreamingResponse('nextPageToken1',
             ['resource1', 'resource2', 'resource3']);
         $page = PageTest::createPage([

@@ -41,10 +41,11 @@ use Google\GAX\Testing\MockResponse;
 class FixedSizeCollectionTest extends PHPUnit_Framework_TestCase
 {
     private static function createPage($responseSequence) {
-        $mockRequest = MockRequest::createPageStreamingRequest('token');
+        $mockRequest = MockRequest::createPageStreamingRequest('token', 3);
         $stub = MockStub::createWithResponseSequence($responseSequence);
         $descriptor = new PageStreamingDescriptor([
             'requestPageTokenField' => 'pageToken',
+            'requestPageSizeField' => 'pageSize',
             'responsePageTokenField' => 'nextPageToken',
             'resourceField' => 'resource'
         ]);
