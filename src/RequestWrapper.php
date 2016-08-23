@@ -22,7 +22,6 @@ use Google\Auth\CredentialsLoader;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Auth\HttpHandler\HttpHandlerFactory;
 use Google\Cloud\Exception;
-use Google\Cloud\ExponentialBackoff;
 use GuzzleHttp\Psr7;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -99,6 +98,11 @@ class RequestWrapper
     private $scopes = [];
 
     /**
+     * @var boolean $shouldSignRequest Whether to enable request signing.
+     */
+    private $shouldSignRequest;
+
+    /**
      * @param array $options {
      *     Configuration options.
      *
@@ -113,6 +117,7 @@ class RequestWrapper
      *     @type int $retries Number of retries for a failed request. Defaults
      *           to 3.
      *     @type array $scopes Scopes to be used for the request.
+     *     @type boolean $shouldSignRequest Whether to enable request signing.
      * }
      */
     public function __construct(array $config = [])
@@ -125,7 +130,8 @@ class RequestWrapper
             'httpOptions' => [],
             'keyFile' => null,
             'retries' => null,
-            'scopes' => null
+            'scopes' => null,
+            'shouldSignRequest' => true
         ];
 
         if ($config['credentialsFetcher'] && !$config['credentialsFetcher'] instanceof FetchAuthTokenInterface) {
@@ -140,6 +146,7 @@ class RequestWrapper
         $this->retries = $config['retries'];
         $this->scopes = $config['scopes'];
         $this->keyFile = $config['keyFile'];
+        $this->shouldSignRequest = $config['shouldSignRequest'];
     }
 
     /**
@@ -161,7 +168,7 @@ class RequestWrapper
         $httpOptions = isset($options['httpOptions']) ? $options['httpOptions'] : $this->httpOptions;
         $backoff = new ExponentialBackoff($retries, $this->getRetryFunction());
 
-        $signedRequest = $this->signRequest($request);
+        $signedRequest = $this->shouldSignRequest ? $this->signRequest($request) : $request;
 
         try {
             return $backoff->execute($this->httpHandler, [$signedRequest, $httpOptions]);

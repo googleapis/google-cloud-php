@@ -41,6 +41,9 @@ class PubSubClient
     /**
      * Create a PubSub client.
      *
+     * The [PUBSUB_EMULATOR_HOST](https://cloud.google.com/pubsub/emulator#env) environment variable
+     * from the gcloud SDK is honored, otherwise the actual API endpoint will be used.
+     *
      * Example:
      * ```
      * use Google\Cloud\ServiceBuilder;
