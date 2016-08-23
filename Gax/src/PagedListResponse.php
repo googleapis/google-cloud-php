@@ -124,29 +124,39 @@ class PagedListResponse
      * fewer than collectionSize elements if there are no more
      * pages to be retrieved from the server.
      *
-     * NOTE: it is an error to call this method if the optional parameter
-     * 'page_size' has not been set in the original API call. It is also
-     * an error if the collectionSize parameter is less than the
-     * page_size.
+     * NOTE: it is an error to call this method if an optional parameter
+     * to set the page size is not supported or has not been set in the
+     * original API call. It is also an error if the collectionSize parameter
+     * is less than the page size that has been set.
      */
     public function expandToFixedSizeCollection($collectionSize)
     {
-        if (!array_key_exists(2, $this->parameters)
-            || !array_key_exists('page_size', $this->parameters[2])
-        ) {
+        if (!$this->pageStreamingDescriptor->requestHasPageSizeField()) {
             throw new ValidationException(
-                "Error while expanding Page to FixedSizeCollection: No page_size " .
-                "parameter found. The page_size parameter must be set in the API " .
+                "FixedSizeCollection is not supported for this method, because " .
+                "the method does not support an optional argument to set the " .
+                "page size."
+            );
+        }
+        // The first page has been eagerly constructed, so we do not need to
+        // update the page size parameter before calling getPage
+        $page = $this->getPage();
+        $request = $page->getRequestObject();
+        $pageSizeField = $this->pageStreamingDescriptor->getRequestPageSizeField();
+        if (!isset($request->$pageSizeField)) {
+            throw new ValidationException(
+                "Error while expanding Page to FixedSizeCollection: No page size " .
+                "parameter found. The page size parameter must be set in the API " .
                 "optional arguments array, and must be less than the collectionSize " .
                 "parameter, in order to create a FixedSizeCollection object."
             );
         }
-        $page_size = $this->parameters[2]['page_size'];
-        if ($page_size > $collectionSize) {
+        $pageSize = $request->$pageSizeField;
+        if ($pageSize > $collectionSize) {
             throw new ValidationException(
                 "Error while expanding Page to FixedSizeCollection: collectionSize " .
-                "parameter is less than the page_size optional argument specified in " .
-                "the API call. collectionSize: $collectionSize, page_size: $page_size"
+                "parameter is less than the page size optional argument specified in " .
+                "the API call. collectionSize: $collectionSize, page size: $pageSize"
             );
         }
         return new FixedSizeCollection($this->getPage(), $collectionSize);
@@ -160,10 +170,10 @@ class PagedListResponse
      * exception of the final collection which may contain fewer
      * elements.
      *
-     * NOTE: it is an error to call this method if the optional parameter
-     * 'page_size' has not been set in the original API call. It is also
-     * an error if the collectionSize parameter is less than the
-     * page_size.
+     * NOTE: it is an error to call this method if an optional parameter
+     * to set the page size is not supported or has not been set in the
+     * original API call. It is also an error if the collectionSize parameter
+     * is less than the page size that has been set.
      */
     public function iterateFixedSizeCollections($collectionSize)
     {

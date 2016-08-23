@@ -86,7 +86,7 @@ class Page implements IteratorAggregate
     /**
      * Retrieves the next Page object using the next page token.
      */
-    public function getNextPage()
+    public function getNextPage($pageSize = null)
     {
         if (!$this->hasNextPage()) {
             throw new ValidationException(
@@ -99,6 +99,17 @@ class Page implements IteratorAggregate
 
         $requestPageTokenField = $this->pageStreamingDescriptor->getRequestPageTokenField();
         $newRequest->$requestPageTokenField = $this->getNextPageToken();
+
+        if (isset($pageSize)) {
+            if (!$this->pageStreamingDescriptor->requestHasPageSizeField()) {
+                throw new ValidationException(
+                    'pageSize argument was defined, but the method does not ' .
+                    'support a page size parameter in the optional array argument'
+                );
+            }
+            $requestPageSizeField = $this->pageStreamingDescriptor->getRequestPageSizeField();
+            $newRequest->$requestPageSizeField = $pageSize;
+        }
 
         $nextParameters = [$newRequest, $this->parameters[1], $this->parameters[2]];
 

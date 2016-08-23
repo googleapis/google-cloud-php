@@ -35,15 +35,13 @@ namespace Google\GAX\Testing;
 class MockRequest
 {
     public $pageToken;
+    public $pageSize;
 
-    public static function createPageStreamingRequest($pageToken)
+    public static function createPageStreamingRequest($pageToken, $pageSize = null)
     {
         $request = new MockRequest();
         $request->pageToken = $pageToken;
+        $request->pageSize = $pageSize;
         return $request;
-    }
-
-    public function setPageSize($pageSize) {
-        // do nothing
     }
 }
