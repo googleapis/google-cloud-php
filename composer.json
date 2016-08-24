@@ -16,7 +16,7 @@
     "stackdriver logging",
     "natural language",
     "pubsub",
-    "pub/sub",
+    "pub sub",
     "storage",
     "gcs",
     "vision"
