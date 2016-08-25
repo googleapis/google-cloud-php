@@ -94,7 +94,8 @@ class Object
      *
      * Example:
      * ```
-     * $bucket->exists();
+     * $object = $bucket->object('my-file.txt');
+     * $object->exists();
      * ```
      *
      * @return bool
