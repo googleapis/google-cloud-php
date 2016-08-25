@@ -27,6 +27,12 @@ interface ConnectionInterface
      * @param array $args
      * @return array
      */
+    public function listProjects(array $args = []);
+
+    /**
+     * @param array $args
+     * @return array
+     */
     public function deleteDataset(array $args = []);
 
     /**
