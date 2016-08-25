@@ -241,7 +241,7 @@ class Object
      * Example:
      * ```
      * $info = $object->info();
-     * echo $info['metadata'];
+     * echo $info['size'];
      * ```
      *
      * @see https://cloud.google.com/storage/docs/json_api/v1/objects/get Objects get API documentation.
