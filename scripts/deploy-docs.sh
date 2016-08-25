@@ -8,7 +8,7 @@ function pushDocs () {
   composer docs
   echo "doc dir after generation:"
   find docs
-  git submodule add -f -b gh-pages https://${GH_OAUTH_TOKEN}@github.com/${GH_OWNER}/${GH_PROJECT_NAME} ghpages
+  git submodule add -q -f -b gh-pages https://${GH_OAUTH_TOKEN}@github.com/${GH_OWNER}/${GH_PROJECT_NAME} ghpages
   mkdir -p ghpages/json/${1}
   cp -R docs/json/master/* ghpages/json/${1}
   cp docs/overview.html ghpages/json/${1}
@@ -22,7 +22,7 @@ function pushDocs () {
     git config user.email "travis@travis-ci.org"
     git commit -m "Updating docs for ${1}"
     git status
-    git push https://${GH_OAUTH_TOKEN}@github.com/${GH_OWNER}/${GH_PROJECT_NAME} HEAD:gh-pages
+    git push -q https://${GH_OAUTH_TOKEN}@github.com/${GH_OWNER}/${GH_PROJECT_NAME} HEAD:gh-pages
   else
     echo "Nothing to commit."
   fi
