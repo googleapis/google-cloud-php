@@ -29,54 +29,15 @@ trait DatastoreTrait
      * Format the partitionId
      *
      * @param string $projectId
-     * @param array $options {
-     *     Partition ID Options
-     *
-     *     @type string $namespaceId The namespace ID, if set.
-     * }
+     * @param string $namespaceId
      * @return array
      */
-    private function partitionId($projectId, array $options = [])
+    private function partitionId($projectId, $namespaceId)
     {
-        $options = $options + [
-            'namespaceId' => null
-        ];
-
-        return [
+        return array_filter([
             'projectId' => $projectId,
-            'namespaceId' => $options['namespaceId']
-        ];
-    }
-
-    /**
-     * Format the readOptions
-     *
-     * @param array $options {
-     *      Read Options
-     *
-     *      @type Transaction $transaction If set to an instance of {@see Transaction},
-     *            run the operation in that transaction.
-     *      @type string $readConsistency If not in a transaction, set to STRONG
-     *            or EVENTUAL, depending on default value in DatastoreClient.
-     * }
-     * @return array
-     */
-    private function readOptions(array $options = [])
-    {
-        $options = $options + [
-            'readConsistency' => DatastoreClient::DEFAULT_READ_CONSISTENCY,
-            'transaction' => null
-        ];
-
-        if ($options['transaction'] && $options['transaction'] instanceof Transaction) {
-            return [
-                'transaction' => $options['transaction']->id()
-            ];
-        }
-
-        return [
-            'readConsistency' => $options['readConsistency']
-        ];
+            'namespaceId' => $namespaceId
+        ]);
     }
 
     /**
@@ -84,9 +45,10 @@ trait DatastoreTrait
      *
      * @param mixed $value
      * @param bool $encode Set to true to base64_encode certain values
+     * @param bool $excode If true, value will be excluded from datastore indexes.
      * @return array
      */
-    private function valueObject($value, $encode = false)
+    private function valueObject($value, $encode = false, $exclude = false)
     {
         switch (gettype($value)) {
             case "boolean":
@@ -152,6 +114,10 @@ trait DatastoreTrait
             //@codeCoverageIgnoreEnd
         }
 
+        if ($exclude) {
+            $propertyValue['excludeFromIndexes'] = true;
+        }
+
         return $propertyValue;
     }
 
@@ -172,6 +138,12 @@ trait DatastoreTrait
             ];
         }
 
+        if ($value instanceof Key) {
+            return [
+                "keyValue" => $value->keyObject()
+            ];
+        }
+
         throw new InvalidArgumentException(
             sprintf('Value of type `%s` could not be serialize', get_class($value))
         );
@@ -186,34 +158,5 @@ trait DatastoreTrait
     private function isAssoc(array $value)
     {
         return array_keys($value) !== range(0, count($value) - 1);
-    }
-
-    /**
-     * Check that each member of $input array is of type $type.
-     *
-     * @param array $input The input to validate
-     * @param string $type The type to check.
-     * @param callable An additional check for each element of $input.
-     *        This will be run count($input) times, so use with care.
-     * @return void
-     * @throws InvalidArgumentException
-     */
-    private function validateBatch(
-        array $input,
-        $type,
-        callable $additionalCheck = null
-    ) {
-        foreach ($input as $element) {
-            if (!($element instanceof $type)) {
-                throw new InvalidArgumentException(sprintf(
-                    'Each member of input array must be an instance of %s',
-                    $type
-                ));
-            }
-
-            if ($additionalCheck) {
-                $additionalCheck($element);
-            }
-        }
     }
 }

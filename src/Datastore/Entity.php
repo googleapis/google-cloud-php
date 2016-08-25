@@ -70,25 +70,28 @@ class Entity implements JsonSerializable, ArrayAccess
      * @param array $options {
      *     Configuration Options
      *
-     *     @type bool $encode If set to true, some values will be base64_encoded
+     *     @type bool $encode If set to true, resources will be
+     *           base64 encoded. `true` by default.
      *     @type string $cursor Set only when the entity is obtained by a query
      *           result. If set, the entity cursor can be retrieved from
      *           {@see Google\Cloud\Datastore\Entity::cursor()}.
+     *     @type string $baseVersion Set only when the entity is obtained by a
+     *           query result. If set, the entity cursor can be retrieved from
+     *           {@see Google\Cloud\Datastore\Entity::baseVersion()}.
+     *     @type array $excludeFromIndexes A list of entity keys to exclude from
+     *           datastore indexes.
      * }
      */
-    public function __construct(Key $key, $entity = [], array $options = [])
+    public function __construct(Key $key, array $entity = [], array $options = [])
     {
-        if ($key->state() !== Key::STATE_COMPLETE) {
-            throw new \InvalidArgumentException(
-                'Entities cannot be created using incomplete keys'
-            );
-        }
-
         $this->key = $key;
         $this->entity = $entity;
         $this->options = $options + [
             'encode' => true,
             'cursor' => null,
+            'baseVersion' => null,
+            'populatedByService' => false,
+            'excludeFromIndexes' => []
         ];
     }
 
@@ -149,11 +152,68 @@ class Entity implements JsonSerializable, ArrayAccess
      * This is only set when the entity was obtained from a query result. It
      * can be used to manually paginate results.
      *
+     * Example:
+     * ```
+     * $cursor = $entity->cursor();
+     * ```
+     *
      * @return string|null
      */
     public function cursor()
     {
         return $this->options['cursor'];
+    }
+
+    /**
+     * Fetch the baseVersion
+     *
+     * This is only set when the entity was obtained from a query result. It
+     * is used for concurrency control internally.
+     *
+     * Example:
+     * ```
+     * $baseVersion = $entity->baseVersion();
+     * ```
+     *
+     * @return string|null
+     */
+    public function baseVersion()
+    {
+        return $this->options['baseVersion'];
+    }
+
+    /**
+     * Indicate whether the entity was created as the result of an API call.
+     *
+     * Example:
+     * ```
+     * $populatedByServoce = $entity->populatedByServoce();
+     * ```
+     *
+     * @return bool
+     */
+    public function populatedByService()
+    {
+        return $this->options['populatedByService'];
+    }
+
+    /**
+     * A list of entity keys to exclude from datastore indexes.
+     *
+     * Example:
+     * ```
+     * $entity['birthDate'] = new DateTime('December 31, 1969');
+     * $entity->setExcludeFromIndexes([
+     *     'birthDate'
+     * ]);
+     * ```
+     *
+     * @param array $keys
+     * @return void
+     */
+    public function setExcludeFromIndexes(array $keys)
+    {
+        $this->options['excludeFromIndexes'] = $keys;
     }
 
     /**
@@ -179,7 +239,13 @@ class Entity implements JsonSerializable, ArrayAccess
     {
         $properties = [];
         foreach ($this->entity as $key => $value) {
-            $properties[$key] = $this->valueObject($value, $this->options['encode']);
+            $exclude = in_array($key, $this->options['excludeFromIndexes']);
+
+            $properties[$key] = $this->valueObject(
+                $value,
+                $this->options['encode'],
+                $exclude
+            );
         }
 
         return [
@@ -220,5 +286,48 @@ class Entity implements JsonSerializable, ArrayAccess
         return isset($this->entity[$key])
             ? $this->entity[$key]
             : null;
+    }
+
+    /**
+     * @param string $property
+     * @return mixed
+     * @access private
+     */
+    public function __get($property)
+    {
+        return $this->offsetExists($property) ? $this->offsetGet($property) : null;
+    }
+
+    /**
+     * @param string $property
+     * @param mixed $value
+     * @return void
+     * @access private
+     */
+    public function __set($property, $value)
+    {
+        $this->offsetSet($property, $value);
+    }
+
+    /**
+     * @param string $property
+     * @return void
+     * @access private
+     */
+    public function __unset($property)
+    {
+        if ($this->offsetExists($property)) {
+            $this->offsetUnset($property);
+        }
+    }
+
+    /**
+     * @param string $property
+     * @return bool
+     * @access private
+     */
+    public function __isset($property)
+    {
+        return $this->offsetExists($property) && $this->offsetGet($property) !== null;
     }
 }

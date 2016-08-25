@@ -59,17 +59,14 @@
       "title": "Datastore",
       "type": "datastore/datastoreclient",
       "nav": [{
+        "title": "Transaction",
+        "type": "datastore/transaction"
+      }, {
         "title": "Entity",
         "type": "datastore/entity"
       }, {
         "title": "Key",
         "type": "datastore/key"
-      }, {
-        "title": "Operation",
-        "type": "datastore/operation"
-      }, {
-        "title": "Transaction",
-        "type": "datastore/transaction"
       }, {
         "title": "Query",
         "type": "datastore/query/query"

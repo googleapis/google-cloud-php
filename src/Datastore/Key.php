@@ -153,6 +153,33 @@ class Key implements JsonSerializable
     }
 
     /**
+     * Use another Key's path as the current Key's ancestor
+     *
+     * Given key path will be prepended to any path elements on the current key.
+     *
+     * Example:
+     * ```
+     * $parent = $datastore->key('Person', 'Dad');
+     * $key->ancestoryKey($parent);
+     * ```
+     *
+     * @param Key $key The ancestor Key.
+     * @return Key
+     */
+    public function ancestorKey(Key $key)
+    {
+        if ($key->state() !== self::STATE_COMPLETE) {
+            throw new InvalidArgumentException('Cannot use an incomplete key as an ancestor');
+        }
+
+        $path = $key->path();
+
+        $this->path = array_merge($path, $this->path);
+
+        return $this;
+    }
+
+    /**
      * Check if the Key is considered Complete or Incomplete.
      *
      * Use `Key::STATE_COMPLETE` and `Key::STATE_INCOMPLETE` to check value.
@@ -186,6 +213,26 @@ class Key implements JsonSerializable
         return (isset($end['id']) || isset($end['name']))
             ? self::STATE_COMPLETE
             : self::STATE_INCOMPLETE;
+    }
+
+    /**
+     * Set the value of the last path element in a Key
+     *
+     * This method is used internally when IDs are allocated to existing instances
+     * of a Key. It should not generally be used externally.
+     *
+     * @param string $value
+     * @param string $type 'id' or 'name'. 'id' by default.
+     * @return void
+     * @access private
+     */
+    public function setLastElementIdentifier($value, $type = Key::TYPE_ID)
+    {
+        $end = $this->pathEnd();
+        $end[$type] = (string) $value;
+
+        $keys = array_keys($this->path);
+        $this->path[end($keys)] = $end;
     }
 
     /**
@@ -227,7 +274,7 @@ class Key implements JsonSerializable
     public function keyObject()
     {
         return [
-            'partitionId' => $this->partitionId($this->projectId, $this->options),
+            'partitionId' => $this->partitionId($this->projectId, $this->options['namespaceId']),
             'path' => $this->path
         ];
     }

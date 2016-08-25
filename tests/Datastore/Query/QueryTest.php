@@ -37,7 +37,7 @@ class QueryTest extends \PHPUnit_Framework_TestCase
             'query' => ['foo' => 'bar']
         ]);
 
-        $this->assertEquals($query->queryObject()['query'], ['foo' => 'bar']);
+        $this->assertEquals($query->queryObject(), ['foo' => 'bar']);
     }
 
     public function testCanPaginateFlagIsTrue()
@@ -45,13 +45,9 @@ class QueryTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($this->query->canPaginate());
     }
 
-    public function testQueryObjectStructure()
+    public function testQueryKeyIsCorrect()
     {
-        $this->assertTrue(is_array($this->query->queryObject()));
-
-        $this->assertTrue(is_array($this->query->queryObject()['partitionId']));
-        $this->assertTrue(is_array($this->query->queryObject()['readOptions']));
-        $this->assertTrue(is_array($this->query->queryObject()['query']));
+        $this->assertEquals($this->query->queryKey(), 'query');
     }
 
     public function testJsonSerialize()
@@ -67,7 +63,7 @@ class QueryTest extends \PHPUnit_Framework_TestCase
 
         $res = $this->query->queryObject();
 
-        $this->assertEquals($res['query']['projection'], ['propname']);
+        $this->assertEquals($res['projection'], ['propname']);
     }
 
     public function testProjectionWithArrayArgument()
@@ -76,7 +72,7 @@ class QueryTest extends \PHPUnit_Framework_TestCase
 
         $res = $this->query->queryObject();
 
-        $this->assertEquals($res['query']['projection'], ['propname', 'propname2']);
+        $this->assertEquals($res['projection'], ['propname', 'propname2']);
     }
 
     public function testKind()
@@ -86,7 +82,7 @@ class QueryTest extends \PHPUnit_Framework_TestCase
 
         $res = $this->query->queryObject();
 
-        $this->assertEquals($res['query']['kind'], [
+        $this->assertEquals($res['kind'], [
             ['name' => 'kindName']
         ]);
     }
@@ -97,7 +93,7 @@ class QueryTest extends \PHPUnit_Framework_TestCase
 
         $res = $this->query->queryObject();
 
-        $this->assertEquals($res['query']['kind'], [
+        $this->assertEquals($res['kind'], [
             ['name' => 'kindName1'],
             ['name' => 'kindName2'],
         ]);
@@ -110,7 +106,7 @@ class QueryTest extends \PHPUnit_Framework_TestCase
 
         $res = $this->query->queryObject();
 
-        $filters = $res['query']['filter']['compositeFilter']['filters'];
+        $filters = $res['filter']['compositeFilter']['filters'];
 
         $this->assertEquals($filters[0]['propertyFilter'], [
             'property' => [
@@ -130,7 +126,7 @@ class QueryTest extends \PHPUnit_Framework_TestCase
 
         $res = $this->query->queryObject();
 
-        $filters = $res['query']['filter']['compositeFilter']['filters'];
+        $filters = $res['filter']['compositeFilter']['filters'];
 
         $this->assertEquals($filters[0]['propertyFilter'], [
             'property' => [
@@ -150,7 +146,7 @@ class QueryTest extends \PHPUnit_Framework_TestCase
 
         $res = $this->query->queryObject();
 
-        $this->assertEquals($res['query']['order'][0], [
+        $this->assertEquals($res['order'][0], [
             'property' => [
                 'name' => 'propname'
             ],
@@ -165,7 +161,7 @@ class QueryTest extends \PHPUnit_Framework_TestCase
 
         $res = $this->query->queryObject();
 
-        $this->assertEquals($res['query']['distinctOn'], [
+        $this->assertEquals($res['distinctOn'], [
             ['name' => 'propname']
         ]);
     }
@@ -176,7 +172,7 @@ class QueryTest extends \PHPUnit_Framework_TestCase
 
         $res = $this->query->queryObject();
 
-        $this->assertEquals($res['query']['distinctOn'], [
+        $this->assertEquals($res['distinctOn'], [
             ['name' => 'propname1'],
             ['name' => 'propname2'],
         ]);
@@ -189,7 +185,7 @@ class QueryTest extends \PHPUnit_Framework_TestCase
 
         $res = $this->query->queryObject();
 
-        $this->assertEquals($res['query']['startCursor'], '1234');
+        $this->assertEquals($res['startCursor'], '1234');
     }
 
     public function testEnd()
@@ -199,7 +195,7 @@ class QueryTest extends \PHPUnit_Framework_TestCase
 
         $res = $this->query->queryObject();
 
-        $this->assertEquals($res['query']['endCursor'], '1234');
+        $this->assertEquals($res['endCursor'], '1234');
     }
 
     public function testOffset()
@@ -209,7 +205,7 @@ class QueryTest extends \PHPUnit_Framework_TestCase
 
         $res = $this->query->queryObject();
 
-        $this->assertEquals($res['query']['offset'], 2);
+        $this->assertEquals($res['offset'], 2);
     }
 
     public function testLimit()
@@ -219,6 +215,6 @@ class QueryTest extends \PHPUnit_Framework_TestCase
 
         $res = $this->query->queryObject();
 
-        $this->assertEquals($res['query']['limit'], 2);
+        $this->assertEquals($res['limit'], 2);
     }
 }

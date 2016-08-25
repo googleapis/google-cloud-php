@@ -87,6 +87,45 @@ class KeyTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(['kind' => 'thing'], $key->keyObject()['path'][1]);
     }
 
+    public function testAncestorKey()
+    {
+        $ancestorPath = [
+            ['kind' => 'Kind', 'id' => 'ID']
+        ];
+
+        $ancestor = $this->prophesize(Key::class);
+        $ancestor->path()->willReturn($ancestorPath);
+        $ancestor->state()->willReturn(Key::STATE_COMPLETE);
+
+        $key = new Key('foo', [
+            'path' => [
+                ['kind' => 'foo']
+            ]
+        ]);
+
+        $key->ancestorKey($ancestor->reveal());
+
+        $path = $key->path();
+
+        $expected = $ancestorPath;
+        $expected[] = ['kind' => 'foo'];
+
+        $this->assertEquals($path, $expected);
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testAncestorKeyIncompletePath()
+    {
+        $ancestor = $this->prophesize(Key::class);
+        $ancestor->state()->willReturn(Key::STATE_INCOMPLETE);
+
+        $key = new Key('foo');
+
+        $key->ancestorKey($ancestor->reveal());
+    }
+
     public function testPathElementForceType()
     {
         $key = new Key('foo');
@@ -146,5 +185,97 @@ class KeyTest extends \PHPUnit_Framework_TestCase
         $key->pathElement('Robots', '1000', Key::TYPE_NAME);
 
         $this->assertEquals($key->jsonSerialize(), $key->keyObject());
+    }
+
+    public function testStateComplete()
+    {
+        $key = new Key('foo', [
+            'path' => [
+                ['kind' => 'foo', 'id' => 1]
+            ]
+        ]);
+
+        $this->assertEquals($key->state(), key::STATE_COMPLETE);
+    }
+
+    public function testStateIncomplete()
+    {
+        $key = new Key('foo', [
+            'path' => [
+                ['kind' => 'foo']
+            ]
+        ]);
+
+        $this->assertEquals($key->state(), key::STATE_INCOMPLETE);
+    }
+
+    public function testPath()
+    {
+        $key = new Key('foo', [
+            'path' => [
+                ['kind' => 'foo', 'id' => 1]
+            ]
+        ]);
+
+        $this->assertEquals($key->path(), [
+            ['kind' => 'foo', 'id' => 1]
+        ]);
+    }
+
+    public function testPathEnd()
+    {
+        $key = new Key('foo', [
+            'path' => [
+                ['kind' => 'foo', 'id' => 2],
+                ['kind' => 'foo', 'id' => 1]
+            ]
+        ]);
+
+        $this->assertEquals($key->pathEnd(), ['kind' => 'foo', 'id' => 1]);
+    }
+
+    public function testSetLastElementIdentifier()
+    {
+        $key = new Key('foo', [
+            'path' => [
+                ['kind' => 'foo', 'id' => 2],
+                ['kind' => 'foo']
+            ]
+        ]);
+
+        $key->setLastElementIdentifier(1);
+
+        $this->assertEquals($key->path(), [
+            ['kind' => 'foo', 'id' => 2],
+            ['kind' => 'foo', 'id' => 1]
+        ]);
+    }
+
+    public function testSetLastElementIdentifierTypeName()
+    {
+        $key = new Key('foo', [
+            'path' => [
+                ['kind' => 'foo', 'id' => 2],
+                ['kind' => 'foo']
+            ]
+        ]);
+
+        $key->setLastElementIdentifier(1, Key::TYPE_NAME);
+
+        $this->assertEquals($key->path(), [
+            ['kind' => 'foo', 'id' => 2],
+            ['kind' => 'foo', 'name' => 1]
+        ]);
+    }
+
+    public function testToString()
+    {
+        $key = new Key('foo', [
+            'path' => [
+                ['kind' => 'foo', 'id' => 2],
+            ]
+        ]);
+
+        $this->assertEquals('[ [foo: 2] ]', (string) $key);
     }
 }

@@ -11,6 +11,7 @@ This client supports the following Google Cloud Platform services:
 * [Google BigQuery](#google-bigquery)
 * [Google Stackdriver Logging](#google-stackdriver-logging)
 * [Google Translate](#google-translate)
+* [Google Cloud Datastore](#google-cloud-datastore)
 * [Google Cloud Natural Language](#google-cloud-natural-language)
 * [Google Cloud Pub/Sub](#google-cloud-pubsub)
 * [Google Cloud Storage](#google-cloud-storage)
@@ -143,6 +144,37 @@ $languages = $translate->languages();
 foreach ($languages as $language) {
     echo $language . "\n";
 }
+```
+
+## Google Cloud Datastore
+
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/datastore/datastoreclient)
+- [Official Documentation](https://cloud.google.com/datastore/docs/)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Datastore\DatastoreClient;
+
+$datastore = new DatastoreClient([
+    'projectId' => 'my_project'
+]);
+
+// Create an entity
+$bob = $datastore->entity('Person');
+$bob['firstName'] = 'Bob';
+$bob['email'] = 'bob@example.com';
+$datastore->insert($bob);
+
+// Fetch an entity
+$key = $datastore->key('Person', 'Bob');
+$bob = $datastore->lookup($key);
+
+// Update an entity
+$bob['email'] = 'bobv2@example.com';
+$datastore->update($bob);
 ```
 
 ## Google Cloud Natural Language

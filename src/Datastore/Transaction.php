@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Datastore;
 
+use Google\Cloud\Datastore\Query\QueryInterface;
+
 /**
  * Represents a Transaction
  *
@@ -29,14 +31,37 @@ namespace Google\Cloud\Datastore;
  * concepts in [Transactions](https://cloud.google.com/datastore/docs/concepts/transactions)
  * before beginning.
  *
+ * Mutations (i.e. insert, update and delete) are not executed immediately.
+ * Calls to those methods (and their batch equivalents) will enqueue a new
+ * mutation. Calling {@see Transaction::commit()} will execute all the mutations
+ * in the order they were enqueued, and end the transaction.
+ *
+ * Lookups and queries can be run in a transaction, so long as they are run
+ * prior to committing or rolling back the transaction.
+ *
+ * Transactions are an **optional** feature of Google Cloud Datastore. Queries,
+ * lookups and mutations can be executed outside of a Transaction from
+ * {@see Google\Cloud\Datastore\DatastoreClient}.
+ *
  * @see https://cloud.google.com/datastore/docs/concepts/transactions Transactions
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\ServiceBuilder;
+ *
+ * $cloud = new ServiceBuilder;
+ *
+ * $datastore = $cloud->datastore();
+ *
+ * $transaction = $datastore->transaction();
+ * ```
  */
 class Transaction
 {
     /**
-     * @var ConnectionInterface
+     * @var Operation
      */
-    private $connection;
+    private $operation;
 
     /**
      * @var string
@@ -44,68 +69,387 @@ class Transaction
     private $projectId;
 
     /**
-     * @var transactionId
+     * @var string
      */
     private $transactionId;
 
     /**
-     * @param ConnectionInterface $connection A connection Google Cloud Datastore
-     * @param string $projectId The Cloud Platform Project ID
-     * @param string $transactionId A unique indentifier representing the transaction
+     * @var array
      */
-    public function __construct($connection, $projectId, $transactionId)
-    {
-        $this->connection = $connection;
+    private $mutations = [];
+
+    /**
+     * Create an Transaction
+     *
+     * @param Operation $operation Class that handles shared API interaction
+     * @param string $projectId The Google Cloud Platform project ID
+     * @param string $transactionId The transaction to run mutations in
+     */
+    public function __construct(
+        Operation $operation,
+        $projectId,
+        $transactionId
+    ) {
+        $this->operation = $operation;
         $this->projectId = $projectId;
         $this->transactionId = $transactionId;
     }
 
     /**
-     * Get the transaction ID
+     * Insert an entity
+     *
+     * No service requests are run when this method is called.
+     * Use {@see Google\Cloud\Datastore\Transaction::commit()} to commit changes.
      *
      * Example:
      * ```
-     * echo $transaction->id();
+     * $key = $datastore->key('person', 'Bob');
+     * $entity = $datastore->entity($key, ['firstName' => 'Bob']);
+     *
+     * $operation->insert($entity);
      * ```
      *
-     * @return string
+     * @param Entity $entity The entity to insert
+     * @return Transaction
      */
-    public function id()
+    public function insert(Entity $entity)
     {
-        return $this->transactionId;
+        return $this->insertBatch([$entity]);
     }
 
     /**
-     * Rollback a transaction
+     * Insert multiple entities
+     *
+     * No service requests are run when this method is called.
+     * Use {@see Google\Cloud\Datastore\Transaction::commit()} to commit changes.
      *
      * Example:
      * ```
-     * $transaction->rollback();
+     * $keys = $datastore->keys(['kind' => 'person'], [
+     *     'allocateIds' => true,
+     *     'number' => 2
+     * ]);
+     *
+     * $entities = [
+     *     $datastore->entity($key[0], ['firstName' => 'Bob']),
+     *     $datastore->entity($key[1], ['firstName' => 'John'])
+     * ];
+     *
+     * $operation->insertBatch($entities);
      * ```
      *
-     * @param array $options Configuration Options
-     * @return void
+     * @param Entity[] $entities The entities to insert
+     * @return Transaction
      */
-    public function rollback(array $options = [])
+    public function insertBatch(array $entities)
     {
-        $this->connection->rollback($options + [
-            'projectId' => $this->projectId,
+        $entities = $this->operation->allocateIdsToEntities($entities);
+        $this->operation->mutate('insert', $entities, Entity::class);
+
+        return $this;
+    }
+
+    /**
+     * Update an entity
+     *
+     * No service requests are run when this method is called.
+     * Use {@see Google\Cloud\Datastore\Transaction::commit()} to commit changes.
+     *
+     * Example:
+     * ```
+     * $entity['firstName'] = 'Bob';
+     *
+     * $operation->update($entity);
+     * ```
+     *
+     * @param Entity $entity The entity to update
+     * @param array $options {
+     *     Configuration Options
+     *
+     *     @type bool $allowOverwrite Set to `false` by default. Entities must
+     *           be updated as an entire resource. Patch operations are not
+     *           supported. Because entities can be created manually, or
+     *           obtained by a lookup or query, it is possible to accidentally
+     *           overwrite an existing record with a new one when manually
+     *           creating an entity. To provide additional safety, this flag
+     *           must be set to `true` in order to update a record when the
+     *           entity provided was not obtained through a lookup or query.
+     * }
+     * @return Transaction
+     */
+    public function update(Entity $entity, array $options = [])
+    {
+        $options = $options + [
+            'allowOverwrite' => false
+        ];
+
+        return $this->updateBatch([$entity], $options);
+    }
+
+    /**
+     * Update multiple entities
+     *
+     * No service requests are run when this method is called.
+     * Use {@see Google\Cloud\Datastore\Transaction::commit()} to commit changes.
+     *
+     * Example:
+     * ```
+     * $entities[0]['firstName'] = 'Bob';
+     * $entities[1]['firstName'] = 'John';
+     *
+     * $operation->updateBatch($entities);
+     * ```
+     *
+     * @param Entity[] $entities The entities to update
+     * @param array $options {
+     *     Configuration Options
+     *
+     *     @type bool $allowOverwrite Set to `false` by default. Entities must
+     *           be updated as an entire resource. Patch operations are not
+     *           supported. Because entities can be created manually, or
+     *           obtained by a lookup or query, it is possible to accidentally
+     *           overwrite an existing record with a new one when manually
+     *           creating an entity. To provide additional safety, this flag
+     *           must be set to `true` in order to update a record when the
+     *           entity provided was not obtained through a lookup or query.
+     * }
+     * @return Transaction
+     */
+    public function updateBatch(array $entities, array $options = [])
+    {
+        $options = $options + [
+            'allowOverwrite' => false
+        ];
+
+        $this->operation->checkOverwrite($entities, $options['allowOverwrite']);
+        $this->operation->mutate('update', $entities, Entity::class);
+
+        return $this;
+    }
+
+    /**
+     * Upsert an entity
+     *
+     * No service requests are run when this method is called.
+     * Use {@see Google\Cloud\Datastore\Transaction::commit()} to commit changes.
+     *
+     * Upsert will create a record if one does not already exist, or overwrite
+     * existing record if one already exists.
+     *
+     * Example:
+     * ```
+     * $key = $datastore->key('person', 'Bob');
+     * $entity = $datastore->entity($key, ['firstName' => 'Bob']);
+     *
+     * $operation->upsert($entity);
+     * ```
+     *
+     * @param Entity $entity The entity to upsert
+     * @return Transaction
+     */
+    public function upsert(Entity $entity)
+    {
+        return $this->upsertBatch([$entity]);
+    }
+
+    /**
+     * Upsert multiple entities
+     *
+     * No service requests are run when this method is called.
+     * Use {@see Google\Cloud\Datastore\Transaction::commit()} to commit changes.
+     *
+     * Upsert will create a record if one does not already exist, or overwrite
+     * existing record if one already exists.
+     *
+     * Example:
+     * ```
+     * $keys = $datastore->keys(['kind' => 'person'], [
+     *     'allocateIds' => true,
+     *     'number' => 2
+     * ]);
+     *
+     * $entities = [
+     *     $datastore->entity($key[0], ['firstName' => 'Bob']),
+     *     $datastore->entity($key[1], ['firstName' => 'John'])
+     * ];
+     *
+     * $operation->upsertBatch($entities);
+     * ```
+     *
+     * @param Entity[] $entities The entities to upsert
+     * @return Transaction
+     */
+    public function upsertBatch(array $entities)
+    {
+        $this->operation->mutate('upsert', $entities, Entity::class);
+
+        return $this;
+    }
+
+    /**
+     * Delete a record
+     *
+     * No service requests are run when this method is called.
+     * Use {@see Google\Cloud\Datastore\Transaction::commit()} to commit changes.
+     *
+     * Example:
+     * ```
+     * $key = $datastore->key('person', 'Bob');
+     *
+     * $operation->delete($key);
+     * ```
+     *
+     * @param Key $key The key to delete
+     * @return Transaction
+     */
+    public function delete(Key $key)
+    {
+        return $this->deleteBatch([$key]);
+    }
+
+    /**
+     * Delete multiple records
+     *
+     * No service requests are run when this method is called.
+     * Use {@see Google\Cloud\Datastore\Transaction::commit()} to commit changes.
+     *
+     * Example:
+     * ```
+     * $keys = [
+     *     $datastore->key('person', 'Bob'),
+     *     $datastore->key('person', 'John')
+     * ];
+     *
+     * $operation->deleteBatch($keys);
+     * ```
+     *
+     * @param Key[] $keys The keys to delete
+     * @return Transaction
+     */
+    public function deleteBatch(array $keys)
+    {
+        $this->operation->mutate('delete', $keys, Key::class);
+
+        return $this;
+    }
+
+    /**
+     * Retrieve an entity from the datastore inside a transaction
+     *
+     * Example:
+     * ```
+     * $key = $datastore->key('person', 'Bob');
+     *
+     * $entity = $datastore->lookup($key);
+     * if (!is_null($entity)) {
+     *     echo $entity['firstName']; // 'Bob'
+     * }
+     * ```
+     *
+     * @codingStandardsIgnoreStart
+     * @param Key $key $key The identifier to use to locate a desired entity
+     * @param array $options {
+     *     Configuration Options
+     *
+     *     @type string $className The name of the class to return results as.
+     *           Must be a subclass of {@see Google\Cloud\Datastore\Entity}.
+     *           If not set, {@see Google\Cloud\Datastore\Entity} will be used.
+     * }
+     * @return Entity|null
+     * @codingStandardsIgnoreEnd
+     */
+    public function lookup(Key $key, array $options = [])
+    {
+        $res = $this->lookupBatch([$key], $options);
+
+        return (isset($res['found'][0]))
+            ? $res['found'][0]
+            : null;
+    }
+
+    /**
+     * Get multiple entities inside a transaction
+     *
+     * Example:
+     * ```
+     * $keys = [
+     *     $datastore->key('Person', 'Bob'),
+     *     $datastore->key('Person', 'John')
+     * ];
+     *
+     * $entities = $datastore->lookup($keys);
+     *
+     * foreach ($entities['found'] as $entity) {
+     *     echo $entity['firstName'];
+     * }
+     * ```
+     *
+     * @codingStandardsIgnoreStart
+     * @param Key[] $key The identifiers to look up.
+     * @param array $options {
+     *     Configuration Options
+     *
+     *     @type string $className The name of the class to return results as.
+     *           Must be a subclass of {@see Google\Cloud\Datastore\Entity}.
+     *           If not set, {@see Google\Cloud\Datastore\Entity} will be used.
+     * }
+     * @return array
+     * @codingStandardsIgnoreEnd
+     */
+    public function lookupBatch(array $keys, array $options = [])
+    {
+        return $this->operation->lookup($keys, $options + [
             'transaction' => $this->transactionId
         ]);
     }
 
     /**
-     * Present a nicer debug result to people using php 5.6 or greater.
-     * @return array
-     * @codeCoverageIgnore
-     * @access private
+     * Run a query and return entities inside a Transaction
+     *
+     * Example:
+     * ```
+     * $result = $datastore->runQuery($query);
+     *
+     * foreach ($result as $entity) {
+     *     echo $entity['firstName'];
+     * }
+     * ```
+     *
+     * @param QueryInterface $query
+     * @param array $options {
+     *     Configuration Options
+     *
+     *     @type string $className The name of the class to return results as.
+     *           Must be a subclass of {@see Google\Cloud\Datastore\Entity}.
+     *           If not set, {@see Google\Cloud\Datastore\Entity} will be used.
+     * }
+     * @return \Generator<Google\Cloud\Datastore\Entity>
      */
-    public function __debugInfo()
+    public function runQuery(QueryInterface $query, array $options = [])
     {
-        return [
-            'transactionId' => $this->transactionId,
-            'projectId' => $this->projectId,
-            'connection' => get_class($this->connection)
-        ];
+        return $this->operation->runQuery($query, $options + [
+            'transaction' => $this->transactionId
+        ]);
+    }
+
+    /**
+     * Commit all mutations
+     *
+     * Calling this method will end the operation (and close the transaction,
+     * if one is specified).
+     *
+     * Example:
+     * ```
+     * $operation->commit()
+     * ```
+     *
+     * @param array $options Configuration Options
+     * @return array [Response Body](https://cloud.google.com/datastore/reference/rest/v1/projects/commit#response-body)
+     */
+    public function commit(array $options = [])
+    {
+        $options['transaction'] = $this->transactionId;
+
+        return $this->operation->commit($options);
     }
 }

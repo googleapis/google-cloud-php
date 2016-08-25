@@ -33,7 +33,7 @@ class GqlQueryTest extends \PHPUnit_Framework_TestCase
         ]);
 
         $res = $query->queryObject();
-        $this->assertEquals($res['gqlQuery']['namedBindings'], [
+        $this->assertEquals($res['namedBindings'], [
             'bind' => ['value' => ['stringValue' => 'this']]
         ]);
     }
@@ -47,7 +47,7 @@ class GqlQueryTest extends \PHPUnit_Framework_TestCase
         ]);
 
         $res = $query->queryObject();
-        $this->assertEquals($res['gqlQuery']['positionalBindings'], [
+        $this->assertEquals($res['positionalBindings'], [
             ['value' => ['stringValue' => 'this']]
         ]);
     }
@@ -56,20 +56,26 @@ class GqlQueryTest extends \PHPUnit_Framework_TestCase
     {
         $query = new GqlQuery('SELECT * FROM foo', 'foo');
         $res = $query->queryObject();
-        $this->assertFalse($res['gqlQuery']['allowLiterals']);
+        $this->assertFalse($res['allowLiterals']);
 
         $query = new GqlQuery('SELECT * FROM foo', 'foo', [
             'allowLiterals' => true
         ]);
 
         $res = $query->queryObject();
-        $this->assertTrue($res['gqlQuery']['allowLiterals']);
+        $this->assertTrue($res['allowLiterals']);
     }
 
     public function testCanPaginateReturnsFalse()
     {
         $query = new GqlQuery('SELECT * FROM foo', 'foo');
         $this->assertFalse($query->canPaginate());
+    }
+
+    public function testQueryKeyIsCorrect()
+    {
+        $query = new GqlQuery('SELECT * FROM foo', 'foo');
+        $this->assertEquals($query->queryKey(), 'gqlQuery');
     }
 
     public function testJsonSerialize()

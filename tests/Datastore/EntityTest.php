@@ -54,17 +54,17 @@ class EntityTest extends \PHPUnit_Framework_TestCase
 
         unset($entity['test']);
         $this->assertFalse(isset($entity['test']));
-    }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
-    public function testInvalidKey()
-    {
-        $key = $this->prophesize(Key::class);
-        $key->state()->willReturn(Key::STATE_INCOMPLETE);
+        $entity->magicProperty = 'magic value';
+        $this->assertEquals('magic value', $entity->magicProperty);
 
-        $e = new Entity($key->reveal());
+        $this->assertNull($entity->nonExistentMagicProperty);
+        $this->assertFalse(isset($entity->nonExistentMagicProperty));
+
+        $this->assertTrue(isset($entity->magicProperty));
+
+        unset($entity->magicProperty);
+        $this->assertFalse(isset($entity->magicProperty));
     }
 
     public function testGet()

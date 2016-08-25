@@ -18,13 +18,14 @@
 namespace Google\Cloud\Tests\Datastore;
 
 use Google\Cloud\Datastore\Connection\ConnectionInterface;
+use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Datastore\Entity;
 use Google\Cloud\Datastore\Key;
+use Google\Cloud\Datastore\Operation;
 use Google\Cloud\Datastore\Query\GqlQuery;
 use Google\Cloud\Datastore\Query\Query;
+use Google\Cloud\Datastore\Query\QueryInterface;
 use Google\Cloud\Datastore\Transaction;
-use Google\Cloud\Datastore\DatastoreClient;
-use Google\Cloud\Datastore\Operation;
 use Prophecy\Argument;
 
 /**
@@ -33,11 +34,13 @@ use Prophecy\Argument;
 class DatastoreClientTest extends \PHPUnit_Framework_TestCase
 {
     private $connection;
+    private $operation;
     private $datastore;
 
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->operation = $this->prophesize(Operation::class);
         $this->datastore = new DatastoreClientStub(['projectId' => 'foo']);
     }
 
@@ -129,18 +132,6 @@ class DatastoreClientTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($keyAncestors, $ancestors);
     }
 
-    public function testKeysWithAllocateIds()
-    {
-        $datastore = new DatastoreClientStubNoService;
-
-        $keys = $datastore->keys('Person');
-
-        $this->assertTrue(is_array($keys));
-        $this->assertInstanceOf(Key::class, $keys[0]);
-
-        $this->assertTrue($datastore->didCallAllocateIds);
-    }
-
     public function testEntity()
     {
         $key = $this->datastore->key('Person', 'Foo');
@@ -167,209 +158,212 @@ class DatastoreClientTest extends \PHPUnit_Framework_TestCase
 
     public function testAllocateIds()
     {
-        $this->connection->allocateIds(Argument::type('array'))
-            ->willReturn([
-                'keys' => [
-                    [
-                        'path' => [
-                            ['kind' => 'Person', 'name' => 'John']
-                        ],
-                        'partitionId' => [
-                            'namespaceId' => 'foo', 'projectId' => 'bar'
-                        ]
-                    ], [
-                        'path' => [
-                            ['kind' => 'Person', 'name' => 'Dave']
-                        ]
-                    ]
-                ]
-            ]);
+        $this->operation->allocateIds(Argument::type('array'), Argument::type('array'))
+            ->shouldBeCalled()
+            ->willReturn([]);
 
-        $this->datastore->setConnection($this->connection->reveal());
+        $this->datastore->setOperation($this->operation->reveal());
 
+        $key = $this->prophesize(Key::class);
         $keys = [
-            $this->datastore->key('Person'),
-            $this->datastore->key('Person')
+            $key->reveal(),
+            $key->reveal()
         ];
 
         $res = $this->datastore->allocateIds($keys);
 
         $this->assertTrue(is_array($res));
-        $this->assertEquals(2, count($res));
-        $this->assertInstanceOf(Key::class, $res[0]);
-        $this->assertEquals(Key::STATE_COMPLETE, $res[0]->state());
-        $this->assertEquals([['kind' => 'Person', 'name' => 'John']], $res[0]->path());
-    }
-
-    /**
-     * @expectedException InvalidArgumentException
-     */
-    public function testAllocateIdCompleteKey()
-    {
-        $key = $this->datastore->key('Foo', 'Bar');
-        $this->datastore->allocateIds([$key]);
     }
 
     public function testTransaction()
     {
-        $id = 1234;
-
-        $t = $this->datastore->transaction($id);
-
-        $this->assertInstanceOf(Transaction::class, $t);
-        $this->assertEquals($id, $t->id());
-    }
-
-    public function testBeginTransaction()
-    {
-        $this->connection->beginTransaction(Argument::any())->willReturn([
-            'transaction' => 1234
-        ]);
+        $this->connection->beginTransaction(Argument::type('array'))
+            ->shouldBeCalled()
+            ->willReturn(['transaction' => '1234']);
 
         $this->datastore->setConnection($this->connection->reveal());
 
-        $t = $this->datastore->beginTransaction();
+        $t = $this->datastore->transaction();
 
         $this->assertInstanceOf(Transaction::class, $t);
-        $this->assertEquals($t->id(), 1234);
-    }
-
-    public function testOperation()
-    {
-        $op = $this->datastore->operation();
-
-        $this->assertInstanceOf(Operation::class, $op);
-    }
-
-    /**
-     * @expectedException \InvalidArgumentException
-     */
-    public function testOperationWithInvalidTransaction()
-    {
-        $op = $this->datastore->operation([
-            'transaction' => 'foo'
-        ]);
-    }
-
-    public function testOperationWithTransactionInstance()
-    {
-        $id = 1234;
-        $t = $this->datastore->transaction($id);
-        $o = $this->datastore->operation(['transaction' => $t]);
-
-        $this->assertEquals($o->transaction(), $t);
-    }
-
-    public function testOperationRunInTransaction()
-    {
-        $ds = new DatastoreClientStubNoService;
-
-        $o = $ds->operation([
-            'runInTransaction' => true
-        ]);
-
-        $this->assertInstanceOf(Transaction::class, $o->transaction());
-        $this->assertTrue($ds->didCallBeginTransaction);
     }
 
     public function testInsert()
     {
-        $this->mockCommitConnection();
+        $e = $this->prophesize(Entity::class);
 
-        $e = $this->datastore->entity($this->datastore->key('Kind', 'ID'), [
-            'foo' => 'bar'
-        ]);
+        $this->operation->allocateIdsToEntities(Argument::type('array'))
+            ->willReturn([$e->reveal()]);
 
-        $this->datastore->insert($e);
+        $this->operation->mutate(Argument::exact('insert'), Argument::type('array'), Argument::exact(Entity::class), Argument::exact(null))
+            ->shouldBeCalled();
 
-        $this->connection->commit(Argument::type('array'))->shouldHaveBeenCalled();
+        $this->operation->commit(Argument::type('array'))
+            ->shouldBeCalled()
+            ->willReturn(['mutationResults' => [['version' => '1234']]]);
+
+        $this->datastore->setOperation($this->operation->reveal());
+
+        $res = $this->datastore->insert($e->reveal());
+
+        $this->assertEquals($res, '1234');
+    }
+
+    /**
+     * @expectedException DomainException
+     */
+    public function testInsertConflict()
+    {
+        $e = $this->prophesize(Entity::class);
+
+        $this->operation->allocateIdsToEntities(Argument::type('array'))
+            ->willReturn([$e->reveal()]);
+
+        $this->operation->mutate(Argument::exact('insert'), Argument::type('array'), Argument::exact(Entity::class), Argument::exact(null))
+            ->shouldBeCalled();
+
+        $this->operation->commit(Argument::type('array'))
+            ->shouldBeCalled()
+            ->willReturn(['mutationResults' => [['version' => '1234', 'conflictDetected' => true]]]);
+
+        $this->datastore->setOperation($this->operation->reveal());
+
+        $res = $this->datastore->insert($e->reveal());
     }
 
     public function testInsertBatch()
     {
-        $this->mockCommitConnection();
+        $e = $this->prophesize(Entity::class);
 
-        $e = $this->datastore->entity($this->datastore->key('Kind', 'ID'), [
-            'foo' => 'bar'
-        ]);
+        $this->operation->commit(Argument::type('array'))
+            ->shouldBeCalled()
+            ->willReturn(['mutationResults' => [['version' => '1234']]]);
 
-        $this->datastore->insertBatch([$e]);
+        $this->operation->mutate(Argument::exact('insert'), Argument::type('array'), Argument::exact(Entity::class), Argument::exact(null))
+            ->shouldBeCalled();
 
-        $this->connection->commit(Argument::type('array'))->shouldHaveBeenCalled();
+        $this->operation->allocateIdsToEntities(Argument::type('array'))
+            ->willReturn([$e->reveal()]);
+
+        $this->datastore->setOperation($this->operation->reveal());
+
+        $res = $this->datastore->insertBatch([$e->reveal()]);
+
+        $this->assertEquals($res, ['mutationResults' => [['version' => '1234']]]);
     }
 
     public function testUpdate()
     {
-        $this->mockCommitConnection();
+        $this->operation->commit(Argument::type('array'))
+            ->shouldBeCalled()
+            ->willReturn(['mutationResults' => [['version' => '1234']]]);
 
-        $e = $this->datastore->entity($this->datastore->key('Kind', 'ID'), [
-            'foo' => 'bar'
-        ]);
+        $this->operation->mutate(Argument::exact('update'), Argument::type('array'), Argument::exact(Entity::class), Argument::exact(null))
+            ->shouldBeCalled();
 
-        $this->datastore->update($e);
+        $this->operation->checkOverwrite(Argument::type('array'), Argument::type('bool'))
+            ->shouldBeCalled();
 
-        $this->connection->commit(Argument::type('array'))->shouldHaveBeenCalled();
+        $this->datastore->setOperation($this->operation->reveal());
+
+        $e = $this->prophesize(Entity::class);
+
+        $res = $this->datastore->update($e->reveal());
+
+        $this->assertEquals($res, '1234');
     }
 
     public function testUpdateBatch()
     {
-        $this->mockCommitConnection();
+        $this->operation->commit(Argument::type('array'))
+            ->shouldBeCalled()
+            ->willReturn(['mutationResults' => [['version' => '1234']]]);
 
-        $e = $this->datastore->entity($this->datastore->key('Kind', 'ID'), [
-            'foo' => 'bar'
-        ]);
+        $this->operation->mutate(Argument::exact('update'), Argument::type('array'), Argument::exact(Entity::class), Argument::exact(null))
+            ->shouldBeCalled();
 
-        $this->datastore->updateBatch([$e]);
+        $this->operation->checkOverwrite(Argument::type('array'), Argument::type('bool'))
+            ->shouldBeCalled();
 
-        $this->connection->commit(Argument::type('array'))->shouldHaveBeenCalled();
+        $this->datastore->setOperation($this->operation->reveal());
+
+        $e = $this->prophesize(Entity::class);
+
+        $res = $this->datastore->updateBatch([$e->reveal()]);
+
+        $this->assertEquals($res, ['mutationResults' => [['version' => '1234']]]);
     }
 
     public function testUpsert()
     {
-        $this->mockCommitConnection();
+        $this->operation->commit(Argument::type('array'))
+            ->shouldBeCalled()
+            ->willReturn(['mutationResults' => [['version' => '1234']]]);
 
-        $e = $this->datastore->entity($this->datastore->key('Kind', 'ID'), [
-            'foo' => 'bar'
-        ]);
+        $this->operation->mutate(Argument::exact('upsert'), Argument::type('array'), Argument::exact(Entity::class), Argument::exact(null))
+            ->shouldBeCalled();
 
-        $this->datastore->upsert($e);
+        $this->datastore->setOperation($this->operation->reveal());
 
-        $this->connection->commit(Argument::type('array'))->shouldHaveBeenCalled();
+        $e = $this->prophesize(Entity::class);
+
+        $res = $this->datastore->upsert($e->reveal());
+
+        $this->assertEquals($res, '1234');
     }
 
     public function testUpsertBatch()
     {
-        $this->mockCommitConnection();
+        $this->operation->commit(Argument::type('array'))
+            ->shouldBeCalled()
+            ->willReturn(['mutationResults' => [['version' => '1234']]]);
 
-        $e = $this->datastore->entity($this->datastore->key('Kind', 'ID'), [
-            'foo' => 'bar'
-        ]);
+        $this->operation->mutate(Argument::exact('upsert'), Argument::type('array'), Argument::exact(Entity::class), Argument::exact(null))
+            ->shouldBeCalled();
 
-        $this->datastore->upsertBatch([$e]);
+        $this->datastore->setOperation($this->operation->reveal());
 
-        $this->connection->commit(Argument::type('array'))->shouldHaveBeenCalled();
+        $e = $this->prophesize(Entity::class);
+
+        $res = $this->datastore->upsertBatch([$e->reveal()]);
+
+        $this->assertEquals($res, ['mutationResults' => [['version' => '1234']]]);
     }
 
     public function testDelete()
     {
-        $this->mockCommitConnection();
+        $this->operation->commit(Argument::type('array'))
+            ->shouldBeCalled()
+            ->willReturn(['mutationResults' => [['version' => '1234']]]);
 
-        $k = $this->datastore->key('Kind', 'ID');
+        $this->operation->mutate(Argument::exact('delete'), Argument::type('array'), Argument::exact(Key::class), Argument::exact(null))
+            ->shouldBeCalled();
 
-        $this->datastore->delete($k);
+        $this->datastore->setOperation($this->operation->reveal());
 
-        $this->connection->commit(Argument::type('array'))->shouldHaveBeenCalled();
+        $key = $this->prophesize(Key::class);
+
+        $res = $this->datastore->delete($key->reveal());
+
+        $this->assertEquals($res, '1234');
     }
 
     public function testDeleteBatch()
     {
-        $this->mockCommitConnection();
+        $this->operation->commit(Argument::type('array'))
+            ->shouldBeCalled()
+            ->willReturn(['mutationResults' => [['version' => '1234']]]);
 
-        $k = $this->datastore->key('Kind', 'ID');
+        $this->operation->mutate(Argument::exact('delete'), Argument::type('array'), Argument::exact(Key::class), Argument::exact(null))
+            ->shouldBeCalled();
 
-        $this->datastore->deleteBatch([$k]);
+        $this->datastore->setOperation($this->operation->reveal());
 
-        $this->connection->commit(Argument::type('array'))->shouldHaveBeenCalled();
+        $key = $this->prophesize(Key::class);
+
+        $res = $this->datastore->deleteBatch([$key->reveal()]);
+
+        $this->assertEquals($res, ['mutationResults' => [['version' => '1234']]]);
     }
 
     public function testLookup()
@@ -387,63 +381,17 @@ class DatastoreClientTest extends \PHPUnit_Framework_TestCase
     public function testLookupBatch()
     {
         $body = json_decode(file_get_contents(__DIR__ .'/../fixtures/datastore/entity-batch-lookup.json'), true);
-        $this->connection->lookup(Argument::any())->willReturn([
-            'found' => $body
-        ]);
+        $this->operation->lookup(Argument::type('array'), Argument::type('array'))
+            ->shouldBeCalled()
+            ->willReturn(['foo']);
 
-        $this->datastore->setConnection($this->connection->reveal());
+        $this->datastore->setOperation($this->operation->reveal());
 
-        $key = $this->datastore->key('Kind', 'ID');
+        $key = $this->prophesize(Key::class);
 
-        $res = $this->datastore->lookupBatch([$key]);
+        $res = $this->datastore->lookupBatch([$key->reveal()]);
 
-        $this->assertTrue(is_array($res));
-        $this->assertTrue(isset($res['found']) && is_array($res['found']));
-
-        $this->assertInstanceOf(Entity::class, $res['found'][0]);
-        $this->assertEquals($res['found'][0]['Number'], $body[0]['entity']['properties']['Number']['stringValue']);
-
-        $this->assertInstanceOf(Entity::class, $res['found'][1]);
-        $this->assertEquals($res['found'][1]['Number'], $body[1]['entity']['properties']['Number']['stringValue']);
-    }
-
-    public function testLookupBatchMissing()
-    {
-        $body = json_decode(file_get_contents(__DIR__ .'/../fixtures/datastore/entity-batch-lookup.json'), true);
-        $this->connection->lookup(Argument::any())->willReturn([
-            'missing' => $body
-        ]);
-
-        $this->datastore->setConnection($this->connection->reveal());
-
-        $key = $this->datastore->key('Kind', 'ID');
-
-        $res = $this->datastore->lookupBatch([$key]);
-
-        $this->assertTrue(is_array($res));
-        $this->assertTrue(isset($res['missing']) && is_array($res['missing']));
-
-        $this->assertInstanceOf(Entity::class, $res['missing'][0]);
-        $this->assertInstanceOf(Entity::class, $res['missing'][1]);
-    }
-
-    public function testLookupBatchDeferred()
-    {
-        $body = json_decode(file_get_contents(__DIR__ .'/../fixtures/datastore/entity-batch-lookup.json'), true);
-        $this->connection->lookup(Argument::any())->willReturn([
-            'deferred' => [ $body[0]['entity']['key'] ]
-        ]);
-
-        $this->datastore->setConnection($this->connection->reveal());
-
-        $key = $this->datastore->key('Kind', 'ID');
-
-        $res = $this->datastore->lookupBatch([$key]);
-
-        $this->assertTrue(is_array($res));
-        $this->assertTrue(isset($res['deferred']) && is_array($res['deferred']));
-
-        $this->assertInstanceOf(Key::class, $res['deferred'][0]);
+        $this->assertEquals($res, ['foo']);
     }
 
     public function testQuery()
@@ -463,73 +411,16 @@ class DatastoreClientTest extends \PHPUnit_Framework_TestCase
     {
         $queryResult = json_decode(file_get_contents(__DIR__ .'/../fixtures/datastore/query-results.json'), true);
 
-        $this->connection->runQuery(Argument::type('array'))
-            ->willReturn($queryResult['notPaged']);
+        $this->operation->runQuery(Argument::type(QueryInterface::class), Argument::type('array'))
+            ->shouldBeCalled()
+            ->willReturn('foo');
 
-        $this->datastore->setConnection($this->connection->reveal());
-
-        $q = $this->datastore->query();
-        $res = $this->datastore->runQuery($q);
-
-        $this->assertInstanceOf(\Generator::class, $res);
-
-        $arr = iterator_to_array($res);
-
-        $this->assertEquals(count($arr), 2);
-        $this->assertInstanceOf(Entity::class, $arr[0]);
-    }
-
-    public function testRunQueryPaged()
-    {
-        $queryResult = json_decode(file_get_contents(__DIR__ .'/../fixtures/datastore/query-results.json'), true);
-
-        $this->connection->runQuery(Argument::type('array'))
-            ->will(function($args, $mock) use ($queryResult) {
-
-                // The 2nd call will return the 2nd page of results!
-                $mock->runQuery(Argument::type('array'))
-                    ->willReturn($queryResult['paged'][1]);
-
-                return $queryResult['paged'][0];
-            });
-
-        $this->datastore->setConnection($this->connection->reveal());
+        $this->datastore->setOperation($this->operation->reveal());
 
         $q = $this->datastore->query();
         $res = $this->datastore->runQuery($q);
 
-        $this->assertInstanceOf(\Generator::class, $res);
-
-        $arr = iterator_to_array($res);
-
-        $this->assertEquals(count($arr), 3);
-        $this->assertInstanceOf(Entity::class, $arr[0]);
-    }
-
-    public function testRunQueryNoResults()
-    {
-        $queryResult = json_decode(file_get_contents(__DIR__ .'/../fixtures/datastore/query-results.json'), true);
-
-        $this->connection->runQuery(Argument::type('array'))
-            ->willReturn($queryResult['noResults']);
-
-        $this->datastore->setConnection($this->connection->reveal());
-
-        $q = $this->datastore->query();
-        $res = $this->datastore->runQuery($q);
-
-        $this->assertInstanceOf(\Generator::class, $res);
-
-        $arr = iterator_to_array($res);
-
-        $this->assertEquals(count($arr), 0);
-    }
-
-    private function mockCommitConnection($return = null)
-    {
-        $this->connection->commit(Argument::any())->willReturn($return);
-
-        $this->datastore->setConnection($this->connection->reveal());
+        $this->assertEquals($res, 'foo');
     }
 }
 
@@ -538,6 +429,11 @@ class DatastoreClientStub extends DatastoreClient
     public function setConnection($connection)
     {
         $this->connection = $connection;
+    }
+
+    public function setOperation($operation)
+    {
+        $this->operation = $operation;
     }
 }
 

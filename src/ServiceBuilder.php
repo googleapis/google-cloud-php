@@ -24,10 +24,7 @@ use Google\Cloud\Logging\LoggingClient;
 use Google\Cloud\NaturalLanguage\NaturalLanguageClient;
 use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\Storage\StorageClient;
-<<<<<<< HEAD
 use Google\Cloud\Translate\TranslateClient;
-=======
->>>>>>> 6c212cb... More tests
 use Google\Cloud\Vision\VisionClient;
 
 /**

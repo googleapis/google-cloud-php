@@ -154,11 +154,18 @@ class GqlQuery implements QueryInterface
             $queryObj[$this->options['bindingType']] = $bindings;
         }
 
-        return [
-            'partitionId' => $this->partitionId($this->projectId, $this->options),
-            'readOptions' => $this->readOptions($this->options),
-            'gqlQuery' => $queryObj
-        ];
+        return $queryObj;
+    }
+
+    /**
+     * Return the query_type union field name.
+     *
+     * @return string
+     * @access private
+     */
+    public function queryKey()
+    {
+        return "gqlQuery";
     }
 
     /**
@@ -171,6 +178,19 @@ class GqlQuery implements QueryInterface
     {
         return false;
     }
+
+    /**
+     * Fulfill the interface, but cursors are handled inside the query string.
+     *
+     * @param string $cursor
+     * @return void
+     * @access private
+     * @codeCoverageIgnore
+     */
+    public function start($cursor)
+    //@codingStandardsIgnoreStart
+    {}
+    //@codingStandardsIgnoreEnd
 
     /**
      * Define the json respresentation of the object.

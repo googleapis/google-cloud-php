@@ -46,9 +46,26 @@ interface QueryInterface extends JsonSerializable
     public function queryObject();
 
     /**
+     * The key used to represent a query in the query_type union field.
+     *
+     * @see https://cloud.google.com/datastore/reference/rest/v1/projects/runQuery#request-body Request Body
+     *
+     * @return string
+     */
+    public function queryKey();
+
+    /**
      * Indicate whether the query type supports automatic pagination
      *
      * @return bool
      */
     public function canPaginate();
+
+    /**
+     * Set the starting cursor.
+     *
+     * @param string $cursor
+     * @return void
+     */
+    public function start($cursor);
 }

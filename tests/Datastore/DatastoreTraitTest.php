@@ -37,42 +37,12 @@ class DatastoreTraitTest extends \PHPUnit_Framework_TestCase
     public function testPartitionId()
     {
         $res = $this->stub->call('partitionId', [
-            'foo', [
-                'namespaceId' => 'bar'
-            ]
+            'foo', 'bar'
         ]);
 
         $this->assertTrue(is_array($res));
         $this->assertEquals('foo', $res['projectId']);
         $this->assertEquals('bar', $res['namespaceId']);
-    }
-
-    public function testReadOptions()
-    {
-        $res = $this->stub->call('readOptions', []);
-
-        $this->assertEquals($res['readConsistency'], DatastoreClient::DEFAULT_READ_CONSISTENCY);
-    }
-
-    public function testReadOptionsReadConsistency()
-    {
-        $res = $this->stub->call('readOptions', [[
-            'readConsistency' => 'foo'
-        ]]);
-
-        $this->assertEquals($res['readConsistency'], 'foo');
-    }
-
-    public function testReadOptionsTransaction()
-    {
-        $t = $this->prophesize(Transaction::class);
-        $t->id()->willReturn('foo');
-
-        $res = $this->stub->call('readOptions', [[
-            'transaction' => $t->reveal()
-        ]]);
-
-        $this->assertEquals($res['transaction'], 'foo');
     }
 
     public function testValueObjectBool()
@@ -130,6 +100,21 @@ class DatastoreTraitTest extends \PHPUnit_Framework_TestCase
         $this->assertNull($null['nullValue']);
     }
 
+    public function testValueExcludeFromIndexes()
+    {
+        $res = $this->stub->call('valueObject', [
+            'hello', false, true
+        ]);
+
+        $this->assertTrue($res['excludeFromIndexes']);
+
+        $res = $this->stub->call('valueObject', [
+            'hello', false, false
+        ]);
+
+        $this->assertFalse(isset($res['excludeFromIndexes']));
+    }
+
     public function testObjectPropertyDateTime()
     {
         $res = $this->stub->call('valueObject', [
@@ -137,6 +122,18 @@ class DatastoreTraitTest extends \PHPUnit_Framework_TestCase
         ]);
 
         $this->assertEquals((new \DateTimeImmutable())->format(\DateTime::RFC3339), $res['timestampValue']);
+    }
+
+    public function testObjectPropertyKey()
+    {
+        $key = $this->prophesize(Key::class);
+        $key->keyObject()->willReturn('foo');
+
+        $res = $this->stub->call('valueObject', [
+            $key->reveal()
+        ]);
+
+        $this->assertEquals($res['keyValue'], 'foo');
     }
 
     /**
@@ -147,43 +144,6 @@ class DatastoreTraitTest extends \PHPUnit_Framework_TestCase
         $this->stub->call('valueObject', [
             $this
         ]);
-    }
-
-    public function testValidateBatch()
-    {
-        $key = $this->prophesize(Key::class);
-        $input = [$key->reveal(), $key->reveal()];
-
-        $this->stub->call('validateBatch', [
-            $input, Key::class
-        ]);
-    }
-
-    /**
-     * @expectedException InvalidArgumentException
-     */
-    public function testValidateBatchFail()
-    {
-        $key = $this->prophesize(Key::class);
-        $input = ['foo', $key->reveal()];
-
-        $this->stub->call('validateBatch', [
-            $input, Key::class
-        ]);
-    }
-
-    public function testValidateBatchAdditionalCheck()
-    {
-        $key = $this->prophesize(Key::class);
-        $input = [$key->reveal(), $key->reveal()];
-
-        $called = 0;
-
-        $this->stub->call('validateBatch', [
-            $input, Key::class, function() use (&$called) { $called++; }
-        ]);
-
-        $this->assertEquals($called, count($input));
     }
 }
 

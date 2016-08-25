@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Datastore;
 
+use DomainException;
 use Google\Cloud\ClientTrait;
 use Google\Cloud\Datastore\Connection\Rest;
 use Google\Cloud\Datastore\Query\GqlQuery;
@@ -29,6 +30,43 @@ use InvalidArgumentException;
  * Google Cloud Datastore client. Cloud Datastore is a highly-scalable NoSQL
  * database for your applications.  Find more information at
  * [Google Cloud Datastore docs](https://cloud.google.com/datastore/docs/).
+ *
+ * Cloud Datastore supports [multi-tenant](https://cloud.google.com/datastore/docs/concepts/multitenancy) applications
+ * through use of data partitions. A partition ID can be supplied when creating an instance of Cloud Datastore, and will
+ * be used in all operations executed in that instance.
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\ServiceBuilder;
+ *
+ * $cloud = new ServiceBuilder([
+ *     'projectId' => 'my-awesome-project'
+ * ]);
+ *
+ * $datastore = $cloud->datastore();
+ * ```
+ *
+ * ```
+ * // The Datastore client can also be instantianted directly.
+ * use Google\Cloud\Datastore\DatastoreClient;
+ *
+ * $datastore = new DatastoreClient([
+ *     'projectId' => 'my-awesome-project'
+ * ]);
+ * ```
+ *
+ * ```
+ * // Multi-tenant applications can supply a namespace ID.
+ * use Google\Cloud\ServiceBuilder;
+ *
+ * $cloud = new ServiceBuilder([
+ *     'projectId' => 'my-awesome-project'
+ * ]);
+ *
+ * $datastore = $cloud->datastore([
+ *     'namespaceId' => 'my-application-namespace'
+ * ]);
+ * ```
  */
 class DatastoreClient
 {
@@ -45,27 +83,12 @@ class DatastoreClient
     protected $connection;
 
     /**
+     * @var Operation
+     */
+    protected $operation;
+
+    /**
      * Create a Datastore client.
-     *
-     * Example:
-     * ```
-     * use Google\Cloud\ServiceBuilder;
-     *
-     * $cloud = new ServiceBuilder([
-     *     'projectId' => 'my-awesome-project'
-     * ]);
-     *
-     * $datastore = $cloud->datastore();
-     * ```
-     *
-     * ```
-     * // The Datastore client can also be instantianted directly.
-     * use Google\Cloud\Datastore\DatastoreClient;
-     *
-     * $datastore = new DatastoreClient([
-     *     'projectId' => 'my-awesome-project'
-     * ]);
-     * ```
      *
      * @param array $config {
      *     Configuration Options.
@@ -84,16 +107,23 @@ class DatastoreClient
      *     @type int $retries Number of retries for a failed request. Defaults
      *           to 3.
      *     @type array $scopes Scopes to be used for the request.
+     *     @type string $namespaceId Partitions data under a namespace. Useful for
+     *           [Multitenant Projects](https://cloud.google.com/datastore/docs/concepts/multitenancy)
      * }
      * @throws \InvalidArgumentException
      */
     public function __construct(array $config = [])
     {
+        $config = $config + [
+            'namespaceId' => null
+        ];
+
         if (!isset($config['scopes'])) {
             $config['scopes'] = [self::FULL_CONTROL_SCOPE];
         }
 
         $this->connection = new Rest($this->configureAuthentication($config));
+        $this->operation = new Operation($this->connection, $this->projectId, $config['namespaceId']);
     }
 
     /**
@@ -123,25 +153,15 @@ class DatastoreClient
      *
      *     @type string $identifierType If omitted, type will be determined
      *           internally. In cases where any ambiguity can be expected (i.e.
-     *           if you want to create keys with `name` but you anticipate a
-     *           numeric name), this value should be explicitly set using
-     *           `Key::TYPE_ID` or `Key::TYPE_NAME`.
-     *     @type string $namespaceId Partitions data under a namespace. Useful for
-     *           [Multitenant Projects](https://cloud.google.com/datastore/docs/concepts/multitenancy)
+     *           if you want to create keys with `name` but your values may
+     *           pass PHP's `is_numeric()` check), this value may be
+     *           explicitly set using `Key::TYPE_ID` or `Key::TYPE_NAME`.
      * }
      * @return Key
      */
     public function key($kind, $identifier = null, array $options = [])
     {
-        $options = $options + [
-            'namespaceId' => null,
-            'identifierType' => null
-        ];
-
-        $key = new Key($this->projectId, $options);
-        $key->pathElement($kind, $identifier, $options['identifierType']);
-
-        return $key;
+        return $this->operation->key($kind, $identifier, $options);
     }
 
     /**
@@ -150,33 +170,14 @@ class DatastoreClient
      * When inserting multiple entities, creating a set of keys at once can be
      * useful. By defining the Key's kind and any ancestors up front, and
      * allowing Cloud Datastore to allocate IDs, you can be sure that your
-     * entity settings are correct and that there will be no collisions during
-     * the insert operation.
-     *
-     * By default, IDs will be allocated to each key, requiring a service
-     * request. This can be disabled in the method options. Note that only a
-     * single service request will be executed, regardless of the number of keys
-     * generated, up to 500 keys (due to limits in Cloud Datastore).
+     * entity identity and ancestry are correct and that there will be no
+     * collisions during the insert operation.
      *
      * Example:
      * ```
      * $keys = $datastore->keys('Person', [
      *     'number' => 10
      * ]);
-     * ```
-     *
-     * ```
-     * // You can disable automatic allocation of IDs
-     * $keys = $datastore->keys('Person', [
-     *     'number' => 10,
-     *     'allocateIds' => false
-     * ]);
-     *
-     * echo $keys[0]->state(); // 'incomplete'
-     *
-     * $keys = $datastore->allocateIds($keys);
-     *
-     * echo $keys[0]->state(); // 'complete'
      * ```
      *
      * ```
@@ -200,10 +201,6 @@ class DatastoreClient
      *     @type array[] $ancestors An array of
      *           [PathElement](https://cloud.google.com/datastore/reference/rest/v1/Key#PathElement) arrays. Use to
      *           create [ancestor paths](https://cloud.google.com/datastore/docs/concepts/entities#ancestor_paths).
-     *     @type bool $allocateIds Whether to automatically allocate IDs in the Datastore service. Set to `true` by
-     *           default. If set to `true`, a service request will be executed.
-     *     @type string $namespaceId Partitions data under a namespace. Useful for
-     *           [Multitenant Projects](https://cloud.google.com/datastore/docs/concepts/multitenancy)
      *     @type int $number The number of keys to generate
      *     @type string|int $id The ID for the last pathElement
      *     @type string $name The Name for the last pathElement
@@ -212,44 +209,24 @@ class DatastoreClient
      */
     public function keys($kind, array $options = [])
     {
-        $options = $options + [
-            'number' => 1,
-            'allocateIds' => true,
-            'namespaceId' => null,
-            'ancestors' => [],
-            'id' => null,
-            'name' => null
-        ];
-
-        $path = [];
-        if (count($options['ancestors']) > 0) {
-            $path = $options['ancestors'];
-        }
-
-        $path[] = array_filter([
-            'kind' => $kind,
-            'id' => $options['id'],
-            'name' => $options['name']
-        ]);
-
-        $key = new Key($this->projectId, [
-            'path' => $path,
-            'namespaceId' => $options['namespaceId']
-        ]);
-
-        $keys = array_fill(0, $options['number'], $key);
-
-        if ($options['allocateIds']) {
-            $keys = $this->allocateIds($keys);
-        }
-
-        return $keys;
+        return $this->operation->keys($kind, $options);
     }
 
     /**
      * Create an entity.
      *
      * This method does not execute any service requests.
+     *
+     * Entities are created with a Datastore Key, or by specifying a Kind. Kinds
+     * are only allowed for insert operations. For any other case, you must
+     * specify a complete key. If a kind is give, an ID will be automatically
+     * allocated for the entity upon insert. Additionally, if your entity
+     * requires a complex key elementPath, you must create the key separately.
+     *
+     * In complex applications you may want to create your own entity types.
+     * Google Cloud PHP supports subclassing of {@see Google\Cloud\Datastore\Entity}.
+     * If the name of a subclass of Entity is given in the options array, an
+     * entity will be created with that class rather than the default class.
      *
      * ```
      * $key = $datastore->key('Person', 'Bob');
@@ -260,24 +237,52 @@ class DatastoreClient
      * ```
      *
      * ```
-     * // Entities can be manipulated via PHP's arrayaccess:
+     * // Both of the following has the identical effect as the previous example.
+     * $entity = $datastore->entity($key);
+     *
      * $entity['firstName'] = 'Bob';
      * $entity['lastName'] = 'Testguy';
      *
-     * echo $entity['firstName']; // 'Bob'
+     * $entity = $datastore->entity($key);
+     *
+     * $entity->firstName = 'Bob';
+     * $entity->lastName = 'Testguy';
+     * ```
+     *
+     * ```
+     * // Entities can be created with a Kind only, for inserting into datastore
+     * $entity = $datastore->entity('Person');
+     * ```
+     *
+     * ```
+     * // Entities can be custom classes extending the built-in Entity class.
+     * class Person extends Google\Cloud\Datastore\Entity
+     * {}
+     *
+     * $person = $datastore->entity('Person', [ 'firstName' => 'Bob'], [
+     *     'className' => Person::class
+     * ]);
+     *
+     * echo get_class($person); // `Person`
      * ```
      *
      * @see https://cloud.google.com/datastore/reference/rest/v1beta3/Entity Entity
      *
-     * @param Key $key The Key used to uniquely identify this entity. Only
-     *        complete keys may be used.
+     * @param Key|string $key The key used to identify the record, or a string $kind.
      * @param array $entity The data to fill the entity with.
-     * @param array $options See {@see Google\Cloud\Datastore\Entity::__construct()} for documentation.
+     * @param array $options {
+     *     Configuration Options
+     *
+     *     @type string $className The name of a class extending {@see Google\Cloud\Datastore\Entity}.
+     *           If provided, an instance of that class will be returned instead of Entity.
+     *           If not set, {@see Google\Cloud\Datastore\Entity} will be used.
+     *     @type array $excludeFromIndexes A list of entity keys to exclude from
+     *           datastore indexes.
      * @return Entity
      */
-    public function entity(Key $key, array $entity = [], array $options = [])
+    public function entity($key, array $entity = [], array $options = [])
     {
-        return new Entity($key, $entity, $options);
+        return $this->operation->entity($key, $entity, $options);
     }
 
     /**
@@ -291,7 +296,7 @@ class DatastoreClient
      * Example:
      * ```
      * $key = $datastore->key('Person');
-     * $allocatedId = $datastore->allocateId($key);
+     * $keyWithAllocatedId = $datastore->allocateId($key);
      * ```
      *
      * @see https://cloud.google.com/datastore/reference/rest/v1beta3/projects/allocateIds allocateIds
@@ -321,7 +326,7 @@ class DatastoreClient
      *     $datastore->key('Person')
      * ];
      *
-     * $allocatedIds = $datastore->allocateIds($keys);
+     * $keysWithAllocatedIds = $datastore->allocateIds($keys);
      * ```
      *
      * @see https://cloud.google.com/datastore/reference/rest/v1beta3/projects/allocateIds allocateIds
@@ -332,156 +337,67 @@ class DatastoreClient
      */
     public function allocateIds(array $keys, array $options = [])
     {
-        // Validate the given keys. First check types, then state of each.
-        // The API will throw a 400 if the key is complete, but it's an easy
-        // check we can handle before going to the API to save a request.
-        // @todo replace with json schema
-        $this->validateBatch($keys, Key::class, function ($key) {
-            if ($key->state() !== Key::STATE_INCOMPLETE) {
-                throw new InvalidArgumentException(sprintf(
-                    'Given $key is in an invalid state. Can only allocate IDs for incomplete keys. ' .
-                    'Given path was %s',
-                    (string) $key
-                ));
-            }
-        });
-
-        $res = $this->connection->allocateIds([
-            'projectId' => $this->projectId,
-            'keys' => $keys
-        ] + $options);
-
-        $keys = [];
-        if (isset($res['keys'])) {
-            foreach ($res['keys'] as $key) {
-                $keys[] = new Key($this->projectId, [
-                    'path' => $key['path'],
-                    'namespaceId' => (isset($key['partitionId']['namespaceId']))
-                        ? $key['partitionId']['namespaceId']
-                        : null
-                ]);
-            }
-        }
-
-        return $keys;
+        return $this->operation->allocateIds($keys, $options);
     }
 
     /**
-     * Create a transaction instance from an existing transaction ID
+     * Create a Transaction
      *
      * Example:
      * ```
-     * $transaction = $datastore->transaction($transactionId);
+     * $transaction = $datastore->transaction();
      * ```
      *
      * @see https://cloud.google.com/datastore/docs/concepts/transactions Datastore Transactions
      *
-     * @param string $transactionId The unique transaction identifier.
+     * @param array $options Configuration options
      * @return Transaction
      */
-    public function transaction($transactionId)
-    {
-        return new Transaction(
-            $this->connection,
-            $this->projectId,
-            $transactionId
-        );
-    }
-
-    /**
-     * Begin a new transaction
-     *
-     * Example:
-     * ```
-     * $transaction = $datastore->beginTransaction();
-     * ```
-     *
-     * @see https://cloud.google.com/datastore/docs/concepts/transactions Datastore Transactions
-     * @see https://cloud.google.com/datastore/reference/rest/v1beta3/projects/beginTransaction beginTransaction
-     *
-     * @return Transaction
-     */
-    public function beginTransaction(array $options = [])
+    public function transaction(array $options = [])
     {
         $res = $this->connection->beginTransaction($options + [
             'projectId' => $this->projectId
         ]);
 
-        return $this->transaction($res['transaction']);
-    }
-
-    /**
-     * Create an operation
-     *
-     * An Operation can be used to build complex queries before committing.
-     *
-     * Example:
-     * ```
-     * $operation = $datastore->operation();
-     * ```
-     *
-     * @param array $options {
-     *     @type bool $runInTransaction If true, a new transaction will be
-     *           started.
-     *     @type Transaction $transaction If a Transaction is given, operation
-     *           will run in transaction.
-     * }
-     * @return Operation
-     */
-    public function operation(array $options = [])
-    {
-        $options = $options + [
-            'runInTransaction' => false,
-            'transaction' => null
-        ];
-
-        if ($options['transaction'] && !($options['transaction'] instanceof Transaction)) {
-            throw new InvalidArgumentException(
-                'Given $transaction must be an instance of Transaction'
-            );
-        }
-
-        $transaction = null;
-        if ($options['transaction']) {
-            $transaction = $options['transaction'];
-        } elseif ($options['runInTransaction']) {
-            $transaction = $this->beginTransaction($options);
-        }
-
-        return new Operation($this->connection, $this->projectId, $transaction);
+        return new Transaction(
+            clone $this->operation,
+            $this->projectId,
+            $res['transaction']
+        );
     }
 
     /**
      * Insert an entity
      *
+     * An entity with incomplete keys will be allocated an ID prior to insertion.
+     *
      * Example:
      * ```
-     * $key = $datastore->key('person', 'Bob');
+     * $key = $datastore->key('Person', 'Bob');
      * $entity = $datastore->entity($key, ['firstName' => 'Bob']);
      *
      * $datastore->insert($entity);
      * ```
      *
      * @param Entity $entity The entity to be inserted
-     * @param array $options {
-     *     Configuration Options
-     *
-     *     @type Transaction $transaction Run this operation in a transaction.
-     * }
-     * @return void
+     * @param array $options Configuration options
+     * @return string The entity version
+     * @throws DomainException If a conflict occurs, fail.
      */
     public function insert(Entity $entity, array $options = [])
     {
-        $this->runOperation('insertBatch', [$entity], $options);
+        $res = $this->insertBatch([$entity], $options);
+        return $this->parseSingleMutationResult($res);
     }
 
     /**
      * Insert multiple entities
      *
+     * Any entity with incomplete keys will be allocated an ID prior to insertion.
+     *
      * Example:
      * ```
-     * $keys = $datastore->keys(['kind' => 'person'], [
-     *     'allocateIds' => true,
+     * $keys = $datastore->keys(['kind' => 'Person'], [
      *     'number' => 2
      * ]);
      *
@@ -494,24 +410,27 @@ class DatastoreClient
      * ```
      *
      * @param Entity[] $entities The entities to be inserted
-     * @param array $options {
-     *     Configuration Options
-     *
-     *     @type Transaction $transaction Run this operation in a transaction.
-     * }
-     * @return void
+     * @param array $options Configuration options
+     * @return array [Response Body](https://cloud.google.com/datastore/reference/rest/v1/projects/commit#response-body)
      */
     public function insertBatch(array $entities, array $options = [])
     {
-        return $this->runOperation('insertBatch', $entities, $options);
+        $entities = $this->operation->allocateIdsToEntities($entities);
+        $this->operation->mutate('insert', $entities, Entity::class);
+        return $this->operation->commit($options);
     }
 
     /**
      * Update an entity
      *
+     * Please note that updating a record in Cloud Datastore will replace the
+     * existing record. Adding, editing or removing a single property is only
+     * possible by first retrieving the entire entity in its existing state.
+     *
      * Example:
      * ```
-     * $entity['firstName'] = 'Bob';
+     * $entity = $datastore->lookup($ds->key('Person', 'Bob'));
+     * $entity['firstName'] = 'John';
      *
      * $datastore->update($entity);
      * ```
@@ -520,17 +439,30 @@ class DatastoreClient
      * @param array $options {
      *     Configuration Options
      *
-     *     @type Transaction $transaction Run this operation in a transaction.
+     *     @type bool $allowOverwrite Set to `false` by default. Entities must
+     *           be updated as an entire resource. Patch operations are not
+     *           supported. Because entities can be created manually, or
+     *           obtained by a lookup or query, it is possible to accidentally
+     *           overwrite an existing record with a new one when manually
+     *           creating an entity. To provide additional safety, this flag
+     *           must be set to `true` in order to update a record when the
+     *           entity provided was not obtained through a lookup or query.
      * }
-     * @return void
+     * @return string The entity version
+     * @throws DomainException If a conflict occurs, fail.
      */
     public function update(Entity $entity, array $options = [])
     {
-        return  $this->runOperation('updateBatch', [$entity], $options);
+        $res = $this->updateBatch([$entity], $options);
+        return $this->parseSingleMutationResult($res);
     }
 
     /**
      * Update multiple entities
+     *
+     * Please note that updating a record in Cloud Datastore will replace the
+     * existing record. Adding, editing or removing a single property is only
+     * possible by first retrieving the entire entity in its existing state.
      *
      * Example:
      * ```
@@ -544,13 +476,26 @@ class DatastoreClient
      * @param array $options {
      *     Configuration Options
      *
-     *     @type Transaction $transaction Run this operation in a transaction.
+     *     @type bool $allowOverwrite Set to `false` by default. Entities must
+     *           be updated as an entire resource. Patch operations are not
+     *           supported. Because entities can be created manually, or
+     *           obtained by a lookup or query, it is possible to accidentally
+     *           overwrite an existing record with a new one when manually
+     *           creating an entity. To provide additional safety, this flag
+     *           must be set to `true` in order to update a record when the
+     *           entity provided was not obtained through a lookup or query.
      * }
-     * @return void
+     * @return array [Response Body](https://cloud.google.com/datastore/reference/rest/v1/projects/commit#response-body)
      */
     public function updateBatch(array $entities, array $options = [])
     {
-        return $this->runOperation('updateBatch', $entities, $options);
+        $options = $options + [
+            'allowOverwrite' => false
+        ];
+
+        $this->operation->checkOverwrite($entities, $options['allowOverwrite']);
+        $this->operation->mutate('update', $entities, Entity::class);
+        return $this->operation->commit($options);
     }
 
     /**
@@ -559,39 +504,47 @@ class DatastoreClient
      * Upsert will create a record if one does not already exist, or overwrite
      * existing record if one already exists.
      *
+     * Please note that upserting a record in Cloud Datastore will replace the
+     * existing record, if one exists. Adding, editing or removing a single
+     * property is only possible by first retrieving the entire entity in its
+     * existing state.
+     *
      * Example:
      * ```
-     * $key = $datastore->key('person', 'Bob']);
+     * $key = $datastore->key('Person', 'Bob']);
      * $entity = $datastore->entity($key, ['firstName' => 'Bob']);
      *
      * $datastore->upsert($entity);
      * ```
      *
      * @param Entity $entity The entity to be upserted
-     * @param array $options {
-     *     Configuration Options
-     *
-     *     @type Transaction $transaction Run this operation in a transaction.
-     * }
-     * @return void
+     * @param array $options Configuration options
+     * @return string The entity version
+     * @throws DomainException If a conflict occurs, fail.
      */
     public function upsert(Entity $entity, array $options = [])
     {
-        return $this->runOperation('upsertBatch', [$entity], $options);
+        $res = $this->upsertBatch([$entity], $options);
+        return $this->parseSingleMutationResult($res);
     }
 
     /**
      * Upsert multiple entities
      *
      * Upsert will create a record if one does not already exist, or overwrite
-     * existing record if one already exists.
+     * an existing record if one already exists.
+     *
+     * Please note that upserting a record in Cloud Datastore will replace the
+     * existing record, if one exists. Adding, editing or removing a single
+     * property is only possible by first retrieving the entire entity in its
+     * existing state.
      *
      * Example:
      * ```
-     * $keys = $datastore->keys(['kind' => 'person'], [
-     *     'allocateIds' => true,
-     *     'number' => 2
-     * ]);
+     * $keys = [
+     *     $datastore->key('Person', 'Bob'),
+     *     $datastore->key('Person', 'John')
+     * ];
      *
      * $entities = [
      *     $datastore->entity($key[0], ['firstName' => 'Bob']),
@@ -602,16 +555,13 @@ class DatastoreClient
      * ```
      *
      * @param Entity[] $entities The entities to be upserted
-     * @param array $options {
-     *     Configuration Options
-     *
-     *     @type Transaction $transaction Run this operation in a transaction.
-     * }
-     * @return void
+     * @param array $options Configuration options
+     * @return array [Response Body](https://cloud.google.com/datastore/reference/rest/v1/projects/commit#response-body)
      */
     public function upsertBatch(array $entities, array $options = [])
     {
-        return $this->runOperation('upsertBatch', $entities, $options);
+        $this->operation->mutate('upsert', $entities, Entity::class);
+        return $this->operation->commit($options);
     }
 
     /**
@@ -619,22 +569,19 @@ class DatastoreClient
      *
      * Example:
      * ```
-     * $key = $datastore->key('person', 'Bob']);
+     * $key = $datastore->key('Person', 'Bob']);
      *
      * $datastore->delete($key);
      * ```
      *
      * @param Key $key The identifier to delete
-     * @param array $options {
-     *     Configuration Options
-     *
-     *     @type Transaction $transaction Run this operation in a transaction.
-     * }
-     * @return void
+     * @param array $options Configuration options
+     * @return string The updated entity version number
      */
     public function delete(Key $key, array $options = [])
     {
-        return $this->runOperation('deleteBatch', [$key], $options);
+        $res = $this->deleteBatch([$key], $options);
+        return $this->parseSingleMutationResult($res);
     }
 
     /**
@@ -643,24 +590,21 @@ class DatastoreClient
      * Example:
      * ```
      * $keys = [
-     *     $datastore->key('person', 'Bob'),
-     *     $datastore->key('person', 'John')
+     *     $datastore->key('Person', 'Bob'),
+     *     $datastore->key('Person', 'John')
      * ];
      *
      * $datastore->deleteBatch($keys);
      * ```
      *
      * @param Key[] $keys The identifiers to delete
-     * @param array $options {
-     *     Configuration Options
-     *
-     *     @type Transaction $transaction Run this operation in a transaction.
-     * }
-     * @return void
+     * @param array $options Configuration options
+     * @return array [Response Body](https://cloud.google.com/datastore/reference/rest/v1/projects/commit#response-body)
      */
     public function deleteBatch(array $keys, array $options = [])
     {
-        return $this->runOperation('deleteBatch', $keys, $options);
+        $this->operation->mutate('delete', $keys, Key::class);
+        return $this->operation->commit($options);
     }
 
     /**
@@ -676,10 +620,19 @@ class DatastoreClient
      * }
      * ```
      *
+     * @codingStandardsIgnoreStart
      * @param Key $key $key The identifier to use to locate a desired entity
-     * @param Transaction $transaction Run the lookup in a {@see Google\Cloud\Datastore\Transaction}
-     * @param array $options See {@see Google\Cloud\Datastore\DatastoreClient::getBatch()}.
+     * @param array $options {
+     *     Configuration Options
+     *
+     *     @type string $readConsistency See
+     *           [ReadConsistency](https://cloud.google.com/datastore/reference/rest/v1beta3/ReadOptions#ReadConsistency).
+     *     @type string $className The name of the class to return results as.
+     *           Must be a subclass of {@see Google\Cloud\Datastore\Entity}.
+     *           If not set, {@see Google\Cloud\Datastore\Entity} will be used.
+     * }
      * @return Entity|null
+     * @codingStandardsIgnoreEnd
      */
     public function lookup(Key $key, array $options = [])
     {
@@ -708,57 +661,22 @@ class DatastoreClient
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @param Key[] $key The identifier to look up.
+     * @param Key[] $key The identifiers to look up.
      * @param array $options {
      *     Configuration Options
      *
      *     @type string $readConsistency See
      *           [ReadConsistency](https://cloud.google.com/datastore/reference/rest/v1beta3/ReadOptions#ReadConsistency).
-     *     @type Transaction $transaction Run the lookup in a {@see Google\Cloud\Datastore\Transaction}
+     *     @type string $className The name of the class to return results as.
+     *           Must be a subclass of {@see Google\Cloud\Datastore\Entity}.
+     *           If not set, {@see Google\Cloud\Datastore\Entity} will be used.
      * }
      * @return array
      * @codingStandardsIgnoreEnd
      */
     public function lookupBatch(array $keys, array $options = [])
     {
-        $this->validateBatch($keys, Key::class, function ($key) {
-            if ($key->state() !== Key::STATE_COMPLETE) {
-                throw new InvalidArgumentException(sprintf(
-                    'Given $key is in an invalid state. Can only lookup records when given a complete key. ' .
-                    'Given path was %s',
-                    (string) $key
-                ));
-            }
-        });
-
-        $res = $this->connection->lookup($options + [
-            'projectId' => $this->projectId,
-            'readOptions' => $this->readOptions($options),
-            'keys' => $keys
-        ]);
-
-        $result = [];
-        if (isset($res['found'])) {
-            $result['found'] = $this->mapEntityResult($res['found']);
-        }
-
-        if (isset($res['missing'])) {
-            $result['missing'] = $this->mapEntityResult($res['missing']);
-        }
-
-        if (isset($res['deferred'])) {
-            $result['deferred'] = [];
-            foreach ($res['deferred'] as $deferred) {
-                $key = $this->key(
-                    $deferred['path'],
-                    $deferred['partitionId']
-                );
-
-                $result['deferred'][] = $key;
-            }
-        }
-
-        return $result;
+        return $this->operation->lookup($keys, $options);
     }
 
     /**
@@ -839,77 +757,40 @@ class DatastoreClient
      * ```
      *
      * @param QueryInterface $query
-     * @param array $options Configuration Options
+     * @param array $options {
+     *     Configuration Options
+     *
+     *     @type string $className The name of the class to return results as.
+     *           Must be a subclass of {@see Google\Cloud\Datastore\Entity}.
+     *           If not set, {@see Google\Cloud\Datastore\Entity} will be used.
+     * }
      * @return \Generator<Google\Cloud\Datastore\Entity>
      */
     public function runQuery(QueryInterface $query, array $options = [])
     {
-        $moreResults = true;
-        do {
-            $request = $query->queryObject();
-
-            $res = $this->connection->runQuery($request + $options + [
-                'projectId' => $this->projectId
-            ]);
-
-            if (isset($res['batch']['entityResults']) && is_array($res['batch']['entityResults'])) {
-                $results = $this->mapEntityResult($res['batch']['entityResults']);
-                foreach ($results as $result) {
-                    yield $result;
-                }
-
-                if ($query->canPaginate() && $res['batch']['moreResults'] !== 'NO_MORE_RESULTS') {
-                    $query->start($res['batch']['endCursor']);
-                } else {
-                    $moreResults = false;
-                }
-            } else {
-                $moreResults = false;
-            }
-        } while ($moreResults);
-    }
-
-    private function runOperation($method, array $entities, array $options = [])
-    {
-        $operation = $this->operation($options);
-
-        call_user_func_array([$operation, $method], [$entities]);
-
-        return $operation->commit($options);
+        return $this->operation->runQuery($query, $options);
     }
 
     /**
-     * Convert an EntityResult into an array of entities
+     * Handle mutation results
      *
-     * @param array $entityResult [EntityResult](https://cloud.google.com/datastore/reference/rest/v1beta3/EntityResult)
-     * @return Entity[]
+     * @codingStandardsIgnoreStart
+     * @param array $res [MutationResult](https://cloud.google.com/datastore/reference/rest/v1/projects/commit#MutationResult)
+     * @return string
+     * @throws DomainException
+     * @codingStandardsIgnoreEnd
      */
-    private function mapEntityResult(array $entityResult)
+    private function parseSingleMutationResult(array $res)
     {
-        $entities = [];
+        $mutationResult = $res['mutationResults'][0];
 
-        foreach ($entityResult as $result) {
-            $namespaceId = (isset($result['entity']['key']['partitionId']['namespaceId']))
-                ? $result['entity']['key']['partitionId']['namespaceId']
-                : null;
-
-            $key = new Key($this->projectId, [
-                'path' => $result['entity']['key']['path'],
-                'namespaceId' => $namespaceId
-            ]);
-
-            $props = $result['entity']['properties'];
-            array_walk($props, function (&$property) {
-                $property = current($property);
-            });
-
-            $entities[] = $this->entity($key, $props, [
-                'cursor' => (isset($result['cursor']))
-                    ? $result['cursor']
-                    : null
-            ]);
+        if (isset($mutationResult['conflictDetected'])) {
+            throw new DomainException(
+                'A conflict was detected in the mutation. ' .
+                'The operation failed.'
+            );
         }
 
-        return $entities;
+        return $mutationResult['version'];
     }
 }

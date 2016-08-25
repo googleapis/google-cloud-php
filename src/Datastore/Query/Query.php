@@ -17,9 +17,7 @@
 
 namespace Google\Cloud\Datastore\Query;
 
-use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Datastore\DatastoreTrait;
-use InvalidArgumentException;
 
 /**
  * Represents a Cloud [Datastore Query](https://cloud.google.com/datastore/docs/concepts/queries)
@@ -141,11 +139,18 @@ class Query implements QueryInterface
      */
     public function queryObject()
     {
-        return [
-            'partitionId' => $this->partitionId($this->projectId, $this->options),
-            'readOptions' => $this->readOptions($this->options),
-            'query' => array_filter($this->options['query'])
-        ];
+        return array_filter($this->options['query']);
+    }
+
+    /**
+     * Return the query_type union field name.
+     *
+     * @return string
+     * @access private
+     */
+    public function queryKey()
+    {
+        return "query";
     }
 
     /**
