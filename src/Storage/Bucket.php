@@ -337,6 +337,9 @@ class Bucket
         do {
             $response = $this->connection->listObjects($options + $this->identity);
 
+            if (!array_key_exists('items', $response)) {
+                break;
+            }
             foreach ($response['items'] as $object) {
                 $generation = $includeVersions ? $object['generation'] : null;
                 yield new Object($this->connection, $object['name'], $this->identity['bucket'], $generation, $object);
