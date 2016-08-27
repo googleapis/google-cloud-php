@@ -225,7 +225,7 @@ class TranslateClient
      *           either plain-text or HTML. Acceptable values are `html` or
      *          `text`. Defaults to `html`.
      * }
-     * @return array A result including a `languagecode` key
+     * @return array A result including a `languageCode` key
      *         containing the detected ISO 639-1 language code, an `input` key
      *         containing the original string, and in most cases a `confidence`
      *         key containing a value between 0 - 1 signifying the confidence of
