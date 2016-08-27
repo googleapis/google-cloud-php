@@ -180,7 +180,7 @@ class TranslateClient
      *         provided input, an `input` key containing the original string,
      *         and a `text` key containing the translated result.
      */
-    public function translateBatch($strings, array $options = [])
+    public function translateBatch(array $strings, array $options = [])
     {
         $response = $this->connection->listTranslations($options + [
             'q' => $strings,
@@ -267,7 +267,7 @@ class TranslateClient
      *         key containing a value between 0 - 1 signifying the confidence of
      *         the result.
      */
-    public function detectLanguageBatch($strings, array $options = [])
+    public function detectLanguageBatch(array $strings, array $options = [])
     {
         $response =  $this->connection->listDetections($options + [
             'q' => $strings,
