@@ -23,6 +23,7 @@ use Google\Cloud\Logging\LoggingClient;
 use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\NaturalLanguage\NaturalLanguageClient;
 use Google\Cloud\Storage\StorageClient;
+use Google\Cloud\Translate\TranslateClient;
 use Google\Cloud\Vision\VisionClient;
 
 /**
@@ -39,7 +40,7 @@ use Google\Cloud\Vision\VisionClient;
  * options for the specific services you wish to access, e.g. Datastore, or
  * Storage.
  *
- * Please note that all examples below take advantage of
+ * Please note that unless otherwise noted the examples below take advantage of
  * [Application Default Credentials](https://developers.google.com/identity/protocols/application-default-credentials).
  */
 class ServiceBuilder
@@ -239,6 +240,51 @@ class ServiceBuilder
     public function naturalLanguage(array $config = [])
     {
         return new NaturalLanguageClient($config ? $this->resolveConfig($config) : $this->config);
+    }
+
+    /**
+     * Google Translate client. Provides the ability to dynamically translate
+     * text between thousands of language pairs. The Google Translate API lets
+     * websites and programs integrate with Google Translate API
+     * programmatically. Google Translate API is available as a paid service.
+     * See the [Pricing](https://cloud.google.com/translate/v2/pricing) and
+     * [FAQ](https://cloud.google.com/translate/v2/faq) pages for details. Find
+     * more information at
+     * [Google Translate docs](https://cloud.google.com/translate/docs/).
+     *
+     * Please note that unlike most other Cloud Platform services Google
+     * Translate requires a public API access key and cannot currently be
+     * accessed with a service account or application default credentials.
+     * Follow the
+     * [before you begin](https://cloud.google.com/translate/v2/translating-text-with-rest#before-you-begin)
+     * instructions to learn how to generate a key.
+     *
+     * Example:
+     * ```
+     * use Google\Cloud\ServiceBuilder;
+     *
+     * $builder = new ServiceBuilder([
+     *     'key' => 'YOUR_KEY'
+     * ]);
+     *
+     * $translate = $builder->translate();
+     * ```
+     *
+     * @param array $config {
+     *     Configuration options.
+     *
+     *     @type string $key A public API access key.
+     *     @type string $target The target language to assign to the client.
+     *           Defaults to `en` (English).
+     *     @type callable $httpHandler A handler used to deliver Psr7 requests.
+     *     @type int $retries Number of retries for a failed request. Defaults
+     *           to 3.
+     * }
+     * @return TranslateClient
+     */
+    public function translate(array $config = [])
+    {
+        return new TranslateClient($config ? $this->resolveConfig($config) : $this->config);
     }
 
     /**

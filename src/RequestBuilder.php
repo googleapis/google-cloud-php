@@ -98,6 +98,14 @@ class RequestBuilder
             }
         }
 
+        if (isset($this->service['parameters'])) {
+            foreach ($this->service['parameters'] as $parameter => $parameterOptions) {
+                if ($parameterOptions['location'] === 'query' && array_key_exists($parameter, $options)) {
+                    $query[$parameter] = $options[$parameter];
+                }
+            }
+        }
+
         if (isset($action['request'])) {
             $schema = $action['request']['$ref'];
 

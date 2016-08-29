@@ -18,6 +18,7 @@
 namespace Google\Cloud\Tests;
 
 use Google\Cloud\ClientTrait;
+use GuzzleHttp\Psr7\Response;
 
 class ClientTraitTest extends \PHPUnit_Framework_TestCase
 {
@@ -99,7 +100,10 @@ class ClientTraitTest extends \PHPUnit_Framework_TestCase
 
         $trait = new ClientTraitStub;
         $conf = $trait->runDetectProjectId([
-            'keyFile' => $keyFile
+            'keyFile' => $keyFile,
+            'httpHandler' => function ($request, $options = []) {
+                return new Response(500);
+            }
         ]);
     }
 }
