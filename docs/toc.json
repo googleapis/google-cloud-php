@@ -56,6 +56,29 @@
       }]
     },
     {
+      "title": "Datastore",
+      "type": "datastore/datastoreclient",
+      "nav": [{
+        "title": "Entity",
+        "type": "datastore/entity"
+      }, {
+        "title": "Key",
+        "type": "datastore/key"
+      }, {
+        "title": "Operation",
+        "type": "datastore/operation"
+      }, {
+        "title": "Transaction",
+        "type": "datastore/transaction"
+      }, {
+        "title": "Query",
+        "type": "datastore/query/query"
+      }, {
+        "title": "GQL Query",
+        "type": "datastore/query/gqlquery"
+      }]
+    },
+    {
       "title": "Logging",
       "type": "logging/loggingclient",
       "nav": [{
