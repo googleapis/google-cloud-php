@@ -19,6 +19,7 @@
     "pub sub",
     "storage",
     "gcs",
+    "translate",
     "vision"
   ],
   "homepage": "http://github.com/GoogleCloudPlatform/google-cloud-php",
