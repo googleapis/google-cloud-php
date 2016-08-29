@@ -19,6 +19,9 @@ namespace Google\Cloud\Tests;
 
 use Google\Cloud\UriTrait;
 
+/**
+ * @group root
+ */
 class UriTraitTest extends \PHPUnit_Framework_TestCase
 {
     private $implementation;

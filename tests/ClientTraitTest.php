@@ -20,6 +20,9 @@ namespace Google\Cloud\Tests;
 use Google\Cloud\ClientTrait;
 use GuzzleHttp\Psr7\Response;
 
+/**
+ * @group root
+ */
 class ClientTraitTest extends \PHPUnit_Framework_TestCase
 {
     public function testConfigureAuthentication()

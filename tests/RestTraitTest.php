@@ -23,7 +23,7 @@ use GuzzleHttp\Psr7\Response;
 use Prophecy\Argument;
 
 /**
- * @group core
+ * @group root
  */
 class RestTraitTest extends \PHPUnit_Framework_TestCase
 {

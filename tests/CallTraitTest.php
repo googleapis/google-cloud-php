@@ -19,6 +19,9 @@ namespace Google\Cloud\Test;
 
 use Google\Cloud\CallTrait;
 
+/**
+ * @group root
+ */
 class CallTraitTest extends \PHPUnit_Framework_TestCase
 {
     public function testCall()

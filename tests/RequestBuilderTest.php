@@ -20,6 +20,9 @@ namespace Google\Cloud\Tests;
 use Google\Cloud\RequestBuilder;
 use Prophecy\Argument;
 
+/**
+ * @group root
+ */
 class RequestBuilderTest extends \PHPUnit_Framework_TestCase
 {
     public function setUp()

@@ -24,6 +24,9 @@ use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use Prophecy\Argument;
 
+/**
+ * @group root
+ */
 class RequestWrapperTest extends \PHPUnit_Framework_TestCase
 {
     public function testSuccessfullySendsRequest()
