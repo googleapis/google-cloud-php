@@ -29,6 +29,11 @@ use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
+use google\iam\v1\GetIamPolicyRequest;
+use google\iam\v1\IAMPolicyClient;
+use google\iam\v1\Policy;
+use google\iam\v1\SetIamPolicyRequest;
+use google\iam\v1\TestIamPermissionsRequest;
 use google\pubsub\v1\AcknowledgeRequest;
 use google\pubsub\v1\DeleteSubscriptionRequest;
 use google\pubsub\v1\GetSubscriptionRequest;
@@ -91,7 +96,8 @@ class SubscriberApi
     private static $topicNameTemplate;
 
     private $grpcCredentialsHelper;
-    private $stub;
+    private $iAMPolicyStub;
+    private $subscriberStub;
     private $scopes;
     private $defaultCallSettings;
     private $descriptors;
@@ -208,6 +214,7 @@ class SubscriberApi
         $listSubscriptionsPageStreamingDescriptor =
                 new PageStreamingDescriptor([
                     'requestPageTokenField' => 'page_token',
+                    'requestPageSizeField' => 'page_size',
                     'responsePageTokenField' => 'next_page_token',
                     'resourceField' => 'subscriptions',
                 ]);
@@ -289,6 +296,9 @@ class SubscriberApi
             'acknowledge' => $defaultDescriptors,
             'pull' => $defaultDescriptors,
             'modifyPushConfig' => $defaultDescriptors,
+            'setIamPolicy' => $defaultDescriptors,
+            'getIamPolicy' => $defaultDescriptors,
+            'testIamPermissions' => $defaultDescriptors,
         ];
         $pageStreamingDescriptors = self::getPageStreamingDescriptors();
         foreach ($pageStreamingDescriptors as $method => $pageStreamingDescriptor) {
@@ -297,7 +307,7 @@ class SubscriberApi
 
         // TODO load the client config in a more package-friendly way
         // https://github.com/googleapis/toolkit/issues/332
-        $clientConfigJsonString = file_get_contents('./resources/subscriber_client_config.json');
+        $clientConfigJsonString = file_get_contents(__DIR__.'/resources/subscriber_client_config.json');
         $clientConfig = json_decode($clientConfigJsonString, true);
         $this->defaultCallSettings =
                 CallSettings::load(
@@ -310,17 +320,27 @@ class SubscriberApi
 
         $this->scopes = $options['scopes'];
 
-        $generatedCreateStub = function ($hostname, $opts) {
-            return new SubscriberClient($hostname, $opts);
-        };
         $createStubOptions = [];
         if (!empty($options['sslCreds'])) {
             $createStubOptions['sslCreds'] = $options['sslCreds'];
         }
         $grpcCredentialsHelperOptions = array_diff_key($options, $defaultOptions);
         $this->grpcCredentialsHelper = new GrpcCredentialsHelper($this->scopes, $grpcCredentialsHelperOptions);
-        $this->stub = $this->grpcCredentialsHelper->createStub(
-            $generatedCreateStub,
+
+        $createIAMPolicyStubFunction = function ($hostname, $opts) {
+            return new IAMPolicyClient($hostname, $opts);
+        };
+        $this->iAMPolicyStub = $this->grpcCredentialsHelper->createStub(
+            $createIAMPolicyStubFunction,
+            $options['serviceAddress'],
+            $options['port'],
+            $createStubOptions
+        );
+        $createSubscriberStubFunction = function ($hostname, $opts) {
+            return new SubscriberClient($hostname, $opts);
+        };
+        $this->subscriberStub = $this->grpcCredentialsHelper->createStub(
+            $createSubscriberStubFunction,
             $options['serviceAddress'],
             $options['port'],
             $createStubOptions
@@ -412,7 +432,7 @@ class SubscriberApi
             new CallSettings($optionalArgs)
         );
         $callable = ApiCallable::createApiCall(
-            $this->stub,
+            $this->subscriberStub,
             'CreateSubscription',
             $mergedSettings,
             $this->descriptors['createSubscription']
@@ -465,7 +485,7 @@ class SubscriberApi
             new CallSettings($optionalArgs)
         );
         $callable = ApiCallable::createApiCall(
-            $this->stub,
+            $this->subscriberStub,
             'GetSubscription',
             $mergedSettings,
             $this->descriptors['getSubscription']
@@ -500,7 +520,9 @@ class SubscriberApi
      *                             Optional.
      *
      *     @type int $pageSize
-     *          Maximum number of subscriptions to return.
+     *          The maximum number of resources contained in the underlying API
+     *          response. The API may return fewer values in a page, even if
+     *          there are additional values to be retrieved.
      *     @type string $pageToken
      *          A page token is used to specify a page of values to be returned.
      *          If no page token is specified (the default), the first page
@@ -533,7 +555,7 @@ class SubscriberApi
             new CallSettings($optionalArgs)
         );
         $callable = ApiCallable::createApiCall(
-            $this->stub,
+            $this->subscriberStub,
             'ListSubscriptions',
             $mergedSettings,
             $this->descriptors['listSubscriptions']
@@ -588,7 +610,7 @@ class SubscriberApi
             new CallSettings($optionalArgs)
         );
         $callable = ApiCallable::createApiCall(
-            $this->stub,
+            $this->subscriberStub,
             'DeleteSubscription',
             $mergedSettings,
             $this->descriptors['deleteSubscription']
@@ -654,7 +676,7 @@ class SubscriberApi
             new CallSettings($optionalArgs)
         );
         $callable = ApiCallable::createApiCall(
-            $this->stub,
+            $this->subscriberStub,
             'ModifyAckDeadline',
             $mergedSettings,
             $this->descriptors['modifyAckDeadline']
@@ -717,7 +739,7 @@ class SubscriberApi
             new CallSettings($optionalArgs)
         );
         $callable = ApiCallable::createApiCall(
-            $this->stub,
+            $this->subscriberStub,
             'Acknowledge',
             $mergedSettings,
             $this->descriptors['acknowledge']
@@ -786,7 +808,7 @@ class SubscriberApi
             new CallSettings($optionalArgs)
         );
         $callable = ApiCallable::createApiCall(
-            $this->stub,
+            $this->subscriberStub,
             'Pull',
             $mergedSettings,
             $this->descriptors['pull']
@@ -850,10 +872,186 @@ class SubscriberApi
             new CallSettings($optionalArgs)
         );
         $callable = ApiCallable::createApiCall(
-            $this->stub,
+            $this->subscriberStub,
             'ModifyPushConfig',
             $mergedSettings,
             $this->descriptors['modifyPushConfig']
+        );
+
+        return $callable(
+            $request,
+            [],
+            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+    }
+
+    /**
+     * Sets the access control policy on the specified resource. Replaces any
+     * existing policy.
+     *
+     * Sample code:
+     * ```
+     * try {
+     *     $subscriberApi = new SubscriberApi();
+     *     $formattedResource = SubscriberApi::formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+     *     $policy = new Policy();
+     *     $response = $subscriberApi->setIamPolicy($formattedResource, $policy);
+     * } finally {
+     *     if (isset($subscriberApi)) {
+     *         $subscriberApi->close();
+     *     }
+     * }
+     * ```
+     *
+     * @param string $resource     REQUIRED: The resource for which policy is being specified.
+     *                             Resource is usually specified as a path, such as,
+     *                             projects/{project}/zones/{zone}/disks/{disk}.
+     * @param Policy $policy       REQUIRED: The complete policy to be applied to the 'resource'. The size of
+     *                             the policy is limited to a few 10s of KB. An empty policy is in general a
+     *                             valid policy but certain services (like Projects) might reject them.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type Google\GAX\RetrySettings $retrySettings
+     *          Retry settings to use for this call. If present, then
+     *          $timeoutMillis is ignored.
+     *     @type int $timeoutMillis
+     *          Timeout to use for this call. Only used if $retrySettings
+     *          is not set.
+     * }
+     *
+     * @return google\iam\v1\Policy
+     *
+     * @throws Google\GAX\ApiException if the remote call fails
+     */
+    public function setIamPolicy($resource, $policy, $optionalArgs = [])
+    {
+        $request = new SetIamPolicyRequest();
+        $request->setResource($resource);
+        $request->setPolicy($policy);
+
+        $mergedSettings = $this->defaultCallSettings['setIamPolicy']->merge(
+            new CallSettings($optionalArgs)
+        );
+        $callable = ApiCallable::createApiCall(
+            $this->iAMPolicyStub,
+            'SetIamPolicy',
+            $mergedSettings,
+            $this->descriptors['setIamPolicy']
+        );
+
+        return $callable(
+            $request,
+            [],
+            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+    }
+
+    /**
+     * Gets the access control policy for a resource. Is empty if the
+     * policy or the resource does not exist.
+     *
+     * Sample code:
+     * ```
+     * try {
+     *     $subscriberApi = new SubscriberApi();
+     *     $formattedResource = SubscriberApi::formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+     *     $response = $subscriberApi->getIamPolicy($formattedResource);
+     * } finally {
+     *     if (isset($subscriberApi)) {
+     *         $subscriberApi->close();
+     *     }
+     * }
+     * ```
+     *
+     * @param string $resource     REQUIRED: The resource for which policy is being requested. Resource
+     *                             is usually specified as a path, such as, projects/{project}.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type Google\GAX\RetrySettings $retrySettings
+     *          Retry settings to use for this call. If present, then
+     *          $timeoutMillis is ignored.
+     *     @type int $timeoutMillis
+     *          Timeout to use for this call. Only used if $retrySettings
+     *          is not set.
+     * }
+     *
+     * @return google\iam\v1\Policy
+     *
+     * @throws Google\GAX\ApiException if the remote call fails
+     */
+    public function getIamPolicy($resource, $optionalArgs = [])
+    {
+        $request = new GetIamPolicyRequest();
+        $request->setResource($resource);
+
+        $mergedSettings = $this->defaultCallSettings['getIamPolicy']->merge(
+            new CallSettings($optionalArgs)
+        );
+        $callable = ApiCallable::createApiCall(
+            $this->iAMPolicyStub,
+            'GetIamPolicy',
+            $mergedSettings,
+            $this->descriptors['getIamPolicy']
+        );
+
+        return $callable(
+            $request,
+            [],
+            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+    }
+
+    /**
+     * Returns permissions that a caller has on the specified resource.
+     *
+     * Sample code:
+     * ```
+     * try {
+     *     $subscriberApi = new SubscriberApi();
+     *     $formattedResource = SubscriberApi::formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+     *     $permissions = [];
+     *     $response = $subscriberApi->testIamPermissions($formattedResource, $permissions);
+     * } finally {
+     *     if (isset($subscriberApi)) {
+     *         $subscriberApi->close();
+     *     }
+     * }
+     * ```
+     *
+     * @param string   $resource     REQUIRED: The resource for which policy detail is being requested.
+     *                               Resource is usually specified as a path, such as, projects/{project}.
+     * @param string[] $permissions  The set of permissions to check for the 'resource'. Permissions with
+     *                               wildcards (such as '*' or 'storage.*') are not allowed.
+     * @param array    $optionalArgs {
+     *                               Optional.
+     *
+     *     @type Google\GAX\RetrySettings $retrySettings
+     *          Retry settings to use for this call. If present, then
+     *          $timeoutMillis is ignored.
+     *     @type int $timeoutMillis
+     *          Timeout to use for this call. Only used if $retrySettings
+     *          is not set.
+     * }
+     *
+     * @return google\iam\v1\TestIamPermissionsResponse
+     *
+     * @throws Google\GAX\ApiException if the remote call fails
+     */
+    public function testIamPermissions($resource, $permissions, $optionalArgs = [])
+    {
+        $request = new TestIamPermissionsRequest();
+        $request->setResource($resource);
+        foreach ($permissions as $elem) {
+            $request->addPermissions($elem);
+        }
+
+        $mergedSettings = $this->defaultCallSettings['testIamPermissions']->merge(
+            new CallSettings($optionalArgs)
+        );
+        $callable = ApiCallable::createApiCall(
+            $this->iAMPolicyStub,
+            'TestIamPermissions',
+            $mergedSettings,
+            $this->descriptors['testIamPermissions']
         );
 
         return $callable(
@@ -868,7 +1066,8 @@ class SubscriberApi
      */
     public function close()
     {
-        $this->stub->close();
+        $this->iAMPolicyStub->close();
+        $this->subscriberStub->close();
     }
 
     private function createCredentialsCallback()

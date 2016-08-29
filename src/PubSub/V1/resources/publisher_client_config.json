@@ -36,10 +36,12 @@
       },
       "methods": {
         "CreateTopic": {
+          "timeout_millis": 60000,
           "retry_codes_name": "idempotent",
           "retry_params_name": "default"
         },
         "Publish": {
+          "timeout_millis": 60000,
           "retry_codes_name": "one_plus_delivery",
           "retry_params_name": "messaging",
           "bundling": {
@@ -51,19 +53,38 @@
           }
         },
         "GetTopic": {
+          "timeout_millis": 60000,
           "retry_codes_name": "idempotent",
           "retry_params_name": "default"
         },
         "ListTopics": {
+          "timeout_millis": 60000,
           "retry_codes_name": "idempotent",
           "retry_params_name": "default"
         },
         "ListTopicSubscriptions": {
+          "timeout_millis": 60000,
           "retry_codes_name": "idempotent",
           "retry_params_name": "default"
         },
         "DeleteTopic": {
+          "timeout_millis": 60000,
           "retry_codes_name": "idempotent",
+          "retry_params_name": "default"
+        },
+        "SetIamPolicy": {
+          "timeout_millis": 60000,
+          "retry_codes_name": "non_idempotent",
+          "retry_params_name": "default"
+        },
+        "GetIamPolicy": {
+          "timeout_millis": 60000,
+          "retry_codes_name": "idempotent",
+          "retry_params_name": "default"
+        },
+        "TestIamPermissions": {
+          "timeout_millis": 60000,
+          "retry_codes_name": "non_idempotent",
           "retry_params_name": "default"
         }
       }
