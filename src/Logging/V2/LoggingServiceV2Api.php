@@ -82,7 +82,7 @@ class LoggingServiceV2Api
     const _CODEGEN_NAME = 'GAPIC';
     const _CODEGEN_VERSION = '0.0.0';
 
-    private static $projectNameTemplate;
+    private static $parentNameTemplate;
     private static $logNameTemplate;
 
     private $grpcCredentialsHelper;
@@ -93,11 +93,11 @@ class LoggingServiceV2Api
 
     /**
      * Formats a string containing the fully-qualified path to represent
-     * a project resource.
+     * a parent resource.
      */
-    public static function formatProjectName($project)
+    public static function formatParentName($project)
     {
-        return self::getProjectNameTemplate()->render([
+        return self::getParentNameTemplate()->render([
             'project' => $project,
         ]);
     }
@@ -116,11 +116,11 @@ class LoggingServiceV2Api
 
     /**
      * Parses the project from the given fully-qualified path which
-     * represents a project resource.
+     * represents a parent resource.
      */
-    public static function parseProjectFromProjectName($projectName)
+    public static function parseProjectFromParentName($parentName)
     {
-        return self::getProjectNameTemplate()->match($projectName)['project'];
+        return self::getParentNameTemplate()->match($parentName)['project'];
     }
 
     /**
@@ -141,13 +141,13 @@ class LoggingServiceV2Api
         return self::getLogNameTemplate()->match($logName)['log'];
     }
 
-    private static function getProjectNameTemplate()
+    private static function getParentNameTemplate()
     {
-        if (self::$projectNameTemplate == null) {
-            self::$projectNameTemplate = new PathTemplate('projects/{project}');
+        if (self::$parentNameTemplate == null) {
+            self::$parentNameTemplate = new PathTemplate('projects/{project}');
         }
 
-        return self::$projectNameTemplate;
+        return self::$parentNameTemplate;
     }
 
     private static function getLogNameTemplate()
@@ -164,12 +164,14 @@ class LoggingServiceV2Api
         $listLogEntriesPageStreamingDescriptor =
                 new PageStreamingDescriptor([
                     'requestPageTokenField' => 'page_token',
+                    'requestPageSizeField' => 'page_size',
                     'responsePageTokenField' => 'next_page_token',
                     'resourceField' => 'entries',
                 ]);
         $listMonitoredResourceDescriptorsPageStreamingDescriptor =
                 new PageStreamingDescriptor([
                     'requestPageTokenField' => 'page_token',
+                    'requestPageSizeField' => 'page_size',
                     'responsePageTokenField' => 'next_page_token',
                     'resourceField' => 'resource_descriptors',
                 ]);
@@ -259,7 +261,7 @@ class LoggingServiceV2Api
 
         // TODO load the client config in a more package-friendly way
         // https://github.com/googleapis/toolkit/issues/332
-        $clientConfigJsonString = file_get_contents('./resources/logging_service_v2_client_config.json');
+        $clientConfigJsonString = file_get_contents(__DIR__.'/resources/logging_service_v2_client_config.json');
         $clientConfig = json_decode($clientConfigJsonString, true);
         $this->defaultCallSettings =
                 CallSettings::load(

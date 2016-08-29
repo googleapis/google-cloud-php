@@ -47,7 +47,7 @@ use google\logging\v2\UpdateSinkRequest;
  * ```
  * try {
  *     $configServiceV2Api = new ConfigServiceV2Api();
- *     $formattedParent = ConfigServiceV2Api::formatProjectName("[PROJECT]");
+ *     $formattedParent = ConfigServiceV2Api::formatParentName("[PROJECT]");
  *     foreach ($configServiceV2Api->listSinks($formattedParent) as $element) {
  *         // doThingsWith(element);
  *     }
@@ -84,7 +84,7 @@ class ConfigServiceV2Api
     const _CODEGEN_NAME = 'GAPIC';
     const _CODEGEN_VERSION = '0.0.0';
 
-    private static $projectNameTemplate;
+    private static $parentNameTemplate;
     private static $sinkNameTemplate;
 
     private $grpcCredentialsHelper;
@@ -95,11 +95,11 @@ class ConfigServiceV2Api
 
     /**
      * Formats a string containing the fully-qualified path to represent
-     * a project resource.
+     * a parent resource.
      */
-    public static function formatProjectName($project)
+    public static function formatParentName($project)
     {
-        return self::getProjectNameTemplate()->render([
+        return self::getParentNameTemplate()->render([
             'project' => $project,
         ]);
     }
@@ -118,11 +118,11 @@ class ConfigServiceV2Api
 
     /**
      * Parses the project from the given fully-qualified path which
-     * represents a project resource.
+     * represents a parent resource.
      */
-    public static function parseProjectFromProjectName($projectName)
+    public static function parseProjectFromParentName($parentName)
     {
-        return self::getProjectNameTemplate()->match($projectName)['project'];
+        return self::getParentNameTemplate()->match($parentName)['project'];
     }
 
     /**
@@ -143,13 +143,13 @@ class ConfigServiceV2Api
         return self::getSinkNameTemplate()->match($sinkName)['sink'];
     }
 
-    private static function getProjectNameTemplate()
+    private static function getParentNameTemplate()
     {
-        if (self::$projectNameTemplate == null) {
-            self::$projectNameTemplate = new PathTemplate('projects/{project}');
+        if (self::$parentNameTemplate == null) {
+            self::$parentNameTemplate = new PathTemplate('projects/{project}');
         }
 
-        return self::$projectNameTemplate;
+        return self::$parentNameTemplate;
     }
 
     private static function getSinkNameTemplate()
@@ -166,6 +166,7 @@ class ConfigServiceV2Api
         $listSinksPageStreamingDescriptor =
                 new PageStreamingDescriptor([
                     'requestPageTokenField' => 'page_token',
+                    'requestPageSizeField' => 'page_size',
                     'responsePageTokenField' => 'next_page_token',
                     'resourceField' => 'sinks',
                 ]);
@@ -255,7 +256,7 @@ class ConfigServiceV2Api
 
         // TODO load the client config in a more package-friendly way
         // https://github.com/googleapis/toolkit/issues/332
-        $clientConfigJsonString = file_get_contents('./resources/config_service_v2_client_config.json');
+        $clientConfigJsonString = file_get_contents(__DIR__.'/resources/config_service_v2_client_config.json');
         $clientConfig = json_decode($clientConfigJsonString, true);
         $this->defaultCallSettings =
                 CallSettings::load(
@@ -292,7 +293,7 @@ class ConfigServiceV2Api
      * ```
      * try {
      *     $configServiceV2Api = new ConfigServiceV2Api();
-     *     $formattedParent = ConfigServiceV2Api::formatProjectName("[PROJECT]");
+     *     $formattedParent = ConfigServiceV2Api::formatParentName("[PROJECT]");
      *     foreach ($configServiceV2Api->listSinks($formattedParent) as $element) {
      *         // doThingsWith(element);
      *     }
@@ -417,7 +418,7 @@ class ConfigServiceV2Api
      * ```
      * try {
      *     $configServiceV2Api = new ConfigServiceV2Api();
-     *     $formattedParent = ConfigServiceV2Api::formatProjectName("[PROJECT]");
+     *     $formattedParent = ConfigServiceV2Api::formatParentName("[PROJECT]");
      *     $sink = new LogSink();
      *     $response = $configServiceV2Api->createSink($formattedParent, $sink);
      * } finally {
