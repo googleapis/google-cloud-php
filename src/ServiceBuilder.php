@@ -259,6 +259,17 @@ class ServiceBuilder
      * [before you begin](https://cloud.google.com/translate/v2/translating-text-with-rest#before-you-begin)
      * instructions to learn how to generate a key.
      *
+     * Example:
+     * ```
+     * use Google\Cloud\ServiceBuilder;
+     *
+     * $builder = new ServiceBuilder([
+     *     'key' => 'YOUR_KEY'
+     * ]);
+     *
+     * $translate = $builder->translate();
+     * ```
+     *
      * @param array $config {
      *     Configuration options.
      *

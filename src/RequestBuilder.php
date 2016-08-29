@@ -99,7 +99,7 @@ class RequestBuilder
         }
 
         if (isset($this->service['parameters'])) {
-            foreach ($this->service['parameters'] as $parameter => $parmeterOptions) {
+            foreach ($this->service['parameters'] as $parameter => $parameterOptions) {
                 if ($parameterOptions['location'] === 'query' && array_key_exists($parameter, $options)) {
                     $query[$parameter] = $options[$parameter];
                 }
