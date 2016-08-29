@@ -110,6 +110,10 @@
       }]
     },
     {
+      "title": "Translate",
+      "type": "translate/translateclient"
+    },
+    {
       "title": "Vision",
       "type": "vision/visionclient",
       "nav": [{
