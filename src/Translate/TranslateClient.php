@@ -132,7 +132,7 @@ class TranslateClient
      *           to the client (`en` by default).
      *     @type string $format Indicates whether the string to be translated is
      *           either plain-text or HTML. Acceptable values are `html` or
-     *          `text`. Defaults to `html`.
+     *           `text`. Defaults to `html`.
      * }
      * @return array A translation result including a `source` key containing
      *         the detected or provided langauge of the provided input, an
@@ -173,7 +173,7 @@ class TranslateClient
      *           to the client (`en` by default).
      *     @type string $format Indicates whether the string to be translated is
      *           either plain-text or HTML. Acceptable values are `html` or
-     *          `text`. Defaults to `html`.
+     *           `text`. Defaults to `html`.
      * }
      * @return array A set of translation results. Each result includes a
      *         `source` key containing the detected or provided language of the
@@ -221,9 +221,9 @@ class TranslateClient
      * @param array $options {
      *     Configuration Options.
      *
-     *     @type string $format Indicates whether the string to be translated is
-     *           either plain-text or HTML. Acceptable values are `html` or
-     *          `text`. Defaults to `html`.
+     *     @type string $format Indicates whether the string is either
+     *           plain-text or HTML. Acceptable values are `html` or `text`.
+     *           Defaults to `html`.
      * }
      * @return array A result including a `languageCode` key
      *         containing the detected ISO 639-1 language code, an `input` key
@@ -257,9 +257,9 @@ class TranslateClient
      * @param array $options {
      *     Configuration Options.
      *
-     *     @type string $format Indicates whether the string to be translated is
-     *           either plain-text or HTML. Acceptable values are `html` or
-     *          `text`. Defaults to `html`.
+     *     @type string $format Indicates whether the string is either
+     *           plain-text or HTML. Acceptable values are `html` or `text`.
+     *           Defaults to `html`.
      * }
      * @return array A set of results. Each result includes a `languageCode` key
      *         containing the detected ISO 639-1 language code, an `input` key
