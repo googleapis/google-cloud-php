@@ -51,7 +51,8 @@
     "phpunit/phpunit": "4.8.*",
     "squizlabs/php_codesniffer": "2.*",
     "phpdocumentor/phpdocumentor": "2.8.*",
-    "symfony/console": "2.*"
+    "symfony/console": "2.*",
+    "league/json-guard": "^0.3"
   },
   "autoload": {
     "psr-4": {

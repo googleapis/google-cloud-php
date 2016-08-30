@@ -20,6 +20,9 @@ namespace Google\Cloud\Tests;
 use Google\Cloud\ServiceBuilder;
 use Google\Cloud\Translate\TranslateClient;
 
+/**
+ * @group root
+ */
 class ServiceBuilderTest extends \PHPUnit_Framework_TestCase
 {
     /**
