@@ -18,6 +18,7 @@
 namespace Google\Cloud\Tests\Datastore;
 
 use Google\Cloud\Datastore\Entity;
+use Google\Cloud\Datastore\EntityMapper;
 use Google\Cloud\Datastore\Key;
 use GuzzleHttp\Psr7\Stream;
 
@@ -27,12 +28,15 @@ use GuzzleHttp\Psr7\Stream;
 class EntityTest extends \PHPUnit_Framework_TestCase
 {
     private $key;
+    private $mapper;
 
     public function setUp()
     {
         $this->key = new Key('foo', ['path' => [
             ['kind' => 'kind', 'name' => 'name']
         ]]);
+
+        $this->mapper = new EntityMapper(true);
     }
 
     public function testCreateEntity()
@@ -100,37 +104,5 @@ class EntityTest extends \PHPUnit_Framework_TestCase
         ]);
 
         $this->assertEquals('foo', $entity->cursor());
-    }
-
-    public function testEntityObject()
-    {
-        $entity = new Entity($this->key, ['foo' => 'bar']);
-        $res = $entity->entityObject();
-
-        $this->assertEquals($res['properties']['foo']['stringValue'], 'bar');
-        $this->assertEquals($res['key'], $this->key);
-    }
-
-    public function testEncode()
-    {
-        $stream = fopen('php://memory','r+');
-        fwrite($stream, 'foo');
-        rewind($stream);
-
-        $entity = new Entity($this->key, ['foo' => $stream], [
-            'encode' => false
-        ]);
-        $res = $entity->entityObject();
-
-        $this->assertEquals($res['properties']['foo']['blobValue'], 'foo');
-
-        rewind($stream);
-
-        $entity = new Entity($this->key, ['foo' => $stream], [
-            'encode' => true
-        ]);
-        $res = $entity->entityObject();
-
-        $this->assertEquals($res['properties']['foo']['blobValue'], base64_encode('foo'));
     }
 }

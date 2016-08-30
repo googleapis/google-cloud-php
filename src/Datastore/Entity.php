@@ -216,31 +216,18 @@ class Entity implements ArrayAccess
     }
 
     /**
-     * Get the entity formatted for the API.
+     * Return a list of properties excluded from datastore indexes
      *
-     * This method is used internally and is not meant for use outside the
-     * client library API.
+     * Example:
+     * ```
+     * print_r($entity->excludedProperties());
+     * ```
      *
-     * @access private
      * @return array
      */
-    public function entityObject()
+    public function excludedProperties()
     {
-        $properties = [];
-        foreach ($this->entity as $key => $value) {
-            $exclude = in_array($key, $this->options['excludeFromIndexes']);
-
-            $properties[$key] = $this->valueObject(
-                $value,
-                $this->options['encode'],
-                $exclude
-            );
-        }
-
-        return [
-            'key' => $this->key,
-            'properties' => $properties
-        ];
+        return $this->options['excludeFromIndexes'];
     }
 
     /**

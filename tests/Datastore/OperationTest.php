@@ -385,8 +385,10 @@ class OperationTest extends \PHPUnit_Framework_TestCase
 
         $this->operation->setConnection($this->connection->reveal());
 
-        $e = $this->prophesize(Entity::class);
-        $this->operation->mutate('insert', [$e->reveal()], Entity::class, null);
+        $key = $this->prophesize(Key::class);
+        $e = new Entity($key->reveal());
+
+        $this->operation->mutate('insert', [$e], Entity::class, null);
 
         $this->operation->commit();
 
@@ -452,8 +454,10 @@ class OperationTest extends \PHPUnit_Framework_TestCase
 
         $this->operation->setConnection($this->connection->reveal());
 
-        $e = $this->prophesize(Entity::class);
-        $this->operation->mutate('insert', [$e->reveal()], Entity::class, null);
+        $key = $this->prophesize(Key::class);
+        $e = new Entity($key->reveal());
+
+        $this->operation->mutate('insert', [$e], Entity::class, null);
     }
 
     public function testMutateWithBaseVersion()
@@ -466,8 +470,10 @@ class OperationTest extends \PHPUnit_Framework_TestCase
 
         $this->operation->setConnection($this->connection->reveal());
 
-        $e = $this->prophesize(Entity::class);
-        $this->operation->mutate('insert', [$e->reveal()], Entity::class, 1);
+        $key = $this->prophesize(Key::class);
+        $e = new Entity($key->reveal());
+
+        $this->operation->mutate('insert', [$e], Entity::class, 1);
     }
 
     public function testCheckOverwrite()

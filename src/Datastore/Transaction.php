@@ -80,7 +80,7 @@ class Transaction
     private $mutations = [];
 
     /**
-     * Create an Transaction
+     * Create a Transaction
      *
      * @param Operation $operation Class that handles shared API interaction.
      * @param string $projectId The Google Cloud Platform project ID.
@@ -107,7 +107,8 @@ class Transaction
      * $key = $datastore->key('Person', 'Bob');
      * $entity = $datastore->entity($key, ['firstName' => 'Bob']);
      *
-     * $operation->insert($entity);
+     * $transaction->insert($entity);
+     * $transaction->commit();
      * ```
      *
      * @param Entity $entity The entity to insert.
@@ -136,7 +137,8 @@ class Transaction
      *     $datastore->entity($key[1], ['firstName' => 'John'])
      * ];
      *
-     * $operation->insertBatch($entities);
+     * $transaction->insertBatch($entities);
+     * $transaction->commit();
      * ```
      *
      * @param Entity[] $entities The entities to insert.
@@ -160,7 +162,8 @@ class Transaction
      * ```
      * $entity['firstName'] = 'Bob';
      *
-     * $operation->update($entity);
+     * $transaction->update($entity);
+     * $transaction->commit();
      * ```
      *
      * @param Entity $entity The entity to update.
@@ -198,7 +201,8 @@ class Transaction
      * $entities[0]['firstName'] = 'Bob';
      * $entities[1]['firstName'] = 'John';
      *
-     * $operation->updateBatch($entities);
+     * $transaction->updateBatch($entities);
+     * $transaction->commit();
      * ```
      *
      * @param Entity[] $entities The entities to update.
@@ -242,7 +246,8 @@ class Transaction
      * $key = $datastore->key('Person', 'Bob');
      * $entity = $datastore->entity($key, ['firstName' => 'Bob']);
      *
-     * $operation->upsert($entity);
+     * $transaction->upsert($entity);
+     * $transaction->commit();
      * ```
      *
      * @param Entity $entity The entity to upsert.
@@ -264,17 +269,18 @@ class Transaction
      *
      * Example:
      * ```
-     * $keys = $datastore->keys(['kind' => 'Person'], [
-     *     'allocateIds' => true,
-     *     'number' => 2
-     * ]);
+     * $keys = [
+     *     $datastore->key('Person', 'Bob'),
+     *     $datastore->key('Person', 'John')
+     * ];
      *
      * $entities = [
      *     $datastore->entity($key[0], ['firstName' => 'Bob']),
      *     $datastore->entity($key[1], ['firstName' => 'John'])
      * ];
      *
-     * $operation->upsertBatch($entities);
+     * $transaction->upsertBatch($entities);
+     * $transaction->commit();
      * ```
      *
      * @param Entity[] $entities The entities to upsert.
@@ -297,7 +303,8 @@ class Transaction
      * ```
      * $key = $datastore->key('Person', 'Bob');
      *
-     * $operation->delete($key);
+     * $transaction->delete($key);
+     * $transaction->commit();
      * ```
      *
      * @param Key $key The key to delete
@@ -321,7 +328,8 @@ class Transaction
      *     $datastore->key('Person', 'John')
      * ];
      *
-     * $operation->deleteBatch($keys);
+     * $transaction->deleteBatch($keys);
+     * $transaction->commit();
      * ```
      *
      * @param Key[] $keys The keys to delete.
@@ -341,13 +349,12 @@ class Transaction
      * ```
      * $key = $datastore->key('Person', 'Bob');
      *
-     * $entity = $datastore->lookup($key);
+     * $entity = $transaction->lookup($key);
      * if (!is_null($entity)) {
      *     echo $entity['firstName']; // 'Bob'
      * }
      * ```
      *
-     * @codingStandardsIgnoreStart
      * @param Key $key $key The identifier to use to locate a desired entity.
      * @param array $options {
      *     Configuration Options
@@ -357,7 +364,6 @@ class Transaction
      *           If not set, {@see Google\Cloud\Datastore\Entity} will be used.
      * }
      * @return Entity|null
-     * @codingStandardsIgnoreEnd
      */
     public function lookup(Key $key, array $options = [])
     {
@@ -378,14 +384,13 @@ class Transaction
      *     $datastore->key('Person', 'John')
      * ];
      *
-     * $entities = $datastore->lookup($keys);
+     * $entities = $transaction->lookup($keys);
      *
      * foreach ($entities['found'] as $entity) {
      *     echo $entity['firstName'];
      * }
      * ```
      *
-     * @codingStandardsIgnoreStart
      * @param Key[] $key The identifiers to look up.
      * @param array $options {
      *     Configuration Options
@@ -398,7 +403,6 @@ class Transaction
      *         Members of `found` will be instance of
      *         {@see Google\Cloud\Datastore\Entity}. Members of `missing` and
      *         `deferred` will be instance of {@see Google\Cloud\Datastore\Key}.
-     * @codingStandardsIgnoreEnd
      */
     public function lookupBatch(array $keys, array $options = [])
     {
@@ -412,7 +416,7 @@ class Transaction
      *
      * Example:
      * ```
-     * $result = $datastore->runQuery($query);
+     * $result = $transaction->runQuery($query);
      *
      * foreach ($result as $entity) {
      *     echo $entity['firstName'];
@@ -444,7 +448,7 @@ class Transaction
      *
      * Example:
      * ```
-     * $operation->commit()
+     * $transaction->commit()
      * ```
      *
      * @param array $options Configuration Options.

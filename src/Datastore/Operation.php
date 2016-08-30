@@ -18,6 +18,7 @@
 namespace Google\Cloud\Datastore;
 
 use Google\Cloud\Datastore\Connection\ConnectionInterface;
+use Google\Cloud\Datastore\Connection\Rest;
 use Google\Cloud\Datastore\Query\QueryInterface;
 use InvalidArgumentException;
 
@@ -52,6 +53,11 @@ class Operation
     private $namespaceId;
 
     /**
+     * @var EntityMapper
+     */
+    private $entityMapper;
+
+    /**
      * @var array
      */
     private $mutations = [];
@@ -71,6 +77,7 @@ class Operation
         $this->connection = $connection;
         $this->projectId = $projectId;
         $this->namespaceId = $namespaceId;
+        $this->entityMapper = new EntityMapper($this->connection instanceof Rest);
     }
 
     /**
@@ -498,7 +505,7 @@ class Operation
             // If the given element is an Entity, it will use that baseVersion.
             if ($element instanceof Entity) {
                 $baseVersion = $element->baseVersion();
-                $data = $element->entityObject();
+                $data = $this->entityMapper->objectToRequest($element);
             } elseif ($element instanceof Key) {
                 $data = $element->keyObject();
             } else {
@@ -555,55 +562,28 @@ class Operation
         $entities = [];
 
         foreach ($entityResult as $result) {
-            $namespaceId = (isset($result['entity']['key']['partitionId']['namespaceId']))
-                ? $result['entity']['key']['partitionId']['namespaceId']
+            $entity = $result['entity'];
+
+            $properties = $this->entityMapper->responseToProperties($entity['properties']);
+
+            $namespaceId = (isset($entity['key']['partitionId']['namespaceId']))
+                ? $entity['key']['partitionId']['namespaceId']
                 : null;
 
             $key = new Key($this->projectId, [
-                'path' => $result['entity']['key']['path'],
+                'path' => $entity['key']['path'],
                 'namespaceId' => $namespaceId
             ]);
 
-            $props = $result['entity']['properties'];
-
-            $excludes = [];
-            array_walk($props, function (&$property, $key) use (&$excludes) {
-
-                // Convert dates to an object
-                if (key($property) === 'timestampValue') {
-                    $property[key($property)] = new \DateTimeImmutable(current($property));
-                }
-
-                // Convert keys to an object
-                if (key($property) === 'keyValue') {
-                    $keyProp = current($property);
-                        $namespaceId = (isset($keyProp['partitionId']['namespaceId']))
-                            ? $keyProp['partitionId']['namespaceId']
-                            : null;
-
-                    $property[key($property)] = new Key($this->projectId, [
-                        'path' => $keyProp['path'],
-                        'namespaceId' => $namespaceId
-                    ]);
-                }
-
-                if (isset($property['excludeFromIndexes']) && $property['excludeFromIndexes']) {
-                    $excludes[] = $key;
-                }
-
-                $property = current($property);
-            });
-
-            $entities[] = $this->entity($key, $props, [
+            $entities[] = $this->entity($key, $properties, [
                 'cursor' => (isset($result['cursor']))
                     ? $result['cursor']
                     : null,
                 'baseVersion' => (isset($result['version']))
                     ? $result['version']
                     : null,
-                'populatedByService' => true,
-                'excludeFromIndexes' => $excludes,
-                'className' => $className
+                'className' => $className,
+                'populatedByService' => true
             ]);
         }
 

@@ -57,28 +57,37 @@ trait DatastoreTrait
                 ];
 
                 break;
+
             case 'integer':
                 $propertyValue = [
                     'integerValue' => $value
                 ];
 
                 break;
+
             case 'double':
                 $propertyValue = [
                     'doubleValue' => $value
                 ];
 
                 break;
+
             case 'string':
                 $propertyValue = [
                     'stringValue' => $value
                 ];
 
                 break;
+
             case 'array':
+                if (!empty($value) && $this->isAssoc($value)) {
+                    print_R($value);exit;
+                    throw new \InvalidArgumentException('Associative Arrays cannot be stored in datastore');
+                }
+
                 $values = [];
-                foreach ($value as $key => $val) {
-                    $values[$key] = $this->valueObject($val, $encode);
+                foreach ($value as $val) {
+                    $values[] = $this->valueObject($val, $encode);
                 }
 
                 $propertyValue = [
@@ -87,9 +96,11 @@ trait DatastoreTrait
                     ]
                 ];
                 break;
+
             case 'object':
                 $propertyValue = $this->objectProperty($value);
                 break;
+
             case 'resource':
                 $content = stream_get_contents($value);
 
@@ -99,11 +110,13 @@ trait DatastoreTrait
                         : $content
                 ];
                 break;
+
             case 'NULL':
                 $propertyValue = [
                     'nullValue' => null
                 ];
                 break;
+
             //@codeCoverageIgnoreStart
             case 'unknown type':
                 throw new InvalidArgumentException(sprintf(
@@ -111,6 +124,7 @@ trait DatastoreTrait
                     $content
                 ));
                 break;
+
             default:
                 throw new InvalidArgumentException(sprintf(
                     'Invalid type for `%s',
@@ -138,21 +152,35 @@ trait DatastoreTrait
      */
     private function objectProperty($value, $encode = false)
     {
-        if ($value instanceof \DateTimeInterface) {
-            return [
-                'timestampValue' => $value->format(\DateTime::RFC3339)
-            ];
-        }
+        switch (true) {
+            case $value instanceof \DateTimeInterface:
+                return [
+                    'timestampValue' => $value->format(\DateTime::RFC3339)
+                ];
 
-        if ($value instanceof Key) {
-            return [
-                'keyValue' => $value->keyObject()
-            ];
-        }
+                break;
 
-        throw new InvalidArgumentException(
-            sprintf('Value of type `%s` could not be serialized', get_class($value))
-        );
+            case $value instanceof Key:
+                return [
+                    'keyValue' => $value->keyObject()
+                ];
+
+                break;
+
+            case $value instanceof GeoPoint:
+                return [
+                    'geoPointValue' => $value->point()
+                ];
+
+                break;
+
+            default:
+                throw new InvalidArgumentException(
+                    sprintf('Value of type `%s` could not be serialized', get_class($value))
+                );
+
+                break;
+        }
     }
 
     /**
