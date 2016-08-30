@@ -100,8 +100,8 @@ class GqlQuery implements QueryInterface
     ];
 
     /**
-     * @param string $query The GQL Query string
-     * @param string $projectId Your Google Cloud Platform Project ID
+     * @param string $query The GQL Query string.
+     * @param string $projectId Your Google Cloud Platform Project ID.
      * @param array $options {
      *     Configuration Options
      *
@@ -112,8 +112,6 @@ class GqlQuery implements QueryInterface
      *           Queries using Named Bindings should provide a key/value set,
      *           while queries using Positional Bindings must provide a simple
      *           array.
-     *     @type string $namespaceId Partitions data under a namespace. Useful for
-     *           [Multitenant Projects](https://cloud.google.com/datastore/docs/concepts/multitenancy).
      *           Applications with no need for multitenancy should not set this value.
      *     @type string $readConsistency If not using a {@see Google\Cloud\Datastore\Transaction},
      *           $readConsistency can be set to `STRONG` or `EVENTUAL`.

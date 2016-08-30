@@ -44,72 +44,78 @@ trait DatastoreTrait
      * Format values for the API
      *
      * @param mixed $value
-     * @param bool $encode Set to true to base64_encode certain values
-     * @param bool $excode If true, value will be excluded from datastore indexes.
+     * @param bool $encode Set to true to base64_encode certain values.
+     * @param bool $exclude If true, value will be excluded from datastore indexes.
      * @return array
      */
     private function valueObject($value, $encode = false, $exclude = false)
     {
         switch (gettype($value)) {
-            case "boolean":
+            case 'boolean':
                 $propertyValue = [
-                    "booleanValue" => $value
+                    'booleanValue' => $value
                 ];
 
                 break;
-            case "integer":
+            case 'integer':
                 $propertyValue = [
-                    "integerValue" => $value
+                    'integerValue' => $value
                 ];
 
                 break;
-            case "double":
+            case 'double':
                 $propertyValue = [
-                    "doubleValue" => $value
+                    'doubleValue' => $value
                 ];
 
                 break;
-            case "string":
+            case 'string':
                 $propertyValue = [
-                    "stringValue" => $value
+                    'stringValue' => $value
                 ];
 
                 break;
-            case "array":
+            case 'array':
                 $values = [];
                 foreach ($value as $key => $val) {
                     $values[$key] = $this->valueObject($val, $encode);
                 }
 
                 $propertyValue = [
-                    "arrayValue" => [
-                        "values" => $values
+                    'arrayValue' => [
+                        'values' => $values
                     ]
                 ];
                 break;
-            case "object":
+            case 'object':
                 $propertyValue = $this->objectProperty($value);
                 break;
-            case "resource":
+            case 'resource':
                 $content = stream_get_contents($value);
 
                 $propertyValue = [
-                    "blobValue" => ($encode)
+                    'blobValue' => ($encode)
                         ? base64_encode($content)
                         : $content
                 ];
                 break;
-            case "NULL":
+            case 'NULL':
                 $propertyValue = [
-                    "nullValue" => null
+                    'nullValue' => null
                 ];
                 break;
             //@codeCoverageIgnoreStart
-            case "unknown type":
-                $propertyValue = '';
+            case 'unknown type':
+                throw new InvalidArgumentException(sprintf(
+                    'Unknown type for `%s',
+                    $content
+                ));
                 break;
             default:
-                $propertyValue = '';
+                throw new InvalidArgumentException(sprintf(
+                    'Invalid type for `%s',
+                    $content
+                ));
                 break;
             //@codeCoverageIgnoreEnd
         }
@@ -134,18 +140,18 @@ trait DatastoreTrait
     {
         if ($value instanceof \DateTimeInterface) {
             return [
-                "timestampValue" => $value->format(\DateTime::RFC3339)
+                'timestampValue' => $value->format(\DateTime::RFC3339)
             ];
         }
 
         if ($value instanceof Key) {
             return [
-                "keyValue" => $value->keyObject()
+                'keyValue' => $value->keyObject()
             ];
         }
 
         throw new InvalidArgumentException(
-            sprintf('Value of type `%s` could not be serialize', get_class($value))
+            sprintf('Value of type `%s` could not be serialized', get_class($value))
         );
     }
 

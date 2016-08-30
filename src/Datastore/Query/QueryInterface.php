@@ -39,7 +39,7 @@ interface QueryInterface extends JsonSerializable
     /**
      * A representation of the Query Object compliant with the Datastore API
      *
-     * @see https://cloud.google.com/datastore/reference/rest/v1beta3/projects/runQuery#http-request HTTP Request
+     * @see https://cloud.google.com/datastore/reference/rest/v1/projects/runQuery#http-request HTTP Request
      *
      * @return array
      */

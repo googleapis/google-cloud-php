@@ -81,9 +81,9 @@ class Transaction
     /**
      * Create an Transaction
      *
-     * @param Operation $operation Class that handles shared API interaction
-     * @param string $projectId The Google Cloud Platform project ID
-     * @param string $transactionId The transaction to run mutations in
+     * @param Operation $operation Class that handles shared API interaction.
+     * @param string $projectId The Google Cloud Platform project ID.
+     * @param string $transactionId The transaction to run mutations in.
      */
     public function __construct(
         Operation $operation,
@@ -103,13 +103,13 @@ class Transaction
      *
      * Example:
      * ```
-     * $key = $datastore->key('person', 'Bob');
+     * $key = $datastore->key('Person', 'Bob');
      * $entity = $datastore->entity($key, ['firstName' => 'Bob']);
      *
      * $operation->insert($entity);
      * ```
      *
-     * @param Entity $entity The entity to insert
+     * @param Entity $entity The entity to insert.
      * @return Transaction
      */
     public function insert(Entity $entity)
@@ -138,7 +138,7 @@ class Transaction
      * $operation->insertBatch($entities);
      * ```
      *
-     * @param Entity[] $entities The entities to insert
+     * @param Entity[] $entities The entities to insert.
      * @return Transaction
      */
     public function insertBatch(array $entities)
@@ -162,7 +162,7 @@ class Transaction
      * $operation->update($entity);
      * ```
      *
-     * @param Entity $entity The entity to update
+     * @param Entity $entity The entity to update.
      * @param array $options {
      *     Configuration Options
      *
@@ -179,7 +179,7 @@ class Transaction
      */
     public function update(Entity $entity, array $options = [])
     {
-        $options = $options + [
+        $options += [
             'allowOverwrite' => false
         ];
 
@@ -200,7 +200,7 @@ class Transaction
      * $operation->updateBatch($entities);
      * ```
      *
-     * @param Entity[] $entities The entities to update
+     * @param Entity[] $entities The entities to update.
      * @param array $options {
      *     Configuration Options
      *
@@ -217,7 +217,7 @@ class Transaction
      */
     public function updateBatch(array $entities, array $options = [])
     {
-        $options = $options + [
+        $options += [
             'allowOverwrite' => false
         ];
 
@@ -238,13 +238,13 @@ class Transaction
      *
      * Example:
      * ```
-     * $key = $datastore->key('person', 'Bob');
+     * $key = $datastore->key('Person', 'Bob');
      * $entity = $datastore->entity($key, ['firstName' => 'Bob']);
      *
      * $operation->upsert($entity);
      * ```
      *
-     * @param Entity $entity The entity to upsert
+     * @param Entity $entity The entity to upsert.
      * @return Transaction
      */
     public function upsert(Entity $entity)
@@ -263,7 +263,7 @@ class Transaction
      *
      * Example:
      * ```
-     * $keys = $datastore->keys(['kind' => 'person'], [
+     * $keys = $datastore->keys(['kind' => 'Person'], [
      *     'allocateIds' => true,
      *     'number' => 2
      * ]);
@@ -276,7 +276,7 @@ class Transaction
      * $operation->upsertBatch($entities);
      * ```
      *
-     * @param Entity[] $entities The entities to upsert
+     * @param Entity[] $entities The entities to upsert.
      * @return Transaction
      */
     public function upsertBatch(array $entities)
@@ -294,7 +294,7 @@ class Transaction
      *
      * Example:
      * ```
-     * $key = $datastore->key('person', 'Bob');
+     * $key = $datastore->key('Person', 'Bob');
      *
      * $operation->delete($key);
      * ```
@@ -316,14 +316,14 @@ class Transaction
      * Example:
      * ```
      * $keys = [
-     *     $datastore->key('person', 'Bob'),
-     *     $datastore->key('person', 'John')
+     *     $datastore->key('Person', 'Bob'),
+     *     $datastore->key('Person', 'John')
      * ];
      *
      * $operation->deleteBatch($keys);
      * ```
      *
-     * @param Key[] $keys The keys to delete
+     * @param Key[] $keys The keys to delete.
      * @return Transaction
      */
     public function deleteBatch(array $keys)
@@ -338,7 +338,7 @@ class Transaction
      *
      * Example:
      * ```
-     * $key = $datastore->key('person', 'Bob');
+     * $key = $datastore->key('Person', 'Bob');
      *
      * $entity = $datastore->lookup($key);
      * if (!is_null($entity)) {
@@ -347,7 +347,7 @@ class Transaction
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @param Key $key $key The identifier to use to locate a desired entity
+     * @param Key $key $key The identifier to use to locate a desired entity.
      * @param array $options {
      *     Configuration Options
      *
@@ -393,7 +393,10 @@ class Transaction
      *           Must be a subclass of {@see Google\Cloud\Datastore\Entity}.
      *           If not set, {@see Google\Cloud\Datastore\Entity} will be used.
      * }
-     * @return array
+     * @return array Returns an array with keys [`found`, `missing`, and `deferred`].
+     *         Members of `found` will be instance of
+     *         {@see Google\Cloud\Datastore\Entity}. Members of `missing` and
+     *         `deferred` will be instance of {@see Google\Cloud\Datastore\Key}.
      * @codingStandardsIgnoreEnd
      */
     public function lookupBatch(array $keys, array $options = [])
@@ -415,7 +418,7 @@ class Transaction
      * }
      * ```
      *
-     * @param QueryInterface $query
+     * @param QueryInterface $query The query object.
      * @param array $options {
      *     Configuration Options
      *
@@ -443,7 +446,7 @@ class Transaction
      * $operation->commit()
      * ```
      *
-     * @param array $options Configuration Options
+     * @param array $options Configuration Options.
      * @return array [Response Body](https://cloud.google.com/datastore/reference/rest/v1/projects/commit#response-body)
      */
     public function commit(array $options = [])

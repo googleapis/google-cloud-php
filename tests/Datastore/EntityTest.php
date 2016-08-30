@@ -102,13 +102,6 @@ class EntityTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('foo', $entity->cursor());
     }
 
-    public function testJsonSerialize()
-    {
-        $entity = new Entity($this->key, ['foo' => 'bar']);
-
-        $this->assertEquals($entity->entityObject(), $entity->jsonSerialize());
-    }
-
     public function testEntityObject()
     {
         $entity = new Entity($this->key, ['foo' => 'bar']);

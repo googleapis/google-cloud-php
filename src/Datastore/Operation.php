@@ -59,8 +59,8 @@ class Operation
     /**
      * Create an operation
      *
-     * @param ConnectionInterface $connection A connection to Google Cloud Platform's Datastore API
-     * @param string $projectId The Google Cloud Platform project ID
+     * @param ConnectionInterface $connection A connection to Google Cloud Platform's Datastore API.
+     * @param string $projectId The Google Cloud Platform project ID.
      * @param string $namespaceId The namespace to use for all service requests.
      */
     public function __construct(
@@ -76,10 +76,10 @@ class Operation
     /**
      * Create a single Key instance
      *
-     * @see https://cloud.google.com/datastore/reference/rest/v1beta3/Key Key
-     * @see https://cloud.google.com/datastore/reference/rest/v1beta3/Key#PathElement PathElement
+     * @see https://cloud.google.com/datastore/reference/rest/v1/Key Key
+     * @see https://cloud.google.com/datastore/reference/rest/v1/Key#PathElement PathElement
      *
-     * @param string $kind The kind
+     * @param string $kind The kind.
      * @param string|int $identifier The ID or name.
      * @param array $options {
      *     Configuration Options
@@ -94,13 +94,12 @@ class Operation
      */
     public function key($kind, $identifier = null, array $options = [])
     {
-        $options = $options + [
-            'identifierType' => null
+        $options += [
+            'identifierType' => null,
+            'namespaceId' => $this->namespaceId
         ];
 
-        $key = new Key($this->projectId, $options + [
-            'namespaceId' => $this->namespaceId
-        ]);
+        $key = new Key($this->projectId, $options);
         $key->pathElement($kind, $identifier, $options['identifierType']);
 
         return $key;
@@ -115,25 +114,25 @@ class Operation
      * entity identity and ancestry are correct and that there will be no
      * collisions during the insert operation.
      *
-     * @see https://cloud.google.com/datastore/reference/rest/v1beta3/Key Key
-     * @see https://cloud.google.com/datastore/reference/rest/v1beta3/Key#PathElement PathElement
+     * @see https://cloud.google.com/datastore/reference/rest/v1/Key Key
+     * @see https://cloud.google.com/datastore/reference/rest/v1/Key#PathElement PathElement
      *
-     * @param string $kind The kind to use in the final path element
+     * @param string $kind The kind to use in the final path element.
      * @param array $options {
      *     Configuration Options
      *
      *     @type array[] $ancestors An array of
      *           [PathElement](https://cloud.google.com/datastore/reference/rest/v1/Key#PathElement) arrays. Use to
      *           create [ancestor paths](https://cloud.google.com/datastore/docs/concepts/entities#ancestor_paths).
-     *     @type int $number The number of keys to generate
-     *     @type string|int $id The ID for the last pathElement
-     *     @type string $name The Name for the last pathElement
+     *     @type int $number The number of keys to generate.
+     *     @type string|int $id The ID for the last pathElement.
+     *     @type string $name The Name for the last pathElement.
      * }
      * @return Key[]
      */
     public function keys($kind, array $options = [])
     {
-        $options = $options + [
+        $options += [
             'number' => 1,
             'ancestors' => [],
             'id' => null,
@@ -162,7 +161,7 @@ class Operation
     }
 
     /**
-     * Create an entity.
+     * Create an entity
      *
      * This method does not execute any service requests.
      *
@@ -177,23 +176,25 @@ class Operation
      * If the name of a subclass of Entity is given in the options array, an
      * instance of the subclass will be returned instead of Entity.
      *
-     * @see https://cloud.google.com/datastore/reference/rest/v1beta3/Entity Entity
+     * @see https://cloud.google.com/datastore/reference/rest/v1/Entity Entity
      *
      * @param Key|string $key The key used to identify the record, or a string $kind.
      * @param array $entity The data to fill the entity with.
      * @param array $options {
      *     Configuration Options
      *
-     *     See {@see Google\Cloud\Datastore\Entity::__construct()} for more.
-     *
      *     @type string $className The name of a class extending {@see Google\Cloud\Datastore\Entity}.
      *           If provided, an instance of that class will be returned instead of Entity.
      *           If not set, {@see Google\Cloud\Datastore\Entity} will be used.
+     *     @type array $excludeFromIndexes A list of entity keys to exclude from
+     *           datastore indexes.
+     * }
      * @return Entity
+     * @throws InvalidArgumentException
      */
     public function entity($key, array $entity = [], array $options = [])
     {
-        $options = $options + [
+        $options += [
             'className' => null
         ];
 
@@ -230,11 +231,12 @@ class Operation
      *
      * This method will execute a service request.
      *
-     * @see https://cloud.google.com/datastore/reference/rest/v1beta3/projects/allocateIds allocateIds
+     * @see https://cloud.google.com/datastore/reference/rest/v1/projects/allocateIds allocateIds
      *
-     * @param Key[] $keys The incomplete keys
-     * @param array $options Configuration options
+     * @param Key[] $keys The incomplete keys.
+     * @param array $options Configuration options.
      * @return Key[]
+     * @throws InvalidArgumentException
      */
     public function allocateIds(array $keys, array $options = [])
     {
@@ -276,16 +278,29 @@ class Operation
      * @param array $options {
      *     Configuration Options
      *
-     *     @type string $readConsistency See
-     *           [ReadConsistency](https://cloud.google.com/datastore/reference/rest/v1beta3/ReadOptions#ReadConsistency).
+     *     @type string $readConsistency If not in a transaction, set to STRONG
+     *           or EVENTUAL, depending on default value in DatastoreClient.
+     *           See
+     *           [ReadConsistency](https://cloud.google.com/datastore/reference/rest/v1/ReadOptions#ReadConsistency).
      *     @type string $transaction The transaction ID, if the query should be
      *           run in a transaction.
+     *     @type string $className The name of the class to return results as.
+     *           Must be a subclass of {@see Google\Cloud\Datastore\Entity}.
+     *           If not set, {@see Google\Cloud\Datastore\Entity} will be used.
      * }
-     * @return array
+     * @return array Returns an array with keys [`found`, `missing`, and `deferred`].
+     *         Members of `found` will be instance of
+     *         {@see Google\Cloud\Datastore\Entity}. Members of `missing` and
+     *         `deferred` will be instance of {@see Google\Cloud\Datastore\Key}.
+     * @throws InvalidArgumentException
      * @codingStandardsIgnoreEnd
      */
     public function lookup(array $keys, array $options = [])
     {
+        $options += [
+            'className' => null
+        ];
+
         $this->validateBatch($keys, Key::class, function ($key) {
             if ($key->state() !== Key::STATE_COMPLETE) {
                 throw new InvalidArgumentException(sprintf(
@@ -304,7 +319,10 @@ class Operation
 
         $result = [];
         if (isset($res['found'])) {
-            $result['found'] = $this->mapEntityResult($res['found']);
+            $result['found'] = $this->mapEntityResult(
+                $res['found'],
+                $options['className']
+            );
         }
 
         if (isset($res['missing'])) {
@@ -337,19 +355,26 @@ class Operation
     /**
      * Run a query and return entities
      *
-     * @param QueryInterface $query
+     * @param QueryInterface $query The query object.
      * @param array $options {
      *     Configuration Options
      *
      *     @type string $transaction The transaction ID, if the query should be
      *           run in a transaction.
+     *     @type string $className The name of the class to return results as.
+     *           Must be a subclass of {@see Google\Cloud\Datastore\Entity}.
+     *           If not set, {@see Google\Cloud\Datastore\Entity} will be used.
+     *     @type string $readConsistency If not in a transaction, set to STRONG
+     *           or EVENTUAL, depending on default value in DatastoreClient.
+     *           See
+     *           [ReadConsistency](https://cloud.google.com/datastore/reference/rest/v1/ReadOptions#ReadConsistency).
      * }
      * @return \Generator<Google\Cloud\Datastore\Entity>
      */
     public function runQuery(QueryInterface $query, array $options = [])
     {
-        $options = $options + [
-            'transaction' => null
+        $options += [
+            'className' => null
         ];
 
         $moreResults = true;
@@ -362,7 +387,11 @@ class Operation
             ]);
 
             if (isset($res['batch']['entityResults']) && is_array($res['batch']['entityResults'])) {
-                $results = $this->mapEntityResult($res['batch']['entityResults']);
+                $results = $this->mapEntityResult(
+                    $res['batch']['entityResults'],
+                    $options['className']
+                );
+
                 foreach ($results as $result) {
                     yield $result;
                 }
@@ -394,7 +423,7 @@ class Operation
      */
     public function commit(array $options = [])
     {
-        $options = $options + [
+        $options += [
             'transaction' => null
         ];
 
@@ -449,28 +478,38 @@ class Operation
      *
      * @param string $operation The operation to execute. "Insert", "Upsert",
      *        "Update" or "Delete".
-     * @param Entity[]|Key[] $input The entities or keys to mutate
-     * @param string $type The type of the input array
+     * @param Entity[]|Key[] $input The entities or keys to mutate.
+     * @param string $type The type of the input array.
      * @param string $baseVersion The version of the entity that this mutation
      *        is being applied to. If this does not match the current version on
      *        the server, the mutation conflicts.
      * @return void
+     * @throws InvalidArgumentException
      */
     public function mutate(
         $operation,
         array $input,
-        $type
+        $type,
+        $baseVersion = null
     ) {
         $this->validateBatch($input, $type);
 
         foreach ($input as $element) {
-            $baseVersion = null;
+            // If the given element is an Entity, it will use that baseVersion.
             if ($element instanceof Entity) {
                 $baseVersion = $element->baseVersion();
+                $data = $element->entityObject();
+            } elseif ($element instanceof Key) {
+                $data = $element->keyObject();
+            } else {
+                throw new InvalidArgumentException(sprintf(
+                    'Element must be a Key or Entity, %s given',
+                    get_class($element)
+                ));
             }
 
             $this->mutations[] = array_filter([
-                $operation => $element,
+                $operation => $data,
                 'baseVersion' => $baseVersion
             ]);
         }
@@ -505,12 +544,13 @@ class Operation
     /**
      * Convert an EntityResult into an array of entities
      *
-     * @see https://cloud.google.com/datastore/reference/rest/v1beta3/EntityResult EntityResult
+     * @see https://cloud.google.com/datastore/reference/rest/v1/EntityResult EntityResult
      *
-     * @param array $entityResult The EntityResult from a Lookup
+     * @param array $entityResult The EntityResult from a Lookup.
+     * @param string $className the class to create as an entity.
      * @return Entity[]
      */
-    private function mapEntityResult(array $entityResult)
+    private function mapEntityResult(array $entityResult, $className)
     {
         $entities = [];
 
@@ -562,7 +602,8 @@ class Operation
                     ? $result['version']
                     : null,
                 'populatedByService' => true,
-                'excludeFromIndexes' => $excludes
+                'excludeFromIndexes' => $excludes,
+                'className' => $className
             ]);
         }
 
@@ -583,7 +624,7 @@ class Operation
      */
     private function readOptions(array $options = [])
     {
-        $options = $options + [
+        $options += [
             'readConsistency' => DatastoreClient::DEFAULT_READ_CONSISTENCY,
             'transaction' => null
         ];
@@ -602,8 +643,8 @@ class Operation
     /**
      * Check that each member of $input array is of type $type.
      *
-     * @param array $input The input to validate
-     * @param string $type The type to check.
+     * @param array $input The input to validate.
+     * @param string $type The type to check..
      * @param callable An additional check for each element of $input.
      *        This will be run count($input) times, so use with care.
      * @return void

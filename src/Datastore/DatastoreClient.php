@@ -59,11 +59,10 @@ use InvalidArgumentException;
  * // Multi-tenant applications can supply a namespace ID.
  * use Google\Cloud\ServiceBuilder;
  *
- * $cloud = new ServiceBuilder([
- *     'projectId' => 'my-awesome-project'
- * ]);
+ * $cloud = new ServiceBuilder();
  *
  * $datastore = $cloud->datastore([
+ *     'projectId' => 'my-awesome-project',
  *     'namespaceId' => 'my-application-namespace'
  * ]);
  * ```
@@ -108,7 +107,7 @@ class DatastoreClient
      *           to 3.
      *     @type array $scopes Scopes to be used for the request.
      *     @type string $namespaceId Partitions data under a namespace. Useful for
-     *           [Multitenant Projects](https://cloud.google.com/datastore/docs/concepts/multitenancy)
+     *           [Multitenant Projects](https://cloud.google.com/datastore/docs/concepts/multitenancy).
      * }
      * @throws \InvalidArgumentException
      */
@@ -143,10 +142,10 @@ class DatastoreClient
      * ]);
      * ```
      *
-     * @see https://cloud.google.com/datastore/reference/rest/v1beta3/Key Key
-     * @see https://cloud.google.com/datastore/reference/rest/v1beta3/Key#PathElement PathElement
+     * @see https://cloud.google.com/datastore/reference/rest/v1/Key Key
+     * @see https://cloud.google.com/datastore/reference/rest/v1/Key#PathElement PathElement
      *
-     * @param string $kind The kind
+     * @param string $kind The kind.
      * @param string|int $identifier The ID or name.
      * @param array $options {
      *     Configuration Options
@@ -191,19 +190,19 @@ class DatastoreClient
      * ]);
      * ```
      *
-     * @see https://cloud.google.com/datastore/reference/rest/v1beta3/Key Key
-     * @see https://cloud.google.com/datastore/reference/rest/v1beta3/Key#PathElement PathElement
+     * @see https://cloud.google.com/datastore/reference/rest/v1/Key Key
+     * @see https://cloud.google.com/datastore/reference/rest/v1/Key#PathElement PathElement
      *
-     * @param string $kind The kind to use in the final path element
+     * @param string $kind The kind to use in the final path element.
      * @param array $options {
      *     Configuration Options
      *
      *     @type array[] $ancestors An array of
      *           [PathElement](https://cloud.google.com/datastore/reference/rest/v1/Key#PathElement) arrays. Use to
      *           create [ancestor paths](https://cloud.google.com/datastore/docs/concepts/entities#ancestor_paths).
-     *     @type int $number The number of keys to generate
-     *     @type string|int $id The ID for the last pathElement
-     *     @type string $name The Name for the last pathElement
+     *     @type int $number The number of keys to generate.
+     *     @type string|int $id The ID for the last pathElement.
+     *     @type string $name The Name for the last pathElement.
      * }
      * @return Key[]
      */
@@ -219,7 +218,7 @@ class DatastoreClient
      *
      * Entities are created with a Datastore Key, or by specifying a Kind. Kinds
      * are only allowed for insert operations. For any other case, you must
-     * specify a complete key. If a kind is give, an ID will be automatically
+     * specify a complete key. If a kind is given, an ID will be automatically
      * allocated for the entity upon insert. Additionally, if your entity
      * requires a complex key elementPath, you must create the key separately.
      *
@@ -228,6 +227,7 @@ class DatastoreClient
      * If the name of a subclass of Entity is given in the options array, an
      * entity will be created with that class rather than the default class.
      *
+     * Example:
      * ```
      * $key = $datastore->key('Person', 'Bob');
      * $entity = $datastore->entity($key, [
@@ -266,7 +266,21 @@ class DatastoreClient
      * echo get_class($person); // `Person`
      * ```
      *
-     * @see https://cloud.google.com/datastore/reference/rest/v1beta3/Entity Entity
+     * ```
+     * // If you wish to exclude certain properties from datastore indexes,
+     * // property names may be supplied in the method $options:
+     *
+     * $entity = $datastore->entity('Person', [
+     *     'firstName' => 'Bob',
+     *     'dateOfBirth' => new DateTime('January 31, 1969')
+     * ], [
+     *     'excludeFromIndexes' => [
+     *         'dateOfBirth'
+     *     ]
+     * ]);
+     * ```
+     *
+     * @see https://cloud.google.com/datastore/reference/rest/v1/Entity Entity
      *
      * @param Key|string $key The key used to identify the record, or a string $kind.
      * @param array $entity The data to fill the entity with.
@@ -278,6 +292,7 @@ class DatastoreClient
      *           If not set, {@see Google\Cloud\Datastore\Entity} will be used.
      *     @type array $excludeFromIndexes A list of entity keys to exclude from
      *           datastore indexes.
+     * }
      * @return Entity
      */
     public function entity($key, array $entity = [], array $options = [])
@@ -299,10 +314,10 @@ class DatastoreClient
      * $keyWithAllocatedId = $datastore->allocateId($key);
      * ```
      *
-     * @see https://cloud.google.com/datastore/reference/rest/v1beta3/projects/allocateIds allocateIds
+     * @see https://cloud.google.com/datastore/reference/rest/v1/projects/allocateIds allocateIds
      *
-     * @param Key $key The incomplete key
-     * @param array $options Configuration options
+     * @param Key $key The incomplete key.
+     * @param array $options Configuration options.
      * @return Key
      */
     public function allocateId(Key $key, array $options = [])
@@ -329,10 +344,10 @@ class DatastoreClient
      * $keysWithAllocatedIds = $datastore->allocateIds($keys);
      * ```
      *
-     * @see https://cloud.google.com/datastore/reference/rest/v1beta3/projects/allocateIds allocateIds
+     * @see https://cloud.google.com/datastore/reference/rest/v1/projects/allocateIds allocateIds
      *
-     * @param Key[] $keys The incomplete keys
-     * @param array $options Configuration options
+     * @param Key[] $keys The incomplete keys.
+     * @param array $options Configuration options.
      * @return Key[]
      */
     public function allocateIds(array $keys, array $options = [])
@@ -350,7 +365,7 @@ class DatastoreClient
      *
      * @see https://cloud.google.com/datastore/docs/concepts/transactions Datastore Transactions
      *
-     * @param array $options Configuration options
+     * @param array $options Configuration options.
      * @return Transaction
      */
     public function transaction(array $options = [])
@@ -371,6 +386,9 @@ class DatastoreClient
      *
      * An entity with incomplete keys will be allocated an ID prior to insertion.
      *
+     * Insert by this method is non-transactional. If you need transaction
+     * support, use {@see Google\Cloud\Datastore\Transaction::insert()}.
+     *
      * Example:
      * ```
      * $key = $datastore->key('Person', 'Bob');
@@ -379,9 +397,9 @@ class DatastoreClient
      * $datastore->insert($entity);
      * ```
      *
-     * @param Entity $entity The entity to be inserted
-     * @param array $options Configuration options
-     * @return string The entity version
+     * @param Entity $entity The entity to be inserted.
+     * @param array $options Configuration options.
+     * @return string The entity version.
      * @throws DomainException If a conflict occurs, fail.
      */
     public function insert(Entity $entity, array $options = [])
@@ -394,6 +412,9 @@ class DatastoreClient
      * Insert multiple entities
      *
      * Any entity with incomplete keys will be allocated an ID prior to insertion.
+     *
+     * Insert by this method is non-transactional. If you need transaction
+     * support, use {@see Google\Cloud\Datastore\Transaction::insertBatch()}.
      *
      * Example:
      * ```
@@ -409,8 +430,8 @@ class DatastoreClient
      * $datastore->insertBatch($entities);
      * ```
      *
-     * @param Entity[] $entities The entities to be inserted
-     * @param array $options Configuration options
+     * @param Entity[] $entities The entities to be inserted.
+     * @param array $options Configuration options.
      * @return array [Response Body](https://cloud.google.com/datastore/reference/rest/v1/projects/commit#response-body)
      */
     public function insertBatch(array $entities, array $options = [])
@@ -427,15 +448,18 @@ class DatastoreClient
      * existing record. Adding, editing or removing a single property is only
      * possible by first retrieving the entire entity in its existing state.
      *
+     * Update by this method is non-transactional. If you need transaction
+     * support, use {@see Google\Cloud\Datastore\Transaction::update()}.
+     *
      * Example:
      * ```
-     * $entity = $datastore->lookup($ds->key('Person', 'Bob'));
+     * $entity = $datastore->lookup($datastore->key('Person', 'Bob'));
      * $entity['firstName'] = 'John';
      *
      * $datastore->update($entity);
      * ```
      *
-     * @param Entity $entity The entity to be updated
+     * @param Entity $entity The entity to be updated.
      * @param array $options {
      *     Configuration Options
      *
@@ -448,7 +472,7 @@ class DatastoreClient
      *           must be set to `true` in order to update a record when the
      *           entity provided was not obtained through a lookup or query.
      * }
-     * @return string The entity version
+     * @return string The entity version.
      * @throws DomainException If a conflict occurs, fail.
      */
     public function update(Entity $entity, array $options = [])
@@ -464,6 +488,9 @@ class DatastoreClient
      * existing record. Adding, editing or removing a single property is only
      * possible by first retrieving the entire entity in its existing state.
      *
+     * Update by this method is non-transactional. If you need transaction
+     * support, use {@see Google\Cloud\Datastore\Transaction::updateBatch()}.
+     *
      * Example:
      * ```
      * $entities[0]['firstName'] = 'Bob';
@@ -472,7 +499,7 @@ class DatastoreClient
      * $datastore->updateBatch($entities);
      * ```
      *
-     * @param Entity[] $entities The entities to be updated
+     * @param Entity[] $entities The entities to be updated.
      * @param array $options {
      *     Configuration Options
      *
@@ -489,7 +516,7 @@ class DatastoreClient
      */
     public function updateBatch(array $entities, array $options = [])
     {
-        $options = $options + [
+        $options += [
             'allowOverwrite' => false
         ];
 
@@ -509,6 +536,9 @@ class DatastoreClient
      * property is only possible by first retrieving the entire entity in its
      * existing state.
      *
+     * Upsert by this method is non-transactional. If you need transaction
+     * support, use {@see Google\Cloud\Datastore\Transaction::upsert()}.
+     *
      * Example:
      * ```
      * $key = $datastore->key('Person', 'Bob']);
@@ -517,9 +547,9 @@ class DatastoreClient
      * $datastore->upsert($entity);
      * ```
      *
-     * @param Entity $entity The entity to be upserted
-     * @param array $options Configuration options
-     * @return string The entity version
+     * @param Entity $entity The entity to be upserted.
+     * @param array $options Configuration options.
+     * @return string The entity version.
      * @throws DomainException If a conflict occurs, fail.
      */
     public function upsert(Entity $entity, array $options = [])
@@ -539,6 +569,9 @@ class DatastoreClient
      * property is only possible by first retrieving the entire entity in its
      * existing state.
      *
+     * Upsert by this method is non-transactional. If you need transaction
+     * support, use {@see Google\Cloud\Datastore\Transaction::upsertBatch()}.
+     *
      * Example:
      * ```
      * $keys = [
@@ -554,8 +587,8 @@ class DatastoreClient
      * $datastore->upsertBatch($entities);
      * ```
      *
-     * @param Entity[] $entities The entities to be upserted
-     * @param array $options Configuration options
+     * @param Entity[] $entities The entities to be upserted.
+     * @param array $options Configuration options.
      * @return array [Response Body](https://cloud.google.com/datastore/reference/rest/v1/projects/commit#response-body)
      */
     public function upsertBatch(array $entities, array $options = [])
@@ -567,16 +600,27 @@ class DatastoreClient
     /**
      * Delete an entity
      *
+     * Deletion by this method is non-transactional. If you need transaction
+     * support, use {@see Google\Cloud\Datastore\Transaction::delete()}.
+     *
      * Example:
      * ```
-     * $key = $datastore->key('Person', 'Bob']);
+     * $key = $datastore->key('Person', 'Bob');
      *
      * $datastore->delete($key);
      * ```
      *
-     * @param Key $key The identifier to delete
-     * @param array $options Configuration options
-     * @return string The updated entity version number
+     * @param Key $key The identifier to delete.
+     * @param array $options {
+     *     Configuration options
+     *
+     *     @type string $baseVersion Provides concurrency control. The version
+     *           of the entity that this mutation is being applied to. If this
+     *           does not match the current version on the server, the mutation
+     *           conflicts.
+     * }
+     * @return string The updated entity version number.
+     * @throws DomainException If a conflict occurs, fail.
      */
     public function delete(Key $key, array $options = [])
     {
@@ -586,6 +630,9 @@ class DatastoreClient
 
     /**
      * Delete multiple entities
+     *
+     * Deletion by this method is non-transactional. If you need transaction
+     * support, use {@see Google\Cloud\Datastore\Transaction::deleteBatch()}.
      *
      * Example:
      * ```
@@ -597,22 +644,36 @@ class DatastoreClient
      * $datastore->deleteBatch($keys);
      * ```
      *
-     * @param Key[] $keys The identifiers to delete
-     * @param array $options Configuration options
+     * @param Key[] $keys The identifiers to delete.
+     * @param array $options {
+     *     Configuration options
+     *
+     *     @type string $baseVersion Provides concurrency control. The version
+     *           of the entity that this mutation is being applied to. If this
+     *           does not match the current version on the server, the mutation
+     *           conflicts.
+     * }
      * @return array [Response Body](https://cloud.google.com/datastore/reference/rest/v1/projects/commit#response-body)
      */
     public function deleteBatch(array $keys, array $options = [])
     {
-        $this->operation->mutate('delete', $keys, Key::class);
+        $options += [
+            'baseVersion' => null
+        ];
+
+        $this->operation->mutate('delete', $keys, Key::class, $options['baseVersion']);
         return $this->operation->commit($options);
     }
 
     /**
      * Retrieve an entity from the datastore
      *
+     * To lookup an entity inside a transaction, use
+     * {@see Google\Cloud\Datastore\Transaction::lookup()}.
+     *
      * Example:
      * ```
-     * $key = $datastore->key('person', 'Bob');
+     * $key = $datastore->key('Person', 'Bob');
      *
      * $entity = $datastore->lookup($key);
      * if (!is_null($entity)) {
@@ -621,12 +682,13 @@ class DatastoreClient
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @param Key $key $key The identifier to use to locate a desired entity
+     * @param Key $key $key The identifier to use to locate a desired entity.
      * @param array $options {
      *     Configuration Options
      *
      *     @type string $readConsistency See
-     *           [ReadConsistency](https://cloud.google.com/datastore/reference/rest/v1beta3/ReadOptions#ReadConsistency).
+     *           [ReadConsistency](https://cloud.google.com/datastore/reference/rest/v1/ReadOptions#ReadConsistency).
+     *           "EVENTUAL" by default.
      *     @type string $className The name of the class to return results as.
      *           Must be a subclass of {@see Google\Cloud\Datastore\Entity}.
      *           If not set, {@see Google\Cloud\Datastore\Entity} will be used.
@@ -646,6 +708,9 @@ class DatastoreClient
     /**
      * Get multiple entities
      *
+     * To lookup entities inside a transaction, use
+     * {@see Google\Cloud\Datastore\Transaction::lookupBatch()}.
+     *
      * Example:
      * ```
      * $keys = [
@@ -660,19 +725,21 @@ class DatastoreClient
      * }
      * ```
      *
-     * @codingStandardsIgnoreStart
      * @param Key[] $key The identifiers to look up.
      * @param array $options {
      *     Configuration Options
      *
      *     @type string $readConsistency See
-     *           [ReadConsistency](https://cloud.google.com/datastore/reference/rest/v1beta3/ReadOptions#ReadConsistency).
+     *           [ReadConsistency](https://cloud.google.com/datastore/reference/rest/v1/ReadOptions#ReadConsistency).
+     *           "EVENTUAL" by default.
      *     @type string $className The name of the class to return results as.
      *           Must be a subclass of {@see Google\Cloud\Datastore\Entity}.
      *           If not set, {@see Google\Cloud\Datastore\Entity} will be used.
      * }
-     * @return array
-     * @codingStandardsIgnoreEnd
+     * @return array Returns an array with keys [`found`, `missing`, and `deferred`].
+     *         Members of `found` will be instance of
+     *         {@see Google\Cloud\Datastore\Entity}. Members of `missing` and
+     *         `deferred` will be instance of {@see Google\Cloud\Datastore\Key}.
      */
     public function lookupBatch(array $keys, array $options = [])
     {
@@ -693,7 +760,7 @@ class DatastoreClient
      * @param array $options {
      *     Query Options
      *
-     *     @type array $query [Query](https://cloud.google.com/datastore/reference/rest/v1beta3/projects/runQuery#query)
+     *     @type array $query [Query](https://cloud.google.com/datastore/reference/rest/v1/projects/runQuery#query)
      * }
      * @return Query
      */
@@ -720,7 +787,7 @@ class DatastoreClient
      * ```
      *
      * ```
-     * // Positional binding is also supported
+     * // Positional binding is also supported:
      * $query = $datastore->gqlQuery('SELECT * FROM Companies WHERE companyName = @1 LIMIT 1', [
      *     'bindings' => [
      *         'Google'
@@ -735,8 +802,23 @@ class DatastoreClient
      * ]);
      * ```
      *
-     * @param string $query The [GQL Query](https://cloud.google.com/datastore/docs/apis/gql/gql_reference) string
-     * @param array $options See {@see Google\Cloud\Datastore\Query\GqlQuery::__construct()} for supported options.
+     * @param string $query The [GQL Query](https://cloud.google.com/datastore/docs/apis/gql/gql_reference) string.
+     * @param array $options {
+     *     Configuration Options
+     *
+     *     @type bool $allowLiterals Whether literal values will be allowed in
+     *           the query string. This is false by default, and parameter
+     *           binding is strongly encouraged over literals.
+     *     @type array $bindings An array of values to bind to the query string.
+     *           Queries using Named Bindings should provide a key/value set,
+     *           while queries using Positional Bindings must provide a simple
+     *           array.
+     *           Applications with no need for multitenancy should not set this value.
+     *     @type string $readConsistency If not using a {@see Google\Cloud\Datastore\Transaction},
+     *           $readConsistency can be set to `STRONG` or `EVENTUAL`.
+     *     @type Transaction $transaction If an instance of {@see Google\Cloud\Datastore\Transaction}
+     *           is given, query will run in the transaction.
+     * }
      * @return GqlQuery
      */
     public function gqlQuery($query, array $options = [])
@@ -747,6 +829,9 @@ class DatastoreClient
     /**
      * Run a query and return entities
      *
+     * To query datastore inside a transaction, use
+     * {@see Google\Cloud\Datastore\Transaction::runQuery()}.
+     *
      * Example:
      * ```
      * $result = $datastore->runQuery($query);
@@ -756,13 +841,16 @@ class DatastoreClient
      * }
      * ```
      *
-     * @param QueryInterface $query
+     * @param QueryInterface $query A query object.
      * @param array $options {
      *     Configuration Options
      *
      *     @type string $className The name of the class to return results as.
      *           Must be a subclass of {@see Google\Cloud\Datastore\Entity}.
      *           If not set, {@see Google\Cloud\Datastore\Entity} will be used.
+     *     @type string $readConsistency See
+     *           [ReadConsistency](https://cloud.google.com/datastore/reference/rest/v1/ReadOptions#ReadConsistency).
+     *           "EVENTUAL" by default.
      * }
      * @return \Generator<Google\Cloud\Datastore\Entity>
      */

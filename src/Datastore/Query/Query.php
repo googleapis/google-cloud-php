@@ -23,7 +23,7 @@ use Google\Cloud\Datastore\DatastoreTrait;
  * Represents a Cloud [Datastore Query](https://cloud.google.com/datastore/docs/concepts/queries)
  *
  * Queries can be created either by using the builder pattern, or by providing
- * a [Query](https://cloud.google.com/datastore/reference/rest/v1beta3/projects/runQuery#query)
+ * a [Query](https://cloud.google.com/datastore/reference/rest/v1/projects/runQuery#query)
  * when creating this object.
  *
  * Example:
@@ -66,7 +66,7 @@ use Google\Cloud\Datastore\DatastoreTrait;
  * $result = $datastore->runQuery($query);
  * ```
  *
- * @see https://cloud.google.com/datastore/reference/rest/v1beta3/projects/runQuery#query Query Object Reference
+ * @see https://cloud.google.com/datastore/reference/rest/v1/projects/runQuery#query Query Object Reference
  * @see https://cloud.google.com/datastore/docs/concepts/queries Datastore Queries
  */
 class Query implements QueryInterface
@@ -102,7 +102,7 @@ class Query implements QueryInterface
      * @param array $options {
      *     Configuration Options
      *
-     *     @type array $query [Query](https://cloud.google.com/datastore/reference/rest/v1beta3/projects/runQuery#query)
+     *     @type array $query [Query](https://cloud.google.com/datastore/reference/rest/v1/projects/runQuery#query)
      * }
      */
     public function __construct($projectId, array $options = [])
@@ -168,7 +168,7 @@ class Query implements QueryInterface
      * returned.
      *
      * @param array|string $properties The property or properties to include in
-     *        the result
+     *        the result.
      * @return Query
      */
     public function projection($properties)
@@ -189,7 +189,8 @@ class Query implements QueryInterface
      * results. While you may supply as many kinds as you wish, datastore currently
      * only accepts one at a time.
      *
-     * @param array|string $kinds
+     * @param array|string $kinds The kind or kinds to return. Only a single kind
+     *        is currently supported.
      * @return Query
      */
     public function kind($kinds)
@@ -211,10 +212,10 @@ class Query implements QueryInterface
      * If the top-level filter is specified as a propertyFilter, it will be replaced.
      * Any composite filters will be preserved and the new filter will be added.
      *
-     * @see https://cloud.google.com/datastore/reference/rest/v1beta3/projects/runQuery#operator_1 Allowed Operators
+     * @see https://cloud.google.com/datastore/reference/rest/v1/projects/runQuery#operator_1 Allowed Operators
      *
-     * @param string $property The property to filter
-     * @param mixed $value The value to check
+     * @param string $property The property to filter.
+     * @param mixed $value The value to check.
      * @param string $operator The operator to use in the filter.
      * @return Query
      */
@@ -238,10 +239,10 @@ class Query implements QueryInterface
     /**
      * Specify an order for the query
      *
-     * @see https://cloud.google.com/datastore/reference/rest/v1beta3/projects/runQuery#Direction Allowed Directions
+     * @see https://cloud.google.com/datastore/reference/rest/v1/projects/runQuery#Direction Allowed Directions
      *
-     * @param string $property The property to order by
-     * @param string $direction The direction to order in
+     * @param string $property The property to order by.
+     * @param string $direction The direction to order in.
      * @return Query
      */
     public function order($property, $direction = self::ORDER_DEFAULT)
@@ -261,7 +262,7 @@ class Query implements QueryInterface
      * combination of values for the given properties (if empty, all results
      * are returned).
      *
-     * @param array|string $property The property or properties to make distinct
+     * @param array|string $property The property or properties to make distinct.
      * @return Query
      */
     public function distinctOn($property)
@@ -284,7 +285,7 @@ class Query implements QueryInterface
      * @see https://cloud.google.com/datastore/docs/concepts/queries#cursors_limits_and_offsets Cursors, Limits and Offsets
      * @codingStandardsIgnoreEnd
      *
-     * @param string $cursor The cursor on which to start the result
+     * @param string $cursor The cursor on which to start the result.
      * @return Query
      */
     public function start($cursor)
@@ -301,7 +302,7 @@ class Query implements QueryInterface
      * @see https://cloud.google.com/datastore/docs/concepts/queries#cursors_limits_and_offsets Cursors, Limits and Offsets
      * @codingStandardsIgnoreEnd
      *
-     * @param string $cursor The cursor on which to end the result
+     * @param string $cursor The cursor on which to end the result.
      * @return Query
      */
     public function end($cursor)
@@ -318,7 +319,7 @@ class Query implements QueryInterface
      * @see https://cloud.google.com/datastore/docs/concepts/queries#cursors_limits_and_offsets Cursors, Limits and Offsets
      * @codingStandardsIgnoreEnd
      *
-     * @param int $num The number of results to skip
+     * @param int $num The number of results to skip.
      * @return Query
      */
     public function offset($num)
@@ -335,7 +336,7 @@ class Query implements QueryInterface
      * @see https://cloud.google.com/datastore/docs/concepts/queries#cursors_limits_and_offsets Cursors, Limits and Offsets
      * @codingStandardsIgnoreEnd
      *
-     * @param int $num The number of results to retun
+     * @param int $num The number of results to return.
      * @return Query
      */
     public function limit($num)
@@ -363,7 +364,7 @@ class Query implements QueryInterface
     /**
      * Format a property name
      *
-     * @param string $property The property name
+     * @param string $property The property name.
      * @return array
      */
     private function propertyName($property)

@@ -35,7 +35,25 @@ use JsonSerializable;
  * $key = $datastore->key('Person', 'Bob');
  * ```
  *
- * @see https://cloud.google.com/datastore/reference/rest/v1beta3/Key Key
+ * ```
+ * // Keys with complex paths can be constructed by chaining method calls.
+ *
+ * $key = $datastore->key('Person', 'Bob');
+ * $key->ancestor('Parents', 'Joe');
+ * $key->ancestor('Grandparents', 'Barb');
+ * ```
+ *
+ * ```
+ * // Path elements can also be appended, so long as the current last path
+ * // element contains a kind and identifier.
+ *
+ * $key = $datastore->key('Grandparents', 'Barb');
+ * $key->pathElement('Parents', 'Joe');
+ * $key->pathElement('Person');
+ * $key->pathElement('Child', 'Dave'); // Error here.
+ * ```
+ *
+ * @see https://cloud.google.com/datastore/reference/rest/v1/Key Key
  */
 class Key implements JsonSerializable
 {
@@ -65,7 +83,7 @@ class Key implements JsonSerializable
     /**
      * Create a Key.
      *
-     * @param string $projectId The project ID
+     * @param string $projectId The project ID.
      * @param array $options {
      *     Configuration Options
      *
@@ -104,12 +122,13 @@ class Key implements JsonSerializable
      *
      * @see https://cloud.google.com/datastore/reference/rest/v1/Key#PathElement PathElement
      *
-     * @param string $kind The kind
-     * @param string|int $identifier The name of ID of the object
+     * @param string $kind The kind.
+     * @param string|int $identifier The name or ID of the object.
      * @param string $identifierType If omitted, the type will be determined
      *        internally. Setting this to either `Key::TYPE_ID` or
      *        `Key::TYPE_NAME` will force the pathElement identifier type.
      * @return Key
+     * @throws InvalidArgumentException
      */
     public function pathElement($kind, $identifier = null, $identifierType = null)
     {
@@ -136,8 +155,8 @@ class Key implements JsonSerializable
      *
      * @see https://cloud.google.com/datastore/reference/rest/v1/Key#PathElement PathElement
      *
-     * @param string $kind The kind
-     * @param string|int $identifier The name of ID of the object
+     * @param string $kind The kind.
+     * @param string|int $identifier The name or ID of the object.
      * @param string $identifierType If omitted, the type will be determined
      *        internally. Setting this to either `Key::TYPE_ID` or
      *        `Key::TYPE_NAME` will force the pathElement identifier type.
@@ -165,6 +184,7 @@ class Key implements JsonSerializable
      *
      * @param Key $key The ancestor Key.
      * @return Key
+     * @throws InvalidArgumentException
      */
     public function ancestorKey(Key $key)
     {
@@ -221,7 +241,7 @@ class Key implements JsonSerializable
      * This method is used internally when IDs are allocated to existing instances
      * of a Key. It should not generally be used externally.
      *
-     * @param string $value
+     * @param string $value The value of the ID or Name.
      * @param string $type 'id' or 'name'. 'id' by default.
      * @return void
      * @access private
@@ -231,8 +251,10 @@ class Key implements JsonSerializable
         $end = $this->pathEnd();
         $end[$type] = (string) $value;
 
-        $keys = array_keys($this->path);
-        $this->path[end($keys)] = $end;
+        $elements = array_keys($this->path);
+        $lastElement = end($elements);
+
+        $this->path[$lastElement] = $end;
     }
 
     /**
@@ -262,7 +284,10 @@ class Key implements JsonSerializable
      */
     public function pathEnd()
     {
-        return end($this->path);
+        $end = end($this->path);
+        reset($this->path);
+
+        return $end;
     }
 
     /**
@@ -287,6 +312,14 @@ class Key implements JsonSerializable
         return $this->keyObject();
     }
 
+    /**
+     * Determine the identifier type and return the valid pathElement
+     *
+     * @param string $kind the kind.
+     * @param mixed $identifier The ID or name.
+     * @param string $identifierType Either `id` or `name`.
+     * @return array
+     */
     private function normalizeElement($kind, $identifier, $identifierType)
     {
         $identifierType = $this->determineIdentifierType($identifier, $identifierType);
@@ -301,6 +334,15 @@ class Key implements JsonSerializable
         return $element;
     }
 
+    /**
+     * Determine whether the given identifier is an ID or a Name
+     *
+     * @param mixed $identifier The given value.
+     * @param string|null $identifierType If not null and allowed, this will be
+     *        used as the type. If null, type will be inferred.
+     * @return string
+     * @throws InvalidArgumentException
+     */
     private function determineIdentifierType($identifier, $identifierType)
     {
         $allowedTypes = [self::TYPE_ID, self::TYPE_NAME];
@@ -326,6 +368,7 @@ class Key implements JsonSerializable
      *
      * @param array $path
      * @return array
+     * @throws InvalidArgumentException
      */
     private function normalizePath(array $path)
     {

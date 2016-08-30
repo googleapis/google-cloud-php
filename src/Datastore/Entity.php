@@ -19,7 +19,6 @@ namespace Google\Cloud\Datastore;
 
 use ArrayAccess;
 use InvalidArgumentException;
-use JsonSerializable;
 use Psr\Http\Message\StreamInterface;
 
 /**
@@ -32,11 +31,11 @@ use Psr\Http\Message\StreamInterface;
  * ```
  * use Google\Cloud\ServiceBuilder;
  *
- * $cloud = new ServiceBuilder;
+ * $cloud = new ServiceBuilder();
  * $datastore = $cloud->datastore();
  *
  * $key = $datastore->key('Person', 'Bob');
- * $entity = $datastore->entity($key), [
+ * $entity = $datastore->entity($key, [
  *     'firstName' => 'Bob',
  *     'lastName' => 'Testguy'
  * ]);
@@ -45,7 +44,7 @@ use Psr\Http\Message\StreamInterface;
  * $entity['location'] = 'Detroit, MI';
  * ```
  */
-class Entity implements JsonSerializable, ArrayAccess
+class Entity implements ArrayAccess
 {
     use DatastoreTrait;
 
@@ -65,8 +64,8 @@ class Entity implements JsonSerializable, ArrayAccess
     private $options;
 
     /**
-     * @param Key $key The Entity's Key, defining its unique identifier
-     * @param array $entity The entity body
+     * @param Key $key The Entity's Key, defining its unique identifier.
+     * @param array $entity The entity body.
      * @param array $options {
      *     Configuration Options
      *
@@ -123,7 +122,7 @@ class Entity implements JsonSerializable, ArrayAccess
      * ]);
      * ```
      *
-     * @param array $entity The new entity body
+     * @param array $entity The new entity body.
      * @return void
      */
     public function set(array $entity)
@@ -187,7 +186,7 @@ class Entity implements JsonSerializable, ArrayAccess
      *
      * Example:
      * ```
-     * $populatedByServoce = $entity->populatedByServoce();
+     * $populatedByService = $entity->populatedByService();
      * ```
      *
      * @return bool
@@ -198,7 +197,7 @@ class Entity implements JsonSerializable, ArrayAccess
     }
 
     /**
-     * A list of entity keys to exclude from datastore indexes.
+     * A list of entity properties to exclude from datastore indexes.
      *
      * Example:
      * ```
@@ -208,22 +207,12 @@ class Entity implements JsonSerializable, ArrayAccess
      * ]);
      * ```
      *
-     * @param array $keys
+     * @param array $properties A list of properties to exclude from indexes.
      * @return void
      */
-    public function setExcludeFromIndexes(array $keys)
+    public function setExcludeFromIndexes(array $properties)
     {
-        $this->options['excludeFromIndexes'] = $keys;
-    }
-
-    /**
-     * The JSON respresentation of an entity
-     *
-     * @access private
-     */
-    public function jsonSerialize()
-    {
-        return $this->entityObject();
+        $this->options['excludeFromIndexes'] = $properties;
     }
 
     /**
@@ -255,6 +244,9 @@ class Entity implements JsonSerializable, ArrayAccess
     }
 
     /**
+     * @param string $key The value name.
+     * @param mixed $value The value.
+     * @return void
      * @access private
      */
     public function offsetSet($key, $val)
@@ -263,6 +255,8 @@ class Entity implements JsonSerializable, ArrayAccess
     }
 
     /**
+     * @param string $key the value to check.
+     * @return bool
      * @access private
      */
     public function offsetExists($key)
@@ -271,6 +265,8 @@ class Entity implements JsonSerializable, ArrayAccess
     }
 
     /**
+     * @param string $key the value to remove.
+     * @return void
      * @access private
      */
     public function offsetUnset($key)
@@ -279,6 +275,8 @@ class Entity implements JsonSerializable, ArrayAccess
     }
 
     /**
+     * @param string $key the value to retrieve.
+     * @return mixed
      * @access private
      */
     public function offsetGet($key)
