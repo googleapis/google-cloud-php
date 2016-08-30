@@ -386,12 +386,14 @@ class Operation
 
         $moreResults = true;
         do {
-            $res = $this->connection->runQuery($options + [
+            $request = $options + [
                 'projectId' => $this->projectId,
                 'partitionId' => $this->partitionId($this->projectId, $this->namespaceId),
                 'readOptions' => $this->readOptions($options),
                 $query->queryKey() => $query->queryObject()
-            ]);
+            ];
+
+            $res = $this->connection->runQuery($request);
 
             if (isset($res['batch']['entityResults']) && is_array($res['batch']['entityResults'])) {
                 $results = $this->mapEntityResult(

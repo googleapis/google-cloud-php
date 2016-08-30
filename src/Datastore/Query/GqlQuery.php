@@ -82,11 +82,6 @@ class GqlQuery implements QueryInterface
     private $query;
 
     /**
-     * @var string
-     */
-    private $projectId;
-
-    /**
      * @var array
      */
     private $options;
@@ -101,7 +96,6 @@ class GqlQuery implements QueryInterface
 
     /**
      * @param string $query The GQL Query string.
-     * @param string $projectId Your Google Cloud Platform Project ID.
      * @param array $options {
      *     Configuration Options
      *
@@ -119,10 +113,9 @@ class GqlQuery implements QueryInterface
      *           is given, query will run in the transaction.
      * }
      */
-    public function __construct($query, $projectId, array $options = [])
+    public function __construct($query, array $options = [])
     {
         $this->query = $query;
-        $this->projectId = $projectId;
         $this->options = $options + [
             'allowLiterals' => false,
             'bindingType' => $this->determineBindingType($options),

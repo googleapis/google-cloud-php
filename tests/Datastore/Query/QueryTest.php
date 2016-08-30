@@ -28,12 +28,12 @@ class QueryTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->query = new Query('foo');
+        $this->query = new Query();
     }
 
     public function testConstructorOptions()
     {
-        $query = new Query('foo', [
+        $query = new Query([
             'query' => ['foo' => 'bar']
         ]);
 

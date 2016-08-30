@@ -86,6 +86,9 @@ class Query implements QueryInterface
     const ORDER_DESCENDING          = 'ASCENDING';
     const ORDER_ASCENDING           = 'DESCENDING';
 
+    /**
+     * @var array A list of all operators supported by datastore
+     */
     private $allowedOperators = [
         self::OP_LESS_THAN,
         self::OP_LESS_THAN_OR_EQUAL,
@@ -95,6 +98,9 @@ class Query implements QueryInterface
         self::OP_HAS_ANCESTOR,
     ];
 
+    /**
+     * @var array A list of comparison operators that map to datastore operators
+     */
     private $shortOperators = [
         '<' => self::OP_LESS_THAN,
         '<=' => self::OP_LESS_THAN_OR_EQUAL,
@@ -103,15 +109,13 @@ class Query implements QueryInterface
         '=' => self::OP_EQUALS
     ];
 
+    /**
+     * @var array A list of available ordering directions
+     */
     private $allowedOrders = [
         self::ORDER_ASCENDING,
         self::ORDER_DESCENDING
     ];
-
-    /**
-     * @var string
-     */
-    private $projectId;
 
     /**
      * @var array
@@ -119,16 +123,14 @@ class Query implements QueryInterface
     private $options;
 
     /**
-     * @param string $projectId The Google Cloud Platform Project ID
      * @param array $options {
      *     Configuration Options
      *
      *     @type array $query [Query](https://cloud.google.com/datastore/reference/rest/v1/projects/runQuery#query)
      * }
      */
-    public function __construct($projectId, array $options = [])
+    public function __construct(array $options = [])
     {
-        $this->projectId = $projectId;
         $this->options = $options + [
             'query' => [
                 'projection' => [],
@@ -188,6 +190,11 @@ class Query implements QueryInterface
      * Accepts an array of properties. If set, only these properties will be
      * returned.
      *
+     * Example:
+     * ```
+     * $query->projection(['firstName', 'lastName']);
+     * ```
+     *
      * @param array|string $properties The property or properties to include in
      *        the result.
      * @return Query
@@ -209,6 +216,11 @@ class Query implements QueryInterface
      * If empty, returns entities of all kinds. Must be set in order to filter
      * results. While you may supply as many kinds as you wish, datastore currently
      * only accepts one at a time.
+     *
+     * Example:
+     * ```
+     * $query->kind('Person');
+     * ```
      *
      * @param array|string $kinds The kind or kinds to return. Only a single kind
      *        is currently supported.
@@ -232,6 +244,12 @@ class Query implements QueryInterface
      *
      * If the top-level filter is specified as a propertyFilter, it will be replaced.
      * Any composite filters will be preserved and the new filter will be added.
+     *
+     * Example:
+     * ```
+     * $query->filter('firstName', '=', 'Bob');
+     * $query->filter('lastName', '=', 'Testguy');
+     * ```
      *
      * @see https://cloud.google.com/datastore/reference/rest/v1/projects/runQuery#operator_1 Allowed Operators
      *
@@ -265,6 +283,11 @@ class Query implements QueryInterface
     /**
      * Specify an order for the query
      *
+     * Example:
+     * ```
+     * $query->order('birthDate');
+     * ```
+     *
      * @see https://cloud.google.com/datastore/reference/rest/v1/projects/runQuery#Direction Allowed Directions
      *
      * @param string $property The property to order by.
@@ -288,6 +311,11 @@ class Query implements QueryInterface
      * combination of values for the given properties (if empty, all results
      * are returned).
      *
+     * Example:
+     * ```
+     * $query->distinctOn('lastName');
+     * ```
+     *
      * @param array|string $property The property or properties to make distinct.
      * @return Query
      */
@@ -307,6 +335,11 @@ class Query implements QueryInterface
     /**
      * The starting point for the query results
      *
+     * Example:
+     * ```
+     * $query->start($lastResultCursor);
+     * ```
+     *
      * @codingStandardsIgnoreStart
      * @see https://cloud.google.com/datastore/docs/concepts/queries#cursors_limits_and_offsets Cursors, Limits and Offsets
      * @codingStandardsIgnoreEnd
@@ -323,6 +356,11 @@ class Query implements QueryInterface
 
     /**
      * The ending point for the query results
+     *
+     * Example:
+     * ```
+     * $query->end($lastResultCursor);
+     * ```
      *
      * @codingStandardsIgnoreStart
      * @see https://cloud.google.com/datastore/docs/concepts/queries#cursors_limits_and_offsets Cursors, Limits and Offsets
@@ -341,6 +379,11 @@ class Query implements QueryInterface
     /**
      * The number of results to skip
      *
+     * Example:
+     * ```
+     * $query->offset(2);
+     * ```
+     *
      * @codingStandardsIgnoreStart
      * @see https://cloud.google.com/datastore/docs/concepts/queries#cursors_limits_and_offsets Cursors, Limits and Offsets
      * @codingStandardsIgnoreEnd
@@ -357,6 +400,11 @@ class Query implements QueryInterface
 
     /**
      * The number of results to return
+     *
+     * Example:
+     * ```
+     * $query->limit(50);
+     * ```
      *
      * @codingStandardsIgnoreStart
      * @see https://cloud.google.com/datastore/docs/concepts/queries#cursors_limits_and_offsets Cursors, Limits and Offsets

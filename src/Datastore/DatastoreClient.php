@@ -766,7 +766,7 @@ class DatastoreClient
      */
     public function query(array $options = [])
     {
-        return new Query($this->projectId, $options);
+        return new Query($options);
     }
 
     /**
@@ -823,7 +823,7 @@ class DatastoreClient
      */
     public function gqlQuery($query, array $options = [])
     {
-        return new GqlQuery($query, $this->projectId, $options);
+        return new GqlQuery($query, $options);
     }
 
     /**
