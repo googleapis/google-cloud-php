@@ -18,6 +18,7 @@
 namespace Google\Cloud\Datastore\Query;
 
 use Google\Cloud\Datastore\DatastoreTrait;
+use InvalidArgumentException;
 
 /**
  * Represents a Cloud [Datastore Query](https://cloud.google.com/datastore/docs/concepts/queries)
@@ -73,6 +74,18 @@ class Query implements QueryInterface
 {
     use DatastoreTrait;
 
+    const OP_DEFAULT                = self::OP_EQUALS;
+    const OP_LESS_THAN              = 'LESS_THAN';
+    const OP_LESS_THAN_OR_EQUAL     = 'LESS_THAN_OR_EQUAL';
+    const OP_GREATER_THAN           = 'GREATER_THAN';
+    const OP_GREATER_THAN_OR_EQUAL  = 'GREATER_THAN_OR_EQUAL';
+    const OP_EQUALS                 = 'EQUAL';
+    const OP_HAS_ANCESTOR           = 'HAS_ANCESTOR';
+
+    const ORDER_DEFAULT             = self::ORDER_ASCENDING;
+    const ORDER_DESCENDING          = 'ASCENDING';
+    const ORDER_ASCENDING           = 'DESCENDING';
+
     private $allowedOperators = [
         self::OP_LESS_THAN,
         self::OP_LESS_THAN_OR_EQUAL,
@@ -80,6 +93,14 @@ class Query implements QueryInterface
         self::OP_GREATER_THAN_OR_EQUAL,
         self::OP_EQUALS,
         self::OP_HAS_ANCESTOR,
+    ];
+
+    private $shortOperators = [
+        '<' => self::OP_LESS_THAN,
+        '<=' => self::OP_LESS_THAN_OR_EQUAL,
+        '>' => self::OP_GREATER_THAN,
+        '>=' => self::OP_GREATER_THAN_OR_EQUAL,
+        '=' => self::OP_EQUALS
     ];
 
     private $allowedOrders = [
@@ -215,11 +236,16 @@ class Query implements QueryInterface
      * @see https://cloud.google.com/datastore/reference/rest/v1/projects/runQuery#operator_1 Allowed Operators
      *
      * @param string $property The property to filter.
+     * @param string $operator The operator to use in the filter. A list of
+     *        allowed operators may be found
+     *        [here](https://cloud.google.com/datastore/reference/rest/v1/projects/runQuery#operator_1).
+     *        Short comparison operators are provided for convenience and are
+     *        mapped to their datastore-compatible equivalents. Available short
+     *        operators are `=`, `<`, `<=`, `>`, and `>=`.
      * @param mixed $value The value to check.
-     * @param string $operator The operator to use in the filter.
      * @return Query
      */
-    public function filter($property, $value, $operator = self::OP_DEFAULT)
+    public function filter($property, $operator, $value)
     {
         if (!isset($this->options['query']['filter']) || !isset($this->options['query']['filter']['compositeFilter'])) {
             $this->initializeFilter();
@@ -229,7 +255,7 @@ class Query implements QueryInterface
             'propertyFilter' => [
                 'property' => $this->propertyName($property),
                 'value' => $this->valueObject($value),
-                'op' => $operator
+                'op' => $this->mapOperator($operator)
             ]
         ];
 
@@ -372,5 +398,28 @@ class Query implements QueryInterface
         return [
             'name' => $property
         ];
+    }
+
+    /**
+     * Convert given operator to API-compatible operator
+     *
+     * @param string $operator
+     * @return string
+     */
+    private function mapOperator($operator)
+    {
+        if (array_key_exists($operator, $this->shortOperators)) {
+            $operator = $this->shortOperators[$operator];
+        }
+
+        if (!in_array($operator, $this->allowedOperators)) {
+            throw new InvalidArgumentException(sprintf(
+                'Invalid operator `%s` given. Valid operators are %s.',
+                $operator,
+                implode(', ', $this->allowedOperators)
+            ));
+        }
+
+        return $operator;
     }
 }

@@ -33,8 +33,9 @@ use Google\Cloud\Datastore\Query\QueryInterface;
  *
  * Mutations (i.e. insert, update and delete) are not executed immediately.
  * Calls to those methods (and their batch equivalents) will enqueue a new
- * mutation. Calling {@see Transaction::commit()} will execute all the mutations
- * in the order they were enqueued, and end the transaction.
+ * mutation. Calling {@see Google\Cloud\Datastore\Transaction::commit()} will
+ * execute all the mutationsin the order they were enqueued, and end the
+ * transaction.
  *
  * Lookups and queries can be run in a transaction, so long as they are run
  * prior to committing or rolling back the transaction.
@@ -49,7 +50,7 @@ use Google\Cloud\Datastore\Query\QueryInterface;
  * ```
  * use Google\Cloud\ServiceBuilder;
  *
- * $cloud = new ServiceBuilder;
+ * $cloud = new ServiceBuilder();
  *
  * $datastore = $cloud->datastore();
  *

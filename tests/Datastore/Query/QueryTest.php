@@ -101,7 +101,7 @@ class QueryTest extends \PHPUnit_Framework_TestCase
 
     public function testFilter()
     {
-        $self = $this->query->filter('propname', 'value');
+        $self = $this->query->filter('propname', '=', 'value');
         $this->assertInstanceOf(Query::class, $self);
 
         $res = $this->query->queryObject();
@@ -121,7 +121,7 @@ class QueryTest extends \PHPUnit_Framework_TestCase
 
     public function testFilterCustomOperator()
     {
-        $self = $this->query->filter('propname', 12, Query::OP_GREATER_THAN);
+        $self = $this->query->filter('propname', Query::OP_GREATER_THAN, 12);
         $this->assertInstanceOf(Query::class, $self);
 
         $res = $this->query->queryObject();
@@ -137,6 +137,14 @@ class QueryTest extends \PHPUnit_Framework_TestCase
             ],
             'op' => Query::OP_GREATER_THAN
         ]);
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testFilterInvalidOperator()
+    {
+        $this->query->filter('propname', 'foo', 12);
     }
 
     public function testOrder()

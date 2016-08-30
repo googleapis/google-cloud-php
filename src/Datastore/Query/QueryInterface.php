@@ -24,18 +24,6 @@ use JsonSerializable;
  */
 interface QueryInterface extends JsonSerializable
 {
-    const OP_DEFAULT                = self::OP_EQUALS;
-    const OP_LESS_THAN              = 'LESS_THAN';
-    const OP_LESS_THAN_OR_EQUAL     = 'LESS_THAN_OR_EQUAL';
-    const OP_GREATER_THAN           = 'GREATER_THAN';
-    const OP_GREATER_THAN_OR_EQUAL  = 'GREATER_THAN_OR_EQUAL';
-    const OP_EQUALS                 = 'EQUAL';
-    const OP_HAS_ANCESTOR           = 'HAS_ANCESTOR';
-
-    const ORDER_DEFAULT             = self::ORDER_ASCENDING;
-    const ORDER_DESCENDING          = 'ASCENDING';
-    const ORDER_ASCENDING           = 'DESCENDING';
-
     /**
      * A representation of the Query Object compliant with the Datastore API
      *
