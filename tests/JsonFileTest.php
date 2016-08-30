@@ -25,6 +25,8 @@ use League\JsonGuard\Validator;
  */
 class JsonFileTest extends \PHPUnit_Framework_TestCase
 {
+    const SCHEMA_PATH = '%s/fixtures/schema/%s';
+
     public function testComposer()
     {
         $file = file_get_contents(__DIR__ .'/../composer.json');
@@ -32,7 +34,10 @@ class JsonFileTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(JSON_ERROR_NONE, json_last_error());
 
         $deref  = new Dereferencer();
-        $schema = $deref->dereference('https://getcomposer.org/schema.json');
+        $schema = $deref->dereference(json_decode(file_get_contents(sprintf(
+            self::SCHEMA_PATH,
+            __DIR__, 'composer.json.schema'
+        ))));
 
         $validator = new Validator($json, $schema);
 
@@ -46,7 +51,10 @@ class JsonFileTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(JSON_ERROR_NONE, json_last_error());
 
         $deref  = new Dereferencer();
-        $schema = $deref->dereference('https://raw.githubusercontent.com/GoogleCloudPlatform/gcloud-common/master/site/schemas/manifest.schema.json');
+        $schema = $deref->dereference(json_decode(file_get_contents(sprintf(
+            self::SCHEMA_PATH,
+            __DIR__, 'manifest.json.schema'
+        ))));
 
         $validator = new Validator($json, $schema);
 
@@ -60,7 +68,10 @@ class JsonFileTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(JSON_ERROR_NONE, json_last_error());
 
         $deref  = new Dereferencer();
-        $schema = $deref->dereference('https://raw.githubusercontent.com/GoogleCloudPlatform/gcloud-common/master/site/schemas/toc.schema.json');
+        $schema = $deref->dereference(json_decode(file_get_contents(sprintf(
+            self::SCHEMA_PATH,
+            __DIR__, 'toc.json.schema'
+        ))));
 
         $validator = new Validator($json, $schema);
 
