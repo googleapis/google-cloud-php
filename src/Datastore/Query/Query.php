@@ -212,8 +212,8 @@ class Query implements QueryInterface
      *
      * Example:
      * ```
-     * $query->filter('firstName', '=', 'Bob');
-     * $query->filter('lastName', '=', 'Testguy');
+     * $query->filter('firstName', '=', 'Bob')
+     *     ->filter('lastName', '=', 'Testguy');
      * ```
      *
      * @see https://cloud.google.com/datastore/reference/rest/v1/projects/runQuery#operator_1 Allowed Operators

@@ -430,7 +430,7 @@ class DocGenerator
         foreach ($returns as $return) {
             $returnsArray[] = [
                 'types' => $this->handleTypes($return->getTypes()),
-                'description' => $this->markdown->parse($return->getDescription())
+                'description' => $this->buildDescription(null, $return->getDescription())
             ];
         }
 

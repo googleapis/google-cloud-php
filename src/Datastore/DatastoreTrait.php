@@ -21,7 +21,7 @@ use InvalidArgumentException;
 use Psr\Http\Message\StreamInterface;
 
 /**
- * Utility methods mostly for translating data from user input to API format.
+ * Utility methods for data formatting.
  */
 trait DatastoreTrait
 {

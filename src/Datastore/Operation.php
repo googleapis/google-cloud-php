@@ -292,9 +292,12 @@ class Operation
      *           [ReadConsistency](https://cloud.google.com/datastore/reference/rest/v1/ReadOptions#ReadConsistency).
      *     @type string $transaction The transaction ID, if the query should be
      *           run in a transaction.
-     *     @type string $className The name of the class to return results as.
+     *     @type string|array $className If a string, the name of the class to return results as.
      *           Must be a subclass of {@see Google\Cloud\Datastore\Entity}.
      *           If not set, {@see Google\Cloud\Datastore\Entity} will be used.
+     *           If an array is given, it must be an associative array, where
+     *           the key is a Kind and the value is the name of a subclass of
+     *           {@see Google\Cloud\Datastore\Entity}.
      * }
      * @return array Returns an array with keys [`found`, `missing`, and `deferred`].
      *         Members of `found` will be instance of
@@ -454,7 +457,7 @@ class Operation
      * Any incomplete keys will be allocated an ID. Complete keys in the input
      * will remain unchanged.
      *
-     * @param Entity[]
+     * @param Entity[] $entities A list of entities
      * @return Entity[]
      */
     public function allocateIdsToEntities(array $entities)
@@ -557,10 +560,15 @@ class Operation
      * @see https://cloud.google.com/datastore/reference/rest/v1/EntityResult EntityResult
      *
      * @param array $entityResult The EntityResult from a Lookup.
-     * @param string $className the class to create as an entity.
+     * @param string|array $class If a string, the name of the class to return results as.
+     *        Must be a subclass of {@see Google\Cloud\Datastore\Entity}.
+     *        If not set, {@see Google\Cloud\Datastore\Entity} will be used.
+     *        If an array is given, it must be an associative array, where
+     *        the key is a Kind and the value is the name of a subclass of
+     *        {@see Google\Cloud\Datastore\Entity}.
      * @return Entity[]
      */
-    private function mapEntityResult(array $entityResult, $className)
+    private function mapEntityResult(array $entityResult, $class)
     {
         $entities = [];
 
@@ -568,6 +576,7 @@ class Operation
             $entity = $result['entity'];
 
             $properties = $this->entityMapper->responseToProperties($entity['properties']);
+            $excludes = $this->entityMapper->responseToExcludeFromIndexes($entity['properties']);
 
             $namespaceId = (isset($entity['key']['partitionId']['namespaceId']))
                 ? $entity['key']['partitionId']['namespaceId']
@@ -578,6 +587,20 @@ class Operation
                 'namespaceId' => $namespaceId
             ]);
 
+            if (is_array($class)) {
+                $lastPathElement = $key->pathEnd();
+                if (!array_key_exists($lastPathElement['kind'], $class)) {
+                    throw new InvalidArgumentException(sprintf(
+                        'No class found for kind %s',
+                        $lastPathElement['kind']
+                    ));
+                }
+
+                $className = $class[$lastPathElement['kind']];
+            } else {
+                $className = $class;
+            }
+
             $entities[] = $this->entity($key, $properties, [
                 'cursor' => (isset($result['cursor']))
                     ? $result['cursor']
@@ -586,7 +609,8 @@ class Operation
                     ? $result['version']
                     : null,
                 'className' => $className,
-                'populatedByService' => true
+                'populatedByService' => true,
+                'excludeFromIndexes' => $excludes
             ]);
         }
 

@@ -284,8 +284,8 @@ class Key implements JsonSerializable
      */
     public function pathEnd()
     {
-        $end = end($this->path);
-        reset($this->path);
+        $path = $this->path;
+        $end = end($path);
 
         return $end;
     }

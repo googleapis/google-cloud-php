@@ -60,26 +60,41 @@ class EntityMapper
     public function responseToProperties(array $entityData)
     {
         $props = [];
-        $excludes = [];
 
         foreach ($entityData as $key => $property) {
             $type = key($property);
 
             $props[$key] = $this->convertValue($type, $property[$type]);
-
-            if (isset($property['excludeFromIndexes']) && $property['excludeFromIndexes']) {
-                $excludes[] = $key;
-            }
         }
 
         return $props;
     }
 
     /**
+     * Get a list of properties excluded from datastore indexes
+     *
+     * @param array $entityData The incoming entity data
+     * @return array
+     */
+    public function responseToExcludeFromIndexes(array $entityData)
+    {
+        $excludes = [];
+
+        foreach ($entityData as $property) {
+            $type = key($property);
+
+            if (isset($property['excludeFromIndexes']) && $property['excludeFromIndexes']) {
+                $excludes[] = $key;
+            }
+        }
+
+        return $excludes;
+    }
+
+    /**
      * Translate an Entity to a datastore representation.
      *
      * @param Entity $entity The input entity.
-     * @param bool $encode Whether to encode blobs as base64.
      * @return array A Datastore [Entity](https://cloud.google.com/datastore/reference/rest/v1/Entity)
      */
     public function objectToRequest(Entity $entity)

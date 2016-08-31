@@ -44,8 +44,6 @@ use Google\Cloud\Datastore\Query\QueryInterface;
  * lookups and mutations can be executed outside of a Transaction from
  * {@see Google\Cloud\Datastore\DatastoreClient}.
  *
- * @see https://cloud.google.com/datastore/docs/concepts/transactions Transactions
- *
  * Example:
  * ```
  * use Google\Cloud\ServiceBuilder;
@@ -56,6 +54,8 @@ use Google\Cloud\Datastore\Query\QueryInterface;
  *
  * $transaction = $datastore->transaction();
  * ```
+ *
+ * @see https://cloud.google.com/datastore/docs/concepts/transactions Transactions
  */
 class Transaction
 {
@@ -390,9 +390,12 @@ class Transaction
      * @param array $options {
      *     Configuration Options
      *
-     *     @type string $className The name of the class to return results as.
+     *     @type string|array $className If a string, the name of the class to return results as.
      *           Must be a subclass of {@see Google\Cloud\Datastore\Entity}.
      *           If not set, {@see Google\Cloud\Datastore\Entity} will be used.
+     *           If an array is given, it must be an associative array, where
+     *           the key is a Kind and the value is the name of a subclass of
+     *           {@see Google\Cloud\Datastore\Entity}.
      * }
      * @return array Returns an array with keys [`found`, `missing`, and `deferred`].
      *         Members of `found` will be instance of

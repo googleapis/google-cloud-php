@@ -689,7 +689,6 @@ class DatastoreClient
      * }
      * ```
      *
-     * @codingStandardsIgnoreStart
      * @param Key $key $key The identifier to use to locate a desired entity.
      * @param array $options {
      *     Configuration Options
@@ -702,7 +701,6 @@ class DatastoreClient
      *           If not set, {@see Google\Cloud\Datastore\Entity} will be used.
      * }
      * @return Entity|null
-     * @codingStandardsIgnoreEnd
      */
     public function lookup(Key $key, array $options = [])
     {
@@ -740,9 +738,12 @@ class DatastoreClient
      *     @type string $readConsistency See
      *           [ReadConsistency](https://cloud.google.com/datastore/reference/rest/v1/ReadOptions#ReadConsistency).
      *           "EVENTUAL" by default.
-     *     @type string $className The name of the class to return results as.
+     *     @type string|array $className If a string, the name of the class to return results as.
      *           Must be a subclass of {@see Google\Cloud\Datastore\Entity}.
      *           If not set, {@see Google\Cloud\Datastore\Entity} will be used.
+     *           If an array is given, it must be an associative array, where
+     *           the key is a Kind and the value is the name of a subclass of
+     *           {@see Google\Cloud\Datastore\Entity}.
      * }
      * @return array Returns an array with keys [`found`, `missing`, and `deferred`].
      *         Members of `found` will be instance of
@@ -782,14 +783,14 @@ class DatastoreClient
      *
      * Example:
      * ```
-     * $query = $datastore->gqlQuery('SELECT * FROM people');
+     * $query = $datastore->gqlQuery('SELECT * FROM Companies');
      * ```
      *
      * ```
      * // Literals must be provided as bound parameters by default:
-     * $query = $datastore->gqlQuery('SELECT * FROM people WHERE firstName = @firstName', [
+     * $query = $datastore->gqlQuery('SELECT * FROM Companies WHERE companyName = @companyName', [
      *     'bindings' => [
-     *         'firstName' => 'Bob'
+     *         'companyName' => 'Bob'
      *     ]
      * ]);
      * ```
@@ -805,7 +806,7 @@ class DatastoreClient
      *
      * ```
      * // While not recommended, you can use literals in your query string:
-     * $query = $datastore->gqlQuery("SELECT * FROM people WHERE firstName = 'Bob'", [
+     * $query = $datastore->gqlQuery("SELECT * FROM Companies WHERE companyName = 'Google'", [
      *     'allowLiterals' => true
      * ]);
      * ```
@@ -822,10 +823,9 @@ class DatastoreClient
      *           while queries using Positional Bindings must provide a simple
      *           array.
      *           Applications with no need for multitenancy should not set this value.
-     *     @type string $readConsistency If not using a {@see Google\Cloud\Datastore\Transaction},
-     *           $readConsistency can be set to `STRONG` or `EVENTUAL`.
-     *     @type Transaction $transaction If an instance of {@see Google\Cloud\Datastore\Transaction}
-     *           is given, query will run in the transaction.
+     *     @type string $readConsistency See
+     *           [ReadConsistency](https://cloud.google.com/datastore/reference/rest/v1/ReadOptions#ReadConsistency).
+     *           "EVENTUAL" by default.
      * }
      * @return GqlQuery
      */
