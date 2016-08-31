@@ -19,9 +19,10 @@ namespace Google\Cloud;
 
 use Google\Auth\HttpHandler\HttpHandlerFactory;
 use Google\Cloud\BigQuery\BigQueryClient;
+use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Logging\LoggingClient;
-use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\NaturalLanguage\NaturalLanguageClient;
+use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Translate\TranslateClient;
 use Google\Cloud\Vision\VisionClient;
@@ -60,7 +61,7 @@ class ServiceBuilder
      * ```
      * use Google\Cloud\ServiceBuilder;
      *
-     * $builder = new ServiceBuilder([
+     * $cloud = new ServiceBuilder([
      *     'projectId' => 'myAwesomeProject'
      * ]);
      * ```
@@ -90,44 +91,13 @@ class ServiceBuilder
     }
 
     /**
-     * Google Cloud Storage client. Allows you to store and retrieve data on
-     * Google's infrastructure. Find more information at
-     * [Google Cloud Storage API docs](https://developers.google.com/storage).
-     *
-     * Example:
-     * ```
-     * use Google\Cloud\ServiceBuilder;
-     *
-     * $builder = new ServiceBuilder([
-     *     'projectId' => 'myAwesomeProject'
-     * ]);
-     *
-     * $storage = $builder->storage();
-     * ```
-     *
-     * @param array $config Configuration options. See
-     *        {@see Google\Cloud\ServiceBuilder::__construct()} for the available options.
-     * @return StorageClient
-     */
-    public function storage(array $config = [])
-    {
-        return new StorageClient($config ? $this->resolveConfig($config) : $this->config);
-    }
-
-    /**
      * Google Cloud BigQuery client. Allows you to create, manage, share and query
      * data. Find more information at
      * [Google Cloud BigQuery Docs](https://cloud.google.com/bigquery/what-is-bigquery).
      *
      * Example:
      * ```
-     * use Google\Cloud\ServiceBuilder;
-     *
-     * $builder = new ServiceBuilder([
-     *     'projectId' => 'myAwesomeProject'
-     * ]);
-     *
-     * $bigQuery = $builder->bigQuery();
+     * $bigQuery = $cloud->bigQuery();
      * ```
      *
      * @param array $config Configuration options. See
@@ -140,53 +110,22 @@ class ServiceBuilder
     }
 
     /**
-     * Google Cloud Pub/Sub client. Allows you to send and receive
-     * messages between independent applications. Find more information at
-     * [Google Cloud Pub/Sub docs](https://cloud.google.com/pubsub/docs/).
+     * Google Cloud Datastore client. Cloud Datastore is a highly-scalable NoSQL
+     * database for your applications.  Find more information at
+     * [Google Cloud Datastore docs](https://cloud.google.com/datastore/docs/).
      *
      * Example:
      * ```
-     * use Google\Cloud\ServiceBuilder;
-     *
-     * $builder = new ServiceBuilder([
-     *     'projectId' => 'myAwesomeProject'
-     * ]);
-     *
-     * $pubsub = $builder->pubsub();
+     * $datastore = $cloud->datastore();
      * ```
      *
      * @param array $config Configuration options. See
      *        {@see Google\Cloud\ServiceBuilder::__construct()} for the available options.
-     * @return PubSubClient
+     * @return DatastoreClient
      */
-    public function pubsub(array $config = [])
+    public function datastore(array $config = [])
     {
-        return new PubSubClient($config ? $this->resolveConfig($config) : $this->config);
-    }
-
-    /**
-     * Google Cloud Vision client. Allows you to understand the content of an
-     * image, classify images into categories, detect text, objects, faces and
-     * more. Find more information at [Google Cloud Vision docs](https://cloud.google.com/vision/docs/).
-     *
-     * Example:
-     * ```
-     * use Google\Cloud\ServiceBuilder;
-     *
-     * $builder = new ServiceBuilder([
-     *     'projectId' => 'myAwesomeProject'
-     * ]);
-     *
-     * $vision = $builder->vision();
-     * ```
-     *
-     * @param array $config Configuration options. See
-     *        {@see Google\Cloud\ServiceBuilder::__construct()} for the available options.
-     * @return VisionClient
-     */
-    public function vision(array $config = [])
-    {
-        return new VisionClient($config ? $this->resolveConfig($config) : $this->config);
+        return new DatastoreClient($config ? $this->resolveConfig($config) : $this->config);
     }
 
     /**
@@ -197,13 +136,7 @@ class ServiceBuilder
      *
      * Example:
      * ```
-     * use Google\Cloud\ServiceBuilder;
-     *
-     * $builder = new ServiceBuilder([
-     *     'projectId' => 'myAwesomeProject'
-     * ]);
-     *
-     * $logging = $builder->logging();
+     * $logging = $cloud->logging();
      * ```
      *
      * @param array $config Configuration options. See
@@ -224,13 +157,7 @@ class ServiceBuilder
      *
      * Example:
      * ```
-     * use Google\Cloud\ServiceBuilder;
-     *
-     * $builder = new ServiceBuilder([
-     *     'projectId' => 'myAwesomeProject'
-     * ]);
-     *
-     * $language = $builder->naturalLanguage();
+     * $language = $cloud->naturalLanguage();
      * ```
      *
      * @param array $config Configuration options. See
@@ -240,6 +167,63 @@ class ServiceBuilder
     public function naturalLanguage(array $config = [])
     {
         return new NaturalLanguageClient($config ? $this->resolveConfig($config) : $this->config);
+    }
+
+    /**
+     * Google Cloud Pub/Sub client. Allows you to send and receive
+     * messages between independent applications. Find more information at
+     * [Google Cloud Pub/Sub docs](https://cloud.google.com/pubsub/docs/).
+     *
+     * Example:
+     * ```
+     * $pubsub = $cloud->pubsub();
+     * ```
+     *
+     * @param array $config Configuration options. See
+     *        {@see Google\Cloud\ServiceBuilder::__construct()} for the available options.
+     * @return PubSubClient
+     */
+    public function pubsub(array $config = [])
+    {
+        return new PubSubClient($config ? $this->resolveConfig($config) : $this->config);
+    }
+
+    /**
+     * Google Cloud Storage client. Allows you to store and retrieve data on
+     * Google's infrastructure. Find more information at
+     * [Google Cloud Storage API docs](https://developers.google.com/storage).
+     *
+     * Example:
+     * ```
+     * $storage = $cloud->storage();
+     * ```
+     *
+     * @param array $config Configuration options. See
+     *        {@see Google\Cloud\ServiceBuilder::__construct()} for the available options.
+     * @return StorageClient
+     */
+    public function storage(array $config = [])
+    {
+        return new StorageClient($config ? $this->resolveConfig($config) : $this->config);
+    }
+
+    /**
+     * Google Cloud Vision client. Allows you to understand the content of an
+     * image, classify images into categories, detect text, objects, faces and
+     * more. Find more information at [Google Cloud Vision docs](https://cloud.google.com/vision/docs/).
+     *
+     * Example:
+     * ```
+     * $vision = $cloud->vision();
+     * ```
+     *
+     * @param array $config Configuration options. See
+     *        {@see Google\Cloud\ServiceBuilder::__construct()} for the available options.
+     * @return VisionClient
+     */
+    public function vision(array $config = [])
+    {
+        return new VisionClient($config ? $this->resolveConfig($config) : $this->config);
     }
 
     /**

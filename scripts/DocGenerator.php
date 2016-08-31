@@ -281,14 +281,17 @@ class DocGenerator
                 unset($lines[0]);
             }
 
+            $captionLines = [];
             foreach ($lines as $key => $line) {
                 if (substr($line, 0, 2) === '//') {
-                    $caption .= $this->markdown->parse(substr($line, 3));
+                    $captionLines[] = substr($line, 3);
                     unset($lines[$key]);
                 } else {
                     break;
                 }
             }
+
+            $caption = $this->markdown->parse(implode(' ', $captionLines));
 
             $examplesArray[] = [
                 'caption' => $caption,
@@ -329,15 +332,19 @@ class DocGenerator
             $description = $param->getDescription();
             $nestedParamsArray = [];
 
-            if ($param->getType() === 'array' && $this->hasNestedParams($description)) {
+            if (($param->getType() === 'array' || $param->getType() === 'array[]') && $this->hasNestedParams($description)) {
                 $description = substr($description, 1, -1);
                 $nestedParams = explode('@type', $description);
                 $description = trim(array_shift($nestedParams));
                 $nestedParamsArray = $this->buildNestedParams($nestedParams, $param);
             }
 
+            $varName = substr($param->getVariableName(), 1);
+            if (!$varName) {
+                throw new \Exception('invalid or missing parameter name in "'. $param->getDocBlock()->getShortDescription() .'"');
+            }
             $paramsArray[] = [
-                'name' => substr($param->getVariableName(), 1),
+                'name' => $varName,
                 'description' => $this->buildDescription($param->getDocBlock(), $description),
                 'types' => $this->handleTypes($param->getTypes()),
                 'optional' => null, // @todo
@@ -359,7 +366,12 @@ class DocGenerator
         $paramsArray = [];
 
         foreach ($nestedParams as $param) {
-            list($type, $name, $description) = explode(' ', trim($param), 3);
+            $nestedParam = explode(' ', trim($param), 3);
+            if (count($nestedParam) < 3) {
+                throw new \Exception('nested param is in an invalid format: '. $param);
+            }
+
+            list($type, $name, $description) = $nestedParam;
             $name = substr($name, 1);
             $description = preg_replace('/\s+/', ' ', $description);
             $types = explode('|', $type);
@@ -418,7 +430,7 @@ class DocGenerator
         foreach ($returns as $return) {
             $returnsArray[] = [
                 'types' => $this->handleTypes($return->getTypes()),
-                'description' => $this->markdown->parse($return->getDescription())
+                'description' => $this->buildDescription(null, $return->getDescription())
             ];
         }
 
