@@ -17,20 +17,48 @@
 
 namespace Google\Cloud\Datastore;
 
+use Google\Cloud\Datastore\Entity;
+use Google\Cloud\Datastore\GeoPoint;
+use Google\Cloud\Datastore\Key;
+use InvalidArgumentException;
+
+/**
+ * Utility methods for mapping between datastore and {@see Google\Cloud\Datastore\Entity}.
+ */
 class EntityMapper
 {
+    use DatastoreTrait;
+
+    /**
+     * @var string
+     */
+    private $projectId;
+
+    /**
+     * @var bool
+     */
     private $encode;
 
-    public function __construct($encode)
+    /**
+     * Create an Entity Mapper
+     *
+     * @param string $projectId The datastore project ID
+     * @param bool $encode Whether to encode blobs as base64.
+     */
+    public function __construct($projectId, $encode)
     {
+        $this->projectId = $projectId;
         $this->encode = $encode;
     }
 
-    use DatastoreTrait;
-
+    /**
+     * Map a lookup or query result to a set of properties
+     *
+     * @param array $entityData The incoming entity data
+     * @return array
+     */
     public function responseToProperties(array $entityData)
     {
-
         $props = [];
         $excludes = [];
 
@@ -52,7 +80,7 @@ class EntityMapper
      *
      * @param Entity $entity The input entity.
      * @param bool $encode Whether to encode blobs as base64.
-     * @return array [Entity](https://cloud.google.com/datastore/reference/rest/v1/Entity)
+     * @return array A Datastore [Entity](https://cloud.google.com/datastore/reference/rest/v1/Entity)
      */
     public function objectToRequest(Entity $entity)
     {
@@ -64,28 +92,30 @@ class EntityMapper
 
             $properties[$key] = $this->valueObject(
                 $value,
-                $this->encode,
                 $exclude
             );
         }
 
-        return [
+        return array_filter([
             'key' => $entity->key(),
             'properties' => $properties
-        ];
+        ]);
     }
 
-    private function convertValue($type, $value)
+    /**
+     * Convert a Datastore value object to a simple value
+     *
+     * @param string $type The value type
+     * @param mixed $value The value
+     * @return mixed
+     */
+    public function convertValue($type, $value)
     {
         $result = null;
 
         switch ($type) {
             case 'timestampValue':
-                try {
-                    $result = new \DateTimeImmutable($value);
-                } catch (\TypeError $e) {
-                    print_R($value);exit;
-                }
+                $result = new \DateTimeImmutable($value);
 
                 break;
 
@@ -112,7 +142,30 @@ class EntityMapper
                 break;
 
             case 'entityValue':
-                $result = $this->translateIncomingEntity($value);
+                $props = $this->responseToProperties($value['properties']);
+
+                if (isset($value['key'])) {
+                    $namespaceId = (isset($value['key']['partitionId']['namespaceId']))
+                        ? $value['key']['partitionId']['namespaceId']
+                        : null;
+
+                    $key = new Key($this->projectId, [
+                        'path' => $value['key']['path'],
+                        'namespaceId' => $namespaceId
+                    ]);
+
+                    $result = new Entity($key, $props, [
+                        'populatedByService' => true
+                    ]);
+                } else {
+                    $result = [];
+
+                    foreach ($value['properties'] as $key => $property) {
+                        $type = key($property);
+
+                        $result[$key] = $this->convertValue($type, $property[$type]);
+                    }
+                }
 
                 break;
 
@@ -144,5 +197,182 @@ class EntityMapper
 
 
         return $result;
+    }
+
+    /**
+     * Format values for the API
+     *
+     * @param mixed $value
+     * @param bool $exclude If true, value will be excluded from datastore indexes.
+     * @return array
+     */
+    public function valueObject($value, $exclude = false)
+    {
+        switch (gettype($value)) {
+            case 'boolean':
+                $propertyValue = [
+                    'booleanValue' => $value
+                ];
+
+                break;
+
+            case 'integer':
+                $propertyValue = [
+                    'integerValue' => $value
+                ];
+
+                break;
+
+            case 'double':
+                $propertyValue = [
+                    'doubleValue' => $value
+                ];
+
+                break;
+
+            case 'string':
+                $propertyValue = [
+                    'stringValue' => $value
+                ];
+
+                break;
+
+            case 'array':
+                if (!empty($value) && $this->isAssoc($value)) {
+                    $propertyValue = $this->convertArrayToEntityValue($value);
+                } else {
+                    $propertyValue = $this->convertArrayToArrayValue($value);
+                }
+
+                break;
+
+            case 'object':
+                $propertyValue = $this->objectProperty($value);
+                break;
+
+            case 'resource':
+                $content = stream_get_contents($value);
+
+                $propertyValue = [
+                    'blobValue' => ($this->encode)
+                        ? base64_encode($content)
+                        : $content
+                ];
+                break;
+
+            case 'NULL':
+                $propertyValue = [
+                    'nullValue' => null
+                ];
+                break;
+
+            //@codeCoverageIgnoreStart
+            case 'unknown type':
+                throw new InvalidArgumentException(sprintf(
+                    'Unknown type for `%s',
+                    $content
+                ));
+                break;
+
+            default:
+                throw new InvalidArgumentException(sprintf(
+                    'Invalid type for `%s',
+                    $content
+                ));
+                break;
+            //@codeCoverageIgnoreEnd
+        }
+
+        if ($exclude) {
+            $propertyValue['excludeFromIndexes'] = true;
+        }
+
+        return $propertyValue;
+    }
+
+    /**
+     * Convert different object types to API values
+     *
+     * @todo add middleware
+     *
+     * @param mixed $value
+     * @return array
+     */
+    public function objectProperty($value)
+    {
+        switch (true) {
+            case $value instanceof \DateTimeInterface:
+                return [
+                    'timestampValue' => $value->format(\DateTime::RFC3339)
+                ];
+
+                break;
+
+            case $value instanceof Key:
+                return [
+                    'keyValue' => $value->keyObject()
+                ];
+
+                break;
+
+            case $value instanceof GeoPoint:
+                return [
+                    'geoPointValue' => $value->point()
+                ];
+
+                break;
+
+            case $value instanceof Entity:
+                return [
+                    'entityValue' => $this->objectToRequest($value)
+                ];
+
+            default:
+                throw new InvalidArgumentException(
+                    sprintf('Value of type `%s` could not be serialized', get_class($value))
+                );
+
+                break;
+        }
+    }
+
+    /**
+     * Convert a non-associative array to a datastore arrayValue type
+     *
+     * @param array $value The input array
+     * @return array The arrayValue property
+     */
+    private function convertArrayToArrayValue(array $value)
+    {
+        $values = [];
+        foreach ($value as $val) {
+            $values[] = $this->valueObject($val);
+        }
+
+        return [
+            'arrayValue' => [
+                'values' => $values
+            ]
+        ];
+    }
+
+    /**
+     * Convert an associative array to a datastore entityValue type
+     *
+     * @param array $value The input array
+     * @return array The entityValue property
+     */
+    private function convertArrayToEntityValue(array $value)
+    {
+        $properties = [];
+        foreach ($value as $key => $val) {
+            $properties[$key] = $this->valueObject($val);
+        }
+
+        return [
+            'entityValue' => [
+                'properties' => $properties
+            ]
+        ];
     }
 }

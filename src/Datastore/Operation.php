@@ -53,7 +53,7 @@ class Operation
     private $namespaceId;
 
     /**
-     * @var EntityMapper
+     * @var string
      */
     private $entityMapper;
 
@@ -72,12 +72,13 @@ class Operation
     public function __construct(
         ConnectionInterface $connection,
         $projectId,
-        $namespaceId
+        $namespaceId,
+        EntityMapper $entityMapper
     ) {
         $this->connection = $connection;
         $this->projectId = $projectId;
         $this->namespaceId = $namespaceId;
-        $this->entityMapper = new EntityMapper($this->connection instanceof Rest);
+        $this->entityMapper = $entityMapper;
     }
 
     /**

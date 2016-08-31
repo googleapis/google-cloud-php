@@ -18,6 +18,7 @@
 namespace Google\Cloud\Datastore\Query;
 
 use Google\Cloud\Datastore\DatastoreTrait;
+use Google\Cloud\Datastore\EntityMapper;
 use InvalidArgumentException;
 
 /**
@@ -118,19 +119,26 @@ class Query implements QueryInterface
     ];
 
     /**
+     * @var EntityMapper
+     */
+    private $entityMapper;
+
+    /**
      * @var array
      */
     private $options;
 
     /**
+     * @param EntityMapper $entityMapper An instance of EntityMapper
      * @param array $options {
      *     Configuration Options
      *
      *     @type array $query [Query](https://cloud.google.com/datastore/reference/rest/v1/projects/runQuery#query)
      * }
      */
-    public function __construct(array $options = [])
+    public function __construct(EntityMapper $entityMapper, array $options = [])
     {
+        $this->entityMapper = $entityMapper;
         $this->options = $options + [
             'query' => [
                 'projection' => [],
@@ -139,49 +147,6 @@ class Query implements QueryInterface
                 'distinctOn' => []
             ]
         ];
-    }
-
-    /**
-     * Indicate that this type does support automatic pagination.
-     *
-     * @access private
-     * @return bool
-     */
-    public function canPaginate()
-    {
-        return true;
-    }
-
-    /**
-     * Return a service-compliant array.
-     *
-     * This method is intended for use internally by the PHP client.
-     *
-     * @access private
-     * @return array
-     */
-    public function queryObject()
-    {
-        return array_filter($this->options['query']);
-    }
-
-    /**
-     * Return the query_type union field name.
-     *
-     * @return string
-     * @access private
-     */
-    public function queryKey()
-    {
-        return "query";
-    }
-
-    /**
-     * @access private
-     */
-    public function jsonSerialize()
-    {
-        return $this->queryObject();
     }
 
     /**
@@ -272,7 +237,7 @@ class Query implements QueryInterface
         $this->options['query']['filter']['compositeFilter']['filters'][] = [
             'propertyFilter' => [
                 'property' => $this->propertyName($property),
-                'value' => $this->valueObject($value),
+                'value' => $this->entityMapper->valueObject($value),
                 'op' => $this->mapOperator($operator)
             ]
         ];
@@ -418,6 +383,49 @@ class Query implements QueryInterface
         $this->options['query']['limit'] = $num;
 
         return $this;
+    }
+
+    /**
+     * Indicate that this type does support automatic pagination.
+     *
+     * @access private
+     * @return bool
+     */
+    public function canPaginate()
+    {
+        return true;
+    }
+
+    /**
+     * Return a service-compliant array.
+     *
+     * This method is intended for use internally by the PHP client.
+     *
+     * @access private
+     * @return array
+     */
+    public function queryObject()
+    {
+        return array_filter($this->options['query']);
+    }
+
+    /**
+     * Return the query_type union field name.
+     *
+     * @return string
+     * @access private
+     */
+    public function queryKey()
+    {
+        return "query";
+    }
+
+    /**
+     * @access private
+     */
+    public function jsonSerialize()
+    {
+        return $this->queryObject();
     }
 
     /**

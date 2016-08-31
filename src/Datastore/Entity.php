@@ -69,8 +69,6 @@ class Entity implements ArrayAccess
      * @param array $options {
      *     Configuration Options
      *
-     *     @type bool $encode If set to true, resources will be
-     *           base64 encoded. `true` by default.
      *     @type string $cursor Set only when the entity is obtained by a query
      *           result. If set, the entity cursor can be retrieved from
      *           {@see Google\Cloud\Datastore\Entity::cursor()}.
@@ -79,14 +77,16 @@ class Entity implements ArrayAccess
      *           {@see Google\Cloud\Datastore\Entity::baseVersion()}.
      *     @type array $excludeFromIndexes A list of entity keys to exclude from
      *           datastore indexes.
+     *     @type bool $populatedByService Indicates whether the entity was
+     *           created as the result of a service request.
      * }
+     * @throws InvalidArgumentException
      */
     public function __construct(Key $key, array $entity = [], array $options = [])
     {
         $this->key = $key;
         $this->entity = $entity;
         $this->options = $options + [
-            'encode' => true,
             'cursor' => null,
             'baseVersion' => null,
             'populatedByService' => false,

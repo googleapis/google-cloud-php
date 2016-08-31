@@ -36,7 +36,7 @@ class EntityTest extends \PHPUnit_Framework_TestCase
             ['kind' => 'kind', 'name' => 'name']
         ]]);
 
-        $this->mapper = new EntityMapper(true);
+        $this->mapper = new EntityMapper('foo', true);
     }
 
     public function testCreateEntity()

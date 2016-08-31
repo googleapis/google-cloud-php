@@ -127,14 +127,9 @@ class Transaction
      *
      * Example:
      * ```
-     * $keys = $datastore->keys(['kind' => 'person'], [
-     *     'allocateIds' => true,
-     *     'number' => 2
-     * ]);
-     *
      * $entities = [
-     *     $datastore->entity($key[0], ['firstName' => 'Bob']),
-     *     $datastore->entity($key[1], ['firstName' => 'John'])
+     *     $datastore->entity('Person', ['firstName' => 'Bob']),
+     *     $datastore->entity('Person', ['firstName' => 'John'])
      * ];
      *
      * $transaction->insertBatch($entities);

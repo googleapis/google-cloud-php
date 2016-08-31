@@ -18,6 +18,7 @@
 namespace Google\Cloud\Datastore\Query;
 
 use Google\Cloud\Datastore\DatastoreTrait;
+use Google\Cloud\Datastore\EntityMapper;
 use InvalidArgumentException;
 
 /**
@@ -77,6 +78,11 @@ class GqlQuery implements QueryInterface
     const BINDING_POSITIONAL = 'positionalBindings';
 
     /**
+     * @var EntityMapper
+     */
+    private $entityMapper;
+
+    /**
      * @var string
      */
     private $query;
@@ -95,6 +101,7 @@ class GqlQuery implements QueryInterface
     ];
 
     /**
+     * @param EntityMapper $entityMapper An instance of EntityMapper
      * @param string $query The GQL Query string.
      * @param array $options {
      *     Configuration Options
@@ -107,14 +114,11 @@ class GqlQuery implements QueryInterface
      *           while queries using Positional Bindings must provide a simple
      *           array.
      *           Applications with no need for multitenancy should not set this value.
-     *     @type string $readConsistency If not using a {@see Google\Cloud\Datastore\Transaction},
-     *           $readConsistency can be set to `STRONG` or `EVENTUAL`.
-     *     @type Transaction $transaction If an instance of {@see Google\Cloud\Datastore\Transaction}
-     *           is given, query will run in the transaction.
      * }
      */
-    public function __construct($query, array $options = [])
+    public function __construct(EntityMapper $entityMapper, $query, array $options = [])
     {
+        $this->entityMapper = $entityMapper;
         $this->query = $query;
         $this->options = $options + [
             'allowLiterals' => false,
@@ -205,7 +209,7 @@ class GqlQuery implements QueryInterface
     {
         $res = [];
         foreach ($bindings as $key => $binding) {
-            $value = $this->valueObject($binding);
+            $value = $this->entityMapper->valueObject($binding);
 
             if ($bindingType === self::BINDING_NAMED) {
                 $res[$key] = [

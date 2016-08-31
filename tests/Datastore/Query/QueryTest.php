@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Tests\Datastore\Query;
 
+use Google\Cloud\Datastore\EntityMapper;
 use Google\Cloud\Datastore\Query\Query;
 
 /**
@@ -25,15 +26,17 @@ use Google\Cloud\Datastore\Query\Query;
 class QueryTest extends \PHPUnit_Framework_TestCase
 {
     private $query;
+    private $mapper;
 
     public function setUp()
     {
-        $this->query = new Query();
+        $this->mapper = new EntityMapper('foo', true);
+        $this->query = new Query($this->mapper);
     }
 
     public function testConstructorOptions()
     {
-        $query = new Query([
+        $query = new Query($this->mapper, [
             'query' => ['foo' => 'bar']
         ]);
 

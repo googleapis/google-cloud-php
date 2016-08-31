@@ -87,6 +87,11 @@ class DatastoreClient
     protected $operation;
 
     /**
+     * @var EntityMapper
+     */
+    private $entityMapper;
+
+    /**
      * Create a Datastore client.
      *
      * @param array $config {
@@ -122,7 +127,13 @@ class DatastoreClient
         }
 
         $this->connection = new Rest($this->configureAuthentication($config));
-        $this->operation = new Operation($this->connection, $this->projectId, $config['namespaceId']);
+        $this->entityMapper = new EntityMapper($this->projectId, true);
+        $this->operation = new Operation(
+            $this->connection,
+            $this->projectId,
+            $config['namespaceId'],
+            $this->entityMapper
+        );
     }
 
     /**
@@ -418,13 +429,10 @@ class DatastoreClient
      *
      * Example:
      * ```
-     * $keys = $datastore->keys(['kind' => 'Person'], [
-     *     'number' => 2
-     * ]);
      *
      * $entities = [
-     *     $datastore->entity($key[0], ['firstName' => 'Bob']),
-     *     $datastore->entity($key[1], ['firstName' => 'John'])
+     *     $datastore->entity('Person', ['firstName' => 'Bob']),
+     *     $datastore->entity('Person', ['firstName' => 'John'])
      * ];
      *
      * $datastore->insertBatch($entities);
@@ -766,7 +774,7 @@ class DatastoreClient
      */
     public function query(array $options = [])
     {
-        return new Query($options);
+        return new Query($this->entityMapper, $options);
     }
 
     /**
@@ -823,7 +831,7 @@ class DatastoreClient
      */
     public function gqlQuery($query, array $options = [])
     {
-        return new GqlQuery($query, $options);
+        return new GqlQuery($this->entityMapper, $query, $options);
     }
 
     /**

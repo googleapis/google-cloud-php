@@ -19,6 +19,7 @@ namespace Google\Cloud\Tests\Datastore;
 
 use Google\Cloud\Datastore\Connection\ConnectionInterface;
 use Google\Cloud\Datastore\Entity;
+use Google\Cloud\Datastore\EntityMapper;
 use Google\Cloud\Datastore\Key;
 use Google\Cloud\Datastore\Operation;
 use Google\Cloud\Datastore\Query\QueryInterface;
@@ -30,12 +31,14 @@ use Prophecy\Argument;
 class OperationTest extends \PHPUnit_Framework_TestCase
 {
     private $operation;
+    private $mapper;
     private $connection;
 
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->operation = new OperationStub($this->connection->reveal(), 'foo', '');
+        $this->mapper = new EntityMapper('foo', true);
+        $this->operation = new OperationStub($this->connection->reveal(), 'foo', '', $this->mapper);
     }
 
     public function testKey()
@@ -447,8 +450,6 @@ class OperationTest extends \PHPUnit_Framework_TestCase
 
             if (!isset($arg['mutations'][0]['insert'])) return false;
 
-            if (!($arg['mutations'][0]['insert'] instanceof Entity)) return false;
-
             return true;
         }))->willReturn('foo');
 
@@ -458,12 +459,13 @@ class OperationTest extends \PHPUnit_Framework_TestCase
         $e = new Entity($key->reveal());
 
         $this->operation->mutate('insert', [$e], Entity::class, null);
+        $this->operation->commit();
     }
 
     public function testMutateWithBaseVersion()
     {
         $this->connection->commit(Argument::that(function ($arg) {
-            if ($arg['mutations'][0]['baseVersion'] !== '1') return false;
+            if ($arg['mutations'][0]['baseVersion'] !== 1) return false;
 
             return true;
         }))->willReturn('foo');
@@ -471,9 +473,39 @@ class OperationTest extends \PHPUnit_Framework_TestCase
         $this->operation->setConnection($this->connection->reveal());
 
         $key = $this->prophesize(Key::class);
-        $e = new Entity($key->reveal());
+        $e = new Entity($key->reveal(), [], [
+            'baseVersion' => 1
+        ]);
 
-        $this->operation->mutate('insert', [$e], Entity::class, 1);
+        $this->operation->mutate('insert', [$e], Entity::class);
+        $this->operation->commit();
+    }
+
+    public function testMutateWithKey()
+    {
+        $this->connection->commit(Argument::that(function ($arg) {
+            if (!isset($arg['mutations'][0]['delete'])) return false;
+            if (!isset($arg['mutations'][0]['delete']['path'])) return false;
+
+            return true;
+        }))->willReturn('foo');
+
+        $this->operation->setConnection($this->connection->reveal());
+
+        $key = new Key('foo', [
+            'path' => [['kind' => 'foo', 'id' => 1]]
+        ]);
+
+        $this->operation->mutate('delete', [$key], Key::class);
+        $this->operation->commit();
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testMutateInvalidType()
+    {
+        $this->operation->mutate('foo', [(object)[]], \stdClass::class);
     }
 
     public function testCheckOverwrite()

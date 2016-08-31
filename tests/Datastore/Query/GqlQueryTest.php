@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Tests\Datastore\Query;
 
+use Google\Cloud\Datastore\EntityMapper;
 use Google\Cloud\Datastore\Query\GqlQuery;
 
 /**
@@ -24,9 +25,16 @@ use Google\Cloud\Datastore\Query\GqlQuery;
  */
 class GqlQueryTest extends \PHPUnit_Framework_TestCase
 {
+    private $mapper;
+
+    public function setUp()
+    {
+        $this->mapper = new EntityMapper('foo', true);
+    }
+
     public function testBindingTypeAutomaticDetectionNamed()
     {
-        $query = new GqlQuery('SELECT * FROM foo', [
+        $query = new GqlQuery($this->mapper, 'SELECT * FROM foo', [
             'bindings' => [
                 'bind' => 'this'
             ]
@@ -40,7 +48,7 @@ class GqlQueryTest extends \PHPUnit_Framework_TestCase
 
     public function testBindingTypeAutomaticDetectionPositional()
     {
-        $query = new GqlQuery('SELECT * FROM foo', [
+        $query = new GqlQuery($this->mapper, 'SELECT * FROM foo', [
             'bindings' => [
                 'this'
             ]
@@ -54,11 +62,11 @@ class GqlQueryTest extends \PHPUnit_Framework_TestCase
 
     public function testAllowLiterals()
     {
-        $query = new GqlQuery('SELECT * FROM foo');
+        $query = new GqlQuery($this->mapper, 'SELECT * FROM foo');
         $res = $query->queryObject();
         $this->assertFalse($res['allowLiterals']);
 
-        $query = new GqlQuery('SELECT * FROM foo', [
+        $query = new GqlQuery($this->mapper, 'SELECT * FROM foo', [
             'allowLiterals' => true
         ]);
 
@@ -68,19 +76,19 @@ class GqlQueryTest extends \PHPUnit_Framework_TestCase
 
     public function testCanPaginateReturnsFalse()
     {
-        $query = new GqlQuery('SELECT * FROM foo');
+        $query = new GqlQuery($this->mapper, 'SELECT * FROM foo');
         $this->assertFalse($query->canPaginate());
     }
 
     public function testQueryKeyIsCorrect()
     {
-        $query = new GqlQuery('SELECT * FROM foo');
+        $query = new GqlQuery($this->mapper, 'SELECT * FROM foo');
         $this->assertEquals($query->queryKey(), 'gqlQuery');
     }
 
     public function testJsonSerialize()
     {
-        $query = new GqlQuery('SELECT * FROM foo');
+        $query = new GqlQuery($this->mapper, 'SELECT * FROM foo');
         $this->assertEquals($query->jsonSerialize(), $query->queryObject());
     }
 }

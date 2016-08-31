@@ -19,29 +19,79 @@ namespace Google\Cloud\Datastore;
 
 use InvalidArgumentException;
 
+/**
+ * Represents a geographical point.
+ *
+ * Example:
+ * ```
+ * $point = new GeoPoint(37.423147, -122.085015);
+ * ```
+ *
+ * @see https://cloud.google.com/datastore/reference/rest/Shared.Types/LatLng LatLng
+ */
 class GeoPoint
 {
+    /**
+     * @var float
+     */
     private $latitude;
+
+    /**
+     * @var float
+     */
     private $longitude;
 
+    /**
+     * Create a GeoPoint.
+     *
+     * Ints will be converted to floats. Values not passing the `is_numeric()`
+     * check will result in an exception.
+     *
+     * @param float|int $latitude
+     * @param float|int $longitude
+     * @throws InvalidArgumentException
+     */
     public function __construct($latitude, $longitude)
     {
-        $this->latitude = $latitude;
-        $this->longitude = $longitude;
+        $this->setLatitude($latitude);
+        $this->setLongitude($longitude);
     }
 
+    /**
+     * Get the latitude
+     *
+     * Example:
+     * ```
+     * $latitude = $point->latitude();
+     * ```
+     *
+     * @return float
+     */
     public function latitude()
     {
-        $this->checkContext('latitude', func_get_args_array());
+        $this->checkContext('latitude', func_get_args());
         return $this->latitude;
     }
 
+    /**
+     * Set the longitude
+     *
+     * Non-numeric values will result in an exception
+     *
+     * Example:
+     * ```
+     * $point->setLatitude(42.279594);
+     * ```
+     *
+     * @param int|float $latitude The new latitude
+     * @return GeoPoint
+     * @throws InvalidArgumentException
+     */
     public function setLatitude($latitude)
     {
         if (is_numeric($latitude)) {
             $latitude = (float) $latitude;
-        }
-        else {
+        } else {
             throw new InvalidArgumentException('Given latitude must be a float');
         }
 
@@ -50,18 +100,41 @@ class GeoPoint
         return $this;
     }
 
+    /**
+     * Get the longitude
+     *
+     * Example:
+     * ```
+     * $longitude = $point->longitude();
+     * ```
+     *
+     * @return float
+     */
     public function longitude()
     {
-        $this->checkContext('longitude', func_get_args_array());
+        $this->checkContext('longitude', func_get_args());
         return $this->longitude;
     }
 
+    /**
+     * Set the longitude
+     *
+     * Non-numeric values will result in an exception.
+     *
+     * Example:
+     * ```
+     * $point->setLongitude(-83.732124);
+     * ```
+     *
+     * @param float|int $longitude The new longitude value
+     * @return GeoPoint
+     * @throws InvalidArgumentException
+     */
     public function setLongitude($longitude)
     {
         if (is_numeric($longitude)) {
             $longitude = (float) $longitude;
-        }
-        else {
+        } else {
             throw new InvalidArgumentException('Given longitude must be a float');
         }
 
@@ -70,6 +143,16 @@ class GeoPoint
         return $this;
     }
 
+    /**
+     * Return a GeoPoint
+     *
+     * Example:
+     * ```
+     * $point = $point->point();
+     * ```
+     *
+     * @return array [LatLng](https://cloud.google.com/datastore/reference/rest/Shared.Types/LatLng)
+     */
     public function point()
     {
         return [
@@ -78,6 +161,14 @@ class GeoPoint
         ];
     }
 
+    /**
+     * Let people know if they accidentally use the getter in setter context.
+     *
+     * @param string $method the method name
+     * @param array $args The method arguments
+     * @throws InvalidArgumentException
+     * @return void
+     */
     private function checkContext($method, array $args)
     {
         if (count($args) > 0) {
