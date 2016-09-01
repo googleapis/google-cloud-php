@@ -205,6 +205,19 @@ class EntityMapper
 
                 break;
 
+            case 'blobValue':
+                $decoded = base64_decode($value);
+                $encoded = base64_encode($decoded);
+                if ($decoded !== false && $value === $encoded) {
+                    $value = $decoded;
+                }
+
+                $result = fopen('php://memory', 'r+');
+                fwrite($result, $value);
+                rewind($result);
+
+                break;
+
             default:
                 $result = $value;
                 break;

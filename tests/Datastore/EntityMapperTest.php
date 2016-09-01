@@ -190,6 +190,30 @@ class EntityMapperTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(1, $res);
     }
 
+    public function testConvertValueBlob()
+    {
+        $type = 'blobValue';
+        $val = base64_encode('hello world');
+
+        $res = $this->mapper->convertValue($type, $val);
+        $this->assertTrue(is_resource($res));
+
+        $content = stream_get_contents($res);
+        $this->assertEquals('hello world', $content);
+    }
+
+    public function testConvertValueBlobNotEncoded()
+    {
+        $type = 'blobValue';
+        $val = 'hello world';
+
+        $res = $this->mapper->convertValue($type, $val);
+        $this->assertTrue(is_resource($res));
+
+        $content = stream_get_contents($res);
+        $this->assertEquals('hello world', $content);
+    }
+
     public function testArrayValue()
     {
         $type = 'arrayValue';
