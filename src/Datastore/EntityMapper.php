@@ -80,11 +80,11 @@ class EntityMapper
     {
         $excludes = [];
 
-        foreach ($entityData as $property) {
+        foreach ($entityData as $key => $property) {
             $type = key($property);
 
             if (isset($property['excludeFromIndexes']) && $property['excludeFromIndexes']) {
-                $excludes[] = $key;
+                $excludes[$key] = $property;
             }
         }
 
