@@ -34,6 +34,40 @@ class EntityMapperTest extends \PHPUnit_Framework_TestCase
         $this->mapper = new EntityMapper('foo', true);
     }
 
+    public function testResponseToProperties()
+    {
+        $data = [
+            'foo' => [
+                'stringValue' => 'bar'
+            ],
+            'dubs' => [
+                'doubleValue' => 1.1
+            ]
+        ];
+
+        $res = $this->mapper->responseToProperties($data);
+
+        $this->assertEquals('bar', $res['foo']);
+        $this->assertEquals(1.1, $res['dubs']);
+    }
+
+    public function testResponseToExcludedProperties()
+    {
+        $data = [
+            'foo' => [
+                'stringValue' => 'bar',
+                'excludeFromIndexes' => true
+            ],
+            'dubs' => [
+                'doubleValue' => 1.1
+            ]
+        ];
+
+        $res = $this->mapper->responseToExcludeFromIndexes($data);
+
+        $res = $this->assertEquals(['foo'], $res);
+    }
+
     public function testObjectToRequest()
     {
         $key = new Key('foo', [
