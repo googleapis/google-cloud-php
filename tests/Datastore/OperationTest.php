@@ -558,6 +558,53 @@ class OperationTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($entity['found'][0]->prop, $res[0]['entity']['properties']['prop']['stringValue']);
     }
 
+    public function testMapEntityResultArrayOfClassNames()
+    {
+        $res = json_decode(file_get_contents(__DIR__ .'/../fixtures/datastore/entity-result.json'), true);
+
+        $this->connection->lookup(Argument::type('array'))
+            ->willReturn([
+                'found' => $res
+            ]);
+
+        $this->operation->setConnection($this->connection->reveal());
+
+        $k = $this->prophesize(Key::class);
+        $k->state()->willReturn(Key::STATE_COMPLETE);
+
+        $entity = $this->operation->lookup([$k->reveal()], [
+            'className' => [
+                'Kind' => MyEntity::class
+            ]
+        ]);
+
+        $this->assertInstanceOf(MyEntity::class, $entity['found'][0]);
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testMapEntityResultArrayOfClassNamesMissingKindMapItem()
+    {
+        $res = json_decode(file_get_contents(__DIR__ .'/../fixtures/datastore/entity-result.json'), true);
+
+        $this->connection->lookup(Argument::type('array'))
+            ->willReturn([
+                'found' => $res
+            ]);
+
+        $this->operation->setConnection($this->connection->reveal());
+
+        $k = $this->prophesize(Key::class);
+        $k->state()->willReturn(Key::STATE_COMPLETE);
+
+        $entity = $this->operation->lookup([$k->reveal()], [
+            'className' => [
+                'Kind2' => MyEntity::class
+            ]
+        ]);
+    }
+
     public function testTransactionInReadOptions()
     {
         $this->connection->lookup(Argument::that(function ($arg) {

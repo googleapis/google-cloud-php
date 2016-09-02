@@ -17,9 +17,11 @@
 
 namespace Google\Cloud\Tests\Datastore;
 
+use Google\Cloud\Datastore\Blob;
 use Google\Cloud\Datastore\Connection\ConnectionInterface;
 use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Datastore\Entity;
+use Google\Cloud\Datastore\GeoPoint;
 use Google\Cloud\Datastore\Key;
 use Google\Cloud\Datastore\Operation;
 use Google\Cloud\Datastore\Query\GqlQuery;
@@ -142,6 +144,23 @@ class DatastoreClientTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf(Entity::class, $entity);
         $this->assertEquals($entity['foo'], 'bar');
+    }
+
+    public function testBlob()
+    {
+        $blob = $this->datastore->blob('foo');
+        $this->assertInstanceOf(Blob::class, $blob);
+        $this->assertEquals('foo', (string) $blob);
+    }
+
+    public function testGeoPoint()
+    {
+        $point = $this->datastore->geoPoint(1.1, 0.1);
+        $this->assertInstanceOf(GeoPoint::class, $point);
+        $this->assertEquals($point->point(), [
+            'latitude' => 1.1,
+            'longitude' => 0.1
+        ]);
     }
 
     public function testAllocateId()

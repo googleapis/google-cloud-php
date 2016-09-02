@@ -312,6 +312,46 @@ class DatastoreClient
     }
 
     /**
+     * Create a new GeoPoint
+     *
+     * Example:
+     * ```
+     * $geoPoint = $datastore->geoPoint(37.4220, -122.0841);
+     * ```
+     *
+     * @see https://cloud.google.com/datastore/reference/rest/Shared.Types/LatLng LatLng
+     *
+     * @param float $latitude The latitude
+     * @param float $longitude The longitude
+     * @return GeoPoint
+     */
+    public function geoPoint($latitude, $longitude)
+    {
+        return new GeoPoint($latitude, $longitude);
+    }
+
+    /**
+     * Create a new Blob
+     *
+     * Example:
+     * ```
+     * $blob = $datastore->blob('hello world');
+     * ```
+     *
+     * ```
+     * // Blobs can be used to store binary data
+     * $blob = $datastore->blob(file_get_contents(__DIR__ .'/family-photo.jpg'));
+     * ```
+     *
+     * @param string|resource|StreamInterface $value
+     * @return Blob
+     */
+    public function blob($value)
+    {
+        return new Blob($value);
+    }
+
+    /**
      * Allocates an available ID to a given incomplete key
      *
      * Key MUST be in an incomplete state (i.e. including a kind but not an ID

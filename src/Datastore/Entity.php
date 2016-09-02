@@ -27,6 +27,26 @@ use Psr\Http\Message\StreamInterface;
  * Entity implements PHP's [ArrayAccess](http://php.net/arrayaccess), allowing
  * access via the array syntax (example below).
  *
+ * Properties are mapped automatically to their corresponding Datastore value
+ * types. Refer to the table below for a guide to how types are stored.
+ *
+ * | **PHP Type**                               | **Datastore Value Type**             |
+ * |--------------------------------------------|--------------------------------------|
+ * | `\DateTimeInterface`                       | `timestampValue`                     |
+ * | {@see Google\Cloud\Datastore\Key}          | `keyValue`                           |
+ * | {@see Google\Cloud\Datastore\GeoPoint}     | `geoPointValue`                      |
+ * | {@see Google\Cloud\Datastore\Entity}       | `entityValue`                        |
+ * | {@see Google\Cloud\Datastore\Blob}         | `blobValue`                          |
+ * | Associative Array                          | `entityValue` (No Key)               |
+ * | Non-Associative Array                      | `arrayValue`                         |
+ * | `float`                                    | `doubleValue`                        |
+ * | `int`                                      | `integerValue`                       |
+ * | `string`                                   | `stringValue`                        |
+ * | `resource`                                 | `blobValue`                          |
+ * | `NULL`                                     | `nullValue`                          |
+ * | `bool`                                     | `booleanValue`                       |
+ * | `object` (Outside types specified above)   | **ERROR** `InvalidArgumentException` |
+ *
  * Example:
  * ```
  * use Google\Cloud\ServiceBuilder;

@@ -21,6 +21,7 @@ use Google\Cloud\Datastore\Entity;
 use Google\Cloud\Datastore\GeoPoint;
 use Google\Cloud\Datastore\Key;
 use InvalidArgumentException;
+use GuzzleHttp\Psr7;
 
 /**
  * Utility methods for mapping between datastore and {@see Google\Cloud\Datastore\Entity}.
@@ -204,15 +205,11 @@ class EntityMapper
                 break;
 
             case 'blobValue':
-                $decoded = base64_decode($value);
-                $encoded = base64_encode($decoded);
-                if ($decoded !== false && $value === $encoded) {
-                    $value = $decoded;
+                if ($this->isEncoded($value)) {
+                    $value = base64_decode($value);
                 }
 
-                $result = fopen('php://memory', 'r+');
-                fwrite($result, $value);
-                rewind($result);
+                $result = new Blob(Psr7\stream_for($value));
 
                 break;
 
@@ -327,6 +324,15 @@ class EntityMapper
     public function objectProperty($value)
     {
         switch (true) {
+            case $value instanceof Blob:
+                return [
+                    'blobValue' => ($this->encode)
+                        ? base64_encode($value->value())
+                        : $value->value()
+                ];
+
+                break;
+
             case $value instanceof \DateTimeInterface:
                 return [
                     'timestampValue' => $value->format(\DateTime::RFC3339)
@@ -334,9 +340,9 @@ class EntityMapper
 
                 break;
 
-            case $value instanceof Key:
+            case $value instanceof Entity:
                 return [
-                    'keyValue' => $value->keyObject()
+                    'entityValue' => $this->objectToRequest($value)
                 ];
 
                 break;
@@ -348,10 +354,12 @@ class EntityMapper
 
                 break;
 
-            case $value instanceof Entity:
+            case $value instanceof Key:
                 return [
-                    'entityValue' => $this->objectToRequest($value)
+                    'keyValue' => $value->keyObject()
                 ];
+
+                break;
 
             default:
                 throw new InvalidArgumentException(
@@ -400,5 +408,26 @@ class EntityMapper
                 'properties' => $properties
             ]
         ];
+    }
+
+    private function isEncoded($value)
+    {
+        // Check if there are valid base64 characters
+        if (!preg_match('/^[a-zA-Z0-9\/\r\n+]*={0,2}$/', $value)) {
+            return false;
+        }
+
+        // Decode the string in strict mode and check the results
+        $decoded = base64_decode($value, true);
+        if ($decoded == false) {
+            return false;
+        }
+
+        // Encode the string again
+        if (base64_encode($decoded) != $value) {
+            return false;
+        }
+
+        return true;
     }
 }
