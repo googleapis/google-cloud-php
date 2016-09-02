@@ -84,7 +84,7 @@ class EntityMapper
             $type = key($property);
 
             if (isset($property['excludeFromIndexes']) && $property['excludeFromIndexes']) {
-                $excludes[$key] = $property;
+                $excludes[] = $key;
             }
         }
 
