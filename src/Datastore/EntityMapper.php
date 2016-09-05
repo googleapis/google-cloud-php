@@ -81,8 +81,6 @@ class EntityMapper
         $excludes = [];
 
         foreach ($entityData as $key => $property) {
-            $type = key($property);
-
             if (isset($property['excludeFromIndexes']) && $property['excludeFromIndexes']) {
                 $excludes[] = $key;
             }
@@ -205,6 +203,15 @@ class EntityMapper
 
                 break;
 
+            case 'blobValue':
+                if ($this->isEncoded($value)) {
+                    $value = base64_decode($value);
+                }
+
+                $result = new Blob($value);
+
+                break;
+
             default:
                 $result = $value;
                 break;
@@ -316,6 +323,15 @@ class EntityMapper
     public function objectProperty($value)
     {
         switch (true) {
+            case $value instanceof Blob:
+                return [
+                    'blobValue' => ($this->encode)
+                        ? base64_encode((string) $value)
+                        : (string) $value
+                ];
+
+                break;
+
             case $value instanceof \DateTimeInterface:
                 return [
                     'timestampValue' => $value->format(\DateTime::RFC3339)
@@ -323,9 +339,9 @@ class EntityMapper
 
                 break;
 
-            case $value instanceof Key:
+            case $value instanceof Entity:
                 return [
-                    'keyValue' => $value->keyObject()
+                    'entityValue' => $this->objectToRequest($value)
                 ];
 
                 break;
@@ -337,10 +353,12 @@ class EntityMapper
 
                 break;
 
-            case $value instanceof Entity:
+            case $value instanceof Key:
                 return [
-                    'entityValue' => $this->objectToRequest($value)
+                    'keyValue' => $value->keyObject()
                 ];
+
+                break;
 
             default:
                 throw new InvalidArgumentException(
@@ -389,5 +407,26 @@ class EntityMapper
                 'properties' => $properties
             ]
         ];
+    }
+
+    private function isEncoded($value)
+    {
+        // Check if there are valid base64 characters
+        if (!preg_match('/^[a-zA-Z0-9\/\r\n+]*={0,2}$/', $value)) {
+            return false;
+        }
+
+        // Decode the string in strict mode and check the results
+        $decoded = base64_decode($value, true);
+        if ($decoded == false) {
+            return false;
+        }
+
+        // Encode the string again
+        if (base64_encode($decoded) != $value) {
+            return false;
+        }
+
+        return true;
     }
 }

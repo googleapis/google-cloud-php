@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Tests\Datastore;
 
+use Google\Cloud\Datastore\Blob;
 use Google\Cloud\Datastore\Entity;
 use Google\Cloud\Datastore\EntityMapper;
 use Google\Cloud\Datastore\GeoPoint;
@@ -32,6 +33,40 @@ class EntityMapperTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->mapper = new EntityMapper('foo', true);
+    }
+
+    public function testResponseToProperties()
+    {
+        $data = [
+            'foo' => [
+                'stringValue' => 'bar'
+            ],
+            'dubs' => [
+                'doubleValue' => 1.1
+            ]
+        ];
+
+        $res = $this->mapper->responseToProperties($data);
+
+        $this->assertEquals('bar', $res['foo']);
+        $this->assertEquals(1.1, $res['dubs']);
+    }
+
+    public function testResponseToExcludedProperties()
+    {
+        $data = [
+            'foo' => [
+                'stringValue' => 'bar',
+                'excludeFromIndexes' => true
+            ],
+            'dubs' => [
+                'doubleValue' => 1.1
+            ]
+        ];
+
+        $res = $this->mapper->responseToExcludeFromIndexes($data);
+
+        $res = $this->assertEquals(['foo'], $res);
     }
 
     public function testObjectToRequest()
@@ -190,6 +225,28 @@ class EntityMapperTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(1, $res);
     }
 
+    public function testConvertValueBlob()
+    {
+        $type = 'blobValue';
+        $val = base64_encode('hello world');
+
+        $res = $this->mapper->convertValue($type, $val);
+        $this->assertInstanceOf(Blob::class, $res);
+
+        $this->assertEquals('hello world', (string)$res);
+    }
+
+    public function testConvertValueBlobNotEncoded()
+    {
+        $type = 'blobValue';
+        $val = 'hello world';
+
+        $res = $this->mapper->convertValue($type, $val);
+        $this->assertInstanceOf(Blob::class, $res);
+
+        $this->assertEquals('hello world', (string)$res);
+    }
+
     public function testArrayValue()
     {
         $type = 'arrayValue';
@@ -297,6 +354,22 @@ class EntityMapperTest extends \PHPUnit_Framework_TestCase
         $res = $this->mapper->valueObject('hello', false);
 
         $this->assertFalse(isset($res['excludeFromIndexes']));
+    }
+
+    public function testObjectPropertyBlob()
+    {
+        $res = $this->mapper->valueObject(new Blob('hello world'));
+
+        $this->assertEquals('hello world', base64_decode($res['blobValue']));
+    }
+
+    public function testObjectPropertyBlobNotEncoded()
+    {
+        $mapper = new EntityMapper('foo', false);
+
+        $res = $mapper->valueObject(new Blob('hello world'));
+
+        $this->assertEquals('hello world', $res['blobValue']);
     }
 
     public function testObjectPropertyDateTime()
