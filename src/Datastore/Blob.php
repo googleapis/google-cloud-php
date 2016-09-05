@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Datastore;
 
+use GuzzleHttp\Psr7;
 use Psr\Http\Message\StreamInterface;
 
 /**
@@ -43,32 +44,22 @@ class Blob
      */
     public function __construct($value)
     {
-        $this->value = $value;
+        $this->value = Psr7\stream_for($value);
     }
 
     /**
-     * Get the blob value as a string
+     * Get the blob contents as a stream
      *
      * Example:
      * ```
      * $value = $blob->value();
      * ```
      *
-     * @returns string
+     * @returns StreamInterface
      */
-    public function value()
+    public function get()
     {
-        if (is_string($this->value)) {
-            return $this->value;
-        }
-
-        if (is_resource($this->value)) {
-            return stream_get_contents($this->value);
-        }
-
-        if ($this->value instanceof StreamInterface) {
-            return (string) $this->value;
-        }
+        return $this->value;
     }
 
     /**
@@ -83,6 +74,6 @@ class Blob
      */
     public function __toString()
     {
-        return $this->value();
+        return (string) $this->value;
     }
 }

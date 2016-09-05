@@ -21,7 +21,6 @@ use Google\Cloud\Datastore\Entity;
 use Google\Cloud\Datastore\GeoPoint;
 use Google\Cloud\Datastore\Key;
 use InvalidArgumentException;
-use GuzzleHttp\Psr7;
 
 /**
  * Utility methods for mapping between datastore and {@see Google\Cloud\Datastore\Entity}.
@@ -209,7 +208,7 @@ class EntityMapper
                     $value = base64_decode($value);
                 }
 
-                $result = new Blob(Psr7\stream_for($value));
+                $result = new Blob($value);
 
                 break;
 
@@ -327,8 +326,8 @@ class EntityMapper
             case $value instanceof Blob:
                 return [
                     'blobValue' => ($this->encode)
-                        ? base64_encode($value->value())
-                        : $value->value()
+                        ? base64_encode((string) $value)
+                        : (string) $value
                 ];
 
                 break;

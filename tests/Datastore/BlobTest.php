@@ -28,7 +28,7 @@ class BlobTest extends \PHPUnit_Framework_TestCase
     public function testBlobString()
     {
         $blob = new Blob('hello world');
-        $this->assertEquals('hello world', $blob->value());
+        $this->assertEquals('hello world', (string) $blob);
     }
 
     public function testBlobResource()
@@ -39,18 +39,18 @@ class BlobTest extends \PHPUnit_Framework_TestCase
         rewind($stream);
 
         $blob = new Blob($stream);
-        $this->assertEquals('hello world', $blob->value());
+        $this->assertEquals('hello world', (string) $blob);
     }
 
     public function testBlobStreamInterface()
     {
         $blob = new Blob(Psr7\stream_for('hello world'));
-        $this->assertEquals('hello world', $blob->value());
+        $this->assertEquals('hello world', (string) $blob);
     }
 
     public function testToString()
     {
         $blob = new Blob('hello world');
-        $this->assertEquals($blob->value(), (string) $blob);
+        $this->assertEquals((string)$blob->get(), (string) $blob);
     }
 }
