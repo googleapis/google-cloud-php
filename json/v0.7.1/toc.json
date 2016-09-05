@@ -73,6 +73,12 @@
       }, {
         "title": "GQL Query",
         "type": "datastore/query/gqlquery"
+      }, {
+        "title": "GeoPoint",
+        "type": "datastore/geopoint"
+      }, {
+        "title": "Blob",
+        "type": "datastore/blob"
       }]
     },
     {
