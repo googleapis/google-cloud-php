@@ -20,7 +20,7 @@ namespace Google\Cloud\Tests\NaturalLanguage;
 use Google\Cloud\NaturalLanguage\Annotation;
 use Google\Cloud\NaturalLanguage\Connection\ConnectionInterface;
 use Google\Cloud\NaturalLanguage\NaturalLanguageClient;
-use Google\Cloud\Storage\Object;
+use Google\Cloud\Storage\StorageObject;
 use Prophecy\Argument;
 
 /**
@@ -116,7 +116,7 @@ class NaturalLanguageClientTest extends \PHPUnit_Framework_TestCase
 
     public function analyzeDataProvider()
     {
-        $objectMock = $this->prophesize(Object::class);
+        $objectMock = $this->prophesize(StorageObject::class);
         $objectMock->identity(Argument::any())->willReturn(['bucket' => 'bucket', 'object' => 'object']);
 
         return [

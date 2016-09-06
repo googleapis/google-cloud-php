@@ -18,11 +18,11 @@
 namespace Google\Cloud\Tests\Storage;
 
 use Google\Cloud\Exception\NotFoundException;
-use Google\Cloud\Storage\Object;
+use Google\Cloud\Storage\StorageObject;
 use GuzzleHttp\Psr7;
 use Prophecy\Argument;
 
-class ObjectTest extends \PHPUnit_Framework_TestCase
+class StorageObjectTest extends \PHPUnit_Framework_TestCase
 {
     public $connection;
 
@@ -33,7 +33,7 @@ class ObjectTest extends \PHPUnit_Framework_TestCase
 
     public function testGetAcl()
     {
-        $object = new Object($this->connection->reveal(), 'object.txt', 'bucket');
+        $object = new StorageObject($this->connection->reveal(), 'object.txt', 'bucket');
 
         $this->assertInstanceOf('Google\Cloud\Storage\Acl', $object->acl());
     }
@@ -41,7 +41,7 @@ class ObjectTest extends \PHPUnit_Framework_TestCase
     public function testDoesExistTrue()
     {
         $this->connection->getObject(Argument::any())->willReturn(['name' => 'object.txt']);
-        $object = new Object($this->connection->reveal(), 'object.txt', 'bucket');
+        $object = new StorageObject($this->connection->reveal(), 'object.txt', 'bucket');
 
         $this->assertTrue($object->exists());
     }
@@ -49,14 +49,14 @@ class ObjectTest extends \PHPUnit_Framework_TestCase
     public function testDoesExistFalse()
     {
         $this->connection->getObject(Argument::any())->willThrow(new NotFoundException(null));
-        $object = new Object($this->connection->reveal(), 'object.txt', 'bucket');
+        $object = new StorageObject($this->connection->reveal(), 'object.txt', 'bucket');
 
         $this->assertFalse($object->exists());
     }
 
     public function testDelete()
     {
-        $object = new Object($this->connection->reveal(), 'object.txt', 'bucket');
+        $object = new StorageObject($this->connection->reveal(), 'object.txt', 'bucket');
 
         $this->assertNull($object->delete());
     }
@@ -65,7 +65,7 @@ class ObjectTest extends \PHPUnit_Framework_TestCase
     {
         $data = ['contentType' => 'image/jpg'];
         $this->connection->patchObject(Argument::any())->willReturn(['name' => 'object.txt'] + $data);
-        $object = new Object($this->connection->reveal(), 'object.txt', 'bucket', null, ['contentType' => 'image/png']);
+        $object = new StorageObject($this->connection->reveal(), 'object.txt', 'bucket', null, ['contentType' => 'image/png']);
 
         $object->update($data);
 
@@ -77,7 +77,7 @@ class ObjectTest extends \PHPUnit_Framework_TestCase
         $stream = Psr7\stream_for($string = 'abcdefg');
         $this->connection->downloadObject(Argument::any())->willReturn($stream);
 
-        $object = new Object($this->connection->reveal(), 'object.txt', 'bucket');
+        $object = new StorageObject($this->connection->reveal(), 'object.txt', 'bucket');
 
         $this->assertEquals($string, $object->downloadAsString());
     }
@@ -87,7 +87,7 @@ class ObjectTest extends \PHPUnit_Framework_TestCase
         $stream = Psr7\stream_for($string = 'abcdefg');
         $this->connection->downloadObject(Argument::any())->willReturn($stream);
 
-        $object = new Object($this->connection->reveal(), 'object.txt', 'bucket');
+        $object = new StorageObject($this->connection->reveal(), 'object.txt', 'bucket');
 
         $this->assertEquals($string, $object->downloadToFile('php://temp')->getContents());
     }
@@ -100,7 +100,7 @@ class ObjectTest extends \PHPUnit_Framework_TestCase
             'etag' => 'ABC',
             'kind' => 'storage#object'
         ];
-        $object = new Object($this->connection->reveal(), 'object.txt', 'bucket', null, $objectInfo);
+        $object = new StorageObject($this->connection->reveal(), 'object.txt', 'bucket', null, $objectInfo);
 
         $this->assertEquals($objectInfo, $object->info());
     }
@@ -116,21 +116,21 @@ class ObjectTest extends \PHPUnit_Framework_TestCase
         $this->connection->getObject(Argument::any())
             ->willReturn($objectInfo)
             ->shouldBeCalledTimes(1);
-        $object = new Object($this->connection->reveal(), 'object.txt', 'bucket');
+        $object = new StorageObject($this->connection->reveal(), 'object.txt', 'bucket');
 
         $this->assertEquals($objectInfo, $object->info());
     }
 
     public function testGetsName()
     {
-        $object = new Object($this->connection->reveal(), $name = 'object.txt', 'bucket');
+        $object = new StorageObject($this->connection->reveal(), $name = 'object.txt', 'bucket');
 
         $this->assertEquals($name, $object->name());
     }
 
     public function testGetsIdentity()
     {
-        $object = new Object($this->connection->reveal(), $name = 'object.txt', $bucketName = 'bucket');
+        $object = new StorageObject($this->connection->reveal(), $name = 'object.txt', $bucketName = 'bucket');
 
         $this->assertEquals($name, $object->identity()['object']);
         $this->assertEquals($bucketName, $object->identity()['bucket']);

@@ -183,7 +183,7 @@ class Bucket
      *     @type array $metadata The available options for metadata are outlined
      *           at the [JSON API docs](https://cloud.google.com/storage/docs/json_api/v1/objects/insert#request)
      * }
-     * @return \Google\Cloud\Storage\Object
+     * @return StorageObject
      * @throws \InvalidArgumentException
      */
     public function upload($data, array $options = [])
@@ -197,7 +197,7 @@ class Bucket
             'data' => $data
         ])->upload();
 
-        return new Object(
+        return new StorageObject(
             $this->connection,
             $response['name'],
             $this->identity['bucket'],
@@ -268,7 +268,7 @@ class Bucket
     /**
      * Lazily instantiates an object. There are no network requests made at this
      * point. To see the operations that can be performed on an object please
-     * see {@see Google\Cloud\Storage\Object}.
+     * see {@see Google\Cloud\Storage\StorageObject}.
      *
      * Example:
      * ```
@@ -281,13 +281,13 @@ class Bucket
      *
      *     @type string $generation Request a specific revision of the object.
      * }
-     * @return \Google\Cloud\Storage\Object
+     * @return StorageObject
      */
     public function object($name, array $options = [])
     {
         $generation = isset($options['generation']) ? $options['generation'] : null;
 
-        return new Object($this->connection, $name, $this->identity['bucket'], $generation);
+        return new StorageObject($this->connection, $name, $this->identity['bucket'], $generation);
     }
 
     /**
@@ -327,7 +327,7 @@ class Bucket
      *     @type string $fields Selector which will cause the response to only
      *           return the specified fields.
      * }
-     * @return \Generator<Google\Cloud\Storage\Object>
+     * @return \Generator<Google\Cloud\Storage\StorageObject>
      */
     public function objects(array $options = [])
     {
@@ -340,9 +340,16 @@ class Bucket
             if (!array_key_exists('items', $response)) {
                 break;
             }
+
             foreach ($response['items'] as $object) {
                 $generation = $includeVersions ? $object['generation'] : null;
-                yield new Object($this->connection, $object['name'], $this->identity['bucket'], $generation, $object);
+                yield new StorageObject(
+                    $this->connection,
+                    $object['name'],
+                    $this->identity['bucket'],
+                    $generation,
+                    $object
+                );
             }
 
             $options['pageToken'] = isset($response['nextPageToken']) ? $response['nextPageToken'] : null;

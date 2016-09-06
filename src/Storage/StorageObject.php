@@ -26,7 +26,7 @@ use Psr\Http\Message\StreamInterface;
  * Objects are the individual pieces of data that you store in Google Cloud
  * Storage.
  */
-class Object
+class StorageObject
 {
     /**
      * @var Acl ACL for the object.

@@ -23,7 +23,7 @@ use Google\Cloud\BigQuery\Job;
 use Google\Cloud\BigQuery\Table;
 use Google\Cloud\Exception\NotFoundException;
 use Google\Cloud\Storage\Connection\ConnectionInterface as StorageConnectionInterface;
-use Google\Cloud\Storage\Object;
+use Google\Cloud\Storage\StorageObject;
 use Google\Cloud\Upload\AbstractUploader;
 use Prophecy\Argument;
 
@@ -60,7 +60,7 @@ class TableTest extends \PHPUnit_Framework_TestCase
 
     public function getObject()
     {
-        return new Object(
+        return new StorageObject(
             $this->storageConnection->reveal(),
             $this->fileName,
             $this->bucketName
