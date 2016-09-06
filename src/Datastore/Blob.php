@@ -55,7 +55,7 @@ class Blob
      * $value = $blob->value();
      * ```
      *
-     * @returns StreamInterface
+     * @return StreamInterface
      */
     public function get()
     {
