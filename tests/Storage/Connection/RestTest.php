@@ -85,6 +85,7 @@ class RestTest extends \PHPUnit_Framework_TestCase
             ['listBuckets'],
             ['insertBucket'],
             ['patchBucket'],
+            ['copyObject'],
             ['deleteObject'],
             ['getObject'],
             ['listObjects'],

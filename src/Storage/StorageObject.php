@@ -193,6 +193,101 @@ class StorageObject
     }
 
     /**
+     * Copy the object to a destination bucket.
+     *
+     * Please note that if the destination bucket is the same as the source
+     * bucket and a new name is not provided the source object will be replaced
+     * with the copy of itself.
+     *
+     * Example:
+     * ```
+     * // Provide your destination bucket as a string and retain the source
+     * // object's name.
+     * $copiedObject = $object->copy('otherBucket');
+     * ```
+     *
+     * ```
+     * // Provide your destination bucket as a bucket object and choose a new
+     * // name for the copied object.
+     * $otherBucket = $storage->bucket('otherBucket');
+     * $copiedObject = $object->copy($otherBucket, [
+     *     'name' => 'newFile.txt'
+     * ]);
+     *
+     * @see https://cloud.google.com/storage/docs/json_api/v1/objects/copy Objects copy API documentation.
+     *
+     * @param Bucket|string $destination The destination bucket.
+     * @param array $options {
+     *     Configuration options.
+     *
+     *     @type string $name The name of the destination object. If not
+     *           provided defaults to the name of the source object.
+     *     @type string $predefinedAcl Access controls to apply to the
+     *           destination object. Acceptable values include
+     *           `authenticatedRead`, `bucketOwnerFullControl`,
+     *           `bucketOwnerRead`, `private`, `projectPrivate`, and
+     *           `publicRead`.
+     *     @type string $ifGenerationMatch Makes the operation conditional on
+     *           whether the destination object's current generation matches the
+     *           given value.
+     *     @type string $ifGenerationNotMatch Makes the operation conditional on
+     *           whether the destination object's current generation does not
+     *           match the given value.
+     *     @type string $ifMetagenerationMatch Makes the operation conditional
+     *           on whether the destination object's current metageneration
+     *           matches the given value.
+     *     @type string $ifMetagenerationNotMatch Makes the operation
+     *           conditional on whether the destination object's current
+     *           metageneration does not match the given value.
+     *     @type string $ifSourceGenerationMatch Makes the operation conditional
+     *           on whether the source object's current generation matches the
+     *           given value.
+     *     @type string $ifSourceGenerationNotMatch Makes the operation
+     *           conditional on whether the source object's current generation
+     *           does not match the given value.
+     *     @type string $ifSourceMetagenerationMatch Makes the operation
+     *           conditional on whether the source object's current
+     *           metageneration matches the given value.
+     *     @type string $ifSourceMetagenerationNotMatch Makes the operation
+     *           conditional on whether the source object's current
+     *           metageneration does not match the given value.
+     * }
+     * @return StorageObject
+     */
+    public function copy($destination, array $options = [])
+    {
+        if (!is_string($destination) && !($destination instanceof Bucket)) {
+            throw new \InvalidArgumentException(
+                '$destination must be either a string or an instance of Bucket.'
+            );
+        }
+
+        $destAcl = isset($options['predefinedAcl']) ? $options['predefinedAcl'] : null;
+        $destObject = isset($options['name']) ? $options['name'] : $this->identity['object'];
+        $destBucket = $destination instanceof Bucket ? $destination->name() : $destination;
+
+        unset($options['name']);
+        unset($options['predefinedAcl']);
+
+        $response = $this->connection->copyObject(array_filter([
+            'destinationBucket' => $destBucket,
+            'destinationObject' => $destObject,
+            'destinationPredefinedAcl' => $destAcl,
+            'sourceBucket' => $this->identity['bucket'],
+            'sourceObject' => $this->identity['object'],
+            'sourceGeneration' => $this->identity['generation']
+        ]) + $options);
+
+        return new StorageObject(
+            $this->connection,
+            $response['name'],
+            $response['bucket'],
+            $response['generation'],
+            $response
+        );
+    }
+
+    /**
      * Download an object as a string.
      *
      * Example:

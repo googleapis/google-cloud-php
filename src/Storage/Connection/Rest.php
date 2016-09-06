@@ -144,6 +144,14 @@ class Rest implements ConnectionInterface
     /**
      * @param array $args
      */
+    public function copyObject(array $args = [])
+    {
+        return $this->send('objects', 'copy', $args);
+    }
+
+    /**
+     * @param array $args
+     */
     public function getObject(array $args = [])
     {
         return $this->send('objects', 'get', $args);
