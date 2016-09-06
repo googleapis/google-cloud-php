@@ -206,7 +206,7 @@ class RequestWrapper
     private function signRequest(RequestInterface $request)
     {
         $headers = [
-            'User-Agent' => 'gcloud-php ' . ServiceBuilder::VERSION,
+            'User-Agent' => 'gcloud-php/' . ServiceBuilder::VERSION,
             'Authorization' => 'Bearer ' . $this->getToken()
         ];
 

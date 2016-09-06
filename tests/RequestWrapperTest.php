@@ -170,7 +170,7 @@ class RequestWrapperTest extends \PHPUnit_Framework_TestCase
         $requestWrapper = new RequestWrapper([
             'httpHandler' => function ($request, $options = []) {
                 $userAgent = $request->getHeaderLine('User-Agent');
-                $this->assertEquals('gcloud-php ' . ServiceBuilder::VERSION, $userAgent);
+                $this->assertEquals('gcloud-php/' . ServiceBuilder::VERSION, $userAgent);
                 return new Response(200);
             },
             'accessToken' => 'abc'
