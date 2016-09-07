@@ -18,6 +18,7 @@
 namespace Google\Cloud\Vision;
 
 use Google\Cloud\ClientTrait;
+use Google\Cloud\ValidateTrait;
 use Google\Cloud\Vision\Connection\Rest;
 use InvalidArgumentException;
 
@@ -46,6 +47,7 @@ use InvalidArgumentException;
 class VisionClient
 {
     use ClientTrait;
+    use ValidateTrait;
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/cloud-platform';
 
@@ -216,8 +218,7 @@ class VisionClient
     public function annotate(Image $image, array $options = [])
     {
         $res = $this->annotateBatch([$image], $options);
-        $res->rewind();
-        return $res->current();
+        return $res[0];
     }
 
     /**
@@ -243,16 +244,14 @@ class VisionClient
      * @param  Image[] $images An array consisting of instances of
      *         {@see Google\Cloud\Vision\Image}.
      * @param  array $options Configuration Options
-     * @return \Generator<Google\Cloud\Vision\Annotation>
+     * @return Annotation[]
      */
     public function annotateBatch(array $images, array $options = [])
     {
+        $this->validateBatch($images, Image::class);
+
         $requests = [];
         foreach ($images as $image) {
-            if (!$image instanceof Image) {
-                throw new InvalidArgumentException('$images must be of type Image[].');
-            }
-
             $requests[] = $image->requestObject();
         }
 
@@ -260,21 +259,13 @@ class VisionClient
             'requests' => $requests
         ] + $options);
 
-        return $this->respond($res);
-    }
-
-    /**
-     * Generate a response to an annotation request.
-     *
-     * @param array $res The response object
-     * @return \Generator<Google\Cloud\Vision\Annotation>
-     */
-    private function respond(array $res)
-    {
+        $annotations = [];
         if (isset($res['responses'])) {
             foreach ($res['responses'] as $response) {
-                yield new Annotation($response);
+                $annotations[] = new Annotation($response);
             }
         }
+
+        return $annotations;
     }
 }

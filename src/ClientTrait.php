@@ -125,8 +125,8 @@ trait ClientTrait
             return $config['keyFile']['project_id'];
         }
 
-        if (GCECredentials::onGce($config['httpHandler'])) {
-            $metadata = new Metadata();
+        if ($this->onGce($config['httpHandler'])) {
+            $metadata = $this->getMetaData();
             $projectId = $metadata->getProjectId();
             if ($projectId) {
                 return $projectId;
@@ -137,5 +137,27 @@ trait ClientTrait
             'No project ID was provided, ' .
             'and we were unable to detect a default project ID.'
         );
+    }
+
+    /**
+     * Abstract the GCECredentials call so we can mock it in the unit tests!
+     *
+     * @codeCoverageIgnore
+     * @return bool
+     */
+    protected function onGce($httpHandler)
+    {
+        return GCECredentials::onGce($httpHandler);
+    }
+
+    /**
+     * Abstract the Metadata instantiation for unit testing
+     *
+     * @codeCoverageIgnore
+     * @return Metadata
+     */
+    protected function getMetaData()
+    {
+        return new Metadata;
     }
 }
