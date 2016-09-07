@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Vision;
 
-use Google\Cloud\Storage\Object;
+use Google\Cloud\Storage\StorageObject;
 use GuzzleHttp\Psr7;
 use InvalidArgumentException;
 
@@ -165,9 +165,10 @@ class Image
      * ]);
      * ```
      *
-     * @param  resource|string|Object $image An image to configure with the given
-     *         settings. This parameter will accept a resource, a string of
-     *         bytes, or an instance of {@see Google\Cloud\Storage\Object}.
+     * @param  resource|string|StorageObject $image An image to configure with
+     *         the given settings. This parameter will accept a resource, a
+     *         string of bytes, or an instance of
+     *         {@see Google\Cloud\Storage\StorageObject}.
      * @param  array $features A list of cloud vision
      *         [features](https://cloud.google.com/vision/reference/rest/v1/images/annotate#type)
      *         to apply to the image. Google Cloud Platform Client Library provides a set of abbreviated
@@ -201,7 +202,7 @@ class Image
 
         $this->features = $this->normalizeFeatures($features);
 
-        if ($image instanceof Object) {
+        if ($image instanceof StorageObject) {
             $identity = $image->identity();
             $uri = sprintf('gs://%s/%s', $identity['bucket'], $identity['object']);
 

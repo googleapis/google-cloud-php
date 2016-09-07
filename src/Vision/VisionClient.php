@@ -125,9 +125,10 @@ class VisionClient
      * ])
      * ```
      *
-     * @param  resource|string|Object $image An image to configure with the given
-     *         settings. This parameter will accept a resource, a string of
-     *         bytes, or an instance of {@see Google\Cloud\Storage\Object}.
+     * @param  resource|string|StorageObject $image An image to configure with
+     *         the given settings. This parameter will accept a resource, a
+     *         string of bytes, or an instance of
+     *         {@see Google\Cloud\Storage\StorageObject}.
      * @param  array $features A list of cloud vision
      *         [features](https://cloud.google.com/vision/reference/rest/v1/images/annotate#type)
      *         to apply to the image.
@@ -174,9 +175,10 @@ class VisionClient
      * ]);
      * ```
      *
-     * @param  resource[]|string[]|Object[] $images An array of images to configure with the given settings.
-     *         Each member of the set can be a resource, a string of bytes, or an instance of
-     *         {@see Google\Cloud\Storage\Object}.
+     * @param  resource[]|string[]|StorageObject[] $images An array of images
+     *         to configure with the given settings. Each member of the set can
+     *         be a resource, a string of bytes, or an instance of
+     *         {@see Google\Cloud\Storage\StorageObject}.
      * @param  array $features A list of cloud vision features to apply to each image.
      * @param  array $options See {@see Google\Cloud\Vision\Image::__construct()} for
      *         configuration details.

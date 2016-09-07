@@ -19,7 +19,7 @@ namespace Google\Cloud\BigQuery;
 
 use Google\Cloud\BigQuery\Connection\ConnectionInterface;
 use Google\Cloud\Exception\NotFoundException;
-use Google\Cloud\Storage\Object;
+use Google\Cloud\Storage\StorageObject;
 
 /**
  * [BigQuery Tables](https://cloud.google.com/bigquery/docs/tables) are a
@@ -201,7 +201,7 @@ class Table
      *
      * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs Jobs insert API Documentation.
      *
-     * @param Object $destination The destination object.
+     * @param StorageObject $destination The destination object.
      * @param array $options {
      *     Configuration options.
      *
@@ -211,7 +211,7 @@ class Table
      * }
      * @return Job
      */
-    public function export(Object $destination, array $options = [])
+    public function export(StorageObject $destination, array $options = [])
     {
         $objIdentity = $destination->identity();
         $config = $this->buildJobConfig(
@@ -286,7 +286,7 @@ class Table
      *
      * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs Jobs insert API Documentation.
      *
-     * @param Object $destination The object to load data from.
+     * @param StorageObject $destination The object to load data from.
      * @param array $options {
      *     Configuration options.
      *
@@ -296,7 +296,7 @@ class Table
      * }
      * @return Job
      */
-    public function loadFromStorage(Object $object, array $options = [])
+    public function loadFromStorage(StorageObject $object, array $options = [])
     {
         $objIdentity = $object->identity();
         $options['jobConfig']['sourceUris'] = ['gs://' . $objIdentity['bucket'] . '/' . $objIdentity['object']];

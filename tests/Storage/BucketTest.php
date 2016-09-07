@@ -72,7 +72,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
         $bucket = new Bucket($this->connection->reveal(), 'bucket');
 
         $this->assertInstanceOf(
-            'Google\Cloud\Storage\Object',
+            'Google\Cloud\Storage\StorageObject',
             $bucket->upload('some data to upload', ['name' => 'data.txt'])
         );
     }
@@ -112,7 +112,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
     {
         $bucket = new Bucket($this->connection->reveal(), 'bucket');
 
-        $this->assertInstanceOf('Google\Cloud\Storage\Object', $bucket->object('peter-venkman.jpg'));
+        $this->assertInstanceOf('Google\Cloud\Storage\StorageObject', $bucket->object('peter-venkman.jpg'));
     }
 
     public function testInstantiateObjectWithGeneration()
@@ -123,7 +123,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
             'generation' => '5'
         ]);
 
-        $this->assertInstanceOf('Google\Cloud\Storage\Object', $object);
+        $this->assertInstanceOf('Google\Cloud\Storage\StorageObject', $object);
     }
 
     public function testGetsObjectsWithoutToken()

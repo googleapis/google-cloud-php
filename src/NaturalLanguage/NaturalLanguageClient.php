@@ -19,7 +19,7 @@ namespace Google\Cloud\NaturalLanguage;
 
 use Google\Cloud\ClientTrait;
 use Google\Cloud\NaturalLanguage\Connection\Rest;
-use Google\Cloud\Storage\Object;
+use Google\Cloud\Storage\StorageObject;
 
 /**
  * Google Cloud Natural Language client. Provides natural language understanding
@@ -118,7 +118,7 @@ class NaturalLanguageClient
      * @see https://cloud.google.com/natural-language/reference/rest/v1beta1/documents/analyzeEntities Analyze Entities API documentation
      * @codingStandardsIgnoreEnd
      *
-     * @param string|Object $content The content to analyze.
+     * @param string|StorageObject $content The content to analyze.
      * @param array $options {
      *     Configuration options.
      *
@@ -160,7 +160,7 @@ class NaturalLanguageClient
      * @see https://cloud.google.com/natural-language/reference/rest/v1beta1/documents/analyzeSentiment Analyze Sentiment API documentation
      * @codingStandardsIgnoreEnd
      *
-     * @param string|Object $content The content to analyze.
+     * @param string|StorageObject $content The content to analyze.
      * @param array $options {
      *     Configuration options.
      *
@@ -199,7 +199,7 @@ class NaturalLanguageClient
      * @see https://cloud.google.com/natural-language/reference/rest/v1beta1/documents/annotateText Annotate Text API documentation
      * @codingStandardsIgnoreEnd
      *
-     * @param string|Object $content The content to analyze.
+     * @param string|StorageObject $content The content to analyze.
      * @param array $options {
      *     Configuration options.
      *
@@ -250,7 +250,7 @@ class NaturalLanguageClient
      * @see https://cloud.google.com/natural-language/reference/rest/v1beta1/documents/annotateText Annotate Text API documentation
      * @codingStandardsIgnoreEnd
      *
-     * @param string|Object $content The content to annotate.
+     * @param string|StorageObject $content The content to annotate.
      * @param array $options {
      *     Configuration options.
      *
@@ -306,7 +306,7 @@ class NaturalLanguageClient
     /**
      * Formats the request for the API.
      *
-     * @param string|Object $content The content to analyze.
+     * @param string|StorageObject $content The content to analyze.
      * @param array $options Configuration options.
      * @return array
      */
@@ -318,7 +318,7 @@ class NaturalLanguageClient
             'type' => 'PLAIN_TEXT'
         ];
 
-        if ($content instanceof Object) {
+        if ($content instanceof StorageObject) {
             $objIdentity = $content->identity();
             $options['gcsContentUri'] = 'gs://' . $objIdentity['bucket'] . '/' . $objIdentity['object'];
         } else {
