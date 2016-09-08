@@ -23,6 +23,9 @@ use Google\Cloud\BigQuery\QueryResults;
 use Google\Cloud\Exception\NotFoundException;
 use Prophecy\Argument;
 
+/**
+ * @group bigquery
+ */
 class JobTest extends \PHPUnit_Framework_TestCase
 {
     public $connection;

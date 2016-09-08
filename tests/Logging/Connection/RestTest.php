@@ -27,6 +27,9 @@ use Prophecy\Argument;
 use Psr\Http\Message\RequestInterface;
 use Rize\UriTemplate;
 
+/**
+ * @group logging
+ */
 class RestTest extends \PHPUnit_Framework_TestCase
 {
     private $requestWrapper;

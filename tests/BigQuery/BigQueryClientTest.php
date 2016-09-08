@@ -24,6 +24,9 @@ use Google\Cloud\BigQuery\Job;
 use Google\Cloud\BigQuery\QueryResults;
 use Prophecy\Argument;
 
+/**
+ * @group bigquery
+ */
 class BigQueryClientTest extends \PHPUnit_Framework_TestCase
 {
     public $connection;

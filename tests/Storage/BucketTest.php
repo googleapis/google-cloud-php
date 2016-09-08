@@ -21,6 +21,9 @@ use Google\Cloud\Exception\NotFoundException;
 use Google\Cloud\Storage\Bucket;
 use Prophecy\Argument;
 
+/**
+ * @group storage
+ */
 class BucketTest extends \PHPUnit_Framework_TestCase
 {
     private $connection;

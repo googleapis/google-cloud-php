@@ -20,6 +20,9 @@ namespace Google\Cloud\Tests\Storage;
 use Google\Cloud\Storage\Acl;
 use Prophecy\Argument;
 
+/**
+ * @group storage
+ */
 class AclTest extends \PHPUnit_Framework_TestCase
 {
     public $connection;

@@ -19,6 +19,9 @@ namespace Google\Cloud\Tests\Exception;
 
 use Google\Cloud\Exception\ServiceException;
 
+/**
+ * @group exception
+ */
 class ServiceExceptionTest extends \PHPUnit_Framework_TestCase
 {
     public function testHasServiceException()

@@ -19,6 +19,9 @@ namespace Google\Cloud\Tests\Compute;
 
 use Google\Cloud\Compute\Metadata;
 
+/**
+ * @group compute
+ */
 class MetadataTest extends \PHPUnit_Framework_TestCase
 {
     protected $mock;

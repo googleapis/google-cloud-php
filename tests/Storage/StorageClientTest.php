@@ -20,6 +20,9 @@ namespace Google\Cloud\Tests\Storage;
 use Google\Cloud\Storage\StorageClient;
 use Prophecy\Argument;
 
+/**
+ * @group storage
+ */
 class StorageClientTest extends \PHPUnit_Framework_TestCase
 {
     public $connection;

@@ -22,6 +22,9 @@ use Google\Cloud\Logging\PsrLogger;
 use Google\Cloud\Logging\Connection\ConnectionInterface;
 use Prophecy\Argument;
 
+/**
+ * @group logging
+ */
 class PsrLoggerTest extends \PHPUnit_Framework_TestCase
 {
     public $connection;

@@ -25,6 +25,9 @@ use GuzzleHttp\Psr7\Response;
 use Prophecy\Argument;
 use Psr\Http\Message\RequestInterface;
 
+/**
+ * @group bigquery
+ */
 class RestTest extends \PHPUnit_Framework_TestCase
 {
     private $requestWrapper;

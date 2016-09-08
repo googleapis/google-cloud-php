@@ -21,6 +21,9 @@ use Google\Cloud\Iam\Iam;
 use Google\Cloud\Iam\IamConnectionInterface;
 use Prophecy\Argument;
 
+/**
+ * @group iam
+ */
 class IamTest extends \PHPUnit_Framework_TestCase
 {
     const RESOURCE = 'projects/my-project/topics/my-topic';

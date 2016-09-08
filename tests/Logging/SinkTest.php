@@ -22,6 +22,9 @@ use Google\Cloud\Logging\Sink;
 use Google\Cloud\Logging\Connection\ConnectionInterface;
 use Prophecy\Argument;
 
+/**
+ * @group logging
+ */
 class SinkTest extends \PHPUnit_Framework_TestCase
 {
     public $connection;

@@ -27,6 +27,9 @@ use Google\Cloud\Storage\StorageObject;
 use Google\Cloud\Upload\AbstractUploader;
 use Prophecy\Argument;
 
+/**
+ * @group bigquery
+ */
 class TableTest extends \PHPUnit_Framework_TestCase
 {
     public $connection;
