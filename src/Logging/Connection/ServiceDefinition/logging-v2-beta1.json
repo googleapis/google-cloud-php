@@ -6,7 +6,7 @@
  "name": "logging",
  "version": "v2beta1",
  "revision": "20160322",
- "title": "Google Cloud Logging API",
+ "title": "Stackdriver Logging API",
  "description": "Writes log entries and manages your logs, log sinks, and logs-based metrics.",
  "ownerDomain": "google.com",
  "ownerName": "Google",
