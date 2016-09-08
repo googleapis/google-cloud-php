@@ -28,6 +28,22 @@ use Google\Cloud\Storage\StorageObject;
  * and syntax analysis. Currently only English, Spanish, and Japanese textual
  * context are supported. Find more information at
  * [Google Cloud Natural Language docs](https://cloud.google.com/natural-language/docs/).
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\ServiceBuilder;
+ *
+ * $cloud = new ServiceBuilder();
+ *
+ * $language = $cloud->naturalLanguage();
+ * ```
+ *
+ * ```
+ * // NaturalLanguage can be instantiated directly.
+ * use Google\Cloud\NaturalLanguage\NaturalLanguageClient;
+ *
+ * $language = new NaturalLanguageClient();
+ * ```
  */
 class NaturalLanguageClient
 {
@@ -51,26 +67,6 @@ class NaturalLanguageClient
 
     /**
      * Create a NaturalLanguage client.
-     *
-     * Example:
-     * ```
-     * use Google\Cloud\ServiceBuilder;
-     *
-     * $cloud = new ServiceBuilder([
-     *     'projectId' => 'my-awesome-project'
-     * ]);
-     *
-     * $language = $cloud->naturalLanguage();
-     * ```
-     *
-     * ```
-     * // The NaturalLanguage client can also be instantianted directly.
-     * use Google\Cloud\NaturalLanguage\NaturalLanguageClient;
-     *
-     * $language = new NaturalLanguageClient([
-     *     'projectId' => 'my-awesome-project'
-     * ]);
-     * ```
      *
      * @param array $config {
      *     Configuration Options.

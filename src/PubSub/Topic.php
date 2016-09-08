@@ -25,6 +25,22 @@ use InvalidArgumentException;
 
 /**
  * A named resource to which messages are sent by publishers.
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\ServiceBuilder;
+ *
+ * $client = new ServiceBuilder();
+ *
+ * $pubsub = $client->pubsub();
+ *
+ * $topic = $pubsub->topic('my-topic-name');
+ * ```
+ *
+ * ```
+ * // You can also pass a fully-qualified topic name:
+ * $topic = $pubsub->topic('projects/my-awesome-project/topics/my-topic-name');
+ * ```
  */
 class Topic
 {
@@ -57,33 +73,6 @@ class Topic
 
     /**
      * Create a PubSub topic.
-     *
-     * Example:
-     * ```
-     * use Google\Cloud\ServiceBuilder;
-     *
-     * // The idiomatic way to get a Topic instance would be through PubSubClient:
-     *
-     * $client = new ServiceBuilder([
-     *     'projectId' => 'my-awesome-project'
-     * ]);
-     *
-     * $pubsub = $client->pubsub();
-     * $topic = $pubsub->topic('my-topic-name');
-     *
-     * // But you can instantiate the topic directly if you want!
-     *
-     * use Google\Cloud\PubSub\Topic;
-     *
-     * $topic = new Topic($connection, 'my-topic-name', 'my-awesome-project');
-     *
-     * // You can also pass a fully-qualified topic name:
-     * $topic = new Topic(
-     *     $connection,
-     *     'projects/my-awesome-project/topics/my-topic-name',
-     *     'my-awesome-project'
-     * );
-     * ```
      *
      * @param  ConnectionInterface $connection A connection to the Google Cloud
      *         Platform service

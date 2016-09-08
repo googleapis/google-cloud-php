@@ -39,20 +39,16 @@ use InvalidArgumentException;
  * ```
  * use Google\Cloud\ServiceBuilder;
  *
- * $cloud = new ServiceBuilder([
- *     'projectId' => 'my-awesome-project'
- * ]);
+ * $cloud = new ServiceBuilder();
  *
  * $datastore = $cloud->datastore();
  * ```
  *
  * ```
- * // The Datastore client can also be instantianted directly.
+ * // DatastoreClient can be instantiated directly.
  * use Google\Cloud\Datastore\DatastoreClient;
  *
- * $datastore = new DatastoreClient([
- *     'projectId' => 'my-awesome-project'
- * ]);
+ * $datastore = new DatastoreClient();
  * ```
  *
  * ```

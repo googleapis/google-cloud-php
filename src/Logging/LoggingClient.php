@@ -26,6 +26,21 @@ use Google\Cloud\Logging\Connection\Rest;
  * monitor, and alert on log data and events from Google Cloud Platform and
  * Amazon Web Services. Find more information at
  * [Google Stackdriver Logging docs](https://cloud.google.com/logging/docs/).
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\ServiceBuilder;
+ *
+ * $cloud = new ServiceBuilder();
+ * $logging = $cloud->logging();
+ * ```
+ *
+ * ```
+ * // LoggingClient can be instantiated directly.
+ * use Google\Cloud\Logging\LoggingClient;
+ *
+ * $logging = new LoggingClient();
+ * ```
  */
 class LoggingClient
 {
@@ -47,15 +62,6 @@ class LoggingClient
 
     /**
      * Create a Logging client.
-     *
-     * Example:
-     * ```
-     * use Google\Cloud\Logging\LoggingClient;
-     *
-     * $logging = new LoggingClient([
-     *     'projectId' => 'myAwesomeProject'
-     * ]);
-     * ```
      *
      * @param array $config {
      *     Configuration options.

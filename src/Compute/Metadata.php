@@ -27,12 +27,14 @@ use Google\Cloud\Compute\Metadata\Readers\StreamReader;
  *
  * You can get the GCE metadata values very easily like:
  *
+ * ```
  * use Google\Cloud\Compute\Metadata;
  *
  * $metadata = new Metadata();
  * $project_id = $metadata->getProjectId();
  *
  * $val = $metadata->getProjectMetadata($key);
+ * ```
  */
 class Metadata
 {
@@ -55,7 +57,9 @@ class Metadata
     }
 
     /**
-     * A method to replace the reader implementation.
+     * Replace the default reader implementation
+     *
+     * @param mixed $reader The reader implementation
      */
     public function setReader($reader)
     {
@@ -63,7 +67,14 @@ class Metadata
     }
 
     /**
-     * This method retrieves a single metadata value for a given path.
+     * Fetch a metadata item by its path
+     *
+     * Example:
+     * ```
+     * $projectId = $reader->get('project/project-id');
+     * ```
+     *
+     * @param string $path The path of the item to retrieve.
      */
     public function get($path)
     {
@@ -71,18 +82,34 @@ class Metadata
     }
 
     /**
-     * This method detects the project id and returns it.
+     * Detect and return the project ID
+     *
+     * Example:
+     * ```
+     * $projectId = $reader->getProjectId();
+     * ```
+     *
+     * @return string
      */
     public function getProjectId()
     {
         if (! isset($this->projectId)) {
             $this->projectId = $this->reader->read('project/project-id');
         }
+
         return $this->projectId;
     }
 
     /**
-     * This method fetches the project custom metadta and returns it.
+     * Fetch an item from the project metadata
+     *
+     * Example:
+     * ```
+     * $foo = $reader->getProjectMetadata('foo');
+     * ```
+     *
+     * @param string $key The metadata key
+     * @return string
      */
     public function getProjectMetadata($key)
     {
@@ -91,7 +118,15 @@ class Metadata
     }
 
     /**
-     * This method fetches the instance custom metadta and returns it.
+     * Fetch an item from the instance metadata
+     *
+     * Example:
+     * ```
+     * $foo = $reader->getInstanceMetadata('foo');
+     * ```
+     *
+     * @param string $key The instance metadata key
+     * @return string
      */
     public function getInstanceMetadata($key)
     {

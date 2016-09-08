@@ -24,6 +24,16 @@ use Google\Cloud\Logging\Connection\ConnectionInterface;
  * A metric counts the number of log entries that match a given filter. You can
  * use these metrics to create charts and alerting policies in
  * [Stackdriver Monitoring](https://cloud.google.com/monitoring/docs).
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\ServiceBuilder;
+ *
+ * $cloud = new ServiceBuilder();
+ * $logging = $cloud->logging();
+ *
+ * $metric = $logging->metric('my-metric');
+ * ```
  */
 class Metric
 {

@@ -23,6 +23,10 @@ use Google\Cloud\Exception\GoogleException;
 /**
  * QueryResults represent the result of a BigQuery SQL query. Read more at the
  * [Query Response API Documentation](https://cloud.google.com/bigquery/docs/reference/v2/jobs/query#response).
+ *
+ * This class should be not instantiated directly, but as a result of
+ * calling {@see Google\Cloud\BigQuery\BigQueryClient::runQuery()} or
+ * {@see Google\Cloud\BigQuery\Job::queryResults()}.
  */
 class QueryResults
 {
@@ -47,10 +51,6 @@ class QueryResults
     private $reloadOptions;
 
     /**
-     * This class should be not instantiated directly, but as a result of
-     * calling {@see Google\Cloud\BigQuery\BigQueryClient::runQuery()} or
-     * {@see Google\Cloud\BigQuery\Job::queryResults()}.
-     *
      * @param ConnectionInterface $connection Represents a connection to
      *        BigQuery.
      * @param string $jobId The job's ID.

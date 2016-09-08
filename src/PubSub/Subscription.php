@@ -26,6 +26,32 @@ use InvalidArgumentException;
 /**
  * A named resource representing the stream of messages from a single, specific
  * topic, to be delivered to the subscribing application.
+ *
+ * Subscriptions are created by {@see Google\Cloud\PubSub\PubSubClient}
+ * or {@see Google\Cloud\PubSub\Topic}.
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\ServiceBuilder;
+ *
+ * $cloud = new ServiceBuilder();
+ *
+ * $pubsub = $cloud->pubsub();
+ *
+ * $subscription = $pubsub->subscription(
+ *     'my-new-subscription',
+ *     'my-topic-name'
+ * );
+ * ```
+ *
+ * ```
+ * // Create subscription through a topic
+ * use Google\Cloud\ServiceBuilder;
+ *
+ * $topic = $pubsub->topic('my-topic-name');
+ *
+ * $subscription = $topic->subscription('my-new-subscription');
+ * ```
  */
 class Subscription
 {
@@ -65,48 +91,6 @@ class Subscription
 
     /**
      * Create a Subscription.
-     *
-     * The idiomatic way to use this class is through the PubSubClient or Topic,
-     * but you can instantiate it directly as well.
-     *
-     * Example:
-     * ```
-     * // Create subscription through a topic
-     * use Google\Cloud\ServiceBuilder;
-     *
-     * $cloud = new ServiceBuilder([
-     *     'projectId' => 'my-awesome-project'
-     * ]);
-     *
-     * $pubsub = $cloud->pubsub();
-     *
-     * $topic = $pubsub->topic('my-topic-name');
-     *
-     * $subscription = $topic->subscription('my-new-subscription');
-     *
-     * // Create subscription through PubSubClient
-     *
-     * use Google\Cloud\PubSub\PubSubClient;
-     *
-     * $pubsub = new PubSubClient([
-     *     'projectId' => 'my-awesome-project'
-     * ]);
-     *
-     * $subscription = $pubsub->subscription(
-     *     'my-new-subscription',
-     *     'my-topic-name'
-     * );
-     *
-     * // Create subscription directly
-     * use Google\Cloud\Pubsub\Subscription;
-     *
-     * $subscription = new Subscription(
-     *     $connection
-     *     'my-new-subscription',
-     *     'my-topic-name',
-     *     'my-awesome-project'
-     * );
-     * ```
      *
      * @param  ConnectionInterface $connection The service connection object
      * @param  string $name The subscription name
