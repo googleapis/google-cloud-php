@@ -21,6 +21,9 @@ use Google\Cloud\BigQuery\Connection\ConnectionInterface;
 use Google\Cloud\BigQuery\QueryResults;
 use Prophecy\Argument;
 
+/**
+ * @group bigquery
+ */
 class QueryResultsTest extends \PHPUnit_Framework_TestCase
 {
     public $connection;

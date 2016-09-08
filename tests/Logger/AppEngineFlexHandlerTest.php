@@ -20,6 +20,9 @@ namespace Google\Cloud\Tests\Logger;
 use Google\Cloud\Logger\AppEngineFlexHandler;
 use Monolog\Logger;
 
+/**
+ * @group logger
+ */
 class AppEngineFlexHandlerTest extends \PHPUnit_Framework_TestCase
 {
     private $path;

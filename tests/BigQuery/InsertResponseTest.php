@@ -20,6 +20,9 @@ namespace Google\Cloud\Tests\BigQuery;
 use Google\Cloud\BigQuery\InsertResponse;
 use Prophecy\Argument;
 
+/**
+ * @group bigquery
+ */
 class InsertResponseTest extends \PHPUnit_Framework_TestCase
 {
     public function testSuccess()

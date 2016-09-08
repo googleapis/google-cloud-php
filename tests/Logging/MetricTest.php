@@ -22,6 +22,9 @@ use Google\Cloud\Logging\Metric;
 use Google\Cloud\Logging\Connection\ConnectionInterface;
 use Prophecy\Argument;
 
+/**
+ * @group logging
+ */
 class MetricTest extends \PHPUnit_Framework_TestCase
 {
     public $connection;

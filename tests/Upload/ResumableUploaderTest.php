@@ -23,6 +23,9 @@ use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use Prophecy\Argument;
 
+/**
+ * @group upload
+ */
 class ResumableUploaderTest extends \PHPUnit_Framework_TestCase
 {
     private $requestWrapper;

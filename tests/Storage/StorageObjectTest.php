@@ -22,6 +22,9 @@ use Google\Cloud\Storage\StorageObject;
 use GuzzleHttp\Psr7;
 use Prophecy\Argument;
 
+/**
+ * @group storage
+ */
 class StorageObjectTest extends \PHPUnit_Framework_TestCase
 {
     public $connection;

@@ -19,6 +19,9 @@ namespace Google\Cloud\Tests\Iam;
 
 use Google\Cloud\Iam\PolicyBuilder;
 
+/**
+ * @group iam
+ */
 class PolicyBuilderTest extends \PHPUnit_Framework_TestCase
 {
     public function testBuilder()
