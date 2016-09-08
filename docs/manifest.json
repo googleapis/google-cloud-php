@@ -1,25 +1,26 @@
 {
-  "lang": "php",
-  "friendlyLang": "PHP",
-  "libraryTitle": "Google Cloud Client Library",
-  "moduleName": "google-cloud-php",
-  "defaultService": "servicebuilder",
-  "markdown": "php",
-  "versions": [
-    "v0.7.1",
-    "v0.7.0",
-    "v0.6.0",
-    "v0.5.1",
-    "v0.5.0",
-    "v0.4.1",
-    "v0.4.0",
-    "v0.3.0",
-    "master"
-  ],
-  "content": "json",
-  "home": "home.html",
-  "package": {
-    "title": "Packagist",
-    "href": "https://packagist.org/packages/google/cloud"
-  }
+    "lang": "php",
+    "friendlyLang": "PHP",
+    "libraryTitle": "Google Cloud Client Library",
+    "moduleName": "google-cloud-php",
+    "defaultService": "servicebuilder",
+    "markdown": "php",
+    "versions": [
+        "v0.8.0",
+        "v0.7.1",
+        "v0.7.0",
+        "v0.6.0",
+        "v0.5.1",
+        "v0.5.0",
+        "v0.4.1",
+        "v0.4.0",
+        "v0.3.0",
+        "master"
+    ],
+    "content": "json",
+    "home": "home.html",
+    "package": {
+        "title": "Packagist",
+        "href": "https:\/\/packagist.org\/packages\/google\/cloud"
+    }
 }
