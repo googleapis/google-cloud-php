@@ -25,6 +25,22 @@ use Google\Cloud\Storage\Connection\Rest;
  * Google Cloud Storage client. Allows you to store and retrieve data on
  * Google's infrastructure. Find more information at
  * [Google Cloud Storage API docs](https://developers.google.com/storage).
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\ServiceBuilder;
+ *
+ * $cloud = new ServiceBuilder();
+ *
+ * $storage = $cloud->storage();
+ * ```
+ *
+ * ```
+ * // StorageClient can be instantiated directly.
+ * use Google\Cloud\Storage\StorageClient;
+ *
+ * $storage = new StorageClient();
+ * ```
  */
 class StorageClient
 {
@@ -41,15 +57,6 @@ class StorageClient
 
     /**
      * Create a Storage client.
-     *
-     * Example:
-     * ```
-     * use Google\Cloud\Storage\StorageClient;
-     *
-     * $storage = new StorageClient([
-     *     'projectId' => 'myAwesomeProject'
-     * ]);
-     * ```
      *
      * @param array $config {
      *     Configuration options.

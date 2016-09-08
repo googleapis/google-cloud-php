@@ -22,6 +22,21 @@ use Google\Cloud\Logging\Connection\ConnectionInterface;
 
 /**
  * A sink is used to export log entries outside Stackdriver Logging.
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\ServiceBuilder;
+ *
+ * $cloud = new ServiceBuilder();
+ * $logging = $cloud->logging();
+ *
+ * $logging->createSink('my-sink', 'storage.googleapis.com/my-bucket');
+ * ```
+ *
+ * ```
+ * // To use an existing sink:
+ * $sink = $logging->sink('my-sink');
+ * ```
  */
 class Sink
 {

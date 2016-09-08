@@ -52,6 +52,71 @@ use InvalidArgumentException;
  * ]);
  * ```
  *
+ * ```
+ * // Images can be directly instantiated.
+ * use Google\Cloud\Vision\Image;
+ *
+ * $imageResource = fopen(__DIR__ .'/assets/family-photo.jpg', 'r');
+ * $image = new Image($imageResource, [
+ *     'FACE_DETECTION'
+ * ]);
+ * ```
+ *
+ * ```
+ * // Image data can be given as a string
+ * $fileContents = file_get_contents(__DIR__ .'/assets/family-photo.jpg');
+ * $image = $vision->image($fileContents, [
+ *    'FACE_DETECTION'
+ * ]);
+ * ```
+ *
+ * ```
+ * // Files stored in Google Cloud Storage can be used.
+ * $file = $cloud->storage()->bucket('my-test-bucket')->object('family-photo.jpg');
+ * $image = $vision->image($file, [
+ *     'FACE_DETECTION'
+ * ]);
+ * ```
+ *
+ * ```
+ * // This example sets a maximum results limit on one feature and provides some image context.
+ *
+ * $imageResource = fopen(__DIR__ .'/assets/family-photo.jpg', 'r');
+ * $image = $vision->image($imageResource, [
+ *     'FACE_DETECTION',
+ *     'LOGO_DETECTION'
+ * ], [
+ *     'maxResults' => [
+ *         'FACE_DETECTION' => 1
+ *     ],
+ *     'imageContext' => [
+ *         'latLongRect' => [
+ *             'minLatLng' => [
+ *                 'latitude' => '-45.0',
+ *                 'longitude' => '-45.0'
+ *             ],
+ *             'maxLatLng' => [
+ *                 'latitude' => '45.0',
+ *                 'longitude' => '45.0'
+ *             ]
+ *         ]
+ *     ]
+ * ]);
+ * ```
+ *
+ * ```
+ * // The client library also offers shortcut names which can be used in place of the longer feature names.
+ * $image = new Image($imageResource, [
+ *     'faces',          // Corresponds to `FACE_DETECTION`
+ *     'landmarks',      // Corresponds to `LANDMARK_DETECTION`
+ *     'logos',          // Corresponds to `LOGO_DETECTION`
+ *     'labels',         // Corresponds to `LABEL_DETECTION`
+ *     'text',           // Corresponds to `TEXT_DETECTION`
+ *     'safeSearch',     // Corresponds to `SAFE_SEARCH_DETECTION`
+ *     'imageProperties'  // Corresponds to `IMAGE_PROPERTIES`
+ * ]);
+ * ```
+ *
  * @see https://cloud.google.com/vision/docs/image-best-practices Best Practices
  * @see https://cloud.google.com/vision/docs/pricing Pricing
  */
@@ -97,73 +162,6 @@ class Image
 
     /**
      * Create an image with all required configuration.
-     *
-     * Example:
-     * ```
-     * use Google\Cloud\Vision\Image;
-     *
-     * $imageResource = fopen(__DIR__ .'/assets/family-photo.jpg', 'r');
-     * $image = new Image($imageResource, [
-     *     'FACE_DETECTION'
-     * ]);
-     * ```
-     *
-     * ```
-     * // Image data can be given as a string
-     *
-     * $fileContents = file_get_contents(__DIR__ .'/assets/family-photo.jpg');
-     * $image = new Image($fileContents, [
-     *    'FACE_DETECTION'
-     * ]);
-     * ```
-     *
-     * ```
-     * // Files stored in Google Cloud Storage can be used.
-     *
-     * $file = $cloud->storage()->bucket('my-test-bucket')->object('family-photo.jpg');
-     * $image = $vision->image($file, [
-     *     'FACE_DETECTION'
-     * ]);
-     * ```
-     *
-     * ```
-     * // This example sets a maximum results limit on one feature and provides some image context.
-     *
-     * $imageResource = fopen(__DIR__ .'/assets/family-photo.jpg', 'r');
-     * $image = $vision->image($imageResource, [
-     *     'FACE_DETECTION',
-     *     'LOGO_DETECTION'
-     * ], [
-     *     'maxResults' => [
-     *         'FACE_DETECTION' => 1
-     *     ],
-     *     'imageContext' => [
-     *         'latLongRect' => [
-     *             'minLatLng' => [
-     *                 'latitude' => '-45.0',
-     *                 'longitude' => '-45.0'
-     *             ],
-     *             'maxLatLng' => [
-     *                 'latitude' => '45.0',
-     *                 'longitude' => '45.0'
-     *             ]
-     *         ]
-     *     ]
-     * ]);
-     * ```
-     *
-     * ```
-     * // The client library also offers shortcut names which can be used in place of the longer feature names.
-     * $image = new Image($imageResource, [
-     *     'faces',          // Corresponds to `FACE_DETECTION`
-     *     'landmarks',      // Corresponds to `LANDMARK_DETECTION`
-     *     'logos',          // Corresponds to `LOGO_DETECTION`
-     *     'labels',         // Corresponds to `LABEL_DETECTION`
-     *     'text',           // Corresponds to `TEXT_DETECTION`
-     *     'safeSearch',     // Corresponds to `SAFE_SEARCH_DETECTION`
-     *     'imageProperties'  // Corresponds to `IMAGE_PROPERTIES`
-     * ]);
-     * ```
      *
      * @param  resource|string|StorageObject $image An image to configure with
      *         the given settings. This parameter will accept a resource, a

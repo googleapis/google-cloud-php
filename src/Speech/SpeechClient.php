@@ -38,6 +38,22 @@ use Google\Cloud\Storage\StorageObject;
  * ```sh
  * $ composer require james-heinrich/getid3
  * ```
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\ServiceBuilder;
+ *
+ * $cloud = new ServiceBuilder();
+ *
+ * $speech = $cloud->speech();
+ * ```
+ *
+ * ```
+ * // SpeechClient can be instantiated directly.
+ * use Google\Cloud\Speech\SpeechClient;
+ *
+ * $speech = new SpeechClient();
+ * ```
  */
 class SpeechClient
 {
@@ -52,26 +68,6 @@ class SpeechClient
 
     /**
      * Create a Speech client.
-     *
-     * Example:
-     * ```
-     * use Google\Cloud\ServiceBuilder;
-     *
-     * $cloud = new ServiceBuilder([
-     *     'projectId' => 'my-awesome-project'
-     * ]);
-     *
-     * $speech = $cloud->speech();
-     * ```
-     *
-     * ```
-     * // The Speech client can also be instantianted directly.
-     * use Google\Cloud\Speech\SpeechClient;
-     *
-     * $speech = new SpeechClient([
-     *     'projectId' => 'my-awesome-project'
-     * ]);
-     * ```
      *
      * @param array $config {
      *     Configuration Options.

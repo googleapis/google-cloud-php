@@ -36,6 +36,26 @@ use Google\Cloud\Translate\Connection\Rest;
  * service account or application default credentials. Follow the
  * [before you begin](https://cloud.google.com/translate/v2/translating-text-with-rest#before-you-begin)
  * instructions to learn how to generate a key.
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\ServiceBuilder;
+ *
+ * $cloud = new ServiceBuilder([
+ *     'key' => 'YOUR_KEY'
+ * ]);
+ *
+ * $translate = $cloud->translate();
+ * ```
+ *
+ * ```
+ * // TranslateClient can be instantiated directly.
+ * use Google\Cloud\Translate\TranslateClient;
+ *
+ * $translate = new TranslateClient([
+ *     'key' => 'YOUR_KEY'
+ * ]);
+ * ```
  */
 class TranslateClient
 {
@@ -55,26 +75,6 @@ class TranslateClient
 
     /**
      * Create a Translate client.
-     *
-     * Example:
-     * ```
-     * use Google\Cloud\ServiceBuilder;
-     *
-     * $cloud = new ServiceBuilder([
-     *     'key' => 'YOUR_KEY'
-     * ]);
-     *
-     * $translate = $cloud->translate();
-     * ```
-     *
-     * ```
-     * // The Translate client can also be instantianted directly.
-     * use Google\Cloud\Translate\TranslateClient;
-     *
-     * $translate = new TranslateClient([
-     *     'key' => 'YOUR_KEY'
-     * ]);
-     * ```
      *
      * @param array $config {
      *     Configuration Options.

@@ -21,6 +21,15 @@ use InvalidArgumentException;
 
 /**
  * Helper class for creating valid IAM policies
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\Iam\PolicyBuilder;
+ *
+ * $builder = new PolicyBuilder();
+ * $builder->addBinding('roles/admin', [ 'user:admin@domain.com' ]);
+ * $result = $builder->result();
+ * ```
  */
 class PolicyBuilder
 {
@@ -43,15 +52,6 @@ class PolicyBuilder
 
     /**
      * Create a PolicyBuilder.
-     *
-     * * Example:
-     * ```
-     * use Google\Cloud\Iam\PolicyBuilder;
-     *
-     * $builder = new PolicyBuilder();
-     * $builder->addBinding('roles/admin', [ 'user:admin@domain.com' ]);
-     * $result = $builder->result();
-     * ```
      *
      * @param  array $policy A policy array
      * @throws InvalidArgumentException

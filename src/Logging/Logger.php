@@ -21,6 +21,16 @@ use Google\Cloud\Logging\Connection\ConnectionInterface;
 
 /**
  * A logger used to write entries to Google Stackdriver Logging.
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\ServiceBuilder;
+ *
+ * $cloud = new ServiceBuilder();
+ * $logging = $cloud->logging();
+ *
+ * $logger = $logging->logger('my-log');
+ * ```
  */
 class Logger
 {

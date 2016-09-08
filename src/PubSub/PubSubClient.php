@@ -25,6 +25,25 @@ use InvalidArgumentException;
  * Google Cloud Pub/Sub client. Allows you to send and receive
  * messages between independent applications. Find more information at
  * [Google Cloud Pub/Sub docs](https://cloud.google.com/pubsub/docs/).
+ *
+ * The [PUBSUB_EMULATOR_HOST](https://cloud.google.com/pubsub/emulator#env) environment variable
+ * from the gcloud SDK is honored, otherwise the actual API endpoint will be used.
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\ServiceBuilder;
+ *
+ * $cloud = new ServiceBuilder();
+ *
+ * $pubsub = $cloud->pubsub();
+ * ```
+ *
+ * ```
+ * // PubSubClient can be instantiated directly.
+ * use Google\Cloud\PubSub\PubSubClient;
+ *
+ * $pubsub = new PubSubClient();
+     * ```
  */
 class PubSubClient
 {
@@ -40,27 +59,6 @@ class PubSubClient
 
     /**
      * Create a PubSub client.
-     *
-     * The [PUBSUB_EMULATOR_HOST](https://cloud.google.com/pubsub/emulator#env) environment variable
-     * from the gcloud SDK is honored, otherwise the actual API endpoint will be used.
-     *
-     * Example:
-     * ```
-     * use Google\Cloud\ServiceBuilder;
-     *
-     * $cloud = new ServiceBuilder([
-     *     'projectId' => 'my-awesome-project'
-     * ]);
-     *
-     * $pubsub = $cloud->pubsub();
-     *
-     * // The PubSub client can also be instantianted directly.
-     * use Google\Cloud\PubSub\PubSubClient;
-     *
-     * $pubsub = new PubSubClient([
-     *     'projectId' => 'my-awesome-project'
-     * ]);
-     * ```
      *
      * @param array $config {
      *     Configuration Options.

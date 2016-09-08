@@ -23,6 +23,21 @@ use Psr\Log\LogLevel;
 
 /**
  * A PSR-3 compliant logger used to write entries to Google Stackdriver Logging.
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\ServiceBuilder;
+ *
+ * $cloud = new ServiceBuilder();
+ * $logging = $cloud->logging();
+ *
+ * $psrLogger = $logging->psrLogger('my-log', [
+ *     'type' => 'gcs_bucket',
+ *     'labels' => [
+ *         'bucket_name' => 'my-bucket'
+ *     ]
+ * ]);
+ * ```
  */
 class PsrLogger implements LoggerInterface
 {

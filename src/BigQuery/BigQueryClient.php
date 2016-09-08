@@ -25,6 +25,22 @@ use Google\Cloud\ClientTrait;
  * Google Cloud BigQuery client. Allows you to create, manage, share and query
  * data. Find more information at
  * [Google Cloud BigQuery Docs](https://cloud.google.com/bigquery/what-is-bigquery).
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\ServiceBuilder;
+ *
+ * $cloud = new ServiceBuilder();
+ *
+ * $bigQuery = $cloud->bigQuery();
+ * ```
+ *
+ * ```
+ * // BigQueryClient can be instantiated directly.
+ * use Google\Cloud\BigQuery\BigQueryClient;
+ *
+ * $bigQuery = new BigQueryClient();
+ * ```
  */
 class BigQueryClient
 {
@@ -41,15 +57,6 @@ class BigQueryClient
 
     /**
      * Create a BigQuery client.
-     *
-     * Example:
-     * ```
-     * use Google\Cloud\BigQuery\BigQueryClient;
-     *
-     * $bigQuery = new BigQueryClient([
-     *     'projectId' => 'myAwesomeProject'
-     * ]);
-     * ```
      *
      * @param array $config {
      *     Configuration options.

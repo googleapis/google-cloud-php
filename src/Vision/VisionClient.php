@@ -35,6 +35,13 @@ use InvalidArgumentException;
  *
  * $vision = $cloud->vision();
  * ```
+ *
+ * ```
+ * // VisionClient can be instantiated directly.
+ * use Google\Cloud\Vision\VisionClient;
+ *
+ * $vision = new VisionClient();
+ * ```
  */
 class VisionClient
 {
@@ -49,13 +56,6 @@ class VisionClient
 
     /**
      * Create a Vision client.
-     *
-     * Example:
-     * ```
-     * use Google\Cloud\Vision\VisionClient;
-     *
-     * $vision = new VisionClient();
-     * ```
      *
      * @param array $config {
      *     Configuration Options.
