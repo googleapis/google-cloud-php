@@ -14,6 +14,7 @@ This client supports the following Google Cloud Platform services:
 * [Google Cloud Datastore](#google-cloud-datastore)
 * [Google Cloud Natural Language](#google-cloud-natural-language)
 * [Google Cloud Pub/Sub](#google-cloud-pubsub)
+* [Google Cloud Speech](#google-cloud-speech)
 * [Google Cloud Storage](#google-cloud-storage)
 * [Google Cloud Vision](#google-cloud-vision)
 
@@ -251,6 +252,33 @@ $messages = $subscription->pull();
 
 foreach ($messages as $message) {
     echo $message['message']['data'] . "\n";
+}
+```
+
+## Google Cloud Speech
+
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/speech/speechclient)
+- [Official Documentation](https://cloud.google.com/speech/docs)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Speech\SpeechClient;
+
+$speech = new SpeechClient([
+    'projectId' => 'my_project'
+]);
+
+// Recognize the speech in an audio file.
+$results = $speech->recognize(
+    fopen('/data/audio_sample.flac', 'r')
+);
+
+foreach ($results as $result) {
+    echo $result['transcript'] . "\n";
+    echo $result['confidence'] . "\n";
 }
 ```
 

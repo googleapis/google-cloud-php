@@ -23,6 +23,7 @@ use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Logging\LoggingClient;
 use Google\Cloud\NaturalLanguage\NaturalLanguageClient;
 use Google\Cloud\PubSub\PubSubClient;
+use Google\Cloud\Speech\SpeechClient;
 use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Translate\TranslateClient;
 use Google\Cloud\Vision\VisionClient;
@@ -186,6 +187,27 @@ class ServiceBuilder
     public function pubsub(array $config = [])
     {
         return new PubSubClient($config ? $this->resolveConfig($config) : $this->config);
+    }
+
+    /**
+     * Google Cloud Speech client. Enables easy integration of Google speech
+     * recognition technologies into developer applications. Send audio and
+     * receive a text transcription from the Cloud Speech API service. Find more
+     * information at
+     * [Google Cloud Speech API docs](https://developers.google.com/speech).
+     *
+     * Example:
+     * ```
+     * $speech = $cloud->speech();
+     * ```
+     *
+     * @param array $config Configuration options. See
+     *        {@see Google\Cloud\ServiceBuilder::__construct()} for the available options.
+     * @return SpeechClient
+     */
+    public function speech(array $config = [])
+    {
+        return new SpeechClient($config ? $this->resolveConfig($config) : $this->config);
     }
 
     /**
