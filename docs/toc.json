@@ -139,8 +139,8 @@
                 "title": "Bucket",
                 "type": "storage/bucket"
             }, {
-                "title": "Object",
-                "type": "storage/object"
+                "title": "StorageObject",
+                "type": "storage/storageobject"
             }]
         },
         {
