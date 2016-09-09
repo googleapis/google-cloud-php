@@ -19,6 +19,9 @@ namespace Google\Cloud\Tests\PubSub;
 
 use Google\Cloud\PubSub\ResourceNameTrait;
 
+/**
+ * @group pubsub
+ */
 class ResourceNameTraitTest extends \PHPUnit_Framework_TestCase
 {
     private $trait;

@@ -43,7 +43,7 @@ use InvalidArgumentException;
  * use Google\Cloud\PubSub\PubSubClient;
  *
  * $pubsub = new PubSubClient();
-     * ```
+ * ```
  */
 class PubSubClient
 {
@@ -102,7 +102,7 @@ class PubSubClient
      * echo $topic->info()['name']; // `projects/my-awesome-project/topics/my-new-topic`
      * ```
      *
-     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.topics/create Create Topic API Documentation
+     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.topics/create Create Topic
      *
      * @param  string $name The topic name
      * @param  array $options Configuration Options
@@ -151,7 +151,7 @@ class PubSubClient
      * }
      * ```
      *
-     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.topics/list List Topics API Documentation
+     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.topics/list List Topics
      *
      * @param  array $options {
      *     Configuration Options
@@ -195,8 +195,7 @@ class PubSubClient
      * $subscription = $pubsub->subscribe('my-new-subscription', 'my-topic-name');
      * ```
      *
-     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.subscriptions/create Create Subscription API
-     *      Documentation
+     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.subscriptions/create Create Subscription
      *
      * @param  string $name A subscription name
      * @param  string $topicName The topic to which the new subscription will be subscribed.
@@ -247,8 +246,7 @@ class PubSubClient
      * }
      * ```
      *
-     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.subscriptions/list List Subscriptions API
-     *      Documentation
+     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.subscriptions/list List Subscriptions
      *
      * @param  array $options {
      *     Configuration Options
@@ -288,7 +286,7 @@ class PubSubClient
      * @param  string $name The topic name
      * @param  array  $info Information about the topic. Used internally to
      *         populate topic objects with an API result. Should be
-     *         an instance of [Topic](https://cloud.google.com/pubsub/reference/rest/v1/projects.topics#Topic).
+     *         a representation of a [Topic](https://cloud.google.com/pubsub/reference/rest/v1/projects.topics#Topic).
      * @return Topic
      */
     private function topicFactory($name, array $info = null)
@@ -299,12 +297,14 @@ class PubSubClient
     /**
      * Create a subscription instance.
      *
+     * @codingStandardsIgnoreStart
      * @param  string $name The subscription name
      * @param  string $topicName The topic name
      * @param  array  $info Information about the subscription. Used
-     *         to populate subscriptons with an api result. Should be an instance
-     *         of [Subscription](https://cloud.google.com/pubsub/reference/rest/v1/projects.subscriptions#Subscription).
+     *         to populate subscriptons with an api result. Should be a
+     *         representation of a [Subscription](https://cloud.google.com/pubsub/reference/rest/v1/projects.subscriptions#Subscription).
      * @return Subscription
+     * @codingStandardsIgnoreEnd
      */
     private function subscriptionFactory($name, $topicName = null, array $info = null)
     {

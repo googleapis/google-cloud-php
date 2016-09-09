@@ -33,7 +33,6 @@ use InvalidArgumentException;
  * $client = new ServiceBuilder();
  *
  * $pubsub = $client->pubsub();
- *
  * $topic = $pubsub->topic('my-topic-name');
  * ```
  *
@@ -78,7 +77,7 @@ class Topic
      *         Platform service
      * @param  string $name The topic name
      * @param  string $projectId The project Id
-     * @param  array $info [A Topic](https://cloud.google.com/pubsub/reference/rest/v1/projects.topics)
+     * @param  array $info A [Topic](https://cloud.google.com/pubsub/reference/rest/v1/projects.topics)
      */
     public function __construct(
         ConnectionInterface $connection,
@@ -127,7 +126,7 @@ class Topic
      * }
      * ```
      *
-     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.topics/create Create Topic API Documentation
+     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.topics/create Create Topic
      *
      * @param  array $options Configuration Options
      * @return array Topic information
@@ -151,7 +150,7 @@ class Topic
      * $topic->delete();
      * ```
      *
-     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.topics/delete Delete Topic API Documentation
+     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.topics/delete Delete Topic
      *
      * @param  array $options Configuration Options
      * @return void
@@ -210,7 +209,7 @@ class Topic
      * echo $info['name']; // projects/my-awesome-project/topics/my-topic-name
      * ```
      *
-     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.topics/get Get Topic API Documentation
+     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.topics/get Get Topic
      *
      * @param  array $options Configuration Options
      * @return array [A representation of a Topic](https://cloud.google.com/pubsub/reference/rest/v1/projects.topics)
@@ -244,7 +243,7 @@ class Topic
      * echo $info['name']; // projects/my-awesome-project/topics/my-topic-name
      * ```
      *
-     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.topics/get Get Topic API Documentation
+     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.topics/get Get Topic
      *
      * @param  array $options Configuration Options
      * @return array [A representation of a Topic](https://cloud.google.com/pubsub/reference/rest/v1/projects.topics)
@@ -274,7 +273,7 @@ class Topic
      * ]);
      * ```
      *
-     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.topics/publish Publish Message API Documentation
+     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.topics/publish Publish Message
      *
      * @param  string $message [Message Format](https://cloud.google.com/pubsub/reference/rest/v1/PubsubMessage)
      * @param  array $options {
@@ -316,7 +315,7 @@ class Topic
      * ]);
      * ```
      *
-     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.topics/publish Publish Message API Documentation
+     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.topics/publish Publish Message
      *
      * @param  array $messages A list of messages. Each message must be in the correct
      *         [Message Format](https://cloud.google.com/pubsub/reference/rest/v1/PubsubMessage).
@@ -356,8 +355,7 @@ class Topic
      * $topic->subscribe('my-new-subscription');
      * ```
      *
-     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.subscriptions/create Create Subscription API
-     *      Documentation
+     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.subscriptions/create Create Subscription
      *
      * @param  string $name The subscription name
      * @param  array  $options Please see {@see Google\Cloud\PubSub\Subscription::create()} for configuration details.
@@ -404,8 +402,9 @@ class Topic
      * }
      * ```
      *
-     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.topics.subscriptions/list List Topic
-     *      Subscriptions API Documentation
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.topics.subscriptions/list List Topic Subscriptions
+     * @codingStandardsIgnoreEnd
      *
      * @param  array $options {
      *     Configuration Options
@@ -445,12 +444,9 @@ class Topic
      * ```
      *
      * @see https://cloud.google.com/pubsub/access_control PubSub Access Control Documentation
-     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.topics/getIamPolicy Get Topic IAM Policy API
-     *      Documentation
-     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.topics/setIamPolicy Set Topic IAM Policy API
-     *      Documentation
+     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.topics/getIamPolicy Get Topic IAM Policy
+     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.topics/setIamPolicy Set Topic IAM Policy
      * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.topics/testIamPermissions Test Topic Permissions
-     *      API Documentation
      *
      * @return Iam
      */
@@ -504,8 +500,8 @@ class Topic
      * subscription data.
      *
      * @param  string $name
-     * @param  array $info  [A representation of a
-     *         Subscription)[https://cloud.google.com/pubsub/reference/rest/v1/projects.subscriptions#Subscription]
+     * @param  array $info A representation of a
+     *         [Subscription)[https://cloud.google.com/pubsub/reference/rest/v1/projects.subscriptions#Subscription]
      * @return Subscription
      */
     private function subscriptionFactory($name, array $info = null)
