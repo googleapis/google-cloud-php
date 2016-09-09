@@ -24,6 +24,9 @@ use Google\Cloud\PubSub\Subscription;
 use Google\Cloud\PubSub\Topic;
 use Prophecy\Argument;
 
+/**
+ * @group pubsub
+ */
 class TopicTest extends \PHPUnit_Framework_TestCase
 {
     private $connection;

@@ -23,6 +23,9 @@ use Google\Cloud\Iam\Iam;
 use Google\Cloud\PubSub\Subscription;
 use Prophecy\Argument;
 
+/**
+ * @group pubsub
+ */
 class SubscriptionTest extends \PHPUnit_Framework_TestCase
 {
     private $connection;

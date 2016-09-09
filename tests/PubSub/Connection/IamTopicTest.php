@@ -21,6 +21,9 @@ use Google\Cloud\PubSub\Connection\ConnectionInterface;
 use Google\Cloud\PubSub\Connection\IamTopic;
 use Prophecy\Argument;
 
+/**
+ * @group pubsub
+ */
 class IamTopicTest extends \PHPUnit_Framework_TestCase
 {
     public function testProxies()
