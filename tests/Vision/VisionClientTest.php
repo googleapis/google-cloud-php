@@ -86,9 +86,7 @@ class VisionClientTest extends \PHPUnit_Framework_TestCase
 
         $res = $this->client->annotateBatch([$image]);
 
-        $this->assertInstanceOf(\Generator::class, $res);
-
-        $res = iterator_to_array($res);
+        $this->assertTrue(is_array($res));
 
         $this->assertInstanceOf(Annotation::class, $res[0]);
         $this->assertInstanceOf(Annotation::class, $res[1]);

@@ -20,6 +20,7 @@ namespace Google\Cloud\Datastore;
 use Google\Cloud\Datastore\Connection\ConnectionInterface;
 use Google\Cloud\Datastore\Connection\Rest;
 use Google\Cloud\Datastore\Query\QueryInterface;
+use Google\Cloud\ValidateTrait;
 use InvalidArgumentException;
 
 /**
@@ -36,6 +37,7 @@ use InvalidArgumentException;
 class Operation
 {
     use DatastoreTrait;
+    use ValidateTrait;
 
     /**
      * @var ConnectionInterface
@@ -645,34 +647,5 @@ class Operation
         return [
             'readConsistency' => $options['readConsistency']
         ];
-    }
-
-    /**
-     * Check that each member of $input array is of type $type.
-     *
-     * @param array $input The input to validate.
-     * @param string $type The type to check..
-     * @param callable An additional check for each element of $input.
-     *        This will be run count($input) times, so use with care.
-     * @return void
-     * @throws InvalidArgumentException
-     */
-    private function validateBatch(
-        array $input,
-        $type,
-        callable $additionalCheck = null
-    ) {
-        foreach ($input as $element) {
-            if (!($element instanceof $type)) {
-                throw new InvalidArgumentException(sprintf(
-                    'Each member of input array must be an instance of %s',
-                    $type
-                ));
-            }
-
-            if ($additionalCheck) {
-                $additionalCheck($element);
-            }
-        }
     }
 }

@@ -18,6 +18,7 @@
 namespace Google\Cloud\Tests;
 
 use Google\Cloud\ClientTrait;
+use Google\Cloud\Compute\Metadata;
 use GuzzleHttp\Psr7\Response;
 
 /**
@@ -109,6 +110,35 @@ class ClientTraitTest extends \PHPUnit_Framework_TestCase
             }
         ]);
     }
+
+    public function testDetectProjectIdOnGce()
+    {
+        $projectId = 'gce-project-rawks';
+
+        $m = $this->prophesize(Metadata::class);
+        $m->getProjectId()->willReturn($projectId)->shouldBeCalled();
+
+        $trait = new ClientTraitStubOnGce($m);
+
+        $res = $trait->runDetectProjectId([]);
+
+        $this->assertEquals($res, $projectId);
+    }
+
+    /**
+     * @expectedException Google\Cloud\Exception\GoogleException
+     */
+    public function testDetectProjectIdOnGceButOhNoThereStillIsntAProjectId()
+    {
+        $projectId = null;
+
+        $m = $this->prophesize(Metadata::class);
+        $m->getProjectId()->willReturn($projectId)->shouldBeCalled();
+
+        $trait = new ClientTraitStubOnGce($m);
+
+        $res = $trait->runDetectProjectId([]);
+    }
 }
 
 class ClientTraitStub
@@ -128,5 +158,27 @@ class ClientTraitStub
     public function runDetectProjectId($config)
     {
         return $this->detectProjectId($config);
+    }
+}
+
+class ClientTraitStubOnGce extends ClientTraitStub
+{
+    use ClientTrait;
+
+    private $metadata;
+
+    public function __construct($metadata)
+    {
+        $this->metadata = $metadata;
+    }
+
+    protected function onGce($httpHandler)
+    {
+        return true;
+    }
+
+    protected function getMetadata()
+    {
+        return $this->metadata->reveal();
     }
 }

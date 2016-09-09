@@ -101,9 +101,14 @@ class DocGenerator
 
         $docBlock = $reflector->getDocBlock();
 
-        $magicMethods = array_filter($docBlock->getTags(), function ($tag) {
-            return ($tag->getName() === 'method');
-        });
+        $magic = [];
+        if ($docBlock && $docBlock->getTags()) {
+            $magicMethods = array_filter($docBlock->getTags(), function ($tag) {
+                return ($tag->getName() === 'method');
+            });
+
+            $magic = $this->buildMagicMethods($magicMethods, $name);
+        }
 
         $methods = $reflector->getMethods();
 
@@ -123,7 +128,7 @@ class DocGenerator
             'resources' => $this->buildResources($docBlock->getTagsByName('see')),
             'methods' => array_merge(
                 $this->buildMethods($methods, $name),
-                $this->buildMagicMethods($magicMethods, $name)
+                $magic
             )
         ];
     }
