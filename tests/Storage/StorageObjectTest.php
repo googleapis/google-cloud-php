@@ -18,6 +18,8 @@
 namespace Google\Cloud\Tests\Storage;
 
 use Google\Cloud\Exception\NotFoundException;
+use Google\Cloud\Storage\Connection\ConnectionInterface;
+use Google\Cloud\Storage\Bucket;
 use Google\Cloud\Storage\StorageObject;
 use GuzzleHttp\Psr7;
 use Prophecy\Argument;
@@ -31,7 +33,7 @@ class StorageObjectTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->connection = $this->prophesize('Google\Cloud\Storage\Connection\ConnectionInterface');
+        $this->connection = $this->prophesize(ConnectionInterface::class);
     }
 
     public function testGetAcl()
@@ -73,6 +75,73 @@ class StorageObjectTest extends \PHPUnit_Framework_TestCase
         $object->update($data);
 
         $this->assertEquals($data['contentType'], $object->info()['contentType']);
+    }
+
+    public function testCopyObjectWithDefaultName()
+    {
+        $sourceBucket = 'bucket';
+        $destinationBucket = 'bucket2';
+        $objectName = 'object.txt';
+        $acl = 'private';
+        $this->connection->copyObject([
+                'sourceBucket' => $sourceBucket,
+                'sourceObject' => $objectName,
+                'destinationBucket' => $destinationBucket,
+                'destinationObject' => $objectName,
+                'destinationPredefinedAcl' => $acl
+            ])
+            ->willReturn([
+                'bucket' => $destinationBucket,
+                'name' => $objectName,
+                'generation' => 1
+            ]);
+        $object = new StorageObject($this->connection->reveal(), $objectName, $sourceBucket);
+        $copiedObject = $object->copy($destinationBucket, [
+            'predefinedAcl' => $acl
+        ]);
+
+        $this->assertEquals($destinationBucket, $copiedObject->info()['bucket']);
+        $this->assertEquals($objectName, $copiedObject->info()['name']);
+    }
+
+    public function testCopyObjectWithNewName()
+    {
+        $sourceBucket = 'bucket';
+        $sourceObject = 'object.txt';
+        $bucketConnection = $this->prophesize(ConnectionInterface::class)->reveal();
+        $destinationBucketName = 'bucket2';
+        $destinationBucket = new Bucket($bucketConnection, $destinationBucketName);
+        $destinationObject = 'object2.txt';
+        $acl = 'private';
+        $this->connection->copyObject([
+                'sourceBucket' => $sourceBucket,
+                'sourceObject' => $sourceObject,
+                'destinationBucket' => $destinationBucketName,
+                'destinationObject' => $destinationObject,
+                'destinationPredefinedAcl' => $acl
+            ])
+            ->willReturn([
+                'bucket' => $destinationBucketName,
+                'name' => $destinationObject,
+                'generation' => 1
+            ]);
+        $object = new StorageObject($this->connection->reveal(), $sourceObject, $sourceBucket);
+        $copiedObject = $object->copy($destinationBucket, [
+            'predefinedAcl' => $acl,
+            'name' => $destinationObject
+        ]);
+
+        $this->assertEquals($destinationBucketName, $copiedObject->info()['bucket']);
+        $this->assertEquals($destinationObject, $copiedObject->info()['name']);
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function testCopyObjectThrowsExceptionWithInvalidType()
+    {
+        $object = new StorageObject($this->connection->reveal(), 'object.txt.', 'bucket');
+        $copiedObject = $object->copy($object);
     }
 
     public function testDownloadsAsString()
