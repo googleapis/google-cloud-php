@@ -22,6 +22,7 @@ use Google\Auth\CredentialsLoader;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Auth\HttpHandler\HttpHandlerFactory;
 use Google\Cloud\Exception;
+use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -77,6 +78,7 @@ class RequestWrapper
     /**
      * @var array
      */
+
     private $httpRetryCodes = [
         500,
         502,
@@ -280,21 +282,34 @@ class RequestWrapper
                 break;
         }
 
-        return new $exception($ex->getMessage(), $ex->getCode(), $ex);
+        return new $exception($this->getExceptionMessage($ex), $ex->getCode(), $ex);
     }
 
+    /**
+     * Gets the exception message.
+     *
+     * @param \Exception $ex
+     * @return string
+     */
+    private function getExceptionMessage(\Exception $ex)
+    {
+        if ($ex instanceof RequestException && $ex->hasResponse()) {
+            return (string) $ex->getResponse()->getBody();
+        }
 
+        return $ex->getMessage();
+    }
 
     /**
      * Determines whether or not the request should be retried.
      *
-     * @param \Exception $ex
      * @return bool
      */
     private function getRetryFunction()
     {
         $httpRetryCodes = $this->httpRetryCodes;
         $httpRetryMessages = $this->httpRetryMessages;
+
         return function (\Exception $ex) use ($httpRetryCodes, $httpRetryMessages) {
             $statusCode = $ex->getCode();
 
