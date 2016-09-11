@@ -577,12 +577,12 @@ class Operation
         foreach ($entityResult as $result) {
             $entity = $result['entity'];
 
+            $properties = [];
+            $excludes = [];
+
             if (isset($entity['properties'])) {
                 $properties = $this->entityMapper->responseToProperties($entity['properties']);
                 $excludes = $this->entityMapper->responseToExcludeFromIndexes($entity['properties']);
-            } else {
-                $properties = [];
-                $excludes = [];
             }
 
             $namespaceId = (isset($entity['key']['partitionId']['namespaceId']))
