@@ -558,6 +558,27 @@ class OperationTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($entity['found'][0]->prop, $res[0]['entity']['properties']['prop']['stringValue']);
     }
 
+    public function testMapEntityResultWithoutProperties()
+    {
+        $res = json_decode(file_get_contents(__DIR__ .'/../fixtures/datastore/entity-result-no-properties.json'), true);
+
+        $this->connection->lookup(Argument::type('array'))
+            ->willReturn([
+                'found' => $res
+            ]);
+
+        $this->operation->setConnection($this->connection->reveal());
+
+        $k = $this->prophesize(Key::class);
+        $k->state()->willReturn(Key::STATE_COMPLETE);
+
+        $entity = $this->operation->lookup([$k->reveal()]);
+        $this->assertInstanceOf(Entity::class, $entity['found'][0]);
+
+        $this->assertEquals($entity['found'][0]->baseVersion(), $res[0]['version']);
+        $this->assertEquals($entity['found'][0]->cursor(), $res[0]['cursor']);
+    }
+
     public function testMapEntityResultArrayOfClassNames()
     {
         $res = json_decode(file_get_contents(__DIR__ .'/../fixtures/datastore/entity-result.json'), true);
