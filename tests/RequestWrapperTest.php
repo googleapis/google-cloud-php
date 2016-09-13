@@ -20,6 +20,7 @@ namespace Google\Cloud\Tests;
 
 use Google\Cloud\RequestWrapper;
 use Google\Cloud\ServiceBuilder;
+use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use Prophecy\Argument;
@@ -215,6 +216,29 @@ class RequestWrapperTest extends \PHPUnit_Framework_TestCase
         $requestWrapper->send(
             new Request('GET', 'http://www.example.com')
         );
+    }
+
+    public function testExceptionMessageIsNotTruncatedWithGuzzle()
+    {
+        $requestWrapper = new RequestWrapper([
+            'httpHandler' => function ($request, $options = []) {
+                $msg = str_repeat('0', 121);
+
+                throw new RequestException(
+                    $msg,
+                    $request,
+                    new Response(400, [], $msg)
+                );
+            }
+        ]);
+
+        try {
+            $requestWrapper->send(
+                new Request('GET', 'http://www.example.com')
+            );
+        } catch (\Exception $ex) {
+            $this->assertTrue(strlen($ex->getMessage()) > 120);
+        }
     }
 
     /**
