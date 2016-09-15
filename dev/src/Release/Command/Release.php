@@ -1,26 +1,41 @@
-#!/usr/bin/env php
 <?php
+/**
+ * Copyright 2016 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
-require __DIR__ . '/../vendor/autoload.php';
+namespace Google\Cloud\Dev\Release\Command;
 
-use Symfony\Component\Console\Application;
+use RuntimeException;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-if (!class_exists(Application::class)) {
-    throw new RuntimeException(
-        'Symfony Console Component not installed. ' .
-        'run "composer install" or "composer update", making sure not to ' .
-        'exclude dev dependencies, and try again.'
-    );
-}
-
-class ReleaseGenerator extends Command
+class Release extends Command
 {
     const PATH_MANIFEST = 'docs/manifest.json';
     const PATH_SERVICE_BUILDER = 'src/ServiceBuilder.php';
+
+    private $cliBasePath;
+
+    public function __construct($cliBasePath)
+    {
+        $this->cliBasePath = $cliBasePath;
+
+        parent::__construct();
+    }
 
     protected function configure()
     {
@@ -57,7 +72,7 @@ class ReleaseGenerator extends Command
 
     private function addToManifest($version)
     {
-        $path = __DIR__ .'/../'. self::PATH_MANIFEST;
+        $path = $this->cliBasePath .'/../'. self::PATH_MANIFEST;
         if (!file_exists($path)) {
             throw new RuntimeException('Manifest file not found at '. $path);
         }
@@ -79,7 +94,7 @@ class ReleaseGenerator extends Command
 
     private function updateServiceBuilder($version)
     {
-        $path = __DIR__ .'/../'. self::PATH_SERVICE_BUILDER;
+        $path = $this->cliBasePath .'/../'. self::PATH_SERVICE_BUILDER;
         if (!file_exists($path)) {
             throw new RuntimeException('ServiceBuilder not found at '. $path);
         }
@@ -97,9 +112,3 @@ class ReleaseGenerator extends Command
         }
     }
 }
-
-$release = new ReleaseGenerator;
-
-$app = new Application;
-$app->add($release);
-$app->run();
