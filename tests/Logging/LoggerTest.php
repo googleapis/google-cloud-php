@@ -57,6 +57,85 @@ class LoggerTest extends \PHPUnit_Framework_TestCase
         $this->assertNull($logger->delete());
     }
 
+    public function testGetsEntriesWithNoResults()
+    {
+        $options = [
+            'orderBy' => 'timestamp desc',
+            'pageSize' => 50
+        ];
+        $this->connection->listEntries($options + [
+            'pageToken' => null,
+            'projectIds' => [$this->projectId],
+            'filter' => "logName = $this->formattedName"
+        ])
+            ->willReturn([])
+            ->shouldBeCalledTimes(1);
+
+        $logger = $this->getLogger($this->connection);
+        $entries = iterator_to_array($logger->entries($options));
+
+        $this->assertEmpty($entries);
+    }
+
+    public function testGetsEntriesWithoutToken()
+    {
+        $this->connection->listEntries(Argument::any())
+            ->willReturn([
+                'entries' => [
+                    ['textPayload' => $this->textPayload]
+                ]
+            ])
+            ->shouldBeCalledTimes(1);
+
+        $logger = $this->getLogger($this->connection);
+        $entries = iterator_to_array($logger->entries());
+
+        $this->assertEquals($this->textPayload, $entries[0]->info()['textPayload']);
+    }
+
+    public function testGetsEntriesWithToken()
+    {
+        $this->connection->listEntries(Argument::any())
+            ->willReturn(
+                [
+                    'nextPageToken' => 'token',
+                    'entries' => [
+                        ['textPayload' => 'someOtherPayload']
+                    ]
+                ],
+                    [
+                    'entries' => [
+                        ['textPayload' => $this->textPayload]
+                    ]
+                ]
+            )
+            ->shouldBeCalledTimes(2);
+
+        $logger = $this->getLogger($this->connection);
+        $entries = iterator_to_array($logger->entries());
+
+        $this->assertEquals($this->textPayload, $entries[1]->info()['textPayload']);
+    }
+
+    public function testGetsEntriesWithAdditionalFilter()
+    {
+        $filter = 'textPayload = "hello world"';
+        $this->connection->listEntries([
+            'pageToken' => null,
+            'projectIds' => [$this->projectId],
+            'filter' => $filter . " AND logName = $this->formattedName"
+        ])
+            ->willReturn([])
+            ->shouldBeCalledTimes(1);
+
+        $logger = $this->getLogger($this->connection);
+        $entries = iterator_to_array($logger->entries([
+            'filter' => $filter
+        ]));
+
+        $this->assertEmpty($entries);
+    }
+
     /**
      * @dataProvider entryProvider
      */
