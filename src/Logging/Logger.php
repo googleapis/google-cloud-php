@@ -92,6 +92,74 @@ class Logger
     }
 
     /**
+     * Fetches entries scoped to the selected log.
+     *
+     * Please note that a default filter specifying the logName will be applied
+     * for you.
+     *
+     * Example:
+     * ```
+     * $entries = $logger->entries();
+     *
+     * foreach ($entries as $entry) {
+     *     echo $entry->info()['textPayload'];
+     * }
+     * ```
+     *
+     * ```
+     * // Use an advanced logs filter to fetch only entries with a specific payload.
+     * $entries = $logger->entries([
+     *     'filter' => 'textPayload = "hello world"'
+     * ]);
+     *
+     * foreach ($entries as $entry) {
+     *     echo $entry->info()['textPayload'];
+     * }
+     * ```
+     *
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/logging/docs/api/ref_v2beta1/rest/v2beta1/entries/list Entries list API documentation.
+     * @codingStandardsIgnoreEnd
+     *
+     * @param array $options {
+     *     Configuration options.
+     *
+     *     @type string $filter An [advanced logs filter](https://cloud.google.com/logging/docs/view/advanced_filters).
+     *     @type string $orderBy How the results should be sorted. Presently,
+     *           the only permitted values are `timestamp asc` (default) and
+     *           `timestamp desc`.
+     *     @type int $pageSize The maximum number of results to return per
+     *           request.
+     * }
+     * @return \Generator<Google\Cloud\Logging\Entry>
+     */
+    public function entries(array $options = [])
+    {
+        $logNameFilter = "logName = $this->formattedName";
+        $options += [
+            'pageToken' => null,
+            'projectIds' => [$this->projectId],
+            'filter' => isset($options['filter'])
+                ? $options['filter'] .= " AND $logNameFilter"
+                : $logNameFilter
+        ];
+
+        do {
+            $response = $this->connection->listEntries($options);
+
+            if (!isset($response['entries'])) {
+                return;
+            }
+
+            foreach ($response['entries'] as $entry) {
+                yield new Entry($entry);
+            }
+
+            $options['pageToken'] = isset($response['nextPageToken']) ? $response['nextPageToken'] : null;
+        } while ($options['pageToken']);
+    }
+
+    /**
      * Creates an entry which which can be written to a log. In order to write
      * the entry to the log please use {@see Google\Cloud\Logging\Logger::write()}
      * or {@see Google\Cloud\Logging\Logger::writeBatch()}.
