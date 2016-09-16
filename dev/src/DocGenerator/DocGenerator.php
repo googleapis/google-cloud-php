@@ -51,8 +51,6 @@ class DocGenerator
      */
     public function generate()
     {
-        $types = [];
-
         foreach ($this->files as $file) {
 
             $currentFile = substr(str_replace($this->executionPath, '', $file), 3);

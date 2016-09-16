@@ -126,6 +126,7 @@ class CodeParser implements ParserInterface
             $content = implode('', $parsedContents);
         }
 
+        $content = str_ireplace('[optional]', '', $content);
         return $this->markdown->parse($content);
     }
 
@@ -322,7 +323,7 @@ class CodeParser implements ParserInterface
                 'name' => $varName,
                 'description' => $this->buildDescription($param->getDocBlock(), $description),
                 'types' => $this->handleTypes($param->getTypes()),
-                'optional' => null, // @todo
+                'optional' => (strpos(trim(strtolower($description)), '[optional]') === 0),
                 'nullable' => null // @todo
             ];
 
@@ -475,11 +476,6 @@ class CodeParser implements ParserInterface
             'description' => $parts[0],
             'examples' => $examples
         ];
-    }
-
-    private function buildOutputPath()
-    {
-        echo $content;exit;
     }
 }
 
