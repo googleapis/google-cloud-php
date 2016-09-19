@@ -1,0 +1,31 @@
+build: false
+clone_depth: 1
+clone_folder: c:\projects\google-cloud
+
+cache:
+  - vendor -> composer.json
+
+init:
+  - SET PATH=c:\Program Files\OpenSSL;c:\tools\php;%PATH%
+  - SET COMPOSER_NO_INTERACTION=1
+
+environment:
+  matrix:
+    - PHP_VERSION: "5.5.37-nts-Win32-VC11-x64"
+    - PHP_VERSION: "5.6.25-nts-Win32-VC11-x64"
+    - PHP_VERSION: "7.0.9-nts-Win32-VC14-x64"
+
+install:
+  - cinst -y OpenSSL.Light
+  - ps: . .\appveyor_install_php.ps1
+  - cd c:\tools\php
+  - echo extension_dir=ext >> php.ini
+  - echo extension=php_openssl.dll >> php.ini
+  - cd c:\projects\google-cloud
+  - appveyor DownloadFile https://getcomposer.org/download/1.2.1/composer.phar
+  - php composer.phar self-update
+  - php composer.phar install
+
+test_script:
+  - cd c:\projects\google-cloud
+  - vendor/bin/phpunit

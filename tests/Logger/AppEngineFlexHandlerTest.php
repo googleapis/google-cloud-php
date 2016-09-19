@@ -25,15 +25,15 @@ use Monolog\Logger;
  */
 class AppEngineFlexHandlerTest extends \PHPUnit_Framework_TestCase
 {
-    private $path;
+    private $stream;
     private $log;
 
     public function setUp()
     {
         $dir = sys_get_temp_dir();
-        $this->path = tempnam($dir, "log");
+        $this->stream = tmpfile();
         $handler = new AppEngineFlexHandler(
-            Logger::DEBUG, true, 0640, false, $this->path
+            Logger::DEBUG, true, 0640, false, $this->stream
         );
         $this->log = new Logger('gcloud-test');
         $this->log->pushHandler($handler);
@@ -41,14 +41,15 @@ class AppEngineFlexHandlerTest extends \PHPUnit_Framework_TestCase
 
     public function tearDown()
     {
-        unlink($this->path);
+        fclose($this->stream);
     }
 
     public function testOneLine()
     {
         $msg = 'Error message';
         $this->log->addError($msg);
-        $log_text = file_get_contents($this->path);
+        rewind($this->stream);
+        $log_text = stream_get_contents($this->stream);
         $log_array = json_decode($log_text, true);
         $this->assertContains($msg, $log_array['message']);
         $this->assertInternalType('int', $log_array['timestamp']['seconds']);
