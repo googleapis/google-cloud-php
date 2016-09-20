@@ -157,7 +157,7 @@ class Subscription
      * {@see Google\Cloud\PubSub\Topic::subscribe()} or {@see Google\Cloud\PubSub\Topic::subscription()}.
      *
      * Returns subscription info in the format detailed in the documentation
-     * for a [subscription](https://cloud.google.com/pubsub/reference/rest/v1/projects.subscriptions#Subscription).
+     * for a [subscription](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions#Subscription).
      *
      * **NOTE: Some methods of instantiation of a Subscription do not supply a
      * topic name. The topic name is required to create a subscription.**
@@ -170,7 +170,7 @@ class Subscription
      * $result = $subscription->create();
      * ```
      *
-     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.subscriptions/create Create Subscription
+     * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions/create Create Subscription
      *
      * @param  array $options {
      *     Configuration Options
@@ -180,7 +180,7 @@ class Subscription
      *           acknowledge the message. If not set, the default value of 10 is
      *           used.
      *     @type array $pushConfig See {@see Google\Cloud\PubSub\Subscription::modifyPushConfig()} or
-     *           [PushConfig](https://cloud.google.com/pubsub/reference/rest/v1/projects.subscriptions#PushConfig)
+     *           [PushConfig](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions#PushConfig)
      *           for usage.
      * }
      * @return array An array of subscription info
@@ -213,7 +213,7 @@ class Subscription
      * $subscription->delete();
      * ```
      *
-     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.subscriptions/delete Delete Subscription
+     * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions/delete Delete Subscription
      *
      * @param  array $options Configuration Options.
      * @return void
@@ -270,7 +270,7 @@ class Subscription
      * echo $info['name']; // `projects/my-awesome-project/subscriptions/my-new-subscription`
      * ```
      *
-     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.subscriptions/get Get Subscription
+     * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions/get Get Subscription
      *
      * @param  array $options Configuration Options
      * @return array Subscription data
@@ -298,7 +298,7 @@ class Subscription
      * echo $info['name']; // `projects/my-awesome-project/subscriptions/my-new-subscription`
      * ```
      *
-     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.subscriptions/get Get Subscription
+     * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions/get Get Subscription
      *
      * @param  array $options Configuration Options
      * @return array Subscription data
@@ -322,7 +322,7 @@ class Subscription
      * }
      * ```
      *
-     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.subscriptions/pull Pull Subscriptions
+     * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions/pull Pull Subscriptions
      *
      * @param  array $options {
      *      Configuration Options
@@ -333,7 +333,7 @@ class Subscription
      *      @type int  $maxMessages Limit the amount of messages pulled.
      * }
      * @codingStandardsIgnoreStart
-     * @return \Generator<array> [ReceivedMessage](https://cloud.google.com/pubsub/reference/rest/v1/projects.subscriptions/pull#ReceivedMessage)
+     * @return \Generator<array> [ReceivedMessage](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions/pull#ReceivedMessage)
      * @codingStandardsIgnoreEnd
      */
     public function pull(array $options = [])
@@ -387,7 +387,9 @@ class Subscription
      * }
      * ```
      *
-     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.subscriptions/acknowledge Acknowledge Message
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions/acknowledge Acknowledge Message
+     * @codingStandardsIgnoreEnd
      *
      * @param  int $ackId A message's ackId
      * @param  array $options Configuration Options
@@ -419,7 +421,9 @@ class Subscription
      * }
      * ```
      *
-     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.subscriptions/acknowledge Acknowledge Message
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions/acknowledge Acknowledge Message
+     * @codingStandardsIgnoreEnd
      *
      * @param  array $ackIds An array of message ackIds.
      * @param  array $options Configuration Options
@@ -456,7 +460,7 @@ class Subscription
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.subscriptions/modifyAckDeadline Modify Ack Deadline
+     * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions/modifyAckDeadline Modify Ack Deadline
      * @codingStandardsIgnoreEnd
      *
      * @param  string $ackId An acknowledgement ID
@@ -501,7 +505,7 @@ class Subscription
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.subscriptions/modifyAckDeadline Modify Ack Deadline
+     * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions/modifyAckDeadline Modify Ack Deadline
      * @codingStandardsIgnoreEnd
      *
      * @param  string $ackIds List of acknowledgment IDs.
@@ -534,11 +538,13 @@ class Subscription
      * ]);
      * ```
      *
-     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.subscriptions/modifyPushConfig Modify Push Config
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions/modifyPushConfig Modify Push Config
+     * @codingStandardsIgnoreEnd
      *
      * @param  array $pushConfig {
      *     Push delivery configuration. See
-     *     [PushConfig](https://cloud.google.com/pubsub/reference/rest/v1/projects.subscriptions#PushConfig)
+     *     [PushConfig](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions#PushConfig)
      *     for more details.
      *
      *     @type string $pushEndpoint A URL locating the endpoint to which
@@ -569,9 +575,9 @@ class Subscription
      *
      * @codingStandardsIgnoreStart
      * @see https://cloud.google.com/pubsub/access_control PubSub Access Control Documentation
-     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.subscriptions/getIamPolicy Get Subscription IAM Policy
-     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.subscriptions/setIamPolicy Set Subscription IAM Policy
-     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.subscriptions/testIamPermissions Test Subscription Permissions
+     * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions/getIamPolicy Get Subscription IAM Policy
+     * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions/setIamPolicy Set Subscription IAM Policy
+     * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions/testIamPermissions Test Subscription Permissions
      * @codingStandardsIgnoreEnd
      *
      * @return Iam

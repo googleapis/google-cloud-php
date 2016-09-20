@@ -77,7 +77,7 @@ class Topic
      *         Platform service
      * @param  string $name The topic name
      * @param  string $projectId The project Id
-     * @param  array $info A [Topic](https://cloud.google.com/pubsub/reference/rest/v1/projects.topics)
+     * @param  array $info A [Topic](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics)
      */
     public function __construct(
         ConnectionInterface $connection,
@@ -126,7 +126,7 @@ class Topic
      * }
      * ```
      *
-     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.topics/create Create Topic
+     * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics/create Create Topic
      *
      * @param  array $options Configuration Options
      * @return array Topic information
@@ -150,7 +150,7 @@ class Topic
      * $topic->delete();
      * ```
      *
-     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.topics/delete Delete Topic
+     * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics/delete Delete Topic
      *
      * @param  array $options Configuration Options
      * @return void
@@ -209,10 +209,12 @@ class Topic
      * echo $info['name']; // projects/my-awesome-project/topics/my-topic-name
      * ```
      *
-     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.topics/get Get Topic
+     * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics/get Get Topic
      *
+     * @codingStandardsIgnoreStart
      * @param  array $options Configuration Options
-     * @return array [A representation of a Topic](https://cloud.google.com/pubsub/reference/rest/v1/projects.topics)
+     * @return array [A representation of a Topic](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics)
+     * @codingStandardsIgnoreEnd
      */
     public function info(array $options = [])
     {
@@ -243,10 +245,12 @@ class Topic
      * echo $info['name']; // projects/my-awesome-project/topics/my-topic-name
      * ```
      *
-     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.topics/get Get Topic
+     * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics/get Get Topic
      *
+     * @codingStandardsIgnoreStart
      * @param  array $options Configuration Options
-     * @return array [A representation of a Topic](https://cloud.google.com/pubsub/reference/rest/v1/projects.topics)
+     * @return array [A representation of a Topic](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics)
+     * @codingStandardsIgnoreEnd
      */
     public function reload(array $options = [])
     {
@@ -273,9 +277,9 @@ class Topic
      * ]);
      * ```
      *
-     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.topics/publish Publish Message
+     * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics/publish Publish Message
      *
-     * @param  string $message [Message Format](https://cloud.google.com/pubsub/reference/rest/v1/PubsubMessage)
+     * @param  string $message [Message Format](https://cloud.google.com/pubsub/docs/reference/rest/v1/PubsubMessage)
      * @param  array $options {
      *      Configuration Options
      *
@@ -315,10 +319,10 @@ class Topic
      * ]);
      * ```
      *
-     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.topics/publish Publish Message
+     * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics/publish Publish Message
      *
      * @param  array $messages A list of messages. Each message must be in the correct
-     *         [Message Format](https://cloud.google.com/pubsub/reference/rest/v1/PubsubMessage).
+     *         [Message Format](https://cloud.google.com/pubsub/docs/reference/rest/v1/PubsubMessage).
      *         If provided, $data will be base64 encoded before being published,
      *         unless `$options['encode']` is set to false. (See below for more
      *         details.)
@@ -355,7 +359,7 @@ class Topic
      * $topic->subscribe('my-new-subscription');
      * ```
      *
-     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.subscriptions/create Create Subscription
+     * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions/create Create Subscription
      *
      * @param  string $name The subscription name
      * @param  array  $options Please see {@see Google\Cloud\PubSub\Subscription::create()} for configuration details.
@@ -403,7 +407,7 @@ class Topic
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.topics.subscriptions/list List Topic Subscriptions
+     * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics.subscriptions/list List Topic Subscriptions
      * @codingStandardsIgnoreEnd
      *
      * @param  array $options {
@@ -443,10 +447,12 @@ class Topic
      * $currentPolicy = $topic->iam()->policy();
      * ```
      *
+     * @codingStandardsIgnoreStart
      * @see https://cloud.google.com/pubsub/access_control PubSub Access Control Documentation
-     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.topics/getIamPolicy Get Topic IAM Policy
-     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.topics/setIamPolicy Set Topic IAM Policy
-     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.topics/testIamPermissions Test Topic Permissions
+     * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics/getIamPolicy Get Topic IAM Policy
+     * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics/setIamPolicy Set Topic IAM Policy
+     * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics/testIamPermissions Test Topic Permissions
+     * @codingStandardsIgnoreEnd
      *
      * @return Iam
      */
@@ -499,10 +505,12 @@ class Topic
      * Create a new subscription instance with the given name and optional
      * subscription data.
      *
+     * @codingStandardsIgnoreStart
      * @param  string $name
      * @param  array $info A representation of a
-     *         [Subscription)[https://cloud.google.com/pubsub/reference/rest/v1/projects.subscriptions#Subscription]
+     *         [Subscription](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions#Subscription)
      * @return Subscription
+     * @codingStandardsIgnoreEnd
      */
     private function subscriptionFactory($name, array $info = null)
     {

@@ -24,7 +24,7 @@ use Google\Cloud\UriTrait;
 
 /**
  * Implementation of the
- * [Google Pub/Sub REST API](https://cloud.google.com/pubsub/reference/rest/).
+ * [Google Pub/Sub REST API](https://cloud.google.com/pubsub/docs/reference/rest/).
  *
  * The `PUBSUB_EMULATOR_HOST` environment variable from the gcloud SDK is
  * honored, otherwise the actual API endpoint will be used.

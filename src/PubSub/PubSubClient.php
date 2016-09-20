@@ -102,7 +102,7 @@ class PubSubClient
      * echo $topic->info()['name']; // `projects/my-awesome-project/topics/my-new-topic`
      * ```
      *
-     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.topics/create Create Topic
+     * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics/create Create Topic
      *
      * @param  string $name The topic name
      * @param  array $options Configuration Options
@@ -151,7 +151,7 @@ class PubSubClient
      * }
      * ```
      *
-     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.topics/list List Topics
+     * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics/list List Topics
      *
      * @param  array $options {
      *     Configuration Options
@@ -195,7 +195,7 @@ class PubSubClient
      * $subscription = $pubsub->subscribe('my-new-subscription', 'my-topic-name');
      * ```
      *
-     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.subscriptions/create Create Subscription
+     * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions/create Create Subscription
      *
      * @param  string $name A subscription name
      * @param  string $topicName The topic to which the new subscription will be subscribed.
@@ -246,7 +246,7 @@ class PubSubClient
      * }
      * ```
      *
-     * @see https://cloud.google.com/pubsub/reference/rest/v1/projects.subscriptions/list List Subscriptions
+     * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions/list List Subscriptions
      *
      * @param  array $options {
      *     Configuration Options
@@ -283,11 +283,13 @@ class PubSubClient
     /**
      * Create an instance of a topic
      *
+     * @codingStandardsIgnoreStart
      * @param  string $name The topic name
      * @param  array  $info Information about the topic. Used internally to
      *         populate topic objects with an API result. Should be
-     *         a representation of a [Topic](https://cloud.google.com/pubsub/reference/rest/v1/projects.topics#Topic).
+     *         a representation of a [Topic](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics#Topic).
      * @return Topic
+     * @codingStandardsIgnoreEnd
      */
     private function topicFactory($name, array $info = null)
     {
@@ -302,7 +304,7 @@ class PubSubClient
      * @param  string $topicName The topic name
      * @param  array  $info Information about the subscription. Used
      *         to populate subscriptons with an api result. Should be a
-     *         representation of a [Subscription](https://cloud.google.com/pubsub/reference/rest/v1/projects.subscriptions#Subscription).
+     *         representation of a [Subscription](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions#Subscription).
      * @return Subscription
      * @codingStandardsIgnoreEnd
      */
