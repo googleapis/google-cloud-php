@@ -72,8 +72,8 @@ class BigQueryClient
      *     @type string $keyFilePath The full path to your service account
      *           credentials .json file retrieved from the Google Developers
      *           Console.
-     *     @type int $retries Number of retries for a failed request. Defaults
-     *           to 3.
+     *     @type int $retries Number of retries for a failed request. **Defaults
+     *           to** `3`.
      *     @type array $scopes Scopes to be used for the request.
      * }
      */
@@ -124,7 +124,7 @@ class BigQueryClient
      *           query. If not set, all table names in the query string must be
      *           qualified in the format 'datasetId.tableId'.
      *     @type int $timeoutMs How long to wait for the query to complete, in
-     *           milliseconds. Defaults to 10000 milliseconds (10 seconds).
+     *           milliseconds. **Defaults to** `10000` milliseconds (10 seconds).
      *     @type bool $useQueryCache Whether to look for the result in the query
      *           cache.
      *     @type bool $useLegacySql Specifies whether to use BigQuery's legacy
@@ -236,7 +236,7 @@ class BigQueryClient
      *     Configuration options.
      *
      *     @type bool $allUsers Whether to display jobs owned by all users in
-     *           the project. Defaults to false.
+     *           the project. **Defaults to** `false`.
      *     @type int $maxResults Maximum number of results to return.
      *     @type string $stateFilter Filter for job state. Maybe be either
      *           `done`, `pending`, or `running`.

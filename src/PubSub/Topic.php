@@ -283,9 +283,9 @@ class Topic
      * @param  array $options {
      *      Configuration Options
      *
-     *      @type bool $encode True by default. If set to false, the message data
-     *            will not be base64-encoded. Only turn this off if you have
-     *            already encoded your message data.
+     *      @type bool $encode If set to false, the message data will not be
+     *            base64-encoded. Only turn this off if you have already encoded
+     *            your message data. **Defaults to** `false`.
      * }
      * @return array A list of message IDs
      */
@@ -329,9 +329,9 @@ class Topic
      * @param  array $options {
      *     Configuration Options
      *
-     *     @type bool $encode True by default. If set to false, the message data
-     *           will not be base64-encoded. Only turn this off if you have
-     *           already encoded your message data.
+     *     @type bool $encode If set to false, the message data will not be
+     *            base64-encoded. Only turn this off if you have already encoded
+     *            your message data. **Defaults to** `false`.
      * }
      * @return array A list of message IDs.
      */

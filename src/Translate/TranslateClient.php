@@ -81,11 +81,11 @@ class TranslateClient
      *
      *     @type string $key A public API access key.
      *     @type string $target The target language to assign to the client.
-     *           Must be a valid ISO 639-1 language code. Defaults to `en`
+     *           Must be a valid ISO 639-1 language code. **Defaults to** `"en"`
      *           (English).
      *     @type callable $httpHandler A handler used to deliver Psr7 requests.
-     *     @type int $retries Number of retries for a failed request. Defaults
-     *           to 3.
+     *     @type int $retries Number of retries for a failed request.
+     *           **Defaults to** `3`.
      * }
      * @throws \InvalidArgumentException
      */
@@ -128,11 +128,11 @@ class TranslateClient
      *           valid ISO 639-1 language code. If not provided the value will
      *           be automatically detected by the server.
      *     @type string $target The target language to translate to. Must be a
-     *           valid ISO 639-1 language code. Defaults to the value assigned
-     *           to the client (`en` by default).
+     *           valid ISO 639-1 language code. **Defaults to** the value assigned
+     *           to the client (`"en"` by default).
      *     @type string $format Indicates whether the string to be translated is
      *           either plain-text or HTML. Acceptable values are `html` or
-     *           `text`. Defaults to `html`.
+     *           `text`. **Defaults to** `"html"`.
      * }
      * @return array A translation result including a `source` key containing
      *         the detected or provided langauge of the provided input, an
@@ -169,11 +169,11 @@ class TranslateClient
      *           valid ISO 639-1 language code. If not provided the value will
      *           be automatically detected by the server.
      *     @type string $target The target language to translate to. Must be a
-     *           valid ISO 639-1 language code. Defaults to the value assigned
-     *           to the client (`en` by default).
+     *           valid ISO 639-1 language code. **Defaults to** the value assigned
+     *           to the client (`"en"` by default).
      *     @type string $format Indicates whether the string to be translated is
      *           either plain-text or HTML. Acceptable values are `html` or
-     *           `text`. Defaults to `html`.
+     *           `text`. **Defaults to** `"html"`.
      * }
      * @return array A set of translation results. Each result includes a
      *         `source` key containing the detected or provided language of the
@@ -223,7 +223,7 @@ class TranslateClient
      *
      *     @type string $format Indicates whether the string is either
      *           plain-text or HTML. Acceptable values are `html` or `text`.
-     *           Defaults to `html`.
+     *           **Defaults to** `"html"`.
      * }
      * @return array A result including a `languageCode` key
      *         containing the detected ISO 639-1 language code, an `input` key
@@ -259,7 +259,7 @@ class TranslateClient
      *
      *     @type string $format Indicates whether the string is either
      *           plain-text or HTML. Acceptable values are `html` or `text`.
-     *           Defaults to `html`.
+     *           **Defaults to** `"html"`.
      * }
      * @return array A set of results. Each result includes a `languageCode` key
      *         containing the detected ISO 639-1 language code, an `input` key
@@ -341,8 +341,8 @@ class TranslateClient
      *     Configuration Options.
      *
      *     @type string $target The language to discover supported languages
-     *           for. Must be a valid ISO 639-1 language code. Defaults to the
-     *           value assigned to the client (`en` by default).
+     *           for. Must be a valid ISO 639-1 language code. **Defaults to** the
+     *           value assigned to the client (`"en"` by default).
      * }
      * @return array A set of language results. Each result includes a `code`
      *         key containing the ISO 639-1 code for the supported language and

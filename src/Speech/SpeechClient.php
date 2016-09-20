@@ -83,8 +83,8 @@ class SpeechClient
      *     @type string $keyFilePath The full path to your service account
      *           credentials .json file retrieved from the Google Developers
      *           Console.
-     *     @type int $retries Number of retries for a failed request. Defaults
-     *           to 3.
+     *     @type int $retries Number of retries for a failed request.
+     *           **Defaults to** `3`.
      *     @type array $scopes Scopes to be used for the request.
      * }
      * @throws \InvalidArgumentException
@@ -154,23 +154,23 @@ class SpeechClient
      *           Valid values are: 8000-48000. 16000 is optimal. For best
      *           results, set the sampling rate of the audio source to 16000 Hz.
      *           If that's not possible, use the native sample rate of the audio
-     *           source (instead of re-sampling). Defaults to `8000` with .amr
-     *           files and `16000` with .awb files. If the getID3 library has
-     *           been installed this value will default to the value read from
-     *           the file's headers (if they exists).
+     *           source (instead of re-sampling). **Defaults to** `8000`
+     *           with .amr files and `16000` with .awb files. If the
+     *           getID3 library has been installed this value will **default
+     *           to** the value read from the file's headers (if they exists).
      *     @type string $encoding Encoding of the provided audio. May be one of
-     *           `LINEAR16`, `FLAC`, `MULAW`, `AMR`, `AMR_WB`. Defaults to
-     *           `FLAC` with .flac files, `AMR` with .amr files and `AMR_WB`
+     *           `"LINEAR16"`, `"FLAC"`, `"MULAW"`, `"AMR"`, `"AMR_WB"`. **Defaults to**
+     *           `"FLAC"` with .flac files, `"AMR"` with .amr files and `"AMR_WB"`
      *           with .awb files.
      *     @type int $maxAlternatives Maximum number of alternatives to be
-     *           returned. Valid values are 1-30. Defaults to `1`.
+     *           returned. Valid values are 1-30. **Defaults to** `1`.
      *     @type string $languageCode The language of the content. BCP-47
-     *           (e.g., en-US, es-ES) language codes are accepted. Defaults to
-     *           en-US (English).
+     *           (e.g., `"en-US"`, `"es-ES"`) language codes are accepted. **Defaults to**
+     *           `"en-US"` (English).
      *     @type bool $profanityFilter If set to `true`, the server will attempt
      *           to filter out profanities, replacing all but the initial
      *           character in each filtered word with asterisks, e.g. \"f***\".
-     *           Defaults to `false`.
+     *           **Defaults to** `false`.
      *     @type array $speechContext Must contain a key `phrases` which is to
      *           be an array of strings which provide "hints" to the speech
      *           recognizer to favor specific words and phrases in the results.
@@ -272,14 +272,14 @@ class SpeechClient
      *           been installed this value will default to the value read from
      *           the file's headers (if it exists).
      *     @type string $encoding Encoding of the provided audio. May be one of
-     *           `LINEAR16`, `FLAC`, `MULAW`, `AMR`, `AMR_WB`. Defaults to
-     *           `FLAC` with .flac files, `AMR` with .amr files and `AMR_WB`
-     *           with .awb files.
+     *           `"LINEAR16"`, `"FLAC"`, `"MULAW"`, `"AMR"`, `"AMR_WB"`.
+     *           **Defaults to** `"FLAC"` with .flac files, `"AMR"` with .amr
+     *           files and `"AMR_WB"` with .awb files.
      *     @type int $maxAlternatives Maximum number of alternatives to be
      *           returned. Valid values are 1-30. Defaults to `1`.
      *     @type string $languageCode The language of the content. BCP-47
-     *           (e.g., en-US, es-ES) language codes are accepted. Defaults to
-     *           en-US (English).
+     *           (e.g., `"en-US"`, `"es-ES"`) language codes are accepted. Defaults to
+     *           `"en-US`"" (English).
      *     @type bool $profanityFilter If set to `true`, the server will attempt
      *           to filter out profanities, replacing all but the initial
      *           character in each filtered word with asterisks, e.g. \"f***\".

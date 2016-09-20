@@ -288,10 +288,9 @@ class Operation
      * @param array $options {
      *     Configuration Options
      *
-     *     @type string $readConsistency If not in a transaction, set to STRONG
-     *           or EVENTUAL, depending on default value in DatastoreClient.
-     *           See
+     *     @type string $readConsistency See
      *           [ReadConsistency](https://cloud.google.com/datastore/reference/rest/v1/ReadOptions#ReadConsistency).
+     *           **Defaults to** `"EVENTUAL"`.
      *     @type string $transaction The transaction ID, if the query should be
      *           run in a transaction.
      *     @type string|array $className If a string, the name of the class to return results as.
@@ -377,10 +376,9 @@ class Operation
      *     @type string $className The name of the class to return results as.
      *           Must be a subclass of {@see Google\Cloud\Datastore\Entity}.
      *           If not set, {@see Google\Cloud\Datastore\Entity} will be used.
-     *     @type string $readConsistency If not in a transaction, set to STRONG
-     *           or EVENTUAL, depending on default value in DatastoreClient.
-     *           See
+     *     @type string $readConsistency See
      *           [ReadConsistency](https://cloud.google.com/datastore/reference/rest/v1/ReadOptions#ReadConsistency).
+     *           **Defaults to** `"EVENTUAL"`.
      * }
      * @return \Generator<Google\Cloud\Datastore\Entity>
      */
@@ -534,8 +532,8 @@ class Operation
      * Check whether an update or upsert operation may proceed safely
      *
      * @param Entity[] $entities the entities to be updated or upserted.
-     * @param bool $allowOverwrite `false` by default. If `true`, safety will
-     *        be disregarded.
+     * @param bool $allowOverwrite If `true`, entities may be overwritten.
+     *        **Defaults to** `false`.
      * @throws InvalidArgumentException
      * @return void
      */
@@ -631,8 +629,9 @@ class Operation
      *      Read Options
      *
      *      @type string $transaction If set, query or lookup will run in transaction.
-     *      @type string $readConsistency If not in a transaction, set to STRONG
-     *            or EVENTUAL, depending on default value in DatastoreClient.
+     *      @type string $readConsistency See
+     *           [ReadConsistency](https://cloud.google.com/datastore/reference/rest/v1/ReadOptions#ReadConsistency).
+     *           **Defaults to** `"EVENTUAL"`.
      * }
      * @return array
      */

@@ -82,8 +82,8 @@ class NaturalLanguageClient
      *     @type string $keyFilePath The full path to your service account
      *           credentials .json file retrieved from the Google Developers
      *           Console.
-     *     @type int $retries Number of retries for a failed request. Defaults
-     *           to 3.
+     *     @type int $retries Number of retries for a failed request.
+     *           **Defaults to** `3`.
      *     @type array $scopes Scopes to be used for the request.
      * }
      * @throws \InvalidArgumentException
@@ -120,13 +120,13 @@ class NaturalLanguageClient
      *     Configuration options.
      *
      *     @type string $type The document type. Acceptable values are
-     *           `PLAIN_TEXT` or `HTML`. Defaults to `PLAIN_TEXT`.
+     *           `PLAIN_TEXT` or `HTML`. **Defaults to** `"PLAIN_TEXT"`.
      *     @type string $language The language of the document. Both ISO
      *           (e.g., en, es) and BCP-47 (e.g., en-US, es-ES) language codes
-     *           are accepted. Defaults to English.
+     *           are accepted. Defaults to `"en-US` (English).
      *     @type string $encodingType The text encoding type used by the API to
-     *           calculate offsets. Acceptable values are `NONE`, `UTF8`,
-     *           `UTF16` and `UTF32`. Defaults to `UTF8`.
+     *           calculate offsets. Acceptable values are `"NONE"`, `"UTF8"`,
+     *           `"UTF16"` and `"UTF32"`. **Defaults to** `"UTF8"`.
      * }
      * @return Annotation
      */
@@ -162,10 +162,10 @@ class NaturalLanguageClient
      *     Configuration options.
      *
      *     @type string $type The document type. Acceptable values are
-     *           `PLAIN_TEXT` or `HTML`. Defaults to `PLAIN_TEXT`.
+     *           `PLAIN_TEXT` or `HTML`. **Defaults to** `"PLAIN_TEXT"`.
      *     @type string $language The language of the document. Both ISO
      *           (e.g., en, es) and BCP-47 (e.g., en-US, es-ES) language codes
-     *           are accepted. Defaults to English.
+     *           are accepted. **Defaults to** `"en"` (English).
      * }
      * @return Annotation
      */
@@ -201,13 +201,13 @@ class NaturalLanguageClient
      *     Configuration options.
      *
      *     @type string $type The document type. Acceptable values are
-     *           `PLAIN_TEXT` or `HTML`. Defaults to `PLAIN_TEXT`.
+     *           `PLAIN_TEXT` or `HTML`. **Defaults to** `"PLAIN_TEXT"`.
      *     @type string $language The language of the document. Both ISO
      *           (e.g., en, es) and BCP-47 (e.g., en-US, es-ES) language codes
-     *           are accepted. Defaults to English.
+     *           are accepted. **Defaults to** `"en"` (English).
      *     @type string $encodingType The text encoding type used by the API to
-     *           calculate offsets. Acceptable values are `NONE`, `UTF8`,
-     *           `UTF16` and `UTF32`. Defaults to `UTF8`.
+     *           calculate offsets. Acceptable values are `"NONE"`, `"UTF8"`,
+     *           `"UTF16"` and `"UTF32"`. **Defaults to**  `"UTF8"`.
      * }
      * @return Annotation
      */
@@ -255,13 +255,13 @@ class NaturalLanguageClient
      *           are `syntax`, `sentiment`, and `entities`. If no features are
      *           provided the request will run with all three enabled.
      *     @type string $type The document type. Acceptable values are
-     *           `PLAIN_TEXT` or `HTML`. Defaults to `PLAIN_TEXT`.
+     *           `PLAIN_TEXT` or `HTML`. **Defaults to** `"PLAIN_TEXT"`.
      *     @type string $language The language of the document. Both ISO
      *           (e.g., en, es) and BCP-47 (e.g., en-US, es-ES) language codes
-     *           are accepted. Defaults to English.
+     *           are accepted. **Defaults to** `"en"` (English).
      *     @type string $encodingType The text encoding type used by the API to
-     *           calculate offsets. Acceptable values are `NONE`, `UTF8`,
-     *           `UTF16` and `UTF32`. Defaults to `UTF8`.
+     *           calculate offsets. Acceptable values are `"NONE"`, `"UTF8"`,
+     *           `"UTF16"` and `"UTF32"`. **Defaults to** `"UTF8"`.
      * }
      * @return Annotation
      */

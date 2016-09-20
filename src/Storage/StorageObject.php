@@ -220,8 +220,8 @@ class StorageObject
      * @param array $options {
      *     Configuration options.
      *
-     *     @type string $name The name of the destination object. If not
-     *           provided defaults to the name of the source object.
+     *     @type string $name The name of the destination object. **Defaults
+     *           to** the name of the source object.
      *     @type string $predefinedAcl Access controls to apply to the
      *           destination object. Acceptable values include
      *           `authenticatedRead`, `bucketOwnerFullControl`,

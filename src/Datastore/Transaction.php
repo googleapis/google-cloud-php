@@ -165,14 +165,14 @@ class Transaction
      * @param array $options {
      *     Configuration Options
      *
-     *     @type bool $allowOverwrite Set to `false` by default. Entities must
-     *           be updated as an entire resource. Patch operations are not
-     *           supported. Because entities can be created manually, or
-     *           obtained by a lookup or query, it is possible to accidentally
-     *           overwrite an existing record with a new one when manually
-     *           creating an entity. To provide additional safety, this flag
-     *           must be set to `true` in order to update a record when the
-     *           entity provided was not obtained through a lookup or query.
+     *     @type bool $allowOverwrite Entities must be updated as an entire
+     *           resource. Patch operations are not supported. Because entities
+     *           can be created manually, or obtained by a lookup or query, it
+     *           is possible to accidentally overwrite an existing record with a
+     *           new one when manually creating an entity. To provide additional
+     *           safety, this flag must be set to `true` in order to update a
+     *           record when the entity provided was not obtained through a
+     *           lookup or query. **Defaults to** `false`.
      * }
      * @return Transaction
      */
@@ -204,14 +204,14 @@ class Transaction
      * @param array $options {
      *     Configuration Options
      *
-     *     @type bool $allowOverwrite Set to `false` by default. Entities must
-     *           be updated as an entire resource. Patch operations are not
-     *           supported. Because entities can be created manually, or
-     *           obtained by a lookup or query, it is possible to accidentally
-     *           overwrite an existing record with a new one when manually
-     *           creating an entity. To provide additional safety, this flag
-     *           must be set to `true` in order to update a record when the
-     *           entity provided was not obtained through a lookup or query.
+     *     @type bool $allowOverwrite Entities must be updated as an entire
+     *           resource. Patch operations are not supported. Because entities
+     *           can be created manually, or obtained by a lookup or query, it
+     *           is possible to accidentally overwrite an existing record with a
+     *           new one when manually creating an entity. To provide additional
+     *           safety, this flag must be set to `true` in order to update a
+     *           record when the entity provided was not obtained through a
+     *           lookup or query. **Defaults to** `false`.
      * }
      * @return Transaction
      */

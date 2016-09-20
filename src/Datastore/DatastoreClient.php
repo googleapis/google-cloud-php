@@ -104,8 +104,8 @@ class DatastoreClient
      *     @type string $keyFilePath The full path to your service account
      *           credentials .json file retrieved from the Google Developers
      *           Console.
-     *     @type int $retries Number of retries for a failed request. Defaults
-     *           to 3.
+     *     @type int $retries Number of retries for a failed request. **Defaults
+     *           to** `3`.
      *     @type array $scopes Scopes to be used for the request.
      *     @type string $namespaceId Partitions data under a namespace. Useful for
      *           [Multitenant Projects](https://cloud.google.com/datastore/docs/concepts/multitenancy).
@@ -507,14 +507,14 @@ class DatastoreClient
      * @param array $options {
      *     Configuration Options
      *
-     *     @type bool $allowOverwrite Set to `false` by default. Entities must
-     *           be updated as an entire resource. Patch operations are not
-     *           supported. Because entities can be created manually, or
-     *           obtained by a lookup or query, it is possible to accidentally
-     *           overwrite an existing record with a new one when manually
-     *           creating an entity. To provide additional safety, this flag
-     *           must be set to `true` in order to update a record when the
-     *           entity provided was not obtained through a lookup or query.
+     *     @type bool $allowOverwrite Entities must be updated as an entire
+     *           resource. Patch operations are not supported. Because entities
+     *           can be created manually, or obtained by a lookup or query, it
+     *           is possible to accidentally overwrite an existing record with a
+     *           new one when manually creating an entity. To provide additional
+     *           safety, this flag must be set to `true` in order to update a
+     *           record when the entity provided was not obtained through a
+     *           lookup or query. **Defaults to** `false`.
      * }
      * @return string The entity version.
      * @throws DomainException If a conflict occurs, fail.
@@ -547,14 +547,14 @@ class DatastoreClient
      * @param array $options {
      *     Configuration Options
      *
-     *     @type bool $allowOverwrite Set to `false` by default. Entities must
-     *           be updated as an entire resource. Patch operations are not
-     *           supported. Because entities can be created manually, or
-     *           obtained by a lookup or query, it is possible to accidentally
-     *           overwrite an existing record with a new one when manually
-     *           creating an entity. To provide additional safety, this flag
-     *           must be set to `true` in order to update a record when the
-     *           entity provided was not obtained through a lookup or query.
+     *     @type bool $allowOverwrite Entities must be updated as an entire
+     *           resource. Patch operations are not supported. Because entities
+     *           can be created manually, or obtained by a lookup or query, it
+     *           is possible to accidentally overwrite an existing record with a
+     *           new one when manually creating an entity. To provide additional
+     *           safety, this flag must be set to `true` in order to update a
+     *           record when the entity provided was not obtained through a
+     *           lookup or query. **Defaults to** `false`.
      * }
      * @return array [Response Body](https://cloud.google.com/datastore/reference/rest/v1/projects/commit#response-body)
      */
@@ -731,7 +731,7 @@ class DatastoreClient
      *
      *     @type string $readConsistency See
      *           [ReadConsistency](https://cloud.google.com/datastore/reference/rest/v1/ReadOptions#ReadConsistency).
-     *           "EVENTUAL" by default.
+     *           **Defaults to** `"EVENTUAL"`.
      *     @type string $className The name of the class to return results as.
      *           Must be a subclass of {@see Google\Cloud\Datastore\Entity}.
      *           If not set, {@see Google\Cloud\Datastore\Entity} will be used.
@@ -773,7 +773,7 @@ class DatastoreClient
      *
      *     @type string $readConsistency See
      *           [ReadConsistency](https://cloud.google.com/datastore/reference/rest/v1/ReadOptions#ReadConsistency).
-     *           "EVENTUAL" by default.
+     *           **Defaults to** `"EVENTUAL"`.
      *     @type string|array $className If a string, the name of the class to return results as.
      *           Must be a subclass of {@see Google\Cloud\Datastore\Entity}.
      *           If not set, {@see Google\Cloud\Datastore\Entity} will be used.
@@ -852,16 +852,15 @@ class DatastoreClient
      *     Configuration Options
      *
      *     @type bool $allowLiterals Whether literal values will be allowed in
-     *           the query string. This is false by default, and parameter
-     *           binding is strongly encouraged over literals.
+     *           the query string. Parameter binding is strongly encouraged over
+     *           literals. **Defaults to** `false`.
      *     @type array $bindings An array of values to bind to the query string.
      *           Queries using Named Bindings should provide a key/value set,
      *           while queries using Positional Bindings must provide a simple
      *           array.
-     *           Applications with no need for multitenancy should not set this value.
      *     @type string $readConsistency See
      *           [ReadConsistency](https://cloud.google.com/datastore/reference/rest/v1/ReadOptions#ReadConsistency).
-     *           "EVENTUAL" by default.
+     *           **Defaults to** `"EVENTUAL"`.
      * }
      * @return GqlQuery
      */
@@ -894,7 +893,7 @@ class DatastoreClient
      *           If not set, {@see Google\Cloud\Datastore\Entity} will be used.
      *     @type string $readConsistency See
      *           [ReadConsistency](https://cloud.google.com/datastore/reference/rest/v1/ReadOptions#ReadConsistency).
-     *           "EVENTUAL" by default.
+     *           **Defaults to** `"EVENTUAL"`.
      * }
      * @return \Generator<Google\Cloud\Datastore\Entity>
      */

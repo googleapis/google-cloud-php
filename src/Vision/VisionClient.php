@@ -73,8 +73,8 @@ class VisionClient
      *     @type string $keyFilePath The full path to your service account
      *           credentials .json file retrieved from the Google Developers
      *           Console.
-     *     @type int $retries Number of retries for a failed request. Defaults
-     *           to 3.
+     *     @type int $retries Number of retries for a failed request.
+     *           **Defaults to** `3`.
      *     @type array $scopes Scopes to be used for the request.
      * }
      * @throws Google\Cloud\Exception\GoogleException

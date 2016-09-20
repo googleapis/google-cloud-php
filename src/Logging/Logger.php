@@ -126,8 +126,8 @@ class Logger
      *
      *     @type string $filter An [advanced logs filter](https://cloud.google.com/logging/docs/view/advanced_filters).
      *     @type string $orderBy How the results should be sorted. Presently,
-     *           the only permitted values are `timestamp asc` (default) and
-     *           `timestamp desc`.
+     *           the only permitted values are `timestamp asc` and `timestamp desc`.
+     *           **Defaults to** `(string) timestamp asc`.
      *     @type int $pageSize The maximum number of results to return per
      *           request.
      * }
@@ -224,8 +224,8 @@ class Logger
      *           long-running operation with which a log entry is associated.
      *           Please see [the API docs](https://cloud.google.com/logging/docs/api/ref_v2beta1/rest/v2beta1/LogEntry#logentryoperation)
      *           for more information.
-     *     @type string $severity The severity of the log entry. The default
-     *           value is `DEFAULT`.
+     *     @type string $severity The severity of the log entry. **Defaults to**
+     *           `"DEFAULT"`.
      * }
      * @return Entry
      * @codingStandardsIgnoreEnd

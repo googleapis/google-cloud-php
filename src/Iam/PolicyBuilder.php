@@ -157,7 +157,7 @@ class PolicyBuilder
      * $builder->setVersion(1);
      * ```
      *
-     * @param  int $version Version of the Policy. The default version is 0.
+     * @param  int $version Version of the Policy. **Defaults to** `0`.
      * @return PolicyBuilder
      */
     public function setVersion($version)

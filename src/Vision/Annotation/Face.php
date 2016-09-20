@@ -252,10 +252,10 @@ class Face extends AbstractFeature
      * }
      * ```
      *
-     * @param  string $strength [optional] Value should be one of "low", "medium" or "high".
-     *         Recommended usage is via `Face::STRENGTH_*` constants. Defaults
-     *         to "low". Higher strength will result in fewer `true` results,
-     *         but fewer false positives.
+     * @param  string $strength [optional] Value should be one of "low",
+     *         "medium" or "high". Recommended usage is via `Face::STRENGTH_*`
+     *         constants. Higher strength will result in fewer `true` results,
+     *         but fewer false positives. **Defaults to** `"low"`.
      * @return bool
      */
     public function isJoyful($strength = self::STRENGTH_LOW)
@@ -273,10 +273,10 @@ class Face extends AbstractFeature
      * }
      * ```
      *
-     * @param  string $strength [optional] Value should be one of "low", "medium" or "high".
-     *         Recommended usage is via `Face::STRENGTH_*` constants. Defaults
-     *         to "low". Higher strength will result in fewer `true` results,
-     *         but fewer false positives.
+     * @param  string $strength [optional] Value should be one of "low",
+     *         "medium" or "high". Recommended usage is via `Face::STRENGTH_*`
+     *         constants. Higher strength will result in fewer `true` results,
+     *         but fewer false positives. **Defaults to** `"low"`.
      * @return bool
      */
     public function isSorrowful($strength = self::STRENGTH_LOW)
@@ -294,10 +294,10 @@ class Face extends AbstractFeature
      * }
      * ```
      *
-     * @param  string $strength [optional] Value should be one of "low", "medium" or "high".
-     *         Recommended usage is via `Face::STRENGTH_*` constants. Defaults
-     *         to "low". Higher strength will result in fewer `true` results,
-     *         but fewer false positives.
+     * @param  string $strength [optional] Value should be one of "low",
+     *         "medium" or "high". Recommended usage is via `Face::STRENGTH_*`
+     *         constants. Higher strength will result in fewer `true` results,
+     *         but fewer false positives. **Defaults to** `"low"`.
      * @return bool
      */
     public function isAngry($strength = self::STRENGTH_LOW)
@@ -315,10 +315,10 @@ class Face extends AbstractFeature
      * }
      * ```
      *
-     * @param  string $strength [optional] Value should be one of "low", "medium" or "high".
-     *         Recommended usage is via `Face::STRENGTH_*` constants. Defaults
-     *         to "low". Higher strength will result in fewer `true` results,
-     *         but fewer false positives.
+     * @param  string $strength [optional] Value should be one of "low",
+     *         "medium" or "high". Recommended usage is via `Face::STRENGTH_*`
+     *         constants. Higher strength will result in fewer `true` results,
+     *         but fewer false positives. **Defaults to** `"low"`.
      * @return bool
      */
     public function isSurprised($strength = self::STRENGTH_LOW)
@@ -336,10 +336,10 @@ class Face extends AbstractFeature
      * }
      * ```
      *
-     * @param  string $strength [optional] Value should be one of "low", "medium" or "high".
-     *         Recommended usage is via `Face::STRENGTH_*` constants. Defaults
-     *         to "low". Higher strength will result in fewer `true` results,
-     *         but fewer false positives.
+     * @param  string $strength [optional] Value should be one of "low",
+     *         "medium" or "high". Recommended usage is via `Face::STRENGTH_*`
+     *         constants. Higher strength will result in fewer `true` results,
+     *         but fewer false positives. **Defaults to** `"low"`.
      * @return bool
      */
     public function isUnderExposed($strength = self::STRENGTH_LOW)
@@ -357,10 +357,10 @@ class Face extends AbstractFeature
      * }
      * ```
      *
-     * @param  string $strength [optional] Value should be one of "low", "medium" or "high".
-     *         Recommended usage is via `Face::STRENGTH_*` constants. Defaults
-     *         to "low". Higher strength will result in fewer `true` results,
-     *         but fewer false positives.
+     * @param  string $strength [optional] Value should be one of "low",
+     *         "medium" or "high". Recommended usage is via `Face::STRENGTH_*`
+     *         constants. Higher strength will result in fewer `true` results,
+     *         but fewer false positives. **Defaults to** `"low"`.
      * @return bool
      */
     public function isBlurred($strength = self::STRENGTH_LOW)
@@ -378,10 +378,10 @@ class Face extends AbstractFeature
      * }
      * ```
      *
-     * @param  string $strength [optional] Value should be one of "low", "medium" or "high".
-     *         Recommended usage is via `Face::STRENGTH_*` constants. Defaults
-     *         to "low". Higher strength will result in fewer `true` results,
-     *         but fewer false positives.
+     * @param  string $strength [optional] Value should be one of "low",
+     *         "medium" or "high". Recommended usage is via `Face::STRENGTH_*`
+     *         constants. Higher strength will result in fewer `true` results,
+     *         but fewer false positives. **Defaults to** `"low"`.
      * @return bool
      */
     public function hasHeadwear($strength = self::STRENGTH_LOW)

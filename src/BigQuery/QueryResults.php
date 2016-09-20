@@ -193,7 +193,7 @@ class QueryResults
      *     @type int $maxResults Maximum number of results to read.
      *     @type int $startIndex Zero-based index of the starting row.
      *     @type int $timeoutMs How long to wait for the query to complete, in
-     *           milliseconds. Defaults to 10000 milliseconds (10 seconds).
+     *           milliseconds. **Defaults to** `10000` milliseconds (10 seconds).
      * }
      * @return array
      */

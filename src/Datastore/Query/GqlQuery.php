@@ -107,8 +107,8 @@ class GqlQuery implements QueryInterface
      *     Configuration Options
      *
      *     @type bool $allowLiterals Whether literal values will be allowed in
-     *           the query string. This is false by default, and parameter
-     *           binding is strongly encouraged over literals.
+     *           the query string. Parameter binding is strongly encouraged over
+     *           literals. **Defaults to** `false`.
      *     @type array $bindings An array of values to bind to the query string.
      *           Queries using Named Bindings should provide a key/value set,
      *           while queries using Positional Bindings must provide a simple

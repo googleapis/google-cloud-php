@@ -94,7 +94,7 @@ class Dataset
      *
      *     @type bool $deleteContents If true, delete all the tables in the
      *           dataset. If false and the dataset contains tables, the request
-     *           will fail. Default is false.
+     *           will fail. **Defaults to** `false`.
      * }
      */
     public function delete(array $options = [])

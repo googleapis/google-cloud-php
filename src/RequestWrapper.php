@@ -71,7 +71,7 @@ class RequestWrapper
     private $keyFile;
 
     /**
-     * @var int Number of retries for a failed request. Defaults to 3.
+     * @var int Number of retries for a failed request. **Defaults to**  `3`.
      */
 
     private $retries;
@@ -116,8 +116,8 @@ class RequestWrapper
      *           credentials .json file retrieved from the Google Developers
      *           Console.
      *     @type array $httpOptions HTTP client specific configuration options.
-     *     @type int $retries Number of retries for a failed request. Defaults
-     *           to 3.
+     *     @type int $retries Number of retries for a failed request.
+     *           **Defaults to** `3`.
      *     @type array $scopes Scopes to be used for the request.
      *     @type boolean $shouldSignRequest Whether to enable request signing.
      * }
@@ -158,8 +158,8 @@ class RequestWrapper
      * @param array $options {
      *     Request options.
      *
-     *     @type int $retries Number of retries for a failed request. Defaults
-     *           to 3.
+     *     @type int $retries Number of retries for a failed request.
+     *           **Defaults to** `3`.
      *     @type array $httpOptions HTTP client specific configuration options.
      * }
      * @return ResponseInterface

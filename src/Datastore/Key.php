@@ -242,7 +242,7 @@ class Key implements JsonSerializable
      * of a Key. It should not generally be used externally.
      *
      * @param string $value The value of the ID or Name.
-     * @param string $type [optional] 'id' or 'name'. 'id' by default.
+     * @param string $type [optional] 'id' or 'name'. **Defaults to** `"id"`.
      * @return void
      * @access private
      */

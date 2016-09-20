@@ -81,8 +81,8 @@ class ServiceBuilder
      *     @type string $keyFilePath The full path to your service account
      *           credentials .json file retrieved from the Google Developers
      *           Console.
-     *     @type int $retries Number of retries for a failed request. Defaults
-     *           to 3.
+     *     @type int $retries Number of retries for a failed request.
+     *           **Defaults to** `3`.
      *     @type array $scopes Scopes to be used for the request.
      * }
      */
@@ -283,8 +283,8 @@ class ServiceBuilder
      *     @type string $target The target language to assign to the client.
      *           Defaults to `en` (English).
      *     @type callable $httpHandler A handler used to deliver Psr7 requests.
-     *     @type int $retries Number of retries for a failed request. Defaults
-     *           to 3.
+     *     @type int $retries Number of retries for a failed request.
+     *           **Defaults to** `3`.
      * }
      * @return TranslateClient
      */

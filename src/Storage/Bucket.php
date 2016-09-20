@@ -177,9 +177,10 @@ class Bucket
      *           you have increased reliability at the risk of higher overhead.
      *           It is recommended to not use chunking.
      *     @type string $predefinedAcl Predefined ACL to apply to the object.
-     *           Defaults to private. Acceptable values include,
-     *           authenticatedRead, bucketOwnerFullControl, bucketOwnerRead,
-     *           private, projectPrivate, and publicRead.
+     *           Acceptable values include,
+     *           `"authenticatedRead"`, `"bucketOwnerFullControl"`,
+     *           `"bucketOwnerRead"`, `"private"`, `"projectPrivate"`, and
+     *           `"publicRead"`. **Defaults to** `"private"`.
      *     @type array $metadata The available options for metadata are outlined
      *           at the [JSON API docs](https://cloud.google.com/storage/docs/json_api/v1/objects/insert#request)
      * }
@@ -243,9 +244,10 @@ class Bucket
      *           you have increased reliability at the risk of higher overhead.
      *           It is recommended to not use chunking.
      *     @type string $predefinedAcl Predefined ACL to apply to the object.
-     *           Defaults to private. Acceptable values include
-     *           authenticatedRead, bucketOwnerFullControl, bucketOwnerRead,
-     *           private, projectPrivate, and publicRead.
+     *           Acceptable values include `"authenticatedRead`",
+     *           `"bucketOwnerFullControl`", `"bucketOwnerRead`", `"private`",
+     *           `"projectPrivate`", and `"publicRead"`. **Defaults to**
+     *           `"private"`.
      *     @type array $metadata The available options for metadata are outlined
      *           at the [JSON API docs](https://cloud.google.com/storage/docs/json_api/v1/objects/insert#request)
      * }
@@ -318,7 +320,7 @@ class Bucket
      *           truncated after the delimiter, returned in prefixes. Duplicate
      *           prefixes are omitted.
      *     @type integer $maxResults Maximum number of results to return per
-     *           request. Defaults to 1000.
+     *           request. Defaults to `1000`.
      *     @type string $prefix Filter results with this prefix.
      *     @type string $projection Determines which properties to return. May
      *           be either 'full' or 'noAcl'.

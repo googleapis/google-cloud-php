@@ -116,10 +116,10 @@ class SafeSearch extends AbstractFeature
      * }
      * ```
      *
-     * @param  string $strength [optional] Value should be one of "low", "medium" or "high".
-     *         Recommended usage is via `SafeSearch::STRENGTH_*` constants. Defaults
-     *         to "low". Higher strength will result in fewer `true` results,
-     *         but fewer false positives.
+     * @param  string $strength [optional] Value should be one of "low",
+     *         "medium" or "high". Recommended usage is via `Face::STRENGTH_*`
+     *         constants. Higher strength will result in fewer `true` results,
+     *         but fewer false positives. **Defaults to** `"low"`.
      * @return bool
      */
     public function isAdult($strength = self::STRENGTH_LOW)
@@ -137,10 +137,10 @@ class SafeSearch extends AbstractFeature
      * }
      * ```
      *
-     * @param  string $strength [optional] Value should be one of "low", "medium" or "high".
-     *         Recommended usage is via `SafeSearch::STRENGTH_*` constants. Defaults
-     *         to "low". Higher strength will result in fewer `true` results,
-     *         but fewer false positives.
+     * @param  string $strength [optional] Value should be one of "low",
+     *         "medium" or "high". Recommended usage is via `Face::STRENGTH_*`
+     *         constants. Higher strength will result in fewer `true` results,
+     *         but fewer false positives. **Defaults to** `"low"`.
      * @return bool
      */
     public function isSpoof($strength = self::STRENGTH_LOW)
@@ -158,10 +158,10 @@ class SafeSearch extends AbstractFeature
      * }
      * ```
      *
-     * @param  string $strength [optional] Value should be one of "low", "medium" or "high".
-     *         Recommended usage is via `SafeSearch::STRENGTH_*` constants. Defaults
-     *         to "low". Higher strength will result in fewer `true` results,
-     *         but fewer false positives.
+     * @param  string $strength [optional] Value should be one of "low",
+     *         "medium" or "high". Recommended usage is via `Face::STRENGTH_*`
+     *         constants. Higher strength will result in fewer `true` results,
+     *         but fewer false positives. **Defaults to** `"low"`.
      * @return bool
      */
     public function isMedical($strength = self::STRENGTH_LOW)
@@ -179,10 +179,10 @@ class SafeSearch extends AbstractFeature
      * }
      * ```
      *
-     * @param  string $strength [optional] Value should be one of "low", "medium" or "high".
-     *         Recommended usage is via `SafeSearch::STRENGTH_*` constants. Defaults
-     *         to "low". Higher strength will result in fewer `true` results,
-     *         but fewer false positives.
+     * @param  string $strength [optional] Value should be one of "low",
+     *         "medium" or "high". Recommended usage is via `Face::STRENGTH_*`
+     *         constants. Higher strength will result in fewer `true` results,
+     *         but fewer false positives. **Defaults to** `"low"`.
      * @return bool
      */
     public function isViolent($strength = self::STRENGTH_LOW)

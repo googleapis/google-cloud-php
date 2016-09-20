@@ -177,8 +177,7 @@ class Subscription
      *
      *     @type int $ackDeadlineSeconds This value is the maximum time after a
      *           subscriber receives a message before the subscriber should
-     *           acknowledge the message. If not set, the default value of 10 is
-     *           used.
+     *           acknowledge the message. **Defaults to** `10`.
      *     @type array $pushConfig See {@see Google\Cloud\PubSub\Subscription::modifyPushConfig()} or
      *           [PushConfig](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions#PushConfig)
      *           for usage.

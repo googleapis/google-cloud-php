@@ -77,8 +77,8 @@ class LoggingClient
      *     @type string $keyFilePath The full path to your service account
      *           credentials .json file retrieved from the Google Developers
      *           Console.
-     *     @type int $retries Number of retries for a failed request. Defaults
-     *           to 3.
+     *     @type int $retries Number of retries for a failed request.
+     *           **Defaults to** `3`.
      *     @type array $scopes Scopes to be used for the request.
      * }
      */
@@ -315,8 +315,8 @@ class LoggingClient
      *           client.
      *     @type string $filter An [advanced logs filter](https://cloud.google.com/logging/docs/view/advanced_filters).
      *     @type string $orderBy How the results should be sorted. Presently,
-     *           the only permitted values are `timestamp asc` (default) and
-     *           `timestamp desc`.
+     *           the only permitted values are `timestamp asc` and
+     *           `timestamp desc`. **Defaults to** `"timestamp asc"`.
      *     @type int $pageSize The maximum number of results to return per
      *           request.
      * }
