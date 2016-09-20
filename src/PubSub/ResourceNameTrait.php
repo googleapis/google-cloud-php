@@ -81,7 +81,7 @@ trait ResourceNameTrait
      *
      * @param  string $type
      * @param  string $name
-     * @param  string $projectId
+     * @param  string $projectId [optional]
      * @return string
      * @throws \InvalidArgumentException
      */

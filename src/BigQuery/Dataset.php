@@ -46,7 +46,7 @@ class Dataset
      *        BigQuery.
      * @param string $id The dataset's ID.
      * @param string $projectId The project's ID.
-     * @param array $info The dataset's metadata.
+     * @param array $info [optional] The dataset's metadata.
      */
     public function __construct(ConnectionInterface $connection, $id, $projectId, array $info = [])
     {

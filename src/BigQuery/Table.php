@@ -51,7 +51,7 @@ class Table
      * @param string $id The table's id.
      * @param string $datasetId The dataset's id.
      * @param string $projectId The project's id.
-     * @param array $info The table's metadata.
+     * @param array $info [optional] The table's metadata.
      */
     public function __construct(ConnectionInterface $connection, $id, $datasetId, $projectId, array $info = [])
     {

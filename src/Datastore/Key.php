@@ -123,8 +123,8 @@ class Key implements JsonSerializable
      * @see https://cloud.google.com/datastore/reference/rest/v1/Key#PathElement PathElement
      *
      * @param string $kind The kind.
-     * @param string|int $identifier The name or ID of the object.
-     * @param string $identifierType If omitted, the type will be determined
+     * @param string|int $identifier [optional] The name or ID of the object.
+     * @param string $identifierType [optional] If omitted, the type will be determined
      *        internally. Setting this to either `Key::TYPE_ID` or
      *        `Key::TYPE_NAME` will force the pathElement identifier type.
      * @return Key
@@ -157,7 +157,7 @@ class Key implements JsonSerializable
      *
      * @param string $kind The kind.
      * @param string|int $identifier The name or ID of the object.
-     * @param string $identifierType If omitted, the type will be determined
+     * @param string $identifierType [optional] If omitted, the type will be determined
      *        internally. Setting this to either `Key::TYPE_ID` or
      *        `Key::TYPE_NAME` will force the pathElement identifier type.
      * @return Key
@@ -242,7 +242,7 @@ class Key implements JsonSerializable
      * of a Key. It should not generally be used externally.
      *
      * @param string $value The value of the ID or Name.
-     * @param string $type 'id' or 'name'. 'id' by default.
+     * @param string $type [optional] 'id' or 'name'. 'id' by default.
      * @return void
      * @access private
      */

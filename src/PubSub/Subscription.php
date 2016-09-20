@@ -102,7 +102,7 @@ class Subscription
      * @param  string $name The subscription name
      * @param  string $topicName The topic name the subscription is attached to
      * @param  string $projectId The current project
-     * @param  array $info Subscription info. Used to pre-populate the object.
+     * @param  array $info [optional] Subscription info. Used to pre-populate the object.
      */
     public function __construct(
         ConnectionInterface $connection,

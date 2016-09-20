@@ -116,7 +116,7 @@ class SafeSearch extends AbstractFeature
      * }
      * ```
      *
-     * @param  string $strength Value should be one of "low", "medium" or "high".
+     * @param  string $strength [optional] Value should be one of "low", "medium" or "high".
      *         Recommended usage is via `SafeSearch::STRENGTH_*` constants. Defaults
      *         to "low". Higher strength will result in fewer `true` results,
      *         but fewer false positives.
@@ -137,7 +137,7 @@ class SafeSearch extends AbstractFeature
      * }
      * ```
      *
-     * @param  string $strength Value should be one of "low", "medium" or "high".
+     * @param  string $strength [optional] Value should be one of "low", "medium" or "high".
      *         Recommended usage is via `SafeSearch::STRENGTH_*` constants. Defaults
      *         to "low". Higher strength will result in fewer `true` results,
      *         but fewer false positives.
@@ -158,7 +158,7 @@ class SafeSearch extends AbstractFeature
      * }
      * ```
      *
-     * @param  string $strength Value should be one of "low", "medium" or "high".
+     * @param  string $strength [optional] Value should be one of "low", "medium" or "high".
      *         Recommended usage is via `SafeSearch::STRENGTH_*` constants. Defaults
      *         to "low". Higher strength will result in fewer `true` results,
      *         but fewer false positives.
@@ -179,7 +179,7 @@ class SafeSearch extends AbstractFeature
      * }
      * ```
      *
-     * @param  string $strength Value should be one of "low", "medium" or "high".
+     * @param  string $strength [optional] Value should be one of "low", "medium" or "high".
      *         Recommended usage is via `SafeSearch::STRENGTH_*` constants. Defaults
      *         to "low". Higher strength will result in fewer `true` results,
      *         but fewer false positives.

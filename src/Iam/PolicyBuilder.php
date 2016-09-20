@@ -88,7 +88,7 @@ class PolicyBuilder
      * ]);
      * ```
      *
-     * @param  array $bindings An array of bindings
+     * @param  array $bindings [optional] An array of bindings
      * @return PolicyBuilder
      * @throws InvalidArgumentException
      */

@@ -47,7 +47,7 @@ class RequestBuilder
     /**
      * @param string $servicePath
      * @param string $baseUri
-     * @param array  $resourceRoot
+     * @param array  $resourceRoot [optional]
      */
     public function __construct($servicePath, $baseUri, array $resourceRoot = [])
     {
@@ -61,7 +61,7 @@ class RequestBuilder
      *
      * @param string $resource
      * @param string $method
-     * @param array $options
+     * @param array $options [optional]
      * @return RequestInterface
      * @todo complexity high, revisit
      * @todo consider validating against the schemas

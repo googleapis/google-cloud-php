@@ -225,7 +225,7 @@ class PubSubClient
      * ```
      *
      * @param  string $name The subscription name
-     * @param  string $topicName The topic name
+     * @param  string $topicName [optional] The topic name
      * @return Subscription
      */
     public function subscription($name, $topicName = null)
@@ -285,7 +285,7 @@ class PubSubClient
      *
      * @codingStandardsIgnoreStart
      * @param  string $name The topic name
-     * @param  array  $info Information about the topic. Used internally to
+     * @param  array  $info [optional] Information about the topic. Used internally to
      *         populate topic objects with an API result. Should be
      *         a representation of a [Topic](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics#Topic).
      * @return Topic
@@ -301,8 +301,8 @@ class PubSubClient
      *
      * @codingStandardsIgnoreStart
      * @param  string $name The subscription name
-     * @param  string $topicName The topic name
-     * @param  array  $info Information about the subscription. Used
+     * @param  string $topicName [optional] The topic name
+     * @param  array  $info [optional] Information about the subscription. Used
      *         to populate subscriptons with an api result. Should be a
      *         representation of a [Subscription](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions#Subscription).
      * @return Subscription

@@ -40,8 +40,8 @@ class ExponentialBackoff
     private $delayFunction;
 
     /**
-     * @param int $retries Number of retries for a failed request.
-     * @param callable $retryFunction returns bool for whether or not to retry
+     * @param int $retries [optional] Number of retries for a failed request.
+     * @param callable $retryFunction [optional] returns bool for whether or not to retry
      */
     public function __construct($retries = null, callable $retryFunction = null)
     {
@@ -59,7 +59,7 @@ class ExponentialBackoff
      * Executes the retry process.
      *
      * @param callable $function
-     * @param array $arguments
+     * @param array $arguments [optional]
      * @return mixed
      * @throws \Exception The last exception caught while retrying.
      */

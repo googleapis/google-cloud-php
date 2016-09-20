@@ -53,8 +53,8 @@ class StorageObject
      *        Storage.
      * @param string $name The object's name.
      * @param string $bucket The name of the bucket the object is contained in.
-     * @param string $generation The generation of the object.
-     * @param array $info The object's metadata.
+     * @param string $generation [optional] The generation of the object.
+     * @param array $info [optional] The object's metadata.
      */
     public function __construct(ConnectionInterface $connection, $name, $bucket, $generation = null, array $info = null)
     {

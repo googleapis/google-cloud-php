@@ -58,7 +58,7 @@ class Bucket
      * @param ConnectionInterface $connection Represents a connection to Cloud
      *        Storage.
      * @param string $name The bucket's name.
-     * @param array $info The bucket's metadata.
+     * @param array $info [optional] The bucket's metadata.
      */
     public function __construct(ConnectionInterface $connection, $name, array $info = null)
     {

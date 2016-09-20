@@ -24,9 +24,9 @@ use Monolog\Formatter\LineFormatter;
 class AppEngineFlexFormatter extends LineFormatter
 {
     /**
-     * @param string $format The format of the message
-     * @param string $dateFormat The format of the timestamp
-     * @param bool $ignoreEmptyContextAndExtra
+     * @param string $format [optional] The format of the message
+     * @param string $dateFormat [optional] The format of the timestamp
+     * @param bool $ignoreEmptyContextAndExtra [optional]
      */
     public function __construct($format = null, $dateFormat = null, $ignoreEmptyContextAndExtra = false)
     {

@@ -86,7 +86,7 @@ trait RestTrait
      * When emulators are enabled, use them as the service host
      *
      * @param string $baseUri
-     * @param string $emulatorHost
+     * @param string $emulatorHost [optional]
      * @return string
      */
     public function getEmulatorBaseUri($baseUri, $emulatorHost = null)

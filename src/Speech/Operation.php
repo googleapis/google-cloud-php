@@ -51,7 +51,7 @@ class Operation
      * @param ConnectionInterface $connection Represents a connection to the
      *        Google Cloud Speech API.
      * @param string $name The operation's name.
-     * @param array $info The operation's data.
+     * @param array $info [optional] The operation's data.
      */
     public function __construct(ConnectionInterface $connection, $name, array $info = [])
     {

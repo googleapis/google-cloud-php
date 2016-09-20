@@ -60,7 +60,7 @@ class Sink
      *        Logging.
      * @param string $name The sink's name.
      * @param string $projectId The project's ID.
-     * @param array $info The sink's metadata.
+     * @param array $info [optional] The sink's metadata.
      */
     public function __construct(ConnectionInterface $connection, $name, $projectId, array $info = [])
     {

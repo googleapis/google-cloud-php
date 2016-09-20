@@ -153,7 +153,7 @@ class DatastoreClient
      * @see https://cloud.google.com/datastore/reference/rest/v1/Key#PathElement PathElement
      *
      * @param string $kind The kind.
-     * @param string|int $identifier The ID or name.
+     * @param string|int $identifier [optional] The ID or name.
      * @param array $options {
      *     Configuration Options
      *
@@ -290,7 +290,7 @@ class DatastoreClient
      * @see https://cloud.google.com/datastore/reference/rest/v1/Entity Entity
      *
      * @param Key|string $key The key used to identify the record, or a string $kind.
-     * @param array $entity The data to fill the entity with.
+     * @param array $entity [optional] The data to fill the entity with.
      * @param array $options {
      *     Configuration Options
      *

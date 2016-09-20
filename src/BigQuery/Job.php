@@ -47,7 +47,7 @@ class Job
      *        BigQuery.
      * @param string $id The job's ID.
      * @param string $projectId The project's ID.
-     * @param array $info The job's metadata.
+     * @param array $info [optional] The job's metadata.
      */
     public function __construct(ConnectionInterface $connection, $id, $projectId, array $info = [])
     {

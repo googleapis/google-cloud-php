@@ -77,7 +77,7 @@ class Topic
      *         Platform service
      * @param  string $name The topic name
      * @param  string $projectId The project Id
-     * @param  array $info A [Topic](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics)
+     * @param  array $info [optional] A [Topic](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics)
      */
     public function __construct(
         ConnectionInterface $connection,
@@ -481,7 +481,7 @@ class Topic
      * Ensure that the message is in a correct format,
      * base64_encode the data, and error if the input is too wrong to proceed.
      * @param  array $message
-     * @param  bool $encode
+     * @param  bool $encode [optional]
      * @return array The message data
      * @throws \InvalidArgumentException
      */
@@ -507,7 +507,7 @@ class Topic
      *
      * @codingStandardsIgnoreStart
      * @param  string $name
-     * @param  array $info A representation of a
+     * @param  array $info [optional] A representation of a
      *         [Subscription](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions#Subscription)
      * @return Subscription
      * @codingStandardsIgnoreEnd

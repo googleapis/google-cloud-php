@@ -57,7 +57,7 @@ class Metric
      *        Logging.
      * @param string $name The metric's name.
      * @param string $projectId The project's ID.
-     * @param array $info The metric's metadata.
+     * @param array $info [optional] The metric's metadata.
      */
     public function __construct(ConnectionInterface $connection, $name, $projectId, array $info = [])
     {

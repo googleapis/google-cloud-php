@@ -85,7 +85,7 @@ class Entity implements ArrayAccess
 
     /**
      * @param Key $key The Entity's Key, defining its unique identifier.
-     * @param array $entity The entity body.
+     * @param array $entity [optional] The entity body.
      * @param array $options {
      *     Configuration Options
      *
