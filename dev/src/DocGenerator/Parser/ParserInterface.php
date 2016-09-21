@@ -15,16 +15,9 @@
  * limitations under the License.
  */
 
-require __DIR__ . '/DocGenerator.php';
+namespace Google\Cloud\Dev\DocGenerator\Parser;
 
-$directoryIterator = new RecursiveDirectoryIterator(__DIR__ . '/../src');
-$iterator = new RecursiveIteratorIterator($directoryIterator);
-$regexIterator = new RegexIterator($iterator, '/^.+\.php$/i', RecursiveRegexIterator::GET_MATCH);
-$files = [];
-
-foreach ($regexIterator as $item) {
-    array_push($files, $item[0]);
+interface ParserInterface
+{
+    public function parse();
 }
-
-$generator = new DocGenerator($files, __DIR__ . '/../docs/json/master');
-$generator->generate();

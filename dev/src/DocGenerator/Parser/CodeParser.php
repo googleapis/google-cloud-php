@@ -15,62 +15,32 @@
  * limitations under the License.
  */
 
-require __DIR__ . '/../vendor/autoload.php';
+namespace Google\Cloud\Dev\DocGenerator\Parser;
 
 use phpDocumentor\Reflection\DocBlock;
 use phpDocumentor\Reflection\DocBlock\Description;
 use phpDocumentor\Reflection\DocBlock\Tag\SeeTag;
 use phpDocumentor\Reflection\FileReflector;
 
-/**
- * Parses given files and builds documentation for our common docs site.
- */
-class DocGenerator
+class CodeParser implements ParserInterface
 {
-    private $currentFile;
-    private $files;
-    private $outputPath;
+    private $path;
+    private $outputName;
+    private $reflector;
+    private $markdown;
 
-    /**
-     * @param array $files
-     */
-    public function __construct(array $files, $outputPath)
+    public function __construct($path, $outputName, FileReflector $reflector)
     {
-        $this->files = $files;
-        $this->outputPath = $outputPath;
+        $this->path = $path;
+        $this->outputName;
+        $this->reflector = $reflector;
         $this->markdown = \Parsedown::instance();
     }
 
-    /**
-     * Generates JSON documentation from provided files.
-     *
-     * @return void
-     */
-    public function generate()
+    public function parse()
     {
-        $types = [];
-
-        foreach ($this->files as $file) {
-            $this->currentFile = substr(str_replace(__DIR__, '', $file), 3);
-            $jsonOutputPath = $this->buildOutputPath();
-            $fileReflector = new FileReflector($file);
-            $fileReflector->process();
-            $document = $this->buildDocument($this->getReflector($fileReflector));
-
-            $types[] = [
-                'id' => $document['id'],
-                'title' => $document['title'],
-                'contents' => $document['id'] . '.json'
-            ];
-
-            if (!is_dir(dirname($jsonOutputPath))) {
-                mkdir(dirname($jsonOutputPath), 0777, true);
-            }
-
-            file_put_contents($jsonOutputPath, json_encode($document));
-        }
-
-        file_put_contents($this->outputPath . '/types.json', json_encode($types));
+        $this->reflector->process();
+        return $this->buildDocument($this->getReflector($this->reflector));
     }
 
     private function getReflector($fileReflector)
@@ -87,7 +57,7 @@ class DocGenerator
             return $fileReflector->getTraits()[0];
         }
 
-        throw new \Exception('Could not get reflector for '. $this->currentFile);
+        throw new \Exception('Could not get reflector for '. $this->outputName);
     }
 
     private function buildDocument($reflector)
@@ -156,6 +126,7 @@ class DocGenerator
             $content = implode('', $parsedContents);
         }
 
+        $content = str_ireplace('[optional]', '', $content);
         return $this->markdown->parse($content);
     }
 
@@ -218,7 +189,7 @@ class DocGenerator
             'id' => $method->getName(),
             'type' => $method->getName() === '__construct' ? 'constructor' : 'instance',
             'name' => $method->getName(),
-            'source' => $this->currentFile . '#L' . $method->getLineNumber(),
+            'source' => $this->outputName . '#L' . $method->getLineNumber(),
             'description' => $this->buildDescription($docBlock, $split['description']),
             'examples' => $this->buildExamples($split['examples']),
             'resources' => $this->buildResources($resources),
@@ -251,7 +222,7 @@ class DocGenerator
             'id' => $magicMethod->getMethodName(),
             'type' => $magicMethod->getMethodName() === '__construct' ? 'constructor' : 'instance',
             'name' => $magicMethod->getMethodName(),
-            'source' => $this->currentFile,
+            'source' => $this->outputName,
             'description' => $this->buildDescription($docBlock, $docText),
             'examples' => $this->buildExamples($examples),
             'resources' => $this->buildResources($resources),
@@ -352,7 +323,7 @@ class DocGenerator
                 'name' => $varName,
                 'description' => $this->buildDescription($param->getDocBlock(), $description),
                 'types' => $this->handleTypes($param->getTypes()),
-                'optional' => null, // @todo
+                'optional' => (strpos(trim(strtolower($description)), '[optional]') === 0),
                 'nullable' => null // @todo
             ];
 
@@ -505,15 +476,6 @@ class DocGenerator
             'description' => $parts[0],
             'examples' => $examples
         ];
-    }
-
-    private function buildOutputPath()
-    {
-        $pathInfo = pathinfo($this->currentFile);
-        $servicePath = substr($pathInfo['dirname'] . '/' . $pathInfo['filename'] . '.json', 4);
-        $servicePath = strtolower($servicePath);
-
-        return $this->outputPath . $servicePath;
     }
 }
 
