@@ -111,11 +111,8 @@
         },
         {
             "title": "PubSub",
-            "type": "pubsub/readme",
+            "type": "pubsub/pubsubclient",
             "nav": [{
-                "title": "PubSubClient",
-                "type": "pubsub/pubsubclient"
-            }, {
                 "title": "Subscription",
                 "type": "pubsub/subscription"
             },
