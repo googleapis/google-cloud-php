@@ -4,3 +4,4 @@ composer.phar
 composer.lock
 docs/json/**/*.json
 vendor/
+.idea/

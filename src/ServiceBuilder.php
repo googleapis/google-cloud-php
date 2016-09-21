@@ -20,6 +20,7 @@ namespace Google\Cloud;
 use Google\Auth\HttpHandler\HttpHandlerFactory;
 use Google\Cloud\BigQuery\BigQueryClient;
 use Google\Cloud\Datastore\DatastoreClient;
+use Google\Cloud\Dns\DnsClient;
 use Google\Cloud\Logging\LoggingClient;
 use Google\Cloud\NaturalLanguage\NaturalLanguageClient;
 use Google\Cloud\PubSub\PubSubClient;
@@ -127,6 +128,12 @@ class ServiceBuilder
     public function datastore(array $config = [])
     {
         return new DatastoreClient($config ? $this->resolveConfig($config) : $this->config);
+    }
+
+
+    public function dns(array $config = [])
+    {
+        return new DnsClient($config ? $this->resolveConfig($config) : $this->config);
     }
 
     /**
