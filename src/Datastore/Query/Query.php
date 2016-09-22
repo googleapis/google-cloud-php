@@ -130,7 +130,7 @@ class Query implements QueryInterface
 
     /**
      * @param EntityMapper $entityMapper An instance of EntityMapper
-     * @param array $options {
+     * $param array $options [optional] {
      *     Configuration Options
      *
      *     @type array $query [Query](https://cloud.google.com/datastore/reference/rest/v1/projects/runQuery#query)

@@ -75,7 +75,7 @@ class Metric
      * $metric->exists();
      * ```
      *
-     * @param array $options Configuration Options
+     * $param array $options [optional] Configuration Options
      * @return bool
      */
     public function exists(array $options = [])
@@ -101,7 +101,7 @@ class Metric
      * @see https://cloud.google.com/logging/docs/api/ref_v2beta1/rest/v2beta1/projects.metrics/delete projects.metrics delete API documentation.
      * @codingStandardsIgnoreEnd
      *
-     * @param array $options Configuration options.
+     * $param array $options [optional] Configuration Options.
      */
     public function delete(array $options = [])
     {
@@ -131,7 +131,7 @@ class Metric
      *     @type string $description A description of the metric.
      *     @type string $filter An [advanced logs filter](https://cloud.google.com/logging/docs/view/advanced_filters).
      * }
-     * @param array $options Configuration options.
+     * $param array $options [optional] Configuration Options.
      * @return array
      */
     public function update(array $metadata, array $options = [])
@@ -158,7 +158,7 @@ class Metric
      * @see https://cloud.google.com/logging/docs/api/ref_v2beta1/rest/v2beta1/projects.metrics#resource-logmetric LogMetric resource API documentation.
      * @codingStandardsIgnoreEnd
      *
-     * @param array $options Configuration options.
+     * $param array $options [optional] Configuration Options.
      * @return array
      */
     public function info(array $options = [])
@@ -184,7 +184,7 @@ class Metric
      * @see https://cloud.google.com/logging/docs/api/ref_v2beta1/rest/v2beta1/projects.metrics/get projects.metrics get API documentation.
      * @codingStandardsIgnoreEnd
      *
-     * @param array $options Configuration options.
+     * $param array $options [optional] Configuration Options.
      * @return array
      */
     public function reload(array $options = [])

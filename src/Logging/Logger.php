@@ -84,7 +84,7 @@ class Logger
      * @see https://cloud.google.com/logging/docs/api/ref_v2beta1/rest/v2beta1/projects.logs/delete projects.logs delete API documentation.
      * @codingStandardsIgnoreEnd
      *
-     * @param array $options Configuration options.
+     * $param array $options [optional] Configuration Options.
      */
     public function delete(array $options = [])
     {
@@ -121,7 +121,7 @@ class Logger
      * @see https://cloud.google.com/logging/docs/api/ref_v2beta1/rest/v2beta1/entries/list Entries list API documentation.
      * @codingStandardsIgnoreEnd
      *
-     * @param array $options {
+     * $param array $options [optional] {
      *     Configuration options.
      *
      *     @type string $filter An [advanced logs filter](https://cloud.google.com/logging/docs/view/advanced_filters).
@@ -211,7 +211,7 @@ class Logger
      * @param array $resource The
      *        [monitored resource](https://cloud.google.com/logging/docs/api/ref_v2beta1/rest/v2beta1/MonitoredResource)
      *        to associate this log entry with.
-     * @param array $options {
+     * $param array $options [optional] {
      *     Configuration options.
      *
      *     @type array $httpRequest Information about the HTTP request
@@ -261,7 +261,7 @@ class Logger
      * @codingStandardsIgnoreEnd
      *
      * @param Entry $entry The entry to write to the log.
-     * @param array $options Configuration options.
+     * $param array $options [optional] Configuration Options.
      */
     public function write(Entry $entry, array $options = [])
     {
@@ -293,7 +293,7 @@ class Logger
      * @codingStandardsIgnoreEnd
      *
      * @param Entry[] $entries Entries to write to the log.
-     * @param array $options Configuration options.
+     * $param array $options [optional] Configuration Options.
      */
     public function writeBatch(array $entries, array $options = [])
     {

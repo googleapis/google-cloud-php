@@ -67,7 +67,7 @@ class ServiceBuilder
      * ]);
      * ```
      *
-     * @param array $config {
+     * $param array $config [optional] {
      *     Configuration options.
      *
      *     @type string $projectId The project ID from the Google Developer's
@@ -276,7 +276,7 @@ class ServiceBuilder
      * $translate = $builder->translate();
      * ```
      *
-     * @param array $config {
+     * $param array $config [optional] {
      *     Configuration options.
      *
      *     @type string $key A public API access key.

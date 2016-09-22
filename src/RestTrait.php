@@ -63,7 +63,7 @@ trait RestTrait
      *
      * @param string $resource The resource type used for the request.
      * @param string $method The method used for the request.
-     * @param array $options Options used to build out the request.
+     * @param array $options [optional] Options used to build out the request.
      * @return array
      */
     public function send($resource, $method, array $options = [])

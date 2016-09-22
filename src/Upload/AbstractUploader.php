@@ -72,7 +72,7 @@ abstract class AbstractUploader
      * @param RequestWrapper $requestWrapper
      * @param string|resource|StreamInterface $data
      * @param string $uri
-     * @param array $options {
+     * $param array $options [optional] {
      *     Optional configuration.
      *
      *     @type array $metadata Metadata on the resource.

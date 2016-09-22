@@ -69,7 +69,7 @@ class SpeechClient
     /**
      * Create a Speech client.
      *
-     * @param array $config {
+     * $param array $config [optional] {
      *     Configuration Options.
      *
      *     @type string $projectId The project ID from the Google Developer's
@@ -147,7 +147,7 @@ class SpeechClient
      *
      * @param resource|string|StorageObject $audio The audio to recognize. May
      *        be a resource, string of bytes, or Google Cloud Storage object.
-     * @param array $options {
+     * $param array $options [optional] {
      *     Configuration options.
      *
      *     @type int $sampleRate Sample rate in Hertz of the provided audio.
@@ -260,7 +260,7 @@ class SpeechClient
      *
      * @param resource|string|StorageObject $audio The audio to recognize. May
      *        be a resource, string of bytes, or Google Cloud Storage object.
-     * @param array $options {
+     * $param array $options [optional] {
      *     Configuration options.
      *
      *     @type int $sampleRate Sample rate in Hertz of the provided audio.

@@ -105,7 +105,7 @@ class RequestWrapper
     private $shouldSignRequest;
 
     /**
-     * @param array $options {
+     * $param array $options [optional] {
      *     Configuration options.
      *
      *     @type string $accessToken Access token used to sign requests.
@@ -155,7 +155,7 @@ class RequestWrapper
      * Deliver the request.
      *
      * @param RequestInterface $request Psr7 request.
-     * @param array $options {
+     * $param array $options [optional] {
      *     Request options.
      *
      *     @type int $retries Number of retries for a failed request.

@@ -76,7 +76,7 @@ class TranslateClient
     /**
      * Create a Translate client.
      *
-     * @param array $config {
+     * @param array $config [optional] {
      *     Configuration Options.
      *
      *     @type string $key A public API access key.
@@ -121,7 +121,7 @@ class TranslateClient
      * @see https://cloud.google.com/translate/v2/translating-text-with-rest Translating Text
      *
      * @param string $string The string to translate.
-     * @param array $options {
+     * $param array $options [optional] {
      *     Configuration Options.
      *
      *     @type string $source The source language to translate from. Must be a
@@ -162,7 +162,7 @@ class TranslateClient
      * @see https://cloud.google.com/translate/v2/translating-text-with-rest Translating Text
      *
      * @param array $strings An array of strings to translate.
-     * @param array $options {
+     * $param array $options [optional] {
      *     Configuration Options.
      *
      *     @type string $source The source language to translate from. Must be a
@@ -218,7 +218,7 @@ class TranslateClient
      * @see https://cloud.google.com/translate/v2/detecting-language-with-rest Detecting Langauge
      *
      * @param string $string The string to detect the language of.
-     * @param array $options {
+     * $param array $options [optional] {
      *     Configuration Options.
      *
      *     @type string $format Indicates whether the string is either
@@ -254,7 +254,7 @@ class TranslateClient
      * @see https://cloud.google.com/translate/v2/detecting-language-with-rest Detecting Langauge
      *
      * @param string $string The string to detect the language of.
-     * @param array $options {
+     * $param array $options [optional] {
      *     Configuration Options.
      *
      *     @type string $format Indicates whether the string is either
@@ -305,7 +305,7 @@ class TranslateClient
      * @see https://cloud.google.com/translate/v2/discovering-supported-languages-with-rest Discovering Supported Languages
      * @codingStandardsIgnoreEnd
      *
-     * @param array $options Configuration options.
+     * $param array $options [optional] Configuration Options.
      * @return array A list of supported ISO 639-1 language codes.
      */
     public function languages(array $options = [])
@@ -337,7 +337,7 @@ class TranslateClient
      * @see https://cloud.google.com/translate/v2/discovering-supported-languages-with-rest Discovering Supported Languages
      * @codingStandardsIgnoreEnd
      *
-     * @param array $options {
+     * $param array $options [optional] {
      *     Configuration Options.
      *
      *     @type string $target The language to discover supported languages

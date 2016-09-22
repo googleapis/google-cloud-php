@@ -101,7 +101,7 @@ class Job
      *
      * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs/cancel Jobs cancel API documentation.
      *
-     * @param array $options Configuration options.
+     * @param array $options [optional] Configuration options.
      */
     public function cancel(array $options = [])
     {
@@ -120,7 +120,7 @@ class Job
      * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs/getQueryResults
      * Jobs getQueryResults API documentation.
      *
-     * @param array $options {
+     * @param array $options [optional] {
      *     Configuration options.
      *
      *     @type int $maxResults Maximum number of results to read.
@@ -159,7 +159,7 @@ class Job
      *
      * echo 'Query complete!';
      * ```
-     * @param array $options Configuration options.
+     * @param array $options [optional] Configuration options.
      * @return bool
      */
     public function isComplete(array $options = [])
@@ -179,7 +179,7 @@ class Job
      *
      * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs#resource Jobs resource documentation.
      *
-     * @param array $options Configuration options.
+     * @param array $options [optional] Configuration options.
      * @return array
      */
     public function info(array $options = [])
@@ -204,7 +204,7 @@ class Job
      *
      * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs/get Jobs get API documentation.
      *
-     * @param array $options Configuration options.
+     * @param array $options [optional] Configuration options.
      * @return array
      */
     public function reload(array $options = [])

@@ -90,7 +90,7 @@ class DatastoreClient
     /**
      * Create a Datastore client.
      *
-     * @param array $config {
+     * $param array $config [optional] {
      *     Configuration Options.
      *
      *     @type string $projectId The project ID from the Google Developer's
@@ -123,6 +123,9 @@ class DatastoreClient
         }
 
         $this->connection = new Rest($this->configureAuthentication($config));
+
+        // The second parameter here should change to a variable
+        // when gRPC support is added for variable encoding.
         $this->entityMapper = new EntityMapper($this->projectId, true);
         $this->operation = new Operation(
             $this->connection,
@@ -154,7 +157,7 @@ class DatastoreClient
      *
      * @param string $kind The kind.
      * @param string|int $identifier [optional] The ID or name.
-     * @param array $options {
+     * @param array $options [optional] {
      *     Configuration Options
      *
      *     @type string $identifierType If omitted, type will be determined
@@ -201,7 +204,7 @@ class DatastoreClient
      * @see https://cloud.google.com/datastore/reference/rest/v1/Key#PathElement PathElement
      *
      * @param string $kind The kind to use in the final path element.
-     * @param array $options {
+     * @param array $options [optional] {
      *     Configuration Options
      *
      *     @type array[] $ancestors An array of
@@ -291,7 +294,7 @@ class DatastoreClient
      *
      * @param Key|string $key The key used to identify the record, or a string $kind.
      * @param array $entity [optional] The data to fill the entity with.
-     * @param array $options {
+     * @param array $options [optional] {
      *     Configuration Options
      *
      *     @type string $className The name of a class extending {@see Google\Cloud\Datastore\Entity}.
@@ -364,7 +367,7 @@ class DatastoreClient
      * @see https://cloud.google.com/datastore/reference/rest/v1/projects/allocateIds allocateIds
      *
      * @param Key $key The incomplete key.
-     * @param array $options Configuration options.
+     * @param array $options [optional] Configuration options.
      * @return Key
      */
     public function allocateId(Key $key, array $options = [])
@@ -394,7 +397,7 @@ class DatastoreClient
      * @see https://cloud.google.com/datastore/reference/rest/v1/projects/allocateIds allocateIds
      *
      * @param Key[] $keys The incomplete keys.
-     * @param array $options Configuration options.
+     * @param array $options [optional] Configuration options.
      * @return Key[]
      */
     public function allocateIds(array $keys, array $options = [])
@@ -412,7 +415,7 @@ class DatastoreClient
      *
      * @see https://cloud.google.com/datastore/docs/concepts/transactions Datastore Transactions
      *
-     * @param array $options Configuration options.
+     * @param array $options [optional] Configuration options.
      * @return Transaction
      */
     public function transaction(array $options = [])
@@ -445,7 +448,7 @@ class DatastoreClient
      * ```
      *
      * @param Entity $entity The entity to be inserted.
-     * @param array $options Configuration options.
+     * @param array $options [optional] Configuration options.
      * @return string The entity version.
      * @throws DomainException If a conflict occurs, fail.
      */
@@ -475,7 +478,7 @@ class DatastoreClient
      * ```
      *
      * @param Entity[] $entities The entities to be inserted.
-     * @param array $options Configuration options.
+     * @param array $options [optional] Configuration options.
      * @return array [Response Body](https://cloud.google.com/datastore/reference/rest/v1/projects/commit#response-body)
      */
     public function insertBatch(array $entities, array $options = [])
@@ -504,7 +507,7 @@ class DatastoreClient
      * ```
      *
      * @param Entity $entity The entity to be updated.
-     * @param array $options {
+     * @param array $options [optional] {
      *     Configuration Options
      *
      *     @type bool $allowOverwrite Entities must be updated as an entire
@@ -544,7 +547,7 @@ class DatastoreClient
      * ```
      *
      * @param Entity[] $entities The entities to be updated.
-     * @param array $options {
+     * $param array $options [optional] {
      *     Configuration Options
      *
      *     @type bool $allowOverwrite Entities must be updated as an entire
@@ -592,7 +595,7 @@ class DatastoreClient
      * ```
      *
      * @param Entity $entity The entity to be upserted.
-     * @param array $options Configuration options.
+     * $param array $options [optional] Configuration Options.
      * @return string The entity version.
      * @throws DomainException If a conflict occurs, fail.
      */
@@ -632,7 +635,7 @@ class DatastoreClient
      * ```
      *
      * @param Entity[] $entities The entities to be upserted.
-     * @param array $options Configuration options.
+     * $param array $options [optional] Configuration Options.
      * @return array [Response Body](https://cloud.google.com/datastore/reference/rest/v1/projects/commit#response-body)
      */
     public function upsertBatch(array $entities, array $options = [])
@@ -655,7 +658,7 @@ class DatastoreClient
      * ```
      *
      * @param Key $key The identifier to delete.
-     * @param array $options {
+     * $param array $options [optional] {
      *     Configuration options
      *
      *     @type string $baseVersion Provides concurrency control. The version
@@ -689,7 +692,7 @@ class DatastoreClient
      * ```
      *
      * @param Key[] $keys The identifiers to delete.
-     * @param array $options {
+     * $param array $options [optional] {
      *     Configuration options
      *
      *     @type string $baseVersion Provides concurrency control. The version
@@ -726,7 +729,7 @@ class DatastoreClient
      * ```
      *
      * @param Key $key $key The identifier to use to locate a desired entity.
-     * @param array $options {
+     * $param array $options [optional] {
      *     Configuration Options
      *
      *     @type string $readConsistency See
@@ -768,7 +771,7 @@ class DatastoreClient
      * ```
      *
      * @param Key[] $key The identifiers to look up.
-     * @param array $options {
+     * $param array $options [optional] {
      *     Configuration Options
      *
      *     @type string $readConsistency See
@@ -802,7 +805,7 @@ class DatastoreClient
      * $query = $datastore->query();
      * ```
      *
-     * @param array $options {
+     * $param array $options [optional] {
      *     Query Options
      *
      *     @type array $query [Query](https://cloud.google.com/datastore/reference/rest/v1/projects/runQuery#query)
@@ -848,7 +851,7 @@ class DatastoreClient
      * ```
      *
      * @param string $query The [GQL Query](https://cloud.google.com/datastore/docs/apis/gql/gql_reference) string.
-     * @param array $options {
+     * $param array $options [optional] {
      *     Configuration Options
      *
      *     @type bool $allowLiterals Whether literal values will be allowed in
@@ -885,7 +888,7 @@ class DatastoreClient
      * ```
      *
      * @param QueryInterface $query A query object.
-     * @param array $options {
+     * $param array $options [optional] {
      *     Configuration Options
      *
      *     @type string $className The name of the class to return results as.

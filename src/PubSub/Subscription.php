@@ -172,7 +172,7 @@ class Subscription
      *
      * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions/create Create Subscription
      *
-     * @param  array $options {
+     * @param array $options [optional] {
      *     Configuration Options
      *
      *     @type int $ackDeadlineSeconds This value is the maximum time after a
@@ -214,7 +214,7 @@ class Subscription
      *
      * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions/delete Delete Subscription
      *
-     * @param  array $options Configuration Options.
+     * @param array $options [optional] Configuration Options.
      * @return void
      */
     public function delete(array $options = [])
@@ -243,7 +243,7 @@ class Subscription
      * }
      * ```
      *
-     * @param  array $options Configuration Options
+     * @param array $options [optional] Configuration Options
      * @return bool
      */
     public function exists(array $options = [])
@@ -271,7 +271,7 @@ class Subscription
      *
      * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions/get Get Subscription
      *
-     * @param  array $options Configuration Options
+     * @param array $options [optional] Configuration Options
      * @return array Subscription data
      */
     public function info(array $options = [])
@@ -299,7 +299,7 @@ class Subscription
      *
      * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions/get Get Subscription
      *
-     * @param  array $options Configuration Options
+     * @param array $options [optional] Configuration Options
      * @return array Subscription data
      */
     public function reload(array $options = [])
@@ -323,7 +323,7 @@ class Subscription
      *
      * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions/pull Pull Subscriptions
      *
-     * @param  array $options {
+     * @param array $options [optional] {
      *      Configuration Options
      *
      *      @type bool $returnImmediately If set, the system will respond
@@ -390,8 +390,8 @@ class Subscription
      * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions/acknowledge Acknowledge Message
      * @codingStandardsIgnoreEnd
      *
-     * @param  int $ackId A message's ackId
-     * @param  array $options Configuration Options
+     * @param int $ackId A message's ackId
+     * @param array $options [optional] Configuration Options
      * @return void
      */
     public function acknowledge($ackId, array $options = [])
@@ -462,14 +462,14 @@ class Subscription
      * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions/modifyAckDeadline Modify Ack Deadline
      * @codingStandardsIgnoreEnd
      *
-     * @param  string $ackId An acknowledgement ID
-     * @param  int $seconds The new ack deadline with respect to the time
-     *         this request was sent to the Pub/Sub system. Must be >= 0. For
-     *         example, if the value is 10, the new ack deadline will expire 10
-     *         seconds after the ModifyAckDeadline call was made. Specifying
-     *         zero may immediately make the message available for another pull
-     *         request.
-     * @param  array $options Configuration Options
+     * @param string $ackId An acknowledgement ID
+     * @param int $seconds The new ack deadline with respect to the time
+     *        this request was sent to the Pub/Sub system. Must be >= 0. For
+     *        example, if the value is 10, the new ack deadline will expire 10
+     *        seconds after the ModifyAckDeadline call was made. Specifying
+     *        zero may immediately make the message available for another pull
+     *        request.
+     * @param array $options [optional] Configuration Options
      * @return void
      */
     public function modifyAckDeadline($ackId, $seconds, array $options = [])
@@ -507,14 +507,14 @@ class Subscription
      * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions/modifyAckDeadline Modify Ack Deadline
      * @codingStandardsIgnoreEnd
      *
-     * @param  string $ackIds List of acknowledgment IDs.
-     * @param  int $seconds The new ack deadline with respect to the time
-     *         this request was sent to the Pub/Sub system. Must be >= 0. For
-     *         example, if the value is 10, the new ack deadline will expire 10
-     *         seconds after the ModifyAckDeadline call was made. Specifying
-     *         zero may immediately make the message available for another pull
-     *         request.
-     * @param  array $options Configuration Options
+     * @param string $ackIds List of acknowledgment IDs.
+     * @param int $seconds The new ack deadline with respect to the time
+     *        this request was sent to the Pub/Sub system. Must be >= 0. For
+     *        example, if the value is 10, the new ack deadline will expire 10
+     *        seconds after the ModifyAckDeadline call was made. Specifying
+     *        zero may immediately make the message available for another pull
+     *        request.
+     * @param array $options [optional] Configuration Options
      * @return void
      */
     public function modifyAckDeadlineBatch(array $ackIds, $seconds, array $options = [])
@@ -541,7 +541,7 @@ class Subscription
      * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions/modifyPushConfig Modify Push Config
      * @codingStandardsIgnoreEnd
      *
-     * @param  array $pushConfig {
+     * @param array $pushConfig {
      *     Push delivery configuration. See
      *     [PushConfig](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions#PushConfig)
      *     for more details.
@@ -551,7 +551,7 @@ class Subscription
      *           might use "https://example.com/push".
      *     @type array $attributes Endpoint configuration attributes.
      * }
-     * @param  array $options Configuration Options
+     * @param array $options [optional] Configuration Options
      * @return void
      */
     public function modifyPushConfig(array $pushConfig, array $options = [])

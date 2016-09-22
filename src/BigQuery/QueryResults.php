@@ -87,7 +87,7 @@ class QueryResults
      * }
      * ```
      *
-     * @param array $options Configuration options.
+     * @param array $options [optional] Configuration options.
      * @return array
      * @throws GoogleException Thrown if the query has not yet completed.
      */
@@ -187,7 +187,7 @@ class QueryResults
      * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs/getQueryResults
      * Jobs getQueryResults API documentation.
      *
-     * @param array $options {
+     * @param array $options [optional] {
      *     Configuration options.
      *
      *     @type int $maxResults Maximum number of results to read.

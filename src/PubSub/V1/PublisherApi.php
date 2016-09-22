@@ -195,7 +195,7 @@ class PublisherApi
     /**
      * Constructor.
      *
-     * @param array $options {
+     * $param array $options [optional] {
      *                       Optional. Options for configuring the service API wrapper.
      *
      *     @type string $serviceAddress The domain name of the API remote host.

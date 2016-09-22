@@ -128,7 +128,7 @@ class Topic
      *
      * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics/create Create Topic
      *
-     * @param  array $options Configuration Options
+     * @param array $options [optional] Configuration Options
      * @return array Topic information
      */
     public function create(array $options = [])
@@ -152,7 +152,7 @@ class Topic
      *
      * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics/delete Delete Topic
      *
-     * @param  array $options Configuration Options
+     * @param array $options [optional] Configuration Options
      * @return void
      */
     public function delete(array $options = [])
@@ -177,7 +177,7 @@ class Topic
      * }
      * ```
      *
-     * @param  array $options Configuration Options
+     * @param array $options [optional] Configuration Options
      * @return bool
      */
     public function exists(array $options = [])
@@ -212,7 +212,7 @@ class Topic
      * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics/get Get Topic
      *
      * @codingStandardsIgnoreStart
-     * @param  array $options Configuration Options
+     * @param array $options [optional] Configuration Options
      * @return array [A representation of a Topic](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics)
      * @codingStandardsIgnoreEnd
      */
@@ -248,7 +248,7 @@ class Topic
      * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics/get Get Topic
      *
      * @codingStandardsIgnoreStart
-     * @param  array $options Configuration Options
+     * @param array $options [optional] Configuration Options
      * @return array [A representation of a Topic](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics)
      * @codingStandardsIgnoreEnd
      */
@@ -279,8 +279,8 @@ class Topic
      *
      * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics/publish Publish Message
      *
-     * @param  string $message [Message Format](https://cloud.google.com/pubsub/docs/reference/rest/v1/PubsubMessage)
-     * @param  array $options {
+     * @param string $message [Message Format](https://cloud.google.com/pubsub/docs/reference/rest/v1/PubsubMessage)
+     * @param array $options [optional] {
      *      Configuration Options
      *
      *      @type bool $encode If set to false, the message data will not be
@@ -325,7 +325,9 @@ class Topic
      *        [Message Format](https://cloud.google.com/pubsub/docs/reference/rest/v1/PubsubMessage).
      *        If provided, $data will be base64 encoded before being published,
      *        unless `$options['encode']` is set to false. (See below for more
-     * @param array $options {
+     *        information.)
+     * }
+     * @param array $options [optional] {
      *     Configuration Options
      *
      *     @type bool $encode If set to false, the message data will not be
@@ -360,8 +362,9 @@ class Topic
      *
      * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions/create Create Subscription
      *
-     * @param  string $name The subscription name
-     * @param  array  $options Please see {@see Google\Cloud\PubSub\Subscription::create()} for configuration details.
+     * @param string $name The subscription name
+     * @param array $options [optional] Please see {@see Google\Cloud\PubSub\Subscription::create()}
+     *        for configuration details.
      * @return Subscription
      */
     public function subscribe($name, array $options = [])
@@ -384,7 +387,7 @@ class Topic
      * $topic->subscribe('my-new-subscription');
      * ```
      *
-     * @param  string $name The subscription name
+     * @param string $name The subscription name
      * @return Subscription
      */
     public function subscription($name)
@@ -409,7 +412,7 @@ class Topic
      * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics.subscriptions/list List Topic Subscriptions
      * @codingStandardsIgnoreEnd
      *
-     * @param  array $options {
+     * @param array $options [optional] {
      *     Configuration Options
      *
      *     @type int $pageSize Maximum number of subscriptions to return.

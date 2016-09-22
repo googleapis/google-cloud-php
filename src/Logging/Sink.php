@@ -78,7 +78,7 @@ class Sink
      * $sink->exists();
      * ```
      *
-     * @param array $options Configuration Options
+     * $param array $options [optional] Configuration Options
      * @return bool
      */
     public function exists(array $options = [])
@@ -104,7 +104,7 @@ class Sink
      * @see https://cloud.google.com/logging/docs/api/ref_v2beta1/rest/v2beta1/projects.sinks/delete projects.sinks delete API documentation.
      * @codingStandardsIgnoreEnd
      *
-     * @param array $options Configuration options.
+     * $param array $options [optional] Configuration Options.
      */
     public function delete(array $options = [])
     {
@@ -140,7 +140,7 @@ class Sink
      *           to correspond to the version of the log entry when it was
      *           written to Stackdriver Logging.
      * }
-     * @param array $options Configuration options.
+     * $param array $options [optional] Configuration Options.
      * @return array
      */
     public function update(array $metadata, array $options = [])
@@ -167,7 +167,7 @@ class Sink
      * @see https://cloud.google.com/logging/docs/api/ref_v2beta1/rest/v2beta1/projects.sinks#resource-logsink LogSink resource API documentation.
      * @codingStandardsIgnoreEnd
      *
-     * @param array $options Configuration options.
+     * $param array $options [optional] Configuration Options.
      * @return array
      */
     public function info(array $options = [])
@@ -193,7 +193,7 @@ class Sink
      * @see https://cloud.google.com/logging/docs/api/ref_v2beta1/rest/v2beta1/projects.sinks/get projects.sinks get API documentation.
      * @codingStandardsIgnoreEnd
      *
-     * @param array $options Configuration options.
+     * $param array $options [optional] Configuration Options.
      * @return array
      */
     public function reload(array $options = [])

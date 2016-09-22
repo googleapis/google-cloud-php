@@ -95,7 +95,7 @@ class Table
      *
      * @see https://cloud.google.com/bigquery/docs/reference/v2/tables/delete Tables delete API documentation.
      *
-     * @param array $options Configuration options.
+     * @param array $options [optional] Configuration options.
      */
     public function delete(array $options = [])
     {
@@ -115,7 +115,7 @@ class Table
      *
      * @see https://cloud.google.com/bigquery/docs/reference/v2/tabledata/list Tabledata list API Documentation.
      *
-     * @param array $options {
+     * @param array $options [optional] {
      *     Configuration options.
      *
      *     @type int $maxResults Maximum number of results to return.
@@ -163,7 +163,7 @@ class Table
      * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs Jobs insert API Documentation.
      *
      * @param Table $destination The destination table.
-     * @param array $options {
+     * @param array $options [optional] {
      *     Configuration options.
      *
      *     @type array $jobConfig Configuration settings for a copy job are
@@ -202,7 +202,7 @@ class Table
      * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs Jobs insert API Documentation.
      *
      * @param StorageObject $destination The destination object.
-     * @param array $options {
+     * @param array $options [optional] {
      *     Configuration options.
      *
      *     @type array $jobConfig Configuration settings for an extract job are
@@ -240,7 +240,7 @@ class Table
      * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs Jobs insert API Documentation.
      *
      * @param string|resource|StreamInterface $data The data to load.
-     * @param array $options {
+     * @param array $options [optional] {
      *     Configuration options.
      *
      *     @type array $jobConfig Configuration settings for a load job are
@@ -287,7 +287,7 @@ class Table
      * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs Jobs insert API Documentation.
      *
      * @param StorageObject $destination The object to load data from.
-     * @param array $options {
+     * @param array $options [optional] {
      *     Configuration options.
      *
      *     @type array $jobConfig Configuration settings for a load job are
@@ -334,7 +334,7 @@ class Table
      * @see https://cloud.google.com/bigquery/streaming-data-into-bigquery Streaming data into BigQuery.
      *
      * @param array $row Key/value set of data matching the table's schema.
-     * @param array $options {
+     * @param array $options [optional] {
      *     Please see
      *     {@see Google\Cloud\BigQuery\Table::insertRows()} for the
      *     other available configuration options.
@@ -402,7 +402,7 @@ class Table
      *        matching the schema of the table. Optionally, one may also provide
      *        an `insertId` key which will be used to
      *        [ensure data consistency](https://cloud.google.com/bigquery/streaming-data-into-bigquery#dataconsistency).
-     * @param array $options {
+     * @param array $options [optional] {
      *     Configuration options.
      *
      *     @type bool $skipInvalidRows Insert all valid rows of a request, even
@@ -455,7 +455,7 @@ class Table
      *
      * @see https://cloud.google.com/bigquery/docs/reference/v2/tables#resource Tables resource documentation.
      *
-     * @param array $options Configuration options.
+     * @param array $options [optional] Configuration options.
      * @return array
      */
     public function info(array $options = [])
@@ -479,7 +479,7 @@ class Table
      *
      * @see https://cloud.google.com/bigquery/docs/reference/v2/tables/get Tables get API documentation.
      *
-     * @param array $options Configuration options.
+     * @param array $options [optional] Configuration options.
      * @return array
      */
     public function reload(array $options = [])

@@ -58,7 +58,7 @@ class BigQueryClient
     /**
      * Create a BigQuery client.
      *
-     * @param array $config {
+     * @param array $config [optional] {
      *     Configuration options.
      *
      *     @type string $projectId The project ID from the Google Developer's
@@ -112,7 +112,7 @@ class BigQueryClient
      * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs/query Query API documentation.
      *
      * @param string $query A BigQuery SQL query.
-     * @param array $options {
+     * @param array $options [optional] {
      *     Configuration options.
      *
      *     @type int $maxResults The maximum number of rows to return per page
@@ -174,7 +174,7 @@ class BigQueryClient
      * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs/insert Jobs insert API documentation.
      *
      * @param string $query A BigQuery SQL query.
-     * @param array $options {
+     * @param array $options [optional] {
      *     Configuration options.
      *
      *     @type array $jobConfig Configuration settings for a query job are
@@ -232,7 +232,7 @@ class BigQueryClient
      *
      * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs/list Jobs list API documentation.
      *
-     * @param array $options {
+     * @param array $options [optional] {
      *     Configuration options.
      *
      *     @type bool $allUsers Whether to display jobs owned by all users in
@@ -299,7 +299,7 @@ class BigQueryClient
      *
      * @see https://cloud.google.com/bigquery/docs/reference/v2/datasets/list Datasets list API documentation.
      *
-     * @param array $options {
+     * @param array $options [optional] {
      *     Configuration options.
      *
      *     @type bool $all Whether to list all datasets, including hidden ones.
@@ -342,7 +342,7 @@ class BigQueryClient
      * @see https://cloud.google.com/bigquery/docs/reference/v2/datasets/insert Datasets insert API documentation.
      *
      * @param string $id The id of the dataset to create.
-     * @param array $options {
+     * @param array $options [optional] {
      *     Configuration options.
      *
      *     @type array $metadata The available options for metadata are outlined

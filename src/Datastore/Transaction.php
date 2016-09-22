@@ -162,7 +162,7 @@ class Transaction
      * ```
      *
      * @param Entity $entity The entity to update.
-     * @param array $options {
+     * $param array $options [optional] {
      *     Configuration Options
      *
      *     @type bool $allowOverwrite Entities must be updated as an entire
@@ -201,7 +201,7 @@ class Transaction
      * ```
      *
      * @param Entity[] $entities The entities to update.
-     * @param array $options {
+     * $param array $options [optional] {
      *     Configuration Options
      *
      *     @type bool $allowOverwrite Entities must be updated as an entire
@@ -351,7 +351,7 @@ class Transaction
      * ```
      *
      * @param Key $key $key The identifier to use to locate a desired entity.
-     * @param array $options {
+     * $param array $options [optional] {
      *     Configuration Options
      *
      *     @type string $className The name of the class to return results as.
@@ -387,7 +387,7 @@ class Transaction
      * ```
      *
      * @param Key[] $key The identifiers to look up.
-     * @param array $options {
+     * $param array $options [optional] {
      *     Configuration Options
      *
      *     @type string|array $className If a string, the name of the class to return results as.
@@ -422,7 +422,7 @@ class Transaction
      * ```
      *
      * @param QueryInterface $query The query object.
-     * @param array $options {
+     * $param array $options [optional] {
      *     Configuration Options
      *
      *     @type string $className The name of the class to return results as.
@@ -449,7 +449,7 @@ class Transaction
      * $transaction->commit()
      * ```
      *
-     * @param array $options Configuration Options.
+     * $param array $options [optional] Configuration Options.
      * @return array [Response Body](https://cloud.google.com/datastore/reference/rest/v1/projects/commit#response-body)
      */
     public function commit(array $options = [])

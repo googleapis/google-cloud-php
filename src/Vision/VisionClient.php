@@ -59,7 +59,7 @@ class VisionClient
     /**
      * Create a Vision client.
      *
-     * @param array $config {
+     * $param array $config [optional] {
      *     Configuration Options.
      *
      *     @type string $projectId The project ID from the Google Developer's

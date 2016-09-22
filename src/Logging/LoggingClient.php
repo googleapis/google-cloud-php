@@ -63,7 +63,7 @@ class LoggingClient
     /**
      * Create a Logging client.
      *
-     * @param array $config {
+     * $param array $config [optional] {
      *     Configuration options.
      *
      *     @type string $projectId The project ID from the Google Developer's
@@ -108,7 +108,7 @@ class LoggingClient
      * @param string $destination The export destination. Please see
      *        [Exporting Logs With Sinks](https://cloud.google.com/logging/docs/api/tasks/exporting-logs#about_sinks)
      *        for more information and examples.
-     * @param array $options {
+     * $param array $options [optional] {
      *     Configuration options.
      *
      *     @type string $filter An [advanced logs filter](https://cloud.google.com/logging/docs/view/advanced_filters).
@@ -165,7 +165,7 @@ class LoggingClient
      * @see https://cloud.google.com/logging/docs/api/ref_v2beta1/rest/v2beta1/projects.sinks/list projects.sinks list API documentation.
      * @codingStandardsIgnoreEnd
      *
-     * @param array $options {
+     * $param array $options [optional] {
      *     Configuration options.
      *
      *     @type int $pageSize The maximum number of results to return per request.
@@ -205,7 +205,7 @@ class LoggingClient
      *
      * @param string $name The name of the metric.
      * @param string $filter An [advanced logs filter](https://cloud.google.com/logging/docs/view/advanced_filters).
-     * @param array $options Configuration options.
+     * $param array $options [optional] Configuration Options.
      * @return Metric
      */
     public function createMetric($name, $filter, array $options = [])
@@ -254,7 +254,7 @@ class LoggingClient
      * @see https://cloud.google.com/logging/docs/api/ref_v2beta1/rest/v2beta1/projects.metrics/list projects.metrics list API documentation.
      * @codingStandardsIgnoreEnd
      *
-     * @param array $options {
+     * $param array $options [optional] {
      *     Configuration options.
      *
      *     @type int $pageSize The maximum number of results to return per request.
@@ -307,7 +307,7 @@ class LoggingClient
      * @see https://cloud.google.com/logging/docs/api/ref_v2beta1/rest/v2beta1/entries/list Entries list API documentation.
      * @codingStandardsIgnoreEnd
      *
-     * @param array $options {
+     * $param array $options [optional] {
      *     Configuration options.
      *
      *     @type string[] $projectIds A list of projectIds to fetch entries from
