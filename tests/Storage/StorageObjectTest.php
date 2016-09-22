@@ -83,21 +83,33 @@ class StorageObjectTest extends \PHPUnit_Framework_TestCase
         $destinationBucket = 'bucket2';
         $objectName = 'object.txt';
         $acl = 'private';
+        $key = 'abcd';
+        $hash = '1234';
         $this->connection->copyObject([
                 'sourceBucket' => $sourceBucket,
                 'sourceObject' => $objectName,
                 'destinationBucket' => $destinationBucket,
                 'destinationObject' => $objectName,
-                'destinationPredefinedAcl' => $acl
+                'destinationPredefinedAcl' => $acl,
+                'httpOptions' => [
+                    'headers' => [
+                        'x-goog-encryption-algorithm' => 'AES256',
+                        'x-goog-encryption-key' => base64_encode($key),
+                        'x-goog-encryption-key-sha256' => base64_encode($hash),
+                    ]
+                ]
             ])
             ->willReturn([
                 'bucket' => $destinationBucket,
                 'name' => $objectName,
                 'generation' => 1
-            ]);
+            ])
+            ->shouldBeCalledTimes(1);
         $object = new StorageObject($this->connection->reveal(), $objectName, $sourceBucket);
         $copiedObject = $object->copy($destinationBucket, [
-            'predefinedAcl' => $acl
+            'predefinedAcl' => $acl,
+            'encryptionKey' => $key,
+            'encryptionKeySHA256' => $hash
         ]);
 
         $this->assertEquals($destinationBucket, $copiedObject->info()['bucket']);
@@ -124,7 +136,8 @@ class StorageObjectTest extends \PHPUnit_Framework_TestCase
                 'bucket' => $destinationBucketName,
                 'name' => $destinationObject,
                 'generation' => 1
-            ]);
+            ])
+            ->shouldBeCalledTimes(1);
         $object = new StorageObject($this->connection->reveal(), $sourceObject, $sourceBucket);
         $copiedObject = $object->copy($destinationBucket, [
             'predefinedAcl' => $acl,
@@ -144,24 +157,213 @@ class StorageObjectTest extends \PHPUnit_Framework_TestCase
         $copiedObject = $object->copy($object);
     }
 
+    public function testRewriteObjectWithDefaultName()
+    {
+        $sourceBucket = 'bucket';
+        $destinationBucket = 'bucket2';
+        $objectName = 'object.txt';
+        $acl = 'private';
+        $key = 'abcd';
+        $hash = '1234';
+        $destinationKey = 'efgh';
+        $destinationHash = '5678';
+        $this->connection->rewriteObject([
+                'sourceBucket' => $sourceBucket,
+                'sourceObject' => $objectName,
+                'destinationBucket' => $destinationBucket,
+                'destinationObject' => $objectName,
+                'destinationPredefinedAcl' => $acl,
+                'httpOptions' => [
+                    'headers' => [
+                        'x-goog-copy-source-encryption-algorithm' => 'AES256',
+                        'x-goog-copy-source-encryption-key' => base64_encode($key),
+                        'x-goog-copy-source-encryption-key-sha256' => base64_encode($hash),
+                        'x-goog-encryption-algorithm' => 'AES256',
+                        'x-goog-encryption-key' => base64_encode($destinationKey),
+                        'x-goog-encryption-key-sha256' => base64_encode($destinationHash),
+                    ]
+                ]
+            ])
+            ->willReturn([
+                'resource' => [
+                    'bucket' => $destinationBucket,
+                    'name' => $objectName,
+                    'generation' => 1
+                ]
+            ])
+            ->shouldBeCalledTimes(1);
+        $object = new StorageObject($this->connection->reveal(), $objectName, $sourceBucket);
+        $copiedObject = $object->rewrite($destinationBucket, [
+            'predefinedAcl' => $acl,
+            'encryptionKey' => $key,
+            'encryptionKeySHA256' => $hash,
+            'destinationEncryptionKey' => $destinationKey,
+            'destinationEncryptionKeySHA256' => $destinationHash
+        ]);
+
+        $this->assertEquals($destinationBucket, $copiedObject->info()['bucket']);
+        $this->assertEquals($objectName, $copiedObject->info()['name']);
+    }
+
+    public function testRewriteObjectWithNewName()
+    {
+        $sourceBucket = 'bucket';
+        $sourceObject = 'object.txt';
+        $bucketConnection = $this->prophesize(ConnectionInterface::class)->reveal();
+        $destinationBucketName = 'bucket2';
+        $destinationBucket = new Bucket($bucketConnection, $destinationBucketName);
+        $destinationObject = 'object2.txt';
+        $acl = 'private';
+        $rewriteToken = 'abc';
+        $this->connection->rewriteObject([
+                'sourceBucket' => $sourceBucket,
+                'sourceObject' => $sourceObject,
+                'destinationBucket' => $destinationBucketName,
+                'destinationObject' => $destinationObject,
+                'destinationPredefinedAcl' => $acl
+            ])
+            ->willReturn([
+                'rewriteToken' => $rewriteToken
+            ])
+            ->shouldBeCalledTimes(1);
+        $this->connection->rewriteObject([
+                'sourceBucket' => $sourceBucket,
+                'sourceObject' => $sourceObject,
+                'destinationBucket' => $destinationBucketName,
+                'destinationObject' => $destinationObject,
+                'destinationPredefinedAcl' => $acl,
+                'rewriteToken' => $rewriteToken
+            ])
+            ->willReturn(
+                [
+                    'resource' => [
+                        'bucket' => $destinationBucketName,
+                        'name' => $destinationObject,
+                        'generation' => 1
+                    ]
+                ]
+            )
+            ->shouldBeCalledTimes(1);
+        $object = new StorageObject($this->connection->reveal(), $sourceObject, $sourceBucket);
+        $rewrittenObject = $object->rewrite($destinationBucket, [
+            'predefinedAcl' => $acl,
+            'name' => $destinationObject
+        ]);
+
+        $this->assertEquals($destinationBucketName, $rewrittenObject->info()['bucket']);
+        $this->assertEquals($destinationObject, $rewrittenObject->info()['name']);
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function testRewriteObjectThrowsExceptionWithInvalidType()
+    {
+        $object = new StorageObject($this->connection->reveal(), 'object.txt.', 'bucket');
+        $copiedObject = $object->rewrite($object);
+    }
+
+    public function testRenamesObject()
+    {
+        $sourceBucket = 'bucket';
+        $objectName = 'object.txt';
+        $newObjectName = 'new-name.txt';
+        $acl = 'private';
+        $key = 'abcd';
+        $hash = '1234';
+        $this->connection->copyObject([
+                'sourceBucket' => $sourceBucket,
+                'sourceObject' => $objectName,
+                'destinationBucket' => $sourceBucket,
+                'destinationObject' => $newObjectName,
+                'destinationPredefinedAcl' => $acl,
+                'httpOptions' => [
+                    'headers' => [
+                        'x-goog-encryption-algorithm' => 'AES256',
+                        'x-goog-encryption-key' => base64_encode($key),
+                        'x-goog-encryption-key-sha256' => base64_encode($hash),
+                    ]
+                ]
+            ])
+            ->willReturn([
+                'bucket' => $sourceBucket,
+                'name' => $newObjectName,
+                'generation' => 1
+            ])
+            ->shouldBeCalledTimes(1);
+        $this->connection->deleteObject(Argument::any())
+            ->willReturn([])
+            ->shouldBeCalledTimes(1);
+        $object = new StorageObject($this->connection->reveal(), $objectName, $sourceBucket);
+        $copiedObject = $object->rename($newObjectName, [
+            'predefinedAcl' => $acl,
+            'encryptionKey' => $key,
+            'encryptionKeySHA256' => $hash
+        ]);
+
+        $this->assertEquals($sourceBucket, $copiedObject->info()['bucket']);
+        $this->assertEquals($newObjectName, $copiedObject->info()['name']);
+    }
+
     public function testDownloadsAsString()
     {
+        $key = 'abcd';
+        $hash = '1234';
+        $bucket = 'bucket';
+        $object = 'object.txt';
         $stream = Psr7\stream_for($string = 'abcdefg');
-        $this->connection->downloadObject(Argument::any())->willReturn($stream);
+        $this->connection->downloadObject([
+                'bucket' => $bucket,
+                'object' => $object,
+                'generation' => null,
+                'httpOptions' => [
+                    'headers' => [
+                        'x-goog-encryption-algorithm' => 'AES256',
+                        'x-goog-encryption-key' => base64_encode($key),
+                        'x-goog-encryption-key-sha256' => base64_encode($hash),
+                    ]
+                ]
+            ])
+            ->willReturn($stream)
+            ->shouldBeCalledTimes(1);
 
-        $object = new StorageObject($this->connection->reveal(), 'object.txt', 'bucket');
+        $object = new StorageObject($this->connection->reveal(), $object, $bucket);
 
-        $this->assertEquals($string, $object->downloadAsString());
+        $this->assertEquals($string, $object->downloadAsString([
+            'encryptionKey' => $key,
+            'encryptionKeySHA256' => $hash
+        ]));
     }
 
     public function testDownloadsToFile()
     {
+        $key = 'abcd';
+        $hash = '1234';
+        $bucket = 'bucket';
+        $object = 'object.txt';
         $stream = Psr7\stream_for($string = 'abcdefg');
-        $this->connection->downloadObject(Argument::any())->willReturn($stream);
+        $this->connection->downloadObject([
+                'bucket' => $bucket,
+                'object' => $object,
+                'generation' => null,
+                'httpOptions' => [
+                    'headers' => [
+                        'x-goog-encryption-algorithm' => 'AES256',
+                        'x-goog-encryption-key' => base64_encode($key),
+                        'x-goog-encryption-key-sha256' => base64_encode($hash),
+                    ]
+                ]
+            ])
+            ->willReturn($stream);
 
-        $object = new StorageObject($this->connection->reveal(), 'object.txt', 'bucket');
+        $object = new StorageObject($this->connection->reveal(), $object, $bucket);
 
-        $this->assertEquals($string, $object->downloadToFile('php://temp')->getContents());
+        $this->assertEquals($string, $object->downloadToFile('php://temp', [
+                'encryptionKey' => $key,
+                'encryptionKeySHA256' => $hash
+            ])
+            ->getContents()
+        );
     }
 
     public function testGetsInfo()
@@ -179,18 +381,36 @@ class StorageObjectTest extends \PHPUnit_Framework_TestCase
 
     public function testGetsInfoWithReload()
     {
+        $key = 'abcd';
+        $hash = '1234';
+        $bucket = 'bucket';
+        $object = 'object.txt';
         $objectInfo = [
             'name' => 'object.txt',
             'bucket' => 'bucket',
             'etag' => 'ABC',
             'kind' => 'storage#object'
         ];
-        $this->connection->getObject(Argument::any())
+        $this->connection->getObject([
+                'bucket' => $bucket,
+                'object' => $object,
+                'generation' => null,
+                'httpOptions' => [
+                    'headers' => [
+                        'x-goog-encryption-algorithm' => 'AES256',
+                        'x-goog-encryption-key' => base64_encode($key),
+                        'x-goog-encryption-key-sha256' => base64_encode($hash),
+                    ]
+                ]
+            ])
             ->willReturn($objectInfo)
             ->shouldBeCalledTimes(1);
-        $object = new StorageObject($this->connection->reveal(), 'object.txt', 'bucket');
+        $object = new StorageObject($this->connection->reveal(), $object, $bucket);
 
-        $this->assertEquals($objectInfo, $object->info());
+        $this->assertEquals($objectInfo, $object->info([
+            'encryptionKey' => $key,
+            'encryptionKeySHA256' => $hash
+        ]));
     }
 
     public function testGetsName()

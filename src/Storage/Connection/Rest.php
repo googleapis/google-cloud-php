@@ -152,6 +152,22 @@ class Rest implements ConnectionInterface
     /**
      * @param array $args
      */
+    public function rewriteObject(array $args = [])
+    {
+        return $this->send('objects', 'rewrite', $args);
+    }
+
+    /**
+     * @param array $args
+     */
+    public function composeObject(array $args = [])
+    {
+        return $this->send('objects', 'compose', $args);
+    }
+
+    /**
+     * @param array $args
+     */
     public function getObject(array $args = [])
     {
         return $this->send('objects', 'get', $args);
