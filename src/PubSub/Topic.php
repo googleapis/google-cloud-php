@@ -285,7 +285,7 @@ class Topic
      *
      *      @type bool $encode If set to false, the message data will not be
      *            base64-encoded. Only turn this off if you have already encoded
-     *            your message data. **Defaults to** `false`.
+     *            your message data. **Defaults to** `true`.
      * }
      * @return array A list of message IDs
      */
@@ -321,17 +321,16 @@ class Topic
      *
      * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics/publish Publish Message
      *
-     * @param  array $messages A list of messages. Each message must be in the correct
-     *         [Message Format](https://cloud.google.com/pubsub/docs/reference/rest/v1/PubsubMessage).
-     *         If provided, $data will be base64 encoded before being published,
-     *         unless `$options['encode']` is set to false. (See below for more
-     *         details.)
-     * @param  array $options {
+     * @param array $messages A list of messages. Each message must be in the correct
+     *        [Message Format](https://cloud.google.com/pubsub/docs/reference/rest/v1/PubsubMessage).
+     *        If provided, $data will be base64 encoded before being published,
+     *        unless `$options['encode']` is set to false. (See below for more
+     * @param array $options {
      *     Configuration Options
      *
      *     @type bool $encode If set to false, the message data will not be
-     *            base64-encoded. Only turn this off if you have already encoded
-     *            your message data. **Defaults to** `false`.
+     *           base64-encoded. Only turn this off if you have already encoded
+     *           your message data. **Defaults to** `true`.
      * }
      * @return array A list of message IDs.
      */

@@ -123,7 +123,7 @@ class NaturalLanguageClient
      *           `PLAIN_TEXT` or `HTML`. **Defaults to** `"PLAIN_TEXT"`.
      *     @type string $language The language of the document. Both ISO
      *           (e.g., en, es) and BCP-47 (e.g., en-US, es-ES) language codes
-     *           are accepted. Defaults to `"en-US` (English).
+     *           are accepted. Defaults to `"en"` (English).
      *     @type string $encodingType The text encoding type used by the API to
      *           calculate offsets. Acceptable values are `"NONE"`, `"UTF8"`,
      *           `"UTF16"` and `"UTF32"`. **Defaults to** `"UTF8"`.

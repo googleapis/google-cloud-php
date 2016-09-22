@@ -267,7 +267,7 @@ class SpeechClient
      *           Valid values are: 8000-48000. 16000 is optimal. For best
      *           results, set the sampling rate of the audio source to 16000 Hz.
      *           If that's not possible, use the native sample rate of the audio
-     *           source (instead of re-sampling). Defaults to `8000` with .amr
+     *           source (instead of re-sampling). **Defaults to** `8000` with .amr
      *           files and `16000` with .awb files. If the getID3 library has
      *           been installed this value will default to the value read from
      *           the file's headers (if it exists).
@@ -276,14 +276,14 @@ class SpeechClient
      *           **Defaults to** `"FLAC"` with .flac files, `"AMR"` with .amr
      *           files and `"AMR_WB"` with .awb files.
      *     @type int $maxAlternatives Maximum number of alternatives to be
-     *           returned. Valid values are 1-30. Defaults to `1`.
+     *           returned. Valid values are 1-30. **Defaults to** `1`.
      *     @type string $languageCode The language of the content. BCP-47
-     *           (e.g., `"en-US"`, `"es-ES"`) language codes are accepted. Defaults to
-     *           `"en-US`"" (English).
+     *           (e.g., `"en-US"`, `"es-ES"`) language codes are accepted.
+     *           **Defaults to** `"en"` (English).
      *     @type bool $profanityFilter If set to `true`, the server will attempt
      *           to filter out profanities, replacing all but the initial
      *           character in each filtered word with asterisks, e.g. \"f***\".
-     *           Defaults to `false`.
+     *           **Defaults to** `false`.
      *     @type array $speechContext Must contain a key `phrases` which is to
      *           be an array of strings which provide "hints" to the speech
      *           recognizer to favor specific words and phrases in the results.

@@ -127,7 +127,7 @@ class Logger
      *     @type string $filter An [advanced logs filter](https://cloud.google.com/logging/docs/view/advanced_filters).
      *     @type string $orderBy How the results should be sorted. Presently,
      *           the only permitted values are `timestamp asc` and `timestamp desc`.
-     *           **Defaults to** `(string) timestamp asc`.
+     *           **Defaults to** `"timestamp asc"`.
      *     @type int $pageSize The maximum number of results to return per
      *           request.
      * }
