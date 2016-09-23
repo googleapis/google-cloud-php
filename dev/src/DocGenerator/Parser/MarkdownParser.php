@@ -46,12 +46,14 @@ class MarkdownParser implements ParserInterface
         $heading->parentNode->removeChild($heading);
 
         $pathinfo = pathinfo($this->currentFile);
+        $body = $doc->getElementsByTagName('body')->item(0);
+
         return [
             'id' => strtolower(substr($pathinfo['dirname'] .'/'. $pathinfo['filename'], 5)),
             'type' => 'guide',
             'title' => $heading->textContent,
             'name' => $heading->textContent,
-            'description' => $doc->saveHTML($doc->getElementsByTagName('body')[0]),
+            'description' => $doc->saveHTML($body),
             'methods' => []
         ];
     }
