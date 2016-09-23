@@ -101,7 +101,7 @@ class ServiceBuilder
      * $bigQuery = $cloud->bigQuery();
      * ```
      *
-     * @param array $config Configuration options. See
+     * @param array $config [optional] Configuration options. See
      *        {@see Google\Cloud\ServiceBuilder::__construct()} for the available options.
      * @return BigQueryClient
      */
@@ -120,7 +120,7 @@ class ServiceBuilder
      * $datastore = $cloud->datastore();
      * ```
      *
-     * @param array $config Configuration options. See
+     * @param array $config [optional] Configuration options. See
      *        {@see Google\Cloud\ServiceBuilder::__construct()} for the available options.
      * @return DatastoreClient
      */
@@ -140,7 +140,7 @@ class ServiceBuilder
      * $logging = $cloud->logging();
      * ```
      *
-     * @param array $config Configuration options. See
+     * @param array $config [optional] Configuration options. See
      *        {@see Google\Cloud\ServiceBuilder::__construct()} for the available options.
      * @return LoggingClient
      */
@@ -161,7 +161,7 @@ class ServiceBuilder
      * $language = $cloud->naturalLanguage();
      * ```
      *
-     * @param array $config Configuration options. See
+     * @param array $config [optional] Configuration options. See
      *        {@see Google\Cloud\ServiceBuilder::__construct()} for the available options.
      * @return NaturalLanguageClient
      */
@@ -180,7 +180,7 @@ class ServiceBuilder
      * $pubsub = $cloud->pubsub();
      * ```
      *
-     * @param array $config Configuration options. See
+     * @param array $config [optional] Configuration options. See
      *        {@see Google\Cloud\ServiceBuilder::__construct()} for the available options.
      * @return PubSubClient
      */
@@ -201,7 +201,7 @@ class ServiceBuilder
      * $speech = $cloud->speech();
      * ```
      *
-     * @param array $config Configuration options. See
+     * @param array $config [optional] Configuration options. See
      *        {@see Google\Cloud\ServiceBuilder::__construct()} for the available options.
      * @return SpeechClient
      */
@@ -220,7 +220,7 @@ class ServiceBuilder
      * $storage = $cloud->storage();
      * ```
      *
-     * @param array $config Configuration options. See
+     * @param array $config [optional] Configuration options. See
      *        {@see Google\Cloud\ServiceBuilder::__construct()} for the available options.
      * @return StorageClient
      */
@@ -239,7 +239,7 @@ class ServiceBuilder
      * $vision = $cloud->vision();
      * ```
      *
-     * @param array $config Configuration options. See
+     * @param array $config [optional] Configuration options. See
      *        {@see Google\Cloud\ServiceBuilder::__construct()} for the available options.
      * @return VisionClient
      */
