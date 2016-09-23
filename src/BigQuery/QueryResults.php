@@ -87,7 +87,7 @@ class QueryResults
      * }
      * ```
      *
-     * @param array $options Configuration options.
+     * @param array $options [optional] Configuration options.
      * @return array
      * @throws GoogleException Thrown if the query has not yet completed.
      */
@@ -187,13 +187,13 @@ class QueryResults
      * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs/getQueryResults
      * Jobs getQueryResults API documentation.
      *
-     * @param array $options {
+     * @param array $options [optional] {
      *     Configuration options.
      *
      *     @type int $maxResults Maximum number of results to read.
      *     @type int $startIndex Zero-based index of the starting row.
      *     @type int $timeoutMs How long to wait for the query to complete, in
-     *           milliseconds. Defaults to 10000 milliseconds (10 seconds).
+     *           milliseconds. **Defaults to** `10000` milliseconds (10 seconds).
      * }
      * @return array
      */

@@ -68,7 +68,7 @@ class NaturalLanguageClient
     /**
      * Create a NaturalLanguage client.
      *
-     * @param array $config {
+     * @param array $config [optional] {
      *     Configuration Options.
      *
      *     @type string $projectId The project ID from the Google Developer's
@@ -82,8 +82,8 @@ class NaturalLanguageClient
      *     @type string $keyFilePath The full path to your service account
      *           credentials .json file retrieved from the Google Developers
      *           Console.
-     *     @type int $retries Number of retries for a failed request. Defaults
-     *           to 3.
+     *     @type int $retries Number of retries for a failed request.
+     *           **Defaults to** `3`.
      *     @type array $scopes Scopes to be used for the request.
      * }
      * @throws \InvalidArgumentException
@@ -116,17 +116,17 @@ class NaturalLanguageClient
      * @codingStandardsIgnoreEnd
      *
      * @param string|StorageObject $content The content to analyze.
-     * @param array $options {
+     * @param array $options [optional] {
      *     Configuration options.
      *
      *     @type string $type The document type. Acceptable values are
-     *           `PLAIN_TEXT` or `HTML`. Defaults to `PLAIN_TEXT`.
+     *           `PLAIN_TEXT` or `HTML`. **Defaults to** `"PLAIN_TEXT"`.
      *     @type string $language The language of the document. Both ISO
      *           (e.g., en, es) and BCP-47 (e.g., en-US, es-ES) language codes
-     *           are accepted. Defaults to English.
+     *           are accepted. Defaults to `"en"` (English).
      *     @type string $encodingType The text encoding type used by the API to
-     *           calculate offsets. Acceptable values are `NONE`, `UTF8`,
-     *           `UTF16` and `UTF32`. Defaults to `UTF8`.
+     *           calculate offsets. Acceptable values are `"NONE"`, `"UTF8"`,
+     *           `"UTF16"` and `"UTF32"`. **Defaults to** `"UTF8"`.
      * }
      * @return Annotation
      */
@@ -158,14 +158,14 @@ class NaturalLanguageClient
      * @codingStandardsIgnoreEnd
      *
      * @param string|StorageObject $content The content to analyze.
-     * @param array $options {
+     * @param array $options [optional] {
      *     Configuration options.
      *
      *     @type string $type The document type. Acceptable values are
-     *           `PLAIN_TEXT` or `HTML`. Defaults to `PLAIN_TEXT`.
+     *           `PLAIN_TEXT` or `HTML`. **Defaults to** `"PLAIN_TEXT"`.
      *     @type string $language The language of the document. Both ISO
      *           (e.g., en, es) and BCP-47 (e.g., en-US, es-ES) language codes
-     *           are accepted. Defaults to English.
+     *           are accepted. **Defaults to** `"en"` (English).
      * }
      * @return Annotation
      */
@@ -197,17 +197,17 @@ class NaturalLanguageClient
      * @codingStandardsIgnoreEnd
      *
      * @param string|StorageObject $content The content to analyze.
-     * @param array $options {
+     * @param array $options [optional] {
      *     Configuration options.
      *
      *     @type string $type The document type. Acceptable values are
-     *           `PLAIN_TEXT` or `HTML`. Defaults to `PLAIN_TEXT`.
+     *           `PLAIN_TEXT` or `HTML`. **Defaults to** `"PLAIN_TEXT"`.
      *     @type string $language The language of the document. Both ISO
      *           (e.g., en, es) and BCP-47 (e.g., en-US, es-ES) language codes
-     *           are accepted. Defaults to English.
+     *           are accepted. **Defaults to** `"en"` (English).
      *     @type string $encodingType The text encoding type used by the API to
-     *           calculate offsets. Acceptable values are `NONE`, `UTF8`,
-     *           `UTF16` and `UTF32`. Defaults to `UTF8`.
+     *           calculate offsets. Acceptable values are `"NONE"`, `"UTF8"`,
+     *           `"UTF16"` and `"UTF32"`. **Defaults to**  `"UTF8"`.
      * }
      * @return Annotation
      */
@@ -248,20 +248,20 @@ class NaturalLanguageClient
      * @codingStandardsIgnoreEnd
      *
      * @param string|StorageObject $content The content to annotate.
-     * @param array $options {
+     * @param array $options [optional] {
      *     Configuration options.
      *
      *     @type array $features Features to apply to the request. Valid values
      *           are `syntax`, `sentiment`, and `entities`. If no features are
      *           provided the request will run with all three enabled.
      *     @type string $type The document type. Acceptable values are
-     *           `PLAIN_TEXT` or `HTML`. Defaults to `PLAIN_TEXT`.
+     *           `PLAIN_TEXT` or `HTML`. **Defaults to** `"PLAIN_TEXT"`.
      *     @type string $language The language of the document. Both ISO
      *           (e.g., en, es) and BCP-47 (e.g., en-US, es-ES) language codes
-     *           are accepted. Defaults to English.
+     *           are accepted. **Defaults to** `"en"` (English).
      *     @type string $encodingType The text encoding type used by the API to
-     *           calculate offsets. Acceptable values are `NONE`, `UTF8`,
-     *           `UTF16` and `UTF32`. Defaults to `UTF8`.
+     *           calculate offsets. Acceptable values are `"NONE"`, `"UTF8"`,
+     *           `"UTF16"` and `"UTF32"`. **Defaults to** `"UTF8"`.
      * }
      * @return Annotation
      */
@@ -304,7 +304,7 @@ class NaturalLanguageClient
      * Formats the request for the API.
      *
      * @param string|StorageObject $content The content to analyze.
-     * @param array $options Configuration options.
+     * @param array $options [optional] Configuration Options.
      * @return array
      */
     private function formatRequest($content, array $options)

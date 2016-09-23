@@ -103,7 +103,7 @@ class Annotation
     /**
      * Create an annotation.
      *
-     * @param array $info The annotation's metadata.
+     * @param array $info [optional] The annotation's metadata.
      */
     public function __construct(array $info = [])
     {

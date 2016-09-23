@@ -85,8 +85,8 @@ class Entity implements ArrayAccess
 
     /**
      * @param Key $key The Entity's Key, defining its unique identifier.
-     * @param array $entity The entity body.
-     * @param array $options {
+     * @param array $entity [optional] The entity body.
+     * @param array $options [optional] {
      *     Configuration Options
      *
      *     @type string $cursor Set only when the entity is obtained by a query

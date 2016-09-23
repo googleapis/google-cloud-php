@@ -51,7 +51,7 @@ class Operation
      * @param ConnectionInterface $connection Represents a connection to the
      *        Google Cloud Speech API.
      * @param string $name The operation's name.
-     * @param array $info The operation's data.
+     * @param array $info [optional] The operation's data.
      */
     public function __construct(ConnectionInterface $connection, $name, array $info = [])
     {
@@ -71,7 +71,7 @@ class Operation
      * }
      * ```
      *
-     * @param array $options Configuration options.
+     * @param array $options [optional] Configuration Options.
      * @return bool
      */
     public function isComplete(array $options = [])
@@ -96,7 +96,7 @@ class Operation
      * @see https://cloud.google.com/speech/reference/rest/v1beta1/speech/syncrecognize#SpeechRecognitionAlternative SpeechRecognitionAlternative
      * @codingStandardsIgnoreEnd
      *
-     * @param array $options Configuration options.
+     * @param array $options [optional] Configuration Options.
      * @return array The transcribed results. Each element of the array contains
      *         a `transcript` key which holds the transcribed text. Optionally
      *         a `confidence` key holding the confidence estimate ranging from
@@ -120,7 +120,7 @@ class Operation
      * $operation->exists();
      * ```
      *
-     * @param array $options Configuration options.
+     * @param array $options [optional] Configuration Options.
      * @return bool
      */
     public function exists(array $options = [])
@@ -149,7 +149,7 @@ class Operation
      * @see https://cloud.google.com/speech/reference/rest/v1beta1/operations#Operation Operation resource documentation.
      * @codingStandardsIgnoreEnd
      *
-     * @param array $options Configuration options.
+     * @param array $options [optional] Configuration Options.
      * @return array
      */
     public function info(array $options = [])
@@ -176,7 +176,7 @@ class Operation
      * @see https://cloud.google.com/speech/reference/rest/v1beta1/operations#Operation Operation resource documentation.
      * @codingStandardsIgnoreEnd
      *
-     * @param array $options Configuration options.
+     * @param array $options [optional] Configuration Options.
      * @return array
      */
     public function reload(array $options = [])

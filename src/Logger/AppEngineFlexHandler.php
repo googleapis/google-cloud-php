@@ -26,11 +26,15 @@ use Monolog\Logger;
 class AppEngineFlexHandler extends StreamHandler
 {
     /**
-     * @param int $level The minimum logging level at which this handler will be triggered.
-     * @param Boolean $bubble Whether the messages that are handled can bubble up the stack or not.
-     * @param int|null $filePermission Optional file permissions (default (0640) are only for owner read/write).
-     * @param Boolean $useLocking Try to lock log file before doing any writes.
-     * @param resource|string|null $stream
+     * @param int $level [optional] The minimum logging level at which this
+     *        handler will be triggered.
+     * @param Boolean $bubble [optional] Whether the messages that are handled
+     *        can bubble up the stack or not.
+     * @param int|null $filePermission [optional] Optional file permissions
+     *        (default (0640) are only for owner read/write).
+     * @param Boolean $useLocking [optional] Try to lock log file before doing
+     *        any writes.
+     * @param resource|string|null $stream [optional]
      */
     public function __construct(
         $level = Logger::INFO,

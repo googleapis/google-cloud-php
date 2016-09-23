@@ -60,7 +60,7 @@ class PubSubClient
     /**
      * Create a PubSub client.
      *
-     * @param array $config {
+     * @param array $config [optional] {
      *     Configuration Options.
      *
      *     @type string $projectId The project ID from the Google Developer's
@@ -74,8 +74,8 @@ class PubSubClient
      *     @type string $keyFilePath The full path to your service account
      *           credentials .json file retrieved from the Google Developers
      *           Console.
-     *     @type int $retries Number of retries for a failed request. Defaults
-     *           to 3.
+     *     @type int $retries Number of retries for a failed request.
+     *           **Defaults to** `3`.
      *     @type array $scopes Scopes to be used for the request.
      * }
      * @throws \InvalidArgumentException
@@ -104,8 +104,8 @@ class PubSubClient
      *
      * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics/create Create Topic
      *
-     * @param  string $name The topic name
-     * @param  array $options Configuration Options
+     * @param string $name The topic name
+     * @param array $options [optional] Configuration Options
      * @return Topic
      */
     public function createTopic($name, array $options = [])
@@ -131,7 +131,7 @@ class PubSubClient
      * echo $topic->info()['name']; // `projects/my-awesome-project/topics/my-new-topic`
      * ```
      *
-     * @param  string $name The topic name
+     * @param string $name The topic name
      * @return Topic
      */
     public function topic($name)
@@ -153,7 +153,7 @@ class PubSubClient
      *
      * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics/list List Topics
      *
-     * @param  array $options {
+     * @param array $options [optional] {
      *     Configuration Options
      *
      *     @type int $pageSize Maximum number of results to return per
@@ -197,9 +197,10 @@ class PubSubClient
      *
      * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions/create Create Subscription
      *
-     * @param  string $name A subscription name
-     * @param  string $topicName The topic to which the new subscription will be subscribed.
-     * @param  array  $options Please see {@see Google\Cloud\PubSub\Subscription::create()} for configuration details.
+     * @param string $name A subscription name
+     * @param string $topicName The topic to which the new subscription will be subscribed.
+     * @param array  $options [optional] Please see {@see Google\Cloud\PubSub\Subscription::create()}
+     *        for configuration details.
      * @return Subscription
      */
     public function subscribe($name, $topicName, array $options = [])
@@ -224,8 +225,8 @@ class PubSubClient
      * $subscription = $pubsub->subscription('my-new-subscription');
      * ```
      *
-     * @param  string $name The subscription name
-     * @param  string $topicName The topic name
+     * @param string $name The subscription name
+     * @param string $topicName [optional] The topic name
      * @return Subscription
      */
     public function subscription($name, $topicName = null)
@@ -248,7 +249,7 @@ class PubSubClient
      *
      * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions/list List Subscriptions
      *
-     * @param  array $options {
+     * @param array $options [optional] {
      *     Configuration Options
      *
      *     @type int $pageSize Maximum number of results to return per
@@ -284,10 +285,10 @@ class PubSubClient
      * Create an instance of a topic
      *
      * @codingStandardsIgnoreStart
-     * @param  string $name The topic name
-     * @param  array  $info Information about the topic. Used internally to
-     *         populate topic objects with an API result. Should be
-     *         a representation of a [Topic](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics#Topic).
+     * @param string $name The topic name
+     * @param array  $info [optional] Information about the topic. Used internally to
+     *        populate topic objects with an API result. Should be
+     *        a representation of a [Topic](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics#Topic).
      * @return Topic
      * @codingStandardsIgnoreEnd
      */
@@ -300,11 +301,11 @@ class PubSubClient
      * Create a subscription instance.
      *
      * @codingStandardsIgnoreStart
-     * @param  string $name The subscription name
-     * @param  string $topicName The topic name
-     * @param  array  $info Information about the subscription. Used
-     *         to populate subscriptons with an api result. Should be a
-     *         representation of a [Subscription](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions#Subscription).
+     * @param string $name The subscription name
+     * @param string $topicName [optional] The topic name
+     * @param array  $info [optional] Information about the subscription. Used
+     *        to populate subscriptons with an api result. Should be a
+     *        representation of a [Subscription](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions#Subscription).
      * @return Subscription
      * @codingStandardsIgnoreEnd
      */

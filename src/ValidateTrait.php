@@ -29,7 +29,7 @@ trait ValidateTrait
      *
      * @param array $input The input to validate.
      * @param string $type The type to check.
-     * @param callable An additional check for each element of $input.
+     * @param callable [optional] An additional check for each element of $input.
      *        This will be run count($input) times, so use with care.
      * @return void
      * @throws InvalidArgumentException

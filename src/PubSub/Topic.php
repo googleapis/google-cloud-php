@@ -77,7 +77,7 @@ class Topic
      *         Platform service
      * @param  string $name The topic name
      * @param  string $projectId The project Id
-     * @param  array $info A [Topic](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics)
+     * @param  array $info [optional] A [Topic](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics)
      */
     public function __construct(
         ConnectionInterface $connection,
@@ -128,7 +128,7 @@ class Topic
      *
      * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics/create Create Topic
      *
-     * @param  array $options Configuration Options
+     * @param array $options [optional] Configuration Options
      * @return array Topic information
      */
     public function create(array $options = [])
@@ -152,7 +152,7 @@ class Topic
      *
      * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics/delete Delete Topic
      *
-     * @param  array $options Configuration Options
+     * @param array $options [optional] Configuration Options
      * @return void
      */
     public function delete(array $options = [])
@@ -177,7 +177,7 @@ class Topic
      * }
      * ```
      *
-     * @param  array $options Configuration Options
+     * @param array $options [optional] Configuration Options
      * @return bool
      */
     public function exists(array $options = [])
@@ -212,7 +212,7 @@ class Topic
      * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics/get Get Topic
      *
      * @codingStandardsIgnoreStart
-     * @param  array $options Configuration Options
+     * @param array $options [optional] Configuration Options
      * @return array [A representation of a Topic](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics)
      * @codingStandardsIgnoreEnd
      */
@@ -248,7 +248,7 @@ class Topic
      * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics/get Get Topic
      *
      * @codingStandardsIgnoreStart
-     * @param  array $options Configuration Options
+     * @param array $options [optional] Configuration Options
      * @return array [A representation of a Topic](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics)
      * @codingStandardsIgnoreEnd
      */
@@ -279,13 +279,13 @@ class Topic
      *
      * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics/publish Publish Message
      *
-     * @param  string $message [Message Format](https://cloud.google.com/pubsub/docs/reference/rest/v1/PubsubMessage)
-     * @param  array $options {
+     * @param string $message [Message Format](https://cloud.google.com/pubsub/docs/reference/rest/v1/PubsubMessage)
+     * @param array $options [optional] {
      *      Configuration Options
      *
-     *      @type bool $encode True by default. If set to false, the message data
-     *            will not be base64-encoded. Only turn this off if you have
-     *            already encoded your message data.
+     *      @type bool $encode If set to false, the message data will not be
+     *            base64-encoded. Only turn this off if you have already encoded
+     *            your message data. **Defaults to** `true`.
      * }
      * @return array A list of message IDs
      */
@@ -321,17 +321,18 @@ class Topic
      *
      * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics/publish Publish Message
      *
-     * @param  array $messages A list of messages. Each message must be in the correct
-     *         [Message Format](https://cloud.google.com/pubsub/docs/reference/rest/v1/PubsubMessage).
-     *         If provided, $data will be base64 encoded before being published,
-     *         unless `$options['encode']` is set to false. (See below for more
-     *         details.)
-     * @param  array $options {
+     * @param array $messages A list of messages. Each message must be in the correct
+     *        [Message Format](https://cloud.google.com/pubsub/docs/reference/rest/v1/PubsubMessage).
+     *        If provided, $data will be base64 encoded before being published,
+     *        unless `$options['encode']` is set to false. (See below for more
+     *        information.)
+     * }
+     * @param array $options [optional] {
      *     Configuration Options
      *
-     *     @type bool $encode True by default. If set to false, the message data
-     *           will not be base64-encoded. Only turn this off if you have
-     *           already encoded your message data.
+     *     @type bool $encode If set to false, the message data will not be
+     *           base64-encoded. Only turn this off if you have already encoded
+     *           your message data. **Defaults to** `true`.
      * }
      * @return array A list of message IDs.
      */
@@ -361,8 +362,9 @@ class Topic
      *
      * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions/create Create Subscription
      *
-     * @param  string $name The subscription name
-     * @param  array  $options Please see {@see Google\Cloud\PubSub\Subscription::create()} for configuration details.
+     * @param string $name The subscription name
+     * @param array $options [optional] Please see {@see Google\Cloud\PubSub\Subscription::create()}
+     *        for configuration details.
      * @return Subscription
      */
     public function subscribe($name, array $options = [])
@@ -385,7 +387,7 @@ class Topic
      * $topic->subscribe('my-new-subscription');
      * ```
      *
-     * @param  string $name The subscription name
+     * @param string $name The subscription name
      * @return Subscription
      */
     public function subscription($name)
@@ -410,7 +412,7 @@ class Topic
      * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics.subscriptions/list List Topic Subscriptions
      * @codingStandardsIgnoreEnd
      *
-     * @param  array $options {
+     * @param array $options [optional] {
      *     Configuration Options
      *
      *     @type int $pageSize Maximum number of subscriptions to return.
@@ -481,7 +483,7 @@ class Topic
      * Ensure that the message is in a correct format,
      * base64_encode the data, and error if the input is too wrong to proceed.
      * @param  array $message
-     * @param  bool $encode
+     * @param  bool $encode [optional]
      * @return array The message data
      * @throws \InvalidArgumentException
      */
@@ -507,7 +509,7 @@ class Topic
      *
      * @codingStandardsIgnoreStart
      * @param  string $name
-     * @param  array $info A representation of a
+     * @param  array $info [optional] A representation of a
      *         [Subscription](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions#Subscription)
      * @return Subscription
      * @codingStandardsIgnoreEnd

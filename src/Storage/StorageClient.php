@@ -58,7 +58,7 @@ class StorageClient
     /**
      * Create a Storage client.
      *
-     * @param array $config {
+     * @param array $config [optional] {
      *     Configuration options.
      *
      *     @type string $projectId The project ID from the Google Developer's
@@ -72,8 +72,8 @@ class StorageClient
      *     @type string $keyFilePath The full path to your service account
      *           credentials .json file retrieved from the Google Developers
      *           Console.
-     *     @type int $retries Number of retries for a failed request. Defaults
-     *           to 3.
+     *     @type int $retries Number of retries for a failed request.
+     *           **Defaults to** `3`.
      *     @type array $scopes Scopes to be used for the request.
      * }
      */
@@ -125,7 +125,7 @@ class StorageClient
      *
      * @see https://cloud.google.com/storage/docs/json_api/v1/buckets/list Buckets list API documentation.
      *
-     * @param array $options {
+     * @param array $options [optional] {
      *     Configuration options.
      *
      *     @type integer $maxResults Maximum number of results to return per
@@ -176,7 +176,7 @@ class StorageClient
      * @see https://cloud.google.com/storage/docs/json_api/v1/buckets/insert Buckets insert API documentation.
      *
      * @param string $name Name of the bucket to be created.
-     * @param array $options {
+     * @param array $options [optional] {
      *     Configuration options.
      *
      *     @type string $predefinedAcl Apply a predefined set of access controls
@@ -193,7 +193,8 @@ class StorageClient
      *     @type array $defaultObjectAcl Default access controls to apply to new
      *           objects when no ACL is provided.
      *     @type array $lifecycle The bucket's lifecycle configuration.
-     *     @type string $location The location of the bucket. Defaults to US.
+     *     @type string $location The location of the bucket. **Defaults to**
+     *           `"US"`.
      *     @type array $logging The bucket's logging configuration, which
      *           defines the destination bucket and optional name prefix for the
      *           current bucket's logs.

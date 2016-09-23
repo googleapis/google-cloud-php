@@ -225,7 +225,7 @@ class EntityMapper
      * Format values for the API
      *
      * @param mixed $value
-     * @param bool $exclude If true, value will be excluded from datastore indexes.
+     * @param bool $exclude [optional] If true, value will be excluded from datastore indexes.
      * @return array
      */
     public function valueObject($value, $exclude = false)
@@ -317,7 +317,7 @@ class EntityMapper
      *
      * @todo add middleware
      *
-     * @param mixed $value
+     * @param mixed $value The value object
      * @return array
      */
     public function objectProperty($value)

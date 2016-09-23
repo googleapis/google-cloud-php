@@ -306,13 +306,18 @@ class CodeParser implements ParserInterface
 
         foreach ($params as $param) {
             $description = $param->getDescription();
+
+            $descriptionString = $this->buildDescription($param->getDocBlock(), $description);
             $nestedParamsArray = [];
 
-            if (($param->getType() === 'array' || $param->getType() === 'array[]') && $this->hasNestedParams($description)) {
-                $description = substr($description, 1, -1);
-                $nestedParams = explode('@type', $description);
-                $description = trim(array_shift($nestedParams));
+            if (strpos($param->getType(), 'array') === 0 && $this->hasNestedParams($description)) {
+                $nestedParamString = trim(str_replace('[optional]', '', $description));
+                $nestedParamString = substr($nestedParamString, 1, -1);
+                $nestedParams = explode('@type', $nestedParamString);
+                $nestedParamString = trim(array_shift($nestedParams));
                 $nestedParamsArray = $this->buildNestedParams($nestedParams, $param);
+
+                $descriptionString = $this->buildDescription($param->getDocBlock(), $nestedParamString);
             }
 
             $varName = substr($param->getVariableName(), 1);
@@ -321,7 +326,7 @@ class CodeParser implements ParserInterface
             }
             $paramsArray[] = [
                 'name' => $varName,
-                'description' => $this->buildDescription($param->getDocBlock(), $description),
+                'description' => $descriptionString,
                 'types' => $this->handleTypes($param->getTypes()),
                 'optional' => (strpos(trim(strtolower($description)), '[optional]') === 0),
                 'nullable' => null // @todo
@@ -366,6 +371,8 @@ class CodeParser implements ParserInterface
 
     private function hasNestedParams($description)
     {
+        $description = trim(str_replace('[optional]', '', $description));
+
         if (strlen($description) === 0) {
             return false;
         }

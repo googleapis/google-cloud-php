@@ -71,7 +71,7 @@ class RequestWrapper
     private $keyFile;
 
     /**
-     * @var int Number of retries for a failed request. Defaults to 3.
+     * @var int Number of retries for a failed request. **Defaults to**  `3`.
      */
 
     private $retries;
@@ -105,7 +105,7 @@ class RequestWrapper
     private $shouldSignRequest;
 
     /**
-     * @param array $options {
+     * @param array $options [optional] {
      *     Configuration options.
      *
      *     @type string $accessToken Access token used to sign requests.
@@ -116,8 +116,8 @@ class RequestWrapper
      *           credentials .json file retrieved from the Google Developers
      *           Console.
      *     @type array $httpOptions HTTP client specific configuration options.
-     *     @type int $retries Number of retries for a failed request. Defaults
-     *           to 3.
+     *     @type int $retries Number of retries for a failed request.
+     *           **Defaults to** `3`.
      *     @type array $scopes Scopes to be used for the request.
      *     @type boolean $shouldSignRequest Whether to enable request signing.
      * }
@@ -155,11 +155,11 @@ class RequestWrapper
      * Deliver the request.
      *
      * @param RequestInterface $request Psr7 request.
-     * @param array $options {
+     * @param array $options [optional] {
      *     Request options.
      *
-     *     @type int $retries Number of retries for a failed request. Defaults
-     *           to 3.
+     *     @type int $retries Number of retries for a failed request.
+     *           **Defaults to** `3`.
      *     @type array $httpOptions HTTP client specific configuration options.
      * }
      * @return ResponseInterface

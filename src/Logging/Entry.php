@@ -30,7 +30,7 @@ class Entry
     private $info;
 
     /**
-     * @param array $info The entry's metadata.
+     * @param array $info [optional] The entry's metadata.
      */
     public function __construct(array $info = [])
     {

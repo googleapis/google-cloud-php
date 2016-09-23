@@ -84,7 +84,7 @@ class Acl
      * API documentation.
      *
      * @param string $entity The entity to delete.
-     * @param array $options Configuration options.
+     * @param array $options [optional] Configuration Options.
      * @return void
      */
     public function delete($entity, array $options = [])
@@ -111,7 +111,7 @@ class Acl
      * @see https://cloud.google.com/storage/docs/json_api/v1/objectAccessControls/get ObjectAccessControls get API
      * documentation.
      *
-     * @param array $options {
+     * @param array $options [optional] {
      *     Configuration options.
      *
      *     @type string $entity The entity to fetch.
@@ -147,7 +147,7 @@ class Acl
      * @param string $entity The entity to add access controls to.
      * @param string $role The permissions to add for the specified entity. May
      *        be one of 'OWNER', 'READER', or 'WRITER'.
-     * @param array $options Configuration options.
+     * @param array $options [optional] Configuration Options.
      * @return array
      */
     public function add($entity, $role, array $options = [])
@@ -179,7 +179,7 @@ class Acl
      * @param string $entity The entity to update access controls for.
      * @param string $role The permissions to update for the specified entity.
      *        May be one of 'OWNER', 'READER', or 'WRITER'.
-     * @param array $options Configuration options.
+     * @param array $options [optional] Configuration Options.
      * @return array
      */
     public function update($entity, $role, array $options = [])

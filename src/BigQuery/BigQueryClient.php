@@ -58,7 +58,7 @@ class BigQueryClient
     /**
      * Create a BigQuery client.
      *
-     * @param array $config {
+     * @param array $config [optional] {
      *     Configuration options.
      *
      *     @type string $projectId The project ID from the Google Developer's
@@ -72,8 +72,8 @@ class BigQueryClient
      *     @type string $keyFilePath The full path to your service account
      *           credentials .json file retrieved from the Google Developers
      *           Console.
-     *     @type int $retries Number of retries for a failed request. Defaults
-     *           to 3.
+     *     @type int $retries Number of retries for a failed request. **Defaults
+     *           to** `3`.
      *     @type array $scopes Scopes to be used for the request.
      * }
      */
@@ -112,7 +112,7 @@ class BigQueryClient
      * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs/query Query API documentation.
      *
      * @param string $query A BigQuery SQL query.
-     * @param array $options {
+     * @param array $options [optional] {
      *     Configuration options.
      *
      *     @type int $maxResults The maximum number of rows to return per page
@@ -124,7 +124,7 @@ class BigQueryClient
      *           query. If not set, all table names in the query string must be
      *           qualified in the format 'datasetId.tableId'.
      *     @type int $timeoutMs How long to wait for the query to complete, in
-     *           milliseconds. Defaults to 10000 milliseconds (10 seconds).
+     *           milliseconds. **Defaults to** `10000` milliseconds (10 seconds).
      *     @type bool $useQueryCache Whether to look for the result in the query
      *           cache.
      *     @type bool $useLegacySql Specifies whether to use BigQuery's legacy
@@ -174,7 +174,7 @@ class BigQueryClient
      * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs/insert Jobs insert API documentation.
      *
      * @param string $query A BigQuery SQL query.
-     * @param array $options {
+     * @param array $options [optional] {
      *     Configuration options.
      *
      *     @type array $jobConfig Configuration settings for a query job are
@@ -232,11 +232,11 @@ class BigQueryClient
      *
      * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs/list Jobs list API documentation.
      *
-     * @param array $options {
+     * @param array $options [optional] {
      *     Configuration options.
      *
      *     @type bool $allUsers Whether to display jobs owned by all users in
-     *           the project. Defaults to false.
+     *           the project. **Defaults to** `false`.
      *     @type int $maxResults Maximum number of results to return.
      *     @type string $stateFilter Filter for job state. Maybe be either
      *           `done`, `pending`, or `running`.
@@ -299,7 +299,7 @@ class BigQueryClient
      *
      * @see https://cloud.google.com/bigquery/docs/reference/v2/datasets/list Datasets list API documentation.
      *
-     * @param array $options {
+     * @param array $options [optional] {
      *     Configuration options.
      *
      *     @type bool $all Whether to list all datasets, including hidden ones.
@@ -342,7 +342,7 @@ class BigQueryClient
      * @see https://cloud.google.com/bigquery/docs/reference/v2/datasets/insert Datasets insert API documentation.
      *
      * @param string $id The id of the dataset to create.
-     * @param array $options {
+     * @param array $options [optional] {
      *     Configuration options.
      *
      *     @type array $metadata The available options for metadata are outlined

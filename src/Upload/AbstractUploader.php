@@ -72,15 +72,15 @@ abstract class AbstractUploader
      * @param RequestWrapper $requestWrapper
      * @param string|resource|StreamInterface $data
      * @param string $uri
-     * @param array $options {
+     * @param array $options [optional] {
      *     Optional configuration.
      *
      *     @type array $metadata Metadata on the resource.
      *     @type int $chunkSize Size of the chunks to send incrementally during
      *           a resumable upload. Must be in multiples of 262144 bytes.
      *     @type array $httpOptions HTTP client specific configuration options.
-     *     @type int $retries Number of retries for a failed request. Defaults
-     *           to 3.
+     *     @type int $retries Number of retries for a failed request.
+     *           **Defaults to** `3`.
      *     @type string $contentType Content type of the resource.
      * }
      */

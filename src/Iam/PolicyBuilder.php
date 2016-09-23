@@ -88,7 +88,7 @@ class PolicyBuilder
      * ]);
      * ```
      *
-     * @param  array $bindings An array of bindings
+     * @param  array $bindings [optional] An array of bindings
      * @return PolicyBuilder
      * @throws InvalidArgumentException
      */
@@ -157,7 +157,7 @@ class PolicyBuilder
      * $builder->setVersion(1);
      * ```
      *
-     * @param  int $version Version of the Policy. The default version is 0.
+     * @param  int $version Version of the Policy. **Defaults to** `0`.
      * @return PolicyBuilder
      */
     public function setVersion($version)

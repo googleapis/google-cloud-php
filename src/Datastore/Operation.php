@@ -90,8 +90,8 @@ class Operation
      * @see https://cloud.google.com/datastore/reference/rest/v1/Key#PathElement PathElement
      *
      * @param string $kind The kind.
-     * @param string|int $identifier The ID or name.
-     * @param array $options {
+     * @param string|int $identifier [optional] The ID or name.
+     * @param array $options [optional] {
      *     Configuration Options
      *
      *     @type string $identifierType If omitted, type will be determined
@@ -128,7 +128,7 @@ class Operation
      * @see https://cloud.google.com/datastore/reference/rest/v1/Key#PathElement PathElement
      *
      * @param string $kind The kind to use in the final path element.
-     * @param array $options {
+     * @param array $options [optional] {
      *     Configuration Options
      *
      *     @type array[] $ancestors An array of
@@ -189,8 +189,8 @@ class Operation
      * @see https://cloud.google.com/datastore/reference/rest/v1/Entity Entity
      *
      * @param Key|string $key The key used to identify the record, or a string $kind.
-     * @param array $entity The data to fill the entity with.
-     * @param array $options {
+     * @param array $entity [optional] The data to fill the entity with.
+     * @param array $options [optional] {
      *     Configuration Options
      *
      *     @type string $className The name of a class extending {@see Google\Cloud\Datastore\Entity}.
@@ -244,7 +244,7 @@ class Operation
      * @see https://cloud.google.com/datastore/reference/rest/v1/projects/allocateIds allocateIds
      *
      * @param Key[] $keys The incomplete keys.
-     * @param array $options Configuration options.
+     * @param array $options [optional] Configuration Options.
      * @return Key[]
      * @throws InvalidArgumentException
      */
@@ -285,13 +285,12 @@ class Operation
      *
      * @codingStandardsIgnoreStart
      * @param Key[] $key The identifiers to look up.
-     * @param array $options {
+     * @param array $options [optional] {
      *     Configuration Options
      *
-     *     @type string $readConsistency If not in a transaction, set to STRONG
-     *           or EVENTUAL, depending on default value in DatastoreClient.
-     *           See
+     *     @type string $readConsistency See
      *           [ReadConsistency](https://cloud.google.com/datastore/reference/rest/v1/ReadOptions#ReadConsistency).
+     *           **Defaults to** `"EVENTUAL"`.
      *     @type string $transaction The transaction ID, if the query should be
      *           run in a transaction.
      *     @type string|array $className If a string, the name of the class to return results as.
@@ -369,7 +368,7 @@ class Operation
      * Run a query and return entities
      *
      * @param QueryInterface $query The query object.
-     * @param array $options {
+     * @param array $options [optional] {
      *     Configuration Options
      *
      *     @type string $transaction The transaction ID, if the query should be
@@ -377,10 +376,9 @@ class Operation
      *     @type string $className The name of the class to return results as.
      *           Must be a subclass of {@see Google\Cloud\Datastore\Entity}.
      *           If not set, {@see Google\Cloud\Datastore\Entity} will be used.
-     *     @type string $readConsistency If not in a transaction, set to STRONG
-     *           or EVENTUAL, depending on default value in DatastoreClient.
-     *           See
+     *     @type string $readConsistency See
      *           [ReadConsistency](https://cloud.google.com/datastore/reference/rest/v1/ReadOptions#ReadConsistency).
+     *           **Defaults to** `"EVENTUAL"`.
      * }
      * @return \Generator<Google\Cloud\Datastore\Entity>
      */
@@ -428,7 +426,7 @@ class Operation
      * Calling this method will end the operation (and close the transaction,
      * if one is specified).
      *
-     * @param array $options {
+     * @param array $options [optional] {
      *     Configuration Options
      *
      *     @type string $transaction The transaction ID, if the query should be
@@ -495,7 +493,7 @@ class Operation
      *        "Update" or "Delete".
      * @param Entity[]|Key[] $input The entities or keys to mutate.
      * @param string $type The type of the input array.
-     * @param string $baseVersion The version of the entity that this mutation
+     * @param string $baseVersion [optional] The version of the entity that this mutation
      *        is being applied to. If this does not match the current version on
      *        the server, the mutation conflicts.
      * @return void
@@ -534,8 +532,8 @@ class Operation
      * Check whether an update or upsert operation may proceed safely
      *
      * @param Entity[] $entities the entities to be updated or upserted.
-     * @param bool $allowOverwrite `false` by default. If `true`, safety will
-     *        be disregarded.
+     * @param bool $allowOverwrite If `true`, entities may be overwritten.
+     *        **Defaults to** `false`.
      * @throws InvalidArgumentException
      * @return void
      */
@@ -627,12 +625,13 @@ class Operation
     /**
      * Format the readOptions
      *
-     * @param array $options {
+     * @param array $options [optional] {
      *      Read Options
      *
      *      @type string $transaction If set, query or lookup will run in transaction.
-     *      @type string $readConsistency If not in a transaction, set to STRONG
-     *            or EVENTUAL, depending on default value in DatastoreClient.
+     *      @type string $readConsistency See
+     *           [ReadConsistency](https://cloud.google.com/datastore/reference/rest/v1/ReadOptions#ReadConsistency).
+     *           **Defaults to** `"EVENTUAL"`.
      * }
      * @return array
      */

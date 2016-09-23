@@ -58,7 +58,7 @@ class Bucket
      * @param ConnectionInterface $connection Represents a connection to Cloud
      *        Storage.
      * @param string $name The bucket's name.
-     * @param array $info The bucket's metadata.
+     * @param array $info [optional] The bucket's metadata.
      */
     public function __construct(ConnectionInterface $connection, $name, array $info = null)
     {
@@ -162,7 +162,7 @@ class Bucket
      * @see https://cloud.google.com/storage/docs/json_api/v1/objects/insert Objects insert API documentation.
      *
      * @param string|resource|StreamInterface $data The data to be uploaded.
-     * @param array $options {
+     * @param array $options [optional] {
      *     Configuration options.
      *
      *     @type string $name The name of the destination.
@@ -177,9 +177,10 @@ class Bucket
      *           you have increased reliability at the risk of higher overhead.
      *           It is recommended to not use chunking.
      *     @type string $predefinedAcl Predefined ACL to apply to the object.
-     *           Defaults to private. Acceptable values include,
-     *           authenticatedRead, bucketOwnerFullControl, bucketOwnerRead,
-     *           private, projectPrivate, and publicRead.
+     *           Acceptable values include,
+     *           `"authenticatedRead"`, `"bucketOwnerFullControl"`,
+     *           `"bucketOwnerRead"`, `"private"`, `"projectPrivate"`, and
+     *           `"publicRead"`. **Defaults to** `"private"`.
      *     @type array $metadata The available options for metadata are outlined
      *           at the [JSON API docs](https://cloud.google.com/storage/docs/json_api/v1/objects/insert#request)
      * }
@@ -230,7 +231,7 @@ class Bucket
      * @see https://cloud.google.com/storage/docs/json_api/v1/objects/insert Objects insert API documentation.
      *
      * @param string|resource|StreamInterface $data The data to be uploaded.
-     * @param array $options {
+     * @param array $options [optional] {
      *     Configuration options.
      *
      *     @type string $name The name of the destination.
@@ -243,9 +244,10 @@ class Bucket
      *           you have increased reliability at the risk of higher overhead.
      *           It is recommended to not use chunking.
      *     @type string $predefinedAcl Predefined ACL to apply to the object.
-     *           Defaults to private. Acceptable values include
-     *           authenticatedRead, bucketOwnerFullControl, bucketOwnerRead,
-     *           private, projectPrivate, and publicRead.
+     *           Acceptable values include `"authenticatedRead`",
+     *           `"bucketOwnerFullControl`", `"bucketOwnerRead`", `"private`",
+     *           `"projectPrivate`", and `"publicRead"`. **Defaults to**
+     *           `"private"`.
      *     @type array $metadata The available options for metadata are outlined
      *           at the [JSON API docs](https://cloud.google.com/storage/docs/json_api/v1/objects/insert#request)
      * }
@@ -276,7 +278,7 @@ class Bucket
      * ```
      *
      * @param string $name The name of the object to request.
-     * @param array $options {
+     * @param array $options [optional] {
      *     Configuration options.
      *
      *     @type string $generation Request a specific revision of the object.
@@ -308,7 +310,7 @@ class Bucket
      *
      * @see https://cloud.google.com/storage/docs/json_api/v1/objects/list Objects list API documentation.
      *
-     * @param array $options {
+     * @param array $options [optional] {
      *     Configuration options.
      *
      *     @type string $delimiter Returns results in a directory-like mode.
@@ -318,7 +320,7 @@ class Bucket
      *           truncated after the delimiter, returned in prefixes. Duplicate
      *           prefixes are omitted.
      *     @type integer $maxResults Maximum number of results to return per
-     *           request. Defaults to 1000.
+     *           request. Defaults to `1000`.
      *     @type string $prefix Filter results with this prefix.
      *     @type string $projection Determines which properties to return. May
      *           be either 'full' or 'noAcl'.
@@ -367,7 +369,7 @@ class Bucket
      *
      * @see https://cloud.google.com/storage/docs/json_api/v1/buckets/delete Buckets delete API documentation.
      *
-     * @param array $options {
+     * @param array $options [optional] {
      *     Configuration options.
      *     @type string $ifMetagenerationMatch If set, only deletes the bucket
      *           if its metageneration matches this value.
@@ -398,7 +400,7 @@ class Bucket
      *
      * @see https://cloud.google.com/storage/docs/json_api/v1/buckets/patch Buckets patch API documentation.
      *
-     * @param array $options {
+     * @param array $options [optional] {
      *     Configuration options.
      *
      *     @type string $ifMetagenerationMatch Makes the return of the bucket
@@ -446,7 +448,7 @@ class Bucket
      *
      * @see https://cloud.google.com/storage/docs/json_api/v1/buckets/get Buckets get API documentation.
      *
-     * @param array $options {
+     * @param array $options [optional] {
      *     Configuration options.
      *
      *     @type string $ifMetagenerationMatch Makes the return of the bucket
@@ -481,7 +483,7 @@ class Bucket
      *
      * @see https://cloud.google.com/storage/docs/json_api/v1/buckets/get Buckets get API documentation.
      *
-     * @param array $options {
+     * @param array $options [optional] {
      *     Configuration options.
      *
      *     @type string $ifMetagenerationMatch Makes the return of the bucket

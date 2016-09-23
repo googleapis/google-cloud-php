@@ -162,17 +162,17 @@ class Transaction
      * ```
      *
      * @param Entity $entity The entity to update.
-     * @param array $options {
+     * @param array $options [optional] {
      *     Configuration Options
      *
-     *     @type bool $allowOverwrite Set to `false` by default. Entities must
-     *           be updated as an entire resource. Patch operations are not
-     *           supported. Because entities can be created manually, or
-     *           obtained by a lookup or query, it is possible to accidentally
-     *           overwrite an existing record with a new one when manually
-     *           creating an entity. To provide additional safety, this flag
-     *           must be set to `true` in order to update a record when the
-     *           entity provided was not obtained through a lookup or query.
+     *     @type bool $allowOverwrite Entities must be updated as an entire
+     *           resource. Patch operations are not supported. Because entities
+     *           can be created manually, or obtained by a lookup or query, it
+     *           is possible to accidentally overwrite an existing record with a
+     *           new one when manually creating an entity. To provide additional
+     *           safety, this flag must be set to `true` in order to update a
+     *           record when the entity provided was not obtained through a
+     *           lookup or query. **Defaults to** `false`.
      * }
      * @return Transaction
      */
@@ -201,17 +201,17 @@ class Transaction
      * ```
      *
      * @param Entity[] $entities The entities to update.
-     * @param array $options {
+     * @param array $options [optional] {
      *     Configuration Options
      *
-     *     @type bool $allowOverwrite Set to `false` by default. Entities must
-     *           be updated as an entire resource. Patch operations are not
-     *           supported. Because entities can be created manually, or
-     *           obtained by a lookup or query, it is possible to accidentally
-     *           overwrite an existing record with a new one when manually
-     *           creating an entity. To provide additional safety, this flag
-     *           must be set to `true` in order to update a record when the
-     *           entity provided was not obtained through a lookup or query.
+     *     @type bool $allowOverwrite Entities must be updated as an entire
+     *           resource. Patch operations are not supported. Because entities
+     *           can be created manually, or obtained by a lookup or query, it
+     *           is possible to accidentally overwrite an existing record with a
+     *           new one when manually creating an entity. To provide additional
+     *           safety, this flag must be set to `true` in order to update a
+     *           record when the entity provided was not obtained through a
+     *           lookup or query. **Defaults to** `false`.
      * }
      * @return Transaction
      */
@@ -351,7 +351,7 @@ class Transaction
      * ```
      *
      * @param Key $key $key The identifier to use to locate a desired entity.
-     * @param array $options {
+     * @param array $options [optional] {
      *     Configuration Options
      *
      *     @type string $className The name of the class to return results as.
@@ -387,7 +387,7 @@ class Transaction
      * ```
      *
      * @param Key[] $key The identifiers to look up.
-     * @param array $options {
+     * @param array $options [optional] {
      *     Configuration Options
      *
      *     @type string|array $className If a string, the name of the class to return results as.
@@ -422,7 +422,7 @@ class Transaction
      * ```
      *
      * @param QueryInterface $query The query object.
-     * @param array $options {
+     * @param array $options [optional] {
      *     Configuration Options
      *
      *     @type string $className The name of the class to return results as.
@@ -449,7 +449,7 @@ class Transaction
      * $transaction->commit()
      * ```
      *
-     * @param array $options Configuration Options.
+     * @param array $options [optional] Configuration Options.
      * @return array [Response Body](https://cloud.google.com/datastore/reference/rest/v1/projects/commit#response-body)
      */
     public function commit(array $options = [])

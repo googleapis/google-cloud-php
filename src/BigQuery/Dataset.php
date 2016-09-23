@@ -46,7 +46,7 @@ class Dataset
      *        BigQuery.
      * @param string $id The dataset's ID.
      * @param string $projectId The project's ID.
-     * @param array $info The dataset's metadata.
+     * @param array $info [optional] The dataset's metadata.
      */
     public function __construct(ConnectionInterface $connection, $id, $projectId, array $info = [])
     {
@@ -89,12 +89,12 @@ class Dataset
      *
      * @see https://cloud.google.com/bigquery/docs/reference/v2/datasets/delete Datasets delete API documentation.
      *
-     * @param array $options {
+     * @param array $options [optional] {
      *     Configuration options.
      *
      *     @type bool $deleteContents If true, delete all the tables in the
      *           dataset. If false and the dataset contains tables, the request
-     *           will fail. Default is false.
+     *           will fail. **Defaults to** `false`.
      * }
      */
     public function delete(array $options = [])
@@ -116,7 +116,7 @@ class Dataset
      *
      * @param array $metadata The available options for metadata are outlined
      *        at the [Dataset Resource API docs](https://cloud.google.com/bigquery/docs/reference/v2/datasets#resource)
-     * @param array $options Configuration options.
+     * @param array $options [optional] Configuration options.
      */
     public function update(array $metadata, array $options = [])
     {
@@ -158,7 +158,7 @@ class Dataset
      *
      * @see https://cloud.google.com/bigquery/docs/reference/v2/tables/list Tables list API documentation.
      *
-     * @param array $options {
+     * @param array $options [optional] {
      *     Configuration options.
      *
      *     @type int $maxResults Maximum number of results to return.
@@ -200,7 +200,7 @@ class Dataset
      *
      * @see https://cloud.google.com/bigquery/docs/reference/v2/tables/insert Tables insert API documentation.
      *
-     * @param array $options {
+     * @param array $options [optional] {
      *     Configuration options.
      *
      *     @type array $metadata The available options for metadata are outlined
@@ -243,7 +243,7 @@ class Dataset
      *
      * @see https://cloud.google.com/bigquery/docs/reference/v2/datasets#resource Datasets resource documentation.
      *
-     * @param array $options Configuration options.
+     * @param array $options [optional] Configuration options.
      * @return array
      */
     public function info(array $options = [])
@@ -267,7 +267,7 @@ class Dataset
      *
      * @see https://cloud.google.com/bigquery/docs/reference/v2/datasets/get Datasets get API documentation.
      *
-     * @param array $options Configuration options.
+     * @param array $options [optional] Configuration options.
      * @return array
      */
     public function reload(array $options = [])
