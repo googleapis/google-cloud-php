@@ -68,7 +68,7 @@ class NaturalLanguageClient
     /**
      * Create a NaturalLanguage client.
      *
-     * $param array $config [optional] {
+     * @param array $config [optional] {
      *     Configuration Options.
      *
      *     @type string $projectId The project ID from the Google Developer's
@@ -116,7 +116,7 @@ class NaturalLanguageClient
      * @codingStandardsIgnoreEnd
      *
      * @param string|StorageObject $content The content to analyze.
-     * $param array $options [optional] {
+     * @param array $options [optional] {
      *     Configuration options.
      *
      *     @type string $type The document type. Acceptable values are
@@ -158,7 +158,7 @@ class NaturalLanguageClient
      * @codingStandardsIgnoreEnd
      *
      * @param string|StorageObject $content The content to analyze.
-     * $param array $options [optional] {
+     * @param array $options [optional] {
      *     Configuration options.
      *
      *     @type string $type The document type. Acceptable values are
@@ -197,7 +197,7 @@ class NaturalLanguageClient
      * @codingStandardsIgnoreEnd
      *
      * @param string|StorageObject $content The content to analyze.
-     * $param array $options [optional] {
+     * @param array $options [optional] {
      *     Configuration options.
      *
      *     @type string $type The document type. Acceptable values are
@@ -248,7 +248,7 @@ class NaturalLanguageClient
      * @codingStandardsIgnoreEnd
      *
      * @param string|StorageObject $content The content to annotate.
-     * $param array $options [optional] {
+     * @param array $options [optional] {
      *     Configuration options.
      *
      *     @type array $features Features to apply to the request. Valid values
@@ -304,7 +304,7 @@ class NaturalLanguageClient
      * Formats the request for the API.
      *
      * @param string|StorageObject $content The content to analyze.
-     * $param array $options [optional] Configuration Options.
+     * @param array $options [optional] Configuration Options.
      * @return array
      */
     private function formatRequest($content, array $options)

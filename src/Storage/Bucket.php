@@ -162,7 +162,7 @@ class Bucket
      * @see https://cloud.google.com/storage/docs/json_api/v1/objects/insert Objects insert API documentation.
      *
      * @param string|resource|StreamInterface $data The data to be uploaded.
-     * $param array $options [optional] {
+     * @param array $options [optional] {
      *     Configuration options.
      *
      *     @type string $name The name of the destination.
@@ -231,7 +231,7 @@ class Bucket
      * @see https://cloud.google.com/storage/docs/json_api/v1/objects/insert Objects insert API documentation.
      *
      * @param string|resource|StreamInterface $data The data to be uploaded.
-     * $param array $options [optional] {
+     * @param array $options [optional] {
      *     Configuration options.
      *
      *     @type string $name The name of the destination.
@@ -278,7 +278,7 @@ class Bucket
      * ```
      *
      * @param string $name The name of the object to request.
-     * $param array $options [optional] {
+     * @param array $options [optional] {
      *     Configuration options.
      *
      *     @type string $generation Request a specific revision of the object.
@@ -310,7 +310,7 @@ class Bucket
      *
      * @see https://cloud.google.com/storage/docs/json_api/v1/objects/list Objects list API documentation.
      *
-     * $param array $options [optional] {
+     * @param array $options [optional] {
      *     Configuration options.
      *
      *     @type string $delimiter Returns results in a directory-like mode.
@@ -369,7 +369,7 @@ class Bucket
      *
      * @see https://cloud.google.com/storage/docs/json_api/v1/buckets/delete Buckets delete API documentation.
      *
-     * $param array $options [optional] {
+     * @param array $options [optional] {
      *     Configuration options.
      *     @type string $ifMetagenerationMatch If set, only deletes the bucket
      *           if its metageneration matches this value.
@@ -400,7 +400,7 @@ class Bucket
      *
      * @see https://cloud.google.com/storage/docs/json_api/v1/buckets/patch Buckets patch API documentation.
      *
-     * $param array $options [optional] {
+     * @param array $options [optional] {
      *     Configuration options.
      *
      *     @type string $ifMetagenerationMatch Makes the return of the bucket
@@ -448,7 +448,7 @@ class Bucket
      *
      * @see https://cloud.google.com/storage/docs/json_api/v1/buckets/get Buckets get API documentation.
      *
-     * $param array $options [optional] {
+     * @param array $options [optional] {
      *     Configuration options.
      *
      *     @type string $ifMetagenerationMatch Makes the return of the bucket
@@ -483,7 +483,7 @@ class Bucket
      *
      * @see https://cloud.google.com/storage/docs/json_api/v1/buckets/get Buckets get API documentation.
      *
-     * $param array $options [optional] {
+     * @param array $options [optional] {
      *     Configuration options.
      *
      *     @type string $ifMetagenerationMatch Makes the return of the bucket

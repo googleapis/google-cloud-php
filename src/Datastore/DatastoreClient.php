@@ -90,7 +90,7 @@ class DatastoreClient
     /**
      * Create a Datastore client.
      *
-     * $param array $config [optional] {
+     * @param array $config [optional] {
      *     Configuration Options.
      *
      *     @type string $projectId The project ID from the Google Developer's
@@ -547,7 +547,7 @@ class DatastoreClient
      * ```
      *
      * @param Entity[] $entities The entities to be updated.
-     * $param array $options [optional] {
+     * @param array $options [optional] {
      *     Configuration Options
      *
      *     @type bool $allowOverwrite Entities must be updated as an entire
@@ -595,7 +595,7 @@ class DatastoreClient
      * ```
      *
      * @param Entity $entity The entity to be upserted.
-     * $param array $options [optional] Configuration Options.
+     * @param array $options [optional] Configuration Options.
      * @return string The entity version.
      * @throws DomainException If a conflict occurs, fail.
      */
@@ -635,7 +635,7 @@ class DatastoreClient
      * ```
      *
      * @param Entity[] $entities The entities to be upserted.
-     * $param array $options [optional] Configuration Options.
+     * @param array $options [optional] Configuration Options.
      * @return array [Response Body](https://cloud.google.com/datastore/reference/rest/v1/projects/commit#response-body)
      */
     public function upsertBatch(array $entities, array $options = [])
@@ -658,7 +658,7 @@ class DatastoreClient
      * ```
      *
      * @param Key $key The identifier to delete.
-     * $param array $options [optional] {
+     * @param array $options [optional] {
      *     Configuration options
      *
      *     @type string $baseVersion Provides concurrency control. The version
@@ -692,7 +692,7 @@ class DatastoreClient
      * ```
      *
      * @param Key[] $keys The identifiers to delete.
-     * $param array $options [optional] {
+     * @param array $options [optional] {
      *     Configuration options
      *
      *     @type string $baseVersion Provides concurrency control. The version
@@ -729,7 +729,7 @@ class DatastoreClient
      * ```
      *
      * @param Key $key $key The identifier to use to locate a desired entity.
-     * $param array $options [optional] {
+     * @param array $options [optional] {
      *     Configuration Options
      *
      *     @type string $readConsistency See
@@ -771,7 +771,7 @@ class DatastoreClient
      * ```
      *
      * @param Key[] $key The identifiers to look up.
-     * $param array $options [optional] {
+     * @param array $options [optional] {
      *     Configuration Options
      *
      *     @type string $readConsistency See
@@ -805,7 +805,7 @@ class DatastoreClient
      * $query = $datastore->query();
      * ```
      *
-     * $param array $options [optional] {
+     * @param array $options [optional] {
      *     Query Options
      *
      *     @type array $query [Query](https://cloud.google.com/datastore/reference/rest/v1/projects/runQuery#query)
@@ -851,7 +851,7 @@ class DatastoreClient
      * ```
      *
      * @param string $query The [GQL Query](https://cloud.google.com/datastore/docs/apis/gql/gql_reference) string.
-     * $param array $options [optional] {
+     * @param array $options [optional] {
      *     Configuration Options
      *
      *     @type bool $allowLiterals Whether literal values will be allowed in
@@ -888,7 +888,7 @@ class DatastoreClient
      * ```
      *
      * @param QueryInterface $query A query object.
-     * $param array $options [optional] {
+     * @param array $options [optional] {
      *     Configuration Options
      *
      *     @type string $className The name of the class to return results as.

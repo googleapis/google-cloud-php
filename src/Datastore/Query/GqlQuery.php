@@ -103,7 +103,7 @@ class GqlQuery implements QueryInterface
     /**
      * @param EntityMapper $entityMapper An instance of EntityMapper
      * @param string $query The GQL Query string.
-     * $param array $options [optional] {
+     * @param array $options [optional] {
      *     Configuration Options
      *
      *     @type bool $allowLiterals Whether literal values will be allowed in

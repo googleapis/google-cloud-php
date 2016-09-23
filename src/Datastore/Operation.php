@@ -91,7 +91,7 @@ class Operation
      *
      * @param string $kind The kind.
      * @param string|int $identifier [optional] The ID or name.
-     * $param array $options [optional] {
+     * @param array $options [optional] {
      *     Configuration Options
      *
      *     @type string $identifierType If omitted, type will be determined
@@ -128,7 +128,7 @@ class Operation
      * @see https://cloud.google.com/datastore/reference/rest/v1/Key#PathElement PathElement
      *
      * @param string $kind The kind to use in the final path element.
-     * $param array $options [optional] {
+     * @param array $options [optional] {
      *     Configuration Options
      *
      *     @type array[] $ancestors An array of
@@ -190,7 +190,7 @@ class Operation
      *
      * @param Key|string $key The key used to identify the record, or a string $kind.
      * @param array $entity [optional] The data to fill the entity with.
-     * $param array $options [optional] {
+     * @param array $options [optional] {
      *     Configuration Options
      *
      *     @type string $className The name of a class extending {@see Google\Cloud\Datastore\Entity}.
@@ -244,7 +244,7 @@ class Operation
      * @see https://cloud.google.com/datastore/reference/rest/v1/projects/allocateIds allocateIds
      *
      * @param Key[] $keys The incomplete keys.
-     * $param array $options [optional] Configuration Options.
+     * @param array $options [optional] Configuration Options.
      * @return Key[]
      * @throws InvalidArgumentException
      */
@@ -285,7 +285,7 @@ class Operation
      *
      * @codingStandardsIgnoreStart
      * @param Key[] $key The identifiers to look up.
-     * $param array $options [optional] {
+     * @param array $options [optional] {
      *     Configuration Options
      *
      *     @type string $readConsistency See
@@ -368,7 +368,7 @@ class Operation
      * Run a query and return entities
      *
      * @param QueryInterface $query The query object.
-     * $param array $options [optional] {
+     * @param array $options [optional] {
      *     Configuration Options
      *
      *     @type string $transaction The transaction ID, if the query should be
@@ -426,7 +426,7 @@ class Operation
      * Calling this method will end the operation (and close the transaction,
      * if one is specified).
      *
-     * $param array $options [optional] {
+     * @param array $options [optional] {
      *     Configuration Options
      *
      *     @type string $transaction The transaction ID, if the query should be
@@ -625,7 +625,7 @@ class Operation
     /**
      * Format the readOptions
      *
-     * $param array $options [optional] {
+     * @param array $options [optional] {
      *      Read Options
      *
      *      @type string $transaction If set, query or lookup will run in transaction.

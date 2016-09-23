@@ -58,7 +58,7 @@ class StorageClient
     /**
      * Create a Storage client.
      *
-     * $param array $config [optional] {
+     * @param array $config [optional] {
      *     Configuration options.
      *
      *     @type string $projectId The project ID from the Google Developer's
@@ -125,7 +125,7 @@ class StorageClient
      *
      * @see https://cloud.google.com/storage/docs/json_api/v1/buckets/list Buckets list API documentation.
      *
-     * $param array $options [optional] {
+     * @param array $options [optional] {
      *     Configuration options.
      *
      *     @type integer $maxResults Maximum number of results to return per
@@ -176,7 +176,7 @@ class StorageClient
      * @see https://cloud.google.com/storage/docs/json_api/v1/buckets/insert Buckets insert API documentation.
      *
      * @param string $name Name of the bucket to be created.
-     * $param array $options [optional] {
+     * @param array $options [optional] {
      *     Configuration options.
      *
      *     @type string $predefinedAcl Apply a predefined set of access controls

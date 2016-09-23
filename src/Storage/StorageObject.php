@@ -121,7 +121,7 @@ class StorageObject
      *
      * @see https://cloud.google.com/storage/docs/json_api/v1/objects/delete Objects delete API documentation.
      *
-     * $param array $options [optional] {
+     * @param array $options [optional] {
      *     Configuration options.
      *
      *     @type string $ifGenerationMatch Makes the operation conditional on
@@ -162,7 +162,7 @@ class StorageObject
      *
      * @param array $metadata The available options for metadata are outlined
      *        at the [JSON API docs](https://cloud.google.com/storage/docs/json_api/v1/objects#resource)
-     * $param array $options [optional] {
+     * @param array $options [optional] {
      *     Configuration options.
      *
      *     @type string $ifGenerationMatch Makes the operation conditional on
@@ -217,7 +217,7 @@ class StorageObject
      * @see https://cloud.google.com/storage/docs/json_api/v1/objects/copy Objects copy API documentation.
      *
      * @param Bucket|string $destination The destination bucket.
-     * $param array $options [optional] {
+     * @param array $options [optional] {
      *     Configuration options.
      *
      *     @type string $name The name of the destination object. **Defaults
@@ -296,7 +296,7 @@ class StorageObject
      * file_put_contents($string, 'my-file.txt');
      * ```
      *
-     * $param array $options [optional] Configuration Options.
+     * @param array $options [optional] Configuration Options.
      * @return string
      */
     public function downloadAsString(array $options = [])
@@ -313,7 +313,7 @@ class StorageObject
      * ```
      *
      * @param string $path Path to download file to.
-     * $param array $options [optional] Configuration Options.
+     * @param array $options [optional] Configuration Options.
      * @return StreamInterface
      */
     public function downloadToFile($path, array $options = [])
@@ -342,7 +342,7 @@ class StorageObject
      *
      * @see https://cloud.google.com/storage/docs/json_api/v1/objects/get Objects get API documentation.
      *
-     * $param array $options [optional] {
+     * @param array $options [optional] {
      *     Configuration options.
      *
      *     @type string $ifGenerationMatch Makes the operation conditional on
@@ -383,7 +383,7 @@ class StorageObject
      *
      * @see https://cloud.google.com/storage/docs/json_api/v1/objects/get Objects get API documentation.
      *
-     * $param array $options [optional] {
+     * @param array $options [optional] {
      *     Configuration options.
      *
      *     @type string $ifGenerationMatch Makes the operation conditional on

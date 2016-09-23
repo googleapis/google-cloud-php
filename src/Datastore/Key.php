@@ -84,7 +84,7 @@ class Key implements JsonSerializable
      * Create a Key.
      *
      * @param string $projectId The project ID.
-     * $param array $options [optional] {
+     * @param array $options [optional] {
      *     Configuration Options
      *
      *     @type string $namespaceId Partitions data under a namespace. Useful for
