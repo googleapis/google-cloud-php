@@ -85,7 +85,7 @@ class Release extends Command
 
         array_unshift($manifest['versions'], 'v'. $version);
 
-        $result = file_put_contents($path, json_encode($manifest, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
+        $result = file_put_contents($path, json_encode($manifest, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) ."\n");
 
         if (!$result) {
             throw new RuntimeException('File write failed');
