@@ -22,6 +22,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use vierbergenlars\SemVer\version;
 
 class Release extends Command
 {
@@ -29,6 +30,10 @@ class Release extends Command
     const PATH_SERVICE_BUILDER = 'src/ServiceBuilder.php';
 
     private $cliBasePath;
+
+    private $allowedReleaseTypes = [
+        'major', 'minor', 'patch'
+    ];
 
     public function __construct($cliBasePath)
     {
@@ -46,38 +51,57 @@ class Release extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        if (strpos($input->getArgument('version'), 'v') === 0) {
-            throw new RuntimeException('Please do not include the `v` version prefix.');
+        $version = $input->getArgument('version');
+        if (in_array(strtolower($version), $this->allowedReleaseTypes)) {
+            $version = $this->getNextVersionName($version);
         }
+
+        try {
+            $validatedVersion = new version($version);
+        } catch (\Exception $e) {
+            $validatedVersion = null;
+        }
+
+        if (is_null($validatedVersion)) {
+            throw new RuntimeException(sprintf(
+                'Given version %s is not a valid version name',
+                $version
+            ));
+        }
+
+        $version = (string) $validatedVersion;
 
         $output->writeln(sprintf(
             'Adding version %s to Documentation Manifest.',
-            $input->getArgument('version')
+            $version
         ));
 
-        $this->addToManifest($input->getArgument('version'));
+        $this->addToManifest($version);
 
         $output->writeln(sprintf(
             'Setting ServiceBuilder version constant to %s.',
-            $input->getArgument('version')
+            $version
         ));
 
-        $this->updateServiceBuilder($input->getArgument('version'));
+        $this->updateServiceBuilder($version);
 
         $output->writeln(sprintf(
             'Release %s generated!',
-            $input->getArgument('version')
+            $version
         ));
+    }
+
+    private function getNextVersionName($type)
+    {
+        $manifest = $this->getManifest();
+        $lastRelease = new version($manifest['versions'][0]);
+
+        return $lastRelease->inc($type);
     }
 
     private function addToManifest($version)
     {
-        $path = $this->cliBasePath .'/../'. self::PATH_MANIFEST;
-        if (!file_exists($path)) {
-            throw new RuntimeException('Manifest file not found at '. $path);
-        }
-
-        $manifest = json_decode(file_get_contents($path), true);
+        $manifest = $this->getManifest();
 
         if (json_last_error() !== JSON_ERROR_NONE) {
             throw new RuntimeException('Could not decode manifest json');
@@ -85,7 +109,8 @@ class Release extends Command
 
         array_unshift($manifest['versions'], 'v'. $version);
 
-        $result = file_put_contents($path, json_encode($manifest, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) ."\n");
+        $content = json_encode($manifest, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) ."\n";
+        $result = file_put_contents($this->getManifestPath(), $content);
 
         if (!$result) {
             throw new RuntimeException('File write failed');
@@ -110,5 +135,20 @@ class Release extends Command
         if (!$result) {
             throw new RuntimeException('File write failed');
         }
+    }
+
+    private function getManifest()
+    {
+        $path = $this->getManifestPath();
+        if (!file_exists($path)) {
+            throw new RuntimeException('Manifest file not found at '. $path);
+        }
+
+        return json_decode(file_get_contents($path), true);
+    }
+
+    private function getManifestPath()
+    {
+        return $this->cliBasePath .'/../'. self::PATH_MANIFEST;
     }
 }

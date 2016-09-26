@@ -6,5 +6,5 @@ easily invoked by running `composer google-cloud` at the command line.
 
 ## Commands
 
-* `composer google-cloud release <version>` Create a new release of Google Cloud PHP.
+* `composer google-cloud release <major|minor|patch|version-number>` Create a new release of Google Cloud PHP.
 * `composer google-cloud docs [<source] [<output>]` Generate Google Cloud PHP documentation.
