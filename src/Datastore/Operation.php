@@ -529,6 +529,20 @@ class Operation
     }
 
     /**
+     * Roll back a transaction
+     *
+     * @param string $transactionId The transaction to roll back
+     * @return void
+     */
+    public function rollback($transactionId)
+    {
+        $this->connection->rollback([
+            'projectId' => $this->projectId,
+            'transaction' => $transactionId
+        ]);
+    }
+
+    /**
      * Check whether an update or upsert operation may proceed safely
      *
      * @param Entity[] $entities the entities to be updated or upserted.

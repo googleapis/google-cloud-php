@@ -409,6 +409,16 @@ class OperationTest extends \PHPUnit_Framework_TestCase
         $this->operation->commit();
     }
 
+    public function testRollback()
+    {
+        $this->connection->rollback(Argument::exact(['projectId' => 'foo', 'transaction' => 'bar']))
+            ->shouldBeCalled()->willReturn(null);
+
+        $this->operation->setConnection($this->connection->reveal());
+
+        $this->operation->rollback('bar');
+    }
+
     public function testAllocateIdsToEntities()
     {
         $this->connection->allocateIds(Argument::that(function ($arg) {

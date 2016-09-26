@@ -458,4 +458,19 @@ class Transaction
 
         return $this->operation->commit($options);
     }
+
+    /**
+     * Roll back a Transaction
+     *
+     * Example:
+     * ```
+     * $transaction->rollback();
+     * ```
+     *
+     * @return void
+     */
+    public function rollback()
+    {
+        return $this->operation->rollback($this->transactionId);
+    }
 }
