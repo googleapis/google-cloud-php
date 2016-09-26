@@ -21,6 +21,8 @@ use Google\Cloud\Exception\NotFoundException;
 use Google\Cloud\Iam\Iam;
 use Google\Cloud\PubSub\Connection\ConnectionInterface;
 use Google\Cloud\PubSub\Connection\IamSubscription;
+use Google\Cloud\PubSub\IncomingMessageTrait;
+use Google\Cloud\ValidateTrait;
 use InvalidArgumentException;
 
 /**
@@ -58,7 +60,9 @@ use InvalidArgumentException;
  */
 class Subscription
 {
+    use IncomingMessageTrait;
     use ResourceNameTrait;
+    use ValidateTrait;
 
     const MAX_MESSAGES = 1000;
 
@@ -66,6 +70,11 @@ class Subscription
      * @var ConnectionInterface
      */
     protected $connection;
+
+    /**
+     * @var string
+     */
+    private $projectId;
 
     /**
      * @var string
@@ -78,9 +87,9 @@ class Subscription
     private $topicName;
 
     /**
-     * @var string
+     * @var bool
      */
-    private $projectId;
+    private $encode;
 
     /**
      * @var array
@@ -98,21 +107,24 @@ class Subscription
      * The idiomatic way to use this class is through the PubSubClient or Topic,
      * but you can instantiate it directly as well.
      *
-     * @param  ConnectionInterface $connection The service connection object
-     * @param  string $name The subscription name
-     * @param  string $topicName The topic name the subscription is attached to
-     * @param  string $projectId The current project
-     * @param  array $info [optional] Subscription info. Used to pre-populate the object.
+     * @param ConnectionInterface $connection The service connection object
+     * @param string $projectId The current project
+     * @param string $name The subscription name
+     * @param string $topicName The topic name the subscription is attached to
+     * @param bool $encode Whether messages are encrypted or not.
+     * @param array $info [optional] Subscription info. Used to pre-populate the object.
      */
     public function __construct(
         ConnectionInterface $connection,
+        $projectId,
         $name,
         $topicName,
-        $projectId,
+        $encode,
         array $info = null
     ) {
         $this->connection = $connection;
         $this->projectId = $projectId;
+        $this->encode = (bool) $encode;
         $this->info = $info;
 
         // Accept either a simple name or a fully-qualified name.
@@ -208,7 +220,6 @@ class Subscription
      *
      * Example:
      * ```
-     * $subscription = $pubsub->subscription('my-new-subscription');
      * $subscription->delete();
      * ```
      *
@@ -237,7 +248,6 @@ class Subscription
      *
      * Example:
      * ```
-     * $subscription = $pubsub->subscription('my-new-subscription');
      * if ($subscription->exists()) {
      *     // do stuff
      * }
@@ -264,7 +274,6 @@ class Subscription
      *
      * Example:
      * ```
-     * $subscription = $pubsub->subscription('my-new-subscription');
      * $info = $subscription->info();
      * echo $info['name']; // `projects/my-awesome-project/subscriptions/my-new-subscription`
      * ```
@@ -291,7 +300,6 @@ class Subscription
      *
      * Example:
      * ```
-     * $subscription = $pubsub->subscription('my-new-subscription');
      * $subscription->reload();
      * $info = $subscription->info();
      * echo $info['name']; // `projects/my-awesome-project/subscriptions/my-new-subscription`
@@ -314,7 +322,6 @@ class Subscription
      *
      * Example:
      * ```
-     * $subscription = $pubsub->subscription('my-new-subscription');
      * $messages = $subscription->pull();
      * foreach ($messages as $message) {
      *     echo $message['data'];
@@ -332,7 +339,7 @@ class Subscription
      *      @type int  $maxMessages Limit the amount of messages pulled.
      * }
      * @codingStandardsIgnoreStart
-     * @return \Generator<array> [ReceivedMessage](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions/pull#ReceivedMessage)
+     * @return \Generator<Message>
      * @codingStandardsIgnoreEnd
      */
     public function pull(array $options = [])
@@ -353,7 +360,7 @@ class Subscription
 
             if (isset($response['receivedMessages'])) {
                 foreach ($response['receivedMessages'] as $message) {
-                    yield $message;
+                    yield $this->messageFactory($message, $this->connection, $this->projectId, $this->encode);
                 }
             }
 
@@ -372,31 +379,23 @@ class Subscription
      *
      * Example:
      * ```
-     * $subscription = $pubsub->subscription('my-new-subscription');
      * $messages = $subscription->pull();
+     * $messagesArray = iterator_to_array($messages);
      *
-     * $lastMessageAckId = null;
-     *
-     * foreach ($messages as $message) {
-     *     $lastMessageAckId = $message['ackId'];
-     * }
-     *
-     * if (!is_null($lastMessageAckId)) {
-     *     $subscription->acknowledge($lastMessageAckId);
-     * }
+     * $subscription->acknowledge($messagesArray[0]);
      * ```
      *
      * @codingStandardsIgnoreStart
      * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions/acknowledge Acknowledge Message
      * @codingStandardsIgnoreEnd
      *
-     * @param int $ackId A message's ackId
+     * @param Message $message A message object.
      * @param array $options [optional] Configuration Options
      * @return void
      */
-    public function acknowledge($ackId, array $options = [])
+    public function acknowledge(Message $message, array $options = [])
     {
-        $this->acknowledgeBatch([$ackId], $options);
+        $this->acknowledgeBatch([$message], $options);
     }
 
     /**
@@ -407,32 +406,27 @@ class Subscription
      *
      * Example:
      * ```
-     * $subscription = $pubsub->subscription('my-new-subscription');
      * $messages = $subscription->pull();
+     * $messagesArray = iterator_to_array($messages);
      *
-     * $ackIds = [];
-     * foreach ($messages as $message) {
-     *     $ackIds[] = $message['ackId'];
-     * }
-     *
-     * if (!empty($lastMessageId)) {
-     *     $subscription->acknowledgeBatch($ackIds);
-     * }
+     * $subscription->acknowledgeBatch($messagesArray);
      * ```
      *
      * @codingStandardsIgnoreStart
      * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions/acknowledge Acknowledge Message
      * @codingStandardsIgnoreEnd
      *
-     * @param  array $ackIds An array of message ackIds.
-     * @param  array $options Configuration Options
+     * @param Message[] An array of messages
+     * @param array $options Configuration Options
      * @return void
      */
-    public function acknowledgeBatch(array $ackIds, array $options = [])
+    public function acknowledgeBatch(array $messages, array $options = [])
     {
+        $this->validateBatch($messages, Message::class);
+
         $this->connection->acknowledge($options + [
             'subscription' => $this->name,
-            'ackIds' => $ackIds
+            'ackIds' => $this->getMessageAckIds($messages)
         ]);
     }
 
@@ -444,15 +438,14 @@ class Subscription
      *
      * Example:
      * ```
-     * $subscription = $pubsub->subscription('my-new-subscription');
      * $messages = $subscription->pull();
      *
      * foreach ($messages as $message) {
-     *     $subscription->modifyAckDeadline($message['ackId'], 90);
+     *     $subscription->modifyAckDeadline($message, 90);
      *     sleep(80);
      *
      *     // Now we'll acknowledge!
-     *     $subscription->acknowledge($message['ackId']);
+     *     $subscription->acknowledge($message);
      *
      *     break;
      * }
@@ -462,7 +455,7 @@ class Subscription
      * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions/modifyAckDeadline Modify Ack Deadline
      * @codingStandardsIgnoreEnd
      *
-     * @param string $ackId An acknowledgement ID
+     * @param Message $message A message object
      * @param int $seconds The new ack deadline with respect to the time
      *        this request was sent to the Pub/Sub system. Must be >= 0. For
      *        example, if the value is 10, the new ack deadline will expire 10
@@ -472,9 +465,9 @@ class Subscription
      * @param array $options [optional] Configuration Options
      * @return void
      */
-    public function modifyAckDeadline($ackId, $seconds, array $options = [])
+    public function modifyAckDeadline(Message $message, $seconds, array $options = [])
     {
-        $this->modifyAckDeadlineBatch([$ackId], $seconds, $options);
+        $this->modifyAckDeadlineBatch([$message], $seconds, $options);
     }
 
     /**
@@ -485,29 +478,24 @@ class Subscription
      *
      * Example:
      * ```
-     * $subscription = $pubsub->subscription('my-new-subscription');
      * $messages = $subscription->pull();
-     *
-     * $ackIds = [];
-     * foreach ($messages as $message) {
-     *     $ackIds[] = $message['ackId'];
-     * }
+     * $messagesArray = iterator_to_array($messages);
      *
      * // Set the ack deadline to a minute and a half from now for every message
-     * $subscription->modifyAckDeadlineBatch($ackIds, 90);
+     * $subscription->modifyAckDeadlineBatch($messagesArray, 90);
      *
      * // Delay execution, or make a sandwich or something.
      * sleep(80);
      *
      * // Now we'll acknowledge
-     * $subscription->acknowledge($ackIds);
+     * $subscription->acknowledge($messagesArray);
      * ```
      *
      * @codingStandardsIgnoreStart
      * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions/modifyAckDeadline Modify Ack Deadline
      * @codingStandardsIgnoreEnd
      *
-     * @param string $ackIds List of acknowledgment IDs.
+     * @param Message[] $messages An array of messages
      * @param int $seconds The new ack deadline with respect to the time
      *        this request was sent to the Pub/Sub system. Must be >= 0. For
      *        example, if the value is 10, the new ack deadline will expire 10
@@ -517,11 +505,13 @@ class Subscription
      * @param array $options [optional] Configuration Options
      * @return void
      */
-    public function modifyAckDeadlineBatch(array $ackIds, $seconds, array $options = [])
+    public function modifyAckDeadlineBatch(array $messages, $seconds, array $options = [])
     {
+        $this->validateBatch($messages, Message::class);
+
         $this->connection->modifyAckDeadline($options + [
             'subscription' => $this->name,
-            'ackIds' => $ackIds,
+            'ackIds' => $this->getMessageAckIds($messages),
             'ackDeadlineSeconds' => $seconds
         ]);
     }
@@ -531,7 +521,6 @@ class Subscription
      *
      * Example:
      * ```
-     * $subscription = $pubsub->subscription('my-new-subscription');
      * $subscription->modifyPushConfig([
      *     'pushEndpoint' => 'https://www.example.com/foo/bar'
      * ]);
@@ -567,8 +556,6 @@ class Subscription
      *
      * Example:
      * ```
-     * $subscription = $pubsub->subscription('my-new-subscription');
-     *
      * $currentPolicy = $subscription->iam()->policy();
      * ```
      *
@@ -584,6 +571,22 @@ class Subscription
     public function iam()
     {
         return $this->iam;
+    }
+
+    /**
+     * Get a list of ackIds from a list of Message objects.
+     *
+     * @param Message[] $messages The messages
+     * @return array
+     */
+    private function getMessageAckIds(array $messages)
+    {
+        $ackIds = [];
+        foreach ($messages as $message) {
+            $ackIds[] = $message->ackId();
+        }
+
+        return $ackIds;
     }
 
     /**

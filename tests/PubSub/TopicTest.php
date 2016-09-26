@@ -20,6 +20,7 @@ namespace Google\Cloud\Tests\PubSub;
 use Generator;
 use Google\Cloud\Exception\NotFoundException;
 use Google\Cloud\Iam\Iam;
+use Google\Cloud\PubSub\Connection\ConnectionInterface;
 use Google\Cloud\PubSub\Subscription;
 use Google\Cloud\PubSub\Topic;
 use Prophecy\Argument;
@@ -29,17 +30,23 @@ use Prophecy\Argument;
  */
 class TopicTest extends \PHPUnit_Framework_TestCase
 {
+    private $topic;
     private $connection;
 
     public function setUp()
     {
-        $this->connection = $this->prophesize('Google\Cloud\PubSub\Connection\ConnectionInterface');
+        $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->topic = new TopicStub(
+            $this->connection->reveal(),
+            'project-name',
+            'topic-name',
+            true
+        );
     }
 
     public function testName()
     {
-        $topic = new Topic($this->connection->reveal(), 'test-topic-name', 'my-project');
-        $this->assertEquals($topic->name(), 'projects/my-project/topics/test-topic-name');
+        $this->assertEquals($this->topic->name(), 'projects/project-name/topics/topic-name');
     }
 
     public function testCreate()
@@ -51,31 +58,24 @@ class TopicTest extends \PHPUnit_Framework_TestCase
 
         $this->connection->getTopic()->shouldNotBeCalled();
 
-        $topic = new Topic(
-            $this->connection->reveal(),
-            'topic-name',
-            'project-name'
-        );
+        $this->topic->setConnection($this->connection->reveal());
 
-        $res = $topic->create(['foo' => 'bar']);
+        $res = $this->topic->create(['foo' => 'bar']);
 
         // Make sure the topic data gets cached!
-        $topic->info();
+        $this->topic->info();
 
         $this->assertEquals('projects/project-name/topics/topic-name', $res['name']);
     }
 
     public function testDelete()
     {
-        $this->connection->deleteTopic(Argument::withEntry('foo', 'bar'));
+        $this->connection->deleteTopic(Argument::withEntry('foo', 'bar'))
+            ->shouldBeCalled();
 
-        $topic = new Topic(
-            $this->connection->reveal(),
-            'topic-name',
-            'project-name'
-        );
+        $this->topic->setConnection($this->connection->reveal());
 
-        $res = $topic->delete(['foo' => 'bar']);
+        $res = $this->topic->delete(['foo' => 'bar']);
     }
 
     public function testExists()
@@ -85,13 +85,9 @@ class TopicTest extends \PHPUnit_Framework_TestCase
                 'name' => 'projects/project-name/topics/topic-name'
             ]);
 
-        $topic = new Topic(
-            $this->connection->reveal(),
-            'topic-name',
-            'project-name'
-        );
+        $this->topic->setConnection($this->connection->reveal());
 
-        $this->assertTrue($topic->exists(['foo' => 'bar']));
+        $this->assertTrue($this->topic->exists(['foo' => 'bar']));
     }
 
     public function testExistsReturnsFalse()
@@ -99,13 +95,9 @@ class TopicTest extends \PHPUnit_Framework_TestCase
         $this->connection->getTopic(Argument::withEntry('foo', 'bar'))
             ->willThrow(new NotFoundException('uh oh'));
 
-        $topic = new Topic(
-            $this->connection->reveal(),
-            'topic-name',
-            'project-name'
-        );
+        $this->topic->setConnection($this->connection->reveal());
 
-        $this->assertFalse($topic->exists(['foo' => 'bar']));
+        $this->assertFalse($this->topic->exists(['foo' => 'bar']));
     }
 
     public function testInfo()
@@ -115,14 +107,10 @@ class TopicTest extends \PHPUnit_Framework_TestCase
                 'name' => 'projects/project-name/topics/topic-name'
             ])->shouldBeCalledTimes(1);
 
-        $topic = new Topic(
-            $this->connection->reveal(),
-            'topic-name',
-            'project-name'
-        );
+        $this->topic->setConnection($this->connection->reveal());
 
-        $res = $topic->info(['foo' => 'bar']);
-        $res2 = $topic->info();
+        $res = $this->topic->info(['foo' => 'bar']);
+        $res2 = $this->topic->info();
 
         $this->assertEquals($res, $res2);
         $this->assertEquals($res['name'], 'projects/project-name/topics/topic-name');
@@ -135,13 +123,9 @@ class TopicTest extends \PHPUnit_Framework_TestCase
                 'name' => 'projects/project-name/topics/topic-name'
             ]);
 
-        $topic = new Topic(
-            $this->connection->reveal(),
-            'topic-name',
-            'project-name'
-        );
+        $this->topic->setConnection($this->connection->reveal());
 
-        $res = $topic->reload(['foo' => 'bar']);
+        $res = $this->topic->reload(['foo' => 'bar']);
 
         $this->assertEquals($res['name'], 'projects/project-name/topics/topic-name');
     }
@@ -168,13 +152,9 @@ class TopicTest extends \PHPUnit_Framework_TestCase
             return true;
         }))->willReturn($ids);
 
-        $topic = new Topic(
-            $this->connection->reveal(),
-            'topic-name',
-            'project-name'
-        );
+        $this->topic->setConnection($this->connection->reveal());
 
-        $res = $topic->publish($message, ['foo' => 'bar']);
+        $res = $this->topic->publish($message, ['foo' => 'bar']);
 
         $this->assertEquals($res, $ids);
     }
@@ -210,13 +190,9 @@ class TopicTest extends \PHPUnit_Framework_TestCase
             return true;
         }))->willReturn($ids);
 
-        $topic = new Topic(
-            $this->connection->reveal(),
-            'topic-name',
-            'project-name'
-        );
+        $this->topic->setConnection($this->connection->reveal());
 
-        $res = $topic->publishBatch($messages, ['foo' => 'bar']);
+        $res = $this->topic->publishBatch($messages, ['foo' => 'bar']);
 
         $this->assertEquals($res, $ids);
     }
@@ -241,13 +217,9 @@ class TopicTest extends \PHPUnit_Framework_TestCase
             return true;
         }));
 
-        $topic = new Topic(
-            $this->connection->reveal(),
-            'topic-name',
-            'project-name'
-        );
+        $this->topic->setConnection($this->connection->reveal());
 
-        $res = $topic->publishBatch([$message], ['foo' => 'bar', 'encode' => false]);
+        $res = $this->topic->publishBatch([$message], ['foo' => 'bar', 'encode' => false]);
     }
 
     /**
@@ -261,13 +233,9 @@ class TopicTest extends \PHPUnit_Framework_TestCase
 
         $this->connection->publishMessage(Argument::any());
 
-        $topic = new Topic(
-            $this->connection->reveal(),
-            'topic-name',
-            'project-name'
-        );
+        $this->topic->setConnection($this->connection->reveal());
 
-        $topic->publishBatch([$message]);
+        $this->topic->publishBatch([$message]);
     }
 
     public function testSubscribe()
@@ -281,26 +249,16 @@ class TopicTest extends \PHPUnit_Framework_TestCase
             ->willReturn($subscriptionData)
             ->shouldBeCalledTimes(1);
 
-        $topic = new Topic(
-            $this->connection->reveal(),
-            'topic-name',
-            'project-name'
-        );
+        $this->topic->setConnection($this->connection->reveal());
 
-        $subscription = $topic->subscribe('subscription-name', ['foo' => 'bar']);
+        $subscription = $this->topic->subscribe('subscription-name', ['foo' => 'bar']);
 
         $this->assertInstanceOf(Subscription::class, $subscription);
     }
 
     public function testSubscription()
     {
-        $topic = new Topic(
-            $this->connection->reveal(),
-            'topic-name',
-            'project-name'
-        );
-
-        $subscription = $topic->subscription('subscription-name');
+        $subscription = $this->topic->subscription('subscription-name');
 
         $this->assertInstanceOf(Subscription::class, $subscription);
     }
@@ -318,13 +276,9 @@ class TopicTest extends \PHPUnit_Framework_TestCase
                 'subscriptions' => $subscriptionResult
             ])->shouldBeCalledTimes(1);
 
-        $topic = new Topic(
-            $this->connection->reveal(),
-            'topic-name',
-            'project-name'
-        );
+        $this->topic->setConnection($this->connection->reveal());
 
-        $subscriptions = $topic->subscriptions([
+        $subscriptions = $this->topic->subscriptions([
             'foo' => 'bar'
         ]);
 
@@ -355,13 +309,9 @@ class TopicTest extends \PHPUnit_Framework_TestCase
             'nextPageToken' => 'foo'
         ])->shouldBeCalledTimes(2);
 
-        $topic = new Topic(
-            $this->connection->reveal(),
-            'topic-name',
-            'project-name'
-        );
+        $this->topic->setConnection($this->connection->reveal());
 
-        $subscriptions = $topic->subscriptions([
+        $subscriptions = $this->topic->subscriptions([
             'foo' => 'bar'
         ]);
 
@@ -379,12 +329,14 @@ class TopicTest extends \PHPUnit_Framework_TestCase
 
     public function testIam()
     {
-        $topic = new Topic(
-            $this->connection->reveal(),
-            'topic-name',
-            'project-name'
-        );
+        $this->assertInstanceOf(Iam::class, $this->topic->iam());
+    }
+}
 
-        $this->assertInstanceOf(Iam::class, $topic->iam());
+class TopicStub extends Topic
+{
+    public function setConnection($connection)
+    {
+        $this->connection = $connection;
     }
 }

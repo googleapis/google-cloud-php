@@ -20,6 +20,8 @@ namespace Google\Cloud\Tests\PubSub;
 use Generator;
 use Google\Cloud\Exception\NotFoundException;
 use Google\Cloud\Iam\Iam;
+use Google\Cloud\PubSub\Connection\ConnectionInterface;
+use Google\Cloud\PubSub\Message;
 use Google\Cloud\PubSub\Subscription;
 use Prophecy\Argument;
 
@@ -28,17 +30,24 @@ use Prophecy\Argument;
  */
 class SubscriptionTest extends \PHPUnit_Framework_TestCase
 {
+    private $subscription;
     private $connection;
 
     public function setUp()
     {
-        $this->connection = $this->prophesize('Google\Cloud\PubSub\Connection\ConnectionInterface');
+        $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->subscription = new SubscriptionStub(
+            $this->connection->reveal(),
+            'project-id',
+            'subscription-name',
+            'topic-name',
+            true
+        );
     }
 
     public function testName()
     {
-        $subscription = new Subscription($this->connection->reveal(), 'test-subscription-name', 'test-topic-name', 'my-project');
-        $this->assertEquals($subscription->name(), 'projects/my-project/subscriptions/test-subscription-name');
+        $this->assertEquals($this->subscription->name(), 'projects/project-id/subscriptions/subscription-name');
     }
 
     public function testCreate()
@@ -51,14 +60,9 @@ class SubscriptionTest extends \PHPUnit_Framework_TestCase
 
         $this->connection->getSubscription()->shouldNotBeCalled();
 
-        $subscription = new Subscription(
-            $this->connection->reveal(),
-            'subscription-name',
-            'topic-name',
-            'project-id'
-        );
+        $this->subscription->setConnection($this->connection->reveal());
 
-        $sub = $subscription->create([ 'foo' => 'bar' ]);
+        $sub = $this->subscription->create([ 'foo' => 'bar' ]);
 
         $this->assertEquals($sub['name'], 'projects/project-id/subscriptions/subscription-name');
         $this->assertEquals($sub['topic'], 'projects/project-id/topics/topic-name');
@@ -71,9 +75,10 @@ class SubscriptionTest extends \PHPUnit_Framework_TestCase
     {
         $subscription = new Subscription(
             $this->connection->reveal(),
+            'project-id',
             'subscription-name',
             null,
-            'project-id'
+            true
         );
 
         $sub = $subscription->create();
@@ -85,14 +90,9 @@ class SubscriptionTest extends \PHPUnit_Framework_TestCase
             ->willReturn(null)
             ->shouldBeCalledTimes(1);
 
-        $subscription = new Subscription(
-            $this->connection->reveal(),
-            'subscription-name',
-            'topic-name',
-            'project-id'
-        );
+        $this->subscription->setConnection($this->connection->reveal());
 
-        $res = $subscription->delete([ 'foo' => 'bar' ]);
+        $res = $this->subscription->delete([ 'foo' => 'bar' ]);
 
         $this->assertNull($res);
     }
@@ -105,14 +105,9 @@ class SubscriptionTest extends \PHPUnit_Framework_TestCase
                 'topic' => 'projects/project-id/topics/topic-name'
             ])->shouldBeCalledTimes(1);
 
-        $subscription = new Subscription(
-            $this->connection->reveal(),
-            'subscription-name',
-            'topic-name',
-            'project-id'
-        );
+        $this->subscription->setConnection($this->connection->reveal());
 
-        $this->assertTrue($subscription->exists([ 'foo' => 'bar' ]));
+        $this->assertTrue($this->subscription->exists([ 'foo' => 'bar' ]));
     }
 
     public function testExistsNotFound()
@@ -121,14 +116,9 @@ class SubscriptionTest extends \PHPUnit_Framework_TestCase
             ->willThrow(new NotFoundException('bad'))
             ->shouldBeCalledTimes(1);
 
-        $subscription = new Subscription(
-            $this->connection->reveal(),
-            'subscription-name',
-            'topic-name',
-            'project-id'
-        );
+        $this->subscription->setConnection($this->connection->reveal());
 
-        $this->assertFalse($subscription->exists());
+        $this->assertFalse($this->subscription->exists());
     }
 
     public function testInfo()
@@ -142,14 +132,9 @@ class SubscriptionTest extends \PHPUnit_Framework_TestCase
             ->willReturn($sub)
             ->shouldBeCalledTimes(1);
 
-        $subscription = new Subscription(
-            $this->connection->reveal(),
-            'subscription-name',
-            'topic-name',
-            'project-id'
-        );
+        $this->subscription->setConnection($this->connection->reveal());
 
-        $res = $subscription->info([ 'foo' => 'bar' ]);
+        $res = $this->subscription->info([ 'foo' => 'bar' ]);
         $this->assertEquals($res, $sub);
     }
 
@@ -164,9 +149,10 @@ class SubscriptionTest extends \PHPUnit_Framework_TestCase
 
         $subscription = new Subscription(
             $this->connection->reveal(),
+            'project-id',
             'subscription-name',
             'topic-name',
-            'project-id',
+            true,
             $sub
         );
 
@@ -185,14 +171,9 @@ class SubscriptionTest extends \PHPUnit_Framework_TestCase
             ->willReturn($sub)
             ->shouldBeCalledTimes(1);
 
-        $subscription = new Subscription(
-            $this->connection->reveal(),
-            'subscription-name',
-            'topic-name',
-            'project-id'
-        );
+        $this->subscription->setConnection($this->connection->reveal());
 
-        $res = $subscription->reload([ 'foo' => 'bar' ]);
+        $res = $this->subscription->reload([ 'foo' => 'bar' ]);
         $this->assertEquals($res, $sub);
     }
 
@@ -201,9 +182,9 @@ class SubscriptionTest extends \PHPUnit_Framework_TestCase
         $messages = [
             'receivedMessages' => [
                 [
-                    'foo' => 'bar'
+                    'message' => []
                 ], [
-                    'foo' => 'bat'
+                    'message' => []
                 ]
             ]
         ];
@@ -212,22 +193,17 @@ class SubscriptionTest extends \PHPUnit_Framework_TestCase
             ->willReturn($messages)
             ->shouldBeCalledTimes(1);
 
-        $subscription = new Subscription(
-            $this->connection->reveal(),
-            'subscription-name',
-            'topic-name',
-            'project-id'
-        );
+        $this->subscription->setConnection($this->connection->reveal());
 
-        $result = $subscription->pull([
+        $result = $this->subscription->pull([
             'foo' => 'bar'
         ]);
 
         $this->assertInstanceOf(Generator::class, $result);
 
         $arr = iterator_to_array($result);
-        $this->assertEquals($arr[0]['foo'], 'bar');
-        $this->assertEquals($arr[1]['foo'], 'bat');
+        $this->assertInstanceOf(Message::class, $arr[0]);
+        $this->assertInstanceOf(Message::class, $arr[1]);
     }
 
     public function testPullWithCustomArgs()
@@ -235,9 +211,9 @@ class SubscriptionTest extends \PHPUnit_Framework_TestCase
         $messages = [
             'receivedMessages' => [
                 [
-                    'foo' => 'bar'
+                    'message' => []
                 ], [
-                    'foo' => 'bat'
+                    'message' => []
                 ]
             ]
         ];
@@ -251,14 +227,9 @@ class SubscriptionTest extends \PHPUnit_Framework_TestCase
             }))->willReturn($messages)
             ->shouldBeCalledTimes(1);
 
-        $subscription = new Subscription(
-            $this->connection->reveal(),
-            'subscription-name',
-            'topic-name',
-            'project-id'
-        );
+        $this->subscription->setConnection($this->connection->reveal());
 
-        $result = $subscription->pull([
+        $result = $this->subscription->pull([
             'foo' => 'bar',
             'returnImmediately' => true,
             'maxMessages' => 2
@@ -267,8 +238,8 @@ class SubscriptionTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf(Generator::class, $result);
 
         $arr = iterator_to_array($result);
-        $this->assertEquals($arr[0]['foo'], 'bar');
-        $this->assertEquals($arr[1]['foo'], 'bat');
+        $this->assertInstanceOf(Message::class, $arr[0]);
+        $this->assertInstanceOf(Message::class, $arr[1]);
     }
 
     public function testPullPaged()
@@ -276,9 +247,9 @@ class SubscriptionTest extends \PHPUnit_Framework_TestCase
         $messages = [
             'receivedMessages' => [
                 [
-                    'foo' => 'bar'
+                    'message' => []
                 ], [
-                    'foo' => 'bat'
+                    'message' => []
                 ]
             ],
             'nextPageToken' => 'foo'
@@ -294,14 +265,9 @@ class SubscriptionTest extends \PHPUnit_Framework_TestCase
             }))->willReturn($messages)
             ->shouldBeCalledTimes(3);
 
-        $subscription = new Subscription(
-            $this->connection->reveal(),
-            'subscription-name',
-            'topic-name',
-            'project-id'
-        );
+        $this->subscription->setConnection($this->connection->reveal());
 
-        $result = $subscription->pull([
+        $result = $this->subscription->pull([
             'foo' => 'bar',
             'returnImmediately' => true,
             'maxMessages' => 2
@@ -332,14 +298,10 @@ class SubscriptionTest extends \PHPUnit_Framework_TestCase
             return true;
         }))->shouldBeCalledTimes(1);
 
-        $subscription = new Subscription(
-            $this->connection->reveal(),
-            'subscription-name',
-            'topic-name',
-            'project-id'
-        );
+        $this->subscription->setConnection($this->connection->reveal());
 
-        $subscription->acknowledge($ackId, ['foo' => 'bar']);
+        $message = new Message([], ['ackId' => $ackId]);
+        $this->subscription->acknowledge($message, ['foo' => 'bar']);
     }
 
     public function testAcknowledgeBatch()
@@ -349,6 +311,11 @@ class SubscriptionTest extends \PHPUnit_Framework_TestCase
             'otherAckId'
         ];
 
+        $messages = [];
+        foreach ($ackIds as $id) {
+            $messages[] = new Message([], ['ackId' => $id]);
+        }
+
         $this->connection->acknowledge(Argument::that(function ($args) use ($ackIds) {
             if ($args['foo'] !== 'bar') return false;
             if ($args['ackIds'] !== $ackIds) return false;
@@ -356,35 +323,35 @@ class SubscriptionTest extends \PHPUnit_Framework_TestCase
             return true;
         }))->shouldBeCalledTimes(1);
 
-        $subscription = new Subscription(
-            $this->connection->reveal(),
-            'subscription-name',
-            'topic-name',
-            'project-id'
-        );
+        $this->subscription->setConnection($this->connection->reveal());
 
-        $subscription->acknowledgeBatch($ackIds, ['foo' => 'bar']);
+        $this->subscription->acknowledgeBatch($messages, ['foo' => 'bar']);
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testAcknowledgeBatchInvalidArgument()
+    {
+        $this->subscription->acknowledgeBatch(['foo']);
     }
 
     public function testModifyAckDeadline()
     {
         $ackId = 'foobar';
+        $message = new Message([], ['ackId' => $ackId]);
 
         $this->connection->modifyAckDeadline(Argument::that(function ($args) use ($ackId) {
             if ($args['foo'] !== 'bar') return false;
             if ($args['ackIds'] !== [$ackId]) return false;
+            if ($args['ackDeadlineSeconds'] !== 100) return false;
 
             return true;
         }))->shouldBeCalledTimes(1);
 
-        $subscription = new Subscription(
-            $this->connection->reveal(),
-            'subscription-name',
-            'topic-name',
-            'project-id'
-        );
+        $this->subscription->setConnection($this->connection->reveal());
 
-        $subscription->modifyAckDeadline($ackId, 100, ['foo' => 'bar']);
+        $this->subscription->modifyAckDeadline($message, 100, ['foo' => 'bar']);
     }
 
     public function testModifyAckDeadlineBatch()
@@ -393,6 +360,11 @@ class SubscriptionTest extends \PHPUnit_Framework_TestCase
             'foobar',
             'otherAckId'
         ];
+
+        $messages = [];
+        foreach ($ackIds as $id) {
+            $messages[] = new Message([], ['ackId' => $id]);
+        }
 
         $seconds = 100;
 
@@ -404,14 +376,17 @@ class SubscriptionTest extends \PHPUnit_Framework_TestCase
             return true;
         }))->shouldBeCalledTimes(1);
 
-        $subscription = new Subscription(
-            $this->connection->reveal(),
-            'subscription-name',
-            'topic-name',
-            'project-id'
-        );
+        $this->subscription->setConnection($this->connection->reveal());
 
-        $subscription->modifyAckDeadlineBatch($ackIds, $seconds, ['foo' => 'bar']);
+        $this->subscription->modifyAckDeadlineBatch($messages, $seconds, ['foo' => 'bar']);
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testModifyAckDeadlineBatchInvalidArgument()
+    {
+        $this->subscription->modifyAckDeadlineBatch(['foo'], 100);
     }
 
     public function testModifyPushConfig()
@@ -427,25 +402,21 @@ class SubscriptionTest extends \PHPUnit_Framework_TestCase
             return true;
         }))->shouldBeCalledTimes(1);
 
-        $subscription = new Subscription(
-            $this->connection->reveal(),
-            'subscription-name',
-            'topic-name',
-            'project-id'
-        );
+        $this->subscription->setConnection($this->connection->reveal());
 
-        $subscription->modifyPushConfig($config, ['foo' => 'bar']);
+        $this->subscription->modifyPushConfig($config, ['foo' => 'bar']);
     }
 
     public function testIam()
     {
-        $subscription = new Subscription(
-            $this->connection->reveal(),
-            'subscription-name',
-            'topic-name',
-            'project-id'
-        );
+        $this->assertInstanceOf(Iam::class, $this->subscription->iam());
+    }
+}
 
-        $this->assertInstanceOf(Iam::class, $subscription->iam());
+class SubscriptionStub extends Subscription
+{
+    public function setConnection($connection)
+    {
+        $this->connection = $connection;
     }
 }

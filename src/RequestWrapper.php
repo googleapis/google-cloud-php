@@ -294,7 +294,11 @@ class RequestWrapper
     private function getExceptionMessage(\Exception $ex)
     {
         if ($ex instanceof RequestException && $ex->hasResponse()) {
-            return (string) $ex->getResponse()->getBody();
+            $res = (string) $ex->getResponse()->getBody();
+            json_decode($res);
+            if (json_last_error() === JSON_ERROR_NONE) {
+                return $res;
+            }
         }
 
         return $ex->getMessage();

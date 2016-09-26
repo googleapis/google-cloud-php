@@ -48,6 +48,7 @@ use InvalidArgumentException;
 class PubSubClient
 {
     use ClientTrait;
+    use IncomingMessageTrait;
     use ResourceNameTrait;
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/pubsub';
@@ -56,6 +57,11 @@ class PubSubClient
      * @var ConnectionInterface
      */
     protected $connection;
+
+    /**
+     * @var bool
+     */
+    private $encode;
 
     /**
      * Create a PubSub client.
@@ -87,6 +93,10 @@ class PubSubClient
         }
 
         $this->connection = new Rest($this->configureAuthentication($config));
+
+        // When gRPC support is added, this value should be set to `false`
+        // when gRPC transport is chosen.
+        $this->encode = true;
     }
 
     /**
@@ -282,6 +292,27 @@ class PubSubClient
     }
 
     /**
+     * Consume an incoming message and return a PubSub Message.
+     *
+     * This method is for use with push delivery only.
+     *
+     * Example:
+     * ```
+     * $httpPostRequestBody = file_get_contents('php://input');
+     * $requestData = json_decode($httpPostRequestBody, true);
+     *
+     * $message = $pubsub->consume($requestData);
+     * ```
+     *
+     * @param array $requestBody The HTTP Request body
+     * @return Message
+     */
+    public function consume(array $requestData)
+    {
+        return $this->messageFactory($requestData, $this->connection, $this->projectId, $this->encode);
+    }
+
+    /**
      * Create an instance of a topic
      *
      * @codingStandardsIgnoreStart
@@ -294,7 +325,13 @@ class PubSubClient
      */
     private function topicFactory($name, array $info = null)
     {
-        return new Topic($this->connection, $name, $this->projectId, $info);
+        return new Topic(
+            $this->connection,
+            $this->projectId,
+            $name,
+            $this->encode,
+            $info
+        );
     }
 
     /**
@@ -313,9 +350,10 @@ class PubSubClient
     {
         return new Subscription(
             $this->connection,
+            $this->projectId,
             $name,
             $topicName,
-            $this->projectId,
+            $this->encode,
             $info
         );
     }
