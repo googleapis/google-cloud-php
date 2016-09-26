@@ -412,7 +412,8 @@ class OperationTest extends \PHPUnit_Framework_TestCase
     public function testRollback()
     {
         $this->connection->rollback(Argument::exact(['projectId' => 'foo', 'transaction' => 'bar']))
-            ->shouldBeCalled()->willReturn(null);
+            ->shouldBeCalled()
+            ->willReturn(null);
 
         $this->operation->setConnection($this->connection->reveal());
 
