@@ -87,7 +87,7 @@ class MetricsServiceV2Api
     private static $metricNameTemplate;
 
     private $grpcCredentialsHelper;
-    private $stub;
+    private $metricsServiceV2Stub;
     private $scopes;
     private $defaultCallSettings;
     private $descriptors;
@@ -181,7 +181,7 @@ class MetricsServiceV2Api
     /**
      * Constructor.
      *
-     * @param array $options [optional] {
+     * @param array $options {
      *                       Optional. Options for configuring the service API wrapper.
      *
      *     @type string $serviceAddress The domain name of the API remote host.
@@ -192,7 +192,7 @@ class MetricsServiceV2Api
      *           Default: a credentials object returned from
      *           Grpc\ChannelCredentials::createSsl()
      *     @type array $scopes A string array of scopes to use when acquiring credentials.
-     *                         Default the scopes for the Google Cloud Logging API.
+     *                         Default the scopes for the Stackdriver Logging API.
      *     @type array $retryingOverride
      *           An associative array of string => RetryOptions, where the keys
      *           are method names (e.g. 'createFoo'), that overrides default retrying
@@ -268,17 +268,18 @@ class MetricsServiceV2Api
 
         $this->scopes = $options['scopes'];
 
-        $generatedCreateStub = function ($hostname, $opts) {
-            return new MetricsServiceV2Client($hostname, $opts);
-        };
         $createStubOptions = [];
         if (!empty($options['sslCreds'])) {
             $createStubOptions['sslCreds'] = $options['sslCreds'];
         }
         $grpcCredentialsHelperOptions = array_diff_key($options, $defaultOptions);
         $this->grpcCredentialsHelper = new GrpcCredentialsHelper($this->scopes, $grpcCredentialsHelperOptions);
-        $this->stub = $this->grpcCredentialsHelper->createStub(
-            $generatedCreateStub,
+
+        $createMetricsServiceV2StubFunction = function ($hostname, $opts) {
+            return new MetricsServiceV2Client($hostname, $opts);
+        };
+        $this->metricsServiceV2Stub = $this->grpcCredentialsHelper->createStub(
+            $createMetricsServiceV2StubFunction,
             $options['serviceAddress'],
             $options['port'],
             $createStubOptions
@@ -344,7 +345,7 @@ class MetricsServiceV2Api
             new CallSettings($optionalArgs)
         );
         $callable = ApiCallable::createApiCall(
-            $this->stub,
+            $this->metricsServiceV2Stub,
             'ListLogMetrics',
             $mergedSettings,
             $this->descriptors['listLogMetrics']
@@ -398,7 +399,7 @@ class MetricsServiceV2Api
             new CallSettings($optionalArgs)
         );
         $callable = ApiCallable::createApiCall(
-            $this->stub,
+            $this->metricsServiceV2Stub,
             'GetLogMetric',
             $mergedSettings,
             $this->descriptors['getLogMetric']
@@ -458,7 +459,7 @@ class MetricsServiceV2Api
             new CallSettings($optionalArgs)
         );
         $callable = ApiCallable::createApiCall(
-            $this->stub,
+            $this->metricsServiceV2Stub,
             'CreateLogMetric',
             $mergedSettings,
             $this->descriptors['createLogMetric']
@@ -521,7 +522,7 @@ class MetricsServiceV2Api
             new CallSettings($optionalArgs)
         );
         $callable = ApiCallable::createApiCall(
-            $this->stub,
+            $this->metricsServiceV2Stub,
             'UpdateLogMetric',
             $mergedSettings,
             $this->descriptors['updateLogMetric']
@@ -573,7 +574,7 @@ class MetricsServiceV2Api
             new CallSettings($optionalArgs)
         );
         $callable = ApiCallable::createApiCall(
-            $this->stub,
+            $this->metricsServiceV2Stub,
             'DeleteLogMetric',
             $mergedSettings,
             $this->descriptors['deleteLogMetric']
@@ -591,7 +592,7 @@ class MetricsServiceV2Api
      */
     public function close()
     {
-        $this->stub->close();
+        $this->metricsServiceV2Stub->close();
     }
 
     private function createCredentialsCallback()

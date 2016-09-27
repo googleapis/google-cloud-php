@@ -88,7 +88,7 @@ class ConfigServiceV2Api
     private static $sinkNameTemplate;
 
     private $grpcCredentialsHelper;
-    private $stub;
+    private $configServiceV2Stub;
     private $scopes;
     private $defaultCallSettings;
     private $descriptors;
@@ -182,7 +182,7 @@ class ConfigServiceV2Api
     /**
      * Constructor.
      *
-     * @param array $options [optional] {
+     * @param array $options {
      *                       Optional. Options for configuring the service API wrapper.
      *
      *     @type string $serviceAddress The domain name of the API remote host.
@@ -193,7 +193,7 @@ class ConfigServiceV2Api
      *           Default: a credentials object returned from
      *           Grpc\ChannelCredentials::createSsl()
      *     @type array $scopes A string array of scopes to use when acquiring credentials.
-     *                         Default the scopes for the Google Cloud Logging API.
+     *                         Default the scopes for the Stackdriver Logging API.
      *     @type array $retryingOverride
      *           An associative array of string => RetryOptions, where the keys
      *           are method names (e.g. 'createFoo'), that overrides default retrying
@@ -269,17 +269,18 @@ class ConfigServiceV2Api
 
         $this->scopes = $options['scopes'];
 
-        $generatedCreateStub = function ($hostname, $opts) {
-            return new ConfigServiceV2Client($hostname, $opts);
-        };
         $createStubOptions = [];
         if (!empty($options['sslCreds'])) {
             $createStubOptions['sslCreds'] = $options['sslCreds'];
         }
         $grpcCredentialsHelperOptions = array_diff_key($options, $defaultOptions);
         $this->grpcCredentialsHelper = new GrpcCredentialsHelper($this->scopes, $grpcCredentialsHelperOptions);
-        $this->stub = $this->grpcCredentialsHelper->createStub(
-            $generatedCreateStub,
+
+        $createConfigServiceV2StubFunction = function ($hostname, $opts) {
+            return new ConfigServiceV2Client($hostname, $opts);
+        };
+        $this->configServiceV2Stub = $this->grpcCredentialsHelper->createStub(
+            $createConfigServiceV2StubFunction,
             $options['serviceAddress'],
             $options['port'],
             $createStubOptions
@@ -345,7 +346,7 @@ class ConfigServiceV2Api
             new CallSettings($optionalArgs)
         );
         $callable = ApiCallable::createApiCall(
-            $this->stub,
+            $this->configServiceV2Stub,
             'ListSinks',
             $mergedSettings,
             $this->descriptors['listSinks']
@@ -399,7 +400,7 @@ class ConfigServiceV2Api
             new CallSettings($optionalArgs)
         );
         $callable = ApiCallable::createApiCall(
-            $this->stub,
+            $this->configServiceV2Stub,
             'GetSink',
             $mergedSettings,
             $this->descriptors['getSink']
@@ -459,7 +460,7 @@ class ConfigServiceV2Api
             new CallSettings($optionalArgs)
         );
         $callable = ApiCallable::createApiCall(
-            $this->stub,
+            $this->configServiceV2Stub,
             'CreateSink',
             $mergedSettings,
             $this->descriptors['createSink']
@@ -522,7 +523,7 @@ class ConfigServiceV2Api
             new CallSettings($optionalArgs)
         );
         $callable = ApiCallable::createApiCall(
-            $this->stub,
+            $this->configServiceV2Stub,
             'UpdateSink',
             $mergedSettings,
             $this->descriptors['updateSink']
@@ -574,7 +575,7 @@ class ConfigServiceV2Api
             new CallSettings($optionalArgs)
         );
         $callable = ApiCallable::createApiCall(
-            $this->stub,
+            $this->configServiceV2Stub,
             'DeleteSink',
             $mergedSettings,
             $this->descriptors['deleteSink']
@@ -592,7 +593,7 @@ class ConfigServiceV2Api
      */
     public function close()
     {
-        $this->stub->close();
+        $this->configServiceV2Stub->close();
     }
 
     private function createCredentialsCallback()
