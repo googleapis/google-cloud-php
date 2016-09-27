@@ -113,6 +113,10 @@
             "title": "PubSub",
             "type": "pubsub/pubsubclient",
             "nav": [{
+                "title": "Message",
+                "type": "pubsub/message"
+            },
+            {
                 "title": "Subscription",
                 "type": "pubsub/subscription"
             },

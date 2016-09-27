@@ -251,7 +251,8 @@ $subscription = $pubSub->subscription('my_subscription');
 $messages = $subscription->pull();
 
 foreach ($messages as $message) {
-    echo $message['message']['data'] . "\n";
+    echo $message->data() . "\n";
+    echo $message->attribute('location');
 }
 ```
 
