@@ -86,7 +86,7 @@ class LoggingServiceV2Api
     private static $logNameTemplate;
 
     private $grpcCredentialsHelper;
-    private $stub;
+    private $loggingServiceV2Stub;
     private $scopes;
     private $defaultCallSettings;
     private $descriptors;
@@ -188,7 +188,7 @@ class LoggingServiceV2Api
     /**
      * Constructor.
      *
-     * @param array $options [optional] {
+     * @param array $options {
      *                       Optional. Options for configuring the service API wrapper.
      *
      *     @type string $serviceAddress The domain name of the API remote host.
@@ -199,7 +199,7 @@ class LoggingServiceV2Api
      *           Default: a credentials object returned from
      *           Grpc\ChannelCredentials::createSsl()
      *     @type array $scopes A string array of scopes to use when acquiring credentials.
-     *                         Default the scopes for the Google Cloud Logging API.
+     *                         Default the scopes for the Stackdriver Logging API.
      *     @type array $retryingOverride
      *           An associative array of string => RetryOptions, where the keys
      *           are method names (e.g. 'createFoo'), that overrides default retrying
@@ -274,17 +274,18 @@ class LoggingServiceV2Api
 
         $this->scopes = $options['scopes'];
 
-        $generatedCreateStub = function ($hostname, $opts) {
-            return new LoggingServiceV2Client($hostname, $opts);
-        };
         $createStubOptions = [];
         if (!empty($options['sslCreds'])) {
             $createStubOptions['sslCreds'] = $options['sslCreds'];
         }
         $grpcCredentialsHelperOptions = array_diff_key($options, $defaultOptions);
         $this->grpcCredentialsHelper = new GrpcCredentialsHelper($this->scopes, $grpcCredentialsHelperOptions);
-        $this->stub = $this->grpcCredentialsHelper->createStub(
-            $generatedCreateStub,
+
+        $createLoggingServiceV2StubFunction = function ($hostname, $opts) {
+            return new LoggingServiceV2Client($hostname, $opts);
+        };
+        $this->loggingServiceV2Stub = $this->grpcCredentialsHelper->createStub(
+            $createLoggingServiceV2StubFunction,
             $options['serviceAddress'],
             $options['port'],
             $createStubOptions
@@ -332,7 +333,7 @@ class LoggingServiceV2Api
             new CallSettings($optionalArgs)
         );
         $callable = ApiCallable::createApiCall(
-            $this->stub,
+            $this->loggingServiceV2Stub,
             'DeleteLog',
             $mergedSettings,
             $this->descriptors['deleteLog']
@@ -426,7 +427,7 @@ class LoggingServiceV2Api
             new CallSettings($optionalArgs)
         );
         $callable = ApiCallable::createApiCall(
-            $this->stub,
+            $this->loggingServiceV2Stub,
             'WriteLogEntries',
             $mergedSettings,
             $this->descriptors['writeLogEntries']
@@ -519,7 +520,7 @@ class LoggingServiceV2Api
             new CallSettings($optionalArgs)
         );
         $callable = ApiCallable::createApiCall(
-            $this->stub,
+            $this->loggingServiceV2Stub,
             'ListLogEntries',
             $mergedSettings,
             $this->descriptors['listLogEntries']
@@ -587,7 +588,7 @@ class LoggingServiceV2Api
             new CallSettings($optionalArgs)
         );
         $callable = ApiCallable::createApiCall(
-            $this->stub,
+            $this->loggingServiceV2Stub,
             'ListMonitoredResourceDescriptors',
             $mergedSettings,
             $this->descriptors['listMonitoredResourceDescriptors']
@@ -605,7 +606,7 @@ class LoggingServiceV2Api
      */
     public function close()
     {
-        $this->stub->close();
+        $this->loggingServiceV2Stub->close();
     }
 
     private function createCredentialsCallback()
