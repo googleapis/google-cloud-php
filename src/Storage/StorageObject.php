@@ -451,7 +451,7 @@ class StorageObject
      * ```
      *
      * @param string $name The new name.
-     * @param array $options {
+     * @param array $options [optional] {
      *     Configuration options.
      *
      *     @type string $predefinedAcl Access controls to apply to the
