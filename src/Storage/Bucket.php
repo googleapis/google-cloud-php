@@ -29,6 +29,8 @@ use Psr\Http\Message\StreamInterface;
  */
 class Bucket
 {
+    use EncryptionTrait;
+
     /**
      * @var Acl ACL for the bucket.
      */
@@ -138,21 +140,37 @@ class Bucket
      * Example:
      * ```
      * $bucket->upload(
-     *     fopen('image.jpg', 'r')
+     *     fopen(__DIR__ . '/image.jpg', 'r')
      * );
      * ```
      *
      * ```
+     * // Upload an object in a resumable fashion while setting a new name for
+     * // the object and including the content language.
      * $options = [
      *     'resumable' => true,
-     *     'name' => '/images/image.jpg',
+     *     'name' => '/images/new-name.jpg',
      *     'metadata' => [
      *         'contentLanguage' => 'en'
      *     ]
      * ];
      *
      * $bucket->upload(
-     *     fopen('image.jpg', 'r'),
+     *     fopen(__DIR__ . '/image.jpg', 'r'),
+     *     $options
+     * );
+     * ```
+     *
+     * ```
+     * // Upload an object with a customer-supplied encryption key.
+     * $key = openssl_random_pseudo_bytes(32); // Make sure to remember your key.
+     * $options = [
+     *     'encryptionKey' => $key
+     *     'encryptionKeySHA256' => hash('SHA256', $key, true)
+     * ];
+     *
+     * $bucket->upload(
+     *     fopen(__DIR__ . '/image.jpg', 'r'),
      *     $options
      * );
      * ```
@@ -160,6 +178,7 @@ class Bucket
      * @see https://cloud.google.com/storage/docs/json_api/v1/how-tos/upload#resumable Learn more about resumable
      * uploads.
      * @see https://cloud.google.com/storage/docs/json_api/v1/objects/insert Objects insert API documentation.
+     * @see https://cloud.google.com/storage/docs/encryption#customer-supplied Customer-supplied encryption keys.
      *
      * @param string|resource|StreamInterface $data The data to be uploaded.
      * @param array $options [optional] {
@@ -182,7 +201,12 @@ class Bucket
      *           `"bucketOwnerRead"`, `"private"`, `"projectPrivate"`, and
      *           `"publicRead"`. **Defaults to** `"private"`.
      *     @type array $metadata The available options for metadata are outlined
-     *           at the [JSON API docs](https://cloud.google.com/storage/docs/json_api/v1/objects/insert#request)
+     *           at the [JSON API docs](https://cloud.google.com/storage/docs/json_api/v1/objects/insert#request-body).
+     *     @type string $encryptionKey An AES-256 customer-supplied encryption
+     *           key. If provided one must also include an `encryptionKeySHA256`.
+     *     @type string $encryptionKeySHA256 The SHA256 hash of the
+     *           customer-supplied encryption key. If provided one must also
+     *           include an `encryptionKey`.
      * }
      * @return StorageObject
      * @throws \InvalidArgumentException
@@ -193,10 +217,12 @@ class Bucket
             throw new \InvalidArgumentException('A name is required when data is of type string.');
         }
 
-        $response = $this->connection->insertObject($options + [
-            'bucket' => $this->identity['bucket'],
-            'data' => $data
-        ])->upload();
+        $response = $this->connection->insertObject(
+            $this->formatEncryptionHeaders($options) + [
+                'bucket' => $this->identity['bucket'],
+                'data' => $data
+            ]
+        )->upload();
 
         return new StorageObject(
             $this->connection,
@@ -249,7 +275,12 @@ class Bucket
      *           `"projectPrivate`", and `"publicRead"`. **Defaults to**
      *           `"private"`.
      *     @type array $metadata The available options for metadata are outlined
-     *           at the [JSON API docs](https://cloud.google.com/storage/docs/json_api/v1/objects/insert#request)
+     *           at the [JSON API docs](https://cloud.google.com/storage/docs/json_api/v1/objects/insert#request-body).
+     *     @type string $encryptionKey An AES-256 customer-supplied encryption
+     *           key. If provided one must also include an `encryptionKeySHA256`.
+     *     @type string $encryptionKeySHA256 The SHA256 hash of the
+     *           customer-supplied encryption key. If provided one must also
+     *           include an `encryptionKey`.
      * }
      * @return ResumableUploader
      * @throws \InvalidArgumentException
@@ -260,11 +291,13 @@ class Bucket
             throw new \InvalidArgumentException('A name is required when data is of type string.');
         }
 
-        return $this->connection->insertObject($options + [
-            'bucket' => $this->identity['bucket'],
-            'data' => $data,
-            'resumable' => true
-        ]);
+        return $this->connection->insertObject(
+            $this->formatEncryptionHeaders($options) + [
+                'bucket' => $this->identity['bucket'],
+                'data' => $data,
+                'resumable' => true
+            ]
+        );
     }
 
     /**
@@ -282,14 +315,31 @@ class Bucket
      *     Configuration options.
      *
      *     @type string $generation Request a specific revision of the object.
+     *     @type string $encryptionKey An AES-256 customer-supplied encryption
+     *           key. It will be neccesary to provide this when a key was used
+     *           during the object's creation. If provided one must also include
+     *           an `encryptionKeySHA256`.
+     *     @type string $encryptionKeySHA256 The SHA256 hash of the
+     *           customer-supplied encryption key. It will be neccesary to
+     *           provide this when a key was used during the object's creation.
+     *           If provided one must also include an `encryptionKey`.
      * }
      * @return StorageObject
      */
     public function object($name, array $options = [])
     {
         $generation = isset($options['generation']) ? $options['generation'] : null;
+        $encryptionKey = isset($options['encryptionKey']) ? $options['encryptionKey'] : null;
+        $encryptionKeySHA256 = isset($options['encryptionKeySHA256']) ? $options['encryptionKeySHA256'] : null;
 
-        return new StorageObject($this->connection, $name, $this->identity['bucket'], $generation);
+        return new StorageObject(
+            $this->connection,
+            $name,
+            $this->identity['bucket'],
+            $generation,
+            $encryptionKey,
+            $encryptionKeySHA256
+        );
     }
 
     /**
@@ -359,7 +409,6 @@ class Bucket
     }
 
     /**
-     * @todo should this return something significant to the user?
      * Delete the bucket.
      *
      * Example:
@@ -434,6 +483,102 @@ class Bucket
     public function update(array $options = [])
     {
         return $this->info = $this->connection->patchBucket($options + $this->identity);
+    }
+
+    /**
+     * Composes a set of objects into a single object.
+     *
+     * Please note that all objects to be composed must come from the same
+     * bucket.
+     *
+     * Example:
+     * ```
+     * $sourceObjects = ['log1.txt', 'log2.txt'];
+     * $bucket->compose($sourceObjects, 'combined-logs.txt');
+     * ```
+     *
+     * ```
+     * // Use an instance of StorageObject.
+     * $sourceObjects = [
+     *     $bucket->object('log1.txt'),
+     *     $bucket->object('log2.txt')
+     * ];
+     *
+     * $bucket->compose($sourceObjects, 'combined-logs.txt');
+     * ```
+     *
+     * @see https://cloud.google.com/storage/docs/json_api/v1/objects/compose Objects compose API documentation
+     *
+     * @param string[]|StorageObject[] $sourceObjects The objects to compose.
+     * @param string $name The name of the composed object.
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type string $predefinedAcl Predefined ACL to apply to the composed
+     *           object. Acceptable values include, `"authenticatedRead"`,
+     *           `"bucketOwnerFullControl"`, `"bucketOwnerRead"`, `"private"`,
+     *           `"projectPrivate"`, and `"publicRead"`. **Defaults to**
+     *           `"private"`.
+     *     @type array $metadata Metadata to apply to the composed object. The
+     *           available options for metadata are outlined at the
+     *           [JSON API docs](https://cloud.google.com/storage/docs/json_api/v1/objects/insert#request-body).
+     *     @type string $ifGenerationMatch Makes the operation conditional on whether the object's current generation
+     *           matches the given value.
+     *     @type string $ifMetagenerationMatch Makes the operation conditional on whether the object's current
+     *           metageneration matches the given value.
+     * }
+     * @return StorageObject
+     * @throws \InvalidArgumentException
+     */
+    public function compose(array $sourceObjects, $name, array $options = [])
+    {
+        if (count($sourceObjects) < 2) {
+            throw new \InvalidArgumentException('Must provide at least two objects to compose.');
+        }
+
+        $options += [
+            'destinationBucket' => $this->name(),
+            'destinationObject' => $name,
+            'destinationPredefinedAcl' => isset($options['predefinedAcl']) ? $options['predefinedAcl'] : null,
+            'destination' => isset($options['metadata']) ? $options['metadata'] : null,
+            'sourceObjects' => array_map(function ($sourceObject) {
+                $name = null;
+                $generation = null;
+
+                if ($sourceObject instanceof StorageObject) {
+                    $name = $sourceObject->name();
+                    $generation = isset($sourceObject->identity()['generation'])
+                        ? $sourceObject->identity()['generation']
+                        : null;
+                }
+
+                return array_filter([
+                    'name' => $name ?: $sourceObject,
+                    'generation' => $generation
+                ]);
+            }, $sourceObjects)
+        ];
+
+        if (!isset($options['destination']['contentType'])) {
+            $options['destination']['contentType'] = Psr7\mimetype_from_filename($name);
+        }
+
+        if ($options['destination']['contentType'] === null) {
+            throw new \InvalidArgumentException('A content type could not be detected and must be provided manually.');
+        }
+
+        unset($options['metadata']);
+        unset($options['predefinedAcl']);
+
+        $response = $this->connection->composeObject(array_filter($options));
+
+        return new StorageObject(
+            $this->connection,
+            $response['name'],
+            $this->identity['bucket'],
+            $response['generation'],
+            $response
+        );
     }
 
     /**

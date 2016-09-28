@@ -19,6 +19,9 @@ namespace Google\Cloud\Tests\Storage;
 
 use Google\Cloud\Exception\NotFoundException;
 use Google\Cloud\Storage\Bucket;
+use Google\Cloud\Storage\Connection\ConnectionInterface;
+use Google\Cloud\Storage\StorageObject;
+use Google\Cloud\Upload\ResumableUploader;
 use Prophecy\Argument;
 
 /**
@@ -31,8 +34,8 @@ class BucketTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->connection = $this->prophesize('Google\Cloud\Storage\Connection\ConnectionInterface');
-        $this->resumableUploader = $this->prophesize('Google\Cloud\Upload\ResumableUploader');
+        $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->resumableUploader = $this->prophesize(ResumableUploader::class);
     }
 
     public function testGetsAcl()
@@ -170,6 +173,87 @@ class BucketTest extends \PHPUnit_Framework_TestCase
         $bucket = new Bucket($this->connection->reveal(), 'bucket');
 
         $this->assertNull($bucket->delete());
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function testComposeThrowsExceptionWithLessThanTwoSources()
+    {
+        $bucket = new Bucket($this->connection->reveal(), 'bucket');
+
+        $bucket->compose(['file1.txt'], 'combined-files.txt');
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function testComposeThrowsExceptionWithUnknownContentType()
+    {
+        $bucket = new Bucket($this->connection->reveal(), 'bucket');
+
+        $bucket->compose(['file1.txt', 'file2.txt'], 'combined-files.abc');
+    }
+
+    /**
+     * @dataProvider composeProvider
+     */
+    public function testComposesObjects(
+        $metadata,
+        $objects,
+        $expectedSourceObjects
+    ) {
+        $acl = 'private';
+        $destinationBucket = 'bucket';
+        $destinationObject = 'combined-files.txt';
+        $this->connection->composeObject([
+                'destinationPredefinedAcl' => $acl,
+                'destination' => $metadata + ['contentType' => 'text/plain'],
+                'sourceObjects' => $expectedSourceObjects,
+                'destinationBucket' => $destinationBucket,
+                'destinationObject' => $destinationObject
+            ])
+            ->willReturn([
+                'name' => $destinationObject,
+                'generation' => 1
+            ])
+            ->shouldBeCalledTimes(1);
+        $bucket = new Bucket($this->connection->reveal(), $destinationBucket);
+
+        $object = $bucket->compose($objects, $destinationObject, [
+            'predefinedAcl' => $acl,
+            'metadata' => $metadata
+        ]);
+
+        $this->assertEquals($destinationObject, $object->name());
+    }
+
+    public function composeProvider()
+    {
+        $object1 = $this->prophesize(StorageObject::class);
+        $object2 = $this->prophesize(StorageObject::class);
+        $name1 = 'file1.txt';
+        $name2 = 'file2.txt';
+        $object1->name(Argument::any())->willReturn($name1);
+        $object1->identity(Argument::any())->willReturn(['generation' => '1']);
+        $object2->name(Argument::any())->willReturn($name2);
+        $object2->identity(Argument::any())->willReturn(['generation' => '1']);
+
+        return [
+            [
+                ['test' => true],
+                [$name1, $name2],
+                [['name' => $name1], ['name' => $name2]]
+            ],
+            [
+                ['contentType' => 'application/json'],
+                [$object1->reveal(), $object2->reveal()],
+                [
+                    ['name' => $name1, 'generation' => '1'],
+                    ['name' => $name2, 'generation' => '1']
+                ]
+            ]
+        ];
     }
 
     public function testUpdatesData()

@@ -89,7 +89,9 @@ class RestTest extends \PHPUnit_Framework_TestCase
             ['deleteObject'],
             ['getObject'],
             ['listObjects'],
-            ['patchObject']
+            ['patchObject'],
+            ['rewriteObject'],
+            ['composeObject']
         ];
     }
 

@@ -86,6 +86,16 @@ interface ConnectionInterface
     /**
      * @param array $args
      */
+    public function rewriteObject(array $args = []);
+
+    /**
+     * @param array $args
+     */
+    public function composeObject(array $args = []);
+
+    /**
+     * @param array $args
+     */
     public function getObject(array $args = []);
 
     /**
