@@ -290,7 +290,6 @@ class Operation
      *
      *     @type string $readConsistency See
      *           [ReadConsistency](https://cloud.google.com/datastore/reference/rest/v1/ReadOptions#ReadConsistency).
-     *           **Defaults to** `"EVENTUAL"`.
      *     @type string $transaction The transaction ID, if the query should be
      *           run in a transaction.
      *     @type string|array $className If a string, the name of the class to return results as.
@@ -323,9 +322,8 @@ class Operation
             }
         });
 
-        $res = $this->connection->lookup($options + [
+        $res = $this->connection->lookup($options + $this->readOptions($options) + [
             'projectId' => $this->projectId,
-            'readOptions' => $this->readOptions($options),
             'keys' => $keys
         ]);
 
@@ -378,7 +376,6 @@ class Operation
      *           If not set, {@see Google\Cloud\Datastore\Entity} will be used.
      *     @type string $readConsistency See
      *           [ReadConsistency](https://cloud.google.com/datastore/reference/rest/v1/ReadOptions#ReadConsistency).
-     *           **Defaults to** `"EVENTUAL"`.
      * }
      * @return \Generator<Google\Cloud\Datastore\Entity>
      */
@@ -645,25 +642,23 @@ class Operation
      *      @type string $transaction If set, query or lookup will run in transaction.
      *      @type string $readConsistency See
      *           [ReadConsistency](https://cloud.google.com/datastore/reference/rest/v1/ReadOptions#ReadConsistency).
-     *           **Defaults to** `"EVENTUAL"`.
      * }
      * @return array
      */
     private function readOptions(array $options = [])
     {
         $options += [
-            'readConsistency' => DatastoreClient::DEFAULT_READ_CONSISTENCY,
+            'readConsistency' => null,
             'transaction' => null
         ];
 
-        if ($options['transaction']) {
-            return [
-                'transaction' => $options['transaction']
-            ];
-        }
+        $readOptions = array_filter([
+            'readConsistency' => $options['readConsistency'],
+            'transaction' => $options['transaction']
+        ]);
 
-        return [
-            'readConsistency' => $options['readConsistency']
-        ];
+        return array_filter([
+            'readOptions' => $readOptions
+        ]);
     }
 }
