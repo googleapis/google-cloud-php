@@ -70,8 +70,6 @@ class DatastoreClient
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/datastore';
 
-    const DEFAULT_READ_CONSISTENCY = 'EVENTUAL';
-
     /**
      * @var ConnectionInterface
      */
@@ -734,7 +732,6 @@ class DatastoreClient
      *
      *     @type string $readConsistency See
      *           [ReadConsistency](https://cloud.google.com/datastore/reference/rest/v1/ReadOptions#ReadConsistency).
-     *           **Defaults to** `"EVENTUAL"`.
      *     @type string $className The name of the class to return results as.
      *           Must be a subclass of {@see Google\Cloud\Datastore\Entity}.
      *           If not set, {@see Google\Cloud\Datastore\Entity} will be used.
@@ -776,7 +773,6 @@ class DatastoreClient
      *
      *     @type string $readConsistency See
      *           [ReadConsistency](https://cloud.google.com/datastore/reference/rest/v1/ReadOptions#ReadConsistency).
-     *           **Defaults to** `"EVENTUAL"`.
      *     @type string|array $className If a string, the name of the class to return results as.
      *           Must be a subclass of {@see Google\Cloud\Datastore\Entity}.
      *           If not set, {@see Google\Cloud\Datastore\Entity} will be used.
@@ -863,7 +859,6 @@ class DatastoreClient
      *           array.
      *     @type string $readConsistency See
      *           [ReadConsistency](https://cloud.google.com/datastore/reference/rest/v1/ReadOptions#ReadConsistency).
-     *           **Defaults to** `"EVENTUAL"`.
      * }
      * @return GqlQuery
      */
@@ -896,7 +891,6 @@ class DatastoreClient
      *           If not set, {@see Google\Cloud\Datastore\Entity} will be used.
      *     @type string $readConsistency See
      *           [ReadConsistency](https://cloud.google.com/datastore/reference/rest/v1/ReadOptions#ReadConsistency).
-     *           **Defaults to** `"EVENTUAL"`.
      * }
      * @return \Generator<Google\Cloud\Datastore\Entity>
      */
