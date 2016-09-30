@@ -26,8 +26,9 @@ use InvalidArgumentException;
  * messages between independent applications. Find more information at
  * [Google Cloud Pub/Sub docs](https://cloud.google.com/pubsub/docs/).
  *
- * The [PUBSUB_EMULATOR_HOST](https://cloud.google.com/pubsub/emulator#env) environment variable
- * from the gcloud SDK is honored, otherwise the actual API endpoint will be used.
+ * To enable the [Google Cloud Pub/Sub Emulator](https://cloud.google.com/pubsub/emulator),
+ * set the [`PUBSUB_EMULATOR_HOST`](https://cloud.google.com/pubsub/emulator#env)
+ * environment variable.
  *
  * Example:
  * ```
@@ -43,6 +44,18 @@ use InvalidArgumentException;
  * use Google\Cloud\PubSub\PubSubClient;
  *
  * $pubsub = new PubSubClient();
+ * ```
+ *
+ * ```
+ * // Using the Pub/Sub Emulator
+ * use Google\Cloud\ServiceBuilder;
+ *
+ * // Be sure to use the port specified when starting the emulator.
+ * // `8900` is used as an example only.
+ * putenv('PUBSUB_EMULATOR_HOST=http://localhost:8900');
+ *
+ * $cloud = new ServiceBuilder();
+ * $pubsub = $cloud->pubsub();
  * ```
  */
 class PubSubClient

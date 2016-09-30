@@ -38,10 +38,14 @@ class Rest implements ConnectionInterface
      */
     public function __construct(array $config = [])
     {
+        $emulatorHost = getenv('DATASTORE_EMULATOR_HOST');
+
+        $baseUri = $this->getEmulatorBaseUri(self::BASE_URI, $emulatorHost);
+
         $this->setRequestWrapper(new RequestWrapper($config));
         $this->setRequestBuilder(new RequestBuilder(
             __DIR__ . '/ServiceDefinition/datastore-v1.json',
-            self::BASE_URI
+            $baseUri
         ));
     }
 
