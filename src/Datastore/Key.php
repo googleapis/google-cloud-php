@@ -25,6 +25,24 @@ use JsonSerializable;
  *
  * Keys are unique identifiers for entities.
  *
+ * Keys may be considered either "named" or "incomplete". A named Key is one in
+ * which each element of the Key path specify a Kind and a Name or ID. An
+ * incomplete Key omits the Name or ID from the final path element.
+ *
+ * Named Keys are required for any lookup, update, upsert or delete operations.
+ * They may also be used for inserting records, so long as you are certain that
+ * the identifier is available in Datastore.
+ *
+ * Incomplete Keys may be used for inserting records into Datastore. When an
+ * incomplete Key is used, Datastore will allocate an ID before inserting.
+ *
+ * Incomplete Keys are useful for guaranteeing the availability of an identifier
+ * without requiring an additional operation to check whether a given name or ID
+ * is available.
+ *
+ * Key state can be checked by calling `Key::state()`. The return will be one of
+ * `Key::STATE_NAMED` or `Key::STATE_INCOMPLETE`.
+ *
  * Example:
  * ```
  * use Google\Cloud\ServiceBuilder;
@@ -62,8 +80,11 @@ class Key implements JsonSerializable
     const TYPE_NAME = 'name';
     const TYPE_ID = 'id';
 
-    const STATE_COMPLETE   = 'complete';
+    const STATE_NAMED   = 'named';
     const STATE_INCOMPLETE = 'incomplete';
+
+    // Kept for backwards compatability
+    const STATE_COMPLETE = self::STATE_NAMED;
 
     /**
      * @var string
@@ -132,7 +153,7 @@ class Key implements JsonSerializable
      */
     public function pathElement($kind, $identifier = null, $identifierType = null)
     {
-        if (!empty($this->path) && $this->state() !== Key::STATE_COMPLETE) {
+        if (!empty($this->path) && $this->state() !== Key::STATE_NAMED) {
             throw new InvalidArgumentException(
                 'Cannot add pathElement because the previous element is missing an id or name'
             );
@@ -188,7 +209,7 @@ class Key implements JsonSerializable
      */
     public function ancestorKey(Key $key)
     {
-        if ($key->state() !== self::STATE_COMPLETE) {
+        if ($key->state() !== self::STATE_NAMED) {
             throw new InvalidArgumentException('Cannot use an incomplete key as an ancestor');
         }
 
@@ -200,9 +221,9 @@ class Key implements JsonSerializable
     }
 
     /**
-     * Check if the Key is considered Complete or Incomplete.
+     * Check if the Key is considered Named or Incomplete.
      *
-     * Use `Key::STATE_COMPLETE` and `Key::STATE_INCOMPLETE` to check value.
+     * Use `Key::STATE_NAMED` and `Key::STATE_INCOMPLETE` to check value.
      *
      * Example:
      * ```
@@ -216,12 +237,12 @@ class Key implements JsonSerializable
      * ```
      *
      * ```
-     * // A complete key has a kind and an identifier on each path element.
+     * // A named key has a kind and an identifier on each path element.
      * $key = $datastore->key('parent', 1234)
      *     ->pathElement('child', 4321);
      *
-     * if ($key->state() === Key::STATE_COMPLETE) {
-     *     echo 'Key is complete!';
+     * if ($key->state() === Key::STATE_NAMED) {
+     *     echo 'Key is named!';
      * }
      * ```
      *
@@ -231,7 +252,7 @@ class Key implements JsonSerializable
     {
         $end = $this->pathEnd();
         return (isset($end['id']) || isset($end['name']))
-            ? self::STATE_COMPLETE
+            ? self::STATE_NAMED
             : self::STATE_INCOMPLETE;
     }
 

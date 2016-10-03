@@ -166,14 +166,14 @@ class OperationTest extends \PHPUnit_Framework_TestCase
 
         $res = $this->operation->allocateIds($keys);
 
-        $this->assertEquals($res[0]->state(), Key::STATE_COMPLETE);
+        $this->assertEquals($res[0]->state(), Key::STATE_NAMED);
         $this->assertEquals($res[0]->path()[0]['id'], '1');
     }
 
     /**
      * @expectedException InvalidArgumentException
      */
-    public function testAllocateIdsCompleteKey()
+    public function testAllocateIdsNamedKey()
     {
         $keys = [
             $this->operation->key('foo', 'Bar')
@@ -450,8 +450,8 @@ class OperationTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf(Entity::class, $res[0]);
         $this->assertInstanceOf(Entity::class, $res[1]);
 
-        $this->assertEquals($res[0]->key()->state(), Key::STATE_COMPLETE);
-        $this->assertEquals($res[1]->key()->state(), Key::STATE_COMPLETE);
+        $this->assertEquals($res[0]->key()->state(), Key::STATE_NAMED);
+        $this->assertEquals($res[1]->key()->state(), Key::STATE_NAMED);
     }
 
     public function testMutate()
@@ -559,7 +559,7 @@ class OperationTest extends \PHPUnit_Framework_TestCase
         $this->operation->setConnection($this->connection->reveal());
 
         $k = $this->prophesize(Key::class);
-        $k->state()->willReturn(Key::STATE_COMPLETE);
+        $k->state()->willReturn(Key::STATE_NAMED);
 
         $entity = $this->operation->lookup([$k->reveal()]);
         $this->assertInstanceOf(Entity::class, $entity['found'][0]);
@@ -581,7 +581,7 @@ class OperationTest extends \PHPUnit_Framework_TestCase
         $this->operation->setConnection($this->connection->reveal());
 
         $k = $this->prophesize(Key::class);
-        $k->state()->willReturn(Key::STATE_COMPLETE);
+        $k->state()->willReturn(Key::STATE_NAMED);
 
         $entity = $this->operation->lookup([$k->reveal()]);
         $this->assertInstanceOf(Entity::class, $entity['found'][0]);
@@ -602,7 +602,7 @@ class OperationTest extends \PHPUnit_Framework_TestCase
         $this->operation->setConnection($this->connection->reveal());
 
         $k = $this->prophesize(Key::class);
-        $k->state()->willReturn(Key::STATE_COMPLETE);
+        $k->state()->willReturn(Key::STATE_NAMED);
 
         $entity = $this->operation->lookup([$k->reveal()], [
             'className' => [
@@ -628,7 +628,7 @@ class OperationTest extends \PHPUnit_Framework_TestCase
         $this->operation->setConnection($this->connection->reveal());
 
         $k = $this->prophesize(Key::class);
-        $k->state()->willReturn(Key::STATE_COMPLETE);
+        $k->state()->willReturn(Key::STATE_NAMED);
 
         $entity = $this->operation->lookup([$k->reveal()], [
             'className' => [
@@ -649,7 +649,7 @@ class OperationTest extends \PHPUnit_Framework_TestCase
         $this->operation->setConnection($this->connection->reveal());
 
         $k = $this->prophesize(Key::class);
-        $k->state()->willReturn(Key::STATE_COMPLETE);
+        $k->state()->willReturn(Key::STATE_NAMED);
         $this->operation->lookup([$k->reveal()], [
             'transaction' => '1234'
         ]);
@@ -667,7 +667,7 @@ class OperationTest extends \PHPUnit_Framework_TestCase
         $this->operation->setConnection($this->connection->reveal());
 
         $k = $this->prophesize(Key::class);
-        $k->state()->willReturn(Key::STATE_COMPLETE);
+        $k->state()->willReturn(Key::STATE_NAMED);
         $this->operation->lookup([$k->reveal()]);
     }
 
@@ -683,7 +683,7 @@ class OperationTest extends \PHPUnit_Framework_TestCase
         $this->operation->setConnection($this->connection->reveal());
 
         $k = $this->prophesize(Key::class);
-        $k->state()->willReturn(Key::STATE_COMPLETE);
+        $k->state()->willReturn(Key::STATE_NAMED);
         $this->operation->lookup([$k->reveal()], [
             'readConsistency' => 'test'
         ]);

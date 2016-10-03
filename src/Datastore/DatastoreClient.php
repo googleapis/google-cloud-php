@@ -226,7 +226,7 @@ class DatastoreClient
      *
      * Entities are created with a Datastore Key, or by specifying a Kind. Kinds
      * are only allowed for insert operations. For any other case, you must
-     * specify a complete key. If a kind is given, an ID will be automatically
+     * specify a named key. If a kind is given, an ID will be automatically
      * allocated for the entity upon insert. Additionally, if your entity
      * requires a complex key elementPath, you must create the key separately.
      *
