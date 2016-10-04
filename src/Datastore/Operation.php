@@ -387,10 +387,9 @@ class Operation
 
         $moreResults = true;
         do {
-            $request = $options + [
+            $request = $options + $this->readOptions($options) + [
                 'projectId' => $this->projectId,
                 'partitionId' => $this->partitionId($this->projectId, $this->namespaceId),
-                'readOptions' => $this->readOptions($options),
                 $query->queryKey() => $query->queryObject()
             ];
 
