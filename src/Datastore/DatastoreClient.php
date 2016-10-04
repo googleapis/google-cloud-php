@@ -35,6 +35,12 @@ use InvalidArgumentException;
  * through use of data partitions. A partition ID can be supplied when creating an instance of Cloud Datastore, and will
  * be used in all operations executed in that instance.
  *
+ * To enable the
+ * [Google Cloud Datastore Emulator](https://cloud.google.com/datastore/docs/tools/datastore-emulator),
+ * set the
+ * [`PUBSUB_EMULATOR_HOST`](https://cloud.google.com/datastore/docs/tools/datastore-emulator#setting_environment_variables)
+ * environment variable.
+ *
  * Example:
  * ```
  * use Google\Cloud\ServiceBuilder;
@@ -61,6 +67,18 @@ use InvalidArgumentException;
  *     'projectId' => 'my-awesome-project',
  *     'namespaceId' => 'my-application-namespace'
  * ]);
+ * ```
+ *
+ * ```
+ * // Using the Datastore Emulator
+ * use Google\Cloud\ServiceBuilder;
+ *
+ * // Be sure to use the port specified when starting the emulator.
+ * // `8900` is used as an example only.
+ * putenv('DATASTORE_EMULATOR_HOST=http://localhost:8900');
+ *
+ * $cloud = new ServiceBuilder();
+ * $datastore = $cloud->datastore();
  * ```
  */
 class DatastoreClient
