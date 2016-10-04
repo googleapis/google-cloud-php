@@ -95,7 +95,7 @@ class KeyTest extends \PHPUnit_Framework_TestCase
 
         $ancestor = $this->prophesize(Key::class);
         $ancestor->path()->willReturn($ancestorPath);
-        $ancestor->state()->willReturn(Key::STATE_COMPLETE);
+        $ancestor->state()->willReturn(Key::STATE_NAMED);
 
         $key = new Key('foo', [
             'path' => [
@@ -187,7 +187,7 @@ class KeyTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($key->jsonSerialize(), $key->keyObject());
     }
 
-    public function testStateComplete()
+    public function testStateNamed()
     {
         $key = new Key('foo', [
             'path' => [
@@ -195,7 +195,7 @@ class KeyTest extends \PHPUnit_Framework_TestCase
             ]
         ]);
 
-        $this->assertEquals($key->state(), key::STATE_COMPLETE);
+        $this->assertEquals($key->state(), key::STATE_NAMED);
     }
 
     public function testStateIncomplete()

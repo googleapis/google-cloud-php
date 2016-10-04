@@ -177,7 +177,7 @@ class Operation
      *
      * Entities are created with a Datastore Key, or by specifying a Kind. Kinds
      * are only allowed for insert operations. For any other case, you must
-     * specify a complete key. If a kind is given, an ID will be automatically
+     * specify a named key. If a kind is given, an ID will be automatically
      * allocated for the entity upon insert. Additionally, if your entity
      * requires a complex key elementPath, you must create the key separately.
      *
@@ -251,7 +251,7 @@ class Operation
     public function allocateIds(array $keys, array $options = [])
     {
         // Validate the given keys. First check types, then state of each.
-        // The API will throw a 400 if the key is complete, but it's an easy
+        // The API will throw a 400 if the key is named, but it's an easy
         // check we can handle before going to the API to save a request.
         // @todo replace with json schema
         $this->validateBatch($keys, Key::class, function ($key) {
@@ -313,7 +313,7 @@ class Operation
         ];
 
         $this->validateBatch($keys, Key::class, function ($key) {
-            if ($key->state() !== Key::STATE_COMPLETE) {
+            if ($key->state() !== Key::STATE_NAMED) {
                 throw new InvalidArgumentException(sprintf(
                     'Given $key is in an invalid state. Can only lookup records when given a complete key. ' .
                     'Given path was %s',
@@ -451,7 +451,7 @@ class Operation
     /**
      * Patch any incomplete keys in the given array of entities
      *
-     * Any incomplete keys will be allocated an ID. Complete keys in the input
+     * Any incomplete keys will be allocated an ID. Named keys in the input
      * will remain unchanged.
      *
      * @param Entity[] $entities A list of entities
