@@ -259,6 +259,49 @@ class OperationTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf(Key::class, $res['deferred'][0]);
     }
 
+    public function testLookupWithReadOptionsFromTransaction()
+    {
+        $this->connection->lookup(Argument::withKey('readOptions'))->shouldBeCalled()->willReturn([]);
+
+        $this->operation->setConnection($this->connection->reveal());
+
+        $k = new Key('test-project', [
+            'path' => [['kind' => 'kind', 'id' => '123']]
+        ]);
+
+        $this->operation->lookup([$k], ['transaction' => 'foo']);
+    }
+
+    public function testLookupWithReadOptionsFromReadConsistency()
+    {
+        $this->connection->lookup(Argument::withKey('readOptions'))->shouldBeCalled()->willReturn([]);
+
+        $this->operation->setConnection($this->connection->reveal());
+
+        $k = new Key('test-project', [
+            'path' => [['kind' => 'kind', 'id' => '123']]
+        ]);
+
+        $this->operation->lookup([$k], ['readConsistency' => 'foo']);
+    }
+
+    public function testLookupWithoutReadOptions()
+    {
+        $this->connection->lookup(Argument::that(function ($args) {
+            if (isset($args['readOptions'])) return false;
+
+            return true;
+        }))->shouldBeCalled()->willReturn([]);
+
+        $this->operation->setConnection($this->connection->reveal());
+
+        $k = new Key('test-project', [
+            'path' => [['kind' => 'kind', 'id' => '123']]
+        ]);
+
+        $this->operation->lookup([$k]);
+    }
+
     /**
      * @expectedException InvalidArgumentException
      */
@@ -338,6 +381,52 @@ class OperationTest extends \PHPUnit_Framework_TestCase
 
         $arr = iterator_to_array($res);
         $this->assertEquals(count($arr), 0);
+    }
+
+    public function testRunQueryWithReadOptionsFromTransaction()
+    {
+        $this->connection->runQuery(Argument::withKey('readOptions'))->willReturn([]);
+
+        $this->operation->setConnection($this->connection->reveal());
+
+        $q = $this->prophesize(QueryInterface::class);
+        $q->queryKey()->willReturn('query');
+        $q->queryObject()->willReturn([]);
+
+        $res = $this->operation->runQuery($q->reveal(), ['transaction' => 'foo']);
+        iterator_to_array($res);
+    }
+
+    public function testRunQueryWithReadOptionsFromReadConsistency()
+    {
+        $this->connection->runQuery(Argument::withKey('readOptions'))->willReturn([]);
+
+        $this->operation->setConnection($this->connection->reveal());
+
+        $q = $this->prophesize(QueryInterface::class);
+        $q->queryKey()->willReturn('query');
+        $q->queryObject()->willReturn([]);
+
+        $res = $this->operation->runQuery($q->reveal(), ['readConsistency' => 'foo']);
+        iterator_to_array($res);
+    }
+
+    public function testRunQueryWithoutReadOptions()
+    {
+        $this->connection->runQuery(Argument::that(function ($args) {
+            if (isset($args['readOptions'])) return false;
+
+            return true;
+        }))->willReturn([]);
+
+        $this->operation->setConnection($this->connection->reveal());
+
+        $q = $this->prophesize(QueryInterface::class);
+        $q->queryKey()->willReturn('query');
+        $q->queryObject()->willReturn([]);
+
+        $res = $this->operation->runQuery($q->reveal());
+        iterator_to_array($res);
     }
 
     public function testCommit()
