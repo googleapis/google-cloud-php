@@ -55,27 +55,29 @@ class QueryTest extends \PHPUnit_Framework_TestCase
 
     public function testJsonSerialize()
     {
-
         $this->assertEquals($this->query->jsonSerialize(), $this->query->queryObject());
     }
 
     public function testProjection()
     {
-        $self = $this->query->projection('propname');
+        $property = 'propname';
+        $self = $this->query->projection($property);
         $this->assertInstanceOf(Query::class, $self);
 
         $res = $this->query->queryObject();
 
-        $this->assertEquals($res['projection'], ['propname']);
+        $this->assertEquals($res['projection'][0]['property']['name'], $property);
     }
 
     public function testProjectionWithArrayArgument()
     {
-        $this->query->projection(['propname', 'propname2']);
+        $properties = ['propname', 'propname2'];
+        $this->query->projection($properties);
 
         $res = $this->query->queryObject();
 
-        $this->assertEquals($res['projection'], ['propname', 'propname2']);
+        $this->assertEquals($res['projection'][0]['property']['name'], $properties[0]);
+        $this->assertEquals($res['projection'][1]['property']['name'], $properties[1]);
     }
 
     public function testKind()

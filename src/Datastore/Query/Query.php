@@ -170,7 +170,9 @@ class Query implements QueryInterface
             $properties = [$properties];
         }
 
-        $this->options['query']['projection'] = $properties;
+        foreach ($properties as $property) {
+            $this->options['query']['projection'][]['property']['name'] = $property;
+        }
 
         return $this;
     }
