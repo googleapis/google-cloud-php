@@ -84,8 +84,8 @@ class Query implements QueryInterface
     const OP_HAS_ANCESTOR           = 'HAS_ANCESTOR';
 
     const ORDER_DEFAULT             = self::ORDER_ASCENDING;
-    const ORDER_DESCENDING          = 'ASCENDING';
-    const ORDER_ASCENDING           = 'DESCENDING';
+    const ORDER_DESCENDING          = 'DESCENDING';
+    const ORDER_ASCENDING           = 'ASCENDING';
 
     /**
      * @var array A list of all operators supported by datastore
