@@ -396,6 +396,8 @@ class Transaction
      *           If an array is given, it must be an associative array, where
      *           the key is a Kind and the value is the name of a subclass of
      *           {@see Google\Cloud\Datastore\Entity}.
+     *     @type bool $sort If set to true, results in each set will be sorted
+     *           to match the order given in $keys. **Defaults to** `false`.
      * }
      * @return array Returns an array with keys [`found`, `missing`, and `deferred`].
      *         Members of `found` will be instance of
