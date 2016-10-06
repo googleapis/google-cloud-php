@@ -18,6 +18,7 @@
 namespace Google\Cloud\Tests\Datastore\Query;
 
 use Google\Cloud\Datastore\EntityMapper;
+use Google\Cloud\Datastore\Key;
 use Google\Cloud\Datastore\Query\Query;
 
 /**
@@ -31,12 +32,12 @@ class QueryTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->mapper = new EntityMapper('foo', true);
-        $this->query = new Query($this->mapper);
+        $this->query = new Query('foo', $this->mapper);
     }
 
     public function testConstructorOptions()
     {
-        $query = new Query($this->mapper, [
+        $query = new Query('foo', $this->mapper, [
             'query' => ['foo' => 'bar']
         ]);
 
@@ -78,6 +79,14 @@ class QueryTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals($res['projection'][0]['property']['name'], $properties[0]);
         $this->assertEquals($res['projection'][1]['property']['name'], $properties[1]);
+    }
+
+    public function testKeysOnly()
+    {
+        $this->query->keysOnly();
+        $res = $this->query->queryObject();
+
+        $this->assertEquals($res['projection'][0]['property']['name'], '__key__');
     }
 
     public function testKind()
@@ -182,6 +191,40 @@ class QueryTest extends \PHPUnit_Framework_TestCase
             ],
             'direction' => $direction
         ]);
+    }
+
+    public function testHasAncestorWithKeyObject()
+    {
+        $key = (new Key('foo'))->pathElement('Kind', 'Name');
+
+        $this->query->hasAncestor($key);
+
+        $res = $this->query->queryObject();
+
+        $this->assertEquals('__key__', $res['filter']['compositeFilter']['filters'][0]['propertyFilter']['property']['name']);
+        $this->assertEquals('Kind', $res['filter']['compositeFilter']['filters'][0]['propertyFilter']['value']['keyValue']['path'][0]['kind']);
+        $this->assertEquals('Name', $res['filter']['compositeFilter']['filters'][0]['propertyFilter']['value']['keyValue']['path'][0]['name']);
+        $this->assertEquals('foo', $res['filter']['compositeFilter']['filters'][0]['propertyFilter']['value']['keyValue']['partitionId']['projectId']);
+    }
+
+    public function testHasAncestorWithKindAndId()
+    {
+        $this->query->hasAncestor('Kind', 'Name');
+
+        $res = $this->query->queryObject();
+
+        $this->assertEquals('__key__', $res['filter']['compositeFilter']['filters'][0]['propertyFilter']['property']['name']);
+        $this->assertEquals('Kind', $res['filter']['compositeFilter']['filters'][0]['propertyFilter']['value']['keyValue']['path'][0]['kind']);
+        $this->assertEquals('Name', $res['filter']['compositeFilter']['filters'][0]['propertyFilter']['value']['keyValue']['path'][0]['name']);
+        $this->assertEquals('foo', $res['filter']['compositeFilter']['filters'][0]['propertyFilter']['value']['keyValue']['partitionId']['projectId']);
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testHasAncestorKindWithNoId()
+    {
+        $this->query->hasAncestor('Kind');
     }
 
     public function testDistinctOn()

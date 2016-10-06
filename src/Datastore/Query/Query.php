@@ -19,6 +19,7 @@ namespace Google\Cloud\Datastore\Query;
 
 use Google\Cloud\Datastore\DatastoreTrait;
 use Google\Cloud\Datastore\EntityMapper;
+use Google\Cloud\Datastore\Key;
 use InvalidArgumentException;
 
 /**
@@ -119,6 +120,11 @@ class Query implements QueryInterface
     ];
 
     /**
+     * @var string
+     */
+    private $projectId;
+
+    /**
      * @var EntityMapper
      */
     private $entityMapper;
@@ -129,15 +135,18 @@ class Query implements QueryInterface
     private $options;
 
     /**
+     * @param string $projectId The project ID.
      * @param EntityMapper $entityMapper An instance of EntityMapper
      * @param array $options [optional] {
      *     Configuration Options
      *
+     *     @type string $namespaceId The namespace to use for all keys created.
      *     @type array $query [Query](https://cloud.google.com/datastore/reference/rest/v1/projects/runQuery#query)
      * }
      */
-    public function __construct(EntityMapper $entityMapper, array $options = [])
+    public function __construct($projectId, EntityMapper $entityMapper, array $options = [])
     {
+        $this->projectId = $projectId;
         $this->entityMapper = $entityMapper;
         $this->options = $options + [
             'query' => [
@@ -145,7 +154,8 @@ class Query implements QueryInterface
                 'kind' => [],
                 'order' => [],
                 'distinctOn' => []
-            ]
+            ],
+            'namespaceId' => null
         ];
     }
 
@@ -171,8 +181,27 @@ class Query implements QueryInterface
         }
 
         foreach ($properties as $property) {
-            $this->options['query']['projection'][]['property']['name'] = $property;
+            $this->options['query']['projection'][] = [
+                'property' => $this->propertyName($property)
+            ];
         }
+
+        return $this;
+    }
+
+    /**
+     * Set the query to return only keys (no properties)
+     *
+     * Example:
+     * ```
+     * $query->keysOnly();
+     * ```
+     *
+     * @return Query
+     */
+    public function keysOnly()
+    {
+        $this->projection('__key__');
 
         return $this;
     }
@@ -243,6 +272,60 @@ class Query implements QueryInterface
                 'op' => $this->mapOperator($operator)
             ]
         ];
+
+        return $this;
+    }
+
+    /**
+     * Query for entities by their ancestors.
+     *
+     * Keys can be provided either via a {@see Google\Cloud\Datastore\Key}
+     * object, or by providing a kind, identifier and (optionally) an identifier
+     * type.
+     *
+     * Example:
+     * ```
+     * $key = $datastore->key('Person', 'Bob');
+     * $query->hasAncestor($key);
+     * ```
+     *
+     * ```
+     * // Using a kind and indentifier
+     * $query->hasAncestor('Person', 'Bob');
+     * ```
+     *
+     * ```
+     * // Specifying an identifier type
+     * $query->hasAncestor('Robots', '1337', Key::TYPE_NAME);
+     * ```
+     *
+     * @param Key|string $kindOrKey A Key instance, or a kind as a string.
+     *        If a string is provided, an identifier must be provided as well.
+     * @param string $identifier [optional] The identifier value for the
+     *        ancestor key. If the first argument is a string, this is required.
+     * @param string $identifierType [optional] Use constants `Key::TYPE_NAME` or
+     *        `KEY::TYPE_ID` to force the key to use a specific identifier type.
+     * @return Query
+     */
+    public function hasAncestor($kindOrKey, $identifier = null, $identifierType = null)
+    {
+        if (!($kindOrKey instanceof Key)) {
+            if (is_null($identifier)) {
+                throw new InvalidArgumentException(
+                    'Identifier must be provided when creating an ancestory key'
+                );
+            }
+
+            $key = new Key($this->projectId, [
+                'namespaceId' => $this->options['namespaceId']
+            ]);
+
+            $key->pathElement($kindOrKey, $identifier, $identifierType);
+        } else {
+            $key = $kindOrKey;
+        }
+
+        $this->filter('__key__', self::OP_HAS_ANCESTOR, $key);
 
         return $this;
     }

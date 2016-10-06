@@ -104,6 +104,11 @@ class DatastoreClient
     private $entityMapper;
 
     /**
+     * @var string
+     */
+    private $namespaceId;
+
+    /**
      * Create a Datastore client.
      *
      * @param array $config [optional] {
@@ -149,6 +154,8 @@ class DatastoreClient
             $config['namespaceId'],
             $this->entityMapper
         );
+
+        $this->namespaceId = $config['namespaceId'];
     }
 
     /**
@@ -828,7 +835,9 @@ class DatastoreClient
      */
     public function query(array $options = [])
     {
-        return new Query($this->entityMapper, $options);
+        return new Query($this->projectId, $this->entityMapper, $options + [
+            'namespaceId' => $this->namespaceId
+        ]);
     }
 
     /**
