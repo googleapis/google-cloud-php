@@ -154,6 +154,7 @@ class QueryTest extends \PHPUnit_Framework_TestCase
 
     public function testOrder()
     {
+        $direction = 'DESCENDING';
         $self = $this->query->order('propname', Query::ORDER_DESCENDING);
         $this->assertInstanceOf(Query::class, $self);
 
@@ -163,7 +164,23 @@ class QueryTest extends \PHPUnit_Framework_TestCase
             'property' => [
                 'name' => 'propname'
             ],
-            'direction' => Query::ORDER_DESCENDING
+            'direction' => $direction
+        ]);
+    }
+
+    public function testOrderWithDefaultDireciton()
+    {
+        $direction = 'ASCENDING';
+        $self = $this->query->order('propname');
+        $this->assertInstanceOf(Query::class, $self);
+
+        $res = $this->query->queryObject();
+
+        $this->assertEquals($res['order'][0], [
+            'property' => [
+                'name' => 'propname'
+            ],
+            'direction' => $direction
         ]);
     }
 
