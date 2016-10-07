@@ -583,7 +583,9 @@ class StorageObject
             $destination
         );
 
-        $destination->seek(0);
+        if ($destination->isSeekable()) {
+            $destination->seek(0);
+        }
 
         return $destination;
     }
