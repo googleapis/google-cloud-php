@@ -129,7 +129,7 @@ class KeyTest extends \PHPUnit_Framework_TestCase
     public function testPathElementForceType()
     {
         $key = new Key('foo');
-        $key->pathElement('Robots', '1000', Key::TYPE_NAME);
+        $key->pathElement('Robots', '1000', ['identifierType' => Key::TYPE_NAME]);
         $key->pathElement('Robots', '1000');
 
         $this->assertEquals(['kind' => 'Robots', 'name' => '1000'], $key->keyObject()['path'][0]);
@@ -142,7 +142,7 @@ class KeyTest extends \PHPUnit_Framework_TestCase
     public function testPathElementInvalidIdentifierType()
     {
         $key = new Key('foo');
-        $key->pathElement('Robots', '1000', 'nothanks');
+        $key->pathElement('Robots', '1000', ['identifierType' => 'nothanks']);
     }
 
     public function testNormalizedPath()
@@ -182,7 +182,7 @@ class KeyTest extends \PHPUnit_Framework_TestCase
     public function testJsonSerialize()
     {
         $key = new Key('foo');
-        $key->pathElement('Robots', '1000', Key::TYPE_NAME);
+        $key->pathElement('Robots', '1000', ['identifierType' => Key::TYPE_NAME]);
 
         $this->assertEquals($key->jsonSerialize(), $key->keyObject());
     }

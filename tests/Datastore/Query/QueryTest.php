@@ -32,14 +32,12 @@ class QueryTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->mapper = new EntityMapper('foo', true);
-        $this->query = new Query('foo', $this->mapper);
+        $this->query = new Query($this->mapper);
     }
 
     public function testConstructorOptions()
     {
-        $query = new Query('foo', $this->mapper, [
-            'query' => ['foo' => 'bar']
-        ]);
+        $query = new Query($this->mapper, ['foo' => 'bar']);
 
         $this->assertEquals($query->queryObject(), ['foo' => 'bar']);
     }
@@ -161,6 +159,114 @@ class QueryTest extends \PHPUnit_Framework_TestCase
         $this->query->filter('propname', 'foo', 12);
     }
 
+    public function testOperatorConstantsDefault()
+    {
+        $this->query->filter('propName', Query::OP_DEFAULT, 'val');
+        $res = $this->query->queryObject();
+
+        $filters = $res['filter']['compositeFilter']['filters'];
+        $this->assertEquals('EQUAL', $filters[0]['propertyFilter']['op']);
+    }
+
+    public function testOperatorConstantsLessThan()
+    {
+        $this->query->filter('propName', Query::OP_LESS_THAN, 'val');
+        $res = $this->query->queryObject();
+
+        $filters = $res['filter']['compositeFilter']['filters'];
+        $this->assertEquals('LESS_THAN', $filters[0]['propertyFilter']['op']);
+    }
+
+    public function testOperatorConstantsLessThanOrEqual()
+    {
+        $this->query->filter('propName', Query::OP_LESS_THAN_OR_EQUAL, 'val');
+        $res = $this->query->queryObject();
+
+        $filters = $res['filter']['compositeFilter']['filters'];
+        $this->assertEquals('LESS_THAN_OR_EQUAL', $filters[0]['propertyFilter']['op']);
+    }
+
+    public function testOperatorConstantsGreaterThan()
+    {
+        $this->query->filter('propName', Query::OP_GREATER_THAN, 'val');
+        $res = $this->query->queryObject();
+
+        $filters = $res['filter']['compositeFilter']['filters'];
+        $this->assertEquals('GREATER_THAN', $filters[0]['propertyFilter']['op']);
+    }
+
+    public function testOperatorConstantsGreaterThanOrEqual()
+    {
+        $this->query->filter('propName', Query::OP_GREATER_THAN_OR_EQUAL, 'val');
+        $res = $this->query->queryObject();
+
+        $filters = $res['filter']['compositeFilter']['filters'];
+        $this->assertEquals('GREATER_THAN_OR_EQUAL', $filters[0]['propertyFilter']['op']);
+    }
+
+    public function testOperatorConstantsEquals()
+    {
+        $this->query->filter('propName', Query::OP_EQUALS, 'val');
+        $res = $this->query->queryObject();
+
+        $filters = $res['filter']['compositeFilter']['filters'];
+        $this->assertEquals('EQUAL', $filters[0]['propertyFilter']['op']);
+    }
+
+    public function testOperatorConstantsHasAncestor()
+    {
+        $this->query->filter('propName', Query::OP_HAS_ANCESTOR, 'val');
+        $res = $this->query->queryObject();
+
+        $filters = $res['filter']['compositeFilter']['filters'];
+        $this->assertEquals('HAS_ANCESTOR', $filters[0]['propertyFilter']['op']);
+    }
+
+    public function testShortOperatorLessThan()
+    {
+        $this->query->filter('propName', '<', 'val');
+        $res = $this->query->queryObject();
+
+        $filters = $res['filter']['compositeFilter']['filters'];
+        $this->assertEquals('LESS_THAN', $filters[0]['propertyFilter']['op']);
+    }
+
+    public function testShortOperatorLessThanOrEqual()
+    {
+        $this->query->filter('propName', '<=', 'val');
+        $res = $this->query->queryObject();
+
+        $filters = $res['filter']['compositeFilter']['filters'];
+        $this->assertEquals('LESS_THAN_OR_EQUAL', $filters[0]['propertyFilter']['op']);
+    }
+
+    public function testShortOperatorGreaterThan()
+    {
+        $this->query->filter('propName', '>', 'val');
+        $res = $this->query->queryObject();
+
+        $filters = $res['filter']['compositeFilter']['filters'];
+        $this->assertEquals('GREATER_THAN', $filters[0]['propertyFilter']['op']);
+    }
+
+    public function testShortOperatorGreaterThanOrEqual()
+    {
+        $this->query->filter('propName', '>=', 'val');
+        $res = $this->query->queryObject();
+
+        $filters = $res['filter']['compositeFilter']['filters'];
+        $this->assertEquals('GREATER_THAN_OR_EQUAL', $filters[0]['propertyFilter']['op']);
+    }
+
+    public function testShortOperatorEquals()
+    {
+        $this->query->filter('propName', '=', 'val');
+        $res = $this->query->queryObject();
+
+        $filters = $res['filter']['compositeFilter']['filters'];
+        $this->assertEquals('EQUAL', $filters[0]['propertyFilter']['op']);
+    }
+
     public function testOrder()
     {
         $direction = 'DESCENDING';
@@ -205,26 +311,6 @@ class QueryTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('Kind', $res['filter']['compositeFilter']['filters'][0]['propertyFilter']['value']['keyValue']['path'][0]['kind']);
         $this->assertEquals('Name', $res['filter']['compositeFilter']['filters'][0]['propertyFilter']['value']['keyValue']['path'][0]['name']);
         $this->assertEquals('foo', $res['filter']['compositeFilter']['filters'][0]['propertyFilter']['value']['keyValue']['partitionId']['projectId']);
-    }
-
-    public function testHasAncestorWithKindAndId()
-    {
-        $this->query->hasAncestor('Kind', 'Name');
-
-        $res = $this->query->queryObject();
-
-        $this->assertEquals('__key__', $res['filter']['compositeFilter']['filters'][0]['propertyFilter']['property']['name']);
-        $this->assertEquals('Kind', $res['filter']['compositeFilter']['filters'][0]['propertyFilter']['value']['keyValue']['path'][0]['kind']);
-        $this->assertEquals('Name', $res['filter']['compositeFilter']['filters'][0]['propertyFilter']['value']['keyValue']['path'][0]['name']);
-        $this->assertEquals('foo', $res['filter']['compositeFilter']['filters'][0]['propertyFilter']['value']['keyValue']['partitionId']['projectId']);
-    }
-
-    /**
-     * @expectedException InvalidArgumentException
-     */
-    public function testHasAncestorKindWithNoId()
-    {
-        $this->query->hasAncestor('Kind');
     }
 
     public function testDistinctOn()

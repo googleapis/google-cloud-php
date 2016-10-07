@@ -104,11 +104,11 @@ class Query implements QueryInterface
      * @var array A list of comparison operators that map to datastore operators
      */
     private $shortOperators = [
-        '<' => self::OP_LESS_THAN,
+        '<'  => self::OP_LESS_THAN,
         '<=' => self::OP_LESS_THAN_OR_EQUAL,
-        '>' => self::OP_GREATER_THAN,
+        '>'  => self::OP_GREATER_THAN,
         '>=' => self::OP_GREATER_THAN_OR_EQUAL,
-        '=' => self::OP_EQUALS
+        '='  => self::OP_EQUALS
     ];
 
     /**
@@ -120,11 +120,6 @@ class Query implements QueryInterface
     ];
 
     /**
-     * @var string
-     */
-    private $projectId;
-
-    /**
      * @var EntityMapper
      */
     private $entityMapper;
@@ -132,30 +127,21 @@ class Query implements QueryInterface
     /**
      * @var array
      */
-    private $options;
+    private $query;
 
     /**
-     * @param string $projectId The project ID.
      * @param EntityMapper $entityMapper An instance of EntityMapper
-     * @param array $options [optional] {
-     *     Configuration Options
-     *
-     *     @type string $namespaceId The namespace to use for all keys created.
-     *     @type array $query [Query](https://cloud.google.com/datastore/reference/rest/v1/projects/runQuery#query)
-     * }
+     * @param array $query [optional]
+     *        [Query](https://cloud.google.com/datastore/reference/rest/v1/projects/runQuery#query)
      */
-    public function __construct($projectId, EntityMapper $entityMapper, array $options = [])
+    public function __construct(EntityMapper $entityMapper, array $query = [])
     {
-        $this->projectId = $projectId;
         $this->entityMapper = $entityMapper;
-        $this->options = $options + [
-            'query' => [
-                'projection' => [],
-                'kind' => [],
-                'order' => [],
-                'distinctOn' => []
-            ],
-            'namespaceId' => null
+        $this->query = $query + [
+            'projection' => [],
+            'kind' => [],
+            'order' => [],
+            'distinctOn' => []
         ];
     }
 
@@ -181,7 +167,7 @@ class Query implements QueryInterface
         }
 
         foreach ($properties as $property) {
-            $this->options['query']['projection'][] = [
+            $this->query['projection'][] = [
                 'property' => $this->propertyName($property)
             ];
         }
@@ -229,7 +215,7 @@ class Query implements QueryInterface
         }
 
         foreach ($kinds as $kind) {
-            $this->options['query']['kind'][] = $this->propertyName($kind);
+            $this->query['kind'][] = $this->propertyName($kind);
         }
 
         return $this;
@@ -261,11 +247,11 @@ class Query implements QueryInterface
      */
     public function filter($property, $operator, $value)
     {
-        if (!isset($this->options['query']['filter']) || !isset($this->options['query']['filter']['compositeFilter'])) {
+        if (!isset($this->query['filter']) || !isset($this->query['filter']['compositeFilter'])) {
             $this->initializeFilter();
         }
 
-        $this->options['query']['filter']['compositeFilter']['filters'][] = [
+        $this->query['filter']['compositeFilter']['filters'][] = [
             'propertyFilter' => [
                 'property' => $this->propertyName($property),
                 'value' => $this->entityMapper->valueObject($value),
@@ -299,32 +285,11 @@ class Query implements QueryInterface
      * $query->hasAncestor('Robots', '1337', Key::TYPE_NAME);
      * ```
      *
-     * @param Key|string $kindOrKey A Key instance, or a kind as a string.
-     *        If a string is provided, an identifier must be provided as well.
-     * @param string $identifier [optional] The identifier value for the
-     *        ancestor key. If the first argument is a string, this is required.
-     * @param string $identifierType [optional] Use constants `Key::TYPE_NAME` or
-     *        `KEY::TYPE_ID` to force the key to use a specific identifier type.
+     * @param Key $key The ancestor Key instance.
      * @return Query
      */
-    public function hasAncestor($kindOrKey, $identifier = null, $identifierType = null)
+    public function hasAncestor(Key $key)
     {
-        if (!($kindOrKey instanceof Key)) {
-            if (is_null($identifier)) {
-                throw new InvalidArgumentException(
-                    'Identifier must be provided when creating an ancestory key'
-                );
-            }
-
-            $key = new Key($this->projectId, [
-                'namespaceId' => $this->options['namespaceId']
-            ]);
-
-            $key->pathElement($kindOrKey, $identifier, $identifierType);
-        } else {
-            $key = $kindOrKey;
-        }
-
         $this->filter('__key__', self::OP_HAS_ANCESTOR, $key);
 
         return $this;
@@ -346,7 +311,7 @@ class Query implements QueryInterface
      */
     public function order($property, $direction = self::ORDER_DEFAULT)
     {
-        $this->options['query']['order'][] = [
+        $this->query['order'][] = [
             'property' => $this->propertyName($property),
             'direction' => $direction
         ];
@@ -376,7 +341,7 @@ class Query implements QueryInterface
         }
 
         foreach ($property as $prop) {
-            $this->options['query']['distinctOn'][] = $this->propertyName($prop);
+            $this->query['distinctOn'][] = $this->propertyName($prop);
         }
 
         return $this;
@@ -399,7 +364,7 @@ class Query implements QueryInterface
      */
     public function start($cursor)
     {
-        $this->options['query']['startCursor'] = $cursor;
+        $this->query['startCursor'] = $cursor;
 
         return $this;
     }
@@ -421,7 +386,7 @@ class Query implements QueryInterface
      */
     public function end($cursor)
     {
-        $this->options['query']['endCursor'] = $cursor;
+        $this->query['endCursor'] = $cursor;
 
         return $this;
     }
@@ -443,7 +408,7 @@ class Query implements QueryInterface
      */
     public function offset($num)
     {
-        $this->options['query']['offset'] = $num;
+        $this->query['offset'] = $num;
 
         return $this;
     }
@@ -465,7 +430,7 @@ class Query implements QueryInterface
      */
     public function limit($num)
     {
-        $this->options['query']['limit'] = $num;
+        $this->query['limit'] = $num;
 
         return $this;
     }
@@ -491,7 +456,7 @@ class Query implements QueryInterface
      */
     public function queryObject()
     {
-        return array_filter($this->options['query']);
+        return array_filter($this->query);
     }
 
     /**
@@ -520,7 +485,7 @@ class Query implements QueryInterface
      */
     private function initializeFilter()
     {
-        $this->options['query']['filter'] = [
+        $this->query['filter'] = [
             'compositeFilter' => [
                 'filters' => [],
                 'op' => 'AND'

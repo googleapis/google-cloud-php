@@ -104,11 +104,6 @@ class DatastoreClient
     private $entityMapper;
 
     /**
-     * @var string
-     */
-    private $namespaceId;
-
-    /**
      * Create a Datastore client.
      *
      * @param array $config [optional] {
@@ -154,8 +149,6 @@ class DatastoreClient
             $config['namespaceId'],
             $this->entityMapper
         );
-
-        $this->namespaceId = $config['namespaceId'];
     }
 
     /**
@@ -828,17 +821,13 @@ class DatastoreClient
      * $query = $datastore->query();
      * ```
      *
-     * @param array $options [optional] {
-     *     Query Options
-     *
-     *     @type array $query [Query](https://cloud.google.com/datastore/reference/rest/v1/projects/runQuery#query)
-     * }
+     * @param array $query [Query](https://cloud.google.com/datastore/reference/rest/v1/projects/runQuery#query)
      * @return Query
      */
-    public function query(array $options = [])
+    public function query(array $query = [])
     {
-        return new Query($this->projectId, $this->entityMapper, $options + [
-            'namespaceId' => $this->namespaceId
+        return new Query($this->entityMapper, [
+            'query' => $query
         ]);
     }
 
