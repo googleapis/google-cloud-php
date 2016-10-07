@@ -40,6 +40,23 @@ class EntityMapper
     private $encode;
 
     /**
+     * @var array
+     */
+    private $valueTypes = [
+        "nullValue",
+        "booleanValue",
+        "integerValue",
+        "doubleValue",
+        "timestampValue",
+        "keyValue",
+        "stringValue",
+        "blobValue",
+        "geoPointValue",
+        "entityValue",
+        "arrayValue",
+    ];
+
+    /**
      * Create an Entity Mapper
      *
      * @param string $projectId The datastore project ID
@@ -62,7 +79,7 @@ class EntityMapper
         $props = [];
 
         foreach ($entityData as $key => $property) {
-            $type = key($property);
+            $type = $this->getValueType($property);
 
             $props[$key] = $this->convertValue($type, $property[$type]);
         }
@@ -428,5 +445,19 @@ class EntityMapper
         }
 
         return true;
+    }
+
+    /**
+     * Get the value type from a value object.
+     *
+     * @param array $value
+     * @return string
+     */
+    private function getValueType(array $value)
+    {
+        $keys = array_keys($value);
+        return array_values(array_filter($keys, function ($key) {
+            return in_array($key, $this->valueTypes);
+        }))[0];
     }
 }

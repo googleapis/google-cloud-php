@@ -300,7 +300,7 @@ class Query implements QueryInterface
     }
 
     /**
-     * The starting point for the query results
+     * The starting point for the query results.
      *
      * Example:
      * ```
@@ -322,7 +322,7 @@ class Query implements QueryInterface
     }
 
     /**
-     * The ending point for the query results
+     * The ending point for the query results.
      *
      * Example:
      * ```
@@ -344,7 +344,7 @@ class Query implements QueryInterface
     }
 
     /**
-     * The number of results to skip
+     * The number of results to skip.
      *
      * Example:
      * ```
@@ -366,7 +366,7 @@ class Query implements QueryInterface
     }
 
     /**
-     * The number of results to return
+     * The number of results to return.
      *
      * Example:
      * ```
@@ -431,7 +431,7 @@ class Query implements QueryInterface
     }
 
     /**
-     * Setup the filter object when the first filter is created
+     * Setup the filter object when the first filter is created.
      *
      * @return void
      */
@@ -446,7 +446,7 @@ class Query implements QueryInterface
     }
 
     /**
-     * Format a property name
+     * Format a property name.
      *
      * @param string $property The property name.
      * @return array
@@ -459,7 +459,7 @@ class Query implements QueryInterface
     }
 
     /**
-     * Convert given operator to API-compatible operator
+     * Convert given operator to API-compatible operator.
      *
      * @param string $operator
      * @return string

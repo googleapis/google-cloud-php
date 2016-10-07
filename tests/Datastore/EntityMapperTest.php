@@ -39,10 +39,12 @@ class EntityMapperTest extends \PHPUnit_Framework_TestCase
     {
         $data = [
             'foo' => [
+                'meaning' => 1,
                 'stringValue' => 'bar'
             ],
             'dubs' => [
-                'doubleValue' => 1.1
+                'doubleValue' => 1.1,
+                'meaning' => 2
             ]
         ];
 
