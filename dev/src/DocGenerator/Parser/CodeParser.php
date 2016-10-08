@@ -32,7 +32,7 @@ class CodeParser implements ParserInterface
     public function __construct($path, $outputName, FileReflector $reflector)
     {
         $this->path = $path;
-        $this->outputName;
+        $this->outputName = $outputName;
         $this->reflector = $reflector;
         $this->markdown = \Parsedown::instance();
     }
