@@ -412,6 +412,16 @@ class EntityMapperTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('hello world', (string)$res);
     }
 
+    /**
+     * @expectedException RuntimeException
+     */
+    public function testConvertValueInvalidType()
+    {
+        $type = 'fooBarValue';
+        $val = 'nothanks';
+        $this->mapper->convertValue($type, $val);
+    }
+
     public function testArrayValue()
     {
         $type = 'arrayValue';
@@ -581,5 +591,38 @@ class EntityMapperTest extends \PHPUnit_Framework_TestCase
     public function testObjectPropertyInvalidType()
     {
         $this->mapper->valueObject($this);
+    }
+
+    public function testIncomingEntityWithMeaning()
+    {
+        $data = [
+            'foo' => [
+                'stringValue' => 'bar',
+                'meaning' => 10
+            ]
+        ];
+
+        $props = $this->mapper->responseToProperties($data);
+        $this->assertEquals(['foo' => 'bar'], $props);
+
+        $meanings = $this->mapper->responseToMeanings($data);
+        $this->assertEquals(['foo' => 10], $meanings);
+    }
+
+    public function testObjectToRequestWithMeaning()
+    {
+        $key = new Key('project', ['path' => [['kind' => 'Kind', 'name' => 'Name']]]);
+
+        $e = new Entity($key, [
+            'foo' => 'bar'
+        ], [
+            'meanings' => [
+                'foo' => 10
+            ]
+        ]);
+
+        $res = $this->mapper->objectToRequest($e);
+        $this->assertEquals('bar', $res['properties']['foo']['stringValue']);
+        $this->assertEquals(10, $res['properties']['foo']['meaning']);
     }
 }

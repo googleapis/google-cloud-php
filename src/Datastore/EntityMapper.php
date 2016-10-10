@@ -89,6 +89,24 @@ class EntityMapper
     }
 
     /**
+     * Preserve meaning field values
+     *
+     * @param array $entityData The incoming entity data
+     * @return array
+     */
+    public function responseToMeanings(array $entityData)
+    {
+        $meanings = [];
+        foreach ($entityData as $key => $property) {
+            if (isset($property['meaning']) && $property['meaning']) {
+                $meanings[$key] = $property['meaning'];
+            }
+        }
+
+        return $meanings;
+    }
+
+    /**
      * Translate an Entity to a datastore representation.
      *
      * @param Entity $entity The input entity.
@@ -101,10 +119,14 @@ class EntityMapper
         $properties = [];
         foreach ($data as $key => $value) {
             $exclude = in_array($key, $entity->excludedProperties());
+            $meaning = (isset($entity->meanings()[$key]))
+                ? $entity->meanings()[$key]
+                : null;
 
             $properties[$key] = $this->valueObject(
                 $value,
-                $exclude
+                $exclude,
+                $meaning
             );
         }
 
@@ -126,6 +148,25 @@ class EntityMapper
         $result = null;
 
         switch ($type) {
+            case 'nullValue':
+                $result = null;
+
+                break;
+
+            case 'booleanValue':
+                $result = (bool) $value;
+                break;
+
+            case 'integerValue':
+                $result = (int) $value;
+
+                break;
+
+            case 'doubleValue':
+                $result = (float) $value;
+
+                break;
+
             case 'timestampValue':
                 $result = new \DateTimeImmutable($value);
 
@@ -140,6 +181,20 @@ class EntityMapper
                     'path' => $value['path'],
                     'namespaceId' => $namespaceId
                 ]);
+
+                break;
+
+            case 'stringValue':
+                $result = $value;
+
+                break;
+
+            case 'blobValue':
+                if ($this->isEncoded($value)) {
+                    $value = base64_decode($value);
+                }
+
+                $result = new Blob($value);
 
                 break;
 
@@ -179,16 +234,6 @@ class EntityMapper
 
                 break;
 
-            case 'doubleValue':
-                $result = (float) $value;
-
-                break;
-
-            case 'integerValue':
-                $result = (int) $value;
-
-                break;
-
             case 'arrayValue':
                 $result = [];
 
@@ -198,17 +243,12 @@ class EntityMapper
 
                 break;
 
-            case 'blobValue':
-                if ($this->isEncoded($value)) {
-                    $value = base64_decode($value);
-                }
-
-                $result = new Blob($value);
-
-                break;
-
             default:
-                $result = $value;
+                throw new RuntimeException(sprintf(
+                    'Unrecognized value type %s. Please ensure you are using the latest version of google/cloud.',
+                    $type
+                ));
+
                 break;
         }
 
@@ -221,9 +261,10 @@ class EntityMapper
      *
      * @param mixed $value
      * @param bool $exclude [optional] If true, value will be excluded from datastore indexes.
+     * @param int $meaning [optional] The Meaning value. Maintained only for backwards compatibility.
      * @return array
      */
-    public function valueObject($value, $exclude = false)
+    public function valueObject($value, $exclude = false, $meaning = null)
     {
         switch (gettype($value)) {
             case 'boolean':
@@ -302,6 +343,10 @@ class EntityMapper
 
         if ($exclude) {
             $propertyValue['excludeFromIndexes'] = true;
+        }
+
+        if ($meaning) {
+            $propertyValue['meaning'] = $meaning;
         }
 
         return $propertyValue;

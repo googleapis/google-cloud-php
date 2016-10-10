@@ -97,6 +97,7 @@ class Entity implements ArrayAccess
      *           {@see Google\Cloud\Datastore\Entity::baseVersion()}.
      *     @type array $excludeFromIndexes A list of entity keys to exclude from
      *           datastore indexes.
+     *     @type array $meanings A list of meaning values for entity properties.
      *     @type bool $populatedByService Indicates whether the entity was
      *           created as the result of a service request.
      * }
@@ -110,7 +111,8 @@ class Entity implements ArrayAccess
             'cursor' => null,
             'baseVersion' => null,
             'populatedByService' => false,
-            'excludeFromIndexes' => []
+            'excludeFromIndexes' => [],
+            'meanings' => []
         ];
     }
 
@@ -248,6 +250,21 @@ class Entity implements ArrayAccess
     public function excludedProperties()
     {
         return $this->options['excludeFromIndexes'];
+    }
+
+    /**
+     * return a list of meaning values
+     *
+     * Example:
+     * ```
+     * print_R($entity->meanings());
+     * ```
+     *
+     * @return array
+     */
+    public function meanings()
+    {
+        return $this->options['meanings'];
     }
 
     /**
