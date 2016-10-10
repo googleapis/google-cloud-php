@@ -590,9 +590,11 @@ class Operation
             $meanings = [];
 
             if (isset($entity['properties'])) {
-                $properties = $this->entityMapper->responseToProperties($entity['properties']);
-                $excludes = $this->entityMapper->responseToExcludeFromIndexes($entity['properties']);
-                $meanings = $this->entityMapper->responseToMeanings($entity['properties']);
+                $res = $this->entityMapper->responseToEntityProperties($entity['properties']);
+
+                $properties = $res['properties'];
+                $excludes = $res['excludes'];
+                $meanings = $res['meanings'];
             }
 
             $namespaceId = (isset($entity['key']['partitionId']['namespaceId']))

@@ -48,7 +48,7 @@ class EntityMapperTest extends \PHPUnit_Framework_TestCase
             ]
         ];
 
-        $res = $this->mapper->responseToProperties($data);
+        $res = $this->mapper->responseToEntityProperties($data)['properties'];
 
         $this->assertEquals('bar', $res['foo']);
         $this->assertEquals(1.1, $res['dubs']);
@@ -63,7 +63,7 @@ class EntityMapperTest extends \PHPUnit_Framework_TestCase
             ]
         ];
 
-        $res = $this->mapper->responseToProperties($data);
+        $res = $this->mapper->responseToEntityProperties($data)['properties'];
 
         $this->assertNull($res['foo']);
     }
@@ -76,7 +76,7 @@ class EntityMapperTest extends \PHPUnit_Framework_TestCase
             ]
         ];
 
-        $res = $this->mapper->responseToProperties($data);
+        $res = $this->mapper->responseToEntityProperties($data)['properties'];
 
         $this->assertTrue($res['foo']);
     }
@@ -89,7 +89,7 @@ class EntityMapperTest extends \PHPUnit_Framework_TestCase
             ]
         ];
 
-        $res = $this->mapper->responseToProperties($data);
+        $res = $this->mapper->responseToEntityProperties($data)['properties'];
 
         $this->assertEquals(1.1, $res['foo']);
     }
@@ -104,7 +104,7 @@ class EntityMapperTest extends \PHPUnit_Framework_TestCase
             ]
         ];
 
-        $res = $this->mapper->responseToProperties($data);
+        $res = $this->mapper->responseToEntityProperties($data)['properties'];
 
         $this->assertInstanceOf(\DateTimeImmutable::class, $res['foo']);
         $this->assertEquals($date->format('c'), $res['foo']->format('c'));
@@ -124,7 +124,7 @@ class EntityMapperTest extends \PHPUnit_Framework_TestCase
             ]
         ];
 
-        $res = $this->mapper->responseToProperties($data);
+        $res = $this->mapper->responseToEntityProperties($data)['properties'];
 
         $this->assertInstanceOf(Key::class, $res['foo']);
         $this->assertEquals($path, $res['foo']->path());
@@ -138,7 +138,7 @@ class EntityMapperTest extends \PHPUnit_Framework_TestCase
             ]
         ];
 
-        $res = $this->mapper->responseToProperties($data);
+        $res = $this->mapper->responseToEntityProperties($data)['properties'];
 
         $this->assertInstanceOf(Blob::class, $res['foo']);
         $this->assertEquals('hello world', (string)$res['foo']);
@@ -157,7 +157,7 @@ class EntityMapperTest extends \PHPUnit_Framework_TestCase
             ]
         ];
 
-        $res = $this->mapper->responseToProperties($data);
+        $res = $this->mapper->responseToEntityProperties($data)['properties'];
 
         $this->assertInstanceOf(GeoPoint::class, $res['foo']);
         $this->assertEquals($point, $res['foo']->point());
@@ -177,7 +177,7 @@ class EntityMapperTest extends \PHPUnit_Framework_TestCase
             ]
         ];
 
-        $res = $this->mapper->responseToProperties($data);
+        $res = $this->mapper->responseToEntityProperties($data)['properties'];
 
         $this->assertEquals('baz', $res['foo']['bar']);
     }
@@ -198,7 +198,7 @@ class EntityMapperTest extends \PHPUnit_Framework_TestCase
             ]
         ];
 
-        $res = $this->mapper->responseToProperties($data);
+        $res = $this->mapper->responseToEntityProperties($data)['properties'];
 
         $this->assertEquals(['a','b','c'], $res['foo']);
     }
@@ -214,7 +214,7 @@ class EntityMapperTest extends \PHPUnit_Framework_TestCase
             ]
         ];
 
-        $res = $this->mapper->responseToProperties($data);
+        $res = $this->mapper->responseToEntityProperties($data)['properties'];
     }
 
     public function testResponseToExcludedProperties()
@@ -229,7 +229,7 @@ class EntityMapperTest extends \PHPUnit_Framework_TestCase
             ]
         ];
 
-        $res = $this->mapper->responseToExcludeFromIndexes($data);
+        $res = $this->mapper->responseToEntityProperties($data)['excludes'];
 
         $res = $this->assertEquals(['foo'], $res);
     }
@@ -602,10 +602,10 @@ class EntityMapperTest extends \PHPUnit_Framework_TestCase
             ]
         ];
 
-        $props = $this->mapper->responseToProperties($data);
+        $props = $this->mapper->responseToEntityProperties($data)['properties'];
         $this->assertEquals(['foo' => 'bar'], $props);
 
-        $meanings = $this->mapper->responseToMeanings($data);
+        $meanings = $this->mapper->responseToEntityProperties($data)['meanings'];
         $this->assertEquals(['foo' => 10], $meanings);
     }
 

@@ -53,59 +53,35 @@ class EntityMapper
     }
 
     /**
-     * Map a lookup or query result to a set of properties
+     * Convert an entity response to properties, excludes and meanings.
      *
-     * @param array $entityData The incoming entity data
+     * @param array $entityData The incoming entity
      * @return array
      */
-    public function responseToProperties(array $entityData)
+    public function responseToEntityProperties(array $entityData)
     {
-        $props = [];
-
-        foreach ($entityData as $key => $property) {
-            $props[$key] = $this->getPropertyValue($property);
-        }
-
-        return $props;
-    }
-
-    /**
-     * Get a list of properties excluded from datastore indexes
-     *
-     * @param array $entityData The incoming entity data
-     * @return array
-     */
-    public function responseToExcludeFromIndexes(array $entityData)
-    {
+        $properties = [];
         $excludes = [];
+        $meanings = [];
 
         foreach ($entityData as $key => $property) {
+            $properties[$key] = $this->getPropertyValue($property);
+
             if (isset($property['excludeFromIndexes']) && $property['excludeFromIndexes']) {
                 $excludes[] = $key;
             }
-        }
 
-        return $excludes;
-    }
-
-    /**
-     * Preserve meaning field values
-     *
-     * @param array $entityData The incoming entity data
-     * @return array
-     */
-    public function responseToMeanings(array $entityData)
-    {
-        $meanings = [];
-        foreach ($entityData as $key => $property) {
             if (isset($property['meaning']) && $property['meaning']) {
                 $meanings[$key] = $property['meaning'];
             }
         }
 
-        return $meanings;
+        return [
+            'properties' => $properties,
+            'excludes' => $excludes,
+            'meanings' => $meanings
+        ];
     }
-
     /**
      * Translate an Entity to a datastore representation.
      *
@@ -209,7 +185,7 @@ class EntityMapper
                 break;
 
             case 'entityValue':
-                $props = $this->responseToProperties($value['properties']);
+                $props = $this->responseToEntityProperties($value['properties'])['properties'];
 
                 if (isset($value['key'])) {
                     $namespaceId = (isset($value['key']['partitionId']['namespaceId']))
