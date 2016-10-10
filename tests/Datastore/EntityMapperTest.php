@@ -54,6 +54,169 @@ class EntityMapperTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(1.1, $res['dubs']);
     }
 
+    public function testResponseToPropertiesNullValue()
+    {
+        $data = [
+            'foo' => [
+                'meaning' => 1,
+                'nullValue' => null
+            ]
+        ];
+
+        $res = $this->mapper->responseToProperties($data);
+
+        $this->assertNull($res['foo']);
+    }
+
+    public function testResponesToPropertiesBooleanValue()
+    {
+        $data = [
+            'foo' => [
+                'booleanValue' => true
+            ]
+        ];
+
+        $res = $this->mapper->responseToProperties($data);
+
+        $this->assertTrue($res['foo']);
+    }
+
+    public function testResponseToPropertiesDoubleValue()
+    {
+        $data = [
+            'foo' => [
+                'doubleValue' => 1.1
+            ]
+        ];
+
+        $res = $this->mapper->responseToProperties($data);
+
+        $this->assertEquals(1.1, $res['foo']);
+    }
+
+    public function testResponseToPropertiesTimestampValue()
+    {
+        $date = new \DateTimeImmutable;
+
+        $data = [
+            'foo' => [
+                'timestampValue' => $date->format('c')
+            ]
+        ];
+
+        $res = $this->mapper->responseToProperties($data);
+
+        $this->assertInstanceOf(\DateTimeImmutable::class, $res['foo']);
+        $this->assertEquals($date->format('c'), $res['foo']->format('c'));
+    }
+
+    public function testResponseToPropertiesKeyValue()
+    {
+        $path = [
+            ['kind' => 'Kind', 'name' => 'Name']
+        ];
+
+        $data = [
+            'foo' => [
+                'keyValue' => (new Key('foo', [
+                    'path' => $path
+                ]))->keyObject()
+            ]
+        ];
+
+        $res = $this->mapper->responseToProperties($data);
+
+        $this->assertInstanceOf(Key::class, $res['foo']);
+        $this->assertEquals($path, $res['foo']->path());
+    }
+
+    public function testResponseToPropertiesBlobValue()
+    {
+        $data = [
+            'foo' => [
+                'blobValue' => base64_encode('hello world')
+            ]
+        ];
+
+        $res = $this->mapper->responseToProperties($data);
+
+        $this->assertInstanceOf(Blob::class, $res['foo']);
+        $this->assertEquals('hello world', (string)$res['foo']);
+    }
+
+    public function testResponseToPropertiesGeoPoint()
+    {
+        $point = [
+            'latitude' => 1,
+            'longitude' => -1
+        ];
+
+        $data = [
+            'foo' => [
+                'geoPointValue' => $point
+            ]
+        ];
+
+        $res = $this->mapper->responseToProperties($data);
+
+        $this->assertInstanceOf(GeoPoint::class, $res['foo']);
+        $this->assertEquals($point, $res['foo']->point());
+    }
+
+    public function testResponseToPropertiesEntityValue()
+    {
+        $data = [
+            'foo' => [
+                'entityValue' => [
+                    'properties' => [
+                        'bar' => [
+                            'stringValue' => 'baz'
+                        ]
+                    ]
+                ]
+            ]
+        ];
+
+        $res = $this->mapper->responseToProperties($data);
+
+        $this->assertEquals('baz', $res['foo']['bar']);
+    }
+
+    public function testResponseToPropertiesArrayValue()
+    {
+        $arr = [
+            ['stringValue' => 'a'],
+            ['stringValue' => 'b'],
+            ['stringValue' => 'c']
+        ];
+
+        $data = [
+            'foo' => [
+                'arrayValue' => [
+                    'values' => $arr
+                ]
+            ]
+        ];
+
+        $res = $this->mapper->responseToProperties($data);
+
+        $this->assertEquals(['a','b','c'], $res['foo']);
+    }
+
+    /**
+     * @expectedException RuntimeException
+     */
+    public function testResponseToPropertiesNoValuePresent()
+    {
+        $data = [
+            'foo' => [
+                'meaning' => 1
+            ]
+        ];
+
+        $res = $this->mapper->responseToProperties($data);
+    }
+
     public function testResponseToExcludedProperties()
     {
         $data = [

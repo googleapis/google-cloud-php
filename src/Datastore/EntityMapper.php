@@ -21,6 +21,7 @@ use Google\Cloud\Datastore\Entity;
 use Google\Cloud\Datastore\GeoPoint;
 use Google\Cloud\Datastore\Key;
 use InvalidArgumentException;
+use RuntimeException;
 
 /**
  * Utility methods for mapping between datastore and {@see Google\Cloud\Datastore\Entity}.
@@ -38,23 +39,6 @@ class EntityMapper
      * @var bool
      */
     private $encode;
-
-    /**
-     * @var array
-     */
-    private $valueTypes = [
-        "nullValue",
-        "booleanValue",
-        "integerValue",
-        "doubleValue",
-        "timestampValue",
-        "keyValue",
-        "stringValue",
-        "blobValue",
-        "geoPointValue",
-        "entityValue",
-        "arrayValue",
-    ];
 
     /**
      * Create an Entity Mapper
@@ -79,9 +63,7 @@ class EntityMapper
         $props = [];
 
         foreach ($entityData as $key => $property) {
-            $type = $this->getValueType($property);
-
-            $props[$key] = $this->convertValue($type, $property[$type]);
+            $props[$key] = $this->getPropertyValue($property);
         }
 
         return $props;
@@ -191,9 +173,7 @@ class EntityMapper
                     $result = [];
 
                     foreach ($value['properties'] as $key => $property) {
-                        $type = key($property);
-
-                        $result[$key] = $this->convertValue($type, $property[$type]);
+                        $result[$key] = $this->getPropertyValue($property);
                     }
                 }
 
@@ -213,9 +193,7 @@ class EntityMapper
                 $result = [];
 
                 foreach ($value['values'] as $val) {
-                    $type = key($val);
-
-                    $result[] = $this->convertValue($type, $val[$type]);
+                    $result[] = $this->getPropertyValue($val);
                 }
 
                 break;
@@ -448,16 +426,35 @@ class EntityMapper
     }
 
     /**
+     * Determine the property type and return a converted value
+     *
+     * @param array $property The API property
+     * @return mixed
+     */
+    private function getPropertyValue(array $property)
+    {
+        $type = $this->getValueType($property);
+        return $this->convertValue($type, $property[$type]);
+    }
+
+    /**
      * Get the value type from a value object.
      *
      * @param array $value
      * @return string
+     * @throws RuntimeException
      */
     private function getValueType(array $value)
     {
         $keys = array_keys($value);
-        return array_values(array_filter($keys, function ($key) {
-            return in_array($key, $this->valueTypes);
-        }))[0];
+        $types = array_values(array_filter($keys, function ($key) {
+            return strpos($key, 'Value') !== false;
+        }));
+
+        if (!empty($types)) {
+            return $types[0];
+        }
+
+        throw new RuntimeException('Invalid entity property value given');
     }
 }
