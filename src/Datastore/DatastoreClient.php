@@ -751,7 +751,7 @@ class DatastoreClient
      * }
      * ```
      *
-     * @param Key $key $key The identifier to use to locate a desired entity.
+     * @param Key $key The identifier to use to locate a desired entity.
      * @param array $options [optional] {
      *     Configuration Options
      *

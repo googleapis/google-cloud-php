@@ -190,7 +190,7 @@ class Query implements QueryInterface
     }
 
     /**
-     * Set the query to return only keys (no properties)
+     * Set the query to return only keys (no properties).
      *
      * Example:
      * ```
@@ -331,7 +331,7 @@ class Query implements QueryInterface
     }
 
     /**
-     * Specify an order for the query
+     * Specify an order for the query.
      *
      * Example:
      * ```

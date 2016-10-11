@@ -82,6 +82,7 @@ class EntityMapper
             'meanings' => $meanings
         ];
     }
+
     /**
      * Translate an Entity to a datastore representation.
      *
