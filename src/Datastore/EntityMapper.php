@@ -21,6 +21,7 @@ use Google\Cloud\Datastore\Entity;
 use Google\Cloud\Datastore\GeoPoint;
 use Google\Cloud\Datastore\Key;
 use InvalidArgumentException;
+use RuntimeException;
 
 /**
  * Utility methods for mapping between datastore and {@see Google\Cloud\Datastore\Entity}.
@@ -52,43 +53,35 @@ class EntityMapper
     }
 
     /**
-     * Map a lookup or query result to a set of properties
+     * Convert an entity response to properties, excludes and meanings.
      *
-     * @param array $entityData The incoming entity data
+     * @param array $entityData The incoming entity
      * @return array
      */
-    public function responseToProperties(array $entityData)
+    public function responseToEntityProperties(array $entityData)
     {
-        $props = [];
-
-        foreach ($entityData as $key => $property) {
-            $type = key($property);
-
-            $props[$key] = $this->convertValue($type, $property[$type]);
-        }
-
-        return $props;
-    }
-
-    /**
-     * Get a list of properties excluded from datastore indexes
-     *
-     * @param array $entityData The incoming entity data
-     * @return array
-     */
-    public function responseToExcludeFromIndexes(array $entityData)
-    {
+        $properties = [];
         $excludes = [];
+        $meanings = [];
 
         foreach ($entityData as $key => $property) {
+            $properties[$key] = $this->getPropertyValue($property);
+
             if (isset($property['excludeFromIndexes']) && $property['excludeFromIndexes']) {
                 $excludes[] = $key;
             }
+
+            if (isset($property['meaning']) && $property['meaning']) {
+                $meanings[$key] = $property['meaning'];
+            }
         }
 
-        return $excludes;
+        return [
+            'properties' => $properties,
+            'excludes' => $excludes,
+            'meanings' => $meanings
+        ];
     }
-
     /**
      * Translate an Entity to a datastore representation.
      *
@@ -102,10 +95,14 @@ class EntityMapper
         $properties = [];
         foreach ($data as $key => $value) {
             $exclude = in_array($key, $entity->excludedProperties());
+            $meaning = (isset($entity->meanings()[$key]))
+                ? $entity->meanings()[$key]
+                : null;
 
             $properties[$key] = $this->valueObject(
                 $value,
-                $exclude
+                $exclude,
+                $meaning
             );
         }
 
@@ -127,6 +124,25 @@ class EntityMapper
         $result = null;
 
         switch ($type) {
+            case 'nullValue':
+                $result = null;
+
+                break;
+
+            case 'booleanValue':
+                $result = (bool) $value;
+                break;
+
+            case 'integerValue':
+                $result = (int) $value;
+
+                break;
+
+            case 'doubleValue':
+                $result = (float) $value;
+
+                break;
+
             case 'timestampValue':
                 $result = new \DateTimeImmutable($value);
 
@@ -144,6 +160,20 @@ class EntityMapper
 
                 break;
 
+            case 'stringValue':
+                $result = $value;
+
+                break;
+
+            case 'blobValue':
+                if ($this->isEncoded($value)) {
+                    $value = base64_decode($value);
+                }
+
+                $result = new Blob($value);
+
+                break;
+
             case 'geoPointValue':
                 $value += [
                     'latitude' => null,
@@ -155,7 +185,7 @@ class EntityMapper
                 break;
 
             case 'entityValue':
-                $props = $this->responseToProperties($value['properties']);
+                $props = $this->responseToEntityProperties($value['properties'])['properties'];
 
                 if (isset($value['key'])) {
                     $namespaceId = (isset($value['key']['partitionId']['namespaceId']))
@@ -174,21 +204,9 @@ class EntityMapper
                     $result = [];
 
                     foreach ($value['properties'] as $key => $property) {
-                        $type = key($property);
-
-                        $result[$key] = $this->convertValue($type, $property[$type]);
+                        $result[$key] = $this->getPropertyValue($property);
                     }
                 }
-
-                break;
-
-            case 'doubleValue':
-                $result = (float) $value;
-
-                break;
-
-            case 'integerValue':
-                $result = (int) $value;
 
                 break;
 
@@ -196,24 +214,17 @@ class EntityMapper
                 $result = [];
 
                 foreach ($value['values'] as $val) {
-                    $type = key($val);
-
-                    $result[] = $this->convertValue($type, $val[$type]);
+                    $result[] = $this->getPropertyValue($val);
                 }
-
-                break;
-
-            case 'blobValue':
-                if ($this->isEncoded($value)) {
-                    $value = base64_decode($value);
-                }
-
-                $result = new Blob($value);
 
                 break;
 
             default:
-                $result = $value;
+                throw new RuntimeException(sprintf(
+                    'Unrecognized value type %s. Please ensure you are using the latest version of google/cloud.',
+                    $type
+                ));
+
                 break;
         }
 
@@ -226,9 +237,10 @@ class EntityMapper
      *
      * @param mixed $value
      * @param bool $exclude [optional] If true, value will be excluded from datastore indexes.
+     * @param int $meaning [optional] The Meaning value. Maintained only for backwards compatibility.
      * @return array
      */
-    public function valueObject($value, $exclude = false)
+    public function valueObject($value, $exclude = false, $meaning = null)
     {
         switch (gettype($value)) {
             case 'boolean':
@@ -307,6 +319,10 @@ class EntityMapper
 
         if ($exclude) {
             $propertyValue['excludeFromIndexes'] = true;
+        }
+
+        if ($meaning) {
+            $propertyValue['meaning'] = $meaning;
         }
 
         return $propertyValue;
@@ -428,5 +444,38 @@ class EntityMapper
         }
 
         return true;
+    }
+
+    /**
+     * Determine the property type and return a converted value
+     *
+     * @param array $property The API property
+     * @return mixed
+     */
+    private function getPropertyValue(array $property)
+    {
+        $type = $this->getValueType($property);
+        return $this->convertValue($type, $property[$type]);
+    }
+
+    /**
+     * Get the value type from a value object.
+     *
+     * @param array $value
+     * @return string
+     * @throws RuntimeException
+     */
+    private function getValueType(array $value)
+    {
+        $keys = array_keys($value);
+        $types = array_values(array_filter($keys, function ($key) {
+            return strpos($key, 'Value') !== false;
+        }));
+
+        if (!empty($types)) {
+            return $types[0];
+        }
+
+        throw new RuntimeException('Invalid entity property value given');
     }
 }

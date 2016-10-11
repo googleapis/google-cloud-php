@@ -587,10 +587,14 @@ class Operation
 
             $properties = [];
             $excludes = [];
+            $meanings = [];
 
             if (isset($entity['properties'])) {
-                $properties = $this->entityMapper->responseToProperties($entity['properties']);
-                $excludes = $this->entityMapper->responseToExcludeFromIndexes($entity['properties']);
+                $res = $this->entityMapper->responseToEntityProperties($entity['properties']);
+
+                $properties = $res['properties'];
+                $excludes = $res['excludes'];
+                $meanings = $res['meanings'];
             }
 
             $namespaceId = (isset($entity['key']['partitionId']['namespaceId']))
@@ -625,7 +629,8 @@ class Operation
                     : null,
                 'className' => $className,
                 'populatedByService' => true,
-                'excludeFromIndexes' => $excludes
+                'excludeFromIndexes' => $excludes,
+                'meanings' => $meanings
             ]);
         }
 
