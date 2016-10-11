@@ -536,13 +536,7 @@ class StorageObject
      */
     public function downloadAsString(array $options = [])
     {
-        return (string) $this->connection->downloadObject(
-            $this->formatEncryptionHeaders(
-                $options
-                + $this->encryptionData
-                + $this->identity
-            )
-        );
+        return (string) $this->downloadAsStream($options);
     }
 
     /**
@@ -573,13 +567,7 @@ class StorageObject
         $destination = Psr7\stream_for(fopen($path, 'w'));
 
         Psr7\copy_to_stream(
-            $this->connection->downloadObject(
-                $this->formatEncryptionHeaders(
-                    $options
-                    + $this->encryptionData
-                    + $this->identity
-                )
-            ),
+            $this->downloadAsStream($options),
             $destination
         );
 
