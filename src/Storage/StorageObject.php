@@ -536,13 +536,7 @@ class StorageObject
      */
     public function downloadAsString(array $options = [])
     {
-        return (string) $this->connection->downloadObject(
-            $this->formatEncryptionHeaders(
-                $options
-                + $this->encryptionData
-                + $this->identity
-            )
-        );
+        return (string) $this->downloadAsStream($options);
     }
 
     /**
@@ -573,19 +567,47 @@ class StorageObject
         $destination = Psr7\stream_for(fopen($path, 'w'));
 
         Psr7\copy_to_stream(
-            $this->connection->downloadObject(
-                $this->formatEncryptionHeaders(
-                    $options
-                    + $this->encryptionData
-                    + $this->identity
-                )
-            ),
+            $this->downloadAsStream($options),
             $destination
         );
 
         $destination->seek(0);
 
         return $destination;
+    }
+
+    /**
+     * Download an object as a stream.
+     *
+     * Example:
+     * ```
+     * $stream = $object->downloadAsStream();
+     * echo $stream->getContents();
+     * ```
+     *
+     * @param array $options [optional] {
+     *     Configuration Options.
+     *
+     *     @type string $encryptionKey An AES-256 customer-supplied encryption
+     *           key. It will be neccesary to provide this when a key was used
+     *           during the object's creation. If provided one must also include
+     *           an `encryptionKeySHA256`.
+     *     @type string $encryptionKeySHA256 The SHA256 hash of the
+     *           customer-supplied encryption key. It will be neccesary to
+     *           provide this when a key was used during the object's creation.
+     *           If provided one must also include an `encryptionKey`.
+     * }
+     * @return StreamInterface
+     */
+    public function downloadAsStream(array $options = [])
+    {
+        return $this->connection->downloadObject(
+            $this->formatEncryptionHeaders(
+                $options
+                + $this->encryptionData
+                + $this->identity
+            )
+        );
     }
 
     /**

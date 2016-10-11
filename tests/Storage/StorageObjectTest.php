@@ -23,12 +23,15 @@ use Google\Cloud\Storage\Bucket;
 use Google\Cloud\Storage\StorageObject;
 use GuzzleHttp\Psr7;
 use Prophecy\Argument;
+use Prophecy\Prophecy\ObjectProphecy;
+use Psr\Http\Message\StreamInterface;
 
 /**
  * @group storage
  */
 class StorageObjectTest extends \PHPUnit_Framework_TestCase
 {
+    /** @var ConnectionInterface|ObjectProphecy */
     public $connection;
 
     public function setUp()
@@ -364,6 +367,58 @@ class StorageObjectTest extends \PHPUnit_Framework_TestCase
             ])
             ->getContents()
         );
+    }
+
+    public function testGetBodyWithoutExtraOptions()
+    {
+        $bucket = 'bucket';
+        $object = 'object.txt';
+        $stream = Psr7\stream_for($string = 'abcdefg');
+        $this->connection->downloadObject([
+            'bucket' => $bucket,
+            'object' => $object,
+            'generation' => null,
+        ])
+            ->willReturn($stream);
+
+        $object = new StorageObject($this->connection->reveal(), $object, $bucket);
+
+        $body = $object->downloadAsStream();
+
+        $this->assertInstanceOf(StreamInterface::class, $body);
+        $this->assertEquals($string, $body);
+    }
+
+    public function testGetBodyWithExtraOptions()
+    {
+        $key = 'abcd';
+        $hash = '1234';
+        $bucket = 'bucket';
+        $object = 'object.txt';
+        $stream = Psr7\stream_for($string = 'abcdefg');
+        $this->connection->downloadObject([
+            'bucket' => $bucket,
+            'object' => $object,
+            'generation' => null,
+            'httpOptions' => [
+                'headers' => [
+                    'x-goog-encryption-algorithm' => 'AES256',
+                    'x-goog-encryption-key' => base64_encode($key),
+                    'x-goog-encryption-key-sha256' => base64_encode($hash),
+                ]
+            ]
+        ])
+            ->willReturn($stream);
+
+        $object = new StorageObject($this->connection->reveal(), $object, $bucket);
+
+        $body = $object->downloadAsStream([
+            'encryptionKey' => $key,
+            'encryptionKeySHA256' => $hash
+        ]);
+
+        $this->assertInstanceOf(StreamInterface::class, $body);
+        $this->assertEquals($string, $body);
     }
 
     public function testGetsInfo()
