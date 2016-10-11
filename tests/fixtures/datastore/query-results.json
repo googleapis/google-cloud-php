@@ -82,7 +82,7 @@
           }
         ],
         "endCursor": "1234",
-        "moreResults": "MORE_RESULTS_AFTER_CURSOR"
+        "moreResults": "NOT_FINISHED"
       }
     }, {
       "batch": {

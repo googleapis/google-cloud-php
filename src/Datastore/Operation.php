@@ -405,7 +405,7 @@ class Operation
                     yield $result;
                 }
 
-                if ($query->canPaginate() && $res['batch']['moreResults'] !== 'NO_MORE_RESULTS') {
+                if ($query->canPaginate() && $res['batch']['moreResults'] === 'NOT_FINISHED') {
                     $query->start($res['batch']['endCursor']);
                 } else {
                     $moreResults = false;
