@@ -217,6 +217,9 @@ class Bucket
             throw new \InvalidArgumentException('A name is required when data is of type string.');
         }
 
+        $encryptionKey = isset($options['encryptionKey']) ? $options['encryptionKey'] : null;
+        $encryptionKeySHA256 = isset($options['encryptionKeySHA256']) ? $options['encryptionKeySHA256'] : null;
+
         $response = $this->connection->insertObject(
             $this->formatEncryptionHeaders($options) + [
                 'bucket' => $this->identity['bucket'],
@@ -229,7 +232,9 @@ class Bucket
             $response['name'],
             $this->identity['bucket'],
             $response['generation'],
-            $response
+            $response,
+            $encryptionKey,
+            $encryptionKeySHA256
         );
     }
 
@@ -337,6 +342,7 @@ class Bucket
             $name,
             $this->identity['bucket'],
             $generation,
+            null,
             $encryptionKey,
             $encryptionKeySHA256
         );

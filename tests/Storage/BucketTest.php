@@ -121,12 +121,14 @@ class BucketTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('Google\Cloud\Storage\StorageObject', $bucket->object('peter-venkman.jpg'));
     }
 
-    public function testInstantiateObjectWithGeneration()
+    public function testInstantiateObjectWithOptions()
     {
         $bucket = new Bucket($this->connection->reveal(), 'bucket');
 
         $object = $bucket->object('peter-venkman.jpg', [
-            'generation' => '5'
+            'generation' => '5',
+            'encryptionKey' => 'abc',
+            'encryptionKeySHA256' => '123'
         ]);
 
         $this->assertInstanceOf('Google\Cloud\Storage\StorageObject', $object);
