@@ -50,6 +50,26 @@ class OperationTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('Bar', $key->path()[0]['name']);
     }
 
+    public function testKeyWithNamespaceId()
+    {
+        $op = new Operation($this->connection->reveal(), 'foo', 'namespace', $this->mapper);
+        $key = $op->key('Person', 'Bob');
+        $obj = $key->keyObject();
+
+        $this->assertEquals('namespace', $obj['partitionId']['namespaceId']);
+    }
+
+    public function testKeyWithNamespaceIdOverride()
+    {
+        $op = new Operation($this->connection->reveal(), 'foo', 'namespace', $this->mapper);
+        $key = $op->key('Person', 'Bob', [
+            'namespaceId' => 'otherNamespace'
+        ]);
+        $obj = $key->keyObject();
+
+        $this->assertEquals('otherNamespace', $obj['partitionId']['namespaceId']);
+    }
+
     public function testKeys()
     {
         $keys = $this->operation->keys('Foo');
