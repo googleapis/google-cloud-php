@@ -51,14 +51,19 @@ class Topic
     protected $connection;
 
     /**
+     * @var string The project ID
+     */
+    private $projectId;
+
+    /**
      * @var string The topic name
      */
     private $name;
 
     /**
-     * @var string The project ID
+     * @var bool
      */
-    private $projectId;
+    private $encode;
 
     /**
      * @var array
@@ -73,20 +78,23 @@ class Topic
     /**
      * Create a PubSub topic.
      *
-     * @param  ConnectionInterface $connection A connection to the Google Cloud
-     *         Platform service
-     * @param  string $name The topic name
-     * @param  string $projectId The project Id
-     * @param  array $info [optional] A [Topic](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics)
+     * @param ConnectionInterface $connection A connection to the Google Cloud
+     *        Platform service
+     * @param string $projectId The project Id
+     * @param string $name The topic name
+     * @param bool $encode Whether messages should be base64 encoded.
+     * @param array $info [optional] A [Topic](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics)
      */
     public function __construct(
         ConnectionInterface $connection,
-        $name,
         $projectId,
+        $name,
+        $encode,
         array $info = null
     ) {
         $this->connection = $connection;
         $this->projectId = $projectId;
+        $this->encode = (bool) $encode;
         $this->info = $info;
 
         // Accept either a simple name or a fully-qualified name.
@@ -120,7 +128,6 @@ class Topic
      *
      * Example:
      * ```
-     * $topic = $pubsub->topic('my-topic-name');
      * if ($topic->create()) {
      *     echo 'Topic Created!';
      * }
@@ -145,8 +152,6 @@ class Topic
      *
      * Example:
      * ```
-     * $topic = $pubsub->topic('my-topic-name');
-     *
      * $topic->delete();
      * ```
      *
@@ -171,7 +176,6 @@ class Topic
      *
      * Example:
      * ```
-     * $topic = $pubsub->topic('my-topic-name');
      * if ($topic->exists()) {
      *     // do stuff
      * }
@@ -204,7 +208,6 @@ class Topic
      *
      * Example:
      * ```
-     * $topic = $pubsub->topic('my-topic-name');
      * $info = $topic->info();
      * echo $info['name']; // projects/my-awesome-project/topics/my-topic-name
      * ```
@@ -239,7 +242,6 @@ class Topic
      *
      * Example:
      * ```
-     * $topic = $pubsub->topic('my-topic-name');
      * $topic->reload();
      * $info = $topic->info();
      * echo $info['name']; // projects/my-awesome-project/topics/my-topic-name
@@ -266,7 +268,6 @@ class Topic
      *
      * Example:
      * ```
-     * $topic = $pubsub->topic('my-topic-name');
      * $topic->publish([
      *     'data' => 'New User Registered',
      *     'attributes' => [
@@ -279,14 +280,8 @@ class Topic
      *
      * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics/publish Publish Message
      *
-     * @param string $message [Message Format](https://cloud.google.com/pubsub/docs/reference/rest/v1/PubsubMessage)
-     * @param array $options [optional] {
-     *      Configuration Options
-     *
-     *      @type bool $encode If set to false, the message data will not be
-     *            base64-encoded. Only turn this off if you have already encoded
-     *            your message data. **Defaults to** `true`.
-     * }
+     * @param array $message [Message Format](https://cloud.google.com/pubsub/docs/reference/rest/v1/PubsubMessage)
+     * @param array $options [optional] Configuration Options
      * @return array A list of message IDs
      */
     public function publish(array $message, array $options = [])
@@ -299,7 +294,6 @@ class Topic
      *
      * Example:
      * ```
-     * $topic = $pubsub->topic('my-topic-name');
      * $topic->publishBatch([
      *     [
      *         'data' => 'New User Registered',
@@ -327,21 +321,13 @@ class Topic
      *        unless `$options['encode']` is set to false. (See below for more
      *        information.)
      * }
-     * @param array $options [optional] {
-     *     Configuration Options
-     *
-     *     @type bool $encode If set to false, the message data will not be
-     *           base64-encoded. Only turn this off if you have already encoded
-     *           your message data. **Defaults to** `true`.
-     * }
+     * @param array $options [optional] Configuration Options
      * @return array A list of message IDs.
      */
     public function publishBatch(array $messages, array $options = [])
     {
-        $encode = (isset($options['encode'])) ? $options['encode'] : true;
-
         foreach ($messages as &$message) {
-            $message = $this->formatMessage($message, $encode);
+            $message = $this->formatMessage($message);
         }
 
         return $this->connection->publishMessage($options + [
@@ -355,8 +341,6 @@ class Topic
      *
      * Example:
      * ```
-     * $topic = $pubsub->topic('my-topic-name');
-     *
      * $topic->subscribe('my-new-subscription');
      * ```
      *
@@ -382,8 +366,6 @@ class Topic
      *
      * Example:
      * ```
-     * $topic = $pubsub->topic('my-topic-name');
-     *
      * $topic->subscribe('my-new-subscription');
      * ```
      *
@@ -400,8 +382,6 @@ class Topic
      *
      * Example:
      * ```
-     * $topic = $pubsub->topic('my-topic-name');
-     *
      * $subscriptions = $topic->subscriptions();
      * foreach ($subscriptions as $subscription) {
      *     var_dump($subscription->info());
@@ -444,8 +424,6 @@ class Topic
      *
      * Example:
      * ```
-     * $topic = $pubsub->topic('my-topic-name');
-     *
      * $currentPolicy = $topic->iam()->policy();
      * ```
      *
@@ -483,13 +461,12 @@ class Topic
      * Ensure that the message is in a correct format,
      * base64_encode the data, and error if the input is too wrong to proceed.
      * @param  array $message
-     * @param  bool $encode [optional]
      * @return array The message data
      * @throws \InvalidArgumentException
      */
-    private function formatMessage(array $message, $encode = true)
+    private function formatMessage(array $message)
     {
-        if (isset($message['data']) && $encode) {
+        if (isset($message['data']) && $this->encode) {
             $message['data'] = base64_encode($message['data']);
         }
 
@@ -518,9 +495,10 @@ class Topic
     {
         return new Subscription(
             $this->connection,
+            $this->projectId,
             $name,
             $this->name,
-            $this->projectId,
+            $this->encode,
             $info
         );
     }
