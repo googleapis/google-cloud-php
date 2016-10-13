@@ -104,13 +104,8 @@ class Operation
      */
     public function key($kind, $identifier = null, array $options = [])
     {
-        $options += [
-            'identifierType' => null,
-            'namespaceId' => $this->namespaceId
-        ];
-
         $key = new Key($this->projectId, $options);
-        $key->pathElement($kind, $identifier, $options['identifierType']);
+        $key->pathElement($kind, $identifier, $options);
 
         return $key;
     }
@@ -283,8 +278,7 @@ class Operation
     /**
      * Lookup records by key
      *
-     * @codingStandardsIgnoreStart
-     * @param Key[] $key The identifiers to look up.
+     * @param Key[] $keys The identifiers to look up.
      * @param array $options [optional] {
      *     Configuration Options
      *
@@ -298,18 +292,20 @@ class Operation
      *           If an array is given, it must be an associative array, where
      *           the key is a Kind and the value is the name of a subclass of
      *           {@see Google\Cloud\Datastore\Entity}.
+     *     @type bool $sort If set to true, results in each set will be sorted
+     *           to match the order given in $keys. **Defaults to** `false`.
      * }
      * @return array Returns an array with keys [`found`, `missing`, and `deferred`].
      *         Members of `found` will be instance of
      *         {@see Google\Cloud\Datastore\Entity}. Members of `missing` and
      *         `deferred` will be instance of {@see Google\Cloud\Datastore\Key}.
      * @throws InvalidArgumentException
-     * @codingStandardsIgnoreEnd
      */
     public function lookup(array $keys, array $options = [])
     {
         $options += [
-            'className' => null
+            'className' => null,
+            'sort' => false
         ];
 
         $this->validateBatch($keys, Key::class, function ($key) {
@@ -333,6 +329,10 @@ class Operation
                 $res['found'],
                 $options['className']
             );
+
+            if ($options['sort']) {
+                $result['found'] = $this->sortEntities($result['found'], $keys);
+            }
         }
 
         if (isset($res['missing'])) {
@@ -664,5 +664,31 @@ class Operation
         return array_filter([
             'readOptions' => $readOptions
         ]);
+    }
+
+    /**
+     * Sort entities into the order given in $keys.
+     *
+     * @param Entity[] $entities
+     * @param Key[] $keys
+     * @return Entity[]
+     */
+    private function sortEntities(array $entities, array $keys)
+    {
+        $res = [];
+        foreach ($keys as $key) {
+            $path = $key->path();
+
+            foreach ($entities as $arrayKey => $entity) {
+                $entityPath = $entity->key()->path();
+
+                if ($path === $entityPath) {
+                    $res[] = $entity;
+                    unset($entities[$arrayKey]);
+                }
+            }
+        }
+
+        return $res;
     }
 }

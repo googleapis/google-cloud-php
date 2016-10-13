@@ -744,7 +744,7 @@ class DatastoreClient
      * }
      * ```
      *
-     * @param Key $key $key The identifier to use to locate a desired entity.
+     * @param Key $key The identifier to use to locate a desired entity.
      * @param array $options [optional] {
      *     Configuration Options
      *
@@ -797,6 +797,8 @@ class DatastoreClient
      *           If an array is given, it must be an associative array, where
      *           the key is a Kind and the value is the name of a subclass of
      *           {@see Google\Cloud\Datastore\Entity}.
+     *     @type bool $sort If set to true, results in each set will be sorted
+     *           to match the order given in $keys. **Defaults to** `false`.
      * }
      * @return array Returns an array with keys [`found`, `missing`, and `deferred`].
      *         Members of `found` will be instance of
@@ -819,16 +821,14 @@ class DatastoreClient
      * $query = $datastore->query();
      * ```
      *
-     * @param array $options [optional] {
-     *     Query Options
-     *
-     *     @type array $query [Query](https://cloud.google.com/datastore/reference/rest/v1/projects/runQuery#query)
-     * }
+     * @param array $query [Query](https://cloud.google.com/datastore/reference/rest/v1/projects/runQuery#query)
      * @return Query
      */
-    public function query(array $options = [])
+    public function query(array $query = [])
     {
-        return new Query($this->entityMapper, $options);
+        return new Query($this->entityMapper, [
+            'query' => $query
+        ]);
     }
 
     /**

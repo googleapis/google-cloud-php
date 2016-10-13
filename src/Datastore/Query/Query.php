@@ -19,6 +19,7 @@ namespace Google\Cloud\Datastore\Query;
 
 use Google\Cloud\Datastore\DatastoreTrait;
 use Google\Cloud\Datastore\EntityMapper;
+use Google\Cloud\Datastore\Key;
 use InvalidArgumentException;
 
 /**
@@ -103,11 +104,11 @@ class Query implements QueryInterface
      * @var array A list of comparison operators that map to datastore operators
      */
     private $shortOperators = [
-        '<' => self::OP_LESS_THAN,
+        '<'  => self::OP_LESS_THAN,
         '<=' => self::OP_LESS_THAN_OR_EQUAL,
-        '>' => self::OP_GREATER_THAN,
+        '>'  => self::OP_GREATER_THAN,
         '>=' => self::OP_GREATER_THAN_OR_EQUAL,
-        '=' => self::OP_EQUALS
+        '='  => self::OP_EQUALS
     ];
 
     /**
@@ -126,26 +127,21 @@ class Query implements QueryInterface
     /**
      * @var array
      */
-    private $options;
+    private $query;
 
     /**
      * @param EntityMapper $entityMapper An instance of EntityMapper
-     * @param array $options [optional] {
-     *     Configuration Options
-     *
-     *     @type array $query [Query](https://cloud.google.com/datastore/reference/rest/v1/projects/runQuery#query)
-     * }
+     * @param array $query [optional]
+     *        [Query](https://cloud.google.com/datastore/reference/rest/v1/projects/runQuery#query)
      */
-    public function __construct(EntityMapper $entityMapper, array $options = [])
+    public function __construct(EntityMapper $entityMapper, array $query = [])
     {
         $this->entityMapper = $entityMapper;
-        $this->options = $options + [
-            'query' => [
-                'projection' => [],
-                'kind' => [],
-                'order' => [],
-                'distinctOn' => []
-            ]
+        $this->query = $query + [
+            'projection' => [],
+            'kind' => [],
+            'order' => [],
+            'distinctOn' => []
         ];
     }
 
@@ -171,8 +167,27 @@ class Query implements QueryInterface
         }
 
         foreach ($properties as $property) {
-            $this->options['query']['projection'][]['property']['name'] = $property;
+            $this->query['projection'][] = [
+                'property' => $this->propertyName($property)
+            ];
         }
+
+        return $this;
+    }
+
+    /**
+     * Set the query to return only keys (no properties).
+     *
+     * Example:
+     * ```
+     * $query->keysOnly();
+     * ```
+     *
+     * @return Query
+     */
+    public function keysOnly()
+    {
+        $this->projection('__key__');
 
         return $this;
     }
@@ -200,7 +215,7 @@ class Query implements QueryInterface
         }
 
         foreach ($kinds as $kind) {
-            $this->options['query']['kind'][] = $this->propertyName($kind);
+            $this->query['kind'][] = $this->propertyName($kind);
         }
 
         return $this;
@@ -232,11 +247,11 @@ class Query implements QueryInterface
      */
     public function filter($property, $operator, $value)
     {
-        if (!isset($this->options['query']['filter']) || !isset($this->options['query']['filter']['compositeFilter'])) {
+        if (!isset($this->query['filter']) || !isset($this->query['filter']['compositeFilter'])) {
             $this->initializeFilter();
         }
 
-        $this->options['query']['filter']['compositeFilter']['filters'][] = [
+        $this->query['filter']['compositeFilter']['filters'][] = [
             'propertyFilter' => [
                 'property' => $this->propertyName($property),
                 'value' => $this->entityMapper->valueObject($value),
@@ -248,7 +263,40 @@ class Query implements QueryInterface
     }
 
     /**
-     * Specify an order for the query
+     * Query for entities by their ancestors.
+     *
+     * Keys can be provided either via a {@see Google\Cloud\Datastore\Key}
+     * object, or by providing a kind, identifier and (optionally) an identifier
+     * type.
+     *
+     * Example:
+     * ```
+     * $key = $datastore->key('Person', 'Bob');
+     * $query->hasAncestor($key);
+     * ```
+     *
+     * ```
+     * // Using a kind and indentifier
+     * $query->hasAncestor('Person', 'Bob');
+     * ```
+     *
+     * ```
+     * // Specifying an identifier type
+     * $query->hasAncestor('Robots', '1337', Key::TYPE_NAME);
+     * ```
+     *
+     * @param Key $key The ancestor Key instance.
+     * @return Query
+     */
+    public function hasAncestor(Key $key)
+    {
+        $this->filter('__key__', self::OP_HAS_ANCESTOR, $key);
+
+        return $this;
+    }
+
+    /**
+     * Specify an order for the query.
      *
      * Example:
      * ```
@@ -263,7 +311,7 @@ class Query implements QueryInterface
      */
     public function order($property, $direction = self::ORDER_DEFAULT)
     {
-        $this->options['query']['order'][] = [
+        $this->query['order'][] = [
             'property' => $this->propertyName($property),
             'direction' => $direction
         ];
@@ -293,7 +341,7 @@ class Query implements QueryInterface
         }
 
         foreach ($property as $prop) {
-            $this->options['query']['distinctOn'][] = $this->propertyName($prop);
+            $this->query['distinctOn'][] = $this->propertyName($prop);
         }
 
         return $this;
@@ -316,7 +364,7 @@ class Query implements QueryInterface
      */
     public function start($cursor)
     {
-        $this->options['query']['startCursor'] = $cursor;
+        $this->query['startCursor'] = $cursor;
 
         return $this;
     }
@@ -338,7 +386,7 @@ class Query implements QueryInterface
      */
     public function end($cursor)
     {
-        $this->options['query']['endCursor'] = $cursor;
+        $this->query['endCursor'] = $cursor;
 
         return $this;
     }
@@ -360,7 +408,7 @@ class Query implements QueryInterface
      */
     public function offset($num)
     {
-        $this->options['query']['offset'] = $num;
+        $this->query['offset'] = $num;
 
         return $this;
     }
@@ -382,7 +430,7 @@ class Query implements QueryInterface
      */
     public function limit($num)
     {
-        $this->options['query']['limit'] = $num;
+        $this->query['limit'] = $num;
 
         return $this;
     }
@@ -408,7 +456,7 @@ class Query implements QueryInterface
      */
     public function queryObject()
     {
-        return array_filter($this->options['query']);
+        return array_filter($this->query);
     }
 
     /**
@@ -437,7 +485,7 @@ class Query implements QueryInterface
      */
     private function initializeFilter()
     {
-        $this->options['query']['filter'] = [
+        $this->query['filter'] = [
             'compositeFilter' => [
                 'filters' => [],
                 'op' => 'AND'

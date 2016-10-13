@@ -141,25 +141,42 @@ class Key implements JsonSerializable
      * $key->pathElement('Person', 'Jane');
      * ```
      *
+     * ```
+     * // In cases where the identifier type is ambiguous, you can choose the
+     * // type to be used.
+     *
+     * $key->pathElement('Robots', '1337', [
+     *     'identifierType' => Key::TYPE_NAME
+     * ]);
+     * ```
+     *
      * @see https://cloud.google.com/datastore/reference/rest/v1/Key#PathElement PathElement
      *
      * @param string $kind The kind.
      * @param string|int $identifier [optional] The name or ID of the object.
-     * @param string $identifierType [optional] If omitted, the type will be determined
-     *        internally. Setting this to either `Key::TYPE_ID` or
-     *        `Key::TYPE_NAME` will force the pathElement identifier type.
+     * @param array $options {
+     *     Configuration Options
+     *
+     *     @type string $identifierType [optional] If omitted, the type will be
+     *           determined internally. Setting this to either `Key::TYPE_ID` or
+     *           `Key::TYPE_NAME` will force the pathElement identifier type.
+     * }
      * @return Key
      * @throws InvalidArgumentException
      */
-    public function pathElement($kind, $identifier = null, $identifierType = null)
+    public function pathElement($kind, $identifier = null, array $options = [])
     {
+        $options += [
+            'identifierType' => null
+        ];
+
         if (!empty($this->path) && $this->state() !== Key::STATE_NAMED) {
             throw new InvalidArgumentException(
                 'Cannot add pathElement because the previous element is missing an id or name'
             );
         }
 
-        $pathElement = $this->normalizeElement($kind, $identifier, $identifierType);
+        $pathElement = $this->normalizeElement($kind, $identifier, $options['identifierType']);
 
         $this->path[] = $pathElement;
 
@@ -174,18 +191,35 @@ class Key implements JsonSerializable
      * $key->ancestor('Person', 'Bob');
      * ```
      *
+     * ```
+     * // In cases where the identifier type is ambiguous, you can choose the
+     * // type to be used.
+     *
+     * $key->ancestor('Robots', '1337', [
+     *     'identifierType' => Key::TYPE_NAME
+     * ]);
+     * ```
+     *
      * @see https://cloud.google.com/datastore/reference/rest/v1/Key#PathElement PathElement
      *
      * @param string $kind The kind.
      * @param string|int $identifier The name or ID of the object.
-     * @param string $identifierType [optional] If omitted, the type will be determined
-     *        internally. Setting this to either `Key::TYPE_ID` or
-     *        `Key::TYPE_NAME` will force the pathElement identifier type.
+     * @param array $options {
+     *     Configuration Options
+     *
+     *     @type string $identifierType [optional] If omitted, the type will be
+     *           determined internally. Setting this to either `Key::TYPE_ID` or
+     *           `Key::TYPE_NAME` will force the pathElement identifier type.
+     * }
      * @return Key
      */
-    public function ancestor($kind, $identifier, $identifierType = null)
+    public function ancestor($kind, $identifier, array $options = [])
     {
-        $pathElement = $this->normalizeElement($kind, $identifier, $identifierType);
+        $options = [
+            'identifierType' => null
+        ];
+
+        $pathElement = $this->normalizeElement($kind, $identifier, $options['identifierType']);
 
         array_unshift($this->path, $pathElement);
 
@@ -200,7 +234,7 @@ class Key implements JsonSerializable
      * Example:
      * ```
      * $parent = $datastore->key('Person', 'Dad');
-     * $key->ancestoryKey($parent);
+     * $key->ancestorKey($parent);
      * ```
      *
      * @param Key $key The ancestor Key.

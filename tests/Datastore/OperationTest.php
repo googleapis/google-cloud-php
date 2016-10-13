@@ -302,6 +302,60 @@ class OperationTest extends \PHPUnit_Framework_TestCase
         $this->operation->lookup([$k]);
     }
 
+    public function testLookupWithSort()
+    {
+        $keys = [
+            new Key('test-project', [
+                'path' => [['kind' => 'Kind', 'id' => '2']]
+            ]),
+            new Key('test-project', [
+                'path' => [['kind' => 'Kind', 'id' => '1']]
+            ])
+        ];
+
+        $body = json_decode(file_get_contents(__DIR__ .'/../fixtures/datastore/entity-batch-lookup.json'), true);
+        $this->connection->lookup(Argument::any())->willReturn([
+            'found' => $body
+        ]);
+
+        $this->operation->setConnection($this->connection->reveal());
+
+        $res = $this->operation->lookup($keys, [
+            'sort' => true
+        ]);
+
+        $found = $res['found'];
+
+        $this->assertEquals('2', $found[0]->key()->path()[0]['id']);
+        $this->assertEquals('1', $found[1]->key()->path()[0]['id']);
+    }
+
+    public function testLookupWithoutSort()
+    {
+        $keys = [
+            new Key('test-project', [
+                'path' => [['kind' => 'Kind', 'id' => '2']]
+            ]),
+            new Key('test-project', [
+                'path' => [['kind' => 'Kind', 'id' => '1']]
+            ])
+        ];
+
+        $body = json_decode(file_get_contents(__DIR__ .'/../fixtures/datastore/entity-batch-lookup.json'), true);
+        $this->connection->lookup(Argument::any())->willReturn([
+            'found' => $body
+        ]);
+
+        $this->operation->setConnection($this->connection->reveal());
+
+        $res = $this->operation->lookup($keys);
+
+        $found = $res['found'];
+
+        $this->assertEquals('2', $found[1]->key()->path()[0]['id']);
+        $this->assertEquals('1', $found[0]->key()->path()[0]['id']);
+    }
+
     /**
      * @expectedException InvalidArgumentException
      */
