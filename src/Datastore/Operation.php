@@ -104,6 +104,10 @@ class Operation
      */
     public function key($kind, $identifier = null, array $options = [])
     {
+        $options += [
+            'namespaceId' => $this->namespaceId
+        ];
+
         $key = new Key($this->projectId, $options);
         $key->pathElement($kind, $identifier, $options);
 
