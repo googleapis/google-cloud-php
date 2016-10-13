@@ -18,7 +18,7 @@
 namespace Google\Cloud\PubSub;
 
 /**
- * Represents a PubSub Message
+ * Represents a PubSub Message.
  *
  * Example:
  * ```
@@ -30,7 +30,7 @@ namespace Google\Cloud\PubSub;
  *
  * $messages = $subscription->pull();
  * foreach ($messages as $message) {
- *     print_R($message);break;
+ *     print_r($message);
  * }
  * ```
  */
@@ -82,7 +82,7 @@ class Message
     }
 
     /**
-     * The message payload
+     * The message payload.
      *
      * Example:
      * ```
@@ -97,7 +97,7 @@ class Message
     }
 
     /**
-     * Retrieve a single message attribute
+     * Retrieve a single message attribute.
      *
      * Example:
      * ```
@@ -115,7 +115,7 @@ class Message
     }
 
     /**
-     * Retrieve all message attributes
+     * Retrieve all message attributes.
      *
      * Example:
      * ```
@@ -130,7 +130,7 @@ class Message
     }
 
     /**
-     * Get the message ID
+     * Get the message ID.
      *
      * The message ID is assigned by the server when the message is published.
      * Guaranteed to be unique within the topic.
@@ -148,14 +148,14 @@ class Message
     }
 
     /**
-     * Get the message published time
+     * Get the message published time.
      *
      * Example:
      * ```
      * $time = $message->publishTime();
      * ```
      *
-     * @return DateTimeImmutable
+     * @return \DateTimeImmutable
      */
     public function publishTime()
     {
@@ -165,7 +165,7 @@ class Message
     }
 
     /**
-     * Get the message ackId
+     * Get the message ackId.
      *
      * This is only set when message is obtained via
      * {@see Google\Cloud\PubSub\Subscription::pull()}.
@@ -183,7 +183,7 @@ class Message
     }
 
     /**
-     * Get the subcription through which the message was obtained
+     * Get the subcription through which the message was obtained.
      *
      * This is only set when the message is obtained via push delivery.
      *
@@ -200,7 +200,7 @@ class Message
     }
 
     /**
-     * Get the message data
+     * Get the message data.
      *
      * Available keys are `ackId`, `subscription` and `message`.
      *

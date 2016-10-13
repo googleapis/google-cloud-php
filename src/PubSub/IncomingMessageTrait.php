@@ -23,7 +23,7 @@ use Google\Cloud\PubSub\Connection\ConnectionInterface;
 trait IncomingMessageTrait
 {
     /**
-     * Create a Message instance from an incoming message
+     * Create a Message instance from an incoming message.
      *
      * @param array $message The message data
      * @param ConnectionInterface $connection The service connection.
