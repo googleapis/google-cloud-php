@@ -130,10 +130,7 @@ class ApiCallable
             } else {
                 $metadata = $params[self::GRPC_CALLABLE_METADATA_INDEX];
                 $headers = $headerDescriptor->getHeader();
-                if (array_key_exists('headers', $metadata)) {
-                    $headers = array_merge($headers, $metadata['headers']);
-                }
-                $params[self::GRPC_CALLABLE_METADATA_INDEX]['headers'] = $headers;
+                $params[self::GRPC_CALLABLE_METADATA_INDEX] = array_merge($headers, $metadata);
                 return call_user_func_array($callable, $params);
             }
         };

@@ -39,7 +39,7 @@ use InvalidArgumentException;
  */
 class AgentHeaderDescriptor
 {
-    const AGENT_HEADER_KEY = 'x-google-apis-agent';
+    const AGENT_HEADER_KEY = 'x-goog-api-client';
 
     private $clientName;
     private $clientVersion;
@@ -75,9 +75,9 @@ class AgentHeaderDescriptor
      */
     public function getHeader()
     {
-        return [self::AGENT_HEADER_KEY => "$this->clientName/$this->clientVersion;".
+        return [self::AGENT_HEADER_KEY => ["$this->clientName/$this->clientVersion;".
             "$this->codeGenName/$this->codeGenVersion;gax/$this->gaxVersion;".
-            "php/$this->phpVersion"];
+            "php/$this->phpVersion"]];
     }
 
     private static function validate($descriptor)
