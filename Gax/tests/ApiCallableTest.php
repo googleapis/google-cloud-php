@@ -426,8 +426,7 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
         $actualCalls = $stub->actualCalls;
         $this->assertEquals(1, count($actualCalls));
         $expectedMetadata = [
-            'headers' =>
-                ['x-google-apis-agent' => 'testClient/0.0.0;testCodeGen/0.9.0;gax/1.0.0;php/5.5.0']
+            'x-goog-api-client' => ['testClient/0.0.0;testCodeGen/0.9.0;gax/1.0.0;php/5.5.0']
         ];
         $this->assertEquals($expectedMetadata, $actualCalls[0]['metadata']);
     }

@@ -1,7 +1,7 @@
 language: php
 php:
   - '5.5.38'
-  - '5.6'
+  - '5.6.25'
 sudo: required
 dist: trusty
 install:
