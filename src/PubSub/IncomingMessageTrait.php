@@ -20,6 +20,9 @@ namespace Google\Cloud\PubSub;
 use Google\Cloud\Exception\GoogleException;
 use Google\Cloud\PubSub\Connection\ConnectionInterface;
 
+/**
+ * Provides a factory to build messages.
+ */
 trait IncomingMessageTrait
 {
     /**
