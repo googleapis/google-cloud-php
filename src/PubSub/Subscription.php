@@ -416,7 +416,7 @@ class Subscription
      * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions/acknowledge Acknowledge Message
      * @codingStandardsIgnoreEnd
      *
-     * @param Message[] An array of messages
+     * @param Message[] $messages An array of messages
      * @param array $options Configuration Options
      * @return void
      */
