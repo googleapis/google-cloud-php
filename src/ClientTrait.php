@@ -62,8 +62,6 @@ trait ClientTrait
                     'composer require google/proto-client-php'
                 );
             }
-
-            return $transport;
         }
 
         return $transport;

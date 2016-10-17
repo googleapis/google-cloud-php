@@ -60,14 +60,20 @@ trait GrpcTrait
     /**
      * Pluck a value out of an array.
      *
-     * @param string $name
+     * @param string $key
      * @param array $args
      * @return string
      */
-    public function pluck($name, array &$args)
+    public function pluck($key, array &$args)
     {
-        $value = $args[$name];
-        unset($args[$name]);
+        if (!isset($args[$key])) {
+            throw new \InvalidArgumentException(
+                "Key $key does not exist in the provided array."
+            );
+        }
+
+        $value = $args[$key];
+        unset($args[$key]);
         return $value;
     }
 }

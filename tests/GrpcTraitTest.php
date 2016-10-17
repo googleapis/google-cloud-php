@@ -69,4 +69,13 @@ class GrpcTraitTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($value, $actualValue);
         $this->assertEquals([], $array);
     }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function testPluckThrowsExceptionWithInvalidKey()
+    {
+        $array = [];
+        $actualValue = $this->implementation->pluck('not_here', $array);
+    }
 }
