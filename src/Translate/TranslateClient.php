@@ -84,6 +84,7 @@ class TranslateClient
      *           Must be a valid ISO 639-1 language code. **Defaults to** `"en"`
      *           (English).
      *     @type callable $httpHandler A handler used to deliver Psr7 requests.
+     *           Only valid for requests sent over REST.
      *     @type int $retries Number of retries for a failed request.
      *           **Defaults to** `3`.
      * }

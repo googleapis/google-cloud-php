@@ -17,11 +17,10 @@
 
 namespace Google\Cloud;
 
-use Google\Auth\ApplicationDefaultCredentials;
-use Google\Auth\CredentialsLoader;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Auth\HttpHandler\HttpHandlerFactory;
 use Google\Cloud\Exception;
+use Google\Cloud\RequestWrapperTrait;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7;
 use Psr\Http\Message\RequestInterface;
@@ -33,6 +32,8 @@ use Psr\Http\Message\StreamInterface;
  */
 class RequestWrapper
 {
+    use RequestWrapperTrait;
+
     /**
      * @var string Access token used to sign requests.
      */
@@ -50,40 +51,22 @@ class RequestWrapper
     private $credentials;
 
     /**
-     * @var FetchAuthTokenInterface Fetches credentials.
-     */
-    private $credentialsFetcher;
-
-    /**
      * @var callable A handler used to deliver Psr7 requests.
      */
     private $httpHandler;
 
     /**
-     * @var callable HTTP client specific configuration options.
+     * @var array HTTP client specific configuration options.
      */
     private $httpOptions;
 
     /**
-     * @var array The contents of the service account
-     * credentials .json file retrieved from the Google Developers Console.
-     */
-    private $keyFile;
-
-    /**
-     * @var int Number of retries for a failed request. **Defaults to**  `3`.
-     */
-
-    private $retries;
-    /**
      * @var array
      */
-
     private $httpRetryCodes = [
         500,
         502,
-        503,
-        504
+        503
     ];
 
     /**
@@ -95,12 +78,7 @@ class RequestWrapper
     ];
 
     /**
-     * @var array Scopes to be used for the request.
-     */
-    private $scopes = [];
-
-    /**
-     * @var boolean $shouldSignRequest Whether to enable request signing.
+     * @var bool $shouldSignRequest Whether to enable request signing.
      */
     private $shouldSignRequest;
 
@@ -111,6 +89,8 @@ class RequestWrapper
      *     @type string $accessToken Access token used to sign requests.
      *     @type callable $authHttpHandler A handler used to deliver Psr7
      *           requests specifically for authentication.
+     *     @type FetchAuthTokenInterface $credentialsFetcher A credentials
+     *           fetcher instance.
      *     @type callable $httpHandler A handler used to deliver Psr7 requests.
      *     @type string $keyFile The contents of the service account
      *           credentials .json file retrieved from the Google Developers
@@ -119,35 +99,24 @@ class RequestWrapper
      *     @type int $retries Number of retries for a failed request.
      *           **Defaults to** `3`.
      *     @type array $scopes Scopes to be used for the request.
-     *     @type boolean $shouldSignRequest Whether to enable request signing.
+     *     @type bool $shouldSignRequest Whether to enable request signing.
      * }
      */
     public function __construct(array $config = [])
     {
+        $this->setCommonDefaults($config);
         $config += [
             'accessToken' => null,
             'authHttpHandler' => null,
-            'credentialsFetcher' => null,
             'httpHandler' => null,
             'httpOptions' => [],
-            'keyFile' => null,
-            'retries' => null,
-            'scopes' => null,
             'shouldSignRequest' => true
         ];
 
-        if ($config['credentialsFetcher'] && !$config['credentialsFetcher'] instanceof FetchAuthTokenInterface) {
-            throw new \InvalidArgumentException('credentialsFetcher must implement FetchAuthTokenInterface.');
-        }
-
         $this->accessToken = $config['accessToken'];
-        $this->credentialsFetcher = $config['credentialsFetcher'];
         $this->httpHandler = $config['httpHandler'] ?: HttpHandlerFactory::build();
         $this->authHttpHandler = $config['authHttpHandler'] ?: $this->httpHandler;
         $this->httpOptions = $config['httpOptions'];
-        $this->retries = $config['retries'];
-        $this->scopes = $config['scopes'];
-        $this->keyFile = $config['keyFile'];
         $this->shouldSignRequest = $config['shouldSignRequest'];
     }
 
@@ -177,26 +146,6 @@ class RequestWrapper
         } catch (\Exception $ex) {
             throw $this->convertToGoogleException($ex);
         }
-    }
-
-    /**
-     * Gets the credentials fetcher. Precedence begins with user supplied
-     * credentials fetcher instance, followed by a reference to a key file
-     * stream, and finally the application default credentials.
-     *
-     * @return FetchAuthTokenInterface
-     */
-    public function getCredentialsFetcher()
-    {
-        if ($this->credentialsFetcher) {
-            return $this->credentialsFetcher;
-        }
-
-        if ($this->keyFile) {
-            return CredentialsLoader::makeCredentials($this->scopes, $this->keyFile);
-        }
-
-        return ApplicationDefaultCredentials::getCredentials($this->scopes, $this->authHttpHandler);
     }
 
     /**

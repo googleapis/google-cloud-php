@@ -36,6 +36,40 @@ trait ClientTrait
     private $projectId;
 
     /**
+     * Get either a gRPC or REST connection based on the provided config
+     * and system settings.
+     *
+     * @param array $config
+     * @return string
+     * @throws GoogleException
+     */
+    private function getConnectionType(array $config)
+    {
+        list($isGrpcExtensionLoaded, $isGrpcLibraryLoaded) = $this->getGrpcDependencyStatus();
+        $defaultTransport = $isGrpcExtensionLoaded && $isGrpcLibraryLoaded ? 'grpc' : 'rest';
+        $transport = isset($config['transport'])
+            ? strtolower($config['transport'])
+            : $defaultTransport;
+
+        if ($transport === 'grpc') {
+            if (!$isGrpcExtensionLoaded || !$isGrpcLibraryLoaded) {
+                throw new GoogleException(
+                    'gRPC support has been requested but required dependencies ' .
+                    'have not been found. Please make sure to run the following ' .
+                    'from the command line: ' .
+                    'pecl install grpc && ' .
+                    'composer require google/gax && ' .
+                    'composer require google/proto-client-php'
+                );
+            }
+
+            return $transport;
+        }
+
+        return $transport;
+    }
+
+    /**
      * Fetch and validate the keyfile and set the project ID.
      *
      * @param  array $config
@@ -159,5 +193,19 @@ trait ClientTrait
     protected function getMetaData()
     {
         return new Metadata;
+    }
+
+    /**
+     * Abstract the checking of extensions/classes for unit testing.
+     *
+     * @codeCoverageIgnore
+     * @return array
+     */
+    protected function getGrpcDependencyStatus()
+    {
+        return [
+            extension_loaded('grpc'),
+            class_exists('Grpc\BaseStub')
+        ];
     }
 }

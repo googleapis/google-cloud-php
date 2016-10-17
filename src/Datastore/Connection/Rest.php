@@ -19,6 +19,7 @@ namespace Google\Cloud\Datastore\Connection;
 
 use Google\Cloud\RequestBuilder;
 use Google\Cloud\RequestWrapper;
+use Google\Cloud\EmulatorTrait;
 use Google\Cloud\RestTrait;
 use Google\Cloud\UriTrait;
 
@@ -28,6 +29,7 @@ use Google\Cloud\UriTrait;
  */
 class Rest implements ConnectionInterface
 {
+    use EmulatorTrait;
     use RestTrait;
     use UriTrait;
 

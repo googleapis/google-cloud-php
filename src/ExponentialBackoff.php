@@ -69,7 +69,7 @@ class ExponentialBackoff
         $retryAttempt = 0;
         $exception = null;
 
-        do {
+        while (true) {
             try {
                 return call_user_func_array($function, $arguments);
             } catch (\Exception $exception) {
@@ -79,10 +79,14 @@ class ExponentialBackoff
                     }
                 }
 
+                if ($retryAttempt >= $this->retries) {
+                    break;
+                }
+
                 $delayFunction($this->calculateDelay($retryAttempt));
                 $retryAttempt++;
             }
-        } while ($this->retries >= $retryAttempt);
+        }
 
         throw $exception;
     }

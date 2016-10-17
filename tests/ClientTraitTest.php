@@ -26,6 +26,47 @@ use GuzzleHttp\Psr7\Response;
  */
 class ClientTraitTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * @expectedException Google\Cloud\Exception\GoogleException
+     */
+    public function testGetConnectionTypeThrowsExceptionWhenAttempingGrpcWithoutDeps()
+    {
+        $trait = new ClientTraitStubGrpcDependencyChecks([false, false]);
+        $trait->runGetConnectionType(['transport' => 'grpc']);
+    }
+
+    /**
+     * @dataProvider dependencyStatusProvider
+     */
+    public function testGetConnectionType($dependencyStatus, $config, $expectedConnectionType)
+    {
+        $trait = new ClientTraitStubGrpcDependencyChecks($dependencyStatus);
+        $actualConnectionType = $trait->runGetConnectionType($config);
+
+        $this->assertEquals($expectedConnectionType, $actualConnectionType);
+    }
+
+    public function dependencyStatusProvider()
+    {
+        return [
+            [
+                [true, true],
+                [],
+                'grpc'
+            ],
+            [
+                [false, false],
+                ['transport' => 'rest'],
+                'rest'
+            ],
+            [
+                [false, true],
+                [],
+                'rest'
+            ]
+        ];
+    }
+
     public function testConfigureAuthentication()
     {
         $keyFilePath = __DIR__ . '/fixtures/json-key-fixture.json';
@@ -150,6 +191,11 @@ class ClientTraitStub
         return $this->projectId;
     }
 
+    public function runGetConnectionType($config)
+    {
+        return $this->getConnectionType($config);
+    }
+
     public function runConfigureAuthentication($config)
     {
         return $this->configureAuthentication($config);
@@ -180,5 +226,22 @@ class ClientTraitStubOnGce extends ClientTraitStub
     protected function getMetadata()
     {
         return $this->metadata->reveal();
+    }
+}
+
+class ClientTraitStubGrpcDependencyChecks extends ClientTraitStub
+{
+    use ClientTrait;
+
+    private $dependencyStatus;
+
+    public function __construct(array $dependencyStatus)
+    {
+        $this->dependencyStatus = $dependencyStatus;
+    }
+
+    protected function getGrpcDependencyStatus()
+    {
+        return $this->dependencyStatus;
     }
 }

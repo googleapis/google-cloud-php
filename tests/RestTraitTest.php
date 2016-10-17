@@ -69,18 +69,4 @@ class RestTraitTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(json_decode($responseBody, true), $actualResponse);
     }
-
-    public function testGetEmulatorBaseUriNoEmulator()
-    {
-        $res = $this->implementation->getEmulatorBaseUri('http://google.com', null);
-
-        $this->assertEquals('http://google.com', $res);
-    }
-
-    public function testGetEmulatorBaseUriEmulator()
-    {
-        $res = $this->implementation->getEmulatorBaseUri('http://google.com', 'http://localhost:8080');
-
-        $this->assertEquals('http://localhost:8080/', $res);
-    }
 }
