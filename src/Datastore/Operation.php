@@ -679,20 +679,18 @@ class Operation
      */
     private function sortEntities(array $entities, array $keys)
     {
-        $res = [];
+        $map = [];
+        foreach ($entities as $entity) {
+            $map[(string) $entity->key()] = $entity;
+        }
+
+        $ret = [];
         foreach ($keys as $key) {
-            $path = $key->path();
-
-            foreach ($entities as $arrayKey => $entity) {
-                $entityPath = $entity->key()->path();
-
-                if ($path === $entityPath) {
-                    $res[] = $entity;
-                    unset($entities[$arrayKey]);
-                }
+            if (isset($map[(string) $key])) {
+                $ret[] = $map[(string) $key];
             }
         }
 
-        return $res;
+        return $ret;
     }
 }

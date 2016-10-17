@@ -324,18 +324,17 @@ class OperationTest extends \PHPUnit_Framework_TestCase
 
     public function testLookupWithSort()
     {
-        $keys = [
-            new Key('test-project', [
-                'path' => [['kind' => 'Kind', 'id' => '2']]
-            ]),
-            new Key('test-project', [
-                'path' => [['kind' => 'Kind', 'id' => '1']]
-            ])
-        ];
+        $data = json_decode(file_get_contents(__DIR__ .'/../fixtures/datastore/entity-lookup-bigsort.json'), true);
 
-        $body = json_decode(file_get_contents(__DIR__ .'/../fixtures/datastore/entity-batch-lookup.json'), true);
+        $keys = [];
+        foreach ($data['keys'] as $key) {
+            $keys[] = new Key('test-project', [
+                'path' => $key['path']
+            ]);
+        }
+
         $this->connection->lookup(Argument::any())->willReturn([
-            'found' => $body
+            'found' => $data['entities']
         ]);
 
         $this->operation->setConnection($this->connection->reveal());
@@ -346,24 +345,25 @@ class OperationTest extends \PHPUnit_Framework_TestCase
 
         $found = $res['found'];
 
-        $this->assertEquals('2', $found[0]->key()->path()[0]['id']);
-        $this->assertEquals('1', $found[1]->key()->path()[0]['id']);
+        foreach ($data['keys'] as $i => $key) {
+            $this->assertEquals($key['path'][0]['id'], $found[$i]->key()->path()[0]['id']);
+        }
     }
 
     public function testLookupWithoutSort()
     {
-        $keys = [
-            new Key('test-project', [
-                'path' => [['kind' => 'Kind', 'id' => '2']]
-            ]),
-            new Key('test-project', [
-                'path' => [['kind' => 'Kind', 'id' => '1']]
-            ])
-        ];
+        $data = json_decode(file_get_contents(__DIR__ .'/../fixtures/datastore/entity-lookup-bigsort.json'), true);
 
-        $body = json_decode(file_get_contents(__DIR__ .'/../fixtures/datastore/entity-batch-lookup.json'), true);
+        $keys = [];
+        foreach ($data['keys'] as $key) {
+            $keys[] = new Key('test-project', [
+                'path' => $key['path']
+            ]);
+        }
+
         $this->connection->lookup(Argument::any())->willReturn([
-            'found' => $body
+            'found' => $data['entities'],
+            'missing' => $data['missing']
         ]);
 
         $this->operation->setConnection($this->connection->reveal());
@@ -372,8 +372,49 @@ class OperationTest extends \PHPUnit_Framework_TestCase
 
         $found = $res['found'];
 
-        $this->assertEquals('2', $found[1]->key()->path()[0]['id']);
-        $this->assertEquals('1', $found[0]->key()->path()[0]['id']);
+        foreach ($data['entities'] as $i => $e) {
+            $this->assertEquals($e['entity']['key']['path'][0]['id'], $found[$i]->key()->path()[0]['id']);
+        }
+    }
+
+    public function testLookupWithSortAndMissingKey()
+    {
+        $data = json_decode(file_get_contents(__DIR__ .'/../fixtures/datastore/entity-lookup-bigsort.json'), true);
+
+        // Move an entity to missing.
+        $missing = $data['entities'][5];
+        $data['missing'][] = $missing;
+        unset($data['entities'][5]);
+
+        $keys = [];
+        foreach ($data['keys'] as $key) {
+            $keys[] = new Key('test-project', [
+                'path' => $key['path']
+            ]);
+        }
+
+        $this->connection->lookup(Argument::any())->willReturn([
+            'found' => $data['entities']
+        ]);
+
+        $this->operation->setConnection($this->connection->reveal());
+
+        $res = $this->operation->lookup($keys, [
+            'sort' => true
+        ]);
+
+        $found = $res['found'];
+
+        $this->assertEquals($keys[0]->path()[0]['id'], $found[0]->key()->path()[0]['id']);
+        $this->assertEquals($keys[1]->path()[0]['id'], $found[1]->key()->path()[0]['id']);
+        $this->assertEquals($keys[2]->path()[0]['id'], $found[2]->key()->path()[0]['id']);
+        $this->assertEquals($keys[3]->path()[0]['id'], $found[3]->key()->path()[0]['id']);
+        $this->assertEquals($keys[4]->path()[0]['id'], $found[4]->key()->path()[0]['id']);
+        $this->assertEquals($keys[6]->path()[0]['id'], $found[5]->key()->path()[0]['id']);
+        $this->assertEquals($keys[7]->path()[0]['id'], $found[6]->key()->path()[0]['id']);
+        $this->assertEquals($keys[8]->path()[0]['id'], $found[7]->key()->path()[0]['id']);
+        $this->assertEquals($keys[9]->path()[0]['id'], $found[8]->key()->path()[0]['id']);
+        $this->assertEquals($keys[10]->path()[0]['id'], $found[9]->key()->path()[0]['id']);
     }
 
     /**
