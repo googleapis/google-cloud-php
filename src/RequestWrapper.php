@@ -83,22 +83,16 @@ class RequestWrapper
     private $shouldSignRequest;
 
     /**
-     * @param array $options [optional] {
-     *     Configuration options.
+     * @param array $config [optional] {
+     *     Configuration options. Please see
+     *     {@see Google\Cloud\RequestWrapperTrait::setCommonDefaults()} for the other
+     *     available options.
      *
      *     @type string $accessToken Access token used to sign requests.
      *     @type callable $authHttpHandler A handler used to deliver Psr7
      *           requests specifically for authentication.
-     *     @type FetchAuthTokenInterface $credentialsFetcher A credentials
-     *           fetcher instance.
      *     @type callable $httpHandler A handler used to deliver Psr7 requests.
-     *     @type string $keyFile The contents of the service account
-     *           credentials .json file retrieved from the Google Developers
-     *           Console.
      *     @type array $httpOptions HTTP client specific configuration options.
-     *     @type int $retries Number of retries for a failed request.
-     *           **Defaults to** `3`.
-     *     @type array $scopes Scopes to be used for the request.
      *     @type bool $shouldSignRequest Whether to enable request signing.
      * }
      */

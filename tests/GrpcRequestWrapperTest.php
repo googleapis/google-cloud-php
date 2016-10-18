@@ -68,7 +68,7 @@ class GrpcRequestWrapperTest extends \PHPUnit_Framework_TestCase
         return [
             [$message->reveal(), $expectedMessage],
             [$pagedMessage->reveal(), $expectedMessage],
-            [null, []]
+            [null, null]
         ];
     }
 

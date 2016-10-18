@@ -50,7 +50,18 @@ trait RequestWrapperTrait
     /**
      * Sets common defaults between request wrappers.
      *
-     * @param callable $array
+     * @param array $config {
+     *     Configuration options.
+     *
+     *     @type FetchAuthTokenInterface $credentialsFetcher A credentials
+     *           fetcher instance.
+     *     @type string $keyFile The contents of the service account
+     *           credentials .json file retrieved from the Google Developers
+     *           Console.
+     *     @type int $retries Number of retries for a failed request.
+     *           **Defaults to** `3`.
+     *     @type array $scopes Scopes to be used for the request.
+     * }
      * @throws \InvalidArgumentException
      */
     public function setCommonDefaults(array $config)

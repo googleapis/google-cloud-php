@@ -58,21 +58,15 @@ class GrpcRequestWrapper
     ];
 
     /**
-     * @param array $options [optional] {
-     *     Configuration options.
+     * @param array $config [optional] {
+     *     Configuration options. Please see
+     *     {@see Google\Cloud\RequestWrapperTrait::setCommonDefaults()} for the other
+     *     available options.
      *
      *     @type callable $authHttpHandler A handler used to deliver Psr7
      *           requests specifically for authentication.
-     *     @type FetchAuthTokenInterface $credentialsFetcher A credentials
-     *           fetcher instance.
-     *     @type string $keyFile The contents of the service account
-     *           credentials .json file retrieved from the Google Developers
-     *           Console.
      *     @type array $grpcOptions gRPC specific configuration options passed
      *           off to the GAX library.
-     *     @type int $retries Number of retries for a failed request.
-     *           **Defaults to** `3`.
-     *     @type array $scopes Scopes to be used for the request.
      * }
      */
     public function __construct(array $config = [])
@@ -133,7 +127,7 @@ class GrpcRequestWrapper
      * Serializes a gRPC response.
      *
      * @param mixed $response
-     * @return array
+     * @return array|null
      */
     private function handleResponse($response)
     {
@@ -147,7 +141,7 @@ class GrpcRequestWrapper
             return $response->serialize(new PhpArray());
         }
 
-        return [];
+        return null;
     }
 
     /**

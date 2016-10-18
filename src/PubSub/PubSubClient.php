@@ -18,7 +18,6 @@
 namespace Google\Cloud\PubSub;
 
 use Google\Cloud\ClientTrait;
-use Google\Cloud\Exception\GoogleException;
 use Google\Cloud\PubSub\Connection\Grpc;
 use Google\Cloud\PubSub\Connection\Rest;
 use InvalidArgumentException;
