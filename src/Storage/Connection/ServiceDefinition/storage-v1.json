@@ -224,7 +224,7 @@
         },
         "storageClass": {
           "type": "string",
-          "description": "The bucket's storage class. This defines how objects in the bucket are stored and determines the SLA and the cost of storage. Values include STANDARD, NEARLINE and DURABLE_REDUCED_AVAILABILITY. Defaults to STANDARD. For more information, see storage classes."
+          "description": "The bucket's storage class. This defines how objects in the bucket are stored and determines the SLA and the cost of storage. Values include MULTI_REGIONAL, REGIONAL, NEARLINE, COLDLINE, STANDARD and DURABLE_REDUCED_AVAILABILITY. Defaults to STANDARD, which is equivalent to MULTI_REGIONAL or REGIONAL, depending on the bucket's location settings. For more information, see storage classes."
         },
         "timeCreated": {
           "type": "string",
