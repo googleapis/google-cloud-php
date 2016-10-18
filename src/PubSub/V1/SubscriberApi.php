@@ -272,8 +272,7 @@ class SubscriberApi
             'retryingOverride' => null,
             'timeoutMillis' => self::DEFAULT_TIMEOUT_MILLIS,
             'appName' => 'gax',
-            'appVersion' => self::_GAX_VERSION,
-            'credentialsLoader' => null,
+            'appVersion' => self::_GAX_VERSION
         ];
         $options = array_merge($defaultOptions, $options);
 
@@ -321,7 +320,7 @@ class SubscriberApi
         $this->scopes = $options['scopes'];
 
         $createStubOptions = [];
-        if (!empty($options['sslCreds'])) {
+        if (array_key_exists('sslCreds', $options)) {
             $createStubOptions['sslCreds'] = $options['sslCreds'];
         }
         $grpcCredentialsHelperOptions = array_diff_key($options, $defaultOptions);

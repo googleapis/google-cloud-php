@@ -75,6 +75,7 @@ class ServiceBuilder
      *     @type callable $authHttpHandler A handler used to deliver Psr7
      *           requests specifically for authentication.
      *     @type callable $httpHandler A handler used to deliver Psr7 requests.
+     *           Only valid for requests sent over REST.
      *     @type string $keyFile The contents of the service account
      *           credentials .json file retrieved from the Google Developer's
      *           Console.
@@ -180,8 +181,13 @@ class ServiceBuilder
      * $pubsub = $cloud->pubsub();
      * ```
      *
-     * @param array $config [optional] Configuration options. See
-     *        {@see Google\Cloud\ServiceBuilder::__construct()} for the available options.
+     * @param array $config [optional] {
+     *     Configuration options. See
+     *     {@see Google\Cloud\ServiceBuilder::__construct()} for the other available options.
+     *
+     *     @type string $transport The transport type used for requests. May be
+     *           either `grpc` or `rest`. **Defaults to** `grpc` if gRPC support
+     *           is detected on the system.
      * @return PubSubClient
      */
     public function pubsub(array $config = [])
@@ -283,6 +289,7 @@ class ServiceBuilder
      *     @type string $target The target language to assign to the client.
      *           Defaults to `en` (English).
      *     @type callable $httpHandler A handler used to deliver Psr7 requests.
+     *           Only valid for requests sent over REST.
      *     @type int $retries Number of retries for a failed request.
      *           **Defaults to** `3`.
      * }

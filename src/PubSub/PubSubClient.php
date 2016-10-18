@@ -18,6 +18,7 @@
 namespace Google\Cloud\PubSub;
 
 use Google\Cloud\ClientTrait;
+use Google\Cloud\PubSub\Connection\Grpc;
 use Google\Cloud\PubSub\Connection\Rest;
 use InvalidArgumentException;
 
@@ -29,6 +30,26 @@ use InvalidArgumentException;
  * To enable the [Google Cloud Pub/Sub Emulator](https://cloud.google.com/pubsub/emulator),
  * set the [`PUBSUB_EMULATOR_HOST`](https://cloud.google.com/pubsub/emulator#env)
  * environment variable.
+ *
+ * This client supports transport over
+ * [REST](https://cloud.google.com/pubsub/docs/reference/rest/) or
+ * [gRPC](https://cloud.google.com/pubsub/docs/reference/rpc/).
+ *
+ * In order to enable gRPC support please make sure to install and enable
+ * the gRPC extension through PECL:
+ *
+ * ```sh
+ * $ pecl install grpc
+ * ```
+ *
+ * Afterwards, please install the following dependencies through composer:
+ *
+ * ```sh
+ * $ composer require google/gax && composer require google/proto-client-php
+ * ```
+ *
+ * Please take care in installing the same version of these libraries that are
+ * outlined in the project's composer.json suggest keyword.
  *
  * Example:
  * ```
@@ -87,6 +108,7 @@ class PubSubClient
      *     @type callable $authHttpHandler A handler used to deliver Psr7
      *           requests specifically for authentication.
      *     @type callable $httpHandler A handler used to deliver Psr7 requests.
+     *           Only valid for requests sent over REST.
      *     @type string $keyFile The contents of the service account
      *           credentials .json file retrieved from the Google Developers
      *           Console.
@@ -96,20 +118,26 @@ class PubSubClient
      *     @type int $retries Number of retries for a failed request.
      *           **Defaults to** `3`.
      *     @type array $scopes Scopes to be used for the request.
+     *     @type string $transport The transport type used for requests. May be
+     *           either `grpc` or `rest`. **Defaults to** `grpc` if gRPC support
+     *           is detected on the system.
      * }
      * @throws \InvalidArgumentException
      */
     public function __construct(array $config = [])
     {
+        $connectionType = $this->getConnectionType($config);
         if (!isset($config['scopes'])) {
             $config['scopes'] = [self::FULL_CONTROL_SCOPE];
         }
 
-        $this->connection = new Rest($this->configureAuthentication($config));
-
-        // When gRPC support is added, this value should be set to `false`
-        // when gRPC transport is chosen.
-        $this->encode = true;
+        if ($connectionType === 'grpc') {
+            $this->connection = new Grpc($this->configureAuthentication($config));
+            $this->encode = false;
+        } else {
+            $this->connection = new Rest($this->configureAuthentication($config));
+            $this->encode = true;
+        }
     }
 
     /**

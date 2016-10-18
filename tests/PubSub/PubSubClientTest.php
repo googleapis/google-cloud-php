@@ -19,6 +19,8 @@ namespace Google\Cloud\Tests\PubSub;
 
 use Generator;
 use Google\Cloud\PubSub\Connection\ConnectionInterface;
+use Google\Cloud\PubSub\Connection\Grpc;
+use Google\Cloud\PubSub\Connection\Rest;
 use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\PubSub\Subscription;
 use Google\Cloud\PubSub\Topic;
@@ -37,7 +39,20 @@ class PubSubClientTest extends \PHPUnit_Framework_TestCase
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
 
-        $this->client = new PubSubClientStub(['projectId' => 'project']);
+        $this->client = new PubSubClientStub([
+            'projectId' => 'project',
+            'transport' => 'rest'
+        ]);
+    }
+
+    public function testUsesGrpcConnectionByDefault()
+    {
+        if (!extension_loaded('grpc')) {
+            $this->markTestSkipped('Must have the grpc extension installed to run this test.');
+        }
+        $client = new PubSubClientStub(['projectId' => 'project']);
+
+        $this->assertInstanceOf(Grpc::class, $client->getConnection());
     }
 
     public function testCreateTopic()
@@ -273,5 +288,10 @@ class PubSubClientStub extends PubSubClient
     public function setConnection($connection)
     {
         $this->connection = $connection;
+    }
+
+    public function getConnection()
+    {
+        return $this->connection;
     }
 }
