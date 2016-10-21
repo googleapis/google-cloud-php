@@ -103,6 +103,30 @@ class Table
     }
 
     /**
+     * Update the table.
+     *
+     * Example:
+     * ```
+     * $table->update([
+     *     'friendlyName' => 'A friendly name.'
+     * ]);
+     * ```
+     *
+     * @see https://cloud.google.com/bigquery/docs/reference/v2/tables/patch Tables patch API documentation.
+     *
+     * @param array $metadata The available options for metadata are outlined
+     *        at the [Table Resource API docs](https://cloud.google.com/bigquery/docs/reference/v2/tables#resource)
+     * @param array $options [optional] Configuration options.
+     */
+    public function update(array $metadata, array $options = [])
+    {
+        $options += $metadata;
+        $this->info = $this->connection->patchTable($options + $this->identity);
+
+        return $this->info;
+    }
+
+    /**
      * Retrieves the rows associated with the table and merges them together
      * with the schema.
      *

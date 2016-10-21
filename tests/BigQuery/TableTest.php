@@ -111,6 +111,18 @@ class TableTest extends \PHPUnit_Framework_TestCase
         $this->assertNull($table->delete());
     }
 
+    public function testUpdatesData()
+    {
+        $updateData = ['friendlyName' => 'wow a name'];
+        $this->connection->patchTable(Argument::any())
+            ->willReturn($updateData)
+            ->shouldBeCalledTimes(1);
+        $table = $this->getTable($this->connection, ['friendlyName' => 'another name']);
+        $table->update($updateData);
+
+        $this->assertEquals($updateData['friendlyName'], $table->info()['friendlyName']);
+    }
+
     public function testGetsRowsWithNoResults()
     {
         $this->connection->getTable(Argument::any())

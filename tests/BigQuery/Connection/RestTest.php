@@ -76,6 +76,7 @@ class RestTest extends \PHPUnit_Framework_TestCase
             ['listDatasets'],
             ['insertDataset'],
             ['deleteTable'],
+            ['patchTable'],
             ['getTable'],
             ['insertTable'],
             ['listTables'],
