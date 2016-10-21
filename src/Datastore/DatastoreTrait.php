@@ -17,9 +17,6 @@
 
 namespace Google\Cloud\Datastore;
 
-use InvalidArgumentException;
-use Psr\Http\Message\StreamInterface;
-
 /**
  * Utility methods for data formatting.
  */
@@ -38,16 +35,5 @@ trait DatastoreTrait
             'projectId' => $projectId,
             'namespaceId' => $namespaceId
         ]);
-    }
-
-    /**
-     * Determine whether given array is associative
-     *
-     * @param array $value
-     * @return bool
-     */
-    private function isAssoc(array $value)
-    {
-        return array_keys($value) !== range(0, count($value) - 1);
     }
 }

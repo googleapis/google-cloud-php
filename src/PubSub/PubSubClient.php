@@ -49,7 +49,7 @@ use InvalidArgumentException;
  * ```
  *
  * Please take care in installing the same version of these libraries that are
- * outlined in the project's composer.json suggest keyword.
+ * outlined in the project's composer.json require-dev keyword.
  *
  * Example:
  * ```

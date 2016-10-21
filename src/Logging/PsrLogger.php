@@ -210,7 +210,7 @@ class PsrLogger implements LoggerInterface
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @param string $level The severity of the log entry.
+     * @param string|int $level The severity of the log entry.
      * @param string $message The message to log.
      * @param array $context {
      *     @type array $httpRequest Information about the HTTP request
@@ -224,15 +224,13 @@ class PsrLogger implements LoggerInterface
      *           Please see [the API docs](https://cloud.google.com/logging/docs/api/ref_v2beta1/rest/v2beta1/LogEntry#logentryoperation)
      *           for more information.
      * }
+     * @throws InvalidArgumentException
      * @codingStandardsIgnoreEnd
      */
     public function log($level, $message, array $context = [])
     {
         $message = (string) $message;
-
-        if (!defined(Logger::class . '::' . strtoupper($level))) {
-            throw new InvalidArgumentException("Severity level '$level' is not defined.");
-        }
+        $this->validateLogLevel($level);
 
         if (isset($context['exception']) && $context['exception'] instanceof \Exception) {
             $message .= ' : ' . (string) $context['exception'];
@@ -246,5 +244,24 @@ class PsrLogger implements LoggerInterface
         );
 
         $this->logger->write($entry);
+    }
+
+    /**
+     * Validates whether or not the provided log level exists.
+     *
+     * @param string|int $level The severity of the log entry.
+     * @return bool
+     * @throws InvalidArgumentException
+     */
+    private function validateLogLevel($level)
+    {
+        $map = $this->logger->getLogLevelMap();
+        $level = (string) $level;
+
+        if (isset($map[$level]) || isset(array_flip($map)[strtoupper($level)])) {
+            return true;
+        }
+
+        throw new InvalidArgumentException("Severity level '$level' is not defined.");
     }
 }

@@ -18,33 +18,187 @@
 namespace Google\Cloud;
 
 use DrSlump\Protobuf;
+use google\protobuf\Struct;
+use google\protobuf\ListValue;
 
 /**
- * Extend the Protobuf-PHP array codec to convert underscore keys
- * to the camelcase type expected by the library.
+ * Extend the Protobuf-PHP array codec to allow messages to match the format
+ * used for REST.
  */
 class PhpArray extends Protobuf\Codec\PhpArray
 {
-    protected function encodeMessage(Protobuf\Message $message)
-    {
-        $res = parent::encodeMessage($message);
+    /**
+     * @var array
+     */
+    private $customFilters;
 
-        return $this->transformKeys($res);
+    /**
+     * @param array $customFilters A set of callbacks to apply to properties in
+     *        a gRPC response.
+     */
+    public function __construct(array $customFilters = [])
+    {
+        $this->customFilters = $customFilters;
     }
 
-    private function transformKeys(array $res)
+    /**
+     * Borrowed heavily from {@see DrSlump\Protobuf\Codec\PhpArray::encodeMessage()}.
+     * With this approach we are able to transform the response with minimal
+     * overhead.
+     */
+    protected function encodeMessage(Protobuf\Message $message)
     {
-        $out = [];
-        foreach ($res as $key => $val) {
-            $newKey = lcfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $key))));
+        $descriptor = Protobuf::getRegistry()->getDescriptor($message);
+        $data = [];
 
-            if (is_array($val)) {
-                $val = $this->transformKeys($val);
+        foreach ($descriptor->getFields() as $tag => $field) {
+            $empty = !$message->_has($tag);
+            if ($field->isRequired() && $empty) {
+                throw new \UnexpectedValueException(
+                    sprintf(
+                        'Message %s\'s field tag %s(%s) is required but has no value',
+                        get_class($message),
+                        $tag,
+                        $field->getName()
+                    )
+                );
             }
 
-            $out[$newKey] = $val;
+            if ($empty) {
+                continue;
+            }
+
+            $key = $this->useTagNumber ? $field->getNumber() : $field->getName();
+            $v = $message->_get($tag);
+
+            if ($field->isRepeated()) {
+                // Make sure the value is an array of values
+                $v = is_array($v) ? $v : array($v);
+                $arr = [];
+
+                foreach ($v as $k => $vv) {
+                    // Skip nullified repeated values
+                    if (null === $vv) {
+                        continue;
+                    }
+
+                    $filteredValue = $this->filterValue($vv, $field);
+
+                    if ($this->isKeyValueMessage($vv)) {
+                        $arr[key($filteredValue)] = current($filteredValue);
+                    } else {
+                        $arr[$k] = $filteredValue;
+                    }
+
+                    $v = $arr;
+                }
+            } else {
+                $v = $this->filterValue($v, $field);
+            }
+
+            $key = $this->toCamelCase($key);
+
+            if (isset($this->customFilters[$key])) {
+                $v = call_user_func($this->customFilters[$key], $v);
+            }
+
+            $data[$key] = $v;
         }
 
-        return $out;
+        return $data;
+    }
+
+    /**
+     * Borrowed heavily from {@see DrSlump\Protobuf\Codec\PhpArray::decodeMessage()}.
+     * The only addition here is converting camel case field names to snake case.
+     */
+    protected function decodeMessage(Protobuf\Message $message, $data)
+    {
+        // Get message descriptor
+        $descriptor = Protobuf::getRegistry()->getDescriptor($message);
+
+        foreach ($data as $key => $v) {
+            // Get the field by tag number or name
+            $field = $this->useTagNumber
+                   ? $descriptor->getField($key)
+                   : $descriptor->getFieldByName($this->toSnakeCase($key));
+
+            // Unknown field found
+            if (!$field) {
+                $unknown = new Protobuf\Codec\PhpArray\Unknown($key, gettype($v), $v);
+                $message->addUnknown($unknown);
+                continue;
+            }
+
+            if ($field->isRepeated()) {
+                // Make sure the value is an array of values
+                $v = is_array($v) && is_int(key($v)) ? $v : array($v);
+                foreach ($v as $k => $vv) {
+                    $v[$k] = $this->filterValue($vv, $field);
+                }
+            } else {
+                $v = $this->filterValue($v, $field);
+            }
+
+            $message->_set($field->getNumber(), $v);
+        }
+
+        return $message;
+    }
+
+    protected function filterValue($value, Protobuf\Field $field)
+    {
+        if ($value instanceof Protobuf\Message) {
+            if ($this->isKeyValueMessage($value)) {
+                $v = $value->getValue();
+
+                return [
+                    $value->getKey() => $v instanceof Protobuf\Message
+                        ? $this->encodeMessage($v)
+                        : $v
+                ];
+            }
+
+            if ($value instanceof Struct) {
+                $vals = [];
+
+                foreach ($value->getFields() as $field) {
+                    $val = $this->filterValue(
+                        $field->getValue(),
+                        $field->descriptor()->getFieldByName('value')
+                    );
+                    $vals[$field->getKey()] = current($val);
+                }
+
+                return $vals;
+            }
+
+            if ($value instanceof ListValue) {
+                $vals = [];
+
+                foreach ($value->getValuesList() as $val) {
+                    $vals[] = current($this->encodeMessage($val));
+                }
+
+                return $vals;
+            }
+        }
+
+        return parent::filterValue($value, $field);
+    }
+
+    private function toSnakeCase($key)
+    {
+        return strtolower(preg_replace(['/([a-z\d])([A-Z])/', '/([^_])([A-Z][a-z])/'], '$1_$2', $key));
+    }
+
+    private function toCamelCase($key)
+    {
+        return lcfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $key))));
+    }
+
+    private function isKeyValueMessage($value)
+    {
+        return property_exists($value, 'key') && property_exists($value, 'value');
     }
 }

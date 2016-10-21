@@ -1,0 +1,81 @@
+<?php
+/**
+ * Copyright 2016 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+namespace Google\Cloud\Tests;
+
+use Google\Cloud\ArrayTrait;
+use Prophecy\Argument;
+
+/**
+ * @group root
+ */
+class ArrayTraitTest extends \PHPUnit_Framework_TestCase
+{
+    private $implementation;
+
+    public function setUp()
+    {
+        $this->implementation = new ArrayTraitStub();
+    }
+
+    public function testPluck()
+    {
+        $value = '123';
+        $key = 'key';
+        $array = [$key => $value];
+        $actualValue = $this->implementation->call('pluck', [$key, &$array]);
+
+        $this->assertEquals($value, $actualValue);
+        $this->assertEquals([], $array);
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function testPluckThrowsExceptionWithInvalidKey()
+    {
+        $array = [];
+        $actualValue = $this->implementation->call('pluck', ['not_here', &$array]);
+    }
+
+    public function testIsAssocTrue()
+    {
+        $actual = $this->implementation->call('isAssoc', [[
+            'test' => 1,
+            'test' => 2
+        ]]);
+
+        $this->assertTrue($actual);
+    }
+
+    public function testIsAssocFalse()
+    {
+        $actual = $this->implementation->call('isAssoc', [[1, 2, 3]]);
+
+        $this->assertFalse($actual);
+    }
+}
+
+class ArrayTraitStub
+{
+    use ArrayTrait;
+
+    public function call($fn, array $args)
+    {
+        return call_user_func_array([$this, $fn], $args);
+    }
+}

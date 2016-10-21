@@ -51,7 +51,8 @@ class LoggingClientTest extends \PHPUnit_Framework_TestCase
         $this->connection->createSink([
             'projectName' => $this->formattedProjectId,
             'name' => $this->sinkName,
-            'destination' => $destination
+            'destination' => $destination,
+            'outputVersionFormat' => 'VERSION_FORMAT_UNSPECIFIED'
         ])
             ->willReturn([
                 'name' => $this->sinkName,

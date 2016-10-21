@@ -19,6 +19,7 @@ namespace Google\Cloud\Logging;
 
 use Google\Cloud\ClientTrait;
 use Google\Cloud\Logging\Connection\ConnectionInterface;
+use Google\Cloud\Logging\Connection\Grpc;
 use Google\Cloud\Logging\Connection\Rest;
 
 /**
@@ -26,6 +27,26 @@ use Google\Cloud\Logging\Connection\Rest;
  * monitor, and alert on log data and events from Google Cloud Platform and
  * Amazon Web Services. Find more information at
  * [Google Stackdriver Logging docs](https://cloud.google.com/logging/docs/).
+ *
+ * This client supports transport over
+ * [REST](https://cloud.google.com/logging/docs/api/reference/rest/) or
+ * gRPC.
+ *
+ * In order to enable gRPC support please make sure to install and enable
+ * the gRPC extension through PECL:
+ *
+ * ```sh
+ * $ pecl install grpc
+ * ```
+ *
+ * Afterwards, please install the following dependencies through composer:
+ *
+ * ```sh
+ * $ composer require google/gax && composer require google/proto-client-php
+ * ```
+ *
+ * Please take care in installing the same version of these libraries that are
+ * outlined in the project's composer.json require-dev keyword.
  *
  * Example:
  * ```
@@ -81,15 +102,22 @@ class LoggingClient
      *     @type int $retries Number of retries for a failed request.
      *           **Defaults to** `3`.
      *     @type array $scopes Scopes to be used for the request.
+     *     @type string $transport The transport type used for requests. May be
+     *           either `grpc` or `rest`. **Defaults to** `grpc` if gRPC support
+     *           is detected on the system.
      * }
      */
     public function __construct(array $config = [])
     {
+        $connectionType = $this->getConnectionType($config);
         if (!isset($config['scopes'])) {
             $config['scopes'] = [self::FULL_CONTROL_SCOPE];
         }
 
-        $this->connection = new Rest($this->configureAuthentication($config));
+        $this->connection = $connectionType === 'grpc'
+            ? new Grpc($this->configureAuthentication($config))
+            : new Rest($this->configureAuthentication($config));
+
         $this->formattedProjectName = "projects/$this->projectId";
     }
 
@@ -116,7 +144,8 @@ class LoggingClient
      *     @type string $outputVersionFormat The log entry version to use for
      *           this sink's exported log entries. This version does not have
      *           to correspond to the version of the log entry when it was
-     *           written to Stackdriver Logging.
+     *           written to Stackdriver Logging. May be either `V1` or `V2`.
+     *           **Defaults to** `V2`.
      * }
      * @return Sink
      */
@@ -125,7 +154,8 @@ class LoggingClient
         $response =  $this->connection->createSink($options + [
             'projectName' => $this->formattedProjectName,
             'name' => $name,
-            'destination' => $destination
+            'destination' => $destination,
+            'outputVersionFormat' => 'VERSION_FORMAT_UNSPECIFIED'
         ]);
 
         return new Sink($this->connection, $name, $this->projectId, $response);

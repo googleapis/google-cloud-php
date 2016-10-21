@@ -138,7 +138,7 @@ class Sink
      *     @type string $outputVersionFormat The log entry version to use for
      *           this sink's exported log entries. This version does not have
      *           to correspond to the version of the log entry when it was
-     *           written to Stackdriver Logging.
+     *           written to Stackdriver Logging. May be either `V1` or `V2`.
      * }
      * @param array $options [optional] Configuration Options.
      * @return array

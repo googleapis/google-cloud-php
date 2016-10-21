@@ -56,7 +56,7 @@ class PsrLoggerTest extends \PHPUnit_Framework_TestCase
         $this->connection->writeEntries([
             'entries' => [
                 [
-                    'severity' => $level,
+                    'severity' => array_flip(Logger::getLogLevelMap())[$level],
                     'textPayload' => $this->textPayload,
                     'logName' => $this->formattedName,
                     'resource' => $this->resource

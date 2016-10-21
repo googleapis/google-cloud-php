@@ -34,14 +34,28 @@ use Google\Cloud\Logging\Connection\ConnectionInterface;
  */
 class Logger
 {
-    const EMERGENCY = 'EMERGENCY';
-    const ALERT = 'ALERT';
-    const CRITICAL = 'CRITICAL';
-    const ERROR = 'ERROR';
-    const WARNING = 'WARNING';
-    const NOTICE = 'NOTICE';
-    const INFO = 'INFO';
-    const DEBUG = 'DEBUG';
+    const EMERGENCY = 800;
+    const ALERT = 700;
+    const CRITICAL = 600;
+    const ERROR = 500;
+    const WARNING = 400;
+    const NOTICE = 300;
+    const INFO = 200;
+    const DEBUG = 100;
+    // DEFAULT is a reserved keyword.
+    const DEFAULT_LEVEL = 0;
+
+    private static $logLevelMap = [
+        self::EMERGENCY => 'EMERGENCY',
+        self::ALERT => 'ALERT',
+        self::CRITICAL => 'CRITICAL',
+        self::ERROR => 'ERROR',
+        self::WARNING => 'WARNING',
+        self::NOTICE => 'NOTICE',
+        self::INFO => 'INFO',
+        self::DEBUG => 'DEBUG',
+        self::DEFAULT_LEVEL => 'DEFAULT'
+    ];
 
     /**
      * @var ConnectionInterface Represents a connection to Stackdriver Logging.
@@ -224,7 +238,7 @@ class Logger
      *           long-running operation with which a log entry is associated.
      *           Please see [the API docs](https://cloud.google.com/logging/docs/api/ref_v2beta1/rest/v2beta1/LogEntry#logentryoperation)
      *           for more information.
-     *     @type string $severity The severity of the log entry. **Defaults to**
+     *     @type string|int $severity The severity of the log entry. **Defaults to**
      *           `"DEFAULT"`.
      * }
      * @return Entry
@@ -302,5 +316,16 @@ class Logger
         }
 
         $this->connection->writeEntries($options + ['entries' => $entries]);
+    }
+
+    /**
+     * Returns the log level map.
+     *
+     * @param array
+     * @access private
+     */
+    public static function getLogLevelMap()
+    {
+        return self::$logLevelMap;
     }
 }

@@ -17,8 +17,12 @@
 
 namespace Google\Cloud\Tests;
 
+use Google\Auth\Cache\MemoryCacheItemPool;
+use Google\Auth\FetchAuthTokenCache;
+use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\GrpcRequestWrapper;
 use Google\Cloud\GrpcTrait;
+use Google\Cloud\ServiceBuilder;
 use Prophecy\Argument;
 
 /**
@@ -35,7 +39,7 @@ class GrpcTraitTest extends \PHPUnit_Framework_TestCase
             $this->markTestSkipped('Must have the grpc extension installed to run this test.');
         }
 
-        $this->implementation = $this->getObjectForTrait(GrpcTrait::class);
+        $this->implementation = new GrpcTraitStub();
         $this->requestWrapper = $this->prophesize(GrpcRequestWrapper::class);
     }
 
@@ -59,23 +63,152 @@ class GrpcTraitTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($message, $actualResponse);
     }
 
-    public function testPluck()
+    public function testGetsGaxConfig()
     {
-        $value = '123';
-        $key = 'key';
-        $array = [$key => $value];
-        $actualValue = $this->implementation->pluck($key, $array);
+        $fetcher = $this->prophesize(FetchAuthTokenInterface::class)->reveal();
+        $this->requestWrapper->getCredentialsFetcher()->willReturn($fetcher);
+        $this->implementation->setRequestWrapper($this->requestWrapper->reveal());
+        $expected = [
+            'credentialsLoader' => new FetchAuthTokenCache(
+                $fetcher,
+                null,
+                new MemoryCacheItemPool()
+            ),
+            'enableCaching' => false,
+            'appName' => 'gcloud-php',
+            'version' => ServiceBuilder::VERSION
+        ];
 
-        $this->assertEquals($value, $actualValue);
-        $this->assertEquals([], $array);
+        $this->assertEquals($expected, $this->implementation->call('getGaxConfig'));
+    }
+
+    public function testFormatsTimestamp()
+    {
+        $timestamp = [
+            'seconds' => '1471242909',
+            'nanos' => '1'
+        ];
+
+        $this->assertEquals('2016-08-15T06:35:09.1Z', $this->implementation->call('formatTimestampFromApi', [$timestamp]));
+    }
+
+    public function testFormatsLabels()
+    {
+        $labels = ['test' => 'label'];
+        $expected = [
+            [
+                'key' => key($labels),
+                'value' => current($labels)
+            ]
+        ];
+
+        $this->assertEquals($expected, $this->implementation->call('formatLabelsForApi', [$labels]));
+    }
+
+    public function testFormatsStruct()
+    {
+        $value = 'test';
+        $struct = [
+            $value => [
+                $value => $value
+            ]
+        ];
+
+        $expected = [
+            'fields' => [
+                [
+                    'key' => $value,
+                    'value' => [
+                        'struct_value' => [
+                            'fields' => [
+                                [
+                                    'key' => $value,
+                                    'value' => [
+                                        'string_value' => $value
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ];
+
+        $this->assertEquals($expected, $this->implementation->call('formatStructForApi', [$struct]));
+    }
+
+    public function testFormatsList()
+    {
+        $value = 'test';
+        $list = [
+            $value,
+            $value
+        ];
+        $expected = [
+            'values' => [
+                [
+                    'string_value' => $value,
+                ],
+                [
+                    'string_value' => $value
+                ]
+            ]
+        ];
+
+        $this->assertEquals($expected, $this->implementation->call('formatListForApi', [$list]));
     }
 
     /**
-     * @expectedException \InvalidArgumentException
+     * @dataProvider valueProvider
      */
-    public function testPluckThrowsExceptionWithInvalidKey()
+    public function testFormatsValue($value, $expected)
     {
-        $array = [];
-        $actualValue = $this->implementation->pluck('not_here', $array);
+        $this->assertEquals($expected, $this->implementation->call('formatValueForApi', [$value]));
+    }
+
+    public function valueProvider()
+    {
+        return [
+            ['string', ['string_value' => 'string']],
+            [true, ['bool_value' => true]],
+            [1, ['number_value' => 1]],
+            [
+                ['1'],
+                [
+                    'list_value' => [
+                        'values' => [
+                            [
+                                'string_value' => '1'
+                            ]
+                        ]
+                    ]
+                ]
+            ],
+            [
+                ['test' => 'test'],
+                [
+                    'struct_value' => [
+                        'fields' => [
+                            [
+                                'key' => 'test',
+                                'value' => [
+                                    'string_value' => 'test'
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ];
+    }
+}
+
+class GrpcTraitStub
+{
+    use GrpcTrait;
+
+    public function call($fn, array $args = [])
+    {
+        return call_user_func_array([$this, $fn], $args);
     }
 }

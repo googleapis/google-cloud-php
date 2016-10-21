@@ -17,6 +17,7 @@
 
 namespace Google\Cloud;
 
+use DrSlump\Protobuf\Codec\CodecInterface;
 use DrSlump\Protobuf\Message;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Auth\HttpHandler\HttpHandlerFactory;
@@ -42,6 +43,11 @@ class GrpcRequestWrapper
     private $authHttpHandler;
 
     /**
+     * @var CodecInterface A codec used to encode responses.
+     */
+    private $codec;
+
+    /**
      * @var array gRPC specific configuration options passed off to the GAX
      * library.
      */
@@ -65,6 +71,7 @@ class GrpcRequestWrapper
      *
      *     @type callable $authHttpHandler A handler used to deliver Psr7
      *           requests specifically for authentication.
+     *     @type CodecInterface $codec A codec used to encode responses.
      *     @type array $grpcOptions gRPC specific configuration options passed
      *           off to the GAX library.
      * }
@@ -74,10 +81,12 @@ class GrpcRequestWrapper
         $this->setCommonDefaults($config);
         $config += [
             'authHttpHandler' => null,
+            'codec' => new PhpArray(),
             'grpcOptions' => []
         ];
 
         $this->authHttpHandler = $config['authHttpHandler'] ?: HttpHandlerFactory::build();
+        $this->codec = $config['codec'];
         $this->grpcOptions = $config['grpcOptions'];
     }
 
@@ -134,11 +143,11 @@ class GrpcRequestWrapper
         if ($response instanceof PagedListResponse) {
             return $response->getPage()
                 ->getResponseObject()
-                ->serialize(new PhpArray());
+                ->serialize($this->codec);
         }
 
         if ($response instanceof Message) {
-            return $response->serialize(new PhpArray());
+            return $response->serialize($this->codec);
         }
 
         return null;

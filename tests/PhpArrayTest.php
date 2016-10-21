@@ -26,62 +26,146 @@ use Prophecy\Argument;
  */
 class PhpArrayTest extends \PHPUnit_Framework_TestCase
 {
-    private $phpArray;
-
-    public function setUp()
+    private function getCodec($customFilters = [])
     {
-        $this->phpArray = new PhpArray();
+        return new PhpArray($customFilters);
     }
 
-    public function testProperlyTransformsKeys()
+    /**
+     * @expectedException \UnexpectedValueException
+     */
+    public function testThrowsExceptionWithoutRequiredField()
     {
-        $value = 'testing123';
         $message = new TestMessage();
-        $message->setTestField($value);
-        $serializedMessage = $message->serialize(new PhpArray());
+        $serializedMessage = $message->serialize($this->getCodec());
+    }
 
-        $this->assertEquals(['testField' => $value], $serializedMessage);
+    public function testProperlyHandlesMessage()
+    {
+        $value = 'test';
+        $message = new TestMessage();
+        $message = $message->deserialize([
+            'testStruct' => [
+                'fields' => [
+                    'key' => $value,
+                    'value' => [
+                        'list_value' => [
+                            'values' => [
+                                'string_value' => $value
+                            ]
+                        ]
+                    ]
+                ]
+            ],
+            'testLabels' => [
+                [
+                    'key' => strtoupper($value),
+                    'value' => strtoupper($value)
+                ],
+                [
+                    'key' => $value,
+                    'value' => $value
+                ]
+            ],
+            'testStrings' => [
+                $value,
+                $value
+            ]
+        ], $this->getCodec());
+        $serializedMessage = $message->serialize($this->getCodec());
+
+        $expected = [
+            'testStruct' => [
+                $value => [
+                    $value
+                ]
+            ],
+            'testLabels' => [
+                strtoupper($value) => strtoupper($value),
+                $value => $value
+            ],
+            'testStrings' => [
+                $value,
+                $value
+            ]
+        ];
+
+        $this->assertEquals($expected, $serializedMessage);
     }
 }
 
 class TestMessage extends Message
 {
-    public $test_field = null;
+    public $test_struct = null;
+    public $test_labels = [];
+    public $test_stings = [];
 
     protected static $__extensions = array();
 
     public static function descriptor()
     {
-      $descriptor = new \DrSlump\Protobuf\Descriptor(__CLASS__, 'Google.Cloud.Tests.TestMessage');
+        $descriptor = new \DrSlump\Protobuf\Descriptor(__CLASS__, 'Google.Cloud.Tests.TestMessage');
 
-      $f = new \DrSlump\Protobuf\Field();
-      $f->number    = 1;
-      $f->name      = "test_field";
-      $f->type      = \DrSlump\Protobuf::TYPE_STRING;
-      $f->rule      = \DrSlump\Protobuf::RULE_OPTIONAL;
-      $descriptor->addField($f);
+        $f = new \DrSlump\Protobuf\Field();
+        $f->number    = 1;
+        $f->name      = "test_struct";
+        $f->type      = \DrSlump\Protobuf::TYPE_MESSAGE;
+        $f->rule      = \DrSlump\Protobuf::RULE_REQUIRED;
+        $f->reference = '\google\protobuf\Struct';
+        $descriptor->addField($f);
 
+        $f = new \DrSlump\Protobuf\Field();
+        $f->number    = 2;
+        $f->name      = "test_labels";
+        $f->type      = \DrSlump\Protobuf::TYPE_MESSAGE;
+        $f->rule      = \DrSlump\Protobuf::RULE_REPEATED;
+        $f->reference = '\Google\Cloud\Tests\TestLabelsEntry';
+        $descriptor->addField($f);
 
-      foreach (self::$__extensions as $cb) {
-        $descriptor->addField($cb(), true);
-      }
+        $f = new \DrSlump\Protobuf\Field();
+        $f->number    = 3;
+        $f->name      = "test_strings";
+        $f->type      = \DrSlump\Protobuf::TYPE_STRING;
+        $f->rule      = \DrSlump\Protobuf::RULE_REPEATED;
+        $descriptor->addField($f);
 
-      return $descriptor;
+        return $descriptor;
+    }
+}
+
+class TestLabelsEntry extends Message
+{
+    public $key = null;
+    public $value = null;
+
+    protected static $__extensions = array();
+
+    public static function descriptor()
+    {
+        $descriptor = new \DrSlump\Protobuf\Descriptor(__CLASS__, 'Google.Cloud.Tests.TestLabelsEntry');
+
+        $f = new \DrSlump\Protobuf\Field();
+        $f->number    = 1;
+        $f->name      = "key";
+        $f->type      = \DrSlump\Protobuf::TYPE_STRING;
+        $f->rule      = \DrSlump\Protobuf::RULE_OPTIONAL;
+        $descriptor->addField($f);
+
+        $f = new \DrSlump\Protobuf\Field();
+        $f->number    = 2;
+        $f->name      = "value";
+        $f->type      = \DrSlump\Protobuf::TYPE_STRING;
+        $f->rule      = \DrSlump\Protobuf::RULE_OPTIONAL;
+        $descriptor->addField($f);
+
+        return $descriptor;
     }
 
-    public function hasTestField(){
-      return $this->_has(1);
+    public function getKey(){
+        return $this->_get(1);
     }
 
-    public function clearTestField(){
-      return $this->_clear(1);
-    }
-
-    public function getTestField(){
-      return $this->_get(1);
-    }
-
-    public function setTestField( $value){
-      return $this->_set(1, $value);
+    public function getValue(){
+        return $this->_get(2);
     }
 }

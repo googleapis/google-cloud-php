@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Datastore;
 
+use Google\Cloud\ArrayTrait;
 use Google\Cloud\Datastore\Entity;
 use Google\Cloud\Datastore\GeoPoint;
 use Google\Cloud\Datastore\Key;
@@ -28,6 +29,7 @@ use RuntimeException;
  */
 class EntityMapper
 {
+    use ArrayTrait;
     use DatastoreTrait;
 
     /**

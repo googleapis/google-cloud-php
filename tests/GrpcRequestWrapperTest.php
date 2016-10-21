@@ -169,6 +169,7 @@ class GrpcRequestWrapperTest extends \PHPUnit_Framework_TestCase
             [3, Exception\BadRequestException::class],
             [5, Exception\NotFoundException::class],
             [6, Exception\ConflictException::class],
+            [2, Exception\ServerException::class],
             [13, Exception\ServerException::class],
             [15, Exception\ServiceException::class]
         ];

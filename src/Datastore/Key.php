@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Datastore;
 
+use Google\Cloud\ArrayTrait;
 use InvalidArgumentException;
 use JsonSerializable;
 
@@ -75,6 +76,7 @@ use JsonSerializable;
  */
 class Key implements JsonSerializable
 {
+    use ArrayTrait;
     use DatastoreTrait;
 
     const TYPE_NAME = 'name';
