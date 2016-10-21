@@ -63,6 +63,12 @@ interface ConnectionInterface
      * @param array $args
      * @return array
      */
+    public function patchTable(array $args = []);
+
+    /**
+     * @param array $args
+     * @return array
+     */
     public function getTable(array $args = []);
 
     /**

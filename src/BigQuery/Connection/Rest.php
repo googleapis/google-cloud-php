@@ -110,6 +110,15 @@ class Rest implements ConnectionInterface
      * @param array $args
      * @return array
      */
+    public function patchTable(array $args = [])
+    {
+        return $this->send('tables', 'patch', $args);
+    }
+
+    /**
+     * @param array $args
+     * @return array
+     */
     public function getTable(array $args = [])
     {
         return $this->send('tables', 'get', $args);
