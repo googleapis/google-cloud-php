@@ -24,26 +24,52 @@ use Exception;
  *
  * {@see http://php.net/manual/en/class.sessionhandlerinterface.php}
  *
- * It uses the $savePath for the custom namespace which isolates the session
- * data from your application data.
+ * It ignores the $savePath. It is highly recommended to use namespaceId for
+ * isolating the session data from your application data.
  *
- * Class DatastoreSessionHandler
- * @package Google\Cloud\Datastore
+ * Example:
+ * ```
+ * use Google\Cloud\Datastore\DatastoreClient;
+ * use Google\Cloud\Datastore\DatastoreSessionHandler;
+ *
+ * $handler = new DatastoreSessionHandler(
+ *     new DatastoreClient(['namespaceId' => 'sessions'])
+ * );
+ * session_set_save_handler($handler, true);
+ * session_start();
+ * ```
  */
 class DatastoreSessionHandler implements \SessionHandlerInterface
 {
-    const KIND = 'Session';
+    const DEFAULT_GC_LIMIT = 1000;
+    const DEFAULT_KIND = 'Session';
 
-    const GC_LIMIT = 1000;
+    /* @var int */
+    private $gcLimit;
 
     /* @var DatastoreClient */
     private $datastore;
 
+    /* @var string */
+    private $kind;
+
+    /**
+     * @param DatastoreClient $datastore Datastore client
+     * @param string $kind A kind name for the session
+     * @param int $gcLimit A number of entities to delete in garbage collection
+     */
+    public function __construct(
+        DatastoreClient $datastore,
+        $kind = self::DEFAULT_KIND,
+        $gcLimit = self::DEFAULT_GC_LIMIT
+    ) {
+        $this->datastore = $datastore;
+        $this->kind = $kind;
+        $this->gcLimit = $gcLimit;
+    }
+
     public function open($savePath, $sessionName)
     {
-        $this->datastore = new DatastoreClient(
-            ['namespaceId' => $savePath]
-        );
         return true;
     }
 
@@ -55,7 +81,7 @@ class DatastoreSessionHandler implements \SessionHandlerInterface
     public function read($id)
     {
         try {
-            $key = $this->datastore->key(self::KIND, $id);
+            $key = $this->datastore->key($this->kind, $id);
             $entity = $this->datastore->lookup($key);
             if ($entity === null) {
                 return '';
@@ -73,7 +99,7 @@ class DatastoreSessionHandler implements \SessionHandlerInterface
     public function write($id, $data)
     {
         try {
-            $key = $this->datastore->key(self::KIND, $id);
+            $key = $this->datastore->key($this->kind, $id);
             $entity = $this->datastore->entity(
                 $key,
                 [
@@ -95,7 +121,7 @@ class DatastoreSessionHandler implements \SessionHandlerInterface
     public function destroy($id)
     {
         try {
-            $key = $this->datastore->key(self::KIND, $id);
+            $key = $this->datastore->key($this->kind, $id);
             $this->datastore->delete($key);
         } catch (Exception $e) {
             trigger_error(
@@ -111,11 +137,11 @@ class DatastoreSessionHandler implements \SessionHandlerInterface
     {
         try {
             $query = $this->datastore->query()
-                ->kind(self::KIND)
+                ->kind($this->kind)
                 ->filter('t', '<', time() - $maxlifetime)
                 ->order('t')
                 ->keysOnly()
-                ->limit(self::GC_LIMIT);
+                ->limit($this->gcLimit);
             $result = $this->datastore->runQuery($query);
             $keys = [];
             /* @var Entity $e */
