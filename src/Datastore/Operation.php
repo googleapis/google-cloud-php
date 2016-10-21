@@ -386,14 +386,15 @@ class Operation
     public function runQuery(QueryInterface $query, array $options = [])
     {
         $options += [
-            'className' => null
+            'className' => null,
+            'namespaceId' => $this->namespaceId
         ];
 
         $moreResults = true;
         do {
             $request = $options + $this->readOptions($options) + [
                 'projectId' => $this->projectId,
-                'partitionId' => $this->partitionId($this->projectId, $this->namespaceId),
+                'partitionId' => $this->partitionId($this->projectId, $options['namespaceId']),
                 $query->queryKey() => $query->queryObject()
             ];
 
