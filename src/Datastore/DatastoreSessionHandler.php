@@ -153,7 +153,7 @@ class DatastoreSessionHandler implements \SessionHandlerInterface
             }
         } catch (Exception $e) {
             trigger_error(
-                sprintf('Datastore deleteBatch failed: %s', $e->getMessage()),
+                sprintf('Session gc failed: %s', $e->getMessage()),
                 E_USER_NOTICE
             );
             return false;
