@@ -28,6 +28,7 @@ trait ArrayTrait
      * @param string $key
      * @param array $arr
      * @return string
+     * @throws \InvalidArgumentException
      */
     private function pluck($key, array &$arr)
     {
@@ -40,6 +41,25 @@ trait ArrayTrait
         $value = $arr[$key];
         unset($arr[$key]);
         return $value;
+    }
+
+    /**
+     * Pluck a subset of an array.
+     *
+     * @param string $keys
+     * @param array $arr
+     * @return string
+     * @throws \InvalidArgumentException
+     */
+    private function pluckArray(array $keys, &$arr)
+    {
+        $values = [];
+
+        foreach ($keys as $key) {
+            $values[$key] = $this->pluck($key, $arr);
+        }
+
+        return $values;
     }
 
     /**

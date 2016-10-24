@@ -49,7 +49,22 @@ class ArrayTraitTest extends \PHPUnit_Framework_TestCase
     public function testPluckThrowsExceptionWithInvalidKey()
     {
         $array = [];
-        $actualValue = $this->implementation->call('pluck', ['not_here', &$array]);
+        $this->implementation->call('pluck', ['not_here', &$array]);
+    }
+
+    public function testPluckArray()
+    {
+        $keys = ['key1', 'key2'];
+        $array = [
+            'key1' => 'test',
+            'key2' => 'test'
+        ];
+        $expectedArray = $array;
+
+       $actualValues = $this->implementation->call('pluckArray', [$keys, &$array]);
+
+       $this->assertEquals($expectedArray, $actualValues);
+       $this->assertEquals([], $array);
     }
 
     public function testIsAssocTrue()

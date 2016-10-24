@@ -150,7 +150,7 @@ class Grpc implements ConnectionInterface
         }
 
         $pbSink = (new LogSink())->deserialize(
-            $this->filterArgs($args, $this->sinkKeys),
+            $this->pluckArray($this->sinkKeys, $args),
             $this->codec
         );
 
@@ -196,7 +196,7 @@ class Grpc implements ConnectionInterface
         }
 
         $pbSink = (new LogSink())->deserialize(
-            $this->filterArgs($args, $this->sinkKeys),
+            $this->pluckArray($this->sinkKeys, $args),
             $this->codec
         );
 
@@ -226,7 +226,7 @@ class Grpc implements ConnectionInterface
     public function createMetric(array $args = [])
     {
         $pbMetric = (new LogMetric())->deserialize(
-            $this->filterArgs($args, $this->metricKeys),
+            $this->pluckArray($this->metricKeys, $args),
             $this->codec
         );
 
@@ -268,7 +268,7 @@ class Grpc implements ConnectionInterface
     public function updateMetric(array $args = [])
     {
         $pbMetric = (new LogMetric())->deserialize(
-            $this->filterArgs($args, $this->metricKeys),
+            $this->pluckArray($this->metricKeys, $args),
             $this->codec
         );
 
@@ -301,25 +301,6 @@ class Grpc implements ConnectionInterface
             $this->pluck('logName', $args),
             $args
         ]);
-    }
-
-    /**
-     * @param array $args
-     * @param array $keys
-     * @return array
-     */
-    private function filterArgs(&$args, $keys)
-    {
-        $fArgs = [];
-
-        foreach ($keys as $key) {
-            if (isset($args[$key])) {
-                $fArgs[$key] = $args[$key];
-                unset($args[$key]);
-            }
-        }
-
-        return $fArgs;
     }
 
     /**
