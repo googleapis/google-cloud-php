@@ -215,10 +215,9 @@ class Logger
      *     ['severity' => Logger::EMERGENCY]
      * );
      * ```
-     *
+     * @codingStandardsIgnoreStart
      * @see https://cloud.google.com/logging/docs/api/reference/rest/Shared.Types/LogEntry LogEntry resource documentation.
      *
-     * @codingStandardsIgnoreStart
      * @param array|string $data The data to log. When providing a string the
      *        data will be stored as a `textPayload` type. When providing an
      *        array the data will be stored as a `jsonPayload` type.
