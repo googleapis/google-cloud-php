@@ -98,7 +98,7 @@ class Metric
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/logging/docs/api/ref_v2beta1/rest/v2beta1/projects.metrics/delete projects.metrics delete API documentation.
+     * @see https://cloud.google.com/logging/docs/api/reference/rest/v2/projects.metrics/delete projects.metrics delete API documentation.
      * @codingStandardsIgnoreEnd
      *
      * @param array $options [optional] Configuration Options.
@@ -122,7 +122,7 @@ class Metric
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/logging/docs/api/ref_v2beta1/rest/v2beta1/projects.metrics/update projects.metrics update API documentation.
+     * @see https://cloud.google.com/logging/docs/api/reference/rest/v2/projects.metrics/update projects.metrics update API documentation.
      * @codingStandardsIgnoreEnd
      *
      * @param array $metadata {
@@ -155,7 +155,7 @@ class Metric
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/logging/docs/api/ref_v2beta1/rest/v2beta1/projects.metrics#resource-logmetric LogMetric resource API documentation.
+     * @see https://cloud.google.com/logging/docs/api/reference/rest/v2/projects.metrics#resource-logmetric LogMetric resource API documentation.
      * @codingStandardsIgnoreEnd
      *
      * @param array $options [optional] Configuration Options.
@@ -181,7 +181,7 @@ class Metric
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/logging/docs/api/ref_v2beta1/rest/v2beta1/projects.metrics/get projects.metrics get API documentation.
+     * @see https://cloud.google.com/logging/docs/api/reference/rest/v2/projects.metrics/get projects.metrics get API documentation.
      * @codingStandardsIgnoreEnd
      *
      * @param array $options [optional] Configuration Options.

@@ -233,8 +233,7 @@ class LoggingServiceV2Api
             'retryingOverride' => null,
             'timeoutMillis' => self::DEFAULT_TIMEOUT_MILLIS,
             'appName' => 'gax',
-            'appVersion' => self::_GAX_VERSION,
-            'credentialsLoader' => null,
+            'appVersion' => self::_GAX_VERSION
         ];
         $options = array_merge($defaultOptions, $options);
 

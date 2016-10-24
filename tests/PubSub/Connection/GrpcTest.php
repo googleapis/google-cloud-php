@@ -32,8 +32,6 @@ class GrpcTest extends \PHPUnit_Framework_TestCase
 {
     private $requestWrapper;
     private $successMessage;
-    private $publisherApi;
-    private $subscriberApi;
 
     public function setUp()
     {

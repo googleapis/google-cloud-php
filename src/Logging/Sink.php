@@ -101,7 +101,7 @@ class Sink
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/logging/docs/api/ref_v2beta1/rest/v2beta1/projects.sinks/delete projects.sinks delete API documentation.
+     * @see https://cloud.google.com/logging/docs/api/reference/rest/v2/projects.sinks/delete projects.sinks delete API documentation.
      * @codingStandardsIgnoreEnd
      *
      * @param array $options [optional] Configuration Options.
@@ -125,7 +125,7 @@ class Sink
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/logging/docs/api/ref_v2beta1/rest/v2beta1/projects.sinks/update projects.sinks update API documentation.
+     * @see https://cloud.google.com/logging/docs/api/reference/rest/v2/projects.sinks/update projects.sinks update API documentation.
      * @codingStandardsIgnoreEnd
      *
      * @param array $metadata {
@@ -138,7 +138,7 @@ class Sink
      *     @type string $outputVersionFormat The log entry version to use for
      *           this sink's exported log entries. This version does not have
      *           to correspond to the version of the log entry when it was
-     *           written to Stackdriver Logging.
+     *           written to Stackdriver Logging. May be either `V1` or `V2`.
      * }
      * @param array $options [optional] Configuration Options.
      * @return array
@@ -164,7 +164,7 @@ class Sink
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/logging/docs/api/ref_v2beta1/rest/v2beta1/projects.sinks#resource-logsink LogSink resource API documentation.
+     * @see https://cloud.google.com/logging/docs/api/reference/rest/v2/projects.sinks#resource-logsink LogSink resource API documentation.
      * @codingStandardsIgnoreEnd
      *
      * @param array $options [optional] Configuration Options.
@@ -190,7 +190,7 @@ class Sink
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/logging/docs/api/ref_v2beta1/rest/v2beta1/projects.sinks/get projects.sinks get API documentation.
+     * @see https://cloud.google.com/logging/docs/api/reference/rest/v2/projects.sinks/get projects.sinks get API documentation.
      * @codingStandardsIgnoreEnd
      *
      * @param array $options [optional] Configuration Options.

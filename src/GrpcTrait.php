@@ -17,13 +17,21 @@
 
 namespace Google\Cloud;
 
+use DateTime;
+use DateTimeZone;
+use Google\Auth\FetchAuthTokenCache;
+use Google\Auth\Cache\MemoryCacheItemPool;
+use Google\Cloud\ArrayTrait;
 use Google\Cloud\GrpcRequestWrapper;
+use Google\Cloud\ServiceBuilder;
 
 /**
  * Provides shared functionality for gRPC service implementations.
  */
 trait GrpcTrait
 {
+    use ArrayTrait;
+
     /**
      * @var GrpcRequestWrapper Wrapper used to handle sending requests to the
      * gRPC API.
@@ -58,22 +66,120 @@ trait GrpcTrait
     }
 
     /**
-     * Pluck a value out of an array.
+     * Gets the default configuration for generated GAX clients.
      *
-     * @param string $key
-     * @param array $args
+     * @return array
+     */
+    private function getGaxConfig()
+    {
+        return [
+            'credentialsLoader' => new FetchAuthTokenCache(
+                $this->requestWrapper->getCredentialsFetcher(),
+                null,
+                new MemoryCacheItemPool()
+            ),
+            'enableCaching' => false,
+            'appName' => 'gcloud-php',
+            'version' => ServiceBuilder::VERSION
+        ];
+    }
+
+    /**
+     * Format a gRPC timestamp to match the format returned by the REST API.
+     *
+     * @param array $timestamp
      * @return string
      */
-    public function pluck($key, array &$args)
+    private function formatTimestampFromApi(array $timestamp)
     {
-        if (!isset($args[$key])) {
-            throw new \InvalidArgumentException(
-                "Key $key does not exist in the provided array."
-            );
+        $formattedTime = (new DateTime())
+            ->setTimeZone(new DateTimeZone('UTC'))
+            ->setTimestamp($timestamp['seconds'])
+            ->format('Y-m-d\TH:i:s');
+        return $formattedTime .= sprintf('.%sZ', rtrim($timestamp['nanos'], '0'));
+    }
+
+    /**
+     * Format a set of labels for the API.
+     *
+     * @param array $labels
+     * @return array
+     */
+    private function formatLabelsForApi(array $labels)
+    {
+        $fLabels = [];
+
+        foreach ($labels as $key => $value) {
+            $fLabels[] = [
+                'key' => $key,
+                'value' => $value
+            ];
         }
 
-        $value = $args[$key];
-        unset($args[$key]);
-        return $value;
+        return $fLabels;
+    }
+
+    /**
+     * Format a struct for the API.
+     *
+     * @param array $fields
+     * @return array
+     */
+    private function formatStructForApi(array $fields)
+    {
+        $fFields = [];
+
+        foreach ($fields as $key => $value) {
+            $fFields[] = [
+                'key' => $key,
+                'value' => $this->formatValueForApi($value)
+            ];
+        }
+
+        return ['fields' => $fFields];
+    }
+
+    /**
+     * Format a list for the API.
+     *
+     * @param array $list
+     * @return array
+     */
+    private function formatListForApi(array $list)
+    {
+        $values = [];
+
+        foreach ($list as $value) {
+            $values[] = $this->formatValueForApi($value);
+        }
+
+        return ['values' => $values];
+    }
+
+    /**
+     * Format a value for the API.
+     *
+     * @param array $value
+     * @return array
+     */
+    private function formatValueForApi($value)
+    {
+        $type = gettype($value);
+
+        switch ($type) {
+            case 'string':
+                return ['string_value' => $value];
+            case 'double':
+            case 'integer':
+                return ['number_value' => $value];
+            case 'boolean':
+                return ['bool_value' => $value];
+            case 'array':
+                if ($this->isAssoc($value)) {
+                    return ['struct_value' => $this->formatStructForApi($value)];
+                }
+
+                return ['list_value' => $this->formatListForApi($value)];
+        }
     }
 }

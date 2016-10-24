@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Datastore\Query;
 
+use Google\Cloud\ArrayTrait;
 use Google\Cloud\Datastore\DatastoreTrait;
 use Google\Cloud\Datastore\EntityMapper;
 use InvalidArgumentException;
@@ -72,6 +73,7 @@ use InvalidArgumentException;
  */
 class GqlQuery implements QueryInterface
 {
+    use ArrayTrait;
     use DatastoreTrait;
 
     const BINDING_NAMED = 'namedBindings';

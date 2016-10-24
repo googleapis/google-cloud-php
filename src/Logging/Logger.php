@@ -34,14 +34,28 @@ use Google\Cloud\Logging\Connection\ConnectionInterface;
  */
 class Logger
 {
-    const EMERGENCY = 'EMERGENCY';
-    const ALERT = 'ALERT';
-    const CRITICAL = 'CRITICAL';
-    const ERROR = 'ERROR';
-    const WARNING = 'WARNING';
-    const NOTICE = 'NOTICE';
-    const INFO = 'INFO';
-    const DEBUG = 'DEBUG';
+    const EMERGENCY = 800;
+    const ALERT = 700;
+    const CRITICAL = 600;
+    const ERROR = 500;
+    const WARNING = 400;
+    const NOTICE = 300;
+    const INFO = 200;
+    const DEBUG = 100;
+    // DEFAULT is a reserved keyword.
+    const DEFAULT_LEVEL = 0;
+
+    private static $logLevelMap = [
+        self::EMERGENCY => 'EMERGENCY',
+        self::ALERT => 'ALERT',
+        self::CRITICAL => 'CRITICAL',
+        self::ERROR => 'ERROR',
+        self::WARNING => 'WARNING',
+        self::NOTICE => 'NOTICE',
+        self::INFO => 'INFO',
+        self::DEBUG => 'DEBUG',
+        self::DEFAULT_LEVEL => 'DEFAULT'
+    ];
 
     /**
      * @var ConnectionInterface Represents a connection to Stackdriver Logging.
@@ -81,7 +95,7 @@ class Logger
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/logging/docs/api/ref_v2beta1/rest/v2beta1/projects.logs/delete projects.logs delete API documentation.
+     * @see https://cloud.google.com/logging/docs/api/reference/rest/v2/projects.logs/delete projects.logs delete API documentation.
      * @codingStandardsIgnoreEnd
      *
      * @param array $options [optional] Configuration Options.
@@ -118,7 +132,7 @@ class Logger
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/logging/docs/api/ref_v2beta1/rest/v2beta1/entries/list Entries list API documentation.
+     * @see https://cloud.google.com/logging/docs/api/reference/rest/v2/entries/list Entries list API documentation.
      * @codingStandardsIgnoreEnd
      *
      * @param array $options [optional] {
@@ -201,10 +215,9 @@ class Logger
      *     ['severity' => Logger::EMERGENCY]
      * );
      * ```
-     *
-     * @see https://cloud.google.com/logging/docs/api/ref_v2beta1/rest/v2beta1/LogEntry LogEntry resource documentation.
-     *
      * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/logging/docs/api/reference/rest/Shared.Types/LogEntry LogEntry resource documentation.
+     *
      * @param array|string $data The data to log. When providing a string the
      *        data will be stored as a `textPayload` type. When providing an
      *        array the data will be stored as a `jsonPayload` type.
@@ -224,7 +237,7 @@ class Logger
      *           long-running operation with which a log entry is associated.
      *           Please see [the API docs](https://cloud.google.com/logging/docs/api/ref_v2beta1/rest/v2beta1/LogEntry#logentryoperation)
      *           for more information.
-     *     @type string $severity The severity of the log entry. **Defaults to**
+     *     @type string|int $severity The severity of the log entry. **Defaults to**
      *           `"DEFAULT"`.
      * }
      * @return Entry
@@ -257,7 +270,7 @@ class Logger
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/logging/docs/api/ref_v2beta1/rest/v2beta1/entries/write Entries write API documentation.
+     * @see https://cloud.google.com/logging/docs/api/reference/rest/v2/entries/write Entries write API documentation.
      * @codingStandardsIgnoreEnd
      *
      * @param Entry $entry The entry to write to the log.
@@ -289,7 +302,7 @@ class Logger
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/logging/docs/api/ref_v2beta1/rest/v2beta1/entries/write Entries write API documentation.
+     * @see https://cloud.google.com/logging/docs/api/reference/rest/v2/entries/write Entries write API documentation.
      * @codingStandardsIgnoreEnd
      *
      * @param Entry[] $entries Entries to write to the log.
@@ -302,5 +315,16 @@ class Logger
         }
 
         $this->connection->writeEntries($options + ['entries' => $entries]);
+    }
+
+    /**
+     * Returns the log level map.
+     *
+     * @param array
+     * @access private
+     */
+    public static function getLogLevelMap()
+    {
+        return self::$logLevelMap;
     }
 }

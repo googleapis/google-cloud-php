@@ -17,19 +17,15 @@
 
 namespace Google\Cloud\PubSub\Connection;
 
-use Google\Auth\FetchAuthTokenCache;
-use Google\Auth\Cache\MemoryCacheItemPool;
+use DrSlump\Protobuf\Codec\CodecInterface;
 use Google\Cloud\EmulatorTrait;
 use Google\Cloud\PhpArray;
 use Google\Cloud\PubSub\V1\PublisherApi;
 use Google\Cloud\PubSub\V1\SubscriberApi;
 use Google\Cloud\GrpcRequestWrapper;
 use Google\Cloud\GrpcTrait;
-use Google\Cloud\ServiceBuilder;
 use Grpc\ChannelCredentials;
 use google\pubsub\v1\PubsubMessage;
-use google\pubsub\v1\PubsubMessage\AttributesEntry as MessageAttributesEntry;
-use google\pubsub\v1\PushConfig\AttributesEntry as PushConfigAttributesEntry;
 use google\pubsub\v1\PushConfig;
 
 /**
@@ -54,21 +50,21 @@ class Grpc implements ConnectionInterface
     private $subscriberApi;
 
     /**
+     * @var CodecInterface
+     */
+    private $codec;
+
+    /**
      * @param array $config
      */
     public function __construct(array $config = [])
     {
+        $this->codec = new PhpArray(['publishTime' => function ($v) {
+            return $this->formatTimestampFromApi($v);
+        }]);
+        $config['codec'] = $this->codec;
         $this->setRequestWrapper(new GrpcRequestWrapper($config));
-        $grpcConfig = [
-            'credentialsLoader' => new FetchAuthTokenCache(
-                $this->requestWrapper->getCredentialsFetcher(),
-                null,
-                new MemoryCacheItemPool()
-            ),
-            'enableCaching' => false,
-            'appName' => 'gcloud-php',
-            'version' => ServiceBuilder::VERSION
-        ];
+        $grpcConfig = $this->getGaxConfig();
         $emulatorHost = getenv('PUBSUB_EMULATOR_HOST');
         $baseUri = $this->getEmulatorBaseUri(self::BASE_URI, $emulatorHost);
 
@@ -137,20 +133,7 @@ class Grpc implements ConnectionInterface
         $messages = $this->pluck('messages', $args);
 
         foreach ($messages as $message) {
-            $pbMessage = new PubsubMessage();
-            $pbMessage->setData($message['data']);
-
-            if (isset($message['attributes'])) {
-                foreach ($message['attributes'] as $attributeKey => $attributeValue) {
-                    $pbAttribute = new MessageAttributesEntry();
-                    $pbAttribute->setKey($attributeKey);
-                    $pbAttribute->setValue($attributeValue);
-
-                    $pbMessage->addAttributes($pbAttribute);
-                }
-            }
-
-            $pbMessages[] = $pbMessage;
+            $pbMessages[] = $this->buildMessage($message);
         }
 
         return $this->send([$this->publisherApi, 'publish'], [
@@ -177,20 +160,7 @@ class Grpc implements ConnectionInterface
     public function createSubscription(array $args)
     {
         if (isset($args['pushConfig'])) {
-            $pbPushConfig = new PushConfig();
-            $pbPushConfig->setPushEndpoint($args['pushConfig']['pushEndpoint']);
-
-            if (isset($args['pushConfig']['attributes'])) {
-                foreach ($args['pushConfig']['attributes'] as $attributeKey => $attributeValue) {
-                    $pbAttribute = new PushConfigAttributesEntry();
-                    $pbAttribute->setKey($attributeKey);
-                    $pbAttribute->setValue($attributeValue);
-
-                    $pbPushConfig->addAttributes($pbAttribute);
-                }
-            }
-
-            $args['pushConfig'] = $pbPushConfig;
+            $args['pushConfig'] = $this->buildPushConfig($args['pushConfig']);
         }
 
         return $this->send([$this->subscriberApi, 'createSubscription'], [
@@ -238,23 +208,9 @@ class Grpc implements ConnectionInterface
      */
     public function modifyPushConfig(array $args)
     {
-        $pushConfig = $this->pluck('pushConfig', $args);
-        $pbPushConfig = new PushConfig();
-        $pbPushConfig->setPushEndpoint($pushConfig['pushEndpoint']);
-
-        if (isset($pushConfig['attributes'])) {
-            foreach ($pushConfig['attributes'] as $attributeKey => $attributeValue) {
-                $pbAttribute = new PushConfigAttributesEntry();
-                $pbAttribute->setKey($attributeKey);
-                $pbAttribute->setValue($attributeValue);
-
-                $pbPushConfig->addAttributes($pbAttribute);
-            }
-        }
-
         return $this->send([$this->subscriberApi, 'modifyPushConfig'], [
             $this->pluck('subscription', $args),
-            $pbPushConfig,
+            $this->buildPushConfig($this->pluck('pushConfig', $args)),
             $args
         ]);
     }
@@ -364,5 +320,31 @@ class Grpc implements ConnectionInterface
             $this->pluck('permissions', $args),
             $args
         ]);
+    }
+
+    /**
+     * @param array $message
+     * @return array
+     */
+    private function buildMessage(array $message)
+    {
+        if (isset($message['attributes'])) {
+            $message['attributes'] = $this->formatLabelsForApi($message['attributes']);
+        }
+
+        return (new PubsubMessage())->deserialize($message, $this->codec);
+    }
+
+    /**
+     * @param array $pushConfig
+     * @return array
+     */
+    private function buildPushConfig(array $pushConfig)
+    {
+        if (isset($pushConfig['attributes'])) {
+            $pushConfig['attributes'] = $this->formatLabelsForApi($pushConfig['attributes']);
+        }
+
+        return (new PushConfig())->deserialize($pushConfig, $this->codec);
     }
 }
