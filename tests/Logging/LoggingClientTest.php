@@ -49,7 +49,7 @@ class LoggingClientTest extends \PHPUnit_Framework_TestCase
     {
         $destination = 'storage.googleapis.com/my-bucket';
         $this->connection->createSink([
-            'projectName' => $this->formattedProjectId,
+            'parent' => $this->formattedProjectId,
             'name' => $this->sinkName,
             'destination' => $destination,
             'outputVersionFormat' => 'VERSION_FORMAT_UNSPECIFIED'
@@ -129,7 +129,7 @@ class LoggingClientTest extends \PHPUnit_Framework_TestCase
     {
         $filter = 'logName = myLog';
         $this->connection->createMetric([
-            'projectName' => $this->formattedProjectId,
+            'parent' => $this->formattedProjectId,
             'name' => $this->metricName,
             'filter' => $filter
         ])

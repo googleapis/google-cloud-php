@@ -95,7 +95,7 @@ class Logger
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/logging/docs/api/ref_v2beta1/rest/v2beta1/projects.logs/delete projects.logs delete API documentation.
+     * @see https://cloud.google.com/logging/docs/api/reference/rest/v2/projects.logs/delete projects.logs delete API documentation.
      * @codingStandardsIgnoreEnd
      *
      * @param array $options [optional] Configuration Options.
@@ -132,7 +132,7 @@ class Logger
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/logging/docs/api/ref_v2beta1/rest/v2beta1/entries/list Entries list API documentation.
+     * @see https://cloud.google.com/logging/docs/api/reference/rest/v2/entries/list Entries list API documentation.
      * @codingStandardsIgnoreEnd
      *
      * @param array $options [optional] {
@@ -216,7 +216,7 @@ class Logger
      * );
      * ```
      *
-     * @see https://cloud.google.com/logging/docs/api/ref_v2beta1/rest/v2beta1/LogEntry LogEntry resource documentation.
+     * @see https://cloud.google.com/logging/docs/api/reference/rest/Shared.Types/LogEntry LogEntry resource documentation.
      *
      * @codingStandardsIgnoreStart
      * @param array|string $data The data to log. When providing a string the
@@ -271,7 +271,7 @@ class Logger
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/logging/docs/api/ref_v2beta1/rest/v2beta1/entries/write Entries write API documentation.
+     * @see https://cloud.google.com/logging/docs/api/reference/rest/v2/entries/write Entries write API documentation.
      * @codingStandardsIgnoreEnd
      *
      * @param Entry $entry The entry to write to the log.
@@ -303,7 +303,7 @@ class Logger
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/logging/docs/api/ref_v2beta1/rest/v2beta1/entries/write Entries write API documentation.
+     * @see https://cloud.google.com/logging/docs/api/reference/rest/v2/entries/write Entries write API documentation.
      * @codingStandardsIgnoreEnd
      *
      * @param Entry[] $entries Entries to write to the log.

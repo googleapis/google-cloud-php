@@ -110,6 +110,7 @@ class Grpc implements ConnectionInterface
 
     /**
      * @param array $args
+     * @return array
      */
     public function writeEntries(array $args = [])
     {
@@ -128,6 +129,7 @@ class Grpc implements ConnectionInterface
 
     /**
      * @param array $args
+     * @return array
      */
     public function listEntries(array $args = [])
     {
@@ -139,6 +141,7 @@ class Grpc implements ConnectionInterface
 
     /**
      * @param array $args
+     * @return array
      */
     public function createSink(array $args = [])
     {
@@ -152,7 +155,7 @@ class Grpc implements ConnectionInterface
         );
 
         return $this->send([$this->configApi, 'createSink'], [
-            $this->pluck('projectName', $args),
+            $this->pluck('parent', $args),
             $pbSink,
             $args
         ]);
@@ -160,6 +163,7 @@ class Grpc implements ConnectionInterface
 
     /**
      * @param array $args
+     * @return array
      */
     public function getSink(array $args = [])
     {
@@ -171,17 +175,19 @@ class Grpc implements ConnectionInterface
 
     /**
      * @param array $args
+     * @return array
      */
     public function listSinks(array $args = [])
     {
         return $this->send([$this->configApi, 'listSinks'], [
-            $this->pluck('projectName', $args),
+            $this->pluck('parent', $args),
             $args
         ]);
     }
 
     /**
      * @param array $args
+     * @return array
      */
     public function updateSink(array $args = [])
     {
@@ -203,6 +209,7 @@ class Grpc implements ConnectionInterface
 
     /**
      * @param array $args
+     * @return array
      */
     public function deleteSink(array $args = [])
     {
@@ -214,6 +221,7 @@ class Grpc implements ConnectionInterface
 
     /**
      * @param array $args
+     * @return array
      */
     public function createMetric(array $args = [])
     {
@@ -223,7 +231,7 @@ class Grpc implements ConnectionInterface
         );
 
         return $this->send([$this->metricsApi, 'createLogMetric'], [
-            $this->pluck('projectName', $args),
+            $this->pluck('parent', $args),
             $pbMetric,
             $args
         ]);
@@ -231,6 +239,7 @@ class Grpc implements ConnectionInterface
 
     /**
      * @param array $args
+     * @return array
      */
     public function getMetric(array $args = [])
     {
@@ -242,17 +251,19 @@ class Grpc implements ConnectionInterface
 
     /**
      * @param array $args
+     * @return array
      */
     public function listMetrics(array $args = [])
     {
         return $this->send([$this->metricsApi, 'getLogMetric'], [
-            $this->pluck('projectName', $args),
+            $this->pluck('parent', $args),
             $args
         ]);
     }
 
     /**
      * @param array $args
+     * @return array
      */
     public function updateMetric(array $args = [])
     {
@@ -270,6 +281,7 @@ class Grpc implements ConnectionInterface
 
     /**
      * @param array $args
+     * @return array
      */
     public function deleteMetric(array $args = [])
     {
@@ -281,6 +293,7 @@ class Grpc implements ConnectionInterface
 
     /**
      * @param array $args
+     * @return array
      */
     public function deleteLog(array $args = [])
     {

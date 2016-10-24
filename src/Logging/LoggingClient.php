@@ -130,7 +130,7 @@ class LoggingClient
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/logging/docs/api/ref_v2beta1/rest/v2beta1/projects.sinks/create projects.sinks create API documentation.
+     * @see https://cloud.google.com/logging/docs/api/reference/rest/v2/projects.sinks/create projects.sinks create API documentation.
      * @codingStandardsIgnoreEnd
      *
      * @param string $name The name of the sink.
@@ -152,7 +152,7 @@ class LoggingClient
     public function createSink($name, $destination, array $options = [])
     {
         $response =  $this->connection->createSink($options + [
-            'projectName' => $this->formattedProjectName,
+            'parent' => $this->formattedProjectName,
             'name' => $name,
             'destination' => $destination,
             'outputVersionFormat' => 'VERSION_FORMAT_UNSPECIFIED'
@@ -193,7 +193,7 @@ class LoggingClient
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/logging/docs/api/ref_v2beta1/rest/v2beta1/projects.sinks/list projects.sinks list API documentation.
+     * @see https://cloud.google.com/logging/docs/api/reference/rest/v2/projects.sinks/list projects.sinks list API documentation.
      * @codingStandardsIgnoreEnd
      *
      * @param array $options [optional] {
@@ -208,7 +208,7 @@ class LoggingClient
         $options['pageToken'] = null;
 
         do {
-            $response = $this->connection->listSinks($options + ['projectName' => $this->formattedProjectName]);
+            $response = $this->connection->listSinks($options + ['parent' => $this->formattedProjectName]);
 
             if (!isset($response['sinks'])) {
                 return;
@@ -231,7 +231,7 @@ class LoggingClient
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/logging/docs/api/ref_v2beta1/rest/v2beta1/projects.metrics/create projects.metrics create API documentation.
+     * @see https://cloud.google.com/logging/docs/api/reference/rest/v2/projects.metrics/create projects.metrics create API documentation.
      * @codingStandardsIgnoreEnd
      *
      * @param string $name The name of the metric.
@@ -242,7 +242,7 @@ class LoggingClient
     public function createMetric($name, $filter, array $options = [])
     {
         $response =  $this->connection->createMetric($options + [
-            'projectName' => $this->formattedProjectName,
+            'parent' => $this->formattedProjectName,
             'name' => $name,
             'filter' => $filter
         ]);
@@ -282,7 +282,7 @@ class LoggingClient
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/logging/docs/api/ref_v2beta1/rest/v2beta1/projects.metrics/list projects.metrics list API documentation.
+     * @see https://cloud.google.com/logging/docs/api/reference/rest/v2/projects.metrics/list projects.metrics list API documentation.
      * @codingStandardsIgnoreEnd
      *
      * @param array $options [optional] {
@@ -297,7 +297,7 @@ class LoggingClient
         $options['pageToken'] = null;
 
         do {
-            $response = $this->connection->listMetrics($options + ['projectName' => $this->formattedProjectName]);
+            $response = $this->connection->listMetrics($options + ['parent' => $this->formattedProjectName]);
 
             if (!isset($response['metrics'])) {
                 return;
@@ -335,15 +335,15 @@ class LoggingClient
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/logging/docs/api/ref_v2beta1/rest/v2beta1/entries/list Entries list API documentation.
+     * @see https://cloud.google.com/logging/docs/api/reference/rest/v2/entries/list Entries list API documentation.
      * @codingStandardsIgnoreEnd
      *
      * @param array $options [optional] {
      *     Configuration options.
      *
-     *     @type string[] $projectIds A list of projectIds to fetch entries from
-     *           in addition to entries found in the project bound to this
-     *           client.
+     *     @type string[] $projectIds A list of projectIds to fetch
+     *           entries from in addition to entries found in the project bound
+     *           to this client.
      *     @type string $filter An [advanced logs filter](https://cloud.google.com/logging/docs/view/advanced_filters).
      *     @type string $orderBy How the results should be sorted. Presently,
      *           the only permitted values are `timestamp asc` and
@@ -385,10 +385,10 @@ class LoggingClient
      * Example:
      * ```
      * $psrLogger = $logging->psrLogger('my-log', [
-     *         'type' => 'gcs_bucket',
-     *         'labels' => [
-     *             'bucket_name' => 'my-bucket'
-     *         ]
+     *     'type' => 'gcs_bucket',
+     *     'labels' => [
+     *         'bucket_name' => 'my-bucket'
+     *     ]
      * ]);
      * $psrLogger->alert('an alert!');
      * ```
@@ -411,10 +411,10 @@ class LoggingClient
      * ```
      * $logger = $logging->logger('my-log');
      * $entry = $logger->entry('my-data', [
-     *         'type' => 'gcs_bucket',
-     *         'labels' => [
-     *             'bucket_name' => 'my-bucket'
-     *         ]
+     *     'type' => 'gcs_bucket',
+     *     'labels' => [
+     *         'bucket_name' => 'my-bucket'
+     *     ]
      * ]);
      * $logger->write($entry);
      * ```

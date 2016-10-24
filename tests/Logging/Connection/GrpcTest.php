@@ -137,7 +137,7 @@ class GrpcTest extends \PHPUnit_Framework_TestCase
             ],
             [
                 'createSink',
-                ['projectName' => $value] + $sinkData,
+                ['parent' => $value] + $sinkData,
                 [$value, $pbSink, []]
             ],
             [
@@ -147,7 +147,7 @@ class GrpcTest extends \PHPUnit_Framework_TestCase
             ],
             [
                 'listSinks',
-                ['projectName' => $value] + $pageSizeSetting,
+                ['parent' => $value] + $pageSizeSetting,
                 [$value, $pageSizeSetting]
             ],
             [
@@ -162,7 +162,7 @@ class GrpcTest extends \PHPUnit_Framework_TestCase
             ],
             [
                 'createMetric',
-                ['projectName' => $value] + $metricData,
+                ['parent' => $value] + $metricData,
                 [$value, $pbMetric, []]
             ],
             [
@@ -172,7 +172,7 @@ class GrpcTest extends \PHPUnit_Framework_TestCase
             ],
             [
                 'listMetrics',
-                ['projectName' => $value] + $pageSizeSetting,
+                ['parent' => $value] + $pageSizeSetting,
                 [$value, $pageSizeSetting]
             ],
             [
