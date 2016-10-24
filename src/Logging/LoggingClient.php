@@ -236,7 +236,11 @@ class LoggingClient
      *
      * @param string $name The name of the metric.
      * @param string $filter An [advanced logs filter](https://cloud.google.com/logging/docs/view/advanced_filters).
-     * @param array $options [optional] Configuration Options.
+     * @param array $options [optional] {
+     *     Configuration Options.
+     *
+     *     @type string $description A description of the metric.
+     * }
      * @return Metric
      */
     public function createMetric($name, $filter, array $options = [])

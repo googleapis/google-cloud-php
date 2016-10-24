@@ -49,7 +49,6 @@ trait ArrayTrait
      * @param string $keys
      * @param array $arr
      * @return string
-     * @throws \InvalidArgumentException
      */
     private function pluckArray(array $keys, &$arr)
     {

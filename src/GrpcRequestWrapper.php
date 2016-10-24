@@ -141,9 +141,7 @@ class GrpcRequestWrapper
     private function handleResponse($response)
     {
         if ($response instanceof PagedListResponse) {
-            return $response->getPage()
-                ->getResponseObject()
-                ->serialize($this->codec);
+            $response = $response->getPage()->getResponseObject();
         }
 
         if ($response instanceof Message) {
