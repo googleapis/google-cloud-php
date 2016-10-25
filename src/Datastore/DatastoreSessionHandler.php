@@ -42,7 +42,7 @@ use Exception;
 class DatastoreSessionHandler implements \SessionHandlerInterface
 {
     const DEFAULT_GC_LIMIT = 1000;
-    const DEFAULT_KIND = 'Session';
+    const DEFAULT_KIND = 'PHPSESSID';
 
     /* @var int */
     private $gcLimit;
@@ -55,21 +55,20 @@ class DatastoreSessionHandler implements \SessionHandlerInterface
 
     /**
      * @param DatastoreClient $datastore Datastore client
-     * @param string $kind A kind name for the session
      * @param int $gcLimit A number of entities to delete in garbage collection
      */
     public function __construct(
         DatastoreClient $datastore,
-        $kind = self::DEFAULT_KIND,
         $gcLimit = self::DEFAULT_GC_LIMIT
     ) {
         $this->datastore = $datastore;
-        $this->kind = $kind;
         $this->gcLimit = $gcLimit;
+        $this->kind = self::DEFAULT_KIND;
     }
 
     public function open($savePath, $sessionName)
     {
+        $this->kind = $sessionName;
         return true;
     }
 

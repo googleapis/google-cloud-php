@@ -28,6 +28,7 @@ use Google\Cloud\Datastore\Query\Query;
  */
 class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
 {
+    const KIND = 'PHPSESSID';
     private $datastore;
 
     public function setUp()
@@ -38,7 +39,7 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
                  'runQuery', 'deleteBatch']
             )
             ->getMock();
-        
+
     }
 
     public function testOpen()
@@ -63,10 +64,10 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
             $this->datastore
         );
         $key = new Key('projectid');
-        $key->pathElement('Session', 'sessionid');
+        $key->pathElement(self::KIND, 'sessionid');
         $this->datastore->expects($this->once())
             ->method('key')
-            ->with('Session', 'sessionid')
+            ->with(self::KIND, 'sessionid')
             ->willReturn($key);
 
         $ret = $datastoreSessionHandler->read('sessionid');
@@ -81,10 +82,10 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
             $this->datastore
         );
         $key = new Key('projectid');
-        $key->pathElement('Session', 'sessionid');
+        $key->pathElement(self::KIND, 'sessionid');
         $this->datastore->expects($this->once())
             ->method('key')
-            ->with('Session', 'sessionid')
+            ->with(self::KIND, 'sessionid')
             ->will($this->throwException(new \Exception()));
 
         $ret = $datastoreSessionHandler->read('sessionid');
@@ -98,17 +99,17 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
             $this->datastore
         );
         $key = new Key('projectid');
-        $key->pathElement('Session', 'sessionid');
+        $key->pathElement(self::KIND, 'sessionid');
         $entity = new Entity($key, ['data' => 'sessiondata']);
         $this->datastore->expects($this->once())
             ->method('key')
-            ->with('Session', 'sessionid')
+            ->with(self::KIND, 'sessionid')
             ->willReturn($key);
         $this->datastore->expects($this->once())
             ->method('lookup')
             ->with($key)
             ->willReturn($entity);
-        
+
         $ret = $datastoreSessionHandler->read('sessionid');
 
         $this->assertEquals('sessiondata', $ret);
@@ -121,11 +122,11 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
         );
         $data = 'sessiondata';
         $key = new Key('projectid');
-        $key->pathElement('Session', 'sessionid');
+        $key->pathElement(self::KIND, 'sessionid');
         $entity = new Entity($key, ['data' => 'sessiondata']);
         $this->datastore->expects($this->once())
             ->method('key')
-            ->with('Session', 'sessionid')
+            ->with(self::KIND, 'sessionid')
             ->willReturn($key);
         $this->datastore->expects($this->once())
             ->method('entity')
@@ -141,7 +142,7 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
         $this->datastore->expects($this->once())
             ->method('upsert')
             ->with($entity);
-        
+
         $ret = $datastoreSessionHandler->write('sessionid', $data);
 
         $this->assertEquals(true, $ret);
@@ -155,11 +156,11 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
         );
         $data = 'sessiondata';
         $key = new Key('projectid');
-        $key->pathElement('Session', 'sessionid');
+        $key->pathElement(self::KIND, 'sessionid');
         $entity = new Entity($key, ['data' => 'sessiondata']);
         $this->datastore->expects($this->once())
             ->method('key')
-            ->with('Session', 'sessionid')
+            ->with(self::KIND, 'sessionid')
             ->willReturn($key);
         $this->datastore->expects($this->once())
             ->method('entity')
@@ -176,7 +177,7 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
             ->method('upsert')
             ->with($entity)
             ->will($this->throwException(new \Exception()));
-        
+
         $ret = $datastoreSessionHandler->write('sessionid', $data);
 
         $this->assertEquals(false, $ret);
@@ -188,15 +189,15 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
             $this->datastore
         );
         $key = new Key('projectid');
-        $key->pathElement('Session', 'sessionid');
+        $key->pathElement(self::KIND, 'sessionid');
         $this->datastore->expects($this->once())
             ->method('key')
-            ->with('Session', 'sessionid')
+            ->with(self::KIND, 'sessionid')
             ->willReturn($key);
         $this->datastore->expects($this->once())
             ->method('delete')
             ->with($key);
-        
+
         $ret = $datastoreSessionHandler->destroy('sessionid');
 
         $this->assertEquals(true, $ret);
@@ -209,15 +210,15 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
             $this->datastore
         );
         $key = new Key('projectid');
-        $key->pathElement('Session', 'sessionid');
+        $key->pathElement(self::KIND, 'sessionid');
         $this->datastore->expects($this->once())
             ->method('key')
-            ->with('Session', 'sessionid')
+            ->with(self::KIND, 'sessionid')
             ->willReturn($key);
         $this->datastore->method('delete')
             ->with($key)
             ->will($this->throwException(new \Exception()));
-        
+
         $ret = $datastoreSessionHandler->destroy('sessionid');
 
         $this->assertEquals(false, $ret);
@@ -235,9 +236,9 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
             ->disableOriginalConstructor()
             ->getMock();
         $key1 = new Key('projectid');
-        $key1->pathElement('Session', 'sessionid1');
+        $key1->pathElement(self::KIND, 'sessionid1');
         $key2 = new Key('projectid');
-        $key2->pathElement('Session', 'sessionid2');
+        $key2->pathElement(self::KIND, 'sessionid2');
         $entity1 = new Entity($key1);
         $entity2 = new Entity($key2);
         $this->datastore->expects($this->once())
@@ -245,7 +246,7 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
             ->willReturn($mockedQuery);
         $mockedQuery->expects($this->once())
             ->method('kind')
-            ->with('Session')
+            ->with(self::KIND)
             ->willReturn($mockedQuery);
         $mockedQuery->expects($this->once())
             ->method('filter')
@@ -278,7 +279,7 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
         $this->datastore->expects($this->once())
             ->method('deleteBatch')
             ->with([$key1, $key2]);
-        
+
         $ret = $datastoreSessionHandler->gc(100);
 
         $this->assertEquals(true, $ret);
@@ -297,9 +298,9 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
             ->disableOriginalConstructor()
             ->getMock();
         $key1 = new Key('projectid');
-        $key1->pathElement('Session', 'sessionid1');
+        $key1->pathElement(self::KIND, 'sessionid1');
         $key2 = new Key('projectid');
-        $key2->pathElement('Session', 'sessionid2');
+        $key2->pathElement(self::KIND, 'sessionid2');
         $entity1 = new Entity($key1);
         $entity2 = new Entity($key2);
         $this->datastore->expects($this->once())
@@ -307,7 +308,7 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
             ->willReturn($mockedQuery);
         $mockedQuery->expects($this->once())
             ->method('kind')
-            ->with('Session')
+            ->with(self::KIND)
             ->willReturn($mockedQuery);
         $mockedQuery->expects($this->once())
             ->method('filter')
@@ -341,7 +342,7 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
             ->method('deleteBatch')
             ->with([$key1, $key2])
             ->will($this->throwException(new \Exception()));
-        
+
         $ret = $datastoreSessionHandler->gc(100);
 
         $this->assertEquals(false, $ret);
