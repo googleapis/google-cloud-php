@@ -136,7 +136,8 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
                     $this->assertEquals('sessiondata', $e['data']);
                     $this->assertInternalType('int', $e['t']);
                     $this->assertTrue(time() >= $e['t']);
-                    $this->assertTrue(time() - $e['t'] < 1);
+                    // 2 seconds grace period should be enough
+                    $this->assertTrue(time() - $e['t'] <= 2);
                     return $entity;
                 }));
         $this->datastore->expects($this->once())
@@ -170,7 +171,8 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
                     $this->assertEquals('sessiondata', $e['data']);
                     $this->assertInternalType('int', $e['t']);
                     $this->assertTrue(time() >= $e['t']);
-                    $this->assertTrue(time() - $e['t'] < 1);
+                    // 2 seconds grace period should be enough
+                    $this->assertTrue(time() - $e['t'] <= 2);
                     return $entity;
                 }));
         $this->datastore->expects($this->once())
@@ -256,8 +258,9 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
                     $this->assertEquals('<', $op);
                     $this->assertInternalType('int', $val);
                     $diff = time() - $val;
-                    $this->assertTrue($diff <= 100);
-                    $this->assertTrue($diff >= 99);
+                    // 2 seconds grace period should be enough
+                    $this->assertTrue($diff <= 102);
+                    $this->assertTrue($diff >= 100);
                     return $mockedQuery;
                 }));
         $mockedQuery->expects($this->once())
