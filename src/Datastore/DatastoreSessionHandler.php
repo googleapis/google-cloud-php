@@ -18,6 +18,7 @@
 namespace Google\Cloud\Datastore;
 
 use Exception;
+use InvalidArgumentException;
 
 /**
  * Custom session handler backed by Cloud Datastore.
@@ -25,12 +26,13 @@ use Exception;
  * {@see http://php.net/manual/en/class.sessionhandlerinterface.php}
  *
  * It uses the session.save_path as the Datastore namespace for isolating the
- * session data from your application data. It replaces '/' with '_' for the
- * namespaceId.
- * It also uses session.name as the Datastore kind. It uses the session id as
- * the Datastore id. By default, it does nothing on gc for reducing the cost.
- * Pass positive value up to 1000 for $gcLimit parameter to delete entities
- * in gc.
+ * session data from your application data, it also uses the session.name as
+ * the Datastore kind, the session id as the Datastore id. By default, it
+ * does nothing on gc for reducing the cost. Pass positive value up to 1000
+ * for $gcLimit parameter to delete entities in gc.
+ *
+ * Note: The datastore transaction only lasts 60 seconds. If this handler is
+ * used for long running requests, it will fail on `write`.
  *
  * Example:
  * ```
@@ -39,6 +41,7 @@ use Exception;
  *
  * $handler = new DatastoreSessionHandler(new DatastoreClient());
  * session_set_save_handler($handler, true);
+ * session_save_path('sessions');
  * session_start();
  *
  * # Then read and write the $_SESSION array.
@@ -49,6 +52,11 @@ class DatastoreSessionHandler implements \SessionHandlerInterface
     const DEFAULT_GC_LIMIT = 0;
     const DEFAULT_KIND = 'PHPSESSID';
     const DEFAULT_NAMESPACE_ID = 'sessions';
+    /*
+     * {@see https://cloud.google.com/datastore/docs/reference/rpc/google.datastore.v1#google.datastore.v1.PartitionId}
+     */
+    const NAMESPACE_ALLOWED_PATTERN = '/^[A-Za-z\d\.\-_]{0,100}$/';
+    const NAMESPACE_RESERVED_PATTERN = '/^__.*__$/';
 
     /* @var int */
     private $gcLimit;
@@ -83,7 +91,13 @@ class DatastoreSessionHandler implements \SessionHandlerInterface
     public function open($savePath, $sessionName)
     {
         $this->kind = $sessionName;
-        $this->namespaceId = str_replace('/', '_', $savePath);
+        if (preg_match(self::NAMESPACE_ALLOWED_PATTERN, $savePath) !== 1 ||
+            preg_match(self::NAMESPACE_RESERVED_PATTERN, $savePath) === 1) {
+            throw new InvalidArgumentException(
+                sprintf('The given save_path "%s" not allowed', $savePath)
+            );
+        }
+        $this->namespaceId = $savePath;
         $this->transaction = $this->datastore->transaction();
         return true;
     }

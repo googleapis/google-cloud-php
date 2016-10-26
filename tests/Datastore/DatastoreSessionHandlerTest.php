@@ -23,6 +23,7 @@ use Google\Cloud\Datastore\Entity;
 use Google\Cloud\Datastore\Key;
 use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Transaction;
+use InvalidArgumentException;
 
 /**
  * @group datastore
@@ -30,8 +31,7 @@ use Google\Cloud\Datastore\Transaction;
 class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
 {
     const KIND = 'PHPSESSID';
-    const SAVE_PATH = '/temp/sessions';
-    const NAMESPACE_ID = '_temp_sessions';
+    const NAMESPACE_ID = 'sessions';
 
     private $datastore;
     private $transaction;
@@ -60,8 +60,36 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
         $this->datastore->expects($this->once())
             ->method('transaction')
             ->willReturn($this->transaction);
-        $ret = $datastoreSessionHandler->open('savePath', 'sessionName');
+        $ret = $datastoreSessionHandler->open(self::NAMESPACE_ID, self::KIND);
         $this->assertTrue($ret);
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testOpenNotAllowed()
+    {
+        $datastoreSessionHandler = new DatastoreSessionHandler(
+            $this->datastore
+        );
+        $this->datastore->expects($this->never())
+            ->method('transaction')
+            ->willReturn($this->transaction);
+        $datastoreSessionHandler->open('/tmp/sessions', self::KIND);
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testOpenReserved()
+    {
+        $datastoreSessionHandler = new DatastoreSessionHandler(
+            $this->datastore
+        );
+        $this->datastore->expects($this->never())
+            ->method('transaction')
+            ->willReturn($this->transaction);
+        $datastoreSessionHandler->open('__RESERVED__', self::KIND);
     }
 
     public function testClose()
@@ -96,7 +124,7 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
                     return $key;
                 }
             ));
-        $datastoreSessionHandler->open(self::SAVE_PATH, self::KIND);
+        $datastoreSessionHandler->open(self::NAMESPACE_ID, self::KIND);
         $ret = $datastoreSessionHandler->read('sessionid');
 
         $this->assertEquals('', $ret);
@@ -118,7 +146,7 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
             ->with(self::KIND, 'sessionid')
             ->will($this->throwException(new \Exception()));
 
-        $datastoreSessionHandler->open(self::SAVE_PATH, self::KIND);
+        $datastoreSessionHandler->open(self::NAMESPACE_ID, self::KIND);
         $ret = $datastoreSessionHandler->read('sessionid');
 
         $this->assertEquals('', $ret);
@@ -153,7 +181,7 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
             ->with($key)
             ->willReturn($entity);
 
-        $datastoreSessionHandler->open(self::SAVE_PATH, self::KIND);
+        $datastoreSessionHandler->open(self::NAMESPACE_ID, self::KIND);
         $ret = $datastoreSessionHandler->read('sessionid');
 
         $this->assertEquals('sessiondata', $ret);
@@ -202,7 +230,7 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
         $this->transaction->expects($this->once())
             ->method('commit');
 
-        $datastoreSessionHandler->open(self::SAVE_PATH, self::KIND);
+        $datastoreSessionHandler->open(self::NAMESPACE_ID, self::KIND);
         $ret = $datastoreSessionHandler->write('sessionid', $data);
 
         $this->assertEquals(true, $ret);
@@ -251,7 +279,7 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
             ->with($entity)
             ->will($this->throwException(new \Exception()));
 
-        $datastoreSessionHandler->open(self::SAVE_PATH, self::KIND);
+        $datastoreSessionHandler->open(self::NAMESPACE_ID, self::KIND);
         $ret = $datastoreSessionHandler->write('sessionid', $data);
 
         $this->assertEquals(false, $ret);
@@ -284,7 +312,7 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
             ->method('delete')
             ->with($key);
 
-        $datastoreSessionHandler->open(self::SAVE_PATH, self::KIND);
+        $datastoreSessionHandler->open(self::NAMESPACE_ID, self::KIND);
         $ret = $datastoreSessionHandler->destroy('sessionid');
 
         $this->assertEquals(true, $ret);
@@ -318,7 +346,7 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
             ->with($key)
             ->will($this->throwException(new \Exception()));
 
-        $datastoreSessionHandler->open(self::SAVE_PATH, self::KIND);
+        $datastoreSessionHandler->open(self::NAMESPACE_ID, self::KIND);
         $ret = $datastoreSessionHandler->destroy('sessionid');
 
         $this->assertEquals(false, $ret);
@@ -404,7 +432,7 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
             ->method('deleteBatch')
             ->with([$key1, $key2]);
 
-        $datastoreSessionHandler->open(self::SAVE_PATH, self::KIND);
+        $datastoreSessionHandler->open(self::NAMESPACE_ID, self::KIND);
         $ret = $datastoreSessionHandler->gc(100);
 
         $this->assertEquals(true, $ret);
@@ -479,7 +507,7 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
             ->with([$key1, $key2])
             ->will($this->throwException(new \Exception()));
 
-        $datastoreSessionHandler->open(self::SAVE_PATH, self::KIND);
+        $datastoreSessionHandler->open(self::NAMESPACE_ID, self::KIND);
         $ret = $datastoreSessionHandler->gc(100);
 
         $this->assertEquals(false, $ret);
