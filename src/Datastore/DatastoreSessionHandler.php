@@ -24,25 +24,31 @@ use Exception;
  *
  * {@see http://php.net/manual/en/class.sessionhandlerinterface.php}
  *
- * It ignores the $savePath. It is highly recommended to use namespaceId for
- * isolating the session data from your application data.
+ * It uses the session.save_path as the Datastore namespace for isolating the
+ * session data from your application data. It replaces '/' with '_' for the
+ * namespaceId.
+ * It also uses session.name as the Datastore kind. It uses the session id as
+ * the Datastore id. By default, it does nothing on gc for reducing the cost.
+ * Pass positive value up to 1000 for $gcLimit parameter to delete entities
+ * in gc.
  *
  * Example:
  * ```
  * use Google\Cloud\Datastore\DatastoreClient;
  * use Google\Cloud\Datastore\DatastoreSessionHandler;
  *
- * $handler = new DatastoreSessionHandler(
- *     new DatastoreClient(['namespaceId' => 'sessions'])
- * );
+ * $handler = new DatastoreSessionHandler(new DatastoreClient());
  * session_set_save_handler($handler, true);
  * session_start();
+ *
+ * # Then read and write the $_SESSION array.
  * ```
  */
 class DatastoreSessionHandler implements \SessionHandlerInterface
 {
-    const DEFAULT_GC_LIMIT = 1000;
+    const DEFAULT_GC_LIMIT = 0;
     const DEFAULT_KIND = 'PHPSESSID';
+    const DEFAULT_NAMESPACE_ID = 'sessions';
 
     /* @var int */
     private $gcLimit;
@@ -53,6 +59,9 @@ class DatastoreSessionHandler implements \SessionHandlerInterface
     /* @var string */
     private $kind;
 
+    /* @var string */
+    private $namespaceId;
+
     /**
      * @param DatastoreClient $datastore Datastore client
      * @param int $gcLimit A number of entities to delete in garbage collection
@@ -62,13 +71,16 @@ class DatastoreSessionHandler implements \SessionHandlerInterface
         $gcLimit = self::DEFAULT_GC_LIMIT
     ) {
         $this->datastore = $datastore;
-        $this->gcLimit = $gcLimit;
+        // Cut down to 1000
+        $this->gcLimit = min($gcLimit, 1000);
         $this->kind = self::DEFAULT_KIND;
+        $this->namespaceId = self::DEFAULT_NAMESPACE_ID;
     }
 
     public function open($savePath, $sessionName)
     {
         $this->kind = $sessionName;
+        $this->namespaceId = str_replace('/', '_', $savePath);
         return true;
     }
 
@@ -80,25 +92,32 @@ class DatastoreSessionHandler implements \SessionHandlerInterface
     public function read($id)
     {
         try {
-            $key = $this->datastore->key($this->kind, $id);
+            $key = $this->datastore->key(
+                $this->kind,
+                $id,
+                ['namespaceId' => $this->namespaceId]
+            );
             $entity = $this->datastore->lookup($key);
-            if ($entity === null) {
-                return '';
+            if ($entity !== null && isset($entity['data'])) {
+                return $entity['data'];
             }
-            return isset($entity['data']) ? $entity['data'] : '';
         } catch (Exception $e) {
             trigger_error(
                 sprintf('Datastore lookup failed: %s', $e->getMessage()),
                 E_USER_NOTICE
             );
-            return '';
         }
+        return '';
     }
 
     public function write($id, $data)
     {
         try {
-            $key = $this->datastore->key($this->kind, $id);
+            $key = $this->datastore->key(
+                $this->kind,
+                $id,
+                ['namespaceId' => $this->namespaceId]
+            );
             $entity = $this->datastore->entity(
                 $key,
                 [
@@ -120,7 +139,11 @@ class DatastoreSessionHandler implements \SessionHandlerInterface
     public function destroy($id)
     {
         try {
-            $key = $this->datastore->key($this->kind, $id);
+            $key = $this->datastore->key(
+                $this->kind,
+                $id,
+                ['namespaceId' => $this->namespaceId]
+            );
             $this->datastore->delete($key);
         } catch (Exception $e) {
             trigger_error(
@@ -134,6 +157,9 @@ class DatastoreSessionHandler implements \SessionHandlerInterface
 
     public function gc($maxlifetime)
     {
+        if ($this->gcLimit === 0) {
+            return true;
+        }
         try {
             $query = $this->datastore->query()
                 ->kind($this->kind)
@@ -141,7 +167,10 @@ class DatastoreSessionHandler implements \SessionHandlerInterface
                 ->order('t')
                 ->keysOnly()
                 ->limit($this->gcLimit);
-            $result = $this->datastore->runQuery($query);
+            $result = $this->datastore->runQuery(
+                $query,
+                ['namespaceId' => $this->namespaceId]
+            );
             $keys = [];
             /* @var Entity $e */
             foreach ($result as $e) {
