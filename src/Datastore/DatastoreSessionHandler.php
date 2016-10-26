@@ -62,6 +62,9 @@ class DatastoreSessionHandler implements \SessionHandlerInterface
     /* @var string */
     private $namespaceId;
 
+    /* @var Transaction */
+    private $transaction;
+
     /**
      * @param DatastoreClient $datastore Datastore client
      * @param int $gcLimit A number of entities to delete in garbage collection
@@ -81,6 +84,7 @@ class DatastoreSessionHandler implements \SessionHandlerInterface
     {
         $this->kind = $sessionName;
         $this->namespaceId = str_replace('/', '_', $savePath);
+        $this->transaction = $this->datastore->transaction();
         return true;
     }
 
@@ -97,7 +101,7 @@ class DatastoreSessionHandler implements \SessionHandlerInterface
                 $id,
                 ['namespaceId' => $this->namespaceId]
             );
-            $entity = $this->datastore->lookup($key);
+            $entity = $this->transaction->lookup($key);
             if ($entity !== null && isset($entity['data'])) {
                 return $entity['data'];
             }
@@ -125,7 +129,8 @@ class DatastoreSessionHandler implements \SessionHandlerInterface
                     't' => time()
                 ]
             );
-            $this->datastore->upsert($entity);
+            $this->transaction->upsert($entity);
+            $this->transaction->commit();
         } catch (Exception $e) {
             trigger_error(
                 sprintf('Datastore upsert failed: %s', $e->getMessage()),
@@ -144,7 +149,8 @@ class DatastoreSessionHandler implements \SessionHandlerInterface
                 $id,
                 ['namespaceId' => $this->namespaceId]
             );
-            $this->datastore->delete($key);
+            $this->transaction->delete($key);
+            $this->transaction->commit();
         } catch (Exception $e) {
             trigger_error(
                 sprintf('Datastore delete failed: %s', $e->getMessage()),

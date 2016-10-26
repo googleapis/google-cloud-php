@@ -22,6 +22,7 @@ use Google\Cloud\Datastore\DatastoreSessionHandler;
 use Google\Cloud\Datastore\Entity;
 use Google\Cloud\Datastore\Key;
 use Google\Cloud\Datastore\Query\Query;
+use Google\Cloud\Datastore\Transaction;
 
 /**
  * @group datastore
@@ -33,16 +34,22 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
     const NAMESPACE_ID = '_temp_sessions';
 
     private $datastore;
+    private $transaction;
 
     public function setUp()
     {
         $this->datastore = $this->getMockBuilder(DatastoreClient::class)
             ->setMethods(
-                ['key', 'lookup', 'entity', 'upsert', 'query', 'delete',
-                 'runQuery', 'deleteBatch']
+                [
+                    'key', 'entity', 'query', 'runQuery', 'deleteBatch',
+                    'transaction'
+                ]
             )
             ->getMock();
-
+        $this->transaction = $this->getMockBuilder(Transaction::class)
+            ->disableOriginalConstructor()
+            ->setMethods(['lookup', 'upsert', 'delete', 'commit'])
+            ->getmock();
     }
 
     public function testOpen()
@@ -50,7 +57,11 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
         $datastoreSessionHandler = new DatastoreSessionHandler(
             $this->datastore
         );
-        $datastoreSessionHandler->open('savePath', 'sessionName');
+        $this->datastore->expects($this->once())
+            ->method('transaction')
+            ->willReturn($this->transaction);
+        $ret = $datastoreSessionHandler->open('savePath', 'sessionName');
+        $this->assertTrue($ret);
     }
 
     public function testClose()
@@ -58,7 +69,8 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
         $datastoreSessionHandler = new DatastoreSessionHandler(
             $this->datastore
         );
-        $datastoreSessionHandler->close();
+        $ret = $datastoreSessionHandler->close();
+        $this->assertTrue($ret);
     }
 
     public function testReadNothing()
@@ -66,6 +78,9 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
         $datastoreSessionHandler = new DatastoreSessionHandler(
             $this->datastore
         );
+        $this->datastore->expects($this->once())
+            ->method('transaction')
+            ->willReturn($this->transaction);
         $key = new Key('projectid');
         $key->pathElement(self::KIND, 'sessionid');
         $this->datastore->expects($this->once())
@@ -93,6 +108,9 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
         $datastoreSessionHandler = new DatastoreSessionHandler(
             $this->datastore
         );
+        $this->datastore->expects($this->once())
+            ->method('transaction')
+            ->willReturn($this->transaction);
         $key = new Key('projectid');
         $key->pathElement(self::KIND, 'sessionid');
         $this->datastore->expects($this->once())
@@ -111,6 +129,9 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
         $datastoreSessionHandler = new DatastoreSessionHandler(
             $this->datastore
         );
+        $this->datastore->expects($this->once())
+            ->method('transaction')
+            ->willReturn($this->transaction);
         $key = new Key('projectid');
         $key->pathElement(self::KIND, 'sessionid');
         $entity = new Entity($key, ['data' => 'sessiondata']);
@@ -127,7 +148,7 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
                     return $key;
                 }
             ));
-        $this->datastore->expects($this->once())
+        $this->transaction->expects($this->once())
             ->method('lookup')
             ->with($key)
             ->willReturn($entity);
@@ -143,6 +164,9 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
         $datastoreSessionHandler = new DatastoreSessionHandler(
             $this->datastore
         );
+        $this->datastore->expects($this->once())
+            ->method('transaction')
+            ->willReturn($this->transaction);
         $data = 'sessiondata';
         $key = new Key('projectid');
         $key->pathElement(self::KIND, 'sessionid');
@@ -172,9 +196,11 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
                     $this->assertTrue(time() - $e['t'] <= 2);
                     return $entity;
                 }));
-        $this->datastore->expects($this->once())
+        $this->transaction->expects($this->once())
             ->method('upsert')
             ->with($entity);
+        $this->transaction->expects($this->once())
+            ->method('commit');
 
         $datastoreSessionHandler->open(self::SAVE_PATH, self::KIND);
         $ret = $datastoreSessionHandler->write('sessionid', $data);
@@ -188,6 +214,9 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
         $datastoreSessionHandler = new DatastoreSessionHandler(
             $this->datastore
         );
+        $this->datastore->expects($this->once())
+            ->method('transaction')
+            ->willReturn($this->transaction);
         $data = 'sessiondata';
         $key = new Key('projectid');
         $key->pathElement(self::KIND, 'sessionid');
@@ -217,7 +246,7 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
                     $this->assertTrue(time() - $e['t'] <= 2);
                     return $entity;
                 }));
-        $this->datastore->expects($this->once())
+        $this->transaction->expects($this->once())
             ->method('upsert')
             ->with($entity)
             ->will($this->throwException(new \Exception()));
@@ -233,6 +262,9 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
         $datastoreSessionHandler = new DatastoreSessionHandler(
             $this->datastore
         );
+        $this->datastore->expects($this->once())
+            ->method('transaction')
+            ->willReturn($this->transaction);
         $key = new Key('projectid');
         $key->pathElement(self::KIND, 'sessionid');
         $this->datastore->expects($this->once())
@@ -248,7 +280,7 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
                     return $key;
                 }
             ));
-        $this->datastore->expects($this->once())
+        $this->transaction->expects($this->once())
             ->method('delete')
             ->with($key);
 
@@ -264,6 +296,9 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
         $datastoreSessionHandler = new DatastoreSessionHandler(
             $this->datastore
         );
+        $this->datastore->expects($this->once())
+            ->method('transaction')
+            ->willReturn($this->transaction);
         $key = new Key('projectid');
         $key->pathElement(self::KIND, 'sessionid');
         $this->datastore->expects($this->once())
@@ -279,7 +314,7 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
                     return $key;
                 }
             ));
-        $this->datastore->method('delete')
+        $this->transaction->method('delete')
             ->with($key)
             ->will($this->throwException(new \Exception()));
 
