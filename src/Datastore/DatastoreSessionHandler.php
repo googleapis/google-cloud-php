@@ -19,6 +19,7 @@ namespace Google\Cloud\Datastore;
 
 use Exception;
 use InvalidArgumentException;
+use SessionHandlerInterface;
 
 /**
  * Custom session handler backed by Cloud Datastore.
@@ -58,7 +59,7 @@ use InvalidArgumentException;
  * {@see http://php.net/manual/en/book.errorfunc.php} for general information
  * about how to handle errors.
  */
-class DatastoreSessionHandler implements \SessionHandlerInterface
+class DatastoreSessionHandler implements SessionHandlerInterface
 {
     const DEFAULT_GC_LIMIT = 0;
     const DEFAULT_KIND = 'PHPSESSID';
@@ -85,8 +86,10 @@ class DatastoreSessionHandler implements \SessionHandlerInterface
     private $transaction;
 
     /**
-     * @param DatastoreClient $datastore Datastore client
-     * @param int $gcLimit A number of entities to delete in garbage collection
+     * @param DatastoreClient $datastore Datastore client.
+     * @param int [optional] $gcLimit A number of entities to delete in the
+     *        garbage collection.  Defaults to 0 which means it does nothing.
+     *        The value larger than 1000 will be cut down to 1000.
      */
     public function __construct(
         DatastoreClient $datastore,

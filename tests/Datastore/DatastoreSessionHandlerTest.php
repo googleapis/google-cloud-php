@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Tests\Datastore;
 
+
+use Exception;
 use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Datastore\DatastoreSessionHandler;
 use Google\Cloud\Datastore\Entity;
@@ -24,6 +26,7 @@ use Google\Cloud\Datastore\Key;
 use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Transaction;
 use InvalidArgumentException;
+use Prophecy\Argument;
 
 /**
  * @group datastore
@@ -38,28 +41,18 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->datastore = $this->getMockBuilder(DatastoreClient::class)
-            ->setMethods(
-                [
-                    'key', 'entity', 'query', 'runQuery', 'deleteBatch',
-                    'transaction'
-                ]
-            )
-            ->getMock();
-        $this->transaction = $this->getMockBuilder(Transaction::class)
-            ->disableOriginalConstructor()
-            ->setMethods(['lookup', 'upsert', 'delete', 'commit'])
-            ->getmock();
+        $this->datastore = $this->prophesize(DatastoreClient::class);
+        $this->transaction = $this->prophesize(Transaction::class);
     }
 
     public function testOpen()
     {
+        $this->datastore->transaction()
+            ->shouldBeCalled($this->once())
+            ->willReturn($this->transaction->reveal());
         $datastoreSessionHandler = new DatastoreSessionHandler(
-            $this->datastore
+            $this->datastore->reveal()
         );
-        $this->datastore->expects($this->once())
-            ->method('transaction')
-            ->willReturn($this->transaction);
         $ret = $datastoreSessionHandler->open(self::NAMESPACE_ID, self::KIND);
         $this->assertTrue($ret);
     }
@@ -69,12 +62,12 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
      */
     public function testOpenNotAllowed()
     {
+        $this->datastore->transaction()
+            ->shouldNotBeCalled()
+            ->willReturn($this->transaction->reveal());
         $datastoreSessionHandler = new DatastoreSessionHandler(
-            $this->datastore
+            $this->datastore->reveal()
         );
-        $this->datastore->expects($this->never())
-            ->method('transaction')
-            ->willReturn($this->transaction);
         $datastoreSessionHandler->open('/tmp/sessions', self::KIND);
     }
 
@@ -83,19 +76,19 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
      */
     public function testOpenReserved()
     {
+        $this->datastore->transaction()
+            ->shouldNotBeCalled()
+            ->willReturn($this->transaction->reveal());
         $datastoreSessionHandler = new DatastoreSessionHandler(
-            $this->datastore
+            $this->datastore->reveal()
         );
-        $this->datastore->expects($this->never())
-            ->method('transaction')
-            ->willReturn($this->transaction);
         $datastoreSessionHandler->open('__RESERVED__', self::KIND);
     }
 
     public function testClose()
     {
         $datastoreSessionHandler = new DatastoreSessionHandler(
-            $this->datastore
+            $this->datastore->reveal()
         );
         $ret = $datastoreSessionHandler->close();
         $this->assertTrue($ret);
@@ -103,27 +96,21 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
 
     public function testReadNothing()
     {
-        $datastoreSessionHandler = new DatastoreSessionHandler(
-            $this->datastore
-        );
-        $this->datastore->expects($this->once())
-            ->method('transaction')
-            ->willReturn($this->transaction);
+        $this->datastore->transaction()
+            ->shouldBeCalled($this->once())
+            ->willReturn($this->transaction->reveal());
         $key = new Key('projectid');
         $key->pathElement(self::KIND, 'sessionid');
-        $this->datastore->expects($this->once())
-            ->method('key')
-            ->will($this->returnCallback(
-                function($kind, $id, $options) use ($key) {
-                    $this->assertEquals(self::KIND, $kind);
-                    $this->assertEquals('sessionid', $id);
-                    $this->assertEquals(
-                        ['namespaceId' => self::NAMESPACE_ID],
-                        $options
-                    );
-                    return $key;
-                }
-            ));
+        $this->datastore->key(
+            self::KIND,
+            'sessionid',
+            ['namespaceId' => self::NAMESPACE_ID]
+        )
+            ->shouldBeCalled($this->once())
+            ->willReturn($key);
+        $datastoreSessionHandler = new DatastoreSessionHandler(
+            $this->datastore->reveal()
+        );
         $datastoreSessionHandler->open(self::NAMESPACE_ID, self::KIND);
         $ret = $datastoreSessionHandler->read('sessionid');
 
@@ -133,18 +120,19 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
     public function testReadWithException()
     {
         \PHPUnit_Framework_Error_Warning::$enabled = FALSE;
+        $this->datastore->transaction()
+            ->shouldBeCalled($this->once())
+            ->willReturn($this->transaction->reveal());
         $datastoreSessionHandler = new DatastoreSessionHandler(
-            $this->datastore
+            $this->datastore->reveal()
         );
-        $this->datastore->expects($this->once())
-            ->method('transaction')
-            ->willReturn($this->transaction);
-        $key = new Key('projectid');
-        $key->pathElement(self::KIND, 'sessionid');
-        $this->datastore->expects($this->once())
-            ->method('key')
-            ->with(self::KIND, 'sessionid')
-            ->will($this->throwException(new \Exception()));
+        $this->datastore->key(
+            self::KIND,
+            'sessionid',
+            ['namespaceId' => self::NAMESPACE_ID]
+        )
+            ->shouldBeCalled($this->once())
+            ->willThrow((new Exception()));
 
         $datastoreSessionHandler->open(self::NAMESPACE_ID, self::KIND);
         $ret = $datastoreSessionHandler->read('sessionid');
@@ -154,33 +142,25 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
 
     public function testReadEntity()
     {
-        $datastoreSessionHandler = new DatastoreSessionHandler(
-            $this->datastore
-        );
-        $this->datastore->expects($this->once())
-            ->method('transaction')
-            ->willReturn($this->transaction);
         $key = new Key('projectid');
         $key->pathElement(self::KIND, 'sessionid');
         $entity = new Entity($key, ['data' => 'sessiondata']);
-        $this->datastore->expects($this->once())
-            ->method('key')
-            ->will($this->returnCallback(
-                function($kind, $id, $options) use ($key) {
-                    $this->assertEquals(self::KIND, $kind);
-                    $this->assertEquals('sessionid', $id);
-                    $this->assertEquals(
-                        ['namespaceId' => self::NAMESPACE_ID],
-                        $options
-                    );
-                    return $key;
-                }
-            ));
-        $this->transaction->expects($this->once())
-            ->method('lookup')
-            ->with($key)
+        $this->transaction->lookup($key)
+            ->shouldBeCalled($this->once())
             ->willReturn($entity);
-
+        $this->datastore->transaction()
+            ->shouldBeCalled($this->once())
+            ->willReturn($this->transaction->reveal());
+        $this->datastore->key(
+            self::KIND,
+            'sessionid',
+            ['namespaceId' => self::NAMESPACE_ID]
+        )
+            ->shouldBeCalled($this->once())
+            ->willReturn($key);
+        $datastoreSessionHandler = new DatastoreSessionHandler(
+            $this->datastore->reveal()
+        );
         $datastoreSessionHandler->open(self::NAMESPACE_ID, self::KIND);
         $ret = $datastoreSessionHandler->read('sessionid');
 
@@ -189,47 +169,38 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
 
     public function testWrite()
     {
-        $datastoreSessionHandler = new DatastoreSessionHandler(
-            $this->datastore
-        );
-        $this->datastore->expects($this->once())
-            ->method('transaction')
-            ->willReturn($this->transaction);
         $data = 'sessiondata';
         $key = new Key('projectid');
         $key->pathElement(self::KIND, 'sessionid');
-        $entity = new Entity($key, ['data' => 'sessiondata']);
-        $this->datastore->expects($this->once())
-            ->method('key')
-            ->will($this->returnCallback(
-                function($kind, $id, $options) use ($key) {
-                    $this->assertEquals(self::KIND, $kind);
-                    $this->assertEquals('sessionid', $id);
-                    $this->assertEquals(
-                        ['namespaceId' => self::NAMESPACE_ID],
-                        $options
-                    );
-                    return $key;
-                }
-            ));
-        $this->datastore->expects($this->once())
-            ->method('entity')
-            ->will($this->returnCallback(
-                function($k, $e) use ($key, $entity) {
-                    $this->assertEquals($key, $k);
-                    $this->assertEquals('sessiondata', $e['data']);
-                    $this->assertInternalType('int', $e['t']);
-                    $this->assertTrue(time() >= $e['t']);
-                    // 2 seconds grace period should be enough
-                    $this->assertTrue(time() - $e['t'] <= 2);
-                    return $entity;
-                }));
-        $this->transaction->expects($this->once())
-            ->method('upsert')
-            ->with($entity);
-        $this->transaction->expects($this->once())
-            ->method('commit');
-
+        $entity = new Entity($key, ['data' => $data]);
+        $this->transaction->upsert($entity)
+            ->shouldBeCalled($this->once());
+        $this->transaction->commit()
+            ->shouldBeCalled($this->once());
+        $this->datastore->transaction()
+            ->shouldBeCalled($this->once())
+            ->willReturn($this->transaction->reveal());
+        $this->datastore->key(
+            self::KIND,
+            'sessionid',
+            ['namespaceId' => self::NAMESPACE_ID]
+        )
+            ->shouldBeCalled($this->once())
+            ->willReturn($key);
+        $that = $this;
+        $this->datastore->entity($key, Argument::type('array'))
+            ->will(function($args) use ($that, $key, $entity) {
+                $that->assertEquals($key, $args[0]);
+                $that->assertEquals('sessiondata', $args[1]['data']);
+                $that->assertInternalType('int', $args[1]['t']);
+                $that->assertTrue(time() >= $args[1]['t']);
+                // 2 seconds grace period should be enough
+                $that->assertTrue(time() - $args[1]['t'] <= 2);
+                return $entity;
+            });
+        $datastoreSessionHandler = new DatastoreSessionHandler(
+            $this->datastore->reveal()
+        );
         $datastoreSessionHandler->open(self::NAMESPACE_ID, self::KIND);
         $ret = $datastoreSessionHandler->write('sessionid', $data);
 
@@ -239,46 +210,40 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
     public function testWriteWithException()
     {
         \PHPUnit_Framework_Error_Warning::$enabled = FALSE;
-        $datastoreSessionHandler = new DatastoreSessionHandler(
-            $this->datastore
-        );
-        $this->datastore->expects($this->once())
-            ->method('transaction')
-            ->willReturn($this->transaction);
         $data = 'sessiondata';
         $key = new Key('projectid');
         $key->pathElement(self::KIND, 'sessionid');
-        $entity = new Entity($key, ['data' => 'sessiondata']);
-        $this->datastore->expects($this->once())
-            ->method('key')
-            ->will($this->returnCallback(
-                function($kind, $id, $options) use ($key) {
-                    $this->assertEquals(self::KIND, $kind);
-                    $this->assertEquals('sessionid', $id);
-                    $this->assertEquals(
-                        ['namespaceId' => self::NAMESPACE_ID],
-                        $options
-                    );
-                    return $key;
-                }
-            ));
-        $this->datastore->expects($this->once())
-            ->method('entity')
-            ->will($this->returnCallback(
-                function($k, $e) use ($key, $entity) {
-                    $this->assertEquals($key, $k);
-                    $this->assertEquals('sessiondata', $e['data']);
-                    $this->assertInternalType('int', $e['t']);
-                    $this->assertTrue(time() >= $e['t']);
-                    // 2 seconds grace period should be enough
-                    $this->assertTrue(time() - $e['t'] <= 2);
-                    return $entity;
-                }));
-        $this->transaction->expects($this->once())
-            ->method('upsert')
-            ->with($entity)
-            ->will($this->throwException(new \Exception()));
+        $entity = new Entity($key, ['data' => $data]);
+        $this->transaction->upsert($entity)
+            ->shouldBeCalled($this->once());
+        $this->transaction->commit()
+            ->shouldBeCalled($this->once())
+            ->willThrow(new Exception());
+        $this->datastore->transaction()
+            ->shouldBeCalled($this->once())
+            ->willReturn($this->transaction->reveal());
+        $this->datastore->key(
+            self::KIND,
+            'sessionid',
+            ['namespaceId' => self::NAMESPACE_ID]
+        )
+            ->shouldBeCalled($this->once())
+            ->willReturn($key);
+        $that = $this;
+        $this->datastore->entity($key, Argument::type('array'))
+            ->will(function($args) use ($that, $key, $entity) {
+                $that->assertEquals($key, $args[0]);
+                $that->assertEquals('sessiondata', $args[1]['data']);
+                $that->assertInternalType('int', $args[1]['t']);
+                $that->assertTrue(time() >= $args[1]['t']);
+                // 2 seconds grace period should be enough
+                $that->assertTrue(time() - $args[1]['t'] <= 2);
+                return $entity;
+            });
 
+        $datastoreSessionHandler = new DatastoreSessionHandler(
+            $this->datastore->reveal()
+        );
         $datastoreSessionHandler->open(self::NAMESPACE_ID, self::KIND);
         $ret = $datastoreSessionHandler->write('sessionid', $data);
 
@@ -287,31 +252,26 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
 
     public function testDestroy()
     {
-        $datastoreSessionHandler = new DatastoreSessionHandler(
-            $this->datastore
-        );
-        $this->datastore->expects($this->once())
-            ->method('transaction')
-            ->willReturn($this->transaction);
         $key = new Key('projectid');
         $key->pathElement(self::KIND, 'sessionid');
-        $this->datastore->expects($this->once())
-            ->method('key')
-            ->will($this->returnCallback(
-                function($kind, $id, $options) use ($key) {
-                    $this->assertEquals(self::KIND, $kind);
-                    $this->assertEquals('sessionid', $id);
-                    $this->assertEquals(
-                        ['namespaceId' => self::NAMESPACE_ID],
-                        $options
-                    );
-                    return $key;
-                }
-            ));
-        $this->transaction->expects($this->once())
-            ->method('delete')
-            ->with($key);
+        $this->transaction->delete($key)
+            ->shouldBeCalled($this->once());
+        $this->transaction->commit()
+            ->shouldBeCalled($this->once());
+        $this->datastore->transaction()
+            ->shouldBeCalled($this->once())
+            ->willReturn($this->transaction->reveal());
+        $this->datastore->key(
+            self::KIND,
+            'sessionid',
+            ['namespaceId' => self::NAMESPACE_ID]
+        )
+            ->shouldBeCalled($this->once())
+            ->willReturn($key);
 
+        $datastoreSessionHandler = new DatastoreSessionHandler(
+            $this->datastore->reveal()
+        );
         $datastoreSessionHandler->open(self::NAMESPACE_ID, self::KIND);
         $ret = $datastoreSessionHandler->destroy('sessionid');
 
@@ -321,31 +281,27 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
     public function testDestroyWithException()
     {
         \PHPUnit_Framework_Error_Warning::$enabled = FALSE;
-        $datastoreSessionHandler = new DatastoreSessionHandler(
-            $this->datastore
-        );
-        $this->datastore->expects($this->once())
-            ->method('transaction')
-            ->willReturn($this->transaction);
         $key = new Key('projectid');
         $key->pathElement(self::KIND, 'sessionid');
-        $this->datastore->expects($this->once())
-            ->method('key')
-            ->will($this->returnCallback(
-                function($kind, $id, $options) use ($key) {
-                    $this->assertEquals(self::KIND, $kind);
-                    $this->assertEquals('sessionid', $id);
-                    $this->assertEquals(
-                        ['namespaceId' => self::NAMESPACE_ID],
-                        $options
-                    );
-                    return $key;
-                }
-            ));
-        $this->transaction->method('delete')
-            ->with($key)
-            ->will($this->throwException(new \Exception()));
+        $this->transaction->delete($key)
+            ->shouldBeCalled($this->once());
+        $this->transaction->commit()
+            ->shouldBeCalled($this->once())
+            ->willThrow(new Exception());
+        $this->datastore->transaction()
+            ->shouldBeCalled($this->once())
+            ->willReturn($this->transaction->reveal());
+        $this->datastore->key(
+            self::KIND,
+            'sessionid',
+            ['namespaceId' => self::NAMESPACE_ID]
+        )
+            ->shouldBeCalled($this->once())
+            ->willReturn($key);
 
+        $datastoreSessionHandler = new DatastoreSessionHandler(
+            $this->datastore->reveal()
+        );
         $datastoreSessionHandler->open(self::NAMESPACE_ID, self::KIND);
         $ret = $datastoreSessionHandler->destroy('sessionid');
 
@@ -354,10 +310,13 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
 
     public function testDefaultGcDoesNothing()
     {
+        $this->datastore->transaction()
+            ->shouldBeCalled($this->once())
+            ->willReturn($this->transaction->reveal());
+        $this->datastore->query()->shouldNotBeCalled();
         $datastoreSessionHandler = new DatastoreSessionHandler(
-            $this->datastore
+            $this->datastore->reveal()
         );
-        $this->datastore->expects($this->never())->method('query');
         $datastoreSessionHandler->open(self::NAMESPACE_ID, self::KIND);
         $ret = $datastoreSessionHandler->gc(100);
 
@@ -366,70 +325,70 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
 
     public function testGc()
     {
-        $datastoreSessionHandler = new DatastoreSessionHandler(
-            $this->datastore,
-            1000
-        );
-        $mockedQuery = $this->getMockBuilder(Query::class)
-            ->setMethods(
-                ['kind', 'filter', 'order', 'keysOnly', 'limit']
-            )
-            ->disableOriginalConstructor()
-            ->getMock();
         $key1 = new Key('projectid');
         $key1->pathElement(self::KIND, 'sessionid1');
         $key2 = new Key('projectid');
         $key2->pathElement(self::KIND, 'sessionid2');
         $entity1 = new Entity($key1);
         $entity2 = new Entity($key2);
-        $this->datastore->expects($this->once())
-            ->method('query')
-            ->willReturn($mockedQuery);
-        $mockedQuery->expects($this->once())
-            ->method('kind')
-            ->with(self::KIND)
-            ->willReturn($mockedQuery);
-        $mockedQuery->expects($this->once())
-            ->method('filter')
-            ->will($this->returnCallback(
-                function($prop, $op, $val) use ($mockedQuery) {
-                    $this->assertEquals('t', $prop);
-                    $this->assertEquals('<', $op);
-                    $this->assertInternalType('int', $val);
-                    $diff = time() - $val;
-                    // 2 seconds grace period should be enough
-                    $this->assertTrue($diff <= 102);
-                    $this->assertTrue($diff >= 100);
-                    return $mockedQuery;
-                }));
-        $mockedQuery->expects($this->once())
-            ->method('order')
-            ->with('t')
-            ->willReturn($mockedQuery);
-        $mockedQuery->expects($this->once())
-            ->method('keysOnly')
-            ->with()
-            ->willReturn($mockedQuery);
-        $mockedQuery->expects($this->once())
-            ->method('limit')
-            ->with(1000)
-            ->willReturn($mockedQuery);
-        $this->datastore->expects($this->once())
-            ->method('runQuery')
-            ->will($this->returnCallback(
-                function($query, $options)
-                use ($mockedQuery, $entity1, $entity2) {
-                    $this->assertEquals($mockedQuery, $query);
-                    $this->assertEquals(
-                        ['namespaceId' => self::NAMESPACE_ID],
-                        $options
-                    );
-                    return [$entity1, $entity2];
-                }
-            ));
-        $this->datastore->expects($this->once())
-            ->method('deleteBatch')
-            ->with([$key1, $key2]);
+        $query = $this->prophesize(Query::class);
+        $query->kind(self::KIND)
+            ->shouldBeCalled($this->once())
+            ->willReturn($query->reveal());
+        $that = $this;
+        $query->filter(
+            Argument::type('string'),
+            Argument::type('string'),
+            Argument::type('int')
+        )
+            ->shouldBeCalled($this->once())
+            ->will(function($args) use ($that, $query) {
+                $that->assertEquals('t', $args[0]);
+                $that->assertEquals('<', $args[1]);
+                $that->assertInternalType('int', $args[2]);
+                $diff = time() - $args[2];
+                // 2 seconds grace period should be enough
+                $that->assertTrue($diff <= 102);
+                $that->assertTrue($diff >= 100);
+                return $query->reveal();
+            });
+        $query->order('t')
+            ->shouldBeCalled($this->once())
+            ->willReturn($query->reveal());
+        $query->keysOnly()
+            ->shouldBeCalled($this->once())
+            ->willReturn($query->reveal());
+        $query->limit(1000)
+            ->shouldBeCalled($this->once())
+            ->willReturn($query->reveal());
+
+        $this->datastore->transaction()
+            ->shouldBeCalled($this->once())
+            ->willReturn($this->transaction->reveal());
+        $this->datastore->query()
+            ->shouldBeCalled($this->once())
+            ->willReturn($query->reveal());
+        $this->datastore->runQuery(
+            Argument::type(Query::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalled($this->once())
+            ->will(
+                function($args)
+                    use ($that, $query, $entity1, $entity2) {
+                        $that->assertEquals($query->reveal(), $args[0]);
+                        $that->assertEquals(
+                            ['namespaceId' => self::NAMESPACE_ID],
+                            $args[1]
+                        );
+                        return [$entity1, $entity2];
+                    });
+        $this->datastore->deleteBatch([$key1, $key2])
+            ->shouldBeCalled($this->once());
+        $datastoreSessionHandler = new DatastoreSessionHandler(
+            $this->datastore->reveal(),
+            1000
+        );
 
         $datastoreSessionHandler->open(self::NAMESPACE_ID, self::KIND);
         $ret = $datastoreSessionHandler->gc(100);
@@ -440,71 +399,71 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
     public function testGcWithException()
     {
         \PHPUnit_Framework_Error_Warning::$enabled = FALSE;
-        $datastoreSessionHandler = new DatastoreSessionHandler(
-            $this->datastore,
-            1000
-        );
-        $mockedQuery = $this->getMockBuilder(Query::class)
-            ->setMethods(
-                ['kind', 'filter', 'order', 'keysOnly', 'limit']
-            )
-            ->disableOriginalConstructor()
-            ->getMock();
         $key1 = new Key('projectid');
         $key1->pathElement(self::KIND, 'sessionid1');
         $key2 = new Key('projectid');
         $key2->pathElement(self::KIND, 'sessionid2');
         $entity1 = new Entity($key1);
         $entity2 = new Entity($key2);
-        $this->datastore->expects($this->once())
-            ->method('query')
-            ->willReturn($mockedQuery);
-        $mockedQuery->expects($this->once())
-            ->method('kind')
-            ->with(self::KIND)
-            ->willReturn($mockedQuery);
-        $mockedQuery->expects($this->once())
-            ->method('filter')
-            ->will($this->returnCallback(
-                function($prop, $op, $val) use ($mockedQuery) {
-                    $this->assertEquals('t', $prop);
-                    $this->assertEquals('<', $op);
-                    $this->assertInternalType('int', $val);
-                    $diff = time() - $val;
-                    // 2 seconds grace period should be enough
-                    $this->assertTrue($diff <= 102);
-                    $this->assertTrue($diff >= 100);
-                    return $mockedQuery;
-                }));
-        $mockedQuery->expects($this->once())
-            ->method('order')
-            ->with('t')
-            ->willReturn($mockedQuery);
-        $mockedQuery->expects($this->once())
-            ->method('keysOnly')
-            ->with()
-            ->willReturn($mockedQuery);
-        $mockedQuery->expects($this->once())
-            ->method('limit')
-            ->with(1000)
-            ->willReturn($mockedQuery);
-        $this->datastore->expects($this->once())
-            ->method('runQuery')
-            ->will($this->returnCallback(
-                function($query, $options)
-                use ($mockedQuery, $entity1, $entity2) {
-                    $this->assertEquals($mockedQuery, $query);
-                    $this->assertEquals(
-                        ['namespaceId' => self::NAMESPACE_ID],
-                        $options
-                    );
-                    return [$entity1, $entity2];
-                }
-            ));
-        $this->datastore->expects($this->once())
-            ->method('deleteBatch')
-            ->with([$key1, $key2])
-            ->will($this->throwException(new \Exception()));
+        $query = $this->prophesize(Query::class);
+        $query->kind(self::KIND)
+            ->shouldBeCalled($this->once())
+            ->willReturn($query->reveal());
+        $that = $this;
+        $query->filter(
+            Argument::type('string'),
+            Argument::type('string'),
+            Argument::type('int')
+        )
+            ->shouldBeCalled($this->once())
+            ->will(function($args) use ($that, $query) {
+                $that->assertEquals('t', $args[0]);
+                $that->assertEquals('<', $args[1]);
+                $that->assertInternalType('int', $args[2]);
+                $diff = time() - $args[2];
+                // 2 seconds grace period should be enough
+                $that->assertTrue($diff <= 102);
+                $that->assertTrue($diff >= 100);
+                return $query->reveal();
+            });
+        $query->order('t')
+            ->shouldBeCalled($this->once())
+            ->willReturn($query->reveal());
+        $query->keysOnly()
+            ->shouldBeCalled($this->once())
+            ->willReturn($query->reveal());
+        $query->limit(1000)
+            ->shouldBeCalled($this->once())
+            ->willReturn($query->reveal());
+
+        $this->datastore->transaction()
+            ->shouldBeCalled($this->once())
+            ->willReturn($this->transaction->reveal());
+        $this->datastore->query()
+            ->shouldBeCalled($this->once())
+            ->willReturn($query->reveal());
+        $this->datastore->runQuery(
+            Argument::type(Query::class),
+            Argument::type('array')
+        )
+            ->shouldBeCalled($this->once())
+            ->will(
+                function($args)
+                    use ($that, $query, $entity1, $entity2) {
+                        $that->assertEquals($query->reveal(), $args[0]);
+                        $that->assertEquals(
+                            ['namespaceId' => self::NAMESPACE_ID],
+                            $args[1]
+                        );
+                        return [$entity1, $entity2];
+                    });
+        $this->datastore->deleteBatch([$key1, $key2])
+            ->shouldBeCalled($this->once())
+            ->willThrow(new Exception());
+        $datastoreSessionHandler = new DatastoreSessionHandler(
+            $this->datastore->reveal(),
+            1000
+        );
 
         $datastoreSessionHandler->open(self::NAMESPACE_ID, self::KIND);
         $ret = $datastoreSessionHandler->gc(100);
