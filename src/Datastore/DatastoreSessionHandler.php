@@ -54,10 +54,30 @@ use SessionHandlerInterface;
  * the `write` happens when the code exits. If you want to know the session
  * data is correctly written to the Datastore, you need to call
  * `session_write_close()` explicitly and then handle `E_USER_WARNING`
- * properly.
+ * properly like the following example.
  *
- * {@see http://php.net/manual/en/book.errorfunc.php} for general information
- * about how to handle errors.
+ * Example for handling errors:
+ *
+ * ```
+ * use Google\Cloud\Datastore\DatastoreClient;
+ * use Google\Cloud\Datastore\DatastoreSessionHandler;
+ *
+ * $handler = new DatastoreSessionHandler(new DatastoreClient());
+ * session_set_save_handler($handler, true);
+ * session_save_path('sessions');
+ * session_start();
+ *
+ * # Then read and write the $_SESSION array.
+ *
+ * function handle_session_error($errNo, $errStr, $errFile, $errLine) {
+ *     # We throw an exception here, but you can do whatever you need.
+ *     throw new Exception("$errStr in $errFile on line $errLine", $errNo);
+ * }
+ * set_error_handler('handle_session_error', E_USER_WARNING);
+ * # If `write` fails for any reason, an exception will be thrown.
+ * session_write_close();
+ * restore_error_handler();
+ * ```
  */
 class DatastoreSessionHandler implements SessionHandlerInterface
 {
