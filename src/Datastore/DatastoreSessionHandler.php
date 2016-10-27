@@ -102,6 +102,13 @@ class DatastoreSessionHandler implements SessionHandlerInterface
         $this->namespaceId = self::DEFAULT_NAMESPACE_ID;
     }
 
+    /**
+     * @param string $savePath The value of `session.save_path` setting will be
+     *        used here. It will use this value as the Datastore namespaceId.
+     * @param string $sessionName The value of `session.name` setting will be
+     *        used here. It will use this value as the Datastore kind.
+     * @return bool
+     */
     public function open($savePath, $sessionName)
     {
         $this->kind = $sessionName;
