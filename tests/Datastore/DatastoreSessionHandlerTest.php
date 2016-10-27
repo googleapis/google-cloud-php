@@ -48,7 +48,7 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
     public function testOpen()
     {
         $this->datastore->transaction()
-            ->shouldBeCalled($this->once())
+            ->shouldBeCalledTimes(1)
             ->willReturn($this->transaction->reveal());
         $datastoreSessionHandler = new DatastoreSessionHandler(
             $this->datastore->reveal()
@@ -97,7 +97,7 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
     public function testReadNothing()
     {
         $this->datastore->transaction()
-            ->shouldBeCalled($this->once())
+            ->shouldBeCalledTimes(1)
             ->willReturn($this->transaction->reveal());
         $key = new Key('projectid');
         $key->pathElement(self::KIND, 'sessionid');
@@ -106,7 +106,7 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
             'sessionid',
             ['namespaceId' => self::NAMESPACE_ID]
         )
-            ->shouldBeCalled($this->once())
+            ->shouldBeCalledTimes(1)
             ->willReturn($key);
         $datastoreSessionHandler = new DatastoreSessionHandler(
             $this->datastore->reveal()
@@ -121,7 +121,7 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
     {
         \PHPUnit_Framework_Error_Warning::$enabled = FALSE;
         $this->datastore->transaction()
-            ->shouldBeCalled($this->once())
+            ->shouldBeCalledTimes(1)
             ->willReturn($this->transaction->reveal());
         $datastoreSessionHandler = new DatastoreSessionHandler(
             $this->datastore->reveal()
@@ -131,7 +131,7 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
             'sessionid',
             ['namespaceId' => self::NAMESPACE_ID]
         )
-            ->shouldBeCalled($this->once())
+            ->shouldBeCalledTimes(1)
             ->willThrow((new Exception()));
 
         $datastoreSessionHandler->open(self::NAMESPACE_ID, self::KIND);
@@ -146,17 +146,17 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
         $key->pathElement(self::KIND, 'sessionid');
         $entity = new Entity($key, ['data' => 'sessiondata']);
         $this->transaction->lookup($key)
-            ->shouldBeCalled($this->once())
+            ->shouldBeCalledTimes(1)
             ->willReturn($entity);
         $this->datastore->transaction()
-            ->shouldBeCalled($this->once())
+            ->shouldBeCalledTimes(1)
             ->willReturn($this->transaction->reveal());
         $this->datastore->key(
             self::KIND,
             'sessionid',
             ['namespaceId' => self::NAMESPACE_ID]
         )
-            ->shouldBeCalled($this->once())
+            ->shouldBeCalledTimes(1)
             ->willReturn($key);
         $datastoreSessionHandler = new DatastoreSessionHandler(
             $this->datastore->reveal()
@@ -174,18 +174,18 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
         $key->pathElement(self::KIND, 'sessionid');
         $entity = new Entity($key, ['data' => $data]);
         $this->transaction->upsert($entity)
-            ->shouldBeCalled($this->once());
+            ->shouldBeCalledTimes(1);
         $this->transaction->commit()
-            ->shouldBeCalled($this->once());
+            ->shouldBeCalledTimes(1);
         $this->datastore->transaction()
-            ->shouldBeCalled($this->once())
+            ->shouldBeCalledTimes(1)
             ->willReturn($this->transaction->reveal());
         $this->datastore->key(
             self::KIND,
             'sessionid',
             ['namespaceId' => self::NAMESPACE_ID]
         )
-            ->shouldBeCalled($this->once())
+            ->shouldBeCalledTimes(1)
             ->willReturn($key);
         $that = $this;
         $this->datastore->entity($key, Argument::type('array'))
@@ -215,19 +215,19 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
         $key->pathElement(self::KIND, 'sessionid');
         $entity = new Entity($key, ['data' => $data]);
         $this->transaction->upsert($entity)
-            ->shouldBeCalled($this->once());
+            ->shouldBeCalledTimes(1);
         $this->transaction->commit()
-            ->shouldBeCalled($this->once())
+            ->shouldBeCalledTimes(1)
             ->willThrow(new Exception());
         $this->datastore->transaction()
-            ->shouldBeCalled($this->once())
+            ->shouldBeCalledTimes(1)
             ->willReturn($this->transaction->reveal());
         $this->datastore->key(
             self::KIND,
             'sessionid',
             ['namespaceId' => self::NAMESPACE_ID]
         )
-            ->shouldBeCalled($this->once())
+            ->shouldBeCalledTimes(1)
             ->willReturn($key);
         $that = $this;
         $this->datastore->entity($key, Argument::type('array'))
@@ -255,18 +255,18 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
         $key = new Key('projectid');
         $key->pathElement(self::KIND, 'sessionid');
         $this->transaction->delete($key)
-            ->shouldBeCalled($this->once());
+            ->shouldBeCalledTimes(1);
         $this->transaction->commit()
-            ->shouldBeCalled($this->once());
+            ->shouldBeCalledTimes(1);
         $this->datastore->transaction()
-            ->shouldBeCalled($this->once())
+            ->shouldBeCalledTimes(1)
             ->willReturn($this->transaction->reveal());
         $this->datastore->key(
             self::KIND,
             'sessionid',
             ['namespaceId' => self::NAMESPACE_ID]
         )
-            ->shouldBeCalled($this->once())
+            ->shouldBeCalledTimes(1)
             ->willReturn($key);
 
         $datastoreSessionHandler = new DatastoreSessionHandler(
@@ -284,19 +284,19 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
         $key = new Key('projectid');
         $key->pathElement(self::KIND, 'sessionid');
         $this->transaction->delete($key)
-            ->shouldBeCalled($this->once());
+            ->shouldBeCalledTimes(1);
         $this->transaction->commit()
-            ->shouldBeCalled($this->once())
+            ->shouldBeCalledTimes(1)
             ->willThrow(new Exception());
         $this->datastore->transaction()
-            ->shouldBeCalled($this->once())
+            ->shouldBeCalledTimes(1)
             ->willReturn($this->transaction->reveal());
         $this->datastore->key(
             self::KIND,
             'sessionid',
             ['namespaceId' => self::NAMESPACE_ID]
         )
-            ->shouldBeCalled($this->once())
+            ->shouldBeCalledTimes(1)
             ->willReturn($key);
 
         $datastoreSessionHandler = new DatastoreSessionHandler(
@@ -311,7 +311,7 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
     public function testDefaultGcDoesNothing()
     {
         $this->datastore->transaction()
-            ->shouldBeCalled($this->once())
+            ->shouldBeCalledTimes(1)
             ->willReturn($this->transaction->reveal());
         $this->datastore->query()->shouldNotBeCalled();
         $datastoreSessionHandler = new DatastoreSessionHandler(
@@ -333,7 +333,7 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
         $entity2 = new Entity($key2);
         $query = $this->prophesize(Query::class);
         $query->kind(self::KIND)
-            ->shouldBeCalled($this->once())
+            ->shouldBeCalledTimes(1)
             ->willReturn($query->reveal());
         $that = $this;
         $query->filter(
@@ -341,7 +341,7 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
             Argument::type('string'),
             Argument::type('int')
         )
-            ->shouldBeCalled($this->once())
+            ->shouldBeCalledTimes(1)
             ->will(function($args) use ($that, $query) {
                 $that->assertEquals('t', $args[0]);
                 $that->assertEquals('<', $args[1]);
@@ -353,26 +353,26 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
                 return $query->reveal();
             });
         $query->order('t')
-            ->shouldBeCalled($this->once())
+            ->shouldBeCalledTimes(1)
             ->willReturn($query->reveal());
         $query->keysOnly()
-            ->shouldBeCalled($this->once())
+            ->shouldBeCalledTimes(1)
             ->willReturn($query->reveal());
         $query->limit(1000)
-            ->shouldBeCalled($this->once())
+            ->shouldBeCalledTimes(1)
             ->willReturn($query->reveal());
 
         $this->datastore->transaction()
-            ->shouldBeCalled($this->once())
+            ->shouldBeCalledTimes(1)
             ->willReturn($this->transaction->reveal());
         $this->datastore->query()
-            ->shouldBeCalled($this->once())
+            ->shouldBeCalledTimes(1)
             ->willReturn($query->reveal());
         $this->datastore->runQuery(
             Argument::type(Query::class),
             Argument::type('array')
         )
-            ->shouldBeCalled($this->once())
+            ->shouldBeCalledTimes(1)
             ->will(
                 function($args)
                     use ($that, $query, $entity1, $entity2) {
@@ -384,7 +384,7 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
                         return [$entity1, $entity2];
                     });
         $this->datastore->deleteBatch([$key1, $key2])
-            ->shouldBeCalled($this->once());
+            ->shouldBeCalledTimes(1);
         $datastoreSessionHandler = new DatastoreSessionHandler(
             $this->datastore->reveal(),
             1000
@@ -407,7 +407,7 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
         $entity2 = new Entity($key2);
         $query = $this->prophesize(Query::class);
         $query->kind(self::KIND)
-            ->shouldBeCalled($this->once())
+            ->shouldBeCalledTimes(1)
             ->willReturn($query->reveal());
         $that = $this;
         $query->filter(
@@ -415,7 +415,7 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
             Argument::type('string'),
             Argument::type('int')
         )
-            ->shouldBeCalled($this->once())
+            ->shouldBeCalledTimes(1)
             ->will(function($args) use ($that, $query) {
                 $that->assertEquals('t', $args[0]);
                 $that->assertEquals('<', $args[1]);
@@ -427,26 +427,26 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
                 return $query->reveal();
             });
         $query->order('t')
-            ->shouldBeCalled($this->once())
+            ->shouldBeCalledTimes(1)
             ->willReturn($query->reveal());
         $query->keysOnly()
-            ->shouldBeCalled($this->once())
+            ->shouldBeCalledTimes(1)
             ->willReturn($query->reveal());
         $query->limit(1000)
-            ->shouldBeCalled($this->once())
+            ->shouldBeCalledTimes(1)
             ->willReturn($query->reveal());
 
         $this->datastore->transaction()
-            ->shouldBeCalled($this->once())
+            ->shouldBeCalledTimes(1)
             ->willReturn($this->transaction->reveal());
         $this->datastore->query()
-            ->shouldBeCalled($this->once())
+            ->shouldBeCalledTimes(1)
             ->willReturn($query->reveal());
         $this->datastore->runQuery(
             Argument::type(Query::class),
             Argument::type('array')
         )
-            ->shouldBeCalled($this->once())
+            ->shouldBeCalledTimes(1)
             ->will(
                 function($args)
                     use ($that, $query, $entity1, $entity2) {
@@ -458,7 +458,7 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
                         return [$entity1, $entity2];
                     });
         $this->datastore->deleteBatch([$key1, $key2])
-            ->shouldBeCalled($this->once())
+            ->shouldBeCalledTimes(1)
             ->willThrow(new Exception());
         $datastoreSessionHandler = new DatastoreSessionHandler(
             $this->datastore->reveal(),
