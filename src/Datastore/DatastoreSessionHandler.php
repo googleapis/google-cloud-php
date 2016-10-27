@@ -45,7 +45,18 @@ use InvalidArgumentException;
  * session_start();
  *
  * # Then read and write the $_SESSION array.
+ *
  * ```
+ *
+ * The above example automatically writes the session data. It's handy, but
+ * the code doesn't stop even if it fails to write the session data, because
+ * the `write` happens when the code exits. If you want to know the session
+ * data is correctly written to the Datastore, you need to call
+ * `session_write_close()` explicitly and then handle `E_USER_WARNING`
+ * properly.
+ *
+ * {@see http://php.net/manual/en/book.errorfunc.php} for general information
+ * about how to handle errors.
  */
 class DatastoreSessionHandler implements \SessionHandlerInterface
 {
@@ -122,7 +133,7 @@ class DatastoreSessionHandler implements \SessionHandlerInterface
         } catch (Exception $e) {
             trigger_error(
                 sprintf('Datastore lookup failed: %s', $e->getMessage()),
-                E_USER_NOTICE
+                E_USER_WARNING
             );
         }
         return '';
@@ -148,7 +159,7 @@ class DatastoreSessionHandler implements \SessionHandlerInterface
         } catch (Exception $e) {
             trigger_error(
                 sprintf('Datastore upsert failed: %s', $e->getMessage()),
-                E_USER_NOTICE
+                E_USER_WARNING
             );
             return false;
         }
@@ -168,7 +179,7 @@ class DatastoreSessionHandler implements \SessionHandlerInterface
         } catch (Exception $e) {
             trigger_error(
                 sprintf('Datastore delete failed: %s', $e->getMessage()),
-                E_USER_NOTICE
+                E_USER_WARNING
             );
             return false;
         }
@@ -202,7 +213,7 @@ class DatastoreSessionHandler implements \SessionHandlerInterface
         } catch (Exception $e) {
             trigger_error(
                 sprintf('Session gc failed: %s', $e->getMessage()),
-                E_USER_NOTICE
+                E_USER_WARNING
             );
             return false;
         }

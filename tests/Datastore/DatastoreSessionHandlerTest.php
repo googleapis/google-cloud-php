@@ -132,7 +132,7 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
 
     public function testReadWithException()
     {
-        \PHPUnit_Framework_Error_Notice::$enabled = FALSE;
+        \PHPUnit_Framework_Error_Warning::$enabled = FALSE;
         $datastoreSessionHandler = new DatastoreSessionHandler(
             $this->datastore
         );
@@ -238,7 +238,7 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
 
     public function testWriteWithException()
     {
-        \PHPUnit_Framework_Error_Notice::$enabled = FALSE;
+        \PHPUnit_Framework_Error_Warning::$enabled = FALSE;
         $datastoreSessionHandler = new DatastoreSessionHandler(
             $this->datastore
         );
@@ -320,7 +320,7 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
 
     public function testDestroyWithException()
     {
-        \PHPUnit_Framework_Error_Notice::$enabled = FALSE;
+        \PHPUnit_Framework_Error_Warning::$enabled = FALSE;
         $datastoreSessionHandler = new DatastoreSessionHandler(
             $this->datastore
         );
@@ -357,8 +357,7 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
         $datastoreSessionHandler = new DatastoreSessionHandler(
             $this->datastore
         );
-        $this->datastore->expects($this->never())
-            ->method(query);
+        $this->datastore->expects($this->never())->method('query');
         $datastoreSessionHandler->open(self::NAMESPACE_ID, self::KIND);
         $ret = $datastoreSessionHandler->gc(100);
 
@@ -440,7 +439,7 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
 
     public function testGcWithException()
     {
-        \PHPUnit_Framework_Error_Notice::$enabled = FALSE;
+        \PHPUnit_Framework_Error_Warning::$enabled = FALSE;
         $datastoreSessionHandler = new DatastoreSessionHandler(
             $this->datastore,
             1000
