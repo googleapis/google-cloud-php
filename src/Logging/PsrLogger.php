@@ -52,10 +52,12 @@ class PsrLogger implements LoggerInterface
     private $resource;
 
     /**
+     * @codingStandardsIgnoreStart
      * @param Logger $logger The logger used to write entries.
      * @param array $resource The
-     *        [monitored resource](https://cloud.google.com/logging/docs/api/ref_v2beta1/rest/v2beta1/MonitoredResource)
+     *        [monitored resource](https://cloud.google.com/logging/docs/api/reference/rest/Shared.Types/MonitoredResource)
      *        to associate log entries with.
+     * @codingStandardsIgnoreEnd
      */
     public function __construct(Logger $logger, array $resource)
     {
@@ -215,13 +217,13 @@ class PsrLogger implements LoggerInterface
      * @param array $context {
      *     @type array $httpRequest Information about the HTTP request
      *           associated with this log entry, if applicable. Please see
-     *           [the API docs](https://cloud.google.com/logging/docs/api/ref_v2beta1/rest/v2beta1/LogEntry#httprequest)
+     *           [the API docs](https://cloud.google.com/logging/docs/api/reference/rest/Shared.Types/LogEntry#httprequest)
      *           for more information.
      *     @type array $labels A set of user-defined (key, value) data that
      *           provides additional information about the log entry.
      *     @type array $operation Additional information about a potentially
      *           long-running operation with which a log entry is associated.
-     *           Please see [the API docs](https://cloud.google.com/logging/docs/api/ref_v2beta1/rest/v2beta1/LogEntry#logentryoperation)
+     *           Please see [the API docs](https://cloud.google.com/logging/docs/api/reference/rest/Shared.Types/LogEntry#logentryoperation)
      *           for more information.
      * }
      * @throws InvalidArgumentException

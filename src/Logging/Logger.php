@@ -222,20 +222,20 @@ class Logger
      *        data will be stored as a `textPayload` type. When providing an
      *        array the data will be stored as a `jsonPayload` type.
      * @param array $resource The
-     *        [monitored resource](https://cloud.google.com/logging/docs/api/ref_v2beta1/rest/v2beta1/MonitoredResource)
+     *        [monitored resource](https://cloud.google.com/logging/docs/api/reference/rest/Shared.Types/MonitoredResource)
      *        to associate this log entry with.
      * @param array $options [optional] {
      *     Configuration options.
      *
      *     @type array $httpRequest Information about the HTTP request
      *           associated with this log entry, if applicable. Please see
-     *           [the API docs](https://cloud.google.com/logging/docs/api/ref_v2beta1/rest/v2beta1/LogEntry#httprequest)
+     *           [the API docs](https://cloud.google.com/logging/docs/api/reference/rest/Shared.Types/LogEntry#httprequest)
      *           for more information.
      *     @type array $labels A set of user-defined (key, value) data that
      *           provides additional information about the log entry.
      *     @type array $operation Additional information about a potentially
      *           long-running operation with which a log entry is associated.
-     *           Please see [the API docs](https://cloud.google.com/logging/docs/api/ref_v2beta1/rest/v2beta1/LogEntry#logentryoperation)
+     *           Please see [the API docs](https://cloud.google.com/logging/docs/api/reference/rest/Shared.Types/LogEntry#logentryoperation)
      *           for more information.
      *     @type string|int $severity The severity of the log entry. **Defaults to**
      *           `"DEFAULT"`.

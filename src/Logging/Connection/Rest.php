@@ -24,7 +24,7 @@ use Google\Cloud\UriTrait;
 
 /**
  * Implementation of the
- * [Google Stackdriver Logging JSON API](https://cloud.google.com/logging/docs/api/ref_v2beta1/rest/).
+ * [Google Stackdriver Logging JSON API](https://cloud.google.com/logging/docs/api/reference/rest/).
  */
 class Rest implements ConnectionInterface
 {
