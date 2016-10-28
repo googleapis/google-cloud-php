@@ -27,29 +27,28 @@ use SessionHandlerInterface;
  * {@see http://php.net/manual/en/class.sessionhandlerinterface.php}
  *
  * Instead of storing the session data in a local file, it stores the data to
- * Cloud Datastore. Biggest benefit of doing this is the data can be shared by
- * multiple instances, so it's suitable for cloud applications.
+ * Cloud Datastore. The biggest benefit of doing this is the data can be
+ * shared by multiple instances, so it's suitable for cloud applications.
  *
  * The downside of using Cloud Datastore is the write operations will cost you
  * some money, so it is highly recommended to minimize the write operations
  * with your session data with this handler. In order to do so, keep the data
- * in the session as few as possible; for example, it is ok to put only
+ * in the session as limited as possible; for example, it is ok to put only
  * signed-in state and the user id in the session with this handler. However,
  * for example, it is definitely not recommended that you store your
  * application's whole undo history in the session, because every user
  * operations will cause the Datastore write and then it will cost you lot of
  * money.
  *
- * This handler doesn't provide pesimistic lock for session data. Instead, it
+ * This handler doesn't provide pessimistic lock for session data. Instead, it
  * uses Datastore Transaction for data consistency. This means that if
  * multiple requests are modifying the same session data simultaneously, there
- * will be more probablity that some of the `write` operations will
- * fail.
+ * will be more probablity that some of the `write` operations will fail.
  *
  * If you are building an ajax application which may issue multiple requests
  * to the server, please design the session data carefully, in order to avoid
- * possible data contentions. Also please see the 2nd exmaple in this docbock
- * for how to properly handle errors on `write` operations.
+ * possible data contentions. Also please see the 2nd exmaple below for how to
+ * properly handle errors on `write` operations.
  *
  * It uses the session.save_path as the Datastore namespace for isolating the
  * session data from your application data, it also uses the session.name as
