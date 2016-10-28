@@ -47,7 +47,7 @@ use SessionHandlerInterface;
  *
  * If you are building an ajax application which may issue multiple requests
  * to the server, please design the session data carefully, in order to avoid
- * possible data contentions. Also please see the 2nd exmaple below for how to
+ * possible data contentions. Also please see the 2nd example below for how to
  * properly handle errors on `write` operations.
  *
  * It uses the session.save_path as the Datastore namespace for isolating the
