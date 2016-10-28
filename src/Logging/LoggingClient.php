@@ -397,11 +397,13 @@ class LoggingClient
      * $psrLogger->alert('an alert!');
      * ```
      *
+     * @codingStandardsIgnoreStart
      * @param string $name The name of the log to write entries to.
      * @param array $resource The
-     *        [monitored resource](https://cloud.google.com/logging/docs/api/ref_v2beta1/rest/v2beta1/MonitoredResource)
+     *        [monitored resource](https://cloud.google.com/logging/docs/api/reference/rest/Shared.Types/MonitoredResource)
      *        to associate log entries with.
      * @return PsrLogger
+     * @codingStandardsIgnoreEnd
      */
     public function psrLogger($name, array $resource)
     {
