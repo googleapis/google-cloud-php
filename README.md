@@ -26,6 +26,28 @@ If you need support for other Google APIs, please check out the [Google APIs Cli
 $ composer require google/cloud
 ```
 
+## Caching Access Tokens
+
+It is possible to cache access tokens by passing a [PSR-6](http://www.php-fig.org/psr/psr-6/) caching implementation in to the desired client.
+
+The following example takes advantage of [Stash](https://github.com/tedious/Stash).
+
+```php
+<?php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Storage\StorageClient;
+use Stash\Driver\FileSystem;
+use Stash\Pool;
+
+$driver = new FileSystem([]);
+$pool = new Pool($driver);
+
+$storage = new StorageClient([
+    'authCache' => $pool
+]);
+```
+
 ## Google BigQuery
 
 - [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/bigquery/bigqueryclient)

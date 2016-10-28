@@ -18,14 +18,27 @@
 namespace Google\Cloud;
 
 use Google\Auth\ApplicationDefaultCredentials;
+use Google\Auth\Cache\MemoryCacheItemPool;
 use Google\Auth\CredentialsLoader;
+use Google\Auth\FetchAuthTokenCache;
 use Google\Auth\FetchAuthTokenInterface;
+use Psr\Cache\CacheItemPoolInterface;
 
 /**
  * Encapsulates shared functionality of request wrappers.
  */
 trait RequestWrapperTrait
 {
+    /**
+     * @var CacheItemPoolInterface A cache used for storing tokens.
+     */
+    private $authCache;
+
+    /**
+     * @var array Cache configuration options.
+     */
+    private $authCacheOptions;
+
     /**
      * @var FetchAuthTokenInterface Fetches credentials.
      */
@@ -53,6 +66,9 @@ trait RequestWrapperTrait
      * @param array $config {
      *     Configuration options.
      *
+     *     @type CacheItemPoolInterface $authCache A cache for storing access
+     *           tokens. **Defaults to** a simple in memory implementation.
+     *     @type array $authCacheOptions Cache configuration options.
      *     @type FetchAuthTokenInterface $credentialsFetcher A credentials
      *           fetcher instance.
      *     @type string $keyFile The contents of the service account
@@ -67,6 +83,8 @@ trait RequestWrapperTrait
     public function setCommonDefaults(array $config)
     {
         $config += [
+            'authCache' => new MemoryCacheItemPool(),
+            'authCacheOptions' => [],
             'credentialsFetcher' => null,
             'keyFile' => null,
             'retries' => null,
@@ -77,6 +95,12 @@ trait RequestWrapperTrait
             throw new \InvalidArgumentException('credentialsFetcher must implement FetchAuthTokenInterface.');
         }
 
+        if (!$config['authCache'] instanceof CacheItemPoolInterface) {
+            throw new \InvalidArgumentException('authCache must implement CacheItemPoolInterface.');
+        }
+
+        $this->authCache = $config['authCache'];
+        $this->authCacheOptions = $config['authCacheOptions'];
         $this->credentialsFetcher = $config['credentialsFetcher'];
         $this->retries = $config['retries'];
         $this->scopes = $config['scopes'];
@@ -84,22 +108,28 @@ trait RequestWrapperTrait
     }
 
     /**
-     * Gets the credentials fetcher. Precedence begins with user supplied
-     * credentials fetcher instance, followed by a reference to a key file
-     * stream, and finally the application default credentials.
+     * Gets the credentials fetcher and sets up caching. Precedence begins with
+     * user supplied credentials fetcher instance, followed by a reference to a
+     * key file stream, and finally the application default credentials.
      *
      * @return FetchAuthTokenInterface
      */
     public function getCredentialsFetcher()
     {
+        $fetcher = null;
+
         if ($this->credentialsFetcher) {
-            return $this->credentialsFetcher;
+            $fetcher = $this->credentialsFetcher;
+        } elseif ($this->keyFile) {
+            $fetcher = CredentialsLoader::makeCredentials($this->scopes, $this->keyFile);
+        } else {
+            $fetcher = ApplicationDefaultCredentials::getCredentials($this->scopes, $this->authHttpHandler);
         }
 
-        if ($this->keyFile) {
-            return CredentialsLoader::makeCredentials($this->scopes, $this->keyFile);
-        }
-
-        return ApplicationDefaultCredentials::getCredentials($this->scopes, $this->authHttpHandler);
+        return new FetchAuthTokenCache(
+            $fetcher,
+            $this->authCacheOptions,
+            $this->authCache
+        );
     }
 }

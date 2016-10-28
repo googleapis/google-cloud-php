@@ -20,6 +20,7 @@ namespace Google\Cloud\BigQuery;
 use Google\Cloud\BigQuery\Connection\ConnectionInterface;
 use Google\Cloud\BigQuery\Connection\Rest;
 use Google\Cloud\ClientTrait;
+use Psr\Cache\CacheItemPoolInterface;
 
 /**
  * Google Cloud BigQuery client. Allows you to create, manage, share and query
@@ -63,6 +64,9 @@ class BigQueryClient
      *
      *     @type string $projectId The project ID from the Google Developer's
      *           Console.
+     *     @type CacheItemPoolInterface $authCache A cache for storing access
+     *           tokens. **Defaults to** a simple in memory implementation.
+     *     @type array $authCacheOptions Cache configuration options.
      *     @type callable $authHttpHandler A handler used to deliver Psr7
      *           requests specifically for authentication.
      *     @type callable $httpHandler A handler used to deliver Psr7 requests.

@@ -69,11 +69,7 @@ class GrpcTraitTest extends \PHPUnit_Framework_TestCase
         $this->requestWrapper->getCredentialsFetcher()->willReturn($fetcher);
         $this->implementation->setRequestWrapper($this->requestWrapper->reveal());
         $expected = [
-            'credentialsLoader' => new FetchAuthTokenCache(
-                $fetcher,
-                null,
-                new MemoryCacheItemPool()
-            ),
+            'credentialsLoader' => $fetcher,
             'enableCaching' => false,
             'appName' => 'gcloud-php',
             'version' => ServiceBuilder::VERSION
