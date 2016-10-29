@@ -345,23 +345,22 @@ foreach ($annotation->faces() as $key => $face) {
 
 ## Caching Access Tokens
 
-It is possible to cache access tokens by passing a [PSR-6](http://www.php-fig.org/psr/psr-6/) caching implementation in to the desired client.
+By default the library will use a simple in-memory caching implementation, however it is possible to override this behavior by passing a [PSR-6](http://www.php-fig.org/psr/psr-6/) caching implementation in to the desired client.
 
-The following example takes advantage of [Stash](https://github.com/tedious/Stash).
+The following example takes advantage of [Symfony's Cache Component](https://github.com/symfony/cache).
 
 ```php
 <?php
 require 'vendor/autoload.php';
 
 use Google\Cloud\Storage\StorageClient;
-use Stash\Driver\FileSystem;
-use Stash\Pool;
+use Symfony\Component\Cache\Adapter\ArrayAdapter;
 
-$driver = new FileSystem([]);
-$pool = new Pool($driver);
+// Choose the implementation that fits your needs.
+$cache = new ArrayAdapter();
 
 $storage = new StorageClient([
-    'authCache' => $pool
+    'authCache' => $cache
 ]);
 ```
 
