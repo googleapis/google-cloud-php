@@ -24,8 +24,6 @@ use SessionHandlerInterface;
 /**
  * Custom session handler backed by Cloud Datastore.
  *
- * {@see http://php.net/manual/en/class.sessionhandlerinterface.php}
- *
  * Instead of storing the session data in a local file, it stores the data to
  * Cloud Datastore. The biggest benefit of doing this is the data can be
  * shared by multiple instances, so it's suitable for cloud applications.
@@ -110,12 +108,13 @@ use SessionHandlerInterface;
  * restore_error_handler();
  * // You can still read the $_SESSION array after closing the session.
  * ```
+ * @see http://php.net/manual/en/class.sessionhandlerinterface.php SessionHandlerInterface
  */
 class DatastoreSessionHandler implements SessionHandlerInterface
 {
     const DEFAULT_GC_LIMIT = 0;
     /*
-     * {@see https://cloud.google.com/datastore/docs/reference/rpc/google.datastore.v1#google.datastore.v1.PartitionId}
+     * @see https://cloud.google.com/datastore/docs/reference/rpc/google.datastore.v1#google.datastore.v1.PartitionId
      */
     const NAMESPACE_ALLOWED_PATTERN = '/^[A-Za-z\d\.\-_]{0,100}$/';
     const NAMESPACE_RESERVED_PATTERN = '/^__.*__$/';
