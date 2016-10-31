@@ -65,7 +65,7 @@ use SessionHandlerInterface;
  *
  * $cloud = new ServiceBuilder();
  * $datastore = $cloud->datastore();
- * // or just $datastore = new DatastoreClient();
+ * // or just $datastore = new \Google\Cloud\Datastore\DatastoreClient();
  *
  * $handler = new DatastoreSessionHandler($datastore);
  *
@@ -91,7 +91,7 @@ use SessionHandlerInterface;
  *
  * $cloud = new ServiceBuilder();
  * $datastore = $cloud->datastore();
- * // or just $datastore = new DatastoreClient();
+ * // or just $datastore = new \Google\Cloud\Datastore\DatastoreClient();
  *
  * $handler = new DatastoreSessionHandler($datastore);
  * session_set_save_handler($handler, true);
@@ -114,8 +114,6 @@ use SessionHandlerInterface;
 class DatastoreSessionHandler implements SessionHandlerInterface
 {
     const DEFAULT_GC_LIMIT = 0;
-    const DEFAULT_KIND = 'PHPSESSID';
-    const DEFAULT_NAMESPACE_ID = 'sessions';
     /*
      * {@see https://cloud.google.com/datastore/docs/reference/rpc/google.datastore.v1#google.datastore.v1.PartitionId}
      */
@@ -152,8 +150,6 @@ class DatastoreSessionHandler implements SessionHandlerInterface
         $this->datastore = $datastore;
         // Cut down to 1000
         $this->gcLimit = min($gcLimit, 1000);
-        $this->kind = self::DEFAULT_KIND;
-        $this->namespaceId = self::DEFAULT_NAMESPACE_ID;
     }
 
     /**
