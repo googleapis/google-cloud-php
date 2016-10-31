@@ -61,10 +61,14 @@ use SessionHandlerInterface;
  *
  * Example without error handling:
  * ```
- * use Google\Cloud\Datastore\DatastoreClient;
- * use Google\Cloud\Datastore\DatastoreSessionHandler;
+ * use Google\Cloud\ServiceBuilder;
  *
- * $handler = new DatastoreSessionHandler(new DatastoreClient());
+ * $cloud = new ServiceBuilder();
+ * $datastore = $cloud->datastore();
+ * // or just $datastore = new DatastoreClient();
+ *
+ * $handler = new DatastoreSessionHandler($datastore);
+ *
  * session_set_save_handler($handler, true);
  * session_save_path('sessions');
  * session_start();
@@ -83,10 +87,13 @@ use SessionHandlerInterface;
  * Example with error handling:
  *
  * ```
- * use Google\Cloud\Datastore\DatastoreClient;
- * use Google\Cloud\Datastore\DatastoreSessionHandler;
+ * use Google\Cloud\ServiceBuilder;
  *
- * $handler = new DatastoreSessionHandler(new DatastoreClient());
+ * $cloud = new ServiceBuilder();
+ * $datastore = $cloud->datastore();
+ * // or just $datastore = new DatastoreClient();
+ *
+ * $handler = new DatastoreSessionHandler($datastore);
  * session_set_save_handler($handler, true);
  * session_save_path('sessions');
  * session_start();
