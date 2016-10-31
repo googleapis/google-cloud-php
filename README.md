@@ -169,12 +169,12 @@ $bob['firstName'] = 'Bob';
 $bob['email'] = 'bob@example.com';
 $datastore->insert($bob);
 
-// Fetch an entity
-$key = $datastore->key('Person', 'Bob');
+// Retrieve the entity we just created.
+$key = $bob->key();
 $bob = $datastore->lookup($key);
 
-// Update an entity
-$bob['email'] = 'bobv2@example.com';
+// Update the entity
+$bob['email'] = 'bobV2@example.com';
 $datastore->update($bob);
 ```
 
