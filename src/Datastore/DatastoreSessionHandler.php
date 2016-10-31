@@ -69,7 +69,7 @@ use SessionHandlerInterface;
  * session_save_path('sessions');
  * session_start();
  *
- * # Then read and write the $_SESSION array.
+ * // Then read and write the $_SESSION array.
  *
  * ```
  *
@@ -91,17 +91,17 @@ use SessionHandlerInterface;
  * session_save_path('sessions');
  * session_start();
  *
- * # Then read and write the $_SESSION array.
+ * // Then read and write the $_SESSION array.
  *
  * function handle_session_error($errNo, $errStr, $errFile, $errLine) {
  *     # We throw an exception here, but you can do whatever you need.
  *     throw new Exception("$errStr in $errFile on line $errLine", $errNo);
  * }
  * set_error_handler('handle_session_error', E_USER_WARNING);
- * # If `write` fails for any reason, an exception will be thrown.
+ * // If `write` fails for any reason, an exception will be thrown.
  * session_write_close();
  * restore_error_handler();
- * # You can still read the $_SESSION array after closing the session.
+ * // You can still read the $_SESSION array after closing the session.
  * ```
  */
 class DatastoreSessionHandler implements SessionHandlerInterface
@@ -131,8 +131,10 @@ class DatastoreSessionHandler implements SessionHandlerInterface
     private $transaction;
 
     /**
+     * Create a custom session handler backed by Cloud Datastore.
+     *
      * @param DatastoreClient $datastore Datastore client.
-     * @param int [optional] $gcLimit A number of entities to delete in the
+     * @param int $gcLimit [optional] A number of entities to delete in the
      *        garbage collection.  Defaults to 0 which means it does nothing.
      *        The value larger than 1000 will be cut down to 1000.
      */
@@ -148,6 +150,8 @@ class DatastoreSessionHandler implements SessionHandlerInterface
     }
 
     /**
+     * Start a session, by creating a transaction for the later `write`.
+     *
      * @param string $savePath The value of `session.save_path` setting will be
      *        used here. It will use this value as the Datastore namespaceId.
      * @param string $sessionName The value of `session.name` setting will be
@@ -168,11 +172,17 @@ class DatastoreSessionHandler implements SessionHandlerInterface
         return true;
     }
 
+    /**
+     * Just return true for this implementation.
+     */
     public function close()
     {
         return true;
     }
 
+    /**
+     * Read the session data from Cloud Datastore.
+     */
     public function read($id)
     {
         try {
@@ -194,6 +204,9 @@ class DatastoreSessionHandler implements SessionHandlerInterface
         return '';
     }
 
+    /**
+     * Write the session data to Cloud Datastore.
+     */
     public function write($id, $data)
     {
         try {
@@ -221,6 +234,9 @@ class DatastoreSessionHandler implements SessionHandlerInterface
         return true;
     }
 
+    /**
+     * Delete the session data from Cloud Datastore.
+     */
     public function destroy($id)
     {
         try {
@@ -241,6 +257,9 @@ class DatastoreSessionHandler implements SessionHandlerInterface
         return true;
     }
 
+    /**
+     * Delete the old session data from Cloud Datastore.
+     */
     public function gc($maxlifetime)
     {
         if ($this->gcLimit === 0) {
