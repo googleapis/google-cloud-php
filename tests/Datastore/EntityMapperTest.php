@@ -437,6 +437,15 @@ class EntityMapperTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(['foo', 'bar'], $res);
     }
 
+    public function testEmptyArrayValue()
+    {
+        $type = 'arrayValue';
+        $val = [];
+
+        $res = $this->mapper->convertValue($type, $val);
+        $this->assertTrue(is_array($res));
+        $this->assertEquals([], $res);
+    }
 
     public function testValueObjectBool()
     {
