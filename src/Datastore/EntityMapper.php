@@ -216,8 +216,10 @@ class EntityMapper
             case 'arrayValue':
                 $result = [];
 
-                foreach ($value['values'] as $val) {
-                    $result[] = $this->getPropertyValue($val);
+                if (array_key_exists('values', $value)) {
+                    foreach ($value['values'] as $val) {
+                        $result[] = $this->getPropertyValue($val);
+                    }
                 }
 
                 break;
