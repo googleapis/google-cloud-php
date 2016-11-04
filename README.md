@@ -354,13 +354,10 @@ The following example takes advantage of [Symfony's Cache Component](https://git
 require 'vendor/autoload.php';
 
 use Google\Cloud\Storage\StorageClient;
-use Symfony\Component\Cache\Adapter\FilesystemAdapter;
+use Symfony\Component\Cache\Adapter\ArrayAdapter;
 
-$cacheDir = '/tmp/google-cloud-cache';
 // Please take the proper precautions when storing your access tokens in a cache no matter the implementation. 
-// In the case of a file system cache, set proper permissions to restrict access to tokens.
-@mkdir($cacheDir, 0600);
-$cache = new FilesystemAdapter('token', null, $cacheDir);
+$cache = new ArrayAdapter();
 
 $storage = new StorageClient([
     'authCache' => $cache
