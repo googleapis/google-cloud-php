@@ -60,11 +60,6 @@ class Operation
     private $entityMapper;
 
     /**
-     * @var array
-     */
-    private $mutations = [];
-
-    /**
      * Create an operation
      *
      * @param ConnectionInterface $connection A connection to Google Cloud Platform's Datastore API.
@@ -427,6 +422,8 @@ class Operation
      * Calling this method will end the operation (and close the transaction,
      * if one is specified).
      *
+     * @codingStandardsIgnoreStart
+     * @param array $mutations [Mutation[]](https://cloud.google.com/datastore/docs/reference/rest/v1/projects/commit#Mutation).
      * @param array $options [optional] {
      *     Configuration Options
      *
@@ -434,8 +431,9 @@ class Operation
      *           run in a transaction.
      * }
      * @return array [Response Body](https://cloud.google.com/datastore/reference/rest/v1/projects/commit#response-body)
+     * @codingStandardsIgnoreEnd
      */
-    public function commit(array $options = [])
+    public function commit(array $mutations, array $options = [])
     {
         $options += [
             'transaction' => null
@@ -443,11 +441,9 @@ class Operation
 
         $res = $this->connection->commit($options + [
             'mode' => ($options['transaction']) ? 'TRANSACTIONAL' : 'NON_TRANSACTIONAL',
-            'mutations' => $this->mutations,
+            'mutations' => $mutations,
             'projectId' => $this->projectId
         ]);
-
-        $this->mutations = [];
 
         return $res;
     }
@@ -492,41 +488,37 @@ class Operation
      *
      * @param string $operation The operation to execute. "Insert", "Upsert",
      *        "Update" or "Delete".
-     * @param Entity[]|Key[] $input The entities or keys to mutate.
+     * @param Entity|Key $input The entity or key to mutate.
      * @param string $type The type of the input array.
      * @param string $baseVersion [optional] The version of the entity that this mutation
      *        is being applied to. If this does not match the current version on
      *        the server, the mutation conflicts.
-     * @return void
+     * @return array [Mutation](https://cloud.google.com/datastore/docs/reference/rest/v1/projects/commit#Mutation).
      * @throws InvalidArgumentException
      */
-    public function mutate(
+    public function mutation(
         $operation,
-        array $input,
+        $input,
         $type,
         $baseVersion = null
     ) {
-        $this->validateBatch($input, $type);
-
-        foreach ($input as $element) {
-            // If the given element is an Entity, it will use that baseVersion.
-            if ($element instanceof Entity) {
-                $baseVersion = $element->baseVersion();
-                $data = $this->entityMapper->objectToRequest($element);
-            } elseif ($element instanceof Key) {
-                $data = $element->keyObject();
-            } else {
-                throw new InvalidArgumentException(sprintf(
-                    'Element must be a Key or Entity, %s given',
-                    get_class($element)
-                ));
-            }
-
-            $this->mutations[] = array_filter([
-                $operation => $data,
-                'baseVersion' => $baseVersion
-            ]);
+        // If the given element is an Entity, it will use that baseVersion.
+        if ($input instanceof Entity) {
+            $baseVersion = $input->baseVersion();
+            $data = $this->entityMapper->objectToRequest($input);
+        } elseif ($input instanceof Key) {
+            $data = $input->keyObject();
+        } else {
+            throw new InvalidArgumentException(sprintf(
+                'Input must be a Key or Entity, %s given',
+                get_class($input)
+            ));
         }
+
+        return array_filter([
+            $operation => $data,
+            'baseVersion' => $baseVersion
+        ]);
     }
 
     /**

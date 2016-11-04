@@ -558,7 +558,7 @@ class OperationTest extends \PHPUnit_Framework_TestCase
 
         $this->operation->setConnection($this->connection->reveal());
 
-        $this->assertEquals(['foo'], $this->operation->commit());
+        $this->assertEquals(['foo'], $this->operation->commit([]));
     }
 
     public function testCommitInTransaction()
@@ -575,7 +575,7 @@ class OperationTest extends \PHPUnit_Framework_TestCase
 
         $this->operation->setConnection($this->connection->reveal());
 
-        $this->operation->commit([
+        $this->operation->commit([], [
             'transaction' => '1234'
         ]);
     }
@@ -595,22 +595,9 @@ class OperationTest extends \PHPUnit_Framework_TestCase
         $key = $this->prophesize(Key::class);
         $e = new Entity($key->reveal());
 
-        $this->operation->mutate('insert', [$e], Entity::class, null);
+        $mutation = $this->operation->mutation('insert', $e, Entity::class, null);
 
-        $this->operation->commit();
-
-        // mutations should be empty the 2nd time.
-        $this->connection->commit(Argument::that(function($arg) {
-            if (count($arg['mutations']) > 0) return false;
-
-            return true;
-        }))
-            ->shouldBeCalled()
-            ->willReturn(['foo']);
-
-        $this->operation->setConnection($this->connection->reveal());
-
-        $this->operation->commit();
+        $this->operation->commit([$mutation]);
     }
 
     public function testRollback()
@@ -673,8 +660,8 @@ class OperationTest extends \PHPUnit_Framework_TestCase
         $key = $this->prophesize(Key::class);
         $e = new Entity($key->reveal());
 
-        $this->operation->mutate('insert', [$e], Entity::class, null);
-        $this->operation->commit();
+        $mutation = $this->operation->mutation('insert', $e, Entity::class, null);
+        $this->operation->commit([$mutation]);
     }
 
     public function testMutateWithBaseVersion()
@@ -692,8 +679,8 @@ class OperationTest extends \PHPUnit_Framework_TestCase
             'baseVersion' => 1
         ]);
 
-        $this->operation->mutate('insert', [$e], Entity::class);
-        $this->operation->commit();
+        $mutation = $this->operation->mutation('insert', $e, Entity::class);
+        $this->operation->commit([$mutation]);
     }
 
     public function testMutateWithKey()
@@ -711,8 +698,8 @@ class OperationTest extends \PHPUnit_Framework_TestCase
             'path' => [['kind' => 'foo', 'id' => 1]]
         ]);
 
-        $this->operation->mutate('delete', [$key], Key::class);
-        $this->operation->commit();
+        $mutation = $this->operation->mutation('delete', $key, Key::class);
+        $this->operation->commit([$mutation]);
     }
 
     /**
@@ -720,7 +707,7 @@ class OperationTest extends \PHPUnit_Framework_TestCase
      */
     public function testMutateInvalidType()
     {
-        $this->operation->mutate('foo', [(object)[]], \stdClass::class);
+        $this->operation->mutation('foo', (object)[], \stdClass::class);
     }
 
     public function testCheckOverwrite()

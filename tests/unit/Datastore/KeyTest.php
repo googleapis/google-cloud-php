@@ -268,6 +268,78 @@ class KeyTest extends \PHPUnit_Framework_TestCase
         ]);
     }
 
+    public function testPathEndIdentifier()
+    {
+        $key = new Key('foo', [
+            'path' => [
+                ['kind' => 'foo', 'id' => 2],
+                ['kind' => 'bar', 'id' => 10]
+            ]
+        ]);
+
+        $this->assertEquals(10, $key->pathEndIdentifier());
+    }
+
+    public function testPathEndIdentifierName()
+    {
+        $key = new Key('foo', [
+            'path' => [
+                ['kind' => 'foo', 'id' => 2],
+                ['kind' => 'bar', 'name' => 10]
+            ]
+        ]);
+
+        $this->assertEquals(10, $key->pathEndIdentifier());
+    }
+
+    public function testPathEndIdentifierNull()
+    {
+        $key = new Key('foo', [
+            'path' => [
+                ['kind' => 'foo', 'id' => 2],
+                ['kind' => 'bar']
+            ]
+        ]);
+
+        $this->assertNull($key->pathEndIdentifier());
+    }
+
+    public function testPathEndIdentifierType()
+    {
+        $key = new Key('foo', [
+            'path' => [
+                ['kind' => 'foo', 'id' => 2],
+                ['kind' => 'bar', 'id' => 10]
+            ]
+        ]);
+
+        $this->assertEquals(Key::TYPE_ID, $key->pathEndIdentifierType());
+    }
+
+    public function testPathEndIdentifierTypeName()
+    {
+        $key = new Key('foo', [
+            'path' => [
+                ['kind' => 'foo', 'id' => 2],
+                ['kind' => 'bar', 'name' => 10]
+            ]
+        ]);
+
+        $this->assertEquals(Key::TYPE_NAME, $key->pathEndIdentifierType());
+    }
+
+    public function testPathEndIdentifierTypeNull()
+    {
+        $key = new Key('foo', [
+            'path' => [
+                ['kind' => 'foo', 'id' => 2],
+                ['kind' => 'bar']
+            ]
+        ]);
+
+        $this->assertNull($key->pathEndIdentifierType());
+    }
+
     public function testToString()
     {
         $key = new Key('foo', [

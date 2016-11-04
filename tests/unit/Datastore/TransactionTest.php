@@ -44,7 +44,7 @@ class TransactionTest extends \PHPUnit_Framework_TestCase
     {
         $e = $this->prophesize(Entity::class);
 
-        $this->operation->mutate(Argument::exact('insert'), Argument::type('array'), Argument::exact(Entity::class, null))
+        $this->operation->mutation(Argument::exact('insert'), Argument::type(Entity::class), Argument::exact(Entity::class, null))
             ->shouldBeCalled()->willReturn(null);
 
         $this->operation->commit()->shouldNotBeCalled();
@@ -61,7 +61,7 @@ class TransactionTest extends \PHPUnit_Framework_TestCase
     {
         $e = $this->prophesize(Entity::class);
 
-        $this->operation->mutate(Argument::exact('insert'), Argument::type('array'), Argument::exact(Entity::class, null))
+        $this->operation->mutation(Argument::exact('insert'), Argument::type(Entity::class), Argument::exact(Entity::class, null))
             ->shouldBeCalled()->willReturn(null);
 
         $this->operation->commit()->shouldNotBeCalled();
@@ -78,7 +78,7 @@ class TransactionTest extends \PHPUnit_Framework_TestCase
     {
         $e = $this->prophesize(Entity::class);
 
-        $this->operation->mutate(Argument::exact('update'), Argument::type('array'), Argument::exact(Entity::class, null))
+        $this->operation->mutation(Argument::exact('update'), Argument::type(Entity::class), Argument::exact(Entity::class, null))
             ->shouldBeCalled()->willReturn(null);
 
         $this->operation->commit()->shouldNotBeCalled();
@@ -94,7 +94,7 @@ class TransactionTest extends \PHPUnit_Framework_TestCase
     {
         $e = $this->prophesize(Entity::class);
 
-        $this->operation->mutate(Argument::exact('update'), Argument::type('array'), Argument::exact(Entity::class, null))
+        $this->operation->mutation(Argument::exact('update'), Argument::type(Entity::class), Argument::exact(Entity::class, null))
             ->shouldBeCalled()->willReturn(null);
 
         $this->operation->commit()->shouldNotBeCalled();
@@ -110,7 +110,7 @@ class TransactionTest extends \PHPUnit_Framework_TestCase
     {
         $e = $this->prophesize(Entity::class);
 
-        $this->operation->mutate(Argument::exact('upsert'), Argument::type('array'), Argument::exact(Entity::class, null))
+        $this->operation->mutation(Argument::exact('upsert'), Argument::type(Entity::class), Argument::exact(Entity::class, null))
             ->shouldBeCalled()->willReturn(null);
 
         $this->operation->commit()->shouldNotBeCalled();
@@ -124,7 +124,7 @@ class TransactionTest extends \PHPUnit_Framework_TestCase
     {
         $e = $this->prophesize(Entity::class);
 
-        $this->operation->mutate(Argument::exact('upsert'), Argument::type('array'), Argument::exact(Entity::class, null))
+        $this->operation->mutation(Argument::exact('upsert'), Argument::type(Entity::class), Argument::exact(Entity::class, null))
             ->shouldBeCalled()->willReturn(null);
 
         $this->operation->commit()->shouldNotBeCalled();
@@ -138,11 +138,10 @@ class TransactionTest extends \PHPUnit_Framework_TestCase
     {
         $k = $this->prophesize(Key::class);
 
-        $this->operation->mutate(Argument::exact('delete'), Argument::type('array'), Argument::exact(Key::class, null))
+        $this->operation->mutation(Argument::exact('delete'), Argument::type(Key::class), Argument::exact(Key::class, null))
             ->shouldBeCalled()->willReturn(null);
 
         $this->operation->commit()->shouldNotBeCalled();
-
 
         $this->transaction->setOperation($this->operation->reveal());
 
@@ -153,7 +152,7 @@ class TransactionTest extends \PHPUnit_Framework_TestCase
     {
         $k = $this->prophesize(Key::class);
 
-        $this->operation->mutate(Argument::exact('delete'), Argument::type('array'), Argument::exact(Key::class, null))
+        $this->operation->mutation(Argument::exact('delete'), Argument::type(Key::class), Argument::exact(Key::class, null))
             ->shouldBeCalled()->willReturn(null);
 
         $this->operation->commit()->shouldNotBeCalled();
@@ -215,7 +214,7 @@ class TransactionTest extends \PHPUnit_Framework_TestCase
 
     public function testCommit()
     {
-        $this->operation->commit(Argument::that(function ($arg) {
+        $this->operation->commit(Argument::type('array'), Argument::that(function ($arg) {
             if ($arg['transaction'] !== $this->transactionId) return false;
         }));
 
