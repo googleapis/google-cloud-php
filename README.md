@@ -357,7 +357,8 @@ use Google\Cloud\Storage\StorageClient;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 
 $cacheDir = '/tmp/google-cloud-cache';
-// Make sure to set the proper permissions to restrict access to tokens.
+// Please take the proper precautions when storing your access tokens in a cache no matter the implementation. 
+// In the case of a file system cache, set proper permissions to restrict access to tokens.
 @mkdir($cacheDir, 0600);
 $cache = new FilesystemAdapter('token', null, $cacheDir);
 
