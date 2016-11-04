@@ -73,11 +73,7 @@ trait GrpcTrait
     private function getGaxConfig()
     {
         return [
-            'credentialsLoader' => new FetchAuthTokenCache(
-                $this->requestWrapper->getCredentialsFetcher(),
-                null,
-                new MemoryCacheItemPool()
-            ),
+            'credentialsLoader' => $this->requestWrapper->getCredentialsFetcher(),
             'enableCaching' => false,
             'appName' => 'gcloud-php',
             'version' => ServiceBuilder::VERSION

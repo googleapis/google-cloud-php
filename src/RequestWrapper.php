@@ -46,11 +46,6 @@ class RequestWrapper
     private $authHttpHandler;
 
     /**
-     * @var array Credentials used to sign requests.
-     */
-    private $credentials;
-
-    /**
      * @var callable A handler used to deliver Psr7 requests.
      */
     private $httpHandler;
@@ -162,7 +157,6 @@ class RequestWrapper
      * Gets the access token.
      *
      * @return string
-     * @todo Investigate refreshing tokens
      */
     private function getToken()
     {
@@ -170,11 +164,7 @@ class RequestWrapper
             return $this->accessToken;
         }
 
-        if (!$this->credentials || $this->credentials['expiry'] < time()) {
-            $this->credentials = $this->fetchCredentials();
-        }
-
-        return $this->credentials['access_token'];
+        return $this->fetchCredentials()['access_token'];
     }
 
     /**
@@ -184,15 +174,16 @@ class RequestWrapper
      */
     private function fetchCredentials()
     {
+        $backoff = new ExponentialBackoff($this->retries, $this->getRetryFunction());
+
         try {
-            $credentials = $this->getCredentialsFetcher()->fetchAuthToken($this->authHttpHandler);
+            return $backoff->execute(
+                [$this->getCredentialsFetcher(), 'fetchAuthToken'],
+                [$this->authHttpHandler]
+            );
         } catch (\Exception $ex) {
             throw $this->convertToGoogleException($ex);
         }
-
-        $credentials['expiry'] = time() + $credentials['expires_in'];
-
-        return $credentials;
     }
 
     /**

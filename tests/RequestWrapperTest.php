@@ -64,25 +64,6 @@ class RequestWrapperTest extends \PHPUnit_Framework_TestCase
         $requestWrapper->send(new Request('GET', 'http://wwww.example.com'));
     }
 
-    public function testMultipleRequestsUseCachedCredentials()
-    {
-        $request = new Request('GET', 'http://www.example.com');
-        $credentialsFetcher = $this->prophesize('Google\Auth\FetchAuthTokenInterface');
-        $credentialsFetcher->fetchAuthToken(Argument::any())
-            ->willReturn(['access_token' => 'abc', 'expires_in' => 100])
-            ->shouldBeCalledTimes(1);
-
-        $requestWrapper = new RequestWrapper([
-            'httpHandler' => function ($request, $options = []) {
-                return new Response(200, []);
-            },
-            'credentialsFetcher' => $credentialsFetcher->reveal()
-        ]);
-
-        $requestWrapper->send($request);
-        $requestWrapper->send($request);
-    }
-
     /**
      * @expectedException InvalidArgumentException
      */
@@ -92,6 +73,18 @@ class RequestWrapperTest extends \PHPUnit_Framework_TestCase
 
         $requestWrapper = new RequestWrapper([
             'credentialsFetcher' => $credentialsFetcher
+        ]);
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testThrowsExceptionWithInvalidCache()
+    {
+        $cache = new \stdClass();
+
+        $requestWrapper = new RequestWrapper([
+            'authCache' => $cache
         ]);
     }
 
@@ -297,7 +290,8 @@ class RequestWrapperTest extends \PHPUnit_Framework_TestCase
         $requestWrapper = new RequestWrapper([
             'httpHandler' => function ($request, $options = []) {
                 throw new \Exception('', 500);
-            }
+            },
+            'retries' => 0
         ]);
 
         $requestWrapper->send(
