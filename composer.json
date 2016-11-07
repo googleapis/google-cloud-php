@@ -69,7 +69,8 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Google\\Cloud\\Dev\\": "dev/src"
+            "Google\\Cloud\\Dev\\": "dev/src",
+            "Google\\Cloud\\Tests\\System\\": "tests/system"
         }
     },
     "scripts": {
