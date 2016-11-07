@@ -1,0 +1,170 @@
+{
+  "id": "manifest",
+  "type": "object",
+  "properties": {
+    "lang": {
+      "id": "lang",
+      "type": "string",
+      "description": "Language id, this will be used to generate links for issues, StackOverflow, etc."
+    },
+    "friendlyLang": {
+      "id": "friendlyLang",
+      "type": "string",
+      "description": "User friendly name of language, may be used as page title."
+    },
+    "libraryTitle": {
+      "id": "libraryTitle",
+      "type": "string",
+      "description": "The library's title."
+    },
+    "defaultService": {
+      "id": "defaultService",
+      "type": "string",
+      "description": "Custom service type to load by default."
+    },
+    "moduleName": {
+      "id": "moduleName",
+      "type": "string",
+      "description": "Name of the module used to link to Github repo"
+    },
+    "defaultModule": {
+      "id": "defaultModule",
+      "type": "string",
+      "description": "id of default module when using modular docs"
+    },
+    "markdown": {
+      "id": "markdown",
+      "type": "string",
+      "description": "id of syntax highlighting flavor for highlightjs. "
+    },
+    "versions": {
+      "id": "versions",
+      "type": "array",
+      "description": "List of all available versions the user can switch between.",
+      "items": {
+        "id": "version",
+        "type": "string",
+        "description": "Valid semver version string"
+      }
+    },
+    "content": {
+      "id": "content",
+      "type": "string",
+      "description": "Directory containing JSON/markdown content"
+    },
+    "home": {
+      "id": "home",
+      "type": "string",
+      "description": "Path to landing page content"
+    },
+    "package": {
+      "id": "package",
+      "type": "object",
+      "description": "Object describing package information",
+      "properties": {
+        "title": {
+          "id": "title",
+          "type": "string",
+          "description": "Name of the package manager"
+        },
+        "href": {
+          "id": "href",
+          "type": "string",
+          "description": "URL for the package"
+        }
+      },
+      "required": [
+        "title",
+        "href"
+      ]
+    },
+    "methodTypeSymbols": {
+      "id": "methodTypeSymbols",
+      "type": "array",
+      "description": "List of mappings from method types to display symbols",
+      "items": {
+        "id": "methodTypeSymbol",
+        "type": "object",
+        "description": "Maps a method type ('instance') to a symbol ('#')",
+        "properties": {
+          "type": {
+            "id": "type",
+            "type": "string",
+            "description": "The language-specific type name of the method"
+          },
+          "symbol": {
+            "id": "symbol",
+            "type": "string",
+            "description": "The language-specific symbol for the method type"
+          }
+        },
+        "required": [
+          "type",
+          "symbol"
+        ]
+      }
+    },
+    "modules": {
+      "id": "modules",
+      "type": "array",
+      "description": "List of modules and their versions",
+      "items": {
+        "id": "module",
+        "type": "object",
+        "description": "Information for individual module",
+        "properties": {
+          "id": {
+            "id": "id",
+            "type": "string",
+            "description": "id used within route parameter"
+          },
+          "name": {
+            "id": "name",
+            "type": "string",
+            "description": "Friendly name used for module switching dropdown"
+          },
+          "defaultService": {
+            "id": "defaultService",
+            "type": "string",
+            "description": "The id of the default service for the module"
+          },
+          "versions": {
+            "id": "versions",
+            "type": "array",
+            "description": "An array of all available versions for this module",
+            "items": {
+              "id": "version",
+              "type": "string",
+              "description": "The semver version string"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "defaultService",
+          "versions"
+        ]
+      }
+    }
+  },
+  "required": [
+    "lang",
+    "friendlyLang",
+    "moduleName",
+    "markdown",
+    "content",
+    "home",
+    "package"
+  ],
+  "oneOf": [{
+    "required": [
+      "versions"
+    ]
+  }, {
+    "required": [
+      "defaultModule",
+      "modules"
+    ]
+  }]
+}

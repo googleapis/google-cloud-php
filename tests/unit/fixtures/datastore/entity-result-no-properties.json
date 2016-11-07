@@ -1,0 +1,17 @@
+[
+  {
+    "entity": {
+      "key": {
+        "partitionId": {
+          "namespaceId": "foo",
+          "projectId": "bar"
+        },
+        "path": [
+          {"kind": "Kind", "name": "Name"}
+        ]
+      }
+    },
+    "version": "1234",
+    "cursor": "abcd"
+  }
+]
