@@ -3,6 +3,7 @@
 require __DIR__ . '/../../vendor/autoload.php';
 
 use Google\Cloud\Tests\System\PubSub\PubSubTestCase;
+use Google\Cloud\Tests\System\Datastore\DatastoreTestCase;
 
 if (!getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH')) {
     throw new \Exception(
@@ -12,4 +13,5 @@ if (!getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH')) {
 
 register_shutdown_function(function () {
     PubSubTestCase::tearDownFixtures();
+    DatastoreTestCase::tearDownFixtures();
 });
