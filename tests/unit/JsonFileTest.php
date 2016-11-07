@@ -29,7 +29,7 @@ class JsonFileTest extends \PHPUnit_Framework_TestCase
 
     public function testComposer()
     {
-        $file = file_get_contents(__DIR__ .'/../composer.json');
+        $file = file_get_contents(__DIR__ .'/../../composer.json');
         $json = json_decode($file);
         $this->assertEquals(JSON_ERROR_NONE, json_last_error());
 
@@ -46,7 +46,7 @@ class JsonFileTest extends \PHPUnit_Framework_TestCase
 
     public function testManifest()
     {
-        $file = file_get_contents(__DIR__ .'/../docs/manifest.json');
+        $file = file_get_contents(__DIR__ .'/../../docs/manifest.json');
         $json = json_decode($file);
         $this->assertEquals(JSON_ERROR_NONE, json_last_error());
 
@@ -63,7 +63,7 @@ class JsonFileTest extends \PHPUnit_Framework_TestCase
 
     public function testToc()
     {
-        $file = file_get_contents(__DIR__ .'/../docs/toc.json');
+        $file = file_get_contents(__DIR__ .'/../../docs/toc.json');
         $json = json_decode($file);
         $this->assertEquals(JSON_ERROR_NONE, json_last_error());
 
