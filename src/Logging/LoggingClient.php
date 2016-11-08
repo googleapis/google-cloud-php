@@ -365,10 +365,17 @@ class LoggingClient
     {
         $options['pageToken'] = null;
 
+        $resourceNames = ['projects/' . $this->projectId];
         if (isset($options['projectIds'])) {
-            $options['projectIds'] = array_merge([$this->projectId], $options['projectIds']);
+            foreach ($options['projectIds'] as $projectId) {
+                  $resourceNames[] = 'projects/' . $projectId;
+            }
+            unset($options['projectIds']);
+        }
+        if (isset($options['resourceNames'])) {
+            $options['resourceNames'] = array_merge($resourceNames, $options['projectIds']);
         } else {
-            $options['projectIds'] = [$this->projectId];
+            $options['resourceNames'] = $resourceNames;
         }
 
         do {
