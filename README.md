@@ -169,13 +169,13 @@ $bob['firstName'] = 'Bob';
 $bob['email'] = 'bob@example.com';
 $datastore->insert($bob);
 
-// Retrieve the entity we just created.
-$key = $bob->key();
-$bob = $datastore->lookup($key);
-
 // Update the entity
 $bob['email'] = 'bobV2@example.com';
 $datastore->update($bob);
+
+// If you know the ID of the entity, you can look it up
+$key = $datastore->key('Person', '12345328897844');
+$entity = $datastore->lookup($key);
 ```
 
 ## Google Cloud Natural Language
@@ -356,7 +356,7 @@ require 'vendor/autoload.php';
 use Google\Cloud\Storage\StorageClient;
 use Symfony\Component\Cache\Adapter\ArrayAdapter;
 
-// Please take the proper precautions when storing your access tokens in a cache no matter the implementation. 
+// Please take the proper precautions when storing your access tokens in a cache no matter the implementation.
 $cache = new ArrayAdapter();
 
 $storage = new StorageClient([
