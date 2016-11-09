@@ -1,0 +1,38 @@
+[
+    {
+        "entity": {
+            "key": {
+                "path": [
+                    {
+                        "kind": "Kind",
+                        "id": "1"
+                    }
+                ],
+                "partitionId": []
+            },
+            "properties": {
+                "Number": {
+                    "stringValue": "First"
+                }
+            }
+        }
+    },
+    {
+        "entity": {
+            "key": {
+                "path": [
+                    {
+                        "kind": "Kind",
+                        "id": "2"
+                    }
+                ],
+                "partitionId": []
+            },
+            "properties": {
+                "Number": {
+                    "stringValue": "Second"
+                }
+            }
+        }
+    }
+]

@@ -142,7 +142,9 @@ class Transaction
     public function insertBatch(array $entities)
     {
         $entities = $this->operation->allocateIdsToEntities($entities);
-        $this->operation->mutate('insert', $entities, Entity::class);
+        foreach ($entities as $entity) {
+            $this->mutations[] = $this->operation->mutation('insert', $entity, Entity::class);
+        }
 
         return $this;
     }
@@ -222,7 +224,9 @@ class Transaction
         ];
 
         $this->operation->checkOverwrite($entities, $options['allowOverwrite']);
-        $this->operation->mutate('update', $entities, Entity::class);
+        foreach ($entities as $entity) {
+            $this->mutations[] = $this->operation->mutation('update', $entity, Entity::class);
+        }
 
         return $this;
     }
@@ -283,7 +287,9 @@ class Transaction
      */
     public function upsertBatch(array $entities)
     {
-        $this->operation->mutate('upsert', $entities, Entity::class);
+        foreach ($entities as $entity) {
+            $this->mutations[] = $this->operation->mutation('upsert', $entity, Entity::class);
+        }
 
         return $this;
     }
@@ -332,7 +338,9 @@ class Transaction
      */
     public function deleteBatch(array $keys)
     {
-        $this->operation->mutate('delete', $keys, Key::class);
+        foreach ($keys as $key) {
+            $this->mutations[] = $this->operation->mutation('delete', $key, Key::class);
+        }
 
         return $this;
     }
@@ -458,7 +466,7 @@ class Transaction
     {
         $options['transaction'] = $this->transactionId;
 
-        return $this->operation->commit($options);
+        return $this->operation->commit($this->mutations, $options);
     }
 
     /**

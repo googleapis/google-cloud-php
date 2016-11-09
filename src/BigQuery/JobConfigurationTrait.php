@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Bigquery;
+namespace Google\Cloud\BigQuery;
 
 /**
  * A trait used to build out configuration for jobs.

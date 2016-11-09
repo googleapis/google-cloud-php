@@ -1,0 +1,112 @@
+{
+  "noResults": {
+    "batch": {
+      "entityResults": null,
+      "endCursor": "1234",
+      "moreResults": "NO_MORE_RESULTS"
+    }
+  },
+  "notPaged": {
+    "batch": {
+      "entityResults": [
+        {
+          "entity": {
+            "key": {
+              "path": [
+                {"kind": "Person", "name": "John"}
+              ],
+              "partitionId": {}
+            },
+            "properties": {
+              "firstName": {
+                "stringValue": "John"
+              }
+            }
+          },
+          "cursor": "123"
+        }, {
+          "entity": {
+            "key": {
+              "path": [
+                {"kind": "Person", "name": "Dave"}
+              ],
+              "partitionId": {}
+            },
+            "properties": {
+              "firstName": {
+                "stringValue": "Dave"
+              }
+            }
+          },
+          "cursor": "1234"
+        }
+      ],
+      "endCursor": "1234",
+      "moreResults": "NO_MORE_RESULTS"
+    }
+  },
+  "paged": [
+    {
+      "batch": {
+        "entityResults": [
+          {
+            "entity": {
+              "key": {
+                "path": [
+                  {"kind": "Person", "name": "John"}
+                ],
+                "partitionId": {}
+              },
+              "properties": {
+                "firstName": {
+                  "stringValue": "John"
+                }
+              }
+            },
+            "cursor": "123"
+          }, {
+            "entity": {
+              "key": {
+                "path": [
+                  {"kind": "Person", "name": "Dave"}
+                ],
+                "partitionId": {}
+              },
+              "properties": {
+                "firstName": {
+                  "stringValue": "Dave"
+                }
+              }
+            },
+            "cursor": "1234"
+          }
+        ],
+        "endCursor": "1234",
+        "moreResults": "NOT_FINISHED"
+      }
+    }, {
+      "batch": {
+        "entityResults": [
+          {
+            "entity": {
+              "key": {
+                "path": [
+                  {"kind": "Person", "name": "Bob"}
+                ],
+                "partitionId": {}
+              },
+              "properties": {
+                "firstName": {
+                  "stringValue": "Bob"
+                }
+              }
+            },
+            "cursor": "12345"
+          }
+        ],
+        "endCursor": "12345",
+        "moreResults": "NO_MORE_RESULTS"
+      }
+    }
+  ]
+}

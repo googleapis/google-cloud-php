@@ -348,6 +348,60 @@ class Key implements JsonSerializable
     }
 
     /**
+     * Get the last pathElement identifier.
+     *
+     * If the key is incomplete, returns `null`.
+     *
+     * Example:
+     * ```
+     * $lastPathElementIndentifier = $key->pathEndIdentifier();
+     * ```
+     *
+     * @return string|int|null
+     */
+    public function pathEndIdentifier()
+    {
+        $end = $this->pathEnd();
+
+        if (isset($end['id'])) {
+            return $end['id'];
+        }
+
+        if (isset($end['name'])) {
+            return $end['name'];
+        }
+
+        return null;
+    }
+
+    /**
+     * Get the last pathElement identifier type.
+     *
+     * If the key is incomplete, returns `null`.
+     *
+     * Example:
+     * ```
+     * $lastPathElementIdentifierType = $key->pathEndIdentifierType();
+     * ```
+     *
+     * @return string|null
+     */
+    public function pathEndIdentifierType()
+    {
+        $end = $this->pathEnd();
+
+        if (isset($end['id'])) {
+            return self::TYPE_ID;
+        }
+
+        if (isset($end['name'])) {
+            return self::TYPE_NAME;
+        }
+
+        return null;
+    }
+
+    /**
      * Get the key object formatted for the datastore service.
      *
      * @access private

@@ -25,6 +25,7 @@ use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Query\QueryBuilder;
 use Google\Cloud\Datastore\Query\QueryInterface;
 use InvalidArgumentException;
+use Psr\Cache\CacheItemPoolInterface;
 
 /**
  * Google Cloud Datastore client. Cloud Datastore is a highly-scalable NoSQL
@@ -111,6 +112,9 @@ class DatastoreClient
      *
      *     @type string $projectId The project ID from the Google Developer's
      *           Console.
+     *     @type CacheItemPoolInterface $authCache A cache for storing access
+     *           tokens. **Defaults to** a simple in memory implementation.
+     *     @type array $authCacheOptions Cache configuration options.
      *     @type callable $authHttpHandler A handler used to deliver Psr7
      *           requests specifically for authentication.
      *     @type callable $httpHandler A handler used to deliver Psr7 requests.
@@ -501,8 +505,12 @@ class DatastoreClient
     public function insertBatch(array $entities, array $options = [])
     {
         $entities = $this->operation->allocateIdsToEntities($entities);
-        $this->operation->mutate('insert', $entities, Entity::class);
-        return $this->operation->commit($options);
+        $mutations = [];
+        foreach ($entities as $entity) {
+            $mutations[] = $this->operation->mutation('insert', $entity, Entity::class);
+        }
+
+        return $this->operation->commit($mutations, $options);
     }
 
     /**
@@ -585,8 +593,12 @@ class DatastoreClient
         ];
 
         $this->operation->checkOverwrite($entities, $options['allowOverwrite']);
-        $this->operation->mutate('update', $entities, Entity::class);
-        return $this->operation->commit($options);
+        $mutations = [];
+        foreach ($entities as $entity) {
+            $mutations[] = $this->operation->mutation('update', $entity, Entity::class);
+        }
+
+        return $this->operation->commit($mutations, $options);
     }
 
     /**
@@ -657,8 +669,12 @@ class DatastoreClient
      */
     public function upsertBatch(array $entities, array $options = [])
     {
-        $this->operation->mutate('upsert', $entities, Entity::class);
-        return $this->operation->commit($options);
+        $mutations = [];
+        foreach ($entities as $entity) {
+            $mutations[] = $this->operation->mutation('upsert', $entity, Entity::class);
+        }
+
+        return $this->operation->commit($mutations, $options);
     }
 
     /**
@@ -725,8 +741,12 @@ class DatastoreClient
             'baseVersion' => null
         ];
 
-        $this->operation->mutate('delete', $keys, Key::class, $options['baseVersion']);
-        return $this->operation->commit($options);
+        $mutations = [];
+        foreach ($keys as $key) {
+            $mutations[] = $this->operation->mutation('delete', $key, Key::class, $options['baseVersion']);
+        }
+
+        return $this->operation->commit($mutations, $options);
     }
 
     /**

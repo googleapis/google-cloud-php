@@ -343,9 +343,30 @@ foreach ($annotation->faces() as $key => $face) {
 }
 ```
 
+## Caching Access Tokens
+
+By default the library will use a simple in-memory caching implementation, however it is possible to override this behavior by passing a [PSR-6](http://www.php-fig.org/psr/psr-6/) caching implementation in to the desired client.
+
+The following example takes advantage of [Symfony's Cache Component](https://github.com/symfony/cache).
+
+```php
+<?php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Storage\StorageClient;
+use Symfony\Component\Cache\Adapter\ArrayAdapter;
+
+// Please take the proper precautions when storing your access tokens in a cache no matter the implementation. 
+$cache = new ArrayAdapter();
+
+$storage = new StorageClient([
+    'authCache' => $cache
+]);
+```
+
 ## Versioning
 
-This library follows [Semantic Versioning](http://semver.org/)
+This library follows [Semantic Versioning](http://semver.org/).
 
 Please note it is currently under active development. Any release versioned 0.x.y is subject to backwards incompatible changes at any time.
 

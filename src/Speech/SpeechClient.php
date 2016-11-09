@@ -21,6 +21,7 @@ use Google\Cloud\ClientTrait;
 use Google\Cloud\Speech\Connection\ConnectionInterface;
 use Google\Cloud\Speech\Connection\Rest;
 use Google\Cloud\Storage\StorageObject;
+use Psr\Cache\CacheItemPoolInterface;
 
 /**
  * Google Cloud Speech client. The Cloud Speech API enables easy integration of
@@ -74,6 +75,9 @@ class SpeechClient
      *
      *     @type string $projectId The project ID from the Google Developer's
      *           Console.
+     *     @type CacheItemPoolInterface $authCache A cache for storing access
+     *           tokens. **Defaults to** a simple in memory implementation.
+     *     @type array $authCacheOptions Cache configuration options.
      *     @type callable $authHttpHandler A handler used to deliver Psr7
      *           requests specifically for authentication.
      *     @type callable $httpHandler A handler used to deliver Psr7 requests.

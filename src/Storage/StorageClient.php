@@ -20,6 +20,7 @@ namespace Google\Cloud\Storage;
 use Google\Cloud\ClientTrait;
 use Google\Cloud\Storage\Connection\ConnectionInterface;
 use Google\Cloud\Storage\Connection\Rest;
+use Psr\Cache\CacheItemPoolInterface;
 
 /**
  * Google Cloud Storage client. Allows you to store and retrieve data on
@@ -63,6 +64,9 @@ class StorageClient
      *
      *     @type string $projectId The project ID from the Google Developer's
      *           Console.
+     *     @type CacheItemPoolInterface $authCache A cache used storing access
+     *           tokens. **Defaults to** a simple in memory implementation.
+     *     @type array $authCacheOptions Cache configuration options.
      *     @type callable $authHttpHandler A handler used to deliver Psr7
      *           requests specifically for authentication.
      *     @type callable $httpHandler A handler used to deliver Psr7 requests.
