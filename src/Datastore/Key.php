@@ -357,7 +357,7 @@ class Key implements JsonSerializable
      * $lastPathElementIndentifier = $key->pathEndIdentifier();
      * ```
      *
-     * @return string|null
+     * @return string|int|null
      */
     public function pathEndIdentifier()
     {
