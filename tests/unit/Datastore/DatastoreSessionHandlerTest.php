@@ -117,9 +117,11 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('', $ret);
     }
 
+    /**
+     * @expectedException PHPUnit_Framework_Error_Warning
+     */
     public function testReadWithException()
     {
-        \PHPUnit_Framework_Error_Warning::$enabled = FALSE;
         $this->datastore->transaction()
             ->shouldBeCalledTimes(1)
             ->willReturn($this->transaction->reveal());
@@ -207,9 +209,11 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(true, $ret);
     }
 
+    /**
+     * @expectedException PHPUnit_Framework_Error_Warning
+     */
     public function testWriteWithException()
     {
-        \PHPUnit_Framework_Error_Warning::$enabled = FALSE;
         $data = 'sessiondata';
         $key = new Key('projectid');
         $key->pathElement(self::KIND, 'sessionid');
@@ -278,9 +282,11 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(true, $ret);
     }
 
+    /**
+     * @expectedException PHPUnit_Framework_Error_Warning
+     */
     public function testDestroyWithException()
     {
-        \PHPUnit_Framework_Error_Warning::$enabled = FALSE;
         $key = new Key('projectid');
         $key->pathElement(self::KIND, 'sessionid');
         $this->transaction->delete($key)
@@ -396,9 +402,11 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(true, $ret);
     }
 
+    /**
+     * @expectedException PHPUnit_Framework_Error_Warning
+     */
     public function testGcWithException()
     {
-        \PHPUnit_Framework_Error_Warning::$enabled = FALSE;
         $key1 = new Key('projectid');
         $key1->pathElement(self::KIND, 'sessionid1');
         $key2 = new Key('projectid');

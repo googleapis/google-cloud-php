@@ -214,10 +214,10 @@ class DatastoreClientTest extends \PHPUnit_Framework_TestCase
         $this->operation->allocateIdsToEntities(Argument::type('array'))
             ->willReturn([$e->reveal()]);
 
-        $this->operation->mutate(Argument::exact('insert'), Argument::type('array'), Argument::exact(Entity::class), Argument::exact(null))
+        $this->operation->mutation(Argument::exact('insert'), Argument::type(Entity::class), Argument::exact(Entity::class), Argument::exact(null))
             ->shouldBeCalled();
 
-        $this->operation->commit(Argument::type('array'))
+        $this->operation->commit(Argument::type('array'), Argument::type('array'))
             ->shouldBeCalled()
             ->willReturn(['mutationResults' => [['version' => '1234']]]);
 
@@ -238,10 +238,10 @@ class DatastoreClientTest extends \PHPUnit_Framework_TestCase
         $this->operation->allocateIdsToEntities(Argument::type('array'))
             ->willReturn([$e->reveal()]);
 
-        $this->operation->mutate(Argument::exact('insert'), Argument::type('array'), Argument::exact(Entity::class), Argument::exact(null))
+        $this->operation->mutation(Argument::exact('insert'), Argument::type(Entity::class), Argument::exact(Entity::class), Argument::exact(null))
             ->shouldBeCalled();
 
-        $this->operation->commit(Argument::type('array'))
+        $this->operation->commit(Argument::type('array'), Argument::type('array'))
             ->shouldBeCalled()
             ->willReturn(['mutationResults' => [['version' => '1234', 'conflictDetected' => true]]]);
 
@@ -254,11 +254,11 @@ class DatastoreClientTest extends \PHPUnit_Framework_TestCase
     {
         $e = $this->prophesize(Entity::class);
 
-        $this->operation->commit(Argument::type('array'))
+        $this->operation->commit(Argument::type('array'), Argument::type('array'))
             ->shouldBeCalled()
             ->willReturn(['mutationResults' => [['version' => '1234']]]);
 
-        $this->operation->mutate(Argument::exact('insert'), Argument::type('array'), Argument::exact(Entity::class), Argument::exact(null))
+        $this->operation->mutation(Argument::exact('insert'), Argument::type(Entity::class), Argument::exact(Entity::class), Argument::exact(null))
             ->shouldBeCalled();
 
         $this->operation->allocateIdsToEntities(Argument::type('array'))
@@ -273,11 +273,11 @@ class DatastoreClientTest extends \PHPUnit_Framework_TestCase
 
     public function testUpdate()
     {
-        $this->operation->commit(Argument::type('array'))
+        $this->operation->commit(Argument::type('array'), Argument::type('array'))
             ->shouldBeCalled()
             ->willReturn(['mutationResults' => [['version' => '1234']]]);
 
-        $this->operation->mutate(Argument::exact('update'), Argument::type('array'), Argument::exact(Entity::class), Argument::exact(null))
+        $this->operation->mutation(Argument::exact('update'), Argument::type(Entity::class), Argument::exact(Entity::class), Argument::exact(null))
             ->shouldBeCalled();
 
         $this->operation->checkOverwrite(Argument::type('array'), Argument::type('bool'))
@@ -294,11 +294,11 @@ class DatastoreClientTest extends \PHPUnit_Framework_TestCase
 
     public function testUpdateBatch()
     {
-        $this->operation->commit(Argument::type('array'))
+        $this->operation->commit(Argument::type('array'), Argument::type('array'))
             ->shouldBeCalled()
             ->willReturn(['mutationResults' => [['version' => '1234']]]);
 
-        $this->operation->mutate(Argument::exact('update'), Argument::type('array'), Argument::exact(Entity::class), Argument::exact(null))
+        $this->operation->mutation(Argument::exact('update'), Argument::type(Entity::class), Argument::exact(Entity::class), Argument::exact(null))
             ->shouldBeCalled();
 
         $this->operation->checkOverwrite(Argument::type('array'), Argument::type('bool'))
@@ -315,11 +315,11 @@ class DatastoreClientTest extends \PHPUnit_Framework_TestCase
 
     public function testUpsert()
     {
-        $this->operation->commit(Argument::type('array'))
+        $this->operation->commit(Argument::type('array'), Argument::type('array'))
             ->shouldBeCalled()
             ->willReturn(['mutationResults' => [['version' => '1234']]]);
 
-        $this->operation->mutate(Argument::exact('upsert'), Argument::type('array'), Argument::exact(Entity::class), Argument::exact(null))
+        $this->operation->mutation(Argument::exact('upsert'), Argument::type(Entity::class), Argument::exact(Entity::class), Argument::exact(null))
             ->shouldBeCalled();
 
         $this->datastore->setOperation($this->operation->reveal());
@@ -333,11 +333,11 @@ class DatastoreClientTest extends \PHPUnit_Framework_TestCase
 
     public function testUpsertBatch()
     {
-        $this->operation->commit(Argument::type('array'))
+        $this->operation->commit(Argument::type('array'), Argument::type('array'))
             ->shouldBeCalled()
             ->willReturn(['mutationResults' => [['version' => '1234']]]);
 
-        $this->operation->mutate(Argument::exact('upsert'), Argument::type('array'), Argument::exact(Entity::class), Argument::exact(null))
+        $this->operation->mutation(Argument::exact('upsert'), Argument::type(Entity::class), Argument::exact(Entity::class), Argument::exact(null))
             ->shouldBeCalled();
 
         $this->datastore->setOperation($this->operation->reveal());
@@ -351,11 +351,11 @@ class DatastoreClientTest extends \PHPUnit_Framework_TestCase
 
     public function testDelete()
     {
-        $this->operation->commit(Argument::type('array'))
+        $this->operation->commit(Argument::type('array'), Argument::type('array'))
             ->shouldBeCalled()
             ->willReturn(['mutationResults' => [['version' => '1234']]]);
 
-        $this->operation->mutate(Argument::exact('delete'), Argument::type('array'), Argument::exact(Key::class), Argument::exact(null))
+        $this->operation->mutation(Argument::exact('delete'), Argument::type(Key::class), Argument::exact(Key::class), Argument::exact(null))
             ->shouldBeCalled();
 
         $this->datastore->setOperation($this->operation->reveal());
@@ -369,11 +369,11 @@ class DatastoreClientTest extends \PHPUnit_Framework_TestCase
 
     public function testDeleteBatch()
     {
-        $this->operation->commit(Argument::type('array'))
+        $this->operation->commit(Argument::type('array'), Argument::type('array'))
             ->shouldBeCalled()
             ->willReturn(['mutationResults' => [['version' => '1234']]]);
 
-        $this->operation->mutate(Argument::exact('delete'), Argument::type('array'), Argument::exact(Key::class), Argument::exact(null))
+        $this->operation->mutation(Argument::exact('delete'), Argument::type(Key::class), Argument::exact(Key::class), Argument::exact(null))
             ->shouldBeCalled();
 
         $this->datastore->setOperation($this->operation->reveal());

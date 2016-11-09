@@ -505,8 +505,12 @@ class DatastoreClient
     public function insertBatch(array $entities, array $options = [])
     {
         $entities = $this->operation->allocateIdsToEntities($entities);
-        $this->operation->mutate('insert', $entities, Entity::class);
-        return $this->operation->commit($options);
+        $mutations = [];
+        foreach ($entities as $entity) {
+            $mutations[] = $this->operation->mutation('insert', $entity, Entity::class);
+        }
+
+        return $this->operation->commit($mutations, $options);
     }
 
     /**
@@ -589,8 +593,12 @@ class DatastoreClient
         ];
 
         $this->operation->checkOverwrite($entities, $options['allowOverwrite']);
-        $this->operation->mutate('update', $entities, Entity::class);
-        return $this->operation->commit($options);
+        $mutations = [];
+        foreach ($entities as $entity) {
+            $mutations[] = $this->operation->mutation('update', $entity, Entity::class);
+        }
+
+        return $this->operation->commit($mutations, $options);
     }
 
     /**
@@ -661,8 +669,12 @@ class DatastoreClient
      */
     public function upsertBatch(array $entities, array $options = [])
     {
-        $this->operation->mutate('upsert', $entities, Entity::class);
-        return $this->operation->commit($options);
+        $mutations = [];
+        foreach ($entities as $entity) {
+            $mutations[] = $this->operation->mutation('upsert', $entity, Entity::class);
+        }
+
+        return $this->operation->commit($mutations, $options);
     }
 
     /**
@@ -729,8 +741,12 @@ class DatastoreClient
             'baseVersion' => null
         ];
 
-        $this->operation->mutate('delete', $keys, Key::class, $options['baseVersion']);
-        return $this->operation->commit($options);
+        $mutations = [];
+        foreach ($keys as $key) {
+            $mutations[] = $this->operation->mutation('delete', $key, Key::class, $options['baseVersion']);
+        }
+
+        return $this->operation->commit($mutations, $options);
     }
 
     /**
