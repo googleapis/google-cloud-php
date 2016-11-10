@@ -31,9 +31,10 @@ use Google\Cloud\Translate\Connection\Rest;
  * information at
  * [Google Translate docs](https://cloud.google.com/translate/docs/).
  *
- * Please note that unlike most other Cloud Platform services Google Translate
- * requires a public API access key and cannot currently be accessed with a
- * service account or application default credentials. Follow the
+ * Please note that while Google Translate supports authentication via service
+ * account and application default credentials like other Cloud Platform APIs,
+ * it also supports authentication via a public API access key. If you wish to
+ * authenticate using an API key, follow the
  * [before you begin](https://cloud.google.com/translate/v2/translating-text-with-rest#before-you-begin)
  * instructions to learn how to generate a key.
  *
@@ -41,9 +42,7 @@ use Google\Cloud\Translate\Connection\Rest;
  * ```
  * use Google\Cloud\ServiceBuilder;
  *
- * $cloud = new ServiceBuilder([
- *     'key' => 'YOUR_KEY'
- * ]);
+ * $cloud = new ServiceBuilder();
  *
  * $translate = $cloud->translate();
  * ```
@@ -52,9 +51,7 @@ use Google\Cloud\Translate\Connection\Rest;
  * // TranslateClient can be instantiated directly.
  * use Google\Cloud\Translate\TranslateClient;
  *
- * $translate = new TranslateClient([
- *     'key' => 'YOUR_KEY'
- * ]);
+ * $translate = new TranslateClient();
  * ```
  */
 class TranslateClient
@@ -62,6 +59,7 @@ class TranslateClient
     use ClientTrait;
 
     const ENGLISH_LANGUAGE_CODE = 'en';
+    const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/cloud-platform';
 
     /**
      * @var ConnectionInterface
@@ -92,11 +90,9 @@ class TranslateClient
      */
     public function __construct(array $config = [])
     {
-        if (!isset($config['key'])) {
-            throw new \InvalidArgumentException('A key is required.');
-        }
-
-        $this->key = $config['key'];
+        $this->key = (isset($config['key']))
+            ? $config['key']
+            : null;
         $this->targetLanguage = isset($config['target'])
             ? $config['target']
             : self::ENGLISH_LANGUAGE_CODE;
@@ -104,8 +100,12 @@ class TranslateClient
         unset($config['key']);
         unset($config['target']);
 
+        if (!$this->key && !isset($config['scopes'])) {
+            $config['scopes'] = [self::FULL_CONTROL_SCOPE];
+        }
+
         $this->connection = new Rest($config + [
-            'shouldSignRequest' => false
+            'shouldSignRequest' => (!$this->key)
         ]);
     }
 
@@ -134,6 +134,8 @@ class TranslateClient
      *     @type string $format Indicates whether the string to be translated is
      *           either plain-text or HTML. Acceptable values are `html` or
      *           `text`. **Defaults to** `"html"`.
+     *     @type string $model The model to use for the translation request. May
+     *           be `nmt` or `base`. **Defaults to** an empty string.
      * }
      * @return array A translation result including a `source` key containing
      *         the detected or provided langauge of the provided input, an
@@ -142,7 +144,12 @@ class TranslateClient
      */
     public function translate($string, array $options = [])
     {
-        return $this->translateBatch([$string], $options)[0];
+        $res = $this->translateBatch([$string], $options);
+        if (count($res) > 0) {
+            return $res[0];
+        }
+
+        return null;
     }
 
     /**
@@ -175,6 +182,8 @@ class TranslateClient
      *     @type string $format Indicates whether the string to be translated is
      *           either plain-text or HTML. Acceptable values are `html` or
      *           `text`. **Defaults to** `"html"`.
+     *     @type string $model The model to use for the translation request. May
+     *           be `nmt` or `base`. **Defaults to** an empty string.
      * }
      * @return array A set of translation results. Each result includes a
      *         `source` key containing the detected or provided language of the
@@ -183,24 +192,34 @@ class TranslateClient
      */
     public function translateBatch(array $strings, array $options = [])
     {
+        $options += [
+            'model' => '',
+        ];
+
         $response = $this->connection->listTranslations($options + [
             'q' => $strings,
             'key' => $this->key,
-            'target' => $this->targetLanguage
+            'target' => $this->targetLanguage,
+            'model' => $options['model']
         ]);
 
         $translations = [];
 
-        foreach ($response['data']['translations'] as $key => $translation) {
-            $source = isset($translation['detectedSourceLanguage'])
-                ? $translation['detectedSourceLanguage']
-                : $options['source'];
+        if (isset($response['data']['translations'])) {
+            foreach ($response['data']['translations'] as $key => $translation) {
+                $source = isset($translation['detectedSourceLanguage'])
+                    ? $translation['detectedSourceLanguage']
+                    : $options['source'];
 
-            $translations[] = [
-                'source' => $source,
-                'input' => $strings[$key],
-                'text' => $translation['translatedText']
-            ];
+                $translations[] = [
+                    'source' => $source,
+                    'input' => $strings[$key],
+                    'text' => $translation['translatedText'],
+                    'model' => (isset($translation['model']))
+                        ? $translation['model']
+                        : null
+                ];
+            }
         }
 
         return $translations;

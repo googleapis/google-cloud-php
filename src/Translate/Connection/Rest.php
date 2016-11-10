@@ -31,7 +31,7 @@ class Rest implements ConnectionInterface
     use RestTrait;
     use UriTrait;
 
-    const BASE_URI = 'https://www.googleapis.com/language/translate/';
+    const BASE_URI = 'https://translation.googleapis.com/language/translate/';
 
     /**
      * @param array $config
