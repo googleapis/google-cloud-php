@@ -255,7 +255,7 @@ class Grpc implements ConnectionInterface
      */
     public function listMetrics(array $args = [])
     {
-        return $this->send([$this->metricsApi, 'getLogMetric'], [
+        return $this->send([$this->metricsApi, 'listLogMetrics'], [
             $this->pluck('parent', $args),
             $args
         ]);
@@ -305,7 +305,7 @@ class Grpc implements ConnectionInterface
 
     /**
      * @param array $entry
-     * @return array
+     * @return LogEntry
      */
     private function buildEntry(array $entry)
     {
@@ -319,6 +319,10 @@ class Grpc implements ConnectionInterface
 
         if (isset($entry['resource']['labels'])) {
             $entry['resource']['labels'] = $this->formatLabelsForApi($entry['resource']['labels']);
+        }
+
+        if (isset($entry['severity'])) {
+            $entry['severity'] = array_flip(Logger::getLogLevelMap())[$entry['severity']];
         }
 
         return (new LogEntry)->deserialize($entry, $this->codec);

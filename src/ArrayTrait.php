@@ -27,15 +27,20 @@ trait ArrayTrait
      *
      * @param string $key
      * @param array $arr
-     * @return string
+     * @param bool $isRequired
+     * @return string|null
      * @throws \InvalidArgumentException
      */
-    private function pluck($key, array &$arr)
+    private function pluck($key, array &$arr, $isRequired = true)
     {
-        if (!isset($arr[$key])) {
-            throw new \InvalidArgumentException(
-                "Key $key does not exist in the provided array."
-            );
+        if (!array_key_exists($key, $arr)) {
+            if ($isRequired) {
+                throw new \InvalidArgumentException(
+                    "Key $key does not exist in the provided array."
+                );
+            }
+
+            return null;
         }
 
         $value = $arr[$key];
@@ -55,7 +60,9 @@ trait ArrayTrait
         $values = [];
 
         foreach ($keys as $key) {
-            $values[$key] = $this->pluck($key, $arr);
+            if (array_key_exists($key, $arr)) {
+                $values[$key] = $this->pluck($key, $arr, false);
+            }
         }
 
         return $values;
