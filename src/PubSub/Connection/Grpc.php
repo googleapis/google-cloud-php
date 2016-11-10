@@ -25,6 +25,7 @@ use Google\Cloud\PubSub\V1\SubscriberApi;
 use Google\Cloud\GrpcRequestWrapper;
 use Google\Cloud\GrpcTrait;
 use Grpc\ChannelCredentials;
+use google\iam\v1\Policy;
 use google\pubsub\v1\PubsubMessage;
 use google\pubsub\v1\PushConfig;
 
@@ -270,7 +271,7 @@ class Grpc implements ConnectionInterface
     {
         return $this->send([$this->publisherApi, 'setIamPolicy'], [
             $this->pluck('resource', $args),
-            $this->pluck('policy', $args),
+            $this->buildPolicy($this->pluck('policy', $args)),
             $args
         ]);
     }
@@ -305,7 +306,7 @@ class Grpc implements ConnectionInterface
     {
         return $this->send([$this->subscriberApi, 'setIamPolicy'], [
             $this->pluck('resource', $args),
-            $this->pluck('policy', $args),
+            $this->buildPolicy($this->pluck('policy', $args)),
             $args
         ]);
     }
@@ -324,7 +325,7 @@ class Grpc implements ConnectionInterface
 
     /**
      * @param array $message
-     * @return array
+     * @return PubsubMessage
      */
     private function buildMessage(array $message)
     {
@@ -336,8 +337,17 @@ class Grpc implements ConnectionInterface
     }
 
     /**
+     * @param array $policy
+     * @return Policy
+     */
+    private function buildPolicy(array $policy)
+    {
+        return (new Policy())->deserialize($policy, $this->codec);
+    }
+
+    /**
      * @param array $pushConfig
-     * @return array
+     * @return PushConfig
      */
     private function buildPushConfig(array $pushConfig)
     {

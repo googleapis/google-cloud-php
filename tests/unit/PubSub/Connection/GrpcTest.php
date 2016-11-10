@@ -20,6 +20,8 @@ namespace Google\Cloud\Tests\PubSub\Connection;
 use Google\Cloud\PubSub\Connection\Grpc;
 use Google\Cloud\GrpcRequestWrapper;
 use Prophecy\Argument;
+use google\iam\v1\Binding;
+use google\iam\v1\Policy;
 use google\pubsub\v1\PubsubMessage;
 use google\pubsub\v1\PubsubMessage\AttributesEntry as MessageAttributesEntry;
 use google\pubsub\v1\PushConfig\AttributesEntry as PushConfigAttributesEntry;
@@ -73,7 +75,13 @@ class GrpcTest extends \PHPUnit_Framework_TestCase
         $pbMessageAttribute->setKey($attributeKey);
         $pbMessageAttribute->setValue($attributeValue);
         $pbMessage->addAttributes($pbMessageAttribute);
-        $policy = ['fake' => 'policy'];
+        $bindingRole = 'test_role';
+        $bindingMember = 'test_member';
+        $pbPolicy = new Policy();
+        $pbBinding = new Binding();
+        $pbBinding->setRole($bindingRole);
+        $pbBinding->addMembers($bindingMember);
+        $pbPolicy->addBindings($pbBinding);
         $permissions = ['fake' => 'permissions'];
         $pbPushConfig = new PushConfig();
         $pushEndpoint = 'http://www.example.com';
@@ -132,8 +140,18 @@ class GrpcTest extends \PHPUnit_Framework_TestCase
             ],
             [
                 'setTopicIamPolicy',
-                ['resource' => $value, 'policy' => $policy],
-                [$value, $policy, []]
+                [
+                    'resource' => $value,
+                    'policy' => [
+                        'bindings' => [
+                            [
+                                'role' => $bindingRole,
+                                'members' => [$bindingMember]
+                            ]
+                        ]
+                    ]
+                ],
+                [$value, $pbPolicy, []]
             ],
             [
                 'testTopicIamPermissions',
@@ -200,8 +218,18 @@ class GrpcTest extends \PHPUnit_Framework_TestCase
             ],
             [
                 'setSubscriptionIamPolicy',
-                ['resource' => $value, 'policy' => $policy],
-                [$value, $policy, []]
+                [
+                    'resource' => $value,
+                    'policy' => [
+                        'bindings' => [
+                            [
+                                'role' => $bindingRole,
+                                'members' => [$bindingMember]
+                            ]
+                        ]
+                    ]
+                ],
+                [$value, $pbPolicy, []]
             ],
             [
                 'testSubscriptionIamPermissions',
