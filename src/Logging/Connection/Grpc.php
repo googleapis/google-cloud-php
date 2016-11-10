@@ -134,7 +134,7 @@ class Grpc implements ConnectionInterface
     public function listEntries(array $args = [])
     {
         return $this->send([$this->loggingApi, 'listLogEntries'], [
-            $this->pluck('projectIds', $args),
+            $this->pluck('resourceNames', $args),
             $args
         ]);
     }

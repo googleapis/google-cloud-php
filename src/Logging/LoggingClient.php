@@ -352,6 +352,10 @@ class LoggingClient
      *     @type string[] $projectIds A list of projectIds to fetch
      *           entries from in addition to entries found in the project bound
      *           to this client.
+     *     @type string[] $resourceNames One or more cloud resources from which
+     *           to retrieve log entries. Projects listed in projectIds are
+     *           added to this list.
+     *           Example: "projects/my-project-1A", "projects/1234567890".
      *     @type string $filter An [advanced logs filter](https://cloud.google.com/logging/docs/view/advanced_filters).
      *     @type string $orderBy How the results should be sorted. Presently,
      *           the only permitted values are `timestamp asc` and
