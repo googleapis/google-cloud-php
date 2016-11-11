@@ -152,7 +152,7 @@ class NaturalLanguageClient
      * $annotation = $language->analyzeSentiment('Google Cloud Platform is a powerful tool.');
      * $sentiment = $annotation->sentiment();
      *
-     * if ($sentiment['polarity'] > 0) {
+     * if ($sentiment['score'] > 0) {
      *     echo 'This is a positive message.';
      * }
      * ```
@@ -169,7 +169,11 @@ class NaturalLanguageClient
      *           `PLAIN_TEXT` or `HTML`. **Defaults to** `"PLAIN_TEXT"`.
      *     @type string $language The language of the document. Both ISO
      *           (e.g., en, es) and BCP-47 (e.g., en-US, es-ES) language codes
-     *           are accepted. **Defaults to** `"en"` (English).
+     *           are accepted. If no value is provided, the language will be
+     *           detected by the service.
+     *     @type string $encodingType The text encoding type used by the API to
+     *           calculate offsets. Acceptable values are `"NONE"`, `"UTF8"`,
+     *           `"UTF16"` and `"UTF32"`. **Defaults to** `"UTF8"`.
      * }
      * @return Annotation
      */
@@ -206,7 +210,8 @@ class NaturalLanguageClient
      *           `PLAIN_TEXT` or `HTML`. **Defaults to** `"PLAIN_TEXT"`.
      *     @type string $language The language of the document. Both ISO
      *           (e.g., en, es) and BCP-47 (e.g., en-US, es-ES) language codes
-     *           are accepted. **Defaults to** `"en"` (English).
+     *           are accepted. If no value is provided, the language will be
+     *           detected by the service.
      *     @type string $encodingType The text encoding type used by the API to
      *           calculate offsets. Acceptable values are `"NONE"`, `"UTF8"`,
      *           `"UTF16"` and `"UTF32"`. **Defaults to**  `"UTF8"`.
@@ -261,7 +266,8 @@ class NaturalLanguageClient
      *           `PLAIN_TEXT` or `HTML`. **Defaults to** `"PLAIN_TEXT"`.
      *     @type string $language The language of the document. Both ISO
      *           (e.g., en, es) and BCP-47 (e.g., en-US, es-ES) language codes
-     *           are accepted. **Defaults to** `"en"` (English).
+     *           are accepted. If no value is provided, the language will be
+     *           detected by the service.
      *     @type string $encodingType The text encoding type used by the API to
      *           calculate offsets. Acceptable values are `"NONE"`, `"UTF8"`,
      *           `"UTF16"` and `"UTF32"`. **Defaults to** `"UTF8"`.
