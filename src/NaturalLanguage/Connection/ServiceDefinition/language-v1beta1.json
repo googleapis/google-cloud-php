@@ -33,6 +33,24 @@
             "https://www.googleapis.com/auth/cloud-platform"
           ]
         },
+        "analyzeSyntax": {
+          "id": "language.documents.analyzeSyntax",
+          "response": {
+            "$ref": "AnalyzeSyntaxResponse"
+          },
+          "parameterOrder": [],
+          "description": "Analyzes the sentiment of the provided text.",
+          "request": {
+            "$ref": "AnalyzeSyntaxRequest"
+          },
+          "flatPath": "v1beta1/documents:analyzeSyntax",
+          "httpMethod": "POST",
+          "parameters": {},
+          "path": "v1beta1/documents:analyzeSyntax",
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
         "annotateText": {
           "id": "language.documents.annotateText",
           "response": {
@@ -212,6 +230,42 @@
         }
       },
       "id": "AnalyzeSentimentResponse"
+    },
+    "AnalyzeSyntaxRequest": {
+      "description": "The syntax analysis request message.",
+      "type": "object",
+      "properties": {
+        "document": {
+          "description": "",
+          "$ref": "Document"
+        }
+      },
+      "id": "AnalyzeSyntaxRequest"
+    },
+    "AnalyzeSyntaxResponse": {
+      "description": "The syntax analysis response message.",
+      "type": "object",
+      "properties": {
+        "sentences": {
+          "description": "",
+          "type": "array",
+          "items": {
+            "$ref": "Sentence"
+          }
+        },
+        "tokens": {
+          "description": "",
+          "type": "array",
+          "items": {
+            "$ref": "Token"
+          }
+        },
+        "language": {
+          "description": "",
+          "type": "string"
+        }
+      },
+      "id": "AnalyzeSyntaxResponse"
     },
     "DependencyEdge": {
       "description": "Represents dependency parse tree information for a token.",

@@ -219,7 +219,9 @@ class NaturalLanguageClient
     public function analyzeSyntax($content, array $options = [])
     {
         $options['features'] = ['syntax'];
-        return $this->annotateText($content, $options);
+        return $this->connection->analyzeSyntax(
+            $this->formatRequest($content, $options)
+        );
     }
 
     /**
