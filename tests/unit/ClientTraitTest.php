@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Tests;
 
+use Google\Cloud\AppEngine\AppIdentity;
 use Google\Cloud\ClientTrait;
 use Google\Cloud\Compute\Metadata;
 use GuzzleHttp\Psr7\Response;
@@ -166,6 +167,50 @@ class ClientTraitTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($res, $projectId);
     }
 
+    public function testDetectProjectIdOnAppEngine()
+    {
+        $projectId = 'appengine-project-rawks';
+
+        $m = $this->prophesize(AppIdentity::class);
+        $m->getApplicationId()->willReturn($projectId)->shouldBeCalled();
+
+        $trait = new ClientTraitStubOnAppEngine($m);
+
+        $res = $trait->runDetectProjectId([]);
+
+        $this->assertEquals($res, $projectId);
+    }
+
+    public function testDetectProjectIdWithEnvVar()
+    {
+        $projectId = 'appengineflex-project-rawks';
+
+        // set a test environment variable
+        putenv('GOOGLE_DETECT_PROJECT_TEST_PROJECT_ID=' . $projectId);
+
+        $trait = new ClientTraitStubWithEnvVar();
+
+        $res = $trait->runDetectProjectId([]);
+
+        // remove the environment variable
+        putenv('GOOGLE_DETECT_PROJECT_TEST_PROJECT_ID');
+
+        $this->assertEquals($res, $projectId);
+    }
+
+    public function testDetectProjectIdWithGcloudConfig()
+    {
+        $projectId = 'gcloud-project-rawks';
+
+        $configPath = __DIR__ . '/fixtures/config_default_fixture';
+
+        $trait = new ClientTraitStubWithGcloudConfig($configPath);
+
+        $res = $trait->runDetectProjectId([]);
+
+        $this->assertEquals($res, $projectId);
+    }
+
     /**
      * @expectedException Google\Cloud\Exception\GoogleException
      */
@@ -205,12 +250,50 @@ class ClientTraitStub
     {
         return $this->detectProjectId($config);
     }
+
+    protected function getEnvVar()
+    {
+        // ensure no evar is accidentally used
+        return '';
+    }
+
+    protected function pathToGcloudConfig()
+    {
+        // ensure no file is accidentally used
+        return '';
+    }
+}
+
+class ClientTraitStubWithEnvVar extends ClientTraitStub
+{
+    protected function getEnvVar()
+    {
+        return 'GOOGLE_DETECT_PROJECT_TEST_PROJECT_ID';
+    }
+}
+
+class ClientTraitStubOnAppEngine extends ClientTraitStub
+{
+    private $appIdentity;
+
+    public function __construct($appIdentity)
+    {
+        $this->appIdentity = $appIdentity;
+    }
+
+    protected function onAppEngine()
+    {
+        return true;
+    }
+
+    protected function getAppIdentity()
+    {
+        return $this->appIdentity->reveal();
+    }
 }
 
 class ClientTraitStubOnGce extends ClientTraitStub
 {
-    use ClientTrait;
-
     private $metadata;
 
     public function __construct($metadata)
@@ -229,10 +312,23 @@ class ClientTraitStubOnGce extends ClientTraitStub
     }
 }
 
+class ClientTraitStubWithGcloudConfig extends ClientTraitStub
+{
+    private $configPath;
+
+    public function __construct($configPath)
+    {
+        $this->configPath = $configPath;
+    }
+
+    protected function pathToGcloudConfig()
+    {
+        return $this->configPath;
+    }
+}
+
 class ClientTraitStubGrpcDependencyChecks extends ClientTraitStub
 {
-    use ClientTrait;
-
     private $dependencyStatus;
 
     public function __construct(array $dependencyStatus)

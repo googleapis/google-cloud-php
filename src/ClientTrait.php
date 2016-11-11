@@ -30,6 +30,8 @@ use GuzzleHttp\Psr7;
  */
 trait ClientTrait
 {
+    use DetectProjectTrait;
+
     /**
      * @var string The project ID created in the Google Developers Console.
      */
@@ -134,9 +136,14 @@ trait ClientTrait
      * 1. If $config['projectId'] is set, use that.
      * 2. If $config['keyFile'] is set, attempt to retrieve a project ID from
      *    that.
-     * 3. If code is running on compute engine, try to get the project ID from
+     * 3. If the GCLOUD_PROJECT environment variable is set, return this value
+     * 4. If code is running on App Engine, try to get the project ID from the
+     *    App Identity service
+     * 5. If code is running on compute engine, try to get the project ID from
      *    the metadata store
-     * 4. Throw exception.
+     * 6. If the OS-specific gcloud configuration file is set, load it and get
+     *    the project ID from that.
+     * 7. Throw exception.
      *
      * @param  array $config
      * @return string
@@ -157,40 +164,27 @@ trait ClientTrait
             return $config['keyFile']['project_id'];
         }
 
-        if ($this->onGce($config['httpHandler'])) {
-            $metadata = $this->getMetaData();
-            $projectId = $metadata->getProjectId();
-            if ($projectId) {
-                return $projectId;
-            }
+        $projectId = $this->projectFromEnvVar();
+        if (!$projectId) {
+            $projectId = $this->projectFromAppEngine();
         }
 
-        throw new GoogleException(
-            'No project ID was provided, ' .
-            'and we were unable to detect a default project ID.'
-        );
-    }
+        if (!$projectId) {
+            $projectId = $this->projectFromGce();
+        }
 
-    /**
-     * Abstract the GCECredentials call so we can mock it in the unit tests!
-     *
-     * @codeCoverageIgnore
-     * @return bool
-     */
-    protected function onGce($httpHandler)
-    {
-        return GCECredentials::onGce($httpHandler);
-    }
+        if (!$projectId) {
+            $projectId = $this->projectFromGcloudConfig();
+        }
 
-    /**
-     * Abstract the Metadata instantiation for unit testing
-     *
-     * @codeCoverageIgnore
-     * @return Metadata
-     */
-    protected function getMetaData()
-    {
-        return new Metadata;
+        if (!$projectId) {
+            throw new GoogleException(
+                'No project ID was provided, ' .
+                'and we were unable to detect a default project ID.'
+            );
+        }
+
+        return $projectId;
     }
 
     /**
