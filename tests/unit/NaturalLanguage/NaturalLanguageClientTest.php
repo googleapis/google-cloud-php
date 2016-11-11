@@ -78,11 +78,9 @@ class NaturalLanguageClientTest extends \PHPUnit_Framework_TestCase
     {
         $content = $options['content'];
         unset($options['content']);
-        $expectedOptions['features'] = [
-            'extractSyntax' => true
-        ];
+
         $this->connection
-            ->annotateText($expectedOptions)
+            ->analyzeSyntax($expectedOptions)
             ->willReturn([])
             ->shouldBeCalledTimes(1);
         $this->client->setConnection($this->connection->reveal());

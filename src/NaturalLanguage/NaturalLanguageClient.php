@@ -145,8 +145,7 @@ class NaturalLanguageClient
     }
 
     /**
-     * Analyzes the sentiment of the provided document. Currently only supports
-     * English text.
+     * Analyzes the sentiment of the provided document.
      *
      * Example:
      * ```
@@ -184,9 +183,7 @@ class NaturalLanguageClient
     }
 
     /**
-     * Analyzes the document and provides a full set of text annotations. This
-     * method wraps
-     * {@see Google\Cloud\NaturalLanguage\NaturalLanguageClient::annotateText()}.
+     * Analyzes the document and provides a full set of text annotations.
      *
      * Example:
      * ```
@@ -198,7 +195,7 @@ class NaturalLanguageClient
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/natural-language/reference/rest/v1beta1/documents/annotateText Annotate Text API documentation
+     * @see https://cloud.google.com/natural-language/reference/rest/v1beta1/documents/analyzeSyntax Analyze Syntax API documentation
      * @codingStandardsIgnoreEnd
      *
      * @param string|StorageObject $content The content to analyze.
@@ -218,17 +215,16 @@ class NaturalLanguageClient
      */
     public function analyzeSyntax($content, array $options = [])
     {
-        $options['features'] = ['syntax'];
-        return $this->connection->analyzeSyntax(
+        $syntaxResponse = $this->connection->analyzeSyntax(
             $this->formatRequest($content, $options)
         );
+
+        return new Annotation($syntaxResponse + ['entities' => []]);
     }
 
     /**
      * Analyzes the document and provides a full set of text annotations,
-     * including semantic, syntactic, and sentiment information. Please note
-     * that English is currently the only support language for the `sentiment`
-     * feature.
+     * including semantic, syntactic, and sentiment information.
      *
      * Example:
      * ```
