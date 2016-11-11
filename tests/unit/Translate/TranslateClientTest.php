@@ -78,6 +78,35 @@ class TranslateClientTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $translation);
     }
 
+    public function testTranslateWithNmtModel()
+    {
+        $expected = $this->getTranslateExpectedData('translate', 'translated', 'en', 'nmt');
+
+        $options = [
+            'source' => $expected['source'],
+            'target' => 'de',
+            'format' => 'text',
+            'model' => 'nmt'
+        ];
+        $this->connection
+            ->listTranslations($options + [
+                'q' => [$expected['input']],
+                'key' => $this->key
+            ])
+            ->willReturn([
+                'data' => [
+                    'translations' => [
+                        $this->getTranslateApiData($expected['text'], null, 'nmt')
+                    ]
+                ]
+            ])
+            ->shouldBeCalledTimes(1);
+        $this->client->setConnection($this->connection->reveal());
+        $translation = $this->client->translate($expected['input'], $options);
+
+        $this->assertEquals($expected, $translation);
+    }
+
     public function testTranslateBatch()
     {
         $expected1 = $this->getTranslateExpectedData('translate', 'translated', 'en');
@@ -205,22 +234,22 @@ class TranslateClientTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expectedLanguage, $languages[0]);
     }
 
-    private function getTranslateApiData($translatedText, $source = null)
+    private function getTranslateApiData($translatedText, $source = null, $model = 'base')
     {
         return array_filter([
             'translatedText' => $translatedText,
             'detectedSourceLanguage' => $source,
-            'model' => 'base'
+            'model' => $model
         ]);
     }
 
-    private function getTranslateExpectedData($textToTranslate, $translatedText, $source)
+    private function getTranslateExpectedData($textToTranslate, $translatedText, $source, $model = 'base')
     {
         return [
             'text' => $translatedText,
             'source' => $source,
             'input' => $textToTranslate,
-            'model' => 'base'
+            'model' => $model
         ];
     }
 
