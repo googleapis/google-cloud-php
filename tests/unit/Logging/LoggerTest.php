@@ -178,9 +178,34 @@ class LoggerTest extends \PHPUnit_Framework_TestCase
             ->willReturn([])
             ->shouldBeCalledTimes(1);
         $logger = $this->getLogger($this->connection);
-        $entry = $logger->entry($this->textPayload, $this->resource);
 
-        $this->assertNull($logger->write($entry));
+        $this->assertNull($logger->write($this->textPayload, ['resource' => $this->resource]));
+    }
+
+    public function testOverwritesEntryOptionsAndWrites()
+    {
+        $severity = 'INFO';
+        $this->connection->writeEntries([
+            'entries' => [
+                [
+                    'textPayload' => $this->textPayload,
+                    'logName' => $this->formattedName,
+                    'resource' => $this->resource,
+                    'severity' => $severity
+                ]
+            ]
+        ])
+            ->willReturn([])
+            ->shouldBeCalledTimes(1);
+        $logger = $this->getLogger($this->connection);
+        $entry = $logger->entry($this->textPayload, [
+            'resource' => $this->resource,
+            'severity' => 'DEBUG' // this should be overwritten
+        ]);
+
+        $this->assertNull($logger->write($entry, [
+            'severity' => $severity
+        ]));
     }
 
     public function testWritesEntries()
@@ -202,8 +227,8 @@ class LoggerTest extends \PHPUnit_Framework_TestCase
             ->willReturn([])
             ->shouldBeCalledTimes(1);
         $logger = $this->getLogger($this->connection);
-        $entry1 = $logger->entry($this->textPayload, $this->resource);
-        $entry2 = $logger->entry($this->jsonPayload, $this->resource);
+        $entry1 = $logger->entry($this->textPayload, ['resource' => $this->resource]);
+        $entry2 = $logger->entry($this->jsonPayload, ['resource' => $this->resource]);
 
         $this->assertNull($logger->writeBatch([$entry1, $entry2]));
     }

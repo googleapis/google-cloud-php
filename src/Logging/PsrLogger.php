@@ -54,12 +54,12 @@ class PsrLogger implements LoggerInterface
     /**
      * @codingStandardsIgnoreStart
      * @param Logger $logger The logger used to write entries.
-     * @param array $resource The
+     * @param array $resource [optional] The
      *        [monitored resource](https://cloud.google.com/logging/docs/api/reference/rest/Shared.Types/MonitoredResource)
-     *        to associate log entries with.
+     *        to associate log entries with. **Defaults to** type global.
      * @codingStandardsIgnoreEnd
      */
-    public function __construct(Logger $logger, array $resource)
+    public function __construct(Logger $logger, array $resource = ['type' => 'global'])
     {
         $this->logger = $logger;
         $this->resource = $resource;
@@ -241,8 +241,10 @@ class PsrLogger implements LoggerInterface
 
         $entry = $this->logger->entry(
             $message,
-            $this->resource,
-            $context + ['severity' => $level]
+            $context + [
+                'severity' => $level,
+                'resource' => $this->resource
+            ]
         );
 
         $this->logger->write($entry);
