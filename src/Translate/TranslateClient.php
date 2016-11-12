@@ -137,7 +137,7 @@ class TranslateClient
      *     @type string $model The model to use for the translation request. May
      *           be `nmt` or `base`. **Defaults to** an empty string.
      * }
-     * @return array A translation result including a `source` key containing
+     * @return array|null A translation result including a `source` key containing
      *         the detected or provided langauge of the provided input, an
      *         `input` key containing the original string, and a `text` key
      *         containing the translated result.
@@ -148,8 +148,6 @@ class TranslateClient
         if (count($res) > 0) {
             return $res[0];
         }
-
-        return null;
     }
 
     /**
