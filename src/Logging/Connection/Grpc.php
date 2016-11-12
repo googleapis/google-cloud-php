@@ -321,7 +321,7 @@ class Grpc implements ConnectionInterface
             $entry['resource']['labels'] = $this->formatLabelsForApi($entry['resource']['labels']);
         }
 
-        if (isset($entry['severity'])) {
+        if (isset($entry['severity']) && is_string($entry['severity'])) {
             $entry['severity'] = array_flip(Logger::getLogLevelMap())[$entry['severity']];
         }
 
