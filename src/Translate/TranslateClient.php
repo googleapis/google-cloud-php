@@ -59,6 +59,7 @@ class TranslateClient
     use ClientTrait;
 
     const ENGLISH_LANGUAGE_CODE = 'en';
+
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/cloud-platform';
 
     /**
@@ -81,10 +82,26 @@ class TranslateClient
      *     @type string $target The target language to assign to the client.
      *           Must be a valid ISO 639-1 language code. **Defaults to** `"en"`
      *           (English).
-     *     @type callable $httpHandler A handler used to deliver Psr7 requests.
-     *           Only valid for requests sent over REST.
      *     @type int $retries Number of retries for a failed request.
      *           **Defaults to** `3`.
+     *     @type string $projectId The project ID from the Google Developer's
+     *           Console.
+     *     @type CacheItemPoolInterface $authCache A cache used storing access
+     *           tokens. **Defaults to** a simple in memory implementation.
+     *     @type array $authCacheOptions Cache configuration options.
+     *     @type callable $authHttpHandler A handler used to deliver Psr7
+     *           requests specifically for authentication.
+     *     @type callable $httpHandler A handler used to deliver Psr7 requests.
+     *           Only valid for requests sent over REST.
+     *     @type string $keyFile The contents of the service account
+     *           credentials .json file retrieved from the Google Developers
+     *           Console.
+     *     @type string $keyFilePath The full path to your service account
+     *           credentials .json file retrieved from the Google Developers
+     *           Console.
+     *     @type int $retries Number of retries for a failed request.
+     *           **Defaults to** `3`.
+     *     @type array $scopes Scopes to be used for the request.
      * }
      * @throws \InvalidArgumentException
      */
@@ -93,20 +110,25 @@ class TranslateClient
         $this->key = (isset($config['key']))
             ? $config['key']
             : null;
+
         $this->targetLanguage = isset($config['target'])
             ? $config['target']
             : self::ENGLISH_LANGUAGE_CODE;
 
-        unset($config['key']);
-        unset($config['target']);
-
-        if (!$this->key && !isset($config['scopes'])) {
+        if (!isset($config['scopes'])) {
             $config['scopes'] = [self::FULL_CONTROL_SCOPE];
         }
 
-        $this->connection = new Rest($config + [
-            'shouldSignRequest' => (!$this->key)
-        ]);
+        if (!$this->key) {
+            $config = $this->configureAuthentication($config);
+        } else {
+            $config['shouldSignRequest'] = false;
+        }
+
+        unset($config['key']);
+        unset($config['target']);
+
+        $this->connection = new Rest($config);
     }
 
     /**
@@ -198,7 +220,9 @@ class TranslateClient
             'q' => $strings,
             'key' => $this->key,
             'target' => $this->targetLanguage,
-            'model' => $options['model']
+            'model' => (isset($options['model']))
+                ? $options['model']
+                : ''
         ]);
 
         $translations = [];
@@ -209,13 +233,15 @@ class TranslateClient
                     ? $translation['detectedSourceLanguage']
                     : $options['source'];
 
+                $model = (isset($translation['model']))
+                    ? $translation['model']
+                    : null;
+
                 $translations[] = [
                     'source' => $source,
                     'input' => $strings[$key],
                     'text' => $translation['translatedText'],
-                    'model' => (isset($translation['model']))
-                        ? $translation['model']
-                        : null
+                    'model' => $model
                 ];
             }
         }

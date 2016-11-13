@@ -268,10 +268,10 @@ class ServiceBuilder
      * more information at
      * [Google Translate docs](https://cloud.google.com/translate/docs/).
      *
-     * Please note that unlike most other Cloud Platform services Google
-     * Translate requires a public API access key and cannot currently be
-     * accessed with a service account or application default credentials.
-     * Follow the
+     * Please note that while Google Translate supports authentication via service
+     * account and application default credentials like other Cloud Platform APIs,
+     * it also supports authentication via a public API access key. If you wish to
+     * authenticate using an API key, follow the
      * [before you begin](https://cloud.google.com/translate/v2/translating-text-with-rest#before-you-begin)
      * instructions to learn how to generate a key.
      *
