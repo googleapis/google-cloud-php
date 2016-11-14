@@ -36,12 +36,18 @@ class TranslateClientTest extends \PHPUnit_Framework_TestCase
         $this->connection = $this->prophesize(ConnectionInterface::class);
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
-    public function testThrowsExceptionWithNoKey()
+    public function testWithNoKey()
     {
-        $client = new TranslateClient();
+        $client = new TranslateTestClient();
+
+        $this->connection->listTranslations(Argument::that(function($args) {
+            if (!is_null($args['key'])) return false;
+            return true;
+        }))->shouldBeCalled()->willReturn([]);
+
+        $client->setConnection($this->connection->reveal());
+
+        $client->translate('foo');
     }
 
     public function testTranslate()
@@ -50,7 +56,8 @@ class TranslateClientTest extends \PHPUnit_Framework_TestCase
         $options = [
             'source' => $expected['source'],
             'target' => 'de',
-            'format' => 'text'
+            'format' => 'text',
+            'model' => 'base'
         ];
         $this->connection
             ->listTranslations($options + [
@@ -71,6 +78,35 @@ class TranslateClientTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $translation);
     }
 
+    public function testTranslateWithNmtModel()
+    {
+        $expected = $this->getTranslateExpectedData('translate', 'translated', 'en', 'nmt');
+
+        $options = [
+            'source' => $expected['source'],
+            'target' => 'de',
+            'format' => 'text',
+            'model' => 'nmt'
+        ];
+        $this->connection
+            ->listTranslations($options + [
+                'q' => [$expected['input']],
+                'key' => $this->key
+            ])
+            ->willReturn([
+                'data' => [
+                    'translations' => [
+                        $this->getTranslateApiData($expected['text'], null, 'nmt')
+                    ]
+                ]
+            ])
+            ->shouldBeCalledTimes(1);
+        $this->client->setConnection($this->connection->reveal());
+        $translation = $this->client->translate($expected['input'], $options);
+
+        $this->assertEquals($expected, $translation);
+    }
+
     public function testTranslateBatch()
     {
         $expected1 = $this->getTranslateExpectedData('translate', 'translated', 'en');
@@ -81,7 +117,8 @@ class TranslateClientTest extends \PHPUnit_Framework_TestCase
             ->listTranslations([
                 'target' => $target,
                 'q' => $stringsToTranslate,
-                'key' => $this->key
+                'key' => $this->key,
+                'model' => 'base'
             ])
             ->willReturn([
                 'data' => [
@@ -94,7 +131,7 @@ class TranslateClientTest extends \PHPUnit_Framework_TestCase
             ->shouldBeCalledTimes(1);
         $client = new TranslateTestClient(['key' => $this->key, 'target' => $target]);
         $client->setConnection($this->connection->reveal());
-        $translations = $client->translateBatch($stringsToTranslate);
+        $translations = $client->translateBatch($stringsToTranslate, ['model' => 'base']);
 
         $this->assertEquals($expected1, $translations[0]);
         $this->assertEquals($expected2, $translations[1]);
@@ -197,20 +234,22 @@ class TranslateClientTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expectedLanguage, $languages[0]);
     }
 
-    private function getTranslateApiData($translatedText, $source = null)
+    private function getTranslateApiData($translatedText, $source = null, $model = 'base')
     {
         return array_filter([
             'translatedText' => $translatedText,
-            'detectedSourceLanguage' => $source
+            'detectedSourceLanguage' => $source,
+            'model' => $model
         ]);
     }
 
-    private function getTranslateExpectedData($textToTranslate, $translatedText, $source)
+    private function getTranslateExpectedData($textToTranslate, $translatedText, $source, $model = 'base')
     {
         return [
             'text' => $translatedText,
             'source' => $source,
-            'input' => $textToTranslate
+            'input' => $textToTranslate,
+            'model' => $model
         ];
     }
 

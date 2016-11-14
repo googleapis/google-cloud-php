@@ -16,9 +16,9 @@
   },
   "documentationLink": "https://developers.google.com/translate/v2/using_rest",
   "protocol": "rest",
-  "baseUrl": "https://www.googleapis.com/language/translate/",
+  "baseUrl": "https://translation.googleapis.com/language/translate/",
   "basePath": "/language/translate/",
-  "rootUrl": "https://www.googleapis.com/",
+  "rootUrl": "https://translation.googleapis.com/",
   "servicePath": "language/translate/",
   "batchPath": "batch",
   "parameters": {
@@ -219,6 +219,12 @@
               "type": "string",
               "description": "The customization id for translate",
               "repeated": true,
+              "location": "query"
+            },
+            "model": {
+              "type": "string",
+              "description": "The model to use",
+              "repeated": false,
               "location": "query"
             },
             "format": {
