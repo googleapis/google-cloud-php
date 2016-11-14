@@ -220,9 +220,7 @@ class TranslateClient
             'q' => $strings,
             'key' => $this->key,
             'target' => $this->targetLanguage,
-            'model' => (isset($options['model']))
-                ? $options['model']
-                : ''
+            'model' => $options['model']
         ]);
 
         $translations = [];
