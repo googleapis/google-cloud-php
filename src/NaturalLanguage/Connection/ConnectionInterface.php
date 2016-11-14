@@ -39,5 +39,11 @@ interface ConnectionInterface
      * @param array $args
      * @return array
      */
+    public function analyzeSyntax(array $args = []);
+
+    /**
+     * @param array $args
+     * @return array
+     */
     public function annotateText(array $args = []);
 }

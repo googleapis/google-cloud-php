@@ -136,7 +136,7 @@ class Annotation
      * ```
      * $sentiment = $annotation->sentiment();
      *
-     * if ($sentiment['polarity'] > 0) {
+     * if ($sentiment['score'] > 0) {
      *     echo 'This is a positive message.';
      * }
      * ```

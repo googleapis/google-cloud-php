@@ -145,15 +145,14 @@ class NaturalLanguageClient
     }
 
     /**
-     * Analyzes the sentiment of the provided document. Currently only supports
-     * English text.
+     * Analyzes the sentiment of the provided document.
      *
      * Example:
      * ```
      * $annotation = $language->analyzeSentiment('Google Cloud Platform is a powerful tool.');
      * $sentiment = $annotation->sentiment();
      *
-     * if ($sentiment['polarity'] > 0) {
+     * if ($sentiment['score'] > 0) {
      *     echo 'This is a positive message.';
      * }
      * ```
@@ -170,7 +169,11 @@ class NaturalLanguageClient
      *           `PLAIN_TEXT` or `HTML`. **Defaults to** `"PLAIN_TEXT"`.
      *     @type string $language The language of the document. Both ISO
      *           (e.g., en, es) and BCP-47 (e.g., en-US, es-ES) language codes
-     *           are accepted. **Defaults to** `"en"` (English).
+     *           are accepted. If no value is provided, the language will be
+     *           detected by the service.
+     *     @type string $encodingType The text encoding type used by the API to
+     *           calculate offsets. Acceptable values are `"NONE"`, `"UTF8"`,
+     *           `"UTF16"` and `"UTF32"`. **Defaults to** `"UTF8"`.
      * }
      * @return Annotation
      */
@@ -184,9 +187,7 @@ class NaturalLanguageClient
     }
 
     /**
-     * Analyzes the document and provides a full set of text annotations. This
-     * method wraps
-     * {@see Google\Cloud\NaturalLanguage\NaturalLanguageClient::annotateText()}.
+     * Analyzes the document and provides a full set of text annotations.
      *
      * Example:
      * ```
@@ -198,7 +199,7 @@ class NaturalLanguageClient
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/natural-language/reference/rest/v1beta1/documents/annotateText Annotate Text API documentation
+     * @see https://cloud.google.com/natural-language/reference/rest/v1beta1/documents/analyzeSyntax Analyze Syntax API documentation
      * @codingStandardsIgnoreEnd
      *
      * @param string|StorageObject $content The content to analyze.
@@ -209,7 +210,8 @@ class NaturalLanguageClient
      *           `PLAIN_TEXT` or `HTML`. **Defaults to** `"PLAIN_TEXT"`.
      *     @type string $language The language of the document. Both ISO
      *           (e.g., en, es) and BCP-47 (e.g., en-US, es-ES) language codes
-     *           are accepted. **Defaults to** `"en"` (English).
+     *           are accepted. If no value is provided, the language will be
+     *           detected by the service.
      *     @type string $encodingType The text encoding type used by the API to
      *           calculate offsets. Acceptable values are `"NONE"`, `"UTF8"`,
      *           `"UTF16"` and `"UTF32"`. **Defaults to**  `"UTF8"`.
@@ -218,15 +220,16 @@ class NaturalLanguageClient
      */
     public function analyzeSyntax($content, array $options = [])
     {
-        $options['features'] = ['syntax'];
-        return $this->annotateText($content, $options);
+        $syntaxResponse = $this->connection->analyzeSyntax(
+            $this->formatRequest($content, $options)
+        );
+
+        return new Annotation($syntaxResponse + ['entities' => []]);
     }
 
     /**
      * Analyzes the document and provides a full set of text annotations,
-     * including semantic, syntactic, and sentiment information. Please note
-     * that English is currently the only support language for the `sentiment`
-     * feature.
+     * including semantic, syntactic, and sentiment information.
      *
      * Example:
      * ```
@@ -263,7 +266,8 @@ class NaturalLanguageClient
      *           `PLAIN_TEXT` or `HTML`. **Defaults to** `"PLAIN_TEXT"`.
      *     @type string $language The language of the document. Both ISO
      *           (e.g., en, es) and BCP-47 (e.g., en-US, es-ES) language codes
-     *           are accepted. **Defaults to** `"en"` (English).
+     *           are accepted. If no value is provided, the language will be
+     *           detected by the service.
      *     @type string $encodingType The text encoding type used by the API to
      *           calculate offsets. Acceptable values are `"NONE"`, `"UTF8"`,
      *           `"UTF16"` and `"UTF32"`. **Defaults to** `"UTF8"`.
