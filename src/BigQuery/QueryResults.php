@@ -106,7 +106,9 @@ class QueryResults
         while (true) {
             $options['pageToken'] = isset($this->info['pageToken']) ? $this->info['pageToken'] : null;
 
-            yield $this->extractValues($schema, $this->info['rows']);
+            foreach ($this->extractValues($schema, $this->info['rows']) as $index => $row) {
+                yield $index => $row;
+            }
 
             if (!$options['pageToken']) {
                 return;
@@ -132,7 +134,7 @@ class QueryResults
             return null;
         }
 
-        foreach ($rows as $row) {
+        foreach ($rows as $rowIndex => $row) {
             if ($row === null) {
                 continue;
             }
@@ -140,6 +142,8 @@ class QueryResults
             if (!array_key_exists('f', $row)) {
                 throw new GoogleException('Bad response - missing key "f" for a row.');
             }
+
+            $mergedFields = [];
 
             foreach ($row['f'] as $key => $value) {
 
@@ -153,12 +157,12 @@ class QueryResults
                     }
 
                     foreach ($value['v'] as $record) {
-                        $output[$fieldName][] = $this->extractValues($fieldSchema['fields'], $record);
+                        $mergedFields[$fieldName][] = $this->extractValues($fieldSchema['fields'], $record);
                     }
 
                 } elseif ($this->isSingleRecord($fieldSchema)) {
 
-                    $output[$fieldName] = $this->extractValues($fieldSchema['fields'], $value);
+                    $mergedFields[$fieldName] = $this->extractValues($fieldSchema['fields'], $value);
 
                 } elseif ($this->isScalar($fieldSchema)) {
 
@@ -166,10 +170,18 @@ class QueryResults
                         throw new GoogleException('Bad response - missing key "v" for a single value field.');
                     }
 
-                    $output[$fieldName] = $this->getScalarValue($value['v'], $fieldSchema);
+                    $mergedFields[$fieldName] = $this->getScalarValue($value['v'], $fieldSchema);
                 }
             }
+
+            if (is_numeric($rowIndex)) {
+                $output[] = $mergedFields;
+            }
+            else {
+                $output = $mergedFields;
+            }
         }
+
         return $output;
     }
 
