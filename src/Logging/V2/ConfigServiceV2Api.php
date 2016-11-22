@@ -227,7 +227,8 @@ class ConfigServiceV2Api
             'retryingOverride' => null,
             'timeoutMillis' => self::DEFAULT_TIMEOUT_MILLIS,
             'appName' => 'gax',
-            'appVersion' => self::_GAX_VERSION
+            'appVersion' => self::_GAX_VERSION,
+            'credentialsLoader' => null,
         ];
         $options = array_merge($defaultOptions, $options);
 
@@ -253,8 +254,6 @@ class ConfigServiceV2Api
             $this->descriptors[$method]['pageStreamingDescriptor'] = $pageStreamingDescriptor;
         }
 
-        // TODO load the client config in a more package-friendly way
-        // https://github.com/googleapis/toolkit/issues/332
         $clientConfigJsonString = file_get_contents(__DIR__.'/resources/config_service_v2_client_config.json');
         $clientConfig = json_decode($clientConfigJsonString, true);
         $this->defaultCallSettings =
@@ -304,7 +303,7 @@ class ConfigServiceV2Api
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name containing the sinks.
+     * @param string $parent       Required. The cloud resource containing the sinks.
      *                             Example: `"projects/my-logging-project"`.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -373,7 +372,7 @@ class ConfigServiceV2Api
      * }
      * ```
      *
-     * @param string $sinkName     The resource name of the sink to return.
+     * @param string $sinkName     Required. The resource name of the sink to return.
      *                             Example: `"projects/my-project-id/sinks/my-sink-id"`.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -428,12 +427,11 @@ class ConfigServiceV2Api
      * }
      * ```
      *
-     * @param string $parent The resource in which to create the sink.
-     *                       Example: `"projects/my-project-id"`.
-     *
-     * The new sink must be provided in the request.
-     * @param LogSink $sink         The new sink, which must not have an identifier that already
-     *                              exists.
+     * @param string  $parent       Required. The resource in which to create the sink.
+     *                              Example: `"projects/my-project-id"`.
+     *                              The new sink must be provided in the request.
+     * @param LogSink $sink         Required. The new sink, whose `name` parameter is a sink identifier that
+     *                              is not already in use.
      * @param array   $optionalArgs {
      *                              Optional.
      *
@@ -472,7 +470,7 @@ class ConfigServiceV2Api
     }
 
     /**
-     * Creates or updates a sink.
+     * Updates or creates a sink.
      *
      * Sample code:
      * ```
@@ -488,14 +486,11 @@ class ConfigServiceV2Api
      * }
      * ```
      *
-     * @param string $sinkName The resource name of the sink to update.
-     *                         Example: `"projects/my-project-id/sinks/my-sink-id"`.
-     *
-     * The updated sink must be provided in the request and have the
-     * same name that is specified in `sinkName`.  If the sink does not
-     * exist, it is created.
-     * @param LogSink $sink         The updated sink, whose name must be the same as the sink
-     *                              identifier in `sinkName`.  If `sinkName` does not exist, then
+     * @param string  $sinkName     Required. The resource name of the sink to update, including the parent
+     *                              resource and the sink identifier.  If the sink does not exist, this method
+     *                              creates the sink.  Example: `"projects/my-project-id/sinks/my-sink-id"`.
+     * @param LogSink $sink         Required. The updated sink, whose name is the same identifier that appears
+     *                              as part of `sinkName`.  If `sinkName` does not exist, then
      *                              this method creates a new sink.
      * @param array   $optionalArgs {
      *                              Optional.
@@ -550,8 +545,10 @@ class ConfigServiceV2Api
      * }
      * ```
      *
-     * @param string $sinkName     The resource name of the sink to delete.
-     *                             Example: `"projects/my-project-id/sinks/my-sink-id"`.
+     * @param string $sinkName     Required. The resource name of the sink to delete, including the parent
+     *                             resource and the sink identifier.  Example:
+     *                             `"projects/my-project-id/sinks/my-sink-id"`.  It is an error if the sink
+     *                             does not exist.
      * @param array  $optionalArgs {
      *                             Optional.
      *

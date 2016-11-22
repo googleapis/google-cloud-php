@@ -209,7 +209,10 @@ class LoggingClientTest extends \PHPUnit_Framework_TestCase
         $secondProjectId = 'secondProjectId';
         $this->connection->listEntries([
             'pageToken' => null,
-            'projectIds' => [$this->projectId, $secondProjectId]
+            'resourceNames' => [
+                'projects/' . $this->projectId,
+                'projects/' . $secondProjectId
+            ]
         ])
             ->willReturn([])
             ->shouldBeCalledTimes(1);
