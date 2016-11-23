@@ -90,6 +90,7 @@ class RequestBuilder
             foreach ($action['parameters'] as $parameter => $parameterOptions) {
                 if ($parameterOptions['location'] === 'path' && array_key_exists($parameter, $options)) {
                     $path[$parameter] = $options[$parameter];
+                    unset($options[$parameter]);
                 }
 
                 if ($parameterOptions['location'] === 'query' && array_key_exists($parameter, $options)) {
