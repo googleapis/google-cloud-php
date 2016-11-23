@@ -34,6 +34,7 @@ use google\logging\v2\DeleteLogRequest;
 use google\logging\v2\ListLogEntriesRequest;
 use google\logging\v2\ListMonitoredResourceDescriptorsRequest;
 use google\logging\v2\LogEntry;
+use google\logging\v2\LoggingServiceV2Client as LoggingServiceV2GrpcClient;
 use google\logging\v2\WriteLogEntriesRequest;
 use google\logging\v2\WriteLogEntriesRequest\LabelsEntry;
 
@@ -278,7 +279,7 @@ class LoggingServiceV2Client
         $this->grpcCredentialsHelper = new GrpcCredentialsHelper($this->scopes, $grpcCredentialsHelperOptions);
 
         $createLoggingServiceV2StubFunction = function ($hostname, $opts) {
-            return new \google\logging\v2\LoggingServiceV2Client($hostname, $opts);
+            return new LoggingServiceV2GrpcClient($hostname, $opts);
         };
         $this->loggingServiceV2Stub = $this->grpcCredentialsHelper->createStub(
             $createLoggingServiceV2StubFunction,

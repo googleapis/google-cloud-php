@@ -34,6 +34,7 @@ use google\logging\v2\DeleteLogMetricRequest;
 use google\logging\v2\GetLogMetricRequest;
 use google\logging\v2\ListLogMetricsRequest;
 use google\logging\v2\LogMetric;
+use google\logging\v2\MetricsServiceV2Client as MetricsServiceV2GrpcClient;
 use google\logging\v2\UpdateLogMetricRequest;
 
 /**
@@ -272,7 +273,7 @@ class MetricsServiceV2Client
         $this->grpcCredentialsHelper = new GrpcCredentialsHelper($this->scopes, $grpcCredentialsHelperOptions);
 
         $createMetricsServiceV2StubFunction = function ($hostname, $opts) {
-            return new \google\logging\v2\MetricsServiceV2Client($hostname, $opts);
+            return new MetricsServiceV2GrpcClient($hostname, $opts);
         };
         $this->metricsServiceV2Stub = $this->grpcCredentialsHelper->createStub(
             $createMetricsServiceV2StubFunction,

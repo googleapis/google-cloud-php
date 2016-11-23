@@ -29,6 +29,7 @@ use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
+use google\logging\v2\ConfigServiceV2Client as ConfigServiceV2GrpcClient;
 use google\logging\v2\CreateSinkRequest;
 use google\logging\v2\DeleteSinkRequest;
 use google\logging\v2\GetSinkRequest;
@@ -273,7 +274,7 @@ class ConfigServiceV2Client
         $this->grpcCredentialsHelper = new GrpcCredentialsHelper($this->scopes, $grpcCredentialsHelperOptions);
 
         $createConfigServiceV2StubFunction = function ($hostname, $opts) {
-            return new \google\logging\v2\ConfigServiceV2Client($hostname, $opts);
+            return new ConfigServiceV2GrpcClient($hostname, $opts);
         };
         $this->configServiceV2Stub = $this->grpcCredentialsHelper->createStub(
             $createConfigServiceV2StubFunction,
