@@ -30,6 +30,7 @@ use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
 use google\iam\v1\GetIamPolicyRequest;
+use google\iam\v1\IAMPolicyClient as IAMPolicyGrpcClient;
 use google\iam\v1\Policy;
 use google\iam\v1\SetIamPolicyRequest;
 use google\iam\v1\TestIamPermissionsRequest;
@@ -41,6 +42,7 @@ use google\pubsub\v1\ModifyAckDeadlineRequest;
 use google\pubsub\v1\ModifyPushConfigRequest;
 use google\pubsub\v1\PullRequest;
 use google\pubsub\v1\PushConfig;
+use google\pubsub\v1\SubscriberClient as SubscriberGrpcClient;
 use google\pubsub\v1\Subscription;
 
 /**
@@ -323,7 +325,7 @@ class SubscriberClient
         $this->grpcCredentialsHelper = new GrpcCredentialsHelper($this->scopes, $grpcCredentialsHelperOptions);
 
         $createIamPolicyStubFunction = function ($hostname, $opts) {
-            return new \google\iam\v1\IAMPolicyClient($hostname, $opts);
+            return new IAMPolicyGrpcClient($hostname, $opts);
         };
         $this->iamPolicyStub = $this->grpcCredentialsHelper->createStub(
             $createIamPolicyStubFunction,
@@ -332,7 +334,7 @@ class SubscriberClient
             $createStubOptions
         );
         $createSubscriberStubFunction = function ($hostname, $opts) {
-            return new \google\pubsub\v1\SubscriberClient($hostname, $opts);
+            return new SubscriberGrpcClient($hostname, $opts);
         };
         $this->subscriberStub = $this->grpcCredentialsHelper->createStub(
             $createSubscriberStubFunction,
