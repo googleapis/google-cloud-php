@@ -90,7 +90,7 @@ class Grpc implements ConnectionInterface
     {
         $this->codec = new PhpArray([
             'timestamp' => function ($v) {
-                return $this->formatTimestampFromClient($v);
+                return $this->formatTimestampFromApi($v);
             },
             'severity' => function ($v) {
                 return Logger::getLogLevelMap()[$v];
