@@ -19,9 +19,9 @@ namespace Google\Cloud\Logging\Connection;
 
 use DrSlump\Protobuf\Codec\CodecInterface;
 use Google\Cloud\Logging\Logger;
-use Google\Cloud\Logging\V2\ConfigServiceV2Api;
-use Google\Cloud\Logging\V2\LoggingServiceV2Api;
-use Google\Cloud\Logging\V2\MetricsServiceV2Api;
+use Google\Cloud\Logging\V2\ConfigServiceV2Client;
+use Google\Cloud\Logging\V2\LoggingServiceV2Client;
+use Google\Cloud\Logging\V2\MetricsServiceV2Client;
 use Google\Cloud\PhpArray;
 use Google\Cloud\GrpcRequestWrapper;
 use Google\Cloud\GrpcTrait;
@@ -45,19 +45,19 @@ class Grpc implements ConnectionInterface
     ];
 
     /**
-     * @var ConfigServiceV2API
+     * @var ConfigServiceV2Client
      */
-    private $configApi;
+    private $configClient;
 
     /**
-     * @var LoggingServiceV2Api
+     * @var LoggingServiceV2Client
      */
-    private $loggingApi;
+    private $loggingClient;
 
     /**
-     * @var MetricsServiceV2Api
+     * @var MetricsServiceV2Client
      */
-    private $metricsApi;
+    private $metricsClient;
 
     /**
      * @var CodecInterface
@@ -90,7 +90,7 @@ class Grpc implements ConnectionInterface
     {
         $this->codec = new PhpArray([
             'timestamp' => function ($v) {
-                return $this->formatTimestampFromApi($v);
+                return $this->formatTimestampFromClient($v);
             },
             'severity' => function ($v) {
                 return Logger::getLogLevelMap()[$v];
@@ -103,9 +103,9 @@ class Grpc implements ConnectionInterface
         $this->setRequestWrapper(new GrpcRequestWrapper($config));
         $gaxConfig = $this->getGaxConfig();
 
-        $this->configApi = new ConfigServiceV2Api($gaxConfig);
-        $this->loggingApi = new LoggingServiceV2Api($gaxConfig);
-        $this->metricsApi = new MetricsServiceV2Api($gaxConfig);
+        $this->configClient = new ConfigServiceV2Client($gaxConfig);
+        $this->loggingClient = new LoggingServiceV2Client($gaxConfig);
+        $this->metricsClient = new MetricsServiceV2Client($gaxConfig);
     }
 
     /**
@@ -121,7 +121,7 @@ class Grpc implements ConnectionInterface
             $pbEntries[] = $this->buildEntry($entry);
         }
 
-        return $this->send([$this->loggingApi, 'writeLogEntries'], [
+        return $this->send([$this->loggingClient, 'writeLogEntries'], [
             $pbEntries,
             $args
         ]);
@@ -133,7 +133,7 @@ class Grpc implements ConnectionInterface
      */
     public function listEntries(array $args = [])
     {
-        return $this->send([$this->loggingApi, 'listLogEntries'], [
+        return $this->send([$this->loggingClient, 'listLogEntries'], [
             $this->pluck('resourceNames', $args),
             $args
         ]);
@@ -154,7 +154,7 @@ class Grpc implements ConnectionInterface
             $this->codec
         );
 
-        return $this->send([$this->configApi, 'createSink'], [
+        return $this->send([$this->configClient, 'createSink'], [
             $this->pluck('parent', $args),
             $pbSink,
             $args
@@ -167,7 +167,7 @@ class Grpc implements ConnectionInterface
      */
     public function getSink(array $args = [])
     {
-        return $this->send([$this->configApi, 'getSink'], [
+        return $this->send([$this->configClient, 'getSink'], [
             $this->pluck('sinkName', $args),
             $args
         ]);
@@ -179,7 +179,7 @@ class Grpc implements ConnectionInterface
      */
     public function listSinks(array $args = [])
     {
-        return $this->send([$this->configApi, 'listSinks'], [
+        return $this->send([$this->configClient, 'listSinks'], [
             $this->pluck('parent', $args),
             $args
         ]);
@@ -200,7 +200,7 @@ class Grpc implements ConnectionInterface
             $this->codec
         );
 
-        return $this->send([$this->configApi, 'updateSink'], [
+        return $this->send([$this->configClient, 'updateSink'], [
             $this->pluck('sinkName', $args),
             $pbSink,
             $args
@@ -213,7 +213,7 @@ class Grpc implements ConnectionInterface
      */
     public function deleteSink(array $args = [])
     {
-        return $this->send([$this->configApi, 'deleteSink'], [
+        return $this->send([$this->configClient, 'deleteSink'], [
             $this->pluck('sinkName', $args),
             $args
         ]);
@@ -230,7 +230,7 @@ class Grpc implements ConnectionInterface
             $this->codec
         );
 
-        return $this->send([$this->metricsApi, 'createLogMetric'], [
+        return $this->send([$this->metricsClient, 'createLogMetric'], [
             $this->pluck('parent', $args),
             $pbMetric,
             $args
@@ -243,7 +243,7 @@ class Grpc implements ConnectionInterface
      */
     public function getMetric(array $args = [])
     {
-        return $this->send([$this->metricsApi, 'getLogMetric'], [
+        return $this->send([$this->metricsClient, 'getLogMetric'], [
             $this->pluck('metricName', $args),
             $args
         ]);
@@ -255,7 +255,7 @@ class Grpc implements ConnectionInterface
      */
     public function listMetrics(array $args = [])
     {
-        return $this->send([$this->metricsApi, 'listLogMetrics'], [
+        return $this->send([$this->metricsClient, 'listLogMetrics'], [
             $this->pluck('parent', $args),
             $args
         ]);
@@ -272,7 +272,7 @@ class Grpc implements ConnectionInterface
             $this->codec
         );
 
-        return $this->send([$this->metricsApi, 'updateLogMetric'], [
+        return $this->send([$this->metricsClient, 'updateLogMetric'], [
             $this->pluck('metricName', $args),
             $pbMetric,
             $args
@@ -285,7 +285,7 @@ class Grpc implements ConnectionInterface
      */
     public function deleteMetric(array $args = [])
     {
-        return $this->send([$this->metricsApi, 'deleteLogMetric'], [
+        return $this->send([$this->metricsClient, 'deleteLogMetric'], [
             $this->pluck('metricName', $args),
             $args
         ]);
@@ -297,7 +297,7 @@ class Grpc implements ConnectionInterface
      */
     public function deleteLog(array $args = [])
     {
-        return $this->send([$this->loggingApi, 'deleteLog'], [
+        return $this->send([$this->loggingClient, 'deleteLog'], [
             $this->pluck('logName', $args),
             $args
         ]);
