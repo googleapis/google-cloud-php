@@ -223,9 +223,7 @@ class WriteAndListEntryTest extends LoggingTestCase
     private function assertPsrLoggerWrites($client, $level)
     {
         $logName = uniqid(self::TESTING_PREFIX);
-        $psrLogger = $client->psrLogger($logName, [
-            'type' => 'global'
-        ]);
+        $psrLogger = $client->psrLogger($logName);
         $logger = $client->logger($logName);
         self::$deletionQueue[] = $logger;
         $data = $level;

@@ -89,16 +89,39 @@ class Logger
     private $projectId;
 
     /**
+     * @var array A monitored resource.
+     */
+    private $resource;
+
+    /**
+     * @var array A set of user-defined (key, value) data that provides
+     * additional information about the log entries.
+     */
+    private $labels;
+
+    /**
      * @param ConnectionInterface $connection Represents a connection to
      *        Stackdriver Logging.
      * @param string $name The name of the log to write entries to.
      * @param string $projectId The project's ID.
+     * @param array $resource [optional] The
+     *        [monitored resource](https://cloud.google.com/logging/docs/api/reference/rest/Shared.Types/MonitoredResource)
+     *        to associate log entries with. **Defaults to** type global.
+     * @param array $labels [optional] A set of user-defined (key, value) data
+     *        that provides additional information about the log entries.
      */
-    public function __construct(ConnectionInterface $connection, $name, $projectId)
-    {
+    public function __construct(
+        ConnectionInterface $connection,
+        $name,
+        $projectId,
+        array $resource = null,
+        array $labels = null
+    ) {
         $this->connection = $connection;
         $this->formattedName = "projects/$projectId/logs/$name";
         $this->projectId = $projectId;
+        $this->resource = $resource ?: ['type' => 'global'];
+        $this->labels = $labels;
     }
 
     /**
@@ -258,11 +281,13 @@ class Logger
             $options['textPayload'] = $data;
         }
 
+        if (!array_key_exists('labels', $options) && $this->labels) {
+            $options['labels'] = $this->labels;
+        }
+
         return new Entry($options + [
             'logName' => $this->formattedName,
-            'resource' => [
-                'type' => 'global'
-            ]
+            'resource' => $this->resource
         ]);
     }
 

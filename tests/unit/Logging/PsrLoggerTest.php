@@ -42,10 +42,10 @@ class PsrLoggerTest extends \PHPUnit_Framework_TestCase
         $this->connection = $this->prophesize(ConnectionInterface::class);
     }
 
-    public function getPsrLogger($connection)
+    public function getPsrLogger($connection, array $resource = null, array $labels = null)
     {
-        $logger = new Logger($connection->reveal(), $this->logName, $this->projectId);
-        return new PsrLogger($logger, $this->resource);
+        $logger = new Logger($connection->reveal(), $this->logName, $this->projectId, $resource, $labels);
+        return new PsrLogger($logger);
     }
 
     /**
@@ -101,6 +101,56 @@ class PsrLoggerTest extends \PHPUnit_Framework_TestCase
         $psrLogger = $this->getPsrLogger($this->connection);
 
         $this->assertNull($psrLogger->log($this->severity, $this->textPayload));
+    }
+
+    public function testPsrLoggerUsesDefaults()
+    {
+        $resource = ['type' => 'default'];
+        $labels = ['testing' => 'labels'];
+        $this->connection->writeEntries([
+            'entries' => [
+                [
+                    'severity' => $this->severity,
+                    'textPayload' => $this->textPayload,
+                    'logName' => $this->formattedName,
+                    'resource' => $resource,
+                    'labels' => $labels
+                ]
+            ]
+        ])
+            ->willReturn([])
+            ->shouldBeCalledTimes(1);
+        $psrLogger = $this->getPsrLogger($this->connection, $resource, $labels);
+
+        $this->assertNull($psrLogger->log($this->severity, $this->textPayload));
+    }
+
+    public function testOverridePsrLoggerDefaults()
+    {
+        $newResource = ['type' => 'new'];
+        $defaultLabels = ['testing' => 'labels'];
+        $newLabels = ['new' => 'labels'];
+        $this->connection->writeEntries([
+            'entries' => [
+                [
+                    'severity' => $this->severity,
+                    'textPayload' => $this->textPayload,
+                    'logName' => $this->formattedName,
+                    'resource' => $newResource,
+                    'labels' => $newLabels
+                ]
+            ]
+        ])
+            ->willReturn([])
+            ->shouldBeCalledTimes(1);
+        $psrLogger = $this->getPsrLogger($this->connection, null, $defaultLabels);
+
+        $this->assertNull(
+            $psrLogger->log($this->severity, $this->textPayload, [
+                'resource' => $newResource,
+                'labels' => $newLabels
+            ])
+        );
     }
 
     /**
