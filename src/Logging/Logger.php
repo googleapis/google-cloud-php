@@ -100,6 +100,7 @@ class Logger
     private $labels;
 
     /**
+     * @codingStandardsIgnoreStart
      * @param ConnectionInterface $connection Represents a connection to
      *        Stackdriver Logging.
      * @param string $name The name of the log to write entries to.
@@ -109,6 +110,7 @@ class Logger
      *        to associate log entries with. **Defaults to** type global.
      * @param array $labels [optional] A set of user-defined (key, value) data
      *        that provides additional information about the log entries.
+     * @codingStandardsIgnoreEnd
      */
     public function __construct(
         ConnectionInterface $connection,
