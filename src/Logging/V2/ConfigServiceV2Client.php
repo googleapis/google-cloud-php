@@ -16,7 +16,7 @@
 /*
  * GENERATED CODE WARNING
  * This file was generated from the file
- * https://github.com/google/googleapis/blob/master/google/logging/v2/logging_metrics.proto
+ * https://github.com/google/googleapis/blob/master/google/logging/v2/logging_config.proto
  * and updates to that file get reflected here through a refresh process.
  */
 
@@ -29,30 +29,31 @@ use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
-use google\logging\v2\CreateLogMetricRequest;
-use google\logging\v2\DeleteLogMetricRequest;
-use google\logging\v2\GetLogMetricRequest;
-use google\logging\v2\ListLogMetricsRequest;
-use google\logging\v2\LogMetric;
-use google\logging\v2\MetricsServiceV2Client;
-use google\logging\v2\UpdateLogMetricRequest;
+use google\logging\v2\ConfigServiceV2Client as ConfigServiceV2GrpcClient;
+use google\logging\v2\CreateSinkRequest;
+use google\logging\v2\DeleteSinkRequest;
+use google\logging\v2\GetSinkRequest;
+use google\logging\v2\ListSinksRequest;
+use google\logging\v2\LogSink;
+use google\logging\v2\UpdateSinkRequest;
 
 /**
- * Service Description: Service for configuring logs-based metrics.
+ * Service Description: Service for configuring sinks used to export log entries outside of
+ * Stackdriver Logging.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
  *
  * ```
  * try {
- *     $metricsServiceV2Api = new MetricsServiceV2Api();
- *     $formattedParent = MetricsServiceV2Api::formatParentName("[PROJECT]");
- *     foreach ($metricsServiceV2Api->listLogMetrics($formattedParent) as $element) {
+ *     $configServiceV2Client = new ConfigServiceV2Client();
+ *     $formattedParent = ConfigServiceV2Client::formatParentName("[PROJECT]");
+ *     foreach ($configServiceV2Client->listSinks($formattedParent) as $element) {
  *         // doThingsWith(element);
  *     }
  * } finally {
- *     if (isset($metricsServiceV2Api)) {
- *         $metricsServiceV2Api->close();
+ *     if (isset($configServiceV2Client)) {
+ *         $configServiceV2Client->close();
  *     }
  * }
  * ```
@@ -62,7 +63,7 @@ use google\logging\v2\UpdateLogMetricRequest;
  * a parse method to extract the individual identifiers contained within names that are
  * returned.
  */
-class MetricsServiceV2Api
+class ConfigServiceV2Client
 {
     /**
      * The default address of the service.
@@ -84,10 +85,10 @@ class MetricsServiceV2Api
     const _CODEGEN_VERSION = '0.0.0';
 
     private static $parentNameTemplate;
-    private static $metricNameTemplate;
+    private static $sinkNameTemplate;
 
     private $grpcCredentialsHelper;
-    private $metricsServiceV2Stub;
+    private $configServiceV2Stub;
     private $scopes;
     private $defaultCallSettings;
     private $descriptors;
@@ -105,13 +106,13 @@ class MetricsServiceV2Api
 
     /**
      * Formats a string containing the fully-qualified path to represent
-     * a metric resource.
+     * a sink resource.
      */
-    public static function formatMetricName($project, $metric)
+    public static function formatSinkName($project, $sink)
     {
-        return self::getMetricNameTemplate()->render([
+        return self::getSinkNameTemplate()->render([
             'project' => $project,
-            'metric' => $metric,
+            'sink' => $sink,
         ]);
     }
 
@@ -126,20 +127,20 @@ class MetricsServiceV2Api
 
     /**
      * Parses the project from the given fully-qualified path which
-     * represents a metric resource.
+     * represents a sink resource.
      */
-    public static function parseProjectFromMetricName($metricName)
+    public static function parseProjectFromSinkName($sinkName)
     {
-        return self::getMetricNameTemplate()->match($metricName)['project'];
+        return self::getSinkNameTemplate()->match($sinkName)['project'];
     }
 
     /**
-     * Parses the metric from the given fully-qualified path which
-     * represents a metric resource.
+     * Parses the sink from the given fully-qualified path which
+     * represents a sink resource.
      */
-    public static function parseMetricFromMetricName($metricName)
+    public static function parseSinkFromSinkName($sinkName)
     {
-        return self::getMetricNameTemplate()->match($metricName)['metric'];
+        return self::getSinkNameTemplate()->match($sinkName)['sink'];
     }
 
     private static function getParentNameTemplate()
@@ -151,27 +152,27 @@ class MetricsServiceV2Api
         return self::$parentNameTemplate;
     }
 
-    private static function getMetricNameTemplate()
+    private static function getSinkNameTemplate()
     {
-        if (self::$metricNameTemplate == null) {
-            self::$metricNameTemplate = new PathTemplate('projects/{project}/metrics/{metric}');
+        if (self::$sinkNameTemplate == null) {
+            self::$sinkNameTemplate = new PathTemplate('projects/{project}/sinks/{sink}');
         }
 
-        return self::$metricNameTemplate;
+        return self::$sinkNameTemplate;
     }
 
     private static function getPageStreamingDescriptors()
     {
-        $listLogMetricsPageStreamingDescriptor =
+        $listSinksPageStreamingDescriptor =
                 new PageStreamingDescriptor([
                     'requestPageTokenField' => 'page_token',
                     'requestPageSizeField' => 'page_size',
                     'responsePageTokenField' => 'next_page_token',
-                    'resourceField' => 'metrics',
+                    'resourceField' => 'sinks',
                 ]);
 
         $pageStreamingDescriptors = [
-            'listLogMetrics' => $listLogMetricsPageStreamingDescriptor,
+            'listSinks' => $listSinksPageStreamingDescriptor,
         ];
 
         return $pageStreamingDescriptors;
@@ -227,7 +228,6 @@ class MetricsServiceV2Api
             'timeoutMillis' => self::DEFAULT_TIMEOUT_MILLIS,
             'appName' => 'gax',
             'appVersion' => self::_GAX_VERSION,
-            'credentialsLoader' => null,
         ];
         $options = array_merge($defaultOptions, $options);
 
@@ -242,22 +242,22 @@ class MetricsServiceV2Api
 
         $defaultDescriptors = ['headerDescriptor' => $headerDescriptor];
         $this->descriptors = [
-            'listLogMetrics' => $defaultDescriptors,
-            'getLogMetric' => $defaultDescriptors,
-            'createLogMetric' => $defaultDescriptors,
-            'updateLogMetric' => $defaultDescriptors,
-            'deleteLogMetric' => $defaultDescriptors,
+            'listSinks' => $defaultDescriptors,
+            'getSink' => $defaultDescriptors,
+            'createSink' => $defaultDescriptors,
+            'updateSink' => $defaultDescriptors,
+            'deleteSink' => $defaultDescriptors,
         ];
         $pageStreamingDescriptors = self::getPageStreamingDescriptors();
         foreach ($pageStreamingDescriptors as $method => $pageStreamingDescriptor) {
             $this->descriptors[$method]['pageStreamingDescriptor'] = $pageStreamingDescriptor;
         }
 
-        $clientConfigJsonString = file_get_contents(__DIR__.'/resources/metrics_service_v2_client_config.json');
+        $clientConfigJsonString = file_get_contents(__DIR__.'/resources/config_service_v2_client_config.json');
         $clientConfig = json_decode($clientConfigJsonString, true);
         $this->defaultCallSettings =
                 CallSettings::load(
-                    'google.logging.v2.MetricsServiceV2',
+                    'google.logging.v2.ConfigServiceV2',
                     $clientConfig,
                     $options['retryingOverride'],
                     GrpcConstants::getStatusCodeNames(),
@@ -267,17 +267,17 @@ class MetricsServiceV2Api
         $this->scopes = $options['scopes'];
 
         $createStubOptions = [];
-        if (!empty($options['sslCreds'])) {
+        if (array_key_exists('sslCreds', $options)) {
             $createStubOptions['sslCreds'] = $options['sslCreds'];
         }
         $grpcCredentialsHelperOptions = array_diff_key($options, $defaultOptions);
         $this->grpcCredentialsHelper = new GrpcCredentialsHelper($this->scopes, $grpcCredentialsHelperOptions);
 
-        $createMetricsServiceV2StubFunction = function ($hostname, $opts) {
-            return new MetricsServiceV2Client($hostname, $opts);
+        $createConfigServiceV2StubFunction = function ($hostname, $opts) {
+            return new ConfigServiceV2GrpcClient($hostname, $opts);
         };
-        $this->metricsServiceV2Stub = $this->grpcCredentialsHelper->createStub(
-            $createMetricsServiceV2StubFunction,
+        $this->configServiceV2Stub = $this->grpcCredentialsHelper->createStub(
+            $createConfigServiceV2StubFunction,
             $options['serviceAddress'],
             $options['port'],
             $createStubOptions
@@ -285,27 +285,29 @@ class MetricsServiceV2Api
     }
 
     /**
-     * Lists logs-based metrics.
+     * Lists sinks.
      *
      * Sample code:
      * ```
      * try {
-     *     $metricsServiceV2Api = new MetricsServiceV2Api();
-     *     $formattedParent = MetricsServiceV2Api::formatParentName("[PROJECT]");
-     *     foreach ($metricsServiceV2Api->listLogMetrics($formattedParent) as $element) {
+     *     $configServiceV2Client = new ConfigServiceV2Client();
+     *     $formattedParent = ConfigServiceV2Client::formatParentName("[PROJECT]");
+     *     foreach ($configServiceV2Client->listSinks($formattedParent) as $element) {
      *         // doThingsWith(element);
      *     }
      * } finally {
-     *     if (isset($metricsServiceV2Api)) {
-     *         $metricsServiceV2Api->close();
+     *     if (isset($configServiceV2Client)) {
+     *         $configServiceV2Client->close();
      *     }
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name containing the metrics.
-     *                             Example: `"projects/my-project-id"`.
-     * @param array  $optionalArgs {
-     *                             Optional.
+     * @param string $parent Required. The resource name where this sink was created:
+     *
+     *     "projects/[PROJECT_ID]"
+     *     "organizations/[ORGANIZATION_ID]"
+     * @param array $optionalArgs {
+     *                            Optional.
      *
      *     @type string $pageToken
      *          A page token is used to specify a page of values to be returned.
@@ -316,7 +318,7 @@ class MetricsServiceV2Api
      *          The maximum number of resources contained in the underlying API
      *          response. The API may return fewer values in a page, even if
      *          there are additional values to be retrieved.
-     *     @type Google\GAX\RetrySettings $retrySettings
+     *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
      *     @type int $timeoutMillis
@@ -324,13 +326,13 @@ class MetricsServiceV2Api
      *          is not set.
      * }
      *
-     * @return Google\GAX\PagedListResponse
+     * @return \Google\GAX\PagedListResponse
      *
-     * @throws Google\GAX\ApiException if the remote call fails
+     * @throws \Google\GAX\ApiException if the remote call fails
      */
-    public function listLogMetrics($parent, $optionalArgs = [])
+    public function listSinks($parent, $optionalArgs = [])
     {
-        $request = new ListLogMetricsRequest();
+        $request = new ListSinksRequest();
         $request->setParent($parent);
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
@@ -339,14 +341,14 @@ class MetricsServiceV2Api
             $request->setPageSize($optionalArgs['pageSize']);
         }
 
-        $mergedSettings = $this->defaultCallSettings['listLogMetrics']->merge(
+        $mergedSettings = $this->defaultCallSettings['listSinks']->merge(
             new CallSettings($optionalArgs)
         );
         $callable = ApiCallable::createApiCall(
-            $this->metricsServiceV2Stub,
-            'ListLogMetrics',
+            $this->configServiceV2Stub,
+            'ListSinks',
             $mergedSettings,
-            $this->descriptors['listLogMetrics']
+            $this->descriptors['listSinks']
         );
 
         return $callable(
@@ -356,27 +358,29 @@ class MetricsServiceV2Api
     }
 
     /**
-     * Gets a logs-based metric.
+     * Gets a sink.
      *
      * Sample code:
      * ```
      * try {
-     *     $metricsServiceV2Api = new MetricsServiceV2Api();
-     *     $formattedMetricName = MetricsServiceV2Api::formatMetricName("[PROJECT]", "[METRIC]");
-     *     $response = $metricsServiceV2Api->getLogMetric($formattedMetricName);
+     *     $configServiceV2Client = new ConfigServiceV2Client();
+     *     $formattedSinkName = ConfigServiceV2Client::formatSinkName("[PROJECT]", "[SINK]");
+     *     $response = $configServiceV2Client->getSink($formattedSinkName);
      * } finally {
-     *     if (isset($metricsServiceV2Api)) {
-     *         $metricsServiceV2Api->close();
+     *     if (isset($configServiceV2Client)) {
+     *         $configServiceV2Client->close();
      *     }
      * }
      * ```
      *
-     * @param string $metricName   The resource name of the desired metric.
-     *                             Example: `"projects/my-project-id/metrics/my-metric-id"`.
-     * @param array  $optionalArgs {
-     *                             Optional.
+     * @param string $sinkName Required. The resource name of the sink to return:
      *
-     *     @type Google\GAX\RetrySettings $retrySettings
+     *     "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     *     "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
      *     @type int $timeoutMillis
@@ -384,23 +388,23 @@ class MetricsServiceV2Api
      *          is not set.
      * }
      *
-     * @return google\logging\v2\LogMetric
+     * @return \google\logging\v2\LogSink
      *
-     * @throws Google\GAX\ApiException if the remote call fails
+     * @throws \Google\GAX\ApiException if the remote call fails
      */
-    public function getLogMetric($metricName, $optionalArgs = [])
+    public function getSink($sinkName, $optionalArgs = [])
     {
-        $request = new GetLogMetricRequest();
-        $request->setMetricName($metricName);
+        $request = new GetSinkRequest();
+        $request->setSinkName($sinkName);
 
-        $mergedSettings = $this->defaultCallSettings['getLogMetric']->merge(
+        $mergedSettings = $this->defaultCallSettings['getSink']->merge(
             new CallSettings($optionalArgs)
         );
         $callable = ApiCallable::createApiCall(
-            $this->metricsServiceV2Stub,
-            'GetLogMetric',
+            $this->configServiceV2Stub,
+            'GetSink',
             $mergedSettings,
-            $this->descriptors['getLogMetric']
+            $this->descriptors['getSink']
         );
 
         return $callable(
@@ -410,32 +414,38 @@ class MetricsServiceV2Api
     }
 
     /**
-     * Creates a logs-based metric.
+     * Creates a sink.
      *
      * Sample code:
      * ```
      * try {
-     *     $metricsServiceV2Api = new MetricsServiceV2Api();
-     *     $formattedParent = MetricsServiceV2Api::formatParentName("[PROJECT]");
-     *     $metric = new LogMetric();
-     *     $response = $metricsServiceV2Api->createLogMetric($formattedParent, $metric);
+     *     $configServiceV2Client = new ConfigServiceV2Client();
+     *     $formattedParent = ConfigServiceV2Client::formatParentName("[PROJECT]");
+     *     $sink = new LogSink();
+     *     $response = $configServiceV2Client->createSink($formattedParent, $sink);
      * } finally {
-     *     if (isset($metricsServiceV2Api)) {
-     *         $metricsServiceV2Api->close();
+     *     if (isset($configServiceV2Client)) {
+     *         $configServiceV2Client->close();
      *     }
      * }
      * ```
      *
-     * @param string $parent The resource name of the project in which to create the metric.
-     *                       Example: `"projects/my-project-id"`.
+     * @param string $parent Required. The resource in which to create the sink:
      *
-     * The new metric must be provided in the request.
-     * @param LogMetric $metric       The new logs-based metric, which must not have an identifier that
-     *                                already exists.
-     * @param array     $optionalArgs {
-     *                                Optional.
+     *     "projects/[PROJECT_ID]"
+     *     "organizations/[ORGANIZATION_ID]"
+     * @param LogSink $sink         Required. The new sink, whose `name` parameter is a sink identifier that
+     *                              is not already in use.
+     * @param array   $optionalArgs {
+     *                              Optional.
      *
-     *     @type Google\GAX\RetrySettings $retrySettings
+     *     @type bool $uniqueWriterIdentity
+     *          Optional. Whether the sink will have a dedicated service account returned
+     *          in the sink's writer_identity. Set this field to be true to export
+     *          logs from one project to a different project. This field is ignored for
+     *          non-project sinks (e.g. organization sinks) because those sinks are
+     *          required to have dedicated service accounts.
+     *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
      *     @type int $timeoutMillis
@@ -443,24 +453,27 @@ class MetricsServiceV2Api
      *          is not set.
      * }
      *
-     * @return google\logging\v2\LogMetric
+     * @return \google\logging\v2\LogSink
      *
-     * @throws Google\GAX\ApiException if the remote call fails
+     * @throws \Google\GAX\ApiException if the remote call fails
      */
-    public function createLogMetric($parent, $metric, $optionalArgs = [])
+    public function createSink($parent, $sink, $optionalArgs = [])
     {
-        $request = new CreateLogMetricRequest();
+        $request = new CreateSinkRequest();
         $request->setParent($parent);
-        $request->setMetric($metric);
+        $request->setSink($sink);
+        if (isset($optionalArgs['uniqueWriterIdentity'])) {
+            $request->setUniqueWriterIdentity($optionalArgs['uniqueWriterIdentity']);
+        }
 
-        $mergedSettings = $this->defaultCallSettings['createLogMetric']->merge(
+        $mergedSettings = $this->defaultCallSettings['createSink']->merge(
             new CallSettings($optionalArgs)
         );
         $callable = ApiCallable::createApiCall(
-            $this->metricsServiceV2Stub,
-            'CreateLogMetric',
+            $this->configServiceV2Stub,
+            'CreateSink',
             $mergedSettings,
-            $this->descriptors['createLogMetric']
+            $this->descriptors['createSink']
         );
 
         return $callable(
@@ -470,35 +483,42 @@ class MetricsServiceV2Api
     }
 
     /**
-     * Creates or updates a logs-based metric.
+     * Updates or creates a sink.
      *
      * Sample code:
      * ```
      * try {
-     *     $metricsServiceV2Api = new MetricsServiceV2Api();
-     *     $formattedMetricName = MetricsServiceV2Api::formatMetricName("[PROJECT]", "[METRIC]");
-     *     $metric = new LogMetric();
-     *     $response = $metricsServiceV2Api->updateLogMetric($formattedMetricName, $metric);
+     *     $configServiceV2Client = new ConfigServiceV2Client();
+     *     $formattedSinkName = ConfigServiceV2Client::formatSinkName("[PROJECT]", "[SINK]");
+     *     $sink = new LogSink();
+     *     $response = $configServiceV2Client->updateSink($formattedSinkName, $sink);
      * } finally {
-     *     if (isset($metricsServiceV2Api)) {
-     *         $metricsServiceV2Api->close();
+     *     if (isset($configServiceV2Client)) {
+     *         $configServiceV2Client->close();
      *     }
      * }
      * ```
      *
-     * @param string $metricName The resource name of the metric to update.
-     *                           Example: `"projects/my-project-id/metrics/my-metric-id"`.
+     * @param string $sinkName Required. The resource name of the sink to update, including the parent
+     *                         resource and the sink identifier:
      *
-     * The updated metric must be provided in the request and have the
-     * same identifier that is specified in `metricName`.
-     * If the metric does not exist, it is created.
-     * @param LogMetric $metric       The updated metric, whose name must be the same as the
-     *                                metric identifier in `metricName`. If `metricName` does not
-     *                                exist, then a new metric is created.
-     * @param array     $optionalArgs {
-     *                                Optional.
+     *     "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     *     "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
      *
-     *     @type Google\GAX\RetrySettings $retrySettings
+     * Example: `"projects/my-project-id/sinks/my-sink-id"`.
+     * @param LogSink $sink         Required. The updated sink, whose name is the same identifier that appears
+     *                              as part of `sinkName`.  If `sinkName` does not exist, then
+     *                              this method creates a new sink.
+     * @param array   $optionalArgs {
+     *                              Optional.
+     *
+     *     @type bool $uniqueWriterIdentity
+     *          Optional. Whether the sink will have a dedicated service account returned
+     *          in the sink's writer_identity. Set this field to be true to export
+     *          logs from one project to a different project. This field is ignored for
+     *          non-project sinks (e.g. organization sinks) because those sinks are
+     *          required to have dedicated service accounts.
+     *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
      *     @type int $timeoutMillis
@@ -506,24 +526,27 @@ class MetricsServiceV2Api
      *          is not set.
      * }
      *
-     * @return google\logging\v2\LogMetric
+     * @return \google\logging\v2\LogSink
      *
-     * @throws Google\GAX\ApiException if the remote call fails
+     * @throws \Google\GAX\ApiException if the remote call fails
      */
-    public function updateLogMetric($metricName, $metric, $optionalArgs = [])
+    public function updateSink($sinkName, $sink, $optionalArgs = [])
     {
-        $request = new UpdateLogMetricRequest();
-        $request->setMetricName($metricName);
-        $request->setMetric($metric);
+        $request = new UpdateSinkRequest();
+        $request->setSinkName($sinkName);
+        $request->setSink($sink);
+        if (isset($optionalArgs['uniqueWriterIdentity'])) {
+            $request->setUniqueWriterIdentity($optionalArgs['uniqueWriterIdentity']);
+        }
 
-        $mergedSettings = $this->defaultCallSettings['updateLogMetric']->merge(
+        $mergedSettings = $this->defaultCallSettings['updateSink']->merge(
             new CallSettings($optionalArgs)
         );
         $callable = ApiCallable::createApiCall(
-            $this->metricsServiceV2Stub,
-            'UpdateLogMetric',
+            $this->configServiceV2Stub,
+            'UpdateSink',
             $mergedSettings,
-            $this->descriptors['updateLogMetric']
+            $this->descriptors['updateSink']
         );
 
         return $callable(
@@ -533,27 +556,32 @@ class MetricsServiceV2Api
     }
 
     /**
-     * Deletes a logs-based metric.
+     * Deletes a sink.
      *
      * Sample code:
      * ```
      * try {
-     *     $metricsServiceV2Api = new MetricsServiceV2Api();
-     *     $formattedMetricName = MetricsServiceV2Api::formatMetricName("[PROJECT]", "[METRIC]");
-     *     $metricsServiceV2Api->deleteLogMetric($formattedMetricName);
+     *     $configServiceV2Client = new ConfigServiceV2Client();
+     *     $formattedSinkName = ConfigServiceV2Client::formatSinkName("[PROJECT]", "[SINK]");
+     *     $configServiceV2Client->deleteSink($formattedSinkName);
      * } finally {
-     *     if (isset($metricsServiceV2Api)) {
-     *         $metricsServiceV2Api->close();
+     *     if (isset($configServiceV2Client)) {
+     *         $configServiceV2Client->close();
      *     }
      * }
      * ```
      *
-     * @param string $metricName   The resource name of the metric to delete.
-     *                             Example: `"projects/my-project-id/metrics/my-metric-id"`.
-     * @param array  $optionalArgs {
-     *                             Optional.
+     * @param string $sinkName Required. The resource name of the sink to delete, including the parent
+     *                         resource and the sink identifier:
      *
-     *     @type Google\GAX\RetrySettings $retrySettings
+     *     "projects/[PROJECT_ID]/sinks/[SINK_ID]"
+     *     "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     *
+     * It is an error if the sink does not exist.
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
      *     @type int $timeoutMillis
@@ -561,21 +589,21 @@ class MetricsServiceV2Api
      *          is not set.
      * }
      *
-     * @throws Google\GAX\ApiException if the remote call fails
+     * @throws \Google\GAX\ApiException if the remote call fails
      */
-    public function deleteLogMetric($metricName, $optionalArgs = [])
+    public function deleteSink($sinkName, $optionalArgs = [])
     {
-        $request = new DeleteLogMetricRequest();
-        $request->setMetricName($metricName);
+        $request = new DeleteSinkRequest();
+        $request->setSinkName($sinkName);
 
-        $mergedSettings = $this->defaultCallSettings['deleteLogMetric']->merge(
+        $mergedSettings = $this->defaultCallSettings['deleteSink']->merge(
             new CallSettings($optionalArgs)
         );
         $callable = ApiCallable::createApiCall(
-            $this->metricsServiceV2Stub,
-            'DeleteLogMetric',
+            $this->configServiceV2Stub,
+            'DeleteSink',
             $mergedSettings,
-            $this->descriptors['deleteLogMetric']
+            $this->descriptors['deleteSink']
         );
 
         return $callable(
@@ -590,7 +618,7 @@ class MetricsServiceV2Api
      */
     public function close()
     {
-        $this->metricsServiceV2Stub->close();
+        $this->configServiceV2Stub->close();
     }
 
     private function createCredentialsCallback()
