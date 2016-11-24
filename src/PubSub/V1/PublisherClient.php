@@ -30,7 +30,7 @@ use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
 use google\iam\v1\GetIamPolicyRequest;
-use google\iam\v1\IAMPolicyClient;
+use google\iam\v1\IAMPolicyClient as IAMPolicyGrpcClient;
 use google\iam\v1\Policy;
 use google\iam\v1\SetIamPolicyRequest;
 use google\iam\v1\TestIamPermissionsRequest;
@@ -39,7 +39,7 @@ use google\pubsub\v1\GetTopicRequest;
 use google\pubsub\v1\ListTopicSubscriptionsRequest;
 use google\pubsub\v1\ListTopicsRequest;
 use google\pubsub\v1\PublishRequest;
-use google\pubsub\v1\PublisherClient;
+use google\pubsub\v1\PublisherClient as PublisherGrpcClient;
 use google\pubsub\v1\PubsubMessage;
 use google\pubsub\v1\Topic;
 
@@ -52,12 +52,12 @@ use google\pubsub\v1\Topic;
  *
  * ```
  * try {
- *     $publisherApi = new PublisherApi();
- *     $formattedName = PublisherApi::formatTopicName("[PROJECT]", "[TOPIC]");
- *     $response = $publisherApi->createTopic($formattedName);
+ *     $publisherClient = new PublisherClient();
+ *     $formattedName = PublisherClient::formatTopicName("[PROJECT]", "[TOPIC]");
+ *     $response = $publisherClient->createTopic($formattedName);
  * } finally {
- *     if (isset($publisherApi)) {
- *         $publisherApi->close();
+ *     if (isset($publisherClient)) {
+ *         $publisherClient->close();
  *     }
  * }
  * ```
@@ -67,7 +67,7 @@ use google\pubsub\v1\Topic;
  * a parse method to extract the individual identifiers contained within names that are
  * returned.
  */
-class PublisherApi
+class PublisherClient
 {
     /**
      * The default address of the service.
@@ -92,7 +92,7 @@ class PublisherApi
     private static $topicNameTemplate;
 
     private $grpcCredentialsHelper;
-    private $iAMPolicyStub;
+    private $iamPolicyStub;
     private $publisherStub;
     private $scopes;
     private $defaultCallSettings;
@@ -195,7 +195,7 @@ class PublisherApi
     /**
      * Constructor.
      *
-     * @param array $options [optional] {
+     * @param array $options {
      *                       Optional. Options for configuring the service API wrapper.
      *
      *     @type string $serviceAddress The domain name of the API remote host.
@@ -237,7 +237,7 @@ class PublisherApi
             'retryingOverride' => null,
             'timeoutMillis' => self::DEFAULT_TIMEOUT_MILLIS,
             'appName' => 'gax',
-            'appVersion' => self::_GAX_VERSION
+            'appVersion' => self::_GAX_VERSION,
         ];
         $options = array_merge($defaultOptions, $options);
 
@@ -267,8 +267,6 @@ class PublisherApi
             $this->descriptors[$method]['pageStreamingDescriptor'] = $pageStreamingDescriptor;
         }
 
-        // TODO load the client config in a more package-friendly way
-        // https://github.com/googleapis/toolkit/issues/332
         $clientConfigJsonString = file_get_contents(__DIR__.'/resources/publisher_client_config.json');
         $clientConfig = json_decode($clientConfigJsonString, true);
         $this->defaultCallSettings =
@@ -289,17 +287,17 @@ class PublisherApi
         $grpcCredentialsHelperOptions = array_diff_key($options, $defaultOptions);
         $this->grpcCredentialsHelper = new GrpcCredentialsHelper($this->scopes, $grpcCredentialsHelperOptions);
 
-        $createIAMPolicyStubFunction = function ($hostname, $opts) {
-            return new IAMPolicyClient($hostname, $opts);
+        $createIamPolicyStubFunction = function ($hostname, $opts) {
+            return new IAMPolicyGrpcClient($hostname, $opts);
         };
-        $this->iAMPolicyStub = $this->grpcCredentialsHelper->createStub(
-            $createIAMPolicyStubFunction,
+        $this->iamPolicyStub = $this->grpcCredentialsHelper->createStub(
+            $createIamPolicyStubFunction,
             $options['serviceAddress'],
             $options['port'],
             $createStubOptions
         );
         $createPublisherStubFunction = function ($hostname, $opts) {
-            return new PublisherClient($hostname, $opts);
+            return new PublisherGrpcClient($hostname, $opts);
         };
         $this->publisherStub = $this->grpcCredentialsHelper->createStub(
             $createPublisherStubFunction,
@@ -315,12 +313,12 @@ class PublisherApi
      * Sample code:
      * ```
      * try {
-     *     $publisherApi = new PublisherApi();
-     *     $formattedName = PublisherApi::formatTopicName("[PROJECT]", "[TOPIC]");
-     *     $response = $publisherApi->createTopic($formattedName);
+     *     $publisherClient = new PublisherClient();
+     *     $formattedName = PublisherClient::formatTopicName("[PROJECT]", "[TOPIC]");
+     *     $response = $publisherClient->createTopic($formattedName);
      * } finally {
-     *     if (isset($publisherApi)) {
-     *         $publisherApi->close();
+     *     if (isset($publisherClient)) {
+     *         $publisherClient->close();
      *     }
      * }
      * ```
@@ -334,7 +332,7 @@ class PublisherApi
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type Google\GAX\RetrySettings $retrySettings
+     *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
      *     @type int $timeoutMillis
@@ -342,9 +340,9 @@ class PublisherApi
      *          is not set.
      * }
      *
-     * @return google\pubsub\v1\Topic
+     * @return \google\pubsub\v1\Topic
      *
-     * @throws Google\GAX\ApiException if the remote call fails
+     * @throws \Google\GAX\ApiException if the remote call fails
      */
     public function createTopic($name, $optionalArgs = [])
     {
@@ -375,16 +373,16 @@ class PublisherApi
      * Sample code:
      * ```
      * try {
-     *     $publisherApi = new PublisherApi();
-     *     $formattedTopic = PublisherApi::formatTopicName("[PROJECT]", "[TOPIC]");
+     *     $publisherClient = new PublisherClient();
+     *     $formattedTopic = PublisherClient::formatTopicName("[PROJECT]", "[TOPIC]");
      *     $data = "";
      *     $messagesElement = new PubsubMessage();
      *     $messagesElement->setData($data);
      *     $messages = [$messagesElement];
-     *     $response = $publisherApi->publish($formattedTopic, $messages);
+     *     $response = $publisherClient->publish($formattedTopic, $messages);
      * } finally {
-     *     if (isset($publisherApi)) {
-     *         $publisherApi->close();
+     *     if (isset($publisherClient)) {
+     *         $publisherClient->close();
      *     }
      * }
      * ```
@@ -394,7 +392,7 @@ class PublisherApi
      * @param array           $optionalArgs {
      *                                      Optional.
      *
-     *     @type Google\GAX\RetrySettings $retrySettings
+     *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
      *     @type int $timeoutMillis
@@ -402,9 +400,9 @@ class PublisherApi
      *          is not set.
      * }
      *
-     * @return google\pubsub\v1\PublishResponse
+     * @return \google\pubsub\v1\PublishResponse
      *
-     * @throws Google\GAX\ApiException if the remote call fails
+     * @throws \Google\GAX\ApiException if the remote call fails
      */
     public function publish($topic, $messages, $optionalArgs = [])
     {
@@ -436,12 +434,12 @@ class PublisherApi
      * Sample code:
      * ```
      * try {
-     *     $publisherApi = new PublisherApi();
-     *     $formattedTopic = PublisherApi::formatTopicName("[PROJECT]", "[TOPIC]");
-     *     $response = $publisherApi->getTopic($formattedTopic);
+     *     $publisherClient = new PublisherClient();
+     *     $formattedTopic = PublisherClient::formatTopicName("[PROJECT]", "[TOPIC]");
+     *     $response = $publisherClient->getTopic($formattedTopic);
      * } finally {
-     *     if (isset($publisherApi)) {
-     *         $publisherApi->close();
+     *     if (isset($publisherClient)) {
+     *         $publisherClient->close();
      *     }
      * }
      * ```
@@ -450,7 +448,7 @@ class PublisherApi
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type Google\GAX\RetrySettings $retrySettings
+     *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
      *     @type int $timeoutMillis
@@ -458,9 +456,9 @@ class PublisherApi
      *          is not set.
      * }
      *
-     * @return google\pubsub\v1\Topic
+     * @return \google\pubsub\v1\Topic
      *
-     * @throws Google\GAX\ApiException if the remote call fails
+     * @throws \Google\GAX\ApiException if the remote call fails
      */
     public function getTopic($topic, $optionalArgs = [])
     {
@@ -489,14 +487,14 @@ class PublisherApi
      * Sample code:
      * ```
      * try {
-     *     $publisherApi = new PublisherApi();
-     *     $formattedProject = PublisherApi::formatProjectName("[PROJECT]");
-     *     foreach ($publisherApi->listTopics($formattedProject) as $element) {
+     *     $publisherClient = new PublisherClient();
+     *     $formattedProject = PublisherClient::formatProjectName("[PROJECT]");
+     *     foreach ($publisherClient->listTopics($formattedProject) as $element) {
      *         // doThingsWith(element);
      *     }
      * } finally {
-     *     if (isset($publisherApi)) {
-     *         $publisherApi->close();
+     *     if (isset($publisherClient)) {
+     *         $publisherClient->close();
      *     }
      * }
      * ```
@@ -514,7 +512,7 @@ class PublisherApi
      *          If no page token is specified (the default), the first page
      *          of values will be returned. Any page token used here must have
      *          been generated by a previous call to the API.
-     *     @type Google\GAX\RetrySettings $retrySettings
+     *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
      *     @type int $timeoutMillis
@@ -522,9 +520,9 @@ class PublisherApi
      *          is not set.
      * }
      *
-     * @return Google\GAX\PagedListResponse
+     * @return \Google\GAX\PagedListResponse
      *
-     * @throws Google\GAX\ApiException if the remote call fails
+     * @throws \Google\GAX\ApiException if the remote call fails
      */
     public function listTopics($project, $optionalArgs = [])
     {
@@ -559,14 +557,14 @@ class PublisherApi
      * Sample code:
      * ```
      * try {
-     *     $publisherApi = new PublisherApi();
-     *     $formattedTopic = PublisherApi::formatTopicName("[PROJECT]", "[TOPIC]");
-     *     foreach ($publisherApi->listTopicSubscriptions($formattedTopic) as $element) {
+     *     $publisherClient = new PublisherClient();
+     *     $formattedTopic = PublisherClient::formatTopicName("[PROJECT]", "[TOPIC]");
+     *     foreach ($publisherClient->listTopicSubscriptions($formattedTopic) as $element) {
      *         // doThingsWith(element);
      *     }
      * } finally {
-     *     if (isset($publisherApi)) {
-     *         $publisherApi->close();
+     *     if (isset($publisherClient)) {
+     *         $publisherClient->close();
      *     }
      * }
      * ```
@@ -584,7 +582,7 @@ class PublisherApi
      *          If no page token is specified (the default), the first page
      *          of values will be returned. Any page token used here must have
      *          been generated by a previous call to the API.
-     *     @type Google\GAX\RetrySettings $retrySettings
+     *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
      *     @type int $timeoutMillis
@@ -592,9 +590,9 @@ class PublisherApi
      *          is not set.
      * }
      *
-     * @return Google\GAX\PagedListResponse
+     * @return \Google\GAX\PagedListResponse
      *
-     * @throws Google\GAX\ApiException if the remote call fails
+     * @throws \Google\GAX\ApiException if the remote call fails
      */
     public function listTopicSubscriptions($topic, $optionalArgs = [])
     {
@@ -633,12 +631,12 @@ class PublisherApi
      * Sample code:
      * ```
      * try {
-     *     $publisherApi = new PublisherApi();
-     *     $formattedTopic = PublisherApi::formatTopicName("[PROJECT]", "[TOPIC]");
-     *     $publisherApi->deleteTopic($formattedTopic);
+     *     $publisherClient = new PublisherClient();
+     *     $formattedTopic = PublisherClient::formatTopicName("[PROJECT]", "[TOPIC]");
+     *     $publisherClient->deleteTopic($formattedTopic);
      * } finally {
-     *     if (isset($publisherApi)) {
-     *         $publisherApi->close();
+     *     if (isset($publisherClient)) {
+     *         $publisherClient->close();
      *     }
      * }
      * ```
@@ -647,7 +645,7 @@ class PublisherApi
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type Google\GAX\RetrySettings $retrySettings
+     *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
      *     @type int $timeoutMillis
@@ -655,7 +653,7 @@ class PublisherApi
      *          is not set.
      * }
      *
-     * @throws Google\GAX\ApiException if the remote call fails
+     * @throws \Google\GAX\ApiException if the remote call fails
      */
     public function deleteTopic($topic, $optionalArgs = [])
     {
@@ -685,27 +683,28 @@ class PublisherApi
      * Sample code:
      * ```
      * try {
-     *     $publisherApi = new PublisherApi();
-     *     $formattedResource = PublisherApi::formatTopicName("[PROJECT]", "[TOPIC]");
+     *     $publisherClient = new PublisherClient();
+     *     $formattedResource = PublisherClient::formatTopicName("[PROJECT]", "[TOPIC]");
      *     $policy = new Policy();
-     *     $response = $publisherApi->setIamPolicy($formattedResource, $policy);
+     *     $response = $publisherClient->setIamPolicy($formattedResource, $policy);
      * } finally {
-     *     if (isset($publisherApi)) {
-     *         $publisherApi->close();
+     *     if (isset($publisherClient)) {
+     *         $publisherClient->close();
      *     }
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which policy is being specified.
-     *                             Resource is usually specified as a path, such as,
-     *                             projects/{project}/zones/{zone}/disks/{disk}.
-     * @param Policy $policy       REQUIRED: The complete policy to be applied to the 'resource'. The size of
-     *                             the policy is limited to a few 10s of KB. An empty policy is in general a
-     *                             valid policy but certain services (like Projects) might reject them.
+     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
+     *                             `resource` is usually specified as a path. For example, a Project
+     *                             resource is specified as `projects/{project}`.
+     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *                             the policy is limited to a few 10s of KB. An empty policy is a
+     *                             valid policy but certain Cloud Platform services (such as Projects)
+     *                             might reject them.
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type Google\GAX\RetrySettings $retrySettings
+     *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
      *     @type int $timeoutMillis
@@ -713,9 +712,9 @@ class PublisherApi
      *          is not set.
      * }
      *
-     * @return google\iam\v1\Policy
+     * @return \google\iam\v1\Policy
      *
-     * @throws Google\GAX\ApiException if the remote call fails
+     * @throws \Google\GAX\ApiException if the remote call fails
      */
     public function setIamPolicy($resource, $policy, $optionalArgs = [])
     {
@@ -727,7 +726,7 @@ class PublisherApi
             new CallSettings($optionalArgs)
         );
         $callable = ApiCallable::createApiCall(
-            $this->iAMPolicyStub,
+            $this->iamPolicyStub,
             'SetIamPolicy',
             $mergedSettings,
             $this->descriptors['setIamPolicy']
@@ -740,28 +739,30 @@ class PublisherApi
     }
 
     /**
-     * Gets the access control policy for a resource. Is empty if the
-     * policy or the resource does not exist.
+     * Gets the access control policy for a resource.
+     * Returns an empty policy if the resource exists and does not have a policy
+     * set.
      *
      * Sample code:
      * ```
      * try {
-     *     $publisherApi = new PublisherApi();
-     *     $formattedResource = PublisherApi::formatTopicName("[PROJECT]", "[TOPIC]");
-     *     $response = $publisherApi->getIamPolicy($formattedResource);
+     *     $publisherClient = new PublisherClient();
+     *     $formattedResource = PublisherClient::formatTopicName("[PROJECT]", "[TOPIC]");
+     *     $response = $publisherClient->getIamPolicy($formattedResource);
      * } finally {
-     *     if (isset($publisherApi)) {
-     *         $publisherApi->close();
+     *     if (isset($publisherClient)) {
+     *         $publisherClient->close();
      *     }
      * }
      * ```
      *
-     * @param string $resource     REQUIRED: The resource for which policy is being requested. Resource
-     *                             is usually specified as a path, such as, projects/{project}.
+     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
+     *                             `resource` is usually specified as a path. For example, a Project
+     *                             resource is specified as `projects/{project}`.
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type Google\GAX\RetrySettings $retrySettings
+     *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
      *     @type int $timeoutMillis
@@ -769,9 +770,9 @@ class PublisherApi
      *          is not set.
      * }
      *
-     * @return google\iam\v1\Policy
+     * @return \google\iam\v1\Policy
      *
-     * @throws Google\GAX\ApiException if the remote call fails
+     * @throws \Google\GAX\ApiException if the remote call fails
      */
     public function getIamPolicy($resource, $optionalArgs = [])
     {
@@ -782,7 +783,7 @@ class PublisherApi
             new CallSettings($optionalArgs)
         );
         $callable = ApiCallable::createApiCall(
-            $this->iAMPolicyStub,
+            $this->iamPolicyStub,
             'GetIamPolicy',
             $mergedSettings,
             $this->descriptors['getIamPolicy']
@@ -800,25 +801,28 @@ class PublisherApi
      * Sample code:
      * ```
      * try {
-     *     $publisherApi = new PublisherApi();
-     *     $formattedResource = PublisherApi::formatTopicName("[PROJECT]", "[TOPIC]");
+     *     $publisherClient = new PublisherClient();
+     *     $formattedResource = PublisherClient::formatTopicName("[PROJECT]", "[TOPIC]");
      *     $permissions = [];
-     *     $response = $publisherApi->testIamPermissions($formattedResource, $permissions);
+     *     $response = $publisherClient->testIamPermissions($formattedResource, $permissions);
      * } finally {
-     *     if (isset($publisherApi)) {
-     *         $publisherApi->close();
+     *     if (isset($publisherClient)) {
+     *         $publisherClient->close();
      *     }
      * }
      * ```
      *
-     * @param string   $resource     REQUIRED: The resource for which policy detail is being requested.
-     *                               Resource is usually specified as a path, such as, projects/{project}.
-     * @param string[] $permissions  The set of permissions to check for the 'resource'. Permissions with
-     *                               wildcards (such as '*' or 'storage.*') are not allowed.
+     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
+     *                               `resource` is usually specified as a path. For example, a Project
+     *                               resource is specified as `projects/{project}`.
+     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
+     *                               wildcards (such as '{@*}' or 'storage.{@*}') are not allowed. For more
+     *                               information see
+     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      * @param array    $optionalArgs {
      *                               Optional.
      *
-     *     @type Google\GAX\RetrySettings $retrySettings
+     *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
      *     @type int $timeoutMillis
@@ -826,9 +830,9 @@ class PublisherApi
      *          is not set.
      * }
      *
-     * @return google\iam\v1\TestIamPermissionsResponse
+     * @return \google\iam\v1\TestIamPermissionsResponse
      *
-     * @throws Google\GAX\ApiException if the remote call fails
+     * @throws \Google\GAX\ApiException if the remote call fails
      */
     public function testIamPermissions($resource, $permissions, $optionalArgs = [])
     {
@@ -842,7 +846,7 @@ class PublisherApi
             new CallSettings($optionalArgs)
         );
         $callable = ApiCallable::createApiCall(
-            $this->iAMPolicyStub,
+            $this->iamPolicyStub,
             'TestIamPermissions',
             $mergedSettings,
             $this->descriptors['testIamPermissions']
@@ -860,7 +864,7 @@ class PublisherApi
      */
     public function close()
     {
-        $this->iAMPolicyStub->close();
+        $this->iamPolicyStub->close();
         $this->publisherStub->close();
     }
 
