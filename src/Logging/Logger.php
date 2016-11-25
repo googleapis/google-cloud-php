@@ -152,7 +152,7 @@ class Logger
         $logNameFilter = "logName = $this->formattedName";
         $options += [
             'pageToken' => null,
-            'projectIds' => [$this->projectId],
+            'resourceNames' => ["projects/$this->projectId"],
             'filter' => isset($options['filter'])
                 ? $options['filter'] .= " AND $logNameFilter"
                 : $logNameFilter
