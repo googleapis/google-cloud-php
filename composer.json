@@ -55,7 +55,7 @@
         "erusev/parsedown": "^1.6",
         "vierbergenlars/php-semver": "^3.0",
         "google/proto-client-php": "^0.6",
-        "google/gax": "^0.3"
+        "google/gax": "^0.4"
     },
     "suggest": {
         "google/gax": "Required to support gRPC",
