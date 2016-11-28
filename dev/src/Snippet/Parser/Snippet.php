@@ -28,24 +28,9 @@ class Snippet implements \JsonSerializable
     private $identifier;
 
     /**
-     * @var string
+     * @var array
      */
-    private $file;
-
-    /**
-     * @var int
-     */
-    private $line;
-
-    /**
-     * @var string
-     */
-    private $content;
-
-    /**
-     * @var int
-     */
-    private $index;
+    private $options;
 
     /**
      * @var array
@@ -55,19 +40,19 @@ class Snippet implements \JsonSerializable
     /**
      * Create a snippet
      *
-     * @param string $file The filename
-     * @param int $line The line number
-     * @param string $content The snippet
-     * @param int $index Represents the 0-indexed location of the snippet in a
-     *        docblock.
+     * @param string $identifier The snippet ID
+     * @param array $config The snippet config
      */
-    public function __construct($file, $line, $content, $index = 0)
+    public function __construct($identifier, array $config = [])
     {
-        $this->identifier = sha1($file . $line . $content . $index);
-        $this->file = $file;
-        $this->line = $line;
-        $this->content = $content;
-        $this->index = $index;
+        $this->identifier = $identifier;
+        $this->config = $config + [
+            'content' => '',
+            'fqn' => '',
+            'index' => 0,
+            'file' => '',
+            'line' => 0
+        ];
     }
 
     /**
@@ -90,7 +75,7 @@ class Snippet implements \JsonSerializable
      */
     public function file()
     {
-        return $this->file;
+        return $this->config['file'];
     }
 
     /**
@@ -103,7 +88,7 @@ class Snippet implements \JsonSerializable
      */
     public function line()
     {
-        return $this->line;
+        return $this->config['line'];
     }
 
     /**
@@ -113,7 +98,7 @@ class Snippet implements \JsonSerializable
      */
     public function content()
     {
-        return $this->content;
+        return $this->config['content'];
     }
 
     /**
@@ -123,7 +108,7 @@ class Snippet implements \JsonSerializable
      */
     public function index()
     {
-        return $this->index;
+        return $this->config['index'];
     }
 
     /**
@@ -141,7 +126,7 @@ class Snippet implements \JsonSerializable
             extract($this->locals);
 
             ob_start();
-            $res = eval($this->content ."\n\n". $return);
+            $res = eval($this->config['content'] ."\n\n". $return);
             $out = ob_get_clean();
 
             return new InvokeResult($res, $out);
@@ -164,11 +149,6 @@ class Snippet implements \JsonSerializable
 
     public function jsonSerialize()
     {
-        return [
-            'file' => $this->file,
-            'line' => $this->line,
-            'index' => $this->index,
-            'content' => $this->content,
-        ];
+        return $this->config;
     }
 }

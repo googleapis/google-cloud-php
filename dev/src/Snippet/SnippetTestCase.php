@@ -39,7 +39,13 @@ class SnippetTestCase extends \PHPUnit_Framework_TestCase
 
     public function class($class, $index = 0)
     {
-        $snippet = $this->parser->classExample($class, $index);
+        $identifier = $this->parser->createIdentifier($class, $index);
+
+        $snippet = $this->coverage->cache($identifier);
+        if (!$snippet) {
+            $snippet = $this->parser->classExample($class, $index);
+        }
+
         $this->coverage->cover($snippet->identifier());
 
         return $snippet;
@@ -47,8 +53,15 @@ class SnippetTestCase extends \PHPUnit_Framework_TestCase
 
     public function method($class, $method, $index = 0)
     {
-        $snippet = $this->parser->methodExample($class, $method, $index);
-        $this->coverage->cover($snippet->identifier());
+        $name = $class .'::'. $method;
+        $identifier = $this->parser->createIdentifier($name, $index);
+
+        $snippet = $this->coverage->cache($identifier);
+        if (!$snippet) {
+            $snippet = $this->parser->methodExample($class, $method, $index);
+        }
+
+        $this->coverage->cover($identifier);
 
         return $snippet;
     }

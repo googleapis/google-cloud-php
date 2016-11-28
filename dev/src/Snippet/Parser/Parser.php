@@ -34,81 +34,6 @@ use phpDocumentor\Reflection\DocBlock;
 class Parser
 {
     /**
-     * Retrieve all examples from a class Doc Block.
-     *
-     * Example:
-     * ```
-     * $examples = $parser->examplesFromClass($parser);
-     * ```
-     *
-     * @param object|ReflectionClass $class An instance or reflector of the
-     *        class to parse examples from.
-     * @return array
-     */
-    public function examplesFromClass($class)
-    {
-        if (!($class instanceof ReflectionClass)) {
-            $class = new ReflectionClass($class);
-        }
-
-        $doc = new DocBlock($class);
-
-        return $this->examples($doc, $class->getFileName(), $class->getStartLine());
-    }
-
-    /**
-     * Retrieve all examples from a method's Doc Block.
-     *
-     * Example:
-     * ```
-     * $examples = $parser->examplesFromMethod($parser, 'examplesFromMethod');
-     * ```
-     *
-     * @param object $class An instance of the class to parse examples from.
-     * @param string|ReflectionMethod $method The name of the method to parse
-     *        examples from.
-     * @return array
-     */
-    public function examplesFromMethod($class, $method)
-    {
-        if (!($method instanceof ReflectionMethod)) {
-            $method = new ReflectionMethod($class, $method);
-        }
-
-        $doc = new DocBlock($method);
-
-        return $this->examples($doc, $method->getFileName(), $method->getStartLine());
-    }
-
-    /**
-     * Retrieve all examples from a class and its methods.
-     *
-     * Example:
-     * ```
-     * $examples = $parser->allExamples($parser);
-     * ```
-     *
-     * @param object|ReflectionClass An instance or reflector of the class to
-     *        parse.
-     * @return array
-     */
-    public function allExamples($class)
-    {
-        if (!($class instanceof ReflectionClass)) {
-            $class = new ReflectionClass($class);
-        }
-
-        $snippets = $this->examplesFromClass($class);
-
-        $methods = $class->getMethods();
-        foreach ($methods as $method) {
-            $snippets = array_merge($snippets, $this->examplesFromMethod($class, $method));
-        }
-
-        return $snippets;
-    }
-
-    /**
      * Get a snippet from a class.
      *
      * Example:
@@ -134,7 +59,7 @@ class Parser
             throw new \Exception(sprintf(
                 'Given snippet index %d does not exist for class %s',
                 $index,
-                $class
+                $class->getName()
             ));
         }
 
@@ -181,6 +106,94 @@ class Parser
     }
 
     /**
+     * Retrieve all examples from a class Doc Block.
+     *
+     * Example:
+     * ```
+     * $examples = $parser->examplesFromClass($parser);
+     * ```
+     *
+     * @param object|ReflectionClass $class An instance or reflector of the
+     *        class to parse examples from.
+     * @return array
+     */
+    public function examplesFromClass($class)
+    {
+        if (!($class instanceof ReflectionClass)) {
+            $class = new ReflectionClass($class);
+        }
+
+        $doc = new DocBlock($class);
+
+        return $this->examples(
+            $doc,
+            $class->getName(),
+            $class->getFileName(),
+            $class->getStartLine()
+        );
+    }
+
+    /**
+     * Retrieve all examples from a method's Doc Block.
+     *
+     * Example:
+     * ```
+     * $examples = $parser->examplesFromMethod($parser, 'examplesFromMethod');
+     * ```
+     *
+     * @param object $class An instance of the class to parse examples from.
+     * @param string|ReflectionMethod $method The name of the method to parse
+     *        examples from.
+     * @return array
+     */
+    public function examplesFromMethod($class, $method)
+    {
+        if (!($method instanceof ReflectionMethod)) {
+            $method = new ReflectionMethod($class, $method);
+        }
+
+        $doc = new DocBlock($method);
+
+        $parent = $method->getDeclaringClass();
+        $class = $parent->getName();
+
+        return $this->examples(
+            $doc,
+            $class .'::'. $method->getName(),
+            $method->getFileName(),
+            $method->getStartLine()
+        );
+    }
+
+    /**
+     * Retrieve all examples from a class and its methods.
+     *
+     * Example:
+     * ```
+     * $examples = $parser->allExamples($parser);
+     * ```
+     *
+     * @param object|ReflectionClass An instance or reflector of the class to
+     *        parse.
+     * @return array
+     */
+    public function allExamples($class)
+    {
+        if (!($class instanceof ReflectionClass)) {
+            $class = new ReflectionClass($class);
+        }
+
+        $snippets = $this->examplesFromClass($class);
+
+        $methods = $class->getMethods();
+        foreach ($methods as $method) {
+            $snippets = array_merge($snippets, $this->examplesFromMethod($class, $method));
+        }
+
+        return $snippets;
+    }
+
+    /**
      * Parse examples from a DocBlock object.
      *
      * Example:
@@ -194,7 +207,7 @@ class Parser
      * @param int $line The line where the tested method or class is declared.
      * @return array
      */
-    public function examples(DocBlock $docBlock, $file, $line)
+    public function examples(DocBlock $docBlock, $fullyQualifiedName, $file, $line)
     {
         $text = $docBlock->getText();
 
@@ -215,11 +228,24 @@ class Parser
         $index = 0;
         $res = [];
         foreach ($examples as $example) {
-            $snippet = new Snippet($file, $line, $example->textContent, $index);
-            $res[$snippet->identifier()] = $snippet;
+            $identifier = $this->createIdentifier($fullyQualifiedName, $index);
+            $snippet = new Snippet($identifier, [
+                'content' => $example->textContent,
+                'fqn' => $fullyQualifiedName,
+                'index' => $index,
+                'file' => $file,
+                'line' => $line
+            ]);
+
+            $res[$identifier] = $snippet;
             $index++;
         }
 
         return $res;
+    }
+
+    public function createIdentifier($name, $index)
+    {
+        return sha1($name . $index);
     }
 }

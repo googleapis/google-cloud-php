@@ -77,4 +77,11 @@ class Coverage
     {
         return array_diff_key($this->snippets, array_flip($this->covered));
     }
+
+    public function cache($identifier)
+    {
+        return (array_key_exists($identifier, $this->snippets))
+            ? $this->snippets[$identifier]
+            : null;
+    }
 }
