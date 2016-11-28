@@ -21,11 +21,15 @@ use Google\Cloud\Dev\SetStubConnectionTrait;
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
 use Google\Cloud\PubSub\Connection\ConnectionInterface;
 use Google\Cloud\PubSub\PubSubClient;
+use Google\Cloud\PubSub\Subscription;
 use Google\Cloud\PubSub\Topic;
 use Prophecy\Argument;
 
 class PubSubClientTest extends SnippetTestCase
 {
+    const TOPIC = 'projects/foo/topics/my-new-topic';
+    const SUBSCRIPTION = 'projects/foo/subscriptions/my-new-subscription';
+
     private $connection;
     private $client;
 
@@ -33,7 +37,6 @@ class PubSubClientTest extends SnippetTestCase
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->client = new PubSubClientStub;
-        $this->client->setConnection($this->connection->reveal());
     }
 
     public function testClassExample1()
@@ -46,9 +49,11 @@ class PubSubClientTest extends SnippetTestCase
 
     public function testCreateTopic()
     {
-        $this->connection->createTopic(Argument::any())->willReturn([
-            'name' => 'projects/foo/topics/my-new-topic'
-        ]);
+        $this->connection->createTopic(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([
+                'name' => self::TOPIC
+            ]);
 
         $this->client->setConnection($this->connection->reveal());
 
@@ -58,8 +63,8 @@ class PubSubClientTest extends SnippetTestCase
         $res = $snippet->invoke('topic');
 
         $this->assertInstanceOf(Topic::class, $res->return());
-        $this->assertEquals('projects/foo/topics/my-new-topic', $res->return()->name());
-        $this->assertEquals('projects/foo/topics/my-new-topic', $res->output());
+        $this->assertEquals(self::TOPIC, $res->return()->name());
+        $this->assertEquals(self::TOPIC, $res->output());
     }
 
     public function testTopic()
@@ -68,8 +73,9 @@ class PubSubClientTest extends SnippetTestCase
         $snippet->addLocal('pubsub', $this->client);
 
         $this->connection->getTopic(Argument::any())
+            ->shouldBeCalled()
             ->willReturn([
-                'name' => 'projects/foo/topics/my-new-topic'
+                'name' => self::TOPIC
             ]);
 
         $this->client->setConnection($this->connection->reveal());
@@ -77,8 +83,8 @@ class PubSubClientTest extends SnippetTestCase
         $res = $snippet->invoke('topic');
 
         $this->assertInstanceOf(Topic::class, $res->return());
-        $this->assertEquals('projects/foo/topics/my-new-topic', $res->return()->name());
-        $this->assertEquals('projects/foo/topics/my-new-topic', $res->output());
+        $this->assertEquals(self::TOPIC, $res->return()->name());
+        $this->assertEquals(self::TOPIC, $res->output());
     }
 
     public function testTopics()
@@ -87,9 +93,10 @@ class PubSubClientTest extends SnippetTestCase
         $snippet->addLocal('pubsub', $this->client);
 
         $this->connection->listTopics(Argument::any())
+            ->shouldBeCalled()
             ->willReturn([
                 'topics' => [
-                    ['name' => 'projects/foo/topics/my-new-topic']
+                    ['name' => self::TOPIC]
                 ]
             ]);
 
@@ -98,11 +105,72 @@ class PubSubClientTest extends SnippetTestCase
         $res = $snippet->invoke('topics');
 
         $this->assertInstanceOf(\Generator::class, $res->return());
-        $this->assertEquals('projects/foo/topics/my-new-topic', $res->output());
+        $this->assertEquals(self::TOPIC, $res->output());
     }
 
     public function testSubscribe()
-    {}
+    {
+        $snippet = $this->method(PubSubClient::class, 'subscribe');
+        $snippet->addLocal('pubsub', $this->client);
+
+        $this->connection->createSubscription(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([
+                'name' => self::SUBSCRIPTION,
+                'topic' => self::TOPIC
+            ]);
+
+        $this->client->setConnection($this->connection->reveal());
+
+        $res = $snippet->invoke('subscription');
+
+        $this->assertInstanceOf(Subscription::class, $res->return());
+        $this->assertEquals(self::SUBSCRIPTION, $res->return()->name());
+        $this->assertEquals(self::SUBSCRIPTION, $res->return()->info()['name']);
+        $this->assertEquals(self::TOPIC, $res->return()->info()['topic']);
+    }
+
+    public function testSubscription()
+    {
+        $snippet = $this->method(PubSubClient::class, 'subscription');
+        $snippet->addLocal('pubsub', $this->client);
+
+        $this->connection->getSubscription(['subscription' => self::SUBSCRIPTION])
+            ->shouldBeCalled()
+            ->willReturn([
+                'name' => self::SUBSCRIPTION,
+                'topic' => self::TOPIC
+            ]);
+
+        $this->client->setConnection($this->connection->reveal());
+
+        $res = $snippet->invoke('subscription');
+
+        $this->assertInstanceOf(Subscription::class, $res->return());
+        $this->assertEquals(self::SUBSCRIPTION, $res->return()->name());
+        $this->assertEquals(self::SUBSCRIPTION, $res->return()->info()['name']);
+        $this->assertEquals(self::TOPIC, $res->return()->info()['topic']);
+    }
+
+    public function testSubscriptions()
+    {
+        $snippet = $this->method(PubSubClient::class, 'subscriptions');
+        $snippet->addLocal('pubsub', $this->client);
+
+        $this->connection->listSubscriptions(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([
+                'subscriptions' => [
+                    ['name' => self::SUBSCRIPTION, 'topic' => self::TOPIC]
+                ]
+            ]);
+
+        $this->client->setConnection($this->connection->reveal());
+
+        $res = $snippet->invoke('subscriptions');
+        $this->assertInstanceOf(\Generator::class, $res->return());
+        $this->assertEquals(self::SUBSCRIPTION, $res->output());
+    }
 }
 
 class PubSubClientStub extends PubSubClient
