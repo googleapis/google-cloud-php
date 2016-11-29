@@ -816,7 +816,7 @@ class PublisherClient
      *                               `resource` is usually specified as a path. For example, a Project
      *                               resource is specified as `projects/{project}`.
      * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
-     *                               wildcards (such as '{@*}' or 'storage.{@*}') are not allowed. For more
+     *                               wildcards (such as '&#42;' or 'storage.&#42;') are not allowed. For more
      *                               information see
      *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      * @param array    $optionalArgs {
