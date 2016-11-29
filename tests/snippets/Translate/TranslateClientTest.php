@@ -18,12 +18,178 @@
 namespace Google\Cloud\Tests\Snippets\Translate;
 
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
+use Google\Cloud\Translate\Connection\ConnectionInterface;
 use Google\Cloud\Translate\TranslateClient;
+use Prophecy\Argument;
 
+/**
+ * @group translate
+ */
 class TranslateClientTest extends SnippetTestCase
 {
+    private $connection;
+    private $client;
+
+    public function setUp()
+    {
+        $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->client = new \TranslateClientStub;
+        $this->client->setConnection($this->connection->reveal());
+    }
+
     public function testTrue()
     {
-        $this->assertTrue(true);
+        $snippet = $this->class(TranslateClient::class);
+        $res = $snippet->invoke('translate');
+
+        $this->assertInstanceOf(TranslateClient::class, $res->return());
+    }
+
+    public function testTranslate()
+    {
+        $snippet = $this->method(TranslateClient::class, 'translate');
+        $snippet->addLocal('translate', $this->client);
+
+        $this->connection->listTranslations(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([
+                'data' => [
+                    'translations' => [
+                        [
+                            'detectedSourceLanguage' => 'en',
+                            'translatedText' => 'foobar',
+                        ]
+                    ]
+                ]
+            ]);
+
+        $this->client->setConnection($this->connection->reveal());
+
+        $res = $snippet->invoke();
+        $this->assertEquals('foobar', $res->output());
+    }
+
+    public function testTranslateBatch()
+    {
+        $snippet = $this->method(TranslateClient::class, 'translateBatch');
+        $snippet->addLocal('translate', $this->client);
+
+        $this->connection->listTranslations(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([
+                'data' => [
+                    'translations' => [
+                        [
+                            'detectedSourceLanguage' => 'en',
+                            'translatedText' => 'foobar',
+                        ]
+                    ]
+                ]
+            ]);
+
+        $this->client->setConnection($this->connection->reveal());
+
+        $res = $snippet->invoke();
+        $this->assertEquals('foobar', $res->output());
+    }
+
+    public function testDetectLanguage()
+    {
+        $snippet = $this->method(TranslateClient::class, 'detectLanguage');
+        $snippet->addLocal('translate', $this->client);
+
+        $this->connection->listDetections(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([
+                'data' => [
+                    'detections' => [
+                        [
+                            [
+                                'language' => 'en',
+                                'confidence' => 1
+                            ]
+                        ]
+                    ]
+                ]
+            ]);
+
+        $this->client->setConnection($this->connection->reveal());
+
+        $res = $snippet->invoke();
+        $this->assertEquals('en', $res->output());
+    }
+
+    public function testDetectLanguageBatch()
+    {
+        $snippet = $this->method(TranslateClient::class, 'detectLanguageBatch');
+        $snippet->addLocal('translate', $this->client);
+
+        $this->connection->listDetections(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([
+                'data' => [
+                    'detections' => [
+                        [
+                            [
+                                'language' => 'en',
+                                'confidence' => 1
+                            ]
+                        ]
+                    ]
+                ]
+            ]);
+
+        $this->client->setConnection($this->connection->reveal());
+
+        $res = $snippet->invoke();
+        $this->assertEquals('en', $res->output());
+    }
+
+    public function testLanguages()
+    {
+        $snippet = $this->method(TranslateClient::class, 'languages');
+        $snippet->addLocal('translate', $this->client);
+
+        $this->connection->listLanguages(Argument::any())
+            ->shouldbeCalled()
+            ->willReturn([
+                'data' => [
+                    'languages' => [
+                        [
+                            'language' => 'en',
+                            'name' => 'English'
+                        ]
+                    ]
+                ]
+            ]);
+
+        $this->client->setConnection($this->connection->reveal());
+
+        $res = $snippet->invoke();
+        $this->assertEquals('en', $res->output());
+    }
+
+    public function testLocalizedLanguages()
+    {
+        $snippet = $this->method(TranslateClient::class, 'localizedLanguages');
+        $snippet->addLocal('translate', $this->client);
+
+        $this->connection->listLanguages(Argument::any())
+            ->shouldbeCalled()
+            ->willReturn([
+                'data' => [
+                    'languages' => [
+                        [
+                            'language' => 'en',
+                            'name' => 'English'
+                        ]
+                    ]
+                ]
+            ]);
+
+        $this->client->setConnection($this->connection->reveal());
+
+        $res = $snippet->invoke();
+        $this->assertEquals('en', $res->output());
     }
 }

@@ -12,6 +12,7 @@ use Google\Cloud\Dev\Snippet\Parser\Parser;
 use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\PubSub\Subscription;
 use Google\Cloud\PubSub\Topic;
+use Google\Cloud\Translate\TranslateClient;
 
 require __DIR__ . '/../../vendor/autoload.php';
 
@@ -39,6 +40,11 @@ class SubscriptionStub extends Subscription
 }
 
 class TopicStub extends Topic
+{
+    use SetStubConnectionTrait;
+}
+
+class TranslateClientStub extends TranslateClient
 {
     use SetStubConnectionTrait;
 }

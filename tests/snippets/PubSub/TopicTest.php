@@ -24,6 +24,9 @@ use Google\Cloud\PubSub\Subscription;
 use Google\Cloud\PubSub\Topic;
 use Prophecy\Argument;
 
+/**
+ * @group pubsub
+ */
 class TopicTest extends SnippetTestCase
 {
     const TOPIC = 'projects/my-awesome-project/topics/my-new-topic';
