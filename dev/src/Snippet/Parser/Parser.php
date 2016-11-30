@@ -33,6 +33,8 @@ use phpDocumentor\Reflection\DocBlock;
  */
 class Parser
 {
+    const SNIPPET_NAME_REGEX = '/\/\/\s?\[snippet\=(\w{0,})\]/';
+
     /**
      * Get a snippet from a class.
      *
@@ -228,11 +230,19 @@ class Parser
         $index = 0;
         $res = [];
         foreach ($examples as $example) {
-            $identifier = $this->createIdentifier($fullyQualifiedName, $index);
+            $name = $this->extractSnippetName($example->textContent);
+
+            $indexOrName = $name;
+            if (!$name) {
+                $indexOrName = $index;
+            }
+
+            $identifier = $this->createIdentifier($fullyQualifiedName, $indexOrName);
             $snippet = new Snippet($identifier, [
                 'content' => $example->textContent,
                 'fqn' => $fullyQualifiedName,
                 'index' => $index,
+                'name' => $name,
                 'file' => $file,
                 'line' => $line
             ]);
@@ -244,8 +254,18 @@ class Parser
         return $res;
     }
 
-    public function createIdentifier($name, $index)
+    public function createIdentifier($fqn, $indexOrName)
     {
-        return sha1($name . $index);
+        return sha1($fqn . $indexOrName);
+    }
+
+    private function extractSnippetName($content)
+    {
+        $matches = [];
+        if (!preg_match(self::SNIPPET_NAME_REGEX, $content, $matches)) {
+            return null;
+        }
+
+        return $matches[0];
     }
 }

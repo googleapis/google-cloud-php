@@ -24,6 +24,8 @@ use phpDocumentor\Reflection\FileReflector;
 
 class CodeParser implements ParserInterface
 {
+    const SNIPPET_NAME_REGEX = '/\/\/\s?\[snippet\=(\w{0,})\]/';
+
     private $path;
     private $outputName;
     private $reflector;
@@ -250,7 +252,8 @@ class CodeParser implements ParserInterface
                 continue;
             }
 
-            $lines = explode(PHP_EOL, $example);
+            $example = preg_replace(self::SNIPPET_NAME_REGEX, '', $example);
+            $lines = explode(PHP_EOL, trim($example));
 
             // strip the syntax highlighting, it won't be used in the doc site
             if (substr($lines[0], 0, 3) === 'php') {
@@ -271,7 +274,7 @@ class CodeParser implements ParserInterface
 
             $examplesArray[] = [
                 'caption' => $caption,
-                'code' => implode(PHP_EOL, $lines)
+                'code' => trim(implode(PHP_EOL, $lines))
             ];
         }
 

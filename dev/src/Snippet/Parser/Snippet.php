@@ -51,7 +51,8 @@ class Snippet implements \JsonSerializable
             'fqn' => '',
             'index' => 0,
             'file' => '',
-            'line' => 0
+            'line' => 0,
+            'name' => null
         ];
     }
 
@@ -109,6 +110,16 @@ class Snippet implements \JsonSerializable
     public function index()
     {
         return $this->config['index'];
+    }
+
+    /**
+     * The snippet name
+     *
+     * @return string
+     */
+    public function name()
+    {
+        return $this->config['name'];
     }
 
     /**
