@@ -4,16 +4,10 @@
 // start now) you don't need anything else.
 putenv('GOOGLE_APPLICATION_CREDENTIALS='. __DIR__ .'/keyfile-stub.json');
 
-use Google\Cloud\Dev\SetStubConnectionTrait;
 use Google\Cloud\Dev\Snippet\Container;
 use Google\Cloud\Dev\Snippet\Coverage\Coverage;
 use Google\Cloud\Dev\Snippet\Coverage\Scanner;
 use Google\Cloud\Dev\Snippet\Parser\Parser;
-use Google\Cloud\PubSub\PubSubClient;
-use Google\Cloud\PubSub\Subscription;
-use Google\Cloud\PubSub\Topic;
-use Google\Cloud\Translate\TranslateClient;
-use Google\Cloud\Vision\VisionClient;
 
 require __DIR__ . '/../../vendor/autoload.php';
 
@@ -35,27 +29,16 @@ register_shutdown_function(function () {
     }
 });
 
-class SubscriptionStub extends Subscription
+function stub($name, $extends)
 {
-    use SetStubConnectionTrait;
+    $tpl = 'class %s extends %s {use \Google\Cloud\Dev\SetStubConnectionTrait; }';
+
+    eval(sprintf($tpl, $name, $extends));
 }
 
-class TopicStub extends Topic
-{
-    use SetStubConnectionTrait;
-}
-
-class TranslateClientStub extends TranslateClient
-{
-    use SetStubConnectionTrait;
-}
-
-class PubSubClientStub extends PubSubClient
-{
-    use SetStubConnectionTrait;
-}
-
-class VisionClientStub extends VisionClient
-{
-    use SetStubConnectionTrait;
-}
+stub('SpeechOperationStub', Google\Cloud\Speech\Operation::class);
+stub('PubSubClientStub', Google\Cloud\PubSub\PubSubClient::class);
+stub('SubscriptionStub', Google\Cloud\PubSub\Subscription::class);
+stub('TopicStub', Google\Cloud\PubSub\Topic::class);
+stub('TranslateClientStub', Google\Cloud\Translate\TranslateClient::class);
+stub('VisionClientStub', Google\Cloud\Vision\VisionClient::class);
