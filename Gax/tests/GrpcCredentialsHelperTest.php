@@ -52,7 +52,7 @@ class GrpcCredentialsHelperTest extends PHPUnit_Framework_TestCase
         $grpcCredentialsHelper = new GrpcCredentialsHelperForTesting($this->defaultScope);
         $callback = $grpcCredentialsHelper->createCallCredentialsCallback();
         $callbackResult = $callback();
-        $this->assertEquals(['Bearer adcAccessToken'], $callbackResult['Authorization']);
+        $this->assertEquals(['Bearer adcAccessToken'], $callbackResult['authorization']);
     }
 
     public function testCreateCallCredentialsCallbackCustomCredsLoader()
@@ -62,7 +62,7 @@ class GrpcCredentialsHelperTest extends PHPUnit_Framework_TestCase
                 $this->defaultScope, $this->defaultTokens)]);
         $callback = $grpcCredentialsHelper->createCallCredentialsCallback();
         $callbackResult = $callback();
-        $this->assertEquals(['Bearer accessToken'], $callbackResult['Authorization']);
+        $this->assertEquals(['Bearer accessToken'], $callbackResult['authorization']);
     }
 
     public function testCreateCallCredentialsCallbackDisableCaching()
@@ -73,10 +73,10 @@ class GrpcCredentialsHelperTest extends PHPUnit_Framework_TestCase
             'enableCaching' => false]);
         $callback = $grpcCredentialsHelper->createCallCredentialsCallback();
         $callbackResult = $callback();
-        $this->assertEquals(['Bearer accessToken'], $callbackResult['Authorization']);
+        $this->assertEquals(['Bearer accessToken'], $callbackResult['authorization']);
         $callback = $grpcCredentialsHelper->createCallCredentialsCallback();
         $callbackResult = $callback();
-        $this->assertEquals(['Bearer accessToken2'], $callbackResult['Authorization']);
+        $this->assertEquals(['Bearer accessToken2'], $callbackResult['authorization']);
     }
 
     public function testCreateCallCredentialsCallbackCaching()
@@ -86,10 +86,10 @@ class GrpcCredentialsHelperTest extends PHPUnit_Framework_TestCase
                 $this->defaultScope, $this->defaultTokens)]);
         $callback = $grpcCredentialsHelper->createCallCredentialsCallback();
         $callbackResult = $callback();
-        $this->assertEquals(['Bearer accessToken'], $callbackResult['Authorization']);
+        $this->assertEquals(['Bearer accessToken'], $callbackResult['authorization']);
         $callback = $grpcCredentialsHelper->createCallCredentialsCallback();
         $callbackResult = $callback();
-        $this->assertEquals(['Bearer accessToken'], $callbackResult['Authorization']);
+        $this->assertEquals(['Bearer accessToken'], $callbackResult['authorization']);
     }
 
     public function testCreateStubWithDefaultSslCreds()

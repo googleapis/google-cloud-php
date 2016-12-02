@@ -40,6 +40,9 @@ use InvalidArgumentException;
 class AgentHeaderDescriptor
 {
     const AGENT_HEADER_KEY = 'x-goog-api-client';
+    // TODO(michaelbausor): include bumping this version in a streamlined
+    // release process. Issue: https://github.com/googleapis/gax-php/issues/48
+    const GAX_VERSION = '0.5.0-dev';
 
     private $clientName;
     private $clientVersion;
@@ -75,9 +78,17 @@ class AgentHeaderDescriptor
      */
     public function getHeader()
     {
-        return [self::AGENT_HEADER_KEY => ["$this->clientName/$this->clientVersion;".
-            "$this->codeGenName/$this->codeGenVersion;gax/$this->gaxVersion;".
+        return [self::AGENT_HEADER_KEY => ["$this->clientName/$this->clientVersion ".
+            "$this->codeGenName/$this->codeGenVersion gax/$this->gaxVersion ".
             "php/$this->phpVersion"]];
+    }
+
+    /**
+     * Returns the version string for GAX.
+     */
+    public static function getGaxVersion()
+    {
+        return self::GAX_VERSION;
     }
 
     private static function validate($descriptor)
