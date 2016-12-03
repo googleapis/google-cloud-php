@@ -81,14 +81,7 @@ $logging = new LoggingClient([
 $logger = $logging->logger('my_log');
 
 // Write a log entry.
-$entry = $logger->entry('my message', [
-	'type' => 'gcs_bucket',
-	'labels' => [
-		'bucket_name' => 'my_bucket'
-	]
-]);
-
-$logger->write($entry);
+$logger->write('my message');
 
 // List log entries from a specific log.
 $entries = $logging->entries([

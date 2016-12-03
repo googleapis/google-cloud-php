@@ -17,7 +17,9 @@
 
 namespace Google\Cloud\Logging;
 
+use Google\Cloud\ArrayTrait;
 use Google\Cloud\Logging\Connection\ConnectionInterface;
+use Google\Cloud\ValidateTrait;
 
 /**
  * A logger used to write entries to Google Stackdriver Logging.
@@ -34,6 +36,9 @@ use Google\Cloud\Logging\Connection\ConnectionInterface;
  */
 class Logger
 {
+    use ArrayTrait;
+    use ValidateTrait;
+
     const EMERGENCY = 800;
     const ALERT = 700;
     const CRITICAL = 600;
@@ -63,6 +68,17 @@ class Logger
     private $connection;
 
     /**
+     * @var array Entry options.
+     */
+    private $entryOptions = [
+        'resource',
+        'httpRequest',
+        'labels',
+        'operation',
+        'severity'
+    ];
+
+    /**
      * @var string The logger's formatted name to be used in API requests.
      */
     private $formattedName;
@@ -73,16 +89,41 @@ class Logger
     private $projectId;
 
     /**
+     * @var array A monitored resource.
+     */
+    private $resource;
+
+    /**
+     * @var array A set of user-defined (key, value) data that provides
+     * additional information about the log entries.
+     */
+    private $labels;
+
+    /**
+     * @codingStandardsIgnoreStart
      * @param ConnectionInterface $connection Represents a connection to
      *        Stackdriver Logging.
      * @param string $name The name of the log to write entries to.
      * @param string $projectId The project's ID.
+     * @param array $resource [optional] The
+     *        [monitored resource](https://cloud.google.com/logging/docs/api/reference/rest/Shared.Types/MonitoredResource)
+     *        to associate log entries with. **Defaults to** type global.
+     * @param array $labels [optional] A set of user-defined (key, value) data
+     *        that provides additional information about the log entries.
+     * @codingStandardsIgnoreEnd
      */
-    public function __construct(ConnectionInterface $connection, $name, $projectId)
-    {
+    public function __construct(
+        ConnectionInterface $connection,
+        $name,
+        $projectId,
+        array $resource = null,
+        array $labels = null
+    ) {
         $this->connection = $connection;
         $this->formattedName = "projects/$projectId/logs/$name";
         $this->projectId = $projectId;
+        $this->resource = $resource ?: ['type' => 'global'];
+        $this->labels = $labels;
     }
 
     /**
@@ -181,39 +222,25 @@ class Logger
      * Example:
      * ```
      * // Create an entry with a key/value set of data
-     * $entry = $logger->entry(
-     *     ['user' => 'calvin'],
-     *     [
-     *         'type' => 'gcs_bucket',
-     *         'labels' => [
-     *             'bucket_name' => 'my-bucket'
-     *         ]
-     *     ]
-     * );
+     * $entry = $logger->entry(['user' => 'calvin']);
      * ```
      *
      * ```
      * // Create an entry with a string
-     * $entry = $logger->entry('my message', [
-     *     'type' => 'gcs_bucket',
-     *     'labels' => [
-     *         'bucket_name' => 'my-bucket'
-     *     ]
-     * ]);
+     * $entry = $logger->entry('my message');
      * ```
      *
      * ```
-     * // Create an entry with a severity of `EMERGENCY`
-     * $entry = $logger->entry(
-     *     'my message',
-     *     [
+     * // Create an entry with a severity of `EMERGENCY` and specifying a resource.
+     * $entry = $logger->entry('my message', [
+     *     'severity' => Logger::EMERGENCY,
+     *     'resource' => [
      *         'type' => 'gcs_bucket',
      *         'labels' => [
      *             'bucket_name' => 'my-bucket'
      *         ]
-     *     ],
-     *     ['severity' => Logger::EMERGENCY]
-     * );
+     *     ]
+     * ]);
      * ```
      * @codingStandardsIgnoreStart
      * @see https://cloud.google.com/logging/docs/api/reference/rest/Shared.Types/LogEntry LogEntry resource documentation.
@@ -221,12 +248,12 @@ class Logger
      * @param array|string $data The data to log. When providing a string the
      *        data will be stored as a `textPayload` type. When providing an
      *        array the data will be stored as a `jsonPayload` type.
-     * @param array $resource The
-     *        [monitored resource](https://cloud.google.com/logging/docs/api/reference/rest/Shared.Types/MonitoredResource)
-     *        to associate this log entry with.
      * @param array $options [optional] {
      *     Configuration options.
      *
+     *     @type array $resource The
+     *           [monitored resource](https://cloud.google.com/logging/docs/api/reference/rest/Shared.Types/MonitoredResource)
+     *           to associate this log entry with. **Defaults to** type global.
      *     @type array $httpRequest Information about the HTTP request
      *           associated with this log entry, if applicable. Please see
      *           [the API docs](https://cloud.google.com/logging/docs/api/reference/rest/Shared.Types/LogEntry#httprequest)
@@ -241,9 +268,10 @@ class Logger
      *           `"DEFAULT"`.
      * }
      * @return Entry
+     * @throws \InvalidArgumentException
      * @codingStandardsIgnoreEnd
      */
-    public function entry($data, array $resource, array $options = [])
+    public function entry($data, array $options = [])
     {
         if (!is_array($data) && !is_string($data)) {
             throw new \InvalidArgumentException('$data must be either a string or an array.');
@@ -255,9 +283,13 @@ class Logger
             $options['textPayload'] = $data;
         }
 
+        if (!array_key_exists('labels', $options) && $this->labels) {
+            $options['labels'] = $this->labels;
+        }
+
         return new Entry($options + [
             'logName' => $this->formattedName,
-            'resource' => $resource
+            'resource' => $this->resource
         ]);
     }
 
@@ -266,6 +298,20 @@ class Logger
      *
      * Example:
      * ```
+     * // Writing a simple log entry.
+     * $logger->write('a log entry');
+     * ```
+     *
+     * ```
+     * // Writing a simple entry with a key/value set of data and a severity of `EMERGENCY`.
+     * $logger->write(['user' => 'calvin'], [
+     *     'severity' => Logger::EMERGENCY
+     * ]);
+     * ```
+     *
+     * ```
+     * // Using the entry factory method to write a log entry.
+     * $entry = $logger->entry('a log entry');
      * $logger->write($entry);
      * ```
      *
@@ -273,11 +319,26 @@ class Logger
      * @see https://cloud.google.com/logging/docs/api/reference/rest/v2/entries/write Entries write API documentation.
      * @codingStandardsIgnoreEnd
      *
-     * @param Entry $entry The entry to write to the log.
-     * @param array $options [optional] Configuration Options.
+     * @param array|string|Entry $entry The entry to write to the log.
+     * @param array $options [optional] Please see
+     *        {@see Google\Cloud\Logging\Logger::entry()} to see the options
+     *        that can be applied to a log entry. Please note that if the
+     *        provided entry is of type `Entry` these options will overwrite
+     *        those that may already be set on the instance.
+     * @throws \InvalidArgumentException
      */
-    public function write(Entry $entry, array $options = [])
+    public function write($entry, array $options = [])
     {
+        $entryOptions = $this->pluckArray($this->entryOptions, $options);
+
+        if ($entry instanceof Entry) {
+            if ($entryOptions) {
+                $entry = new Entry($entryOptions + $entry->info());
+            }
+        } else {
+            $entry = $this->entry($entry, $entryOptions);
+        }
+
         $this->writeBatch([$entry], $options);
     }
 
@@ -286,17 +347,9 @@ class Logger
      *
      * Example:
      * ```
-     * $resource = [
-     *     'type' => 'gcs_bucket',
-     *         'labels' => [
-     *             'bucket_name' => 'my-bucket'
-     *         ]
-     *     ]
-     * ];
-     *
      * $entries = [];
-     * $entries[] = $logger->entry('my message', $resource);
-     * $entries[] = $logger->entry('my second message', $resource);
+     * $entries[] = $logger->entry('my message');
+     * $entries[] = $logger->entry('my second message');
      *
      * $logger->writeBatch($entries);
      * ```
@@ -310,6 +363,8 @@ class Logger
      */
     public function writeBatch(array $entries, array $options = [])
     {
+        $this->validateBatch($entries, Entry::class);
+
         foreach ($entries as &$entry) {
             $entry = $entry->info();
         }

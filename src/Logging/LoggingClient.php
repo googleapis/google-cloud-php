@@ -403,26 +403,27 @@ class LoggingClient
      *
      * Example:
      * ```
-     * $psrLogger = $logging->psrLogger('my-log', [
-     *     'type' => 'gcs_bucket',
-     *     'labels' => [
-     *         'bucket_name' => 'my-bucket'
-     *     ]
-     * ]);
+     * $psrLogger = $logging->psrLogger('my-log');
      * $psrLogger->alert('an alert!');
      * ```
      *
      * @codingStandardsIgnoreStart
      * @param string $name The name of the log to write entries to.
-     * @param array $resource The
-     *        [monitored resource](https://cloud.google.com/logging/docs/api/reference/rest/Shared.Types/MonitoredResource)
-     *        to associate log entries with.
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type array $resource The
+     *           [monitored resource](https://cloud.google.com/logging/docs/api/reference/rest/Shared.Types/MonitoredResource)
+     *           to associate log entries with. **Defaults to** type global.
+     *     @type array $labels A set of user-defined (key, value) data that
+     *           provides additional information about the log entry.
+     * }
      * @return PsrLogger
      * @codingStandardsIgnoreEnd
      */
-    public function psrLogger($name, array $resource)
+    public function psrLogger($name, array $options = [])
     {
-        return new PsrLogger($this->logger($name), $resource);
+        return new PsrLogger($this->logger($name, $options));
     }
 
     /**
@@ -431,20 +432,31 @@ class LoggingClient
      * Example:
      * ```
      * $logger = $logging->logger('my-log');
-     * $entry = $logger->entry('my-data', [
-     *     'type' => 'gcs_bucket',
-     *     'labels' => [
-     *         'bucket_name' => 'my-bucket'
-     *     ]
-     * ]);
-     * $logger->write($entry);
+     * $logger->write('my-data');
      * ```
      *
+     * @codingStandardsIgnoreStart
      * @param string $name The name of the log to write entries to.
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type array $resource The
+     *           [monitored resource](https://cloud.google.com/logging/docs/api/reference/rest/Shared.Types/MonitoredResource)
+     *           to associate log entries with. **Defaults to** type global.
+     *     @type array $labels A set of user-defined (key, value) data that
+     *           provides additional information about the log entry.
+     * }
+     * @codingStandardsIgnoreEnd
      * @return Logger
      */
-    public function logger($name)
+    public function logger($name, array $options = [])
     {
-        return new Logger($this->connection, $name, $this->projectId);
+        return new Logger(
+            $this->connection,
+            $name,
+            $this->projectId,
+            isset($options['resource']) ? $options['resource'] : null,
+            isset($options['labels']) ? $options['labels'] : null
+        );
     }
 }

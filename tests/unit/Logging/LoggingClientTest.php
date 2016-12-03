@@ -266,7 +266,7 @@ class LoggingClientTest extends \PHPUnit_Framework_TestCase
     public function testGetsPsrLogger()
     {
         $this->client->setConnection($this->connection->reveal());
-        $this->assertInstanceOf(PsrLogger::class, $this->client->psrLogger('myLogger', ['type' => 'global']));
+        $this->assertInstanceOf(PsrLogger::class, $this->client->psrLogger('myLogger'));
     }
 
     public function testGetsLogger()

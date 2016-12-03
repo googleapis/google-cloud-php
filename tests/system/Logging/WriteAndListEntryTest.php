@@ -29,9 +29,7 @@ class WriteAndListEntryTest extends LoggingTestCase
         $logger = $client->logger(uniqid(self::TESTING_PREFIX));
         self::$deletionQueue[] = $logger;
         $data = 'test';
-        $entry = $logger->entry($data, [
-            'type' => 'global'
-        ]);
+        $entry = $logger->entry($data);
 
         $logger->write($entry);
 
@@ -64,9 +62,7 @@ class WriteAndListEntryTest extends LoggingTestCase
             ]
         ];
 
-        $entry = $logger->entry($data, [
-            'type' => 'global'
-        ]);
+        $entry = $logger->entry($data);
 
         $logger->write($entry);
 
@@ -93,12 +89,8 @@ class WriteAndListEntryTest extends LoggingTestCase
         self::$deletionQueue[] = $logger;
         $data = 'test';
         $entriesToWrite = [
-            $logger->entry($data, [
-                'type' => 'global'
-            ]),
-            $logger->entry($data, [
-                'type' => 'global'
-            ])
+            $logger->entry($data),
+            $logger->entry($data)
         ];
 
         $logger->writeBatch($entriesToWrite);
@@ -136,7 +128,7 @@ class WriteAndListEntryTest extends LoggingTestCase
         ];
         $severity = 'INFO';
 
-        $entry = $logger->entry($data, ['type' => 'global'], [
+        $entry = $logger->entry($data, [
             'httpRequest' => $httpRequest,
             'labels' => $labels,
             'severity' => 200
@@ -231,9 +223,7 @@ class WriteAndListEntryTest extends LoggingTestCase
     private function assertPsrLoggerWrites($client, $level)
     {
         $logName = uniqid(self::TESTING_PREFIX);
-        $psrLogger = $client->psrLogger($logName, [
-            'type' => 'global'
-        ]);
+        $psrLogger = $client->psrLogger($logName);
         $logger = $client->logger($logName);
         self::$deletionQueue[] = $logger;
         $data = $level;
