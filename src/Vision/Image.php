@@ -41,6 +41,7 @@ use InvalidArgumentException;
  *
  * Example:
  * ```
+ * //[snippet=default]
  * use Google\Cloud\ServiceBuilder;
  *
  * $cloud = new ServiceBuilder();
@@ -53,6 +54,7 @@ use InvalidArgumentException;
  * ```
  *
  * ```
+ * //[snippet=direct]
  * // Images can be directly instantiated.
  * use Google\Cloud\Vision\Image;
  *
@@ -63,26 +65,37 @@ use InvalidArgumentException;
  * ```
  *
  * ```
+ * //[snippet=string]
  * // Image data can be given as a string
- * $fileContents = file_get_contents(__DIR__ .'/assets/family-photo.jpg');
- * $image = $vision->image($fileContents, [
+ *
+ * use Google\Cloud\Vision\Image;
+ *
+ * $imageData = file_get_contents(__DIR__ .'/assets/family-photo.jpg');
+ * $image = new Image($imageData, [
  *    'FACE_DETECTION'
  * ]);
  * ```
  *
  * ```
+ * //[snippet=gcs]
  * // Files stored in Google Cloud Storage can be used.
+ *
+ * use Google\Cloud\Vision\Image;
+ *
  * $file = $cloud->storage()->bucket('my-test-bucket')->object('family-photo.jpg');
- * $image = $vision->image($file, [
+ * $image = new Image($file, [
  *     'FACE_DETECTION'
  * ]);
  * ```
  *
  * ```
+ * //[snippet=max]
  * // This example sets a maximum results limit on one feature and provides some image context.
  *
+ * use Google\Cloud\Vision\Image;
+ *
  * $imageResource = fopen(__DIR__ .'/assets/family-photo.jpg', 'r');
- * $image = $vision->image($imageResource, [
+ * $image = new Image($imageResource, [
  *     'FACE_DETECTION',
  *     'LOGO_DETECTION'
  * ], [
@@ -105,7 +118,12 @@ use InvalidArgumentException;
  * ```
  *
  * ```
+ * //[snippet=shortcut]
  * // The client library also offers shortcut names which can be used in place of the longer feature names.
+ *
+ * use Google\Cloud\Vision\Image;
+ *
+ * $imageResource = fopen(__DIR__ .'/assets/family-photo.jpg', 'r');
  * $image = new Image($imageResource, [
  *     'faces',          // Corresponds to `FACE_DETECTION`
  *     'landmarks',      // Corresponds to `LANDMARK_DETECTION`
@@ -228,8 +246,10 @@ class Image
      *
      * Example:
      * ```
+     * use Google\Cloud\Vision\Image;
+     *
      * $imageResource = fopen(__DIR__ .'/assets/family-photo.jpg', 'r');
-     * $image = $vision->image($fileResource, [
+     * $image = new Image($imageResource, [
      *     'FACE_DETECTION'
      * ]);
      *

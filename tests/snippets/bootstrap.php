@@ -13,6 +13,7 @@ use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\PubSub\Subscription;
 use Google\Cloud\PubSub\Topic;
 use Google\Cloud\Translate\TranslateClient;
+use Google\Cloud\Vision\VisionClient;
 
 require __DIR__ . '/../../vendor/autoload.php';
 
@@ -50,6 +51,11 @@ class TranslateClientStub extends TranslateClient
 }
 
 class PubSubClientStub extends PubSubClient
+{
+    use SetStubConnectionTrait;
+}
+
+class VisionClientStub extends VisionClient
 {
     use SetStubConnectionTrait;
 }
