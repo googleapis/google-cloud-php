@@ -131,7 +131,7 @@ class BigQueryClient
      *
      * Example:
      * ```
-     * $queryResults = $bigQuery->runQuery('SELECT * FROM [bigquery-public-data:usa_names.usa_1910_2013]');
+     * $queryResults = $bigQuery->runQuery('SELECT * FROM [bigquery-public-data:github_repos.commits] LIMIT 100');
      *
      * $isComplete = $queryResults->isComplete();
      *
@@ -142,16 +142,18 @@ class BigQueryClient
      * }
      *
      * foreach ($queryResults->rows() as $row) {
-     *     echo $row['name'];
+     *     echo $row['commit'];
      * }
      * ```
      *
      * ```
      * // Construct a query utilizing named parameters.
-     * $query = 'SELECT * FROM `bigquery-public-data.usa_names.usa_1910_2013` WHERE name = @name';
+     * $query = 'SELECT * FROM `bigquery-public-data.github_repos.commits`' .
+     *          'WHERE author.date < @date AND message = @message LIMIT 100';
      * $queryResults = $bigQuery->runQuery($query, [
      *     'parameters' => [
-     *         'name' => 'Annie'
+     *         'date' => $bigQuery->timestamp(new \DateTime()),
+     *         'message' => 'A commit message.'
      *     ]
      * ]);
      *
@@ -164,17 +166,15 @@ class BigQueryClient
      * }
      *
      * foreach ($queryResults->rows() as $row) {
-     *     echo $row['name'];
+     *     echo $row['commit'];
      * }
      * ```
      *
      * ```
      * // Construct a query utilizing positional parameters.
-     * $query = 'SELECT * FROM `bigquery-public-data.usa_names.usa_1910_2013` WHERE number > ?';
+     * $query = 'SELECT * FROM `bigquery-public-data.github_repos.commits` WHERE message = ? LIMIT 100';
      * $queryResults = $bigQuery->runQuery($query, [
-     *     'parameters' => [
-     *         15
-     *     ]
+     *     'parameters' => ['A commit message.']
      * ]);
      *
      * $isComplete = $queryResults->isComplete();
@@ -186,7 +186,7 @@ class BigQueryClient
      * }
      *
      * foreach ($queryResults->rows() as $row) {
-     *     echo $row['name'];
+     *     echo $row['commit'];
      * }
      * ```
      *
@@ -250,7 +250,7 @@ class BigQueryClient
      *
      * Example:
      * ```
-     * $job = $bigQuery->runQueryAsJob('SELECT * FROM [bigquery-public-data:usa_names.usa_1910_2013]');
+     * $job = $bigQuery->runQueryAsJob('SELECT * FROM [bigquery-public-data:github_repos.commits] LIMIT 100');
      *
      * $isComplete = false;
      * $queryResults = $job->queryResults();
@@ -262,7 +262,7 @@ class BigQueryClient
      * }
      *
      * foreach ($queryResults->rows() as $row) {
-     *     echo $row['name'];
+     *     echo $row['commit'];
      * }
      * ```
      *
