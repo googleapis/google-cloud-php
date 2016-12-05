@@ -56,7 +56,7 @@ class SafeSearchTest extends SnippetTestCase
                 ]
             ]);
 
-        $snippet = $this->class(SafeSearch::class);
+        $snippet = $this->snippetFromClass(SafeSearch::class);
         $snippet->addLocal('connectionStub', $connectionStub->reveal());
         $snippet->setLine(5, '$imageResource = fopen(\'php://temp\', \'r\');');
         $snippet->insertAfterLine(3, '$reflection = new \ReflectionClass($vision);
@@ -72,7 +72,7 @@ class SafeSearchTest extends SnippetTestCase
 
     public function testAdult()
     {
-        $snippet = $this->magicMethod(SafeSearch::class, 'adult');
+        $snippet = $this->snippetFromMagicMethod(SafeSearch::class, 'adult');
         $snippet->addLocal('safeSearch', $this->ss);
 
         $res = $snippet->invoke();
@@ -81,7 +81,7 @@ class SafeSearchTest extends SnippetTestCase
 
     public function testSpoof()
     {
-        $snippet = $this->magicMethod(SafeSearch::class, 'spoof');
+        $snippet = $this->snippetFromMagicMethod(SafeSearch::class, 'spoof');
         $snippet->addLocal('safeSearch', $this->ss);
 
         $res = $snippet->invoke();
@@ -90,7 +90,7 @@ class SafeSearchTest extends SnippetTestCase
 
     public function testMedical()
     {
-        $snippet = $this->magicMethod(SafeSearch::class, 'medical');
+        $snippet = $this->snippetFromMagicMethod(SafeSearch::class, 'medical');
         $snippet->addLocal('safeSearch', $this->ss);
 
         $res = $snippet->invoke();
@@ -99,7 +99,7 @@ class SafeSearchTest extends SnippetTestCase
 
     public function testViolence()
     {
-        $snippet = $this->magicMethod(SafeSearch::class, 'violence');
+        $snippet = $this->snippetFromMagicMethod(SafeSearch::class, 'violence');
         $snippet->addLocal('safeSearch', $this->ss);
 
         $res = $snippet->invoke();
@@ -108,7 +108,7 @@ class SafeSearchTest extends SnippetTestCase
 
     public function testIsAdult()
     {
-        $snippet = $this->method(SafeSearch::class, 'isAdult');
+        $snippet = $this->snippetFromMethod(SafeSearch::class, 'isAdult');
         $snippet->addLocal('safeSearch', $this->ss);
 
         $res = $snippet->invoke();
@@ -116,7 +116,7 @@ class SafeSearchTest extends SnippetTestCase
     }
     public function testIsSpoof()
     {
-        $snippet = $this->method(SafeSearch::class, 'isSpoof');
+        $snippet = $this->snippetFromMethod(SafeSearch::class, 'isSpoof');
         $snippet->addLocal('safeSearch', $this->ss);
 
         $res = $snippet->invoke();
@@ -124,7 +124,7 @@ class SafeSearchTest extends SnippetTestCase
     }
     public function testIsMedical()
     {
-        $snippet = $this->method(SafeSearch::class, 'isMedical');
+        $snippet = $this->snippetFromMethod(SafeSearch::class, 'isMedical');
         $snippet->addLocal('safeSearch', $this->ss);
 
         $res = $snippet->invoke();
@@ -132,7 +132,7 @@ class SafeSearchTest extends SnippetTestCase
     }
     public function testIsViolent()
     {
-        $snippet = $this->method(SafeSearch::class, 'isViolent');
+        $snippet = $this->snippetFromMethod(SafeSearch::class, 'isViolent');
         $snippet->addLocal('safeSearch', $this->ss);
 
         $res = $snippet->invoke();

@@ -51,7 +51,7 @@ class ImagePropertiesTest extends SnippetTestCase
                 ]
             ]);
 
-        $snippet = $this->class(ImageProperties::class);
+        $snippet = $this->snippetFromClass(ImageProperties::class);
         $snippet->addLocal('connectionStub', $connectionStub->reveal());
         $snippet->setLine(5, '$imageResource = fopen(\'php://temp\', \'r\');');
         $snippet->insertAfterLine(3, '$reflection = new \ReflectionClass($vision);
@@ -67,7 +67,7 @@ class ImagePropertiesTest extends SnippetTestCase
 
     public function testInfo()
     {
-        $snippet = $this->magicMethod(ImageProperties::class, 'info');
+        $snippet = $this->snippetFromMagicMethod(ImageProperties::class, 'info');
         $snippet->addLocal('imageProperties', $this->props);
 
         $res = $snippet->invoke('info');
@@ -76,7 +76,7 @@ class ImagePropertiesTest extends SnippetTestCase
 
     public function testColors()
     {
-        $snippet = $this->method(ImageProperties::class, 'colors');
+        $snippet = $this->snippetFromMethod(ImageProperties::class, 'colors');
         $snippet->addLocal('imageProperties', $this->props);
 
         $res = $snippet->invoke('colors');

@@ -42,7 +42,7 @@ class SpeechClientTest extends SnippetTestCase
 
     public function testClass()
     {
-        $snippet = $this->class(SpeechClient::class);
+        $snippet = $this->snippetFromClass(SpeechClient::class);
 
         $res = $snippet->invoke('speech');
         $this->assertInstanceOf(SpeechClient::class, $res->return());
@@ -50,7 +50,7 @@ class SpeechClientTest extends SnippetTestCase
 
     public function testClassDirectInstantiation()
     {
-        $snippet = $this->class(SpeechClient::class, 1);
+        $snippet = $this->snippetFromClass(SpeechClient::class, 1);
 
         $res = $snippet->invoke('speech');
         $this->assertInstanceOf(SpeechClient::class, $res->return());
@@ -58,7 +58,7 @@ class SpeechClientTest extends SnippetTestCase
 
     public function testRecognize()
     {
-        $snippet = $this->method(SpeechClient::class, 'recognize', 0);
+        $snippet = $this->snippetFromMethod(SpeechClient::class, 'recognize', 0);
         $snippet->addLocal('speech', $this->client);
         $snippet->replace('__DIR__  . \'/audio.flac\'', $this->testFile);
 
@@ -85,7 +85,7 @@ class SpeechClientTest extends SnippetTestCase
 
     public function testRecognizeWithOptions()
     {
-        $snippet = $this->method(SpeechClient::class, 'recognize', 1);
+        $snippet = $this->snippetFromMethod(SpeechClient::class, 'recognize', 1);
         $snippet->addLocal('speech', $this->client);
         $snippet->replace('__DIR__  . \'/audio.flac\'', $this->testFile);
 
@@ -112,7 +112,7 @@ class SpeechClientTest extends SnippetTestCase
 
     public function testBeginRecognizeOperation()
     {
-        $snippet = $this->method(SpeechClient::class, 'beginRecognizeOperation');
+        $snippet = $this->snippetFromMethod(SpeechClient::class, 'beginRecognizeOperation');
         $snippet->addLocal('speech', $this->client);
         $snippet->replace('__DIR__  . \'/audio.flac\'', $this->testFile);
 
@@ -143,7 +143,7 @@ class SpeechClientTest extends SnippetTestCase
 
     public function testBeginRecognizeOperationWithOptions()
     {
-        $snippet = $this->method(SpeechClient::class, 'beginRecognizeOperation', 1);
+        $snippet = $this->snippetFromMethod(SpeechClient::class, 'beginRecognizeOperation', 1);
         $snippet->addLocal('speech', $this->client);
         $snippet->replace('__DIR__  . \'/audio.flac\'', $this->testFile);
 
@@ -176,7 +176,7 @@ class SpeechClientTest extends SnippetTestCase
     {
         $opName = 'testOperation';
 
-        $snippet = $this->method(SpeechClient::class, 'operation');
+        $snippet = $this->snippetFromMethod(SpeechClient::class, 'operation');
         $snippet->addLocal('speech', $this->client);
         $snippet->addLocal('operationName', $opName);
 

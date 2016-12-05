@@ -36,7 +36,7 @@ class PolicyBuilderTest extends SnippetTestCase
 
     public function testClass()
     {
-        $snippet = $this->class(PolicyBuilder::class);
+        $snippet = $this->snippetFromClass(PolicyBuilder::class);
         $res = $snippet->invoke('result');
 
         $this->assertTrue(is_array($res->return()));
@@ -44,7 +44,7 @@ class PolicyBuilderTest extends SnippetTestCase
 
     public function testSetBindings()
     {
-        $snippet = $this->method(PolicyBuilder::class, 'addBinding');
+        $snippet = $this->snippetFromMethod(PolicyBuilder::class, 'addBinding');
         $snippet->addLocal('builder', $this->pb);
 
         $res = $snippet->invoke();
@@ -54,7 +54,7 @@ class PolicyBuilderTest extends SnippetTestCase
 
     public function testSetEtag()
     {
-        $snippet = $this->method(PolicyBuilder::class, 'setEtag');
+        $snippet = $this->snippetFromMethod(PolicyBuilder::class, 'setEtag');
         $snippet->addLocal('builder', $this->pb);
         $snippet->addLocal('oldPolicy', $this->policy);
 
@@ -64,7 +64,7 @@ class PolicyBuilderTest extends SnippetTestCase
 
     public function testSetVersion()
     {
-        $snippet = $this->method(PolicyBuilder::class, 'setVersion');
+        $snippet = $this->snippetFromMethod(PolicyBuilder::class, 'setVersion');
         $snippet->addLocal('builder', $this->pb);
 
         $res = $snippet->invoke();
@@ -73,7 +73,7 @@ class PolicyBuilderTest extends SnippetTestCase
 
     public function testResult()
     {
-        $snippet = $this->method(PolicyBuilder::class, 'result');
+        $snippet = $this->snippetFromMethod(PolicyBuilder::class, 'result');
         $snippet->addLocal('builder', $this->pb);
 
         $res = $snippet->invoke('policy');

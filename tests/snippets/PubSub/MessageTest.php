@@ -71,7 +71,7 @@ class MessageTest extends SnippetTestCase
                 ]
             ]);
 
-        $snippet = $this->class(Message::class);
+        $snippet = $this->snippetFromClass(Message::class);
         $snippet->addLocal('connectionStub', $connection->reveal());
         $snippet->insertAfterLine(3, '$reflection = new \ReflectionClass($pubsub);
             $property = $reflection->getProperty(\'connection\');
@@ -87,7 +87,7 @@ class MessageTest extends SnippetTestCase
 
     public function testData()
     {
-        $snippet = $this->method(Message::class, 'data');
+        $snippet = $this->snippetFromMethod(Message::class, 'data');
         $snippet->addLocal('message', $this->message);
 
         $res = $snippet->invoke();
@@ -96,7 +96,7 @@ class MessageTest extends SnippetTestCase
 
     public function testAttribute()
     {
-        $snippet = $this->method(Message::class, 'attribute');
+        $snippet = $this->snippetFromMethod(Message::class, 'attribute');
         $snippet->addLocal('message', $this->message);
 
         $res = $snippet->invoke();
@@ -105,7 +105,7 @@ class MessageTest extends SnippetTestCase
 
     public function testAttributes()
     {
-        $snippet = $this->method(Message::class, 'attributes');
+        $snippet = $this->snippetFromMethod(Message::class, 'attributes');
         $snippet->addLocal('message', $this->message);
 
         $res = $snippet->invoke('attributes');
@@ -114,7 +114,7 @@ class MessageTest extends SnippetTestCase
 
     public function testId()
     {
-        $snippet = $this->method(Message::class, 'id');
+        $snippet = $this->snippetFromMethod(Message::class, 'id');
         $snippet->addLocal('message', $this->message);
 
         $res = $snippet->invoke();
@@ -123,7 +123,7 @@ class MessageTest extends SnippetTestCase
 
     public function testPublishTime()
     {
-        $snippet = $this->method(Message::class, 'publishTime');
+        $snippet = $this->snippetFromMethod(Message::class, 'publishTime');
         $snippet->addLocal('message', $this->message);
 
         $res = $snippet->invoke('time');
@@ -132,7 +132,7 @@ class MessageTest extends SnippetTestCase
 
     public function testAckId()
     {
-        $snippet = $this->method(Message::class, 'ackId');
+        $snippet = $this->snippetFromMethod(Message::class, 'ackId');
         $snippet->addLocal('message', $this->message);
 
         $res = $snippet->invoke();
@@ -141,7 +141,7 @@ class MessageTest extends SnippetTestCase
 
     public function testSubscription()
     {
-        $snippet = $this->method(Message::class, 'subscription');
+        $snippet = $this->snippetFromMethod(Message::class, 'subscription');
         $snippet->addLocal('message', $this->message);
 
         $res = $snippet->invoke();
@@ -150,7 +150,7 @@ class MessageTest extends SnippetTestCase
 
     public function testInfo()
     {
-        $snippet = $this->method(Message::class, 'info');
+        $snippet = $this->snippetFromMethod(Message::class, 'info');
         $snippet->addLocal('message', $this->message);
 
         $res = $snippet->invoke('info');

@@ -33,8 +33,11 @@ class AnnotationTest extends SnippetTestCase
 {
     public function testClass()
     {
-        $snippet = $this->class(Annotation::class);
-        $snippet->setLine(5, '$imageResource = fopen(\'php://temp\', \'r\');');
+        $snippet = $this->snippetFromClass(Annotation::class);
+        $snippet->replace(
+            '__DIR__ .\'/assets/family-photo.jpg\'',
+            '\'php://temp\''
+        );
 
         $connectionStub = $this->prophesize(ConnectionInterface::class);
         $connectionStub->annotate(Argument::any())
@@ -54,7 +57,7 @@ class AnnotationTest extends SnippetTestCase
 
     public function testInfo()
     {
-        $snippet = $this->method(Annotation::class, 'info');
+        $snippet = $this->snippetFromMethod(Annotation::class, 'info');
         $snippet->addLocal('annotation', new Annotation('foo'));
 
         $res = $snippet->invoke('info');
@@ -63,7 +66,7 @@ class AnnotationTest extends SnippetTestCase
 
     public function testFaces()
     {
-        $snippet = $this->method(Annotation::class, 'faces');
+        $snippet = $this->snippetFromMethod(Annotation::class, 'faces');
         $snippet->addLocal('annotation', new Annotation([
             'faceAnnotations' => [
                 ['landmarks' => []]
@@ -76,7 +79,7 @@ class AnnotationTest extends SnippetTestCase
 
     public function testLandmarks()
     {
-        $snippet = $this->method(Annotation::class, 'landmarks');
+        $snippet = $this->snippetFromMethod(Annotation::class, 'landmarks');
         $snippet->addLocal('annotation', new Annotation([
             'landmarkAnnotations' => [
                 []
@@ -89,7 +92,7 @@ class AnnotationTest extends SnippetTestCase
 
     public function testLogos()
     {
-        $snippet = $this->method(Annotation::class, 'logos');
+        $snippet = $this->snippetFromMethod(Annotation::class, 'logos');
         $snippet->addLocal('annotation', new Annotation([
             'logoAnnotations' => [
                 []
@@ -102,7 +105,7 @@ class AnnotationTest extends SnippetTestCase
 
     public function testLabels()
     {
-        $snippet = $this->method(Annotation::class, 'labels');
+        $snippet = $this->snippetFromMethod(Annotation::class, 'labels');
         $snippet->addLocal('annotation', new Annotation([
             'labelAnnotations' => [
                 []
@@ -115,7 +118,7 @@ class AnnotationTest extends SnippetTestCase
 
     public function testText()
     {
-        $snippet = $this->method(Annotation::class, 'text');
+        $snippet = $this->snippetFromMethod(Annotation::class, 'text');
         $snippet->addLocal('annotation', new Annotation([
             'textAnnotations' => [
                 []
@@ -128,7 +131,7 @@ class AnnotationTest extends SnippetTestCase
 
     public function testSafeSearch()
     {
-        $snippet = $this->method(Annotation::class, 'safeSearch');
+        $snippet = $this->snippetFromMethod(Annotation::class, 'safeSearch');
         $snippet->addLocal('annotation', new Annotation([
             'safeSearchAnnotation' => []
         ]));
@@ -139,7 +142,7 @@ class AnnotationTest extends SnippetTestCase
 
     public function testImageProperties()
     {
-        $snippet = $this->method(Annotation::class, 'imageProperties');
+        $snippet = $this->snippetFromMethod(Annotation::class, 'imageProperties');
         $snippet->addLocal('annotation', new Annotation([
             'imagePropertiesAnnotation' => []
         ]));
@@ -150,7 +153,7 @@ class AnnotationTest extends SnippetTestCase
 
     public function testError()
     {
-        $snippet = $this->method(Annotation::class, 'error');
+        $snippet = $this->snippetFromMethod(Annotation::class, 'error');
         $snippet->addLocal('annotation', new Annotation([
             'error' => []
         ]));

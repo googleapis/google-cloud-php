@@ -72,7 +72,7 @@ class FaceTest extends SnippetTestCase
                 ]
             ]);
 
-        $snippet = $this->class(Face::class);
+        $snippet = $this->snippetFromClass(Face::class);
         $snippet->addLocal('connectionStub', $connectionStub->reveal());
         $snippet->setLine(5, '$imageResource = fopen(\'php://temp\', \'r\');');
         $snippet->insertAfterLine(3, '$reflection = new \ReflectionClass($vision);
@@ -85,7 +85,7 @@ class FaceTest extends SnippetTestCase
 
     public function testLandmarks()
     {
-        $snippet = $this->magicMethod(Face::class, 'landmarks');
+        $snippet = $this->snippetFromMagicMethod(Face::class, 'landmarks');
         $snippet->addLocal('face', new Face([
             'landmarks' => [
                 [
@@ -101,7 +101,7 @@ class FaceTest extends SnippetTestCase
 
     public function testBoundingpoly()
     {
-        $snippet = $this->magicMethod(Face::class, 'boundingPoly');
+        $snippet = $this->snippetFromMagicMethod(Face::class, 'boundingPoly');
         $snippet->addLocal('face', $this->face);
 
         $res = $snippet->invoke();
@@ -110,7 +110,7 @@ class FaceTest extends SnippetTestCase
 
     public function testFdboundingpoly()
     {
-        $snippet = $this->magicMethod(Face::class, 'fdBoundingPoly');
+        $snippet = $this->snippetFromMagicMethod(Face::class, 'fdBoundingPoly');
         $snippet->addLocal('face', $this->face);
 
         $res = $snippet->invoke();
@@ -119,7 +119,7 @@ class FaceTest extends SnippetTestCase
 
     public function testRollangle()
     {
-        $snippet = $this->magicMethod(Face::class, 'rollAngle');
+        $snippet = $this->snippetFromMagicMethod(Face::class, 'rollAngle');
         $snippet->addLocal('face', $this->face);
 
         $res = $snippet->invoke();
@@ -128,7 +128,7 @@ class FaceTest extends SnippetTestCase
 
     public function testPanangle()
     {
-        $snippet = $this->magicMethod(Face::class, 'panAngle');
+        $snippet = $this->snippetFromMagicMethod(Face::class, 'panAngle');
         $snippet->addLocal('face', $this->face);
 
         $res = $snippet->invoke();
@@ -137,7 +137,7 @@ class FaceTest extends SnippetTestCase
 
     public function testTiltangle()
     {
-        $snippet = $this->magicMethod(Face::class, 'tiltAngle');
+        $snippet = $this->snippetFromMagicMethod(Face::class, 'tiltAngle');
         $snippet->addLocal('face', $this->face);
 
         $res = $snippet->invoke();
@@ -146,7 +146,7 @@ class FaceTest extends SnippetTestCase
 
     public function testDetectionconfidence()
     {
-        $snippet = $this->magicMethod(Face::class, 'detectionConfidence');
+        $snippet = $this->snippetFromMagicMethod(Face::class, 'detectionConfidence');
         $snippet->addLocal('face', $this->face);
 
         $res = $snippet->invoke();
@@ -155,7 +155,7 @@ class FaceTest extends SnippetTestCase
 
     public function testLandmarkingconfidence()
     {
-        $snippet = $this->magicMethod(Face::class, 'landmarkingConfidence');
+        $snippet = $this->snippetFromMagicMethod(Face::class, 'landmarkingConfidence');
         $snippet->addLocal('face', $this->face);
 
         $res = $snippet->invoke();
@@ -164,7 +164,7 @@ class FaceTest extends SnippetTestCase
 
     public function testJoylikelihood()
     {
-        $snippet = $this->magicMethod(Face::class, 'joyLikelihood');
+        $snippet = $this->snippetFromMagicMethod(Face::class, 'joyLikelihood');
         $snippet->addLocal('face', $this->face);
 
         $res = $snippet->invoke();
@@ -173,7 +173,7 @@ class FaceTest extends SnippetTestCase
 
     public function testSorrowlikelihood()
     {
-        $snippet = $this->magicMethod(Face::class, 'sorrowLikelihood');
+        $snippet = $this->snippetFromMagicMethod(Face::class, 'sorrowLikelihood');
         $snippet->addLocal('face', $this->face);
 
         $res = $snippet->invoke();
@@ -182,7 +182,7 @@ class FaceTest extends SnippetTestCase
 
     public function testAngerlikelihood()
     {
-        $snippet = $this->magicMethod(Face::class, 'angerLikelihood');
+        $snippet = $this->snippetFromMagicMethod(Face::class, 'angerLikelihood');
         $snippet->addLocal('face', $this->face);
 
         $res = $snippet->invoke();
@@ -191,7 +191,7 @@ class FaceTest extends SnippetTestCase
 
     public function testSurpriselikelihood()
     {
-        $snippet = $this->magicMethod(Face::class, 'surpriseLikelihood');
+        $snippet = $this->snippetFromMagicMethod(Face::class, 'surpriseLikelihood');
         $snippet->addLocal('face', $this->face);
 
         $res = $snippet->invoke();
@@ -200,7 +200,7 @@ class FaceTest extends SnippetTestCase
 
     public function testUnderexposedlikelihood()
     {
-        $snippet = $this->magicMethod(Face::class, 'underExposedLikelihood');
+        $snippet = $this->snippetFromMagicMethod(Face::class, 'underExposedLikelihood');
         $snippet->addLocal('face', $this->face);
 
         $res = $snippet->invoke();
@@ -209,7 +209,7 @@ class FaceTest extends SnippetTestCase
 
     public function testBlurredlikelihood()
     {
-        $snippet = $this->magicMethod(Face::class, 'blurredLikelihood');
+        $snippet = $this->snippetFromMagicMethod(Face::class, 'blurredLikelihood');
         $snippet->addLocal('face', $this->face);
 
         $res = $snippet->invoke();
@@ -218,7 +218,7 @@ class FaceTest extends SnippetTestCase
 
     public function testHeadwearlikelihood()
     {
-        $snippet = $this->magicMethod(Face::class, 'headwearLikelihood');
+        $snippet = $this->snippetFromMagicMethod(Face::class, 'headwearLikelihood');
         $snippet->addLocal('face', $this->face);
 
         $res = $snippet->invoke();

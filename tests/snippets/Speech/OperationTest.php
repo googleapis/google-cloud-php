@@ -55,7 +55,7 @@ class OperationTest extends SnippetTestCase
     //  */
     // public function testClass()
     // {
-    //     $snippet = $this->class(Operation::class);
+    //     $snippet = $this->snippetFromClass(Operation::class);
 
     //     $connectionStub = $this->prophesize(ConnectionInterface::class);
 
@@ -71,7 +71,7 @@ class OperationTest extends SnippetTestCase
 
     public function testIsComplete()
     {
-        $snippet = $this->method(Operation::class, 'isComplete');
+        $snippet = $this->snippetFromMethod(Operation::class, 'isComplete');
         $snippet->addLocal('operation', $this->operation);
 
         $res = $snippet->invoke();
@@ -80,7 +80,7 @@ class OperationTest extends SnippetTestCase
 
     public function testResults()
     {
-        $snippet = $this->method(Operation::class, 'results');
+        $snippet = $this->snippetFromMethod(Operation::class, 'results');
         $snippet->addLocal('operation', $this->operation);
 
         $res = $snippet->invoke('results');
@@ -89,7 +89,7 @@ class OperationTest extends SnippetTestCase
 
     public function testExists()
     {
-        $snippet = $this->method(Operation::class, 'exists');
+        $snippet = $this->snippetFromMethod(Operation::class, 'exists');
         $snippet->addLocal('operation', $this->operation);
 
         $res = $snippet->invoke();
@@ -98,7 +98,7 @@ class OperationTest extends SnippetTestCase
 
     public function testInfo()
     {
-        $snippet = $this->method(Operation::class, 'info');
+        $snippet = $this->snippetFromMethod(Operation::class, 'info');
         $snippet->addLocal('operation', $this->operation);
 
         $res = $snippet->invoke();
@@ -107,7 +107,7 @@ class OperationTest extends SnippetTestCase
 
     public function testReload()
     {
-        $snippet = $this->method(Operation::class, 'reload');
+        $snippet = $this->snippetFromMethod(Operation::class, 'reload');
         $snippet->addLocal('operation', $this->operation);
 
         $this->connection->getOperation(Argument::any())
@@ -122,7 +122,7 @@ class OperationTest extends SnippetTestCase
 
     public function testName()
     {
-        $snippet = $this->method(Operation::class, 'name');
+        $snippet = $this->snippetFromMethod(Operation::class, 'name');
         $snippet->addLocal('operation', $this->operation);
 
         $res = $snippet->invoke();

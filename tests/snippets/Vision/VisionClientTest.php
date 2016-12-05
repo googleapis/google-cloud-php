@@ -41,7 +41,7 @@ class VisionClientTest extends SnippetTestCase
 
     public function testClassWithServiceBuilder()
     {
-        $snippet = $this->class(VisionClient::class);
+        $snippet = $this->snippetFromClass(VisionClient::class);
         $res = $snippet->invoke('vision');
 
         $this->assertInstanceOf(VisionClient::class, $res->return());
@@ -49,7 +49,7 @@ class VisionClientTest extends SnippetTestCase
 
     public function testClassDirectInstantiation()
     {
-        $snippet = $this->class(VisionClient::class, 1);
+        $snippet = $this->snippetFromClass(VisionClient::class, 1);
         $res = $snippet->invoke('vision');
 
         $this->assertInstanceOf(VisionClient::class, $res->return());
@@ -57,7 +57,7 @@ class VisionClientTest extends SnippetTestCase
 
     public function testImage()
     {
-        $snippet = $this->method(VisionClient::class, 'image');
+        $snippet = $this->snippetFromMethod(VisionClient::class, 'image');
         $snippet->addLocal('vision', $this->client);
 
         $snippet->setLine(0, '$imageResource = fopen(\'php://temp\', \'r\');');
@@ -69,7 +69,7 @@ class VisionClientTest extends SnippetTestCase
 
     public function testImageWithMaxResults()
     {
-        $snippet = $this->method(VisionClient::class, 'image', 1);
+        $snippet = $this->snippetFromMethod(VisionClient::class, 'image', 1);
         $snippet->addLocal('vision', $this->client);
 
         $snippet->setLine(2, '$imageResource = fopen(\'php://temp\', \'r\');');
@@ -81,7 +81,7 @@ class VisionClientTest extends SnippetTestCase
 
     public function testImages()
     {
-        $snippet = $this->method(VisionClient::class, 'images');
+        $snippet = $this->snippetFromMethod(VisionClient::class, 'images');
         $snippet->addLocal('vision', $this->client);
 
         $snippet->setLine(3, '$familyPhotoResource = fopen(\'php://temp\', \'r\');');
@@ -94,7 +94,7 @@ class VisionClientTest extends SnippetTestCase
 
     public function testAnnotate()
     {
-        $snippet = $this->method(VisionClient::class, 'annotate');
+        $snippet = $this->snippetFromMethod(VisionClient::class, 'annotate');
         $snippet->addLocal('vision', $this->client);
 
         $snippet->setLine(0, '$familyPhotoResource = fopen(\'php://temp\', \'r\');');
@@ -116,7 +116,7 @@ class VisionClientTest extends SnippetTestCase
 
     public function testAnnotateBatch()
     {
-        $snippet = $this->method(VisionClient::class, 'annotateBatch');
+        $snippet = $this->snippetFromMethod(VisionClient::class, 'annotateBatch');
         $snippet->addLocal('vision', $this->client);
 
         $snippet->setLine(2, '$familyPhotoResource = fopen(\'php://temp\', \'r\');');

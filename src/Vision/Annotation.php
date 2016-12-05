@@ -28,14 +28,11 @@ use Google\Cloud\Vision\Annotation\SafeSearch;
  *
  * Example:
  * ```
- * //  First get  vision
  * use Google\Cloud\ServiceBuilder;
  *
  * $cloud = new ServiceBuilder();
  * $vision = $cloud->vision();
- * ```
  *
- * ```
  * $imageResource = fopen(__DIR__ .'/assets/family-photo.jpg', 'r');
  * $image = $vision->image($imageResource, [
  *     'FACE_DETECTION'

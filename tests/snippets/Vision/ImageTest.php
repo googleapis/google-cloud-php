@@ -28,7 +28,7 @@ class ImageTest extends SnippetTestCase
 {
     public function testImageFromServiceBuilder()
     {
-        $snippet = $this->class(Image::class, 'default');
+        $snippet = $this->snippetFromClass(Image::class, 'default');
         $snippet->setLine(6, '$imageResource = fopen(\'php://temp\', \'r\');');
 
         $res = $snippet->invoke('image');
@@ -37,7 +37,7 @@ class ImageTest extends SnippetTestCase
 
     public function testDirectInstantiation()
     {
-        $snippet = $this->class(Image::class, 'direct');
+        $snippet = $this->snippetFromClass(Image::class, 'direct');
         $snippet->setLine(4, '$imageResource = fopen(\'php://temp\', \'r\');');
 
         $res = $snippet->invoke('image');
@@ -46,7 +46,7 @@ class ImageTest extends SnippetTestCase
 
     public function testImageString()
     {
-        $snippet = $this->class(Image::class, 'string');
+        $snippet = $this->snippetFromClass(Image::class, 'string');
         $snippet->setLine(5, '$imageData = \'foo\';');
 
         $res = $snippet->invoke('image');
@@ -56,7 +56,7 @@ class ImageTest extends SnippetTestCase
     public function testGcsImage()
     {
         $cloud = new ServiceBuilder;
-        $snippet = $this->class(Image::class, 'gcs');
+        $snippet = $this->snippetFromClass(Image::class, 'gcs');
         $snippet->addLocal('cloud', $cloud);
 
         $res = $snippet->invoke('image');
@@ -66,7 +66,7 @@ class ImageTest extends SnippetTestCase
 
     public function testMaxResults()
     {
-        $snippet = $this->class(Image::class, 'max');
+        $snippet = $this->snippetFromClass(Image::class, 'max');
         $snippet->setLine(5, '$imageResource = fopen(\'php://temp\', \'r\');');
 
         $res = $snippet->invoke('image');
@@ -75,7 +75,7 @@ class ImageTest extends SnippetTestCase
 
     public function testFeatureShortcuts()
     {
-        $snippet = $this->class(Image::class, 'shortcut');
+        $snippet = $this->snippetFromClass(Image::class, 'shortcut');
         $snippet->setLine(5, '$imageResource = fopen(\'php://temp\', \'r\');');
 
         $res = $snippet->invoke('image');
@@ -84,7 +84,7 @@ class ImageTest extends SnippetTestCase
 
     public function testRequestObject()
     {
-        $snippet = $this->method(Image::class, 'requestObject');
+        $snippet = $this->snippetFromMethod(Image::class, 'requestObject');
         $snippet->setLine(2, '$imageResource = fopen(\'php://temp\', \'r\');');
 
         $res = $snippet->invoke('requestObj');

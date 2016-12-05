@@ -39,7 +39,7 @@ class TranslateClientTest extends SnippetTestCase
 
     public function testTrue()
     {
-        $snippet = $this->class(TranslateClient::class);
+        $snippet = $this->snippetFromClass(TranslateClient::class);
         $res = $snippet->invoke('translate');
 
         $this->assertInstanceOf(TranslateClient::class, $res->return());
@@ -47,7 +47,7 @@ class TranslateClientTest extends SnippetTestCase
 
     public function testTranslate()
     {
-        $snippet = $this->method(TranslateClient::class, 'translate');
+        $snippet = $this->snippetFromMethod(TranslateClient::class, 'translate');
         $snippet->addLocal('translate', $this->client);
 
         $this->connection->listTranslations(Argument::any())
@@ -71,7 +71,7 @@ class TranslateClientTest extends SnippetTestCase
 
     public function testTranslateBatch()
     {
-        $snippet = $this->method(TranslateClient::class, 'translateBatch');
+        $snippet = $this->snippetFromMethod(TranslateClient::class, 'translateBatch');
         $snippet->addLocal('translate', $this->client);
 
         $this->connection->listTranslations(Argument::any())
@@ -95,7 +95,7 @@ class TranslateClientTest extends SnippetTestCase
 
     public function testDetectLanguage()
     {
-        $snippet = $this->method(TranslateClient::class, 'detectLanguage');
+        $snippet = $this->snippetFromMethod(TranslateClient::class, 'detectLanguage');
         $snippet->addLocal('translate', $this->client);
 
         $this->connection->listDetections(Argument::any())
@@ -121,7 +121,7 @@ class TranslateClientTest extends SnippetTestCase
 
     public function testDetectLanguageBatch()
     {
-        $snippet = $this->method(TranslateClient::class, 'detectLanguageBatch');
+        $snippet = $this->snippetFromMethod(TranslateClient::class, 'detectLanguageBatch');
         $snippet->addLocal('translate', $this->client);
 
         $this->connection->listDetections(Argument::any())
@@ -147,7 +147,7 @@ class TranslateClientTest extends SnippetTestCase
 
     public function testLanguages()
     {
-        $snippet = $this->method(TranslateClient::class, 'languages');
+        $snippet = $this->snippetFromMethod(TranslateClient::class, 'languages');
         $snippet->addLocal('translate', $this->client);
 
         $this->connection->listLanguages(Argument::any())
@@ -171,7 +171,7 @@ class TranslateClientTest extends SnippetTestCase
 
     public function testLocalizedLanguages()
     {
-        $snippet = $this->method(TranslateClient::class, 'localizedLanguages');
+        $snippet = $this->snippetFromMethod(TranslateClient::class, 'localizedLanguages');
         $snippet->addLocal('translate', $this->client);
 
         $this->connection->listLanguages(Argument::any())

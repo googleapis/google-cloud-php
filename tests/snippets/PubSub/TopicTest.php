@@ -48,7 +48,7 @@ class TopicTest extends SnippetTestCase
 
     public function testClass()
     {
-        $snippet = $this->class(Topic::class);
+        $snippet = $this->snippetFromClass(Topic::class);
         $snippet->addLocal('pubsub', new \PubSubClientStub);
 
         $res = $snippet->invoke('topic');
@@ -58,7 +58,7 @@ class TopicTest extends SnippetTestCase
 
     public function testClassWithFullyQualifiedName()
     {
-        $snippet = $this->class(Topic::class, 1);
+        $snippet = $this->snippetFromClass(Topic::class, 1);
         $snippet->addLocal('pubsub', new \PubSubClientStub);
 
         $res = $snippet->invoke('topic');
@@ -68,7 +68,7 @@ class TopicTest extends SnippetTestCase
 
     public function testName()
     {
-        $snippet = $this->method(Topic::class, 'name');
+        $snippet = $this->snippetFromMethod(Topic::class, 'name');
         $snippet->addLocal('topic', $this->topic);
 
         $res = $snippet->invoke();
@@ -77,7 +77,7 @@ class TopicTest extends SnippetTestCase
 
     public function testCreate()
     {
-        $snippet = $this->method(Topic::class, 'create');
+        $snippet = $this->snippetFromMethod(Topic::class, 'create');
         $snippet->addLocal('topic', $this->topic);
 
         $this->connection->createTopic(Argument::any())
@@ -92,7 +92,7 @@ class TopicTest extends SnippetTestCase
 
     public function testDelete()
     {
-        $snippet = $this->method(Topic::class, 'delete');
+        $snippet = $this->snippetFromMethod(Topic::class, 'delete');
         $snippet->addLocal('topic', $this->topic);
 
         $this->connection->deleteTopic(Argument::any())
@@ -105,7 +105,7 @@ class TopicTest extends SnippetTestCase
 
     public function testExists()
     {
-        $snippet = $this->method(Topic::class, 'exists');
+        $snippet = $this->snippetFromMethod(Topic::class, 'exists');
         $snippet->addLocal('topic', $this->topic);
 
         $this->connection->getTopic(Argument::any())
@@ -120,7 +120,7 @@ class TopicTest extends SnippetTestCase
 
     public function testInfo()
     {
-        $snippet = $this->method(Topic::class, 'info');
+        $snippet = $this->snippetFromMethod(Topic::class, 'info');
         $snippet->addLocal('topic', $this->topic);
 
         $this->connection->getTopic(Argument::any())
@@ -137,7 +137,7 @@ class TopicTest extends SnippetTestCase
 
     public function testReload()
     {
-        $snippet = $this->method(Topic::class, 'reload');
+        $snippet = $this->snippetFromMethod(Topic::class, 'reload');
         $snippet->addLocal('topic', $this->topic);
 
         $this->connection->getTopic(Argument::any())
@@ -154,7 +154,7 @@ class TopicTest extends SnippetTestCase
 
     public function testPublish()
     {
-        $snippet = $this->method(Topic::class, 'publish');
+        $snippet = $this->snippetFromMethod(Topic::class, 'publish');
         $snippet->addLocal('topic', $this->topic);
 
         $this->connection->publishMessage(Argument::any())
@@ -167,7 +167,7 @@ class TopicTest extends SnippetTestCase
 
     public function testPublishBatch()
     {
-        $snippet = $this->method(Topic::class, 'publishBatch');
+        $snippet = $this->snippetFromMethod(Topic::class, 'publishBatch');
         $snippet->addLocal('topic', $this->topic);
 
         $this->connection->publishMessage(Argument::any())
@@ -180,7 +180,7 @@ class TopicTest extends SnippetTestCase
 
     public function testSubscribe()
     {
-        $snippet = $this->method(Topic::class, 'subscribe');
+        $snippet = $this->snippetFromMethod(Topic::class, 'subscribe');
         $snippet->addLocal('topic', $this->topic);
 
         $this->connection->createSubscription(Argument::any())
@@ -197,7 +197,7 @@ class TopicTest extends SnippetTestCase
 
     public function testSubscription()
     {
-        $snippet = $this->method(Topic::class, 'subscription');
+        $snippet = $this->snippetFromMethod(Topic::class, 'subscription');
         $snippet->addLocal('topic', $this->topic);
 
         $res = $snippet->invoke('subscription');
@@ -206,7 +206,7 @@ class TopicTest extends SnippetTestCase
 
     public function testSubscriptions()
     {
-        $snippet = $this->method(Topic::class, 'subscriptions');
+        $snippet = $this->snippetFromMethod(Topic::class, 'subscriptions');
         $snippet->addLocal('topic', $this->topic);
 
         $this->connection->listSubscriptionsByTopic(Argument::any())
@@ -226,7 +226,7 @@ class TopicTest extends SnippetTestCase
 
     public function iam()
     {
-        $snippet = $this->method(Topic::class, 'iam');
+        $snippet = $this->snippetFromMethod(Topic::class, 'iam');
         $snippet->addLocal('topic', $this->topic);
         $res = $snippet->invoke('iam');
 

@@ -45,7 +45,7 @@ class IamTest extends SnippetTestCase
 
     public function testPolicy()
     {
-        $snippet = $this->method(Iam::class, 'policy');
+        $snippet = $this->snippetFromMethod(Iam::class, 'policy');
         $snippet->addLocal('iam', $this->iam);
 
         $this->connection->getPolicy(Argument::any())
@@ -64,7 +64,7 @@ class IamTest extends SnippetTestCase
 
     public function setPolicy()
     {
-        $snippet = $this->method(Iam::class, 'setPolicy');
+        $snippet = $this->snippetFromMethod(Iam::class, 'setPolicy');
         $snippet->addLocal('iam', $this->iam);
 
         $this->connection->getPolicy(Argument::any())
@@ -95,7 +95,7 @@ class IamTest extends SnippetTestCase
             'pubsub.topics.attachSubscription'
         ];
 
-        $snippet = $this->method(Iam::class, 'testPermissions');
+        $snippet = $this->snippetFromMethod(Iam::class, 'testPermissions');
         $snippet->addLocal('iam', $this->iam);
 
         $this->connection->testPermissions([
@@ -113,7 +113,7 @@ class IamTest extends SnippetTestCase
 
     public function testReload()
     {
-        $snippet = $this->method(Iam::class, 'reload');
+        $snippet = $this->snippetFromMethod(Iam::class, 'reload');
         $snippet->addLocal('iam', $this->iam);
 
         $this->connection->getPolicy(Argument::any())

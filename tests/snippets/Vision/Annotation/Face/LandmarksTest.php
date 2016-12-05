@@ -96,7 +96,7 @@ class LandmarksTest extends SnippetTestCase
                 ]
             ]);
 
-        $snippet = $this->class(Landmarks::class);
+        $snippet = $this->snippetFromClass(Landmarks::class);
         $snippet->addLocal('connectionStub', $connectionStub->reveal());
         $snippet->setLine(5, '$imageResource = fopen(\'php://temp\', \'r\');');
         $snippet->insertAfterLine(3, '$reflection = new \ReflectionClass($vision);
@@ -112,7 +112,7 @@ class LandmarksTest extends SnippetTestCase
 
     public function testInfo()
     {
-        $snippet = $this->magicMethod(Landmarks::class, 'info');
+        $snippet = $this->snippetFromMagicMethod(Landmarks::class, 'info');
         $snippet->addLocal('landmarks', $this->landmarks);
 
         $res = $snippet->invoke('info');
@@ -121,7 +121,7 @@ class LandmarksTest extends SnippetTestCase
 
     public function testLeftEye()
     {
-        $snippet = $this->method(Landmarks::class, 'leftEye');
+        $snippet = $this->snippetFromMethod(Landmarks::class, 'leftEye');
         $snippet->addLocal('landmarks', $this->landmarks);
 
         $res = $snippet->invoke();
@@ -130,7 +130,7 @@ class LandmarksTest extends SnippetTestCase
 
     public function testLeftEyePupil()
     {
-        $snippet = $this->method(Landmarks::class, 'leftEyePupil');
+        $snippet = $this->snippetFromMethod(Landmarks::class, 'leftEyePupil');
         $snippet->addLocal('landmarks', $this->landmarks);
 
         $res = $snippet->invoke();
@@ -139,7 +139,7 @@ class LandmarksTest extends SnippetTestCase
 
     public function testLeftEyeBoundaries()
     {
-        $snippet = $this->method(Landmarks::class, 'leftEyeBoundaries');
+        $snippet = $this->snippetFromMethod(Landmarks::class, 'leftEyeBoundaries');
         $snippet->addLocal('landmarks', $this->landmarks);
 
         $res = $snippet->invoke();
@@ -153,7 +153,7 @@ class LandmarksTest extends SnippetTestCase
 
     public function testLeftEyeBrow()
     {
-        $snippet = $this->method(Landmarks::class, 'leftEyeBrow');
+        $snippet = $this->snippetFromMethod(Landmarks::class, 'leftEyeBrow');
         $snippet->addLocal('landmarks', $this->landmarks);
 
         $res = $snippet->invoke();
@@ -166,7 +166,7 @@ class LandmarksTest extends SnippetTestCase
 
     public function testRightEye()
     {
-        $snippet = $this->method(Landmarks::class, 'rightEye');
+        $snippet = $this->snippetFromMethod(Landmarks::class, 'rightEye');
         $snippet->addLocal('landmarks', $this->landmarks);
 
         $res = $snippet->invoke();
@@ -175,7 +175,7 @@ class LandmarksTest extends SnippetTestCase
 
     public function testRightEyePupil()
     {
-        $snippet = $this->method(Landmarks::class, 'rightEyePupil');
+        $snippet = $this->snippetFromMethod(Landmarks::class, 'rightEyePupil');
         $snippet->addLocal('landmarks', $this->landmarks);
 
         $res = $snippet->invoke();
@@ -184,7 +184,7 @@ class LandmarksTest extends SnippetTestCase
 
     public function testRightEyeBoundaries()
     {
-        $snippet = $this->method(Landmarks::class, 'rightEyeBoundaries');
+        $snippet = $this->snippetFromMethod(Landmarks::class, 'rightEyeBoundaries');
         $snippet->addLocal('landmarks', $this->landmarks);
 
         $res = $snippet->invoke();
@@ -198,7 +198,7 @@ class LandmarksTest extends SnippetTestCase
 
     public function testRightEyeBrow()
     {
-        $snippet = $this->method(Landmarks::class, 'rightEyeBrow');
+        $snippet = $this->snippetFromMethod(Landmarks::class, 'rightEyeBrow');
         $snippet->addLocal('landmarks', $this->landmarks);
 
         $res = $snippet->invoke();
@@ -211,7 +211,7 @@ class LandmarksTest extends SnippetTestCase
 
     public function testMidpointBetweenEyes()
     {
-        $snippet = $this->method(Landmarks::class, 'midpointBetweenEyes');
+        $snippet = $this->snippetFromMethod(Landmarks::class, 'midpointBetweenEyes');
         $snippet->addLocal('landmarks', $this->landmarks);
 
         $res = $snippet->invoke();
@@ -220,7 +220,7 @@ class LandmarksTest extends SnippetTestCase
 
     public function testLips()
     {
-        $snippet = $this->method(Landmarks::class, 'lips');
+        $snippet = $this->snippetFromMethod(Landmarks::class, 'lips');
         $snippet->addLocal('landmarks', $this->landmarks);
 
         $res = $snippet->invoke();
@@ -232,7 +232,7 @@ class LandmarksTest extends SnippetTestCase
 
     public function testMouth()
     {
-        $snippet = $this->method(Landmarks::class, 'mouth');
+        $snippet = $this->snippetFromMethod(Landmarks::class, 'mouth');
         $snippet->addLocal('landmarks', $this->landmarks);
 
         $res = $snippet->invoke();
@@ -245,7 +245,7 @@ class LandmarksTest extends SnippetTestCase
 
     public function testNose()
     {
-        $snippet = $this->method(Landmarks::class, 'nose');
+        $snippet = $this->snippetFromMethod(Landmarks::class, 'nose');
         $snippet->addLocal('landmarks', $this->landmarks);
 
         $res = $snippet->invoke();
@@ -259,7 +259,7 @@ class LandmarksTest extends SnippetTestCase
 
     public function testEars()
     {
-        $snippet = $this->method(Landmarks::class, 'ears');
+        $snippet = $this->snippetFromMethod(Landmarks::class, 'ears');
         $snippet->addLocal('landmarks', $this->landmarks);
 
         $res = $snippet->invoke();
@@ -271,7 +271,7 @@ class LandmarksTest extends SnippetTestCase
 
     public function testForehead()
     {
-        $snippet = $this->method(Landmarks::class, 'forehead');
+        $snippet = $this->snippetFromMethod(Landmarks::class, 'forehead');
         $snippet->addLocal('landmarks', $this->landmarks);
 
         $res = $snippet->invoke();
@@ -280,7 +280,7 @@ class LandmarksTest extends SnippetTestCase
 
     public function testChin()
     {
-        $snippet = $this->method(Landmarks::class, 'chin');
+        $snippet = $this->snippetFromMethod(Landmarks::class, 'chin');
         $snippet->addLocal('landmarks', $this->landmarks);
 
         $res = $snippet->invoke();

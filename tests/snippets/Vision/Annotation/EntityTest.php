@@ -60,7 +60,7 @@ class EntityTest extends SnippetTestCase
                 ]
             ]);
 
-        $snippet = $this->class(Entity::class);
+        $snippet = $this->snippetFromClass(Entity::class);
         $snippet->addLocal('connectionStub', $connectionStub->reveal());
         $snippet->setLine(5, '$imageResource = fopen(\'php://temp\', \'r\');');
         $snippet->insertAfterLine(3, '$reflection = new \ReflectionClass($vision);
@@ -76,7 +76,7 @@ class EntityTest extends SnippetTestCase
 
     public function testMid()
     {
-        $snippet = $this->magicMethod(Entity::class, 'mid');
+        $snippet = $this->snippetFromMagicMethod(Entity::class, 'mid');
         $snippet->addLocal('text', $this->entity);
 
         $res = $snippet->invoke();
@@ -85,7 +85,7 @@ class EntityTest extends SnippetTestCase
 
     public function testLocale()
     {
-        $snippet = $this->magicMethod(Entity::class, 'locale');
+        $snippet = $this->snippetFromMagicMethod(Entity::class, 'locale');
         $snippet->addLocal('text', $this->entity);
 
         $res = $snippet->invoke();
@@ -94,7 +94,7 @@ class EntityTest extends SnippetTestCase
 
     public function testDescription()
     {
-        $snippet = $this->magicMethod(Entity::class, 'description');
+        $snippet = $this->snippetFromMagicMethod(Entity::class, 'description');
         $snippet->addLocal('text', $this->entity);
 
         $res = $snippet->invoke();
@@ -103,7 +103,7 @@ class EntityTest extends SnippetTestCase
 
     public function testScore()
     {
-        $snippet = $this->magicMethod(Entity::class, 'score');
+        $snippet = $this->snippetFromMagicMethod(Entity::class, 'score');
         $snippet->addLocal('text', $this->entity);
 
         $res = $snippet->invoke();
@@ -112,7 +112,7 @@ class EntityTest extends SnippetTestCase
 
     public function testConfidence()
     {
-        $snippet = $this->magicMethod(Entity::class, 'confidence');
+        $snippet = $this->snippetFromMagicMethod(Entity::class, 'confidence');
         $snippet->addLocal('text', $this->entity);
 
         $res = $snippet->invoke();
@@ -121,7 +121,7 @@ class EntityTest extends SnippetTestCase
 
     public function testTopicality()
     {
-        $snippet = $this->magicMethod(Entity::class, 'topicality');
+        $snippet = $this->snippetFromMagicMethod(Entity::class, 'topicality');
         $snippet->addLocal('text', $this->entity);
 
         $res = $snippet->invoke();
@@ -130,7 +130,7 @@ class EntityTest extends SnippetTestCase
 
     public function testBoundingPoly()
     {
-        $snippet = $this->magicMethod(Entity::class, 'boundingPoly');
+        $snippet = $this->snippetFromMagicMethod(Entity::class, 'boundingPoly');
         $snippet->addLocal('text', $this->entity);
 
         $res = $snippet->invoke();
@@ -139,7 +139,7 @@ class EntityTest extends SnippetTestCase
 
     public function testLocations()
     {
-        $snippet = $this->magicMethod(Entity::class, 'locations');
+        $snippet = $this->snippetFromMagicMethod(Entity::class, 'locations');
         $snippet->addLocal('text', $this->entity);
 
         $res = $snippet->invoke();
@@ -148,7 +148,7 @@ class EntityTest extends SnippetTestCase
 
     public function testProperties()
     {
-        $snippet = $this->magicMethod(Entity::class, 'properties');
+        $snippet = $this->snippetFromMagicMethod(Entity::class, 'properties');
         $snippet->addLocal('text', $this->entity);
 
         $res = $snippet->invoke();

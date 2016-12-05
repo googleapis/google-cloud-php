@@ -45,7 +45,7 @@ class PubSubClientTest extends SnippetTestCase
 
     public function testClassExample1()
     {
-        $snippet = $this->class(PubSubClient::class, '__construct');
+        $snippet = $this->snippetFromClass(PubSubClient::class, '__construct');
         $res = $snippet->invoke('pubsub');
 
         $this->assertInstanceOf(PubSubClient::class, $res->return());
@@ -61,7 +61,7 @@ class PubSubClientTest extends SnippetTestCase
 
         $this->client->setConnection($this->connection->reveal());
 
-        $snippet = $this->method(PubSubClient::class, 'createTopic');
+        $snippet = $this->snippetFromMethod(PubSubClient::class, 'createTopic');
         $snippet->addLocal('pubsub', $this->client);
 
         $res = $snippet->invoke('topic');
@@ -73,7 +73,7 @@ class PubSubClientTest extends SnippetTestCase
 
     public function testTopic()
     {
-        $snippet = $this->method(PubSubClient::class, 'topic');
+        $snippet = $this->snippetFromMethod(PubSubClient::class, 'topic');
         $snippet->addLocal('pubsub', $this->client);
 
         $this->connection->getTopic(Argument::any())
@@ -93,7 +93,7 @@ class PubSubClientTest extends SnippetTestCase
 
     public function testTopics()
     {
-        $snippet = $this->method(PubSubClient::class, 'topics');
+        $snippet = $this->snippetFromMethod(PubSubClient::class, 'topics');
         $snippet->addLocal('pubsub', $this->client);
 
         $this->connection->listTopics(Argument::any())
@@ -114,7 +114,7 @@ class PubSubClientTest extends SnippetTestCase
 
     public function testSubscribe()
     {
-        $snippet = $this->method(PubSubClient::class, 'subscribe');
+        $snippet = $this->snippetFromMethod(PubSubClient::class, 'subscribe');
         $snippet->addLocal('pubsub', $this->client);
 
         $this->connection->createSubscription(Argument::any())
@@ -136,7 +136,7 @@ class PubSubClientTest extends SnippetTestCase
 
     public function testSubscription()
     {
-        $snippet = $this->method(PubSubClient::class, 'subscription');
+        $snippet = $this->snippetFromMethod(PubSubClient::class, 'subscription');
         $snippet->addLocal('pubsub', $this->client);
 
         $this->connection->getSubscription(['subscription' => self::SUBSCRIPTION])
@@ -158,7 +158,7 @@ class PubSubClientTest extends SnippetTestCase
 
     public function testSubscriptions()
     {
-        $snippet = $this->method(PubSubClient::class, 'subscriptions');
+        $snippet = $this->snippetFromMethod(PubSubClient::class, 'subscriptions');
         $snippet->addLocal('pubsub', $this->client);
 
         $this->connection->listSubscriptions(Argument::any())
@@ -188,7 +188,7 @@ class PubSubClientTest extends SnippetTestCase
             "subscription" => self::SUBSCRIPTION
         ];
 
-        $snippet = $this->method(PubSubClient::class, 'consume');
+        $snippet = $this->snippetFromMethod(PubSubClient::class, 'consume');
         $snippet->addLocal('pubsub', $this->client);
         $snippet->setLine(0, '$httpPostRequestBody = \''. json_encode($message) .'\';');
 

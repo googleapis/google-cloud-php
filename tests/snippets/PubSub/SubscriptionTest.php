@@ -54,7 +54,7 @@ class SubscriptionTest extends SnippetTestCase
 
     public function testClassThroughTopic()
     {
-        $snippet = $this->class(Subscription::class);
+        $snippet = $this->snippetFromClass(Subscription::class);
         $res = $snippet->invoke('subscription');
 
         $this->assertInstanceOf(Subscription::class, $res->return());
@@ -63,7 +63,7 @@ class SubscriptionTest extends SnippetTestCase
 
     public function testClassThroughPubSubClient()
     {
-        $snippet = $this->class(Subscription::class, 1);
+        $snippet = $this->snippetFromClass(Subscription::class, 1);
         $res = $snippet->invoke('subscription');
 
         $this->assertInstanceOf(Subscription::class, $res->return());
@@ -72,7 +72,7 @@ class SubscriptionTest extends SnippetTestCase
 
     public function testName()
     {
-        $snippet = $this->method(Subscription::class, 'name');
+        $snippet = $this->snippetFromMethod(Subscription::class, 'name');
         $snippet->addLocal('subscription', $this->subscription);
         $res = $snippet->invoke();
         $this->assertEquals(self::SUBSCRIPTION, $res->output());
@@ -80,7 +80,7 @@ class SubscriptionTest extends SnippetTestCase
 
     public function testCreate()
     {
-        $snippet = $this->method(Subscription::class, 'create');
+        $snippet = $this->snippetFromMethod(Subscription::class, 'create');
         $snippet->addLocal('pubsub', $this->pubsub);
 
         $return = ['foo' => 'bar'];
@@ -96,7 +96,7 @@ class SubscriptionTest extends SnippetTestCase
 
     public function testDelete()
     {
-        $snippet = $this->method(Subscription::class, 'delete');
+        $snippet = $this->snippetFromMethod(Subscription::class, 'delete');
         $snippet->addLocal('subscription', $this->subscription);
 
         $this->connection->deleteSubscription(Argument::any())
@@ -109,7 +109,7 @@ class SubscriptionTest extends SnippetTestCase
 
     public function testExists()
     {
-        $snippet = $this->method(Subscription::class, 'exists');
+        $snippet = $this->snippetFromMethod(Subscription::class, 'exists');
         $snippet->addLocal('subscription', $this->subscription);
 
         $this->connection->getSubscription(Argument::any())
@@ -123,7 +123,7 @@ class SubscriptionTest extends SnippetTestCase
 
     public function testInfo()
     {
-        $snippet = $this->method(Subscription::class, 'info');
+        $snippet = $this->snippetFromMethod(Subscription::class, 'info');
         $snippet->addLocal('subscription', $this->subscription);
 
         $this->connection->getSubscription(Argument::any())
@@ -138,7 +138,7 @@ class SubscriptionTest extends SnippetTestCase
 
     public function testReload()
     {
-        $snippet = $this->method(Subscription::class, 'reload');
+        $snippet = $this->snippetFromMethod(Subscription::class, 'reload');
         $snippet->addLocal('subscription', $this->subscription);
 
         $this->connection->getSubscription(Argument::any())
@@ -155,7 +155,7 @@ class SubscriptionTest extends SnippetTestCase
 
     public function testPull()
     {
-        $snippet = $this->method(Subscription::class, 'pull');
+        $snippet = $this->snippetFromMethod(Subscription::class, 'pull');
         $snippet->addLocal('subscription', $this->subscription);
 
         $this->connection->pull(Argument::any())
@@ -175,7 +175,7 @@ class SubscriptionTest extends SnippetTestCase
 
     public function testAcknowledge()
     {
-        $snippet = $this->method(Subscription::class, 'acknowledge');
+        $snippet = $this->snippetFromMethod(Subscription::class, 'acknowledge');
         $snippet->addLocal('subscription', $this->subscription);
 
         $this->connection->pull(Argument::any())
@@ -196,7 +196,7 @@ class SubscriptionTest extends SnippetTestCase
 
     public function testAcknowledgeBatch()
     {
-        $snippet = $this->method(Subscription::class, 'acknowledgeBatch');
+        $snippet = $this->snippetFromMethod(Subscription::class, 'acknowledgeBatch');
         $snippet->addLocal('subscription', $this->subscription);
 
         $this->connection->pull(Argument::any())
@@ -217,7 +217,7 @@ class SubscriptionTest extends SnippetTestCase
 
     public function testModifyAckDeadline()
     {
-        $snippet = $this->method(Subscription::class, 'modifyAckDeadline');
+        $snippet = $this->snippetFromMethod(Subscription::class, 'modifyAckDeadline');
         $snippet->addLocal('subscription', $this->subscription);
 
         $this->connection->pull(Argument::any())
@@ -241,7 +241,7 @@ class SubscriptionTest extends SnippetTestCase
 
     public function testModifyAckDeadlineBatch()
     {
-        $snippet = $this->method(Subscription::class, 'modifyAckDeadline');
+        $snippet = $this->snippetFromMethod(Subscription::class, 'modifyAckDeadline');
         $snippet->addLocal('subscription', $this->subscription);
 
         $this->connection->pull(Argument::any())
@@ -265,7 +265,7 @@ class SubscriptionTest extends SnippetTestCase
 
     public function testModifyPushConfig()
     {
-        $snippet = $this->method(Subscription::class, 'modifyPushConfig');
+        $snippet = $this->snippetFromMethod(Subscription::class, 'modifyPushConfig');
         $snippet->addLocal('subscription', $this->subscription);
 
         $this->connection->modifyPushConfig(Argument::any())
@@ -278,7 +278,7 @@ class SubscriptionTest extends SnippetTestCase
 
     public function testIam()
     {
-        $snippet = $this->method(Subscription::class, 'iam');
+        $snippet = $this->snippetFromMethod(Subscription::class, 'iam');
         $snippet->addLocal('subscription', $this->subscription);
 
         $this->assertInstanceof(Iam::class, $snippet->invoke('iam')->return());

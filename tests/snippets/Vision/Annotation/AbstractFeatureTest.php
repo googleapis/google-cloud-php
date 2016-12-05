@@ -30,7 +30,7 @@ class AbstractFeatureTest extends SnippetTestCase
         $stub = new AbstractFeatureImplementation;
         $stub->setInfo('hello world');
 
-        $snippet = $this->method(AbstractFeature::class, 'info');
+        $snippet = $this->snippetFromMethod(AbstractFeature::class, 'info');
         $snippet->addLocal('imageProperties', $stub);
 
         $res = $snippet->invoke('info');
