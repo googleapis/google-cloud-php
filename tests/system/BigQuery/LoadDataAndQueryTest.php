@@ -143,7 +143,7 @@ class LoadDataAndQueryTest extends BigQueryTestCase
     {
         $results = self::$client->runQuery(
             sprintf(
-                'SELECT * FROM `%s.%s` WHERE city = @city',
+                'SELECT * FROM [%s.%s]',
                 self::$dataset->id(),
                 self::$table->id()
             )
