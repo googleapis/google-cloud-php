@@ -17,10 +17,12 @@
 
 namespace Google\Cloud\BigQuery;
 
+use Google\Cloud\ArrayTrait;
 use Google\Cloud\BigQuery\Connection\ConnectionInterface;
 use Google\Cloud\BigQuery\Connection\Rest;
 use Google\Cloud\ClientTrait;
 use Psr\Cache\CacheItemPoolInterface;
+use Psr\Http\Message\StreamInterface;
 
 /**
  * Google Cloud BigQuery client. Allows you to create, manage, share and query
@@ -45,6 +47,7 @@ use Psr\Cache\CacheItemPoolInterface;
  */
 class BigQueryClient
 {
+    use ArrayTrait;
     use ClientTrait;
     use JobConfigurationTrait;
 
@@ -55,6 +58,11 @@ class BigQueryClient
      * @var ConnectionInterface $connection Represents a connection to BigQuery.
      */
     protected $connection;
+
+    /**
+     * @var ValueMapper $mapper Maps values between PHP and BigQuery.
+     */
+    private $mapper;
 
     /**
      * Create a BigQuery client.
@@ -89,6 +97,7 @@ class BigQueryClient
         }
 
         $this->connection = new Rest($this->configureAuthentication($config));
+        $this->mapper = new ValueMapper();
     }
 
     /**
@@ -97,9 +106,76 @@ class BigQueryClient
      * the case that the query does not complete in the specified timeout, you
      * are able to poll the query's status until it is complete.
      *
+     * Queries constructed using
+     * [standard SQL](https://cloud.google.com/bigquery/docs/reference/standard-sql/)
+     * can take advantage of parametriziation.
+     *
+     * Refer to the table below for a guide on how parameter types are mapped to
+     * their BigQuery equivalents.
+     *
+     * | **PHP Type**                               | **BigQuery Data Type**               |
+     * |--------------------------------------------|--------------------------------------|
+     * | `\DateTimeInterface`                       | `DATETIME`                           |
+     * | {@see Google\Cloud\BigQuery\Bytes}         | `BYTES`                              |
+     * | {@see Google\Cloud\BigQuery\Date}          | `DATE`                               |
+     * | {@see Google\Cloud\BigQuery\Time}          | `TIME`                               |
+     * | {@see Google\Cloud\BigQuery\Timestamp}     | `TIMESTAMP`                          |
+     * | Associative Array                          | `STRUCT`                             |
+     * | Non-Associative Array                      | `ARRAY`                              |
+     * | `float`                                    | `FLOAT64`                            |
+     * | `int`                                      | `INT64`                              |
+     * | `string`                                   | `STRING`                             |
+     * | `resource`                                 | `BYTES`                              |
+     * | `bool`                                     | `BOOL`                               |
+     * | `object` (Outside types specified above)   | **ERROR** `InvalidArgumentException` |
+     *
      * Example:
      * ```
      * $queryResults = $bigQuery->runQuery('SELECT * FROM [bigquery-public-data:usa_names.usa_1910_2013]');
+     *
+     * $isComplete = $queryResults->isComplete();
+     *
+     * while (!$isComplete) {
+     *     sleep(1); // let's wait for a moment...
+     *     $queryResults->reload(); // trigger a network request
+     *     $isComplete = $queryResults->isComplete(); // check the query's status
+     * }
+     *
+     * foreach ($queryResults->rows() as $row) {
+     *     echo $row['name'];
+     * }
+     * ```
+     *
+     * ```
+     * // Construct a query utilizing named parameters.
+     * $query = 'SELECT * FROM `bigquery-public-data.usa_names.usa_1910_2013` WHERE name = @name';
+     * $queryResults = $bigQuery->runQuery($query, [
+     *     'parameters' => [
+     *         'name' => 'Annie'
+     *     ]
+     * ]);
+     *
+     * $isComplete = $queryResults->isComplete();
+     *
+     * while (!$isComplete) {
+     *     sleep(1); // let's wait for a moment...
+     *     $queryResults->reload(); // trigger a network request
+     *     $isComplete = $queryResults->isComplete(); // check the query's status
+     * }
+     *
+     * foreach ($queryResults->rows() as $row) {
+     *     echo $row['name'];
+     * }
+     * ```
+     *
+     * ```
+     * // Construct a query utilizing positional parameters.
+     * $query = 'SELECT * FROM `bigquery-public-data.usa_names.usa_1910_2013` WHERE number > ?';
+     * $queryResults = $bigQuery->runQuery($query, [
+     *     'parameters' => [
+     *         15
+     *     ]
+     * ]);
      *
      * $isComplete = $queryResults->isComplete();
      *
@@ -134,11 +210,20 @@ class BigQueryClient
      *           cache.
      *     @type bool $useLegacySql Specifies whether to use BigQuery's legacy
      *           SQL dialect for this query.
+     *     @type array $parameters Only available for standard SQL queries.
+     *           When providing a non-associative array positional parameters
+     *           (`?`) will be used. When providing an associative array
+     *           named parameters will be used (`@name`).
      * }
      * @return QueryResults
      */
     public function runQuery($query, array $options = [])
     {
+        if (isset($options['parameters'])) {
+            $options += $this->formatQueryParameters($options['parameters']);
+            unset($options['parameters']);
+        }
+
         $response = $this->connection->query([
             'projectId' => $this->projectId,
             'query' => $query
@@ -157,6 +242,11 @@ class BigQueryClient
      * Runs a BigQuery SQL query in an asynchronous fashion. Running a query
      * in this fashion requires you to poll for the status before being able
      * to access results.
+     *
+     * Queries constructed using
+     * [standard SQL](https://cloud.google.com/bigquery/docs/reference/standard-sql/)
+     * can take advantage of parametriziation. For more details and examples
+     * please see {@see Google\Cloud\BigQuery\BigQueryClient::runQuery()}.
      *
      * Example:
      * ```
@@ -182,6 +272,10 @@ class BigQueryClient
      * @param array $options [optional] {
      *     Configuration options.
      *
+     *     @type array $parameters Only available for standard SQL queries.
+     *           When providing a non-associative array positional parameters
+     *           (`?`) will be used. When providing an associative array
+     *           named parameters will be used (`@name`).
      *     @type array $jobConfig Configuration settings for a query job are
      *           outlined in the [API Docs for `configuration.query`](https://goo.gl/PuRa3I).
      *           If not provided default settings will be used.
@@ -190,6 +284,15 @@ class BigQueryClient
      */
     public function runQueryAsJob($query, array $options = [])
     {
+        if (isset($options['parameters'])) {
+            if (!isset($options['jobConfig'])) {
+                $options['jobConfig'] = [];
+            }
+
+            $options['jobConfig'] += $this->formatQueryParameters($options['parameters']);
+            unset($options['parameters']);
+        }
+
         $config = $this->buildJobConfig(
             'query',
             $this->projectId,
@@ -371,5 +474,95 @@ class BigQueryClient
         ] + $options);
 
         return new Dataset($this->connection, $id, $this->projectId, $response);
+    }
+
+    /**
+     * Create a Bytes object.
+     *
+     * Example:
+     * ```
+     * $bytes = $bigQuery->bytes('hello world');
+     * ```
+     *
+     * @param string|resource|StreamInterface $value
+     * @return Bytes
+     */
+    public function bytes($value)
+    {
+        return new Bytes($value);
+    }
+
+    /**
+     * Create a Date object.
+     *
+     * Example:
+     * ```
+     * $date = $bigQuery->date(new \DateTime());
+     * ```
+     *
+     * @param \DateTimeInterface $value
+     * @return Date
+     */
+    public function date(\DateTimeInterface $value)
+    {
+        return new Date($value);
+    }
+
+    /**
+     * Create a Time object.
+     *
+     * Example:
+     * ```
+     * $time = $bigQuery->time(new \DateTime());
+     * ```
+     *
+     * @param \DateTimeInterface $value
+     * @return Time
+     */
+    public function time(\DateTimeInterface $value)
+    {
+        return new Time($value);
+    }
+
+    /**
+     * Create a Timestamp object.
+     *
+     * Example:
+     * ```
+     * $timestamp = $bigQuery->timestamp(new \DateTime());
+     * ```
+     *
+     * @param \DateTimeInterface $value
+     * @return Timestamp
+     */
+    public function timestamp(\DateTimeInterface $value)
+    {
+        return new Timestamp($value);
+    }
+
+    /**
+     * Formats query parameters for the API.
+     *
+     * @param array $parameters The parameters to format.
+     * @return array
+     */
+    private function formatQueryParameters(array $parameters)
+    {
+        $options = [
+            'parameterMode' => $this->isAssoc($parameters) ? 'named' : 'positional',
+            'useLegacySql' => false
+        ];
+
+        foreach ($parameters as $name => $value) {
+            $param = $this->mapper->toParameter($value);
+
+            if ($options['parameterMode'] === 'named') {
+                 $param += ['name' => $name];
+            }
+
+            $options['queryParameters'][] = $param;
+        }
+
+        return $options;
     }
 }
