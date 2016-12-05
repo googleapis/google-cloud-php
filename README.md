@@ -6,15 +6,14 @@
 * [Homepage](http://googlecloudplatform.github.io/google-cloud-php)
 * [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs)
 
-This client supports the following Google Cloud Platform services at a Beta quality level. We expect these libraries to be mostly stable and we're working towards a release candidate. We will address issues and requests with a higher priority.
+This client supports the following Google Cloud Platform services at a Beta quality level:
 
 * [Google BigQuery](#google-bigquery) (Beta)
 * [Google Stackdriver Logging](#google-stackdriver-logging) (Beta)
 * [Google Cloud Datastore](#google-cloud-datastore) (Beta)
 * [Google Cloud Storage](#google-cloud-storage) (Beta)
 
-This client supports the following Google Cloud Platform services at an Alpha quality level. These libraries are still a work-in-progress and we may occasionally make backwards-incompatible changes.
-
+This client supports the following Google Cloud Platform services at an Alpha quality level:
 * [Google Translate](#google-translate) (Alpha)
 * [Google Cloud Natural Language](#google-cloud-natural-language) (Alpha)
 * [Google Cloud Pub/Sub](#google-cloud-pubsub) (Alpha)
