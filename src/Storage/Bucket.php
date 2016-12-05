@@ -163,15 +163,11 @@ class Bucket
      *
      * ```
      * // Upload an object with a customer-supplied encryption key.
-     * $key = openssl_random_pseudo_bytes(32); // Make sure to remember your key.
-     * $options = [
-     *     'encryptionKey' => $key
-     *     'encryptionKeySHA256' => hash('SHA256', $key, true)
-     * ];
+     * $key = base64_encode(openssl_random_pseudo_bytes(32)); // Make sure to remember your key.
      *
      * $bucket->upload(
      *     fopen(__DIR__ . '/image.jpg', 'r'),
-     *     $options
+     *     ['encryptionKey' => $key]
      * );
      * ```
      *
@@ -202,11 +198,13 @@ class Bucket
      *           `"publicRead"`. **Defaults to** `"private"`.
      *     @type array $metadata The available options for metadata are outlined
      *           at the [JSON API docs](https://cloud.google.com/storage/docs/json_api/v1/objects/insert#request-body).
-     *     @type string $encryptionKey An AES-256 customer-supplied encryption
-     *           key. If provided one must also include an `encryptionKeySHA256`.
-     *     @type string $encryptionKeySHA256 The SHA256 hash of the
-     *           customer-supplied encryption key. If provided one must also
-     *           include an `encryptionKey`.
+     *     @type string $encryptionKey A base64 encoded AES-256 customer-supplied
+     *           encryption key.
+     *     @type string $encryptionKeySHA256 Base64 encoded SHA256 hash of the
+     *           customer-supplied encryption key. This value will be calculated
+     *           from the `encryptionKey` on your behalf if not provided, but
+     *           for best performance it is recommended to pass in a cached
+     *           version of the already calculated SHA.
      * }
      * @return StorageObject
      * @throws \InvalidArgumentException
@@ -281,11 +279,13 @@ class Bucket
      *           `"private"`.
      *     @type array $metadata The available options for metadata are outlined
      *           at the [JSON API docs](https://cloud.google.com/storage/docs/json_api/v1/objects/insert#request-body).
-     *     @type string $encryptionKey An AES-256 customer-supplied encryption
-     *           key. If provided one must also include an `encryptionKeySHA256`.
-     *     @type string $encryptionKeySHA256 The SHA256 hash of the
-     *           customer-supplied encryption key. If provided one must also
-     *           include an `encryptionKey`.
+     *     @type string $encryptionKey A base64 encoded AES-256 customer-supplied
+     *           encryption key.
+     *     @type string $encryptionKeySHA256 Base64 encoded SHA256 hash of the
+     *           customer-supplied encryption key. This value will be calculated
+     *           from the `encryptionKey` on your behalf if not provided, but
+     *           for best performance it is recommended to pass in a cached
+     *           version of the already calculated SHA.
      * }
      * @return ResumableUploader
      * @throws \InvalidArgumentException
@@ -320,14 +320,14 @@ class Bucket
      *     Configuration options.
      *
      *     @type string $generation Request a specific revision of the object.
-     *     @type string $encryptionKey An AES-256 customer-supplied encryption
-     *           key. It will be neccesary to provide this when a key was used
-     *           during the object's creation. If provided one must also include
-     *           an `encryptionKeySHA256`.
-     *     @type string $encryptionKeySHA256 The SHA256 hash of the
-     *           customer-supplied encryption key. It will be neccesary to
-     *           provide this when a key was used during the object's creation.
-     *           If provided one must also include an `encryptionKey`.
+     *     @type string $encryptionKey A base64 encoded AES-256 customer-supplied
+     *           encryption key. It will be neccesary to provide this when a key
+     *           was used during the object's creation.
+     *     @type string $encryptionKeySHA256 Base64 encoded SHA256 hash of the
+     *           customer-supplied encryption key. This value will be calculated
+     *           from the `encryptionKey` on your behalf if not provided, but
+     *           for best performance it is recommended to pass in a cached
+     *           version of the already calculated SHA.
      * }
      * @return StorageObject
      */
