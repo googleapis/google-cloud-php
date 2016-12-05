@@ -87,12 +87,45 @@ class OperationTest extends SnippetTestCase
         $this->assertEquals($this->opData['response']['results'][0]['alternatives'], $res->return());
     }
 
-    public function testExists
+    public function testExists()
     {
         $snippet = $this->method(Operation::class, 'exists');
         $snippet->addLocal('operation', $this->operation);
 
         $res = $snippet->invoke();
         $this->assertEquals('The operation exists.', $res->output());
+    }
+
+    public function testInfo()
+    {
+        $snippet = $this->method(Operation::class, 'info');
+        $snippet->addLocal('operation', $this->operation);
+
+        $res = $snippet->invoke();
+        $this->assertEquals(print_r($this->opData['response'], true), $res->output());
+    }
+
+    public function testReload()
+    {
+        $snippet = $this->method(Operation::class, 'reload');
+        $snippet->addLocal('operation', $this->operation);
+
+        $this->connection->getOperation(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn($this->opData);
+
+        $this->operation->setConnection($this->connection->reveal());
+
+        $res = $snippet->invoke();
+        $this->assertEquals(print_r($this->opData['response'], true), $res->output());
+    }
+
+    public function testName()
+    {
+        $snippet = $this->method(Operation::class, 'name');
+        $snippet->addLocal('operation', $this->operation);
+
+        $res = $snippet->invoke();
+        $this->assertEquals($this->opData['name'], $res->output());
     }
 }
