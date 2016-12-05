@@ -30,7 +30,7 @@ namespace Google\Cloud\PubSub;
  *
  * $messages = $subscription->pull();
  * foreach ($messages as $message) {
- *     print_r($message);
+ *     echo $message->data();
  * }
  * ```
  */

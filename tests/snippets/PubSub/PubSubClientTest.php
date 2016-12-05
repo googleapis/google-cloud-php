@@ -20,15 +20,19 @@ namespace Google\Cloud\Tests\Snippets\PubSub;
 use Google\Cloud\Dev\SetStubConnectionTrait;
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
 use Google\Cloud\PubSub\Connection\ConnectionInterface;
+use Google\Cloud\PubSub\Message;
 use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\PubSub\Subscription;
 use Google\Cloud\PubSub\Topic;
 use Prophecy\Argument;
 
+/**
+ * @group pubsub
+ */
 class PubSubClientTest extends SnippetTestCase
 {
-    const TOPIC = 'projects/foo/topics/my-new-topic';
-    const SUBSCRIPTION = 'projects/foo/subscriptions/my-new-subscription';
+    const TOPIC = 'projects/my-awesome-project/topics/my-new-topic';
+    const SUBSCRIPTION = 'projects/my-awesome-project/subscriptions/my-new-subscription';
 
     private $connection;
     private $client;
@@ -36,7 +40,7 @@ class PubSubClientTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->client = new PubSubClientStub;
+        $this->client = new \PubSubClientStub;
     }
 
     public function testClassExample1()
@@ -171,9 +175,24 @@ class PubSubClientTest extends SnippetTestCase
         $this->assertInstanceOf(\Generator::class, $res->return());
         $this->assertEquals(self::SUBSCRIPTION, $res->output());
     }
-}
 
-class PubSubClientStub extends PubSubClient
-{
-    use SetStubConnectionTrait;
+    public function testConsume()
+    {
+        $message = [
+            "message" => [
+                "attributes" => [],
+                "data" => base64_encode('content'),
+                "message_id" => "message-id",
+                "publish_time" => (new \DateTime)->format('c'),
+            ],
+            "subscription" => self::SUBSCRIPTION
+        ];
+
+        $snippet = $this->method(PubSubClient::class, 'consume');
+        $snippet->addLocal('pubsub', $this->client);
+        $snippet->setLine(0, '$httpPostRequestBody = \''. json_encode($message) .'\';');
+
+        $res = $snippet->invoke('message');
+        $this->assertInstanceOf(Message::class, $res->return());
+    }
 }

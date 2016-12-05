@@ -38,7 +38,7 @@ use InvalidArgumentException;
  *
  * $pubsub = $cloud->pubsub();
  *
- * $topic = $pubsub->topic('my-topic-name');
+ * $topic = $pubsub->topic('my-new-topic');
  *
  * $subscription = $topic->subscription('my-new-subscription');
  * ```
@@ -48,13 +48,11 @@ use InvalidArgumentException;
  *
  * use Google\Cloud\PubSub\PubSubClient;
  *
- * $pubsub = new PubSubClient([
- *     'projectId' => 'my-awesome-project'
- * ]);
+ * $pubsub = new PubSubClient();
  *
  * $subscription = $pubsub->subscription(
  *     'my-new-subscription',
- *     'my-topic-name'
+ *     'my-new-topic'
  * );
  * ```
  */
@@ -176,7 +174,7 @@ class Subscription
      *
      * Example:
      * ```
-     * $topic = $pubsub->topic('my-topic-name');
+     * $topic = $pubsub->topic('my-new-topic');
      *
      * $subscription = $topic->subscription('my-new-subscription');
      * $result = $subscription->create();
@@ -249,7 +247,7 @@ class Subscription
      * Example:
      * ```
      * if ($subscription->exists()) {
-     *     // do stuff
+     *     echo 'Subscription exists!';
      * }
      * ```
      *
@@ -324,7 +322,7 @@ class Subscription
      * ```
      * $messages = $subscription->pull();
      * foreach ($messages as $message) {
-     *     echo $message['data'];
+     *     echo $message->data();
      * }
      * ```
      *
@@ -441,8 +439,8 @@ class Subscription
      * $messages = $subscription->pull();
      *
      * foreach ($messages as $message) {
-     *     $subscription->modifyAckDeadline($message, 90);
-     *     sleep(80);
+     *     $subscription->modifyAckDeadline($message, 3);
+     *     sleep(2);
      *
      *     // Now we'll acknowledge!
      *     $subscription->acknowledge($message);
@@ -482,10 +480,10 @@ class Subscription
      * $messagesArray = iterator_to_array($messages);
      *
      * // Set the ack deadline to a minute and a half from now for every message
-     * $subscription->modifyAckDeadlineBatch($messagesArray, 90);
+     * $subscription->modifyAckDeadlineBatch($messagesArray, 3);
      *
      * // Delay execution, or make a sandwich or something.
-     * sleep(80);
+     * sleep(2);
      *
      * // Now we'll acknowledge
      * $subscription->acknowledge($messagesArray);
@@ -556,7 +554,7 @@ class Subscription
      *
      * Example:
      * ```
-     * $currentPolicy = $subscription->iam()->policy();
+     * $iam = $subscription->iam();
      * ```
      *
      * @codingStandardsIgnoreStart

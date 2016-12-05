@@ -1,6 +1,6 @@
 {
   "type": "service_account",
-  "project_id": "foo",
+  "project_id": "my-awesome-project",
   "private_key_id": "",
   "private_key": "",
   "client_email": "",
