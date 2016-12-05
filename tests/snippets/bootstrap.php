@@ -36,6 +36,7 @@ function stub($name, $extends)
     eval(sprintf($tpl, $name, $extends));
 }
 
+stub('IamStub', Google\Cloud\Iam\Iam::class);
 stub('PubSubClientStub', Google\Cloud\PubSub\PubSubClient::class);
 stub('SpeechClientStub', Google\Cloud\Speech\SpeechClient::class);
 stub('SpeechOperationStub', Google\Cloud\Speech\Operation::class);
