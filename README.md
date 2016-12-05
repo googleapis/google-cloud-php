@@ -8,15 +8,15 @@
 
 This client supports the following Google Cloud Platform services:
 
-* [Google BigQuery](#google-bigquery)
-* [Google Stackdriver Logging](#google-stackdriver-logging)
-* [Google Translate](#google-translate)
-* [Google Cloud Datastore](#google-cloud-datastore)
-* [Google Cloud Natural Language](#google-cloud-natural-language)
-* [Google Cloud Pub/Sub](#google-cloud-pubsub)
-* [Google Cloud Speech](#google-cloud-speech)
-* [Google Cloud Storage](#google-cloud-storage)
-* [Google Cloud Vision](#google-cloud-vision)
+* [Google BigQuery](#google-bigquery) (Beta)
+* [Google Stackdriver Logging](#google-stackdriver-logging) (Beta)
+* [Google Translate](#google-translate) (Alpha)
+* [Google Cloud Datastore](#google-cloud-datastore) (Beta)
+* [Google Cloud Natural Language](#google-cloud-natural-language) (Alpha)
+* [Google Cloud Pub/Sub](#google-cloud-pubsub) (Alpha)
+* [Google Cloud Speech](#google-cloud-speech) (Alpha)
+* [Google Cloud Storage](#google-cloud-storage) (Beta)
+* [Google Cloud Vision](#google-cloud-vision) (Alpha)
 
 If you need support for other Google APIs, please check out the [Google APIs Client Library for PHP](https://github.com/google/google-api-php-client).
 
@@ -26,7 +26,7 @@ If you need support for other Google APIs, please check out the [Google APIs Cli
 $ composer require google/cloud
 ```
 
-## Google BigQuery
+## Google BigQuery (Beta)
 
 - [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/bigquery/bigqueryclient)
 - [Official Documentation](https://cloud.google.com/bigquery/docs)
@@ -60,7 +60,7 @@ foreach ($queryResults->rows() as $row) {
 }
 ```
 
-## Google Stackdriver Logging
+## Google Stackdriver Logging (Beta)
 
 - [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/logging/loggingclient)
 - [Official Documentation](https://cloud.google.com/logging/docs)
@@ -93,7 +93,7 @@ foreach ($entries as $entry) {
 }
 ```
 
-## Google Translate
+## Google Translate (Alpha)
 
 - [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/translate/translateclient)
 - [Official Documentation](https://cloud.google.com/translate/docs)
@@ -140,7 +140,7 @@ foreach ($languages as $language) {
 }
 ```
 
-## Google Cloud Datastore
+## Google Cloud Datastore (Beta)
 
 - [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/datastore/datastoreclient)
 - [Official Documentation](https://cloud.google.com/datastore/docs/)
@@ -171,7 +171,7 @@ $key = $datastore->key('Person', '12345328897844');
 $entity = $datastore->lookup($key);
 ```
 
-## Google Cloud Natural Language
+## Google Cloud Natural Language (Alpha)
 
 - [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/naturallanguage/naturallanguageclient)
 - [Official Documentation](https://cloud.google.com/natural-language/docs)
@@ -210,7 +210,7 @@ foreach ($tokens as $token) {
 }
 ```
 
-## Google Cloud Pub/Sub
+## Google Cloud Pub/Sub (Alpha)
 
 - [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/pubsub/pubsubclient)
 - [Official Documentation](https://cloud.google.com/pubsub/docs)
@@ -249,7 +249,7 @@ foreach ($messages as $message) {
 }
 ```
 
-## Google Cloud Speech
+## Google Cloud Speech (Alpha)
 
 - [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/speech/speechclient)
 - [Official Documentation](https://cloud.google.com/speech/docs)
@@ -276,7 +276,7 @@ foreach ($results as $result) {
 }
 ```
 
-## Google Cloud Storage
+## Google Cloud Storage (Beta)
 
 - [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/storage/storageclient)
 - [Official Documentation](https://cloud.google.com/storage/docs)
@@ -304,7 +304,7 @@ $object = $bucket->object('file_backup.txt');
 $object->downloadToFile('/data/file_backup.txt');
 ```
 
-## Google Cloud Vision
+## Google Cloud Vision (Alpha)
 
 - [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/vision/visionclient)
 - [Official Documentation](https://cloud.google.com/vision/docs)
