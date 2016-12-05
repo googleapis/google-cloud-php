@@ -6,19 +6,19 @@
 * [Homepage](http://googlecloudplatform.github.io/google-cloud-php)
 * [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs)
 
-This client supports the following Google Cloud Platform services at a Beta quality level:
+This client supports the following Google Cloud Platform services at a [Beta](#versioning) quality level:
 
-* [Google BigQuery](#google-bigquery) (Beta)
-* [Google Stackdriver Logging](#google-stackdriver-logging) (Beta)
-* [Google Cloud Datastore](#google-cloud-datastore) (Beta)
-* [Google Cloud Storage](#google-cloud-storage) (Beta)
+* [Google BigQuery](#google-bigquery-beta) (Beta)
+* [Google Stackdriver Logging](#google-stackdriver-logging-beta) (Beta)
+* [Google Cloud Datastore](#google-cloud-datastore-beta) (Beta)
+* [Google Cloud Storage](#google-cloud-storage-beta) (Beta)
 
-This client supports the following Google Cloud Platform services at an Alpha quality level:
-* [Google Translate](#google-translate) (Alpha)
-* [Google Cloud Natural Language](#google-cloud-natural-language) (Alpha)
-* [Google Cloud Pub/Sub](#google-cloud-pubsub) (Alpha)
-* [Google Cloud Speech](#google-cloud-speech) (Alpha)
-* [Google Cloud Vision](#google-cloud-vision) (Alpha)
+This client supports the following Google Cloud Platform services at an [Alpha](#versioning) quality level:
+* [Google Translate](#google-translate-alpha) (Alpha)
+* [Google Cloud Natural Language](#google-cloud-natural-language-alpha) (Alpha)
+* [Google Cloud Pub/Sub](#google-cloud-pubsub-alpha) (Alpha)
+* [Google Cloud Speech](#google-cloud-speech-alpha) (Alpha)
+* [Google Cloud Vision](#google-cloud-vision-alpha) (Alpha)
 
 If you need support for other Google APIs, please check out the [Google APIs Client Library for PHP](https://github.com/google/google-api-php-client).
 
@@ -364,6 +364,10 @@ $storage = new StorageClient([
 This library follows [Semantic Versioning](http://semver.org/).
 
 Please note it is currently under active development. Any release versioned 0.x.y is subject to backwards incompatible changes at any time.
+
+Libraries defined at a Beta quality level are expected to be mostly stable and we're working towards their release candidate. We will address issues and requests with a higher priority.
+
+Libraries defined at an Alpha quality level are still a work-in-progress and are more likely to get backwards-incompatible updates.
 
 ## Contributing
 
