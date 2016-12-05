@@ -32,7 +32,7 @@ class Bytes implements ValueInterface
     private $value;
 
     /**
-     * @param string|resource|StreamInterface $value The bytes.
+     * @param string|resource|StreamInterface $value The bytes value.
      */
     public function __construct($value)
     {
@@ -40,6 +40,8 @@ class Bytes implements ValueInterface
     }
 
     /**
+     * Get the bytes as a stream.
+     *
      * @return StreamInterface
      */
     public function get()
@@ -48,6 +50,8 @@ class Bytes implements ValueInterface
     }
 
     /**
+     * Get the type.
+     *
      * @return string
      */
     public function type()
@@ -56,6 +60,8 @@ class Bytes implements ValueInterface
     }
 
     /**
+     * Format the value for the API.
+     *
      * @return string
      */
     public function toApi()

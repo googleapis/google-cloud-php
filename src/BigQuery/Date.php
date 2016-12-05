@@ -31,7 +31,7 @@ class Date implements ValueInterface
     protected $value;
 
     /**
-     * @param \DateTimeInterface $value
+     * @param \DateTimeInterface $value The date value.
      */
     public function __construct(\DateTimeInterface $value)
     {
@@ -39,6 +39,8 @@ class Date implements ValueInterface
     }
 
     /**
+     * Get the underlying `\DateTimeInterface` implementation.
+     *
      * @return \DateTimeInterface
      */
     public function get()
@@ -47,6 +49,8 @@ class Date implements ValueInterface
     }
 
     /**
+     * Get the type.
+     *
      * @return string
      */
     public function type()
@@ -55,6 +59,8 @@ class Date implements ValueInterface
     }
 
     /**
+     * Format the value for the API.
+     *
      * @return string
      */
     public function toApi()

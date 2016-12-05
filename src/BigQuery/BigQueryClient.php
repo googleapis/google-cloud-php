@@ -484,7 +484,7 @@ class BigQueryClient
      * $bytes = $bigQuery->bytes('hello world');
      * ```
      *
-     * @param string|resource|StreamInterface $value
+     * @param string|resource|StreamInterface $value The bytes value.
      * @return Bytes
      */
     public function bytes($value)
@@ -500,7 +500,7 @@ class BigQueryClient
      * $date = $bigQuery->date(new \DateTime());
      * ```
      *
-     * @param \DateTimeInterface $value
+     * @param \DateTimeInterface $value The date value.
      * @return Date
      */
     public function date(\DateTimeInterface $value)
@@ -516,7 +516,7 @@ class BigQueryClient
      * $time = $bigQuery->time(new \DateTime());
      * ```
      *
-     * @param \DateTimeInterface $value
+     * @param \DateTimeInterface $value The time value.
      * @return Time
      */
     public function time(\DateTimeInterface $value)
@@ -532,7 +532,7 @@ class BigQueryClient
      * $timestamp = $bigQuery->timestamp(new \DateTime());
      * ```
      *
-     * @param \DateTimeInterface $value
+     * @param \DateTimeInterface $value The timestamp value.
      * @return Timestamp
      */
     public function timestamp(\DateTimeInterface $value)
