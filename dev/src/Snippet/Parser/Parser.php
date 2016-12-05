@@ -18,6 +18,7 @@
 namespace Google\Cloud\Dev\Snippet\Parser;
 
 use DomDocument;
+use Google\Cloud\Dev\DocBlockStripSpaces;
 use Parsedown;
 use ReflectionClass;
 use ReflectionMethod;
@@ -44,7 +45,7 @@ class Parser
      * ```
      *
      * @param string $class the name of the class
-     * @param int $index The 0-indexed example to return.
+     * @param int|string $index The index of the example to return.
      * @return Snippet
      * @throws Exception
      */
@@ -127,11 +128,32 @@ class Parser
 
         $doc = new DocBlock($class);
 
+        $magic = [];
+        if ($doc->getTags()) {
+            $magicMethods = array_filter($doc->getTags(), function ($tag) {
+                return ($tag->getName() === 'method');
+            });
+
+            $methods = $this->buildMagicMethods($magicMethods, $class->getName());
+
+            foreach ($methods as $method) {
+                $res = current($this->examples(
+                    $method['doc'],
+                    $class->getName() .'::'. $method['name'],
+                    $class->getFileName(),
+                    $class->getStartLine()
+                ));
+
+                $magic[$res->identifier()] = $res;
+            }
+        }
+
         return $this->examples(
             $doc,
             $class->getName(),
             $class->getFileName(),
-            $class->getStartLine()
+            $class->getStartLine(),
+            $magic
         );
     }
 
@@ -209,9 +231,13 @@ class Parser
      * @param int $line The line where the tested method or class is declared.
      * @return array
      */
-    public function examples(DocBlock $docBlock, $fullyQualifiedName, $file, $line)
+    public function examples(DocBlock $docBlock, $fullyQualifiedName, $file, $line, array $magicMethods = [])
     {
         $text = $docBlock->getText();
+        // $return = $docBlock->getTagsByName('return');
+        // if (!empty($return)) {
+        //     print_r($return[0]->getTypes());exit;
+        // }
 
         $parts = explode('Example:', $text);
 
@@ -251,6 +277,8 @@ class Parser
             $index++;
         }
 
+        $res = array_merge($res, $magicMethods);
+
         return $res;
     }
 
@@ -266,6 +294,27 @@ class Parser
             return null;
         }
 
-        return $matches[0];
+        return $matches[1];
+    }
+
+    private function buildMagicMethods($magicMethods, $className)
+    {
+        $res = [];
+        foreach ($magicMethods as $method) {
+            $description = $method->getDescription();
+
+            if (is_null($description)) {
+                continue;
+            }
+
+            $doc = new DocBlockStripSpaces(substr($method->getDescription(), 1, -1));
+
+            $res[] = [
+                'name' => $method->getMethodName(),
+                'doc' => $doc
+            ];
+        }
+
+        return $res;
     }
 }

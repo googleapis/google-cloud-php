@@ -26,6 +26,9 @@ use Google\Cloud\Dev\Snippet\Container;
  */
 class SnippetTestCase extends \PHPUnit_Framework_TestCase
 {
+    const HOOK_BEFORE = 1000;
+    const HOOK_AFTER = 1001;
+
     private $coverage;
     private $parser;
 
@@ -37,7 +40,7 @@ class SnippetTestCase extends \PHPUnit_Framework_TestCase
         $this->parser = Container::$parser;
     }
 
-    public function class($class, $index = 0)
+    public function snippetFromClass($class, $index = 0)
     {
         $identifier = $this->parser->createIdentifier($class, $index);
 
@@ -51,7 +54,22 @@ class SnippetTestCase extends \PHPUnit_Framework_TestCase
         return $snippet;
     }
 
-    public function method($class, $method, $index = 0)
+    public function snippetFromMagicMethod($class, $method, $index = 0)
+    {
+        $name = $class .'::'. $method;
+        $identifier = $this->parser->createIdentifier($name, $index);
+
+        $snippet = $this->coverage->cache($identifier);
+        if (!$snippet) {
+            throw new \Exception('Magic Method '. $name .' was not found');
+        }
+
+        $this->coverage->cover($identifier);
+
+        return $snippet;
+    }
+
+    public function snippetFromMethod($class, $method, $index = 0)
     {
         $name = $class .'::'. $method;
         $identifier = $this->parser->createIdentifier($name, $index);

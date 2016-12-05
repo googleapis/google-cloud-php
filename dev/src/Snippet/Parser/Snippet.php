@@ -158,6 +158,92 @@ class Snippet implements \JsonSerializable
         $this->locals[$name] = $value;
     }
 
+    /**
+     * Replace a line with new code.
+     *
+     * Hopefully this is obvious, but be careful using this, and only use it
+     * when no other feasible options present themselves. It's pretty easy to
+     * make your test useless when you're overwriting the thing you are trying
+     * to test.
+     *
+     * This is provided for cases when a snippet relies on a global, or on
+     * something else which can not be overridden or mocked.
+     *
+     * @param int $line The line number (0-indexed) to replace.
+     * @param string $content The PHP code to inject.
+     * @return void
+     */
+    public function setLine($line, $content)
+    {
+        $snippet = explode("\n", $this->config['content']);
+        $snippet[$line] = $content;
+
+        $this->config['content'] = implode("\n", $snippet);
+    }
+
+    /**
+     * Inject new code after a given line.
+     *
+     * Hopefully this is obvious, but be careful using this, and only use it
+     * when no other feasible options present themselves. It's pretty easy to
+     * make your test useless when you're modifying the thing you are trying
+     * to test.
+     *
+     * This is provided for cases when a snippet relies on a global, or on
+     * something else which can not be overridden or mocked.
+     *
+     * @param int $line The line number (0-indexed) to write in after.
+     * @param string $content The PHP code to inject.
+     * @return void
+     */
+    public function insertAfterLine($line, $content)
+    {
+        $snippet = explode("\n", $this->config['content']);
+        array_splice($snippet, $line+1, 0, $content);
+
+        $this->config['content'] = implode("\n", $snippet);
+    }
+
+    /**
+     * Replace a string in the snippet with a new one.
+     *
+     * Hopefully this is obvious, but be careful using this, and only use it
+     * when no other feasible options present themselves. It's pretty easy to
+     * make your test useless when you're modifying the thing you are trying
+     * to test.
+     *
+     * This is provided for cases when a snippet relies on a global, or on
+     * something else which can not be overridden or mocked.
+     *
+     * @param string $old The string to be replaced.
+     * @param string $new The new string to insert.
+     * @return void
+     */
+    public function replace($old, $new)
+    {
+        $this->config['content'] = str_replace($old, $new, $this->config['content']);
+    }
+
+    /**
+     * Find something with a regex and replace it.
+     *
+     * Hopefully this is obvious, but be careful using this, and only use it
+     * when no other feasible options present themselves. It's pretty easy to
+     * make your test useless when you're modifying the thing you are trying
+     * to test.
+     *
+     * This is provided for cases when a snippet relies on a global, or on
+     * something else which can not be overridden or mocked.
+     *
+     * @param string $pattern The regex pattern to search for.
+     * @param string $new The new string to insert.
+     * @return void
+     */
+    public function regexReplace($pattern, $new)
+    {
+        $this->config['content'] = preg_replace($pattern, $new, $this->config['content']);
+    }
+
     public function jsonSerialize()
     {
         return $this->config;

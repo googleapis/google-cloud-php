@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Dev\DocGenerator\Parser;
 
+use Google\Cloud\Dev\DocBlockStripSpaces;
 use phpDocumentor\Reflection\DocBlock;
 use phpDocumentor\Reflection\DocBlock\Description;
 use phpDocumentor\Reflection\DocBlock\Tag\SeeTag;
@@ -486,25 +487,5 @@ class CodeParser implements ParserInterface
             'description' => $parts[0],
             'examples' => $examples
         ];
-    }
-}
-
-class DocBlockStripSpaces extends DocBlock
-{
-    /**
-     * Strips extra whitespace from the DocBlock comment.
-     *
-     * @param string $comment String containing the comment text.
-     * @param int $spaces The number of spaces to strip.
-     *
-     * @return string
-     */
-    public function cleanInput($comment, $spaces = 4)
-    {
-        $lines = array_map(function ($line) use ($spaces) {
-            return substr($line, $spaces);
-        }, explode(PHP_EOL, $comment));
-
-        return trim(implode(PHP_EOL, $lines));
     }
 }
