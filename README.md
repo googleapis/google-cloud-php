@@ -1,21 +1,24 @@
 # Google Cloud PHP Client
-[![Travis Build Status](https://travis-ci.org/GoogleCloudPlatform/google-cloud-php.svg?branch=master)](https://travis-ci.org/GoogleCloudPlatform/google-cloud-php/) [![codecov](https://codecov.io/gh/googlecloudplatform/google-cloud-php/branch/master/graph/badge.svg)](https://codecov.io/gh/googlecloudplatform/google-cloud-php)
-
 > Idiomatic PHP client for [Google Cloud Platform](https://cloud.google.com/) services.
+
+[![Travis Build Status](https://travis-ci.org/GoogleCloudPlatform/google-cloud-php.svg?branch=master)](https://travis-ci.org/GoogleCloudPlatform/google-cloud-php/) [![codecov](https://codecov.io/gh/googlecloudplatform/google-cloud-php/branch/master/graph/badge.svg)](https://codecov.io/gh/googlecloudplatform/google-cloud-php)
 
 * [Homepage](http://googlecloudplatform.github.io/google-cloud-php)
 * [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs)
 
-This client supports the following Google Cloud Platform services:
+This client supports the following Google Cloud Platform services at a Beta quality level. We expect these libraries to be mostly stable and we're working towards a release candidate. We will address issues and requests with a higher priority.
 
 * [Google BigQuery](#google-bigquery) (Beta)
 * [Google Stackdriver Logging](#google-stackdriver-logging) (Beta)
-* [Google Translate](#google-translate) (Alpha)
 * [Google Cloud Datastore](#google-cloud-datastore) (Beta)
+* [Google Cloud Storage](#google-cloud-storage) (Beta)
+
+This client supports the following Google Cloud Platform services at an Alpha quality level. These libraries are still a work-in-progress and we may occasionally make backwards-incompatible changes.
+
+* [Google Translate](#google-translate) (Alpha)
 * [Google Cloud Natural Language](#google-cloud-natural-language) (Alpha)
 * [Google Cloud Pub/Sub](#google-cloud-pubsub) (Alpha)
 * [Google Cloud Speech](#google-cloud-speech) (Alpha)
-* [Google Cloud Storage](#google-cloud-storage) (Beta)
 * [Google Cloud Vision](#google-cloud-vision) (Alpha)
 
 If you need support for other Google APIs, please check out the [Google APIs Client Library for PHP](https://github.com/google/google-api-php-client).
@@ -93,6 +96,65 @@ foreach ($entries as $entry) {
 }
 ```
 
+## Google Cloud Datastore (Beta)
+
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/datastore/datastoreclient)
+- [Official Documentation](https://cloud.google.com/datastore/docs/)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Datastore\DatastoreClient;
+
+$datastore = new DatastoreClient([
+    'projectId' => 'my_project'
+]);
+
+// Create an entity
+$bob = $datastore->entity('Person');
+$bob['firstName'] = 'Bob';
+$bob['email'] = 'bob@example.com';
+$datastore->insert($bob);
+
+// Update the entity
+$bob['email'] = 'bobV2@example.com';
+$datastore->update($bob);
+
+// If you know the ID of the entity, you can look it up
+$key = $datastore->key('Person', '12345328897844');
+$entity = $datastore->lookup($key);
+```
+
+## Google Cloud Storage (Beta)
+
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/storage/storageclient)
+- [Official Documentation](https://cloud.google.com/storage/docs)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Storage\StorageClient;
+
+$storage = new StorageClient([
+    'projectId' => 'my_project'
+]);
+
+$bucket = $storage->bucket('my_bucket');
+
+// Upload a file to the bucket.
+$bucket->upload(
+    fopen('/data/file.txt', 'r')
+);
+
+// Download and store an object from the bucket locally.
+$object = $bucket->object('file_backup.txt');
+$object->downloadToFile('/data/file_backup.txt');
+```
+
 ## Google Translate (Alpha)
 
 - [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/translate/translateclient)
@@ -138,37 +200,6 @@ $languages = $translate->languages();
 foreach ($languages as $language) {
     echo $language . "\n";
 }
-```
-
-## Google Cloud Datastore (Beta)
-
-- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/datastore/datastoreclient)
-- [Official Documentation](https://cloud.google.com/datastore/docs/)
-
-#### Preview
-
-```php
-require 'vendor/autoload.php';
-
-use Google\Cloud\Datastore\DatastoreClient;
-
-$datastore = new DatastoreClient([
-    'projectId' => 'my_project'
-]);
-
-// Create an entity
-$bob = $datastore->entity('Person');
-$bob['firstName'] = 'Bob';
-$bob['email'] = 'bob@example.com';
-$datastore->insert($bob);
-
-// Update the entity
-$bob['email'] = 'bobV2@example.com';
-$datastore->update($bob);
-
-// If you know the ID of the entity, you can look it up
-$key = $datastore->key('Person', '12345328897844');
-$entity = $datastore->lookup($key);
 ```
 
 ## Google Cloud Natural Language (Alpha)
@@ -274,34 +305,6 @@ foreach ($results as $result) {
     echo $result['transcript'] . "\n";
     echo $result['confidence'] . "\n";
 }
-```
-
-## Google Cloud Storage (Beta)
-
-- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/storage/storageclient)
-- [Official Documentation](https://cloud.google.com/storage/docs)
-
-#### Preview
-
-```php
-require 'vendor/autoload.php';
-
-use Google\Cloud\Storage\StorageClient;
-
-$storage = new StorageClient([
-    'projectId' => 'my_project'
-]);
-
-$bucket = $storage->bucket('my_bucket');
-
-// Upload a file to the bucket.
-$bucket->upload(
-    fopen('/data/file.txt', 'r')
-);
-
-// Download and store an object from the bucket locally.
-$object = $bucket->object('file_backup.txt');
-$object->downloadToFile('/data/file_backup.txt');
 ```
 
 ## Google Cloud Vision (Alpha)
