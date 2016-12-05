@@ -47,7 +47,7 @@ class PubSubClientTest extends SnippetTestCase
     public function testCreateTopic()
     {
         $this->connection->createTopic(Argument::any())->willReturn([
-            'name' => 'projects/foo/topics/bar'
+            'name' => 'projects/foo/topics/my-new-topic'
         ]);
 
         $this->client->setConnection($this->connection->reveal());
@@ -58,7 +58,51 @@ class PubSubClientTest extends SnippetTestCase
         $res = $snippet->invoke('topic');
 
         $this->assertInstanceOf(Topic::class, $res->return());
+        $this->assertEquals('projects/foo/topics/my-new-topic', $res->return()->name());
+        $this->assertEquals('projects/foo/topics/my-new-topic', $res->output());
     }
+
+    public function testTopic()
+    {
+        $snippet = $this->method(PubSubClient::class, 'topic');
+        $snippet->addLocal('pubsub', $this->client);
+
+        $this->connection->getTopic(Argument::any())
+            ->willReturn([
+                'name' => 'projects/foo/topics/my-new-topic'
+            ]);
+
+        $this->client->setConnection($this->connection->reveal());
+
+        $res = $snippet->invoke('topic');
+
+        $this->assertInstanceOf(Topic::class, $res->return());
+        $this->assertEquals('projects/foo/topics/my-new-topic', $res->return()->name());
+        $this->assertEquals('projects/foo/topics/my-new-topic', $res->output());
+    }
+
+    public function testTopics()
+    {
+        $snippet = $this->method(PubSubClient::class, 'topics');
+        $snippet->addLocal('pubsub', $this->client);
+
+        $this->connection->listTopics(Argument::any())
+            ->willReturn([
+                'topics' => [
+                    ['name' => 'projects/foo/topics/my-new-topic']
+                ]
+            ]);
+
+        $this->client->setConnection($this->connection->reveal());
+
+        $res = $snippet->invoke('topics');
+
+        $this->assertInstanceOf(\Generator::class, $res->return());
+        $this->assertEquals('projects/foo/topics/my-new-topic', $res->output());
+    }
+
+    public function testSubscribe()
+    {}
 }
 
 class PubSubClientStub extends PubSubClient

@@ -1,5 +1,9 @@
 <?php
 
+// Provide a project ID. If you're mocking your service calls (and if you aren't
+// start now) you don't need anything else.
+putenv('GOOGLE_APPLICATION_CREDENTIALS='. __DIR__ .'/keyfile-stub.json');
+
 use Google\Cloud\Dev\Snippet\Container;
 use Google\Cloud\Dev\Snippet\Coverage\Coverage;
 use Google\Cloud\Dev\Snippet\Coverage\Scanner;

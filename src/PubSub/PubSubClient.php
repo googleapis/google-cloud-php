@@ -205,7 +205,7 @@ class PubSubClient
      * $topics = $pubsub->topics();
      * foreach ($topics as $topic) {
      *     $info = $topic->info();
-     *     echo $info['name']; // `projects/my-awesome-project/topics/<topic-name>`
+     *     echo $info['name']; // `projects/my-awesome-project/topics/my-new-topic`
      * }
      * ```
      *
