@@ -365,9 +365,9 @@ This library follows [Semantic Versioning](http://semver.org/).
 
 Please note it is currently under active development. Any release versioned 0.x.y is subject to backwards incompatible changes at any time.
 
-Libraries defined at a Beta quality level are expected to be mostly stable and we're working towards their release candidate. We will address issues and requests with a higher priority.
+**Beta**: Libraries defined at a Beta quality level are expected to be mostly stable and we're working towards their release candidate. We will address issues and requests with a higher priority.
 
-Libraries defined at an Alpha quality level are still a work-in-progress and are more likely to get backwards-incompatible updates.
+**Alpha**: Libraries defined at an Alpha quality level are still a work-in-progress and are more likely to get backwards-incompatible updates.
 
 ## Contributing
 
