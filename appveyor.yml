@@ -28,4 +28,4 @@ install:
 
 test_script:
   - cd c:\projects\google-cloud
-  - ./dev/sh/tests
+  - vendor/bin/phpunit
