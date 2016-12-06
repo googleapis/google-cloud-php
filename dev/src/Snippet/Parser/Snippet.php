@@ -38,6 +38,11 @@ class Snippet implements \JsonSerializable
     private $locals = [];
 
     /**
+     * @var array
+     */
+    private $use = [];
+
+    /**
      * Create a snippet
      *
      * @param string $identifier The snippet ID
@@ -133,6 +138,15 @@ class Snippet implements \JsonSerializable
             ? sprintf('return $%s;', $returnVar)
             : '';
 
+        $use = [];
+        foreach ($this->use as $class) {
+            $use[] = 'use '. $class .';';
+        }
+
+        if (!empty($use)) {
+            $this->config['content'] = implode("\n", $use) . $this->config['content'];
+        }
+
         $cb = function($return) {
             extract($this->locals);
 
@@ -156,6 +170,17 @@ class Snippet implements \JsonSerializable
     public function addLocal($name, $value)
     {
         $this->locals[$name] = $value;
+    }
+
+    /**
+     * Add a `use` statement for a class.
+     *
+     * @param string $name The class name to import.
+     * @return void
+     */
+    public function addUse($name)
+    {
+        $this->use[] = $name;
     }
 
     /**
