@@ -134,6 +134,8 @@ class Snippet implements \JsonSerializable
      */
     public function invoke($returnVar = null)
     {
+        $content = $this->config['content'];
+
         $return = ($returnVar)
             ? sprintf('return $%s;', $returnVar)
             : '';
@@ -144,14 +146,14 @@ class Snippet implements \JsonSerializable
         }
 
         if (!empty($use)) {
-            $this->config['content'] = implode("\n", $use) . $this->config['content'];
+            $content = implode("\n", $use) . $content;
         }
 
-        $cb = function($return) {
+        $cb = function($return) use ($content) {
             extract($this->locals);
 
             ob_start();
-            $res = eval($this->config['content'] ."\n\n". $return);
+            $res = eval($content ."\n\n". $return);
             $out = ob_get_clean();
 
             return new InvokeResult($res, $out);
