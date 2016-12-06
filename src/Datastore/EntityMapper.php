@@ -32,6 +32,8 @@ class EntityMapper
     use ArrayTrait;
     use DatastoreTrait;
 
+    const DATE_FORMAT = 'Y-m-d\TH:i:s.uP';
+
     /**
      * @var string
      */
@@ -147,7 +149,7 @@ class EntityMapper
                 break;
 
             case 'timestampValue':
-                $result = new \DateTimeImmutable($value);
+                $result = \DateTimeImmutable::createFromFormat(self::DATE_FORMAT, $value);
 
                 break;
 
@@ -355,7 +357,7 @@ class EntityMapper
 
             case $value instanceof \DateTimeInterface:
                 return [
-                    'timestampValue' => $value->format(\DateTime::RFC3339)
+                    'timestampValue' => $value->format(self::DATE_FORMAT)
                 ];
 
                 break;
