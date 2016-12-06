@@ -31,12 +31,7 @@ use Psr\Log\LogLevel;
  * $cloud = new ServiceBuilder();
  * $logging = $cloud->logging();
  *
- * $psrLogger = $logging->psrLogger('my-log', [
- *     'type' => 'gcs_bucket',
- *     'labels' => [
- *         'bucket_name' => 'my-bucket'
- *     ]
- * ]);
+ * $psrLogger = $logging->psrLogger('my-log');
  * ```
  */
 class PsrLogger implements LoggerInterface
