@@ -28,6 +28,8 @@ use Google\Cloud\Datastore\Key;
  */
 class EntityMapperTest extends \PHPUnit_Framework_TestCase
 {
+    const DATE_FORMAT = 'Y-m-d\TH:i:s.uP';
+
     private $mapper;
 
     public function setUp()
@@ -100,7 +102,7 @@ class EntityMapperTest extends \PHPUnit_Framework_TestCase
 
         $data = [
             'foo' => [
-                'timestampValue' => $date->format('c')
+                'timestampValue' => $date->format(self::DATE_FORMAT)
             ]
         ];
 
@@ -252,10 +254,10 @@ class EntityMapperTest extends \PHPUnit_Framework_TestCase
     public function testConvertValueTimestamp()
     {
         $type = 'timestampValue';
-        $val = (new \DateTime())->format(\DateTime::RFC3339);
+        $val = (new \DateTime())->format(self::DATE_FORMAT);
 
         $res = $this->mapper->convertValue($type, $val);
-        $this->assertEquals($val, $res->format(\DateTime::RFC3339));
+        $this->assertEquals($val, $res->format(self::DATE_FORMAT));
     }
 
     public function testConvertValueKey()
@@ -560,7 +562,7 @@ class EntityMapperTest extends \PHPUnit_Framework_TestCase
     {
         $res = $this->mapper->valueObject(new \DateTimeImmutable);
 
-        $this->assertEquals((new \DateTimeImmutable())->format(\DateTime::RFC3339), $res['timestampValue']);
+        $this->assertEquals((new \DateTimeImmutable())->format(self::DATE_FORMAT), $res['timestampValue']);
     }
 
     public function testObjectPropertyKey()
