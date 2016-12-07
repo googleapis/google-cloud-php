@@ -31,4 +31,12 @@ class Int64Test extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals($int, $int64->get());
     }
+
+    public function testToString()
+    {
+        $int = '123';
+        $int64 = new Int64($int);
+
+        $this->assertEquals($int, (string) $int64);
+    }
 }

@@ -55,4 +55,15 @@ class Int64
     {
         return $this->value;
     }
+
+    /**
+     * Provides a convenient way to access the value.
+     *
+     * @access private
+     */
+    public function __toString()
+    {
+        return $this->value;
+    }
+
 }

@@ -129,10 +129,9 @@ class ServiceBuilder
      *     Configuration options. See
      *     {@see Google\Cloud\ServiceBuilder::__construct()} for the other available options.
      *
-     *     @type bool $returnInt64AsObject Whether or not to return 64 bit
-     *           integers as their native type or as a
-     *           {@see Google\Cloud\Int64} object. This can be useful when
-     *           working on a 32 bit platform. **Defaults to** false.
+     *     @type bool $returnInt64AsObject If true, 64 bit integers will be
+     *           returned as a {@see Google\Cloud\Int64} object for 32 bit
+     *           platform compatibility. **Defaults to** false.
      * @return DatastoreClient
      */
     public function datastore(array $config = [])

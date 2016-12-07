@@ -34,6 +34,7 @@ class EntityMapper
     use DatastoreTrait;
 
     const DATE_FORMAT = 'Y-m-d\TH:i:s.uP';
+    const DATE_FORMAT_NO_MS = 'Y-m-d\TH:i:sP';
 
     /**
      * @var string
@@ -55,9 +56,9 @@ class EntityMapper
      *
      * @param string $projectId The datastore project ID
      * @param bool $encode Whether to encode blobs as base64.
-     * @param bool $returnInt64AsObject Whether or not to return 64 bit integers
-     *             as their native type or as a {@see Google\Cloud\Int64}
-     *             object. This can be useful when working on a 32 bit platform.
+     * @param @type bool $returnInt64AsObject If true, 64 bit integers will be
+     *              returned as a {@see Google\Cloud\Int64} object for 32 bit
+     *              platform compatibility.
      */
     public function __construct($projectId, $encode, $returnInt64AsObject)
     {
@@ -162,6 +163,10 @@ class EntityMapper
 
             case 'timestampValue':
                 $result = \DateTimeImmutable::createFromFormat(self::DATE_FORMAT, $value);
+
+                if (!$result) {
+                    $result = \DateTimeImmutable::createFromFormat(self::DATE_FORMAT_NO_MS, $value);
+                }
 
                 break;
 

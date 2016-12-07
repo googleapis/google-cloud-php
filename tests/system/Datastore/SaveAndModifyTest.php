@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Tests\System\Datastore;
 
+use Google\Cloud\Int64;
+
 class SaveAndModifyTest extends DatastoreTestCase
 {
     public function testEntityLifeCycle()
@@ -92,5 +94,22 @@ class SaveAndModifyTest extends DatastoreTestCase
         $entity = self::$client->lookup($key);
 
         $this->assertEquals([$entityDataKey => $entityDataValue], $entity->get());
+    }
+
+    public function testInsertInt64AsObject()
+    {
+        $entityDataKey = 'int64';
+        $intValue = '9223372036854775807';
+        $int64Object = new Int64($intValue);
+        $entity = self::$returnInt64AsObjectClient->entity('Int64');
+        $entity[$entityDataKey] = $int64Object;
+
+        self::$returnInt64AsObjectClient->insert($entity);
+        $key = $entity->key();
+        self::$deletionQueue[] = $key;
+        $entity = self::$returnInt64AsObjectClient->lookup($key);
+
+        $this->assertInstanceOf(Int64::class, $entity[$entityDataKey]);
+        $this->assertEquals($intValue, (string) $entity[$entityDataKey]);
     }
 }
