@@ -18,6 +18,10 @@
  * This file was generated from the file
  * https://github.com/google/googleapis/blob/master/google/logging/v2/logging_config.proto
  * and updates to that file get reflected here through a refresh process.
+ *
+ * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
+ * more frequently than those which have been declared beta or 1.0, including changes which break
+ * backwards compatibility.
  */
 
 namespace Google\Cloud\Logging\V2;
@@ -41,13 +45,17 @@ use google\logging\v2\UpdateSinkRequest;
  * Service Description: Service for configuring sinks used to export log entries outside of
  * Stackdriver Logging.
  *
+ * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
+ * more frequently than those which have been declared beta or 1.0, including changes which break
+ * backwards compatibility.
+ *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
  *
  * ```
  * try {
  *     $configServiceV2Client = new ConfigServiceV2Client();
- *     $formattedParent = ConfigServiceV2Client::formatParentName("[PROJECT]");
+ *     $formattedParent = ConfigServiceV2Client::formatProjectName("[PROJECT]");
  *     foreach ($configServiceV2Client->listSinks($formattedParent) as $element) {
  *         // doThingsWith(element);
  *     }
@@ -80,11 +88,10 @@ class ConfigServiceV2Client
      */
     const DEFAULT_TIMEOUT_MILLIS = 30000;
 
-    const _GAX_VERSION = '0.1.0';
-    const _CODEGEN_NAME = 'GAPIC';
-    const _CODEGEN_VERSION = '0.0.0';
+    const _CODEGEN_NAME = 'gapic';
+    const _CODEGEN_VERSION = '0.1.0';
 
-    private static $parentNameTemplate;
+    private static $projectNameTemplate;
     private static $sinkNameTemplate;
 
     private $grpcCredentialsHelper;
@@ -95,11 +102,11 @@ class ConfigServiceV2Client
 
     /**
      * Formats a string containing the fully-qualified path to represent
-     * a parent resource.
+     * a project resource.
      */
-    public static function formatParentName($project)
+    public static function formatProjectName($project)
     {
-        return self::getParentNameTemplate()->render([
+        return self::getProjectNameTemplate()->render([
             'project' => $project,
         ]);
     }
@@ -118,11 +125,11 @@ class ConfigServiceV2Client
 
     /**
      * Parses the project from the given fully-qualified path which
-     * represents a parent resource.
+     * represents a project resource.
      */
-    public static function parseProjectFromParentName($parentName)
+    public static function parseProjectFromProjectName($projectName)
     {
-        return self::getParentNameTemplate()->match($parentName)['project'];
+        return self::getProjectNameTemplate()->match($projectName)['project'];
     }
 
     /**
@@ -143,13 +150,13 @@ class ConfigServiceV2Client
         return self::getSinkNameTemplate()->match($sinkName)['sink'];
     }
 
-    private static function getParentNameTemplate()
+    private static function getProjectNameTemplate()
     {
-        if (self::$parentNameTemplate == null) {
-            self::$parentNameTemplate = new PathTemplate('projects/{project}');
+        if (self::$projectNameTemplate == null) {
+            self::$projectNameTemplate = new PathTemplate('projects/{project}');
         }
 
-        return self::$parentNameTemplate;
+        return self::$projectNameTemplate;
     }
 
     private static function getSinkNameTemplate()
@@ -227,7 +234,7 @@ class ConfigServiceV2Client
             'retryingOverride' => null,
             'timeoutMillis' => self::DEFAULT_TIMEOUT_MILLIS,
             'appName' => 'gax',
-            'appVersion' => self::_GAX_VERSION,
+            'appVersion' => AgentHeaderDescriptor::getGaxVersion(),
         ];
         $options = array_merge($defaultOptions, $options);
 
@@ -236,7 +243,7 @@ class ConfigServiceV2Client
             'clientVersion' => $options['appVersion'],
             'codeGenName' => self::_CODEGEN_NAME,
             'codeGenVersion' => self::_CODEGEN_VERSION,
-            'gaxVersion' => self::_GAX_VERSION,
+            'gaxVersion' => AgentHeaderDescriptor::getGaxVersion(),
             'phpVersion' => phpversion(),
         ]);
 
@@ -291,7 +298,7 @@ class ConfigServiceV2Client
      * ```
      * try {
      *     $configServiceV2Client = new ConfigServiceV2Client();
-     *     $formattedParent = ConfigServiceV2Client::formatParentName("[PROJECT]");
+     *     $formattedParent = ConfigServiceV2Client::formatProjectName("[PROJECT]");
      *     foreach ($configServiceV2Client->listSinks($formattedParent) as $element) {
      *         // doThingsWith(element);
      *     }
@@ -420,7 +427,7 @@ class ConfigServiceV2Client
      * ```
      * try {
      *     $configServiceV2Client = new ConfigServiceV2Client();
-     *     $formattedParent = ConfigServiceV2Client::formatParentName("[PROJECT]");
+     *     $formattedParent = ConfigServiceV2Client::formatProjectName("[PROJECT]");
      *     $sink = new LogSink();
      *     $response = $configServiceV2Client->createSink($formattedParent, $sink);
      * } finally {
