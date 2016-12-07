@@ -40,7 +40,7 @@ class Rest implements ConnectionInterface
     {
         $this->setRequestWrapper(new RequestWrapper($config));
         $this->setRequestBuilder(new RequestBuilder(
-            __DIR__ . '/ServiceDefinition/language-v1beta1.json',
+            __DIR__ . '/ServiceDefinition/language-v1.json',
             self::BASE_URI
         ));
     }
