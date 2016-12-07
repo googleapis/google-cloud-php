@@ -55,6 +55,9 @@ class EntityMapper
      *
      * @param string $projectId The datastore project ID
      * @param bool $encode Whether to encode blobs as base64.
+     * @param bool $returnInt64AsObject Whether or not to return 64 bit integers
+     *             as their native type or as a {@see Google\Cloud\Int64}
+     *             object. This can be useful when working on a 32 bit platform.
      */
     public function __construct($projectId, $encode, $returnInt64AsObject)
     {
