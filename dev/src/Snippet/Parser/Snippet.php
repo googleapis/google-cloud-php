@@ -137,7 +137,7 @@ class Snippet implements \JsonSerializable
         $content = $this->config['content'];
 
         $return = ($returnVar)
-            ? sprintf('return $%s;', $returnVar)
+            ? sprintf('return %s;', $this->createReturnVar($returnVar))
             : '';
 
         $use = [];
@@ -274,5 +274,18 @@ class Snippet implements \JsonSerializable
     public function jsonSerialize()
     {
         return $this->config;
+    }
+
+    private function createReturnVar($returnVar)
+    {
+        if (is_array($returnVar)) {
+            foreach ($returnVar as $index => $var) {
+                $returnVar[$index] = '$'.$var;
+            }
+
+            return '['. implode(',', $returnVar) .']';
+        }
+
+        return '$'. $returnVar;
     }
 }
