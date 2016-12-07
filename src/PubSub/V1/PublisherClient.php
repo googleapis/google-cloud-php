@@ -18,6 +18,10 @@
  * This file was generated from the file
  * https://github.com/google/googleapis/blob/master/google/pubsub/v1/pubsub.proto
  * and updates to that file get reflected here through a refresh process.
+ *
+ * EXPERIMENTAL: the code generation tool used to create this class has not yet been declared
+ * beta. This class may change more frequently than those which have been declared beta or 1.0,
+ * including changes which break backwards compatibility.
  */
 
 namespace Google\Cloud\PubSub\V1;
@@ -46,6 +50,10 @@ use google\pubsub\v1\Topic;
 /**
  * Service Description: The service that an application uses to manipulate topics, and to send
  * messages to a topic.
+ *
+ * EXPERIMENTAL: the code generation tool used to create this class has not yet been declared
+ * beta. This class may change more frequently than those which have been declared beta or 1.0,
+ * including changes which break backwards compatibility.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -84,9 +92,8 @@ class PublisherClient
      */
     const DEFAULT_TIMEOUT_MILLIS = 30000;
 
-    const _GAX_VERSION = '0.1.0';
-    const _CODEGEN_NAME = 'GAPIC';
-    const _CODEGEN_VERSION = '0.0.0';
+    const _CODEGEN_NAME = 'gapic';
+    const _CODEGEN_VERSION = '0.1.0';
 
     private static $projectNameTemplate;
     private static $topicNameTemplate;
@@ -237,7 +244,7 @@ class PublisherClient
             'retryingOverride' => null,
             'timeoutMillis' => self::DEFAULT_TIMEOUT_MILLIS,
             'appName' => 'gax',
-            'appVersion' => self::_GAX_VERSION,
+            'appVersion' => AgentHeaderDescriptor::getGaxVersion(),
         ];
         $options = array_merge($defaultOptions, $options);
 
@@ -246,7 +253,7 @@ class PublisherClient
             'clientVersion' => $options['appVersion'],
             'codeGenName' => self::_CODEGEN_NAME,
             'codeGenVersion' => self::_CODEGEN_VERSION,
-            'gaxVersion' => self::_GAX_VERSION,
+            'gaxVersion' => AgentHeaderDescriptor::getGaxVersion(),
             'phpVersion' => phpversion(),
         ]);
 
@@ -388,6 +395,7 @@ class PublisherClient
      * ```
      *
      * @param string          $topic        The messages in the request will be published on this topic.
+     *                                      Format is `projects/{project}/topics/{topic}`.
      * @param PubsubMessage[] $messages     The messages to publish.
      * @param array           $optionalArgs {
      *                                      Optional.
@@ -445,6 +453,7 @@ class PublisherClient
      * ```
      *
      * @param string $topic        The name of the topic to get.
+     *                             Format is `projects/{project}/topics/{topic}`.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -500,6 +509,7 @@ class PublisherClient
      * ```
      *
      * @param string $project      The name of the cloud project that topics belong to.
+     *                             Format is `projects/{project}`.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -570,6 +580,7 @@ class PublisherClient
      * ```
      *
      * @param string $topic        The name of the topic that subscriptions are attached to.
+     *                             Format is `projects/{project}/topics/{topic}`.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -642,6 +653,7 @@ class PublisherClient
      * ```
      *
      * @param string $topic        Name of the topic to delete.
+     *                             Format is `projects/{project}/topics/{topic}`.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -797,6 +809,8 @@ class PublisherClient
 
     /**
      * Returns permissions that a caller has on the specified resource.
+     * If the resource does not exist, this will return an empty set of
+     * permissions, not a NOT_FOUND error.
      *
      * Sample code:
      * ```

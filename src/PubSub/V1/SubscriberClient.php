@@ -18,6 +18,10 @@
  * This file was generated from the file
  * https://github.com/google/googleapis/blob/master/google/pubsub/v1/pubsub.proto
  * and updates to that file get reflected here through a refresh process.
+ *
+ * EXPERIMENTAL: the code generation tool used to create this class has not yet been declared
+ * beta. This class may change more frequently than those which have been declared beta or 1.0,
+ * including changes which break backwards compatibility.
  */
 
 namespace Google\Cloud\PubSub\V1;
@@ -48,6 +52,10 @@ use google\pubsub\v1\Subscription;
 /**
  * Service Description: The service that an application uses to manipulate subscriptions and to
  * consume messages from a subscription via the `Pull` method.
+ *
+ * EXPERIMENTAL: the code generation tool used to create this class has not yet been declared
+ * beta. This class may change more frequently than those which have been declared beta or 1.0,
+ * including changes which break backwards compatibility.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -87,9 +95,8 @@ class SubscriberClient
      */
     const DEFAULT_TIMEOUT_MILLIS = 30000;
 
-    const _GAX_VERSION = '0.1.0';
-    const _CODEGEN_NAME = 'GAPIC';
-    const _CODEGEN_VERSION = '0.0.0';
+    const _CODEGEN_NAME = 'gapic';
+    const _CODEGEN_VERSION = '0.1.0';
 
     private static $projectNameTemplate;
     private static $subscriptionNameTemplate;
@@ -272,7 +279,7 @@ class SubscriberClient
             'retryingOverride' => null,
             'timeoutMillis' => self::DEFAULT_TIMEOUT_MILLIS,
             'appName' => 'gax',
-            'appVersion' => self::_GAX_VERSION,
+            'appVersion' => AgentHeaderDescriptor::getGaxVersion(),
         ];
         $options = array_merge($defaultOptions, $options);
 
@@ -281,7 +288,7 @@ class SubscriberClient
             'clientVersion' => $options['appVersion'],
             'codeGenName' => self::_CODEGEN_NAME,
             'codeGenVersion' => self::_CODEGEN_VERSION,
-            'gaxVersion' => self::_GAX_VERSION,
+            'gaxVersion' => AgentHeaderDescriptor::getGaxVersion(),
             'phpVersion' => phpversion(),
         ]);
 
@@ -350,8 +357,11 @@ class SubscriberClient
      * If the corresponding topic doesn't exist, returns `NOT_FOUND`.
      *
      * If the name is not provided in the request, the server will assign a random
-     * name for this subscription on the same project as the topic. Note that
-     * for REST API requests, you must specify a name.
+     * name for this subscription on the same project as the topic, conforming
+     * to the
+     * [resource name format](https://cloud.google.com/pubsub/docs/overview#names).
+     * The generated name is populated in the returned Subscription object.
+     * Note that for REST API requests, you must specify a name in the request.
      *
      * Sample code:
      * ```
@@ -374,6 +384,7 @@ class SubscriberClient
      *                             plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters
      *                             in length, and it must not start with `"goog"`.
      * @param string $topic        The name of the topic from which this subscription is receiving messages.
+     *                             Format is `projects/{project}/topics/{topic}`.
      *                             The value of this field will be `_deleted-topic_` if the topic has been
      *                             deleted.
      * @param array  $optionalArgs {
@@ -394,15 +405,15 @@ class SubscriberClient
      *          deadline. To override this value for a given message, call
      *          `ModifyAckDeadline` with the corresponding `ack_id` if using
      *          pull.
+     *          The minimum custom deadline you can specify is 10 seconds.
      *          The maximum custom deadline you can specify is 600 seconds (10 minutes).
+     *          If this parameter is 0, a default value of 10 seconds is used.
      *
      *          For push delivery, this value is also used to set the request timeout for
      *          the call to the push endpoint.
      *
      *          If the subscriber never acknowledges the message, the Pub/Sub
      *          system will eventually redeliver the message.
-     *
-     *          If this parameter is 0, a default value of 10 seconds is used.
      *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
@@ -460,6 +471,7 @@ class SubscriberClient
      * ```
      *
      * @param string $subscription The name of the subscription to get.
+     *                             Format is `projects/{project}/subscriptions/{sub}`.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -515,6 +527,7 @@ class SubscriberClient
      * ```
      *
      * @param string $project      The name of the cloud project that subscriptions belong to.
+     *                             Format is `projects/{project}`.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -567,11 +580,11 @@ class SubscriberClient
     }
 
     /**
-     * Deletes an existing subscription. All pending messages in the subscription
+     * Deletes an existing subscription. All messages retained in the subscription
      * are immediately dropped. Calls to `Pull` after deletion will return
      * `NOT_FOUND`. After a subscription is deleted, a new one may be created with
      * the same name, but the new one has no association with the old
-     * subscription, or its topic unless the same topic is specified.
+     * subscription or its topic unless the same topic is specified.
      *
      * Sample code:
      * ```
@@ -587,6 +600,7 @@ class SubscriberClient
      * ```
      *
      * @param string $subscription The subscription to delete.
+     *                             Format is `projects/{project}/subscriptions/{sub}`.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -644,12 +658,15 @@ class SubscriberClient
      * ```
      *
      * @param string   $subscription       The name of the subscription.
+     *                                     Format is `projects/{project}/subscriptions/{sub}`.
      * @param string[] $ackIds             List of acknowledgment IDs.
      * @param int      $ackDeadlineSeconds The new ack deadline with respect to the time this request was sent to
-     *                                     the Pub/Sub system. Must be >= 0. For example, if the value is 10, the new
+     *                                     the Pub/Sub system. For example, if the value is 10, the new
      *                                     ack deadline will expire 10 seconds after the `ModifyAckDeadline` call
      *                                     was made. Specifying zero may immediately make the message available for
      *                                     another pull request.
+     *                                     The minimum deadline you can specify is 0 seconds.
+     *                                     The maximum deadline you can specify is 600 seconds (10 minutes).
      * @param array    $optionalArgs       {
      *                                     Optional.
      *
@@ -712,6 +729,7 @@ class SubscriberClient
      * ```
      *
      * @param string   $subscription The subscription whose message is being acknowledged.
+     *                               Format is `projects/{project}/subscriptions/{sub}`.
      * @param string[] $ackIds       The acknowledgment ID for the messages being acknowledged that was returned
      *                               by the Pub/Sub system in the `Pull` response. Must not be empty.
      * @param array    $optionalArgs {
@@ -772,17 +790,19 @@ class SubscriberClient
      * ```
      *
      * @param string $subscription The subscription from which messages should be pulled.
+     *                             Format is `projects/{project}/subscriptions/{sub}`.
      * @param int    $maxMessages  The maximum number of messages returned for this request. The Pub/Sub
      *                             system may return fewer than the number specified.
      * @param array  $optionalArgs {
      *                             Optional.
      *
      *     @type bool $returnImmediately
-     *          If this is specified as true the system will respond immediately even if
-     *          it is not able to return a message in the `Pull` response. Otherwise the
-     *          system is allowed to wait until at least one message is available rather
-     *          than returning no messages. The client may cancel the request if it does
-     *          not wish to wait any longer for the response.
+     *          If this field set to true, the system will respond immediately even if
+     *          it there are no messages available to return in the `Pull` response.
+     *          Otherwise, the system may wait (for a bounded amount of time) until at
+     *          least one message is available, rather than returning no messages. The
+     *          client may cancel the request if it does not wish to wait any longer for
+     *          the response.
      *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
@@ -843,6 +863,7 @@ class SubscriberClient
      * ```
      *
      * @param string     $subscription The name of the subscription.
+     *                                 Format is `projects/{project}/subscriptions/{sub}`.
      * @param PushConfig $pushConfig   The push configuration for future deliveries.
      *
      * An empty `pushConfig` indicates that the Pub/Sub system should
@@ -1005,6 +1026,8 @@ class SubscriberClient
 
     /**
      * Returns permissions that a caller has on the specified resource.
+     * If the resource does not exist, this will return an empty set of
+     * permissions, not a NOT_FOUND error.
      *
      * Sample code:
      * ```
