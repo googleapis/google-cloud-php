@@ -65,5 +65,4 @@ class Int64
     {
         return $this->value;
     }
-
 }
