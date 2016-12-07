@@ -19,9 +19,9 @@
  * https://github.com/google/googleapis/blob/master/google/logging/v2/logging_metrics.proto
  * and updates to that file get reflected here through a refresh process.
  *
- * EXPERIMENTAL: the code generation tool used to create this class has not yet been declared
- * beta. This class may change more frequently than those which have been declared beta or 1.0,
- * including changes which break backwards compatibility.
+ * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
+ * more frequently than those which have been declared beta or 1.0, including changes which break
+ * backwards compatibility.
  */
 
 namespace Google\Cloud\Logging\V2;
@@ -44,9 +44,9 @@ use google\logging\v2\UpdateLogMetricRequest;
 /**
  * Service Description: Service for configuring logs-based metrics.
  *
- * EXPERIMENTAL: the code generation tool used to create this class has not yet been declared
- * beta. This class may change more frequently than those which have been declared beta or 1.0,
- * including changes which break backwards compatibility.
+ * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
+ * more frequently than those which have been declared beta or 1.0, including changes which break
+ * backwards compatibility.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
