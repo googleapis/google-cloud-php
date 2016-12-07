@@ -24,6 +24,7 @@ use Google\Cloud\Datastore\Query\GqlQuery;
 use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Query\QueryBuilder;
 use Google\Cloud\Datastore\Query\QueryInterface;
+use Google\Cloud\Int64;
 use InvalidArgumentException;
 use Psr\Cache\CacheItemPoolInterface;
 
@@ -130,13 +131,18 @@ class DatastoreClient
      *     @type array $scopes Scopes to be used for the request.
      *     @type string $namespaceId Partitions data under a namespace. Useful for
      *           [Multitenant Projects](https://cloud.google.com/datastore/docs/concepts/multitenancy).
+     *     @type bool $returnInt64AsObject Whether or not to return 64 bit
+     *           integers as their native type or as a
+     *           {@see Google\Cloud\Int64} object. This can be useful when
+     *           working on a 32 bit platform. **Defaults to** false.
      * }
      * @throws \InvalidArgumentException
      */
     public function __construct(array $config = [])
     {
         $config = $config + [
-            'namespaceId' => null
+            'namespaceId' => null,
+            'returnInt64AsObject' => false
         ];
 
         if (!isset($config['scopes'])) {
@@ -147,7 +153,7 @@ class DatastoreClient
 
         // The second parameter here should change to a variable
         // when gRPC support is added for variable encoding.
-        $this->entityMapper = new EntityMapper($this->projectId, true);
+        $this->entityMapper = new EntityMapper($this->projectId, true, $config['returnInt64AsObject']);
         $this->operation = new Operation(
             $this->connection,
             $this->projectId,
@@ -369,6 +375,23 @@ class DatastoreClient
     public function blob($value)
     {
         return new Blob($value);
+    }
+
+    /**
+     * Create an Int64 object. This can be used to work with 64 bit integers as
+     * a string value while on a 32 bit platform.
+     *
+     * Example:
+     * ```
+     * $int64 = $datastore->int64('9223372036854775807');
+     * ```
+     *
+     * @param string $value
+     * @return Int64
+     */
+    public function int64($value)
+    {
+        return new Int64($value);
     }
 
     /**

@@ -21,6 +21,7 @@ use Google\Cloud\ArrayTrait;
 use Google\Cloud\Datastore\Entity;
 use Google\Cloud\Datastore\GeoPoint;
 use Google\Cloud\Datastore\Key;
+use Google\Cloud\Int64;
 use InvalidArgumentException;
 use RuntimeException;
 
@@ -45,15 +46,21 @@ class EntityMapper
     private $encode;
 
     /**
+     * @var bool
+     */
+    private $returnInt64AsObject;
+
+    /**
      * Create an Entity Mapper
      *
      * @param string $projectId The datastore project ID
      * @param bool $encode Whether to encode blobs as base64.
      */
-    public function __construct($projectId, $encode)
+    public function __construct($projectId, $encode, $returnInt64AsObject)
     {
         $this->projectId = $projectId;
         $this->encode = $encode;
+        $this->returnInt64AsObject = $returnInt64AsObject;
     }
 
     /**
@@ -139,7 +146,9 @@ class EntityMapper
                 break;
 
             case 'integerValue':
-                $result = (int) $value;
+                $result = $this->returnInt64AsObject
+                    ? new Int64((string) $value)
+                    : (int) $value;
 
                 break;
 
@@ -346,6 +355,12 @@ class EntityMapper
     public function objectProperty($value)
     {
         switch (true) {
+            case $value instanceof Int64:
+                return [
+                    'integerValue' => $value->get()
+                ];
+
+                break;
             case $value instanceof Blob:
                 return [
                     'blobValue' => ($this->encode)
