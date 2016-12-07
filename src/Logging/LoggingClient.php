@@ -49,6 +49,9 @@ use Psr\Cache\CacheItemPoolInterface;
  * Please take care in installing the same version of these libraries that are
  * outlined in the project's composer.json require-dev keyword.
  *
+ * NOTE: Support for gRPC is currently at an Alpha quality level, meaning it is still
+ * a work in progress and is more likely to get backwards-incompatible updates.
+ *
  * Example:
  * ```
  * use Google\Cloud\ServiceBuilder;
