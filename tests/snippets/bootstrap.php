@@ -29,7 +29,7 @@ register_shutdown_function(function () {
     file_put_contents(__DIR__ .'/../../build/snippets-uncovered.json', json_encode($uncovered, JSON_PRETTY_PRINT));
 
     if (!empty($uncovered)) {
-        echo sprintf("\033[31mERROR: %s uncovered snippets! See build/snippets-uncovered.json for a report.\n", count($uncovered));
+        echo sprintf("\033[31mNOTICE: %s uncovered snippets! See build/snippets-uncovered.json for a report.\n", count($uncovered));
     }
 });
 

@@ -40,13 +40,20 @@ class SnippetTestCase extends \PHPUnit_Framework_TestCase
         $this->parser = Container::$parser;
     }
 
-    public function snippetFromClass($class, $index = 0)
+    /**
+     * Retrieve a snippet from a class-level docblock.
+     *
+     * @param string $class The class name.
+     * @param string|int $indexOrName The index of the snippet, or its name.
+     * @return Snippet
+     */
+    public function snippetFromClass($class, $indexOrName = 0)
     {
-        $identifier = $this->parser->createIdentifier($class, $index);
+        $identifier = $this->parser->createIdentifier($class, $indexOrName);
 
         $snippet = $this->coverage->cache($identifier);
         if (!$snippet) {
-            $snippet = $this->parser->classExample($class, $index);
+            $snippet = $this->parser->classExample($class, $indexOrName);
         }
 
         $this->coverage->cover($snippet->identifier());
@@ -54,10 +61,19 @@ class SnippetTestCase extends \PHPUnit_Framework_TestCase
         return $snippet;
     }
 
-    public function snippetFromMagicMethod($class, $method, $index = 0)
+    /**
+     * Retrieve a snippet from a magic method docblock (i.e. `@method` tag
+     * nexted inside a class-level docblock).
+     *
+     * @param string $class The class name
+     * @param string $method The method name
+     * @param string|int $indexOrName The index of the snippet, or its name.
+     * @return Snippet
+     */
+    public function snippetFromMagicMethod($class, $method, $indexOrName = 0)
     {
         $name = $class .'::'. $method;
-        $identifier = $this->parser->createIdentifier($name, $index);
+        $identifier = $this->parser->createIdentifier($name, $indexOrName);
 
         $snippet = $this->coverage->cache($identifier);
         if (!$snippet) {
@@ -69,14 +85,22 @@ class SnippetTestCase extends \PHPUnit_Framework_TestCase
         return $snippet;
     }
 
-    public function snippetFromMethod($class, $method, $index = 0)
+    /**
+     * Retrieve a snippet from a method docblock.
+     *
+     * @param string $class The class name
+     * @param string $method The method name
+     * @param string|int $indexOrName The index of the snippet, or its name.
+     * @return Snippet
+     */
+    public function snippetFromMethod($class, $method, $indexOrName = 0)
     {
         $name = $class .'::'. $method;
-        $identifier = $this->parser->createIdentifier($name, $index);
+        $identifier = $this->parser->createIdentifier($name, $indexOrName);
 
         $snippet = $this->coverage->cache($identifier);
         if (!$snippet) {
-            $snippet = $this->parser->methodExample($class, $method, $index);
+            $snippet = $this->parser->methodExample($class, $method, $indexOrName);
         }
 
         $this->coverage->cover($identifier);
