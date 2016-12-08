@@ -249,14 +249,14 @@ class StorageObject
      *           `authenticatedRead`, `bucketOwnerFullControl`,
      *           `bucketOwnerRead`, `private`, `projectPrivate`, and
      *           `publicRead`.
-     *     @type string $encryptionKey An AES-256 customer-supplied encryption
-     *           key. It will be neccesary to provide this when a key was used
-     *           during the object's creation. If provided one must also include
-     *           an `encryptionKeySHA256`.
-     *     @type string $encryptionKeySHA256 The SHA256 hash of the
-     *           customer-supplied encryption key. It will be neccesary to
-     *           provide this when a key was used during the object's creation.
-     *           If provided one must also include an `encryptionKey`.
+     *     @type string $encryptionKey A base64 encoded AES-256 customer-supplied
+     *           encryption key. It will be neccesary to provide this when a key
+     *           was used during the object's creation.
+     *     @type string $encryptionKeySHA256 Base64 encoded SHA256 hash of the
+     *           customer-supplied encryption key. This value will be calculated
+     *           from the `encryptionKey` on your behalf if not provided, but
+     *           for best performance it is recommended to pass in a cached
+     *           version of the already calculated SHA.
      *     @type string $ifGenerationMatch Makes the operation conditional on
      *           whether the destination object's current generation matches the
      *           given value.
@@ -334,15 +334,11 @@ class StorageObject
      * ```
      * // Rotate customer-supplied encryption keys.
      * $key = file_get_contents(__DIR__ . '/key.txt');
-     * $hash = hash('SHA256', $key, true);
-     * $destinationKey = openssl_random_pseudo_bytes(32); // Make sure to remember your key.
-     * $destinationHash = hash('SHA256', $destinationKey, true);
+     * $destinationKey = base64_encode(openssl_random_pseudo_bytes(32)); // Make sure to remember your key.
      *
      * $rewrittenObject = $object->rewrite('otherBucket', [
      *     'encryptionKey' => $key,
-     *     'encryptionKeySHA256' => $hash,
-     *     'destinationEncryptionKey' => $destinationKey,
-     *     'destinationEncryptionKeySHA256' => $destinationHash
+     *     'destinationEncryptionKey' => $destinationKey
      * ]);
      * ```
      *
@@ -367,21 +363,23 @@ class StorageObject
      *           integral multiple of 1 MiB (1048576). Also, this only applies
      *           to requests where the source and destination span locations
      *           and/or storage classes.
-     *     @type string $encryptionKey An AES-256 customer-supplied encryption
-     *           key. It will be neccesary to provide this when a key was used
-     *           during the object's creation. If provided one must also include
-     *           an `encryptionKeySHA256`.
-     *     @type string $encryptionKeySHA256 The SHA256 hash of the
-     *           customer-supplied encryption key. It will be neccesary to
-     *           provide this when a key was used during the object's creation.
-     *           If provided one must also include an `encryptionKey`.
-     *     @type string $destinationEncryptionKey An AES-256 customer-supplied
-     *           encryption key that will be used to encrypt the rewritten
-     *           object. If provided one must also include a
-     *           `destinationEncryptionKeySHA256`.
-     *     @type string $destinationEncryptionKeySHA256 The SHA256 hash of the
-     *           customer-supplied destination encryption key. If provided one
-     *           must also include a `destinationEncryptionKey`.
+     *     @type string $encryptionKey A base64 encoded AES-256 customer-supplied
+     *           encryption key. It will be neccesary to provide this when a key
+     *           was used during the object's creation.
+     *     @type string $encryptionKeySHA256 Base64 encoded SHA256 hash of the
+     *           customer-supplied encryption key. This value will be calculated
+     *           from the `encryptionKey` on your behalf if not provided, but
+     *           for best performance it is recommended to pass in a cached
+     *           version of the already calculated SHA.
+     *     @type string $destinationEncryptionKey A base64 encoded AES-256
+     *           customer-supplied encryption key that will be used to encrypt
+     *           the rewritten object.
+     *     @type string $destinationEncryptionKeySHA256 Base64 encoded SHA256
+     *           hash of the customer-supplied destination encryption key. This
+     *           value will be calculated from the `destinationEncryptionKey` on
+     *           your behalf if not provided, but for best performance it is
+     *           recommended to pass in a cached version of the already
+     *           calculated SHA.
      *     @type string $ifGenerationMatch Makes the operation conditional on
      *           whether the destination object's current generation matches the
      *           given value.
@@ -459,14 +457,14 @@ class StorageObject
      *           `authenticatedRead`, `bucketOwnerFullControl`,
      *           `bucketOwnerRead`, `private`, `projectPrivate`, and
      *           `publicRead`.
-     *     @type string $encryptionKey An AES-256 customer-supplied encryption
-     *           key. It will be neccesary to provide this when a key was used
-     *           during the object's creation. If provided one must also include
-     *           an `encryptionKeySHA256`.
-     *     @type string $encryptionKeySHA256 The SHA256 hash of the
-     *           customer-supplied encryption key. It will be neccesary to
-     *           provide this when a key was used during the object's creation.
-     *           If provided one must also include an `encryptionKey`.
+     *     @type string $encryptionKey A base64 encoded AES-256 customer-supplied
+     *           encryption key. It will be neccesary to provide this when a key
+     *           was used during the object's creation.
+     *     @type string $encryptionKeySHA256 Base64 encoded SHA256 hash of the
+     *           customer-supplied encryption key. This value will be calculated
+     *           from the `encryptionKey` on your behalf if not provided, but
+     *           for best performance it is recommended to pass in a cached
+     *           version of the already calculated SHA.
      *     @type string $ifGenerationMatch Makes the operation conditional on
      *           whether the destination object's current generation matches the
      *           given value.
@@ -676,16 +674,14 @@ class StorageObject
      * @param array $options [optional] {
      *     Configuration options.
      *
-     *     @type string $encryptionKey An AES-256 customer-supplied encryption
-     *           key. It will be neccesary to provide this when a key was used
-     *           during the object's creation in order to retrieve the MD5 hash
-     *           and CRC32C checksum. If provided one must also include an
-     *           `encryptionKeySHA256`.
-     *     @type string $encryptionKeySHA256 The SHA256 hash of the
-     *           customer-supplied encryption key. It will be neccesary to
-     *           provide this when a key was used during the object's creation
-     *           in order to retrieve the MD5 hash and CRC32C checksum. If
-     *           provided one must also include an `encryptionKey`.
+     *     @type string $encryptionKey A base64 encoded AES-256 customer-supplied
+     *           encryption key. It will be neccesary to provide this when a key
+     *           was used during the object's creation.
+     *     @type string $encryptionKeySHA256 Base64 encoded SHA256 hash of the
+     *           customer-supplied encryption key. This value will be calculated
+     *           from the `encryptionKey` on your behalf if not provided, but
+     *           for best performance it is recommended to pass in a cached
+     *           version of the already calculated SHA.
      *     @type string $ifGenerationMatch Makes the operation conditional on
      *           whether the object's current generation matches the given
      *           value.

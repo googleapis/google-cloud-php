@@ -42,22 +42,12 @@ class EncryptionTraitTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
-    public function testFormatEncryptionHeadersThrowsExceptionWithoutBothKeyAndHash()
-    {
-        $this->trait->formatEncryptionHeaders([
-            'encryptionKey' => 'abcd'
-        ]);
-    }
-
     public function encryptionProvider()
     {
-        $key = 'abcd';
-        $hash = '1234';
-        $destinationKey = 'efgh';
-        $destinationHash = '5678';
+        $key = base64_encode('abcd');
+        $hash = base64_encode(hash('SHA256', base64_decode($key), true));
+        $destinationKey = base64_encode('efgh');
+        $destinationHash = base64_encode(hash('SHA256', base64_decode($destinationKey), true));
 
         return [
             [
@@ -69,6 +59,16 @@ class EncryptionTraitTest extends \PHPUnit_Framework_TestCase
                 [
                     'encryptionKey' => $key,
                     'encryptionKeySHA256' => $hash
+                ]
+            ],
+            [
+                [
+                    'httpOptions' => [
+                        'headers' => $this->getEncryptionHeaders($key, $hash)
+                    ]
+                ],
+                [
+                    'encryptionKey' => $key
                 ]
             ],
             [
@@ -111,8 +111,8 @@ class EncryptionTraitTest extends \PHPUnit_Framework_TestCase
     {
         return [
             'x-goog-encryption-algorithm' => 'AES256',
-            'x-goog-encryption-key' => base64_encode($key),
-            'x-goog-encryption-key-sha256' => base64_encode($hash)
+            'x-goog-encryption-key' => $key,
+            'x-goog-encryption-key-sha256' => $hash
         ];
     }
 
@@ -120,8 +120,8 @@ class EncryptionTraitTest extends \PHPUnit_Framework_TestCase
     {
         return [
             'x-goog-copy-source-encryption-algorithm' => 'AES256',
-            'x-goog-copy-source-encryption-key' => base64_encode($key),
-            'x-goog-copy-source-encryption-key-sha256' => base64_encode($hash)
+            'x-goog-copy-source-encryption-key' => $key,
+            'x-goog-copy-source-encryption-key-sha256' => $hash
         ];
     }
 }
