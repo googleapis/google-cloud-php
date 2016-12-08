@@ -106,8 +106,13 @@ class ServiceBuilder
      * $bigQuery = $cloud->bigQuery();
      * ```
      *
-     * @param array $config [optional] Configuration options. See
-     *        {@see Google\Cloud\ServiceBuilder::__construct()} for the available options.
+     * @param array $config [optional] {
+     *     Configuration options. See
+     *     {@see Google\Cloud\ServiceBuilder::__construct()} for the other available options.
+     *
+     *     @type bool $returnInt64AsObject If true, 64 bit integers will be
+     *           returned as a {@see Google\Cloud\Int64} object for 32 bit
+     *           platform compatibility. **Defaults to** false.
      * @return BigQueryClient
      */
     public function bigQuery(array $config = [])

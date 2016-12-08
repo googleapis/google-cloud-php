@@ -139,14 +139,11 @@ class DatastoreClient
      */
     public function __construct(array $config = [])
     {
-        $config = $config + [
+        $config += [
             'namespaceId' => null,
-            'returnInt64AsObject' => false
+            'returnInt64AsObject' => false,
+            'scopes' => [self::FULL_CONTROL_SCOPE]
         ];
-
-        if (!isset($config['scopes'])) {
-            $config['scopes'] = [self::FULL_CONTROL_SCOPE];
-        }
 
         $this->connection = new Rest($this->configureAuthentication($config));
 

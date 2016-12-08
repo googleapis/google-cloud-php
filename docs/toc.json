@@ -39,8 +39,14 @@
             "title": "BigQuery",
             "type": "bigquery/bigqueryclient",
             "nav": [{
+                "title": "Bytes",
+                "type": "bigquery/bytes"
+            }, {
                 "title": "Dataset",
                 "type": "bigquery/dataset"
+            }, {
+                "title": "Date",
+                "type": "bigquery/date"
             }, {
                 "title": "InsertResponse",
                 "type": "bigquery/insertresponse"
@@ -50,9 +56,15 @@
             }, {
                 "title": "QueryResults",
                 "type": "bigquery/queryresults"
-            },{
+            }, {
                 "title": "Table",
                 "type": "bigquery/table"
+            }, {
+                "title": "Time",
+                "type": "bigquery/time"
+            }, {
+                "title": "Timestamp",
+                "type": "bigquery/timestamp"
             }]
         },
         {

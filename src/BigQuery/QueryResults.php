@@ -46,6 +46,11 @@ class QueryResults
     private $info;
 
     /**
+     * @var ValueMapper $mapper Maps values between PHP and BigQuery.
+     */
+    private $mapper;
+
+    /**
      * @var array The options to use when reloading query data.
      */
     private $reloadOptions;
@@ -57,9 +62,16 @@ class QueryResults
      * @param string $projectId The project's ID.
      * @param array $info The query result's metadata.
      * @param array $reloadOptions The options to use when reloading query data.
+     * @param ValueMapper $mapper Maps values between PHP and BigQuery.
      */
-    public function __construct(ConnectionInterface $connection, $jobId, $projectId, array $info, array $reloadOptions)
-    {
+    public function __construct(
+        ConnectionInterface $connection,
+        $jobId,
+        $projectId,
+        array $info,
+        array $reloadOptions,
+        ValueMapper $mapper
+    ) {
         $this->connection = $connection;
         $this->info = $info;
         $this->reloadOptions = $reloadOptions;
@@ -67,12 +79,31 @@ class QueryResults
             'jobId' => $jobId,
             'projectId' => $projectId
         ];
+        $this->mapper = $mapper;
     }
 
     /**
      * Retrieves the rows associated with the query and merges them together
      * with the table's schema. It is recommended to check the completeness of
      * the query before attempting to access rows.
+     *
+     * Refer to the table below for a guide on how BigQuery types are mapped as
+     * they come back from the API.
+     *
+     * | **PHP Type**                               | **BigQuery Data Type**               |
+     * |--------------------------------------------|--------------------------------------|
+     * | `\DateTimeInterface`                       | `DATETIME`                           |
+     * | {@see Google\Cloud\BigQuery\Bytes}         | `BYTES`                              |
+     * | {@see Google\Cloud\BigQuery\Date}          | `DATE`                               |
+     * | {@see Google\Cloud\Int64}                  | `INTEGER`                            |
+     * | {@see Google\Cloud\BigQuery\Time}          | `TIME`                               |
+     * | {@see Google\Cloud\BigQuery\Timestamp}     | `TIMESTAMP`                          |
+     * | Associative Array                          | `RECORD`                             |
+     * | Non-Associative Array                      | `RECORD` (Repeated)                  |
+     * | `float`                                    | `FLOAT`                              |
+     * | `int`                                      | `INTEGER`                            |
+     * | `string`                                   | `STRING`                             |
+     * | `bool`                                     | `BOOLEAN`                            |
      *
      * Example:
      * ```
@@ -109,8 +140,17 @@ class QueryResults
             foreach ($this->info['rows'] as $row) {
                 $mergedRow = [];
 
+                if ($row === null) {
+                    continue;
+                }
+
+                if (!array_key_exists('f', $row)) {
+                    throw new GoogleException('Bad response - missing key "f" for a row.');
+                }
+
                 foreach ($row['f'] as $key => $value) {
-                    $mergedRow[$schema[$key]['name']] = $value['v'];
+                    $fieldSchema = $schema[$key];
+                    $mergedRow[$fieldSchema['name']] = $this->mapper->fromBigQuery($value, $fieldSchema);
                 }
 
                 yield $mergedRow;

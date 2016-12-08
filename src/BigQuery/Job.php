@@ -43,20 +43,32 @@ class Job
     private $info;
 
     /**
+     * @var ValueMapper $mapper Maps values between PHP and BigQuery.
+     */
+    private $mapper;
+
+    /**
      * @param ConnectionInterface $connection Represents a connection to
      *        BigQuery.
      * @param string $id The job's ID.
      * @param string $projectId The project's ID.
      * @param array $info [optional] The job's metadata.
+     * @param ValueMapper $mapper Maps values between PHP and BigQuery.
      */
-    public function __construct(ConnectionInterface $connection, $id, $projectId, array $info = [])
-    {
+    public function __construct(
+        ConnectionInterface $connection,
+        $id,
+        $projectId,
+        array $info = [],
+        ValueMapper $mapper = null
+    ) {
         $this->connection = $connection;
         $this->info = $info;
         $this->identity = [
             'jobId' => $id,
             'projectId' => $projectId
         ];
+        $this->mapper = $mapper;
     }
 
     /**
@@ -139,7 +151,8 @@ class Job
             $this->identity['jobId'],
             $this->identity['projectId'],
             $response,
-            $options
+            $options,
+            $this->mapper
         );
     }
 
