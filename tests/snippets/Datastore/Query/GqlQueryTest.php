@@ -41,7 +41,7 @@ class GqlQueryTest extends SnippetTestCase
             $this->connection->reveal(),
             'my-awesome-project',
             '',
-            new EntityMapper('my-awesome-project', true)
+            new EntityMapper('my-awesome-project', true, false)
         );
     }
 

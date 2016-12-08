@@ -48,7 +48,7 @@ class SubscriptionTest extends SnippetTestCase
             false
         );
 
-        $this->pubsub = new \PubSubClientStub;
+        $this->pubsub = new \PubSubClientStub(['transport' => 'rest']);
         $this->pubsub->setConnection($this->connection->reveal());
     }
 

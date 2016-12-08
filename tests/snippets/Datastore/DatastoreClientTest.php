@@ -642,7 +642,7 @@ class DatastoreClientStub extends DatastoreClient
             $this->connection,
             'my-awesome-project',
             '',
-            new EntityMapper('my-awesome-project', true)
+            new EntityMapper('my-awesome-project', true, false)
         );
     }
 }

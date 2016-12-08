@@ -48,7 +48,7 @@ class TransactionTest extends SnippetTestCase
             $this->connection->reveal(),
             self::PROJECT,
             '',
-            new EntityMapper(self::PROJECT, false)
+            new EntityMapper(self::PROJECT, false, false)
         );
         $this->transaction = new Transaction($this->operation, self::PROJECT, $this->transactionId);
         $this->datastore = new DatastoreClient;

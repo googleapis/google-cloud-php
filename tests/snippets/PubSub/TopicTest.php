@@ -49,7 +49,7 @@ class TopicTest extends SnippetTestCase
     public function testClass()
     {
         $snippet = $this->snippetFromClass(Topic::class);
-        $snippet->addLocal('pubsub', new \PubSubClientStub);
+        $snippet->addLocal('pubsub', new \PubSubClientStub(['transport' => 'rest']));
 
         $res = $snippet->invoke('topic');
         $this->assertInstanceOf(Topic::class, $res->return());
@@ -59,7 +59,7 @@ class TopicTest extends SnippetTestCase
     public function testClassWithFullyQualifiedName()
     {
         $snippet = $this->snippetFromClass(Topic::class, 1);
-        $snippet->addLocal('pubsub', new \PubSubClientStub);
+        $snippet->addLocal('pubsub', new \PubSubClientStub(['transport' => 'rest']));
 
         $res = $snippet->invoke('topic');
         $this->assertInstanceOf(Topic::class, $res->return());

@@ -37,7 +37,7 @@ class QueryTest extends SnippetTestCase
 
     public function setUp()
     {
-        $mapper = new EntityMapper('my-awesome-project', true);
+        $mapper = new EntityMapper('my-awesome-project', true, false);
 
         $this->datastore = new DatastoreClient;
         $this->connection = $this->prophesize(ConnectionInterface::class);

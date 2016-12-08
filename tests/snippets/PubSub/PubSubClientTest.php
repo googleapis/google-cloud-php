@@ -40,7 +40,7 @@ class PubSubClientTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->client = new \PubSubClientStub;
+        $this->client = new \PubSubClientStub(['transport' => 'rest']);
     }
 
     public function testClassExample1()
