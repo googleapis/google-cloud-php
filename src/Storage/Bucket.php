@@ -171,7 +171,7 @@ class Bucket
      * // Upload an object with a customer-supplied encryption key.
      * $key = base64_encode(openssl_random_pseudo_bytes(32)); // Make sure to remember your key.
      *
-     * $bucket->upload(
+     * $object = $bucket->upload(
      *     fopen(__DIR__ . '/image.jpg', 'r'),
      *     ['encryptionKey' => $key]
      * );
