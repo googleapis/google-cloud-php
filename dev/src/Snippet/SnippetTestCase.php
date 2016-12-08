@@ -26,6 +26,9 @@ use Google\Cloud\Dev\Snippet\Container;
  */
 class SnippetTestCase extends \PHPUnit_Framework_TestCase
 {
+    const HOOK_BEFORE = 1000;
+    const HOOK_AFTER = 1001;
+
     private $coverage;
     private $parser;
 
