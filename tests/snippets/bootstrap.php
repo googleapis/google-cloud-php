@@ -22,6 +22,10 @@ Container::$parser = $parser;
 register_shutdown_function(function () {
     $uncovered = Container::$coverage->uncovered();
 
+    if (!file_exists(__DIR__ .'/../../build')) {
+        mkdir(__DIR__ .'/../../build', 0777, true);
+    }
+
     file_put_contents(__DIR__ .'/../../build/snippets-uncovered.json', json_encode($uncovered, JSON_PRETTY_PRINT));
 
     if (!empty($uncovered)) {
