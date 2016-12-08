@@ -39,11 +39,13 @@ class DateTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('DATE', $date->type());
     }
 
-    public function testToApi()
+    public function testStringFormatting()
     {
         $value = new \DateTime();
         $date = new Date($value);
+        $expected = $value->format('Y-m-d');
 
-        $this->assertEquals($value->format('Y-m-d'), $date->toApi());
+        $this->assertEquals($expected, (string) $date);
+        $this->assertEquals($expected, $date->formatAsString());
     }
 }

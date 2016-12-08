@@ -28,7 +28,17 @@ interface ValueInterface
     public function type();
 
     /**
+     * @return mixed
+     */
+    public function get();
+
+    /**
      * @return string
      */
-    public function toApi();
+    public function formatAsString();
+
+    /**
+     * @return string
+     */
+    public function __toString();
 }

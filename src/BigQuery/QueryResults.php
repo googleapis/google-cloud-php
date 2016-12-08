@@ -46,6 +46,11 @@ class QueryResults
     private $info;
 
     /**
+     * @var ValueMapper $mapper Maps values between PHP and BigQuery.
+     */
+    private $mapper;
+
+    /**
      * @var array The options to use when reloading query data.
      */
     private $reloadOptions;
@@ -57,9 +62,16 @@ class QueryResults
      * @param string $projectId The project's ID.
      * @param array $info The query result's metadata.
      * @param array $reloadOptions The options to use when reloading query data.
+     * @param ValueMapper $mapper Maps values between PHP and BigQuery.
      */
-    public function __construct(ConnectionInterface $connection, $jobId, $projectId, array $info, array $reloadOptions)
-    {
+    public function __construct(
+        ConnectionInterface $connection,
+        $jobId,
+        $projectId,
+        array $info,
+        array $reloadOptions,
+        ValueMapper $mapper
+    ) {
         $this->connection = $connection;
         $this->info = $info;
         $this->reloadOptions = $reloadOptions;
@@ -67,12 +79,31 @@ class QueryResults
             'jobId' => $jobId,
             'projectId' => $projectId
         ];
+        $this->mapper = $mapper;
     }
 
     /**
      * Retrieves the rows associated with the query and merges them together
      * with the table's schema. It is recommended to check the completeness of
      * the query before attempting to access rows.
+     *
+     * Refer to the table below for a guide on how BigQuery types are mapped as
+     * they come back from the API.
+     *
+     * | **PHP Type**                               | **BigQuery Data Type**               |
+     * |--------------------------------------------|--------------------------------------|
+     * | `\DateTimeInterface`                       | `DATETIME`                           |
+     * | {@see Google\Cloud\BigQuery\Bytes}         | `BYTES`                              |
+     * | {@see Google\Cloud\BigQuery\Date}          | `DATE`                               |
+     * | {@see Google\Cloud\Int64}                  | `INTEGER`                            |
+     * | {@see Google\Cloud\BigQuery\Time}          | `TIME`                               |
+     * | {@see Google\Cloud\BigQuery\Timestamp}     | `TIMESTAMP`                          |
+     * | Associative Array                          | `RECORD`                             |
+     * | Non-Associative Array                      | `RECORD` (Repeated)                  |
+     * | `float`                                    | `FLOAT`                              |
+     * | `int`                                      | `INTEGER`                            |
+     * | `string`                                   | `STRING`                             |
+     * | `bool`                                     | `BOOLEAN`                            |
      *
      * Example:
      * ```
@@ -106,8 +137,23 @@ class QueryResults
         while (true) {
             $options['pageToken'] = isset($this->info['pageToken']) ? $this->info['pageToken'] : null;
 
-            foreach ($this->extractValues($schema, $this->info['rows']) as $index => $row) {
-                yield $index => $row;
+            foreach ($this->info['rows'] as $row) {
+                $mergedRow = [];
+
+                if ($row === null) {
+                    continue;
+                }
+
+                if (!array_key_exists('f', $row)) {
+                    throw new GoogleException('Bad response - missing key "f" for a row.');
+                }
+
+                foreach ($row['f'] as $key => $value) {
+                    $fieldSchema = $schema[$key];
+                    $mergedRow[$fieldSchema['name']] = $this->mapper->fromBigQuery($value, $fieldSchema);
+                }
+
+                yield $mergedRow;
             }
 
             if (!$options['pageToken']) {
@@ -118,109 +164,6 @@ class QueryResults
         }
     }
 
-    /**
-     * Extract values from query response.
-     *
-     * @param $schema
-     * @param $rows
-     * @return array
-     * @throws GoogleException
-     */
-    public function extractValues($schema, array $rows)
-    {
-        $output = [];
-
-        if ($rows === null) {
-            return null;
-        }
-
-        foreach ($rows as $rowIndex => $row) {
-            if ($row === null) {
-                continue;
-            }
-
-            if (!array_key_exists('f', $row)) {
-                throw new GoogleException('Bad response - missing key "f" for a row.');
-            }
-
-            $mergedFields = [];
-
-            foreach ($row['f'] as $key => $value) {
-
-                $fieldSchema = $schema[$key];
-                $fieldName = $fieldSchema['name'];
-
-                if ($this->isRepeatedRecord($fieldSchema)) {
-
-                    if (!array_key_exists('v', $value)) {
-                        throw new GoogleException('Bad response - missing key "v" for a repeated record field.');
-                    }
-
-                    foreach ($value['v'] as $record) {
-                        $mergedFields[$fieldName][] = $this->extractValues($fieldSchema['fields'], $record);
-                    }
-
-                } elseif ($this->isSingleRecord($fieldSchema)) {
-
-                    $mergedFields[$fieldName] = $this->extractValues($fieldSchema['fields'], $value);
-
-                } elseif ($this->isScalar($fieldSchema)) {
-
-                    if (!array_key_exists('v', $value)) {
-                        throw new GoogleException('Bad response - missing key "v" for a single value field.');
-                    }
-
-                    $mergedFields[$fieldName] = $this->getScalarValue($value['v'], $fieldSchema);
-                }
-            }
-
-            if (is_numeric($rowIndex)) {
-                $output[] = $mergedFields;
-            }
-            else {
-                $output = $mergedFields;
-            }
-        }
-
-        return $output;
-    }
-
-    private function isRepeatedRecord($fieldSchema)
-    {
-        return ($fieldSchema['type'] === 'RECORD' && $fieldSchema['mode'] === 'REPEATED');
-    }
-
-    private function isSingleRecord($fieldSchema)
-    {
-        return ($fieldSchema['type'] === 'RECORD');
-    }
-
-    private function isScalar($fieldSchema)
-    {
-        return ($fieldSchema['type'] !== 'RECORD');
-    }
-
-    private function getScalarValue($value, $fieldSchema)
-    {
-        if ($value === null) {
-            return null;
-        }
-
-        if ($fieldSchema['type'] === 'TIMESTAMP') {
-
-            $date = new \DateTime();
-            $date->setTimestamp($value);
-            $output = $date->format('Y-m-d H:i:s T');
-
-        } else {
-
-            $output = $value;
-
-        }
-
-        return $output;
-    }    
-    
     /**
      * Checks the query's completeness. Useful in combination with
      * {@see Google\Cloud\BigQuery\QueryResults::reload()} to poll for query status.

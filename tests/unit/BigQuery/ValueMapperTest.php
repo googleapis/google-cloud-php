@@ -17,8 +17,12 @@
 
 namespace Google\Cloud\Tests\BigQuery;
 
+use Google\Cloud\BigQuery\Bytes;
 use Google\Cloud\BigQuery\Date;
+use Google\Cloud\BigQuery\Time;
+use Google\Cloud\BigQuery\Timestamp;
 use Google\Cloud\BigQuery\ValueMapper;
+use Google\Cloud\Int64;
 
 /**
  * @group bigquery
@@ -30,36 +34,188 @@ class ValueMapperTest extends \PHPUnit_Framework_TestCase
      */
     public function testThrowsExceptionWithUnhandledClass()
     {
-        $mapper = new ValueMapper();
+        $mapper = new ValueMapper(false);
         $mapper->toParameter(new \stdClass());
     }
 
     /**
      * @expectedException \InvalidArgumentException
      */
-    public function testThrowsExceptionWithUnhandledType()
+    public function testToParameterThrowsExceptionWithUnhandledType()
     {
         $f = fopen('php://temp','r');
         fclose($f);
-        $mapper = new ValueMapper();
+        $mapper = new ValueMapper(false);
         $mapper->toParameter($f);
     }
 
     /**
-     * @dataProvider valueProvider
+     * @expectedException \InvalidArgumentException
+     */
+    public function testFromBigQueryThrowsExceptionWithUnhandledType()
+    {
+        $mapper = new ValueMapper(false);
+        $mapper->fromBigQuery(['v' => 'hi'], ['type' => 'BLAH']);
+    }
+
+    public function testReturnsInt64Object()
+    {
+        $mapper = new ValueMapper(true);
+        $actual = $mapper->fromBigQuery(['v' => '123'], ['type' => 'INTEGER']);
+
+        $this->assertInstanceOf(Int64::class, $actual);
+        $this->assertEquals('123', $actual->get());
+    }
+
+    public function testParameterFromInt64Object()
+    {
+        $value = '123';
+        $mapper = new ValueMapper(true);
+        $int = new Int64($value);
+        $actual = $mapper->toParameter($int);
+
+        $this->assertEquals([
+            'parameterType' => [
+                'type' => 'INT64'
+            ],
+            'parameterValue' => [
+                'value' => $value
+            ]
+        ], $actual);
+    }
+
+    /**
+     * @dataProvider bigQueryValueProvider
+     */
+    public function testMapsFromBigQuery($value, $schema, $expected)
+    {
+        $mapper = new ValueMapper(false);
+        $actual = $mapper->fromBigQuery($value, $schema);
+
+        $this->assertEquals($expected, $actual);
+    }
+
+    public function bigQueryValueProvider()
+    {
+        return [
+            [
+                ['v' => 'true'],
+                ['type' => 'BOOLEAN'],
+                true
+            ],
+            [
+                ['v' => '123'],
+                ['type' => 'INTEGER'],
+                123
+            ],
+            [
+                ['v' => '12.3'],
+                ['type' => 'FLOAT'],
+                12.3
+            ],
+            [
+                ['v' => 'Hello'],
+                ['type' => 'STRING'],
+                'Hello'
+            ],
+            [
+                ['v' => '1980-01-01'],
+                ['type' => 'DATE'],
+                new Date(new \DateTime('1980-01-01'))
+            ],
+            [
+                ['v' => '1980-01-01 12:15:15'],
+                ['type' => 'DATETIME'],
+                new \DateTime('1980-01-01 12:15:15')
+            ],
+            [
+                ['v' => '12:15:15'],
+                ['type' => 'TIME'],
+                new Time(new \DateTime('12:15:15'))
+            ],
+            [
+                ['v' => '1438712914'],
+                ['type' => 'TIMESTAMP'],
+                new Timestamp(new \DateTime('2015-08-04 18:28:34Z'))
+            ],
+            [
+                [
+                    'v' => [
+                        'f' => [
+                            [
+                                'v' => 'Hello'
+                            ],
+                            [
+                                'v' => 'World'
+                            ]
+                        ]
+                    ]
+                ],
+                [
+                    'type' => 'RECORD',
+                    'fields' => [
+                        [
+                            'name' => 'Say',
+                            'type' => 'STRING'
+                        ],
+                        [
+                            'name' => 'To the',
+                            'type' => 'STRING'
+                        ]
+                    ]
+                ],
+                ['Say' => 'Hello', 'To the' => 'World']
+            ],
+            [
+                [
+                    'v' => [
+                        ['v' => 'Hello'],
+                        ['v' => 'World']
+                    ]
+                ],
+                [
+                    'type' => 'STRING',
+                    'mode' => 'REPEATED'
+                ],
+                ['Hello', 'World']
+            ],
+            [
+                ['v' => null],
+                [
+                    'type' => 'STRING',
+                    'mode' => 'NULLABLE'
+                ],
+                null
+            ]
+        ];
+    }
+
+    public function testMapsBytesFromBigQuery()
+    {
+        $mapper = new ValueMapper(false);
+        $actual = $mapper->fromBigQuery(
+            ['v' => base64_encode('abcd')],
+            ['type' => 'BYTES']
+        );
+
+        $this->assertEquals((string) new Bytes('abcd'), (string) $actual);
+    }
+
+    /**
+     * @dataProvider parameterValueProvider
      */
     public function testMapsToParameter($value, $expected)
     {
         if (is_resource($value)) {
             rewind($value);
         }
-        $mapper = new ValueMapper();
+        $mapper = new ValueMapper(false);
         $actual = $mapper->toParameter($value);
 
         $this->assertEquals($expected, $actual);
     }
 
-    public function valueProvider()
+    public function parameterValueProvider()
     {
         $bool = false;
         $int = 1234;

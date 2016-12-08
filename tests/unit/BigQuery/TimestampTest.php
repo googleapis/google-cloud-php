@@ -39,11 +39,13 @@ class TimestampTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('TIMESTAMP', $timestamp->type());
     }
 
-    public function testToApi()
+    public function testToString()
     {
         $value = new \DateTime();
         $timestamp = new Timestamp($value);
+        $expected = $value->format('Y-m-d H:i:s.uP');
 
-        $this->assertEquals($value->format('Y-m-d H:i:s.uP'), $timestamp->toApi());
+        $this->assertEquals($expected, (string) $timestamp);
+        $this->assertEquals($expected, $timestamp->formatAsString());
     }
 }

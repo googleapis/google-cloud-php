@@ -57,10 +57,12 @@ class BytesTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('BYTES', $bytes->type());
     }
 
-    public function testToApi()
+    public function testToString()
     {
         $bytes = new Bytes($this->value);
+        $expected = base64_encode($this->value);
 
-        $this->assertEquals(base64_encode($this->value), $bytes->toApi());
+        $this->assertEquals($expected, (string) $bytes);
+        $this->assertEquals($expected, $bytes->formatAsString());
     }
 }

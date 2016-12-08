@@ -23,6 +23,11 @@ use Psr\Http\Message\StreamInterface;
 /**
  * Represents a value with a data type of
  * [bytes](https://cloud.google.com/bigquery/docs/reference/standard-sql/data-types#bytes-type).
+ *
+ * Example:
+ * ```
+ * $bytes = $bigQuery->bytes('hello world');
+ * ```
  */
 class Bytes implements ValueInterface
 {
@@ -60,12 +65,22 @@ class Bytes implements ValueInterface
     }
 
     /**
-     * Format the value for the API.
+     * Format the value as a string.
      *
      * @return string
      */
-    public function toApi()
+    public function formatAsString()
     {
         return base64_encode((string) $this->value);
+    }
+
+    /**
+     * Format the value as a string.
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->formatAsString();
     }
 }

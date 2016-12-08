@@ -20,6 +20,11 @@ namespace Google\Cloud\BigQuery;
 /**
  * Represents a value with a data type of
  * [Time](https://cloud.google.com/bigquery/docs/reference/standard-sql/data-types#time-type).
+ *
+ * Example:
+ * ```
+ * $time = $bigQuery->time(new \DateTime('12:15:00.482172'));
+ * ```
  */
 class Time implements ValueInterface
 {
@@ -59,12 +64,22 @@ class Time implements ValueInterface
     }
 
     /**
-     * Format the value for the API.
+     * Format the value as a string.
      *
      * @return string
      */
-    public function toApi()
+    public function formatAsString()
     {
         return $this->value->format(self::FORMAT);
+    }
+
+    /**
+     * Format the value as a string.
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->formatAsString();
     }
 }

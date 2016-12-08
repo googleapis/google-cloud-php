@@ -39,11 +39,13 @@ class TimeTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('TIME', $time->type());
     }
 
-    public function testToApi()
+    public function testToString()
     {
         $value = new \DateTime();
         $time = new Time($value);
+        $expected = $value->format('H:i:s.u');
 
-        $this->assertEquals($value->format('H:i:s.u'), $time->toApi());
+        $this->assertEquals($expected, (string) $time);
+        $this->assertEquals($expected, $time->formatAsString());
     }
 }

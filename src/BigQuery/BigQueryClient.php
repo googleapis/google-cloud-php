@@ -21,6 +21,7 @@ use Google\Cloud\ArrayTrait;
 use Google\Cloud\BigQuery\Connection\ConnectionInterface;
 use Google\Cloud\BigQuery\Connection\Rest;
 use Google\Cloud\ClientTrait;
+use Google\Cloud\Int64;
 use Psr\Cache\CacheItemPoolInterface;
 use Psr\Http\Message\StreamInterface;
 
@@ -88,16 +89,20 @@ class BigQueryClient
      *     @type int $retries Number of retries for a failed request. **Defaults
      *           to** `3`.
      *     @type array $scopes Scopes to be used for the request.
+     *     @type bool $returnInt64AsObject If true, 64 bit integers will be
+     *           returned as a {@see Google\Cloud\Int64} object for 32 bit
+     *           platform compatibility. **Defaults to** false.
      * }
      */
     public function __construct(array $config = [])
     {
-        if (!isset($config['scopes'])) {
-            $config['scopes'] = [self::SCOPE];
-        }
+        $config += [
+            'scopes' => [self::SCOPE],
+            'returnInt64AsObject' => false
+        ];
 
         $this->connection = new Rest($this->configureAuthentication($config));
-        $this->mapper = new ValueMapper();
+        $this->mapper = new ValueMapper($config['returnInt64AsObject']);
     }
 
     /**
@@ -118,6 +123,7 @@ class BigQueryClient
      * | `\DateTimeInterface`                       | `DATETIME`                           |
      * | {@see Google\Cloud\BigQuery\Bytes}         | `BYTES`                              |
      * | {@see Google\Cloud\BigQuery\Date}          | `DATE`                               |
+     * | {@see Google\Cloud\Int64}                  | `INT64`                              |
      * | {@see Google\Cloud\BigQuery\Time}          | `TIME`                               |
      * | {@see Google\Cloud\BigQuery\Timestamp}     | `TIMESTAMP`                          |
      * | Associative Array                          | `STRUCT`                             |
@@ -234,7 +240,8 @@ class BigQueryClient
             $response['jobReference']['jobId'],
             $this->projectId,
             $response,
-            $options
+            $options,
+            $this->mapper
         );
     }
 
@@ -302,7 +309,13 @@ class BigQueryClient
 
         $response = $this->connection->insertJob($config);
 
-        return new Job($this->connection, $response['jobReference']['jobId'], $this->projectId, $response);
+        return new Job(
+            $this->connection,
+            $response['jobReference']['jobId'],
+            $this->projectId,
+            $response,
+            $this->mapper
+        );
     }
 
     /**
@@ -497,7 +510,7 @@ class BigQueryClient
      *
      * Example:
      * ```
-     * $date = $bigQuery->date(new \DateTime());
+     * $date = $bigQuery->date(new \DateTime('1995-02-04'));
      * ```
      *
      * @param \DateTimeInterface $value The date value.
@@ -509,11 +522,28 @@ class BigQueryClient
     }
 
     /**
+     * Create an Int64 object. This can be used to work with 64 bit integers as
+     * a string value while on a 32 bit platform.
+     *
+     * Example:
+     * ```
+     * $int64 = $bigQuery->int64('9223372036854775807');
+     * ```
+     *
+     * @param string $value
+     * @return Int64
+     */
+    public function int64($value)
+    {
+        return new Int64($value);
+    }
+
+    /**
      * Create a Time object.
      *
      * Example:
      * ```
-     * $time = $bigQuery->time(new \DateTime());
+     * $time = $bigQuery->time(new \DateTime('12:15:00.482172'));
      * ```
      *
      * @param \DateTimeInterface $value The time value.
@@ -529,7 +559,7 @@ class BigQueryClient
      *
      * Example:
      * ```
-     * $timestamp = $bigQuery->timestamp(new \DateTime());
+     * $timestamp = $bigQuery->timestamp(new \DateTime('2003-02-05 11:15:02.421827Z'));
      * ```
      *
      * @param \DateTimeInterface $value The timestamp value.

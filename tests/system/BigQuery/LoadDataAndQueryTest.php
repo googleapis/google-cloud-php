@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Tests\System\BigQuery;
 
+use Google\Cloud\BigQuery\Date;
 use Google\Cloud\ExponentialBackoff;
 use GuzzleHttp\Psr7;
 
@@ -170,9 +171,9 @@ class LoadDataAndQueryTest extends BigQueryTestCase
     {
         $date = '2000-01-01';
         $query = 'WITH data AS'
-            . '(SELECT "Dave" as name, DATE("1999-01-01") as date, 1.1 as floatNum, 1 as intNum, true as boolVal '
+            . '(SELECT "Dave" as name, DATE("1999-01-01") as date, 1.1 as floatNum, 1 as intNum, false as boolVal '
             . 'UNION ALL '
-            . 'SELECT "John" as name, DATE("2000-01-01") as date, 1.2 as floatNum, 2 as intNum, false as boolVal) '
+            . 'SELECT "John" as name, DATE("2000-01-01") as date, 1.2 as floatNum, 2 as intNum, true as boolVal) '
             . 'SELECT * FROM data '
             . 'WHERE name = @name AND date >= @date AND floatNum = @numbers.floatNum AND intNum = @numbers.intNum AND boolVal = @boolVal';
 
@@ -184,7 +185,7 @@ class LoadDataAndQueryTest extends BigQueryTestCase
                     'floatNum' => 1.2,
                     'intNum' => 2,
                 ],
-                'boolVal' => false
+                'boolVal' => true
             ]
         ]);
         $backoff = new ExponentialBackoff(8);
@@ -204,10 +205,10 @@ class LoadDataAndQueryTest extends BigQueryTestCase
         $expectedRows = [
             [
                 'name' => 'John',
-                'floatNum' => '1.2',
-                'intNum' => '2',
-                'boolVal' => 'false',
-                'date' => $date
+                'floatNum' => 1.2,
+                'intNum' => 2,
+                'boolVal' => true,
+                'date' => new Date(new \DateTime($date))
             ]
         ];
 
@@ -236,7 +237,7 @@ class LoadDataAndQueryTest extends BigQueryTestCase
 
         $actualRows = iterator_to_array($results->rows());
         $expectedRows = [
-            ['arr' => 'true']
+            ['arr' => true]
         ];
 
         $this->assertEquals($expectedRows, $actualRows);
@@ -312,10 +313,10 @@ class LoadDataAndQueryTest extends BigQueryTestCase
         $expectedRows = [
             [
                 'name' => 'John',
-                'floatNum' => '1.2',
-                'intNum' => '2',
-                'boolVal' => 'false',
-                'date' => $date
+                'floatNum' => 1.2,
+                'intNum' => 2,
+                'boolVal' => false,
+                'date' => new Date(new \DateTime($date))
             ]
         ];
 
@@ -345,7 +346,7 @@ class LoadDataAndQueryTest extends BigQueryTestCase
 
         $actualRows = iterator_to_array($results->rows());
         $expectedRows = [
-            ['arr' => 'true']
+            ['arr' => true]
         ];
 
         $this->assertEquals($expectedRows, $actualRows);

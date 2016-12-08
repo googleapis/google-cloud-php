@@ -20,6 +20,11 @@ namespace Google\Cloud\BigQuery;
 /**
  * Represents a value with a data type of
  * [Date](https://cloud.google.com/bigquery/docs/reference/standard-sql/data-types#date-type).
+ *
+ * Example:
+ * ```
+ * $date = $bigQuery->date(new \DateTime('1995-02-04'));
+ * ```
  */
 class Date implements ValueInterface
 {
@@ -59,12 +64,22 @@ class Date implements ValueInterface
     }
 
     /**
-     * Format the value for the API.
+     * Format the value as a string.
      *
      * @return string
      */
-    public function toApi()
+    public function formatAsString()
     {
         return $this->value->format(self::FORMAT);
+    }
+
+    /**
+     * Format the value as a string.
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->formatAsString();
     }
 }
