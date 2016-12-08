@@ -106,14 +106,8 @@ class QueryResults
         while (true) {
             $options['pageToken'] = isset($this->info['pageToken']) ? $this->info['pageToken'] : null;
 
-            foreach ($this->info['rows'] as $row) {
-                $mergedRow = [];
-
-                foreach ($row['f'] as $key => $value) {
-                    $mergedRow[$schema[$key]['name']] = $value['v'];
-                }
-
-                yield $mergedRow;
+            foreach ($this->extractValues($schema, $this->info['rows']) as $index => $row) {
+                yield $index => $row;
             }
 
             if (!$options['pageToken']) {
@@ -124,6 +118,109 @@ class QueryResults
         }
     }
 
+    /**
+     * Extract values from query response.
+     *
+     * @param $schema
+     * @param $rows
+     * @return array
+     * @throws GoogleException
+     */
+    public function extractValues($schema, array $rows)
+    {
+        $output = [];
+
+        if ($rows === null) {
+            return null;
+        }
+
+        foreach ($rows as $rowIndex => $row) {
+            if ($row === null) {
+                continue;
+            }
+
+            if (!array_key_exists('f', $row)) {
+                throw new GoogleException('Bad response - missing key "f" for a row.');
+            }
+
+            $mergedFields = [];
+
+            foreach ($row['f'] as $key => $value) {
+
+                $fieldSchema = $schema[$key];
+                $fieldName = $fieldSchema['name'];
+
+                if ($this->isRepeatedRecord($fieldSchema)) {
+
+                    if (!array_key_exists('v', $value)) {
+                        throw new GoogleException('Bad response - missing key "v" for a repeated record field.');
+                    }
+
+                    foreach ($value['v'] as $record) {
+                        $mergedFields[$fieldName][] = $this->extractValues($fieldSchema['fields'], $record);
+                    }
+
+                } elseif ($this->isSingleRecord($fieldSchema)) {
+
+                    $mergedFields[$fieldName] = $this->extractValues($fieldSchema['fields'], $value);
+
+                } elseif ($this->isScalar($fieldSchema)) {
+
+                    if (!array_key_exists('v', $value)) {
+                        throw new GoogleException('Bad response - missing key "v" for a single value field.');
+                    }
+
+                    $mergedFields[$fieldName] = $this->getScalarValue($value['v'], $fieldSchema);
+                }
+            }
+
+            if (is_numeric($rowIndex)) {
+                $output[] = $mergedFields;
+            }
+            else {
+                $output = $mergedFields;
+            }
+        }
+
+        return $output;
+    }
+
+    private function isRepeatedRecord($fieldSchema)
+    {
+        return ($fieldSchema['type'] === 'RECORD' && $fieldSchema['mode'] === 'REPEATED');
+    }
+
+    private function isSingleRecord($fieldSchema)
+    {
+        return ($fieldSchema['type'] === 'RECORD');
+    }
+
+    private function isScalar($fieldSchema)
+    {
+        return ($fieldSchema['type'] !== 'RECORD');
+    }
+
+    private function getScalarValue($value, $fieldSchema)
+    {
+        if ($value === null) {
+            return null;
+        }
+
+        if ($fieldSchema['type'] === 'TIMESTAMP') {
+
+            $date = new \DateTime();
+            $date->setTimestamp($value);
+            $output = $date->format('Y-m-d H:i:s T');
+
+        } else {
+
+            $output = $value;
+
+        }
+
+        return $output;
+    }    
+    
     /**
      * Checks the query's completeness. Useful in combination with
      * {@see Google\Cloud\BigQuery\QueryResults::reload()} to poll for query status.
