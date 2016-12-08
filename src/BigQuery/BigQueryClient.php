@@ -137,7 +137,7 @@ class BigQueryClient
      *
      * Example:
      * ```
-     * $queryResults = $bigQuery->runQuery('SELECT * FROM [bigquery-public-data:github_repos.commits] LIMIT 100');
+     * $queryResults = $bigQuery->runQuery('SELECT commit FROM [bigquery-public-data:github_repos.commits] LIMIT 100');
      *
      * $isComplete = $queryResults->isComplete();
      *
@@ -154,11 +154,11 @@ class BigQueryClient
      *
      * ```
      * // Construct a query utilizing named parameters.
-     * $query = 'SELECT * FROM `bigquery-public-data.github_repos.commits`' .
+     * $query = 'SELECT commit FROM `bigquery-public-data.github_repos.commits`' .
      *          'WHERE author.date < @date AND message = @message LIMIT 100';
      * $queryResults = $bigQuery->runQuery($query, [
      *     'parameters' => [
-     *         'date' => $bigQuery->timestamp(new \DateTime()),
+     *         'date' => $bigQuery->timestamp(new \DateTime('1980-01-01 12:15:00Z')),
      *         'message' => 'A commit message.'
      *     ]
      * ]);
@@ -178,7 +178,7 @@ class BigQueryClient
      *
      * ```
      * // Construct a query utilizing positional parameters.
-     * $query = 'SELECT * FROM `bigquery-public-data.github_repos.commits` WHERE message = ? LIMIT 100';
+     * $query = 'SELECT commit FROM `bigquery-public-data.github_repos.commits` WHERE message = ? LIMIT 100';
      * $queryResults = $bigQuery->runQuery($query, [
      *     'parameters' => ['A commit message.']
      * ]);
@@ -257,7 +257,7 @@ class BigQueryClient
      *
      * Example:
      * ```
-     * $job = $bigQuery->runQueryAsJob('SELECT * FROM [bigquery-public-data:github_repos.commits] LIMIT 100');
+     * $job = $bigQuery->runQueryAsJob('SELECT commit FROM [bigquery-public-data:github_repos.commits] LIMIT 100');
      *
      * $isComplete = false;
      * $queryResults = $job->queryResults();
@@ -333,7 +333,7 @@ class BigQueryClient
      */
     public function job($id)
     {
-        return new Job($this->connection, $id, $this->projectId);
+        return new Job($this->connection, $id, $this->projectId, [], $this->mapper);
     }
 
     /**
@@ -347,7 +347,7 @@ class BigQueryClient
      * ]);
      *
      * foreach ($jobs as $job) {
-     *     var_dump($job->id());
+     *     echo $job->id() . PHP_EOL;
      * }
      * ```
      *
@@ -380,7 +380,8 @@ class BigQueryClient
                     $this->connection,
                     $job['jobReference']['jobId'],
                     $this->projectId,
-                    $job
+                    $job,
+                    $this->mapper
                 );
             }
 
@@ -414,7 +415,7 @@ class BigQueryClient
      * $datasets = $bigQuery->datasets();
      *
      * foreach ($datasets as $dataset) {
-     *     var_dump($dataset->id());
+     *     echo $dataset->id() . PHP_EOL;
      * }
      * ```
      *
@@ -587,7 +588,7 @@ class BigQueryClient
             $param = $this->mapper->toParameter($value);
 
             if ($options['parameterMode'] === 'named') {
-                 $param += ['name' => $name];
+                $param += ['name' => $name];
             }
 
             $options['queryParameters'][] = $param;
