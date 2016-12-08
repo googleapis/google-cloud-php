@@ -36,7 +36,9 @@ function stub($name, $extends)
     eval(sprintf($tpl, $name, $extends));
 }
 
+stub('DatastoreClientStub', Google\Cloud\Datastore\DatastoreClient::class);
 stub('IamStub', Google\Cloud\Iam\Iam::class);
+stub('OperationStub', Google\Cloud\Datastore\Operation::class);
 stub('PubSubClientStub', Google\Cloud\PubSub\PubSubClient::class);
 stub('SpeechClientStub', Google\Cloud\Speech\SpeechClient::class);
 stub('SpeechOperationStub', Google\Cloud\Speech\Operation::class);

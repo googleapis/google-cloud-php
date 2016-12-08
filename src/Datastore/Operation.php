@@ -265,6 +265,10 @@ class Operation
 
         if (isset($res['keys'])) {
             foreach ($res['keys'] as $index => $key) {
+                if (!isset($keys[$index])) {
+                    continue;
+                }
+
                 $end = end($key['path']);
                 $id = $end['id'];
                 $keys[$index]->setLastElementIdentifier($id);
@@ -468,7 +472,9 @@ class Operation
             }
         }
 
-        $this->allocateIds($incompleteKeys);
+        if (!empty($incompleteKeys)) {
+            $keys = $this->allocateIds($incompleteKeys);
+        }
 
         return $entities;
     }

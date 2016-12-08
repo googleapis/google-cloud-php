@@ -243,7 +243,7 @@ class Entity implements ArrayAccess
      *
      * Example:
      * ```
-     * print_r($entity->excludedProperties());
+     * $excludedFromIndexes = $entity->excludedProperties();
      * ```
      *
      * @return array
@@ -258,7 +258,7 @@ class Entity implements ArrayAccess
      *
      * Example:
      * ```
-     * print_R($entity->meanings());
+     * $meanings = $entity->meanings();
      * ```
      *
      * @return array

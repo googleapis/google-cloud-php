@@ -55,7 +55,7 @@ use JsonSerializable;
  * ```
  *
  * ```
- * // Keys with complex paths can be constructed by chaining method calls.
+ * // Keys with complex paths can be constructed with additional method calls.
  *
  * $key = $datastore->key('Person', 'Bob');
  * $key->ancestor('Parents', 'Joe');
@@ -190,7 +190,7 @@ class Key implements JsonSerializable
      *
      * Example:
      * ```
-     * $key->ancestor('Person', 'Bob');
+     * $key->ancestor('Person', 'Jane');
      * ```
      *
      * ```
@@ -217,7 +217,7 @@ class Key implements JsonSerializable
      */
     public function ancestor($kind, $identifier, array $options = [])
     {
-        $options = [
+        $options += [
             'identifierType' => null
         ];
 
@@ -297,6 +297,12 @@ class Key implements JsonSerializable
      *
      * This method is used internally when IDs are allocated to existing instances
      * of a Key. It should not generally be used externally.
+     *
+     * Example:
+     * ```
+     * $key = $datastore->key('Person');
+     * $key->setLastElementIdentifier('Bob', Key::TYPE_NAME);
+     * ```
      *
      * @param string $value The value of the ID or Name.
      * @param string $type [optional] 'id' or 'name'. **Defaults to** `"id"`.
