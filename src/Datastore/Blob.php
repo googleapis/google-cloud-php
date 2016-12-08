@@ -27,7 +27,18 @@ use Psr\Http\Message\StreamInterface;
  *
  * Example:
  * ```
+ * use Google\Cloud\ServiceBuilder;
+ *
+ * $cloud = new ServiceBuilder();
+ * $datastore = $cloud->datastore();
+ *
  * $blob = $datastore->blob(file_get_contents(__DIR__ .'/family-photo.jpg'));
+ * ```
+ *
+ * ```
+ * // Get the value of a blob by casting to a string.
+ *
+ * echo (string) $blob;
  * ```
  */
 class Blob
@@ -52,7 +63,7 @@ class Blob
      *
      * Example:
      * ```
-     * $value = $blob->value();
+     * $value = $blob->get();
      * ```
      *
      * @return StreamInterface
@@ -65,11 +76,7 @@ class Blob
     /**
      * Cast the blob to a string
      *
-     * Example:
-     * ```
-     * echo (string) $blob->value();
-     * ```
-     *
+     * @access private
      * @return string
      */
     public function __toString()

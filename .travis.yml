@@ -19,7 +19,8 @@ before_script:
 script:
     - ./dev/sh/tests
     - vendor/bin/phpcs --standard=PSR2 src/
+    - ./dev/sh/build-docs
 
 after_success:
     - bash <(curl -s https://codecov.io/bash)
-    - ./dev/sh/docs
+    - ./dev/sh/push-docs

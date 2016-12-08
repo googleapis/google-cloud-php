@@ -23,6 +23,11 @@ namespace Google\Cloud\BigQuery;
  *
  * Example:
  * ```
+ * use Google\Cloud\ServiceBuilder;
+ *
+ * $cloud = new ServiceBuilder();
+ * $bigQuery = $cloud->bigQuery();
+ *
  * $date = $bigQuery->date(new \DateTime('1995-02-04'));
  * ```
  */

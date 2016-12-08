@@ -25,8 +25,14 @@ use Google\Cloud\Speech\Connection\ConnectionInterface;
  *
  * Example:
  * ```
+ * use Google\Cloud\ServiceBuilder;
+ *
+ * $cloud = new ServiceBuilder();
+ * $speech = $cloud->speech();
+ *
+ * $audioFileStream = fopen(__DIR__  . '/audio.flac', 'r');
  * $operation = $speech->beginRecognizeOperation(
- *     fopen(__DIR__  . '/audio.flac', 'r')
+ *     $audioFileStream
  * );
  * ```
  */
@@ -67,7 +73,7 @@ class Operation
      * Example:
      * ```
      * if ($operation->isComplete()) {
-     *     print_r($operation->results());
+     *     echo "The operation is complete!";
      * }
      * ```
      *
@@ -88,7 +94,7 @@ class Operation
      * Example:
      * ```
      * if ($operation->isComplete()) {
-     *     print_r($operation->results());
+     *     $results = $operation->results();
      * }
      * ```
      *
@@ -117,7 +123,9 @@ class Operation
      *
      * Example:
      * ```
-     * $operation->exists();
+     * if ($operation->exists()) {
+     *     echo "The operation exists.";
+     * }
      * ```
      *
      * @param array $options [optional] Configuration Options.

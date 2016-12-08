@@ -31,7 +31,8 @@ use Google\Cloud\CallTrait;
  * $cloud = new ServiceBuilder();
  * $vision = $cloud->vision();
  *
- * $image = $vision->image(fopen(__DIR__ .'/assets/family-photo.jpg', 'r'), [ 'text' ]);
+ * $imageResource = fopen(__DIR__ .'/assets/family-photo.jpg', 'r');
+ * $image = $vision->image($imageResource, [ 'text' ]);
  * $annotation = $vision->annotate($image);
  *
  * $text = $annotation->text()[0];
@@ -167,6 +168,10 @@ use Google\Cloud\CallTrait;
  *
  *     @return array
  * }
+ *
+ * @codingStandardsIgnoreStart
+ * @see https://cloud.google.com/vision/reference/rest/v1/images/annotate#entityannotation EntityAnnotation
+ * @codingStandardsIgnoreEnd
  */
 class Entity extends AbstractFeature
 {
@@ -184,8 +189,6 @@ class Entity extends AbstractFeature
      * {@see Google\Cloud\Vision\Annotation::logos()},
      * {@see Google\Cloud\Vision\Annotation::labels()} and
      * {@see Google\Cloud\Vision\Annotation::text()}.
-     *
-     * @see https://cloud.google.com/vision/reference/rest/v1/images/annotate#entityannotation EntityAnnotation
      *
      * @param array $info The entity annotation result
      */

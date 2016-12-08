@@ -66,7 +66,6 @@ use Psr\Cache\CacheItemPoolInterface;
  * $cloud = new ServiceBuilder();
  *
  * $datastore = $cloud->datastore([
- *     'projectId' => 'my-awesome-project',
  *     'namespaceId' => 'my-application-namespace'
  * ]);
  * ```
@@ -270,12 +269,17 @@ class DatastoreClient
      * ```
      *
      * ```
-     * // Both of the following has the identical effect as the previous example.
+     * //[snippet=array]
+     * // Entity values can be assigned and accessed via the array syntax.
      * $entity = $datastore->entity($key);
      *
      * $entity['firstName'] = 'Bob';
      * $entity['lastName'] = 'Testguy';
+     * ```
      *
+     * ```
+     * //[snippet=object_accessor]
+     * // Entity values can also be assigned and accessed via an object syntax.
      * $entity = $datastore->entity($key);
      *
      * $entity->firstName = 'Bob';
@@ -283,11 +287,13 @@ class DatastoreClient
      * ```
      *
      * ```
+     * //[snippet=incomplete]
      * // Entities can be created with a Kind only, for inserting into datastore
      * $entity = $datastore->entity('Person');
      * ```
      *
      * ```
+     * //[snippet=custom_class]
      * // Entities can be custom classes extending the built-in Entity class.
      * class Person extends Google\Cloud\Datastore\Entity
      * {}
@@ -300,6 +306,7 @@ class DatastoreClient
      * ```
      *
      * ```
+     * //[snippet=exclude_indexes]
      * // If you wish to exclude certain properties from datastore indexes,
      * // property names may be supplied in the method $options:
      *
@@ -544,7 +551,6 @@ class DatastoreClient
      *
      * Example:
      * ```
-     * $entity = $datastore->lookup($datastore->key('Person', 'Bob'));
      * $entity['firstName'] = 'John';
      *
      * $datastore->update($entity);
@@ -636,7 +642,7 @@ class DatastoreClient
      *
      * Example:
      * ```
-     * $key = $datastore->key('Person', 'Bob']);
+     * $key = $datastore->key('Person', 'Bob');
      * $entity = $datastore->entity($key, ['firstName' => 'Bob']);
      *
      * $datastore->upsert($entity);
@@ -675,8 +681,8 @@ class DatastoreClient
      * ];
      *
      * $entities = [
-     *     $datastore->entity($key[0], ['firstName' => 'Bob']),
-     *     $datastore->entity($key[1], ['firstName' => 'John'])
+     *     $datastore->entity($keys[0], ['firstName' => 'Bob']),
+     *     $datastore->entity($keys[1], ['firstName' => 'John'])
      * ];
      *
      * $datastore->upsertBatch($entities);
@@ -818,10 +824,10 @@ class DatastoreClient
      *     $datastore->key('Person', 'John')
      * ];
      *
-     * $entities = $datastore->lookup($keys);
+     * $entities = $datastore->lookupBatch($keys);
      *
      * foreach ($entities['found'] as $entity) {
-     *     echo $entity['firstName'];
+     *     echo $entity['firstName'] . PHP_EOL;
      * }
      * ```
      *
@@ -880,6 +886,7 @@ class DatastoreClient
      * ```
      *
      * ```
+     * //[snippet=bindings]
      * // Literals must be provided as bound parameters by default:
      * $query = $datastore->gqlQuery('SELECT * FROM Companies WHERE companyName = @companyName', [
      *     'bindings' => [
@@ -889,6 +896,7 @@ class DatastoreClient
      * ```
      *
      * ```
+     * //[snippet=pos_bindings]
      * // Positional binding is also supported:
      * $query = $datastore->gqlQuery('SELECT * FROM Companies WHERE companyName = @1 LIMIT 1', [
      *     'bindings' => [
@@ -898,6 +906,7 @@ class DatastoreClient
      * ```
      *
      * ```
+     * //[snippet=literals]
      * // While not recommended, you can use literals in your query string:
      * $query = $datastore->gqlQuery("SELECT * FROM Companies WHERE companyName = 'Google'", [
      *     'allowLiterals' => true

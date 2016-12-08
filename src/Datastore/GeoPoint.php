@@ -74,7 +74,7 @@ class GeoPoint
     }
 
     /**
-     * Set the longitude
+     * Set the latitude
      *
      * Non-numeric values will result in an exception
      *

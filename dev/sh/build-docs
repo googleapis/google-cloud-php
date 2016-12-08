@@ -1,0 +1,14 @@
+#!/bin/bash
+
+set -ev
+
+function buildDocs () {
+  echo "doc dir before generation:"
+  find docs
+  composer google-cloud docs
+  echo "doc dir after generation:"
+  find docs
+}
+
+
+buildDocs

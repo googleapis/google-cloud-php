@@ -19,18 +19,18 @@ namespace Google\Cloud\Dev\Snippet\Parser;
 
 class InvokeResult
 {
-    private $return;
+    private $returnVal;
     private $output;
 
-    public function __construct($return, $output)
+    public function __construct($returnVal, $output)
     {
-        $this->return = $return;
+        $this->returnVal = $returnVal;
         $this->output = $output;
     }
 
-    public function return()
+    public function returnVal()
     {
-        return $this->return;
+        return $this->returnVal;
     }
 
     public function output()
