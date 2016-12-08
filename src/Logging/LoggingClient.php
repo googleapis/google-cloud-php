@@ -415,6 +415,8 @@ class LoggingClient
      * @param array $options [optional] {
      *     Configuration options.
      *
+     *     @type string $messageKey The key in the `jsonPayload` used to contain
+     *           the logged message. **Defaults to** `message`.
      *     @type array $resource The
      *           [monitored resource](https://cloud.google.com/logging/docs/api/reference/rest/Shared.Types/MonitoredResource)
      *           to associate log entries with. **Defaults to** type global.
@@ -426,7 +428,16 @@ class LoggingClient
      */
     public function psrLogger($name, array $options = [])
     {
-        return new PsrLogger($this->logger($name, $options));
+        $messageKey = null;
+
+        if (isset($options['messageKey'])) {
+            $messageKey = $options['messageKey'];
+            unset($options['messageKey']);
+        }
+
+        return $messageKey
+            ? new PsrLogger($this->logger($name, $options), $messageKey)
+            : new PsrLogger($this->logger($name, $options));
     }
 
     /**
