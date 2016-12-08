@@ -232,7 +232,9 @@ class WriteAndListEntryTest extends LoggingTestCase
         ];
 
         $psrLogger->$level($data, [
-            'httpRequest' => $httpRequest
+            'stackdriverOptions' => [
+                'httpRequest' => $httpRequest
+            ]
         ]);
 
         $backoff = new ExponentialBackoff(8);
@@ -247,7 +249,7 @@ class WriteAndListEntryTest extends LoggingTestCase
         });
         $actualEntryInfo = $entries[0]->info();
 
-        $this->assertEquals($data, $actualEntryInfo['textPayload']);
+        $this->assertEquals($data, $actualEntryInfo['jsonPayload']['message']);
         $this->assertEquals($httpRequest['requestMethod'], $actualEntryInfo['httpRequest']['requestMethod']);
     }
 }
