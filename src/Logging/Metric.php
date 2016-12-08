@@ -40,7 +40,7 @@ class Metric
     /**
      * @var ConnectionInterface Represents a connection to Stackdriver Logging.
      */
-    private $connection;
+    protected $connection;
 
     /**
      * @var string The metric's formatted name used in API requests.
@@ -72,7 +72,9 @@ class Metric
      *
      * Example:
      * ```
-     * $metric->exists();
+     * if ($metric->exists()) {
+     *     echo "Metric exists!";
+     * }
      * ```
      *
      * @param array $options [optional] Configuration Options

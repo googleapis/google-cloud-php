@@ -133,7 +133,7 @@ class LoggingClient
      *
      * Example:
      * ```
-     * $logging->createSink('my-sink', 'storage.googleapis.com/my-bucket');
+     * $sink = $logging->createSink('my-sink', 'storage.googleapis.com/my-bucket');
      * ```
      *
      * @codingStandardsIgnoreStart
@@ -195,7 +195,7 @@ class LoggingClient
      * $sinks = $logging->sinks();
      *
      * foreach ($sinks as $sink) {
-     *     echo $sink->name();
+     *     echo $sink->name() . PHP_EOL;
      * }
      * ```
      *
@@ -234,7 +234,10 @@ class LoggingClient
      *
      * Example:
      * ```
-     * $logging->createMetric('my-metric', 'logName = projects/my-project/logs/my-log');
+     * $metric = $logging->createMetric(
+     *     'my-metric',
+     *     'logName = projects/my-project/logs/my-log'
+     * );
      * ```
      *
      * @codingStandardsIgnoreStart
@@ -288,7 +291,7 @@ class LoggingClient
      * $metrics = $logging->metrics();
      *
      * foreach ($metrics as $metric) {
-     *     echo $metric->name();
+     *     echo $metric->name() . PHP_EOL;
      * }
      * ```
      *
@@ -330,7 +333,7 @@ class LoggingClient
      * $entries = $logging->entries();
      *
      * foreach ($entries as $entry) {
-     *     echo $entry->info()['textPayload'];
+     *     echo $entry->info()['textPayload'] . PHP_EOL;
      * }
      * ```
      *
@@ -341,7 +344,7 @@ class LoggingClient
      * ]);
      *
      * foreach ($entries as $entry) {
-     *     echo $entry->info()['textPayload'];
+     *     echo $entry->info()['textPayload'] . PHP_EOL;
      * }
      * ```
      *
@@ -407,7 +410,6 @@ class LoggingClient
      * Example:
      * ```
      * $psrLogger = $logging->psrLogger('my-log');
-     * $psrLogger->alert('an alert!');
      * ```
      *
      * @codingStandardsIgnoreStart
@@ -446,7 +448,6 @@ class LoggingClient
      * Example:
      * ```
      * $logger = $logging->logger('my-log');
-     * $logger->write('my-data');
      * ```
      *
      * @codingStandardsIgnoreStart

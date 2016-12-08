@@ -65,7 +65,7 @@ class Logger
     /**
      * @var ConnectionInterface Represents a connection to Stackdriver Logging.
      */
-    private $connection;
+    protected $connection;
 
     /**
      * @var array Entry options.
@@ -157,7 +157,7 @@ class Logger
      * $entries = $logger->entries();
      *
      * foreach ($entries as $entry) {
-     *     echo $entry->info()['textPayload'];
+     *     echo $entry->info()['textPayload'] . PHP_EOL;
      * }
      * ```
      *
@@ -168,7 +168,7 @@ class Logger
      * ]);
      *
      * foreach ($entries as $entry) {
-     *     echo $entry->info()['textPayload'];
+     *     echo $entry->info()['textPayload'] . PHP_EOL;
      * }
      * ```
      *

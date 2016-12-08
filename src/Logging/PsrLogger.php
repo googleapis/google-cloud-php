@@ -41,7 +41,7 @@ class PsrLogger implements LoggerInterface
     /**
      * @var Logger The logger used to write entries.
      */
-    private $logger;
+    protected $logger;
 
     /**
      * @var string The key to use for messages logged in the `jsonPayload`.
