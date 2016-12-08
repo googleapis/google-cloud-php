@@ -84,7 +84,7 @@ class OperationTest extends SnippetTestCase
         $snippet->addLocal('operation', $this->operation);
 
         $res = $snippet->invoke('results');
-        $this->assertEquals($this->opData['response']['results'][0]['alternatives'], $res->return());
+        $this->assertEquals($this->opData['response']['results'][0]['alternatives'], $res->returnVal());
     }
 
     public function testExists()

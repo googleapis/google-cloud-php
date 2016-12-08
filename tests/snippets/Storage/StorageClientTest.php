@@ -44,14 +44,14 @@ class StorageClientTest extends SnippetTestCase
     {
         $snippet = $this->snippetFromClass(StorageClient::class);
         $res = $snippet->invoke('storage');
-        $this->assertInstanceOf(StorageClient::class, $res->return());
+        $this->assertInstanceOf(StorageClient::class, $res->returnVal());
     }
 
     public function testClassDirectInstantiation()
     {
         $snippet = $this->snippetFromClass(StorageClient::class, 1);
         $res = $snippet->invoke('storage');
-        $this->assertInstanceOf(StorageClient::class, $res->return());
+        $this->assertInstanceOf(StorageClient::class, $res->returnVal());
     }
 
     public function testBucket()
@@ -60,7 +60,7 @@ class StorageClientTest extends SnippetTestCase
         $snippet->addLocal('storage', $this->client);
 
         $res = $snippet->invoke('bucket');
-        $this->assertInstanceOf(Bucket::class, $res->return());
+        $this->assertInstanceOf(Bucket::class, $res->returnVal());
     }
 
     public function testBuckets()
@@ -80,9 +80,9 @@ class StorageClientTest extends SnippetTestCase
         $this->client->setConnection($this->connection->reveal());
 
         $res = $snippet->invoke('buckets');
-        $this->assertInstanceOf(\Generator::class, $res->return());
+        $this->assertInstanceOf(\Generator::class, $res->returnVal());
 
-        $buckets = iterator_to_array($res->return());
+        $buckets = iterator_to_array($res->returnVal());
         $this->assertEquals('album 1', $buckets[0]->name());
         $this->assertEquals('album 2', $buckets[1]->name());
     }
@@ -104,7 +104,7 @@ class StorageClientTest extends SnippetTestCase
         $this->client->setConnection($this->connection->reveal());
 
         $res = $snippet->invoke('buckets');
-        $this->assertInstanceOf(\Generator::class, $res->return());
+        $this->assertInstanceOf(\Generator::class, $res->returnVal());
         $this->assertEquals('album 1', explode("\n", $res->output())[0]);
         $this->assertEquals('album 2', explode("\n", $res->output())[1]);
     }
@@ -121,6 +121,6 @@ class StorageClientTest extends SnippetTestCase
         $this->client->setConnection($this->connection->reveal());
 
         $res = $snippet->invoke('bucket');
-        $this->assertInstanceOf(Bucket::class, $res->return());
+        $this->assertInstanceOf(Bucket::class, $res->returnVal());
     }
 }

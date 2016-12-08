@@ -39,7 +39,7 @@ class PolicyBuilderTest extends SnippetTestCase
         $snippet = $this->snippetFromClass(PolicyBuilder::class);
         $res = $snippet->invoke('result');
 
-        $this->assertTrue(is_array($res->return()));
+        $this->assertTrue(is_array($res->returnVal()));
     }
 
     public function testSetBindings()
@@ -77,6 +77,6 @@ class PolicyBuilderTest extends SnippetTestCase
         $snippet->addLocal('builder', $this->pb);
 
         $res = $snippet->invoke('policy');
-        $this->assertTrue(is_array($res->return()));
+        $this->assertTrue(is_array($res->returnVal()));
     }
 }

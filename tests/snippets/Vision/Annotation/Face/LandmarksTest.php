@@ -107,7 +107,7 @@ class LandmarksTest extends SnippetTestCase
         );
 
         $res = $snippet->invoke('landmarks');
-        $this->assertInstanceOf(Landmarks::class, $res->return());
+        $this->assertInstanceOf(Landmarks::class, $res->returnVal());
     }
 
     public function testInfo()
@@ -116,7 +116,7 @@ class LandmarksTest extends SnippetTestCase
         $snippet->addLocal('landmarks', $this->landmarks);
 
         $res = $snippet->invoke('info');
-        $this->assertEquals($this->landmarksData, $res->return());
+        $this->assertEquals($this->landmarksData, $res->returnVal());
     }
 
     public function testLeftEye()

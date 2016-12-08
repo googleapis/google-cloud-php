@@ -57,8 +57,8 @@ class SubscriptionTest extends SnippetTestCase
         $snippet = $this->snippetFromClass(Subscription::class);
         $res = $snippet->invoke('subscription');
 
-        $this->assertInstanceOf(Subscription::class, $res->return());
-        $this->assertEquals(self::SUBSCRIPTION, $res->return()->name());
+        $this->assertInstanceOf(Subscription::class, $res->returnVal());
+        $this->assertEquals(self::SUBSCRIPTION, $res->returnVal()->name());
     }
 
     public function testClassThroughPubSubClient()
@@ -66,8 +66,8 @@ class SubscriptionTest extends SnippetTestCase
         $snippet = $this->snippetFromClass(Subscription::class, 1);
         $res = $snippet->invoke('subscription');
 
-        $this->assertInstanceOf(Subscription::class, $res->return());
-        $this->assertEquals(self::SUBSCRIPTION, $res->return()->name());
+        $this->assertInstanceOf(Subscription::class, $res->returnVal());
+        $this->assertEquals(self::SUBSCRIPTION, $res->returnVal()->name());
     }
 
     public function testName()
@@ -91,7 +91,7 @@ class SubscriptionTest extends SnippetTestCase
         $this->pubsub->setConnection($this->connection->reveal());
 
         $res = $snippet->invoke('result');
-        $this->assertEquals($return, $res->return());
+        $this->assertEquals($return, $res->returnVal());
     }
 
     public function testDelete()
@@ -169,7 +169,7 @@ class SubscriptionTest extends SnippetTestCase
         $this->subscription->setConnection($this->connection->reveal());
 
         $res = $snippet->invoke('messages');
-        $this->assertInstanceOf(\Generator::class, $res->return());
+        $this->assertInstanceOf(\Generator::class, $res->returnVal());
         $this->assertEquals('hello world', $res->output());
     }
 
@@ -281,6 +281,6 @@ class SubscriptionTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Subscription::class, 'iam');
         $snippet->addLocal('subscription', $this->subscription);
 
-        $this->assertInstanceof(Iam::class, $snippet->invoke('iam')->return());
+        $this->assertInstanceof(Iam::class, $snippet->invoke('iam')->returnVal());
     }
 }

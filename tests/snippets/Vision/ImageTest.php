@@ -32,7 +32,7 @@ class ImageTest extends SnippetTestCase
         $snippet->setLine(6, '$imageResource = fopen(\'php://temp\', \'r\');');
 
         $res = $snippet->invoke('image');
-        $this->assertInstanceOf(Image::class, $res->return());
+        $this->assertInstanceOf(Image::class, $res->returnVal());
     }
 
     public function testDirectInstantiation()
@@ -41,7 +41,7 @@ class ImageTest extends SnippetTestCase
         $snippet->setLine(4, '$imageResource = fopen(\'php://temp\', \'r\');');
 
         $res = $snippet->invoke('image');
-        $this->assertInstanceOf(Image::class, $res->return());
+        $this->assertInstanceOf(Image::class, $res->returnVal());
     }
 
     public function testImageString()
@@ -50,7 +50,7 @@ class ImageTest extends SnippetTestCase
         $snippet->setLine(5, '$imageData = \'foo\';');
 
         $res = $snippet->invoke('image');
-        $this->assertInstanceOf(Image::class, $res->return());
+        $this->assertInstanceOf(Image::class, $res->returnVal());
     }
 
     public function testGcsImage()
@@ -61,7 +61,7 @@ class ImageTest extends SnippetTestCase
 
         $res = $snippet->invoke('image');
         $res = $snippet->invoke('image');
-        $this->assertInstanceOf(Image::class, $res->return());
+        $this->assertInstanceOf(Image::class, $res->returnVal());
     }
 
     public function testMaxResults()
@@ -70,7 +70,7 @@ class ImageTest extends SnippetTestCase
         $snippet->setLine(5, '$imageResource = fopen(\'php://temp\', \'r\');');
 
         $res = $snippet->invoke('image');
-        $this->assertInstanceOf(Image::class, $res->return());
+        $this->assertInstanceOf(Image::class, $res->returnVal());
     }
 
     public function testFeatureShortcuts()
@@ -79,7 +79,7 @@ class ImageTest extends SnippetTestCase
         $snippet->setLine(5, '$imageResource = fopen(\'php://temp\', \'r\');');
 
         $res = $snippet->invoke('image');
-        $this->assertInstanceOf(Image::class, $res->return());
+        $this->assertInstanceOf(Image::class, $res->returnVal());
     }
 
     public function testRequestObject()
@@ -88,7 +88,7 @@ class ImageTest extends SnippetTestCase
         $snippet->setLine(2, '$imageResource = fopen(\'php://temp\', \'r\');');
 
         $res = $snippet->invoke('requestObj');
-        $this->assertTrue(array_key_exists('image', $res->return()));
-        $this->assertTrue(array_key_exists('features', $res->return()));
+        $this->assertTrue(array_key_exists('image', $res->returnVal()));
+        $this->assertTrue(array_key_exists('features', $res->returnVal()));
     }
 }

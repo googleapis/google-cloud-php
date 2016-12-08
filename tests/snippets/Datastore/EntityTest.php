@@ -54,7 +54,7 @@ class EntityTest extends SnippetTestCase
         $snippet = $this->snippetFromClass(Entity::class);
 
         $res = $snippet->invoke('entity');
-        $this->assertInstanceOf(Entity::class, $res->return());
+        $this->assertInstanceOf(Entity::class, $res->returnVal());
         $this->assertEquals('Bob', $res->output());
     }
 
@@ -66,7 +66,7 @@ class EntityTest extends SnippetTestCase
         $this->entity['firstName'] = 'Bob';
 
         $res = $snippet->invoke('data');
-        $this->assertEquals(['firstName' => 'Bob'], $res->return());
+        $this->assertEquals(['firstName' => 'Bob'], $res->returnVal());
     }
 
     public function testSet()
@@ -84,7 +84,7 @@ class EntityTest extends SnippetTestCase
         $snippet->addLocal('entity', $this->entity);
 
         $res = $snippet->invoke('key');
-        $this->assertEquals($this->key, $res->return());
+        $this->assertEquals($this->key, $res->returnVal());
     }
 
     public function testCursor()
@@ -93,7 +93,7 @@ class EntityTest extends SnippetTestCase
         $snippet->addLocal('entity', $this->entity);
 
         $res = $snippet->invoke('cursor');
-        $this->assertEquals($this->options['cursor'], $res->return());
+        $this->assertEquals($this->options['cursor'], $res->returnVal());
     }
 
     public function testBaseVersion()
@@ -102,7 +102,7 @@ class EntityTest extends SnippetTestCase
         $snippet->addLocal('entity', $this->entity);
 
         $res = $snippet->invoke('baseVersion');
-        $this->assertEquals($this->options['baseVersion'], $res->return());
+        $this->assertEquals($this->options['baseVersion'], $res->returnVal());
     }
 
     public function testPopulatedByService()
@@ -111,7 +111,7 @@ class EntityTest extends SnippetTestCase
         $snippet->addLocal('entity', $this->entity);
 
         $res = $snippet->invoke('populatedByService');
-        $this->assertEquals($this->options['populatedByService'], $res->return());
+        $this->assertEquals($this->options['populatedByService'], $res->returnVal());
     }
 
     public function testSetExcludeFromIndexes()
@@ -132,7 +132,7 @@ class EntityTest extends SnippetTestCase
         $this->entity->setExcludeFromIndexes($exclude);
 
         $res = $snippet->invoke('excludedFromIndexes');
-        $this->assertEquals($exclude, $res->return());
+        $this->assertEquals($exclude, $res->returnVal());
     }
 
     public function testMeanings()
@@ -141,6 +141,6 @@ class EntityTest extends SnippetTestCase
         $snippet->addLocal('entity', $this->entity);
 
         $res = $snippet->invoke('meanings');
-        $this->assertEquals($this->options['meanings'], $res->return());
+        $this->assertEquals($this->options['meanings'], $res->returnVal());
     }
 }

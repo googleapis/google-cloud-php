@@ -45,7 +45,7 @@ class SpeechClientTest extends SnippetTestCase
         $snippet = $this->snippetFromClass(SpeechClient::class);
 
         $res = $snippet->invoke('speech');
-        $this->assertInstanceOf(SpeechClient::class, $res->return());
+        $this->assertInstanceOf(SpeechClient::class, $res->returnVal());
     }
 
     public function testClassDirectInstantiation()
@@ -53,7 +53,7 @@ class SpeechClientTest extends SnippetTestCase
         $snippet = $this->snippetFromClass(SpeechClient::class, 1);
 
         $res = $snippet->invoke('speech');
-        $this->assertInstanceOf(SpeechClient::class, $res->return());
+        $this->assertInstanceOf(SpeechClient::class, $res->returnVal());
     }
 
     public function testRecognize()
@@ -181,7 +181,7 @@ class SpeechClientTest extends SnippetTestCase
         $snippet->addLocal('operationName', $opName);
 
         $res = $snippet->invoke('operation');
-        $this->assertInstanceOf(Operation::class, $res->return());
-        $this->assertEquals($opName, $res->return()->name());
+        $this->assertInstanceOf(Operation::class, $res->returnVal());
+        $this->assertEquals($opName, $res->returnVal()->name());
     }
 }

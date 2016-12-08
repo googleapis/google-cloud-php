@@ -80,7 +80,7 @@ class TransactionTest extends SnippetTestCase
         $snippet->addLocal('connectionStub', $connectionStub->reveal());
 
         $res = $snippet->invoke('transaction');
-        $this->assertInstanceOf(Transaction::class, $res->return());
+        $this->assertInstanceOf(Transaction::class, $res->returnVal());
     }
 
     public function testInsert()

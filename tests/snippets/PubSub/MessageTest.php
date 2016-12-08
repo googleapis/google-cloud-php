@@ -65,7 +65,7 @@ class MessageTest extends SnippetTestCase
                 'receivedMessages' => [
                     [
                         'message' => [
-                            'data' => 'hello world'
+                            'data' => base64_encode('hello world')
                         ]
                     ]
                 ]
@@ -77,11 +77,15 @@ class MessageTest extends SnippetTestCase
             $property = $reflection->getProperty(\'connection\');
             $property->setAccessible(true);
             $property->setValue($pubsub, $connectionStub);
+            $property->setAccessible(false);
+            $property = $reflection->getProperty(\'encode\');
+            $property->setAccessible(true);
+            $property->setValue($pubsub, \'false\');
             $property->setAccessible(false);'
         );
 
         $res = $snippet->invoke('messages');
-        $this->assertInstanceOf(\Generator::class, $res->return());
+        $this->assertInstanceOf(\Generator::class, $res->returnVal());
         $this->assertEquals('hello world', $res->output());
     }
 
@@ -109,7 +113,7 @@ class MessageTest extends SnippetTestCase
         $snippet->addLocal('message', $this->message);
 
         $res = $snippet->invoke('attributes');
-        $this->assertEquals($this->msg['attributes'], $res->return());
+        $this->assertEquals($this->msg['attributes'], $res->returnVal());
     }
 
     public function testId()
@@ -127,7 +131,7 @@ class MessageTest extends SnippetTestCase
         $snippet->addLocal('message', $this->message);
 
         $res = $snippet->invoke('time');
-        $this->assertEquals($this->msg['publishTime'], $res->return()->format('c'));
+        $this->assertEquals($this->msg['publishTime'], $res->returnVal()->format('c'));
     }
 
     public function testAckId()
@@ -154,6 +158,6 @@ class MessageTest extends SnippetTestCase
         $snippet->addLocal('message', $this->message);
 
         $res = $snippet->invoke('info');
-        $this->assertTrue(is_array($res->return()));
+        $this->assertTrue(is_array($res->returnVal()));
     }
 }

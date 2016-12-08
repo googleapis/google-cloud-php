@@ -96,7 +96,7 @@ class FaceTest extends SnippetTestCase
         ]));
 
         $res = $snippet->invoke('leftEye');
-        $this->assertEquals('foo', $res->return());
+        $this->assertEquals('foo', $res->returnVal());
     }
 
     public function testBoundingpoly()

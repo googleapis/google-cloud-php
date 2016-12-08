@@ -45,7 +45,7 @@ class BlobTest extends SnippetTestCase
 
         $res = $snippet->invoke('blob');
 
-        $this->assertInstanceOf(Blob::class, $res->return());
+        $this->assertInstanceOf(Blob::class, $res->returnVal());
     }
 
     public function testToString()
@@ -63,7 +63,7 @@ class BlobTest extends SnippetTestCase
         $snippet->addLocal('blob', $this->blob);
 
         $res = $snippet->invoke('value');
-        $this->assertInstanceOf(StreamInterface::class, $res->return());
-        $this->assertEquals($this->value, (string)$res->return());
+        $this->assertInstanceOf(StreamInterface::class, $res->returnVal());
+        $this->assertEquals($this->value, (string)$res->returnVal());
     }
 }

@@ -64,7 +64,7 @@ class DatastoreClientTest extends SnippetTestCase
         $snippet = $this->snippetFromClass(DatastoreClient::class);
         $res = $snippet->invoke('datastore');
 
-        $this->assertInstanceOf(DatastoreClient::class, $res->return());
+        $this->assertInstanceOf(DatastoreClient::class, $res->returnVal());
     }
 
     public function testClassDirectInstantiation()
@@ -72,7 +72,7 @@ class DatastoreClientTest extends SnippetTestCase
         $snippet = $this->snippetFromClass(DatastoreClient::class, 1);
         $res = $snippet->invoke('datastore');
 
-        $this->assertInstanceOf(DatastoreClient::class, $res->return());
+        $this->assertInstanceOf(DatastoreClient::class, $res->returnVal());
     }
 
     public function testMultiTenant()
@@ -80,9 +80,9 @@ class DatastoreClientTest extends SnippetTestCase
         $snippet = $this->snippetFromClass(DatastoreClient::class, 2);
         $res = $snippet->invoke('datastore');
 
-        $this->assertInstanceOf(DatastoreClient::class, $res->return());
+        $this->assertInstanceOf(DatastoreClient::class, $res->returnVal());
 
-        $ds = $res->return();
+        $ds = $res->returnVal();
 
         $ref = new \ReflectionClass($ds);
         $opProp = $ref->getProperty('operation');
@@ -102,7 +102,7 @@ class DatastoreClientTest extends SnippetTestCase
         $snippet = $this->snippetFromClass(DatastoreClient::class, 3);
         $res = $snippet->invoke('datastore');
 
-        $this->assertInstanceOf(DatastoreClient::class, $res->return());
+        $this->assertInstanceOf(DatastoreClient::class, $res->returnVal());
 
         $this->assertEquals('http://localhost:8900', getenv('DATASTORE_EMULATOR_HOST'));
     }
@@ -113,9 +113,9 @@ class DatastoreClientTest extends SnippetTestCase
         $snippet->addLocal('datastore', $this->client);
 
         $res = $snippet->invoke('key');
-        $this->assertInstanceOf(Key::class, $res->return());
+        $this->assertInstanceOf(Key::class, $res->returnVal());
 
-        $pathElement = $res->return()->keyObject()['path'][0];
+        $pathElement = $res->returnVal()->keyObject()['path'][0];
         $this->assertEquals(['kind' => 'Person', 'name' => 'Bob'], $pathElement);
     }
 
@@ -126,9 +126,9 @@ class DatastoreClientTest extends SnippetTestCase
         $snippet->addUse(Key::class);
 
         $res = $snippet->invoke('key');
-        $this->assertInstanceOf(Key::class, $res->return());
+        $this->assertInstanceOf(Key::class, $res->returnVal());
 
-        $pathElement = $res->return()->keyObject()['path'][0];
+        $pathElement = $res->returnVal()->keyObject()['path'][0];
         $this->assertEquals(['kind' => 'Robots', 'name' => '1337'], $pathElement);
     }
 
@@ -138,10 +138,10 @@ class DatastoreClientTest extends SnippetTestCase
         $snippet->addLocal('datastore', $this->client);
 
         $res = $snippet->invoke('keys');
-        $this->assertTrue(is_array($res->return()));
-        $this->assertEquals(10, count($res->return()));
-        $this->assertInstanceOf(Key::class, $res->return()[0]);
-        $this->assertEquals('Person', $res->return()[0]->keyObject()['path'][0]['kind']);
+        $this->assertTrue(is_array($res->returnVal()));
+        $this->assertEquals(10, count($res->returnVal()));
+        $this->assertInstanceOf(Key::class, $res->returnVal()[0]);
+        $this->assertEquals('Person', $res->returnVal()[0]->keyObject()['path'][0]['kind']);
     }
 
     public function testKeysWithAncestors()
@@ -151,13 +151,13 @@ class DatastoreClientTest extends SnippetTestCase
 
         $res = $snippet->invoke('keys');
 
-        $this->assertTrue(is_array($res->return()));
-        $this->assertEquals(3, count($res->return()));
-        $this->assertInstanceOf(Key::class, $res->return()[0]);
+        $this->assertTrue(is_array($res->returnVal()));
+        $this->assertEquals(3, count($res->returnVal()));
+        $this->assertInstanceOf(Key::class, $res->returnVal()[0]);
 
-        $this->assertEquals(['kind' => 'Person'], $res->return()[0]->keyObject()['path'][2]);
-        $this->assertEquals(['kind' => 'Person', 'name' => 'Dad Mike'], $res->return()[0]->keyObject()['path'][1]);
-        $this->assertEquals(['kind' => 'Person', 'name' => 'Grandpa Joe'], $res->return()[0]->keyObject()['path'][0]);
+        $this->assertEquals(['kind' => 'Person'], $res->returnVal()[0]->keyObject()['path'][2]);
+        $this->assertEquals(['kind' => 'Person', 'name' => 'Dad Mike'], $res->returnVal()[0]->keyObject()['path'][1]);
+        $this->assertEquals(['kind' => 'Person', 'name' => 'Grandpa Joe'], $res->returnVal()[0]->keyObject()['path'][0]);
     }
 
     public function testEntity()
@@ -167,9 +167,9 @@ class DatastoreClientTest extends SnippetTestCase
 
         $res = $snippet->invoke('entity');
 
-        $this->assertInstanceOf(Entity::class, $res->return());
-        $this->assertEquals(['kind' => 'Person', 'name' => 'Bob'], $res->return()->key()->keyObject()['path'][0]);
-        $this->assertEquals('Testguy', $res->return()['lastName']);
+        $this->assertInstanceOf(Entity::class, $res->returnVal());
+        $this->assertEquals(['kind' => 'Person', 'name' => 'Bob'], $res->returnVal()->key()->keyObject()['path'][0]);
+        $this->assertEquals('Testguy', $res->returnVal()['lastName']);
     }
 
     public function testEntityArrayAccess()
@@ -179,8 +179,8 @@ class DatastoreClientTest extends SnippetTestCase
         $snippet->addLocal('key', $this->key);
 
         $res = $snippet->invoke('entity');
-        $this->assertEquals('Bob', $res->return()['firstName']);
-        $this->assertEquals('Testguy', $res->return()['lastName']);
+        $this->assertEquals('Bob', $res->returnVal()['firstName']);
+        $this->assertEquals('Testguy', $res->returnVal()['lastName']);
     }
 
     public function testEntityObjectAccess()
@@ -190,8 +190,8 @@ class DatastoreClientTest extends SnippetTestCase
         $snippet->addLocal('key', $this->key);
 
         $res = $snippet->invoke('entity');
-        $this->assertEquals('Bob', $res->return()['firstName']);
-        $this->assertEquals('Testguy', $res->return()['lastName']);
+        $this->assertEquals('Bob', $res->returnVal()['firstName']);
+        $this->assertEquals('Testguy', $res->returnVal()['lastName']);
     }
 
     public function testCreateEntityIncompleteKey()
@@ -200,7 +200,7 @@ class DatastoreClientTest extends SnippetTestCase
         $snippet->addLocal('datastore', $this->client);
 
         $res = $snippet->invoke('entity');
-        $this->assertEquals(Key::STATE_INCOMPLETE, $res->return()->key()->state());
+        $this->assertEquals(Key::STATE_INCOMPLETE, $res->returnVal()->key()->state());
     }
 
     public function testCreateEntityCustomClass()
@@ -218,7 +218,7 @@ class DatastoreClientTest extends SnippetTestCase
         $snippet->addLocal('datastore', $this->client);
 
         $res = $snippet->invoke('entity');
-        $this->assertEquals(['dateOfBirth'], $res->return()->excludedProperties());
+        $this->assertEquals(['dateOfBirth'], $res->returnVal()->excludedProperties());
     }
 
     public function testGeoPoint()
@@ -227,7 +227,7 @@ class DatastoreClientTest extends SnippetTestCase
         $snippet->addLocal('datastore', $this->client);
 
         $res = $snippet->invoke('geoPoint');
-        $this->assertInstanceOf(GeoPoint::class, $res->return());
+        $this->assertInstanceOf(GeoPoint::class, $res->returnVal());
     }
 
     public function testBlob()
@@ -237,7 +237,7 @@ class DatastoreClientTest extends SnippetTestCase
         $snippet->replace("file_get_contents(__DIR__ .'/family-photo.jpg')", "''");
 
         $res = $snippet->invoke('blob');
-        $this->assertInstanceOf(Blob::class, $res->return());
+        $this->assertInstanceOf(Blob::class, $res->returnVal());
     }
 
     public function testAllocateId()
@@ -250,9 +250,9 @@ class DatastoreClientTest extends SnippetTestCase
 
         $res = $snippet->invoke('keyWithAllocatedId');
 
-        $this->assertInstanceOf(Key::class, $res->return());
+        $this->assertInstanceOf(Key::class, $res->returnVal());
 
-        $this->assertEquals(Key::STATE_NAMED, $res->return()->state());
+        $this->assertEquals(Key::STATE_NAMED, $res->returnVal()->state());
     }
 
     public function testAllocateIdsBatch()
@@ -265,10 +265,10 @@ class DatastoreClientTest extends SnippetTestCase
 
         $res = $snippet->invoke('keysWithAllocatedIds');
 
-        $this->assertInstanceOf(Key::class, $res->return()[0]);
-        $this->assertInstanceOf(Key::class, $res->return()[1]);
+        $this->assertInstanceOf(Key::class, $res->returnVal()[0]);
+        $this->assertInstanceOf(Key::class, $res->returnVal()[1]);
 
-        $this->assertEquals(Key::STATE_NAMED, $res->return()[0]->state());
+        $this->assertEquals(Key::STATE_NAMED, $res->returnVal()[0]->state());
     }
 
     public function testTransaction()
@@ -285,7 +285,7 @@ class DatastoreClientTest extends SnippetTestCase
         $this->client->setConnection($this->connection->reveal());
 
         $res = $snippet->invoke('transaction');
-        $this->assertInstanceOf(Transaction::class, $res->return());
+        $this->assertInstanceOf(Transaction::class, $res->returnVal());
     }
 
     public function testInsert()
@@ -308,7 +308,7 @@ class DatastoreClientTest extends SnippetTestCase
 
         $res = $snippet->invoke('entity');
 
-        $this->assertEquals(Key::STATE_NAMED, $res->return()->key()->state());
+        $this->assertEquals(Key::STATE_NAMED, $res->returnVal()->key()->state());
     }
 
     public function testInsertBatch()
@@ -328,7 +328,7 @@ class DatastoreClientTest extends SnippetTestCase
 
         $res = $snippet->invoke('entities');
 
-        $this->assertEquals(Key::STATE_NAMED, $res->return()[0]->key()->state());
+        $this->assertEquals(Key::STATE_NAMED, $res->returnVal()[0]->key()->state());
     }
 
     public function testUpdate()
@@ -528,7 +528,7 @@ class DatastoreClientTest extends SnippetTestCase
         $snippet->addLocal('datastore', $this->client);
 
         $res = $snippet->invoke('query');
-        $this->assertInstanceOf(Query::class, $res->return());
+        $this->assertInstanceOf(Query::class, $res->returnVal());
     }
 
     public function testGqlQuery()
@@ -537,7 +537,7 @@ class DatastoreClientTest extends SnippetTestCase
         $snippet->addLocal('datastore', $this->client);
 
         $res = $snippet->invoke('query');
-        $this->assertInstanceOf(GqlQuery::class, $res->return());
+        $this->assertInstanceOf(GqlQuery::class, $res->returnVal());
     }
 
     public function testGqlQueryBindings()
@@ -546,7 +546,7 @@ class DatastoreClientTest extends SnippetTestCase
         $snippet->addLocal('datastore', $this->client);
 
         $res = $snippet->invoke('query');
-        $this->assertInstanceOf(GqlQuery::class, $res->return());
+        $this->assertInstanceOf(GqlQuery::class, $res->returnVal());
     }
 
     public function testGqlQueryPositionalBindings()
@@ -555,7 +555,7 @@ class DatastoreClientTest extends SnippetTestCase
         $snippet->addLocal('datastore', $this->client);
 
         $res = $snippet->invoke('query');
-        $this->assertInstanceOf(GqlQuery::class, $res->return());
+        $this->assertInstanceOf(GqlQuery::class, $res->returnVal());
     }
 
     public function testGqlQueryLiterals()
@@ -564,7 +564,7 @@ class DatastoreClientTest extends SnippetTestCase
         $snippet->addLocal('datastore', $this->client);
 
         $res = $snippet->invoke('query');
-        $this->assertInstanceOf(GqlQuery::class, $res->return());
+        $this->assertInstanceOf(GqlQuery::class, $res->returnVal());
     }
 
     public function testRunQuery()

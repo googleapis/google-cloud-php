@@ -71,7 +71,7 @@ class EntityTest extends SnippetTestCase
         );
 
         $res = $snippet->invoke('text');
-        $this->assertInstanceOf(Entity::class, $res->return());
+        $this->assertInstanceOf(Entity::class, $res->returnVal());
     }
 
     public function testMid()

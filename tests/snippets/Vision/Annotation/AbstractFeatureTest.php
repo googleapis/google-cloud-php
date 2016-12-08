@@ -34,7 +34,7 @@ class AbstractFeatureTest extends SnippetTestCase
         $snippet->addLocal('imageProperties', $stub);
 
         $res = $snippet->invoke('info');
-        $this->assertEquals('hello world', $res->return());
+        $this->assertEquals('hello world', $res->returnVal());
     }
 }
 

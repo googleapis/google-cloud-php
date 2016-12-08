@@ -52,8 +52,8 @@ class TopicTest extends SnippetTestCase
         $snippet->addLocal('pubsub', new \PubSubClientStub(['transport' => 'rest']));
 
         $res = $snippet->invoke('topic');
-        $this->assertInstanceOf(Topic::class, $res->return());
-        $this->assertEquals(self::TOPIC, $res->return()->name());
+        $this->assertInstanceOf(Topic::class, $res->returnVal());
+        $this->assertEquals(self::TOPIC, $res->returnVal()->name());
     }
 
     public function testClassWithFullyQualifiedName()
@@ -62,8 +62,8 @@ class TopicTest extends SnippetTestCase
         $snippet->addLocal('pubsub', new \PubSubClientStub(['transport' => 'rest']));
 
         $res = $snippet->invoke('topic');
-        $this->assertInstanceOf(Topic::class, $res->return());
-        $this->assertEquals(self::TOPIC, $res->return()->name());
+        $this->assertInstanceOf(Topic::class, $res->returnVal());
+        $this->assertEquals(self::TOPIC, $res->returnVal()->name());
     }
 
     public function testName()
@@ -87,7 +87,7 @@ class TopicTest extends SnippetTestCase
         $this->topic->setConnection($this->connection->reveal());
 
         $res = $snippet->invoke('topicInfo');
-        $this->assertEquals([], $res->return());
+        $this->assertEquals([], $res->returnVal());
     }
 
     public function testDelete()
@@ -192,7 +192,7 @@ class TopicTest extends SnippetTestCase
         $this->topic->setConnection($this->connection->reveal());
 
         $res = $snippet->invoke('subscription');
-        $this->assertInstanceOf(Subscription::class, $res->return());
+        $this->assertInstanceOf(Subscription::class, $res->returnVal());
     }
 
     public function testSubscription()
@@ -201,7 +201,7 @@ class TopicTest extends SnippetTestCase
         $snippet->addLocal('topic', $this->topic);
 
         $res = $snippet->invoke('subscription');
-        $this->assertInstanceOf(Subscription::class, $res->return());
+        $this->assertInstanceOf(Subscription::class, $res->returnVal());
     }
 
     public function testSubscriptions()
@@ -220,7 +220,7 @@ class TopicTest extends SnippetTestCase
         $this->topic->setConnection($this->connection->reveal());
 
         $res = $snippet->invoke('subscriptions');
-        $this->assertInstanceOf(\Generator::class, $res->return());
+        $this->assertInstanceOf(\Generator::class, $res->returnVal());
         $this->assertEquals(self::SUBSCRIPTION, $res->output());
     }
 
@@ -230,6 +230,6 @@ class TopicTest extends SnippetTestCase
         $snippet->addLocal('topic', $this->topic);
         $res = $snippet->invoke('iam');
 
-        $this->assertInstanceOf(Iam::class, $res->return());
+        $this->assertInstanceOf(Iam::class, $res->returnVal());
     }
 }

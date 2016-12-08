@@ -48,7 +48,7 @@ class PubSubClientTest extends SnippetTestCase
         $snippet = $this->snippetFromClass(PubSubClient::class, '__construct');
         $res = $snippet->invoke('pubsub');
 
-        $this->assertInstanceOf(PubSubClient::class, $res->return());
+        $this->assertInstanceOf(PubSubClient::class, $res->returnVal());
     }
 
     public function testCreateTopic()
@@ -66,8 +66,8 @@ class PubSubClientTest extends SnippetTestCase
 
         $res = $snippet->invoke('topic');
 
-        $this->assertInstanceOf(Topic::class, $res->return());
-        $this->assertEquals(self::TOPIC, $res->return()->name());
+        $this->assertInstanceOf(Topic::class, $res->returnVal());
+        $this->assertEquals(self::TOPIC, $res->returnVal()->name());
         $this->assertEquals(self::TOPIC, $res->output());
     }
 
@@ -86,8 +86,8 @@ class PubSubClientTest extends SnippetTestCase
 
         $res = $snippet->invoke('topic');
 
-        $this->assertInstanceOf(Topic::class, $res->return());
-        $this->assertEquals(self::TOPIC, $res->return()->name());
+        $this->assertInstanceOf(Topic::class, $res->returnVal());
+        $this->assertEquals(self::TOPIC, $res->returnVal()->name());
         $this->assertEquals(self::TOPIC, $res->output());
     }
 
@@ -108,7 +108,7 @@ class PubSubClientTest extends SnippetTestCase
 
         $res = $snippet->invoke('topics');
 
-        $this->assertInstanceOf(\Generator::class, $res->return());
+        $this->assertInstanceOf(\Generator::class, $res->returnVal());
         $this->assertEquals(self::TOPIC, $res->output());
     }
 
@@ -128,10 +128,10 @@ class PubSubClientTest extends SnippetTestCase
 
         $res = $snippet->invoke('subscription');
 
-        $this->assertInstanceOf(Subscription::class, $res->return());
-        $this->assertEquals(self::SUBSCRIPTION, $res->return()->name());
-        $this->assertEquals(self::SUBSCRIPTION, $res->return()->info()['name']);
-        $this->assertEquals(self::TOPIC, $res->return()->info()['topic']);
+        $this->assertInstanceOf(Subscription::class, $res->returnVal());
+        $this->assertEquals(self::SUBSCRIPTION, $res->returnVal()->name());
+        $this->assertEquals(self::SUBSCRIPTION, $res->returnVal()->info()['name']);
+        $this->assertEquals(self::TOPIC, $res->returnVal()->info()['topic']);
     }
 
     public function testSubscription()
@@ -150,10 +150,10 @@ class PubSubClientTest extends SnippetTestCase
 
         $res = $snippet->invoke('subscription');
 
-        $this->assertInstanceOf(Subscription::class, $res->return());
-        $this->assertEquals(self::SUBSCRIPTION, $res->return()->name());
-        $this->assertEquals(self::SUBSCRIPTION, $res->return()->info()['name']);
-        $this->assertEquals(self::TOPIC, $res->return()->info()['topic']);
+        $this->assertInstanceOf(Subscription::class, $res->returnVal());
+        $this->assertEquals(self::SUBSCRIPTION, $res->returnVal()->name());
+        $this->assertEquals(self::SUBSCRIPTION, $res->returnVal()->info()['name']);
+        $this->assertEquals(self::TOPIC, $res->returnVal()->info()['topic']);
     }
 
     public function testSubscriptions()
@@ -172,7 +172,7 @@ class PubSubClientTest extends SnippetTestCase
         $this->client->setConnection($this->connection->reveal());
 
         $res = $snippet->invoke('subscriptions');
-        $this->assertInstanceOf(\Generator::class, $res->return());
+        $this->assertInstanceOf(\Generator::class, $res->returnVal());
         $this->assertEquals(self::SUBSCRIPTION, $res->output());
     }
 
@@ -193,6 +193,6 @@ class PubSubClientTest extends SnippetTestCase
         $snippet->setLine(0, '$httpPostRequestBody = \''. json_encode($message) .'\';');
 
         $res = $snippet->invoke('message');
-        $this->assertInstanceOf(Message::class, $res->return());
+        $this->assertInstanceOf(Message::class, $res->returnVal());
     }
 }

@@ -62,7 +62,7 @@ class ImagePropertiesTest extends SnippetTestCase
         );
 
         $res = $snippet->invoke('imageProperties');
-        $this->assertInstanceOf(ImageProperties::class, $res->return());
+        $this->assertInstanceOf(ImageProperties::class, $res->returnVal());
     }
 
     public function testInfo()
@@ -71,7 +71,7 @@ class ImagePropertiesTest extends SnippetTestCase
         $snippet->addLocal('imageProperties', $this->props);
 
         $res = $snippet->invoke('info');
-        $this->assertEquals($this->propsData, $res->return());
+        $this->assertEquals($this->propsData, $res->returnVal());
     }
 
     public function testColors()
@@ -80,6 +80,6 @@ class ImagePropertiesTest extends SnippetTestCase
         $snippet->addLocal('imageProperties', $this->props);
 
         $res = $snippet->invoke('colors');
-        $this->assertEquals($this->propsData['dominantColors']['colors'], $res->return());
+        $this->assertEquals($this->propsData['dominantColors']['colors'], $res->returnVal());
     }
 }

@@ -88,7 +88,7 @@ class QueryTest extends SnippetTestCase
 
         $res = $snippet->invoke('res');
         $this->assertEquals('Google', $res->output());
-        $this->assertInstanceOf(\Generator::class, $res->return());
+        $this->assertInstanceOf(\Generator::class, $res->returnVal());
     }
 
     public function testClassQueryObject()
@@ -97,7 +97,7 @@ class QueryTest extends SnippetTestCase
         $snippet->addLocal('datastore', $this->datastore);
 
         $res = $snippet->invoke('query');
-        $this->assertInstanceOf(Query::class, $res->return());
+        $this->assertInstanceOf(Query::class, $res->returnVal());
     }
 
     public function testProjection()

@@ -40,7 +40,7 @@ class AclTest extends SnippetTestCase
         $snippet = $this->snippetFromClass(Acl::class);
 
         $res = $snippet->invoke('acl');
-        $this->assertInstanceOf(Acl::class, $res->return());
+        $this->assertInstanceOf(Acl::class, $res->returnVal());
     }
 
     public function testDelete()
@@ -68,7 +68,7 @@ class AclTest extends SnippetTestCase
         $this->acl->setConnection($this->connection->reveal());
 
         $res = $snippet->invoke('res');
-        $this->assertEquals('foo', $res->return());
+        $this->assertEquals('foo', $res->returnVal());
     }
 
     public function testAdd()

@@ -52,7 +52,7 @@ class AnnotationTest extends SnippetTestCase
         );
 
         $res = $snippet->invoke('annotation');
-        $this->assertInstanceOf(Annotation::class, $res->return());
+        $this->assertInstanceOf(Annotation::class, $res->returnVal());
     }
 
     public function testInfo()
@@ -61,7 +61,7 @@ class AnnotationTest extends SnippetTestCase
         $snippet->addLocal('annotation', new Annotation('foo'));
 
         $res = $snippet->invoke('info');
-        $this->assertEquals('foo', $res->return());
+        $this->assertEquals('foo', $res->returnVal());
     }
 
     public function testFaces()
@@ -74,7 +74,7 @@ class AnnotationTest extends SnippetTestCase
         ]));
 
         $res = $snippet->invoke('faces');
-        $this->assertInstanceOf(Face::class, $res->return()[0]);
+        $this->assertInstanceOf(Face::class, $res->returnVal()[0]);
     }
 
     public function testLandmarks()
@@ -87,7 +87,7 @@ class AnnotationTest extends SnippetTestCase
         ]));
 
         $res = $snippet->invoke('landmarks');
-        $this->assertInstanceOf(Entity::class, $res->return()[0]);
+        $this->assertInstanceOf(Entity::class, $res->returnVal()[0]);
     }
 
     public function testLogos()
@@ -100,7 +100,7 @@ class AnnotationTest extends SnippetTestCase
         ]));
 
         $res = $snippet->invoke('logos');
-        $this->assertInstanceOf(Entity::class, $res->return()[0]);
+        $this->assertInstanceOf(Entity::class, $res->returnVal()[0]);
     }
 
     public function testLabels()
@@ -113,7 +113,7 @@ class AnnotationTest extends SnippetTestCase
         ]));
 
         $res = $snippet->invoke('labels');
-        $this->assertInstanceOf(Entity::class, $res->return()[0]);
+        $this->assertInstanceOf(Entity::class, $res->returnVal()[0]);
     }
 
     public function testText()
@@ -126,7 +126,7 @@ class AnnotationTest extends SnippetTestCase
         ]));
 
         $res = $snippet->invoke('text');
-        $this->assertInstanceOf(Entity::class, $res->return()[0]);
+        $this->assertInstanceOf(Entity::class, $res->returnVal()[0]);
     }
 
     public function testSafeSearch()
@@ -137,7 +137,7 @@ class AnnotationTest extends SnippetTestCase
         ]));
 
         $res = $snippet->invoke('safeSearch');
-        $this->assertInstanceOf(SafeSearch::class, $res->return());
+        $this->assertInstanceOf(SafeSearch::class, $res->returnVal());
     }
 
     public function testImageProperties()
@@ -148,7 +148,7 @@ class AnnotationTest extends SnippetTestCase
         ]));
 
         $res = $snippet->invoke('properties');
-        $this->assertInstanceOf(ImageProperties::class, $res->return());
+        $this->assertInstanceOf(ImageProperties::class, $res->returnVal());
     }
 
     public function testError()
@@ -159,6 +159,6 @@ class AnnotationTest extends SnippetTestCase
         ]));
 
         $res = $snippet->invoke('error');
-        $this->assertTrue(is_array($res->return()));
+        $this->assertTrue(is_array($res->returnVal()));
     }
 }

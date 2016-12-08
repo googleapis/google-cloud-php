@@ -39,7 +39,7 @@ class KeyTest extends SnippetTestCase
         $snippet = $this->snippetFromClass(Key::class);
 
         $res = $snippet->invoke('key');
-        $this->assertInstanceOf(Key::class, $res->return());
+        $this->assertInstanceOf(Key::class, $res->returnVal());
     }
 
     public function testClassComplexPath()
@@ -59,7 +59,7 @@ class KeyTest extends SnippetTestCase
         $snippet->addLocal('datastore', $ds->reveal());
 
         $res = $snippet->invoke('key');
-        $this->assertEquals(3, count($res->return()->path()));
+        $this->assertEquals(3, count($res->returnVal()->path()));
     }
 
     /**
@@ -203,7 +203,7 @@ class KeyTest extends SnippetTestCase
         $snippet->addUse(Key::class);
 
         $res = $snippet->invoke('key');
-        $this->assertEquals(Key::STATE_NAMED, $res->return()->state());
+        $this->assertEquals(Key::STATE_NAMED, $res->returnVal()->state());
     }
 
     public function testPath()
@@ -214,7 +214,7 @@ class KeyTest extends SnippetTestCase
         $this->key->pathElement('Foo', 'Bar');
 
         $res = $snippet->invoke('path');
-        $this->assertEquals([['kind' => 'Foo', 'name' => 'Bar']], $res->return());
+        $this->assertEquals([['kind' => 'Foo', 'name' => 'Bar']], $res->returnVal());
     }
 
     public function testPathEnd()
@@ -226,7 +226,7 @@ class KeyTest extends SnippetTestCase
         $this->key->pathElement('Foo', 'Baz');
 
         $res = $snippet->invoke('lastPathElement');
-        $this->assertEquals(['kind' => 'Foo', 'name' => 'Baz'], $res->return());
+        $this->assertEquals(['kind' => 'Foo', 'name' => 'Baz'], $res->returnVal());
     }
 
     public function testPathEndIdentifier()
@@ -238,7 +238,7 @@ class KeyTest extends SnippetTestCase
         $this->key->pathElement('Foo', 'Baz');
 
         $res = $snippet->invoke('lastPathElementIndentifier');
-        $this->assertEquals('Baz', $res->return());
+        $this->assertEquals('Baz', $res->returnVal());
     }
 
     public function testPathEndIdentifierType()
@@ -250,6 +250,6 @@ class KeyTest extends SnippetTestCase
         $this->key->pathElement('Foo', 'Baz');
 
         $res = $snippet->invoke('lastPathElementIdentifierType');
-        $this->assertEquals(Key::TYPE_NAME, $res->return());
+        $this->assertEquals(Key::TYPE_NAME, $res->returnVal());
     }
 }

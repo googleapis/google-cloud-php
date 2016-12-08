@@ -49,7 +49,7 @@ class StorageObjectTest extends SnippetTestCase
     {
         $snippet = $this->snippetFromClass(StorageObject::class);
         $res = $snippet->invoke('object');
-        $this->assertInstanceOf(StorageObject::class, $res->return());
+        $this->assertInstanceOf(StorageObject::class, $res->returnVal());
     }
 
     public function testAcl()
@@ -58,7 +58,7 @@ class StorageObjectTest extends SnippetTestCase
         $snippet->addLocal('object', $this->object);
 
         $res = $snippet->invoke('acl');
-        $this->assertInstanceOf(Acl::class, $res->return());
+        $this->assertInstanceOf(Acl::class, $res->returnVal());
     }
 
     public function testExists()
@@ -118,7 +118,7 @@ class StorageObjectTest extends SnippetTestCase
         $this->object->setConnection($this->connection->reveal());
 
         $res = $snippet->invoke('copiedObject');
-        $this->assertInstanceOf(StorageObject::class, $res->return());
+        $this->assertInstanceOf(StorageObject::class, $res->returnVal());
     }
 
     public function testRewrite()
@@ -140,7 +140,7 @@ class StorageObjectTest extends SnippetTestCase
         $this->object->setConnection($this->connection->reveal());
 
         $res = $snippet->invoke('rewrittenObject');
-        $this->assertInstanceOf(StorageObject::class, $res->return());
+        $this->assertInstanceOf(StorageObject::class, $res->returnVal());
     }
 
     public function testRename()
@@ -194,7 +194,7 @@ class StorageObjectTest extends SnippetTestCase
 
         $res = $snippet->invoke('stream');
 
-        $this->assertInstanceOf(StreamInterface::class, $res->return());
+        $this->assertInstanceOf(StreamInterface::class, $res->returnVal());
     }
 
     public function testDownloadAsStream()

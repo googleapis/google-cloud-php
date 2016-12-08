@@ -67,7 +67,7 @@ class SafeSearchTest extends SnippetTestCase
         );
 
         $res = $snippet->invoke('safeSearch');
-        $this->assertInstanceOf(SafeSearch::class, $res->return());
+        $this->assertInstanceOf(SafeSearch::class, $res->returnVal());
     }
 
     public function testAdult()

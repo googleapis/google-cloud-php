@@ -42,7 +42,7 @@ class TranslateClientTest extends SnippetTestCase
         $snippet = $this->snippetFromClass(TranslateClient::class);
         $res = $snippet->invoke('translate');
 
-        $this->assertInstanceOf(TranslateClient::class, $res->return());
+        $this->assertInstanceOf(TranslateClient::class, $res->returnVal());
     }
 
     public function testTranslate()

@@ -40,7 +40,7 @@ class GeoPointTest extends SnippetTestCase
         $snippet->addUse(GeoPoint::class);
         $res = $snippet->invoke('point');
 
-        $this->assertInstanceOf(GeoPoint::class, $res->return());
+        $this->assertInstanceOf(GeoPoint::class, $res->returnVal());
     }
 
     public function testLatitude()
@@ -49,7 +49,7 @@ class GeoPointTest extends SnippetTestCase
         $snippet->addLocal('point', $this->gp);
 
         $res = $snippet->invoke('latitude');
-        $this->assertEquals($this->point['latitude'], $res->return());
+        $this->assertEquals($this->point['latitude'], $res->returnVal());
     }
 
     public function testSetLatitude()
@@ -67,7 +67,7 @@ class GeoPointTest extends SnippetTestCase
         $snippet->addLocal('point', $this->gp);
 
         $res = $snippet->invoke('longitude');
-        $this->assertEquals($this->point['longitude'], $res->return());
+        $this->assertEquals($this->point['longitude'], $res->returnVal());
     }
 
     public function testSetLongitude()
@@ -85,6 +85,6 @@ class GeoPointTest extends SnippetTestCase
         $snippet->addLocal('point', $this->gp);
 
         $res = $snippet->invoke('point');
-        $this->assertEquals($this->point, $res->return());
+        $this->assertEquals($this->point, $res->returnVal());
     }
 }

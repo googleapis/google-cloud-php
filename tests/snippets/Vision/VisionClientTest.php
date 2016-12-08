@@ -44,7 +44,7 @@ class VisionClientTest extends SnippetTestCase
         $snippet = $this->snippetFromClass(VisionClient::class);
         $res = $snippet->invoke('vision');
 
-        $this->assertInstanceOf(VisionClient::class, $res->return());
+        $this->assertInstanceOf(VisionClient::class, $res->returnVal());
     }
 
     public function testClassDirectInstantiation()
@@ -52,7 +52,7 @@ class VisionClientTest extends SnippetTestCase
         $snippet = $this->snippetFromClass(VisionClient::class, 1);
         $res = $snippet->invoke('vision');
 
-        $this->assertInstanceOf(VisionClient::class, $res->return());
+        $this->assertInstanceOf(VisionClient::class, $res->returnVal());
     }
 
     public function testImage()
@@ -64,7 +64,7 @@ class VisionClientTest extends SnippetTestCase
 
         $res = $snippet->invoke('image');
 
-        $this->assertInstanceOf(Image::class, $res->return());
+        $this->assertInstanceOf(Image::class, $res->returnVal());
     }
 
     public function testImageWithMaxResults()
@@ -76,7 +76,7 @@ class VisionClientTest extends SnippetTestCase
 
         $res = $snippet->invoke('image');
 
-        $this->assertInstanceOf(Image::class, $res->return());
+        $this->assertInstanceOf(Image::class, $res->returnVal());
     }
 
     public function testImages()
@@ -88,8 +88,8 @@ class VisionClientTest extends SnippetTestCase
         $snippet->setLine(4, '$weddingPhotoResource = fopen(\'php://temp\', \'r\');');
 
         $res = $snippet->invoke('images');
-        $this->assertInstanceOf(Image::class, $res->return()[0]);
-        $this->assertInstanceOf(Image::class, $res->return()[1]);
+        $this->assertInstanceOf(Image::class, $res->returnVal()[0]);
+        $this->assertInstanceOf(Image::class, $res->returnVal()[1]);
     }
 
     public function testAnnotate()
@@ -111,7 +111,7 @@ class VisionClientTest extends SnippetTestCase
 
         $res = $snippet->invoke('result');
 
-        $this->assertInstanceOf(Annotation::class, $res->return());
+        $this->assertInstanceOf(Annotation::class, $res->returnVal());
     }
 
     public function testAnnotateBatch()
@@ -134,7 +134,7 @@ class VisionClientTest extends SnippetTestCase
 
         $res = $snippet->invoke('result');
 
-        $this->assertInstanceOf(Annotation::class, $res->return()[0]);
-        $this->assertInstanceOf(Annotation::class, $res->return()[1]);
+        $this->assertInstanceOf(Annotation::class, $res->returnVal()[0]);
+        $this->assertInstanceOf(Annotation::class, $res->returnVal()[1]);
     }
 }

@@ -48,7 +48,7 @@ class BucketTest extends SnippetTestCase
         $snippet = $this->snippetFromClass(Bucket::class);
         $res = $snippet->invoke('bucket');
 
-        $this->assertInstanceOf(Bucket::class, $res->return());
+        $this->assertInstanceOf(Bucket::class, $res->returnVal());
     }
 
     public function testAcl()
@@ -58,7 +58,7 @@ class BucketTest extends SnippetTestCase
 
         $res = $snippet->invoke('acl');
 
-        $this->assertInstanceOf(Acl::class, $res->return());
+        $this->assertInstanceOf(Acl::class, $res->returnVal());
     }
 
     public function testDefaultAcl()
@@ -68,7 +68,7 @@ class BucketTest extends SnippetTestCase
 
         $res = $snippet->invoke('acl');
 
-        $this->assertInstanceOf(Acl::class, $res->return());
+        $this->assertInstanceOf(Acl::class, $res->returnVal());
     }
 
     public function testExists()
@@ -106,7 +106,7 @@ class BucketTest extends SnippetTestCase
         $this->bucket->setConnection($this->connection->reveal());
 
         $res = $snippet->invoke('object');
-        $this->assertInstanceOf(StorageObject::class, $res->return());
+        $this->assertInstanceOf(StorageObject::class, $res->returnVal());
     }
 
     /**
@@ -133,7 +133,7 @@ class BucketTest extends SnippetTestCase
         $this->bucket->setConnection($this->connection->reveal());
 
         $res = $snippet->invoke('object');
-        $this->assertInstanceOf(StorageObject::class, $res->return());
+        $this->assertInstanceOf(StorageObject::class, $res->returnVal());
     }
 
     /**
@@ -160,7 +160,7 @@ class BucketTest extends SnippetTestCase
         $this->bucket->setConnection($this->connection->reveal());
 
         $res = $snippet->invoke('object');
-        $this->assertInstanceOf(StorageObject::class, $res->return());
+        $this->assertInstanceOf(StorageObject::class, $res->returnVal());
     }
 
     public function testGetResumableUploader()
@@ -202,7 +202,7 @@ class BucketTest extends SnippetTestCase
         $snippet->addLocal('bucket', $this->bucket);
 
         $res = $snippet->invoke('object');
-        $this->assertInstanceOf(StorageObject::class, $res->return());
+        $this->assertInstanceOf(StorageObject::class, $res->returnVal());
     }
 
     public function testObjects()
@@ -222,7 +222,7 @@ class BucketTest extends SnippetTestCase
         $this->bucket->setConnection($this->connection->reveal());
 
         $res = $snippet->invoke('objects');
-        $this->assertInstanceOf(\Generator::class, $res->return());
+        $this->assertInstanceOf(\Generator::class, $res->returnVal());
         $this->assertEquals('object 1', explode("\n", $res->output())[0]);
         $this->assertEquals('object 2', explode("\n", $res->output())[1]);
     }
@@ -274,8 +274,8 @@ class BucketTest extends SnippetTestCase
         $this->bucket->setConnection($this->connection->reveal());
 
         $res = $snippet->invoke('singleObject');
-        $this->assertInstanceOf(StorageObject::class, $res->return());
-        $this->assertEquals('combined-logs.txt', $res->return()->name());
+        $this->assertInstanceOf(StorageObject::class, $res->returnVal());
+        $this->assertEquals('combined-logs.txt', $res->returnVal()->name());
     }
 
     public function testComposeWithObjects()
@@ -293,8 +293,8 @@ class BucketTest extends SnippetTestCase
         $this->bucket->setConnection($this->connection->reveal());
 
         $res = $snippet->invoke('singleObject');
-        $this->assertInstanceOf(StorageObject::class, $res->return());
-        $this->assertEquals('combined-logs.txt', $res->return()->name());
+        $this->assertInstanceOf(StorageObject::class, $res->returnVal());
+        $this->assertEquals('combined-logs.txt', $res->returnVal()->name());
     }
 
     public function testInfo()

@@ -59,7 +59,7 @@ class IamTest extends SnippetTestCase
         // The actual value returned doesn't matter. in the real world
         // it's an array. Here it can be anything, so long as we are getting
         // the value of $policy.
-        $this->assertEquals('foo', $res->return());
+        $this->assertEquals('foo', $res->returnVal());
     }
 
     public function setPolicy()
@@ -85,7 +85,7 @@ class IamTest extends SnippetTestCase
 
         $res = $snippet->invoke('policy');
 
-        $this->assertEquals('foo', $res->return());
+        $this->assertEquals('foo', $res->returnVal());
     }
 
     public function testTestPermissions()
@@ -108,7 +108,7 @@ class IamTest extends SnippetTestCase
         $this->iam->setConnection($this->connection->reveal());
 
         $res = $snippet->invoke('allowedPermissions');
-        $this->assertEquals($permissions, $res->return());
+        $this->assertEquals($permissions, $res->returnVal());
     }
 
     public function testReload()
@@ -123,6 +123,6 @@ class IamTest extends SnippetTestCase
         $this->iam->setConnection($this->connection->reveal());
 
         $res = $snippet->invoke('policy');
-        $this->assertEquals('foo', $res->return());
+        $this->assertEquals('foo', $res->returnVal());
     }
 }
