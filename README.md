@@ -1,22 +1,24 @@
 # Google Cloud PHP Client
-[![Travis Build Status](https://travis-ci.org/GoogleCloudPlatform/google-cloud-php.svg?branch=master)](https://travis-ci.org/GoogleCloudPlatform/google-cloud-php/) [![codecov](https://codecov.io/gh/googlecloudplatform/google-cloud-php/branch/master/graph/badge.svg)](https://codecov.io/gh/googlecloudplatform/google-cloud-php)
-
 > Idiomatic PHP client for [Google Cloud Platform](https://cloud.google.com/) services.
+
+[![Travis Build Status](https://travis-ci.org/GoogleCloudPlatform/google-cloud-php.svg?branch=master)](https://travis-ci.org/GoogleCloudPlatform/google-cloud-php/) [![codecov](https://codecov.io/gh/googlecloudplatform/google-cloud-php/branch/master/graph/badge.svg)](https://codecov.io/gh/googlecloudplatform/google-cloud-php)
 
 * [Homepage](http://googlecloudplatform.github.io/google-cloud-php)
 * [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs)
 
-This client supports the following Google Cloud Platform services:
+This client supports the following Google Cloud Platform services at a [Beta](#versioning) quality level:
 
-* [Google BigQuery](#google-bigquery)
-* [Google Stackdriver Logging](#google-stackdriver-logging)
-* [Google Translate](#google-translate)
-* [Google Cloud Datastore](#google-cloud-datastore)
-* [Google Cloud Natural Language](#google-cloud-natural-language)
-* [Google Cloud Pub/Sub](#google-cloud-pubsub)
-* [Google Cloud Speech](#google-cloud-speech)
-* [Google Cloud Storage](#google-cloud-storage)
-* [Google Cloud Vision](#google-cloud-vision)
+* [Google BigQuery](#google-bigquery-beta) (Beta)
+* [Google Stackdriver Logging](#google-stackdriver-logging-beta) (Beta)
+* [Google Cloud Datastore](#google-cloud-datastore-beta) (Beta)
+* [Google Cloud Storage](#google-cloud-storage-beta) (Beta)
+
+This client supports the following Google Cloud Platform services at an [Alpha](#versioning) quality level:
+* [Google Translate](#google-translate-alpha) (Alpha)
+* [Google Cloud Natural Language](#google-cloud-natural-language-alpha) (Alpha)
+* [Google Cloud Pub/Sub](#google-cloud-pubsub-alpha) (Alpha)
+* [Google Cloud Speech](#google-cloud-speech-alpha) (Alpha)
+* [Google Cloud Vision](#google-cloud-vision-alpha) (Alpha)
 
 If you need support for other Google APIs, please check out the [Google APIs Client Library for PHP](https://github.com/google/google-api-php-client).
 
@@ -26,7 +28,7 @@ If you need support for other Google APIs, please check out the [Google APIs Cli
 $ composer require google/cloud
 ```
 
-## Google BigQuery
+## Google BigQuery (Beta)
 
 - [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/bigquery/bigqueryclient)
 - [Official Documentation](https://cloud.google.com/bigquery/docs)
@@ -60,7 +62,7 @@ foreach ($queryResults->rows() as $row) {
 }
 ```
 
-## Google Stackdriver Logging
+## Google Stackdriver Logging (Beta)
 
 - [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/logging/loggingclient)
 - [Official Documentation](https://cloud.google.com/logging/docs)
@@ -93,7 +95,66 @@ foreach ($entries as $entry) {
 }
 ```
 
-## Google Translate
+## Google Cloud Datastore (Beta)
+
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/datastore/datastoreclient)
+- [Official Documentation](https://cloud.google.com/datastore/docs/)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Datastore\DatastoreClient;
+
+$datastore = new DatastoreClient([
+    'projectId' => 'my_project'
+]);
+
+// Create an entity
+$bob = $datastore->entity('Person');
+$bob['firstName'] = 'Bob';
+$bob['email'] = 'bob@example.com';
+$datastore->insert($bob);
+
+// Update the entity
+$bob['email'] = 'bobV2@example.com';
+$datastore->update($bob);
+
+// If you know the ID of the entity, you can look it up
+$key = $datastore->key('Person', '12345328897844');
+$entity = $datastore->lookup($key);
+```
+
+## Google Cloud Storage (Beta)
+
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/storage/storageclient)
+- [Official Documentation](https://cloud.google.com/storage/docs)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Storage\StorageClient;
+
+$storage = new StorageClient([
+    'projectId' => 'my_project'
+]);
+
+$bucket = $storage->bucket('my_bucket');
+
+// Upload a file to the bucket.
+$bucket->upload(
+    fopen('/data/file.txt', 'r')
+);
+
+// Download and store an object from the bucket locally.
+$object = $bucket->object('file_backup.txt');
+$object->downloadToFile('/data/file_backup.txt');
+```
+
+## Google Translate (Alpha)
 
 - [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/translate/translateclient)
 - [Official Documentation](https://cloud.google.com/translate/docs)
@@ -140,38 +201,7 @@ foreach ($languages as $language) {
 }
 ```
 
-## Google Cloud Datastore
-
-- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/datastore/datastoreclient)
-- [Official Documentation](https://cloud.google.com/datastore/docs/)
-
-#### Preview
-
-```php
-require 'vendor/autoload.php';
-
-use Google\Cloud\Datastore\DatastoreClient;
-
-$datastore = new DatastoreClient([
-    'projectId' => 'my_project'
-]);
-
-// Create an entity
-$bob = $datastore->entity('Person');
-$bob['firstName'] = 'Bob';
-$bob['email'] = 'bob@example.com';
-$datastore->insert($bob);
-
-// Update the entity
-$bob['email'] = 'bobV2@example.com';
-$datastore->update($bob);
-
-// If you know the ID of the entity, you can look it up
-$key = $datastore->key('Person', '12345328897844');
-$entity = $datastore->lookup($key);
-```
-
-## Google Cloud Natural Language
+## Google Cloud Natural Language (Alpha)
 
 - [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/naturallanguage/naturallanguageclient)
 - [Official Documentation](https://cloud.google.com/natural-language/docs)
@@ -210,7 +240,7 @@ foreach ($tokens as $token) {
 }
 ```
 
-## Google Cloud Pub/Sub
+## Google Cloud Pub/Sub (Alpha)
 
 - [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/pubsub/pubsubclient)
 - [Official Documentation](https://cloud.google.com/pubsub/docs)
@@ -249,7 +279,7 @@ foreach ($messages as $message) {
 }
 ```
 
-## Google Cloud Speech
+## Google Cloud Speech (Alpha)
 
 - [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/speech/speechclient)
 - [Official Documentation](https://cloud.google.com/speech/docs)
@@ -276,35 +306,7 @@ foreach ($results as $result) {
 }
 ```
 
-## Google Cloud Storage
-
-- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/storage/storageclient)
-- [Official Documentation](https://cloud.google.com/storage/docs)
-
-#### Preview
-
-```php
-require 'vendor/autoload.php';
-
-use Google\Cloud\Storage\StorageClient;
-
-$storage = new StorageClient([
-    'projectId' => 'my_project'
-]);
-
-$bucket = $storage->bucket('my_bucket');
-
-// Upload a file to the bucket.
-$bucket->upload(
-    fopen('/data/file.txt', 'r')
-);
-
-// Download and store an object from the bucket locally.
-$object = $bucket->object('file_backup.txt');
-$object->downloadToFile('/data/file_backup.txt');
-```
-
-## Google Cloud Vision
+## Google Cloud Vision (Alpha)
 
 - [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/vision/visionclient)
 - [Official Documentation](https://cloud.google.com/vision/docs)
@@ -362,6 +364,10 @@ $storage = new StorageClient([
 This library follows [Semantic Versioning](http://semver.org/).
 
 Please note it is currently under active development. Any release versioned 0.x.y is subject to backwards incompatible changes at any time.
+
+**Beta**: Libraries defined at a Beta quality level are expected to be mostly stable and we're working towards their release candidate. We will address issues and requests with a higher priority.
+
+**Alpha**: Libraries defined at an Alpha quality level are still a work-in-progress and are more likely to get backwards-incompatible updates.
 
 ## Contributing
 
