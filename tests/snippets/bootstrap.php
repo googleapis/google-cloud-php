@@ -36,12 +36,16 @@ function stub($name, $extends)
     eval(sprintf($tpl, $name, $extends));
 }
 
+stub('AclStub', Google\Cloud\Storage\Acl::class);
+stub('BucketStub', Google\Cloud\Storage\Bucket::class);
 stub('DatastoreClientStub', Google\Cloud\Datastore\DatastoreClient::class);
 stub('IamStub', Google\Cloud\Iam\Iam::class);
 stub('OperationStub', Google\Cloud\Datastore\Operation::class);
 stub('PubSubClientStub', Google\Cloud\PubSub\PubSubClient::class);
 stub('SpeechClientStub', Google\Cloud\Speech\SpeechClient::class);
 stub('SpeechOperationStub', Google\Cloud\Speech\Operation::class);
+stub('StorageClientStub', Google\Cloud\Storage\StorageClient::class);
+stub('StorageObjectStub', Google\Cloud\Storage\StorageObject::class);
 stub('SubscriptionStub', Google\Cloud\PubSub\Subscription::class);
 stub('TopicStub', Google\Cloud\PubSub\Topic::class);
 stub('TranslateClientStub', Google\Cloud\Translate\TranslateClient::class);

@@ -26,6 +26,16 @@ use Psr\Http\Message\StreamInterface;
 /**
  * Buckets are the basic containers that hold your data. Everything that you
  * store in Google Cloud Storage must be contained in a bucket.
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\ServiceBuilder;
+ *
+ * $cloud = new ServiceBuilder();
+ * $storage = $cloud->storage();
+ *
+ * $bucket = $storage->bucket('my-bucket');
+ * ```
  */
 class Bucket
 {
@@ -76,10 +86,7 @@ class Bucket
      *
      * Example:
      * ```
-     * use Google\Cloud\Storage\Acl;
-     *
      * $acl = $bucket->acl();
-     * $acl->add('allAuthenticatedUsers', Acl::ROLE_READER);
      * ```
      *
      * @see https://cloud.google.com/storage/docs/access-control More about Access Control Lists
@@ -97,10 +104,7 @@ class Bucket
      *
      * Example:
      * ```
-     * use Google\Cloud\Storage\Acl;
-     *
      * $acl = $bucket->defaultAcl();
-     * $acl->add('allAuthenticatedUsers', Acl::ROLE_READER);
      * ```
      *
      * @see https://cloud.google.com/storage/docs/access-control More about Access Control Lists
@@ -117,7 +121,9 @@ class Bucket
      *
      * Example:
      * ```
-     * $bucket->exists();
+     * if ($bucket->exists()) {
+     *     echo 'Bucket exists!';
+     * }
      * ```
      *
      * @return bool
@@ -139,7 +145,7 @@ class Bucket
      *
      * Example:
      * ```
-     * $bucket->upload(
+     * $object = $bucket->upload(
      *     fopen(__DIR__ . '/image.jpg', 'r')
      * );
      * ```
@@ -155,7 +161,7 @@ class Bucket
      *     ]
      * ];
      *
-     * $bucket->upload(
+     * $object = $bucket->upload(
      *     fopen(__DIR__ . '/image.jpg', 'r'),
      *     $options
      * );
@@ -244,14 +250,14 @@ class Bucket
      * Example:
      * ```
      * $uploader = $bucket->getResumableUploader(
-     *     fopen('image.jpg', 'r')
+     *     fopen(__DIR__ . '/image.jpg', 'r')
      * );
      *
      * try {
-     *     $uploader->upload();
+     *     $object = $uploader->upload();
      * } catch (GoogleException $ex) {
      *     $resumeUri = $uploader->getResumeUri();
-     *     $uploader->resume($resumeUri);
+     *     $object = $uploader->resume($resumeUri);
      * }
      * ```
      *
@@ -360,7 +366,7 @@ class Bucket
      * ]);
      *
      * foreach ($objects as $object) {
-     *     var_dump($object->name());
+     *     echo $object->name() . PHP_EOL;
      * }
      * ```
      *
@@ -500,7 +506,7 @@ class Bucket
      * Example:
      * ```
      * $sourceObjects = ['log1.txt', 'log2.txt'];
-     * $bucket->compose($sourceObjects, 'combined-logs.txt');
+     * $singleObject = $bucket->compose($sourceObjects, 'combined-logs.txt');
      * ```
      *
      * ```
@@ -510,7 +516,7 @@ class Bucket
      *     $bucket->object('log2.txt')
      * ];
      *
-     * $bucket->compose($sourceObjects, 'combined-logs.txt');
+     * $singleObject = $bucket->compose($sourceObjects, 'combined-logs.txt');
      * ```
      *
      * @see https://cloud.google.com/storage/docs/json_api/v1/objects/compose Objects compose API documentation

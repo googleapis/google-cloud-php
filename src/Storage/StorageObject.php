@@ -25,6 +25,16 @@ use Psr\Http\Message\StreamInterface;
 /**
  * Objects are the individual pieces of data that you store in Google Cloud
  * Storage.
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\ServiceBuilder;
+ *
+ * $cloud = new ServiceBuilder();
+ * $storage = $cloud->storage();
+ *
+ * $bucket = $storage->bucket('my-bucket');
+ * $object = $bucket->object('my-object');
  */
 class StorageObject
 {
@@ -38,7 +48,7 @@ class StorageObject
     /**
      * @var ConnectionInterface Represents a connection to Cloud Storage.
      */
-    private $connection;
+    protected $connection;
 
     /**
      * @var array The object's encryption data.
@@ -95,10 +105,7 @@ class StorageObject
      *
      * Example:
      * ```
-     * use Google\Cloud\Storage\Acl;
-     *
      * $acl = $object->acl();
-     * $acl->add('allAuthenticatedUsers', Acl::ROLE_READER);
      * ```
      *
      * @see https://cloud.google.com/storage/docs/access-control More about Access Control Lists
@@ -115,8 +122,9 @@ class StorageObject
      *
      * Example:
      * ```
-     * $object = $bucket->object('my-file.txt');
-     * $object->exists();
+     * if ($object->exists()) {
+     *     echo "Object exists!";
+     * }
      * ```
      *
      * @return bool
@@ -515,7 +523,7 @@ class StorageObject
      * Example:
      * ```
      * $string = $object->downloadAsString();
-     * file_put_contents($string, __DIR__ . '/my-file.txt');
+     * echo $string;
      * ```
      *
      * @param array $options [optional] {
@@ -542,7 +550,7 @@ class StorageObject
      *
      * Example:
      * ```
-     * $object->downloadToFile(__DIR__ . '/my-file.txt');
+     * $stream = $object->downloadToFile(__DIR__ . '/my-file.txt');
      * ```
      *
      * @param string $path Path to download the file to.
