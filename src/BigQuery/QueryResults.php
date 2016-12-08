@@ -33,7 +33,7 @@ class QueryResults
     /**
      * @var ConnectionInterface $connection Represents a connection to BigQuery.
      */
-    private $connection;
+    protected $connection;
 
     /**
      * @var array The query result's identity.
@@ -113,7 +113,7 @@ class QueryResults
      *     $rows = $queryResults->rows();
      *
      *     foreach ($rows as $row) {
-     *         echo $row['name'];
+     *         echo $row['name'] . PHP_EOL;
      *     }
      * }
      * ```
@@ -221,7 +221,9 @@ class QueryResults
      * $queryResults->isComplete(); // returns false
      * sleep(1); // let's wait for a moment...
      * $queryResults->reload(); // executes a network request
-     * $queryResults->isComplete(); // true
+     * if ($queryResults->isComplete()) {
+     *     echo "Query complete!";
+     * }
      * ```
      *
      * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs/getQueryResults
