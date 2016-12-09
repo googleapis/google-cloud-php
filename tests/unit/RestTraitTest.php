@@ -69,4 +69,13 @@ class RestTraitTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(json_decode($responseBody, true), $actualResponse);
     }
+
+    public function testGetServiceDefinitionPath()
+    {
+        $def = $this->implementation->getServiceDefinitionPath([], 'foo');
+        $this->assertEquals('foo', $def);
+
+        $def = $this->implementation->getServiceDefinitionPath(['serviceDefinitionPath' => 'bar'], 'foo');
+        $this->assertEquals('bar', $def);
+    }
 }

@@ -46,7 +46,10 @@ class Rest implements ConnectionInterface
 
         $this->setRequestWrapper(new RequestWrapper($config));
         $this->setRequestBuilder(new RequestBuilder(
-            __DIR__ . '/ServiceDefinition/datastore-v1.json',
+            $this->getServiceDefinitionPath(
+                $config,
+                __DIR__ . '/ServiceDefinition/datastore-v1.json'
+            ),
             $baseUri
         ));
     }
