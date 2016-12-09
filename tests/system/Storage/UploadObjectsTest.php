@@ -19,6 +19,9 @@ namespace Google\Cloud\Tests\System\Storage;
 
 use GuzzleHttp\Psr7;
 
+/**
+ * @group storage
+ */
 class UploadObjectsTest extends StorageTestCase
 {
     public function testUploadsObjectFromStringWithMetadata()

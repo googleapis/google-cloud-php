@@ -19,6 +19,9 @@ namespace Google\Cloud\Tests\System\Storage;
 
 use Psr\Http\Message\StreamInterface;
 
+/**
+ * @group storage
+ */
 class ManageObjectsTest extends StorageTestCase
 {
     public function testListsObjects()

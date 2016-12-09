@@ -19,6 +19,9 @@ namespace Google\Cloud\Tests\System\Logging;
 
 use Google\Cloud\ExponentialBackoff;
 
+/**
+ * @group logging
+ */
 class WriteAndListEntryTest extends LoggingTestCase
 {
     /**

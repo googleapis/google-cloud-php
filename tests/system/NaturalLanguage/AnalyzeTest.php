@@ -17,6 +17,9 @@
 
 namespace Google\Cloud\Tests\System\NaturalLanguage;
 
+/**
+ * @group naturallanguage
+ */
 class AnalyzeTest extends NaturalLanguageTestCase
 {
     /**

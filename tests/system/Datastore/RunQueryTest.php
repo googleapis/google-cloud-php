@@ -17,6 +17,9 @@
 
 namespace Google\Cloud\Tests\System\Datastore;
 
+/**
+ * @group datastore
+ */
 class RunQueryTest extends DatastoreTestCase
 {
     private static $ancestor;
