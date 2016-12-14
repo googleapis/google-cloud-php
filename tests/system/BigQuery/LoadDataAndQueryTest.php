@@ -21,6 +21,9 @@ use Google\Cloud\BigQuery\Date;
 use Google\Cloud\ExponentialBackoff;
 use GuzzleHttp\Psr7;
 
+/**
+ * @group bigquery
+ */
 class LoadDataAndQueryTest extends BigQueryTestCase
 {
     private static $expectedRows = 0;

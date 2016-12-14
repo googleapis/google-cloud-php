@@ -19,6 +19,9 @@ namespace Google\Cloud\Tests\System\Datastore;
 
 use Google\Cloud\Int64;
 
+/**
+ * @group datastore
+ */
 class SaveAndModifyTest extends DatastoreTestCase
 {
     public function testEntityLifeCycle()

@@ -17,6 +17,9 @@
 
 namespace Google\Cloud\Tests\System\BigQuery;
 
+/**
+ * @group bigquery
+ */
 class ManageDatasetsTest extends BigQueryTestCase
 {
     public function testListDatasets()

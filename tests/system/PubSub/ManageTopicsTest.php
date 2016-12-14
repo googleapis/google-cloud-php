@@ -17,6 +17,9 @@
 
 namespace Google\Cloud\Tests\System\PubSub;
 
+/**
+ * @group pubsub
+ */
 class ManageTopicsTest extends PubSubTestCase
 {
     /**
@@ -37,7 +40,8 @@ class ManageTopicsTest extends PubSubTestCase
         $topics = $client->topics();
 
         foreach ($topics as $topic) {
-            $tName = end(explode('/', $topic->name()));
+            $nameParts = explode('/', $topic->name());
+            $tName = end($nameParts);
             foreach ($topicsToCreate as $key => $topicToCreate) {
                 if ($tName === $topicToCreate) {
                     $foundTopics[$key] = $tName;
