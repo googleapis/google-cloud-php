@@ -15,16 +15,16 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Translate;
+namespace Google\Cloud\Tests\Translation;
 
-use Google\Cloud\Translate\Connection\ConnectionInterface;
-use Google\Cloud\Translate\TranslateClient;
+use Google\Cloud\Translation\Connection\ConnectionInterface;
+use Google\Cloud\Translation\TranslationClient;
 use Prophecy\Argument;
 
 /**
- * @group translate
+ * @group translation
  */
-class TranslateClientTest extends \PHPUnit_Framework_TestCase
+class TranslationClientTest extends \PHPUnit_Framework_TestCase
 {
     private $client;
     private $connection;
@@ -32,16 +32,19 @@ class TranslateClientTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->client = new TranslateTestClient(['key' => $this->key]);
+        $this->client = new TranslationTestClient(['key' => $this->key]);
         $this->connection = $this->prophesize(ConnectionInterface::class);
     }
 
     public function testWithNoKey()
     {
-        $client = new TranslateTestClient();
+        $client = new TranslationTestClient();
 
         $this->connection->listTranslations(Argument::that(function($args) {
-            if (!is_null($args['key'])) return false;
+            if (!is_null($args['key'])) {
+                return false;
+            }
+
             return true;
         }))->shouldBeCalled()->willReturn([]);
 
@@ -129,7 +132,7 @@ class TranslateClientTest extends \PHPUnit_Framework_TestCase
                 ]
             ])
             ->shouldBeCalledTimes(1);
-        $client = new TranslateTestClient(['key' => $this->key, 'target' => $target]);
+        $client = new TranslationTestClient(['key' => $this->key, 'target' => $target]);
         $client->setConnection($this->connection->reveal());
         $translations = $client->translateBatch($stringsToTranslate, ['model' => 'base']);
 
@@ -282,7 +285,7 @@ class TranslateClientTest extends \PHPUnit_Framework_TestCase
     }
 }
 
-class TranslateTestClient extends TranslateClient
+class TranslationTestClient extends TranslationClient
 {
     public function setConnection($connection)
     {

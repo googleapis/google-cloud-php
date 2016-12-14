@@ -15,27 +15,28 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Translate;
+namespace Google\Cloud\Translation;
 
 use Google\Cloud\ClientTrait;
-use Google\Cloud\Translate\Connection\ConnectionInterface;
-use Google\Cloud\Translate\Connection\Rest;
+use Google\Cloud\Translation\Connection\ConnectionInterface;
+use Google\Cloud\Translation\Connection\Rest;
 
 /**
- * Google Translate client. Provides the ability to dynamically translate text
- * between thousands of language pairs. The Google Translate API lets websites
- * and programs integrate with Google Translate API programmatically. Google
- * Translate API is available as a paid service. See the
- * [Pricing](https://cloud.google.com/translate/v2/pricing) and
- * [FAQ](https://cloud.google.com/translate/v2/faq) pages for details. Find more
- * information at
- * [Google Translate docs](https://cloud.google.com/translate/docs/).
+ * Google Cloud Translation client. Provides the ability to dynamically
+ * translate text between thousands of language pairs. The Google Cloud
+ * Translation API lets websites and programs integrate with the Google Cloud
+ * Translation API programmatically. The Google Cloud Translation API is
+ * available as a paid service. See the
+ * [Pricing](https://cloud.google.com/translation/v2/pricing) and
+ * [FAQ](https://cloud.google.com/translation/v2/faq) pages for details. Find
+ * more information at the
+ * [Google Cloud Translation docs](https://cloud.google.com/translation/docs/).
  *
- * Please note that while Google Translate supports authentication via service
- * account and application default credentials like other Cloud Platform APIs,
+ * Please note that while the Google Cloud Translation API supports
+ * authentication via service account and application default credentials like other Cloud Platform APIs,
  * it also supports authentication via a public API access key. If you wish to
  * authenticate using an API key, follow the
- * [before you begin](https://cloud.google.com/translate/v2/translating-text-with-rest#before-you-begin)
+ * [before you begin](https://cloud.google.com/translation/v2/translating-text-with-rest#before-you-begin)
  * instructions to learn how to generate a key.
  *
  * Example:
@@ -44,17 +45,17 @@ use Google\Cloud\Translate\Connection\Rest;
  *
  * $cloud = new ServiceBuilder();
  *
- * $translate = $cloud->translate();
+ * $translation = $cloud->translation();
  * ```
  *
  * ```
- * // TranslateClient can be instantiated directly.
- * use Google\Cloud\Translate\TranslateClient;
+ * // TranslationClient can be instantiated directly.
+ * use Google\Cloud\Translation\TranslationClient;
  *
- * $translate = new TranslateClient();
+ * $translation = new TranslationClient();
  * ```
  */
-class TranslateClient
+class TranslationClient
 {
     use ClientTrait;
 
@@ -73,7 +74,7 @@ class TranslateClient
     private $targetLanguage;
 
     /**
-     * Create a Translate client.
+     * Create a Translation client.
      *
      * @param array $config [optional] {
      *     Configuration Options.
@@ -136,12 +137,12 @@ class TranslateClient
      *
      * Example:
      * ```
-     * $translation = $translate->translate('Hello world!');
+     * $result = $translation->translate('Hello world!');
      *
-     * echo $translation['text'];
+     * echo $result['text'];
      * ```
      *
-     * @see https://cloud.google.com/translate/v2/translating-text-with-rest Translating Text
+     * @see https://cloud.google.com/translation/v2/translating-text-with-rest Translating Text
      *
      * @param string $string The string to translate.
      * @param array $options [optional] {
@@ -177,17 +178,17 @@ class TranslateClient
      *
      * Example:
      * ```
-     * $translations = $translate->translateBatch([
+     * $results = $translation->translateBatch([
      *     'Hello world!',
      *     'My name is David.'
      * ]);
      *
-     * foreach ($translations as $translation) {
-     *     echo $translation['text'];
+     * foreach ($results as $result) {
+     *     echo $result['text'];
      * }
      * ```
      *
-     * @see https://cloud.google.com/translate/v2/translating-text-with-rest Translating Text
+     * @see https://cloud.google.com/translation/v2/translating-text-with-rest Translating Text
      *
      * @param array $strings An array of strings to translate.
      * @param array $options [optional] {
@@ -252,12 +253,12 @@ class TranslateClient
      *
      * Example:
      * ```
-     * $result = $translate->detectLanguage('Hello world!');
+     * $result = $translation->detectLanguage('Hello world!');
      *
      * echo $result['languageCode'];
      * ```
      *
-     * @see https://cloud.google.com/translate/v2/detecting-language-with-rest Detecting Langauge
+     * @see https://cloud.google.com/translation/v2/detecting-language-with-rest Detecting Langauge
      *
      * @param string $string The string to detect the language of.
      * @param array $options [optional] {
@@ -283,7 +284,7 @@ class TranslateClient
      *
      * Example:
      * ```
-     * $results = $translate->detectLanguageBatch([
+     * $results = $translation->detectLanguageBatch([
      *     'Hello World!',
      *     'My name is David.'
      * ]);
@@ -293,7 +294,7 @@ class TranslateClient
      * }
      * ```
      *
-     * @see https://cloud.google.com/translate/v2/detecting-language-with-rest Detecting Langauge
+     * @see https://cloud.google.com/translation/v2/detecting-language-with-rest Detecting Langauge
      *
      * @param string $string The string to detect the language of.
      * @param array $options [optional] {
@@ -336,7 +337,7 @@ class TranslateClient
      *
      * Example:
      * ```
-     * $languages = $translate->languages();
+     * $languages = $translation->languages();
      *
      * foreach ($languages as $language) {
      *     echo $language;
@@ -344,7 +345,7 @@ class TranslateClient
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/translate/v2/discovering-supported-languages-with-rest Discovering Supported Languages
+     * @see https://cloud.google.com/translation/v2/discovering-supported-languages-with-rest Discovering Supported Languages
      * @codingStandardsIgnoreEnd
      *
      * @param array $options [optional] Configuration Options.
@@ -362,13 +363,13 @@ class TranslateClient
     /**
      * Get the supported languages for translation in the targeted language.
      *
-     * Unlike {@see Google\Cloud\Translate\TranslateClient::languages()} this
-     * will return the localized language names in addition to the ISO 639-1
-     * language codes.
+     * Unlike {@see Google\Cloud\Translation\TranslationClient::languages()}
+     * this will return the localized language names in addition to the
+     * ISO 639-1 language codes.
      *
      * Example:
      * ```
-     * $languages = $translate->localizedLanguages();
+     * $languages = $translation->localizedLanguages();
      *
      * foreach ($languages as $language) {
      *     echo $language['code'];
@@ -376,7 +377,7 @@ class TranslateClient
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/translate/v2/discovering-supported-languages-with-rest Discovering Supported Languages
+     * @see https://cloud.google.com/translation/v2/discovering-supported-languages-with-rest Discovering Supported Languages
      * @codingStandardsIgnoreEnd
      *
      * @param array $options [optional] {

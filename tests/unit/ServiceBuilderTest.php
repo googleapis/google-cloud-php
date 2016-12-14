@@ -18,7 +18,7 @@
 namespace Google\Cloud\Tests;
 
 use Google\Cloud\ServiceBuilder;
-use Google\Cloud\Translate\TranslateClient;
+use Google\Cloud\Translation\TranslationClient;
 
 /**
  * @group root
@@ -46,13 +46,13 @@ class ServiceBuilderTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf($expectedClient, $localConfigClient);
     }
 
-    public function testBuildsTranslateClient()
+    public function testBuildsTranslationClient()
     {
         $config = ['key' => 'test_key'];
         $serviceBuilder = new ServiceBuilder($config);
 
-        $this->assertInstanceOf(TranslateClient::class, $serviceBuilder->translate());
-        $this->assertInstanceOf(TranslateClient::class, $serviceBuilder->translate($config));
+        $this->assertInstanceOf(TranslationClient::class, $serviceBuilder->translation());
+        $this->assertInstanceOf(TranslationClient::class, $serviceBuilder->translation($config));
     }
 
     public function serviceProvider()

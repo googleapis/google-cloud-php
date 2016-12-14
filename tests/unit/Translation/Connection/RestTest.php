@@ -15,9 +15,9 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Translate\Connection;
+namespace Google\Cloud\Tests\Translation\Connection;
 
-use Google\Cloud\Translate\Connection\Rest;
+use Google\Cloud\Translation\Connection\Rest;
 use Google\Cloud\RequestBuilder;
 use Google\Cloud\RequestWrapper;
 use GuzzleHttp\Psr7;
@@ -28,7 +28,7 @@ use Psr\Http\Message\RequestInterface;
 use Rize\UriTemplate;
 
 /**
- * @group translate
+ * @group translation
  */
 class RestTest extends \PHPUnit_Framework_TestCase
 {

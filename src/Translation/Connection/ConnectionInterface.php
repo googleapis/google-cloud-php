@@ -15,10 +15,11 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Translate\Connection;
+namespace Google\Cloud\Translation\Connection;
 
 /**
- * Represents a connection to [Translate](https://cloud.google.com/translate/).
+ * Represents a connection to
+ * [Google Cloud Translation](https://cloud.google.com/translation/).
  */
 interface ConnectionInterface
 {

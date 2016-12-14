@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Translate\Connection;
+namespace Google\Cloud\Translation\Connection;
 
 use Google\Cloud\RequestBuilder;
 use Google\Cloud\RequestWrapper;
@@ -24,7 +24,7 @@ use Google\Cloud\UriTrait;
 
 /**
  * Implementation of the
- * [Google Translate REST API](https://cloud.google.com/translate/docs/how-to).
+ * [Google Cloud Translation REST API](https://cloud.google.com/translation/docs/how-to).
  */
 class Rest implements ConnectionInterface
 {

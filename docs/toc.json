@@ -160,8 +160,8 @@
             }]
         },
         {
-            "title": "Translate",
-            "type": "translate/translateclient"
+            "title": "Translation",
+            "type": "translation/translationclient"
         },
         {
             "title": "Vision",
