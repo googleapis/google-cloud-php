@@ -1,0 +1,7 @@
+{
+    "name": "projects\/test-project\/instances\/instance-name",
+    "config": "projects\/test-project\/instanceConfigs\/regional-europe-west1",
+    "displayName": "Instance Name",
+    "nodeCount": 1,
+    "state": 2
+}
