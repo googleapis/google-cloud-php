@@ -75,5 +75,11 @@
     },
     "scripts": {
         "google-cloud": "dev/google-cloud"
-    }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/jdpedrie/proto-client-php-private"
+        }
+    ]
 }
