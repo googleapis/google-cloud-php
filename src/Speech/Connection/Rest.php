@@ -38,12 +38,13 @@ class Rest implements ConnectionInterface
      */
     public function __construct(array $config = [])
     {
+        $config += [
+            'serviceDefinitionPath' => __DIR__ . '/ServiceDefinition/speech-v1beta1.json'
+        ];
+
         $this->setRequestWrapper(new RequestWrapper($config));
         $this->setRequestBuilder(new RequestBuilder(
-            $this->getServiceDefinitionPath(
-                $config,
-                __DIR__ . '/ServiceDefinition/speech-v1beta1.json'
-            ),
+            $config['serviceDefinitionPath'],
             self::BASE_URI
         ));
     }

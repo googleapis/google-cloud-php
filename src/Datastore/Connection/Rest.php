@@ -44,12 +44,13 @@ class Rest implements ConnectionInterface
 
         $baseUri = $this->getEmulatorBaseUri(self::BASE_URI, $emulatorHost);
 
+        $config += [
+            'serviceDefinitionPath' => __DIR__ . '/ServiceDefinition/datastore-v1.json'
+        ];
+
         $this->setRequestWrapper(new RequestWrapper($config));
         $this->setRequestBuilder(new RequestBuilder(
-            $this->getServiceDefinitionPath(
-                $config,
-                __DIR__ . '/ServiceDefinition/datastore-v1.json'
-            ),
+            $config['serviceDefinitionPath'],
             $baseUri
         ));
     }

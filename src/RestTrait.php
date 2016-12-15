@@ -81,21 +81,4 @@ trait RestTrait
             true
         );
     }
-
-    /**
-     * Check whether a custom service definition path is included in $config,
-     * otherwise use the default path.
-     *
-     * @param array $config The service configuration.
-     * @param string $defaultPath The default service definition file.
-     * @return string
-     */
-    public function getServiceDefinitionPath(array $config, $defaultPath)
-    {
-        if (isset($config['serviceDefinitionPath'])) {
-            return $config['serviceDefinitionPath'];
-        }
-
-        return $defaultPath;
-    }
 }
