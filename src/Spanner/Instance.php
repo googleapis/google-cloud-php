@@ -19,8 +19,8 @@ namespace Google\Cloud\Spanner;
 
 use Google\Cloud\Exception\NotFoundException;
 use Google\Cloud\Iam\Iam;
-use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminApi;
-use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminApi;
+use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
+use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Connection\IamInstance;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
@@ -246,7 +246,7 @@ class Instance
                 );
             }
 
-            $config = InstanceAdminApi::formatInstanceConfigName(
+            $config = InstanceAdminClient::formatInstanceConfigName(
                 $this->projectId,
                 $options['config']->name()
             );
@@ -358,7 +358,7 @@ class Instance
         if (isset($res['databases'])) {
             foreach ($res['databases'] as $database) {
                 yield $this->database(
-                    DatabaseAdminApi::parseDatabaseFromDatabaseName($database['name'])
+                    DatabaseAdminClient::parseDatabaseFromDatabaseName($database['name'])
                 );
             }
         }
@@ -386,7 +386,7 @@ class Instance
      */
     private function fullyQualifiedInstanceName()
     {
-        return InstanceAdminApi::formatInstanceName($this->projectId, $this->name);
+        return InstanceAdminClient::formatInstanceName($this->projectId, $this->name);
     }
 
     /**

@@ -19,8 +19,8 @@ namespace Google\Cloud\Tests\Spanner;
 
 use Google\Cloud\Exception\NotFoundException;
 use Google\Cloud\Iam\Iam;
-use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminApi;
-use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminApi;
+use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
+use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Configuration;
 use Google\Cloud\Spanner\Connection\AdminConnectionInterface;
 use Google\Cloud\Spanner\Database;
@@ -200,7 +200,7 @@ class InstanceTest extends \PHPUnit_Framework_TestCase
             'displayName' => $changes['displayName'],
             'nodeCount' => $changes['nodeCount'],
             'labels' => $changes['labels'],
-            'config' => InstanceAdminApi::formatInstanceConfigName(self::PROJECT_ID, $changes['config']->name())
+            'config' => InstanceAdminClient::formatInstanceConfigName(self::PROJECT_ID, $changes['config']->name())
         ])->shouldBeCalled();
 
         $this->instance->setAdminConnection($this->adminConnection->reveal());
@@ -231,7 +231,7 @@ class InstanceTest extends \PHPUnit_Framework_TestCase
     public function testDelete()
     {
         $this->adminConnection->deleteInstance([
-            'name' => InstanceAdminApi::formatInstanceName(self::PROJECT_ID, self::NAME)
+            'name' => InstanceAdminClient::formatInstanceName(self::PROJECT_ID, self::NAME)
         ])->shouldBeCalled();
 
         $this->instance->setAdminConnection($this->adminConnection->reveal());
@@ -248,7 +248,7 @@ class InstanceTest extends \PHPUnit_Framework_TestCase
         $extra = ['foo', 'bar'];
 
         $this->adminConnection->createDatabase([
-            'instance' => InstanceAdminApi::formatInstanceName(self::PROJECT_ID, self::NAME),
+            'instance' => InstanceAdminClient::formatInstanceName(self::PROJECT_ID, self::NAME),
             'createStatement' => 'CREATE DATABASE `test-database`',
             'extraStatements' => $extra
         ])
@@ -275,8 +275,8 @@ class InstanceTest extends \PHPUnit_Framework_TestCase
     public function testDatabases()
     {
         $databases = [
-            ['name' => DatabaseAdminApi::formatDatabaseName(self::PROJECT_ID, self::NAME, 'database1')],
-            ['name' => DatabaseAdminApi::formatDatabaseName(self::PROJECT_ID, self::NAME, 'database2')]
+            ['name' => DatabaseAdminClient::formatDatabaseName(self::PROJECT_ID, self::NAME, 'database1')],
+            ['name' => DatabaseAdminClient::formatDatabaseName(self::PROJECT_ID, self::NAME, 'database2')]
         ];
 
         $this->adminConnection->listDatabases(Argument::any())
