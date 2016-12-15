@@ -22,6 +22,96 @@ interface ConnectionInterface
     /**
      * @param array $args [optional]
      */
+    public function listConfigs(array $args = []);
+
+    /**
+     * @param array $args [optional]
+     */
+    public function getConfig(array $args = []);
+
+    /**
+     * @param array $args [optional]
+     */
+    public function listInstances(array $args = []);
+
+    /**
+     * @param array $args [optional]
+     */
+    public function getInstance(array $args = []);
+
+    /**
+     * @param array $args [optional]
+     */
+    public function createInstance(array $args = []);
+
+    /**
+     * @param array $args [optional]
+     */
+    public function updateInstance(array $args = []);
+
+    /**
+     * @param array $args [optional]
+     */
+    public function deleteInstance(array $args = []);
+
+    /**
+     * @param array $args [optional]
+     */
+    public function getInstanceIamPolicy(array $args = []);
+
+    /**
+     * @param array $args [optional]
+     */
+    public function setInstanceIamPolicy(array $args = []);
+
+    /**
+     * @param array $args [optional]
+     */
+    public function testInstanceIamPermissions(array $args = []);
+
+    /**
+     * @param array $args [optional]
+     */
+    public function listDatabases(array $args = []);
+
+    /**
+     * @param array $args [optional]
+     */
+    public function createDatabase(array $args = []);
+
+    /**
+     * @param array $args [optional]
+     */
+    public function updateDatabase(array $args = []);
+
+    /**
+     * @param array $args [optional]
+     */
+    public function dropDatabase(array $args = []);
+
+    /**
+     * @param array $args [optional]
+     */
+    public function getDatabaseDDL(array $args = []);
+
+    /**
+     * @param array $args [optional]
+     */
+    public function getDatabaseIamPolicy(array $args = []);
+
+    /**
+     * @param array $args [optional]
+     */
+    public function setDatabaseIamPolicy(array $args = []);
+
+    /**
+     * @param array $args [optional]
+     */
+    public function testDatabaseIamPermissions(array $args = []);
+
+    /**
+     * @param array $args [optional]
+     */
     public function createSession(array $args = []);
 
     /**

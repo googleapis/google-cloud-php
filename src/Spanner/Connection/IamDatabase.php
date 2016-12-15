@@ -21,11 +21,11 @@ use Google\Cloud\Iam\IamConnectionInterface;
 
 class IamDatabase implements IamConnectionInterface
 {
-    protected $adminConnection;
+    protected $connection;
 
-    public function __construct(AdminConnectionInterface $adminConnection)
+    public function __construct(ConnectionInterface $connection)
     {
-        $this->adminConnection = $adminConnection;
+        $this->connection = $connection;
     }
 
     /**
@@ -33,7 +33,7 @@ class IamDatabase implements IamConnectionInterface
      */
     public function getPolicy(array $args)
     {
-        return $this->adminConnection->getDatabaseIamPolicy($args);
+        return $this->connection->getDatabaseIamPolicy($args);
     }
 
     /**
@@ -41,7 +41,7 @@ class IamDatabase implements IamConnectionInterface
      */
     public function setPolicy(array $args)
     {
-        return $this->adminConnection->setDatabaseIamPolicy($args);
+        return $this->connection->setDatabaseIamPolicy($args);
     }
 
     /**
@@ -49,6 +49,6 @@ class IamDatabase implements IamConnectionInterface
      */
     public function testPermissions(array $args)
     {
-        return $this->adminConnection->testDatabaseIamPermissions($args);
+        return $this->connection->testDatabaseIamPermissions($args);
     }
 }

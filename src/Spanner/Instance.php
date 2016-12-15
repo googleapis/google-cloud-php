@@ -21,8 +21,9 @@ use Google\Cloud\Exception\NotFoundException;
 use Google\Cloud\Iam\Iam;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminApi;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminApi;
-use Google\Cloud\Spanner\Connection\AdminConnectionInterface;
+use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Connection\IamInstance;
+use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use google\spanner\admin\instance\v1\Instance\State;
 
 /**
@@ -39,9 +40,14 @@ class Instance
     const STATE_CREATING = State::CREATING;
 
     /**
-     * @var AdminConnectionInterface
+     * @var ConnectionInterface
      */
-    private $adminConnection;
+    private $connection;
+
+    /**
+     * @var SessionPool;
+     */
+    private $sessionPool;
 
     /**
      * @var string
@@ -66,20 +72,27 @@ class Instance
     /**
      * Create an object representing a Google Cloud Spanner instance.
      *
-     * @param AdminConnectionInterface $adminConnection The connection to the
+     * @param ConnectionInterface $connection The connection to the
      *        Google Cloud Spanner Admin API.
+     * @param SessionPoolInterface $sessionPool The session pool implementation.
      * @param string $projectId The project ID.
      * @param string $name The instance name.
      * @param array $info [optional] A representation of the instance object.
      */
-    public function __construct(AdminConnectionInterface $adminConnection, $projectId, $name, array $info = [])
-    {
-        $this->adminConnection = $adminConnection;
+    public function __construct(
+        ConnectionInterface $connection,
+        SessionPoolInterface $sessionPool,
+        $projectId,
+        $name,
+        array $info = []
+    ) {
+        $this->connection = $connection;
+        $this->sessionPool = $sessionPool;
         $this->projectId = $projectId;
         $this->name = $name;
         $this->info = $info;
         $this->iam = new Iam(
-            new IamInstance($this->adminConnection),
+            new IamInstance($this->connection),
             $this->fullyQualifiedInstanceName()
         );
     }
@@ -161,7 +174,7 @@ class Instance
      */
     public function reload(array $options = [])
     {
-        $this->info = $this->adminConnection->getInstance($options + [
+        $this->info = $this->connection->getInstance($options + [
             'name' => $this->fullyQualifiedInstanceName()
         ]);
 
@@ -239,7 +252,7 @@ class Instance
             );
         }
 
-        $this->adminConnection->updateInstance([
+        $this->connection->updateInstance([
             'name' => $this->fullyQualifiedInstanceName(),
             'config' => $config,
         ] + $options);
@@ -258,7 +271,7 @@ class Instance
      */
     public function delete(array $options = [])
     {
-        return $this->adminConnection->deleteInstance($options + [
+        return $this->connection->deleteInstance($options + [
             'name' => $this->fullyQualifiedInstanceName()
         ]);
     }
@@ -289,7 +302,7 @@ class Instance
 
         $statement = sprintf('CREATE DATABASE `%s`', $name);
 
-        $res = $this->adminConnection->createDatabase([
+        $res = $this->connection->createDatabase([
             'instance' => $this->fullyQualifiedInstanceName(),
             'createStatement' => $statement,
             'extraStatements' => $options['statements']
@@ -311,7 +324,13 @@ class Instance
      */
     public function database($name)
     {
-        return new Database($this->adminConnection, $this, $this->projectId, $name);
+        return new Database(
+            $this->connection,
+            $this,
+            $this->sessionPool,
+            $this->projectId,
+            $name
+        );
     }
 
     /**
@@ -331,7 +350,7 @@ class Instance
      */
     public function databases(array $options = [])
     {
-        $res = $this->adminConnection->listDatabases($options + [
+        $res = $this->connection->listDatabases($options + [
             'instance' => $this->fullyQualifiedInstanceName(),
         ]);
 
@@ -361,6 +380,16 @@ class Instance
     }
 
     /**
+     * Convert the simple instance name to a fully qualified name.
+     *
+     * @return string
+     */
+    private function fullyQualifiedInstanceName()
+    {
+        return InstanceAdminApi::formatInstanceName($this->projectId, $this->name);
+    }
+
+    /**
      * Represent the class in a more readable and digestable fashion.
      *
      * @access private
@@ -369,20 +398,10 @@ class Instance
     public function __debugInfo()
     {
         return [
-            'connection' => get_class($this->adminConnection),
+            'connection' => get_class($this->connection),
             'projectId' => $this->projectId,
             'name' => $this->name,
             'info' => $this->info
         ];
-    }
-
-    /**
-     * Convert the simple instance name to a fully qualified name.
-     *
-     * @return string
-     */
-    private function fullyQualifiedInstanceName()
-    {
-        return InstanceAdminApi::formatInstanceName($this->projectId, $this->name);
     }
 }

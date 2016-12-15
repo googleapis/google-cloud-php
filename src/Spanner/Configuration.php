@@ -19,7 +19,7 @@ namespace Google\Cloud\Spanner;
 
 use Google\Cloud\Exception\NotFoundException;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminApi;
-use Google\Cloud\Spanner\Connection\AdminConnectionInterface;
+use Google\Cloud\Spanner\Connection\ConnectionInterface;
 
 /**
  * Represents a Cloud Spanner Configuration
@@ -37,9 +37,9 @@ use Google\Cloud\Spanner\Connection\AdminConnectionInterface;
 class Configuration
 {
     /**
-     * @var AdminConnectionInterface
+     * @var ConnectionInterface
      */
-    private $adminConnection;
+    private $connection;
 
     /**
      * @var string
@@ -59,18 +59,20 @@ class Configuration
     /**
      * Create a configuration instance.
      *
-     * @param AdminConnectionInterface $adminConnection A service connection for the Spanner Admin API.
+     * @param ConnectionInterface $connection A service connection for the
+     *        Spanner API.
      * @param string $projectId The current project ID.
      * @param string $name The simple configuration name.
-     * @param array $info [optional] A service representation of the configuration.
+     * @param array $info [optional] A service representation of the
+     *        configuration.
      */
     public function __construct(
-        AdminConnectionInterface $adminConnection,
+        ConnectionInterface $connection,
         $projectId,
         $name,
         array $info = []
     ) {
-        $this->adminConnection = $adminConnection;
+        $this->connection = $connection;
         $this->projectId = $projectId;
         $this->name = $name;
         $this->info = $info;
@@ -153,11 +155,21 @@ class Configuration
      */
     public function reload(array $options = [])
     {
-        $this->info = $this->adminConnection->getConfig($options + [
+        $this->info = $this->connection->getConfig($options + [
             'name' => InstanceAdminApi::formatInstanceConfigName($this->projectId, $this->name),
             'projectId' => $this->projectId
         ]);
 
         return $this->info;
+    }
+
+    public function __debugInfo()
+    {
+        return [
+            'connection' => get_class($this->connection),
+            'projectId' => $this->projectId,
+            'name' => $this->name,
+            'info' => $this->info,
+        ];
     }
 }

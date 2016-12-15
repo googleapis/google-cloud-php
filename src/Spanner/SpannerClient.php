@@ -21,8 +21,9 @@ use Google\Cloud\ClientTrait;
 use Google\Cloud\Exception\NotFoundException;
 use Google\Cloud\Spanner\Admin\AdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminApi;
-use Google\Cloud\Spanner\Connection\AdminGrpc;
 use Google\Cloud\Spanner\Connection\Grpc;
+use Google\Cloud\Spanner\Session\SessionClient;
+use Google\Cloud\Spanner\Session\SimpleSessionPool;
 use Google\Cloud\ValidateTrait;
 use google\spanner\admin\instance\v1\Instance\State;
 
@@ -43,9 +44,14 @@ class SpannerClient
     protected $connection;
 
     /**
-     * @var AdminConnectionInterface
+     * @var SessionClient
      */
-    protected $adminConnection;
+    protected $sessionClient;
+
+    /**
+     * @var SessionPool
+     */
+    protected $sessionPool;
 
     /**
      * Create a Spanner client.
@@ -80,7 +86,9 @@ class SpannerClient
         }
 
         $this->connection = new Grpc($this->configureAuthentication($config));
-        $this->adminConnection = new AdminGrpc($this->configureAuthentication($config));
+
+        $this->sessionClient = new SessionClient($this->connection, $this->projectId);
+        $this->sessionPool = new SimpleSessionPool($this->sessionClient);
     }
 
     /**
@@ -99,7 +107,7 @@ class SpannerClient
      */
     public function configurations()
     {
-        $res = $this->adminConnection->listConfigs([
+        $res = $this->connection->listConfigs([
             'projectId' => InstanceAdminApi::formatProjectName($this->projectId)
         ]);
 
@@ -125,7 +133,7 @@ class SpannerClient
      */
     public function configuration($name, array $config = [])
     {
-        return new Configuration($this->adminConnection, $this->projectId, $name, $config);
+        return new Configuration($this->connection, $this->projectId, $name, $config);
     }
 
     /**
@@ -161,7 +169,7 @@ class SpannerClient
             'labels' => []
         ];
 
-        $res = $this->adminConnection->createInstance($options + [
+        $res = $this->connection->createInstance($options + [
             'name' => InstanceAdminApi::formatInstanceName($this->projectId, $name),
             'config' => InstanceAdminApi::formatInstanceConfigName($this->projectId, $config->name())
         ]);
@@ -182,7 +190,36 @@ class SpannerClient
      */
     public function instance($name, array $instance = [])
     {
-        return new Instance($this->adminConnection, $this->projectId, $name, $instance);
+        return new Instance(
+            $this->connection,
+            $this->sessionPool,
+            $this->projectId,
+            $name,
+            $instance
+        );
+    }
+
+    /**
+     * Connect to a database to run queries or mutations.
+     *
+     * Example:
+     * ```
+     * $database = $spanner->connect('my-application-instance', 'my-application-database');
+     * ```
+     *
+     * @param Instance|string $instance The instance object or instance name.
+     * @param string $name The database name.
+     * @return Database
+     */
+    public function connect($instance, $name)
+    {
+        if (is_string($instance)) {
+            $instance = $this->instance($instance);
+        }
+
+        $database = $instance->database($name);
+
+        return $database;
     }
 
     /**
@@ -206,7 +243,7 @@ class SpannerClient
             'filter' => null
         ];
 
-        $res = $this->adminConnection->listInstances($options + [
+        $res = $this->connection->listInstances($options + [
             'projectId' => $this->projectId,
         ]);
 
@@ -218,5 +255,48 @@ class SpannerClient
                 );
             }
         }
+    }
+
+    /**
+     * Create a new KeySet object
+     *
+     * @param array $options [optional] {
+     *     Configuration Options
+     *
+     *     @type array $keys A list of keys
+     *     @type KeyRange[] $ranges A list of key ranges
+     *     @type bool $all Whether to include all keys in a table
+     * }
+     * @return KeySet
+     */
+    public function keySet(array $options = [])
+    {
+        return new KeySet($options);
+    }
+
+    /**
+     * Create a new KeyRange object
+     *
+     * @param array $range [optional] The key range data.
+     * @return KeyRange
+     */
+    public function keyRange(array $range = [])
+    {
+        return new KeyRange($range);
+    }
+
+    /**
+     * Get the session client
+     *
+     * Example:
+     * ```
+     * $sessionClient = $spanner->sessionClient();
+     * ```
+     *
+     * @return SessionClient
+     */
+    public function sessionClient()
+    {
+        return $this->sessionClient;
     }
 }
