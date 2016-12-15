@@ -51,9 +51,13 @@ class Rest implements ConnectionInterface
             $config['shouldSignRequest'] = false;
         }
 
+        $config += [
+            'serviceDefinitionPath' => __DIR__ . '/ServiceDefinition/pubsub-v1.json'
+        ];
+
         $this->setRequestWrapper(new RequestWrapper($config));
         $this->setRequestBuilder(new RequestBuilder(
-            __DIR__ . '/ServiceDefinition/pubsub-v1.json',
+            $config['serviceDefinitionPath'],
             $baseUri,
             ['resources', 'projects']
         ));
