@@ -18,6 +18,10 @@
  * This file was generated from the file
  * https://github.com/google/googleapis/blob/master/google/spanner/v1/spanner.proto
  * and updates to that file get reflected here through a refresh process.
+ *
+ * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
+ * more frequently than those which have been declared beta or 1.0, including changes which break
+ * backwards compatibility.
  */
 
 namespace Google\Cloud\Spanner\V1;
@@ -41,7 +45,7 @@ use google\spanner\v1\KeySet;
 use google\spanner\v1\Mutation;
 use google\spanner\v1\ReadRequest;
 use google\spanner\v1\RollbackRequest;
-use google\spanner\v1\SpannerClient;
+use google\spanner\v1\SpannerGrpcClient;
 use google\spanner\v1\TransactionOptions;
 use google\spanner\v1\TransactionSelector;
 
@@ -51,17 +55,21 @@ use google\spanner\v1\TransactionSelector;
  * The Cloud Spanner API can be used to manage sessions and execute
  * transactions on data stored in Cloud Spanner databases.
  *
+ * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
+ * more frequently than those which have been declared beta or 1.0, including changes which break
+ * backwards compatibility.
+ *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
  *
  * ```
  * try {
- *     $spannerApi = new SpannerApi();
- *     $formattedDatabase = SpannerApi::formatDatabaseName("[PROJECT]", "[INSTANCE]", "[DATABASE]");
- *     $response = $spannerApi->createSession($formattedDatabase);
+ *     $spannerClient = new SpannerClient();
+ *     $formattedDatabase = SpannerClient::formatDatabaseName("[PROJECT]", "[INSTANCE]", "[DATABASE]");
+ *     $response = $spannerClient->createSession($formattedDatabase);
  * } finally {
- *     if (isset($spannerApi)) {
- *         $spannerApi->close();
+ *     if (isset($spannerClient)) {
+ *         $spannerClient->close();
  *     }
  * }
  * ```
@@ -71,7 +79,7 @@ use google\spanner\v1\TransactionSelector;
  * a parse method to extract the individual identifiers contained within names that are
  * returned.
  */
-class SpannerApi
+class SpannerClient
 {
     /**
      * The default address of the service.
@@ -88,9 +96,8 @@ class SpannerApi
      */
     const DEFAULT_TIMEOUT_MILLIS = 30000;
 
-    const _GAX_VERSION = '0.1.0';
-    const _CODEGEN_NAME = 'GAPIC';
-    const _CODEGEN_VERSION = '0.0.0';
+    const _CODEGEN_NAME = 'gapic';
+    const _CODEGEN_VERSION = '0.1.0';
 
     private static $databaseNameTemplate;
     private static $sessionNameTemplate;
@@ -263,8 +270,7 @@ class SpannerApi
             'retryingOverride' => null,
             'timeoutMillis' => self::DEFAULT_TIMEOUT_MILLIS,
             'appName' => 'gax',
-            'appVersion' => self::_GAX_VERSION,
-            'credentialsLoader' => null,
+            'appVersion' => AgentHeaderDescriptor::getGaxVersion(),
         ];
         $options = array_merge($defaultOptions, $options);
 
@@ -273,7 +279,7 @@ class SpannerApi
             'clientVersion' => $options['appVersion'],
             'codeGenName' => self::_CODEGEN_NAME,
             'codeGenVersion' => self::_CODEGEN_VERSION,
-            'gaxVersion' => self::_GAX_VERSION,
+            'gaxVersion' => AgentHeaderDescriptor::getGaxVersion(),
             'phpVersion' => phpversion(),
         ]);
 
@@ -307,14 +313,14 @@ class SpannerApi
         $this->scopes = $options['scopes'];
 
         $createStubOptions = [];
-        if (!empty($options['sslCreds'])) {
+        if (array_key_exists('sslCreds', $options)) {
             $createStubOptions['sslCreds'] = $options['sslCreds'];
         }
         $grpcCredentialsHelperOptions = array_diff_key($options, $defaultOptions);
         $this->grpcCredentialsHelper = new GrpcCredentialsHelper($this->scopes, $grpcCredentialsHelperOptions);
 
         $createSpannerStubFunction = function ($hostname, $opts) {
-            return new SpannerClient($hostname, $opts);
+            return new SpannerGrpcClient($hostname, $opts);
         };
         $this->spannerStub = $this->grpcCredentialsHelper->createStub(
             $createSpannerStubFunction,
@@ -349,21 +355,21 @@ class SpannerApi
      * Sample code:
      * ```
      * try {
-     *     $spannerApi = new SpannerApi();
-     *     $formattedDatabase = SpannerApi::formatDatabaseName("[PROJECT]", "[INSTANCE]", "[DATABASE]");
-     *     $response = $spannerApi->createSession($formattedDatabase);
+     *     $spannerClient = new SpannerClient();
+     *     $formattedDatabase = SpannerClient::formatDatabaseName("[PROJECT]", "[INSTANCE]", "[DATABASE]");
+     *     $response = $spannerClient->createSession($formattedDatabase);
      * } finally {
-     *     if (isset($spannerApi)) {
-     *         $spannerApi->close();
+     *     if (isset($spannerClient)) {
+     *         $spannerClient->close();
      *     }
      * }
      * ```
      *
-     * @param string $database     The database in which the new session is created.
+     * @param string $database     Required. The database in which the new session is created.
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type Google\GAX\RetrySettings $retrySettings
+     *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
      *     @type int $timeoutMillis
@@ -371,9 +377,9 @@ class SpannerApi
      *          is not set.
      * }
      *
-     * @return google\spanner\v1\Session
+     * @return \google\spanner\v1\Session
      *
-     * @throws Google\GAX\ApiException if the remote call fails
+     * @throws \Google\GAX\ApiException if the remote call fails
      */
     public function createSession($database, $optionalArgs = [])
     {
@@ -404,21 +410,21 @@ class SpannerApi
      * Sample code:
      * ```
      * try {
-     *     $spannerApi = new SpannerApi();
-     *     $formattedName = SpannerApi::formatSessionName("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
-     *     $response = $spannerApi->getSession($formattedName);
+     *     $spannerClient = new SpannerClient();
+     *     $formattedName = SpannerClient::formatSessionName("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
+     *     $response = $spannerClient->getSession($formattedName);
      * } finally {
-     *     if (isset($spannerApi)) {
-     *         $spannerApi->close();
+     *     if (isset($spannerClient)) {
+     *         $spannerClient->close();
      *     }
      * }
      * ```
      *
-     * @param string $name         The name of the session to retrieve.
+     * @param string $name         Required. The name of the session to retrieve.
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type Google\GAX\RetrySettings $retrySettings
+     *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
      *     @type int $timeoutMillis
@@ -426,9 +432,9 @@ class SpannerApi
      *          is not set.
      * }
      *
-     * @return google\spanner\v1\Session
+     * @return \google\spanner\v1\Session
      *
-     * @throws Google\GAX\ApiException if the remote call fails
+     * @throws \Google\GAX\ApiException if the remote call fails
      */
     public function getSession($name, $optionalArgs = [])
     {
@@ -457,21 +463,21 @@ class SpannerApi
      * Sample code:
      * ```
      * try {
-     *     $spannerApi = new SpannerApi();
-     *     $formattedName = SpannerApi::formatSessionName("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
-     *     $spannerApi->deleteSession($formattedName);
+     *     $spannerClient = new SpannerClient();
+     *     $formattedName = SpannerClient::formatSessionName("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
+     *     $spannerClient->deleteSession($formattedName);
      * } finally {
-     *     if (isset($spannerApi)) {
-     *         $spannerApi->close();
+     *     if (isset($spannerClient)) {
+     *         $spannerClient->close();
      *     }
      * }
      * ```
      *
-     * @param string $name         The name of the session to delete.
+     * @param string $name         Required. The name of the session to delete.
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type Google\GAX\RetrySettings $retrySettings
+     *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
      *     @type int $timeoutMillis
@@ -479,7 +485,7 @@ class SpannerApi
      *          is not set.
      * }
      *
-     * @throws Google\GAX\ApiException if the remote call fails
+     * @throws \Google\GAX\ApiException if the remote call fails
      */
     public function deleteSession($name, $optionalArgs = [])
     {
@@ -518,19 +524,19 @@ class SpannerApi
      * Sample code:
      * ```
      * try {
-     *     $spannerApi = new SpannerApi();
-     *     $formattedSession = SpannerApi::formatSessionName("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
+     *     $spannerClient = new SpannerClient();
+     *     $formattedSession = SpannerClient::formatSessionName("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
      *     $sql = "";
-     *     $response = $spannerApi->executeSql($formattedSession, $sql);
+     *     $response = $spannerClient->executeSql($formattedSession, $sql);
      * } finally {
-     *     if (isset($spannerApi)) {
-     *         $spannerApi->close();
+     *     if (isset($spannerClient)) {
+     *         $spannerClient->close();
      *     }
      * }
      * ```
      *
-     * @param string $session      The session in which the SQL query should be performed.
-     * @param string $sql          The SQL query string.
+     * @param string $session      Required. The session in which the SQL query should be performed.
+     * @param string $sql          Required. The SQL query string.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -539,13 +545,13 @@ class SpannerApi
      *          temporary read-only transaction with strong concurrency.
      *     @type Struct $params
      *          The SQL query string can contain parameter placeholders. A parameter
-     *          placeholder consists of `'@'` followed by the parameter
+     *          placeholder consists of `'&#64;'` followed by the parameter
      *          name. Parameter names consist of any combination of letters,
      *          numbers, and underscores.
      *
      *          Parameters can appear anywhere that a literal value is expected.  The same
      *          parameter name can be used more than once, for example:
-     *            `"WHERE id > @msg_id AND id < @msg_id + 100"`
+     *            `"WHERE id > &#64;msg_id AND id < &#64;msg_id + 100"`
      *
      *          It is an error to execute an SQL query with unbound parameters.
      *
@@ -571,7 +577,7 @@ class SpannerApi
      *     @type QueryMode $queryMode
      *          Used to control the amount of debugging information returned in
      *          [ResultSetStats][google.spanner.v1.ResultSetStats].
-     *     @type Google\GAX\RetrySettings $retrySettings
+     *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
      *     @type int $timeoutMillis
@@ -579,9 +585,9 @@ class SpannerApi
      *          is not set.
      * }
      *
-     * @return google\spanner\v1\ResultSet
+     * @return \google\spanner\v1\ResultSet
      *
-     * @throws Google\GAX\ApiException if the remote call fails
+     * @throws \Google\GAX\ApiException if the remote call fails
      */
     public function executeSql($session, $sql, $optionalArgs = [])
     {
@@ -640,24 +646,24 @@ class SpannerApi
      * Sample code:
      * ```
      * try {
-     *     $spannerApi = new SpannerApi();
-     *     $formattedSession = SpannerApi::formatSessionName("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
+     *     $spannerClient = new SpannerClient();
+     *     $formattedSession = SpannerClient::formatSessionName("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
      *     $table = "";
      *     $columns = [];
      *     $keySet = new KeySet();
-     *     $response = $spannerApi->read($formattedSession, $table, $columns, $keySet);
+     *     $response = $spannerClient->read($formattedSession, $table, $columns, $keySet);
      * } finally {
-     *     if (isset($spannerApi)) {
-     *         $spannerApi->close();
+     *     if (isset($spannerClient)) {
+     *         $spannerClient->close();
      *     }
      * }
      * ```
      *
-     * @param string   $session The session in which the read should be performed.
-     * @param string   $table   The name of the table in the database to be read. Must be non-empty.
+     * @param string   $session Required. The session in which the read should be performed.
+     * @param string   $table   Required. The name of the table in the database to be read.
      * @param string[] $columns The columns of [table][google.spanner.v1.ReadRequest.table] to be returned for each row matching
      *                          this request.
-     * @param KeySet   $keySet  `key_set` identifies the rows to be yielded. `key_set` names the
+     * @param KeySet   $keySet  Required. `key_set` identifies the rows to be yielded. `key_set` names the
      *                          primary keys of the rows in [table][google.spanner.v1.ReadRequest.table] to be yielded, unless [index][google.spanner.v1.ReadRequest.index]
      *                          is present. If [index][google.spanner.v1.ReadRequest.index] is present, then [key_set][google.spanner.v1.ReadRequest.key_set] instead names
      *                          index keys in [index][google.spanner.v1.ReadRequest.index].
@@ -677,15 +683,9 @@ class SpannerApi
      *          If non-empty, the name of an index on [table][google.spanner.v1.ReadRequest.table]. This index is
      *          used instead of the table primary key when interpreting [key_set][google.spanner.v1.ReadRequest.key_set]
      *          and sorting result rows. See [key_set][google.spanner.v1.ReadRequest.key_set] for further information.
-     *     @type int $offset
-     *          The first `offset` rows matching [key_set][google.spanner.v1.ReadRequest.key_set] are skipped. Note
-     *          that the implementation must read the rows in order to skip
-     *          them. Where possible, it is much more efficient to adjust [key_set][google.spanner.v1.ReadRequest.key_set]
-     *          to exclude unwanted rows.
      *     @type int $limit
-     *          If greater than zero, after skipping the first [offset][google.spanner.v1.ReadRequest.offset] rows,
-     *          only the next `limit` rows are yielded. If `limit` is zero,
-     *          the default is no limit.
+     *          If greater than zero, only the first `limit` rows are yielded. If `limit`
+     *          is zero, the default is no limit.
      *     @type string $resumeToken
      *          If this request is resuming a previously interrupted read,
      *          `resume_token` should be copied from the last
@@ -693,7 +693,7 @@ class SpannerApi
      *          enables the new read to resume where the last read left off. The
      *          rest of the request parameters must exactly match the request
      *          that yielded this token.
-     *     @type Google\GAX\RetrySettings $retrySettings
+     *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
      *     @type int $timeoutMillis
@@ -701,9 +701,9 @@ class SpannerApi
      *          is not set.
      * }
      *
-     * @return google\spanner\v1\ResultSet
+     * @return \google\spanner\v1\ResultSet
      *
-     * @throws Google\GAX\ApiException if the remote call fails
+     * @throws \Google\GAX\ApiException if the remote call fails
      */
     public function read($session, $table, $columns, $keySet, $optionalArgs = [])
     {
@@ -719,9 +719,6 @@ class SpannerApi
         }
         if (isset($optionalArgs['index'])) {
             $request->setIndex($optionalArgs['index']);
-        }
-        if (isset($optionalArgs['offset'])) {
-            $request->setOffset($optionalArgs['offset']);
         }
         if (isset($optionalArgs['limit'])) {
             $request->setLimit($optionalArgs['limit']);
@@ -755,23 +752,23 @@ class SpannerApi
      * Sample code:
      * ```
      * try {
-     *     $spannerApi = new SpannerApi();
-     *     $formattedSession = SpannerApi::formatSessionName("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
+     *     $spannerClient = new SpannerClient();
+     *     $formattedSession = SpannerClient::formatSessionName("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
      *     $options = new TransactionOptions();
-     *     $response = $spannerApi->beginTransaction($formattedSession, $options);
+     *     $response = $spannerClient->beginTransaction($formattedSession, $options);
      * } finally {
-     *     if (isset($spannerApi)) {
-     *         $spannerApi->close();
+     *     if (isset($spannerClient)) {
+     *         $spannerClient->close();
      *     }
      * }
      * ```
      *
-     * @param string             $session      The session in which the transaction runs.
-     * @param TransactionOptions $options      Options for the new transaction.
+     * @param string             $session      Required. The session in which the transaction runs.
+     * @param TransactionOptions $options      Required. Options for the new transaction.
      * @param array              $optionalArgs {
      *                                         Optional.
      *
-     *     @type Google\GAX\RetrySettings $retrySettings
+     *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
      *     @type int $timeoutMillis
@@ -779,9 +776,9 @@ class SpannerApi
      *          is not set.
      * }
      *
-     * @return google\spanner\v1\Transaction
+     * @return \google\spanner\v1\Transaction
      *
-     * @throws Google\GAX\ApiException if the remote call fails
+     * @throws \Google\GAX\ApiException if the remote call fails
      */
     public function beginTransaction($session, $options, $optionalArgs = [])
     {
@@ -818,18 +815,18 @@ class SpannerApi
      * Sample code:
      * ```
      * try {
-     *     $spannerApi = new SpannerApi();
-     *     $formattedSession = SpannerApi::formatSessionName("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
+     *     $spannerClient = new SpannerClient();
+     *     $formattedSession = SpannerClient::formatSessionName("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
      *     $mutations = [];
-     *     $response = $spannerApi->commit($formattedSession, $mutations);
+     *     $response = $spannerClient->commit($formattedSession, $mutations);
      * } finally {
-     *     if (isset($spannerApi)) {
-     *         $spannerApi->close();
+     *     if (isset($spannerClient)) {
+     *         $spannerClient->close();
      *     }
      * }
      * ```
      *
-     * @param string     $session      The session in which the transaction to be committed is running.
+     * @param string     $session      Required. The session in which the transaction to be committed is running.
      * @param Mutation[] $mutations    The mutations to be executed when this transaction commits. All
      *                                 mutations are applied atomically, in the order they appear in
      *                                 this list.
@@ -848,7 +845,7 @@ class SpannerApi
      *          executed more than once. If this is undesirable, use
      *          [BeginTransaction][google.spanner.v1.Spanner.BeginTransaction] and
      *          [Commit][google.spanner.v1.Spanner.Commit] instead.
-     *     @type Google\GAX\RetrySettings $retrySettings
+     *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
      *     @type int $timeoutMillis
@@ -856,9 +853,9 @@ class SpannerApi
      *          is not set.
      * }
      *
-     * @return google\spanner\v1\CommitResponse
+     * @return \google\spanner\v1\CommitResponse
      *
-     * @throws Google\GAX\ApiException if the remote call fails
+     * @throws \Google\GAX\ApiException if the remote call fails
      */
     public function commit($session, $mutations, $optionalArgs = [])
     {
@@ -903,23 +900,23 @@ class SpannerApi
      * Sample code:
      * ```
      * try {
-     *     $spannerApi = new SpannerApi();
-     *     $formattedSession = SpannerApi::formatSessionName("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
+     *     $spannerClient = new SpannerClient();
+     *     $formattedSession = SpannerClient::formatSessionName("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
      *     $transactionId = "";
-     *     $spannerApi->rollback($formattedSession, $transactionId);
+     *     $spannerClient->rollback($formattedSession, $transactionId);
      * } finally {
-     *     if (isset($spannerApi)) {
-     *         $spannerApi->close();
+     *     if (isset($spannerClient)) {
+     *         $spannerClient->close();
      *     }
      * }
      * ```
      *
-     * @param string $session       The session in which the transaction to roll back is running.
-     * @param string $transactionId The transaction to roll back.
+     * @param string $session       Required. The session in which the transaction to roll back is running.
+     * @param string $transactionId Required. The transaction to roll back.
      * @param array  $optionalArgs  {
      *                              Optional.
      *
-     *     @type Google\GAX\RetrySettings $retrySettings
+     *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
      *     @type int $timeoutMillis
@@ -927,7 +924,7 @@ class SpannerApi
      *          is not set.
      * }
      *
-     * @throws Google\GAX\ApiException if the remote call fails
+     * @throws \Google\GAX\ApiException if the remote call fails
      */
     public function rollback($session, $transactionId, $optionalArgs = [])
     {

@@ -18,6 +18,10 @@
  * This file was generated from the file
  * https://github.com/google/googleapis/blob/master/google/spanner/admin/database/v1/spanner_database_admin.proto
  * and updates to that file get reflected here through a refresh process.
+ *
+ * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
+ * more frequently than those which have been declared beta or 1.0, including changes which break
+ * backwards compatibility.
  */
 
 namespace Google\Cloud\Spanner\Admin\Database\V1;
@@ -34,11 +38,12 @@ use google\iam\v1\Policy;
 use google\iam\v1\SetIamPolicyRequest;
 use google\iam\v1\TestIamPermissionsRequest;
 use google\spanner\admin\database\v1\CreateDatabaseRequest;
-use google\spanner\admin\database\v1\DatabaseAdminClient;
+use google\spanner\admin\database\v1\DatabaseAdminGrpcClient;
 use google\spanner\admin\database\v1\DropDatabaseRequest;
-use google\spanner\admin\database\v1\GetDatabaseDDLRequest;
+use google\spanner\admin\database\v1\GetDatabaseDdlRequest;
+use google\spanner\admin\database\v1\GetDatabaseRequest;
 use google\spanner\admin\database\v1\ListDatabasesRequest;
-use google\spanner\admin\database\v1\UpdateDatabaseRequest;
+use google\spanner\admin\database\v1\UpdateDatabaseDdlRequest;
 
 /**
  * Service Description: Cloud Spanner Database Admin API.
@@ -47,19 +52,23 @@ use google\spanner\admin\database\v1\UpdateDatabaseRequest;
  * list databases. It also enables updating the schema of pre-existing
  * databases.
  *
+ * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
+ * more frequently than those which have been declared beta or 1.0, including changes which break
+ * backwards compatibility.
+ *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
  *
  * ```
  * try {
- *     $databaseAdminApi = new DatabaseAdminApi();
- *     $formattedName = DatabaseAdminApi::formatInstanceName("[PROJECT]", "[INSTANCE]");
- *     foreach ($databaseAdminApi->listDatabases($formattedName) as $element) {
+ *     $databaseAdminClient = new DatabaseAdminClient();
+ *     $formattedParent = DatabaseAdminClient::formatInstanceName("[PROJECT]", "[INSTANCE]");
+ *     foreach ($databaseAdminClient->listDatabases($formattedParent) as $element) {
  *         // doThingsWith(element);
  *     }
  * } finally {
- *     if (isset($databaseAdminApi)) {
- *         $databaseAdminApi->close();
+ *     if (isset($databaseAdminClient)) {
+ *         $databaseAdminClient->close();
  *     }
  * }
  * ```
@@ -69,7 +78,7 @@ use google\spanner\admin\database\v1\UpdateDatabaseRequest;
  * a parse method to extract the individual identifiers contained within names that are
  * returned.
  */
-class DatabaseAdminApi
+class DatabaseAdminClient
 {
     /**
      * The default address of the service.
@@ -86,9 +95,8 @@ class DatabaseAdminApi
      */
     const DEFAULT_TIMEOUT_MILLIS = 30000;
 
-    const _GAX_VERSION = '0.1.0';
-    const _CODEGEN_NAME = 'GAPIC';
-    const _CODEGEN_VERSION = '0.0.0';
+    const _CODEGEN_NAME = 'gapic';
+    const _CODEGEN_VERSION = '0.1.0';
 
     private static $instanceNameTemplate;
     private static $databaseNameTemplate;
@@ -250,8 +258,7 @@ class DatabaseAdminApi
             'retryingOverride' => null,
             'timeoutMillis' => self::DEFAULT_TIMEOUT_MILLIS,
             'appName' => 'gax',
-            'appVersion' => self::_GAX_VERSION,
-            'credentialsLoader' => null,
+            'appVersion' => AgentHeaderDescriptor::getGaxVersion(),
         ];
         $options = array_merge($defaultOptions, $options);
 
@@ -260,7 +267,7 @@ class DatabaseAdminApi
             'clientVersion' => $options['appVersion'],
             'codeGenName' => self::_CODEGEN_NAME,
             'codeGenVersion' => self::_CODEGEN_VERSION,
-            'gaxVersion' => self::_GAX_VERSION,
+            'gaxVersion' => AgentHeaderDescriptor::getGaxVersion(),
             'phpVersion' => phpversion(),
         ]);
 
@@ -268,9 +275,10 @@ class DatabaseAdminApi
         $this->descriptors = [
             'listDatabases' => $defaultDescriptors,
             'createDatabase' => $defaultDescriptors,
-            'updateDatabase' => $defaultDescriptors,
+            'getDatabase' => $defaultDescriptors,
+            'updateDatabaseDdl' => $defaultDescriptors,
             'dropDatabase' => $defaultDescriptors,
-            'getDatabaseDDL' => $defaultDescriptors,
+            'getDatabaseDdl' => $defaultDescriptors,
             'setIamPolicy' => $defaultDescriptors,
             'getIamPolicy' => $defaultDescriptors,
             'testIamPermissions' => $defaultDescriptors,
@@ -294,14 +302,14 @@ class DatabaseAdminApi
         $this->scopes = $options['scopes'];
 
         $createStubOptions = [];
-        if (!empty($options['sslCreds'])) {
+        if (array_key_exists('sslCreds', $options)) {
             $createStubOptions['sslCreds'] = $options['sslCreds'];
         }
         $grpcCredentialsHelperOptions = array_diff_key($options, $defaultOptions);
         $this->grpcCredentialsHelper = new GrpcCredentialsHelper($this->scopes, $grpcCredentialsHelperOptions);
 
         $createDatabaseAdminStubFunction = function ($hostname, $opts) {
-            return new DatabaseAdminClient($hostname, $opts);
+            return new DatabaseAdminGrpcClient($hostname, $opts);
         };
         $this->databaseAdminStub = $this->grpcCredentialsHelper->createStub(
             $createDatabaseAdminStubFunction,
@@ -317,19 +325,19 @@ class DatabaseAdminApi
      * Sample code:
      * ```
      * try {
-     *     $databaseAdminApi = new DatabaseAdminApi();
-     *     $formattedName = DatabaseAdminApi::formatInstanceName("[PROJECT]", "[INSTANCE]");
-     *     foreach ($databaseAdminApi->listDatabases($formattedName) as $element) {
+     *     $databaseAdminClient = new DatabaseAdminClient();
+     *     $formattedParent = DatabaseAdminClient::formatInstanceName("[PROJECT]", "[INSTANCE]");
+     *     foreach ($databaseAdminClient->listDatabases($formattedParent) as $element) {
      *         // doThingsWith(element);
      *     }
      * } finally {
-     *     if (isset($databaseAdminApi)) {
-     *         $databaseAdminApi->close();
+     *     if (isset($databaseAdminClient)) {
+     *         $databaseAdminClient->close();
      *     }
      * }
      * ```
      *
-     * @param string $name         The project whose databases should be listed. Required.
+     * @param string $parent       Required. The instance whose databases should be listed.
      *                             Values are of the form `projects/<project>/instances/<instance>`.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -343,7 +351,7 @@ class DatabaseAdminApi
      *          If no page token is specified (the default), the first page
      *          of values will be returned. Any page token used here must have
      *          been generated by a previous call to the API.
-     *     @type Google\GAX\RetrySettings $retrySettings
+     *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
      *     @type int $timeoutMillis
@@ -351,14 +359,14 @@ class DatabaseAdminApi
      *          is not set.
      * }
      *
-     * @return Google\GAX\PagedListResponse
+     * @return \Google\GAX\PagedListResponse
      *
-     * @throws Google\GAX\ApiException if the remote call fails
+     * @throws \Google\GAX\ApiException if the remote call fails
      */
-    public function listDatabases($name, $optionalArgs = [])
+    public function listDatabases($parent, $optionalArgs = [])
     {
         $request = new ListDatabasesRequest();
-        $request->setName($name);
+        $request->setParent($parent);
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -383,27 +391,34 @@ class DatabaseAdminApi
     }
 
     /**
-     * Creates a new Cloud Spanner database.
+     * Creates a new Cloud Spanner database and starts to prepare it for serving.
+     * The returned [long-running operation][google.longrunning.Operation] will
+     * have a name of the format `<database_name>/operations/<operation_id>` and
+     * can be used to track preparation of the database. The
+     * [metadata][google.longrunning.Operation.metadata] field type is
+     * [CreateDatabaseMetadata][google.spanner.admin.database.v1.CreateDatabaseMetadata]. The
+     * [response][google.longrunning.Operation.response] field type is
+     * [Database][google.spanner.admin.database.v1.Database], if successful.
      *
      * Sample code:
      * ```
      * try {
-     *     $databaseAdminApi = new DatabaseAdminApi();
-     *     $formattedName = DatabaseAdminApi::formatInstanceName("[PROJECT]", "[INSTANCE]");
+     *     $databaseAdminClient = new DatabaseAdminClient();
+     *     $formattedParent = DatabaseAdminClient::formatInstanceName("[PROJECT]", "[INSTANCE]");
      *     $createStatement = "";
-     *     $response = $databaseAdminApi->createDatabase($formattedName, $createStatement);
+     *     $response = $databaseAdminClient->createDatabase($formattedParent, $createStatement);
      * } finally {
-     *     if (isset($databaseAdminApi)) {
-     *         $databaseAdminApi->close();
+     *     if (isset($databaseAdminClient)) {
+     *         $databaseAdminClient->close();
      *     }
      * }
      * ```
      *
-     * @param string $name            The name of the instance that will serve the new database.
+     * @param string $parent          Required. The name of the instance that will serve the new database.
      *                                Values are of the form `projects/<project>/instances/<instance>`.
-     * @param string $createStatement A `CREATE DATABASE` statement, which specifies the name of the
-     *                                new database.  The database name must conform to the regular expression
-     *                                `[a-z][a-z0-9_\-]*[a-z0-9]` and be between 2 and 30 characters in length.
+     * @param string $createStatement Required. A `CREATE DATABASE` statement, which specifies the ID of the
+     *                                new database.  The database ID must conform to the regular expression
+     *                                `[a-z][a-z0-9_\-]&#42;[a-z0-9]` and be between 2 and 30 characters in length.
      * @param array  $optionalArgs    {
      *                                Optional.
      *
@@ -412,7 +427,7 @@ class DatabaseAdminApi
      *          database. Statements can create tables, indexes, etc. These
      *          statements execute atomically with the creation of the database:
      *          if there is an error in any statement, the database is not created.
-     *     @type Google\GAX\RetrySettings $retrySettings
+     *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
      *     @type int $timeoutMillis
@@ -420,14 +435,14 @@ class DatabaseAdminApi
      *          is not set.
      * }
      *
-     * @return google\spanner\admin\database\v1\Database
+     * @return \google\longrunning\Operation
      *
-     * @throws Google\GAX\ApiException if the remote call fails
+     * @throws \Google\GAX\ApiException if the remote call fails
      */
-    public function createDatabase($name, $createStatement, $optionalArgs = [])
+    public function createDatabase($parent, $createStatement, $optionalArgs = [])
     {
         $request = new CreateDatabaseRequest();
-        $request->setName($name);
+        $request->setParent($parent);
         $request->setCreateStatement($createStatement);
         if (isset($optionalArgs['extraStatements'])) {
             foreach ($optionalArgs['extraStatements'] as $elem) {
@@ -452,26 +467,83 @@ class DatabaseAdminApi
     }
 
     /**
-     * Updates the schema of a Cloud Spanner database by
-     * creating/altering/dropping tables, columns, indexes, etc.  The
-     * [UpdateDatabaseMetadata][google.spanner.admin.database.v1.UpdateDatabaseMetadata] message is used for operation
-     * metadata; The operation has no response.
+     * Gets the state of a Cloud Spanner database.
      *
      * Sample code:
      * ```
      * try {
-     *     $databaseAdminApi = new DatabaseAdminApi();
-     *     $formattedDatabase = DatabaseAdminApi::formatDatabaseName("[PROJECT]", "[INSTANCE]", "[DATABASE]");
-     *     $statements = [];
-     *     $response = $databaseAdminApi->updateDatabase($formattedDatabase, $statements);
+     *     $databaseAdminClient = new DatabaseAdminClient();
+     *     $formattedName = DatabaseAdminClient::formatDatabaseName("[PROJECT]", "[INSTANCE]", "[DATABASE]");
+     *     $response = $databaseAdminClient->getDatabase($formattedName);
      * } finally {
-     *     if (isset($databaseAdminApi)) {
-     *         $databaseAdminApi->close();
+     *     if (isset($databaseAdminClient)) {
+     *         $databaseAdminClient->close();
      *     }
      * }
      * ```
      *
-     * @param string   $database     The database to update.
+     * @param string $name         Required. The name of the requested database. Values are of the form
+     *                             `projects/<project>/instances/<instance>/databases/<database>`.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type \Google\GAX\RetrySettings $retrySettings
+     *          Retry settings to use for this call. If present, then
+     *          $timeoutMillis is ignored.
+     *     @type int $timeoutMillis
+     *          Timeout to use for this call. Only used if $retrySettings
+     *          is not set.
+     * }
+     *
+     * @return \google\spanner\admin\database\v1\Database
+     *
+     * @throws \Google\GAX\ApiException if the remote call fails
+     */
+    public function getDatabase($name, $optionalArgs = [])
+    {
+        $request = new GetDatabaseRequest();
+        $request->setName($name);
+
+        $mergedSettings = $this->defaultCallSettings['getDatabase']->merge(
+            new CallSettings($optionalArgs)
+        );
+        $callable = ApiCallable::createApiCall(
+            $this->databaseAdminStub,
+            'GetDatabase',
+            $mergedSettings,
+            $this->descriptors['getDatabase']
+        );
+
+        return $callable(
+            $request,
+            [],
+            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+    }
+
+    /**
+     * Updates the schema of a Cloud Spanner database by
+     * creating/altering/dropping tables, columns, indexes, etc. The returned
+     * [long-running operation][google.longrunning.Operation] will have a name of
+     * the format `<database_name>/operations/<operation_id>` and can be used to
+     * track execution of the schema change(s). The
+     * [metadata][google.longrunning.Operation.metadata] field type is
+     * [UpdateDatabaseDdlMetadata][google.spanner.admin.database.v1.UpdateDatabaseDdlMetadata].  The operation has no response.
+     *
+     * Sample code:
+     * ```
+     * try {
+     *     $databaseAdminClient = new DatabaseAdminClient();
+     *     $formattedDatabase = DatabaseAdminClient::formatDatabaseName("[PROJECT]", "[INSTANCE]", "[DATABASE]");
+     *     $statements = [];
+     *     $response = $databaseAdminClient->updateDatabaseDdl($formattedDatabase, $statements);
+     * } finally {
+     *     if (isset($databaseAdminClient)) {
+     *         $databaseAdminClient->close();
+     *     }
+     * }
+     * ```
+     *
+     * @param string   $database     Required. The database to update.
      * @param string[] $statements   DDL statements to be applied to the database.
      * @param array    $optionalArgs {
      *                               Optional.
@@ -484,19 +556,19 @@ class DatabaseAdminApi
      *
      *          Specifying an explicit operation ID simplifies determining
      *          whether the statements were executed in the event that the
-     *          [UpdateDatabase][google.spanner.admin.database.v1.DatabaseAdmin.UpdateDatabase] call is replayed,
-     *          or the return value is otherwise lost: the [database][google.spanner.admin.database.v1.UpdateDatabaseRequest.database] and
+     *          [UpdateDatabaseDdl][google.spanner.admin.database.v1.DatabaseAdmin.UpdateDatabaseDdl] call is replayed,
+     *          or the return value is otherwise lost: the [database][google.spanner.admin.database.v1.UpdateDatabaseDdlRequest.database] and
      *          `operation_id` fields can be combined to form the
      *          [name][google.longrunning.Operation.name] of the resulting
      *          [longrunning.Operation][google.longrunning.Operation]: `<database>/operations/<operation_id>`.
      *
      *          `operation_id` should be unique within the database, and must be
-     *          a valid identifier: `[a-zA-Z][a-zA-Z0-9_]*`. Note that
+     *          a valid identifier: `[a-zA-Z][a-zA-Z0-9_]&#42;`. Note that
      *          automatically-generated operation IDs always begin with an
      *          underscore. If the named operation already exists,
-     *          [UpdateDatabase][google.spanner.admin.database.v1.DatabaseAdmin.UpdateDatabase] returns
+     *          [UpdateDatabaseDdl][google.spanner.admin.database.v1.DatabaseAdmin.UpdateDatabaseDdl] returns
      *          `ALREADY_EXISTS`.
-     *     @type Google\GAX\RetrySettings $retrySettings
+     *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
      *     @type int $timeoutMillis
@@ -504,13 +576,13 @@ class DatabaseAdminApi
      *          is not set.
      * }
      *
-     * @return google\longrunning\Operation
+     * @return \google\longrunning\Operation
      *
-     * @throws Google\GAX\ApiException if the remote call fails
+     * @throws \Google\GAX\ApiException if the remote call fails
      */
-    public function updateDatabase($database, $statements, $optionalArgs = [])
+    public function updateDatabaseDdl($database, $statements, $optionalArgs = [])
     {
-        $request = new UpdateDatabaseRequest();
+        $request = new UpdateDatabaseDdlRequest();
         $request->setDatabase($database);
         foreach ($statements as $elem) {
             $request->addStatements($elem);
@@ -519,14 +591,14 @@ class DatabaseAdminApi
             $request->setOperationId($optionalArgs['operationId']);
         }
 
-        $mergedSettings = $this->defaultCallSettings['updateDatabase']->merge(
+        $mergedSettings = $this->defaultCallSettings['updateDatabaseDdl']->merge(
             new CallSettings($optionalArgs)
         );
         $callable = ApiCallable::createApiCall(
             $this->databaseAdminStub,
-            'UpdateDatabase',
+            'UpdateDatabaseDdl',
             $mergedSettings,
-            $this->descriptors['updateDatabase']
+            $this->descriptors['updateDatabaseDdl']
         );
 
         return $callable(
@@ -541,21 +613,21 @@ class DatabaseAdminApi
      * Sample code:
      * ```
      * try {
-     *     $databaseAdminApi = new DatabaseAdminApi();
-     *     $formattedDatabase = DatabaseAdminApi::formatDatabaseName("[PROJECT]", "[INSTANCE]", "[DATABASE]");
-     *     $databaseAdminApi->dropDatabase($formattedDatabase);
+     *     $databaseAdminClient = new DatabaseAdminClient();
+     *     $formattedDatabase = DatabaseAdminClient::formatDatabaseName("[PROJECT]", "[INSTANCE]", "[DATABASE]");
+     *     $databaseAdminClient->dropDatabase($formattedDatabase);
      * } finally {
-     *     if (isset($databaseAdminApi)) {
-     *         $databaseAdminApi->close();
+     *     if (isset($databaseAdminClient)) {
+     *         $databaseAdminClient->close();
      *     }
      * }
      * ```
      *
-     * @param string $database     The database to be dropped.
+     * @param string $database     Required. The database to be dropped.
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type Google\GAX\RetrySettings $retrySettings
+     *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
      *     @type int $timeoutMillis
@@ -563,7 +635,7 @@ class DatabaseAdminApi
      *          is not set.
      * }
      *
-     * @throws Google\GAX\ApiException if the remote call fails
+     * @throws \Google\GAX\ApiException if the remote call fails
      */
     public function dropDatabase($database, $optionalArgs = [])
     {
@@ -594,21 +666,21 @@ class DatabaseAdminApi
      * Sample code:
      * ```
      * try {
-     *     $databaseAdminApi = new DatabaseAdminApi();
-     *     $formattedDatabase = DatabaseAdminApi::formatDatabaseName("[PROJECT]", "[INSTANCE]", "[DATABASE]");
-     *     $response = $databaseAdminApi->getDatabaseDDL($formattedDatabase);
+     *     $databaseAdminClient = new DatabaseAdminClient();
+     *     $formattedDatabase = DatabaseAdminClient::formatDatabaseName("[PROJECT]", "[INSTANCE]", "[DATABASE]");
+     *     $response = $databaseAdminClient->getDatabaseDdl($formattedDatabase);
      * } finally {
-     *     if (isset($databaseAdminApi)) {
-     *         $databaseAdminApi->close();
+     *     if (isset($databaseAdminClient)) {
+     *         $databaseAdminClient->close();
      *     }
      * }
      * ```
      *
-     * @param string $database     The database whose schema we wish to get.
+     * @param string $database     Required. The database whose schema we wish to get.
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type Google\GAX\RetrySettings $retrySettings
+     *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
      *     @type int $timeoutMillis
@@ -616,23 +688,23 @@ class DatabaseAdminApi
      *          is not set.
      * }
      *
-     * @return google\spanner\admin\database\v1\GetDatabaseDDLResponse
+     * @return \google\spanner\admin\database\v1\GetDatabaseDdlResponse
      *
-     * @throws Google\GAX\ApiException if the remote call fails
+     * @throws \Google\GAX\ApiException if the remote call fails
      */
-    public function getDatabaseDDL($database, $optionalArgs = [])
+    public function getDatabaseDdl($database, $optionalArgs = [])
     {
-        $request = new GetDatabaseDDLRequest();
+        $request = new GetDatabaseDdlRequest();
         $request->setDatabase($database);
 
-        $mergedSettings = $this->defaultCallSettings['getDatabaseDDL']->merge(
+        $mergedSettings = $this->defaultCallSettings['getDatabaseDdl']->merge(
             new CallSettings($optionalArgs)
         );
         $callable = ApiCallable::createApiCall(
             $this->databaseAdminStub,
-            'GetDatabaseDDL',
+            'GetDatabaseDdl',
             $mergedSettings,
-            $this->descriptors['getDatabaseDDL']
+            $this->descriptors['getDatabaseDdl']
         );
 
         return $callable(
@@ -645,16 +717,19 @@ class DatabaseAdminApi
      * Sets the access control policy on a database resource. Replaces any
      * existing policy.
      *
+     * Authorization requires `spanner.databases.setIamPolicy` permission on
+     * [resource][google.iam.v1.SetIamPolicyRequest.resource].
+     *
      * Sample code:
      * ```
      * try {
-     *     $databaseAdminApi = new DatabaseAdminApi();
-     *     $formattedResource = DatabaseAdminApi::formatDatabaseName("[PROJECT]", "[INSTANCE]", "[DATABASE]");
+     *     $databaseAdminClient = new DatabaseAdminClient();
+     *     $formattedResource = DatabaseAdminClient::formatDatabaseName("[PROJECT]", "[INSTANCE]", "[DATABASE]");
      *     $policy = new Policy();
-     *     $response = $databaseAdminApi->setIamPolicy($formattedResource, $policy);
+     *     $response = $databaseAdminClient->setIamPolicy($formattedResource, $policy);
      * } finally {
-     *     if (isset($databaseAdminApi)) {
-     *         $databaseAdminApi->close();
+     *     if (isset($databaseAdminClient)) {
+     *         $databaseAdminClient->close();
      *     }
      * }
      * ```
@@ -669,7 +744,7 @@ class DatabaseAdminApi
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type Google\GAX\RetrySettings $retrySettings
+     *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
      *     @type int $timeoutMillis
@@ -677,9 +752,9 @@ class DatabaseAdminApi
      *          is not set.
      * }
      *
-     * @return google\iam\v1\Policy
+     * @return \google\iam\v1\Policy
      *
-     * @throws Google\GAX\ApiException if the remote call fails
+     * @throws \Google\GAX\ApiException if the remote call fails
      */
     public function setIamPolicy($resource, $policy, $optionalArgs = [])
     {
@@ -707,15 +782,18 @@ class DatabaseAdminApi
      * Gets the access control policy for a database resource. Returns an empty
      * policy if a database exists but does not have a policy set.
      *
+     * Authorization requires `spanner.databases.getIamPolicy` permission on
+     * [resource][google.iam.v1.GetIamPolicyRequest.resource].
+     *
      * Sample code:
      * ```
      * try {
-     *     $databaseAdminApi = new DatabaseAdminApi();
-     *     $formattedResource = DatabaseAdminApi::formatDatabaseName("[PROJECT]", "[INSTANCE]", "[DATABASE]");
-     *     $response = $databaseAdminApi->getIamPolicy($formattedResource);
+     *     $databaseAdminClient = new DatabaseAdminClient();
+     *     $formattedResource = DatabaseAdminClient::formatDatabaseName("[PROJECT]", "[INSTANCE]", "[DATABASE]");
+     *     $response = $databaseAdminClient->getIamPolicy($formattedResource);
      * } finally {
-     *     if (isset($databaseAdminApi)) {
-     *         $databaseAdminApi->close();
+     *     if (isset($databaseAdminClient)) {
+     *         $databaseAdminClient->close();
      *     }
      * }
      * ```
@@ -726,7 +804,7 @@ class DatabaseAdminApi
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type Google\GAX\RetrySettings $retrySettings
+     *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
      *     @type int $timeoutMillis
@@ -734,9 +812,9 @@ class DatabaseAdminApi
      *          is not set.
      * }
      *
-     * @return google\iam\v1\Policy
+     * @return \google\iam\v1\Policy
      *
-     * @throws Google\GAX\ApiException if the remote call fails
+     * @throws \Google\GAX\ApiException if the remote call fails
      */
     public function getIamPolicy($resource, $optionalArgs = [])
     {
@@ -762,16 +840,21 @@ class DatabaseAdminApi
     /**
      * Returns permissions that the caller has on the specified database resource.
      *
+     * Attempting this RPC on a non-existent Cloud Spanner database will result in
+     * a NOT_FOUND error if the user has `spanner.databases.list` permission on
+     * the containing Cloud Spanner instance. Otherwise returns an empty set of
+     * permissions.
+     *
      * Sample code:
      * ```
      * try {
-     *     $databaseAdminApi = new DatabaseAdminApi();
-     *     $formattedResource = DatabaseAdminApi::formatDatabaseName("[PROJECT]", "[INSTANCE]", "[DATABASE]");
+     *     $databaseAdminClient = new DatabaseAdminClient();
+     *     $formattedResource = DatabaseAdminClient::formatDatabaseName("[PROJECT]", "[INSTANCE]", "[DATABASE]");
      *     $permissions = [];
-     *     $response = $databaseAdminApi->testIamPermissions($formattedResource, $permissions);
+     *     $response = $databaseAdminClient->testIamPermissions($formattedResource, $permissions);
      * } finally {
-     *     if (isset($databaseAdminApi)) {
-     *         $databaseAdminApi->close();
+     *     if (isset($databaseAdminClient)) {
+     *         $databaseAdminClient->close();
      *     }
      * }
      * ```
@@ -780,13 +863,13 @@ class DatabaseAdminApi
      *                               `resource` is usually specified as a path. For example, a Project
      *                               resource is specified as `projects/{project}`.
      * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
-     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *                               wildcards (such as '&#42;' or 'storage.&#42;') are not allowed. For more
      *                               information see
      *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      * @param array    $optionalArgs {
      *                               Optional.
      *
-     *     @type Google\GAX\RetrySettings $retrySettings
+     *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
      *     @type int $timeoutMillis
@@ -794,9 +877,9 @@ class DatabaseAdminApi
      *          is not set.
      * }
      *
-     * @return google\iam\v1\TestIamPermissionsResponse
+     * @return \google\iam\v1\TestIamPermissionsResponse
      *
-     * @throws Google\GAX\ApiException if the remote call fails
+     * @throws \Google\GAX\ApiException if the remote call fails
      */
     public function testIamPermissions($resource, $permissions, $optionalArgs = [])
     {
