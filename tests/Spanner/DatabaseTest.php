@@ -19,7 +19,7 @@ namespace Google\Cloud\Tests\Spanner;
 
 use Google\Cloud\Exception\NotFoundException;
 use Google\Cloud\Iam\Iam;
-use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminApi;
+use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Connection\AdminConnectionInterface;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
@@ -83,7 +83,7 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
     {
         $statements = ['foo', 'bar'];
         $this->adminConnection->updateDatabase([
-            'name' => DatabaseAdminApi::formatDatabaseName(self::PROJECT_ID, self::INSTANCE_NAME, self::NAME),
+            'name' => DatabaseAdminClient::formatDatabaseName(self::PROJECT_ID, self::INSTANCE_NAME, self::NAME),
             'statements' => $statements
         ]);
 
@@ -96,7 +96,7 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
     {
         $statement = 'foo';
         $this->adminConnection->updateDatabase([
-            'name' => DatabaseAdminApi::formatDatabaseName(self::PROJECT_ID, self::INSTANCE_NAME, self::NAME),
+            'name' => DatabaseAdminClient::formatDatabaseName(self::PROJECT_ID, self::INSTANCE_NAME, self::NAME),
             'statements' => ['foo'],
             'operationId' => null,
         ])->shouldBeCalled();
@@ -109,7 +109,7 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
     public function testDrop()
     {
         $this->adminConnection->dropDatabase([
-            'name' => DatabaseAdminApi::formatDatabaseName(self::PROJECT_ID, self::INSTANCE_NAME, self::NAME)
+            'name' => DatabaseAdminClient::formatDatabaseName(self::PROJECT_ID, self::INSTANCE_NAME, self::NAME)
         ])->shouldBeCalled();
 
         $this->database->setAdminConnection($this->adminConnection->reveal());
@@ -121,7 +121,7 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
     {
         $ddl = ['create table users', 'create table posts'];
         $this->adminConnection->getDatabaseDDL([
-            'name' => DatabaseAdminApi::formatDatabaseName(self::PROJECT_ID, self::INSTANCE_NAME, self::NAME)
+            'name' => DatabaseAdminClient::formatDatabaseName(self::PROJECT_ID, self::INSTANCE_NAME, self::NAME)
         ])->willReturn(['statements' => $ddl]);
 
         $this->database->setAdminConnection($this->adminConnection->reveal());
@@ -132,7 +132,7 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
     public function testDdlNoResult()
     {
         $this->adminConnection->getDatabaseDDL([
-            'name' => DatabaseAdminApi::formatDatabaseName(self::PROJECT_ID, self::INSTANCE_NAME, self::NAME)
+            'name' => DatabaseAdminClient::formatDatabaseName(self::PROJECT_ID, self::INSTANCE_NAME, self::NAME)
         ])->willReturn([]);
 
         $this->database->setAdminConnection($this->adminConnection->reveal());

@@ -18,7 +18,7 @@
 namespace Google\Cloud\Spanner;
 
 use Google\Cloud\Exception\NotFoundException;
-use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminApi;
+use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 
 /**
@@ -156,7 +156,7 @@ class Configuration
     public function reload(array $options = [])
     {
         $this->info = $this->connection->getConfig($options + [
-            'name' => InstanceAdminApi::formatInstanceConfigName($this->projectId, $this->name),
+            'name' => InstanceAdminClient::formatInstanceConfigName($this->projectId, $this->name),
             'projectId' => $this->projectId
         ]);
 

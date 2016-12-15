@@ -19,7 +19,7 @@ namespace Google\Cloud\Spanner;
 
 use Google\Cloud\Exception\NotFoundException;
 use Google\Cloud\Iam\Iam;
-use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminApi;
+use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Connection\IamDatabase;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
@@ -524,7 +524,7 @@ class Database
      */
     private function fullyQualifiedDatabaseName()
     {
-        return DatabaseAdminApi::formatDatabaseName(
+        return DatabaseAdminClient::formatDatabaseName(
             $this->projectId,
             $this->instance->name(),
             $this->name

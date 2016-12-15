@@ -19,8 +19,7 @@ namespace Google\Cloud\Spanner;
 
 use Google\Cloud\ClientTrait;
 use Google\Cloud\Exception\NotFoundException;
-use Google\Cloud\Spanner\Admin\AdminClient;
-use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminApi;
+use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Connection\Grpc;
 use Google\Cloud\Spanner\Session\SessionClient;
 use Google\Cloud\Spanner\Session\SimpleSessionPool;
@@ -108,12 +107,12 @@ class SpannerClient
     public function configurations()
     {
         $res = $this->connection->listConfigs([
-            'projectId' => InstanceAdminApi::formatProjectName($this->projectId)
+            'projectId' => InstanceAdminClient::formatProjectName($this->projectId)
         ]);
 
         if (isset($res['instanceConfigs'])) {
             foreach ($res['instanceConfigs'] as $config) {
-                $name = InstanceAdminApi::parseInstanceConfigFromInstanceConfigName($config['name']);
+                $name = InstanceAdminClient::parseInstanceConfigFromInstanceConfigName($config['name']);
                 yield $this->configuration($name, $config);
             }
         }
@@ -170,8 +169,8 @@ class SpannerClient
         ];
 
         $res = $this->connection->createInstance($options + [
-            'name' => InstanceAdminApi::formatInstanceName($this->projectId, $name),
-            'config' => InstanceAdminApi::formatInstanceConfigName($this->projectId, $config->name())
+            'name' => InstanceAdminClient::formatInstanceName($this->projectId, $name),
+            'config' => InstanceAdminClient::formatInstanceConfigName($this->projectId, $config->name())
         ]);
 
         return $this->instance($name);
@@ -250,7 +249,7 @@ class SpannerClient
         if (isset($res['instances'])) {
             foreach ($res['instances'] as $instance) {
                 yield $this->instance(
-                    InstanceAdminApi::parseInstanceFromInstanceName($instance['name']),
+                    InstanceAdminClient::parseInstanceFromInstanceName($instance['name']),
                     $instance
                 );
             }

@@ -18,7 +18,7 @@
 namespace Google\Cloud\Spanner\Session;
 
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
-use Google\Cloud\Spanner\V1\SpannerApi;
+use Google\Cloud\Spanner\V1\SpannerClient;
 
 /**
  * Manage API interactions related to Spanner database sessions.
@@ -77,7 +77,7 @@ class SessionClient
     public function create($instance, $database, array $options = [])
     {
         $res = $this->connection->createSession($options + [
-            'database' => SpannerApi::formatDatabaseName($this->projectId, $instance, $database)
+            'database' => SpannerClient::formatDatabaseName($this->projectId, $instance, $database)
         ]);
 
         $session = null;
@@ -85,9 +85,9 @@ class SessionClient
             $session = new Session(
                 $this->connection,
                 $this->projectId,
-                SpannerApi::parseInstanceFromSessionName($res['name']),
-                SpannerApi::parseDatabaseFromSessionName($res['name']),
-                SpannerApi::parseSessionFromSessionName($res['name'])
+                SpannerClient::parseInstanceFromSessionName($res['name']),
+                SpannerClient::parseDatabaseFromSessionName($res['name']),
+                SpannerClient::parseSessionFromSessionName($res['name'])
             );
         }
 

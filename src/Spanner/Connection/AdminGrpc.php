@@ -20,8 +20,8 @@ namespace Google\Cloud\Spanner\Connection;
 use Google\Auth\CredentialsLoader;
 use Google\Cloud\GrpcRequestWrapper;
 use Google\Cloud\GrpcTrait;
-use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminApi;
-use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminApi;
+use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
+use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\GAX\ApiException;
 use google\spanner\admin\instance\v1\State;
 
@@ -29,9 +29,9 @@ class AdminGrpc implements AdminConnectionInterface
 {
     use GrpcTrait;
 
-    private $instanceAdminApi;
+    private $instanceAdminClient;
 
-    private $databaseAdminApi;
+    private $databaseAdminClient;
 
     /**
      * @param array $config
@@ -44,8 +44,8 @@ class AdminGrpc implements AdminConnectionInterface
 
         $this->wrapper = new GrpcRequestWrapper;
 
-        $this->instanceAdminApi = new InstanceAdminApi($grpcConfig);
-        $this->databaseAdminApi = new DatabaseAdminApi($grpcConfig);
+        $this->instanceAdminClient = new InstanceAdminClient($grpcConfig);
+        $this->databaseAdminClient = new DatabaseAdminClient($grpcConfig);
     }
 
     /**
@@ -53,7 +53,7 @@ class AdminGrpc implements AdminConnectionInterface
      */
     public function listConfigs(array $args = [])
     {
-        return $this->send([$this->instanceAdminApi, 'listInstanceConfigs'], [
+        return $this->send([$this->instanceAdminClient, 'listInstanceConfigs'], [
             $args['projectId'],
             $args
         ]);
@@ -64,7 +64,7 @@ class AdminGrpc implements AdminConnectionInterface
      */
     public function getConfig(array $args = [])
     {
-        return $this->send([$this->instanceAdminApi, 'getInstanceConfig'], [
+        return $this->send([$this->instanceAdminClient, 'getInstanceConfig'], [
             $args['name'],
             $args
         ]);
@@ -75,8 +75,8 @@ class AdminGrpc implements AdminConnectionInterface
      */
     public function listInstances(array $args = [])
     {
-        return $this->send([$this->instanceAdminApi, 'listInstances'], [
-            InstanceAdminApi::formatProjectName($args['projectId']),
+        return $this->send([$this->instanceAdminClient, 'listInstances'], [
+            InstanceAdminClient::formatProjectName($args['projectId']),
             $args
         ]);
     }
@@ -86,7 +86,7 @@ class AdminGrpc implements AdminConnectionInterface
      */
     public function getInstance(array $args = [])
     {
-        return $this->send([$this->instanceAdminApi, 'getInstance'], [
+        return $this->send([$this->instanceAdminClient, 'getInstance'], [
             $args['name'],
             $args
         ]);
@@ -97,7 +97,7 @@ class AdminGrpc implements AdminConnectionInterface
      */
     public function createInstance(array $args = [])
     {
-        return $this->send([$this->instanceAdminApi, 'createInstance'], [
+        return $this->send([$this->instanceAdminClient, 'createInstance'], [
             $args['name'],
             $args['config'],
             $args['displayName'],
@@ -111,7 +111,7 @@ class AdminGrpc implements AdminConnectionInterface
      */
     public function updateInstance(array $args = [])
     {
-        return $this->send([$this->instanceAdminApi, 'updateInstance'], [
+        return $this->send([$this->instanceAdminClient, 'updateInstance'], [
             $args['name'],
             $args['config'],
             $args['displayName'],
@@ -127,7 +127,7 @@ class AdminGrpc implements AdminConnectionInterface
      */
     public function deleteInstance(array $args = [])
     {
-        return $this->send([$this->instanceAdminApi, 'deleteInstance'], [
+        return $this->send([$this->instanceAdminClient, 'deleteInstance'], [
             $args['name'],
             $args
         ]);
@@ -138,7 +138,7 @@ class AdminGrpc implements AdminConnectionInterface
      */
     public function getInstanceIamPolicy(array $args = [])
     {
-        return $this->send([$this->instanceAdminApi, 'getIamPolicy'], [
+        return $this->send([$this->instanceAdminClient, 'getIamPolicy'], [
             $args['resource'],
             $args
         ]);
@@ -149,7 +149,7 @@ class AdminGrpc implements AdminConnectionInterface
      */
     public function setInstanceIamPolicy(array $args = [])
     {
-        return $this->send([$this->instanceAdminApi, 'setIamPolicy'], [
+        return $this->send([$this->instanceAdminClient, 'setIamPolicy'], [
             $args['resource'],
             $args['policy'],
             $args
@@ -161,7 +161,7 @@ class AdminGrpc implements AdminConnectionInterface
      */
     public function testInstanceIamPermissions(array $args = [])
     {
-        return $this->send([$this->instanceAdminApi, 'testIamPermissions'], [
+        return $this->send([$this->instanceAdminClient, 'testIamPermissions'], [
             $args['resource'],
             $args['permissions'],
             $args
@@ -173,7 +173,7 @@ class AdminGrpc implements AdminConnectionInterface
      */
     public function listDatabases(array $args = [])
     {
-        return $this->send([$this->databaseAdminApi, 'listDatabases'], [
+        return $this->send([$this->databaseAdminClient, 'listDatabases'], [
             $args['instance'],
             $args
         ]);
@@ -184,7 +184,7 @@ class AdminGrpc implements AdminConnectionInterface
      */
     public function createDatabase(array $args = [])
     {
-        return $this->send([$this->databaseAdminApi, 'createDatabase'], [
+        return $this->send([$this->databaseAdminClient, 'createDatabase'], [
             $args['instance'],
             $args['createStatement'],
             $args['extraStatements'],
@@ -197,7 +197,7 @@ class AdminGrpc implements AdminConnectionInterface
      */
     public function updateDatabase(array $args = [])
     {
-        return $this->send([$this->databaseAdminApi, 'updateDatabase'], [
+        return $this->send([$this->databaseAdminClient, 'updateDatabase'], [
             $args['name'],
             $args['statements'],
             $args
@@ -209,7 +209,7 @@ class AdminGrpc implements AdminConnectionInterface
      */
     public function dropDatabase(array $args = [])
     {
-        return $this->send([$this->databaseAdminApi, 'dropDatabase'], [
+        return $this->send([$this->databaseAdminClient, 'dropDatabase'], [
             $args['name'],
             $args
         ]);
@@ -220,7 +220,7 @@ class AdminGrpc implements AdminConnectionInterface
      */
     public function getDatabaseDDL(array $args = [])
     {
-        return $this->send([$this->databaseAdminApi, 'getDatabaseDDL'], [
+        return $this->send([$this->databaseAdminClient, 'getDatabaseDDL'], [
             $args['name'],
             $args
         ]);
@@ -231,7 +231,7 @@ class AdminGrpc implements AdminConnectionInterface
      */
     public function getDatabaseIamPolicy(array $args = [])
     {
-        return $this->send([$this->databaseAdminApi, 'getIamPolicy'], [
+        return $this->send([$this->databaseAdminClient, 'getIamPolicy'], [
             $args['resource'],
             $args
         ]);
@@ -242,7 +242,7 @@ class AdminGrpc implements AdminConnectionInterface
      */
     public function setDatabaseIamPolicy(array $args = [])
     {
-        return $this->send([$this->databaseAdminApi, 'setIamPolicy'], [
+        return $this->send([$this->databaseAdminClient, 'setIamPolicy'], [
             $args['resource'],
             $args['policy'],
             $args
@@ -254,7 +254,7 @@ class AdminGrpc implements AdminConnectionInterface
      */
     public function testDatabaseIamPermissions(array $args = [])
     {
-        return $this->send([$this->databaseAdminApi, 'testIamPermissions'], [
+        return $this->send([$this->databaseAdminClient, 'testIamPermissions'], [
             $args['resource'],
             $args['permissions'],
             $args

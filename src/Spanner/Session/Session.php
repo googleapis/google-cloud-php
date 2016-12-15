@@ -19,7 +19,7 @@ namespace Google\Cloud\Spanner\Session;
 
 use Google\Cloud\Exception\NotFoundException;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
-use Google\Cloud\Spanner\V1\SpannerApi;
+use Google\Cloud\Spanner\V1\SpannerClient;
 
 /**
  * Represents and manages a single Cloud Spanner session.
@@ -149,7 +149,7 @@ class Session
      */
     public function name()
     {
-        return SpannerApi::formatSessionName(
+        return SpannerClient::formatSessionName(
             $this->projectId,
             $this->instance,
             $this->database,

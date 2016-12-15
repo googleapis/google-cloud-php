@@ -18,7 +18,7 @@
 namespace Google\Cloud\Tests\Spanner;
 
 use Google\Cloud\Exception\NotFoundException;
-use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminApi;
+use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Configuration;
 use Google\Cloud\Spanner\Connection\AdminConnectionInterface;
 use Prophecy\Argument;
@@ -70,7 +70,7 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
         $info = ['foo' => 'bar'];
 
         $this->adminConnection->getConfig([
-            'name' => InstanceAdminApi::formatInstanceConfigName(self::PROJECT_ID, self::NAME),
+            'name' => InstanceAdminClient::formatInstanceConfigName(self::PROJECT_ID, self::NAME),
             'projectId' => self::PROJECT_ID
         ])->shouldBeCalled()->willReturn($info);
 
@@ -100,7 +100,7 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
         $info = ['foo' => 'bar'];
 
         $this->adminConnection->getConfig([
-            'name' => InstanceAdminApi::formatInstanceConfigName(self::PROJECT_ID, self::NAME),
+            'name' => InstanceAdminClient::formatInstanceConfigName(self::PROJECT_ID, self::NAME),
             'projectId' => self::PROJECT_ID
         ])->shouldBeCalledTimes(1)->willReturn($info);
 
