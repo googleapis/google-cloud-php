@@ -18,6 +18,10 @@
  * This file was generated from the file
  * https://github.com/google/googleapis/blob/master/google/logging/v2/logging.proto
  * and updates to that file get reflected here through a refresh process.
+ *
+ * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
+ * more frequently than those which have been declared beta or 1.0, including changes which break
+ * backwards compatibility.
  */
 
 namespace Google\Cloud\Logging\V2;
@@ -34,24 +38,28 @@ use google\logging\v2\DeleteLogRequest;
 use google\logging\v2\ListLogEntriesRequest;
 use google\logging\v2\ListMonitoredResourceDescriptorsRequest;
 use google\logging\v2\LogEntry;
-use google\logging\v2\LoggingServiceV2Client;
+use google\logging\v2\LoggingServiceV2Client as LoggingServiceV2GrpcClient;
 use google\logging\v2\WriteLogEntriesRequest;
 use google\logging\v2\WriteLogEntriesRequest\LabelsEntry;
 
 /**
  * Service Description: Service for ingesting and querying logs.
  *
+ * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
+ * more frequently than those which have been declared beta or 1.0, including changes which break
+ * backwards compatibility.
+ *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
  *
  * ```
  * try {
- *     $loggingServiceV2Api = new LoggingServiceV2Api();
- *     $formattedLogName = LoggingServiceV2Api::formatLogName("[PROJECT]", "[LOG]");
- *     $loggingServiceV2Api->deleteLog($formattedLogName);
+ *     $loggingServiceV2Client = new LoggingServiceV2Client();
+ *     $formattedLogName = LoggingServiceV2Client::formatLogName("[PROJECT]", "[LOG]");
+ *     $loggingServiceV2Client->deleteLog($formattedLogName);
  * } finally {
- *     if (isset($loggingServiceV2Api)) {
- *         $loggingServiceV2Api->close();
+ *     if (isset($loggingServiceV2Client)) {
+ *         $loggingServiceV2Client->close();
  *     }
  * }
  * ```
@@ -61,7 +69,7 @@ use google\logging\v2\WriteLogEntriesRequest\LabelsEntry;
  * a parse method to extract the individual identifiers contained within names that are
  * returned.
  */
-class LoggingServiceV2Api
+class LoggingServiceV2Client
 {
     /**
      * The default address of the service.
@@ -78,11 +86,10 @@ class LoggingServiceV2Api
      */
     const DEFAULT_TIMEOUT_MILLIS = 30000;
 
-    const _GAX_VERSION = '0.1.0';
-    const _CODEGEN_NAME = 'GAPIC';
-    const _CODEGEN_VERSION = '0.0.0';
+    const _CODEGEN_NAME = 'gapic';
+    const _CODEGEN_VERSION = '0.1.0';
 
-    private static $parentNameTemplate;
+    private static $projectNameTemplate;
     private static $logNameTemplate;
 
     private $grpcCredentialsHelper;
@@ -93,11 +100,11 @@ class LoggingServiceV2Api
 
     /**
      * Formats a string containing the fully-qualified path to represent
-     * a parent resource.
+     * a project resource.
      */
-    public static function formatParentName($project)
+    public static function formatProjectName($project)
     {
-        return self::getParentNameTemplate()->render([
+        return self::getProjectNameTemplate()->render([
             'project' => $project,
         ]);
     }
@@ -116,11 +123,11 @@ class LoggingServiceV2Api
 
     /**
      * Parses the project from the given fully-qualified path which
-     * represents a parent resource.
+     * represents a project resource.
      */
-    public static function parseProjectFromParentName($parentName)
+    public static function parseProjectFromProjectName($projectName)
     {
-        return self::getParentNameTemplate()->match($parentName)['project'];
+        return self::getProjectNameTemplate()->match($projectName)['project'];
     }
 
     /**
@@ -141,13 +148,13 @@ class LoggingServiceV2Api
         return self::getLogNameTemplate()->match($logName)['log'];
     }
 
-    private static function getParentNameTemplate()
+    private static function getProjectNameTemplate()
     {
-        if (self::$parentNameTemplate == null) {
-            self::$parentNameTemplate = new PathTemplate('projects/{project}');
+        if (self::$projectNameTemplate == null) {
+            self::$projectNameTemplate = new PathTemplate('projects/{project}');
         }
 
-        return self::$parentNameTemplate;
+        return self::$projectNameTemplate;
     }
 
     private static function getLogNameTemplate()
@@ -233,7 +240,7 @@ class LoggingServiceV2Api
             'retryingOverride' => null,
             'timeoutMillis' => self::DEFAULT_TIMEOUT_MILLIS,
             'appName' => 'gax',
-            'appVersion' => self::_GAX_VERSION
+            'appVersion' => AgentHeaderDescriptor::getGaxVersion(),
         ];
         $options = array_merge($defaultOptions, $options);
 
@@ -242,7 +249,7 @@ class LoggingServiceV2Api
             'clientVersion' => $options['appVersion'],
             'codeGenName' => self::_CODEGEN_NAME,
             'codeGenVersion' => self::_CODEGEN_VERSION,
-            'gaxVersion' => self::_GAX_VERSION,
+            'gaxVersion' => AgentHeaderDescriptor::getGaxVersion(),
             'phpVersion' => phpversion(),
         ]);
 
@@ -258,8 +265,6 @@ class LoggingServiceV2Api
             $this->descriptors[$method]['pageStreamingDescriptor'] = $pageStreamingDescriptor;
         }
 
-        // TODO load the client config in a more package-friendly way
-        // https://github.com/googleapis/toolkit/issues/332
         $clientConfigJsonString = file_get_contents(__DIR__.'/resources/logging_service_v2_client_config.json');
         $clientConfig = json_decode($clientConfigJsonString, true);
         $this->defaultCallSettings =
@@ -274,14 +279,14 @@ class LoggingServiceV2Api
         $this->scopes = $options['scopes'];
 
         $createStubOptions = [];
-        if (!empty($options['sslCreds'])) {
+        if (array_key_exists('sslCreds', $options)) {
             $createStubOptions['sslCreds'] = $options['sslCreds'];
         }
         $grpcCredentialsHelperOptions = array_diff_key($options, $defaultOptions);
         $this->grpcCredentialsHelper = new GrpcCredentialsHelper($this->scopes, $grpcCredentialsHelperOptions);
 
         $createLoggingServiceV2StubFunction = function ($hostname, $opts) {
-            return new LoggingServiceV2Client($hostname, $opts);
+            return new LoggingServiceV2GrpcClient($hostname, $opts);
         };
         $this->loggingServiceV2Stub = $this->grpcCredentialsHelper->createStub(
             $createLoggingServiceV2StubFunction,
@@ -292,28 +297,36 @@ class LoggingServiceV2Api
     }
 
     /**
-     * Deletes a log and all its log entries.
-     * The log will reappear if it receives new entries.
+     * Deletes all the log entries in a log.
+     * The log reappears if it receives new entries.
      *
      * Sample code:
      * ```
      * try {
-     *     $loggingServiceV2Api = new LoggingServiceV2Api();
-     *     $formattedLogName = LoggingServiceV2Api::formatLogName("[PROJECT]", "[LOG]");
-     *     $loggingServiceV2Api->deleteLog($formattedLogName);
+     *     $loggingServiceV2Client = new LoggingServiceV2Client();
+     *     $formattedLogName = LoggingServiceV2Client::formatLogName("[PROJECT]", "[LOG]");
+     *     $loggingServiceV2Client->deleteLog($formattedLogName);
      * } finally {
-     *     if (isset($loggingServiceV2Api)) {
-     *         $loggingServiceV2Api->close();
+     *     if (isset($loggingServiceV2Client)) {
+     *         $loggingServiceV2Client->close();
      *     }
      * }
      * ```
      *
-     * @param string $logName      Required. The resource name of the log to delete.  Example:
-     *                             `"projects/my-project/logs/syslog"`.
-     * @param array  $optionalArgs {
-     *                             Optional.
+     * @param string $logName Required. The resource name of the log to delete:
      *
-     *     @type Google\GAX\RetrySettings $retrySettings
+     *     "projects/[PROJECT_ID]/logs/[LOG_ID]"
+     *     "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
+     *
+     * `[LOG_ID]` must be URL-encoded. For example,
+     * `"projects/my-project-id/logs/syslog"`,
+     * `"organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity"`.
+     * For more information about log names, see
+     * [LogEntry][google.logging.v2.LogEntry].
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
      *     @type int $timeoutMillis
@@ -321,7 +334,7 @@ class LoggingServiceV2Api
      *          is not set.
      * }
      *
-     * @throws Google\GAX\ApiException if the remote call fails
+     * @throws \Google\GAX\ApiException if the remote call fails
      */
     public function deleteLog($logName, $optionalArgs = [])
     {
@@ -351,45 +364,61 @@ class LoggingServiceV2Api
      * Sample code:
      * ```
      * try {
-     *     $loggingServiceV2Api = new LoggingServiceV2Api();
+     *     $loggingServiceV2Client = new LoggingServiceV2Client();
      *     $entries = [];
-     *     $response = $loggingServiceV2Api->writeLogEntries($entries);
+     *     $response = $loggingServiceV2Client->writeLogEntries($entries);
      * } finally {
-     *     if (isset($loggingServiceV2Api)) {
-     *         $loggingServiceV2Api->close();
+     *     if (isset($loggingServiceV2Client)) {
+     *         $loggingServiceV2Client->close();
      *     }
      * }
      * ```
      *
-     * @param LogEntry[] $entries Required. The log entries to write. The log entries must have values for
-     *                            all required fields.
+     * @param LogEntry[] $entries Required. The log entries to write. Values supplied for the fields
+     *                            `log_name`, `resource`, and `labels` in this `entries.write` request are
+     *                            added to those log entries that do not provide their own values for the
+     *                            fields.
      *
-     * To improve throughput and to avoid exceeding the quota limit for calls
-     * to `entries.write`, use this field to write multiple log entries at once
-     * rather than  // calling this method for each log entry.
+     * To improve throughput and to avoid exceeding the
+     * [quota limit](/logging/quota-policy) for calls to `entries.write`,
+     * you should write multiple log entries at once rather than
+     * calling this method for each individual log entry.
      * @param array $optionalArgs {
      *                            Optional.
      *
      *     @type string $logName
-     *          Optional. A default log resource name for those log entries in `entries`
-     *          that do not specify their own `logName`.  Example:
-     *          `"projects/my-project/logs/syslog"`.  See
+     *          Optional. A default log resource name that is assigned to all log entries
+     *          in `entries` that do not specify a value for `log_name`:
+     *
+     *              "projects/[PROJECT_ID]/logs/[LOG_ID]"
+     *              "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
+     *
+     *          `[LOG_ID]` must be URL-encoded. For example,
+     *          `"projects/my-project-id/logs/syslog"` or
+     *          `"organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity"`.
+     *          For more information about log names, see
      *          [LogEntry][google.logging.v2.LogEntry].
      *     @type MonitoredResource $resource
-     *          Optional. A default monitored resource for those log entries in `entries`
-     *          that do not specify their own `resource`.
+     *          Optional. A default monitored resource object that is assigned to all log
+     *          entries in `entries` that do not specify a value for `resource`. Example:
+     *
+     *              { "type": "gce_instance",
+     *                "labels": {
+     *                  "zone": "us-central1-a", "instance_id": "00000000000000000000" }}
+     *
+     *          See [LogEntry][google.logging.v2.LogEntry].
      *     @type array $labels
-     *          Optional. User-defined `key:value` items that are added to
-     *          the `labels` field of each log entry in `entries`, except when a log
-     *          entry specifies its own `key:value` item with the same key.
-     *          Example: `{ "size": "large", "color":"red" }`
+     *          Optional. Default labels that are added to the `labels` field of all log
+     *          entries in `entries`. If a log entry already has a label with the same key
+     *          as a label in this parameter, then the log entry's label is not changed.
+     *          See [LogEntry][google.logging.v2.LogEntry].
      *     @type bool $partialSuccess
      *          Optional. Whether valid entries should be written even if some other
      *          entries fail due to INVALID_ARGUMENT or PERMISSION_DENIED errors. If any
      *          entry is not written, the response status will be the error associated
      *          with one of the failed entries and include error details in the form of
      *          WriteLogEntriesPartialErrors.
-     *     @type Google\GAX\RetrySettings $retrySettings
+     *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
      *     @type int $timeoutMillis
@@ -397,9 +426,9 @@ class LoggingServiceV2Api
      *          is not set.
      * }
      *
-     * @return google\logging\v2\WriteLogEntriesResponse
+     * @return \google\logging\v2\WriteLogEntriesResponse
      *
-     * @throws Google\GAX\ApiException if the remote call fails
+     * @throws \Google\GAX\ApiException if the remote call fails
      */
     public function writeLogEntries($entries, $optionalArgs = [])
     {
@@ -446,28 +475,39 @@ class LoggingServiceV2Api
      * Sample code:
      * ```
      * try {
-     *     $loggingServiceV2Api = new LoggingServiceV2Api();
-     *     $projectIds = [];
-     *     foreach ($loggingServiceV2Api->listLogEntries($projectIds) as $element) {
+     *     $loggingServiceV2Client = new LoggingServiceV2Client();
+     *     $resourceNames = [];
+     *     foreach ($loggingServiceV2Client->listLogEntries($resourceNames) as $element) {
      *         // doThingsWith(element);
      *     }
      * } finally {
-     *     if (isset($loggingServiceV2Api)) {
-     *         $loggingServiceV2Api->close();
+     *     if (isset($loggingServiceV2Client)) {
+     *         $loggingServiceV2Client->close();
      *     }
      * }
      * ```
      *
-     * @param string[] $projectIds   Required. One or more project IDs or project numbers from which to retrieve
-     *                               log entries.  Examples of a project ID: `"my-project-1A"`, `"1234567890"`.
-     * @param array    $optionalArgs {
-     *                               Optional.
+     * @param string[] $resourceNames Required. One or more cloud resources from which to retrieve log
+     *                                entries:
      *
+     *     "projects/[PROJECT_ID]"
+     *     "organizations/[ORGANIZATION_ID]"
+     *
+     * Projects listed in the `project_ids` field are added to this list.
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type string[] $projectIds
+     *          Deprecated. One or more project identifiers or project numbers from which
+     *          to retrieve log entries.  Example: `"my-project-1A"`. If
+     *          present, these project identifiers are converted to resource format and
+     *          added to the list of resources in `resourceNames`. Callers should use
+     *          `resourceNames` rather than this parameter.
      *     @type string $filter
-     *          Optional. An [advanced logs filter](/logging/docs/view/advanced_filters).
-     *          The filter is compared against all log entries in the projects specified by
-     *          `projectIds`.  Only entries that match the filter are retrieved.  An empty
-     *          filter matches all log entries.
+     *          Optional. A filter that chooses which log entries to return.  See [Advanced
+     *          Logs Filters](/logging/docs/view/advanced_filters).  Only log entries that
+     *          match the filter are returned.  An empty filter matches all log entries.
+     *          The maximum length of the filter is 20000 characters.
      *     @type string $orderBy
      *          Optional. How the results should be sorted.  Presently, the only permitted
      *          values are `"timestamp asc"` (default) and `"timestamp desc"`. The first
@@ -484,7 +524,7 @@ class LoggingServiceV2Api
      *          If no page token is specified (the default), the first page
      *          of values will be returned. Any page token used here must have
      *          been generated by a previous call to the API.
-     *     @type Google\GAX\RetrySettings $retrySettings
+     *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
      *     @type int $timeoutMillis
@@ -492,15 +532,20 @@ class LoggingServiceV2Api
      *          is not set.
      * }
      *
-     * @return Google\GAX\PagedListResponse
+     * @return \Google\GAX\PagedListResponse
      *
-     * @throws Google\GAX\ApiException if the remote call fails
+     * @throws \Google\GAX\ApiException if the remote call fails
      */
-    public function listLogEntries($projectIds, $optionalArgs = [])
+    public function listLogEntries($resourceNames, $optionalArgs = [])
     {
         $request = new ListLogEntriesRequest();
-        foreach ($projectIds as $elem) {
-            $request->addProjectIds($elem);
+        foreach ($resourceNames as $elem) {
+            $request->addResourceNames($elem);
+        }
+        if (isset($optionalArgs['projectIds'])) {
+            foreach ($optionalArgs['projectIds'] as $elem) {
+                $request->addProjectIds($elem);
+            }
         }
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
@@ -537,14 +582,14 @@ class LoggingServiceV2Api
      * Sample code:
      * ```
      * try {
-     *     $loggingServiceV2Api = new LoggingServiceV2Api();
+     *     $loggingServiceV2Client = new LoggingServiceV2Client();
      *
-     *     foreach ($loggingServiceV2Api->listMonitoredResourceDescriptors() as $element) {
+     *     foreach ($loggingServiceV2Client->listMonitoredResourceDescriptors() as $element) {
      *         // doThingsWith(element);
      *     }
      * } finally {
-     *     if (isset($loggingServiceV2Api)) {
-     *         $loggingServiceV2Api->close();
+     *     if (isset($loggingServiceV2Client)) {
+     *         $loggingServiceV2Client->close();
      *     }
      * }
      * ```
@@ -561,7 +606,7 @@ class LoggingServiceV2Api
      *          If no page token is specified (the default), the first page
      *          of values will be returned. Any page token used here must have
      *          been generated by a previous call to the API.
-     *     @type Google\GAX\RetrySettings $retrySettings
+     *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
      *     @type int $timeoutMillis
@@ -569,9 +614,9 @@ class LoggingServiceV2Api
      *          is not set.
      * }
      *
-     * @return Google\GAX\PagedListResponse
+     * @return \Google\GAX\PagedListResponse
      *
-     * @throws Google\GAX\ApiException if the remote call fails
+     * @throws \Google\GAX\ApiException if the remote call fails
      */
     public function listMonitoredResourceDescriptors($optionalArgs = [])
     {

@@ -19,6 +19,9 @@ namespace Google\Cloud\Tests\System\BigQuery;
 
 use Google\Cloud\BigQuery\Job;
 
+/**
+ * @group bigquery
+ */
 class ManageJobsTest extends BigQueryTestCase
 {
     public function testListJobs()

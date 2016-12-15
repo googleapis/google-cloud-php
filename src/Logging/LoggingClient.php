@@ -49,6 +49,9 @@ use Psr\Cache\CacheItemPoolInterface;
  * Please take care in installing the same version of these libraries that are
  * outlined in the project's composer.json require-dev keyword.
  *
+ * NOTE: Support for gRPC is currently at an Alpha quality level, meaning it is still
+ * a work in progress and is more likely to get backwards-incompatible updates.
+ *
  * Example:
  * ```
  * use Google\Cloud\ServiceBuilder;
@@ -130,7 +133,7 @@ class LoggingClient
      *
      * Example:
      * ```
-     * $logging->createSink('my-sink', 'storage.googleapis.com/my-bucket');
+     * $sink = $logging->createSink('my-sink', 'storage.googleapis.com/my-bucket');
      * ```
      *
      * @codingStandardsIgnoreStart
@@ -192,7 +195,7 @@ class LoggingClient
      * $sinks = $logging->sinks();
      *
      * foreach ($sinks as $sink) {
-     *     echo $sink->name();
+     *     echo $sink->name() . PHP_EOL;
      * }
      * ```
      *
@@ -231,7 +234,10 @@ class LoggingClient
      *
      * Example:
      * ```
-     * $logging->createMetric('my-metric', 'logName = projects/my-project/logs/my-log');
+     * $metric = $logging->createMetric(
+     *     'my-metric',
+     *     'logName = projects/my-project/logs/my-log'
+     * );
      * ```
      *
      * @codingStandardsIgnoreStart
@@ -285,7 +291,7 @@ class LoggingClient
      * $metrics = $logging->metrics();
      *
      * foreach ($metrics as $metric) {
-     *     echo $metric->name();
+     *     echo $metric->name() . PHP_EOL;
      * }
      * ```
      *
@@ -327,7 +333,7 @@ class LoggingClient
      * $entries = $logging->entries();
      *
      * foreach ($entries as $entry) {
-     *     echo $entry->info()['textPayload'];
+     *     echo $entry->info()['textPayload'] . PHP_EOL;
      * }
      * ```
      *
@@ -338,7 +344,7 @@ class LoggingClient
      * ]);
      *
      * foreach ($entries as $entry) {
-     *     echo $entry->info()['textPayload'];
+     *     echo $entry->info()['textPayload'] . PHP_EOL;
      * }
      * ```
      *
@@ -352,6 +358,10 @@ class LoggingClient
      *     @type string[] $projectIds A list of projectIds to fetch
      *           entries from in addition to entries found in the project bound
      *           to this client.
+     *     @type string[] $resourceNames One or more cloud resources from which
+     *           to retrieve log entries. Projects listed in projectIds are
+     *           added to this list.
+     *           Example: "projects/my-project-1A", "projects/1234567890".
      *     @type string $filter An [advanced logs filter](https://cloud.google.com/logging/docs/view/advanced_filters).
      *     @type string $orderBy How the results should be sorted. Presently,
      *           the only permitted values are `timestamp asc` and
@@ -365,10 +375,17 @@ class LoggingClient
     {
         $options['pageToken'] = null;
 
+        $resourceNames = ['projects/' . $this->projectId];
         if (isset($options['projectIds'])) {
-            $options['projectIds'] = array_merge([$this->projectId], $options['projectIds']);
+            foreach ($options['projectIds'] as $projectId) {
+                  $resourceNames[] = 'projects/' . $projectId;
+            }
+            unset($options['projectIds']);
+        }
+        if (isset($options['resourceNames'])) {
+            $options['resourceNames'] = array_merge($resourceNames, $options['projectIds']);
         } else {
-            $options['projectIds'] = [$this->projectId];
+            $options['resourceNames'] = $resourceNames;
         }
 
         do {
@@ -392,26 +409,37 @@ class LoggingClient
      *
      * Example:
      * ```
-     * $psrLogger = $logging->psrLogger('my-log', [
-     *     'type' => 'gcs_bucket',
-     *     'labels' => [
-     *         'bucket_name' => 'my-bucket'
-     *     ]
-     * ]);
-     * $psrLogger->alert('an alert!');
+     * $psrLogger = $logging->psrLogger('my-log');
      * ```
      *
      * @codingStandardsIgnoreStart
      * @param string $name The name of the log to write entries to.
-     * @param array $resource The
-     *        [monitored resource](https://cloud.google.com/logging/docs/api/reference/rest/Shared.Types/MonitoredResource)
-     *        to associate log entries with.
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type string $messageKey The key in the `jsonPayload` used to contain
+     *           the logged message. **Defaults to** `message`.
+     *     @type array $resource The
+     *           [monitored resource](https://cloud.google.com/logging/docs/api/reference/rest/Shared.Types/MonitoredResource)
+     *           to associate log entries with. **Defaults to** type global.
+     *     @type array $labels A set of user-defined (key, value) data that
+     *           provides additional information about the log entry.
+     * }
      * @return PsrLogger
      * @codingStandardsIgnoreEnd
      */
-    public function psrLogger($name, array $resource)
+    public function psrLogger($name, array $options = [])
     {
-        return new PsrLogger($this->logger($name), $resource);
+        $messageKey = null;
+
+        if (isset($options['messageKey'])) {
+            $messageKey = $options['messageKey'];
+            unset($options['messageKey']);
+        }
+
+        return $messageKey
+            ? new PsrLogger($this->logger($name, $options), $messageKey)
+            : new PsrLogger($this->logger($name, $options));
     }
 
     /**
@@ -420,20 +448,30 @@ class LoggingClient
      * Example:
      * ```
      * $logger = $logging->logger('my-log');
-     * $entry = $logger->entry('my-data', [
-     *     'type' => 'gcs_bucket',
-     *     'labels' => [
-     *         'bucket_name' => 'my-bucket'
-     *     ]
-     * ]);
-     * $logger->write($entry);
      * ```
      *
+     * @codingStandardsIgnoreStart
      * @param string $name The name of the log to write entries to.
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type array $resource The
+     *           [monitored resource](https://cloud.google.com/logging/docs/api/reference/rest/Shared.Types/MonitoredResource)
+     *           to associate log entries with. **Defaults to** type global.
+     *     @type array $labels A set of user-defined (key, value) data that
+     *           provides additional information about the log entry.
+     * }
+     * @codingStandardsIgnoreEnd
      * @return Logger
      */
-    public function logger($name)
+    public function logger($name, array $options = [])
     {
-        return new Logger($this->connection, $name, $this->projectId);
+        return new Logger(
+            $this->connection,
+            $name,
+            $this->projectId,
+            isset($options['resource']) ? $options['resource'] : null,
+            isset($options['labels']) ? $options['labels'] : null
+        );
     }
 }

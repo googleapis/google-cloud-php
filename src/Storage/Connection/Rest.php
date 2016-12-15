@@ -46,9 +46,13 @@ class Rest implements ConnectionInterface
      */
     public function __construct(array $config = [])
     {
+        $config += [
+            'serviceDefinitionPath' => __DIR__ . '/ServiceDefinition/storage-v1.json'
+        ];
+
         $this->setRequestWrapper(new RequestWrapper($config));
         $this->setRequestBuilder(new RequestBuilder(
-            __DIR__ . '/ServiceDefinition/storage-v1.json',
+            $config['serviceDefinitionPath'],
             self::BASE_URI
         ));
     }

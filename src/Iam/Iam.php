@@ -28,13 +28,28 @@ namespace Google\Cloud\Iam;
  *
  * Policies can be created using the {@see Google\Cloud\Iam\PolicyBuilder} to
  * help ensure their validity.
+ *
+ * Example:
+ * ```
+ * // IAM policies are obtained via resources which implement IAM.
+ * // In this example, we'll use PubSub topics to demonstrate
+ * // how IAM politices are managed.
+ *
+ * use Google\Cloud\ServiceBuilder;
+ *
+ * $cloud = new ServiceBuilder;
+ * $pubsub = $cloud->pubsub();
+ * $topic = $pubsub->topic('my-new-topic');
+ *
+ * $iam = $topic->iam();
+ * ```
  */
 class Iam
 {
     /**
      * @var IamConnectionInterface
      */
-    private $connection;
+    protected $connection;
 
     /**
      * @var string
@@ -65,8 +80,7 @@ class Iam
      *
      * Example:
      * ```
-     * $topic = $pubsub->topic('my-topic-name');
-     * $policy = $topic->iam()->policy();
+     * $policy = $iam->policy();
      * ```
      *
      * @param  array $options Configuration Options
@@ -89,22 +103,18 @@ class Iam
      *
      * Example:
      * ```
-     * $topic = $pubsub->topic('my-topic-name');
-     *
-     * $oldPolicy = $topic->iam()->policy();
+     * $oldPolicy = $iam->policy();
      * $oldPolicy['bindings'][0]['members'] = 'user:test@example.com';
      *
-     * $policy = $topic->iam()->setPolicy($oldPolicy);
+     * $policy = $iam->setPolicy($oldPolicy);
      * ```
      *
      * @param  array $policy A new policy array
      * @param  array $options Configuration Options
      * @return array An array of policy data
      */
-    public function setPolicy(
-        array $policy,
-        array $options = []
-    ) {
+    public function setPolicy(array $policy, array $options = [])
+    {
         return $this->policy = $this->connection->setPolicy($options + [
             'policy' => $policy,
             'resource' => $this->resource
@@ -121,9 +131,7 @@ class Iam
      *
      * Example:
      * ```
-     * $topic = $pubsub->topic('my-topic-name');
-     *
-     * $allowedPermissions = $topic->iam()->testPermissions([
+     * $allowedPermissions = $iam->testPermissions([
      *     'pubsub.topics.publish',
      *     'pubsub.topics.attachSubscription'
      * ]);
@@ -146,8 +154,7 @@ class Iam
      *
      * Example:
      * ```
-     * $topic = $pubsub->topic('my-topic-name');
-     * $topic->iam()->reload();
+     * $policy = $iam->reload();
      * ```
      *
      * @param  array $options Configuration Options

@@ -30,11 +30,6 @@ use Google\Cloud\Logging\Connection\ConnectionInterface;
  * $cloud = new ServiceBuilder();
  * $logging = $cloud->logging();
  *
- * $logging->createSink('my-sink', 'storage.googleapis.com/my-bucket');
- * ```
- *
- * ```
- * // To use an existing sink:
  * $sink = $logging->sink('my-sink');
  * ```
  */
@@ -43,7 +38,7 @@ class Sink
     /**
      * @var ConnectionInterface Represents a connection to Stackdriver Logging.
      */
-    private $connection;
+    protected $connection;
 
     /**
      * @var string The sink's formatted name used in API requests.
@@ -75,7 +70,9 @@ class Sink
      *
      * Example:
      * ```
-     * $sink->exists();
+     * if ($sink->exists()) {
+     *     echo "Sink exists!";
+     * }
      * ```
      *
      * @param array $options [optional] Configuration Options

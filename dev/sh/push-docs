@@ -2,12 +2,15 @@
 
 set -ev
 
-function pushDocs () {
+function generateDocs () {
   echo "doc dir before generation:"
   find docs
   composer google-cloud docs
   echo "doc dir after generation:"
   find docs
+}
+
+function pushDocs () {
   git submodule add -q -f -b gh-pages https://${GH_OAUTH_TOKEN}@github.com/${GH_OWNER}/${GH_PROJECT_NAME} ghpages
   mkdir -p ghpages/json/${1}
   cp -R docs/json/master/* ghpages/json/${1}

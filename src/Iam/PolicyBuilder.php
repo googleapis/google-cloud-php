@@ -172,7 +172,7 @@ class PolicyBuilder
      *
      * Example:
      * ```
-     * $builder->result();
+     * $policy = $builder->result();
      * ```
      *
      * @return array An array of policy data

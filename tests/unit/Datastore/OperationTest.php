@@ -37,7 +37,7 @@ class OperationTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->mapper = new EntityMapper('foo', true);
+        $this->mapper = new EntityMapper('foo', true, false);
         $this->operation = new OperationStub($this->connection->reveal(), 'foo', '', $this->mapper);
     }
 

@@ -128,7 +128,7 @@ class VisionClient
      *     'maxResults' => [
      *         'FACE_DETECTION' => 1
      *     ]
-     * ])
+     * ]);
      * ```
      *
      * @param  resource|string|StorageObject $image An image to configure with
@@ -233,11 +233,12 @@ class VisionClient
      * $images = [];
      *
      * $familyPhotoResource = fopen(__DIR__ .'/assets/family-photo.jpg', 'r');
+     * $eiffelTowerResource = fopen(__DIR__ .'/assets/eiffel-tower.jpg', 'r');
+     *
      * $images[] = $vision->image($familyPhotoResource, [
      *     'FACE_DETECTION'
      * ]);
      *
-     * $eiffelTowerResource = fopen(__DIR__ .'/assets/eiffel-tower.jpg', 'r');
      * $images[] = $vision->image($eiffelTowerResource, [
      *     'LANDMARK_DETECTION'
      * ]);

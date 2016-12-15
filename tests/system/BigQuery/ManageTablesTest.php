@@ -19,6 +19,9 @@ namespace Google\Cloud\Tests\System\BigQuery;
 
 use Google\Cloud\ExponentialBackoff;
 
+/**
+ * @group bigquery
+ */
 class ManageTablesTest extends BigQueryTestCase
 {
     public function testListTables()

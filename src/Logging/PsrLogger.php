@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Logging;
 
+use Monolog\Formatter\NormalizerFormatter;
+use Monolog\Processor\PsrLogMessageProcessor;
 use Psr\Log\InvalidArgumentException;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
@@ -31,12 +33,7 @@ use Psr\Log\LogLevel;
  * $cloud = new ServiceBuilder();
  * $logging = $cloud->logging();
  *
- * $psrLogger = $logging->psrLogger('my-log', [
- *     'type' => 'gcs_bucket',
- *     'labels' => [
- *         'bucket_name' => 'my-bucket'
- *     ]
- * ]);
+ * $psrLogger = $logging->psrLogger('my-log');
  * ```
  */
 class PsrLogger implements LoggerInterface
@@ -44,25 +41,22 @@ class PsrLogger implements LoggerInterface
     /**
      * @var Logger The logger used to write entries.
      */
-    private $logger;
+    protected $logger;
 
     /**
-     * @var array A monitored resource.
+     * @var string The key to use for messages logged in the `jsonPayload`.
      */
-    private $resource;
+    private $messageKey;
 
     /**
-     * @codingStandardsIgnoreStart
      * @param Logger $logger The logger used to write entries.
-     * @param array $resource The
-     *        [monitored resource](https://cloud.google.com/logging/docs/api/reference/rest/Shared.Types/MonitoredResource)
-     *        to associate log entries with.
-     * @codingStandardsIgnoreEnd
+     * @param string $messageKey The key in the `jsonPayload` used to contain
+     *        the logged message. **Defaults to** `message`.
      */
-    public function __construct(Logger $logger, array $resource)
+    public function __construct(Logger $logger, $messageKey = 'message')
     {
         $this->logger = $logger;
-        $this->resource = $resource;
+        $this->messageKey = $messageKey;
     }
 
     /**
@@ -211,19 +205,54 @@ class PsrLogger implements LoggerInterface
      * $psrLogger->log(Logger::ALERT, 'alert message');
      * ```
      *
+     * ```
+     * // Write a log entry using the context array with placeholders.
+     * use Google\Cloud\Logging\Logger;
+     *
+     * $psrLogger->log(Logger::ALERT, 'alert: {message}', [
+     *     'message' => 'my alert message'
+     * ]);
+     * ```
+     *
+     * ```
+     * // Log information regarding an HTTP request
+     * use Google\Cloud\Logging\Logger;
+     *
+     * $psrLogger->log(Logger::ALERT, 'alert message', [
+     *     'stackdriverOptions' => [
+     *         'httpRequest' => [
+     *             'requestMethod' => 'GET'
+     *         ]
+     *     ]
+     * ]);
+     * ```
+     *
      * @codingStandardsIgnoreStart
      * @param string|int $level The severity of the log entry.
      * @param string $message The message to log.
      * @param array $context {
-     *     @type array $httpRequest Information about the HTTP request
-     *           associated with this log entry, if applicable. Please see
+     *     Context is an associative array which can include placeholders to be
+     *     used in the `$message`. Placeholders must be delimited with a single
+     *     opening brace `{` and a single closing brace `}`. The context will be
+     *     added as additional information on the `jsonPayload`. Please note
+     *     that the key `stackdriverOptions` is reserved for logging Google
+     *     Stackdriver specific data.
+     *
+     *     @type array $stackdriverOptions['resource'] The
+     *           [monitored resource](https://cloud.google.com/logging/docs/api/reference/rest/Shared.Types/MonitoredResource)
+     *           to associate this log entry with. **Defaults to** type global.
+     *     @type array $stackdriverOptions['httpRequest'] Information about the
+     *           HTTP request associated with this log entry, if applicable.
+     *           Please see
      *           [the API docs](https://cloud.google.com/logging/docs/api/reference/rest/Shared.Types/LogEntry#httprequest)
      *           for more information.
-     *     @type array $labels A set of user-defined (key, value) data that
-     *           provides additional information about the log entry.
-     *     @type array $operation Additional information about a potentially
-     *           long-running operation with which a log entry is associated.
-     *           Please see [the API docs](https://cloud.google.com/logging/docs/api/reference/rest/Shared.Types/LogEntry#logentryoperation)
+     *     @type array $stackdriverOptions['labels'] A set of user-defined
+     *           (key, value) data that provides additional information about
+     *           the log entry.
+     *     @type array $stackdriverOptions['operation'] Additional information
+     *           about a potentially long-running operation with which a log
+     *           entry is associated. Please see
+     *           [the API docs](https://cloud.google.com/logging/docs/api/reference/rest/Shared.Types/LogEntry#logentryoperation)
      *           for more information.
      * }
      * @throws InvalidArgumentException
@@ -231,18 +260,31 @@ class PsrLogger implements LoggerInterface
      */
     public function log($level, $message, array $context = [])
     {
-        $message = (string) $message;
         $this->validateLogLevel($level);
+        $options = [];
 
         if (isset($context['exception']) && $context['exception'] instanceof \Exception) {
-            $message .= ' : ' . (string) $context['exception'];
-            unset($context['exception']);
+            $context['exception'] = (string) $context['exception'];
         }
 
+        if (isset($context['stackdriverOptions'])) {
+            $options = $context['stackdriverOptions'];
+            unset($context['stackdriverOptions']);
+        }
+
+        $formatter = new NormalizerFormatter();
+        $processor = new PsrLogMessageProcessor();
+        $processedData = $processor([
+            'message' => (string) $message,
+            'context' => $formatter->format($context)
+        ]);
+        $jsonPayload = [$this->messageKey => $processedData['message']];
+
         $entry = $this->logger->entry(
-            $message,
-            $this->resource,
-            $context + ['severity' => $level]
+            $jsonPayload + $processedData['context'],
+            $options + [
+                'severity' => $level
+            ]
         );
 
         $this->logger->write($entry);

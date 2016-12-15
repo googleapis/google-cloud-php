@@ -52,6 +52,9 @@ use Psr\Cache\CacheItemPoolInterface;
  * Please take care in installing the same version of these libraries that are
  * outlined in the project's composer.json require-dev keyword.
  *
+ * NOTE: Support for gRPC is currently at an Alpha quality level, meaning it is still
+ * a work in progress and is more likely to get backwards-incompatible updates.
+ *
  * Example:
  * ```
  * use Google\Cloud\ServiceBuilder;
@@ -202,7 +205,7 @@ class PubSubClient
      * $topics = $pubsub->topics();
      * foreach ($topics as $topic) {
      *     $info = $topic->info();
-     *     echo $info['name']; // `projects/my-awesome-project/topics/<topic-name>`
+     *     echo $info['name']; // `projects/my-awesome-project/topics/my-new-topic`
      * }
      * ```
      *

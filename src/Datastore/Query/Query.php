@@ -37,36 +37,38 @@ use InvalidArgumentException;
  * $datastore = $cloud->datastore();
  *
  * $query = $datastore->query();
- * $query->kind('Person');
- * $query->filter('firstName', 'Bob');
+ * $query->kind('Companies');
+ * $query->filter('companyName', '=', 'Google');
  *
- * $result = $datastore->runQuery($query);
+ * $res = $datastore->runQuery($query);
+ * foreach ($res as $company) {
+ *     echo $company['companyName']; // Google
+ * }
  * ```
  *
  * ```
- * // Queries can also be constructed using a Query Object:
+ * // Queries can also be constructed using a
+ * // [Query Object](https://cloud.google.com/datastore/reference/rest/v1/projects/runQuery#query):
  * $query = $datastore->query([
  *     'query' => [
  *         'kind' => [
  *             [
- *                 'name' => 'People'
+ *                 'name' => 'Companies'
  *             ]
  *         ],
  *         'filter' => [
  *             'propertyFilter' => [
  *                 'op' => 'EQUAL',
  *                 'property' => [
- *                     'name' => 'firstName'
+ *                     'name' => 'companyName'
  *                 ],
  *                 'value' => [
- *                     'stringValue': 'Bob'
+ *                     'stringValue' => 'Google'
  *                 ]
  *             ]
  *         ]
  *     ]
  * ]);
- *
- * $result = $datastore->runQuery($query);
  * ```
  *
  * @see https://cloud.google.com/datastore/reference/rest/v1/projects/runQuery#query Query Object Reference
@@ -276,13 +278,11 @@ class Query implements QueryInterface
      * ```
      *
      * ```
-     * // Using a kind and indentifier
-     * $query->hasAncestor('Person', 'Bob');
-     * ```
-     *
-     * ```
      * // Specifying an identifier type
-     * $query->hasAncestor('Robots', '1337', Key::TYPE_NAME);
+     * $key = $datastore->key('Robots', '1337', [
+     *     'identifierType' => Key::TYPE_NAME
+     * ]);
+     * $query->hasAncestor($key);
      * ```
      *
      * @param Key $key The ancestor Key instance.
@@ -300,7 +300,7 @@ class Query implements QueryInterface
      *
      * Example:
      * ```
-     * $query->order('birthDate');
+     * $query->order('birthDate', Query::ORDER_DESCENDING);
      * ```
      *
      * @see https://cloud.google.com/datastore/reference/rest/v1/projects/runQuery#Direction Allowed Directions

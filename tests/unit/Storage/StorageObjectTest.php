@@ -86,8 +86,8 @@ class StorageObjectTest extends \PHPUnit_Framework_TestCase
         $destinationBucket = 'bucket2';
         $objectName = 'object.txt';
         $acl = 'private';
-        $key = 'abcd';
-        $hash = '1234';
+        $key = base64_encode('abcd');
+        $hash = base64_encode('1234');
         $this->connection->copyObject([
                 'sourceBucket' => $sourceBucket,
                 'sourceObject' => $objectName,
@@ -97,8 +97,8 @@ class StorageObjectTest extends \PHPUnit_Framework_TestCase
                 'httpOptions' => [
                     'headers' => [
                         'x-goog-encryption-algorithm' => 'AES256',
-                        'x-goog-encryption-key' => base64_encode($key),
-                        'x-goog-encryption-key-sha256' => base64_encode($hash),
+                        'x-goog-encryption-key' => $key,
+                        'x-goog-encryption-key-sha256' => $hash,
                     ]
                 ]
             ])
@@ -166,10 +166,10 @@ class StorageObjectTest extends \PHPUnit_Framework_TestCase
         $destinationBucket = 'bucket2';
         $objectName = 'object.txt';
         $acl = 'private';
-        $key = 'abcd';
-        $hash = '1234';
-        $destinationKey = 'efgh';
-        $destinationHash = '5678';
+        $key = base64_encode('abcd');
+        $hash = base64_encode('1234');
+        $destinationKey = base64_encode('efgh');
+        $destinationHash = base64_encode('5678');
         $this->connection->rewriteObject([
                 'sourceBucket' => $sourceBucket,
                 'sourceObject' => $objectName,
@@ -179,11 +179,11 @@ class StorageObjectTest extends \PHPUnit_Framework_TestCase
                 'httpOptions' => [
                     'headers' => [
                         'x-goog-copy-source-encryption-algorithm' => 'AES256',
-                        'x-goog-copy-source-encryption-key' => base64_encode($key),
-                        'x-goog-copy-source-encryption-key-sha256' => base64_encode($hash),
+                        'x-goog-copy-source-encryption-key' => $key,
+                        'x-goog-copy-source-encryption-key-sha256' => $hash,
                         'x-goog-encryption-algorithm' => 'AES256',
-                        'x-goog-encryption-key' => base64_encode($destinationKey),
-                        'x-goog-encryption-key-sha256' => base64_encode($destinationHash),
+                        'x-goog-encryption-key' => $destinationKey,
+                        'x-goog-encryption-key-sha256' => $destinationHash,
                     ]
                 ]
             ])
@@ -272,8 +272,8 @@ class StorageObjectTest extends \PHPUnit_Framework_TestCase
         $objectName = 'object.txt';
         $newObjectName = 'new-name.txt';
         $acl = 'private';
-        $key = 'abcd';
-        $hash = '1234';
+        $key = base64_encode('abcd');
+        $hash = base64_encode('1234');
         $this->connection->copyObject([
                 'sourceBucket' => $sourceBucket,
                 'sourceObject' => $objectName,
@@ -283,8 +283,8 @@ class StorageObjectTest extends \PHPUnit_Framework_TestCase
                 'httpOptions' => [
                     'headers' => [
                         'x-goog-encryption-algorithm' => 'AES256',
-                        'x-goog-encryption-key' => base64_encode($key),
-                        'x-goog-encryption-key-sha256' => base64_encode($hash),
+                        'x-goog-encryption-key' => $key,
+                        'x-goog-encryption-key-sha256' => $hash,
                     ]
                 ]
             ])
@@ -310,8 +310,8 @@ class StorageObjectTest extends \PHPUnit_Framework_TestCase
 
     public function testDownloadsAsString()
     {
-        $key = 'abcd';
-        $hash = '1234';
+        $key = base64_encode('abcd');
+        $hash = base64_encode('1234');
         $bucket = 'bucket';
         $object = 'object.txt';
         $stream = Psr7\stream_for($string = 'abcdefg');
@@ -322,8 +322,8 @@ class StorageObjectTest extends \PHPUnit_Framework_TestCase
                 'httpOptions' => [
                     'headers' => [
                         'x-goog-encryption-algorithm' => 'AES256',
-                        'x-goog-encryption-key' => base64_encode($key),
-                        'x-goog-encryption-key-sha256' => base64_encode($hash),
+                        'x-goog-encryption-key' => $key,
+                        'x-goog-encryption-key-sha256' => $hash,
                     ]
                 ]
             ])
@@ -340,8 +340,8 @@ class StorageObjectTest extends \PHPUnit_Framework_TestCase
 
     public function testDownloadsToFile()
     {
-        $key = 'abcd';
-        $hash = '1234';
+        $key = base64_encode('abcd');
+        $hash = base64_encode('1234');
         $bucket = 'bucket';
         $object = 'object.txt';
         $stream = Psr7\stream_for($string = 'abcdefg');
@@ -352,8 +352,8 @@ class StorageObjectTest extends \PHPUnit_Framework_TestCase
                 'httpOptions' => [
                     'headers' => [
                         'x-goog-encryption-algorithm' => 'AES256',
-                        'x-goog-encryption-key' => base64_encode($key),
-                        'x-goog-encryption-key-sha256' => base64_encode($hash),
+                        'x-goog-encryption-key' => $key,
+                        'x-goog-encryption-key-sha256' => $hash,
                     ]
                 ]
             ])
@@ -391,8 +391,8 @@ class StorageObjectTest extends \PHPUnit_Framework_TestCase
 
     public function testGetBodyWithExtraOptions()
     {
-        $key = 'abcd';
-        $hash = '1234';
+        $key = base64_encode('abcd');
+        $hash = base64_encode('1234');
         $bucket = 'bucket';
         $object = 'object.txt';
         $stream = Psr7\stream_for($string = 'abcdefg');
@@ -403,8 +403,8 @@ class StorageObjectTest extends \PHPUnit_Framework_TestCase
             'httpOptions' => [
                 'headers' => [
                     'x-goog-encryption-algorithm' => 'AES256',
-                    'x-goog-encryption-key' => base64_encode($key),
-                    'x-goog-encryption-key-sha256' => base64_encode($hash),
+                    'x-goog-encryption-key' => $key,
+                    'x-goog-encryption-key-sha256' => $hash
                 ]
             ]
         ])
@@ -436,8 +436,8 @@ class StorageObjectTest extends \PHPUnit_Framework_TestCase
 
     public function testGetsInfoWithReload()
     {
-        $key = 'abcd';
-        $hash = '1234';
+        $key = base64_encode('abcd');
+        $hash = base64_encode('1234');
         $bucket = 'bucket';
         $object = 'object.txt';
         $objectInfo = [
@@ -453,8 +453,8 @@ class StorageObjectTest extends \PHPUnit_Framework_TestCase
                 'httpOptions' => [
                     'headers' => [
                         'x-goog-encryption-algorithm' => 'AES256',
-                        'x-goog-encryption-key' => base64_encode($key),
-                        'x-goog-encryption-key-sha256' => base64_encode($hash),
+                        'x-goog-encryption-key' => $key,
+                        'x-goog-encryption-key-sha256' => $hash,
                     ]
                 ]
             ])

@@ -31,7 +31,7 @@ class QueryTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->mapper = new EntityMapper('foo', true);
+        $this->mapper = new EntityMapper('foo', true, false);
         $this->query = new Query($this->mapper);
     }
 

@@ -18,6 +18,10 @@
  * This file was generated from the file
  * https://github.com/google/googleapis/blob/master/google/logging/v2/logging_metrics.proto
  * and updates to that file get reflected here through a refresh process.
+ *
+ * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
+ * more frequently than those which have been declared beta or 1.0, including changes which break
+ * backwards compatibility.
  */
 
 namespace Google\Cloud\Logging\V2;
@@ -34,25 +38,29 @@ use google\logging\v2\DeleteLogMetricRequest;
 use google\logging\v2\GetLogMetricRequest;
 use google\logging\v2\ListLogMetricsRequest;
 use google\logging\v2\LogMetric;
-use google\logging\v2\MetricsServiceV2Client;
+use google\logging\v2\MetricsServiceV2Client as MetricsServiceV2GrpcClient;
 use google\logging\v2\UpdateLogMetricRequest;
 
 /**
  * Service Description: Service for configuring logs-based metrics.
+ *
+ * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
+ * more frequently than those which have been declared beta or 1.0, including changes which break
+ * backwards compatibility.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
  *
  * ```
  * try {
- *     $metricsServiceV2Api = new MetricsServiceV2Api();
- *     $formattedParent = MetricsServiceV2Api::formatParentName("[PROJECT]");
- *     foreach ($metricsServiceV2Api->listLogMetrics($formattedParent) as $element) {
+ *     $metricsServiceV2Client = new MetricsServiceV2Client();
+ *     $formattedParent = MetricsServiceV2Client::formatProjectName("[PROJECT]");
+ *     foreach ($metricsServiceV2Client->listLogMetrics($formattedParent) as $element) {
  *         // doThingsWith(element);
  *     }
  * } finally {
- *     if (isset($metricsServiceV2Api)) {
- *         $metricsServiceV2Api->close();
+ *     if (isset($metricsServiceV2Client)) {
+ *         $metricsServiceV2Client->close();
  *     }
  * }
  * ```
@@ -62,7 +70,7 @@ use google\logging\v2\UpdateLogMetricRequest;
  * a parse method to extract the individual identifiers contained within names that are
  * returned.
  */
-class MetricsServiceV2Api
+class MetricsServiceV2Client
 {
     /**
      * The default address of the service.
@@ -79,11 +87,10 @@ class MetricsServiceV2Api
      */
     const DEFAULT_TIMEOUT_MILLIS = 30000;
 
-    const _GAX_VERSION = '0.1.0';
-    const _CODEGEN_NAME = 'GAPIC';
-    const _CODEGEN_VERSION = '0.0.0';
+    const _CODEGEN_NAME = 'gapic';
+    const _CODEGEN_VERSION = '0.1.0';
 
-    private static $parentNameTemplate;
+    private static $projectNameTemplate;
     private static $metricNameTemplate;
 
     private $grpcCredentialsHelper;
@@ -94,11 +101,11 @@ class MetricsServiceV2Api
 
     /**
      * Formats a string containing the fully-qualified path to represent
-     * a parent resource.
+     * a project resource.
      */
-    public static function formatParentName($project)
+    public static function formatProjectName($project)
     {
-        return self::getParentNameTemplate()->render([
+        return self::getProjectNameTemplate()->render([
             'project' => $project,
         ]);
     }
@@ -117,11 +124,11 @@ class MetricsServiceV2Api
 
     /**
      * Parses the project from the given fully-qualified path which
-     * represents a parent resource.
+     * represents a project resource.
      */
-    public static function parseProjectFromParentName($parentName)
+    public static function parseProjectFromProjectName($projectName)
     {
-        return self::getParentNameTemplate()->match($parentName)['project'];
+        return self::getProjectNameTemplate()->match($projectName)['project'];
     }
 
     /**
@@ -142,13 +149,13 @@ class MetricsServiceV2Api
         return self::getMetricNameTemplate()->match($metricName)['metric'];
     }
 
-    private static function getParentNameTemplate()
+    private static function getProjectNameTemplate()
     {
-        if (self::$parentNameTemplate == null) {
-            self::$parentNameTemplate = new PathTemplate('projects/{project}');
+        if (self::$projectNameTemplate == null) {
+            self::$projectNameTemplate = new PathTemplate('projects/{project}');
         }
 
-        return self::$parentNameTemplate;
+        return self::$projectNameTemplate;
     }
 
     private static function getMetricNameTemplate()
@@ -226,7 +233,7 @@ class MetricsServiceV2Api
             'retryingOverride' => null,
             'timeoutMillis' => self::DEFAULT_TIMEOUT_MILLIS,
             'appName' => 'gax',
-            'appVersion' => self::_GAX_VERSION
+            'appVersion' => AgentHeaderDescriptor::getGaxVersion(),
         ];
         $options = array_merge($defaultOptions, $options);
 
@@ -235,7 +242,7 @@ class MetricsServiceV2Api
             'clientVersion' => $options['appVersion'],
             'codeGenName' => self::_CODEGEN_NAME,
             'codeGenVersion' => self::_CODEGEN_VERSION,
-            'gaxVersion' => self::_GAX_VERSION,
+            'gaxVersion' => AgentHeaderDescriptor::getGaxVersion(),
             'phpVersion' => phpversion(),
         ]);
 
@@ -252,8 +259,6 @@ class MetricsServiceV2Api
             $this->descriptors[$method]['pageStreamingDescriptor'] = $pageStreamingDescriptor;
         }
 
-        // TODO load the client config in a more package-friendly way
-        // https://github.com/googleapis/toolkit/issues/332
         $clientConfigJsonString = file_get_contents(__DIR__.'/resources/metrics_service_v2_client_config.json');
         $clientConfig = json_decode($clientConfigJsonString, true);
         $this->defaultCallSettings =
@@ -268,14 +273,14 @@ class MetricsServiceV2Api
         $this->scopes = $options['scopes'];
 
         $createStubOptions = [];
-        if (!empty($options['sslCreds'])) {
+        if (array_key_exists('sslCreds', $options)) {
             $createStubOptions['sslCreds'] = $options['sslCreds'];
         }
         $grpcCredentialsHelperOptions = array_diff_key($options, $defaultOptions);
         $this->grpcCredentialsHelper = new GrpcCredentialsHelper($this->scopes, $grpcCredentialsHelperOptions);
 
         $createMetricsServiceV2StubFunction = function ($hostname, $opts) {
-            return new MetricsServiceV2Client($hostname, $opts);
+            return new MetricsServiceV2GrpcClient($hostname, $opts);
         };
         $this->metricsServiceV2Stub = $this->grpcCredentialsHelper->createStub(
             $createMetricsServiceV2StubFunction,
@@ -291,22 +296,23 @@ class MetricsServiceV2Api
      * Sample code:
      * ```
      * try {
-     *     $metricsServiceV2Api = new MetricsServiceV2Api();
-     *     $formattedParent = MetricsServiceV2Api::formatParentName("[PROJECT]");
-     *     foreach ($metricsServiceV2Api->listLogMetrics($formattedParent) as $element) {
+     *     $metricsServiceV2Client = new MetricsServiceV2Client();
+     *     $formattedParent = MetricsServiceV2Client::formatProjectName("[PROJECT]");
+     *     foreach ($metricsServiceV2Client->listLogMetrics($formattedParent) as $element) {
      *         // doThingsWith(element);
      *     }
      * } finally {
-     *     if (isset($metricsServiceV2Api)) {
-     *         $metricsServiceV2Api->close();
+     *     if (isset($metricsServiceV2Client)) {
+     *         $metricsServiceV2Client->close();
      *     }
      * }
      * ```
      *
-     * @param string $parent       Required. The resource name containing the metrics.
-     *                             Example: `"projects/my-project-id"`.
-     * @param array  $optionalArgs {
-     *                             Optional.
+     * @param string $parent Required. The name of the project containing the metrics:
+     *
+     *     "projects/[PROJECT_ID]"
+     * @param array $optionalArgs {
+     *                            Optional.
      *
      *     @type string $pageToken
      *          A page token is used to specify a page of values to be returned.
@@ -317,7 +323,7 @@ class MetricsServiceV2Api
      *          The maximum number of resources contained in the underlying API
      *          response. The API may return fewer values in a page, even if
      *          there are additional values to be retrieved.
-     *     @type Google\GAX\RetrySettings $retrySettings
+     *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
      *     @type int $timeoutMillis
@@ -325,9 +331,9 @@ class MetricsServiceV2Api
      *          is not set.
      * }
      *
-     * @return Google\GAX\PagedListResponse
+     * @return \Google\GAX\PagedListResponse
      *
-     * @throws Google\GAX\ApiException if the remote call fails
+     * @throws \Google\GAX\ApiException if the remote call fails
      */
     public function listLogMetrics($parent, $optionalArgs = [])
     {
@@ -362,22 +368,23 @@ class MetricsServiceV2Api
      * Sample code:
      * ```
      * try {
-     *     $metricsServiceV2Api = new MetricsServiceV2Api();
-     *     $formattedMetricName = MetricsServiceV2Api::formatMetricName("[PROJECT]", "[METRIC]");
-     *     $response = $metricsServiceV2Api->getLogMetric($formattedMetricName);
+     *     $metricsServiceV2Client = new MetricsServiceV2Client();
+     *     $formattedMetricName = MetricsServiceV2Client::formatMetricName("[PROJECT]", "[METRIC]");
+     *     $response = $metricsServiceV2Client->getLogMetric($formattedMetricName);
      * } finally {
-     *     if (isset($metricsServiceV2Api)) {
-     *         $metricsServiceV2Api->close();
+     *     if (isset($metricsServiceV2Client)) {
+     *         $metricsServiceV2Client->close();
      *     }
      * }
      * ```
      *
-     * @param string $metricName   The resource name of the desired metric.
-     *                             Example: `"projects/my-project-id/metrics/my-metric-id"`.
-     * @param array  $optionalArgs {
-     *                             Optional.
+     * @param string $metricName The resource name of the desired metric:
      *
-     *     @type Google\GAX\RetrySettings $retrySettings
+     *     "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
      *     @type int $timeoutMillis
@@ -385,9 +392,9 @@ class MetricsServiceV2Api
      *          is not set.
      * }
      *
-     * @return google\logging\v2\LogMetric
+     * @return \google\logging\v2\LogMetric
      *
-     * @throws Google\GAX\ApiException if the remote call fails
+     * @throws \Google\GAX\ApiException if the remote call fails
      */
     public function getLogMetric($metricName, $optionalArgs = [])
     {
@@ -416,19 +423,20 @@ class MetricsServiceV2Api
      * Sample code:
      * ```
      * try {
-     *     $metricsServiceV2Api = new MetricsServiceV2Api();
-     *     $formattedParent = MetricsServiceV2Api::formatParentName("[PROJECT]");
+     *     $metricsServiceV2Client = new MetricsServiceV2Client();
+     *     $formattedParent = MetricsServiceV2Client::formatProjectName("[PROJECT]");
      *     $metric = new LogMetric();
-     *     $response = $metricsServiceV2Api->createLogMetric($formattedParent, $metric);
+     *     $response = $metricsServiceV2Client->createLogMetric($formattedParent, $metric);
      * } finally {
-     *     if (isset($metricsServiceV2Api)) {
-     *         $metricsServiceV2Api->close();
+     *     if (isset($metricsServiceV2Client)) {
+     *         $metricsServiceV2Client->close();
      *     }
      * }
      * ```
      *
-     * @param string $parent The resource name of the project in which to create the metric.
-     *                       Example: `"projects/my-project-id"`.
+     * @param string $parent The resource name of the project in which to create the metric:
+     *
+     *     "projects/[PROJECT_ID]"
      *
      * The new metric must be provided in the request.
      * @param LogMetric $metric       The new logs-based metric, which must not have an identifier that
@@ -436,7 +444,7 @@ class MetricsServiceV2Api
      * @param array     $optionalArgs {
      *                                Optional.
      *
-     *     @type Google\GAX\RetrySettings $retrySettings
+     *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
      *     @type int $timeoutMillis
@@ -444,9 +452,9 @@ class MetricsServiceV2Api
      *          is not set.
      * }
      *
-     * @return google\logging\v2\LogMetric
+     * @return \google\logging\v2\LogMetric
      *
-     * @throws Google\GAX\ApiException if the remote call fails
+     * @throws \Google\GAX\ApiException if the remote call fails
      */
     public function createLogMetric($parent, $metric, $optionalArgs = [])
     {
@@ -476,30 +484,29 @@ class MetricsServiceV2Api
      * Sample code:
      * ```
      * try {
-     *     $metricsServiceV2Api = new MetricsServiceV2Api();
-     *     $formattedMetricName = MetricsServiceV2Api::formatMetricName("[PROJECT]", "[METRIC]");
+     *     $metricsServiceV2Client = new MetricsServiceV2Client();
+     *     $formattedMetricName = MetricsServiceV2Client::formatMetricName("[PROJECT]", "[METRIC]");
      *     $metric = new LogMetric();
-     *     $response = $metricsServiceV2Api->updateLogMetric($formattedMetricName, $metric);
+     *     $response = $metricsServiceV2Client->updateLogMetric($formattedMetricName, $metric);
      * } finally {
-     *     if (isset($metricsServiceV2Api)) {
-     *         $metricsServiceV2Api->close();
+     *     if (isset($metricsServiceV2Client)) {
+     *         $metricsServiceV2Client->close();
      *     }
      * }
      * ```
      *
-     * @param string $metricName The resource name of the metric to update.
-     *                           Example: `"projects/my-project-id/metrics/my-metric-id"`.
+     * @param string $metricName The resource name of the metric to update:
      *
-     * The updated metric must be provided in the request and have the
-     * same identifier that is specified in `metricName`.
-     * If the metric does not exist, it is created.
-     * @param LogMetric $metric       The updated metric, whose name must be the same as the
-     *                                metric identifier in `metricName`. If `metricName` does not
-     *                                exist, then a new metric is created.
+     *     "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
+     *
+     * The updated metric must be provided in the request and it's
+     * `name` field must be the same as `[METRIC_ID]` If the metric
+     * does not exist in `[PROJECT_ID]`, then a new metric is created.
+     * @param LogMetric $metric       The updated metric.
      * @param array     $optionalArgs {
      *                                Optional.
      *
-     *     @type Google\GAX\RetrySettings $retrySettings
+     *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
      *     @type int $timeoutMillis
@@ -507,9 +514,9 @@ class MetricsServiceV2Api
      *          is not set.
      * }
      *
-     * @return google\logging\v2\LogMetric
+     * @return \google\logging\v2\LogMetric
      *
-     * @throws Google\GAX\ApiException if the remote call fails
+     * @throws \Google\GAX\ApiException if the remote call fails
      */
     public function updateLogMetric($metricName, $metric, $optionalArgs = [])
     {
@@ -539,22 +546,23 @@ class MetricsServiceV2Api
      * Sample code:
      * ```
      * try {
-     *     $metricsServiceV2Api = new MetricsServiceV2Api();
-     *     $formattedMetricName = MetricsServiceV2Api::formatMetricName("[PROJECT]", "[METRIC]");
-     *     $metricsServiceV2Api->deleteLogMetric($formattedMetricName);
+     *     $metricsServiceV2Client = new MetricsServiceV2Client();
+     *     $formattedMetricName = MetricsServiceV2Client::formatMetricName("[PROJECT]", "[METRIC]");
+     *     $metricsServiceV2Client->deleteLogMetric($formattedMetricName);
      * } finally {
-     *     if (isset($metricsServiceV2Api)) {
-     *         $metricsServiceV2Api->close();
+     *     if (isset($metricsServiceV2Client)) {
+     *         $metricsServiceV2Client->close();
      *     }
      * }
      * ```
      *
-     * @param string $metricName   The resource name of the metric to delete.
-     *                             Example: `"projects/my-project-id/metrics/my-metric-id"`.
-     * @param array  $optionalArgs {
-     *                             Optional.
+     * @param string $metricName The resource name of the metric to delete:
      *
-     *     @type Google\GAX\RetrySettings $retrySettings
+     *     "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
      *     @type int $timeoutMillis
@@ -562,7 +570,7 @@ class MetricsServiceV2Api
      *          is not set.
      * }
      *
-     * @throws Google\GAX\ApiException if the remote call fails
+     * @throws \Google\GAX\ApiException if the remote call fails
      */
     public function deleteLogMetric($metricName, $optionalArgs = [])
     {
