@@ -21,6 +21,18 @@ use Google\Cloud\Logging\Connection\ConnectionInterface;
 
 /**
  * An individual entry in a log.
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\ServiceBuilder;
+ *
+ * $cloud = new ServiceBuilder();
+ * $logging = $cloud->logging();
+ *
+ * $logger = $logging->logger('my-log');
+ *
+ * $entry = $logger->entry('my message');
+ * ```
  */
 class Entry
 {

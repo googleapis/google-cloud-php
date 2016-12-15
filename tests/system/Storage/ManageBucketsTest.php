@@ -17,6 +17,9 @@
 
 namespace Google\Cloud\Tests\System\Storage;
 
+/**
+ * @group storage
+ */
 class ManageBucketsTest extends StorageTestCase
 {
     public function testListsBuckets()

@@ -30,7 +30,8 @@ use Google\Cloud\Vision\Annotation\Face\Landmarks;
  * $cloud = new ServiceBuilder();
  * $vision = $cloud->vision();
  *
- * $image = $vision->image(fopen(__DIR__ .'/assets/family-photo.jpg', 'r'), [ 'FACE_DETECTION' ]);
+ * $imageResource = fopen(__DIR__ .'/assets/family-photo.jpg', 'r');
+ * $image = $vision->image($imageResource, [ 'FACE_DETECTION' ]);
  * $annotation = $vision->annotate($image);
  *
  * $faces = $annotation->faces();
@@ -202,6 +203,10 @@ use Google\Cloud\Vision\Annotation\Face\Landmarks;
  *
  *     @return array
  * }
+ *
+ * @codingStandardsIgnoreStart
+ * @see https://cloud.google.com/vision/reference/rest/v1/images/annotate#faceannotation FaceAnnotation
+ * @codingStandardsIgnoreEnd
  */
 class Face extends AbstractFeature
 {

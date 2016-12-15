@@ -17,6 +17,9 @@
 
 namespace Google\Cloud\Tests\System\Datastore;
 
+/**
+ * @group datastore
+ */
 class RunTransactionTest extends DatastoreTestCase
 {
     public function testRunTransactions()

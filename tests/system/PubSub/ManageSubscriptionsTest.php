@@ -17,6 +17,9 @@
 
 namespace Google\Cloud\Tests\System\PubSub;
 
+/**
+ * @group pubsub
+ */
 class ManageSubscriptionsTest extends PubSubTestCase
 {
     /**
@@ -63,7 +66,8 @@ class ManageSubscriptionsTest extends PubSubTestCase
     {
         $foundSubs = [];
         foreach ($subs as $sub) {
-            $sName = end(explode('/', $sub->name()));
+            $nameParts = explode('/', $sub->name());
+            $sName = end($nameParts);
             foreach ($expectedSubs as $key => $expectedSub) {
                 if ($sName === $expectedSub) {
                     $foundSubs[$key] = $sName;

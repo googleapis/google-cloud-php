@@ -17,9 +17,10 @@ before_script:
     - composer install
 
 script:
-    - vendor/bin/phpunit
+    - ./dev/sh/tests
     - vendor/bin/phpcs --standard=PSR2 src/
+    - ./dev/sh/build-docs
 
 after_success:
     - bash <(curl -s https://codecov.io/bash)
-    - ./dev/deploy-docs.sh
+    - ./dev/sh/push-docs

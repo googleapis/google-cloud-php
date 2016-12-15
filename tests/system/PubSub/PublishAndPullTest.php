@@ -17,6 +17,9 @@
 
 namespace Google\Cloud\Tests\System\PubSub;
 
+/**
+ * @group pubsub
+ */
 class PublishAndPullTest extends PubSubTestCase
 {
     /**

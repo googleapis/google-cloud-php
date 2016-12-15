@@ -19,6 +19,9 @@ namespace Google\Cloud\Tests\System\Storage;
 
 use GuzzleHttp\Psr7;
 
+/**
+ * @group storage
+ */
 class UploadObjectsTest extends StorageTestCase
 {
     public function testUploadsObjectFromStringWithMetadata()
@@ -78,18 +81,17 @@ class UploadObjectsTest extends StorageTestCase
     public function testUploadsObjectWithCustomerSuppliedEncryption()
     {
         $data = 'somedata';
-        $key = openssl_random_pseudo_bytes(32);
-        $sha = hash('SHA256', $key, true);
+        $key = base64_encode(openssl_random_pseudo_bytes(32));
+        $sha = base64_encode(hash('SHA256', base64_decode($key), true));
         $options = [
             'name' => uniqid(self::TESTING_PREFIX),
-            'encryptionKey' => $key,
-            'encryptionKeySHA256' => $sha
+            'encryptionKey' => $key
         ];
 
         $object = self::$bucket->upload($data, $options);
         self::$deletionQueue[] = $object;
 
-        $this->assertEquals(base64_encode($sha), $object->info()['customerEncryption']['keySha256']);
+        $this->assertEquals($sha, $object->info()['customerEncryption']['keySha256']);
         $this->assertEquals(strlen($data), $object->info()['size']);
     }
 }

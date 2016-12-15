@@ -33,7 +33,7 @@ class Table
     /**
      * @var ConnectionInterface $connection Represents a connection to BigQuery.
      */
-    private $connection;
+    protected $connection;
 
     /**
      * @var array The table's identity.
@@ -69,7 +69,9 @@ class Table
      *
      * Example:
      * ```
-     * $table->exists();
+     * if ($table->exists()) {
+     *     echo "Table exists!";
+     * }
      * ```
      *
      * @return bool
@@ -132,7 +134,9 @@ class Table
      *
      * Example:
      * ```
-     * foreach ($table->rows() as $row) {
+     * $rows = $table->rows();
+     *
+     * foreach ($rows as $row) {
      *     echo $row['name'];
      * }
      * ```
@@ -181,7 +185,7 @@ class Table
      * $sourceTable = $bigQuery->dataset('myDataset')->table('mySourceTable');
      * $destinationTable = $bigQuery->dataset('myDataset')->table('myDestinationTable');
      *
-     * $sourceTable->copy($destinationTable);
+     * $job = $sourceTable->copy($destinationTable);
      * ```
      *
      * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs Jobs insert API Documentation.
@@ -220,7 +224,7 @@ class Table
      * Example:
      * ```
      * $destinationObject = $storage->bucket('myBucket')->object('tableOutput');
-     * $table->export($destinationObject);
+     * $job = $table->export($destinationObject);
      * ```
      *
      * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs Jobs insert API Documentation.
@@ -258,7 +262,7 @@ class Table
      *
      * Example:
      * ```
-     * $table->load(fopen('/path/to/my/data.csv', 'r'));
+     * $job = $table->load(fopen('/path/to/my/data.csv', 'r'));
      * ```
      *
      * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs Jobs insert API Documentation.
@@ -305,7 +309,7 @@ class Table
      * Example:
      * ```
      * $object = $storage->bucket('myBucket')->object('important-data.csv');
-     * $table->load($object);
+     * $job = $table->load($object);
      * ```
      *
      * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs Jobs insert API Documentation.

@@ -103,7 +103,7 @@ class GrpcTest extends \PHPUnit_Framework_TestCase
         $pbEntry = (new LogEntry())->deserialize($entryData, new PhpArray());
         $pbSink = (new LogSink())->deserialize(['outputVersionFormat' => 1] + $sinkData, new PhpArray());
         $pbMetric = (new LogMetric())->deserialize($metricData, new PhpArray());
-        $projectIds = ['id'];
+        $resourceNames = ['projects/id'];
         $pageSizeSetting = ['pageSize' => 2];
 
         return [
@@ -132,8 +132,8 @@ class GrpcTest extends \PHPUnit_Framework_TestCase
             ],
             [
                 'listEntries',
-                ['projectIds' => $projectIds],
-                [$projectIds, []]
+                ['resourceNames' => $resourceNames],
+                [$resourceNames, []]
             ],
             [
                 'createSink',

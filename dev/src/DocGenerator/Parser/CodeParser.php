@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Dev\DocGenerator\Parser;
 
+use Google\Cloud\Dev\DocBlockStripSpaces;
 use phpDocumentor\Reflection\DocBlock;
 use phpDocumentor\Reflection\DocBlock\Description;
 use phpDocumentor\Reflection\DocBlock\Tag\SeeTag;
@@ -24,6 +25,8 @@ use phpDocumentor\Reflection\FileReflector;
 
 class CodeParser implements ParserInterface
 {
+    const SNIPPET_NAME_REGEX = '/\/\/\s?\[snippet\=(\w{0,})\]/';
+
     private $path;
     private $outputName;
     private $reflector;
@@ -250,7 +253,8 @@ class CodeParser implements ParserInterface
                 continue;
             }
 
-            $lines = explode(PHP_EOL, $example);
+            $example = preg_replace(self::SNIPPET_NAME_REGEX, '', $example);
+            $lines = explode(PHP_EOL, trim($example));
 
             // strip the syntax highlighting, it won't be used in the doc site
             if (substr($lines[0], 0, 3) === 'php') {
@@ -271,7 +275,7 @@ class CodeParser implements ParserInterface
 
             $examplesArray[] = [
                 'caption' => $caption,
-                'code' => implode(PHP_EOL, $lines)
+                'code' => trim(implode(PHP_EOL, $lines))
             ];
         }
 
@@ -483,25 +487,5 @@ class CodeParser implements ParserInterface
             'description' => $parts[0],
             'examples' => $examples
         ];
-    }
-}
-
-class DocBlockStripSpaces extends DocBlock
-{
-    /**
-     * Strips extra whitespace from the DocBlock comment.
-     *
-     * @param string $comment String containing the comment text.
-     * @param int $spaces The number of spaces to strip.
-     *
-     * @return string
-     */
-    public function cleanInput($comment, $spaces = 4)
-    {
-        $lines = array_map(function ($line) use ($spaces) {
-            return substr($line, $spaces);
-        }, explode(PHP_EOL, $comment));
-
-        return trim(implode(PHP_EOL, $lines));
     }
 }

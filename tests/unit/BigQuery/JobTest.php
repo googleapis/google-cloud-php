@@ -20,6 +20,7 @@ namespace Google\Cloud\Tests\BigQuery;
 use Google\Cloud\BigQuery\Connection\ConnectionInterface;
 use Google\Cloud\BigQuery\Job;
 use Google\Cloud\BigQuery\QueryResults;
+use Google\Cloud\BigQuery\ValueMapper;
 use Google\Cloud\Exception\NotFoundException;
 use Prophecy\Argument;
 
@@ -40,7 +41,8 @@ class JobTest extends \PHPUnit_Framework_TestCase
 
     public function getJob($connection, array $data = [])
     {
-        return new Job($connection->reveal(), $this->jobId, $this->projectId, $data);
+        $mapper = $this->prophesize(ValueMapper::class);
+        return new Job($connection->reveal(), $this->jobId, $this->projectId, $data, $mapper->reveal());
     }
 
     public function testDoesExistTrue()
