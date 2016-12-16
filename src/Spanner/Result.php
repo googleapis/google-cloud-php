@@ -20,7 +20,7 @@ namespace Google\Cloud\Spanner;
 /**
  * @todo should this be more like BigQuery\QueryResults?
  */
-class Result implements \Iterator
+class Result implements \IteratorAggregate
 {
     /**
      * @var array
@@ -31,11 +31,6 @@ class Result implements \Iterator
      * @var array
      */
     private $rows;
-
-    /**
-     * @var int
-     */
-    private $index = 0;
 
     /**
      * @var array $result The query or read result.
@@ -57,18 +52,13 @@ class Result implements \Iterator
     }
 
     /**
-     * Return the rows as represented by the API.
-     *
-     * For a more easily consumed result in which each row is represented as a
-     * set of key/value pairs, see {@see Google\Cloud\Spanner\Result::result()}.
+     * Return the rows as a key/value list.
      *
      * @return array|null
      */
     public function rows()
     {
-        return (isset($this->result['rows']))
-            ? $result['rows']
-            : null;
+        return $this->rows;
     }
 
     /**
@@ -127,40 +117,8 @@ class Result implements \Iterator
     /**
      * @access private
      */
-    public function rewind()
+    public function getIterator()
     {
-        $this->index = 0;
-    }
-
-    /**
-     * @access private
-     */
-    public function current()
-    {
-        return $this->rows[$this->index];
-    }
-
-    /**
-     * @access private
-     */
-    public function key()
-    {
-        return $this->index;
-    }
-
-    /**
-     * @access private
-     */
-    public function next()
-    {
-        ++$this->index;
-    }
-
-    /**
-     * @access private
-     */
-    public function valid()
-    {
-        return isset($this->rows[$this->index]);
+        return new \ArrayIterator($this->rows);
     }
 }
