@@ -169,7 +169,9 @@ class SpannerClient
         ];
 
         $res = $this->connection->createInstance($options + [
+            'instanceId' => $name,
             'name' => InstanceAdminClient::formatInstanceName($this->projectId, $name),
+            'projectId' => InstanceAdminClient::formatProjectName($this->projectId),
             'config' => InstanceAdminClient::formatInstanceConfigName($this->projectId, $config->name())
         ]);
 
