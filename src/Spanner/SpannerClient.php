@@ -26,6 +26,26 @@ use Google\Cloud\Spanner\Session\SimpleSessionPool;
 use Google\Cloud\ValidateTrait;
 use google\spanner\admin\instance\v1\Instance\State;
 
+/**
+ * Google Cloud Spanner is a highly scalable, transactional, managed, NewSQL
+ * database service. Find more information at
+ * [Google Cloud Spanner docs](https://cloud.google.com/spanner/).
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\ServiceBuilder;
+ *
+ * $cloud = new ServiceBuilder();
+ * $spanner = $cloud->spanner();
+ * ```
+ *
+ * ```
+ * // SpannerClient can be instantiated directly.
+ * use Google\Cloud\Spanner\SpannerClient;
+ *
+ * $spanner = new SpannerClient();
+ * ```
+ */
 class SpannerClient
 {
     use ClientTrait;

@@ -31,6 +31,11 @@ use google\spanner\admin\instance\v1\Instance\State;
  *
  * Example:
  * ```
+ * use Google\Cloud\ServiceBuilder;
+ *
+ * $cloud = new ServiceBuilder();
+ * $spanner = $cloud->spanner();
+ *
  * $instance = $spanner->instance('my-instance');
  * ```
  */

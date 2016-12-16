@@ -29,7 +29,12 @@ use Google\Cloud\Spanner\Session\SessionPoolInterface;
  *
  * Example:
  * ```
- * $database = $instance->database('my-database');
+ * use Google\Cloud\ServiceBuilder;
+ *
+ * $cloud = new ServiceBuilder();
+ * $spanner = $cloud->spanner();
+ *
+ * $database = $spanner->connect('my-instance-name', 'my-database');
  * ```
  */
 class Database
@@ -78,7 +83,6 @@ class Database
      * @param SessionPoolInterface The session pool implementation.
      * @param string $projectId The project ID.
      * @param string $name The database name.
-     * @param array $info [optional] A representation of the database object.
      */
     public function __construct(
         ConnectionInterface $connection,
@@ -144,32 +148,60 @@ class Database
     }
 
     /**
-     * Update the Database.
+     * Update the Database schema by running a SQL statement.
      *
      * Example:
      * ```
-     * $database->update([
+     * $database->updateDdl(
      *     'CREATE TABLE Users (
      *         id INT64 NOT NULL,
      *         name STRING(100) NOT NULL
      *         password STRING(100) NOT NULL
      *     )'
-     * ]);
+     * );
      * ```
      *
-     * @param string|array $statements One or more DDL statements to execute.
+     * @see https://cloud.google.com/spanner/docs/data-definition-language Data Definition Language
+     *
+     * @param string $statement A DDL statement to run against a database.
      * @param array $options [optional] Configuration options.
      * @return <something>
      */
     public function updateDdl($statements, array $options = [])
     {
+        return $this->updateDdlBatch([$statements], $options);
+    }
+
+    /**
+     * Update the Database schema by running a set of SQL statements.
+     *
+     * Example:
+     * ```
+     * $database->updateDdlBatch([
+     *     'CREATE TABLE Users (
+     *         id INT64 NOT NULL,
+     *         name STRING(100) NOT NULL
+     *         password STRING(100) NOT NULL
+     *     )',
+     *     'CREATE TABLE Posts (
+     *         id INT64 NOT NULL,
+     *         title STRING(100) NOT NULL
+     *         content STRING(MAX) NOT NULL
+     *     )'
+     * ]);
+     * ```
+     *
+     * @see https://cloud.google.com/spanner/docs/data-definition-language Data Definition Language
+     *
+     * @param string[] $statements A list of DDL statements to run against a database.
+     * @param array $options [optional] Configuration options.
+     * @return <something>
+     */
+    public function updateDdlBatch(array $statements, array $options = [])
+    {
         $options += [
             'operationId' => null
         ];
-
-        if (!is_array($statements)) {
-            $statements = [$statements];
-        }
 
         return $this->connection->updateDatabase($options + [
             'name' => $this->fullyQualifiedDatabaseName(),

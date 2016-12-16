@@ -81,7 +81,20 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($this->database->exists());
     }
 
-    public function testUpdate()
+    public function testUpdateDdl()
+    {
+        $statement = 'foo';
+        $this->connection->updateDatabase([
+            'name' => DatabaseAdminClient::formatDatabaseName(self::PROJECT_ID, self::INSTANCE_NAME, self::NAME),
+            'statements' => [$statement]
+        ]);
+
+        $this->database->setConnection($this->connection->reveal());
+
+        $this->database->updateDdl($statement);
+    }
+
+    public function testUpdateDdlBatch()
     {
         $statements = ['foo', 'bar'];
         $this->connection->updateDatabase([
