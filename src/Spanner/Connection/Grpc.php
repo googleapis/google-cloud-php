@@ -26,6 +26,7 @@ use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\V1\SpannerClient;
 use Google\GAX\ApiException;
 use google\protobuf;
+use google\spanner\admin\instance\v1\Instance;
 use google\spanner\admin\instance\v1\State;
 use google\spanner\v1;
 use google\spanner\v1\Mutation;
@@ -137,11 +138,19 @@ class Grpc implements ConnectionInterface
      */
     public function createInstance(array $args = [])
     {
+        $pbInstance = (new Instance())->deserialize(array_filter([
+            'name' => $args['name'],
+            'config' => $args['config'],
+            'displayName' => $args['displayName'],
+            'nodeCount' => $args['nodeCount'],
+            'state' => $args['state'],
+            'labels' => $this->formatLabelsForApi($args['labels'])
+        ]), $this->codec);
+
         return $this->send([$this->instanceAdminClient, 'createInstance'], [
-            $args['name'],
-            $args['config'],
-            $args['displayName'],
-            $args['nodeCount'],
+            $args['projectId'],
+            $args['instanceId'],
+            $pbInstance,
             $args
         ]);
     }
