@@ -221,7 +221,8 @@ class Instance
      * @param array $options {
      *     Configuration options
      *
-     *     @type Configuration $config The configuration to move the instante to.
+     *     @type Configuration $config The configuration to move the instance to.
+     * }
      * @return void
      * @throws \InvalidArgumentException
      */

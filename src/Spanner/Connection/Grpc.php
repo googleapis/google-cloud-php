@@ -246,7 +246,7 @@ class Grpc implements ConnectionInterface
      */
     public function updateDatabase(array $args = [])
     {
-        return $this->send([$this->databaseAdminClient, 'updateDatabase'], [
+        return $this->send([$this->databaseAdminClient, 'updateDatabaseDdl'], [
             $args['name'],
             $args['statements'],
             $args

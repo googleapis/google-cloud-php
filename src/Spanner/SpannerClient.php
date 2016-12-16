@@ -91,35 +91,48 @@ class SpannerClient
     }
 
     /**
-     * List all available configurations
+     * List all available configurations.
      *
      * Example:
      * ```
      * $configurations = $spanner->configurations();
      * ```
      *
-     * @todo implement pagination!
-     *
      * @see https://cloud.google.com/spanner/reference/rest/v1/projects.instanceConfigs/list List Configs
      *
+     * @param array $options [optional] Configuration Options.
      * @return Generator<Configuration>
      */
-    public function configurations()
+    public function configurations(array $options = [])
     {
-        $res = $this->connection->listConfigs([
-            'projectId' => InstanceAdminClient::formatProjectName($this->projectId)
-        ]);
+        $pageToken = null;
+        do {
+            $res = $this->connection->listConfigs([
+                'projectId' => InstanceAdminClient::formatProjectName($this->projectId),
+                'pageToken' => $pageToken
+            ] + $options);
 
-        if (isset($res['instanceConfigs'])) {
-            foreach ($res['instanceConfigs'] as $config) {
-                $name = InstanceAdminClient::parseInstanceConfigFromInstanceConfigName($config['name']);
-                yield $this->configuration($name, $config);
+            if (isset($res['instanceConfigs'])) {
+                foreach ($res['instanceConfigs'] as $config) {
+                    $name = InstanceAdminClient::parseInstanceConfigFromInstanceConfigName($config['name']);
+                    yield $this->configuration($name, $config);
+                }
             }
-        }
+
+            if (isset($res['nextPageToken'])) {
+                $pageToken = $res['nextPageToken'];
+            }
+        } while($pageToken);
     }
 
     /**
-     * Get a configuration by its name
+     * Get a configuration by its name.
+     *
+     * NOTE: This method does not execute a service request and does not verify
+     * the existence of the given configuration. Unless you know with certainty
+     * that the configuration exists, it is advised that you use
+     * {@see Google\Cloud\Spanner\Configuration::exists()} to verify existence
+     * before attempting to use the configuration.
      *
      * Example:
      * ```
@@ -136,7 +149,7 @@ class SpannerClient
     }
 
     /**
-     * Create an instance
+     * Create a new instance.
      *
      * Example:
      * ```
@@ -154,7 +167,8 @@ class SpannerClient
      *     @type string $displayName **Defaults to** the value of $name.
      *     @type int $nodeCount **Defaults to** `1`.
      *     @type int $state **Defaults to** <val>
-     *     @type array $labels [Using labels to organize Google Cloud Platform resources](https://cloudplatform.googleblog.com/2015/10/using-labels-to-organize-Google-Cloud-Platform-resources.html).
+     *     @type array $labels For more information, see
+     *           [Using labels to organize Google Cloud Platform resources](https://cloudplatform.googleblog.com/2015/10/using-labels-to-organize-Google-Cloud-Platform-resources.html).
      * }
      * @return Instance
      * @codingStandardsIgnoreEnd
@@ -168,18 +182,18 @@ class SpannerClient
             'labels' => []
         ];
 
-        $res = $this->connection->createInstance($options + [
+        $res = $this->connection->createInstance([
             'instanceId' => $name,
             'name' => InstanceAdminClient::formatInstanceName($this->projectId, $name),
             'projectId' => InstanceAdminClient::formatProjectName($this->projectId),
             'config' => InstanceAdminClient::formatInstanceConfigName($this->projectId, $config->name())
-        ]);
+        ] + $options);
 
         return $this->instance($name);
     }
 
     /**
-     * Lazily instantiate an instance
+     * Lazily instantiate an instance.
      *
      * Example:
      * ```
