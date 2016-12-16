@@ -15,14 +15,15 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Spanner;
+namespace Google\Cloud\Tests\Unit\Spanner\Admin;
 
 use Google\Cloud\Exception\NotFoundException;
 use Google\Cloud\Iam\Iam;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
-use Google\Cloud\Spanner\Connection\AdminConnectionInterface;
+use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
+use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Prophecy\Argument;
 
 /**
@@ -34,22 +35,23 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
     const INSTANCE_NAME = 'test-instance';
     const NAME = 'test-database';
 
-    private $adminConnection;
+    private $connection;
     private $instance;
     private $database;
 
     public function setUp()
     {
-        $this->adminConnection = $this->prophesize(AdminConnectionInterface::class);
+        $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->instance = $this->prophesize(Instance::class);
         $this->instance->name()->willReturn(self::INSTANCE_NAME);
 
-        $this->database = new DatabaseStub(
-            $this->adminConnection->reveal(),
+        $this->database = \Google\Cloud\Dev\stub(Database::class, [
+            $this->connection->reveal(),
             $this->instance->reveal(),
+            $this->prophesize(SessionPoolInterface::class)->reveal(),
             self::PROJECT_ID,
             self::NAME
-        );
+        ]);
     }
 
     public function testName()
@@ -59,22 +61,22 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
 
     public function testExists()
     {
-        $this->adminConnection->getDatabaseDDL(Argument::any())
+        $this->connection->getDatabaseDDL(Argument::any())
             ->shouldBeCalled()
             ->willReturn([]);
 
-        $this->database->setAdminConnection($this->adminConnection->reveal());
+        $this->database->setConnection($this->connection->reveal());
 
         $this->assertTrue($this->database->exists());
     }
 
     public function testExistsNotFound()
     {
-        $this->adminConnection->getDatabaseDDL(Argument::any())
+        $this->connection->getDatabaseDDL(Argument::any())
             ->shouldBeCalled()
             ->willThrow(new NotFoundException('', 404));
 
-        $this->database->setAdminConnection($this->adminConnection->reveal());
+        $this->database->setConnection($this->connection->reveal());
 
         $this->assertFalse($this->database->exists());
     }
@@ -82,37 +84,37 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
     public function testUpdate()
     {
         $statements = ['foo', 'bar'];
-        $this->adminConnection->updateDatabase([
+        $this->connection->updateDatabase([
             'name' => DatabaseAdminClient::formatDatabaseName(self::PROJECT_ID, self::INSTANCE_NAME, self::NAME),
             'statements' => $statements
         ]);
 
-        $this->database->setAdminConnection($this->adminConnection->reveal());
+        $this->database->setConnection($this->connection->reveal());
 
-        $this->database->update($statements);
+        $this->database->updateDdl($statements);
     }
 
     public function testUpdateWithSingleStatement()
     {
         $statement = 'foo';
-        $this->adminConnection->updateDatabase([
+        $this->connection->updateDatabase([
             'name' => DatabaseAdminClient::formatDatabaseName(self::PROJECT_ID, self::INSTANCE_NAME, self::NAME),
             'statements' => ['foo'],
             'operationId' => null,
         ])->shouldBeCalled();
 
-        $this->database->setAdminConnection($this->adminConnection->reveal());
+        $this->database->setConnection($this->connection->reveal());
 
-        $this->database->update($statement);
+        $this->database->updateDdl($statement);
     }
 
     public function testDrop()
     {
-        $this->adminConnection->dropDatabase([
+        $this->connection->dropDatabase([
             'name' => DatabaseAdminClient::formatDatabaseName(self::PROJECT_ID, self::INSTANCE_NAME, self::NAME)
         ])->shouldBeCalled();
 
-        $this->database->setAdminConnection($this->adminConnection->reveal());
+        $this->database->setConnection($this->connection->reveal());
 
         $this->database->drop();
     }
@@ -120,22 +122,22 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
     public function testDdl()
     {
         $ddl = ['create table users', 'create table posts'];
-        $this->adminConnection->getDatabaseDDL([
+        $this->connection->getDatabaseDDL([
             'name' => DatabaseAdminClient::formatDatabaseName(self::PROJECT_ID, self::INSTANCE_NAME, self::NAME)
         ])->willReturn(['statements' => $ddl]);
 
-        $this->database->setAdminConnection($this->adminConnection->reveal());
+        $this->database->setConnection($this->connection->reveal());
 
         $this->assertEquals($ddl, $this->database->ddl());
     }
 
     public function testDdlNoResult()
     {
-        $this->adminConnection->getDatabaseDDL([
+        $this->connection->getDatabaseDDL([
             'name' => DatabaseAdminClient::formatDatabaseName(self::PROJECT_ID, self::INSTANCE_NAME, self::NAME)
         ])->willReturn([]);
 
-        $this->database->setAdminConnection($this->adminConnection->reveal());
+        $this->database->setConnection($this->connection->reveal());
 
         $this->assertEquals([], $this->database->ddl());
     }
@@ -143,13 +145,5 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
     public function testIam()
     {
         $this->assertInstanceOf(Iam::class, $this->database->iam());
-    }
-}
-
-class DatabaseStub extends Database
-{
-    public function setAdminConnection($conn)
-    {
-        $this->adminConnection = $conn;
     }
 }

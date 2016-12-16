@@ -15,16 +15,16 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Spanner\Connection;
+namespace Google\Cloud\Tests\Unit\Spanner\Admin\Connection;
 
-use Google\Cloud\Spanner\Connection\AdminConnectionInterface;
-use Google\Cloud\Spanner\Connection\IamDatabase;
+use Google\Cloud\Spanner\Connection\ConnectionInterface;
+use Google\Cloud\Spanner\Connection\IamInstance;
 use Prophecy\Argument;
 
 /**
  * @group spanner
  */
-class IamDatabaseTest extends \PHPUnit_Framework_TestCase
+class IamInstanceTest extends \PHPUnit_Framework_TestCase
 {
     private $connection;
 
@@ -32,9 +32,9 @@ class IamDatabaseTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->connection = $this->prophesize(AdminConnectionInterface::class);
+        $this->connection = $this->prophesize(ConnectionInterface::class);
 
-        $this->iam = new IamDatabaseStub($this->connection->reveal());
+        $this->iam = \Google\Cloud\Dev\stub(IamInstance::class, [$this->connection->reveal()]);
     }
 
     public function testGetPolicy()
@@ -42,7 +42,7 @@ class IamDatabaseTest extends \PHPUnit_Framework_TestCase
         $args = ['key' => 'val'];
         $res = ['foo' => 'bar'];
 
-        $this->connection->getDatabaseIamPolicy(Argument::exact($args))
+        $this->connection->getInstanceIamPolicy(Argument::exact($args))
             ->shouldBeCalled()
             ->willReturn($res);
 
@@ -58,7 +58,7 @@ class IamDatabaseTest extends \PHPUnit_Framework_TestCase
         $args = ['key' => 'val'];
         $res = ['foo' => 'bar'];
 
-        $this->connection->setDatabaseIamPolicy(Argument::exact($args))
+        $this->connection->setInstanceIamPolicy(Argument::exact($args))
             ->shouldBeCalled()
             ->willReturn($res);
 
@@ -74,7 +74,7 @@ class IamDatabaseTest extends \PHPUnit_Framework_TestCase
         $args = ['key' => 'val'];
         $res = ['foo' => 'bar'];
 
-        $this->connection->testDatabaseIamPermissions(Argument::exact($args))
+        $this->connection->testInstanceIamPermissions(Argument::exact($args))
             ->shouldBeCalled()
             ->willReturn($res);
 
@@ -83,13 +83,5 @@ class IamDatabaseTest extends \PHPUnit_Framework_TestCase
         $p = $this->iam->testPermissions($args);
 
         $this->assertEquals($res, $p);
-    }
-}
-
-class IamDatabaseStub extends IamDatabase
-{
-    public function setConnection($conn)
-    {
-        $this->adminConnection = $conn;
     }
 }

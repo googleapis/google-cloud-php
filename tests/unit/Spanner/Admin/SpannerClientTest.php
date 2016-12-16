@@ -15,11 +15,10 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Spanner;
+namespace Google\Cloud\Tests\Unit\Spanner\Admin;
 
 use Google\Cloud\Exception\NotFoundException;
 use Google\Cloud\Spanner\Configuration;
-use Google\Cloud\Spanner\Connection\AdminConnectionInterface;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\SpannerClient;
@@ -34,21 +33,17 @@ class SpannerClientTest extends \PHPUnit_Framework_TestCase
 
     private $connection;
 
-    private $adminConnection;
-
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->adminConnection = $this->prophesize(AdminConnectionInterface::class);
 
-        $this->client = new SpannerClientStub(['projectId' => 'test-project']);
+        $this->client = \Google\Cloud\Dev\stub(SpannerClient::class, [['projectId' => 'test-project']]);
         $this->client->setConnection($this->connection->reveal());
-        $this->client->setAdminConnection($this->adminConnection->reveal());
     }
 
     public function testConfigurations()
     {
-        $this->adminConnection->listConfigs(Argument::any())
+        $this->connection->listConfigs(Argument::any())
             ->shouldBeCalled()
             ->willReturn([
                 'instanceConfigs' => [
@@ -62,7 +57,7 @@ class SpannerClientTest extends \PHPUnit_Framework_TestCase
                 ]
             ]);
 
-        $this->client->setAdminConnection($this->adminConnection->reveal());
+        $this->client->setConnection($this->connection->reveal());
 
         $configs = $this->client->configurations();
 
@@ -84,7 +79,7 @@ class SpannerClientTest extends \PHPUnit_Framework_TestCase
 
     public function testCreateInstance()
     {
-        $this->adminConnection->createInstance(Argument::that(function ($arg) {
+        $this->connection->createInstance(Argument::that(function ($arg) {
             if ($arg['name'] !== 'projects/test-project/instances/foo') return false;
             if ($arg['config'] !== 'projects/test-project/instanceConfigs/my-config') return false;
 
@@ -93,7 +88,7 @@ class SpannerClientTest extends \PHPUnit_Framework_TestCase
             ->shouldBeCalled()
             ->willReturn([]);
 
-        $this->client->setAdminConnection($this->adminConnection->reveal());
+        $this->client->setConnection($this->connection->reveal());
 
         $config = $this->prophesize(Configuration::class);
         $config->name()->willReturn('my-config');
@@ -119,7 +114,7 @@ class SpannerClientTest extends \PHPUnit_Framework_TestCase
 
     public function testInstances()
     {
-        $this->adminConnection->listInstances(Argument::any())
+        $this->connection->listInstances(Argument::any())
             ->shouldBeCalled()
             ->willReturn([
                 'instances' => [
@@ -128,7 +123,7 @@ class SpannerClientTest extends \PHPUnit_Framework_TestCase
                 ]
             ]);
 
-        $this->client->setAdminConnection($this->adminConnection->reveal());
+        $this->client->setConnection($this->connection->reveal());
 
         $instances = $this->client->instances();
         $this->assertInstanceOf(\Generator::class, $instances);
@@ -137,18 +132,5 @@ class SpannerClientTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(2, count($instances));
         $this->assertEquals('foo', $instances[0]->name());
         $this->assertEquals('bar', $instances[1]->name());
-    }
-}
-
-class SpannerClientStub extends SpannerClient
-{
-    public function setConnection($conn)
-    {
-        $this->connection = $conn;
-    }
-
-    public function setAdminConnection($conn)
-    {
-        $this->adminConnection = $conn;
     }
 }
