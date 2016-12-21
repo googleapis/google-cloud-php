@@ -19,6 +19,7 @@ namespace Google\Cloud\Tests\Unit\Spanner\Admin\Connection;
 
 use Google\Cloud\GrpcRequestWrapper;
 use Google\Cloud\GrpcTrait;
+use Google\Cloud\PhpArray;
 use Google\Cloud\Spanner\Connection\Grpc;
 use Prophecy\Argument;
 
@@ -71,10 +72,14 @@ class GrpcTest extends \PHPUnit_Framework_TestCase
             'config' => 'foo',
             'displayName' => 'instanceName',
             'nodeCount' => 2,
-            'labels' => [],
-            'instanceId' => $instanceName,
-            'state' => null,
+            'state' => null
         ];
+        $instance = (new \google\spanner\admin\instance\v1\Instance())->deserialize($instanceArgs, new PhpArray());
+        $fieldMask = (new \google\protobuf\FieldMask())->deserialize([
+            'paths' => [
+                'name', 'config', 'display_name', 'node_count'
+            ]
+        ], new PhpArray());
 
         $databaseName = 'foo';
         $createStmt = 'CREATE DATABASE foo';
@@ -101,16 +106,22 @@ class GrpcTest extends \PHPUnit_Framework_TestCase
                 ['name' => $instanceName],
                 [$instanceName, []]
             ],
-            // [
-            //     'createInstance',
-            //     $instanceArgs + ['projectId' => self::PROJECT],
-            //     [self::PROJECT, $instanceName, Argument::type(\google\spanner\admin\instance\v1\Instance::class), []]
-            // ],
-            // [
-            //     'updateInstance',
-            //     ['name' => $value],
-            //     [$value, []]
-            // ],
+            [
+                'createInstance',
+                $instanceArgs + [
+                    'projectId' => self::PROJECT,
+                    'instanceId' => $instanceName,
+                    'labels' => []
+                ],
+                [self::PROJECT, $instanceName, $instance, []]
+            ],
+            [
+                'updateInstance',
+                $instanceArgs + [
+                    'labels' => []
+                ],
+                [$instance, $fieldMask, []]
+            ],
             [
                 'deleteInstance',
                 ['name' => $instanceName],
