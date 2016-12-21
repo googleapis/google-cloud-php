@@ -29,7 +29,7 @@ use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Prophecy\Argument;
 
 /**
- * @group spanner
+ * @group spanneradmin
  */
 class InstanceTest extends \PHPUnit_Framework_TestCase
 {
@@ -151,7 +151,6 @@ class InstanceTest extends \PHPUnit_Framework_TestCase
             'displayName' => $instance['displayName'],
             'nodeCount' => $instance['nodeCount'],
             'labels' => [],
-            'config' => $instance['config']
         ])->shouldBeCalled();
 
         $this->instance->setConnection($this->connection->reveal());
@@ -173,7 +172,6 @@ class InstanceTest extends \PHPUnit_Framework_TestCase
             'displayName' => $instance['displayName'],
             'nodeCount' => $instance['nodeCount'],
             'labels' => $instance['labels'],
-            'config' => $instance['config']
         ])->shouldBeCalled();
 
         $this->instance->setConnection($this->connection->reveal());
@@ -185,16 +183,12 @@ class InstanceTest extends \PHPUnit_Framework_TestCase
     {
         $instance = $this->getDefaultInstance();
 
-        $config = $this->prophesize(Configuration::class);
-        $config->name()->willReturn('config-name');
-
         $changes = [
             'labels' => [
                 'foo' => 'bar'
             ],
             'nodeCount' => 900,
             'displayName' => 'New Name',
-            'config' => $config->reveal()
         ];
 
         $this->connection->getInstance(Argument::any())
@@ -206,28 +200,7 @@ class InstanceTest extends \PHPUnit_Framework_TestCase
             'displayName' => $changes['displayName'],
             'nodeCount' => $changes['nodeCount'],
             'labels' => $changes['labels'],
-            'config' => InstanceAdminClient::formatInstanceConfigName(self::PROJECT_ID, $changes['config']->name())
         ])->shouldBeCalled();
-
-        $this->instance->setConnection($this->connection->reveal());
-
-        $this->instance->update($changes);
-    }
-
-    /**
-     * @expectedException InvalidArgumentException
-     */
-    public function testUpdateInvalidConfig()
-    {
-        $instance = $this->getDefaultInstance();
-
-        $changes = [
-            'config' => 'foo'
-        ];
-
-        $this->connection->getInstance(Argument::any())
-            ->shouldBeCalledTimes(1)
-            ->willReturn($instance);
 
         $this->instance->setConnection($this->connection->reveal());
 

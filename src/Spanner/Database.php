@@ -34,7 +34,18 @@ use Google\Cloud\Spanner\Session\SessionPoolInterface;
  * $cloud = new ServiceBuilder();
  * $spanner = $cloud->spanner();
  *
- * $database = $spanner->connect('my-instance-name', 'my-database');
+ * $database = $spanner->connect('my-instance', 'my-database');
+ * ```
+ *
+ * ```
+ * // Databases can also be connected to via an Instance.
+ * use Google\Cloud\ServiceBuilder;
+ *
+ * $cloud = new ServiceBuilder();
+ * $spanner = $cloud->spanner();
+ *
+ * $instance = $spanner->instance('my-instance');
+ * $database = $instance->database('my-database');
  * ```
  */
 class Database
@@ -97,7 +108,7 @@ class Database
         $this->projectId = $projectId;
         $this->name = $name;
 
-        $this->operation = new Operation($connection, $instance, $this);
+        $this->operation = new Operation($connection);
         $this->iam = new Iam(
             new IamDatabase($this->connection),
             $this->fullyQualifiedDatabaseName()
@@ -127,7 +138,7 @@ class Database
      * Example:
      * ```
      * if ($database->exists()) {
-     *     echo 'The database exists!';
+     *     echo 'Database exists!';
      * }
      * ```
      *
@@ -137,9 +148,7 @@ class Database
     public function exists(array $options = [])
     {
         try {
-            $this->connection->getDatabaseDDL($options + [
-                'name' => $this->fullyQualifiedDatabaseName()
-            ]);
+            $this->ddl($options);
         } catch (NotFoundException $e) {
             return false;
         }

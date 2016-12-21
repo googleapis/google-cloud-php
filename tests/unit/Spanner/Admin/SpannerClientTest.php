@@ -25,7 +25,7 @@ use Google\Cloud\Spanner\SpannerClient;
 use Prophecy\Argument;
 
 /**
- * @group spanner
+ * @group spanneradmin
  */
 class SpannerClientTest extends \PHPUnit_Framework_TestCase
 {
@@ -56,6 +56,43 @@ class SpannerClientTest extends \PHPUnit_Framework_TestCase
                     ]
                 ]
             ]);
+
+        $this->client->setConnection($this->connection->reveal());
+
+        $configs = $this->client->configurations();
+
+        $this->assertInstanceOf(\Generator::class, $configs);
+
+        $configs = iterator_to_array($configs);
+        $this->assertEquals(2, count($configs));
+        $this->assertInstanceOf(Configuration::class, $configs[0]);
+        $this->assertInstanceOf(Configuration::class, $configs[1]);
+    }
+
+    public function testPagedConfigurations()
+    {
+        $firstCall = [
+            'instanceConfigs' => [
+                [
+                    'name' => 'projects/foo/instanceConfigs/bar',
+                    'displayName' => 'Bar'
+                ]
+            ],
+            'nextPageToken' => 'fooBar'
+        ];
+
+        $secondCall = [
+            'instanceConfigs' => [
+                [
+                    'name' => 'projects/foo/instanceConfigs/bat',
+                    'displayName' => 'Bat'
+                ]
+            ]
+        ];
+
+        $this->connection->listConfigs(Argument::any())
+            ->shouldBeCalledTimes(2)
+            ->willReturn($firstCall, $secondCall);
 
         $this->client->setConnection($this->connection->reveal());
 

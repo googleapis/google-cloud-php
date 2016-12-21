@@ -103,7 +103,7 @@ class Configuration
      * Example:
      * ```
      * $info = $configuration->info();
-     * echo $info['nodeCount'];
+     * echo $info['displayName'];
      * ```
      *
      * @codingStandardsIgnoreStart
@@ -128,7 +128,7 @@ class Configuration
      * Example:
      * ```
      * if ($configuration->exists()) {
-     *    echo 'The configuration exists!';
+     *    echo 'Configuration exists!';
      * }
      * ```
      *

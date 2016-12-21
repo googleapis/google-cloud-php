@@ -22,7 +22,7 @@ use Google\Cloud\Spanner\Connection\IamDatabase;
 use Prophecy\Argument;
 
 /**
- * @group spanner
+ * @group spanneradmin
  */
 class IamDatabaseTest extends \PHPUnit_Framework_TestCase
 {

@@ -148,7 +148,7 @@ class Instance
      * Example:
      * ```
      * if ($instance->exists()) {
-     *    echo 'The instance exists!';
+     *    echo 'Instance exists!';
      * }
      * ```
      *
@@ -195,9 +195,8 @@ class Instance
      *
      * Example:
      * ```
-     * $instance = $spanner->createInstance($config, 'my-new-instance');
      * if ($instance->state() === Instance::STATE_READY) {
-     *     // do stuff
+     *     echo 'Instance is ready!';
      * }
      * ```
      *
@@ -218,15 +217,21 @@ class Instance
      *
      * Example:
      * ```
-     * todo
+     * $instance->update([
+     *     'displayName' => 'My Instance',
+     *     'nodeCount' => 4
+     * ]);
      * ```
      *
      * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.admin.instance.v1 Update Instance
      *
-     * @param array $options {
+     * @param array $options [optional] {
      *     Configuration options
      *
-     *     @type Configuration $config The configuration to move the instance to.
+     *     @type string $displayName **Defaults to** the value of $name.
+     *     @type int $nodeCount **Defaults to** `1`.
+     *     @type array $labels For more information, see
+     *           [Using labels to organize Google Cloud Platform resources](https://cloudplatform.googleblog.com/2015/10/using-labels-to-organize-Google-Cloud-Platform-resources.html).
      * }
      * @return void
      * @throws \InvalidArgumentException
@@ -238,29 +243,13 @@ class Instance
         $options += [
             'displayName' => $info['displayName'],
             'nodeCount' => $info['nodeCount'],
-            'config' => null,
             'labels' => (isset($info['labels']))
                 ? $info['labels']
                 : []
         ];
 
-        $config = $info['config'];
-        if ($options['config']) {
-            if (!($options['config'] instanceof Configuration)) {
-                throw new \InvalidArgumentException(
-                    'Given configuration is not an instance of Configuration.'
-                );
-            }
-
-            $config = InstanceAdminClient::formatInstanceConfigName(
-                $this->projectId,
-                $options['config']->name()
-            );
-        }
-
         $this->connection->updateInstance([
             'name' => $this->fullyQualifiedInstanceName(),
-            'config' => $config,
         ] + $options);
     }
 
@@ -308,7 +297,7 @@ class Instance
 
         $statement = sprintf('CREATE DATABASE `%s`', $name);
 
-        $res = $this->connection->createDatabase([
+        $this->connection->createDatabase([
             'instance' => $this->fullyQualifiedInstanceName(),
             'createStatement' => $statement,
             'extraStatements' => $options['statements']
@@ -347,8 +336,6 @@ class Instance
      * $databases = $instance->databases();
      * ```
      *
-     * @todo implement pagination!
-     *
      * @see https://cloud.google.com/spanner/reference/rest/v1/projects.instances.databases/list List Databases
      *
      * @param array $options Configuration options.
@@ -356,18 +343,29 @@ class Instance
      */
     public function databases(array $options = [])
     {
-        $res = $this->connection->listDatabases($options + [
-            'instance' => $this->fullyQualifiedInstanceName(),
-        ]);
+        $pageToken = null;
 
-        $databases = [];
-        if (isset($res['databases'])) {
-            foreach ($res['databases'] as $database) {
-                yield $this->database(
-                    DatabaseAdminClient::parseDatabaseFromDatabaseName($database['name'])
-                );
+        do {
+            $res = $this->connection->listDatabases($options + [
+                'instance' => $this->fullyQualifiedInstanceName(),
+                'pageToken' => $pageToken
+            ]);
+
+            $databases = [];
+            if (isset($res['databases'])) {
+                foreach ($res['databases'] as $database) {
+                    yield $this->database(
+                        DatabaseAdminClient::parseDatabaseFromDatabaseName($database['name'])
+                    );
+                }
             }
-        }
+
+            if (isset($res['nextPageToken'])) {
+                $pageToken = $res['nextPageToken'];
+            } else {
+                $pageToken = null;
+            }
+        } while($pageToken);
     }
 
     /**

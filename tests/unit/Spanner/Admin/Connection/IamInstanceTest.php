@@ -22,7 +22,7 @@ use Google\Cloud\Spanner\Connection\IamInstance;
 use Prophecy\Argument;
 
 /**
- * @group spanner
+ * @group spanneradmin
  */
 class IamInstanceTest extends \PHPUnit_Framework_TestCase
 {

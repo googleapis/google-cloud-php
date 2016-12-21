@@ -27,7 +27,7 @@ use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Prophecy\Argument;
 
 /**
- * @group spanner
+ * @group spanneradmin
  */
 class DatabaseTest extends \PHPUnit_Framework_TestCase
 {
