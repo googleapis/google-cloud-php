@@ -284,6 +284,6 @@ class InstanceTest extends \PHPUnit_Framework_TestCase
 
     private function getDefaultInstance()
     {
-        return json_decode(file_get_contents(__DIR__ .'/../../../fixtures/spanner/instance.json'), true);
+        return json_decode(file_get_contents(__DIR__ .'/../../fixtures/spanner/instance.json'), true);
     }
 }
