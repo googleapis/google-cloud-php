@@ -135,10 +135,11 @@ class Grpc implements ConnectionInterface
      */
     public function createInstance(array $args = [])
     {
+        $instance = $this->instanceObject($args, true);
         return $this->send([$this->instanceAdminClient, 'createInstance'], [
             $this->pluck('projectId', $args),
             $this->pluck('instanceId', $args),
-            $this->instanceObject($args, true),
+            $instance,
             $args
         ]);
     }

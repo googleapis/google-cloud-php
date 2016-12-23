@@ -242,7 +242,7 @@ class Instance
 
         $options += [
             'displayName' => $info['displayName'],
-            'nodeCount' => $info['nodeCount'],
+            'nodeCount' => (isset($info['nodeCount'])) ? $info['nodeCount'] : null,
             'labels' => (isset($info['labels']))
                 ? $info['labels']
                 : []
