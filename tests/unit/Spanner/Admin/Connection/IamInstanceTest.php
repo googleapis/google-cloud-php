@@ -15,14 +15,14 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Spanner\Connection;
+namespace Google\Cloud\Tests\Unit\Spanner\Admin\Connection;
 
-use Google\Cloud\Spanner\Connection\AdminConnectionInterface;
+use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Connection\IamInstance;
 use Prophecy\Argument;
 
 /**
- * @group spanner
+ * @group spanneradmin
  */
 class IamInstanceTest extends \PHPUnit_Framework_TestCase
 {
@@ -32,9 +32,9 @@ class IamInstanceTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->connection = $this->prophesize(AdminConnectionInterface::class);
+        $this->connection = $this->prophesize(ConnectionInterface::class);
 
-        $this->iam = new IamInstanceStub($this->connection->reveal());
+        $this->iam = \Google\Cloud\Dev\stub(IamInstance::class, [$this->connection->reveal()]);
     }
 
     public function testGetPolicy()
@@ -83,13 +83,5 @@ class IamInstanceTest extends \PHPUnit_Framework_TestCase
         $p = $this->iam->testPermissions($args);
 
         $this->assertEquals($res, $p);
-    }
-}
-
-class IamInstanceStub extends IamInstance
-{
-    public function setConnection($conn)
-    {
-        $this->adminConnection = $conn;
     }
 }

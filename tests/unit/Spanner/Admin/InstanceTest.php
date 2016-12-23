@@ -15,33 +15,39 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Spanner;
+namespace Google\Cloud\Tests\Unit\Spanner\Admin;
 
 use Google\Cloud\Exception\NotFoundException;
 use Google\Cloud\Iam\Iam;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Configuration;
-use Google\Cloud\Spanner\Connection\AdminConnectionInterface;
+use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
+use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Prophecy\Argument;
 
 /**
- * @group spanner
+ * @group spanneradmin
  */
 class InstanceTest extends \PHPUnit_Framework_TestCase
 {
     const PROJECT_ID = 'test-project';
     const NAME = 'instance-name';
 
-    private $adminConnection;
+    private $connection;
     private $instance;
 
     public function setUp()
     {
-        $this->adminConnection = $this->prophesize(AdminConnectionInterface::class);
-        $this->instance = new InstanceStub($this->adminConnection->reveal(), self::PROJECT_ID, self::NAME);
+        $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->instance = \Google\Cloud\Dev\stub(Instance::class, [
+            $this->connection->reveal(),
+            $this->prophesize(SessionPoolInterface::class)->reveal(),
+            self::PROJECT_ID,
+            self::NAME
+        ]);
     }
 
     public function testName()
@@ -51,9 +57,9 @@ class InstanceTest extends \PHPUnit_Framework_TestCase
 
     public function testInfo()
     {
-        $this->adminConnection->getInstance()->shouldNotBeCalled();
+        $this->connection->getInstance()->shouldNotBeCalled();
 
-        $instance = new Instance($this->adminConnection->reveal(), self::PROJECT_ID, self::NAME, ['foo' => 'bar']);
+        $instance = new Instance($this->connection->reveal(), $this->prophesize(SessionPoolInterface::class)->reveal(), self::PROJECT_ID, self::NAME, ['foo' => 'bar']);
         $this->assertEquals('bar', $instance->info()['foo']);
     }
 
@@ -61,11 +67,11 @@ class InstanceTest extends \PHPUnit_Framework_TestCase
     {
         $instance = $this->getDefaultInstance();
 
-        $this->adminConnection->getInstance(Argument::any())
+        $this->connection->getInstance(Argument::any())
             ->shouldBeCalledTimes(1)
             ->willReturn($instance);
 
-        $this->instance->setAdminConnection($this->adminConnection->reveal());
+        $this->instance->setConnection($this->connection->reveal());
 
         $info = $this->instance->info();
         $this->assertEquals('Instance Name', $info['displayName']);
@@ -75,20 +81,20 @@ class InstanceTest extends \PHPUnit_Framework_TestCase
 
     public function testExists()
     {
-        $this->adminConnection->getInstance(Argument::any())->shouldBeCalled()->willReturn([]);
+        $this->connection->getInstance(Argument::any())->shouldBeCalled()->willReturn([]);
 
-        $this->instance->setAdminConnection($this->adminConnection->reveal());
+        $this->instance->setConnection($this->connection->reveal());
 
         $this->assertTrue($this->instance->exists());
     }
 
     public function testExistsNotFound()
     {
-        $this->adminConnection->getInstance(Argument::any())
+        $this->connection->getInstance(Argument::any())
             ->shouldBeCalled()
             ->willThrow(new NotFoundException('foo', 404));
 
-        $this->instance->setAdminConnection($this->adminConnection->reveal());
+        $this->instance->setConnection($this->connection->reveal());
 
         $this->assertFalse($this->instance->exists());
     }
@@ -97,11 +103,11 @@ class InstanceTest extends \PHPUnit_Framework_TestCase
     {
         $instance = $this->getDefaultInstance();
 
-        $this->adminConnection->getInstance(Argument::any())
+        $this->connection->getInstance(Argument::any())
             ->shouldBeCalledTimes(1)
             ->willReturn($instance);
 
-        $this->instance->setAdminConnection($this->adminConnection->reveal());
+        $this->instance->setConnection($this->connection->reveal());
 
         $info = $this->instance->reload();
 
@@ -112,22 +118,22 @@ class InstanceTest extends \PHPUnit_Framework_TestCase
     {
         $instance = $this->getDefaultInstance();
 
-        $this->adminConnection->getInstance(Argument::any())
+        $this->connection->getInstance(Argument::any())
             ->shouldBeCalledTimes(1)
             ->willReturn($instance);
 
-        $this->instance->setAdminConnection($this->adminConnection->reveal());
+        $this->instance->setConnection($this->connection->reveal());
 
         $this->assertEquals(Instance::STATE_READY, $this->instance->state());
     }
 
     public function testStateIsNull()
     {
-        $this->adminConnection->getInstance(Argument::any())
+        $this->connection->getInstance(Argument::any())
             ->shouldBeCalledTimes(1)
             ->willReturn([]);
 
-        $this->instance->setAdminConnection($this->adminConnection->reveal());
+        $this->instance->setConnection($this->connection->reveal());
 
         $this->assertNull($this->instance->state());
     }
@@ -136,19 +142,18 @@ class InstanceTest extends \PHPUnit_Framework_TestCase
     {
         $instance = $this->getDefaultInstance();
 
-        $this->adminConnection->getInstance(Argument::any())
+        $this->connection->getInstance(Argument::any())
             ->shouldBeCalledTimes(1)
             ->willReturn($instance);
 
-        $this->adminConnection->updateInstance([
+        $this->connection->updateInstance([
             'name' => $instance['name'],
             'displayName' => $instance['displayName'],
             'nodeCount' => $instance['nodeCount'],
             'labels' => [],
-            'config' => $instance['config']
         ])->shouldBeCalled();
 
-        $this->instance->setAdminConnection($this->adminConnection->reveal());
+        $this->instance->setConnection($this->connection->reveal());
 
         $this->instance->update();
     }
@@ -158,19 +163,18 @@ class InstanceTest extends \PHPUnit_Framework_TestCase
         $instance = $this->getDefaultInstance();
         $instance['labels'] = ['foo' => 'bar'];
 
-        $this->adminConnection->getInstance(Argument::any())
+        $this->connection->getInstance(Argument::any())
             ->shouldBeCalledTimes(1)
             ->willReturn($instance);
 
-        $this->adminConnection->updateInstance([
+        $this->connection->updateInstance([
             'name' => $instance['name'],
             'displayName' => $instance['displayName'],
             'nodeCount' => $instance['nodeCount'],
             'labels' => $instance['labels'],
-            'config' => $instance['config']
         ])->shouldBeCalled();
 
-        $this->instance->setAdminConnection($this->adminConnection->reveal());
+        $this->instance->setConnection($this->connection->reveal());
 
         $this->instance->update();
     }
@@ -179,62 +183,37 @@ class InstanceTest extends \PHPUnit_Framework_TestCase
     {
         $instance = $this->getDefaultInstance();
 
-        $config = $this->prophesize(Configuration::class);
-        $config->name()->willReturn('config-name');
-
         $changes = [
             'labels' => [
                 'foo' => 'bar'
             ],
             'nodeCount' => 900,
             'displayName' => 'New Name',
-            'config' => $config->reveal()
         ];
 
-        $this->adminConnection->getInstance(Argument::any())
+        $this->connection->getInstance(Argument::any())
             ->shouldBeCalledTimes(1)
             ->willReturn($instance);
 
-        $this->adminConnection->updateInstance([
+        $this->connection->updateInstance([
             'name' => $instance['name'],
             'displayName' => $changes['displayName'],
             'nodeCount' => $changes['nodeCount'],
             'labels' => $changes['labels'],
-            'config' => InstanceAdminClient::formatInstanceConfigName(self::PROJECT_ID, $changes['config']->name())
         ])->shouldBeCalled();
 
-        $this->instance->setAdminConnection($this->adminConnection->reveal());
-
-        $this->instance->update($changes);
-    }
-
-    /**
-     * @expectedException InvalidArgumentException
-     */
-    public function testUpdateInvalidConfig()
-    {
-        $instance = $this->getDefaultInstance();
-
-        $changes = [
-            'config' => 'foo'
-        ];
-
-        $this->adminConnection->getInstance(Argument::any())
-            ->shouldBeCalledTimes(1)
-            ->willReturn($instance);
-
-        $this->instance->setAdminConnection($this->adminConnection->reveal());
+        $this->instance->setConnection($this->connection->reveal());
 
         $this->instance->update($changes);
     }
 
     public function testDelete()
     {
-        $this->adminConnection->deleteInstance([
+        $this->connection->deleteInstance([
             'name' => InstanceAdminClient::formatInstanceName(self::PROJECT_ID, self::NAME)
         ])->shouldBeCalled();
 
-        $this->instance->setAdminConnection($this->adminConnection->reveal());
+        $this->instance->setConnection($this->connection->reveal());
 
         $this->instance->delete();
     }
@@ -247,7 +226,7 @@ class InstanceTest extends \PHPUnit_Framework_TestCase
 
         $extra = ['foo', 'bar'];
 
-        $this->adminConnection->createDatabase([
+        $this->connection->createDatabase([
             'instance' => InstanceAdminClient::formatInstanceName(self::PROJECT_ID, self::NAME),
             'createStatement' => 'CREATE DATABASE `test-database`',
             'extraStatements' => $extra
@@ -255,7 +234,7 @@ class InstanceTest extends \PHPUnit_Framework_TestCase
             ->shouldBeCalled()
             ->willReturn($dbInfo);
 
-        $this->instance->setAdminConnection($this->adminConnection->reveal());
+        $this->instance->setConnection($this->connection->reveal());
 
         $database = $this->instance->createDatabase('test-database', [
             'statements' => $extra
@@ -279,11 +258,11 @@ class InstanceTest extends \PHPUnit_Framework_TestCase
             ['name' => DatabaseAdminClient::formatDatabaseName(self::PROJECT_ID, self::NAME, 'database2')]
         ];
 
-        $this->adminConnection->listDatabases(Argument::any())
+        $this->connection->listDatabases(Argument::any())
             ->shouldBeCalled()
             ->willReturn(['databases' => $databases]);
 
-        $this->instance->setAdminConnection($this->adminConnection->reveal());
+        $this->instance->setConnection($this->connection->reveal());
 
         $dbs = $this->instance->databases();
 
@@ -305,14 +284,6 @@ class InstanceTest extends \PHPUnit_Framework_TestCase
 
     private function getDefaultInstance()
     {
-        return json_decode(file_get_contents(__DIR__ .'/../fixtures/spanner/instance.json'), true);
-    }
-}
-
-class InstanceStub extends Instance
-{
-    public function setAdminConnection($conn)
-    {
-        $this->adminConnection = $conn;
+        return json_decode(file_get_contents(__DIR__ .'/../../fixtures/spanner/instance.json'), true);
     }
 }

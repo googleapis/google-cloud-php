@@ -22,7 +22,7 @@ use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 
 /**
- * Represents a Cloud Spanner Configuration
+ * Represents a Cloud Spanner Configuration.
  *
  * Example:
  * ```
@@ -33,6 +33,8 @@ use Google\Cloud\Spanner\Connection\ConnectionInterface;
  *
  * $configuration = $spanner->configuration('regional-europe-west');
  * ```
+ *
+ * @see https://cloud.google.com/spanner/reference/rest/v1/projects.instanceConfigs Instance Configs
  */
 class Configuration
 {
@@ -101,11 +103,13 @@ class Configuration
      * Example:
      * ```
      * $info = $configuration->info();
-     * echo $info['nodeCount'];
+     * echo $info['displayName'];
      * ```
      *
+     * @codingStandardsIgnoreStart
      * @param array $options [optional] Configuration options.
-     * @return array
+     * @return array [InstanceConfig](https://cloud.google.com/spanner/reference/rest/v1/projects.instanceConfigs#InstanceConfig)
+     * @codingStandardsIgnoreEnd
      */
     public function info(array $options = [])
     {
@@ -124,12 +128,12 @@ class Configuration
      * Example:
      * ```
      * if ($configuration->exists()) {
-     *    echo 'The configuration exists!';
+     *    echo 'Configuration exists!';
      * }
      * ```
      *
      * @param array $options [optional] Configuration options.
-     * @return array
+     * @return bool
      */
     public function exists(array $options = [])
     {
@@ -150,8 +154,10 @@ class Configuration
      * $info = $configuration->reload();
      * ```
      *
+     * @codingStandardsIgnoreStart
      * @param array $options [optional] Configuration options.
-     * @return array
+     * @return array [InstanceConfig](https://cloud.google.com/spanner/reference/rest/v1/projects.instanceConfigs#InstanceConfig)
+     * @codingStandardsIgnoreEnd
      */
     public function reload(array $options = [])
     {
@@ -163,6 +169,12 @@ class Configuration
         return $this->info;
     }
 
+    /**
+     * A more readable representation of the object.
+     *
+     * @codeCoverageIgnore
+     * @access private
+     */
     public function __debugInfo()
     {
         return [

@@ -26,6 +26,26 @@ use Google\Cloud\Spanner\Session\SimpleSessionPool;
 use Google\Cloud\ValidateTrait;
 use google\spanner\admin\instance\v1\Instance\State;
 
+/**
+ * Google Cloud Spanner is a highly scalable, transactional, managed, NewSQL
+ * database service. Find more information at
+ * [Google Cloud Spanner docs](https://cloud.google.com/spanner/).
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\ServiceBuilder;
+ *
+ * $cloud = new ServiceBuilder();
+ * $spanner = $cloud->spanner();
+ * ```
+ *
+ * ```
+ * // SpannerClient can be instantiated directly.
+ * use Google\Cloud\Spanner\SpannerClient;
+ *
+ * $spanner = new SpannerClient();
+ * ```
+ */
 class SpannerClient
 {
     use ClientTrait;
@@ -119,9 +139,9 @@ class SpannerClient
                 }
             }
 
-            if (isset($res['nextPageToken'])) {
-                $pageToken = $res['nextPageToken'];
-            }
+            $pageToken = (isset($res['nextPageToken']))
+                ? $res['nextPageToken']
+                : null;
         } while($pageToken);
     }
 
@@ -153,7 +173,7 @@ class SpannerClient
      *
      * Example:
      * ```
-     * $instance = $spanner->createInstance($configuration, 'my-application-instance');
+     * $instance = $spanner->createInstance($configuration, 'my-instance');
      * ```
      *
      * @see https://cloud.google.com/spanner/reference/rest/v1/projects.instances/create Create Instance
@@ -166,7 +186,6 @@ class SpannerClient
      *
      *     @type string $displayName **Defaults to** the value of $name.
      *     @type int $nodeCount **Defaults to** `1`.
-     *     @type int $state **Defaults to** <val>
      *     @type array $labels For more information, see
      *           [Using labels to organize Google Cloud Platform resources](https://cloudplatform.googleblog.com/2015/10/using-labels-to-organize-Google-Cloud-Platform-resources.html).
      * }
@@ -178,9 +197,11 @@ class SpannerClient
         $options += [
             'displayName' => $name,
             'nodeCount' => self::DEFAULT_NODE_COUNT,
-            'state' => State::CREATING,
             'labels' => []
         ];
+
+        // This must always be set to CREATING, so overwrite anything else.
+        $options['state'] = State::CREATING;
 
         $res = $this->connection->createInstance([
             'instanceId' => $name,
@@ -197,7 +218,7 @@ class SpannerClient
      *
      * Example:
      * ```
-     * $instance = $spanner->instance('my-application-instance');
+     * $instance = $spanner->instance('my-instance');
      * ```
      *
      * @param string $name The instance name
@@ -212,29 +233,6 @@ class SpannerClient
             $name,
             $instance
         );
-    }
-
-    /**
-     * Connect to a database to run queries or mutations.
-     *
-     * Example:
-     * ```
-     * $database = $spanner->connect('my-application-instance', 'my-application-database');
-     * ```
-     *
-     * @param Instance|string $instance The instance object or instance name.
-     * @param string $name The database name.
-     * @return Database
-     */
-    public function connect($instance, $name)
-    {
-        if (is_string($instance)) {
-            $instance = $this->instance($instance);
-        }
-
-        $database = $instance->database($name);
-
-        return $database;
     }
 
     /**
@@ -259,7 +257,7 @@ class SpannerClient
         ];
 
         $res = $this->connection->listInstances($options + [
-            'projectId' => $this->projectId,
+            'projectId' => InstanceAdminClient::formatProjectName($this->projectId),
         ]);
 
         if (isset($res['instances'])) {
@@ -270,6 +268,29 @@ class SpannerClient
                 );
             }
         }
+    }
+
+    /**
+     * Connect to a database to run queries or mutations.
+     *
+     * Example:
+     * ```
+     * $database = $spanner->connect('my-instance', 'my-application-database');
+     * ```
+     *
+     * @param Instance|string $instance The instance object or instance name.
+     * @param string $name The database name.
+     * @return Database
+     */
+    public function connect($instance, $name)
+    {
+        if (is_string($instance)) {
+            $instance = $this->instance($instance);
+        }
+
+        $database = $instance->database($name);
+
+        return $database;
     }
 
     /**

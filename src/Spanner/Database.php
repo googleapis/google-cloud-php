@@ -29,6 +29,22 @@ use Google\Cloud\Spanner\Session\SessionPoolInterface;
  *
  * Example:
  * ```
+ * use Google\Cloud\ServiceBuilder;
+ *
+ * $cloud = new ServiceBuilder();
+ * $spanner = $cloud->spanner();
+ *
+ * $database = $spanner->connect('my-instance', 'my-database');
+ * ```
+ *
+ * ```
+ * // Databases can also be connected to via an Instance.
+ * use Google\Cloud\ServiceBuilder;
+ *
+ * $cloud = new ServiceBuilder();
+ * $spanner = $cloud->spanner();
+ *
+ * $instance = $spanner->instance('my-instance');
  * $database = $instance->database('my-database');
  * ```
  */
@@ -78,7 +94,6 @@ class Database
      * @param SessionPoolInterface The session pool implementation.
      * @param string $projectId The project ID.
      * @param string $name The database name.
-     * @param array $info [optional] A representation of the database object.
      */
     public function __construct(
         ConnectionInterface $connection,
@@ -93,7 +108,7 @@ class Database
         $this->projectId = $projectId;
         $this->name = $name;
 
-        $this->operation = new Operation($connection, $instance, $this);
+        $this->operation = new Operation($connection);
         $this->iam = new Iam(
             new IamDatabase($this->connection),
             $this->fullyQualifiedDatabaseName()
@@ -123,7 +138,7 @@ class Database
      * Example:
      * ```
      * if ($database->exists()) {
-     *     echo 'The database exists!';
+     *     echo 'Database exists!';
      * }
      * ```
      *
@@ -133,9 +148,7 @@ class Database
     public function exists(array $options = [])
     {
         try {
-            $this->connection->getDatabaseDDL($options + [
-                'name' => $this->fullyQualifiedDatabaseName()
-            ]);
+            $this->ddl($options);
         } catch (NotFoundException $e) {
             return false;
         }
@@ -144,32 +157,66 @@ class Database
     }
 
     /**
-     * Update the Database.
+     * Update the Database schema by running a SQL statement.
      *
      * Example:
      * ```
-     * $database->update([
+     * $database->updateDdl(
      *     'CREATE TABLE Users (
      *         id INT64 NOT NULL,
      *         name STRING(100) NOT NULL
      *         password STRING(100) NOT NULL
      *     )'
-     * ]);
+     * );
      * ```
      *
-     * @param string|array $statements One or more DDL statements to execute.
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/spanner/docs/data-definition-language Data Definition Language
+     * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.admin.database.v1#google.spanner.admin.database.v1.UpdateDatabaseDdlRequest UpdateDDLRequest
+     * @codingStandardsIgnoreEnd
+     *
+     * @param string $statement A DDL statement to run against a database.
      * @param array $options [optional] Configuration options.
      * @return <something>
      */
-    public function updateDdl($statements, array $options = [])
+    public function updateDdl($statement, array $options = [])
+    {
+        return $this->updateDdlBatch([$statement], $options);
+    }
+
+    /**
+     * Update the Database schema by running a set of SQL statements.
+     *
+     * Example:
+     * ```
+     * $database->updateDdlBatch([
+     *     'CREATE TABLE Users (
+     *         id INT64 NOT NULL,
+     *         name STRING(100) NOT NULL
+     *         password STRING(100) NOT NULL
+     *     )',
+     *     'CREATE TABLE Posts (
+     *         id INT64 NOT NULL,
+     *         title STRING(100) NOT NULL
+     *         content STRING(MAX) NOT NULL
+     *     )'
+     * ]);
+     * ```
+     *
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/spanner/docs/data-definition-language Data Definition Language
+     * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.admin.database.v1#google.spanner.admin.database.v1.UpdateDatabaseDdlRequest UpdateDDLRequest
+     * @codingStandardsIgnoreEnd
+     *
+     * @param string[] $statements A list of DDL statements to run against a database.
+     * @param array $options [optional] Configuration options.
+     * @return <something>
+     */
+    public function updateDdlBatch(array $statements, array $options = [])
     {
         $options += [
             'operationId' => null
         ];
-
-        if (!is_array($statements)) {
-            $statements = [$statements];
-        }
 
         return $this->connection->updateDatabase($options + [
             'name' => $this->fullyQualifiedDatabaseName(),
@@ -184,6 +231,10 @@ class Database
      * ```
      * $database->drop();
      * ```
+     *
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.admin.database.v1#google.spanner.admin.database.v1.DropDatabaseRequest DropDatabaseRequest
+     * @codingStandardsIgnoreEnd
      *
      * @param array $options [optional] Configuration options.
      * @return void
@@ -202,6 +253,10 @@ class Database
      * ```
      * $statements = $database->ddl();
      * ```
+     *
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.admin.database.v1#getdatabaseddlrequest GetDatabaseDdlRequest
+     * @codingStandardsIgnoreEnd
      *
      * @param array $options [optional] Configuration options.
      * @return array

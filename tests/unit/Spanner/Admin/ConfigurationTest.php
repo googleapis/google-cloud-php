@@ -15,33 +15,33 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Spanner;
+namespace Google\Cloud\Tests\Unit\Spanner\Admin;
 
 use Google\Cloud\Exception\NotFoundException;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Configuration;
-use Google\Cloud\Spanner\Connection\AdminConnectionInterface;
+use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Prophecy\Argument;
 
 /**
- * @group spanner
+ * @group spanneradmin
  */
 class ConfigurationTest extends \PHPUnit_Framework_TestCase
 {
     const PROJECT_ID = 'test-project';
     const NAME = 'test-config';
 
-    private $adminConnection;
+    private $connection;
     private $configuration;
 
     public function setUp()
     {
-        $this->adminConnection = $this->prophesize(AdminConnectionInterface::class);
-        $this->configuration = new ConfigurationStub(
-            $this->adminConnection->reveal(),
+        $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->configuration = \Google\Cloud\Dev\stub(Configuration::class, [
+            $this->connection->reveal(),
             self::PROJECT_ID,
             self::NAME
-        );
+        ]);
     }
 
     public function testName()
@@ -51,16 +51,16 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
 
     public function testInfo()
     {
-        $this->adminConnection->getConfig(Argument::any())->shouldNotBeCalled();
-        $this->configuration->setAdminConnection($this->adminConnection->reveal());
+        $this->connection->getConfig(Argument::any())->shouldNotBeCalled();
+        $this->configuration->setConnection($this->connection->reveal());
 
         $info = ['foo' => 'bar'];
-        $config = new ConfigurationStub(
-            $this->adminConnection->reveal(),
+        $config = \Google\Cloud\Dev\stub(Configuration::class, [
+            $this->connection->reveal(),
             self::PROJECT_ID,
             self::NAME,
             $info
-        );
+        ]);
 
         $this->assertEquals($info, $config->info());
     }
@@ -69,28 +69,28 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
     {
         $info = ['foo' => 'bar'];
 
-        $this->adminConnection->getConfig([
+        $this->connection->getConfig([
             'name' => InstanceAdminClient::formatInstanceConfigName(self::PROJECT_ID, self::NAME),
             'projectId' => self::PROJECT_ID
         ])->shouldBeCalled()->willReturn($info);
 
-        $this->configuration->setAdminConnection($this->adminConnection->reveal());
+        $this->configuration->setConnection($this->connection->reveal());
 
         $this->assertEquals($info, $this->configuration->info());
     }
 
     public function testExists()
     {
-        $this->adminConnection->getConfig(Argument::any())->willReturn([]);
-        $this->configuration->setAdminConnection($this->adminConnection->reveal());
+        $this->connection->getConfig(Argument::any())->willReturn([]);
+        $this->configuration->setConnection($this->connection->reveal());
 
         $this->assertTrue($this->configuration->exists());
     }
 
     public function testExistsDoesntExist()
     {
-        $this->adminConnection->getConfig(Argument::any())->willThrow(new NotFoundException('', 404));
-        $this->configuration->setAdminConnection($this->adminConnection->reveal());
+        $this->connection->getConfig(Argument::any())->willThrow(new NotFoundException('', 404));
+        $this->configuration->setConnection($this->connection->reveal());
 
         $this->assertFalse($this->configuration->exists());
     }
@@ -99,25 +99,17 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
     {
         $info = ['foo' => 'bar'];
 
-        $this->adminConnection->getConfig([
+        $this->connection->getConfig([
             'name' => InstanceAdminClient::formatInstanceConfigName(self::PROJECT_ID, self::NAME),
             'projectId' => self::PROJECT_ID
         ])->shouldBeCalledTimes(1)->willReturn($info);
 
-        $this->configuration->setAdminConnection($this->adminConnection->reveal());
+        $this->configuration->setConnection($this->connection->reveal());
 
         $info = $this->configuration->reload();
 
         $info2 = $this->configuration->info();
 
         $this->assertEquals($info, $info2);
-    }
-}
-
-class ConfigurationStub extends Configuration
-{
-    public function setAdminConnection($conn)
-    {
-        $this->adminConnection = $conn;
     }
 }

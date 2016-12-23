@@ -43,22 +43,13 @@ class Operation
     private $connection;
 
     /**
-     * @var Instance
-     */
-    private $instance;
-
-    /**
      * @param ConnectionInterface $connection A connection to Google Cloud
      *        Spanner.
-     * @param Instance $instance The current Cloud Spanner instance.
      */
     public function __construct(
-        ConnectionInterface $connection,
-        Instance $instance,
-        Database $database
+        ConnectionInterface $connection
     ) {
         $this->connection = $connection;
-        $this->instance = $instance;
     }
 
     /**
@@ -224,7 +215,6 @@ class Operation
     {
         return [
             'connection' => get_class($this->connection),
-            'instance' => $this->instance,
             'sessionPool' => $this->sessionPool
         ];
     }

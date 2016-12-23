@@ -23,6 +23,7 @@ use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Logging\LoggingClient;
 use Google\Cloud\NaturalLanguage\NaturalLanguageClient;
 use Google\Cloud\PubSub\PubSubClient;
+use Google\Cloud\Spanner\SpannerClient;
 use Google\Cloud\Speech\SpeechClient;
 use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Translate\TranslateClient;
@@ -207,6 +208,25 @@ class ServiceBuilder
     public function pubsub(array $config = [])
     {
         return new PubSubClient($config ? $this->resolveConfig($config) : $this->config);
+    }
+
+    /**
+     * Google Cloud Spanner client. Google Cloud Spanner is a highly scalable,
+     * transactional, managed, NewSQL database service. Find more information
+     * at [Google Cloud Spanner API docs](https://cloud.google.com/spanner/).
+     *
+     * Example:
+     * ```
+     * $spanner = $cloud->spanner();
+     * ```
+     *
+     * @param array $config [optional] Configuration options. See
+     *        {@see Google\Cloud\ServiceBuilder::__construct()} for the available options.
+     * @return SpannerClient
+     */
+    public function spanner(array $config = [])
+    {
+        return new SpannerClient($config ? $this->resolveConfig($config) : $this->config);
     }
 
     /**
