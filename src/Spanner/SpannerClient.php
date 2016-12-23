@@ -139,11 +139,9 @@ class SpannerClient
                 }
             }
 
-            if (isset($res['nextPageToken'])) {
-                $pageToken = $res['nextPageToken'];
-            } else {
-                $pageToken = null;
-            }
+            $pageToken = (isset($res['nextPageToken']))
+                ? $res['nextPageToken']
+                : null;
         } while($pageToken);
     }
 

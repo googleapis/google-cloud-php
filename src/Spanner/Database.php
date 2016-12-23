@@ -170,15 +170,18 @@ class Database
      * );
      * ```
      *
+     * @codingStandardsIgnoreStart
      * @see https://cloud.google.com/spanner/docs/data-definition-language Data Definition Language
+     * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.admin.database.v1#google.spanner.admin.database.v1.UpdateDatabaseDdlRequest UpdateDDLRequest
+     * @codingStandardsIgnoreEnd
      *
      * @param string $statement A DDL statement to run against a database.
      * @param array $options [optional] Configuration options.
      * @return <something>
      */
-    public function updateDdl($statements, array $options = [])
+    public function updateDdl($statement, array $options = [])
     {
-        return $this->updateDdlBatch([$statements], $options);
+        return $this->updateDdlBatch([$statement], $options);
     }
 
     /**
@@ -200,7 +203,10 @@ class Database
      * ]);
      * ```
      *
+     * @codingStandardsIgnoreStart
      * @see https://cloud.google.com/spanner/docs/data-definition-language Data Definition Language
+     * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.admin.database.v1#google.spanner.admin.database.v1.UpdateDatabaseDdlRequest UpdateDDLRequest
+     * @codingStandardsIgnoreEnd
      *
      * @param string[] $statements A list of DDL statements to run against a database.
      * @param array $options [optional] Configuration options.
@@ -226,6 +232,10 @@ class Database
      * $database->drop();
      * ```
      *
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.admin.database.v1#google.spanner.admin.database.v1.DropDatabaseRequest DropDatabaseRequest
+     * @codingStandardsIgnoreEnd
+     *
      * @param array $options [optional] Configuration options.
      * @return void
      */
@@ -243,6 +253,10 @@ class Database
      * ```
      * $statements = $database->ddl();
      * ```
+     *
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.admin.database.v1#getdatabaseddlrequest GetDatabaseDdlRequest
+     * @codingStandardsIgnoreEnd
      *
      * @param array $options [optional] Configuration options.
      * @return array

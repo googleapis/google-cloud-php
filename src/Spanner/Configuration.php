@@ -108,7 +108,7 @@ class Configuration
      *
      * @codingStandardsIgnoreStart
      * @param array $options [optional] Configuration options.
-     * @return array [https://cloud.google.com/spanner/reference/rest/v1/projects.instanceConfigs#InstanceConfig](InstanceConfig)
+     * @return array [InstanceConfig](https://cloud.google.com/spanner/reference/rest/v1/projects.instanceConfigs#InstanceConfig)
      * @codingStandardsIgnoreEnd
      */
     public function info(array $options = [])
@@ -156,7 +156,7 @@ class Configuration
      *
      * @codingStandardsIgnoreStart
      * @param array $options [optional] Configuration options.
-     * @return array [https://cloud.google.com/spanner/reference/rest/v1/projects.instanceConfigs#InstanceConfig](InstanceConfig)
+     * @return array [InstanceConfig](https://cloud.google.com/spanner/reference/rest/v1/projects.instanceConfigs#InstanceConfig)
      * @codingStandardsIgnoreEnd
      */
     public function reload(array $options = [])

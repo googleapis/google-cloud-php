@@ -174,6 +174,10 @@ class Instance
      * $info = $instance->reload();
      * ```
      *
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.admin.instance.v1#google.spanner.admin.instance.v1.GetInstanceRequest GetInstanceRequest
+     * @codingStandardsIgnoreEnd
+     *
      * @param array $options [optional] Configuration options.
      * @return array
      */
@@ -223,15 +227,19 @@ class Instance
      * ]);
      * ```
      *
-     * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.admin.instance.v1 Update Instance
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.admin.instance.v1#updateinstancerequest UpdateInstanceRequest
+     * @codingStandardsIgnoreEnd
      *
      * @param array $options [optional] {
      *     Configuration options
      *
-     *     @type string $displayName **Defaults to** the value of $name.
-     *     @type int $nodeCount **Defaults to** `1`.
+     *     @type string $displayName The descriptive name for this instance as
+     *           it appears in UIs. **Defaults to** the value of $name.
+     *     @type int $nodeCount The number of nodes allocated to this instance.
+     *           **Defaults to** `1`.
      *     @type array $labels For more information, see
-     *           [Using labels to organize Google Cloud Platform resources](https://cloudplatform.googleblog.com/2015/10/using-labels-to-organize-Google-Cloud-Platform-resources.html).
+     *           [Using labels to organize Google Cloud Platform resources](https://goo.gl/xmQnxf).
      * }
      * @return void
      * @throws \InvalidArgumentException
@@ -261,6 +269,10 @@ class Instance
      * $instance->delete();
      * ```
      *
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.admin.instance.v1#deleteinstancerequest DeleteInstanceRequest
+     * @codingStandardsIgnoreEnd
+     *
      * @param array $options [optional] Configuration options.
      * @return void
      */
@@ -279,7 +291,9 @@ class Instance
      * $database = $instance->createDatabase('my-database');
      * ```
      *
-     * @see https://cloud.google.com/spanner/reference/rest/v1/projects.instances.databases/create Create Database
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.admin.database.v1#createdatabaserequest CreateDatabaseRequest
+     * @codingStandardsIgnoreEnd
      *
      * @param string $name The database name.
      * @param array $options [optional] {
@@ -360,11 +374,9 @@ class Instance
                 }
             }
 
-            if (isset($res['nextPageToken'])) {
-                $pageToken = $res['nextPageToken'];
-            } else {
-                $pageToken = null;
-            }
+            $pageToken = (isset($res['nextPageToken']))
+                ? $res['nextPageToken']
+                : null;
         } while($pageToken);
     }
 
