@@ -6,6 +6,7 @@
     "defaultService": "servicebuilder",
     "markdown": "php",
     "versions": [
+        "v0.20.1",
         "v0.20.0",
         "v0.13.2",
         "v0.13.1",
