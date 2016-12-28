@@ -94,13 +94,17 @@ class Database
      * @param SessionPoolInterface The session pool implementation.
      * @param string $projectId The project ID.
      * @param string $name The database name.
+     * @param bool $returnInt64AsObject If true, 64 bit integers will be
+     *        returned as a {@see Google\Cloud\Int64} object for 32 bit platform
+     *        compatibility. **Defaults to** false.
      */
     public function __construct(
         ConnectionInterface $connection,
         Instance $instance,
         SessionPoolInterface $sessionPool,
         $projectId,
-        $name
+        $name,
+        $returnInt64AsObject = false
     ) {
         $this->connection = $connection;
         $this->instance = $instance;
@@ -108,7 +112,7 @@ class Database
         $this->projectId = $projectId;
         $this->name = $name;
 
-        $this->operation = new Operation($connection);
+        $this->operation = new Operation($connection, $returnInt64AsObject);
         $this->iam = new Iam(
             new IamDatabase($this->connection),
             $this->fullyQualifiedDatabaseName()
@@ -356,7 +360,7 @@ class Database
         foreach ($dataSet as $data) {
             $mutations[] = $this->operation->mutation(Operation::OP_INSERT, $table, $data);
         }
-
+// print_R($mutations);exit;
         $session = $this->selectSession(SessionPoolInterface::CONTEXT_READWRITE);
 
         return $this->operation->commit($session, $mutations, $options);
@@ -497,8 +501,25 @@ class Database
     /**
      * Run a query.
      *
+     * Example:
+     * ```
+     * $result = $spanner->execute(
+     *     'SELECT * FROM Users WHERE id = @userId',
+     *     [
+     *          'parameters' => [
+     *              'userId' => 1
+     *          ]
+     *     ]
+     * );
+     * ```
      * @param string $sql The query string to execute.
-     * @param array $options [optional] Configuration options.
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type array $parameters A key/value array of Query Parameters, where
+     *           the key is represented in the query string prefixed by a `@`
+     *           symbol.
+     * }
      * @return Result
      */
     public function execute($sql, array $options = [])
@@ -522,7 +543,7 @@ class Database
      *
      *     @type string $index The name of an index on the table.
      *     @type array $columns A list of column names to be returned.
-     *     @type array $keySet A [KeySet](https://cloud.google.com/spanner/reference/rest/v1/KeySet).
+     *     @type KeySet $keySet A [KeySet](https://cloud.google.com/spanner/reference/rest/v1/KeySet).
      *     @type int $offset The number of rows to offset results by.
      *     @type int $limit The number of results to return.
      * }

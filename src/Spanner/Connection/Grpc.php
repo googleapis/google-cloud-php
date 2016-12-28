@@ -31,6 +31,7 @@ use google\spanner\admin\instance\v1\State;
 use google\spanner\v1;
 use google\spanner\v1\Mutation;
 use google\spanner\v1\TransactionOptions;
+use google\spanner\v1\Type;
 
 class Grpc implements ConnectionInterface
 {
@@ -356,6 +357,11 @@ class Grpc implements ConnectionInterface
         $args['params'] = (new protobuf\Struct)
             ->deserialize($this->formatStructForApi($args['params']), $this->codec);
 
+        foreach ($args['paramTypes'] as $key => $param) {
+            $args['paramTypes'][$key] = (new Type)
+                ->deserialize($param, $this->codec);
+        }
+
         return $this->send([$this->spannerClient, 'executeSql'], [
             $this->pluck('session', $args),
             $this->pluck('sql', $args),
@@ -471,9 +477,10 @@ class Grpc implements ConnectionInterface
         }
 
         if (isset($args['singleUseTransaction'])) {
-            $options = new TransactionOptions;
             $readWrite = (new TransactionOptions\ReadWrite)
                 ->deserialize($args['singleUseTransaction']['readWrite'], $this->codec);
+
+            $options = new TransactionOptions;
             $options->setReadWrite($readWrite);
             $args['singleUseTransaction'] = $options;
         }

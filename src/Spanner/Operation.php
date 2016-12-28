@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Spanner;
 
+use Google\Cloud\ArrayTrait;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\ValidateTrait;
@@ -30,6 +31,7 @@ use RuntimeException;
  */
 class Operation
 {
+    use ArrayTrait;
     use ValidateTrait;
 
     const OP_INSERT = 'insert';
@@ -43,13 +45,21 @@ class Operation
     private $connection;
 
     /**
+     * @var ValueMapper
+     */
+    private $mapper;
+
+    /**
      * @param ConnectionInterface $connection A connection to Google Cloud
      *        Spanner.
+     * @param bool $returnInt64AsObject If true, 64 bit integers will be
+     *        returned as a {@see Google\Cloud\Int64} object for 32 bit platform
+     *        compatibility.
      */
-    public function __construct(
-        ConnectionInterface $connection
-    ) {
+    public function __construct(ConnectionInterface $connection, $returnInt64AsObject)
+    {
         $this->connection = $connection;
+        $this->mapper = new ValueMapper($returnInt64AsObject);
     }
 
     /**
@@ -63,11 +73,15 @@ class Operation
      */
     public function mutation($operation, $table, $mutation)
     {
+        $mutation = array_filter($mutation, function ($value) {
+            return !is_null($value);
+        });
+
         return [
             $operation => [
                 'table' => $table,
                 'columns' => array_keys($mutation),
-                'values' => array_values($mutation)
+                'values' => $this->mapper->encodeValuesAsSimpleType(array_values($mutation))
             ]
         ];
     }
@@ -149,16 +163,18 @@ class Operation
     public function execute(Session $session, $sql, array $options = [])
     {
         $options += [
-            'params' => [],
-            'paramTypes' => []
+            'parameters' => [],
         ];
+
+        $parameters = $this->pluck('parameters', $options);
+        $options += $this->mapper->formatParamsForExecuteSql($parameters);
 
         $res = $this->connection->executeSql([
             'sql' => $sql,
             'session' => $session->name()
         ] + $options);
 
-        return new Result($res);
+        return $this->createResult($res);
     }
 
     /**
@@ -202,7 +218,21 @@ class Operation
             'session' => $session->name()
         ] + $options);
 
-        return new Result($res);
+        return $this->createResult($res);
+    }
+
+    private function createResult(array $res)
+    {
+        $columns = $res['metadata']['rowType']['fields'];
+
+        $rows = [];
+        if (isset($res['rows'])) {
+            foreach ($res['rows'] as $row) {
+                $rows[] = $this->mapper->decodeValues($columns, $row);
+            }
+        }
+
+        return new Result($res, $rows);
     }
 
     /**

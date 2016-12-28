@@ -33,12 +33,13 @@ class Result implements \IteratorAggregate
     private $rows;
 
     /**
-     * @var array $result The query or read result.
+     * @param array $result The query or read result.
+     * @param array $rows The rows, formatted and decoded.
      */
-    public function __construct(array $result)
+    public function __construct(array $result, array $rows)
     {
         $this->result = $result;
-        $this->rows = $this->transformQueryResult($result);
+        $this->rows = $rows;
     }
 
     /**
@@ -52,7 +53,7 @@ class Result implements \IteratorAggregate
     }
 
     /**
-     * Return the rows as a key/value list.
+     * Return the formatted and decoded rows.
      *
      * @return array|null
      */
@@ -86,32 +87,6 @@ class Result implements \IteratorAggregate
     public function info()
     {
         return $this->result;
-    }
-
-    /**
-     * Transform the response from executeSql or read into a list of rows
-     * represented as a collection of key/value arrays.
-     *
-     * @param array $result
-     * @return array
-     */
-    private function transformQueryResult(array $result)
-    {
-        if (!isset($result['rows']) || count($result['rows']) === 0) {
-            return null;
-        }
-
-        $cols = [];
-        foreach (array_keys($result['rows'][0]) as $colIndex) {
-            $cols[] = $result['metadata']['rowType']['fields'][$colIndex]['name'];
-        }
-
-        $rows = [];
-        foreach ($result['rows'] as $row) {
-            $rows[] = array_combine($cols, $row);
-        }
-
-        return $rows;
     }
 
     /**
