@@ -80,9 +80,8 @@ class BigQueryClient
      *           requests specifically for authentication.
      *     @type callable $httpHandler A handler used to deliver Psr7 requests.
      *           Only valid for requests sent over REST.
-     *     @type string $keyFile The contents of the service account
-     *           credentials .json file retrieved from the Google Developers
-     *           Console.
+     *     @type array $keyFile The contents of the service account credentials
+     *           .json file retrieved from the Google Developer's Console.
      *     @type string $keyFilePath The full path to your service account
      *           credentials .json file retrieved from the Google Developers
      *           Console.

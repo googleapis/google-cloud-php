@@ -71,9 +71,8 @@ trait RequestWrapperTrait
      *     @type array $authCacheOptions Cache configuration options.
      *     @type FetchAuthTokenInterface $credentialsFetcher A credentials
      *           fetcher instance.
-     *     @type string $keyFile The contents of the service account
-     *           credentials .json file retrieved from the Google Developers
-     *           Console.
+     *     @type array $keyFile The contents of the service account credentials
+     *           .json file retrieved from the Google Developer's Console.
      *     @type int $retries Number of retries for a failed request.
      *           **Defaults to** `3`.
      *     @type array $scopes Scopes to be used for the request.
