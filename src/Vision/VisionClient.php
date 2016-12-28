@@ -73,6 +73,7 @@ class VisionClient
      *     @type callable $httpHandler A handler used to deliver Psr7 requests.
      *     @type array $keyFile The contents of the service account credentials
      *           .json file retrieved from the Google Developer's Console.
+     *           Ex: `json_decode(file_get_contents($path), true)`.
      *     @type string $keyFilePath The full path to your service account
      *           credentials .json file retrieved from the Google Developers
      *           Console.
