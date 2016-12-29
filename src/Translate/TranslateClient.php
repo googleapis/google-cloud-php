@@ -362,9 +362,9 @@ class TranslateClient
     /**
      * Get the supported languages for translation in the targeted language.
      *
-     * Unlike {@see Google\Cloud\Translate\TranslateClient::languages()}
-     * this will return the localized language names in addition to the
-     * ISO 639-1 language codes.
+     * Unlike {@see Google\Cloud\Translate\TranslateClient::languages()} this
+     * will return the localized language names in addition to the ISO 639-1
+     * language codes.
      *
      * Example:
      * ```
