@@ -15,16 +15,16 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Translation;
+namespace Google\Cloud\Tests\Translate;
 
-use Google\Cloud\Translation\Connection\ConnectionInterface;
-use Google\Cloud\Translation\TranslationClient;
+use Google\Cloud\Translate\Connection\ConnectionInterface;
+use Google\Cloud\Translate\TranslateClient;
 use Prophecy\Argument;
 
 /**
- * @group translation
+ * @group translate
  */
-class TranslationClientTest extends \PHPUnit_Framework_TestCase
+class TranslateClientTest extends \PHPUnit_Framework_TestCase
 {
     private $client;
     private $connection;
@@ -32,13 +32,13 @@ class TranslationClientTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->client = new TranslationTestClient(['key' => $this->key]);
+        $this->client = new TranslateTestClient(['key' => $this->key]);
         $this->connection = $this->prophesize(ConnectionInterface::class);
     }
 
     public function testWithNoKey()
     {
-        $client = new TranslationTestClient();
+        $client = new TranslateTestClient();
 
         $this->connection->listTranslations(Argument::that(function($args) {
             if (!is_null($args['key'])) {
@@ -132,7 +132,7 @@ class TranslationClientTest extends \PHPUnit_Framework_TestCase
                 ]
             ])
             ->shouldBeCalledTimes(1);
-        $client = new TranslationTestClient(['key' => $this->key, 'target' => $target]);
+        $client = new TranslateTestClient(['key' => $this->key, 'target' => $target]);
         $client->setConnection($this->connection->reveal());
         $translations = $client->translateBatch($stringsToTranslate, ['model' => 'base']);
 
@@ -285,7 +285,7 @@ class TranslationClientTest extends \PHPUnit_Framework_TestCase
     }
 }
 
-class TranslationTestClient extends TranslationClient
+class TranslateTestClient extends TranslateClient
 {
     public function setConnection($connection)
     {

@@ -15,27 +15,26 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Translation;
+namespace Google\Cloud\Translate;
 
 use Google\Cloud\ClientTrait;
-use Google\Cloud\Translation\Connection\ConnectionInterface;
-use Google\Cloud\Translation\Connection\Rest;
+use Google\Cloud\Translate\Connection\ConnectionInterface;
+use Google\Cloud\Translate\Connection\Rest;
 
 /**
- * Google Cloud Translation client. Provides the ability to dynamically
- * translate text between thousands of language pairs. The Google Cloud
- * Translation API lets websites and programs integrate with the Google Cloud
- * Translation API programmatically. The Google Cloud Translation API is
- * available as a paid service. See the
+ * Google Translate client. Provides the ability to dynamically
+ * translate text between thousands of language pairs and lets websites and
+ * programs integrate with the Google Cloud Translation API programmatically.
+ * The Google Cloud Translation API is available as a paid service. See the
  * [Pricing](https://cloud.google.com/translation/v2/pricing) and
  * [FAQ](https://cloud.google.com/translation/v2/faq) pages for details. Find
  * more information at the
  * [Google Cloud Translation docs](https://cloud.google.com/translation/docs/).
  *
  * Please note that while the Google Cloud Translation API supports
- * authentication via service account and application default credentials like other Cloud Platform APIs,
- * it also supports authentication via a public API access key. If you wish to
- * authenticate using an API key, follow the
+ * authentication via service account and application default credentials like
+ * other Cloud Platform APIs, it also supports authentication via a public API
+ * access key. If you wish to authenticate using an API key, follow the
  * [before you begin](https://cloud.google.com/translation/v2/translating-text-with-rest#before-you-begin)
  * instructions to learn how to generate a key.
  *
@@ -45,17 +44,17 @@ use Google\Cloud\Translation\Connection\Rest;
  *
  * $cloud = new ServiceBuilder();
  *
- * $translation = $cloud->translation();
+ * $translate = $cloud->translate();
  * ```
  *
  * ```
- * // TranslationClient can be instantiated directly.
- * use Google\Cloud\Translation\TranslationClient;
+ * // TranslateClient can be instantiated directly.
+ * use Google\Cloud\Translate\TranslateClient;
  *
- * $translation = new TranslationClient();
+ * $translate = new TranslateClient();
  * ```
  */
-class TranslationClient
+class TranslateClient
 {
     use ClientTrait;
 
@@ -74,7 +73,7 @@ class TranslationClient
     private $targetLanguage;
 
     /**
-     * Create a Translation client.
+     * Create a Translate client.
      *
      * @param array $config [optional] {
      *     Configuration Options.
@@ -137,7 +136,7 @@ class TranslationClient
      *
      * Example:
      * ```
-     * $result = $translation->translate('Hello world!');
+     * $result = $translate->translate('Hello world!');
      *
      * echo $result['text'];
      * ```
@@ -178,7 +177,7 @@ class TranslationClient
      *
      * Example:
      * ```
-     * $results = $translation->translateBatch([
+     * $results = $translate->translateBatch([
      *     'Hello world!',
      *     'My name is David.'
      * ]);
@@ -253,7 +252,7 @@ class TranslationClient
      *
      * Example:
      * ```
-     * $result = $translation->detectLanguage('Hello world!');
+     * $result = $translate->detectLanguage('Hello world!');
      *
      * echo $result['languageCode'];
      * ```
@@ -284,7 +283,7 @@ class TranslationClient
      *
      * Example:
      * ```
-     * $results = $translation->detectLanguageBatch([
+     * $results = $translate->detectLanguageBatch([
      *     'Hello World!',
      *     'My name is David.'
      * ]);
@@ -337,7 +336,7 @@ class TranslationClient
      *
      * Example:
      * ```
-     * $languages = $translation->languages();
+     * $languages = $translate->languages();
      *
      * foreach ($languages as $language) {
      *     echo $language;
@@ -363,13 +362,13 @@ class TranslationClient
     /**
      * Get the supported languages for translation in the targeted language.
      *
-     * Unlike {@see Google\Cloud\Translation\TranslationClient::languages()}
+     * Unlike {@see Google\Cloud\Translate\TranslateClient::languages()}
      * this will return the localized language names in addition to the
      * ISO 639-1 language codes.
      *
      * Example:
      * ```
-     * $languages = $translation->localizedLanguages();
+     * $languages = $translate->localizedLanguages();
      *
      * foreach ($languages as $language) {
      *     echo $language['code'];

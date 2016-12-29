@@ -25,7 +25,7 @@ use Google\Cloud\NaturalLanguage\NaturalLanguageClient;
 use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\Speech\SpeechClient;
 use Google\Cloud\Storage\StorageClient;
-use Google\Cloud\Translation\TranslationClient;
+use Google\Cloud\Translate\TranslateClient;
 use Google\Cloud\Vision\VisionClient;
 use Psr\Cache\CacheItemPoolInterface;
 
@@ -269,20 +269,20 @@ class ServiceBuilder
     }
 
     /**
-     * Google Cloud Translation client. Provides the ability to dynamically
-     * translate text between thousands of language pairs. The Google Cloud
-     * Translation API lets websites and programs integrate with Google Cloud
-     * Translation API programmatically. The Google Cloud Translation API is
-     * available as a paid service. See the
-     * [Pricing](https://cloud.google.com/translation/v2/pricing) and
-     * [FAQ](https://cloud.google.com/translation/v2/faq) pages for details.
-     * Find more information at
+     * Google Translate client. Provides the ability to dynamically
+     * translate text between thousands of language pairs and lets websites and
+     * programs integrate with the Google Cloud Translation API
+     * programmatically. The Google Cloud Translation API is available as a paid
+     * service. See the [Pricing](https://cloud.google.com/translation/v2/pricing)
+     * and [FAQ](https://cloud.google.com/translation/v2/faq) pages for details.
+     * Find more information at the
      * [Google Cloud Translation docs](https://cloud.google.com/translation/docs/).
      *
-     * Please note that while Google Cloud Translation supports authentication
-     * via service account and application default credentials like other
-     * Cloud Platform APIs, it also supports authentication via a public API
-     * access key. If you wish to authenticate using an API key, follow the
+     * Please note that while the Google Cloud Translation API supports
+     * authentication via service account and application default credentials
+     * like other Cloud Platform APIs, it also supports authentication via a
+     * public API access key. If you wish to authenticate using an API key,
+     * follow the
      * [before you begin](https://cloud.google.com/translation/v2/translating-text-with-rest#before-you-begin)
      * instructions to learn how to generate a key.
      *
@@ -294,7 +294,7 @@ class ServiceBuilder
      *     'key' => 'YOUR_KEY'
      * ]);
      *
-     * $translation = $builder->translation();
+     * $translate = $builder->translate();
      * ```
      *
      * @param array $config [optional] {
@@ -308,11 +308,11 @@ class ServiceBuilder
      *     @type int $retries Number of retries for a failed request.
      *           **Defaults to** `3`.
      * }
-     * @return TranslationClient
+     * @return TranslateClient
      */
-    public function translation(array $config = [])
+    public function translate(array $config = [])
     {
-        return new TranslationClient($config ? $this->resolveConfig($config) : $this->config);
+        return new TranslateClient($config ? $this->resolveConfig($config) : $this->config);
     }
 
     /**

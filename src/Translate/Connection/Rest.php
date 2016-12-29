@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Translation\Connection;
+namespace Google\Cloud\Translate\Connection;
 
 use Google\Cloud\RequestBuilder;
 use Google\Cloud\RequestWrapper;

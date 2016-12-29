@@ -156,7 +156,7 @@ $object->downloadToFile('/data/file_backup.txt');
 
 ## Google Cloud Translation (Alpha)
 
-- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/translation/translationclient)
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/translate/translateclient)
 - [Official Documentation](https://cloud.google.com/translation/docs)
 
 #### Preview
@@ -165,26 +165,26 @@ $object->downloadToFile('/data/file_backup.txt');
 <?php
 require 'vendor/autoload.php';
 
-use Google\Cloud\Translation\TranslationClient;
+use Google\Cloud\Translate\TranslateClient;
 
-$translation = new TranslationClient([
+$translate = new TranslateClient([
     'key' => 'your_key'
 ]);
 
 // Translate text from english to french.
-$result = $translation->translate('Hello world!', [
+$result = $translate->translate('Hello world!', [
     'target' => 'fr'
 ]);
 
 echo $result['text'] . "\n";
 
 // Detect the language of a string.
-$result = $translation->detectLanguage('Greetings from Michigan!');
+$result = $translate->detectLanguage('Greetings from Michigan!');
 
 echo $result['languageCode'] . "\n";
 
 // Get the languages supported for translation specifically for your target language.
-$languages = $translation->localizedLanguages([
+$languages = $translate->localizedLanguages([
     'target' => 'en'
 ]);
 
@@ -194,7 +194,7 @@ foreach ($languages as $language) {
 }
 
 // Get all languages supported for translation.
-$languages = $translation->languages();
+$languages = $translate->languages();
 
 foreach ($languages as $language) {
     echo $language . "\n";
