@@ -41,7 +41,10 @@ class TranslateClientTest extends \PHPUnit_Framework_TestCase
         $client = new TranslateTestClient();
 
         $this->connection->listTranslations(Argument::that(function($args) {
-            if (!is_null($args['key'])) return false;
+            if (!is_null($args['key'])) {
+                return false;
+            }
+
             return true;
         }))->shouldBeCalled()->willReturn([]);
 

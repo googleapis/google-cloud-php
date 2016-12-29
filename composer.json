@@ -22,6 +22,7 @@
         "storage",
         "gcs",
         "translate",
+        "translation",
         "vision"
     ],
     "homepage": "http://github.com/GoogleCloudPlatform/google-cloud-php",

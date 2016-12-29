@@ -14,10 +14,10 @@ This client supports the following Google Cloud Platform services at a [Beta](#v
 * [Google Cloud Storage](#google-cloud-storage-beta) (Beta)
 
 This client supports the following Google Cloud Platform services at an [Alpha](#versioning) quality level:
-* [Google Translate](#google-translate-alpha) (Alpha)
 * [Google Cloud Natural Language](#google-cloud-natural-language-alpha) (Alpha)
 * [Google Cloud Pub/Sub](#google-cloud-pubsub-alpha) (Alpha)
 * [Google Cloud Speech](#google-cloud-speech-alpha) (Alpha)
+* [Google Cloud Translation](#google-cloud-translation-alpha) (Alpha)
 * [Google Cloud Vision](#google-cloud-vision-alpha) (Alpha)
 
 If you need support for other Google APIs, please check out the [Google APIs Client Library for PHP](https://github.com/google/google-api-php-client).
@@ -154,10 +154,10 @@ $object = $bucket->object('file_backup.txt');
 $object->downloadToFile('/data/file_backup.txt');
 ```
 
-## Google Translate (Alpha)
+## Google Cloud Translation (Alpha)
 
 - [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/translate/translateclient)
-- [Official Documentation](https://cloud.google.com/translate/docs)
+- [Official Documentation](https://cloud.google.com/translation/docs)
 
 #### Preview
 
@@ -172,11 +172,11 @@ $translate = new TranslateClient([
 ]);
 
 // Translate text from english to french.
-$translation = $translate->translate('Hello world!', [
+$result = $translate->translate('Hello world!', [
     'target' => 'fr'
 ]);
 
-echo $translation['text'] . "\n";
+echo $result['text'] . "\n";
 
 // Detect the language of a string.
 $result = $translate->detectLanguage('Greetings from Michigan!');

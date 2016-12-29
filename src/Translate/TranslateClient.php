@@ -22,20 +22,20 @@ use Google\Cloud\Translate\Connection\ConnectionInterface;
 use Google\Cloud\Translate\Connection\Rest;
 
 /**
- * Google Translate client. Provides the ability to dynamically translate text
- * between thousands of language pairs. The Google Translate API lets websites
- * and programs integrate with Google Translate API programmatically. Google
- * Translate API is available as a paid service. See the
- * [Pricing](https://cloud.google.com/translate/v2/pricing) and
- * [FAQ](https://cloud.google.com/translate/v2/faq) pages for details. Find more
- * information at
- * [Google Translate docs](https://cloud.google.com/translate/docs/).
+ * Google Translate client. Provides the ability to dynamically
+ * translate text between thousands of language pairs and lets websites and
+ * programs integrate with the Google Cloud Translation API programmatically.
+ * The Google Cloud Translation API is available as a paid service. See the
+ * [Pricing](https://cloud.google.com/translation/v2/pricing) and
+ * [FAQ](https://cloud.google.com/translation/v2/faq) pages for details. Find
+ * more information at the
+ * [Google Cloud Translation docs](https://cloud.google.com/translation/docs/).
  *
- * Please note that while Google Translate supports authentication via service
- * account and application default credentials like other Cloud Platform APIs,
- * it also supports authentication via a public API access key. If you wish to
- * authenticate using an API key, follow the
- * [before you begin](https://cloud.google.com/translate/v2/translating-text-with-rest#before-you-begin)
+ * Please note that while the Google Cloud Translation API supports
+ * authentication via service account and application default credentials like
+ * other Cloud Platform APIs, it also supports authentication via a public API
+ * access key. If you wish to authenticate using an API key, follow the
+ * [before you begin](https://cloud.google.com/translation/v2/translating-text-with-rest#before-you-begin)
  * instructions to learn how to generate a key.
  *
  * Example:
@@ -136,12 +136,12 @@ class TranslateClient
      *
      * Example:
      * ```
-     * $translation = $translate->translate('Hello world!');
+     * $result = $translate->translate('Hello world!');
      *
-     * echo $translation['text'];
+     * echo $result['text'];
      * ```
      *
-     * @see https://cloud.google.com/translate/v2/translating-text-with-rest Translating Text
+     * @see https://cloud.google.com/translation/v2/translating-text-with-rest Translating Text
      *
      * @param string $string The string to translate.
      * @param array $options [optional] {
@@ -177,17 +177,17 @@ class TranslateClient
      *
      * Example:
      * ```
-     * $translations = $translate->translateBatch([
+     * $results = $translate->translateBatch([
      *     'Hello world!',
      *     'My name is David.'
      * ]);
      *
-     * foreach ($translations as $translation) {
-     *     echo $translation['text'];
+     * foreach ($results as $result) {
+     *     echo $result['text'];
      * }
      * ```
      *
-     * @see https://cloud.google.com/translate/v2/translating-text-with-rest Translating Text
+     * @see https://cloud.google.com/translation/v2/translating-text-with-rest Translating Text
      *
      * @param array $strings An array of strings to translate.
      * @param array $options [optional] {
@@ -257,7 +257,7 @@ class TranslateClient
      * echo $result['languageCode'];
      * ```
      *
-     * @see https://cloud.google.com/translate/v2/detecting-language-with-rest Detecting Langauge
+     * @see https://cloud.google.com/translation/v2/detecting-language-with-rest Detecting Langauge
      *
      * @param string $string The string to detect the language of.
      * @param array $options [optional] {
@@ -293,7 +293,7 @@ class TranslateClient
      * }
      * ```
      *
-     * @see https://cloud.google.com/translate/v2/detecting-language-with-rest Detecting Langauge
+     * @see https://cloud.google.com/translation/v2/detecting-language-with-rest Detecting Langauge
      *
      * @param string $string The string to detect the language of.
      * @param array $options [optional] {
@@ -344,7 +344,7 @@ class TranslateClient
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/translate/v2/discovering-supported-languages-with-rest Discovering Supported Languages
+     * @see https://cloud.google.com/translation/v2/discovering-supported-languages-with-rest Discovering Supported Languages
      * @codingStandardsIgnoreEnd
      *
      * @param array $options [optional] Configuration Options.
@@ -376,7 +376,7 @@ class TranslateClient
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/translate/v2/discovering-supported-languages-with-rest Discovering Supported Languages
+     * @see https://cloud.google.com/translation/v2/discovering-supported-languages-with-rest Discovering Supported Languages
      * @codingStandardsIgnoreEnd
      *
      * @param array $options [optional] {
