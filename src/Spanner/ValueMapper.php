@@ -82,19 +82,7 @@ class ValueMapper
         $res = [];
 
         foreach ($values as $value) {
-            if ($value instanceof ValueInterface) {
-                $value = $value->formatAsString();
-            }
-
-            if (gettype($value) === 'integer') {
-                $value = (string) $value;
-            }
-
-            if ($value instanceof Int64) {
-                $value = $value->get();
-            }
-
-            $res[] = $value;
+            $res[] = $this->encodeValue($value);
         }
 
         return $res;
@@ -114,7 +102,7 @@ class ValueMapper
         $types = [];
         foreach (array_keys($row) as $colIndex) {
             $cols[] = $columns[$colIndex]['name'];
-            $types[] = $columns[$colIndex]['type']['code'];
+            $types[] = $columns[$colIndex]['type'];
         }
 
         $res = [];
@@ -125,9 +113,35 @@ class ValueMapper
         return $res;
     }
 
-    private function decodeValue($value, $type)
+    private function encodeValue($value)
     {
-        switch ($type) {
+        if ($value instanceof ValueInterface) {
+            $value = $value->formatAsString();
+        }
+
+        if ($value instanceof Int64) {
+            $value = $value->get();
+        }
+
+        if (gettype($value) === 'integer') {
+            $value = (string) $value;
+        }
+
+        if (is_array($value)) {
+            $res = [];
+            foreach ($value as $item) {
+                $res[] = $this->encodeValue($item);
+            }
+
+            $value = $res;
+        }
+
+        return $value;
+    }
+
+    private function decodeValue($value, array $type)
+    {
+        switch ($type['code']) {
             case self::TYPE_INT64:
                 $value = $this->returnInt64AsObject
                     ? new Int64($value)
@@ -152,17 +166,65 @@ class ValueMapper
                 break;
 
             case self::TYPE_ARRAY:
-                $value = '';
+                $res = [];
+                foreach ($value as $item) {
+                    $res[] = $this->decodeValue($item, $type['arrayElementType']);
+                }
+
+                $value = $res;
                 break;
 
             case self::TYPE_STRUCT:
-                $value = '';
+                $res = [];
+
+                foreach ($value as $index => $item) {
+                    $res[] = $this->decodeValue($item, $type['structType']['fields'][$index]);
+                }
+
+                $value = $res;
+                break;
+
+            case self::TYPE_FLOAT64:
+
+                // NaN, Infinite and -Infinite are possible FLOAT64 values,
+                // but when the gRPC response is decoded, they are represented
+                // as strings. This conditional checks for a string, converts to
+                // an equivalent double value, or dies if something really weird
+                // happens.
+                if (is_string($value)) {
+                    switch ($value) {
+                        case 'NaN':
+                            $value = NAN;
+                            break;
+
+                        case 'Infinity':
+                            $value = INF;
+                            break;
+
+                        case '-Infinity':
+                            $value = -INF;
+                            break;
+
+                        default:
+                            throw new \InvalidArgumentException(sprintf(
+                                'Unexpected string value %s encountered in FLOAT64 field.',
+                                $value
+                            ));
+                    }
+                }
+
                 break;
         }
 
         return $value;
     }
 
+    /**
+     * Create a spanner parameter type value object from a PHP value type.
+     *
+     * @param mixed $value The PHP value
+     * @return array The Value type
+     */
     private function paramType($value)
     {
         $phpType = gettype($value);

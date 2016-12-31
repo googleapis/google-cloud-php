@@ -196,14 +196,14 @@ class Database
      * $database->updateDdlBatch([
      *     'CREATE TABLE Users (
      *         id INT64 NOT NULL,
-     *         name STRING(100) NOT NULL
+     *         name STRING(100) NOT NULL,
      *         password STRING(100) NOT NULL
-     *     )',
+     *     ) PRIMARY KEY (id)',
      *     'CREATE TABLE Posts (
      *         id INT64 NOT NULL,
-     *         title STRING(100) NOT NULL
+     *         title STRING(100) NOT NULL,
      *         content STRING(MAX) NOT NULL
-     *     )'
+     *     ) PRIMARY KEY(id)'
      * ]);
      * ```
      *
