@@ -256,7 +256,14 @@ class ValueMapper
                 break;
 
             case 'array':
-                list ($type, $value) = $this->arrayOrStructObject($value);
+                $type = $this->typeObject(self::TYPE_ARRAY);
+
+                $res = [];
+                foreach ($value as $element) {
+                    $res[] = $this->paramType($element)[1];
+                }
+
+                $value = $res;
                 break;
 
             case 'NULL':
@@ -276,10 +283,6 @@ class ValueMapper
 
     private function objectParam($value)
     {
-        if ($value instanceof \stdClass) {
-            return $this->arrayOrStructObject($value);
-        }
-
         if ($value instanceof ValueInterface) {
             return [
                 $this->typeObject($value->type()),
@@ -291,37 +294,6 @@ class ValueMapper
             'Unrecognized value type %s. Please ensure you are using the latest version of google/cloud.',
             get_class($value)
         ));
-    }
-
-    private function arrayOrStructObject(array $arrayOrStruct)
-    {
-        $type = null;
-        $nestedTypeKey = 'fake';
-        $nestedTypeData = [];
-
-        if ($arrayOrStruct instanceof \stdClass) {
-            $type = self::TYPE_STRUCT;
-            $nestedTypeKey = 'structType';
-            $nestedTypeData = [];
-        } elseif ($this->isAssoc($arrayOrStruct)) {
-            $type = self::TYPE_STRUCT;
-            $nestedTypeKey = 'structType';
-            $nestedTypeData = [];
-        } else {
-            $type = self::TYPE_ARRAY;
-            $nestedTypeKey = 'arrayElementType';
-
-            foreach ($arrayOrStruct as $element) {
-                $nestedTypeData[] = $this->paramType($element)[1];
-            }
-        }
-
-        return [
-            $this->typeObject($type) + [
-                $nestedTypeKey = $nestedTypeData
-            ],
-            $nestedTypeData
-        ];
     }
 
     private function typeObject($type)
