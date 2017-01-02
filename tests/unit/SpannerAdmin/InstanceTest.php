@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Unit\Spanner\Admin;
+namespace Google\Cloud\Tests\Unit\SpannerAdmin;
 
 use Google\Cloud\Exception\NotFoundException;
 use Google\Cloud\Iam\Iam;
@@ -59,7 +59,7 @@ class InstanceTest extends \PHPUnit_Framework_TestCase
     {
         $this->connection->getInstance()->shouldNotBeCalled();
 
-        $instance = new Instance($this->connection->reveal(), $this->prophesize(SessionPoolInterface::class)->reveal(), self::PROJECT_ID, self::NAME, ['foo' => 'bar']);
+        $instance = new Instance($this->connection->reveal(), $this->prophesize(SessionPoolInterface::class)->reveal(), self::PROJECT_ID, self::NAME, false, ['foo' => 'bar']);
         $this->assertEquals('bar', $instance->info()['foo']);
     }
 
@@ -284,6 +284,6 @@ class InstanceTest extends \PHPUnit_Framework_TestCase
 
     private function getDefaultInstance()
     {
-        return json_decode(file_get_contents(__DIR__ .'/../../fixtures/spanner/instance.json'), true);
+        return json_decode(file_get_contents(__DIR__ .'/../fixtures/spanner/instance.json'), true);
     }
 }

@@ -335,21 +335,6 @@ class SpannerClient
     }
 
     /**
-     * Get the session client
-     *
-     * Example:
-     * ```
-     * $sessionClient = $spanner->sessionClient();
-     * ```
-     *
-     * @return SessionClient
-     */
-    public function sessionClient()
-    {
-        return $this->sessionClient;
-    }
-
-    /**
      * Create a Bytes object.
      *
      * Example:
@@ -413,5 +398,20 @@ class SpannerClient
     public function int64($value)
     {
         return new Int64($value);
+    }
+
+    /**
+     * Get the session client
+     *
+     * Example:
+     * ```
+     * $sessionClient = $spanner->sessionClient();
+     * ```
+     *
+     * @return SessionClient
+     */
+    public function sessionClient()
+    {
+        return $this->sessionClient;
     }
 }

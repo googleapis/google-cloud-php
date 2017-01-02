@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Snippets\Spanner\Admin;
+namespace Google\Cloud\Tests\Snippets\SpannerAdmin;
 
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
 use Google\Cloud\Iam\Iam;
