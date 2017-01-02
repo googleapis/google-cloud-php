@@ -296,7 +296,7 @@ class ValueMapper
     private function arrayOrStructObject(array $arrayOrStruct)
     {
         $type = null;
-        $nestedTypeKey = 'fake';
+        $nestedTypeKey = '';
         $nestedTypeData = [];
 
         if ($arrayOrStruct instanceof \stdClass) {
