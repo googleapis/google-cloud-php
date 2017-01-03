@@ -75,7 +75,7 @@ class Result implements \IteratorAggregate
     public function stats()
     {
         return (isset($this->result['stats']))
-            ? $result['stats']
+            ? $this->result['stats']
             : null;
     }
 
