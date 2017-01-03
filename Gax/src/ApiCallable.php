@@ -120,6 +120,20 @@ class ApiCallable
         return $inner;
     }
 
+    private static function setLongRunnning($callable, $longRunningDescriptor)
+    {
+        $inner = function () use ($callable, $longRunningDescriptor) {
+            $response = call_user_func_array($callable, func_get_args());
+            $name = $response->getName();
+            $client = $longRunningDescriptor['operationsClient'];
+            $options = $longRunningDescriptor + [
+                'lastProtoResponse' => $response,
+            ];
+            return new OperationResponse($name, $client, $options);
+        };
+        return $inner;
+    }
+
     private static function setCustomHeader($callable, $headerDescriptor)
     {
         $inner = function () use ($callable, $headerDescriptor) {
@@ -138,16 +152,18 @@ class ApiCallable
     }
 
     /**
-     * @param Grpc\BaseStub $stub the gRPC stub to make calls through.
+     * @param \Grpc\BaseStub $stub the gRPC stub to make calls through.
      * @param string $methodName the method name on the stub to call.
-     * @param Google\GAX\CallSettings $settings the call settings to use for this call.
+     * @param \Google\GAX\CallSettings $settings the call settings to use for this call.
      * @param array $options {
      *     Optional.
-     *     @type Google\GAX\PageStreamingDescriptor $pageStreamingDescriptor
+     *     @type \Google\GAX\PageStreamingDescriptor $pageStreamingDescriptor
      *           the descriptor used for page-streaming.
-     *     @type Google\GAX\AgentHeaderDescriptor $headerDescriptor
+     *     @type \Google\GAX\AgentHeaderDescriptor $headerDescriptor
      *           the descriptor used for creating GAPIC header.
      * }
+     *
+     * @return callable
      */
     public static function createApiCall($stub, $methodName, CallSettings $settings, $options = [])
     {
@@ -174,6 +190,10 @@ class ApiCallable
 
         if (array_key_exists('pageStreamingDescriptor', $options)) {
             $apiCall = self::setPageStreaming($apiCall, $options['pageStreamingDescriptor']);
+        }
+
+        if (array_key_exists('longRunningDescriptor', $options)) {
+            $apiCall = self::setLongRunnning($apiCall, $options['longRunningDescriptor']);
         }
 
         if (array_key_exists('headerDescriptor', $options)) {
