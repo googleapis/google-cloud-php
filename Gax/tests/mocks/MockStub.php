@@ -66,12 +66,20 @@ class MockStub
         return $stub;
     }
 
-    public function takeAction($request, $metadata = array(), $options = array())
+    public function __call($name, $arguments)
+    {
+        $newArgs = array_merge([$name], $arguments);
+        return call_user_func_array(array($this, 'handleCall'), $newArgs);
+    }
+
+    private function handleCall($funcName, $request, $metadata = array(), $options = array())
     {
         $actualCall = [
+            'funcName' => $funcName,
             'request' => $request,
             'metadata' => $metadata,
-            'options' => $options];
+            'options' => $options,
+        ];
         array_push($this->actualCalls, $actualCall);
         if (count($this->responseSequence) == 1) {
             return new MockGrpcCall($this->responseSequence[0]);

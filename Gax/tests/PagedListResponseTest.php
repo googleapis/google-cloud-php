@@ -39,7 +39,8 @@ use Google\GAX\Testing\MockResponse;
 
 class PagedListResponseTest extends PHPUnit_Framework_TestCase
 {
-    public function testNextPageToken() {
+    public function testNextPageToken()
+    {
         $mockRequest = MockRequest::createPageStreamingRequest('mockToken');
         $descriptor = new PageStreamingDescriptor([
             'requestPageTokenField' => 'pageToken',

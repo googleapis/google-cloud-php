@@ -827,7 +827,7 @@ namespace google\longrunning {
 
 namespace google\longrunning {
 
-  class OperationsClient extends \Grpc\BaseStub {
+  class OperationsGrpcClient extends \Grpc\BaseStub {
 
     public function __construct($hostname, $opts) {
       parent::__construct($hostname, $opts);
@@ -848,13 +848,13 @@ namespace google\longrunning {
      * @param google\longrunning\CancelOperationRequest $input
      */
     public function CancelOperation(\google\longrunning\CancelOperationRequest $argument, $metadata = array(), $options = array()) {
-      return $this->_simpleRequest('/google.longrunning.Operations/CancelOperation', $argument, '\google\protobuf\Empty::deserialize', $metadata, $options);
+      return $this->_simpleRequest('/google.longrunning.Operations/CancelOperation', $argument, '\google\protobuf\EmptyC::deserialize', $metadata, $options);
     }
     /**
      * @param google\longrunning\DeleteOperationRequest $input
      */
     public function DeleteOperation(\google\longrunning\DeleteOperationRequest $argument, $metadata = array(), $options = array()) {
-      return $this->_simpleRequest('/google.longrunning.Operations/DeleteOperation', $argument, '\google\protobuf\Empty::deserialize', $metadata, $options);
+      return $this->_simpleRequest('/google.longrunning.Operations/DeleteOperation', $argument, '\google\protobuf\EmptyC::deserialize', $metadata, $options);
     }
   }
 }
