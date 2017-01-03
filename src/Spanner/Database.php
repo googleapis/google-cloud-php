@@ -360,7 +360,7 @@ class Database
         foreach ($dataSet as $data) {
             $mutations[] = $this->operation->mutation(Operation::OP_INSERT, $table, $data);
         }
-// print_R($mutations);exit;
+
         $session = $this->selectSession(SessionPoolInterface::CONTEXT_READWRITE);
 
         return $this->operation->commit($session, $mutations, $options);
