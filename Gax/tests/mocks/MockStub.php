@@ -32,38 +32,47 @@
 
 namespace Google\GAX\Testing;
 
+use InvalidArgumentException;
+use UnderflowException;
+
 class MockStub
 {
-    // invariant: count($responseSequence) >= 1
-    private $responseSequence;
+    public $actualCalls = [];
+    private $responses = [];
 
-    public $actualCalls;
-
-    private function __construct()
-    {
-        $this->actualCalls = [];
-    }
-
-    public static function create($responseObject)
+    /**
+     * @param mixed $responseObject
+     * @param $status
+     * @return MockStub
+     */
+    public static function create($responseObject, $status = null)
     {
         $stub = new MockStub();
-        $status = new MockStatus(\Grpc\STATUS_OK, '');
-        $stub->responseSequence = [[$responseObject, $status]];
+        $stub->addResponse($responseObject, $status);
         return $stub;
     }
 
     /**
-     * Creates a sequence such that the responses are returned in order,
-     * and once there is only one left, it is repeated indefinitely.
+     * Creates a sequence such that the responses are returned in order.
+     * @param mixed[] $sequence
+     * @return MockStub
      */
     public static function createWithResponseSequence($sequence)
     {
         if (count($sequence) == 0) {
-            throw new \InvalidArgumentException("createResponseSequence: need at least 1 response");
+            throw new InvalidArgumentException("createResponseSequence: need at least 1 response");
         }
         $stub = new MockStub();
-        $stub->responseSequence = $sequence;
+        foreach ($sequence as $elem) {
+            list($resp, $status) = $elem;
+            $stub->addResponse($resp, $status);
+        }
         return $stub;
+    }
+
+    public function addResponse($response, $status = null)
+    {
+        $this->responses[] = [$response, $status];
     }
 
     public function __call($name, $arguments)
@@ -81,26 +90,10 @@ class MockStub
             'options' => $options,
         ];
         array_push($this->actualCalls, $actualCall);
-        if (count($this->responseSequence) == 1) {
-            return new MockGrpcCall($this->responseSequence[0]);
-        } else {
-            $response = array_shift($this->responseSequence);
-            return new MockGrpcCall($response);
+        if (count($this->responses) < 1) {
+            throw new UnderflowException("ran out of responses");
         }
-    }
-}
-
-class MockGrpcCall
-{
-    // this will be an array of [responseObject, status]
-    private $response;
-    public function __construct($response)
-    {
-        $this->response = $response;
-    }
-
-    public function wait()
-    {
-        return $this->response;
+        $response = array_shift($this->responses);
+        return new MockUnaryCall($response[0], null, $response[1]);
     }
 }
