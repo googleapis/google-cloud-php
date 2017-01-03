@@ -41,7 +41,6 @@ use Google\GAX\Testing\MockStatus;
 use Google\GAX\Testing\MockRequest;
 use Google\GAX\Testing\MockResponse;
 use google\longrunning\Operation;
-use Google\Longrunning\OperationsClient;
 use google\protobuf\EmptyC;
 use google\rpc\Code;
 
@@ -128,7 +127,7 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
             [$responseA, new MockStatus(Grpc\STATUS_DEADLINE_EXCEEDED, 'Deadline Exceeded')],
             [$responseB, new MockStatus(Grpc\STATUS_DEADLINE_EXCEEDED, 'Deadline Exceeded')],
             [$responseC, new MockStatus(Grpc\STATUS_OK, '')]
-                             ];
+        ];
         $stub = MockStub::createWithResponseSequence($responseSequence);
         $backoffSettings = new BackoffSettings([
             'initialRetryDelayMillis' => 100,
@@ -165,7 +164,11 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
         $request = "request";
         $response = "response";
         $status = new MockStatus(Grpc\STATUS_DEADLINE_EXCEEDED, 'Deadline Exceeded');
-        $stub = MockStub::createWithResponseSequence([[$response, $status]]);
+        $stub = MockStub::createWithResponseSequence([
+            [$response, $status],
+            [$response, $status],
+            [$response, $status]
+        ]);
         $backoffSettings = new BackoffSettings([
             'initialRetryDelayMillis' => 1000,
             'retryDelayMultiplier' => 1.3,
@@ -213,7 +216,7 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
             [$responseA, new MockStatus(Grpc\STATUS_OK, '')],
             [$responseB, new MockStatus(Grpc\STATUS_OK, '')],
             [$responseC, new MockStatus(Grpc\STATUS_OK, '')]
-                             ];
+        ];
         $stub = MockStub::createWithResponseSequence($responseSequence);
         $descriptor = new PageStreamingDescriptor([
             'requestPageTokenField' => 'pageToken',
@@ -243,7 +246,7 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
             [$responseA, new MockStatus(Grpc\STATUS_OK, '')],
             [$responseB, new MockStatus(Grpc\STATUS_OK, '')],
             [$responseC, new MockStatus(Grpc\STATUS_OK, '')]
-                             ];
+        ];
         $stub = MockStub::createWithResponseSequence($responseSequence);
         $descriptor = new PageStreamingDescriptor([
             'requestPageTokenField' => 'pageToken',
@@ -279,7 +282,7 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
             [$responseA, new MockStatus(Grpc\STATUS_OK, '')],
             [$responseB, new MockStatus(Grpc\STATUS_OK, '')],
             [$responseC, new MockStatus(Grpc\STATUS_OK, '')]
-                             ];
+        ];
         $stub = MockStub::createWithResponseSequence($responseSequence);
         $descriptor = new PageStreamingDescriptor([
             'requestPageTokenField' => 'pageToken',
@@ -341,7 +344,7 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
         $responseA = MockResponse::createPageStreamingResponse('nextPageToken1', ['resource1']);
         $responseSequence = [
             [$responseA, new MockStatus(Grpc\STATUS_OK, '')],
-                             ];
+        ];
         $stub = MockStub::createWithResponseSequence($responseSequence);
         $descriptor = new PageStreamingDescriptor([
             'requestPageTokenField' => 'pageToken',
@@ -393,7 +396,7 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
             [$responseA, new MockStatus(Grpc\STATUS_OK, '')],
             [$responseB, new MockStatus(Grpc\STATUS_OK, '')],
             [$responseC, new MockStatus(Grpc\STATUS_OK, '')]
-                             ];
+        ];
         $stub = MockStub::createWithResponseSequence($responseSequence);
         $descriptor = new PageStreamingDescriptor([
             'requestPageTokenField' => 'pageToken',
