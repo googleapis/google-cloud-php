@@ -1,16 +1,18 @@
 <?php
 /*
- * Copyright 2016 Google Inc. All Rights Reserved.
+ * Copyright 2016, Google Inc. All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
- * in compliance with the License. You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * Unless required by applicable law or agreed to in writing, software distributed under the License
- * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
- * or implied. See the License for the specific language governing permissions and limitations under
- * the License.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 
 /*
@@ -38,7 +40,7 @@ use google\logging\v2\DeleteLogMetricRequest;
 use google\logging\v2\GetLogMetricRequest;
 use google\logging\v2\ListLogMetricsRequest;
 use google\logging\v2\LogMetric;
-use google\logging\v2\MetricsServiceV2Client as MetricsServiceV2GrpcClient;
+use google\logging\v2\MetricsServiceV2GrpcClient;
 use google\logging\v2\UpdateLogMetricRequest;
 
 /**
@@ -55,8 +57,18 @@ use google\logging\v2\UpdateLogMetricRequest;
  * try {
  *     $metricsServiceV2Client = new MetricsServiceV2Client();
  *     $formattedParent = MetricsServiceV2Client::formatProjectName("[PROJECT]");
- *     foreach ($metricsServiceV2Client->listLogMetrics($formattedParent) as $element) {
+ *     // Iterate through all elements
+ *     $pagedResponse = $metricsServiceV2Client->listLogMetrics($formattedParent);
+ *     foreach ($pagedResponse->iterateAllElements() as $element) {
  *         // doThingsWith(element);
+ *     }
+ *
+ *     // OR iterate over pages of elements, with the maximum page size set to 5
+ *     $pagedResponse = $metricsServiceV2Client->listLogMetrics($formattedParent, ['pageSize' => 5]);
+ *     foreach ($pagedResponse->iteratePages() as $page) {
+ *         foreach ($page as $element) {
+ *             // doThingsWith(element);
+ *         }
  *     }
  * } finally {
  *     if (isset($metricsServiceV2Client)) {
@@ -76,7 +88,6 @@ class MetricsServiceV2Client
      * The default address of the service.
      */
     const SERVICE_ADDRESS = 'logging.googleapis.com';
-
     /**
      * The default port of the service.
      */
@@ -194,10 +205,10 @@ class MetricsServiceV2Client
      *     @type string $serviceAddress The domain name of the API remote host.
      *                                  Default 'logging.googleapis.com'.
      *     @type mixed $port The port on which to connect to the remote host. Default 443.
-     *     @type Grpc\ChannelCredentials $sslCreds
+     *     @type \Grpc\ChannelCredentials $sslCreds
      *           A `ChannelCredentials` for use with an SSL-enabled channel.
      *           Default: a credentials object returned from
-     *           Grpc\ChannelCredentials::createSsl()
+     *           \Grpc\ChannelCredentials::createSsl()
      *     @type array $scopes A string array of scopes to use when acquiring credentials.
      *                         Default the scopes for the Stackdriver Logging API.
      *     @type array $retryingOverride
@@ -212,24 +223,23 @@ class MetricsServiceV2Client
      *     @type string $appName The codename of the calling service. Default 'gax'.
      *     @type string $appVersion The version of the calling service.
      *                              Default: the current version of GAX.
-     *     @type Google\Auth\CredentialsLoader $credentialsLoader
+     *     @type \Google\Auth\CredentialsLoader $credentialsLoader
      *                              A CredentialsLoader object created using the
      *                              Google\Auth library.
      * }
      */
     public function __construct($options = [])
     {
-        $defaultScopes = [
-            'https://www.googleapis.com/auth/cloud-platform',
-            'https://www.googleapis.com/auth/cloud-platform.read-only',
-            'https://www.googleapis.com/auth/logging.admin',
-            'https://www.googleapis.com/auth/logging.read',
-            'https://www.googleapis.com/auth/logging.write',
-        ];
         $defaultOptions = [
             'serviceAddress' => self::SERVICE_ADDRESS,
             'port' => self::DEFAULT_SERVICE_PORT,
-            'scopes' => $defaultScopes,
+            'scopes' => [
+                'https://www.googleapis.com/auth/cloud-platform',
+                'https://www.googleapis.com/auth/cloud-platform.read-only',
+                'https://www.googleapis.com/auth/logging.admin',
+                'https://www.googleapis.com/auth/logging.read',
+                'https://www.googleapis.com/auth/logging.write',
+            ],
             'retryingOverride' => null,
             'timeoutMillis' => self::DEFAULT_TIMEOUT_MILLIS,
             'appName' => 'gax',
@@ -282,6 +292,9 @@ class MetricsServiceV2Client
         $createMetricsServiceV2StubFunction = function ($hostname, $opts) {
             return new MetricsServiceV2GrpcClient($hostname, $opts);
         };
+        if (array_key_exists('createMetricsServiceV2StubFunction', $options)) {
+            $createMetricsServiceV2StubFunction = $options['createMetricsServiceV2StubFunction'];
+        }
         $this->metricsServiceV2Stub = $this->grpcCredentialsHelper->createStub(
             $createMetricsServiceV2StubFunction,
             $options['serviceAddress'],
@@ -298,8 +311,18 @@ class MetricsServiceV2Client
      * try {
      *     $metricsServiceV2Client = new MetricsServiceV2Client();
      *     $formattedParent = MetricsServiceV2Client::formatProjectName("[PROJECT]");
-     *     foreach ($metricsServiceV2Client->listLogMetrics($formattedParent) as $element) {
+     *     // Iterate through all elements
+     *     $pagedResponse = $metricsServiceV2Client->listLogMetrics($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doThingsWith(element);
+     *     }
+     *
+     *     // OR iterate over pages of elements, with the maximum page size set to 5
+     *     $pagedResponse = $metricsServiceV2Client->listLogMetrics($formattedParent, ['pageSize' => 5]);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doThingsWith(element);
+     *         }
      *     }
      * } finally {
      *     if (isset($metricsServiceV2Client)) {
