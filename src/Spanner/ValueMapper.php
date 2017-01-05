@@ -80,9 +80,8 @@ class ValueMapper
     public function encodeValuesAsSimpleType(array $values)
     {
         $res = [];
-
         foreach ($values as $value) {
-            $res[] = $this->encodeValue($value);
+            $res[] = $this->paramType($value)[0];
         }
 
         return $res;
@@ -96,49 +95,34 @@ class ValueMapper
      * @param array $row The row data.
      * @return array The decoded row data.
      */
-    public function decodeValues(array $columns, array $row)
+    public function decodeValues(array $columns, array $row, $extractResult = false)
     {
         $cols = [];
         $types = [];
-        foreach (array_keys($row) as $colIndex) {
-            $cols[] = $columns[$colIndex]['name'];
-            $types[] = $columns[$colIndex]['type'];
+
+        foreach ($columns as $index => $column) {
+            $cols[] = (isset($column['name']))
+                ? $column['name']
+                : $index;
+            $types[] = $column['type'];
         }
 
         $res = [];
         foreach ($row as $index => $value) {
-            $res[$cols[$index]] = $this->decodeValue($value, $types[$index]);
+            $i = $cols[$index];
+            $res[$i] = $this->decodeValue($value, $types[$index]);
         }
 
         return $res;
     }
 
-    private function encodeValue($value)
-    {
-        if ($value instanceof ValueInterface) {
-            $value = $value->formatAsString();
-        }
-
-        if ($value instanceof Int64) {
-            $value = $value->get();
-        }
-
-        if (gettype($value) === 'integer') {
-            $value = (string) $value;
-        }
-
-        if (is_array($value)) {
-            $res = [];
-            foreach ($value as $item) {
-                $res[] = $this->encodeValue($item);
-            }
-
-            $value = $res;
-        }
-
-        return $value;
-    }
-
+    /**
+     * Convert a single value to its corresponding PHP type.
+     *
+     * @param mixed $value The value to decode
+     * @param array $type The value type
+     * @return mixed
+     */
     private function decodeValue($value, array $type)
     {
         switch ($type['code']) {
@@ -151,7 +135,7 @@ class ValueMapper
             case self::TYPE_TIMESTAMP:
                 $matches = [];
                 preg_match(self::NANO_REGEX, $value, $matches);
-                $value = preg_replace(self::NANO_REGEX, '.0Z', $value);
+                $value = preg_replace(self::NANO_REGEX, '.000000Z', $value);
 
                 $dt = \DateTimeImmutable::createFromFormat(Timestamp::FORMAT, $value);
                 $value = new Timestamp($dt, (isset($matches[1])) ? $matches[1] : 0);
@@ -175,13 +159,7 @@ class ValueMapper
                 break;
 
             case self::TYPE_STRUCT:
-                $res = [];
-
-                foreach ($value as $index => $item) {
-                    $res[] = $this->decodeValue($item, $type['structType']['fields'][$index]);
-                }
-
-                $value = $res;
+                $value = $this->decodeValues($type['structType']['fields'], $value, true);
                 break;
 
             case self::TYPE_FLOAT64:
@@ -206,7 +184,7 @@ class ValueMapper
                             break;
 
                         default:
-                            throw new \InvalidArgumentException(sprintf(
+                            throw new \RuntimeException(sprintf(
                                 'Unexpected string value %s encountered in FLOAT64 field.',
                                 $value
                             ));
@@ -256,12 +234,28 @@ class ValueMapper
                 break;
 
             case 'array':
-                $type = $this->typeObject(self::TYPE_ARRAY);
+
+                if ($this->isAssoc($value)) {
+                    throw new \InvalidArgumentException('Associative arrays are not supported');
+                }
 
                 $res = [];
+                $types = [];
                 foreach ($value as $element) {
-                    $res[] = $this->paramType($element)[1];
+                    $type = $this->paramType($element);
+                    $res[] = $type[0];
+                    $types[] = $type[1]['code'];
                 }
+
+                if (count(array_unique($types)) !== 1) {
+                    throw new \InvalidArgumentException('Array values may not be of mixed type');
+                }
+
+                $type = $this->typeObject(
+                    self::TYPE_ARRAY,
+                    $this->typeObject($types[0]),
+                    'arrayElementType'
+                );
 
                 $value = $res;
                 break;
@@ -290,16 +284,24 @@ class ValueMapper
             ];
         }
 
+        if ($value instanceof Int64) {
+            return [
+                $this->typeObject(self::TYPE_INT64),
+                $value->get()
+            ];
+        }
+
         throw new \InvalidArgumentException(sprintf(
             'Unrecognized value type %s. Please ensure you are using the latest version of google/cloud.',
             get_class($value)
         ));
     }
 
-    private function typeObject($type)
+    private function typeObject($type, array $nestedDefinition = [], $nestedDefinitionType = null)
     {
-        return [
-            'code' => $type
-        ];
+        return array_filter([
+            'code' => $type,
+            $nestedDefinitionType => $nestedDefinition
+        ]);
     }
 }
