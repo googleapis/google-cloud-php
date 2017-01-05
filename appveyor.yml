@@ -11,9 +11,10 @@ init:
 
 environment:
   matrix:
-    - PHP_VERSION: "5.5.37-nts-Win32-VC11-x64"
-    - PHP_VERSION: "5.6.25-nts-Win32-VC11-x64"
-    - PHP_VERSION: "7.0.9-nts-Win32-VC14-x64"
+    - PHP_VERSION: "5.5.38-nts-Win32-VC11-x64"
+    - PHP_VERSION: "5.6.29-nts-Win32-VC11-x64"
+    - PHP_VERSION: "7.0.14-nts-Win32-VC14-x64"
+    - PHP_VERSION: "7.1.0-nts-Win32-VC14-x64"
 
 install:
   - cinst -y OpenSSL.Light
