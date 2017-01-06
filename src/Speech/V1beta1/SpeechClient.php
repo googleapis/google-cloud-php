@@ -58,9 +58,7 @@ use google\cloud\speech\v1beta1\SyncRecognizeRequest;
  *     $audio = new RecognitionAudio();
  *     $response = $speechClient->syncRecognize($config, $audio);
  * } finally {
- *     if (isset($speechClient)) {
- *         $speechClient->close();
- *     }
+ *     $speechClient->close();
  * }
  * ```
  *
@@ -75,6 +73,7 @@ class SpeechClient
      * The default address of the service.
      */
     const SERVICE_ADDRESS = 'speech.googleapis.com';
+
     /**
      * The default port of the service.
      */
@@ -85,8 +84,15 @@ class SpeechClient
      */
     const DEFAULT_TIMEOUT_MILLIS = 30000;
 
-    const _CODEGEN_NAME = 'gapic';
-    const _CODEGEN_VERSION = '0.1.0';
+    /**
+     * The name of the code generator, to be included in the agent header.
+     */
+    const CODEGEN_NAME = 'gapic';
+
+    /**
+     * The code generator version, to be included in the agent header.
+     */
+    const CODEGEN_VERSION = '0.1.0';
 
     private $grpcCredentialsHelper;
     private $speechStub;
@@ -94,14 +100,6 @@ class SpeechClient
     private $defaultCallSettings;
     private $descriptors;
     private $operationsClient;
-
-    private static function getPageStreamingDescriptors()
-    {
-        $pageStreamingDescriptors = [
-        ];
-
-        return $pageStreamingDescriptors;
-    }
 
     private static function getLongRunningDescriptors()
     {
@@ -117,6 +115,7 @@ class SpeechClient
     {
         return $this->operationsClient;
     }
+
     // TODO(garrettjones): add channel (when supported in gRPC)
     /**
      * Constructor.
@@ -173,8 +172,8 @@ class SpeechClient
         $headerDescriptor = new AgentHeaderDescriptor([
             'clientName' => $options['appName'],
             'clientVersion' => $options['appVersion'],
-            'codeGenName' => self::_CODEGEN_NAME,
-            'codeGenVersion' => self::_CODEGEN_VERSION,
+            'codeGenName' => self::CODEGEN_NAME,
+            'codeGenVersion' => self::CODEGEN_VERSION,
             'gaxVersion' => AgentHeaderDescriptor::getGaxVersion(),
             'phpVersion' => phpversion(),
         ]);
@@ -184,10 +183,6 @@ class SpeechClient
             'syncRecognize' => $defaultDescriptors,
             'asyncRecognize' => $defaultDescriptors,
         ];
-        $pageStreamingDescriptors = self::getPageStreamingDescriptors();
-        foreach ($pageStreamingDescriptors as $method => $pageStreamingDescriptor) {
-            $this->descriptors[$method]['pageStreamingDescriptor'] = $pageStreamingDescriptor;
-        }
         $longRunningDescriptors = self::getLongRunningDescriptors();
         foreach ($longRunningDescriptors as $method => $longRunningDescriptor) {
             $this->descriptors[$method]['longRunningDescriptor'] = $longRunningDescriptor + ['operationsClient' => $this->operationsClient];
@@ -239,9 +234,7 @@ class SpeechClient
      *     $audio = new RecognitionAudio();
      *     $response = $speechClient->syncRecognize($config, $audio);
      * } finally {
-     *     if (isset($speechClient)) {
-     *         $speechClient->close();
-     *     }
+     *     $speechClient->close();
      * }
      * ```
      *
@@ -307,9 +300,7 @@ class SpeechClient
      *       // handleError($error)
      *     }
      * } finally {
-     *     if (isset($speechClient)) {
-     *         $speechClient->close();
-     *     }
+     *     $speechClient->close();
      * }
      * ```
      *
