@@ -60,20 +60,18 @@ use google\logging\v2\UpdateLogMetricRequest;
  *     // Iterate through all elements
  *     $pagedResponse = $metricsServiceV2Client->listLogMetrics($formattedParent);
  *     foreach ($pagedResponse->iterateAllElements() as $element) {
- *         // doThingsWith(element);
+ *         // doSomethingWith($element);
  *     }
  *
  *     // OR iterate over pages of elements, with the maximum page size set to 5
  *     $pagedResponse = $metricsServiceV2Client->listLogMetrics($formattedParent, ['pageSize' => 5]);
  *     foreach ($pagedResponse->iteratePages() as $page) {
  *         foreach ($page as $element) {
- *             // doThingsWith(element);
+ *             // doSomethingWith($element);
  *         }
  *     }
  * } finally {
- *     if (isset($metricsServiceV2Client)) {
- *         $metricsServiceV2Client->close();
- *     }
+ *     $metricsServiceV2Client->close();
  * }
  * ```
  *
@@ -88,6 +86,7 @@ class MetricsServiceV2Client
      * The default address of the service.
      */
     const SERVICE_ADDRESS = 'logging.googleapis.com';
+
     /**
      * The default port of the service.
      */
@@ -98,8 +97,15 @@ class MetricsServiceV2Client
      */
     const DEFAULT_TIMEOUT_MILLIS = 30000;
 
-    const _CODEGEN_NAME = 'gapic';
-    const _CODEGEN_VERSION = '0.1.0';
+    /**
+     * The name of the code generator, to be included in the agent header.
+     */
+    const CODEGEN_NAME = 'gapic';
+
+    /**
+     * The code generator version, to be included in the agent header.
+     */
+    const CODEGEN_VERSION = '0.1.0';
 
     private static $projectNameTemplate;
     private static $metricNameTemplate;
@@ -250,8 +256,8 @@ class MetricsServiceV2Client
         $headerDescriptor = new AgentHeaderDescriptor([
             'clientName' => $options['appName'],
             'clientVersion' => $options['appVersion'],
-            'codeGenName' => self::_CODEGEN_NAME,
-            'codeGenVersion' => self::_CODEGEN_VERSION,
+            'codeGenName' => self::CODEGEN_NAME,
+            'codeGenVersion' => self::CODEGEN_VERSION,
             'gaxVersion' => AgentHeaderDescriptor::getGaxVersion(),
             'phpVersion' => phpversion(),
         ]);
@@ -314,20 +320,18 @@ class MetricsServiceV2Client
      *     // Iterate through all elements
      *     $pagedResponse = $metricsServiceV2Client->listLogMetrics($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doThingsWith(element);
+     *         // doSomethingWith($element);
      *     }
      *
      *     // OR iterate over pages of elements, with the maximum page size set to 5
      *     $pagedResponse = $metricsServiceV2Client->listLogMetrics($formattedParent, ['pageSize' => 5]);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
-     *             // doThingsWith(element);
+     *             // doSomethingWith($element);
      *         }
      *     }
      * } finally {
-     *     if (isset($metricsServiceV2Client)) {
-     *         $metricsServiceV2Client->close();
-     *     }
+     *     $metricsServiceV2Client->close();
      * }
      * ```
      *
@@ -395,9 +399,7 @@ class MetricsServiceV2Client
      *     $formattedMetricName = MetricsServiceV2Client::formatMetricName("[PROJECT]", "[METRIC]");
      *     $response = $metricsServiceV2Client->getLogMetric($formattedMetricName);
      * } finally {
-     *     if (isset($metricsServiceV2Client)) {
-     *         $metricsServiceV2Client->close();
-     *     }
+     *     $metricsServiceV2Client->close();
      * }
      * ```
      *
@@ -451,9 +453,7 @@ class MetricsServiceV2Client
      *     $metric = new LogMetric();
      *     $response = $metricsServiceV2Client->createLogMetric($formattedParent, $metric);
      * } finally {
-     *     if (isset($metricsServiceV2Client)) {
-     *         $metricsServiceV2Client->close();
-     *     }
+     *     $metricsServiceV2Client->close();
      * }
      * ```
      *
@@ -512,9 +512,7 @@ class MetricsServiceV2Client
      *     $metric = new LogMetric();
      *     $response = $metricsServiceV2Client->updateLogMetric($formattedMetricName, $metric);
      * } finally {
-     *     if (isset($metricsServiceV2Client)) {
-     *         $metricsServiceV2Client->close();
-     *     }
+     *     $metricsServiceV2Client->close();
      * }
      * ```
      *
@@ -573,9 +571,7 @@ class MetricsServiceV2Client
      *     $formattedMetricName = MetricsServiceV2Client::formatMetricName("[PROJECT]", "[METRIC]");
      *     $metricsServiceV2Client->deleteLogMetric($formattedMetricName);
      * } finally {
-     *     if (isset($metricsServiceV2Client)) {
-     *         $metricsServiceV2Client->close();
-     *     }
+     *     $metricsServiceV2Client->close();
      * }
      * ```
      *

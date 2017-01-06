@@ -69,9 +69,7 @@ use google\pubsub\v1\Subscription;
  *     $formattedTopic = SubscriberClient::formatTopicName("[PROJECT]", "[TOPIC]");
  *     $response = $subscriberClient->createSubscription($formattedName, $formattedTopic);
  * } finally {
- *     if (isset($subscriberClient)) {
- *         $subscriberClient->close();
- *     }
+ *     $subscriberClient->close();
  * }
  * ```
  *
@@ -86,6 +84,7 @@ class SubscriberClient
      * The default address of the service.
      */
     const SERVICE_ADDRESS = 'pubsub.googleapis.com';
+
     /**
      * The default port of the service.
      */
@@ -96,8 +95,15 @@ class SubscriberClient
      */
     const DEFAULT_TIMEOUT_MILLIS = 30000;
 
-    const _CODEGEN_NAME = 'gapic';
-    const _CODEGEN_VERSION = '0.1.0';
+    /**
+     * The name of the code generator, to be included in the agent header.
+     */
+    const CODEGEN_NAME = 'gapic';
+
+    /**
+     * The code generator version, to be included in the agent header.
+     */
+    const CODEGEN_VERSION = '0.1.0';
 
     private static $projectNameTemplate;
     private static $subscriptionNameTemplate;
@@ -286,8 +292,8 @@ class SubscriberClient
         $headerDescriptor = new AgentHeaderDescriptor([
             'clientName' => $options['appName'],
             'clientVersion' => $options['appVersion'],
-            'codeGenName' => self::_CODEGEN_NAME,
-            'codeGenVersion' => self::_CODEGEN_VERSION,
+            'codeGenName' => self::CODEGEN_NAME,
+            'codeGenVersion' => self::CODEGEN_VERSION,
             'gaxVersion' => AgentHeaderDescriptor::getGaxVersion(),
             'phpVersion' => phpversion(),
         ]);
@@ -377,9 +383,7 @@ class SubscriberClient
      *     $formattedTopic = SubscriberClient::formatTopicName("[PROJECT]", "[TOPIC]");
      *     $response = $subscriberClient->createSubscription($formattedName, $formattedTopic);
      * } finally {
-     *     if (isset($subscriberClient)) {
-     *         $subscriberClient->close();
-     *     }
+     *     $subscriberClient->close();
      * }
      * ```
      *
@@ -470,9 +474,7 @@ class SubscriberClient
      *     $formattedSubscription = SubscriberClient::formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
      *     $response = $subscriberClient->getSubscription($formattedSubscription);
      * } finally {
-     *     if (isset($subscriberClient)) {
-     *         $subscriberClient->close();
-     *     }
+     *     $subscriberClient->close();
      * }
      * ```
      *
@@ -525,20 +527,18 @@ class SubscriberClient
      *     // Iterate through all elements
      *     $pagedResponse = $subscriberClient->listSubscriptions($formattedProject);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doThingsWith(element);
+     *         // doSomethingWith($element);
      *     }
      *
      *     // OR iterate over pages of elements, with the maximum page size set to 5
      *     $pagedResponse = $subscriberClient->listSubscriptions($formattedProject, ['pageSize' => 5]);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
-     *             // doThingsWith(element);
+     *             // doSomethingWith($element);
      *         }
      *     }
      * } finally {
-     *     if (isset($subscriberClient)) {
-     *         $subscriberClient->close();
-     *     }
+     *     $subscriberClient->close();
      * }
      * ```
      *
@@ -609,9 +609,7 @@ class SubscriberClient
      *     $formattedSubscription = SubscriberClient::formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
      *     $subscriberClient->deleteSubscription($formattedSubscription);
      * } finally {
-     *     if (isset($subscriberClient)) {
-     *         $subscriberClient->close();
-     *     }
+     *     $subscriberClient->close();
      * }
      * ```
      *
@@ -667,9 +665,7 @@ class SubscriberClient
      *     $ackDeadlineSeconds = 0;
      *     $subscriberClient->modifyAckDeadline($formattedSubscription, $ackIds, $ackDeadlineSeconds);
      * } finally {
-     *     if (isset($subscriberClient)) {
-     *         $subscriberClient->close();
-     *     }
+     *     $subscriberClient->close();
      * }
      * ```
      *
@@ -738,9 +734,7 @@ class SubscriberClient
      *     $ackIds = [];
      *     $subscriberClient->acknowledge($formattedSubscription, $ackIds);
      * } finally {
-     *     if (isset($subscriberClient)) {
-     *         $subscriberClient->close();
-     *     }
+     *     $subscriberClient->close();
      * }
      * ```
      *
@@ -799,9 +793,7 @@ class SubscriberClient
      *     $maxMessages = 0;
      *     $response = $subscriberClient->pull($formattedSubscription, $maxMessages);
      * } finally {
-     *     if (isset($subscriberClient)) {
-     *         $subscriberClient->close();
-     *     }
+     *     $subscriberClient->close();
      * }
      * ```
      *
@@ -872,9 +864,7 @@ class SubscriberClient
      *     $pushConfig = new PushConfig();
      *     $subscriberClient->modifyPushConfig($formattedSubscription, $pushConfig);
      * } finally {
-     *     if (isset($subscriberClient)) {
-     *         $subscriberClient->close();
-     *     }
+     *     $subscriberClient->close();
      * }
      * ```
      *
@@ -933,9 +923,7 @@ class SubscriberClient
      *     $policy = new Policy();
      *     $response = $subscriberClient->setIamPolicy($formattedResource, $policy);
      * } finally {
-     *     if (isset($subscriberClient)) {
-     *         $subscriberClient->close();
-     *     }
+     *     $subscriberClient->close();
      * }
      * ```
      *
@@ -995,9 +983,7 @@ class SubscriberClient
      *     $formattedResource = SubscriberClient::formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
      *     $response = $subscriberClient->getIamPolicy($formattedResource);
      * } finally {
-     *     if (isset($subscriberClient)) {
-     *         $subscriberClient->close();
-     *     }
+     *     $subscriberClient->close();
      * }
      * ```
      *
@@ -1053,9 +1039,7 @@ class SubscriberClient
      *     $permissions = [];
      *     $response = $subscriberClient->testIamPermissions($formattedResource, $permissions);
      * } finally {
-     *     if (isset($subscriberClient)) {
-     *         $subscriberClient->close();
-     *     }
+     *     $subscriberClient->close();
      * }
      * ```
      *

@@ -61,20 +61,18 @@ use google\logging\v2\UpdateSinkRequest;
  *     // Iterate through all elements
  *     $pagedResponse = $configServiceV2Client->listSinks($formattedParent);
  *     foreach ($pagedResponse->iterateAllElements() as $element) {
- *         // doThingsWith(element);
+ *         // doSomethingWith($element);
  *     }
  *
  *     // OR iterate over pages of elements, with the maximum page size set to 5
  *     $pagedResponse = $configServiceV2Client->listSinks($formattedParent, ['pageSize' => 5]);
  *     foreach ($pagedResponse->iteratePages() as $page) {
  *         foreach ($page as $element) {
- *             // doThingsWith(element);
+ *             // doSomethingWith($element);
  *         }
  *     }
  * } finally {
- *     if (isset($configServiceV2Client)) {
- *         $configServiceV2Client->close();
- *     }
+ *     $configServiceV2Client->close();
  * }
  * ```
  *
@@ -89,6 +87,7 @@ class ConfigServiceV2Client
      * The default address of the service.
      */
     const SERVICE_ADDRESS = 'logging.googleapis.com';
+
     /**
      * The default port of the service.
      */
@@ -99,8 +98,15 @@ class ConfigServiceV2Client
      */
     const DEFAULT_TIMEOUT_MILLIS = 30000;
 
-    const _CODEGEN_NAME = 'gapic';
-    const _CODEGEN_VERSION = '0.1.0';
+    /**
+     * The name of the code generator, to be included in the agent header.
+     */
+    const CODEGEN_NAME = 'gapic';
+
+    /**
+     * The code generator version, to be included in the agent header.
+     */
+    const CODEGEN_VERSION = '0.1.0';
 
     private static $projectNameTemplate;
     private static $sinkNameTemplate;
@@ -251,8 +257,8 @@ class ConfigServiceV2Client
         $headerDescriptor = new AgentHeaderDescriptor([
             'clientName' => $options['appName'],
             'clientVersion' => $options['appVersion'],
-            'codeGenName' => self::_CODEGEN_NAME,
-            'codeGenVersion' => self::_CODEGEN_VERSION,
+            'codeGenName' => self::CODEGEN_NAME,
+            'codeGenVersion' => self::CODEGEN_VERSION,
             'gaxVersion' => AgentHeaderDescriptor::getGaxVersion(),
             'phpVersion' => phpversion(),
         ]);
@@ -315,20 +321,18 @@ class ConfigServiceV2Client
      *     // Iterate through all elements
      *     $pagedResponse = $configServiceV2Client->listSinks($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doThingsWith(element);
+     *         // doSomethingWith($element);
      *     }
      *
      *     // OR iterate over pages of elements, with the maximum page size set to 5
      *     $pagedResponse = $configServiceV2Client->listSinks($formattedParent, ['pageSize' => 5]);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
-     *             // doThingsWith(element);
+     *             // doSomethingWith($element);
      *         }
      *     }
      * } finally {
-     *     if (isset($configServiceV2Client)) {
-     *         $configServiceV2Client->close();
-     *     }
+     *     $configServiceV2Client->close();
      * }
      * ```
      *
@@ -395,9 +399,7 @@ class ConfigServiceV2Client
      *     $formattedSinkName = ConfigServiceV2Client::formatSinkName("[PROJECT]", "[SINK]");
      *     $response = $configServiceV2Client->getSink($formattedSinkName);
      * } finally {
-     *     if (isset($configServiceV2Client)) {
-     *         $configServiceV2Client->close();
-     *     }
+     *     $configServiceV2Client->close();
      * }
      * ```
      *
@@ -458,9 +460,7 @@ class ConfigServiceV2Client
      *     $sink = new LogSink();
      *     $response = $configServiceV2Client->createSink($formattedParent, $sink);
      * } finally {
-     *     if (isset($configServiceV2Client)) {
-     *         $configServiceV2Client->close();
-     *     }
+     *     $configServiceV2Client->close();
      * }
      * ```
      *
@@ -542,9 +542,7 @@ class ConfigServiceV2Client
      *     $sink = new LogSink();
      *     $response = $configServiceV2Client->updateSink($formattedSinkName, $sink);
      * } finally {
-     *     if (isset($configServiceV2Client)) {
-     *         $configServiceV2Client->close();
-     *     }
+     *     $configServiceV2Client->close();
      * }
      * ```
      *
@@ -621,9 +619,7 @@ class ConfigServiceV2Client
      *     $formattedSinkName = ConfigServiceV2Client::formatSinkName("[PROJECT]", "[SINK]");
      *     $configServiceV2Client->deleteSink($formattedSinkName);
      * } finally {
-     *     if (isset($configServiceV2Client)) {
-     *         $configServiceV2Client->close();
-     *     }
+     *     $configServiceV2Client->close();
      * }
      * ```
      *

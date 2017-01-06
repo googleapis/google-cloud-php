@@ -61,9 +61,7 @@ use google\logging\v2\WriteLogEntriesRequest\LabelsEntry;
  *     $formattedLogName = LoggingServiceV2Client::formatLogName("[PROJECT]", "[LOG]");
  *     $loggingServiceV2Client->deleteLog($formattedLogName);
  * } finally {
- *     if (isset($loggingServiceV2Client)) {
- *         $loggingServiceV2Client->close();
- *     }
+ *     $loggingServiceV2Client->close();
  * }
  * ```
  *
@@ -78,6 +76,7 @@ class LoggingServiceV2Client
      * The default address of the service.
      */
     const SERVICE_ADDRESS = 'logging.googleapis.com';
+
     /**
      * The default port of the service.
      */
@@ -88,8 +87,15 @@ class LoggingServiceV2Client
      */
     const DEFAULT_TIMEOUT_MILLIS = 30000;
 
-    const _CODEGEN_NAME = 'gapic';
-    const _CODEGEN_VERSION = '0.1.0';
+    /**
+     * The name of the code generator, to be included in the agent header.
+     */
+    const CODEGEN_NAME = 'gapic';
+
+    /**
+     * The code generator version, to be included in the agent header.
+     */
+    const CODEGEN_VERSION = '0.1.0';
 
     private static $projectNameTemplate;
     private static $logNameTemplate;
@@ -256,8 +262,8 @@ class LoggingServiceV2Client
         $headerDescriptor = new AgentHeaderDescriptor([
             'clientName' => $options['appName'],
             'clientVersion' => $options['appVersion'],
-            'codeGenName' => self::_CODEGEN_NAME,
-            'codeGenVersion' => self::_CODEGEN_VERSION,
+            'codeGenName' => self::CODEGEN_NAME,
+            'codeGenVersion' => self::CODEGEN_VERSION,
             'gaxVersion' => AgentHeaderDescriptor::getGaxVersion(),
             'phpVersion' => phpversion(),
         ]);
@@ -320,9 +326,7 @@ class LoggingServiceV2Client
      *     $formattedLogName = LoggingServiceV2Client::formatLogName("[PROJECT]", "[LOG]");
      *     $loggingServiceV2Client->deleteLog($formattedLogName);
      * } finally {
-     *     if (isset($loggingServiceV2Client)) {
-     *         $loggingServiceV2Client->close();
-     *     }
+     *     $loggingServiceV2Client->close();
      * }
      * ```
      *
@@ -381,9 +385,7 @@ class LoggingServiceV2Client
      *     $entries = [];
      *     $response = $loggingServiceV2Client->writeLogEntries($entries);
      * } finally {
-     *     if (isset($loggingServiceV2Client)) {
-     *         $loggingServiceV2Client->close();
-     *     }
+     *     $loggingServiceV2Client->close();
      * }
      * ```
      *
@@ -493,20 +495,18 @@ class LoggingServiceV2Client
      *     // Iterate through all elements
      *     $pagedResponse = $loggingServiceV2Client->listLogEntries($resourceNames);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doThingsWith(element);
+     *         // doSomethingWith($element);
      *     }
      *
      *     // OR iterate over pages of elements, with the maximum page size set to 5
      *     $pagedResponse = $loggingServiceV2Client->listLogEntries($resourceNames, ['pageSize' => 5]);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
-     *             // doThingsWith(element);
+     *             // doSomethingWith($element);
      *         }
      *     }
      * } finally {
-     *     if (isset($loggingServiceV2Client)) {
-     *         $loggingServiceV2Client->close();
-     *     }
+     *     $loggingServiceV2Client->close();
      * }
      * ```
      *
@@ -614,20 +614,18 @@ class LoggingServiceV2Client
      *     // Iterate through all elements
      *     $pagedResponse = $loggingServiceV2Client->listMonitoredResourceDescriptors();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doThingsWith(element);
+     *         // doSomethingWith($element);
      *     }
      *
      *     // OR iterate over pages of elements, with the maximum page size set to 5
      *     $pagedResponse = $loggingServiceV2Client->listMonitoredResourceDescriptors(['pageSize' => 5]);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
-     *             // doThingsWith(element);
+     *             // doSomethingWith($element);
      *         }
      *     }
      * } finally {
-     *     if (isset($loggingServiceV2Client)) {
-     *         $loggingServiceV2Client->close();
-     *     }
+     *     $loggingServiceV2Client->close();
      * }
      * ```
      *
@@ -693,20 +691,18 @@ class LoggingServiceV2Client
      *     // Iterate through all elements
      *     $pagedResponse = $loggingServiceV2Client->listLogs($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doThingsWith(element);
+     *         // doSomethingWith($element);
      *     }
      *
      *     // OR iterate over pages of elements, with the maximum page size set to 5
      *     $pagedResponse = $loggingServiceV2Client->listLogs($formattedParent, ['pageSize' => 5]);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
-     *             // doThingsWith(element);
+     *             // doSomethingWith($element);
      *         }
      *     }
      * } finally {
-     *     if (isset($loggingServiceV2Client)) {
-     *         $loggingServiceV2Client->close();
-     *     }
+     *     $loggingServiceV2Client->close();
      * }
      * ```
      *

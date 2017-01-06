@@ -66,9 +66,7 @@ use google\pubsub\v1\Topic;
  *     $formattedName = PublisherClient::formatTopicName("[PROJECT]", "[TOPIC]");
  *     $response = $publisherClient->createTopic($formattedName);
  * } finally {
- *     if (isset($publisherClient)) {
- *         $publisherClient->close();
- *     }
+ *     $publisherClient->close();
  * }
  * ```
  *
@@ -83,6 +81,7 @@ class PublisherClient
      * The default address of the service.
      */
     const SERVICE_ADDRESS = 'pubsub.googleapis.com';
+
     /**
      * The default port of the service.
      */
@@ -93,8 +92,15 @@ class PublisherClient
      */
     const DEFAULT_TIMEOUT_MILLIS = 30000;
 
-    const _CODEGEN_NAME = 'gapic';
-    const _CODEGEN_VERSION = '0.1.0';
+    /**
+     * The name of the code generator, to be included in the agent header.
+     */
+    const CODEGEN_NAME = 'gapic';
+
+    /**
+     * The code generator version, to be included in the agent header.
+     */
+    const CODEGEN_VERSION = '0.1.0';
 
     private static $projectNameTemplate;
     private static $topicNameTemplate;
@@ -251,8 +257,8 @@ class PublisherClient
         $headerDescriptor = new AgentHeaderDescriptor([
             'clientName' => $options['appName'],
             'clientVersion' => $options['appVersion'],
-            'codeGenName' => self::_CODEGEN_NAME,
-            'codeGenVersion' => self::_CODEGEN_VERSION,
+            'codeGenName' => self::CODEGEN_NAME,
+            'codeGenVersion' => self::CODEGEN_VERSION,
             'gaxVersion' => AgentHeaderDescriptor::getGaxVersion(),
             'phpVersion' => phpversion(),
         ]);
@@ -330,9 +336,7 @@ class PublisherClient
      *     $formattedName = PublisherClient::formatTopicName("[PROJECT]", "[TOPIC]");
      *     $response = $publisherClient->createTopic($formattedName);
      * } finally {
-     *     if (isset($publisherClient)) {
-     *         $publisherClient->close();
-     *     }
+     *     $publisherClient->close();
      * }
      * ```
      *
@@ -394,9 +398,7 @@ class PublisherClient
      *     $messages = [$messagesElement];
      *     $response = $publisherClient->publish($formattedTopic, $messages);
      * } finally {
-     *     if (isset($publisherClient)) {
-     *         $publisherClient->close();
-     *     }
+     *     $publisherClient->close();
      * }
      * ```
      *
@@ -452,9 +454,7 @@ class PublisherClient
      *     $formattedTopic = PublisherClient::formatTopicName("[PROJECT]", "[TOPIC]");
      *     $response = $publisherClient->getTopic($formattedTopic);
      * } finally {
-     *     if (isset($publisherClient)) {
-     *         $publisherClient->close();
-     *     }
+     *     $publisherClient->close();
      * }
      * ```
      *
@@ -507,20 +507,18 @@ class PublisherClient
      *     // Iterate through all elements
      *     $pagedResponse = $publisherClient->listTopics($formattedProject);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doThingsWith(element);
+     *         // doSomethingWith($element);
      *     }
      *
      *     // OR iterate over pages of elements, with the maximum page size set to 5
      *     $pagedResponse = $publisherClient->listTopics($formattedProject, ['pageSize' => 5]);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
-     *             // doThingsWith(element);
+     *             // doSomethingWith($element);
      *         }
      *     }
      * } finally {
-     *     if (isset($publisherClient)) {
-     *         $publisherClient->close();
-     *     }
+     *     $publisherClient->close();
      * }
      * ```
      *
@@ -588,20 +586,18 @@ class PublisherClient
      *     // Iterate through all elements
      *     $pagedResponse = $publisherClient->listTopicSubscriptions($formattedTopic);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doThingsWith(element);
+     *         // doSomethingWith($element);
      *     }
      *
      *     // OR iterate over pages of elements, with the maximum page size set to 5
      *     $pagedResponse = $publisherClient->listTopicSubscriptions($formattedTopic, ['pageSize' => 5]);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
-     *             // doThingsWith(element);
+     *             // doSomethingWith($element);
      *         }
      *     }
      * } finally {
-     *     if (isset($publisherClient)) {
-     *         $publisherClient->close();
-     *     }
+     *     $publisherClient->close();
      * }
      * ```
      *
@@ -672,9 +668,7 @@ class PublisherClient
      *     $formattedTopic = PublisherClient::formatTopicName("[PROJECT]", "[TOPIC]");
      *     $publisherClient->deleteTopic($formattedTopic);
      * } finally {
-     *     if (isset($publisherClient)) {
-     *         $publisherClient->close();
-     *     }
+     *     $publisherClient->close();
      * }
      * ```
      *
@@ -726,9 +720,7 @@ class PublisherClient
      *     $policy = new Policy();
      *     $response = $publisherClient->setIamPolicy($formattedResource, $policy);
      * } finally {
-     *     if (isset($publisherClient)) {
-     *         $publisherClient->close();
-     *     }
+     *     $publisherClient->close();
      * }
      * ```
      *
@@ -788,9 +780,7 @@ class PublisherClient
      *     $formattedResource = PublisherClient::formatTopicName("[PROJECT]", "[TOPIC]");
      *     $response = $publisherClient->getIamPolicy($formattedResource);
      * } finally {
-     *     if (isset($publisherClient)) {
-     *         $publisherClient->close();
-     *     }
+     *     $publisherClient->close();
      * }
      * ```
      *
@@ -846,9 +836,7 @@ class PublisherClient
      *     $permissions = [];
      *     $response = $publisherClient->testIamPermissions($formattedResource, $permissions);
      * } finally {
-     *     if (isset($publisherClient)) {
-     *         $publisherClient->close();
-     *     }
+     *     $publisherClient->close();
      * }
      * ```
      *
