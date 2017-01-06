@@ -78,4 +78,21 @@ trait ArrayTrait
     {
         return array_keys($arr) !== range(0, count($arr) - 1);
     }
+
+    /**
+     * Just like array_filter(), but preserves boolean values.
+     *
+     * @param array $arr
+     * @return array
+     */
+    private function arrayFilterPreserveBool(array $arr)
+    {
+        return array_filter($arr, function ($element) {
+            if (is_bool($element)) {
+                return true;
+            }
+
+            return $element == true;
+        });
+    }
 }

@@ -38,6 +38,7 @@ class Operation
     const OP_UPDATE = 'update';
     const OP_INSERT_OR_UPDATE = 'insertOrUpdate';
     const OP_REPLACE = 'replace';
+    const OP_DELETE = 'delete';
 
     /**
      * @var ConnectionInterface
@@ -90,15 +91,38 @@ class Operation
      * Create a formatted delete mutation.
      *
      * @param string $table The table name.
-     * @param array $keySet [KeySet](https://cloud.google.com/spanner/reference/rest/v1/KeySet).
+     * @param KeySet $keySet The keys to delete.
      * @return array
      */
-    public function deleteMutation($table, $keySet)
+    public function deleteMutation($table, KeySet $keySet)
     {
+        $keyRanges = $keySet->ranges();
+        if ($keyRanges) {
+            $ranges = [];
+            foreach ($keyRanges as $range) {
+                $types = $range->types();
+
+                $start = $range->start();
+                $range->setStart($types['start'], $this->mapper->encodeValuesAsSimpleType($start));
+
+                $end = $range->end();
+                $range->setEnd($types['end'], $this->mapper->encodeValuesAsSimpleType($end));
+
+                $ranges[] = $range;
+            }
+
+            $keySet->setRanges($ranges);
+        }
+
+        $keys = $keySet->keySetObject();
+        if (!empty($keys['keys'])) {
+            $keys['keys'] = $this->mapper->encodeValuesAsSimpleType($keys['keys']);
+        }
+
         return [
-            'delete' => [
+            self::OP_DELETE => [
                 'table' => $table,
-                'keySet' => $keySet
+                'keySet' => $this->arrayFilterPreserveBool($keys)
             ]
         ];
     }
@@ -119,19 +143,12 @@ class Operation
             $options['singleUseTransaction'] = ['readWrite' => []];
         }
 
-        try {
-            $res = $this->connection->commit([
-                'mutations' => $mutations,
-                'session' => $session->name()
-            ] + $options);
+        $res = $this->connection->commit([
+            'mutations' => $mutations,
+            'session' => $session->name()
+        ] + $options);
 
-            return $res;
-        } catch (\Exception $e) {
-
-            // maybe do something here?
-
-            throw $e;
-        }
+        return $res;
     }
 
     /**
@@ -208,7 +225,7 @@ class Operation
 
         if (empty($options['keySet'])) {
             $options['keySet'] = new KeySet();
-            $options['keySet']->setAll(true);
+            $options['keySet']->setMatchAll(true);
         }
 
         $options['keySet'] = $options['keySet']->keySetObject();

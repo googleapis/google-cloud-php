@@ -24,41 +24,72 @@ use Google\Cloud\Spanner\KeyRange;
  */
 class KeyRangeTest extends \PHPUnit_Framework_TestCase
 {
-    private $startOpen = 'startOpen';
-    private $startClosed = 'startClosed';
-    private $endOpen = 'endOpen';
-    private $endClosed = 'endClosed';
+    private $range;
 
-    public function testSetters()
+    public function setUp()
     {
-        $kr = new KeyRange([]);
-        $kr->setStartOpen($this->startOpen);
-        $kr->setStartClosed($this->startClosed);
-        $kr->setEndOpen($this->endOpen);
-        $kr->setEndClosed($this->endClosed);
-
-        $this->assertThings($kr);
+        $this->range = new KeyRange;
     }
 
-    public function testConstructValues()
+    public function testGetters()
     {
-        $kr = new KeyRange([
-            'startOpen' => $this->startOpen,
-            'startClosed' => $this->startClosed,
-            'endOpen' => $this->endOpen,
-            'endClosed' => $this->endClosed
+        $range = new KeyRange([
+            'startType' => KeyRange::TYPE_CLOSED,
+            'start' => ['foo'],
+            'endType' => KeyRange::TYPE_OPEN,
+            'end' => ['bar']
         ]);
 
-        $this->assertThings($kr);
+        $this->assertEquals(['foo'], $range->start());
+        $this->assertEquals(['bar'], $range->end());
+        $this->assertEquals(['start' => KeyRange::TYPE_CLOSED, 'end' => KeyRange::TYPE_OPEN], $range->types());
     }
 
-    private function assertThings($kr)
+    public function testSetStart()
     {
-        $this->assertEquals([
-            'startOpen' => $this->startOpen,
-            'startClosed' => $this->startClosed,
-            'endOpen' => $this->endOpen,
-            'endClosed' => $this->endClosed
-        ], $kr->keyRangeObject());
+        $this->range->setStart(KeyRange::TYPE_OPEN, ['foo']);
+        $this->assertEquals(['foo'], $this->range->start());
+        $this->assertEquals(KeyRange::TYPE_OPEN, $this->range->types()['start']);
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testSetStartInvalidType()
+    {
+        $this->range->setStart('foo', ['foo']);
+    }
+
+    public function testSetEnd()
+    {
+        $this->range->setEnd(KeyRange::TYPE_OPEN, ['foo']);
+        $this->assertEquals(['foo'], $this->range->end());
+        $this->assertEquals(KeyRange::TYPE_OPEN, $this->range->types()['end']);
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testSetEndInvalidType()
+    {
+        $this->range->setEnd('foo', ['foo']);
+    }
+
+    public function testKeyRangeObject()
+    {
+        $this->range->setStart(KeyRange::TYPE_OPEN, ['foo']);
+        $this->range->setEnd(KeyRange::TYPE_CLOSED, ['bar']);
+
+        $res = $this->range->keyRangeObject();
+
+        $this->assertEquals(['startOpen' => ['foo'], 'endClosed' => ['bar']], $res);
+    }
+
+    /**
+     * @expectedException BadMethodCallException
+     */
+    public function testKeyRangeObjectBadRange()
+    {
+        $this->range->keyRangeObject();
     }
 }

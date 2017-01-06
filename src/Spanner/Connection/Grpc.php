@@ -64,7 +64,8 @@ class Grpc implements ConnectionInterface
         'insert' => 'setInsert',
         'update' => 'setUpdate',
         'upsert' => 'setInsertOrUpdate',
-        'replace' => 'replace',
+        'replace' => 'setReplace',
+        'delete' => 'setDelete'
     ];
 
     /**
@@ -450,29 +451,44 @@ class Grpc implements ConnectionInterface
             foreach ($inputMutations as $mutation) {
                 $type = array_keys($mutation)[0];
                 $data = $mutation[$type];
-                $data['values'] = $this->formatListForApi($data['values']);
 
                 switch ($type) {
                     case 'insert':
                     case 'update':
                     case 'upsert':
                     case 'replace':
-                        $write = (new Mutation\Write)
-                            ->deserialize($data, $this->codec);
+                        $data['values'] = $this->formatListForApi($data['values']);
 
-                        $setterName = $this->mutationSetters[$type];
-                        $mutation = new Mutation;
-                        $mutation->$setterName($write);
-                        $mutations[] = $mutation;
+                        $operation = (new Mutation\Write)
+                            ->deserialize($data, $this->codec);
 
                         break;
 
                     case 'delete':
-                        $mutations[] = (new Mutation\Delete)
+                        if (isset($data['keySet']['keys'])) {
+                            $data['keySet']['keys'] = $this->formatListForApi($data['keySet']['keys']);
+                        }
+
+                        if (isset($data['keySet']['ranges'])) {
+                            foreach ($data['keySet']['ranges'] as $index => $rangeItem) {
+                                foreach ($rangeItem as $key => $val) {
+                                    $rangeItem[$key] = $this->formatListForApi($val);
+                                }
+
+                                $data['keySet']['ranges'][$index] = $rangeItem;
+                            }
+                        }
+
+                        $operation = (new Mutation\Delete)
                             ->deserialize($data, $this->codec);
 
                         break;
                 }
+
+                $setterName = $this->mutationSetters[$type];
+                $mutation = new Mutation;
+                $mutation->$setterName($operation);
+                $mutations[] = $mutation;
             }
         }
 

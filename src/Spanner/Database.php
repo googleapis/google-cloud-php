@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Spanner;
 
+use Google\Cloud\ArrayTrait;
 use Google\Cloud\Exception\NotFoundException;
 use Google\Cloud\Iam\Iam;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
@@ -50,6 +51,8 @@ use Google\Cloud\Spanner\Session\SessionPoolInterface;
  */
 class Database
 {
+    use ArrayTrait;
+
     /**
      * @var ConnectionInterface
      */
@@ -294,13 +297,34 @@ class Database
     }
 
     /**
-     * Create a Read Only transaction
+     * Create a Read Only transaction.
+     *
+     * If no configuration options are provided, transaction will be opened with
+     * strong consistency.
      *
      * @codingStandardsIgnoreStart
      * @param array $options [optional] {
      *     Configuration Options
      *
-     *     @type array $transactionOptions [TransactionOptions](https://cloud.google.com/spanner/reference/rest/v1/TransactionOptions).
+     *     See [ReadOnly](https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#google.spanner.v1.TransactionOptions.ReadOnly)
+     *     for detailed description of available options. Please note that only
+     *     one of `$strong`, `$minReadTimestamp`, `$maxStaleness`,
+     *     `$readTimestamp` or `$exactStaleness` may be set in a request.
+     *
+     *     @type bool $returnReadTimestamp If true, the Cloud Spanner-selected
+     *           read timestamp is included in the Transaction message that
+     *           describes the transaction.
+     *     @type bool $strong Read at a timestamp where all previously committed
+     *           transactions are visible.
+     *     @type Timestamp $minReadTimestamp Executes all reads at a timestamp
+     *           greater than or equal to the given timestamp.
+     *     @type int $maxStaleness Represents a number of seconds. Read data at
+     *           a timestamp greater than or equal to the current time minus the
+     *           given number of seconds.
+     *     @type Timestamp $readTimestamp Executes all reads at the given
+     *           timestamp.
+     *     @type int $exactStaleness Represents a number of seconds. Executes
+     *           all reads at a timestamp that is $exactStaleness old.
      * }
      * @codingStandardsIgnoreEnd
      * @return Transaction
@@ -308,14 +332,47 @@ class Database
     public function readOnlyTransaction(array $options = [])
     {
         $options += [
-            'transactionOptions' => []
+            'returnReadTimestamp' => null,
+            'strong' => null,
+            'minReadTimestamp' => null,
+            'maxStaleness' => null,
+            'readTimestamp' => null,
+            'exactStaleness' => null
         ];
 
-        if (empty($options['transactionOptions'])) {
-            $options['transactionOptions']['strong'] = true;
+        $options['transactionOptions'] = [
+            'readOnly' => $this->arrayFilterPreserveBool([
+                'returnReadTimestamp' => $this->pluck('returnReadTimestamp', $options),
+                'strong' => $this->pluck('strong', $options),
+                'minReadTimestamp' => $this->pluck('minReadTimestamp', $options),
+                'maxStaleness' => $this->pluck('maxStaleness', $options),
+                'readTimestamp' => $this->pluck('readTimestamp', $options),
+                'exactStaleness' => $this->pluck('exactStaleness', $options),
+            ])
+        ];
+
+        if (empty($options['transactionOptions']['readOnly'])) {
+            $options['transactionOptions']['readOnly']['strong'] = true;
         }
 
-        $options['readOnly'] = $options['transactionOptions'];
+        $timestampFields = [
+            'minReadTimestamp',
+            'readTimestamp'
+        ];
+
+        foreach ($timestampFields as $tsf) {
+            if (isset($options['transactionOptions']['readOnly'][$tsf])) {
+                $field = $options['transactionOptions']['readOnly'][$tsf];
+                if (!($field instanceof Timestamp)) {
+                    throw new \InvalidArgumentException(sprintf(
+                        'Read Only Transaction Configuration Field %s must be an instance of Timestamp',
+                        $tsf
+                    ));
+                }
+
+                $options['transactionOptions']['readOnly'][$tsf] = $field->formatAsString();
+            }
+        }
 
         return $this->transaction(SessionPoolInterface::CONTEXT_READ, $options);
     }
@@ -328,7 +385,9 @@ class Database
      */
     public function lockingTransaction(array $options = [])
     {
-        $options['readWrite'] = [];
+        $options['transactionOptions'] = [
+            'readWrite' => []
+        ];
 
         return $this->transaction(SessionPoolInterface::CONTEXT_READWRITE, $options);
     }
@@ -466,32 +525,16 @@ class Database
     }
 
     /**
-     * Delete a row.
+     * Delete one or more rows.
      *
      * @param string $table The table to mutate.
-     * @param array $key The key to use to identify the row or rows to delete.
+     * @param KeySet $keySet The KeySet to identify rows to delete.
      * @param array $options [optional] Configuration options.
      * @return array
      */
-    public function delete($table, array $key, array $options = [])
+    public function delete($table, KeySet $keySet, array $options = [])
     {
-        return $this->deleteBatch($table, [$key], $options);
-    }
-
-    /**
-     * Delete multiple rows.
-     *
-     * @param string $table The table to mutate.
-     * @param array $keySets The keys to use to identify the row or rows to delete.
-     * @param array $options [optional] Configuration options.
-     * @return array
-     */
-    public function deleteBatch($table, array $keySets, array $options = [])
-    {
-        $mutations = [];
-        foreach ($keySets as $keySet) {
-            $mutations[] = $this->operation->deleteMutation($table, $keySet);
-        }
+        $mutations = [$this->operation->deleteMutation($table, $keySet)];
 
         $session = $this->selectSession(SessionPoolInterface::CONTEXT_READWRITE);
 

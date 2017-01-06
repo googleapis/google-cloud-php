@@ -19,8 +19,8 @@ namespace Google\Cloud\Spanner\Session;
 
 interface SessionPoolInterface
 {
-    const CONTEXT_READ = 'read';
-    const CONTEXT_READWRITE = 'readWrite';
+    const CONTEXT_READ = 'r';
+    const CONTEXT_READWRITE = 'rw';
 
     public function session($instance, $database, $context, array $options = []);
 }

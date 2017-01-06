@@ -28,30 +28,33 @@ class KeySetTest extends \PHPUnit_Framework_TestCase
     public function testAddRange()
     {
         $set = new KeySet;
-        $range = new KeyRange(['setStartOpen' => 'foo']);
+        $range = $this->prophesize(KeyRange::class);
+        $range->keyRangeObject()->willReturn('foo');
 
-        $set->addRange($range);
+        $set->addRange($range->reveal());
 
-        $this->assertEquals($range->keyRangeObject(), $set->keySetObject()['ranges'][0]);
+        $this->assertEquals('foo', $set->keySetObject()['ranges'][0]);
     }
 
     public function testSetRanges()
     {
         $set = new KeySet;
 
+        $range1 = $this->prophesize(KeyRange::class);
+        $range1->keyRangeObject()->willReturn('foo');
+
+        $range2 = $this->prophesize(KeyRange::class);
+        $range2->keyRangeObject()->willReturn('bar');
+
         $ranges = [
-            new KeyRange(['setStartOpen' => 'foo']),
-            new KeyRange(['setStartOpen' => 'bar']),
+            $range1->reveal(),
+            $range2->reveal()
         ];
 
         $set->setRanges($ranges);
 
-        $expected = [];
-        foreach ($ranges as $r) {
-            $expected[] = $r->keyRangeObject();
-        }
-
-        $this->assertEquals($expected, $set->keySetObject()['ranges']);
+        $this->assertEquals('foo', $set->keySetObject()['ranges'][0]);
+        $this->assertEquals('bar', $set->keySetObject()['ranges'][1]);
     }
 
     public function testAddKey()
@@ -76,14 +79,41 @@ class KeySetTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($keys, $set->keySetObject()['keys']);
     }
 
-    public function testSetAll()
+    public function testSetMatchAll()
     {
         $set = new KeySet;
 
-        $set->setAll(true);
+        $set->setMatchAll(true);
         $this->assertTrue($set->keySetObject()['all']);
 
-        $set->setAll(false);
+        $set->setMatchAll(false);
         $this->assertFalse($set->keySetObject()['all']);
+    }
+
+    public function testRanges()
+    {
+        $set = new KeySet;
+        $range = $this->prophesize(KeyRange::class)->reveal();
+
+        $set->addRange($range);
+        $this->assertEquals($range, $set->ranges()[0]);
+    }
+
+    public function testKeys()
+    {
+        $set = new KeySet;
+        $key = 'foo';
+        $set->addKey($key);
+
+        $this->assertEquals($key, $set->keys()[0]);
+    }
+
+    public function testMatchAll()
+    {
+        $set = new KeySet();
+        $this->assertFalse($set->matchAll());
+
+        $set->setMatchAll(true);
+        $this->assertTrue($set->matchAll());
     }
 }
