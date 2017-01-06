@@ -170,8 +170,25 @@ class Transaction
     /**
      * Run a query.
      *
+     * Example:
+     * ```
+     * $result = $spanner->execute(
+     *     'SELECT * FROM Users WHERE id = @userId',
+     *     [
+     *          'parameters' => [
+     *              'userId' => 1
+     *          ]
+     *     ]
+     * );
+     * ```
      * @param string $sql The query string to execute.
-     * @param array $options [optional] Configuration options.
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type array $parameters A key/value array of Query Parameters, where
+     *           the key is represented in the query string prefixed by a `@`
+     *           symbol.
+     * }
      * @return Result
      */
     public function execute($sql, array $options = [])

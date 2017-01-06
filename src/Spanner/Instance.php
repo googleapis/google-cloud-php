@@ -65,6 +65,11 @@ class Instance
     private $name;
 
     /**
+     * @var bool
+     */
+    private $returnInt64AsObject;
+
+    /**
      * @var array
      */
     private $info;
@@ -82,6 +87,9 @@ class Instance
      * @param SessionPoolInterface $sessionPool The session pool implementation.
      * @param string $projectId The project ID.
      * @param string $name The instance name.
+     * @param bool $returnInt64AsObject If true, 64 bit integers will be
+     *        returned as a {@see Google\Cloud\Int64} object for 32 bit platform
+     *        compatibility. **Defaults to** false.
      * @param array $info [optional] A representation of the instance object.
      */
     public function __construct(
@@ -89,12 +97,14 @@ class Instance
         SessionPoolInterface $sessionPool,
         $projectId,
         $name,
+        $returnInt64AsObject = false,
         array $info = []
     ) {
         $this->connection = $connection;
         $this->sessionPool = $sessionPool;
         $this->projectId = $projectId;
         $this->name = $name;
+        $this->returnInt64AsObject = $returnInt64AsObject;
         $this->info = $info;
         $this->iam = new Iam(
             new IamInstance($this->connection),
@@ -338,7 +348,8 @@ class Instance
             $this,
             $this->sessionPool,
             $this->projectId,
-            $name
+            $name,
+            $this->returnInt64AsObject
         );
     }
 

@@ -172,6 +172,10 @@ class GrpcRequestWrapper
                 $exception = Exception\ConflictException::class;
                 break;
 
+            case Grpc\STATUS_FAILED_PRECONDITION:
+                $exception = Exception\FailedPreconditionException::class;
+                break;
+
             case Grpc\STATUS_UNKNOWN:
                 $exception = Exception\ServerException::class;
                 break;

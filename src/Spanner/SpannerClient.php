@@ -19,6 +19,7 @@ namespace Google\Cloud\Spanner;
 
 use Google\Cloud\ClientTrait;
 use Google\Cloud\Exception\NotFoundException;
+use Google\Cloud\Int64;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Connection\Grpc;
 use Google\Cloud\Spanner\Session\SessionClient;
@@ -73,6 +74,11 @@ class SpannerClient
     protected $sessionPool;
 
     /**
+     * @var bool
+     */
+    private $returnInt64AsObject;
+
+    /**
      * Create a Spanner client.
      *
      * @param array $config [optional] {
@@ -92,22 +98,28 @@ class SpannerClient
      *     @type int $retries Number of retries for a failed request.
      *           **Defaults to** `3`.
      *     @type array $scopes Scopes to be used for the request.
+     *     @type bool $returnInt64AsObject If true, 64 bit integers will be
+     *           returned as a {@see Google\Cloud\Int64} object for 32 bit
+     *           platform compatibility. **Defaults to** false.
      * }
      * @throws Google\Cloud\Exception\GoogleException
      */
     public function __construct(array $config = [])
     {
-        if (!isset($config['scopes'])) {
-            $config['scopes'] = [
+        $config += [
+            'scopes' => [
                 self::FULL_CONTROL_SCOPE,
                 self::ADMIN_SCOPE
-            ];
-        }
+            ],
+            'returnInt64AsObject' => false
+        ];
 
         $this->connection = new Grpc($this->configureAuthentication($config));
 
         $this->sessionClient = new SessionClient($this->connection, $this->projectId);
         $this->sessionPool = new SimpleSessionPool($this->sessionClient);
+
+        $this->returnInt64AsObject = $config['returnInt64AsObject'];
     }
 
     /**
@@ -231,6 +243,7 @@ class SpannerClient
             $this->sessionPool,
             $this->projectId,
             $name,
+            $this->returnInt64AsObject,
             $instance
         );
     }
@@ -334,5 +347,71 @@ class SpannerClient
     public function sessionClient()
     {
         return $this->sessionClient;
+    }
+
+    /**
+     * Create a Bytes object.
+     *
+     * Example:
+     * ```
+     * $bytes = $spanner->bytes('hello world');
+     * ```
+     *
+     * @param string|resource|StreamInterface $value The bytes value.
+     * @return Bytes
+     */
+    public function bytes($bytes)
+    {
+        return new Bytes($bytes);
+    }
+
+    /**
+     * Create a Date object.
+     *
+     * Example:
+     * ```
+     * $date = $spanner->date(new \DateTime('1995-02-04'));
+     * ```
+     *
+     * @param \DateTimeInterface $value The date value.
+     * @return Date
+     */
+    public function date(\DateTimeInterface $date)
+    {
+        return new Date($date);
+    }
+
+    /**
+     * Create a Timestamp object.
+     *
+     * Example:
+     * ```
+     * $timestamp = $spanner->timestamp(new \DateTime('2003-02-05 11:15:02.421827Z'));
+     * ```
+     *
+     * @param \DateTimeInterface $value The timestamp value.
+     * @param int $nanoSeconds [optional] The number of nanoseconds in the timestamp.
+     * @return Timestamp
+     */
+    public function timestamp(\DateTimeInterface $timestamp, $nanoSeconds = null)
+    {
+        return new Timestamp($timestamp, $nanoSeconds);
+    }
+
+    /**
+     * Create an Int64 object. This can be used to work with 64 bit integers as
+     * a string value while on a 32 bit platform.
+     *
+     * Example:
+     * ```
+     * $int64 = $spanner->int64('9223372036854775807');
+     * ```
+     *
+     * @param string $value
+     * @return Int64
+     */
+    public function int64($value)
+    {
+        return new Int64($value);
     }
 }
