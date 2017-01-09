@@ -8,7 +8,7 @@ function stub($extends, array $args = [], array $props = [])
         $props = ['connection'];
     }
 
-    $tpl = 'class %s extends %s {private $___props = \'%s\'; use \Google\Cloud\Dev\SetStubPropertiesTrait; }';
+    $tpl = 'class %s extends %s {private $___props = \'%s\'; use \Google\Cloud\Dev\StubTrait; }';
 
     $name = 'Stub'. sha1($extends);
 

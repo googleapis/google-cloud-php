@@ -77,6 +77,9 @@ class Grpc implements ConnectionInterface
             'customFilters' => [
                 'commitTimestamp' => function ($v) {
                     return $this->formatTimestampFromApi($v);
+                },
+                'readTimestamp' => function ($v) {
+                    return $this->formatTimestampFromApi($v);
                 }
             ]
         ]);
@@ -422,9 +425,9 @@ class Grpc implements ConnectionInterface
     {
         $options = new TransactionOptions;
 
-        if (isset($args['readOnly'])) {
+        if (isset($args['transactionOptions']['readOnly'])) {
             $readOnly = (new TransactionOptions\ReadOnly)
-                ->deserialize($args['readOnly'], $this->codec);
+                ->deserialize($args['transactionOptions']['readOnly'], $this->codec);
 
             $options->setReadOnly($readOnly);
         } else {

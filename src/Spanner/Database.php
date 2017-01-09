@@ -378,7 +378,9 @@ class Database
             }
         }
 
-        return $this->transaction(SessionPoolInterface::CONTEXT_READ, $options);
+        $session = $this->selectSession(SessionPoolInterface::CONTEXT_READ);
+
+        return $this->operation->transaction($session, SessionPoolInterface::CONTEXT_READ, $options);
     }
 
     /**
@@ -397,7 +399,9 @@ class Database
             'readWrite' => []
         ];
 
-        return $this->transaction(SessionPoolInterface::CONTEXT_READWRITE, $options);
+        $session = $this->selectSession(SessionPoolInterface::CONTEXT_READWRITE);
+
+        return $this->operation->transaction($session, SessionPoolInterface::CONTEXT_READWRITE, $options);
     }
 
     /**

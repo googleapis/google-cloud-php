@@ -47,7 +47,7 @@ class Transaction
     private $transactionId;
 
     /**
-     * @var string
+     * @var Timestamp
      */
     private $readTimestamp;
 
@@ -60,21 +60,21 @@ class Transaction
      * @param Operation $operation The Operation instance.
      * @param Session $session The session to use for spanner interactions.
      * @param string $context The Transaction context.
-     * @param array $transaction Transaction details.
+     * @param string $transactionId The Transaction ID.
+     * @param Timestamp $readTimestamp [optional] The read timestamp.
      */
     public function __construct(
         Operation $operation,
         Session $session,
         $context,
-        array $transaction
+        $transactionId,
+        Timestamp $readTimestamp = null
     ) {
         $this->operation = $operation;
         $this->session = $session;
         $this->context = $context;
-        $this->transactionId = $transaction['id'];
-        $this->readTimestamp = (isset($transaction['readTimestamp']))
-            ? $transaction['readTimestamp']
-            : null;
+        $this->transactionId = $transactionId;
+        $this->readTimestamp = $readTimestamp;
     }
 
     /**
@@ -200,7 +200,7 @@ class Transaction
      *
      * Example:
      * ```
-     * $result = $spanner->execute(
+     * $result = $transaction->execute(
      *     'SELECT * FROM Users WHERE id = @userId',
      *     [
      *          'parameters' => [
@@ -288,6 +288,19 @@ class Transaction
     public function rollback(array $options = [])
     {
         return $this->operation->rollback($this->session, $this->transactionId, $options);
+    }
+
+    /**
+     * Retrieve the Read Timestamp.
+     *
+     * For snapshot read-only transactions, the read timestamp chosen for the
+     * transaction.
+     *
+     * @return Timestamp
+     */
+    public function readTimestamp()
+    {
+        return $this->readTimestamp;
     }
 
     /**

@@ -237,6 +237,36 @@ class Operation
         return $this->createResult($res);
     }
 
+    /**
+     * Create a transaction with a given context.
+     *
+     * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#google.spanner.v1.BeginTransactionRequest BeginTransactionRequest
+     *
+     * @param Session $session The session to start the transaction in.
+     * @param string $context The context of the new transaction.
+     * @param array $options [optional] Configuration options.
+     * @return Transaction
+     */
+    public function transaction(Session $session, $context, array $options = [])
+    {
+        $options += [
+            'transactionOptions' => []
+        ];
+
+        // make a service call here.
+        $res = $this->connection->beginTransaction($options + [
+            'session' => $session->name(),
+            'context' => $context,
+        ]);
+
+        $timestamp = null;
+        if (isset($res['readTimestamp'])) {
+            $timestamp = $this->mapper->createTimestampWithNanos($res['readTimestamp']);
+        }
+
+        return new Transaction($this, $session, $context, $res['id'], $timestamp);
+    }
+
     private function createResult(array $res)
     {
         $columns = $res['metadata']['rowType']['fields'];

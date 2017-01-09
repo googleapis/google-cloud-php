@@ -17,8 +17,16 @@
 
 namespace Google\Cloud\Dev;
 
-trait SetStubPropertiesTrait
+trait StubTrait
 {
+    public function ___getProperty($prop)
+    {
+        $property = $this->___getPropertyReflector($prop);
+
+        $property->setAccessible(true);
+        return $property->getValue($this);
+    }
+
     public function __call($method, $args)
     {
         $matches = [];
@@ -32,16 +40,23 @@ trait SetStubPropertiesTrait
             throw new \BadMethodCallException(sprintf('Property %s cannot be overloaded', $prop));
         }
 
+        $property = $this->___getPropertyReflector($prop);
+
+        $property->setAccessible(true);
+        $property->setValue($this, $args[0]);
+    }
+
+    private function ___getPropertyReflector($property)
+    {
         $trait = new \ReflectionClass($this);
         $ref = $trait->getParentClass();
 
         try {
-            $property = $ref->getProperty($prop);
+            $property = $ref->getProperty($property);
         } catch (\ReflectionException $e) {
             throw new \BadMethodCallException($e->getMessage());
         }
 
-        $property->setAccessible(true);
-        $property->setValue($this, $args[0]);
+        return $property;
     }
 }
