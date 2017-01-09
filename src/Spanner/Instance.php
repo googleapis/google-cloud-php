@@ -369,7 +369,6 @@ class Instance
     public function databases(array $options = [])
     {
         $pageToken = null;
-
         do {
             $res = $this->connection->listDatabases($options + [
                 'instance' => $this->fullyQualifiedInstanceName(),

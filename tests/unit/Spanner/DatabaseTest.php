@@ -163,12 +163,13 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
             if ($arg['mutations'][0][OPERATION::OP_INSERT]['values'][0] !== current($row)) return false;
 
             return true;
-        }))->shouldBeCalled()->willReturn('res');
+        }))->shouldBeCalled()->willReturn($this->commitResponse());
 
         $this->refreshOperation();
 
         $res = $this->database->insert($table, $row);
-        $this->assertEquals('res', $res);
+        $this->assertInstanceOf(Timestamp::class, $res);
+        $this->assertTimestampIsCorrect($res);
     }
 
     public function testInsertBatch()
@@ -182,12 +183,13 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
             if ($arg['mutations'][0][OPERATION::OP_INSERT]['values'][0] !== current($row)) return false;
 
             return true;
-        }))->shouldBeCalled()->willReturn('res');
+        }))->shouldBeCalled()->willReturn($this->commitResponse());
 
         $this->refreshOperation();
 
         $res = $this->database->insertBatch($table, [$row]);
-        $this->assertEquals('res', $res);
+        $this->assertInstanceOf(Timestamp::class, $res);
+        $this->assertTimestampIsCorrect($res);
     }
 
     public function testUpdate()
@@ -201,12 +203,13 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
             if ($arg['mutations'][0][Operation::OP_UPDATE]['values'][0] !== current($row)) return false;
 
             return true;
-        }))->shouldBeCalled()->willReturn('res');
+        }))->shouldBeCalled()->willReturn($this->commitResponse());
 
         $this->refreshOperation();
 
         $res = $this->database->update($table, $row);
-        $this->assertEquals('res', $res);
+        $this->assertInstanceOf(Timestamp::class, $res);
+        $this->assertTimestampIsCorrect($res);
     }
 
     public function testUpdateBatch()
@@ -220,12 +223,13 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
             if ($arg['mutations'][0][Operation::OP_UPDATE]['values'][0] !== current($row)) return false;
 
             return true;
-        }))->shouldBeCalled()->willReturn('res');
+        }))->shouldBeCalled()->willReturn($this->commitResponse());
 
         $this->refreshOperation();
 
         $res = $this->database->updateBatch($table, [$row]);
-        $this->assertEquals('res', $res);
+        $this->assertInstanceOf(Timestamp::class, $res);
+        $this->assertTimestampIsCorrect($res);
     }
 
     public function testInsertOrUpdate()
@@ -239,12 +243,13 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
             if ($arg['mutations'][0][Operation::OP_INSERT_OR_UPDATE]['values'][0] !== current($row)) return false;
 
             return true;
-        }))->shouldBeCalled()->willReturn('res');
+        }))->shouldBeCalled()->willReturn($this->commitResponse());
 
         $this->refreshOperation();
 
         $res = $this->database->insertOrUpdate($table, $row);
-        $this->assertEquals('res', $res);
+        $this->assertInstanceOf(Timestamp::class, $res);
+        $this->assertTimestampIsCorrect($res);
     }
 
     public function testInsertOrUpdateBatch()
@@ -258,12 +263,13 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
             if ($arg['mutations'][0][Operation::OP_INSERT_OR_UPDATE]['values'][0] !== current($row)) return false;
 
             return true;
-        }))->shouldBeCalled()->willReturn('res');
+        }))->shouldBeCalled()->willReturn($this->commitResponse());
 
         $this->refreshOperation();
 
         $res = $this->database->insertOrUpdateBatch($table, [$row]);
-        $this->assertEquals('res', $res);
+        $this->assertInstanceOf(Timestamp::class, $res);
+        $this->assertTimestampIsCorrect($res);
     }
 
     public function testReplace()
@@ -277,12 +283,13 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
             if ($arg['mutations'][0][Operation::OP_REPLACE]['values'][0] !== current($row)) return false;
 
             return true;
-        }))->shouldBeCalled()->willReturn('res');
+        }))->shouldBeCalled()->willReturn($this->commitResponse());
 
         $this->refreshOperation();
 
         $res = $this->database->replace($table, $row);
-        $this->assertEquals('res', $res);
+        $this->assertInstanceOf(Timestamp::class, $res);
+        $this->assertTimestampIsCorrect($res);
     }
 
     public function testReplaceBatch()
@@ -296,12 +303,13 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
             if ($arg['mutations'][0][Operation::OP_REPLACE]['values'][0] !== current($row)) return false;
 
             return true;
-        }))->shouldBeCalled()->willReturn('res');
+        }))->shouldBeCalled()->willReturn($this->commitResponse());
 
         $this->refreshOperation();
 
         $res = $this->database->replaceBatch($table, [$row]);
-        $this->assertEquals('res', $res);
+        $this->assertInstanceOf(Timestamp::class, $res);
+        $this->assertTimestampIsCorrect($res);
     }
 
     public function testDelete()
@@ -315,12 +323,13 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
             if ($arg['mutations'][0][Operation::OP_DELETE]['keySet']['keys'][1] !== $keys[1]) return false;
 
             return true;
-        }))->shouldBeCalled()->willReturn('res');
+        }))->shouldBeCalled()->willReturn($this->commitResponse());
 
         $this->refreshOperation();
 
         $res = $this->database->delete($table, new KeySet(['keys' => $keys]));
-        $this->assertEquals('res', $res);
+        $this->assertInstanceOf(Timestamp::class, $res);
+        $this->assertTimestampIsCorrect($res);
     }
 
     public function testExecute()
@@ -402,5 +411,17 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
     {
         $operation = new Operation($this->connection->reveal(), false);
         $this->database->setOperation($operation);
+    }
+
+    private function commitResponse()
+    {
+        return ['commitTimestamp' => '2017-01-09T18:05:22.534799Z'];
+    }
+
+    private function assertTimestampIsCorrect($res)
+    {
+        $ts = new \DateTimeImmutable($this->commitResponse()['commitTimestamp']);
+
+        $this->assertEquals($ts->format('Y-m-d\TH:i:s\Z'), $res->get()->format('Y-m-d\TH:i:s\Z'));
     }
 }

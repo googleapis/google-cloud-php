@@ -75,7 +75,7 @@ class Grpc implements ConnectionInterface
     {
         $this->codec = new PhpArray([
             'customFilters' => [
-                'timestamp' => function ($v) {
+                'commitTimestamp' => function ($v) {
                     return $this->formatTimestampFromApi($v);
                 }
             ]

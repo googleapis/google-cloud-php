@@ -134,8 +134,7 @@ class Operation
      * @param Session $session The session ID to use for the commit.
      * @param array $mutations The mutations to commit.
      * @param array $options [optional] Configuration options.
-     * @return array [CommitResponse](https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#google.spanner.v1.CommitResponse)
-     * @codingStandardsIgnoreEnd
+     * @return Timestamp The commit Timestamp.
      */
     public function commit(Session $session, array $mutations, array $options = [])
     {
@@ -148,7 +147,7 @@ class Operation
             'session' => $session->name()
         ] + $options);
 
-        return $res;
+        return $this->mapper->createTimestampWithNanos($res['commitTimestamp']);
     }
 
     /**

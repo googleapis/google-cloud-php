@@ -20,10 +20,10 @@ namespace Google\Cloud\Spanner;
 use Google\Cloud\ArrayTrait;
 use Google\Cloud\Exception\NotFoundException;
 use Google\Cloud\Iam\Iam;
-use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Connection\IamDatabase;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
+use Google\Cloud\Spanner\V1\SpannerClient as GrpcSpannerClient;
 
 /**
  * Represents a Google Cloud Spanner Database
@@ -303,6 +303,10 @@ class Database
      * strong consistency.
      *
      * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#google.spanner.v1.BeginTransactionRequest BeginTransactionRequest
+     * @codingStandardsIgnoreEnd
+     *
+     * @codingStandardsIgnoreStart
      * @param array $options [optional] {
      *     Configuration Options
      *
@@ -380,6 +384,10 @@ class Database
     /**
      * Create a Read/Write transaction
      *
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#google.spanner.v1.BeginTransactionRequest BeginTransactionRequest
+     * @codingStandardsIgnoreEnd
+     *
      * @param array $options [optional] Configuration Options
      * @return Transaction
      */
@@ -395,10 +403,23 @@ class Database
     /**
      * Insert a row.
      *
+     * Example:
+     * ```
+     * $database->insert('Posts', [
+     *     'ID' => 1337,
+     *     'postTitle' => 'Hello World!',
+     *     'postContent' => 'Welcome to our site.'
+     * ]);
+     * ```
+     *
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#google.spanner.v1.CommitRequest CommitRequest
+     * @codingStandardsIgnoreEnd
+     *
      * @param string $table The table to mutate.
      * @param array $data The row data to insert.
      * @param array $options [optional] Configuration options.
-     * @return array
+     * @return Timestamp The commit Timestamp.
      */
     public function insert($table, array $data, array $options = [])
     {
@@ -408,10 +429,29 @@ class Database
     /**
      * Insert multiple rows.
      *
+     * Example:
+     * ```
+     * $database->insert('Posts', [
+     *     [
+     *         'ID' => 1337,
+     *         'postTitle' => 'Hello World!',
+     *         'postContent' => 'Welcome to our site.'
+     *     ], [
+     *         'ID' => 1338,
+     *         'postTitle' => 'Our History',
+     *         'postContent' => 'Lots of people ask about where we got started.'
+     *     ]
+     * ]);
+     * ```
+     *
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#google.spanner.v1.CommitRequest CommitRequest
+     * @codingStandardsIgnoreEnd
+     *
      * @param string $table The table to mutate.
      * @param array $dataSet The row data to insert.
      * @param array $options [optional] Configuration options.
-     * @return array
+     * @return Timestamp The commit Timestamp.
      */
     public function insertBatch($table, array $dataSet, array $options = [])
     {
@@ -428,10 +468,26 @@ class Database
     /**
      * Update a row.
      *
+     * Only data which you wish to update need be included. You must provide
+     * enough information for the API to determine which row should be modified.
+     * In most cases, this means providing values for the Primary Key fields.
+     *
+     * Example:
+     * ```
+     * $database->update('Posts', [
+     *     'ID' => 1337,
+     *     'postContent' => 'Thanks for visiting our site!'
+     * ]);
+     * ```
+     *
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#google.spanner.v1.CommitRequest CommitRequest
+     * @codingStandardsIgnoreEnd
+     *
      * @param string $table The table to mutate.
      * @param array $data The row data to update.
      * @param array $options [optional] Configuration options.
-     * @return array
+     * @return Timestamp The commit Timestamp.
      */
     public function update($table, array $data, array $options = [])
     {
@@ -441,10 +497,31 @@ class Database
     /**
      * Update multiple rows.
      *
+     * Only data which you wish to update need be included. You must provide
+     * enough information for the API to determine which row should be modified.
+     * In most cases, this means providing values for the Primary Key fields.
+     *
+     * Example:
+     * ```
+     * $database->update('Posts', [
+     *     [
+     *         'ID' => 1337,
+     *         'postContent' => 'Thanks for visiting our site!'
+     *     ], [
+     *         'ID' => 1338,
+     *         'postContent' => 'A little bit about us!'
+     *     ]
+     * ]);
+     * ```
+     *
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#google.spanner.v1.CommitRequest CommitRequest
+     * @codingStandardsIgnoreEnd
+     *
      * @param string $table The table to mutate.
      * @param array $dataSet The row data to update.
      * @param array $options [optional] Configuration options.
-     * @return array
+     * @return Timestamp The commit Timestamp.
      */
     public function updateBatch($table, array $dataSet, array $options = [])
     {
@@ -461,10 +538,27 @@ class Database
     /**
      * Insert or update a row.
      *
+     * If a row already exists (determined by comparing the Primary Key to
+     * existing table data), the row will be updated. If not, it will be
+     * created.
+     *
+     * Example:
+     * ```
+     * $database->insertOrUpdate('Posts', [
+     *     'ID' => 1337,
+     *     'postTitle' => 'Hello World!',
+     *     'postContent' => 'Thanks for visiting our site!'
+     * ]);
+     * ```
+     *
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#google.spanner.v1.CommitRequest CommitRequest
+     * @codingStandardsIgnoreEnd
+     *
      * @param string $table The table to mutate.
      * @param array $data The row data to insert or update.
      * @param array $options [optional] Configuration options.
-     * @return array
+     * @return Timestamp The commit Timestamp.
      */
     public function insertOrUpdate($table, array $data, array $options = [])
     {
@@ -474,10 +568,33 @@ class Database
     /**
      * Insert or update multiple rows.
      *
+     * If a row already exists (determined by comparing the Primary Key to
+     * existing table data), the row will be updated. If not, it will be
+     * created.
+     *
+     * Example:
+     * ```
+     * $database->insertOrUpdateBatch('Posts', [
+     *     [
+     *         'ID' => 1337,
+     *         'postTitle' => 'Hello World!',
+     *         'postContent' => 'Thanks for visiting our site!'
+     *     ], [
+     *         'ID' => 1338,
+     *         'postTitle' => 'Our History',
+     *         'postContent' => 'A little bit about us!'
+     *     ]
+     * ]);
+     * ```
+     *
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#google.spanner.v1.CommitRequest CommitRequest
+     * @codingStandardsIgnoreEnd
+     *
      * @param string $table The table to mutate.
      * @param array $dataSet The row data to insert or update.
      * @param array $options [optional] Configuration options.
-     * @return array
+     * @return Timestamp The commit Timestamp.
      */
     public function insertOrUpdateBatch($table, array $dataSet, array $options = [])
     {
@@ -494,10 +611,27 @@ class Database
     /**
      * Replace a row.
      *
+     * Provide data for the entire row. Google Cloud Spanner will attempt to
+     * find a record matching the Primary Key, and will replace the entire row.
+     * If a matching row is not found, it will be inserted.
+     *
+     * Example:
+     * ```
+     * $database->replace('Posts', [
+     *     'ID' => 1337,
+     *     'postTitle' => 'Hello World!',
+     *     'postContent' => 'Thanks for visiting our site!'
+     * ]);
+     * ```
+     *
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#google.spanner.v1.CommitRequest CommitRequest
+     * @codingStandardsIgnoreEnd
+     *
      * @param string $table The table to mutate.
      * @param array $data The row data to replace.
      * @param array $options [optional] Configuration options.
-     * @return array
+     * @return Timestamp The commit Timestamp.
      */
     public function replace($table, array $data, array $options = [])
     {
@@ -507,10 +641,33 @@ class Database
     /**
      * Replace multiple rows.
      *
+     * Provide data for the entire row. Google Cloud Spanner will attempt to
+     * find a record matching the Primary Key, and will replace the entire row.
+     * If a matching row is not found, it will be inserted.
+     *
+     * Example:
+     * ```
+     * $database->replaceBatch('Posts', [
+     *     [
+     *         'ID' => 1337,
+     *         'postTitle' => 'Hello World!',
+     *         'postContent' => 'Thanks for visiting our site!'
+     *     ], [
+     *         'ID' => 1338,
+     *         'postTitle' => 'Our History',
+     *         'postContent' => 'A little bit about us!'
+     *     ]
+     * ]);
+     * ```
+     *
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#google.spanner.v1.CommitRequest CommitRequest
+     * @codingStandardsIgnoreEnd
+     *
      * @param string $table The table to mutate.
      * @param array $dataSet The row data to replace.
      * @param array $options [optional] Configuration options.
-     * @return array
+     * @return Timestamp The commit Timestamp.
      */
     public function replaceBatch($table, array $dataSet, array $options = [])
     {
@@ -527,10 +684,25 @@ class Database
     /**
      * Delete one or more rows.
      *
+     * Example:
+     * ```
+     * $keySet = $spanner->keySet([
+     *     'keys' => [
+     *         1337, 1338
+     *     ]
+     * ]);
+     *
+     * $database->delete('Posts', $keySet);
+     * ```
+     *
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#google.spanner.v1.CommitRequest CommitRequest
+     * @codingStandardsIgnoreEnd
+     *
      * @param string $table The table to mutate.
      * @param KeySet $keySet The KeySet to identify rows to delete.
      * @param array $options [optional] Configuration options.
-     * @return array
+     * @return Timestamp The commit Timestamp.
      */
     public function delete($table, KeySet $keySet, array $options = [])
     {
@@ -547,14 +719,19 @@ class Database
      * Example:
      * ```
      * $result = $spanner->execute(
-     *     'SELECT * FROM Users WHERE id = @userId',
+     *     'SELECT * FROM Posts WHERE ID = @postId',
      *     [
      *          'parameters' => [
-     *              'userId' => 1
+     *              'postId' => 1337
      *          ]
      *     ]
      * );
      * ```
+     *
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#google.spanner.v1.ExecuteSqlRequest ExecuteSqlRequest
+     * @codingStandardsIgnoreEnd
+     *
      * @param string $sql The query string to execute.
      * @param array $options [optional] {
      *     Configuration options.
@@ -578,7 +755,7 @@ class Database
      * Note that if no KeySet is specified, all rows in a table will be
      * returned.
      *
-     * @todo is returning everything a reasonable default?
+     * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#google.spanner.v1.ReadRequest ReadRequest
      *
      * @param string $table The table name.
      * @param array $options [optional] {
@@ -600,6 +777,8 @@ class Database
 
     /**
      * Create a transaction with a given context.
+     *
+     * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#google.spanner.v1.BeginTransactionRequest BeginTransactionRequest
      *
      * @param string $context The context of the new transaction.
      * @param array $options [optional] Configuration options.
@@ -643,7 +822,7 @@ class Database
      */
     private function fullyQualifiedDatabaseName()
     {
-        return DatabaseAdminClient::formatDatabaseName(
+        return GrpcSpannerClient::formatDatabaseName(
             $this->projectId,
             $this->instance->name(),
             $this->name
@@ -661,7 +840,10 @@ class Database
         return [
             'connection' => get_class($this->connection),
             'projectId' => $this->projectId,
-            'name' => $this->name
+            'name' => $this->name,
+            'instance' => $this->instance,
+            'sessionPool' => $this->sessionPool,
+            'returnInt64AsObject' => $this->returnInt64AsObject,
         ];
     }
 }

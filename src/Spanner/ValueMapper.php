@@ -117,6 +117,22 @@ class ValueMapper
     }
 
     /**
+     * Convert a timestamp string to a Timestamp class with nanosecond support.
+     *
+     * @param string $timestamp The timestamp string
+     * @return Timestamp
+     */
+    public function createTimestampWithNanos($timestamp)
+    {
+        $matches = [];
+        preg_match(self::NANO_REGEX, $timestamp, $matches);
+        $timestamp = preg_replace(self::NANO_REGEX, '.000000Z', $timestamp);
+
+        $dt = \DateTimeImmutable::createFromFormat(Timestamp::FORMAT, $timestamp);
+        return new Timestamp($dt, (isset($matches[1])) ? $matches[1] : 0);
+    }
+
+    /**
      * Convert a single value to its corresponding PHP type.
      *
      * @param mixed $value The value to decode
@@ -133,12 +149,7 @@ class ValueMapper
                 break;
 
             case self::TYPE_TIMESTAMP:
-                $matches = [];
-                preg_match(self::NANO_REGEX, $value, $matches);
-                $value = preg_replace(self::NANO_REGEX, '.000000Z', $value);
-
-                $dt = \DateTimeImmutable::createFromFormat(Timestamp::FORMAT, $value);
-                $value = new Timestamp($dt, (isset($matches[1])) ? $matches[1] : 0);
+                $value = $this->createTimestampWithNanos($value);
                 break;
 
             case self::TYPE_DATE:
