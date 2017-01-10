@@ -601,13 +601,15 @@ class InstanceAdminClient
      *          Some examples of using filters are:
      *
      *            &#42; name:&#42; --> The instance has a name.
-     *            &#42; name:Howl --> The instance's name is howl.
+     *            &#42; name:Howl --> The instance's name contains the string "howl".
      *            &#42; name:HOWL --> Equivalent to above.
      *            &#42; NAME:howl --> Equivalent to above.
-     *            &#42; labels.env:&#42; --> The instance has the label env.
-     *            &#42; labels.env:dev --> The instance's label env has the value dev.
-     *            &#42; name:howl labels.env:dev --> The instance's name is howl and it has
-     *                                           the label env with value dev.
+     *            &#42; labels.env:&#42; --> The instance has the label "env".
+     *            &#42; labels.env:dev --> The instance has the label "env" and the value of
+     *                                 the label contains the string "dev".
+     *            &#42; name:howl labels.env:dev --> The instance's name contains "howl" and
+     *                                           it has the label "env" with its value
+     *                                           containing "dev".
      *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
