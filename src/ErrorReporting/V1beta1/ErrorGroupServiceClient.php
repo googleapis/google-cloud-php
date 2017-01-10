@@ -26,7 +26,7 @@
  * backwards compatibility.
  */
 
-namespace Google\Cloud\Errorreporting\V1beta1;
+namespace Google\Cloud\ErrorReporting\V1beta1;
 
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
