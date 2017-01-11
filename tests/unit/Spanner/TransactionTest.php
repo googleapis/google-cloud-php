@@ -63,25 +63,15 @@ class TransactionTest extends \PHPUnit_Framework_TestCase
         $args = [
             $this->operation,
             $this->session,
-            null,
+            SessionPoolInterface::CONTEXT_READWRITE,
             self::TRANSACTION,
         ];
 
         $props = [
-            'operation'
+            'operation', 'readTimestamp', 'context'
         ];
 
-        $this->transactionCallable = function ($context, $ts = null) use ($args, $props) {
-            $args[2] = $context;
-
-            if (!is_null($ts)) {
-                $args[] = new Timestamp(new \DateTimeImmutable($ts));
-            }
-
-            $this->transaction = \Google\Cloud\Dev\stub(Transaction::class, $args, $props);
-        };
-
-        call_user_func_array($this->transactionCallable, [SessionPoolInterface::CONTEXT_READWRITE]);
+        $this->transaction = \Google\Cloud\Dev\stub(Transaction::class, $args, $props);
     }
 
     public function testInsert()
@@ -275,8 +265,7 @@ class TransactionTest extends \PHPUnit_Framework_TestCase
      */
     public function testCommitInvalidContext()
     {
-        call_user_func_array($this->transactionCallable, [SessionPoolInterface::CONTEXT_READ]);
-
+        $this->transaction->___setProperty('context', SessionPoolInterface::CONTEXT_READ);
         $this->transaction->commit();
     }
 
@@ -285,8 +274,7 @@ class TransactionTest extends \PHPUnit_Framework_TestCase
      */
     public function testEnqueueInvalidContext()
     {
-        call_user_func_array($this->transactionCallable, [SessionPoolInterface::CONTEXT_READ]);
-
+        $this->transaction->___setProperty('context', SessionPoolInterface::CONTEXT_READ);
         $this->transaction->insert('Posts', []);
     }
 
@@ -302,11 +290,22 @@ class TransactionTest extends \PHPUnit_Framework_TestCase
 
     public function testReadTimestamp()
     {
-        call_user_func_array($this->transactionCallable, [SessionPoolInterface::CONTEXT_READ, self::TIMESTAMP]);
+        $this->transaction->___setProperty('context', SessionPoolInterface::CONTEXT_READ);
+        $this->transaction->___setProperty('readTimestamp', new Timestamp(new \DateTimeImmutable(self::TIMESTAMP)));
 
         $ts = $this->transaction->readTimestamp();
 
         $this->assertInstanceOf(Timestamp::class, $ts);
+    }
+
+    public function testId()
+    {
+        $this->assertEquals(self::TRANSACTION, $this->transaction->id());
+    }
+
+    public function testContext()
+    {
+        $this->assertEquals(SessionPoolInterface::CONTEXT_READWRITE, $this->transaction->context());
     }
 
     // *******

@@ -27,6 +27,18 @@ trait StubTrait
         return $property->getValue($this);
     }
 
+    public function ___setProperty($prop, $value)
+    {
+        if (!in_array($prop, json_decode($this->___props))) {
+            throw new \BadMethodCallException(sprintf('Property %s cannot be overloaded', $prop));
+        }
+
+        $property = $this->___getPropertyReflector($prop);
+
+        $property->setAccessible(true);
+        $property->setValue($this, $value);
+    }
+
     public function __call($method, $args)
     {
         $matches = [];

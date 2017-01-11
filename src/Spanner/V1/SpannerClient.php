@@ -880,7 +880,7 @@ class SpannerClient
             $mergedSettings,
             $this->descriptors['commit']
         );
-// print_r($request->serialize(new \Google\Cloud\PhpArray));exit;
+
         return $callable(
             $request,
             [],

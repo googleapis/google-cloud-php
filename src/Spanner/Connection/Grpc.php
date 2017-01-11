@@ -29,6 +29,7 @@ use google\protobuf;
 use google\spanner\admin\instance\v1\Instance;
 use google\spanner\admin\instance\v1\State;
 use google\spanner\v1;
+use google\spanner\v1\KeySet;
 use google\spanner\v1\Mutation;
 use google\spanner\v1\TransactionOptions;
 use google\spanner\v1\Type;
@@ -378,36 +379,9 @@ class Grpc implements ConnectionInterface
      */
     public function read(array $args = [])
     {
-        $keys = $this->pluck('keySet', $args);
-
-        $keySet = new v1\KeySet;
-        if (!empty($keys['keys'])) {
-            $keySet->setKeys($this->formatListForApi($keys['keys']));
-        }
-
-        if (!empty($keys['ranges'])) {
-            $ranges = new v1\KeyRange;
-
-            if (isset($keys['ranges']['startClosed'])) {
-                $ranges->setStartClosed($this->formatListForApi($keys['ranges']['startClosed']));
-            }
-
-            if (isset($keys['ranges']['startOpen'])) {
-                $ranges->setStartOpen($this->formatListForApi($keys['ranges']['startOpen']));
-            }
-            if (isset($keys['ranges']['endClosed'])) {
-                $ranges->setEndClosed($this->formatListForApi($keys['ranges']['endClosed']));
-            }
-            if (isset($keys['ranges']['endOpen'])) {
-                $ranges->setEndOpen($this->formatListForApi($keys['ranges']['endOpen']));
-            }
-
-            $keySet->setRanges($ranges);
-        }
-
-        if (isset($keys['all'])) {
-            $keySet->setAll($keys['all']);
-        }
+        $keySet = $this->pluck('keySet', $args);
+        $keySet = (new KeySet)
+            ->deserialize($this->formatKeySet($keySet), $this->codec);
 
         return $this->send([$this->spannerClient, 'read'], [
             $this->pluck('session', $args),
@@ -468,18 +442,8 @@ class Grpc implements ConnectionInterface
                         break;
 
                     case 'delete':
-                        if (isset($data['keySet']['keys'])) {
-                            $data['keySet']['keys'] = $this->formatListForApi($data['keySet']['keys']);
-                        }
-
-                        if (isset($data['keySet']['ranges'])) {
-                            foreach ($data['keySet']['ranges'] as $index => $rangeItem) {
-                                foreach ($rangeItem as $key => $val) {
-                                    $rangeItem[$key] = $this->formatListForApi($val);
-                                }
-
-                                $data['keySet']['ranges'][$index] = $rangeItem;
-                            }
+                        if (isset($data['keySet'])) {
+                            $data['keySet'] = $this->formatKeySet($data['keySet']);
                         }
 
                         $operation = (new Mutation\Delete)
@@ -521,5 +485,28 @@ class Grpc implements ConnectionInterface
             $this->pluck('transactionId', $args),
             $args
         ]);
+    }
+
+    /**
+     * @param array $keySet
+     * @return array Formatted keyset
+     */
+    private function formatKeySet(array $keySet)
+    {
+        if (isset($keySet['keys'])) {
+            $keySet['keys'] = $this->formatListForApi($keySet['keys']);
+        }
+
+        if (isset($keySet['ranges'])) {
+            foreach ($keySet['ranges'] as $index => $rangeItem) {
+                foreach ($rangeItem as $key => $val) {
+                    $rangeItem[$key] = $this->formatListForApi($val);
+                }
+
+                $keySet['ranges'][$index] = $rangeItem;
+            }
+        }
+
+        return $keySet;
     }
 }

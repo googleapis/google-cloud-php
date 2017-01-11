@@ -21,13 +21,16 @@ use Google\Cloud\ArrayTrait;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\ValidateTrait;
-use RuntimeException;
 
 /**
  * Common interface for running operations against Google Cloud Spanner. This
  * class is intended for internal use by the client library only. Implementors
  * should access these operations via {@see Google\Cloud\Spanner\Database} or
  * {@see Google\Cloud\Spanner\Transaction}.
+ *
+ * Usage examples may be found in classes making use of this class:
+ * * {@see Google\Cloud\Spanner\Database}
+ * * {@see Google\Cloud\Spanner\Transaction}
  */
 class Operation
 {
@@ -74,9 +77,7 @@ class Operation
      */
     public function mutation($operation, $table, $mutation)
     {
-        $mutation = array_filter($mutation, function ($value) {
-            return !is_null($value);
-        });
+        $mutation = $this->arrayFilterPreserveBool($mutation);
 
         return [
             $operation => [
@@ -96,33 +97,10 @@ class Operation
      */
     public function deleteMutation($table, KeySet $keySet)
     {
-        $keyRanges = $keySet->ranges();
-        if ($keyRanges) {
-            $ranges = [];
-            foreach ($keyRanges as $range) {
-                $types = $range->types();
-
-                $start = $range->start();
-                $range->setStart($types['start'], $this->mapper->encodeValuesAsSimpleType($start));
-
-                $end = $range->end();
-                $range->setEnd($types['end'], $this->mapper->encodeValuesAsSimpleType($end));
-
-                $ranges[] = $range;
-            }
-
-            $keySet->setRanges($ranges);
-        }
-
-        $keys = $keySet->keySetObject();
-        if (!empty($keys['keys'])) {
-            $keys['keys'] = $this->mapper->encodeValuesAsSimpleType($keys['keys']);
-        }
-
         return [
             self::OP_DELETE => [
                 'table' => $table,
-                'keySet' => $this->arrayFilterPreserveBool($keys)
+                'keySet' => $this->flattenKeySet($keySet),
             ]
         ];
     }
@@ -213,21 +191,19 @@ class Operation
         $options += [
             'index' => null,
             'columns' => [],
-            'keySet' => [],
+            'keySet' => null,
             'offset' => null,
             'limit' => null,
         ];
 
-        if (!empty($options['keySet']) && !($options['keySet']) instanceof KeySet) {
-            throw new RuntimeException('$options.keySet must be an instance of KeySet');
-        }
-
-        if (empty($options['keySet'])) {
+        if (is_null($options['keySet'])) {
             $options['keySet'] = new KeySet();
             $options['keySet']->setMatchAll(true);
+        } elseif (!($options['keySet'] instanceof KeySet)) {
+            throw new \InvalidArgumentException('$options.keySet must be an instance of KeySet');
         }
 
-        $options['keySet'] = $options['keySet']->keySetObject();
+        $options['keySet'] = $this->flattenKeySet($options['keySet']);
 
         $res = $this->connection->read([
             'table' => $table,
@@ -256,7 +232,6 @@ class Operation
         // make a service call here.
         $res = $this->connection->beginTransaction($options + [
             'session' => $session->name(),
-            'context' => $context,
         ]);
 
         $timestamp = null;
@@ -267,9 +242,19 @@ class Operation
         return new Transaction($this, $session, $context, $res['id'], $timestamp);
     }
 
+    /**
+     * Transform a service read or executeSql response to a friendly result.
+     *
+     * @codingStandardsIgnoreStart
+     * @param array $res [ResultSet](https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#google.spanner.v1.ResultSet)
+     * @codingStandardsIgnoreEnd
+     * @return Result
+     */
     private function createResult(array $res)
     {
-        $columns = $res['metadata']['rowType']['fields'];
+        $columns = isset($res['metadata']['rowType']['fields'])
+            ? $res['metadata']['rowType']['fields']
+            : [];
 
         $rows = [];
         if (isset($res['rows'])) {
@@ -279,6 +264,40 @@ class Operation
         }
 
         return new Result($res, $rows);
+    }
+
+    /**
+     * Convert a KeySet object to an API-ready array.
+     *
+     * @param KeySet $keySet The keySet object.
+     * @return array [KeySet](https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#keyset)
+     */
+    private function flattenKeySet(KeySet $keySet)
+    {
+        $keyRanges = $keySet->ranges();
+        if ($keyRanges) {
+            $ranges = [];
+            foreach ($keyRanges as $range) {
+                $types = $range->types();
+
+                $start = $range->start();
+                $range->setStart($types['start'], $this->mapper->encodeValuesAsSimpleType($start));
+
+                $end = $range->end();
+                $range->setEnd($types['end'], $this->mapper->encodeValuesAsSimpleType($end));
+
+                $ranges[] = $range;
+            }
+
+            $keySet->setRanges($ranges);
+        }
+
+        $keys = $keySet->keySetObject();
+        if (!empty($keys['keys'])) {
+            $keys['keys'] = $this->mapper->encodeValuesAsSimpleType($keys['keys']);
+        }
+
+        return $this->arrayFilterPreserveBool($keys);
     }
 
     /**

@@ -304,6 +304,26 @@ class Transaction
     }
 
     /**
+     * Retrieve the Transaction ID.
+     *
+     * @return string
+     */
+    public function id()
+    {
+        return $this->transactionId;
+    }
+
+    /**
+     * Retrieve the Transaction Context
+     *
+     * @return string
+     */
+    public function context()
+    {
+        return $this->context;
+    }
+
+    /**
      * Format, validate and enqueue mutations in the transaction.
      *
      * @param string $op The operation type.
