@@ -84,7 +84,7 @@ class SpannerClient
     /**
      * The default address of the service.
      */
-    const SERVICE_ADDRESS = 'wrenchworks.googleapis.com';
+    const SERVICE_ADDRESS = 'spanner.googleapis.com';
 
     /**
      * The default port of the service.
@@ -231,7 +231,7 @@ class SpannerClient
      *                       Optional. Options for configuring the service API wrapper.
      *
      *     @type string $serviceAddress The domain name of the API remote host.
-     *                                  Default 'wrenchworks.googleapis.com'.
+     *                                  Default 'spanner.googleapis.com'.
      *     @type mixed $port The port on which to connect to the remote host. Default 443.
      *     @type \Grpc\ChannelCredentials $sslCreds
      *           A `ChannelCredentials` for use with an SSL-enabled channel.
