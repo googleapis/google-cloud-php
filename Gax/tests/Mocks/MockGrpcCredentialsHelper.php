@@ -30,18 +30,24 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace Google\GAX\Testing;
+namespace Google\GAX\UnitTests\Mocks;
 
-class MockResponse
+use Google\GAX\GrpcCredentialsHelper;
+
+class MockGrpcCredentialsHelper extends GrpcCredentialsHelper
 {
-    public $nextPageToken;
-    public $resource;
-
-    public static function createPageStreamingResponse($nextPageToken, $resource)
+    protected function getADCCredentials($scopes)
     {
-        $response = new MockResponse();
-        $response->nextPageToken = $nextPageToken;
-        $response->resource = $resource;
-        return $response;
+        return new MockCredentialsLoader($scopes, [
+            [
+                'access_token' => 'adcAccessToken',
+                'expires_in' => '100',
+            ],
+        ]);
+    }
+
+    protected function createSslChannelCredentials()
+    {
+        return "DummySslCreds";
     }
 }

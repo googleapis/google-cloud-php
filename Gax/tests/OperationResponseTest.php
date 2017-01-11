@@ -29,12 +29,14 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+namespace Google\GAX\UnitTests;
 
 use Google\GAX\OperationResponse;
 use google\longrunning\Operation;
 use Google\GAX\LongRunning\OperationsClient;
 use google\protobuf\Any;
 use google\rpc\Status;
+use PHPUnit_Framework_TestCase;
 
 class OperationResponseTest extends PHPUnit_Framework_TestCase
 {
@@ -124,12 +126,14 @@ class OperationResponseTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(self::createStatus(0, "metadata"), $op->getMetadata());
     }
 
-    public static function createAny($value) {
+    public static function createAny($value)
+    {
         $any = new Any();
         return $any->setValue($value->serialize());
     }
 
-    public static function createStatus($code, $message) {
+    public static function createStatus($code, $message)
+    {
         $value = new Status();
         return $value->setCode($code)->setMessage($message);
     }

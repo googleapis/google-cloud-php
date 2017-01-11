@@ -29,37 +29,39 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-namespace Google\GAX\UnitTests;
 
-use Exception;
-use Google\GAX\GrpcConstants;
-use PHPUnit_Framework_TestCase;
-use ReflectionClass;
+namespace Google\GAX\UnitTests\Mocks;
 
-class GrpcConstantsTest extends PHPUnit_Framework_TestCase
+use Google\Auth\FetchAuthTokenInterface;
+
+class MockCredentialsLoader implements FetchAuthTokenInterface
 {
-    public function testGetStatusCodeNames()
+    private $tokens;
+    private $index = -1;
+
+    public function __construct($scopes, $tokens)
     {
-        $statusCodeNames = GrpcConstants::getStatusCodeNames();
-
-        $this->assertTrue(is_array($statusCodeNames));
-        $this->assertFalse(empty($statusCodeNames));
-
-        // test getting the status code names again does not throw exception
-        GrpcConstants::getStatusCodeNames();
+        $this->scopes = $scopes;
+        $this->tokens = $tokens;
     }
 
-    /**
-     * @expectedException Exception
-     * @expectedExceptionMessage GrpcConstants::initStatusCodeNames called more than once
-     */
-    public function testInitStatusCodeNamesThrowsException()
+    public function fetchAuthToken(callable $httpHandler = null)
     {
-        $statusCodeNames = GrpcConstants::getStatusCodeNames();
+        $this->index = ($this->index + 1) % count($this->tokens);
+        return $this->tokens[$this->index];
+    }
 
-        $reflection = new ReflectionClass('Google\GAX\GrpcConstants');
-        $method = $reflection->getMethod('initStatusCodeNames');
-        $method->setAccessible(true);
-        $method->invoke(new GrpcConstants);
+    public function getCacheKey()
+    {
+        return 'accessTokenCacheKey';
+    }
+
+    public function getLastReceivedToken()
+    {
+        if ($this->index == -1) {
+            return null;
+        } else {
+            return $this->tokens[$this->index];
+        }
     }
 }

@@ -29,37 +29,19 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-namespace Google\GAX\UnitTests;
 
-use Exception;
-use Google\GAX\GrpcConstants;
-use PHPUnit_Framework_TestCase;
-use ReflectionClass;
+namespace Google\GAX\UnitTests\Mocks;
 
-class GrpcConstantsTest extends PHPUnit_Framework_TestCase
+class MockResponse
 {
-    public function testGetStatusCodeNames()
+    public $nextPageToken;
+    public $resource;
+
+    public static function createPageStreamingResponse($nextPageToken, $resource)
     {
-        $statusCodeNames = GrpcConstants::getStatusCodeNames();
-
-        $this->assertTrue(is_array($statusCodeNames));
-        $this->assertFalse(empty($statusCodeNames));
-
-        // test getting the status code names again does not throw exception
-        GrpcConstants::getStatusCodeNames();
-    }
-
-    /**
-     * @expectedException Exception
-     * @expectedExceptionMessage GrpcConstants::initStatusCodeNames called more than once
-     */
-    public function testInitStatusCodeNamesThrowsException()
-    {
-        $statusCodeNames = GrpcConstants::getStatusCodeNames();
-
-        $reflection = new ReflectionClass('Google\GAX\GrpcConstants');
-        $method = $reflection->getMethod('initStatusCodeNames');
-        $method->setAccessible(true);
-        $method->invoke(new GrpcConstants);
+        $response = new MockResponse();
+        $response->nextPageToken = $nextPageToken;
+        $response->resource = $resource;
+        return $response;
     }
 }

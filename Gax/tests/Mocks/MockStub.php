@@ -30,10 +30,11 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace Google\GAX\Testing;
+namespace Google\GAX\UnitTests\Mocks;
 
 use InvalidArgumentException;
 use UnderflowException;
+use Google\GAX\Testing\MockUnaryCall;
 
 class MockStub
 {

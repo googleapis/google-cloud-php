@@ -59,7 +59,7 @@ class MockUnaryCall
     {
         $this->response = $response;
         if (is_null($deserialize)) {
-            $deserialize = function($resp) {
+            $deserialize = function ($resp) {
                 return $resp;
             };
         }
