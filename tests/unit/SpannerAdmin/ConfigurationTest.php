@@ -52,7 +52,7 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
     public function testInfo()
     {
         $this->connection->getConfig(Argument::any())->shouldNotBeCalled();
-        $this->configuration->setConnection($this->connection->reveal());
+        $this->configuration->___setProperty('connection', $this->connection->reveal());
 
         $info = ['foo' => 'bar'];
         $config = \Google\Cloud\Dev\stub(Configuration::class, [
@@ -74,7 +74,7 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
             'projectId' => self::PROJECT_ID
         ])->shouldBeCalled()->willReturn($info);
 
-        $this->configuration->setConnection($this->connection->reveal());
+        $this->configuration->___setProperty('connection', $this->connection->reveal());
 
         $this->assertEquals($info, $this->configuration->info());
     }
@@ -82,7 +82,7 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
     public function testExists()
     {
         $this->connection->getConfig(Argument::any())->willReturn([]);
-        $this->configuration->setConnection($this->connection->reveal());
+        $this->configuration->___setProperty('connection', $this->connection->reveal());
 
         $this->assertTrue($this->configuration->exists());
     }
@@ -90,7 +90,7 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
     public function testExistsDoesntExist()
     {
         $this->connection->getConfig(Argument::any())->willThrow(new NotFoundException('', 404));
-        $this->configuration->setConnection($this->connection->reveal());
+        $this->configuration->___setProperty('connection', $this->connection->reveal());
 
         $this->assertFalse($this->configuration->exists());
     }
@@ -104,7 +104,7 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
             'projectId' => self::PROJECT_ID
         ])->shouldBeCalledTimes(1)->willReturn($info);
 
-        $this->configuration->setConnection($this->connection->reveal());
+        $this->configuration->___setProperty('connection', $this->connection->reveal());
 
         $info = $this->configuration->reload();
 

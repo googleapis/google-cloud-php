@@ -89,7 +89,7 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
                 'id' => self::TRANSACTION
             ]);
 
-        $this->database->setConnection($this->connection->reveal());
+        $this->database->___setProperty('connection', $this->connection->reveal());
 
         $t = $this->database->readOnlyTransaction();
         $this->assertInstanceOf(Transaction::class, $t);
@@ -121,7 +121,7 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
                 'id' => self::TRANSACTION
             ]);
 
-        $this->database->setConnection($this->connection->reveal());
+        $this->database->___setProperty('connection', $this->connection->reveal());
 
         $this->database->readOnlyTransaction($options);
     }
@@ -146,7 +146,7 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
                 'id' => self::TRANSACTION
             ]);
 
-        $this->database->setConnection($this->connection->reveal());
+        $this->database->___setProperty('connection', $this->connection->reveal());
 
         $t = $this->database->lockingTransaction();
         $this->assertInstanceOf(Transaction::class, $t);
@@ -410,7 +410,7 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
     private function refreshOperation()
     {
         $operation = new Operation($this->connection->reveal(), false);
-        $this->database->setOperation($operation);
+        $this->database->___setProperty('operation', $operation);
     }
 
     private function commitResponse()

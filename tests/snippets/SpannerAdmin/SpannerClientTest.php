@@ -39,7 +39,7 @@ class SpannerClientTest extends SnippetTestCase
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->client = \Google\Cloud\Dev\stub(SpannerClient::class);
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
     }
 
     public function testConfigurations()
@@ -53,7 +53,7 @@ class SpannerClientTest extends SnippetTestCase
                 ]
             ]);
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
 
         $snippet = $this->snippetFromMethod(SpannerClient::class, 'configurations');
         $snippet->addLocal('spanner', $this->client);
@@ -88,7 +88,7 @@ class SpannerClientTest extends SnippetTestCase
             ->shouldBeCalled()
             ->willReturn([]);
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke('instance');
         $this->assertInstanceOf(Instance::class, $res->returnVal());
@@ -119,7 +119,7 @@ class SpannerClientTest extends SnippetTestCase
                 ]
             ]);
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke('instances');
         $this->assertInstanceOf(\Generator::class, $res->returnVal());

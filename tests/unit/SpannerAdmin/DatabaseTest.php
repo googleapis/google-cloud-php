@@ -65,7 +65,7 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
             ->shouldBeCalled()
             ->willReturn([]);
 
-        $this->database->setConnection($this->connection->reveal());
+        $this->database->___setProperty('connection', $this->connection->reveal());
 
         $this->assertTrue($this->database->exists());
     }
@@ -76,7 +76,7 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
             ->shouldBeCalled()
             ->willThrow(new NotFoundException('', 404));
 
-        $this->database->setConnection($this->connection->reveal());
+        $this->database->___setProperty('connection', $this->connection->reveal());
 
         $this->assertFalse($this->database->exists());
     }
@@ -89,7 +89,7 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
             'statements' => [$statement]
         ]);
 
-        $this->database->setConnection($this->connection->reveal());
+        $this->database->___setProperty('connection', $this->connection->reveal());
 
         $this->database->updateDdl($statement);
     }
@@ -102,7 +102,7 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
             'statements' => $statements
         ]);
 
-        $this->database->setConnection($this->connection->reveal());
+        $this->database->___setProperty('connection', $this->connection->reveal());
 
         $this->database->updateDdl($statements);
     }
@@ -116,7 +116,7 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
             'operationId' => null,
         ])->shouldBeCalled();
 
-        $this->database->setConnection($this->connection->reveal());
+        $this->database->___setProperty('connection', $this->connection->reveal());
 
         $this->database->updateDdl($statement);
     }
@@ -127,7 +127,7 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
             'name' => DatabaseAdminClient::formatDatabaseName(self::PROJECT_ID, self::INSTANCE_NAME, self::NAME)
         ])->shouldBeCalled();
 
-        $this->database->setConnection($this->connection->reveal());
+        $this->database->___setProperty('connection', $this->connection->reveal());
 
         $this->database->drop();
     }
@@ -139,7 +139,7 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
             'name' => DatabaseAdminClient::formatDatabaseName(self::PROJECT_ID, self::INSTANCE_NAME, self::NAME)
         ])->willReturn(['statements' => $ddl]);
 
-        $this->database->setConnection($this->connection->reveal());
+        $this->database->___setProperty('connection', $this->connection->reveal());
 
         $this->assertEquals($ddl, $this->database->ddl());
     }
@@ -150,7 +150,7 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
             'name' => DatabaseAdminClient::formatDatabaseName(self::PROJECT_ID, self::INSTANCE_NAME, self::NAME)
         ])->willReturn([]);
 
-        $this->database->setConnection($this->connection->reveal());
+        $this->database->___setProperty('connection', $this->connection->reveal());
 
         $this->assertEquals([], $this->database->ddl());
     }

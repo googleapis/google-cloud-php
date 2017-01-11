@@ -74,7 +74,7 @@ class InstanceTest extends SnippetTestCase
             ->shouldBeCalled()
             ->willReturn(['nodeCount' => 1]);
 
-        $this->instance->setConnection($this->connection->reveal());
+        $this->instance->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke();
         $this->assertEquals('1', $res->output());
@@ -89,7 +89,7 @@ class InstanceTest extends SnippetTestCase
             ->shouldBeCalled()
             ->willReturn(['foo' => 'bar']);
 
-        $this->instance->setConnection($this->connection->reveal());
+        $this->instance->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke();
         $this->assertEquals('Instance exists!', $res->output());
@@ -104,7 +104,7 @@ class InstanceTest extends SnippetTestCase
             ->shouldBeCalledTimes(1)
             ->willReturn(['nodeCount' => 1]);
 
-        $this->instance->setConnection($this->connection->reveal());
+        $this->instance->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke('info');
         $info = $this->instance->info();
@@ -121,7 +121,7 @@ class InstanceTest extends SnippetTestCase
             ->shouldBeCalledTimes(1)
             ->willReturn(['state' => Instance::STATE_READY]);
 
-        $this->instance->setConnection($this->connection->reveal());
+        $this->instance->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke();
         $this->assertEquals('Instance is ready!', $res->output());
@@ -142,7 +142,7 @@ class InstanceTest extends SnippetTestCase
         $this->connection->updateInstance(Argument::any())
             ->shouldBeCalled();
 
-        $this->instance->setConnection($this->connection->reveal());
+        $this->instance->___setProperty('connection', $this->connection->reveal());
         $snippet->invoke();
     }
 
@@ -154,7 +154,7 @@ class InstanceTest extends SnippetTestCase
         $this->connection->deleteInstance(Argument::any())
             ->shouldBeCalled();
 
-        $this->instance->setConnection($this->connection->reveal());
+        $this->instance->___setProperty('connection', $this->connection->reveal());
         $snippet->invoke();
     }
 
@@ -166,7 +166,7 @@ class InstanceTest extends SnippetTestCase
         $this->connection->createDatabase(Argument::any())
             ->shouldBeCalled();
 
-        $this->instance->setConnection($this->connection->reveal());
+        $this->instance->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke('database');
         $this->assertInstanceOf(Database::class, $res->returnVal());
@@ -196,7 +196,7 @@ class InstanceTest extends SnippetTestCase
                 ]
             ]);
 
-        $this->instance->setConnection($this->connection->reveal());
+        $this->instance->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke('databases');
 

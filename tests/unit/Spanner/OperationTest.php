@@ -105,7 +105,7 @@ class OperationTest extends \PHPUnit_Framework_TestCase
             return true;
         }))->shouldBeCalled()->willReturn(['commitTimestamp' => self::TIMESTAMP]);
 
-        $this->operation->setConnection($this->connection->reveal());
+        $this->operation->___setProperty('connection', $this->connection->reveal());
 
         $res = $this->operation->commit($this->session, $mutations);
 
@@ -128,7 +128,7 @@ class OperationTest extends \PHPUnit_Framework_TestCase
             return true;
         }))->shouldBeCalled()->willReturn(['commitTimestamp' => self::TIMESTAMP]);
 
-        $this->operation->setConnection($this->connection->reveal());
+        $this->operation->___setProperty('connection', $this->connection->reveal());
 
         $res = $this->operation->commit($this->session, $mutations, [
             'transactionId' => self::TRANSACTION
@@ -146,7 +146,7 @@ class OperationTest extends \PHPUnit_Framework_TestCase
             return true;
         }))->shouldBeCalled();
 
-        $this->operation->setConnection($this->connection->reveal());
+        $this->operation->___setProperty('connection', $this->connection->reveal());
 
         $this->operation->rollback($this->session, self::TRANSACTION);
     }
@@ -165,7 +165,7 @@ class OperationTest extends \PHPUnit_Framework_TestCase
             return true;
         }))->shouldBeCalled()->willReturn($this->executeAndReadResponse());
 
-        $this->operation->setConnection($this->connection->reveal());
+        $this->operation->___setProperty('connection', $this->connection->reveal());
 
         $res = $this->operation->execute($this->session, $sql, [
             'parameters' => $params
@@ -185,7 +185,7 @@ class OperationTest extends \PHPUnit_Framework_TestCase
             return true;
         }))->shouldBeCalled()->willReturn($this->executeAndReadResponse());
 
-        $this->operation->setConnection($this->connection->reveal());
+        $this->operation->___setProperty('connection', $this->connection->reveal());
 
         $res = $this->operation->read($this->session, 'Posts');
         $this->assertInstanceOf(Result::class, $res);
@@ -205,7 +205,7 @@ class OperationTest extends \PHPUnit_Framework_TestCase
             return true;
         }))->shouldBeCalled()->willReturn($this->executeAndReadResponse());
 
-        $this->operation->setConnection($this->connection->reveal());
+        $this->operation->___setProperty('connection', $this->connection->reveal());
 
         $res = $this->operation->read($this->session, 'Posts', [
             'keySet' => new KeySet(['keys' => $keys])
@@ -234,7 +234,7 @@ class OperationTest extends \PHPUnit_Framework_TestCase
             'id' => self::TRANSACTION
         ]);
 
-        $this->operation->setConnection($this->connection->reveal());
+        $this->operation->___setProperty('connection', $this->connection->reveal());
 
         $res = $this->operation->transaction($this->session, SessionPoolInterface::CONTEXT_READWRITE);
 
@@ -255,7 +255,7 @@ class OperationTest extends \PHPUnit_Framework_TestCase
             'readTimestamp' => self::TIMESTAMP
         ]);
 
-        $this->operation->setConnection($this->connection->reveal());
+        $this->operation->___setProperty('connection', $this->connection->reveal());
 
         $res = $this->operation->transaction($this->session, SessionPoolInterface::CONTEXT_READWRITE);
 

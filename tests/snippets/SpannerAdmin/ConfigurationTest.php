@@ -73,7 +73,7 @@ class ConfigurationTest extends SnippetTestCase
                 'displayName' => self::CONFIG
             ]);
 
-        $this->config->setConnection($this->connection->reveal());
+        $this->config->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke();
         $this->assertEquals(self::CONFIG, $res->output());
@@ -91,7 +91,7 @@ class ConfigurationTest extends SnippetTestCase
                 'displayName' => self::CONFIG
             ]);
 
-        $this->config->setConnection($this->connection->reveal());
+        $this->config->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke();
         $this->assertEquals('Configuration exists!', $res->output());
@@ -111,7 +111,7 @@ class ConfigurationTest extends SnippetTestCase
             ->shouldBeCalled()
             ->willReturn($info);
 
-        $this->config->setConnection($this->connection->reveal());
+        $this->config->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke('info');
         $this->assertEquals($info, $res->returnVal());

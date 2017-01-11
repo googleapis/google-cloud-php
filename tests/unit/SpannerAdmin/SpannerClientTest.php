@@ -38,7 +38,7 @@ class SpannerClientTest extends \PHPUnit_Framework_TestCase
         $this->connection = $this->prophesize(ConnectionInterface::class);
 
         $this->client = \Google\Cloud\Dev\stub(SpannerClient::class, [['projectId' => 'test-project']]);
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
     }
 
     public function testConfigurations()
@@ -57,7 +57,7 @@ class SpannerClientTest extends \PHPUnit_Framework_TestCase
                 ]
             ]);
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
 
         $configs = $this->client->configurations();
 
@@ -94,7 +94,7 @@ class SpannerClientTest extends \PHPUnit_Framework_TestCase
             ->shouldBeCalledTimes(2)
             ->willReturn($firstCall, $secondCall);
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
 
         $configs = $this->client->configurations();
 
@@ -125,7 +125,7 @@ class SpannerClientTest extends \PHPUnit_Framework_TestCase
             ->shouldBeCalled()
             ->willReturn([]);
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
 
         $config = $this->prophesize(Configuration::class);
         $config->name()->willReturn('my-config');
@@ -160,7 +160,7 @@ class SpannerClientTest extends \PHPUnit_Framework_TestCase
                 ]
             ]);
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
 
         $instances = $this->client->instances();
         $this->assertInstanceOf(\Generator::class, $instances);

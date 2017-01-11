@@ -71,7 +71,7 @@ class InstanceTest extends \PHPUnit_Framework_TestCase
             ->shouldBeCalledTimes(1)
             ->willReturn($instance);
 
-        $this->instance->setConnection($this->connection->reveal());
+        $this->instance->___setProperty('connection', $this->connection->reveal());
 
         $info = $this->instance->info();
         $this->assertEquals('Instance Name', $info['displayName']);
@@ -83,7 +83,7 @@ class InstanceTest extends \PHPUnit_Framework_TestCase
     {
         $this->connection->getInstance(Argument::any())->shouldBeCalled()->willReturn([]);
 
-        $this->instance->setConnection($this->connection->reveal());
+        $this->instance->___setProperty('connection', $this->connection->reveal());
 
         $this->assertTrue($this->instance->exists());
     }
@@ -94,7 +94,7 @@ class InstanceTest extends \PHPUnit_Framework_TestCase
             ->shouldBeCalled()
             ->willThrow(new NotFoundException('foo', 404));
 
-        $this->instance->setConnection($this->connection->reveal());
+        $this->instance->___setProperty('connection', $this->connection->reveal());
 
         $this->assertFalse($this->instance->exists());
     }
@@ -107,7 +107,7 @@ class InstanceTest extends \PHPUnit_Framework_TestCase
             ->shouldBeCalledTimes(1)
             ->willReturn($instance);
 
-        $this->instance->setConnection($this->connection->reveal());
+        $this->instance->___setProperty('connection', $this->connection->reveal());
 
         $info = $this->instance->reload();
 
@@ -122,7 +122,7 @@ class InstanceTest extends \PHPUnit_Framework_TestCase
             ->shouldBeCalledTimes(1)
             ->willReturn($instance);
 
-        $this->instance->setConnection($this->connection->reveal());
+        $this->instance->___setProperty('connection', $this->connection->reveal());
 
         $this->assertEquals(Instance::STATE_READY, $this->instance->state());
     }
@@ -133,7 +133,7 @@ class InstanceTest extends \PHPUnit_Framework_TestCase
             ->shouldBeCalledTimes(1)
             ->willReturn([]);
 
-        $this->instance->setConnection($this->connection->reveal());
+        $this->instance->___setProperty('connection', $this->connection->reveal());
 
         $this->assertNull($this->instance->state());
     }
@@ -153,7 +153,7 @@ class InstanceTest extends \PHPUnit_Framework_TestCase
             'labels' => [],
         ])->shouldBeCalled();
 
-        $this->instance->setConnection($this->connection->reveal());
+        $this->instance->___setProperty('connection', $this->connection->reveal());
 
         $this->instance->update();
     }
@@ -174,7 +174,7 @@ class InstanceTest extends \PHPUnit_Framework_TestCase
             'labels' => $instance['labels'],
         ])->shouldBeCalled();
 
-        $this->instance->setConnection($this->connection->reveal());
+        $this->instance->___setProperty('connection', $this->connection->reveal());
 
         $this->instance->update();
     }
@@ -202,7 +202,7 @@ class InstanceTest extends \PHPUnit_Framework_TestCase
             'labels' => $changes['labels'],
         ])->shouldBeCalled();
 
-        $this->instance->setConnection($this->connection->reveal());
+        $this->instance->___setProperty('connection', $this->connection->reveal());
 
         $this->instance->update($changes);
     }
@@ -213,7 +213,7 @@ class InstanceTest extends \PHPUnit_Framework_TestCase
             'name' => InstanceAdminClient::formatInstanceName(self::PROJECT_ID, self::NAME)
         ])->shouldBeCalled();
 
-        $this->instance->setConnection($this->connection->reveal());
+        $this->instance->___setProperty('connection', $this->connection->reveal());
 
         $this->instance->delete();
     }
@@ -234,7 +234,7 @@ class InstanceTest extends \PHPUnit_Framework_TestCase
             ->shouldBeCalled()
             ->willReturn($dbInfo);
 
-        $this->instance->setConnection($this->connection->reveal());
+        $this->instance->___setProperty('connection', $this->connection->reveal());
 
         $database = $this->instance->createDatabase('test-database', [
             'statements' => $extra
@@ -262,7 +262,7 @@ class InstanceTest extends \PHPUnit_Framework_TestCase
             ->shouldBeCalled()
             ->willReturn(['databases' => $databases]);
 
-        $this->instance->setConnection($this->connection->reveal());
+        $this->instance->___setProperty('connection', $this->connection->reveal());
 
         $dbs = $this->instance->databases();
 
@@ -287,7 +287,7 @@ class InstanceTest extends \PHPUnit_Framework_TestCase
             ->shouldBeCalledTimes(2)
             ->willReturn(['databases' => [$databases[0]], 'nextPageToken' => 'foo'], ['databases' => [$databases[1]]]);
 
-        $this->instance->setConnection($this->connection->reveal());
+        $this->instance->___setProperty('connection', $this->connection->reveal());
 
         $dbs = $this->instance->databases();
 
