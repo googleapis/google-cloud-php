@@ -1,16 +1,18 @@
 <?php
 /*
- * Copyright 2016 Google Inc. All Rights Reserved.
+ * Copyright 2016, Google Inc. All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
- * in compliance with the License. You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * Unless required by applicable law or agreed to in writing, software distributed under the License
- * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
- * or implied. See the License for the specific language governing permissions and limitations under
- * the License.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 
 /*
@@ -68,9 +70,7 @@ use google\spanner\v1\TransactionSelector;
  *     $formattedDatabase = SpannerClient::formatDatabaseName("[PROJECT]", "[INSTANCE]", "[DATABASE]");
  *     $response = $spannerClient->createSession($formattedDatabase);
  * } finally {
- *     if (isset($spannerClient)) {
- *         $spannerClient->close();
- *     }
+ *     $spannerClient->close();
  * }
  * ```
  *
@@ -96,8 +96,15 @@ class SpannerClient
      */
     const DEFAULT_TIMEOUT_MILLIS = 30000;
 
-    const _CODEGEN_NAME = 'gapic';
-    const _CODEGEN_VERSION = '0.1.0';
+    /**
+     * The name of the code generator, to be included in the agent header.
+     */
+    const CODEGEN_NAME = 'gapic';
+
+    /**
+     * The code generator version, to be included in the agent header.
+     */
+    const CODEGEN_VERSION = '0.1.0';
 
     private static $databaseNameTemplate;
     private static $sessionNameTemplate;
@@ -216,14 +223,6 @@ class SpannerClient
         return self::$sessionNameTemplate;
     }
 
-    private static function getPageStreamingDescriptors()
-    {
-        $pageStreamingDescriptors = [
-        ];
-
-        return $pageStreamingDescriptors;
-    }
-
     // TODO(garrettjones): add channel (when supported in gRPC)
     /**
      * Constructor.
@@ -234,10 +233,10 @@ class SpannerClient
      *     @type string $serviceAddress The domain name of the API remote host.
      *                                  Default 'wrenchworks.googleapis.com'.
      *     @type mixed $port The port on which to connect to the remote host. Default 443.
-     *     @type Grpc\ChannelCredentials $sslCreds
+     *     @type \Grpc\ChannelCredentials $sslCreds
      *           A `ChannelCredentials` for use with an SSL-enabled channel.
      *           Default: a credentials object returned from
-     *           Grpc\ChannelCredentials::createSsl()
+     *           \Grpc\ChannelCredentials::createSsl()
      *     @type array $scopes A string array of scopes to use when acquiring credentials.
      *                         Default the scopes for the Google Cloud Spanner API.
      *     @type array $retryingOverride
@@ -252,21 +251,20 @@ class SpannerClient
      *     @type string $appName The codename of the calling service. Default 'gax'.
      *     @type string $appVersion The version of the calling service.
      *                              Default: the current version of GAX.
-     *     @type Google\Auth\CredentialsLoader $credentialsLoader
+     *     @type \Google\Auth\CredentialsLoader $credentialsLoader
      *                              A CredentialsLoader object created using the
      *                              Google\Auth library.
      * }
      */
     public function __construct($options = [])
     {
-        $defaultScopes = [
-            'https://www.googleapis.com/auth/cloud-platform',
-            'https://www.googleapis.com/auth/spanner.data',
-        ];
         $defaultOptions = [
             'serviceAddress' => self::SERVICE_ADDRESS,
             'port' => self::DEFAULT_SERVICE_PORT,
-            'scopes' => $defaultScopes,
+            'scopes' => [
+                'https://www.googleapis.com/auth/cloud-platform',
+                'https://www.googleapis.com/auth/spanner.data',
+            ],
             'retryingOverride' => null,
             'timeoutMillis' => self::DEFAULT_TIMEOUT_MILLIS,
             'appName' => 'gax',
@@ -277,8 +275,8 @@ class SpannerClient
         $headerDescriptor = new AgentHeaderDescriptor([
             'clientName' => $options['appName'],
             'clientVersion' => $options['appVersion'],
-            'codeGenName' => self::_CODEGEN_NAME,
-            'codeGenVersion' => self::_CODEGEN_VERSION,
+            'codeGenName' => self::CODEGEN_NAME,
+            'codeGenVersion' => self::CODEGEN_VERSION,
             'gaxVersion' => AgentHeaderDescriptor::getGaxVersion(),
             'phpVersion' => phpversion(),
         ]);
@@ -294,10 +292,6 @@ class SpannerClient
             'commit' => $defaultDescriptors,
             'rollback' => $defaultDescriptors,
         ];
-        $pageStreamingDescriptors = self::getPageStreamingDescriptors();
-        foreach ($pageStreamingDescriptors as $method => $pageStreamingDescriptor) {
-            $this->descriptors[$method]['pageStreamingDescriptor'] = $pageStreamingDescriptor;
-        }
 
         $clientConfigJsonString = file_get_contents(__DIR__.'/resources/spanner_client_config.json');
         $clientConfig = json_decode($clientConfigJsonString, true);
@@ -322,6 +316,9 @@ class SpannerClient
         $createSpannerStubFunction = function ($hostname, $opts) {
             return new SpannerGrpcClient($hostname, $opts);
         };
+        if (array_key_exists('createSpannerStubFunction', $options)) {
+            $createSpannerStubFunction = $options['createSpannerStubFunction'];
+        }
         $this->spannerStub = $this->grpcCredentialsHelper->createStub(
             $createSpannerStubFunction,
             $options['serviceAddress'],
@@ -359,9 +356,7 @@ class SpannerClient
      *     $formattedDatabase = SpannerClient::formatDatabaseName("[PROJECT]", "[INSTANCE]", "[DATABASE]");
      *     $response = $spannerClient->createSession($formattedDatabase);
      * } finally {
-     *     if (isset($spannerClient)) {
-     *         $spannerClient->close();
-     *     }
+     *     $spannerClient->close();
      * }
      * ```
      *
@@ -414,9 +409,7 @@ class SpannerClient
      *     $formattedName = SpannerClient::formatSessionName("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
      *     $response = $spannerClient->getSession($formattedName);
      * } finally {
-     *     if (isset($spannerClient)) {
-     *         $spannerClient->close();
-     *     }
+     *     $spannerClient->close();
      * }
      * ```
      *
@@ -467,9 +460,7 @@ class SpannerClient
      *     $formattedName = SpannerClient::formatSessionName("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
      *     $spannerClient->deleteSession($formattedName);
      * } finally {
-     *     if (isset($spannerClient)) {
-     *         $spannerClient->close();
-     *     }
+     *     $spannerClient->close();
      * }
      * ```
      *
@@ -529,9 +520,7 @@ class SpannerClient
      *     $sql = "";
      *     $response = $spannerClient->executeSql($formattedSession, $sql);
      * } finally {
-     *     if (isset($spannerClient)) {
-     *         $spannerClient->close();
-     *     }
+     *     $spannerClient->close();
      * }
      * ```
      *
@@ -653,9 +642,7 @@ class SpannerClient
      *     $keySet = new KeySet();
      *     $response = $spannerClient->read($formattedSession, $table, $columns, $keySet);
      * } finally {
-     *     if (isset($spannerClient)) {
-     *         $spannerClient->close();
-     *     }
+     *     $spannerClient->close();
      * }
      * ```
      *
@@ -757,9 +744,7 @@ class SpannerClient
      *     $options = new TransactionOptions();
      *     $response = $spannerClient->beginTransaction($formattedSession, $options);
      * } finally {
-     *     if (isset($spannerClient)) {
-     *         $spannerClient->close();
-     *     }
+     *     $spannerClient->close();
      * }
      * ```
      *
@@ -820,9 +805,7 @@ class SpannerClient
      *     $mutations = [];
      *     $response = $spannerClient->commit($formattedSession, $mutations);
      * } finally {
-     *     if (isset($spannerClient)) {
-     *         $spannerClient->close();
-     *     }
+     *     $spannerClient->close();
      * }
      * ```
      *
@@ -905,9 +888,7 @@ class SpannerClient
      *     $transactionId = "";
      *     $spannerClient->rollback($formattedSession, $transactionId);
      * } finally {
-     *     if (isset($spannerClient)) {
-     *         $spannerClient->close();
-     *     }
+     *     $spannerClient->close();
      * }
      * ```
      *
