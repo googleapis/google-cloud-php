@@ -29,8 +29,10 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+namespace Google\GAX\UnitTests;
 
 use Google\GAX\PageStreamingDescriptor;
+use PHPUnit_Framework_TestCase;
 
 class PageStreamingDescriptorTest extends PHPUnit_Framework_TestCase
 {

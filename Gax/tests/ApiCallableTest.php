@@ -29,20 +29,24 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+namespace Google\GAX\UnitTests;
 
 use Google\GAX\ApiCallable;
+use Google\GAX\ApiException;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\BackoffSettings;
 use Google\GAX\CallSettings;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\RetrySettings;
-use Google\GAX\Testing\MockStub;
-use Google\GAX\Testing\MockStatus;
-use Google\GAX\Testing\MockRequest;
-use Google\GAX\Testing\MockResponse;
+use Google\GAX\UnitTests\Mocks\MockStub;
+use Google\GAX\UnitTests\Mocks\MockStatus;
+use Google\GAX\UnitTests\Mocks\MockRequest;
+use Google\GAX\UnitTests\Mocks\MockResponse;
 use google\longrunning\Operation;
 use google\protobuf\EmptyC;
 use google\rpc\Code;
+use PHPUnit_Framework_TestCase;
+use Grpc;
 
 class ApiCallableTest extends PHPUnit_Framework_TestCase
 {
@@ -139,7 +143,8 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
             'totalTimeoutMillis' => 2000]);
         $retrySettings = new RetrySettings(
             [Grpc\STATUS_DEADLINE_EXCEEDED],
-            $backoffSettings);
+            $backoffSettings
+        );
         $callSettings = new CallSettings(['retrySettings' => $retrySettings]);
         $apiCall = ApiCallable::createApiCall($stub, 'takeAction', $callSettings);
         $actualResponse = $apiCall($request, [], []);
@@ -179,12 +184,13 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
             'totalTimeoutMillis' => 3000]);
         $retrySettings = new RetrySettings(
             [Grpc\STATUS_DEADLINE_EXCEEDED],
-            $backoffSettings);
+            $backoffSettings
+        );
         $callSettings = new CallSettings(['retrySettings' => $retrySettings]);
 
         // Use time function that simulates 1100ms elapsing with each call to the stub
         $incrementMillis = 1100;
-        $timeFuncMillis = function() use ($stub, $incrementMillis) {
+        $timeFuncMillis = function () use ($stub, $incrementMillis) {
             $actualCalls = count($stub->actualCalls);
             return $actualCalls * $incrementMillis;
         };
@@ -192,9 +198,13 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
         $raisedException = null;
         try {
             $apiCall = ApiCallable::createApiCall(
-                $stub, 'takeAction', $callSettings, ['timeFuncMillis' => $timeFuncMillis]);
+                $stub,
+                'takeAction',
+                $callSettings,
+                ['timeFuncMillis' => $timeFuncMillis]
+            );
             $response = $apiCall($request, [], []);
-        } catch (Google\GAX\ApiException $e) {
+        } catch (ApiException $e) {
             $raisedException = $e;
         }
 
@@ -225,7 +235,11 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
         ]);
         $callSettings = new CallSettings();
         $apiCall = ApiCallable::createApiCall(
-            $stub, 'takeAction', $callSettings, ['pageStreamingDescriptor' => $descriptor]);
+            $stub,
+            'takeAction',
+            $callSettings,
+            ['pageStreamingDescriptor' => $descriptor]
+        );
         $response = $apiCall($request, [], []);
         $this->assertEquals(1, count($stub->actualCalls));
         $actualResources = [];
@@ -255,7 +269,11 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
         ]);
         $callSettings = new CallSettings();
         $apiCall = ApiCallable::createApiCall(
-            $stub, 'takeAction', $callSettings, ['pageStreamingDescriptor' => $descriptor]);
+            $stub,
+            'takeAction',
+            $callSettings,
+            ['pageStreamingDescriptor' => $descriptor]
+        );
         $response = $apiCall($request, [], []);
         $this->assertEquals(1, count($stub->actualCalls));
         $actualResources = [];
@@ -268,8 +286,10 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
         }
         $this->assertEquals(3, count($stub->actualCalls));
         $this->assertEquals(['resource1', 'resource2', 'resource3', 'resource4'], $actualResources);
-        $this->assertEquals(['token', 'nextPageToken1', 'nextPageToken2'],
-            $actualTokens);
+        $this->assertEquals(
+            ['token', 'nextPageToken1', 'nextPageToken2'],
+            $actualTokens
+        );
     }
 
     public function testPageStreamingFixedSizeIterationNoTimeout()
@@ -293,7 +313,11 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
         $collectionSize = 2;
         $callSettings = new CallSettings();
         $apiCall = ApiCallable::createApiCall(
-            $stub, 'takeAction', $callSettings, ['pageStreamingDescriptor' => $descriptor]);
+            $stub,
+            'takeAction',
+            $callSettings,
+            ['pageStreamingDescriptor' => $descriptor]
+        );
         $response = $apiCall($request, [], []);
         $this->assertEquals(1, count($stub->actualCalls));
         $actualResources = [];
@@ -310,7 +334,7 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException Google\GAX\ValidationException
+     * @expectedException \Google\GAX\ValidationException
      * @expectedExceptionMessage FixedSizeCollection is not supported
      */
     public function testPageStreamingFixedSizeFailPageSizeNotSupported()
@@ -329,13 +353,17 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
         $collectionSize = 2;
         $callSettings = new CallSettings();
         $apiCall = ApiCallable::createApiCall(
-            $stub, 'takeAction', $callSettings, ['pageStreamingDescriptor' => $descriptor]);
+            $stub,
+            'takeAction',
+            $callSettings,
+            ['pageStreamingDescriptor' => $descriptor]
+        );
         $response = $apiCall($request, [], []);
         $response->expandToFixedSizeCollection($collectionSize);
     }
 
     /**
-     * @expectedException Google\GAX\ValidationException
+     * @expectedException \Google\GAX\ValidationException
      * @expectedExceptionMessage No page size parameter found
      */
     public function testPageStreamingFixedSizeFailPageSizeNotSet()
@@ -355,13 +383,17 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
         $collectionSize = 2;
         $callSettings = new CallSettings();
         $apiCall = ApiCallable::createApiCall(
-            $stub, 'takeAction', $callSettings, ['pageStreamingDescriptor' => $descriptor]);
+            $stub,
+            'takeAction',
+            $callSettings,
+            ['pageStreamingDescriptor' => $descriptor]
+        );
         $response = $apiCall($request, [], []);
         $response->expandToFixedSizeCollection($collectionSize);
     }
 
     /**
-     * @expectedException Google\GAX\ValidationException
+     * @expectedException \Google\GAX\ValidationException
      * @expectedExceptionMessage collectionSize parameter is less than the page size
      */
     public function testPageStreamingFixedSizeFailPageSizeTooLarge()
@@ -381,7 +413,11 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
         ]);
         $callSettings = new CallSettings();
         $apiCall = ApiCallable::createApiCall(
-            $stub, 'takeAction', $callSettings, ['pageStreamingDescriptor' => $descriptor]);
+            $stub,
+            'takeAction',
+            $callSettings,
+            ['pageStreamingDescriptor' => $descriptor]
+        );
         $response = $apiCall($request, [], []);
         $response->expandToFixedSizeCollection($collectionSize);
     }
@@ -405,7 +441,11 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
         ]);
         $callSettings = new CallSettings(['timeout' => 1000]);
         $apiCall = ApiCallable::createApiCall(
-            $stub, 'takeAction', $callSettings, ['pageStreamingDescriptor' => $descriptor]);
+            $stub,
+            'takeAction',
+            $callSettings,
+            ['pageStreamingDescriptor' => $descriptor]
+        );
         $response = $apiCall($request, [], []);
         $this->assertEquals(1, count($stub->actualCalls));
         $actualResources = [];
@@ -428,7 +468,11 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
             'phpVersion' => '5.5.0',
         ]);
         $apiCall = ApiCallable::createApiCall(
-            $stub, 'takeAction', new CallSettings(), ['headerDescriptor' => $headerDescriptor]);
+            $stub,
+            'takeAction',
+            new CallSettings(),
+            ['headerDescriptor' => $headerDescriptor]
+        );
         $resources = $apiCall(new MockRequest(), [], []);
         $actualCalls = $stub->actualCalls;
         $this->assertEquals(1, count($actualCalls));
@@ -485,7 +529,11 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
         ];
         $callSettings = new CallSettings();
         $apiCall = ApiCallable::createApiCall(
-            $callStub, 'takeAction', $callSettings, ['longRunningDescriptor' => $descriptor]);
+            $callStub,
+            'takeAction',
+            $callSettings,
+            ['longRunningDescriptor' => $descriptor]
+        );
 
         /* @var $response \Google\GAX\OperationResponse */
         $response = $apiCall($request, [], []);
@@ -547,7 +595,11 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
         ];
         $callSettings = new CallSettings();
         $apiCall = ApiCallable::createApiCall(
-            $callStub, 'takeAction', $callSettings, ['longRunningDescriptor' => $descriptor]);
+            $callStub,
+            'takeAction',
+            $callSettings,
+            ['longRunningDescriptor' => $descriptor]
+        );
 
         /* @var $response \Google\GAX\OperationResponse */
         $response = $apiCall($request, [], []);
@@ -595,7 +647,11 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
         ];
         $callSettings = new CallSettings();
         $apiCall = ApiCallable::createApiCall(
-            $callStub, 'takeAction', $callSettings, ['longRunningDescriptor' => $descriptor]);
+            $callStub,
+            'takeAction',
+            $callSettings,
+            ['longRunningDescriptor' => $descriptor]
+        );
 
         /* @var $response \Google\GAX\OperationResponse */
         $response = $apiCall($request, [], []);
@@ -635,7 +691,8 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
             [$responseB, new MockStatus(Grpc\STATUS_OK, '')],
         ];
         $callStub = MockStub::createWithResponseSequence(
-            [[$initialResponse, new MockStatus(Grpc\STATUS_OK, '')]]);
+            [[$initialResponse, new MockStatus(Grpc\STATUS_OK, '')]]
+        );
         $opStub = MockStub::createWithResponseSequence($responseSequence);
         $opClient = OperationResponseTest::createOperationsClient($opStub);
         $descriptor = [
@@ -645,7 +702,11 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
         ];
         $callSettings = new CallSettings();
         $apiCall = ApiCallable::createApiCall(
-            $callStub, 'takeAction', $callSettings, ['longRunningDescriptor' => $descriptor]);
+            $callStub,
+            'takeAction',
+            $callSettings,
+            ['longRunningDescriptor' => $descriptor]
+        );
 
         /* @var $response \Google\GAX\OperationResponse */
         $response = $apiCall($request, [], []);
@@ -707,7 +768,11 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
         ];
         $callSettings = new CallSettings();
         $apiCall = ApiCallable::createApiCall(
-            $callStub, 'takeAction', $callSettings, ['longRunningDescriptor' => $descriptor]);
+            $callStub,
+            'takeAction',
+            $callSettings,
+            ['longRunningDescriptor' => $descriptor]
+        );
 
         /* @var $response \Google\GAX\OperationResponse */
         $response = $apiCall($request, [], []);
@@ -758,7 +823,11 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
         ];
         $callSettings = new CallSettings();
         $apiCall = ApiCallable::createApiCall(
-            $callStub, 'takeAction', $callSettings, ['longRunningDescriptor' => $descriptor]);
+            $callStub,
+            'takeAction',
+            $callSettings,
+            ['longRunningDescriptor' => $descriptor]
+        );
 
         /* @var $response \Google\GAX\OperationResponse */
         $response = $apiCall($request, [], []);

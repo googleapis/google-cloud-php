@@ -30,18 +30,15 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace Google\GAX\Testing;
+namespace Google\GAX\UnitTests\Mocks;
 
-class MockRequest
+class MockStatus
 {
-    public $pageToken;
-    public $pageSize;
-
-    public static function createPageStreamingRequest($pageToken, $pageSize = null)
+    public $code;
+    public $details;
+    public function __construct($code, $details)
     {
-        $request = new MockRequest();
-        $request->pageToken = $pageToken;
-        $request->pageSize = $pageSize;
-        return $request;
+        $this->code = $code;
+        $this->details = $details;
     }
 }

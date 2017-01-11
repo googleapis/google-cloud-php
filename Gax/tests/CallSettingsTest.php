@@ -29,67 +29,70 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+namespace Google\GAX\UnitTests;
 
 use Google\GAX\BackoffSettings;
 use Google\GAX\CallSettings;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\RetrySettings;
-
-$serviceName = 'test.interface.v1.api';
-$inputConfig = [
-    'interfaces' => [
-        $serviceName => [
-            'retry_codes' => [
-                'foo_retry' => ['code_a', 'code_b'],
-                'bar_retry' => ['code_c']
-            ],
-            'retry_params' => [
-                'default' => [
-                    'initial_retry_delay_millis' => 100,
-                    'retry_delay_multiplier' => 1.2,
-                    'max_retry_delay_millis' => 1000,
-                    'initial_rpc_timeout_millis' => 300,
-                    'rpc_timeout_multiplier' => 1.3,
-                    'max_rpc_timeout_millis' => 3000,
-                    'total_timeout_millis' => 30000
-                ]
-            ],
-            'methods' => [
-                'SimpleMethod' => [
-                    'retry_codes_name' => 'foo_retry',
-                    'retry_params_name' => 'default'
-                ],
-                'PageStreamingMethod' => [
-                    'retry_codes_name' => 'bar_retry',
-                    'retry_params_name' => 'default'
-                ]
-            ]
-        ]
-    ]
-];
-
-$statusCodes = ['code_a' => 'code_val_a',
-                'code_b' => 'code_val_b',
-                'code_c' => 'code_val_c'];
-
-$backoffSettings = new BackoffSettings([
-    'initialRetryDelayMillis' => 100,
-    'retryDelayMultiplier' => 1.3,
-    'maxRetryDelayMillis' => 400,
-    'initialRpcTimeoutMillis' => 150,
-    'rpcTimeoutMultiplier' => 2,
-    'maxRpcTimeoutMillis' => 500,
-    'totalTimeoutMillis' => 2000]);
+use PHPUnit_Framework_TestCase;
+use Grpc;
 
 class CallSettingsTest extends PHPUnit_Framework_TestCase
 {
+    const SERVICE_NAME = 'test.interface.v1.api';
+
+    private static function buildInputConfig()
+    {
+        return [
+            'interfaces' => [
+                CallSettingsTest::SERVICE_NAME => [
+                    'retry_codes' => [
+                        'foo_retry' => ['code_a', 'code_b'],
+                        'bar_retry' => ['code_c']
+                    ],
+                    'retry_params' => [
+                        'default' => [
+                            'initial_retry_delay_millis' => 100,
+                            'retry_delay_multiplier' => 1.2,
+                            'max_retry_delay_millis' => 1000,
+                            'initial_rpc_timeout_millis' => 300,
+                            'rpc_timeout_multiplier' => 1.3,
+                            'max_rpc_timeout_millis' => 3000,
+                            'total_timeout_millis' => 30000
+                        ]
+                    ],
+                    'methods' => [
+                        'SimpleMethod' => [
+                            'retry_codes_name' => 'foo_retry',
+                            'retry_params_name' => 'default'
+                        ],
+                        'PageStreamingMethod' => [
+                            'retry_codes_name' => 'bar_retry',
+                            'retry_params_name' => 'default'
+                        ]
+                    ]
+                ]
+            ]
+        ];
+    }
+
     public function testConstructSettings()
     {
-        global $serviceName, $inputConfig, $statusCodes;
+        $statusCodes = ['code_a' => 'code_val_a',
+            'code_b' => 'code_val_b',
+            'code_c' => 'code_val_c'
+        ];
+        $inputConfig = CallSettingsTest::buildInputConfig();
 
         $defaultCallSettings =
                 CallSettings::load(
-                    $serviceName, $inputConfig, [], $statusCodes, 30);
+                    CallSettingsTest::SERVICE_NAME,
+                    $inputConfig,
+                    [],
+                    $statusCodes,
+                    30
+                );
         $simpleMethod = $defaultCallSettings['simpleMethod'];
         $this->assertEquals(30, $simpleMethod->getTimeoutMillis());
         $simpleMethodRetry = $simpleMethod->getRetrySettings();
@@ -102,13 +105,22 @@ class CallSettingsTest extends PHPUnit_Framework_TestCase
 
     public function testConstructSettingsOverride()
     {
-        global $serviceName, $inputConfig, $statusCodes, $pageStreamingDescriptors;
+        $statusCodes = ['code_a' => 'code_val_a',
+            'code_b' => 'code_val_b',
+            'code_c' => 'code_val_c'
+        ];
+        $inputConfig = CallSettingsTest::buildInputConfig();
 
         // Turn off retries for simpleMethod
         $retryingOverride = ['simpleMethod' => null];
         $defaultCallSettings =
                 CallSettings::load(
-                    $serviceName, $inputConfig, $retryingOverride, $statusCodes, 30);
+                    CallSettingsTest::SERVICE_NAME,
+                    $inputConfig,
+                    $retryingOverride,
+                    $statusCodes,
+                    30
+                );
         $simpleMethod = $defaultCallSettings['simpleMethod'];
         $this->assertEquals(30, $simpleMethod->getTimeoutMillis());
         $simpleMethodRetry = $simpleMethod->getRetrySettings();
@@ -120,7 +132,15 @@ class CallSettingsTest extends PHPUnit_Framework_TestCase
 
     public function testMergeEmpty()
     {
-        global $backoffSettings;
+        $backoffSettings = new BackoffSettings([
+            'initialRetryDelayMillis' => 100,
+            'retryDelayMultiplier' => 1.3,
+            'maxRetryDelayMillis' => 400,
+            'initialRpcTimeoutMillis' => 150,
+            'rpcTimeoutMultiplier' => 2,
+            'maxRpcTimeoutMillis' => 500,
+            'totalTimeoutMillis' => 2000
+        ]);
 
         $retrySettings = new RetrySettings(['a', 'b'], $backoffSettings);
         $settings = new CallSettings(['timeoutMillis' => 10, 'retrySettings' => $retrySettings]);
@@ -132,7 +152,15 @@ class CallSettingsTest extends PHPUnit_Framework_TestCase
 
     public function testMerge()
     {
-        global $backoffSettings;
+        $backoffSettings = new BackoffSettings([
+            'initialRetryDelayMillis' => 100,
+            'retryDelayMultiplier' => 1.3,
+            'maxRetryDelayMillis' => 400,
+            'initialRpcTimeoutMillis' => 150,
+            'rpcTimeoutMultiplier' => 2,
+            'maxRpcTimeoutMillis' => 500,
+            'totalTimeoutMillis' => 2000
+        ]);
 
         $retrySettings = new RetrySettings(['a', 'b'], $backoffSettings);
         $settings = new CallSettings(['timeoutMillis' => 10, 'retrySettings' => $retrySettings]);

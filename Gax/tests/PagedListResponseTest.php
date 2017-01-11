@@ -29,13 +29,14 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+namespace Google\GAX\UnitTests;
 
 use Google\GAX\PagedListResponse;
 use Google\GAX\PageStreamingDescriptor;
-use Google\GAX\Testing\MockStub;
-use Google\GAX\Testing\MockStatus;
-use Google\GAX\Testing\MockRequest;
-use Google\GAX\Testing\MockResponse;
+use Google\GAX\UnitTests\Mocks\MockStub;
+use Google\GAX\UnitTests\Mocks\MockRequest;
+use Google\GAX\UnitTests\Mocks\MockResponse;
+use PHPUnit_Framework_TestCase;
 
 class PagedListResponseTest extends PHPUnit_Framework_TestCase
 {
@@ -49,7 +50,7 @@ class PagedListResponseTest extends PHPUnit_Framework_TestCase
         ]);
         $response = MockResponse::createPageStreamingResponse('nextPageToken1', ['resource1']);
         $stub = MockStub::create($response);
-        $mockApiCall = function() use ($stub) {
+        $mockApiCall = function () use ($stub) {
             list($response, $status) =
                 call_user_func_array(array($stub, 'takeAction'), func_get_args())->wait();
             return $response;

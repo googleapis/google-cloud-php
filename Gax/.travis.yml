@@ -9,6 +9,6 @@ install:
   - composer install
 script:
   - vendor/bin/phpunit --coverage-clover=coverage.xml
-  - vendor/bin/phpcs -l --standard=PSR2 src/
+  - vendor/bin/phpcs --standard=./ruleset.xml
 after_success:
   - bash <(curl -s https://codecov.io/bash)

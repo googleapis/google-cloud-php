@@ -29,18 +29,22 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+namespace Google\GAX\UnitTests;
 
 use Google\GAX\Page;
 use Google\GAX\FixedSizeCollection;
 use Google\GAX\PageStreamingDescriptor;
-use Google\GAX\Testing\MockStub;
-use Google\GAX\Testing\MockStatus;
-use Google\GAX\Testing\MockRequest;
-use Google\GAX\Testing\MockResponse;
+use Google\GAX\UnitTests\Mocks\MockStub;
+use Google\GAX\UnitTests\Mocks\MockStatus;
+use Google\GAX\UnitTests\Mocks\MockRequest;
+use Google\GAX\UnitTests\Mocks\MockResponse;
+use PHPUnit_Framework_TestCase;
+use Grpc;
 
 class FixedSizeCollectionTest extends PHPUnit_Framework_TestCase
 {
-    private static function createPage($responseSequence) {
+    private static function createPage($responseSequence)
+    {
         $mockRequest = MockRequest::createPageStreamingRequest('token', 3);
         $stub = MockStub::createWithResponseSequence($responseSequence);
         $descriptor = new PageStreamingDescriptor([
@@ -49,7 +53,7 @@ class FixedSizeCollectionTest extends PHPUnit_Framework_TestCase
             'responsePageTokenField' => 'nextPageToken',
             'resourceField' => 'resource'
         ]);
-        $mockApiCall = function() use ($stub) {
+        $mockApiCall = function () use ($stub) {
             list($response, $status) =
                 call_user_func_array(array($stub, 'takeAction'), func_get_args())->wait();
             return $response;
@@ -57,15 +61,24 @@ class FixedSizeCollectionTest extends PHPUnit_Framework_TestCase
         return new Page([$mockRequest, [], []], $mockApiCall, $descriptor);
     }
 
-    public function testFixedCollectionMethods() {
-        $responseA = MockResponse::createPageStreamingResponse('nextPageToken1',
-            ['resource1', 'resource2']);
-        $responseB = MockResponse::createPageStreamingResponse('nextPageToken2',
-            ['resource3', 'resource4', 'resource5']);
-        $responseC = MockResponse::createPageStreamingResponse('nextPageToken3',
-            ['resource6', 'resource7']);
-        $responseD = MockResponse::createPageStreamingResponse('',
-            ['resource8', 'resource9']);
+    public function testFixedCollectionMethods()
+    {
+        $responseA = MockResponse::createPageStreamingResponse(
+            'nextPageToken1',
+            ['resource1', 'resource2']
+        );
+        $responseB = MockResponse::createPageStreamingResponse(
+            'nextPageToken2',
+            ['resource3', 'resource4', 'resource5']
+        );
+        $responseC = MockResponse::createPageStreamingResponse(
+            'nextPageToken3',
+            ['resource6', 'resource7']
+        );
+        $responseD = MockResponse::createPageStreamingResponse(
+            '',
+            ['resource8', 'resource9']
+        );
         $page = FixedSizeCollectionTest::createPage([
             [$responseA, new MockStatus(Grpc\STATUS_OK, '')],
             [$responseB, new MockStatus(Grpc\STATUS_OK, '')],
@@ -79,8 +92,10 @@ class FixedSizeCollectionTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($fixedSizeCollection->hasNextCollection(), true);
         $this->assertEquals($fixedSizeCollection->getNextPageToken(), 'nextPageToken2');
         $results = iterator_to_array($fixedSizeCollection);
-        $this->assertEquals($results,
-            ['resource1', 'resource2', 'resource3', 'resource4', 'resource5']);
+        $this->assertEquals(
+            $results,
+            ['resource1', 'resource2', 'resource3', 'resource4', 'resource5']
+        );
 
         $nextCollection = $fixedSizeCollection->getNextCollection();
 
@@ -88,7 +103,9 @@ class FixedSizeCollectionTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($nextCollection->hasNextCollection(), false);
         $this->assertEquals($nextCollection->getNextPageToken(), '');
         $results = iterator_to_array($nextCollection);
-        $this->assertEquals($results,
-            ['resource6', 'resource7', 'resource8', 'resource9']);
+        $this->assertEquals(
+            $results,
+            ['resource6', 'resource7', 'resource8', 'resource9']
+        );
     }
 }

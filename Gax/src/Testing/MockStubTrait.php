@@ -53,12 +53,13 @@ trait MockStubTrait
      * @param array $options
      * @return MockUnaryCall
      */
-    public function _simpleRequest($method,
-                                   $argument,
-                                   $deserialize,
-                                   $metadata = [],
-                                   $options = [])
-    {
+    public function _simpleRequest(
+        $method,
+        $argument,
+        $deserialize,
+        $metadata = [],
+        $options = []
+    ) {
         $this->receivedFuncCalls[] = [$method, $argument::deserialize($argument->serialize())];
         list($response, $status) = array_shift($this->responses);
         return new MockUnaryCall($response, $deserialize, $status);
