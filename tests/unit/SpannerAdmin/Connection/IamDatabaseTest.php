@@ -46,7 +46,7 @@ class IamDatabaseTest extends \PHPUnit_Framework_TestCase
             ->shouldBeCalled()
             ->willReturn($res);
 
-        $this->iam->setConnection($this->connection->reveal());
+        $this->iam->___setProperty('connection', $this->connection->reveal());
 
         $p = $this->iam->getPolicy($args);
 
@@ -62,7 +62,7 @@ class IamDatabaseTest extends \PHPUnit_Framework_TestCase
             ->shouldBeCalled()
             ->willReturn($res);
 
-        $this->iam->setConnection($this->connection->reveal());
+        $this->iam->___setProperty('connection', $this->connection->reveal());
 
         $p = $this->iam->setPolicy($args);
 
@@ -78,7 +78,7 @@ class IamDatabaseTest extends \PHPUnit_Framework_TestCase
             ->shouldBeCalled()
             ->willReturn($res);
 
-        $this->iam->setConnection($this->connection->reveal());
+        $this->iam->___setProperty('connection', $this->connection->reveal());
 
         $p = $this->iam->testPermissions($args);
 

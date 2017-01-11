@@ -255,7 +255,7 @@ class TransactionTest extends \PHPUnit_Framework_TestCase
         $operation = $this->prophesize(Operation::class);
         $operation->commit($this->session, $mutations, ['transactionId' => self::TRANSACTION])->shouldBeCalled();
 
-        $this->transaction->setOperation($operation->reveal());
+        $this->transaction->___setProperty('operation', $operation->reveal());
 
         $this->transaction->commit();
     }
@@ -314,7 +314,7 @@ class TransactionTest extends \PHPUnit_Framework_TestCase
     private function refreshOperation()
     {
         $operation = new Operation($this->connection->reveal(), false);
-        $this->transaction->setOperation($operation);
+        $this->transaction->___setProperty('operation', $operation);
     }
 
     private function commitResponse()

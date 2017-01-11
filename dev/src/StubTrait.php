@@ -39,25 +39,6 @@ trait StubTrait
         $property->setValue($this, $value);
     }
 
-    public function __call($method, $args)
-    {
-        $matches = [];
-        if (!preg_match('/set([a-zA-z0-9]{0,})/', $method, $matches)) {
-            throw new \BadMethodCallException("Method $method does not exist");
-        }
-
-        $prop = lcfirst($matches[1]);
-
-        if (!in_array($prop, json_decode($this->___props))) {
-            throw new \BadMethodCallException(sprintf('Property %s cannot be overloaded', $prop));
-        }
-
-        $property = $this->___getPropertyReflector($prop);
-
-        $property->setAccessible(true);
-        $property->setValue($this, $args[0]);
-    }
-
     private function ___getPropertyReflector($property)
     {
         $trait = new \ReflectionClass($this);

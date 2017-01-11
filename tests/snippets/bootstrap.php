@@ -35,7 +35,7 @@ register_shutdown_function(function () {
 
 function stub($name, $extends)
 {
-    $tpl = 'class %s extends %s {use \Google\Cloud\Dev\SetStubConnectionTrait; }';
+    $tpl = 'class %s extends %s {use \Google\Cloud\Dev\StubTrait; }';
 
     eval(sprintf($tpl, $name, $extends));
 }
