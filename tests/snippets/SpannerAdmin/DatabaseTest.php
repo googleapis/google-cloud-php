@@ -69,7 +69,7 @@ class DatabaseTest extends SnippetTestCase
             ->shouldBeCalled()
             ->willReturn(['statements' => []]);
 
-        $this->database->setConnection($this->connection->reveal());
+        $this->database->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke();
         $this->assertEquals('Database exists!', $res->output());
@@ -83,7 +83,7 @@ class DatabaseTest extends SnippetTestCase
         $this->connection->updateDatabase(Argument::any())
             ->shouldBeCalled();
 
-        $this->database->setConnection($this->connection->reveal());
+        $this->database->___setProperty('connection', $this->connection->reveal());
 
         $snippet->invoke();
     }
@@ -96,7 +96,7 @@ class DatabaseTest extends SnippetTestCase
         $this->connection->updateDatabase(Argument::any())
             ->shouldBeCalled();
 
-        $this->database->setConnection($this->connection->reveal());
+        $this->database->___setProperty('connection', $this->connection->reveal());
 
         $snippet->invoke();
     }
@@ -109,7 +109,7 @@ class DatabaseTest extends SnippetTestCase
         $this->connection->dropDatabase(Argument::any())
             ->shouldBeCalled();
 
-        $this->database->setConnection($this->connection->reveal());
+        $this->database->___setProperty('connection', $this->connection->reveal());
 
         $snippet->invoke();
     }
@@ -130,7 +130,7 @@ class DatabaseTest extends SnippetTestCase
                 'statements' => $stmts
             ]);
 
-        $this->database->setConnection($this->connection->reveal());
+        $this->database->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke('statements');
         $this->assertEquals($stmts, $res->returnVal());
