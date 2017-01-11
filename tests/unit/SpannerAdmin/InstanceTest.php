@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Unit\Spanner\Admin;
+namespace Google\Cloud\Tests\Unit\SpannerAdmin;
 
 use Google\Cloud\Exception\NotFoundException;
 use Google\Cloud\Iam\Iam;
@@ -59,7 +59,7 @@ class InstanceTest extends \PHPUnit_Framework_TestCase
     {
         $this->connection->getInstance()->shouldNotBeCalled();
 
-        $instance = new Instance($this->connection->reveal(), $this->prophesize(SessionPoolInterface::class)->reveal(), self::PROJECT_ID, self::NAME, ['foo' => 'bar']);
+        $instance = new Instance($this->connection->reveal(), $this->prophesize(SessionPoolInterface::class)->reveal(), self::PROJECT_ID, self::NAME, false, ['foo' => 'bar']);
         $this->assertEquals('bar', $instance->info()['foo']);
     }
 
@@ -275,6 +275,31 @@ class InstanceTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('database2', $dbs[1]->name());
     }
 
+    public function testDatabasesPaged()
+    {
+        $databases = [
+            ['name' => DatabaseAdminClient::formatDatabaseName(self::PROJECT_ID, self::NAME, 'database1')],
+            ['name' => DatabaseAdminClient::formatDatabaseName(self::PROJECT_ID, self::NAME, 'database2')]
+        ];
+
+        $iteration = 0;
+        $this->connection->listDatabases(Argument::any())
+            ->shouldBeCalledTimes(2)
+            ->willReturn(['databases' => [$databases[0]], 'nextPageToken' => 'foo'], ['databases' => [$databases[1]]]);
+
+        $this->instance->setConnection($this->connection->reveal());
+
+        $dbs = $this->instance->databases();
+
+        $this->assertInstanceOf(\Generator::class, $dbs);
+
+        $dbs = iterator_to_array($dbs);
+
+        $this->assertEquals(2, count($dbs));
+        $this->assertEquals('database1', $dbs[0]->name());
+        $this->assertEquals('database2', $dbs[1]->name());
+    }
+
     public function testIam()
     {
         $this->assertInstanceOf(Iam::class, $this->instance->iam());
@@ -284,6 +309,6 @@ class InstanceTest extends \PHPUnit_Framework_TestCase
 
     private function getDefaultInstance()
     {
-        return json_decode(file_get_contents(__DIR__ .'/../../fixtures/spanner/instance.json'), true);
+        return json_decode(file_get_contents(__DIR__ .'/../fixtures/spanner/instance.json'), true);
     }
 }

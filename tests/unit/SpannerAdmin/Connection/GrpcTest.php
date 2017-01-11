@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Unit\Spanner\Admin\Connection;
+namespace Google\Cloud\Tests\Unit\SpannerAdmin\Connection;
 
 use Google\Cloud\GrpcRequestWrapper;
 use Google\Cloud\GrpcTrait;

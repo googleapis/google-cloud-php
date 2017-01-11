@@ -326,27 +326,23 @@ class SpannerClient
     /**
      * Create a new KeyRange object
      *
-     * @param array $range [optional] The key range data.
+     * @param array $options [optional] {
+     *     Configuration Options.
+     *
+     *     @type string $startType Either "open" or "closed". Use constants
+     *           `KeyRange::TYPE_OPEN` and `KeyRange::TYPE_CLOSED` for
+     *           guaranteed correctness.
+     *     @type array $start The key with which to start the range.
+     *     @type string $endType Either "open" or "closed". Use constants
+     *           `KeyRange::TYPE_OPEN` and `KeyRange::TYPE_CLOSED` for
+     *           guaranteed correctness.
+     *     @type array $end The key with which to end the range.
+     * }
      * @return KeyRange
      */
-    public function keyRange(array $range = [])
+    public function keyRange(array $options = [])
     {
-        return new KeyRange($range);
-    }
-
-    /**
-     * Get the session client
-     *
-     * Example:
-     * ```
-     * $sessionClient = $spanner->sessionClient();
-     * ```
-     *
-     * @return SessionClient
-     */
-    public function sessionClient()
-    {
-        return $this->sessionClient;
+        return new KeyRange($options);
     }
 
     /**
@@ -413,5 +409,20 @@ class SpannerClient
     public function int64($value)
     {
         return new Int64($value);
+    }
+
+    /**
+     * Get the session client
+     *
+     * Example:
+     * ```
+     * $sessionClient = $spanner->sessionClient();
+     * ```
+     *
+     * @return SessionClient
+     */
+    public function sessionClient()
+    {
+        return $this->sessionClient;
     }
 }

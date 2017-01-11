@@ -34,7 +34,7 @@ namespace Google\Cloud\Spanner;
 class Timestamp implements ValueInterface
 {
     const FORMAT = 'Y-m-d\TH:i:s.u\Z';
-    const FORMAT_INTERPOLATE = 'Y-m-d\TH:i:s.%\d\Z';
+    const FORMAT_INTERPOLATE = 'Y-m-d\TH:i:s.%\s\Z';
 
     /**
      * @var \DateTimeInterface
@@ -84,7 +84,8 @@ class Timestamp implements ValueInterface
     public function formatAsString()
     {
         $this->value->setTimezone(new \DateTimeZone('UTC'));
-        return sprintf($this->value->format(self::FORMAT_INTERPOLATE), $this->nanoSeconds);
+        $ns = str_pad((string) $this->nanoSeconds, 6, '0', STR_PAD_LEFT);
+        return sprintf($this->value->format(self::FORMAT_INTERPOLATE), $ns);
     }
 
     /**

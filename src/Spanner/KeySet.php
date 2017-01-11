@@ -43,6 +43,18 @@ class KeySet
      */
     private $all;
 
+    /**
+     * Create a KeySet.
+     *
+     * @param array $options [optional] {
+     *     @type array $keys A list of specific keys. Entries in keys should
+     *           have exactly as many elements as there are columns in the
+     *           primary or index key with which this KeySet is used.
+     *     @type KeyRange[] $ranges A list of Key Ranges.
+     *     @type bool $all If true, KeySet will match all keys in a table.
+     *           **Defaults to** `false`.
+     * }
+     */
     public function __construct(array $options = [])
     {
         $options += [
@@ -58,11 +70,36 @@ class KeySet
         $this->all = (bool) $options['all'];
     }
 
+    /**
+     * Fetch the KeyRanges
+     *
+     * @return KeyRange[]
+     */
+    public function ranges()
+    {
+        return $this->ranges;
+    }
+
+
+    /**
+     * Add a single KeyRange.
+     *
+     * @param KeyRange $range A KeyRange instance.
+     * @return void
+     */
     public function addRange(KeyRange $range)
     {
         $this->ranges[] = $range;
     }
 
+    /**
+     * Set the KeySet's KeyRanges.
+     *
+     * Any existing KeyRanges will be overridden.
+     *
+     * @param KeyRange[] $ranges An array of KeyRange objects.
+     * @return void
+     */
     public function setRanges(array $ranges)
     {
         $this->validateBatch($ranges, KeyRange::class);
@@ -70,21 +107,69 @@ class KeySet
         $this->ranges = $ranges;
     }
 
+    /**
+     * Fetch the keys.
+     *
+     * @return mixed[]
+     */
+    public function keys()
+    {
+        return $this->keys;
+    }
+
+    /**
+     * Add a single key.
+     *
+     * A Key should have exactly as many elements as there are columns in the
+     * primary or index key with which this KeySet is used.
+     *
+     * @param mixed $key The Key to add.
+     * @return void
+     */
     public function addKey($key)
     {
         $this->keys[] = $key;
     }
 
+    /**
+     * Set the KeySet keys.
+     *
+     * Any existing keys will be overridden.
+     *
+     * @param mixed[] $keys
+     * @return void
+     */
     public function setKeys(array $keys)
     {
         $this->keys = $keys;
     }
 
-    public function setAll($all)
+    /**
+     * Get the value of Match All.
+     *
+     * @return bool
+     */
+    public function matchAll()
+    {
+        return $this->all;
+    }
+
+    /**
+     * Choose whether the KeySet should match all keys in a table.
+     *
+     * @param bool $all If true, all keys in a table will be matched.
+     * @return void
+     */
+    public function setMatchAll($all)
     {
         $this->all = (bool) $all;
     }
 
+    /**
+     * Format a KeySet object for use in the Spanner API.
+     *
+     * @access private
+     */
     public function keySetObject()
     {
         $ranges = [];

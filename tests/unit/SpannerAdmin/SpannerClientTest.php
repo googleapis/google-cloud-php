@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Unit\Spanner\Admin;
+namespace Google\Cloud\Tests\Unit\SpannerAdmin;
 
 use Google\Cloud\Exception\NotFoundException;
 use Google\Cloud\Spanner\Configuration;

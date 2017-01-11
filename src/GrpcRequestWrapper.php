@@ -127,7 +127,7 @@ class GrpcRequestWrapper
 
         try {
             return $this->handleResponse($backoff->execute($request, $args));
-        } catch (\Exception $ex) {
+        } catch (ApiException $ex) {
             throw $this->convertToGoogleException($ex);
         }
     }
