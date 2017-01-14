@@ -31,6 +31,8 @@
  */
 namespace Google\GAX\Testing;
 
+use google\rpc\Status;
+
 /**
  * The MockStubTrait is used by generated mock stub classes which extent \Grpc\BaseStub
  * (https://github.com/grpc/grpc/blob/master/src/php/lib/Grpc/BaseStub.php)
@@ -60,7 +62,7 @@ trait MockStubTrait
         $metadata = [],
         $options = []
     ) {
-        $this->receivedFuncCalls[] = [$method, $argument::deserialize($argument->serialize())];
+        $this->receivedFuncCalls[] = new ReceivedRequest($method, $argument::deserialize($argument->serialize()));
         list($response, $status) = array_shift($this->responses);
         return new MockUnaryCall($response, $deserialize, $status);
     }
@@ -68,6 +70,8 @@ trait MockStubTrait
     /**
      * Add a response object, and an optional status, to the list of responses to be returned via
      * _simpleRequest.
+     * @param mixed $response
+     * @param Status $status
      */
     public function addResponse($response, $status = null)
     {
@@ -76,6 +80,8 @@ trait MockStubTrait
 
     /**
      * Return a list of calls made to _simpleRequest, and clear $receivedFuncCalls.
+     *
+     * @return ReceivedRequest[] An array of received requests
      */
     public function getReceivedCalls()
     {
