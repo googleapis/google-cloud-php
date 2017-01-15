@@ -44,8 +44,7 @@
         "guzzlehttp/guzzle": "^5.3|^6.0",
         "guzzlehttp/psr7": "^1.2",
         "monolog/monolog": "~1",
-        "psr/http-message": "1.0.*",
-        "protobuf-php/protobuf": "^0.1.3"
+        "psr/http-message": "1.0.*"
     },
     "require-dev": {
         "phpunit/phpunit": "4.8.*",
