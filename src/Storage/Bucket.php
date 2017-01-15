@@ -201,7 +201,7 @@ class Bucket
      *           Acceptable values include,
      *           `"authenticatedRead"`, `"bucketOwnerFullControl"`,
      *           `"bucketOwnerRead"`, `"private"`, `"projectPrivate"`, and
-     *           `"publicRead"`. **Defaults to** `"private"`.
+     *           `"publicRead"`. **Defaults to** `null`.
      *     @type array $metadata The available options for metadata are outlined
      *           at the [JSON API docs](https://cloud.google.com/storage/docs/json_api/v1/objects/insert#request-body).
      *     @type string $encryptionKey A base64 encoded AES-256 customer-supplied
@@ -282,7 +282,7 @@ class Bucket
      *           Acceptable values include `"authenticatedRead`",
      *           `"bucketOwnerFullControl`", `"bucketOwnerRead`", `"private`",
      *           `"projectPrivate`", and `"publicRead"`. **Defaults to**
-     *           `"private"`.
+     *           `null`.
      *     @type array $metadata The available options for metadata are outlined
      *           at the [JSON API docs](https://cloud.google.com/storage/docs/json_api/v1/objects/insert#request-body).
      *     @type string $encryptionKey A base64 encoded AES-256 customer-supplied
@@ -530,7 +530,7 @@ class Bucket
      *           object. Acceptable values include, `"authenticatedRead"`,
      *           `"bucketOwnerFullControl"`, `"bucketOwnerRead"`, `"private"`,
      *           `"projectPrivate"`, and `"publicRead"`. **Defaults to**
-     *           `"private"`.
+     *           `null`.
      *     @type array $metadata Metadata to apply to the composed object. The
      *           available options for metadata are outlined at the
      *           [JSON API docs](https://cloud.google.com/storage/docs/json_api/v1/objects/insert#request-body).
