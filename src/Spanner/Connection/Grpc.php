@@ -38,6 +38,14 @@ class Grpc implements ConnectionInterface
 {
     use GrpcTrait;
 
+    const DATABASE_LRO_TYPE = '';
+    const OPERATION_LRO_TYPE = '';
+
+    private $lroTypes = [
+        self::DATABASE_LRO_TYPE,
+        self::OPERATION_LRO_TYPE
+    ];
+
     /**
      * @var InstanceAdminClient
      */
@@ -52,6 +60,11 @@ class Grpc implements ConnectionInterface
      * @var SpannerClient
      */
     private $spannerClient;
+
+    /**
+     * @var OperationsClient
+     */
+    private $operationsClient;
 
     /**
      * @var CodecInterface
@@ -92,6 +105,7 @@ class Grpc implements ConnectionInterface
         $this->instanceAdminClient = new InstanceAdminClient($grpcConfig);
         $this->databaseAdminClient = new DatabaseAdminClient($grpcConfig);
         $this->spannerClient = new SpannerClient($grpcConfig);
+        $this->operationsClient = $this->instanceAdminClient->getOperationsClient();
     }
 
     /**
@@ -485,6 +499,30 @@ class Grpc implements ConnectionInterface
             $this->pluck('transactionId', $args),
             $args
         ]);
+    }
+
+    /**
+     * @param array $args
+     */
+    public function getOperation(array $args)
+    {
+
+    }
+
+    /**
+     * @param array $args
+     */
+    public function cancelOperation(array $args)
+    {
+
+    }
+
+    /**
+     * @param array $args
+     */
+    public function deleteOperation(array $args)
+    {
+
     }
 
     /**

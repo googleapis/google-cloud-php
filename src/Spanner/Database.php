@@ -20,6 +20,7 @@ namespace Google\Cloud\Spanner;
 use Google\Cloud\ArrayTrait;
 use Google\Cloud\Exception\NotFoundException;
 use Google\Cloud\Iam\Iam;
+use Google\Cloud\LongRunning\LROTrait;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Connection\IamDatabase;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
@@ -225,10 +226,12 @@ class Database
             'operationId' => null
         ];
 
-        return $this->connection->updateDatabase($options + [
+        $res = $this->connection->updateDatabase($options + [
             'name' => $this->fullyQualifiedDatabaseName(),
             'statements' => $statements,
         ]);
+
+        return $this->longRunningResponse($res);
     }
 
     /**

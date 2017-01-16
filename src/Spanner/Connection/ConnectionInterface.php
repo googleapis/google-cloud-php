@@ -148,4 +148,19 @@ interface ConnectionInterface
      * @param array $args [optional]
      */
     public function rollback(array $args = []);
+
+    /**
+     * @param array $args
+     */
+    public function getOperation(array $args);
+
+    /**
+     * @param array $args
+     */
+    public function cancelOperation(array $args);
+
+    /**
+     * @param array $args
+     */
+    public function deleteOperation(array $args);
 }
