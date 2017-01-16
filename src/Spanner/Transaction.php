@@ -22,7 +22,18 @@ use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use RuntimeException;
 
 /**
- * Enabled interaction with Google Cloud Spanner inside a Transaction.
+ * Manages interaction with Google Cloud Spanner inside a Transaction.
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\ServiceBuilder;
+ *
+ * $cloud = new ServiceBuilder();
+ * $spanner = $cloud->spanner();
+ *
+ * $database = $spanner->connect('my-instance', 'my-database');
+ * $transaction = $database->readWriteTransaction();
+ * ```
  */
 class Transaction
 {
@@ -80,6 +91,15 @@ class Transaction
     /**
      * Enqueue an insert mutation.
      *
+     * Example:
+     * ```
+     * $transaction->insert('Posts', [
+     *     'ID' => 10,
+     *     'title' => 'My New Post',
+     *     'content' => 'Hello World'
+     * ]);
+     * ```
+     *
      * @param string $table The table to insert into.
      * @param array $data The data to insert.
      * @return Transaction The transaction, to enable method chaining.
@@ -91,6 +111,17 @@ class Transaction
 
     /**
      * Enqueue one or more insert mutations.
+     *
+     * Example:
+     * ```
+     * $transaction->insertBatch('Posts', [
+     *     [
+     *         'ID' => 10,
+     *         'title' => 'My New Post',
+     *         'content' => 'Hello World'
+     *     ]
+     * ]);
+     * ```
      *
      * @param string $table The table to insert into.
      * @param array $dataSet The data to insert.
@@ -106,6 +137,15 @@ class Transaction
     /**
      * Enqueue an update mutation.
      *
+     * Example:
+     * ```
+     * $transaction->update('Posts', [
+     *     'ID' => 10,
+     *     'title' => 'My New Post [Updated!]',
+     *     'content' => 'Modified Content'
+     * ]);
+     * ```
+     *
      * @param string $table The table to update.
      * @param array $data The data to update.
      * @return Transaction The transaction, to enable method chaining.
@@ -117,6 +157,17 @@ class Transaction
 
     /**
      * Enqueue one or more update mutations.
+     *
+     * Example:
+     * ```
+     * $transaction->updateBatch('Posts', [
+     *     [
+     *         'ID' => 10,
+     *         'title' => 'My New Post [Updated!]',
+     *         'content' => 'Modified Content'
+     *     ]
+     * ]);
+     * ```
      *
      * @param string $table The table to update.
      * @param array $dataSet The data to update.
@@ -132,6 +183,15 @@ class Transaction
     /**
      * Enqueue an insert or update mutation.
      *
+     * Example:
+     * ```
+     * $transaction->insertOrUpdate('Posts', [
+     *     'ID' => 10,
+     *     'title' => 'My New Post',
+     *     'content' => 'Hello World'
+     * ]);
+     * ```
+     *
      * @param string $table The table to insert into or update.
      * @param array $data The data to insert or update.
      * @return Transaction The transaction, to enable method chaining.
@@ -143,6 +203,17 @@ class Transaction
 
     /**
      * Enqueue one or more insert or update mutations.
+     *
+     * Example:
+     * ```
+     * $transaction->insertOrUpdateBatch('Posts', [
+     *     [
+     *         'ID' => 10,
+     *         'title' => 'My New Post',
+     *         'content' => 'Hello World'
+     *     ]
+     * ]);
+     * ```
      *
      * @param string $table The table to insert into or update.
      * @param array $dataSet The data to insert or update.
@@ -158,6 +229,15 @@ class Transaction
     /**
      * Enqueue an replace mutation.
      *
+     * Example:
+     * ```
+     * $transaction->replace('Posts', [
+     *     'ID' => 10,
+     *     'title' => 'My New Post [Replaced]',
+     *     'content' => 'Hello Moon'
+     * ]);
+     * ```
+     *
      * @param string $table The table to replace into.
      * @param array $data The data to replace.
      * @return Transaction The transaction, to enable method chaining.
@@ -169,6 +249,17 @@ class Transaction
 
     /**
      * Enqueue one or more replace mutations.
+     *
+     * Example:
+     * ```
+     * $transaction->replaceBatch('Posts', [
+     *     [
+     *         'ID' => 10,
+     *         'title' => 'My New Post [Replaced]',
+     *         'content' => 'Hello Moon'
+     *     ]
+     * ]);
+     * ```
      *
      * @param string $table The table to replace into.
      * @param array $dataSet The data to replace.
@@ -183,6 +274,15 @@ class Transaction
 
     /**
      * Enqueue an delete mutation.
+     *
+     * Example:
+     * ```
+     * $keySet = $spanner->keySet([
+     *     'keys' => [10]
+     * ]);
+     *
+     * $transaction->delete('Posts', $keySet);
+     * ```
      *
      * @param string $table The table to mutate.
      * @param KeySet $keySet The KeySet to identify rows to delete.
@@ -232,18 +332,29 @@ class Transaction
      * Note that if no KeySet is specified, all rows in a table will be
      * returned.
      *
-     * @todo is returning everything a reasonable default?
+     * Example:
+     * ```
+     * $keySet = $spanner->keySet([
+     *     'keys' => [10]
+     * ]);
      *
+     * $result = $database->read('Posts', [
+     *     'keySet' => $keySet
+     * ]);
+     * ```
+     *
+     * @codingStandardsIgnoreStart
      * @param string $table The table name.
      * @param array $options [optional] {
      *     Configuration Options.
      *
      *     @type string $index The name of an index on the table.
      *     @type array $columns A list of column names to be returned.
-     *     @type array $keySet A [KeySet](https://cloud.google.com/spanner/reference/rest/v1/KeySet).
+     *     @type array $keySet A [KeySet](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#google.spanner.v1.KeySet).
      *     @type int $offset The number of rows to offset results by.
      *     @type int $limit The number of results to return.
      * }
+     * @codingStandardsIgnoreEnd
      */
     public function read($table, array $options = [])
     {
@@ -256,6 +367,11 @@ class Transaction
      * Commit all mutations in a transaction.
      *
      * This closes the transaction, preventing any future API calls inside it.
+     *
+     * Example:
+     * ```
+     * $transaction->commit();
+     * ```
      *
      * @param array $options [optional] Configuration Options.
      * @return Timestamp The commit Timestamp.
@@ -282,6 +398,11 @@ class Transaction
      *
      * Rollback will NOT error if the transaction is not found or was already aborted.
      *
+     * Example:
+     * ```
+     * $transaction->rollback();
+     * ```
+     *
      * @param array $options [optional] Configuration Options.
      * @return void
      */
@@ -296,6 +417,11 @@ class Transaction
      * For snapshot read-only transactions, the read timestamp chosen for the
      * transaction.
      *
+     * Example:
+     * ```
+     * $timestamp = $transaction->readTimestamp();
+     * ```
+     *
      * @return Timestamp
      */
     public function readTimestamp()
@@ -306,6 +432,11 @@ class Transaction
     /**
      * Retrieve the Transaction ID.
      *
+     * Example:
+     * ```
+     * $id = $transaction->id();
+     * ```
+     *
      * @return string
      */
     public function id()
@@ -315,6 +446,11 @@ class Transaction
 
     /**
      * Retrieve the Transaction Context
+     *
+     * Example:
+     * ```
+     * $context = $transaction->context();
+     * ```
      *
      * @return string
      */

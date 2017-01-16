@@ -107,6 +107,11 @@ class KeyRange
     /**
      * Get the range start.
      *
+     * Example:
+     * ```
+     * $start = $range->start();
+     * ```
+     *
      * @return array
      */
     public function start()
@@ -117,6 +122,11 @@ class KeyRange
 
     /**
      * Set the range start.
+     *
+     * Example:
+     * ```
+     * $range->setStart(KeyRange::TYPE_OPEN, ['Bob']);
+     * ```
      *
      * @param string $type Either "open" or "closed". Use constants
      *        `KeyRange::TYPE_OPEN` and `KeyRange::TYPE_CLOSED` for guaranteed
@@ -142,6 +152,11 @@ class KeyRange
     /**
      * Get the range end.
      *
+     * Example:
+     * ```
+     * $end = $range->end();
+     * ```
+     *
      * @return array
      */
     public function end()
@@ -152,6 +167,11 @@ class KeyRange
 
     /**
      * Set the range end.
+     *
+     * Example:
+     * ```
+     * $range->setEnd(KeyRange::TYPE_CLOSED, ['Jill']);
+     * ```
      *
      * @param string $type Either "open" or "closed". Use constants
      *        `KeyRange::TYPE_OPEN` and `KeyRange::TYPE_CLOSED` for guaranteed
@@ -176,6 +196,11 @@ class KeyRange
 
     /**
      * Get the start and end types
+     *
+     * Example:
+     * ```
+     * $types = $range->types();
+     * ```
      *
      * @return array
      */

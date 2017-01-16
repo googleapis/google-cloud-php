@@ -19,7 +19,7 @@ namespace Google\Cloud\Spanner;
 
 /**
  * Represents a value with a data type of
- * [Timestamp](https://cloud.google.com/spanner/reference/rest/v1/ResultSetMetadata#typecode).
+ * [Timestamp](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#google.spanner.v1.TypeCode).
  *
  * Nanosecond precision is preserved by passing nanoseconds as a separate
  * argument to the constructor. If nanoseconds are given, any subsecond

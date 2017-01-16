@@ -18,7 +18,20 @@
 namespace Google\Cloud\Spanner;
 
 /**
- * @todo should this be more like BigQuery\QueryResults?
+ * Represent a Google Cloud Spanner lookup result (either read or executeSql).
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\ServiceBuilder;
+ *
+ * $cloud = new ServiceBuilder();
+ * $spanner = $cloud->spanner();
+ * $database = $spanner->connect('my-instance', 'my-database');
+ *
+ * $result = $database->execute('SELECT * FROM Posts');
+ * ```
+ *
+ * @see https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#google.spanner.v1.ResultSet ResultSet
  */
 class Result implements \IteratorAggregate
 {
@@ -45,7 +58,14 @@ class Result implements \IteratorAggregate
     /**
      * Return result metadata
      *
-     * @return array [ResultSetMetadata](https://cloud.google.com/spanner/reference/rest/v1/ResultSetMetadata).
+     * Example:
+     * ```
+     * $metadata = $result->metadata();
+     * ```
+     *
+     * @codingStandardsIgnoreStart
+     * @return array [ResultSetMetadata](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#google.spanner.v1.ResultSetMetadata).
+     * @codingStandardsIgnoreEnd
      */
     public function metadata()
     {
@@ -54,6 +74,11 @@ class Result implements \IteratorAggregate
 
     /**
      * Return the formatted and decoded rows.
+     *
+     * Example:
+     * ```
+     * $rows = $result->rows();
+     * ```
      *
      * @return array|null
      */
@@ -68,9 +93,21 @@ class Result implements \IteratorAggregate
      *
      * Stats are not returned by default.
      *
-     * @todo explain how to get dem stats.
+     * Example:
+     * ```
+     * $stats = $result->stats();
+     * ```
      *
-     * @return array|null [ResultSetStats](https://cloud.google.com/spanner/reference/rest/v1/ResultSetStats).
+     * ```
+     * // Executing a query with stats returned.
+     * $res = $database->execute('SELECT * FROM Posts', [
+     *     'queryMode' => 'PROFILE'
+     * ]);
+     * ```
+     *
+     * @codingStandardsIgnoreStart
+     * @return array|null [ResultSetStats](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#google.spanner.v1.ResultSetStats).
+     * @codingStandardsIgnoreEnd
      */
     public function stats()
     {
@@ -82,7 +119,14 @@ class Result implements \IteratorAggregate
     /**
      * Get the entire query or read response as given by the API.
      *
-     * @return array [ResultSet](https://cloud.google.com/spanner/reference/rest/v1/ResultSet).
+     * Example:
+     * ```
+     * $info = $result->info();
+     * ```
+     *
+     * @codingStandardsIgnoreStart
+     * @return array [ResultSet](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#google.spanner.v1.ResultSet).
+     * @codingStandardsIgnoreEnd
      */
     public function info()
     {

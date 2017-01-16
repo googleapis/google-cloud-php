@@ -142,6 +142,8 @@ class Database
      *
      * This method sends a service request.
      *
+     * **NOTE**: Requires `https://www.googleapis.com/auth/spanner.admin` scope.
+     *
      * Example:
      * ```
      * if ($database->exists()) {
@@ -165,6 +167,8 @@ class Database
 
     /**
      * Update the Database schema by running a SQL statement.
+     *
+     * **NOTE**: Requires `https://www.googleapis.com/auth/spanner.admin` scope.
      *
      * Example:
      * ```
@@ -193,6 +197,8 @@ class Database
 
     /**
      * Update the Database schema by running a set of SQL statements.
+     *
+     * **NOTE**: Requires `https://www.googleapis.com/auth/spanner.admin` scope.
      *
      * Example:
      * ```
@@ -234,6 +240,8 @@ class Database
     /**
      * Drop the database.
      *
+     * **NOTE**: Requires `https://www.googleapis.com/auth/spanner.admin` scope.
+     *
      * Example:
      * ```
      * $database->drop();
@@ -255,6 +263,8 @@ class Database
 
     /**
      * Get a list of all database DDL statements.
+     *
+     * **NOTE**: Requires `https://www.googleapis.com/auth/spanner.admin` scope.
      *
      * Example:
      * ```
@@ -302,18 +312,22 @@ class Database
      * If no configuration options are provided, transaction will be opened with
      * strong consistency.
      *
-     * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#google.spanner.v1.BeginTransactionRequest BeginTransactionRequest
-     * @codingStandardsIgnoreEnd
+     * Example:
+     * ```
+     * $transaction = $database->readOnlyTransaction();
+     * ```
      *
      * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#google.spanner.v1.BeginTransactionRequest BeginTransactionRequest
      * @param array $options [optional] {
      *     Configuration Options
      *
      *     See [ReadOnly](https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#google.spanner.v1.TransactionOptions.ReadOnly)
-     *     for detailed description of available options. Please note that only
-     *     one of `$strong`, `$minReadTimestamp`, `$maxStaleness`,
-     *     `$readTimestamp` or `$exactStaleness` may be set in a request.
+     *     for detailed description of available options.
+     *
+     *     Please note that only one of `$strong`, `$minReadTimestamp`,
+     *     `$maxStaleness`, `$readTimestamp` or `$exactStaleness` may be set in
+     *     a request.
      *
      *     @type bool $returnReadTimestamp If true, the Cloud Spanner-selected
      *           read timestamp is included in the Transaction message that
@@ -386,6 +400,11 @@ class Database
     /**
      * Create a Read/Write transaction
      *
+     * Example:
+     * ```
+     * $transaction = $database->readWriteTransaction();
+     * ```
+     *
      * @codingStandardsIgnoreStart
      * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#google.spanner.v1.BeginTransactionRequest BeginTransactionRequest
      * @codingStandardsIgnoreEnd
@@ -393,7 +412,7 @@ class Database
      * @param array $options [optional] Configuration Options
      * @return Transaction
      */
-    public function lockingTransaction(array $options = [])
+    public function readWriteTransaction(array $options = [])
     {
         $options['transactionOptions'] = [
             'readWrite' => []
@@ -759,50 +778,37 @@ class Database
      * Note that if no KeySet is specified, all rows in a table will be
      * returned.
      *
+     * Example:
+     * ```
+     * $keySet = $spanner->keySet([
+     *     'keys' => [1337]
+     * ]);
+     *
+     * $result = $database->read('Posts', [
+     *     'keySet' => $keySet
+     * ]);
+     * ```
+     *
      * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#google.spanner.v1.ReadRequest ReadRequest
      *
+     * @codingStandardsIgnoreStart
      * @param string $table The table name.
      * @param array $options [optional] {
      *     Configuration Options.
      *
      *     @type string $index The name of an index on the table.
      *     @type array $columns A list of column names to be returned.
-     *     @type KeySet $keySet A [KeySet](https://cloud.google.com/spanner/reference/rest/v1/KeySet).
+     *     @type KeySet $keySet A [KeySet](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#keyset).
      *     @type int $offset The number of rows to offset results by.
      *     @type int $limit The number of results to return.
      * }
+     * @codingStandardsIgnoreEnd
      */
     public function read($table, array $options = [])
     {
         $session = $this->selectSession(SessionPoolInterface::CONTEXT_READ);
 
         return $this->operation->read($session, $table, $options);
-    }
-
-    /**
-     * Create a transaction with a given context.
-     *
-     * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#google.spanner.v1.BeginTransactionRequest BeginTransactionRequest
-     *
-     * @param string $context The context of the new transaction.
-     * @param array $options [optional] Configuration options.
-     * @return Transaction
-     */
-    private function transaction($context, array $options = [])
-    {
-        $options += [
-            'transactionOptions' => []
-        ];
-
-        $session = $this->selectSession($context);
-
-        // make a service call here.
-        $res = $this->connection->beginTransaction($options + [
-            'session' => $session->name(),
-            'context' => $context,
-        ]);
-
-        return new Transaction($this->operation, $session, $context, $res);
     }
 
     /**

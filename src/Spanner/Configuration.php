@@ -34,7 +34,9 @@ use Google\Cloud\Spanner\Connection\ConnectionInterface;
  * $configuration = $spanner->configuration('regional-europe-west');
  * ```
  *
- * @see https://cloud.google.com/spanner/reference/rest/v1/projects.instanceConfigs Instance Configs
+ * @codingStandardsIgnoreStart
+ * @see https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.admin.instance.v1#instanceconfig InstanceConfig
+ * @codingStandardsIgnoreEnd
  */
 class Configuration
 {
@@ -100,15 +102,16 @@ class Configuration
      *
      * This method may require a service call.
      *
+     * **NOTE**: Requires `https://www.googleapis.com/auth/spanner.admin` scope.
+     *
      * Example:
      * ```
      * $info = $configuration->info();
-     * echo $info['displayName'];
      * ```
      *
      * @codingStandardsIgnoreStart
      * @param array $options [optional] Configuration options.
-     * @return array [InstanceConfig](https://cloud.google.com/spanner/reference/rest/v1/projects.instanceConfigs#InstanceConfig)
+     * @return array [InstanceConfig](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.admin.instance.v1#instanceconfig)
      * @codingStandardsIgnoreEnd
      */
     public function info(array $options = [])
@@ -124,6 +127,8 @@ class Configuration
      * Check if the configuration exists.
      *
      * This method requires a service call.
+     *
+     * **NOTE**: Requires `https://www.googleapis.com/auth/spanner.admin` scope.
      *
      * Example:
      * ```
@@ -149,6 +154,8 @@ class Configuration
     /**
      * Fetch a fresh representation of the configuration from the service.
      *
+     * **NOTE**: Requires `https://www.googleapis.com/auth/spanner.admin` scope.
+     *
      * Example:
      * ```
      * $info = $configuration->reload();
@@ -156,7 +163,7 @@ class Configuration
      *
      * @codingStandardsIgnoreStart
      * @param array $options [optional] Configuration options.
-     * @return array [InstanceConfig](https://cloud.google.com/spanner/reference/rest/v1/projects.instanceConfigs#InstanceConfig)
+     * @return array [InstanceConfig](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.admin.instance.v1#instanceconfig)
      * @codingStandardsIgnoreEnd
      */
     public function reload(array $options = [])
