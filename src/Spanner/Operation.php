@@ -20,6 +20,7 @@ namespace Google\Cloud\Spanner;
 use Google\Cloud\ArrayTrait;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Session\Session;
+use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\ValidateTrait;
 
 /**
@@ -110,18 +111,23 @@ class Operation
      *
      * @codingStandardsIgnoreStart
      * @param Session $session The session ID to use for the commit.
-     * @param array $mutations The mutations to commit.
+     * @param Transaction $transaction The transaction to commit.
      * @param array $options [optional] Configuration options.
      * @return Timestamp The commit Timestamp.
      */
-    public function commit(Session $session, array $mutations, array $options = [])
+    public function commit(Session $session, Transaction $transaction, array $options = [])
     {
+        if ($transaction->context() !== SessionPoolInterface::CONTEXT_READWRITE) {
+            throw new \RuntimeException('Cannot commit in a Read-Only Transaction');
+        }
+
         if (!isset($options['transactionId'])) {
             $options['singleUseTransaction'] = ['readWrite' => []];
         }
 
         $res = $this->connection->commit([
-            'mutations' => $mutations,
+            'transactionId' => $transaction->id(),
+            'mutations' => $transaction->mutations(),
             'session' => $session->name()
         ] + $options);
 
@@ -134,12 +140,16 @@ class Operation
      * @param Session $session The session to use for the rollback.
      *        Note that the session MUST be the same one in which the
      *        transaction was created.
-     * @param string $transactionId The transaction to roll back.
+     * @param Transaction $transaction The transaction to roll back.
      * @param array $options [optional] Configuration Options.
      * @return void
      */
-    public function rollback(Session $session, $transactionId, array $options = [])
+    public function rollback(Session $session, Transaction $transaction, array $options = [])
     {
+        if ($transaction->context() !== SessionPoolInterface::CONTEXT_READWRITE) {
+            throw new \RuntimeException('Cannot rollback a Read-Only Transaction');
+        }
+
         return $this->connection->rollback([
             'transactionId' => $transactionId,
             'session' => $session->name()

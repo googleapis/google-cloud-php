@@ -364,30 +364,6 @@ class Transaction
     }
 
     /**
-     * Commit all mutations in a transaction.
-     *
-     * This closes the transaction, preventing any future API calls inside it.
-     *
-     * Example:
-     * ```
-     * $transaction->commit();
-     * ```
-     *
-     * @param array $options [optional] Configuration Options.
-     * @return Timestamp The commit Timestamp.
-     */
-    public function commit(array $options = [])
-    {
-        if ($this->context !== SessionPoolInterface::CONTEXT_READWRITE) {
-            throw new RuntimeException('Cannot commit in a Read-Only Transaction');
-        }
-
-        return $this->operation->commit($this->session, $this->mutations, [
-            'transactionId' => $this->transactionId
-        ] + $options);
-    }
-
-    /**
      * Roll back a transaction.
      *
      * Rolls back a transaction, releasing any locks it holds. It is a good idea
@@ -408,7 +384,7 @@ class Transaction
      */
     public function rollback(array $options = [])
     {
-        return $this->operation->rollback($this->session, $this->transactionId, $options);
+        return $this->operation->rollback($this->session, $this, $options);
     }
 
     /**
@@ -457,6 +433,16 @@ class Transaction
     public function context()
     {
         return $this->context;
+    }
+
+    /**
+     * Retrieve a list of formatted mutations.
+     *
+     * @return array
+     */
+    public function mutations()
+    {
+        return $this->mutations;
     }
 
     /**

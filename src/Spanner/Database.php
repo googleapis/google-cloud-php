@@ -307,7 +307,7 @@ class Database
     }
 
     /**
-     * Create a Read Only transaction.
+     * Execute read operations inside a transaction.
      *
      * If no configuration options are provided, transaction will be opened with
      * strong consistency.
@@ -319,6 +319,8 @@ class Database
      *
      * @codingStandardsIgnoreStart
      * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#google.spanner.v1.BeginTransactionRequest BeginTransactionRequest
+     * @param callable $operation The operations to run in the transaction.
+     *        **Signature:** `function (Transaction $transaction)`.
      * @param array $options [optional] {
      *     Configuration Options
      *
@@ -347,7 +349,7 @@ class Database
      * @codingStandardsIgnoreEnd
      * @return Transaction
      */
-    public function readOnlyTransaction(array $options = [])
+    public function readOnlyTransaction(callable $operation, array $options = [])
     {
         $options += [
             'returnReadTimestamp' => null,
@@ -394,11 +396,13 @@ class Database
 
         $session = $this->selectSession(SessionPoolInterface::CONTEXT_READ);
 
-        return $this->operation->transaction($session, SessionPoolInterface::CONTEXT_READ, $options);
+        $transaction = $this->operation->transaction($session, SessionPoolInterface::CONTEXT_READ, $options);
+
+        return call_user_func($operation, $transaction);
     }
 
     /**
-     * Create a Read/Write transaction
+     * Execute Read/Write operations inside a Transaction.
      *
      * Example:
      * ```
@@ -409,10 +413,12 @@ class Database
      * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#google.spanner.v1.BeginTransactionRequest BeginTransactionRequest
      * @codingStandardsIgnoreEnd
      *
+     * @param callable $operation The operations to run in the transaction.
+     *        **Signature:** `function (Transaction $transaction)`.
      * @param array $options [optional] Configuration Options
      * @return Transaction
      */
-    public function readWriteTransaction(array $options = [])
+    public function readWriteTransaction(callable $operation, array $options = [])
     {
         $options['transactionOptions'] = [
             'readWrite' => []
@@ -420,7 +426,11 @@ class Database
 
         $session = $this->selectSession(SessionPoolInterface::CONTEXT_READWRITE);
 
-        return $this->operation->transaction($session, SessionPoolInterface::CONTEXT_READWRITE, $options);
+        $transaction = $this->operation->transaction($session, SessionPoolInterface::CONTEXT_READWRITE, $options);
+
+        call_user_func($operation, $transaction);
+
+        return $this->operation->commit($session, $transaction, $options);
     }
 
     /**
