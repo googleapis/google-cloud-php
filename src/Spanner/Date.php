@@ -19,7 +19,7 @@ namespace Google\Cloud\Spanner;
 
 /**
  * Represents a value with a data type of
- * [Date](https://cloud.google.com/spanner/reference/rest/v1/ResultSetMetadata#typecode).
+ * [Date](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#google.spanner.v1.TypeCode).
  *
  * Example:
  * ```
@@ -29,6 +29,11 @@ namespace Google\Cloud\Spanner;
  * $spanner = $cloud->spanner();
  *
  * $date = $spanner->date(new \DateTime('1995-02-04'));
+ * ```
+ *
+ * ```
+ * // Date objects can be cast to strings for easy display.
+ * echo (string) $date;
  * ```
  */
 class Date implements ValueInterface
@@ -51,6 +56,11 @@ class Date implements ValueInterface
     /**
      * Get the underlying `\DateTimeInterface` implementation.
      *
+     * Example:
+     * ```
+     * $dateTime = $date->get();
+     * ```
+     *
      * @return \DateTimeInterface
      */
     public function get()
@@ -61,6 +71,11 @@ class Date implements ValueInterface
     /**
      * Get the type.
      *
+     * Example:
+     * ```
+     * echo $date->type();
+     * ```
+     *
      * @return string
      */
     public function type()
@@ -70,6 +85,11 @@ class Date implements ValueInterface
 
     /**
      * Format the value as a string.
+     *
+     * Example:
+     * ```
+     * echo $date->formatAsString();
+     * ```
      *
      * @return string
      */
@@ -82,6 +102,7 @@ class Date implements ValueInterface
      * Format the value as a string.
      *
      * @return string
+     * @access private
      */
     public function __toString()
     {

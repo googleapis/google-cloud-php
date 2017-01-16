@@ -22,6 +22,16 @@ use Google\Cloud\ValidateTrait;
 /**
  * Represents a Google Cloud Spanner KeySet.
  *
+ * Example:
+ * ```
+ * use Google\Cloud\ServiceBuilder;
+ *
+ * $cloud = new ServiceBuilder();
+ * $spanner = $cloud->spanner();
+ *
+ * $keySet = $spanner->keySet();
+ * ```
+ *
  * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#keyset KeySet
  */
 class KeySet
@@ -73,6 +83,11 @@ class KeySet
     /**
      * Fetch the KeyRanges
      *
+     * Example:
+     * ```
+     * $ranges = $keySet->ranges();
+     * ```
+     *
      * @return KeyRange[]
      */
     public function ranges()
@@ -83,6 +98,12 @@ class KeySet
 
     /**
      * Add a single KeyRange.
+     *
+     * Example:
+     * ```
+     * $range = $spanner->keyRange();
+     * $keySet->addRange($range);
+     * ```
      *
      * @param KeyRange $range A KeyRange instance.
      * @return void
@@ -97,6 +118,12 @@ class KeySet
      *
      * Any existing KeyRanges will be overridden.
      *
+     * Example:
+     * ```
+     * $range = $spanner->keyRange();
+     * $keySet->setRanges([$range]);
+     * ```
+     *
      * @param KeyRange[] $ranges An array of KeyRange objects.
      * @return void
      */
@@ -109,6 +136,11 @@ class KeySet
 
     /**
      * Fetch the keys.
+     *
+     * Example:
+     * ```
+     * $keys = $keySet->keys();
+     * ```
      *
      * @return mixed[]
      */
@@ -123,6 +155,11 @@ class KeySet
      * A Key should have exactly as many elements as there are columns in the
      * primary or index key with which this KeySet is used.
      *
+     * Example:
+     * ```
+     * $keySet->addKey('Bob');
+     * ```
+     *
      * @param mixed $key The Key to add.
      * @return void
      */
@@ -136,6 +173,11 @@ class KeySet
      *
      * Any existing keys will be overridden.
      *
+     * Example:
+     * ```
+     * $keySet->setKeys(['Bob', 'Jill']);
+     * ```
+     *
      * @param mixed[] $keys
      * @return void
      */
@@ -147,6 +189,13 @@ class KeySet
     /**
      * Get the value of Match All.
      *
+     * Example:
+     * ```
+     * if ($keySet->matchAll()) {
+     *     echo "All keys will match";
+     * }
+     * ```
+     *
      * @return bool
      */
     public function matchAll()
@@ -156,6 +205,11 @@ class KeySet
 
     /**
      * Choose whether the KeySet should match all keys in a table.
+     *
+     * Example:
+     * ```
+     * $keySet->matchAll(true);
+     * ```
      *
      * @param bool $all If true, all keys in a table will be matched.
      * @return void

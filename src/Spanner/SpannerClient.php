@@ -130,7 +130,9 @@ class SpannerClient
      * $configurations = $spanner->configurations();
      * ```
      *
-     * @see https://cloud.google.com/spanner/reference/rest/v1/projects.instanceConfigs/list List Configs
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.admin.instance.v1#google.spanner.admin.instance.v1.ListInstanceConfigsRequest ListInstanceConfigsRequest
+     * @codingStandardsIgnoreEnd
      *
      * @param array $options [optional] Configuration Options.
      * @return Generator<Configuration>
@@ -171,6 +173,10 @@ class SpannerClient
      * $configuration = $spanner->configuration($configurationName);
      * ```
      *
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.admin.instance.v1#getinstanceconfigrequest GetInstanceConfigRequest
+     * @codingStandardsIgnoreEnd
+     *
      * @param string $name The Configuration name.
      * @param array $config [optional] The configuration details.
      * @return Configuration
@@ -188,9 +194,9 @@ class SpannerClient
      * $instance = $spanner->createInstance($configuration, 'my-instance');
      * ```
      *
-     * @see https://cloud.google.com/spanner/reference/rest/v1/projects.instances/create Create Instance
-     *
      * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.admin.instance.v1#createinstancerequest CreateInstanceRequest
+     *
      * @param Configuration $config The configuration to use
      * @param string $name The instance name
      * @param array $options [optional] {
@@ -258,7 +264,9 @@ class SpannerClient
      *
      * @todo implement pagination!
      *
-     * @see https://cloud.google.com/spanner/reference/rest/v1/projects.instances/list List Instances
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.admin.instance.v1#listinstancesrequest ListInstancesRequest
+     * @codingStandardsIgnoreEnd
      *
      * @param array $options [optional] Configuration options
      * @return Generator<Instance>
