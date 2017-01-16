@@ -798,7 +798,7 @@ class Database
      *
      *     @type string $index The name of an index on the table.
      *     @type array $columns A list of column names to be returned.
-     *     @type KeySet $keySet A [KeySet](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#keyset).
+     *     @type KeySet $keySet A KeySet defining which rows to return.
      *     @type int $offset The number of rows to offset results by.
      *     @type int $limit The number of results to return.
      * }
