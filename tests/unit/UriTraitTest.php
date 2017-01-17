@@ -57,7 +57,9 @@ class UriTraitTest extends \PHPUnit_Framework_TestCase
     {
         return [
             ['?narf=yes', ['narf' => 'yes']],
-            ['?narf=true', ['narf' => true]]
+            ['?narf=true', ['narf' => true]],
+            ['?narf=false', ['narf' => false]],
+            ['?narf=0', ['narf' => '0']]
         ];
     }
 }

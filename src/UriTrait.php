@@ -49,7 +49,9 @@ trait UriTrait
         // @todo fix this hack. when using build_query booleans are converted to
         // 1 or 0 which the API does not accept. this casts bools to their
         // string representation
-        $query = array_filter($query);
+        $query = array_filter($query, function ($v) {
+            return $v !== null;
+        });
         foreach ($query as $k => &$v) {
             if (is_bool($v)) {
                 $v = $v ? 'true' : 'false';
