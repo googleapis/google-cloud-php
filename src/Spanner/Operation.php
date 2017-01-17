@@ -125,11 +125,19 @@ class Operation
             $options['singleUseTransaction'] = ['readWrite' => []];
         }
 
+        echo 'Committing in Session '. $session->name() . PHP_EOL;
+        echo 'Calling commit ' . $transaction->id() . PHP_EOL . PHP_EOL;
+
+        echo microtime(true);echo PHP_EOL.PHP_EOL;
+
         $res = $this->connection->commit([
             'transactionId' => $transaction->id(),
             'mutations' => $transaction->mutations(),
             'session' => $session->name()
         ] + $options);
+
+        echo 'Commit done ' . $transaction->id() . PHP_EOL . PHP_EOL;
+        echo microtime(true);echo PHP_EOL.PHP_EOL;
 
         return $this->mapper->createTimestampWithNanos($res['commitTimestamp']);
     }

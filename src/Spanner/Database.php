@@ -430,7 +430,7 @@ class Database
 
         call_user_func($operation, $transaction);
 
-        return $this->operation->commit($session, $transaction, $options);
+        // return $this->operation->commit($session, $transaction, $options);
     }
 
     /**

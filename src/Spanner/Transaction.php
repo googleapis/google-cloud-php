@@ -37,6 +37,10 @@ use RuntimeException;
  */
 class Transaction
 {
+    const STATE_ACTIVE = 0;
+    const STATE_ROLLED_BACK = 1;
+    const STATE_COMMITTED = 2;
+
     /**
      * @var Operation
      */
@@ -66,6 +70,11 @@ class Transaction
      * @var array
      */
     private $mutations = [];
+
+    /**
+     * @var int
+     */
+    private $state = self::STATE_ACTIVE;
 
     /**
      * @param Operation $operation The Operation instance.
@@ -384,7 +393,24 @@ class Transaction
      */
     public function rollback(array $options = [])
     {
+        if ($this->state !== self::STATE_ACTIVE) {
+            throw new \RuntimeException('The transaction cannot be rolled back because it is not active');
+        }
+
+        $this->state = self::STATE_ROLLED_BACK;
+
         return $this->operation->rollback($this->session, $this, $options);
+    }
+
+    public function commit()
+    {
+        if ($this->state !== self::STATE_ACTIVE) {
+            throw new \RuntimeException('The transaction cannot be committed because it is not active');
+        }
+
+        $this->state = self::STATE_COMMITTED;
+
+        return $this->operation->commit($this->session, $this);
     }
 
     /**
@@ -433,6 +459,24 @@ class Transaction
     public function context()
     {
         return $this->context;
+    }
+
+    /**
+     * Retrieve the Transaction State.
+     *
+     * Will be one of `Transaction::STATE_ACTIVE`,
+     * `Transaction::STATE_COMMITTED`, or `Transaction::STATE_ROLLED_BACK`.
+     *
+     * Example:
+     * ```
+     * $state = $transaction->state();
+     * ```
+     *
+     * @return int
+     */
+    public function state()
+    {
+        return $this->state;
     }
 
     /**

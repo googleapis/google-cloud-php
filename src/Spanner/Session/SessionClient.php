@@ -82,16 +82,21 @@ class SessionClient
 
         $session = null;
         if (isset($res['name'])) {
-            $session = new Session(
-                $this->connection,
-                $this->projectId,
-                SpannerClient::parseInstanceFromSessionName($res['name']),
-                SpannerClient::parseDatabaseFromSessionName($res['name']),
-                SpannerClient::parseSessionFromSessionName($res['name'])
-            );
+            $session = $this->session($res['name']);
         }
 
         return $session;
+    }
+
+    public function session($sessionName)
+    {
+        return new Session(
+            $this->connection,
+            $this->projectId,
+            SpannerClient::parseInstanceFromSessionName($sessionName),
+            SpannerClient::parseDatabaseFromSessionName($sessionName),
+            SpannerClient::parseSessionFromSessionName($sessionName)
+        );
     }
 
     public function __debugInfo()
