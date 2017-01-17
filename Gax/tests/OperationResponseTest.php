@@ -63,6 +63,10 @@ class OperationResponseTest extends PHPUnit_Framework_TestCase
         $this->assertNull($op->getMetadata());
         $this->assertFalse($op->operationSucceeded());
         $this->assertFalse($op->operationFailed());
+        $this->assertEquals([
+            'operationReturnType' => null,
+            'metadataReturnType' => null,
+        ], $op->getReturnTypeOptions());
     }
 
     public function testWithResponse()
@@ -81,6 +85,10 @@ class OperationResponseTest extends PHPUnit_Framework_TestCase
         $this->assertNull($op->getMetadata());
         $this->assertFalse($op->operationSucceeded());
         $this->assertFalse($op->operationFailed());
+        $this->assertEquals([
+            'operationReturnType' => null,
+            'metadataReturnType' => null,
+        ], $op->getReturnTypeOptions());
 
         $response = self::createAny(self::createStatus(0, "response"));
         $error = self::createStatus(2, "error");
@@ -107,7 +115,7 @@ class OperationResponseTest extends PHPUnit_Framework_TestCase
         $protoResponse = new Operation();
         $op = new OperationResponse($opName, $opClient, [
             'operationReturnType' => '\google\rpc\Status',
-            'metadataReturnType' => '\google\rpc\Status',
+            'metadataReturnType' => '\google\protobuf\Any',
             'lastProtoResponse' => $protoResponse,
         ]);
 
@@ -116,14 +124,21 @@ class OperationResponseTest extends PHPUnit_Framework_TestCase
         $this->assertNull($op->getResult());
         $this->assertNull($op->getError());
         $this->assertNull($op->getMetadata());
+        $this->assertEquals([
+            'operationReturnType' => '\google\rpc\Status',
+            'metadataReturnType' => '\google\protobuf\Any',
+        ], $op->getReturnTypeOptions());
 
-        $response = self::createAny(self::createStatus(0, "response"));
-        $metadata = self::createAny(self::createStatus(0, "metadata"));
+        $innerResponse = self::createStatus(0, "response");
+        $innerMetadata = (new Any())->setValue("metadata");
+
+        $response = self::createAny($innerResponse);
+        $metadata = self::createAny($innerMetadata);
 
         $protoResponse->setDone(true)->setResponse($response)->setMetadata($metadata);
         $this->assertTrue($op->isDone());
-        $this->assertEquals(self::createStatus(0, "response"), $op->getResult());
-        $this->assertEquals(self::createStatus(0, "metadata"), $op->getMetadata());
+        $this->assertEquals($innerResponse, $op->getResult());
+        $this->assertEquals($innerMetadata, $op->getMetadata());
     }
 
     public static function createAny($value)
