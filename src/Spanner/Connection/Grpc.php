@@ -32,6 +32,7 @@ use google\spanner\v1;
 use google\spanner\v1\KeySet;
 use google\spanner\v1\Mutation;
 use google\spanner\v1\TransactionOptions;
+use google\spanner\v1\TransactionSelector;
 use google\spanner\v1\Type;
 
 class Grpc implements ConnectionInterface
@@ -367,6 +368,11 @@ class Grpc implements ConnectionInterface
                 ->deserialize($param, $this->codec);
         }
 
+        if (isset($args['transaction'])) {
+            $args['transaction'] = (new TransactionSelector)
+                ->deserialize(['id' => $args['transaction']], $this->codec);
+        }
+
         return $this->send([$this->spannerClient, 'executeSql'], [
             $this->pluck('session', $args),
             $this->pluck('sql', $args),
@@ -382,6 +388,11 @@ class Grpc implements ConnectionInterface
         $keySet = $this->pluck('keySet', $args);
         $keySet = (new KeySet)
             ->deserialize($this->formatKeySet($keySet), $this->codec);
+
+        if (isset($args['transaction'])) {
+            $args['transaction'] = (new TransactionSelector)
+                ->deserialize(['id' => $args['transaction']], $this->codec);
+        }
 
         return $this->send([$this->spannerClient, 'read'], [
             $this->pluck('session', $args),

@@ -125,19 +125,11 @@ class Operation
             $options['singleUseTransaction'] = ['readWrite' => []];
         }
 
-        echo 'Committing in Session '. $session->name() . PHP_EOL;
-        echo 'Calling commit ' . $transaction->id() . PHP_EOL . PHP_EOL;
-
-        echo microtime(true);echo PHP_EOL.PHP_EOL;
-
         $res = $this->connection->commit([
             'transactionId' => $transaction->id(),
             'mutations' => $transaction->mutations(),
             'session' => $session->name()
         ] + $options);
-
-        echo 'Commit done ' . $transaction->id() . PHP_EOL . PHP_EOL;
-        echo microtime(true);echo PHP_EOL.PHP_EOL;
 
         return $this->mapper->createTimestampWithNanos($res['commitTimestamp']);
     }
@@ -176,6 +168,7 @@ class Operation
     {
         $options += [
             'parameters' => [],
+            'transactionId' => null,
         ];
 
         $parameters = $this->pluck('parameters', $options);
@@ -183,7 +176,8 @@ class Operation
 
         $res = $this->connection->executeSql([
             'sql' => $sql,
-            'session' => $session->name()
+            'session' => $session->name(),
+            'transactionId' => $options['transactionId']
         ] + $options);
 
         return $this->createResult($res);
@@ -212,6 +206,7 @@ class Operation
             'keySet' => null,
             'offset' => null,
             'limit' => null,
+            'transactionId' => null,
         ];
 
         if (is_null($options['keySet'])) {
@@ -225,7 +220,8 @@ class Operation
 
         $res = $this->connection->read([
             'table' => $table,
-            'session' => $session->name()
+            'session' => $session->name(),
+            'transaction' => $options['transactionId']
         ] + $options);
 
         return $this->createResult($res);
