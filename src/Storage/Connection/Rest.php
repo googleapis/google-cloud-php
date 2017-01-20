@@ -24,6 +24,7 @@ use Google\Cloud\Storage\Connection\ConnectionInterface;
 use Google\Cloud\Upload\AbstractUploader;
 use Google\Cloud\Upload\MultipartUploader;
 use Google\Cloud\Upload\ResumableUploader;
+use Google\Cloud\Upload\StreamableUploader;
 use Google\Cloud\UriTrait;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Request;
@@ -230,10 +231,16 @@ class Rest implements ConnectionInterface
     public function insertObject(array $args = [])
     {
         $args = $this->resolveUploadOptions($args);
-        $isResumable = $args['resumable'];
-        $uploadType = $isResumable
-            ? AbstractUploader::UPLOAD_TYPE_RESUMABLE
-            : AbstractUploader::UPLOAD_TYPE_MULTIPART;
+
+        $uploadType = AbstractUploader::UPLOAD_TYPE_RESUMABLE;
+        if ($args['streamable']) {
+            $uploaderClass = StreamableUploader::class;
+        } else if ($args['resumable']) {
+            $uploaderClass = ResumableUploader::class;
+        } else {
+            $uploaderClass = MultipartUploader::class;
+            $uploadType = AbstractUploader::UPLOAD_TYPE_MULTIPART;
+        }
 
         $uriParams = [
             'bucket' => $args['bucket'],
@@ -243,16 +250,7 @@ class Rest implements ConnectionInterface
             ]
         ];
 
-        if ($isResumable) {
-            return new ResumableUploader(
-                $this->requestWrapper,
-                $args['data'],
-                $this->expandUri(self::UPLOAD_URI, $uriParams),
-                $args['uploaderOptions']
-            );
-        }
-
-        return new MultipartUploader(
+        return new $uploaderClass(
             $this->requestWrapper,
             $args['data'],
             $this->expandUri(self::UPLOAD_URI, $uriParams),

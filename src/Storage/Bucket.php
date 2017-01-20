@@ -311,6 +311,74 @@ class Bucket
     }
 
     /**
+     * Get a streamable uploader which can provide greater control over the
+     * upload process. This is useful for generating large files and uploading
+     * the contents in chunks.
+     *
+     * Example:
+     * ```
+     * $uploader = $bucket->getStreamableUploader(
+     *     "initial contents",
+     *     ['name' => 'data.txt']
+     * );
+     *
+     * $uploader->write('some line');
+     * $uploader->write('more data');
+     * // finish uploading the item
+     * $uploader->upload();
+     * ```
+     *
+     * @see https://cloud.google.com/storage/docs/json_api/v1/how-tos/upload#resumable Learn more about resumable
+     * uploads.
+     * @see https://cloud.google.com/storage/docs/json_api/v1/objects/insert Objects insert API documentation.
+     *
+     * @param string|resource|StreamInterface $data The data to be uploaded.
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type string $name The name of the destination.
+     *     @type bool $validate Indicates whether or not validation will be
+     *           applied using md5 hashing functionality. If true and the
+     *           calculated hash does not match that of the upstream server the
+     *           upload will be rejected.
+     *     @type int $chunkSize If provided the upload will be done in chunks.
+     *           The size must be in multiples of 262144 bytes. With chunking
+     *           you have increased reliability at the risk of higher overhead.
+     *           It is recommended to not use chunking.
+     *     @type string $predefinedAcl Predefined ACL to apply to the object.
+     *           Acceptable values include `"authenticatedRead`",
+     *           `"bucketOwnerFullControl`", `"bucketOwnerRead`", `"private`",
+     *           `"projectPrivate`", and `"publicRead"`.
+     *     @type array $metadata The available options for metadata are outlined
+     *           at the [JSON API docs](https://cloud.google.com/storage/docs/json_api/v1/objects/insert#request-body).
+     *     @type string $encryptionKey A base64 encoded AES-256 customer-supplied
+     *           encryption key.
+     *     @type string $encryptionKeySHA256 Base64 encoded SHA256 hash of the
+     *           customer-supplied encryption key. This value will be calculated
+     *           from the `encryptionKey` on your behalf if not provided, but
+     *           for best performance it is recommended to pass in a cached
+     *           version of the already calculated SHA.
+     * }
+     * @return StreamableUploader
+     * @throws \InvalidArgumentException
+     */
+    public function getStreamableUploader($data, array $options = [])
+    {
+        if (is_string($data) && !isset($options['name'])) {
+            throw new \InvalidArgumentException('A name is required when data is of type string.');
+        }
+
+        return $this->connection->insertObject(
+            $this->formatEncryptionHeaders($options) + [
+                'bucket' => $this->identity['bucket'],
+                'data' => $data,
+                'streamable' => true,
+                'validate' => false
+            ]
+        );
+    }
+
+    /**
      * Lazily instantiates an object. There are no network requests made at this
      * point. To see the operations that can be performed on an object please
      * see {@see Google\Cloud\Storage\StorageObject}.
