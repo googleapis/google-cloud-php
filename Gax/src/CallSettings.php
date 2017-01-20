@@ -58,16 +58,19 @@ class CallSettings
      * @param array $statusCodes
      *     An array which maps the strings referring to response status
      *     codes to the PHP objects representing those codes.
-     * @param int $timeoutMillis
+     * @param int $timeoutMillisDefault
      *     The timeout (in milliseconds) to use for calls that don't
-     *     have a retry configured.
+     *     have a retry configured, and don't have timeout_millis set
+     *     in $clientConfig.
+     *
+     * @return CallSettings[] $callSettings
      */
     public static function load(
         $serviceName,
         $clientConfig,
         $retryingOverrides,
         $statusCodes,
-        $timeoutMillis
+        $timeoutMillisDefault
     ) {
     
         $callSettings = [];
@@ -86,6 +89,12 @@ class CallSettings
                         );
             } else {
                 $retrySettings = $retryingOverrides[$phpMethodKey];
+            }
+
+            if (array_key_exists('timeout_millis', $methodConfig)) {
+                $timeoutMillis = $methodConfig['timeout_millis'];
+            } else {
+                $timeoutMillis = $timeoutMillisDefault;
             }
 
             $callSettings[$phpMethodKey] = new CallSettings(

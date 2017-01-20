@@ -35,8 +35,8 @@ use Google\GAX\Page;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\UnitTests\Mocks\MockStub;
 use Google\GAX\UnitTests\Mocks\MockStatus;
-use Google\GAX\UnitTests\Mocks\MockRequest;
-use Google\GAX\UnitTests\Mocks\MockResponse;
+use Google\GAX\UnitTests\Mocks\MockPageStreamingRequest;
+use Google\GAX\UnitTests\Mocks\MockPageStreamingResponse;
 use PHPUnit_Framework_TestCase;
 use Grpc;
 
@@ -44,7 +44,7 @@ class PageTest extends PHPUnit_Framework_TestCase
 {
     private static function createPage($responseSequence)
     {
-        $mockRequest = MockRequest::createPageStreamingRequest('token');
+        $mockRequest = MockPageStreamingRequest::createPageStreamingRequest('token');
         $stub = MockStub::createWithResponseSequence($responseSequence);
         $descriptor = new PageStreamingDescriptor([
             'requestPageTokenField' => 'pageToken',
@@ -61,8 +61,8 @@ class PageTest extends PHPUnit_Framework_TestCase
 
     public function testNextPageMethods()
     {
-        $responseA = MockResponse::createPageStreamingResponse('nextPageToken1', ['resource1']);
-        $responseB = MockResponse::createPageStreamingResponse('', ['resource2']);
+        $responseA = MockPageStreamingResponse::createPageStreamingResponse('nextPageToken1', ['resource1']);
+        $responseB = MockPageStreamingResponse::createPageStreamingResponse('', ['resource2']);
         $page = PageTest::createPage([
             [$responseA, new MockStatus(Grpc\STATUS_OK, '')],
             [$responseB, new MockStatus(Grpc\STATUS_OK, '')],
@@ -83,7 +83,7 @@ class PageTest extends PHPUnit_Framework_TestCase
      */
     public function testNextPageMethodsFailWithNoNextPage()
     {
-        $responseA = MockResponse::createPageStreamingResponse('', ['resource1']);
+        $responseA = MockPageStreamingResponse::createPageStreamingResponse('', ['resource1']);
         $page = PageTest::createPage([
             [$responseA, new MockStatus(Grpc\STATUS_OK, '')],
         ]);
@@ -98,8 +98,8 @@ class PageTest extends PHPUnit_Framework_TestCase
      */
     public function testNextPageMethodsFailWithPageSizeUnsupported()
     {
-        $responseA = MockResponse::createPageStreamingResponse('nextPageToken1', ['resource1']);
-        $responseB = MockResponse::createPageStreamingResponse('', ['resource2']);
+        $responseA = MockPageStreamingResponse::createPageStreamingResponse('nextPageToken1', ['resource1']);
+        $responseB = MockPageStreamingResponse::createPageStreamingResponse('', ['resource2']);
         $page = PageTest::createPage([
             [$responseA, new MockStatus(Grpc\STATUS_OK, '')],
             [$responseB, new MockStatus(Grpc\STATUS_OK, '')],
@@ -110,7 +110,7 @@ class PageTest extends PHPUnit_Framework_TestCase
 
     public function testPageElementMethods()
     {
-        $response = MockResponse::createPageStreamingResponse(
+        $response = MockPageStreamingResponse::createPageStreamingResponse(
             'nextPageToken1',
             ['resource1', 'resource2', 'resource3']
         );

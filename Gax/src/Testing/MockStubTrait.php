@@ -32,6 +32,7 @@
 namespace Google\GAX\Testing;
 
 use google\rpc\Status;
+use UnderflowException;
 
 /**
  * The MockStubTrait is used by generated mock stub classes which extent \Grpc\BaseStub
@@ -43,6 +44,7 @@ trait MockStubTrait
 {
     private $receivedFuncCalls = [];
     private $responses = [];
+    private $serverStreamingStatus = null;
 
     /**
      * Overrides the _simpleRequest method in \Grpc\BaseStub
@@ -62,9 +64,112 @@ trait MockStubTrait
         $metadata = [],
         $options = []
     ) {
-        $this->receivedFuncCalls[] = new ReceivedRequest($method, $argument::deserialize($argument->serialize()));
+        if (is_a($argument, 'DrSlump\Protobuf\Message')) {
+            $argument = $argument::deserialize($argument->serialize());
+        }
+        $this->receivedFuncCalls[] = new ReceivedRequest($method, $argument, $deserialize, $metadata, $options);
+        if (count($this->responses) < 1) {
+            throw new UnderflowException("ran out of responses");
+        }
         list($response, $status) = array_shift($this->responses);
         return new MockUnaryCall($response, $deserialize, $status);
+    }
+
+    /**
+     * Overrides the _clientStreamRequest method in \Grpc\BaseStub
+     * (https://github.com/grpc/grpc/blob/master/src/php/lib/Grpc/BaseStub.php)
+     * Returns a MockClientStreamingCall object that will return the first item from $responses
+     *
+     * @param string   $method      The name of the method to call
+     * @param callable $deserialize A function that deserializes the responses
+     * @param array    $metadata    A metadata map to send to the server
+     *                              (optional)
+     * @param array    $options     An array of options (optional)
+     *
+     * @return MockClientStreamingCall The active call object
+     */
+    public function _clientStreamRequest(
+        $method,
+        $deserialize,
+        array $metadata = [],
+        array $options = []
+    ) {
+    
+        $this->receivedFuncCalls[] = new ReceivedRequest($method, null, $deserialize, $metadata, $options);
+        if (count($this->responses) < 1) {
+            throw new UnderflowException("ran out of responses");
+        }
+        list($response, $status) = array_shift($this->responses);
+        return new MockClientStreamingCall($response, $deserialize, $status);
+    }
+
+    /**
+     * Overrides the _serverStreamRequest method in \Grpc\BaseStub
+     * (https://github.com/grpc/grpc/blob/master/src/php/lib/Grpc/BaseStub.php)
+     * Returns a MockServerStreamingCall object that will stream items from $responses, and return
+     * a final status of $serverStreamingStatus.
+     *
+     * @param string   $method      The name of the method to call
+     * @param mixed    $argument    The argument to the method
+     * @param callable $deserialize A function that deserializes the responses
+     * @param array    $metadata    A metadata map to send to the server
+     *                              (optional)
+     * @param array    $options     An array of options (optional)
+     *
+     * @return MockServerStreamingCall The active call object
+     */
+    public function _serverStreamRequest(
+        $method,
+        $argument,
+        $deserialize,
+        array $metadata = [],
+        array $options = []
+    ) {
+    
+        if (is_a($argument, 'DrSlump\Protobuf\Message')) {
+            $argument = $argument::deserialize($argument->serialize());
+        }
+        $this->receivedFuncCalls[] = new ReceivedRequest($method, $argument, $deserialize, $metadata, $options);
+        $responses = MockStubTrait::stripStatusFromResponses($this->responses);
+        $this->responses = [];
+        return new MockServerStreamingCall($responses, $deserialize, $this->serverStreamingStatus);
+    }
+
+    /**
+     * Overrides the _bidiRequest method in \Grpc\BaseStub
+     * (https://github.com/grpc/grpc/blob/master/src/php/lib/Grpc/BaseStub.php)
+     * Returns a MockBidiStreamingCall object that will stream items from $responses, and return
+     * a final status of $serverStreamingStatus.
+     *
+     * @param string   $method      The name of the method to call
+     * @param callable $deserialize A function that deserializes the responses
+     * @param array    $metadata    A metadata map to send to the server
+     *                              (optional)
+     * @param array    $options     An array of options (optional)
+     *
+     * @return MockBidiStreamingCall The active call object
+     */
+    public function _bidiRequest(
+        $method,
+        $deserialize,
+        array $metadata = [],
+        array $options = []
+    ) {
+    
+        $this->receivedFuncCalls[] = new ReceivedRequest($method, null, $deserialize, $metadata, $options);
+        $responses = MockStubTrait::stripStatusFromResponses($this->responses);
+        $this->responses = [];
+        return new MockBidiStreamingCall($responses, $deserialize, $this->serverStreamingStatus);
+    }
+
+    public static function stripStatusFromResponses($responses)
+    {
+        $strippedResponses = [];
+        foreach ($responses as $response) {
+            list($resp, $status) = $response;
+            $strippedResponses[] = $resp;
+        }
+        return $strippedResponses;
     }
 
     /**
@@ -75,7 +180,20 @@ trait MockStubTrait
      */
     public function addResponse($response, $status = null)
     {
-        $this->responses[] = [$response->serialize(), $status];
+        if (is_a($response, 'DrSlump\Protobuf\Message')) {
+            $response = $response->serialize();
+        }
+        $this->responses[] = [$response, $status];
+    }
+
+    /**
+     * Set the status object to be used when creating streaming calls.
+     *
+     * @param Status $status
+     */
+    public function setStreamingStatus($status)
+    {
+        $this->serverStreamingStatus = $status;
     }
 
     /**
@@ -88,6 +206,14 @@ trait MockStubTrait
         $receivedFuncCallsTemp = $this->receivedFuncCalls;
         $this->receivedFuncCalls = [];
         return $receivedFuncCallsTemp;
+    }
+
+    /**
+     * @return int The number of calls received.
+     */
+    public function getReceivedCallCount()
+    {
+        return count($this->receivedFuncCalls);
     }
 
     /**

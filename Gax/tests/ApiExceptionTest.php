@@ -29,49 +29,38 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-namespace Google\GAX\Testing;
+namespace Google\GAX\UnitTests;
 
-/**
- * Class ReceivedRequest used to hold the function name and request object of a call
- * make to a mock gRPC stub.
- */
-class ReceivedRequest
+use Google\GAX\ApiException;
+use PHPUnit_Framework_TestCase;
+use Grpc;
+
+class ApiExceptionTest extends PHPUnit_Framework_TestCase
 {
-    private $actualCall;
-
-    public function __construct($funcCall, $requestObject, $deserialize = null, $metadata = [], $options = [])
+    public function testWithoutMetadata()
     {
-        $this->actualCall = [
-            'funcCall' => $funcCall,
-            'request' => $requestObject,
-            'deserialize' => $deserialize,
-            'metadata' => $metadata,
-            'options' => $options,
-        ];
+        $status = new \stdClass();
+        $status->code = Grpc\STATUS_OK;
+        $status->details = 'testWithoutMetadata';
+
+        $apiException = ApiException::createFromStdClass($status);
+
+        $this->assertSame(Grpc\STATUS_OK, $apiException->getCode());
+        $this->assertSame('testWithoutMetadata', $apiException->getMessage());
+        $this->assertNull($apiException->getMetadata());
     }
 
-    public function getArray()
+    public function testWithMetadata()
     {
-        return $this->actualCall;
-    }
+        $status = new \stdClass();
+        $status->code = Grpc\STATUS_OK;
+        $status->details = 'testWithMetadata';
+        $status->metadata = ['metadata'];
 
-    public function getFuncCall()
-    {
-        return $this->actualCall['funcCall'];
-    }
+        $apiException = ApiException::createFromStdClass($status);
 
-    public function getRequestObject()
-    {
-        return $this->actualCall['request'];
-    }
-
-    public function getMetadata()
-    {
-        return $this->actualCall['metadata'];
-    }
-
-    public function getOptions()
-    {
-        return $this->actualCall['options'];
+        $this->assertSame(Grpc\STATUS_OK, $apiException->getCode());
+        $this->assertSame('testWithMetadata', $apiException->getMessage());
+        $this->assertSame(['metadata'], $apiException->getMetadata());
     }
 }

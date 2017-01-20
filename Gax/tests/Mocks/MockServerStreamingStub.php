@@ -29,49 +29,47 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-namespace Google\GAX\Testing;
 
-/**
- * Class ReceivedRequest used to hold the function name and request object of a call
- * make to a mock gRPC stub.
- */
-class ReceivedRequest
+namespace Google\GAX\UnitTests\Mocks;
+
+use Google\GAX\Testing\MockStubTrait;
+use InvalidArgumentException;
+
+class MockServerStreamingStub
 {
-    private $actualCall;
+    use MockStubTrait;
 
-    public function __construct($funcCall, $requestObject, $deserialize = null, $metadata = [], $options = [])
+    private $deserialize;
+
+    public function __construct($deserialize = null)
     {
-        $this->actualCall = [
-            'funcCall' => $funcCall,
-            'request' => $requestObject,
-            'deserialize' => $deserialize,
-            'metadata' => $metadata,
-            'options' => $options,
-        ];
+        $this->deserialize = $deserialize;
     }
 
-    public function getArray()
+    /**
+     * Creates a sequence such that the responses are returned in order.
+     * @param mixed[] $sequence
+     * @param $finalStatus
+     * @param callable $deserialize
+     * @return MockServerStreamingStub
+     */
+    public static function createWithResponseSequence($sequence, $finalStatus = null, $deserialize = null)
     {
-        return $this->actualCall;
+        if (count($sequence) == 0) {
+            throw new InvalidArgumentException("createResponseSequence: need at least 1 response");
+        }
+        $stub = new MockServerStreamingStub($deserialize);
+        foreach ($sequence as $resp) {
+            $stub->addResponse($resp, null);
+        }
+        $stub->setStreamingStatus($finalStatus);
+        return $stub;
     }
 
-    public function getFuncCall()
+    public function __call($name, $arguments)
     {
-        return $this->actualCall['funcCall'];
-    }
-
-    public function getRequestObject()
-    {
-        return $this->actualCall['request'];
-    }
-
-    public function getMetadata()
-    {
-        return $this->actualCall['metadata'];
-    }
-
-    public function getOptions()
-    {
-        return $this->actualCall['options'];
+        list($argument, $metadata, $options) = $arguments;
+        $newArgs = [$name, $argument, $this->deserialize, $metadata, $options];
+        return call_user_func_array(array($this, '_serverStreamRequest'), $newArgs);
     }
 }

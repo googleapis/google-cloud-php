@@ -32,16 +32,44 @@
 
 namespace Google\GAX\UnitTests\Mocks;
 
-class MockRequest
-{
-    public $pageToken;
-    public $pageSize;
+use Google\GAX\Testing\MockStubTrait;
+use InvalidArgumentException;
 
-    public static function createPageStreamingRequest($pageToken, $pageSize = null)
+class MockBidiStreamingStub
+{
+    use MockStubTrait;
+
+    private $deserialize;
+
+    public function __construct($deserialize = null)
     {
-        $request = new MockRequest();
-        $request->pageToken = $pageToken;
-        $request->pageSize = $pageSize;
-        return $request;
+        $this->deserialize = $deserialize;
+    }
+
+    /**
+     * Creates a sequence such that the responses are returned in order.
+     * @param mixed[] $sequence
+     * @param $finalStatus
+     * @param callable $deserialize
+     * @return MockBidiStreamingStub
+     */
+    public static function createWithResponseSequence($sequence, $finalStatus = null, $deserialize = null)
+    {
+        if (count($sequence) == 0) {
+            throw new InvalidArgumentException("createResponseSequence: need at least 1 response");
+        }
+        $stub = new MockBidiStreamingStub($deserialize);
+        foreach ($sequence as $resp) {
+            $stub->addResponse($resp);
+        }
+        $stub->setStreamingStatus($finalStatus);
+        return $stub;
+    }
+
+    public function __call($name, $arguments)
+    {
+        list($metadata, $options) = $arguments;
+        $newArgs = [$name, $this->deserialize, $metadata, $options];
+        return call_user_func_array(array($this, '_bidiRequest'), $newArgs);
     }
 }

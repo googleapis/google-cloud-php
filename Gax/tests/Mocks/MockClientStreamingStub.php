@@ -32,16 +32,37 @@
 
 namespace Google\GAX\UnitTests\Mocks;
 
-class MockResponse
-{
-    public $nextPageToken;
-    public $resource;
+use Google\GAX\Testing\MockStubTrait;
+use InvalidArgumentException;
 
-    public static function createPageStreamingResponse($nextPageToken, $resource)
+class MockClientStreamingStub
+{
+    use MockStubTrait;
+
+    private $deserialize;
+
+    public function __construct($deserialize = null)
     {
-        $response = new MockResponse();
-        $response->nextPageToken = $nextPageToken;
-        $response->resource = $resource;
-        return $response;
+        $this->deserialize = $deserialize;
+    }
+
+    /**
+     * @param mixed $responseObject
+     * @param $status
+     * @param callable $deserialize
+     * @return MockClientStreamingStub
+     */
+    public static function create($responseObject, $status = null, $deserialize = null)
+    {
+        $stub = new MockClientStreamingStub($deserialize);
+        $stub->addResponse($responseObject, $status);
+        return $stub;
+    }
+
+    public function __call($name, $arguments)
+    {
+        list($metadata, $options) = $arguments;
+        $newArgs = [$name, $this->deserialize, $metadata, $options];
+        return call_user_func_array(array($this, '_clientStreamRequest'), $newArgs);
     }
 }
