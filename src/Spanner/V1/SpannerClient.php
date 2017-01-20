@@ -649,8 +649,8 @@ class SpannerClient
      *     $formattedSession = SpannerClient::formatSessionName("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
      *     $sql = "";
      *     // Read all responses until the stream is complete
-     *     $streamingResponse = $spannerClient->executeStreamingSql($formattedSession, $sql);
-     *     foreach ($streamingResponse->readAll() as $element) {
+     *     $stream = $spannerClient->executeStreamingSql($formattedSession, $sql);
+     *     foreach ($stream->readAll() as $element) {
      *         // doSomethingWith($element);
      *     }
      * } finally {
@@ -876,8 +876,8 @@ class SpannerClient
      *     $columns = [];
      *     $keySet = new KeySet();
      *     // Read all responses until the stream is complete
-     *     $streamingResponse = $spannerClient->streamingRead($formattedSession, $table, $columns, $keySet);
-     *     foreach ($streamingResponse->readAll() as $element) {
+     *     $stream = $spannerClient->streamingRead($formattedSession, $table, $columns, $keySet);
+     *     foreach ($stream->readAll() as $element) {
      *         // doSomethingWith($element);
      *     }
      * } finally {
