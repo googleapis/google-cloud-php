@@ -38,13 +38,18 @@ use Google\GAX\BackoffSettings;
 use Google\GAX\CallSettings;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\RetrySettings;
+use Google\GAX\Testing\MockClientStreamingCall;
+use Google\GAX\UnitTests\Mocks\MockBidiStreamingStub;
+use Google\GAX\UnitTests\Mocks\MockClientStreamingStub;
+use Google\GAX\UnitTests\Mocks\MockServerStreamingStub;
 use Google\GAX\UnitTests\Mocks\MockStub;
 use Google\GAX\UnitTests\Mocks\MockStatus;
-use Google\GAX\UnitTests\Mocks\MockRequest;
-use Google\GAX\UnitTests\Mocks\MockResponse;
+use Google\GAX\UnitTests\Mocks\MockPageStreamingRequest;
+use Google\GAX\UnitTests\Mocks\MockPageStreamingResponse;
 use google\longrunning\Operation;
 use google\protobuf\EmptyC;
 use google\rpc\Code;
+use google\rpc\Status;
 use PHPUnit_Framework_TestCase;
 use Grpc;
 
@@ -63,11 +68,11 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
         $actualResponse = $apiCall($request, $metadata, $options);
         $this->assertEquals($response, $actualResponse);
 
-        $actualCalls = $stub->actualCalls;
+        $actualCalls = $stub->getReceivedCalls();
         $this->assertEquals(1, count($actualCalls));
-        $this->assertEquals($request, $actualCalls[0]['request']);
-        $this->assertEquals($metadata, $actualCalls[0]['metadata']);
-        $this->assertEquals($options, $actualCalls[0]['options']);
+        $this->assertEquals($request, $actualCalls[0]->getRequestObject());
+        $this->assertEquals($metadata, $actualCalls[0]->getMetadata());
+        $this->assertEquals($options, $actualCalls[0]->getOptions());
     }
 
     public function testTimeout()
@@ -82,11 +87,11 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals($response, $actualResponse);
 
-        $actualCalls = $stub->actualCalls;
+        $actualCalls = $stub->getReceivedCalls();
         $this->assertEquals(1, count($actualCalls));
-        $this->assertEquals($request, $actualCalls[0]['request']);
-        $this->assertEquals([], $actualCalls[0]['metadata']);
-        $this->assertEquals(['timeout' => 1500000], $actualCalls[0]['options']);
+        $this->assertEquals($request, $actualCalls[0]->getRequestObject());
+        $this->assertEquals([], $actualCalls[0]->getMetadata());
+        $this->assertEquals(['timeout' => 1500000], $actualCalls[0]->getOptions());
     }
 
     public function testRetryNoRetryableCode()
@@ -114,9 +119,9 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
             $isExceptionRaised = true;
         }
 
-        $actualCalls = $stub->actualCalls;
+        $actualCalls = $stub->getReceivedCalls();
         $this->assertEquals(1, count($actualCalls));
-        $this->assertEquals($request, $actualCalls[0]['request']);
+        $this->assertEquals($request, $actualCalls[0]->getRequestObject());
 
         $this->assertTrue($isExceptionRaised);
     }
@@ -151,17 +156,17 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals($responseC, $actualResponse);
 
-        $actualCalls = $stub->actualCalls;
+        $actualCalls = $stub->getReceivedCalls();
         $this->assertEquals(3, count($actualCalls));
 
-        $this->assertEquals($request, $actualCalls[0]['request']);
-        $this->assertEquals(['timeout' => 150000], $actualCalls[0]['options']);
+        $this->assertEquals($request, $actualCalls[0]->getRequestObject());
+        $this->assertEquals(['timeout' => 150000], $actualCalls[0]->getOptions());
 
-        $this->assertEquals($request, $actualCalls[1]['request']);
-        $this->assertEquals(['timeout' => 300000], $actualCalls[1]['options']);
+        $this->assertEquals($request, $actualCalls[1]->getRequestObject());
+        $this->assertEquals(['timeout' => 300000], $actualCalls[1]->getOptions());
 
-        $this->assertEquals($request, $actualCalls[2]['request']);
-        $this->assertEquals(['timeout' => 500000], $actualCalls[2]['options']);
+        $this->assertEquals($request, $actualCalls[2]->getRequestObject());
+        $this->assertEquals(['timeout' => 500000], $actualCalls[2]->getOptions());
     }
 
     public function testRetryTimeoutExceeds()
@@ -190,8 +195,9 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
 
         // Use time function that simulates 1100ms elapsing with each call to the stub
         $incrementMillis = 1100;
-        $timeFuncMillis = function () use ($stub, $incrementMillis) {
-            $actualCalls = count($stub->actualCalls);
+        $elapsed = 0;
+        $timeFuncMillis = function () use ($stub, $incrementMillis, $elapsed) {
+            $actualCalls = $stub->getReceivedCallCount();
             return $actualCalls * $incrementMillis;
         };
 
@@ -208,9 +214,9 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
             $raisedException = $e;
         }
 
-        $actualCalls = $stub->actualCalls;
+        $actualCalls = $stub->getReceivedCalls();
         $this->assertEquals(3, count($actualCalls));
-        $this->assertEquals($request, $actualCalls[0]['request']);
+        $this->assertEquals($request, $actualCalls[0]->getRequestObject());
 
         $this->assertTrue(!empty($raisedException));
         $this->assertEquals(Grpc\STATUS_DEADLINE_EXCEEDED, $raisedException->getCode());
@@ -218,10 +224,10 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
 
     public function testPageStreamingDirectIterationNoTimeout()
     {
-        $request = MockRequest::createPageStreamingRequest('token');
-        $responseA = MockResponse::createPageStreamingResponse('nextPageToken1', ['resource1']);
-        $responseB = MockResponse::createPageStreamingResponse('nextPageToken2', ['resource2']);
-        $responseC = MockResponse::createPageStreamingResponse(null, ['resource3', 'resource4']);
+        $request = MockPageStreamingRequest::createPageStreamingRequest('token');
+        $responseA = MockPageStreamingResponse::createPageStreamingResponse('nextPageToken1', ['resource1']);
+        $responseB = MockPageStreamingResponse::createPageStreamingResponse('nextPageToken2', ['resource2']);
+        $responseC = MockPageStreamingResponse::createPageStreamingResponse(null, ['resource3', 'resource4']);
         $responseSequence = [
             [$responseA, new MockStatus(Grpc\STATUS_OK, '')],
             [$responseB, new MockStatus(Grpc\STATUS_OK, '')],
@@ -241,21 +247,23 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
             ['pageStreamingDescriptor' => $descriptor]
         );
         $response = $apiCall($request, [], []);
-        $this->assertEquals(1, count($stub->actualCalls));
+        $actualCalls = $stub->getReceivedCalls();
+        $this->assertEquals(1, count($actualCalls));
         $actualResources = [];
         foreach ($response->iterateAllElements() as $element) {
             array_push($actualResources, $element);
         }
-        $this->assertEquals(3, count($stub->actualCalls));
+        $actualCalls = array_merge($actualCalls, $stub->getReceivedCalls());
+        $this->assertEquals(3, count($actualCalls));
         $this->assertEquals(['resource1', 'resource2', 'resource3', 'resource4'], $actualResources);
     }
 
     public function testPageStreamingPageIterationNoTimeout()
     {
-        $request = MockRequest::createPageStreamingRequest('token');
-        $responseA = MockResponse::createPageStreamingResponse('nextPageToken1', ['resource1']);
-        $responseB = MockResponse::createPageStreamingResponse('nextPageToken2', ['resource2']);
-        $responseC = MockResponse::createPageStreamingResponse(null, ['resource3', 'resource4']);
+        $request = MockPageStreamingRequest::createPageStreamingRequest('token');
+        $responseA = MockPageStreamingResponse::createPageStreamingResponse('nextPageToken1', ['resource1']);
+        $responseB = MockPageStreamingResponse::createPageStreamingResponse('nextPageToken2', ['resource2']);
+        $responseC = MockPageStreamingResponse::createPageStreamingResponse(null, ['resource3', 'resource4']);
         $responseSequence = [
             [$responseA, new MockStatus(Grpc\STATUS_OK, '')],
             [$responseB, new MockStatus(Grpc\STATUS_OK, '')],
@@ -275,7 +283,8 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
             ['pageStreamingDescriptor' => $descriptor]
         );
         $response = $apiCall($request, [], []);
-        $this->assertEquals(1, count($stub->actualCalls));
+        $actualCalls = $stub->getReceivedCalls();
+        $this->assertEquals(1, count($actualCalls));
         $actualResources = [];
         $actualTokens = [];
         foreach ($response->iteratePages() as $page) {
@@ -284,7 +293,8 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
                 array_push($actualResources, $element);
             }
         }
-        $this->assertEquals(3, count($stub->actualCalls));
+        $actualCalls = array_merge($actualCalls, $stub->getReceivedCalls());
+        $this->assertEquals(3, count($actualCalls));
         $this->assertEquals(['resource1', 'resource2', 'resource3', 'resource4'], $actualResources);
         $this->assertEquals(
             ['token', 'nextPageToken1', 'nextPageToken2'],
@@ -294,10 +304,10 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
 
     public function testPageStreamingFixedSizeIterationNoTimeout()
     {
-        $request = MockRequest::createPageStreamingRequest('token', 2);
-        $responseA = MockResponse::createPageStreamingResponse('nextPageToken1', ['resource1']);
-        $responseB = MockResponse::createPageStreamingResponse('nextPageToken2', ['resource2']);
-        $responseC = MockResponse::createPageStreamingResponse(null, ['resource3', 'resource4']);
+        $request = MockPageStreamingRequest::createPageStreamingRequest('token', 2);
+        $responseA = MockPageStreamingResponse::createPageStreamingResponse('nextPageToken1', ['resource1']);
+        $responseB = MockPageStreamingResponse::createPageStreamingResponse('nextPageToken2', ['resource2']);
+        $responseC = MockPageStreamingResponse::createPageStreamingResponse(null, ['resource3', 'resource4']);
         $responseSequence = [
             [$responseA, new MockStatus(Grpc\STATUS_OK, '')],
             [$responseB, new MockStatus(Grpc\STATUS_OK, '')],
@@ -319,7 +329,8 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
             ['pageStreamingDescriptor' => $descriptor]
         );
         $response = $apiCall($request, [], []);
-        $this->assertEquals(1, count($stub->actualCalls));
+        $actualCalls = $stub->getReceivedCalls();
+        $this->assertEquals(1, count($actualCalls));
         $actualResources = [];
         $collectionCount = 0;
         foreach ($response->iterateFixedSizeCollections($collectionSize) as $collection) {
@@ -328,7 +339,8 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
                 array_push($actualResources, $element);
             }
         }
-        $this->assertEquals(3, count($stub->actualCalls));
+        $actualCalls = array_merge($actualCalls, $stub->getReceivedCalls());
+        $this->assertEquals(3, count($actualCalls));
         $this->assertEquals(2, $collectionCount);
         $this->assertEquals(['resource1', 'resource2', 'resource3', 'resource4'], $actualResources);
     }
@@ -339,8 +351,8 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
      */
     public function testPageStreamingFixedSizeFailPageSizeNotSupported()
     {
-        $request = MockRequest::createPageStreamingRequest('token');
-        $responseA = MockResponse::createPageStreamingResponse('nextPageToken1', ['resource1']);
+        $request = MockPageStreamingRequest::createPageStreamingRequest('token');
+        $responseA = MockPageStreamingResponse::createPageStreamingResponse('nextPageToken1', ['resource1']);
         $responseSequence = [
             [$responseA, new MockStatus(Grpc\STATUS_OK, '')],
                              ];
@@ -368,8 +380,8 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
      */
     public function testPageStreamingFixedSizeFailPageSizeNotSet()
     {
-        $request = MockRequest::createPageStreamingRequest('token');
-        $responseA = MockResponse::createPageStreamingResponse('nextPageToken1', ['resource1']);
+        $request = MockPageStreamingRequest::createPageStreamingRequest('token');
+        $responseA = MockPageStreamingResponse::createPageStreamingResponse('nextPageToken1', ['resource1']);
         $responseSequence = [
             [$responseA, new MockStatus(Grpc\STATUS_OK, '')],
         ];
@@ -399,8 +411,8 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
     public function testPageStreamingFixedSizeFailPageSizeTooLarge()
     {
         $collectionSize = 2;
-        $request = MockRequest::createPageStreamingRequest('token', $collectionSize + 1);
-        $responseA = MockResponse::createPageStreamingResponse('nextPageToken1', ['resource1']);
+        $request = MockPageStreamingRequest::createPageStreamingRequest('token', $collectionSize + 1);
+        $responseA = MockPageStreamingResponse::createPageStreamingResponse('nextPageToken1', ['resource1']);
         $responseSequence = [
             [$responseA, new MockStatus(Grpc\STATUS_OK, '')]
         ];
@@ -424,10 +436,10 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
 
     public function testPageStreamingWithTimeout()
     {
-        $request = MockRequest::createPageStreamingRequest('token');
-        $responseA = MockResponse::createPageStreamingResponse('nextPageToken1', ['resource1']);
-        $responseB = MockResponse::createPageStreamingResponse('nextPageToken2', ['resource2']);
-        $responseC = MockResponse::createPageStreamingResponse(null, ['resource3', 'resource4']);
+        $request = MockPageStreamingRequest::createPageStreamingRequest('token');
+        $responseA = MockPageStreamingResponse::createPageStreamingResponse('nextPageToken1', ['resource1']);
+        $responseB = MockPageStreamingResponse::createPageStreamingResponse('nextPageToken2', ['resource2']);
+        $responseC = MockPageStreamingResponse::createPageStreamingResponse(null, ['resource3', 'resource4']);
         $responseSequence = [
             [$responseA, new MockStatus(Grpc\STATUS_OK, '')],
             [$responseB, new MockStatus(Grpc\STATUS_OK, '')],
@@ -447,18 +459,20 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
             ['pageStreamingDescriptor' => $descriptor]
         );
         $response = $apiCall($request, [], []);
-        $this->assertEquals(1, count($stub->actualCalls));
+        $actualCalls = $stub->getReceivedCalls();
+        $this->assertEquals(1, count($actualCalls));
         $actualResources = [];
         foreach ($response->iterateAllElements() as $element) {
             array_push($actualResources, $element);
         }
-        $this->assertEquals(3, count($stub->actualCalls));
+        $actualCalls = array_merge($actualCalls, $stub->getReceivedCalls());
+        $this->assertEquals(3, count($actualCalls));
         $this->assertEquals(['resource1', 'resource2', 'resource3', 'resource4'], $actualResources);
     }
 
     public function testCustomHeader()
     {
-        $stub = MockStub::create(new MockResponse());
+        $stub = MockStub::create(new MockPageStreamingResponse());
         $headerDescriptor = new AgentHeaderDescriptor([
             'clientName' => 'testClient',
             'clientVersion' => '0.0.0',
@@ -473,13 +487,13 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
             new CallSettings(),
             ['headerDescriptor' => $headerDescriptor]
         );
-        $resources = $apiCall(new MockRequest(), [], []);
-        $actualCalls = $stub->actualCalls;
+        $resources = $apiCall(new MockPageStreamingRequest(), [], []);
+        $actualCalls = $stub->getReceivedCalls();
         $this->assertEquals(1, count($actualCalls));
         $expectedMetadata = [
             'x-goog-api-client' => ['testClient/0.0.0 testCodeGen/0.9.0 gax/1.0.0 php/5.5.0']
         ];
-        $this->assertEquals($expectedMetadata, $actualCalls[0]['metadata']);
+        $this->assertEquals($expectedMetadata, $actualCalls[0]->getMetadata());
     }
 
     public static function createIncompleteOperationResponse($name, $metadataString = '')
@@ -511,7 +525,6 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
 
         $request = null;
         $result = OperationResponseTest::createStatus(Code::OK, 'someMessage');
-
         $initialResponse = self::createIncompleteOperationResponse($opName, 'm1');
         $responseA = self::createIncompleteOperationResponse($opName, 'm2');
         $responseB = self::createSuccessfulOperationResponse($opName, $result, 'm3');
@@ -519,8 +532,11 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
             [$responseA, new MockStatus(Grpc\STATUS_OK, '')],
             [$responseB, new MockStatus(Grpc\STATUS_OK, '')],
         ];
-        $callStub = MockStub::createWithResponseSequence([[$initialResponse, new MockStatus(Grpc\STATUS_OK, '')]]);
-        $opStub = MockStub::createWithResponseSequence($responseSequence);
+        $callStub = MockStub::createWithResponseSequence(
+            [[$initialResponse, new MockStatus(Grpc\STATUS_OK, '')]],
+            '\google\longrunning\Operation::deserialize'
+        );
+        $opStub = MockStub::createWithResponseSequence($responseSequence, '\google\longrunning\Operation::deserialize');
         $opClient = OperationResponseTest::createOperationsClient($opStub);
         $descriptor = [
             'operationsClient' => $opClient,
@@ -543,8 +559,11 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
         $metadataResponses = [$response->getMetadata()];
         $isDoneResponses = [$response->isDone()];
 
-        $this->assertSame(1, count($callStub->actualCalls));
-        $this->assertSame(0, count($opStub->actualCalls));
+        $apiReceivedCalls = $callStub->getReceivedCalls();
+        $opReceivedCallsEmpty = $opStub->getReceivedCalls();
+
+        $this->assertSame(1, count($apiReceivedCalls));
+        $this->assertSame(0, count($opReceivedCallsEmpty));
 
         while (!$response->isDone()) {
             $response->reload();
@@ -554,12 +573,15 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
             $isDoneResponses[] = $response->isDone();
         }
 
-        $this->assertSame(1, count($callStub->actualCalls));
-        $this->assertSame(2, count($opStub->actualCalls));
+        $apiReceivedCallsEmpty = $callStub->getReceivedCalls();
+        $opReceivedCalls = $opStub->getReceivedCalls();
 
-        $this->assertSame('takeAction', $callStub->actualCalls[0]['funcName']);
-        $this->assertSame('GetOperation', $opStub->actualCalls[0]['funcName']);
-        $this->assertSame('GetOperation', $opStub->actualCalls[1]['funcName']);
+        $this->assertSame(0, count($apiReceivedCallsEmpty));
+        $this->assertSame(2, count($opReceivedCalls));
+
+        $this->assertSame('takeAction', $apiReceivedCalls[0]->getFuncCall());
+        $this->assertSame('GetOperation', $opReceivedCalls[0]->getFuncCall());
+        $this->assertSame('GetOperation', $opReceivedCalls[1]->getFuncCall());
 
         $this->assertEquals([null, null, OperationResponseTest::createStatus(Code::OK, 'someMessage')], $results);
         $this->assertEquals([null, null, null], $errors);
@@ -585,8 +607,14 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
             [$responseA, new MockStatus(Grpc\STATUS_OK, '')],
             [$responseB, new MockStatus(Grpc\STATUS_OK, '')],
         ];
-        $callStub = MockStub::createWithResponseSequence([[$initialResponse, new MockStatus(Grpc\STATUS_OK, '')]]);
-        $opStub = MockStub::createWithResponseSequence($responseSequence);
+        $callStub = MockStub::createWithResponseSequence(
+            [[$initialResponse, new MockStatus(Grpc\STATUS_OK, '')]],
+            '\google\longrunning\Operation::deserialize'
+        );
+        $opStub = MockStub::createWithResponseSequence(
+            $responseSequence,
+            '\google\longrunning\Operation::deserialize'
+        );
         $opClient = OperationResponseTest::createOperationsClient($opStub);
         $descriptor = [
             'operationsClient' => $opClient,
@@ -604,23 +632,35 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
         /* @var $response \Google\GAX\OperationResponse */
         $response = $apiCall($request, [], []);
 
-        $this->assertSame(1, count($callStub->actualCalls));
-        $this->assertSame(0, count($opStub->actualCalls));
+        $apiReceivedCalls = $callStub->getReceivedCalls();
+        $opReceivedCallsEmpty = $opStub->getReceivedCalls();
+
+        $this->assertSame(1, count($apiReceivedCalls));
+        $this->assertSame(0, count($opReceivedCallsEmpty));
 
         $complete = $response->pollUntilComplete(['pollingIntervalSeconds' => 0.1]);
         $this->assertTrue($complete);
         $this->assertTrue($response->isDone());
 
-        $this->assertSame(1, count($callStub->actualCalls));
-        $this->assertSame(2, count($opStub->actualCalls));
+        $apiReceivedCallsEmpty = $callStub->getReceivedCalls();
+        $opReceivedCalls = $opStub->getReceivedCalls();
 
-        $this->assertSame('takeAction', $callStub->actualCalls[0]['funcName']);
-        $this->assertSame('GetOperation', $opStub->actualCalls[0]['funcName']);
-        $this->assertSame('GetOperation', $opStub->actualCalls[1]['funcName']);
+        $this->assertSame(0, count($apiReceivedCallsEmpty));
+        $this->assertSame(2, count($opReceivedCalls));
 
-        $this->assertEquals(OperationResponseTest::createStatus(Code::OK, 'someMessage'), $response->getResult());
+        $this->assertSame('takeAction', $apiReceivedCalls[0]->getFuncCall());
+        $this->assertSame('GetOperation', $opReceivedCalls[0]->getFuncCall());
+        $this->assertSame('GetOperation', $opReceivedCalls[1]->getFuncCall());
+
+        $this->assertEquals(
+            OperationResponseTest::createStatus(Code::OK, 'someMessage'),
+            $response->getResult()
+        );
         $this->assertNull($response->getError());
-        $this->assertEquals(OperationResponseTest::createStatus(Code::OK, 'm3'), $response->getMetadata());
+        $this->assertEquals(
+            OperationResponseTest::createStatus(Code::OK, 'm3'),
+            $response->getMetadata()
+        );
     }
 
     public function testLongrunningMaxPollingDuration()
@@ -637,8 +677,14 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
             [$responseA, new MockStatus(Grpc\STATUS_OK, '')],
             [$responseB, new MockStatus(Grpc\STATUS_OK, '')],
         ];
-        $callStub = MockStub::createWithResponseSequence([[$initialResponse, new MockStatus(Grpc\STATUS_OK, '')]]);
-        $opStub = MockStub::createWithResponseSequence($responseSequence);
+        $callStub = MockStub::createWithResponseSequence(
+            [[$initialResponse, new MockStatus(Grpc\STATUS_OK, '')]],
+            '\google\longrunning\Operation::deserialize'
+        );
+        $opStub = MockStub::createWithResponseSequence(
+            $responseSequence,
+            '\google\longrunning\Operation::deserialize'
+        );
         $opClient = OperationResponseTest::createOperationsClient($opStub);
         $descriptor = [
             'operationsClient' => $opClient,
@@ -656,8 +702,11 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
         /* @var $response \Google\GAX\OperationResponse */
         $response = $apiCall($request, [], []);
 
-        $this->assertSame(1, count($callStub->actualCalls));
-        $this->assertSame(0, count($opStub->actualCalls));
+        $apiReceivedCalls = $callStub->getReceivedCalls();
+        $opReceivedCallsEmpty = $opStub->getReceivedCalls();
+
+        $this->assertSame(1, count($apiReceivedCalls));
+        $this->assertSame(0, count($opReceivedCallsEmpty));
 
         $complete = $response->pollUntilComplete([
             'pollingIntervalSeconds' => 0.1,
@@ -666,15 +715,21 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
         $this->assertFalse($complete);
         $this->assertFalse($response->isDone());
 
-        $this->assertSame(1, count($callStub->actualCalls));
-        $this->assertSame(2, count($opStub->actualCalls));
+        $apiReceivedCallsEmpty = $callStub->getReceivedCalls();
+        $opReceivedCalls = $opStub->getReceivedCalls();
 
-        $this->assertSame('takeAction', $callStub->actualCalls[0]['funcName']);
-        $this->assertSame('GetOperation', $opStub->actualCalls[0]['funcName']);
+        $this->assertSame(0, count($apiReceivedCallsEmpty));
+        $this->assertSame(2, count($opReceivedCalls));
+
+        $this->assertSame('takeAction', $apiReceivedCalls[0]->getFuncCall());
+        $this->assertSame('GetOperation', $opReceivedCalls[0]->getFuncCall());
 
         $this->assertNull($response->getResult());
         $this->assertNull($response->getError());
-        $this->assertEquals(OperationResponseTest::createStatus(Code::OK, 'm3'), $response->getMetadata());
+        $this->assertEquals(
+            OperationResponseTest::createStatus(Code::OK, 'm3'),
+            $response->getMetadata()
+        );
     }
 
     public function testLongrunningFailure()
@@ -691,9 +746,13 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
             [$responseB, new MockStatus(Grpc\STATUS_OK, '')],
         ];
         $callStub = MockStub::createWithResponseSequence(
-            [[$initialResponse, new MockStatus(Grpc\STATUS_OK, '')]]
+            [[$initialResponse, new MockStatus(Grpc\STATUS_OK, '')]],
+            '\google\longrunning\Operation::deserialize'
         );
-        $opStub = MockStub::createWithResponseSequence($responseSequence);
+        $opStub = MockStub::createWithResponseSequence(
+            $responseSequence,
+            '\google\longrunning\Operation::deserialize'
+        );
         $opClient = OperationResponseTest::createOperationsClient($opStub);
         $descriptor = [
             'operationsClient' => $opClient,
@@ -716,8 +775,11 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
         $metadataResponses = [$response->getMetadata()];
         $isDoneResponses = [$response->isDone()];
 
-        $this->assertSame(1, count($callStub->actualCalls));
-        $this->assertSame(0, count($opStub->actualCalls));
+        $apiReceivedCalls = $callStub->getReceivedCalls();
+        $opReceivedCallsEmpty = $opStub->getReceivedCalls();
+
+        $this->assertSame(1, count($apiReceivedCalls));
+        $this->assertSame(0, count($opReceivedCallsEmpty));
 
         while (!$response->isDone()) {
             $response->reload();
@@ -727,15 +789,21 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
             $isDoneResponses[] = $response->isDone();
         }
 
-        $this->assertSame(1, count($callStub->actualCalls));
-        $this->assertSame(2, count($opStub->actualCalls));
+        $apiReceivedCallsEmpty = $callStub->getReceivedCalls();
+        $opReceivedCalls = $opStub->getReceivedCalls();
 
-        $this->assertSame('takeAction', $callStub->actualCalls[0]['funcName']);
-        $this->assertSame('GetOperation', $opStub->actualCalls[0]['funcName']);
-        $this->assertSame('GetOperation', $opStub->actualCalls[1]['funcName']);
+        $this->assertSame(0, count($apiReceivedCallsEmpty));
+        $this->assertSame(2, count($opReceivedCalls));
+
+        $this->assertSame('takeAction', $apiReceivedCalls[0]->getFuncCall());
+        $this->assertSame('GetOperation', $opReceivedCalls[0]->getFuncCall());
+        $this->assertSame('GetOperation', $opReceivedCalls[1]->getFuncCall());
 
         $this->assertEquals([null, null, null], $results);
-        $this->assertEquals([null, null, OperationResponseTest::createStatus(Code::UNKNOWN, 'someError')], $errors);
+        $this->assertEquals(
+            [null, null, OperationResponseTest::createStatus(Code::UNKNOWN, 'someError')],
+            $errors
+        );
         $this->assertEquals([
             OperationResponseTest::createStatus(Code::OK, 'm1'),
             OperationResponseTest::createStatus(Code::OK, 'm2'),
@@ -752,14 +820,25 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
 
         $initialResponse = self::createIncompleteOperationResponse($opName, 'm1');
         $responseA = self::createIncompleteOperationResponse($opName, 'm2');
-        $responseB = self::createFailedOperationResponse($opName, Code::CANCELLED, 'someError', 'm3');
+        $responseB = self::createFailedOperationResponse(
+            $opName,
+            Code::CANCELLED,
+            'someError',
+            'm3'
+        );
         $responseSequence = [
             [new EmptyC(), new MockStatus(Grpc\STATUS_OK, '')],
             [$responseA, new MockStatus(Grpc\STATUS_OK, '')],
             [$responseB, new MockStatus(Grpc\STATUS_OK, '')],
         ];
-        $callStub = MockStub::createWithResponseSequence([[$initialResponse, new MockStatus(Grpc\STATUS_OK, '')]]);
-        $opStub = MockStub::createWithResponseSequence($responseSequence);
+        $callStub = MockStub::createWithResponseSequence(
+            [[$initialResponse, new MockStatus(Grpc\STATUS_OK, '')]],
+            '\google\longrunning\Operation::deserialize'
+        );
+        $opStub = MockStub::createWithResponseSequence(
+            $responseSequence,
+            '\google\longrunning\Operation::deserialize'
+        );
         $opClient = OperationResponseTest::createOperationsClient($opStub);
         $descriptor = [
             'operationsClient' => $opClient,
@@ -777,25 +856,34 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
         /* @var $response \Google\GAX\OperationResponse */
         $response = $apiCall($request, [], []);
 
-        $this->assertSame(1, count($callStub->actualCalls));
-        $this->assertSame(0, count($opStub->actualCalls));
+        $apiReceivedCalls = $callStub->getReceivedCalls();
+        $opReceivedCallsEmpty = $opStub->getReceivedCalls();
+
+        $this->assertSame(1, count($apiReceivedCalls));
+        $this->assertSame(0, count($opReceivedCallsEmpty));
 
         $response->cancel();
 
-        $this->assertSame(1, count($callStub->actualCalls));
-        $this->assertSame(1, count($opStub->actualCalls));
+        $apiReceivedCallsEmpty = $callStub->getReceivedCalls();
+        $opReceivedCalls = $opStub->getReceivedCalls();
+
+        $this->assertSame(0, count($apiReceivedCallsEmpty));
+        $this->assertSame(1, count($opReceivedCalls));
 
         while (!$response->isDone()) {
             $response->reload();
         }
 
-        $this->assertSame(1, count($callStub->actualCalls));
-        $this->assertSame(3, count($opStub->actualCalls));
+        $apiReceivedCallsEmpty = $callStub->getReceivedCalls();
+        $opReceivedCalls = array_merge($opReceivedCalls, $opStub->getReceivedCalls());
 
-        $this->assertSame('takeAction', $callStub->actualCalls[0]['funcName']);
-        $this->assertSame('CancelOperation', $opStub->actualCalls[0]['funcName']);
-        $this->assertSame('GetOperation', $opStub->actualCalls[1]['funcName']);
-        $this->assertSame('GetOperation', $opStub->actualCalls[2]['funcName']);
+        $this->assertSame(0, count($apiReceivedCallsEmpty));
+        $this->assertSame(3, count($opReceivedCalls));
+
+        $this->assertSame('takeAction', $apiReceivedCalls[0]->getFuncCall());
+        $this->assertSame('CancelOperation', $opReceivedCalls[0]->getFuncCall());
+        $this->assertSame('GetOperation', $opReceivedCalls[1]->getFuncCall());
+        $this->assertSame('GetOperation', $opReceivedCalls[2]->getFuncCall());
 
         $this->assertNull($response->getResult());
         $this->assertEquals(OperationResponseTest::createStatus(Code::CANCELLED, 'someError'), $response->getError());
@@ -813,8 +901,14 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
         $request = null;
 
         $initialResponse = self::createIncompleteOperationResponse($opName, 'm1');
-        $callStub = MockStub::createWithResponseSequence([[$initialResponse, new MockStatus(Grpc\STATUS_OK, '')]]);
-        $opStub = MockStub::createWithResponseSequence([[new EmptyC(), new MockStatus(Grpc\STATUS_OK, '')]]);
+        $callStub = MockStub::createWithResponseSequence(
+            [[$initialResponse, new MockStatus(Grpc\STATUS_OK, '')]],
+            '\google\longrunning\Operation::deserialize'
+        );
+        $opStub = MockStub::createWithResponseSequence(
+            [[new EmptyC(), new MockStatus(Grpc\STATUS_OK, '')]],
+            '\google\longrunning\Operation::deserialize'
+        );
         $opClient = OperationResponseTest::createOperationsClient($opStub);
         $descriptor = [
             'operationsClient' => $opClient,
@@ -832,17 +926,406 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
         /* @var $response \Google\GAX\OperationResponse */
         $response = $apiCall($request, [], []);
 
-        $this->assertSame(1, count($callStub->actualCalls));
-        $this->assertSame(0, count($opStub->actualCalls));
+        $apiReceivedCalls = $callStub->getReceivedCalls();
+        $opReceivedCallsEmpty = $opStub->getReceivedCalls();
+
+        $this->assertSame(1, count($apiReceivedCalls));
+        $this->assertSame(0, count($opReceivedCallsEmpty));
 
         $response->delete();
 
-        $this->assertSame(1, count($callStub->actualCalls));
-        $this->assertSame(1, count($opStub->actualCalls));
+        $apiReceivedCallsEmpty = $callStub->getReceivedCalls();
+        $opReceivedCalls = $opStub->getReceivedCalls();
 
-        $this->assertSame('takeAction', $callStub->actualCalls[0]['funcName']);
-        $this->assertSame('DeleteOperation', $opStub->actualCalls[0]['funcName']);
+        $this->assertSame(0, count($apiReceivedCallsEmpty));
+        $this->assertSame(1, count($opReceivedCalls));
+
+        $this->assertSame('takeAction', $apiReceivedCalls[0]->getFuncCall());
+        $this->assertSame('DeleteOperation', $opReceivedCalls[0]->getFuncCall());
 
         $response->reload();
+    }
+
+    public function testClientStreamingSuccessSimple()
+    {
+        $request = "request";
+        $response = "response";
+        $descriptor = [
+            'grpcStreamingType' => 'ClientStreaming',
+        ];
+        $this->clientStreamingTestImpl($request, $response, $descriptor, null);
+    }
+
+    public function testClientStreamingSuccessObject()
+    {
+        $request = new Status();
+        $request->setCode(Grpc\STATUS_OK)->setMessage('request');
+        $response = new Status();
+        $response->setCode(Grpc\STATUS_OK)->setMessage('response');
+        $descriptor = [
+            'grpcStreamingType' => 'ClientStreaming',
+        ];
+        $this->clientStreamingTestImpl($request, $response, $descriptor, '\google\rpc\Status::deserialize');
+    }
+
+    private function clientStreamingTestImpl($request, $response, $descriptor, $deserialize)
+    {
+        $metadata = [];
+        $options = ['call_credentials_callback' => 'fake_callback'];
+        $stub = MockClientStreamingStub::create($response, null, $deserialize);
+
+        $callSettings = new CallSettings([]);
+
+        $apiCall = ApiCallable::createApiCall(
+            $stub,
+            'takeAction',
+            $callSettings,
+            ['grpcStreamingDescriptor' => $descriptor]
+        );
+
+        /* @var $stream \Google\GAX\ClientStream */
+        $stream = $apiCall(null, $metadata, $options);
+        $actualResponse = $stream->writeAllAndReadResponse([$request]);
+        $this->assertEquals($response, $actualResponse);
+
+        $actualCalls = $stub->getReceivedCalls();
+        $this->assertSame(1, count($actualCalls));
+        $this->assertNull($actualCalls[0]->getRequestObject());
+        $this->assertEquals($metadata, $actualCalls[0]->getMetadata());
+        $this->assertEquals($options, $actualCalls[0]->getOptions());
+
+        /* @var $mockClientStreamingCall \Google\GAX\Testing\MockClientStreamingCall */
+        $mockClientStreamingCall = $stream->getClientStreamingCall();
+        $actualStreamingCalls = $mockClientStreamingCall->getReceivedCalls();
+        $this->assertSame(1, count($actualStreamingCalls));
+        $this->assertEquals($request, $actualStreamingCalls[0]);
+    }
+
+    /**
+     * @expectedException \Google\GAX\ApiException
+     * @expectedExceptionMessage client streaming failure
+     */
+    public function testClientStreamingFailure()
+    {
+        $request = "request";
+        $response = "response";
+        $descriptor = [
+            'grpcStreamingType' => 'ClientStreaming',
+        ];
+
+        $finalStatus = new MockStatus(Grpc\STATUS_INTERNAL, 'client streaming failure');
+
+        $metadata = [];
+        $options = ['call_credentials_callback' => 'fake_callback'];
+        $stub = MockClientStreamingStub::create($response, $finalStatus);
+
+        $callSettings = new CallSettings([]);
+        $apiCall = ApiCallable::createApiCall(
+            $stub,
+            'takeAction',
+            $callSettings,
+            ['grpcStreamingDescriptor' => $descriptor]
+        );
+
+        /* @var $stream \Google\GAX\ClientStream */
+        $stream = $apiCall(null, $metadata, $options);
+        $stream->write($request);
+
+        $actualCalls = $stub->getReceivedCalls();
+        $this->assertSame(1, count($actualCalls));
+        $this->assertNull($actualCalls[0]->getRequestObject());
+        $this->assertEquals($metadata, $actualCalls[0]->getMetadata());
+        $this->assertEquals($options, $actualCalls[0]->getOptions());
+
+        /* @var $mockClientStreamingCall \Google\GAX\Testing\MockClientStreamingCall */
+        $mockClientStreamingCall = $stream->getClientStreamingCall();
+        $actualStreamingCalls = $mockClientStreamingCall->getReceivedCalls();
+        $this->assertSame(1, count($actualStreamingCalls));
+        $this->assertEquals($request, $actualStreamingCalls[0]);
+
+        $stream->readResponse();
+    }
+
+    public function testServerStreamingSuccessSimple()
+    {
+        $request = "request";
+        $response = "response";
+        $responses = [$response];
+        $descriptor = [
+            'grpcStreamingType' => 'ServerStreaming',
+        ];
+        $this->serverStreamingTestImpl($request, $responses, $descriptor, null);
+    }
+
+    public function testServerStreamingSuccessObject()
+    {
+        $request = new Status();
+        $request->setCode(Grpc\STATUS_OK)->setMessage('request');
+        $response = new Status();
+        $response->setCode(Grpc\STATUS_OK)->setMessage('response');
+        $responses = [$response];
+        $descriptor = [
+            'grpcStreamingType' => 'ServerStreaming',
+        ];
+        $this->serverStreamingTestImpl($request, $responses, $descriptor, '\google\rpc\Status::deserialize');
+    }
+
+    private function serverStreamingTestImpl($request, $responses, $descriptor, $deserialize)
+    {
+        $metadata = [];
+        $options = ['call_credentials_callback' => 'fake_callback'];
+        $stub = MockServerStreamingStub::createWithResponseSequence($responses, null, $deserialize);
+
+        $callSettings = new CallSettings([]);
+        $apiCall = ApiCallable::createApiCall(
+            $stub,
+            'takeAction',
+            $callSettings,
+            ['grpcStreamingDescriptor' => $descriptor]
+        );
+
+        /* @var $stream \Google\GAX\ServerStream */
+        $stream = $apiCall($request, $metadata, $options);
+        $actualResponses = iterator_to_array($stream->readAll());
+        $this->assertSame(1, count($actualResponses));
+        $this->assertEquals($responses, $actualResponses);
+
+        $actualCalls = $stub->getReceivedCalls();
+        $this->assertSame(1, count($actualCalls));
+        $this->assertEquals($request, $actualCalls[0]->getRequestObject());
+        $this->assertEquals($metadata, $actualCalls[0]->getMetadata());
+        $this->assertEquals($options, $actualCalls[0]->getOptions());
+    }
+
+    public function testServerStreamingSuccessResources()
+    {
+        $request = new Status();
+        $request->setCode(Grpc\STATUS_OK)->setMessage('request');
+        $resources = ['resource1', 'resource2'];
+        $response = MockPageStreamingResponse::createPageStreamingResponse(
+            'nextPageToken',
+            $resources
+        );
+        $responses = [$response];
+        $descriptor = [
+            'grpcStreamingType' => 'ServerStreaming',
+            'resourcesField' => 'getResourcesList',
+        ];
+
+        $metadata = [];
+        $options = ['call_credentials_callback' => 'fake_callback'];
+        $stub = MockServerStreamingStub::createWithResponseSequence($responses);
+
+        $callSettings = new CallSettings([]);
+        $apiCall = ApiCallable::createApiCall(
+            $stub,
+            'takeAction',
+            $callSettings,
+            ['grpcStreamingDescriptor' => $descriptor]
+        );
+
+        /* @var $stream \Google\GAX\ServerStream */
+        $stream = $apiCall($request, $metadata, $options);
+        $actualResponses = iterator_to_array($stream->readAll());
+        $this->assertSame(2, count($actualResponses));
+        $this->assertEquals($resources, $actualResponses);
+
+        $actualCalls = $stub->getReceivedCalls();
+        $this->assertSame(1, count($actualCalls));
+        $this->assertEquals($request, $actualCalls[0]->getRequestObject());
+        $this->assertEquals($metadata, $actualCalls[0]->getMetadata());
+        $this->assertEquals($options, $actualCalls[0]->getOptions());
+    }
+
+    /**
+     * @expectedException \Google\GAX\ApiException
+     * @expectedExceptionMessage server streaming failure
+     */
+    public function testServerStreamingFailure()
+    {
+        $request = "request";
+        $response = "response";
+        $responses = [$response];
+        $descriptor = [
+            'grpcStreamingType' => 'ServerStreaming',
+        ];
+
+        $finalStatus = new MockStatus(Grpc\STATUS_INTERNAL, 'server streaming failure');
+
+        $metadata = [];
+        $options = ['call_credentials_callback' => 'fake_callback'];
+        $stub = MockServerStreamingStub::createWithResponseSequence($responses, $finalStatus);
+
+        $callSettings = new CallSettings([]);
+        $apiCall = ApiCallable::createApiCall(
+            $stub,
+            'takeAction',
+            $callSettings,
+            ['grpcStreamingDescriptor' => $descriptor]
+        );
+
+        /* @var $stream \Google\GAX\ServerStream */
+        $stream = $apiCall($request, $metadata, $options);
+
+        foreach ($stream->readAll() as $actualResponse) {
+            $this->assertEquals($response, $actualResponse);
+
+            $actualCalls = $stub->getReceivedCalls();
+            $this->assertSame(1, count($actualCalls));
+            $this->assertEquals($request, $actualCalls[0]->getRequestObject());
+            $this->assertEquals($metadata, $actualCalls[0]->getMetadata());
+            $this->assertEquals($options, $actualCalls[0]->getOptions());
+        }
+    }
+
+    public function testBidiStreamingSuccessSimple()
+    {
+        $request = "request";
+        $response = "response";
+        $descriptor = [
+            'grpcStreamingType' => 'BidiStreaming',
+        ];
+        $this->bidiStreamingTestImpl($request, [$response], $descriptor, null);
+    }
+
+    public function testBidiStreamingSuccessObject()
+    {
+        $request = new Status();
+        $request->setCode(Grpc\STATUS_OK)->setMessage('request');
+        $response = new Status();
+        $response->setCode(Grpc\STATUS_OK)->setMessage('response');
+        $descriptor = [
+            'grpcStreamingType' => 'BidiStreaming',
+        ];
+        $this->bidiStreamingTestImpl($request, [$response], $descriptor, '\google\rpc\Status::deserialize');
+    }
+
+    private function bidiStreamingTestImpl($request, $responses, $descriptor, $deserialize)
+    {
+        $metadata = [];
+        $options = ['call_credentials_callback' => 'fake_callback'];
+        $stub = MockBidiStreamingStub::createWithResponseSequence($responses, null, $deserialize);
+
+        $callSettings = new CallSettings([]);
+        $apiCall = ApiCallable::createApiCall(
+            $stub,
+            'takeAction',
+            $callSettings,
+            ['grpcStreamingDescriptor' => $descriptor]
+        );
+
+        /* @var $stream \Google\GAX\BidiStream */
+        $stream = $apiCall(null, $metadata, $options);
+        $stream->write($request);
+        $actualResponses = iterator_to_array($stream->closeWriteAndReadAll());
+        $this->assertSame(1, count($actualResponses));
+        $this->assertEquals($responses, $actualResponses);
+
+        $actualCalls = $stub->getReceivedCalls();
+        $this->assertSame(1, count($actualCalls));
+        $this->assertNull($actualCalls[0]->getRequestObject());
+        $this->assertEquals($metadata, $actualCalls[0]->getMetadata());
+        $this->assertEquals($options, $actualCalls[0]->getOptions());
+
+        /* @var $mockBidiStreamingCall \Google\GAX\Testing\MockBidiStreamingCall */
+        $mockBidiStreamingCall = $stream->getBidiStreamingCall();
+        $actualStreamingCalls = $mockBidiStreamingCall->getReceivedCalls();
+        $this->assertSame(1, count($actualStreamingCalls));
+        $this->assertEquals($request, $actualStreamingCalls[0]);
+    }
+
+    public function testBidiStreamingSuccessResources()
+    {
+        $request = new Status();
+        $request->setCode(Grpc\STATUS_OK)->setMessage('request');
+        $resources = ['resource1', 'resource2'];
+        $response = MockPageStreamingResponse::createPageStreamingResponse(
+            'nextPageToken',
+            $resources
+        );
+        $descriptor = [
+            'grpcStreamingType' => 'BidiStreaming',
+            'resourcesField' => 'getResourcesList',
+        ];
+
+        $metadata = [];
+        $options = ['call_credentials_callback' => 'fake_callback'];
+        $stub = MockBidiStreamingStub::createWithResponseSequence([$response]);
+
+        $callSettings = new CallSettings([]);
+        $apiCall = ApiCallable::createApiCall(
+            $stub,
+            'takeAction',
+            $callSettings,
+            ['grpcStreamingDescriptor' => $descriptor]
+        );
+
+        /* @var $stream \Google\GAX\BidiStream */
+        $stream = $apiCall(null, $metadata, $options);
+        $stream->write($request);
+        $actualResponses = iterator_to_array($stream->closeWriteAndReadAll());
+        $this->assertSame(2, count($actualResponses));
+        $this->assertEquals($resources, $actualResponses);
+
+        $actualCalls = $stub->getReceivedCalls();
+        $this->assertSame(1, count($actualCalls));
+        $this->assertNull($actualCalls[0]->getRequestObject());
+        $this->assertEquals($metadata, $actualCalls[0]->getMetadata());
+        $this->assertEquals($options, $actualCalls[0]->getOptions());
+
+        /* @var $mockBidiStreamingCall \Google\GAX\Testing\MockBidiStreamingCall */
+        $mockBidiStreamingCall = $stream->getBidiStreamingCall();
+        $actualStreamingCalls = $mockBidiStreamingCall->getReceivedCalls();
+        $this->assertSame(1, count($actualStreamingCalls));
+        $this->assertEquals($request, $actualStreamingCalls[0]);
+    }
+
+    /**
+     * @expectedException \Google\GAX\ApiException
+     * @expectedExceptionMessage bidi failure
+     */
+    public function testBidiStreamingFailure()
+    {
+        $request = "request";
+        $response = "response";
+        $descriptor = [
+            'grpcStreamingType' => 'BidiStreaming',
+        ];
+        $responses = [$response];
+
+        $finalStatus = new MockStatus(Grpc\STATUS_INTERNAL, 'bidi failure');
+
+        $metadata = [];
+        $options = ['call_credentials_callback' => 'fake_callback'];
+        $stub = MockBidiStreamingStub::createWithResponseSequence($responses, $finalStatus);
+
+        $callSettings = new CallSettings([]);
+        $apiCall = ApiCallable::createApiCall(
+            $stub,
+            'takeAction',
+            $callSettings,
+            ['grpcStreamingDescriptor' => $descriptor]
+        );
+
+        /* @var $stream \Google\GAX\BidiStream */
+        $stream = $apiCall(null, $metadata, $options);
+        $stream->write($request);
+        $stream->closeWrite();
+        $actualResponse = $stream->read();
+        $this->assertEquals($response, $actualResponse);
+
+        $actualCalls = $stub->getReceivedCalls();
+        $this->assertSame(1, count($actualCalls));
+        $this->assertNull($actualCalls[0]->getRequestObject());
+        $this->assertEquals($metadata, $actualCalls[0]->getMetadata());
+        $this->assertEquals($options, $actualCalls[0]->getOptions());
+
+        /* @var $mockBidiStreamingCall \Google\GAX\Testing\MockBidiStreamingCall */
+        $mockBidiStreamingCall = $stream->getBidiStreamingCall();
+        $actualStreamingCalls = $mockBidiStreamingCall->getReceivedCalls();
+        $this->assertSame(1, count($actualStreamingCalls));
+        $this->assertEquals($request, $actualStreamingCalls[0]);
+
+        $stream->read();
     }
 }

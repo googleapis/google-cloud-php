@@ -32,14 +32,19 @@
 
 namespace Google\GAX\UnitTests\Mocks;
 
+use Google\GAX\Testing\MockStubTrait;
 use InvalidArgumentException;
-use UnderflowException;
-use Google\GAX\Testing\MockUnaryCall;
 
 class MockStub
 {
-    public $actualCalls = [];
-    private $responses = [];
+    use MockStubTrait;
+
+    private $deserialize;
+
+    public function __construct($deserialize = null)
+    {
+        $this->deserialize = $deserialize;
+    }
 
     /**
      * @param mixed $responseObject
@@ -56,14 +61,15 @@ class MockStub
     /**
      * Creates a sequence such that the responses are returned in order.
      * @param mixed[] $sequence
+     * @param callable $deserialize
      * @return MockStub
      */
-    public static function createWithResponseSequence($sequence)
+    public static function createWithResponseSequence($sequence, $deserialize = null)
     {
         if (count($sequence) == 0) {
             throw new InvalidArgumentException("createResponseSequence: need at least 1 response");
         }
-        $stub = new MockStub();
+        $stub = new MockStub($deserialize);
         foreach ($sequence as $elem) {
             list($resp, $status) = $elem;
             $stub->addResponse($resp, $status);
@@ -71,30 +77,10 @@ class MockStub
         return $stub;
     }
 
-    public function addResponse($response, $status = null)
-    {
-        $this->responses[] = [$response, $status];
-    }
-
     public function __call($name, $arguments)
     {
-        $newArgs = array_merge([$name], $arguments);
-        return call_user_func_array(array($this, 'handleCall'), $newArgs);
-    }
-
-    private function handleCall($funcName, $request, $metadata = array(), $options = array())
-    {
-        $actualCall = [
-            'funcName' => $funcName,
-            'request' => $request,
-            'metadata' => $metadata,
-            'options' => $options,
-        ];
-        array_push($this->actualCalls, $actualCall);
-        if (count($this->responses) < 1) {
-            throw new UnderflowException("ran out of responses");
-        }
-        $response = array_shift($this->responses);
-        return new MockUnaryCall($response[0], null, $response[1]);
+        list($argument, $metadata, $options) = $arguments;
+        $newArgs = [$name, $argument, $this->deserialize, $metadata, $options];
+        return call_user_func_array(array($this, '_simpleRequest'), $newArgs);
     }
 }

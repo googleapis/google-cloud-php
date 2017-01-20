@@ -29,49 +29,62 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+
 namespace Google\GAX\Testing;
 
+use Google\GAX\ApiException;
+use google\rpc\Code;
+use google\rpc\Status;
+use Grpc;
+
 /**
- * Class ReceivedRequest used to hold the function name and request object of a call
- * make to a mock gRPC stub.
+ * The MockServerStreamingCall class is used to mock out the \Grpc\ServerStreamingCall class
+ * (https://github.com/grpc/grpc/blob/master/src/php/lib/Grpc/ServerStreamingCall.php)
  */
-class ReceivedRequest
+class MockServerStreamingCall
 {
-    private $actualCall;
+    private $responses;
+    private $deserialize;
+    private $status;
 
-    public function __construct($funcCall, $requestObject, $deserialize = null, $metadata = [], $options = [])
+    /**
+     * MockServerStreamingCall constructor.
+     * @param mixed[] $responses A list of response objects.
+     * @param callable|null $deserialize An optional deserialize method for the response object.
+     * @param Status|null $status An optional status object. If set to null, a status of OK is used.
+     */
+    public function __construct($responses, $deserialize = null, $status = null)
     {
-        $this->actualCall = [
-            'funcCall' => $funcCall,
-            'request' => $requestObject,
-            'deserialize' => $deserialize,
-            'metadata' => $metadata,
-            'options' => $options,
-        ];
+        $this->responses = $responses;
+        if (is_null($deserialize)) {
+            $deserialize = function ($resp) {
+                return $resp;
+            };
+        }
+        $this->deserialize = $deserialize;
+        if (is_null($status)) {
+            $status = new Status();
+            $status->setCode(Code::OK);
+        }
+        $this->status = $status;
     }
 
-    public function getArray()
+    public function responses()
     {
-        return $this->actualCall;
+        while (count($this->responses) > 0) {
+            $resp = array_shift($this->responses);
+            yield call_user_func($this->deserialize, $resp);
+        }
     }
 
-    public function getFuncCall()
+    public function getStatus()
     {
-        return $this->actualCall['funcCall'];
-    }
-
-    public function getRequestObject()
-    {
-        return $this->actualCall['request'];
-    }
-
-    public function getMetadata()
-    {
-        return $this->actualCall['metadata'];
-    }
-
-    public function getOptions()
-    {
-        return $this->actualCall['options'];
+        if (count($this->responses) > 0) {
+            throw new ApiException(
+                "Calls to getStatus() will block if all responses are not read",
+                Grpc\STATUS_INTERNAL
+            );
+        }
+        return $this->status;
     }
 }

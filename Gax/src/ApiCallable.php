@@ -134,6 +134,40 @@ class ApiCallable
         return $inner;
     }
 
+    public static function callWithoutRequest($callable, $params)
+    {
+        array_shift($params);
+        return call_user_func_array($callable, $params);
+    }
+
+    private static function createUnaryApiCall($callable)
+    {
+        return function () use ($callable) {
+            list($response, $status) =
+                call_user_func_array($callable, func_get_args())->wait();
+            if ($status->code == Grpc\STATUS_OK) {
+                return $response;
+            } else {
+                throw ApiException::createFromStdClass($status);
+            }
+        };
+    }
+
+    private static function createGrpcStreamingApiCall($callable, $grpcStreamingDescriptor)
+    {
+        switch ($grpcStreamingDescriptor['grpcStreamingType']) {
+            case 'ClientStreaming':
+                return ClientStream::createApiCall($callable, $grpcStreamingDescriptor);
+            case 'ServerStreaming':
+                return ServerStream::createApiCall($callable, $grpcStreamingDescriptor);
+            case 'BidiStreaming':
+                return BidiStream::createApiCall($callable, $grpcStreamingDescriptor);
+            default:
+                throw new ValidationException('Unexpected gRPC streaming type: ' .
+                    $grpcStreamingDescriptor['grpcStreamingType']);
+        }
+    }
+
     private static function setCustomHeader($callable, $headerDescriptor)
     {
         $inner = function () use ($callable, $headerDescriptor) {
@@ -164,18 +198,21 @@ class ApiCallable
      * }
      *
      * @return callable
+     * @throws ValidationException
      */
     public static function createApiCall($stub, $methodName, CallSettings $settings, $options = [])
     {
-        $apiCall = function () use ($stub, $methodName) {
-            list($response, $status) =
-                call_user_func_array(array($stub, $methodName), func_get_args())->wait();
-            if ($status->code == Grpc\STATUS_OK) {
-                return $response;
-            } else {
-                throw new ApiException($status->details, $status->code);
-            }
-        };
+        ApiCallable::validateApiCallSettings($settings, $options);
+
+        $callable = array($stub, $methodName);
+        if (array_key_exists('grpcStreamingDescriptor', $options)) {
+            $apiCall = ApiCallable::createGrpcStreamingApiCall(
+                $callable,
+                $options['grpcStreamingDescriptor']
+            );
+        } else {
+            $apiCall = ApiCallable::createUnaryApiCall($callable);
+        }
 
         $retrySettings = $settings->getRetrySettings();
         if (!is_null($retrySettings) && !is_null($retrySettings->getRetryableCodes())) {
@@ -200,5 +237,28 @@ class ApiCallable
             $apiCall = self::setCustomHeader($apiCall, $options['headerDescriptor']);
         }
         return $apiCall;
+    }
+
+    private static function validateApiCallSettings(CallSettings $settings, $options)
+    {
+        $retrySettings = $settings->getRetrySettings();
+        $isGrpcStreaming = array_key_exists('grpcStreamingDescriptor', $options);
+        if ($isGrpcStreaming) {
+            if (!is_null($retrySettings) && !is_null($retrySettings->getRetryableCodes())) {
+                throw new ValidationException(
+                    'grpcStreamingDescriptor not compatible with retry settings'
+                );
+            }
+            if (array_key_exists('pageStreamingDescriptor', $options)) {
+                throw new ValidationException(
+                    'grpcStreamingDescriptor not compatible with pageStreamingDescriptor'
+                );
+            }
+            if (array_key_exists('longRunningDescriptor', $options)) {
+                throw new ValidationException(
+                    'grpcStreamingDescriptor not compatible with longRunningDescriptor'
+                );
+            }
+        }
     }
 }

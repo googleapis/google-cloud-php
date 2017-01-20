@@ -29,49 +29,24 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-namespace Google\GAX\Testing;
 
-/**
- * Class ReceivedRequest used to hold the function name and request object of a call
- * make to a mock gRPC stub.
- */
-class ReceivedRequest
+namespace Google\GAX\UnitTests\Mocks;
+
+class MockPageStreamingResponse
 {
-    private $actualCall;
+    public $nextPageToken;
+    public $resource;
 
-    public function __construct($funcCall, $requestObject, $deserialize = null, $metadata = [], $options = [])
+    public static function createPageStreamingResponse($nextPageToken, $resource)
     {
-        $this->actualCall = [
-            'funcCall' => $funcCall,
-            'request' => $requestObject,
-            'deserialize' => $deserialize,
-            'metadata' => $metadata,
-            'options' => $options,
-        ];
+        $response = new MockPageStreamingResponse();
+        $response->nextPageToken = $nextPageToken;
+        $response->resource = $resource;
+        return $response;
     }
 
-    public function getArray()
+    public function getResourcesList()
     {
-        return $this->actualCall;
-    }
-
-    public function getFuncCall()
-    {
-        return $this->actualCall['funcCall'];
-    }
-
-    public function getRequestObject()
-    {
-        return $this->actualCall['request'];
-    }
-
-    public function getMetadata()
-    {
-        return $this->actualCall['metadata'];
-    }
-
-    public function getOptions()
-    {
-        return $this->actualCall['options'];
+        return $this->resource;
     }
 }

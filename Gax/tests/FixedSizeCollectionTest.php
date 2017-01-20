@@ -36,8 +36,8 @@ use Google\GAX\FixedSizeCollection;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\UnitTests\Mocks\MockStub;
 use Google\GAX\UnitTests\Mocks\MockStatus;
-use Google\GAX\UnitTests\Mocks\MockRequest;
-use Google\GAX\UnitTests\Mocks\MockResponse;
+use Google\GAX\UnitTests\Mocks\MockPageStreamingRequest;
+use Google\GAX\UnitTests\Mocks\MockPageStreamingResponse;
 use PHPUnit_Framework_TestCase;
 use Grpc;
 
@@ -45,7 +45,7 @@ class FixedSizeCollectionTest extends PHPUnit_Framework_TestCase
 {
     private static function createPage($responseSequence)
     {
-        $mockRequest = MockRequest::createPageStreamingRequest('token', 3);
+        $mockRequest = MockPageStreamingRequest::createPageStreamingRequest('token', 3);
         $stub = MockStub::createWithResponseSequence($responseSequence);
         $descriptor = new PageStreamingDescriptor([
             'requestPageTokenField' => 'pageToken',
@@ -63,19 +63,19 @@ class FixedSizeCollectionTest extends PHPUnit_Framework_TestCase
 
     public function testFixedCollectionMethods()
     {
-        $responseA = MockResponse::createPageStreamingResponse(
+        $responseA = MockPageStreamingResponse::createPageStreamingResponse(
             'nextPageToken1',
             ['resource1', 'resource2']
         );
-        $responseB = MockResponse::createPageStreamingResponse(
+        $responseB = MockPageStreamingResponse::createPageStreamingResponse(
             'nextPageToken2',
             ['resource3', 'resource4', 'resource5']
         );
-        $responseC = MockResponse::createPageStreamingResponse(
+        $responseC = MockPageStreamingResponse::createPageStreamingResponse(
             'nextPageToken3',
             ['resource6', 'resource7']
         );
-        $responseD = MockResponse::createPageStreamingResponse(
+        $responseD = MockPageStreamingResponse::createPageStreamingResponse(
             '',
             ['resource8', 'resource9']
         );

@@ -35,9 +35,32 @@ use Exception;
 
 class ApiException extends Exception
 {
+    private $metadata;
+
     public function __construct($message, $code, \Exception $previous = null)
     {
         parent::__construct($message, $code, $previous);
+    }
+
+    /**
+     * @param \stdClass $status
+     * @return ApiException
+     */
+    public static function createFromStdClass($status)
+    {
+        $ex = new ApiException($status->details, $status->code);
+        if (property_exists($status, 'metadata')) {
+            $ex->metadata = $status->metadata;
+        }
+        return $ex;
+    }
+
+    /**
+     * @return mixed[]
+     */
+    public function getMetadata()
+    {
+        return $this->metadata;
     }
 
     // custom string representation of object

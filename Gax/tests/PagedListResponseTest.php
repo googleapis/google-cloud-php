@@ -34,21 +34,21 @@ namespace Google\GAX\UnitTests;
 use Google\GAX\PagedListResponse;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\UnitTests\Mocks\MockStub;
-use Google\GAX\UnitTests\Mocks\MockRequest;
-use Google\GAX\UnitTests\Mocks\MockResponse;
+use Google\GAX\UnitTests\Mocks\MockPageStreamingRequest;
+use Google\GAX\UnitTests\Mocks\MockPageStreamingResponse;
 use PHPUnit_Framework_TestCase;
 
 class PagedListResponseTest extends PHPUnit_Framework_TestCase
 {
     public function testNextPageToken()
     {
-        $mockRequest = MockRequest::createPageStreamingRequest('mockToken');
+        $mockRequest = MockPageStreamingRequest::createPageStreamingRequest('mockToken');
         $descriptor = new PageStreamingDescriptor([
             'requestPageTokenField' => 'pageToken',
             'responsePageTokenField' => 'nextPageToken',
             'resourceField' => 'resource'
         ]);
-        $response = MockResponse::createPageStreamingResponse('nextPageToken1', ['resource1']);
+        $response = MockPageStreamingResponse::createPageStreamingResponse('nextPageToken1', ['resource1']);
         $stub = MockStub::create($response);
         $mockApiCall = function () use ($stub) {
             list($response, $status) =
