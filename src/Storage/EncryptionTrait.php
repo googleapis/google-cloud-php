@@ -47,7 +47,6 @@ trait EncryptionTrait
      *
      * @param array $options
      * @return array
-     * @throws \InvalidArgumentException
      * @access private
      */
     public function formatEncryptionHeaders(array $options)
@@ -67,8 +66,8 @@ trait EncryptionTrait
         unset($options['destinationEncryptionKey']);
         unset($options['destinationEncryptionKeySHA256']);
 
-        $encryptionHeaders = $this->buildHeaders($key, $keySHA256, $useCopySourceHeaders, false)
-            + $this->buildHeaders($destinationKey, $destinationKeySHA256, false, true);
+        $encryptionHeaders = $this->buildHeaders($key, $keySHA256, $useCopySourceHeaders)
+            + $this->buildHeaders($destinationKey, $destinationKeySHA256, false);
 
         if (!empty($encryptionHeaders)) {
             if (isset($options['httpOptions']['headers'])) {
@@ -87,30 +86,25 @@ trait EncryptionTrait
      * @param string $key
      * @param string $keySHA256
      * @param bool $useCopySourceHeaders
-     * @param bool $isDestination
      * @return array
-     * @throws \InvalidArgumentException
      */
-    private function buildHeaders($key, $keySHA256, $useCopySourceHeaders, $isDestination)
+    private function buildHeaders($key, $keySHA256, $useCopySourceHeaders)
     {
-        if ($key && $keySHA256) {
+        if ($key) {
             $headerNames = $useCopySourceHeaders
                 ? $this->copySourceEncryptionHeaderNames
                 : $this->encryptionHeaderNames;
 
+            if (!$keySHA256) {
+                $decodedKey = base64_decode($key);
+                $keySHA256 = base64_encode(hash('SHA256', $decodedKey, true));
+            }
+
             return [
                 $headerNames['algorithm'] => 'AES256',
-                $headerNames['key'] => base64_encode($key),
-                $headerNames['keySHA256'] => base64_encode($keySHA256)
+                $headerNames['key'] => $key,
+                $headerNames['keySHA256'] => $keySHA256
             ];
-        } elseif ($key || $keySHA256) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    'When providing either %s or %s both must be supplied.',
-                    $isDestination ? 'a destinationEncryptionKey' : 'an encryptionKey',
-                    $isDestination ? 'a destinationEncryptionKeySHA256' : 'an encryptionKeySHA256'
-                )
-            );
         }
 
         return [];

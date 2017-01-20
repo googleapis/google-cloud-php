@@ -20,8 +20,8 @@ namespace Google\Cloud\PubSub\Connection;
 use DrSlump\Protobuf\Codec\CodecInterface;
 use Google\Cloud\EmulatorTrait;
 use Google\Cloud\PhpArray;
-use Google\Cloud\PubSub\V1\PublisherApi;
-use Google\Cloud\PubSub\V1\SubscriberApi;
+use Google\Cloud\PubSub\V1\PublisherClient;
+use Google\Cloud\PubSub\V1\SubscriberClient;
 use Google\Cloud\GrpcRequestWrapper;
 use Google\Cloud\GrpcTrait;
 use Grpc\ChannelCredentials;
@@ -41,14 +41,14 @@ class Grpc implements ConnectionInterface
     const BASE_URI = 'https://pubsub.googleapis.com/';
 
     /**
-     * @var PublisherApi
+     * @var PublisherClient
      */
-    private $publisherApi;
+    private $publisherClient;
 
     /**
-     * @var SubscriberApi
+     * @var SubscriberClient
      */
-    private $subscriberApi;
+    private $subscriberClient;
 
     /**
      * @var CodecInterface
@@ -60,9 +60,13 @@ class Grpc implements ConnectionInterface
      */
     public function __construct(array $config = [])
     {
-        $this->codec = new PhpArray(['publishTime' => function ($v) {
-            return $this->formatTimestampFromApi($v);
-        }]);
+        $this->codec = new PhpArray([
+            'customFilters' => [
+                'publishTime' => function ($v) {
+                    return $this->formatTimestampFromApi($v);
+                }
+            ]
+        ]);
         $config['codec'] = $this->codec;
         $this->setRequestWrapper(new GrpcRequestWrapper($config));
         $grpcConfig = $this->getGaxConfig();
@@ -77,8 +81,8 @@ class Grpc implements ConnectionInterface
             ];
         }
 
-        $this->publisherApi = new PublisherApi($grpcConfig);
-        $this->subscriberApi = new SubscriberApi($grpcConfig);
+        $this->publisherClient = new PublisherClient($grpcConfig);
+        $this->subscriberClient = new SubscriberClient($grpcConfig);
     }
 
     /**
@@ -86,7 +90,7 @@ class Grpc implements ConnectionInterface
      */
     public function createTopic(array $args)
     {
-        return $this->send([$this->publisherApi, 'createTopic'], [
+        return $this->send([$this->publisherClient, 'createTopic'], [
             $this->pluck('name', $args),
             $args
         ]);
@@ -97,7 +101,7 @@ class Grpc implements ConnectionInterface
      */
     public function getTopic(array $args)
     {
-        return $this->send([$this->publisherApi, 'getTopic'], [
+        return $this->send([$this->publisherClient, 'getTopic'], [
             $this->pluck('topic', $args),
             $args
         ]);
@@ -108,7 +112,7 @@ class Grpc implements ConnectionInterface
      */
     public function deleteTopic(array $args)
     {
-        return $this->send([$this->publisherApi, 'deleteTopic'], [
+        return $this->send([$this->publisherClient, 'deleteTopic'], [
             $this->pluck('topic', $args),
             $args
         ]);
@@ -119,7 +123,7 @@ class Grpc implements ConnectionInterface
      */
     public function listTopics(array $args)
     {
-        return $this->send([$this->publisherApi, 'listTopics'], [
+        return $this->send([$this->publisherClient, 'listTopics'], [
             $this->pluck('project', $args),
             $args
         ]);
@@ -137,7 +141,7 @@ class Grpc implements ConnectionInterface
             $pbMessages[] = $this->buildMessage($message);
         }
 
-        return $this->send([$this->publisherApi, 'publish'], [
+        return $this->send([$this->publisherClient, 'publish'], [
             $this->pluck('topic', $args),
             $pbMessages,
             $args
@@ -149,7 +153,7 @@ class Grpc implements ConnectionInterface
      */
     public function listSubscriptionsByTopic(array $args)
     {
-        return $this->send([$this->publisherApi, 'listTopicSubscriptions'], [
+        return $this->send([$this->publisherClient, 'listTopicSubscriptions'], [
             $this->pluck('topic', $args),
             $args
         ]);
@@ -164,7 +168,7 @@ class Grpc implements ConnectionInterface
             $args['pushConfig'] = $this->buildPushConfig($args['pushConfig']);
         }
 
-        return $this->send([$this->subscriberApi, 'createSubscription'], [
+        return $this->send([$this->subscriberClient, 'createSubscription'], [
             $this->pluck('name', $args),
             $this->pluck('topic', $args),
             $args
@@ -176,7 +180,7 @@ class Grpc implements ConnectionInterface
      */
     public function getSubscription(array $args)
     {
-        return $this->send([$this->subscriberApi, 'getSubscription'], [
+        return $this->send([$this->subscriberClient, 'getSubscription'], [
             $this->pluck('subscription', $args),
             $args
         ]);
@@ -187,7 +191,7 @@ class Grpc implements ConnectionInterface
      */
     public function listSubscriptions(array $args)
     {
-        return $this->send([$this->subscriberApi, 'listSubscriptions'], [
+        return $this->send([$this->subscriberClient, 'listSubscriptions'], [
             $this->pluck('project', $args),
             $args
         ]);
@@ -198,7 +202,7 @@ class Grpc implements ConnectionInterface
      */
     public function deleteSubscription(array $args)
     {
-        return $this->send([$this->subscriberApi, 'deleteSubscription'], [
+        return $this->send([$this->subscriberClient, 'deleteSubscription'], [
             $this->pluck('subscription', $args),
             $args
         ]);
@@ -209,7 +213,7 @@ class Grpc implements ConnectionInterface
      */
     public function modifyPushConfig(array $args)
     {
-        return $this->send([$this->subscriberApi, 'modifyPushConfig'], [
+        return $this->send([$this->subscriberClient, 'modifyPushConfig'], [
             $this->pluck('subscription', $args),
             $this->buildPushConfig($this->pluck('pushConfig', $args)),
             $args
@@ -221,7 +225,7 @@ class Grpc implements ConnectionInterface
      */
     public function pull(array $args)
     {
-        return $this->send([$this->subscriberApi, 'pull'], [
+        return $this->send([$this->subscriberClient, 'pull'], [
             $this->pluck('subscription', $args),
             $this->pluck('maxMessages', $args),
             $args
@@ -233,7 +237,7 @@ class Grpc implements ConnectionInterface
      */
     public function modifyAckDeadline(array $args)
     {
-        return $this->send([$this->subscriberApi, 'modifyAckDeadline'], [
+        return $this->send([$this->subscriberClient, 'modifyAckDeadline'], [
             $this->pluck('subscription', $args),
             $this->pluck('ackIds', $args),
             $this->pluck('ackDeadlineSeconds', $args),
@@ -246,7 +250,7 @@ class Grpc implements ConnectionInterface
      */
     public function acknowledge(array $args)
     {
-        return $this->send([$this->subscriberApi, 'acknowledge'], [
+        return $this->send([$this->subscriberClient, 'acknowledge'], [
             $this->pluck('subscription', $args),
             $this->pluck('ackIds', $args),
             $args
@@ -258,7 +262,7 @@ class Grpc implements ConnectionInterface
      */
     public function getTopicIamPolicy(array $args)
     {
-        return $this->send([$this->publisherApi, 'getIamPolicy'], [
+        return $this->send([$this->publisherClient, 'getIamPolicy'], [
             $this->pluck('resource', $args),
             $args
         ]);
@@ -269,7 +273,7 @@ class Grpc implements ConnectionInterface
      */
     public function setTopicIamPolicy(array $args)
     {
-        return $this->send([$this->publisherApi, 'setIamPolicy'], [
+        return $this->send([$this->publisherClient, 'setIamPolicy'], [
             $this->pluck('resource', $args),
             $this->buildPolicy($this->pluck('policy', $args)),
             $args
@@ -281,7 +285,7 @@ class Grpc implements ConnectionInterface
      */
     public function testTopicIamPermissions(array $args)
     {
-        return $this->send([$this->publisherApi, 'testIamPermissions'], [
+        return $this->send([$this->publisherClient, 'testIamPermissions'], [
             $this->pluck('resource', $args),
             $this->pluck('permissions', $args),
             $args
@@ -293,7 +297,7 @@ class Grpc implements ConnectionInterface
      */
     public function getSubscriptionIamPolicy(array $args)
     {
-        return $this->send([$this->subscriberApi, 'getIamPolicy'], [
+        return $this->send([$this->subscriberClient, 'getIamPolicy'], [
             $this->pluck('resource', $args),
             $args
         ]);
@@ -304,7 +308,7 @@ class Grpc implements ConnectionInterface
      */
     public function setSubscriptionIamPolicy(array $args)
     {
-        return $this->send([$this->subscriberApi, 'setIamPolicy'], [
+        return $this->send([$this->subscriberClient, 'setIamPolicy'], [
             $this->pluck('resource', $args),
             $this->buildPolicy($this->pluck('policy', $args)),
             $args
@@ -316,7 +320,7 @@ class Grpc implements ConnectionInterface
      */
     public function testSubscriptionIamPermissions(array $args)
     {
-        return $this->send([$this->subscriberApi, 'testIamPermissions'], [
+        return $this->send([$this->subscriberClient, 'testIamPermissions'], [
             $this->pluck('resource', $args),
             $this->pluck('permissions', $args),
             $args

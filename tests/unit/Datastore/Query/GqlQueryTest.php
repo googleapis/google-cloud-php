@@ -29,7 +29,7 @@ class GqlQueryTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->mapper = new EntityMapper('foo', true);
+        $this->mapper = new EntityMapper('foo', true, false);
     }
 
     public function testBindingTypeAutomaticDetectionNamed()

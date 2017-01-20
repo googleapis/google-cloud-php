@@ -17,6 +17,9 @@
 
 namespace Google\Cloud\Tests\System\Logging;
 
+/**
+ * @group logging
+ */
 class ManageMetricsTest extends LoggingTestCase
 {
     /**

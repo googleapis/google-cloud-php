@@ -33,12 +33,12 @@ use InvalidArgumentException;
  * $client = new ServiceBuilder();
  *
  * $pubsub = $client->pubsub();
- * $topic = $pubsub->topic('my-topic-name');
+ * $topic = $pubsub->topic('my-new-topic');
  * ```
  *
  * ```
  * // You can also pass a fully-qualified topic name:
- * $topic = $pubsub->topic('projects/my-awesome-project/topics/my-topic-name');
+ * $topic = $pubsub->topic('projects/my-awesome-project/topics/my-new-topic');
  * ```
  */
 class Topic
@@ -128,9 +128,7 @@ class Topic
      *
      * Example:
      * ```
-     * if ($topic->create()) {
-     *     echo 'Topic Created!';
-     * }
+     * $topicInfo = $topic->create();
      * ```
      *
      * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics/create Create Topic
@@ -177,7 +175,7 @@ class Topic
      * Example:
      * ```
      * if ($topic->exists()) {
-     *     // do stuff
+     *     echo 'Topic exists';
      * }
      * ```
      *
@@ -209,7 +207,7 @@ class Topic
      * Example:
      * ```
      * $info = $topic->info();
-     * echo $info['name']; // projects/my-awesome-project/topics/my-topic-name
+     * echo $info['name']; // projects/my-awesome-project/topics/my-new-topic
      * ```
      *
      * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics/get Get Topic
@@ -244,7 +242,7 @@ class Topic
      * ```
      * $topic->reload();
      * $info = $topic->info();
-     * echo $info['name']; // projects/my-awesome-project/topics/my-topic-name
+     * echo $info['name']; // projects/my-awesome-project/topics/my-new-topic
      * ```
      *
      * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics/get Get Topic
@@ -341,7 +339,7 @@ class Topic
      *
      * Example:
      * ```
-     * $topic->subscribe('my-new-subscription');
+     * $subscription = $topic->subscribe('my-new-subscription');
      * ```
      *
      * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions/create Create Subscription
@@ -366,7 +364,7 @@ class Topic
      *
      * Example:
      * ```
-     * $topic->subscribe('my-new-subscription');
+     * $subscription = $topic->subscription('my-new-subscription');
      * ```
      *
      * @param string $name The subscription name
@@ -384,7 +382,7 @@ class Topic
      * ```
      * $subscriptions = $topic->subscriptions();
      * foreach ($subscriptions as $subscription) {
-     *     var_dump($subscription->info());
+     *     echo $subscription->name();
      * }
      * ```
      *
@@ -424,7 +422,7 @@ class Topic
      *
      * Example:
      * ```
-     * $currentPolicy = $topic->iam()->policy();
+     * $iam = $topic->iam();
      * ```
      *
      * @codingStandardsIgnoreStart
@@ -491,7 +489,7 @@ class Topic
      * @return Subscription
      * @codingStandardsIgnoreEnd
      */
-    private function subscriptionFactory($name, array $info = null)
+    private function subscriptionFactory($name, array $info = [])
     {
         return new Subscription(
             $this->connection,

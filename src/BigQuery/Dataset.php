@@ -63,7 +63,7 @@ class Dataset
      *
      * Example:
      * ```
-     * $dataset->exists();
+     * echo $dataset->exists();
      * ```
      *
      * @return bool
@@ -133,7 +133,7 @@ class Dataset
      *
      * Example:
      * ```
-     * $table = $bigQuery->table('myTableId');
+     * $table = $dataset->table('myTableId');
      * ```
      *
      * @param string $id The id of the table to request.
@@ -152,7 +152,7 @@ class Dataset
      * $tables = $dataset->tables();
      *
      * foreach ($tables as $table) {
-     *     var_dump($table->id());
+     *     echo $table->id() . PHP_EOL;
      * }
      * ```
      *

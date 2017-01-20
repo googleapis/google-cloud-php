@@ -38,7 +38,6 @@ use InvalidArgumentException;
  * use Google\Cloud\ServiceBuilder;
  *
  * $cloud = new ServiceBuilder();
- *
  * $datastore = $cloud->datastore();
  *
  * $query = $datastore->gqlQuery('SELECT * FROM Companies WHERE companyName = @companyName', [

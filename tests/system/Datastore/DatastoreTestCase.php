@@ -25,6 +25,7 @@ class DatastoreTestCase extends \PHPUnit_Framework_TestCase
     const TESTING_PREFIX = 'gcloud_testing_';
 
     protected static $client;
+    protected static $returnInt64AsObjectClient;
     protected static $deletionQueue = [];
     private static $hasSetUp = false;
 
@@ -34,9 +35,14 @@ class DatastoreTestCase extends \PHPUnit_Framework_TestCase
             return;
         }
 
-        self::$client = new DatastoreClient([
+        $config = [
             'keyFilePath' => getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH'),
             'namespaceId' => uniqid(self::TESTING_PREFIX)
+        ];
+
+        self::$client = new DatastoreClient($config);
+        self::$returnInt64AsObjectClient = new DatastoreClient($config + [
+            'returnInt64AsObject' => true
         ]);
         self::$hasSetUp = true;
     }

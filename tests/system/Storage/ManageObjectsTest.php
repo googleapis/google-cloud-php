@@ -19,6 +19,9 @@ namespace Google\Cloud\Tests\System\Storage;
 
 use Psr\Http\Message\StreamInterface;
 
+/**
+ * @group storage
+ */
 class ManageObjectsTest extends StorageTestCase
 {
     public function testListsObjects()
@@ -113,29 +116,25 @@ class ManageObjectsTest extends StorageTestCase
     public function testRotatesCustomerSuppliedEncrpytion()
     {
         $data = 'somedata';
-        $key = openssl_random_pseudo_bytes(32);
-        $sha = hash('SHA256', $key, true);
+        $key = base64_encode(openssl_random_pseudo_bytes(32));
         $options = [
             'name' => uniqid(self::TESTING_PREFIX),
-            'encryptionKey' => $key,
-            'encryptionKeySHA256' => $sha
+            'encryptionKey' => $key
         ];
         $object = self::$bucket->upload($data, $options);
         self::$deletionQueue[] = $object;
 
-        $dkey = openssl_random_pseudo_bytes(32);
-        $dsha = hash('SHA256', $dkey, true);
+        $dkey = base64_encode(openssl_random_pseudo_bytes(32));
+        $dsha = base64_encode(hash('SHA256', base64_decode($dkey), true));
         $rewriteOptions = [
             'name' => uniqid(self::TESTING_PREFIX),
             'encryptionKey' => $key,
-            'encryptionKeySHA256' => $sha,
-            'destinationEncryptionKey' => $dkey,
-            'destinationEncryptionKeySHA256' => $dsha
+            'destinationEncryptionKey' => $dkey
         ];
 
         $rewrittenObject = $object->rewrite(self::$bucket, $rewriteOptions);
 
-        $this->assertEquals(base64_encode($dsha), $rewrittenObject->info()['customerEncryption']['keySha256']);
+        $this->assertEquals($dsha, $rewrittenObject->info()['customerEncryption']['keySha256']);
         $rewrittenObject->delete();
     }
 

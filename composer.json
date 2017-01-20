@@ -39,7 +39,7 @@
     "require": {
         "php": ">=5.5",
         "rize/uri-template": "~0.3",
-        "google/auth": "0.10",
+        "google/auth": "^0.11",
         "guzzlehttp/guzzle": "^5.3|^6.0",
         "guzzlehttp/psr7": "^1.2",
         "monolog/monolog": "~1",
@@ -54,7 +54,7 @@
         "james-heinrich/getid3": "^1.9",
         "erusev/parsedown": "^1.6",
         "vierbergenlars/php-semver": "^3.0",
-        "google/proto-client-php": "^0.5",
+        "google/proto-client-php": "dev-master",
         "google/gax": "^0.7"
     },
     "suggest": {
@@ -71,9 +71,16 @@
         "psr-4": {
             "Google\\Cloud\\Dev\\": "dev/src",
             "Google\\Cloud\\Tests\\System\\": "tests/system"
-        }
+        },
+        "files": ["dev/src/Functions.php"]
     },
     "scripts": {
         "google-cloud": "dev/google-cloud"
-    }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/jdpedrie/proto-client-php-private"
+        }
+    ]
 }

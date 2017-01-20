@@ -127,7 +127,7 @@ class GrpcRequestWrapper
 
         try {
             return $this->handleResponse($backoff->execute($request, $args));
-        } catch (\Exception $ex) {
+        } catch (ApiException $ex) {
             throw $this->convertToGoogleException($ex);
         }
     }
@@ -170,6 +170,10 @@ class GrpcRequestWrapper
 
             case Grpc\STATUS_ALREADY_EXISTS:
                 $exception = Exception\ConflictException::class;
+                break;
+
+            case Grpc\STATUS_FAILED_PRECONDITION:
+                $exception = Exception\FailedPreconditionException::class;
                 break;
 
             case Grpc\STATUS_UNKNOWN:

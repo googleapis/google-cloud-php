@@ -72,7 +72,7 @@ class GrpcTraitTest extends \PHPUnit_Framework_TestCase
             'credentialsLoader' => $fetcher,
             'enableCaching' => false,
             'appName' => 'gcloud-php',
-            'version' => ServiceBuilder::VERSION
+            'appVersion' => ServiceBuilder::VERSION
         ];
 
         $this->assertEquals($expected, $this->implementation->call('getGaxConfig'));

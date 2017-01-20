@@ -49,7 +49,6 @@ use Google\Cloud\Datastore\Query\QueryInterface;
  * use Google\Cloud\ServiceBuilder;
  *
  * $cloud = new ServiceBuilder();
- *
  * $datastore = $cloud->datastore();
  *
  * $transaction = $datastore->transaction();
@@ -274,8 +273,8 @@ class Transaction
      * ];
      *
      * $entities = [
-     *     $datastore->entity($key[0], ['firstName' => 'Bob']),
-     *     $datastore->entity($key[1], ['firstName' => 'John'])
+     *     $datastore->entity($keys[0], ['firstName' => 'Bob']),
+     *     $datastore->entity($keys[1], ['firstName' => 'John'])
      * ];
      *
      * $transaction->upsertBatch($entities);
@@ -387,10 +386,10 @@ class Transaction
      *     $datastore->key('Person', 'John')
      * ];
      *
-     * $entities = $transaction->lookup($keys);
+     * $entities = $transaction->lookupBatch($keys);
      *
      * foreach ($entities['found'] as $entity) {
-     *     echo $entity['firstName'];
+     *     echo $entity['firstName'] . PHP_EOL;
      * }
      * ```
      *
@@ -456,7 +455,7 @@ class Transaction
      *
      * Example:
      * ```
-     * $transaction->commit()
+     * $transaction->commit();
      * ```
      *
      * @param array $options [optional] Configuration Options.

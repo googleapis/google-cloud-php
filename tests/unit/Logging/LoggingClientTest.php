@@ -209,7 +209,10 @@ class LoggingClientTest extends \PHPUnit_Framework_TestCase
         $secondProjectId = 'secondProjectId';
         $this->connection->listEntries([
             'pageToken' => null,
-            'projectIds' => [$this->projectId, $secondProjectId]
+            'resourceNames' => [
+                'projects/' . $this->projectId,
+                'projects/' . $secondProjectId
+            ]
         ])
             ->willReturn([])
             ->shouldBeCalledTimes(1);
@@ -263,7 +266,7 @@ class LoggingClientTest extends \PHPUnit_Framework_TestCase
     public function testGetsPsrLogger()
     {
         $this->client->setConnection($this->connection->reveal());
-        $this->assertInstanceOf(PsrLogger::class, $this->client->psrLogger('myLogger', ['type' => 'global']));
+        $this->assertInstanceOf(PsrLogger::class, $this->client->psrLogger('myLogger'));
     }
 
     public function testGetsLogger()

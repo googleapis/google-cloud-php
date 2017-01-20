@@ -26,6 +26,16 @@ use Psr\Http\Message\StreamInterface;
 /**
  * Buckets are the basic containers that hold your data. Everything that you
  * store in Google Cloud Storage must be contained in a bucket.
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\ServiceBuilder;
+ *
+ * $cloud = new ServiceBuilder();
+ * $storage = $cloud->storage();
+ *
+ * $bucket = $storage->bucket('my-bucket');
+ * ```
  */
 class Bucket
 {
@@ -76,10 +86,7 @@ class Bucket
      *
      * Example:
      * ```
-     * use Google\Cloud\Storage\Acl;
-     *
      * $acl = $bucket->acl();
-     * $acl->add('allAuthenticatedUsers', Acl::ROLE_READER);
      * ```
      *
      * @see https://cloud.google.com/storage/docs/access-control More about Access Control Lists
@@ -97,10 +104,7 @@ class Bucket
      *
      * Example:
      * ```
-     * use Google\Cloud\Storage\Acl;
-     *
      * $acl = $bucket->defaultAcl();
-     * $acl->add('allAuthenticatedUsers', Acl::ROLE_READER);
      * ```
      *
      * @see https://cloud.google.com/storage/docs/access-control More about Access Control Lists
@@ -117,7 +121,9 @@ class Bucket
      *
      * Example:
      * ```
-     * $bucket->exists();
+     * if ($bucket->exists()) {
+     *     echo 'Bucket exists!';
+     * }
      * ```
      *
      * @return bool
@@ -139,7 +145,7 @@ class Bucket
      *
      * Example:
      * ```
-     * $bucket->upload(
+     * $object = $bucket->upload(
      *     fopen(__DIR__ . '/image.jpg', 'r')
      * );
      * ```
@@ -155,7 +161,7 @@ class Bucket
      *     ]
      * ];
      *
-     * $bucket->upload(
+     * $object = $bucket->upload(
      *     fopen(__DIR__ . '/image.jpg', 'r'),
      *     $options
      * );
@@ -163,15 +169,11 @@ class Bucket
      *
      * ```
      * // Upload an object with a customer-supplied encryption key.
-     * $key = openssl_random_pseudo_bytes(32); // Make sure to remember your key.
-     * $options = [
-     *     'encryptionKey' => $key
-     *     'encryptionKeySHA256' => hash('SHA256', $key, true)
-     * ];
+     * $key = base64_encode(openssl_random_pseudo_bytes(32)); // Make sure to remember your key.
      *
-     * $bucket->upload(
+     * $object = $bucket->upload(
      *     fopen(__DIR__ . '/image.jpg', 'r'),
-     *     $options
+     *     ['encryptionKey' => $key]
      * );
      * ```
      *
@@ -202,11 +204,13 @@ class Bucket
      *           `"publicRead"`. **Defaults to** `"private"`.
      *     @type array $metadata The available options for metadata are outlined
      *           at the [JSON API docs](https://cloud.google.com/storage/docs/json_api/v1/objects/insert#request-body).
-     *     @type string $encryptionKey An AES-256 customer-supplied encryption
-     *           key. If provided one must also include an `encryptionKeySHA256`.
-     *     @type string $encryptionKeySHA256 The SHA256 hash of the
-     *           customer-supplied encryption key. If provided one must also
-     *           include an `encryptionKey`.
+     *     @type string $encryptionKey A base64 encoded AES-256 customer-supplied
+     *           encryption key.
+     *     @type string $encryptionKeySHA256 Base64 encoded SHA256 hash of the
+     *           customer-supplied encryption key. This value will be calculated
+     *           from the `encryptionKey` on your behalf if not provided, but
+     *           for best performance it is recommended to pass in a cached
+     *           version of the already calculated SHA.
      * }
      * @return StorageObject
      * @throws \InvalidArgumentException
@@ -246,14 +250,14 @@ class Bucket
      * Example:
      * ```
      * $uploader = $bucket->getResumableUploader(
-     *     fopen('image.jpg', 'r')
+     *     fopen(__DIR__ . '/image.jpg', 'r')
      * );
      *
      * try {
-     *     $uploader->upload();
+     *     $object = $uploader->upload();
      * } catch (GoogleException $ex) {
      *     $resumeUri = $uploader->getResumeUri();
-     *     $uploader->resume($resumeUri);
+     *     $object = $uploader->resume($resumeUri);
      * }
      * ```
      *
@@ -281,11 +285,13 @@ class Bucket
      *           `"private"`.
      *     @type array $metadata The available options for metadata are outlined
      *           at the [JSON API docs](https://cloud.google.com/storage/docs/json_api/v1/objects/insert#request-body).
-     *     @type string $encryptionKey An AES-256 customer-supplied encryption
-     *           key. If provided one must also include an `encryptionKeySHA256`.
-     *     @type string $encryptionKeySHA256 The SHA256 hash of the
-     *           customer-supplied encryption key. If provided one must also
-     *           include an `encryptionKey`.
+     *     @type string $encryptionKey A base64 encoded AES-256 customer-supplied
+     *           encryption key.
+     *     @type string $encryptionKeySHA256 Base64 encoded SHA256 hash of the
+     *           customer-supplied encryption key. This value will be calculated
+     *           from the `encryptionKey` on your behalf if not provided, but
+     *           for best performance it is recommended to pass in a cached
+     *           version of the already calculated SHA.
      * }
      * @return ResumableUploader
      * @throws \InvalidArgumentException
@@ -320,14 +326,14 @@ class Bucket
      *     Configuration options.
      *
      *     @type string $generation Request a specific revision of the object.
-     *     @type string $encryptionKey An AES-256 customer-supplied encryption
-     *           key. It will be neccesary to provide this when a key was used
-     *           during the object's creation. If provided one must also include
-     *           an `encryptionKeySHA256`.
-     *     @type string $encryptionKeySHA256 The SHA256 hash of the
-     *           customer-supplied encryption key. It will be neccesary to
-     *           provide this when a key was used during the object's creation.
-     *           If provided one must also include an `encryptionKey`.
+     *     @type string $encryptionKey A base64 encoded AES-256 customer-supplied
+     *           encryption key. It will be neccesary to provide this when a key
+     *           was used during the object's creation.
+     *     @type string $encryptionKeySHA256 Base64 encoded SHA256 hash of the
+     *           customer-supplied encryption key. This value will be calculated
+     *           from the `encryptionKey` on your behalf if not provided, but
+     *           for best performance it is recommended to pass in a cached
+     *           version of the already calculated SHA.
      * }
      * @return StorageObject
      */
@@ -360,7 +366,7 @@ class Bucket
      * ]);
      *
      * foreach ($objects as $object) {
-     *     var_dump($object->name());
+     *     echo $object->name() . PHP_EOL;
      * }
      * ```
      *
@@ -500,7 +506,7 @@ class Bucket
      * Example:
      * ```
      * $sourceObjects = ['log1.txt', 'log2.txt'];
-     * $bucket->compose($sourceObjects, 'combined-logs.txt');
+     * $singleObject = $bucket->compose($sourceObjects, 'combined-logs.txt');
      * ```
      *
      * ```
@@ -510,7 +516,7 @@ class Bucket
      *     $bucket->object('log2.txt')
      * ];
      *
-     * $bucket->compose($sourceObjects, 'combined-logs.txt');
+     * $singleObject = $bucket->compose($sourceObjects, 'combined-logs.txt');
      * ```
      *
      * @see https://cloud.google.com/storage/docs/json_api/v1/objects/compose Objects compose API documentation

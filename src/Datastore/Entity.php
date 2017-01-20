@@ -37,6 +37,7 @@ use Psr\Http\Message\StreamInterface;
  * | {@see Google\Cloud\Datastore\GeoPoint}     | `geoPointValue`                      |
  * | {@see Google\Cloud\Datastore\Entity}       | `entityValue`                        |
  * | {@see Google\Cloud\Datastore\Blob}         | `blobValue`                          |
+ * | {@see Google\Cloud\Int64}                  | `integerValue`                       |
  * | Associative Array                          | `entityValue` (No Key)               |
  * | Non-Associative Array                      | `arrayValue`                         |
  * | `float`                                    | `doubleValue`                        |
@@ -242,7 +243,7 @@ class Entity implements ArrayAccess
      *
      * Example:
      * ```
-     * print_r($entity->excludedProperties());
+     * $excludedFromIndexes = $entity->excludedProperties();
      * ```
      *
      * @return array
@@ -257,7 +258,7 @@ class Entity implements ArrayAccess
      *
      * Example:
      * ```
-     * print_R($entity->meanings());
+     * $meanings = $entity->meanings();
      * ```
      *
      * @return array

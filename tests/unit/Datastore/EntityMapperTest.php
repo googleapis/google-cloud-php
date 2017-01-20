@@ -22,17 +22,20 @@ use Google\Cloud\Datastore\Entity;
 use Google\Cloud\Datastore\EntityMapper;
 use Google\Cloud\Datastore\GeoPoint;
 use Google\Cloud\Datastore\Key;
+use Google\Cloud\Int64;
 
 /**
  * @group datastore
  */
 class EntityMapperTest extends \PHPUnit_Framework_TestCase
 {
+    const DATE_FORMAT = 'Y-m-d\TH:i:s.uP';
+
     private $mapper;
 
     public function setUp()
     {
-        $this->mapper = new EntityMapper('foo', true);
+        $this->mapper = new EntityMapper('foo', true, false);
     }
 
     public function testResponseToProperties()
@@ -100,7 +103,7 @@ class EntityMapperTest extends \PHPUnit_Framework_TestCase
 
         $data = [
             'foo' => [
-                'timestampValue' => $date->format('c')
+                'timestampValue' => $date->format(self::DATE_FORMAT)
             ]
         ];
 
@@ -252,10 +255,10 @@ class EntityMapperTest extends \PHPUnit_Framework_TestCase
     public function testConvertValueTimestamp()
     {
         $type = 'timestampValue';
-        $val = (new \DateTime())->format(\DateTime::RFC3339);
+        $val = (new \DateTime())->format(self::DATE_FORMAT);
 
         $res = $this->mapper->convertValue($type, $val);
-        $this->assertEquals($val, $res->format(\DateTime::RFC3339));
+        $this->assertEquals($val, $res->format(self::DATE_FORMAT));
     }
 
     public function testConvertValueKey()
@@ -523,7 +526,7 @@ class EntityMapperTest extends \PHPUnit_Framework_TestCase
         fwrite($stream, $string);
         rewind($stream);
 
-        $mapper = new EntityMapper('foo', false);
+        $mapper = new EntityMapper('foo', false, false);
         $res = $mapper->valueObject($stream);
 
         $this->assertEquals($string, $res['blobValue']);
@@ -549,7 +552,7 @@ class EntityMapperTest extends \PHPUnit_Framework_TestCase
 
     public function testObjectPropertyBlobNotEncoded()
     {
-        $mapper = new EntityMapper('foo', false);
+        $mapper = new EntityMapper('foo', false, false);
 
         $res = $mapper->valueObject(new Blob('hello world'));
 
@@ -560,7 +563,7 @@ class EntityMapperTest extends \PHPUnit_Framework_TestCase
     {
         $res = $this->mapper->valueObject(new \DateTimeImmutable);
 
-        $this->assertEquals((new \DateTimeImmutable())->format(\DateTime::RFC3339), $res['timestampValue']);
+        $this->assertEquals((new \DateTimeImmutable())->format(self::DATE_FORMAT), $res['timestampValue']);
     }
 
     public function testObjectPropertyKey()
@@ -633,5 +636,26 @@ class EntityMapperTest extends \PHPUnit_Framework_TestCase
         $res = $this->mapper->objectToRequest($e);
         $this->assertEquals('bar', $res['properties']['foo']['stringValue']);
         $this->assertEquals(10, $res['properties']['foo']['meaning']);
+    }
+
+    public function testReturnsInt64AsObject()
+    {
+        $int = '914241242';
+        $mapper = new EntityMapper('foo', true, true);
+        $res = $mapper->convertValue('integerValue', $int);
+
+        $this->assertInstanceOf(Int64::class, $res);
+        $this->assertEquals($int, $res->get());
+    }
+
+    public function testObjectPropertyInt64()
+    {
+        $int = '123239';
+        $int64 = new Int64($int);
+        $res = $this->mapper->objectProperty($int64);
+
+        $this->assertEquals([
+            'integerValue' => $int64->get()
+        ], $res);
     }
 }

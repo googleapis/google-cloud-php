@@ -98,7 +98,7 @@ class StorageClient
      *
      * Example:
      * ```
-     * $storage->bucket('myBucket');
+     * $bucket = $storage->bucket('my-bucket');
      * ```
      *
      * @param string $name The name of the bucket to request.
@@ -124,7 +124,7 @@ class StorageClient
      * ]);
      *
      * foreach ($buckets as $bucket) {
-     *     var_dump($bucket->name());
+     *     echo $bucket->name() . PHP_EOL;
      * }
      * ```
      *

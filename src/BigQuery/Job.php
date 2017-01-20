@@ -43,20 +43,32 @@ class Job
     private $info;
 
     /**
+     * @var ValueMapper $mapper Maps values between PHP and BigQuery.
+     */
+    private $mapper;
+
+    /**
      * @param ConnectionInterface $connection Represents a connection to
      *        BigQuery.
      * @param string $id The job's ID.
      * @param string $projectId The project's ID.
      * @param array $info [optional] The job's metadata.
+     * @param ValueMapper $mapper Maps values between PHP and BigQuery.
      */
-    public function __construct(ConnectionInterface $connection, $id, $projectId, array $info = [])
-    {
+    public function __construct(
+        ConnectionInterface $connection,
+        $id,
+        $projectId,
+        array $info = [],
+        ValueMapper $mapper = null
+    ) {
         $this->connection = $connection;
         $this->info = $info;
         $this->identity = [
             'jobId' => $id,
             'projectId' => $projectId
         ];
+        $this->mapper = $mapper;
     }
 
     /**
@@ -64,7 +76,7 @@ class Job
      *
      * Example:
      * ```
-     * $job->exists();
+     * echo $job->exists();
      * ```
      *
      * @return bool
@@ -113,7 +125,6 @@ class Job
      *
      * Example:
      * ```
-     * $job = $bigQuery->runQueryAsJob('SELECT * FROM [bigquery-public-data:usa_names.usa_1910_2013]');
      * $queryResults = $job->queryResults();
      * ```
      *
@@ -128,7 +139,7 @@ class Job
      *     @type int $timeoutMs How long to wait for the query to complete, in
      *           milliseconds. **Defaults to** `10000` milliseconds (10 seconds).
      * }
-     * @return array
+     * @return QueryResults
      */
     public function queryResults(array $options = [])
     {
@@ -139,7 +150,8 @@ class Job
             $this->identity['jobId'],
             $this->identity['projectId'],
             $response,
-            $options
+            $options,
+            $this->mapper ?: new ValueMapper(false)
         );
     }
 
@@ -196,10 +208,10 @@ class Job
      *
      * Example:
      * ```
-     * $job->isComplete(); // returns false
+     * echo $job->isComplete(); // false
      * sleep(1); // let's wait for a moment...
      * $job->reload(); // execute a network request
-     * $job->isComplete(); // true
+     * echo $job->isComplete(); // true
      * ```
      *
      * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs/get Jobs get API documentation.
