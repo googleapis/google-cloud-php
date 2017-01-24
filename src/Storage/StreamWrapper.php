@@ -38,6 +38,10 @@ class StreamWrapper
     private $mode;
     private $options;
 
+
+    /**
+     * Ensure we close the stream when this StreamWrapper is destroyed.
+     */
     public function __destruct()
     {
         $this->stream_close();
