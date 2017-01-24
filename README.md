@@ -159,8 +159,8 @@ $object->downloadToFile('/data/file_backup.txt');
 ```php
 require 'vendor/autoload.php';
 
-use Google\Cloud\Storage;
-Storage::registerStreamWrapper();
+use Google\Cloud\Storage\StorageClient;
+StorageClient::registerStreamWrapper();
 
 $contents = file_get_contents("gs://my_bucket/file_backup.txt");
 ```

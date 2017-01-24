@@ -17,7 +17,6 @@
 
 namespace Google\Cloud\Tests\Storage;
 
-use Google\Cloud\Storage;
 use Google\Cloud\Storage\Bucket;
 use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Storage\StorageObject;
@@ -39,7 +38,7 @@ class StreamWrapperTest extends \PHPUnit_Framework_TestCase
     {
         parent::setUp();
         // register the gs:// stream wrapper
-        Storage\registerStreamWrapper();
+        StorageClient::registerStreamWrapper();
 
         $this->client = $this->prophesize(StorageClient::class);
         $this->bucket = $this->prophesize(Bucket::class);
@@ -58,7 +57,7 @@ class StreamWrapperTest extends \PHPUnit_Framework_TestCase
         stream_context_set_default($this->originalDefaultContext);
 
         // deregister the gs:// stream wrapper
-        Storage\unregisterStreamWrapper();
+        StorageClient::unregisterStreamWrapper();
 
         parent::tearDown();
     }
