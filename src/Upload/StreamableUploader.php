@@ -24,13 +24,15 @@ class StreamableUploader extends ResumableUploader
 {
     const DEFAULT_WRITE_CHUNK_SIZE = 262144;
 
-    public function __construct(...$args) {
+    public function __construct(...$args)
+    {
         parent::__construct(...$args);
         $this->resetBuffer($this->data);
         $this->chunkSize = $this->chunkSize ?: self::DEFAULT_WRITE_CHUNK_SIZE;
     }
 
-    public function __destruct() {
+    public function __destruct()
+    {
         $this->close();
     }
 
@@ -62,7 +64,7 @@ class StreamableUploader extends ResumableUploader
     {
         // determine how much data to write
         $writeSize = $this->getChunkedWriteSize($remainder);
-        if($writeSize == 0) {
+        if ($writeSize == 0) {
             return [];
         }
 
@@ -111,7 +113,7 @@ class StreamableUploader extends ResumableUploader
     private function getChunkedWriteSize($remainder)
     {
         $bufferSize = $this->buffer->getSize();
-        if($remainder) {
+        if ($remainder) {
             return $bufferSize;
         } else {
             return floor($bufferSize / $this->chunkSize) * $this->chunkSize;
@@ -121,7 +123,8 @@ class StreamableUploader extends ResumableUploader
     /**
      * Finish writing the rest of the file.
      */
-    public function close() {
+    public function close()
+    {
         $this->upload();
     }
 
@@ -135,5 +138,4 @@ class StreamableUploader extends ResumableUploader
         $this->buffer = new BufferStream($this->chunkSize);
         $this->buffer->write($data);
     }
-
 }

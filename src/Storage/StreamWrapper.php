@@ -43,8 +43,10 @@ class StreamWrapper
         $this->stream_close();
     }
 
+    // @codingStandardsIgnoreStart
     public function stream_open($path, $mode, $options, &$opened_path)
     {
+        // @codingStandardsIgnoreEnd
         $url = parse_url($path);
         $this->protocol = $url['scheme'];
         $this->file = substr($url['path'], 1);
@@ -98,18 +100,24 @@ class StreamWrapper
         return in_array($this->mode, ['r', 'rb', 'rt']);
     }
 
+    // @codingStandardsIgnoreStart
     public function stream_read($count)
     {
+        // @codingStandardsIgnoreEnd
         return $this->getStream()->read($count);
     }
 
+    // @codingStandardsIgnoreStart
     public function stream_write($data)
     {
+        // @codingStandardsIgnoreEnd
         return $this->getStream()->write($data);
     }
 
-    public public function stream_stat()
+    // @codingStandardsIgnoreStart
+    public function stream_stat()
     {
+        // @codingStandardsIgnoreEnd
         return [
             'dev'     => 0,
             'ino'     => 0,
@@ -127,25 +135,33 @@ class StreamWrapper
         ];
     }
 
+    // @codingStandardsIgnoreStart
     public function stream_eof()
     {
+        // @codingStandardsIgnoreEnd
         return $this->getStream()->eof();
     }
 
+    // @codingStandardsIgnoreStart
     public function stream_close()
     {
+        // @codingStandardsIgnoreEnd
         if (isset($this->stream)) {
             $this->getStream()->close();
         }
     }
 
+    // @codingStandardsIgnoreStart
     public function stream_seek(int $offset, int $whence = SEEK_SET)
     {
+        // @codingStandardsIgnoreEnd
         return $this->getStream()->seek($offset, $whence);
     }
 
+    // @codingStandardsIgnoreStart
     public function stream_tell()
     {
+        // @codingStandardsIgnoreEnd
         return $this->getStream()->tell();
     }
 }
