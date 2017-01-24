@@ -6,8 +6,8 @@ function registerStreamWrapper(string $protocol = null)
 {
     $protocol = $protocol ?: 'gs';
     if (!in_array($protocol, stream_get_wrappers())) {
-        stream_wrapper_register($protocol, 'Google\Cloud\Storage\StreamWrapper')
-            or die("Failed to register '$protocol://' protocol");
+        stream_wrapper_register($protocol, StreamWrapper::class)
+            or throw new RuntimeException("Failed to register '$protocol://' protocol");
     }
 }
 
