@@ -6,8 +6,9 @@ function registerStreamWrapper(string $protocol = null)
 {
     $protocol = $protocol ?: 'gs';
     if (!in_array($protocol, stream_get_wrappers())) {
-        stream_wrapper_register($protocol, StreamWrapper::class)
-            or throw new RuntimeException("Failed to register '$protocol://' protocol");
+        if (!stream_wrapper_register($protocol, StreamWrapper::class)) {
+            throw new RuntimeException("Failed to register '$protocol://' protocol");
+        }
     }
 }
 
