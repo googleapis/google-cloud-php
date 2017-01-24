@@ -235,7 +235,7 @@ class Rest implements ConnectionInterface
         $uploadType = AbstractUploader::UPLOAD_TYPE_RESUMABLE;
         if ($args['streamable']) {
             $uploaderClass = StreamableUploader::class;
-        } else if ($args['resumable']) {
+        } elseif ($args['resumable']) {
             $uploaderClass = ResumableUploader::class;
         } else {
             $uploaderClass = MultipartUploader::class;

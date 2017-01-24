@@ -18,6 +18,7 @@
 namespace Google\Cloud\Storage;
 
 use Google\Cloud\Exception\GoogleException;
+
 /**
  * A streamWrapper implementation for handling `gs://bucket/path/to/file.jpg`
  *
@@ -37,12 +38,12 @@ class StreamWrapper
     private $mode;
     private $options;
 
-    function __destruct()
+    public function __destruct()
     {
         $this->stream_close();
     }
 
-    function stream_open($path, $mode, $options, &$opened_path)
+    public function stream_open($path, $mode, $options, &$opened_path)
     {
         $url = parse_url($path);
         $this->protocol = $url['scheme'];
@@ -52,15 +53,15 @@ class StreamWrapper
         $client = $this->getOption('client') ?: new StorageClient();
         $this->bucket = $client->bucket($url['host']);
 
-        if($this->isWriteable()) {
+        if ($this->isWriteable()) {
             $this->stream = $this->bucket->getStreamableUploader(
                 "",
                 [name => $this->file] + $this->getOptions()
             );
-        } else if($this->isReadable()) {
+        } elseif ($this->isReadable()) {
             try {
                 $this->stream = $this->bucket->object($this->file)->downloadAsStream($this->getOptions());
-            } catch  (GoogleException $ex) {
+            } catch (GoogleException $ex) {
                 return false;
             }
         } else {
@@ -69,46 +70,45 @@ class StreamWrapper
         return true;
     }
 
-    function getOption($name, $default = null)
+    private function getOption($name, $default = null)
     {
         return $this->getOptions()[$name] ?: null;
     }
 
-    function getOptions()
+    private function getOptions()
     {
-        if(!isset($this->options))
-        {
+        if (!isset($this->options)) {
             $this->options = stream_context_get_options($this->context)[$this->protocol] ?: [];
         }
         return $this->options;
     }
 
-    function getStream()
+    public function getStream()
     {
         return $this->stream;
     }
 
-    function isWriteable()
+    public function isWriteable()
     {
         return in_array($this->mode, ['w', 'wb', 'wt']);
     }
 
-    function isReadable()
+    public function isReadable()
     {
         return in_array($this->mode, ['r', 'rb', 'rt']);
     }
 
-    function stream_read($count)
+    public function stream_read($count)
     {
         return $this->getStream()->read($count);
     }
 
-    function stream_write($data)
+    public function stream_write($data)
     {
         return $this->getStream()->write($data);
     }
 
-    public function stream_stat()
+    public public function stream_stat()
     {
         return [
             'dev'     => 0,
@@ -127,27 +127,25 @@ class StreamWrapper
         ];
     }
 
-    function stream_eof()
+    public function stream_eof()
     {
         return $this->getStream()->eof();
     }
 
-    function stream_close()
+    public function stream_close()
     {
-        if(isset($this->stream))
-        {
+        if (isset($this->stream)) {
             $this->getStream()->close();
         }
     }
 
-    function stream_seek(int $offset, int $whence = SEEK_SET)
+    public function stream_seek(int $offset, int $whence = SEEK_SET)
     {
         return $this->getStream()->seek($offset, $whence);
     }
 
-    function stream_tell()
+    public function stream_tell()
     {
         return $this->getStream()->tell();
     }
-
 }
