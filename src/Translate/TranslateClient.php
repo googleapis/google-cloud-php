@@ -224,6 +224,7 @@ class TranslateClient
         ]);
 
         $translations = [];
+        $strings = array_values($strings);
 
         if (isset($response['data']['translations'])) {
             foreach ($response['data']['translations'] as $key => $translation) {
