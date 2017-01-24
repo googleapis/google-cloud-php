@@ -67,14 +67,14 @@
         "psr-4": {
             "Google\\Cloud\\": "src"
         },
-        "files": ["src/Storage/functions.php"]
+        "files": ["src/functions_include.php"]
     },
     "autoload-dev": {
         "psr-4": {
             "Google\\Cloud\\Dev\\": "dev/src",
             "Google\\Cloud\\Tests\\System\\": "tests/system"
         },
-        "files": ["src/Storage/functions.php"]
+        "files": ["src/functions_include.php"]
     },
     "scripts": {
         "google-cloud": "dev/google-cloud"
