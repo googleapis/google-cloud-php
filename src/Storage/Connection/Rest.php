@@ -268,6 +268,7 @@ class Rest implements ConnectionInterface
             'name' => null,
             'validate' => true,
             'resumable' => null,
+            'streamable' => null,
             'predefinedAcl' => null,
             'metadata' => []
         ];

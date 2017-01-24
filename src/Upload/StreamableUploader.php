@@ -20,6 +20,10 @@ namespace Google\Cloud\Upload;
 use GuzzleHttp\Psr7\BufferStream;
 use GuzzleHttp\Psr7\Request;
 
+/**
+ * Uploader that is a special case of the ResumableUploader where we can write
+ * the file contents in a streaming manner.
+ */
 class StreamableUploader extends ResumableUploader
 {
     const DEFAULT_WRITE_CHUNK_SIZE = 262144;

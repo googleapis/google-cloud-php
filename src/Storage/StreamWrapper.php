@@ -57,8 +57,8 @@ class StreamWrapper
 
         if ($this->isWriteable()) {
             $this->stream = $this->bucket->getStreamableUploader(
-                "",
-                [name => $this->file] + $this->getOptions()
+                '',
+                ['name' => $this->file] + $this->getOptions()
             );
         } elseif ($this->isReadable()) {
             try {
@@ -152,10 +152,10 @@ class StreamWrapper
     }
 
     // @codingStandardsIgnoreStart
-    public function stream_seek(int $offset, int $whence = SEEK_SET)
+    public function stream_seek(...$args)
     {
         // @codingStandardsIgnoreEnd
-        return $this->getStream()->seek($offset, $whence);
+        return $this->getStream()->seek(...$args);
     }
 
     // @codingStandardsIgnoreStart
