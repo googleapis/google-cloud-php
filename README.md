@@ -36,7 +36,6 @@ $ composer require google/cloud
 #### Preview
 
 ```php
-<?php
 require 'vendor/autoload.php';
 
 use Google\Cloud\BigQuery\BigQueryClient;
@@ -70,7 +69,6 @@ foreach ($queryResults->rows() as $row) {
 #### Preview
 
 ```php
-<?php
 require 'vendor/autoload.php';
 
 use Google\Cloud\Logging\LoggingClient;
@@ -162,7 +160,6 @@ $object->downloadToFile('/data/file_backup.txt');
 #### Preview
 
 ```php
-<?php
 require 'vendor/autoload.php';
 
 use Google\Cloud\Translate\TranslateClient;
@@ -345,7 +342,6 @@ By default the library will use a simple in-memory caching implementation, howev
 The following example takes advantage of [Symfony's Cache Component](https://github.com/symfony/cache).
 
 ```php
-<?php
 require 'vendor/autoload.php';
 
 use Google\Cloud\Storage\StorageClient;
