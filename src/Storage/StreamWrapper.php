@@ -102,13 +102,13 @@ class StreamWrapper
         self::$client = $client;
     }
 
-    /*
+    // @codingStandardsIgnoreStart
+    /**
      * Callback handler for when a stream is opened. For reads, we need to
      * download the file to see if it can be opened.
      *
      * @return bool
      */
-    // @codingStandardsIgnoreStart
     public function stream_open($path, $mode, $options, &$opened_path)
     {
         // @codingStandardsIgnoreEnd
@@ -158,23 +158,23 @@ class StreamWrapper
         return $this->options;
     }
 
-    public function getStream()
+    private function getStream()
     {
         return $this->stream;
     }
 
-    public function isWriteable()
+    private function isWriteable()
     {
         return in_array($this->mode, ['w', 'wb', 'wt']);
     }
 
-    public function isReadable()
+    private function isReadable()
     {
         return in_array($this->mode, ['r', 'rb', 'rt']);
     }
 
     // @codingStandardsIgnoreStart
-    /*
+    /**
      * Callback handler for when we try to read a certain number of bytes.
      *
      * @param int $count The number of bytes to read.
@@ -188,7 +188,7 @@ class StreamWrapper
     }
 
     // @codingStandardsIgnoreStart
-    /*
+    /**
      * Callback handler for when we try to write data to the stream.
      *
      * @param string|stream $data The data to write
@@ -202,7 +202,7 @@ class StreamWrapper
     }
 
     // @codingStandardsIgnoreStart
-    /*
+    /**
      * Callback handler for getting data about the stream.
      *
      * @return array
@@ -228,7 +228,7 @@ class StreamWrapper
     }
 
     // @codingStandardsIgnoreStart
-    /*
+    /**
      * Callback handler for checking to see if the stream is at the end of file.
      *
      * @return bool
@@ -240,7 +240,7 @@ class StreamWrapper
     }
 
     // @codingStandardsIgnoreStart
-    /*
+    /**
      * Callback handler for trying to close the stream.
      */
     public function stream_close()
@@ -252,7 +252,7 @@ class StreamWrapper
     }
 
     // @codingStandardsIgnoreStart
-    /*
+    /**
      * Callback handler for trying to seek to a certain location in the stream.
      */
     public function stream_seek(int $offset, int $whence)
@@ -262,7 +262,7 @@ class StreamWrapper
     }
 
     // @codingStandardsIgnoreStart
-    /*
+    /**
      * Callhack handler for inspecting our current position in the stream
      *
      * @return int
