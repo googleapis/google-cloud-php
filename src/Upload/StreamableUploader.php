@@ -114,7 +114,7 @@ class StreamableUploader extends ResumableUploader
 
         try {
             $response = $this->requestWrapper->send($request, $this->requestOptions);
-        } catch (GoogleException $ex) {
+        } catch (Google\Cloud\Exception\ServiceException $ex) {
             throw new GoogleException(
                 "Upload failed. Please use this URI to resume your upload: $resumeUri",
                 $ex->getCode()
