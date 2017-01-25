@@ -219,7 +219,7 @@ class StorageClient
     }
 
     /**
-     * Register a this StorageClient as the handler for stream reading/writing.
+     * Registers this StorageClient as the handler for stream reading/writing.
      *
      * @param string $protocol The name of the protocol to use. Defaults to
      *        'gs'.
