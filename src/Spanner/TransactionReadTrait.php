@@ -20,22 +20,22 @@ namespace Google\Cloud\Spanner;
 /**
  * Shared methods for reads inside a transaction.
  */
-abstract class TransactionBase implements ReaderInterface
+trait TransactionReadTrait
 {
     /**
      * @var Operation
      */
-    protected $operation;
+    private $operation;
 
     /**
      * @var Session
      */
-    protected $session;
+    private $session;
 
     /**
      * @var string
      */
-    protected $transactionId;
+    private $transactionId;
 
     /**
      * Run a query.

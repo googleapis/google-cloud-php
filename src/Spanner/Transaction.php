@@ -63,8 +63,10 @@ use RuntimeException;
  * $transaction = $database->transaction();
  * ```
  */
-class Transaction extends TransactionBase
+class Transaction
 {
+    use TransactionReadTrait;
+
     const STATE_ACTIVE = 0;
     const STATE_ROLLED_BACK = 1;
     const STATE_COMMITTED = 2;

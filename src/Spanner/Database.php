@@ -51,7 +51,7 @@ use Google\Cloud\Spanner\V1\SpannerClient as GrpcSpannerClient;
  * $database = $instance->database('my-database');
  * ```
  */
-class Database implements ReaderInterface
+class Database
 {
     use ArrayTrait;
 

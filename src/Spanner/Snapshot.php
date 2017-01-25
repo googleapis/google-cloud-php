@@ -33,8 +33,10 @@ use Google\Cloud\Spanner\Session\Session;
  * $snapshot = $database->snapshot();
  * ```
  */
-class Snapshot extends TransactionBase
+class Snapshot
 {
+    use TransactionReadTrait;
+
     /**
      * @var Timestamp
      */
