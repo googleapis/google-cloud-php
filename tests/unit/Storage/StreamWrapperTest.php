@@ -43,18 +43,13 @@ class StreamWrapperTest extends \PHPUnit_Framework_TestCase
         $this->client = $this->prophesize(StorageClient::class);
         $this->bucket = $this->prophesize(Bucket::class);
         $this->client->bucket('my_bucket')->willReturn($this->bucket->reveal());
-        $this->originalDefaultContext = stream_context_get_options(stream_context_get_default());
 
-        stream_context_set_default(array(
-            'gs' => array(
-                'client' => $this->client->reveal()
-            )
-        ));
+        StorageClient::setDefaultClient($this->client->reveal());
     }
 
     public function tearDown()
     {
-        stream_context_set_default($this->originalDefaultContext);
+        StorageClient::setDefaultClient(null);
 
         // deregister the gs:// stream wrapper
         StorageClient::unregisterStreamWrapper();
@@ -113,13 +108,31 @@ class StreamWrapperTest extends \PHPUnit_Framework_TestCase
         fclose($fp);
     }
 
-    private function mockObjectData($file, $data)
+    public function testProvideStorageClientViaContext()
     {
+        $client = $this->prophesize(StorageClient::class);
+        $bucket = $this->prophesize(Bucket::class);
+        $client->bucket('my_bucket')->willReturn($bucket->reveal());
+        $this->mockObjectData('file.txt', 'some data', $bucket);
+
+        $context = stream_context_create(
+            array(
+                'gs' => array(
+                    'client' => $client->reveal()
+                )
+            )
+        );
+        $fp = fopen('gs://my_bucket/file.txt', 'r', false, $context);
+    }
+
+    private function mockObjectData($file, $data, $bucket = null)
+    {
+        $bucket = $bucket ?: $this->bucket;
         $stream = new \GuzzleHttp\Psr7\BufferStream(100);
         $stream->write($data);
         $object = $this->prophesize(StorageObject::class);
         $object->downloadAsStream(Argument::any())->willReturn($stream);
-        $this->bucket->object($file)->willReturn($object->reveal());
+        $bucket->object($file)->willReturn($object->reveal());
     }
 
     private function mockDownloadException($file, $exception)

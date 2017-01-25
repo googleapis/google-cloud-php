@@ -56,7 +56,7 @@ class StreamWrapper
         $this->file = substr($url['path'], 1);
         $this->mode = $mode;
 
-        $client = $this->getOption('client') ?: new StorageClient();
+        $client = $this->getOption('client') ?: StorageClient::getDefaultClient();
         $this->bucket = $client->bucket($url['host']);
 
         if ($this->isWriteable()) {

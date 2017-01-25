@@ -57,6 +57,12 @@ class StorageClient
     protected $connection;
 
     /**
+     * @var StorageClient $defaultClient The default client to use if using
+     *      global methods such as fopen on a stream wrapper.
+     */
+    private static $defaultClient;
+
+    /**
      * Create a Storage client.
      *
      * @param array $config [optional] {
@@ -244,6 +250,26 @@ class StorageClient
     public static function unregisterStreamWrapper(string $protocol = null)
     {
         stream_wrapper_unregister($protocol ?: 'gs');
+    }
+
+    /**
+     * Get the default client to use for global interactions with storage.
+     *
+     * @return StorageClient
+     */
+    public static function getDefaultClient()
+    {
+        return self::$defaultClient;
+    }
+
+    /**
+     * Set the default client to use for global interactions with storage.
+     *
+     * @param StorageClient $client
+     */
+    public static function setDefaultClient($client)
+    {
+        self::$defaultClient = $client;
     }
 
 }
