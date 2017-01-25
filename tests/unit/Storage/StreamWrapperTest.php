@@ -20,6 +20,7 @@ namespace Google\Cloud\Tests\Storage;
 use Google\Cloud\Storage\Bucket;
 use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Storage\StorageObject;
+use Google\Cloud\Storage\StreamWrapper;
 use Google\Cloud\Upload\StreamableUploader;
 use Prophecy\Argument;
 use Prophecy\Prophecy\ObjectProphecy;
@@ -44,12 +45,12 @@ class StreamWrapperTest extends \PHPUnit_Framework_TestCase
         $this->bucket = $this->prophesize(Bucket::class);
         $this->client->bucket('my_bucket')->willReturn($this->bucket->reveal());
 
-        StorageClient::setDefaultClient($this->client->reveal());
+        StreamWrapper::setClient($this->client->reveal());
     }
 
     public function tearDown()
     {
-        StorageClient::setDefaultClient(null);
+        StreamWrapper::setClient(null);
 
         // deregister the gs:// stream wrapper
         StorageClient::unregisterStreamWrapper();

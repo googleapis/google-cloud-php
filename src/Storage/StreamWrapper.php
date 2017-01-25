@@ -38,6 +38,11 @@ class StreamWrapper
     private $mode;
     private $options;
 
+    /**
+     * @var StorageClient $defaultClient The default client to use if using
+     *      global methods such as fopen on a stream wrapper.
+     */
+    private static $client;
 
     /**
      * Ensure we close the stream when this StreamWrapper is destroyed.
@@ -45,6 +50,26 @@ class StreamWrapper
     public function __destruct()
     {
         $this->stream_close();
+    }
+
+    /**
+     * Get the default client to use for streams.
+     *
+     * @return StorageClient
+     */
+    public static function getClient()
+    {
+        return self::$client;
+    }
+
+    /**
+     * Set the default client to use for streams.
+     *
+     * @param StorageClient $client
+     */
+    public static function setClient($client)
+    {
+        self::$client = $client;
     }
 
     // @codingStandardsIgnoreStart
@@ -56,7 +81,7 @@ class StreamWrapper
         $this->file = substr($url['path'], 1);
         $this->mode = $mode;
 
-        $client = $this->getOption('client') ?: StorageClient::getDefaultClient();
+        $client = $this->getOption('client') ?: self::getClient();
         $this->bucket = $client->bucket($url['host']);
 
         if ($this->isWriteable()) {
