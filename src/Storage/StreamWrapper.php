@@ -102,6 +102,12 @@ class StreamWrapper
         self::$client = $client;
     }
 
+    /*
+     * Callback handler for when a stream is opened. For reads, we need to
+     * download the file to see if it can be opened.
+     *
+     * @return bool
+     */
     // @codingStandardsIgnoreStart
     public function stream_open($path, $mode, $options, &$opened_path)
     {
@@ -159,6 +165,13 @@ class StreamWrapper
         return in_array($this->mode, ['r', 'rb', 'rt']);
     }
 
+    /*
+     * Callback handler for when we try to read a certain number of bytes.
+     *
+     * @param int $count The number of bytes to read.
+     *
+     * @return string
+     */
     // @codingStandardsIgnoreStart
     public function stream_read($count)
     {
@@ -166,6 +179,13 @@ class StreamWrapper
         return $this->getStream()->read($count);
     }
 
+    /*
+     * Callback handler for when we try to write data to the stream.
+     *
+     * @param string|stream $data The data to write
+     *
+     * @return int The number of bytes written.
+     */
     // @codingStandardsIgnoreStart
     public function stream_write($data)
     {
@@ -173,6 +193,11 @@ class StreamWrapper
         return $this->getStream()->write($data);
     }
 
+    /*
+     * Callback handler for getting data about the stream.
+     *
+     * @return array
+     */
     // @codingStandardsIgnoreStart
     public function stream_stat()
     {
@@ -194,6 +219,11 @@ class StreamWrapper
         ];
     }
 
+    /*
+     * Callback handler for checking to see if the stream is at the end of file.
+     *
+     * @return bool
+     */
     // @codingStandardsIgnoreStart
     public function stream_eof()
     {
@@ -201,6 +231,9 @@ class StreamWrapper
         return $this->getStream()->eof();
     }
 
+    /*
+     * Callback handler for trying to close the stream.
+     */
     // @codingStandardsIgnoreStart
     public function stream_close()
     {
@@ -210,13 +243,21 @@ class StreamWrapper
         }
     }
 
+    /*
+     * Callback handler for trying to seek to a certain location in the stream.
+     */
     // @codingStandardsIgnoreStart
-    public function stream_seek(...$args)
+    public function stream_seek(int $offset, int $whence)
     {
         // @codingStandardsIgnoreEnd
-        return $this->getStream()->seek(...$args);
+        return $this->getStream()->seek($offset, $whence);
     }
 
+    /*
+     * Callhack handler for inspecting our current position in the stream
+     *
+     * @return int
+     */
     // @codingStandardsIgnoreStart
     public function stream_tell()
     {
