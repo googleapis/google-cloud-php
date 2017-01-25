@@ -30,15 +30,25 @@ class ServiceException extends GoogleException
     private $serviceException;
 
     /**
+     * @var array
+     */
+    protected $options;
+
+    /**
      * Handle previous exceptions differently here.
      *
      * @param  string    $message
      * @param  int       $code
      * @param  Exception $serviceException
      */
-    public function __construct($message, $code = null, Exception $serviceException = null)
-    {
+    public function __construct(
+        $message,
+        $code = null,
+        Exception $serviceException = null,
+        array $options = []
+    ) {
         $this->serviceException = $serviceException;
+        $this->options = $options;
 
         parent::__construct($message, $code);
     }

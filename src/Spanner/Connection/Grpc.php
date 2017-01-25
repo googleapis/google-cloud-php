@@ -368,9 +368,9 @@ class Grpc implements ConnectionInterface
                 ->deserialize($param, $this->codec);
         }
 
-        if (isset($args['transaction'])) {
+        if (isset($args['transactionId'])) {
             $args['transaction'] = (new TransactionSelector)
-                ->deserialize(['id' => $args['transaction']], $this->codec);
+                ->deserialize(['id' => $args['transactionId']], $this->codec);
         }
 
         return $this->send([$this->spannerClient, 'executeSql'], [
@@ -411,8 +411,18 @@ class Grpc implements ConnectionInterface
         $options = new TransactionOptions;
 
         if (isset($args['transactionOptions']['readOnly'])) {
+            $ro = $args['transactionOptions']['readOnly'];
+
+            if (isset($ro['minReadTimestamp'])) {
+                $ro['minReadTimestamp'] = $this->formatTimestampForApi($ro['minReadTimestamp']);
+            }
+
+            if (isset($ro['readTimestamp'])) {
+                $ro['readTimestamp'] = $this->formatTimestampForApi($ro['readTimestamp']);
+            }
+
             $readOnly = (new TransactionOptions\ReadOnly)
-                ->deserialize($args['transactionOptions']['readOnly'], $this->codec);
+                ->deserialize($ro, $this->codec);
 
             $options->setReadOnly($readOnly);
         } else {

@@ -18,8 +18,10 @@
 namespace Google\Cloud\Spanner;
 
 use Google\Cloud\ArrayTrait;
+use Google\Cloud\Exception\AbortedException;
 use Google\Cloud\Exception\NotFoundException;
 use Google\Cloud\Iam\Iam;
+use Google\Cloud\Retry;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Connection\IamDatabase;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
@@ -49,9 +51,11 @@ use Google\Cloud\Spanner\V1\SpannerClient as GrpcSpannerClient;
  * $database = $instance->database('my-database');
  * ```
  */
-class Database
+class Database implements ReaderInterface
 {
     use ArrayTrait;
+
+    const MAX_RETRIES = 3;
 
     /**
      * @var ConnectionInterface
@@ -307,14 +311,25 @@ class Database
     }
 
     /**
-     * Execute read operations inside a transaction.
+     * Create a snapshot to read from a database at a point in time.
      *
      * If no configuration options are provided, transaction will be opened with
      * strong consistency.
      *
+     * Snapshots are executed behind the scenes using a Read-Only Transaction.
+     *
      * Example:
      * ```
-     * $transaction = $database->readOnlyTransaction();
+     * $snapshot = $database->snapshot();
+     * ```
+     *
+     * ```
+     * // Take a shapshot with a returned timestamp.
+     * $snapshot = $database->snapshot([
+     *     'returnReadTimestamp' => true
+     * ]);
+     *
+     * $timestamp = $snapshot->readTimestamp();
      * ```
      *
      * @codingStandardsIgnoreStart
@@ -349,7 +364,7 @@ class Database
      * @codingStandardsIgnoreEnd
      * @return Transaction
      */
-    public function readOnlyTransaction(callable $operation, array $options = [])
+    public function snapshot(array $options = [])
     {
         $options += [
             'returnReadTimestamp' => null,
@@ -396,17 +411,36 @@ class Database
 
         $session = $this->selectSession(SessionPoolInterface::CONTEXT_READ);
 
-        $transaction = $this->operation->transaction($session, SessionPoolInterface::CONTEXT_READ, $options);
-
-        return call_user_func($operation, $transaction);
+        return $this->operation->snapshot($session, $options);
     }
 
     /**
      * Execute Read/Write operations inside a Transaction.
      *
+     * Using this method and providing a callable operation provides certain
+     * benefits including automatic retry when a transaction fails. In case of a
+     * failure, all transaction operations, including reads, are re-applied in a
+     * new transaction.
+     *
      * Example:
      * ```
-     * $transaction = $database->readWriteTransaction();
+     * $transaction = $database->runTransaction(function (Transaction $t) use ($userName, $password) {
+     *     $user = $t->execute('SELECT * FROM Users WHERE Name = @name and PasswordHash = @password', [
+     *         'parameters' => [
+     *             'name' => $userName,
+     *             'password' => password_hash($password)
+     *         ]
+     *     ])->firstRow();
+     *
+     *     if ($user) {
+     *         grantAccess($user);
+     *
+     *         $user['loginCount'] = $user['loginCount'] + 1;
+     *         $t->update('Users', $user);
+     *     }
+     *
+     *     $t->commit();
+     * });
      * ```
      *
      * @codingStandardsIgnoreStart
@@ -415,22 +449,84 @@ class Database
      *
      * @param callable $operation The operations to run in the transaction.
      *        **Signature:** `function (Transaction $transaction)`.
-     * @param array $options [optional] Configuration Options
+     * @param array $options [optional] {
+     *     Configuration Options
+     *
+     *     @type int $maxRetries The number of times to attempt to apply the
+     *           operation before failing. **Defaults to ** `4`.
+     * }
      * @return Transaction
      */
-    public function readWriteTransaction(callable $operation, array $options = [])
+    public function runTransaction(callable $operation, array $options = [])
     {
+        $options += [
+            'maxRetries' => self::MAX_RETRIES
+        ];
+
+        // There isn't anything configurable here.
         $options['transactionOptions'] = [
             'readWrite' => []
         ];
 
         $session = $this->selectSession(SessionPoolInterface::CONTEXT_READWRITE);
 
-        $transaction = $this->operation->transaction($session, SessionPoolInterface::CONTEXT_READWRITE, $options);
+        $startTransactionFn = function ($session, $options) {
+            return $this->operation->transaction($session, $options);
+        };
 
-        call_user_func($operation, $transaction);
+        $delayFn = function (\Exception $e) {
+            if (!($e instanceof AbortedException)) {
+                throw $e;
+            }
 
-        // return $this->operation->commit($session, $transaction, $options);
+            return $e->getRetryDelay();
+        };
+
+        $commitFn = function($operation, $session, $options) use ($startTransactionFn) {
+
+            $transaction = call_user_func_array($startTransactionFn, [
+                $session,
+                $options
+            ]);
+
+            return call_user_func($operation, $transaction);
+        };
+
+        $retry = new Retry($options['maxRetries'], $delayFn);
+        return $retry->execute($commitFn, [$operation, $session, $options]);
+    }
+
+    /**
+     * Create and return a new Transaction.
+     *
+     * When manually using a Transaction, it is advised that retry logic be
+     * implemented to reapply all operations when an instance of
+     * {@see Google\Cloud\Exception\AbortedException} is thrown.
+     *
+     * If you wish Google Cloud PHP to handle retry logic for you (recommended
+     * for most cases), use {@see Google\Cloud\Spanner\Database::runTransaction()}.
+     *
+     * Example:
+     * ```
+     * $transaction = $database->transaction();
+     * ```
+     *
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#google.spanner.v1.BeginTransactionRequest BeginTransactionRequest
+     * @codingStandardsIgnoreEnd
+     *
+     * @param array $options [optional] Configuration Options.
+     * @return Transaction
+     */
+    public function transaction(array $options = [])
+    {
+        // There isn't anything configurable here.
+        $options['transactionOptions'] = [
+            'readWrite' => []
+        ];
+
+        $session = $this->selectSession(SessionPoolInterface::CONTEXT_READWRITE);
+        return $this->operation->transaction($session, $options);
     }
 
     /**
@@ -794,31 +890,30 @@ class Database
      *     'keys' => [1337]
      * ]);
      *
-     * $result = $database->read('Posts', [
-     *     'keySet' => $keySet
-     * ]);
+     * $columns = ['ID', 'title', 'content'];
+     *
+     * $result = $database->read('Posts', $keySet, $columns);
      * ```
      *
      * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#google.spanner.v1.ReadRequest ReadRequest
      *
-     * @codingStandardsIgnoreStart
      * @param string $table The table name.
+     * @param KeySet $keySet The KeySet to select rows.
+     * @param array $columns A list of column names to return.
      * @param array $options [optional] {
      *     Configuration Options.
      *
      *     @type string $index The name of an index on the table.
-     *     @type array $columns A list of column names to be returned.
-     *     @type KeySet $keySet A KeySet defining which rows to return.
      *     @type int $offset The number of rows to offset results by.
      *     @type int $limit The number of results to return.
      * }
-     * @codingStandardsIgnoreEnd
+     * @return Result
      */
-    public function read($table, array $options = [])
+    public function read($table, KeySet $keySet, array $columns, array $options = [])
     {
         $session = $this->selectSession(SessionPoolInterface::CONTEXT_READ);
 
-        return $this->operation->read($session, $table, $options);
+        return $this->operation->read($session, $table, $keySet, $columns, $options);
     }
 
     /**

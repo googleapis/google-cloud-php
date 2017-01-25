@@ -17,6 +17,7 @@
 
 namespace Google\Cloud;
 
+use DrSlump\Protobuf\Codec\Binary;
 use DrSlump\Protobuf\Codec\CodecInterface;
 use DrSlump\Protobuf\Message;
 use Google\Auth\FetchAuthTokenInterface;
@@ -48,6 +49,11 @@ class GrpcRequestWrapper
     private $codec;
 
     /**
+     * @var CodecInterface A codec used for binary deserialization.
+     */
+    private $binaryCodec;
+
+    /**
      * @var array gRPC specific configuration options passed off to the GAX
      * library.
      */
@@ -61,6 +67,13 @@ class GrpcRequestWrapper
         Grpc\STATUS_INTERNAL,
         Grpc\STATUS_UNAVAILABLE,
         Grpc\STATUS_DATA_LOSS
+    ];
+
+    /**
+     * @var array Map of error metadata types to RPC wrappers.
+     */
+    private $metadataTypes = [
+        'google.rpc.retryinfo-bin' => \google\rpc\RetryInfo::class
     ];
 
     /**
@@ -88,6 +101,7 @@ class GrpcRequestWrapper
         $this->authHttpHandler = $config['authHttpHandler'] ?: HttpHandlerFactory::build();
         $this->codec = $config['codec'];
         $this->grpcOptions = $config['grpcOptions'];
+        $this->binaryCodec = new Binary;
     }
 
     /**
@@ -184,11 +198,28 @@ class GrpcRequestWrapper
                 $exception = Exception\ServerException::class;
                 break;
 
+            case Grpc\STATUS_ABORTED:
+                $exception = Exception\AbortedException::class;
+                break;
+
             default:
                 $exception = Exception\ServiceException::class;
                 break;
         }
 
-        return new $exception($ex->getMessage(), $ex->getCode(), $ex);
+        $metadata = [];
+        if ($ex->getMetadata()) {
+            foreach ($ex->getMetadata() as $type => $binaryValue) {
+                if (!isset($this->metadataTypes[$type])) {
+                    continue;
+                }
+
+                $metadata[] = (new $this->metadataTypes[$type])
+                    ->deserialize($binaryValue[0], $this->binaryCodec)
+                    ->serialize($this->codec);
+            }
+        }
+
+        return new $exception($ex->getMessage(), $ex->getCode(), $ex, $metadata);
     }
 }

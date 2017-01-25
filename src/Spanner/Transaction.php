@@ -24,6 +24,24 @@ use RuntimeException;
 /**
  * Manages interaction with Google Cloud Spanner inside a Transaction.
  *
+ * Transactions can be started via
+ * {@see Google\Cloud\Spanner\Database::runTransaction()} (recommended) or via
+ * {@see Google\Cloud\Spanner\Database::transaction()}. Transactions should
+ * always call {@see Google\Cloud\Spanner\Transaction::commit()} or
+ * {@see Google\Cloud\Spanner\Transaction::rollback()} to ensure that locks are
+ * released in a timely manner.
+ *
+ * If you do not plan on performing any writes in your transaction, a
+ * {@see Google\Cloud\Spanner\Snapshot} is a better solution which does not
+ * require a commit or rollback and does not lock any data.
+ *
+ * Transactions may raise {@see Google\Cloud\Exception\AbortedException} errors
+ * when the transaction cannot complete for any reason. In this case, the entire
+ * operation (all reads and writes) should be reapplied atomically. Google Cloud
+ * PHP handles this transparently when using
+ * {@see Google\Cloud\Spanner\Database::runTransaction()}. In other cases, it is
+ * highly recommended that applications implement their own retry logic.
+ *
  * Example:
  * ```
  * use Google\Cloud\ServiceBuilder;
@@ -32,39 +50,24 @@ use RuntimeException;
  * $spanner = $cloud->spanner();
  *
  * $database = $spanner->connect('my-instance', 'my-database');
- * $transaction = $database->readWriteTransaction();
+ *
+ * $database->runTransaction(function (Transaction $t) {
+ *     // do stuff.
+ *
+ *     $t->commit();
+ * });
+ * ```
+ *
+ * ```
+ * // Get a transaction to manage manually.
+ * $transaction = $database->transaction();
  * ```
  */
-class Transaction
+class Transaction extends TransactionBase
 {
     const STATE_ACTIVE = 0;
     const STATE_ROLLED_BACK = 1;
     const STATE_COMMITTED = 2;
-
-    /**
-     * @var Operation
-     */
-    private $operation;
-
-    /**
-     * @var Session
-     */
-    private $session;
-
-    /**
-     * @var string
-     */
-    private $context;
-
-    /**
-     * @var string
-     */
-    private $transactionId;
-
-    /**
-     * @var Timestamp
-     */
-    private $readTimestamp;
 
     /**
      * @var array
@@ -79,22 +82,16 @@ class Transaction
     /**
      * @param Operation $operation The Operation instance.
      * @param Session $session The session to use for spanner interactions.
-     * @param string $context The Transaction context.
      * @param string $transactionId The Transaction ID.
-     * @param Timestamp $readTimestamp [optional] The read timestamp.
      */
     public function __construct(
         Operation $operation,
         Session $session,
-        $context,
-        $transactionId,
-        Timestamp $readTimestamp = null
+        $transactionId
     ) {
         $this->operation = $operation;
         $this->session = $session;
-        $this->context = $context;
         $this->transactionId = $transactionId;
-        $this->readTimestamp = $readTimestamp;
     }
 
     /**
@@ -305,74 +302,6 @@ class Transaction
     }
 
     /**
-     * Run a query.
-     *
-     * Example:
-     * ```
-     * $result = $transaction->execute(
-     *     'SELECT * FROM Users WHERE id = @userId',
-     *     [
-     *          'parameters' => [
-     *              'userId' => 1
-     *          ]
-     *     ]
-     * );
-     * ```
-     * @param string $sql The query string to execute.
-     * @param array $options [optional] {
-     *     Configuration options.
-     *
-     *     @type array $parameters A key/value array of Query Parameters, where
-     *           the key is represented in the query string prefixed by a `@`
-     *           symbol.
-     * }
-     * @return Result
-     */
-    public function execute($sql, array $options = [])
-    {
-        return $this->operation->execute($this->session, $sql, [
-            'transactionId' => $this->transactionId
-        ] + $options);
-    }
-
-    /**
-     * Lookup rows in a table.
-     *
-     * Note that if no KeySet is specified, all rows in a table will be
-     * returned.
-     *
-     * Example:
-     * ```
-     * $keySet = $spanner->keySet([
-     *     'keys' => [10]
-     * ]);
-     *
-     * $result = $database->read('Posts', [
-     *     'keySet' => $keySet
-     * ]);
-     * ```
-     *
-     * @codingStandardsIgnoreStart
-     * @param string $table The table name.
-     * @param array $options [optional] {
-     *     Configuration Options.
-     *
-     *     @type string $index The name of an index on the table.
-     *     @type array $columns A list of column names to be returned.
-     *     @type KeySet $keySet A KeySet, defining which rows to return.
-     *     @type int $offset The number of rows to offset results by.
-     *     @type int $limit The number of results to return.
-     * }
-     * @codingStandardsIgnoreEnd
-     */
-    public function read($table, array $options = [])
-    {
-        return $this->operation->read($this->session, $table, [
-            'transactionId' => $this->transactionId
-        ] + $options);
-    }
-
-    /**
      * Roll back a transaction.
      *
      * Rolls back a transaction, releasing any locks it holds. It is a good idea
@@ -414,54 +343,6 @@ class Transaction
     }
 
     /**
-     * Retrieve the Read Timestamp.
-     *
-     * For snapshot read-only transactions, the read timestamp chosen for the
-     * transaction.
-     *
-     * Example:
-     * ```
-     * $timestamp = $transaction->readTimestamp();
-     * ```
-     *
-     * @return Timestamp
-     */
-    public function readTimestamp()
-    {
-        return $this->readTimestamp;
-    }
-
-    /**
-     * Retrieve the Transaction ID.
-     *
-     * Example:
-     * ```
-     * $id = $transaction->id();
-     * ```
-     *
-     * @return string
-     */
-    public function id()
-    {
-        return $this->transactionId;
-    }
-
-    /**
-     * Retrieve the Transaction Context
-     *
-     * Example:
-     * ```
-     * $context = $transaction->context();
-     * ```
-     *
-     * @return string
-     */
-    public function context()
-    {
-        return $this->context;
-    }
-
-    /**
      * Retrieve the Transaction State.
      *
      * Will be one of `Transaction::STATE_ACTIVE`,
@@ -499,12 +380,6 @@ class Transaction
      */
     private function enqueue($op, $table, array $dataSet)
     {
-        if ($this->context !== SessionPoolInterface::CONTEXT_READWRITE) {
-            throw new RuntimeException(
-                'Cannot perform mutations in a Read-Only Transaction'
-            );
-        }
-
         foreach ($dataSet as $data) {
             if ($op === Operation::OP_DELETE) {
                 $this->mutations[] = $this->operation->deleteMutation($table, $data);

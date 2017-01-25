@@ -88,6 +88,25 @@ class Result implements \IteratorAggregate
     }
 
     /**
+     * Return the first row, or null.
+     *
+     * Useful when selecting a single row.
+     *
+     * Example:
+     * ```
+     * $row = $result->firstRow();
+     * ```
+     *
+     * @return array|null
+     */
+    public function firstRow()
+    {
+        return (isset($this->rows[0]))
+            ? $this->rows[0]
+            : null;
+    }
+
+    /**
      * Get the query plan and execution statistics for the query that produced
      * this result set.
      *

@@ -55,7 +55,7 @@
         "erusev/parsedown": "^1.6",
         "vierbergenlars/php-semver": "^3.0",
         "google/proto-client-php": "dev-master",
-        "google/gax": "^0.5"
+        "google/gax": "dev-streaming"
     },
     "suggest": {
         "google/gax": "Required to support gRPC",
@@ -81,6 +81,10 @@
         {
             "type": "vcs",
             "url": "https://github.com/jdpedrie/proto-client-php-private"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/michaelbausor/gax-php"
         }
     ]
 }
