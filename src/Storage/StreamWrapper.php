@@ -145,7 +145,12 @@ class StreamWrapper
     private function getOptions()
     {
         if (!isset($this->options)) {
-            $this->options = stream_context_get_options($this->context)[$this->protocol] ?: [];
+            $options = stream_context_get_options($this->context);
+            if (array_key_exists($this->protocol, $options)) {
+                $this->options = $options[$this->protocol] ?: [];
+            } else {
+                $this->options = [];
+            }
         }
         return $this->options;
     }
