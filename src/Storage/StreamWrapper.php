@@ -53,6 +53,36 @@ class StreamWrapper
     }
 
     /**
+     * Register a StreamWrapper for reading and writing to Google Storage
+     *
+     * @param string $protocol The name of the protocol to use. Defaults to
+     *        'gs'.
+     * @throws \RuntimeException
+     */
+    public static function register(string $protocol = null)
+    {
+        $protocol = $protocol ?: 'gs';
+        if (!in_array($protocol, stream_get_wrappers())) {
+            if (!stream_wrapper_register($protocol, StreamWrapper::class)) {
+                throw new RuntimeException("Failed to register '$protocol://' protocol");
+            }
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Unregisters the SteamWrapper
+     *
+     * @param string $protocol The name of the protocol to unregister. Defaults
+     *        to 'gs'.
+     */
+    public static function unregister(string $protocol = null)
+    {
+        stream_wrapper_unregister($protocol ?: 'gs');
+    }
+
+    /**
      * Get the default client to use for streams.
      *
      * @return StorageClient

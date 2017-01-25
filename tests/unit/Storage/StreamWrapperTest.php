@@ -38,22 +38,19 @@ class StreamWrapperTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         parent::setUp();
-        // register the gs:// stream wrapper
-        StorageClient::registerStreamWrapper();
 
         $this->client = $this->prophesize(StorageClient::class);
         $this->bucket = $this->prophesize(Bucket::class);
         $this->client->bucket('my_bucket')->willReturn($this->bucket->reveal());
 
+        StreamWrapper::register();
         StreamWrapper::setClient($this->client->reveal());
     }
 
     public function tearDown()
     {
         StreamWrapper::setClient(null);
-
-        // deregister the gs:// stream wrapper
-        StorageClient::unregisterStreamWrapper();
+        StreamWrapper::unregister();
 
         parent::tearDown();
     }
