@@ -67,7 +67,7 @@ class StreamWrapper
         $protocol = $protocol ?: self::DEFAULT_PROTOCOL;
         if (!in_array($protocol, stream_get_wrappers())) {
             if (!stream_wrapper_register($protocol, StreamWrapper::class)) {
-                throw new RuntimeException("Failed to register '$protocol://' protocol");
+                throw new \RuntimeException("Failed to register '$protocol://' protocol");
             }
             self::$clients[$protocol] = $client;
             return true;
