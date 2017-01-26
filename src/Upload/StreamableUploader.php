@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Upload;
 
+use Google\Cloud\RequestWrapper;
 use GuzzleHttp\Psr7\BufferStream;
 use GuzzleHttp\Psr7\Request;
 
@@ -27,6 +28,12 @@ use GuzzleHttp\Psr7\Request;
 class StreamableUploader extends ResumableUploader
 {
     const DEFAULT_WRITE_CHUNK_SIZE = 262144;
+
+    /**
+     * @var BufferStream Store data not yet sent to the server. We can only
+     *      send data in multiples of 262144;
+     */
+    private $buffer;
 
     /**
      * @param RequestWrapper $requestWrapper
@@ -44,9 +51,13 @@ class StreamableUploader extends ResumableUploader
      *     @type string $contentType Content type of the resource.
      * }
      */
-    public function __construct()
+    public function __construct(
+        RequestWrapper $requestWrapper,
+        $data,
+        $uri,
+        array $options = [])
     {
-        call_user_func_array(array($this, 'parent::__construct'), func_get_args());
+        parent::__construct($requestWrapper, $data, $uri, $options);
         $this->resetBuffer($this->data);
         $this->chunkSize = $this->chunkSize ?: self::DEFAULT_WRITE_CHUNK_SIZE;
     }
