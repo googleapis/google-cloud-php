@@ -62,7 +62,7 @@ class StreamWrapper
      *        'gs'.
      * @throws \RuntimeException
      */
-    public static function register(StorageClient $client, string $protocol = null)
+    public static function register(StorageClient $client, $protocol = null)
     {
         $protocol = $protocol ?: self::DEFAULT_PROTOCOL;
         if (!in_array($protocol, stream_get_wrappers())) {
@@ -81,7 +81,7 @@ class StreamWrapper
      * @param string $protocol The name of the protocol to unregister. Defaults
      *        to 'gs'.
      */
-    public static function unregister(string $protocol = null)
+    public static function unregister($protocol = null)
     {
         $protocol = $protocol ?: self::DEFAULT_PROTOCOL;
         stream_wrapper_unregister($protocol);
@@ -95,7 +95,7 @@ class StreamWrapper
      *        Defaults to 'gs'.
      * @return StorageClient
      */
-    public static function getClient(string $protocol = null)
+    public static function getClient($protocol = null)
     {
         $protocol = $protocol ?: self::DEFAULT_PROTOCOL;
         return self::$clients[$protocol];
