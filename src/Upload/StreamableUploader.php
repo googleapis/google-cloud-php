@@ -55,8 +55,8 @@ class StreamableUploader extends ResumableUploader
         RequestWrapper $requestWrapper,
         $data,
         $uri,
-        array $options = [])
-    {
+        array $options = []
+    ) {
         parent::__construct($requestWrapper, $data, $uri, $options);
         $this->resetBuffer($this->data);
         $this->chunkSize = $this->chunkSize ?: self::DEFAULT_WRITE_CHUNK_SIZE;
