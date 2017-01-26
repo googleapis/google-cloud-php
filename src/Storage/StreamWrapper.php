@@ -136,14 +136,6 @@ class StreamWrapper
         return true;
     }
 
-    private function getOption($name, $default = null)
-    {
-        if (array_key_exists($name, $this->getOptions())) {
-            return $this->getOptions()[$name];
-        }
-        return null;
-    }
-
     private function getOptions()
     {
         if (isset($this->options)) {
