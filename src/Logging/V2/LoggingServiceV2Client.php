@@ -1,16 +1,18 @@
 <?php
 /*
- * Copyright 2016 Google Inc. All Rights Reserved.
+ * Copyright 2016, Google Inc. All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
- * in compliance with the License. You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * Unless required by applicable law or agreed to in writing, software distributed under the License
- * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
- * or implied. See the License for the specific language governing permissions and limitations under
- * the License.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 
 /*
@@ -36,9 +38,10 @@ use Google\GAX\PathTemplate;
 use google\api\MonitoredResource;
 use google\logging\v2\DeleteLogRequest;
 use google\logging\v2\ListLogEntriesRequest;
+use google\logging\v2\ListLogsRequest;
 use google\logging\v2\ListMonitoredResourceDescriptorsRequest;
 use google\logging\v2\LogEntry;
-use google\logging\v2\LoggingServiceV2Client as LoggingServiceV2GrpcClient;
+use google\logging\v2\LoggingServiceV2GrpcClient;
 use google\logging\v2\WriteLogEntriesRequest;
 use google\logging\v2\WriteLogEntriesRequest\LabelsEntry;
 
@@ -58,9 +61,7 @@ use google\logging\v2\WriteLogEntriesRequest\LabelsEntry;
  *     $formattedLogName = LoggingServiceV2Client::formatLogName("[PROJECT]", "[LOG]");
  *     $loggingServiceV2Client->deleteLog($formattedLogName);
  * } finally {
- *     if (isset($loggingServiceV2Client)) {
- *         $loggingServiceV2Client->close();
- *     }
+ *     $loggingServiceV2Client->close();
  * }
  * ```
  *
@@ -86,8 +87,15 @@ class LoggingServiceV2Client
      */
     const DEFAULT_TIMEOUT_MILLIS = 30000;
 
-    const _CODEGEN_NAME = 'gapic';
-    const _CODEGEN_VERSION = '0.1.0';
+    /**
+     * The name of the code generator, to be included in the agent header.
+     */
+    const CODEGEN_NAME = 'gapic';
+
+    /**
+     * The code generator version, to be included in the agent header.
+     */
+    const CODEGEN_VERSION = '0.1.0';
 
     private static $projectNameTemplate;
     private static $logNameTemplate;
@@ -182,10 +190,18 @@ class LoggingServiceV2Client
                     'responsePageTokenField' => 'next_page_token',
                     'resourceField' => 'resource_descriptors',
                 ]);
+        $listLogsPageStreamingDescriptor =
+                new PageStreamingDescriptor([
+                    'requestPageTokenField' => 'page_token',
+                    'requestPageSizeField' => 'page_size',
+                    'responsePageTokenField' => 'next_page_token',
+                    'resourceField' => 'log_names',
+                ]);
 
         $pageStreamingDescriptors = [
             'listLogEntries' => $listLogEntriesPageStreamingDescriptor,
             'listMonitoredResourceDescriptors' => $listMonitoredResourceDescriptorsPageStreamingDescriptor,
+            'listLogs' => $listLogsPageStreamingDescriptor,
         ];
 
         return $pageStreamingDescriptors;
@@ -201,10 +217,10 @@ class LoggingServiceV2Client
      *     @type string $serviceAddress The domain name of the API remote host.
      *                                  Default 'logging.googleapis.com'.
      *     @type mixed $port The port on which to connect to the remote host. Default 443.
-     *     @type Grpc\ChannelCredentials $sslCreds
+     *     @type \Grpc\ChannelCredentials $sslCreds
      *           A `ChannelCredentials` for use with an SSL-enabled channel.
      *           Default: a credentials object returned from
-     *           Grpc\ChannelCredentials::createSsl()
+     *           \Grpc\ChannelCredentials::createSsl()
      *     @type array $scopes A string array of scopes to use when acquiring credentials.
      *                         Default the scopes for the Stackdriver Logging API.
      *     @type array $retryingOverride
@@ -219,24 +235,23 @@ class LoggingServiceV2Client
      *     @type string $appName The codename of the calling service. Default 'gax'.
      *     @type string $appVersion The version of the calling service.
      *                              Default: the current version of GAX.
-     *     @type Google\Auth\CredentialsLoader $credentialsLoader
+     *     @type \Google\Auth\CredentialsLoader $credentialsLoader
      *                              A CredentialsLoader object created using the
      *                              Google\Auth library.
      * }
      */
     public function __construct($options = [])
     {
-        $defaultScopes = [
-            'https://www.googleapis.com/auth/cloud-platform',
-            'https://www.googleapis.com/auth/cloud-platform.read-only',
-            'https://www.googleapis.com/auth/logging.admin',
-            'https://www.googleapis.com/auth/logging.read',
-            'https://www.googleapis.com/auth/logging.write',
-        ];
         $defaultOptions = [
             'serviceAddress' => self::SERVICE_ADDRESS,
             'port' => self::DEFAULT_SERVICE_PORT,
-            'scopes' => $defaultScopes,
+            'scopes' => [
+                'https://www.googleapis.com/auth/cloud-platform',
+                'https://www.googleapis.com/auth/cloud-platform.read-only',
+                'https://www.googleapis.com/auth/logging.admin',
+                'https://www.googleapis.com/auth/logging.read',
+                'https://www.googleapis.com/auth/logging.write',
+            ],
             'retryingOverride' => null,
             'timeoutMillis' => self::DEFAULT_TIMEOUT_MILLIS,
             'appName' => 'gax',
@@ -247,8 +262,8 @@ class LoggingServiceV2Client
         $headerDescriptor = new AgentHeaderDescriptor([
             'clientName' => $options['appName'],
             'clientVersion' => $options['appVersion'],
-            'codeGenName' => self::_CODEGEN_NAME,
-            'codeGenVersion' => self::_CODEGEN_VERSION,
+            'codeGenName' => self::CODEGEN_NAME,
+            'codeGenVersion' => self::CODEGEN_VERSION,
             'gaxVersion' => AgentHeaderDescriptor::getGaxVersion(),
             'phpVersion' => phpversion(),
         ]);
@@ -259,6 +274,7 @@ class LoggingServiceV2Client
             'writeLogEntries' => $defaultDescriptors,
             'listLogEntries' => $defaultDescriptors,
             'listMonitoredResourceDescriptors' => $defaultDescriptors,
+            'listLogs' => $defaultDescriptors,
         ];
         $pageStreamingDescriptors = self::getPageStreamingDescriptors();
         foreach ($pageStreamingDescriptors as $method => $pageStreamingDescriptor) {
@@ -288,6 +304,9 @@ class LoggingServiceV2Client
         $createLoggingServiceV2StubFunction = function ($hostname, $opts) {
             return new LoggingServiceV2GrpcClient($hostname, $opts);
         };
+        if (array_key_exists('createLoggingServiceV2StubFunction', $options)) {
+            $createLoggingServiceV2StubFunction = $options['createLoggingServiceV2StubFunction'];
+        }
         $this->loggingServiceV2Stub = $this->grpcCredentialsHelper->createStub(
             $createLoggingServiceV2StubFunction,
             $options['serviceAddress'],
@@ -307,9 +326,7 @@ class LoggingServiceV2Client
      *     $formattedLogName = LoggingServiceV2Client::formatLogName("[PROJECT]", "[LOG]");
      *     $loggingServiceV2Client->deleteLog($formattedLogName);
      * } finally {
-     *     if (isset($loggingServiceV2Client)) {
-     *         $loggingServiceV2Client->close();
-     *     }
+     *     $loggingServiceV2Client->close();
      * }
      * ```
      *
@@ -368,9 +385,7 @@ class LoggingServiceV2Client
      *     $entries = [];
      *     $response = $loggingServiceV2Client->writeLogEntries($entries);
      * } finally {
-     *     if (isset($loggingServiceV2Client)) {
-     *         $loggingServiceV2Client->close();
-     *     }
+     *     $loggingServiceV2Client->close();
      * }
      * ```
      *
@@ -468,8 +483,8 @@ class LoggingServiceV2Client
     }
 
     /**
-     * Lists log entries.  Use this method to retrieve log entries from Cloud
-     * Logging.  For ways to export log entries, see
+     * Lists log entries.  Use this method to retrieve log entries from
+     * Stackdriver Logging.  For ways to export log entries, see
      * [Exporting Logs](/logging/docs/export).
      *
      * Sample code:
@@ -477,17 +492,25 @@ class LoggingServiceV2Client
      * try {
      *     $loggingServiceV2Client = new LoggingServiceV2Client();
      *     $resourceNames = [];
-     *     foreach ($loggingServiceV2Client->listLogEntries($resourceNames) as $element) {
-     *         // doThingsWith(element);
+     *     // Iterate through all elements
+     *     $pagedResponse = $loggingServiceV2Client->listLogEntries($resourceNames);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     *
+     *     // OR iterate over pages of elements, with the maximum page size set to 5
+     *     $pagedResponse = $loggingServiceV2Client->listLogEntries($resourceNames, ['pageSize' => 5]);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
      *     }
      * } finally {
-     *     if (isset($loggingServiceV2Client)) {
-     *         $loggingServiceV2Client->close();
-     *     }
+     *     $loggingServiceV2Client->close();
      * }
      * ```
      *
-     * @param string[] $resourceNames Required. One or more cloud resources from which to retrieve log
+     * @param string[] $resourceNames Required. Names of one or more resources from which to retrieve log
      *                                entries:
      *
      *     "projects/[PROJECT_ID]"
@@ -498,15 +521,18 @@ class LoggingServiceV2Client
      *                            Optional.
      *
      *     @type string[] $projectIds
-     *          Deprecated. One or more project identifiers or project numbers from which
-     *          to retrieve log entries.  Example: `"my-project-1A"`. If
-     *          present, these project identifiers are converted to resource format and
-     *          added to the list of resources in `resourceNames`. Callers should use
-     *          `resourceNames` rather than this parameter.
+     *          Deprecated. Use `resource_names` instead.  One or more project identifiers
+     *          or project numbers from which to retrieve log entries.  Example:
+     *          `"my-project-1A"`. If present, these project identifiers are converted to
+     *          resource name format and added to the list of resources in
+     *          `resource_names`.
      *     @type string $filter
      *          Optional. A filter that chooses which log entries to return.  See [Advanced
      *          Logs Filters](/logging/docs/view/advanced_filters).  Only log entries that
-     *          match the filter are returned.  An empty filter matches all log entries.
+     *          match the filter are returned.  An empty filter matches all log entries in
+     *          the resources listed in `resource_names`. Referencing a parent resource
+     *          that is not listed in `resource_names` will cause the filter to return no
+     *          results.
      *          The maximum length of the filter is 20000 characters.
      *     @type string $orderBy
      *          Optional. How the results should be sorted.  Presently, the only permitted
@@ -577,20 +603,29 @@ class LoggingServiceV2Client
     }
 
     /**
-     * Lists the monitored resource descriptors used by Stackdriver Logging.
+     * Lists the descriptors for monitored resource types used by Stackdriver
+     * Logging.
      *
      * Sample code:
      * ```
      * try {
      *     $loggingServiceV2Client = new LoggingServiceV2Client();
      *
-     *     foreach ($loggingServiceV2Client->listMonitoredResourceDescriptors() as $element) {
-     *         // doThingsWith(element);
+     *     // Iterate through all elements
+     *     $pagedResponse = $loggingServiceV2Client->listMonitoredResourceDescriptors();
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     *
+     *     // OR iterate over pages of elements, with the maximum page size set to 5
+     *     $pagedResponse = $loggingServiceV2Client->listMonitoredResourceDescriptors(['pageSize' => 5]);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
      *     }
      * } finally {
-     *     if (isset($loggingServiceV2Client)) {
-     *         $loggingServiceV2Client->close();
-     *     }
+     *     $loggingServiceV2Client->close();
      * }
      * ```
      *
@@ -636,6 +671,88 @@ class LoggingServiceV2Client
             'ListMonitoredResourceDescriptors',
             $mergedSettings,
             $this->descriptors['listMonitoredResourceDescriptors']
+        );
+
+        return $callable(
+            $request,
+            [],
+            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+    }
+
+    /**
+     * Lists the logs in projects or organizations.
+     * Only logs that have entries are listed.
+     *
+     * Sample code:
+     * ```
+     * try {
+     *     $loggingServiceV2Client = new LoggingServiceV2Client();
+     *     $formattedParent = LoggingServiceV2Client::formatProjectName("[PROJECT]");
+     *     // Iterate through all elements
+     *     $pagedResponse = $loggingServiceV2Client->listLogs($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     *
+     *     // OR iterate over pages of elements, with the maximum page size set to 5
+     *     $pagedResponse = $loggingServiceV2Client->listLogs($formattedParent, ['pageSize' => 5]);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     * } finally {
+     *     $loggingServiceV2Client->close();
+     * }
+     * ```
+     *
+     * @param string $parent Required. The resource name that owns the logs:
+     *
+     *     "projects/[PROJECT_ID]"
+     *     "organizations/[ORGANIZATION_ID]"
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type int $pageSize
+     *          The maximum number of resources contained in the underlying API
+     *          response. The API may return fewer values in a page, even if
+     *          there are additional values to be retrieved.
+     *     @type string $pageToken
+     *          A page token is used to specify a page of values to be returned.
+     *          If no page token is specified (the default), the first page
+     *          of values will be returned. Any page token used here must have
+     *          been generated by a previous call to the API.
+     *     @type \Google\GAX\RetrySettings $retrySettings
+     *          Retry settings to use for this call. If present, then
+     *          $timeoutMillis is ignored.
+     *     @type int $timeoutMillis
+     *          Timeout to use for this call. Only used if $retrySettings
+     *          is not set.
+     * }
+     *
+     * @return \Google\GAX\PagedListResponse
+     *
+     * @throws \Google\GAX\ApiException if the remote call fails
+     */
+    public function listLogs($parent, $optionalArgs = [])
+    {
+        $request = new ListLogsRequest();
+        $request->setParent($parent);
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $mergedSettings = $this->defaultCallSettings['listLogs']->merge(
+            new CallSettings($optionalArgs)
+        );
+        $callable = ApiCallable::createApiCall(
+            $this->loggingServiceV2Stub,
+            'ListLogs',
+            $mergedSettings,
+            $this->descriptors['listLogs']
         );
 
         return $callable(

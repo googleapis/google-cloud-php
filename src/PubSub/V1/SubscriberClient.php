@@ -1,16 +1,18 @@
 <?php
 /*
- * Copyright 2016 Google Inc. All Rights Reserved.
+ * Copyright 2016, Google Inc. All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
- * in compliance with the License. You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * Unless required by applicable law or agreed to in writing, software distributed under the License
- * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
- * or implied. See the License for the specific language governing permissions and limitations under
- * the License.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 
 /*
@@ -34,7 +36,7 @@ use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
 use google\iam\v1\GetIamPolicyRequest;
-use google\iam\v1\IAMPolicyClient as IAMPolicyGrpcClient;
+use google\iam\v1\IAMPolicyGrpcClient;
 use google\iam\v1\Policy;
 use google\iam\v1\SetIamPolicyRequest;
 use google\iam\v1\TestIamPermissionsRequest;
@@ -46,7 +48,7 @@ use google\pubsub\v1\ModifyAckDeadlineRequest;
 use google\pubsub\v1\ModifyPushConfigRequest;
 use google\pubsub\v1\PullRequest;
 use google\pubsub\v1\PushConfig;
-use google\pubsub\v1\SubscriberClient as SubscriberGrpcClient;
+use google\pubsub\v1\SubscriberGrpcClient;
 use google\pubsub\v1\Subscription;
 
 /**
@@ -67,9 +69,7 @@ use google\pubsub\v1\Subscription;
  *     $formattedTopic = SubscriberClient::formatTopicName("[PROJECT]", "[TOPIC]");
  *     $response = $subscriberClient->createSubscription($formattedName, $formattedTopic);
  * } finally {
- *     if (isset($subscriberClient)) {
- *         $subscriberClient->close();
- *     }
+ *     $subscriberClient->close();
  * }
  * ```
  *
@@ -95,8 +95,15 @@ class SubscriberClient
      */
     const DEFAULT_TIMEOUT_MILLIS = 30000;
 
-    const _CODEGEN_NAME = 'gapic';
-    const _CODEGEN_VERSION = '0.1.0';
+    /**
+     * The name of the code generator, to be included in the agent header.
+     */
+    const CODEGEN_NAME = 'gapic';
+
+    /**
+     * The code generator version, to be included in the agent header.
+     */
+    const CODEGEN_VERSION = '0.1.0';
 
     private static $projectNameTemplate;
     private static $subscriptionNameTemplate;
@@ -243,10 +250,10 @@ class SubscriberClient
      *     @type string $serviceAddress The domain name of the API remote host.
      *                                  Default 'pubsub.googleapis.com'.
      *     @type mixed $port The port on which to connect to the remote host. Default 443.
-     *     @type Grpc\ChannelCredentials $sslCreds
+     *     @type \Grpc\ChannelCredentials $sslCreds
      *           A `ChannelCredentials` for use with an SSL-enabled channel.
      *           Default: a credentials object returned from
-     *           Grpc\ChannelCredentials::createSsl()
+     *           \Grpc\ChannelCredentials::createSsl()
      *     @type array $scopes A string array of scopes to use when acquiring credentials.
      *                         Default the scopes for the Google Cloud Pub/Sub API.
      *     @type array $retryingOverride
@@ -261,21 +268,20 @@ class SubscriberClient
      *     @type string $appName The codename of the calling service. Default 'gax'.
      *     @type string $appVersion The version of the calling service.
      *                              Default: the current version of GAX.
-     *     @type Google\Auth\CredentialsLoader $credentialsLoader
+     *     @type \Google\Auth\CredentialsLoader $credentialsLoader
      *                              A CredentialsLoader object created using the
      *                              Google\Auth library.
      * }
      */
     public function __construct($options = [])
     {
-        $defaultScopes = [
-            'https://www.googleapis.com/auth/cloud-platform',
-            'https://www.googleapis.com/auth/pubsub',
-        ];
         $defaultOptions = [
             'serviceAddress' => self::SERVICE_ADDRESS,
             'port' => self::DEFAULT_SERVICE_PORT,
-            'scopes' => $defaultScopes,
+            'scopes' => [
+                'https://www.googleapis.com/auth/cloud-platform',
+                'https://www.googleapis.com/auth/pubsub',
+            ],
             'retryingOverride' => null,
             'timeoutMillis' => self::DEFAULT_TIMEOUT_MILLIS,
             'appName' => 'gax',
@@ -286,8 +292,8 @@ class SubscriberClient
         $headerDescriptor = new AgentHeaderDescriptor([
             'clientName' => $options['appName'],
             'clientVersion' => $options['appVersion'],
-            'codeGenName' => self::_CODEGEN_NAME,
-            'codeGenVersion' => self::_CODEGEN_VERSION,
+            'codeGenName' => self::CODEGEN_NAME,
+            'codeGenVersion' => self::CODEGEN_VERSION,
             'gaxVersion' => AgentHeaderDescriptor::getGaxVersion(),
             'phpVersion' => phpversion(),
         ]);
@@ -334,6 +340,9 @@ class SubscriberClient
         $createIamPolicyStubFunction = function ($hostname, $opts) {
             return new IAMPolicyGrpcClient($hostname, $opts);
         };
+        if (array_key_exists('createIamPolicyStubFunction', $options)) {
+            $createIamPolicyStubFunction = $options['createIamPolicyStubFunction'];
+        }
         $this->iamPolicyStub = $this->grpcCredentialsHelper->createStub(
             $createIamPolicyStubFunction,
             $options['serviceAddress'],
@@ -343,6 +352,9 @@ class SubscriberClient
         $createSubscriberStubFunction = function ($hostname, $opts) {
             return new SubscriberGrpcClient($hostname, $opts);
         };
+        if (array_key_exists('createSubscriberStubFunction', $options)) {
+            $createSubscriberStubFunction = $options['createSubscriberStubFunction'];
+        }
         $this->subscriberStub = $this->grpcCredentialsHelper->createStub(
             $createSubscriberStubFunction,
             $options['serviceAddress'],
@@ -371,9 +383,7 @@ class SubscriberClient
      *     $formattedTopic = SubscriberClient::formatTopicName("[PROJECT]", "[TOPIC]");
      *     $response = $subscriberClient->createSubscription($formattedName, $formattedTopic);
      * } finally {
-     *     if (isset($subscriberClient)) {
-     *         $subscriberClient->close();
-     *     }
+     *     $subscriberClient->close();
      * }
      * ```
      *
@@ -464,9 +474,7 @@ class SubscriberClient
      *     $formattedSubscription = SubscriberClient::formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
      *     $response = $subscriberClient->getSubscription($formattedSubscription);
      * } finally {
-     *     if (isset($subscriberClient)) {
-     *         $subscriberClient->close();
-     *     }
+     *     $subscriberClient->close();
      * }
      * ```
      *
@@ -516,13 +524,21 @@ class SubscriberClient
      * try {
      *     $subscriberClient = new SubscriberClient();
      *     $formattedProject = SubscriberClient::formatProjectName("[PROJECT]");
-     *     foreach ($subscriberClient->listSubscriptions($formattedProject) as $element) {
-     *         // doThingsWith(element);
+     *     // Iterate through all elements
+     *     $pagedResponse = $subscriberClient->listSubscriptions($formattedProject);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     *
+     *     // OR iterate over pages of elements, with the maximum page size set to 5
+     *     $pagedResponse = $subscriberClient->listSubscriptions($formattedProject, ['pageSize' => 5]);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
      *     }
      * } finally {
-     *     if (isset($subscriberClient)) {
-     *         $subscriberClient->close();
-     *     }
+     *     $subscriberClient->close();
      * }
      * ```
      *
@@ -593,9 +609,7 @@ class SubscriberClient
      *     $formattedSubscription = SubscriberClient::formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
      *     $subscriberClient->deleteSubscription($formattedSubscription);
      * } finally {
-     *     if (isset($subscriberClient)) {
-     *         $subscriberClient->close();
-     *     }
+     *     $subscriberClient->close();
      * }
      * ```
      *
@@ -651,9 +665,7 @@ class SubscriberClient
      *     $ackDeadlineSeconds = 0;
      *     $subscriberClient->modifyAckDeadline($formattedSubscription, $ackIds, $ackDeadlineSeconds);
      * } finally {
-     *     if (isset($subscriberClient)) {
-     *         $subscriberClient->close();
-     *     }
+     *     $subscriberClient->close();
      * }
      * ```
      *
@@ -722,9 +734,7 @@ class SubscriberClient
      *     $ackIds = [];
      *     $subscriberClient->acknowledge($formattedSubscription, $ackIds);
      * } finally {
-     *     if (isset($subscriberClient)) {
-     *         $subscriberClient->close();
-     *     }
+     *     $subscriberClient->close();
      * }
      * ```
      *
@@ -783,9 +793,7 @@ class SubscriberClient
      *     $maxMessages = 0;
      *     $response = $subscriberClient->pull($formattedSubscription, $maxMessages);
      * } finally {
-     *     if (isset($subscriberClient)) {
-     *         $subscriberClient->close();
-     *     }
+     *     $subscriberClient->close();
      * }
      * ```
      *
@@ -856,9 +864,7 @@ class SubscriberClient
      *     $pushConfig = new PushConfig();
      *     $subscriberClient->modifyPushConfig($formattedSubscription, $pushConfig);
      * } finally {
-     *     if (isset($subscriberClient)) {
-     *         $subscriberClient->close();
-     *     }
+     *     $subscriberClient->close();
      * }
      * ```
      *
@@ -917,9 +923,7 @@ class SubscriberClient
      *     $policy = new Policy();
      *     $response = $subscriberClient->setIamPolicy($formattedResource, $policy);
      * } finally {
-     *     if (isset($subscriberClient)) {
-     *         $subscriberClient->close();
-     *     }
+     *     $subscriberClient->close();
      * }
      * ```
      *
@@ -979,9 +983,7 @@ class SubscriberClient
      *     $formattedResource = SubscriberClient::formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
      *     $response = $subscriberClient->getIamPolicy($formattedResource);
      * } finally {
-     *     if (isset($subscriberClient)) {
-     *         $subscriberClient->close();
-     *     }
+     *     $subscriberClient->close();
      * }
      * ```
      *
@@ -1037,9 +1039,7 @@ class SubscriberClient
      *     $permissions = [];
      *     $response = $subscriberClient->testIamPermissions($formattedResource, $permissions);
      * } finally {
-     *     if (isset($subscriberClient)) {
-     *         $subscriberClient->close();
-     *     }
+     *     $subscriberClient->close();
      * }
      * ```
      *

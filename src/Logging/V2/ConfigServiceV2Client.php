@@ -1,16 +1,18 @@
 <?php
 /*
- * Copyright 2016 Google Inc. All Rights Reserved.
+ * Copyright 2016, Google Inc. All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
- * in compliance with the License. You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * Unless required by applicable law or agreed to in writing, software distributed under the License
- * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
- * or implied. See the License for the specific language governing permissions and limitations under
- * the License.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 
 /*
@@ -33,7 +35,7 @@ use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
-use google\logging\v2\ConfigServiceV2Client as ConfigServiceV2GrpcClient;
+use google\logging\v2\ConfigServiceV2GrpcClient;
 use google\logging\v2\CreateSinkRequest;
 use google\logging\v2\DeleteSinkRequest;
 use google\logging\v2\GetSinkRequest;
@@ -56,13 +58,21 @@ use google\logging\v2\UpdateSinkRequest;
  * try {
  *     $configServiceV2Client = new ConfigServiceV2Client();
  *     $formattedParent = ConfigServiceV2Client::formatProjectName("[PROJECT]");
- *     foreach ($configServiceV2Client->listSinks($formattedParent) as $element) {
- *         // doThingsWith(element);
+ *     // Iterate through all elements
+ *     $pagedResponse = $configServiceV2Client->listSinks($formattedParent);
+ *     foreach ($pagedResponse->iterateAllElements() as $element) {
+ *         // doSomethingWith($element);
+ *     }
+ *
+ *     // OR iterate over pages of elements, with the maximum page size set to 5
+ *     $pagedResponse = $configServiceV2Client->listSinks($formattedParent, ['pageSize' => 5]);
+ *     foreach ($pagedResponse->iteratePages() as $page) {
+ *         foreach ($page as $element) {
+ *             // doSomethingWith($element);
+ *         }
  *     }
  * } finally {
- *     if (isset($configServiceV2Client)) {
- *         $configServiceV2Client->close();
- *     }
+ *     $configServiceV2Client->close();
  * }
  * ```
  *
@@ -88,8 +98,15 @@ class ConfigServiceV2Client
      */
     const DEFAULT_TIMEOUT_MILLIS = 30000;
 
-    const _CODEGEN_NAME = 'gapic';
-    const _CODEGEN_VERSION = '0.1.0';
+    /**
+     * The name of the code generator, to be included in the agent header.
+     */
+    const CODEGEN_NAME = 'gapic';
+
+    /**
+     * The code generator version, to be included in the agent header.
+     */
+    const CODEGEN_VERSION = '0.1.0';
 
     private static $projectNameTemplate;
     private static $sinkNameTemplate;
@@ -195,10 +212,10 @@ class ConfigServiceV2Client
      *     @type string $serviceAddress The domain name of the API remote host.
      *                                  Default 'logging.googleapis.com'.
      *     @type mixed $port The port on which to connect to the remote host. Default 443.
-     *     @type Grpc\ChannelCredentials $sslCreds
+     *     @type \Grpc\ChannelCredentials $sslCreds
      *           A `ChannelCredentials` for use with an SSL-enabled channel.
      *           Default: a credentials object returned from
-     *           Grpc\ChannelCredentials::createSsl()
+     *           \Grpc\ChannelCredentials::createSsl()
      *     @type array $scopes A string array of scopes to use when acquiring credentials.
      *                         Default the scopes for the Stackdriver Logging API.
      *     @type array $retryingOverride
@@ -213,24 +230,23 @@ class ConfigServiceV2Client
      *     @type string $appName The codename of the calling service. Default 'gax'.
      *     @type string $appVersion The version of the calling service.
      *                              Default: the current version of GAX.
-     *     @type Google\Auth\CredentialsLoader $credentialsLoader
+     *     @type \Google\Auth\CredentialsLoader $credentialsLoader
      *                              A CredentialsLoader object created using the
      *                              Google\Auth library.
      * }
      */
     public function __construct($options = [])
     {
-        $defaultScopes = [
-            'https://www.googleapis.com/auth/cloud-platform',
-            'https://www.googleapis.com/auth/cloud-platform.read-only',
-            'https://www.googleapis.com/auth/logging.admin',
-            'https://www.googleapis.com/auth/logging.read',
-            'https://www.googleapis.com/auth/logging.write',
-        ];
         $defaultOptions = [
             'serviceAddress' => self::SERVICE_ADDRESS,
             'port' => self::DEFAULT_SERVICE_PORT,
-            'scopes' => $defaultScopes,
+            'scopes' => [
+                'https://www.googleapis.com/auth/cloud-platform',
+                'https://www.googleapis.com/auth/cloud-platform.read-only',
+                'https://www.googleapis.com/auth/logging.admin',
+                'https://www.googleapis.com/auth/logging.read',
+                'https://www.googleapis.com/auth/logging.write',
+            ],
             'retryingOverride' => null,
             'timeoutMillis' => self::DEFAULT_TIMEOUT_MILLIS,
             'appName' => 'gax',
@@ -241,8 +257,8 @@ class ConfigServiceV2Client
         $headerDescriptor = new AgentHeaderDescriptor([
             'clientName' => $options['appName'],
             'clientVersion' => $options['appVersion'],
-            'codeGenName' => self::_CODEGEN_NAME,
-            'codeGenVersion' => self::_CODEGEN_VERSION,
+            'codeGenName' => self::CODEGEN_NAME,
+            'codeGenVersion' => self::CODEGEN_VERSION,
             'gaxVersion' => AgentHeaderDescriptor::getGaxVersion(),
             'phpVersion' => phpversion(),
         ]);
@@ -283,6 +299,9 @@ class ConfigServiceV2Client
         $createConfigServiceV2StubFunction = function ($hostname, $opts) {
             return new ConfigServiceV2GrpcClient($hostname, $opts);
         };
+        if (array_key_exists('createConfigServiceV2StubFunction', $options)) {
+            $createConfigServiceV2StubFunction = $options['createConfigServiceV2StubFunction'];
+        }
         $this->configServiceV2Stub = $this->grpcCredentialsHelper->createStub(
             $createConfigServiceV2StubFunction,
             $options['serviceAddress'],
@@ -299,22 +318,28 @@ class ConfigServiceV2Client
      * try {
      *     $configServiceV2Client = new ConfigServiceV2Client();
      *     $formattedParent = ConfigServiceV2Client::formatProjectName("[PROJECT]");
-     *     foreach ($configServiceV2Client->listSinks($formattedParent) as $element) {
-     *         // doThingsWith(element);
+     *     // Iterate through all elements
+     *     $pagedResponse = $configServiceV2Client->listSinks($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     *
+     *     // OR iterate over pages of elements, with the maximum page size set to 5
+     *     $pagedResponse = $configServiceV2Client->listSinks($formattedParent, ['pageSize' => 5]);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
      *     }
      * } finally {
-     *     if (isset($configServiceV2Client)) {
-     *         $configServiceV2Client->close();
-     *     }
+     *     $configServiceV2Client->close();
      * }
      * ```
      *
-     * @param string $parent Required. The resource name where this sink was created:
-     *
-     *     "projects/[PROJECT_ID]"
-     *     "organizations/[ORGANIZATION_ID]"
-     * @param array $optionalArgs {
-     *                            Optional.
+     * @param string $parent       Required. The parent resource whose sinks are to be listed.
+     *                             Examples: `"projects/my-logging-project"`, `"organizations/123456789"`.
+     * @param array  $optionalArgs {
+     *                             Optional.
      *
      *     @type string $pageToken
      *          A page token is used to specify a page of values to be returned.
@@ -374,16 +399,16 @@ class ConfigServiceV2Client
      *     $formattedSinkName = ConfigServiceV2Client::formatSinkName("[PROJECT]", "[SINK]");
      *     $response = $configServiceV2Client->getSink($formattedSinkName);
      * } finally {
-     *     if (isset($configServiceV2Client)) {
-     *         $configServiceV2Client->close();
-     *     }
+     *     $configServiceV2Client->close();
      * }
      * ```
      *
-     * @param string $sinkName Required. The resource name of the sink to return:
+     * @param string $sinkName Required. The parent resource name of the sink:
      *
      *     "projects/[PROJECT_ID]/sinks/[SINK_ID]"
      *     "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
+     *
+     * Example: `"projects/my-project-id/sinks/my-sink-id"`.
      * @param array $optionalArgs {
      *                            Optional.
      *
@@ -421,7 +446,11 @@ class ConfigServiceV2Client
     }
 
     /**
-     * Creates a sink.
+     * Creates a sink that exports specified log entries to a destination.  The
+     * export of newly-ingested log entries begins immediately, unless the current
+     * time is outside the sink's start and end times or the sink's
+     * `writer_identity` is not permitted to write to the destination.  A sink can
+     * export log entries only from the resource owning the sink.
      *
      * Sample code:
      * ```
@@ -431,9 +460,7 @@ class ConfigServiceV2Client
      *     $sink = new LogSink();
      *     $response = $configServiceV2Client->createSink($formattedParent, $sink);
      * } finally {
-     *     if (isset($configServiceV2Client)) {
-     *         $configServiceV2Client->close();
-     *     }
+     *     $configServiceV2Client->close();
      * }
      * ```
      *
@@ -441,17 +468,25 @@ class ConfigServiceV2Client
      *
      *     "projects/[PROJECT_ID]"
      *     "organizations/[ORGANIZATION_ID]"
+     *
+     * Examples: `"projects/my-logging-project"`, `"organizations/123456789"`.
      * @param LogSink $sink         Required. The new sink, whose `name` parameter is a sink identifier that
      *                              is not already in use.
      * @param array   $optionalArgs {
      *                              Optional.
      *
      *     @type bool $uniqueWriterIdentity
-     *          Optional. Whether the sink will have a dedicated service account returned
-     *          in the sink's writer_identity. Set this field to be true to export
-     *          logs from one project to a different project. This field is ignored for
-     *          non-project sinks (e.g. organization sinks) because those sinks are
-     *          required to have dedicated service accounts.
+     *          Optional. Determines the kind of IAM identity returned as `writer_identity`
+     *          in the new sink.  If this value is omitted or set to false, and if the
+     *          sink's parent is a project, then the value returned as `writer_identity` is
+     *          `cloud-logs&#64;google.com`, the same identity used before the addition of
+     *          writer identities to this API. The sink's destination must be in the same
+     *          project as the sink itself.
+     *
+     *          If this field is set to true, or if the sink is owned by a non-project
+     *          resource such as an organization, then the value of `writer_identity` will
+     *          be a unique service account used only for exports from the new sink.  For
+     *          more information, see `writer_identity` in [LogSink][google.logging.v2.LogSink].
      *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
@@ -490,7 +525,14 @@ class ConfigServiceV2Client
     }
 
     /**
-     * Updates or creates a sink.
+     * Updates a sink. If the named sink doesn't exist, then this method is
+     * identical to
+     * [sinks.create](/logging/docs/api/reference/rest/v2/projects.sinks/create).
+     * If the named sink does exist, then this method replaces the following
+     * fields in the existing sink with values from the new sink: `destination`,
+     * `filter`, `output_version_format`, `start_time`, and `end_time`.
+     * The updated filter might also have a new `writer_identity`; see the
+     * `unique_writer_identity` field.
      *
      * Sample code:
      * ```
@@ -500,31 +542,35 @@ class ConfigServiceV2Client
      *     $sink = new LogSink();
      *     $response = $configServiceV2Client->updateSink($formattedSinkName, $sink);
      * } finally {
-     *     if (isset($configServiceV2Client)) {
-     *         $configServiceV2Client->close();
-     *     }
+     *     $configServiceV2Client->close();
      * }
      * ```
      *
-     * @param string $sinkName Required. The resource name of the sink to update, including the parent
-     *                         resource and the sink identifier:
+     * @param string $sinkName Required. The full resource name of the sink to update, including the
+     *                         parent resource and the sink identifier:
      *
      *     "projects/[PROJECT_ID]/sinks/[SINK_ID]"
      *     "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
      *
      * Example: `"projects/my-project-id/sinks/my-sink-id"`.
      * @param LogSink $sink         Required. The updated sink, whose name is the same identifier that appears
-     *                              as part of `sinkName`.  If `sinkName` does not exist, then
+     *                              as part of `sink_name`.  If `sink_name` does not exist, then
      *                              this method creates a new sink.
      * @param array   $optionalArgs {
      *                              Optional.
      *
      *     @type bool $uniqueWriterIdentity
-     *          Optional. Whether the sink will have a dedicated service account returned
-     *          in the sink's writer_identity. Set this field to be true to export
-     *          logs from one project to a different project. This field is ignored for
-     *          non-project sinks (e.g. organization sinks) because those sinks are
-     *          required to have dedicated service accounts.
+     *          Optional. See
+     *          [sinks.create](/logging/docs/api/reference/rest/v2/projects.sinks/create)
+     *          for a description of this field.  When updating a sink, the effect of this
+     *          field on the value of `writer_identity` in the updated sink depends on both
+     *          the old and new values of this field:
+     *
+     *          +   If the old and new values of this field are both false or both true,
+     *              then there is no change to the sink's `writer_identity`.
+     *          +   If the old value was false and the new value is true, then
+     *              `writer_identity` is changed to a unique service account.
+     *          +   It is an error if the old value was true and the new value is false.
      *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
@@ -563,7 +609,8 @@ class ConfigServiceV2Client
     }
 
     /**
-     * Deletes a sink.
+     * Deletes a sink. If the sink has a unique `writer_identity`, then that
+     * service account is also deleted.
      *
      * Sample code:
      * ```
@@ -572,19 +619,19 @@ class ConfigServiceV2Client
      *     $formattedSinkName = ConfigServiceV2Client::formatSinkName("[PROJECT]", "[SINK]");
      *     $configServiceV2Client->deleteSink($formattedSinkName);
      * } finally {
-     *     if (isset($configServiceV2Client)) {
-     *         $configServiceV2Client->close();
-     *     }
+     *     $configServiceV2Client->close();
      * }
      * ```
      *
-     * @param string $sinkName Required. The resource name of the sink to delete, including the parent
-     *                         resource and the sink identifier:
+     * @param string $sinkName Required. The full resource name of the sink to delete, including the
+     *                         parent resource and the sink identifier:
      *
      *     "projects/[PROJECT_ID]/sinks/[SINK_ID]"
      *     "organizations/[ORGANIZATION_ID]/sinks/[SINK_ID]"
      *
-     * It is an error if the sink does not exist.
+     * It is an error if the sink does not exist.  Example:
+     * `"projects/my-project-id/sinks/my-sink-id"`.  It is an error if
+     * the sink does not exist.
      * @param array $optionalArgs {
      *                            Optional.
      *
