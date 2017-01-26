@@ -360,18 +360,19 @@ class Grpc implements ConnectionInterface
      */
     public function executeSql(array $args = [])
     {
-        $args['params'] = (new protobuf\Struct)
-            ->deserialize($this->formatStructForApi($args['params']), $this->codec);
+        $params = new protobuf\Struct;
+        if (!empty($args['params'])) {
+            $params->deserialize($this->formatStructForApi($args['params']), $this->codec);
+        }
+
+        $args['params'] = $params;
 
         foreach ($args['paramTypes'] as $key => $param) {
             $args['paramTypes'][$key] = (new Type)
                 ->deserialize($param, $this->codec);
         }
 
-        if (isset($args['transactionId'])) {
-            $args['transaction'] = (new TransactionSelector)
-                ->deserialize(['id' => $args['transactionId']], $this->codec);
-        }
+        $args['transaction'] = $this->createTransactionSelector($args);
 
         return $this->send([$this->spannerClient, 'executeSql'], [
             $this->pluck('session', $args),
@@ -389,10 +390,7 @@ class Grpc implements ConnectionInterface
         $keySet = (new KeySet)
             ->deserialize($this->formatKeySet($keySet), $this->codec);
 
-        if (isset($args['transaction'])) {
-            $args['transaction'] = (new TransactionSelector)
-                ->deserialize(['id' => $args['transaction']], $this->codec);
-        }
+        $args['transaction'] = $this->createTransactionSelector($args);
 
         return $this->send([$this->spannerClient, 'read'], [
             $this->pluck('session', $args),
@@ -401,6 +399,18 @@ class Grpc implements ConnectionInterface
             $keySet,
             $args
         ]);
+    }
+
+    private function createTransactionSelector(array $args)
+    {
+        $selector = new TransactionSelector;
+        if (isset($args['transaction'])) {
+            $selector = $selector->deserialize($this->pluck('transaction', $args), $this->codec);
+        } elseif (isset($args['transactionId'])) {
+            $selector = $selector->deserialize(['id' => $this->pluck('transactionId', $args)], $this->codec);
+        }
+
+        return $selector;
     }
 
     /**
@@ -482,7 +492,7 @@ class Grpc implements ConnectionInterface
 
         if (isset($args['singleUseTransaction'])) {
             $readWrite = (new TransactionOptions\ReadWrite)
-                ->deserialize($args['singleUseTransaction']['readWrite'], $this->codec);
+                ->deserialize([], $this->codec);
 
             $options = new TransactionOptions;
             $options->setReadWrite($readWrite);

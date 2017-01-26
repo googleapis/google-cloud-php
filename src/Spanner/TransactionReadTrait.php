@@ -22,6 +22,8 @@ namespace Google\Cloud\Spanner;
  */
 trait TransactionReadTrait
 {
+    use TransactionConfigurationTrait;
+
     /**
      * @var Operation
      */
@@ -36,6 +38,11 @@ trait TransactionReadTrait
      * @var string
      */
     private $transactionId;
+
+    /**
+     * @var string
+     */
+    private $context;
 
     /**
      * Run a query.
@@ -63,9 +70,16 @@ trait TransactionReadTrait
      */
     public function execute($sql, array $options = [])
     {
-        return $this->operation->execute($this->session, $sql, [
-            'transactionId' => $this->transactionId
-        ] + $options);
+        $options['transactionType'] = $this->context;
+        $options['transactionId'] = $this->transactionId;
+
+        list($type, $context, $transaction) = $this->transactionSelector($options);
+        $options['transaction'] = [
+            $type => $transaction
+        ];
+
+        $options['transactionContext'] = $context;
+        return $this->operation->execute($this->session, $sql, $options);
     }
 
     /**
@@ -99,9 +113,16 @@ trait TransactionReadTrait
      */
     public function read($table, KeySet $keySet, array $columns, array $options = [])
     {
-        return $this->operation->read($this->session, $table, $keySet, $columns, [
-            'transactionId' => $this->transactionId
-        ] + $options);
+        $options['transactionType'] = $this->context;
+        $options['transactionId'] = $this->transactionId;
+
+        list($type, $context, $transaction) = $this->transactionSelector($options);
+        $options['transaction'] = [
+            $type => $transaction
+        ];
+
+        $options['transactionContext'] = $context;
+        return $this->operation->read($this->session, $table, $keySet, $columns, $options);
     }
 
     /**

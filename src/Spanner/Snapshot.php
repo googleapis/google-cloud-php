@@ -18,6 +18,7 @@
 namespace Google\Cloud\Spanner;
 
 use Google\Cloud\Spanner\Session\Session;
+use Google\Cloud\Spanner\Session\SessionPoolInterface;
 
 /**
  * Read-only snapshot Transaction.
@@ -58,6 +59,7 @@ class Snapshot
         $this->session = $session;
         $this->transactionId = $transactionId;
         $this->readTimestamp = $readTimestamp;
+        $this->context = SessionPoolInterface::CONTEXT_READWRITE;
     }
 
     /**

@@ -94,6 +94,7 @@ class Transaction
         $this->operation = $operation;
         $this->session = $session;
         $this->transactionId = $transactionId;
+        $this->context = SessionPoolInterface::CONTEXT_READWRITE;
     }
 
     /**
@@ -333,7 +334,7 @@ class Transaction
         return $this->operation->rollback($this->session, $this, $options);
     }
 
-    public function commit()
+    public function commit(array $options = [])
     {
         if ($this->state !== self::STATE_ACTIVE) {
             throw new \RuntimeException('The transaction cannot be committed because it is not active');
@@ -341,7 +342,8 @@ class Transaction
 
         $this->state = self::STATE_COMMITTED;
 
-        return $this->operation->commit($this->session, $this);
+        $options['transactionId'] = $this->transactionId;
+        return $this->operation->commit($this->session, $this->mutations, $options);
     }
 
     /**

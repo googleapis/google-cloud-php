@@ -78,7 +78,7 @@ class Operation
      */
     public function mutation($operation, $table, $mutation)
     {
-        $mutation = $this->arrayFilterPreserveBool($mutation);
+        $mutation = $this->arrayFilterRemoveNull($mutation);
 
         return [
             $operation => [
@@ -115,17 +115,20 @@ class Operation
      * @param array $options [optional] {
      *     Configuration options.
      *
-     *     @type int $maxRetries
+     *     @type string $transactionId
      * }
      * @return Timestamp The commit Timestamp.
      */
-    public function commit(Session $session, Transaction $transaction, array $options = [])
+    public function commit(Session $session, array $mutations, array $options = [])
     {
-        return $this->connection->commit([
-            'transactionId' => $transaction->id(),
-            'mutations' => $transaction->mutations(),
+        $options += [
+            'transactionId' => null
+        ];
+
+        $res = $this->connection->commit($this->arrayFilterRemoveNull([
+            'mutations' => $mutations,
             'session' => $session->name()
-        ] + $options);
+        ]) + $options);
 
         return $this->mapper->createTimestampWithNanos($res['commitTimestamp']);
     }
@@ -160,17 +163,20 @@ class Operation
     {
         $options += [
             'parameters' => [],
-            'transactionId' => null,
+            'transactionContext' => null
         ];
 
         $parameters = $this->pluck('parameters', $options);
         $options += $this->mapper->formatParamsForExecuteSql($parameters);
+
+        $context = $this->pluck('transactionContext', $options);
+
         $res = $this->connection->executeSql([
             'sql' => $sql,
             'session' => $session->name()
         ] + $options);
 
-        return $this->createResult($res);
+        return $this->createResult($session, $res, $context);
     }
 
     /**
@@ -195,18 +201,18 @@ class Operation
             'index' => null,
             'limit' => null,
             'offset' => null,
-            'transactionId' => null,
+            'transactionContext' => null
         ];
 
+        $context = $this->pluck('transactionContext', $options);
         $res = $this->connection->read([
             'table' => $table,
             'session' => $session->name(),
-            'transaction' => $options['transactionId'],
             'columns' => $columns,
             'keySet' => $this->flattenKeySet($keySet)
         ] + $options);
 
-        return $this->createResult($res);
+        return $this->createResult($session, $res, $context);
     }
 
     /**
@@ -224,7 +230,7 @@ class Operation
     public function transaction(Session $session, array $options = [])
     {
         $res = $this->beginTransaction($session, $options);
-        return new Transaction($this, $session, $res['id']);
+        return $this->createTransaction($session, $res);
     }
 
     /**
@@ -240,12 +246,7 @@ class Operation
     {
         $res = $this->beginTransaction($session, $options);
 
-        $timestamp = null;
-        if (isset($res['readTimestamp'])) {
-            $timestamp = $this->mapper->createTimestampWithNanos($res['readTimestamp']);
-        }
-
-        return new Snapshot($this, $session, $res['id'], $timestamp);
+        return $this->createSnapshot($session, $res);
     }
 
     /**
@@ -269,14 +270,45 @@ class Operation
     }
 
     /**
+     * Create a Transaction instance from a response object.
+     *
+     * @param Session $session The session the transaction belongs to.
+     * @param array $res The transaction response.
+     * @return Transaction
+     */
+    private function createTransaction(Session $session, array $res)
+    {
+        return new Transaction($this, $session, $res['id']);
+    }
+
+    /**
+     * Create a Snapshot instance from a response object.
+     *
+     * @param Session $session The session the snapshot belongs to.
+     * @param array $res The snapshot response.
+     * @return Snapshot
+     */
+    private function createSnapshot(Session $session, array $res)
+    {
+        $timestamp = null;
+        if (isset($res['readTimestamp'])) {
+            $timestamp = $this->mapper->createTimestampWithNanos($res['readTimestamp']);
+        }
+
+        return new Snapshot($this, $session, $res['id'], $timestamp);
+    }
+
+    /**
      * Transform a service read or executeSql response to a friendly result.
      *
      * @codingStandardsIgnoreStart
+     * @param Session $session The current session.
      * @param array $res [ResultSet](https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#google.spanner.v1.ResultSet)
-     * @codingStandardsIgnoreEnd
+     * @param string $transactionContext
      * @return Result
+     * @codingStandardsIgnoreEnd
      */
-    private function createResult(array $res)
+    private function createResult(Session $session, array $res, $transactionContext)
     {
         $columns = isset($res['metadata']['rowType']['fields'])
             ? $res['metadata']['rowType']['fields']
@@ -289,7 +321,16 @@ class Operation
             }
         }
 
-        return new Result($res, $rows);
+        $options = [];
+        if (isset($res['metadata']['transaction']['id'])) {
+            if ($transactionContext === SessionPoolInterface::CONTEXT_READ) {
+                $options['snapshot'] = $this->createSnapshot($session, $res['metadata']['transaction']);
+            } else {
+                $options['transaction'] = $this->createTransaction($session, $res['metadata']['transaction']);
+            }
+        }
+
+        return new Result($res, $rows, $options);
     }
 
     /**
@@ -323,7 +364,7 @@ class Operation
             $keys['keys'] = $this->mapper->encodeValuesAsSimpleType($keys['keys']);
         }
 
-        return $this->arrayFilterPreserveBool($keys);
+        return $this->arrayFilterRemoveNull($keys);
     }
 
     /**
@@ -336,7 +377,6 @@ class Operation
     {
         return [
             'connection' => get_class($this->connection),
-            'sessionPool' => $this->sessionPool
         ];
     }
 }

@@ -46,13 +46,20 @@ class Result implements \IteratorAggregate
     private $rows;
 
     /**
+     * @var array
+     */
+    private $options;
+
+    /**
      * @param array $result The query or read result.
      * @param array $rows The rows, formatted and decoded.
+     * @param array $options Additional result options and info.
      */
-    public function __construct(array $result, array $rows)
+    public function __construct(array $result, array $rows, array $options = [])
     {
         $this->result = $result;
         $this->rows = $rows;
+        $this->options = $options;
     }
 
     /**
@@ -150,6 +157,20 @@ class Result implements \IteratorAggregate
     public function info()
     {
         return $this->result;
+    }
+
+    public function transaction()
+    {
+        return (isset($this->options['transaction']))
+            ? $this->options['transaction']
+            : null;
+    }
+
+    public function snapshot()
+    {
+        return (isset($this->options['snapshot']))
+            ? $this->options['snapshot']
+            : null;
     }
 
     /**

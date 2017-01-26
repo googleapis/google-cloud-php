@@ -419,6 +419,11 @@ class SpannerClient
         return new Int64($value);
     }
 
+    public function duration($seconds, $nanos = 0)
+    {
+        return new Duration($seconds, $nanos);
+    }
+
     /**
      * Get the session client
      *
