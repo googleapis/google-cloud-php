@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Tests\Spanner;
 
+use Google\Cloud\Exception\AbortedException;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Duration;
@@ -26,6 +27,7 @@ use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Result;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
+use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\ValueMapper;
@@ -76,6 +78,130 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
         ];
 
         $this->database = \Google\Cloud\Dev\stub(Database::class, $args, $props);
+    }
+
+    public function testSnapshot()
+    {
+        $this->connection->beginTransaction(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn(['id' => self::TRANSACTION]);
+
+        $this->refreshOperation();
+
+        $res = $this->database->snapshot();
+        $this->assertInstanceOf(Snapshot::class, $res);
+    }
+
+    /**
+     * @expectedException BadMethodCallException
+     */
+    public function testSnapshotMinReadTimestamp()
+    {
+        $this->database->snapshot(['minReadTimestamp' => 'foo']);
+    }
+
+    /**
+     * @expectedException BadMethodCallException
+     */
+    public function testSnapshotMaxStaleness()
+    {
+        $this->database->snapshot(['maxStaleness' => 'foo']);
+    }
+
+    public function testRunTransaction()
+    {
+        $this->connection->beginTransaction(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn(['id' => self::TRANSACTION]);
+
+        $this->refreshOperation();
+
+        $hasTransaction = false;
+
+        $this->database->runTransaction(function (Transaction $t) use (&$hasTransaction) {
+            $hasTransaction = true;
+        });
+
+        $this->assertTrue($hasTransaction);
+    }
+
+    public function testRunTransactionRetry()
+    {
+        $abort = new AbortedException('foo', 409, null, [
+            [
+                'retryDelay' => [
+                    'seconds' => 1,
+                    'nanos' => 0
+                ]
+            ]
+        ]);
+
+        $this->connection->beginTransaction(Argument::any())
+            ->shouldBeCalledTimes(3)
+            ->willReturn(['id' => self::TRANSACTION]);
+
+        $it = 0;
+        $this->connection->commit(Argument::any())
+            ->shouldBeCalledTimes(3)
+            ->will(function() use (&$it, $abort) {
+                $it++;
+                if ($it <= 2) {
+                    throw $abort;
+                }
+
+                return ['commitTimestamp' => TransactionTest::TIMESTAMP];
+            });
+
+        $this->refreshOperation();
+
+        $this->database->runTransaction(function($t){$t->commit();});
+    }
+
+    /**
+     * @expectedException Google\Cloud\Exception\AbortedException
+     */
+    public function testRunTransactionAborted()
+    {
+        $abort = new AbortedException('foo', 409, null, [
+            [
+                'retryDelay' => [
+                    'seconds' => 1,
+                    'nanos' => 0
+                ]
+            ]
+        ]);
+
+        $this->connection->beginTransaction(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn(['id' => self::TRANSACTION]);
+
+        $it = 0;
+        $this->connection->commit(Argument::any())
+            ->shouldBeCalled()
+            ->will(function() use (&$it, $abort) {
+                $it++;
+                if ($it <= 8) {
+                    throw $abort;
+                }
+
+                return ['commitTimestamp' => TransactionTest::TIMESTAMP];
+            });
+
+        $this->refreshOperation();
+
+        $this->database->runTransaction(function($t){$t->commit();});
+    }
+
+    public function testTransaction()
+    {
+        $this->connection->beginTransaction(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn(['id' => self::TRANSACTION]);
+
+        $this->refreshOperation();
+
+        $t = $this->database->transaction();
+        $this->assertInstanceOf(Transaction::class, $t);
     }
 
     public function testInsert()

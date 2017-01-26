@@ -67,7 +67,7 @@ class TransactionTest extends \PHPUnit_Framework_TestCase
         ];
 
         $props = [
-            'operation', 'readTimestamp', 'context'
+            'operation', 'readTimestamp', 'state'
         ];
 
         $this->transaction = \Google\Cloud\Dev\stub(Transaction::class, $args, $props);
@@ -260,6 +260,15 @@ class TransactionTest extends \PHPUnit_Framework_TestCase
         $this->transaction->commit();
     }
 
+    /**
+     * @expectedException RuntimeException
+     */
+    public function testCommitInvalidState()
+    {
+        $this->transaction->___setProperty('state', 'foo');
+        $this->transaction->commit();
+    }
+
     public function testRollback()
     {
         $this->connection->rollback(Argument::any())
@@ -270,9 +279,33 @@ class TransactionTest extends \PHPUnit_Framework_TestCase
         $this->transaction->rollback();
     }
 
+    /**
+     * @expectedException RuntimeException
+     */
+    public function testRollbackInvalidState()
+    {
+        $this->transaction->___setProperty('state', 'foo');
+        $this->transaction->rollback();
+    }
+
     public function testId()
     {
         $this->assertEquals(self::TRANSACTION, $this->transaction->id());
+    }
+
+    public function testState()
+    {
+        $this->assertEquals(Transaction::STATE_ACTIVE, $this->transaction->state());
+
+        $this->transaction->___setProperty('state', Transaction::STATE_COMMITTED);
+        $this->assertEquals(Transaction::STATE_COMMITTED, $this->transaction->state());
+    }
+
+    public function testMutations()
+    {
+        $this->assertEmpty($this->transaction->mutations());
+        $this->transaction->insert('Posts', []);
+        $this->assertEquals(1, count($this->transaction->mutations()));
     }
 
     // *******

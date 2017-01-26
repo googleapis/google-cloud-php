@@ -39,6 +39,8 @@ namespace Google\Cloud\Spanner;
  */
 class Duration implements ValueInterface
 {
+    const TYPE = 'DURATION';
+
     /**
      * @var int
      */
@@ -89,7 +91,7 @@ class Duration implements ValueInterface
      */
     public function type()
     {
-        return 'DURATION';
+        return self::TYPE;
     }
 
     /**
