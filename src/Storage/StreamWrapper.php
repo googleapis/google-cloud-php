@@ -126,7 +126,9 @@ class StreamWrapper
             );
         } elseif ($this->isReadable()) {
             try {
-                $this->stream = $this->bucket->object($this->file)->downloadAsStream($this->getOptions());
+                $options = $this->getOptions();
+                $options['httpOptions']['stream'] = true;
+                $this->stream = $this->bucket->object($this->file)->downloadAsStream($options);
             } catch (GoogleException $ex) {
                 return false;
             }
