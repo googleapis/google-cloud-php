@@ -26,6 +26,8 @@ use Google\Cloud\Exception\GoogleException;
  */
 class StreamWrapper
 {
+    const DEFAULT_PROTOCOL = 'gs';
+
     // Must be public according to the PHP documentation
     public $context;
 
@@ -39,10 +41,10 @@ class StreamWrapper
     private $options;
 
     /**
-     * @var StorageClient $defaultClient The default client to use if using
-     *      global methods such as fopen on a stream wrapper.
+     * @var StorageClient[] $clients The default clients to use if using
+     *      global methods such as fopen on a stream wrapper. Keyed by protocol.
      */
-    private static $client;
+    private static $clients = [];
 
     /**
      * Ensure we close the stream when this StreamWrapper is destroyed.
@@ -59,13 +61,14 @@ class StreamWrapper
      *        'gs'.
      * @throws \RuntimeException
      */
-    public static function register(string $protocol = null)
+    public static function register(StorageClient $client, string $protocol = null)
     {
-        $protocol = $protocol ?: 'gs';
+        $protocol = $protocol ?: self::DEFAULT_PROTOCOL;
         if (!in_array($protocol, stream_get_wrappers())) {
             if (!stream_wrapper_register($protocol, StreamWrapper::class)) {
                 throw new RuntimeException("Failed to register '$protocol://' protocol");
             }
+            self::$clients[$protocol] = $client;
             return true;
         }
         return false;
@@ -79,7 +82,9 @@ class StreamWrapper
      */
     public static function unregister(string $protocol = null)
     {
-        stream_wrapper_unregister($protocol ?: 'gs');
+        $protocol = $protocol ?: self::DEFAULT_PROTOCOL;
+        stream_wrapper_unregister($protocol);
+        unset(self::$clients[$protocol]);
     }
 
     /**
@@ -87,19 +92,10 @@ class StreamWrapper
      *
      * @return StorageClient
      */
-    public static function getClient()
+    public static function getClient(string $protocol = null)
     {
-        return self::$client;
-    }
-
-    /**
-     * Set the default client to use for streams.
-     *
-     * @param StorageClient $client
-     */
-    public static function setClient($client)
-    {
-        self::$client = $client;
+        $protocol = $protocol ?: self::DEFAULT_PROTOCOL;
+        return self::$clients[$protocol];
     }
 
     // @codingStandardsIgnoreStart
@@ -117,7 +113,7 @@ class StreamWrapper
         $this->file = substr($url['path'], 1);
         $this->mode = $mode;
 
-        $client = $this->getOption('client') ?: self::getClient();
+        $client = self::getClient($this->protocol);
         $this->bucket = $client->bucket($url['host']);
 
         if ($this->isWriteable()) {

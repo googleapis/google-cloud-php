@@ -84,12 +84,12 @@ class StorageClientTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('Google\Cloud\Storage\Bucket', $this->client->createBucket('bucket'));
     }
 
-    public function testRegisteringAsStreamWrapper()
+    public function testRegisteringStreamWrapper()
     {
-        $this->assertTrue($this->client->registerAsStreamWrapper());
+        $this->assertTrue($this->client->registerStreamWrapper());
         $this->assertEquals($this->client, StreamWrapper::getClient());
         $this->assertTrue(in_array('gs', stream_get_wrappers()));
-        $this->client->unregisterAsStreamWrapper();
+        $this->client->unregisterStreamWrapper();
     }
 }
 

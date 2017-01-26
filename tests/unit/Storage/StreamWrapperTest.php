@@ -43,13 +43,11 @@ class StreamWrapperTest extends \PHPUnit_Framework_TestCase
         $this->bucket = $this->prophesize(Bucket::class);
         $this->client->bucket('my_bucket')->willReturn($this->bucket->reveal());
 
-        StreamWrapper::register();
-        StreamWrapper::setClient($this->client->reveal());
+        StreamWrapper::register($this->client->reveal());
     }
 
     public function tearDown()
     {
-        StreamWrapper::setClient(null);
         StreamWrapper::unregister();
 
         parent::tearDown();
@@ -104,23 +102,6 @@ class StreamWrapperTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals("line1.\n", fgets($fp));
         $this->assertEquals("line2.", fgets($fp));
         fclose($fp);
-    }
-
-    public function testProvideStorageClientViaContext()
-    {
-        $client = $this->prophesize(StorageClient::class);
-        $bucket = $this->prophesize(Bucket::class);
-        $client->bucket('my_bucket')->willReturn($bucket->reveal());
-        $this->mockObjectData('file.txt', 'some data', $bucket);
-
-        $context = stream_context_create(
-            array(
-                'gs' => array(
-                    'client' => $client->reveal()
-                )
-            )
-        );
-        $fp = fopen('gs://my_bucket/file.txt', 'r', false, $context);
     }
 
     private function mockObjectData($file, $data, $bucket = null)
