@@ -100,14 +100,16 @@ class OperationTest extends \PHPUnit_Framework_TestCase
 
         $this->connection->commit(Argument::that(function ($arg) use ($mutations) {
             if ($arg['mutations'] !== $mutations) return false;
-            if ($arg['singleUseTransaction']['readWrite'] !== []) return false;
+            if ($arg['transactionId'] !== 'foo') return false;
 
             return true;
         }))->shouldBeCalled()->willReturn(['commitTimestamp' => self::TIMESTAMP]);
 
         $this->operation->___setProperty('connection', $this->connection->reveal());
 
-        $res = $this->operation->commit($this->session, $mutations);
+        $res = $this->operation->commit($this->session, $mutations, [
+            'transactionId' => 'foo'
+        ]);
 
         $this->assertInstanceOf(Timestamp::class, $res);
     }
@@ -181,86 +183,16 @@ class OperationTest extends \PHPUnit_Framework_TestCase
             if ($arg['table'] !== 'Posts') return false;
             if ($arg['session'] !== self::SESSION) return false;
             if ($arg['keySet']['all'] !== true) return false;
+            if ($arg['columns'] !== ['foo']) return false;
 
             return true;
         }))->shouldBeCalled()->willReturn($this->executeAndReadResponse());
 
         $this->operation->___setProperty('connection', $this->connection->reveal());
 
-        $res = $this->operation->read($this->session, 'Posts');
+        $res = $this->operation->read($this->session, 'Posts', new KeySet(['all' => true]), ['foo']);
         $this->assertInstanceOf(Result::class, $res);
         $this->assertEquals(10, $res->rows()[0]['ID']);
-    }
-
-    public function testReadWithKeySet()
-    {
-        $keys = ['foo','bar'];
-
-        $this->connection->read(Argument::that(function ($arg) use ($keys) {
-            if ($arg['table'] !== 'Posts') return false;
-            if ($arg['session'] !== self::SESSION) return false;
-            if ($arg['keySet']['all'] === true) return false;
-            if ($arg['keySet']['keys'] !== $keys) return false;
-
-            return true;
-        }))->shouldBeCalled()->willReturn($this->executeAndReadResponse());
-
-        $this->operation->___setProperty('connection', $this->connection->reveal());
-
-        $res = $this->operation->read($this->session, 'Posts', [
-            'keySet' => new KeySet(['keys' => $keys])
-        ]);
-        $this->assertInstanceOf(Result::class, $res);
-        $this->assertEquals(10, $res->rows()[0]['ID']);
-    }
-
-    /**
-     * @expectedException InvalidArgumentException
-     */
-    public function testReadWithInvalidKeySet()
-    {
-        $this->operation->read($this->session, 'Posts', [
-            'keySet' => 'foo'
-        ]);
-    }
-
-    public function testTransaction()
-    {
-        $this->connection->beginTransaction(Argument::that(function ($arg) {
-            if ($arg['session'] !== self::SESSION) return false;
-
-            return true;
-        }))->shouldBeCalled()->willReturn([
-            'id' => self::TRANSACTION
-        ]);
-
-        $this->operation->___setProperty('connection', $this->connection->reveal());
-
-        $res = $this->operation->transaction($this->session, SessionPoolInterface::CONTEXT_READWRITE);
-
-        $this->assertInstanceOf(Transaction::class, $res);
-        $this->assertEquals(self::TRANSACTION, $res->id());
-        $this->assertEquals(SessionPoolInterface::CONTEXT_READWRITE, $res->context());
-        $this->assertNull($res->readTimestamp());
-    }
-
-    public function testTransactionWithTimestamp()
-    {
-        $this->connection->beginTransaction(Argument::that(function ($arg) {
-            if ($arg['session'] !== self::SESSION) return false;
-
-            return true;
-        }))->shouldBeCalled()->willReturn([
-            'id' => self::TRANSACTION,
-            'readTimestamp' => self::TIMESTAMP
-        ]);
-
-        $this->operation->___setProperty('connection', $this->connection->reveal());
-
-        $res = $this->operation->transaction($this->session, SessionPoolInterface::CONTEXT_READWRITE);
-
-        $this->assertInstanceOf(Transaction::class, $res);
-        $this->assertInstanceOf(Timestamp::class, $res->readTimestamp());
     }
 
     private function executeAndReadResponse()

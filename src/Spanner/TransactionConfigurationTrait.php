@@ -59,7 +59,7 @@ trait TransactionConfigurationTrait
             ));
         }
 
-        $this->pluck('begin', $options);
+        $begin = $this->pluck('begin', $options);
         if (is_null($type)) {
             $type = ($begin) ? 'begin' : 'singleUse';
         }

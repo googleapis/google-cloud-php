@@ -331,7 +331,7 @@ class Transaction
 
         $this->state = self::STATE_ROLLED_BACK;
 
-        return $this->operation->rollback($this->session, $this, $options);
+        return $this->operation->rollback($this->session, $this->transactionId, $options);
     }
 
     public function commit(array $options = [])

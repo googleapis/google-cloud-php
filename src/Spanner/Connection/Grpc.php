@@ -171,18 +171,6 @@ class Grpc implements ConnectionInterface
         ]);
     }
 
-    private function instanceObject(array &$args, $required = false)
-    {
-        return (new Instance())->deserialize(array_filter([
-            'name' => $this->pluck('name', $args, $required),
-            'config' => $this->pluck('config', $args, $required),
-            'displayName' => $this->pluck('displayName', $args, $required),
-            'nodeCount' => $this->pluck('nodeCount', $args, $required),
-            'state' => $this->pluck('state', $args, $required),
-            'labels' => $this->formatLabelsForApi($this->pluck('labels', $args, $required))
-        ]), $this->codec);
-    }
-
     /**
      * @param array $args [optional]
      */
@@ -401,18 +389,6 @@ class Grpc implements ConnectionInterface
         ]);
     }
 
-    private function createTransactionSelector(array $args)
-    {
-        $selector = new TransactionSelector;
-        if (isset($args['transaction'])) {
-            $selector = $selector->deserialize($this->pluck('transaction', $args), $this->codec);
-        } elseif (isset($args['transactionId'])) {
-            $selector = $selector->deserialize(['id' => $this->pluck('transactionId', $args)], $this->codec);
-        }
-
-        return $selector;
-    }
-
     /**
      * @param array $args [optional]
      */
@@ -539,5 +515,37 @@ class Grpc implements ConnectionInterface
         }
 
         return $keySet;
+    }
+
+    /**
+     * @param array $args
+     * @return array
+     */
+    private function createTransactionSelector(array &$args)
+    {
+        $selector = new TransactionSelector;
+        if (isset($args['transaction'])) {
+            $selector = $selector->deserialize($this->pluck('transaction', $args), $this->codec);
+        } elseif (isset($args['transactionId'])) {
+            $selector = $selector->deserialize(['id' => $this->pluck('transactionId', $args)], $this->codec);
+        }
+
+        return $selector;
+    }
+
+    /**
+     * @param array $args
+     * @param bool $isRequired
+     */
+    private function instanceObject(array &$args, $required = false)
+    {
+        return (new Instance())->deserialize(array_filter([
+            'name' => $this->pluck('name', $args, $required),
+            'config' => $this->pluck('config', $args, $required),
+            'displayName' => $this->pluck('displayName', $args, $required),
+            'nodeCount' => $this->pluck('nodeCount', $args, $required),
+            'state' => $this->pluck('state', $args, $required),
+            'labels' => $this->formatLabelsForApi($this->pluck('labels', $args, $required))
+        ]), $this->codec);
     }
 }

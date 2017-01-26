@@ -19,6 +19,7 @@ namespace Google\Cloud\Tests\Spanner;
 
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Database;
+use Google\Cloud\Spanner\Duration;
 use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Operation;
@@ -75,81 +76,6 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
         ];
 
         $this->database = \Google\Cloud\Dev\stub(Database::class, $args, $props);
-    }
-
-    public function testReadOnlyTransaction()
-    {
-        $this->connection->beginTransaction(Argument::that(function($arg) {
-            if ($arg['transactionOptions']['readOnly']['strong'] !== TRUE) return false;
-
-            return true;
-        }))
-            ->shouldBeCalled()
-            ->willReturn([
-                'id' => self::TRANSACTION
-            ]);
-
-        $this->database->___setProperty('connection', $this->connection->reveal());
-
-        $t = $this->database->readOnlyTransaction();
-        $this->assertInstanceOf(Transaction::class, $t);
-    }
-
-    public function testReadOnlyTransactionOptions()
-    {
-        $options = [
-            'returnReadTimestamp' => true,
-            'strong' => false,
-            'minReadTimestamp' => new Timestamp(new \DateTime),
-            'maxStaleness' => 1337,
-            'readTimestamp' => new Timestamp(new \DateTime),
-            'exactStaleness' => 7331
-        ];
-
-        $this->connection->beginTransaction(Argument::that(function($arg) use ($options) {
-            if ($arg['transactionOptions']['readOnly']['returnReadTimestamp'] !== $options['returnReadTimestamp']) return false;
-            if ($arg['transactionOptions']['readOnly']['strong'] !== $options['strong']) return false;
-            if ($arg['transactionOptions']['readOnly']['minReadTimestamp'] !== $options['minReadTimestamp']->formatAsString()) return false;
-            if ($arg['transactionOptions']['readOnly']['maxStaleness'] !== $options['maxStaleness']) return false;
-            if ($arg['transactionOptions']['readOnly']['readTimestamp'] !== $options['readTimestamp']->formatAsString()) return false;
-            if ($arg['transactionOptions']['readOnly']['exactStaleness'] !== $options['exactStaleness']) return false;
-
-            return true;
-        }))
-            ->shouldBeCalled()
-            ->willReturn([
-                'id' => self::TRANSACTION
-            ]);
-
-        $this->database->___setProperty('connection', $this->connection->reveal());
-
-        $this->database->readOnlyTransaction($options);
-    }
-
-    /**
-     * @expectedException InvalidArgumentException
-     */
-    public function testReadOnlyTransactionInvalidConfigType()
-    {
-        $t = $this->database->readOnlyTransaction(['minReadTimestamp' => 'foo']);
-    }
-
-    public function testLockingTransaction()
-    {
-        $this->connection->beginTransaction(Argument::that(function($arg) {
-            if (!isset($arg['transactionOptions']['readWrite'])) return false;
-
-            return true;
-        }))
-            ->shouldBeCalled()
-            ->willReturn([
-                'id' => self::TRANSACTION
-            ]);
-
-        $this->database->___setProperty('connection', $this->connection->reveal());
-
-        $t = $this->database->lockingTransaction();
-        $this->assertInstanceOf(Transaction::class, $t);
     }
 
     public function testInsert()
@@ -374,7 +300,8 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
 
         $this->connection->read(Argument::that(function ($arg) use ($table, $opts) {
             if ($arg['table'] !== $table) return false;
-            if ($arg['foo'] !== $opts['foo']) return false;
+            if ($arg['keySet']['all'] !== true) return false;
+            if ($arg['columns'] !== ['ID']) return false;
 
             return true;
         }))->shouldBeCalled()->willReturn([
@@ -399,7 +326,7 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
 
         $this->refreshOperation();
 
-        $res = $this->database->read($table, $opts);
+        $res = $this->database->read($table, new KeySet(['all' => true]), ['ID']);
         $this->assertInstanceOf(Result::class, $res);
         $this->assertEquals(10, $res->rows()[0]['ID']);
     }

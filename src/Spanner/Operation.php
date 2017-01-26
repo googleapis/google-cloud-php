@@ -139,14 +139,14 @@ class Operation
      * @param Session $session The session to use for the rollback.
      *        Note that the session MUST be the same one in which the
      *        transaction was created.
-     * @param Transaction $transaction The transaction to roll back.
+     * @param string $transactionId The transaction to roll back.
      * @param array $options [optional] Configuration Options.
      * @return void
      */
-    public function rollback(Session $session, Transaction $transaction, array $options = [])
+    public function rollback(Session $session, $transactionId, array $options = [])
     {
         return $this->connection->rollback([
-            'transactionId' => $transaction->id(),
+            'transactionId' => $transactionId,
             'session' => $session->name()
         ] + $options);
     }

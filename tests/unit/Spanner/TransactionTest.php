@@ -63,7 +63,6 @@ class TransactionTest extends \PHPUnit_Framework_TestCase
         $args = [
             $this->operation,
             $this->session,
-            SessionPoolInterface::CONTEXT_READWRITE,
             self::TRANSACTION,
         ];
 
@@ -177,7 +176,7 @@ class TransactionTest extends \PHPUnit_Framework_TestCase
         $sql = 'SELECT * FROM Table';
 
         $this->connection->executeSql(Argument::that(function ($arg) use ($sql) {
-            if ($arg['transactionId'] !== self::TRANSACTION) return false;
+            if ($arg['transaction']['id'] !== self::TRANSACTION) return false;
             if ($arg['sql'] !== $sql) return false;
 
             return true;
@@ -214,9 +213,10 @@ class TransactionTest extends \PHPUnit_Framework_TestCase
         $opts = ['foo' => 'bar'];
 
         $this->connection->read(Argument::that(function ($arg) use ($table, $opts) {
-            if ($arg['transactionId'] !== self::TRANSACTION) return false;
+            if ($arg['transaction']['id'] !== self::TRANSACTION) return false;
             if ($arg['table'] !== $table) return false;
-            if ($arg['foo'] !== $opts['foo']) return false;
+            if ($arg['keySet']['all'] !== true) return false;
+            if ($arg['columns'] !== ['ID']) return false;
 
             return true;
         }))->shouldBeCalled()->willReturn([
@@ -241,7 +241,7 @@ class TransactionTest extends \PHPUnit_Framework_TestCase
 
         $this->refreshOperation();
 
-        $res = $this->transaction->read($table, $opts);
+        $res = $this->transaction->read($table, new KeySet(['all' => true]), ['ID']);
         $this->assertInstanceOf(Result::class, $res);
         $this->assertEquals(10, $res->rows()[0]['ID']);
     }
@@ -260,24 +260,6 @@ class TransactionTest extends \PHPUnit_Framework_TestCase
         $this->transaction->commit();
     }
 
-    /**
-     * @expectedException RuntimeException
-     */
-    public function testCommitInvalidContext()
-    {
-        $this->transaction->___setProperty('context', SessionPoolInterface::CONTEXT_READ);
-        $this->transaction->commit();
-    }
-
-    /**
-     * @expectedException RuntimeException
-     */
-    public function testEnqueueInvalidContext()
-    {
-        $this->transaction->___setProperty('context', SessionPoolInterface::CONTEXT_READ);
-        $this->transaction->insert('Posts', []);
-    }
-
     public function testRollback()
     {
         $this->connection->rollback(Argument::any())
@@ -288,24 +270,9 @@ class TransactionTest extends \PHPUnit_Framework_TestCase
         $this->transaction->rollback();
     }
 
-    public function testReadTimestamp()
-    {
-        $this->transaction->___setProperty('context', SessionPoolInterface::CONTEXT_READ);
-        $this->transaction->___setProperty('readTimestamp', new Timestamp(new \DateTimeImmutable(self::TIMESTAMP)));
-
-        $ts = $this->transaction->readTimestamp();
-
-        $this->assertInstanceOf(Timestamp::class, $ts);
-    }
-
     public function testId()
     {
         $this->assertEquals(self::TRANSACTION, $this->transaction->id());
-    }
-
-    public function testContext()
-    {
-        $this->assertEquals(SessionPoolInterface::CONTEXT_READWRITE, $this->transaction->context());
     }
 
     // *******
