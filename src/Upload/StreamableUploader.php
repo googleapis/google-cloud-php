@@ -74,7 +74,7 @@ class StreamableUploader extends ResumableUploader
      * Write some partial data. If there's enough data to send a chunk,
      * then we will send a chunk. Any remaining data is sent on close.
      *
-     * @param mixed $data The data being written. Can be a string or stream.
+     * @param StreamInterface|string $data The data being written. Can be a string or stream.
      * @return int The number of bytes written.
      */
     public function write($data)
