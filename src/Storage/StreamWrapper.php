@@ -57,6 +57,7 @@ class StreamWrapper
     /**
      * Register a StreamWrapper for reading and writing to Google Storage
      *
+     * @param StorageClient $client The StorageClient configuration to use.
      * @param string $protocol The name of the protocol to use. Defaults to
      *        'gs'.
      * @throws \RuntimeException
@@ -90,6 +91,8 @@ class StreamWrapper
     /**
      * Get the default client to use for streams.
      *
+     * @param string $protocol The name of the protocol to get the client for.
+     *        Defaults to 'gs'.
      * @return StorageClient
      */
     public static function getClient(string $protocol = null)
