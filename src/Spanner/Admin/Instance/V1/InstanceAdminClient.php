@@ -34,6 +34,7 @@ use Google\GAX\CallSettings;
 use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\LongRunning\OperationsClient;
+use Google\GAX\OperationResponse;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
 use google\iam\v1\GetIamPolicyRequest;
@@ -294,9 +295,40 @@ class InstanceAdminClient
         ];
     }
 
+    /**
+     * Return an OperationsClient object with the same endpoint as $this.
+     *
+     * @return \Google\GAX\LongRunning\OperationsClient
+     */
     public function getOperationsClient()
     {
         return $this->operationsClient;
+    }
+
+    /**
+     * Resume an existing long running operation that was previously started
+     * by a long running API method. If $methodName is not provided, or does
+     * not match a long running API method, then the operation can still be
+     * resumed, but the OperationResponse object will not deserialize the
+     * final response.
+     *
+     * @param string $operationName The name of the long running operation
+     * @param string $methodName    The name of the method used to start the operation
+     *
+     * @return \Google\GAX\OperationResponse
+     */
+    public function resumeOperation($operationName, $methodName = null)
+    {
+        $lroDescriptors = self::getLongRunningDescriptors();
+        if (!is_null($methodName) && array_key_exists($methodName, $lroDescriptors)) {
+            $options = $lroDescriptors[$methodName];
+        } else {
+            $options = [];
+        }
+        $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
+        $operation->reload();
+
+        return $operation;
     }
 
     // TODO(garrettjones): add channel (when supported in gRPC)
@@ -348,10 +380,14 @@ class InstanceAdminClient
         ];
         $options = array_merge($defaultOptions, $options);
 
-        $this->operationsClient = new OperationsClient([
-            'serviceAddress' => $options['serviceAddress'],
-            'scopes' => $options['scopes'],
-        ]);
+        if (array_key_exists('operationsClient', $options)) {
+            $this->operationsClient = $options['operationsClient'];
+        } else {
+            $this->operationsClient = new OperationsClient([
+                'serviceAddress' => $options['serviceAddress'],
+                'scopes' => $options['scopes'],
+            ]);
+        }
 
         $headerDescriptor = new AgentHeaderDescriptor([
             'clientName' => $options['appName'],
@@ -756,6 +792,23 @@ class InstanceAdminClient
      *       $error = $operationResponse->getError();
      *       // handleError($error)
      *     }
+     *
+     *     // OR start the operation, keep the operation name, and resume later
+     *     $operationResponse = $instanceAdminClient->createInstance($formattedParent, $instanceId, $instance);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $instanceAdminClient->resumeOperation($operationName, 'createInstance');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *       $result = $newOperationResponse->getResult();
+     *       // doSomethingWith($result)
+     *     } else {
+     *       $error = $newOperationResponse->getError();
+     *       // handleError($error)
+     *     }
      * } finally {
      *     $instanceAdminClient->close();
      * }
@@ -861,6 +914,23 @@ class InstanceAdminClient
      *       // doSomethingWith($result)
      *     } else {
      *       $error = $operationResponse->getError();
+     *       // handleError($error)
+     *     }
+     *
+     *     // OR start the operation, keep the operation name, and resume later
+     *     $operationResponse = $instanceAdminClient->updateInstance($instance, $fieldMask);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $instanceAdminClient->resumeOperation($operationName, 'updateInstance');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *       $result = $newOperationResponse->getResult();
+     *       // doSomethingWith($result)
+     *     } else {
+     *       $error = $newOperationResponse->getError();
      *       // handleError($error)
      *     }
      * } finally {
