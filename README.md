@@ -164,7 +164,7 @@ use Google\Cloud\Storage\StorageClient;
 $storage = new StorageClient([
     'projectId' => 'my_project'
 ]);
-$storage->registerAsStreamWrapper();
+$storage->registerStreamWrapper();
 
 $contents = file_get_contents('gs://my_bucket/file_backup.txt');
 ```
