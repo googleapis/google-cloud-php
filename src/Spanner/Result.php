@@ -143,6 +143,40 @@ class Result implements \IteratorAggregate
     }
 
     /**
+     * Returns a transaction which was begun in the read or execute, if one exists.
+     *
+     * Example:
+     * ```
+     * $transaction = $result->transaction();
+     * ```
+     *
+     * @return Transaction|null
+     */
+    public function transaction()
+    {
+        return (isset($this->options['transaction']))
+            ? $this->options['transaction']
+            : null;
+    }
+
+    /**
+     * Returns a snapshot which was begun in the read or execute, if one exists.
+     *
+     * Example:
+     * ```
+     * $snapshot = $result->snapshot();
+     * ```
+     *
+     * @return Snapshot|null
+     */
+    public function snapshot()
+    {
+        return (isset($this->options['snapshot']))
+            ? $this->options['snapshot']
+            : null;
+    }
+
+    /**
      * Get the entire query or read response as given by the API.
      *
      * Example:
@@ -157,20 +191,6 @@ class Result implements \IteratorAggregate
     public function info()
     {
         return $this->result;
-    }
-
-    public function transaction()
-    {
-        return (isset($this->options['transaction']))
-            ? $this->options['transaction']
-            : null;
-    }
-
-    public function snapshot()
-    {
-        return (isset($this->options['snapshot']))
-            ? $this->options['snapshot']
-            : null;
     }
 
     /**

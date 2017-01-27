@@ -334,17 +334,16 @@ class Database
      *
      * @codingStandardsIgnoreStart
      * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#google.spanner.v1.BeginTransactionRequest BeginTransactionRequest
-     * @param callable $operation The operations to run in the transaction.
-     *        **Signature:** `function (Transaction $transaction)`.
+     * @see https://cloud.google.com/spanner/docs/transactions Transactions
+     *
      * @param array $options [optional] {
      *     Configuration Options
      *
      *     See [ReadOnly](https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#google.spanner.v1.TransactionOptions.ReadOnly)
      *     for detailed description of available options.
      *
-     *     Please note that only one of `$strong`, `$minReadTimestamp`,
-     *     `$maxStaleness`, `$readTimestamp` or `$exactStaleness` may be set in
-     *     a request.
+     *     Please note that only one of `$strong`, `$readTimestamp` or
+     *     `$exactStaleness` may be set in a request.
      *
      *     @type bool $returnReadTimestamp If true, the Cloud Spanner-selected
      *           read timestamp is included in the Transaction message that
@@ -356,8 +355,8 @@ class Database
      *     @type Duration $exactStaleness Represents a number of seconds. Executes
      *           all reads at a timestamp that is $exactStaleness old.
      * }
-     * @codingStandardsIgnoreEnd
      * @return Snapshot
+     * @codingStandardsIgnoreEnd
      */
     public function snapshot(array $options = [])
     {
@@ -383,6 +382,22 @@ class Database
      * failure, all transaction operations, including reads, are re-applied in a
      * new transaction.
      *
+     * If a transaction exceeds the maximum number of retries,
+     * {@see Google\Cloud\Exception\AbortedException} will be thrown. Any other
+     * exception types will immediately bubble up and will interrupt the retry
+     * operation.
+     *
+     * Please note that once a transaction reads data, it will lock the read
+     * data, preventing other users from modifying that data. For this reason,
+     * it is important that every transaction commits or rolls back as early as
+     * possible. Do not hold transactions open longer than necessary.
+     *
+     * If you have an active transaction which was obtained from elsewhere, you
+     * can provide it to this method and gain the benefits of managed retry by
+     * setting `$options.transaction` to your {@see Google\Cloud\Spanner\Transaction}
+     * instance. Please note that in this case, it is important that ALL reads
+     * and mutations MUST be performed within the runTransaction callable.
+     *
      * Example:
      * ```
      * $transaction = $database->runTransaction(function (Transaction $t) use ($userName, $password) {
@@ -398,6 +413,8 @@ class Database
      *
      *         $user['loginCount'] = $user['loginCount'] + 1;
      *         $t->update('Users', $user);
+     *     } else {
+     *         $t->rollback();
      *     }
      *
      *     $t->commit();
@@ -406,6 +423,7 @@ class Database
      *
      * @codingStandardsIgnoreStart
      * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#google.spanner.v1.BeginTransactionRequest BeginTransactionRequest
+     * @see https://cloud.google.com/spanner/docs/transactions Transactions
      * @codingStandardsIgnoreEnd
      *
      * @param callable $operation The operations to run in the transaction.
@@ -414,25 +432,35 @@ class Database
      *     Configuration Options
      *
      *     @type int $maxRetries The number of times to attempt to apply the
-     *           operation before failing. **Defaults to ** `4`.
+     *           operation before failing. **Defaults to ** `3`.
+     *     @type Transaction $transaction If provided, the transaction will be
+     *           passed to the callable instead of attempting to begin a new
+     *           transaction.
      * }
-     * @return Transaction
+     * @return mixed The return value of `$operation`.
      */
     public function runTransaction(callable $operation, array $options = [])
     {
         $options += [
-            'maxRetries' => self::MAX_RETRIES
+            'maxRetries' => self::MAX_RETRIES,
+            'transaction' => null
         ];
 
         // There isn't anything configurable here.
-        $options['transactionOptions'] = [
-            'readWrite' => []
-        ];
+        $options['transactionOptions'] = $this->configureTransactionOptions();
 
         $session = $this->selectSession(SessionPoolInterface::CONTEXT_READWRITE);
 
-        $startTransactionFn = function ($session, $options) {
-            return $this->operation->transaction($session, $options);
+        $attempt = 0;
+        $startTransactionFn = function ($session, $options) use ($options, &$attempt) {
+            if ($attempt === 0 && $options['transaction'] instanceof Transaction) {
+                $transaction = $options['transaction'];
+            } else {
+                $transaction = $this->operation->transaction($session, $options);
+            }
+
+            $attempt++;
+            return $transaction;
         };
 
         $delayFn = function (\Exception $e) {
@@ -445,7 +473,6 @@ class Database
         };
 
         $commitFn = function($operation, $session, $options) use ($startTransactionFn) {
-
             $transaction = call_user_func_array($startTransactionFn, [
                 $session,
                 $options
@@ -468,6 +495,11 @@ class Database
      * If you wish Google Cloud PHP to handle retry logic for you (recommended
      * for most cases), use {@see Google\Cloud\Spanner\Database::runTransaction()}.
      *
+     * Please note that once a transaction reads data, it will lock the read
+     * data, preventing other users from modifying that data. For this reason,
+     * it is important that every transaction commits or rolls back as early as
+     * possible. Do not hold transactions open longer than necessary.
+     *
      * Example:
      * ```
      * $transaction = $database->transaction();
@@ -475,6 +507,7 @@ class Database
      *
      * @codingStandardsIgnoreStart
      * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#google.spanner.v1.BeginTransactionRequest BeginTransactionRequest
+     * @see https://cloud.google.com/spanner/docs/transactions Transactions
      * @codingStandardsIgnoreEnd
      *
      * @param array $options [optional] Configuration Options.
@@ -493,6 +526,8 @@ class Database
 
     /**
      * Insert a row.
+     *
+     * Mutations are committed in a single-use transaction.
      *
      * Example:
      * ```
@@ -519,6 +554,8 @@ class Database
 
     /**
      * Insert multiple rows.
+     *
+     * Mutations are committed in a single-use transaction.
      *
      * Example:
      * ```
@@ -564,6 +601,8 @@ class Database
      * enough information for the API to determine which row should be modified.
      * In most cases, this means providing values for the Primary Key fields.
      *
+     * Mutations are committed in a single-use transaction.
+     *
      * Example:
      * ```
      * $database->update('Posts', [
@@ -592,6 +631,8 @@ class Database
      * Only data which you wish to update need be included. You must provide
      * enough information for the API to determine which row should be modified.
      * In most cases, this means providing values for the Primary Key fields.
+     *
+     * Mutations are committed in a single-use transaction.
      *
      * Example:
      * ```
@@ -635,6 +676,8 @@ class Database
      * existing table data), the row will be updated. If not, it will be
      * created.
      *
+     * Mutations are committed in a single-use transaction.
+     *
      * Example:
      * ```
      * $database->insertOrUpdate('Posts', [
@@ -664,6 +707,8 @@ class Database
      * If a row already exists (determined by comparing the Primary Key to
      * existing table data), the row will be updated. If not, it will be
      * created.
+     *
+     * Mutations are committed in a single-use transaction.
      *
      * Example:
      * ```
@@ -709,6 +754,8 @@ class Database
      * find a record matching the Primary Key, and will replace the entire row.
      * If a matching row is not found, it will be inserted.
      *
+     * Mutations are committed in a single-use transaction.
+     *
      * Example:
      * ```
      * $database->replace('Posts', [
@@ -738,6 +785,8 @@ class Database
      * Provide data for the entire row. Google Cloud Spanner will attempt to
      * find a record matching the Primary Key, and will replace the entire row.
      * If a matching row is not found, it will be inserted.
+     *
+     * Mutations are committed in a single-use transaction.
      *
      * Example:
      * ```
@@ -779,6 +828,8 @@ class Database
     /**
      * Delete one or more rows.
      *
+     * Mutations are committed in a single-use transaction.
+     *
      * Example:
      * ```
      * $keySet = $spanner->keySet([
@@ -814,14 +865,36 @@ class Database
      *
      * Example:
      * ```
-     * $result = $spanner->execute(
-     *     'SELECT * FROM Posts WHERE ID = @postId',
-     *     [
-     *          'parameters' => [
-     *              'postId' => 1337
-     *          ]
+     * $result = $spanner->execute('SELECT * FROM Posts WHERE ID = @postId', [
+     *     'parameters' => [
+     *         'postId' => 1337
      *     ]
-     * );
+     * ]);
+     * ```
+     *
+     * ```
+     * // Execute a read and return a new Snapshot for further reads.
+     * $result = $spanner->execute('SELECT * FROM Posts WHERE ID = @postId', [
+     *      'parameters' => [
+     *         'postId' => 1337
+     *     ],
+     *     'begin' => true
+     * ]);
+     *
+     * $snapshot = $result->snapshot();
+     * ```
+     *
+     * ```
+     * // Execute a read and return a new Transaction for further reads and writes.
+     * $result = $spanner->execute('SELECT * FROM Posts WHERE ID = @postId', [
+     *      'parameters' => [
+     *         'postId' => 1337
+     *     ],
+     *     'begin' => true,
+     *     'transactionType' => SessionPoolInterface::CONTEXT_READWRITE
+     * ]);
+     *
+     * $transaction = $result->transaction();
      * ```
      *
      * @codingStandardsIgnoreStart
@@ -851,7 +924,7 @@ class Database
      *     @type Timestamp $minReadTimestamp Execute reads at a timestamp >= the
      *           given timestamp. Only available in single-use transactions.
      *     @type Duration $maxStaleness Read data at a timestamp >= NOW - the
-     *           given timestamp.
+     *           given timestamp. Only available in single-use transactions.
      *     @type Timestamp $readTimestamp Executes all reads at the given
      *           timestamp.
      *     @type Duration $exactStaleness Represents a number of seconds. Executes
@@ -898,6 +971,37 @@ class Database
      * $result = $database->read('Posts', $keySet, $columns);
      * ```
      *
+     * ```
+     * // Execute a read and return a new Snapshot for further reads.
+     * $keySet = $spanner->keySet([
+     *     'keys' => [1337]
+     * ]);
+     *
+     * $columns = ['ID', 'title', 'content'];
+     *
+     * $result = $database->read('Posts', $keySet, $columns, [
+     *     'begin' => true
+     * ]);
+     *
+     * $snapshot = $result->snapshot();
+     * ```
+     *
+     * ```
+     * // Execute a read and return a new Transaction for further reads and writes.
+     * $keySet = $spanner->keySet([
+     *     'keys' => [1337]
+     * ]);
+     *
+     * $columns = ['ID', 'title', 'content'];
+     *
+     * $result = $database->read('Posts', $keySet, $columns, [
+     *     'begin' => true,
+     *     'transactionType' => SessionPoolInterface::CONTEXT_READWRITE
+     * ]);
+     *
+     * $transaction = $result->transaction();
+     * ```
+     *
      * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#google.spanner.v1.ReadRequest ReadRequest
      *
      * @codingStandardsIgnoreStart
@@ -925,7 +1029,7 @@ class Database
      *     @type Timestamp $minReadTimestamp Execute reads at a timestamp >= the
      *           given timestamp. Only available in single-use transactions.
      *     @type Duration $maxStaleness Read data at a timestamp >= NOW - the
-     *           given timestamp.
+     *           given timestamp. Only available in single-use transactions.
      *     @type Timestamp $readTimestamp Executes all reads at the given
      *           timestamp.
      *     @type Duration $exactStaleness Represents a number of seconds. Executes

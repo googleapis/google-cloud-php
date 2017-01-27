@@ -334,6 +334,24 @@ class Transaction
         return $this->operation->rollback($this->session, $this->transactionId, $options);
     }
 
+    /**
+     * Commit and end the transaction.
+     *
+     * It is advised that transactions be run inside
+     * {@see Google\Cloud\Spanner\Database::runTransaction()} in order to take
+     * advantage of automated transaction retry in case of a transaction aborted
+     * error.
+     *
+     * Example:
+     * ```
+     * $transaction->commit();
+     * ```
+     *
+     * @param array $options [optional] Configuration Options.
+     * @return Timestamp The commit timestamp.
+     * @throws \RuntimeException If the transaction is not active
+     * @throws \AbortedException If the commit is aborted for any reason.
+     */
     public function commit(array $options = [])
     {
         if ($this->state !== self::STATE_ACTIVE) {
@@ -362,16 +380,6 @@ class Transaction
     public function state()
     {
         return $this->state;
-    }
-
-    /**
-     * Retrieve a list of formatted mutations.
-     *
-     * @return array
-     */
-    public function mutations()
-    {
-        return $this->mutations;
     }
 
     /**
