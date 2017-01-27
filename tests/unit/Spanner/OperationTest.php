@@ -24,6 +24,7 @@ use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Result;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
+use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\ValueMapper;
@@ -195,10 +196,94 @@ class OperationTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(10, $res->rows()[0]['ID']);
     }
 
-    private function executeAndReadResponse()
+    public function testReadWithTransaction()
+    {
+        $this->connection->read(Argument::that(function ($arg) {
+            if ($arg['table'] !== 'Posts') return false;
+            if ($arg['session'] !== self::SESSION) return false;
+            if ($arg['keySet']['all'] !== true) return false;
+            if ($arg['columns'] !== ['foo']) return false;
+
+            return true;
+        }))->shouldBeCalled()->willReturn($this->executeAndReadResponse([
+            'transaction' => ['id' => self::TRANSACTION]
+        ]));
+
+        $this->operation->___setProperty('connection', $this->connection->reveal());
+
+        $res = $this->operation->read($this->session, 'Posts', new KeySet(['all' => true]), ['foo'], [
+            'transactionContext' => SessionPoolInterface::CONTEXT_READWRITE
+        ]);
+        $this->assertInstanceOf(Transaction::class, $res->transaction());
+        $this->assertEquals(self::TRANSACTION, $res->transaction()->id());
+    }
+
+    public function testReadWithSnapshot()
+    {
+        $this->connection->read(Argument::that(function ($arg) {
+            if ($arg['table'] !== 'Posts') return false;
+            if ($arg['session'] !== self::SESSION) return false;
+            if ($arg['keySet']['all'] !== true) return false;
+            if ($arg['columns'] !== ['foo']) return false;
+
+            return true;
+        }))->shouldBeCalled()->willReturn($this->executeAndReadResponse([
+            'transaction' => ['id' => self::TRANSACTION]
+        ]));
+
+        $this->operation->___setProperty('connection', $this->connection->reveal());
+
+        $res = $this->operation->read($this->session, 'Posts', new KeySet(['all' => true]), ['foo'], [
+            'transactionContext' => SessionPoolInterface::CONTEXT_READ
+        ]);
+        $this->assertInstanceOf(Snapshot::class, $res->snapshot());
+        $this->assertEquals(self::TRANSACTION, $res->snapshot()->id());
+    }
+
+    public function testTransaction()
+    {
+        $this->connection->beginTransaction(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn(['id' => self::TRANSACTION]);
+
+        $this->operation->___setProperty('connection', $this->connection->reveal());
+
+        $t = $this->operation->transaction($this->session);
+        $this->assertInstanceOf(Transaction::class, $t);
+        $this->assertEquals(self::TRANSACTION, $t->id());
+    }
+
+    public function testSnapshot()
+    {
+        $this->connection->beginTransaction(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn(['id' => self::TRANSACTION]);
+
+        $this->operation->___setProperty('connection', $this->connection->reveal());
+
+        $snap = $this->operation->snapshot($this->session);
+        $this->assertInstanceOf(Snapshot::class, $snap);
+        $this->assertEquals(self::TRANSACTION, $snap->id());
+    }
+
+    public function testSnapshotWithTimestamp()
+    {
+        $this->connection->beginTransaction(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn(['id' => self::TRANSACTION, 'readTimestamp' => self::TIMESTAMP]);
+
+        $this->operation->___setProperty('connection', $this->connection->reveal());
+
+        $snap = $this->operation->snapshot($this->session);
+        $this->assertInstanceOf(Snapshot::class, $snap);
+        $this->assertEquals(self::TRANSACTION, $snap->id());
+        $this->assertInstanceOf(Timestamp::class, $snap->readTimestamp());
+    }
+
+    private function executeAndReadResponse(array $additionalMetadata = [])
     {
         return [
-            'metadata' => [
+            'metadata' => array_merge([
                 'rowType' => [
                     'fields' => [
                         [
@@ -209,7 +294,7 @@ class OperationTest extends \PHPUnit_Framework_TestCase
                         ]
                     ]
                 ]
-            ],
+            ], $additionalMetadata),
             'rows' => [
                 ['10']
             ]

@@ -73,12 +73,10 @@ trait TransactionReadTrait
         $options['transactionType'] = $this->context;
         $options['transactionId'] = $this->transactionId;
 
-        list($type, $context, $transaction) = $this->transactionSelector($options);
-        $options['transaction'] = [
-            $type => $transaction
-        ];
-
+        list($transactionOptions, $context) = $this->transactionSelector($options);
+        $options['transaction'] = $transactionOptions;
         $options['transactionContext'] = $context;
+
         return $this->operation->execute($this->session, $sql, $options);
     }
 
@@ -116,31 +114,11 @@ trait TransactionReadTrait
         $options['transactionType'] = $this->context;
         $options['transactionId'] = $this->transactionId;
 
-        list($type, $context, $transaction) = $this->transactionSelector($options);
-        $options['transaction'] = [
-            $type => $transaction
-        ];
-
+        list($transactionOptions, $context) = $this->transactionSelector($options);
+        $options['transaction'] = $transactionOptions;
         $options['transactionContext'] = $context;
-        return $this->operation->read($this->session, $table, $keySet, $columns, $options);
-    }
 
-    /**
-     * Retrieve the Read Timestamp.
-     *
-     * For snapshot read-only transactions, the read timestamp chosen for the
-     * transaction.
-     *
-     * Example:
-     * ```
-     * $timestamp = $transaction->readTimestamp();
-     * ```
-     *
-     * @return Timestamp
-     */
-    public function readTimestamp()
-    {
-        return $this->readTimestamp;
+        return $this->operation->read($this->session, $table, $keySet, $columns, $options);
     }
 
     /**

@@ -64,7 +64,10 @@ trait TransactionConfigurationTrait
             $type = ($begin) ? 'begin' : 'singleUse';
         }
 
-        return [$type, $context, $transactionOptions];
+        return [
+            [$type => $transactionOptions],
+            $context
+        ];
     }
 
     private function configureTransactionOptions()
@@ -90,14 +93,6 @@ trait TransactionConfigurationTrait
             'minReadTimestamp' => null,
             'maxStaleness' => null,
         ];
-
-        if (!is_null($options['exactStaleness']) && !($options['exactStaleness'] instanceof Duration)) {
-            throw new \BadMethodCallException('$options.exactStaleness must be an intance of Duration');
-        }
-
-        if (!is_null($options['maxStaleness']) && !($options['maxStaleness'] instanceof Duration)) {
-            throw new \BadMethodCallException('$options.maxStaleness must be an intance of Duration');
-        }
 
         $transactionOptions = [
             'readOnly' => $this->arrayFilterRemoveNull([
@@ -128,7 +123,7 @@ trait TransactionConfigurationTrait
             if (isset($transactionOptions['readOnly'][$tsf])) {
                 $field = $transactionOptions['readOnly'][$tsf];
                 if (!($field instanceof Timestamp)) {
-                    throw new \InvalidArgumentException(sprintf(
+                    throw new \BadMethodCallException(sprintf(
                         'Read Only Transaction Configuration Field %s must be an instance of Timestamp',
                         $tsf
                     ));
@@ -142,7 +137,7 @@ trait TransactionConfigurationTrait
             if (isset($transactionOptions['readOnly'][$df])) {
                 $field = $transactionOptions['readOnly'][$df];
                 if (!($field instanceof Duration)) {
-                    throw new \InvalidArgumentException(sprintf(
+                    throw new \BadMethodCallException(sprintf(
                         'Read Only Transaction Configuration Field %s must be an instance of Duration',
                         $df
                     ));

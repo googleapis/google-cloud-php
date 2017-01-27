@@ -88,11 +88,11 @@ trait ArrayTrait
     private function arrayFilterRemoveNull(array $arr)
     {
         return array_filter($arr, function ($element) {
-            if (is_bool($element)) {
+            if (!is_null($element)) {
                 return true;
             }
 
-            return $element == true;
+            return false;
         });
     }
 }

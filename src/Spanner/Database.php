@@ -874,12 +874,10 @@ class Database
     {
         $session = $this->selectSession(SessionPoolInterface::CONTEXT_READ);
 
-        list($type, $context, $transaction) = $this->transactionSelector($options);
-        $options['transaction'] = [
-            $type => $transaction
-        ];
-
+        list($transactionOptions, $context) = $this->transactionSelector($options);
+        $options['transaction'] = $transactionOptions;
         $options['transactionContext'] = $context;
+
         return $this->operation->execute($session, $sql, $options);
     }
 
@@ -950,11 +948,8 @@ class Database
     {
         $session = $this->selectSession(SessionPoolInterface::CONTEXT_READ);
 
-        list($type, $context, $transaction) = $this->transactionSelector($options);
-        $options['transaction'] = [
-            $type => $transaction
-        ];
-
+        list($transactionOptions, $context) = $this->transactionSelector($options);
+        $options['transaction'] = $transactionOptions;
         $options['transactionContext'] = $context;
 
         return $this->operation->read($session, $table, $keySet, $columns, $options);
