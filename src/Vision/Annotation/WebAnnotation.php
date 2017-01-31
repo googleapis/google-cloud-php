@@ -46,17 +46,17 @@ class WebAnnotation extends AbstractFeature
     private $entities;
 
     /**
-     * @var WebImage[]
+     * @var WebImage[]|null
      */
     private $matchingImages;
 
     /**
-     * @var WebImage[]
+     * @var WebImage[]|null
      */
     private $partialMatchingImages;
 
     /**
-     * @var WebPage[]
+     * @var WebPage[]|null
      */
     private $pages;
 
@@ -110,7 +110,7 @@ class WebAnnotation extends AbstractFeature
      * $entities = $web->entities();
      * ```
      *
-     * @return WebEntity[]
+     * @return WebEntity[]|null
      */
     public function entities()
     {
@@ -128,7 +128,7 @@ class WebAnnotation extends AbstractFeature
      * $images = $web->matchingImages();
      * ```
      *
-     * @return WebImage[]
+     * @return WebImage[]|null
      */
     public function matchingImages()
     {
@@ -146,7 +146,7 @@ class WebAnnotation extends AbstractFeature
      * $images = $web->partialMatchingImages();
      * ```
      *
-     * @return WebImage[]
+     * @return WebImage[]|null
      */
     public function partialMatchingImages()
     {
@@ -161,7 +161,7 @@ class WebAnnotation extends AbstractFeature
      * $pages = $web->pages();
      * ```
      *
-     * @return WebPage[]
+     * @return WebPage[]|null
      */
     public function pages()
     {

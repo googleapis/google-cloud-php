@@ -51,52 +51,57 @@ class Annotation
     private $info;
 
     /**
-     * @var array
+     * @var Face[]|null
      */
     private $faces;
 
     /**
-     * @var array
+     * @var Entity[]|null
      */
     private $landmarks;
 
     /**
-     * @var array
+     * @var Entity[]|null
      */
     private $logos;
 
     /**
-     * @var array
+     * @var Entity[]|null
      */
     private $labels;
 
     /**
-     * @var array
+     * @var Entity[]|null
      */
     private $text;
 
     /**
-     * @var SafeSearch
+     * @var array|null
+     */
+    private $fullTextAnnotation;
+
+    /**
+     * @var SafeSearch|null
      */
     private $safeSearch;
 
     /**
-     * @var ImageProperties
+     * @var ImageProperties|null
      */
     private $imageProperties;
 
     /**
-     * @var CropHint[]
+     * @var CropHint[]|null
      */
     private $cropHints;
 
     /**
-     * @var WebAnnotation
+     * @var WebAnnotation|null
      */
     private $webAnnotation;
 
     /**
-     * @var array
+     * @var array|null
      */
     private $error;
 
@@ -152,6 +157,10 @@ class Annotation
             foreach ($info['textAnnotations'] as $text) {
                 $this->text[] = new Entity($text);
             }
+        }
+
+        if (isset($info['fullTextAnnotation'])) {
+            $this->fullText = $info['fullTextAnnotation'];
         }
 
         if (isset($info['safeSearchAnnotation'])) {
@@ -273,6 +282,25 @@ class Annotation
     }
 
     /**
+     * Return the full text annotation.
+     *
+     * Example:
+     * ```
+     * $fullText = $annotation->fullText();
+     * ```
+     *
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/vision/reference/rest/v1/images/annotate#fulltextannotation FullTextAnnotation
+     * @codingStandardsIgnoreEnd
+     *
+     * @return array|null
+     */
+    public function fullText()
+    {
+        return $this->fullText;
+    }
+
+    /**
      * Get the result of a safe search detection
      *
      * Example:
@@ -310,7 +338,7 @@ class Annotation
      * $hints = $annotation->cropHints();
      * ```
      *
-     * @return CropHint[]
+     * @return CropHint[]|null
      */
     public function cropHints()
     {
@@ -325,7 +353,7 @@ class Annotation
      * $web = $annotation->web();
      * ```
      *
-     * @return WebAnnotation
+     * @return WebAnnotation|null
      */
     public function web()
     {
