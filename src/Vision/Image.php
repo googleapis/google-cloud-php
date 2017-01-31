@@ -143,6 +143,7 @@ class Image
     const TYPE_BYTES = 'bytes';
     const TYPE_STORAGE = 'storage';
     const TYPE_STRING = 'string';
+    const TYPE_URI = 'uri';
 
     /**
      * @var mixed
@@ -183,8 +184,8 @@ class Image
      *
      * @param  resource|string|StorageObject $image An image to configure with
      *         the given settings. This parameter will accept a resource, a
-     *         string of bytes, or an instance of
-     *         {@see Google\Cloud\Storage\StorageObject}.
+     *         string of bytes, the URI of an image in a publicly-accessible
+     *         web location, or an instance of {@see Google\Cloud\Storage\StorageObject}.
      * @param  array $features A list of cloud vision
      *         [features](https://cloud.google.com/vision/reference/rest/v1/images/annotate#type)
      *         to apply to the image. Google Cloud Platform Client Library provides a set of abbreviated
@@ -218,22 +219,24 @@ class Image
 
         $this->features = $this->normalizeFeatures($features);
 
-        if ($image instanceof StorageObject) {
+        $this->image = $image;
+        if (is_string($image) && filter_var($image, FILTER_VALIDATE_URL)) {
+            $this->type = self::TYPE_URI;
+        } elseif (is_string($image)) {
+            $this->type = self::TYPE_STRING;
+        } elseif ($image instanceof StorageObject) {
             $identity = $image->identity();
             $uri = sprintf('gs://%s/%s', $identity['bucket'], $identity['object']);
 
             $this->type = self::TYPE_STORAGE;
             $this->image = $uri;
-        } elseif (is_string($image)) {
-            $this->type = self::TYPE_STRING;
-            $this->image = $image;
         } elseif (is_resource($image)) {
             $this->type = self::TYPE_BYTES;
             $this->image = Psr7\stream_for($image);
         } else {
             throw new InvalidArgumentException(
                 'Given image is not valid. ' .
-                'Image must be a string of bytes, a google storage object, or a resource.'
+                'Image must be a string of bytes, a google storage object, a valid URI, or a resource.'
             );
         }
     }
@@ -302,7 +305,7 @@ class Image
 
         return [
             'source' => [
-                'gcsImageUri' => $this->image
+                'imageUri' => $this->image
             ]
         ];
     }

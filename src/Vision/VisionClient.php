@@ -133,8 +133,8 @@ class VisionClient
      *
      * @param  resource|string|StorageObject $image An image to configure with
      *         the given settings. This parameter will accept a resource, a
-     *         string of bytes, or an instance of
-     *         {@see Google\Cloud\Storage\StorageObject}.
+     *         string of bytes, the URI of an image in a publicly-accessible
+     *         web location, or an instance of {@see Google\Cloud\Storage\StorageObject}.
      * @param  array $features A list of cloud vision
      *         [features](https://cloud.google.com/vision/reference/rest/v1/images/annotate#type)
      *         to apply to the image.
