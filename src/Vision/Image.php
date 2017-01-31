@@ -129,7 +129,8 @@ use InvalidArgumentException;
  *     'landmarks',      // Corresponds to `LANDMARK_DETECTION`
  *     'logos',          // Corresponds to `LOGO_DETECTION`
  *     'labels',         // Corresponds to `LABEL_DETECTION`
- *     'text',           // Corresponds to `TEXT_DETECTION`
+ *     'text',           // Corresponds to `TEXT_DETECTION`,
+ *     'document',       // Corresponds to `DOCUMENT_TEXT_DETECTION`
  *     'safeSearch',     // Corresponds to `SAFE_SEARCH_DETECTION`
  *     'imageProperties'  // Corresponds to `IMAGE_PROPERTIES`
  * ]);
@@ -170,12 +171,13 @@ class Image
      * @var array
      */
     private $featureShortNames = [
-        'faces'      => 'FACE_DETECTION',
-        'landmarks'  => 'LANDMARK_DETECTION',
-        'logos'      => 'LOGO_DETECTION',
-        'labels'     => 'LABEL_DETECTION',
-        'text'       => 'TEXT_DETECTION',
-        'safeSearch' => 'SAFE_SEARCH_DETECTION',
+        'faces'           => 'FACE_DETECTION',
+        'landmarks'       => 'LANDMARK_DETECTION',
+        'logos'           => 'LOGO_DETECTION',
+        'labels'          => 'LABEL_DETECTION',
+        'text'            => 'TEXT_DETECTION',
+        'document'        => 'DOCUMENT_TEXT_DETECTION',
+        'safeSearch'      => 'SAFE_SEARCH_DETECTION',
         'imageProperties' => 'IMAGE_PROPERTIES'
     ];
 
@@ -191,8 +193,8 @@ class Image
      *         to apply to the image. Google Cloud Platform Client Library provides a set of abbreviated
      *         names which can be used in the interest of brevity in place of
      *         the names offered by the cloud vision service. These names are
-     *         `faces`, `landmarks`, `logos`, `labels`, `text`, `safeSearch`
-     *         and `imageProperties`.
+     *         `faces`, `landmarks`, `logos`, `labels`, `text`, `document`,
+     *         `safeSearch` and `imageProperties`.
      * @param  array $options {
      *     Configuration Options
      *
