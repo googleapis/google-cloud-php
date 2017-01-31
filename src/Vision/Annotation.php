@@ -22,6 +22,7 @@ use Google\Cloud\Vision\Annotation\Entity;
 use Google\Cloud\Vision\Annotation\Face;
 use Google\Cloud\Vision\Annotation\ImageProperties;
 use Google\Cloud\Vision\Annotation\SafeSearch;
+use Google\Cloud\Vision\Annotation\WebAnnotation;
 
 /**
  * Represents a [Google Cloud Vision](https://cloud.google.com/vision) image
@@ -88,6 +89,11 @@ class Annotation
      * @var CropHint[]
      */
     private $cropHints;
+
+    /**
+     * @var WebAnnotation
+     */
+    private $webAnnotation;
 
     /**
      * @var array
@@ -161,6 +167,10 @@ class Annotation
             foreach ($info['cropHintsAnnotation']['cropHints'] as $hint) {
                 $this->cropHints[] = new CropHint($hint);
             }
+        }
+
+        if (isset($info['webAnnotation'])) {
+            $this->web = new WebAnnotation($info['webAnnotation']);
         }
 
         if (isset($info['error'])) {
@@ -305,6 +315,21 @@ class Annotation
     public function cropHints()
     {
         return $this->cropHints;
+    }
+
+    /**
+     * Fetch the Web Annotatation.
+     *
+     * Example:
+     * ```
+     * $web = $annotation->web();
+     * ```
+     *
+     * @return WebAnnotation
+     */
+    public function web()
+    {
+        return $this->web;
     }
 
     /**
