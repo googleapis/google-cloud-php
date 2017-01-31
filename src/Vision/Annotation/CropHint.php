@@ -73,6 +73,9 @@ class CropHint extends AbstractFeature
 {
     use CallTrait;
 
+    /**
+     * @param array $info Crop Hint result
+     */
     public function __construct(array $info)
     {
         $this->info = $info;

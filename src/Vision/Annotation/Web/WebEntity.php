@@ -23,6 +23,21 @@ use Google\Cloud\Vision\Annotation\AbstractFeature;
 /**
  * Represents an Entity deduced from similar images on the Internet.
  *
+ * Example:
+ * ```
+ * use Google\Cloud\ServiceBuilder;
+ *
+ * $cloud = new ServiceBuilder();
+ * $vision = $cloud->vision();
+ *
+ * $imageResource = fopen(__DIR__ .'/assets/eiffel-tower.jpg', 'r');
+ * $image = $vision->image($imageResource, ['WEB_ANNOTATION']);
+ * $annotation = $vision->annotate($image);
+ *
+ * $entities = $annotation->web()->entities();
+ * $firstEntity = $entities[0];
+ * ```
+ *
  * @method entityId() {
  *     The Entity ID
  *
@@ -40,7 +55,7 @@ use Google\Cloud\Vision\Annotation\AbstractFeature;
  *
  *     Example:
  *     ```
- *     $score = $image->score();
+ *     $score = $entity->score();
  *     ```
  *
  *     @return float

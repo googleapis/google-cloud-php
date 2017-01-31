@@ -23,6 +23,21 @@ use Google\Cloud\Vision\Annotation\AbstractFeature;
 /**
  * Represents a Web Page from a Web Annotation.
  *
+ * Example:
+ * ```
+ * use Google\Cloud\ServiceBuilder;
+ *
+ * $cloud = new ServiceBuilder();
+ * $vision = $cloud->vision();
+ *
+ * $imageResource = fopen(__DIR__ .'/assets/eiffel-tower.jpg', 'r');
+ * $image = $vision->image($imageResource, ['WEB_ANNOTATION']);
+ * $annotation = $vision->annotate($image);
+ *
+ * $pages = $annotation->web()->pages();
+ * $firstPage = $pages[0];
+ * ```
+ *
  * @method url() {
  *     The result web page URL
  *

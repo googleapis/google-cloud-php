@@ -22,7 +22,7 @@ use Google\Cloud\Vision\Annotation\Entity;
 use Google\Cloud\Vision\Annotation\Face;
 use Google\Cloud\Vision\Annotation\ImageProperties;
 use Google\Cloud\Vision\Annotation\SafeSearch;
-use Google\Cloud\Vision\Annotation\WebAnnotation;
+use Google\Cloud\Vision\Annotation\Web;
 
 /**
  * Represents a [Google Cloud Vision](https://cloud.google.com/vision) image
@@ -78,7 +78,7 @@ class Annotation
     /**
      * @var array|null
      */
-    private $fullTextAnnotation;
+    private $fullText;
 
     /**
      * @var SafeSearch|null
@@ -96,9 +96,9 @@ class Annotation
     private $cropHints;
 
     /**
-     * @var WebAnnotation|null
+     * @var web|null
      */
-    private $webAnnotation;
+    private $web;
 
     /**
      * @var array|null
@@ -179,7 +179,7 @@ class Annotation
         }
 
         if (isset($info['webAnnotation'])) {
-            $this->web = new WebAnnotation($info['webAnnotation']);
+            $this->web = new Web($info['webAnnotation']);
         }
 
         if (isset($info['error'])) {
@@ -289,9 +289,7 @@ class Annotation
      * $fullText = $annotation->fullText();
      * ```
      *
-     * @codingStandardsIgnoreStart
      * @see https://cloud.google.com/vision/reference/rest/v1/images/annotate#fulltextannotation FullTextAnnotation
-     * @codingStandardsIgnoreEnd
      *
      * @return array|null
      */
@@ -353,7 +351,7 @@ class Annotation
      * $web = $annotation->web();
      * ```
      *
-     * @return WebAnnotation|null
+     * @return web|null
      */
     public function web()
     {

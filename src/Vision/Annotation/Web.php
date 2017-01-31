@@ -38,7 +38,7 @@ use Google\Cloud\Vision\Annotation\Web\WebPage;
  * $web = $annotation->web();
  * ```
  */
-class WebAnnotation extends AbstractFeature
+class Web extends AbstractFeature
 {
     /**
      * @var WebEntity[]

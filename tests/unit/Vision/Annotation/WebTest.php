@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Tests\Vision\Annotation;
 
-use Google\Cloud\Vision\Annotation\WebAnnotation;
+use Google\Cloud\Vision\Annotation\Web;
 use Google\Cloud\Vision\Annotation\Web\WebEntity;
 use Google\Cloud\Vision\Annotation\Web\WebImage;
 use Google\Cloud\Vision\Annotation\Web\WebPage;
@@ -25,7 +25,7 @@ use Google\Cloud\Vision\Annotation\Web\WebPage;
 /**
  * @group vision
  */
-class WebAnnotationTest extends \PHPUnit_Framework_TestCase
+class WebTest extends \PHPUnit_Framework_TestCase
 {
     private $info;
     private $annotation;
@@ -46,7 +46,7 @@ class WebAnnotationTest extends \PHPUnit_Framework_TestCase
                 ['foo' => 'bar']
             ]
         ];
-        $this->annotation = new WebAnnotation($this->info);
+        $this->annotation = new Web($this->info);
     }
 
     public function testEntities()

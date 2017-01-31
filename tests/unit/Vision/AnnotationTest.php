@@ -23,7 +23,7 @@ use Google\Cloud\Vision\Annotation\Entity;
 use Google\Cloud\Vision\Annotation\Face;
 use Google\Cloud\Vision\Annotation\ImageProperties;
 use Google\Cloud\Vision\Annotation\SafeSearch;
-use Google\Cloud\Vision\Annotation\WebAnnotation;
+use Google\Cloud\Vision\Annotation\Web;
 
 /**
  * @group vision
@@ -60,7 +60,7 @@ class AnnotationTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($res['error'], $ann->error());
         $this->assertEquals($res['fullTextAnnotation'], $ann->fullText());
         $this->assertInstanceOf(CropHint::class, $ann->cropHints()[0]);
-        $this->assertInstanceOf(WebAnnotation::class, $ann->web());
+        $this->assertInstanceOf(Web::class, $ann->web());
 
         $this->assertEquals($res, $ann->info());
     }
