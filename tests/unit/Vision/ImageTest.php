@@ -25,7 +25,7 @@ use Google\Cloud\Vision\Image;
  */
 class ImageTest extends \PHPUnit_Framework_TestCase
 {
-    public function testWithBytes()
+    public function testWithString()
     {
         $bytes = file_get_contents(__DIR__ .'/../fixtures/vision/eiffel-tower.jpg');
         $image = new Image($bytes, ['landmarks']);
@@ -47,7 +47,7 @@ class ImageTest extends \PHPUnit_Framework_TestCase
         $image = new Image($object, [ 'landmarks' ]);
         $res = $image->requestObject();
 
-        $this->assertEquals($res['image']['source']['gcsImageUri'], $gcsUri);
+        $this->assertEquals($res['image']['source']['imageUri'], $gcsUri);
         $this->assertEquals($res['features'], [ ['type' => 'LANDMARK_DETECTION'] ]);
     }
 
@@ -60,6 +60,17 @@ class ImageTest extends \PHPUnit_Framework_TestCase
         $res = $image->requestObject();
 
         $this->assertEquals($res['image']['content'], base64_encode($bytes));
+        $this->assertEquals($res['features'], [ ['type' => 'LANDMARK_DETECTION'] ]);
+    }
+
+    public function testWithExternalImage()
+    {
+        $externalUri = 'http://google.com/image.jpg';
+        $image = new Image($externalUri, ['landmarks']);
+
+        $res = $image->requestObject();
+
+        $this->assertEquals($res['image']['source']['imageUri'], $externalUri);
         $this->assertEquals($res['features'], [ ['type' => 'LANDMARK_DETECTION'] ]);
     }
 

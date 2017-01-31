@@ -18,10 +18,12 @@
 namespace Google\Cloud\Tests\Vision;
 
 use Google\Cloud\Vision\Annotation;
+use Google\Cloud\Vision\Annotation\CropHint;
 use Google\Cloud\Vision\Annotation\Entity;
 use Google\Cloud\Vision\Annotation\Face;
 use Google\Cloud\Vision\Annotation\ImageProperties;
 use Google\Cloud\Vision\Annotation\SafeSearch;
+use Google\Cloud\Vision\Annotation\WebAnnotation;
 
 /**
  * @group vision
@@ -40,7 +42,10 @@ class AnnotationTest extends \PHPUnit_Framework_TestCase
             'textAnnotations' => ['foo' => ['bat' => 'bar']],
             'safeSearchAnnotation' => ['foo' => ['bat' => 'bar']],
             'imagePropertiesAnnotation' => ['foo' => ['bat' => 'bar']],
-            'error' => ['foo' => ['bat' => 'bar']]
+            'error' => ['foo' => ['bat' => 'bar']],
+            'fullTextAnnotation' => ['foo' => 'bar'],
+            'cropHintsAnnotation' => ['cropHints' => [['bat' => 'bar']]],
+            'webAnnotation' => ['foo' => ['bat' => 'bar']],
         ];
 
         $ann = new Annotation($res);
@@ -53,6 +58,9 @@ class AnnotationTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf(SafeSearch::class, $ann->safeSearch());
         $this->assertInstanceOf(ImageProperties::class, $ann->imageProperties());
         $this->assertEquals($res['error'], $ann->error());
+        $this->assertEquals($res['fullTextAnnotation'], $ann->fullText());
+        $this->assertInstanceOf(CropHint::class, $ann->cropHints()[0]);
+        $this->assertInstanceOf(WebAnnotation::class, $ann->web());
 
         $this->assertEquals($res, $ann->info());
     }
