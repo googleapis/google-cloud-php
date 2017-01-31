@@ -132,7 +132,9 @@ use InvalidArgumentException;
  *     'text',           // Corresponds to `TEXT_DETECTION`,
  *     'document',       // Corresponds to `DOCUMENT_TEXT_DETECTION`
  *     'safeSearch',     // Corresponds to `SAFE_SEARCH_DETECTION`
- *     'imageProperties'  // Corresponds to `IMAGE_PROPERTIES`
+ *     'imageProperties',// Corresponds to `IMAGE_PROPERTIES`
+ *     'crop',           // Corresponds to `CROP_HINTS`
+ *     'web'             // Corresponds to `WEB_ANNOTATION`
  * ]);
  * ```
  *
@@ -178,7 +180,9 @@ class Image
         'text'            => 'TEXT_DETECTION',
         'document'        => 'DOCUMENT_TEXT_DETECTION',
         'safeSearch'      => 'SAFE_SEARCH_DETECTION',
-        'imageProperties' => 'IMAGE_PROPERTIES'
+        'imageProperties' => 'IMAGE_PROPERTIES',
+        'crop'            => 'CROP_HINTS',
+        'web'             => 'WEB_ANNOTATION'
     ];
 
     /**
@@ -194,7 +198,7 @@ class Image
      *         names which can be used in the interest of brevity in place of
      *         the names offered by the cloud vision service. These names are
      *         `faces`, `landmarks`, `logos`, `labels`, `text`, `document`,
-     *         `safeSearch` and `imageProperties`.
+     *         `safeSearch`, `imageProperties`, `crop` and `web`.
      * @param  array $options {
      *     Configuration Options
      *

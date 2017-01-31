@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Vision;
 
+use Google\Cloud\Vision\Annotation\CropHint;
 use Google\Cloud\Vision\Annotation\Entity;
 use Google\Cloud\Vision\Annotation\Face;
 use Google\Cloud\Vision\Annotation\ImageProperties;
@@ -84,6 +85,11 @@ class Annotation
     private $imageProperties;
 
     /**
+     * @var CropHint[]
+     */
+    private $cropHints;
+
+    /**
      * @var array
      */
     private $error;
@@ -148,6 +154,13 @@ class Annotation
 
         if (isset($info['imagePropertiesAnnotation'])) {
             $this->imageProperties = new ImageProperties($info['imagePropertiesAnnotation']);
+        }
+
+        if (isset($info['cropHintsAnnotation']) && is_array($info['cropHintsAnnotation']['cropHints'])) {
+            $this->cropHints = [];
+            foreach ($info['cropHintsAnnotation']['cropHints'] as $hint) {
+                $this->cropHints[] = new CropHint($hint);
+            }
         }
 
         if (isset($info['error'])) {
@@ -277,6 +290,21 @@ class Annotation
     public function imageProperties()
     {
         return $this->imageProperties;
+    }
+
+    /**
+     * Fetch Crop Hints
+     *
+     * Example:
+     * ```
+     * $hints = $annotation->cropHints();
+     * ```
+     *
+     * @return CropHint[]
+     */
+    public function cropHints()
+    {
+        return $this->cropHints;
     }
 
     /**

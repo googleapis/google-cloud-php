@@ -767,7 +767,9 @@
             "TEXT_DETECTION",
             "DOCUMENT_TEXT_DETECTION",
             "SAFE_SEARCH_DETECTION",
-            "IMAGE_PROPERTIES"
+            "IMAGE_PROPERTIES",
+            "CROP_HINTS",
+            "WEB_ANNOTATION"
           ],
           "enumDescriptions": [
             "Unspecified feature type.",
@@ -778,7 +780,9 @@
             "Run OCR.",
             "Run dense text document OCR. Takes precedence when both DOCUMENT_TEXT_DETECTION and TEXT_DETECTION are present.",
             "Run various computer vision models to compute image safe-search properties.",
-            "Compute a set of properties about the image (such as the image's dominant colors)."
+            "Compute a set of properties about the image (such as the image's dominant colors).",
+            "Run crop hints.",
+            "Run web annotation."
           ],
           "type": "string"
         },
