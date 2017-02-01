@@ -37,8 +37,8 @@ class AnnotationTest extends SnippetTestCase
     {
         $snippet = $this->snippetFromClass(Annotation::class);
         $snippet->replace(
-            '__DIR__ .\'/assets/family-photo.jpg\'',
-            '\'php://temp\''
+            "__DIR__ . '/assets/family-photo.jpg'",
+            "'php://temp'"
         );
 
         $connectionStub = $this->prophesize(ConnectionInterface::class);

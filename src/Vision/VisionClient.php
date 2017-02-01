@@ -110,7 +110,7 @@ class VisionClient
      *
      * Example:
      * ```
-     * $imageResource = fopen(__DIR__ .'/assets/family-photo.jpg', 'r');
+     * $imageResource = fopen(__DIR__ . '/assets/family-photo.jpg', 'r');
      *
      * $image = $vision->image($imageResource, [
      *     'FACE_DETECTION'
@@ -120,7 +120,7 @@ class VisionClient
      * ```
      * // Setting maxResults for a feature
      *
-     * $imageResource = fopen(__DIR__ .'/assets/family-photo.jpg', 'r');
+     * $imageResource = fopen(__DIR__ . '/assets/family-photo.jpg', 'r');
      *
      * $image = $vision->image($imageResource, [
      *     'FACE_DETECTION'
@@ -169,8 +169,8 @@ class VisionClient
      * // In the example below, both images will have the same settings applied.
      * // They will both run face detection and return up to 10 results.
      *
-     * $familyPhotoResource = fopen(__DIR__ .'/assets/family-photo.jpg', 'r');
-     * $weddingPhotoResource = fopen(__DIR__ .'/assets/wedding-photo.jpg', 'r');
+     * $familyPhotoResource = fopen(__DIR__ . '/assets/family-photo.jpg', 'r');
+     * $weddingPhotoResource = fopen(__DIR__ . '/assets/wedding-photo.jpg', 'r');
      *
      * $images = $vision->images([$familyPhotoResource, $weddingPhotoResource], [
      *     'FACE_DETECTION'
@@ -206,7 +206,7 @@ class VisionClient
      *
      * Example:
      * ```
-     * $familyPhotoResource = fopen(__DIR__ .'/assets/family-photo.jpg', 'r');
+     * $familyPhotoResource = fopen(__DIR__ . '/assets/family-photo.jpg', 'r');
      *
      * $image = $vision->image($familyPhotoResource, [
      *     'FACE_DETECTION'
@@ -232,8 +232,8 @@ class VisionClient
      * ```
      * $images = [];
      *
-     * $familyPhotoResource = fopen(__DIR__ .'/assets/family-photo.jpg', 'r');
-     * $eiffelTowerResource = fopen(__DIR__ .'/assets/eiffel-tower.jpg', 'r');
+     * $familyPhotoResource = fopen(__DIR__ . '/assets/family-photo.jpg', 'r');
+     * $eiffelTowerResource = fopen(__DIR__ . '/assets/eiffel-tower.jpg', 'r');
      *
      * $images[] = $vision->image($familyPhotoResource, [
      *     'FACE_DETECTION'

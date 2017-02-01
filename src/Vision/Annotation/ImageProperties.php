@@ -27,7 +27,7 @@ namespace Google\Cloud\Vision\Annotation;
  * $cloud = new ServiceBuilder();
  * $vision = $cloud->vision();
  *
- * $imageResource = fopen(__DIR__ .'/assets/family-photo.jpg', 'r');
+ * $imageResource = fopen(__DIR__ . '/assets/family-photo.jpg', 'r');
  * $image = $vision->image($imageResource, [ 'imageProperties' ]);
  * $annotation = $vision->annotate($image);
  *

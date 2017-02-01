@@ -31,8 +31,8 @@ use Google\Cloud\Vision\Annotation\Web\WebPage;
  * $cloud = new ServiceBuilder();
  * $vision = $cloud->vision();
  *
- * $imageResource = fopen(__DIR__ .'/assets/family-photo.jpg', 'r');
- * $image = $vision->image($imageResource, [ 'web' ]);
+ * $imageResource = fopen(__DIR__ . '/assets/family-photo.jpg', 'r');
+ * $image = $vision->image($imageResource, [ 'WEB_ANNOTATION' ]);
  * $annotation = $vision->annotate($image);
  *
  * $web = $annotation->web();

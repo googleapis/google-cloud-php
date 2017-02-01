@@ -59,7 +59,7 @@ class WebPageTest extends SnippetTestCase
         $snippet = $this->snippetFromClass(WebPage::class);
         $snippet->addLocal('connectionStub', $connectionStub->reveal());
         $snippet->replace(
-            "__DIR__ .'/assets/eiffel-tower.jpg'",
+            "__DIR__ . '/assets/eiffel-tower.jpg'",
             "'php://temp'"
         );
         $snippet->insertAfterLine(3, '$reflection = new \ReflectionClass($vision);

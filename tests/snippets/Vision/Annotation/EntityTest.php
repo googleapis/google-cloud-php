@@ -63,7 +63,7 @@ class EntityTest extends SnippetTestCase
         $snippet = $this->snippetFromClass(Entity::class);
         $snippet->addLocal('connectionStub', $connectionStub->reveal());
         $snippet->replace(
-            "__DIR__ .'/assets/family-photo.jpg'",
+            "__DIR__ . '/assets/family-photo.jpg'",
             "'php://temp'"
         );
         $snippet->insertAfterLine(3, '$reflection = new \ReflectionClass($vision);

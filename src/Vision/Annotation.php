@@ -35,7 +35,7 @@ use Google\Cloud\Vision\Annotation\Web;
  * $cloud = new ServiceBuilder();
  * $vision = $cloud->vision();
  *
- * $imageResource = fopen(__DIR__ .'/assets/family-photo.jpg', 'r');
+ * $imageResource = fopen(__DIR__ . '/assets/family-photo.jpg', 'r');
  * $image = $vision->image($imageResource, [
  *     'FACE_DETECTION'
  * ]);
@@ -96,7 +96,7 @@ class Annotation
     private $cropHints;
 
     /**
-     * @var web|null
+     * @var Web|null
      */
     private $web;
 
@@ -351,7 +351,7 @@ class Annotation
      * $web = $annotation->web();
      * ```
      *
-     * @return web|null
+     * @return Web|null
      */
     public function web()
     {

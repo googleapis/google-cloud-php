@@ -47,7 +47,7 @@ use InvalidArgumentException;
  * $cloud = new ServiceBuilder();
  * $vision = $cloud->vision();
  *
- * $imageResource = fopen(__DIR__ .'/assets/family-photo.jpg', 'r');
+ * $imageResource = fopen(__DIR__ . '/assets/family-photo.jpg', 'r');
  * $image = $vision->image($imageResource, [
  *     'FACE_DETECTION'
  * ]);
@@ -58,7 +58,7 @@ use InvalidArgumentException;
  * // Images can be directly instantiated.
  * use Google\Cloud\Vision\Image;
  *
- * $imageResource = fopen(__DIR__ .'/assets/family-photo.jpg', 'r');
+ * $imageResource = fopen(__DIR__ . '/assets/family-photo.jpg', 'r');
  * $image = new Image($imageResource, [
  *     'FACE_DETECTION'
  * ]);
@@ -94,7 +94,7 @@ use InvalidArgumentException;
  *
  * use Google\Cloud\Vision\Image;
  *
- * $imageResource = fopen(__DIR__ .'/assets/family-photo.jpg', 'r');
+ * $imageResource = fopen(__DIR__ . '/assets/family-photo.jpg', 'r');
  * $image = new Image($imageResource, [
  *     'FACE_DETECTION',
  *     'LOGO_DETECTION'
@@ -123,7 +123,7 @@ use InvalidArgumentException;
  *
  * use Google\Cloud\Vision\Image;
  *
- * $imageResource = fopen(__DIR__ .'/assets/family-photo.jpg', 'r');
+ * $imageResource = fopen(__DIR__ . '/assets/family-photo.jpg', 'r');
  * $image = new Image($imageResource, [
  *     'faces',          // Corresponds to `FACE_DETECTION`
  *     'landmarks',      // Corresponds to `LANDMARK_DETECTION`
@@ -144,7 +144,6 @@ use InvalidArgumentException;
 class Image
 {
     const TYPE_BYTES = 'bytes';
-    const TYPE_STORAGE = 'storage';
     const TYPE_STRING = 'string';
     const TYPE_URI = 'uri';
 
@@ -234,7 +233,7 @@ class Image
             $identity = $image->identity();
             $uri = sprintf('gs://%s/%s', $identity['bucket'], $identity['object']);
 
-            $this->type = self::TYPE_STORAGE;
+            $this->type = self::TYPE_URI;
             $this->image = $uri;
         } elseif (is_resource($image)) {
             $this->type = self::TYPE_BYTES;
@@ -257,7 +256,7 @@ class Image
      * ```
      * use Google\Cloud\Vision\Image;
      *
-     * $imageResource = fopen(__DIR__ .'/assets/family-photo.jpg', 'r');
+     * $imageResource = fopen(__DIR__ . '/assets/family-photo.jpg', 'r');
      * $image = new Image($imageResource, [
      *     'FACE_DETECTION'
      * ]);
