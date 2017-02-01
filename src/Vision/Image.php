@@ -169,6 +169,7 @@ class Image
 
     /**
      * A map of short names to identifiers recognized by Cloud Vision.
+     *
      * @var array
      */
     private $featureShortNames = [
@@ -182,6 +183,17 @@ class Image
         'imageProperties' => 'IMAGE_PROPERTIES',
         'crop'            => 'CROP_HINTS',
         'web'             => 'WEB_ANNOTATION'
+    ];
+
+    /**
+     * A list of allowed url schemes.
+     *
+     * @var array
+     */
+    private $urlSchemes = [
+        'http',
+        'https',
+        'gs'
     ];
 
     /**
@@ -225,7 +237,7 @@ class Image
         $this->features = $this->normalizeFeatures($features);
 
         $this->image = $image;
-        if (is_string($image) && filter_var($image, FILTER_VALIDATE_URL)) {
+        if (is_string($image) && in_array(parse_url($image, PHP_URL_SCHEME), $this->urlSchemes)) {
             $this->type = self::TYPE_URI;
         } elseif (is_string($image)) {
             $this->type = self::TYPE_STRING;
