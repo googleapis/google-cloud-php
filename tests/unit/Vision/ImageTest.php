@@ -98,13 +98,16 @@ class ImageTest extends \PHPUnit_Framework_TestCase
     public function testShortNamesMapping()
     {
         $names = [
-            'faces'      => 'FACE_DETECTION',
-            'landmarks'  => 'LANDMARK_DETECTION',
-            'logos'      => 'LOGO_DETECTION',
-            'labels'     => 'LABEL_DETECTION',
-            'text'       => 'TEXT_DETECTION',
-            'safeSearch' => 'SAFE_SEARCH_DETECTION',
-            'imageProperties' => 'IMAGE_PROPERTIES'
+            'faces'           => 'FACE_DETECTION',
+            'landmarks'       => 'LANDMARK_DETECTION',
+            'logos'           => 'LOGO_DETECTION',
+            'labels'          => 'LABEL_DETECTION',
+            'text'            => 'TEXT_DETECTION',
+            'document'        => 'DOCUMENT_TEXT_DETECTION',
+            'safeSearch'      => 'SAFE_SEARCH_DETECTION',
+            'imageProperties' => 'IMAGE_PROPERTIES',
+            'crop'            => 'CROP_HINTS',
+            'web'             => 'WEB_ANNOTATION'
         ];
 
         $bytes = 'foo';
@@ -132,5 +135,27 @@ class ImageTest extends \PHPUnit_Framework_TestCase
 
         $encodedRes = $image->requestObject();
         $this->assertEquals($encodedRes['image']['content'], base64_encode($bytes));
+    }
+
+    public function testUrlSchemes()
+    {
+        $urls = [
+            'http://foo.bar',
+            'https://foo.bar',
+            'gs://foo/bar',
+            'ssh://foo/bar'
+        ];
+
+        $images = [
+            new Image($urls[0], ['faces']),
+            new Image($urls[1], ['faces']),
+            new Image($urls[2], ['faces']),
+            new Image($urls[3], ['faces']),
+        ];
+
+        $this->assertEquals($urls[0], $images[0]->requestObject()['image']['source']['imageUri']);
+        $this->assertEquals($urls[1], $images[1]->requestObject()['image']['source']['imageUri']);
+        $this->assertEquals($urls[2], $images[2]->requestObject()['image']['source']['imageUri']);
+        $this->assertFalse(isset($images[3]->requestObject()['image']['source']['imageUri']));
     }
 }
