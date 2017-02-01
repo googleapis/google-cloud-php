@@ -20,6 +20,7 @@ namespace Google\Cloud\Tests\Snippets\Vision;
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
 use Google\Cloud\Vision\Annotation;
 use Google\Cloud\Vision\Annotation\CropHint;
+use Google\Cloud\Vision\Annotation\Document;
 use Google\Cloud\Vision\Annotation\Entity;
 use Google\Cloud\Vision\Annotation\Face;
 use Google\Cloud\Vision\Annotation\ImageProperties;
@@ -162,7 +163,7 @@ class AnnotationTest extends SnippetTestCase
         ]));
 
         $res = $snippet->invoke('fullText');
-        $this->assertEquals($ft, $res->returnVal());
+        $this->assertInstanceOf(Document::class, $res->returnVal());
     }
 
     public function testCropHints()

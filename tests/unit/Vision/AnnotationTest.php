@@ -19,6 +19,7 @@ namespace Google\Cloud\Tests\Vision;
 
 use Google\Cloud\Vision\Annotation;
 use Google\Cloud\Vision\Annotation\CropHint;
+use Google\Cloud\Vision\Annotation\Document;
 use Google\Cloud\Vision\Annotation\Entity;
 use Google\Cloud\Vision\Annotation\Face;
 use Google\Cloud\Vision\Annotation\ImageProperties;
@@ -58,7 +59,7 @@ class AnnotationTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf(SafeSearch::class, $ann->safeSearch());
         $this->assertInstanceOf(ImageProperties::class, $ann->imageProperties());
         $this->assertEquals($res['error'], $ann->error());
-        $this->assertEquals($res['fullTextAnnotation'], $ann->fullText());
+        $this->assertInstanceOf(Document::class, $ann->fullText());
         $this->assertInstanceOf(CropHint::class, $ann->cropHints()[0]);
         $this->assertInstanceOf(Web::class, $ann->web());
 
