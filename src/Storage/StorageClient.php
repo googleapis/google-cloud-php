@@ -225,7 +225,7 @@ class StorageClient
      *        'gs'.
      * @throws \RuntimeException
      */
-    public function registerStreamWrapper(string $protocol = null)
+    public function registerStreamWrapper($protocol = null)
     {
         return StreamWrapper::register($this, $protocol);
     }
@@ -236,7 +236,7 @@ class StorageClient
      * @param string $protocol The name of the protocol to unregister. Defaults
      *        to 'gs'.
      */
-    public function unregisterStreamWrapper(string $protocol = null)
+    public function unregisterStreamWrapper($protocol = null)
     {
         StreamWrapper::unregister($protocol);
     }
