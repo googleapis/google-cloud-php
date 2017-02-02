@@ -242,7 +242,7 @@ class StreamWrapper
     /**
      * Callback handler for trying to seek to a certain location in the stream.
      *
-     * @param int $ofset The stream offset to seek to
+     * @param int $offset The stream offset to seek to
      * @param int $whence Flag for what the offset is relative to. See:
      *        http://php.net/manual/en/streamwrapper.stream-seek.php
      * @return bool

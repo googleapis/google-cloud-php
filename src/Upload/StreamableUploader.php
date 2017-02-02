@@ -17,9 +17,12 @@
 
 namespace Google\Cloud\Upload;
 
+use Google\Cloud\Exception\GoogleException;
+use Google\Cloud\Exception\ServiceException;
 use Google\Cloud\RequestWrapper;
 use GuzzleHttp\Psr7\BufferStream;
 use GuzzleHttp\Psr7\Request;
+use Psr\Http\Message\StreamInterface;
 
 /**
  * Uploader that is a special case of the ResumableUploader where we can write
@@ -125,7 +128,7 @@ class StreamableUploader extends ResumableUploader
 
         try {
             $response = $this->requestWrapper->send($request, $this->requestOptions);
-        } catch (Google\Cloud\Exception\ServiceException $ex) {
+        } catch (ServiceException $ex) {
             throw new GoogleException(
                 "Upload failed. Please use this URI to resume your upload: $resumeUri",
                 $ex->getCode(),
