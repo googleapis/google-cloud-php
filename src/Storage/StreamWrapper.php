@@ -38,7 +38,6 @@ class StreamWrapper
     private $bucket;
     private $file;
     private $mode;
-    private $options;
 
     /**
      * @var StorageClient[] $clients The default clients to use if using
@@ -108,7 +107,7 @@ class StreamWrapper
      *
      * @return bool
      */
-    public function stream_open($path, $mode, $options, &$opened_path)
+    public function stream_open($path, $mode, $flags, &$opened_path)
     {
         // @codingStandardsIgnoreEnd
         $url = parse_url($path);
@@ -119,14 +118,22 @@ class StreamWrapper
         $client = self::getClient($this->protocol);
         $this->bucket = $client->bucket($url['host']);
 
+        $options = [];
+        if ($this->context) {
+            $contextOptions = stream_context_get_options($this->context);
+            if (array_key_exists($this->protocol, $contextOptions)) {
+                $options = $contextOptions[$this->protocol] ?: [];
+            }
+        }
+
         if ($this->isWriteable()) {
+            $options['name'] = $this->file;
             $this->stream = $this->bucket->getStreamableUploader(
                 '',
-                ['name' => $this->file] + $this->getOptions()
+                $options
             );
         } elseif ($this->isReadable()) {
             try {
-                $options = $this->getOptions();
                 $options['httpOptions']['stream'] = true;
                 $this->stream = $this->bucket->object($this->file)->downloadAsStream($options);
             } catch (GoogleException $ex) {
@@ -136,22 +143,6 @@ class StreamWrapper
             return false;
         }
         return true;
-    }
-
-    private function getOptions()
-    {
-        if (isset($this->options)) {
-            return $this->options;
-        }
-
-        $this->options = [];
-        if ($this->context) {
-            $options = stream_context_get_options($this->context);
-            if (array_key_exists($this->protocol, $options)) {
-                $this->options = $options[$this->protocol] ?: [];
-            }
-        }
-        return $this->options;
     }
 
     private function getStream()
