@@ -209,7 +209,7 @@ class Image
      *         names which can be used in the interest of brevity in place of
      *         the names offered by the cloud vision service. These names are
      *         `faces`, `landmarks`, `logos`, `labels`, `text`, `document`,
-     *         `safeSearch`, `imageProperties`, `crop`, `web`, .
+     *         `safeSearch`, `imageProperties`, `crop`, and `web`.
      * @param  array $options {
      *     Configuration Options
      *
