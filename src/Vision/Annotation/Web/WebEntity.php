@@ -75,6 +75,9 @@ class WebEntity extends AbstractFeature
 {
     use CallTrait;
 
+    /**
+     * @param array $info WebEntity info
+     */
     public function __construct($info)
     {
         $this->info = $info;

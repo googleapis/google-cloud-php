@@ -183,7 +183,8 @@ class VisionClient
      *
      * @param  resource[]|string[]|StorageObject[] $images An array of images
      *         to configure with the given settings. Each member of the set can
-     *         be a resource, a string of bytes, or an instance of
+     *         be a resource, a string of bytes, the URI of an image in a
+     *         publicly-accessible web location, or an instance of
      *         {@see Google\Cloud\Storage\StorageObject}.
      * @param  array $features A list of cloud vision features to apply to each image.
      * @param  array $options See {@see Google\Cloud\Vision\Image::__construct()} for
