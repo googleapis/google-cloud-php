@@ -361,7 +361,9 @@ class Instance
      * $databases = $instance->databases();
      * ```
      *
-     * @see https://cloud.google.com/spanner/reference/rest/v1/projects.instances.databases/list List Databases
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.admin.database.v1#listdatabasesrequest ListDatabasesRequest
+     * @codingStandardsIgnoreEnd
      *
      * @param array $options Configuration options.
      * @return \Generator<Database>

@@ -34,6 +34,7 @@ use Google\GAX\CallSettings;
 use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\LongRunning\OperationsClient;
+use Google\GAX\OperationResponse;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
 use google\iam\v1\GetIamPolicyRequest;
@@ -97,7 +98,7 @@ class DatabaseAdminClient
     /**
      * The default address of the service.
      */
-    const SERVICE_ADDRESS = 'wrenchworks.googleapis.com';
+    const SERVICE_ADDRESS = 'spanner.googleapis.com';
 
     /**
      * The default port of the service.
@@ -248,9 +249,40 @@ class DatabaseAdminClient
         ];
     }
 
+    /**
+     * Return an OperationsClient object with the same endpoint as $this.
+     *
+     * @return \Google\GAX\LongRunning\OperationsClient
+     */
     public function getOperationsClient()
     {
         return $this->operationsClient;
+    }
+
+    /**
+     * Resume an existing long running operation that was previously started
+     * by a long running API method. If $methodName is not provided, or does
+     * not match a long running API method, then the operation can still be
+     * resumed, but the OperationResponse object will not deserialize the
+     * final response.
+     *
+     * @param string $operationName The name of the long running operation
+     * @param string $methodName    The name of the method used to start the operation
+     *
+     * @return \Google\GAX\OperationResponse
+     */
+    public function resumeOperation($operationName, $methodName = null)
+    {
+        $lroDescriptors = self::getLongRunningDescriptors();
+        if (!is_null($methodName) && array_key_exists($methodName, $lroDescriptors)) {
+            $options = $lroDescriptors[$methodName];
+        } else {
+            $options = [];
+        }
+        $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
+        $operation->reload();
+
+        return $operation;
     }
 
     // TODO(garrettjones): add channel (when supported in gRPC)
@@ -261,14 +293,14 @@ class DatabaseAdminClient
      *                       Optional. Options for configuring the service API wrapper.
      *
      *     @type string $serviceAddress The domain name of the API remote host.
-     *                                  Default 'wrenchworks.googleapis.com'.
+     *                                  Default 'spanner.googleapis.com'.
      *     @type mixed $port The port on which to connect to the remote host. Default 443.
      *     @type \Grpc\ChannelCredentials $sslCreds
      *           A `ChannelCredentials` for use with an SSL-enabled channel.
      *           Default: a credentials object returned from
      *           \Grpc\ChannelCredentials::createSsl()
      *     @type array $scopes A string array of scopes to use when acquiring credentials.
-     *                         Default the scopes for the Google Cloud Spanner Admin Database API.
+     *                         Default the scopes for the Google Cloud Spanner Database Admin API.
      *     @type array $retryingOverride
      *           An associative array of string => RetryOptions, where the keys
      *           are method names (e.g. 'createFoo'), that overrides default retrying
@@ -302,10 +334,14 @@ class DatabaseAdminClient
         ];
         $options = array_merge($defaultOptions, $options);
 
-        $this->operationsClient = new OperationsClient([
-            'serviceAddress' => $options['serviceAddress'],
-            'scopes' => $options['scopes'],
-        ]);
+        if (array_key_exists('operationsClient', $options)) {
+            $this->operationsClient = $options['operationsClient'];
+        } else {
+            $this->operationsClient = new OperationsClient([
+                'serviceAddress' => $options['serviceAddress'],
+                'scopes' => $options['scopes'],
+            ]);
+        }
 
         $headerDescriptor = new AgentHeaderDescriptor([
             'clientName' => $options['appName'],
@@ -475,6 +511,23 @@ class DatabaseAdminClient
      *       $error = $operationResponse->getError();
      *       // handleError($error)
      *     }
+     *
+     *     // OR start the operation, keep the operation name, and resume later
+     *     $operationResponse = $databaseAdminClient->createDatabase($formattedParent, $createStatement);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $databaseAdminClient->resumeOperation($operationName, 'createDatabase');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *       $result = $newOperationResponse->getResult();
+     *       // doSomethingWith($result)
+     *     } else {
+     *       $error = $newOperationResponse->getError();
+     *       // handleError($error)
+     *     }
      * } finally {
      *     $databaseAdminClient->close();
      * }
@@ -605,6 +658,22 @@ class DatabaseAdminClient
      *       // operation succeeded and returns no value
      *     } else {
      *       $error = $operationResponse->getError();
+     *       // handleError($error)
+     *     }
+     *
+     *     // OR start the operation, keep the operation name, and resume later
+     *     $operationResponse = $databaseAdminClient->updateDatabaseDdl($formattedDatabase, $statements);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $databaseAdminClient->resumeOperation($operationName, 'updateDatabaseDdl');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *       // operation succeeded and returns no value
+     *     } else {
+     *       $error = $newOperationResponse->getError();
      *       // handleError($error)
      *     }
      * } finally {

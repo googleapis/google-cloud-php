@@ -22,7 +22,7 @@ use Psr\Http\Message\StreamInterface;
 
 /**
  * Represents a value with a data type of
- * [bytes](https://cloud.google.com/spanner/reference/rest/v1/ResultSetMetadata#typecode).
+ * [bytes](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#google.spanner.v1.TypeCode).
  *
  * Example:
  * ```
@@ -32,6 +32,11 @@ use Psr\Http\Message\StreamInterface;
  * $spanner = $cloud->spanner();
  *
  * $bytes = $spanner->bytes('hello world');
+ * ```
+ *
+ * ```
+ * // Bytes objects can be cast to strings for easy display.
+ * echo (string) $bytes;
  * ```
  */
 class Bytes implements ValueInterface
@@ -52,6 +57,11 @@ class Bytes implements ValueInterface
     /**
      * Get the bytes as a stream.
      *
+     * Example:
+     * ```
+     * $stream = $bytes->get();
+     * ```
+     *
      * @return StreamInterface
      */
     public function get()
@@ -62,6 +72,11 @@ class Bytes implements ValueInterface
     /**
      * Get the type.
      *
+     * Example:
+     * ```
+     * echo $bytes->type();
+     * ```
+     *
      * @return string
      */
     public function type()
@@ -71,6 +86,11 @@ class Bytes implements ValueInterface
 
     /**
      * Format the value as a string.
+     *
+     * Example:
+     * ```
+     * echo $bytes->formatAsString();
+     * ```
      *
      * @return string
      */
@@ -83,6 +103,7 @@ class Bytes implements ValueInterface
      * Format the value as a string.
      *
      * @return string
+     * @access private
      */
     public function __toString()
     {
