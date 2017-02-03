@@ -125,20 +125,6 @@ class StreamWrapperTest extends \PHPUnit_Framework_TestCase
     /**
      * @group storageInfo
      */
-    public function testStreamCast()
-    {
-        $this->mockObjectData("some_long_file.txt", "line1.\nline2.");
-        $fp = fopen('gs://my_bucket/some_long_file.txt', 'r');
-        $r = array($fp);
-        $w = [];
-        $e = null;
-        $resource = stream_select($r, $w, $e, 0);
-        $this->assertTrue(is_resource($resource));
-    }
-
-    /**
-     * @group storageInfo
-     */
     public function testFstat()
     {
         $this->mockObjectData("some_long_file.txt", "line1.\nline2.");

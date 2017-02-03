@@ -401,7 +401,7 @@ class StreamWrapper
      */
     public function stream_cast($castAs)
     {
-        return null;
+        return false;
     }
 
     /**
