@@ -78,7 +78,7 @@ class WebEntity extends AbstractFeature
     /**
      * @param array $info WebEntity info
      */
-    public function __construct($info)
+    public function __construct(array $info)
     {
         $this->info = $info;
     }

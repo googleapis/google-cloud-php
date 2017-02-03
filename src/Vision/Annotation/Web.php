@@ -65,7 +65,7 @@ class Web extends AbstractFeature
      *
      * @param array $info The annotation result
      */
-    public function __construct($info)
+    public function __construct(array $info)
     {
         $this->info = $info;
 

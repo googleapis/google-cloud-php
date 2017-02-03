@@ -81,6 +81,7 @@ class WebPageTest extends SnippetTestCase
         $res = $snippet->invoke('url');
         $this->assertEquals($this->info['url'], $this->image->url());
     }
+
     public function testscore()
     {
         $snippet = $this->snippetFromMagicMethod(WebPage::class, 'score');
