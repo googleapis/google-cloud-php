@@ -20,7 +20,6 @@ namespace Google\Cloud\Spanner;
 use Google\Cloud\ArrayTrait;
 use Google\Cloud\Exception\NotFoundException;
 use Google\Cloud\Iam\Iam;
-use Google\Cloud\LongRunning\LROTrait;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Connection\IamDatabase;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
@@ -70,6 +69,11 @@ class Database
     private $sessionPool;
 
     /**
+     * @var LongRunningNormalizerInterface
+     */
+    private $lroNormalizer;
+
+    /**
      * @var Operation
      */
     private $operation;
@@ -95,7 +99,8 @@ class Database
      * @param ConnectionInterface $connection The connection to the
      *        Google Cloud Spanner Admin API.
      * @param Instance $instance The instance in which the database exists.
-     * @param SessionPoolInterface The session pool implementation.
+     * @param SessionPoolInterface $sessionPool The session pool implementation.
+     * @param LongRunningNormalizerInterface $lroNormalizer Normalizes LRO interaction.
      * @param string $projectId The project ID.
      * @param string $name The database name.
      * @param bool $returnInt64AsObject If true, 64 bit integers will be
@@ -106,13 +111,15 @@ class Database
         ConnectionInterface $connection,
         Instance $instance,
         SessionPoolInterface $sessionPool,
+        LongRunningNormalizerInterface $lroNormalizer
         $projectId,
         $name,
-        $returnInt64AsObject = false
+        $returnInt64AsObject
     ) {
         $this->connection = $connection;
         $this->instance = $instance;
         $this->sessionPool = $sessionPool;
+        $this->lroNormalizer = $lroNormalizer;
         $this->projectId = $projectId;
         $this->name = $name;
 
@@ -189,7 +196,7 @@ class Database
      *
      * @param string $statement A DDL statement to run against a database.
      * @param array $options [optional] Configuration options.
-     * @return <something>
+     * @return LongRunningOperation
      */
     public function updateDdl($statement, array $options = [])
     {
@@ -224,7 +231,7 @@ class Database
      *
      * @param string[] $statements A list of DDL statements to run against a database.
      * @param array $options [optional] Configuration options.
-     * @return <something>
+     * @return LongRunningOperation
      */
     public function updateDdlBatch(array $statements, array $options = [])
     {
@@ -232,12 +239,12 @@ class Database
             'operationId' => null
         ];
 
-        $res = $this->connection->updateDatabase($options + [
+        $operation = $this->connection->updateDatabase($options + [
             'name' => $this->fullyQualifiedDatabaseName(),
             'statements' => $statements,
         ]);
 
-        return $this->longRunningResponse($res);
+        return $this->lroNormalizer->normalize($operation, 'updateDatabaseDdl');
     }
 
     /**
@@ -855,8 +862,7 @@ class Database
             'projectId' => $this->projectId,
             'name' => $this->name,
             'instance' => $this->instance,
-            'sessionPool' => $this->sessionPool,
-            'returnInt64AsObject' => $this->returnInt64AsObject,
+            'sessionPool' => $this->sessionPool
         ];
     }
 }

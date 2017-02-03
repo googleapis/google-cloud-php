@@ -38,14 +38,6 @@ class Grpc implements ConnectionInterface
 {
     use GrpcTrait;
 
-    const DATABASE_LRO_TYPE = '';
-    const OPERATION_LRO_TYPE = '';
-
-    private $lroTypes = [
-        self::DATABASE_LRO_TYPE,
-        self::OPERATION_LRO_TYPE
-    ];
-
     /**
      * @var InstanceAdminClient
      */
@@ -504,9 +496,25 @@ class Grpc implements ConnectionInterface
     /**
      * @param array $args
      */
+    public function reloadOperation(array $args)
+    {
+        $name = $this->pluck('name', $args);
+        $method = $this->pluck('method', $args);
+
+        $operation = $this->getOperationByNameAndMethod($name, $method);
+        $operation->reload();
+        return $operation;
+    }
+
+    /**
+     * @param array $args
+     */
     public function getOperation(array $args)
     {
+        $name = $this->pluck('name', $args);
+        $method = $this->pluck('method', $args);
 
+        return $this->getOperationByNameAndMethod($name, $method);
     }
 
     /**
@@ -514,7 +522,10 @@ class Grpc implements ConnectionInterface
      */
     public function cancelOperation(array $args)
     {
+        $name = $this->pluck('name', $args);
+        $method = $this->pluck('method', $args);
 
+        $operation = $this->getOperationByNameAndMethod($name, $method);
     }
 
     /**
@@ -522,7 +533,35 @@ class Grpc implements ConnectionInterface
      */
     public function deleteOperation(array $args)
     {
+        $name = $this->pluck('name', $args);
+        $method = $this->pluck('method', $args);
 
+        $operation = $this->getOperationByNameAndMethod($name, $method);
+    }
+
+    /**
+     * @param array $args
+     */
+    public function listOperations(array $args)
+    {
+        $name = $this->pluck('name', $args);
+        $method = $this->pluck('method', $args);
+    }
+
+    private function getOperationByNameAndMethod($name, $method)
+    {
+        $client = null;
+        if (array_key_exists($method, $this->instanceAdminClient::getLongRunningDescriptors())) {
+            $client = $this->instanceAdminClient;
+        } elseif (array_key_exists($method, $this->databaseAdminClient::getLongRunningDescriptors())) {
+            $client = $this->databaseAdminClient;
+        }
+
+        if (is_null($client)) {
+            throw new \BadMethodCallException('Invalid LRO method');
+        }
+
+        return $client->resumeOperation($name, $method);
     }
 
     /**

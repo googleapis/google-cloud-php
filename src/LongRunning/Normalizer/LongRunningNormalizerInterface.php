@@ -15,17 +15,26 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\LongRunning;
+namespace Google\Cloud\LongRunning\Normalizer;
 
-interface LongRunningConnectionInterface
+interface LongRunningNormalizerInterface
 {
-    public function reload(array $args);
+    /**
+     * @param mixed $operation
+     * @param string $method
+     * @return LongRunningOperation
+     */
+    public function normalize($operation, $method);
 
-    public function get(array $args);
+    /**
+     * @param mixed $result
+     * @return array
+     */
+    public function serializeResult($result);
 
-    public function cancel(array $args);
-
-    public function delete(array $args);
-
-    public function list(array $args);
+    /**
+     * @param mixed $error
+     * @return array
+     */
+    public function serializeError($error);
 }

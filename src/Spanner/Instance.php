@@ -19,6 +19,7 @@ namespace Google\Cloud\Spanner;
 
 use Google\Cloud\Exception\NotFoundException;
 use Google\Cloud\Iam\Iam;
+use Google\Cloud\LongRunning\Normalizer\LongRunningNormalizerInterface;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
@@ -55,6 +56,11 @@ class Instance
     private $sessionPool;
 
     /**
+     * @var LongRunningNormalizerInterface
+     */
+    private $lroNormalizer;
+
+    /**
      * @var string
      */
     private $projectId;
@@ -85,6 +91,7 @@ class Instance
      * @param ConnectionInterface $connection The connection to the
      *        Google Cloud Spanner Admin API.
      * @param SessionPoolInterface $sessionPool The session pool implementation.
+     * @param LongRunningNormalizerInterface $lroNormalizer Normalizes Long Running Operations.
      * @param string $projectId The project ID.
      * @param string $name The instance name.
      * @param bool $returnInt64AsObject If true, 64 bit integers will be
@@ -95,6 +102,7 @@ class Instance
     public function __construct(
         ConnectionInterface $connection,
         SessionPoolInterface $sessionPool,
+        LongRunningNormalizerInterface $lroNormalizer,
         $projectId,
         $name,
         $returnInt64AsObject = false,
@@ -102,6 +110,7 @@ class Instance
     ) {
         $this->connection = $connection;
         $this->sessionPool = $sessionPool;
+        $this->lroNormalizer = $lroNormalizer;
         $this->projectId = $projectId;
         $this->name = $name;
         $this->returnInt64AsObject = $returnInt64AsObject;
@@ -251,7 +260,7 @@ class Instance
      *     @type array $labels For more information, see
      *           [Using labels to organize Google Cloud Platform resources](https://goo.gl/xmQnxf).
      * }
-     * @return void
+     * @return LongRunningOperation
      * @throws \InvalidArgumentException
      */
     public function update(array $options = [])
@@ -266,9 +275,13 @@ class Instance
                 : []
         ];
 
-        $this->connection->updateInstance([
+        $operation = $this->connection->updateInstance([
             'name' => $this->fullyQualifiedInstanceName(),
         ] + $options);
+
+        return $this->lroNormalizer->normalize($operation, 'updateInstance', function($result) use ($name) {
+            return $this->instance($name, $result));
+        });
     }
 
     /**
@@ -321,13 +334,15 @@ class Instance
 
         $statement = sprintf('CREATE DATABASE `%s`', $name);
 
-        $this->connection->createDatabase([
+        $operation = $this->connection->createDatabase([
             'instance' => $this->fullyQualifiedInstanceName(),
             'createStatement' => $statement,
             'extraStatements' => $options['statements']
         ]);
 
-        return $this->database($name);
+        return $this->lroNormalizer->normalize($operation, 'createDatabase', function($result) use ($name) {
+            return $this->database($name);
+        });
     }
 
     /**
@@ -347,6 +362,7 @@ class Instance
             $this->connection,
             $this,
             $this->sessionPool,
+            $this->lroNormalizer,
             $this->projectId,
             $name,
             $this->returnInt64AsObject

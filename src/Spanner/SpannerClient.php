@@ -20,8 +20,10 @@ namespace Google\Cloud\Spanner;
 use Google\Cloud\ClientTrait;
 use Google\Cloud\Exception\NotFoundException;
 use Google\Cloud\Int64;
+use Google\Cloud\LongRunning\Normalizer\GrpcNormalizer;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Connection\Grpc;
+use Google\Cloud\Spanner\Connection\LongRunningConnection;
 use Google\Cloud\Spanner\Session\SessionClient;
 use Google\Cloud\Spanner\Session\SimpleSessionPool;
 use Google\Cloud\ValidateTrait;
@@ -79,6 +81,11 @@ class SpannerClient
     private $returnInt64AsObject;
 
     /**
+     * @var LongRunningNormalizerInterface
+     */
+    private $lroNormalizer;
+
+    /**
      * Create a Spanner client.
      *
      * @param array $config [optional] {
@@ -115,6 +122,8 @@ class SpannerClient
         ];
 
         $this->connection = new Grpc($this->configureAuthentication($config));
+        $lroConnection = new LongRunningConnection($this->connection);
+        $this->lroNormalizer = new GrpcNormalizer($lroConnection);
 
         $this->sessionClient = new SessionClient($this->connection, $this->projectId);
         $this->sessionPool = new SimpleSessionPool($this->sessionClient);
@@ -207,7 +216,7 @@ class SpannerClient
      *     @type array $labels For more information, see
      *           [Using labels to organize Google Cloud Platform resources](https://cloudplatform.googleblog.com/2015/10/using-labels-to-organize-Google-Cloud-Platform-resources.html).
      * }
-     * @return Instance
+     * @return LongRunningOperation
      * @codingStandardsIgnoreEnd
      */
     public function createInstance(Configuration $config, $name, array $options = [])
@@ -221,14 +230,16 @@ class SpannerClient
         // This must always be set to CREATING, so overwrite anything else.
         $options['state'] = State::CREATING;
 
-        $res = $this->connection->createInstance([
+        $operation = $this->connection->createInstance([
             'instanceId' => $name,
             'name' => InstanceAdminClient::formatInstanceName($this->projectId, $name),
             'projectId' => InstanceAdminClient::formatProjectName($this->projectId),
             'config' => InstanceAdminClient::formatInstanceConfigName($this->projectId, $config->name())
         ] + $options);
 
-        return $this->instance($name);
+        return $this->lroNormalizer->normalize($operation, 'createInstance', function($result) use ($name) {
+            return $this->instance($name, $result));
+        });
     }
 
     /**
@@ -247,6 +258,7 @@ class SpannerClient
         return new Instance(
             $this->connection,
             $this->sessionPool,
+            $this->lroNormalizer,
             $this->projectId,
             $name,
             $this->returnInt64AsObject,

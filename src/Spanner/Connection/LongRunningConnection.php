@@ -28,27 +28,28 @@ class LongRunningConnection implements LongRunningConnectionInterface
         $this->connection = $connection;
     }
 
-    /**
-     * @param array $args
-     */
-    public function getOperation(array $args)
+    public function reload(array $args)
+    {
+        return $this->connection->reloadOperation($args);
+    }
+
+    public function get(array $args)
     {
         return $this->connection->getOperation($args);
     }
 
-    /**
-     * @param array $args
-     */
-    public function cancelOperation(array $args)
+    public function cancel(array $args)
     {
         return $this->connection->cancelOperation($args);
     }
 
-    /**
-     * @param array $args
-     */
-    public function deleteOperation(array $args)
+    public function delete(array $args)
     {
         return $this->connection->deleteOperation($args);
+    }
+
+    public function list(array $args)
+    {
+        return $this->connection->listOperations($args);
     }
 }
