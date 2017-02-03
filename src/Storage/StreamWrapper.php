@@ -193,6 +193,16 @@ class StreamWrapper
     public function stream_stat()
     {
         // @codingStandardsIgnoreEnd
+        $size = $this->getStream()->getSize();
+        if (!$size) {
+            foreach ($this->getStream()->getMetadata('wrapper_data') as $value) {
+                if (substr($value, 0, 15) == "Content-Length:") {
+                    $size = (int) substr($value, 16);
+                    break;
+                }
+            }
+        }
+
         return [
             'dev'     => 0,
             'ino'     => 0,
@@ -201,7 +211,7 @@ class StreamWrapper
             'uid'     => 0,
             'gid'     => 0,
             'rdev'    => 0,
-            'size'    => $this->getStream()->getSize(),
+            'size'    => $size,
             'atime'   => 0,
             'mtime'   => 0,
             'ctime'   => 0,
@@ -421,7 +431,7 @@ class StreamWrapper
      */
     public function url_stat($path, $flags)
     {
-        $fp = fopen($path, 'rb');
+        $fp = @fopen($path, 'rb');
         if ($fp === false) {
             return false;
         }
