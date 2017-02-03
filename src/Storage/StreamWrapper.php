@@ -18,6 +18,7 @@
 namespace Google\Cloud\Storage;
 
 use Google\Cloud\Exception\GoogleException;
+use Google\Cloud\Exception\ServiceException;
 
 /**
  * A streamWrapper implementation for handling `gs://bucket/path/to/file.jpg`
@@ -110,13 +111,8 @@ class StreamWrapper
     public function stream_open($path, $mode, $flags, &$opened_path)
     {
         // @codingStandardsIgnoreEnd
-        $url = parse_url($path);
-        $this->protocol = $url['scheme'];
-        $this->file = substr($url['path'], 1);
+        $client = $this->openPath($path);
         $this->mode = $mode;
-
-        $client = self::getClient($this->protocol);
-        $this->bucket = $client->bucket($url['host']);
 
         $options = [];
         if ($this->context) {
@@ -263,5 +259,174 @@ class StreamWrapper
     {
         // @codingStandardsIgnoreEnd
         return $this->getStream()->tell();
+    }
+
+    // @codingStandardsIgnoreStart
+    /**
+     * Callback handler for trying to close an opened directory.
+     *
+     * @return bool
+     */
+    public function dir_closedir()
+    {
+        // @codingStandardsIgnoreEnd
+        return false;
+    }
+
+    // @codingStandardsIgnoreStart
+    /**
+     * Callback handler for trying to open a directory.
+     *
+     * @param string $path The url directory to open
+     * @param int $options Whether or not to enforce safe_mode
+     * @return bool
+     */
+    public function dir_opendir($path, $options)
+    {
+        // @codingStandardsIgnoreEnd
+
+        return false;
+    }
+
+    // @codingStandardsIgnoreStart
+    /**
+     * Callback handler for reading an entry from a directory handle.
+     *
+     * @return string
+     */
+    public function dir_readdir()
+    {
+        // @codingStandardsIgnoreEnd
+        return false;
+    }
+
+    // @codingStandardsIgnoreStart
+    /**
+     * Callback handler for rewind the directory handle.
+     *
+     * @return bool
+     */
+    public function dir_rewinddir()
+    {
+        // @codingStandardsIgnoreEnd
+        return false;
+    }
+
+    /**
+     * Callback handler for trying to create a directory.
+     *
+     * @param string $path The url directory to creaet
+     * @param int $mode The permissions on the directory
+     * @param int $options Bitwise mask of options
+     * @return bool
+     */
+    public function mkdir($path, $mode, $options)
+    {
+        $client = $this->openPath($path);
+        $this->file = $this->makeDirectory($this->file);
+
+        try {
+            $this->bucket->upload("", [
+                'name' => $this->file
+            ]);
+        } catch (GoogleException $e) {
+            return false;
+        }
+        return true;
+    }
+
+    private function openPath($path)
+    {
+        $url = parse_url($path);
+        $this->protocol = $url['scheme'];
+        $this->file = substr($url['path'], 1);
+        $client = self::getClient($this->protocol);
+        $this->bucket = $client->bucket($url['host']);
+        return $client;
+    }
+
+    private function makeDirectory($path)
+    {
+        if (substr($path, -1) == '/') {
+            return $path;
+        } else {
+            return $path . '/';
+        }
+    }
+
+    /**
+     * Callback handler for trying to move a file or directory.
+     *
+     * @param string $from The URL to the current file
+     * @param string $to The URL of the new file location
+     * @return bool
+     */
+    public function rename($from, $to)
+    {
+        return false;
+    }
+
+    /**
+     * Callback handler for trying to remove a directory..
+     *
+     * @param string $path The URL directory to remove
+     * @param int $options Bitwise mask of options
+     * @return bool
+     */
+    public function rmdir($path, $options)
+    {
+        $path = $this->makeDirectory($path);
+        if ($this->dir_readdir() !== false) {
+            trigger_error('The directory is not empty.', E_USER_WARNING);
+            return false;
+        }
+        return $this->unlink($path);
+    }
+
+    /**
+     * Callback handler for retrieving the underlaying resource
+     *
+     * @param int $castAs STREAM_CAST_FOR_SELECT | STREAM_CAST_AS_STREAM
+     * @return resource
+     */
+    public function stream_cast($castAs)
+    {
+        return null;
+    }
+
+    /**
+     * Callback handler for deleting a file
+     *
+     * @param string $path The URL of the file to delete
+     * @return bool
+     */
+    public function unlink($path)
+    {
+        $client = $this->openPath($path);
+        $object = $this->bucket->object($this->file);
+
+        try {
+            return $object->delete();
+        } catch (GoogleException $e) {
+            return false;
+        }
+    }
+
+    /**
+     * Callback handler for retrieving information about a file
+     *
+     * @param string $path The URI to the file
+     * @param int $flags Bitwise mask of options
+     * @return array
+     */
+    public function url_stat($path, $flags)
+    {
+        $fp = fopen($path, 'rb');
+        if ($fp === false) {
+            return false;
+        }
+        $stats = fstat($fp);
+        fclose($fp);
+        return $stats;
     }
 }
