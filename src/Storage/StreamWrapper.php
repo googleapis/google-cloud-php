@@ -47,6 +47,11 @@ class StreamWrapper
     private static $clients = [];
 
     /**
+     * @var \Generator Used for iterating through a directory
+     */
+    private $directoryGenerator;
+
+    /**
      * Ensure we close the stream when this StreamWrapper is destroyed.
      */
     public function __destruct()
@@ -256,7 +261,8 @@ class StreamWrapper
     public function stream_seek($offset, $whence)
     {
         // @codingStandardsIgnoreEnd
-        return $this->getStream()->seek($offset, $whence);
+        // Currently cannot seek (using BufferStreams)
+        return false;
     }
 
     // @codingStandardsIgnoreStart
@@ -294,8 +300,9 @@ class StreamWrapper
     public function dir_opendir($path, $options)
     {
         // @codingStandardsIgnoreEnd
-
-        return false;
+        $this->openPath($path);
+        $this->dir_rewinddir();
+        return true;
     }
 
     // @codingStandardsIgnoreStart
@@ -307,7 +314,13 @@ class StreamWrapper
     public function dir_readdir()
     {
         // @codingStandardsIgnoreEnd
-        return false;
+        $object = $this->directoryGenerator->current();
+        if ($object) {
+            $this->directoryGenerator->next();
+            return $object->name();
+        } else {
+            return false;
+        }
     }
 
     // @codingStandardsIgnoreStart
@@ -319,7 +332,11 @@ class StreamWrapper
     public function dir_rewinddir()
     {
         // @codingStandardsIgnoreEnd
-        return false;
+        $this->directoryGenerator = $this->bucket->objects([
+            'prefix' => $this->file,
+            'fields' => 'items/name,nextPageToken'
+        ]);
+        return true;
     }
 
     /**
@@ -386,10 +403,6 @@ class StreamWrapper
     public function rmdir($path, $options)
     {
         $path = $this->makeDirectory($path);
-        if ($this->dir_readdir() !== false) {
-            trigger_error('The directory is not empty.', E_USER_WARNING);
-            return false;
-        }
         return $this->unlink($path);
     }
 

@@ -24,6 +24,7 @@ use Google\Cloud\Storage\StreamWrapper;
 use Google\Cloud\Upload\StreamableUploader;
 use Prophecy\Argument;
 use Prophecy\Prophecy\ObjectProphecy;
+use Prophecy\Promise\CallbackPromise;
 use GuzzleHttp\Psr7;
 
 /**
@@ -112,6 +113,22 @@ class StreamWrapperTest extends \PHPUnit_Framework_TestCase
     /**
      * @group storageWrite
      */
+    public function testFileWrite()
+    {
+        $uploader  = $this->prophesize(StreamableUploader::class);
+        $uploader->write(Argument::any())->willReturn(6);
+        $uploader->close()->shouldBeCalled();
+        $this->bucket->getStreamableUploader("", Argument::type('array'))->willReturn($uploader->reveal());
+
+        $fp = fopen('gs://my_bucket/output.txt', 'w');
+        $this->assertEquals(6, fwrite($fp, "line1."));
+        $this->assertEquals(6, fwrite($fp, "line2."));
+        fclose($fp);
+    }
+
+    /**
+     * @group storageWrite
+     */
     public function testFilePutContents()
     {
         $uploader  = $this->prophesize(StreamableUploader::class);
@@ -120,6 +137,30 @@ class StreamWrapperTest extends \PHPUnit_Framework_TestCase
         $this->bucket->getStreamableUploader("", Argument::type('array'))->willReturn($uploader->reveal());
 
         file_put_contents('gs://my_bucket/file_put_contents.txt', 'Some data.');
+    }
+
+    /**
+     * @group storageSeek
+     */
+    public function testSeekOnWritableStream()
+    {
+        $uploader  = $this->prophesize(StreamableUploader::class);
+        $this->bucket->getStreamableUploader("", Argument::type('array'))->willReturn($uploader->reveal());
+
+        $fp = fopen('gs://my_bucket/output.txt', 'w');
+        $this->assertEquals(-1, fseek($fp, 100));
+        fclose($fp);
+    }
+
+    /**
+     * @group storageSeek
+     */
+    public function testSeekOnReadableStream()
+    {
+        $this->mockObjectData("some_long_file.txt", "line1.\nline2.");
+        $fp = fopen('gs://my_bucket/some_long_file.txt', 'r');
+        $this->assertEquals(-1, fseek($fp, 100));
+        fclose($fp);
     }
 
     /**
@@ -221,12 +262,30 @@ class StreamWrapperTest extends \PHPUnit_Framework_TestCase
      */
     public function testDirectoryListing()
     {
+        $test = $this;
+        $this->bucket->objects(
+            Argument::that(function($options){
+                return $options['prefix'] == 'foo/';
+            })
+        )->will(function() use ($test) {
+            return $test->fileGenerator();
+        });
         $fd = opendir('gs://my_bucket/foo/');
-        $this->assertEqual('file1.txt', readdir($fd));
-        $this->assertEqual('file2.txt', readdir($fd));
+        $this->assertEquals('file1.txt', readdir($fd));
+        $this->assertEquals('file2.txt', readdir($fd));
+        $this->assertEquals('file3.txt', readdir($fd));
         $this->assertTrue(rewind($fd));
-        $this->assertEqual('file1.txt', readdir($fd));
+        $this->assertEquals('file1.txt', readdir($fd));
         closedir($fd);
+    }
+
+    private function fileGenerator()
+    {
+        for($i = 1; $i < 10; $i++) {
+            $obj = $this->prophesize(StorageObject::class);
+            $obj->name()->willReturn("file$i.txt");
+            yield $obj->reveal();
+        }
     }
 
     public function testRenameFile()
