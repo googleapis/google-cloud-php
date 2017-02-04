@@ -418,6 +418,7 @@ class StreamWrapper
         return $this->unlink($path);
     }
 
+    // @codingStandardsIgnoreStart
     /**
      * Callback handler for retrieving the underlaying resource
      *
@@ -426,6 +427,7 @@ class StreamWrapper
      */
     public function stream_cast($castAs)
     {
+        // @codingStandardsIgnoreEnd
         return false;
     }
 
@@ -447,6 +449,7 @@ class StreamWrapper
         }
     }
 
+    // @codingStandardsIgnoreStart
     /**
      * Callback handler for retrieving information about a file
      *
@@ -456,6 +459,7 @@ class StreamWrapper
      */
     public function url_stat($path, $flags)
     {
+        // @codingStandardsIgnoreEnd
         $fp = @fopen($path, 'rb');
         if ($fp === false) {
             return false;
