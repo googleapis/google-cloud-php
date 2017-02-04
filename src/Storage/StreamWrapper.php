@@ -390,7 +390,19 @@ class StreamWrapper
      */
     public function rename($from, $to)
     {
-        return false;
+        $url = parse_url($to);
+        $destinationBucket = $url['host'];
+        $destinationPath = substr($url['path'], 1);
+
+        $this->dir_opendir($from, []);
+        foreach ($this->directoryGenerator as $file) {
+            $name = $file->name();
+            $newPath = str_replace($this->file, $destinationPath, $name);
+
+            $obj = $this->bucket->object($name);
+            $obj->rename($newPath, ['destinationBucket' => $destinationBucket]);
+        }
+        return true;
     }
 
     /**
