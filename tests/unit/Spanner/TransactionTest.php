@@ -63,12 +63,11 @@ class TransactionTest extends \PHPUnit_Framework_TestCase
         $args = [
             $this->operation,
             $this->session,
-            SessionPoolInterface::CONTEXT_READWRITE,
             self::TRANSACTION,
         ];
 
         $props = [
-            'operation', 'readTimestamp', 'context'
+            'operation', 'readTimestamp', 'state'
         ];
 
         $this->transaction = \Google\Cloud\Dev\stub(Transaction::class, $args, $props);
@@ -177,7 +176,7 @@ class TransactionTest extends \PHPUnit_Framework_TestCase
         $sql = 'SELECT * FROM Table';
 
         $this->connection->executeSql(Argument::that(function ($arg) use ($sql) {
-            if ($arg['transactionId'] !== self::TRANSACTION) return false;
+            if ($arg['transaction']['id'] !== self::TRANSACTION) return false;
             if ($arg['sql'] !== $sql) return false;
 
             return true;
@@ -214,9 +213,10 @@ class TransactionTest extends \PHPUnit_Framework_TestCase
         $opts = ['foo' => 'bar'];
 
         $this->connection->read(Argument::that(function ($arg) use ($table, $opts) {
-            if ($arg['transactionId'] !== self::TRANSACTION) return false;
+            if ($arg['transaction']['id'] !== self::TRANSACTION) return false;
             if ($arg['table'] !== $table) return false;
-            if ($arg['foo'] !== $opts['foo']) return false;
+            if ($arg['keySet']['all'] !== true) return false;
+            if ($arg['columns'] !== ['ID']) return false;
 
             return true;
         }))->shouldBeCalled()->willReturn([
@@ -241,7 +241,7 @@ class TransactionTest extends \PHPUnit_Framework_TestCase
 
         $this->refreshOperation();
 
-        $res = $this->transaction->read($table, $opts);
+        $res = $this->transaction->read($table, new KeySet(['all' => true]), ['ID']);
         $this->assertInstanceOf(Result::class, $res);
         $this->assertEquals(10, $res->rows()[0]['ID']);
     }
@@ -263,19 +263,10 @@ class TransactionTest extends \PHPUnit_Framework_TestCase
     /**
      * @expectedException RuntimeException
      */
-    public function testCommitInvalidContext()
+    public function testCommitInvalidState()
     {
-        $this->transaction->___setProperty('context', SessionPoolInterface::CONTEXT_READ);
+        $this->transaction->___setProperty('state', 'foo');
         $this->transaction->commit();
-    }
-
-    /**
-     * @expectedException RuntimeException
-     */
-    public function testEnqueueInvalidContext()
-    {
-        $this->transaction->___setProperty('context', SessionPoolInterface::CONTEXT_READ);
-        $this->transaction->insert('Posts', []);
     }
 
     public function testRollback()
@@ -288,14 +279,13 @@ class TransactionTest extends \PHPUnit_Framework_TestCase
         $this->transaction->rollback();
     }
 
-    public function testReadTimestamp()
+    /**
+     * @expectedException RuntimeException
+     */
+    public function testRollbackInvalidState()
     {
-        $this->transaction->___setProperty('context', SessionPoolInterface::CONTEXT_READ);
-        $this->transaction->___setProperty('readTimestamp', new Timestamp(new \DateTimeImmutable(self::TIMESTAMP)));
-
-        $ts = $this->transaction->readTimestamp();
-
-        $this->assertInstanceOf(Timestamp::class, $ts);
+        $this->transaction->___setProperty('state', 'foo');
+        $this->transaction->rollback();
     }
 
     public function testId()
@@ -303,9 +293,19 @@ class TransactionTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(self::TRANSACTION, $this->transaction->id());
     }
 
-    public function testContext()
+    public function testState()
     {
-        $this->assertEquals(SessionPoolInterface::CONTEXT_READWRITE, $this->transaction->context());
+        $this->assertEquals(Transaction::STATE_ACTIVE, $this->transaction->state());
+
+        $this->transaction->___setProperty('state', Transaction::STATE_COMMITTED);
+        $this->assertEquals(Transaction::STATE_COMMITTED, $this->transaction->state());
+    }
+
+    public function testMutations()
+    {
+        $this->assertEmpty($this->transaction->mutations());
+        $this->transaction->insert('Posts', []);
+        $this->assertEquals(1, count($this->transaction->mutations()));
     }
 
     // *******

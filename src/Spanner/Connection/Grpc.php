@@ -32,6 +32,7 @@ use google\spanner\v1;
 use google\spanner\v1\KeySet;
 use google\spanner\v1\Mutation;
 use google\spanner\v1\TransactionOptions;
+use google\spanner\v1\TransactionSelector;
 use google\spanner\v1\Type;
 
 class Grpc implements ConnectionInterface
@@ -168,18 +169,6 @@ class Grpc implements ConnectionInterface
             $fieldMask,
             $args
         ]);
-    }
-
-    private function instanceObject(array &$args, $required = false)
-    {
-        return (new Instance())->deserialize(array_filter([
-            'name' => $this->pluck('name', $args, $required),
-            'config' => $this->pluck('config', $args, $required),
-            'displayName' => $this->pluck('displayName', $args, $required),
-            'nodeCount' => $this->pluck('nodeCount', $args, $required),
-            'state' => $this->pluck('state', $args, $required),
-            'labels' => $this->formatLabelsForApi($this->pluck('labels', $args, $required))
-        ]), $this->codec);
     }
 
     /**
@@ -359,13 +348,19 @@ class Grpc implements ConnectionInterface
      */
     public function executeSql(array $args = [])
     {
-        $args['params'] = (new protobuf\Struct)
-            ->deserialize($this->formatStructForApi($args['params']), $this->codec);
+        $params = new protobuf\Struct;
+        if (!empty($args['params'])) {
+            $params->deserialize($this->formatStructForApi($args['params']), $this->codec);
+        }
+
+        $args['params'] = $params;
 
         foreach ($args['paramTypes'] as $key => $param) {
             $args['paramTypes'][$key] = (new Type)
                 ->deserialize($param, $this->codec);
         }
+
+        $args['transaction'] = $this->createTransactionSelector($args);
 
         return $this->send([$this->spannerClient, 'executeSql'], [
             $this->pluck('session', $args),
@@ -382,6 +377,8 @@ class Grpc implements ConnectionInterface
         $keySet = $this->pluck('keySet', $args);
         $keySet = (new KeySet)
             ->deserialize($this->formatKeySet($keySet), $this->codec);
+
+        $args['transaction'] = $this->createTransactionSelector($args);
 
         return $this->send([$this->spannerClient, 'read'], [
             $this->pluck('session', $args),
@@ -400,8 +397,18 @@ class Grpc implements ConnectionInterface
         $options = new TransactionOptions;
 
         if (isset($args['transactionOptions']['readOnly'])) {
+            $ro = $args['transactionOptions']['readOnly'];
+
+            if (isset($ro['minReadTimestamp'])) {
+                $ro['minReadTimestamp'] = $this->formatTimestampForApi($ro['minReadTimestamp']);
+            }
+
+            if (isset($ro['readTimestamp'])) {
+                $ro['readTimestamp'] = $this->formatTimestampForApi($ro['readTimestamp']);
+            }
+
             $readOnly = (new TransactionOptions\ReadOnly)
-                ->deserialize($args['transactionOptions']['readOnly'], $this->codec);
+                ->deserialize($ro, $this->codec);
 
             $options->setReadOnly($readOnly);
         } else {
@@ -461,7 +468,7 @@ class Grpc implements ConnectionInterface
 
         if (isset($args['singleUseTransaction'])) {
             $readWrite = (new TransactionOptions\ReadWrite)
-                ->deserialize($args['singleUseTransaction']['readWrite'], $this->codec);
+                ->deserialize([], $this->codec);
 
             $options = new TransactionOptions;
             $options->setReadWrite($readWrite);
@@ -508,5 +515,37 @@ class Grpc implements ConnectionInterface
         }
 
         return $keySet;
+    }
+
+    /**
+     * @param array $args
+     * @return array
+     */
+    private function createTransactionSelector(array &$args)
+    {
+        $selector = new TransactionSelector;
+        if (isset($args['transaction'])) {
+            $selector = $selector->deserialize($this->pluck('transaction', $args), $this->codec);
+        } elseif (isset($args['transactionId'])) {
+            $selector = $selector->deserialize(['id' => $this->pluck('transactionId', $args)], $this->codec);
+        }
+
+        return $selector;
+    }
+
+    /**
+     * @param array $args
+     * @param bool $isRequired
+     */
+    private function instanceObject(array &$args, $required = false)
+    {
+        return (new Instance())->deserialize(array_filter([
+            'name' => $this->pluck('name', $args, $required),
+            'config' => $this->pluck('config', $args, $required),
+            'displayName' => $this->pluck('displayName', $args, $required),
+            'nodeCount' => $this->pluck('nodeCount', $args, $required),
+            'state' => $this->pluck('state', $args, $required),
+            'labels' => $this->formatLabelsForApi($this->pluck('labels', $args, $required))
+        ]), $this->codec);
     }
 }

@@ -18,8 +18,10 @@
 namespace Google\Cloud\Spanner;
 
 use Google\Cloud\ArrayTrait;
+use Google\Cloud\Exception\AbortedException;
 use Google\Cloud\Exception\NotFoundException;
 use Google\Cloud\Iam\Iam;
+use Google\Cloud\Retry;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Connection\IamDatabase;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
@@ -51,7 +53,9 @@ use Google\Cloud\Spanner\V1\SpannerClient as GrpcSpannerClient;
  */
 class Database
 {
-    use ArrayTrait;
+    use TransactionConfigurationTrait;
+
+    const MAX_RETRIES = 3;
 
     /**
      * @var ConnectionInterface
@@ -256,7 +260,7 @@ class Database
      */
     public function drop(array $options = [])
     {
-        return $this->connection->dropDatabase($options + [
+        $this->connection->dropDatabase($options + [
             'name' => $this->fullyQualifiedDatabaseName()
         ]);
     }
@@ -307,124 +311,223 @@ class Database
     }
 
     /**
-     * Create a Read Only transaction.
+     * Create a snapshot to read from a database at a point in time.
      *
      * If no configuration options are provided, transaction will be opened with
      * strong consistency.
      *
+     * Snapshots are executed behind the scenes using a Read-Only Transaction.
+     *
      * Example:
      * ```
-     * $transaction = $database->readOnlyTransaction();
+     * $snapshot = $database->snapshot();
+     * ```
+     *
+     * ```
+     * // Take a shapshot with a returned timestamp.
+     * $snapshot = $database->snapshot([
+     *     'returnReadTimestamp' => true
+     * ]);
+     *
+     * $timestamp = $snapshot->readTimestamp();
      * ```
      *
      * @codingStandardsIgnoreStart
      * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#google.spanner.v1.BeginTransactionRequest BeginTransactionRequest
+     * @see https://cloud.google.com/spanner/docs/transactions Transactions
+     *
      * @param array $options [optional] {
      *     Configuration Options
      *
      *     See [ReadOnly](https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#google.spanner.v1.TransactionOptions.ReadOnly)
      *     for detailed description of available options.
      *
-     *     Please note that only one of `$strong`, `$minReadTimestamp`,
-     *     `$maxStaleness`, `$readTimestamp` or `$exactStaleness` may be set in
-     *     a request.
+     *     Please note that only one of `$strong`, `$readTimestamp` or
+     *     `$exactStaleness` may be set in a request.
      *
      *     @type bool $returnReadTimestamp If true, the Cloud Spanner-selected
      *           read timestamp is included in the Transaction message that
      *           describes the transaction.
      *     @type bool $strong Read at a timestamp where all previously committed
      *           transactions are visible.
-     *     @type Timestamp $minReadTimestamp Executes all reads at a timestamp
-     *           greater than or equal to the given timestamp.
-     *     @type int $maxStaleness Represents a number of seconds. Read data at
-     *           a timestamp greater than or equal to the current time minus the
-     *           given number of seconds.
      *     @type Timestamp $readTimestamp Executes all reads at the given
      *           timestamp.
-     *     @type int $exactStaleness Represents a number of seconds. Executes
+     *     @type Duration $exactStaleness Represents a number of seconds. Executes
      *           all reads at a timestamp that is $exactStaleness old.
      * }
+     * @return Snapshot
      * @codingStandardsIgnoreEnd
-     * @return Transaction
      */
-    public function readOnlyTransaction(array $options = [])
+    public function snapshot(array $options = [])
     {
-        $options += [
-            'returnReadTimestamp' => null,
-            'strong' => null,
-            'minReadTimestamp' => null,
-            'maxStaleness' => null,
-            'readTimestamp' => null,
-            'exactStaleness' => null
-        ];
-
-        $options['transactionOptions'] = [
-            'readOnly' => $this->arrayFilterPreserveBool([
-                'returnReadTimestamp' => $this->pluck('returnReadTimestamp', $options),
-                'strong' => $this->pluck('strong', $options),
-                'minReadTimestamp' => $this->pluck('minReadTimestamp', $options),
-                'maxStaleness' => $this->pluck('maxStaleness', $options),
-                'readTimestamp' => $this->pluck('readTimestamp', $options),
-                'exactStaleness' => $this->pluck('exactStaleness', $options),
-            ])
-        ];
-
-        if (empty($options['transactionOptions']['readOnly'])) {
-            $options['transactionOptions']['readOnly']['strong'] = true;
+        // These are only available in single-use transactions.
+        if (isset($options['maxStaleness']) || isset($options['minReadTimestamp'])) {
+            throw new \BadMethodCallException(
+                'maxStaleness and minReadTimestamp are only available in single-use transactions.'
+            );
         }
 
-        $timestampFields = [
-            'minReadTimestamp',
-            'readTimestamp'
-        ];
-
-        foreach ($timestampFields as $tsf) {
-            if (isset($options['transactionOptions']['readOnly'][$tsf])) {
-                $field = $options['transactionOptions']['readOnly'][$tsf];
-                if (!($field instanceof Timestamp)) {
-                    throw new \InvalidArgumentException(sprintf(
-                        'Read Only Transaction Configuration Field %s must be an instance of Timestamp',
-                        $tsf
-                    ));
-                }
-
-                $options['transactionOptions']['readOnly'][$tsf] = $field->formatAsString();
-            }
-        }
+        $transactionOptions = $this->configureSnapshotOptions($options);
 
         $session = $this->selectSession(SessionPoolInterface::CONTEXT_READ);
 
-        return $this->operation->transaction($session, SessionPoolInterface::CONTEXT_READ, $options);
+        return $this->operation->snapshot($session, $transactionOptions);
     }
 
     /**
-     * Create a Read/Write transaction
+     * Execute Read/Write operations inside a Transaction.
+     *
+     * Using this method and providing a callable operation provides certain
+     * benefits including automatic retry when a transaction fails. In case of a
+     * failure, all transaction operations, including reads, are re-applied in a
+     * new transaction.
+     *
+     * If a transaction exceeds the maximum number of retries,
+     * {@see Google\Cloud\Exception\AbortedException} will be thrown. Any other
+     * exception types will immediately bubble up and will interrupt the retry
+     * operation.
+     *
+     * Please note that once a transaction reads data, it will lock the read
+     * data, preventing other users from modifying that data. For this reason,
+     * it is important that every transaction commits or rolls back as early as
+     * possible. Do not hold transactions open longer than necessary.
+     *
+     * If you have an active transaction which was obtained from elsewhere, you
+     * can provide it to this method and gain the benefits of managed retry by
+     * setting `$options.transaction` to your {@see Google\Cloud\Spanner\Transaction}
+     * instance. Please note that in this case, it is important that ALL reads
+     * and mutations MUST be performed within the runTransaction callable.
      *
      * Example:
      * ```
-     * $transaction = $database->readWriteTransaction();
+     * $transaction = $database->runTransaction(function (Transaction $t) use ($userName, $password) {
+     *     $user = $t->execute('SELECT * FROM Users WHERE Name = @name and PasswordHash = @password', [
+     *         'parameters' => [
+     *             'name' => $userName,
+     *             'password' => password_hash($password)
+     *         ]
+     *     ])->firstRow();
+     *
+     *     if ($user) {
+     *         grantAccess($user);
+     *
+     *         $user['loginCount'] = $user['loginCount'] + 1;
+     *         $t->update('Users', $user);
+     *     } else {
+     *         $t->rollback();
+     *     }
+     *
+     *     $t->commit();
+     * });
      * ```
      *
      * @codingStandardsIgnoreStart
      * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#google.spanner.v1.BeginTransactionRequest BeginTransactionRequest
+     * @see https://cloud.google.com/spanner/docs/transactions Transactions
      * @codingStandardsIgnoreEnd
      *
-     * @param array $options [optional] Configuration Options
+     * @param callable $operation The operations to run in the transaction.
+     *        **Signature:** `function (Transaction $transaction)`.
+     * @param array $options [optional] {
+     *     Configuration Options
+     *
+     *     @type int $maxRetries The number of times to attempt to apply the
+     *           operation before failing. **Defaults to ** `3`.
+     *     @type Transaction $transaction If provided, the transaction will be
+     *           passed to the callable instead of attempting to begin a new
+     *           transaction.
+     * }
+     * @return mixed The return value of `$operation`.
+     */
+    public function runTransaction(callable $operation, array $options = [])
+    {
+        $options += [
+            'maxRetries' => self::MAX_RETRIES,
+            'transaction' => null
+        ];
+
+        // There isn't anything configurable here.
+        $options['transactionOptions'] = $this->configureTransactionOptions();
+
+        $session = $this->selectSession(SessionPoolInterface::CONTEXT_READWRITE);
+
+        $attempt = 0;
+        $startTransactionFn = function ($session, $options) use ($options, &$attempt) {
+            if ($attempt === 0 && $options['transaction'] instanceof Transaction) {
+                $transaction = $options['transaction'];
+            } else {
+                $transaction = $this->operation->transaction($session, $options);
+            }
+
+            $attempt++;
+            return $transaction;
+        };
+
+        $delayFn = function (\Exception $e) {
+            if (!($e instanceof AbortedException)) {
+                throw $e;
+            }
+
+            $delay = $e->getRetryDelay();
+            time_nanosleep($delay['seconds'], $delay['nanos']);
+        };
+
+        $commitFn = function($operation, $session, $options) use ($startTransactionFn) {
+            $transaction = call_user_func_array($startTransactionFn, [
+                $session,
+                $options
+            ]);
+
+            return call_user_func($operation, $transaction);
+        };
+
+        $retry = new Retry($options['maxRetries'], $delayFn);
+        return $retry->execute($commitFn, [$operation, $session, $options]);
+    }
+
+    /**
+     * Create and return a new read/write Transaction.
+     *
+     * When manually using a Transaction, it is advised that retry logic be
+     * implemented to reapply all operations when an instance of
+     * {@see Google\Cloud\Exception\AbortedException} is thrown.
+     *
+     * If you wish Google Cloud PHP to handle retry logic for you (recommended
+     * for most cases), use {@see Google\Cloud\Spanner\Database::runTransaction()}.
+     *
+     * Please note that once a transaction reads data, it will lock the read
+     * data, preventing other users from modifying that data. For this reason,
+     * it is important that every transaction commits or rolls back as early as
+     * possible. Do not hold transactions open longer than necessary.
+     *
+     * Example:
+     * ```
+     * $transaction = $database->transaction();
+     * ```
+     *
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#google.spanner.v1.BeginTransactionRequest BeginTransactionRequest
+     * @see https://cloud.google.com/spanner/docs/transactions Transactions
+     * @codingStandardsIgnoreEnd
+     *
+     * @param array $options [optional] Configuration Options.
      * @return Transaction
      */
-    public function readWriteTransaction(array $options = [])
+    public function transaction(array $options = [])
     {
+        // There isn't anything configurable here.
         $options['transactionOptions'] = [
             'readWrite' => []
         ];
 
         $session = $this->selectSession(SessionPoolInterface::CONTEXT_READWRITE);
-
-        return $this->operation->transaction($session, SessionPoolInterface::CONTEXT_READWRITE, $options);
+        return $this->operation->transaction($session, $options);
     }
 
     /**
      * Insert a row.
+     *
+     * Mutations are committed in a single-use transaction.
      *
      * Example:
      * ```
@@ -451,6 +554,8 @@ class Database
 
     /**
      * Insert multiple rows.
+     *
+     * Mutations are committed in a single-use transaction.
      *
      * Example:
      * ```
@@ -485,6 +590,7 @@ class Database
 
         $session = $this->selectSession(SessionPoolInterface::CONTEXT_READWRITE);
 
+        $options['singleUseTransaction'] = $this->configureTransactionOptions();
         return $this->operation->commit($session, $mutations, $options);
     }
 
@@ -494,6 +600,8 @@ class Database
      * Only data which you wish to update need be included. You must provide
      * enough information for the API to determine which row should be modified.
      * In most cases, this means providing values for the Primary Key fields.
+     *
+     * Mutations are committed in a single-use transaction.
      *
      * Example:
      * ```
@@ -523,6 +631,8 @@ class Database
      * Only data which you wish to update need be included. You must provide
      * enough information for the API to determine which row should be modified.
      * In most cases, this means providing values for the Primary Key fields.
+     *
+     * Mutations are committed in a single-use transaction.
      *
      * Example:
      * ```
@@ -555,6 +665,7 @@ class Database
 
         $session = $this->selectSession(SessionPoolInterface::CONTEXT_READWRITE);
 
+        $options['singleUseTransaction'] = $this->configureTransactionOptions();
         return $this->operation->commit($session, $mutations, $options);
     }
 
@@ -564,6 +675,8 @@ class Database
      * If a row already exists (determined by comparing the Primary Key to
      * existing table data), the row will be updated. If not, it will be
      * created.
+     *
+     * Mutations are committed in a single-use transaction.
      *
      * Example:
      * ```
@@ -594,6 +707,8 @@ class Database
      * If a row already exists (determined by comparing the Primary Key to
      * existing table data), the row will be updated. If not, it will be
      * created.
+     *
+     * Mutations are committed in a single-use transaction.
      *
      * Example:
      * ```
@@ -628,6 +743,7 @@ class Database
 
         $session = $this->selectSession(SessionPoolInterface::CONTEXT_READWRITE);
 
+        $options['singleUseTransaction'] = $this->configureTransactionOptions();
         return $this->operation->commit($session, $mutations, $options);
     }
 
@@ -637,6 +753,8 @@ class Database
      * Provide data for the entire row. Google Cloud Spanner will attempt to
      * find a record matching the Primary Key, and will replace the entire row.
      * If a matching row is not found, it will be inserted.
+     *
+     * Mutations are committed in a single-use transaction.
      *
      * Example:
      * ```
@@ -667,6 +785,8 @@ class Database
      * Provide data for the entire row. Google Cloud Spanner will attempt to
      * find a record matching the Primary Key, and will replace the entire row.
      * If a matching row is not found, it will be inserted.
+     *
+     * Mutations are committed in a single-use transaction.
      *
      * Example:
      * ```
@@ -701,11 +821,14 @@ class Database
 
         $session = $this->selectSession(SessionPoolInterface::CONTEXT_READWRITE);
 
+        $options['singleUseTransaction'] = $this->configureTransactionOptions();
         return $this->operation->commit($session, $mutations, $options);
     }
 
     /**
      * Delete one or more rows.
+     *
+     * Mutations are committed in a single-use transaction.
      *
      * Example:
      * ```
@@ -733,6 +856,7 @@ class Database
 
         $session = $this->selectSession(SessionPoolInterface::CONTEXT_READWRITE);
 
+        $options['singleUseTransaction'] = $this->configureTransactionOptions();
         return $this->operation->commit($session, $mutations, $options);
     }
 
@@ -741,33 +865,91 @@ class Database
      *
      * Example:
      * ```
-     * $result = $spanner->execute(
-     *     'SELECT * FROM Posts WHERE ID = @postId',
-     *     [
-     *          'parameters' => [
-     *              'postId' => 1337
-     *          ]
+     * $result = $spanner->execute('SELECT * FROM Posts WHERE ID = @postId', [
+     *     'parameters' => [
+     *         'postId' => 1337
      *     ]
-     * );
+     * ]);
+     * ```
+     *
+     * ```
+     * // Execute a read and return a new Snapshot for further reads.
+     * $result = $spanner->execute('SELECT * FROM Posts WHERE ID = @postId', [
+     *      'parameters' => [
+     *         'postId' => 1337
+     *     ],
+     *     'begin' => true
+     * ]);
+     *
+     * $snapshot = $result->snapshot();
+     * ```
+     *
+     * ```
+     * // Execute a read and return a new Transaction for further reads and writes.
+     * $result = $spanner->execute('SELECT * FROM Posts WHERE ID = @postId', [
+     *      'parameters' => [
+     *         'postId' => 1337
+     *     ],
+     *     'begin' => true,
+     *     'transactionType' => SessionPoolInterface::CONTEXT_READWRITE
+     * ]);
+     *
+     * $transaction = $result->transaction();
      * ```
      *
      * @codingStandardsIgnoreStart
      * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#google.spanner.v1.ExecuteSqlRequest ExecuteSqlRequest
      * @codingStandardsIgnoreEnd
      *
+     * @codingStandardsIgnoreStart
      * @param string $sql The query string to execute.
      * @param array $options [optional] {
-     *     Configuration options.
+     *     Configuration Options.
+     *
+     *     See [TransactionOptions](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#google.spanner.v1.TransactionOptions)
+     *     for detailed description of available transaction options.
+     *
+     *     Please note that only one of `$strong`, `$minReadTimestamp`,
+     *     `$maxStaleness`, `$readTimestamp` or `$exactStaleness` may be set in
+     *     a request.
      *
      *     @type array $parameters A key/value array of Query Parameters, where
      *           the key is represented in the query string prefixed by a `@`
      *           symbol.
+     *     @type bool $returnReadTimestamp If true, the Cloud Spanner-selected
+     *           read timestamp is included in the Transaction message that
+     *           describes the transaction.
+     *     @type bool $strong Read at a timestamp where all previously committed
+     *           transactions are visible.
+     *     @type Timestamp $minReadTimestamp Execute reads at a timestamp >= the
+     *           given timestamp. Only available in single-use transactions.
+     *     @type Duration $maxStaleness Read data at a timestamp >= NOW - the
+     *           given timestamp. Only available in single-use transactions.
+     *     @type Timestamp $readTimestamp Executes all reads at the given
+     *           timestamp.
+     *     @type Duration $exactStaleness Represents a number of seconds. Executes
+     *           all reads at a timestamp that is $exactStaleness old.
+     *     @type bool $begin If true, will begin a new transaction. If a
+     *           read/write transaction is desired, set the value of
+     *           $transactionType. If a transaction or snapshot is created, it
+     *           will be returned as `$result->transaction()` or
+     *           `$result->snapshot()`. **Defaults to** `false`.
+     *     @type string $transactionType One of `SessionPoolInterface::CONTEXT_READ`
+     *           or `SessionPoolInterface::CONTEXT_READWRITE`. If read/write is
+     *           chosen, any snapshot options will be disregarded. If `$begin`
+     *           is false, this option will be ignored. **Defaults to**
+     *           `SessionPoolInterface::CONTEXT_READ`.
      * }
+     * @codingStandardsIgnoreEnd
      * @return Result
      */
     public function execute($sql, array $options = [])
     {
         $session = $this->selectSession(SessionPoolInterface::CONTEXT_READ);
+
+        list($transactionOptions, $context) = $this->transactionSelector($options);
+        $options['transaction'] = $transactionOptions;
+        $options['transactionContext'] = $context;
 
         return $this->operation->execute($session, $sql, $options);
     }
@@ -784,31 +966,97 @@ class Database
      *     'keys' => [1337]
      * ]);
      *
-     * $result = $database->read('Posts', [
-     *     'keySet' => $keySet
+     * $columns = ['ID', 'title', 'content'];
+     *
+     * $result = $database->read('Posts', $keySet, $columns);
+     * ```
+     *
+     * ```
+     * // Execute a read and return a new Snapshot for further reads.
+     * $keySet = $spanner->keySet([
+     *     'keys' => [1337]
      * ]);
+     *
+     * $columns = ['ID', 'title', 'content'];
+     *
+     * $result = $database->read('Posts', $keySet, $columns, [
+     *     'begin' => true
+     * ]);
+     *
+     * $snapshot = $result->snapshot();
+     * ```
+     *
+     * ```
+     * // Execute a read and return a new Transaction for further reads and writes.
+     * $keySet = $spanner->keySet([
+     *     'keys' => [1337]
+     * ]);
+     *
+     * $columns = ['ID', 'title', 'content'];
+     *
+     * $result = $database->read('Posts', $keySet, $columns, [
+     *     'begin' => true,
+     *     'transactionType' => SessionPoolInterface::CONTEXT_READWRITE
+     * ]);
+     *
+     * $transaction = $result->transaction();
      * ```
      *
      * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#google.spanner.v1.ReadRequest ReadRequest
      *
      * @codingStandardsIgnoreStart
      * @param string $table The table name.
+     * @param KeySet $keySet The KeySet to select rows.
+     * @param array $columns A list of column names to return.
      * @param array $options [optional] {
      *     Configuration Options.
      *
+     *     See [TransactionOptions](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#google.spanner.v1.TransactionOptions)
+     *     for detailed description of available transaction options.
+     *
+     *     Please note that only one of `$strong`, `$minReadTimestamp`,
+     *     `$maxStaleness`, `$readTimestamp` or `$exactStaleness` may be set in
+     *     a request.
+     *
      *     @type string $index The name of an index on the table.
-     *     @type array $columns A list of column names to be returned.
-     *     @type KeySet $keySet A KeySet defining which rows to return.
      *     @type int $offset The number of rows to offset results by.
      *     @type int $limit The number of results to return.
+     *     @type bool $returnReadTimestamp If true, the Cloud Spanner-selected
+     *           read timestamp is included in the Transaction message that
+     *           describes the transaction.
+     *     @type bool $strong Read at a timestamp where all previously committed
+     *           transactions are visible.
+     *     @type Timestamp $minReadTimestamp Execute reads at a timestamp >= the
+     *           given timestamp. Only available in single-use transactions.
+     *     @type Duration $maxStaleness Read data at a timestamp >= NOW - the
+     *           given timestamp. Only available in single-use transactions.
+     *     @type Timestamp $readTimestamp Executes all reads at the given
+     *           timestamp.
+     *     @type Duration $exactStaleness Represents a number of seconds. Executes
+     *           all reads at a timestamp that is $exactStaleness old.
+     *     @type bool $begin If true, will begin a new transaction. If a
+     *           read/write transaction is desired, set the value of
+     *           $transactionType. If a transaction or snapshot is created, it
+     *           will be returned as `$result->transaction()` or
+     *           `$result->snapshot()`. **Defaults to** `false`.
+     *     @type string $transactionType One of `SessionPoolInterface::CONTEXT_READ`
+     *           or `SessionPoolInterface::CONTEXT_READWRITE`. If read/write is
+     *           chosen, any snapshot options will be disregarded. If `$begin`
+     *           is false, this option will be ignored. **Defaults to**
+     *           `SessionPoolInterface::CONTEXT_READ`.
      * }
      * @codingStandardsIgnoreEnd
+     * @return Result
      */
-    public function read($table, array $options = [])
+    public function read($table, KeySet $keySet, array $columns, array $options = [])
     {
         $session = $this->selectSession(SessionPoolInterface::CONTEXT_READ);
 
-        return $this->operation->read($session, $table, $options);
+        list($transactionOptions, $context) = $this->transactionSelector($options);
+        $options['transaction'] = $transactionOptions;
+        $options['transactionContext'] = $context;
+
+        return $this->operation->read($session, $table, $keySet, $columns, $options);
     }
 
     /**

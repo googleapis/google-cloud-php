@@ -52,6 +52,18 @@ class ResultTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($rows, $result->rows());
     }
 
+    public function testFirstRow()
+    {
+        $rows = [
+            ['name' => 'John'],
+            ['name' => 'Dave']
+        ];
+
+        $result = new Result([], $rows);
+
+        $this->assertEquals($rows[0], $result->firstRow());
+    }
+
     public function testStats()
     {
         $result = new Result(['stats' => 'foo'], []);
@@ -64,5 +76,31 @@ class ResultTest extends \PHPUnit_Framework_TestCase
         $result = new Result($info, []);
 
         $this->assertEquals($info, $result->info());
+    }
+
+    public function testTransaction()
+    {
+        $result = new Result([], [], [
+            'transaction' => 'foo'
+        ]);
+
+        $this->assertEquals('foo', $result->transaction());
+
+        $result = new Result([], []);
+
+        $this->assertNull($result->transaction());
+    }
+
+    public function testSnapshot()
+    {
+        $result = new Result([], [], [
+            'snapshot' => 'foo'
+        ]);
+
+        $this->assertEquals('foo', $result->snapshot());
+
+        $result = new Result([], []);
+
+        $this->assertNull($result->snapshot());
     }
 }

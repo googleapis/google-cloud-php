@@ -22,6 +22,7 @@ use Google\Cloud\Spanner\Bytes;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Date;
+use Google\Cloud\Spanner\Duration;
 use Google\Cloud\Spanner\KeyRange;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Session\SessionClient;
@@ -95,6 +96,12 @@ class SpannerClientTest extends \PHPUnit_Framework_TestCase
     {
         $i64 = $this->client->int64('123');
         $this->assertInstanceOf(Int64::class, $i64);
+    }
+
+    public function testDuration()
+    {
+        $d = $this->client->duration(10, 1);
+        $this->assertInstanceOf(Duration::class, $d);
     }
 
     public function testSessionClient()

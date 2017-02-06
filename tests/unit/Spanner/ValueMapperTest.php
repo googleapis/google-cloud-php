@@ -88,6 +88,16 @@ class ValueMapperTest extends \PHPUnit_Framework_TestCase
     /**
      * @expectedException InvalidArgumentException
      */
+    public function testFormatParamsForExecuteSqlArrayInvalidAssoc()
+    {
+        $this->mapper->formatParamsForExecuteSql(['array' => [
+            'foo' => 'bar'
+        ]]);
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
     public function testFormatParamsForExecuteSqlInvalidTypes()
     {
         $this->mapper->formatParamsForExecuteSql(['array' => ['foo', 3.1515]]);
