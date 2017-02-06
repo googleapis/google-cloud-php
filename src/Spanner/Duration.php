@@ -33,8 +33,8 @@ namespace Google\Cloud\Spanner;
  * ```
  *
  * ```
- * // Date objects can be cast to strings for easy display.
- * echo (string) $date;
+ * // Duration objects can be cast to strings for easy display.
+ * echo (string) $duration;
  * ```
  */
 class Duration implements ValueInterface
