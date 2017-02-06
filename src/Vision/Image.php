@@ -253,7 +253,7 @@ class Image
         } else {
             throw new InvalidArgumentException(
                 'Given image is not valid. ' .
-                'Image must be a string of bytes, a google storage object, a valid URI, or a resource.'
+                'Image must be a string of bytes, a google storage object, a valid image URI, or a resource.'
             );
         }
     }
