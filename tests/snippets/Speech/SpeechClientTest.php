@@ -34,7 +34,7 @@ class SpeechClientTest extends SnippetTestCase
 
     public function setUp()
     {
-        $this->testFile = "'" . __DIR__ .'/../fixtures/Speech/demo.flac' . "'";
+        $this->testFile = "'" . __DIR__ . '/../fixtures/Speech/demo.flac' . "'";
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->client = new \SpeechClientStub;
         $this->client->setConnection($this->connection->reveal());

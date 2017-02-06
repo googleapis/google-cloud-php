@@ -18,22 +18,27 @@
 namespace Google\Cloud\Tests\Snippets\Vision\Annotation;
 
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
-use Google\Cloud\Vision\Annotation\ImageProperties;
+use Google\Cloud\Vision\Annotation\CropHint;
 use Google\Cloud\Vision\Connection\ConnectionInterface;
 use Prophecy\Argument;
 
 /**
  * @group vision
  */
-class ImagePropertiesTest extends SnippetTestCase
+class CropHintTest extends SnippetTestCase
 {
-    private $propsData;
-    private $props;
+    private $info;
+    private $crop;
 
     public function setUp()
     {
-        $this->propsData = ['dominantColors' => ['colors' => 'colorsTest']];
-        $this->props = new ImageProperties($this->propsData);
+        $this->info = [
+            'boundingPoly' => ['foo' => 'bar'],
+            'confidence' => 0.4,
+            'importanceFraction' => 0.1
+        ];
+
+        $this->hint = new CropHint($this->info);
     }
 
     public function testClass()
@@ -44,14 +49,14 @@ class ImagePropertiesTest extends SnippetTestCase
             ->willReturn([
                 'responses' => [
                     [
-                        'imagePropertiesAnnotation' => [
-                            []
+                        'cropHintsAnnotation' => [
+                            'cropHints' => [[]]
                         ]
                     ]
                 ]
             ]);
 
-        $snippet = $this->snippetFromClass(ImageProperties::class);
+        $snippet = $this->snippetFromClass(CropHint::class);
         $snippet->addLocal('connectionStub', $connectionStub->reveal());
         $snippet->replace(
             "__DIR__ . '/assets/family-photo.jpg'",
@@ -64,25 +69,34 @@ class ImagePropertiesTest extends SnippetTestCase
             $property->setAccessible(false);'
         );
 
-        $res = $snippet->invoke('imageProperties');
-        $this->assertInstanceOf(ImageProperties::class, $res->returnVal());
+        $res = $snippet->invoke('hint');
+        $this->assertInstanceOf(CropHint::class, $res->returnVal());
     }
 
-    public function testInfo()
+    public function testBoundingPoly()
     {
-        $snippet = $this->snippetFromMagicMethod(ImageProperties::class, 'info');
-        $snippet->addLocal('imageProperties', $this->props);
+        $snippet = $this->snippetFromMagicMethod(CropHint::class, 'boundingPoly');
+        $snippet->addLocal('hint', $this->hint);
 
-        $res = $snippet->invoke('info');
-        $this->assertEquals($this->propsData, $res->returnVal());
+        $res = $snippet->invoke('poly');
+        $this->assertEquals($this->info['boundingPoly'], $res->returnVal());
     }
 
-    public function testColors()
+    public function testConfidence()
     {
-        $snippet = $this->snippetFromMethod(ImageProperties::class, 'colors');
-        $snippet->addLocal('imageProperties', $this->props);
+        $snippet = $this->snippetFromMagicMethod(CropHint::class, 'confidence');
+        $snippet->addLocal('hint', $this->hint);
 
-        $res = $snippet->invoke('colors');
-        $this->assertEquals($this->propsData['dominantColors']['colors'], $res->returnVal());
+        $res = $snippet->invoke('confidence');
+        $this->assertEquals($this->info['confidence'], $res->returnVal());
+    }
+
+    public function testImportanceFraction()
+    {
+        $snippet = $this->snippetFromMagicMethod(CropHint::class, 'importanceFraction');
+        $snippet->addLocal('hint', $this->hint);
+
+        $res = $snippet->invoke('importance');
+        $this->assertEquals($this->info['importanceFraction'], $res->returnVal());
     }
 }

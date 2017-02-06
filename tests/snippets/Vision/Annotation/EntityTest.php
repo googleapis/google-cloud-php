@@ -62,7 +62,10 @@ class EntityTest extends SnippetTestCase
 
         $snippet = $this->snippetFromClass(Entity::class);
         $snippet->addLocal('connectionStub', $connectionStub->reveal());
-        $snippet->setLine(5, '$imageResource = fopen(\'php://temp\', \'r\');');
+        $snippet->replace(
+            "__DIR__ . '/assets/family-photo.jpg'",
+            "'php://temp'"
+        );
         $snippet->insertAfterLine(3, '$reflection = new \ReflectionClass($vision);
             $property = $reflection->getProperty(\'connection\');
             $property->setAccessible(true);
@@ -155,4 +158,12 @@ class EntityTest extends SnippetTestCase
         $this->assertEquals($this->entityData['properties'], $res->output());
     }
 
+    public function testInfo()
+    {
+        $snippet = $this->snippetFromMagicMethod(Entity::class, 'info');
+        $snippet->addLocal('text', $this->entity);
+
+        $res = $snippet->invoke('info');
+        $this->assertEquals($this->entityData, $res->returnVal());
+    }
 }

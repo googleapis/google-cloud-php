@@ -15,25 +15,28 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Snippets\Vision\Annotation;
+namespace Google\Cloud\Tests\Snippets\Vision\Annotation\Web;
 
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
-use Google\Cloud\Vision\Annotation\ImageProperties;
+use Google\Cloud\Vision\Annotation\Web\WebPage;
 use Google\Cloud\Vision\Connection\ConnectionInterface;
 use Prophecy\Argument;
 
 /**
  * @group vision
  */
-class ImagePropertiesTest extends SnippetTestCase
+class WebPageTest extends SnippetTestCase
 {
-    private $propsData;
-    private $props;
+    private $info;
+    private $image;
 
     public function setUp()
     {
-        $this->propsData = ['dominantColors' => ['colors' => 'colorsTest']];
-        $this->props = new ImageProperties($this->propsData);
+        $this->info = [
+            'url' => 'http://foo.bar/image.jpg',
+            'score' => 0.1,
+        ];
+        $this->image = new WebPage($this->info);
     }
 
     public function testClass()
@@ -44,17 +47,19 @@ class ImagePropertiesTest extends SnippetTestCase
             ->willReturn([
                 'responses' => [
                     [
-                        'imagePropertiesAnnotation' => [
-                            []
+                        'webAnnotation' => [
+                            'pagesWithMatchingImages' => [
+                                []
+                            ]
                         ]
                     ]
                 ]
             ]);
 
-        $snippet = $this->snippetFromClass(ImageProperties::class);
+        $snippet = $this->snippetFromClass(WebPage::class);
         $snippet->addLocal('connectionStub', $connectionStub->reveal());
         $snippet->replace(
-            "__DIR__ . '/assets/family-photo.jpg'",
+            "__DIR__ . '/assets/eiffel-tower.jpg'",
             "'php://temp'"
         );
         $snippet->insertAfterLine(3, '$reflection = new \ReflectionClass($vision);
@@ -64,25 +69,25 @@ class ImagePropertiesTest extends SnippetTestCase
             $property->setAccessible(false);'
         );
 
-        $res = $snippet->invoke('imageProperties');
-        $this->assertInstanceOf(ImageProperties::class, $res->returnVal());
+        $res = $snippet->invoke('firstPage');
+        $this->assertInstanceOf(WebPage::class, $res->returnVal());
     }
 
-    public function testInfo()
+    public function testurl()
     {
-        $snippet = $this->snippetFromMagicMethod(ImageProperties::class, 'info');
-        $snippet->addLocal('imageProperties', $this->props);
+        $snippet = $this->snippetFromMagicMethod(WebPage::class, 'url');
+        $snippet->addLocal('image', $this->image);
 
-        $res = $snippet->invoke('info');
-        $this->assertEquals($this->propsData, $res->returnVal());
+        $res = $snippet->invoke('url');
+        $this->assertEquals($this->info['url'], $this->image->url());
     }
 
-    public function testColors()
+    public function testscore()
     {
-        $snippet = $this->snippetFromMethod(ImageProperties::class, 'colors');
-        $snippet->addLocal('imageProperties', $this->props);
+        $snippet = $this->snippetFromMagicMethod(WebPage::class, 'score');
+        $snippet->addLocal('image', $this->image);
 
-        $res = $snippet->invoke('colors');
-        $this->assertEquals($this->propsData['dominantColors']['colors'], $res->returnVal());
+        $res = $snippet->invoke('score');
+        $this->assertEquals($this->info['score'], $this->image->score());
     }
 }

@@ -17,10 +17,13 @@
 
 namespace Google\Cloud\Vision;
 
+use Google\Cloud\Vision\Annotation\CropHint;
+use Google\Cloud\Vision\Annotation\Document;
 use Google\Cloud\Vision\Annotation\Entity;
 use Google\Cloud\Vision\Annotation\Face;
 use Google\Cloud\Vision\Annotation\ImageProperties;
 use Google\Cloud\Vision\Annotation\SafeSearch;
+use Google\Cloud\Vision\Annotation\Web;
 
 /**
  * Represents a [Google Cloud Vision](https://cloud.google.com/vision) image
@@ -33,7 +36,7 @@ use Google\Cloud\Vision\Annotation\SafeSearch;
  * $cloud = new ServiceBuilder();
  * $vision = $cloud->vision();
  *
- * $imageResource = fopen(__DIR__ .'/assets/family-photo.jpg', 'r');
+ * $imageResource = fopen(__DIR__ . '/assets/family-photo.jpg', 'r');
  * $image = $vision->image($imageResource, [
  *     'FACE_DETECTION'
  * ]);
@@ -49,42 +52,57 @@ class Annotation
     private $info;
 
     /**
-     * @var array
+     * @var Face[]|null
      */
     private $faces;
 
     /**
-     * @var array
+     * @var Entity[]|null
      */
     private $landmarks;
 
     /**
-     * @var array
+     * @var Entity[]|null
      */
     private $logos;
 
     /**
-     * @var array
+     * @var Entity[]|null
      */
     private $labels;
 
     /**
-     * @var array
+     * @var Entity[]|null
      */
     private $text;
 
     /**
-     * @var SafeSearch
+     * @var Document|null
+     */
+    private $fullText;
+
+    /**
+     * @var SafeSearch|null
      */
     private $safeSearch;
 
     /**
-     * @var ImageProperties
+     * @var ImageProperties|null
      */
     private $imageProperties;
 
     /**
-     * @var array
+     * @var CropHint[]|null
+     */
+    private $cropHints;
+
+    /**
+     * @var Web|null
+     */
+    private $web;
+
+    /**
+     * @var array|null
      */
     private $error;
 
@@ -142,12 +160,27 @@ class Annotation
             }
         }
 
+        if (isset($info['fullTextAnnotation'])) {
+            $this->fullText = new Document($info['fullTextAnnotation']);
+        }
+
         if (isset($info['safeSearchAnnotation'])) {
             $this->safeSearch = new SafeSearch($info['safeSearchAnnotation']);
         }
 
         if (isset($info['imagePropertiesAnnotation'])) {
             $this->imageProperties = new ImageProperties($info['imagePropertiesAnnotation']);
+        }
+
+        if (isset($info['cropHintsAnnotation']) && is_array($info['cropHintsAnnotation']['cropHints'])) {
+            $this->cropHints = [];
+            foreach ($info['cropHintsAnnotation']['cropHints'] as $hint) {
+                $this->cropHints[] = new CropHint($hint);
+            }
+        }
+
+        if (isset($info['webAnnotation'])) {
+            $this->web = new Web($info['webAnnotation']);
         }
 
         if (isset($info['error'])) {
@@ -250,6 +283,23 @@ class Annotation
     }
 
     /**
+     * Return the full text annotation.
+     *
+     * Example:
+     * ```
+     * $fullText = $annotation->fullText();
+     * ```
+     *
+     * @see https://cloud.google.com/vision/reference/rest/v1/images/annotate#fulltextannotation FullTextAnnotation
+     *
+     * @return Document|null
+     */
+    public function fullText()
+    {
+        return $this->fullText;
+    }
+
+    /**
      * Get the result of a safe search detection
      *
      * Example:
@@ -277,6 +327,36 @@ class Annotation
     public function imageProperties()
     {
         return $this->imageProperties;
+    }
+
+    /**
+     * Fetch Crop Hints
+     *
+     * Example:
+     * ```
+     * $hints = $annotation->cropHints();
+     * ```
+     *
+     * @return CropHint[]|null
+     */
+    public function cropHints()
+    {
+        return $this->cropHints;
+    }
+
+    /**
+     * Fetch the Web Annotatation.
+     *
+     * Example:
+     * ```
+     * $web = $annotation->web();
+     * ```
+     *
+     * @return Web|null
+     */
+    public function web()
+    {
+        return $this->web;
     }
 
     /**

@@ -41,13 +41,13 @@ class FaceTest extends SnippetTestCase
             "tiltAngle" => 'testtiltAngle',
             "detectionConfidence" => 'testdetectionConfidence',
             "landmarkingConfidence" => 'testlandmarkingConfidence',
-            "joyLikelihood" => 'testjoyLikelihood',
-            "sorrowLikelihood" => 'testsorrowLikelihood',
-            "angerLikelihood" => 'testangerLikelihood',
-            "surpriseLikelihood" => 'testsurpriseLikelihood',
-            "underExposedLikelihood" => 'testunderExposedLikelihood',
-            "blurredLikelihood" => 'testblurredLikelihood',
-            "headwearLikelihood" => 'testheadwearLikelihood',
+            "joyLikelihood" => 'VERY_LIKELY',
+            "sorrowLikelihood" => 'VERY_LIKELY',
+            "angerLikelihood" => 'VERY_LIKELY',
+            "surpriseLikelihood" => 'VERY_LIKELY',
+            "underExposedLikelihood" => 'VERY_LIKELY',
+            "blurredLikelihood" => 'VERY_LIKELY',
+            "headwearLikelihood" => 'VERY_LIKELY',
         ];
 
         $this->face = new Face($this->faceData);
@@ -74,7 +74,10 @@ class FaceTest extends SnippetTestCase
 
         $snippet = $this->snippetFromClass(Face::class);
         $snippet->addLocal('connectionStub', $connectionStub->reveal());
-        $snippet->setLine(5, '$imageResource = fopen(\'php://temp\', \'r\');');
+        $snippet->replace(
+            "__DIR__ . '/assets/family-photo.jpg'",
+            "'php://temp'"
+        );
         $snippet->insertAfterLine(3, '$reflection = new \ReflectionClass($vision);
             $property = $reflection->getProperty(\'connection\');
             $property->setAccessible(true);
@@ -225,4 +228,75 @@ class FaceTest extends SnippetTestCase
         $this->assertEquals($this->faceData['headwearLikelihood'], $res->output());
     }
 
+    public function testIsJoyful()
+    {
+        $snippet = $this->snippetFromMethod(Face::class, 'isJoyful');
+        $snippet->addLocal('face', $this->face);
+
+        $res = $snippet->invoke();
+        $this->assertEquals('Face is Joyful', $res->output());
+    }
+
+    public function testIsSorrowful()
+    {
+        $snippet = $this->snippetFromMethod(Face::class, 'isSorrowful');
+        $snippet->addLocal('face', $this->face);
+
+        $res = $snippet->invoke();
+        $this->assertEquals('Face is Sorrowful', $res->output());
+    }
+
+    public function testIsAngry()
+    {
+        $snippet = $this->snippetFromMethod(Face::class, 'isAngry');
+        $snippet->addLocal('face', $this->face);
+
+        $res = $snippet->invoke();
+        $this->assertEquals('Face is Angry', $res->output());
+    }
+
+    public function testIsSurprised()
+    {
+        $snippet = $this->snippetFromMethod(Face::class, 'isSurprised');
+        $snippet->addLocal('face', $this->face);
+
+        $res = $snippet->invoke();
+        $this->assertEquals('Face is Surprised', $res->output());
+    }
+
+    public function testIsUnderExposed()
+    {
+        $snippet = $this->snippetFromMethod(Face::class, 'isUnderExposed');
+        $snippet->addLocal('face', $this->face);
+
+        $res = $snippet->invoke();
+        $this->assertEquals('Face is Under Exposed', $res->output());
+    }
+
+    public function testIsBlurred()
+    {
+        $snippet = $this->snippetFromMethod(Face::class, 'isBlurred');
+        $snippet->addLocal('face', $this->face);
+
+        $res = $snippet->invoke();
+        $this->assertEquals('Face is Blurred', $res->output());
+    }
+
+    public function testHasHeadwear()
+    {
+        $snippet = $this->snippetFromMethod(Face::class, 'hasHeadwear');
+        $snippet->addLocal('face', $this->face);
+
+        $res = $snippet->invoke();
+        $this->assertEquals('Face has Headwear', $res->output());
+    }
+
+    public function testInfo()
+    {
+        $snippet = $this->snippetFromMagicMethod(Face::class, 'info');
+        $snippet->addLocal('face', $this->face);
+
+        $res = $snippet->invoke('info');
+        $this->assertEquals($this->faceData, $res->returnVal());
+    }
 }

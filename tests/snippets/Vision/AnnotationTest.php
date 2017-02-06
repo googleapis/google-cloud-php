@@ -19,10 +19,13 @@ namespace Google\Cloud\Tests\Snippets\Vision;
 
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
 use Google\Cloud\Vision\Annotation;
+use Google\Cloud\Vision\Annotation\CropHint;
+use Google\Cloud\Vision\Annotation\Document;
 use Google\Cloud\Vision\Annotation\Entity;
 use Google\Cloud\Vision\Annotation\Face;
 use Google\Cloud\Vision\Annotation\ImageProperties;
 use Google\Cloud\Vision\Annotation\SafeSearch;
+use Google\Cloud\Vision\Annotation\Web;
 use Google\Cloud\Vision\Connection\ConnectionInterface;
 use Prophecy\Argument;
 
@@ -35,8 +38,8 @@ class AnnotationTest extends SnippetTestCase
     {
         $snippet = $this->snippetFromClass(Annotation::class);
         $snippet->replace(
-            '__DIR__ .\'/assets/family-photo.jpg\'',
-            '\'php://temp\''
+            "__DIR__ . '/assets/family-photo.jpg'",
+            "'php://temp'"
         );
 
         $connectionStub = $this->prophesize(ConnectionInterface::class);
@@ -149,6 +152,42 @@ class AnnotationTest extends SnippetTestCase
 
         $res = $snippet->invoke('properties');
         $this->assertInstanceOf(ImageProperties::class, $res->returnVal());
+    }
+
+    public function testFullText()
+    {
+        $ft = ['foo' => 'bar'];
+        $snippet = $this->snippetFromMethod(Annotation::class, 'fullText');
+        $snippet->addLocal('annotation', new Annotation([
+            'fullTextAnnotation' => $ft
+        ]));
+
+        $res = $snippet->invoke('fullText');
+        $this->assertInstanceOf(Document::class, $res->returnVal());
+    }
+
+    public function testCropHints()
+    {
+        $snippet = $this->snippetFromMethod(Annotation::class, 'cropHints');
+        $snippet->addLocal('annotation', new Annotation([
+            'cropHintsAnnotation' => [
+                'cropHints' => [[]]
+            ]
+        ]));
+
+        $res = $snippet->invoke('hints');
+        $this->assertInstanceOf(CropHint::class, $res->returnVal()[0]);
+    }
+
+    public function testWeb()
+    {
+        $snippet = $this->snippetFromMethod(Annotation::class, 'web');
+        $snippet->addLocal('annotation', new Annotation([
+            'webAnnotation' => []
+        ]));
+
+        $res = $snippet->invoke('web');
+        $this->assertInstanceOf(Web::class, $res->returnVal());
     }
 
     public function testError()

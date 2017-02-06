@@ -31,7 +31,7 @@ use Google\Cloud\CallTrait;
  * $cloud = new ServiceBuilder();
  * $vision = $cloud->vision();
  *
- * $imageResource = fopen(__DIR__ .'/assets/family-photo.jpg', 'r');
+ * $imageResource = fopen(__DIR__ . '/assets/family-photo.jpg', 'r');
  * $image = $vision->image($imageResource, [ 'text' ]);
  * $annotation = $vision->annotate($image);
  *

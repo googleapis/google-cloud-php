@@ -18,22 +18,25 @@
 namespace Google\Cloud\Tests\Snippets\Vision\Annotation;
 
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
-use Google\Cloud\Vision\Annotation\ImageProperties;
+use Google\Cloud\Vision\Annotation\Document;
 use Google\Cloud\Vision\Connection\ConnectionInterface;
 use Prophecy\Argument;
 
 /**
  * @group vision
  */
-class ImagePropertiesTest extends SnippetTestCase
+class DocumentTest extends SnippetTestCase
 {
-    private $propsData;
-    private $props;
+    private $info;
+    private $document;
 
     public function setUp()
     {
-        $this->propsData = ['dominantColors' => ['colors' => 'colorsTest']];
-        $this->props = new ImageProperties($this->propsData);
+        $this->info = [
+            'pages' => [['foo' => 'bar']],
+            'text' => 'hello world'
+        ];
+        $this->document = new Document($this->info);
     }
 
     public function testClass()
@@ -44,17 +47,15 @@ class ImagePropertiesTest extends SnippetTestCase
             ->willReturn([
                 'responses' => [
                     [
-                        'imagePropertiesAnnotation' => [
-                            []
-                        ]
+                        'fullTextAnnotation' => [[]]
                     ]
                 ]
             ]);
 
-        $snippet = $this->snippetFromClass(ImageProperties::class);
+        $snippet = $this->snippetFromClass(Document::class);
         $snippet->addLocal('connectionStub', $connectionStub->reveal());
         $snippet->replace(
-            "__DIR__ . '/assets/family-photo.jpg'",
+            "__DIR__ . '/assets/the-constitution.jpg'",
             "'php://temp'"
         );
         $snippet->insertAfterLine(3, '$reflection = new \ReflectionClass($vision);
@@ -64,25 +65,34 @@ class ImagePropertiesTest extends SnippetTestCase
             $property->setAccessible(false);'
         );
 
-        $res = $snippet->invoke('imageProperties');
-        $this->assertInstanceOf(ImageProperties::class, $res->returnVal());
+        $res = $snippet->invoke('document');
+        $this->assertInstanceOf(Document::class, $res->returnVal());
+    }
+
+    public function testPages()
+    {
+        $snippet = $this->snippetFromMagicMethod(Document::class, 'pages');
+        $snippet->addLocal('document', $this->document);
+
+        $res = $snippet->invoke('pages');
+        $this->assertEquals($this->info['pages'], $res->returnVal());
+    }
+
+    public function testText()
+    {
+        $snippet = $this->snippetFromMagicMethod(Document::class, 'text');
+        $snippet->addLocal('document', $this->document);
+
+        $res = $snippet->invoke('text');
+        $this->assertEquals($this->info['text'], $res->returnVal());
     }
 
     public function testInfo()
     {
-        $snippet = $this->snippetFromMagicMethod(ImageProperties::class, 'info');
-        $snippet->addLocal('imageProperties', $this->props);
+        $snippet = $this->snippetFromMagicMethod(Document::class, 'info');
+        $snippet->addLocal('document', $this->document);
 
         $res = $snippet->invoke('info');
-        $this->assertEquals($this->propsData, $res->returnVal());
-    }
-
-    public function testColors()
-    {
-        $snippet = $this->snippetFromMethod(ImageProperties::class, 'colors');
-        $snippet->addLocal('imageProperties', $this->props);
-
-        $res = $snippet->invoke('colors');
-        $this->assertEquals($this->propsData['dominantColors']['colors'], $res->returnVal());
+        $this->assertEquals($this->info, $res->returnVal());
     }
 }

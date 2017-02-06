@@ -25,7 +25,7 @@ use Google\Cloud\Vision\Image;
  */
 class ImageTest extends \PHPUnit_Framework_TestCase
 {
-    public function testWithBytes()
+    public function testWithString()
     {
         $bytes = file_get_contents(__DIR__ .'/../fixtures/vision/eiffel-tower.jpg');
         $image = new Image($bytes, ['landmarks']);
@@ -47,7 +47,7 @@ class ImageTest extends \PHPUnit_Framework_TestCase
         $image = new Image($object, [ 'landmarks' ]);
         $res = $image->requestObject();
 
-        $this->assertEquals($res['image']['source']['gcsImageUri'], $gcsUri);
+        $this->assertEquals($res['image']['source']['imageUri'], $gcsUri);
         $this->assertEquals($res['features'], [ ['type' => 'LANDMARK_DETECTION'] ]);
     }
 
@@ -60,6 +60,17 @@ class ImageTest extends \PHPUnit_Framework_TestCase
         $res = $image->requestObject();
 
         $this->assertEquals($res['image']['content'], base64_encode($bytes));
+        $this->assertEquals($res['features'], [ ['type' => 'LANDMARK_DETECTION'] ]);
+    }
+
+    public function testWithExternalImage()
+    {
+        $externalUri = 'http://google.com/image.jpg';
+        $image = new Image($externalUri, ['landmarks']);
+
+        $res = $image->requestObject();
+
+        $this->assertEquals($res['image']['source']['imageUri'], $externalUri);
         $this->assertEquals($res['features'], [ ['type' => 'LANDMARK_DETECTION'] ]);
     }
 
@@ -87,13 +98,16 @@ class ImageTest extends \PHPUnit_Framework_TestCase
     public function testShortNamesMapping()
     {
         $names = [
-            'faces'      => 'FACE_DETECTION',
-            'landmarks'  => 'LANDMARK_DETECTION',
-            'logos'      => 'LOGO_DETECTION',
-            'labels'     => 'LABEL_DETECTION',
-            'text'       => 'TEXT_DETECTION',
-            'safeSearch' => 'SAFE_SEARCH_DETECTION',
-            'imageProperties' => 'IMAGE_PROPERTIES'
+            'faces'           => 'FACE_DETECTION',
+            'landmarks'       => 'LANDMARK_DETECTION',
+            'logos'           => 'LOGO_DETECTION',
+            'labels'          => 'LABEL_DETECTION',
+            'text'            => 'TEXT_DETECTION',
+            'document'        => 'DOCUMENT_TEXT_DETECTION',
+            'safeSearch'      => 'SAFE_SEARCH_DETECTION',
+            'imageProperties' => 'IMAGE_PROPERTIES',
+            'crop'            => 'CROP_HINTS',
+            'web'             => 'WEB_ANNOTATION'
         ];
 
         $bytes = 'foo';
@@ -121,5 +135,27 @@ class ImageTest extends \PHPUnit_Framework_TestCase
 
         $encodedRes = $image->requestObject();
         $this->assertEquals($encodedRes['image']['content'], base64_encode($bytes));
+    }
+
+    public function testUrlSchemes()
+    {
+        $urls = [
+            'http://foo.bar',
+            'https://foo.bar',
+            'gs://foo/bar',
+            'ssh://foo/bar'
+        ];
+
+        $images = [
+            new Image($urls[0], ['faces']),
+            new Image($urls[1], ['faces']),
+            new Image($urls[2], ['faces']),
+            new Image($urls[3], ['faces']),
+        ];
+
+        $this->assertEquals($urls[0], $images[0]->requestObject()['image']['source']['imageUri']);
+        $this->assertEquals($urls[1], $images[1]->requestObject()['image']['source']['imageUri']);
+        $this->assertEquals($urls[2], $images[2]->requestObject()['image']['source']['imageUri']);
+        $this->assertFalse(isset($images[3]->requestObject()['image']['source']['imageUri']));
     }
 }

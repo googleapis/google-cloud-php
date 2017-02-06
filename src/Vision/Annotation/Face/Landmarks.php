@@ -29,7 +29,7 @@ use Google\Cloud\Vision\Annotation\AbstractFeature;
  * $cloud = new ServiceBuilder();
  * $vision = $cloud->vision();
  *
- * $imageResource = fopen(__DIR__ .'/assets/family-photo.jpg', 'r');
+ * $imageResource = fopen(__DIR__ . '/assets/family-photo.jpg', 'r');
  * $image = $vision->image($imageResource, ['FACE_DETECTION']);
  * $annotation = $vision->annotate($image);
  *
