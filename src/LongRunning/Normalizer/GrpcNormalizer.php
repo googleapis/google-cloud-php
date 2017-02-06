@@ -22,11 +22,24 @@ use Google\Cloud\LongRunning\LongRunningOperation;
 use Google\Cloud\PhpArray;
 use Google\GAX\OperationResponse;
 
+/**
+ * Normalizes LRO operations performed via GAX.
+ */
 class GrpcNormalizer implements LongRunningNormalizerInterface
 {
+    /**
+     * @var LongRunningConnectionInterface
+     */
     private $connection;
+
+    /**
+     * @var CodecInterface
+     */
     private $codec;
 
+    /**
+     * @param LongRunningConnectionInterface $connection A connection to an LRO service.
+     */
     public function __construct(LongRunningConnectionInterface $connection)
     {
         $this->connection = $connection;
@@ -34,7 +47,16 @@ class GrpcNormalizer implements LongRunningNormalizerInterface
     }
 
     /**
+     * Creates a Long Running Operation instance from an operation.
+     *
+     * In gRPC, $operation is an instance of `Google\Gax\OperationResponse`.
+     *
      * @param mixed $operation
+     * @param string $method The API method which created the operation.
+     *        Required by GAX to hydrate an OperationResponse.
+     * @param callable $doneCallback [optional] A callback, receiving the
+     *        operation result as an array, executed when the operation is
+     *        complete.
      * @return LongRunningOperation
      */
     public function normalize($operation, $method, callable $doneCallback = null)
@@ -47,16 +69,24 @@ class GrpcNormalizer implements LongRunningNormalizerInterface
     }
 
     /**
-     * @param mixed $result
+     * Get the operation response as a php array.
+     *
+     * In gRPC, $operation is an instance of `Google\Gax\OperationResponse`.
+     *
+     * @param mixed $operation
      * @return array
      */
-    public function serializeOperation($result)
+    public function serializeOperation($operation)
     {
-        return $result->getLastProtoResponse()->serialize($this->codec);
+        return $operation->getLastProtoResponse()->serialize($this->codec);
     }
 
     /**
-     * @param mixed $result
+     * Get the operation response as a php array.
+     *
+     * In gRPC, $operation is an instance of `Google\Gax\OperationResponse`.
+     *
+     * @param mixed $operation
      * @return array
      */
     public function serializeResult($result)

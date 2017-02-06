@@ -17,6 +17,10 @@
 
 namespace Google\Cloud\LongRunning\Normalizer;
 
+/**
+ * Describes an implementation for normalizing LRO operations between different
+ * API transports.
+ */
 interface LongRunningNormalizerInterface
 {
     /**
