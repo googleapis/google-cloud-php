@@ -267,11 +267,20 @@ class StreamWrapperTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('foo/file1.txt', readdir($fd));
         $this->assertEquals('foo/file2.txt', readdir($fd));
         $this->assertEquals('foo/file3.txt', readdir($fd));
-        $this->assertTrue(rewind($fd));
+        rewinddir($fd);
         $this->assertEquals('foo/file1.txt', readdir($fd));
         closedir($fd);
     }
 
+    /**
+     * @group storageDirectory
+     */
+    public function testDirectoryListingViaScan()
+    {
+        $files = ['foo/file1.txt', 'foo/file2.txt', 'foo/file3.txt', 'foo/file4.txt'];
+        $this->mockDirectoryListing('foo/', $files);
+        $this->assertEquals($files, scandir('gs://my_bucket/foo/'));
+    }
 
     public function testRenameFile()
     {
