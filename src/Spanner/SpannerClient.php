@@ -20,7 +20,7 @@ namespace Google\Cloud\Spanner;
 use Google\Cloud\ClientTrait;
 use Google\Cloud\Exception\NotFoundException;
 use Google\Cloud\Int64;
-use Google\Cloud\LongRunning\Normalizer\GrpcNormalizer;
+use Google\Cloud\LongRunning\LROTrait;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Connection\Grpc;
 use Google\Cloud\Spanner\Connection\LongRunningConnection;
@@ -52,6 +52,7 @@ use google\spanner\admin\instance\v1\Instance\State;
 class SpannerClient
 {
     use ClientTrait;
+    use LROTrait;
     use ValidateTrait;
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/spanner.data';
@@ -64,6 +65,11 @@ class SpannerClient
      * @var ConnectionInterface
      */
     protected $connection;
+
+    /**
+     * @var LongRunningConnectionInterface
+     */
+    private $lroConnection;
 
     /**
      * @var SessionClient
@@ -79,11 +85,6 @@ class SpannerClient
      * @var bool
      */
     private $returnInt64AsObject;
-
-    /**
-     * @var LongRunningNormalizerInterface
-     */
-    private $lroNormalizer;
 
     /**
      * Create a Spanner client.
@@ -122,8 +123,7 @@ class SpannerClient
         ];
 
         $this->connection = new Grpc($this->configureAuthentication($config));
-        $lroConnection = new LongRunningConnection($this->connection);
-        $this->lroNormalizer = new GrpcNormalizer($lroConnection);
+        $this->lroConnection = new LongRunningConnection($this->connection);
 
         $this->sessionClient = new SessionClient($this->connection, $this->projectId);
         $this->sessionPool = new SimpleSessionPool($this->sessionClient);
@@ -215,6 +215,9 @@ class SpannerClient
      *     @type int $nodeCount **Defaults to** `1`.
      *     @type array $labels For more information, see
      *           [Using labels to organize Google Cloud Platform resources](https://cloudplatform.googleblog.com/2015/10/using-labels-to-organize-Google-Cloud-Platform-resources.html).
+     *     @type string $operationName If checking the status of an existing
+     *           update operation, it may be supplied here. Note that if an
+     *           operation name is given, no service requests will be executed.
      * }
      * @return LongRunningOperation
      * @codingStandardsIgnoreEnd
@@ -224,22 +227,34 @@ class SpannerClient
         $options += [
             'displayName' => $name,
             'nodeCount' => self::DEFAULT_NODE_COUNT,
-            'labels' => []
+            'labels' => [],
+            'operationName' => null,
         ];
 
         // This must always be set to CREATING, so overwrite anything else.
         $options['state'] = State::CREATING;
 
-        $operation = $this->connection->createInstance([
-            'instanceId' => $name,
-            'name' => InstanceAdminClient::formatInstanceName($this->projectId, $name),
-            'projectId' => InstanceAdminClient::formatProjectName($this->projectId),
-            'config' => InstanceAdminClient::formatInstanceConfigName($this->projectId, $config->name())
-        ] + $options);
+        if (is_null($options['operationName'])) {
+            $operation = $this->connection->createInstance([
+                'instanceId' => $name,
+                'name' => InstanceAdminClient::formatInstanceName($this->projectId, $name),
+                'projectId' => InstanceAdminClient::formatProjectName($this->projectId),
+                'config' => InstanceAdminClient::formatInstanceConfigName($this->projectId, $config->name())
+            ] + $options);
 
-        return $this->lroNormalizer->normalize($operation, 'createInstance', function($result) use ($name) {
-            return $this->instance($name, $result));
-        });
+            $operationName = $operation['name'];
+        } else {
+            $operationName = $options['operationName'];
+        }
+
+        return $this->getOperation(
+            $this->lroConnection,
+            $operationName,
+            'createInstance',
+            function($result) use ($name) {
+                return $this->instance($name, $result);
+            }
+        );
     }
 
     /**
@@ -258,7 +273,7 @@ class SpannerClient
         return new Instance(
             $this->connection,
             $this->sessionPool,
-            $this->lroNormalizer,
+            $this->lroConnection,
             $this->projectId,
             $name,
             $this->returnInt64AsObject,

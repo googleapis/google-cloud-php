@@ -17,8 +17,6 @@
 
 namespace Google\Cloud\LongRunning;
 
-use Google\Cloud\LongRunning\Normalizer\NormalizerInterface;
-
 class LongRunningOperation
 {
     const MAX_RELOADS = 10;
@@ -32,11 +30,6 @@ class LongRunningOperation
      * @param LongRunningConnectionInterface
      */
     private $connection;
-
-    /**
-     * @param NormalizerInterface
-     */
-    private $normalizer;
 
     /**
      * @param string
@@ -59,23 +52,21 @@ class LongRunningOperation
     private $doneCallback;
 
     /**
-     * @param LongRunningConnectionInterface $connection An implementation mapping to methods which handle LRO
-     *        resolution in the service.
-     * @param NormalizerInterface $normalizer Normalizes service interaction differences between REST and gRPC.
+     * @param LongRunningConnectionInterface $connection An implementation
+     *        mapping to methods which handle LRO resolution in the service.
      * @param string $name The Operation name.
-     * @param string $method The method used to create the operation. Only applicable when using gRPC transport.
-     * @param callable $doneCallback [optional] A callback, receiving the operation result as an array, executed when
-     *        the operation is complete.
+     * @param string $method The method used to create the operation.
+     * @param callable $doneCallback [optional] A callback, receiving the
+     *        operation result as an array, executed when the operation is
+     *        complete.
      */
     public function __construct(
         LongRunningConnectionInterface $connection,
-        NormalizerInterface $normalizer,
         $name,
         $method,
         callable $doneCallback = null
     ) {
         $this->connection = $connection;
-        $this->normalizer = $normalizer;
         $this->name = $name;
         $this->method = $method;
 
@@ -187,13 +178,16 @@ class LongRunningOperation
      */
     public function reload(array $options = [])
     {
-        $res = $this->connection->reload([
+        $res = $this->connection->get([
             'name' => $this->name,
             'method' => $this->method
         ] + $options);
 
-        $this->result = $this->executeDoneCallback($this->normalizer->serializeResult($res));
-        return $this->info = $this->normalizer->serializeOperation($res);
+        if ($res['done']) {
+            $this->result = $this->executeDoneCallback($res['response']);
+        }
+
+        return $this->info = $res;
     }
 
     /**
@@ -216,7 +210,7 @@ class LongRunningOperation
      */
     public function wait(array $options = [])
     {
-        $options =+ [
+        $options += [
             'waitInterval' => self::WAIT_INTERVAL,
             'maxReloads' => self::MAX_RELOADS
         ];
@@ -284,7 +278,6 @@ class LongRunningOperation
     {
         return [
             'connection' => get_class($this->connection),
-            'normalizer' => get_class($this->normalizer),
             'name' => $this->name,
             'method' => $this->method
         ];

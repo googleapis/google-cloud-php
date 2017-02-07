@@ -28,11 +28,6 @@ class LongRunningConnection implements LongRunningConnectionInterface
         $this->connection = $connection;
     }
 
-    public function reload(array $args)
-    {
-        return $this->connection->reloadOperation($args);
-    }
-
     public function get(array $args)
     {
         return $this->connection->getOperation($args);

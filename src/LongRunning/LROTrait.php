@@ -15,30 +15,16 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\LongRunning\Normalizer;
+namespace Google\Cloud\LongRunning;
 
-/**
- * Describes an implementation for normalizing LRO operations between different
- * API transports.
- */
-interface LongRunningNormalizerInterface
+trait LROTrait
 {
-    /**
-     * @param mixed $operation
-     * @param string $method
-     * @return LongRunningOperation
-     */
-    public function normalize($operation, $method);
-
-    /**
-     * @param mixed $result
-     * @return array
-     */
-    public function serializeResult($result);
-
-    /**
-     * @param mixed $error
-     * @return array
-     */
-    public function serializeError($error);
+    private function getOperation(
+        LongRunningConnectionInterface $connection,
+        $name,
+        $method,
+        callable $onDone = null
+    ) {
+        return new LongRunningOperation($connection, $name, $method, $onDone);
+    }
 }

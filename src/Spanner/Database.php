@@ -20,6 +20,8 @@ namespace Google\Cloud\Spanner;
 use Google\Cloud\ArrayTrait;
 use Google\Cloud\Exception\NotFoundException;
 use Google\Cloud\Iam\Iam;
+use Google\Cloud\LongRunning\LROTrait;
+use Google\Cloud\LongRunning\LongRunningConnectionInterface;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Connection\IamDatabase;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
@@ -52,6 +54,7 @@ use Google\Cloud\Spanner\V1\SpannerClient as GrpcSpannerClient;
 class Database
 {
     use ArrayTrait;
+    use LROTrait;
 
     /**
      * @var ConnectionInterface
@@ -69,9 +72,9 @@ class Database
     private $sessionPool;
 
     /**
-     * @var LongRunningNormalizerInterface
+     * @var LongRunningConnectionInterface
      */
-    private $lroNormalizer;
+    private $lroConnection;
 
     /**
      * @var Operation
@@ -100,7 +103,8 @@ class Database
      *        Google Cloud Spanner Admin API.
      * @param Instance $instance The instance in which the database exists.
      * @param SessionPoolInterface $sessionPool The session pool implementation.
-     * @param LongRunningNormalizerInterface $lroNormalizer Normalizes LRO interaction.
+     * @param LongRunningConnectionInterface $lroConnection An implementation
+     *        mapping to methods which handle LRO resolution in the service.
      * @param string $projectId The project ID.
      * @param string $name The database name.
      * @param bool $returnInt64AsObject If true, 64 bit integers will be
@@ -111,7 +115,7 @@ class Database
         ConnectionInterface $connection,
         Instance $instance,
         SessionPoolInterface $sessionPool,
-        LongRunningNormalizerInterface $lroNormalizer
+        LongRunningConnectionInterface $lroConnection,
         $projectId,
         $name,
         $returnInt64AsObject
@@ -119,7 +123,7 @@ class Database
         $this->connection = $connection;
         $this->instance = $instance;
         $this->sessionPool = $sessionPool;
-        $this->lroNormalizer = $lroNormalizer;
+        $this->lroConnection = $lroConnection;
         $this->projectId = $projectId;
         $this->name = $name;
 
@@ -230,21 +234,38 @@ class Database
      * @codingStandardsIgnoreEnd
      *
      * @param string[] $statements A list of DDL statements to run against a database.
-     * @param array $options [optional] Configuration options.
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type string $operationName If checking the status of an existing
+     *           update operation, it may be supplied here. Note that if an
+     *           operation name is given, no service requests will be executed.
+     * }
      * @return LongRunningOperation
      */
     public function updateDdlBatch(array $statements, array $options = [])
     {
         $options += [
-            'operationId' => null
+            'operationId' => null,
+            'operationName' => null,
         ];
 
-        $operation = $this->connection->updateDatabase($options + [
-            'name' => $this->fullyQualifiedDatabaseName(),
-            'statements' => $statements,
-        ]);
+        if (is_null($options['operationName'])) {
+            $operation = $this->connection->updateDatabase($options + [
+                'name' => $this->fullyQualifiedDatabaseName(),
+                'statements' => $statements,
+            ]);
 
-        return $this->lroNormalizer->normalize($operation, 'updateDatabaseDdl');
+            $operationName = $operation['name'];
+        } else {
+            $operationName = $options['operationName'];
+        }
+
+        return $this->getOperation(
+            $this->lroConnection,
+            $operationName,
+            'updateDatabaseDdl'
+        );
     }
 
     /**

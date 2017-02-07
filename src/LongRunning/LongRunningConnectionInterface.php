@@ -19,8 +19,6 @@ namespace Google\Cloud\LongRunning;
 
 interface LongRunningConnectionInterface
 {
-    public function reload(array $args);
-
     public function get(array $args);
 
     public function cancel(array $args);

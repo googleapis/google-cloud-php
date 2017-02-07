@@ -19,7 +19,8 @@ namespace Google\Cloud\Spanner;
 
 use Google\Cloud\Exception\NotFoundException;
 use Google\Cloud\Iam\Iam;
-use Google\Cloud\LongRunning\Normalizer\LongRunningNormalizerInterface;
+use Google\Cloud\LongRunning\LROTrait;
+use Google\Cloud\LongRunning\LongRunningConnectionInterface;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
@@ -42,6 +43,8 @@ use google\spanner\admin\instance\v1\Instance\State;
  */
 class Instance
 {
+    use LROTrait;
+
     const STATE_READY = State::READY;
     const STATE_CREATING = State::CREATING;
 
@@ -56,9 +59,9 @@ class Instance
     private $sessionPool;
 
     /**
-     * @var LongRunningNormalizerInterface
+     * @var LongRunningConnectionInterface
      */
-    private $lroNormalizer;
+    private $lroConnection;
 
     /**
      * @var string
@@ -91,7 +94,8 @@ class Instance
      * @param ConnectionInterface $connection The connection to the
      *        Google Cloud Spanner Admin API.
      * @param SessionPoolInterface $sessionPool The session pool implementation.
-     * @param LongRunningNormalizerInterface $lroNormalizer Normalizes Long Running Operations.
+     * @param LongRunningConnectionInterface $lroConnection An implementation
+     *        mapping to methods which handle LRO resolution in the service.
      * @param string $projectId The project ID.
      * @param string $name The instance name.
      * @param bool $returnInt64AsObject If true, 64 bit integers will be
@@ -102,7 +106,7 @@ class Instance
     public function __construct(
         ConnectionInterface $connection,
         SessionPoolInterface $sessionPool,
-        LongRunningNormalizerInterface $lroNormalizer,
+        LongRunningConnectionInterface $lroConnection,
         $projectId,
         $name,
         $returnInt64AsObject = false,
@@ -110,7 +114,7 @@ class Instance
     ) {
         $this->connection = $connection;
         $this->sessionPool = $sessionPool;
-        $this->lroNormalizer = $lroNormalizer;
+        $this->lroConnection = $lroConnection;
         $this->projectId = $projectId;
         $this->name = $name;
         $this->returnInt64AsObject = $returnInt64AsObject;
@@ -259,6 +263,9 @@ class Instance
      *           **Defaults to** `1`.
      *     @type array $labels For more information, see
      *           [Using labels to organize Google Cloud Platform resources](https://goo.gl/xmQnxf).
+     *     @type string $operationName If checking the status of an existing
+     *           update operation, it may be supplied here. Note that if an
+     *           operation name is given, no service requests will be executed.
      * }
      * @return LongRunningOperation
      * @throws \InvalidArgumentException
@@ -268,6 +275,7 @@ class Instance
         $info = $this->info($options);
 
         $options += [
+            'operationName' => null,
             'displayName' => $info['displayName'],
             'nodeCount' => (isset($info['nodeCount'])) ? $info['nodeCount'] : null,
             'labels' => (isset($info['labels']))
@@ -275,13 +283,32 @@ class Instance
                 : []
         ];
 
-        $operation = $this->connection->updateInstance([
-            'name' => $this->fullyQualifiedInstanceName(),
-        ] + $options);
+        if (is_null($options['operationName'])) {
+            $operation = $this->connection->updateInstance([
+                'name' => $this->fullyQualifiedInstanceName(),
+            ] + $options);
 
-        return $this->lroNormalizer->normalize($operation, 'updateInstance', function($result) use ($name) {
-            return $this->instance($name, $result));
-        });
+            $operationName = $operation['name'];
+        } else {
+            $operationName = $options['operationName'];
+        }
+
+        return $this->getOperation(
+            $this->lroConnection,
+            $operationName,
+            'updateInstance',
+            function($result) {
+                return new self(
+                    $this->connection,
+                    $this->sessionPool,
+                    $this->lroConnection,
+                    $this->projectId,
+                    $this->name,
+                    $this->returnInt64AsObject,
+                    $result
+                );
+            }
+        );
     }
 
     /**
@@ -323,26 +350,41 @@ class Instance
      *     Configuration Options
      *
      *     @type array $statements Additional DDL statements.
+     *     @type string $operationName If checking the status of an existing
+     *           update operation, it may be supplied here. Note that if an
+     *           operation name is given, no service requests will be executed.
      * }
      * @return Database
      */
     public function createDatabase($name, array $options = [])
     {
         $options += [
-            'statements' => []
+            'statements' => [],
+            'operationName' => null
         ];
 
         $statement = sprintf('CREATE DATABASE `%s`', $name);
 
-        $operation = $this->connection->createDatabase([
-            'instance' => $this->fullyQualifiedInstanceName(),
-            'createStatement' => $statement,
-            'extraStatements' => $options['statements']
-        ]);
+        if (is_null($options['operationName'])) {
+            $operation = $this->connection->createDatabase([
+                'instance' => $this->fullyQualifiedInstanceName(),
+                'createStatement' => $statement,
+                'extraStatements' => $options['statements']
+            ]);
 
-        return $this->lroNormalizer->normalize($operation, 'createDatabase', function($result) use ($name) {
-            return $this->database($name);
-        });
+            $operationName = $operation['name'];
+        } else {
+            $operationName = $options['operationName'];
+        }
+
+        return $this->getOperation(
+            $this->lroConnection,
+            $operationName,
+            'createDatabase',
+            function($result) use ($name) {
+                return $this->database($name);
+            }
+        );
     }
 
     /**
@@ -362,7 +404,7 @@ class Instance
             $this->connection,
             $this,
             $this->sessionPool,
-            $this->lroNormalizer,
+            $this->lroConnection,
             $this->projectId,
             $name,
             $this->returnInt64AsObject

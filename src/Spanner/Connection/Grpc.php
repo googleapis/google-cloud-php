@@ -20,6 +20,7 @@ namespace Google\Cloud\Spanner\Connection;
 use Google\Auth\CredentialsLoader;
 use Google\Cloud\GrpcRequestWrapper;
 use Google\Cloud\GrpcTrait;
+use Google\Cloud\LongRunning\OperationResponseTrait;
 use Google\Cloud\PhpArray;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
@@ -37,6 +38,7 @@ use google\spanner\v1\Type;
 class Grpc implements ConnectionInterface
 {
     use GrpcTrait;
+    use OperationResponseTrait;
 
     /**
      * @var InstanceAdminClient
@@ -75,6 +77,11 @@ class Grpc implements ConnectionInterface
     ];
 
     /**
+     * @var array
+     */
+    private $longRunningGrpcClients;
+
+    /**
      * @param array $config [optional]
      */
     public function __construct(array $config = [])
@@ -98,6 +105,11 @@ class Grpc implements ConnectionInterface
         $this->databaseAdminClient = new DatabaseAdminClient($grpcConfig);
         $this->spannerClient = new SpannerClient($grpcConfig);
         $this->operationsClient = $this->instanceAdminClient->getOperationsClient();
+
+        $this->longRunningGrpcClients = [
+            $this->instanceAdminClient,
+            $this->databaseAdminClient
+        ];
     }
 
     /**
@@ -150,12 +162,15 @@ class Grpc implements ConnectionInterface
     public function createInstance(array $args = [])
     {
         $instance = $this->instanceObject($args, true);
-        return $this->send([$this->instanceAdminClient, 'createInstance'], [
+
+        $res = $this->send([$this->instanceAdminClient, 'createInstance'], [
             $this->pluck('projectId', $args),
             $this->pluck('instanceId', $args),
             $instance,
             $args
         ]);
+
+        return $this->operationToArray($res, $this->codec);
     }
 
     /**
@@ -169,11 +184,13 @@ class Grpc implements ConnectionInterface
 
         $fieldMask = (new protobuf\FieldMask())->deserialize(['paths' => $mask], $this->codec);
 
-        return $this->send([$this->instanceAdminClient, 'updateInstance'], [
+        $res = $this->send([$this->instanceAdminClient, 'updateInstance'], [
             $instanceObject,
             $fieldMask,
             $args
         ]);
+
+        return $this->operationToArray($res, $this->codec);
     }
 
     private function instanceObject(array &$args, $required = false)
@@ -250,12 +267,14 @@ class Grpc implements ConnectionInterface
      */
     public function createDatabase(array $args = [])
     {
-        return $this->send([$this->databaseAdminClient, 'createDatabase'], [
+        $res = $this->send([$this->databaseAdminClient, 'createDatabase'], [
             $this->pluck('instance', $args),
             $this->pluck('createStatement', $args),
             $this->pluck('extraStatements', $args),
             $args
         ]);
+
+        return $this->operationToArray($res, $this->codec);
     }
 
     /**
@@ -263,11 +282,13 @@ class Grpc implements ConnectionInterface
      */
     public function updateDatabase(array $args = [])
     {
-        return $this->send([$this->databaseAdminClient, 'updateDatabaseDdl'], [
+        $res = $this->send([$this->databaseAdminClient, 'updateDatabaseDdl'], [
             $this->pluck('name', $args),
             $this->pluck('statements', $args),
             $args
         ]);
+
+        return $this->operationToArray($res, $this->codec);
     }
 
     /**
@@ -496,25 +517,15 @@ class Grpc implements ConnectionInterface
     /**
      * @param array $args
      */
-    public function reloadOperation(array $args)
-    {
-        $name = $this->pluck('name', $args);
-        $method = $this->pluck('method', $args);
-
-        $operation = $this->getOperationByNameAndMethod($name, $method);
-        $operation->reload();
-        return $operation;
-    }
-
-    /**
-     * @param array $args
-     */
     public function getOperation(array $args)
     {
         $name = $this->pluck('name', $args);
         $method = $this->pluck('method', $args);
 
-        return $this->getOperationByNameAndMethod($name, $method);
+        $operation = $this->getOperationByNameAndMethod($this->longRunningGrpcClients, $name, $method);
+        $operation->reload();
+
+        return $this->operationToArray($operation, $this->codec);
     }
 
     /**
@@ -546,22 +557,6 @@ class Grpc implements ConnectionInterface
     {
         $name = $this->pluck('name', $args);
         $method = $this->pluck('method', $args);
-    }
-
-    private function getOperationByNameAndMethod($name, $method)
-    {
-        $client = null;
-        if (array_key_exists($method, $this->instanceAdminClient::getLongRunningDescriptors())) {
-            $client = $this->instanceAdminClient;
-        } elseif (array_key_exists($method, $this->databaseAdminClient::getLongRunningDescriptors())) {
-            $client = $this->databaseAdminClient;
-        }
-
-        if (is_null($client)) {
-            throw new \BadMethodCallException('Invalid LRO method');
-        }
-
-        return $client->resumeOperation($name, $method);
     }
 
     /**
