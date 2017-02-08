@@ -25,7 +25,7 @@ use Google\GAX\OperationResponse;
  */
 trait OperationResponseTrait
 {
-    private function operationToArray(OperationResponse $operation, CodecInterface $codec)
+    private function operationToArray(OperationResponse $operation, CodecInterface $codec, array $lroMappers)
     {
         $response = $operation->getLastProtoResponse();
         if (is_null($response)) {
@@ -33,9 +33,11 @@ trait OperationResponseTrait
         }
 
         $response = $response->serialize($codec);
-        $result = $operation->getResult();
-        if (!is_null($result)) {
-            $result = $result->serialize($codec);
+
+        $result = null;
+        if ($operation->isDone()) {
+            $type = $response['metadata']['typeUrl'];
+            $result = $this->deserializeResult($operation, $type, $codec, $lroMappers);
         }
 
         $error = $operation->getError();
@@ -50,33 +52,37 @@ trait OperationResponseTrait
     }
 
     /**
-     * @param array $clients A list of gRPC Clients with LRO support.
+     * @param mixed $client A generated client with a `resumeOperation` method.
      * @param string $name The Operation name.
-     * @param string $method The method which created the Operation.
      * @return OperationResponse
      */
-    private function getOperationByNameAndMethod(array $clients, $name, $method)
+    private function getOperationByName($client, $name)
     {
-        $client = null;
-        foreach ($clients as $client) {
-            if (!method_exists($client, 'getLongRunningDescriptors')) {
-                throw new \BadMethodCallException(sprintf(
-                    'Given client %s does not have a method called `getLongRunningDescriptors`.',
-                    get_class($client)
-                ));
-            }
+        return $client->resumeOperation($name);
+    }
 
-            if (array_key_exists($method, $client::getLongRunningDescriptors())) {
-                break;
-            } else {
-                $client = null;
-            }
+    private function deserializeResult($operation, $type, $codec, $mappers)
+    {
+        $mappers = array_filter($mappers, function($mapper) use ($type) {
+            return $mapper['typeUrl'] === $type;
+        });
+
+        if (count($mappers) === 0) {
+            throw new \RuntimeException(sprintf('No mapper exists for operation response type %s.', $type));
         }
 
-        if (is_null($client)) {
-            throw new \BadMethodCallException('Invalid LRO method');
+        $mapper = current($mappers);
+        $message = $mapper['message'];
+
+        $response = new $message();
+        $anyResponse = $operation->getLastProtoResponse()->getResponse();
+
+        if (is_null($anyResponse)) {
+            return null;
         }
 
-        return $client->resumeOperation($name, $method);
+        $response->parse($anyResponse->getValue());
+
+        return $response->serialize($codec);
     }
 }

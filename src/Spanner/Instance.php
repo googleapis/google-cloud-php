@@ -64,6 +64,11 @@ class Instance
     private $lroConnection;
 
     /**
+     * @var array
+     */
+    private $lroCallables;
+
+    /**
      * @var string
      */
     private $projectId;
@@ -96,6 +101,7 @@ class Instance
      * @param SessionPoolInterface $sessionPool The session pool implementation.
      * @param LongRunningConnectionInterface $lroConnection An implementation
      *        mapping to methods which handle LRO resolution in the service.
+     * @param array $lroCallables
      * @param string $projectId The project ID.
      * @param string $name The instance name.
      * @param bool $returnInt64AsObject If true, 64 bit integers will be
@@ -107,6 +113,7 @@ class Instance
         ConnectionInterface $connection,
         SessionPoolInterface $sessionPool,
         LongRunningConnectionInterface $lroConnection,
+        array $lroCallables,
         $projectId,
         $name,
         $returnInt64AsObject = false,
@@ -115,6 +122,7 @@ class Instance
         $this->connection = $connection;
         $this->sessionPool = $sessionPool;
         $this->lroConnection = $lroConnection;
+        $this->lroCallables = $lroCallables;
         $this->projectId = $projectId;
         $this->name = $name;
         $this->returnInt64AsObject = $returnInt64AsObject;
@@ -263,9 +271,6 @@ class Instance
      *           **Defaults to** `1`.
      *     @type array $labels For more information, see
      *           [Using labels to organize Google Cloud Platform resources](https://goo.gl/xmQnxf).
-     *     @type string $operationName If checking the status of an existing
-     *           update operation, it may be supplied here. Note that if an
-     *           operation name is given, no service requests will be executed.
      * }
      * @return LongRunningOperation
      * @throws \InvalidArgumentException
@@ -275,7 +280,6 @@ class Instance
         $info = $this->info($options);
 
         $options += [
-            'operationName' => null,
             'displayName' => $info['displayName'],
             'nodeCount' => (isset($info['nodeCount'])) ? $info['nodeCount'] : null,
             'labels' => (isset($info['labels']))
@@ -283,32 +287,11 @@ class Instance
                 : []
         ];
 
-        if (is_null($options['operationName'])) {
-            $operation = $this->connection->updateInstance([
-                'name' => $this->fullyQualifiedInstanceName(),
-            ] + $options);
+        $operation = $this->connection->updateInstance([
+            'name' => $this->fullyQualifiedInstanceName(),
+        ] + $options);
 
-            $operationName = $operation['name'];
-        } else {
-            $operationName = $options['operationName'];
-        }
-
-        return $this->getOperation(
-            $this->lroConnection,
-            $operationName,
-            'updateInstance',
-            function($result) {
-                return new self(
-                    $this->connection,
-                    $this->sessionPool,
-                    $this->lroConnection,
-                    $this->projectId,
-                    $this->name,
-                    $this->returnInt64AsObject,
-                    $result
-                );
-            }
-        );
+        return $this->lro($operation['name']);
     }
 
     /**
@@ -350,9 +333,6 @@ class Instance
      *     Configuration Options
      *
      *     @type array $statements Additional DDL statements.
-     *     @type string $operationName If checking the status of an existing
-     *           update operation, it may be supplied here. Note that if an
-     *           operation name is given, no service requests will be executed.
      * }
      * @return Database
      */
@@ -360,31 +340,17 @@ class Instance
     {
         $options += [
             'statements' => [],
-            'operationName' => null
         ];
 
         $statement = sprintf('CREATE DATABASE `%s`', $name);
 
-        if (is_null($options['operationName'])) {
-            $operation = $this->connection->createDatabase([
-                'instance' => $this->fullyQualifiedInstanceName(),
-                'createStatement' => $statement,
-                'extraStatements' => $options['statements']
-            ]);
+        $operation = $this->connection->createDatabase([
+            'instance' => $this->fullyQualifiedInstanceName(),
+            'createStatement' => $statement,
+            'extraStatements' => $options['statements']
+        ]);
 
-            $operationName = $operation['name'];
-        } else {
-            $operationName = $options['operationName'];
-        }
-
-        return $this->getOperation(
-            $this->lroConnection,
-            $operationName,
-            'createDatabase',
-            function($result) use ($name) {
-                return $this->database($name);
-            }
-        );
+        return $this->lro($operation['name']);
     }
 
     /**
@@ -405,6 +371,7 @@ class Instance
             $this,
             $this->sessionPool,
             $this->lroConnection,
+            $this->lroCallables,
             $this->projectId,
             $name,
             $this->returnInt64AsObject

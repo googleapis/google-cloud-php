@@ -27,52 +27,47 @@ class LongRunningOperation
     const STATE_ERROR = 'error';
 
     /**
-     * @param LongRunningConnectionInterface
+     * @var LongRunningConnectionInterface
      */
     private $connection;
 
     /**
-     * @param string
+     * @var string
      */
     private $name;
 
     /**
-     * @param array
+     * @var array
      */
     private $info;
 
     /**
-     * @param string|null
+     * @var array|null
      */
-    private $method;
+    private $result;
 
     /**
-     * @param callable|null
+     * @var array
      */
-    private $doneCallback;
+    private $callablesMap;
 
     /**
      * @param LongRunningConnectionInterface $connection An implementation
      *        mapping to methods which handle LRO resolution in the service.
      * @param string $name The Operation name.
-     * @param string $method The method used to create the operation.
-     * @param callable $doneCallback [optional] A callback, receiving the
-     *        operation result as an array, executed when the operation is
-     *        complete.
+     * @param array $callablesMap An collection of form [(string) type, (callable) callable]
+     *        providing a function to invoke when an operation completes. The
+     *        callable Type should correspond to an expected value of
+     *        operation.metadata.typeUrl.
      */
     public function __construct(
         LongRunningConnectionInterface $connection,
         $name,
-        $method,
-        callable $doneCallback = null
+        array $callablesMap
     ) {
         $this->connection = $connection;
         $this->name = $name;
-        $this->method = $method;
-
-        $this->doneCallback = (!is_null($doneCallback))
-            ? $doneCallback
-            : function($res) { return $res; };
+        $this->callablesMap = $callablesMap;
     }
 
     /**
@@ -180,11 +175,14 @@ class LongRunningOperation
     {
         $res = $this->connection->get([
             'name' => $this->name,
-            'method' => $this->method
         ] + $options);
 
-        if ($res['done']) {
-            $this->result = $this->executeDoneCallback($res['response']);
+        if (isset($res['done']) && $res['done']) {
+            $type = $res['metadata']['typeUrl'];
+            $this->result = $this->executeDoneCallback($type, $res['response']);
+            $this->error = (isset($res['error']))
+                ? $res['error']
+                : null;
         }
 
         return $this->info = $res;
@@ -262,13 +260,24 @@ class LongRunningOperation
         ]);
     }
 
-    private function executeDoneCallback($res)
+    private function executeDoneCallback($type, $response)
     {
-        if (is_null($res)) {
+        if (is_null($response)) {
             return null;
         }
 
-        return call_user_func($this->doneCallback, $res);
+        $callables = array_filter($this->callablesMap, function($callable) use ($type) {
+            return $callable['typeUrl'] === $type;
+        });
+
+        if (count($callables) === 0) {
+            return $response;
+        }
+
+        $callable = current($callables);
+        $fn = $callable['callable'];
+
+        return call_user_func($fn, $response);
     }
 
     /**
@@ -279,7 +288,6 @@ class LongRunningOperation
         return [
             'connection' => get_class($this->connection),
             'name' => $this->name,
-            'method' => $this->method
         ];
     }
 }

@@ -21,6 +21,7 @@ use Google\Cloud\ClientTrait;
 use Google\Cloud\Exception\NotFoundException;
 use Google\Cloud\Int64;
 use Google\Cloud\LongRunning\LROTrait;
+use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Connection\Grpc;
 use Google\Cloud\Spanner\Connection\LongRunningConnection;
@@ -129,6 +130,31 @@ class SpannerClient
         $this->sessionPool = new SimpleSessionPool($this->sessionClient);
 
         $this->returnInt64AsObject = $config['returnInt64AsObject'];
+
+        $this->lroCallables = [
+            [
+                'typeUrl' => 'type.googleapis.com/google.spanner.admin.instance.v1.UpdateInstanceMetadata',
+                'callable' => function ($instance) {
+                    $name = InstanceAdminClient::parseInstanceFromInstanceName($instance['name']);
+                    return $this->instance($name, $instance);
+                }
+            ], [
+                'typeUrl' => 'type.googleapis.com/google.spanner.admin.database.v1.CreateDatabaseMetadata',
+                'callable' => function($database) {
+                    $instanceName = DatabaseAdminClient::parseInstanceFromDatabaseName($database['name']);
+                    $databaseName = DatabaseAdminClient::parseDatabaseFromDatabaseName($database['name']);
+
+                    $instance = $this->instance($instanceName);
+                    return $instance->database($databaseName);
+                }
+            ], [
+                'typeUrl' => 'type.googleapis.com/google.spanner.admin.instance.v1.CreateInstanceMetadata',
+                'callable' => function($instance) {
+                    $name = InstanceAdminClient::parseInstanceFromInstanceName($instance['name']);
+                    return $this->instance($name, $instance);
+                }
+            ]
+        ];
     }
 
     /**
@@ -215,9 +241,6 @@ class SpannerClient
      *     @type int $nodeCount **Defaults to** `1`.
      *     @type array $labels For more information, see
      *           [Using labels to organize Google Cloud Platform resources](https://cloudplatform.googleblog.com/2015/10/using-labels-to-organize-Google-Cloud-Platform-resources.html).
-     *     @type string $operationName If checking the status of an existing
-     *           update operation, it may be supplied here. Note that if an
-     *           operation name is given, no service requests will be executed.
      * }
      * @return LongRunningOperation
      * @codingStandardsIgnoreEnd
@@ -234,27 +257,14 @@ class SpannerClient
         // This must always be set to CREATING, so overwrite anything else.
         $options['state'] = State::CREATING;
 
-        if (is_null($options['operationName'])) {
-            $operation = $this->connection->createInstance([
-                'instanceId' => $name,
-                'name' => InstanceAdminClient::formatInstanceName($this->projectId, $name),
-                'projectId' => InstanceAdminClient::formatProjectName($this->projectId),
-                'config' => InstanceAdminClient::formatInstanceConfigName($this->projectId, $config->name())
-            ] + $options);
+        $operation = $this->connection->createInstance([
+            'instanceId' => $name,
+            'name' => InstanceAdminClient::formatInstanceName($this->projectId, $name),
+            'projectId' => InstanceAdminClient::formatProjectName($this->projectId),
+            'config' => InstanceAdminClient::formatInstanceConfigName($this->projectId, $config->name())
+        ] + $options);
 
-            $operationName = $operation['name'];
-        } else {
-            $operationName = $options['operationName'];
-        }
-
-        return $this->getOperation(
-            $this->lroConnection,
-            $operationName,
-            'createInstance',
-            function($result) use ($name) {
-                return $this->instance($name, $result);
-            }
-        );
+        return $this->lro($operation['name']);
     }
 
     /**
@@ -274,6 +284,7 @@ class SpannerClient
             $this->connection,
             $this->sessionPool,
             $this->lroConnection,
+            $this->lroCallables,
             $this->projectId,
             $name,
             $this->returnInt64AsObject,
@@ -459,5 +470,16 @@ class SpannerClient
     public function sessionClient()
     {
         return $this->sessionClient;
+    }
+
+    /**
+     * Resume a Long Running Operation
+     *
+     * @param string $operationName The Long Running Operation name.
+     * @return LongRunningOperation
+     */
+    public function resumeOperation($operationName)
+    {
+        return $this->getOperation($this->lroConnection, $operationName);
     }
 }

@@ -116,6 +116,7 @@ class Database
         Instance $instance,
         SessionPoolInterface $sessionPool,
         LongRunningConnectionInterface $lroConnection,
+        array $lroCallables,
         $projectId,
         $name,
         $returnInt64AsObject
@@ -124,6 +125,7 @@ class Database
         $this->instance = $instance;
         $this->sessionPool = $sessionPool;
         $this->lroConnection = $lroConnection;
+        $this->lroCallables = $lroCallables;
         $this->projectId = $projectId;
         $this->name = $name;
 
@@ -234,38 +236,17 @@ class Database
      * @codingStandardsIgnoreEnd
      *
      * @param string[] $statements A list of DDL statements to run against a database.
-     * @param array $options [optional] {
-     *     Configuration options.
-     *
-     *     @type string $operationName If checking the status of an existing
-     *           update operation, it may be supplied here. Note that if an
-     *           operation name is given, no service requests will be executed.
-     * }
+     * @param array $options [optional] Configuration options.
      * @return LongRunningOperation
      */
     public function updateDdlBatch(array $statements, array $options = [])
     {
-        $options += [
-            'operationId' => null,
-            'operationName' => null,
-        ];
+        $operation = $this->connection->updateDatabase($options + [
+            'name' => $this->fullyQualifiedDatabaseName(),
+            'statements' => $statements,
+        ]);
 
-        if (is_null($options['operationName'])) {
-            $operation = $this->connection->updateDatabase($options + [
-                'name' => $this->fullyQualifiedDatabaseName(),
-                'statements' => $statements,
-            ]);
-
-            $operationName = $operation['name'];
-        } else {
-            $operationName = $options['operationName'];
-        }
-
-        return $this->getOperation(
-            $this->lroConnection,
-            $operationName,
-            'updateDatabaseDdl'
-        );
+        return $this->lro($operation['name']);
     }
 
     /**

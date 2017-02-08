@@ -27,6 +27,7 @@ use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\V1\SpannerClient;
 use Google\GAX\ApiException;
 use google\protobuf;
+use \google\spanner\admin\database\v1\Database;
 use google\spanner\admin\instance\v1\Instance;
 use google\spanner\admin\instance\v1\State;
 use google\spanner\v1;
@@ -74,6 +75,29 @@ class Grpc implements ConnectionInterface
         'upsert' => 'setInsertOrUpdate',
         'replace' => 'setReplace',
         'delete' => 'setDelete'
+    ];
+
+    /**
+     * @var array
+     */
+    private $lroResponseMappers = [
+        [
+            'method' => 'updateDatabaseDdl',
+            'typeUrl' => 'type.googleapis.com/google.spanner.admin.database.v1.UpdateDatabaseDdlMetadata',
+            'message' => protobuf\EmptyC::class
+        ], [
+            'method' => 'createDatabase',
+            'typeUrl' => 'type.googleapis.com/google.spanner.admin.database.v1.CreateDatabaseMetadata',
+            'message' => Database::class
+        ], [
+            'method' => 'createInstance',
+            'typeUrl' => 'type.googleapis.com/google.spanner.admin.instance.v1.CreateInstanceMetadata',
+            'message' => Instance::class
+        ], [
+            'method' => 'updateInstance',
+            'typeUrl' => 'type.googleapis.com/google.spanner.admin.instance.v1.UpdateInstanceMetadata',
+            'message' => Instance::class
+        ]
     ];
 
     /**
@@ -170,7 +194,7 @@ class Grpc implements ConnectionInterface
             $args
         ]);
 
-        return $this->operationToArray($res, $this->codec);
+        return $this->operationToArray($res, $this->codec, $this->lroResponseMappers);
     }
 
     /**
@@ -190,7 +214,7 @@ class Grpc implements ConnectionInterface
             $args
         ]);
 
-        return $this->operationToArray($res, $this->codec);
+        return $this->operationToArray($res, $this->codec, $this->lroResponseMappers);
     }
 
     private function instanceObject(array &$args, $required = false)
@@ -274,7 +298,7 @@ class Grpc implements ConnectionInterface
             $args
         ]);
 
-        return $this->operationToArray($res, $this->codec);
+        return $this->operationToArray($res, $this->codec, $this->lroResponseMappers);
     }
 
     /**
@@ -288,7 +312,7 @@ class Grpc implements ConnectionInterface
             $args
         ]);
 
-        return $this->operationToArray($res, $this->codec);
+        return $this->operationToArray($res, $this->codec, $this->lroResponseMappers);
     }
 
     /**
@@ -520,12 +544,11 @@ class Grpc implements ConnectionInterface
     public function getOperation(array $args)
     {
         $name = $this->pluck('name', $args);
-        $method = $this->pluck('method', $args);
 
-        $operation = $this->getOperationByNameAndMethod($this->longRunningGrpcClients, $name, $method);
+        $operation = $this->getOperationByName($this->databaseAdminClient, $name);
         $operation->reload();
 
-        return $this->operationToArray($operation, $this->codec);
+        return $this->operationToArray($operation, $this->codec, $this->lroResponseMappers);
     }
 
     /**

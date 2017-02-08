@@ -19,12 +19,12 @@ namespace Google\Cloud\LongRunning;
 
 trait LROTrait
 {
-    private function getOperation(
-        LongRunningConnectionInterface $connection,
-        $name,
-        $method,
-        callable $onDone = null
-    ) {
-        return new LongRunningOperation($connection, $name, $method, $onDone);
+    public function lro($operationName)
+    {
+        return new LongRunningOperation(
+            $this->lroConnection,
+            $operationName,
+            $this->lroCallables
+        );
     }
 }
