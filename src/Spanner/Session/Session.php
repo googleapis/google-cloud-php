@@ -156,4 +156,15 @@ class Session
             $this->name
         );
     }
+
+    public function __debugInfo()
+    {
+        return [
+            'connection' => get_class($this->connection),
+            'projectId' => $this->projectId,
+            'instance' => $this->instance,
+            'database' => $this->database,
+            'name' => $this->name,
+        ];
+    }
 }

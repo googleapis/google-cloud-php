@@ -80,19 +80,19 @@ trait ArrayTrait
     }
 
     /**
-     * Just like array_filter(), but preserves boolean values.
+     * Just like array_filter(), but preserves falsey values except null.
      *
      * @param array $arr
      * @return array
      */
-    private function arrayFilterPreserveBool(array $arr)
+    private function arrayFilterRemoveNull(array $arr)
     {
         return array_filter($arr, function ($element) {
-            if (is_bool($element)) {
+            if (!is_null($element)) {
                 return true;
             }
 
-            return $element == true;
+            return false;
         });
     }
 }

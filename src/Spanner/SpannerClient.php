@@ -458,6 +458,24 @@ class SpannerClient
     }
 
     /**
+     * Create a Duration object.
+     *
+     * Example:
+     * ```
+     * $duration = $spanner->duration(100, 00001);
+     * ```
+     *
+     * @param int $seconds The number of seconds in the duration.
+     * @param int $nanos [optional] The number of nanoseconds in the duration.
+     *        **Defaults to** `0`.
+     * @return Duration
+     */
+    public function duration($seconds, $nanos = 0)
+    {
+        return new Duration($seconds, $nanos);
+    }
+
+    /**
      * Get the session client
      *
      * Example:

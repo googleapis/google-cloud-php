@@ -46,13 +46,20 @@ class Result implements \IteratorAggregate
     private $rows;
 
     /**
+     * @var array
+     */
+    private $options;
+
+    /**
      * @param array $result The query or read result.
      * @param array $rows The rows, formatted and decoded.
+     * @param array $options Additional result options and info.
      */
-    public function __construct(array $result, array $rows)
+    public function __construct(array $result, array $rows, array $options = [])
     {
         $this->result = $result;
         $this->rows = $rows;
+        $this->options = $options;
     }
 
     /**
@@ -88,6 +95,25 @@ class Result implements \IteratorAggregate
     }
 
     /**
+     * Return the first row, or null.
+     *
+     * Useful when selecting a single row.
+     *
+     * Example:
+     * ```
+     * $row = $result->firstRow();
+     * ```
+     *
+     * @return array|null
+     */
+    public function firstRow()
+    {
+        return (isset($this->rows[0]))
+            ? $this->rows[0]
+            : null;
+    }
+
+    /**
      * Get the query plan and execution statistics for the query that produced
      * this result set.
      *
@@ -113,6 +139,40 @@ class Result implements \IteratorAggregate
     {
         return (isset($this->result['stats']))
             ? $this->result['stats']
+            : null;
+    }
+
+    /**
+     * Returns a transaction which was begun in the read or execute, if one exists.
+     *
+     * Example:
+     * ```
+     * $transaction = $result->transaction();
+     * ```
+     *
+     * @return Transaction|null
+     */
+    public function transaction()
+    {
+        return (isset($this->options['transaction']))
+            ? $this->options['transaction']
+            : null;
+    }
+
+    /**
+     * Returns a snapshot which was begun in the read or execute, if one exists.
+     *
+     * Example:
+     * ```
+     * $snapshot = $result->snapshot();
+     * ```
+     *
+     * @return Snapshot|null
+     */
+    public function snapshot()
+    {
+        return (isset($this->options['snapshot']))
+            ? $this->options['snapshot']
             : null;
     }
 
