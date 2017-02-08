@@ -17,11 +17,11 @@
 
 namespace Google\Cloud\Storage;
 
-use Google\Cloud\Exception\GoogleException;
 use Google\Cloud\Exception\ServiceException;
 
 /**
- * A streamWrapper implementation for handling `gs://bucket/path/to/file.jpg`
+ * A streamWrapper implementation for handling `gs://bucket/path/to/file.jpg`.
+ * Note that you can only open a file with mode 'r', 'rb', 'rb', 'w', 'wb', or 'wt'.
  *
  * See: http://php.net/manual/en/class.streamwrapper.php
  */
@@ -111,9 +111,13 @@ class StreamWrapper
      * Callback handler for when a stream is opened. For reads, we need to
      * download the file to see if it can be opened.
      *
+     * @param string $path The path of the resource to open
+     * @param string $mode The fopen mode. Currently only supports ('r', 'rb', 'rt', 'w', 'wb', 'wt')
+     * @param int $flags Bitwise options STREAM_USE_PATH|STREAM_REPORT_ERRORS
+     * @param string $openedPath Will be set to the path on success if STREAM_USE_PATH option is set
      * @return bool
      */
-    public function stream_open($path, $mode, $flags, &$opened_path)
+    public function stream_open($path, $mode, $flags, &$openedPath)
     {
         // @codingStandardsIgnoreEnd
         $client = $this->openPath($path);
@@ -137,13 +141,25 @@ class StreamWrapper
             try {
                 $options['httpOptions']['stream'] = true;
                 $this->stream = $this->bucket->object($this->file)->downloadAsStream($options);
-            } catch (GoogleException $ex) {
-                return false;
+            } catch (ServiceException $ex) {
+                return $this->returnError($ex->getMessage(), $flags);
             }
         } else {
-            return false;
+            return $this->returnError('Unknown stream_open mode.', $flags);
+        }
+
+        if ($flags & STREAM_USE_PATH) {
+            $openedPath = $path;
         }
         return true;
+    }
+
+    private function returnError($message, $flags)
+    {
+        if ($flags & STREAM_REPORT_ERRORS) {
+            trigger_error($message, E_USER_WARNING);
+        }
+        return false;
     }
 
     private function getStream()
@@ -356,7 +372,7 @@ class StreamWrapper
             $this->bucket->upload("", [
                 'name' => $this->file
             ]);
-        } catch (GoogleException $e) {
+        } catch (ServiceException $e) {
             return false;
         }
         return true;
@@ -444,7 +460,7 @@ class StreamWrapper
 
         try {
             return $object->delete();
-        } catch (GoogleException $e) {
+        } catch (ServiceException $e) {
             return false;
         }
     }
