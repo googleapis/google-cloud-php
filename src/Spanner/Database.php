@@ -50,6 +50,16 @@ use Google\Cloud\Spanner\V1\SpannerClient as GrpcSpannerClient;
  * $instance = $spanner->instance('my-instance');
  * $database = $instance->database('my-database');
  * ```
+ *
+ * @method lro() {
+ *     @param string $operationName The name of the Operation to resume.
+ *     @return LongRunningOperation
+ *
+ *     Example:
+ *     ```
+ *     $operation = $database->lro($operationName);
+ *     ```
+ * }
  */
 class Database
 {

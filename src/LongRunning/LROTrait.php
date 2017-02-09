@@ -17,8 +17,17 @@
 
 namespace Google\Cloud\LongRunning;
 
+/**
+ * Provide Long Running Operation support to Google Cloud PHP Clients.
+ */
 trait LROTrait
 {
+    /**
+     * Create a Long Running Operation from an operation name.
+     *
+     * @param string $operationName The name of the Operation.
+     * @return LongRunningOperation
+     */
     public function lro($operationName)
     {
         return new LongRunningOperation(

@@ -40,6 +40,16 @@ use google\spanner\admin\instance\v1\Instance\State;
  *
  * $instance = $spanner->instance('my-instance');
  * ```
+ *
+ * @method lro() {
+ *     @param string $operationName The name of the Operation to resume.
+ *     @return LongRunningOperation
+ *
+ *     Example:
+ *     ```
+ *     $operation = $instance->lro($operationName);
+ *     ```
+ * }
  */
 class Instance
 {

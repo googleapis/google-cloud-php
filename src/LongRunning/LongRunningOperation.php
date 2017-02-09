@@ -17,10 +17,23 @@
 
 namespace Google\Cloud\LongRunning;
 
+/**
+ * Represent and interact with a Long Running Operation.
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\ServiceBuilder;
+ *
+ * $cloud = new ServiceBuilder();
+ * $spanner = $cloud->spanner();
+ * $instance = $spanner->instance('my-instance');
+ *
+ * $operation = $instance->createDatabase('my-database');
+ * ```
+ */
 class LongRunningOperation
 {
-    const MAX_RELOADS = 10;
-    const WAIT_INTERVAL = 1000;
+    const WAIT_INTERVAL = 1.0;
 
     const STATE_IN_PROGRESS = 'inProgress';
     const STATE_SUCCESS = 'success';
@@ -73,6 +86,11 @@ class LongRunningOperation
     /**
      * Return the Operation name.
      *
+     * Example:
+     * ```
+     * $name = $operation->name();
+     * ```
+     *
      * @return string
      */
     public function name()
@@ -81,17 +99,14 @@ class LongRunningOperation
     }
 
     /**
-     * Return the Operation method.
-     *
-     * @return string
-     */
-    public function method()
-    {
-        return $this->method;
-    }
-
-    /**
      * Check if the Operation is done.
+     *
+     * Example:
+     * ```
+     * if ($operation->done()) {
+     *     echo "The operation is done!";
+     * }
+     * ```
      *
      * @return bool
      */
@@ -108,6 +123,23 @@ class LongRunningOperation
      * Return value will be one of `LongRunningOperation::STATE_IN_PROGRESS`,
      * `LongRunningOperation::STATE_SUCCESS` or
      * `LongRunningOperation::STATE_ERROR`.
+     *
+     * Example:
+     * ```
+     * switch ($operation->state()) {
+     *     case LongRunningOperation::STATE_IN_PROGRESS:
+     *         echo "Operation is in progress";
+     *         break;
+     *
+     *     case LongRunningOperation::STATE_SUCCESS:
+     *         echo "Operation succeeded";
+     *         break;
+     *
+     *     case LongRunningOperation::STATE_ERROR:
+     *         echo "Operation failed";
+     *         break;
+     * }
+     * ```
      *
      * @return string
      */
@@ -131,6 +163,16 @@ class LongRunningOperation
      *
      * Returns null if the Operation is not yet complete, or if an error occurred.
      *
+     * Note that if the Operation has not yet been reloaded, this may return
+     * null even when the operation has completed. Use
+     * {@see Google\Cloud\LongRunning\LongRunningOperation::reload()} to get the
+     * Operation state before retrieving the result.
+     *
+     * Example:
+     * ```
+     * $result = $operation->result();
+     * ```
+     *
      * @return mixed|null
      */
     public function result()
@@ -143,6 +185,16 @@ class LongRunningOperation
      *
      * Returns null if the Operation is not yet complete, or if no error occurred.
      *
+     * Note that if the Operation has not yet been reloaded, this may return
+     * null even when the operation has completed. Use
+     * {@see Google\Cloud\LongRunning\LongRunningOperation::reload()} to get the
+     * Operation state before retrieving the result.
+     *
+     * Example:
+     * ```
+     * $error = $operation->error();
+     * ```
+     *
      * @return array|null
      */
     public function error()
@@ -152,6 +204,14 @@ class LongRunningOperation
 
     /**
      * Get the Operation info.
+     *
+     * If the Operation has not been checked previously, a service call will be
+     * executed.
+     *
+     * Example:
+     * ```
+     * $info = $operation->info();
+     * ```
      *
      * @codingStandardsIgnoreStart
      * @param array $options Configuration options.
@@ -165,6 +225,11 @@ class LongRunningOperation
 
     /**
      * Reload the Operation to check its status.
+     *
+     * Example:
+     * ```
+     * $operation->reload();
+     * ```
      *
      * @codingStandardsIgnoreStart
      * @param array $options Configuration Options.
@@ -191,51 +256,52 @@ class LongRunningOperation
     /**
      * Reload the operation until it is complete.
      *
-     * The return type of this method is dictated by the type of Operation.
+     * The return type of this method is dictated by the type of Operation. If
+     * `$options.maxPollingDurationSeconds` is set, and the poll exceeds the
+     * limit, the return will be `null`.
+     *
+     * Example:
+     * ```
+     * $result = $operation->pollUntilComplete();
+     * ```
      *
      * @param array $options {
      *     Configuration Options
      *
-     *     @type int $waitInterval The time, in microseconds, to wait between
-     *           checking the status of the Operation. **Defaults to** `1000`.
-     *     @type int $maxReloads The maximum number of reload operations the
-     *           Operation will be checked. In microseconds, the time before
-     *           failure will be `$waitInterval*$maxReloads`. **Defaults to**
-     *           10.
+     *     @type float $pollingIntervalSeconds The polling interval to use, in
+     *           seconds. **Defaults to** `1.0`.
+     *     @type float $maxPollingDurationSeconds The maximum amount of time to
+     *           continue polling. **Defaults to** `0.0`.
      * }
-     * @return mixed
-     * @throws RuntimeException If the max reloads are exceeded.
+     * @return mixed|null
      */
-    public function wait(array $options = [])
+    public function pollUntilComplete(array $options = [])
     {
         $options += [
-            'waitInterval' => self::WAIT_INTERVAL,
-            'maxReloads' => self::MAX_RELOADS
+            'pollingIntervalSeconds' => $this::WAIT_INTERVAL,
+            'maxPollingDurationSeconds' => 0.0,
         ];
 
-        $isComplete = $this->done();
+        $pollingIntervalMicros = $options['pollingIntervalSeconds'] * 1000000;
+        $maxPollingDuration = $options['maxPollingDurationSeconds'];
+        $hasMaxPollingDuration = $maxPollingDuration > 0.0;
+        $endTime = microtime(true) + $maxPollingDuration;
 
-        $reloads = 0;
         do {
-            $res = $this->reload($options);
-            $isComplete = $this->done();
-
-            if (!$isComplete) {
-                usleep($options['waitInterval']);
-
-                $reloads++;
-                if ($reloads > $options['maxReloads']) {
-                    throw new \RuntimeException('The maximum number of Operation reloads has been exceeded.');
-                }
-            }
-
-        } while(!$isComplete);
+            usleep($pollingIntervalMicros);
+            $this->reload($options);
+        } while (!$this->done() && (!$hasMaxPollingDuration || microtime(true) < $endTime));
 
         return $this->result;
     }
 
     /**
      * Cancel a Long Running Operation.
+     *
+     * Example:
+     * ```
+     * $operation->cancel();
+     * ```
      *
      * @param array $options Configuration options.
      * @return void
@@ -250,6 +316,11 @@ class LongRunningOperation
     /**
      * Delete a Long Running Operation.
      *
+     * Example:
+     * ```
+     * $operation->delete();
+     * ```
+     *
      * @param array $options Configuration Options.
      * @return void
      */
@@ -260,6 +331,14 @@ class LongRunningOperation
         ]);
     }
 
+    /**
+     * When the Operation is complete, there may be a callback enqueued to
+     * handle the response. If so, execute it and return the result.
+     *
+     * @param string $type The response type.
+     * @param mixed $response The response data.
+     * @return mixed
+     */
     private function executeDoneCallback($type, $response)
     {
         if (is_null($response)) {
@@ -288,6 +367,7 @@ class LongRunningOperation
         return [
             'connection' => get_class($this->connection),
             'name' => $this->name,
+            'callablesMap' => array_keys($this->callablesMap)
         ];
     }
 }

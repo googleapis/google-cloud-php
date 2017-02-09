@@ -49,6 +49,16 @@ use google\spanner\admin\instance\v1\Instance\State;
  *
  * $spanner = new SpannerClient();
  * ```
+ *
+ * @method lro() {
+ *     @param string $operationName The name of the Operation to resume.
+ *     @return LongRunningOperation
+ *
+ *     Example:
+ *     ```
+ *     $operation = $spanner->lro($operationName);
+ *     ```
+ * }
  */
 class SpannerClient
 {

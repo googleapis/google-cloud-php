@@ -17,13 +17,28 @@
 
 namespace Google\Cloud\LongRunning;
 
+/**
+ * Defines the calls required to manage Long Running Operations
+ */
 interface LongRunningConnectionInterface
 {
+    /**
+     * @param array $args
+     */
     public function get(array $args);
 
+    /**
+     * @param array $args
+     */
     public function cancel(array $args);
 
+    /**
+     * @param array $args
+     */
     public function delete(array $args);
 
+    /**
+     * @param array $args
+     */
     public function list(array $args);
 }
