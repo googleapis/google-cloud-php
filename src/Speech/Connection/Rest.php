@@ -39,7 +39,7 @@ class Rest implements ConnectionInterface
     public function __construct(array $config = [])
     {
         $config += [
-            'serviceDefinitionPath' => __DIR__ . '/ServiceDefinition/speech-v1beta1.json'
+            'serviceDefinitionPath' => __DIR__ . '/ServiceDefinition/speech-v1.json'
         ];
 
         $this->setRequestWrapper(new RequestWrapper($config));
@@ -53,18 +53,18 @@ class Rest implements ConnectionInterface
      * @param array $args
      * @return array
      */
-    public function syncRecognize(array $args = [])
+    public function recognize(array $args = [])
     {
-        return $this->send('speech', 'syncrecognize', $args);
+        return $this->send('speech', 'recognize', $args);
     }
 
     /**
      * @param array $args
      * @return array
      */
-    public function asyncRecognize(array $args = [])
+    public function longRunningRecognize(array $args = [])
     {
-        return $this->send('speech', 'asyncrecognize', $args);
+        return $this->send('speech', 'longrunningrecognize', $args);
     }
 
     /**

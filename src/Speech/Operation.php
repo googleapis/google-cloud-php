@@ -28,11 +28,12 @@ use Google\Cloud\Speech\Connection\ConnectionInterface;
  * use Google\Cloud\ServiceBuilder;
  *
  * $cloud = new ServiceBuilder();
- * $speech = $cloud->speech();
+ * $speech = $cloud->speech([
+ *     'languageCode' => 'en-US'
+ * ]);
  *
- * $audioFileStream = fopen(__DIR__  . '/audio.flac', 'r');
  * $operation = $speech->beginRecognizeOperation(
- *     $audioFileStream
+ *     fopen(__DIR__  . '/audio.flac', 'r')
  * );
  * ```
  */
