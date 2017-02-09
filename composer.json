@@ -81,6 +81,10 @@
         {
             "type": "vcs",
             "url": "https://github.com/jdpedrie/proto-client-php-private"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/michaelbausor/gax-php"
         }
     ]
 }

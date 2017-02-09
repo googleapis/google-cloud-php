@@ -24,6 +24,7 @@ use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Result;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
+use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\ValueMapper;
@@ -100,14 +101,16 @@ class OperationTest extends \PHPUnit_Framework_TestCase
 
         $this->connection->commit(Argument::that(function ($arg) use ($mutations) {
             if ($arg['mutations'] !== $mutations) return false;
-            if ($arg['singleUseTransaction']['readWrite'] !== []) return false;
+            if ($arg['transactionId'] !== 'foo') return false;
 
             return true;
         }))->shouldBeCalled()->willReturn(['commitTimestamp' => self::TIMESTAMP]);
 
         $this->operation->___setProperty('connection', $this->connection->reveal());
 
-        $res = $this->operation->commit($this->session, $mutations);
+        $res = $this->operation->commit($this->session, $mutations, [
+            'transactionId' => 'foo'
+        ]);
 
         $this->assertInstanceOf(Timestamp::class, $res);
     }
@@ -181,92 +184,106 @@ class OperationTest extends \PHPUnit_Framework_TestCase
             if ($arg['table'] !== 'Posts') return false;
             if ($arg['session'] !== self::SESSION) return false;
             if ($arg['keySet']['all'] !== true) return false;
+            if ($arg['columns'] !== ['foo']) return false;
 
             return true;
         }))->shouldBeCalled()->willReturn($this->executeAndReadResponse());
 
         $this->operation->___setProperty('connection', $this->connection->reveal());
 
-        $res = $this->operation->read($this->session, 'Posts');
+        $res = $this->operation->read($this->session, 'Posts', new KeySet(['all' => true]), ['foo']);
         $this->assertInstanceOf(Result::class, $res);
         $this->assertEquals(10, $res->rows()[0]['ID']);
     }
 
-    public function testReadWithKeySet()
+    public function testReadWithTransaction()
     {
-        $keys = ['foo','bar'];
-
-        $this->connection->read(Argument::that(function ($arg) use ($keys) {
+        $this->connection->read(Argument::that(function ($arg) {
             if ($arg['table'] !== 'Posts') return false;
             if ($arg['session'] !== self::SESSION) return false;
-            if ($arg['keySet']['all'] === true) return false;
-            if ($arg['keySet']['keys'] !== $keys) return false;
+            if ($arg['keySet']['all'] !== true) return false;
+            if ($arg['columns'] !== ['foo']) return false;
 
             return true;
-        }))->shouldBeCalled()->willReturn($this->executeAndReadResponse());
+        }))->shouldBeCalled()->willReturn($this->executeAndReadResponse([
+            'transaction' => ['id' => self::TRANSACTION]
+        ]));
 
         $this->operation->___setProperty('connection', $this->connection->reveal());
 
-        $res = $this->operation->read($this->session, 'Posts', [
-            'keySet' => new KeySet(['keys' => $keys])
+        $res = $this->operation->read($this->session, 'Posts', new KeySet(['all' => true]), ['foo'], [
+            'transactionContext' => SessionPoolInterface::CONTEXT_READWRITE
         ]);
-        $this->assertInstanceOf(Result::class, $res);
-        $this->assertEquals(10, $res->rows()[0]['ID']);
+        $this->assertInstanceOf(Transaction::class, $res->transaction());
+        $this->assertEquals(self::TRANSACTION, $res->transaction()->id());
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
-    public function testReadWithInvalidKeySet()
+    public function testReadWithSnapshot()
     {
-        $this->operation->read($this->session, 'Posts', [
-            'keySet' => 'foo'
+        $this->connection->read(Argument::that(function ($arg) {
+            if ($arg['table'] !== 'Posts') return false;
+            if ($arg['session'] !== self::SESSION) return false;
+            if ($arg['keySet']['all'] !== true) return false;
+            if ($arg['columns'] !== ['foo']) return false;
+
+            return true;
+        }))->shouldBeCalled()->willReturn($this->executeAndReadResponse([
+            'transaction' => ['id' => self::TRANSACTION]
+        ]));
+
+        $this->operation->___setProperty('connection', $this->connection->reveal());
+
+        $res = $this->operation->read($this->session, 'Posts', new KeySet(['all' => true]), ['foo'], [
+            'transactionContext' => SessionPoolInterface::CONTEXT_READ
         ]);
+        $this->assertInstanceOf(Snapshot::class, $res->snapshot());
+        $this->assertEquals(self::TRANSACTION, $res->snapshot()->id());
     }
 
     public function testTransaction()
     {
-        $this->connection->beginTransaction(Argument::that(function ($arg) {
-            if ($arg['session'] !== self::SESSION) return false;
-
-            return true;
-        }))->shouldBeCalled()->willReturn([
-            'id' => self::TRANSACTION
-        ]);
+        $this->connection->beginTransaction(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn(['id' => self::TRANSACTION]);
 
         $this->operation->___setProperty('connection', $this->connection->reveal());
 
-        $res = $this->operation->transaction($this->session, SessionPoolInterface::CONTEXT_READWRITE);
-
-        $this->assertInstanceOf(Transaction::class, $res);
-        $this->assertEquals(self::TRANSACTION, $res->id());
-        $this->assertEquals(SessionPoolInterface::CONTEXT_READWRITE, $res->context());
-        $this->assertNull($res->readTimestamp());
+        $t = $this->operation->transaction($this->session);
+        $this->assertInstanceOf(Transaction::class, $t);
+        $this->assertEquals(self::TRANSACTION, $t->id());
     }
 
-    public function testTransactionWithTimestamp()
+    public function testSnapshot()
     {
-        $this->connection->beginTransaction(Argument::that(function ($arg) {
-            if ($arg['session'] !== self::SESSION) return false;
-
-            return true;
-        }))->shouldBeCalled()->willReturn([
-            'id' => self::TRANSACTION,
-            'readTimestamp' => self::TIMESTAMP
-        ]);
+        $this->connection->beginTransaction(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn(['id' => self::TRANSACTION]);
 
         $this->operation->___setProperty('connection', $this->connection->reveal());
 
-        $res = $this->operation->transaction($this->session, SessionPoolInterface::CONTEXT_READWRITE);
-
-        $this->assertInstanceOf(Transaction::class, $res);
-        $this->assertInstanceOf(Timestamp::class, $res->readTimestamp());
+        $snap = $this->operation->snapshot($this->session);
+        $this->assertInstanceOf(Snapshot::class, $snap);
+        $this->assertEquals(self::TRANSACTION, $snap->id());
     }
 
-    private function executeAndReadResponse()
+    public function testSnapshotWithTimestamp()
+    {
+        $this->connection->beginTransaction(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn(['id' => self::TRANSACTION, 'readTimestamp' => self::TIMESTAMP]);
+
+        $this->operation->___setProperty('connection', $this->connection->reveal());
+
+        $snap = $this->operation->snapshot($this->session);
+        $this->assertInstanceOf(Snapshot::class, $snap);
+        $this->assertEquals(self::TRANSACTION, $snap->id());
+        $this->assertInstanceOf(Timestamp::class, $snap->readTimestamp());
+    }
+
+    private function executeAndReadResponse(array $additionalMetadata = [])
     {
         return [
-            'metadata' => [
+            'metadata' => array_merge([
                 'rowType' => [
                     'fields' => [
                         [
@@ -277,7 +294,7 @@ class OperationTest extends \PHPUnit_Framework_TestCase
                         ]
                     ]
                 ]
-            ],
+            ], $additionalMetadata),
             'rows' => [
                 ['10']
             ]

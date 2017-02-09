@@ -17,14 +17,17 @@
 
 namespace Google\Cloud\Tests\Spanner;
 
+use Google\Cloud\Exception\AbortedException;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Database;
+use Google\Cloud\Spanner\Duration;
 use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Result;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
+use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\ValueMapper;
@@ -77,78 +80,127 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
         $this->database = \Google\Cloud\Dev\stub(Database::class, $args, $props);
     }
 
-    public function testReadOnlyTransaction()
+    public function testSnapshot()
     {
-        $this->connection->beginTransaction(Argument::that(function($arg) {
-            if ($arg['transactionOptions']['readOnly']['strong'] !== TRUE) return false;
-
-            return true;
-        }))
+        $this->connection->beginTransaction(Argument::any())
             ->shouldBeCalled()
-            ->willReturn([
-                'id' => self::TRANSACTION
-            ]);
+            ->willReturn(['id' => self::TRANSACTION]);
 
-        $this->database->___setProperty('connection', $this->connection->reveal());
+        $this->refreshOperation();
 
-        $t = $this->database->readOnlyTransaction();
-        $this->assertInstanceOf(Transaction::class, $t);
-    }
-
-    public function testReadOnlyTransactionOptions()
-    {
-        $options = [
-            'returnReadTimestamp' => true,
-            'strong' => false,
-            'minReadTimestamp' => new Timestamp(new \DateTime),
-            'maxStaleness' => 1337,
-            'readTimestamp' => new Timestamp(new \DateTime),
-            'exactStaleness' => 7331
-        ];
-
-        $this->connection->beginTransaction(Argument::that(function($arg) use ($options) {
-            if ($arg['transactionOptions']['readOnly']['returnReadTimestamp'] !== $options['returnReadTimestamp']) return false;
-            if ($arg['transactionOptions']['readOnly']['strong'] !== $options['strong']) return false;
-            if ($arg['transactionOptions']['readOnly']['minReadTimestamp'] !== $options['minReadTimestamp']->formatAsString()) return false;
-            if ($arg['transactionOptions']['readOnly']['maxStaleness'] !== $options['maxStaleness']) return false;
-            if ($arg['transactionOptions']['readOnly']['readTimestamp'] !== $options['readTimestamp']->formatAsString()) return false;
-            if ($arg['transactionOptions']['readOnly']['exactStaleness'] !== $options['exactStaleness']) return false;
-
-            return true;
-        }))
-            ->shouldBeCalled()
-            ->willReturn([
-                'id' => self::TRANSACTION
-            ]);
-
-        $this->database->___setProperty('connection', $this->connection->reveal());
-
-        $this->database->readOnlyTransaction($options);
+        $res = $this->database->snapshot();
+        $this->assertInstanceOf(Snapshot::class, $res);
     }
 
     /**
-     * @expectedException InvalidArgumentException
+     * @expectedException BadMethodCallException
      */
-    public function testReadOnlyTransactionInvalidConfigType()
+    public function testSnapshotMinReadTimestamp()
     {
-        $t = $this->database->readOnlyTransaction(['minReadTimestamp' => 'foo']);
+        $this->database->snapshot(['minReadTimestamp' => 'foo']);
     }
 
-    public function testLockingTransaction()
+    /**
+     * @expectedException BadMethodCallException
+     */
+    public function testSnapshotMaxStaleness()
     {
-        $this->connection->beginTransaction(Argument::that(function($arg) {
-            if (!isset($arg['transactionOptions']['readWrite'])) return false;
+        $this->database->snapshot(['maxStaleness' => 'foo']);
+    }
 
-            return true;
-        }))
+    public function testRunTransaction()
+    {
+        $this->connection->beginTransaction(Argument::any())
             ->shouldBeCalled()
-            ->willReturn([
-                'id' => self::TRANSACTION
-            ]);
+            ->willReturn(['id' => self::TRANSACTION]);
 
-        $this->database->___setProperty('connection', $this->connection->reveal());
+        $this->refreshOperation();
 
-        $t = $this->database->lockingTransaction();
+        $hasTransaction = false;
+
+        $this->database->runTransaction(function (Transaction $t) use (&$hasTransaction) {
+            $hasTransaction = true;
+        });
+
+        $this->assertTrue($hasTransaction);
+    }
+
+    public function testRunTransactionRetry()
+    {
+        $abort = new AbortedException('foo', 409, null, [
+            [
+                'retryDelay' => [
+                    'seconds' => 1,
+                    'nanos' => 0
+                ]
+            ]
+        ]);
+
+        $this->connection->beginTransaction(Argument::any())
+            ->shouldBeCalledTimes(3)
+            ->willReturn(['id' => self::TRANSACTION]);
+
+        $it = 0;
+        $this->connection->commit(Argument::any())
+            ->shouldBeCalledTimes(3)
+            ->will(function() use (&$it, $abort) {
+                $it++;
+                if ($it <= 2) {
+                    throw $abort;
+                }
+
+                return ['commitTimestamp' => TransactionTest::TIMESTAMP];
+            });
+
+        $this->refreshOperation();
+
+        $this->database->runTransaction(function($t){$t->commit();});
+    }
+
+    /**
+     * @expectedException Google\Cloud\Exception\AbortedException
+     */
+    public function testRunTransactionAborted()
+    {
+        $abort = new AbortedException('foo', 409, null, [
+            [
+                'retryDelay' => [
+                    'seconds' => 1,
+                    'nanos' => 0
+                ]
+            ]
+        ]);
+
+        $this->connection->beginTransaction(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn(['id' => self::TRANSACTION]);
+
+        $it = 0;
+        $this->connection->commit(Argument::any())
+            ->shouldBeCalled()
+            ->will(function() use (&$it, $abort) {
+                $it++;
+                if ($it <= 8) {
+                    throw $abort;
+                }
+
+                return ['commitTimestamp' => TransactionTest::TIMESTAMP];
+            });
+
+        $this->refreshOperation();
+
+        $this->database->runTransaction(function($t){$t->commit();});
+    }
+
+    public function testTransaction()
+    {
+        $this->connection->beginTransaction(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn(['id' => self::TRANSACTION]);
+
+        $this->refreshOperation();
+
+        $t = $this->database->transaction();
         $this->assertInstanceOf(Transaction::class, $t);
     }
 
@@ -374,7 +426,8 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
 
         $this->connection->read(Argument::that(function ($arg) use ($table, $opts) {
             if ($arg['table'] !== $table) return false;
-            if ($arg['foo'] !== $opts['foo']) return false;
+            if ($arg['keySet']['all'] !== true) return false;
+            if ($arg['columns'] !== ['ID']) return false;
 
             return true;
         }))->shouldBeCalled()->willReturn([
@@ -399,7 +452,7 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
 
         $this->refreshOperation();
 
-        $res = $this->database->read($table, $opts);
+        $res = $this->database->read($table, new KeySet(['all' => true]), ['ID']);
         $this->assertInstanceOf(Result::class, $res);
         $this->assertEquals(10, $res->rows()[0]['ID']);
     }
