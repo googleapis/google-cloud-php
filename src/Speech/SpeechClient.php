@@ -408,7 +408,7 @@ class SpeechClient
      * Attempts to determine the encoding based on the file format.
      *
      * @param string $fileFormat
-     * @return string|null
+     * @return string
      * @throws \InvalidArgumentException
      */
     private function determineEncoding($fileFormat)
