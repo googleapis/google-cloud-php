@@ -100,7 +100,7 @@ class Operation
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/speech/reference/rest/v1beta1/speech/syncrecognize#SpeechRecognitionAlternative SpeechRecognitionAlternative
+     * @see https://cloud.google.com/speech/reference/rest/v1/speech/recognize#SpeechRecognitionAlternative SpeechRecognitionAlternative
      * @codingStandardsIgnoreEnd
      *
      * @param array $options [optional] Configuration Options.
@@ -154,8 +154,8 @@ class Operation
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/speech/reference/rest/v1beta1/operations/get Operations get API documentation.
-     * @see https://cloud.google.com/speech/reference/rest/v1beta1/operations#Operation Operation resource documentation.
+     * @see https://cloud.google.com/speech/reference/rest/v1/operations/get Operations get API documentation.
+     * @see https://cloud.google.com/speech/reference/rest/v1/operations#Operation Operation resource documentation.
      * @codingStandardsIgnoreEnd
      *
      * @param array $options [optional] Configuration Options.
@@ -181,8 +181,8 @@ class Operation
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/speech/reference/rest/v1beta1/operations/get Operations get API documentation.
-     * @see https://cloud.google.com/speech/reference/rest/v1beta1/operations#Operation Operation resource documentation.
+     * @see https://cloud.google.com/speech/reference/rest/v1/operations/get Operations get API documentation.
+     * @see https://cloud.google.com/speech/reference/rest/v1/operations#Operation Operation resource documentation.
      * @codingStandardsIgnoreEnd
      *
      * @param array $options [optional] Configuration Options.
