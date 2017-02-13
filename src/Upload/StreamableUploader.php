@@ -171,7 +171,8 @@ class StreamableUploader extends ResumableUploader
      *
      * @return boolean
      */
-    public function isSeekable() {
+    public function isSeekable()
+    {
         return false;
     }
 
