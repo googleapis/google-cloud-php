@@ -145,7 +145,7 @@ class StreamWrapper
 
                 // Wrap the response in a caching stream to make it seekable
                 if (!$this->stream->isSeekable() && ($flags & STREAM_MUST_SEEK)) {
-                    $this->stream = new SeekStream($this->stream);
+                    $this->stream = new CachingStream($this->stream);
                 }
             } catch (ServiceException $ex) {
                 return $this->returnError($ex->getMessage(), $flags);
