@@ -167,6 +167,15 @@ class StreamableUploader extends ResumableUploader
     }
 
     /**
+     * Whether or not this stream is seekable.
+     *
+     * @return boolean
+     */
+    public function isSeekable() {
+        return false;
+    }
+
+    /**
      * After we've sent data, create a new buffer with the remaining data.
      *
      * @param string $data The data to store.

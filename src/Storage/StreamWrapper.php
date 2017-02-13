@@ -18,6 +18,7 @@
 namespace Google\Cloud\Storage;
 
 use Google\Cloud\Exception\ServiceException;
+use GuzzleHttp\Psr7\CachingStream;
 
 /**
  * A streamWrapper implementation for handling `gs://bucket/path/to/file.jpg`.
@@ -71,7 +72,7 @@ class StreamWrapper
     {
         $protocol = $protocol ?: self::DEFAULT_PROTOCOL;
         if (!in_array($protocol, stream_get_wrappers())) {
-            if (!stream_wrapper_register($protocol, StreamWrapper::class)) {
+            if (!stream_wrapper_register($protocol, StreamWrapper::class, STREAM_IS_URL)) {
                 throw new \RuntimeException("Failed to register '$protocol://' protocol");
             }
             self::$clients[$protocol] = $client;
@@ -141,6 +142,11 @@ class StreamWrapper
             try {
                 $options['httpOptions']['stream'] = true;
                 $this->stream = $this->bucket->object($this->file)->downloadAsStream($options);
+
+                // Wrap the response in a caching stream to make it seekable
+                if (!$this->stream->isSeekable() && ($flags & STREAM_MUST_SEEK)) {
+                    $this->stream = new SeekStream($this->stream);
+                }
             } catch (ServiceException $ex) {
                 return $this->returnError($ex->getMessage(), $flags);
             }
@@ -274,10 +280,14 @@ class StreamWrapper
      *        http://php.net/manual/en/streamwrapper.stream-seek.php
      * @return bool
      */
-    public function stream_seek($offset, $whence)
+    public function stream_seek($offset, $whence = SEEK_SET)
     {
         // @codingStandardsIgnoreEnd
         // Currently cannot seek (using BufferStreams)
+        if ($this->stream->isSeekable()) {
+            $this->stream->seek($offset, $whence);
+            return true;
+        }
         return false;
     }
 
