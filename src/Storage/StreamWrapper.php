@@ -19,6 +19,7 @@ namespace Google\Cloud\Storage;
 
 use Google\Cloud\Exception\ServiceException;
 use GuzzleHttp\Psr7\CachingStream;
+use GuzzleHttp\Psr7;
 
 /**
  * A streamWrapper implementation for handling `gs://bucket/path/to/file.jpg`.
@@ -469,7 +470,8 @@ class StreamWrapper
         $object = $this->bucket->object($this->file);
 
         try {
-            return $object->delete();
+            $object->delete();
+            return true;
         } catch (ServiceException $e) {
             return false;
         }
@@ -486,12 +488,115 @@ class StreamWrapper
     public function url_stat($path, $flags)
     {
         // @codingStandardsIgnoreEnd
-        $fp = @fopen($path, 'rb');
-        if ($fp === false) {
+        $client = $this->openPath($path);
+
+        // if directory
+        if ($this->isDirectory($this->file)) {
+            return $this->urlStatDirectory();
+        } else {
+            return $this->urlStatFile();
+        }
+    }
+
+    private function urlStatDirectory()
+    {
+        $dirName = rtrim($this->file, '/');
+        try {
+            $objects = $this->bucket->objects([
+                'prefix' => $dirName,
+            ]);
+
+            if (!$objects->current()) {
+                // can't list objects or doesn't exist
+                return false;
+            }
+        } catch (ServiceException $e) {
+            throw $e;
             return false;
         }
-        $stats = fstat($fp);
-        fclose($fp);
-        return $stats;
+
+        // equivalent to 40777 and 40444 in octal
+        $mode = $this->isBucketWritable($this->file) ? 16895 : 16676;
+        return [
+            'dev'     => 0,
+            'ino'     => 0,
+            'mode'    => $mode,
+            'nlink'   => 0,
+            'uid'     => 0,
+            'gid'     => 0,
+            'rdev'    => 0,
+            'size'    => 0,
+            'atime'   => 0,
+            'mtime'   => 0,
+            'ctime'   => 0,
+            'blksize' => 0,
+            'blocks'  => 0
+        ];
+    }
+
+    private function urlStatFile()
+    {
+        try {
+            $this->object = $this->bucket->object($this->file);
+            $info = $this->object->info();
+        } catch (ServiceException $e) {
+            // couldn't stat file
+            return false;
+        }
+
+        // equivalent to 100666 and 100444 in octal
+        $mode = $this->isBucketWritable() ? 33206 : 33060;
+        $size = (int) $info['size'];
+        $updated = strtotime($info['updated']);
+        $created = strtotime($info['timeCreated']);
+
+        return [
+            'dev'     => 0,
+            'ino'     => 0,
+            'mode'    => $mode,
+            'nlink'   => 0,
+            'uid'     => 0,
+            'gid'     => 0,
+            'rdev'    => 0,
+            'size'    => $size,
+            'atime'   => 0,
+            'mtime'   => $updated,
+            'ctime'   => $created,
+            'blksize' => 0,
+            'blocks'  => 0
+        ];
+    }
+
+    /**
+     * Returns whether the bucket with the given file prefix is writable.
+     * Tries to create a temporary file as a resumable upload which will
+     * not be completed (and cleaned up by GCS).
+     *
+     * @param  string  $prefix Optional folder within the bucket.
+     * @return boolean
+     */
+    private function isBucketWritable($prefix = null)
+    {
+        $name = '__tempfile';
+        if ($prefix) {
+            $name = "$prefix/$name";
+        }
+        $uploader = $this->bucket->getResumableUploader(
+          Psr7\stream_for(''),
+          ['name' => $name]
+        );
+        try {
+            $uploader->getResumeUri();
+        } catch (ServiceException $e) {
+            throw $e;
+            return false;
+        }
+
+        return true;
+    }
+
+    private function isDirectory($path)
+    {
+        return substr($path, -1) == '/';
     }
 }
