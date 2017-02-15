@@ -19,6 +19,7 @@ namespace Google\Cloud\Tests\System\Storage\StreamWrapper;
 
 /**
  * @group storage
+ * @group streamWrapper
  */
 class UrlStatTest extends StreamWrapperTestCase
 {
@@ -30,6 +31,7 @@ class UrlStatTest extends StreamWrapperTestCase
         parent::setUpBeforeClass();
         self::$fileUrl = self::generateUrl(self::$object->name());
         self::$dirUrl = self::generateUrl('some_folder/');
+        mkdir(self::$dirUrl);
     }
 
     public function testUrlStatFile()

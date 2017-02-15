@@ -19,6 +19,7 @@ namespace Google\Cloud\Tests\System\Storage\StreamWrapper;
 
 /**
  * @group storage
+ * @group streamWrapper
  */
 class ImageTest extends StreamWrapperTestCase
 {

@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Storage;
 
+use Google\Cloud\Exception\NotFoundException;
 use Google\Cloud\Exception\ServiceException;
 use GuzzleHttp\Psr7\CachingStream;
 use GuzzleHttp\Psr7;
@@ -30,22 +31,6 @@ use GuzzleHttp\Psr7;
 class StreamWrapper
 {
     const DEFAULT_PROTOCOL = 'gs';
-
-    const STAT_KEYS = [
-        'dev',
-        'ino',
-        'mode',
-        'nlink',
-        'uid',
-        'gid',
-        'rdev',
-        'size',
-        'atime',
-        'mtime',
-        'ctime',
-        'blksize',
-        'blocks'
-    ];
 
     const FILE_WRITABLE_MODE = 33206; // 100666 in octal
     const FILE_READABLE_MODE = 33060; // 100444 in octal
@@ -498,10 +483,28 @@ class StreamWrapper
 
     private function urlStatDirectory()
     {
-        $dirName = rtrim($this->file, '/');
+        $stats = [];
+        // 1. try to look up the directory as a file
+        try {
+            $this->object = $this->bucket->object($this->file);
+            $info = $this->object->info();
+
+            // equivalent to 40777 and 40444 in octal
+            $stats['mode'] = $this->bucket->isWritable()
+                ? self::DIRECTORY_WRITABLE_MODE
+                : self::DIRECTORY_READABLE_MODE;
+            $this->statsFromFileInfo($info, $stats);
+
+            return $this->makeStatArray($stats);
+        } catch (NotFoundException $e) {
+        } catch (ServiceException $e) {
+            return false;
+        }
+
+        // 2. try list files in that directory
         try {
             $objects = $this->bucket->objects([
-                'prefix' => $dirName,
+                'prefix' => $this->file,
             ]);
 
             if (!$objects->current()) {
@@ -509,7 +512,6 @@ class StreamWrapper
                 return false;
             }
         } catch (ServiceException $e) {
-            throw $e;
             return false;
         }
 
@@ -533,19 +535,20 @@ class StreamWrapper
         }
 
         // equivalent to 100666 and 100444 in octal
-        $mode = $this->bucket->isWritable()
-            ? self::FILE_WRITABLE_MODE
-            : self::FILE_READABLE_MODE;
-        $size = (int) $info['size'];
-        $updated = strtotime($info['updated']);
-        $created = strtotime($info['timeCreated']);
+        $stats = array(
+            'mode' => $this->bucket->isWritable()
+                ? self::FILE_WRITABLE_MODE
+                : self::FILE_READABLE_MODE
+        );
+        $this->statsFromFileInfo($info, $stats);
+        return $this->makeStatArray($stats);
+    }
 
-        return $this->makeStatArray([
-            'mode'  => $mode,
-            'size'  => $size,
-            'mtime' => $updated,
-            'ctime' => $created
-        ]);
+    private function statsFromFileInfo(&$info, &$stats)
+    {
+        $stats['size'] = (int) $info['size'];
+        $stats['mtime'] = strtotime($info['updated']);
+        $stats['ctime'] = strtotime($info['timeCreated']);
     }
 
     private function isDirectory($path)
@@ -556,7 +559,21 @@ class StreamWrapper
     private function makeStatArray($stats)
     {
         return array_merge(
-            array_fill_keys(self::STAT_KEYS, 0),
+            array_fill_keys([
+                'dev',
+                'ino',
+                'mode',
+                'nlink',
+                'uid',
+                'gid',
+                'rdev',
+                'size',
+                'atime',
+                'mtime',
+                'ctime',
+                'blksize',
+                'blocks'
+            ], 0),
             $stats
         );
     }

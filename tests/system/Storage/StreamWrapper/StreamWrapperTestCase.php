@@ -21,6 +21,7 @@ use Google\Cloud\Tests\System\Storage\StorageTestCase;
 
 /**
  * @group storage
+ * @group streamWrapper
  */
 class StreamWrapperTestCase extends StorageTestCase
 {

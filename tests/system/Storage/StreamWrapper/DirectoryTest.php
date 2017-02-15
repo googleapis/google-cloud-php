@@ -19,6 +19,7 @@ namespace Google\Cloud\Tests\System\Storage\StreamWrapper;
 
 /**
  * @group storage
+ * @group streamWrapper
  */
 class DirectoryTest extends StreamWrapperTestCase
 {
@@ -36,15 +37,15 @@ class DirectoryTest extends StreamWrapperTestCase
     {
         $dir = self::generateUrl('test_directory');
         $this->assertTrue(mkdir($dir));
-        $this->assertTrue(file_exists($dir));
-        $this->assertTrue(is_dir($dir));
+        $this->assertTrue(file_exists($dir . '/'));
+        $this->assertTrue(is_dir($dir . '/'));
     }
 
     public function testRmDir()
     {
-        $dir = self::generateUrl('test_directory');
+        $dir = self::generateUrl('test_directory/');
         $this->assertTrue(rmdir($dir));
-        $this->assertFalse(file_exists($dir));
+        $this->assertFalse(file_exists($dir . '/'));
     }
 
     public function testListDirectory()
