@@ -35,7 +35,6 @@ class DirectoryTest extends StreamWrapperTestCase
     public function testMkDir()
     {
         $dir = self::generateUrl('test_directory');
-        var_dump($dir);
         $this->assertTrue(mkdir($dir));
         $this->assertTrue(file_exists($dir));
         $this->assertTrue(is_dir($dir));
