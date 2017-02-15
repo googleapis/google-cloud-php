@@ -561,9 +561,10 @@ class EntityMapperTest extends \PHPUnit_Framework_TestCase
 
     public function testObjectPropertyDateTime()
     {
-        $res = $this->mapper->valueObject(new \DateTimeImmutable);
+        $dateTime = new \DateTimeImmutable;
+        $res = $this->mapper->valueObject($dateTime);
 
-        $this->assertEquals((new \DateTimeImmutable())->format(self::DATE_FORMAT), $res['timestampValue']);
+        $this->assertEquals($dateTime->format(self::DATE_FORMAT), $res['timestampValue']);
     }
 
     public function testObjectPropertyKey()

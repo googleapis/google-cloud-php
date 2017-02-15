@@ -48,7 +48,7 @@ use Psr\Cache\CacheItemPoolInterface;
  */
 class ServiceBuilder
 {
-    const VERSION = '0.20.0';
+    const VERSION = '0.20.2';
 
     /**
      * @var array Configuration options to be used between clients.
@@ -80,9 +80,9 @@ class ServiceBuilder
      *           requests specifically for authentication.
      *     @type callable $httpHandler A handler used to deliver Psr7 requests.
      *           Only valid for requests sent over REST.
-     *     @type string $keyFile The contents of the service account
-     *           credentials .json file retrieved from the Google Developer's
-     *           Console.
+     *     @type array $keyFile The contents of the service account credentials
+     *           .json file retrieved from the Google Developer's Console.
+     *           Ex: `json_decode(file_get_contents($path), true)`.
      *     @type string $keyFilePath The full path to your service account
      *           credentials .json file retrieved from the Google Developers
      *           Console.
@@ -269,20 +269,21 @@ class ServiceBuilder
     }
 
     /**
-     * Google Translate client. Provides the ability to dynamically translate
-     * text between thousands of language pairs. The Google Translate API lets
-     * websites and programs integrate with Google Translate API
-     * programmatically. Google Translate API is available as a paid service.
-     * See the [Pricing](https://cloud.google.com/translate/v2/pricing) and
-     * [FAQ](https://cloud.google.com/translate/v2/faq) pages for details. Find
-     * more information at
-     * [Google Translate docs](https://cloud.google.com/translate/docs/).
+     * Google Translate client. Provides the ability to dynamically
+     * translate text between thousands of language pairs and lets websites and
+     * programs integrate with the Google Cloud Translation API
+     * programmatically. The Google Cloud Translation API is available as a paid
+     * service. See the [Pricing](https://cloud.google.com/translation/v2/pricing)
+     * and [FAQ](https://cloud.google.com/translation/v2/faq) pages for details.
+     * Find more information at the
+     * [Google Cloud Translation docs](https://cloud.google.com/translation/docs/).
      *
-     * Please note that while Google Translate supports authentication via service
-     * account and application default credentials like other Cloud Platform APIs,
-     * it also supports authentication via a public API access key. If you wish to
-     * authenticate using an API key, follow the
-     * [before you begin](https://cloud.google.com/translate/v2/translating-text-with-rest#before-you-begin)
+     * Please note that while the Google Cloud Translation API supports
+     * authentication via service account and application default credentials
+     * like other Cloud Platform APIs, it also supports authentication via a
+     * public API access key. If you wish to authenticate using an API key,
+     * follow the
+     * [before you begin](https://cloud.google.com/translation/v2/translating-text-with-rest#before-you-begin)
      * instructions to learn how to generate a key.
      *
      * Example:

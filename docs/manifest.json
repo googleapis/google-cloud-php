@@ -4,8 +4,11 @@
     "libraryTitle": "Google Cloud Client Library",
     "moduleName": "google-cloud-php",
     "defaultService": "servicebuilder",
+    "matchPartialServiceId": true,
     "markdown": "php",
     "versions": [
+        "v0.20.2",
+        "v0.20.1",
         "v0.20.0",
         "v0.13.2",
         "v0.13.1",

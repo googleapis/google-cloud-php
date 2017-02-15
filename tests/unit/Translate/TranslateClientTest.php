@@ -41,7 +41,10 @@ class TranslateClientTest extends \PHPUnit_Framework_TestCase
         $client = new TranslateTestClient();
 
         $this->connection->listTranslations(Argument::that(function($args) {
-            if (!is_null($args['key'])) return false;
+            if (!is_null($args['key'])) {
+                return false;
+            }
+
             return true;
         }))->shouldBeCalled()->willReturn([]);
 
@@ -135,6 +138,37 @@ class TranslateClientTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals($expected1, $translations[0]);
         $this->assertEquals($expected2, $translations[1]);
+    }
+
+    public function testTranslateBatchWithNotZeroIndexedInput()
+    {
+       $expected1 = $this->getTranslateExpectedData('translate', 'translated', 'en');
+       $expected2 = $this->getTranslateExpectedData('translate2', 'translated2', 'en');
+       $stringsToTranslate = [1 => $expected1['input'], 2 => $expected2['input']];
+
+       $target = 'de';
+       $this->connection
+          ->listTranslations([
+             'target' => $target,
+             'q' => $stringsToTranslate,
+             'key' => $this->key,
+             'model' => 'base'
+          ])
+          ->willReturn([
+             'data' => [
+                'translations' => [
+                   $this->getTranslateApiData($expected1['text'], $expected1['source']),
+                   $this->getTranslateApiData($expected2['text'], $expected2['source'])
+                ]
+             ]
+          ])
+          ->shouldBeCalledTimes(1);
+       $client = new TranslateTestClient(['key' => $this->key, 'target' => $target]);
+       $client->setConnection($this->connection->reveal());
+       $translations = $client->translateBatch($stringsToTranslate, ['model' => 'base']);
+
+       $this->assertEquals($expected1, $translations[0]);
+       $this->assertEquals($expected2, $translations[1]);
     }
 
     public function testDetectLanguage()
