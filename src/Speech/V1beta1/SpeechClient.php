@@ -111,6 +111,11 @@ class SpeechClient
         ];
     }
 
+    /**
+     * Return an OperationsClient object with the same endpoint as $this.
+     *
+     * @return \Google\GAX\LongRunning\OperationsClient
+     */
     public function getOperationsClient()
     {
         return $this->operationsClient;
