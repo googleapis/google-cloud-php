@@ -748,11 +748,12 @@ class Bucket
      * @param  string $file Optional file to try to write.
      * @return boolean
      */
-    public function isWritable($file = null) {
+    public function isWritable($file = null)
+    {
         $file = $file ?: '__tempfile';
         $uploader = $this->getResumableUploader(
-          Psr7\stream_for(''),
-          ['name' => $file]
+            Psr7\stream_for(''),
+            ['name' => $file]
         );
         try {
             $uploader->getResumeUri();
