@@ -182,7 +182,7 @@ class Bucket
      * @see https://cloud.google.com/storage/docs/json_api/v1/objects/insert Objects insert API documentation.
      * @see https://cloud.google.com/storage/docs/encryption#customer-supplied Customer-supplied encryption keys.
      *
-     * @param string|resource|StreamInterface $data The data to be uploaded.
+     * @param string|resource|StreamInterface|null $data The data to be uploaded.
      * @param array $options [optional] {
      *     Configuration options.
      *
@@ -265,7 +265,7 @@ class Bucket
      * uploads.
      * @see https://cloud.google.com/storage/docs/json_api/v1/objects/insert Objects insert API documentation.
      *
-     * @param string|resource|StreamInterface $data The data to be uploaded.
+     * @param string|resource|StreamInterface|null $data The data to be uploaded.
      * @param array $options [optional] {
      *     Configuration options.
      *
