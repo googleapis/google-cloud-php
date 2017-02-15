@@ -117,8 +117,8 @@ class StreamWrapperTest extends \PHPUnit_Framework_TestCase
     public function testFileWrite()
     {
         $uploader  = $this->prophesize(StreamableUploader::class);
-        $uploader->write(Argument::any())->willReturn(6);
-        $uploader->close()->shouldBeCalled();
+        $uploader->upload()->shouldBeCalled();
+        $uploader->getResumeUri()->willReturn('https://resume-uri/');
         $this->bucket->getStreamableUploader("", Argument::type('array'))->willReturn($uploader->reveal());
 
         $fp = fopen('gs://my_bucket/output.txt', 'w');
@@ -133,8 +133,8 @@ class StreamWrapperTest extends \PHPUnit_Framework_TestCase
     public function testFilePutContents()
     {
         $uploader  = $this->prophesize(StreamableUploader::class);
-        $uploader->write(Argument::any())->willReturn(10);
-        $uploader->close()->shouldBeCalled();
+        $uploader->upload()->shouldBeCalled();
+        $uploader->getResumeUri()->willReturn('https://resume-uri/');
         $this->bucket->getStreamableUploader("", Argument::type('array'))->willReturn($uploader->reveal());
 
         file_put_contents('gs://my_bucket/file_put_contents.txt', 'Some data.');

@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Tests\Upload;
 
+use Google\Cloud\Storage\WriteStream;
 use Google\Cloud\Upload\StreamableUploader;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Request;
@@ -36,7 +37,7 @@ class StreamableUploaderTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->requestWrapper = $this->prophesize('Google\Cloud\RequestWrapper');
-        $this->stream = Psr7\stream_for('abcd');
+        $this->stream = new WriteStream(null, ['chunkSize' => 16]);
         $this->successBody = '{"canI":"kickIt"}';
     }
 
@@ -64,13 +65,14 @@ class StreamableUploaderTest extends \PHPUnit_Framework_TestCase
             'http://www.example.com',
             ['chunkSize' => 16]
         );
+        $this->stream->setUploader($uploader);
 
         // write some data smaller than the chunk size
-        $uploader->write("0123456789");
+        $this->stream->write("0123456789");
         $upload->shouldHaveBeenCalledTimes(0);
 
         // write some more data that will put us over the chunk size.
-        $uploader->write("more text");
+        $this->stream->write("more text");
         $upload->shouldHaveBeenCalledTimes(1);
 
         // finish the upload
@@ -92,6 +94,7 @@ class StreamableUploaderTest extends \PHPUnit_Framework_TestCase
             $this->stream,
             'http://www.example.com'
         );
+        $this->stream->setUploader($uploader);
 
         $this->assertEquals(json_decode($this->successBody, true), $uploader->upload());
     }
@@ -111,58 +114,9 @@ class StreamableUploaderTest extends \PHPUnit_Framework_TestCase
             $this->stream,
             'http://www.example.com'
         );
+        $this->stream->setUploader($uploader);
 
         $this->assertEquals($resumeUri, $uploader->getResumeUri());
-    }
-
-    public function testResumesUpload()
-    {
-        $response = new Response(200, [], $this->successBody);
-        $statusResponse = new Response(200, ['Range' => 'bytes 0-2']);
-
-        $this->requestWrapper->send(
-            Argument::type('Psr\Http\Message\RequestInterface'),
-            Argument::type('array')
-        )->willReturn($response);
-
-        $this->requestWrapper->send(
-            Argument::that(function ($request) {
-                return $request->getHeaderLine('Content-Range') === 'bytes */*';
-            }),
-            Argument::type('array')
-        )->willReturn($statusResponse);
-
-        $uploader = new StreamableUploader(
-            $this->requestWrapper->reveal(),
-            $this->stream,
-            'http://www.example.com'
-        );
-
-        $this->assertEquals(
-            json_decode($this->successBody, true),
-            $uploader->resume('http://some-resume-uri.example.com')
-        );
-    }
-
-    public function testResumeFinishedUpload()
-    {
-        $statusResponse = new Response(200, [], $this->successBody);
-
-        $this->requestWrapper->send(
-            Argument::type('Psr\Http\Message\RequestInterface'),
-            Argument::type('array')
-        )->willReturn($statusResponse);
-
-        $uploader = new StreamableUploader(
-            $this->requestWrapper->reveal(),
-            $this->stream,
-            'http://www.example.com'
-        );
-
-        $this->assertEquals(
-            json_decode($this->successBody, true),
-            $uploader->resume('http://some-resume-uri.example.com')
-        );
     }
 
     /**
