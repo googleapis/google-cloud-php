@@ -67,4 +67,27 @@ class ReadStream implements StreamInterface
         }
         return 0;
     }
+
+    /**
+     * Read bytes from the underlying buffer, retrying until we have read
+     * enough bytes or we cannot read any more. We do this because the
+     * internal C code for filling a buffer does not account for when
+     * we try to read large chunks from a user-land stream that does not
+     * return enough bytes.
+     *
+     * @param  int $length The number of bytes to read.
+     * @return string Read bytes from the underlying stream.
+     */
+    public function read($length)
+    {
+        $data = '';
+        do {
+            $moreData = $this->stream->read($length);
+            $data .= $moreData;
+            $readLength = strlen($moreData);
+            $length -= $readLength;
+        } while ($length > 0 && $readLength > 0);
+
+        return $data;
+    }
 }
