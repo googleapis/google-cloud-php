@@ -26,18 +26,16 @@ use Prophecy\Argument;
  */
 class ReadStreamTest extends \PHPUnit_Framework_TestCase
 {
-    const TEST_HEADERS = [
-        "Foo: bar",
-        "User-Agent: php",
-        "Content-Length: 1234",
-        "Asdf: qwer",
-    ];
-
     public function testReadsFromHeadersWhenGetSizeIsNull()
     {
         $httpStream = $this->prophesize('Psr\Http\Message\StreamInterface');
         $httpStream->getSize()->willReturn(null);
-        $httpStream->getMetadata('wrapper_data')->willReturn(self::TEST_HEADERS);
+        $httpStream->getMetadata('wrapper_data')->willReturn([
+            "Foo: bar",
+            "User-Agent: php",
+            "Content-Length: 1234",
+            "Asdf: qwer",
+        ]);
 
         $stream = new ReadStream($httpStream->reveal());
 
@@ -48,7 +46,12 @@ class ReadStreamTest extends \PHPUnit_Framework_TestCase
     {
         $httpStream = $this->prophesize('Psr\Http\Message\StreamInterface');
         $httpStream->getSize()->willReturn(0);
-        $httpStream->getMetadata('wrapper_data')->willReturn(self::TEST_HEADERS);
+        $httpStream->getMetadata('wrapper_data')->willReturn([
+            "Foo: bar",
+            "User-Agent: php",
+            "Content-Length: 1234",
+            "Asdf: qwer",
+        ]);
 
         $stream = new ReadStream($httpStream->reveal());
 
