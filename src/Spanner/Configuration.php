@@ -22,7 +22,7 @@ use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 
 /**
- * Represents a Cloud Spanner Configuration
+ * Represents a Cloud Spanner Configuration.
  *
  * Example:
  * ```
@@ -33,6 +33,10 @@ use Google\Cloud\Spanner\Connection\ConnectionInterface;
  *
  * $configuration = $spanner->configuration('regional-europe-west');
  * ```
+ *
+ * @codingStandardsIgnoreStart
+ * @see https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.admin.instance.v1#instanceconfig InstanceConfig
+ * @codingStandardsIgnoreEnd
  */
 class Configuration
 {
@@ -98,14 +102,17 @@ class Configuration
      *
      * This method may require a service call.
      *
+     * **NOTE**: Requires `https://www.googleapis.com/auth/spanner.admin` scope.
+     *
      * Example:
      * ```
      * $info = $configuration->info();
-     * echo $info['nodeCount'];
      * ```
      *
+     * @codingStandardsIgnoreStart
      * @param array $options [optional] Configuration options.
-     * @return array
+     * @return array [InstanceConfig](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.admin.instance.v1#instanceconfig)
+     * @codingStandardsIgnoreEnd
      */
     public function info(array $options = [])
     {
@@ -121,15 +128,17 @@ class Configuration
      *
      * This method requires a service call.
      *
+     * **NOTE**: Requires `https://www.googleapis.com/auth/spanner.admin` scope.
+     *
      * Example:
      * ```
      * if ($configuration->exists()) {
-     *    echo 'The configuration exists!';
+     *    echo 'Configuration exists!';
      * }
      * ```
      *
      * @param array $options [optional] Configuration options.
-     * @return array
+     * @return bool
      */
     public function exists(array $options = [])
     {
@@ -145,13 +154,17 @@ class Configuration
     /**
      * Fetch a fresh representation of the configuration from the service.
      *
+     * **NOTE**: Requires `https://www.googleapis.com/auth/spanner.admin` scope.
+     *
      * Example:
      * ```
      * $info = $configuration->reload();
      * ```
      *
+     * @codingStandardsIgnoreStart
      * @param array $options [optional] Configuration options.
-     * @return array
+     * @return array [InstanceConfig](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.admin.instance.v1#instanceconfig)
+     * @codingStandardsIgnoreEnd
      */
     public function reload(array $options = [])
     {
@@ -163,6 +176,12 @@ class Configuration
         return $this->info;
     }
 
+    /**
+     * A more readable representation of the object.
+     *
+     * @codeCoverageIgnore
+     * @access private
+     */
     public function __debugInfo()
     {
         return [

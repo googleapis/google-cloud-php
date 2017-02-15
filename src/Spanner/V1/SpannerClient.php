@@ -1,16 +1,18 @@
 <?php
 /*
- * Copyright 2016 Google Inc. All Rights Reserved.
+ * Copyright 2016, Google Inc. All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
- * in compliance with the License. You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * Unless required by applicable law or agreed to in writing, software distributed under the License
- * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
- * or implied. See the License for the specific language governing permissions and limitations under
- * the License.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 
 /*
@@ -68,9 +70,7 @@ use google\spanner\v1\TransactionSelector;
  *     $formattedDatabase = SpannerClient::formatDatabaseName("[PROJECT]", "[INSTANCE]", "[DATABASE]");
  *     $response = $spannerClient->createSession($formattedDatabase);
  * } finally {
- *     if (isset($spannerClient)) {
- *         $spannerClient->close();
- *     }
+ *     $spannerClient->close();
  * }
  * ```
  *
@@ -96,8 +96,15 @@ class SpannerClient
      */
     const DEFAULT_TIMEOUT_MILLIS = 30000;
 
-    const _CODEGEN_NAME = 'gapic';
-    const _CODEGEN_VERSION = '0.1.0';
+    /**
+     * The name of the code generator, to be included in the agent header.
+     */
+    const CODEGEN_NAME = 'gapic';
+
+    /**
+     * The code generator version, to be included in the agent header.
+     */
+    const CODEGEN_VERSION = '0.1.0';
 
     private static $databaseNameTemplate;
     private static $sessionNameTemplate;
@@ -216,12 +223,16 @@ class SpannerClient
         return self::$sessionNameTemplate;
     }
 
-    private static function getPageStreamingDescriptors()
+    private static function getGrpcStreamingDescriptors()
     {
-        $pageStreamingDescriptors = [
+        return [
+            'executeStreamingSql' => [
+                'grpcStreamingType' => 'ServerStreaming',
+            ],
+            'streamingRead' => [
+                'grpcStreamingType' => 'ServerStreaming',
+            ],
         ];
-
-        return $pageStreamingDescriptors;
     }
 
     // TODO(garrettjones): add channel (when supported in gRPC)
@@ -232,12 +243,12 @@ class SpannerClient
      *                       Optional. Options for configuring the service API wrapper.
      *
      *     @type string $serviceAddress The domain name of the API remote host.
-     *                                  Default 'wrenchworks.googleapis.com'.
+     *                                  Default 'spanner.googleapis.com'.
      *     @type mixed $port The port on which to connect to the remote host. Default 443.
-     *     @type Grpc\ChannelCredentials $sslCreds
+     *     @type \Grpc\ChannelCredentials $sslCreds
      *           A `ChannelCredentials` for use with an SSL-enabled channel.
      *           Default: a credentials object returned from
-     *           Grpc\ChannelCredentials::createSsl()
+     *           \Grpc\ChannelCredentials::createSsl()
      *     @type array $scopes A string array of scopes to use when acquiring credentials.
      *                         Default the scopes for the Google Cloud Spanner API.
      *     @type array $retryingOverride
@@ -252,21 +263,20 @@ class SpannerClient
      *     @type string $appName The codename of the calling service. Default 'gax'.
      *     @type string $appVersion The version of the calling service.
      *                              Default: the current version of GAX.
-     *     @type Google\Auth\CredentialsLoader $credentialsLoader
+     *     @type \Google\Auth\CredentialsLoader $credentialsLoader
      *                              A CredentialsLoader object created using the
      *                              Google\Auth library.
      * }
      */
     public function __construct($options = [])
     {
-        $defaultScopes = [
-            'https://www.googleapis.com/auth/cloud-platform',
-            'https://www.googleapis.com/auth/spanner.data',
-        ];
         $defaultOptions = [
             'serviceAddress' => self::SERVICE_ADDRESS,
             'port' => self::DEFAULT_SERVICE_PORT,
-            'scopes' => $defaultScopes,
+            'scopes' => [
+                'https://www.googleapis.com/auth/cloud-platform',
+                'https://www.googleapis.com/auth/spanner.data',
+            ],
             'retryingOverride' => null,
             'timeoutMillis' => self::DEFAULT_TIMEOUT_MILLIS,
             'appName' => 'gax',
@@ -277,8 +287,8 @@ class SpannerClient
         $headerDescriptor = new AgentHeaderDescriptor([
             'clientName' => $options['appName'],
             'clientVersion' => $options['appVersion'],
-            'codeGenName' => self::_CODEGEN_NAME,
-            'codeGenVersion' => self::_CODEGEN_VERSION,
+            'codeGenName' => self::CODEGEN_NAME,
+            'codeGenVersion' => self::CODEGEN_VERSION,
             'gaxVersion' => AgentHeaderDescriptor::getGaxVersion(),
             'phpVersion' => phpversion(),
         ]);
@@ -289,14 +299,16 @@ class SpannerClient
             'getSession' => $defaultDescriptors,
             'deleteSession' => $defaultDescriptors,
             'executeSql' => $defaultDescriptors,
+            'executeStreamingSql' => $defaultDescriptors,
             'read' => $defaultDescriptors,
+            'streamingRead' => $defaultDescriptors,
             'beginTransaction' => $defaultDescriptors,
             'commit' => $defaultDescriptors,
             'rollback' => $defaultDescriptors,
         ];
-        $pageStreamingDescriptors = self::getPageStreamingDescriptors();
-        foreach ($pageStreamingDescriptors as $method => $pageStreamingDescriptor) {
-            $this->descriptors[$method]['pageStreamingDescriptor'] = $pageStreamingDescriptor;
+        $grpcStreamingDescriptors = self::getGrpcStreamingDescriptors();
+        foreach ($grpcStreamingDescriptors as $method => $grpcStreamingDescriptor) {
+            $this->descriptors[$method]['grpcStreamingDescriptor'] = $grpcStreamingDescriptor;
         }
 
         $clientConfigJsonString = file_get_contents(__DIR__.'/resources/spanner_client_config.json');
@@ -322,6 +334,9 @@ class SpannerClient
         $createSpannerStubFunction = function ($hostname, $opts) {
             return new SpannerGrpcClient($hostname, $opts);
         };
+        if (array_key_exists('createSpannerStubFunction', $options)) {
+            $createSpannerStubFunction = $options['createSpannerStubFunction'];
+        }
         $this->spannerStub = $this->grpcCredentialsHelper->createStub(
             $createSpannerStubFunction,
             $options['serviceAddress'],
@@ -359,9 +374,7 @@ class SpannerClient
      *     $formattedDatabase = SpannerClient::formatDatabaseName("[PROJECT]", "[INSTANCE]", "[DATABASE]");
      *     $response = $spannerClient->createSession($formattedDatabase);
      * } finally {
-     *     if (isset($spannerClient)) {
-     *         $spannerClient->close();
-     *     }
+     *     $spannerClient->close();
      * }
      * ```
      *
@@ -414,9 +427,7 @@ class SpannerClient
      *     $formattedName = SpannerClient::formatSessionName("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
      *     $response = $spannerClient->getSession($formattedName);
      * } finally {
-     *     if (isset($spannerClient)) {
-     *         $spannerClient->close();
-     *     }
+     *     $spannerClient->close();
      * }
      * ```
      *
@@ -467,9 +478,7 @@ class SpannerClient
      *     $formattedName = SpannerClient::formatSessionName("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
      *     $spannerClient->deleteSession($formattedName);
      * } finally {
-     *     if (isset($spannerClient)) {
-     *         $spannerClient->close();
-     *     }
+     *     $spannerClient->close();
      * }
      * ```
      *
@@ -529,9 +538,7 @@ class SpannerClient
      *     $sql = "";
      *     $response = $spannerClient->executeSql($formattedSession, $sql);
      * } finally {
-     *     if (isset($spannerClient)) {
-     *         $spannerClient->close();
-     *     }
+     *     $spannerClient->close();
      * }
      * ```
      *
@@ -629,6 +636,118 @@ class SpannerClient
     }
 
     /**
+     * Like [ExecuteSql][google.spanner.v1.Spanner.ExecuteSql], except returns the result
+     * set as a stream. Unlike [ExecuteSql][google.spanner.v1.Spanner.ExecuteSql], there
+     * is no limit on the size of the returned result set. However, no
+     * individual row in the result set can exceed 100 MiB, and no
+     * column value can exceed 10 MiB.
+     *
+     * Sample code:
+     * ```
+     * try {
+     *     $spannerClient = new SpannerClient();
+     *     $formattedSession = SpannerClient::formatSessionName("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
+     *     $sql = "";
+     *     // Read all responses until the stream is complete
+     *     $stream = $spannerClient->executeStreamingSql($formattedSession, $sql);
+     *     foreach ($stream->readAll() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $spannerClient->close();
+     * }
+     * ```
+     *
+     * @param string $session      Required. The session in which the SQL query should be performed.
+     * @param string $sql          Required. The SQL query string.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type TransactionSelector $transaction
+     *          The transaction to use. If none is provided, the default is a
+     *          temporary read-only transaction with strong concurrency.
+     *     @type Struct $params
+     *          The SQL query string can contain parameter placeholders. A parameter
+     *          placeholder consists of `'&#64;'` followed by the parameter
+     *          name. Parameter names consist of any combination of letters,
+     *          numbers, and underscores.
+     *
+     *          Parameters can appear anywhere that a literal value is expected.  The same
+     *          parameter name can be used more than once, for example:
+     *            `"WHERE id > &#64;msg_id AND id < &#64;msg_id + 100"`
+     *
+     *          It is an error to execute an SQL query with unbound parameters.
+     *
+     *          Parameter values are specified using `params`, which is a JSON
+     *          object whose keys are parameter names, and whose values are the
+     *          corresponding parameter values.
+     *     @type array $paramTypes
+     *          It is not always possible for Cloud Spanner to infer the right SQL type
+     *          from a JSON value.  For example, values of type `BYTES` and values
+     *          of type `STRING` both appear in [params][google.spanner.v1.ExecuteSqlRequest.params] as JSON strings.
+     *
+     *          In these cases, `param_types` can be used to specify the exact
+     *          SQL type for some or all of the SQL query parameters. See the
+     *          definition of [Type][google.spanner.v1.Type] for more information
+     *          about SQL types.
+     *     @type string $resumeToken
+     *          If this request is resuming a previously interrupted SQL query
+     *          execution, `resume_token` should be copied from the last
+     *          [PartialResultSet][google.spanner.v1.PartialResultSet] yielded before the interruption. Doing this
+     *          enables the new SQL query execution to resume where the last one left
+     *          off. The rest of the request parameters must exactly match the
+     *          request that yielded this token.
+     *     @type QueryMode $queryMode
+     *          Used to control the amount of debugging information returned in
+     *          [ResultSetStats][google.spanner.v1.ResultSetStats].
+     *     @type int $timeoutMillis
+     *          Timeout to use for this call.
+     * }
+     *
+     * @return \Google\GAX\ServerStreamingResponse
+     *
+     * @throws \Google\GAX\ApiException if the remote call fails
+     */
+    public function executeStreamingSql($session, $sql, $optionalArgs = [])
+    {
+        $request = new ExecuteSqlRequest();
+        $request->setSession($session);
+        $request->setSql($sql);
+        if (isset($optionalArgs['transaction'])) {
+            $request->setTransaction($optionalArgs['transaction']);
+        }
+        if (isset($optionalArgs['params'])) {
+            $request->setParams($optionalArgs['params']);
+        }
+        if (isset($optionalArgs['paramTypes'])) {
+            foreach ($optionalArgs['paramTypes'] as $key => $value) {
+                $request->addParamTypes((new ParamTypesEntry())->setKey($key)->setValue($value));
+            }
+        }
+        if (isset($optionalArgs['resumeToken'])) {
+            $request->setResumeToken($optionalArgs['resumeToken']);
+        }
+        if (isset($optionalArgs['queryMode'])) {
+            $request->setQueryMode($optionalArgs['queryMode']);
+        }
+
+        $mergedSettings = $this->defaultCallSettings['executeStreamingSql']->merge(
+            new CallSettings($optionalArgs)
+        );
+        $callable = ApiCallable::createApiCall(
+            $this->spannerStub,
+            'ExecuteStreamingSql',
+            $mergedSettings,
+            $this->descriptors['executeStreamingSql']
+        );
+
+        return $callable(
+            $request,
+            [],
+            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+    }
+
+    /**
      * Reads rows from the database using key lookups and scans, as a
      * simple key/value style alternative to
      * [ExecuteSql][google.spanner.v1.Spanner.ExecuteSql].  This method cannot be used to
@@ -653,9 +772,7 @@ class SpannerClient
      *     $keySet = new KeySet();
      *     $response = $spannerClient->read($formattedSession, $table, $columns, $keySet);
      * } finally {
-     *     if (isset($spannerClient)) {
-     *         $spannerClient->close();
-     *     }
+     *     $spannerClient->close();
      * }
      * ```
      *
@@ -744,6 +861,111 @@ class SpannerClient
     }
 
     /**
+     * Like [Read][google.spanner.v1.Spanner.Read], except returns the result set as a
+     * stream. Unlike [Read][google.spanner.v1.Spanner.Read], there is no limit on the
+     * size of the returned result set. However, no individual row in
+     * the result set can exceed 100 MiB, and no column value can exceed
+     * 10 MiB.
+     *
+     * Sample code:
+     * ```
+     * try {
+     *     $spannerClient = new SpannerClient();
+     *     $formattedSession = SpannerClient::formatSessionName("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
+     *     $table = "";
+     *     $columns = [];
+     *     $keySet = new KeySet();
+     *     // Read all responses until the stream is complete
+     *     $stream = $spannerClient->streamingRead($formattedSession, $table, $columns, $keySet);
+     *     foreach ($stream->readAll() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $spannerClient->close();
+     * }
+     * ```
+     *
+     * @param string   $session Required. The session in which the read should be performed.
+     * @param string   $table   Required. The name of the table in the database to be read.
+     * @param string[] $columns The columns of [table][google.spanner.v1.ReadRequest.table] to be returned for each row matching
+     *                          this request.
+     * @param KeySet   $keySet  Required. `key_set` identifies the rows to be yielded. `key_set` names the
+     *                          primary keys of the rows in [table][google.spanner.v1.ReadRequest.table] to be yielded, unless [index][google.spanner.v1.ReadRequest.index]
+     *                          is present. If [index][google.spanner.v1.ReadRequest.index] is present, then [key_set][google.spanner.v1.ReadRequest.key_set] instead names
+     *                          index keys in [index][google.spanner.v1.ReadRequest.index].
+     *
+     * Rows are yielded in table primary key order (if [index][google.spanner.v1.ReadRequest.index] is empty)
+     * or index key order (if [index][google.spanner.v1.ReadRequest.index] is non-empty).
+     *
+     * It is not an error for the `key_set` to name rows that do not
+     * exist in the database. Read yields nothing for nonexistent rows.
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type TransactionSelector $transaction
+     *          The transaction to use. If none is provided, the default is a
+     *          temporary read-only transaction with strong concurrency.
+     *     @type string $index
+     *          If non-empty, the name of an index on [table][google.spanner.v1.ReadRequest.table]. This index is
+     *          used instead of the table primary key when interpreting [key_set][google.spanner.v1.ReadRequest.key_set]
+     *          and sorting result rows. See [key_set][google.spanner.v1.ReadRequest.key_set] for further information.
+     *     @type int $limit
+     *          If greater than zero, only the first `limit` rows are yielded. If `limit`
+     *          is zero, the default is no limit.
+     *     @type string $resumeToken
+     *          If this request is resuming a previously interrupted read,
+     *          `resume_token` should be copied from the last
+     *          [PartialResultSet][google.spanner.v1.PartialResultSet] yielded before the interruption. Doing this
+     *          enables the new read to resume where the last read left off. The
+     *          rest of the request parameters must exactly match the request
+     *          that yielded this token.
+     *     @type int $timeoutMillis
+     *          Timeout to use for this call.
+     * }
+     *
+     * @return \Google\GAX\ServerStreamingResponse
+     *
+     * @throws \Google\GAX\ApiException if the remote call fails
+     */
+    public function streamingRead($session, $table, $columns, $keySet, $optionalArgs = [])
+    {
+        $request = new ReadRequest();
+        $request->setSession($session);
+        $request->setTable($table);
+        foreach ($columns as $elem) {
+            $request->addColumns($elem);
+        }
+        $request->setKeySet($keySet);
+        if (isset($optionalArgs['transaction'])) {
+            $request->setTransaction($optionalArgs['transaction']);
+        }
+        if (isset($optionalArgs['index'])) {
+            $request->setIndex($optionalArgs['index']);
+        }
+        if (isset($optionalArgs['limit'])) {
+            $request->setLimit($optionalArgs['limit']);
+        }
+        if (isset($optionalArgs['resumeToken'])) {
+            $request->setResumeToken($optionalArgs['resumeToken']);
+        }
+
+        $mergedSettings = $this->defaultCallSettings['streamingRead']->merge(
+            new CallSettings($optionalArgs)
+        );
+        $callable = ApiCallable::createApiCall(
+            $this->spannerStub,
+            'StreamingRead',
+            $mergedSettings,
+            $this->descriptors['streamingRead']
+        );
+
+        return $callable(
+            $request,
+            [],
+            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+    }
+
+    /**
      * Begins a new transaction. This step can often be skipped:
      * [Read][google.spanner.v1.Spanner.Read], [ExecuteSql][google.spanner.v1.Spanner.ExecuteSql] and
      * [Commit][google.spanner.v1.Spanner.Commit] can begin a new transaction as a
@@ -757,9 +979,7 @@ class SpannerClient
      *     $options = new TransactionOptions();
      *     $response = $spannerClient->beginTransaction($formattedSession, $options);
      * } finally {
-     *     if (isset($spannerClient)) {
-     *         $spannerClient->close();
-     *     }
+     *     $spannerClient->close();
      * }
      * ```
      *
@@ -820,9 +1040,7 @@ class SpannerClient
      *     $mutations = [];
      *     $response = $spannerClient->commit($formattedSession, $mutations);
      * } finally {
-     *     if (isset($spannerClient)) {
-     *         $spannerClient->close();
-     *     }
+     *     $spannerClient->close();
      * }
      * ```
      *
@@ -905,9 +1123,7 @@ class SpannerClient
      *     $transactionId = "";
      *     $spannerClient->rollback($formattedSession, $transactionId);
      * } finally {
-     *     if (isset($spannerClient)) {
-     *         $spannerClient->close();
-     *     }
+     *     $spannerClient->close();
      * }
      * ```
      *

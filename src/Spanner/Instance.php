@@ -31,6 +31,11 @@ use google\spanner\admin\instance\v1\Instance\State;
  *
  * Example:
  * ```
+ * use Google\Cloud\ServiceBuilder;
+ *
+ * $cloud = new ServiceBuilder();
+ * $spanner = $cloud->spanner();
+ *
  * $instance = $spanner->instance('my-instance');
  * ```
  */
@@ -60,6 +65,11 @@ class Instance
     private $name;
 
     /**
+     * @var bool
+     */
+    private $returnInt64AsObject;
+
+    /**
      * @var array
      */
     private $info;
@@ -77,6 +87,9 @@ class Instance
      * @param SessionPoolInterface $sessionPool The session pool implementation.
      * @param string $projectId The project ID.
      * @param string $name The instance name.
+     * @param bool $returnInt64AsObject If true, 64 bit integers will be
+     *        returned as a {@see Google\Cloud\Int64} object for 32 bit platform
+     *        compatibility. **Defaults to** false.
      * @param array $info [optional] A representation of the instance object.
      */
     public function __construct(
@@ -84,12 +97,14 @@ class Instance
         SessionPoolInterface $sessionPool,
         $projectId,
         $name,
+        $returnInt64AsObject = false,
         array $info = []
     ) {
         $this->connection = $connection;
         $this->sessionPool = $sessionPool;
         $this->projectId = $projectId;
         $this->name = $name;
+        $this->returnInt64AsObject = $returnInt64AsObject;
         $this->info = $info;
         $this->iam = new Iam(
             new IamInstance($this->connection),
@@ -143,7 +158,7 @@ class Instance
      * Example:
      * ```
      * if ($instance->exists()) {
-     *    echo 'The instance exists!';
+     *    echo 'Instance exists!';
      * }
      * ```
      *
@@ -169,6 +184,10 @@ class Instance
      * $info = $instance->reload();
      * ```
      *
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.admin.instance.v1#google.spanner.admin.instance.v1.GetInstanceRequest GetInstanceRequest
+     * @codingStandardsIgnoreEnd
+     *
      * @param array $options [optional] Configuration options.
      * @return array
      */
@@ -190,9 +209,8 @@ class Instance
      *
      * Example:
      * ```
-     * $instance = $spanner->createInstance($config, 'my-new-instance');
      * if ($instance->state() === Instance::STATE_READY) {
-     *     // do stuff
+     *     echo 'Instance is ready!';
      * }
      * ```
      *
@@ -213,15 +231,26 @@ class Instance
      *
      * Example:
      * ```
-     * todo
+     * $instance->update([
+     *     'displayName' => 'My Instance',
+     *     'nodeCount' => 4
+     * ]);
      * ```
      *
-     * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.admin.instance.v1 Update Instance
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.admin.instance.v1#updateinstancerequest UpdateInstanceRequest
+     * @codingStandardsIgnoreEnd
      *
-     * @param array $options {
+     * @param array $options [optional] {
      *     Configuration options
      *
-     *     @type Configuration $config The configuration to move the instante to.
+     *     @type string $displayName The descriptive name for this instance as
+     *           it appears in UIs. **Defaults to** the value of $name.
+     *     @type int $nodeCount The number of nodes allocated to this instance.
+     *           **Defaults to** `1`.
+     *     @type array $labels For more information, see
+     *           [Using labels to organize Google Cloud Platform resources](https://goo.gl/xmQnxf).
+     * }
      * @return void
      * @throws \InvalidArgumentException
      */
@@ -231,30 +260,14 @@ class Instance
 
         $options += [
             'displayName' => $info['displayName'],
-            'nodeCount' => $info['nodeCount'],
-            'config' => null,
+            'nodeCount' => (isset($info['nodeCount'])) ? $info['nodeCount'] : null,
             'labels' => (isset($info['labels']))
                 ? $info['labels']
                 : []
         ];
 
-        $config = $info['config'];
-        if ($options['config']) {
-            if (!($options['config'] instanceof Configuration)) {
-                throw new \InvalidArgumentException(
-                    'Given configuration is not an instance of Configuration.'
-                );
-            }
-
-            $config = InstanceAdminClient::formatInstanceConfigName(
-                $this->projectId,
-                $options['config']->name()
-            );
-        }
-
         $this->connection->updateInstance([
             'name' => $this->fullyQualifiedInstanceName(),
-            'config' => $config,
         ] + $options);
     }
 
@@ -265,6 +278,10 @@ class Instance
      * ```
      * $instance->delete();
      * ```
+     *
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.admin.instance.v1#deleteinstancerequest DeleteInstanceRequest
+     * @codingStandardsIgnoreEnd
      *
      * @param array $options [optional] Configuration options.
      * @return void
@@ -284,7 +301,9 @@ class Instance
      * $database = $instance->createDatabase('my-database');
      * ```
      *
-     * @see https://cloud.google.com/spanner/reference/rest/v1/projects.instances.databases/create Create Database
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.admin.database.v1#createdatabaserequest CreateDatabaseRequest
+     * @codingStandardsIgnoreEnd
      *
      * @param string $name The database name.
      * @param array $options [optional] {
@@ -302,7 +321,7 @@ class Instance
 
         $statement = sprintf('CREATE DATABASE `%s`', $name);
 
-        $res = $this->connection->createDatabase([
+        $this->connection->createDatabase([
             'instance' => $this->fullyQualifiedInstanceName(),
             'createStatement' => $statement,
             'extraStatements' => $options['statements']
@@ -329,7 +348,8 @@ class Instance
             $this,
             $this->sessionPool,
             $this->projectId,
-            $name
+            $name,
+            $this->returnInt64AsObject
         );
     }
 
@@ -341,27 +361,35 @@ class Instance
      * $databases = $instance->databases();
      * ```
      *
-     * @todo implement pagination!
-     *
-     * @see https://cloud.google.com/spanner/reference/rest/v1/projects.instances.databases/list List Databases
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.admin.database.v1#listdatabasesrequest ListDatabasesRequest
+     * @codingStandardsIgnoreEnd
      *
      * @param array $options Configuration options.
      * @return \Generator<Database>
      */
     public function databases(array $options = [])
     {
-        $res = $this->connection->listDatabases($options + [
-            'instance' => $this->fullyQualifiedInstanceName(),
-        ]);
+        $pageToken = null;
+        do {
+            $res = $this->connection->listDatabases($options + [
+                'instance' => $this->fullyQualifiedInstanceName(),
+                'pageToken' => $pageToken
+            ]);
 
-        $databases = [];
-        if (isset($res['databases'])) {
-            foreach ($res['databases'] as $database) {
-                yield $this->database(
-                    DatabaseAdminClient::parseDatabaseFromDatabaseName($database['name'])
-                );
+            $databases = [];
+            if (isset($res['databases'])) {
+                foreach ($res['databases'] as $database) {
+                    yield $this->database(
+                        DatabaseAdminClient::parseDatabaseFromDatabaseName($database['name'])
+                    );
+                }
             }
-        }
+
+            $pageToken = (isset($res['nextPageToken']))
+                ? $res['nextPageToken']
+                : null;
+        } while($pageToken);
     }
 
     /**

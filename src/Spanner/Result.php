@@ -18,9 +18,22 @@
 namespace Google\Cloud\Spanner;
 
 /**
- * @todo should this be more like BigQuery\QueryResults?
+ * Represent a Google Cloud Spanner lookup result (either read or executeSql).
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\ServiceBuilder;
+ *
+ * $cloud = new ServiceBuilder();
+ * $spanner = $cloud->spanner();
+ * $database = $spanner->connect('my-instance', 'my-database');
+ *
+ * $result = $database->execute('SELECT * FROM Posts');
+ * ```
+ *
+ * @see https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#google.spanner.v1.ResultSet ResultSet
  */
-class Result implements \Iterator
+class Result implements \IteratorAggregate
 {
     /**
      * @var array
@@ -33,23 +46,33 @@ class Result implements \Iterator
     private $rows;
 
     /**
-     * @var int
+     * @var array
      */
-    private $index = 0;
+    private $options;
 
     /**
-     * @var array $result The query or read result.
+     * @param array $result The query or read result.
+     * @param array $rows The rows, formatted and decoded.
+     * @param array $options Additional result options and info.
      */
-    public function __construct(array $result)
+    public function __construct(array $result, array $rows, array $options = [])
     {
         $this->result = $result;
-        $this->rows = $this->transformQueryResult($result);
+        $this->rows = $rows;
+        $this->options = $options;
     }
 
     /**
      * Return result metadata
      *
-     * @return array [ResultSetMetadata](https://cloud.google.com/spanner/reference/rest/v1/ResultSetMetadata).
+     * Example:
+     * ```
+     * $metadata = $result->metadata();
+     * ```
+     *
+     * @codingStandardsIgnoreStart
+     * @return array [ResultSetMetadata](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#google.spanner.v1.ResultSetMetadata).
+     * @codingStandardsIgnoreEnd
      */
     public function metadata()
     {
@@ -57,17 +80,36 @@ class Result implements \Iterator
     }
 
     /**
-     * Return the rows as represented by the API.
+     * Return the formatted and decoded rows.
      *
-     * For a more easily consumed result in which each row is represented as a
-     * set of key/value pairs, see {@see Google\Cloud\Spanner\Result::result()}.
+     * Example:
+     * ```
+     * $rows = $result->rows();
+     * ```
      *
      * @return array|null
      */
     public function rows()
     {
-        return (isset($this->result['rows']))
-            ? $result['rows']
+        return $this->rows;
+    }
+
+    /**
+     * Return the first row, or null.
+     *
+     * Useful when selecting a single row.
+     *
+     * Example:
+     * ```
+     * $row = $result->firstRow();
+     * ```
+     *
+     * @return array|null
+     */
+    public function firstRow()
+    {
+        return (isset($this->rows[0]))
+            ? $this->rows[0]
             : null;
     }
 
@@ -77,21 +119,74 @@ class Result implements \Iterator
      *
      * Stats are not returned by default.
      *
-     * @todo explain how to get dem stats.
+     * Example:
+     * ```
+     * $stats = $result->stats();
+     * ```
      *
-     * @return array|null [ResultSetStats](https://cloud.google.com/spanner/reference/rest/v1/ResultSetStats).
+     * ```
+     * // Executing a query with stats returned.
+     * $res = $database->execute('SELECT * FROM Posts', [
+     *     'queryMode' => 'PROFILE'
+     * ]);
+     * ```
+     *
+     * @codingStandardsIgnoreStart
+     * @return array|null [ResultSetStats](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#google.spanner.v1.ResultSetStats).
+     * @codingStandardsIgnoreEnd
      */
     public function stats()
     {
         return (isset($this->result['stats']))
-            ? $result['stats']
+            ? $this->result['stats']
+            : null;
+    }
+
+    /**
+     * Returns a transaction which was begun in the read or execute, if one exists.
+     *
+     * Example:
+     * ```
+     * $transaction = $result->transaction();
+     * ```
+     *
+     * @return Transaction|null
+     */
+    public function transaction()
+    {
+        return (isset($this->options['transaction']))
+            ? $this->options['transaction']
+            : null;
+    }
+
+    /**
+     * Returns a snapshot which was begun in the read or execute, if one exists.
+     *
+     * Example:
+     * ```
+     * $snapshot = $result->snapshot();
+     * ```
+     *
+     * @return Snapshot|null
+     */
+    public function snapshot()
+    {
+        return (isset($this->options['snapshot']))
+            ? $this->options['snapshot']
             : null;
     }
 
     /**
      * Get the entire query or read response as given by the API.
      *
-     * @return array [ResultSet](https://cloud.google.com/spanner/reference/rest/v1/ResultSet).
+     * Example:
+     * ```
+     * $info = $result->info();
+     * ```
+     *
+     * @codingStandardsIgnoreStart
+     * @return array [ResultSet](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#google.spanner.v1.ResultSet).
+     * @codingStandardsIgnoreEnd
      */
     public function info()
     {
@@ -99,68 +194,10 @@ class Result implements \Iterator
     }
 
     /**
-     * Transform the response from executeSql or read into a list of rows
-     * represented as a collection of key/value arrays.
-     *
-     * @param array $result
-     * @return array
-     */
-    private function transformQueryResult(array $result)
-    {
-        if (!isset($result['rows']) || count($result['rows']) === 0) {
-            return null;
-        }
-
-        $cols = [];
-        foreach (array_keys($result['rows'][0]) as $colIndex) {
-            $cols[] = $result['metadata']['rowType']['fields'][$colIndex]['name'];
-        }
-
-        $rows = [];
-        foreach ($result['rows'] as $row) {
-            $rows[] = array_combine($cols, $row);
-        }
-
-        return $rows;
-    }
-
-    /**
      * @access private
      */
-    public function rewind()
+    public function getIterator()
     {
-        $this->index = 0;
-    }
-
-    /**
-     * @access private
-     */
-    public function current()
-    {
-        return $this->rows[$this->index];
-    }
-
-    /**
-     * @access private
-     */
-    public function key()
-    {
-        return $this->index;
-    }
-
-    /**
-     * @access private
-     */
-    public function next()
-    {
-        ++$this->index;
-    }
-
-    /**
-     * @access private
-     */
-    public function valid()
-    {
-        return isset($this->rows[$this->index]);
+        return new \ArrayIterator($this->rows);
     }
 }

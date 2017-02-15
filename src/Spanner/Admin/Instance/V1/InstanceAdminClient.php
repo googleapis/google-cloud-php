@@ -1,16 +1,18 @@
 <?php
 /*
- * Copyright 2016 Google Inc. All Rights Reserved.
+ * Copyright 2016, Google Inc. All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
- * in compliance with the License. You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * Unless required by applicable law or agreed to in writing, software distributed under the License
- * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
- * or implied. See the License for the specific language governing permissions and limitations under
- * the License.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 
 /*
@@ -31,6 +33,8 @@ use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
 use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
+use Google\GAX\LongRunning\OperationsClient;
+use Google\GAX\OperationResponse;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
 use google\iam\v1\GetIamPolicyRequest;
@@ -38,6 +42,7 @@ use google\iam\v1\Policy;
 use google\iam\v1\SetIamPolicyRequest;
 use google\iam\v1\TestIamPermissionsRequest;
 use google\protobuf\FieldMask;
+use google\spanner\admin\instance\v1\CreateInstanceMetadata;
 use google\spanner\admin\instance\v1\CreateInstanceRequest;
 use google\spanner\admin\instance\v1\DeleteInstanceRequest;
 use google\spanner\admin\instance\v1\GetInstanceConfigRequest;
@@ -46,6 +51,7 @@ use google\spanner\admin\instance\v1\Instance;
 use google\spanner\admin\instance\v1\InstanceAdminGrpcClient;
 use google\spanner\admin\instance\v1\ListInstanceConfigsRequest;
 use google\spanner\admin\instance\v1\ListInstancesRequest;
+use google\spanner\admin\instance\v1\UpdateInstanceMetadata;
 use google\spanner\admin\instance\v1\UpdateInstanceRequest;
 
 /**
@@ -82,13 +88,21 @@ use google\spanner\admin\instance\v1\UpdateInstanceRequest;
  * try {
  *     $instanceAdminClient = new InstanceAdminClient();
  *     $formattedParent = InstanceAdminClient::formatProjectName("[PROJECT]");
- *     foreach ($instanceAdminClient->listInstanceConfigs($formattedParent) as $element) {
- *         // doThingsWith(element);
+ *     // Iterate through all elements
+ *     $pagedResponse = $instanceAdminClient->listInstanceConfigs($formattedParent);
+ *     foreach ($pagedResponse->iterateAllElements() as $element) {
+ *         // doSomethingWith($element);
+ *     }
+ *
+ *     // OR iterate over pages of elements, with the maximum page size set to 5
+ *     $pagedResponse = $instanceAdminClient->listInstanceConfigs($formattedParent, ['pageSize' => 5]);
+ *     foreach ($pagedResponse->iteratePages() as $page) {
+ *         foreach ($page as $element) {
+ *             // doSomethingWith($element);
+ *         }
  *     }
  * } finally {
- *     if (isset($instanceAdminClient)) {
- *         $instanceAdminClient->close();
- *     }
+ *     $instanceAdminClient->close();
  * }
  * ```
  *
@@ -102,7 +116,7 @@ class InstanceAdminClient
     /**
      * The default address of the service.
      */
-    const SERVICE_ADDRESS = 'wrenchworks.googleapis.com';
+    const SERVICE_ADDRESS = 'spanner.googleapis.com';
 
     /**
      * The default port of the service.
@@ -114,8 +128,15 @@ class InstanceAdminClient
      */
     const DEFAULT_TIMEOUT_MILLIS = 30000;
 
-    const _CODEGEN_NAME = 'gapic';
-    const _CODEGEN_VERSION = '0.1.0';
+    /**
+     * The name of the code generator, to be included in the agent header.
+     */
+    const CODEGEN_NAME = 'gapic';
+
+    /**
+     * The code generator version, to be included in the agent header.
+     */
+    const CODEGEN_VERSION = '0.1.0';
 
     private static $projectNameTemplate;
     private static $instanceConfigNameTemplate;
@@ -126,6 +147,7 @@ class InstanceAdminClient
     private $scopes;
     private $defaultCallSettings;
     private $descriptors;
+    private $operationsClient;
 
     /**
      * Formats a string containing the fully-qualified path to represent
@@ -259,6 +281,56 @@ class InstanceAdminClient
         return $pageStreamingDescriptors;
     }
 
+    private static function getLongRunningDescriptors()
+    {
+        return [
+            'createInstance' => [
+                'operationReturnType' => '\google\spanner\admin\instance\v1\Instance',
+                'metadataReturnType' => '\google\spanner\admin\instance\v1\CreateInstanceMetadata',
+            ],
+            'updateInstance' => [
+                'operationReturnType' => '\google\spanner\admin\instance\v1\Instance',
+                'metadataReturnType' => '\google\spanner\admin\instance\v1\UpdateInstanceMetadata',
+            ],
+        ];
+    }
+
+    /**
+     * Return an OperationsClient object with the same endpoint as $this.
+     *
+     * @return \Google\GAX\LongRunning\OperationsClient
+     */
+    public function getOperationsClient()
+    {
+        return $this->operationsClient;
+    }
+
+    /**
+     * Resume an existing long running operation that was previously started
+     * by a long running API method. If $methodName is not provided, or does
+     * not match a long running API method, then the operation can still be
+     * resumed, but the OperationResponse object will not deserialize the
+     * final response.
+     *
+     * @param string $operationName The name of the long running operation
+     * @param string $methodName    The name of the method used to start the operation
+     *
+     * @return \Google\GAX\OperationResponse
+     */
+    public function resumeOperation($operationName, $methodName = null)
+    {
+        $lroDescriptors = self::getLongRunningDescriptors();
+        if (!is_null($methodName) && array_key_exists($methodName, $lroDescriptors)) {
+            $options = $lroDescriptors[$methodName];
+        } else {
+            $options = [];
+        }
+        $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
+        $operation->reload();
+
+        return $operation;
+    }
+
     // TODO(garrettjones): add channel (when supported in gRPC)
     /**
      * Constructor.
@@ -267,14 +339,14 @@ class InstanceAdminClient
      *                       Optional. Options for configuring the service API wrapper.
      *
      *     @type string $serviceAddress The domain name of the API remote host.
-     *                                  Default 'wrenchworks.googleapis.com'.
+     *                                  Default 'spanner.googleapis.com'.
      *     @type mixed $port The port on which to connect to the remote host. Default 443.
-     *     @type Grpc\ChannelCredentials $sslCreds
+     *     @type \Grpc\ChannelCredentials $sslCreds
      *           A `ChannelCredentials` for use with an SSL-enabled channel.
      *           Default: a credentials object returned from
-     *           Grpc\ChannelCredentials::createSsl()
+     *           \Grpc\ChannelCredentials::createSsl()
      *     @type array $scopes A string array of scopes to use when acquiring credentials.
-     *                         Default the scopes for the Google Cloud Spanner Admin Instance API.
+     *                         Default the scopes for the Google Cloud Spanner Instance Admin API.
      *     @type array $retryingOverride
      *           An associative array of string => RetryOptions, where the keys
      *           are method names (e.g. 'createFoo'), that overrides default retrying
@@ -287,21 +359,20 @@ class InstanceAdminClient
      *     @type string $appName The codename of the calling service. Default 'gax'.
      *     @type string $appVersion The version of the calling service.
      *                              Default: the current version of GAX.
-     *     @type Google\Auth\CredentialsLoader $credentialsLoader
+     *     @type \Google\Auth\CredentialsLoader $credentialsLoader
      *                              A CredentialsLoader object created using the
      *                              Google\Auth library.
      * }
      */
     public function __construct($options = [])
     {
-        $defaultScopes = [
-            'https://www.googleapis.com/auth/cloud-platform',
-            'https://www.googleapis.com/auth/spanner.admin',
-        ];
         $defaultOptions = [
             'serviceAddress' => self::SERVICE_ADDRESS,
             'port' => self::DEFAULT_SERVICE_PORT,
-            'scopes' => $defaultScopes,
+            'scopes' => [
+                'https://www.googleapis.com/auth/cloud-platform',
+                'https://www.googleapis.com/auth/spanner.admin',
+            ],
             'retryingOverride' => null,
             'timeoutMillis' => self::DEFAULT_TIMEOUT_MILLIS,
             'appName' => 'gax',
@@ -309,11 +380,20 @@ class InstanceAdminClient
         ];
         $options = array_merge($defaultOptions, $options);
 
+        if (array_key_exists('operationsClient', $options)) {
+            $this->operationsClient = $options['operationsClient'];
+        } else {
+            $this->operationsClient = new OperationsClient([
+                'serviceAddress' => $options['serviceAddress'],
+                'scopes' => $options['scopes'],
+            ]);
+        }
+
         $headerDescriptor = new AgentHeaderDescriptor([
             'clientName' => $options['appName'],
             'clientVersion' => $options['appVersion'],
-            'codeGenName' => self::_CODEGEN_NAME,
-            'codeGenVersion' => self::_CODEGEN_VERSION,
+            'codeGenName' => self::CODEGEN_NAME,
+            'codeGenVersion' => self::CODEGEN_VERSION,
             'gaxVersion' => AgentHeaderDescriptor::getGaxVersion(),
             'phpVersion' => phpversion(),
         ]);
@@ -334,6 +414,10 @@ class InstanceAdminClient
         $pageStreamingDescriptors = self::getPageStreamingDescriptors();
         foreach ($pageStreamingDescriptors as $method => $pageStreamingDescriptor) {
             $this->descriptors[$method]['pageStreamingDescriptor'] = $pageStreamingDescriptor;
+        }
+        $longRunningDescriptors = self::getLongRunningDescriptors();
+        foreach ($longRunningDescriptors as $method => $longRunningDescriptor) {
+            $this->descriptors[$method]['longRunningDescriptor'] = $longRunningDescriptor + ['operationsClient' => $this->operationsClient];
         }
 
         $clientConfigJsonString = file_get_contents(__DIR__.'/resources/instance_admin_client_config.json');
@@ -359,6 +443,9 @@ class InstanceAdminClient
         $createInstanceAdminStubFunction = function ($hostname, $opts) {
             return new InstanceAdminGrpcClient($hostname, $opts);
         };
+        if (array_key_exists('createInstanceAdminStubFunction', $options)) {
+            $createInstanceAdminStubFunction = $options['createInstanceAdminStubFunction'];
+        }
         $this->instanceAdminStub = $this->grpcCredentialsHelper->createStub(
             $createInstanceAdminStubFunction,
             $options['serviceAddress'],
@@ -375,13 +462,21 @@ class InstanceAdminClient
      * try {
      *     $instanceAdminClient = new InstanceAdminClient();
      *     $formattedParent = InstanceAdminClient::formatProjectName("[PROJECT]");
-     *     foreach ($instanceAdminClient->listInstanceConfigs($formattedParent) as $element) {
-     *         // doThingsWith(element);
+     *     // Iterate through all elements
+     *     $pagedResponse = $instanceAdminClient->listInstanceConfigs($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     *
+     *     // OR iterate over pages of elements, with the maximum page size set to 5
+     *     $pagedResponse = $instanceAdminClient->listInstanceConfigs($formattedParent, ['pageSize' => 5]);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
      *     }
      * } finally {
-     *     if (isset($instanceAdminClient)) {
-     *         $instanceAdminClient->close();
-     *     }
+     *     $instanceAdminClient->close();
      * }
      * ```
      *
@@ -449,9 +544,7 @@ class InstanceAdminClient
      *     $formattedName = InstanceAdminClient::formatInstanceConfigName("[PROJECT]", "[INSTANCE_CONFIG]");
      *     $response = $instanceAdminClient->getInstanceConfig($formattedName);
      * } finally {
-     *     if (isset($instanceAdminClient)) {
-     *         $instanceAdminClient->close();
-     *     }
+     *     $instanceAdminClient->close();
      * }
      * ```
      *
@@ -501,13 +594,21 @@ class InstanceAdminClient
      * try {
      *     $instanceAdminClient = new InstanceAdminClient();
      *     $formattedParent = InstanceAdminClient::formatProjectName("[PROJECT]");
-     *     foreach ($instanceAdminClient->listInstances($formattedParent) as $element) {
-     *         // doThingsWith(element);
+     *     // Iterate through all elements
+     *     $pagedResponse = $instanceAdminClient->listInstances($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     *
+     *     // OR iterate over pages of elements, with the maximum page size set to 5
+     *     $pagedResponse = $instanceAdminClient->listInstances($formattedParent, ['pageSize' => 5]);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
      *     }
      * } finally {
-     *     if (isset($instanceAdminClient)) {
-     *         $instanceAdminClient->close();
-     *     }
+     *     $instanceAdminClient->close();
      * }
      * ```
      *
@@ -536,13 +637,15 @@ class InstanceAdminClient
      *          Some examples of using filters are:
      *
      *            &#42; name:&#42; --> The instance has a name.
-     *            &#42; name:Howl --> The instance's name is howl.
+     *            &#42; name:Howl --> The instance's name contains the string "howl".
      *            &#42; name:HOWL --> Equivalent to above.
      *            &#42; NAME:howl --> Equivalent to above.
-     *            &#42; labels.env:&#42; --> The instance has the label env.
-     *            &#42; labels.env:dev --> The instance's label env has the value dev.
-     *            &#42; name:howl labels.env:dev --> The instance's name is howl and it has
-     *                                           the label env with value dev.
+     *            &#42; labels.env:&#42; --> The instance has the label "env".
+     *            &#42; labels.env:dev --> The instance has the label "env" and the value of
+     *                                 the label contains the string "dev".
+     *            &#42; name:howl labels.env:dev --> The instance's name contains "howl" and
+     *                                           it has the label "env" with its value
+     *                                           containing "dev".
      *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
@@ -595,9 +698,7 @@ class InstanceAdminClient
      *     $formattedName = InstanceAdminClient::formatInstanceName("[PROJECT]", "[INSTANCE]");
      *     $response = $instanceAdminClient->getInstance($formattedName);
      * } finally {
-     *     if (isset($instanceAdminClient)) {
-     *         $instanceAdminClient->close();
-     *     }
+     *     $instanceAdminClient->close();
      * }
      * ```
      *
@@ -682,11 +783,34 @@ class InstanceAdminClient
      *     $formattedParent = InstanceAdminClient::formatProjectName("[PROJECT]");
      *     $instanceId = "";
      *     $instance = new Instance();
-     *     $response = $instanceAdminClient->createInstance($formattedParent, $instanceId, $instance);
-     * } finally {
-     *     if (isset($instanceAdminClient)) {
-     *         $instanceAdminClient->close();
+     *     $operationResponse = $instanceAdminClient->createInstance($formattedParent, $instanceId, $instance);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *       $result = $operationResponse->getResult();
+     *       // doSomethingWith($result)
+     *     } else {
+     *       $error = $operationResponse->getError();
+     *       // handleError($error)
      *     }
+     *
+     *     // OR start the operation, keep the operation name, and resume later
+     *     $operationResponse = $instanceAdminClient->createInstance($formattedParent, $instanceId, $instance);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $instanceAdminClient->resumeOperation($operationName, 'createInstance');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *       $result = $newOperationResponse->getResult();
+     *       // doSomethingWith($result)
+     *     } else {
+     *       $error = $newOperationResponse->getError();
+     *       // handleError($error)
+     *     }
+     * } finally {
+     *     $instanceAdminClient->close();
      * }
      * ```
      *
@@ -783,11 +907,34 @@ class InstanceAdminClient
      *     $instanceAdminClient = new InstanceAdminClient();
      *     $instance = new Instance();
      *     $fieldMask = new FieldMask();
-     *     $response = $instanceAdminClient->updateInstance($instance, $fieldMask);
-     * } finally {
-     *     if (isset($instanceAdminClient)) {
-     *         $instanceAdminClient->close();
+     *     $operationResponse = $instanceAdminClient->updateInstance($instance, $fieldMask);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *       $result = $operationResponse->getResult();
+     *       // doSomethingWith($result)
+     *     } else {
+     *       $error = $operationResponse->getError();
+     *       // handleError($error)
      *     }
+     *
+     *     // OR start the operation, keep the operation name, and resume later
+     *     $operationResponse = $instanceAdminClient->updateInstance($instance, $fieldMask);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $instanceAdminClient->resumeOperation($operationName, 'updateInstance');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *       $result = $newOperationResponse->getResult();
+     *       // doSomethingWith($result)
+     *     } else {
+     *       $error = $newOperationResponse->getError();
+     *       // handleError($error)
+     *     }
+     * } finally {
+     *     $instanceAdminClient->close();
      * }
      * ```
      *
@@ -854,9 +1001,7 @@ class InstanceAdminClient
      *     $formattedName = InstanceAdminClient::formatInstanceName("[PROJECT]", "[INSTANCE]");
      *     $instanceAdminClient->deleteInstance($formattedName);
      * } finally {
-     *     if (isset($instanceAdminClient)) {
-     *         $instanceAdminClient->close();
-     *     }
+     *     $instanceAdminClient->close();
      * }
      * ```
      *
@@ -911,9 +1056,7 @@ class InstanceAdminClient
      *     $policy = new Policy();
      *     $response = $instanceAdminClient->setIamPolicy($formattedResource, $policy);
      * } finally {
-     *     if (isset($instanceAdminClient)) {
-     *         $instanceAdminClient->close();
-     *     }
+     *     $instanceAdminClient->close();
      * }
      * ```
      *
@@ -975,9 +1118,7 @@ class InstanceAdminClient
      *     $formattedResource = InstanceAdminClient::formatInstanceName("[PROJECT]", "[INSTANCE]");
      *     $response = $instanceAdminClient->getIamPolicy($formattedResource);
      * } finally {
-     *     if (isset($instanceAdminClient)) {
-     *         $instanceAdminClient->close();
-     *     }
+     *     $instanceAdminClient->close();
      * }
      * ```
      *
@@ -1036,9 +1177,7 @@ class InstanceAdminClient
      *     $permissions = [];
      *     $response = $instanceAdminClient->testIamPermissions($formattedResource, $permissions);
      * } finally {
-     *     if (isset($instanceAdminClient)) {
-     *         $instanceAdminClient->close();
-     *     }
+     *     $instanceAdminClient->close();
      * }
      * ```
      *

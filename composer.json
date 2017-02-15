@@ -56,7 +56,7 @@
         "erusev/parsedown": "^1.6",
         "vierbergenlars/php-semver": "^3.0",
         "google/proto-client-php": "dev-master",
-        "google/gax": "^0.5"
+        "google/gax": "^0.7"
     },
     "suggest": {
         "google/gax": "Required to support gRPC",
@@ -72,7 +72,8 @@
         "psr-4": {
             "Google\\Cloud\\Dev\\": "dev/src",
             "Google\\Cloud\\Tests\\System\\": "tests/system"
-        }
+        },
+        "files": ["dev/src/Functions.php"]
     },
     "scripts": {
         "google-cloud": "dev/google-cloud"
@@ -81,6 +82,10 @@
         {
             "type": "vcs",
             "url": "https://github.com/jdpedrie/proto-client-php-private"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/michaelbausor/gax-php"
         }
     ]
 }

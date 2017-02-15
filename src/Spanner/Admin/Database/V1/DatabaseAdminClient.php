@@ -1,16 +1,18 @@
 <?php
 /*
- * Copyright 2016 Google Inc. All Rights Reserved.
+ * Copyright 2016, Google Inc. All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
- * in compliance with the License. You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * Unless required by applicable law or agreed to in writing, software distributed under the License
- * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
- * or implied. See the License for the specific language governing permissions and limitations under
- * the License.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 
 /*
@@ -31,18 +33,23 @@ use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
 use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
+use Google\GAX\LongRunning\OperationsClient;
+use Google\GAX\OperationResponse;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
 use google\iam\v1\GetIamPolicyRequest;
 use google\iam\v1\Policy;
 use google\iam\v1\SetIamPolicyRequest;
 use google\iam\v1\TestIamPermissionsRequest;
+use google\spanner\admin\database\v1\CreateDatabaseMetadata;
 use google\spanner\admin\database\v1\CreateDatabaseRequest;
+use google\spanner\admin\database\v1\Database;
 use google\spanner\admin\database\v1\DatabaseAdminGrpcClient;
 use google\spanner\admin\database\v1\DropDatabaseRequest;
 use google\spanner\admin\database\v1\GetDatabaseDdlRequest;
 use google\spanner\admin\database\v1\GetDatabaseRequest;
 use google\spanner\admin\database\v1\ListDatabasesRequest;
+use google\spanner\admin\database\v1\UpdateDatabaseDdlMetadata;
 use google\spanner\admin\database\v1\UpdateDatabaseDdlRequest;
 
 /**
@@ -63,13 +70,21 @@ use google\spanner\admin\database\v1\UpdateDatabaseDdlRequest;
  * try {
  *     $databaseAdminClient = new DatabaseAdminClient();
  *     $formattedParent = DatabaseAdminClient::formatInstanceName("[PROJECT]", "[INSTANCE]");
- *     foreach ($databaseAdminClient->listDatabases($formattedParent) as $element) {
- *         // doThingsWith(element);
+ *     // Iterate through all elements
+ *     $pagedResponse = $databaseAdminClient->listDatabases($formattedParent);
+ *     foreach ($pagedResponse->iterateAllElements() as $element) {
+ *         // doSomethingWith($element);
+ *     }
+ *
+ *     // OR iterate over pages of elements, with the maximum page size set to 5
+ *     $pagedResponse = $databaseAdminClient->listDatabases($formattedParent, ['pageSize' => 5]);
+ *     foreach ($pagedResponse->iteratePages() as $page) {
+ *         foreach ($page as $element) {
+ *             // doSomethingWith($element);
+ *         }
  *     }
  * } finally {
- *     if (isset($databaseAdminClient)) {
- *         $databaseAdminClient->close();
- *     }
+ *     $databaseAdminClient->close();
  * }
  * ```
  *
@@ -83,7 +98,7 @@ class DatabaseAdminClient
     /**
      * The default address of the service.
      */
-    const SERVICE_ADDRESS = 'wrenchworks.googleapis.com';
+    const SERVICE_ADDRESS = 'spanner.googleapis.com';
 
     /**
      * The default port of the service.
@@ -95,8 +110,15 @@ class DatabaseAdminClient
      */
     const DEFAULT_TIMEOUT_MILLIS = 30000;
 
-    const _CODEGEN_NAME = 'gapic';
-    const _CODEGEN_VERSION = '0.1.0';
+    /**
+     * The name of the code generator, to be included in the agent header.
+     */
+    const CODEGEN_NAME = 'gapic';
+
+    /**
+     * The code generator version, to be included in the agent header.
+     */
+    const CODEGEN_VERSION = '0.1.0';
 
     private static $instanceNameTemplate;
     private static $databaseNameTemplate;
@@ -106,6 +128,7 @@ class DatabaseAdminClient
     private $scopes;
     private $defaultCallSettings;
     private $descriptors;
+    private $operationsClient;
 
     /**
      * Formats a string containing the fully-qualified path to represent
@@ -212,6 +235,56 @@ class DatabaseAdminClient
         return $pageStreamingDescriptors;
     }
 
+    private static function getLongRunningDescriptors()
+    {
+        return [
+            'createDatabase' => [
+                'operationReturnType' => '\google\spanner\admin\database\v1\Database',
+                'metadataReturnType' => '\google\spanner\admin\database\v1\CreateDatabaseMetadata',
+            ],
+            'updateDatabaseDdl' => [
+                'operationReturnType' => '\google\protobuf\EmptyC',
+                'metadataReturnType' => '\google\spanner\admin\database\v1\UpdateDatabaseDdlMetadata',
+            ],
+        ];
+    }
+
+    /**
+     * Return an OperationsClient object with the same endpoint as $this.
+     *
+     * @return \Google\GAX\LongRunning\OperationsClient
+     */
+    public function getOperationsClient()
+    {
+        return $this->operationsClient;
+    }
+
+    /**
+     * Resume an existing long running operation that was previously started
+     * by a long running API method. If $methodName is not provided, or does
+     * not match a long running API method, then the operation can still be
+     * resumed, but the OperationResponse object will not deserialize the
+     * final response.
+     *
+     * @param string $operationName The name of the long running operation
+     * @param string $methodName    The name of the method used to start the operation
+     *
+     * @return \Google\GAX\OperationResponse
+     */
+    public function resumeOperation($operationName, $methodName = null)
+    {
+        $lroDescriptors = self::getLongRunningDescriptors();
+        if (!is_null($methodName) && array_key_exists($methodName, $lroDescriptors)) {
+            $options = $lroDescriptors[$methodName];
+        } else {
+            $options = [];
+        }
+        $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
+        $operation->reload();
+
+        return $operation;
+    }
+
     // TODO(garrettjones): add channel (when supported in gRPC)
     /**
      * Constructor.
@@ -220,14 +293,14 @@ class DatabaseAdminClient
      *                       Optional. Options for configuring the service API wrapper.
      *
      *     @type string $serviceAddress The domain name of the API remote host.
-     *                                  Default 'wrenchworks.googleapis.com'.
+     *                                  Default 'spanner.googleapis.com'.
      *     @type mixed $port The port on which to connect to the remote host. Default 443.
-     *     @type Grpc\ChannelCredentials $sslCreds
+     *     @type \Grpc\ChannelCredentials $sslCreds
      *           A `ChannelCredentials` for use with an SSL-enabled channel.
      *           Default: a credentials object returned from
-     *           Grpc\ChannelCredentials::createSsl()
+     *           \Grpc\ChannelCredentials::createSsl()
      *     @type array $scopes A string array of scopes to use when acquiring credentials.
-     *                         Default the scopes for the Google Cloud Spanner Admin Database API.
+     *                         Default the scopes for the Google Cloud Spanner Database Admin API.
      *     @type array $retryingOverride
      *           An associative array of string => RetryOptions, where the keys
      *           are method names (e.g. 'createFoo'), that overrides default retrying
@@ -240,21 +313,20 @@ class DatabaseAdminClient
      *     @type string $appName The codename of the calling service. Default 'gax'.
      *     @type string $appVersion The version of the calling service.
      *                              Default: the current version of GAX.
-     *     @type Google\Auth\CredentialsLoader $credentialsLoader
+     *     @type \Google\Auth\CredentialsLoader $credentialsLoader
      *                              A CredentialsLoader object created using the
      *                              Google\Auth library.
      * }
      */
     public function __construct($options = [])
     {
-        $defaultScopes = [
-            'https://www.googleapis.com/auth/cloud-platform',
-            'https://www.googleapis.com/auth/spanner.admin',
-        ];
         $defaultOptions = [
             'serviceAddress' => self::SERVICE_ADDRESS,
             'port' => self::DEFAULT_SERVICE_PORT,
-            'scopes' => $defaultScopes,
+            'scopes' => [
+                'https://www.googleapis.com/auth/cloud-platform',
+                'https://www.googleapis.com/auth/spanner.admin',
+            ],
             'retryingOverride' => null,
             'timeoutMillis' => self::DEFAULT_TIMEOUT_MILLIS,
             'appName' => 'gax',
@@ -262,11 +334,20 @@ class DatabaseAdminClient
         ];
         $options = array_merge($defaultOptions, $options);
 
+        if (array_key_exists('operationsClient', $options)) {
+            $this->operationsClient = $options['operationsClient'];
+        } else {
+            $this->operationsClient = new OperationsClient([
+                'serviceAddress' => $options['serviceAddress'],
+                'scopes' => $options['scopes'],
+            ]);
+        }
+
         $headerDescriptor = new AgentHeaderDescriptor([
             'clientName' => $options['appName'],
             'clientVersion' => $options['appVersion'],
-            'codeGenName' => self::_CODEGEN_NAME,
-            'codeGenVersion' => self::_CODEGEN_VERSION,
+            'codeGenName' => self::CODEGEN_NAME,
+            'codeGenVersion' => self::CODEGEN_VERSION,
             'gaxVersion' => AgentHeaderDescriptor::getGaxVersion(),
             'phpVersion' => phpversion(),
         ]);
@@ -286,6 +367,10 @@ class DatabaseAdminClient
         $pageStreamingDescriptors = self::getPageStreamingDescriptors();
         foreach ($pageStreamingDescriptors as $method => $pageStreamingDescriptor) {
             $this->descriptors[$method]['pageStreamingDescriptor'] = $pageStreamingDescriptor;
+        }
+        $longRunningDescriptors = self::getLongRunningDescriptors();
+        foreach ($longRunningDescriptors as $method => $longRunningDescriptor) {
+            $this->descriptors[$method]['longRunningDescriptor'] = $longRunningDescriptor + ['operationsClient' => $this->operationsClient];
         }
 
         $clientConfigJsonString = file_get_contents(__DIR__.'/resources/database_admin_client_config.json');
@@ -311,6 +396,9 @@ class DatabaseAdminClient
         $createDatabaseAdminStubFunction = function ($hostname, $opts) {
             return new DatabaseAdminGrpcClient($hostname, $opts);
         };
+        if (array_key_exists('createDatabaseAdminStubFunction', $options)) {
+            $createDatabaseAdminStubFunction = $options['createDatabaseAdminStubFunction'];
+        }
         $this->databaseAdminStub = $this->grpcCredentialsHelper->createStub(
             $createDatabaseAdminStubFunction,
             $options['serviceAddress'],
@@ -327,13 +415,21 @@ class DatabaseAdminClient
      * try {
      *     $databaseAdminClient = new DatabaseAdminClient();
      *     $formattedParent = DatabaseAdminClient::formatInstanceName("[PROJECT]", "[INSTANCE]");
-     *     foreach ($databaseAdminClient->listDatabases($formattedParent) as $element) {
-     *         // doThingsWith(element);
+     *     // Iterate through all elements
+     *     $pagedResponse = $databaseAdminClient->listDatabases($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     *
+     *     // OR iterate over pages of elements, with the maximum page size set to 5
+     *     $pagedResponse = $databaseAdminClient->listDatabases($formattedParent, ['pageSize' => 5]);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
      *     }
      * } finally {
-     *     if (isset($databaseAdminClient)) {
-     *         $databaseAdminClient->close();
-     *     }
+     *     $databaseAdminClient->close();
      * }
      * ```
      *
@@ -406,11 +502,34 @@ class DatabaseAdminClient
      *     $databaseAdminClient = new DatabaseAdminClient();
      *     $formattedParent = DatabaseAdminClient::formatInstanceName("[PROJECT]", "[INSTANCE]");
      *     $createStatement = "";
-     *     $response = $databaseAdminClient->createDatabase($formattedParent, $createStatement);
-     * } finally {
-     *     if (isset($databaseAdminClient)) {
-     *         $databaseAdminClient->close();
+     *     $operationResponse = $databaseAdminClient->createDatabase($formattedParent, $createStatement);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *       $result = $operationResponse->getResult();
+     *       // doSomethingWith($result)
+     *     } else {
+     *       $error = $operationResponse->getError();
+     *       // handleError($error)
      *     }
+     *
+     *     // OR start the operation, keep the operation name, and resume later
+     *     $operationResponse = $databaseAdminClient->createDatabase($formattedParent, $createStatement);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $databaseAdminClient->resumeOperation($operationName, 'createDatabase');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *       $result = $newOperationResponse->getResult();
+     *       // doSomethingWith($result)
+     *     } else {
+     *       $error = $newOperationResponse->getError();
+     *       // handleError($error)
+     *     }
+     * } finally {
+     *     $databaseAdminClient->close();
      * }
      * ```
      *
@@ -476,9 +595,7 @@ class DatabaseAdminClient
      *     $formattedName = DatabaseAdminClient::formatDatabaseName("[PROJECT]", "[INSTANCE]", "[DATABASE]");
      *     $response = $databaseAdminClient->getDatabase($formattedName);
      * } finally {
-     *     if (isset($databaseAdminClient)) {
-     *         $databaseAdminClient->close();
-     *     }
+     *     $databaseAdminClient->close();
      * }
      * ```
      *
@@ -535,11 +652,32 @@ class DatabaseAdminClient
      *     $databaseAdminClient = new DatabaseAdminClient();
      *     $formattedDatabase = DatabaseAdminClient::formatDatabaseName("[PROJECT]", "[INSTANCE]", "[DATABASE]");
      *     $statements = [];
-     *     $response = $databaseAdminClient->updateDatabaseDdl($formattedDatabase, $statements);
-     * } finally {
-     *     if (isset($databaseAdminClient)) {
-     *         $databaseAdminClient->close();
+     *     $operationResponse = $databaseAdminClient->updateDatabaseDdl($formattedDatabase, $statements);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *       // operation succeeded and returns no value
+     *     } else {
+     *       $error = $operationResponse->getError();
+     *       // handleError($error)
      *     }
+     *
+     *     // OR start the operation, keep the operation name, and resume later
+     *     $operationResponse = $databaseAdminClient->updateDatabaseDdl($formattedDatabase, $statements);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $databaseAdminClient->resumeOperation($operationName, 'updateDatabaseDdl');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *       // operation succeeded and returns no value
+     *     } else {
+     *       $error = $newOperationResponse->getError();
+     *       // handleError($error)
+     *     }
+     * } finally {
+     *     $databaseAdminClient->close();
      * }
      * ```
      *
@@ -617,9 +755,7 @@ class DatabaseAdminClient
      *     $formattedDatabase = DatabaseAdminClient::formatDatabaseName("[PROJECT]", "[INSTANCE]", "[DATABASE]");
      *     $databaseAdminClient->dropDatabase($formattedDatabase);
      * } finally {
-     *     if (isset($databaseAdminClient)) {
-     *         $databaseAdminClient->close();
-     *     }
+     *     $databaseAdminClient->close();
      * }
      * ```
      *
@@ -670,9 +806,7 @@ class DatabaseAdminClient
      *     $formattedDatabase = DatabaseAdminClient::formatDatabaseName("[PROJECT]", "[INSTANCE]", "[DATABASE]");
      *     $response = $databaseAdminClient->getDatabaseDdl($formattedDatabase);
      * } finally {
-     *     if (isset($databaseAdminClient)) {
-     *         $databaseAdminClient->close();
-     *     }
+     *     $databaseAdminClient->close();
      * }
      * ```
      *
@@ -728,9 +862,7 @@ class DatabaseAdminClient
      *     $policy = new Policy();
      *     $response = $databaseAdminClient->setIamPolicy($formattedResource, $policy);
      * } finally {
-     *     if (isset($databaseAdminClient)) {
-     *         $databaseAdminClient->close();
-     *     }
+     *     $databaseAdminClient->close();
      * }
      * ```
      *
@@ -792,9 +924,7 @@ class DatabaseAdminClient
      *     $formattedResource = DatabaseAdminClient::formatDatabaseName("[PROJECT]", "[INSTANCE]", "[DATABASE]");
      *     $response = $databaseAdminClient->getIamPolicy($formattedResource);
      * } finally {
-     *     if (isset($databaseAdminClient)) {
-     *         $databaseAdminClient->close();
-     *     }
+     *     $databaseAdminClient->close();
      * }
      * ```
      *
@@ -853,9 +983,7 @@ class DatabaseAdminClient
      *     $permissions = [];
      *     $response = $databaseAdminClient->testIamPermissions($formattedResource, $permissions);
      * } finally {
-     *     if (isset($databaseAdminClient)) {
-     *         $databaseAdminClient->close();
-     *     }
+     *     $databaseAdminClient->close();
      * }
      * ```
      *

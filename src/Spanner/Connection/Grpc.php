@@ -26,10 +26,14 @@ use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\V1\SpannerClient;
 use Google\GAX\ApiException;
 use google\protobuf;
+use google\spanner\admin\instance\v1\Instance;
 use google\spanner\admin\instance\v1\State;
 use google\spanner\v1;
+use google\spanner\v1\KeySet;
 use google\spanner\v1\Mutation;
 use google\spanner\v1\TransactionOptions;
+use google\spanner\v1\TransactionSelector;
+use google\spanner\v1\Type;
 
 class Grpc implements ConnectionInterface
 {
@@ -62,7 +66,8 @@ class Grpc implements ConnectionInterface
         'insert' => 'setInsert',
         'update' => 'setUpdate',
         'upsert' => 'setInsertOrUpdate',
-        'replace' => 'replace',
+        'replace' => 'setReplace',
+        'delete' => 'setDelete'
     ];
 
     /**
@@ -70,19 +75,21 @@ class Grpc implements ConnectionInterface
      */
     public function __construct(array $config = [])
     {
-        $grpcConfig = [
-            'credentialsLoader' => CredentialsLoader::makeCredentials($config['scopes'], $config['keyFile'])
-        ];
-
         $this->codec = new PhpArray([
-            'timestamp' => function ($v) {
-                return $this->formatTimestampFromApi($v);
-            }
+            'customFilters' => [
+                'commitTimestamp' => function ($v) {
+                    return $this->formatTimestampFromApi($v);
+                },
+                'readTimestamp' => function ($v) {
+                    return $this->formatTimestampFromApi($v);
+                }
+            ]
         ]);
 
         $config['codec'] = $this->codec;
         $this->setRequestWrapper(new GrpcRequestWrapper($config));
 
+        $grpcConfig = $this->getGaxConfig();
         $this->instanceAdminClient = new InstanceAdminClient($grpcConfig);
         $this->databaseAdminClient = new DatabaseAdminClient($grpcConfig);
         $this->spannerClient = new SpannerClient($grpcConfig);
@@ -94,7 +101,7 @@ class Grpc implements ConnectionInterface
     public function listConfigs(array $args = [])
     {
         return $this->send([$this->instanceAdminClient, 'listInstanceConfigs'], [
-            $args['projectId'],
+            $this->pluck('projectId', $args),
             $args
         ]);
     }
@@ -105,7 +112,7 @@ class Grpc implements ConnectionInterface
     public function getConfig(array $args = [])
     {
         return $this->send([$this->instanceAdminClient, 'getInstanceConfig'], [
-            $args['name'],
+            $this->pluck('name', $args),
             $args
         ]);
     }
@@ -116,7 +123,7 @@ class Grpc implements ConnectionInterface
     public function listInstances(array $args = [])
     {
         return $this->send([$this->instanceAdminClient, 'listInstances'], [
-            InstanceAdminClient::formatProjectName($args['projectId']),
+            $this->pluck('projectId', $args),
             $args
         ]);
     }
@@ -127,7 +134,7 @@ class Grpc implements ConnectionInterface
     public function getInstance(array $args = [])
     {
         return $this->send([$this->instanceAdminClient, 'getInstance'], [
-            $args['name'],
+            $this->pluck('name', $args),
             $args
         ]);
     }
@@ -137,11 +144,11 @@ class Grpc implements ConnectionInterface
      */
     public function createInstance(array $args = [])
     {
+        $instance = $this->instanceObject($args, true);
         return $this->send([$this->instanceAdminClient, 'createInstance'], [
-            $args['name'],
-            $args['config'],
-            $args['displayName'],
-            $args['nodeCount'],
+            $this->pluck('projectId', $args),
+            $this->pluck('instanceId', $args),
+            $instance,
             $args
         ]);
     }
@@ -151,13 +158,15 @@ class Grpc implements ConnectionInterface
      */
     public function updateInstance(array $args = [])
     {
+        $instanceObject = $this->instanceObject($args);
+
+        $mask = array_keys($instanceObject->serialize(new PhpArray(['useCamelCase' => false])));
+
+        $fieldMask = (new protobuf\FieldMask())->deserialize(['paths' => $mask], $this->codec);
+
         return $this->send([$this->instanceAdminClient, 'updateInstance'], [
-            $args['name'],
-            $args['config'],
-            $args['displayName'],
-            $args['nodeCount'],
-            new State,
-            $args['labels'],
+            $instanceObject,
+            $fieldMask,
             $args
         ]);
     }
@@ -168,7 +177,7 @@ class Grpc implements ConnectionInterface
     public function deleteInstance(array $args = [])
     {
         return $this->send([$this->instanceAdminClient, 'deleteInstance'], [
-            $args['name'],
+            $this->pluck('name', $args),
             $args
         ]);
     }
@@ -179,7 +188,7 @@ class Grpc implements ConnectionInterface
     public function getInstanceIamPolicy(array $args = [])
     {
         return $this->send([$this->instanceAdminClient, 'getIamPolicy'], [
-            $args['resource'],
+            $this->pluck('resource', $args),
             $args
         ]);
     }
@@ -190,8 +199,8 @@ class Grpc implements ConnectionInterface
     public function setInstanceIamPolicy(array $args = [])
     {
         return $this->send([$this->instanceAdminClient, 'setIamPolicy'], [
-            $args['resource'],
-            $args['policy'],
+            $this->pluck('resource', $args),
+            $this->pluck('policy', $args),
             $args
         ]);
     }
@@ -202,8 +211,8 @@ class Grpc implements ConnectionInterface
     public function testInstanceIamPermissions(array $args = [])
     {
         return $this->send([$this->instanceAdminClient, 'testIamPermissions'], [
-            $args['resource'],
-            $args['permissions'],
+            $this->pluck('resource', $args),
+            $this->pluck('permissions', $args),
             $args
         ]);
     }
@@ -214,7 +223,7 @@ class Grpc implements ConnectionInterface
     public function listDatabases(array $args = [])
     {
         return $this->send([$this->databaseAdminClient, 'listDatabases'], [
-            $args['instance'],
+            $this->pluck('instance', $args),
             $args
         ]);
     }
@@ -225,9 +234,9 @@ class Grpc implements ConnectionInterface
     public function createDatabase(array $args = [])
     {
         return $this->send([$this->databaseAdminClient, 'createDatabase'], [
-            $args['instance'],
-            $args['createStatement'],
-            $args['extraStatements'],
+            $this->pluck('instance', $args),
+            $this->pluck('createStatement', $args),
+            $this->pluck('extraStatements', $args),
             $args
         ]);
     }
@@ -237,9 +246,9 @@ class Grpc implements ConnectionInterface
      */
     public function updateDatabase(array $args = [])
     {
-        return $this->send([$this->databaseAdminClient, 'updateDatabase'], [
-            $args['name'],
-            $args['statements'],
+        return $this->send([$this->databaseAdminClient, 'updateDatabaseDdl'], [
+            $this->pluck('name', $args),
+            $this->pluck('statements', $args),
             $args
         ]);
     }
@@ -250,7 +259,7 @@ class Grpc implements ConnectionInterface
     public function dropDatabase(array $args = [])
     {
         return $this->send([$this->databaseAdminClient, 'dropDatabase'], [
-            $args['name'],
+            $this->pluck('name', $args),
             $args
         ]);
     }
@@ -261,7 +270,7 @@ class Grpc implements ConnectionInterface
     public function getDatabaseDDL(array $args = [])
     {
         return $this->send([$this->databaseAdminClient, 'getDatabaseDDL'], [
-            $args['name'],
+            $this->pluck('name', $args),
             $args
         ]);
     }
@@ -272,7 +281,7 @@ class Grpc implements ConnectionInterface
     public function getDatabaseIamPolicy(array $args = [])
     {
         return $this->send([$this->databaseAdminClient, 'getIamPolicy'], [
-            $args['resource'],
+            $this->pluck('resource', $args),
             $args
         ]);
     }
@@ -283,8 +292,8 @@ class Grpc implements ConnectionInterface
     public function setDatabaseIamPolicy(array $args = [])
     {
         return $this->send([$this->databaseAdminClient, 'setIamPolicy'], [
-            $args['resource'],
-            $args['policy'],
+            $this->pluck('resource', $args),
+            $this->pluck('policy', $args),
             $args
         ]);
     }
@@ -295,8 +304,8 @@ class Grpc implements ConnectionInterface
     public function testDatabaseIamPermissions(array $args = [])
     {
         return $this->send([$this->databaseAdminClient, 'testIamPermissions'], [
-            $args['resource'],
-            $args['permissions'],
+            $this->pluck('resource', $args),
+            $this->pluck('permissions', $args),
             $args
         ]);
     }
@@ -339,8 +348,19 @@ class Grpc implements ConnectionInterface
      */
     public function executeSql(array $args = [])
     {
-        $args['params'] = (new protobuf\Struct)
-            ->deserialize($this->formatStructForApi($args['params']), $this->codec);
+        $params = new protobuf\Struct;
+        if (!empty($args['params'])) {
+            $params->deserialize($this->formatStructForApi($args['params']), $this->codec);
+        }
+
+        $args['params'] = $params;
+
+        foreach ($args['paramTypes'] as $key => $param) {
+            $args['paramTypes'][$key] = (new Type)
+                ->deserialize($param, $this->codec);
+        }
+
+        $args['transaction'] = $this->createTransactionSelector($args);
 
         return $this->send([$this->spannerClient, 'executeSql'], [
             $this->pluck('session', $args),
@@ -354,36 +374,11 @@ class Grpc implements ConnectionInterface
      */
     public function read(array $args = [])
     {
-        $keys = $this->pluck('keySet', $args);
+        $keySet = $this->pluck('keySet', $args);
+        $keySet = (new KeySet)
+            ->deserialize($this->formatKeySet($keySet), $this->codec);
 
-        $keySet = new v1\KeySet;
-        if (!empty($keys['keys'])) {
-            $keySet->setKeys($this->formatListForApi($keys['keys']));
-        }
-
-        if (!empty($keys['ranges'])) {
-            $ranges = new v1\KeyRange;
-
-            if (isset($keys['ranges']['startClosed'])) {
-                $ranges->setStartClosed($this->formatListForApi($keys['ranges']['startClosed']));
-            }
-
-            if (isset($keys['ranges']['startOpen'])) {
-                $ranges->setStartOpen($this->formatListForApi($keys['ranges']['startOpen']));
-            }
-            if (isset($keys['ranges']['endClosed'])) {
-                $ranges->setEndClosed($this->formatListForApi($keys['ranges']['endClosed']));
-            }
-            if (isset($keys['ranges']['endOpen'])) {
-                $ranges->setEndOpen($this->formatListForApi($keys['ranges']['endOpen']));
-            }
-
-            $keySet->setRanges($ranges);
-        }
-
-        if (isset($keys['all'])) {
-            $keySet->setAll($keys['all']);
-        }
+        $args['transaction'] = $this->createTransactionSelector($args);
 
         return $this->send([$this->spannerClient, 'read'], [
             $this->pluck('session', $args),
@@ -401,9 +396,19 @@ class Grpc implements ConnectionInterface
     {
         $options = new TransactionOptions;
 
-        if (isset($args['readOnly'])) {
+        if (isset($args['transactionOptions']['readOnly'])) {
+            $ro = $args['transactionOptions']['readOnly'];
+
+            if (isset($ro['minReadTimestamp'])) {
+                $ro['minReadTimestamp'] = $this->formatTimestampForApi($ro['minReadTimestamp']);
+            }
+
+            if (isset($ro['readTimestamp'])) {
+                $ro['readTimestamp'] = $this->formatTimestampForApi($ro['readTimestamp']);
+            }
+
             $readOnly = (new TransactionOptions\ReadOnly)
-                ->deserialize($args['readOnly'], $this->codec);
+                ->deserialize($ro, $this->codec);
 
             $options->setReadOnly($readOnly);
         } else {
@@ -430,36 +435,42 @@ class Grpc implements ConnectionInterface
             foreach ($inputMutations as $mutation) {
                 $type = array_keys($mutation)[0];
                 $data = $mutation[$type];
-                $data['values'] = $this->formatListForApi($data['values']);
 
                 switch ($type) {
                     case 'insert':
                     case 'update':
                     case 'upsert':
                     case 'replace':
-                        $write = (new Mutation\Write)
-                            ->deserialize($data, $this->codec);
+                        $data['values'] = $this->formatListForApi($data['values']);
 
-                        $setterName = $this->mutationSetters[$type];
-                        $mutation = new Mutation;
-                        $mutation->$setterName($write);
-                        $mutations[] = $mutation;
+                        $operation = (new Mutation\Write)
+                            ->deserialize($data, $this->codec);
 
                         break;
 
                     case 'delete':
-                        $mutations[] = (new Mutation\Delete)
+                        if (isset($data['keySet'])) {
+                            $data['keySet'] = $this->formatKeySet($data['keySet']);
+                        }
+
+                        $operation = (new Mutation\Delete)
                             ->deserialize($data, $this->codec);
 
                         break;
                 }
+
+                $setterName = $this->mutationSetters[$type];
+                $mutation = new Mutation;
+                $mutation->$setterName($operation);
+                $mutations[] = $mutation;
             }
         }
 
         if (isset($args['singleUseTransaction'])) {
-            $options = new TransactionOptions;
             $readWrite = (new TransactionOptions\ReadWrite)
-                ->deserialize($args['singleUseTransaction']['readWrite'], $this->codec);
+                ->deserialize([], $this->codec);
+
+            $options = new TransactionOptions;
             $options->setReadWrite($readWrite);
             $args['singleUseTransaction'] = $options;
         }
@@ -481,5 +492,60 @@ class Grpc implements ConnectionInterface
             $this->pluck('transactionId', $args),
             $args
         ]);
+    }
+
+    /**
+     * @param array $keySet
+     * @return array Formatted keyset
+     */
+    private function formatKeySet(array $keySet)
+    {
+        if (isset($keySet['keys'])) {
+            $keySet['keys'] = $this->formatListForApi($keySet['keys']);
+        }
+
+        if (isset($keySet['ranges'])) {
+            foreach ($keySet['ranges'] as $index => $rangeItem) {
+                foreach ($rangeItem as $key => $val) {
+                    $rangeItem[$key] = $this->formatListForApi($val);
+                }
+
+                $keySet['ranges'][$index] = $rangeItem;
+            }
+        }
+
+        return $keySet;
+    }
+
+    /**
+     * @param array $args
+     * @return array
+     */
+    private function createTransactionSelector(array &$args)
+    {
+        $selector = new TransactionSelector;
+        if (isset($args['transaction'])) {
+            $selector = $selector->deserialize($this->pluck('transaction', $args), $this->codec);
+        } elseif (isset($args['transactionId'])) {
+            $selector = $selector->deserialize(['id' => $this->pluck('transactionId', $args)], $this->codec);
+        }
+
+        return $selector;
+    }
+
+    /**
+     * @param array $args
+     * @param bool $isRequired
+     */
+    private function instanceObject(array &$args, $required = false)
+    {
+        return (new Instance())->deserialize(array_filter([
+            'name' => $this->pluck('name', $args, $required),
+            'config' => $this->pluck('config', $args, $required),
+            'displayName' => $this->pluck('displayName', $args, $required),
+            'nodeCount' => $this->pluck('nodeCount', $args, $required),
+            'state' => $this->pluck('state', $args, $required),
+            'labels' => $this->formatLabelsForApi($this->pluck('labels', $args, $required))
+        ]), $this->codec);
     }
 }

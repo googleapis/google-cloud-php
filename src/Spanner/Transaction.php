@@ -22,34 +22,54 @@ use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use RuntimeException;
 
 /**
- * Enabled interaction with Google Cloud Spanner inside a Transaction.
+ * Manages interaction with Google Cloud Spanner inside a Transaction.
+ *
+ * Transactions can be started via
+ * {@see Google\Cloud\Spanner\Database::runTransaction()} (recommended) or via
+ * {@see Google\Cloud\Spanner\Database::transaction()}. Transactions should
+ * always call {@see Google\Cloud\Spanner\Transaction::commit()} or
+ * {@see Google\Cloud\Spanner\Transaction::rollback()} to ensure that locks are
+ * released in a timely manner.
+ *
+ * If you do not plan on performing any writes in your transaction, a
+ * {@see Google\Cloud\Spanner\Snapshot} is a better solution which does not
+ * require a commit or rollback and does not lock any data.
+ *
+ * Transactions may raise {@see Google\Cloud\Exception\AbortedException} errors
+ * when the transaction cannot complete for any reason. In this case, the entire
+ * operation (all reads and writes) should be reapplied atomically. Google Cloud
+ * PHP handles this transparently when using
+ * {@see Google\Cloud\Spanner\Database::runTransaction()}. In other cases, it is
+ * highly recommended that applications implement their own retry logic.
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\ServiceBuilder;
+ *
+ * $cloud = new ServiceBuilder();
+ * $spanner = $cloud->spanner();
+ *
+ * $database = $spanner->connect('my-instance', 'my-database');
+ *
+ * $database->runTransaction(function (Transaction $t) {
+ *     // do stuff.
+ *
+ *     $t->commit();
+ * });
+ * ```
+ *
+ * ```
+ * // Get a transaction to manage manually.
+ * $transaction = $database->transaction();
+ * ```
  */
 class Transaction
 {
-    /**
-     * @var Operation
-     */
-    private $operation;
+    use TransactionReadTrait;
 
-    /**
-     * @var Session
-     */
-    private $session;
-
-    /**
-     * @var string
-     */
-    private $context;
-
-    /**
-     * @var string
-     */
-    private $transactionId;
-
-    /**
-     * @var string
-     */
-    private $readTimestamp;
+    const STATE_ACTIVE = 0;
+    const STATE_ROLLED_BACK = 1;
+    const STATE_COMMITTED = 2;
 
     /**
      * @var array
@@ -57,175 +77,231 @@ class Transaction
     private $mutations = [];
 
     /**
+     * @var int
+     */
+    private $state = self::STATE_ACTIVE;
+
+    /**
      * @param Operation $operation The Operation instance.
      * @param Session $session The session to use for spanner interactions.
-     * @param string $context The Transaction context.
-     * @param array $transaction Transaction details.
+     * @param string $transactionId The Transaction ID.
      */
     public function __construct(
         Operation $operation,
         Session $session,
-        $context,
-        array $transaction
+        $transactionId
     ) {
         $this->operation = $operation;
         $this->session = $session;
-        $this->context = $context;
-        $this->transactionId = $transaction['id'];
-        $this->readTimestamp = (isset($transaction['readTimestamp']))
-            ? $transaction['readTimestamp']
-            : null;
+        $this->transactionId = $transactionId;
+        $this->context = SessionPoolInterface::CONTEXT_READWRITE;
     }
 
     /**
      * Enqueue an insert mutation.
      *
+     * Example:
+     * ```
+     * $transaction->insert('Posts', [
+     *     'ID' => 10,
+     *     'title' => 'My New Post',
+     *     'content' => 'Hello World'
+     * ]);
+     * ```
+     *
      * @param string $table The table to insert into.
      * @param array $data The data to insert.
-     * @return void
+     * @return Transaction The transaction, to enable method chaining.
      */
     public function insert($table, array $data)
     {
-        if ($this->context !== SessionPoolInterface::CONTEXT_READWRITE) {
-            throw new RuntimeException(
-                'Cannot perform mutations in a Read-Only Transaction'
-            );
-        }
+        return $this->insertBatch($table, [$data]);
+    }
 
-        $this->mutations[] = $this->operation->mutation(Operation::OP_INSERT, $table, $data);
+    /**
+     * Enqueue one or more insert mutations.
+     *
+     * Example:
+     * ```
+     * $transaction->insertBatch('Posts', [
+     *     [
+     *         'ID' => 10,
+     *         'title' => 'My New Post',
+     *         'content' => 'Hello World'
+     *     ]
+     * ]);
+     * ```
+     *
+     * @param string $table The table to insert into.
+     * @param array $dataSet The data to insert.
+     * @return Transaction The transaction, to enable method chaining.
+     */
+    public function insertBatch($table, array $dataSet)
+    {
+        $this->enqueue(Operation::OP_INSERT, $table, $dataSet);
+
+        return $this;
     }
 
     /**
      * Enqueue an update mutation.
      *
+     * Example:
+     * ```
+     * $transaction->update('Posts', [
+     *     'ID' => 10,
+     *     'title' => 'My New Post [Updated!]',
+     *     'content' => 'Modified Content'
+     * ]);
+     * ```
+     *
      * @param string $table The table to update.
      * @param array $data The data to update.
-     * @return void
+     * @return Transaction The transaction, to enable method chaining.
      */
     public function update($table, array $data)
     {
-        if ($this->context !== SessionPoolInterface::CONTEXT_READWRITE) {
-            throw new RuntimeException(
-                'Cannot perform mutations in a Read-Only Transaction'
-            );
-        }
+        return $this->updateBatch($table, [$data]);
+    }
 
-        $this->mutations[] = $this->operation->mutation(Operation::OP_UPDATE, $table, $data);
+    /**
+     * Enqueue one or more update mutations.
+     *
+     * Example:
+     * ```
+     * $transaction->updateBatch('Posts', [
+     *     [
+     *         'ID' => 10,
+     *         'title' => 'My New Post [Updated!]',
+     *         'content' => 'Modified Content'
+     *     ]
+     * ]);
+     * ```
+     *
+     * @param string $table The table to update.
+     * @param array $dataSet The data to update.
+     * @return Transaction The transaction, to enable method chaining.
+     */
+    public function updateBatch($table, array $dataSet)
+    {
+        $this->enqueue(Operation::OP_UPDATE, $table, $dataSet);
+
+        return $this;
     }
 
     /**
      * Enqueue an insert or update mutation.
      *
+     * Example:
+     * ```
+     * $transaction->insertOrUpdate('Posts', [
+     *     'ID' => 10,
+     *     'title' => 'My New Post',
+     *     'content' => 'Hello World'
+     * ]);
+     * ```
+     *
      * @param string $table The table to insert into or update.
      * @param array $data The data to insert or update.
-     * @return void
+     * @return Transaction The transaction, to enable method chaining.
      */
     public function insertOrUpdate($table, array $data)
     {
-        if ($this->context !== SessionPoolInterface::CONTEXT_READWRITE) {
-            throw new RuntimeException(
-                'Cannot perform mutations in a Read-Only Transaction'
-            );
-        }
+        return $this->insertOrUpdateBatch($table, [$data]);
+    }
 
-        $this->mutations[] = $this->operation->mutation(Operation::OP_INSERT_OR_UPDATE, $table, $data);
+    /**
+     * Enqueue one or more insert or update mutations.
+     *
+     * Example:
+     * ```
+     * $transaction->insertOrUpdateBatch('Posts', [
+     *     [
+     *         'ID' => 10,
+     *         'title' => 'My New Post',
+     *         'content' => 'Hello World'
+     *     ]
+     * ]);
+     * ```
+     *
+     * @param string $table The table to insert into or update.
+     * @param array $dataSet The data to insert or update.
+     * @return Transaction The transaction, to enable method chaining.
+     */
+    public function insertOrUpdateBatch($table, array $dataSet)
+    {
+        $this->enqueue(Operation::OP_INSERT_OR_UPDATE, $table, $dataSet);
+
+        return $this;
     }
 
     /**
      * Enqueue an replace mutation.
      *
+     * Example:
+     * ```
+     * $transaction->replace('Posts', [
+     *     'ID' => 10,
+     *     'title' => 'My New Post [Replaced]',
+     *     'content' => 'Hello Moon'
+     * ]);
+     * ```
+     *
      * @param string $table The table to replace into.
      * @param array $data The data to replace.
-     * @return void
+     * @return Transaction The transaction, to enable method chaining.
      */
     public function replace($table, array $data)
     {
-        if ($this->context !== SessionPoolInterface::CONTEXT_READWRITE) {
-            throw new RuntimeException(
-                'Cannot perform mutations in a Read-Only Transaction'
-            );
-        }
+        return $this->replaceBatch($table, [$data]);
+    }
 
-        $this->mutations[] = $this->operation->mutation(Operation::OP_REPLACE, $table, $data);
+    /**
+     * Enqueue one or more replace mutations.
+     *
+     * Example:
+     * ```
+     * $transaction->replaceBatch('Posts', [
+     *     [
+     *         'ID' => 10,
+     *         'title' => 'My New Post [Replaced]',
+     *         'content' => 'Hello Moon'
+     *     ]
+     * ]);
+     * ```
+     *
+     * @param string $table The table to replace into.
+     * @param array $dataSet The data to replace.
+     * @return Transaction The transaction, to enable method chaining.
+     */
+    public function replaceBatch($table, array $dataSet)
+    {
+        $this->enqueue(Operation::OP_REPLACE, $table, $dataSet);
+
+        return $this;
     }
 
     /**
      * Enqueue an delete mutation.
      *
-     * @param string $table The table to delete from.
-     * @param array $key The key of the record to be deleted.
-     * @return void
+     * Example:
+     * ```
+     * $keySet = $spanner->keySet([
+     *     'keys' => [10]
+     * ]);
+     *
+     * $transaction->delete('Posts', $keySet);
+     * ```
+     *
+     * @param string $table The table to mutate.
+     * @param KeySet $keySet The KeySet to identify rows to delete.
+     * @return Transaction The transaction, to enable method chaining.
      */
-    public function delete($table, array $key)
+    public function delete($table, KeySet $keySet)
     {
-        if ($this->context !== SessionPoolInterface::CONTEXT_READWRITE) {
-            throw new RuntimeException(
-                'Cannot perform mutations in a Read-Only Transaction'
-            );
-        }
+        $this->enqueue(Operation::OP_DELETE, $table, [$keySet]);
 
-        $this->mutations[] = $this->operation->deleteMutation($table, $data);
-    }
-
-    /**
-     * Run a query.
-     *
-     * @param string $sql The query string to execute.
-     * @param array $options [optional] Configuration options.
-     * @return Result
-     */
-    public function execute($sql, array $options = [])
-    {
-        return $this->operation->execute($this->session, $sql, [
-            'transactionId' => $this->transactionId
-        ] + $options);
-    }
-
-    /**
-     * Lookup rows in a table.
-     *
-     * Note that if no KeySet is specified, all rows in a table will be
-     * returned.
-     *
-     * @todo is returning everything a reasonable default?
-     *
-     * @param string $table The table name.
-     * @param array $options [optional] {
-     *     Configuration Options.
-     *
-     *     @type string $index The name of an index on the table.
-     *     @type array $columns A list of column names to be returned.
-     *     @type array $keySet A [KeySet](https://cloud.google.com/spanner/reference/rest/v1/KeySet).
-     *     @type int $offset The number of rows to offset results by.
-     *     @type int $limit The number of results to return.
-     * }
-     */
-    public function read($table, array $options = [])
-    {
-        return $this->operation->read($this->session, $table, [
-            'transactionId' => $this->transactionId
-        ] + $options);
-    }
-
-    /**
-     * Commit all mutations in a transaction.
-     *
-     * This closes the transaction, preventing any future API calls inside it.
-     *
-     * @codingStandardsIgnoreStart
-     * @param array $options [optional] Configuration Options.
-     * @return array [Response Body](https://cloud.google.com/spanner/reference/rest/v1/projects.instances.databases.sessions/commit#response-body).
-     * @codingStandardsIgnoreEnd
-     */
-    public function commit(array $options = [])
-    {
-        if ($this->context !== SessionPoolInterface::CONTEXT_READWRITE) {
-            throw new RuntimeException('Cannot commit in a Read-Only Transaction');
-        }
-
-        return $this->operation->commit($this->session, $this->mutations, [
-            'transactionId' => $this->transactionId
-        ] + $options);
+        return $this;
     }
 
     /**
@@ -239,11 +315,89 @@ class Transaction
      *
      * Rollback will NOT error if the transaction is not found or was already aborted.
      *
+     * Example:
+     * ```
+     * $transaction->rollback();
+     * ```
+     *
      * @param array $options [optional] Configuration Options.
      * @return void
      */
     public function rollback(array $options = [])
     {
+        if ($this->state !== self::STATE_ACTIVE) {
+            throw new \RuntimeException('The transaction cannot be rolled back because it is not active');
+        }
+
+        $this->state = self::STATE_ROLLED_BACK;
+
         return $this->operation->rollback($this->session, $this->transactionId, $options);
+    }
+
+    /**
+     * Commit and end the transaction.
+     *
+     * It is advised that transactions be run inside
+     * {@see Google\Cloud\Spanner\Database::runTransaction()} in order to take
+     * advantage of automated transaction retry in case of a transaction aborted
+     * error.
+     *
+     * Example:
+     * ```
+     * $transaction->commit();
+     * ```
+     *
+     * @param array $options [optional] Configuration Options.
+     * @return Timestamp The commit timestamp.
+     * @throws \RuntimeException If the transaction is not active
+     * @throws \AbortedException If the commit is aborted for any reason.
+     */
+    public function commit(array $options = [])
+    {
+        if ($this->state !== self::STATE_ACTIVE) {
+            throw new \RuntimeException('The transaction cannot be committed because it is not active');
+        }
+
+        $this->state = self::STATE_COMMITTED;
+
+        $options['transactionId'] = $this->transactionId;
+        return $this->operation->commit($this->session, $this->mutations, $options);
+    }
+
+    /**
+     * Retrieve the Transaction State.
+     *
+     * Will be one of `Transaction::STATE_ACTIVE`,
+     * `Transaction::STATE_COMMITTED`, or `Transaction::STATE_ROLLED_BACK`.
+     *
+     * Example:
+     * ```
+     * $state = $transaction->state();
+     * ```
+     *
+     * @return int
+     */
+    public function state()
+    {
+        return $this->state;
+    }
+
+    /**
+     * Format, validate and enqueue mutations in the transaction.
+     *
+     * @param string $op The operation type.
+     * @param string $table The table name
+     * @param array $dataSet the mutations to enqueue
+     * @return void
+     */
+    private function enqueue($op, $table, array $dataSet)
+    {
+        foreach ($dataSet as $data) {
+            if ($op === Operation::OP_DELETE) {
+                $this->mutations[] = $this->operation->deleteMutation($table, $data);
+            } else {
+                $this->mutations[] = $this->operation->mutation($op, $table, $data);
+            }
+        }
     }
 }
