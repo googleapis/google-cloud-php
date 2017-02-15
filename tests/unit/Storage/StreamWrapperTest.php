@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Tests\Storage;
 
+use Google\Cloud\Exception\NotFoundException;
 use Google\Cloud\Storage\Bucket;
 use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Storage\StorageObject;
@@ -171,7 +172,7 @@ class StreamWrapperTest extends \PHPUnit_Framework_TestCase
         $this->mockObjectData("some_long_file.txt", "line1.\nline2.");
         $fp = fopen('gs://my_bucket/some_long_file.txt', 'r');
         $stat = fstat($fp);
-        $this->assertEquals(33060, $stat['mode']);
+        $this->assertEquals(33206, $stat['mode']);
         fclose($fp);
     }
 
@@ -180,9 +181,17 @@ class StreamWrapperTest extends \PHPUnit_Framework_TestCase
      */
     public function testStat()
     {
-        $this->mockObjectData("some_long_file.txt", "line1.\nline2.");
+        $object = $this->prophesize(StorageObject::class);
+        $object->info()->willReturn([
+            'size' => 1234,
+            'updated' => '2017-01-19T19:31:35.833Z',
+            'timeCreated' => '2017-01-19T19:31:35.833Z'
+        ]);
+        $this->bucket->object('some_long_file.txt')->willReturn($object->reveal());
+        $this->bucket->isWritable()->willReturn(true);
+
         $stat = stat('gs://my_bucket/some_long_file.txt');
-        $this->assertEquals(33060, $stat['mode']);
+        $this->assertEquals(33206, $stat['mode']);
     }
 
     /**
@@ -191,7 +200,10 @@ class StreamWrapperTest extends \PHPUnit_Framework_TestCase
      */
     public function testStatOnNonExistentFile()
     {
-        $this->mockDownloadException('non-existent/file.txt', \Google\Cloud\Exception\NotFoundException::class);
+        $object = $this->prophesize(StorageObject::class);
+        $object->info()->willThrow(NotFoundException::class);
+        $this->bucket->object('non-existent/file.txt')->willReturn($object->reveal());
+
         stat('gs://my_bucket/non-existent/file.txt');
     }
 

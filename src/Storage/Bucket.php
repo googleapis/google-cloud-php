@@ -739,4 +739,27 @@ class Bucket
     {
         return $this->identity['bucket'];
     }
+
+    /**
+     * Returns whether the bucket with the given file prefix is writable.
+     * Tries to create a temporary file as a resumable upload which will
+     * not be completed (and cleaned up by GCS).
+     *
+     * @param  string $file Optional file to try to write.
+     * @return boolean
+     */
+    public function isWritable($file = null) {
+        $file = $file ?: '__tempfile';
+        $uploader = $this->getResumableUploader(
+          Psr7\stream_for(''),
+          ['name' => $file]
+        );
+        try {
+            $uploader->getResumeUri();
+        } catch (ServiceException $e) {
+            return false;
+        }
+
+        return true;
+    }
 }

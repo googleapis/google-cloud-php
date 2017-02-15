@@ -31,6 +31,27 @@ class StreamWrapper
 {
     const DEFAULT_PROTOCOL = 'gs';
 
+    const STAT_KEYS = [
+        'dev',
+        'ino',
+        'mode',
+        'nlink',
+        'uid',
+        'gid',
+        'rdev',
+        'size',
+        'atime',
+        'mtime',
+        'ctime',
+        'blksize',
+        'blocks'
+    ];
+
+    const FILE_WRITABLE_MODE = 33206; // 100666 in octal
+    const FILE_READABLE_MODE = 33060; // 100444 in octal
+    const DIRECTORY_WRITABLE_MODE = 16895; // 40777 in octal
+    const DIRECTORY_READABLE_MODE = 16676; // 40444 in octal
+
     // Must be public according to the PHP documentation
     public $context;
 
@@ -40,7 +61,6 @@ class StreamWrapper
     private $protocol;
     private $bucket;
     private $file;
-    private $mode;
 
     /**
      * @var StorageClient[] $clients The default clients to use if using
@@ -115,7 +135,7 @@ class StreamWrapper
      *
      * @param string $path The path of the resource to open
      * @param string $mode The fopen mode. Currently only supports ('r', 'rb', 'rt', 'w', 'wb', 'wt')
-     * @param int $flags Bitwise options STREAM_USE_PATH|STREAM_REPORT_ERRORS
+     * @param int $flags Bitwise options STREAM_USE_PATH|STREAM_REPORT_ERRORS|STREAM_MUST_SEEK
      * @param string $openedPath Will be set to the path on success if STREAM_USE_PATH option is set
      * @return bool
      */
@@ -123,7 +143,9 @@ class StreamWrapper
     {
         // @codingStandardsIgnoreEnd
         $client = $this->openPath($path);
-        $this->mode = $mode;
+
+        // strip off 'b' or 't' from the mode
+        $mode = rtrim($mode, 'bt');
 
         $options = [];
         if ($this->context) {
@@ -133,16 +155,21 @@ class StreamWrapper
             }
         }
 
-        if ($this->isWriteable()) {
-            $options['name'] = $this->file;
-            $this->stream = $this->bucket->getStreamableUploader(
-                '',
-                $options
+        if ($mode == 'w') {
+            $this->stream = new WriteStream();
+            $this->stream->setUploader(
+                $this->bucket->getStreamableUploader(
+                    $this->stream,
+                    $options + ['name' => $this->file]
+                )
             );
-        } elseif ($this->isReadable()) {
+        } elseif ($mode == 'r') {
             try {
+                // Lazy read from the source
                 $options['httpOptions']['stream'] = true;
-                $this->stream = $this->bucket->object($this->file)->downloadAsStream($options);
+                $this->stream = new ReadStream(
+                    $this->bucket->object($this->file)->downloadAsStream($options)
+                );
 
                 // Wrap the response in a caching stream to make it seekable
                 if (!$this->stream->isSeekable() && ($flags & STREAM_MUST_SEEK)) {
@@ -169,21 +196,6 @@ class StreamWrapper
         return false;
     }
 
-    private function getStream()
-    {
-        return $this->stream;
-    }
-
-    private function isWriteable()
-    {
-        return in_array($this->mode, ['w', 'wb', 'wt']);
-    }
-
-    private function isReadable()
-    {
-        return in_array($this->mode, ['r', 'rb', 'rt']);
-    }
-
     // @codingStandardsIgnoreStart
     /**
      * Callback handler for when we try to read a certain number of bytes.
@@ -195,7 +207,7 @@ class StreamWrapper
     public function stream_read($count)
     {
         // @codingStandardsIgnoreEnd
-        return $this->getStream()->read($count);
+        return $this->stream->read($count);
     }
 
     // @codingStandardsIgnoreStart
@@ -209,7 +221,7 @@ class StreamWrapper
     public function stream_write($data)
     {
         // @codingStandardsIgnoreEnd
-        return $this->getStream()->write($data);
+        return $this->stream->write($data);
     }
 
     // @codingStandardsIgnoreStart
@@ -221,31 +233,13 @@ class StreamWrapper
     public function stream_stat()
     {
         // @codingStandardsIgnoreEnd
-        $size = $this->getStream()->getSize();
-        if (!$size) {
-            foreach ($this->getStream()->getMetadata('wrapper_data') as $value) {
-                if (substr($value, 0, 15) == "Content-Length:") {
-                    $size = (int) substr($value, 16);
-                    break;
-                }
-            }
-        }
-
-        return [
-            'dev'     => 0,
-            'ino'     => 0,
-            'mode'    => $this->isWriteable() ? 33188 : 33060, // equivalent to 10644 and 10444 in octal
-            'nlink'   => 0,
-            'uid'     => 0,
-            'gid'     => 0,
-            'rdev'    => 0,
-            'size'    => $size,
-            'atime'   => 0,
-            'mtime'   => 0,
-            'ctime'   => 0,
-            'blksize' => 0,
-            'blocks'  => 0
-        ];
+        $mode = $this->stream->isWritable()
+            ? self::FILE_WRITABLE_MODE
+            : self::FILE_READABLE_MODE;
+        return $this->makeStatArray([
+            'mode'    => $mode,
+            'size'    => $this->stream->getSize()
+        ]);
     }
 
     // @codingStandardsIgnoreStart
@@ -257,7 +251,7 @@ class StreamWrapper
     public function stream_eof()
     {
         // @codingStandardsIgnoreEnd
-        return $this->getStream()->eof();
+        return $this->stream->eof();
     }
 
     // @codingStandardsIgnoreStart
@@ -268,7 +262,7 @@ class StreamWrapper
     {
         // @codingStandardsIgnoreEnd
         if (isset($this->stream)) {
-            $this->getStream()->close();
+            $this->stream->close();
         }
     }
 
@@ -284,7 +278,6 @@ class StreamWrapper
     public function stream_seek($offset, $whence = SEEK_SET)
     {
         // @codingStandardsIgnoreEnd
-        // Currently cannot seek (using BufferStreams)
         if ($this->stream->isSeekable()) {
             $this->stream->seek($offset, $whence);
             return true;
@@ -301,7 +294,7 @@ class StreamWrapper
     public function stream_tell()
     {
         // @codingStandardsIgnoreEnd
-        return $this->getStream()->tell();
+        return $this->stream->tell();
     }
 
     // @codingStandardsIgnoreStart
@@ -380,7 +373,7 @@ class StreamWrapper
         $this->file = $this->makeDirectory($this->file);
 
         try {
-            $this->bucket->upload("", [
+            $this->bucket->upload('', [
                 'name' => $this->file
             ]);
         } catch (ServiceException $e) {
@@ -389,11 +382,16 @@ class StreamWrapper
         return true;
     }
 
+    /**
+     * Parse the URL and set protocol, filename and bucket.
+     * @param  string $path URL to open
+     * @return StorageClient
+     */
     private function openPath($path)
     {
         $url = parse_url($path);
         $this->protocol = $url['scheme'];
-        $this->file = substr($url['path'], 1);
+        $this->file = ltrim($url['path'], '/');
         $client = self::getClient($this->protocol);
         $this->bucket = $client->bucket($url['host']);
         return $client;
@@ -516,22 +514,12 @@ class StreamWrapper
         }
 
         // equivalent to 40777 and 40444 in octal
-        $mode = $this->isBucketWritable($this->file) ? 16895 : 16676;
-        return [
-            'dev'     => 0,
-            'ino'     => 0,
-            'mode'    => $mode,
-            'nlink'   => 0,
-            'uid'     => 0,
-            'gid'     => 0,
-            'rdev'    => 0,
-            'size'    => 0,
-            'atime'   => 0,
-            'mtime'   => 0,
-            'ctime'   => 0,
-            'blksize' => 0,
-            'blocks'  => 0
-        ];
+        $mode = $this->bucket->isWritable()
+            ? self::DIRECTORY_WRITABLE_MODE
+            : self::DIRECTORY_READABLE_MODE;
+        return $this->makeStatArray([
+            'mode'    => $mode
+        ]);
     }
 
     private function urlStatFile()
@@ -545,58 +533,31 @@ class StreamWrapper
         }
 
         // equivalent to 100666 and 100444 in octal
-        $mode = $this->isBucketWritable() ? 33206 : 33060;
+        $mode = $this->bucket->isWritable()
+            ? self::FILE_WRITABLE_MODE
+            : self::FILE_READABLE_MODE;
         $size = (int) $info['size'];
         $updated = strtotime($info['updated']);
         $created = strtotime($info['timeCreated']);
 
-        return [
-            'dev'     => 0,
-            'ino'     => 0,
-            'mode'    => $mode,
-            'nlink'   => 0,
-            'uid'     => 0,
-            'gid'     => 0,
-            'rdev'    => 0,
-            'size'    => $size,
-            'atime'   => 0,
-            'mtime'   => $updated,
-            'ctime'   => $created,
-            'blksize' => 0,
-            'blocks'  => 0
-        ];
-    }
-
-    /**
-     * Returns whether the bucket with the given file prefix is writable.
-     * Tries to create a temporary file as a resumable upload which will
-     * not be completed (and cleaned up by GCS).
-     *
-     * @param  string  $prefix Optional folder within the bucket.
-     * @return boolean
-     */
-    private function isBucketWritable($prefix = null)
-    {
-        $name = '__tempfile';
-        if ($prefix) {
-            $name = "$prefix/$name";
-        }
-        $uploader = $this->bucket->getResumableUploader(
-          Psr7\stream_for(''),
-          ['name' => $name]
-        );
-        try {
-            $uploader->getResumeUri();
-        } catch (ServiceException $e) {
-            throw $e;
-            return false;
-        }
-
-        return true;
+        return $this->makeStatArray([
+            'mode'  => $mode,
+            'size'  => $size,
+            'mtime' => $updated,
+            'ctime' => $created
+        ]);
     }
 
     private function isDirectory($path)
     {
         return substr($path, -1) == '/';
+    }
+
+    private function makeStatArray($stats)
+    {
+        return array_merge(
+            array_fill_keys(self::STAT_KEYS, 0),
+            $stats
+        );
     }
 }
