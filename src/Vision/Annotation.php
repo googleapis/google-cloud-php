@@ -179,8 +179,8 @@ class Annotation
             }
         }
 
-        if (isset($info['webAnnotation'])) {
-            $this->web = new Web($info['webAnnotation']);
+        if (isset($info['webDetection'])) {
+            $this->web = new Web($info['webDetection']);
         }
 
         if (isset($info['error'])) {

@@ -22,7 +22,7 @@ use Google\Cloud\Vision\Annotation\Web\WebImage;
 use Google\Cloud\Vision\Annotation\Web\WebPage;
 
 /**
- * Represents a Web Annotation result
+ * Represents a Web Detection result
  *
  * Example:
  * ```
@@ -32,7 +32,7 @@ use Google\Cloud\Vision\Annotation\Web\WebPage;
  * $vision = $cloud->vision();
  *
  * $imageResource = fopen(__DIR__ . '/assets/family-photo.jpg', 'r');
- * $image = $vision->image($imageResource, [ 'WEB_ANNOTATION' ]);
+ * $image = $vision->image($imageResource, [ 'WEB_DETECTION' ]);
  * $annotation = $vision->annotate($image);
  *
  * $web = $annotation->web();
@@ -61,7 +61,7 @@ class Web extends AbstractFeature
     private $pages;
 
     /**
-     * Create a WebAnnotation result.
+     * Create a Web result.
      *
      * @param array $info The annotation result
      */

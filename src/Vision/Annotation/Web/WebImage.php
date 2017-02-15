@@ -21,7 +21,7 @@ use Google\Cloud\CallTrait;
 use Google\Cloud\Vision\Annotation\AbstractFeature;
 
 /**
- * Represents a Web Image from a Web Annotation.
+ * Represents a Web Image from a Web Detection operation.
  *
  * Example:
  * ```
@@ -31,7 +31,7 @@ use Google\Cloud\Vision\Annotation\AbstractFeature;
  * $vision = $cloud->vision();
  *
  * $imageResource = fopen(__DIR__ . '/assets/eiffel-tower.jpg', 'r');
- * $image = $vision->image($imageResource, ['WEB_ANNOTATION']);
+ * $image = $vision->image($imageResource, ['WEB_DETECTION']);
  * $annotation = $vision->annotate($image);
  *
  * $matchingImages = $annotation->web()->matchingImages();

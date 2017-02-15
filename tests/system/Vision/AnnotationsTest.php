@@ -50,7 +50,7 @@ class AnnotationsTest extends VisionTestCase
                 'SAFE_SEARCH_DETECTION',
                 'IMAGE_PROPERTIES',
                 'CROP_HINTS',
-                'WEB_ANNOTATION'
+                'WEB_DETECTION'
             ]
         );
 

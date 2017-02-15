@@ -46,7 +46,7 @@ class AnnotationTest extends \PHPUnit_Framework_TestCase
             'error' => ['foo' => ['bat' => 'bar']],
             'fullTextAnnotation' => ['foo' => 'bar'],
             'cropHintsAnnotation' => ['cropHints' => [['bat' => 'bar']]],
-            'webAnnotation' => ['foo' => ['bat' => 'bar']],
+            'webDetection' => ['foo' => ['bat' => 'bar']],
         ];
 
         $ann = new Annotation($res);

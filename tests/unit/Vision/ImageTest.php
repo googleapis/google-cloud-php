@@ -107,7 +107,7 @@ class ImageTest extends \PHPUnit_Framework_TestCase
             'safeSearch'      => 'SAFE_SEARCH_DETECTION',
             'imageProperties' => 'IMAGE_PROPERTIES',
             'crop'            => 'CROP_HINTS',
-            'web'             => 'WEB_ANNOTATION'
+            'web'             => 'WEB_DETECTION'
         ];
 
         $bytes = 'foo';
