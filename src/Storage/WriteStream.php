@@ -33,6 +33,7 @@ class WriteStream implements StreamInterface
     private $uploader;
     private $stream;
     private $chunkSize = 262144;
+    private $hasWritten = false;
 
     /**
      * Create a new WriteStream instance
@@ -61,7 +62,7 @@ class WriteStream implements StreamInterface
      */
     public function close()
     {
-        if ($this->uploader) {
+        if ($this->uploader && $this->hasWritten) {
             $this->uploader->upload();
             $this->uploader = null;
         }
@@ -75,6 +76,11 @@ class WriteStream implements StreamInterface
      */
     public function write($data)
     {
+        // Ensure we have a resume uri here because we need to create the streaming
+        // upload before we have data (size of 0).
+        $this->uploader->getResumeUri();
+        $this->hasWritten = true;
+
         if (!$this->stream->write($data)) {
             $this->uploader->upload($this->getChunkedWriteSize());
         }
@@ -90,10 +96,6 @@ class WriteStream implements StreamInterface
     public function setUploader($uploader)
     {
         $this->uploader = $uploader;
-
-        // Ensure we have a resume uri here because we need to create the streaming
-        // upload before we have data (size of 0).
-        $this->uploader->getResumeUri();
     }
 
     private function getChunkedWriteSize()
