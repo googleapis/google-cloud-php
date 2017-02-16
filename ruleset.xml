@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<ruleset name="Google-Cloud-PHP-PSR2">
+  <rule ref="PSR2" />
+  <rule ref="Generic.Files.LineLength">
+    <exclude-pattern>src/*/V[0-9]+</exclude-pattern>
+  </rule>
+  <rule ref="PSR1.Methods.CamelCapsMethodName">
+    <exclude-pattern>src/Storage/StreamWrapper.php</exclude-pattern>
+  </rule>
+  <file>src</file>
+</ruleset>

@@ -19,7 +19,7 @@ before_script:
 
 script:
     - ./dev/sh/tests
-    - vendor/bin/phpcs --standard=PSR2 src/
+    - vendor/bin/phpcs --standard=ruleset.xml src/
     - ./dev/sh/build-docs
 
 after_success:

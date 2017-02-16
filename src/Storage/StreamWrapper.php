@@ -129,7 +129,6 @@ class StreamWrapper
         return self::$clients[$protocol];
     }
 
-    // @codingStandardsIgnoreStart
     /**
      * Callback handler for when a stream is opened. For reads, we need to
      * download the file to see if it can be opened.
@@ -142,7 +141,6 @@ class StreamWrapper
      */
     public function stream_open($path, $mode, $flags, &$openedPath)
     {
-        // @codingStandardsIgnoreEnd
         $client = $this->openPath($path);
 
         // strip off 'b' or 't' from the mode
@@ -189,7 +187,6 @@ class StreamWrapper
         return true;
     }
 
-    // @codingStandardsIgnoreStart
     /**
      * Callback handler for when we try to read a certain number of bytes.
      *
@@ -199,11 +196,9 @@ class StreamWrapper
      */
     public function stream_read($count)
     {
-        // @codingStandardsIgnoreEnd
         return $this->stream->read($count);
     }
 
-    // @codingStandardsIgnoreStart
     /**
      * Callback handler for when we try to write data to the stream.
      *
@@ -213,11 +208,9 @@ class StreamWrapper
      */
     public function stream_write($data)
     {
-        // @codingStandardsIgnoreEnd
         return $this->stream->write($data);
     }
 
-    // @codingStandardsIgnoreStart
     /**
      * Callback handler for getting data about the stream.
      *
@@ -225,7 +218,6 @@ class StreamWrapper
      */
     public function stream_stat()
     {
-        // @codingStandardsIgnoreEnd
         $mode = $this->stream->isWritable()
             ? self::FILE_WRITABLE_MODE
             : self::FILE_READABLE_MODE;
@@ -235,7 +227,6 @@ class StreamWrapper
         ]);
     }
 
-    // @codingStandardsIgnoreStart
     /**
      * Callback handler for checking to see if the stream is at the end of file.
      *
@@ -243,23 +234,19 @@ class StreamWrapper
      */
     public function stream_eof()
     {
-        // @codingStandardsIgnoreEnd
         return $this->stream->eof();
     }
 
-    // @codingStandardsIgnoreStart
     /**
      * Callback handler for trying to close the stream.
      */
     public function stream_close()
     {
-        // @codingStandardsIgnoreEnd
         if (isset($this->stream)) {
             $this->stream->close();
         }
     }
 
-    // @codingStandardsIgnoreStart
     /**
      * Callback handler for trying to seek to a certain location in the stream.
      *
@@ -270,7 +257,6 @@ class StreamWrapper
      */
     public function stream_seek($offset, $whence = SEEK_SET)
     {
-        // @codingStandardsIgnoreEnd
         if ($this->stream->isSeekable()) {
             $this->stream->seek($offset, $whence);
             return true;
@@ -278,7 +264,6 @@ class StreamWrapper
         return false;
     }
 
-    // @codingStandardsIgnoreStart
     /**
      * Callhack handler for inspecting our current position in the stream
      *
@@ -286,11 +271,9 @@ class StreamWrapper
      */
     public function stream_tell()
     {
-        // @codingStandardsIgnoreEnd
         return $this->stream->tell();
     }
 
-    // @codingStandardsIgnoreStart
     /**
      * Callback handler for trying to close an opened directory.
      *
@@ -298,11 +281,9 @@ class StreamWrapper
      */
     public function dir_closedir()
     {
-        // @codingStandardsIgnoreEnd
         return false;
     }
 
-    // @codingStandardsIgnoreStart
     /**
      * Callback handler for trying to open a directory.
      *
@@ -312,13 +293,11 @@ class StreamWrapper
      */
     public function dir_opendir($path, $options)
     {
-        // @codingStandardsIgnoreEnd
         $this->openPath($path);
         $this->dir_rewinddir();
         return true;
     }
 
-    // @codingStandardsIgnoreStart
     /**
      * Callback handler for reading an entry from a directory handle.
      *
@@ -326,7 +305,6 @@ class StreamWrapper
      */
     public function dir_readdir()
     {
-        // @codingStandardsIgnoreEnd
         $object = $this->directoryGenerator->current();
         if ($object) {
             $this->directoryGenerator->next();
@@ -336,7 +314,6 @@ class StreamWrapper
         }
     }
 
-    // @codingStandardsIgnoreStart
     /**
      * Callback handler for rewind the directory handle.
      *
@@ -344,7 +321,6 @@ class StreamWrapper
      */
     public function dir_rewinddir()
     {
-        // @codingStandardsIgnoreEnd
         $this->directoryGenerator = $this->bucket->objects([
             'prefix' => $this->file,
             'fields' => 'items/name,nextPageToken'
@@ -412,7 +388,6 @@ class StreamWrapper
         return $this->unlink($path);
     }
 
-    // @codingStandardsIgnoreStart
     /**
      * Callback handler for retrieving the underlaying resource
      *
@@ -421,7 +396,6 @@ class StreamWrapper
      */
     public function stream_cast($castAs)
     {
-        // @codingStandardsIgnoreEnd
         return false;
     }
 
@@ -444,7 +418,6 @@ class StreamWrapper
         }
     }
 
-    // @codingStandardsIgnoreStart
     /**
      * Callback handler for retrieving information about a file
      *
@@ -454,7 +427,6 @@ class StreamWrapper
      */
     public function url_stat($path, $flags)
     {
-        // @codingStandardsIgnoreEnd
         $client = $this->openPath($path);
 
         // if directory
