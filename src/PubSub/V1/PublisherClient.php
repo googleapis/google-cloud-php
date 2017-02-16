@@ -1,16 +1,18 @@
 <?php
 /*
- * Copyright 2016 Google Inc. All Rights Reserved.
+ * Copyright 2016, Google Inc. All rights reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
- * in compliance with the License. You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * Unless required by applicable law or agreed to in writing, software distributed under the License
- * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
- * or implied. See the License for the specific language governing permissions and limitations under
- * the License.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 
 /*
@@ -34,7 +36,7 @@ use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
 use google\iam\v1\GetIamPolicyRequest;
-use google\iam\v1\IAMPolicyClient as IAMPolicyGrpcClient;
+use google\iam\v1\IAMPolicyGrpcClient;
 use google\iam\v1\Policy;
 use google\iam\v1\SetIamPolicyRequest;
 use google\iam\v1\TestIamPermissionsRequest;
@@ -43,7 +45,7 @@ use google\pubsub\v1\GetTopicRequest;
 use google\pubsub\v1\ListTopicSubscriptionsRequest;
 use google\pubsub\v1\ListTopicsRequest;
 use google\pubsub\v1\PublishRequest;
-use google\pubsub\v1\PublisherClient as PublisherGrpcClient;
+use google\pubsub\v1\PublisherGrpcClient;
 use google\pubsub\v1\PubsubMessage;
 use google\pubsub\v1\Topic;
 
@@ -64,9 +66,7 @@ use google\pubsub\v1\Topic;
  *     $formattedName = PublisherClient::formatTopicName("[PROJECT]", "[TOPIC]");
  *     $response = $publisherClient->createTopic($formattedName);
  * } finally {
- *     if (isset($publisherClient)) {
- *         $publisherClient->close();
- *     }
+ *     $publisherClient->close();
  * }
  * ```
  *
@@ -92,8 +92,15 @@ class PublisherClient
      */
     const DEFAULT_TIMEOUT_MILLIS = 30000;
 
-    const _CODEGEN_NAME = 'gapic';
-    const _CODEGEN_VERSION = '0.1.0';
+    /**
+     * The name of the code generator, to be included in the agent header.
+     */
+    const CODEGEN_NAME = 'gapic';
+
+    /**
+     * The code generator version, to be included in the agent header.
+     */
+    const CODEGEN_VERSION = '0.1.0';
 
     private static $projectNameTemplate;
     private static $topicNameTemplate;
@@ -208,10 +215,10 @@ class PublisherClient
      *     @type string $serviceAddress The domain name of the API remote host.
      *                                  Default 'pubsub.googleapis.com'.
      *     @type mixed $port The port on which to connect to the remote host. Default 443.
-     *     @type Grpc\ChannelCredentials $sslCreds
+     *     @type \Grpc\ChannelCredentials $sslCreds
      *           A `ChannelCredentials` for use with an SSL-enabled channel.
      *           Default: a credentials object returned from
-     *           Grpc\ChannelCredentials::createSsl()
+     *           \Grpc\ChannelCredentials::createSsl()
      *     @type array $scopes A string array of scopes to use when acquiring credentials.
      *                         Default the scopes for the Google Cloud Pub/Sub API.
      *     @type array $retryingOverride
@@ -226,21 +233,20 @@ class PublisherClient
      *     @type string $appName The codename of the calling service. Default 'gax'.
      *     @type string $appVersion The version of the calling service.
      *                              Default: the current version of GAX.
-     *     @type Google\Auth\CredentialsLoader $credentialsLoader
+     *     @type \Google\Auth\CredentialsLoader $credentialsLoader
      *                              A CredentialsLoader object created using the
      *                              Google\Auth library.
      * }
      */
     public function __construct($options = [])
     {
-        $defaultScopes = [
-            'https://www.googleapis.com/auth/cloud-platform',
-            'https://www.googleapis.com/auth/pubsub',
-        ];
         $defaultOptions = [
             'serviceAddress' => self::SERVICE_ADDRESS,
             'port' => self::DEFAULT_SERVICE_PORT,
-            'scopes' => $defaultScopes,
+            'scopes' => [
+                'https://www.googleapis.com/auth/cloud-platform',
+                'https://www.googleapis.com/auth/pubsub',
+            ],
             'retryingOverride' => null,
             'timeoutMillis' => self::DEFAULT_TIMEOUT_MILLIS,
             'appName' => 'gax',
@@ -251,8 +257,8 @@ class PublisherClient
         $headerDescriptor = new AgentHeaderDescriptor([
             'clientName' => $options['appName'],
             'clientVersion' => $options['appVersion'],
-            'codeGenName' => self::_CODEGEN_NAME,
-            'codeGenVersion' => self::_CODEGEN_VERSION,
+            'codeGenName' => self::CODEGEN_NAME,
+            'codeGenVersion' => self::CODEGEN_VERSION,
             'gaxVersion' => AgentHeaderDescriptor::getGaxVersion(),
             'phpVersion' => phpversion(),
         ]);
@@ -297,6 +303,9 @@ class PublisherClient
         $createIamPolicyStubFunction = function ($hostname, $opts) {
             return new IAMPolicyGrpcClient($hostname, $opts);
         };
+        if (array_key_exists('createIamPolicyStubFunction', $options)) {
+            $createIamPolicyStubFunction = $options['createIamPolicyStubFunction'];
+        }
         $this->iamPolicyStub = $this->grpcCredentialsHelper->createStub(
             $createIamPolicyStubFunction,
             $options['serviceAddress'],
@@ -306,6 +315,9 @@ class PublisherClient
         $createPublisherStubFunction = function ($hostname, $opts) {
             return new PublisherGrpcClient($hostname, $opts);
         };
+        if (array_key_exists('createPublisherStubFunction', $options)) {
+            $createPublisherStubFunction = $options['createPublisherStubFunction'];
+        }
         $this->publisherStub = $this->grpcCredentialsHelper->createStub(
             $createPublisherStubFunction,
             $options['serviceAddress'],
@@ -324,9 +336,7 @@ class PublisherClient
      *     $formattedName = PublisherClient::formatTopicName("[PROJECT]", "[TOPIC]");
      *     $response = $publisherClient->createTopic($formattedName);
      * } finally {
-     *     if (isset($publisherClient)) {
-     *         $publisherClient->close();
-     *     }
+     *     $publisherClient->close();
      * }
      * ```
      *
@@ -388,9 +398,7 @@ class PublisherClient
      *     $messages = [$messagesElement];
      *     $response = $publisherClient->publish($formattedTopic, $messages);
      * } finally {
-     *     if (isset($publisherClient)) {
-     *         $publisherClient->close();
-     *     }
+     *     $publisherClient->close();
      * }
      * ```
      *
@@ -446,9 +454,7 @@ class PublisherClient
      *     $formattedTopic = PublisherClient::formatTopicName("[PROJECT]", "[TOPIC]");
      *     $response = $publisherClient->getTopic($formattedTopic);
      * } finally {
-     *     if (isset($publisherClient)) {
-     *         $publisherClient->close();
-     *     }
+     *     $publisherClient->close();
      * }
      * ```
      *
@@ -498,13 +504,21 @@ class PublisherClient
      * try {
      *     $publisherClient = new PublisherClient();
      *     $formattedProject = PublisherClient::formatProjectName("[PROJECT]");
-     *     foreach ($publisherClient->listTopics($formattedProject) as $element) {
-     *         // doThingsWith(element);
+     *     // Iterate through all elements
+     *     $pagedResponse = $publisherClient->listTopics($formattedProject);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     *
+     *     // OR iterate over pages of elements, with the maximum page size set to 5
+     *     $pagedResponse = $publisherClient->listTopics($formattedProject, ['pageSize' => 5]);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
      *     }
      * } finally {
-     *     if (isset($publisherClient)) {
-     *         $publisherClient->close();
-     *     }
+     *     $publisherClient->close();
      * }
      * ```
      *
@@ -569,13 +583,21 @@ class PublisherClient
      * try {
      *     $publisherClient = new PublisherClient();
      *     $formattedTopic = PublisherClient::formatTopicName("[PROJECT]", "[TOPIC]");
-     *     foreach ($publisherClient->listTopicSubscriptions($formattedTopic) as $element) {
-     *         // doThingsWith(element);
+     *     // Iterate through all elements
+     *     $pagedResponse = $publisherClient->listTopicSubscriptions($formattedTopic);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     *
+     *     // OR iterate over pages of elements, with the maximum page size set to 5
+     *     $pagedResponse = $publisherClient->listTopicSubscriptions($formattedTopic, ['pageSize' => 5]);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
      *     }
      * } finally {
-     *     if (isset($publisherClient)) {
-     *         $publisherClient->close();
-     *     }
+     *     $publisherClient->close();
      * }
      * ```
      *
@@ -646,9 +668,7 @@ class PublisherClient
      *     $formattedTopic = PublisherClient::formatTopicName("[PROJECT]", "[TOPIC]");
      *     $publisherClient->deleteTopic($formattedTopic);
      * } finally {
-     *     if (isset($publisherClient)) {
-     *         $publisherClient->close();
-     *     }
+     *     $publisherClient->close();
      * }
      * ```
      *
@@ -700,9 +720,7 @@ class PublisherClient
      *     $policy = new Policy();
      *     $response = $publisherClient->setIamPolicy($formattedResource, $policy);
      * } finally {
-     *     if (isset($publisherClient)) {
-     *         $publisherClient->close();
-     *     }
+     *     $publisherClient->close();
      * }
      * ```
      *
@@ -762,9 +780,7 @@ class PublisherClient
      *     $formattedResource = PublisherClient::formatTopicName("[PROJECT]", "[TOPIC]");
      *     $response = $publisherClient->getIamPolicy($formattedResource);
      * } finally {
-     *     if (isset($publisherClient)) {
-     *         $publisherClient->close();
-     *     }
+     *     $publisherClient->close();
      * }
      * ```
      *
@@ -820,9 +836,7 @@ class PublisherClient
      *     $permissions = [];
      *     $response = $publisherClient->testIamPermissions($formattedResource, $permissions);
      * } finally {
-     *     if (isset($publisherClient)) {
-     *         $publisherClient->close();
-     *     }
+     *     $publisherClient->close();
      * }
      * ```
      *
