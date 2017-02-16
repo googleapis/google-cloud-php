@@ -37,14 +37,30 @@ class StreamWrapper
     const DIRECTORY_WRITABLE_MODE = 16895; // 40777 in octal
     const DIRECTORY_READABLE_MODE = 16676; // 40444 in octal
 
-    // Must be public according to the PHP documentation
+    /**
+     * @var resource Must be public according to the PHP documentation.
+     */
     public $context;
 
-    // a GuzzleHttp\Psr7\StreamInterface instance
+    /**
+     * @var \Psr\Http\Message\StreamInterface
+     */
     private $stream;
 
+    /**
+     * @var string Protocol used to open this stream
+     */
     private $protocol;
+
+    /**
+     * @var \Google\Cloud\Storage\Bucket Reference to the bucket the opened file
+     *      lives in or will live in.
+     */
     private $bucket;
+
+    /**
+     * @var string Name of the file opened by this stream.
+     */
     private $file;
 
     /**
@@ -171,14 +187,6 @@ class StreamWrapper
             $openedPath = $path;
         }
         return true;
-    }
-
-    private function returnError($message, $flags)
-    {
-        if ($flags & STREAM_REPORT_ERRORS) {
-            trigger_error($message, E_USER_WARNING);
-        }
-        return false;
     }
 
     // @codingStandardsIgnoreStart
@@ -368,30 +376,6 @@ class StreamWrapper
     }
 
     /**
-     * Parse the URL and set protocol, filename and bucket.
-     * @param  string $path URL to open
-     * @return StorageClient
-     */
-    private function openPath($path)
-    {
-        $url = parse_url($path);
-        $this->protocol = $url['scheme'];
-        $this->file = ltrim($url['path'], '/');
-        $client = self::getClient($this->protocol);
-        $this->bucket = $client->bucket($url['host']);
-        return $client;
-    }
-
-    private function makeDirectory($path)
-    {
-        if (substr($path, -1) == '/') {
-            return $path;
-        } else {
-            return $path . '/';
-        }
-    }
-
-    /**
      * Callback handler for trying to move a file or directory.
      *
      * @param string $from The URL to the current file
@@ -432,7 +416,7 @@ class StreamWrapper
     /**
      * Callback handler for retrieving the underlaying resource
      *
-     * @param int $castAs STREAM_CAST_FOR_SELECT | STREAM_CAST_AS_STREAM
+     * @param int $castAs STREAM_CAST_FOR_SELECT|STREAM_CAST_AS_STREAM
      * @return resource
      */
     public function stream_cast($castAs)
@@ -466,7 +450,7 @@ class StreamWrapper
      *
      * @param string $path The URI to the file
      * @param int $flags Bitwise mask of options
-     * @return array
+     * @return array|false
      */
     public function url_stat($path, $flags)
     {
@@ -481,6 +465,42 @@ class StreamWrapper
         }
     }
 
+    /**
+     * Parse the URL and set protocol, filename and bucket.
+     *
+     * @param  string $path URL to open
+     * @return StorageClient
+     */
+    private function openPath($path)
+    {
+        $url = parse_url($path);
+        $this->protocol = $url['scheme'];
+        $this->file = ltrim($url['path'], '/');
+        $client = self::getClient($this->protocol);
+        $this->bucket = $client->bucket($url['host']);
+        return $client;
+    }
+
+    /**
+     * Given a path, ensure that we return a path that looks like a directory
+     *
+     * @param  string $path
+     * @return string
+     */
+    private function makeDirectory($path)
+    {
+        if (substr($path, -1) == '/') {
+            return $path;
+        } else {
+            return $path . '/';
+        }
+    }
+
+    /**
+     * Calculate the `url_stat` response for a directory
+     *
+     * @return array|false
+     */
     private function urlStatDirectory()
     {
         $stats = [];
@@ -524,6 +544,11 @@ class StreamWrapper
         ]);
     }
 
+    /**
+     * Calculate the `url_stat` response for a file
+     *
+     * @return array|false
+     */
     private function urlStatFile()
     {
         try {
@@ -544,6 +569,13 @@ class StreamWrapper
         return $this->makeStatArray($stats);
     }
 
+    /**
+     * Given a `StorageObject` info array, extract the available fields into the
+     * provided `$stats` array.
+     *
+     * @param array $info Array provided from a `StorageObject`.
+     * @param array $stats Array to put the calculated stats into.
+     */
     private function statsFromFileInfo(&$info, &$stats)
     {
         $stats['size'] = (int) $info['size'];
@@ -551,11 +583,24 @@ class StreamWrapper
         $stats['ctime'] = strtotime($info['timeCreated']);
     }
 
+    /**
+     * Return whether we think the provided path is a directory or not
+     *
+     * @param  string $path
+     * @return boolean
+     */
     private function isDirectory($path)
     {
         return substr($path, -1) == '/';
     }
 
+    /**
+     * Returns the associative array that a `stat()` response expects using the
+     * provided stats. Defaults the remaining fields to 0.
+     *
+     * @param  array $stats Sparse stats entries to set.
+     * @return array
+     */
     private function makeStatArray($stats)
     {
         return array_merge(
@@ -576,5 +621,20 @@ class StreamWrapper
             ], 0),
             $stats
         );
+    }
+
+    /**
+     * Helper for whether or not to trigger an error or just return false on an error.
+     *
+     * @param  string $message The PHP error message to emit.
+     * @param  int $flags Bitwise mask of options (STREAM_REPORT_ERRORS)
+     * @return bool Returns false
+     */
+    private function returnError($message, $flags)
+    {
+        if ($flags & STREAM_REPORT_ERRORS) {
+            trigger_error($message, E_USER_WARNING);
+        }
+        return false;
     }
 }

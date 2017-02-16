@@ -221,8 +221,7 @@ class StorageClient
     /**
      * Registers this StorageClient as the handler for stream reading/writing.
      *
-     * @param string $protocol The name of the protocol to use. Defaults to
-     *        'gs'.
+     * @param string $protocol The name of the protocol to use. **Defaults to** `gs`.
      * @throws \RuntimeException
      */
     public function registerStreamWrapper($protocol = null)
@@ -233,8 +232,7 @@ class StorageClient
     /**
      * Unregisters the SteamWrapper
      *
-     * @param string $protocol The name of the protocol to unregister. Defaults
-     *        to 'gs'.
+     * @param string $protocol The name of the protocol to unregister. **Defaults to** `gs`.
      */
     public function unregisterStreamWrapper($protocol = null)
     {
