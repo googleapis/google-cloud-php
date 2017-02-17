@@ -73,8 +73,8 @@ class RestTest extends \PHPUnit_Framework_TestCase
     public function methodProvider()
     {
         return [
-            ['syncRecognize'],
-            ['asyncRecognize'],
+            ['recognize'],
+            ['longRunningRecognize'],
             ['getOperation']
         ];
     }
