@@ -357,6 +357,30 @@ class StreamWrapper
     }
 
     /**
+     * Callback handler for trying to move a file or directory.
+     *
+     * @param string $from The URL to the current file
+     * @param string $to The URL of the new file location
+     * @return bool
+     */
+    public function rename($from, $to)
+    {
+        $url = parse_url($to);
+        $destinationBucket = $url['host'];
+        $destinationPath = substr($url['path'], 1);
+
+        $this->dir_opendir($from, []);
+        foreach ($this->directoryGenerator as $file) {
+            $name = $file->name();
+            $newPath = str_replace($this->file, $destinationPath, $name);
+
+            $obj = $this->bucket->object($name);
+            $obj->rename($newPath, ['destinationBucket' => $destinationBucket]);
+        }
+        return true;
+    }
+
+    /**
      * Callback handler for trying to remove a directory or a bucket. If the path is empty
      * or '/', the bucket will be deleted.
      *
