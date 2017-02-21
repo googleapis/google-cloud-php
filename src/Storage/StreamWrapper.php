@@ -322,10 +322,14 @@ class StreamWrapper
      */
     public function dir_rewinddir()
     {
-        $this->directoryGenerator = $this->bucket->objects([
-            'prefix' => $this->file,
-            'fields' => 'items/name,nextPageToken'
-        ]);
+        try {
+            $this->directoryGenerator = $this->bucket->objects([
+                'prefix' => $this->file,
+                'fields' => 'items/name,nextPageToken'
+            ]);
+        } catch (ServiceException $e) {
+            return false;
+        }
         return true;
     }
 
@@ -377,7 +381,8 @@ class StreamWrapper
     }
 
     /**
-     * Callback handler for trying to remove a directory..
+     * Callback handler for trying to remove a directory. Note that you cannot
+     * remove a directory unless it is empty.
      *
      * @param string $path The URL directory to remove
      * @param int $options Bitwise mask of options
