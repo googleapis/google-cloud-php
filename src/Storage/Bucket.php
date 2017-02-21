@@ -198,10 +198,9 @@ class Bucket
      *           you have increased reliability at the risk of higher overhead.
      *           It is recommended to not use chunking.
      *     @type string $predefinedAcl Predefined ACL to apply to the object.
-     *           Acceptable values include,
-     *           `"authenticatedRead"`, `"bucketOwnerFullControl"`,
-     *           `"bucketOwnerRead"`, `"private"`, `"projectPrivate"`, and
-     *           `"publicRead"`.
+     *           Acceptable values include, `"authenticatedRead"`,
+     *           `"bucketOwnerFullControl"`, `"bucketOwnerRead"`, `"private"`,
+     *           `"projectPrivate"`, and `"publicRead"`.
      *     @type array $metadata The available options for metadata are outlined
      *           at the [JSON API docs](https://cloud.google.com/storage/docs/json_api/v1/objects/insert#request-body).
      *     @type string $encryptionKey A base64 encoded AES-256 customer-supplied
@@ -279,9 +278,9 @@ class Bucket
      *           you have increased reliability at the risk of higher overhead.
      *           It is recommended to not use chunking.
      *     @type string $predefinedAcl Predefined ACL to apply to the object.
-     *           Acceptable values include `"authenticatedRead`",
-     *           `"bucketOwnerFullControl`", `"bucketOwnerRead`", `"private`",
-     *           `"projectPrivate`", and `"publicRead"`.
+     *           Acceptable values include, `"authenticatedRead"`,
+     *           `"bucketOwnerFullControl"`, `"bucketOwnerRead"`, `"private"`,
+     *           `"projectPrivate"`, and `"publicRead"`.
      *     @type array $metadata The available options for metadata are outlined
      *           at the [JSON API docs](https://cloud.google.com/storage/docs/json_api/v1/objects/insert#request-body).
      *     @type string $encryptionKey A base64 encoded AES-256 customer-supplied
@@ -384,7 +383,7 @@ class Bucket
      *           request. Defaults to `1000`.
      *     @type string $prefix Filter results with this prefix.
      *     @type string $projection Determines which properties to return. May
-     *           be either 'full' or 'noAcl'.
+     *           be either `"full"` or `"noAcl"`.
      *     @type bool $versions If true, lists all versions of an object as
      *           distinct results. The default is false.
      *     @type string $fields Selector which will cause the response to only
@@ -469,12 +468,14 @@ class Bucket
      *     @type string $ifMetagenerationNotMatch Makes the return of the bucket
      *           metadata conditional on whether the bucket's current
      *           metageneration does not match the given value.
-     *     @type string $predefinedAcl Apply a predefined set of access controls
-     *           to this bucket.
+     *     @type string $predefinedAcl Predefined ACL to apply to the bucket.
+     *           Acceptable values include, `"authenticatedRead"`,
+     *           `"bucketOwnerFullControl"`, `"bucketOwnerRead"`, `"private"`,
+     *           `"projectPrivate"`, and `"publicRead"`.
      *     @type string $predefinedDefaultObjectAcl Apply a predefined set of
      *           default object access controls to this bucket.
      *     @type string $projection Determines which properties to return. May
-     *           be either 'full' or 'noAcl'.
+     *           be either `"full"` or `"noAcl"`.
      *     @type string $fields Selector which will cause the response to only
      *           return the specified fields.
      *     @type array $acl Access controls on the bucket.
@@ -486,6 +487,11 @@ class Bucket
      *     @type array $logging The bucket's logging configuration, which
      *           defines the destination bucket and optional name prefix for the
      *           current bucket's logs.
+     *     @type string $storageClass The bucket's storage class. This defines
+     *           how objects in the bucket are stored and determines the SLA and
+     *           the cost of storage. Acceptable values include
+     *           `"MULTI_REGIONAL"`, `"REGIONAL"`, `"NEARLINE"`, `"COLDLINE"`,
+     *           `"STANDARD"` and `"DURABLE_REDUCED_AVAILABILITY"`.
      *     @type array $versioning The bucket's versioning configuration.
      *     @type array $website The bucket's website configuration.
      * }
@@ -613,7 +619,7 @@ class Bucket
      *           metadata conditional on whether the bucket's current
      *           metageneration does not match the given value.
      *     @type string $projection Determines which properties to return. May
-     *           be either 'full' or 'noAcl'.
+     *           be either `"full"` or `"noAcl"`.
      * }
      * @return array
      */
@@ -648,7 +654,7 @@ class Bucket
      *           metadata conditional on whether the bucket's current
      *           metageneration does not match the given value.
      *     @type string $projection Determines which properties to return. May
-     *           be either 'full' or 'noAcl'.
+     *           be either `"full"` or `"noAcl"`.
      * }
      * @return array
      */

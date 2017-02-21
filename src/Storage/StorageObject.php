@@ -206,8 +206,10 @@ class StorageObject
      *     @type string $ifMetagenerationNotMatch Makes the operation
      *           conditional on whether the object's current metageneration does
      *           not match the given value.
-     *     @type string $predefinedAcl Apply a predefined set of access controls
-     *           to this object.
+     *     @type string $predefinedAcl Predefined ACL to apply to the object.
+     *           Acceptable values include, `"authenticatedRead"`,
+     *           `"bucketOwnerFullControl"`, `"bucketOwnerRead"`, `"private"`,
+     *           `"projectPrivate"`, and `"publicRead"`.
      *     @type string $projection Determines which properties to return. May
      *           be either 'full' or 'noAcl'.
      *     @type string $fields Selector which will cause the response to only
@@ -252,11 +254,10 @@ class StorageObject
      *
      *     @type string $name The name of the destination object. **Defaults
      *           to** the name of the source object.
-     *     @type string $predefinedAcl Access controls to apply to the
-     *           destination object. Acceptable values include
-     *           `authenticatedRead`, `bucketOwnerFullControl`,
-     *           `bucketOwnerRead`, `private`, `projectPrivate`, and
-     *           `publicRead`.
+     *     @type string $predefinedAcl Predefined ACL to apply to the object.
+     *           Acceptable values include, `"authenticatedRead"`,
+     *           `"bucketOwnerFullControl"`, `"bucketOwnerRead"`, `"private"`,
+     *           `"projectPrivate"`, and `"publicRead"`.
      *     @type string $encryptionKey A base64 encoded AES-256 customer-supplied
      *           encryption key. It will be neccesary to provide this when a key
      *           was used during the object's creation.
@@ -359,11 +360,10 @@ class StorageObject
      *
      *     @type string $name The name of the destination object. **Defaults
      *           to** the name of the source object.
-     *     @type string $predefinedAcl Access controls to apply to the
-     *           destination object. Acceptable values include
-     *           `authenticatedRead`, `bucketOwnerFullControl`,
-     *           `bucketOwnerRead`, `private`, `projectPrivate`, and
-     *           `publicRead`.
+     *     @type string $predefinedAcl Predefined ACL to apply to the object.
+     *           Acceptable values include, `"authenticatedRead"`,
+     *           `"bucketOwnerFullControl"`, `"bucketOwnerRead"`, `"private"`,
+     *           `"projectPrivate"`, and `"publicRead"`.
      *     @type string $maxBytesRewrittenPerCall The maximum number of bytes
      *           that will be rewritten per rewrite request. Most callers
      *           shouldn't need to specify this parameter - it is primarily in
@@ -460,11 +460,10 @@ class StorageObject
      * @param array $options [optional] {
      *     Configuration options.
      *
-     *     @type string $predefinedAcl Access controls to apply to the
-     *           destination object. Acceptable values include
-     *           `authenticatedRead`, `bucketOwnerFullControl`,
-     *           `bucketOwnerRead`, `private`, `projectPrivate`, and
-     *           `publicRead`.
+     *     @type string $predefinedAcl Predefined ACL to apply to the object.
+     *           Acceptable values include, `"authenticatedRead"`,
+     *           `"bucketOwnerFullControl"`, `"bucketOwnerRead"`, `"private"`,
+     *           `"projectPrivate"`, and `"publicRead"`.
      *     @type string $encryptionKey A base64 encoded AES-256 customer-supplied
      *           encryption key. It will be neccesary to provide this when a key
      *           was used during the object's creation.
