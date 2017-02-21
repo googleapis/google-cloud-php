@@ -48,9 +48,6 @@ class DirectoryTest extends StreamWrapperTestCase
         $this->assertFalse(file_exists($dir . '/'));
     }
 
-    /**
-     * @group foo
-     */
     public function testMkDirCreatesBucket()
     {
         $newBucket = uniqid(self::TESTING_PREFIX);
@@ -59,7 +56,6 @@ class DirectoryTest extends StreamWrapperTestCase
 
         $bucket = self::$client->bucket($newBucket);
         $this->assertTrue($bucket->exists());
-        var_dump($bucket->acl()->get());
         $this->assertTrue(rmdir($bucketUrl));
     }
 

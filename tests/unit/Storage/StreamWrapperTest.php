@@ -367,6 +367,25 @@ class StreamWrapperTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(rename('gs://my_bucket/foo', 'gs://another_bucket/nested/folder'));
     }
 
+    public function testCanSpecifyChunkSizeViaContext()
+    {
+
+        $uploader  = $this->prophesize(StreamableUploader::class);
+        $upload = $uploader->upload(5)->willReturn(array())->shouldBeCalled();
+        $uploader->upload()->shouldBeCalled();
+        $uploader->getResumeUri()->willReturn('https://resume-uri/');
+        $this->bucket->getStreamableUploader("", Argument::type('array'))->willReturn($uploader->reveal());
+
+        $context = stream_context_create(array(
+            'gs' => array(
+                'chunkSize' => 5
+            )
+        ));
+        $fp = fopen('gs://my_bucket/existing_file.txt', 'w', false, $context);
+        $this->assertEquals(9, fwrite($fp, "123456789"));
+        fclose($fp);
+    }
+
     private function mockObjectData($file, $data, $bucket = null)
     {
         $bucket = $bucket ?: $this->bucket;

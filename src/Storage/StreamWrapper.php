@@ -156,7 +156,7 @@ class StreamWrapper
         }
 
         if ($mode == 'w') {
-            $this->stream = new WriteStream();
+            $this->stream = new WriteStream(null, $options);
             $this->stream->setUploader(
                 $this->bucket->getStreamableUploader(
                     $this->stream,
