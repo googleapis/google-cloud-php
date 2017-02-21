@@ -234,8 +234,26 @@ class StreamWrapperTest extends \PHPUnit_Framework_TestCase
      */
     public function testMkdir()
     {
-        $this->bucket->upload('', ['name' => 'foo/bar/'])->shouldBeCalled();
+        $this->bucket->upload('', ['name' => 'foo/bar/', 'predefinedAcl' => 'publicRead'])->shouldBeCalled();
         $this->assertTrue(mkdir('gs://my_bucket/foo/bar'));
+    }
+
+    /**
+     * @group storageDirectory
+     */
+    public function testMkdirProjectPrivate()
+    {
+        $this->bucket->upload('', ['name' => 'foo/bar/', 'predefinedAcl' => 'projectPrivate'])->shouldBeCalled();
+        $this->assertTrue(mkdir('gs://my_bucket/foo/bar', 0740));
+    }
+
+    /**
+     * @group storageDirectory
+     */
+    public function testMkdirPrivate()
+    {
+        $this->bucket->upload('', ['name' => 'foo/bar/', 'predefinedAcl' => 'private'])->shouldBeCalled();
+        $this->assertTrue(mkdir('gs://my_bucket/foo/bar', 0700));
     }
 
     /**
@@ -243,8 +261,19 @@ class StreamWrapperTest extends \PHPUnit_Framework_TestCase
      */
     public function testMkdirOnBadDirectory()
     {
-        $this->bucket->upload('', ['name' => 'foo/bar/'])->willThrow(\Google\Cloud\Exception\NotFoundException::class);
+        $this->bucket->upload('', ['name' => 'foo/bar/', 'predefinedAcl' => 'publicRead'])->willThrow(\Google\Cloud\Exception\NotFoundException::class);
         $this->assertFalse(mkdir('gs://my_bucket/foo/bar'));
+    }
+
+    public function testMkDirCreatesBucket()
+    {
+        $this->client->createBucket('my_bucket', [
+            'predefinedAcl' => 'publicRead',
+            'predefinedDefaultObjectAcl' => 'publicRead']
+        )->willReturn($this->bucket);
+        $this->bucket->upload('', ['name' => 'foo/bar/', 'predefinedAcl' => 'publicRead'])->shouldBeCalled();
+
+        $this->assertTrue(mkdir('gs://my_bucket/foo/bar', 0777, STREAM_MKDIR_RECURSIVE));
     }
 
     /**

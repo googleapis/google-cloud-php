@@ -334,22 +334,39 @@ class StreamWrapper
     }
 
     /**
-     * Callback handler for trying to create a directory.
+     * Callback handler for trying to create a directory. If no file path is specified,
+     * or STREAM_MKDIR_RECURSIVE option is set, then create the bucket if it does not exist.
      *
      * @param string $path The url directory to create
      * @param int $mode The permissions on the directory
-     * @param int $options Bitwise mask of options
+     * @param int $options Bitwise mask of options. STREAM_MKDIR_RECURSIVE
      * @return bool
      */
     public function mkdir($path, $mode, $options)
     {
+        $path = $this->makeDirectory($path);
         $client = $this->openPath($path);
-        $this->file = $this->makeDirectory($this->file);
+        $predefinedAcl = $this->determineAclFromMode($mode);
 
         try {
-            $this->bucket->upload('', [
-                'name' => $this->file
-            ]);
+            if ($options & STREAM_MKDIR_RECURSIVE || $this->file == '') {
+                if (!$this->bucket->exists()) {
+                    $client->createBucket($this->bucket->name(), [
+                        'predefinedAcl' => $predefinedAcl,
+                        'predefinedDefaultObjectAcl' => $predefinedAcl
+                    ]);
+                }
+            }
+
+            // If the file name is empty, we were trying to create a bucket. In this case,
+            // don't create the placeholder file.
+            if ($this->file != '') {
+                // Fake a directory by creating an empty placeholder file whose name ends in '/'
+                $this->bucket->upload('', [
+                    'name' => $this->file,
+                    'predefinedAcl' => $predefinedAcl
+                ]);
+            }
         } catch (ServiceException $e) {
             return false;
         }
@@ -398,8 +415,9 @@ class StreamWrapper
         $this->openPath($path);
 
         try {
-            if ($this->file == '/') {
-                return $this->bucket->delete();
+            if ($this->file == '') {
+                $this->bucket->delete();
+                return true;
             } else {
                 return $this->unlink($path);
             }
@@ -628,5 +646,25 @@ class StreamWrapper
             trigger_error($message, E_USER_WARNING);
         }
         return false;
+    }
+
+    /**
+     * Helper for determining which predefinedAcl to use given a mode.
+     *
+     * @param  int $mode Decimal representation of the file system permissions
+     * @return string
+     */
+    private function determineAclFromMode($mode)
+    {
+        if ($mode & 0004) {
+            // If any user can read, assume it should be publicRead.
+            return 'publicRead';
+        } elseif ($mode & 0040) {
+            // If any group user can read, assume it should be projectPrivate.
+            return 'projectPrivate';
+        } else {
+            // Otherwise, assume only the project/bucket owner can use the bucket.
+            return 'private';
+        }
     }
 }
