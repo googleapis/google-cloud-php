@@ -274,10 +274,6 @@ class Bucket
      *           applied using md5 hashing functionality. If true and the
      *           calculated hash does not match that of the upstream server the
      *           upload will be rejected.
-     *     @type int $chunkSize If provided the upload will be done in chunks.
-     *           The size must be in multiples of 262144 bytes. With chunking
-     *           you have increased reliability at the risk of higher overhead.
-     *           It is recommended to not use chunking.
      *     @type string $predefinedAcl Predefined ACL to apply to the object.
      *           Acceptable values include `"authenticatedRead`",
      *           `"bucketOwnerFullControl`", `"bucketOwnerRead`", `"private`",
@@ -318,12 +314,10 @@ class Bucket
      * Example:
      * ```
      * $uploader = $bucket->getStreamableUploader(
-     *     "initial contents",
+     *     'initial contents',
      *     ['name' => 'data.txt']
      * );
      *
-     * $uploader->write('some line');
-     * $uploader->write('more data');
      * // finish uploading the item
      * $uploader->upload();
      * ```

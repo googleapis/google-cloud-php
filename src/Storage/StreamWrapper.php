@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2015 Google Inc. All Rights Reserved.
+ * Copyright 2017 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,7 @@ namespace Google\Cloud\Storage;
 
 use Google\Cloud\Exception\NotFoundException;
 use Google\Cloud\Exception\ServiceException;
+use Google\Cloud\Storage\Bucket;
 use GuzzleHttp\Psr7\CachingStream;
 use GuzzleHttp\Psr7;
 
@@ -53,7 +54,7 @@ class StreamWrapper
     private $protocol;
 
     /**
-     * @var \Google\Cloud\Storage\Bucket Reference to the bucket the opened file
+     * @var Bucket Reference to the bucket the opened file
      *      lives in or will live in.
      */
     private $bucket;
@@ -86,8 +87,8 @@ class StreamWrapper
      * Register a StreamWrapper for reading and writing to Google Storage
      *
      * @param StorageClient $client The StorageClient configuration to use.
-     * @param string $protocol The name of the protocol to use. Defaults to
-     *        'gs'.
+     * @param string $protocol The name of the protocol to use. **Defaults to**
+     *        `gs`.
      * @throws \RuntimeException
      */
     public static function register(StorageClient $client, $protocol = null)
@@ -106,8 +107,8 @@ class StreamWrapper
     /**
      * Unregisters the SteamWrapper
      *
-     * @param string $protocol The name of the protocol to unregister. Defaults
-     *        to 'gs'.
+     * @param string $protocol The name of the protocol to unregister. **Defaults
+     *        to** `gs`.
      */
     public static function unregister($protocol = null)
     {
@@ -120,7 +121,7 @@ class StreamWrapper
      * Get the default client to use for streams.
      *
      * @param string $protocol The name of the protocol to get the client for.
-     *        Defaults to 'gs'.
+     *        **Defaults to** `gs`.
      * @return StorageClient
      */
     public static function getClient($protocol = null)
@@ -202,7 +203,7 @@ class StreamWrapper
     /**
      * Callback handler for when we try to write data to the stream.
      *
-     * @param string|stream $data The data to write
+     * @param string $data The data to write
      *
      * @return int The number of bytes written.
      */
@@ -301,7 +302,7 @@ class StreamWrapper
     /**
      * Callback handler for reading an entry from a directory handle.
      *
-     * @return string
+     * @return string|bool
      */
     public function dir_readdir()
     {
@@ -331,7 +332,7 @@ class StreamWrapper
     /**
      * Callback handler for trying to create a directory.
      *
-     * @param string $path The url directory to creaet
+     * @param string $path The url directory to create
      * @param int $mode The permissions on the directory
      * @param int $options Bitwise mask of options
      * @return bool
@@ -392,7 +393,7 @@ class StreamWrapper
      * Callback handler for retrieving the underlaying resource
      *
      * @param int $castAs STREAM_CAST_FOR_SELECT|STREAM_CAST_AS_STREAM
-     * @return resource
+     * @return resource|bool
      */
     public function stream_cast($castAs)
     {
@@ -423,7 +424,7 @@ class StreamWrapper
      *
      * @param string $path The URI to the file
      * @param int $flags Bitwise mask of options
-     * @return array|false
+     * @return array|bool
      */
     public function url_stat($path, $flags)
     {
@@ -471,7 +472,7 @@ class StreamWrapper
     /**
      * Calculate the `url_stat` response for a directory
      *
-     * @return array|false
+     * @return array|bool
      */
     private function urlStatDirectory()
     {
@@ -519,7 +520,7 @@ class StreamWrapper
     /**
      * Calculate the `url_stat` response for a file
      *
-     * @return array|false
+     * @return array|bool
      */
     private function urlStatFile()
     {
@@ -548,7 +549,7 @@ class StreamWrapper
      * @param array $info Array provided from a `StorageObject`.
      * @param array $stats Array to put the calculated stats into.
      */
-    private function statsFromFileInfo(&$info, &$stats)
+    private function statsFromFileInfo(array &$info, array &$stats)
     {
         $stats['size'] = (int) $info['size'];
         $stats['mtime'] = strtotime($info['updated']);
@@ -559,7 +560,7 @@ class StreamWrapper
      * Return whether we think the provided path is a directory or not
      *
      * @param  string $path
-     * @return boolean
+     * @return bool
      */
     private function isDirectory($path)
     {

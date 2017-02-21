@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2015 Google Inc. All Rights Reserved.
+ * Copyright 2017 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -71,11 +71,16 @@ class WriteStream implements StreamInterface
     /**
      * Write to the stream. If we pass the chunkable size, upload the available chunk.
      *
-     * @param  string|StreamInterface $data Data to write
+     * @param  string $data Data to write
      * @return int The number of bytes written
+     * @throws \RuntimeException
      */
     public function write($data)
     {
+        if (!isset($this->uploader)) {
+            throw new \RuntimeException("No uploader set.");
+        }
+
         // Ensure we have a resume uri here because we need to create the streaming
         // upload before we have data (size of 0).
         $this->uploader->getResumeUri();

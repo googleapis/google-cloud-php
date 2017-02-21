@@ -30,9 +30,9 @@ class StreamableUploader extends ResumableUploader
     /**
      * Triggers the upload process.
      *
-     * @param bool $remainder If true, send the all the remaining data and close
-     *        the file. Otherwise, only write data if we have enough to send a
-     *        chucked set.
+     * @param int $remainder [optional] How much data to try and send. Must be in
+     *        multiples of 262144. If null or not provided, send the all the
+     *        remaining data and close the file.
      * @return array
      * @throws GoogleException
      */
