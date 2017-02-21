@@ -24,7 +24,7 @@ use InvalidArgumentException;
 use Psr\Cache\CacheItemPoolInterface;
 
 /**
- * Google Cloud Vision client. Allows you to understand the content of an image,
+ * Google Cloud Vision allows you to understand the content of an image,
  * classify images into categories, detect text, objects, faces and more. Find
  * more information at
  * [Google Cloud Vision docs](https://cloud.google.com/vision/docs/).
