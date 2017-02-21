@@ -357,27 +357,31 @@ class StreamWrapper
     }
 
     /**
-     * Callback handler for trying to move a file or directory.
+     * Callback handler for trying to remove a directory or a bucket. If the path is empty
+     * or '/', the bucket will be deleted.
      *
-     * @param string $from The URL to the current file
-     * @param string $to The URL of the new file location
+     * Note that the STREAM_MKDIR_RECURSIVE flag is ignored because the option cannot
+     * be set via the `rmdir()` function.
+     *
+     * @param string $path The URL directory to remove. If the path is empty or is '/',
+     *        This will attempt to destroy the bucket.
+     * @param int $options Bitwise mask of options.
      * @return bool
      */
-    public function rename($from, $to)
+    public function rmdir($path, $options)
     {
-        $url = parse_url($to);
-        $destinationBucket = $url['host'];
-        $destinationPath = substr($url['path'], 1);
+        $path = $this->makeDirectory($path);
+        $this->openPath($path);
 
-        $this->dir_opendir($from, []);
-        foreach ($this->directoryGenerator as $file) {
-            $name = $file->name();
-            $newPath = str_replace($this->file, $destinationPath, $name);
-
-            $obj = $this->bucket->object($name);
-            $obj->rename($newPath, ['destinationBucket' => $destinationBucket]);
+        try {
+            if ($this->file == '/') {
+                return $this->bucket->delete();
+            } else {
+                return $this->unlink($path);
+            }
+        } catch (ServiceException $e) {
+            return false;
         }
-        return true;
     }
 
     /**
