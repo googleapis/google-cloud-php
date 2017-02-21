@@ -265,8 +265,13 @@ class StreamWrapperTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse(mkdir('gs://my_bucket/foo/bar'));
     }
 
+    /**
+     * @group storageDirectory
+     */
     public function testMkDirCreatesBucket()
     {
+        $this->bucket->exists()->willReturn(false);
+        $this->bucket->name()->willReturn('my_bucket');
         $this->client->createBucket('my_bucket', [
             'predefinedAcl' => 'publicRead',
             'predefinedDefaultObjectAcl' => 'publicRead']

@@ -295,8 +295,7 @@ class StreamWrapper
     public function dir_opendir($path, $options)
     {
         $this->openPath($path);
-        $this->dir_rewinddir();
-        return true;
+        return $this->dir_rewinddir();
     }
 
     /**
@@ -392,7 +391,12 @@ class StreamWrapper
             $newPath = str_replace($this->file, $destinationPath, $name);
 
             $obj = $this->bucket->object($name);
-            $obj->rename($newPath, ['destinationBucket' => $destinationBucket]);
+            try {
+                $obj->rename($newPath, ['destinationBucket' => $destinationBucket]);
+            } catch (ServiceException $e) {
+                // If any rename calls fail, abort and return false
+                return false;
+            }
         }
         return true;
     }
