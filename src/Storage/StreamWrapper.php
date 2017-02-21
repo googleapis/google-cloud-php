@@ -385,20 +385,6 @@ class StreamWrapper
     }
 
     /**
-     * Callback handler for trying to remove a directory. Note that you cannot
-     * remove a directory unless it is empty.
-     *
-     * @param string $path The URL directory to remove
-     * @param int $options Bitwise mask of options
-     * @return bool
-     */
-    public function rmdir($path, $options)
-    {
-        $path = $this->makeDirectory($path);
-        return $this->unlink($path);
-    }
-
-    /**
      * Callback handler for retrieving the underlaying resource
      *
      * @param int $castAs STREAM_CAST_FOR_SELECT|STREAM_CAST_AS_STREAM
