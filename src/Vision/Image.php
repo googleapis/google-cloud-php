@@ -134,7 +134,7 @@ use InvalidArgumentException;
  *     'safeSearch',     // Corresponds to `SAFE_SEARCH_DETECTION`
  *     'imageProperties',// Corresponds to `IMAGE_PROPERTIES`
  *     'crop',           // Corresponds to `CROP_HINTS`
- *     'web'             // Corresponds to `WEB_ANNOTATION`
+ *     'web'             // Corresponds to `WEB_DETECTION`
  * ]);
  * ```
  *
@@ -182,7 +182,7 @@ class Image
         'safeSearch'      => 'SAFE_SEARCH_DETECTION',
         'imageProperties' => 'IMAGE_PROPERTIES',
         'crop'            => 'CROP_HINTS',
-        'web'             => 'WEB_ANNOTATION'
+        'web'             => 'WEB_DETECTION'
     ];
 
     /**

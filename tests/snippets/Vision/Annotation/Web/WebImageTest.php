@@ -47,7 +47,7 @@ class WebImageTest extends SnippetTestCase
             ->willReturn([
                 'responses' => [
                     [
-                        'webAnnotation' => [
+                        'webDetection' => [
                             'fullMatchingImages' => [
                                 []
                             ]

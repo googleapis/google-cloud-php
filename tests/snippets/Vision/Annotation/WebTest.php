@@ -60,7 +60,7 @@ class WebTest extends SnippetTestCase
             ->willReturn([
                 'responses' => [
                     [
-                        'webAnnotation' => []
+                        'webDetection' => []
                     ]
                 ]
             ]);

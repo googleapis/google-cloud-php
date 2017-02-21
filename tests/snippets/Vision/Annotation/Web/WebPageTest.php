@@ -47,7 +47,7 @@ class WebPageTest extends SnippetTestCase
             ->willReturn([
                 'responses' => [
                     [
-                        'webAnnotation' => [
+                        'webDetection' => [
                             'pagesWithMatchingImages' => [
                                 []
                             ]

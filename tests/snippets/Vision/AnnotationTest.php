@@ -183,7 +183,7 @@ class AnnotationTest extends SnippetTestCase
     {
         $snippet = $this->snippetFromMethod(Annotation::class, 'web');
         $snippet->addLocal('annotation', new Annotation([
-            'webAnnotation' => []
+            'webDetection' => []
         ]));
 
         $res = $snippet->invoke('web');

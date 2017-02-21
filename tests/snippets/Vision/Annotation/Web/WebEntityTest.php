@@ -48,7 +48,7 @@ class WebEntityTest extends SnippetTestCase
             ->willReturn([
                 'responses' => [
                     [
-                        'webAnnotation' => [
+                        'webDetection' => [
                             'webEntities' => [
                                 []
                             ]
