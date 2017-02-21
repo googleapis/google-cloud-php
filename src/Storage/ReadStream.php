@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2015 Google Inc. All Rights Reserved.
+ * Copyright 2017 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,7 +35,7 @@ class ReadStream implements StreamInterface
      *
      * @param StreamInterface $stream The stream interface to wrap
      */
-    public function __construct($stream)
+    public function __construct(StreamInterface $stream)
     {
         $this->stream = $stream;
     }
