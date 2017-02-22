@@ -152,6 +152,21 @@ $object = $bucket->object('file_backup.txt');
 $object->downloadToFile('/data/file_backup.txt');
 ```
 
+#### Stream Wrapper
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Storage\StorageClient;
+
+$storage = new StorageClient([
+    'projectId' => 'my_project'
+]);
+$storage->registerStreamWrapper();
+
+$contents = file_get_contents('gs://my_bucket/file_backup.txt');
+```
+
 ## Google Cloud Translation (Alpha)
 
 - [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/translate/translateclient)

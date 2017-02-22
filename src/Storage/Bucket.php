@@ -18,6 +18,7 @@
 namespace Google\Cloud\Storage;
 
 use Google\Cloud\Exception\NotFoundException;
+use Google\Cloud\Exception\ServiceException;
 use Google\Cloud\Storage\Connection\ConnectionInterface;
 use Google\Cloud\Upload\ResumableUploader;
 use GuzzleHttp\Psr7;
@@ -273,14 +274,10 @@ class Bucket
      *           applied using md5 hashing functionality. If true and the
      *           calculated hash does not match that of the upstream server the
      *           upload will be rejected.
-     *     @type int $chunkSize If provided the upload will be done in chunks.
-     *           The size must be in multiples of 262144 bytes. With chunking
-     *           you have increased reliability at the risk of higher overhead.
-     *           It is recommended to not use chunking.
      *     @type string $predefinedAcl Predefined ACL to apply to the object.
-     *           Acceptable values include, `"authenticatedRead"`,
-     *           `"bucketOwnerFullControl"`, `"bucketOwnerRead"`, `"private"`,
-     *           `"projectPrivate"`, and `"publicRead"`.
+     *           Acceptable values include `"authenticatedRead`",
+     *           `"bucketOwnerFullControl`", `"bucketOwnerRead`", `"private`",
+     *           `"projectPrivate`", and `"publicRead"`.
      *     @type array $metadata The available options for metadata are outlined
      *           at the [JSON API docs](https://cloud.google.com/storage/docs/json_api/v1/objects/insert#request-body).
      *     @type string $encryptionKey A base64 encoded AES-256 customer-supplied
@@ -305,6 +302,72 @@ class Bucket
                 'bucket' => $this->identity['bucket'],
                 'data' => $data,
                 'resumable' => true
+            ]
+        );
+    }
+
+    /**
+     * Get a streamable uploader which can provide greater control over the
+     * upload process. This is useful for generating large files and uploading
+     * the contents in chunks.
+     *
+     * Example:
+     * ```
+     * $uploader = $bucket->getStreamableUploader(
+     *     'initial contents',
+     *     ['name' => 'data.txt']
+     * );
+     *
+     * // finish uploading the item
+     * $uploader->upload();
+     * ```
+     *
+     * @see https://cloud.google.com/storage/docs/json_api/v1/how-tos/upload#resumable Learn more about resumable
+     * uploads.
+     * @see https://cloud.google.com/storage/docs/json_api/v1/objects/insert Objects insert API documentation.
+     *
+     * @param string|resource|StreamInterface $data The data to be uploaded.
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type string $name The name of the destination.
+     *     @type bool $validate Indicates whether or not validation will be
+     *           applied using md5 hashing functionality. If true and the
+     *           calculated hash does not match that of the upstream server the
+     *           upload will be rejected.
+     *     @type int $chunkSize If provided the upload will be done in chunks.
+     *           The size must be in multiples of 262144 bytes. With chunking
+     *           you have increased reliability at the risk of higher overhead.
+     *           It is recommended to not use chunking.
+     *     @type string $predefinedAcl Predefined ACL to apply to the object.
+     *           Acceptable values include, `"authenticatedRead"`,
+     *           `"bucketOwnerFullControl"`, `"bucketOwnerRead"`, `"private"`,
+     *           `"projectPrivate"`, and `"publicRead"`.
+     *     @type array $metadata The available options for metadata are outlined
+     *           at the [JSON API docs](https://cloud.google.com/storage/docs/json_api/v1/objects/insert#request-body).
+     *     @type string $encryptionKey A base64 encoded AES-256 customer-supplied
+     *           encryption key.
+     *     @type string $encryptionKeySHA256 Base64 encoded SHA256 hash of the
+     *           customer-supplied encryption key. This value will be calculated
+     *           from the `encryptionKey` on your behalf if not provided, but
+     *           for best performance it is recommended to pass in a cached
+     *           version of the already calculated SHA.
+     * }
+     * @return StreamableUploader
+     * @throws \InvalidArgumentException
+     */
+    public function getStreamableUploader($data, array $options = [])
+    {
+        if (is_string($data) && !isset($options['name'])) {
+            throw new \InvalidArgumentException('A name is required when data is of type string.');
+        }
+
+        return $this->connection->insertObject(
+            $this->formatEncryptionHeaders($options) + [
+                'bucket' => $this->identity['bucket'],
+                'data' => $data,
+                'streamable' => true,
+                'validate' => false
             ]
         );
     }
@@ -676,5 +739,35 @@ class Bucket
     public function name()
     {
         return $this->identity['bucket'];
+    }
+
+    /**
+     * Returns whether the bucket with the given file prefix is writable.
+     * Tries to create a temporary file as a resumable upload which will
+     * not be completed (and cleaned up by GCS).
+     *
+     * @param  string $file Optional file to try to write.
+     * @return boolean
+     * @throws ServiceException
+     */
+    public function isWritable($file = null)
+    {
+        $file = $file ?: '__tempfile';
+        $uploader = $this->getResumableUploader(
+            Psr7\stream_for(''),
+            ['name' => $file]
+        );
+        try {
+            $uploader->getResumeUri();
+        } catch (ServiceException $e) {
+            // We expect a 403 access denied error if the bucket is not writable
+            if ($e->getCode() == 403) {
+                return false;
+            }
+            // If not a 403, re-raise the unexpected error
+            throw $e;
+        }
+
+        return true;
     }
 }

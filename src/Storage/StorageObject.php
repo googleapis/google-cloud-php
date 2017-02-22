@@ -496,12 +496,19 @@ class StorageObject
      *     @type string $ifSourceMetagenerationNotMatch Makes the operation
      *           conditional on whether the source object's current
      *           metageneration does not match the given value.
+     *     @type string $destinationBucket Will move to this bucket if set. If
+     *           not set, will default to the same bucket.
      * }
      * @return StorageObject The renamed object.
      */
     public function rename($name, array $options = [])
     {
-        $copiedObject = $this->copy($this->identity['bucket'], [
+        $destinationBucket = isset($options['destinationBucket'])
+            ? $options['destinationBucket']
+            : $this->identity['bucket'];
+        unset($options['destinationBucket']);
+
+        $copiedObject = $this->copy($destinationBucket, [
             'name' => $name
         ] + $options);
 
