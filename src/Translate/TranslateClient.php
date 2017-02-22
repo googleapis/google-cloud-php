@@ -203,7 +203,7 @@ class TranslateClient
      *           either plain-text or HTML. Acceptable values are `html` or
      *           `text`. **Defaults to** `"html"`.
      *     @type string $model The model to use for the translation request. May
-     *           be `nmt` or `base`. **Defaults to** an empty string.
+     *           be `nmt` or `base`. **Defaults to** null.
      * }
      * @return array A set of translation results. Each result includes a
      *         `source` key containing the detected or provided language of the
@@ -213,15 +213,19 @@ class TranslateClient
     public function translateBatch(array $strings, array $options = [])
     {
         $options += [
-            'model' => '',
+            'model' => null,
         ];
 
-        $response = $this->connection->listTranslations($options + [
+        $options = array_filter($options + [
             'q' => $strings,
             'key' => $this->key,
             'target' => $this->targetLanguage,
             'model' => $options['model']
-        ]);
+        ], function ($opt) {
+            return !is_null($opt);
+        });
+
+        $response = $this->connection->listTranslations($options);
 
         $translations = [];
         $strings = array_values($strings);

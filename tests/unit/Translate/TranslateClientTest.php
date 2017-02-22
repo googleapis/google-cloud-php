@@ -41,7 +41,7 @@ class TranslateClientTest extends \PHPUnit_Framework_TestCase
         $client = new TranslateTestClient();
 
         $this->connection->listTranslations(Argument::that(function($args) {
-            if (!is_null($args['key'])) {
+            if (isset($args['key'])) {
                 return false;
             }
 
@@ -51,6 +51,24 @@ class TranslateClientTest extends \PHPUnit_Framework_TestCase
         $client->setConnection($this->connection->reveal());
 
         $client->translate('foo');
+    }
+
+    public function testTranslateModel()
+    {
+        $this->connection->listTranslations(Argument::that(function ($args) {
+            if (isset($args['model'])) return false;
+        }));
+
+        $this->client->setConnection($this->connection->reveal());
+
+        $this->client->translate('foo bar');
+
+        $this->connection->listTranslations(Argument::that(function ($args) {
+            if ($args['model'] !== 'base') return false;
+        }));
+
+        $this->client->setConnection($this->connection->reveal());
+        $this->client->translate('foo bar', ['model' => 'base']);
     }
 
     public function testTranslate()
