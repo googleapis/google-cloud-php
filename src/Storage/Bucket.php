@@ -18,6 +18,7 @@
 namespace Google\Cloud\Storage;
 
 use Google\Cloud\Exception\NotFoundException;
+use Google\Cloud\Exception\ServiceException;
 use Google\Cloud\Storage\Connection\ConnectionInterface;
 use Google\Cloud\Upload\ResumableUploader;
 use GuzzleHttp\Psr7;
@@ -741,6 +742,7 @@ class Bucket
      *
      * @param  string $file Optional file to try to write.
      * @return boolean
+     * @throws ServiceException
      */
     public function isWritable($file = null)
     {
@@ -752,7 +754,12 @@ class Bucket
         try {
             $uploader->getResumeUri();
         } catch (ServiceException $e) {
-            return false;
+            // We expect a 403 access denied error if the bucket is not writable
+            if ($e->getCode() == 403) {
+                return false;
+            }
+            // If not a 403, re-raise the unexpected error
+            throw $e;
         }
 
         return true;
