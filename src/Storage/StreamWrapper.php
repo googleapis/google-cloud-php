@@ -592,9 +592,17 @@ class StreamWrapper
      */
     private function statsFromFileInfo(array &$info, array &$stats)
     {
-        $stats['size'] = (int) $info['size'];
-        $stats['mtime'] = strtotime($info['updated']);
-        $stats['ctime'] = strtotime($info['timeCreated']);
+        $stats['size'] = (isset($info['size']))
+            ? (int) $info['size']
+            : null;
+
+        $stats['mtime'] = (isset($info['updated']))
+            ? strtotime($info['updated'])
+            : null;
+
+        $stats['ctime'] = (isset($info['timeCreated']))
+            ? strtotime($info['timeCreated'])
+            : null;
     }
 
     /**
