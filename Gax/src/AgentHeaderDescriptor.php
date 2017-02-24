@@ -32,8 +32,6 @@
 
 namespace Google\GAX;
 
-use InvalidArgumentException;
-
 /**
  * Encapsulates the custom GAPIC header information.
  */
@@ -43,34 +41,62 @@ class AgentHeaderDescriptor
     // TODO(michaelbausor): include bumping this version in a streamlined
     // release process. Issue: https://github.com/googleapis/gax-php/issues/48
     const GAX_VERSION = '0.7.0';
+    const UNKNOWN_VERSION = '';
 
-    private $clientName;
-    private $clientVersion;
-    private $codeGenName;
-    private $codeGenVersion;
-    private $gaxVersion;
-    private $phpVersion;
+    private $metricsHeaders;
 
     /**
      * @param array $headerInfo {
-     *     Required.
+     *     Optional.
      *
-     *     @type string $clientName the name of the client application.
-     *     @type string $clientVersion the version of the client application.
-     *     @type string $codeGenName the code generator name of the client library.
-     *     @type string $codeGenVersion the code generator version of the client library.
-     *     @type string $gaxVersion the GAX version.
      *     @type string $phpVersion the PHP version.
+     *     @type string $libName the name of the client application.
+     *     @type string $libVersion the version of the client application.
+     *     @type string $gapicVersion the code generator version of the GAPIC library.
+     *     @type string $gaxVersion the GAX version.
+     *     @type string $grpcVersion the gRPC version.
      * }
      */
     public function __construct($headerInfo)
     {
-        $this->clientName = $headerInfo['clientName'];
-        $this->clientVersion = $headerInfo['clientVersion'];
-        $this->codeGenName = $headerInfo['codeGenName'];
-        $this->codeGenVersion = $headerInfo['codeGenVersion'];
-        $this->gaxVersion = $headerInfo['gaxVersion'];
-        $this->phpVersion = $headerInfo['phpVersion'];
+        $metricsHeaders = [];
+
+        // The ordering of the headers is important. We use the fact that $metricsHeaders is an
+        // ordered dict. The desired ordering is:
+        //      - phpVersion (gl-php/)
+        //      - clientName (e.g. gccl/)
+        //      - gapicVersion (gapic/)
+        //      - gaxVersion (gax/)
+        //      - grpcVersion (grpc/)
+
+        $phpVersion = isset($headerInfo['phpVersion'])
+            ? $headerInfo['phpVersion']
+            : phpversion();
+        $metricsHeaders['gl-php'] = $phpVersion;
+
+        if (isset($headerInfo['libName'])) {
+            $clientVersion = isset($headerInfo['libVersion'])
+                ? $headerInfo['libVersion']
+                : AgentHeaderDescriptor::UNKNOWN_VERSION;
+            $metricsHeaders[$headerInfo['libName']] = $clientVersion;
+        }
+
+        $codeGenVersion = isset($headerInfo['gapicVersion'])
+            ? $headerInfo['gapicVersion']
+            : AgentHeaderDescriptor::UNKNOWN_VERSION;
+        $metricsHeaders['gapic'] = $codeGenVersion;
+
+        $gaxVersion = isset($headerInfo['gaxVersion'])
+            ? $headerInfo['gaxVersion']
+            : AgentHeaderDescriptor::GAX_VERSION;
+        $metricsHeaders['gax'] = $gaxVersion;
+
+        $grpcVersion = isset($headerInfo['grpcVersion'])
+            ? $headerInfo['grpcVersion']
+            : phpversion('grpc');
+        $metricsHeaders['grpc'] = $grpcVersion;
+
+        $this->metricsHeaders = $metricsHeaders;
     }
 
     /**
@@ -78,9 +104,11 @@ class AgentHeaderDescriptor
      */
     public function getHeader()
     {
-        return [self::AGENT_HEADER_KEY => ["$this->clientName/$this->clientVersion ".
-            "$this->codeGenName/$this->codeGenVersion gax/$this->gaxVersion ".
-            "php/$this->phpVersion"]];
+        $metricsList = [];
+        foreach ($this->metricsHeaders as $key => $value) {
+            $metricsList[] = $key . "/" . $value;
+        }
+        return [self::AGENT_HEADER_KEY => [implode(" ", $metricsList)]];
     }
 
     /**
@@ -89,18 +117,5 @@ class AgentHeaderDescriptor
     public static function getGaxVersion()
     {
         return self::GAX_VERSION;
-    }
-
-    private static function validate($descriptor)
-    {
-        $requiredFields = ['clientName', 'clientVersion', 'codeGenName',
-            'codeGenVersion', 'gaxVersion', 'phpVersion'];
-        foreach ($requiredFields as $field) {
-            if (empty($descriptor[$field])) {
-                throw new InvalidArgumentException(
-                    "$field is required for AgentHeaderDescriptor"
-                );
-            }
-        }
     }
 }
