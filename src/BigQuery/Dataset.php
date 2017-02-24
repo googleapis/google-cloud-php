@@ -42,16 +42,27 @@ class Dataset
     private $info;
 
     /**
+     * @var ValueMapper Maps values between PHP and BigQuery.
+     */
+    private $mapper;
+
+    /**
      * @param ConnectionInterface $connection Represents a connection to
      *        BigQuery.
      * @param string $id The dataset's ID.
      * @param string $projectId The project's ID.
      * @param array $info [optional] The dataset's metadata.
      */
-    public function __construct(ConnectionInterface $connection, $id, $projectId, array $info = [])
-    {
+    public function __construct(
+        ConnectionInterface $connection,
+        $id,
+        $projectId,
+        ValueMapper $mapper,
+        array $info = []
+    ) {
         $this->connection = $connection;
         $this->info = $info;
+        $this->mapper = $mapper;
         $this->identity = [
             'datasetId' => $id,
             'projectId' => $projectId
@@ -141,7 +152,13 @@ class Dataset
      */
     public function table($id)
     {
-        return new Table($this->connection, $id, $this->identity['datasetId'], $this->identity['projectId']);
+        return new Table(
+            $this->connection,
+            $id,
+            $this->identity['datasetId'],
+            $this->identity['projectId'],
+            $this->mapper
+        );
     }
 
     /**
@@ -182,6 +199,7 @@ class Dataset
                     $table['tableReference']['tableId'],
                     $this->identity['datasetId'],
                     $this->identity['projectId'],
+                    $this->mapper,
                     $table
                 );
             }
@@ -227,6 +245,7 @@ class Dataset
             $id,
             $this->identity['datasetId'],
             $this->identity['projectId'],
+            $this->mapper,
             $response
         );
     }
