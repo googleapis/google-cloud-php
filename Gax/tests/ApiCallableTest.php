@@ -474,12 +474,12 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
     {
         $stub = MockStub::create(new MockPageStreamingResponse());
         $headerDescriptor = new AgentHeaderDescriptor([
-            'clientName' => 'testClient',
-            'clientVersion' => '0.0.0',
-            'codeGenName' => 'testCodeGen',
-            'codeGenVersion' => '0.9.0',
+            'libName' => 'gccl',
+            'libVersion' => '0.0.0',
+            'gapicVersion' => '0.9.0',
             'gaxVersion' => '1.0.0',
             'phpVersion' => '5.5.0',
+            'grpcVersion' => '1.0.1'
         ]);
         $apiCall = ApiCallable::createApiCall(
             $stub,
@@ -491,7 +491,7 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
         $actualCalls = $stub->getReceivedCalls();
         $this->assertEquals(1, count($actualCalls));
         $expectedMetadata = [
-            'x-goog-api-client' => ['testClient/0.0.0 testCodeGen/0.9.0 gax/1.0.0 php/5.5.0']
+            'x-goog-api-client' => ['gl-php/5.5.0 gccl/0.0.0 gapic/0.9.0 gax/1.0.0 grpc/1.0.1']
         ];
         $this->assertEquals($expectedMetadata, $actualCalls[0]->getMetadata());
     }
