@@ -17,8 +17,8 @@
 
 namespace Google\Cloud\Storage;
 
-use Google\Cloud\Exception\NotFoundException;
-use Google\Cloud\Exception\ServiceException;
+use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Storage\Bucket;
 use GuzzleHttp\Psr7\CachingStream;
 use GuzzleHttp\Psr7;

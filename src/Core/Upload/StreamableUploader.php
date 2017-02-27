@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Upload;
+namespace Google\Cloud\Core\Upload;
 
 use Google\Cloud\Exception\GoogleException;
 use Google\Cloud\Exception\ServiceException;

@@ -332,7 +332,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException ServerException
+     * @expectedException Google\Cloud\Core\Exception\ServerException
      */
     public function testIsWritableServerException()
     {

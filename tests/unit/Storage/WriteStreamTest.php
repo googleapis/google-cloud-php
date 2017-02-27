@@ -18,7 +18,7 @@
 namespace Google\Cloud\Tests\Storage;
 
 use Google\Cloud\Storage\WriteStream;
-use Google\Cloud\Upload\StreamableUploader;
+use Google\Cloud\Core\Upload\StreamableUploader;
 use Prophecy\Argument;
 
 

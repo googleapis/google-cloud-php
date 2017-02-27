@@ -53,7 +53,7 @@ class BigQueryClient
     use JobConfigurationTrait;
 
     const NAME = 'bigquery';
-    const VERSION = '0.0.4';
+    const VERSION = 'master';
 
     const SCOPE = 'https://www.googleapis.com/auth/bigquery';
     const INSERT_SCOPE = 'https://www.googleapis.com/auth/bigquery.insertdata';

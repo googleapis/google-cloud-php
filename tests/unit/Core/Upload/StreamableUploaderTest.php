@@ -15,10 +15,12 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Upload;
+namespace Google\Cloud\Tests\Unit\Core\Upload;
 
+use Google\Cloud\Core\Exception\GoogleException;
+use Google\Cloud\Core\RequestWrapper;
+use Google\Cloud\Core\Upload\StreamableUploader;
 use Google\Cloud\Storage\WriteStream;
-use Google\Cloud\Upload\StreamableUploader;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
@@ -26,6 +28,7 @@ use Prophecy\Argument;
 use Psr\Http\Message\RequestInterface;
 
 /**
+ * @group core
  * @group upload
  */
 class StreamableUploaderTest extends \PHPUnit_Framework_TestCase
@@ -36,7 +39,7 @@ class StreamableUploaderTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->requestWrapper = $this->prophesize('Google\Cloud\RequestWrapper');
+        $this->requestWrapper = $this->prophesize(RequestWrapper::class);
         $this->stream = new WriteStream(null, ['chunkSize' => 16]);
         $this->successBody = '{"canI":"kickIt"}';
     }
@@ -85,7 +88,7 @@ class StreamableUploaderTest extends \PHPUnit_Framework_TestCase
         $response = new Response(200, ['Location' => 'theResumeUri'], $this->successBody);
 
         $this->requestWrapper->send(
-            Argument::type('Psr\Http\Message\RequestInterface'),
+            Argument::type(RequestInterface::class),
             Argument::type('array')
         )->willReturn($response);
 
@@ -105,7 +108,7 @@ class StreamableUploaderTest extends \PHPUnit_Framework_TestCase
         $response = new Response(200, ['Location' => $resumeUri]);
 
         $this->requestWrapper->send(
-            Argument::type('Psr\Http\Message\RequestInterface'),
+            Argument::type(RequestInterface::class),
             Argument::type('array')
         )->willReturn($response);
 
@@ -120,7 +123,7 @@ class StreamableUploaderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException Google\Cloud\Exception\GoogleException
+     * @expectedException Google\Cloud\Core\Exception\GoogleException
      */
     public function testThrowsExceptionWithFailedUpload()
     {
@@ -134,7 +137,7 @@ class StreamableUploaderTest extends \PHPUnit_Framework_TestCase
         $this->requestWrapper->send(
             Argument::which('getMethod', 'PUT'),
             Argument::type('array')
-        )->willThrow('Google\Cloud\Exception\GoogleException');
+        )->willThrow(GoogleException::class);
 
         $uploader = new StreamableUploader(
             $this->requestWrapper->reveal(),
