@@ -17,10 +17,12 @@
 
 namespace Google\Cloud\PubSub;
 
-use Google\Cloud\Iam\Iam;
 use Google\Cloud\Exception\NotFoundException;
+use Google\Cloud\Iam\Iam;
 use Google\Cloud\PubSub\Connection\ConnectionInterface;
 use Google\Cloud\PubSub\Connection\IamTopic;
+use Google\Cloud\PubSub\V1\PublisherClient;
+use Google\GAX\ValidationException;
 use InvalidArgumentException;
 
 /**
@@ -43,8 +45,6 @@ use InvalidArgumentException;
  */
 class Topic
 {
-    use ResourceNameTrait;
-
     /**
      * @var ConnectionInterface A connection to the Google Cloud Platform API
      */
@@ -98,10 +98,11 @@ class Topic
         $this->info = $info;
 
         // Accept either a simple name or a fully-qualified name.
-        if ($this->isFullyQualifiedName('topic', $name)) {
+        try {
+            PublisherClient::parseTopicFromTopicName($name);
             $this->name = $name;
-        } else {
-            $this->name = $this->formatName('topic', $name, $projectId);
+        } catch (ValidationException $e) {
+            $this->name = PublisherClient::formatTopicName($projectId, $name);
         }
 
         $iamConnection = new IamTopic($this->connection);
