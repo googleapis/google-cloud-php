@@ -20,6 +20,7 @@ namespace Google\Cloud\PubSub;
 use Google\Cloud\ClientTrait;
 use Google\Cloud\PubSub\Connection\Grpc;
 use Google\Cloud\PubSub\Connection\Rest;
+use Google\Cloud\PubSub\V1\PublisherClient;
 use InvalidArgumentException;
 use Psr\Cache\CacheItemPoolInterface;
 
@@ -87,7 +88,6 @@ class PubSubClient
 {
     use ClientTrait;
     use IncomingMessageTrait;
-    use ResourceNameTrait;
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/pubsub';
 
@@ -225,7 +225,7 @@ class PubSubClient
 
         do {
             $response = $this->connection->listTopics($options + [
-                'project' => $this->formatName('project', $this->projectId)
+                'project' => PublisherClient::formatProjectName($this->projectId)
             ]);
 
             foreach ($response['topics'] as $topic) {
@@ -321,7 +321,7 @@ class PubSubClient
 
         do {
             $response = $this->connection->listSubscriptions($options + [
-                'project' => $this->formatName('project', $this->projectId)
+                'project' => PublisherClient::formatProjectName($this->projectId)
             ]);
 
             foreach ($response['subscriptions'] as $subscription) {

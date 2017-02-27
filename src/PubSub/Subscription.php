@@ -22,7 +22,10 @@ use Google\Cloud\Iam\Iam;
 use Google\Cloud\PubSub\Connection\ConnectionInterface;
 use Google\Cloud\PubSub\Connection\IamSubscription;
 use Google\Cloud\PubSub\IncomingMessageTrait;
+use Google\Cloud\PubSub\V1\PublisherClient;
+use Google\Cloud\PubSub\V1\SubscriberClient;
 use Google\Cloud\ValidateTrait;
+use Google\GAX\ValidationException;
 use InvalidArgumentException;
 
 /**
@@ -59,7 +62,6 @@ use InvalidArgumentException;
 class Subscription
 {
     use IncomingMessageTrait;
-    use ResourceNameTrait;
     use ValidateTrait;
 
     const MAX_MESSAGES = 1000;
@@ -126,19 +128,21 @@ class Subscription
         $this->info = $info;
 
         // Accept either a simple name or a fully-qualified name.
-        if ($this->isFullyQualifiedName('subscription', $name)) {
+        try {
+            SubscriberClient::parseSubscriptionFromSubscriptionName($name);
             $this->name = $name;
-        } else {
-            $this->name = $this->formatName('subscription', $name, $projectId);
+        } catch (ValidationException $e) {
+            $this->name = SubscriberClient::formatSubscriptionName($projectId, $name);
         }
 
         // Accept either a simple name or a fully-qualified name.
-        if ($this->isFullyQualifiedName('topic', $topicName)) {
-            $this->topicName = $topicName;
-        } else {
-            $this->topicName = !is_null($topicName)
-                ? $this->formatName('topic', $topicName, $projectId)
-                : null;
+        if (!is_null($topicName)) {
+            try {
+                PublisherClient::parseTopicFromTopicName($topicName);
+                $this->topicName = $topicName;
+            } catch (ValidationException $e) {
+                $this->topicName = PublisherClient::formatTopicName($projectId, $topicName);
+            }
         }
 
         $iamConnection = new IamSubscription($this->connection);
