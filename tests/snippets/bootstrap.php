@@ -44,7 +44,7 @@ stub('AclStub', Google\Cloud\Storage\Acl::class);
 stub('BigQueryClientStub', Google\Cloud\BigQuery\BigQueryClient::class);
 stub('BucketStub', Google\Cloud\Storage\Bucket::class);
 stub('DatastoreClientStub', Google\Cloud\Datastore\DatastoreClient::class);
-stub('IamStub', Google\Cloud\Iam\Iam::class);
+stub('IamStub', Google\Cloud\Core\Iam\Iam::class);
 stub('LoggerStub', Google\Cloud\Logging\Logger::class);
 stub('LoggingClientStub', Google\Cloud\Logging\LoggingClient::class);
 stub('MetricStub', Google\Cloud\Logging\Metric::class);

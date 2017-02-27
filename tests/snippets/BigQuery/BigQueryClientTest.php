@@ -27,7 +27,7 @@ use Google\Cloud\BigQuery\Dataset;
 use Google\Cloud\BigQuery\Job;
 use Google\Cloud\BigQuery\QueryResults;
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
-use Google\Cloud\Int64;
+use Google\Cloud\Core\Int64;
 use Prophecy\Argument;
 
 /**

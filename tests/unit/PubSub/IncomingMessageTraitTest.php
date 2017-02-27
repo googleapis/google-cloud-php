@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\PubSub;
+namespace Google\Cloud\Tests\Unit\PubSub;
 
 use Google\Cloud\PubSub\Connection\ConnectionInterface;
 use Google\Cloud\PubSub\IncomingMessageTrait;
@@ -47,7 +47,7 @@ class IncomingMessageTraitTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException Google\Cloud\Exception\GoogleException
+     * @expectedException Google\Cloud\Core\Exception\GoogleException
      */
     public function testInvalidMessage()
     {

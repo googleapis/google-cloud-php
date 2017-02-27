@@ -18,12 +18,12 @@
 namespace Google\Cloud\PubSub\Connection;
 
 use DrSlump\Protobuf\Codec\CodecInterface;
-use Google\Cloud\EmulatorTrait;
-use Google\Cloud\PhpArray;
+use Google\Cloud\Core\EmulatorTrait;
+use Google\Cloud\Core\PhpArray;
 use Google\Cloud\PubSub\V1\PublisherClient;
 use Google\Cloud\PubSub\V1\SubscriberClient;
-use Google\Cloud\GrpcRequestWrapper;
-use Google\Cloud\GrpcTrait;
+use Google\Cloud\Core\GrpcRequestWrapper;
+use Google\Cloud\Core\GrpcTrait;
 use Grpc\ChannelCredentials;
 use google\iam\v1\Policy;
 use google\pubsub\v1\PubsubMessage;

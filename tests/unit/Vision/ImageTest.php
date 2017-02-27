@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Vision;
+namespace Google\Cloud\Tests\Unit\Vision;
 
 use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Vision\Image;

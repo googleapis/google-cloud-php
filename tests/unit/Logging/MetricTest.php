@@ -15,9 +15,9 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Logging;
+namespace Google\Cloud\Tests\Unit\Logging;
 
-use Google\Cloud\Exception\NotFoundException;
+use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Logging\Metric;
 use Google\Cloud\Logging\Connection\ConnectionInterface;
 use Prophecy\Argument;

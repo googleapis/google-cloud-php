@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Speech;
 
-use Google\Cloud\ClientTrait;
+use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Speech\Connection\ConnectionInterface;
 use Google\Cloud\Speech\Connection\Rest;
 use Google\Cloud\Storage\StorageObject;

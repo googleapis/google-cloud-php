@@ -18,7 +18,7 @@
 namespace Google\Cloud\Tests\System\BigQuery;
 
 use Google\Cloud\BigQuery\Date;
-use Google\Cloud\ExponentialBackoff;
+use Google\Cloud\Core\ExponentialBackoff;
 use GuzzleHttp\Psr7;
 
 /**

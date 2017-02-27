@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\BigQuery;
 
-use Google\Cloud\Exception\NotFoundException;
+use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\BigQuery\Connection\ConnectionInterface;
 
 /**

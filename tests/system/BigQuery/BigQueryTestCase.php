@@ -18,7 +18,7 @@
 namespace Google\Cloud\Tests\System\BigQuery;
 
 use Google\Cloud\BigQuery\BigQueryClient;
-use Google\Cloud\ExponentialBackoff;
+use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\Storage\StorageClient;
 
 class BigQueryTestCase extends \PHPUnit_Framework_TestCase

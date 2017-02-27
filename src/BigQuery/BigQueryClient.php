@@ -17,11 +17,11 @@
 
 namespace Google\Cloud\BigQuery;
 
-use Google\Cloud\ArrayTrait;
+use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\BigQuery\Connection\ConnectionInterface;
 use Google\Cloud\BigQuery\Connection\Rest;
-use Google\Cloud\ClientTrait;
-use Google\Cloud\Int64;
+use Google\Cloud\Core\ClientTrait;
+use Google\Cloud\Core\Int64;
 use Psr\Cache\CacheItemPoolInterface;
 use Psr\Http\Message\StreamInterface;
 

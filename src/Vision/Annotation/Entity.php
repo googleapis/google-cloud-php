@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Vision\Annotation;
 
-use Google\Cloud\CallTrait;
+use Google\Cloud\Core\CallTrait;
 
 /**
  * Represents an entity annotation. Entities are created by several

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\NaturalLanguage;
+namespace Google\Cloud\Tests\Unit\NaturalLanguage;
 
 use Google\Cloud\NaturalLanguage\Annotation;
 use Google\Cloud\NaturalLanguage\Connection\ConnectionInterface;
@@ -24,7 +24,7 @@ use Google\Cloud\Storage\StorageObject;
 use Prophecy\Argument;
 
 /**
- * @group naturalLanguage
+ * @group naturallanguage
  */
 class NaturalLanguageClientTest extends \PHPUnit_Framework_TestCase
 {

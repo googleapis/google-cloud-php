@@ -17,8 +17,8 @@
 
 namespace Google\Cloud\PubSub;
 
-use Google\Cloud\Iam\Iam;
-use Google\Cloud\Exception\NotFoundException;
+use Google\Cloud\Core\Iam\Iam;
+use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\PubSub\Connection\ConnectionInterface;
 use Google\Cloud\PubSub\Connection\IamTopic;
 use InvalidArgumentException;

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Logging;
+namespace Google\Cloud\Tests\Unit\Logging;
 
 use Google\Cloud\Logging\Logger;
 use Google\Cloud\Logging\PsrLogger;

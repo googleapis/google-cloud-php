@@ -17,11 +17,11 @@
 
 namespace Google\Cloud\Datastore;
 
-use Google\Cloud\ArrayTrait;
+use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Datastore\Entity;
 use Google\Cloud\Datastore\GeoPoint;
 use Google\Cloud\Datastore\Key;
-use Google\Cloud\Int64;
+use Google\Cloud\Core\Int64;
 use InvalidArgumentException;
 use RuntimeException;
 

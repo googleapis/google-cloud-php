@@ -15,10 +15,10 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Speech\Connection;
+namespace Google\Cloud\Tests\Unit\Speech\Connection;
 
-use Google\Cloud\RequestBuilder;
-use Google\Cloud\RequestWrapper;
+use Google\Cloud\Core\RequestBuilder;
+use Google\Cloud\Core\RequestWrapper;
 use Google\Cloud\Speech\Connection\Rest;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Request;

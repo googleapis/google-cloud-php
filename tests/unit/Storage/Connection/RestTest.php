@@ -15,8 +15,12 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Storage\Connection;
+namespace Google\Cloud\Tests\Unit\Storage\Connection;
 
+use Google\Cloud\Core\RequestBuilder;
+use Google\Cloud\Core\RequestWrapper;
+use Google\Cloud\Core\Upload\MultipartUploader;
+use Google\Cloud\Core\Upload\ResumableUploader;
 use Google\Cloud\Storage\Connection\Rest;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Request;
@@ -35,7 +39,7 @@ class RestTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->requestWrapper = $this->prophesize('Google\Cloud\RequestWrapper');
+        $this->requestWrapper = $this->prophesize(RequestWrapper::class);
         $this->successBody = '{"canI":"kickIt"}';
     }
 
@@ -49,7 +53,7 @@ class RestTest extends \PHPUnit_Framework_TestCase
         $request = new Request('GET', '/somewhere');
         $response = new Response(200, [], $this->successBody);
 
-        $requestBuilder = $this->prophesize('Google\Cloud\RequestBuilder');
+        $requestBuilder = $this->prophesize(RequestBuilder::class);
         $requestBuilder->build(
             Argument::type('string'),
             Argument::type('string'),
@@ -57,7 +61,7 @@ class RestTest extends \PHPUnit_Framework_TestCase
         )->willReturn($request);
 
         $this->requestWrapper->send(
-            Argument::type('Psr\Http\Message\RequestInterface'),
+            Argument::type(RequestInterface::class),
             Argument::type('array')
         )->willReturn($response);
 
@@ -101,7 +105,7 @@ class RestTest extends \PHPUnit_Framework_TestCase
         $response = new Response(200, [], $this->successBody);
 
         $this->requestWrapper->send(
-            Argument::type('Psr\Http\Message\RequestInterface'),
+            Argument::type(RequestInterface::class),
             Argument::type('array')
         )->will(
             function ($args) use (&$actualRequest, $response) {
@@ -143,7 +147,7 @@ class RestTest extends \PHPUnit_Framework_TestCase
         $response = new Response(200, ['Location' => 'http://www.mordor.com'], $this->successBody);
 
         $this->requestWrapper->send(
-            Argument::type('Psr\Http\Message\RequestInterface'),
+            Argument::type(RequestInterface::class),
             Argument::type('array')
         )->will(
             function ($args) use (&$actualRequest, $response) {
@@ -184,7 +188,7 @@ class RestTest extends \PHPUnit_Framework_TestCase
                     'predefinedAcl' => 'private',
                     'metadata' => ['contentType' => 'text/plain']
                 ],
-                'Google\Cloud\Upload\ResumableUploader',
+                ResumableUploader::class,
                 'text/plain',
                 [
                     'md5Hash' => base64_encode(Psr7\hash($tempFile, 'md5', true)),
@@ -196,7 +200,7 @@ class RestTest extends \PHPUnit_Framework_TestCase
                     'data' => $logoFile,
                     'validate' => false
                 ],
-                'Google\Cloud\Upload\MultipartUploader',
+                MultipartUploader::class,
                 'image/svg+xml',
                 [
                     'name' => 'logo.svg'
@@ -215,7 +219,7 @@ class RestTest extends \PHPUnit_Framework_TestCase
                         ]
                     ]
                 ],
-                'Google\Cloud\Upload\ResumableUploader',
+                ResumableUploader::class,
                 'text/plain',
                 [
                     'name' => 'file.ext',

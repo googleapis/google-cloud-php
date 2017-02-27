@@ -17,12 +17,12 @@
 
 namespace Google\Cloud\PubSub;
 
-use Google\Cloud\Exception\NotFoundException;
-use Google\Cloud\Iam\Iam;
+use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\Core\Iam\Iam;
 use Google\Cloud\PubSub\Connection\ConnectionInterface;
 use Google\Cloud\PubSub\Connection\IamSubscription;
 use Google\Cloud\PubSub\IncomingMessageTrait;
-use Google\Cloud\ValidateTrait;
+use Google\Cloud\Core\ValidateTrait;
 use InvalidArgumentException;
 
 /**

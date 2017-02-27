@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Tests\System\NaturalLanguage;
 
-use Google\Cloud\ExponentialBackoff;
+use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\BigQuery\BigQueryClient;
 use Google\Cloud\NaturalLanguage\NaturalLanguageClient;
 use Google\Cloud\PubSub\PubSubClient;

@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Datastore;
 
-use Google\Cloud\ArrayTrait;
+use Google\Cloud\Core\ArrayTrait;
 use InvalidArgumentException;
 use JsonSerializable;
 

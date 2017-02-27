@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Logging;
 
-use Google\Cloud\Exception\NotFoundException;
+use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Logging\Connection\ConnectionInterface;
 
 /**

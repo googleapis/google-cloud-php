@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\NaturalLanguage;
 
-use Google\Cloud\CallTrait;
+use Google\Cloud\Core\CallTrait;
 
 /**
  * Annotations represent the result of a request against the

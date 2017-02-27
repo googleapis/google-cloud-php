@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\PubSub\Connection;
 
-use Google\Cloud\Iam\IamConnectionInterface;
+use Google\Cloud\Core\Iam\IamConnectionInterface;
 
 /**
  * Proxy IAM service calls to the Pub/Sub Subscription IAM resources

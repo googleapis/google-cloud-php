@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Speech;
 
-use Google\Cloud\Exception\NotFoundException;
+use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Speech\Connection\ConnectionInterface;
 
 /**

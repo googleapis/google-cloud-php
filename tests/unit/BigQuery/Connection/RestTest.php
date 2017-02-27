@@ -15,10 +15,12 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\BigQuery\Connection;
+namespace Google\Cloud\Tests\Unit\BigQuery\Connection;
 
 use Google\Cloud\BigQuery\Connection\Rest;
-use Google\Cloud\Upload\AbstractUploader;
+use Google\Cloud\Core\RequestBuilder;
+use Google\Cloud\Core\RequestWrapper;
+use Google\Cloud\Core\Upload\AbstractUploader;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
@@ -35,7 +37,7 @@ class RestTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->requestWrapper = $this->prophesize('Google\Cloud\RequestWrapper');
+        $this->requestWrapper = $this->prophesize(RequestWrapper::class);
         $this->successBody = '{"canI":"kickIt"}';
     }
 
@@ -48,7 +50,7 @@ class RestTest extends \PHPUnit_Framework_TestCase
         $request = new Request('GET', '/somewhere');
         $response = new Response(200, [], $this->successBody);
 
-        $requestBuilder = $this->prophesize('Google\Cloud\RequestBuilder');
+        $requestBuilder = $this->prophesize(RequestBuilder::class);
         $requestBuilder->build(
             Argument::type('string'),
             Argument::type('string'),
@@ -56,7 +58,7 @@ class RestTest extends \PHPUnit_Framework_TestCase
         )->willReturn($request);
 
         $this->requestWrapper->send(
-            Argument::type('Psr\Http\Message\RequestInterface'),
+            Argument::type(RequestInterface::class),
             Argument::type('array')
         )->willReturn($response);
 
@@ -115,7 +117,7 @@ class RestTest extends \PHPUnit_Framework_TestCase
             ]
         ]));
         $this->requestWrapper->send(
-            Argument::type('Psr\Http\Message\RequestInterface'),
+            Argument::type(RequestInterface::class),
             Argument::type('array')
         )->will(
             function ($args) use (&$actualRequest, $response) {

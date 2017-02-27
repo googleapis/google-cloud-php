@@ -17,9 +17,9 @@
 
 namespace Google\Cloud\Logging;
 
-use Google\Cloud\ArrayTrait;
+use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Logging\Connection\ConnectionInterface;
-use Google\Cloud\ValidateTrait;
+use Google\Cloud\Core\ValidateTrait;
 
 /**
  * A logger used to write entries to Google Stackdriver Logging.

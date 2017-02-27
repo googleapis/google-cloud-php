@@ -18,13 +18,13 @@
 namespace Google\Cloud\Datastore;
 
 use DomainException;
-use Google\Cloud\ClientTrait;
+use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Datastore\Connection\Rest;
 use Google\Cloud\Datastore\Query\GqlQuery;
 use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Query\QueryBuilder;
 use Google\Cloud\Datastore\Query\QueryInterface;
-use Google\Cloud\Int64;
+use Google\Cloud\Core\Int64;
 use InvalidArgumentException;
 use Psr\Cache\CacheItemPoolInterface;
 

@@ -17,8 +17,8 @@
 
 namespace Google\Cloud\BigQuery;
 
-use Google\Cloud\ArrayTrait;
-use Google\Cloud\Int64;
+use Google\Cloud\Core\ArrayTrait;
+use Google\Cloud\Core\Int64;
 
 /**
  * Maps values to their expected BigQuery types. This class is intended for

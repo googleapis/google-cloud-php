@@ -17,8 +17,8 @@
 
 namespace Google\Cloud\Vision;
 
-use Google\Cloud\ClientTrait;
-use Google\Cloud\ValidateTrait;
+use Google\Cloud\Core\ClientTrait;
+use Google\Cloud\Core\ValidateTrait;
 use Google\Cloud\Vision\Connection\Rest;
 use InvalidArgumentException;
 use Psr\Cache\CacheItemPoolInterface;
