@@ -202,6 +202,34 @@ class ValueMapperTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @dataProvider toBigQueryValueProvider
+     */
+    public function testMapsToBigQuery($value, $expected)
+    {
+        $mapper = new ValueMapper(false);
+        $actual = $mapper->toBigQuery($value);
+
+        $this->assertEquals($expected, $actual);
+    }
+
+    public function toBigQueryValueProvider()
+    {
+        $dt = new \DateTime();
+        $date = new Date($dt);
+        $int64 = new Int64('123');
+
+        return [
+            [$dt, $dt->format('Y-m-d\TH:i:s.u')],
+            [$date, (string) $date],
+            [
+                ['date' => $date],
+                ['date' => (string) $date]
+            ],
+            [1, 1]
+        ];
+    }
+
+    /**
      * @dataProvider parameterValueProvider
      */
     public function testMapsToParameter($value, $expected)

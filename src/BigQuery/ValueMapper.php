@@ -45,6 +45,7 @@ class ValueMapper
     const TYPE_RECORD = 'RECORD';
 
     const DATETIME_FORMAT = 'Y-m-d H:i:s.u';
+    const DATETIME_FORMAT_INSERT = 'Y-m-d\TH:i:s.u';
 
     /**
      * @var bool $returnInt64AsObject If true, 64 bit integers will be returned
@@ -119,6 +120,33 @@ class ValueMapper
 
                 break;
         }
+    }
+
+    /**
+     * Maps a user provided value to the expected BigQuery format.
+     *
+     * @param mixed $value The value to map.
+     * @return mixed
+     */
+    public function toBigQuery($value)
+    {
+        if ($value instanceof ValueInterface || $value instanceof Int64) {
+            return (string) $value;
+        }
+
+        if ($value instanceof \DateTime) {
+            return $value->format(self::DATETIME_FORMAT_INSERT);
+        }
+
+        if (is_array($value)) {
+            foreach ($value as $key => $item) {
+                $value[$key] = $this->toBigQuery($item);
+            }
+
+            return $value;
+        }
+
+        return $value;
     }
 
     /**
