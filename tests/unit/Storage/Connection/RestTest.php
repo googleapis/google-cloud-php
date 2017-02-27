@@ -22,6 +22,7 @@ use Google\Cloud\Core\RequestWrapper;
 use Google\Cloud\Core\Upload\MultipartUploader;
 use Google\Cloud\Core\Upload\ResumableUploader;
 use Google\Cloud\Storage\Connection\Rest;
+use Google\Cloud\Storage\StorageClient;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;

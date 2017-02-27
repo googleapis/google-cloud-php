@@ -58,6 +58,9 @@ class TranslateClient
 {
     use ClientTrait;
 
+    const NAME = 'translate';
+    const VERSION = '0.0.0';
+
     const ENGLISH_LANGUAGE_CODE = 'en';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/cloud-platform';

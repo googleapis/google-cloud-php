@@ -1,0 +1,14 @@
+{
+    "name": "google/cloud-translate",
+    "description": "Cloud Transation Client for PHP",
+    "license": "Apache-2.0",
+    "minimum-stability": "stable",
+    "require": {
+        "google/cloud-core": "*"
+    },
+    "extra": {
+        "id": "cloud-translate",
+        "target": "jdpedrie-gcp/google-cloud-php-translate.git",
+        "entry": "src/Translate/TranslateClient.php"
+    }
+}

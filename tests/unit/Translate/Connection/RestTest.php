@@ -17,9 +17,10 @@
 
 namespace Google\Cloud\Tests\Unit\Translate\Connection;
 
-use Google\Cloud\Translate\Connection\Rest;
 use Google\Cloud\Core\RequestBuilder;
 use Google\Cloud\Core\RequestWrapper;
+use Google\Cloud\Translate\Connection\Rest;
+use Google\Cloud\Translate\TranslateClient;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;

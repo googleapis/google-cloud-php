@@ -1,0 +1,14 @@
+{
+    "name": "google/cloud-logging",
+    "description": "Stackdriver Logging Client for PHP",
+    "license": "Apache-2.0",
+    "minimum-stability": "stable",
+    "require": {
+        "google/cloud-core": "*"
+    },
+    "extra": {
+        "id": "cloud-logging",
+        "target": "jdpedrie-gcp/google-cloud-php-logging.git",
+        "entry": "src/Logging/LoggingClient.php"
+    }
+}

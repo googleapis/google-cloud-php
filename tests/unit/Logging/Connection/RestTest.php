@@ -17,9 +17,10 @@
 
 namespace Google\Cloud\Tests\Unit\Logging\Connection;
 
-use Google\Cloud\Logging\Connection\Rest;
 use Google\Cloud\Core\RequestBuilder;
 use Google\Cloud\Core\RequestWrapper;
+use Google\Cloud\Logging\Connection\Rest;
+use Google\Cloud\Logging\LoggingClient;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;

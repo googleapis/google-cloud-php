@@ -36,6 +36,16 @@ class RequestWrapper
     use RequestWrapperTrait;
 
     /**
+     * @var string
+     */
+    private $componentName;
+
+    /**
+     * @var string
+     */
+    private $componentVersion;
+
+    /**
      * @var string Access token used to sign requests.
      */
     private $accessToken;
@@ -84,6 +94,10 @@ class RequestWrapper
      *     {@see Google\Cloud\RequestWrapperTrait::setCommonDefaults()} for the other
      *     available options.
      *
+     *     @type string $componentName The name of the component from which the request
+     *           originated.
+     *     @type string $componentVersion The current version of the component from
+     *           which the request originated.
      *     @type string $accessToken Access token used to sign requests.
      *     @type callable $authHttpHandler A handler used to deliver Psr7
      *           requests specifically for authentication.
@@ -100,9 +114,13 @@ class RequestWrapper
             'authHttpHandler' => null,
             'httpHandler' => null,
             'httpOptions' => [],
-            'shouldSignRequest' => true
+            'shouldSignRequest' => true,
+            'componentName' => null,
+            'componentVersion' => null
         ];
 
+        $this->componentName = $config['componentName'];
+        $this->componentVersion = $config['componentVersion'];
         $this->accessToken = $config['accessToken'];
         $this->httpHandler = $config['httpHandler'] ?: HttpHandlerFactory::build();
         $this->authHttpHandler = $config['authHttpHandler'] ?: $this->httpHandler;
@@ -146,8 +164,9 @@ class RequestWrapper
      */
     private function signRequest(RequestInterface $request)
     {
+        $uaTemplate = 'gcloud-php-%s/%s';
         $headers = [
-            'User-Agent' => 'gcloud-php/' . ServiceBuilder::VERSION,
+            'User-Agent' => sprintf($uaTemplate, $this->componentName, $this->componentVersion),
             'Authorization' => 'Bearer ' . $this->getToken()
         ];
 

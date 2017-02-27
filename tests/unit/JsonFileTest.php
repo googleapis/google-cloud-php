@@ -15,21 +15,21 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Unit\Core;
+namespace Google\Cloud\Tests\Unit;
 
 use League\JsonGuard\Dereferencer;
 use League\JsonGuard\Validator;
 
 /**
- * @group core
+ * @group root
  */
 class JsonFileTest extends \PHPUnit_Framework_TestCase
 {
-    const SCHEMA_PATH = '%s/../fixtures/schema/%s';
+    const SCHEMA_PATH = '%s/fixtures/schema/%s';
 
     public function testComposer()
     {
-        $file = file_get_contents(__DIR__ .'/../../../composer.json');
+        $file = file_get_contents(__DIR__ .'/../../composer.json');
         $json = json_decode($file);
         $this->assertEquals(JSON_ERROR_NONE, json_last_error());
 
@@ -41,12 +41,39 @@ class JsonFileTest extends \PHPUnit_Framework_TestCase
 
         $validator = new Validator($json, $schema);
 
+        if ($validator->fails()) {
+            print_r($validator->errors());
+        }
+
         $this->assertFalse($validator->fails());
+    }
+
+    public function testComponentComposer()
+    {
+        $files = glob(__DIR__ .'/../../src/*/composer.json');
+        foreach ($files as $file) {
+            $json = json_decode(file_get_contents($file));
+            $this->assertEquals(JSON_ERROR_NONE, json_last_error());
+
+            $deref  = new Dereferencer();
+            $schema = $deref->dereference(json_decode(file_get_contents(sprintf(
+                self::SCHEMA_PATH,
+                __DIR__, 'composer.json.schema'
+            ))));
+
+            $validator = new Validator($json, $schema);
+
+            if ($validator->fails()) {
+                print_r($validator->errors());
+            }
+
+            $this->assertFalse($validator->fails());
+        }
     }
 
     public function testManifest()
     {
-        $file = file_get_contents(__DIR__ .'/../../../docs/manifest.json');
+        $file = file_get_contents(__DIR__ .'/../../docs/manifest.json');
         $json = json_decode($file);
         $this->assertEquals(JSON_ERROR_NONE, json_last_error());
 
@@ -58,12 +85,16 @@ class JsonFileTest extends \PHPUnit_Framework_TestCase
 
         $validator = new Validator($json, $schema);
 
+        if ($validator->fails()) {
+            print_r($validator->errors());
+        }
+
         $this->assertFalse($validator->fails());
     }
 
     public function testToc()
     {
-        $file = file_get_contents(__DIR__ .'/../../../docs/toc.json');
+        $file = file_get_contents(__DIR__ .'/../../docs/toc.json');
         $json = json_decode($file);
         $this->assertEquals(JSON_ERROR_NONE, json_last_error());
 
@@ -74,6 +105,10 @@ class JsonFileTest extends \PHPUnit_Framework_TestCase
         ))));
 
         $validator = new Validator($json, $schema);
+
+        if ($validator->fails()) {
+            print_r($validator->errors());
+        }
 
         $this->assertFalse($validator->fails());
     }

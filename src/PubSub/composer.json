@@ -1,0 +1,14 @@
+{
+    "name": "google/cloud-pubsub",
+    "description": "Cloud PubSub Client for PHP",
+    "license": "Apache-2.0",
+    "minimum-stability": "stable",
+    "require": {
+        "google/cloud-core": "*"
+    },
+    "extra": {
+        "id": "cloud-pubsub",
+        "target": "jdpedrie-gcp/google-cloud-php-pubsub.git",
+        "entry": "src/PubSub/PubSubClient.php"
+    }
+}

@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\BigQuery\Connection;
 
+use Google\Cloud\BigQuery\BigQueryClient;
 use Google\Cloud\BigQuery\Connection\ConnectionInterface;
 use Google\Cloud\Core\RequestBuilder;
 use Google\Cloud\Core\RequestWrapper;
@@ -46,7 +47,9 @@ class Rest implements ConnectionInterface
     public function __construct(array $config = [])
     {
         $config += [
-            'serviceDefinitionPath' => __DIR__ . '/ServiceDefinition/bigquery-v2.json'
+            'serviceDefinitionPath' => __DIR__ . '/ServiceDefinition/bigquery-v2.json',
+            'componentName' => BigQueryClient::NAME,
+            'componentVersion' => BigQueryClient::VERSION
         ];
 
         $this->setRequestWrapper(new RequestWrapper($config));

@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Tests\Unit\BigQuery\Connection;
 
+use Google\Cloud\BigQuery\BigQueryClient;
 use Google\Cloud\BigQuery\Connection\Rest;
 use Google\Cloud\Core\RequestBuilder;
 use Google\Cloud\Core\RequestWrapper;

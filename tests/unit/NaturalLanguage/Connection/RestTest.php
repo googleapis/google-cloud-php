@@ -17,9 +17,10 @@
 
 namespace Google\Cloud\Tests\Unit\NaturalLanguage\Connection;
 
-use Google\Cloud\NaturalLanguage\Connection\Rest;
 use Google\Cloud\Core\RequestBuilder;
 use Google\Cloud\Core\RequestWrapper;
+use Google\Cloud\NaturalLanguage\Connection\Rest;
+use Google\Cloud\NaturalLanguage\NaturalLanguageClient;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;

@@ -71,6 +71,9 @@ class LoggingClient
 {
     use ClientTrait;
 
+    const NAME = 'logging';
+    const VERSION = '0.0.0';
+
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/logging.admin';
     const READ_ONLY_SCOPE = 'https://www.googleapis.com/auth/logging.read';
     const WRITE_ONLY_SCOPE = 'https://www.googleapis.com/auth/logging.write';

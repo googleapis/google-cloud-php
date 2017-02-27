@@ -20,12 +20,13 @@ namespace Google\Cloud\Storage\Connection;
 use Google\Cloud\Core\RequestBuilder;
 use Google\Cloud\Core\RequestWrapper;
 use Google\Cloud\Core\RestTrait;
-use Google\Cloud\Storage\Connection\ConnectionInterface;
 use Google\Cloud\Core\Upload\AbstractUploader;
 use Google\Cloud\Core\Upload\MultipartUploader;
 use Google\Cloud\Core\Upload\ResumableUploader;
 use Google\Cloud\Core\Upload\StreamableUploader;
 use Google\Cloud\Core\UriTrait;
+use Google\Cloud\Storage\Connection\ConnectionInterface;
+use Google\Cloud\Storage\StorageClient;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Request;
 
@@ -48,7 +49,9 @@ class Rest implements ConnectionInterface
     public function __construct(array $config = [])
     {
         $config += [
-            'serviceDefinitionPath' => __DIR__ . '/ServiceDefinition/storage-v1.json'
+            'serviceDefinitionPath' => __DIR__ . '/ServiceDefinition/storage-v1.json',
+            'componentName' => StorageClient::NAME,
+            'componentVersion' => StorageClient::VERSION
         ];
 
         $this->setRequestWrapper(new RequestWrapper($config));

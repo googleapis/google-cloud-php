@@ -17,11 +17,12 @@
 
 namespace Google\Cloud\PubSub\Connection;
 
+use Google\Cloud\Core\EmulatorTrait;
 use Google\Cloud\Core\RequestBuilder;
 use Google\Cloud\Core\RequestWrapper;
-use Google\Cloud\Core\EmulatorTrait;
 use Google\Cloud\Core\RestTrait;
 use Google\Cloud\Core\UriTrait;
+use Google\Cloud\PubSub\PubSubClient;
 
 /**
  * Implementation of the
@@ -52,7 +53,9 @@ class Rest implements ConnectionInterface
         }
 
         $config += [
-            'serviceDefinitionPath' => __DIR__ . '/ServiceDefinition/pubsub-v1.json'
+            'serviceDefinitionPath' => __DIR__ . '/ServiceDefinition/pubsub-v1.json',
+            'componentName' => PubSubClient::NAME,
+            'componentVersion' => PubSubClient::VERSION
         ];
 
         $this->setRequestWrapper(new RequestWrapper($config));

@@ -31,6 +31,9 @@ use Prophecy\Argument;
  */
 class RequestWrapperTest extends \PHPUnit_Framework_TestCase
 {
+    const NAME = 'foo';
+    const VERSION = 'v0.1';
+
     public function testSuccessfullySendsRequest()
     {
         $expectedBody = 'responseBody';
@@ -163,9 +166,11 @@ class RequestWrapperTest extends \PHPUnit_Framework_TestCase
     public function testAddsUserAgentToRequest()
     {
         $requestWrapper = new RequestWrapper([
+            'componentName' => self::NAME,
+            'componentVersion' => self::VERSION,
             'httpHandler' => function ($request, $options = []) {
                 $userAgent = $request->getHeaderLine('User-Agent');
-                $this->assertEquals('gcloud-php/' . ServiceBuilder::VERSION, $userAgent);
+                $this->assertEquals('gcloud-php-'. self::NAME .'/' . self::VERSION, $userAgent);
                 return new Response(200);
             },
             'accessToken' => 'abc'

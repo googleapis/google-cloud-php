@@ -1,0 +1,14 @@
+{
+    "name": "google/cloud-datastore",
+    "description": "Cloud Datastore Client for PHP",
+    "license": "Apache-2.0",
+    "minimum-stability": "stable",
+    "require": {
+        "google/cloud-core": "*"
+    },
+    "extra": {
+        "id": "cloud-datastore",
+        "target": "jdpedrie-gcp/google-cloud-php-datastore.git",
+        "entry": "src/Datastore/DatastoreClient.php"
+    }
+}

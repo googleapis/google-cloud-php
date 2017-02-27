@@ -1,0 +1,15 @@
+{
+    "name": "google/cloud-bigquery",
+    "description": "BigQuery Client for PHP",
+    "license": "Apache-2.0",
+    "minimum-stability": "stable",
+    "require": {
+        "google/cloud-core": "*"
+    },
+    "extra": {
+        "displayName": "Google Cloud BigQuery",
+        "id": "cloud-bigquery",
+        "target": "jdpedrie-gcp/google-cloud-php-bigquery.git",
+        "entry": "src/BigQuery/BigQueryClient.php"
+    }
+}

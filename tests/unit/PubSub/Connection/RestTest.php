@@ -17,9 +17,10 @@
 
 namespace Google\Cloud\Tests\Unit\PubSub\Connection;
 
-use Google\Cloud\PubSub\Connection\Rest;
 use Google\Cloud\Core\RequestBuilder;
 use Google\Cloud\Core\RequestWrapper;
+use Google\Cloud\PubSub\Connection\Rest;
+use Google\Cloud\PubSub\PubSubClient;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;

@@ -1,0 +1,14 @@
+{
+    "name": "google/cloud-monitoring",
+    "description": "Stackdriver Monitoring Client for PHP",
+    "license": "Apache-2.0",
+    "minimum-stability": "stable",
+    "require": {
+        "google/cloud-core": "*"
+    },
+    "extra": {
+        "id": "cloud-monitoring",
+        "target": "jdpedrie-gcp/google-cloud-php-monitoring.git",
+        "entry": "src/Monitoring/VERSION"
+    }
+}
