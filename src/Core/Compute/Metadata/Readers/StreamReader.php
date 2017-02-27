@@ -22,7 +22,7 @@ namespace Google\Cloud\Core\Compute\Metadata\Readers;
  *
  * This class makes it easy to test the MetadataStream class.
  */
-class StreamReader
+class StreamReader implements ReaderInterface
 {
     /**
      * The base PATH for the metadata.

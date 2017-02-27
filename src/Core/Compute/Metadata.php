@@ -18,6 +18,7 @@
 namespace Google\Cloud\Core\Compute;
 
 use Google\Cloud\Core\Compute\Metadata\Readers\StreamReader;
+use Google\Cloud\Core\Compute\Metadata\Readers\ReaderInterface;
 
 /**
  * A library for accessing the Google Compute Engine (GCE) metadata.
@@ -27,12 +28,17 @@ use Google\Cloud\Core\Compute\Metadata\Readers\StreamReader;
  *
  * You can get the GCE metadata values very easily like:
  *
+ *
+ * Example:
  * ```
  * use Google\Cloud\Core\Compute\Metadata;
  *
  * $metadata = new Metadata();
- * $project_id = $metadata->getProjectId();
+ * $projectId = $metadata->getProjectId();
+ * ```
  *
+ * ```
+ * // It is easy to get any metadata from a project.
  * $val = $metadata->getProjectMetadata($key);
  * ```
  */
@@ -59,9 +65,9 @@ class Metadata
     /**
      * Replace the default reader implementation
      *
-     * @param mixed $reader The reader implementation
+     * @param ReaderInterface $reader The reader implementation
      */
-    public function setReader($reader)
+    public function setReader(ReaderInterface $reader)
     {
         $this->reader = $reader;
     }
@@ -71,7 +77,7 @@ class Metadata
      *
      * Example:
      * ```
-     * $projectId = $reader->get('project/project-id');
+     * $projectId = $metadata->get('project/project-id');
      * ```
      *
      * @param string $path The path of the item to retrieve.
@@ -86,15 +92,15 @@ class Metadata
      *
      * Example:
      * ```
-     * $projectId = $reader->getProjectId();
+     * $projectId = $metadata->getProjectId();
      * ```
      *
      * @return string
      */
     public function getProjectId()
     {
-        if (! isset($this->projectId)) {
-            $this->projectId = $this->reader->read('project/project-id');
+        if (!isset($this->projectId)) {
+            $this->projectId = $this->get('project/project-id');
         }
 
         return $this->projectId;
@@ -105,7 +111,7 @@ class Metadata
      *
      * Example:
      * ```
-     * $foo = $reader->getProjectMetadata('foo');
+     * $foo = $metadata->getProjectMetadata('foo');
      * ```
      *
      * @param string $key The metadata key
@@ -122,7 +128,7 @@ class Metadata
      *
      * Example:
      * ```
-     * $foo = $reader->getInstanceMetadata('foo');
+     * $foo = $metadata->getInstanceMetadata('foo');
      * ```
      *
      * @param string $key The instance metadata key

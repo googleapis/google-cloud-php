@@ -46,17 +46,30 @@ class Table
     private $info;
 
     /**
+     * @var ValueMapper Maps values between PHP and BigQuery.
+     */
+    private $mapper;
+
+    /**
      * @param ConnectionInterface $connection Represents a connection to
      *        BigQuery.
      * @param string $id The table's id.
      * @param string $datasetId The dataset's id.
      * @param string $projectId The project's id.
+     * @param ValueMapper $mapper Maps values between PHP and BigQuery.
      * @param array $info [optional] The table's metadata.
      */
-    public function __construct(ConnectionInterface $connection, $id, $datasetId, $projectId, array $info = [])
-    {
+    public function __construct(
+        ConnectionInterface $connection,
+        $id,
+        $datasetId,
+        $projectId,
+        ValueMapper $mapper,
+        array $info = []
+    ) {
         $this->connection = $connection;
         $this->info = $info;
+        $this->mapper = $mapper;
         $this->identity = [
             'tableId' => $id,
             'datasetId' => $datasetId,
@@ -137,7 +150,7 @@ class Table
      * $rows = $table->rows();
      *
      * foreach ($rows as $row) {
-     *     echo $row['name'];
+     *     echo $row['name'] . PHP_EOL;
      * }
      * ```
      *
@@ -150,6 +163,7 @@ class Table
      *     @type int $startIndex Zero-based index of the starting row.
      * }
      * @return \Generator<array>
+     * @throws GoogleException
      */
     public function rows(array $options = [])
     {
@@ -163,14 +177,23 @@ class Table
                 return;
             }
 
-            foreach ($response['rows'] as $rows) {
-                $row = [];
+            foreach ($response['rows'] as $row) {
+                $mergedRow = [];
 
-                foreach ($rows['f'] as $key => $field) {
-                    $row[$schema[$key]['name']] = $field['v'];
+                if ($row === null) {
+                    continue;
                 }
 
-                yield $row;
+                if (!array_key_exists('f', $row)) {
+                    throw new GoogleException('Bad response - missing key "f" for a row.');
+                }
+
+                foreach ($row['f'] as $key => $value) {
+                    $fieldSchema = $schema[$key];
+                    $mergedRow[$fieldSchema['name']] = $this->mapper->fromBigQuery($value, $fieldSchema);
+                }
+
+                yield $mergedRow;
             }
 
             $options['pageToken'] = isset($response['nextPageToken']) ? $response['nextPageToken'] : null;
@@ -458,6 +481,10 @@ class Table
         foreach ($rows as $row) {
             if (!isset($row['data'])) {
                 throw new \InvalidArgumentException('A row must have a data key.');
+            }
+
+            foreach ($row['data'] as $key => $item) {
+                $row['data'][$key] = $this->mapper->toBigQuery($item);
             }
 
             $row['json'] = $row['data'];

@@ -39,18 +39,7 @@ class BigQueryTestCase extends \PHPUnit_Framework_TestCase
         }
 
         $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
-        $schema = [
-            'fields' => [
-                [
-                    'name' => 'city',
-                    'type' => 'STRING'
-                ],
-                [
-                    'name' => 'state',
-                    'type' => 'STRING'
-                ]
-            ]
-        ];
+        $schema = json_decode(file_get_contents(__DIR__ . '/../data/table-schema.json'), true);
         self::$bucket = (new StorageClient([
             'keyFilePath' => $keyFilePath
         ]))->createBucket(uniqid(self::TESTING_PREFIX));
@@ -59,7 +48,9 @@ class BigQueryTestCase extends \PHPUnit_Framework_TestCase
         ]);
         self::$dataset = self::$client->createDataset(uniqid(self::TESTING_PREFIX));
         self::$table = self::$dataset->createTable(uniqid(self::TESTING_PREFIX), [
-            'schema' => $schema
+            'schema' => [
+                'fields' => $schema
+            ]
         ]);
         self::$hasSetUp = true;
     }

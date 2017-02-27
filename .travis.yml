@@ -25,3 +25,4 @@ after_success:
   - bash <(curl -s https://codecov.io/bash)
   - ./dev/sh/push-docs
   - ./dev/sh/trigger-split
+  - cat ./build/snippets-uncovered.json

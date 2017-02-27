@@ -21,10 +21,11 @@ use Google\Cloud\BigQuery\Connection\ConnectionInterface;
 use Google\Cloud\BigQuery\InsertResponse;
 use Google\Cloud\BigQuery\Job;
 use Google\Cloud\BigQuery\Table;
+use Google\Cloud\BigQuery\ValueMapper;
 use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\Core\Upload\AbstractUploader;
 use Google\Cloud\Storage\Connection\ConnectionInterface as StorageConnectionInterface;
 use Google\Cloud\Storage\StorageObject;
-use Google\Cloud\Core\Upload\AbstractUploader;
 use Prophecy\Argument;
 
 /**
@@ -34,6 +35,7 @@ class TableTest extends \PHPUnit_Framework_TestCase
 {
     public $connection;
     public $storageConnection;
+    public $mapper;
     public $fileName = 'myfile.csv';
     public $bucketName = 'myBucket';
     public $projectId = 'myProjectId';
@@ -46,7 +48,12 @@ class TableTest extends \PHPUnit_Framework_TestCase
     ];
     public $schemaData = [
         'schema' => [
-            'fields' => [['name' => 'first_name']]
+            'fields' => [
+                [
+                    'name' => 'first_name',
+                    'type' => 'STRING'
+                ]
+            ]
         ]
     ];
     public $insertJobResponse = [
@@ -57,6 +64,7 @@ class TableTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
+        $this->mapper = new ValueMapper(false);
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->storageConnection = $this->prophesize(StorageConnectionInterface::class);
     }
@@ -77,6 +85,7 @@ class TableTest extends \PHPUnit_Framework_TestCase
             $tableId ?: $this->tableId,
             $this->datasetId,
             $this->projectId,
+            $this->mapper,
             $data
         );
     }

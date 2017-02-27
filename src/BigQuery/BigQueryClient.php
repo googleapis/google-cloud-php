@@ -407,7 +407,12 @@ class BigQueryClient
      */
     public function dataset($id)
     {
-        return new Dataset($this->connection, $id, $this->projectId);
+        return new Dataset(
+            $this->connection,
+            $id,
+            $this->projectId,
+            $this->mapper
+        );
     }
 
     /**
@@ -448,6 +453,7 @@ class BigQueryClient
                     $this->connection,
                     $dataset['datasetReference']['datasetId'],
                     $this->projectId,
+                    $this->mapper,
                     $dataset
                 );
             }
@@ -490,7 +496,13 @@ class BigQueryClient
             ]
         ] + $options);
 
-        return new Dataset($this->connection, $id, $this->projectId, $response);
+        return new Dataset(
+            $this->connection,
+            $id,
+            $this->projectId,
+            $this->mapper,
+            $response
+        );
     }
 
     /**
