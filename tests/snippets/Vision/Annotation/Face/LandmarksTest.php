@@ -153,7 +153,7 @@ class LandmarksTest extends SnippetTestCase
 
     public function testLeftEyeBrow()
     {
-        $snippet = $this->snippetFromMethod(Landmarks::class, 'leftEyeBrow');
+        $snippet = $this->snippetFromMethod(Landmarks::class, 'leftEyebrow');
         $snippet->addLocal('landmarks', $this->landmarks);
 
         $res = $snippet->invoke();
@@ -198,7 +198,7 @@ class LandmarksTest extends SnippetTestCase
 
     public function testRightEyeBrow()
     {
-        $snippet = $this->snippetFromMethod(Landmarks::class, 'rightEyeBrow');
+        $snippet = $this->snippetFromMethod(Landmarks::class, 'rightEyebrow');
         $snippet->addLocal('landmarks', $this->landmarks);
 
         $res = $snippet->invoke();

@@ -43,6 +43,14 @@ class IamTest extends SnippetTestCase
         $this->iam->setConnection($this->connection->reveal());
     }
 
+    public function testClass()
+    {
+        $snippet = $this->snippetFromClass(Iam::class);
+        $res = $snippet->invoke('iam');
+
+        $this->assertInstanceOf(Iam::class, $res->returnVal());
+    }
+
     public function testPolicy()
     {
         $snippet = $this->snippetFromMethod(Iam::class, 'policy');
@@ -62,7 +70,7 @@ class IamTest extends SnippetTestCase
         $this->assertEquals('foo', $res->returnVal());
     }
 
-    public function setPolicy()
+    public function testSetPolicy()
     {
         $snippet = $this->snippetFromMethod(Iam::class, 'setPolicy');
         $snippet->addLocal('iam', $this->iam);
@@ -76,9 +84,12 @@ class IamTest extends SnippetTestCase
             ]);
 
         $this->connection->setPolicy([
-            'bindings' => [
-                ['members' => ['user:test@example.com']]
-            ]
+            'policy' => [
+                'bindings' => [
+                    ['members' => 'user:test@example.com']
+                ]
+            ],
+            'resource' => $this->resource
         ])->shouldBeCalled()->willReturn('foo');
 
         $this->iam->setConnection($this->connection->reveal());

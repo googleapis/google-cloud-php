@@ -39,6 +39,7 @@ class QueryResultsTest extends SnippetTestCase
     public function setUp()
     {
         $this->info = [
+            'totalBytesProcessed' => 3,
             'jobComplete' => false,
             'jobReference' => [
                 'jobId' => 'job'
@@ -111,5 +112,30 @@ class QueryResultsTest extends SnippetTestCase
 
         $res = $snippet->invoke();
         $this->assertEquals(self::PROJECT, $res->output());
+    }
+
+    public function testInfo()
+    {
+        $snippet = $this->snippetFromMethod(QueryResults::class, 'info');
+        $snippet->addLocal('queryResults', $this->qr);
+
+        $res = $snippet->invoke();
+        $this->assertEquals($this->info['totalBytesProcessed'], $res->output());
+    }
+
+    public function testReload()
+    {
+        $this->connection->getQueryResults(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn(['jobComplete' => true] + $this->info);
+
+        $this->qr->setConnection($this->connection->reveal());
+
+        $snippet = $this->snippetFromMethod(QueryResults::class, 'reload');
+        $snippet->addLocal('queryResults', $this->qr);
+        $snippet->replace('sleep(1);', '');
+
+        $res = $snippet->invoke();
+        $this->assertEquals('Query complete!', $res->output());
     }
 }

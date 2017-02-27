@@ -241,7 +241,7 @@ class SubscriptionTest extends SnippetTestCase
 
     public function testModifyAckDeadlineBatch()
     {
-        $snippet = $this->snippetFromMethod(Subscription::class, 'modifyAckDeadline');
+        $snippet = $this->snippetFromMethod(Subscription::class, 'modifyAckDeadlineBatch');
         $snippet->addLocal('subscription', $this->subscription);
 
         $this->connection->pull(Argument::any())
