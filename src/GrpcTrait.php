@@ -75,8 +75,8 @@ trait GrpcTrait
         return [
             'credentialsLoader' => $this->requestWrapper->getCredentialsFetcher(),
             'enableCaching' => false,
-            'appName' => 'gcloud-php',
-            'appVersion' => ServiceBuilder::VERSION
+            'libName' => 'gccl',
+            'libVersion' => ServiceBuilder::VERSION
         ];
     }
 

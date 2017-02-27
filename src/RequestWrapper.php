@@ -137,8 +137,12 @@ class RequestWrapper
      */
     private function signRequest(RequestInterface $request)
     {
+        $template = 'gl-php/%s gccl/%s';
+        $phpVersion = phpversion();
+        $libVersion = ServiceBuilder::VERSION;
+
         $headers = [
-            'User-Agent' => 'gcloud-php/' . ServiceBuilder::VERSION,
+            'x-goog-api-client' => sprintf($template, $phpVersion, $libVersion),
             'Authorization' => 'Bearer ' . $this->getToken()
         ];
 
