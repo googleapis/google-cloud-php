@@ -12,6 +12,7 @@
             "name": "google/cloud",
             "defaultService": "google-cloud/servicebuilder",
             "versions": [
+                "v0.20.2",
                 "v0.20.1",
                 "v0.20.0",
                 "v0.13.2",
@@ -41,6 +42,7 @@
             "name": "google/cloud-bigquery",
             "defaultService": "bigquery/bigqueryclient",
             "versions": [
+                "v0.0.4",
                 "v0.0.3",
                 "v0.0.2",
                 "v0.0.1",
@@ -52,6 +54,7 @@
             "name": "google/cloud-core",
             "defaultService": "",
             "versions": [
+                "v0.0.3",
                 "v0.0.2",
                 "v0.0.1",
                 "master"
@@ -62,6 +65,7 @@
             "name": "google/cloud-datastore",
             "defaultService": "datastore/datastoreclient",
             "versions": [
+                "v0.0.3",
                 "v0.0.2",
                 "v0.0.1",
                 "master"
@@ -72,6 +76,7 @@
             "name": "google/cloud-logging",
             "defaultService": "logging/loggingclient",
             "versions": [
+                "v0.0.1",
                 "master"
             ]
         },
@@ -80,6 +85,7 @@
             "name": "google/cloud-monitoring",
             "defaultService": "",
             "versions": [
+                "v0.0.1",
                 "master"
             ]
         },
@@ -88,6 +94,7 @@
             "name": "google/cloud-natural-language",
             "defaultService": "naturallanguage/naturallanguageclient",
             "versions": [
+                "v0.0.1",
                 "master"
             ]
         },
@@ -96,6 +103,7 @@
             "name": "google/cloud-pubsub",
             "defaultService": "pubsub/pubsubclient",
             "versions": [
+                "v0.0.1",
                 "master"
             ]
         },
@@ -104,6 +112,7 @@
             "name": "google/cloud-speech",
             "defaultService": "speech/speechclient",
             "versions": [
+                "v0.0.1",
                 "master"
             ]
         },
@@ -112,6 +121,7 @@
             "name": "google/cloud-storage",
             "defaultService": "storage/storageclient",
             "versions": [
+                "v0.0.1",
                 "master"
             ]
         },
@@ -120,6 +130,7 @@
             "name": "google/cloud-translate",
             "defaultService": "translate/translateclient",
             "versions": [
+                "v0.0.1",
                 "master"
             ]
         },
@@ -128,6 +139,7 @@
             "name": "google/cloud-vision",
             "defaultService": "vision/visionclient",
             "versions": [
+                "v0.0.1",
                 "master"
             ]
         }

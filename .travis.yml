@@ -1,43 +1,27 @@
 language: php
-
 sudo: required
 dist: trusty
 
 matrix:
-    include:
-        - php: 5.5.38
-        - php: 5.6.25
-        - php: 7.0
-        - php: 7.1
-        - php: hhvm
-         group: edge
-    fast_finish: true
+  include:
+  - php: 5.5.38
+  - php: 5.6.25
+  - php: 7.0
+  - php: 7.1
+  - php: hhvm
+    group: edge
+  fast_finish: true
 
 before_script:
-   - pecl install grpc || echo 'Failed to install grpc'
-   - composer install
+  - pecl install grpc || echo 'Failed to install grpc'
+  - composer install
 
 script:
-    - ./dev/sh/tests
-    - vendor/bin/phpcs --standard=./phpcs-ruleset.xml
-    - ./dev/sh/build-docs
-    - curl -Lo travis_after_all.py https://raw.github.com/dmakhno/travis_after_all/master/travis_after_all.py
-
-after_script:
-    - echo leader=$BUILD_LEADER status=$BUILD_AGGREGATE_STATUS
+  - ./dev/sh/tests
+  - vendor/bin/phpcs --standard=./phpcs-ruleset.xml
+  - ./dev/sh/build-docs
 
 after_success:
-    - bash <(curl -s https://codecov.io/bash)
-    - python travis_after_all.py https://api.travis-ci.com
-    - export $(cat .to_export_back)
-    - |
-      if [ "$BUILD_LEADER" = "YES" ]; then
-        if [ "$BUILD_AGGREGATE_STATUS" = "others_succeeded" ]; then
-          ./dev/sh/push-docs
-          ./dev/sh/compile-splitsh
-          git fetch --unshallow
-          composer google-cloud split
-        else
-          echo "Some jobs failed"
-        fi
-      fi
+  - bash <(curl -s https://codecov.io/bash)
+  - ./dev/sh/push-docs
+  - ./dev/sh/trigger-split
