@@ -65,14 +65,6 @@ class RequestWrapper
     ];
 
     /**
-     * @var array
-     */
-    private $httpRetryMessages = [
-        'rateLimitExceeded',
-        'userRateLimitExceeded'
-    ];
-
-    /**
      * @var bool $shouldSignRequest Whether to enable request signing.
      */
     private $shouldSignRequest;
@@ -246,25 +238,12 @@ class RequestWrapper
     private function getRetryFunction()
     {
         $httpRetryCodes = $this->httpRetryCodes;
-        $httpRetryMessages = $this->httpRetryMessages;
 
-        return function (\Exception $ex) use ($httpRetryCodes, $httpRetryMessages) {
+        return function (\Exception $ex) use ($httpRetryCodes) {
             $statusCode = $ex->getCode();
 
             if (in_array($statusCode, $httpRetryCodes)) {
                 return true;
-            }
-
-            $message = json_decode($ex->getMessage(), true);
-
-            if (!isset($message['error']['errors'])) {
-                return false;
-            }
-
-            foreach ($message['error']['errors'] as $error) {
-                if (in_array($error['reason'], $httpRetryMessages)) {
-                    return true;
-                }
             }
 
             return false;
