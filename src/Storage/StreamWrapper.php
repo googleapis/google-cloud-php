@@ -381,7 +381,11 @@ class StreamWrapper
      */
     public function rename($from, $to)
     {
-        $url = parse_url($to);
+        $url = (array) parse_url($to) + [
+            'path' => '',
+            'host' => ''
+        ];
+
         $destinationBucket = $url['host'];
         $destinationPath = substr($url['path'], 1);
 
@@ -487,7 +491,11 @@ class StreamWrapper
      */
     private function openPath($path)
     {
-        $url = parse_url($path);
+        $url = (array) parse_url($path) + [
+            'scheme' => '',
+            'path' => '',
+            'host' => ''
+        ];
         $this->protocol = $url['scheme'];
         $this->file = ltrim($url['path'], '/');
         $client = self::getClient($this->protocol);
