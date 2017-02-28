@@ -26,18 +26,13 @@ use Google\Cloud\Dev\Snippet\Container;
  */
 class SnippetTestCase extends \PHPUnit_Framework_TestCase
 {
-    const HOOK_BEFORE = 1000;
-    const HOOK_AFTER = 1001;
+    private static $coverage;
+    private static $parser;
 
-    private $coverage;
-    private $parser;
-
-    public function __construct()
+    public static function setUpBeforeClass()
     {
-        parent::__construct();
-
-        $this->coverage = Container::$coverage;
-        $this->parser = Container::$parser;
+        self::$coverage = Container::$coverage;
+        self::$parser = Container::$parser;
     }
 
     /**
@@ -49,14 +44,14 @@ class SnippetTestCase extends \PHPUnit_Framework_TestCase
      */
     public function snippetFromClass($class, $indexOrName = 0)
     {
-        $identifier = $this->parser->createIdentifier($class, $indexOrName);
+        $identifier = self::$parser->createIdentifier($class, $indexOrName);
 
-        $snippet = $this->coverage->cache($identifier);
+        $snippet = self::$coverage->cache($identifier);
         if (!$snippet) {
-            $snippet = $this->parser->classExample($class, $indexOrName);
+            $snippet = self::$parser->classExample($class, $indexOrName);
         }
 
-        $this->coverage->cover($snippet->identifier());
+        self::$coverage->cover($snippet->identifier());
 
         return $snippet;
     }
@@ -73,14 +68,14 @@ class SnippetTestCase extends \PHPUnit_Framework_TestCase
     public function snippetFromMagicMethod($class, $method, $indexOrName = 0)
     {
         $name = $class .'::'. $method;
-        $identifier = $this->parser->createIdentifier($name, $indexOrName);
+        $identifier = self::$parser->createIdentifier($name, $indexOrName);
 
-        $snippet = $this->coverage->cache($identifier);
+        $snippet = self::$coverage->cache($identifier);
         if (!$snippet) {
             throw new \Exception('Magic Method '. $name .' was not found');
         }
 
-        $this->coverage->cover($identifier);
+        self::$coverage->cover($identifier);
 
         return $snippet;
     }
@@ -96,14 +91,14 @@ class SnippetTestCase extends \PHPUnit_Framework_TestCase
     public function snippetFromMethod($class, $method, $indexOrName = 0)
     {
         $name = $class .'::'. $method;
-        $identifier = $this->parser->createIdentifier($name, $indexOrName);
+        $identifier = self::$parser->createIdentifier($name, $indexOrName);
 
-        $snippet = $this->coverage->cache($identifier);
+        $snippet = self::$coverage->cache($identifier);
         if (!$snippet) {
-            $snippet = $this->parser->methodExample($class, $method, $indexOrName);
+            $snippet = self::$parser->methodExample($class, $method, $indexOrName);
         }
 
-        $this->coverage->cover($identifier);
+        self::$coverage->cover($identifier);
 
         return $snippet;
     }

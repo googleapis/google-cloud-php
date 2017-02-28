@@ -80,7 +80,7 @@ class PolicyBuilder
      * ```
      * $builder->setBindings([
      *     [
-     *         'role' => roles/admin',
+     *         'role' => 'roles/admin',
      *         'members' => [
      *             'user:admin@domain.com'
      *         ]
