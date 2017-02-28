@@ -18,6 +18,7 @@
 namespace Google\Cloud\Dev\Split\Command;
 
 use Google\Cloud\Dev\GetComponentsTrait;
+use GuzzleHttp\Client;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -37,6 +38,9 @@ class Split extends Command
     const PATH_MANIFEST = '%s/../docs/manifest.json';
     const PARENT_TAG_NAME = 'https://github.com/GoogleCloudPlatform/google-cloud-php/releases/tag/%s';
 
+    const GITHUB_RELEASES_ENDPOINT = 'https://api.github.com/repos/%s/%s/releases/tags/%s';
+    const GITHUB_RELEASE_CREATE_ENDPOINT = 'https://api.github.com/repos/%s/%s/releases';
+
     private $cliBasePath;
 
     private $splitShell;
@@ -45,7 +49,9 @@ class Split extends Command
 
     private $manifest;
 
-    private $github;
+    private $http;
+
+    private $token;
 
     public function __construct($cliBasePath)
     {
@@ -54,8 +60,8 @@ class Split extends Command
         $this->components = sprintf(self::COMPONENT_BASE, $cliBasePath);
         $this->manifest = sprintf(self::PATH_MANIFEST, $cliBasePath);
 
-        $this->github = new \Github\Client();
-        $this->github->authenticate(getenv(self::TOKEN_ENV), \Github\Client::AUTH_HTTP_TOKEN);
+        $this->http = new Client;
+        $this->token = getenv(self::TOKEN_ENV);
 
         parent::__construct();
     }
@@ -109,10 +115,7 @@ class Split extends Command
                 continue;
             }
 
-            $releases = $this->github->api('repo')->releases()->all($org, $repo);
-            if (count(array_filter($releases, function ($release) use ($version) {
-                return ($release['tag_name'] === $version);
-            })) > 0) {
+            if ($this->doesTagExist($version, $org, $repo)) {
                 $output->writeln(sprintf(
                     'Component %s already tagged at version %s',
                     $component['id'],
@@ -121,14 +124,12 @@ class Split extends Command
                 continue;
             }
 
-            $this->github->api('repo')->releases()->create($org, $repo, [
-                'tag_name' => $version,
-                'name' => $component['displayName'] .' '. $version,
-                'body' => sprintf(
-                    'For release notes, please see the [associated Google Cloud PHP release](%s).',
-                    $parentTagSource
-                )
-            ]);
+            $name = $component['displayName'] .' '. $version;
+            $notes = sprintf(
+                'For release notes, please see the [associated Google Cloud PHP release](%s).',
+                $parentTagSource
+            );
+            $this->createRelease($version, $org, $repo, $name, $notes);
 
             $output->writeln(sprintf(
                 'Release %s created for component %s',
@@ -136,5 +137,36 @@ class Split extends Command
                 $component['id']
             ));
         }
+    }
+
+    private function doesTagExist($tagName, $org, $repo)
+    {
+        $res = $this->http->get(sprintf(
+            self::GITHUB_RELEASES_ENDPOINT,
+            $org, $repo, $tagName
+        ), [
+            'http_errors' => false,
+            'auth' => [null, $this->token]
+        ]);
+
+        return ($res->getStatusCode() === 200);
+    }
+
+    private function createRelease($tagName, $org, $repo, $name, $notes)
+    {
+        $requestBody = [
+            'tag_name' => $tagName,
+            'name' => $name,
+            'body' => $notes
+        ];
+
+        $res = $this->http->post(sprintf(
+            self::GITHUB_RELEASE_CREATE_ENDPOINT,
+            $org, $repo
+        ), [
+            'http_errors' => false,
+            'json' => $requestBody,
+            'auth' => [null, $this->token]
+        ]);
     }
 }
