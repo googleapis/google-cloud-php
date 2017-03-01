@@ -20,6 +20,7 @@ namespace Google\Cloud\Tests\Snippets\BigQuery;
 use Google\Cloud\BigQuery\Connection\ConnectionInterface;
 use Google\Cloud\BigQuery\Dataset;
 use Google\Cloud\BigQuery\Table;
+use Google\Cloud\BigQuery\ValueMapper;
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
 use Prophecy\Argument;
 
@@ -30,9 +31,11 @@ class DatasetTest extends SnippetTestCase
 {
     private $identity;
     private $connection;
+    private $mapper;
 
     public function setUp()
     {
+        $this->mapper = new ValueMapper(false);
         $this->identity = ['datasetId' => 'id', 'projectId' => 'projectId'];
         $this->connection = $this->prophesize(ConnectionInterface::class);
     }
@@ -43,6 +46,7 @@ class DatasetTest extends SnippetTestCase
             $connection->reveal(),
             $this->identity['datasetId'],
             $this->identity['projectId'],
+            $this->mapper,
             $info
         );
     }

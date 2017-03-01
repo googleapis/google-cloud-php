@@ -44,6 +44,16 @@ class PolicyBuilderTest extends SnippetTestCase
 
     public function testSetBindings()
     {
+        $snippet = $this->snippetFromMethod(PolicyBuilder::class, 'setBindings');
+        $snippet->addLocal('builder', $this->pb);
+
+        $res = $snippet->invoke();
+        $this->assertEquals('roles/admin', $this->pb->result()['bindings'][0]['role']);
+        $this->assertEquals('user:admin@domain.com', $this->pb->result()['bindings'][0]['members'][0]);
+    }
+
+    public function testAddBindings()
+    {
         $snippet = $this->snippetFromMethod(PolicyBuilder::class, 'addBinding');
         $snippet->addLocal('builder', $this->pb);
 

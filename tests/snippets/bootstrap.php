@@ -48,6 +48,7 @@ stub('IamStub', Google\Cloud\Iam\Iam::class);
 stub('LoggerStub', Google\Cloud\Logging\Logger::class);
 stub('LoggingClientStub', Google\Cloud\Logging\LoggingClient::class);
 stub('MetricStub', Google\Cloud\Logging\Metric::class);
+stub('NaturalLanguageClientStub', Google\Cloud\NaturalLanguage\NaturalLanguageClient::class);
 stub('OperationStub', Google\Cloud\Datastore\Operation::class);
 stub('PubSubClientStub', Google\Cloud\PubSub\PubSubClient::class);
 stub('QueryResultsStub', Google\Cloud\BigQuery\QueryResults::class);

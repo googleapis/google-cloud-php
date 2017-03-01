@@ -77,6 +77,13 @@ class EntityTest extends SnippetTestCase
         $this->assertInstanceOf(Entity::class, $res->returnVal());
     }
 
+    public function testInfo()
+    {
+        $snippet = $this->snippetFromMagicMethod(Entity::class, 'info');
+        $snippet->addLocal('text', $this->entity);
+        $this->assertEquals($this->entityData, $snippet->invoke('info')->returnVal());
+    }
+
     public function testMid()
     {
         $snippet = $this->snippetFromMagicMethod(Entity::class, 'mid');
@@ -156,14 +163,5 @@ class EntityTest extends SnippetTestCase
 
         $res = $snippet->invoke();
         $this->assertEquals($this->entityData['properties'], $res->output());
-    }
-
-    public function testInfo()
-    {
-        $snippet = $this->snippetFromMagicMethod(Entity::class, 'info');
-        $snippet->addLocal('text', $this->entity);
-
-        $res = $snippet->invoke('info');
-        $this->assertEquals($this->entityData, $res->returnVal());
     }
 }

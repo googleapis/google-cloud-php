@@ -86,6 +86,13 @@ class FaceTest extends SnippetTestCase
         );
     }
 
+    public function testInfo()
+    {
+        $snippet = $this->snippetFromMagicMethod(Face::class, 'info');
+        $snippet->addLocal('face', $this->face);
+        $this->assertEquals($this->faceData, $snippet->invoke('info')->returnVal());
+    }
+
     public function testLandmarks()
     {
         $snippet = $this->snippetFromMagicMethod(Face::class, 'landmarks');
@@ -228,75 +235,28 @@ class FaceTest extends SnippetTestCase
         $this->assertEquals($this->faceData['headwearLikelihood'], $res->output());
     }
 
-    public function testIsJoyful()
+    /**
+     * @dataProvider boolTests
+     */
+    public function testFaceBoolTests($method, $output)
     {
-        $snippet = $this->snippetFromMethod(Face::class, 'isJoyful');
+        $snippet = $this->snippetFromMethod(Face::class, $method);
         $snippet->addLocal('face', $this->face);
 
         $res = $snippet->invoke();
-        $this->assertEquals('Face is Joyful', $res->output());
+        $this->assertEquals($output, $res->output());
     }
 
-    public function testIsSorrowful()
+    public function boolTests()
     {
-        $snippet = $this->snippetFromMethod(Face::class, 'isSorrowful');
-        $snippet->addLocal('face', $this->face);
-
-        $res = $snippet->invoke();
-        $this->assertEquals('Face is Sorrowful', $res->output());
-    }
-
-    public function testIsAngry()
-    {
-        $snippet = $this->snippetFromMethod(Face::class, 'isAngry');
-        $snippet->addLocal('face', $this->face);
-
-        $res = $snippet->invoke();
-        $this->assertEquals('Face is Angry', $res->output());
-    }
-
-    public function testIsSurprised()
-    {
-        $snippet = $this->snippetFromMethod(Face::class, 'isSurprised');
-        $snippet->addLocal('face', $this->face);
-
-        $res = $snippet->invoke();
-        $this->assertEquals('Face is Surprised', $res->output());
-    }
-
-    public function testIsUnderExposed()
-    {
-        $snippet = $this->snippetFromMethod(Face::class, 'isUnderExposed');
-        $snippet->addLocal('face', $this->face);
-
-        $res = $snippet->invoke();
-        $this->assertEquals('Face is Under Exposed', $res->output());
-    }
-
-    public function testIsBlurred()
-    {
-        $snippet = $this->snippetFromMethod(Face::class, 'isBlurred');
-        $snippet->addLocal('face', $this->face);
-
-        $res = $snippet->invoke();
-        $this->assertEquals('Face is Blurred', $res->output());
-    }
-
-    public function testHasHeadwear()
-    {
-        $snippet = $this->snippetFromMethod(Face::class, 'hasHeadwear');
-        $snippet->addLocal('face', $this->face);
-
-        $res = $snippet->invoke();
-        $this->assertEquals('Face has Headwear', $res->output());
-    }
-
-    public function testInfo()
-    {
-        $snippet = $this->snippetFromMagicMethod(Face::class, 'info');
-        $snippet->addLocal('face', $this->face);
-
-        $res = $snippet->invoke('info');
-        $this->assertEquals($this->faceData, $res->returnVal());
+        return [
+            ['isJoyful', 'Face is Joyful'],
+            ['isSorrowful', 'Face is Sorrowful'],
+            ['isAngry', 'Face is Angry'],
+            ['isSurprised', 'Face is Surprised'],
+            ['isUnderExposed', 'Face is Under Exposed'],
+            ['isBlurred', 'Face is Blurred'],
+            ['hasHeadwear', 'Face has Headwear']
+        ];
     }
 }

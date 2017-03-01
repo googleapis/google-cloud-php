@@ -31,7 +31,7 @@ class ResumableUploader extends AbstractUploader
     /**
      * @var int
      */
-    private $rangeStart = 0;
+    protected $rangeStart = 0;
 
     /**
      * @var string

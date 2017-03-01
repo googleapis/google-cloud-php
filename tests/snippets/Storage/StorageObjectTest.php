@@ -19,7 +19,9 @@ namespace Google\Cloud\Tests\Snippets\Storage;
 
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
 use Google\Cloud\Storage\Acl;
+use Google\Cloud\Storage\Bucket;
 use Google\Cloud\Storage\Connection\ConnectionInterface;
+use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Storage\StorageObject;
 use Prophecy\Argument;
 use Psr\Http\Message\StreamInterface;
@@ -121,9 +123,86 @@ class StorageObjectTest extends SnippetTestCase
         $this->assertInstanceOf(StorageObject::class, $res->returnVal());
     }
 
+    public function testCopyToBucket()
+    {
+        $bucket = $this->prophesize(Bucket::class);
+        $bucket->name()->willReturn('foo');
+
+        $storage = $this->prophesize(StorageClient::class);
+        $storage->bucket(Argument::any())
+            ->willReturn($bucket->reveal());
+
+        $snippet = $this->snippetFromMethod(StorageObject::class, 'copy', 1);
+        $snippet->addLocal('object', $this->object);
+        $snippet->addLocal('storage', $storage->reveal());
+
+        $this->connection->copyObject(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([
+                'name' => 'New Object',
+                'bucket' => self::BUCKET,
+                'generation' => 'foo'
+            ]);
+
+        $this->object->setConnection($this->connection->reveal());
+
+        $res = $snippet->invoke('copiedObject');
+        $this->assertInstanceOf(StorageObject::class, $res->returnVal());
+    }
+
     public function testRewrite()
     {
         $snippet = $this->snippetFromMethod(StorageObject::class, 'rewrite');
+        $snippet->addLocal('object', $this->object);
+
+        $this->connection->rewriteObject(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([
+                'resource' => [
+                    'name' => self::OBJECT,
+                    'bucket' => self::BUCKET,
+                    'generation' => 'foo'
+                ]
+            ]);
+
+        $this->object->setConnection($this->connection->reveal());
+
+        $res = $snippet->invoke('rewrittenObject');
+        $this->assertInstanceOf(StorageObject::class, $res->returnVal());
+    }
+
+    public function testRewriteNewObjectName()
+    {
+        $bucket = $this->prophesize(Bucket::class);
+        $bucket->name()->willReturn('foo');
+
+        $storage = $this->prophesize(StorageClient::class);
+        $storage->bucket(Argument::any())
+            ->willReturn($bucket->reveal());
+
+        $snippet = $this->snippetFromMethod(StorageObject::class, 'rewrite', 1);
+        $snippet->addLocal('storage', $storage->reveal());
+        $snippet->addLocal('object', $this->object);
+
+        $this->connection->rewriteObject(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([
+                'resource' => [
+                    'name' => self::OBJECT,
+                    'bucket' => self::BUCKET,
+                    'generation' => 'foo'
+                ]
+            ]);
+
+        $this->object->setConnection($this->connection->reveal());
+
+        $res = $snippet->invoke('rewrittenObject');
+        $this->assertInstanceOf(StorageObject::class, $res->returnVal());
+    }
+
+    public function testRewriteNewKey()
+    {
+        $snippet = $this->snippetFromMethod(StorageObject::class, 'rewrite', 2);
         $snippet->addLocal('object', $this->object);
         $snippet->replace("file_get_contents(__DIR__ . '/key.txt')", "'testKeyData'");
 

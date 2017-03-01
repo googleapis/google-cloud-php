@@ -36,7 +36,6 @@ $ composer require google/cloud
 #### Preview
 
 ```php
-<?php
 require 'vendor/autoload.php';
 
 use Google\Cloud\BigQuery\BigQueryClient;
@@ -70,7 +69,6 @@ foreach ($queryResults->rows() as $row) {
 #### Preview
 
 ```php
-<?php
 require 'vendor/autoload.php';
 
 use Google\Cloud\Logging\LoggingClient;
@@ -154,6 +152,21 @@ $object = $bucket->object('file_backup.txt');
 $object->downloadToFile('/data/file_backup.txt');
 ```
 
+#### Stream Wrapper
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Storage\StorageClient;
+
+$storage = new StorageClient([
+    'projectId' => 'my_project'
+]);
+$storage->registerStreamWrapper();
+
+$contents = file_get_contents('gs://my_bucket/file_backup.txt');
+```
+
 ## Google Cloud Translation (Alpha)
 
 - [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/translate/translateclient)
@@ -162,7 +175,6 @@ $object->downloadToFile('/data/file_backup.txt');
 #### Preview
 
 ```php
-<?php
 require 'vendor/autoload.php';
 
 use Google\Cloud\Translate\TranslateClient;
@@ -345,7 +357,6 @@ By default the library will use a simple in-memory caching implementation, howev
 The following example takes advantage of [Symfony's Cache Component](https://github.com/symfony/cache).
 
 ```php
-<?php
 require 'vendor/autoload.php';
 
 use Google\Cloud\Storage\StorageClient;

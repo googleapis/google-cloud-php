@@ -224,7 +224,7 @@ class TopicTest extends SnippetTestCase
         $this->assertEquals(self::SUBSCRIPTION, $res->output());
     }
 
-    public function iam()
+    public function testIam()
     {
         $snippet = $this->snippetFromMethod(Topic::class, 'iam');
         $snippet->addLocal('topic', $this->topic);

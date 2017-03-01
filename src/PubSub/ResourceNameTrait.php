@@ -55,7 +55,7 @@ trait ResourceNameTrait
      * @return string
      * @throws \InvalidArgumentException
      */
-    public function pluckName($type, $name)
+    private function pluckName($type, $name)
     {
         if (!isset($this->regexes[$type])) {
             throw new InvalidArgumentException(sprintf(
@@ -85,7 +85,7 @@ trait ResourceNameTrait
      * @return string
      * @throws \InvalidArgumentException
      */
-    public function formatName($type, $name, $projectId = null)
+    private function formatName($type, $name, $projectId = null)
     {
         if (!isset($this->templates[$type])) {
             throw new InvalidArgumentException(sprintf(
@@ -113,7 +113,7 @@ trait ResourceNameTrait
      * @return bool
      * @throws \InvalidArgumentException
      */
-    public function isFullyQualifiedName($type, $name)
+    private function isFullyQualifiedName($type, $name)
     {
         if (!isset($this->regexes[$type])) {
             throw new InvalidArgumentException(sprintf(

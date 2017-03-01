@@ -20,6 +20,7 @@ namespace Google\Cloud\Tests\BigQuery;
 use Google\Cloud\BigQuery\Connection\ConnectionInterface;
 use Google\Cloud\BigQuery\Dataset;
 use Google\Cloud\BigQuery\Table;
+use Google\Cloud\BigQuery\ValueMapper;
 use Google\Cloud\Exception\NotFoundException;
 use Prophecy\Argument;
 
@@ -29,18 +30,26 @@ use Prophecy\Argument;
 class DatasetTest extends \PHPUnit_Framework_TestCase
 {
     public $connection;
+    public $mapper;
     public $projectId = 'myProjectId';
     public $datasetId = 'myDatasetId';
     public $tableId = 'myTableId';
 
     public function setUp()
     {
+        $this->mapper = new ValueMapper(false);
         $this->connection = $this->prophesize(ConnectionInterface::class);
     }
 
     public function getDataset($connection, array $data = [])
     {
-        return new Dataset($connection->reveal(), $this->datasetId, $this->projectId, $data);
+        return new Dataset(
+            $connection->reveal(),
+            $this->datasetId,
+            $this->projectId,
+            $this->mapper,
+            $data
+        );
     }
 
     public function testDoesExistTrue()

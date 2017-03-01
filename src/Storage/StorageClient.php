@@ -184,12 +184,16 @@ class StorageClient
      * @param array $options [optional] {
      *     Configuration options.
      *
-     *     @type string $predefinedAcl Apply a predefined set of access controls
-     *           to this bucket.
+     *     @type string $predefinedAcl Predefined ACL to apply to the bucket.
+     *           Acceptable values include, `"authenticatedRead"`,
+     *           `"bucketOwnerFullControl"`, `"bucketOwnerRead"`, `"private"`,
+     *           `"projectPrivate"`, and `"publicRead"`.
      *     @type string $predefinedDefaultObjectAcl Apply a predefined set of
      *           default object access controls to this bucket.
      *     @type string $projection Determines which properties to return. May
-     *           be either 'full' or 'noAcl'.
+     *           be either `"full"` or `"noAcl"`. **Defaults to** `"noAcl"`,
+     *           unless the bucket resource specifies acl or defaultObjectAcl
+     *           properties, when it defaults to `"full"`.
      *     @type string $fields Selector which will cause the response to only
      *           return the specified fields.
      *     @type array $acl Access controls on the bucket.
@@ -205,8 +209,10 @@ class StorageClient
      *           current bucket's logs.
      *     @type string $storageClass The bucket's storage class. This defines
      *           how objects in the bucket are stored and determines the SLA and
-     *           the cost of storage. Values include MULTI_REGIONAL, REGIONAL,
-     *           NEARLINE, COLDLINE, STANDARD and DURABLE_REDUCED_AVAILABILITY.
+     *           the cost of storage. Acceptable values include
+     *           `"MULTI_REGIONAL"`, `"REGIONAL"`, `"NEARLINE"`, `"COLDLINE"`,
+     *           `"STANDARD"` and `"DURABLE_REDUCED_AVAILABILITY"`.
+     *           **Defaults to** `STANDARD`.
      *     @type array $versioning The bucket's versioning configuration.
      *     @type array $website The bucket's website configuration.
      * }
@@ -216,5 +222,26 @@ class StorageClient
     {
         $response = $this->connection->insertBucket($options + ['name' => $name, 'project' => $this->projectId]);
         return new Bucket($this->connection, $name, $response);
+    }
+
+    /**
+     * Registers this StorageClient as the handler for stream reading/writing.
+     *
+     * @param string $protocol The name of the protocol to use. **Defaults to** `gs`.
+     * @throws \RuntimeException
+     */
+    public function registerStreamWrapper($protocol = null)
+    {
+        return StreamWrapper::register($this, $protocol);
+    }
+
+    /**
+     * Unregisters the SteamWrapper
+     *
+     * @param string $protocol The name of the protocol to unregister. **Defaults to** `gs`.
+     */
+    public function unregisterStreamWrapper($protocol = null)
+    {
+        StreamWrapper::unregister($protocol);
     }
 }

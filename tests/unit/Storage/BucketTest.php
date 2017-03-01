@@ -18,6 +18,8 @@
 namespace Google\Cloud\Tests\Storage;
 
 use Google\Cloud\Exception\NotFoundException;
+use Google\Cloud\Exception\ServerException;
+use Google\Cloud\Exception\ServiceException;
 use Google\Cloud\Storage\Bucket;
 use Google\Cloud\Storage\Connection\ConnectionInterface;
 use Google\Cloud\Storage\StorageObject;
@@ -310,5 +312,32 @@ class BucketTest extends \PHPUnit_Framework_TestCase
         $bucket = new Bucket($this->connection->reveal(), $name = 'bucket');
 
         $this->assertEquals($name, $bucket->name());
+    }
+
+    public function testIsWritable()
+    {
+        $this->connection->insertObject(Argument::any())->willReturn($this->resumableUploader);
+        $this->resumableUploader->getResumeUri()->willReturn('http://some-uri/');
+        $bucket = new Bucket($this->connection->reveal(), $name = 'bucket');
+        $this->assertTrue($bucket->isWritable());
+    }
+
+    public function testIsWritableAccessDenied()
+    {
+        $this->connection->insertObject(Argument::any())->willReturn($this->resumableUploader);
+        $this->resumableUploader->getResumeUri()->willThrow(new ServiceException('access denied', 403));
+        $bucket = new Bucket($this->connection->reveal(), $name = 'bucket');
+        $this->assertFalse($bucket->isWritable());
+    }
+
+    /**
+     * @expectedException \Google\Cloud\Exception\ServerException
+     */
+    public function testIsWritableServerException()
+    {
+        $this->connection->insertObject(Argument::any())->willReturn($this->resumableUploader);
+        $this->resumableUploader->getResumeUri()->willThrow(new ServerException('maintainence'));
+        $bucket = new Bucket($this->connection->reveal(), $name = 'bucket');
+        $bucket->isWritable(); // raises exception
     }
 }
