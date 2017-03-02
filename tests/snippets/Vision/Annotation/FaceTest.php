@@ -74,7 +74,10 @@ class FaceTest extends SnippetTestCase
 
         $snippet = $this->snippetFromClass(Face::class);
         $snippet->addLocal('connectionStub', $connectionStub->reveal());
-        $snippet->setLine(5, '$imageResource = fopen(\'php://temp\', \'r\');');
+        $snippet->replace(
+            "__DIR__ . '/assets/family-photo.jpg'",
+            "'php://temp'"
+        );
         $snippet->insertAfterLine(3, '$reflection = new \ReflectionClass($vision);
             $property = $reflection->getProperty(\'connection\');
             $property->setAccessible(true);
