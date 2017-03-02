@@ -203,8 +203,8 @@ class MetricsServiceV2Client
 
     private static function getGapicVersion()
     {
-        if (file_exists(__DIR__.'../VERSION')) {
-            return file_get_contents(__DIR__.'../VERSION');
+        if (file_exists(__DIR__.'/../VERSION')) {
+            return trim(file_get_contents(__DIR__.'/../VERSION'));
         } elseif (class_exists('\Google\Cloud\ServiceBuilder')) {
             return \Google\Cloud\ServiceBuilder::VERSION;
         } else {
