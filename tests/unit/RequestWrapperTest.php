@@ -159,12 +159,14 @@ class RequestWrapperTest extends \PHPUnit_Framework_TestCase
         ];
     }
 
-    public function testAddsUserAgentToRequest()
+    public function testAddsUserAgentAndXGoogApiClientToRequest()
     {
         $requestWrapper = new RequestWrapper([
             'httpHandler' => function ($request, $options = []) {
                 $userAgent = $request->getHeaderLine('User-Agent');
                 $this->assertEquals('gcloud-php/' . ServiceBuilder::VERSION, $userAgent);
+                $xGoogApiClient = $request->getHeaderLine('x-goog-api-client');
+                $this->assertEquals('gl-php/' . phpversion() . ' gccl/' . ServiceBuilder::VERSION, $xGoogApiClient);
                 return new Response(200);
             },
             'accessToken' => 'abc'

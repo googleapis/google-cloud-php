@@ -147,6 +147,7 @@ class RequestWrapper
     {
         $headers = [
             'User-Agent' => 'gcloud-php/' . ServiceBuilder::VERSION,
+            'x-goog-api-client' => 'gl-php/' . phpversion() . ' gccl/' . ServiceBuilder::VERSION,
             'Authorization' => 'Bearer ' . $this->getToken()
         ];
 
