@@ -58,7 +58,10 @@ class SafeSearchTest extends SnippetTestCase
 
         $snippet = $this->snippetFromClass(SafeSearch::class);
         $snippet->addLocal('connectionStub', $connectionStub->reveal());
-        $snippet->setLine(5, '$imageResource = fopen(\'php://temp\', \'r\');');
+        $snippet->replace(
+            "__DIR__ . '/assets/family-photo.jpg'",
+            "'php://temp'"
+        );
         $snippet->insertAfterLine(3, '$reflection = new \ReflectionClass($vision);
             $property = $reflection->getProperty(\'connection\');
             $property->setAccessible(true);
@@ -114,6 +117,7 @@ class SafeSearchTest extends SnippetTestCase
         $res = $snippet->invoke();
         $this->assertEquals(sprintf('Image contains %s content.', 'adult'), $res->output());
     }
+
     public function testIsSpoof()
     {
         $snippet = $this->snippetFromMethod(SafeSearch::class, 'isSpoof');
@@ -122,6 +126,7 @@ class SafeSearchTest extends SnippetTestCase
         $res = $snippet->invoke();
         $this->assertEquals(sprintf('Image contains %s content.', 'spoofed'), $res->output());
     }
+
     public function testIsMedical()
     {
         $snippet = $this->snippetFromMethod(SafeSearch::class, 'isMedical');
@@ -130,6 +135,7 @@ class SafeSearchTest extends SnippetTestCase
         $res = $snippet->invoke();
         $this->assertEquals(sprintf('Image contains %s content.', 'medical'), $res->output());
     }
+
     public function testIsViolent()
     {
         $snippet = $this->snippetFromMethod(SafeSearch::class, 'isViolent');
@@ -137,5 +143,14 @@ class SafeSearchTest extends SnippetTestCase
 
         $res = $snippet->invoke();
         $this->assertEquals(sprintf('Image contains %s content.', 'violent'), $res->output());
+    }
+
+    public function testInfo()
+    {
+        $snippet = $this->snippetFromMagicMethod(SafeSearch::class, 'info');
+        $snippet->addLocal('safeSearch', $this->ss);
+
+        $res = $snippet->invoke('info');
+        $this->assertEquals($this->ssData, $res->returnVal());
     }
 }

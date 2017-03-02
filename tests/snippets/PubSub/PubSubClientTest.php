@@ -45,7 +45,24 @@ class PubSubClientTest extends SnippetTestCase
 
     public function testClassExample1()
     {
-        $snippet = $this->snippetFromClass(PubSubClient::class, '__construct');
+        $snippet = $this->snippetFromClass(PubSubClient::class);
+        $res = $snippet->invoke('pubsub');
+
+        $this->assertInstanceOf(PubSubClient::class, $res->returnVal());
+    }
+
+    public function testClassExample2()
+    {
+        $snippet = $this->snippetFromClass(PubSubClient::class, 1);
+        $res = $snippet->invoke('pubsub');
+
+        $this->assertInstanceOf(PubSubClient::class, $res->returnVal());
+    }
+
+    // phpunit doesn't get the value of $_ENV, so testing PUBSUB_EMULATOR_HOST is pretty tough.
+    public function testClassExample3()
+    {
+        $snippet = $this->snippetFromClass(PubSubClient::class, 2);
         $res = $snippet->invoke('pubsub');
 
         $this->assertInstanceOf(PubSubClient::class, $res->returnVal());

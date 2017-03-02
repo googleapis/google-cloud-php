@@ -150,4 +150,22 @@ class JobTest extends SnippetTestCase
         $snippet->replace('sleep(1);', '');
         $snippet->invoke();
     }
+
+    public function testId()
+    {
+        $snippet = $this->snippetFromMethod(Job::class, 'id');
+        $snippet->addLocal('job', $this->getJob($this->connection, []));
+        $res = $snippet->invoke();
+
+        $this->assertEquals($res->output(), $this->identity['jobId']);
+    }
+
+    public function testIdentity()
+    {
+        $snippet = $this->snippetFromMethod(Job::class, 'identity');
+        $snippet->addLocal('job', $this->getJob($this->connection, []));
+        $res = $snippet->invoke();
+
+        $this->assertEquals($res->output(), $this->identity['projectId']);
+    }
 }

@@ -123,4 +123,19 @@ class StorageClientTest extends SnippetTestCase
         $res = $snippet->invoke('bucket');
         $this->assertInstanceOf(Bucket::class, $res->returnVal());
     }
+
+    public function testCreateBucketWithLogging()
+    {
+        $snippet = $this->snippetFromMethod(StorageClient::class, 'createBucket', 1);
+        $snippet->addLocal('storage', $this->client);
+
+        $this->connection->insertBucket(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([]);
+
+        $this->client->setConnection($this->connection->reveal());
+
+        $res = $snippet->invoke('bucket');
+        $this->assertInstanceOf(Bucket::class, $res->returnVal());
+    }
 }

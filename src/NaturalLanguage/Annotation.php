@@ -34,6 +34,16 @@ use Google\Cloud\Core\CallTrait;
  * {@see Google\Cloud\NaturalLanguage\NaturalLanguageClient::analyzeSyntax()} and
  * {@see Google\Cloud\NaturalLanguage\NaturalLanguageClient::annotateText()}.
  *
+ * Example:
+ * ```
+ * use Google\Cloud\ServiceBuilder;
+ *
+ * $cloud = new ServiceBuilder();
+ * $language = $cloud->naturalLanguage();
+ *
+ * $annotation = $language->annotateText('Google Cloud Platform is a powerful tool.');
+ * ```
+ *
  * @method sentences() {
  *     Returns an array of sentences found in the document.
  *

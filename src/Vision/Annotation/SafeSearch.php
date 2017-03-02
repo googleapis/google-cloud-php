@@ -29,7 +29,7 @@ use Google\Cloud\Core\CallTrait;
  * $cloud = new ServiceBuilder();
  * $vision = $cloud->vision();
  *
- * $imageResource = fopen(__DIR__ .'/assets/family-photo.jpg', 'r');
+ * $imageResource = fopen(__DIR__ . '/assets/family-photo.jpg', 'r');
  * $image = $vision->image($imageResource, [ 'safeSearch' ]);
  * $annotation = $vision->annotate($image);
  *

@@ -479,14 +479,14 @@ class Subscription
      * $messages = $subscription->pull();
      * $messagesArray = iterator_to_array($messages);
      *
-     * // Set the ack deadline to a minute and a half from now for every message
+     * // Set the ack deadline to three seconds from now for every message
      * $subscription->modifyAckDeadlineBatch($messagesArray, 3);
      *
      * // Delay execution, or make a sandwich or something.
      * sleep(2);
      *
      * // Now we'll acknowledge
-     * $subscription->acknowledge($messagesArray);
+     * $subscription->acknowledgeBatch($messagesArray);
      * ```
      *
      * @codingStandardsIgnoreStart
