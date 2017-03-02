@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Vision\Annotation;
 
-use Google\Cloud\CallTrait;
+use Google\Cloud\Core\CallTrait;
 
 /**
  * Represents a Document Text Detection result.

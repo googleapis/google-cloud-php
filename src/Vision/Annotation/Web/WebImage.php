@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Vision\Annotation\Web;
 
-use Google\Cloud\CallTrait;
+use Google\Cloud\Core\CallTrait;
 use Google\Cloud\Vision\Annotation\AbstractFeature;
 
 /**
