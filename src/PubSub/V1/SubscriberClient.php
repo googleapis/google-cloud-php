@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016, Google Inc. All rights reserved.
+ * Copyright 2017, Google Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -40,16 +40,25 @@ use google\iam\v1\IAMPolicyGrpcClient;
 use google\iam\v1\Policy;
 use google\iam\v1\SetIamPolicyRequest;
 use google\iam\v1\TestIamPermissionsRequest;
+use google\protobuf\Duration;
+use google\protobuf\FieldMask;
+use google\protobuf\Timestamp;
 use google\pubsub\v1\AcknowledgeRequest;
+use google\pubsub\v1\CreateSnapshotRequest;
+use google\pubsub\v1\DeleteSnapshotRequest;
 use google\pubsub\v1\DeleteSubscriptionRequest;
 use google\pubsub\v1\GetSubscriptionRequest;
+use google\pubsub\v1\ListSnapshotsRequest;
 use google\pubsub\v1\ListSubscriptionsRequest;
 use google\pubsub\v1\ModifyAckDeadlineRequest;
 use google\pubsub\v1\ModifyPushConfigRequest;
 use google\pubsub\v1\PullRequest;
 use google\pubsub\v1\PushConfig;
+use google\pubsub\v1\SeekRequest;
+use google\pubsub\v1\StreamingPullRequest;
 use google\pubsub\v1\SubscriberGrpcClient;
 use google\pubsub\v1\Subscription;
+use google\pubsub\v1\UpdateSubscriptionRequest;
 
 /**
  * Service Description: The service that an application uses to manipulate subscriptions and to
@@ -103,9 +112,10 @@ class SubscriberClient
     /**
      * The code generator version, to be included in the agent header.
      */
-    const CODEGEN_VERSION = '0.1.0';
+    const CODEGEN_VERSION = '0.0.5';
 
     private static $projectNameTemplate;
+    private static $snapshotNameTemplate;
     private static $subscriptionNameTemplate;
     private static $topicNameTemplate;
 
@@ -124,6 +134,18 @@ class SubscriberClient
     {
         return self::getProjectNameTemplate()->render([
             'project' => $project,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a snapshot resource.
+     */
+    public static function formatSnapshotName($project, $snapshot)
+    {
+        return self::getSnapshotNameTemplate()->render([
+            'project' => $project,
+            'snapshot' => $snapshot,
         ]);
     }
 
@@ -158,6 +180,24 @@ class SubscriberClient
     public static function parseProjectFromProjectName($projectName)
     {
         return self::getProjectNameTemplate()->match($projectName)['project'];
+    }
+
+    /**
+     * Parses the project from the given fully-qualified path which
+     * represents a snapshot resource.
+     */
+    public static function parseProjectFromSnapshotName($snapshotName)
+    {
+        return self::getSnapshotNameTemplate()->match($snapshotName)['project'];
+    }
+
+    /**
+     * Parses the snapshot from the given fully-qualified path which
+     * represents a snapshot resource.
+     */
+    public static function parseSnapshotFromSnapshotName($snapshotName)
+    {
+        return self::getSnapshotNameTemplate()->match($snapshotName)['snapshot'];
     }
 
     /**
@@ -205,6 +245,15 @@ class SubscriberClient
         return self::$projectNameTemplate;
     }
 
+    private static function getSnapshotNameTemplate()
+    {
+        if (self::$snapshotNameTemplate == null) {
+            self::$snapshotNameTemplate = new PathTemplate('projects/{project}/snapshots/{snapshot}');
+        }
+
+        return self::$snapshotNameTemplate;
+    }
+
     private static function getSubscriptionNameTemplate()
     {
         if (self::$subscriptionNameTemplate == null) {
@@ -232,12 +281,41 @@ class SubscriberClient
                     'responsePageTokenField' => 'next_page_token',
                     'resourceField' => 'subscriptions',
                 ]);
+        $listSnapshotsPageStreamingDescriptor =
+                new PageStreamingDescriptor([
+                    'requestPageTokenField' => 'page_token',
+                    'requestPageSizeField' => 'page_size',
+                    'responsePageTokenField' => 'next_page_token',
+                    'resourceField' => 'snapshots',
+                ]);
 
         $pageStreamingDescriptors = [
             'listSubscriptions' => $listSubscriptionsPageStreamingDescriptor,
+            'listSnapshots' => $listSnapshotsPageStreamingDescriptor,
         ];
 
         return $pageStreamingDescriptors;
+    }
+
+    private static function getGrpcStreamingDescriptors()
+    {
+        return [
+            'streamingPull' => [
+                'grpcStreamingType' => 'BidiStreaming',
+                'resourcesField' => 'getReceivedMessagesList',
+            ],
+        ];
+    }
+
+    private static function getGapicVersion()
+    {
+        if (file_exists(__DIR__.'../VERSION')) {
+            $gapicVersion = file_get_contents(__DIR__.'../VERSION');
+        } elseif (class_exists('\Google\Cloud\ServiceBuilder')) {
+            $gapicVersion = \Google\Cloud\ServiceBuilder::VERSION;
+        } else {
+            $gapicVersion = null;
+        }
     }
 
     // TODO(garrettjones): add channel (when supported in gRPC)
@@ -265,9 +343,6 @@ class SubscriberClient
      *                              that don't use retries. For calls that use retries,
      *                              set the timeout in RetryOptions.
      *                              Default: 30000 (30 seconds)
-     *     @type string $appName The codename of the calling service. Default 'gax'.
-     *     @type string $appVersion The version of the calling service.
-     *                              Default: the current version of GAX.
      *     @type \Google\Auth\CredentialsLoader $credentialsLoader
      *                              A CredentialsLoader object created using the
      *                              Google\Auth library.
@@ -284,30 +359,39 @@ class SubscriberClient
             ],
             'retryingOverride' => null,
             'timeoutMillis' => self::DEFAULT_TIMEOUT_MILLIS,
-            'appName' => 'gax',
-            'appVersion' => AgentHeaderDescriptor::getGaxVersion(),
+            'libName' => null,
+            'libVersion' => null,
         ];
         $options = array_merge($defaultOptions, $options);
 
+        if (isset($options['libVersion'])) {
+            $gapicVersion = $options['libVersion'];
+        } else {
+            $gapicVersion = self::getGapicVersion();
+        }
+
         $headerDescriptor = new AgentHeaderDescriptor([
-            'clientName' => $options['appName'],
-            'clientVersion' => $options['appVersion'],
-            'codeGenName' => self::CODEGEN_NAME,
-            'codeGenVersion' => self::CODEGEN_VERSION,
-            'gaxVersion' => AgentHeaderDescriptor::getGaxVersion(),
-            'phpVersion' => phpversion(),
+            'libName' => $options['libName'],
+            'libVersion' => $options['libVersion'],
+            'gapicVersion' => $gapicVersion,
         ]);
 
         $defaultDescriptors = ['headerDescriptor' => $headerDescriptor];
         $this->descriptors = [
             'createSubscription' => $defaultDescriptors,
             'getSubscription' => $defaultDescriptors,
+            'updateSubscription' => $defaultDescriptors,
             'listSubscriptions' => $defaultDescriptors,
             'deleteSubscription' => $defaultDescriptors,
             'modifyAckDeadline' => $defaultDescriptors,
             'acknowledge' => $defaultDescriptors,
             'pull' => $defaultDescriptors,
+            'streamingPull' => $defaultDescriptors,
             'modifyPushConfig' => $defaultDescriptors,
+            'listSnapshots' => $defaultDescriptors,
+            'createSnapshot' => $defaultDescriptors,
+            'deleteSnapshot' => $defaultDescriptors,
+            'seek' => $defaultDescriptors,
             'setIamPolicy' => $defaultDescriptors,
             'getIamPolicy' => $defaultDescriptors,
             'testIamPermissions' => $defaultDescriptors,
@@ -315,6 +399,10 @@ class SubscriberClient
         $pageStreamingDescriptors = self::getPageStreamingDescriptors();
         foreach ($pageStreamingDescriptors as $method => $pageStreamingDescriptor) {
             $this->descriptors[$method]['pageStreamingDescriptor'] = $pageStreamingDescriptor;
+        }
+        $grpcStreamingDescriptors = self::getGrpcStreamingDescriptors();
+        foreach ($grpcStreamingDescriptors as $method => $grpcStreamingDescriptor) {
+            $this->descriptors[$method]['grpcStreamingDescriptor'] = $grpcStreamingDescriptor;
         }
 
         $clientConfigJsonString = file_get_contents(__DIR__.'/resources/subscriber_client_config.json');
@@ -424,6 +512,18 @@ class SubscriberClient
      *
      *          If the subscriber never acknowledges the message, the Pub/Sub
      *          system will eventually redeliver the message.
+     *     @type bool $retainAckedMessages
+     *          Indicates whether to retain acknowledged messages. If true, then
+     *          messages are not expunged from the subscription's backlog, even if they are
+     *          acknowledged, until they fall out of the `message_retention_duration`
+     *          window.
+     *     @type Duration $messageRetentionDuration
+     *          How long to retain unacknowledged messages in the subscription's backlog,
+     *          from the moment a message is published.
+     *          If `retain_acked_messages` is true, then this also configures the retention
+     *          of acknowledged messages, and thus configures how far back in time a `Seek`
+     *          can be done. Defaults to 7 days. Cannot be more than 7 days or less than 10
+     *          minutes.
      *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
@@ -446,6 +546,12 @@ class SubscriberClient
         }
         if (isset($optionalArgs['ackDeadlineSeconds'])) {
             $request->setAckDeadlineSeconds($optionalArgs['ackDeadlineSeconds']);
+        }
+        if (isset($optionalArgs['retainAckedMessages'])) {
+            $request->setRetainAckedMessages($optionalArgs['retainAckedMessages']);
+        }
+        if (isset($optionalArgs['messageRetentionDuration'])) {
+            $request->setMessageRetentionDuration($optionalArgs['messageRetentionDuration']);
         }
 
         $mergedSettings = $this->defaultCallSettings['createSubscription']->merge(
@@ -508,6 +614,62 @@ class SubscriberClient
             'GetSubscription',
             $mergedSettings,
             $this->descriptors['getSubscription']
+        );
+
+        return $callable(
+            $request,
+            [],
+            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+    }
+
+    /**
+     * Updates an existing subscription. Note that certain properties of a
+     * subscription, such as its topic, are not modifiable.
+     *
+     * Sample code:
+     * ```
+     * try {
+     *     $subscriberClient = new SubscriberClient();
+     *     $subscription = new Subscription();
+     *     $updateMask = new FieldMask();
+     *     $response = $subscriberClient->updateSubscription($subscription, $updateMask);
+     * } finally {
+     *     $subscriberClient->close();
+     * }
+     * ```
+     *
+     * @param Subscription $subscription The updated subscription object.
+     * @param FieldMask    $updateMask   Indicates which fields in the provided subscription to update.
+     *                                   Must be specified and non-empty.
+     * @param array        $optionalArgs {
+     *                                   Optional.
+     *
+     *     @type \Google\GAX\RetrySettings $retrySettings
+     *          Retry settings to use for this call. If present, then
+     *          $timeoutMillis is ignored.
+     *     @type int $timeoutMillis
+     *          Timeout to use for this call. Only used if $retrySettings
+     *          is not set.
+     * }
+     *
+     * @return \google\pubsub\v1\Subscription
+     *
+     * @throws \Google\GAX\ApiException if the remote call fails
+     */
+    public function updateSubscription($subscription, $updateMask, $optionalArgs = [])
+    {
+        $request = new UpdateSubscriptionRequest();
+        $request->setSubscription($subscription);
+        $request->setUpdateMask($updateMask);
+
+        $mergedSettings = $this->defaultCallSettings['updateSubscription']->merge(
+            new CallSettings($optionalArgs)
+        );
+        $callable = ApiCallable::createApiCall(
+            $this->subscriberStub,
+            'UpdateSubscription',
+            $mergedSettings,
+            $this->descriptors['updateSubscription']
         );
 
         return $callable(
@@ -849,6 +1011,89 @@ class SubscriberClient
     }
 
     /**
+     * (EXPERIMENTAL) StreamingPull is an experimental feature. This RPC will
+     * respond with UNIMPLEMENTED errors unless you have been invited to test
+     * this feature. Contact cloud-pubsub&#64;google.com with any questions.
+     *
+     * Establishes a stream with the server, which sends messages down to the
+     * client. The client streams acknowledgements and ack deadline modifications
+     * back to the server. The server will close the stream and return the status
+     * on any error. The server may close the stream with status `OK` to reassign
+     * server-side resources, in which case, the client should re-establish the
+     * stream. `UNAVAILABLE` may also be returned in the case of a transient error
+     * (e.g., a server restart). These should also be retried by the client. Flow
+     * control can be achieved by configuring the underlying RPC channel.
+     *
+     * Sample code:
+     * ```
+     * try {
+     *     $subscriberClient = new SubscriberClient();
+     *     $formattedSubscription = SubscriberClient::formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+     *     $streamAckDeadlineSeconds = 0;
+     *     $request = new StreamingPullRequest();
+     *     $request->setSubscription($formattedSubscription);
+     *     $request->setStreamAckDeadlineSeconds($streamAckDeadlineSeconds);
+     *     $requests = [$request];
+     *
+     *     // Write all requests to the server, then read all responses until the
+     *     // stream is complete
+     *     $stream = $subscriberClient->streamingPull();
+     *     $stream->writeAll($requests);
+     *     foreach ($stream->closeWriteAndReadAll() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     *
+     *     // OR write requests individually, making read() calls if
+     *     // required. Call closeWrite() once writes are complete, and read the
+     *     // remaining responses from the server.
+     *     $stream = $subscriberClient->streamingPull();
+     *     foreach ($requests as $request) {
+     *         $stream->write($request);
+     *         // if required, read a single response from the stream
+     *         $element = $stream->read();
+     *         // doSomethingWith($element)
+     *     }
+     *     $stream->closeWrite();
+     *     $element = $stream->read();
+     *     while (!is_null($element)) {
+     *         // doSomethingWith($element)
+     *         $element = $stream->read();
+     *     }
+     * } finally {
+     *     $subscriberClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type int $timeoutMillis
+     *          Timeout to use for this call.
+     * }
+     *
+     * @return \Google\GAX\BidiStreamingResponse
+     *
+     * @throws \Google\GAX\ApiException if the remote call fails
+     */
+    public function streamingPull($optionalArgs = [])
+    {
+        $mergedSettings = $this->defaultCallSettings['streamingPull']->merge(
+            new CallSettings($optionalArgs)
+        );
+        $callable = ApiCallable::createApiCall(
+            $this->subscriberStub,
+            'StreamingPull',
+            $mergedSettings,
+            $this->descriptors['streamingPull']
+        );
+
+        return $callable(
+            null,
+            [],
+            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+    }
+
+    /**
      * Modifies the `PushConfig` for a specified subscription.
      *
      * This may be used to change a push subscription to a pull one (signified by
@@ -903,6 +1148,287 @@ class SubscriberClient
             'ModifyPushConfig',
             $mergedSettings,
             $this->descriptors['modifyPushConfig']
+        );
+
+        return $callable(
+            $request,
+            [],
+            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+    }
+
+    /**
+     * Lists the existing snapshots.
+     *
+     * Sample code:
+     * ```
+     * try {
+     *     $subscriberClient = new SubscriberClient();
+     *     $formattedProject = SubscriberClient::formatProjectName("[PROJECT]");
+     *     // Iterate through all elements
+     *     $pagedResponse = $subscriberClient->listSnapshots($formattedProject);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     *
+     *     // OR iterate over pages of elements, with the maximum page size set to 5
+     *     $pagedResponse = $subscriberClient->listSnapshots($formattedProject, ['pageSize' => 5]);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     * } finally {
+     *     $subscriberClient->close();
+     * }
+     * ```
+     *
+     * @param string $project      The name of the cloud project that snapshots belong to.
+     *                             Format is `projects/{project}`.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type int $pageSize
+     *          The maximum number of resources contained in the underlying API
+     *          response. The API may return fewer values in a page, even if
+     *          there are additional values to be retrieved.
+     *     @type string $pageToken
+     *          A page token is used to specify a page of values to be returned.
+     *          If no page token is specified (the default), the first page
+     *          of values will be returned. Any page token used here must have
+     *          been generated by a previous call to the API.
+     *     @type \Google\GAX\RetrySettings $retrySettings
+     *          Retry settings to use for this call. If present, then
+     *          $timeoutMillis is ignored.
+     *     @type int $timeoutMillis
+     *          Timeout to use for this call. Only used if $retrySettings
+     *          is not set.
+     * }
+     *
+     * @return \Google\GAX\PagedListResponse
+     *
+     * @throws \Google\GAX\ApiException if the remote call fails
+     */
+    public function listSnapshots($project, $optionalArgs = [])
+    {
+        $request = new ListSnapshotsRequest();
+        $request->setProject($project);
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $mergedSettings = $this->defaultCallSettings['listSnapshots']->merge(
+            new CallSettings($optionalArgs)
+        );
+        $callable = ApiCallable::createApiCall(
+            $this->subscriberStub,
+            'ListSnapshots',
+            $mergedSettings,
+            $this->descriptors['listSnapshots']
+        );
+
+        return $callable(
+            $request,
+            [],
+            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+    }
+
+    /**
+     * Creates a snapshot from the requested subscription.
+     * If the snapshot already exists, returns `ALREADY_EXISTS`.
+     * If the requested subscription doesn't exist, returns `NOT_FOUND`.
+     *
+     * If the name is not provided in the request, the server will assign a random
+     * name for this snapshot on the same project as the subscription, conforming
+     * to the
+     * [resource name format](https://cloud.google.com/pubsub/docs/overview#names).
+     * The generated name is populated in the returned Snapshot object.
+     * Note that for REST API requests, you must specify a name in the request.
+     *
+     * Sample code:
+     * ```
+     * try {
+     *     $subscriberClient = new SubscriberClient();
+     *     $formattedName = SubscriberClient::formatSnapshotName("[PROJECT]", "[SNAPSHOT]");
+     *     $formattedSubscription = SubscriberClient::formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+     *     $response = $subscriberClient->createSnapshot($formattedName, $formattedSubscription);
+     * } finally {
+     *     $subscriberClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Optional user-provided name for this snapshot.
+     *                             If the name is not provided in the request, the server will assign a random
+     *                             name for this snapshot on the same project as the subscription.
+     *                             Note that for REST API requests, you must specify a name.
+     *                             Format is `projects/{project}/snapshots/{snap}`.
+     * @param string $subscription The subscription whose backlog the snapshot retains.
+     *                             Specifically, the created snapshot is guaranteed to retain:
+     *                             (a) The existing backlog on the subscription. More precisely, this is
+     *                             defined as the messages in the subscription's backlog that are
+     *                             unacknowledged upon the successful completion of the
+     *                             `CreateSnapshot` request; as well as:
+     *                             (b) Any messages published to the subscription's topic following the
+     *                             successful completion of the CreateSnapshot request.
+     *                             Format is `projects/{project}/subscriptions/{sub}`.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type \Google\GAX\RetrySettings $retrySettings
+     *          Retry settings to use for this call. If present, then
+     *          $timeoutMillis is ignored.
+     *     @type int $timeoutMillis
+     *          Timeout to use for this call. Only used if $retrySettings
+     *          is not set.
+     * }
+     *
+     * @return \google\pubsub\v1\Snapshot
+     *
+     * @throws \Google\GAX\ApiException if the remote call fails
+     */
+    public function createSnapshot($name, $subscription, $optionalArgs = [])
+    {
+        $request = new CreateSnapshotRequest();
+        $request->setName($name);
+        $request->setSubscription($subscription);
+
+        $mergedSettings = $this->defaultCallSettings['createSnapshot']->merge(
+            new CallSettings($optionalArgs)
+        );
+        $callable = ApiCallable::createApiCall(
+            $this->subscriberStub,
+            'CreateSnapshot',
+            $mergedSettings,
+            $this->descriptors['createSnapshot']
+        );
+
+        return $callable(
+            $request,
+            [],
+            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+    }
+
+    /**
+     * Removes an existing snapshot. All messages retained in the snapshot
+     * are immediately dropped. After a snapshot is deleted, a new one may be
+     * created with the same name, but the new one has no association with the old
+     * snapshot or its subscription, unless the same subscription is specified.
+     *
+     * Sample code:
+     * ```
+     * try {
+     *     $subscriberClient = new SubscriberClient();
+     *     $formattedSnapshot = SubscriberClient::formatSnapshotName("[PROJECT]", "[SNAPSHOT]");
+     *     $subscriberClient->deleteSnapshot($formattedSnapshot);
+     * } finally {
+     *     $subscriberClient->close();
+     * }
+     * ```
+     *
+     * @param string $snapshot     The name of the snapshot to delete.
+     *                             Format is `projects/{project}/snapshots/{snap}`.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type \Google\GAX\RetrySettings $retrySettings
+     *          Retry settings to use for this call. If present, then
+     *          $timeoutMillis is ignored.
+     *     @type int $timeoutMillis
+     *          Timeout to use for this call. Only used if $retrySettings
+     *          is not set.
+     * }
+     *
+     * @throws \Google\GAX\ApiException if the remote call fails
+     */
+    public function deleteSnapshot($snapshot, $optionalArgs = [])
+    {
+        $request = new DeleteSnapshotRequest();
+        $request->setSnapshot($snapshot);
+
+        $mergedSettings = $this->defaultCallSettings['deleteSnapshot']->merge(
+            new CallSettings($optionalArgs)
+        );
+        $callable = ApiCallable::createApiCall(
+            $this->subscriberStub,
+            'DeleteSnapshot',
+            $mergedSettings,
+            $this->descriptors['deleteSnapshot']
+        );
+
+        return $callable(
+            $request,
+            [],
+            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+    }
+
+    /**
+     * Seeks an existing subscription to a point in time or to a given snapshot,
+     * whichever is provided in the request.
+     *
+     * Sample code:
+     * ```
+     * try {
+     *     $subscriberClient = new SubscriberClient();
+     *     $formattedSubscription = SubscriberClient::formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+     *     $response = $subscriberClient->seek($formattedSubscription);
+     * } finally {
+     *     $subscriberClient->close();
+     * }
+     * ```
+     *
+     * @param string $subscription The subscription to affect.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type Timestamp $time
+     *          The time to seek to.
+     *          Messages retained in the subscription that were published before this
+     *          time are marked as acknowledged, and messages retained in the
+     *          subscription that were published after this time are marked as
+     *          unacknowledged. Note that this operation affects only those messages
+     *          retained in the subscription (configured by the combination of
+     *          `message_retention_duration` and `retain_acked_messages`). For example,
+     *          if `time` corresponds to a point before the message retention
+     *          window (or to a point before the system's notion of the subscription
+     *          creation time), only retained messages will be marked as unacknowledged,
+     *          and already-expunged messages will not be restored.
+     *     @type string $snapshot
+     *          The snapshot to seek to. The snapshot's topic must be the same as that of
+     *          the provided subscription.
+     *          Format is `projects/{project}/snapshots/{snap}`.
+     *     @type \Google\GAX\RetrySettings $retrySettings
+     *          Retry settings to use for this call. If present, then
+     *          $timeoutMillis is ignored.
+     *     @type int $timeoutMillis
+     *          Timeout to use for this call. Only used if $retrySettings
+     *          is not set.
+     * }
+     *
+     * @return \google\pubsub\v1\SeekResponse
+     *
+     * @throws \Google\GAX\ApiException if the remote call fails
+     */
+    public function seek($subscription, $optionalArgs = [])
+    {
+        $request = new SeekRequest();
+        $request->setSubscription($subscription);
+        if (isset($optionalArgs['time'])) {
+            $request->setTime($optionalArgs['time']);
+        }
+        if (isset($optionalArgs['snapshot'])) {
+            $request->setSnapshot($optionalArgs['snapshot']);
+        }
+
+        $mergedSettings = $this->defaultCallSettings['seek']->merge(
+            new CallSettings($optionalArgs)
+        );
+        $callable = ApiCallable::createApiCall(
+            $this->subscriberStub,
+            'Seek',
+            $mergedSettings,
+            $this->descriptors['seek']
         );
 
         return $callable(

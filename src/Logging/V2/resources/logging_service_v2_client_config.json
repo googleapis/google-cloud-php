@@ -2,13 +2,13 @@
   "interfaces": {
     "google.logging.v2.LoggingServiceV2": {
       "retry_codes": {
-        "retry_codes_def": {
-          "idempotent": [
-            "DEADLINE_EXCEEDED",
-            "UNAVAILABLE"
-          ],
-          "non_idempotent": []
-        }
+        "idempotent": [
+          "DEADLINE_EXCEEDED",
+          "UNAVAILABLE"
+        ],
+        "non_idempotent": [
+          "UNAVAILABLE"
+        ]
       },
       "retry_params": {
         "default": {
@@ -39,7 +39,12 @@
         "WriteLogEntries": {
           "timeout_millis": 30000,
           "retry_codes_name": "non_idempotent",
-          "retry_params_name": "default"
+          "retry_params_name": "default",
+          "bundling": {
+            "element_count_threshold": 100,
+            "request_byte_threshold": 1024,
+            "delay_threshold_millis": 10
+          }
         },
         "ListLogEntries": {
           "timeout_millis": 30000,
