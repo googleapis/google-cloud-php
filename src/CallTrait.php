@@ -27,7 +27,11 @@ trait CallTrait
      */
     public function __call($name, array $args)
     {
-        if (!isset($this->info()[$name])) {
+        $methods = (isset($this->magicMethods) && is_array($this->magicMethods))
+            ? $this->magicMethods
+            : [];
+
+        if (!isset($this->info()[$name]) && !in_array($name, $methods)) {
             trigger_error(sprintf(
                 'Call to undefined method %s::%s',
                 __CLASS__,
@@ -35,6 +39,8 @@ trait CallTrait
             ), E_USER_ERROR);
         }
 
-        return $this->info()[$name];
+        return (isset($this->info()[$name]))
+            ? $this->info()[$name]
+            : null;
     }
 }

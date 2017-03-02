@@ -94,6 +94,16 @@ class SafeSearch extends AbstractFeature
     use LikelihoodTrait;
 
     /**
+     * @var array
+     */
+    private $magicMethods = [
+        'adult',
+        'spoof',
+        'medical',
+        'violence',
+    ];
+
+    /**
      * Create a SafeSearch annotation result
      *
      * This class is instantiated internally and is used to represent the result of Cloud Vision's SafeSearch annotation

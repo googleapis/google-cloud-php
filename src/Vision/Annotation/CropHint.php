@@ -74,6 +74,15 @@ class CropHint extends AbstractFeature
     use CallTrait;
 
     /**
+     * @var array
+     */
+    private $magicMethods = [
+        'boundingPoly',
+        'confidence',
+        'importanceFraction',
+    ];
+
+    /**
      * @param array $info Crop Hint result
      */
     public function __construct(array $info)

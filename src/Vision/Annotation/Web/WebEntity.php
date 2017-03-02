@@ -76,6 +76,15 @@ class WebEntity extends AbstractFeature
     use CallTrait;
 
     /**
+     * @var array
+     */
+    private $magicMethods = [
+        'entityId',
+        'score',
+        'description'
+    ];
+
+    /**
      * @param array $info WebEntity info
      */
     public function __construct(array $info)

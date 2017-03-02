@@ -66,6 +66,14 @@ class WebImage extends AbstractFeature
     use CallTrait;
 
     /**
+     * @var array
+     */
+    private $magicMethods = [
+        'url',
+        'score'
+    ];
+
+    /**
      * @param array $info The WebImage result
      */
     public function __construct(array $info)
