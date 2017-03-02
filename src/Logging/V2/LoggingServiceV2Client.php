@@ -210,11 +210,11 @@ class LoggingServiceV2Client
     private static function getGapicVersion()
     {
         if (file_exists(__DIR__.'../VERSION')) {
-            $gapicVersion = file_get_contents(__DIR__.'../VERSION');
+            return file_get_contents(__DIR__.'../VERSION');
         } elseif (class_exists('\Google\Cloud\ServiceBuilder')) {
-            $gapicVersion = \Google\Cloud\ServiceBuilder::VERSION;
+            return \Google\Cloud\ServiceBuilder::VERSION;
         } else {
-            $gapicVersion = null;
+            return;
         }
     }
 
@@ -267,11 +267,7 @@ class LoggingServiceV2Client
         ];
         $options = array_merge($defaultOptions, $options);
 
-        if (isset($options['libVersion'])) {
-            $gapicVersion = $options['libVersion'];
-        } else {
-            $gapicVersion = self::getGapicVersion();
-        }
+        $gapicVersion = $options['libVersion'] ?: self::getGapicVersion();
 
         $headerDescriptor = new AgentHeaderDescriptor([
             'libName' => $options['libName'],
