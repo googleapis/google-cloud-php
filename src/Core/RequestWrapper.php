@@ -21,7 +21,6 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Auth\HttpHandler\HttpHandlerFactory;
 use Google\Cloud\Core\Exception;
 use Google\Cloud\Core\RequestWrapperTrait;
-use Google\Cloud\ServiceBuilder;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7;
 use Psr\Http\Message\RequestInterface;
@@ -157,9 +156,9 @@ class RequestWrapper
      */
     private function signRequest(RequestInterface $request)
     {
-        $uaTemplate = 'gcloud-php-%s/%s';
         $headers = [
-            'User-Agent' => sprintf($uaTemplate, '', $this->componentVersion),
+            'User-Agent' => 'gcloud-php/' . $this->componentVersion,
+            'x-goog-api-client' => 'gl-php/' . phpversion() . ' gccl/' . $this->componentVersion,
             'Authorization' => 'Bearer ' . $this->getToken()
         ];
 

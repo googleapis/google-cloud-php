@@ -31,7 +31,6 @@ use Prophecy\Argument;
  */
 class RequestWrapperTest extends \PHPUnit_Framework_TestCase
 {
-    const NAME = 'foo';
     const VERSION = 'v0.1';
 
     public function testSuccessfullySendsRequest()
@@ -163,14 +162,15 @@ class RequestWrapperTest extends \PHPUnit_Framework_TestCase
         ];
     }
 
-    public function testAddsUserAgentToRequest()
+    public function testAddsUserAgentAndXGoogApiClientToRequest()
     {
         $requestWrapper = new RequestWrapper([
-            'componentName' => self::NAME,
             'componentVersion' => self::VERSION,
             'httpHandler' => function ($request, $options = []) {
                 $userAgent = $request->getHeaderLine('User-Agent');
-                $this->assertEquals('gcloud-php-'. self::NAME .'/' . self::VERSION, $userAgent);
+                $this->assertEquals('gcloud-php/' . self::VERSION, $userAgent);
+                $xGoogApiClient = $request->getHeaderLine('x-goog-api-client');
+                $this->assertEquals('gl-php/' . phpversion() . ' gccl/' . self::VERSION, $xGoogApiClient);
                 return new Response(200);
             },
             'accessToken' => 'abc'

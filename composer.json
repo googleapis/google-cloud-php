@@ -55,8 +55,8 @@
         "james-heinrich/getid3": "^1.9",
         "erusev/parsedown": "^1.6",
         "vierbergenlars/php-semver": "^3.0",
-        "google/proto-client-php": "^0.7",
-        "google/gax": "^0.6"
+        "google/proto-client-php": "^0.9",
+        "google/gax": "^0.8"
     },
     "suggest": {
         "google/gax": "Required to support gRPC",

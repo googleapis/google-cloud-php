@@ -106,10 +106,7 @@ class ValueMapper
             case self::TYPE_TIME:
                 return new Time(new \DateTime($value));
             case self::TYPE_TIMESTAMP:
-                $timestamp = new \DateTime();
-                $timestamp->setTimestamp((float) $value);
-
-                return new Timestamp($timestamp);
+                return $this->timestampFromBigQuery($value);
             case self::TYPE_RECORD:
                 return $this->recordFromBigQuery($value, $schema['fields']);
             default:
@@ -324,5 +321,49 @@ class ValueMapper
             ],
             ['structValues' => $values]
         ];
+    }
+
+    /**
+     * Converts a timestamp in string format received from BigQuery to a
+     * {@see Google\Cloud\BigQuery\Timestamp}.
+     *
+     * @param string $value The timestamp.
+     * @return Timestamp
+     */
+    private function timestampFromBigQuery($value)
+    {
+        // If the string contains 'E' convert from exponential notation to
+        // decimal notation. This doesn't cast to a float because precision can
+        // be lost.
+        if (strpos($value, 'E')) {
+            list($value, $exponent) = explode('E', $value);
+            list($firstDigit, $remainingDigits) = explode('.', $value);
+
+            if (strlen($remainingDigits) > $exponent) {
+                $value = $firstDigit . substr_replace($remainingDigits, '.', $exponent, 0);
+            } else {
+                $value = $firstDigit . str_pad($remainingDigits, $exponent, '0') . '.0';
+            }
+        }
+
+        list($unixTimestamp, $microSeconds) = explode('.', $value);
+        $dateTime = new \DateTime("@$unixTimestamp");
+
+        // If the timestamp is before the epoch, make sure we account for that
+        // before concatenating the microseconds.
+        if ($microSeconds > 0 && $unixTimestamp[0] === '-') {
+            $microSeconds = 1000000 - (int) str_pad($microSeconds, 6, '0');
+            $dateTime->modify('-1 second');
+        }
+
+        return new Timestamp(
+            new \DateTime(
+                sprintf(
+                    '%s.%s+00:00',
+                    $dateTime->format('Y-m-d H:i:s'),
+                    $microSeconds
+                )
+            )
+        );
     }
 }
