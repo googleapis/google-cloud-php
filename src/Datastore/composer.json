@@ -9,6 +9,7 @@
     "extra": {
         "id": "cloud-datastore",
         "target": "jdpedrie-gcp/google-cloud-php-datastore.git",
-        "entry": "src/Datastore/DatastoreClient.php"
+        "path": "src/Datastore",
+        "entry": "DatastoreClient.php"
     }
 }

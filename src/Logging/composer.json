@@ -9,6 +9,7 @@
     "extra": {
         "id": "cloud-logging",
         "target": "jdpedrie-gcp/google-cloud-php-logging.git",
-        "entry": "src/Logging/LoggingClient.php"
+        "path": "src/Logging",
+        "entry": "LoggingClient.php"
     }
 }

@@ -9,6 +9,7 @@
     "extra": {
         "id": "cloud-pubsub",
         "target": "jdpedrie-gcp/google-cloud-php-pubsub.git",
-        "entry": "src/PubSub/PubSubClient.php"
+        "path": "src/PubSub",
+        "entry": "PubSubClient.php"
     }
 }

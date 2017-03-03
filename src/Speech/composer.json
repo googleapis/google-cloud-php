@@ -9,6 +9,7 @@
     "extra": {
         "id": "cloud-speech",
         "target": "jdpedrie-gcp/google-cloud-php-speech.git",
-        "entry": "src/Speech/SpeechClient.php"
+        "path": "src/Speech",
+        "entry": "SpeechClient.php"
     }
 }

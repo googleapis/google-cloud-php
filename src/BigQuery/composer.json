@@ -10,6 +10,7 @@
         "displayName": "Google Cloud BigQuery",
         "id": "cloud-bigquery",
         "target": "jdpedrie-gcp/google-cloud-php-bigquery.git",
-        "entry": "src/BigQuery/BigQueryClient.php"
+        "path": "src/BigQuery",
+        "entry": "BigQueryClient.php"
     }
 }

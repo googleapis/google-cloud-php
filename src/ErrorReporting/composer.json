@@ -1,0 +1,15 @@
+{
+    "name": "google/cloud-error-reporting",
+    "description": "Stackdriver Error Reporting Client for PHP",
+    "license": "Apache-2.0",
+    "minimum-stability": "stable",
+    "require": {
+        "google/cloud-core": "*"
+    },
+    "extra": {
+        "id": "cloud-error-reporting",
+        "target": "jdpedrie-gcp/google-cloud-php-error-reporting.git",
+        "path": "src/ErrorReporting",
+        "entry": null
+    }
+}

@@ -19,6 +19,7 @@
     "extra": {
         "id": "cloud-core",
         "target": "jdpedrie-gcp/google-cloud-php-core.git",
-        "entry": "src/Core/VERSION"
+        "path": "src/Core",
+        "entry": null
     }
 }

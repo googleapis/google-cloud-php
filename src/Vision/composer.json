@@ -9,6 +9,7 @@
     "extra": {
         "id": "cloud-vision",
         "target": "jdpedrie-gcp/google-cloud-php-vision.git",
-        "entry": "src/Vision/VisionClient.php"
+        "path": "src/Vision",
+        "entry": "VisionClient.php"
     }
 }

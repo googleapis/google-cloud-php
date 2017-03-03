@@ -9,6 +9,7 @@
     "extra": {
         "id": "cloud-natural-language",
         "target": "jdpedrie-gcp/google-cloud-php-natural-language.git",
-        "entry": "src/NaturalLanguage/NaturalLanguageClient.php"
+        "path": "src/NaturalLanguage",
+        "entry": "NaturalLanguageClient.php"
     }
 }

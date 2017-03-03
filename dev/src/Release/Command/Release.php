@@ -112,21 +112,19 @@ class Release extends Command
             $version
         ));
 
-        if (!$this->updateComponentVersionConstant($version, $component)) {
-            $this->updateComponentVersionFile($version, $component);
+        $this->updateComponentVersionConstant($version, $component);
+        $output->writeln(sprintf(
+            'File %s VERSION constant updated to %s',
+            $component['entry'],
+            $version
+        ));
 
-            $output->writeln(sprintf(
-                'Component %s VERSION file updated to %s',
-                $component['id'],
-                $version
-            ));
-        } else {
-            $output->writeln(sprintf(
-                'File %s VERSION constant updated to %s',
-                $component['entry'],
-                $version
-            ));
-        }
+        $this->updateComponentVersionFile($version, $component);
+        $output->writeln(sprintf(
+            'Component %s VERSION file updated to %s',
+            $component['id'],
+            $version
+        ));
 
         $output->writeln(sprintf(
             'Release %s generated!',
@@ -164,11 +162,11 @@ class Release extends Command
 
     private function updateComponentVersionConstant($version, array $component)
     {
-        if (strpos($component['entry'], '.php') === false) {
+        if (is_null($component['entry'])) {
             return false;
         }
 
-        $path = $this->cliBasePath .'/../'. $component['entry'];
+        $path = $this->cliBasePath .'/../'. $component['path'] .'/'. $component['entry'];
         if (!file_exists($path)) {
             throw new \RuntimeException(sprintf(
                 'Component entry file %s does not exist',
@@ -180,7 +178,7 @@ class Release extends Command
 
         $replacement = sprintf("const VERSION = '%s';", $version);
 
-        $entry = preg_replace("/const VERSION = '[0-9.]{0,}'\;/", $replacement, $entry);
+        $entry = preg_replace("/const VERSION = [\'\\\"]([0-9.]{0,}|master)[\'\\\"]\;/", $replacement, $entry);
 
         $result = file_put_contents($path, $entry);
 
@@ -193,7 +191,7 @@ class Release extends Command
 
     private function updateComponentVersionFile($version, array $component)
     {
-        $path = $this->cliBasePath .'/../'. $component['entry'];
+        $path = $this->cliBasePath .'/../'. $component['path'] .'/VERSION';
         $result = file_put_contents($path, $version);
 
         if (!$result) {

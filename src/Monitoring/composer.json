@@ -9,6 +9,7 @@
     "extra": {
         "id": "cloud-monitoring",
         "target": "jdpedrie-gcp/google-cloud-php-monitoring.git",
-        "entry": "src/Monitoring/VERSION"
+        "path": "src/Monitoring",
+        "entry": null
     }
 }
