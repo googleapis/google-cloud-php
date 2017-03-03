@@ -128,28 +128,29 @@ class RequestWrapper
         $httpOptions = isset($options['httpOptions']) ? $options['httpOptions'] : $this->httpOptions;
         $backoff = new ExponentialBackoff($retries, $this->getRetryFunction());
 
-        $signedRequest = $this->shouldSignRequest ? $this->signRequest($request) : $request;
-
         try {
-            return $backoff->execute($this->httpHandler, [$signedRequest, $httpOptions]);
+            return $backoff->execute($this->httpHandler, [$this->applyHeaders($request), $httpOptions]);
         } catch (\Exception $ex) {
             throw $this->convertToGoogleException($ex);
         }
     }
 
     /**
-     * Sign the request.
+     * Applies headers to the request.
      *
      * @param RequestInterface $request Psr7 request.
      * @return RequestInterface
      */
-    private function signRequest(RequestInterface $request)
+    private function applyHeaders(RequestInterface $request)
     {
         $headers = [
             'User-Agent' => 'gcloud-php/' . ServiceBuilder::VERSION,
-            'x-goog-api-client' => 'gl-php/' . phpversion() . ' gccl/' . ServiceBuilder::VERSION,
-            'Authorization' => 'Bearer ' . $this->getToken()
+            'x-goog-api-client' => 'gl-php/' . phpversion() . ' gccl/' . ServiceBuilder::VERSION
         ];
+
+        if ($this->shouldSignRequest) {
+            $headers['Authorization'] = 'Bearer ' . $this->getToken();
+        }
 
         return Psr7\modify_request($request, ['set_headers' => $headers]);
     }
