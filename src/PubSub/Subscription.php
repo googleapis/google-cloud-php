@@ -331,10 +331,12 @@ class Subscription
      * @param array $options [optional] {
      *      Configuration Options
      *
-     *      @type bool $returnImmediately If set, the system will respond
+     *      @type bool $returnImmediately If true, the system will respond
      *            immediately, even if no messages are available. Otherwise,
-     *            wait until new messages are available.
-     *      @type int  $maxMessages Limit the amount of messages pulled.
+     *            wait until new messages are available. **Defaults to**
+     *            `false`.
+     *      @type int $maxMessages Limit the amount of messages pulled.
+     *            **Defaults to** `1000`.
      * }
      * @return Message[]
      */
