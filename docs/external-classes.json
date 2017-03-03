@@ -1,0 +1,44 @@
+[{
+  "name": "Google\\Auth\\",
+  "uri": "https://github.com/google/google-auth-library-php/blob/master/src/%s.php"
+}, {
+  "name": "Google\\GAX\\",
+  "uri": "https://github.com/googleapis/gax-php/tree/master/src/%s.php"
+}, {
+  "name": "google\\iam\\v1\\",
+  "uri": "https://github.com/googleapis/proto-client-php/blob/master/src/iam/v1"
+}, {
+  "name": "google\\devtools\\clouderrorreporting\\v1beta1\\",
+  "uri": "https://github.com/googleapis/proto-client-php/tree/master/src/errorreporting/v1beta1"
+}, {
+  "name": "google\\cloud\\language\\v1\\",
+  "uri": "https://github.com/googleapis/proto-client-php/tree/master/src/language/v1"
+}, {
+  "name": "google\\logging\\v2\\",
+  "uri": "https://github.com/googleapis/proto-client-php/tree/master/src/logging/v2"
+}, {
+  "name": "google\\monitoring\\v3\\",
+  "uri": "https://github.com/googleapis/proto-client-php/tree/master/src/monitoring/v3"
+}, {
+  "name": "google\\pubsub\\v1\\",
+  "uri": "https://github.com/googleapis/proto-client-php/blob/master/src/pubsub/v1/pubsub.php"
+}, {
+  "name": "google\\spanner\\admin\\database\\v1\\",
+  "name": "https://github.com/googleapis/proto-client-php/blob/master/src/spanner/admin/database/v1/spanner_database_admin.php"
+}, {
+  "name": "google\\spanner\\admin\\instance\\v1\\",
+  "uri": "https://github.com/googleapis/proto-client-php/blob/master/src/spanner/admin/instance/v1/spanner_instance_admin.php"
+}, {
+  "name": "google\\spanner\\v1\\",
+  "uri": "https://github.com/googleapis/proto-client-php/blob/master/src/spanner/v1"
+}, {
+  "name": "google\\cloud\\s[eech\\v1beta1\\",
+  "uri": "https://github.com/googleapis/proto-client-php/blob/master/src/speech/v1beta1/cloud_speech.php"
+}, {
+  "name": "google\\devtools\\cloudtrace\\v1\\",
+  "uri": "https://github.com/googleapis/proto-client-php/blob/master/src/trace/v1/trace.php"
+}, {
+  "name": "google\\cloud\\vision\\v1\\",
+  "uri": "https://github.com/googleapis/proto-client-php/tree/master/src/vision/v1"
+}]
+
