@@ -534,7 +534,7 @@ class ConfigServiceV2Client
     /**
      * Updates a sink. If the named sink doesn't exist, then this method is
      * identical to
-     * [sinks.create](/logging/docs/api/reference/rest/v2/projects.sinks/create).
+     * [sinks.create](https://cloud.google.com/logging/docs/api/reference/rest/v2/projects.sinks/create).
      * If the named sink does exist, then this method replaces the following
      * fields in the existing sink with values from the new sink: `destination`,
      * `filter`, `output_version_format`, `start_time`, and `end_time`.
@@ -568,7 +568,7 @@ class ConfigServiceV2Client
      *
      *     @type bool $uniqueWriterIdentity
      *          Optional. See
-     *          [sinks.create](/logging/docs/api/reference/rest/v2/projects.sinks/create)
+     *          [sinks.create](https://cloud.google.com/logging/docs/api/reference/rest/v2/projects.sinks/create)
      *          for a description of this field.  When updating a sink, the effect of this
      *          field on the value of `writer_identity` in the updated sink depends on both
      *          the old and new values of this field:
