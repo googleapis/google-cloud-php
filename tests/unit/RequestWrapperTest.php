@@ -194,6 +194,26 @@ class RequestWrapperTest extends \PHPUnit_Framework_TestCase
         );
     }
 
+    public function testRequestUsesApiKeyInsteadOfAuthHeader()
+    {
+        $requestWrapper = new RequestWrapper([
+            'httpHandler' => function ($request, $options = []) {
+                $authHeader = $request->getHeaderLine('Authorization');
+                $userAgent = $request->getHeaderLine('User-Agent');
+                $xGoogApiClient = $request->getHeaderLine('x-goog-api-client');
+                $this->assertEquals('gcloud-php/' . ServiceBuilder::VERSION, $userAgent);
+                $this->assertEquals('gl-php/' . phpversion() . ' gccl/' . ServiceBuilder::VERSION, $xGoogApiClient);
+                $this->assertEmpty($authHeader);
+                return new Response(200);
+            },
+            'shouldSignRequest' => false
+        ]);
+
+        $requestWrapper->send(
+            new Request('GET', 'http://www.example.com')
+        );
+    }
+
     /**
      * @expectedException Google\Cloud\Exception\GoogleException
      */
