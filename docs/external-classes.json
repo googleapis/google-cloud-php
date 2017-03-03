@@ -40,5 +40,8 @@
 }, {
   "name": "google\\cloud\\vision\\v1\\",
   "uri": "https://github.com/googleapis/proto-client-php/tree/master/src/vision/v1"
+}, {
+  "name": "MonitoredResource",
+  "uri": "https://github.com/googleapis/gax-php/blob/master/src/generated/monitored_resource.php"
 }]
 
