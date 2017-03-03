@@ -18,10 +18,10 @@
 namespace Google\Cloud\Tests\Snippets;
 
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
-use Google\Cloud\Int64;
+use Google\Cloud\Core\Int64;
 
 /**
- * @group root
+ * @group core
  */
 class Int64Test extends SnippetTestCase
 {

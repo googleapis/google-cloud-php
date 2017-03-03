@@ -30,7 +30,7 @@ use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Datastore\Query\QueryInterface;
 use Google\Cloud\Datastore\Transaction;
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
-use Google\Cloud\Int64;
+use Google\Cloud\Core\Int64;
 use Prophecy\Argument;
 
 /**
