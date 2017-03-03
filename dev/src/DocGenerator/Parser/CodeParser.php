@@ -122,8 +122,11 @@ class CodeParser implements ParserInterface
             foreach ($parsedContents as &$part) {
                 if ($part instanceof Seetag) {
                     $reference = $part->getReference();
+
                     if (substr_compare($reference, 'Google\Cloud', 0, 12) === 0) {
                         $part = $this->buildLink($reference);
+                    } elseif ($this->hasExternalType(trim(str_replace('@see', '', $part)))) {
+                        $part = $this->buildExternalType(trim(str_replace('@see', '', $part)));
                     }
                 }
             }
