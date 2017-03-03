@@ -336,37 +336,29 @@ class Subscription
      *            wait until new messages are available.
      *      @type int  $maxMessages Limit the amount of messages pulled.
      * }
-     * @codingStandardsIgnoreStart
-     * @return \Generator<Message>
-     * @codingStandardsIgnoreEnd
+     * @return Message[]
      */
     public function pull(array $options = [])
     {
-        $options['pageToken'] = null;
+        $messages = [];
         $options['returnImmediately'] = isset($options['returnImmediately'])
             ? $options['returnImmediately']
             : false;
-
         $options['maxMessages'] = isset($options['maxMessages'])
             ? $options['maxMessages']
             : self::MAX_MESSAGES;
 
-        do {
-            $response = $this->connection->pull($options + [
-                'subscription' => $this->name
-            ]);
+        $response = $this->connection->pull($options + [
+            'subscription' => $this->name
+        ]);
 
-            if (isset($response['receivedMessages'])) {
-                foreach ($response['receivedMessages'] as $message) {
-                    yield $this->messageFactory($message, $this->connection, $this->projectId, $this->encode);
-                }
+        if (isset($response['receivedMessages'])) {
+            foreach ($response['receivedMessages'] as $message) {
+                $messages[] = $this->messageFactory($message, $this->connection, $this->projectId, $this->encode);
             }
+        }
 
-            // If there's a page token, we'll request the next page.
-            $options['pageToken'] = isset($response['nextPageToken'])
-                ? $response['nextPageToken']
-                : null;
-        } while ($options['pageToken']);
+        return $messages;
     }
 
     /**
