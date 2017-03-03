@@ -414,7 +414,7 @@ class MetricServiceClient
      *                             Optional.
      *
      *     @type string $filter
-     *          An optional [filter](/monitoring/api/v3/filters) describing
+     *          An optional [filter](https://cloud.google.com/monitoring/api/v3/filters) describing
      *          the descriptors to be returned.  The filter can reference
      *          the descriptor's type and labels. For example, the
      *          following filter returns only Google Compute Engine descriptors
@@ -560,10 +560,10 @@ class MetricServiceClient
      *     @type string $filter
      *          If this field is empty, all custom and
      *          system-defined metric descriptors are returned.
-     *          Otherwise, the [filter](/monitoring/api/v3/filters)
+     *          Otherwise, the [filter](https://cloud.google.com/monitoring/api/v3/filters)
      *          specifies which metric descriptors are to be
      *          returned. For example, the following filter matches all
-     *          [custom metrics](/monitoring/custom-metrics):
+     *          [custom metrics](https://cloud.google.com/monitoring/custom-metrics):
      *
      *              metric.type = starts_with("custom.googleapis.com/")
      *     @type int $pageSize
@@ -674,7 +674,7 @@ class MetricServiceClient
     /**
      * Creates a new metric descriptor.
      * User-created metric descriptors define
-     * [custom metrics](/monitoring/custom-metrics).
+     * [custom metrics](https://cloud.google.com/monitoring/custom-metrics).
      *
      * Sample code:
      * ```
@@ -690,7 +690,7 @@ class MetricServiceClient
      *
      * @param string           $name             The project on which to execute the request. The format is
      *                                           `"projects/{project_id_or_number}"`.
-     * @param MetricDescriptor $metricDescriptor The new [custom metric](/monitoring/custom-metrics)
+     * @param MetricDescriptor $metricDescriptor The new [custom metric](https://cloud.google.com/monitoring/custom-metrics)
      *                                           descriptor.
      * @param array            $optionalArgs     {
      *                                           Optional.
@@ -731,7 +731,7 @@ class MetricServiceClient
 
     /**
      * Deletes a metric descriptor. Only user-created
-     * [custom metrics](/monitoring/custom-metrics) can be deleted.
+     * [custom metrics](https://cloud.google.com/monitoring/custom-metrics) can be deleted.
      *
      * Sample code:
      * ```
@@ -813,7 +813,7 @@ class MetricServiceClient
      *
      * @param string $name   The project on which to execute the request. The format is
      *                       "projects/{project_id_or_number}".
-     * @param string $filter A [monitoring filter](/monitoring/api/v3/filters) that specifies which time
+     * @param string $filter A [monitoring filter](https://cloud.google.com/monitoring/api/v3/filters) that specifies which time
      *                       series should be returned.  The filter must specify a single metric type,
      *                       and can additionally specify metric labels and other information. For
      *                       example:
