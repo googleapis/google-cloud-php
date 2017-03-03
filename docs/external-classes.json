@@ -32,7 +32,7 @@
   "name": "google\\spanner\\v1\\",
   "uri": "https://github.com/googleapis/proto-client-php/blob/master/src/spanner/v1"
 }, {
-  "name": "google\\cloud\\s[eech\\v1beta1\\",
+  "name": "google\\cloud\\speech\\v1beta1\\",
   "uri": "https://github.com/googleapis/proto-client-php/blob/master/src/speech/v1beta1/cloud_speech.php"
 }, {
   "name": "google\\devtools\\cloudtrace\\v1\\",
@@ -41,7 +41,43 @@
   "name": "google\\cloud\\vision\\v1\\",
   "uri": "https://github.com/googleapis/proto-client-php/tree/master/src/vision/v1"
 }, {
+  "name": "google\\longrunning\\",
+  "uri": "https://github.com/googleapis/gax-php/blob/master/src/generated/operations.php"
+}, {
   "name": "MonitoredResource",
   "uri": "https://github.com/googleapis/gax-php/blob/master/src/generated/monitored_resource.php"
+}, {
+  "name": "ServiceContextFilter",
+  "uri": "https://github.com/googleapis/proto-client-php/blob/master/src/errorreporting/v1beta1/error_stats_service.php#L1985"
+}, {
+  "name": "QueryTimeRange",
+  "uri": "https://github.com/googleapis/proto-client-php/blob/master/src/errorreporting/v1beta1/error_stats_service.php#L1915"
+}, {
+  "name": "Duration",
+  "uri": "https://github.com/googleapis/gax-php/blob/master/src/generated/well-known-types/duration.php"
+}, {
+  "name": "TimedCountAlignment",
+  "uri": "https://github.com/googleapis/proto-client-php/blob/master/src/errorreporting/v1beta1/error_stats_service.php#L8"
+}, {
+  "name": "Timestamp",
+  "uri": "https://github.com/googleapis/gax-php/blob/master/src/generated/well-known-types/timestamp.php"
+}, {
+  "name": "ErrorGroupOrder",
+  "uri": "https://github.com/googleapis/proto-client-php/blob/master/src/errorreporting/v1beta1/error_stats_service.php#L16"
+}, {
+  "name": "TimeInterval",
+  "uri": "https://github.com/googleapis/proto-client-php/blob/master/src/monitoring/v3/common.php#L270"
+}, {
+  "name": "google\\api\\MetricDescriptor",
+  "uri": "https://github.com/googleapis/gax-php/blob/master/src/generated/metric.php#L29"
+}, {
+  "name": "google\\api\\MonitoredResourceDescriptor",
+  "uri": "https://github.com/googleapis/gax-php/blob/master/src/generated/monitored_resource.php#L8"
+}, {
+  "name": "Aggregation",
+  "uri": "https://github.com/googleapis/proto-client-php/blob/master/src/monitoring/v3/common.php#L429"
+}, {
+  "name": "PushConfig",
+  "uri": "https://github.com/googleapis/proto-client-php/blob/master/src/pubsub/v1/pubsub.php#L1827"
 }]
 
