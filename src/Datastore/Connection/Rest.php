@@ -47,7 +47,6 @@ class Rest implements ConnectionInterface
 
         $config += [
             'serviceDefinitionPath' => __DIR__ . '/ServiceDefinition/datastore-v1.json',
-            'componentName' => DatastoreClient::NAME,
             'componentVersion' => DatastoreClient::VERSION
         ];
 

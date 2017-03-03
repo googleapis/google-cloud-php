@@ -41,7 +41,6 @@ class Rest implements ConnectionInterface
     {
         $config += [
             'serviceDefinitionPath' => __DIR__ . '/ServiceDefinition/speech-v1beta1.json',
-            'componentName' => SpeechClient::NAME,
             'componentVersion' => SpeechClient::VERSION
         ];
 

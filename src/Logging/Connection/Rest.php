@@ -41,7 +41,6 @@ class Rest implements ConnectionInterface
     {
         $config += [
             'serviceDefinitionPath' => __DIR__ . '/ServiceDefinition/logging-v2.json',
-            'componentName' => LoggingClient::NAME,
             'componentVersion' => LoggingClient::VERSION
         ];
 

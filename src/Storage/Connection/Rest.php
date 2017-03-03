@@ -50,7 +50,6 @@ class Rest implements ConnectionInterface
     {
         $config += [
             'serviceDefinitionPath' => __DIR__ . '/ServiceDefinition/storage-v1.json',
-            'componentName' => StorageClient::NAME,
             'componentVersion' => StorageClient::VERSION
         ];
 

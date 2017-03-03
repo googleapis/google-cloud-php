@@ -41,7 +41,6 @@ class Rest implements ConnectionInterface
     {
         $config += [
             'serviceDefinitionPath' => __DIR__ . '/ServiceDefinition/vision-v1.json',
-            'componentName' => VisionClient::NAME,
             'componentVersion' => VisionClient::VERSION
         ];
 

@@ -38,11 +38,6 @@ class RequestWrapper
     /**
      * @var string
      */
-    private $componentName;
-
-    /**
-     * @var string
-     */
     private $componentVersion;
 
     /**
@@ -115,11 +110,9 @@ class RequestWrapper
             'httpHandler' => null,
             'httpOptions' => [],
             'shouldSignRequest' => true,
-            'componentName' => null,
             'componentVersion' => null
         ];
 
-        $this->componentName = $config['componentName'];
         $this->componentVersion = $config['componentVersion'];
         $this->accessToken = $config['accessToken'];
         $this->httpHandler = $config['httpHandler'] ?: HttpHandlerFactory::build();
@@ -166,7 +159,7 @@ class RequestWrapper
     {
         $uaTemplate = 'gcloud-php-%s/%s';
         $headers = [
-            'User-Agent' => sprintf($uaTemplate, $this->componentName, $this->componentVersion),
+            'User-Agent' => sprintf($uaTemplate, '', $this->componentVersion),
             'Authorization' => 'Bearer ' . $this->getToken()
         ];
 

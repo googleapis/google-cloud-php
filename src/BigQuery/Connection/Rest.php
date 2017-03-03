@@ -48,7 +48,6 @@ class Rest implements ConnectionInterface
     {
         $config += [
             'serviceDefinitionPath' => __DIR__ . '/ServiceDefinition/bigquery-v2.json',
-            'componentName' => BigQueryClient::NAME,
             'componentVersion' => BigQueryClient::VERSION
         ];
 

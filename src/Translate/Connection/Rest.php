@@ -41,7 +41,6 @@ class Rest implements ConnectionInterface
     {
         $config += [
             'serviceDefinitionPath' => __DIR__ . '/ServiceDefinition/translate-v2.json',
-            'componentName' => TranslateClient::NAME,
             'componentVersion' => TranslateClient::VERSION
         ];
 

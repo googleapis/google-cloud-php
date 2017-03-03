@@ -54,7 +54,6 @@ class Rest implements ConnectionInterface
 
         $config += [
             'serviceDefinitionPath' => __DIR__ . '/ServiceDefinition/pubsub-v1.json',
-            'componentName' => PubSubClient::NAME,
             'componentVersion' => PubSubClient::VERSION
         ];
 

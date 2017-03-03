@@ -41,7 +41,6 @@ class Rest implements ConnectionInterface
     {
         $config += [
             'serviceDefinitionPath' => __DIR__ . '/ServiceDefinition/language-v1.json',
-            'componentName' => NaturalLanguageClient::NAME,
             'componentVersion' => NaturalLanguageClient::VERSION
         ];
 

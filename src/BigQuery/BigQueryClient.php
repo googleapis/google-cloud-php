@@ -52,7 +52,6 @@ class BigQueryClient
     use ClientTrait;
     use JobConfigurationTrait;
 
-    const NAME = 'bigquery';
     const VERSION = 'master';
 
     const SCOPE = 'https://www.googleapis.com/auth/bigquery';
