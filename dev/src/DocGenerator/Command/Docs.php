@@ -75,57 +75,46 @@ class Docs extends Command
         $tocTemplate = json_decode(file_get_contents($paths['tocTemplate']), true);
 
         foreach ($components as $component) {
-            $output->writeln(sprintf('Writing documentation for %s', $component['id']));
-            $output->writeln('--------------');
-
             $input = $paths['project'] . $component['path'];
-            $version = $this->getComponentVersion($paths['manifest'], $component['id']);
-
-            $outputPath = ($release)
-                ? $paths['output'] .'/'. $component['id'] .'/'. $version
-                : $paths['output'] .'/'. $component['id'] .'/master';
-
-            $output->writeln(sprintf('Writing to %s', $outputPath));
-
-            $types = new TypeGenerator($outputPath);
             $source = $this->getFilesList($input);
-
-            $docs = new DocGenerator($types, $source, $outputPath, $this->cliBasePath);
-            $docs->generate($component['path']);
-
-            $types->write();
-
-            $output->writeln(sprintf('Writing table of contents to %s', $outputPath));
-            $services = json_decode(file_get_contents($paths['toc'] .'/'. $component['id'] .'.json'), true);
-            $toc = new TableOfContents($tocTemplate, $services, $version, $outputPath);
-            $toc->generate();
-
-            $output->writeln(' ');
-            $output->writeln(' ');
+            $this->generateComponentDocumentation($output, $source, $component, $paths, $tocTemplate, $release);
         }
 
-        $output->writeln('Writing ServiceBuilder documentation');
+        $source = [$paths['project'] .'src/ServiceBuilder.php'];
+        $component = [
+            'id' => 'google-cloud',
+            'path' => 'src/'
+        ];
+        $this->generateComponentDocumentation($output, $source, $component, $paths, $tocTemplate, $release);
+    }
+
+    private function generateComponentDocumentation(OutputInterface $output, array $source, array $component, array $paths, $tocTemplate, $release)
+    {
+        $output->writeln(sprintf('Writing documentation for %s', $component['id']));
         $output->writeln('--------------');
 
-        $version = $this->getComponentVersion($paths['manifest'], 'google-cloud');
+        $version = $this->getComponentVersion($paths['manifest'], $component['id']);
+
         $outputPath = ($release)
-                ? $paths['output'] .'/'. 'google-cloud/'. $version
-                : $paths['output'] .'/'. 'google-cloud/master';
+            ? $paths['output'] .'/'. $component['id'] .'/'. $version
+            : $paths['output'] .'/'. $component['id'] .'/master';
 
         $output->writeln(sprintf('Writing to %s', $outputPath));
 
-        $types = new TypeGenerator($paths['output'] .'/google-cloud');
-        $files = [$paths['project'] .'src/ServiceBuilder.php'];
+        $types = new TypeGenerator($outputPath);
 
-        $docs = new DocGenerator($types, $files, $outputPath, $this->cliBasePath);
-        $docs->generate('src/');
+        $docs = new DocGenerator($types, $source, $outputPath, $this->cliBasePath);
+        $docs->generate($component['path']);
 
         $types->write();
 
         $output->writeln(sprintf('Writing table of contents to %s', $outputPath));
-        $services = json_decode(file_get_contents($paths['toc'] .'/google-cloud.json'), true);
+        $services = json_decode(file_get_contents($paths['toc'] .'/'. $component['id'] .'.json'), true);
         $toc = new TableOfContents($tocTemplate, $services, $version, $outputPath);
         $toc->generate();
+
+        $output->writeln(' ');
+        $output->writeln(' ');
     }
 
     private function getFilesList($source)

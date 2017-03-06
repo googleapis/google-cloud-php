@@ -78,8 +78,18 @@ class DocGenerator
             $this->types->addType([
                 'id' => $document['id'],
                 'title' => $document['title'],
-                'contents' => $document['id'] . '.json'
+                'contents' => $this->prune($document['id'] . '.json')
             ]);
         }
+    }
+
+    private function prune($contentsFileName)
+    {
+        $explode = explode('/', $contentsFileName);
+        if (count($explode) > 1) {
+            array_shift($explode);
+        }
+
+        return implode('/', $explode);
     }
 }

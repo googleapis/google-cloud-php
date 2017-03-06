@@ -11,38 +11,13 @@
             "name": "google/cloud",
             "defaultService": "servicebuilder",
             "versions": [
-                "v0.22.0",
-                "v0.21.1",
-                "v0.21.0",
-                "v0.20.2",
-                "v0.20.1",
-                "v0.20.0",
-                "v0.13.2",
-                "v0.13.1",
-                "v0.13.0",
-                "v0.12.0",
-                "v0.11.1",
-                "v0.11.0",
-                "v0.10.2",
-                "v0.10.1",
-                "v0.10.0",
-                "v0.9.0",
-                "v0.8.0",
-                "v0.7.1",
-                "v0.7.0",
-                "v0.6.0",
-                "v0.5.1",
-                "v0.5.0",
-                "v0.4.1",
-                "v0.4.0",
-                "v0.3.0",
                 "master"
             ]
         },
         {
             "id": "cloud-bigquery",
             "name": "google/cloud-bigquery",
-            "defaultService": "bigqueryclient",
+            "defaultService": "bigquery/bigqueryclient",
             "versions": [
                 "master"
             ]
@@ -50,7 +25,7 @@
         {
             "id": "cloud-core",
             "name": "google/cloud-core",
-            "defaultService": "readme",
+            "defaultService": "core/readme",
             "versions": [
                 "master"
             ]
@@ -58,7 +33,7 @@
         {
             "id": "cloud-datastore",
             "name": "google/cloud-datastore",
-            "defaultService": "datastoreclient",
+            "defaultService": "datastore/datastoreclient",
             "versions": [
                 "v0.0.5",
                 "v0.0.4",
@@ -71,7 +46,7 @@
         {
             "id": "cloud-error-reporting",
             "name": "google/cloud-error-reporting",
-            "defaultService": "readme",
+            "defaultService": "errorreporting/readme",
             "versions": [
                 "master"
             ]
@@ -79,7 +54,7 @@
         {
             "id": "cloud-logging",
             "name": "google/cloud-logging",
-            "defaultService": "loggingclient",
+            "defaultService": "logging/loggingclient",
             "versions": [
                 "master"
             ]
@@ -87,7 +62,7 @@
         {
             "id": "cloud-monitoring",
             "name": "google/cloud-monitoring",
-            "defaultService": "readme",
+            "defaultService": "monitoring/readme",
             "versions": [
                 "master"
             ]
@@ -95,7 +70,7 @@
         {
             "id": "cloud-natural-language",
             "name": "google/cloud-natural-language",
-            "defaultService": "naturallanguageclient",
+            "defaultService": "naturallanguage/naturallanguageclient",
             "versions": [
                 "master"
             ]
@@ -103,7 +78,7 @@
         {
             "id": "cloud-pubsub",
             "name": "google/cloud-pubsub",
-            "defaultService": "pubsubclient",
+            "defaultService": "pubsub/pubsubclient",
             "versions": [
                 "master"
             ]
@@ -111,7 +86,7 @@
         {
             "id": "cloud-speech",
             "name": "google/cloud-speech",
-            "defaultService": "speechclient",
+            "defaultService": "speech/speechclient",
             "versions": [
                 "master"
             ]
@@ -119,7 +94,7 @@
         {
             "id": "cloud-storage",
             "name": "google/cloud-storage",
-            "defaultService": "storageclient",
+            "defaultService": "storage/storageclient",
             "versions": [
                 "master"
             ]
@@ -127,7 +102,7 @@
         {
             "id": "cloud-translate",
             "name": "google/cloud-translate",
-            "defaultService": "translateclient",
+            "defaultService": "translate/translateclient",
             "versions": [
                 "master"
             ]
@@ -135,7 +110,7 @@
         {
             "id": "cloud-vision",
             "name": "google/cloud-vision",
-            "defaultService": "visionclient",
+            "defaultService": "vision/visionclient",
             "versions": [
                 "master"
             ]
