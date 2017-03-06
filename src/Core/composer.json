@@ -18,7 +18,7 @@
     },
     "extra": {
         "id": "cloud-core",
-        "target": "jdpedrie-gcp/google-cloud-php-core.git",
+        "target": "GoogleCloudPlatform/google-cloud-php-core.git",
         "path": "src/Core",
         "entry": null
     }

@@ -8,7 +8,7 @@
     },
     "extra": {
         "id": "cloud-storage",
-        "target": "jdpedrie-gcp/google-cloud-php-storage.git",
+        "target": "GoogleCloudPlatform/google-cloud-php-storage.git",
         "path": "src/Storage",
         "entry": "StorageClient.php"
     }

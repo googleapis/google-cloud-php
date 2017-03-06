@@ -9,7 +9,7 @@
     "extra": {
         "displayName": "Google Cloud BigQuery",
         "id": "cloud-bigquery",
-        "target": "jdpedrie-gcp/google-cloud-php-bigquery.git",
+        "target": "GoogleCloudPlatform/google-cloud-php-bigquery.git",
         "path": "src/BigQuery",
         "entry": "BigQueryClient.php"
     }

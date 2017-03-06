@@ -8,7 +8,7 @@
     },
     "extra": {
         "id": "cloud-error-reporting",
-        "target": "jdpedrie-gcp/google-cloud-php-error-reporting.git",
+        "target": "GoogleCloudPlatform/google-cloud-php-error-reporting.git",
         "path": "src/ErrorReporting",
         "entry": null
     }

@@ -8,7 +8,7 @@
     },
     "extra": {
         "id": "cloud-translate",
-        "target": "jdpedrie-gcp/google-cloud-php-translate.git",
+        "target": "GoogleCloudPlatform/google-cloud-php-translate.git",
         "path": "src/Translate",
         "entry": "TranslateClient.php"
     }
