@@ -412,7 +412,6 @@ class LoggingClient
      * $psrLogger = $logging->psrLogger('my-log');
      * ```
      *
-     * @codingStandardsIgnoreStart
      * @param string $name The name of the log to write entries to.
      * @param array $options [optional] {
      *     Configuration options.
@@ -420,13 +419,12 @@ class LoggingClient
      *     @type string $messageKey The key in the `jsonPayload` used to contain
      *           the logged message. **Defaults to** `message`.
      *     @type array $resource The
-     *           [monitored resource](https://cloud.google.com/logging/docs/api/reference/rest/Shared.Types/MonitoredResource)
+     *           [monitored resource](https://cloud.google.com/logging/docs/api/reference/rest/v2/MonitoredResource)
      *           to associate log entries with. **Defaults to** type global.
      *     @type array $labels A set of user-defined (key, value) data that
      *           provides additional information about the log entry.
      * }
      * @return PsrLogger
-     * @codingStandardsIgnoreEnd
      */
     public function psrLogger($name, array $options = [])
     {
@@ -450,18 +448,16 @@ class LoggingClient
      * $logger = $logging->logger('my-log');
      * ```
      *
-     * @codingStandardsIgnoreStart
      * @param string $name The name of the log to write entries to.
      * @param array $options [optional] {
      *     Configuration options.
      *
      *     @type array $resource The
-     *           [monitored resource](https://cloud.google.com/logging/docs/api/reference/rest/Shared.Types/MonitoredResource)
+     *           [monitored resource](https://cloud.google.com/logging/docs/api/reference/rest/v2/MonitoredResource)
      *           to associate log entries with. **Defaults to** type global.
      *     @type array $labels A set of user-defined (key, value) data that
      *           provides additional information about the log entry.
      * }
-     * @codingStandardsIgnoreEnd
      * @return Logger
      */
     public function logger($name, array $options = [])
