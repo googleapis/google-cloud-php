@@ -49,11 +49,17 @@ class DocGenerator
      *
      * @return void
      */
-    public function generate()
+    public function generate($basePath)
     {
         foreach ($this->files as $file) {
 
-            $currentFile = substr(str_replace($this->executionPath, '', $file), 3);
+            if ($basePath) {
+                $currentFileArr = explode($basePath, trim($file, '/'));
+                if (isset($currentFileArr[1])) {
+                    $currentFile = trim($currentFileArr[1], '/');
+                }
+            }
+
             $isPhp = strrpos($file, '.php') == strlen($file) - strlen('.php');
 
             if ($isPhp) {
@@ -67,7 +73,7 @@ class DocGenerator
             $document = $parser->parse();
 
             $writer = new Writer(json_encode($document), $this->outputPath);
-            $writer->write(substr($currentFile, 4));
+            $writer->write($currentFile);
 
             $this->types->addType([
                 'id' => $document['id'],

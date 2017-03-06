@@ -1,0 +1,15 @@
+[{
+    "title": "PubSub",
+    "type": "pubsub/pubsubclient"
+}, {
+    "title": "Message",
+    "type": "pubsub/message"
+},
+{
+    "title": "Subscription",
+    "type": "pubsub/subscription"
+},
+{
+    "title": "Topic",
+    "type": "pubsub/topic"
+}]

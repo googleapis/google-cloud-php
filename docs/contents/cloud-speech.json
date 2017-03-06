@@ -1,0 +1,7 @@
+[{
+    "title": "Speech",
+    "type": "speech/speechclient"
+}, {
+    "title": "Operation",
+    "type": "speech/operation"
+}]

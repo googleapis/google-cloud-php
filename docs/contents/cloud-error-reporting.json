@@ -1,0 +1,18 @@
+[{
+    "title": "Error Reporting",
+    "type": "errorreporting/readme",
+    "nav": [{
+        "title": "v1beta1",
+        "type": "errorreporting/v1beta1/readme",
+        "nav": [{
+            "title": "ErrorGroupServiceClient",
+            "type": "errorreporting/v1beta1/errorgroupserviceclient"
+        }, {
+            "title": "ErrorStatsServiceClient",
+            "type": "errorreporting/v1beta1/errorstatsserviceclient"
+        }, {
+            "title": "ReportErrorsServiceClient",
+            "type": "errorreporting/v1beta1/reporterrorsserviceclient"
+        }]
+    }]
+}]

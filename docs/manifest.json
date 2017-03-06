@@ -3,14 +3,13 @@
     "friendlyLang": "PHP",
     "libraryTitle": "Google Cloud Client Library",
     "moduleName": "google-cloud-php",
-    "matchPartialServiceId": true,
     "markdown": "php",
     "defaultModule": "google-cloud",
     "modules": [
         {
             "id": "google-cloud",
             "name": "google/cloud",
-            "defaultService": "google-cloud/servicebuilder",
+            "defaultService": "servicebuilder",
             "versions": [
                 "v0.22.0",
                 "v0.21.1",
@@ -43,7 +42,7 @@
         {
             "id": "cloud-bigquery",
             "name": "google/cloud-bigquery",
-            "defaultService": "bigquery/bigqueryclient",
+            "defaultService": "bigqueryclient",
             "versions": [
                 "master"
             ]
@@ -51,7 +50,7 @@
         {
             "id": "cloud-core",
             "name": "google/cloud-core",
-            "defaultService": "",
+            "defaultService": "readme",
             "versions": [
                 "master"
             ]
@@ -59,7 +58,7 @@
         {
             "id": "cloud-datastore",
             "name": "google/cloud-datastore",
-            "defaultService": "datastore/datastoreclient",
+            "defaultService": "datastoreclient",
             "versions": [
                 "v0.0.5",
                 "v0.0.4",
@@ -70,9 +69,17 @@
             ]
         },
         {
+            "id": "cloud-error-reporting",
+            "name": "google/cloud-error-reporting",
+            "defaultService": "readme",
+            "versions": [
+                "master"
+            ]
+        },
+        {
             "id": "cloud-logging",
             "name": "google/cloud-logging",
-            "defaultService": "logging/loggingclient",
+            "defaultService": "loggingclient",
             "versions": [
                 "master"
             ]
@@ -80,7 +87,7 @@
         {
             "id": "cloud-monitoring",
             "name": "google/cloud-monitoring",
-            "defaultService": "",
+            "defaultService": "readme",
             "versions": [
                 "master"
             ]
@@ -88,7 +95,7 @@
         {
             "id": "cloud-natural-language",
             "name": "google/cloud-natural-language",
-            "defaultService": "naturallanguage/naturallanguageclient",
+            "defaultService": "naturallanguageclient",
             "versions": [
                 "master"
             ]
@@ -96,7 +103,7 @@
         {
             "id": "cloud-pubsub",
             "name": "google/cloud-pubsub",
-            "defaultService": "pubsub/pubsubclient",
+            "defaultService": "pubsubclient",
             "versions": [
                 "master"
             ]
@@ -104,7 +111,7 @@
         {
             "id": "cloud-speech",
             "name": "google/cloud-speech",
-            "defaultService": "speech/speechclient",
+            "defaultService": "speechclient",
             "versions": [
                 "master"
             ]
@@ -112,7 +119,7 @@
         {
             "id": "cloud-storage",
             "name": "google/cloud-storage",
-            "defaultService": "storage/storageclient",
+            "defaultService": "storageclient",
             "versions": [
                 "master"
             ]
@@ -120,7 +127,7 @@
         {
             "id": "cloud-translate",
             "name": "google/cloud-translate",
-            "defaultService": "translate/translateclient",
+            "defaultService": "translateclient",
             "versions": [
                 "master"
             ]
@@ -128,7 +135,7 @@
         {
             "id": "cloud-vision",
             "name": "google/cloud-vision",
-            "defaultService": "vision/visionclient",
+            "defaultService": "visionclient",
             "versions": [
                 "master"
             ]

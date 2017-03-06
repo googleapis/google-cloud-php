@@ -33,7 +33,7 @@ class Writer
         $path = $this->buildOutputPath($currentFile);
 
         if (!is_dir(dirname($path))) {
-            mkdir(dirname($path), 0777, true);
+            @mkdir(dirname($path), 0777, true);
         }
 
         file_put_contents($path, $this->content);

@@ -1,0 +1,7 @@
+[{
+    "title": "Natural Language",
+    "type": "naturallanguage/naturallanguageclient"
+}, {
+    "title": "Annotation",
+    "type": "naturallanguage/annotation"
+}]
