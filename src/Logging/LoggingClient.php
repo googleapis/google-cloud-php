@@ -24,9 +24,9 @@ use Google\Cloud\Logging\Connection\Rest;
 use Psr\Cache\CacheItemPoolInterface;
 
 /**
- * Google Stackdriver Logging client. Allows you to store, search, analyze,
- * monitor, and alert on log data and events from Google Cloud Platform and
- * Amazon Web Services. Find more information at
+ * Google Stackdriver Logging allows you to store, search, analyze, monitor, and
+ * alert on log data and events from Google Cloud Platform and Amazon Web
+ * Services. Find more information at the
  * [Google Stackdriver Logging docs](https://cloud.google.com/logging/docs/).
  *
  * This client supports transport over
