@@ -117,7 +117,7 @@ class NaturalLanguageClient
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/natural-language/reference/rest/v1beta1/documents/analyzeEntities Analyze Entities API documentation
+     * @see https://cloud.google.com/natural-language/docs/reference/rest/v1beta1/documents/analyzeEntities Analyze Entities API documentation
      * @codingStandardsIgnoreEnd
      *
      * @param string|StorageObject $content The content to analyze.
@@ -159,7 +159,7 @@ class NaturalLanguageClient
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/natural-language/reference/rest/v1beta1/documents/analyzeSentiment Analyze Sentiment API documentation
+     * @see https://cloud.google.com/natural-language/docs/reference/rest/v1beta1/documents/analyzeSentiment Analyze Sentiment API documentation
      * @codingStandardsIgnoreEnd
      *
      * @param string|StorageObject $content The content to analyze.
@@ -200,7 +200,7 @@ class NaturalLanguageClient
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/natural-language/reference/rest/v1beta1/documents/analyzeSyntax Analyze Syntax API documentation
+     * @see https://cloud.google.com/natural-language/docs/reference/rest/v1beta1/documents/analyzeSyntax Analyze Syntax API documentation
      * @codingStandardsIgnoreEnd
      *
      * @param string|StorageObject $content The content to analyze.
@@ -253,7 +253,7 @@ class NaturalLanguageClient
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/natural-language/reference/rest/v1beta1/documents/annotateText Annotate Text API documentation
+     * @see https://cloud.google.com/natural-language/docs/reference/rest/v1beta1/documents/annotateText Annotate Text API documentation
      * @codingStandardsIgnoreEnd
      *
      * @param string|StorageObject $content The content to annotate.
