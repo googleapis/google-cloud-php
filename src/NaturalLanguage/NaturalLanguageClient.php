@@ -24,10 +24,10 @@ use Google\Cloud\Storage\StorageObject;
 use Psr\Cache\CacheItemPoolInterface;
 
 /**
- * Google Cloud Natural Language client. Provides natural language understanding
+ * Google Cloud Natural Language provides natural language understanding
  * technologies to developers, including sentiment analysis, entity recognition,
  * and syntax analysis. Currently only English, Spanish, and Japanese textual
- * context are supported. Find more information at
+ * context are supported. Find more information at the
  * [Google Cloud Natural Language docs](https://cloud.google.com/natural-language/docs/).
  *
  * Example:

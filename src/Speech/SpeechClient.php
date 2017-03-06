@@ -24,10 +24,9 @@ use Google\Cloud\Storage\StorageObject;
 use Psr\Cache\CacheItemPoolInterface;
 
 /**
- * Google Cloud Speech client. The Cloud Speech API enables easy integration of
- * Google speech recognition technologies into developer applications. Send
- * audio and receive a text transcription from the Cloud Speech API service.
- * Find more information at the
+ * Google Cloud Speech enables easy integration of Google speech recognition
+ * technologies into developer applications. Send audio and receive a text
+ * transcription from the Cloud Speech API service. Find more information at the
  * [Google Cloud Speech docs](https://cloud.google.com/speech/docs/).
  *
  * To enable better detection of encoding/sample rate values it is recommended

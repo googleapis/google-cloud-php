@@ -29,13 +29,15 @@ use InvalidArgumentException;
 use Psr\Cache\CacheItemPoolInterface;
 
 /**
- * Google Cloud Datastore client. Cloud Datastore is a highly-scalable NoSQL
- * database for your applications.  Find more information at
+ * Google Cloud Datastore is a highly-scalable NoSQL database for your
+ * applications. Find more information at the
  * [Google Cloud Datastore docs](https://cloud.google.com/datastore/docs/).
  *
- * Cloud Datastore supports [multi-tenant](https://cloud.google.com/datastore/docs/concepts/multitenancy) applications
- * through use of data partitions. A partition ID can be supplied when creating an instance of Cloud Datastore, and will
- * be used in all operations executed in that instance.
+ * Cloud Datastore supports
+ * [multi-tenant](https://cloud.google.com/datastore/docs/concepts/multitenancy)
+ * applications through use of data partitions. A partition ID can be supplied
+ * when creating an instance of Cloud Datastore, and will be used in all
+ * operations executed in that instance.
  *
  * To enable the
  * [Google Cloud Datastore Emulator](https://cloud.google.com/datastore/docs/tools/datastore-emulator),

@@ -26,7 +26,7 @@ use Psr\Cache\CacheItemPoolInterface;
 /**
  * Google Cloud Vision allows you to understand the content of an image,
  * classify images into categories, detect text, objects, faces and more. Find
- * more information at
+ * more information at the
  * [Google Cloud Vision docs](https://cloud.google.com/vision/docs/).
  *
  * Example:
