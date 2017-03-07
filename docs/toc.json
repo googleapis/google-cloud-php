@@ -29,5 +29,6 @@
         "id": "contributing",
         "edit": "https://github.com/GoogleCloudPlatform/gcloud-common/edit/master/contributing/readme.md",
         "contents": "https://raw.githubusercontent.com/GoogleCloudPlatform/gcloud-common/master/contributing/readme.md"
-    }]
+    }],
+    "services": []
 }

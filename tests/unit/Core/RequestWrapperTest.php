@@ -200,17 +200,19 @@ class RequestWrapperTest extends \PHPUnit_Framework_TestCase
 
     public function testRequestUsesApiKeyInsteadOfAuthHeader()
     {
+        $version = '1.0.0';
         $requestWrapper = new RequestWrapper([
-            'httpHandler' => function ($request, $options = []) {
+            'httpHandler' => function ($request, $options = []) use ($version) {
                 $authHeader = $request->getHeaderLine('Authorization');
                 $userAgent = $request->getHeaderLine('User-Agent');
                 $xGoogApiClient = $request->getHeaderLine('x-goog-api-client');
-                $this->assertEquals('gcloud-php/' . ServiceBuilder::VERSION, $userAgent);
-                $this->assertEquals('gl-php/' . phpversion() . ' gccl/' . ServiceBuilder::VERSION, $xGoogApiClient);
+                $this->assertEquals('gcloud-php/' . $version, $userAgent);
+                $this->assertEquals('gl-php/' . phpversion() . ' gccl/' . $version, $xGoogApiClient);
                 $this->assertEmpty($authHeader);
                 return new Response(200);
             },
-            'shouldSignRequest' => false
+            'shouldSignRequest' => false,
+            'componentVersion' => $version
         ]);
 
         $requestWrapper->send(
