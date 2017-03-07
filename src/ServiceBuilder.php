@@ -25,6 +25,7 @@ use Google\Cloud\NaturalLanguage\NaturalLanguageClient;
 use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\Speech\SpeechClient;
 use Google\Cloud\Storage\StorageClient;
+use Google\Cloud\Storage\TraceClient;
 use Google\Cloud\Translate\TranslateClient;
 use Google\Cloud\Vision\VisionClient;
 use Psr\Cache\CacheItemPoolInterface;
@@ -246,6 +247,26 @@ class ServiceBuilder
     public function storage(array $config = [])
     {
         return new StorageClient($config ? $this->resolveConfig($config) : $this->config);
+    }
+
+
+    /**
+     * Google Stackdriver Trace client. Allows you to collect latency data from
+     * your applications and display it in the Google Cloud Platform Console.
+     * Find more information at [Stackdriver Trace API docs](https://cloud.google.com/trace/docs/).
+     *
+     * Example:
+     * ```
+     * $storage = $cloud->trace();
+     * ```
+     *
+     * @param array $config [optional] Configuration options. See
+     *        {@see Google\Cloud\ServiceBuilder::__construct()} for the available options.
+     * @return StorageClient
+     */
+    public function trace(array $config = [])
+    {
+        return new TraceClient($config ? $this->resolveConfig($config) : $this->config);
     }
 
     /**
