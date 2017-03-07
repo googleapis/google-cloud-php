@@ -94,6 +94,24 @@
             }]
         },
         {
+            "title": "Error Reporting",
+            "type": "errorreporting/readme",
+            "nav": [{
+                "title": "v1beta1",
+                "type": "errorreporting/v1beta1/readme",
+                "nav": [{
+                    "title": "ErrorGroupServiceClient",
+                    "type": "errorreporting/v1beta1/errorgroupserviceclient"
+                }, {
+                    "title": "ErrorStatsServiceClient",
+                    "type": "errorreporting/v1beta1/errorstatsserviceclient"
+                }, {
+                    "title": "ReportErrorsServiceClient",
+                    "type": "errorreporting/v1beta1/reporterrorsserviceclient"
+                }]
+            }]
+        },
+        {
             "title": "Logging",
             "type": "logging/loggingclient",
             "nav": [{
@@ -111,6 +129,34 @@
             },{
                 "title": "Sink",
                 "type": "logging/sink"
+            }, {
+                "title": "v2",
+                "type": "logging/v2/readme",
+                "nav": [{
+                    "title": "ConfigServiceV2Client",
+                    "type": "logging/v2/configservicev2client"
+                }, {
+                    "title": "LoggingServiceV2Client",
+                    "type": "logging/v2/loggingservicev2client"
+                }, {
+                    "title": "MetricsServiceV2Client",
+                    "type": "logging/v2/metricsservicev2client"
+                }]
+            }]
+        },
+        {
+            "title": "Monitoring",
+            "type": "monitoring/readme",
+            "nav": [{
+                "title": "v3",
+                "type": "monitoring/v3/readme",
+                "nav": [{
+                    "title": "GroupServiceClient",
+                    "type": "monitoring/v3/groupserviceclient"
+                }, {
+                    "title": "MetricServiceClient",
+                    "type": "monitoring/v3/metricserviceclient"
+                }]
             }]
         },
         {
@@ -135,6 +181,16 @@
             {
                 "title": "Topic",
                 "type": "pubsub/topic"
+            }, {
+                "title": "v1",
+                "type": "pubsub/v1/readme",
+                "nav": [{
+                    "title": "PublisherClient",
+                    "type": "pubsub/v1/publisherclient"
+                }, {
+                    "title": "SubscriberClient",
+                    "type": "pubsub/v1/subscriberclient"
+                }]
             }]
         },
         {
@@ -143,6 +199,13 @@
             "nav": [{
                 "title": "Operation",
                 "type": "speech/operation"
+            }, {
+                "title": "v1beta1",
+                "type": "speech/v1beta1/readme",
+                "nav": [{
+                    "title": "SpeechClient",
+                    "type": "speech/v1beta1/speechclient"
+                }]
             }]
         },
         {
