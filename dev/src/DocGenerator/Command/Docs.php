@@ -55,12 +55,15 @@ class Docs extends Command
         $this->setName('docs')
             ->setDescription('Generate Documentation')
             ->addOption('release', 'r', InputOption::VALUE_REQUIRED, 'If set, docs will be generated into tag folders' .
-                ' such as v1.0.0 rather than master.', false);
+                ' such as v1.0.0 rather than master.', false)
+            ->addOption('pretty', 'p', InputOption::VALUE_OPTIONAL, 'If set, json files will be written with pretty'.
+                ' formatting using PHP\'s JSON_PRETTY_PRINT flag', false);
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $release = ($input->getOption('release') === false) ? false : true;
+        $pretty = ($input->getOption('pretty') === false) ? false : true;
 
         $paths = [
             'source' => $this->cliBasePath .'/../'. self::DEFAULT_SOURCE_DIR,
@@ -77,7 +80,7 @@ class Docs extends Command
         foreach ($components as $component) {
             $input = $paths['project'] . $component['path'];
             $source = $this->getFilesList($input);
-            $this->generateComponentDocumentation($output, $source, $component, $paths, $tocTemplate, $release);
+            $this->generateComponentDocumentation($output, $source, $component, $paths, $tocTemplate, $release, $pretty);
         }
 
         $source = [$paths['project'] .'src/ServiceBuilder.php'];
@@ -85,11 +88,18 @@ class Docs extends Command
             'id' => 'google-cloud',
             'path' => 'src/'
         ];
-        $this->generateComponentDocumentation($output, $source, $component, $paths, $tocTemplate, $release);
+        $this->generateComponentDocumentation($output, $source, $component, $paths, $tocTemplate, $release, $pretty);
     }
 
-    private function generateComponentDocumentation(OutputInterface $output, array $source, array $component, array $paths, $tocTemplate, $release)
-    {
+    private function generateComponentDocumentation(
+        OutputInterface $output,
+        array $source,
+        array $component,
+        array $paths,
+        $tocTemplate,
+        $release = false,
+        $pretty = false
+    ) {
         $output->writeln(sprintf('Writing documentation for %s', $component['id']));
         $output->writeln('--------------');
 
@@ -104,14 +114,14 @@ class Docs extends Command
         $types = new TypeGenerator($outputPath);
 
         $docs = new DocGenerator($types, $source, $outputPath, $this->cliBasePath);
-        $docs->generate($component['path']);
+        $docs->generate($component['path'], $pretty);
 
-        $types->write();
+        $types->write($pretty);
 
         $output->writeln(sprintf('Writing table of contents to %s', $outputPath));
         $services = json_decode(file_get_contents($paths['toc'] .'/'. $component['id'] .'.json'), true);
         $toc = new TableOfContents($tocTemplate, $services, $version, $outputPath);
-        $toc->generate();
+        $toc->generate($pretty);
 
         $output->writeln(' ');
         $output->writeln(' ');

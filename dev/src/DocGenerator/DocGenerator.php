@@ -49,7 +49,7 @@ class DocGenerator
      *
      * @return void
      */
-    public function generate($basePath)
+    public function generate($basePath, $pretty)
     {
         foreach ($this->files as $file) {
 
@@ -72,7 +72,7 @@ class DocGenerator
 
             $document = $parser->parse();
 
-            $writer = new Writer(json_encode($document), $this->outputPath);
+            $writer = new Writer($document, $this->outputPath, $pretty);
             $writer->write($currentFile);
 
             $this->types->addType([

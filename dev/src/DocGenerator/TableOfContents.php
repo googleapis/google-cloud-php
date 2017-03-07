@@ -32,13 +32,13 @@ class TableOfContents
         $this->outputPath = $outputPath;
     }
 
-    public function generate()
+    public function generate($pretty = false)
     {
         $toc = $this->template;
         $toc['services'] = $this->component;
         $toc['tagName'] = $this->componentVersion;
 
-        $writer = new Writer(json_encode($toc), $this->outputPath);
+        $writer = new Writer($toc, $this->outputPath, $pretty);
         $writer->write('toc.json');
     }
 }

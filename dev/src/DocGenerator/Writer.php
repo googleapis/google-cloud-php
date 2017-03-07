@@ -21,11 +21,13 @@ class Writer
 {
     private $content;
     private $outputPath;
+    private $pretty;
 
-    public function __construct($content, $outputPath)
+    public function __construct(array $content, $outputPath, $pretty = false)
     {
         $this->content = $content;
         $this->outputPath = $outputPath;
+        $this->pretty = (bool) $pretty;
     }
 
     public function write($currentFile)
@@ -36,7 +38,11 @@ class Writer
             @mkdir(dirname($path), 0777, true);
         }
 
-        file_put_contents($path, $this->content);
+        $content = ($this->pretty)
+            ? json_encode($this->content, JSON_PRETTY_PRINT)
+            : json_encode($this->content);
+
+        file_put_contents($path, $content);
     }
 
     private function buildOutputPath($currentFile)
