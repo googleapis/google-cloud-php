@@ -227,7 +227,6 @@ class PsrLogger implements LoggerInterface
      * ]);
      * ```
      *
-     * @codingStandardsIgnoreStart
      * @param string|int $level The severity of the log entry.
      * @param string $message The message to log.
      * @param array $context {
@@ -239,12 +238,12 @@ class PsrLogger implements LoggerInterface
      *     Stackdriver specific data.
      *
      *     @type array $stackdriverOptions['resource'] The
-     *           [monitored resource](https://cloud.google.com/logging/docs/api/reference/rest/Shared.Types/MonitoredResource)
+     *           [monitored resource](https://cloud.google.com/logging/docs/api/reference/rest/v2/MonitoredResource)
      *           to associate this log entry with. **Defaults to** type global.
      *     @type array $stackdriverOptions['httpRequest'] Information about the
      *           HTTP request associated with this log entry, if applicable.
      *           Please see
-     *           [the API docs](https://cloud.google.com/logging/docs/api/reference/rest/Shared.Types/LogEntry#httprequest)
+     *           [the API docs](https://cloud.google.com/logging/docs/api/reference/rest/v2/LogEntry#httprequest)
      *           for more information.
      *     @type array $stackdriverOptions['labels'] A set of user-defined
      *           (key, value) data that provides additional information about
@@ -252,11 +251,10 @@ class PsrLogger implements LoggerInterface
      *     @type array $stackdriverOptions['operation'] Additional information
      *           about a potentially long-running operation with which a log
      *           entry is associated. Please see
-     *           [the API docs](https://cloud.google.com/logging/docs/api/reference/rest/Shared.Types/LogEntry#logentryoperation)
+     *           [the API docs](https://cloud.google.com/logging/docs/api/reference/rest/v2/LogEntry#logentryoperation)
      *           for more information.
      * }
      * @throws InvalidArgumentException
-     * @codingStandardsIgnoreEnd
      */
     public function log($level, $message, array $context = [])
     {

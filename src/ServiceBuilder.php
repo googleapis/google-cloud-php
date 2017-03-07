@@ -97,8 +97,8 @@ class ServiceBuilder
     }
 
     /**
-     * Google Cloud BigQuery client. Allows you to create, manage, share and query
-     * data. Find more information at
+     * Google Cloud BigQuery allows you to create, manage, share and query
+     * data. Find more information at the
      * [Google Cloud BigQuery Docs](https://cloud.google.com/bigquery/what-is-bigquery).
      *
      * Example:
@@ -121,9 +121,9 @@ class ServiceBuilder
     }
 
     /**
-     * Google Cloud Datastore client. Cloud Datastore is a highly-scalable NoSQL
-     * database for your applications.  Find more information at
-     * [Google Cloud Datastore docs](https://cloud.google.com/datastore/docs/).
+     * Google Cloud Datastore is a highly-scalable NoSQL database for your
+     * applications. Find more information at the
+     * Google Cloud Datastore docs](https://cloud.google.com/datastore/docs/).
      *
      * Example:
      * ```
@@ -145,9 +145,9 @@ class ServiceBuilder
     }
 
     /**
-     * Google Stackdriver Logging client. Allows you to store, search, analyze,
-     * monitor, and alert on log data and events from Google Cloud Platform and
-     * Amazon Web Services. Find more information at
+     * Google Stackdriver Logging allows you to store, search, analyze, monitor,
+     * and alert on log data and events from Google Cloud Platform and Amazon
+     * Web Services. Find more information at the
      * [Google Stackdriver Logging docs](https://cloud.google.com/logging/docs/).
      *
      * Example:
@@ -165,10 +165,10 @@ class ServiceBuilder
     }
 
     /**
-     * Google Cloud Natural Language client. Provides natural language
-     * understanding technologies to developers, including sentiment analysis,
-     * entity recognition, and syntax analysis. Currently only English, Spanish,
-     * and Japanese textual context are supported. Find more information at
+     * Google Cloud Natural Language provides natural language understanding
+     * technologies to developers, including sentiment analysis, entity
+     * recognition, and syntax analysis. Currently only English, Spanish,
+     * and Japanese textual context are supported. Find more information at the
      * [Google Cloud Natural Language docs](https://cloud.google.com/natural-language/docs/).
      *
      * Example:
@@ -186,8 +186,8 @@ class ServiceBuilder
     }
 
     /**
-     * Google Cloud Pub/Sub client. Allows you to send and receive
-     * messages between independent applications. Find more information at
+     * Google Cloud Pub/Sub allows you to send and receive messages between
+     * independent applications. Find more information at the
      * [Google Cloud Pub/Sub docs](https://cloud.google.com/pubsub/docs/).
      *
      * Example:
@@ -210,11 +210,10 @@ class ServiceBuilder
     }
 
     /**
-     * Google Cloud Speech client. Enables easy integration of Google speech
-     * recognition technologies into developer applications. Send audio and
-     * receive a text transcription from the Cloud Speech API service. Find more
-     * information at
-     * [Google Cloud Speech API docs](https://developers.google.com/speech).
+     * Google Cloud Speech enables easy integration of Google speech recognition
+     * technologies into developer applications. Send audio and receive a text
+     * transcription from the Cloud Speech API service. Find more information at
+     * the [Google Cloud Speech API docs](https://cloud.google.com/speech/docs/).
      *
      * Example:
      * ```
@@ -231,8 +230,8 @@ class ServiceBuilder
     }
 
     /**
-     * Google Cloud Storage client. Allows you to store and retrieve data on
-     * Google's infrastructure. Find more information at
+     * Google Cloud Storage allows you to store and retrieve data on Google's
+     * infrastructure. Find more information at the
      * [Google Cloud Storage API docs](https://developers.google.com/storage).
      *
      * Example:
@@ -250,9 +249,10 @@ class ServiceBuilder
     }
 
     /**
-     * Google Cloud Vision client. Allows you to understand the content of an
-     * image, classify images into categories, detect text, objects, faces and
-     * more. Find more information at [Google Cloud Vision docs](https://cloud.google.com/vision/docs/).
+     * Google Cloud Vision allows you to understand the content of an image,
+     * classify images into categories, detect text, objects, faces and more.
+     * Find more information at the
+     * [Google Cloud Vision docs](https://cloud.google.com/vision/docs/).
      *
      * Example:
      * ```
@@ -269,13 +269,14 @@ class ServiceBuilder
     }
 
     /**
-     * Google Translate client. Provides the ability to dynamically
-     * translate text between thousands of language pairs and lets websites and
-     * programs integrate with the Google Cloud Translation API
-     * programmatically. The Google Cloud Translation API is available as a paid
+     * Google Cloud Translation provides the ability to dynamically translate
+     * text between thousands of language pairs and lets websites and programs
+     * integrate with translation service programmatically.
+     *
+     * The Google Cloud Translation API is available as a paid
      * service. See the [Pricing](https://cloud.google.com/translation/v2/pricing)
      * and [FAQ](https://cloud.google.com/translation/v2/faq) pages for details.
-     * Find more information at the
+     * Find more information at the the
      * [Google Cloud Translation docs](https://cloud.google.com/translation/docs/).
      *
      * Please note that while the Google Cloud Translation API supports

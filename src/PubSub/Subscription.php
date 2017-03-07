@@ -331,42 +331,36 @@ class Subscription
      * @param array $options [optional] {
      *      Configuration Options
      *
-     *      @type bool $returnImmediately If set, the system will respond
+     *      @type bool $returnImmediately If true, the system will respond
      *            immediately, even if no messages are available. Otherwise,
-     *            wait until new messages are available.
-     *      @type int  $maxMessages Limit the amount of messages pulled.
+     *            wait until new messages are available. **Defaults to**
+     *            `false`.
+     *      @type int $maxMessages Limit the amount of messages pulled.
+     *            **Defaults to** `1000`.
      * }
-     * @codingStandardsIgnoreStart
-     * @return \Generator<Message>
-     * @codingStandardsIgnoreEnd
+     * @return Message[]
      */
     public function pull(array $options = [])
     {
-        $options['pageToken'] = null;
+        $messages = [];
         $options['returnImmediately'] = isset($options['returnImmediately'])
             ? $options['returnImmediately']
             : false;
-
         $options['maxMessages'] = isset($options['maxMessages'])
             ? $options['maxMessages']
             : self::MAX_MESSAGES;
 
-        do {
-            $response = $this->connection->pull($options + [
-                'subscription' => $this->name
-            ]);
+        $response = $this->connection->pull($options + [
+            'subscription' => $this->name
+        ]);
 
-            if (isset($response['receivedMessages'])) {
-                foreach ($response['receivedMessages'] as $message) {
-                    yield $this->messageFactory($message, $this->connection, $this->projectId, $this->encode);
-                }
+        if (isset($response['receivedMessages'])) {
+            foreach ($response['receivedMessages'] as $message) {
+                $messages[] = $this->messageFactory($message, $this->connection, $this->projectId, $this->encode);
             }
+        }
 
-            // If there's a page token, we'll request the next page.
-            $options['pageToken'] = isset($response['nextPageToken'])
-                ? $response['nextPageToken']
-                : null;
-        } while ($options['pageToken']);
+        return $messages;
     }
 
     /**
@@ -378,9 +372,8 @@ class Subscription
      * Example:
      * ```
      * $messages = $subscription->pull();
-     * $messagesArray = iterator_to_array($messages);
      *
-     * $subscription->acknowledge($messagesArray[0]);
+     * $subscription->acknowledge($messages[0]);
      * ```
      *
      * @codingStandardsIgnoreStart
@@ -405,9 +398,8 @@ class Subscription
      * Example:
      * ```
      * $messages = $subscription->pull();
-     * $messagesArray = iterator_to_array($messages);
      *
-     * $subscription->acknowledgeBatch($messagesArray);
+     * $subscription->acknowledgeBatch($messages);
      * ```
      *
      * @codingStandardsIgnoreStart
@@ -477,16 +469,15 @@ class Subscription
      * Example:
      * ```
      * $messages = $subscription->pull();
-     * $messagesArray = iterator_to_array($messages);
      *
      * // Set the ack deadline to three seconds from now for every message
-     * $subscription->modifyAckDeadlineBatch($messagesArray, 3);
+     * $subscription->modifyAckDeadlineBatch($messages, 3);
      *
      * // Delay execution, or make a sandwich or something.
      * sleep(2);
      *
      * // Now we'll acknowledge
-     * $subscription->acknowledgeBatch($messagesArray);
+     * $subscription->acknowledgeBatch($messages);
      * ```
      *
      * @codingStandardsIgnoreStart

@@ -58,9 +58,7 @@ class Entry
      * echo $info['textPayload'];
      * ```
      *
-     * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/logging/docs/api/reference/rest/Shared.Types/LogEntry LogEntry resource documentation.
-     * @codingStandardsIgnoreEnd
+     * @see https://cloud.google.com/logging/docs/reference/v2/rest/v2/LogEntry LogEntry resource documentation.
      *
      * @return array
      */

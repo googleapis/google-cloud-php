@@ -24,10 +24,10 @@ use Google\Cloud\Storage\StorageObject;
 use Psr\Cache\CacheItemPoolInterface;
 
 /**
- * Google Cloud Natural Language client. Provides natural language understanding
+ * Google Cloud Natural Language provides natural language understanding
  * technologies to developers, including sentiment analysis, entity recognition,
  * and syntax analysis. Currently only English, Spanish, and Japanese textual
- * context are supported. Find more information at
+ * context are supported. Find more information at the
  * [Google Cloud Natural Language docs](https://cloud.google.com/natural-language/docs/).
  *
  * Example:
@@ -119,7 +119,7 @@ class NaturalLanguageClient
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/natural-language/reference/rest/v1beta1/documents/analyzeEntities Analyze Entities API documentation
+     * @see https://cloud.google.com/natural-language/docs/reference/rest/v1beta1/documents/analyzeEntities Analyze Entities API documentation
      * @codingStandardsIgnoreEnd
      *
      * @param string|StorageObject $content The content to analyze.
@@ -161,7 +161,7 @@ class NaturalLanguageClient
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/natural-language/reference/rest/v1beta1/documents/analyzeSentiment Analyze Sentiment API documentation
+     * @see https://cloud.google.com/natural-language/docs/reference/rest/v1beta1/documents/analyzeSentiment Analyze Sentiment API documentation
      * @codingStandardsIgnoreEnd
      *
      * @param string|StorageObject $content The content to analyze.
@@ -202,7 +202,7 @@ class NaturalLanguageClient
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/natural-language/reference/rest/v1beta1/documents/analyzeSyntax Analyze Syntax API documentation
+     * @see https://cloud.google.com/natural-language/docs/reference/rest/v1beta1/documents/analyzeSyntax Analyze Syntax API documentation
      * @codingStandardsIgnoreEnd
      *
      * @param string|StorageObject $content The content to analyze.
@@ -255,7 +255,7 @@ class NaturalLanguageClient
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/natural-language/reference/rest/v1beta1/documents/annotateText Annotate Text API documentation
+     * @see https://cloud.google.com/natural-language/docs/reference/rest/v1beta1/documents/annotateText Annotate Text API documentation
      * @codingStandardsIgnoreEnd
      *
      * @param string|StorageObject $content The content to annotate.

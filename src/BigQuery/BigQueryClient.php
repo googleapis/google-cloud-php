@@ -26,8 +26,8 @@ use Psr\Cache\CacheItemPoolInterface;
 use Psr\Http\Message\StreamInterface;
 
 /**
- * Google Cloud BigQuery client. Allows you to create, manage, share and query
- * data. Find more information at
+ * Google Cloud BigQuery allows you to create, manage, share and query data.
+ * Find more information at the
  * [Google Cloud BigQuery Docs](https://cloud.google.com/bigquery/what-is-bigquery).
  *
  * Example:

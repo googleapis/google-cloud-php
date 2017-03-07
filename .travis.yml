@@ -26,3 +26,6 @@ after_success:
   - ./dev/sh/push-docs
   - ./dev/sh/trigger-split
   - cat ./build/snippets-uncovered.json
+
+after_failure:
+  - echo "SNIPPET COVERAGE REPORT" && cat ./build/snippets-uncovered.json

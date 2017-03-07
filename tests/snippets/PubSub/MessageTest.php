@@ -85,7 +85,7 @@ class MessageTest extends SnippetTestCase
         );
 
         $res = $snippet->invoke('messages');
-        $this->assertInstanceOf(\Generator::class, $res->returnVal());
+        $this->assertContainsOnlyInstancesOf(Message::class, $res->returnVal());
         $this->assertEquals('hello world', $res->output());
     }
 

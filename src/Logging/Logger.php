@@ -100,17 +100,15 @@ class Logger
     private $labels;
 
     /**
-     * @codingStandardsIgnoreStart
      * @param ConnectionInterface $connection Represents a connection to
      *        Stackdriver Logging.
      * @param string $name The name of the log to write entries to.
      * @param string $projectId The project's ID.
      * @param array $resource [optional] The
-     *        [monitored resource](https://cloud.google.com/logging/docs/api/reference/rest/Shared.Types/MonitoredResource)
+     *        [monitored resource](https://cloud.google.com/logging/docs/reference/v2/rest/v2/MonitoredResource)
      *        to associate log entries with. **Defaults to** type global.
      * @param array $labels [optional] A set of user-defined (key, value) data
      *        that provides additional information about the log entries.
-     * @codingStandardsIgnoreEnd
      */
     public function __construct(
         ConnectionInterface $connection,
@@ -242,8 +240,8 @@ class Logger
      *     ]
      * ]);
      * ```
-     * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/logging/docs/api/reference/rest/Shared.Types/LogEntry LogEntry resource documentation.
+     *
+     * @see https://cloud.google.com/logging/docs/reference/v2/rest/v2/LogEntry LogEntry resource documentation.
      *
      * @param array|string $data The data to log. When providing a string the
      *        data will be stored as a `textPayload` type. When providing an
@@ -252,24 +250,24 @@ class Logger
      *     Configuration options.
      *
      *     @type array $resource The
-     *           [monitored resource](https://cloud.google.com/logging/docs/api/reference/rest/Shared.Types/MonitoredResource)
+     *           [monitored resource](https://cloud.google.com/logging/docs/api/reference/rest/v2/MonitoredResource)
      *           to associate this log entry with. **Defaults to** type global.
      *     @type array $httpRequest Information about the HTTP request
      *           associated with this log entry, if applicable. Please see
-     *           [the API docs](https://cloud.google.com/logging/docs/api/reference/rest/Shared.Types/LogEntry#httprequest)
+     *           [the API docs](https://cloud.google.com/logging/docs/api/reference/rest/v2/LogEntry#httprequest)
      *           for more information.
      *     @type array $labels A set of user-defined (key, value) data that
      *           provides additional information about the log entry.
      *     @type array $operation Additional information about a potentially
      *           long-running operation with which a log entry is associated.
-     *           Please see [the API docs](https://cloud.google.com/logging/docs/api/reference/rest/Shared.Types/LogEntry#logentryoperation)
+     *           Please see
+     *           [the API docs](https://cloud.google.com/logging/docs/api/reference/rest/v2/LogEntry#logentryoperation)
      *           for more information.
      *     @type string|int $severity The severity of the log entry. **Defaults to**
      *           `"DEFAULT"`.
      * }
      * @return Entry
      * @throws \InvalidArgumentException
-     * @codingStandardsIgnoreEnd
      */
     public function entry($data, array $options = [])
     {

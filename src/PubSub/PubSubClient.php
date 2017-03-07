@@ -24,8 +24,8 @@ use InvalidArgumentException;
 use Psr\Cache\CacheItemPoolInterface;
 
 /**
- * Google Cloud Pub/Sub client. Allows you to send and receive
- * messages between independent applications. Find more information at
+ * Google Cloud Pub/Sub allows you to send and receive
+ * messages between independent applications. Find more information at the
  * [Google Cloud Pub/Sub docs](https://cloud.google.com/pubsub/docs/).
  *
  * To enable the [Google Cloud Pub/Sub Emulator](https://cloud.google.com/pubsub/emulator),

@@ -23,8 +23,8 @@ use Google\Cloud\Storage\Connection\Rest;
 use Psr\Cache\CacheItemPoolInterface;
 
 /**
- * Google Cloud Storage client. Allows you to store and retrieve data on
- * Google's infrastructure. Find more information at
+ * Google Cloud Storage allows you to store and retrieve data on Google's
+ * infrastructure. Find more information at the
  * [Google Cloud Storage API docs](https://developers.google.com/storage).
  *
  * Example:

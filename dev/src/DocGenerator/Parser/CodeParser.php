@@ -32,6 +32,7 @@ class CodeParser implements ParserInterface
     private $reflector;
     private $markdown;
     private $projectRoot;
+    private $externalTypes;
 
     public function __construct($path, $outputName, FileReflector $reflector, $projectRoot)
     {
@@ -40,6 +41,7 @@ class CodeParser implements ParserInterface
         $this->reflector = $reflector;
         $this->markdown = \Parsedown::instance();
         $this->projectRoot = $projectRoot;
+        $this->externalTypes = json_decode(file_get_contents(__DIR__ .'/../../../../docs/external-classes.json'), true);
     }
 
     public function parse()
@@ -122,8 +124,11 @@ class CodeParser implements ParserInterface
             foreach ($parsedContents as &$part) {
                 if ($part instanceof Seetag) {
                     $reference = $part->getReference();
+
                     if (substr_compare($reference, 'Google\Cloud', 0, 12) === 0) {
                         $part = $this->buildLink($reference);
+                    } elseif ($this->hasExternalType(trim(str_replace('@see', '', $part)))) {
+                        $part = $this->buildExternalType(trim(str_replace('@see', '', $part)));
                     }
                 }
             }
@@ -429,14 +434,10 @@ class CodeParser implements ParserInterface
     private function handleTypes($types)
     {
         foreach ($types as &$type) {
-            // object is a PHPDoc keyword so it is not capable of detecting the context
-            // https://github.com/phpDocumentor/ReflectionDocBlock/blob/2.0.4/src/phpDocumentor/Reflection/DocBlock/Type/Collection.php#L37
-            if ($type === 'Object') {
-                $type = '\Google\Cloud\Storage\Object';
-            }
-
             if (substr_compare($type, '\Google\Cloud', 0, 13) === 0) {
                 $type = $this->buildLink($type);
+            } elseif ($this->hasExternalType($type)) {
+                $type = $this->buildExternalType($type);
             }
 
             $matches = [];
@@ -451,6 +452,37 @@ class CodeParser implements ParserInterface
         }
 
         return $types;
+    }
+
+    private function hasExternalType($type)
+    {
+        $type = trim($type, '\\');
+        $types = array_filter($this->externalTypes, function ($external) use ($type) {
+            return (strpos($type, $external['name']) !== false);
+        });
+
+        if (count($types) === 0) {
+            return false;
+        }
+
+        return true;
+    }
+
+    private function buildExternalType($type)
+    {
+        $type = trim($type, '\\');
+        $types = array_values(array_filter($this->externalTypes, function ($external) use ($type) {
+            return (strpos($type, $external['name']) !== false);
+        }));
+
+        $external = $types[0];
+
+        $href = sprintf($external['uri'], str_replace($external['name'], '', $type));
+        return sprintf(
+            '<a href="%s" target="_blank">%s</a>',
+            $href,
+            $type
+        );
     }
 
     private function buildLink($content)
