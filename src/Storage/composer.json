@@ -7,9 +7,11 @@
         "google/cloud-core": "*"
     },
     "extra": {
-        "id": "cloud-storage",
-        "target": "GoogleCloudPlatform/google-cloud-php-storage.git",
-        "path": "src/Storage",
-        "entry": "StorageClient.php"
+        "component": {
+            "id": "cloud-storage",
+            "target": "GoogleCloudPlatform/google-cloud-php-storage.git",
+            "path": "src/Storage",
+            "entry": "StorageClient.php"
+        }
     }
 }

@@ -64,10 +64,11 @@ class DocGenerator
 
             if ($isPhp) {
                 $fileReflector = new FileReflector($file);
-                $parser = new CodeParser($file, $currentFile, $fileReflector);
+                $parser = new CodeParser($file, $currentFile, $fileReflector, dirname($this->executionPath));
             } else {
                 $content = file_get_contents($file);
-                $parser = new MarkdownParser($currentFile, $content);
+                $split = explode('src/', $file);
+                $parser = new MarkdownParser($split[1], $content);
             }
 
             $document = $parser->parse();

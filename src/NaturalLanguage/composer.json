@@ -7,9 +7,11 @@
         "google/cloud-core": "*"
     },
     "extra": {
-        "id": "cloud-natural-language",
-        "target": "GoogleCloudPlatform/google-cloud-php-natural-language.git",
-        "path": "src/NaturalLanguage",
-        "entry": "NaturalLanguageClient.php"
+        "component": {
+            "id": "cloud-natural-language",
+            "target": "GoogleCloudPlatform/google-cloud-php-natural-language.git",
+            "path": "src/NaturalLanguage",
+            "entry": "NaturalLanguageClient.php"
+        }
     }
 }

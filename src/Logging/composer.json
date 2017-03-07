@@ -7,9 +7,11 @@
         "google/cloud-core": "*"
     },
     "extra": {
-        "id": "cloud-logging",
-        "target": "GoogleCloudPlatform/google-cloud-php-logging.git",
-        "path": "src/Logging",
-        "entry": "LoggingClient.php"
+        "component": {
+            "id": "cloud-logging",
+            "target": "GoogleCloudPlatform/google-cloud-php-logging.git",
+            "path": "src/Logging",
+            "entry": "LoggingClient.php"
+        }
     }
 }

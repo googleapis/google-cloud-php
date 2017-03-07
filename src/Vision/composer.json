@@ -7,9 +7,11 @@
         "google/cloud-core": "*"
     },
     "extra": {
-        "id": "cloud-vision",
-        "target": "GoogleCloudPlatform/google-cloud-php-vision.git",
-        "path": "src/Vision",
-        "entry": "VisionClient.php"
+        "component": {
+            "id": "cloud-vision",
+            "target": "GoogleCloudPlatform/google-cloud-php-vision.git",
+            "path": "src/Vision",
+            "entry": "VisionClient.php"
+        }
     }
 }

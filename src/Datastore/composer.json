@@ -7,9 +7,11 @@
         "google/cloud-core": "*"
     },
     "extra": {
-        "id": "cloud-datastore",
-        "target": "GoogleCloudPlatform/google-cloud-php-datastore.git",
-        "path": "src/Datastore",
-        "entry": "DatastoreClient.php"
+        "component": {
+            "id": "cloud-datastore",
+            "target": "GoogleCloudPlatform/google-cloud-php-datastore.git",
+            "path": "src/Datastore",
+            "entry": "DatastoreClient.php"
+        }
     }
 }

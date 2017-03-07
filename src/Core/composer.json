@@ -17,9 +17,11 @@
         "google/proto-client-php": "Required to support gRPC"
     },
     "extra": {
-        "id": "cloud-core",
-        "target": "GoogleCloudPlatform/google-cloud-php-core.git",
-        "path": "src/Core",
-        "entry": null
+        "component": {
+            "id": "cloud-core",
+            "target": "GoogleCloudPlatform/google-cloud-php-core.git",
+            "path": "src/Core",
+            "entry": null
+        }
     }
 }

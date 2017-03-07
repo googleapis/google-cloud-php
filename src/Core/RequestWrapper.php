@@ -85,8 +85,8 @@ class RequestWrapper
     /**
      * @param array $config [optional] {
      *     Configuration options. Please see
-     *     {@see Google\Cloud\RequestWrapperTrait::setCommonDefaults()} for the other
-     *     available options.
+     *     {@see Google\Cloud\Core\RequestWrapperTrait::setCommonDefaults()} for
+     *     the other available options.
      *
      *     @type string $componentName The name of the component from which the request
      *           originated.

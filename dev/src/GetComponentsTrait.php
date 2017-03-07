@@ -36,7 +36,7 @@ trait GetComponentsTrait
             $json = json_decode(file_get_contents($file), true);
 
             $path = explode('src', $file);
-            $component = $json['extra'];
+            $component = $json['extra']['component'];
             $component['name'] = $json['name'];
             if (!isset($component['displayName'])) {
                 $component['displayName'] = $json['name'];

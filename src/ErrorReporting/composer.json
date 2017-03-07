@@ -7,9 +7,11 @@
         "google/cloud-core": "*"
     },
     "extra": {
-        "id": "cloud-error-reporting",
-        "target": "GoogleCloudPlatform/google-cloud-php-error-reporting.git",
-        "path": "src/ErrorReporting",
-        "entry": null
+        "component": {
+            "id": "cloud-error-reporting",
+            "target": "GoogleCloudPlatform/google-cloud-php-error-reporting.git",
+            "path": "src/ErrorReporting",
+            "entry": null
+        }
     }
 }

@@ -7,10 +7,12 @@
         "google/cloud-core": "*"
     },
     "extra": {
-        "displayName": "Google Cloud BigQuery",
-        "id": "cloud-bigquery",
-        "target": "GoogleCloudPlatform/google-cloud-php-bigquery.git",
-        "path": "src/BigQuery",
-        "entry": "BigQueryClient.php"
+        "component": {
+            "displayName": "Google Cloud BigQuery",
+            "id": "cloud-bigquery",
+            "target": "GoogleCloudPlatform/google-cloud-php-bigquery.git",
+            "path": "src/BigQuery",
+            "entry": "BigQueryClient.php"
+        }
     }
 }

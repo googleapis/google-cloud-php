@@ -27,6 +27,7 @@ use Google\Cloud\Datastore\Query\QueryInterface;
 use Google\Cloud\Core\Int64;
 use InvalidArgumentException;
 use Psr\Cache\CacheItemPoolInterface;
+use Psr\Http\Message\StreamInterface;
 
 /**
  * Google Cloud Datastore client. Cloud Datastore is a highly-scalable NoSQL
@@ -133,7 +134,7 @@ class DatastoreClient
      *     @type string $namespaceId Partitions data under a namespace. Useful for
      *           [Multitenant Projects](https://cloud.google.com/datastore/docs/concepts/multitenancy).
      *     @type bool $returnInt64AsObject If true, 64 bit integers will be
-     *           returned as a {@see Google\Cloud\Int64} object for 32 bit
+     *           returned as a {@see Google\Cloud\Core\Int64} object for 32 bit
      *           platform compatibility. **Defaults to** false.
      * }
      * @throws \InvalidArgumentException

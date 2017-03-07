@@ -7,9 +7,11 @@
         "google/cloud-core": "*"
     },
     "extra": {
-        "id": "cloud-translate",
-        "target": "GoogleCloudPlatform/google-cloud-php-translate.git",
-        "path": "src/Translate",
-        "entry": "TranslateClient.php"
+        "component": {
+            "id": "cloud-translate",
+            "target": "GoogleCloudPlatform/google-cloud-php-translate.git",
+            "path": "src/Translate",
+            "entry": "TranslateClient.php"
+        }
     }
 }

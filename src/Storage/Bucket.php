@@ -19,6 +19,7 @@ namespace Google\Cloud\Storage;
 
 use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Core\Upload\ResumableUploader;
+use Google\Cloud\Core\Upload\StreamableUploader;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Storage\Connection\ConnectionInterface;
 use GuzzleHttp\Psr7;

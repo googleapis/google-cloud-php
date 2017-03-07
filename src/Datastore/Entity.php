@@ -37,7 +37,7 @@ use Psr\Http\Message\StreamInterface;
  * | {@see Google\Cloud\Datastore\GeoPoint}     | `geoPointValue`                      |
  * | {@see Google\Cloud\Datastore\Entity}       | `entityValue`                        |
  * | {@see Google\Cloud\Datastore\Blob}         | `blobValue`                          |
- * | {@see Google\Cloud\Int64}                  | `integerValue`                       |
+ * | {@see Google\Cloud\Core\Int64}             | `integerValue`                       |
  * | Associative Array                          | `entityValue` (No Key)               |
  * | Non-Associative Array                      | `arrayValue`                         |
  * | `float`                                    | `doubleValue`                        |

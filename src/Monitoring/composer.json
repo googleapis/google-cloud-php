@@ -7,9 +7,11 @@
         "google/cloud-core": "*"
     },
     "extra": {
-        "id": "cloud-monitoring",
-        "target": "GoogleCloudPlatform/google-cloud-php-monitoring.git",
-        "path": "src/Monitoring",
-        "entry": null
+        "component": {
+            "id": "cloud-monitoring",
+            "target": "GoogleCloudPlatform/google-cloud-php-monitoring.git",
+            "path": "src/Monitoring",
+            "entry": null
+        }
     }
 }

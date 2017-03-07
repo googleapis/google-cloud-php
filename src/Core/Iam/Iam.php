@@ -26,8 +26,8 @@ namespace Google\Cloud\Core\Iam;
  * Note that examples make use of the PubSub API, and the
  * {@see Google\Cloud\PubSub\Topic} class.
  *
- * Policies can be created using the {@see Google\Cloud\Iam\PolicyBuilder} to
- * help ensure their validity.
+ * Policies can be created using the {@see Google\Cloud\Core\Iam\PolicyBuilder}
+ * to help ensure their validity.
  *
  * Example:
  * ```
@@ -76,7 +76,8 @@ class Iam
      * Get the existing IAM policy for this resource.
      *
      * If a policy has already been retrieved from the API, it will be returned.
-     * To fetch a fresh copy of the policy, use {@see Google\Cloud\Iam\Iam::reload()}.
+     * To fetch a fresh copy of the policy, use
+     * {@see Google\Cloud\Core\Iam\Iam::reload()}.
      *
      * Example:
      * ```
