@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Trace\Connection;
+namespace Google\Cloud\Tests\Unit\Trace\Connection;
 
 use Google\Cloud\Trace\Connection\Rest;
 use Google\Cloud\RequestBuilder;

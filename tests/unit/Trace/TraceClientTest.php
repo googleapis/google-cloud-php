@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Trace;
+namespace Google\Cloud\Tests\Unit\Trace;
 
 use Google\Cloud\Trace\Connection\ConnectionInterface;
 use Google\Cloud\Trace\Trace;
@@ -78,7 +78,7 @@ class TraceClientTest extends \PHPUnit_Framework_TestCase
 
         $trace = $this->client->getTrace('1');
         $this->assertEquals('1', $trace->getTraceId());
-        $this->assertEquals(1, count($trace->getSpans()));
+        $this->assertEquals(1, count($trace->spans()));
     }
 
     public function testGetSingleTraceNotFound()
@@ -105,8 +105,7 @@ class TraceClientTest extends \PHPUnit_Framework_TestCase
         ]);
         $this->client->setConnection($this->connection->reveal());
 
-        $trace = new Trace([
-            'projectId' => 'project',
+        $trace = new Trace('project', [
             'spans' => [
                 ['name' => 'main']
             ]
@@ -132,13 +131,12 @@ class TraceClientTest extends \PHPUnit_Framework_TestCase
         ]);
         $this->client->setConnection($this->connection->reveal());
 
-        $trace = new Trace([
-            'projectId' => 'project',
+        $trace = new Trace('project', [
             'spans' => [
                 ['name' => 'main']
             ]
         ]);
-        $newTraces = $this->client->patchTraces([$trace]);
+        $newTraces = $this->client->insertTraceBatch([$trace]);
         $newTrace = $newTraces[0];
         $this->assertInstanceOf(Trace::class, $newTrace);
         $this->assertEquals('1', $newTrace->getTraceId());

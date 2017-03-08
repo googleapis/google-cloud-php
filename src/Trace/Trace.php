@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Trace;
 
+use Google\Cloud\ValidateTrait;
+
 /**
  * This plain PHP class represents a Trace resource. Traces belong to a
  * project and have many TraceSpans. See:
@@ -35,6 +37,8 @@ namespace Google\Cloud\Trace;
  */
 class Trace
 {
+    use ValidateTrait;
+
     /**
      * The id of the project this trace belongs to.
      * @var string
@@ -56,19 +60,19 @@ class Trace
     /**
      * Instantiate a new Trace instance.
      *
-     * @param array $options {
+     * @param string $projectId The id of the project this trace belongs to.
+     * @param array $options [optional] {
      *      Configuration options.
      *
-     *      @type string $projectId The id of the project this trace belongs to.
-     *      @type string $traceId [optional] The trace id for this trace. 128-bit numeric
+     *      @type string $traceId The trace id for this trace. 128-bit numeric
      *            formatted as a 32-byte hex string. If not provided, one will be generated
      *            automatically for you.
-     *      @type array $spans [optional] List of span data to load.
+     *      @type array $spans List of span data to load.
      * }
      */
-    public function __construct(array $options)
+    public function __construct($projectId, array $options = [])
     {
-        $this->projectId = $options['projectId'];
+        $this->projectId = $projectId;
 
         if (array_key_exists('traceId', $options)) {
             $this->traceId = $options['traceId'];
@@ -113,7 +117,7 @@ class Trace
      *
      * @return array
      */
-    public function getSpans()
+    public function spans()
     {
         return $this->spans;
     }
@@ -125,6 +129,7 @@ class Trace
      */
     public function setSpans(array $spans)
     {
+        $this->validateBatch($spans, TraceSpan::class);
         $this->spans = $spans;
     }
 

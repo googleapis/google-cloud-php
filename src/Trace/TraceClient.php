@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Trace;
 
+use Google\Cloud\ArrayTrait;
 use Google\Cloud\ClientTrait;
 use Google\Cloud\Trace\Connection\ConnectionInterface;
 use Google\Cloud\Trace\Connection\Rest;
@@ -44,6 +45,7 @@ use Google\Cloud\Trace\Connection\Rest;
  */
 class TraceClient
 {
+    use ArrayTrait;
     use ClientTrait;
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/cloud-platform';
@@ -97,7 +99,7 @@ class TraceClient
      */
     public function insertTrace(Trace $trace)
     {
-        $traces = $this->patchTraces([$trace]);
+        $traces = $this->insertTraceBatch([$trace]);
         return $traces[0];
     }
 
@@ -107,7 +109,7 @@ class TraceClient
      * @param Trace[] $traces The trace logs to send.
      * @return Trace[] Array of new or updated traces.
      */
-    public function patchTraces(array $traces)
+    public function insertTraceBatch(array $traces)
     {
         $response = $this->connection->patchTraces([
             'projectId' => $this->projectId,
@@ -120,7 +122,7 @@ class TraceClient
             ? $response['traces']
             : [];
         return array_map(function ($trace) {
-            return new Trace($trace);
+            return new Trace($this->pluck('projectId', $trace), $trace);
         }, $traces);
     }
 
@@ -141,7 +143,7 @@ class TraceClient
             return null;
         };
 
-        return new Trace($trace);
+        return new Trace($this->pluck('projectId', $trace), $trace);
     }
 
     /**
@@ -163,10 +165,7 @@ class TraceClient
      */
     public function trace($traceId = null)
     {
-        return new Trace([
-            'projectId' => $this->projectId,
-            'traceId' => $traceId
-        ]);
+        return new Trace($this->projectId, ['traceId' => $traceId]);
     }
 
     /**
@@ -200,7 +199,7 @@ class TraceClient
                 ? $response['traces']
                 : [];
             foreach ($traces as $trace) {
-                yield new Trace($trace);
+                yield new Trace($this->pluck('projectId', $trace), $trace);
             }
 
             $options['pageToken'] = isset($response['nextPageToken']) ? $response['nextPageToken'] : null;

@@ -142,7 +142,7 @@ class TraceSpan
      * @param  \DateTime $when [optional] The start time of this span.
      *         **Defaults to** now.
      */
-    public function start(\DateTime $when = null)
+    public function setStart(\DateTime $when = null)
     {
         $this->startTime = $this->formatDate($when);
     }
@@ -153,7 +153,7 @@ class TraceSpan
      * @param  \DateTime $when [optional] The end time of this span.
      *         **Defaults to** now.
      */
-    public function finish(\DateTime $when = null)
+    public function setFinish(\DateTime $when = null)
     {
         $this->endTime = $this->formatDate($when);
     }
@@ -194,7 +194,7 @@ class TraceSpan
      *
      * @param array $labels Labels in the form of $label => $value
      */
-    public function addLabels($labels)
+    public function addLabels(array $labels)
     {
         foreach ($labels as $label => $value) {
             $this->addLabel($label, $value);
