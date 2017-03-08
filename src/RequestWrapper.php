@@ -237,7 +237,7 @@ class RequestWrapper
             try {
                 $this->jsonDecode($res);
                 return $res;
-            } catch (\InvalidArgumentException $ex) {
+            } catch (\InvalidArgumentException $e) {
                 // no-op
             }
         }
@@ -262,7 +262,7 @@ class RequestWrapper
                 return true;
             }
 
-            $message = $this->jsonDecode($ex->getMessage(), true);
+            $message = json_decode($ex->getMessage(), true);
 
             if (!isset($message['error']['errors'])) {
                 return false;
