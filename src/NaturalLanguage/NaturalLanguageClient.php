@@ -120,7 +120,8 @@ class NaturalLanguageClient
      * @see https://cloud.google.com/natural-language/reference/rest/v1beta1/documents/analyzeEntities Analyze Entities API documentation
      * @codingStandardsIgnoreEnd
      *
-     * @param string|StorageObject $content The content to analyze.
+     * @param string|StorageObject $content The content to analyze. When
+     *        providing a string it should be UTF-8 encoded.
      * @param array $options [optional] {
      *     Configuration options.
      *
@@ -169,7 +170,8 @@ class NaturalLanguageClient
      * @see https://cloud.google.com/natural-language/reference/rest/v1beta1/documents/analyzeSentiment Analyze Sentiment API documentation
      * @codingStandardsIgnoreEnd
      *
-     * @param string|StorageObject $content The content to analyze.
+     * @param string|StorageObject $content The content to analyze. When
+     *        providing a string it should be UTF-8 encoded.
      * @param array $options [optional] {
      *     Configuration options.
      *
@@ -217,7 +219,8 @@ class NaturalLanguageClient
      * @see https://cloud.google.com/natural-language/reference/rest/v1beta1/documents/analyzeSyntax Analyze Syntax API documentation
      * @codingStandardsIgnoreEnd
      *
-     * @param string|StorageObject $content The content to analyze.
+     * @param string|StorageObject $content The content to analyze. When
+     *        providing a string it should be UTF-8 encoded.
      * @param array $options [optional] {
      *     Configuration options.
      *
@@ -277,7 +280,8 @@ class NaturalLanguageClient
      * @see https://cloud.google.com/natural-language/reference/rest/v1beta1/documents/annotateText Annotate Text API documentation
      * @codingStandardsIgnoreEnd
      *
-     * @param string|StorageObject $content The content to annotate.
+     * @param string|StorageObject $content The content to analyze. When
+     *        providing a string it should be UTF-8 encoded.
      * @param array $options [optional] {
      *     Configuration options.
      *

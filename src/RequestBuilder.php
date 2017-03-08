@@ -18,6 +18,7 @@
 namespace Google\Cloud;
 
 use Google\Cloud\UriTrait;
+use GuzzleHttp;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Request;
 use Psr\Http\Message\RequestInterface;
@@ -126,7 +127,7 @@ class RequestBuilder
             $action['httpMethod'],
             $uri,
             ['Content-Type' => 'application/json'],
-            $body ? json_encode($body) : null
+            $body ? GuzzleHttp\json_encode($body) : null
         );
     }
 
