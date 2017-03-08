@@ -200,22 +200,4 @@ class Release extends Command
 
         return true;
     }
-
-    private function getComponentComposer($componentId)
-    {
-        $components = $this->getComponents($this->components, $this->defaultComponentComposer);
-
-        $components = array_values(array_filter($components, function ($component) use ($componentId) {
-            return ($component['id'] === $componentId);
-        }));
-
-        if (count($components) === 0) {
-            throw new \InvalidArgumentException(sprintf(
-                'Given component id %s is not a valid component.',
-                $componentId
-            ));
-        }
-
-        return $components[0];
-    }
 }

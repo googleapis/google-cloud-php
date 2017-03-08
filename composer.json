@@ -78,8 +78,10 @@
         "google-cloud": "dev/google-cloud"
     },
     "extra": {
-        "id": "google-cloud",
-        "target": "git@github.com:jdpedrie-gcp/google-cloud-php.git",
-        "entry": "src/ServiceBuilder.php"
+        "component": {
+            "id": "google-cloud",
+            "target": "git@github.com:jdpedrie-gcp/google-cloud-php.git",
+            "entry": "src/ServiceBuilder.php"
+        }
     }
 }

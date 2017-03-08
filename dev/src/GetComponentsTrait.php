@@ -19,6 +19,8 @@ namespace Google\Cloud\Dev;
 
 trait GetComponentsTrait
 {
+    private static $__manifest;
+
     /**
      * If $defaultComposerPath is set, it will parse that path as a composer
      * file and add it to the components.
@@ -62,10 +64,6 @@ trait GetComponentsTrait
 
     private function getComponentManifest($manifestPath, $componentId)
     {
-        if (!file_exists($manifestPath)) {
-            throw new RuntimeException('Manifest file not found at '. $manifestPath);
-        }
-
         $manifest = $this->getManifest($manifestPath);
         $index = $this->getManifestComponentModuleIndex($manifestPath, $manifest, $componentId);
 
@@ -83,12 +81,36 @@ trait GetComponentsTrait
 
     private function getManifest($manifestPath)
     {
-        $json = json_decode(file_get_contents($manifestPath), true);
+        if (self::$__manifest) {
+            $manifest = self::$__manifest;
+        } else {
+            $manifest = json_decode(file_get_contents($manifestPath), true);
 
-        if (json_last_error() !== JSON_ERROR_NONE) {
-            throw new RuntimeException('Could not decode manifest json');
+            if (json_last_error() !== JSON_ERROR_NONE) {
+                throw new RuntimeException('Could not decode manifest json');
+            }
+
+            self::$__manifest = $manifest;
         }
 
-        return $json;
+        return $manifest;
+    }
+
+    private function getComponentComposer($componentId)
+    {
+        $components = $this->getComponents($this->components, $this->defaultComponentComposer);
+
+        $components = array_values(array_filter($components, function ($component) use ($componentId) {
+            return ($component['id'] === $componentId);
+        }));
+
+        if (count($components) === 0) {
+            throw new \InvalidArgumentException(sprintf(
+                'Given component id %s is not a valid component.',
+                $componentId
+            ));
+        }
+
+        return $components[0];
     }
 }

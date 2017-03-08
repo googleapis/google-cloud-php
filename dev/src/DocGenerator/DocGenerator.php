@@ -33,17 +33,25 @@ class DocGenerator
     private $outputPath;
     private $executionPath;
     private $componentId;
+    private $manifestPath;
 
     /**
      * @param array $files
      */
-    public function __construct(TypeGenerator $types, array $files, $outputPath, $executionPath, $componentId)
-    {
+    public function __construct(
+        TypeGenerator $types,
+        array $files,
+        $outputPath,
+        $executionPath,
+        $componentId,
+        $manifestPath
+    ) {
         $this->types = $types;
         $this->files = $files;
         $this->outputPath = $outputPath;
         $this->executionPath = $executionPath;
         $this->componentId = $componentId;
+        $this->manifestPath = $manifestPath;
     }
 
     /**
@@ -66,7 +74,14 @@ class DocGenerator
 
             if ($isPhp) {
                 $fileReflector = new FileReflector($file);
-                $parser = new CodeParser($file, $currentFile, $fileReflector, dirname($this->executionPath), $this->componentId);
+                $parser = new CodeParser(
+                    $file,
+                    $currentFile,
+                    $fileReflector,
+                    dirname($this->executionPath),
+                    $this->componentId,
+                    $this->manifestPath
+                );
             } else {
                 $content = file_get_contents($file);
                 $split = explode('src/', $file);

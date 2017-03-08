@@ -109,16 +109,16 @@ class Docs extends Command
             ? $paths['output'] .'/'. $component['id'] .'/'. $version
             : $paths['output'] .'/'. $component['id'] .'/master';
 
-        $output->writeln(sprintf('Writing to %s', $outputPath));
+        $output->writeln(sprintf('Writing to %s', realpath($outputPath)));
 
         $types = new TypeGenerator($outputPath);
 
-        $docs = new DocGenerator($types, $source, $outputPath, $this->cliBasePath, $component['id']);
+        $docs = new DocGenerator($types, $source, $outputPath, $this->cliBasePath, $component['id'], $paths['manifest']);
         $docs->generate($component['path'], $pretty);
 
         $types->write($pretty);
 
-        $output->writeln(sprintf('Writing table of contents to %s', $outputPath));
+        $output->writeln(sprintf('Writing table of contents to %s', realpath($outputPath)));
         $services = json_decode(file_get_contents($paths['toc'] .'/'. $component['id'] .'.json'), true);
         $toc = new TableOfContents($tocTemplate, $services, $version, $outputPath);
         $toc->generate($pretty);

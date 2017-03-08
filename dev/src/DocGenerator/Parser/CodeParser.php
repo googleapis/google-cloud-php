@@ -18,6 +18,7 @@
 namespace Google\Cloud\Dev\DocGenerator\Parser;
 
 use Google\Cloud\Dev\DocBlockStripSpaces;
+use Google\Cloud\Dev\GetComponentsTrait;
 use phpDocumentor\Reflection\DocBlock;
 use phpDocumentor\Reflection\DocBlock\Description;
 use phpDocumentor\Reflection\DocBlock\Tag\SeeTag;
@@ -25,6 +26,8 @@ use phpDocumentor\Reflection\FileReflector;
 
 class CodeParser implements ParserInterface
 {
+    use GetComponentsTrait;
+
     const SNIPPET_NAME_REGEX = '/\/\/\s?\[snippet\=(\w{0,})\]/';
 
     private $path;
@@ -34,9 +37,16 @@ class CodeParser implements ParserInterface
     private $projectRoot;
     private $externalTypes;
     private $componentId;
+    private $manifestPath;
 
-    public function __construct($path, $outputName, FileReflector $reflector, $projectRoot, $componentId)
-    {
+    public function __construct(
+        $path,
+        $outputName,
+        FileReflector $reflector,
+        $projectRoot,
+        $componentId,
+        $manifestPath
+    ) {
         $this->path = $path;
         $this->outputName = $outputName;
         $this->reflector = $reflector;
@@ -44,6 +54,7 @@ class CodeParser implements ParserInterface
         $this->projectRoot = $projectRoot;
         $this->externalTypes = json_decode(file_get_contents(__DIR__ .'/../../../../docs/external-classes.json'), true);
         $this->componentId = $componentId;
+        $this->manifestPath = $manifestPath;
     }
 
     public function parse()
@@ -513,9 +524,8 @@ class CodeParser implements ParserInterface
 
             do {
                 $composer = dirname($file) .'/composer.json';
-                if (file_exists($composer) && $this->isComponent($composer)) {
-                    $composer = json_decode(file_get_contents($composer), true);
-                    $componentId = $composer['extra']['component']['id'];
+                if (file_exists($composer) && $component = $this->isComponent($composer)) {
+                    $componentId = $component['id'];
                     if ($componentId === $this->componentId) {
                         $componentId = null;
                     }
@@ -536,7 +546,8 @@ class CodeParser implements ParserInterface
         $type = strtolower(str_replace('\\', '/', $parts[0]));
 
         if ($componentId) {
-            $type = $componentId .'/latest/'. $type;
+            $version = $this->getComponentVersion($this->manifestPath, $componentId);
+            $type = $componentId .'/'. $version .'/'. $type;
         }
 
         $openTag = '<a data-custom-type="' . $type . '"';
@@ -566,9 +577,21 @@ class CodeParser implements ParserInterface
         ];
     }
 
+    private static $composerFiles = [];
+
     private function isComponent($composerPath)
     {
-        $contents = json_decode(file_get_contents($composerPath), true);
-        return isset($contents['extra']['component']);
+        if (isset(self::$composerFiles[$composerPath])) {
+            $contents = self::$composerFiles[$composerPath];
+        } else {
+            $contents = json_decode(file_get_contents($composerPath), true);
+            self::$composerFiles[$composerPath] = $contents;
+        }
+
+        if (isset($contents['extra']['component'])) {
+            return $contents['extra']['component'];
+        }
+
+        return false;
     }
 }
