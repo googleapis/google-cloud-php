@@ -113,7 +113,7 @@ class Docs extends Command
 
         $types = new TypeGenerator($outputPath);
 
-        $docs = new DocGenerator($types, $source, $outputPath, $this->cliBasePath);
+        $docs = new DocGenerator($types, $source, $outputPath, $this->cliBasePath, $component['id']);
         $docs->generate($component['path'], $pretty);
 
         $types->write($pretty);

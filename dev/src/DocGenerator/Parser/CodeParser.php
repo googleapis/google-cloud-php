@@ -33,8 +33,9 @@ class CodeParser implements ParserInterface
     private $markdown;
     private $projectRoot;
     private $externalTypes;
+    private $componentId;
 
-    public function __construct($path, $outputName, FileReflector $reflector, $projectRoot)
+    public function __construct($path, $outputName, FileReflector $reflector, $projectRoot, $componentId)
     {
         $this->path = $path;
         $this->outputName = $outputName;
@@ -42,6 +43,7 @@ class CodeParser implements ParserInterface
         $this->markdown = \Parsedown::instance();
         $this->projectRoot = $projectRoot;
         $this->externalTypes = json_decode(file_get_contents(__DIR__ .'/../../../../docs/external-classes.json'), true);
+        $this->componentId = $componentId;
     }
 
     public function parse()
@@ -514,6 +516,9 @@ class CodeParser implements ParserInterface
                 if (file_exists($composer) && $this->isComponent($composer)) {
                     $composer = json_decode(file_get_contents($composer), true);
                     $componentId = $composer['extra']['component']['id'];
+                    if ($componentId === $this->componentId) {
+                        $componentId = null;
+                    }
                     $recurse = false;
                 } elseif (trim($file, '/') === trim($this->projectRoot, '/')) {
                     $recurse = false;
