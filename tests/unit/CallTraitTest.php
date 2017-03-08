@@ -40,11 +40,24 @@ class CallTraitTest extends \PHPUnit_Framework_TestCase
 
         $t->bar();
     }
+
+    public function testDefinedMagicMethods()
+    {
+        $t = new CallTraitStub(['method1' => 'bar', 'test' => 'foo']);
+
+        $this->assertEquals('bar', $t->method1());
+        $this->assertEquals('foo', $t->test());
+        $this->assertNull($t->method2());
+    }
 }
 
 class CallTraitStub
 {
     use CallTrait;
+
+    private $magicMethods = [
+        'method1', 'method2'
+    ];
 
     public function __construct(array $data)
     {

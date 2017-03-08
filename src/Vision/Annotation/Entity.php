@@ -178,6 +178,21 @@ class Entity extends AbstractFeature
     use CallTrait;
 
     /**
+     * @var array
+     */
+    private $magicMethods = [
+        'mid',
+        'locale',
+        'description',
+        'score',
+        'confidence',
+        'topicality',
+        'boundingPoly',
+        'locations',
+        'properties',
+    ];
+
+    /**
      * Create an entity annotation result.
      *
      * This class is created internally by {@see Google\Cloud\Vision\Annotation} and is used to represent various

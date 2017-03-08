@@ -72,6 +72,14 @@ class Document extends AbstractFeature
     use CallTrait;
 
     /**
+     * @var array
+     */
+    private $magicMethods = [
+        'pages',
+        'text',
+    ];
+
+    /**
      * @param array $info Document Text Annotation response.
      */
     public function __construct(array $info)

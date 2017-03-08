@@ -102,6 +102,16 @@ class Annotation
     use CallTrait;
 
     /**
+     * @var array
+     */
+    private $magicMethods = [
+        'sentences',
+        'tokens',
+        'entities',
+        'language',
+    ];
+
+    /**
      * @var array The annotation's metadata.
      */
     private $info;

@@ -66,6 +66,14 @@ class WebPage extends AbstractFeature
     use CallTrait;
 
     /**
+     * @var array
+     */
+    private $magicMethods = [
+        'url',
+        'score'
+    ];
+
+    /**
      * @param array $info The WebPage result
      */
     public function __construct(array $info)
