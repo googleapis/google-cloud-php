@@ -17,6 +17,7 @@
 
 namespace Google\Cloud;
 
+use Google\Cloud\JsonTrait;
 use Google\Cloud\UriTrait;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Request;
@@ -27,6 +28,7 @@ use Psr\Http\Message\RequestInterface;
  */
 class RequestBuilder
 {
+    use JsonTrait;
     use UriTrait;
 
     /**
@@ -126,7 +128,7 @@ class RequestBuilder
             $action['httpMethod'],
             $uri,
             ['Content-Type' => 'application/json'],
-            $body ? json_encode($body) : null
+            $body ? $this->jsonEncode($body) : null
         );
     }
 
@@ -136,7 +138,7 @@ class RequestBuilder
      */
     private function loadServiceDefinition($servicePath)
     {
-        return json_decode(
+        return $this->jsonDecode(
             file_get_contents($servicePath, true),
             true
         );

@@ -23,6 +23,7 @@ use Google\Auth\Credentials\GCECredentials;
 use Google\Auth\HttpHandler\HttpHandlerFactory;
 use Google\Cloud\Compute\Metadata;
 use Google\Cloud\Exception\GoogleException;
+use Google\Cloud\JsonTrait;
 use GuzzleHttp\Psr7;
 
 /**
@@ -30,6 +31,8 @@ use GuzzleHttp\Psr7;
  */
 trait ClientTrait
 {
+    use JsonTrait;
+
     /**
      * @var string The project ID created in the Google Developers Console.
      */
@@ -114,9 +117,9 @@ trait ClientTrait
                 throw new GoogleException('Given keyfile path does not exist');
             }
 
-            $keyFileData = json_decode(file_get_contents($config['keyFilePath']), true);
-
-            if (json_last_error() !== JSON_ERROR_NONE) {
+            try {
+                $keyFileData = $this->jsonDecode(file_get_contents($config['keyFilePath']), true);
+            } catch (\InvalidArgumentException $ex) {
                 throw new GoogleException('Given keyfile was invalid');
             }
 
