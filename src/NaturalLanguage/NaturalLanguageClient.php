@@ -32,15 +32,6 @@ use Psr\Cache\CacheItemPoolInterface;
  *
  * Example:
  * ```
- * use Google\Cloud\ServiceBuilder;
- *
- * $cloud = new ServiceBuilder();
- *
- * $language = $cloud->naturalLanguage();
- * ```
- *
- * ```
- * // NaturalLanguage can be instantiated directly.
  * use Google\Cloud\NaturalLanguage\NaturalLanguageClient;
  *
  * $language = new NaturalLanguageClient();

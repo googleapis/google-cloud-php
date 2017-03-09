@@ -32,11 +32,9 @@ use InvalidArgumentException;
  * Example:
  * ```
  * // Create subscription through a topic
- * use Google\Cloud\ServiceBuilder;
+ * use Google\Cloud\PubSub\PubSubClient;
  *
- * $cloud = new ServiceBuilder();
- *
- * $pubsub = $cloud->pubsub();
+ * $pubsub = new PubSubClient();
  *
  * $topic = $pubsub->topic('my-new-topic');
  *
@@ -45,7 +43,6 @@ use InvalidArgumentException;
  *
  * ```
  * // Create subscription through PubSubClient
- *
  * use Google\Cloud\PubSub\PubSubClient;
  *
  * $pubsub = new PubSubClient();

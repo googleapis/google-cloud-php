@@ -35,10 +35,9 @@ namespace Google\Cloud\Core\Iam;
  * // In this example, we'll use PubSub topics to demonstrate
  * // how IAM politices are managed.
  *
- * use Google\Cloud\ServiceBuilder;
+ * use Google\Cloud\PubSub\PubSubClient;
  *
- * $cloud = new ServiceBuilder;
- * $pubsub = $cloud->pubsub();
+ * $pubsub = new PubSubClient();
  * $topic = $pubsub->topic('my-new-topic');
  *
  * $iam = $topic->iam();

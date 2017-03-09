@@ -32,15 +32,6 @@ use Psr\Cache\CacheItemPoolInterface;
  *
  * Example:
  * ```
- * use Google\Cloud\ServiceBuilder;
- *
- * $cloud = new ServiceBuilder();
- *
- * $vision = $cloud->vision();
- * ```
- *
- * ```
- * // VisionClient can be instantiated directly.
  * use Google\Cloud\Vision\VisionClient;
  *
  * $vision = new VisionClient();

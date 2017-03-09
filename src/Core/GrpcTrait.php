@@ -23,7 +23,6 @@ use Google\Auth\FetchAuthTokenCache;
 use Google\Auth\Cache\MemoryCacheItemPool;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\GrpcRequestWrapper;
-use Google\Cloud\ServiceBuilder;
 
 /**
  * Provides shared functionality for gRPC service implementations.
@@ -75,8 +74,7 @@ trait GrpcTrait
         return [
             'credentialsLoader' => $this->requestWrapper->getCredentialsFetcher(),
             'enableCaching' => false,
-            'libName' => 'gccl',
-            'libVersion' => ServiceBuilder::VERSION
+            'libName' => 'gccl'
         ];
     }
 

@@ -54,14 +54,6 @@ use Psr\Cache\CacheItemPoolInterface;
  *
  * Example:
  * ```
- * use Google\Cloud\ServiceBuilder;
- *
- * $cloud = new ServiceBuilder();
- * $logging = $cloud->logging();
- * ```
- *
- * ```
- * // LoggingClient can be instantiated directly.
  * use Google\Cloud\Logging\LoggingClient;
  *
  * $logging = new LoggingClient();

@@ -152,9 +152,14 @@ class Snippet implements \JsonSerializable
         $cb = function($return) use ($content) {
             extract($this->locals);
 
-            ob_start();
-            $res = eval($content ."\n\n". $return);
-            $out = ob_get_clean();
+            try {
+                ob_start();
+                $res = eval($content ."\n\n". $return);
+                $out = ob_get_clean();
+            } catch (\Exception $e) {
+                ob_end_clean();
+                throw $e;
+            }
 
             return new InvokeResult($res, $out);
         };

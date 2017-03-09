@@ -45,14 +45,6 @@ class TranslateClientTest extends SnippetTestCase
         $this->assertInstanceOf(TranslateClient::class, $res->returnVal());
     }
 
-    public function testClassDirectInstantiation()
-    {
-        $snippet = $this->snippetFromClass(TranslateClient::class, 1);
-        $res = $snippet->invoke('translate');
-
-        $this->assertInstanceOf(TranslateClient::class, $res->returnVal());
-    }
-
     public function testTranslate()
     {
         $snippet = $this->snippetFromMethod(TranslateClient::class, 'translate');

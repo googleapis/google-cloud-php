@@ -32,15 +32,6 @@ use Psr\Http\Message\StreamInterface;
  *
  * Example:
  * ```
- * use Google\Cloud\ServiceBuilder;
- *
- * $cloud = new ServiceBuilder();
- *
- * $bigQuery = $cloud->bigQuery();
- * ```
- *
- * ```
- * // BigQueryClient can be instantiated directly.
  * use Google\Cloud\BigQuery\BigQueryClient;
  *
  * $bigQuery = new BigQueryClient();

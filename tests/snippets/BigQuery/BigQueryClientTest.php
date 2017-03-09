@@ -74,14 +74,6 @@ class BigQueryClientTest extends SnippetTestCase
         $this->assertInstanceOf(BigQueryClient::class, $res->returnVal());
     }
 
-    public function testClassDirectInstantiation()
-    {
-        $snippet = $this->snippetFromClass(BigQueryClient::class, 1);
-        $res = $snippet->invoke('bigQuery');
-
-        $this->assertInstanceOf(BigQueryClient::class, $res->returnVal());
-    }
-
     public function testRunQuery()
     {
         $snippet = $this->snippetFromMethod(BigQueryClient::class, 'runQuery');

@@ -41,15 +41,6 @@ use Psr\Cache\CacheItemPoolInterface;
  *
  * Example:
  * ```
- * use Google\Cloud\ServiceBuilder;
- *
- * $cloud = new ServiceBuilder();
- *
- * $speech = $cloud->speech();
- * ```
- *
- * ```
- * // SpeechClient can be instantiated directly.
  * use Google\Cloud\Speech\SpeechClient;
  *
  * $speech = new SpeechClient();

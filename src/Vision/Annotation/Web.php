@@ -26,10 +26,9 @@ use Google\Cloud\Vision\Annotation\Web\WebPage;
  *
  * Example:
  * ```
- * use Google\Cloud\ServiceBuilder;
+ * use Google\Cloud\Vision\VisionClient;
  *
- * $cloud = new ServiceBuilder();
- * $vision = $cloud->vision();
+ * $vision = new VisionClient();
  *
  * $imageResource = fopen(__DIR__ . '/assets/family-photo.jpg', 'r');
  * $image = $vision->image($imageResource, [ 'WEB_DETECTION' ]);

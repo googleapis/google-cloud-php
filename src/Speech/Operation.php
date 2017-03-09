@@ -25,10 +25,9 @@ use Google\Cloud\Speech\Connection\ConnectionInterface;
  *
  * Example:
  * ```
- * use Google\Cloud\ServiceBuilder;
+ * use Google\Cloud\Speech\SpeechClient;
  *
- * $cloud = new ServiceBuilder();
- * $speech = $cloud->speech();
+ * $speech = new SpeechClient();
  *
  * $audioFileStream = fopen(__DIR__  . '/audio.flac', 'r');
  * $operation = $speech->beginRecognizeOperation(

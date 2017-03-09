@@ -57,15 +57,6 @@ use Psr\Cache\CacheItemPoolInterface;
  *
  * Example:
  * ```
- * use Google\Cloud\ServiceBuilder;
- *
- * $cloud = new ServiceBuilder();
- *
- * $pubsub = $cloud->pubsub();
- * ```
- *
- * ```
- * // PubSubClient can be instantiated directly.
  * use Google\Cloud\PubSub\PubSubClient;
  *
  * $pubsub = new PubSubClient();
@@ -73,14 +64,13 @@ use Psr\Cache\CacheItemPoolInterface;
  *
  * ```
  * // Using the Pub/Sub Emulator
- * use Google\Cloud\ServiceBuilder;
+ * use Google\Cloud\PubSub\PubSubClient;
  *
  * // Be sure to use the port specified when starting the emulator.
  * // `8900` is used as an example only.
  * putenv('PUBSUB_EMULATOR_HOST=http://localhost:8900');
  *
- * $cloud = new ServiceBuilder();
- * $pubsub = $cloud->pubsub();
+ * $pubsub = new PubSubClient();
  * ```
  */
 class PubSubClient

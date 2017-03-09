@@ -28,11 +28,9 @@ use InvalidArgumentException;
  *
  * Example:
  * ```
- * use Google\Cloud\ServiceBuilder;
+ * use Google\Cloud\PubSub\PubSubClient;
  *
- * $client = new ServiceBuilder();
- *
- * $pubsub = $client->pubsub();
+ * $pubsub = new PubSubClient();
  * $topic = $pubsub->topic('my-new-topic');
  * ```
  *

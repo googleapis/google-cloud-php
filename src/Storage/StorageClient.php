@@ -29,15 +29,6 @@ use Psr\Cache\CacheItemPoolInterface;
  *
  * Example:
  * ```
- * use Google\Cloud\ServiceBuilder;
- *
- * $cloud = new ServiceBuilder();
- *
- * $storage = $cloud->storage();
- * ```
- *
- * ```
- * // StorageClient can be instantiated directly.
  * use Google\Cloud\Storage\StorageClient;
  *
  * $storage = new StorageClient();

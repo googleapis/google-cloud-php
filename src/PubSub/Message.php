@@ -22,10 +22,9 @@ namespace Google\Cloud\PubSub;
  *
  * Example:
  * ```
- * use Google\Cloud\ServiceBuilder;
+ * use Google\Cloud\PubSub\PubSubClient;
  *
- * $cloud = new ServiceBuilder();
- * $pubsub = $cloud->pubsub();
+ * $pubsub = new PubSubClient();
  * $subscription = $pubsub->subscription('my-new-subscription');
  *
  * $messages = $subscription->pull();

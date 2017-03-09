@@ -42,15 +42,6 @@ use Google\Cloud\Translate\Connection\Rest;
  *
  * Example:
  * ```
- * use Google\Cloud\ServiceBuilder;
- *
- * $cloud = new ServiceBuilder();
- *
- * $translate = $cloud->translate();
- * ```
- *
- * ```
- * // TranslateClient can be instantiated directly.
  * use Google\Cloud\Translate\TranslateClient;
  *
  * $translate = new TranslateClient();

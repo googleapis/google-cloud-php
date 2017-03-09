@@ -42,10 +42,9 @@ use InvalidArgumentException;
  * Example:
  * ```
  * //[snippet=default]
- * use Google\Cloud\ServiceBuilder;
+ * use Google\Cloud\Vision\VisionClient;
  *
- * $cloud = new ServiceBuilder();
- * $vision = $cloud->vision();
+ * $vision = new VisionClient();
  *
  * $imageResource = fopen(__DIR__ . '/assets/family-photo.jpg', 'r');
  * $image = $vision->image($imageResource, [
@@ -79,10 +78,11 @@ use InvalidArgumentException;
  * ```
  * //[snippet=gcs]
  * // Files stored in Google Cloud Storage can be used.
- *
+ * use Google\Cloud\Storage\StorageClient;
  * use Google\Cloud\Vision\Image;
  *
- * $file = $cloud->storage()->bucket('my-test-bucket')->object('family-photo.jpg');
+ * $storage = new StorageClient();
+ * $file = $storage->bucket('my-test-bucket')->object('family-photo.jpg');
  * $image = new Image($file, [
  *     'FACE_DETECTION'
  * ]);

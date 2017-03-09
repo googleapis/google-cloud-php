@@ -68,17 +68,9 @@ class DatastoreClientTest extends SnippetTestCase
         $this->assertInstanceOf(DatastoreClient::class, $res->returnVal());
     }
 
-    public function testClassDirectInstantiation()
-    {
-        $snippet = $this->snippetFromClass(DatastoreClient::class, 1);
-        $res = $snippet->invoke('datastore');
-
-        $this->assertInstanceOf(DatastoreClient::class, $res->returnVal());
-    }
-
     public function testMultiTenant()
     {
-        $snippet = $this->snippetFromClass(DatastoreClient::class, 2);
+        $snippet = $this->snippetFromClass(DatastoreClient::class, 1);
         $res = $snippet->invoke('datastore');
 
         $this->assertInstanceOf(DatastoreClient::class, $res->returnVal());
@@ -100,7 +92,7 @@ class DatastoreClientTest extends SnippetTestCase
 
     public function testEmulator()
     {
-        $snippet = $this->snippetFromClass(DatastoreClient::class, 3);
+        $snippet = $this->snippetFromClass(DatastoreClient::class, 2);
         $res = $snippet->invoke('datastore');
 
         $this->assertInstanceOf(DatastoreClient::class, $res->returnVal());

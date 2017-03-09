@@ -36,10 +36,9 @@ use Google\Cloud\Core\CallTrait;
  *
  * Example:
  * ```
- * use Google\Cloud\ServiceBuilder;
+ * use Google\Cloud\NaturalLanguage\NaturalLanguageClient;
  *
- * $cloud = new ServiceBuilder();
- * $language = $cloud->naturalLanguage();
+ * $language = new NaturalLanguageClient();
  *
  * $annotation = $language->annotateText('Google Cloud Platform is a powerful tool.');
  * ```

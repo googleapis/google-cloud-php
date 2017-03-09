@@ -48,15 +48,6 @@ use Psr\Http\Message\StreamInterface;
  *
  * Example:
  * ```
- * use Google\Cloud\ServiceBuilder;
- *
- * $cloud = new ServiceBuilder();
- *
- * $datastore = $cloud->datastore();
- * ```
- *
- * ```
- * // DatastoreClient can be instantiated directly.
  * use Google\Cloud\Datastore\DatastoreClient;
  *
  * $datastore = new DatastoreClient();
@@ -64,25 +55,22 @@ use Psr\Http\Message\StreamInterface;
  *
  * ```
  * // Multi-tenant applications can supply a namespace ID.
- * use Google\Cloud\ServiceBuilder;
+ * use Google\Cloud\Datastore\DatastoreClient;
  *
- * $cloud = new ServiceBuilder();
- *
- * $datastore = $cloud->datastore([
+ * $datastore = new DatastoreClient([
  *     'namespaceId' => 'my-application-namespace'
  * ]);
  * ```
  *
  * ```
  * // Using the Datastore Emulator
- * use Google\Cloud\ServiceBuilder;
+ * use Google\Cloud\Datastore\DatastoreClient;
  *
  * // Be sure to use the port specified when starting the emulator.
  * // `8900` is used as an example only.
  * putenv('DATASTORE_EMULATOR_HOST=http://localhost:8900');
  *
- * $cloud = new ServiceBuilder();
- * $datastore = $cloud->datastore();
+ * $datastore = new DatastoreClient();
  * ```
  */
 class DatastoreClient

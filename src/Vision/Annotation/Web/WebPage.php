@@ -25,10 +25,9 @@ use Google\Cloud\Vision\Annotation\AbstractFeature;
  *
  * Example:
  * ```
- * use Google\Cloud\ServiceBuilder;
+ * use Google\Cloud\Vision\VisionClient;
  *
- * $cloud = new ServiceBuilder();
- * $vision = $cloud->vision();
+ * $vision = new VisionClient();
  *
  * $imageResource = fopen(__DIR__ . '/assets/eiffel-tower.jpg', 'r');
  * $image = $vision->image($imageResource, ['WEB_DETECTION']);
