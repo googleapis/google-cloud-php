@@ -79,7 +79,7 @@ class PubSubClient
     use IncomingMessageTrait;
     use ResourceNameTrait;
 
-    const VERSION = 'master';
+    const VERSION = '0.1.0';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/pubsub';
 
