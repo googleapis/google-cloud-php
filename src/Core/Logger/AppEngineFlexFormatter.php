@@ -16,6 +16,7 @@
  */
 namespace Google\Cloud\Core\Logger;
 
+use Google\Cloud\Core\JsonTrait;
 use Monolog\Formatter\LineFormatter;
 
 /**
@@ -23,6 +24,8 @@ use Monolog\Formatter\LineFormatter;
  */
 class AppEngineFlexFormatter extends LineFormatter
 {
+    use JsonTrait;
+
     /**
      * @param string $format [optional] The format of the message
      * @param string $dateFormat [optional] The format of the timestamp
@@ -59,6 +62,6 @@ class AppEngineFlexFormatter extends LineFormatter
                 $_SERVER['HTTP_X_CLOUD_TRACE_CONTEXT']
             )[0];
         }
-        return "\n" . json_encode($payload);
+        return "\n" . $this->jsonEncode($payload);
     }
 }

@@ -17,14 +17,13 @@
 
 namespace Google\Cloud\Core;
 
-use Google\Cloud\Core\RequestBuilder;
-use Google\Cloud\Core\RequestWrapper;
-
 /**
  * Provides shared functionality for REST service implementations.
  */
 trait RestTrait
 {
+    use JsonTrait;
+
     /**
      * @var RequestBuilder Builds PSR7 requests from a service definition.
      */
@@ -73,7 +72,7 @@ trait RestTrait
             'retries' => null
         ]);
 
-        return json_decode(
+        return $this->jsonDecode(
             $this->requestWrapper->send(
                 $this->requestBuilder->build($resource, $method, $options),
                 $requestOptions

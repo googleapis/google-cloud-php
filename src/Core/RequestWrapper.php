@@ -19,7 +19,6 @@ namespace Google\Cloud\Core;
 
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Auth\HttpHandler\HttpHandlerFactory;
-use Google\Cloud\Core\Exception;
 use Google\Cloud\Core\RequestWrapperTrait;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7;
@@ -32,6 +31,7 @@ use Psr\Http\Message\StreamInterface;
  */
 class RequestWrapper
 {
+    use JsonTrait;
     use RequestWrapperTrait;
 
     /**
@@ -242,9 +242,12 @@ class RequestWrapper
     {
         if ($ex instanceof RequestException && $ex->hasResponse()) {
             $res = (string) $ex->getResponse()->getBody();
-            json_decode($res);
-            if (json_last_error() === JSON_ERROR_NONE) {
+
+            try {
+                $this->jsonDecode($res);
                 return $res;
+            } catch (\InvalidArgumentException $e) {
+                // no-op
             }
         }
 

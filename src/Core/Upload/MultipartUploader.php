@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Core\Upload;
 
+use Google\Cloud\Core\JsonTrait;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Request;
 
@@ -25,6 +26,8 @@ use GuzzleHttp\Psr7\Request;
  */
 class MultipartUploader extends AbstractUploader
 {
+    use JsonTrait;
+
     /**
      * Triggers the upload process.
      *
@@ -36,7 +39,7 @@ class MultipartUploader extends AbstractUploader
             [
                 'name' => 'metadata',
                 'headers' => ['Content-Type' => 'application/json; charset=UTF-8'],
-                'contents' => json_encode($this->metadata)
+                'contents' => $this->jsonEncode($this->metadata)
             ],
             [
                 'name' => 'data',
@@ -50,7 +53,7 @@ class MultipartUploader extends AbstractUploader
             'Content-Length' => $multipartStream->getSize()
         ];
 
-        return json_decode(
+        return $this->jsonDecode(
             $this->requestWrapper->send(
                 new Request(
                     'POST',

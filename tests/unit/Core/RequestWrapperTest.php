@@ -244,11 +244,12 @@ class RequestWrapperTest extends \PHPUnit_Framework_TestCase
         $requestWrapper = new RequestWrapper([
             'httpHandler' => function ($request, $options = []) {
                 $msg = str_repeat('0', 121);
+                $jsonMsg = '{"msg":"' . $msg . '"}';
 
                 throw new RequestException(
-                    $msg,
+                    $jsonMsg,
                     $request,
-                    new Response(400, [], $msg)
+                    new Response(400, [], $jsonMsg)
                 );
             }
         ]);

@@ -113,7 +113,8 @@ class NaturalLanguageClient
      * @see https://cloud.google.com/natural-language/docs/reference/rest/v1beta1/documents/analyzeEntities Analyze Entities API documentation
      * @codingStandardsIgnoreEnd
      *
-     * @param string|StorageObject $content The content to analyze.
+     * @param string|StorageObject $content The content to analyze. When
+     *        providing a string it should be UTF-8 encoded.
      * @param array $options [optional] {
      *     Configuration options.
      *
@@ -125,7 +126,14 @@ class NaturalLanguageClient
      *           detected by the service.
      *     @type string $encodingType The text encoding type used by the API to
      *           calculate offsets. Acceptable values are `"NONE"`, `"UTF8"`,
-     *           `"UTF16"` and `"UTF32"`. **Defaults to** `"UTF8"`.
+     *           `"UTF16"` and `"UTF32"`. **Defaults to** `"UTF8"`. Please note
+     *           the following behaviors for the encoding type setting: `"NONE"`
+     *           will return a value of "-1" for offsets. `"UTF8"` will
+     *           return byte offsets. `"UTF16"` will return
+     *           [code unit](http://unicode.org/glossary/#code_unit) offsets.
+     *           `"UTF32"` will return
+     *           [unicode character](http://unicode.org/glossary/#character)
+     *           offsets.
      * }
      * @return Annotation
      */
@@ -155,7 +163,8 @@ class NaturalLanguageClient
      * @see https://cloud.google.com/natural-language/docs/reference/rest/v1beta1/documents/analyzeSentiment Analyze Sentiment API documentation
      * @codingStandardsIgnoreEnd
      *
-     * @param string|StorageObject $content The content to analyze.
+     * @param string|StorageObject $content The content to analyze. When
+     *        providing a string it should be UTF-8 encoded.
      * @param array $options [optional] {
      *     Configuration options.
      *
@@ -167,7 +176,14 @@ class NaturalLanguageClient
      *           detected by the service.
      *     @type string $encodingType The text encoding type used by the API to
      *           calculate offsets. Acceptable values are `"NONE"`, `"UTF8"`,
-     *           `"UTF16"` and `"UTF32"`. **Defaults to** `"UTF8"`.
+     *           `"UTF16"` and `"UTF32"`. **Defaults to** `"UTF8"`. Please note
+     *           the following behaviors for the encoding type setting: `"NONE"`
+     *           will return a value of "-1" for offsets. `"UTF8"` will
+     *           return byte offsets. `"UTF16"` will return
+     *           [code unit](http://unicode.org/glossary/#code_unit) offsets.
+     *           `"UTF32"` will return
+     *           [unicode character](http://unicode.org/glossary/#character)
+     *           offsets.
      * }
      * @return Annotation
      */
@@ -196,7 +212,8 @@ class NaturalLanguageClient
      * @see https://cloud.google.com/natural-language/docs/reference/rest/v1beta1/documents/analyzeSyntax Analyze Syntax API documentation
      * @codingStandardsIgnoreEnd
      *
-     * @param string|StorageObject $content The content to analyze.
+     * @param string|StorageObject $content The content to analyze. When
+     *        providing a string it should be UTF-8 encoded.
      * @param array $options [optional] {
      *     Configuration options.
      *
@@ -208,7 +225,14 @@ class NaturalLanguageClient
      *           detected by the service.
      *     @type string $encodingType The text encoding type used by the API to
      *           calculate offsets. Acceptable values are `"NONE"`, `"UTF8"`,
-     *           `"UTF16"` and `"UTF32"`. **Defaults to**  `"UTF8"`.
+     *           `"UTF16"` and `"UTF32"`. **Defaults to** `"UTF8"`. Please note
+     *           the following behaviors for the encoding type setting: `"NONE"`
+     *           will return a value of "-1" for offsets. `"UTF8"` will
+     *           return byte offsets. `"UTF16"` will return
+     *           [code unit](http://unicode.org/glossary/#code_unit) offsets.
+     *           `"UTF32"` will return
+     *           [unicode character](http://unicode.org/glossary/#character)
+     *           offsets.
      * }
      * @return Annotation
      */
@@ -249,7 +273,8 @@ class NaturalLanguageClient
      * @see https://cloud.google.com/natural-language/docs/reference/rest/v1beta1/documents/annotateText Annotate Text API documentation
      * @codingStandardsIgnoreEnd
      *
-     * @param string|StorageObject $content The content to annotate.
+     * @param string|StorageObject $content The content to analyze. When
+     *        providing a string it should be UTF-8 encoded.
      * @param array $options [optional] {
      *     Configuration options.
      *
@@ -264,7 +289,14 @@ class NaturalLanguageClient
      *           detected by the service.
      *     @type string $encodingType The text encoding type used by the API to
      *           calculate offsets. Acceptable values are `"NONE"`, `"UTF8"`,
-     *           `"UTF16"` and `"UTF32"`. **Defaults to** `"UTF8"`.
+     *           `"UTF16"` and `"UTF32"`. **Defaults to** `"UTF8"`. Please note
+     *           the following behaviors for the encoding type setting: `"NONE"`
+     *           will return a value of "-1" for offsets. `"UTF8"` will
+     *           return byte offsets. `"UTF16"` will return
+     *           [code unit](http://unicode.org/glossary/#code_unit) offsets.
+     *           `"UTF32"` will return
+     *           [unicode character](http://unicode.org/glossary/#character)
+     *           offsets.
      * }
      * @return Annotation
      */

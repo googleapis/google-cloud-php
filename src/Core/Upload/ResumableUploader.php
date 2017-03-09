@@ -18,6 +18,7 @@
 namespace Google\Cloud\Core\Upload;
 
 use Google\Cloud\Core\Exception\GoogleException;
+use Google\Cloud\Core\JsonTrait;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\LimitStream;
 use GuzzleHttp\Psr7\Request;
@@ -28,6 +29,8 @@ use Psr\Http\Message\ResponseInterface;
  */
 class ResumableUploader extends AbstractUploader
 {
+    use JsonTrait;
+
     /**
      * @var int
      */
@@ -69,7 +72,7 @@ class ResumableUploader extends AbstractUploader
         $response = $this->getStatusResponse();
 
         if ($response->getBody()->getSize() > 0) {
-            return json_decode($response->getBody(), true);
+            return $this->jsonDecode($response->getBody(), true);
         }
 
         $this->rangeStart = $this->getRangeStart($response->getHeaderLine('Range'));
@@ -122,7 +125,7 @@ class ResumableUploader extends AbstractUploader
             $rangeStart = $this->getRangeStart($response->getHeaderLine('Range'));
         } while ($response->getStatusCode() === 308);
 
-        return json_decode($response->getBody(), true);
+        return $this->jsonDecode($response->getBody(), true);
     }
 
     /**
@@ -142,7 +145,7 @@ class ResumableUploader extends AbstractUploader
             'POST',
             $this->uri,
             $headers,
-            json_encode($this->metadata)
+            $this->jsonEncode($this->metadata)
         );
 
         $response = $this->requestWrapper->send($request, $this->requestOptions);

@@ -22,7 +22,6 @@ use Google\Auth\FetchAuthTokenCache;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\GrpcTrait;
-use Google\Cloud\ServiceBuilder;
 use Prophecy\Argument;
 
 /**
@@ -71,8 +70,7 @@ class GrpcTraitTest extends \PHPUnit_Framework_TestCase
         $expected = [
             'credentialsLoader' => $fetcher,
             'enableCaching' => false,
-            'libName' => 'gccl',
-            'libVersion' => ServiceBuilder::VERSION
+            'libName' => 'gccl'
         ];
 
         $this->assertEquals($expected, $this->implementation->call('getGaxConfig'));
