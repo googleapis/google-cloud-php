@@ -119,12 +119,14 @@ class Release extends Command
             $version
         ));
 
-        $this->updateComponentVersionFile($version, $component);
-        $output->writeln(sprintf(
-            'Component %s VERSION file updated to %s',
-            $component['id'],
-            $version
-        ));
+        if ($component['id'] !== 'google-cloud') {
+            $this->updateComponentVersionFile($version, $component);
+            $output->writeln(sprintf(
+                'Component %s VERSION file updated to %s',
+                $component['id'],
+                $version
+            ));
+        }
 
         $output->writeln(sprintf(
             'Release %s generated!',

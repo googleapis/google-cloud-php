@@ -81,7 +81,8 @@
         "component": {
             "id": "google-cloud",
             "target": "git@github.com:jdpedrie-gcp/google-cloud-php.git",
-            "entry": "src/ServiceBuilder.php"
+            "path": "src",
+            "entry": "ServiceBuilder.php"
         }
     }
 }
