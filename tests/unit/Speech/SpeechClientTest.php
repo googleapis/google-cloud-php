@@ -114,10 +114,11 @@ class SpeechClientTest extends \PHPUnit_Framework_TestCase
     {
         stream_wrapper_unregister('http');
         stream_wrapper_register('http', HttpStreamWrapper::class);
+        $gcsUri = 'gs://bucket/object';
         $amrMock = $this->prophesize(StorageObject::class);
-        $amrMock->identity(Argument::any())->willReturn(['bucket' => 'bucket', 'object' => 'object.amr']);
+        $amrMock->gcsUri(Argument::any())->willReturn($gcsUri . '.amr');
         $awbMock = $this->prophesize(StorageObject::class);
-        $awbMock->identity(Argument::any())->willReturn(['bucket' => 'bucket', 'object' => 'object.awb']);
+        $awbMock->gcsUri(Argument::any())->willReturn($gcsUri . '.awb');
         $audioPath = __DIR__ . '/../data/brooklyn.flac';
 
         return [
@@ -198,6 +199,22 @@ class SpeechClientTest extends \PHPUnit_Framework_TestCase
                     ],
                     'config' => [
                         'encoding' => 'AMR_WB',
+                        'sampleRate' => 16000
+                    ]
+                ]
+            ],
+            [
+                $gcsUri,
+                [
+                    'encoding' => 'FLAC',
+                    'sampleRate' => 16000
+                ],
+                [
+                    'audio' => [
+                        'uri' => $gcsUri
+                    ],
+                    'config' => [
+                        'encoding' => 'FLAC',
                         'sampleRate' => 16000
                     ]
                 ]

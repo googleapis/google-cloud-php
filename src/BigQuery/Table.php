@@ -253,7 +253,10 @@ class Table
      *
      * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs Jobs insert API Documentation.
      *
-     * @param StorageObject $destination The destination object.
+     * @param string|StorageObject $destination The destination object. May be
+     *        a {@see Google\Cloud\Storage\StorageObject} or a URI pointing to
+     *        a Google Cloud Storage object in the format of
+     *        `gs://{bucket-name}/{object-name}`.
      * @param array $options [optional] {
      *     Configuration options.
      *
@@ -263,15 +266,18 @@ class Table
      * }
      * @return Job
      */
-    public function export(StorageObject $destination, array $options = [])
+    public function export($destination, array $options = [])
     {
-        $objIdentity = $destination->identity();
+        if ($destination instanceof StorageObject) {
+            $destination = $destination->gcsUri();
+        }
+
         $config = $this->buildJobConfig(
             'extract',
             $this->identity['projectId'],
             [
                 'sourceTable' => $this->identity,
-                'destinationUris' => ['gs://' . $objIdentity['bucket'] . '/' . $objIdentity['object']]
+                'destinationUris' => [$destination]
             ],
             $options
         );
