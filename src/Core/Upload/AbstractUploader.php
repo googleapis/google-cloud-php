@@ -78,7 +78,9 @@ abstract class AbstractUploader
      *     @type array $metadata Metadata on the resource.
      *     @type int $chunkSize Size of the chunks to send incrementally during
      *           a resumable upload. Must be in multiples of 262144 bytes.
-     *     @type array $httpOptions HTTP client specific configuration options.
+     *     @type array $restOptions HTTP client specific configuration options.
+     *     @type float $requestTimeout Seconds to wait before timing out the
+     *           request. **Defaults to** `0`.
      *     @type int $retries Number of retries for a failed request.
      *           **Defaults to** `3`.
      *     @type string $contentType Content type of the resource.
@@ -96,8 +98,9 @@ abstract class AbstractUploader
         $this->metadata = isset($options['metadata']) ? $options['metadata'] : [];
         $this->chunkSize = isset($options['chunkSize']) ? $options['chunkSize'] : null;
         $this->requestOptions = array_intersect_key($options, [
-            'httpOptions' => null,
-            'retries' => null
+            'restOptions' => null,
+            'retries' => null,
+            'requestTimeout' => null
         ]);
 
         $this->contentType = isset($options['contentType'])

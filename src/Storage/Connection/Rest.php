@@ -297,7 +297,7 @@ class Rest implements ConnectionInterface
             : Psr7\mimetype_from_filename($args['metadata']['name']);
 
         $uploaderOptionKeys = [
-            'httpOptions',
+            'restOptions',
             'retries',
             'requestTimeout',
             'chunkSize',

@@ -69,7 +69,7 @@ trait RestTrait
     public function send($resource, $method, array $options = [])
     {
         $requestOptions = $this->pluckArray([
-            'httpOptions',
+            'restOptions',
             'retries',
             'requestTimeout'
         ], $options);

@@ -38,14 +38,14 @@ class RequestWrapperTest extends \PHPUnit_Framework_TestCase
         $expectedBody = 'responseBody';
         $response = new Response(200, [], $expectedBody);
         $requestOptions = [
-            'httpOptions' => ['debug' => true],
+            'restOptions' => ['debug' => true],
             'requestTimeout' => 3.5
         ];
 
         $requestWrapper = new RequestWrapper([
             'accessToken' => 'abc',
             'httpHandler' => function ($request, $options = []) use ($response, $requestOptions) {
-                $this->assertEquals($requestOptions['httpOptions']['debug'], $options['debug']);
+                $this->assertEquals($requestOptions['restOptions']['debug'], $options['debug']);
                 $this->assertEquals($requestOptions['requestTimeout'], $options['timeout']);
                 return $response;
             }

@@ -166,7 +166,7 @@ class StreamWrapper
         } elseif ($mode == 'r') {
             try {
                 // Lazy read from the source
-                $options['httpOptions']['stream'] = true;
+                $options['restOptions']['stream'] = true;
                 $this->stream = new ReadStream(
                     $this->bucket->object($this->file)->downloadAsStream($options)
                 );

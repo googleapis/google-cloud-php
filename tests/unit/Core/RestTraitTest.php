@@ -57,18 +57,18 @@ class RestTraitTest extends \PHPUnit_Framework_TestCase
 
     public function testSendsRequestWithOptions()
     {
-        $httpOptions = [
-            'httpOptions' => ['debug' => true],
+        $restOptions = [
+            'restOptions' => ['debug' => true],
             'retries' => 5,
             'requestTimeout' => 3.5
         ];
         $responseBody = '{"whatAWonderful": "response"}';
-        $this->requestWrapper->send(Argument::any(), $httpOptions)
+        $this->requestWrapper->send(Argument::any(), $restOptions)
             ->willReturn(new Response(200, [], $responseBody));
 
         $this->implementation->setRequestBuilder($this->requestBuilder->reveal());
         $this->implementation->setRequestWrapper($this->requestWrapper->reveal());
-        $actualResponse = $this->implementation->send('resource', 'method', $httpOptions);
+        $actualResponse = $this->implementation->send('resource', 'method', $restOptions);
 
         $this->assertEquals(json_decode($responseBody, true), $actualResponse);
     }
