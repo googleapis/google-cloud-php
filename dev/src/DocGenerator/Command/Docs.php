@@ -62,7 +62,7 @@ class Docs extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $release = ($input->getOption('release') === false) ? false : true;
+        $release = ($input->getOption('release') === false && $input->getOption('release') !== 'false') ? false : true;
         $pretty = ($input->getOption('pretty') === false) ? false : true;
 
         $paths = [

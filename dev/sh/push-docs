@@ -2,14 +2,6 @@
 
 set -ev
 
-function generateDocs () {
-  echo "doc dir before generation:"
-  find docs
-  ./dev/google-cloud docs -r yes
-  echo "doc dir after generation:"
-  find docs
-}
-
 function pushDocs () {
   git submodule add -q -f -b gh-pages https://${GH_OAUTH_TOKEN}@github.com/${TRAVIS_REPO_SLUG} ghpages
 
