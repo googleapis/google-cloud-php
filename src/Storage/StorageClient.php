@@ -38,7 +38,7 @@ class StorageClient
 {
     use ClientTrait;
 
-    const VERSION = 'master';
+    const VERSION = '0.1.0';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/devstorage.full_control';
     const READ_ONLY_SCOPE = 'https://www.googleapis.com/auth/devstorage.read_only';
