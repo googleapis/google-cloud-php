@@ -48,7 +48,7 @@ use Psr\Cache\CacheItemPoolInterface;
  */
 class ServiceBuilder
 {
-    const VERSION = '0.24.1';
+    const VERSION = '0.24.2';
 
     /**
      * @var array Configuration options to be used between clients.
