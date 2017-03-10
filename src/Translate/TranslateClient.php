@@ -51,7 +51,7 @@ class TranslateClient
 {
     use ClientTrait;
 
-    const VERSION = '0.1.0';
+    const VERSION = 'master';
 
     const ENGLISH_LANGUAGE_CODE = 'en';
 

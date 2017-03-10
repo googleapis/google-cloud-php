@@ -11,12 +11,6 @@
             "name": "google/cloud",
             "defaultService": "servicebuilder",
             "versions": [
-                "v0.24.5",
-                "v0.24.4",
-                "v0.24.3",
-                "v0.24.2",
-                "v0.24.1",
-                "v0.24.0",
                 "v0.23.0",
                 "v0.22.0",
                 "v0.21.1",
@@ -51,7 +45,6 @@
             "name": "google/cloud-bigquery",
             "defaultService": "bigquery/bigqueryclient",
             "versions": [
-                "v0.1.0",
                 "master"
             ]
         },
@@ -60,9 +53,6 @@
             "name": "google/cloud-core",
             "defaultService": "core/readme",
             "versions": [
-                "v0.1.2",
-                "v0.1.1",
-                "v0.1.0",
                 "master"
             ]
         },
@@ -71,12 +61,6 @@
             "name": "google/cloud-datastore",
             "defaultService": "datastore/datastoreclient",
             "versions": [
-                "v0.1.0",
-                "v0.0.5",
-                "v0.0.4",
-                "v0.0.3",
-                "v0.0.2",
-                "v0.0.1",
                 "master"
             ]
         },
@@ -85,7 +69,6 @@
             "name": "google/cloud-error-reporting",
             "defaultService": "errorreporting/readme",
             "versions": [
-                "v0.1.0",
                 "master"
             ]
         },
@@ -94,7 +77,6 @@
             "name": "google/cloud-logging",
             "defaultService": "logging/loggingclient",
             "versions": [
-                "v0.1.0",
                 "master"
             ]
         },
@@ -103,7 +85,6 @@
             "name": "google/cloud-monitoring",
             "defaultService": "monitoring/readme",
             "versions": [
-                "v0.1.0",
                 "master"
             ]
         },
@@ -112,7 +93,6 @@
             "name": "google/cloud-natural-language",
             "defaultService": "naturallanguage/naturallanguageclient",
             "versions": [
-                "v0.1.0",
                 "master"
             ]
         },
@@ -121,7 +101,6 @@
             "name": "google/cloud-pubsub",
             "defaultService": "pubsub/pubsubclient",
             "versions": [
-                "v0.1.0",
                 "master"
             ]
         },
@@ -130,7 +109,6 @@
             "name": "google/cloud-speech",
             "defaultService": "speech/speechclient",
             "versions": [
-                "v0.1.0",
                 "master"
             ]
         },
@@ -139,7 +117,6 @@
             "name": "google/cloud-storage",
             "defaultService": "storage/storageclient",
             "versions": [
-                "v0.1.0",
                 "master"
             ]
         },
@@ -148,7 +125,6 @@
             "name": "google/cloud-translate",
             "defaultService": "translate/translateclient",
             "versions": [
-                "v0.1.0",
                 "master"
             ]
         },
@@ -157,7 +133,6 @@
             "name": "google/cloud-vision",
             "defaultService": "vision/visionclient",
             "versions": [
-                "v0.1.0",
                 "master"
             ]
         }
