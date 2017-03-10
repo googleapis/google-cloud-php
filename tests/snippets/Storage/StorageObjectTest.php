@@ -349,4 +349,14 @@ class StorageObjectTest extends SnippetTestCase
         $res = $snippet->invoke();
         $this->assertEquals(self::OBJECT, $res->output());
     }
+
+    public function testGcsUri()
+    {
+        $snippet = $this->snippetFromMethod(StorageObject::class, 'gcsUri');
+        $snippet->addLocal('object', $this->object);
+
+        $res = $snippet->invoke();
+        $expectedOutput = sprintf('gs://%s/%s', self::BUCKET, self::OBJECT);
+        $this->assertEquals($expectedOutput, $res->output());
+    }
 }

@@ -754,6 +754,26 @@ class StorageObject
     }
 
     /**
+     * Formats the object as a string in the following format:
+     * `gs://{bucket-name}/{object-name}`.
+     *
+     * Example:
+     * ```
+     * echo $object->gcsUri();
+     * ```
+     *
+     * @return string
+     */
+    public function gcsUri()
+    {
+        return sprintf(
+            'gs://%s/%s',
+            $this->identity['bucket'],
+            $this->identity['object']
+        );
+    }
+
+    /**
      * Formats a destination based request, such as copy or rewrite.
      *
      * @param string|Bucket $destination The destination bucket.
