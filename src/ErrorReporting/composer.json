@@ -9,7 +9,7 @@
     "extra": {
         "component": {
             "id": "cloud-error-reporting",
-            "target": "GoogleCloudPlatform/google-cloud-php-error-reporting.git",
+            "target": "GoogleCloudPlatform/google-cloud-php-errorreporting.git",
             "path": "src/ErrorReporting",
             "entry": null
         }

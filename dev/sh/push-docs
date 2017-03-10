@@ -5,7 +5,7 @@ set -ev
 function generateDocs () {
   echo "doc dir before generation:"
   find docs
-  composer google-cloud docs
+  ./dev/google-cloud docs -r yes
   echo "doc dir after generation:"
   find docs
 }

@@ -9,7 +9,7 @@
     "extra": {
         "component": {
             "id": "cloud-natural-language",
-            "target": "GoogleCloudPlatform/google-cloud-php-natural-language.git",
+            "target": "GoogleCloudPlatform/google-cloud-php-naturallanguage.git",
             "path": "src/NaturalLanguage",
             "entry": "NaturalLanguageClient.php"
         }
