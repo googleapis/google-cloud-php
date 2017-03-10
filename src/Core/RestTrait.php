@@ -72,7 +72,7 @@ trait RestTrait
             'retries' => null
         ]);
 
-        return $this->jsonDecode(
+        return json_decode(
             $this->requestWrapper->send(
                 $this->requestBuilder->build($resource, $method, $options),
                 $requestOptions
