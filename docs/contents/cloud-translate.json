@@ -1,4 +1,4 @@
 [{
-    "title": "Translate",
+    "title": "TranslateClient",
     "type": "translate/translateclient"
 }]

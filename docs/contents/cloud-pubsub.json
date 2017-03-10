@@ -1,15 +1,23 @@
 [{
-    "title": "PubSub",
+    "title": "PubSubClient",
     "type": "pubsub/pubsubclient"
 }, {
     "title": "Message",
     "type": "pubsub/message"
-},
-{
+}, {
     "title": "Subscription",
     "type": "pubsub/subscription"
-},
-{
+}, {
     "title": "Topic",
     "type": "pubsub/topic"
+}, {
+    "title": "v1",
+    "type": "pubsub/v1/readme",
+    "nav": [{
+        "title": "PublisherClient",
+        "type": "pubsub/v1/publisherclient"
+    }, {
+        "title": "SubscriberClient",
+        "type": "pubsub/v1/subscriberclient"
+    }]
 }]

@@ -1,5 +1,5 @@
 [{
-    "title": "Datastore",
+    "title": "DatastoreClient",
     "type": "datastore/datastoreclient"
 }, {
     "title": "Transaction",

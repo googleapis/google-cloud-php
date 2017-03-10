@@ -1,5 +1,5 @@
 [{
-    "title": "Logging",
+    "title": "LoggingClient",
     "type": "logging/loggingclient"
 }, {
     "title": "Entry",
@@ -16,4 +16,17 @@
 },{
     "title": "Sink",
     "type": "logging/sink"
+}, {
+    "title": "v2",
+    "type": "logging/v2/readme",
+    "nav": [{
+        "title": "ConfigServiceV2Client",
+        "type": "logging/v2/configservicev2client"
+    }, {
+        "title": "LoggingServiceV2Client",
+        "type": "logging/v2/loggingservicev2client"
+    }, {
+        "title": "MetricsServiceV2Client",
+        "type": "logging/v2/metricsservicev2client"
+    }]
 }]

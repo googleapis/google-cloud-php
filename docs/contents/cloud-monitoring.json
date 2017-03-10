@@ -1,1 +1,14 @@
-[]
+[{
+    "title": "Overview",
+    "type": "monitoring/readme"
+}, {
+    "title": "v3",
+    "type": "monitoring/v3/readme",
+    "nav": [{
+        "title": "GroupServiceClient",
+        "type": "monitoring/v3/groupserviceclient"
+    }, {
+        "title": "MetricServiceClient",
+        "type": "monitoring/v3/metricserviceclient"
+    }]
+}]

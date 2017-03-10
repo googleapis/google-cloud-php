@@ -1,7 +1,14 @@
 [{
-    "title": "Speech",
+    "title": "SpeechClient",
     "type": "speech/speechclient"
 }, {
     "title": "Operation",
     "type": "speech/operation"
+}, {
+    "title": "v1beta1",
+    "type": "speech/v1beta1/readme",
+    "nav": [{
+        "title": "SpeechClient",
+        "type": "speech/v1beta1/speechclient"
+    }]
 }]
