@@ -12,10 +12,9 @@ function generateDocs () {
 
 function pushDocs () {
   git submodule add -q -f -b gh-pages https://${GH_OAUTH_TOKEN}@github.com/${TRAVIS_REPO_SLUG} ghpages
-  mkdir -p ghpages/json/${1}
-  cp -R docs/json/master/* ghpages/json/${1}
-  cp docs/overview.html ghpages/json/${1}
-  cp docs/toc.json ghpages/json/${1}
+
+  rsync -aP docs/json/* ghpages/json/
+
   cp docs/home.html ghpages/json
   cp docs/manifest.json ghpages
   cd ghpages
