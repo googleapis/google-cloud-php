@@ -38,6 +38,7 @@ class CodeParser implements ParserInterface
     private $externalTypes;
     private $componentId;
     private $manifestPath;
+    private $release;
 
     public function __construct(
         $path,
@@ -45,7 +46,8 @@ class CodeParser implements ParserInterface
         FileReflector $reflector,
         $projectRoot,
         $componentId,
-        $manifestPath
+        $manifestPath,
+        $release
     ) {
         $this->path = $path;
         $this->outputName = $outputName;
@@ -55,6 +57,7 @@ class CodeParser implements ParserInterface
         $this->externalTypes = json_decode(file_get_contents(__DIR__ .'/../../../../docs/external-classes.json'), true);
         $this->componentId = $componentId;
         $this->manifestPath = $manifestPath;
+        $this->release = $release;
     }
 
     public function parse()
@@ -546,7 +549,10 @@ class CodeParser implements ParserInterface
         $type = strtolower(str_replace('\\', '/', $parts[0]));
 
         if ($componentId) {
-            $version = $this->getComponentVersion($this->manifestPath, $componentId);
+            $version = ($this->release)
+                ? $this->getComponentVersion($this->manifestPath, $componentId)
+                : 'master';
+
             $type = $componentId .'/'. $version .'/'. $type;
         }
 

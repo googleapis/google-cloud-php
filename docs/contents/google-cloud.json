@@ -1,37 +1,4 @@
 [{
     "title": "ServiceBuilder",
     "type": "servicebuilder"
-}, {
-    "title": "BigQuery",
-    "type": "docs/cloud-bigquery/latest/bigquery/bigqueryclient"
-}, {
-    "title": "Datastore",
-    "type": "docs/cloud-datastore/latest/datastore/datastoreclient"
-}, {
-    "title": "Error Reporting",
-    "type": "docs/cloud-error-reporting/latest/readme"
-}, {
-    "title": "Logging",
-    "type": "docs/cloud-logging/latest/loggingclient"
-}, {
-    "title": "Monitoring",
-    "type": "docs/cloud-monitoring/latest/readme"
-}, {
-    "title": "Natural Language",
-    "type": "docs/cloud-natural-language/latest/naturallanguageclient"
-}, {
-    "title": "Pub/Sub",
-    "type": "docs/cloud-pubsub/latest/pubsubclient"
-}, {
-    "title": "Speech",
-    "type": "docs/cloud-speech/latest/speechclient"
-}, {
-    "title": "Storage",
-    "type": "docs/cloud-storage/latest/storageclient"
-}, {
-    "title": "Translate",
-    "type": "docs/cloud-translate/latest/translateclient"
-}, {
-    "title": "Vision",
-    "type": "docs/cloud-vision/latest/visionclient"
 }]

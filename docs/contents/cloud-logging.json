@@ -19,6 +19,9 @@
 }, {
     "title": "v2",
     "type": "logging/v2/readme",
+    "patterns": [
+      "logging/v2/\\w{1,}"
+    ],
     "nav": [{
         "title": "ConfigServiceV2Client",
         "type": "logging/v2/configservicev2client"

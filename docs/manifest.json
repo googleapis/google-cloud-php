@@ -45,6 +45,7 @@
             "name": "google/cloud-bigquery",
             "defaultService": "bigquery/bigqueryclient",
             "versions": [
+                "vfoo",
                 "master"
             ]
         },

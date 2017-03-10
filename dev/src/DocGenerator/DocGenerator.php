@@ -34,6 +34,7 @@ class DocGenerator
     private $executionPath;
     private $componentId;
     private $manifestPath;
+    private $release;
 
     /**
      * @param array $files
@@ -44,7 +45,8 @@ class DocGenerator
         $outputPath,
         $executionPath,
         $componentId,
-        $manifestPath
+        $manifestPath,
+        $release
     ) {
         $this->types = $types;
         $this->files = $files;
@@ -52,6 +54,7 @@ class DocGenerator
         $this->executionPath = $executionPath;
         $this->componentId = $componentId;
         $this->manifestPath = $manifestPath;
+        $this->release = $release;
     }
 
     /**
@@ -80,7 +83,8 @@ class DocGenerator
                     $fileReflector,
                     dirname($this->executionPath),
                     $this->componentId,
-                    $this->manifestPath
+                    $this->manifestPath,
+                    $this->release
                 );
             } else {
                 $content = file_get_contents($file);

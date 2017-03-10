@@ -13,6 +13,9 @@
 }, {
     "title": "v1",
     "type": "pubsub/v1/readme",
+    "patterns": [
+      "pubsub/v1/\\w{1,}"
+    ],
     "nav": [{
         "title": "PublisherClient",
         "type": "pubsub/v1/publisherclient"
