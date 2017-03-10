@@ -45,12 +45,17 @@ class GrpcRequestWrapperTest extends \PHPUnit_Framework_TestCase
     public function testSuccessfullySendsRequest($response, $expectedMessage)
     {
         $requestWrapper = new GrpcRequestWrapper();
+        $requestOptions = [
+            'requestTimeout' => 3.5
+        ];
 
         $actualResponse = $requestWrapper->send(
-            function ($test) use ($response) {
+            function ($test, $options) use ($response, $requestOptions) {
+                $this->assertEquals($requestOptions['requestTimeout'] * 1000, $options['timeoutMs']);
                 return $response;
             },
-            ['test', []]
+            ['test', []],
+            $requestOptions
         );
 
         $this->assertEquals($expectedMessage, $actualResponse);

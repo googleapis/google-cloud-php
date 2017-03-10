@@ -256,6 +256,7 @@ class Rest implements ConnectionInterface
         $uploaderOptionKeys = [
             'httpOptions',
             'retries',
+            'requestTimeout',
             'metadata'
         ];
 

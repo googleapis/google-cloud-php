@@ -56,12 +56,13 @@ trait GrpcTrait
      */
     public function send(callable $request, array $args)
     {
-        $requestOptions = $args[count($args) - 1];
+        $requestOptions = $this->pluckArray([
+            'grpcOptions',
+            'retries',
+            'requestTimeout'
+        ], $args[count($args) - 1]);
 
-        return $this->requestWrapper->send($request, $args, array_intersect_key($requestOptions, [
-            'grpcOptions' => null,
-            'retries' => null
-        ]));
+        return $this->requestWrapper->send($request, $args, $requestOptions);
     }
 
     /**

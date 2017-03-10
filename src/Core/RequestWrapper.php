@@ -127,6 +127,8 @@ class RequestWrapper
      * @param array $options [optional] {
      *     Request options.
      *
+     *     @type float $requestTimeout Seconds to wait before timing out the
+     *           request. **Defaults to** `0`.
      *     @type int $retries Number of retries for a failed request.
      *           **Defaults to** `3`.
      *     @type array $httpOptions HTTP client specific configuration options.
@@ -137,7 +139,12 @@ class RequestWrapper
     {
         $retries = isset($options['retries']) ? $options['retries'] : $this->retries;
         $httpOptions = isset($options['httpOptions']) ? $options['httpOptions'] : $this->httpOptions;
+        $timeout = isset($options['requestTimeout']) ? $options['requestTimeout'] : $this->requestTimeout;
         $backoff = new ExponentialBackoff($retries, $this->getRetryFunction());
+
+        if ($timeout && !array_key_exists('timeout', $httpOptions)) {
+            $httpOptions['timeout'] = $timeout;
+        }
 
         try {
             return $backoff->execute($this->httpHandler, [$this->applyHeaders($request), $httpOptions]);

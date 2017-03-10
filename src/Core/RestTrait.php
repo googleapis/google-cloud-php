@@ -22,6 +22,7 @@ namespace Google\Cloud\Core;
  */
 trait RestTrait
 {
+    use ArrayTrait;
     use JsonTrait;
 
     /**
@@ -67,10 +68,11 @@ trait RestTrait
      */
     public function send($resource, $method, array $options = [])
     {
-        $requestOptions = array_intersect_key($options, [
-            'httpOptions' => null,
-            'retries' => null
-        ]);
+        $requestOptions = $this->pluckArray([
+            'httpOptions',
+            'retries',
+            'requestTimeout'
+        ], $options);
 
         return json_decode(
             $this->requestWrapper->send(

@@ -59,7 +59,8 @@ class RestTraitTest extends \PHPUnit_Framework_TestCase
     {
         $httpOptions = [
             'httpOptions' => ['debug' => true],
-            'retries' => 5
+            'retries' => 5,
+            'requestTimeout' => 3.5
         ];
         $responseBody = '{"whatAWonderful": "response"}';
         $this->requestWrapper->send(Argument::any(), $httpOptions)
