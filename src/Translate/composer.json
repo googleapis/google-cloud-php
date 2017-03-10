@@ -13,5 +13,10 @@
             "path": "src/Translate",
             "entry": "TranslateClient.php"
         }
+    },
+    "autoload": {
+        "psr-4": {
+            "Google\\Cloud\\Translate\\": ""
+        }
     }
 }

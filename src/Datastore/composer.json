@@ -13,5 +13,10 @@
             "path": "src/Datastore",
             "entry": "DatastoreClient.php"
         }
+    },
+    "autoload": {
+        "psr-4": {
+            "Google\\Cloud\\Datastore\\": ""
+        }
     }
 }

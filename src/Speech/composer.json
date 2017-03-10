@@ -13,5 +13,10 @@
             "path": "src/Speech",
             "entry": "SpeechClient.php"
         }
+    },
+    "autoload": {
+        "psr-4": {
+            "Google\\Cloud\\Speech\\": ""
+        }
     }
 }

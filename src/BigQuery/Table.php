@@ -291,7 +291,7 @@ class Table
      *
      * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs Jobs insert API Documentation.
      *
-     * @param string|resource|\StreamInterface $data The data to load.
+     * @param string|resource|StreamInterface $data The data to load.
      * @param array $options [optional] {
      *     Configuration options.
      *

@@ -13,5 +13,10 @@
             "path": "src/NaturalLanguage",
             "entry": "NaturalLanguageClient.php"
         }
+    },
+    "autoload": {
+        "psr-4": {
+            "Google\\Cloud\\NaturalLanguage\\": ""
+        }
     }
 }

@@ -13,5 +13,10 @@
             "path": "src/Logging",
             "entry": "LoggingClient.php"
         }
+    },
+    "autoload": {
+        "psr-4": {
+            "Google\\Cloud\\Logging\\": ""
+        }
     }
 }

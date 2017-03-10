@@ -13,5 +13,10 @@
             "path": "src/Storage",
             "entry": "StorageClient.php"
         }
+    },
+    "autoload": {
+        "psr-4": {
+            "Google\\Cloud\\Storage\\": ""
+        }
     }
 }

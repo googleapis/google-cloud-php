@@ -13,5 +13,10 @@
             "path": "src/Vision",
             "entry": "VisionClient.php"
         }
+    },
+    "autoload": {
+        "psr-4": {
+            "Google\\Cloud\\Vision\\": ""
+        }
     }
 }

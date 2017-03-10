@@ -14,5 +14,10 @@
             "path": "src/BigQuery",
             "entry": "BigQueryClient.php"
         }
+    },
+    "autoload": {
+        "psr-4": {
+            "Google\\Cloud\\BigQuery\\": ""
+        }
     }
 }

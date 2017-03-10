@@ -23,5 +23,10 @@
             "path": "src/Core",
             "entry": null
         }
+    },
+    "autoload": {
+        "psr-4": {
+            "Google\\Cloud\\Core\\": ""
+        }
     }
 }

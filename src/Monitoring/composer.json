@@ -13,5 +13,10 @@
             "path": "src/Monitoring",
             "entry": null
         }
+    },
+    "autoload": {
+        "psr-4": {
+            "Google\\Cloud\\Monitoring\\": ""
+        }
     }
 }

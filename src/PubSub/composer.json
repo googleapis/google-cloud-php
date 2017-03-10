@@ -13,5 +13,10 @@
             "path": "src/PubSub",
             "entry": "PubSubClient.php"
         }
+    },
+    "autoload": {
+        "psr-4": {
+            "Google\\Cloud\\PubSub\\": ""
+        }
     }
 }
