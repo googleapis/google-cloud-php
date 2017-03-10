@@ -6,6 +6,10 @@
     "require": {
         "google/cloud-core": "*"
     },
+    "suggest": {
+        "google/gax": "Required to support gRPC",
+        "google/proto-client-php": "Required to support gRPC"
+    },
     "extra": {
         "component": {
             "id": "cloud-logging",

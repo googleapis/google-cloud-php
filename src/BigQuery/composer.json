@@ -6,6 +6,9 @@
     "require": {
         "google/cloud-core": "*"
     },
+    "suggest": {
+        "google/cloud-storage": "Makes it easier to load data from Cloud Storage into BigQuery"
+    },
     "extra": {
         "component": {
             "displayName": "Google Cloud BigQuery",

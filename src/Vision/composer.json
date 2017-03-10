@@ -6,6 +6,9 @@
     "require": {
         "google/cloud-core": "*"
     },
+    "suggest": {
+        "google/cloud-storage": "Annotate images stored in Google Cloud Storage"
+    },
     "extra": {
         "component": {
             "id": "cloud-vision",

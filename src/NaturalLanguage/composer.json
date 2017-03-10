@@ -6,6 +6,9 @@
     "require": {
         "google/cloud-core": "*"
     },
+    "suggest": {
+        "google/cloud-storage": "Analyze documents stored in Google Cloud Storage"
+    },
     "extra": {
         "component": {
             "id": "cloud-natural-language",

@@ -12,10 +12,6 @@
         "monolog/monolog": "~1",
         "psr/http-message": "1.0.*"
     },
-    "suggest": {
-        "google/gax": "Required to support gRPC",
-        "google/proto-client-php": "Required to support gRPC"
-    },
     "extra": {
         "component": {
             "id": "cloud-core",
