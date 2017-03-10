@@ -69,12 +69,13 @@ trait GrpcTrait
      *
      * @return array
      */
-    private function getGaxConfig()
+    private function getGaxConfig($version)
     {
         return [
             'credentialsLoader' => $this->requestWrapper->getCredentialsFetcher(),
             'enableCaching' => false,
-            'libName' => 'gccl'
+            'libName' => 'gccl',
+            'libVersion' => $version
         ];
     }
 

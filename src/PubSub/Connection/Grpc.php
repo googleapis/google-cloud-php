@@ -19,11 +19,12 @@ namespace Google\Cloud\PubSub\Connection;
 
 use DrSlump\Protobuf\Codec\CodecInterface;
 use Google\Cloud\Core\EmulatorTrait;
-use Google\Cloud\Core\PhpArray;
-use Google\Cloud\PubSub\V1\PublisherClient;
-use Google\Cloud\PubSub\V1\SubscriberClient;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\GrpcTrait;
+use Google\Cloud\Core\PhpArray;
+use Google\Cloud\PubSub\PubSubClient;
+use Google\Cloud\PubSub\V1\PublisherClient;
+use Google\Cloud\PubSub\V1\SubscriberClient;
 use Grpc\ChannelCredentials;
 use google\iam\v1\Policy;
 use google\pubsub\v1\PubsubMessage;
@@ -65,7 +66,7 @@ class Grpc implements ConnectionInterface
         }]);
         $config['codec'] = $this->codec;
         $this->setRequestWrapper(new GrpcRequestWrapper($config));
-        $grpcConfig = $this->getGaxConfig();
+        $grpcConfig = $this->getGaxConfig(PubSubClient::VERSION);
         $emulatorHost = getenv('PUBSUB_EMULATOR_HOST');
         $baseUri = $this->getEmulatorBaseUri(self::BASE_URI, $emulatorHost);
 

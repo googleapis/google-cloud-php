@@ -64,16 +64,19 @@ class GrpcTraitTest extends \PHPUnit_Framework_TestCase
 
     public function testGetsGaxConfig()
     {
+        $version = '1.0.0';
+
         $fetcher = $this->prophesize(FetchAuthTokenInterface::class)->reveal();
         $this->requestWrapper->getCredentialsFetcher()->willReturn($fetcher);
         $this->implementation->setRequestWrapper($this->requestWrapper->reveal());
         $expected = [
             'credentialsLoader' => $fetcher,
             'enableCaching' => false,
-            'libName' => 'gccl'
+            'libName' => 'gccl',
+            'libVersion' => $version
         ];
 
-        $this->assertEquals($expected, $this->implementation->call('getGaxConfig'));
+        $this->assertEquals($expected, $this->implementation->call('getGaxConfig', [$version]));
     }
 
     public function testFormatsTimestamp()
