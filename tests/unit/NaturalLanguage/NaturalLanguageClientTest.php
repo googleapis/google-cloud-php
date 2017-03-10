@@ -115,9 +115,23 @@ class NaturalLanguageClientTest extends \PHPUnit_Framework_TestCase
     public function analyzeDataProvider()
     {
         $objectMock = $this->prophesize(StorageObject::class);
-        $objectMock->identity(Argument::any())->willReturn(['bucket' => 'bucket', 'object' => 'object']);
+        $gcsUri = 'gs://bucket/object';
+        $objectMock->gcsUri(Argument::any())->willReturn($gcsUri);
 
         return [
+            [
+                [
+                    'content' => $gcsUri,
+                    'encodingType' => 'UTF16'
+                ],
+                [
+                    'document' => [
+                        'gcsContentUri' => $gcsUri,
+                        'type' => 'PLAIN_TEXT'
+                    ],
+                    'encodingType' => 'UTF16'
+                ]
+            ],
             [
                 [
                     'content' => 'My content.',

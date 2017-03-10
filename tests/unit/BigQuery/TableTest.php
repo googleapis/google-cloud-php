@@ -217,9 +217,11 @@ class TableTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($this->insertJobResponse, $job->info());
     }
 
-    public function testRunsExportJob()
+    /**
+     * @dataProvider destinationProvider
+     */
+    public function testRunsExportJob($destinationObject)
     {
-        $destinationObject = $this->getObject();
         $expectedArguments = [
             'projectId' => $this->projectId,
             'configuration' => [
@@ -243,6 +245,20 @@ class TableTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf(Job::class, $job);
         $this->assertEquals($this->insertJobResponse, $job->info());
+    }
+
+    public function destinationProvider()
+    {
+        $this->setUp();
+
+        return [
+            [$this->getObject()],
+            [sprintf(
+                'gs://%s/%s',
+                $this->bucketName,
+                $this->fileName
+            )]
+        ];
     }
 
     public function testRunsLoadJob()

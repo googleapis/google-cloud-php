@@ -242,11 +242,8 @@ class Image
         } elseif (is_string($image)) {
             $this->type = self::TYPE_STRING;
         } elseif ($image instanceof StorageObject) {
-            $identity = $image->identity();
-            $uri = sprintf('gs://%s/%s', $identity['bucket'], $identity['object']);
-
             $this->type = self::TYPE_URI;
-            $this->image = $uri;
+            $this->image = $image->gcsUri();
         } elseif (is_resource($image)) {
             $this->type = self::TYPE_BYTES;
             $this->image = Psr7\stream_for($image);

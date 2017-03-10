@@ -482,4 +482,12 @@ class StorageObjectTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($name, $object->identity()['object']);
         $this->assertEquals($bucketName, $object->identity()['bucket']);
     }
+
+    public function testGetsGcsUri()
+    {
+        $object = new StorageObject($this->connection->reveal(), $name = 'object.txt', $bucketName = 'bucket');
+
+        $expectedUri = sprintf('gs://%s/%s', $bucketName, $name);
+        $this->assertEquals($expectedUri, $object->gcsUri());
+    }
 }

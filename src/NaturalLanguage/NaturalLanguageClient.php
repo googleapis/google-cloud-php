@@ -113,11 +113,18 @@ class NaturalLanguageClient
      * @see https://cloud.google.com/natural-language/docs/reference/rest/v1beta1/documents/analyzeEntities Analyze Entities API documentation
      * @codingStandardsIgnoreEnd
      *
-     * @param string|StorageObject $content The content to analyze. When
-     *        providing a string it should be UTF-8 encoded.
+     * @param string|StorageObject $content The content to analyze. May be
+     *        either a string of UTF-8 encoded content, a URI pointing to a
+     *        Google Cloud Storage object in the format of
+     *        `gs://{bucket-name}/{object-name}` or a
+     *        {@see Google/Cloud/Storage/StorageObject}.
      * @param array $options [optional] {
      *     Configuration options.
      *
+     *     @type bool $detectGcsUri When providing $content as a string, this
+     *           flag determines whether or not to attempt to detect if the
+     *           string represents a Google Cloud Storage URI in the format of
+     *           `gs://{bucket-name}/{object-name}`. **Defaults to** `true`.
      *     @type string $type The document type. Acceptable values are
      *           `PLAIN_TEXT` or `HTML`. **Defaults to** `"PLAIN_TEXT"`.
      *     @type string $language The language of the document. Both ISO
@@ -163,11 +170,18 @@ class NaturalLanguageClient
      * @see https://cloud.google.com/natural-language/docs/reference/rest/v1beta1/documents/analyzeSentiment Analyze Sentiment API documentation
      * @codingStandardsIgnoreEnd
      *
-     * @param string|StorageObject $content The content to analyze. When
-     *        providing a string it should be UTF-8 encoded.
+     * @param string|StorageObject $content The content to analyze. May be
+     *        either a string of UTF-8 encoded content, a URI pointing to a
+     *        Google Cloud Storage object in the format of
+     *        `gs://{bucket-name}/{object-name}` or a
+     *        {@see Google/Cloud/Storage/StorageObject}.
      * @param array $options [optional] {
      *     Configuration options.
      *
+     *     @type bool $detectGcsUri When providing $content as a string, this
+     *           flag determines whether or not to attempt to detect if the
+     *           string represents a Google Cloud Storage URI in the format of
+     *           `gs://{bucket-name}/{object-name}`. **Defaults to** `true`.
      *     @type string $type The document type. Acceptable values are
      *           `PLAIN_TEXT` or `HTML`. **Defaults to** `"PLAIN_TEXT"`.
      *     @type string $language The language of the document. Both ISO
@@ -212,11 +226,18 @@ class NaturalLanguageClient
      * @see https://cloud.google.com/natural-language/docs/reference/rest/v1beta1/documents/analyzeSyntax Analyze Syntax API documentation
      * @codingStandardsIgnoreEnd
      *
-     * @param string|StorageObject $content The content to analyze. When
-     *        providing a string it should be UTF-8 encoded.
+     * @param string|StorageObject $content The content to analyze. May be
+     *        either a string of UTF-8 encoded content, a URI pointing to a
+     *        Google Cloud Storage object in the format of
+     *        `gs://{bucket-name}/{object-name}` or a
+     *        {@see Google/Cloud/Storage/StorageObject}.
      * @param array $options [optional] {
      *     Configuration options.
      *
+     *     @type bool $detectGcsUri When providing $content as a string, this
+     *           flag determines whether or not to attempt to detect if the
+     *           string represents a Google Cloud Storage URI in the format of
+     *           `gs://{bucket-name}/{object-name}`. **Defaults to** `true`.
      *     @type string $type The document type. Acceptable values are
      *           `PLAIN_TEXT` or `HTML`. **Defaults to** `"PLAIN_TEXT"`.
      *     @type string $language The language of the document. Both ISO
@@ -273,11 +294,18 @@ class NaturalLanguageClient
      * @see https://cloud.google.com/natural-language/docs/reference/rest/v1beta1/documents/annotateText Annotate Text API documentation
      * @codingStandardsIgnoreEnd
      *
-     * @param string|StorageObject $content The content to analyze. When
-     *        providing a string it should be UTF-8 encoded.
+     * @param string|StorageObject $content The content to analyze. May be
+     *        either a string of UTF-8 encoded content, a URI pointing to a
+     *        Google Cloud Storage object in the format of
+     *        `gs://{bucket-name}/{object-name}` or a
+     *        {@see Google/Cloud/Storage/StorageObject}.
      * @param array $options [optional] {
      *     Configuration options.
      *
+     *     @type bool $detectGcsUri When providing $content as a string, this
+     *           flag determines whether or not to attempt to detect if the
+     *           string represents a Google Cloud Storage URI in the format of
+     *           `gs://{bucket-name}/{object-name}`. **Defaults to** `true`.
      *     @type array $features Features to apply to the request. Valid values
      *           are `syntax`, `sentiment`, and `entities`. If no features are
      *           provided the request will run with all three enabled.
@@ -347,15 +375,19 @@ class NaturalLanguageClient
         $docOptions = ['type', 'language', 'content', 'gcsContentUri'];
         $options += [
             'encodingType' => 'UTF8',
-            'type' => 'PLAIN_TEXT'
+            'type' => 'PLAIN_TEXT',
+            'detectGcsUri' => true
         ];
 
         if ($content instanceof StorageObject) {
-            $objIdentity = $content->identity();
-            $options['gcsContentUri'] = 'gs://' . $objIdentity['bucket'] . '/' . $objIdentity['object'];
+            $options['gcsContentUri'] = $content->gcsUri();
+        } elseif ($options['detectGcsUri'] && substr($content, 0, 5) === 'gs://') {
+            $options['gcsContentUri'] = $content;
         } else {
             $options['content'] = $content;
         }
+
+        unset($options['detectGcsUri']);
 
         foreach ($options as $option => $value) {
             if (in_array($option, $docOptions)) {
