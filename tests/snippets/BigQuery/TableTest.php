@@ -25,7 +25,7 @@ use Google\Cloud\BigQuery\Table;
 use Google\Cloud\BigQuery\ValueMapper;
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
 use Google\Cloud\Storage\Connection\ConnectionInterface as StorageConnectionInterface;
-use Google\Cloud\Upload\MultipartUploader;
+use Google\Cloud\Core\Upload\MultipartUploader;
 use Prophecy\Argument;
 
 /**

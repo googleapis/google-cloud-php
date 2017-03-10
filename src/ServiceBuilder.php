@@ -111,7 +111,7 @@ class ServiceBuilder
      *     {@see Google\Cloud\ServiceBuilder::__construct()} for the other available options.
      *
      *     @type bool $returnInt64AsObject If true, 64 bit integers will be
-     *           returned as a {@see Google\Cloud\Int64} object for 32 bit
+     *           returned as a {@see Google\Cloud\Core\Int64} object for 32 bit
      *           platform compatibility. **Defaults to** false.
      * @return BigQueryClient
      */
@@ -135,7 +135,7 @@ class ServiceBuilder
      *     {@see Google\Cloud\ServiceBuilder::__construct()} for the other available options.
      *
      *     @type bool $returnInt64AsObject If true, 64 bit integers will be
-     *           returned as a {@see Google\Cloud\Int64} object for 32 bit
+     *           returned as a {@see Google\Cloud\Core\Int64} object for 32 bit
      *           platform compatibility. **Defaults to** false.
      * @return DatastoreClient
      */

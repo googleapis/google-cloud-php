@@ -47,14 +47,6 @@ class VisionClientTest extends SnippetTestCase
         $this->assertInstanceOf(VisionClient::class, $res->returnVal());
     }
 
-    public function testClassDirectInstantiation()
-    {
-        $snippet = $this->snippetFromClass(VisionClient::class, 1);
-        $res = $snippet->invoke('vision');
-
-        $this->assertInstanceOf(VisionClient::class, $res->returnVal());
-    }
-
     public function testImage()
     {
         $snippet = $this->snippetFromMethod(VisionClient::class, 'image');

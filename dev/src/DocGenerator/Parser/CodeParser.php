@@ -18,6 +18,7 @@
 namespace Google\Cloud\Dev\DocGenerator\Parser;
 
 use Google\Cloud\Dev\DocBlockStripSpaces;
+use Google\Cloud\Dev\GetComponentsTrait;
 use phpDocumentor\Reflection\DocBlock;
 use phpDocumentor\Reflection\DocBlock\Description;
 use phpDocumentor\Reflection\DocBlock\Tag\SeeTag;
@@ -25,21 +26,38 @@ use phpDocumentor\Reflection\FileReflector;
 
 class CodeParser implements ParserInterface
 {
+    use GetComponentsTrait;
+
     const SNIPPET_NAME_REGEX = '/\/\/\s?\[snippet\=(\w{0,})\]/';
 
     private $path;
     private $outputName;
     private $reflector;
     private $markdown;
+    private $projectRoot;
     private $externalTypes;
+    private $componentId;
+    private $manifestPath;
+    private $release;
 
-    public function __construct($path, $outputName, FileReflector $reflector)
-    {
+    public function __construct(
+        $path,
+        $outputName,
+        FileReflector $reflector,
+        $projectRoot,
+        $componentId,
+        $manifestPath,
+        $release
+    ) {
         $this->path = $path;
         $this->outputName = $outputName;
         $this->reflector = $reflector;
         $this->markdown = \Parsedown::instance();
+        $this->projectRoot = $projectRoot;
         $this->externalTypes = json_decode(file_get_contents(__DIR__ .'/../../../../docs/external-classes.json'), true);
+        $this->componentId = $componentId;
+        $this->manifestPath = $manifestPath;
+        $this->release = $release;
     }
 
     public function parse()
@@ -485,14 +503,58 @@ class CodeParser implements ParserInterface
 
     private function buildLink($content)
     {
-        if ($content[0] === '\\') {
-            $content = substr($content, 1);
+        $componentId = null;
+        if (substr_compare(trim($content, '\\'), 'Google\Cloud', 0, 12) === 0) {
+            try {
+                $matches = [];
+                preg_match('/[Generator\<]?(Google\\\Cloud\\\[\w\\\]{0,})[\>]?[\[\]]?/', $content, $matches);
+                $ref = new \ReflectionClass($matches[1]);
+            } catch (\ReflectionException $e) {
+                throw new \Exception(sprintf(
+                    'Reflection Exception: %s in %s. Given class was %s',
+                    $e->getMessage(),
+                    realpath($this->path),
+                    $content
+                ));
+            }
+
+            $recurse = true;
+            $file = $ref->getFileName();
+
+            if (strpos($file, dirname(realpath($this->path))) !== false) {
+                $recurse = false;
+            }
+
+            do {
+                $composer = dirname($file) .'/composer.json';
+                if (file_exists($composer) && $component = $this->isComponent($composer)) {
+                    $componentId = $component['id'];
+                    if ($componentId === $this->componentId) {
+                        $componentId = null;
+                    }
+                    $recurse = false;
+                } elseif (trim($file, '/') === trim($this->projectRoot, '/')) {
+                    $recurse = false;
+                } else {
+                    $file = dirname($file);
+                }
+            } while($recurse);
         }
+
+        $content = trim($content, '\\');
 
         $displayName = $content;
         $content = substr($content, 13);
         $parts = explode('::', $content);
         $type = strtolower(str_replace('\\', '/', $parts[0]));
+
+        if ($componentId) {
+            $version = ($this->release)
+                ? $this->getComponentVersion($this->manifestPath, $componentId)
+                : 'master';
+
+            $type = $componentId .'/'. $version .'/'. $type;
+        }
 
         $openTag = '<a data-custom-type="' . $type . '"';
 
@@ -519,5 +581,23 @@ class CodeParser implements ParserInterface
             'description' => $parts[0],
             'examples' => $examples
         ];
+    }
+
+    private static $composerFiles = [];
+
+    private function isComponent($composerPath)
+    {
+        if (isset(self::$composerFiles[$composerPath])) {
+            $contents = self::$composerFiles[$composerPath];
+        } else {
+            $contents = json_decode(file_get_contents($composerPath), true);
+            self::$composerFiles[$composerPath] = $contents;
+        }
+
+        if (isset($contents['extra']['component'])) {
+            return $contents['extra']['component'];
+        }
+
+        return false;
     }
 }

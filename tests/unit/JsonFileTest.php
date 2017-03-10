@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests;
+namespace Google\Cloud\Tests\Unit;
 
 use League\JsonGuard\Dereferencer;
 use League\JsonGuard\Validator;
@@ -41,7 +41,34 @@ class JsonFileTest extends \PHPUnit_Framework_TestCase
 
         $validator = new Validator($json, $schema);
 
+        if ($validator->fails()) {
+            print_r($validator->errors());
+        }
+
         $this->assertFalse($validator->fails());
+    }
+
+    public function testComponentComposer()
+    {
+        $files = glob(__DIR__ .'/../../src/*/composer.json');
+        foreach ($files as $file) {
+            $json = json_decode(file_get_contents($file));
+            $this->assertEquals(JSON_ERROR_NONE, json_last_error());
+
+            $deref  = new Dereferencer();
+            $schema = $deref->dereference(json_decode(file_get_contents(sprintf(
+                self::SCHEMA_PATH,
+                __DIR__, 'composer.json.schema'
+            ))));
+
+            $validator = new Validator($json, $schema);
+
+            if ($validator->fails()) {
+                print_r($validator->errors());
+            }
+
+            $this->assertFalse($validator->fails());
+        }
     }
 
     public function testManifest()
@@ -57,6 +84,10 @@ class JsonFileTest extends \PHPUnit_Framework_TestCase
         ))));
 
         $validator = new Validator($json, $schema);
+
+        if ($validator->fails()) {
+            print_r($validator->errors());
+        }
 
         $this->assertFalse($validator->fails());
     }
@@ -74,6 +105,10 @@ class JsonFileTest extends \PHPUnit_Framework_TestCase
         ))));
 
         $validator = new Validator($json, $schema);
+
+        if ($validator->fails()) {
+            print_r($validator->errors());
+        }
 
         $this->assertFalse($validator->fails());
     }

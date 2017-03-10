@@ -15,10 +15,10 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\PubSub\Connection;
+namespace Google\Cloud\Tests\Unit\PubSub\Connection;
 
 use Google\Cloud\PubSub\Connection\Grpc;
-use Google\Cloud\GrpcRequestWrapper;
+use Google\Cloud\Core\GrpcRequestWrapper;
 use Prophecy\Argument;
 use google\iam\v1\Binding;
 use google\iam\v1\Policy;

@@ -48,14 +48,6 @@ class SpeechClientTest extends SnippetTestCase
         $this->assertInstanceOf(SpeechClient::class, $res->returnVal());
     }
 
-    public function testClassDirectInstantiation()
-    {
-        $snippet = $this->snippetFromClass(SpeechClient::class, 1);
-
-        $res = $snippet->invoke('speech');
-        $this->assertInstanceOf(SpeechClient::class, $res->returnVal());
-    }
-
     public function testRecognize()
     {
         $snippet = $this->snippetFromMethod(SpeechClient::class, 'recognize', 0);

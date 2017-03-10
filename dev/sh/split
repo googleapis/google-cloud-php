@@ -1,0 +1,10 @@
+#!/bin/bash
+
+set -e
+
+branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
+
+SHA=`$TRAVIS_BUILD_DIR/splitsh-lite --prefix=$1`
+git push -q \
+    "https://${GH_OAUTH_TOKEN}@github.com/$2" \
+    $SHA:master --force

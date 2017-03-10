@@ -15,11 +15,11 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Logging\Connection;
+namespace Google\Cloud\Tests\Unit\Logging\Connection;
 
 use Google\Cloud\Logging\Connection\Grpc;
-use Google\Cloud\GrpcRequestWrapper;
-use Google\Cloud\PhpArray;
+use Google\Cloud\Core\GrpcRequestWrapper;
+use Google\Cloud\Core\PhpArray;
 use Prophecy\Argument;
 use google\logging\v2\LogEntry;
 use google\logging\v2\LogMetric;

@@ -20,6 +20,7 @@ require __DIR__ . '/../vendor/autoload.php';
 
 use Google\Cloud\Dev\DocGenerator\Command\Docs;
 use Google\Cloud\Dev\Release\Command\Release;
+use Google\Cloud\Dev\Split\Command\Split;
 use Symfony\Component\Console\Application;
 
 if (!class_exists(Application::class)) {
@@ -33,4 +34,5 @@ if (!class_exists(Application::class)) {
 $app = new Application;
 $app->add(new Release(__DIR__));
 $app->add(new Docs(__DIR__));
+$app->add(new Split(__DIR__));
 $app->run();

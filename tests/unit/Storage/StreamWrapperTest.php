@@ -17,16 +17,16 @@
 
 namespace Google\Cloud\Tests\Storage;
 
-use Google\Cloud\Exception\NotFoundException;
+use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\Core\Upload\StreamableUploader;
 use Google\Cloud\Storage\Bucket;
 use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Storage\StorageObject;
 use Google\Cloud\Storage\StreamWrapper;
-use Google\Cloud\Upload\StreamableUploader;
-use Prophecy\Argument;
-use Prophecy\Prophecy\ObjectProphecy;
-use Prophecy\Promise\CallbackPromise;
 use GuzzleHttp\Psr7;
+use Prophecy\Argument;
+use Prophecy\Promise\CallbackPromise;
+use Prophecy\Prophecy\ObjectProphecy;
 
 /**
  * @group storage
@@ -73,7 +73,7 @@ class StreamWrapperTest extends \PHPUnit_Framework_TestCase
      */
     public function testOpeningNonExistentFileReturnsFalse()
     {
-        $this->mockDownloadException('non-existent/file.txt', \Google\Cloud\Exception\NotFoundException::class);
+        $this->mockDownloadException('non-existent/file.txt', NotFoundException::class);
 
         $fp = @fopen('gs://my_bucket/non-existent/file.txt', 'r');
         $this->assertFalse($fp);
@@ -224,7 +224,7 @@ class StreamWrapperTest extends \PHPUnit_Framework_TestCase
     public function testUnlinkOnNonExistentFile()
     {
         $obj = $this->prophesize(StorageObject::class);
-        $obj->delete()->willThrow(\Google\Cloud\Exception\NotFoundException::class);
+        $obj->delete()->willThrow(NotFoundException::class);
         $this->bucket->object('some_long_file.txt')->willReturn($obj->reveal());
         $this->assertFalse(unlink('gs://my_bucket/some_long_file.txt'));
     }
@@ -261,7 +261,7 @@ class StreamWrapperTest extends \PHPUnit_Framework_TestCase
      */
     public function testMkdirOnBadDirectory()
     {
-        $this->bucket->upload('', ['name' => 'foo/bar/', 'predefinedAcl' => 'publicRead'])->willThrow(\Google\Cloud\Exception\NotFoundException::class);
+        $this->bucket->upload('', ['name' => 'foo/bar/', 'predefinedAcl' => 'publicRead'])->willThrow(NotFoundException::class);
         $this->assertFalse(mkdir('gs://my_bucket/foo/bar'));
     }
 
@@ -298,7 +298,7 @@ class StreamWrapperTest extends \PHPUnit_Framework_TestCase
     public function testRmdirOnBadDirectory()
     {
         $obj = $this->prophesize(StorageObject::class);
-        $obj->delete()->willThrow(\Google\Cloud\Exception\NotFoundException::class);
+        $obj->delete()->willThrow(NotFoundException::class);
         $this->bucket->object('foo/bar/')->willReturn($obj->reveal());
         $this->assertFalse(rmdir('gs://my_bucket/foo/bar'));
     }

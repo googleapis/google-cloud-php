@@ -17,11 +17,11 @@
 
 namespace Google\Cloud\BigQuery;
 
-use Google\Cloud\ArrayTrait;
+use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\BigQuery\Connection\ConnectionInterface;
 use Google\Cloud\BigQuery\Connection\Rest;
-use Google\Cloud\ClientTrait;
-use Google\Cloud\Int64;
+use Google\Cloud\Core\ClientTrait;
+use Google\Cloud\Core\Int64;
 use Psr\Cache\CacheItemPoolInterface;
 use Psr\Http\Message\StreamInterface;
 
@@ -32,15 +32,6 @@ use Psr\Http\Message\StreamInterface;
  *
  * Example:
  * ```
- * use Google\Cloud\ServiceBuilder;
- *
- * $cloud = new ServiceBuilder();
- *
- * $bigQuery = $cloud->bigQuery();
- * ```
- *
- * ```
- * // BigQueryClient can be instantiated directly.
  * use Google\Cloud\BigQuery\BigQueryClient;
  *
  * $bigQuery = new BigQueryClient();
@@ -51,6 +42,8 @@ class BigQueryClient
     use ArrayTrait;
     use ClientTrait;
     use JobConfigurationTrait;
+
+    const VERSION = 'master';
 
     const SCOPE = 'https://www.googleapis.com/auth/bigquery';
     const INSERT_SCOPE = 'https://www.googleapis.com/auth/bigquery.insertdata';
@@ -90,7 +83,7 @@ class BigQueryClient
      *           to** `3`.
      *     @type array $scopes Scopes to be used for the request.
      *     @type bool $returnInt64AsObject If true, 64 bit integers will be
-     *           returned as a {@see Google\Cloud\Int64} object for 32 bit
+     *           returned as a {@see Google\Cloud\Core\Int64} object for 32 bit
      *           platform compatibility. **Defaults to** false.
      * }
      */
@@ -123,7 +116,7 @@ class BigQueryClient
      * | `\DateTimeInterface`                       | `DATETIME`                           |
      * | {@see Google\Cloud\BigQuery\Bytes}         | `BYTES`                              |
      * | {@see Google\Cloud\BigQuery\Date}          | `DATE`                               |
-     * | {@see Google\Cloud\Int64}                  | `INT64`                              |
+     * | {@see Google\Cloud\Core\Int64}             | `INT64`                              |
      * | {@see Google\Cloud\BigQuery\Time}          | `TIME`                               |
      * | {@see Google\Cloud\BigQuery\Timestamp}     | `TIMESTAMP`                          |
      * | Associative Array                          | `STRUCT`                             |

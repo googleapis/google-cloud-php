@@ -1,0 +1,13 @@
+[{
+    "title": "StorageClient",
+    "type": "storage/storageclient"
+}, {
+    "title": "ACL",
+    "type": "storage/acl"
+}, {
+    "title": "Bucket",
+    "type": "storage/bucket"
+}, {
+    "title": "StorageObject",
+    "type": "storage/storageobject"
+}]

@@ -73,7 +73,7 @@ class MessageTest extends SnippetTestCase
 
         $snippet = $this->snippetFromClass(Message::class);
         $snippet->addLocal('connectionStub', $connection->reveal());
-        $snippet->insertAfterLine(3, '$reflection = new \ReflectionClass($pubsub);
+        $snippet->insertAfterLine(2, '$reflection = new \ReflectionClass($pubsub);
             $property = $reflection->getProperty(\'connection\');
             $property->setAccessible(true);
             $property->setValue($pubsub, $connectionStub);

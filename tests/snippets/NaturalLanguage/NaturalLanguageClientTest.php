@@ -44,13 +44,6 @@ class NaturalLanguageClientTest extends SnippetTestCase
         $this->assertInstanceOf(NaturalLanguageClient::class, $res->returnVal());
     }
 
-    public function testClassDirect()
-    {
-        $snippet = $this->snippetFromClass(NaturalLanguageClient::class, 1);
-        $res = $snippet->invoke('language');
-        $this->assertInstanceOf(NaturalLanguageClient::class, $res->returnVal());
-    }
-
     public function testAnalyzeEntities()
     {
         $this->connection->analyzeEntities(Argument::any())

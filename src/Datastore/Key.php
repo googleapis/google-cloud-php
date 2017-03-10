@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Datastore;
 
-use Google\Cloud\ArrayTrait;
+use Google\Cloud\Core\ArrayTrait;
 use InvalidArgumentException;
 use JsonSerializable;
 
@@ -46,10 +46,9 @@ use JsonSerializable;
  *
  * Example:
  * ```
- * use Google\Cloud\ServiceBuilder;
+ * use Google\Cloud\Datastore\DatastoreClient;
  *
- * $cloud = new ServiceBuilder();
- * $datastore = $cloud->datastore();
+ * $datastore = new DatastoreClient();
  *
  * $key = $datastore->key('Person', 'Bob');
  * ```

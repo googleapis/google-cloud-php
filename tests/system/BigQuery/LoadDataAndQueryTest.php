@@ -19,10 +19,10 @@ namespace Google\Cloud\Tests\System\BigQuery;
 
 use Google\Cloud\BigQuery\Bytes;
 use Google\Cloud\BigQuery\Date;
+use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\BigQuery\Time;
 use Google\Cloud\BigQuery\Timestamp;
 use Google\Cloud\BigQuery\ValueMapper;
-use Google\Cloud\ExponentialBackoff;
 use GuzzleHttp\Psr7;
 
 /**

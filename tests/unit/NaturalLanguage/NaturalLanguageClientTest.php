@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\NaturalLanguage;
+namespace Google\Cloud\Tests\Unit\NaturalLanguage;
 
 use Google\Cloud\NaturalLanguage\Annotation;
 use Google\Cloud\NaturalLanguage\Connection\ConnectionInterface;
@@ -24,7 +24,7 @@ use Google\Cloud\Storage\StorageObject;
 use Prophecy\Argument;
 
 /**
- * @group naturalLanguage
+ * @group naturallanguage
  */
 class NaturalLanguageClientTest extends \PHPUnit_Framework_TestCase
 {
@@ -115,9 +115,23 @@ class NaturalLanguageClientTest extends \PHPUnit_Framework_TestCase
     public function analyzeDataProvider()
     {
         $objectMock = $this->prophesize(StorageObject::class);
-        $objectMock->identity(Argument::any())->willReturn(['bucket' => 'bucket', 'object' => 'object']);
+        $gcsUri = 'gs://bucket/object';
+        $objectMock->gcsUri(Argument::any())->willReturn($gcsUri);
 
         return [
+            [
+                [
+                    'content' => $gcsUri,
+                    'encodingType' => 'UTF16'
+                ],
+                [
+                    'document' => [
+                        'gcsContentUri' => $gcsUri,
+                        'type' => 'PLAIN_TEXT'
+                    ],
+                    'encodingType' => 'UTF16'
+                ]
+            ],
             [
                 [
                     'content' => 'My content.',

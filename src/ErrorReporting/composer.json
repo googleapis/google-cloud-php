@@ -1,0 +1,24 @@
+{
+    "name": "google/cloud-error-reporting",
+    "description": "Stackdriver Error Reporting Client for PHP",
+    "license": "Apache-2.0",
+    "minimum-stability": "stable",
+    "require": {
+        "google/cloud-core": "*",
+        "google/proto-client-php": "^0.9",
+        "google/gax": "^0.8"
+    },
+    "extra": {
+        "component": {
+            "id": "cloud-error-reporting",
+            "target": "GoogleCloudPlatform/google-cloud-php-errorreporting.git",
+            "path": "src/ErrorReporting",
+            "entry": null
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Google\\Cloud\\ErrorReporting\\": ""
+        }
+    }
+}

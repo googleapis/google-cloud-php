@@ -17,19 +17,18 @@
 
 namespace Google\Cloud\Logging;
 
-use Google\Cloud\ArrayTrait;
+use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Logging\Connection\ConnectionInterface;
-use Google\Cloud\ValidateTrait;
+use Google\Cloud\Core\ValidateTrait;
 
 /**
  * A logger used to write entries to Google Stackdriver Logging.
  *
  * Example:
  * ```
- * use Google\Cloud\ServiceBuilder;
+ * use Google\Cloud\Logging\LoggingClient;
  *
- * $cloud = new ServiceBuilder();
- * $logging = $cloud->logging();
+ * $logging = new LoggingClient();
  *
  * $logger = $logging->logger('my-log');
  * ```

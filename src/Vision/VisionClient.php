@@ -17,8 +17,9 @@
 
 namespace Google\Cloud\Vision;
 
-use Google\Cloud\ClientTrait;
-use Google\Cloud\ValidateTrait;
+use Google\Cloud\Core\ClientTrait;
+use Google\Cloud\Core\ValidateTrait;
+use Google\Cloud\Storage\StorageObject;
 use Google\Cloud\Vision\Connection\Rest;
 use InvalidArgumentException;
 use Psr\Cache\CacheItemPoolInterface;
@@ -31,15 +32,6 @@ use Psr\Cache\CacheItemPoolInterface;
  *
  * Example:
  * ```
- * use Google\Cloud\ServiceBuilder;
- *
- * $cloud = new ServiceBuilder();
- *
- * $vision = $cloud->vision();
- * ```
- *
- * ```
- * // VisionClient can be instantiated directly.
  * use Google\Cloud\Vision\VisionClient;
  *
  * $vision = new VisionClient();
@@ -49,6 +41,8 @@ class VisionClient
 {
     use ClientTrait;
     use ValidateTrait;
+
+    const VERSION = 'master';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/cloud-platform';
 

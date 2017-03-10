@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Speech;
 
-use Google\Cloud\ClientTrait;
+use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Speech\Connection\ConnectionInterface;
 use Google\Cloud\Speech\Connection\Rest;
 use Google\Cloud\Storage\StorageObject;
@@ -41,15 +41,6 @@ use Psr\Cache\CacheItemPoolInterface;
  *
  * Example:
  * ```
- * use Google\Cloud\ServiceBuilder;
- *
- * $cloud = new ServiceBuilder();
- *
- * $speech = $cloud->speech();
- * ```
- *
- * ```
- * // SpeechClient can be instantiated directly.
  * use Google\Cloud\Speech\SpeechClient;
  *
  * $speech = new SpeechClient();
@@ -58,6 +49,8 @@ use Psr\Cache\CacheItemPoolInterface;
 class SpeechClient
 {
     use ClientTrait;
+
+    const VERSION = 'master';
 
     const SCOPE = 'https://www.googleapis.com/auth/cloud-platform';
 
@@ -149,11 +142,18 @@ class SpeechClient
      * @see https://cloud.google.com/speech/docs/best-practices Speech API best practices
      * @codingStandardsIgnoreEnd
      *
-     * @param resource|string|StorageObject $audio The audio to recognize. May
-     *        be a resource, string of bytes, or Google Cloud Storage object.
+    * @param resource|string|StorageObject $audio The audio to recognize. May
+     *        be a resource, string of bytes, a URI pointing to a
+     *        Google Cloud Storage object in the format of
+     *        `gs://{bucket-name}/{object-name}` or a
+     *        {@see Google\Cloud\Storage\StorageObject}.
      * @param array $options [optional] {
      *     Configuration options.
      *
+     *     @type bool $detectGcsUri When providing $audio as a string, this flag
+     *           determines whether or not to attempt to detect if the string
+     *           represents a Google Cloud Storage URI in the format of
+     *           `gs://{bucket-name}/{object-name}`. **Defaults to** `true`.
      *     @type int $sampleRate Sample rate in Hertz of the provided audio.
      *           Valid values are: 8000-48000. 16000 is optimal. For best
      *           results, set the sampling rate of the audio source to 16000 Hz.
@@ -263,10 +263,17 @@ class SpeechClient
      * @codingStandardsIgnoreEnd
      *
      * @param resource|string|StorageObject $audio The audio to recognize. May
-     *        be a resource, string of bytes, or Google Cloud Storage object.
+     *        be a resource, string of bytes, a URI pointing to a
+     *        Google Cloud Storage object in the format of
+     *        `gs://{bucket-name}/{object-name}` or a
+     *        {@see Google\Cloud\Storage\StorageObject}.
      * @param array $options [optional] {
      *     Configuration options.
      *
+     *     @type bool $detectGcsUri When providing $audio as a string, this flag
+     *           determines whether or not to attempt to detect if the string
+     *           represents a Google Cloud Storage URI in the format of
+     *           `gs://{bucket-name}/{object-name}`. **Defaults to** `true`.
      *     @type int $sampleRate Sample rate in Hertz of the provided audio.
      *           Valid values are: 8000-48000. 16000 is optimal. For best
      *           results, set the sampling rate of the audio source to 16000 Hz.
@@ -342,6 +349,7 @@ class SpeechClient
     {
         $analyzedFileInfo = null;
         $fileFormat = null;
+        $options += ['detectGcsUri' => true];
         $recognizeOptions = [
             'encoding',
             'sampleRate',
@@ -352,15 +360,19 @@ class SpeechClient
         ];
 
         if ($audio instanceof StorageObject) {
-            $objIdentity = $audio->identity();
-            $options['audio']['uri'] = 'gs://' . $objIdentity['bucket'] . '/' . $objIdentity['object'];
+            $options['audio']['uri'] = $audio->gcsUri();
             $fileFormat = pathinfo($options['audio']['uri'], PATHINFO_EXTENSION);
         } elseif (is_resource($audio)) {
             $options['audio']['content'] = base64_encode(stream_get_contents($audio));
             $fileFormat = pathinfo(stream_get_meta_data($audio)['uri'], PATHINFO_EXTENSION);
+        } elseif ($options['detectGcsUri'] && substr($audio, 0, 5) === 'gs://') {
+            $options['audio']['uri'] = $audio;
+            $fileFormat = pathinfo($options['audio']['uri'], PATHINFO_EXTENSION);
         } else {
             $options['audio']['content'] = base64_encode($audio);
         }
+
+        unset($options['detectGcsUri']);
 
         if (isset($options['encoding'])) {
             $options['encoding'] = strtoupper($options['encoding']);

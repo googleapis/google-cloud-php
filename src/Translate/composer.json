@@ -1,0 +1,22 @@
+{
+    "name": "google/cloud-translate",
+    "description": "Cloud Transation Client for PHP",
+    "license": "Apache-2.0",
+    "minimum-stability": "stable",
+    "require": {
+        "google/cloud-core": "*"
+    },
+    "extra": {
+        "component": {
+            "id": "cloud-translate",
+            "target": "GoogleCloudPlatform/google-cloud-php-translate.git",
+            "path": "src/Translate",
+            "entry": "TranslateClient.php"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Google\\Cloud\\Translate\\": ""
+        }
+    }
+}

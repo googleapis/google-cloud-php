@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Storage;
 
-use Google\Cloud\Exception\NotFoundException;
+use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Storage\Connection\ConnectionInterface;
 use GuzzleHttp\Psr7;
 use Psr\Http\Message\StreamInterface;
@@ -28,10 +28,9 @@ use Psr\Http\Message\StreamInterface;
  *
  * Example:
  * ```
- * use Google\Cloud\ServiceBuilder;
+ * use Google\Cloud\Storage\StorageClient;
  *
- * $cloud = new ServiceBuilder();
- * $storage = $cloud->storage();
+ * $storage = new StorageClient();
  *
  * $bucket = $storage->bucket('my-bucket');
  * $object = $bucket->object('my-object');
@@ -752,6 +751,26 @@ class StorageObject
     public function identity()
     {
         return $this->identity;
+    }
+
+    /**
+     * Formats the object as a string in the following format:
+     * `gs://{bucket-name}/{object-name}`.
+     *
+     * Example:
+     * ```
+     * echo $object->gcsUri();
+     * ```
+     *
+     * @return string
+     */
+    public function gcsUri()
+    {
+        return sprintf(
+            'gs://%s/%s',
+            $this->identity['bucket'],
+            $this->identity['object']
+        );
     }
 
     /**

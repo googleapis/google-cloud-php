@@ -28,10 +28,9 @@ use Psr\Log\LogLevel;
  *
  * Example:
  * ```
- * use Google\Cloud\ServiceBuilder;
+ * use Google\Cloud\Logging\LoggingClient;
  *
- * $cloud = new ServiceBuilder();
- * $logging = $cloud->logging();
+ * $logging = new LoggingClient();
  *
  * $psrLogger = $logging->psrLogger('my-log');
  * ```

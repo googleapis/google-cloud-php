@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Tests\System\Storage;
 
-use Google\Cloud\ExponentialBackoff;
+use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\Storage\StorageClient;
 
 class StorageTestCase extends \PHPUnit_Framework_TestCase

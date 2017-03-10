@@ -1,0 +1,30 @@
+[{
+    "title": "Overview",
+    "type": "core/readme"
+}, {
+    "title": "IAM",
+    "type": "core/iam/iam",
+    "patterns": [
+      "core/iam/\\w{1,}"
+    ],
+    "nav": [{
+        "title": "PolicyBuilder",
+        "type": "core/iam/policybuilder"
+    }]
+}, {
+    "title": "Upload",
+    "type": "core/upload/abstractuploader",
+    "nav": [{
+        "title": "MultipartUploader",
+        "type": "core/upload/multipartuploader"
+    }, {
+        "title": "ResumableUploader",
+        "type": "core/upload/resumableuploader"
+    }, {
+        "title": "StreamableUploader",
+        "type": "core/upload/streamableuploader"
+    }]
+}, {
+    "title": "Int64",
+    "type": "core/int64"
+}]

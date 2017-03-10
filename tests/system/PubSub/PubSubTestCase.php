@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Tests\System\PubSub;
 
-use Google\Cloud\ExponentialBackoff;
+use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\PubSub\PubSubClient;
 
 class PubSubTestCase extends \PHPUnit_Framework_TestCase
