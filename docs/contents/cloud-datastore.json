@@ -1,25 +1,29 @@
-[{
-    "title": "DatastoreClient",
-    "type": "datastore/datastoreclient"
-}, {
-    "title": "Transaction",
-    "type": "datastore/transaction"
-}, {
-    "title": "Entity",
-    "type": "datastore/entity"
-}, {
-    "title": "Key",
-    "type": "datastore/key"
-}, {
-    "title": "Query",
-    "type": "datastore/query/query"
-}, {
-    "title": "GQL Query",
-    "type": "datastore/query/gqlquery"
-}, {
-    "title": "GeoPoint",
-    "type": "datastore/geopoint"
-}, {
-    "title": "Blob",
-    "type": "datastore/blob"
-}]
+{
+    "title": "Datastore",
+    "pattern": "datastore\/\\w{1,}",
+    "services": [{
+        "title": "DatastoreClient",
+        "type": "datastore/datastoreclient"
+    }, {
+        "title": "Transaction",
+        "type": "datastore/transaction"
+    }, {
+        "title": "Entity",
+        "type": "datastore/entity"
+    }, {
+        "title": "Key",
+        "type": "datastore/key"
+    }, {
+        "title": "Query",
+        "type": "datastore/query/query"
+    }, {
+        "title": "GQL Query",
+        "type": "datastore/query/gqlquery"
+    }, {
+        "title": "GeoPoint",
+        "type": "datastore/geopoint"
+    }, {
+        "title": "Blob",
+        "type": "datastore/blob"
+    }]
+}

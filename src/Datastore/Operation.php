@@ -398,7 +398,7 @@ class Operation
             ];
 
             $res = $this->connection->runQuery($request);
-
+print_r($res);exit;
             if (isset($res['batch']['entityResults']) && is_array($res['batch']['entityResults'])) {
                 $results = $this->mapEntityResult(
                     $res['batch']['entityResults'],
@@ -406,7 +406,7 @@ class Operation
                 );
 
                 foreach ($results as $result) {
-                    yield $result;
+                    // yield $result;
                 }
 
                 if ($query->canPaginate() && $res['batch']['moreResults'] === 'NOT_FINISHED') {

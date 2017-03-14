@@ -1,17 +1,21 @@
-[{
-    "title": "SpeechClient",
-    "type": "speech/speechclient"
-}, {
-    "title": "Operation",
-    "type": "speech/operation"
-}, {
-    "title": "v1beta1",
-    "type": "speech/v1beta1/readme",
-    "patterns": [
-      "speech/v1beta1/\\w{1,}"
-    ],
-    "nav": [{
+{
+    "title": "Speech",
+    "pattern": "speech\/\\w{1,}",
+    "services": [{
         "title": "SpeechClient",
-        "type": "speech/v1beta1/speechclient"
+        "type": "speech/speechclient"
+    }, {
+        "title": "Operation",
+        "type": "speech/operation"
+    }, {
+        "title": "v1beta1",
+        "type": "speech/v1beta1/readme",
+        "patterns": [
+          "speech/v1beta1/\\w{1,}"
+        ],
+        "nav": [{
+            "title": "SpeechClient",
+            "type": "speech/v1beta1/speechclient"
+        }]
     }]
-}]
+}

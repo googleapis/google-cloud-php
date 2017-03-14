@@ -20,25 +20,61 @@ namespace Google\Cloud\Dev\DocGenerator;
 class TableOfContents
 {
     private $template;
-    private $component;
+    private $componentId;
     private $componentVersion;
+    private $contentsPath;
     private $outputPath;
 
-    public function __construct(array $template, array $component, $componentVersion, $outputPath)
+    public function __construct(array $template, $componentId, $componentVersion, $contentsPath, $outputPath)
     {
         $this->template = $template;
-        $this->component = $component;
+        $this->componentId = $componentId;
         $this->componentVersion = $componentVersion;
+        $this->contentsPath = $contentsPath;
         $this->outputPath = $outputPath;
     }
 
     public function generate($pretty = false)
     {
-        $toc = $this->template;
-        $toc['services'] = $this->component;
-        $toc['tagName'] = $this->componentVersion;
+        $toc = $this->getToc($this->componentId);
 
-        $writer = new Writer($toc, $this->outputPath, $pretty);
+        $tpl = $this->template;
+        $tpl['services'] = $this->services($toc);
+        $tpl['tagName'] = $this->componentVersion;
+
+        $writer = new Writer($tpl, $this->outputPath, $pretty);
         $writer->write('toc.json');
+    }
+
+    private function services(array $toc)
+    {
+        $services = $toc['services'];
+
+        if (isset($toc['includes'])) {
+            foreach ($toc['includes'] as $include) {
+                $toc = $this->getToc($include);
+                $nested = $toc['services'];
+                $firstService = array_shift($nested);
+
+                $service = [
+                    'title' => $toc['title'],
+                    'type' => $firstService['type'],
+                    'nav' => $nested
+                ];
+
+                if (isset($toc['pattern'])) {
+                    $service['patterns'] = [$toc['pattern']];
+                }
+
+                $services[] = $service;
+            }
+        }
+
+        return $services;
+    }
+
+    private function getToc($componentId)
+    {
+        return json_decode(file_get_contents($this->contentsPath .'/'. $componentId .'.json'), true);
     }
 }
