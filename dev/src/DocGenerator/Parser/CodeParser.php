@@ -507,7 +507,7 @@ class CodeParser implements ParserInterface
     private function buildLink($content)
     {
         $componentId = null;
-        if (substr_compare(trim($content, '\\'), 'Google\Cloud', 0, 12) === 0) {
+        if ($this->linkCrossComponent && substr_compare(trim($content, '\\'), 'Google\Cloud', 0, 12) === 0) {
             try {
                 $matches = [];
                 preg_match('/[Generator\<]?(Google\\\Cloud\\\[\w\\\]{0,})[\>]?[\[\]]?/', $content, $matches);
