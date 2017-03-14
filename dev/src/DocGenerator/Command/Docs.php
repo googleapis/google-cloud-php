@@ -39,6 +39,7 @@ class Docs extends Command
     const DEFAULT_OUTPUT_DIR = 'docs/json';
     const TOC_SOURCE_DIR = 'docs/contents';
     const TOC_TEMPLATE = 'docs/toc.json';
+    const OVERVIEW_FILE = 'docs/overview.html';
     const DEFAULT_SOURCE_DIR = 'src';
 
     private $cliBasePath;
@@ -74,7 +75,8 @@ class Docs extends Command
             'project' => $this->cliBasePath .'/../',
             'manifest' => $this->cliBasePath .'/../docs/manifest.json',
             'toc' => $this->cliBasePath .'/../'. self::TOC_SOURCE_DIR,
-            'tocTemplate' => $this->cliBasePath .'/../'. self::TOC_TEMPLATE
+            'tocTemplate' => $this->cliBasePath .'/../'. self::TOC_TEMPLATE,
+            'overview' => $this->cliBasePath .'/../'. self::OVERVIEW_FILE
         ];
 
         $components = $this->getComponents($paths['source']);
@@ -161,6 +163,9 @@ class Docs extends Command
             $outputPath
         );
         $toc->generate($pretty);
+
+        $output->writeln(sprintf('Copying overview.html to %s', realpath($outputPath)));
+        copy($paths['overview'], $outputPath .'/overview.html');
 
         $output->writeln(' ');
         $output->writeln(' ');
