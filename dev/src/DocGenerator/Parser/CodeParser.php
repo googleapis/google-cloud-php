@@ -39,6 +39,7 @@ class CodeParser implements ParserInterface
     private $componentId;
     private $manifestPath;
     private $release;
+    private $linkCrossComponent;
 
     public function __construct(
         $path,
@@ -47,7 +48,8 @@ class CodeParser implements ParserInterface
         $projectRoot,
         $componentId,
         $manifestPath,
-        $release
+        $release,
+        $linkCrossComponent = true
     ) {
         $this->path = $path;
         $this->outputName = $outputName;
@@ -58,6 +60,7 @@ class CodeParser implements ParserInterface
         $this->componentId = $componentId;
         $this->manifestPath = $manifestPath;
         $this->release = $release;
+        $this->linkCrossComponent = $linkCrossComponent;
     }
 
     public function parse()
@@ -504,7 +507,7 @@ class CodeParser implements ParserInterface
     private function buildLink($content)
     {
         $componentId = null;
-        if (substr_compare(trim($content, '\\'), 'Google\Cloud', 0, 12) === 0) {
+        if ($this->linkCrossComponent && substr_compare(trim($content, '\\'), 'Google\Cloud', 0, 12) === 0) {
             try {
                 $matches = [];
                 preg_match('/[Generator\<]?(Google\\\Cloud\\\[\w\\\]{0,})[\>]?[\[\]]?/', $content, $matches);

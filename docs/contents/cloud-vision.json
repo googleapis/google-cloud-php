@@ -1,34 +1,38 @@
-[{
-    "title": "VisionClient",
-    "type": "vision/visionclient"
-}, {
-    "title": "Image",
-    "type": "vision/image"
-}, {
-    "title": "Annotation",
-    "type": "vision/annotation",
-    "nav": [
-        {
-            "title": "CropHint",
-            "type": "vision/annotation/crophint"
-        }, {
-            "title": "Document",
-            "type": "vision/annotation/document"
-        }, {
-            "title": "Entity",
-            "type": "vision/annotation/entity"
-        }, {
-            "title": "Face",
-            "type": "vision/annotation/face"
-        }, {
-            "title": "ImageProperties",
-            "type": "vision/annotation/imageproperties"
-        }, {
-            "title": "SafeSearch",
-            "type": "vision/annotation/safesearch"
-        }, {
-            "title": "Web",
-            "type": "vision/annotation/web"
-        }
-    ]
-}]
+{
+    "title": "Vision",
+    "pattern": "vision\/\\w{1,}",
+    "services": [{
+        "title": "VisionClient",
+        "type": "vision/visionclient"
+    }, {
+        "title": "Image",
+        "type": "vision/image"
+    }, {
+        "title": "Annotation",
+        "type": "vision/annotation",
+        "nav": [
+            {
+                "title": "CropHint",
+                "type": "vision/annotation/crophint"
+            }, {
+                "title": "Document",
+                "type": "vision/annotation/document"
+            }, {
+                "title": "Entity",
+                "type": "vision/annotation/entity"
+            }, {
+                "title": "Face",
+                "type": "vision/annotation/face"
+            }, {
+                "title": "ImageProperties",
+                "type": "vision/annotation/imageproperties"
+            }, {
+                "title": "SafeSearch",
+                "type": "vision/annotation/safesearch"
+            }, {
+                "title": "Web",
+                "type": "vision/annotation/web"
+            }
+        ]
+    }]
+}

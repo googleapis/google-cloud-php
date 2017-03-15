@@ -39,6 +39,7 @@ class Docs extends Command
     const DEFAULT_OUTPUT_DIR = 'docs/json';
     const TOC_SOURCE_DIR = 'docs/contents';
     const TOC_TEMPLATE = 'docs/toc.json';
+    const OVERVIEW_FILE = 'docs/overview.html';
     const DEFAULT_SOURCE_DIR = 'src';
 
     private $cliBasePath;
@@ -74,7 +75,8 @@ class Docs extends Command
             'project' => $this->cliBasePath .'/../',
             'manifest' => $this->cliBasePath .'/../docs/manifest.json',
             'toc' => $this->cliBasePath .'/../'. self::TOC_SOURCE_DIR,
-            'tocTemplate' => $this->cliBasePath .'/../'. self::TOC_TEMPLATE
+            'tocTemplate' => $this->cliBasePath .'/../'. self::TOC_TEMPLATE,
+            'overview' => $this->cliBasePath .'/../'. self::OVERVIEW_FILE
         ];
 
         $components = $this->getComponents($paths['source']);
@@ -83,15 +85,33 @@ class Docs extends Command
         foreach ($components as $component) {
             $input = $paths['project'] . $component['path'];
             $source = $this->getFilesList($input);
-            $this->generateComponentDocumentation($output, $source, $component, $paths, $tocTemplate, $release, $pretty);
+            $this->generateComponentDocumentation(
+                $output,
+                $source,
+                $component,
+                $paths,
+                $tocTemplate,
+                $release,
+                $pretty
+            );
         }
 
-        $source = [$paths['project'] .'src/ServiceBuilder.php'];
+        $source = $this->getFilesList($paths['project'] . '/src');
         $component = [
             'id' => 'google-cloud',
             'path' => 'src/'
         ];
-        $this->generateComponentDocumentation($output, $source, $component, $paths, $tocTemplate, $release, $pretty);
+
+        $this->generateComponentDocumentation(
+            $output,
+            $source,
+            $component,
+            $paths,
+            $tocTemplate,
+            $release,
+            $pretty,
+            false
+        );
     }
 
     private function generateComponentDocumentation(
@@ -101,7 +121,8 @@ class Docs extends Command
         array $paths,
         $tocTemplate,
         $release = false,
-        $pretty = false
+        $pretty = false,
+        $linkCrossComponent = true
     ) {
         $output->writeln(sprintf('Writing documentation for %s', $component['id']));
         $output->writeln('--------------');
@@ -123,22 +144,28 @@ class Docs extends Command
             $this->cliBasePath,
             $component['id'],
             $paths['manifest'],
-            $release
+            $release,
+            $linkCrossComponent
         );
+
         $docs->generate($component['path'], $pretty);
 
         $types->write($pretty);
 
         $output->writeln(sprintf('Writing table of contents to %s', realpath($outputPath)));
-        $services = json_decode(file_get_contents($paths['toc'] .'/'. $component['id'] .'.json'), true);
+        $contents = json_decode(file_get_contents($paths['toc'] .'/'. $component['id'] .'.json'), true);
 
         $toc = new TableOfContents(
             $tocTemplate,
-            $services,
+            $component['id'],
             $release,
+            $paths['toc'],
             $outputPath
         );
         $toc->generate($pretty);
+
+        $output->writeln(sprintf('Copying overview.html to %s', realpath($outputPath)));
+        copy($paths['overview'], $outputPath .'/overview.html');
 
         $output->writeln(' ');
         $output->writeln(' ');
