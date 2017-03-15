@@ -91,9 +91,18 @@ class Trace
      *
      * @return string
      */
-    public function getTraceId()
+    public function traceId()
     {
         return $this->traceId;
+    }
+
+    /**
+     * Set the trace's projectId
+     * @param string $projectId
+     */
+    public function setProjectId($projectId)
+    {
+        $this->projectId = $projectId;
     }
 
     /**

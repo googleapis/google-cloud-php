@@ -92,6 +92,16 @@ class TraceClient
     }
 
     /**
+     * Returns the projectId for this client.
+     *
+     * @return string
+     */
+    public function projectId()
+    {
+        return $this->projectId;
+    }
+
+    /**
      * Sends a Trace log in a simple fashion.
      *
      * @param  Trace $trace The trace log to send.

@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Trace;
 
+use Google\Cloud\ArrayTrait;
+
 /**
  * This plain PHP class represents a
  * [TraceSpan resource](https://cloud.google.com/trace/docs/reference/v1/rest/v1/projects.traces#TraceSpan)
@@ -28,6 +30,8 @@ namespace Google\Cloud\Trace;
  */
 class TraceSpan
 {
+    use ArrayTrait;
+
     const SPAN_KIND_UNSPECIFIED = 'SPAN_KIND_UNSPECIFIED';
     const SPAN_KIND_RPC_SERVER = 'RPC_SERVER';
     const SPAN_KIND_RPC_CLIENT = 'RPC_CLIENT';
@@ -61,7 +65,10 @@ class TraceSpan
      */
     public function __construct($options = [])
     {
-        $this->info = $options + [
+        $this->info = $this->pluckArray(
+            ['spanId', 'kind', 'name', 'startTime', 'endTime', 'parentSpanId', 'labels'],
+            $options);
+        $this->info += [
             'kind' => self::SPAN_KIND_UNSPECIFIED
         ];
 

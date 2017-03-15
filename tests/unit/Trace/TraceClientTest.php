@@ -50,9 +50,9 @@ class TraceClientTest extends \PHPUnit_Framework_TestCase
         $traces = iterator_to_array($this->client->traces());
 
         $this->assertEquals(3, count($traces));
-        $this->assertEquals('1', $traces[0]->getTraceId());
-        $this->assertEquals('2', $traces[1]->getTraceId());
-        $this->assertEquals('3', $traces[2]->getTraceId());
+        $this->assertEquals('1', $traces[0]->traceId());
+        $this->assertEquals('2', $traces[1]->traceId());
+        $this->assertEquals('3', $traces[2]->traceId());
     }
 
     public function testListsTracesNoneFound()
@@ -77,7 +77,7 @@ class TraceClientTest extends \PHPUnit_Framework_TestCase
         $this->client->setConnection($this->connection->reveal());
 
         $trace = $this->client->getTrace('1');
-        $this->assertEquals('1', $trace->getTraceId());
+        $this->assertEquals('1', $trace->traceId());
         $this->assertEquals(1, count($trace->spans()));
     }
 
@@ -112,7 +112,7 @@ class TraceClientTest extends \PHPUnit_Framework_TestCase
         ]);
         $newTrace = $this->client->insertTrace($trace);
         $this->assertInstanceOf(Trace::class, $newTrace);
-        $this->assertEquals('1', $newTrace->getTraceId());
+        $this->assertEquals('1', $newTrace->traceId());
     }
 
     public function testInsertMultipleTraces()
@@ -139,7 +139,7 @@ class TraceClientTest extends \PHPUnit_Framework_TestCase
         $newTraces = $this->client->insertTraceBatch([$trace]);
         $newTrace = $newTraces[0];
         $this->assertInstanceOf(Trace::class, $newTrace);
-        $this->assertEquals('1', $newTrace->getTraceId());
+        $this->assertEquals('1', $newTrace->traceId());
     }
 
 }

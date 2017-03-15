@@ -117,4 +117,11 @@ class TraceSpanTest extends \PHPUnit_Framework_TestCase
         $this->assertArrayHasKey('kind', $info);
         $this->assertEquals(TraceSpan::SPAN_KIND_RPC_CLIENT, $info['kind']);
     }
+
+    public function testIgnoresUnknownFields()
+    {
+        $traceSpan = new TraceSpan(['extravalue' => 'something']);
+        $info = $traceSpan->info();
+        $this->assertArrayNotHasKey('extravalue', $info);
+    }
 }
