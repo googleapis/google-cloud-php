@@ -20,8 +20,8 @@ namespace Google\Cloud\Storage;
 use Google\Cloud\Core\Iterator\PageIteratorTrait;
 
 /**
- * Iterates over a set of pages containing {@see Google\Cloud\Storage\Object}
- * items.
+ * Iterates over a set of pages containing
+ * {@see Google\Cloud\Storage\StorageObject} items.
  */
 class ObjectPageIterator implements \Iterator
 {

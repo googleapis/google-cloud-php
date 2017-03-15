@@ -458,7 +458,7 @@ class Bucket
      *     @type string $fields Selector which will cause the response to only
      *           return the specified fields.
      * }
-     * @return ObjectsIterator<Google\Cloud\Storage\StorageObject>
+     * @return ObjectIterator<Google\Cloud\Storage\StorageObject>
      */
     public function objects(array $options = [])
     {
