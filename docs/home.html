@@ -1,0 +1,122 @@
+<section class="hero-banner">
+  <div class="container clearfix">
+    <div class="quote-box">
+      <h1>google/cloud</h1>
+      <p>Google Cloud Client Library for PHP
+      - an idiomatic, intuitive, and natural way for PHP developers to
+      integrate with Google Cloud Platform services, like Cloud Datastore
+      and Cloud Storage.</p>
+    </div>
+
+    <div class="quote-box--supplementary">
+      <pre class="skip-highlight"><code class="subtle--blue">$</code> composer require <strong>google/cloud</strong></pre>
+      <h4 class="latest-release subtle" ng-if="home.latestRelease">
+        Latest Release <a ng-href="{{home.latestRelease.link}}" class="latest-release--link white">{{home.latestRelease.name}}</a>
+        {{home.latestRelease.date|date}}
+      </h4>
+    </div>
+  </div><!-- end of .container -->
+</section><!-- end of .hero-banner -->
+
+<section class="block featuring">
+  <div class="container">
+    <ul class="featuring-links">
+      <li>
+        <a href="#/docs/google-cloud/{{home.latestRelease.name}}/servicebuilder" title="google-cloud-php docs" class="btn btn-docs">
+          <img src="src/images/icon-lang-php-gray.svg" alt="PHP icon" />
+          Read the Docs
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/GoogleCloudPlatform/google-cloud-php" title="google-cloud-php on GitHub" class="ext-link">
+          <img src="src/images/icon-link-github.svg" alt="GitHub icon" />
+          GitHub
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/GoogleCloudPlatform/google-cloud-php/issues" title="google-cloud-php issues on Github" class="ext-link">
+          <img src="src/images/icon-link-github.svg" alt="GitHub icon" />
+          Issues
+        </a>
+      </li>
+      <li>
+        <a href="http://stackoverflow.com/questions/tagged/google-cloud-platform+php" title="google-cloud-php on StackOverflow" class="ext-link">
+          <img src="src/images/icon-link-stackoverflow.svg" alt="StackOverflow icon" />
+          StackOverflow
+        </a>
+      </li>
+      <li>
+        <a href="https://packagist.org/packages/google/cloud" title="google-cloud-php on Packagist" class="ext-link">
+          <img src="src/images/icon-link-package-manager.svg" alt="Packagist icon" />
+          Packagist
+        </a>
+      </li>
+    </ul>
+  </div><!-- end of .container -->
+</section><!-- end of .featuring -->
+
+<section class="block about">
+  <div class="container clearfix">
+    <div class="quote-box">
+      <h3 class="block-title">What is it?</h3>
+
+      <p>The <code>Google Cloud Client Library</code> is a client
+      library for accessing Google Cloud Platform services that significantly
+      reduces the boilerplate code you have to write. The library provides
+      high-level API abstractions so they're easier to understand. It embraces
+      idioms of PHP, works well with the standard library, and
+      integrates better with your codebase.
+      All this means you spend more time creating code that matters
+      to you.</p>
+
+      <p>The <code>Google Cloud Client Library</code> is configured to
+      access Google Cloud Platform services and authenticate (OAuth 2.0)
+      automatically on your behalf. With a one-line install and a private key,
+      you are up and ready to go. Better yet, if you are running on a Google
+      Compute Engine instance, the one-line install is enough!</p>
+    </div>
+
+    <div class="quote-box--supplementary">
+      <h4>Example: Retrieve a bucket from Cloud Storage</h4>
+      <div hljs hljs-language="php5" no-escape>
+use Google\Cloud\ServiceBuilder;
+
+$gcloud = new ServiceBuilder([
+    'keyFilePath' => '/path/to/key/file.json',
+    'projectId' => 'myProject'
+]);
+
+$storage = $gcloud->storage();
+
+$bucket = $storage->bucket('myBucket');</div>
+    </div>
+  </div><!-- end of .container -->
+</section><!-- end of .featuring -->
+
+ <section class="block">
+    <div class="container clearfix">
+      <h3 class="block-title">FAQ</h3>
+
+      <h4>What is the relationship between the <code>Google Cloud Client Library</code> package
+      and the <code>gcloud</code> command-line tool?</h4>
+      <p>Both the <code>gcloud</code> command-line tool and the
+      <code>Google Cloud Client Library</code> package are a part of the Google
+      Cloud SDK: a collection of tools and libraries that enable you to easily
+      create and manage resources on the Google Cloud Platform.
+      The <code>gcloud</code> command-line tool can be used to manage both your
+      development workflow and your Google Cloud Platform resources while the
+      <code>Google Cloud Client Library</code> package is the offical library
+      for interacting with PHP.</p>
+
+      <h4>What is the relationship between the <code>Google Cloud Client Library</code>
+      and the Google APIs PHP Client?</h4>
+      <p>The <a href="https://github.com/google/google-api-php-client">
+      Google APIs PHP Client</a> is a client library for
+      using the broad set of Google APIs.
+      The <code>Google Cloud Client Library</code> is built specifically for the
+      Google Cloud Platform and is the recommended way to integrate Google Cloud
+      APIs into your PHP applications. If your application requires both Google
+      Cloud Platform and other Google APIs, the 2 libraries may be used by your
+      application.</p>
+    </div>
+</section> <!-- end of FAQ -->
