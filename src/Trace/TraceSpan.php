@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Trace;
 
-use Google\Cloud\ArrayTrait;
+use Google\Cloud\Core\ArrayTrait;
 
 /**
  * This plain PHP class represents a

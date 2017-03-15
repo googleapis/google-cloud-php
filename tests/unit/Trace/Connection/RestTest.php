@@ -18,8 +18,8 @@
 namespace Google\Cloud\Tests\Unit\Trace\Connection;
 
 use Google\Cloud\Trace\Connection\Rest;
-use Google\Cloud\RequestBuilder;
-use Google\Cloud\RequestWrapper;
+use Google\Cloud\Core\RequestBuilder;
+use Google\Cloud\Core\RequestWrapper;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;

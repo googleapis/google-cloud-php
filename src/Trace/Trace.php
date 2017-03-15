@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Trace;
 
-use Google\Cloud\ValidateTrait;
+use Google\Cloud\Core\ValidateTrait;
 
 /**
  * This plain PHP class represents a Trace resource. Traces belong to a

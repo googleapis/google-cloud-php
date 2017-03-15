@@ -17,8 +17,8 @@
 
 namespace Google\Cloud\Trace;
 
-use Google\Cloud\ArrayTrait;
-use Google\Cloud\ClientTrait;
+use Google\Cloud\Core\ArrayTrait;
+use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Trace\Connection\ConnectionInterface;
 use Google\Cloud\Trace\Connection\Rest;
 
