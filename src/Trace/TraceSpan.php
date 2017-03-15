@@ -33,48 +33,10 @@ class TraceSpan
     const SPAN_KIND_RPC_CLIENT = 'RPC_CLIENT';
 
     /**
-     * The ID of the span. Must be a 64-bit integer other than 0 and unique
-     * within a trace.
-     * @var string
-     */
-    private $spanId;
-
-    /**
-     * Distinguishes between spans generated in a particular context.
-     * **Defaults to** SPAN_KIND_UNSPECIFIED
-     * @var string
-     */
-    private $kind;
-
-    /**
-     * The name of the span.
-     * @var string
-     */
-    private $name;
-
-    /**
-     * Start time of the span in nanoseconds in "Zulu" format.
-     * @var string
-     */
-    private $startTime;
-
-    /**
-     * End time of the span in nanoseconds in "Zulu" format.
-     * @var string
-     */
-    private $endTime;
-
-    /**
-     * ID of the parent span if any.
-     * @var string
-     */
-    private $parentSpanId;
-
-    /**
-     * Collection of labels attached to this span.
+     * Associative array containing all the fields representing this TraceSpan.
      * @var array
      */
-    private $labels;
+    private $info;
 
     /**
      * Instantiate a new TraceSpan instance.
@@ -99,40 +61,16 @@ class TraceSpan
      */
     public function __construct($options = [])
     {
-        if (array_key_exists('spanId', $options)) {
-            $this->spanId = $options['spanId'];
-        } else {
-            $this->spanId = $this->generateSpanId();
+        $this->info = $options + [
+            'kind' => self::SPAN_KIND_UNSPECIFIED
+        ];
+
+        if (!array_key_exists('spanId', $this->info)) {
+            $this->info['spanId'] = $this->generateSpanId();
         }
 
-        if (array_key_exists('kind', $options)) {
-            $this->kind = $options['kind'];
-        } else {
-            $this->kind = self::SPAN_KIND_UNSPECIFIED;
-        }
-
-        if (array_key_exists('name', $options)) {
-            $this->name = $options['name'];
-        } else {
-            $this->name = $this->generateSpanName();
-        }
-
-        if (array_key_exists('startTime', $options)) {
-            $this->startTime = $options['startTime'];
-        }
-
-        if (array_key_exists('endTime', $options)) {
-            $this->startTime = $options['endTime'];
-        }
-
-        if (array_key_exists('parentSpanId', $options)) {
-            $this->parentSpanId = $options['parentSpanId'];
-        }
-
-        if (array_key_exists('labels', $options)) {
-            $this->labels = $options['labels'];
-        } else {
-            $this->labels = [];
+        if (!array_key_exists('name', $this->info)) {
+            $this->info['name'] = $this->generateSpanName();
         }
     }
 
@@ -144,7 +82,7 @@ class TraceSpan
      */
     public function setStart(\DateTime $when = null)
     {
-        $this->startTime = $this->formatDate($when);
+        $this->info['startTime'] = $this->formatDate($when);
     }
 
     /**
@@ -155,7 +93,7 @@ class TraceSpan
      */
     public function setFinish(\DateTime $when = null)
     {
-        $this->endTime = $this->formatDate($when);
+        $this->info['endTime'] = $this->formatDate($when);
     }
 
     /**
@@ -163,9 +101,19 @@ class TraceSpan
      *
      * @return string
      */
-    public function getSpanId()
+    public function spanId()
     {
-        return $this->spanId;
+        return $this->info['spanId'];
+    }
+
+    /**
+     * Retrieve the name of this span.
+     *
+     * @return string
+     */
+    public function name()
+    {
+        return $this->info['name'];
     }
 
     /**
@@ -175,18 +123,7 @@ class TraceSpan
      */
     public function info()
     {
-        $data = [
-            'spanId' => $this->spanId,
-            'kind' => $this->kind,
-            'name' => $this->name,
-            'startTime' => $this->startTime,
-            'endTime' => $this->endTime,
-            'parentSpanId' => $this->parentSpanId
-        ];
-        if (!empty($this->labels)) {
-            $data['labels'] = $this->labels;
-        }
-        return $data;
+        return $this->info;
     }
 
     /**
@@ -209,7 +146,10 @@ class TraceSpan
      */
     public function addLabel($label, $value)
     {
-        $this->labels[$label] = (string) $value;
+        if (!array_key_exists('labels', $this->info)) {
+            $this->info['labels'] = [];
+        }
+        $this->info['labels'][$label] = (string) $value;
     }
 
     /**
