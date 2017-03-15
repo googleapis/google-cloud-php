@@ -20,7 +20,7 @@ namespace Google\Cloud\Datastore;
 use Google\Cloud\Datastore\Connection\ConnectionInterface;
 use Google\Cloud\Datastore\Connection\Rest;
 use Google\Cloud\Datastore\Query\QueryInterface;
-use Google\Cloud\ValidateTrait;
+use Google\Cloud\Core\ValidateTrait;
 use InvalidArgumentException;
 
 /**

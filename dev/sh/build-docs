@@ -5,7 +5,13 @@ set -ev
 function buildDocs () {
   echo "doc dir before generation:"
   find docs
-  composer google-cloud docs
+
+  if [ -z "$TRAVIS_TAG" ]; then
+    ./dev/google-cloud docs
+  else
+    ./dev/google-cloud docs -r ${TRAVIS_TAG}
+  fi
+
   echo "doc dir after generation:"
   find docs
 }

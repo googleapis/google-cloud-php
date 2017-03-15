@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Vision;
+namespace Google\Cloud\Tests\Unit\Vision;
 
 use Google\Cloud\Vision\Annotation;
 use Google\Cloud\Vision\Connection\ConnectionInterface;

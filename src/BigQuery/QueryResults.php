@@ -18,7 +18,7 @@
 namespace Google\Cloud\BigQuery;
 
 use Google\Cloud\BigQuery\Connection\ConnectionInterface;
-use Google\Cloud\Exception\GoogleException;
+use Google\Cloud\Core\Exception\GoogleException;
 
 /**
  * QueryResults represent the result of a BigQuery SQL query. Read more at the
@@ -95,7 +95,7 @@ class QueryResults
      * | `\DateTimeInterface`                       | `DATETIME`                           |
      * | {@see Google\Cloud\BigQuery\Bytes}         | `BYTES`                              |
      * | {@see Google\Cloud\BigQuery\Date}          | `DATE`                               |
-     * | {@see Google\Cloud\Int64}                  | `INTEGER`                            |
+     * | {@see Google\Cloud\Core\Int64}             | `INTEGER`                            |
      * | {@see Google\Cloud\BigQuery\Time}          | `TIME`                               |
      * | {@see Google\Cloud\BigQuery\Timestamp}     | `TIMESTAMP`                          |
      * | Associative Array                          | `RECORD`                             |

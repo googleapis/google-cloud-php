@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Storage;
 
-use Google\Cloud\Upload\AbstractUploader;
+use Google\Cloud\Core\Upload\AbstractUploader;
 use GuzzleHttp\Psr7\StreamDecoratorTrait;
 use GuzzleHttp\Psr7\BufferStream;
 use Psr\Http\Message\StreamInterface;

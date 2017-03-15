@@ -49,14 +49,6 @@ class LoggingClientTest extends SnippetTestCase
         $this->assertInstanceOf(LoggingClient::class, $res->returnVal());
     }
 
-    public function testClassDirectInstantiation()
-    {
-        $snippet = $this->snippetFromClass(LoggingClient::class, 1);
-        $res = $snippet->invoke('logging');
-
-        $this->assertInstanceOf(LoggingClient::class, $res->returnVal());
-    }
-
     public function testCreateSink()
     {
         $snippet = $this->snippetFromMethod(LoggingClient::class, 'createSink');

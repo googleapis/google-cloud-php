@@ -17,8 +17,8 @@
 
 namespace Google\Cloud\BigQuery;
 
-use Google\Cloud\ArrayTrait;
-use Google\Cloud\Int64;
+use Google\Cloud\Core\ArrayTrait;
+use Google\Cloud\Core\Int64;
 
 /**
  * Maps values to their expected BigQuery types. This class is intended for
@@ -49,14 +49,14 @@ class ValueMapper
 
     /**
      * @var bool $returnInt64AsObject If true, 64 bit integers will be returned
-     *      as a {@see Google\Cloud\Int64} object for 32 bit platform
+     *      as a {@see Google\Cloud\Core\Int64} object for 32 bit platform
      *      compatibility.
      */
     private $returnInt64AsObject;
 
     /**
      * @param bool $returnInt64AsObject If true, 64 bit integers will be
-     *        returned as a {@see Google\Cloud\Int64} object for 32 bit
+     *        returned as a {@see Google\Cloud\Core\Int64} object for 32 bit
      *        platform compatibility.
      */
     public function __construct($returnInt64AsObject)

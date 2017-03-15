@@ -17,10 +17,11 @@
 
 namespace Google\Cloud\Storage;
 
-use Google\Cloud\Exception\NotFoundException;
-use Google\Cloud\Exception\ServiceException;
+use Google\Cloud\Core\Exception\ServiceException;
+use Google\Cloud\Core\Upload\ResumableUploader;
+use Google\Cloud\Core\Upload\StreamableUploader;
+use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Storage\Connection\ConnectionInterface;
-use Google\Cloud\Upload\ResumableUploader;
 use GuzzleHttp\Psr7;
 use Psr\Http\Message\StreamInterface;
 
@@ -30,10 +31,9 @@ use Psr\Http\Message\StreamInterface;
  *
  * Example:
  * ```
- * use Google\Cloud\ServiceBuilder;
+ * use Google\Cloud\Storage\StorageClient;
  *
- * $cloud = new ServiceBuilder();
- * $storage = $cloud->storage();
+ * $storage = new StorageClient();
  *
  * $bucket = $storage->bucket('my-bucket');
  * ```

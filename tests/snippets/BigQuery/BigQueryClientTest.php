@@ -27,7 +27,7 @@ use Google\Cloud\BigQuery\Dataset;
 use Google\Cloud\BigQuery\Job;
 use Google\Cloud\BigQuery\QueryResults;
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
-use Google\Cloud\Int64;
+use Google\Cloud\Core\Int64;
 use Prophecy\Argument;
 
 /**
@@ -69,14 +69,6 @@ class BigQueryClientTest extends SnippetTestCase
     public function testClass()
     {
         $snippet = $this->snippetFromClass(BigQueryClient::class);
-        $res = $snippet->invoke('bigQuery');
-
-        $this->assertInstanceOf(BigQueryClient::class, $res->returnVal());
-    }
-
-    public function testClassDirectInstantiation()
-    {
-        $snippet = $this->snippetFromClass(BigQueryClient::class, 1);
         $res = $snippet->invoke('bigQuery');
 
         $this->assertInstanceOf(BigQueryClient::class, $res->returnVal());

@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Tests\System\BigQuery;
 
-use Google\Cloud\ExponentialBackoff;
+use Google\Cloud\Core\ExponentialBackoff;
 
 /**
  * @group bigquery

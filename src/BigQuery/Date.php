@@ -23,10 +23,9 @@ namespace Google\Cloud\BigQuery;
  *
  * Example:
  * ```
- * use Google\Cloud\ServiceBuilder;
+ * use Google\Cloud\BigQuery\BigQueryClient;
  *
- * $cloud = new ServiceBuilder();
- * $bigQuery = $cloud->bigQuery();
+ * $bigQuery = new BigQueryClient();
  *
  * $date = $bigQuery->date(new \DateTime('1995-02-04'));
  * ```

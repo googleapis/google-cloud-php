@@ -29,7 +29,7 @@ register_shutdown_function(function () {
     file_put_contents(__DIR__ . '/../../build/snippets-uncovered.json', json_encode($uncovered, JSON_PRETTY_PRINT));
 
     if (!empty($uncovered)) {
-        echo sprintf("\033[31mNOTICE: %s uncovered snippets! See build/snippets-uncovered.json for a report.\n", count($uncovered));
+        echo sprintf("\033[31mNOTICE: %s uncovered snippets! \033[0m See build/snippets-uncovered.json for a report.\n", count($uncovered));
         exit(1);
     }
 });
@@ -45,7 +45,7 @@ stub('AclStub', Google\Cloud\Storage\Acl::class);
 stub('BigQueryClientStub', Google\Cloud\BigQuery\BigQueryClient::class);
 stub('BucketStub', Google\Cloud\Storage\Bucket::class);
 stub('DatastoreClientStub', Google\Cloud\Datastore\DatastoreClient::class);
-stub('IamStub', Google\Cloud\Iam\Iam::class);
+stub('IamStub', Google\Cloud\Core\Iam\Iam::class);
 stub('LoggerStub', Google\Cloud\Logging\Logger::class);
 stub('LoggingClientStub', Google\Cloud\Logging\LoggingClient::class);
 stub('MetricStub', Google\Cloud\Logging\Metric::class);

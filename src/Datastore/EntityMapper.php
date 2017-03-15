@@ -17,11 +17,11 @@
 
 namespace Google\Cloud\Datastore;
 
-use Google\Cloud\ArrayTrait;
+use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Datastore\Entity;
 use Google\Cloud\Datastore\GeoPoint;
 use Google\Cloud\Datastore\Key;
-use Google\Cloud\Int64;
+use Google\Cloud\Core\Int64;
 use InvalidArgumentException;
 use RuntimeException;
 
@@ -57,7 +57,7 @@ class EntityMapper
      * @param string $projectId The datastore project ID
      * @param bool $encode Whether to encode blobs as base64.
      * @param bool $returnInt64AsObject If true, 64 bit integers will be
-     *        returned as a {@see Google\Cloud\Int64} object for 32 bit
+     *        returned as a {@see Google\Cloud\Core\Int64} object for 32 bit
      *        platform compatibility.
      */
     public function __construct($projectId, $encode, $returnInt64AsObject)

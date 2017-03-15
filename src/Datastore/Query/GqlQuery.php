@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Datastore\Query;
 
-use Google\Cloud\ArrayTrait;
+use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Datastore\DatastoreTrait;
 use Google\Cloud\Datastore\EntityMapper;
 use InvalidArgumentException;
@@ -35,10 +35,9 @@ use InvalidArgumentException;
  *
  * Example:
  * ```
- * use Google\Cloud\ServiceBuilder;
+ * use Google\Cloud\Datastore\DatastoreClient;
  *
- * $cloud = new ServiceBuilder();
- * $datastore = $cloud->datastore();
+ * $datastore = new DatastoreClient();
  *
  * $query = $datastore->gqlQuery('SELECT * FROM Companies WHERE companyName = @companyName', [
  *     'bindings' => [

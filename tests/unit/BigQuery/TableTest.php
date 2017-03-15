@@ -15,17 +15,17 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\BigQuery;
+namespace Google\Cloud\Tests\Unit\BigQuery;
 
 use Google\Cloud\BigQuery\Connection\ConnectionInterface;
 use Google\Cloud\BigQuery\InsertResponse;
 use Google\Cloud\BigQuery\Job;
 use Google\Cloud\BigQuery\Table;
 use Google\Cloud\BigQuery\ValueMapper;
-use Google\Cloud\Exception\NotFoundException;
+use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\Core\Upload\AbstractUploader;
 use Google\Cloud\Storage\Connection\ConnectionInterface as StorageConnectionInterface;
 use Google\Cloud\Storage\StorageObject;
-use Google\Cloud\Upload\AbstractUploader;
 use Prophecy\Argument;
 
 /**
@@ -217,9 +217,11 @@ class TableTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($this->insertJobResponse, $job->info());
     }
 
-    public function testRunsExportJob()
+    /**
+     * @dataProvider destinationProvider
+     */
+    public function testRunsExportJob($destinationObject)
     {
-        $destinationObject = $this->getObject();
         $expectedArguments = [
             'projectId' => $this->projectId,
             'configuration' => [
@@ -243,6 +245,20 @@ class TableTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf(Job::class, $job);
         $this->assertEquals($this->insertJobResponse, $job->info());
+    }
+
+    public function destinationProvider()
+    {
+        $this->setUp();
+
+        return [
+            [$this->getObject()],
+            [sprintf(
+                'gs://%s/%s',
+                $this->bucketName,
+                $this->fileName
+            )]
+        ];
     }
 
     public function testRunsLoadJob()

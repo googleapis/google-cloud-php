@@ -1,0 +1,27 @@
+{
+    "name": "google/cloud-speech",
+    "description": "Cloud Speech Client for PHP",
+    "license": "Apache-2.0",
+    "minimum-stability": "stable",
+    "require": {
+        "google/cloud-core": "*"
+    },
+    "suggest": {
+        "google/gax": "Required to support gRPC",
+        "google/proto-client-php": "Required to support gRPC",
+        "google/cloud-storage": "Run operations on files stored in Google Cloud Storage"
+    },
+    "extra": {
+        "component": {
+            "id": "cloud-speech",
+            "target": "GoogleCloudPlatform/google-cloud-php-speech.git",
+            "path": "src/Speech",
+            "entry": "SpeechClient.php"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Google\\Cloud\\Speech\\": ""
+        }
+    }
+}

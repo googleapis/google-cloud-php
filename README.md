@@ -12,13 +12,13 @@ This client supports the following Google Cloud Platform services at a [Beta](#v
 * [Google Stackdriver Logging](#google-stackdriver-logging-beta) (Beta)
 * [Google Cloud Datastore](#google-cloud-datastore-beta) (Beta)
 * [Google Cloud Storage](#google-cloud-storage-beta) (Beta)
+* [Google Cloud Vision](#google-cloud-vision-beta) (Beta)
 
 This client supports the following Google Cloud Platform services at an [Alpha](#versioning) quality level:
 * [Google Cloud Natural Language](#google-cloud-natural-language-alpha) (Alpha)
 * [Google Cloud Pub/Sub](#google-cloud-pubsub-alpha) (Alpha)
 * [Google Cloud Speech](#google-cloud-speech-alpha) (Alpha)
 * [Google Cloud Translation](#google-cloud-translation-alpha) (Alpha)
-* [Google Cloud Vision](#google-cloud-vision-alpha) (Alpha)
 
 If you need support for other Google APIs, please check out the [Google APIs Client Library for PHP](https://github.com/google/google-api-php-client).
 
@@ -165,6 +165,38 @@ $storage = new StorageClient([
 $storage->registerStreamWrapper();
 
 $contents = file_get_contents('gs://my_bucket/file_backup.txt');
+```
+
+## Google Cloud Vision (Beta)
+
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/vision/visionclient)
+- [Official Documentation](https://cloud.google.com/vision/docs)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Vision\VisionClient;
+
+$vision = new VisionClient([
+    'projectId' => 'my_project'
+]);
+
+// Annotate an image, detecting faces.
+$image = $vision->image(
+    fopen('/data/family_photo.jpg', 'r'),
+    ['faces']
+);
+
+$annotation = $vision->annotate($image);
+
+// Determine if the detected faces have headwear.
+foreach ($annotation->faces() as $key => $face) {
+    if ($face->hasHeadwear()) {
+        echo "Face $key has headwear.\n";
+    }
+}
 ```
 
 ## Google Cloud Translation (Alpha)
@@ -315,38 +347,6 @@ $results = $speech->recognize(
 foreach ($results as $result) {
     echo $result['transcript'] . "\n";
     echo $result['confidence'] . "\n";
-}
-```
-
-## Google Cloud Vision (Alpha)
-
-- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/vision/visionclient)
-- [Official Documentation](https://cloud.google.com/vision/docs)
-
-#### Preview
-
-```php
-require 'vendor/autoload.php';
-
-use Google\Cloud\Vision\VisionClient;
-
-$vision = new VisionClient([
-    'projectId' => 'my_project'
-]);
-
-// Annotate an image, detecting faces.
-$image = $vision->image(
-    fopen('/data/family_photo.jpg', 'r'),
-    ['faces']
-);
-
-$annotation = $vision->annotate($image);
-
-// Determine if the detected faces have headwear.
-foreach ($annotation->faces() as $key => $face) {
-    if ($face->hasHeadwear()) {
-        echo "Face $key has headwear.\n";
-    }
 }
 ```
 

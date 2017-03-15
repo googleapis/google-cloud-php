@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Tests\System\Logging;
 
-use Google\Cloud\ExponentialBackoff;
+use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\BigQuery\BigQueryClient;
 use Google\Cloud\Logging\LoggingClient;
 use Google\Cloud\PubSub\PubSubClient;

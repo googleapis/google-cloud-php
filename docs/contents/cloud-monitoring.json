@@ -1,0 +1,21 @@
+{
+    "title": "Monitoring",
+    "pattern": "monitoring\/\\w{1,}",
+    "services": [{
+        "title": "Overview",
+        "type": "monitoring/readme"
+    }, {
+        "title": "v3",
+        "type": "monitoring/v3/readme",
+        "patterns": [
+          "monitoring/v3/\\w{1,}"
+        ],
+        "nav": [{
+            "title": "GroupServiceClient",
+            "type": "monitoring/v3/groupserviceclient"
+        }, {
+            "title": "MetricServiceClient",
+            "type": "monitoring/v3/metricserviceclient"
+        }]
+    }]
+}

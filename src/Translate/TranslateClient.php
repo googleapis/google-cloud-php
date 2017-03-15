@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Translate;
 
-use Google\Cloud\ClientTrait;
+use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Translate\Connection\ConnectionInterface;
 use Google\Cloud\Translate\Connection\Rest;
 
@@ -42,15 +42,6 @@ use Google\Cloud\Translate\Connection\Rest;
  *
  * Example:
  * ```
- * use Google\Cloud\ServiceBuilder;
- *
- * $cloud = new ServiceBuilder();
- *
- * $translate = $cloud->translate();
- * ```
- *
- * ```
- * // TranslateClient can be instantiated directly.
  * use Google\Cloud\Translate\TranslateClient;
  *
  * $translate = new TranslateClient();
@@ -59,6 +50,8 @@ use Google\Cloud\Translate\Connection\Rest;
 class TranslateClient
 {
     use ClientTrait;
+
+    const VERSION = '0.1.0';
 
     const ENGLISH_LANGUAGE_CODE = 'en';
 

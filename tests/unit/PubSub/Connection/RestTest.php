@@ -15,11 +15,12 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\PubSub\Connection;
+namespace Google\Cloud\Tests\Unit\PubSub\Connection;
 
+use Google\Cloud\Core\RequestBuilder;
+use Google\Cloud\Core\RequestWrapper;
 use Google\Cloud\PubSub\Connection\Rest;
-use Google\Cloud\RequestBuilder;
-use Google\Cloud\RequestWrapper;
+use Google\Cloud\PubSub\PubSubClient;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;

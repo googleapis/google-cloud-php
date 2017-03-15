@@ -18,7 +18,7 @@
 namespace Google\Cloud\Tests\System\Storage;
 
 use Google\Cloud\Storage\Acl;
-use Google\Cloud\Exception\NotFoundException;
+use Google\Cloud\Core\Exception\NotFoundException;
 
 /**
  * @group storage

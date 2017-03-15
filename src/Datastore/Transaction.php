@@ -46,10 +46,9 @@ use Google\Cloud\Datastore\Query\QueryInterface;
  *
  * Example:
  * ```
- * use Google\Cloud\ServiceBuilder;
+ * use Google\Cloud\Datastore\DatastoreClient;
  *
- * $cloud = new ServiceBuilder();
- * $datastore = $cloud->datastore();
+ * $datastore = new DatastoreClient();
  *
  * $transaction = $datastore->transaction();
  * ```

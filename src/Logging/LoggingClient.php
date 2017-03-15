@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Logging;
 
-use Google\Cloud\ClientTrait;
+use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Logging\Connection\ConnectionInterface;
 use Google\Cloud\Logging\Connection\Grpc;
 use Google\Cloud\Logging\Connection\Rest;
@@ -54,14 +54,6 @@ use Psr\Cache\CacheItemPoolInterface;
  *
  * Example:
  * ```
- * use Google\Cloud\ServiceBuilder;
- *
- * $cloud = new ServiceBuilder();
- * $logging = $cloud->logging();
- * ```
- *
- * ```
- * // LoggingClient can be instantiated directly.
  * use Google\Cloud\Logging\LoggingClient;
  *
  * $logging = new LoggingClient();
@@ -70,6 +62,8 @@ use Psr\Cache\CacheItemPoolInterface;
 class LoggingClient
 {
     use ClientTrait;
+
+    const VERSION = '0.1.0';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/logging.admin';
     const READ_ONLY_SCOPE = 'https://www.googleapis.com/auth/logging.read';

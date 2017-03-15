@@ -1,0 +1,30 @@
+{
+    "title": "Pub/Sub",
+    "pattern": "pubsub\/\\w{1,}",
+    "services": [{
+        "title": "PubSubClient",
+        "type": "pubsub/pubsubclient"
+    }, {
+        "title": "Message",
+        "type": "pubsub/message"
+    }, {
+        "title": "Subscription",
+        "type": "pubsub/subscription"
+    }, {
+        "title": "Topic",
+        "type": "pubsub/topic"
+    }, {
+        "title": "v1",
+        "type": "pubsub/v1/readme",
+        "patterns": [
+          "pubsub/v1/\\w{1,}"
+        ],
+        "nav": [{
+            "title": "PublisherClient",
+            "type": "pubsub/v1/publisherclient"
+        }, {
+            "title": "SubscriberClient",
+            "type": "pubsub/v1/subscriberclient"
+        }]
+    }]
+}

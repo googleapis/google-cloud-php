@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Storage;
 
-use Google\Cloud\ClientTrait;
+use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Storage\Connection\ConnectionInterface;
 use Google\Cloud\Storage\Connection\Rest;
 use Psr\Cache\CacheItemPoolInterface;
@@ -29,15 +29,6 @@ use Psr\Cache\CacheItemPoolInterface;
  *
  * Example:
  * ```
- * use Google\Cloud\ServiceBuilder;
- *
- * $cloud = new ServiceBuilder();
- *
- * $storage = $cloud->storage();
- * ```
- *
- * ```
- * // StorageClient can be instantiated directly.
  * use Google\Cloud\Storage\StorageClient;
  *
  * $storage = new StorageClient();
@@ -46,6 +37,8 @@ use Psr\Cache\CacheItemPoolInterface;
 class StorageClient
 {
     use ClientTrait;
+
+    const VERSION = '0.1.0';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/devstorage.full_control';
     const READ_ONLY_SCOPE = 'https://www.googleapis.com/auth/devstorage.read_only';

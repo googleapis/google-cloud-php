@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\NaturalLanguage;
 
-use Google\Cloud\CallTrait;
+use Google\Cloud\Core\CallTrait;
 
 /**
  * Annotations represent the result of a request against the
@@ -36,10 +36,9 @@ use Google\Cloud\CallTrait;
  *
  * Example:
  * ```
- * use Google\Cloud\ServiceBuilder;
+ * use Google\Cloud\NaturalLanguage\NaturalLanguageClient;
  *
- * $cloud = new ServiceBuilder();
- * $language = $cloud->naturalLanguage();
+ * $language = new NaturalLanguageClient();
  *
  * $annotation = $language->annotateText('Google Cloud Platform is a powerful tool.');
  * ```

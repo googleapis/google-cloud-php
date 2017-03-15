@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\PubSub;
+namespace Google\Cloud\Tests\Unit\PubSub;
 
 use Generator;
 use Google\Cloud\PubSub\Connection\ConnectionInterface;

@@ -1,0 +1,11 @@
+{
+    "title": "Natural Language",
+    "pattern": "naturallanguage\/\\w{1,}",
+    "services": [{
+        "title": "NaturalLanguageClient",
+        "type": "naturallanguage/naturallanguageclient"
+    }, {
+        "title": "Annotation",
+        "type": "naturallanguage/annotation"
+    }]
+}
