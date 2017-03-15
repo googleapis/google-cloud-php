@@ -64,7 +64,6 @@ class LoggerTest extends \PHPUnit_Framework_TestCase
             'pageSize' => 50
         ];
         $this->connection->listEntries($options + [
-            'pageToken' => null,
             'resourceNames' => ["projects/$this->projectId"],
             'filter' => "logName = $this->formattedName"
         ])
@@ -121,7 +120,6 @@ class LoggerTest extends \PHPUnit_Framework_TestCase
     {
         $filter = 'textPayload = "hello world"';
         $this->connection->listEntries([
-            'pageToken' => null,
             'resourceNames' => ["projects/$this->projectId"],
             'filter' => $filter . " AND logName = $this->formattedName"
         ])

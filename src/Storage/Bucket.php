@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Storage;
 
+use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Core\Upload\ResumableUploader;
 use Google\Cloud\Core\Upload\StreamableUploader;
@@ -40,6 +41,7 @@ use Psr\Http\Message\StreamInterface;
  */
 class Bucket
 {
+    use ArrayTrait;
     use EncryptionTrait;
 
     /**
@@ -444,6 +446,10 @@ class Bucket
      *           prefixes are omitted.
      *     @type integer $maxResults Maximum number of results to return per
      *           request. Defaults to `1000`.
+     *     @type int $resultLimit Limit the number of results returned in total.
+     *           **Defaults to** `0` (return all results).
+     *     @type string $pageToken A previously-returned page token used to
+     *           resume the loading of results from a specific point.
      *     @type string $prefix Filter results with this prefix.
      *     @type string $projection Determines which properties to return. May
      *           be either `"full"` or `"noAcl"`.
@@ -452,33 +458,28 @@ class Bucket
      *     @type string $fields Selector which will cause the response to only
      *           return the specified fields.
      * }
-     * @return \Generator<Google\Cloud\Storage\StorageObject>
+     * @return ObjectsIterator<Google\Cloud\Storage\StorageObject>
      */
     public function objects(array $options = [])
     {
-        $options['pageToken'] = null;
-        $includeVersions = isset($options['versions']) ? $options['versions'] : false;
+        $resultLimit = $this->pluck('resultLimit', $options, false);
 
-        do {
-            $response = $this->connection->listObjects($options + $this->identity);
-
-            if (!array_key_exists('items', $response)) {
-                break;
-            }
-
-            foreach ($response['items'] as $object) {
-                $generation = $includeVersions ? $object['generation'] : null;
-                yield new StorageObject(
-                    $this->connection,
-                    $object['name'],
-                    $this->identity['bucket'],
-                    $generation,
-                    $object
-                );
-            }
-
-            $options['pageToken'] = isset($response['nextPageToken']) ? $response['nextPageToken'] : null;
-        } while ($options['pageToken']);
+        return new ObjectIterator(
+            new ObjectPageIterator(
+                function (array $object) {
+                    return new StorageObject(
+                        $this->connection,
+                        $object['name'],
+                        $this->identity['bucket'],
+                        isset($object['generation']) ? $object['generation'] : null,
+                        $object
+                    );
+                },
+                [$this->connection, 'listObjects'],
+                $options + $this->identity,
+                ['resultLimit' => $resultLimit]
+            )
+        );
     }
 
     /**

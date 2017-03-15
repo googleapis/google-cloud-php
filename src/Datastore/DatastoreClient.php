@@ -952,7 +952,7 @@ class DatastoreClient
      *     @type string $readConsistency See
      *           [ReadConsistency](https://cloud.google.com/datastore/reference/rest/v1/ReadOptions#ReadConsistency).
      * }
-     * @return \Generator<Google\Cloud\Datastore\Entity>
+     * @return EntityIterator<Google\Cloud\Datastore\Entity>
      */
     public function runQuery(QueryInterface $query, array $options = [])
     {

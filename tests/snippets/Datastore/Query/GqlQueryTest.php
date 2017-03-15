@@ -20,6 +20,7 @@ namespace Google\Cloud\Tests\Snippets\Datastore\Query;
 use Google\Cloud\Datastore\Connection\ConnectionInterface;
 use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Datastore\EntityMapper;
+use Google\Cloud\Datastore\EntityIterator;
 use Google\Cloud\Datastore\Query\GqlQuery;
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
 use Prophecy\Argument;
@@ -81,7 +82,7 @@ class GqlQueryTest extends SnippetTestCase
 
         $res = $snippet->invoke(['query', 'res']);
         $this->assertEquals('Google', $res->output());
-        $this->assertInstanceOf(\Generator::class, $res->returnVal()[1]);
+        $this->assertInstanceOf(EntityIterator::class, $res->returnVal()[1]);
         $this->assertTrue(array_key_exists('namedBindings', $res->returnVal()[0]->queryObject()));
     }
 

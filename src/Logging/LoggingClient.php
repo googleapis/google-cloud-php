@@ -17,7 +17,10 @@
 
 namespace Google\Cloud\Logging;
 
+use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\ClientTrait;
+use Google\Cloud\Core\Iterator\ItemIterator;
+use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Logging\Connection\ConnectionInterface;
 use Google\Cloud\Logging\Connection\Grpc;
 use Google\Cloud\Logging\Connection\Rest;
@@ -61,6 +64,7 @@ use Psr\Cache\CacheItemPoolInterface;
  */
 class LoggingClient
 {
+    use ArrayTrait;
     use ClientTrait;
 
     const VERSION = '0.1.0';
@@ -200,27 +204,32 @@ class LoggingClient
      * @param array $options [optional] {
      *     Configuration options.
      *
-     *     @type int $pageSize The maximum number of results to return per request.
+     *     @type int $pageSize The maximum number of results to return per
+     *           request.
+     *     @type int $resultLimit Limit the number of results returned in total.
+     *           **Defaults to** `0` (return all results).
+     *     @type string $pageToken A previously-returned page token used to
+     *           resume the loading of results from a specific point.
      * }
-     * @return \Generator<Google\Cloud\Logging\Sink>
+     * @return ItemIterator<Google\Cloud\Logging\Sink>
      */
     public function sinks(array $options = [])
     {
-        $options['pageToken'] = null;
+        $resultLimit = $this->pluck('resultLimit', $options, false);
 
-        do {
-            $response = $this->connection->listSinks($options + ['parent' => $this->formattedProjectName]);
-
-            if (!isset($response['sinks'])) {
-                return;
-            }
-
-            foreach ($response['sinks'] as $sink) {
-                yield new Sink($this->connection, $sink['name'], $this->projectId, $sink);
-            }
-
-            $options['pageToken'] = isset($response['nextPageToken']) ? $response['nextPageToken'] : null;
-        } while ($options['pageToken']);
+        return new ItemIterator(
+            new PageIterator(
+                function (array $sink) {
+                    return new Sink($this->connection, $sink['name'], $this->projectId, $sink);
+                },
+                [$this->connection, 'listSinks'],
+                $options + ['parent' => $this->formattedProjectName],
+                [
+                    'itemsKey' => 'sinks',
+                    'resultLimit' => $resultLimit
+                ]
+            )
+        );
     }
 
     /**
@@ -296,27 +305,32 @@ class LoggingClient
      * @param array $options [optional] {
      *     Configuration options.
      *
-     *     @type int $pageSize The maximum number of results to return per request.
+     *     @type int $pageSize The maximum number of results to return per
+     *           request.
+     *     @type int $resultLimit Limit the number of results returned in total.
+     *           **Defaults to** `0` (return all results).
+     *     @type string $pageToken A previously-returned page token used to
+     *           resume the loading of results from a specific point.
      * }
-     * @return \Generator<Google\Cloud\Logging\Metric>
+     * @return ItemIterator<Google\Cloud\Logging\Metric>
      */
     public function metrics(array $options = [])
     {
-        $options['pageToken'] = null;
+        $resultLimit = $this->pluck('resultLimit', $options, false);
 
-        do {
-            $response = $this->connection->listMetrics($options + ['parent' => $this->formattedProjectName]);
-
-            if (!isset($response['metrics'])) {
-                return;
-            }
-
-            foreach ($response['metrics'] as $metric) {
-                yield new Metric($this->connection, $metric['name'], $this->projectId, $metric);
-            }
-
-            $options['pageToken'] = isset($response['nextPageToken']) ? $response['nextPageToken'] : null;
-        } while ($options['pageToken']);
+        return new ItemIterator(
+            new PageIterator(
+                function (array $metric) {
+                    return new Metric($this->connection, $metric['name'], $this->projectId, $metric);
+                },
+                [$this->connection, 'listMetrics'],
+                $options + ['parent' => $this->formattedProjectName],
+                [
+                    'itemsKey' => 'metrics',
+                    'resultLimit' => $resultLimit
+                ]
+            )
+        );
     }
 
     /**
@@ -362,13 +376,16 @@ class LoggingClient
      *           `timestamp desc`. **Defaults to** `"timestamp asc"`.
      *     @type int $pageSize The maximum number of results to return per
      *           request.
+     *     @type int $resultLimit Limit the number of results returned in total.
+     *           **Defaults to** `0` (return all results).
+     *     @type string $pageToken A previously-returned page token used to
+     *           resume the loading of results from a specific point.
      * }
-     * @return \Generator<Google\Cloud\Logging\Entry>
+     * @return ItemIterator<Google\Cloud\Logging\Entry>
      */
     public function entries(array $options = [])
     {
-        $options['pageToken'] = null;
-
+        $resultLimit = $this->pluck('resultLimit', $options, false);
         $resourceNames = ['projects/' . $this->projectId];
         if (isset($options['projectIds'])) {
             foreach ($options['projectIds'] as $projectId) {
@@ -382,19 +399,19 @@ class LoggingClient
             $options['resourceNames'] = $resourceNames;
         }
 
-        do {
-            $response = $this->connection->listEntries($options);
-
-            if (!isset($response['entries'])) {
-                return;
-            }
-
-            foreach ($response['entries'] as $entry) {
-                yield new Entry($entry);
-            }
-
-            $options['pageToken'] = isset($response['nextPageToken']) ? $response['nextPageToken'] : null;
-        } while ($options['pageToken']);
+        return new ItemIterator(
+            new PageIterator(
+                function (array $entry) {
+                    return new Entry($entry);
+                },
+                [$this->connection, 'listEntries'],
+                $options,
+                [
+                    'itemsKey' => 'entries',
+                    'resultLimit' => $resultLimit
+                ]
+            )
+        );
     }
 
     /**
