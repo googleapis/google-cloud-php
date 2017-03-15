@@ -108,7 +108,7 @@ class RequestWrapper
             'authHttpHandler' => null,
             'httpHandler' => null,
             'restOptions' => [],
-            'shouldSignRequest' => true
+            'shouldSignRequest' => true,
             'componentVersion' => null
         ];
 
