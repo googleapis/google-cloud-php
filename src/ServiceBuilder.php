@@ -257,7 +257,7 @@ class ServiceBuilder
      *
      * Example:
      * ```
-     * $storage = $cloud->trace();
+     * $trace = $cloud->trace();
      * ```
      *
      * @param array $config [optional] Configuration options. See

@@ -29,15 +29,6 @@ use Google\Cloud\Trace\Connection\Rest;
  *
  * Example:
  * ```
- * use Google\Cloud\ServiceBuilder;
- *
- * $cloud = new ServiceBuilder();
- *
- * $trace = $cloud->trace();
- * ```
- *
- * ```
- * // TraceClient can be instantiated directly
  * use Google\Cloud\Trace\TraceClient;
  *
  * $trace = new TraceClient();
@@ -160,16 +151,7 @@ class TraceClient
      * Lazily find or instantiates a trace. There are no network requests made at this
      * point. To see the operations that can be performed on a trace please
      * see {@see Google\Cloud\Trace\Trace}.
-     *
-     * Example:
-     * ```
-     * // Generate a new trace
-     * $trace = $traceClient->trace();
-     *
-     * // Lazily find a trace id
-     * $trace = $traceClient->trace('123456abcdef');
-     * $trace->info();
-     * ```
+
      * @param  string $traceId [optional] The trace id of the trace to reference.
      * @return Trace
      */

@@ -61,5 +61,6 @@ stub('StorageObjectStub', Google\Cloud\Storage\StorageObject::class);
 stub('SubscriptionStub', Google\Cloud\PubSub\Subscription::class);
 stub('TableStub', Google\Cloud\BigQuery\Table::class);
 stub('TopicStub', Google\Cloud\PubSub\Topic::class);
+stub('TraceClientStub', Google\Cloud\Trace\TraceClient::class);
 stub('TranslateClientStub', Google\Cloud\Translate\TranslateClient::class);
 stub('VisionClientStub', Google\Cloud\Vision\VisionClient::class);

@@ -23,17 +23,6 @@ use Google\Cloud\Core\ValidateTrait;
  * This plain PHP class represents a Trace resource. Traces belong to a
  * project and have many TraceSpans. See:
  * https://cloud.google.com/trace/docs/reference/v1/rest/v1/projects.traces#resource-trace
- *
- *
- * Example:
- * ```
- * use Google\Cloud\ServiceBuilder;
- *
- * $cloud = new ServiceBuilder();
- * $traceClient = $cloud->trace();
- *
- * $trace = $traceClient->trace();
- * ```
  */
 class Trace
 {

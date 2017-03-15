@@ -67,7 +67,8 @@ class TraceSpan
     {
         $this->info = $this->pluckArray(
             ['spanId', 'kind', 'name', 'startTime', 'endTime', 'parentSpanId', 'labels'],
-            $options);
+            $options
+        );
         $this->info += [
             'kind' => self::SPAN_KIND_UNSPECIFIED
         ];
