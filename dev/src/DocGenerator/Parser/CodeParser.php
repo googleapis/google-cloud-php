@@ -20,6 +20,7 @@ namespace Google\Cloud\Dev\DocGenerator\Parser;
 use Google\Cloud\Dev\DocBlockStripSpaces;
 use Google\Cloud\Dev\GetComponentsTrait;
 use phpDocumentor\Reflection\DocBlock;
+use phpDocumentor\Reflection\DocBlock\Context;
 use phpDocumentor\Reflection\DocBlock\Description;
 use phpDocumentor\Reflection\DocBlock\Tag\SeeTag;
 use phpDocumentor\Reflection\FileReflector;
@@ -441,8 +442,11 @@ class CodeParser implements ParserInterface
         $returnsArray = [];
 
         foreach ($returns as $return) {
+            $context = $return->getDocBlock()->getContext();
+            $aliases = $context ? $context->getNamespaceAliases() : [];
+
             $returnsArray[] = [
-                'types' => $this->handleTypes($return->getTypes()),
+                'types' => $this->handleTypes($return->getTypes(), $aliases),
                 'description' => $this->buildDescription(null, $return->getDescription())
             ];
         }
@@ -450,27 +454,48 @@ class CodeParser implements ParserInterface
         return $returnsArray;
     }
 
-    private function handleTypes($types)
+    private function handleTypes($types, array $aliases = [])
     {
-        foreach ($types as &$type) {
-            if (substr_compare($type, '\Google\Cloud', 0, 13) === 0) {
+        $res = [];
+        foreach ($types as $type) {
+            $matches = [];
+
+            if (preg_match('/\\\\?(.*?)\<(.*?)\>/', $type, $matches)) {
+                $matches[1] = $this->resolveTypeAlias($matches[1], $aliases);
+                $matches[2] = $this->resolveTypeAlias($matches[2], $aliases);
+
+                $iteratorType = $matches[1];
+                if (strpos($matches[1], '\\') !== FALSE) {
+                    $matches[1] = $this->buildLink($matches[1]);
+                }
+
+                $typeLink = $matches[2];
+                if (strpos($matches[2], '\\') !== FALSE) {
+                    $matches[2] = $this->buildLink($matches[2]);
+                }
+
+                $type = sprintf(htmlentities('%s<%s>'), $matches[1], $matches[2]);
+            } elseif (substr_compare($type, '\\Google\\Cloud', 0, 13) === 0) {
                 $type = $this->buildLink($type);
             } elseif ($this->hasExternalType($type)) {
                 $type = $this->buildExternalType($type);
             }
 
-            $matches = [];
-            if (preg_match('/\\\\?Generator\<(.*?)\>/', $type, $matches)) {
-                $typeLink = $matches[1];
-                if (strpos($matches[1], '\\') !== FALSE) {
-                    $typeLink = $this->buildLink($matches[1]);
-                }
-
-                $type = sprintf(htmlentities('Generator<%s>'), $typeLink);
-            }
+            $res[] = $type;
         }
 
-        return $types;
+        return $res;
+    }
+
+    private function resolveTypeAlias($type, array $aliases)
+    {
+        $pieces = explode('\\', $type);
+        $basename = array_pop($pieces);
+        if (array_key_exists($basename, $aliases)) {
+            $type = $aliases[$basename];
+        }
+
+        return $type;
     }
 
     private function hasExternalType($type)
