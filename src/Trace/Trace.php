@@ -86,6 +86,16 @@ class Trace
     }
 
     /**
+     * Retrieves the trace's projectId.
+     *
+     * @return string
+     */
+    public function projectId()
+    {
+        return $this->projectId;
+    }
+
+    /**
      * Set the trace's projectId
      * @param string $projectId
      */
