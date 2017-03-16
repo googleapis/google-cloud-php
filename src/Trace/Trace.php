@@ -123,7 +123,7 @@ class Trace
     /**
      * Retrieves the spans for this trace.
      *
-     * @return array
+     * @return TraceSpan[]
      */
     public function spans()
     {

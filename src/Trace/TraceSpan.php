@@ -88,7 +88,7 @@ class TraceSpan
      * @param  \DateTime $when [optional] The start time of this span.
      *         **Defaults to** now.
      */
-    public function setStart(\DateTime $when = null)
+    public function setStart(\DateTimeInterface $when = null)
     {
         $this->info['startTime'] = $this->formatDate($when);
     }
@@ -99,7 +99,7 @@ class TraceSpan
      * @param  \DateTime $when [optional] The end time of this span.
      *         **Defaults to** now.
      */
-    public function setFinish(\DateTime $when = null)
+    public function setFinish(\DateTimeInterface $when = null)
     {
         $this->info['endTime'] = $this->formatDate($when);
     }
@@ -168,7 +168,7 @@ class TraceSpan
      *         **Defaults to** now.
      * @return string
      */
-    private function formatDate($when = null)
+    private function formatDate(\DateTimeInterface $when = null)
     {
         if (!$when) {
             list($usec, $sec) = explode(' ', microtime());

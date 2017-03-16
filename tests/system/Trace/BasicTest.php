@@ -42,7 +42,9 @@ class BasicTest extends \PHPUnit_Framework_TestCase
         $span2 = new TraceSpan(['name' => 'inner', 'parentSpanId' => $span->spanId()]);
         $span2->setStart();
 
-        usleep(20000);
+        // just add a little bit of time for the spans
+        usleep(20);
+
         $span2->setFinish();
         $span->setFinish();
 

@@ -262,7 +262,7 @@ class ServiceBuilder
      *
      * @param array $config [optional] Configuration options. See
      *        {@see Google\Cloud\ServiceBuilder::__construct()} for the available options.
-     * @return StorageClient
+     * @return TraceClient
      */
     public function trace(array $config = [])
     {

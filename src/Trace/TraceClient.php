@@ -168,15 +168,19 @@ class TraceClient
      *      @type string $viewType Type of data returned for traces in the list.
      *            Can be one of 'VIEW_TYPE_UNSPECIFIED', 'MINIMAL', 'ROOTSPAN', or
      *            'COMPLETE'
-     *      @type integer $pageSize Maximum number of traces to return
+     *      @type int $pageSize Maximum number of traces to return
      *      @type string $pageToken Token identifying the page of results to return
      *      @type string $startTime Start of the time interval during which trace data
-     *            was collected
+     *            was collected. This timestamp in nanoseconds should be in "Zulu" format.
+     *            Example: '2014-10-02T15:01:23.045123456Z'
      *      @type string $endTime End of the time interval during which trace data was
-     *            collected
-     *      @type sring $filter An optional filter for the request
+     *            collected. This timestamp in nanoseconds should be in "Zulu" format.
+     *            Example: '2014-10-02T15:01:23.045123456Z'
+     *      @type string $filter An optional filter for the request
      *      @type string $orderBy Field used to sort the returned traces. Can be one
-     *            of 'traceId', 'name', 'duration', 'start'. Descending order
+     *            of 'traceId', 'name', 'duration', 'start'. Descending order can be
+     *            specified by appending 'desc' to the sort field (for example,
+     *            'name desc'). Only one sort field is permitted.
      * }
      * @return \Generator<Trace>
      */
