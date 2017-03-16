@@ -19,6 +19,8 @@ namespace Google\Cloud\Trace;
 
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\ClientTrait;
+use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Trace\Connection\ConnectionInterface;
 use Google\Cloud\Trace\Connection\Rest;
 
@@ -96,35 +98,31 @@ class TraceClient
      * Sends a Trace log in a simple fashion.
      *
      * @param  Trace $trace The trace log to send.
-     * @return Trace
+     * @return bool
+     * @throws ServiceException
      */
     public function insertTrace(Trace $trace)
     {
-        $traces = $this->insertTraceBatch([$trace]);
-        return $traces[0];
+        return $this->insertTraceBatch([$trace]);
     }
 
     /**
      * Sends multiple Trace logs in a simple fashion.
      *
      * @param Trace[] $traces The trace logs to send.
-     * @return Trace[] Array of new or updated traces.
+     * @return bool
+     * @throws ServiceException
      */
     public function insertTraceBatch(array $traces)
     {
-        $response = $this->connection->patchTraces([
+        // throws ServiceException on failure
+        $this->connection->patchTraces([
             'projectId' => $this->projectId,
             'traces' => array_map(function ($trace) {
                 return $trace->info();
             }, $traces)
         ]);
-
-        $traces = array_key_exists('traces', $response)
-            ? $response['traces']
-            : [];
-        return array_map(function ($trace) {
-            return new Trace($this->pluck('projectId', $trace), $trace);
-        }, $traces);
+        return true;
     }
 
     /**
@@ -132,6 +130,7 @@ class TraceClient
      *
      * @param  string $traceId The ID of the trace to return
      * @return Trace
+     * @throws ServiceException
      */
     public function getTrace($traceId)
     {
@@ -141,7 +140,7 @@ class TraceClient
         ]);
 
         if (empty($trace)) {
-            return null;
+            throw new NotFoundException('Trace ID does not exist', 404);
         };
 
         return new Trace($this->pluck('projectId', $trace), $trace);

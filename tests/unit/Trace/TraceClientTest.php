@@ -81,13 +81,15 @@ class TraceClientTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(1, count($trace->spans()));
     }
 
+    /**
+     * @expectedException Google\Cloud\Core\Exception\NotFoundException
+     */
     public function testGetSingleTraceNotFound()
     {
         $this->connection->getTrace(Argument::any())->willReturn([]);
         $this->client->setConnection($this->connection->reveal());
 
         $trace = $this->client->getTrace('1');
-        $this->assertNull($trace);
     }
 
     public function testInsertTrace()
@@ -110,9 +112,7 @@ class TraceClientTest extends \PHPUnit_Framework_TestCase
                 ['name' => 'main']
             ]
         ]);
-        $newTrace = $this->client->insertTrace($trace);
-        $this->assertInstanceOf(Trace::class, $newTrace);
-        $this->assertEquals('1', $newTrace->traceId());
+        $this->assertTrue($this->client->insertTrace($trace));
     }
 
     public function testInsertMultipleTraces()
@@ -136,10 +136,7 @@ class TraceClientTest extends \PHPUnit_Framework_TestCase
                 ['name' => 'main']
             ]
         ]);
-        $newTraces = $this->client->insertTraceBatch([$trace]);
-        $newTrace = $newTraces[0];
-        $this->assertInstanceOf(Trace::class, $newTrace);
-        $this->assertEquals('1', $newTrace->traceId());
+        $this->assertTrue($this->client->insertTraceBatch([$trace]));
     }
 
 }
