@@ -61,6 +61,14 @@ foreach ($queryResults->rows() as $row) {
 }
 ```
 
+#### google/cloud-bigquery
+
+Google BigQuery can be installed separately by requiring the `google/cloud-bigquery` composer package:
+
+```
+$ require google/cloud-bigquery
+```
+
 ## Google Stackdriver Logging (Beta)
 
 - [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/logging/loggingclient)
@@ -93,6 +101,14 @@ foreach ($entries as $entry) {
 }
 ```
 
+#### google/cloud-logging
+
+Google Stackdriver Logging can be installed separately by requiring the `google/cloud-logging` composer package:
+
+```
+$ require google/cloud-logging
+```
+
 ## Google Cloud Datastore (Beta)
 
 - [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/datastore/datastoreclient)
@@ -122,6 +138,14 @@ $datastore->update($bob);
 // If you know the ID of the entity, you can look it up
 $key = $datastore->key('Person', '12345328897844');
 $entity = $datastore->lookup($key);
+```
+
+#### google/cloud-datastore
+
+Google Cloud Datastore can be installed separately by requiring the `google/cloud-datastore` composer package:
+
+```
+$ require google/cloud-datastore
 ```
 
 ## Google Cloud Storage (Beta)
@@ -167,6 +191,14 @@ $storage->registerStreamWrapper();
 $contents = file_get_contents('gs://my_bucket/file_backup.txt');
 ```
 
+#### google/cloud-storage
+
+Google Cloud Storage can be installed separately by requiring the `google/cloud-storage` composer package:
+
+```
+$ require google/cloud-storage
+```
+
 ## Google Cloud Vision (Beta)
 
 - [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/vision/visionclient)
@@ -197,6 +229,14 @@ foreach ($annotation->faces() as $key => $face) {
         echo "Face $key has headwear.\n";
     }
 }
+```
+
+#### google/cloud-vision
+
+Google Cloud Vision can be installed separately by requiring the `google/cloud-vision` composer package:
+
+```
+$ require google/cloud-vision
 ```
 
 ## Google Cloud Translation (Alpha)
@@ -245,6 +285,14 @@ foreach ($languages as $language) {
 }
 ```
 
+#### google/cloud-translate
+
+Google Cloud Translation can be installed separately by requiring the `google/cloud-translate` composer package:
+
+```
+$ require google/cloud-translate
+```
+
 ## Google Cloud Natural Language (Alpha)
 
 - [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/naturallanguage/naturallanguageclient)
@@ -282,6 +330,14 @@ $tokens = $annotation->tokensByTag('NOUN');
 foreach ($tokens as $token) {
     echo $token['text']['content'] . "\n";
 }
+```
+
+#### google/cloud-natural-language
+
+Google Cloud Natural Language can be installed separately by requiring the `google/cloud-natural-language` composer package:
+
+```
+$ require google/cloud-natural-language
 ```
 
 ## Google Cloud Pub/Sub (Alpha)
@@ -323,6 +379,14 @@ foreach ($messages as $message) {
 }
 ```
 
+#### google/cloud-pubsub
+
+Google Cloud Pub/Sub can be installed separately by requiring the `google/cloud-pubsub` composer package:
+
+```
+$ require google/cloud-pubsub
+```
+
 ## Google Cloud Speech (Alpha)
 
 - [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/speech/speechclient)
@@ -348,6 +412,14 @@ foreach ($results as $result) {
     echo $result['transcript'] . "\n";
     echo $result['confidence'] . "\n";
 }
+```
+
+#### google/cloud-speech
+
+Google Cloud Speech can be installed separately by requiring the `google/cloud-speech` composer package:
+
+```
+$ require google/cloud-speech
 ```
 
 ## Caching Access Tokens
