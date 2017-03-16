@@ -123,7 +123,7 @@ class StorageObjectTest extends \PHPUnit_Framework_TestCase
                 'destinationBucket' => $destinationBucket,
                 'destinationObject' => $objectName,
                 'destinationPredefinedAcl' => $acl,
-                'httpOptions' => [
+                'restOptions' => [
                     'headers' => [
                         'x-goog-encryption-algorithm' => 'AES256',
                         'x-goog-encryption-key' => $key,
@@ -205,7 +205,7 @@ class StorageObjectTest extends \PHPUnit_Framework_TestCase
                 'destinationBucket' => $destinationBucket,
                 'destinationObject' => $objectName,
                 'destinationPredefinedAcl' => $acl,
-                'httpOptions' => [
+                'restOptions' => [
                     'headers' => [
                         'x-goog-copy-source-encryption-algorithm' => 'AES256',
                         'x-goog-copy-source-encryption-key' => $key,
@@ -309,7 +309,7 @@ class StorageObjectTest extends \PHPUnit_Framework_TestCase
                 'destinationBucket' => $sourceBucket,
                 'destinationObject' => $newObjectName,
                 'destinationPredefinedAcl' => $acl,
-                'httpOptions' => [
+                'restOptions' => [
                     'headers' => [
                         'x-goog-encryption-algorithm' => 'AES256',
                         'x-goog-encryption-key' => $key,
@@ -348,7 +348,7 @@ class StorageObjectTest extends \PHPUnit_Framework_TestCase
                 'bucket' => $bucket,
                 'object' => $object,
                 'generation' => null,
-                'httpOptions' => [
+                'restOptions' => [
                     'headers' => [
                         'x-goog-encryption-algorithm' => 'AES256',
                         'x-goog-encryption-key' => $key,
@@ -378,7 +378,7 @@ class StorageObjectTest extends \PHPUnit_Framework_TestCase
                 'bucket' => $bucket,
                 'object' => $object,
                 'generation' => null,
-                'httpOptions' => [
+                'restOptions' => [
                     'headers' => [
                         'x-goog-encryption-algorithm' => 'AES256',
                         'x-goog-encryption-key' => $key,
@@ -429,7 +429,7 @@ class StorageObjectTest extends \PHPUnit_Framework_TestCase
             'bucket' => $bucket,
             'object' => $object,
             'generation' => null,
-            'httpOptions' => [
+            'restOptions' => [
                 'headers' => [
                     'x-goog-encryption-algorithm' => 'AES256',
                     'x-goog-encryption-key' => $key,
@@ -479,7 +479,7 @@ class StorageObjectTest extends \PHPUnit_Framework_TestCase
                 'bucket' => $bucket,
                 'object' => $object,
                 'generation' => null,
-                'httpOptions' => [
+                'restOptions' => [
                     'headers' => [
                         'x-goog-encryption-algorithm' => 'AES256',
                         'x-goog-encryption-key' => $key,

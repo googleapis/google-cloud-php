@@ -52,7 +52,7 @@ class EncryptionTraitTest extends \PHPUnit_Framework_TestCase
         return [
             [
                 [
-                    'httpOptions' => [
+                    'restOptions' => [
                         'headers' => $this->getEncryptionHeaders($key, $hash)
                     ]
                 ],
@@ -63,7 +63,7 @@ class EncryptionTraitTest extends \PHPUnit_Framework_TestCase
             ],
             [
                 [
-                    'httpOptions' => [
+                    'restOptions' => [
                         'headers' => $this->getEncryptionHeaders($key, $hash)
                     ]
                 ],
@@ -73,7 +73,7 @@ class EncryptionTraitTest extends \PHPUnit_Framework_TestCase
             ],
             [
                 [
-                    'httpOptions' => [
+                    'restOptions' => [
                         'headers' => array_merge(
                             $this->getEncryptionHeaders($destinationKey, $destinationHash),
                             $this->getCopySourceEncryptionHeaders($key, $hash)
@@ -90,14 +90,14 @@ class EncryptionTraitTest extends \PHPUnit_Framework_TestCase
             ],
             [
                 [
-                    'httpOptions' => [
+                    'restOptions' => [
                         'headers' => $this->getEncryptionHeaders($key, $hash) + ['hey' => 'dont clobber me']
                     ]
                 ],
                 [
                     'encryptionKey' => $key,
                     'encryptionKeySHA256' => $hash,
-                    'httpOptions' => [
+                    'restOptions' => [
                         'headers' => [
                             'hey' => 'dont clobber me'
                         ]

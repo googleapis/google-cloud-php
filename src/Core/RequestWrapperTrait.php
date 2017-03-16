@@ -51,6 +51,12 @@ trait RequestWrapperTrait
     private $keyFile;
 
     /**
+     * @var float Seconds to wait before timing out the request. **Defaults to**
+     *      `0` with REST and `60` with gRPC.
+     */
+    private $requestTimeout;
+
+    /**
      * @var int Number of retries for a failed request. **Defaults to** `3`.
      */
     private $retries;
@@ -74,6 +80,8 @@ trait RequestWrapperTrait
      *     @type array $keyFile The contents of the service account credentials
      *           .json file retrieved from the Google Developer's Console.
      *           Ex: `json_decode(file_get_contents($path), true)`.
+     *     @type float $requestTimeout Seconds to wait before timing out the
+     *           request. **Defaults to** `0` with REST and `60` with gRPC.
      *     @type int $retries Number of retries for a failed request.
      *           **Defaults to** `3`.
      *     @type array $scopes Scopes to be used for the request.
@@ -87,6 +95,7 @@ trait RequestWrapperTrait
             'authCacheOptions' => [],
             'credentialsFetcher' => null,
             'keyFile' => null,
+            'requestTimeout' => null,
             'retries' => null,
             'scopes' => null
         ];

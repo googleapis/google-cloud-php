@@ -519,7 +519,7 @@ class StorageObject
 
         $this->delete(
             array_intersect_key($options, [
-                'httpOptions' => null,
+                'restOptions' => null,
                 'retries' => null
             ])
         );

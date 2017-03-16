@@ -122,7 +122,7 @@ class RestTest extends \PHPUnit_Framework_TestCase
             'bucket' => 'bigbucket',
             'object' => 'myfile.txt',
             'generation' => 100,
-            'httpOptions' => ['debug' => true],
+            'restOptions' => ['debug' => true],
             'retries' => 0
         ]);
 

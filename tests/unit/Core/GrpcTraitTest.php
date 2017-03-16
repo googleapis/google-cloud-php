@@ -62,6 +62,28 @@ class GrpcTraitTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($message, $actualResponse);
     }
 
+    public function testSendsRequestWithOptions()
+    {
+        $options = [
+            'requestTimeout' => 3.5,
+            'grpcOptions' => ['timeoutMs' => 100],
+            'retries' => 0
+        ];
+        $message = ['successful' => 'message'];
+        $this->requestWrapper->send(
+            Argument::type('callable'),
+            Argument::type('array'),
+            $options
+        )->willReturn($message);
+
+        $this->implementation->setRequestWrapper($this->requestWrapper->reveal());
+        $actualResponse = $this->implementation->send(function () {
+            return true;
+        }, [$options]);
+
+        $this->assertEquals($message, $actualResponse);
+    }
+
     public function testGetsGaxConfig()
     {
         $version = '1.0.0';
