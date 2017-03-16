@@ -1,0 +1,39 @@
+{
+    "title": "Logging",
+    "pattern": "logging\/\\w{1,}",
+    "services": [{
+        "title": "LoggingClient",
+        "type": "logging/loggingclient"
+    }, {
+        "title": "Entry",
+        "type": "logging/entry"
+    }, {
+        "title": "Logger",
+        "type": "logging/logger"
+    }, {
+        "title": "Metric",
+        "type": "logging/metric"
+    },{
+        "title": "PsrLogger",
+        "type": "logging/psrlogger"
+    },{
+        "title": "Sink",
+        "type": "logging/sink"
+    }, {
+        "title": "v2",
+        "type": "logging/v2/readme",
+        "patterns": [
+          "logging/v2/\\w{1,}"
+        ],
+        "nav": [{
+            "title": "ConfigServiceV2Client",
+            "type": "logging/v2/configservicev2client"
+        }, {
+            "title": "LoggingServiceV2Client",
+            "type": "logging/v2/loggingservicev2client"
+        }, {
+            "title": "MetricsServiceV2Client",
+            "type": "logging/v2/metricsservicev2client"
+        }]
+    }]
+}

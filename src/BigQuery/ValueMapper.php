@@ -17,8 +17,8 @@
 
 namespace Google\Cloud\BigQuery;
 
-use Google\Cloud\ArrayTrait;
-use Google\Cloud\Int64;
+use Google\Cloud\Core\ArrayTrait;
+use Google\Cloud\Core\Int64;
 
 /**
  * Maps values to their expected BigQuery types. This class is intended for
@@ -45,17 +45,18 @@ class ValueMapper
     const TYPE_RECORD = 'RECORD';
 
     const DATETIME_FORMAT = 'Y-m-d H:i:s.u';
+    const DATETIME_FORMAT_INSERT = 'Y-m-d\TH:i:s.u';
 
     /**
      * @var bool $returnInt64AsObject If true, 64 bit integers will be returned
-     *      as a {@see Google\Cloud\Int64} object for 32 bit platform
+     *      as a {@see Google\Cloud\Core\Int64} object for 32 bit platform
      *      compatibility.
      */
     private $returnInt64AsObject;
 
     /**
      * @param bool $returnInt64AsObject If true, 64 bit integers will be
-     *        returned as a {@see Google\Cloud\Int64} object for 32 bit
+     *        returned as a {@see Google\Cloud\Core\Int64} object for 32 bit
      *        platform compatibility.
      */
     public function __construct($returnInt64AsObject)
@@ -105,10 +106,7 @@ class ValueMapper
             case self::TYPE_TIME:
                 return new Time(new \DateTime($value));
             case self::TYPE_TIMESTAMP:
-                $timestamp = new \DateTime();
-                $timestamp->setTimestamp((float) $value);
-
-                return new Timestamp($timestamp);
+                return $this->timestampFromBigQuery($value);
             case self::TYPE_RECORD:
                 return $this->recordFromBigQuery($value, $schema['fields']);
             default:
@@ -119,6 +117,33 @@ class ValueMapper
 
                 break;
         }
+    }
+
+    /**
+     * Maps a user provided value to the expected BigQuery format.
+     *
+     * @param mixed $value The value to map.
+     * @return mixed
+     */
+    public function toBigQuery($value)
+    {
+        if ($value instanceof ValueInterface || $value instanceof Int64) {
+            return (string) $value;
+        }
+
+        if ($value instanceof \DateTime) {
+            return $value->format(self::DATETIME_FORMAT_INSERT);
+        }
+
+        if (is_array($value)) {
+            foreach ($value as $key => $item) {
+                $value[$key] = $this->toBigQuery($item);
+            }
+
+            return $value;
+        }
+
+        return $value;
     }
 
     /**
@@ -296,5 +321,49 @@ class ValueMapper
             ],
             ['structValues' => $values]
         ];
+    }
+
+    /**
+     * Converts a timestamp in string format received from BigQuery to a
+     * {@see Google\Cloud\BigQuery\Timestamp}.
+     *
+     * @param string $value The timestamp.
+     * @return Timestamp
+     */
+    private function timestampFromBigQuery($value)
+    {
+        // If the string contains 'E' convert from exponential notation to
+        // decimal notation. This doesn't cast to a float because precision can
+        // be lost.
+        if (strpos($value, 'E')) {
+            list($value, $exponent) = explode('E', $value);
+            list($firstDigit, $remainingDigits) = explode('.', $value);
+
+            if (strlen($remainingDigits) > $exponent) {
+                $value = $firstDigit . substr_replace($remainingDigits, '.', $exponent, 0);
+            } else {
+                $value = $firstDigit . str_pad($remainingDigits, $exponent, '0') . '.0';
+            }
+        }
+
+        list($unixTimestamp, $microSeconds) = explode('.', $value);
+        $dateTime = new \DateTime("@$unixTimestamp");
+
+        // If the timestamp is before the epoch, make sure we account for that
+        // before concatenating the microseconds.
+        if ($microSeconds > 0 && $unixTimestamp[0] === '-') {
+            $microSeconds = 1000000 - (int) str_pad($microSeconds, 6, '0');
+            $dateTime->modify('-1 second');
+        }
+
+        return new Timestamp(
+            new \DateTime(
+                sprintf(
+                    '%s.%s+00:00',
+                    $dateTime->format('Y-m-d H:i:s'),
+                    $microSeconds
+                )
+            )
+        );
     }
 }

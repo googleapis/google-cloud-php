@@ -1,0 +1,28 @@
+{
+    "name": "google/cloud-core",
+    "description": "Google Cloud PHP shared dependency, providing functionality useful to all components.",
+    "license": "Apache-2.0",
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=5.5",
+        "rize/uri-template": "~0.3",
+        "google/auth": "^0.11",
+        "guzzlehttp/guzzle": "^5.3|^6.0",
+        "guzzlehttp/psr7": "^1.2",
+        "monolog/monolog": "~1",
+        "psr/http-message": "1.0.*"
+    },
+    "extra": {
+        "component": {
+            "id": "cloud-core",
+            "target": "GoogleCloudPlatform/google-cloud-php-core.git",
+            "path": "src/Core",
+            "entry": null
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Google\\Cloud\\Core\\": ""
+        }
+    }
+}

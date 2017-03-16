@@ -12,13 +12,13 @@ This client supports the following Google Cloud Platform services at a [Beta](#v
 * [Google Stackdriver Logging](#google-stackdriver-logging-beta) (Beta)
 * [Google Cloud Datastore](#google-cloud-datastore-beta) (Beta)
 * [Google Cloud Storage](#google-cloud-storage-beta) (Beta)
+* [Google Cloud Vision](#google-cloud-vision-beta) (Beta)
 
 This client supports the following Google Cloud Platform services at an [Alpha](#versioning) quality level:
 * [Google Cloud Natural Language](#google-cloud-natural-language-alpha) (Alpha)
 * [Google Cloud Pub/Sub](#google-cloud-pubsub-alpha) (Alpha)
 * [Google Cloud Speech](#google-cloud-speech-alpha) (Alpha)
 * [Google Cloud Translation](#google-cloud-translation-alpha) (Alpha)
-* [Google Cloud Vision](#google-cloud-vision-alpha) (Alpha)
 
 If you need support for other Google APIs, please check out the [Google APIs Client Library for PHP](https://github.com/google/google-api-php-client).
 
@@ -61,6 +61,14 @@ foreach ($queryResults->rows() as $row) {
 }
 ```
 
+#### google/cloud-bigquery
+
+Google BigQuery can be installed separately by requiring the `google/cloud-bigquery` composer package:
+
+```
+$ require google/cloud-bigquery
+```
+
 ## Google Stackdriver Logging (Beta)
 
 - [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/logging/loggingclient)
@@ -91,6 +99,14 @@ $entries = $logging->entries([
 foreach ($entries as $entry) {
     echo $entry->info()['textPayload'] . "\n";
 }
+```
+
+#### google/cloud-logging
+
+Google Stackdriver Logging can be installed separately by requiring the `google/cloud-logging` composer package:
+
+```
+$ require google/cloud-logging
 ```
 
 ## Google Cloud Datastore (Beta)
@@ -124,6 +140,14 @@ $key = $datastore->key('Person', '12345328897844');
 $entity = $datastore->lookup($key);
 ```
 
+#### google/cloud-datastore
+
+Google Cloud Datastore can be installed separately by requiring the `google/cloud-datastore` composer package:
+
+```
+$ require google/cloud-datastore
+```
+
 ## Google Cloud Storage (Beta)
 
 - [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/storage/storageclient)
@@ -150,6 +174,69 @@ $bucket->upload(
 // Download and store an object from the bucket locally.
 $object = $bucket->object('file_backup.txt');
 $object->downloadToFile('/data/file_backup.txt');
+```
+
+#### Stream Wrapper
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Storage\StorageClient;
+
+$storage = new StorageClient([
+    'projectId' => 'my_project'
+]);
+$storage->registerStreamWrapper();
+
+$contents = file_get_contents('gs://my_bucket/file_backup.txt');
+```
+
+#### google/cloud-storage
+
+Google Cloud Storage can be installed separately by requiring the `google/cloud-storage` composer package:
+
+```
+$ require google/cloud-storage
+```
+
+## Google Cloud Vision (Beta)
+
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/vision/visionclient)
+- [Official Documentation](https://cloud.google.com/vision/docs)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Vision\VisionClient;
+
+$vision = new VisionClient([
+    'projectId' => 'my_project'
+]);
+
+// Annotate an image, detecting faces.
+$image = $vision->image(
+    fopen('/data/family_photo.jpg', 'r'),
+    ['faces']
+);
+
+$annotation = $vision->annotate($image);
+
+// Determine if the detected faces have headwear.
+foreach ($annotation->faces() as $key => $face) {
+    if ($face->hasHeadwear()) {
+        echo "Face $key has headwear.\n";
+    }
+}
+```
+
+#### google/cloud-vision
+
+Google Cloud Vision can be installed separately by requiring the `google/cloud-vision` composer package:
+
+```
+$ require google/cloud-vision
 ```
 
 ## Google Cloud Translation (Alpha)
@@ -198,6 +285,14 @@ foreach ($languages as $language) {
 }
 ```
 
+#### google/cloud-translate
+
+Google Cloud Translation can be installed separately by requiring the `google/cloud-translate` composer package:
+
+```
+$ require google/cloud-translate
+```
+
 ## Google Cloud Natural Language (Alpha)
 
 - [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/naturallanguage/naturallanguageclient)
@@ -235,6 +330,14 @@ $tokens = $annotation->tokensByTag('NOUN');
 foreach ($tokens as $token) {
     echo $token['text']['content'] . "\n";
 }
+```
+
+#### google/cloud-natural-language
+
+Google Cloud Natural Language can be installed separately by requiring the `google/cloud-natural-language` composer package:
+
+```
+$ require google/cloud-natural-language
 ```
 
 ## Google Cloud Pub/Sub (Alpha)
@@ -276,6 +379,14 @@ foreach ($messages as $message) {
 }
 ```
 
+#### google/cloud-pubsub
+
+Google Cloud Pub/Sub can be installed separately by requiring the `google/cloud-pubsub` composer package:
+
+```
+$ require google/cloud-pubsub
+```
+
 ## Google Cloud Speech (Alpha)
 
 - [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/speech/speechclient)
@@ -303,36 +414,12 @@ foreach ($results as $result) {
 }
 ```
 
-## Google Cloud Vision (Alpha)
+#### google/cloud-speech
 
-- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/vision/visionclient)
-- [Official Documentation](https://cloud.google.com/vision/docs)
+Google Cloud Speech can be installed separately by requiring the `google/cloud-speech` composer package:
 
-#### Preview
-
-```php
-require 'vendor/autoload.php';
-
-use Google\Cloud\Vision\VisionClient;
-
-$vision = new VisionClient([
-    'projectId' => 'my_project'
-]);
-
-// Annotate an image, detecting faces.
-$image = $vision->image(
-    fopen('/data/family_photo.jpg', 'r'),
-    ['faces']
-);
-
-$annotation = $vision->annotate($image);
-
-// Determine if the detected faces have headwear.
-foreach ($annotation->faces() as $key => $face) {
-    if ($face->hasHeadwear()) {
-        echo "Face $key has headwear.\n";
-    }
-}
+```
+$ require google/cloud-speech
 ```
 
 ## Caching Access Tokens

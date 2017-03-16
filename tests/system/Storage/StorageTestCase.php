@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Tests\System\Storage;
 
-use Google\Cloud\ExponentialBackoff;
+use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\Storage\StorageClient;
 
 class StorageTestCase extends \PHPUnit_Framework_TestCase
@@ -39,7 +39,8 @@ class StorageTestCase extends \PHPUnit_Framework_TestCase
         self::$client = new StorageClient([
             'keyFilePath' => getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH')
         ]);
-        self::$bucket = self::$client->createBucket(uniqid(self::TESTING_PREFIX));
+        $bucket = getenv('BUCKET') ?: uniqid(self::TESTING_PREFIX);
+        self::$bucket = self::$client->createBucket($bucket);
         self::$object = self::$bucket->upload('somedata', ['name' => uniqid(self::TESTING_PREFIX)]);
         self::$hasSetUp = true;
     }
@@ -62,5 +63,3 @@ class StorageTestCase extends \PHPUnit_Framework_TestCase
         }
     }
 }
-
-

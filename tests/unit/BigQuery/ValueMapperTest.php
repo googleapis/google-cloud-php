@@ -15,14 +15,14 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\BigQuery;
+namespace Google\Cloud\Tests\Unit\BigQuery;
 
 use Google\Cloud\BigQuery\Bytes;
 use Google\Cloud\BigQuery\Date;
 use Google\Cloud\BigQuery\Time;
 use Google\Cloud\BigQuery\Timestamp;
 use Google\Cloud\BigQuery\ValueMapper;
-use Google\Cloud\Int64;
+use Google\Cloud\Core\Int64;
 
 /**
  * @group bigquery
@@ -134,9 +134,24 @@ class ValueMapperTest extends \PHPUnit_Framework_TestCase
                 new Time(new \DateTime('12:15:15'))
             ],
             [
-                ['v' => '1438712914'],
+                ['v' => '1.438712914E9'],
                 ['type' => 'TIMESTAMP'],
                 new Timestamp(new \DateTime('2015-08-04 18:28:34Z'))
+            ],
+            [
+                ['v' => '2678400.0'],
+                ['type' => 'TIMESTAMP'],
+                new Timestamp(new \DateTime('1970-02-01'))
+            ],
+            [
+                ['v' => '-3.1561919984985E8'],
+                ['type' => 'TIMESTAMP'],
+                new Timestamp(new \DateTime('1960-01-01 00:00:00.150150Z'))
+            ],
+            [
+                ['v' => '9.4668480015015E8'],
+                ['type' => 'TIMESTAMP'],
+                new Timestamp(new \DateTime('2000-01-01 00:00:00.150150Z'))
             ],
             [
                 [
@@ -199,6 +214,34 @@ class ValueMapperTest extends \PHPUnit_Framework_TestCase
         );
 
         $this->assertEquals((string) new Bytes('abcd'), (string) $actual);
+    }
+
+    /**
+     * @dataProvider toBigQueryValueProvider
+     */
+    public function testMapsToBigQuery($value, $expected)
+    {
+        $mapper = new ValueMapper(false);
+        $actual = $mapper->toBigQuery($value);
+
+        $this->assertEquals($expected, $actual);
+    }
+
+    public function toBigQueryValueProvider()
+    {
+        $dt = new \DateTime();
+        $date = new Date($dt);
+        $int64 = new Int64('123');
+
+        return [
+            [$dt, $dt->format('Y-m-d\TH:i:s.u')],
+            [$date, (string) $date],
+            [
+                ['date' => $date],
+                ['date' => (string) $date]
+            ],
+            [1, 1]
+        ];
     }
 
     /**

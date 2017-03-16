@@ -34,7 +34,7 @@ class SpeechClientTest extends SnippetTestCase
 
     public function setUp()
     {
-        $this->testFile = "'" . __DIR__ .'/../fixtures/Speech/demo.flac' . "'";
+        $this->testFile = "'" . __DIR__ . '/../fixtures/Speech/demo.flac' . "'";
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->client = new \SpeechClientStub;
         $this->client->setConnection($this->connection->reveal());
@@ -43,14 +43,6 @@ class SpeechClientTest extends SnippetTestCase
     public function testClass()
     {
         $snippet = $this->snippetFromClass(SpeechClient::class);
-
-        $res = $snippet->invoke('speech');
-        $this->assertInstanceOf(SpeechClient::class, $res->returnVal());
-    }
-
-    public function testClassDirectInstantiation()
-    {
-        $snippet = $this->snippetFromClass(SpeechClient::class, 1);
 
         $res = $snippet->invoke('speech');
         $this->assertInstanceOf(SpeechClient::class, $res->returnVal());

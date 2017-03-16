@@ -1,0 +1,8 @@
+{
+    "title": "Translation",
+    "pattern": "translate\/\\w{1,}",
+    "services": [{
+        "title": "TranslateClient",
+        "type": "translate/translateclient"
+    }]
+}

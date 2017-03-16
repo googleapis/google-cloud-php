@@ -15,13 +15,13 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\BigQuery;
+namespace Google\Cloud\Tests\Unit\BigQuery;
 
 use Google\Cloud\BigQuery\Connection\ConnectionInterface;
 use Google\Cloud\BigQuery\Job;
 use Google\Cloud\BigQuery\QueryResults;
 use Google\Cloud\BigQuery\ValueMapper;
-use Google\Cloud\Exception\NotFoundException;
+use Google\Cloud\Core\Exception\NotFoundException;
 use Prophecy\Argument;
 
 /**

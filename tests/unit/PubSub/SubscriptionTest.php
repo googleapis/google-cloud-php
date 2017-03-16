@@ -15,11 +15,11 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\PubSub;
+namespace Google\Cloud\Tests\Unit\PubSub;
 
 use Generator;
-use Google\Cloud\Exception\NotFoundException;
-use Google\Cloud\Iam\Iam;
+use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\Core\Iam\Iam;
 use Google\Cloud\PubSub\Connection\ConnectionInterface;
 use Google\Cloud\PubSub\Message;
 use Google\Cloud\PubSub\Subscription;
@@ -199,11 +199,9 @@ class SubscriptionTest extends \PHPUnit_Framework_TestCase
             'foo' => 'bar'
         ]);
 
-        $this->assertInstanceOf(Generator::class, $result);
-
-        $arr = iterator_to_array($result);
-        $this->assertInstanceOf(Message::class, $arr[0]);
-        $this->assertInstanceOf(Message::class, $arr[1]);
+        $this->assertContainsOnlyInstancesOf(Message::class, $result);
+        $this->assertInstanceOf(Message::class, $result[0]);
+        $this->assertInstanceOf(Message::class, $result[1]);
     }
 
     public function testPullWithCustomArgs()
@@ -235,56 +233,9 @@ class SubscriptionTest extends \PHPUnit_Framework_TestCase
             'maxMessages' => 2
         ]);
 
-        $this->assertInstanceOf(Generator::class, $result);
-
-        $arr = iterator_to_array($result);
-        $this->assertInstanceOf(Message::class, $arr[0]);
-        $this->assertInstanceOf(Message::class, $arr[1]);
-    }
-
-    public function testPullPaged()
-    {
-        $messages = [
-            'receivedMessages' => [
-                [
-                    'message' => []
-                ], [
-                    'message' => []
-                ]
-            ],
-            'nextPageToken' => 'foo'
-        ];
-
-        $this->connection->pull(Argument::that(function ($args) {
-                if ($args['foo'] !== 'bar') return false;
-                if ($args['returnImmediately'] !== true) return false;
-                if ($args['maxMessages'] !== 2) return false;
-                if (!in_array($args['pageToken'], [null, 'foo'])) return false;
-
-                return true;
-            }))->willReturn($messages)
-            ->shouldBeCalledTimes(3);
-
-        $this->subscription->setConnection($this->connection->reveal());
-
-        $result = $this->subscription->pull([
-            'foo' => 'bar',
-            'returnImmediately' => true,
-            'maxMessages' => 2
-        ]);
-
-        $this->assertInstanceOf(Generator::class, $result);
-
-        // enumerate the iterator and kill after it loops twice.
-        $arr = [];
-        $i = 0;
-        foreach ($result as $message) {
-            $i++;
-            $arr[] = $message;
-            if ($i == 6) break;
-        }
-
-        $this->assertEquals(6, count($arr));
+        $this->assertContainsOnlyInstancesOf(Message::class, $result);
+        $this->assertInstanceOf(Message::class, $result[0]);
+        $this->assertInstanceOf(Message::class, $result[1]);
     }
 
     public function testAcknowledge()

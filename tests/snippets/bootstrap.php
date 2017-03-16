@@ -2,7 +2,7 @@
 
 // Provide a project ID. If you're mocking your service calls (and if you aren't
 // start now) you don't need anything else.
-putenv('GOOGLE_APPLICATION_CREDENTIALS='. __DIR__ .'/keyfile-stub.json');
+putenv('GOOGLE_APPLICATION_CREDENTIALS='. __DIR__ . '/keyfile-stub.json');
 
 use Google\Cloud\Dev\Snippet\Container;
 use Google\Cloud\Dev\Snippet\Coverage\Coverage;
@@ -12,7 +12,7 @@ use Google\Cloud\Dev\Snippet\Parser\Parser;
 require __DIR__ . '/../../vendor/autoload.php';
 
 $parser = new Parser;
-$scanner = new Scanner($parser, __DIR__ .'/../../src');
+$scanner = new Scanner($parser, __DIR__ . '/../../src');
 $coverage = new Coverage($scanner);
 $coverage->buildListToCover();
 
@@ -22,14 +22,15 @@ Container::$parser = $parser;
 register_shutdown_function(function () {
     $uncovered = Container::$coverage->uncovered();
 
-    if (!file_exists(__DIR__ .'/../../build')) {
-        mkdir(__DIR__ .'/../../build', 0777, true);
+    if (!file_exists(__DIR__ . '/../../build')) {
+        mkdir(__DIR__ . '/../../build', 0777, true);
     }
 
-    file_put_contents(__DIR__ .'/../../build/snippets-uncovered.json', json_encode($uncovered, JSON_PRETTY_PRINT));
+    file_put_contents(__DIR__ . '/../../build/snippets-uncovered.json', json_encode($uncovered, JSON_PRETTY_PRINT));
 
     if (!empty($uncovered)) {
-        echo sprintf("\033[31mNOTICE: %s uncovered snippets! See build/snippets-uncovered.json for a report.\n", count($uncovered));
+        echo sprintf("\033[31mNOTICE: %s uncovered snippets! \033[0m See build/snippets-uncovered.json for a report.\n", count($uncovered));
+        exit(1);
     }
 });
 
@@ -44,10 +45,11 @@ stub('AclStub', Google\Cloud\Storage\Acl::class);
 stub('BigQueryClientStub', Google\Cloud\BigQuery\BigQueryClient::class);
 stub('BucketStub', Google\Cloud\Storage\Bucket::class);
 stub('DatastoreClientStub', Google\Cloud\Datastore\DatastoreClient::class);
-stub('IamStub', Google\Cloud\Iam\Iam::class);
+stub('IamStub', Google\Cloud\Core\Iam\Iam::class);
 stub('LoggerStub', Google\Cloud\Logging\Logger::class);
 stub('LoggingClientStub', Google\Cloud\Logging\LoggingClient::class);
 stub('MetricStub', Google\Cloud\Logging\Metric::class);
+stub('NaturalLanguageClientStub', Google\Cloud\NaturalLanguage\NaturalLanguageClient::class);
 stub('OperationStub', Google\Cloud\Datastore\Operation::class);
 stub('PubSubClientStub', Google\Cloud\PubSub\PubSubClient::class);
 stub('QueryResultsStub', Google\Cloud\BigQuery\QueryResults::class);

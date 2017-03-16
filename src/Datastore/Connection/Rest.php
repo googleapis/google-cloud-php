@@ -17,11 +17,12 @@
 
 namespace Google\Cloud\Datastore\Connection;
 
-use Google\Cloud\RequestBuilder;
-use Google\Cloud\RequestWrapper;
-use Google\Cloud\EmulatorTrait;
-use Google\Cloud\RestTrait;
-use Google\Cloud\UriTrait;
+use Google\Cloud\Core\EmulatorTrait;
+use Google\Cloud\Core\RequestBuilder;
+use Google\Cloud\Core\RequestWrapper;
+use Google\Cloud\Core\RestTrait;
+use Google\Cloud\Core\UriTrait;
+use Google\Cloud\Datastore\DatastoreClient;
 
 /**
  * Implementation of the
@@ -45,7 +46,8 @@ class Rest implements ConnectionInterface
         $baseUri = $this->getEmulatorBaseUri(self::BASE_URI, $emulatorHost);
 
         $config += [
-            'serviceDefinitionPath' => __DIR__ . '/ServiceDefinition/datastore-v1.json'
+            'serviceDefinitionPath' => __DIR__ . '/ServiceDefinition/datastore-v1.json',
+            'componentVersion' => DatastoreClient::VERSION
         ];
 
         $this->setRequestWrapper(new RequestWrapper($config));

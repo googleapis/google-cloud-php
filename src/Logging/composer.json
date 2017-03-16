@@ -1,0 +1,26 @@
+{
+    "name": "google/cloud-logging",
+    "description": "Stackdriver Logging Client for PHP",
+    "license": "Apache-2.0",
+    "minimum-stability": "stable",
+    "require": {
+        "google/cloud-core": "*"
+    },
+    "suggest": {
+        "google/gax": "Required to support gRPC",
+        "google/proto-client-php": "Required to support gRPC"
+    },
+    "extra": {
+        "component": {
+            "id": "cloud-logging",
+            "target": "GoogleCloudPlatform/google-cloud-php-logging.git",
+            "path": "src/Logging",
+            "entry": "LoggingClient.php"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Google\\Cloud\\Logging\\": ""
+        }
+    }
+}

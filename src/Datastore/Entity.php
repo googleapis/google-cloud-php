@@ -37,7 +37,7 @@ use Psr\Http\Message\StreamInterface;
  * | {@see Google\Cloud\Datastore\GeoPoint}     | `geoPointValue`                      |
  * | {@see Google\Cloud\Datastore\Entity}       | `entityValue`                        |
  * | {@see Google\Cloud\Datastore\Blob}         | `blobValue`                          |
- * | {@see Google\Cloud\Int64}                  | `integerValue`                       |
+ * | {@see Google\Cloud\Core\Int64}             | `integerValue`                       |
  * | Associative Array                          | `entityValue` (No Key)               |
  * | Non-Associative Array                      | `arrayValue`                         |
  * | `float`                                    | `doubleValue`                        |
@@ -50,10 +50,9 @@ use Psr\Http\Message\StreamInterface;
  *
  * Example:
  * ```
- * use Google\Cloud\ServiceBuilder;
+ * use Google\Cloud\Datastore\DatastoreClient;
  *
- * $cloud = new ServiceBuilder();
- * $datastore = $cloud->datastore();
+ * $datastore = new DatastoreClient();
  *
  * $key = $datastore->key('Person', 'Bob');
  * $entity = $datastore->entity($key, [

@@ -15,13 +15,16 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Storage;
+namespace Google\Cloud\Tests\Unit\Storage;
 
-use Google\Cloud\Exception\NotFoundException;
+use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\Core\Exception\ServerException;
+use Google\Cloud\Core\Exception\ServiceException;
+use Google\Cloud\Core\Upload\ResumableUploader;
+use Google\Cloud\Storage\Acl;
 use Google\Cloud\Storage\Bucket;
 use Google\Cloud\Storage\Connection\ConnectionInterface;
 use Google\Cloud\Storage\StorageObject;
-use Google\Cloud\Upload\ResumableUploader;
 use Prophecy\Argument;
 
 /**
@@ -42,14 +45,14 @@ class BucketTest extends \PHPUnit_Framework_TestCase
     {
         $bucket = new Bucket($this->connection->reveal(), 'bucket');
 
-        $this->assertInstanceOf('Google\Cloud\Storage\Acl', $bucket->acl());
+        $this->assertInstanceOf(Acl::class, $bucket->acl());
     }
 
     public function testGetsDefaultAcl()
     {
         $bucket = new Bucket($this->connection->reveal(), 'bucket');
 
-        $this->assertInstanceOf('Google\Cloud\Storage\Acl', $bucket->defaultAcl());
+        $this->assertInstanceOf(Acl::class, $bucket->defaultAcl());
     }
 
     public function testDoesExistTrue()
@@ -78,7 +81,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
         $bucket = new Bucket($this->connection->reveal(), 'bucket');
 
         $this->assertInstanceOf(
-            'Google\Cloud\Storage\StorageObject',
+            StorageObject::class,
             $bucket->upload('some data to upload', ['name' => 'data.txt'])
         );
     }
@@ -99,7 +102,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
         $bucket = new Bucket($this->connection->reveal(), 'bucket');
 
         $this->assertInstanceOf(
-            'Google\Cloud\Upload\ResumableUploader',
+            ResumableUploader::class,
             $bucket->getResumableUploader('some data to upload', ['name' => 'data.txt'])
         );
     }
@@ -118,7 +121,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
     {
         $bucket = new Bucket($this->connection->reveal(), 'bucket');
 
-        $this->assertInstanceOf('Google\Cloud\Storage\StorageObject', $bucket->object('peter-venkman.jpg'));
+        $this->assertInstanceOf(StorageObject::class, $bucket->object('peter-venkman.jpg'));
     }
 
     public function testInstantiateObjectWithOptions()
@@ -131,7 +134,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
             'encryptionKeySHA256' => '123'
         ]);
 
-        $this->assertInstanceOf('Google\Cloud\Storage\StorageObject', $object);
+        $this->assertInstanceOf(StorageObject::class, $object);
     }
 
     public function testGetsObjectsWithoutToken()
@@ -310,5 +313,32 @@ class BucketTest extends \PHPUnit_Framework_TestCase
         $bucket = new Bucket($this->connection->reveal(), $name = 'bucket');
 
         $this->assertEquals($name, $bucket->name());
+    }
+
+    public function testIsWritable()
+    {
+        $this->connection->insertObject(Argument::any())->willReturn($this->resumableUploader);
+        $this->resumableUploader->getResumeUri()->willReturn('http://some-uri/');
+        $bucket = new Bucket($this->connection->reveal(), $name = 'bucket');
+        $this->assertTrue($bucket->isWritable());
+    }
+
+    public function testIsWritableAccessDenied()
+    {
+        $this->connection->insertObject(Argument::any())->willReturn($this->resumableUploader);
+        $this->resumableUploader->getResumeUri()->willThrow(new ServiceException('access denied', 403));
+        $bucket = new Bucket($this->connection->reveal(), $name = 'bucket');
+        $this->assertFalse($bucket->isWritable());
+    }
+
+    /**
+     * @expectedException Google\Cloud\Core\Exception\ServerException
+     */
+    public function testIsWritableServerException()
+    {
+        $this->connection->insertObject(Argument::any())->willReturn($this->resumableUploader);
+        $this->resumableUploader->getResumeUri()->willThrow(new ServerException('maintainence'));
+        $bucket = new Bucket($this->connection->reveal(), $name = 'bucket');
+        $bucket->isWritable(); // raises exception
     }
 }

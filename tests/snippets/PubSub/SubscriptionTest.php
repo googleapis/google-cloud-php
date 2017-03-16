@@ -19,8 +19,9 @@ namespace Google\Cloud\Tests\Snippets\PubSub;
 
 use Google\Cloud\Dev\SetStubConnectionTrait;
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
-use Google\Cloud\Iam\Iam;
+use Google\Cloud\Core\Iam\Iam;
 use Google\Cloud\PubSub\Connection\ConnectionInterface;
+use Google\Cloud\PubSub\Message;
 use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\PubSub\Subscription;
 use Prophecy\Argument;
@@ -169,7 +170,7 @@ class SubscriptionTest extends SnippetTestCase
         $this->subscription->setConnection($this->connection->reveal());
 
         $res = $snippet->invoke('messages');
-        $this->assertInstanceOf(\Generator::class, $res->returnVal());
+        $this->assertContainsOnlyInstancesOf(Message::class, $res->returnVal());
         $this->assertEquals('hello world', $res->output());
     }
 
@@ -241,7 +242,7 @@ class SubscriptionTest extends SnippetTestCase
 
     public function testModifyAckDeadlineBatch()
     {
-        $snippet = $this->snippetFromMethod(Subscription::class, 'modifyAckDeadline');
+        $snippet = $this->snippetFromMethod(Subscription::class, 'modifyAckDeadlineBatch');
         $snippet->addLocal('subscription', $this->subscription);
 
         $this->connection->pull(Argument::any())

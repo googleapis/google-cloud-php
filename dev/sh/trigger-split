@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [[ "$TRAVIS_JOB_NUMBER" == *.1 && -n "$TRAVIS_TAG" ]]; then
+    $(dirname $0)/compile-splitsh
+    git fetch --unshallow
+    composer google-cloud split
+else
+    echo "Split occurs only in a tag run, and in the first matrix build"
+fi

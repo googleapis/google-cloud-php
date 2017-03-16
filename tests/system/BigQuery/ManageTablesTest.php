@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Tests\System\BigQuery;
 
-use Google\Cloud\ExponentialBackoff;
+use Google\Cloud\Core\ExponentialBackoff;
 
 /**
  * @group bigquery
@@ -97,7 +97,11 @@ class ManageTablesTest extends BigQueryTestCase
             uniqid(self::TESTING_PREFIX)
         );
         self::$deletionQueue[] = $object;
-        $job = self::$table->export($object);
+        $job = self::$table->export($object, [
+            'jobConfig' => [
+                'destinationFormat' => 'NEWLINE_DELIMITED_JSON'
+            ]
+        ]);
 
         $backoff = new ExponentialBackoff(8);
         $backoff->execute(function () use ($job) {
@@ -111,6 +115,7 @@ class ManageTablesTest extends BigQueryTestCase
         if (!$job->isComplete()) {
             $this->fail('Job failed to complete within the allotted time.');
         }
+
         $this->assertArrayNotHasKey('errorResult', $job->info()['status']);
     }
 

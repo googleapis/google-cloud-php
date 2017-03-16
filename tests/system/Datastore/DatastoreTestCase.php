@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Tests\System\Datastore;
 
-use Google\Cloud\ExponentialBackoff;
+use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\Datastore\DatastoreClient;
 
 class DatastoreTestCase extends \PHPUnit_Framework_TestCase

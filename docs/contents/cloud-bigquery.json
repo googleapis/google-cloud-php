@@ -1,0 +1,35 @@
+{
+    "title": "BigQuery",
+    "pattern": "bigquery\/\\w{1,}",
+    "services": [{
+        "title": "BigQueryClient",
+        "type": "bigquery/bigqueryclient"
+    }, {
+        "title": "Bytes",
+        "type": "bigquery/bytes"
+    }, {
+        "title": "Dataset",
+        "type": "bigquery/dataset"
+    }, {
+        "title": "Date",
+        "type": "bigquery/date"
+    }, {
+        "title": "InsertResponse",
+        "type": "bigquery/insertresponse"
+    }, {
+        "title": "Job",
+        "type": "bigquery/job"
+    }, {
+        "title": "QueryResults",
+        "type": "bigquery/queryresults"
+    }, {
+        "title": "Table",
+        "type": "bigquery/table"
+    }, {
+        "title": "Time",
+        "type": "bigquery/time"
+    }, {
+        "title": "Timestamp",
+        "type": "bigquery/timestamp"
+    }]
+}

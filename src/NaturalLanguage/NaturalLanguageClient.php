@@ -17,30 +17,21 @@
 
 namespace Google\Cloud\NaturalLanguage;
 
-use Google\Cloud\ClientTrait;
+use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\NaturalLanguage\Connection\ConnectionInterface;
 use Google\Cloud\NaturalLanguage\Connection\Rest;
 use Google\Cloud\Storage\StorageObject;
 use Psr\Cache\CacheItemPoolInterface;
 
 /**
- * Google Cloud Natural Language client. Provides natural language understanding
+ * Google Cloud Natural Language provides natural language understanding
  * technologies to developers, including sentiment analysis, entity recognition,
  * and syntax analysis. Currently only English, Spanish, and Japanese textual
- * context are supported. Find more information at
+ * context are supported. Find more information at the
  * [Google Cloud Natural Language docs](https://cloud.google.com/natural-language/docs/).
  *
  * Example:
  * ```
- * use Google\Cloud\ServiceBuilder;
- *
- * $cloud = new ServiceBuilder();
- *
- * $language = $cloud->naturalLanguage();
- * ```
- *
- * ```
- * // NaturalLanguage can be instantiated directly.
  * use Google\Cloud\NaturalLanguage\NaturalLanguageClient;
  *
  * $language = new NaturalLanguageClient();
@@ -49,6 +40,8 @@ use Psr\Cache\CacheItemPoolInterface;
 class NaturalLanguageClient
 {
     use ClientTrait;
+
+    const VERSION = '0.1.0';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/cloud-platform';
 
@@ -117,21 +110,37 @@ class NaturalLanguageClient
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/natural-language/reference/rest/v1beta1/documents/analyzeEntities Analyze Entities API documentation
+     * @see https://cloud.google.com/natural-language/docs/reference/rest/v1beta1/documents/analyzeEntities Analyze Entities API documentation
      * @codingStandardsIgnoreEnd
      *
-     * @param string|StorageObject $content The content to analyze.
+     * @param string|StorageObject $content The content to analyze. May be
+     *        either a string of UTF-8 encoded content, a URI pointing to a
+     *        Google Cloud Storage object in the format of
+     *        `gs://{bucket-name}/{object-name}` or a
+     *        {@see Google\Cloud\Storage\StorageObject}.
      * @param array $options [optional] {
      *     Configuration options.
      *
+     *     @type bool $detectGcsUri When providing $content as a string, this
+     *           flag determines whether or not to attempt to detect if the
+     *           string represents a Google Cloud Storage URI in the format of
+     *           `gs://{bucket-name}/{object-name}`. **Defaults to** `true`.
      *     @type string $type The document type. Acceptable values are
      *           `PLAIN_TEXT` or `HTML`. **Defaults to** `"PLAIN_TEXT"`.
      *     @type string $language The language of the document. Both ISO
      *           (e.g., en, es) and BCP-47 (e.g., en-US, es-ES) language codes
-     *           are accepted. Defaults to `"en"` (English).
+     *           are accepted. If no value is provided, the language will be
+     *           detected by the service.
      *     @type string $encodingType The text encoding type used by the API to
      *           calculate offsets. Acceptable values are `"NONE"`, `"UTF8"`,
-     *           `"UTF16"` and `"UTF32"`. **Defaults to** `"UTF8"`.
+     *           `"UTF16"` and `"UTF32"`. **Defaults to** `"UTF8"`. Please note
+     *           the following behaviors for the encoding type setting: `"NONE"`
+     *           will return a value of "-1" for offsets. `"UTF8"` will
+     *           return byte offsets. `"UTF16"` will return
+     *           [code unit](http://unicode.org/glossary/#code_unit) offsets.
+     *           `"UTF32"` will return
+     *           [unicode character](http://unicode.org/glossary/#character)
+     *           offsets.
      * }
      * @return Annotation
      */
@@ -158,13 +167,21 @@ class NaturalLanguageClient
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/natural-language/reference/rest/v1beta1/documents/analyzeSentiment Analyze Sentiment API documentation
+     * @see https://cloud.google.com/natural-language/docs/reference/rest/v1beta1/documents/analyzeSentiment Analyze Sentiment API documentation
      * @codingStandardsIgnoreEnd
      *
-     * @param string|StorageObject $content The content to analyze.
+     * @param string|StorageObject $content The content to analyze. May be
+     *        either a string of UTF-8 encoded content, a URI pointing to a
+     *        Google Cloud Storage object in the format of
+     *        `gs://{bucket-name}/{object-name}` or a
+     *        {@see Google\Cloud\Storage\StorageObject}.
      * @param array $options [optional] {
      *     Configuration options.
      *
+     *     @type bool $detectGcsUri When providing $content as a string, this
+     *           flag determines whether or not to attempt to detect if the
+     *           string represents a Google Cloud Storage URI in the format of
+     *           `gs://{bucket-name}/{object-name}`. **Defaults to** `true`.
      *     @type string $type The document type. Acceptable values are
      *           `PLAIN_TEXT` or `HTML`. **Defaults to** `"PLAIN_TEXT"`.
      *     @type string $language The language of the document. Both ISO
@@ -173,7 +190,14 @@ class NaturalLanguageClient
      *           detected by the service.
      *     @type string $encodingType The text encoding type used by the API to
      *           calculate offsets. Acceptable values are `"NONE"`, `"UTF8"`,
-     *           `"UTF16"` and `"UTF32"`. **Defaults to** `"UTF8"`.
+     *           `"UTF16"` and `"UTF32"`. **Defaults to** `"UTF8"`. Please note
+     *           the following behaviors for the encoding type setting: `"NONE"`
+     *           will return a value of "-1" for offsets. `"UTF8"` will
+     *           return byte offsets. `"UTF16"` will return
+     *           [code unit](http://unicode.org/glossary/#code_unit) offsets.
+     *           `"UTF32"` will return
+     *           [unicode character](http://unicode.org/glossary/#character)
+     *           offsets.
      * }
      * @return Annotation
      */
@@ -199,13 +223,21 @@ class NaturalLanguageClient
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/natural-language/reference/rest/v1beta1/documents/analyzeSyntax Analyze Syntax API documentation
+     * @see https://cloud.google.com/natural-language/docs/reference/rest/v1beta1/documents/analyzeSyntax Analyze Syntax API documentation
      * @codingStandardsIgnoreEnd
      *
-     * @param string|StorageObject $content The content to analyze.
+     * @param string|StorageObject $content The content to analyze. May be
+     *        either a string of UTF-8 encoded content, a URI pointing to a
+     *        Google Cloud Storage object in the format of
+     *        `gs://{bucket-name}/{object-name}` or a
+     *        {@see Google\Cloud\Storage\StorageObject}.
      * @param array $options [optional] {
      *     Configuration options.
      *
+     *     @type bool $detectGcsUri When providing $content as a string, this
+     *           flag determines whether or not to attempt to detect if the
+     *           string represents a Google Cloud Storage URI in the format of
+     *           `gs://{bucket-name}/{object-name}`. **Defaults to** `true`.
      *     @type string $type The document type. Acceptable values are
      *           `PLAIN_TEXT` or `HTML`. **Defaults to** `"PLAIN_TEXT"`.
      *     @type string $language The language of the document. Both ISO
@@ -214,7 +246,14 @@ class NaturalLanguageClient
      *           detected by the service.
      *     @type string $encodingType The text encoding type used by the API to
      *           calculate offsets. Acceptable values are `"NONE"`, `"UTF8"`,
-     *           `"UTF16"` and `"UTF32"`. **Defaults to**  `"UTF8"`.
+     *           `"UTF16"` and `"UTF32"`. **Defaults to** `"UTF8"`. Please note
+     *           the following behaviors for the encoding type setting: `"NONE"`
+     *           will return a value of "-1" for offsets. `"UTF8"` will
+     *           return byte offsets. `"UTF16"` will return
+     *           [code unit](http://unicode.org/glossary/#code_unit) offsets.
+     *           `"UTF32"` will return
+     *           [unicode character](http://unicode.org/glossary/#character)
+     *           offsets.
      * }
      * @return Annotation
      */
@@ -252,13 +291,21 @@ class NaturalLanguageClient
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/natural-language/reference/rest/v1beta1/documents/annotateText Annotate Text API documentation
+     * @see https://cloud.google.com/natural-language/docs/reference/rest/v1beta1/documents/annotateText Annotate Text API documentation
      * @codingStandardsIgnoreEnd
      *
-     * @param string|StorageObject $content The content to annotate.
+     * @param string|StorageObject $content The content to analyze. May be
+     *        either a string of UTF-8 encoded content, a URI pointing to a
+     *        Google Cloud Storage object in the format of
+     *        `gs://{bucket-name}/{object-name}` or a
+     *        {@see Google\Cloud\Storage\StorageObject}.
      * @param array $options [optional] {
      *     Configuration options.
      *
+     *     @type bool $detectGcsUri When providing $content as a string, this
+     *           flag determines whether or not to attempt to detect if the
+     *           string represents a Google Cloud Storage URI in the format of
+     *           `gs://{bucket-name}/{object-name}`. **Defaults to** `true`.
      *     @type array $features Features to apply to the request. Valid values
      *           are `syntax`, `sentiment`, and `entities`. If no features are
      *           provided the request will run with all three enabled.
@@ -270,7 +317,14 @@ class NaturalLanguageClient
      *           detected by the service.
      *     @type string $encodingType The text encoding type used by the API to
      *           calculate offsets. Acceptable values are `"NONE"`, `"UTF8"`,
-     *           `"UTF16"` and `"UTF32"`. **Defaults to** `"UTF8"`.
+     *           `"UTF16"` and `"UTF32"`. **Defaults to** `"UTF8"`. Please note
+     *           the following behaviors for the encoding type setting: `"NONE"`
+     *           will return a value of "-1" for offsets. `"UTF8"` will
+     *           return byte offsets. `"UTF16"` will return
+     *           [code unit](http://unicode.org/glossary/#code_unit) offsets.
+     *           `"UTF32"` will return
+     *           [unicode character](http://unicode.org/glossary/#character)
+     *           offsets.
      * }
      * @return Annotation
      */
@@ -321,15 +375,19 @@ class NaturalLanguageClient
         $docOptions = ['type', 'language', 'content', 'gcsContentUri'];
         $options += [
             'encodingType' => 'UTF8',
-            'type' => 'PLAIN_TEXT'
+            'type' => 'PLAIN_TEXT',
+            'detectGcsUri' => true
         ];
 
         if ($content instanceof StorageObject) {
-            $objIdentity = $content->identity();
-            $options['gcsContentUri'] = 'gs://' . $objIdentity['bucket'] . '/' . $objIdentity['object'];
+            $options['gcsContentUri'] = $content->gcsUri();
+        } elseif ($options['detectGcsUri'] && substr($content, 0, 5) === 'gs://') {
+            $options['gcsContentUri'] = $content;
         } else {
             $options['content'] = $content;
         }
+
+        unset($options['detectGcsUri']);
 
         foreach ($options as $option => $value) {
             if (in_array($option, $docOptions)) {

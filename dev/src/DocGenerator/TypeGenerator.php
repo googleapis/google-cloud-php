@@ -36,9 +36,9 @@ class TypeGenerator
         $this->types[] = $type;
     }
 
-    public function write()
+    public function write($pretty = false)
     {
-        $writer = new Writer(json_encode($this->types), $this->outputPath);
+        $writer = new Writer($this->types, $this->outputPath, $pretty);
         $writer->write('types.json');
     }
 }

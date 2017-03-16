@@ -17,10 +17,11 @@
 
 namespace Google\Cloud\Logging\Connection;
 
-use Google\Cloud\RequestBuilder;
-use Google\Cloud\RequestWrapper;
-use Google\Cloud\RestTrait;
-use Google\Cloud\UriTrait;
+use Google\Cloud\Core\RequestBuilder;
+use Google\Cloud\Core\RequestWrapper;
+use Google\Cloud\Core\RestTrait;
+use Google\Cloud\Core\UriTrait;
+use Google\Cloud\Logging\LoggingClient;
 
 /**
  * Implementation of the
@@ -39,7 +40,8 @@ class Rest implements ConnectionInterface
     public function __construct(array $config = [])
     {
         $config += [
-            'serviceDefinitionPath' => __DIR__ . '/ServiceDefinition/logging-v2.json'
+            'serviceDefinitionPath' => __DIR__ . '/ServiceDefinition/logging-v2.json',
+            'componentVersion' => LoggingClient::VERSION
         ];
 
         $this->setRequestWrapper(new RequestWrapper($config));

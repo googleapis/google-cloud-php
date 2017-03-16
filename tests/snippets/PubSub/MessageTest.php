@@ -73,7 +73,7 @@ class MessageTest extends SnippetTestCase
 
         $snippet = $this->snippetFromClass(Message::class);
         $snippet->addLocal('connectionStub', $connection->reveal());
-        $snippet->insertAfterLine(3, '$reflection = new \ReflectionClass($pubsub);
+        $snippet->insertAfterLine(2, '$reflection = new \ReflectionClass($pubsub);
             $property = $reflection->getProperty(\'connection\');
             $property->setAccessible(true);
             $property->setValue($pubsub, $connectionStub);
@@ -85,7 +85,7 @@ class MessageTest extends SnippetTestCase
         );
 
         $res = $snippet->invoke('messages');
-        $this->assertInstanceOf(\Generator::class, $res->returnVal());
+        $this->assertContainsOnlyInstancesOf(Message::class, $res->returnVal());
         $this->assertEquals('hello world', $res->output());
     }
 

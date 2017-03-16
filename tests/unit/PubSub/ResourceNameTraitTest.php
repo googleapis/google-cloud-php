@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\PubSub;
+namespace Google\Cloud\Tests\Unit\PubSub;
 
 use Google\Cloud\PubSub\ResourceNameTrait;
 
@@ -28,35 +28,35 @@ class ResourceNameTraitTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->trait = $this->getObjectForTrait(ResourceNameTrait::class);
+        $this->trait = new ResourceNameTraitStub;
     }
 
     public function testPluckProjectId()
     {
-        $res = $this->trait->pluckName(
+        $res = $this->trait->call('pluckName', [
             'project',
             'projects/foo'
-        );
+        ]);
 
         $this->assertEquals('foo', $res);
     }
 
     public function testPluckTopicName()
     {
-        $res = $this->trait->pluckName(
+        $res = $this->trait->call('pluckName', [
             'topic',
             'projects/foo/topics/bar'
-        );
+        ]);
 
         $this->assertEquals('bar', $res);
     }
 
     public function testPluckSubscriptionName()
     {
-        $res = $this->trait->pluckName(
+        $res = $this->trait->call('pluckName', [
             'subscription',
             'projects/foo/subscriptions/bar'
-        );
+        ]);
 
         $this->assertEquals('bar', $res);
     }
@@ -66,26 +66,26 @@ class ResourceNameTraitTest extends \PHPUnit_Framework_TestCase
      */
     public function testPluckNameInvalidFormat()
     {
-        $this->trait->pluckName('lame', 'bar');
+        $this->trait->call('pluckName', ['lame', 'bar']);
     }
 
     public function testFormatProjectId()
     {
-        $res = $this->trait->formatName('project', 'foo');
+        $res = $this->trait->call('formatName', ['project', 'foo']);
 
         $this->assertEquals('projects/foo', $res);
     }
 
     public function testFormatTopicName()
     {
-        $res = $this->trait->formatName('topic', 'foo', 'my-project');
+        $res = $this->trait->call('formatName', ['topic', 'foo', 'my-project']);
 
         $this->assertEquals('projects/my-project/topics/foo', $res);
     }
 
     public function testFormatSubscriptionName()
     {
-        $res = $this->trait->formatName('subscription', 'foo', 'my-project');
+        $res = $this->trait->call('formatName', ['subscription', 'foo', 'my-project']);
 
         $this->assertEquals('projects/my-project/subscriptions/foo', $res);
     }
@@ -95,46 +95,46 @@ class ResourceNameTraitTest extends \PHPUnit_Framework_TestCase
      */
     public function testFormatNameInvalidType()
     {
-        $this->trait->formatName('lame', ['foo']);
+        $this->trait->call('formatName', ['lame', 'foo']);
     }
 
     public function testIsFullyQualifiedProjectId()
     {
-        $this->assertTrue($this->trait->isFullyQualifiedName(
+        $this->assertTrue($this->trait->call('isFullyQualifiedName', [
             'project',
             'projects/foo'
-        ));
+        ]));
 
-        $this->assertFalse($this->trait->isFullyQualifiedName(
+        $this->assertFalse($this->trait->call('isFullyQualifiedName', [
             'project',
             'foo'
-        ));
+        ]));
     }
 
     public function testIsFullyQualifiedTopicName()
     {
-        $this->assertTrue($this->trait->isFullyQualifiedName(
+        $this->assertTrue($this->trait->call('isFullyQualifiedName', [
             'topic',
             'projects/foo/topics/bar'
-        ));
+        ]));
 
-        $this->assertFalse($this->trait->isFullyQualifiedName(
+        $this->assertFalse($this->trait->call('isFullyQualifiedName', [
             'topic',
             'foo'
-        ));
+        ]));
     }
 
     public function testIsFullyQualifiedSubscriptionName()
     {
-        $this->assertTrue($this->trait->isFullyQualifiedName(
+        $this->assertTrue($this->trait->call('isFullyQualifiedName', [
             'subscription',
             'projects/foo/subscriptions/bar'
-        ));
+        ]));
 
-        $this->assertFalse($this->trait->isFullyQualifiedName(
+        $this->assertFalse($this->trait->call('isFullyQualifiedName', [
             'subscription',
             'foo'
-        ));
+        ]));
     }
 
     /**
@@ -142,6 +142,16 @@ class ResourceNameTraitTest extends \PHPUnit_Framework_TestCase
      */
     public function testIsFullyQualifiedNameInvalidType()
     {
-        $this->trait->isFullyQualifiedName('lame', 'foo');
+        $this->trait->call('isFullyQualifiedName', ['lame', 'foo']);
+    }
+}
+
+class ResourceNameTraitStub
+{
+    use ResourceNameTrait;
+
+    public function call($method, array $args)
+    {
+        return call_user_func_array([$this, $method], $args);
     }
 }

@@ -2,5 +2,5 @@
 build/
 composer.phar
 composer.lock
-docs/json/**/*.json
+docs/json/*
 vendor/

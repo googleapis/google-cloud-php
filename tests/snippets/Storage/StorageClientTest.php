@@ -47,13 +47,6 @@ class StorageClientTest extends SnippetTestCase
         $this->assertInstanceOf(StorageClient::class, $res->returnVal());
     }
 
-    public function testClassDirectInstantiation()
-    {
-        $snippet = $this->snippetFromClass(StorageClient::class, 1);
-        $res = $snippet->invoke('storage');
-        $this->assertInstanceOf(StorageClient::class, $res->returnVal());
-    }
-
     public function testBucket()
     {
         $snippet = $this->snippetFromMethod(StorageClient::class, 'bucket');
@@ -112,6 +105,21 @@ class StorageClientTest extends SnippetTestCase
     public function testCreateBucket()
     {
         $snippet = $this->snippetFromMethod(StorageClient::class, 'createBucket');
+        $snippet->addLocal('storage', $this->client);
+
+        $this->connection->insertBucket(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([]);
+
+        $this->client->setConnection($this->connection->reveal());
+
+        $res = $snippet->invoke('bucket');
+        $this->assertInstanceOf(Bucket::class, $res->returnVal());
+    }
+
+    public function testCreateBucketWithLogging()
+    {
+        $snippet = $this->snippetFromMethod(StorageClient::class, 'createBucket', 1);
         $snippet->addLocal('storage', $this->client);
 
         $this->connection->insertBucket(Argument::any())

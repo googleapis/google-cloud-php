@@ -17,8 +17,8 @@
 
 namespace Google\Cloud\PubSub;
 
-use Google\Cloud\Iam\Iam;
-use Google\Cloud\Exception\NotFoundException;
+use Google\Cloud\Core\Iam\Iam;
+use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\PubSub\Connection\ConnectionInterface;
 use Google\Cloud\PubSub\Connection\IamTopic;
 use InvalidArgumentException;
@@ -28,11 +28,9 @@ use InvalidArgumentException;
  *
  * Example:
  * ```
- * use Google\Cloud\ServiceBuilder;
+ * use Google\Cloud\PubSub\PubSubClient;
  *
- * $client = new ServiceBuilder();
- *
- * $pubsub = $client->pubsub();
+ * $pubsub = new PubSubClient();
  * $topic = $pubsub->topic('my-new-topic');
  * ```
  *

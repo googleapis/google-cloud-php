@@ -17,14 +17,16 @@
 
 namespace Google\Cloud\Storage\Connection;
 
-use Google\Cloud\RequestBuilder;
-use Google\Cloud\RequestWrapper;
-use Google\Cloud\RestTrait;
+use Google\Cloud\Core\RequestBuilder;
+use Google\Cloud\Core\RequestWrapper;
+use Google\Cloud\Core\RestTrait;
+use Google\Cloud\Core\Upload\AbstractUploader;
+use Google\Cloud\Core\Upload\MultipartUploader;
+use Google\Cloud\Core\Upload\ResumableUploader;
+use Google\Cloud\Core\Upload\StreamableUploader;
+use Google\Cloud\Core\UriTrait;
 use Google\Cloud\Storage\Connection\ConnectionInterface;
-use Google\Cloud\Upload\AbstractUploader;
-use Google\Cloud\Upload\MultipartUploader;
-use Google\Cloud\Upload\ResumableUploader;
-use Google\Cloud\UriTrait;
+use Google\Cloud\Storage\StorageClient;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Request;
 
@@ -47,7 +49,8 @@ class Rest implements ConnectionInterface
     public function __construct(array $config = [])
     {
         $config += [
-            'serviceDefinitionPath' => __DIR__ . '/ServiceDefinition/storage-v1.json'
+            'serviceDefinitionPath' => __DIR__ . '/ServiceDefinition/storage-v1.json',
+            'componentVersion' => StorageClient::VERSION
         ];
 
         $this->setRequestWrapper(new RequestWrapper($config));
@@ -230,10 +233,16 @@ class Rest implements ConnectionInterface
     public function insertObject(array $args = [])
     {
         $args = $this->resolveUploadOptions($args);
-        $isResumable = $args['resumable'];
-        $uploadType = $isResumable
-            ? AbstractUploader::UPLOAD_TYPE_RESUMABLE
-            : AbstractUploader::UPLOAD_TYPE_MULTIPART;
+
+        $uploadType = AbstractUploader::UPLOAD_TYPE_RESUMABLE;
+        if ($args['streamable']) {
+            $uploaderClass = StreamableUploader::class;
+        } elseif ($args['resumable']) {
+            $uploaderClass = ResumableUploader::class;
+        } else {
+            $uploaderClass = MultipartUploader::class;
+            $uploadType = AbstractUploader::UPLOAD_TYPE_MULTIPART;
+        }
 
         $uriParams = [
             'bucket' => $args['bucket'],
@@ -243,16 +252,7 @@ class Rest implements ConnectionInterface
             ]
         ];
 
-        if ($isResumable) {
-            return new ResumableUploader(
-                $this->requestWrapper,
-                $args['data'],
-                $this->expandUri(self::UPLOAD_URI, $uriParams),
-                $args['uploaderOptions']
-            );
-        }
-
-        return new MultipartUploader(
+        return new $uploaderClass(
             $this->requestWrapper,
             $args['data'],
             $this->expandUri(self::UPLOAD_URI, $uriParams),
@@ -270,6 +270,7 @@ class Rest implements ConnectionInterface
             'name' => null,
             'validate' => true,
             'resumable' => null,
+            'streamable' => null,
             'predefinedAcl' => null,
             'metadata' => []
         ];

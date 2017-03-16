@@ -17,38 +17,31 @@
 
 namespace Google\Cloud\Translate;
 
-use Google\Cloud\ClientTrait;
+use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Translate\Connection\ConnectionInterface;
 use Google\Cloud\Translate\Connection\Rest;
 
 /**
- * Google Translate client. Provides the ability to dynamically
- * translate text between thousands of language pairs and lets websites and
- * programs integrate with the Google Cloud Translation API programmatically.
- * The Google Cloud Translation API is available as a paid service. See the
- * [Pricing](https://cloud.google.com/translation/v2/pricing) and
- * [FAQ](https://cloud.google.com/translation/v2/faq) pages for details. Find
- * more information at the
+ * Google Cloud Translation provides the ability to dynamically translate
+ * text between thousands of language pairs and lets websites and programs
+ * integrate with translation service programmatically. Find more
+ * information at the the
  * [Google Cloud Translation docs](https://cloud.google.com/translation/docs/).
  *
+ * The Google Cloud Translation API is available as a paid
+ * service. See the [Pricing](https://cloud.google.com/translation/v2/pricing)
+ * and [FAQ](https://cloud.google.com/translation/v2/faq) pages for details.
+ *
  * Please note that while the Google Cloud Translation API supports
- * authentication via service account and application default credentials like
- * other Cloud Platform APIs, it also supports authentication via a public API
- * access key. If you wish to authenticate using an API key, follow the
+ * authentication via service account and application default credentials
+ * like other Cloud Platform APIs, it also supports authentication via a
+ * public API access key. If you wish to authenticate using an API key,
+ * follow the
  * [before you begin](https://cloud.google.com/translation/v2/translating-text-with-rest#before-you-begin)
  * instructions to learn how to generate a key.
  *
  * Example:
  * ```
- * use Google\Cloud\ServiceBuilder;
- *
- * $cloud = new ServiceBuilder();
- *
- * $translate = $cloud->translate();
- * ```
- *
- * ```
- * // TranslateClient can be instantiated directly.
  * use Google\Cloud\Translate\TranslateClient;
  *
  * $translate = new TranslateClient();
@@ -57,6 +50,8 @@ use Google\Cloud\Translate\Connection\Rest;
 class TranslateClient
 {
     use ClientTrait;
+
+    const VERSION = '0.1.0';
 
     const ENGLISH_LANGUAGE_CODE = 'en';
 
@@ -203,7 +198,7 @@ class TranslateClient
      *           either plain-text or HTML. Acceptable values are `html` or
      *           `text`. **Defaults to** `"html"`.
      *     @type string $model The model to use for the translation request. May
-     *           be `nmt` or `base`. **Defaults to** an empty string.
+     *           be `nmt` or `base`. **Defaults to** null.
      * }
      * @return array A set of translation results. Each result includes a
      *         `source` key containing the detected or provided language of the
@@ -213,15 +208,19 @@ class TranslateClient
     public function translateBatch(array $strings, array $options = [])
     {
         $options += [
-            'model' => '',
+            'model' => null,
         ];
 
-        $response = $this->connection->listTranslations($options + [
+        $options = array_filter($options + [
             'q' => $strings,
             'key' => $this->key,
             'target' => $this->targetLanguage,
             'model' => $options['model']
-        ]);
+        ], function ($opt) {
+            return !is_null($opt);
+        });
+
+        $response = $this->connection->listTranslations($options);
 
         $translations = [];
         $strings = array_values($strings);

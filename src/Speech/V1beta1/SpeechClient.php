@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016, Google Inc. All rights reserved.
+ * Copyright 2017, Google Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,11 +34,13 @@ use Google\GAX\CallSettings;
 use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\LongRunning\OperationsClient;
+use Google\GAX\OperationResponse;
 use google\cloud\speech\v1beta1\AsyncRecognizeRequest;
 use google\cloud\speech\v1beta1\AsyncRecognizeResponse;
 use google\cloud\speech\v1beta1\RecognitionAudio;
 use google\cloud\speech\v1beta1\RecognitionConfig;
 use google\cloud\speech\v1beta1\SpeechGrpcClient;
+use google\cloud\speech\v1beta1\StreamingRecognizeRequest;
 use google\cloud\speech\v1beta1\SyncRecognizeRequest;
 
 /**
@@ -54,8 +56,14 @@ use google\cloud\speech\v1beta1\SyncRecognizeRequest;
  * ```
  * try {
  *     $speechClient = new SpeechClient();
+ *     $encoding = AudioEncoding::FLAC;
+ *     $sampleRate = 44100;
  *     $config = new RecognitionConfig();
+ *     $config->setEncoding($encoding);
+ *     $config->setSampleRate($sampleRate);
+ *     $uri = "gs://bucket_name/file_name.flac";
  *     $audio = new RecognitionAudio();
+ *     $audio->setUri($uri);
  *     $response = $speechClient->syncRecognize($config, $audio);
  * } finally {
  *     $speechClient->close();
@@ -92,7 +100,7 @@ class SpeechClient
     /**
      * The code generator version, to be included in the agent header.
      */
-    const CODEGEN_VERSION = '0.1.0';
+    const CODEGEN_VERSION = '0.0.5';
 
     private $grpcCredentialsHelper;
     private $speechStub;
@@ -111,9 +119,60 @@ class SpeechClient
         ];
     }
 
+    private static function getGrpcStreamingDescriptors()
+    {
+        return [
+            'streamingRecognize' => [
+                'grpcStreamingType' => 'BidiStreaming',
+            ],
+        ];
+    }
+
+    private static function getGapicVersion()
+    {
+        if (file_exists(__DIR__.'/../VERSION')) {
+            return trim(file_get_contents(__DIR__.'/../VERSION'));
+        } elseif (class_exists('\Google\Cloud\ServiceBuilder')) {
+            return \Google\Cloud\ServiceBuilder::VERSION;
+        } else {
+            return;
+        }
+    }
+
+    /**
+     * Return an OperationsClient object with the same endpoint as $this.
+     *
+     * @return \Google\GAX\LongRunning\OperationsClient
+     */
     public function getOperationsClient()
     {
         return $this->operationsClient;
+    }
+
+    /**
+     * Resume an existing long running operation that was previously started
+     * by a long running API method. If $methodName is not provided, or does
+     * not match a long running API method, then the operation can still be
+     * resumed, but the OperationResponse object will not deserialize the
+     * final response.
+     *
+     * @param string $operationName The name of the long running operation
+     * @param string $methodName    The name of the method used to start the operation
+     *
+     * @return \Google\GAX\OperationResponse
+     */
+    public function resumeOperation($operationName, $methodName = null)
+    {
+        $lroDescriptors = self::getLongRunningDescriptors();
+        if (!is_null($methodName) && array_key_exists($methodName, $lroDescriptors)) {
+            $options = $lroDescriptors[$methodName];
+        } else {
+            $options = [];
+        }
+        $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
+        $operation->reload();
+
+        return $operation;
     }
 
     // TODO(garrettjones): add channel (when supported in gRPC)
@@ -141,9 +200,6 @@ class SpeechClient
      *                              that don't use retries. For calls that use retries,
      *                              set the timeout in RetryOptions.
      *                              Default: 30000 (30 seconds)
-     *     @type string $appName The codename of the calling service. Default 'gax'.
-     *     @type string $appVersion The version of the calling service.
-     *                              Default: the current version of GAX.
      *     @type \Google\Auth\CredentialsLoader $credentialsLoader
      *                              A CredentialsLoader object created using the
      *                              Google\Auth library.
@@ -159,33 +215,43 @@ class SpeechClient
             ],
             'retryingOverride' => null,
             'timeoutMillis' => self::DEFAULT_TIMEOUT_MILLIS,
-            'appName' => 'gax',
-            'appVersion' => AgentHeaderDescriptor::getGaxVersion(),
+            'libName' => null,
+            'libVersion' => null,
         ];
         $options = array_merge($defaultOptions, $options);
 
-        $this->operationsClient = new OperationsClient([
-            'serviceAddress' => $options['serviceAddress'],
-            'scopes' => $options['scopes'],
-        ]);
+        if (array_key_exists('operationsClient', $options)) {
+            $this->operationsClient = $options['operationsClient'];
+        } else {
+            $this->operationsClient = new OperationsClient([
+                'serviceAddress' => $options['serviceAddress'],
+                'scopes' => $options['scopes'],
+                'libName' => $options['libName'],
+                'libVersion' => $options['libVersion'],
+            ]);
+        }
+
+        $gapicVersion = $options['libVersion'] ?: self::getGapicVersion();
 
         $headerDescriptor = new AgentHeaderDescriptor([
-            'clientName' => $options['appName'],
-            'clientVersion' => $options['appVersion'],
-            'codeGenName' => self::CODEGEN_NAME,
-            'codeGenVersion' => self::CODEGEN_VERSION,
-            'gaxVersion' => AgentHeaderDescriptor::getGaxVersion(),
-            'phpVersion' => phpversion(),
+            'libName' => $options['libName'],
+            'libVersion' => $options['libVersion'],
+            'gapicVersion' => $gapicVersion,
         ]);
 
         $defaultDescriptors = ['headerDescriptor' => $headerDescriptor];
         $this->descriptors = [
             'syncRecognize' => $defaultDescriptors,
             'asyncRecognize' => $defaultDescriptors,
+            'streamingRecognize' => $defaultDescriptors,
         ];
         $longRunningDescriptors = self::getLongRunningDescriptors();
         foreach ($longRunningDescriptors as $method => $longRunningDescriptor) {
             $this->descriptors[$method]['longRunningDescriptor'] = $longRunningDescriptor + ['operationsClient' => $this->operationsClient];
+        }
+        $grpcStreamingDescriptors = self::getGrpcStreamingDescriptors();
+        foreach ($grpcStreamingDescriptors as $method => $grpcStreamingDescriptor) {
+            $this->descriptors[$method]['grpcStreamingDescriptor'] = $grpcStreamingDescriptor;
         }
 
         $clientConfigJsonString = file_get_contents(__DIR__.'/resources/speech_client_config.json');
@@ -230,8 +296,14 @@ class SpeechClient
      * ```
      * try {
      *     $speechClient = new SpeechClient();
+     *     $encoding = AudioEncoding::FLAC;
+     *     $sampleRate = 44100;
      *     $config = new RecognitionConfig();
+     *     $config->setEncoding($encoding);
+     *     $config->setSampleRate($sampleRate);
+     *     $uri = "gs://bucket_name/file_name.flac";
      *     $audio = new RecognitionAudio();
+     *     $audio->setUri($uri);
      *     $response = $speechClient->syncRecognize($config, $audio);
      * } finally {
      *     $speechClient->close();
@@ -288,8 +360,14 @@ class SpeechClient
      * ```
      * try {
      *     $speechClient = new SpeechClient();
+     *     $encoding = AudioEncoding::FLAC;
+     *     $sampleRate = 44100;
      *     $config = new RecognitionConfig();
+     *     $config->setEncoding($encoding);
+     *     $config->setSampleRate($sampleRate);
+     *     $uri = "gs://bucket_name/file_name.flac";
      *     $audio = new RecognitionAudio();
+     *     $audio->setUri($uri);
      *     $operationResponse = $speechClient->asyncRecognize($config, $audio);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
@@ -297,6 +375,23 @@ class SpeechClient
      *       // doSomethingWith($result)
      *     } else {
      *       $error = $operationResponse->getError();
+     *       // handleError($error)
+     *     }
+     *
+     *     // OR start the operation, keep the operation name, and resume later
+     *     $operationResponse = $speechClient->asyncRecognize($config, $audio);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $speechClient->resumeOperation($operationName, 'asyncRecognize');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *       $result = $newOperationResponse->getResult();
+     *       // doSomethingWith($result)
+     *     } else {
+     *       $error = $newOperationResponse->getError();
      *       // handleError($error)
      *     }
      * } finally {
@@ -340,6 +435,75 @@ class SpeechClient
 
         return $callable(
             $request,
+            [],
+            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+    }
+
+    /**
+     * Perform bidirectional streaming speech-recognition: receive results while
+     * sending audio. This method is only available via the gRPC API (not REST).
+     *
+     * Sample code:
+     * ```
+     * try {
+     *     $speechClient = new SpeechClient();
+     *     $request = new StreamingRecognizeRequest();
+     *     $requests = [$request];
+     *
+     *     // Write all requests to the server, then read all responses until the
+     *     // stream is complete
+     *     $stream = $speechClient->streamingRecognize();
+     *     $stream->writeAll($requests);
+     *     foreach ($stream->closeWriteAndReadAll() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     *
+     *     // OR write requests individually, making read() calls if
+     *     // required. Call closeWrite() once writes are complete, and read the
+     *     // remaining responses from the server.
+     *     $stream = $speechClient->streamingRecognize();
+     *     foreach ($requests as $request) {
+     *         $stream->write($request);
+     *         // if required, read a single response from the stream
+     *         $element = $stream->read();
+     *         // doSomethingWith($element)
+     *     }
+     *     $stream->closeWrite();
+     *     $element = $stream->read();
+     *     while (!is_null($element)) {
+     *         // doSomethingWith($element)
+     *         $element = $stream->read();
+     *     }
+     * } finally {
+     *     $speechClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type int $timeoutMillis
+     *          Timeout to use for this call.
+     * }
+     *
+     * @return \Google\GAX\BidiStreamingResponse
+     *
+     * @throws \Google\GAX\ApiException if the remote call fails
+     */
+    public function streamingRecognize($optionalArgs = [])
+    {
+        $mergedSettings = $this->defaultCallSettings['streamingRecognize']->merge(
+            new CallSettings($optionalArgs)
+        );
+        $callable = ApiCallable::createApiCall(
+            $this->speechStub,
+            'StreamingRecognize',
+            $mergedSettings,
+            $this->descriptors['streamingRecognize']
+        );
+
+        return $callable(
+            null,
             [],
             ['call_credentials_callback' => $this->createCredentialsCallback()]);
     }

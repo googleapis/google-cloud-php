@@ -18,13 +18,14 @@
 namespace Google\Cloud\Tests\Snippets\Storage;
 
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
-use Google\Cloud\Exception\GoogleException;
+use Google\Cloud\Core\Exception\GoogleException;
 use Google\Cloud\Storage\Acl;
 use Google\Cloud\Storage\Bucket;
 use Google\Cloud\Storage\Connection\ConnectionInterface;
 use Google\Cloud\Storage\StorageObject;
-use Google\Cloud\Upload\MultipartUploader;
-use Google\Cloud\Upload\ResumableUploader;
+use Google\Cloud\Core\Upload\MultipartUploader;
+use Google\Cloud\Core\Upload\ResumableUploader;
+use Google\Cloud\Core\Upload\StreamableUploader;
 use Prophecy\Argument;
 
 /**
@@ -194,6 +195,26 @@ class BucketTest extends SnippetTestCase
         $this->bucket->setConnection($this->connection->reveal());
 
         $res = $snippet->invoke('object');
+    }
+
+    public function testGetStreamableUploader()
+    {
+        $snippet = $this->snippetFromMethod(Bucket::class, 'getStreamableUploader');
+        $snippet->addLocal('bucket', $this->bucket);
+        $snippet->addUse(GoogleException::class);
+        $snippet->replace("data.txt", 'php://temp');
+
+        $uploader = $this->prophesize(StreamableUploader::class);
+        $uploader->upload()
+            ->shouldBeCalledTimes(1);
+
+        $this->connection->insertObject(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn($uploader->reveal());
+
+        $this->bucket->setConnection($this->connection->reveal());
+
+        $res = $snippet->invoke();
     }
 
     public function testObject()

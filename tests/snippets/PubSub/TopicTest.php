@@ -18,7 +18,7 @@
 namespace Google\Cloud\Tests\Snippets\PubSub;
 
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
-use Google\Cloud\Iam\Iam;
+use Google\Cloud\Core\Iam\Iam;
 use Google\Cloud\PubSub\Connection\ConnectionInterface;
 use Google\Cloud\PubSub\Subscription;
 use Google\Cloud\PubSub\Topic;
@@ -224,7 +224,7 @@ class TopicTest extends SnippetTestCase
         $this->assertEquals(self::SUBSCRIPTION, $res->output());
     }
 
-    public function iam()
+    public function testIam()
     {
         $snippet = $this->snippetFromMethod(Topic::class, 'iam');
         $snippet->addLocal('topic', $this->topic);

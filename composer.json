@@ -55,8 +55,8 @@
         "james-heinrich/getid3": "^1.9",
         "erusev/parsedown": "^1.6",
         "vierbergenlars/php-semver": "^3.0",
-        "google/proto-client-php": "dev-master",
-        "google/gax": "^0.7"
+        "google/proto-client-php": "^0.9",
+        "google/gax": "^0.8"
     },
     "suggest": {
         "google/gax": "Required to support gRPC",
@@ -78,14 +78,12 @@
     "scripts": {
         "google-cloud": "dev/google-cloud"
     },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/jdpedrie/proto-client-php-private"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/michaelbausor/gax-php"
+    "extra": {
+        "component": {
+            "id": "google-cloud",
+            "target": "git@github.com:jdpedrie-gcp/google-cloud-php.git",
+            "path": "src",
+            "entry": "ServiceBuilder.php"
         }
-    ]
+    }
 }

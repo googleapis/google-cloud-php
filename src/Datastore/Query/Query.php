@@ -31,10 +31,9 @@ use InvalidArgumentException;
  *
  * Example:
  * ```
- * use Google\Cloud\ServiceBuilder;
+ * use Google\Cloud\Datastore\DatastoreClient;
  *
- * $cloud = new ServiceBuilder();
- * $datastore = $cloud->datastore();
+ * $datastore = new DatastoreClient();
  *
  * $query = $datastore->query();
  * $query->kind('Companies');

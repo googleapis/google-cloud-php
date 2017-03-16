@@ -17,15 +17,15 @@
 
 namespace Google\Cloud\PubSub;
 
-use Google\Cloud\ClientTrait;
+use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\PubSub\Connection\Grpc;
 use Google\Cloud\PubSub\Connection\Rest;
 use InvalidArgumentException;
 use Psr\Cache\CacheItemPoolInterface;
 
 /**
- * Google Cloud Pub/Sub client. Allows you to send and receive
- * messages between independent applications. Find more information at
+ * Google Cloud Pub/Sub allows you to send and receive
+ * messages between independent applications. Find more information at the
  * [Google Cloud Pub/Sub docs](https://cloud.google.com/pubsub/docs/).
  *
  * To enable the [Google Cloud Pub/Sub Emulator](https://cloud.google.com/pubsub/emulator),
@@ -57,15 +57,6 @@ use Psr\Cache\CacheItemPoolInterface;
  *
  * Example:
  * ```
- * use Google\Cloud\ServiceBuilder;
- *
- * $cloud = new ServiceBuilder();
- *
- * $pubsub = $cloud->pubsub();
- * ```
- *
- * ```
- * // PubSubClient can be instantiated directly.
  * use Google\Cloud\PubSub\PubSubClient;
  *
  * $pubsub = new PubSubClient();
@@ -73,14 +64,13 @@ use Psr\Cache\CacheItemPoolInterface;
  *
  * ```
  * // Using the Pub/Sub Emulator
- * use Google\Cloud\ServiceBuilder;
+ * use Google\Cloud\PubSub\PubSubClient;
  *
  * // Be sure to use the port specified when starting the emulator.
  * // `8900` is used as an example only.
  * putenv('PUBSUB_EMULATOR_HOST=http://localhost:8900');
  *
- * $cloud = new ServiceBuilder();
- * $pubsub = $cloud->pubsub();
+ * $pubsub = new PubSubClient();
  * ```
  */
 class PubSubClient
@@ -88,6 +78,8 @@ class PubSubClient
     use ClientTrait;
     use IncomingMessageTrait;
     use ResourceNameTrait;
+
+    const VERSION = '0.1.0';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/pubsub';
 
@@ -217,7 +209,7 @@ class PubSubClient
      *     @type int $pageSize Maximum number of results to return per
      *           request.
      * }
-     * @return Generator<Google\Cloud\PubSub\Topic>
+     * @return \Generator<Google\Cloud\PubSub\Topic>
      */
     public function topics(array $options = [])
     {

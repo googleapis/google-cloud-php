@@ -1,0 +1,22 @@
+{
+    "name": "google/cloud-storage",
+    "description": "Cloud Storage Client for PHP",
+    "license": "Apache-2.0",
+    "minimum-stability": "stable",
+    "require": {
+        "google/cloud-core": "*"
+    },
+    "extra": {
+        "component": {
+            "id": "cloud-storage",
+            "target": "GoogleCloudPlatform/google-cloud-php-storage.git",
+            "path": "src/Storage",
+            "entry": "StorageClient.php"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Google\\Cloud\\Storage\\": ""
+        }
+    }
+}

@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\PubSub;
 
-use Google\Cloud\Exception\GoogleException;
+use Google\Cloud\Core\Exception\GoogleException;
 use Google\Cloud\PubSub\Connection\ConnectionInterface;
 
 /**

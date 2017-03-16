@@ -19,7 +19,9 @@ namespace Google\Cloud\Dev\DocGenerator\Command;
 
 use Google\Cloud\Dev\DocGenerator\DocGenerator;
 use Google\Cloud\Dev\DocGenerator\GuideGenerator;
+use Google\Cloud\Dev\DocGenerator\TableOfContents;
 use Google\Cloud\Dev\DocGenerator\TypeGenerator;
+use Google\Cloud\Dev\GetComponentsTrait;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 use RecursiveRegexIterator;
@@ -27,11 +29,17 @@ use RegexIterator;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class Docs extends Command
 {
-    const DEFAULT_OUTPUT_DIR = 'docs/json/master';
+    use GetComponentsTrait;
+
+    const DEFAULT_OUTPUT_DIR = 'docs/json';
+    const TOC_SOURCE_DIR = 'docs/contents';
+    const TOC_TEMPLATE = 'docs/toc.json';
+    const OVERVIEW_FILE = 'docs/overview.html';
     const DEFAULT_SOURCE_DIR = 'src';
 
     private $cliBasePath;
@@ -47,29 +55,120 @@ class Docs extends Command
     {
         $this->setName('docs')
             ->setDescription('Generate Documentation')
-            ->addArgument('source', InputArgument::OPTIONAL, 'The source directory to traverse and parse')
-            ->addArgument('output', InputArgument::OPTIONAL, 'The directory to output files into');
+            ->addOption('release', 'r', InputOption::VALUE_REQUIRED, 'If set, docs will be generated into tag folders' .
+                ' such as v1.0.0 rather than master.', false)
+            ->addOption('pretty', 'p', InputOption::VALUE_OPTIONAL, 'If set, json files will be written with pretty'.
+                ' formatting using PHP\'s JSON_PRETTY_PRINT flag', false);
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $paths = [
-            'source' => ($input->getArgument('source'))
-                ? $this->cliBasePath .'/../'. $input->getArgument('source')
-                : $this->cliBasePath .'/../'. self::DEFAULT_SOURCE_DIR,
+        $release = ($input->getOption('release') === false && $input->getOption('release') !== 'false')
+            ? null
+            : $input->getOption('release');
 
-            'output' => ($input->getArgument('output'))
-                ? $this->cliBasePath .'/../'. $input->getArgument('output')
-                : $this->cliBasePath .'/../'. self::DEFAULT_OUTPUT_DIR
+        $pretty = ($input->getOption('pretty') === false) ? false : true;
+
+        $paths = [
+            'source' => $this->cliBasePath .'/../'. self::DEFAULT_SOURCE_DIR,
+            'output' => $this->cliBasePath .'/../'. self::DEFAULT_OUTPUT_DIR,
+            'project' => $this->cliBasePath .'/../',
+            'manifest' => $this->cliBasePath .'/../docs/manifest.json',
+            'toc' => $this->cliBasePath .'/../'. self::TOC_SOURCE_DIR,
+            'tocTemplate' => $this->cliBasePath .'/../'. self::TOC_TEMPLATE,
+            'overview' => $this->cliBasePath .'/../'. self::OVERVIEW_FILE
         ];
 
-        $types = new TypeGenerator($paths['output']);
+        $components = $this->getComponents($paths['source']);
+        $tocTemplate = json_decode(file_get_contents($paths['tocTemplate']), true);
 
-        $sourceFiles = $this->getFilesList($paths['source']);
-        $docs = new DocGenerator($types, $sourceFiles, $paths['output'], $this->cliBasePath);
-        $docs->generate();
+        foreach ($components as $component) {
+            $input = $paths['project'] . $component['path'];
+            $source = $this->getFilesList($input);
+            $this->generateComponentDocumentation(
+                $output,
+                $source,
+                $component,
+                $paths,
+                $tocTemplate,
+                $release,
+                $pretty
+            );
+        }
 
-        $types->write();
+        $source = $this->getFilesList($paths['project'] . '/src');
+        $component = [
+            'id' => 'google-cloud',
+            'path' => 'src/'
+        ];
+
+        $this->generateComponentDocumentation(
+            $output,
+            $source,
+            $component,
+            $paths,
+            $tocTemplate,
+            $release,
+            $pretty,
+            false
+        );
+    }
+
+    private function generateComponentDocumentation(
+        OutputInterface $output,
+        array $source,
+        array $component,
+        array $paths,
+        $tocTemplate,
+        $release = false,
+        $pretty = false,
+        $linkCrossComponent = true
+    ) {
+        $output->writeln(sprintf('Writing documentation for %s', $component['id']));
+        $output->writeln('--------------');
+
+        $version = $this->getComponentVersion($paths['manifest'], $component['id']);
+
+        $outputPath = ($release)
+            ? $paths['output'] .'/'. $component['id'] .'/'. $version
+            : $paths['output'] .'/'. $component['id'] .'/master';
+
+        $output->writeln(sprintf('Writing to %s', realpath($outputPath)));
+
+        $types = new TypeGenerator($outputPath);
+
+        $docs = new DocGenerator(
+            $types,
+            $source,
+            $outputPath,
+            $this->cliBasePath,
+            $component['id'],
+            $paths['manifest'],
+            $release,
+            $linkCrossComponent
+        );
+
+        $docs->generate($component['path'], $pretty);
+
+        $types->write($pretty);
+
+        $output->writeln(sprintf('Writing table of contents to %s', realpath($outputPath)));
+        $contents = json_decode(file_get_contents($paths['toc'] .'/'. $component['id'] .'.json'), true);
+
+        $toc = new TableOfContents(
+            $tocTemplate,
+            $component['id'],
+            $release,
+            $paths['toc'],
+            $outputPath
+        );
+        $toc->generate($pretty);
+
+        $output->writeln(sprintf('Copying overview.html to %s', realpath($outputPath)));
+        copy($paths['overview'], $outputPath .'/overview.html');
+
+        $output->writeln(' ');
+        $output->writeln(' ');
     }
 
     private function getFilesList($source)

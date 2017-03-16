@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Tests\System\Datastore;
 
-use Google\Cloud\Int64;
+use Google\Cloud\Core\Int64;
 
 /**
  * @group datastore

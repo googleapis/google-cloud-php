@@ -15,9 +15,10 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Storage;
+namespace Google\Cloud\Tests\Unit\Storage;
 
 use Google\Cloud\Storage\StorageClient;
+use Google\Cloud\Storage\StreamWrapper;
 use Prophecy\Argument;
 
 /**
@@ -81,6 +82,14 @@ class StorageClientTest extends \PHPUnit_Framework_TestCase
         $this->client->setConnection($this->connection->reveal());
 
         $this->assertInstanceOf('Google\Cloud\Storage\Bucket', $this->client->createBucket('bucket'));
+    }
+
+    public function testRegisteringStreamWrapper()
+    {
+        $this->assertTrue($this->client->registerStreamWrapper());
+        $this->assertEquals($this->client, StreamWrapper::getClient());
+        $this->assertTrue(in_array('gs', stream_get_wrappers()));
+        $this->client->unregisterStreamWrapper();
     }
 }
 

@@ -18,13 +18,14 @@
 namespace Google\Cloud\Logging\Connection;
 
 use DrSlump\Protobuf\Codec\CodecInterface;
+use Google\Cloud\Core\GrpcRequestWrapper;
+use Google\Cloud\Core\GrpcTrait;
+use Google\Cloud\Core\PhpArray;
 use Google\Cloud\Logging\Logger;
+use Google\Cloud\Logging\LoggingClient;
 use Google\Cloud\Logging\V2\ConfigServiceV2Client;
 use Google\Cloud\Logging\V2\LoggingServiceV2Client;
 use Google\Cloud\Logging\V2\MetricsServiceV2Client;
-use Google\Cloud\PhpArray;
-use Google\Cloud\GrpcRequestWrapper;
-use Google\Cloud\GrpcTrait;
 use google\logging\v2\LogEntry;
 use google\logging\v2\LogMetric;
 use google\logging\v2\LogSink;
@@ -103,7 +104,7 @@ class Grpc implements ConnectionInterface
         ]);
         $config['codec'] = $this->codec;
         $this->setRequestWrapper(new GrpcRequestWrapper($config));
-        $gaxConfig = $this->getGaxConfig();
+        $gaxConfig = $this->getGaxConfig(LoggingClient::VERSION);
 
         $this->configClient = new ConfigServiceV2Client($gaxConfig);
         $this->loggingClient = new LoggingServiceV2Client($gaxConfig);

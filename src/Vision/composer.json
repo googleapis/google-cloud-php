@@ -1,0 +1,25 @@
+{
+    "name": "google/cloud-vision",
+    "description": "Cloud Vision Client for PHP",
+    "license": "Apache-2.0",
+    "minimum-stability": "stable",
+    "require": {
+        "google/cloud-core": "*"
+    },
+    "suggest": {
+        "google/cloud-storage": "Annotate images stored in Google Cloud Storage"
+    },
+    "extra": {
+        "component": {
+            "id": "cloud-vision",
+            "target": "GoogleCloudPlatform/google-cloud-php-vision.git",
+            "path": "src/Vision",
+            "entry": "VisionClient.php"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Google\\Cloud\\Vision\\": ""
+        }
+    }
+}
