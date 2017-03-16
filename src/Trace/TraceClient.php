@@ -19,7 +19,6 @@ namespace Google\Cloud\Trace;
 
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\ClientTrait;
-use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Trace\Connection\ConnectionInterface;
 use Google\Cloud\Trace\Connection\Rest;
@@ -85,35 +84,29 @@ class TraceClient
     }
 
     /**
-     * Returns the projectId for this client.
-     *
-     * @return string
-     */
-    public function projectId()
-    {
-        return $this->projectId;
-    }
-
-    /**
      * Sends a Trace log in a simple fashion.
+     *
+     * @see https://cloud.google.com/trace/docs/reference/v1/rest/v1/projects/patchTraces
      *
      * @param  Trace $trace The trace log to send.
      * @return bool
      * @throws ServiceException
      */
-    public function insertTrace(Trace $trace)
+    public function insert(Trace $trace)
     {
-        return $this->insertTraceBatch([$trace]);
+        return $this->insertBatch([$trace]);
     }
 
     /**
      * Sends multiple Trace logs in a simple fashion.
      *
+     * @see https://cloud.google.com/trace/docs/reference/v1/rest/v1/projects/patchTraces
+     *
      * @param Trace[] $traces The trace logs to send.
      * @return bool
      * @throws ServiceException
      */
-    public function insertTraceBatch(array $traces)
+    public function insertBatch(array $traces)
     {
         // throws ServiceException on failure
         $this->connection->patchTraces([
@@ -126,27 +119,6 @@ class TraceClient
     }
 
     /**
-     * Fetch a single trace by traceId.
-     *
-     * @param  string $traceId The ID of the trace to return
-     * @return Trace
-     * @throws ServiceException
-     */
-    public function getTrace($traceId)
-    {
-        $trace = $this->connection->getTrace([
-            'projectId' => $this->projectId,
-            'traceId' => $traceId
-        ]);
-
-        if (empty($trace)) {
-            throw new NotFoundException('Trace ID does not exist', 404);
-        };
-
-        return new Trace($this->pluck('projectId', $trace), $trace);
-    }
-
-    /**
      * Lazily find or instantiates a trace. There are no network requests made at this
      * point. To see the operations that can be performed on a trace please
      * see {@see Google\Cloud\Trace\Trace}.
@@ -156,7 +128,7 @@ class TraceClient
      */
     public function trace($traceId = null)
     {
-        return new Trace($this->projectId, ['traceId' => $traceId]);
+        return new Trace($this->connection, $this->projectId, $traceId);
     }
 
     /**
@@ -194,7 +166,11 @@ class TraceClient
                 ? $response['traces']
                 : [];
             foreach ($traces as $trace) {
-                yield new Trace($this->pluck('projectId', $trace), $trace);
+                // The API may not return spans unless you specify $viewType
+                $trace += [
+                    'spans' => null
+                ];
+                yield new Trace($this->connection, $trace['projectId'], $trace['traceId'], $trace['spans']);
             }
 
             $options['pageToken'] = isset($response['nextPageToken']) ? $response['nextPageToken'] : null;

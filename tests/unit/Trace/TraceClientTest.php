@@ -76,7 +76,8 @@ class TraceClientTest extends \PHPUnit_Framework_TestCase
         ]);
         $this->client->setConnection($this->connection->reveal());
 
-        $trace = $this->client->getTrace('1');
+        $trace = $this->client->trace('1');
+        $trace->reload();
         $this->assertEquals('1', $trace->traceId());
         $this->assertEquals(1, count($trace->spans()));
     }
@@ -89,7 +90,8 @@ class TraceClientTest extends \PHPUnit_Framework_TestCase
         $this->connection->getTrace(Argument::any())->willReturn([]);
         $this->client->setConnection($this->connection->reveal());
 
-        $trace = $this->client->getTrace('1');
+        $trace = $this->client->trace('1');
+        $trace->info();
     }
 
     public function testInsertTrace()
@@ -107,17 +109,15 @@ class TraceClientTest extends \PHPUnit_Framework_TestCase
         ]);
         $this->client->setConnection($this->connection->reveal());
 
-        $trace = new Trace('project', [
-            'spans' => [
+        $trace = new Trace($this->connection->reveal(), 'project', '1', [
                 ['name' => 'main']
             ]
-        ]);
-        $this->assertTrue($this->client->insertTrace($trace));
+        );
+        $this->assertTrue($this->client->insert($trace));
     }
 
     public function testInsertMultipleTraces()
     {
-
         $this->connection->patchTraces(Argument::any())->willReturn([
             'traces' => [
                 [
@@ -131,12 +131,11 @@ class TraceClientTest extends \PHPUnit_Framework_TestCase
         ]);
         $this->client->setConnection($this->connection->reveal());
 
-        $trace = new Trace('project', [
-            'spans' => [
+        $trace = new Trace($this->connection->reveal(), 'project', '1', [
                 ['name' => 'main']
             ]
-        ]);
-        $this->assertTrue($this->client->insertTraceBatch([$trace]));
+        );
+        $this->assertTrue($this->client->insertBatch([$trace]));
     }
 
 }
