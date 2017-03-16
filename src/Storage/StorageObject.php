@@ -219,6 +219,12 @@ class StorageObject
     public function update(array $metadata, array $options = [])
     {
         $options += $metadata;
+
+        // can only set predefinedAcl or acl
+        if (isset($options['predefinedAcl'])) {
+            $options['acl'] = null;
+        }
+
         return $this->info = $this->connection->patchObject($options + $this->identity);
     }
 
