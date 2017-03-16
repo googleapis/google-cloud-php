@@ -76,6 +76,9 @@ class BasicTest extends \PHPUnit_Framework_TestCase
         $this->traceClient->getTrace('invalidid');
     }
 
+    /**
+     * @depends testCanCreateTraces
+     */
     public function testListTraces()
     {
         $traces = iterator_to_array($this->traceClient->traces());
