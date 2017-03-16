@@ -26,6 +26,7 @@ use Google\Cloud\Core\Exception;
 use Google\Cloud\Core\PhpArray;
 use Google\Cloud\Core\RequestWrapperTrait;
 use Google\GAX\ApiException;
+use Google\GAX\OperationResponse;
 use Google\GAX\PagedListResponse;
 use Google\GAX\RetrySettings;
 use Grpc;
@@ -160,6 +161,10 @@ class GrpcRequestWrapper
 
         if ($response instanceof Message) {
             return $response->serialize($this->codec);
+        }
+
+        if ($response instanceof OperationResponse) {
+            return $response;
         }
 
         return null;

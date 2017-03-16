@@ -19,6 +19,8 @@ namespace Google\Cloud\Spanner;
 
 use Google\Cloud\Exception\NotFoundException;
 use Google\Cloud\Iam\Iam;
+use Google\Cloud\LongRunning\LROTrait;
+use Google\Cloud\LongRunning\LongRunningConnectionInterface;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
@@ -38,9 +40,21 @@ use google\spanner\admin\instance\v1\Instance\State;
  *
  * $instance = $spanner->instance('my-instance');
  * ```
+ *
+ * @method lro() {
+ *     @param string $operationName The name of the Operation to resume.
+ *     @return LongRunningOperation
+ *
+ *     Example:
+ *     ```
+ *     $operation = $instance->lro($operationName);
+ *     ```
+ * }
  */
 class Instance
 {
+    use LROTrait;
+
     const STATE_READY = State::READY;
     const STATE_CREATING = State::CREATING;
 
@@ -53,6 +67,16 @@ class Instance
      * @var SessionPool;
      */
     private $sessionPool;
+
+    /**
+     * @var LongRunningConnectionInterface
+     */
+    private $lroConnection;
+
+    /**
+     * @var array
+     */
+    private $lroCallables;
 
     /**
      * @var string
@@ -85,6 +109,9 @@ class Instance
      * @param ConnectionInterface $connection The connection to the
      *        Google Cloud Spanner Admin API.
      * @param SessionPoolInterface $sessionPool The session pool implementation.
+     * @param LongRunningConnectionInterface $lroConnection An implementation
+     *        mapping to methods which handle LRO resolution in the service.
+     * @param array $lroCallables
      * @param string $projectId The project ID.
      * @param string $name The instance name.
      * @param bool $returnInt64AsObject If true, 64 bit integers will be
@@ -95,6 +122,8 @@ class Instance
     public function __construct(
         ConnectionInterface $connection,
         SessionPoolInterface $sessionPool,
+        LongRunningConnectionInterface $lroConnection,
+        array $lroCallables,
         $projectId,
         $name,
         $returnInt64AsObject = false,
@@ -102,6 +131,8 @@ class Instance
     ) {
         $this->connection = $connection;
         $this->sessionPool = $sessionPool;
+        $this->lroConnection = $lroConnection;
+        $this->lroCallables = $lroCallables;
         $this->projectId = $projectId;
         $this->name = $name;
         $this->returnInt64AsObject = $returnInt64AsObject;
@@ -251,7 +282,7 @@ class Instance
      *     @type array $labels For more information, see
      *           [Using labels to organize Google Cloud Platform resources](https://goo.gl/xmQnxf).
      * }
-     * @return void
+     * @return LongRunningOperation<void>
      * @throws \InvalidArgumentException
      */
     public function update(array $options = [])
@@ -266,9 +297,11 @@ class Instance
                 : []
         ];
 
-        $this->connection->updateInstance([
+        $operation = $this->connection->updateInstance([
             'name' => $this->fullyQualifiedInstanceName(),
         ] + $options);
+
+        return $this->lro($operation['name']);
     }
 
     /**
@@ -311,23 +344,23 @@ class Instance
      *
      *     @type array $statements Additional DDL statements.
      * }
-     * @return Database
+     * @return LongRunningOperation<Database>
      */
     public function createDatabase($name, array $options = [])
     {
         $options += [
-            'statements' => []
+            'statements' => [],
         ];
 
         $statement = sprintf('CREATE DATABASE `%s`', $name);
 
-        $this->connection->createDatabase([
+        $operation = $this->connection->createDatabase([
             'instance' => $this->fullyQualifiedInstanceName(),
             'createStatement' => $statement,
             'extraStatements' => $options['statements']
         ]);
 
-        return $this->database($name);
+        return $this->lro($operation['name']);
     }
 
     /**
@@ -347,6 +380,8 @@ class Instance
             $this->connection,
             $this,
             $this->sessionPool,
+            $this->lroConnection,
+            $this->lroCallables,
             $this->projectId,
             $name,
             $this->returnInt64AsObject

@@ -21,6 +21,8 @@ use Google\Cloud\ArrayTrait;
 use Google\Cloud\Exception\AbortedException;
 use Google\Cloud\Exception\NotFoundException;
 use Google\Cloud\Iam\Iam;
+use Google\Cloud\LongRunning\LROTrait;
+use Google\Cloud\LongRunning\LongRunningConnectionInterface;
 use Google\Cloud\Retry;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Connection\IamDatabase;
@@ -50,9 +52,21 @@ use Google\Cloud\Spanner\V1\SpannerClient as GrpcSpannerClient;
  * $instance = $spanner->instance('my-instance');
  * $database = $instance->database('my-database');
  * ```
+ *
+ * @method lro() {
+ *     @param string $operationName The name of the Operation to resume.
+ *     @return LongRunningOperation
+ *
+ *     Example:
+ *     ```
+ *     $operation = $database->lro($operationName);
+ *     ```
+ * }
  */
 class Database
 {
+    use ArrayTrait;
+    use LROTrait;
     use TransactionConfigurationTrait;
 
     const MAX_RETRIES = 3;
@@ -71,6 +85,11 @@ class Database
      * @var SessionPoolInterface
      */
     private $sessionPool;
+
+    /**
+     * @var LongRunningConnectionInterface
+     */
+    private $lroConnection;
 
     /**
      * @var Operation
@@ -98,7 +117,9 @@ class Database
      * @param ConnectionInterface $connection The connection to the
      *        Google Cloud Spanner Admin API.
      * @param Instance $instance The instance in which the database exists.
-     * @param SessionPoolInterface The session pool implementation.
+     * @param SessionPoolInterface $sessionPool The session pool implementation.
+     * @param LongRunningConnectionInterface $lroConnection An implementation
+     *        mapping to methods which handle LRO resolution in the service.
      * @param string $projectId The project ID.
      * @param string $name The database name.
      * @param bool $returnInt64AsObject If true, 64 bit integers will be
@@ -109,6 +130,8 @@ class Database
         ConnectionInterface $connection,
         Instance $instance,
         SessionPoolInterface $sessionPool,
+        LongRunningConnectionInterface $lroConnection,
+        array $lroCallables,
         $projectId,
         $name,
         $returnInt64AsObject = false
@@ -116,6 +139,8 @@ class Database
         $this->connection = $connection;
         $this->instance = $instance;
         $this->sessionPool = $sessionPool;
+        $this->lroConnection = $lroConnection;
+        $this->lroCallables = $lroCallables;
         $this->projectId = $projectId;
         $this->name = $name;
 
@@ -190,9 +215,9 @@ class Database
      * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.admin.database.v1#google.spanner.admin.database.v1.UpdateDatabaseDdlRequest UpdateDDLRequest
      * @codingStandardsIgnoreEnd
      *
-     * @param string $statement A DDL statement to run against a database.
+     * @param string $statement A DDL statements to run against a database.
      * @param array $options [optional] Configuration options.
-     * @return <something>
+     * @return LongRunningOperation
      */
     public function updateDdl($statement, array $options = [])
     {
@@ -227,18 +252,16 @@ class Database
      *
      * @param string[] $statements A list of DDL statements to run against a database.
      * @param array $options [optional] Configuration options.
-     * @return <something>
+     * @return LongRunningOperation
      */
     public function updateDdlBatch(array $statements, array $options = [])
     {
-        $options += [
-            'operationId' => null
-        ];
-
-        return $this->connection->updateDatabase($options + [
+        $operation = $this->connection->updateDatabase($options + [
             'name' => $this->fullyQualifiedDatabaseName(),
             'statements' => $statements,
         ]);
+
+        return $this->lro($operation['name']);
     }
 
     /**

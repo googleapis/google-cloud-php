@@ -20,12 +20,14 @@ namespace Google\Cloud\Spanner\Connection;
 use Google\Auth\CredentialsLoader;
 use Google\Cloud\GrpcRequestWrapper;
 use Google\Cloud\GrpcTrait;
+use Google\Cloud\LongRunning\OperationResponseTrait;
 use Google\Cloud\PhpArray;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\V1\SpannerClient;
 use Google\GAX\ApiException;
 use google\protobuf;
+use google\spanner\admin\database\v1\Database;
 use google\spanner\admin\instance\v1\Instance;
 use google\spanner\admin\instance\v1\State;
 use google\spanner\v1;
@@ -38,6 +40,7 @@ use google\spanner\v1\Type;
 class Grpc implements ConnectionInterface
 {
     use GrpcTrait;
+    use OperationResponseTrait;
 
     /**
      * @var InstanceAdminClient
@@ -55,6 +58,11 @@ class Grpc implements ConnectionInterface
     private $spannerClient;
 
     /**
+     * @var OperationsClient
+     */
+    private $operationsClient;
+
+    /**
      * @var CodecInterface
      */
     private $codec;
@@ -69,6 +77,34 @@ class Grpc implements ConnectionInterface
         'replace' => 'setReplace',
         'delete' => 'setDelete'
     ];
+
+    /**
+     * @var array
+     */
+    private $lroResponseMappers = [
+        [
+            'method' => 'updateDatabaseDdl',
+            'typeUrl' => 'type.googleapis.com/google.spanner.admin.database.v1.UpdateDatabaseDdlMetadata',
+            'message' => protobuf\EmptyC::class
+        ], [
+            'method' => 'createDatabase',
+            'typeUrl' => 'type.googleapis.com/google.spanner.admin.database.v1.CreateDatabaseMetadata',
+            'message' => Database::class
+        ], [
+            'method' => 'createInstance',
+            'typeUrl' => 'type.googleapis.com/google.spanner.admin.instance.v1.CreateInstanceMetadata',
+            'message' => Instance::class
+        ], [
+            'method' => 'updateInstance',
+            'typeUrl' => 'type.googleapis.com/google.spanner.admin.instance.v1.UpdateInstanceMetadata',
+            'message' => Instance::class
+        ]
+    ];
+
+    /**
+     * @var array
+     */
+    private $longRunningGrpcClients;
 
     /**
      * @param array $config [optional]
@@ -93,6 +129,12 @@ class Grpc implements ConnectionInterface
         $this->instanceAdminClient = new InstanceAdminClient($grpcConfig);
         $this->databaseAdminClient = new DatabaseAdminClient($grpcConfig);
         $this->spannerClient = new SpannerClient($grpcConfig);
+        $this->operationsClient = $this->instanceAdminClient->getOperationsClient();
+
+        $this->longRunningGrpcClients = [
+            $this->instanceAdminClient,
+            $this->databaseAdminClient
+        ];
     }
 
     /**
@@ -145,12 +187,14 @@ class Grpc implements ConnectionInterface
     public function createInstance(array $args = [])
     {
         $instance = $this->instanceObject($args, true);
-        return $this->send([$this->instanceAdminClient, 'createInstance'], [
+        $res = $this->send([$this->instanceAdminClient, 'createInstance'], [
             $this->pluck('projectId', $args),
             $this->pluck('instanceId', $args),
             $instance,
             $args
         ]);
+
+        return $this->operationToArray($res, $this->codec, $this->lroResponseMappers);
     }
 
     /**
@@ -164,11 +208,13 @@ class Grpc implements ConnectionInterface
 
         $fieldMask = (new protobuf\FieldMask())->deserialize(['paths' => $mask], $this->codec);
 
-        return $this->send([$this->instanceAdminClient, 'updateInstance'], [
+        $res = $this->send([$this->instanceAdminClient, 'updateInstance'], [
             $instanceObject,
             $fieldMask,
             $args
         ]);
+
+        return $this->operationToArray($res, $this->codec, $this->lroResponseMappers);
     }
 
     /**
@@ -233,12 +279,14 @@ class Grpc implements ConnectionInterface
      */
     public function createDatabase(array $args = [])
     {
-        return $this->send([$this->databaseAdminClient, 'createDatabase'], [
+        $res = $this->send([$this->databaseAdminClient, 'createDatabase'], [
             $this->pluck('instance', $args),
             $this->pluck('createStatement', $args),
             $this->pluck('extraStatements', $args),
             $args
         ]);
+
+        return $this->operationToArray($res, $this->codec, $this->lroResponseMappers);
     }
 
     /**
@@ -246,11 +294,13 @@ class Grpc implements ConnectionInterface
      */
     public function updateDatabase(array $args = [])
     {
-        return $this->send([$this->databaseAdminClient, 'updateDatabaseDdl'], [
+        $res = $this->send([$this->databaseAdminClient, 'updateDatabaseDdl'], [
             $this->pluck('name', $args),
             $this->pluck('statements', $args),
             $args
         ]);
+
+        return $this->operationToArray($res, $this->codec, $this->lroResponseMappers);
     }
 
     /**
@@ -492,6 +542,50 @@ class Grpc implements ConnectionInterface
             $this->pluck('transactionId', $args),
             $args
         ]);
+    }
+
+    /**
+     * @param array $args
+     */
+    public function getOperation(array $args)
+    {
+        $name = $this->pluck('name', $args);
+
+        $operation = $this->getOperationByName($this->databaseAdminClient, $name);
+        $operation->reload();
+
+        return $this->operationToArray($operation, $this->codec, $this->lroResponseMappers);
+    }
+
+    /**
+     * @param array $args
+     */
+    public function cancelOperation(array $args)
+    {
+        $name = $this->pluck('name', $args);
+        $method = $this->pluck('method', $args);
+
+        $operation = $this->getOperationByNameAndMethod($name, $method);
+    }
+
+    /**
+     * @param array $args
+     */
+    public function deleteOperation(array $args)
+    {
+        $name = $this->pluck('name', $args);
+        $method = $this->pluck('method', $args);
+
+        $operation = $this->getOperationByNameAndMethod($name, $method);
+    }
+
+    /**
+     * @param array $args
+     */
+    public function listOperations(array $args)
+    {
+        $name = $this->pluck('name', $args);
+        $method = $this->pluck('method', $args);
     }
 
     /**

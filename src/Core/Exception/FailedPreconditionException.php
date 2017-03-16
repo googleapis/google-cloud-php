@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Exception;
+namespace Google\Cloud\Core\Exception;
 
 /**
  * Exception thrown when a request fails due to a failed precondition.
