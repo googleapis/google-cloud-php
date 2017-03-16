@@ -141,7 +141,10 @@ class BucketTest extends \PHPUnit_Framework_TestCase
     {
         $this->connection->listObjects(Argument::any())->willReturn([
             'items' => [
-                ['name' => 'file.txt']
+                [
+                    'name' => 'file.txt',
+                    'generation' => 'abc'
+                ]
             ]
         ]);
 
@@ -157,12 +160,18 @@ class BucketTest extends \PHPUnit_Framework_TestCase
             [
                 'nextPageToken' => 'token',
                 'items' => [
-                    ['name' => 'file.txt']
+                    [
+                        'name' => 'file.txt',
+                        'generation' => 'abc'
+                    ]
                 ]
             ],
                 [
                 'items' => [
-                    ['name' => 'file2.txt']
+                    [
+                        'name' => 'file2.txt',
+                        'generation' => 'def'
+                    ]
                 ]
             ]
         );

@@ -124,7 +124,7 @@ class ServiceBuilder
     /**
      * Google Cloud Datastore is a highly-scalable NoSQL database for your
      * applications. Find more information at the
-     * Google Cloud Datastore docs](https://cloud.google.com/datastore/docs/).
+     * [Google Cloud Datastore docs](https://cloud.google.com/datastore/docs/).
      *
      * Example:
      * ```

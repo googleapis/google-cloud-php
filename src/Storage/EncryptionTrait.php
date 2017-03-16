@@ -70,10 +70,10 @@ trait EncryptionTrait
             + $this->buildHeaders($destinationKey, $destinationKeySHA256, false);
 
         if (!empty($encryptionHeaders)) {
-            if (isset($options['httpOptions']['headers'])) {
-                $options['httpOptions']['headers'] += $encryptionHeaders;
+            if (isset($options['restOptions']['headers'])) {
+                $options['restOptions']['headers'] += $encryptionHeaders;
             } else {
-                $options['httpOptions']['headers'] = $encryptionHeaders;
+                $options['restOptions']['headers'] = $encryptionHeaders;
             }
         }
 

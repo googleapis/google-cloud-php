@@ -219,6 +219,12 @@ class StorageObject
     public function update(array $metadata, array $options = [])
     {
         $options += $metadata;
+
+        // can only set predefinedAcl or acl
+        if (isset($options['predefinedAcl'])) {
+            $options['acl'] = null;
+        }
+
         return $this->info = $this->connection->patchObject($options + $this->identity);
     }
 
@@ -513,7 +519,7 @@ class StorageObject
 
         $this->delete(
             array_intersect_key($options, [
-                'httpOptions' => null,
+                'restOptions' => null,
                 'retries' => null
             ])
         );

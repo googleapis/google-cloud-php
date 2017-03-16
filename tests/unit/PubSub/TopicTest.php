@@ -17,9 +17,9 @@
 
 namespace Google\Cloud\Tests\Unit\PubSub;
 
-use Generator;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Iam\Iam;
+use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\PubSub\Connection\ConnectionInterface;
 use Google\Cloud\PubSub\Subscription;
 use Google\Cloud\PubSub\Topic;
@@ -282,7 +282,7 @@ class TopicTest extends \PHPUnit_Framework_TestCase
             'foo' => 'bar'
         ]);
 
-        $this->assertInstanceOf(Generator::class, $subscriptions);
+        $this->assertInstanceOf(ItemIterator::class, $subscriptions);
 
         $arr = iterator_to_array($subscriptions);
         $this->assertInstanceOf(Subscription::class, $arr[0]);
@@ -301,7 +301,9 @@ class TopicTest extends \PHPUnit_Framework_TestCase
 
         $this->connection->listSubscriptionsByTopic(Argument::that(function ($options) {
             if ($options['foo'] !== 'bar') return false;
-            if ($options['pageToken'] !== 'foo' && !is_null($options['pageToken'])) return false;
+            if (isset($options['pageToken']) && $options['pageToken'] !== 'foo') {
+                return false;
+            }
 
             return true;
         }))->willReturn([

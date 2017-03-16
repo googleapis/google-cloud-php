@@ -98,6 +98,8 @@ class GrpcRequestWrapper
      * @param array $options [optional] {
      *     Request options.
      *
+     *     @type float $requestTimeout Seconds to wait before timing out the
+     *           request. **Defaults to** `60`.
      *     @type int $retries Number of retries for a failed request.
      *           **Defaults to** `3`.
      *     @type array $grpcOptions gRPC specific configuration options.
@@ -108,6 +110,7 @@ class GrpcRequestWrapper
     {
         $retries = isset($options['retries']) ? $options['retries'] : $this->retries;
         $grpcOptions = isset($options['grpcOptions']) ? $options['grpcOptions'] : $this->grpcOptions;
+        $timeout = isset($options['requestTimeout']) ? $options['requestTimeout'] : $this->requestTimeout;
         $backoff = new ExponentialBackoff($retries, function (\Exception $ex) {
             $statusCode = $ex->getCode();
 
@@ -120,6 +123,10 @@ class GrpcRequestWrapper
 
         if (!isset($grpcOptions['retrySettings'])) {
             $grpcOptions['retrySettings'] = new RetrySettings(null, null);
+        }
+
+        if ($timeout && !array_key_exists('timeoutMs', $grpcOptions)) {
+            $grpcOptions['timeoutMs'] = $timeout * 1000;
         }
 
         $optionalArgs = &$args[count($args) - 1];

@@ -208,7 +208,6 @@ class LoggingClientTest extends \PHPUnit_Framework_TestCase
     {
         $secondProjectId = 'secondProjectId';
         $this->connection->listEntries([
-            'pageToken' => null,
             'resourceNames' => [
                 'projects/' . $this->projectId,
                 'projects/' . $secondProjectId

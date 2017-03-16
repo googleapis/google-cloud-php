@@ -17,7 +17,10 @@
 
 namespace Google\Cloud\PubSub;
 
+use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\ClientTrait;
+use Google\Cloud\Core\Iterator\ItemIterator;
+use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\PubSub\Connection\Grpc;
 use Google\Cloud\PubSub\Connection\Rest;
 use InvalidArgumentException;
@@ -75,6 +78,7 @@ use Psr\Cache\CacheItemPoolInterface;
  */
 class PubSubClient
 {
+    use ArrayTrait;
     use ClientTrait;
     use IncomingMessageTrait;
     use ResourceNameTrait;
@@ -208,27 +212,30 @@ class PubSubClient
      *
      *     @type int $pageSize Maximum number of results to return per
      *           request.
+     *     @type int $resultLimit Limit the number of results returned in total.
+     *           **Defaults to** `0` (return all results).
+     *     @type string $pageToken A previously-returned page token used to
+     *           resume the loading of results from a specific point.
      * }
-     * @return \Generator<Google\Cloud\PubSub\Topic>
+     * @return ItemIterator<Google\Cloud\PubSub\Topic>
      */
     public function topics(array $options = [])
     {
-        $options['pageToken'] = null;
+        $resultLimit = $this->pluck('resultLimit', $options, false);
 
-        do {
-            $response = $this->connection->listTopics($options + [
-                'project' => $this->formatName('project', $this->projectId)
-            ]);
-
-            foreach ($response['topics'] as $topic) {
-                yield $this->topicFactory($topic['name'], $topic);
-            }
-
-            // If there's a page token, we'll request the next page.
-            $options['pageToken'] = isset($response['nextPageToken'])
-                ? $response['nextPageToken']
-                : null;
-        } while ($options['pageToken']);
+        return new ItemIterator(
+            new PageIterator(
+                function (array $topic) {
+                    return $this->topicFactory($topic['name'], $topic);
+                },
+                [$this->connection, 'listTopics'],
+                $options + ['project' => $this->formatName('project', $this->projectId)],
+                [
+                    'itemsKey' => 'topics',
+                    'resultLimit' => $resultLimit
+                ]
+            )
+        );
     }
 
     /**
@@ -304,31 +311,34 @@ class PubSubClient
      *
      *     @type int $pageSize Maximum number of results to return per
      *           request.
+     *     @type int $resultLimit Limit the number of results returned in total.
+     *           **Defaults to** `0` (return all results).
+     *     @type string $pageToken A previously-returned page token used to
+     *           resume the loading of results from a specific point.
      * }
-     * @return \Generator<Google\Cloud\PubSub\Subscription>
+     * @return ItemIterator<Google\Cloud\PubSub\Subscription>
      */
     public function subscriptions(array $options = [])
     {
-        $options['pageToken'] = null;
+        $resultLimit = $this->pluck('resultLimit', $options, false);
 
-        do {
-            $response = $this->connection->listSubscriptions($options + [
-                'project' => $this->formatName('project', $this->projectId)
-            ]);
-
-            foreach ($response['subscriptions'] as $subscription) {
-                yield $this->subscriptionFactory(
-                    $subscription['name'],
-                    $subscription['topic'],
-                    $subscription
-                );
-            }
-
-            // If there's a page token, we'll request the next page.
-            $options['pageToken'] = isset($response['nextPageToken'])
-                ? $response['nextPageToken']
-                : null;
-        } while ($options['pageToken']);
+        return new ItemIterator(
+            new PageIterator(
+                function (array $subscription) {
+                    return $this->subscriptionFactory(
+                        $subscription['name'],
+                        $subscription['topic'],
+                        $subscription
+                    );
+                },
+                [$this->connection, 'listSubscriptions'],
+                $options + ['project' => $this->formatName('project', $this->projectId)],
+                [
+                    'itemsKey' => 'subscriptions',
+                    'resultLimit' => $resultLimit
+                ]
+            )
+        );
     }
 
     /**
