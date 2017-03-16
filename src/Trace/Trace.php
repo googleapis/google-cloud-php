@@ -146,7 +146,9 @@ class Trace
             throw new NotFoundException('Trace ID does not exist', 404);
         }
 
-        $this->spans = $trace['spans'];
+        $this->spans = array_map(function ($span) {
+            return new TraceSpan($span);
+        }, $trace['spans']);
     }
 
     /**
