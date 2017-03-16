@@ -136,6 +136,8 @@ class TraceClient
     /**
      * Fetch all traces in the project
      *
+     * @see https://cloud.google.com/trace/docs/reference/v1/rest/v1/projects.traces/list Trace list API documentation.
+     *
      * @param array $options [optional] {
      *      Configuration options.
      *
