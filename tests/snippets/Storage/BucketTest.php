@@ -22,6 +22,7 @@ use Google\Cloud\Core\Exception\GoogleException;
 use Google\Cloud\Storage\Acl;
 use Google\Cloud\Storage\Bucket;
 use Google\Cloud\Storage\Connection\ConnectionInterface;
+use Google\Cloud\Storage\ObjectIterator;
 use Google\Cloud\Storage\StorageObject;
 use Google\Cloud\Core\Upload\MultipartUploader;
 use Google\Cloud\Core\Upload\ResumableUploader;
@@ -235,15 +236,21 @@ class BucketTest extends SnippetTestCase
             ->shouldBeCalled()
             ->willReturn([
                 'items' => [
-                    ['name' => 'object 1'],
-                    ['name' => 'object 2']
+                    [
+                        'name' => 'object 1',
+                        'generation' => 'abc'
+                    ],
+                    [
+                        'name' => 'object 2',
+                        'generation' => 'def'
+                    ]
                 ]
             ]);
 
         $this->bucket->setConnection($this->connection->reveal());
 
         $res = $snippet->invoke('objects');
-        $this->assertInstanceOf(\Generator::class, $res->returnVal());
+        $this->assertInstanceOf(ObjectIterator::class, $res->returnVal());
         $this->assertEquals('object 1', explode("\n", $res->output())[0]);
         $this->assertEquals('object 2', explode("\n", $res->output())[1]);
     }

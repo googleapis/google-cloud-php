@@ -71,9 +71,9 @@ class StreamWrapper
     private static $clients = [];
 
     /**
-     * @var \Generator Used for iterating through a directory
+     * @var ObjectsItemIterator Used for iterating through a directory
      */
-    private $directoryGenerator;
+    private $directoryIterator;
 
     /**
      * Ensure we close the stream when this StreamWrapper is destroyed.
@@ -305,9 +305,9 @@ class StreamWrapper
      */
     public function dir_readdir()
     {
-        $object = $this->directoryGenerator->current();
+        $object = $this->directoryIterator->current();
         if ($object) {
-            $this->directoryGenerator->next();
+            $this->directoryIterator->next();
             return $object->name();
         } else {
             return false;
@@ -322,7 +322,7 @@ class StreamWrapper
     public function dir_rewinddir()
     {
         try {
-            $this->directoryGenerator = $this->bucket->objects([
+            $this->directoryIterator = $this->bucket->objects([
                 'prefix' => $this->file,
                 'fields' => 'items/name,nextPageToken'
             ]);
@@ -390,7 +390,7 @@ class StreamWrapper
         $destinationPath = substr($url['path'], 1);
 
         $this->dir_opendir($from, []);
-        foreach ($this->directoryGenerator as $file) {
+        foreach ($this->directoryIterator as $file) {
             $name = $file->name();
             $newPath = str_replace($this->file, $destinationPath, $name);
 

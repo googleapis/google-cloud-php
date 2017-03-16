@@ -17,7 +17,10 @@
 
 namespace Google\Cloud\BigQuery;
 
+use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\Core\Iterator\ItemIterator;
+use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\BigQuery\Connection\ConnectionInterface;
 
 /**
@@ -26,6 +29,8 @@ use Google\Cloud\BigQuery\Connection\ConnectionInterface;
  */
 class Dataset
 {
+    use ArrayTrait;
+
     /**
      * @var ConnectionInterface $connection Represents a connection to BigQuery.
      */
@@ -178,34 +183,38 @@ class Dataset
      * @param array $options [optional] {
      *     Configuration options.
      *
-     *     @type int $maxResults Maximum number of results to return.
+     *     @type int $maxResults Maximum number of results to return per page.
+     *     @type int $resultLimit Limit the number of results returned in total.
+     *           **Defaults to** `0` (return all results).
+     *     @type string $pageToken A previously-returned page token used to
+     *           resume the loading of results from a specific point.
      * }
-     * @return \Generator<Google\Cloud\BigQuery\Table>
+     * @return ItemIterator<Google\Cloud\BigQuery\Table>
      */
     public function tables(array $options = [])
     {
-        $options['pageToken'] = null;
+        $resultLimit = $this->pluck('resultLimit', $options, false);
 
-        do {
-            $response = $this->connection->listTables($options + $this->identity);
-
-            if (!isset($response['tables'])) {
-                return;
-            }
-
-            foreach ($response['tables'] as $table) {
-                yield new Table(
-                    $this->connection,
-                    $table['tableReference']['tableId'],
-                    $this->identity['datasetId'],
-                    $this->identity['projectId'],
-                    $this->mapper,
-                    $table
-                );
-            }
-
-            $options['pageToken'] = isset($response['nextPageToken']) ? $response['nextPageToken'] : null;
-        } while ($options['pageToken']);
+        return new ItemIterator(
+            new PageIterator(
+                function (array $table) {
+                    return new Table(
+                        $this->connection,
+                        $table['tableReference']['tableId'],
+                        $this->identity['datasetId'],
+                        $this->identity['projectId'],
+                        $this->mapper,
+                        $table
+                    );
+                },
+                [$this->connection, 'listTables'],
+                $options + $this->identity,
+                [
+                    'itemsKey' => 'tables',
+                    'resultLimit' => $resultLimit
+                ]
+            )
+        );
     }
 
     /**

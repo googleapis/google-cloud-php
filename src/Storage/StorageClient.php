@@ -17,7 +17,10 @@
 
 namespace Google\Cloud\Storage;
 
+use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\ClientTrait;
+use Google\Cloud\Core\Iterator\ItemIterator;
+use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Storage\Connection\ConnectionInterface;
 use Google\Cloud\Storage\Connection\Rest;
 use Psr\Cache\CacheItemPoolInterface;
@@ -36,6 +39,7 @@ use Psr\Cache\CacheItemPoolInterface;
  */
 class StorageClient
 {
+    use ArrayTrait;
     use ClientTrait;
 
     const VERSION = '0.1.0';
@@ -126,29 +130,34 @@ class StorageClient
      * @param array $options [optional] {
      *     Configuration options.
      *
-     *     @type integer $maxResults Maximum number of results to return per
-     *           request.
+     *     @type int $maxResults Maximum number of results to return per
+     *           requested page.
+     *     @type int $resultLimit Limit the number of results returned in total.
+     *           **Defaults to** `0` (return all results).
+     *     @type string $pageToken A previously-returned page token used to
+     *           resume the loading of results from a specific point.
      *     @type string $prefix Filter results with this prefix.
      *     @type string $projection Determines which properties to return. May
      *           be either 'full' or 'noAcl'.
      *     @type string $fields Selector which will cause the response to only
      *           return the specified fields.
      * }
-     * @return \Generator<Google\Cloud\Storage\Bucket>
+     * @return ItemIterator<Google\Cloud\Storage\Bucket>
      */
     public function buckets(array $options = [])
     {
-        $options['pageToken'] = null;
+        $resultLimit = $this->pluck('resultLimit', $options, false);
 
-        do {
-            $response = $this->connection->listBuckets($options + ['project' => $this->projectId]);
-
-            foreach ($response['items'] as $bucket) {
-                yield new Bucket($this->connection, $bucket['name'], $bucket);
-            }
-
-            $options['pageToken'] = isset($response['nextPageToken']) ? $response['nextPageToken'] : null;
-        } while ($options['pageToken']);
+        return new ItemIterator(
+            new PageIterator(
+                function (array $bucket) {
+                    return new Bucket($this->connection, $bucket['name'], $bucket);
+                },
+                [$this->connection, 'listBuckets'],
+                $options + ['project' => $this->projectId],
+                ['resultLimit' => $resultLimit]
+            )
+        );
     }
 
     /**

@@ -18,7 +18,10 @@
 namespace Google\Cloud\BigQuery;
 
 use Google\Cloud\BigQuery\Connection\ConnectionInterface;
+use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\Core\Iterator\ItemIterator;
+use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Storage\StorageObject;
 use Psr\Http\Message\StreamInterface;
 
@@ -29,6 +32,7 @@ use Psr\Http\Message\StreamInterface;
  */
 class Table
 {
+    use ArrayTrait;
     use JobConfigurationTrait;
 
     /**
@@ -160,45 +164,49 @@ class Table
      * @param array $options [optional] {
      *     Configuration options.
      *
-     *     @type int $maxResults Maximum number of results to return.
+     *     @type int $maxResults Maximum number of results to return per page.
+     *     @type int $resultLimit Limit the number of results returned in total.
+     *           **Defaults to** `0` (return all results).
+     *     @type string $pageToken A previously-returned page token used to
+     *           resume the loading of results from a specific point.
      *     @type int $startIndex Zero-based index of the starting row.
      * }
-     * @return \Generator<array>
+     * @return ItemIterator<array>
      * @throws GoogleException
      */
     public function rows(array $options = [])
     {
-        $options['pageToken'] = null;
+        $resultLimit = $this->pluck('resultLimit', $options, false);
         $schema = $this->info()['schema']['fields'];
 
-        do {
-            $response = $this->connection->listTableData($options + $this->identity);
+        return new ItemIterator(
+            new PageIterator(
+                function (array $row) use ($schema) {
+                    $mergedRow = [];
 
-            if (!isset($response['rows'])) {
-                return;
-            }
+                    if ($row === null) {
+                        return $mergedRow;
+                    }
 
-            foreach ($response['rows'] as $row) {
-                $mergedRow = [];
+                    if (!array_key_exists('f', $row)) {
+                        throw new GoogleException('Bad response - missing key "f" for a row.');
+                    }
 
-                if ($row === null) {
-                    continue;
-                }
+                    foreach ($row['f'] as $key => $value) {
+                        $fieldSchema = $schema[$key];
+                        $mergedRow[$fieldSchema['name']] = $this->mapper->fromBigQuery($value, $fieldSchema);
+                    }
 
-                if (!array_key_exists('f', $row)) {
-                    throw new GoogleException('Bad response - missing key "f" for a row.');
-                }
-
-                foreach ($row['f'] as $key => $value) {
-                    $fieldSchema = $schema[$key];
-                    $mergedRow[$fieldSchema['name']] = $this->mapper->fromBigQuery($value, $fieldSchema);
-                }
-
-                yield $mergedRow;
-            }
-
-            $options['pageToken'] = isset($response['nextPageToken']) ? $response['nextPageToken'] : null;
-        } while ($options['pageToken']);
+                    return $mergedRow;
+                },
+                [$this->connection, 'listTableData'],
+                $options + $this->identity,
+                [
+                    'itemsKey' => 'rows',
+                    'resultLimit' => $resultLimit
+                ]
+            )
+        );
     }
 
     /**

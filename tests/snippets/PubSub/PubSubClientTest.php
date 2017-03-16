@@ -24,6 +24,7 @@ use Google\Cloud\PubSub\Message;
 use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\PubSub\Subscription;
 use Google\Cloud\PubSub\Topic;
+use Google\Cloud\Core\Iterator\ItemIterator;
 use Prophecy\Argument;
 
 /**
@@ -117,7 +118,7 @@ class PubSubClientTest extends SnippetTestCase
 
         $res = $snippet->invoke('topics');
 
-        $this->assertInstanceOf(\Generator::class, $res->returnVal());
+        $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
         $this->assertEquals(self::TOPIC, $res->output());
     }
 
@@ -181,7 +182,7 @@ class PubSubClientTest extends SnippetTestCase
         $this->client->setConnection($this->connection->reveal());
 
         $res = $snippet->invoke('subscriptions');
-        $this->assertInstanceOf(\Generator::class, $res->returnVal());
+        $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
         $this->assertEquals(self::SUBSCRIPTION, $res->output());
     }
 
