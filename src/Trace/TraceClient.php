@@ -19,6 +19,8 @@ namespace Google\Cloud\Trace;
 
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\ClientTrait;
+use Google\Cloud\Core\Iterator\ItemIterator;
+use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Trace\Connection\ConnectionInterface;
 use Google\Cloud\Trace\Connection\Rest;
@@ -154,26 +156,20 @@ class TraceClient
      *            specified by appending 'desc' to the sort field (for example,
      *            'name desc'). Only one sort field is permitted.
      * }
-     * @return \Generator<Trace>
+     * @return ItemIterator<Trace>
      */
     public function traces(array $options = [])
     {
-        $options['pageToken'] = null;
-
-        do {
-            $response = $this->connection->listTraces($options + ['projectId' => $this->projectId]);
-            $traces = array_key_exists('traces', $response)
-                ? $response['traces']
-                : [];
-            foreach ($traces as $trace) {
-                // The API may not return spans unless you specify $viewType
-                $trace += [
-                    'spans' => null
-                ];
-                yield new Trace($this->connection, $trace['projectId'], $trace['traceId'], $trace['spans']);
-            }
-
-            $options['pageToken'] = isset($response['nextPageToken']) ? $response['nextPageToken'] : null;
-        } while ($options['pageToken']);
+        return new ItemIterator(
+            new PageIterator(
+                function (array $trace) {
+                    $trace += ['spans' => null];
+                    return new Trace($this->connection, $trace['projectId'], $trace['traceId'], $trace['spans']);
+                },
+                [$this->connection, 'listTraces'],
+                $options + ['projectId' => $this->projectId],
+                ['itemsKey' => 'traces']
+            )
+        );
     }
 }
