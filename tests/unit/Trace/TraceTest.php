@@ -71,4 +71,22 @@ class TraceTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf(TraceSpan::class, $span);
         $this->assertEquals('myspan', $span->name());
     }
+
+    public function testLazyLoadsSpans()
+    {
+        $this->connection->getTrace(['projectId' => 'myproject', 'traceId' => '1'])->willReturn([
+            'projectId' => 'myproject',
+            'traceId' => '1',
+            'spans' => [
+                ['name' => 'main']
+            ]
+        ]);
+        $trace = new Trace($this->connection->reveal(), '1', 'myproject');
+    }
+
+    public function testSpecifyingSpansSkipsTraceGetCall()
+    {
+        $trace = new Trace($this->connection->reveal(), '1', 'myproject', [['name' => 'main']]);
+        $trace->info();
+    }
 }
