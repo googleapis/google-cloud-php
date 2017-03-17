@@ -58,13 +58,10 @@ class Trace
      *
      * @param ConnectionInterface $connection The connection to Stackdriver Trace.
      * @param string $projectId The id of the project this trace belongs to.
-     * @param array $options [optional] {
-     *      Configuration options.
-     *
-     *      @type string $traceId The trace id for this trace. 128-bit numeric
-     *            formatted as a 32-byte hex string. If not provided, one will be generated
-     *            automatically for you.
-     *      @type array $spans List of span data to load.
+     * @param string $traceId [optional] The id of the trace. If not provided, one will be generated
+     *        automatically for you.
+     * @param array $spans [optional] Array of TraceSpan constructor arguments. See
+     *        {@see Google\Cloud\Trace\TraceSpan::__construct()} for configuration details.
      * }
      */
     public function __construct(ConnectionInterface $connection, $projectId, $traceId = null, $spans = null)
@@ -159,6 +156,18 @@ class Trace
     public function spans()
     {
         return $this->spans;
+    }
+
+    /**
+     * Create an instance of {@see Google\Cloud\Trace\TraceSpan}
+     *
+     * @param array $options [optional] See {@see Google\Cloud\Trace\TraceSpan::__construct()}
+     *      for configuration details.
+     * @return TraceSpan
+     */
+    public function span(array $options = [])
+    {
+        return new TraceSpan($options);
     }
 
     /**

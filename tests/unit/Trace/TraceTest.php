@@ -63,4 +63,12 @@ class TraceTest extends \PHPUnit_Framework_TestCase
         $trace = new Trace($this->connection->reveal(), 'myproject');
         $this->assertRegExp('/^[0-9a-f]{32}$/', $trace->traceId());
     }
+
+    public function testBuildsSpan()
+    {
+        $trace = new Trace($this->connection->reveal(), 'myproject');
+        $span = $trace->span(['name' => 'myspan']);
+        $this->assertInstanceOf(TraceSpan::class, $span);
+        $this->assertEquals('myspan', $span->name());
+    }
 }
