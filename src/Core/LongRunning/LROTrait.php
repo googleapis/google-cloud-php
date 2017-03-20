@@ -21,6 +21,8 @@ use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 
 /**
  * Provide Long Running Operation support to Google Cloud PHP Clients.
+ *
+ * This trait should be used by a user-facing client which implements LRO.
  */
 trait LROTrait
 {

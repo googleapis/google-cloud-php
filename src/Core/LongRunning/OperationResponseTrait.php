@@ -22,6 +22,8 @@ use Google\GAX\OperationResponse;
 
 /**
  * Serializes and deserializes GAX LRO Response objects.
+ *
+ * This trait should be used in a gRPC Connection class to normalize responses.
  */
 trait OperationResponseTrait
 {
@@ -52,6 +54,8 @@ trait OperationResponseTrait
     }
 
     /**
+     * Fetch an OperationResponse object from a gapic client.
+     *
      * @param mixed $client A generated client with a `resumeOperation` method.
      * @param string $name The Operation name.
      * @return OperationResponse
@@ -61,7 +65,17 @@ trait OperationResponseTrait
         return $client->resumeOperation($name);
     }
 
-    private function deserializeResult($operation, $type, $codec, $mappers)
+    /**
+     * Convert an operation response to an array
+     *
+     * @param OperationResponse $operation The operation to serialize.
+     * @param string $type The Operation type. The type should correspond to a
+     *        member of $mappers.typeUrl.
+     * @param CodecInterface $codec The gRPC codec to use for the deserialization.
+     * @param array $mappers A list of mappers.
+     * @return array|null
+     */
+    private function deserializeResult(OperationResponse $operation, $type, CodecInterface $codec, array $mappers)
     {
         $mappers = array_filter($mappers, function ($mapper) use ($type) {
             return $mapper['typeUrl'] === $type;

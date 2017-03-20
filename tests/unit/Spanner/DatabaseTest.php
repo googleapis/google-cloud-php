@@ -18,7 +18,11 @@
 namespace Google\Cloud\Tests\Spanner;
 
 use Google\Cloud\Core\Exception\AbortedException;
+use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\Core\Iam\Iam;
 use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
+use Google\Cloud\Core\LongRunning\LongRunningOperation;
+use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Duration;
@@ -86,6 +90,134 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
         ];
 
         $this->database = \Google\Cloud\Dev\stub(Database::class, $args, $props);
+    }
+
+    /**
+     * @group spanneradmin
+     */
+    public function testExists()
+    {
+        $this->connection->getDatabaseDDL(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([]);
+
+        $this->database->___setProperty('connection', $this->connection->reveal());
+
+        $this->assertTrue($this->database->exists());
+    }
+
+    /**
+     * @group spanneradmin
+     */
+    public function testExistsNotFound()
+    {
+        $this->connection->getDatabaseDDL(Argument::any())
+            ->shouldBeCalled()
+            ->willThrow(new NotFoundException('', 404));
+
+        $this->database->___setProperty('connection', $this->connection->reveal());
+
+        $this->assertFalse($this->database->exists());
+    }
+
+    /**
+     * @group spanneradmin
+     */
+    public function testUpdateDdl()
+    {
+        $statement = 'foo';
+        $this->connection->updateDatabase([
+            'name' => DatabaseAdminClient::formatDatabaseName(self::PROJECT, self::INSTANCE, self::DATABASE),
+            'statements' => [$statement]
+        ]);
+
+        $this->database->___setProperty('connection', $this->connection->reveal());
+
+        $this->database->updateDdl($statement);
+    }
+
+    /**
+     * @group spanneradmin
+     */
+    public function testUpdateDdlBatch()
+    {
+        $statements = ['foo', 'bar'];
+        $this->connection->updateDatabase([
+            'name' => DatabaseAdminClient::formatDatabaseName(self::PROJECT, self::INSTANCE, self::DATABASE),
+            'statements' => $statements
+        ]);
+
+        $this->database->___setProperty('connection', $this->connection->reveal());
+
+        $this->database->updateDdl($statements);
+    }
+
+    /**
+     * @group spanneradmin
+     */
+    public function testUpdateWithSingleStatement()
+    {
+        $statement = 'foo';
+        $this->connection->updateDatabase([
+            'name' => DatabaseAdminClient::formatDatabaseName(self::PROJECT, self::INSTANCE, self::DATABASE),
+            'statements' => ['foo']
+        ])->shouldBeCalled()->willReturn(['name' => 'operations/foo']);
+
+        $this->database->___setProperty('connection', $this->connection->reveal());
+
+        $res = $this->database->updateDdl($statement);
+        $this->assertInstanceOf(LongRunningOperation::class, $res);
+    }
+
+    /**
+     * @group spanneradmin
+     */
+    public function testDrop()
+    {
+        $this->connection->dropDatabase([
+            'name' => DatabaseAdminClient::formatDatabaseName(self::PROJECT, self::INSTANCE, self::DATABASE)
+        ])->shouldBeCalled();
+
+        $this->database->___setProperty('connection', $this->connection->reveal());
+
+        $this->database->drop();
+    }
+
+    /**
+     * @group spanneradmin
+     */
+    public function testDdl()
+    {
+        $ddl = ['create table users', 'create table posts'];
+        $this->connection->getDatabaseDDL([
+            'name' => DatabaseAdminClient::formatDatabaseName(self::PROJECT, self::INSTANCE, self::DATABASE)
+        ])->willReturn(['statements' => $ddl]);
+
+        $this->database->___setProperty('connection', $this->connection->reveal());
+
+        $this->assertEquals($ddl, $this->database->ddl());
+    }
+
+    /**
+     * @group spanneradmin
+     */
+    public function testDdlNoResult()
+    {
+        $this->connection->getDatabaseDDL([
+            'name' => DatabaseAdminClient::formatDatabaseName(self::PROJECT, self::INSTANCE, self::DATABASE)
+        ])->willReturn([]);
+
+        $this->database->___setProperty('connection', $this->connection->reveal());
+
+        $this->assertEquals([], $this->database->ddl());
+    }
+
+    /**
+     * @group spanneradmin
+     */
+    public function testIam()
+    {
+        $this->assertInstanceOf(Iam::class, $this->database->iam());
     }
 
     public function testSnapshot()

@@ -25,6 +25,7 @@ use Prophecy\Argument;
 
 /**
  * @group spanneradmin
+ * @group spanner
  */
 class ConfigurationTest extends \PHPUnit_Framework_TestCase
 {
