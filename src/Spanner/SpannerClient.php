@@ -17,17 +17,17 @@
 
 namespace Google\Cloud\Spanner;
 
-use Google\Cloud\ClientTrait;
-use Google\Cloud\Exception\NotFoundException;
-use Google\Cloud\Int64;
-use Google\Cloud\LongRunning\LROTrait;
+use Google\Cloud\Core\ClientTrait;
+use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\Core\Int64;
+use Google\Cloud\Core\LongRunning\LROTrait;
+use Google\Cloud\Core\ValidateTrait;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Connection\Grpc;
 use Google\Cloud\Spanner\Connection\LongRunningConnection;
 use Google\Cloud\Spanner\Session\SessionClient;
 use Google\Cloud\Spanner\Session\SimpleSessionPool;
-use Google\Cloud\ValidateTrait;
 use google\spanner\admin\instance\v1\Instance\State;
 
 /**
@@ -49,16 +49,6 @@ use google\spanner\admin\instance\v1\Instance\State;
  *
  * $spanner = new SpannerClient();
  * ```
- *
- * @method lro() {
- *     @param string $operationName The name of the Operation to resume.
- *     @return LongRunningOperation
- *
- *     Example:
- *     ```
- *     $operation = $spanner->lro($operationName);
- *     ```
- * }
  */
 class SpannerClient
 {
@@ -66,10 +56,10 @@ class SpannerClient
     use LROTrait;
     use ValidateTrait;
 
+    const VERSION = 'master';
+
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/spanner.data';
-
     const ADMIN_SCOPE = 'https://www.googleapis.com/auth/spanner.admin';
-
     const DEFAULT_NODE_COUNT = 1;
 
     /**
@@ -150,7 +140,7 @@ class SpannerClient
                 }
             ], [
                 'typeUrl' => 'type.googleapis.com/google.spanner.admin.database.v1.CreateDatabaseMetadata',
-                'callable' => function($database) {
+                'callable' => function ($database) {
                     $instanceName = DatabaseAdminClient::parseInstanceFromDatabaseName($database['name']);
                     $databaseName = DatabaseAdminClient::parseDatabaseFromDatabaseName($database['name']);
 
@@ -159,7 +149,7 @@ class SpannerClient
                 }
             ], [
                 'typeUrl' => 'type.googleapis.com/google.spanner.admin.instance.v1.CreateInstanceMetadata',
-                'callable' => function($instance) {
+                'callable' => function ($instance) {
                     $name = InstanceAdminClient::parseInstanceFromInstanceName($instance['name']);
                     return $this->instance($name, $instance);
                 }
@@ -201,7 +191,7 @@ class SpannerClient
             $pageToken = (isset($res['nextPageToken']))
                 ? $res['nextPageToken']
                 : null;
-        } while($pageToken);
+        } while ($pageToken);
     }
 
     /**
@@ -236,7 +226,7 @@ class SpannerClient
      *
      * Example:
      * ```
-     * $instance = $spanner->createInstance($configuration, 'my-instance');
+     * $operation = $spanner->createInstance($configuration, 'my-instance');
      * ```
      *
      * @codingStandardsIgnoreStart
@@ -274,7 +264,7 @@ class SpannerClient
             'config' => InstanceAdminClient::formatInstanceConfigName($this->projectId, $config->name())
         ] + $options);
 
-        return $this->lro($operation['name']);
+        return $this->lro($this->lroConnection, $operation['name'], $this->lroCallables);
     }
 
     /**
@@ -508,6 +498,6 @@ class SpannerClient
      */
     public function resumeOperation($operationName)
     {
-        return $this->getOperation($this->lroConnection, $operationName);
+        return $this->lro($this->lroConnection, $operationName, $this->lroCallables);
     }
 }

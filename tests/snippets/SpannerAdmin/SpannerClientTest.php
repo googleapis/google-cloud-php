@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Tests\Snippets\SpannerAdmin;
 
+use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
 use Google\Cloud\Spanner\Configuration;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
@@ -86,13 +87,12 @@ class SpannerClientTest extends SnippetTestCase
 
         $this->connection->createInstance(Argument::any())
             ->shouldBeCalled()
-            ->willReturn([]);
+            ->willReturn(['name' => 'operations/foo']);
 
         $this->client->___setProperty('connection', $this->connection->reveal());
 
-        $res = $snippet->invoke('instance');
-        $this->assertInstanceOf(Instance::class, $res->returnVal());
-        $this->assertEquals(self::INSTANCE, $res->returnVal()->name());
+        $res = $snippet->invoke('operation');
+        $this->assertInstanceOf(LongRunningOperation::class, $res->returnVal());
     }
 
     public function testInstance()

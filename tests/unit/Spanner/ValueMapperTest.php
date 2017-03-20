@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Tests\Spanner;
 
-use Google\Cloud\Int64;
+use Google\Cloud\Core\Int64;
 use Google\Cloud\Spanner\Bytes;
 use Google\Cloud\Spanner\Date;
 use Google\Cloud\Spanner\Timestamp;

@@ -37,8 +37,8 @@ class LoggingClientTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->client = new \LoggingClientStub;
-        $this->client->setConnection($this->connection->reveal());
+        $this->client = \Google\Cloud\Dev\stub(LoggingClient::class);
+        $this->client->___setProperty('connection', $this->connection->reveal());
     }
 
     public function testClass()
@@ -85,7 +85,7 @@ class LoggingClientTest extends SnippetTestCase
                 ]
             ]);
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke('sinks');
         $this->assertInstanceOf(\Generator::class, $res->returnVal());
@@ -102,7 +102,7 @@ class LoggingClientTest extends SnippetTestCase
             ->shouldBeCalled()
             ->willReturn([]);
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke('metric');
         $this->assertInstanceOf(Metric::class, $res->returnVal());
@@ -131,7 +131,7 @@ class LoggingClientTest extends SnippetTestCase
                 ]
             ]);
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke('metrics');
         $this->assertInstanceOf(\Generator::class, $res->returnVal());
@@ -153,7 +153,7 @@ class LoggingClientTest extends SnippetTestCase
                 ]
             ]);
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke('entries');
         $this->assertInstanceOf(\Generator::class, $res->returnVal());
@@ -178,7 +178,7 @@ class LoggingClientTest extends SnippetTestCase
                 ]
             ]);
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke('entries');
         $this->assertInstanceOf(\Generator::class, $res->returnVal());

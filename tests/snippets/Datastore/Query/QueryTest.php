@@ -21,6 +21,7 @@ use Google\Cloud\Datastore\Connection\ConnectionInterface;
 use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Datastore\EntityMapper;
 use Google\Cloud\Datastore\Key;
+use Google\Cloud\Datastore\Operation;
 use Google\Cloud\Datastore\Query\Query;
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
 use Prophecy\Argument;
@@ -41,12 +42,12 @@ class QueryTest extends SnippetTestCase
 
         $this->datastore = new DatastoreClient;
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->operation = new \OperationStub(
+        $this->operation = \Google\Cloud\Dev\stub(Operation::class, [
             $this->connection->reveal(),
             'my-awesome-project',
             '',
             $mapper
-        );
+        ]);
 
         $this->query = new Query($mapper);
     }
@@ -75,7 +76,7 @@ class QueryTest extends SnippetTestCase
                 ]
             ]);
 
-        $this->operation->setConnection($this->connection->reveal());
+        $this->operation->___setProperty('connection', $this->connection->reveal());
 
         $snippet = $this->snippetFromClass(Query::class);
         $snippet->addLocal('operation', $this->operation);

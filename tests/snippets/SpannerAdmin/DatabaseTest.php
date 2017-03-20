@@ -17,8 +17,9 @@
 
 namespace Google\Cloud\Tests\Snippets\SpannerAdmin;
 
+use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
+use Google\Cloud\Core\Iam\Iam;
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
-use Google\Cloud\Iam\Iam;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
@@ -47,6 +48,8 @@ class DatabaseTest extends SnippetTestCase
             $this->connection->reveal(),
             $instance->reveal(),
             $this->prophesize(SessionPoolInterface::class)->reveal(),
+            $this->prophesize(LongRunningConnectionInterface::class)->reveal(),
+            [],
             self::PROJECT,
             self::DATABASE
         ]);

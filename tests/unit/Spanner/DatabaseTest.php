@@ -17,7 +17,8 @@
 
 namespace Google\Cloud\Tests\Spanner;
 
-use Google\Cloud\Exception\AbortedException;
+use Google\Cloud\Core\Exception\AbortedException;
+use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Duration;
@@ -47,6 +48,8 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
     private $connection;
     private $instance;
     private $sessionPool;
+    private $lro;
+    private $lroCallables;
     private $database;
 
     public function setUp()
@@ -54,6 +57,9 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->instance = $this->prophesize(Instance::class);
         $this->sessionPool = $this->prophesize(SessionPoolInterface::class);
+        $this->lro = $this->prophesize(LongRunningConnectionInterface::class);
+        $this->lroCallables = [];
+
         $this->sessionPool->session(self::INSTANCE, self::DATABASE, Argument::any())
             ->willReturn(new Session(
                 $this->connection->reveal(),
@@ -69,6 +75,8 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
             $this->connection->reveal(),
             $this->instance->reveal(),
             $this->sessionPool->reveal(),
+            $this->lro->reveal(),
+            $this->lroCallables,
             self::PROJECT,
             self::DATABASE,
         ];
@@ -158,7 +166,7 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException Google\Cloud\Exception\AbortedException
+     * @expectedException Google\Cloud\Core\Exception\AbortedException
      */
     public function testRunTransactionAborted()
     {

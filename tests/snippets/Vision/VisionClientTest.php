@@ -35,8 +35,8 @@ class VisionClientTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->client = new \VisionClientStub;
-        $this->client->setConnection($this->connection->reveal());
+        $this->client = \Google\Cloud\Dev\stub(VisionClient::class);
+        $this->client->___setProperty('connection', $this->connection->reveal());
     }
 
     public function testClassWithServiceBuilder()
@@ -115,7 +115,7 @@ class VisionClientTest extends SnippetTestCase
                 ]
             ]);
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke('result');
 
@@ -145,7 +145,7 @@ class VisionClientTest extends SnippetTestCase
                 ]
             ]);
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke('result');
 

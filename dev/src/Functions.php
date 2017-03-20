@@ -2,6 +2,14 @@
 
 namespace Google\Cloud\Dev;
 
+/**
+ * Create a test stub which extends a real class and allows overriding of private properties.
+ *
+ * @param string $extends The fully-qualified name of the class to extend.
+ * @param array $args An array of constructor arguments to use when creating the stub.
+ * @param array $props A list of private properties on which to enable overrriding.
+ * @return mixed
+ */
 function stub($extends, array $args = [], array $props = [])
 {
     if (empty($props)) {

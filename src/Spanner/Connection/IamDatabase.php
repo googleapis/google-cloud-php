@@ -17,12 +17,21 @@
 
 namespace Google\Cloud\Spanner\Connection;
 
-use Google\Cloud\Iam\IamConnectionInterface;
+use Google\Cloud\Core\Iam\IamConnectionInterface;
 
+/**
+ * Represents a connection to the Cloud Spanner Database IAM API.
+ */
 class IamDatabase implements IamConnectionInterface
 {
+    /**
+     * @var ConnectionInterface
+     */
     protected $connection;
 
+    /**
+     * @param ConnectionInterface $connection
+     */
     public function __construct(ConnectionInterface $connection)
     {
         $this->connection = $connection;

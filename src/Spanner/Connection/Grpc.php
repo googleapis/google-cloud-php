@@ -18,12 +18,13 @@
 namespace Google\Cloud\Spanner\Connection;
 
 use Google\Auth\CredentialsLoader;
-use Google\Cloud\GrpcRequestWrapper;
-use Google\Cloud\GrpcTrait;
-use Google\Cloud\LongRunning\OperationResponseTrait;
-use Google\Cloud\PhpArray;
+use Google\Cloud\Core\GrpcRequestWrapper;
+use Google\Cloud\Core\GrpcTrait;
+use Google\Cloud\Core\LongRunning\OperationResponseTrait;
+use Google\Cloud\Core\PhpArray;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
+use Google\Cloud\Spanner\SpannerClient as VeneerSpannerClient;
 use Google\Cloud\Spanner\V1\SpannerClient;
 use Google\GAX\ApiException;
 use google\protobuf;
@@ -125,7 +126,7 @@ class Grpc implements ConnectionInterface
         $config['codec'] = $this->codec;
         $this->setRequestWrapper(new GrpcRequestWrapper($config));
 
-        $grpcConfig = $this->getGaxConfig();
+        $grpcConfig = $this->getGaxConfig(VeneerSpannerClient::VERSION);
         $this->instanceAdminClient = new InstanceAdminClient($grpcConfig);
         $this->databaseAdminClient = new DatabaseAdminClient($grpcConfig);
         $this->spannerClient = new SpannerClient($grpcConfig);
@@ -552,7 +553,6 @@ class Grpc implements ConnectionInterface
         $name = $this->pluck('name', $args);
 
         $operation = $this->getOperationByName($this->databaseAdminClient, $name);
-        $operation->reload();
 
         return $this->operationToArray($operation, $this->codec, $this->lroResponseMappers);
     }

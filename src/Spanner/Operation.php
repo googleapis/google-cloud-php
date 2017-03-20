@@ -17,11 +17,11 @@
 
 namespace Google\Cloud\Spanner;
 
-use Google\Cloud\ArrayTrait;
+use Google\Cloud\Core\ArrayTrait;
+use Google\Cloud\Core\ValidateTrait;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
-use Google\Cloud\ValidateTrait;
 
 /**
  * Common interface for running operations against Google Cloud Spanner. This

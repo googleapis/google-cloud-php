@@ -17,7 +17,8 @@
 
 namespace Google\Cloud\Tests\Unit\SpannerAdmin;
 
-use Google\Cloud\Exception\NotFoundException;
+use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Spanner\Configuration;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Instance;
@@ -123,17 +124,18 @@ class SpannerClientTest extends \PHPUnit_Framework_TestCase
             return true;
         }))
             ->shouldBeCalled()
-            ->willReturn([]);
+            ->willReturn([
+                'name' => 'operations/foo'
+            ]);
 
         $this->client->___setProperty('connection', $this->connection->reveal());
 
         $config = $this->prophesize(Configuration::class);
         $config->name()->willReturn('my-config');
 
-        $i = $this->client->createInstance($config->reveal(), 'foo');
+        $operation = $this->client->createInstance($config->reveal(), 'foo');
 
-        $this->assertInstanceOf(Instance::class, $i);
-        $this->assertEquals('foo', $i->name());
+        $this->assertInstanceOf(LongRunningOperation::class, $operation);
     }
 
     public function testInstance()

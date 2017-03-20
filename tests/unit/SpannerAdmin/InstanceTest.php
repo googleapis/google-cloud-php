@@ -17,8 +17,10 @@
 
 namespace Google\Cloud\Tests\Unit\SpannerAdmin;
 
-use Google\Cloud\Exception\NotFoundException;
-use Google\Cloud\Iam\Iam;
+use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\Core\Iam\Iam;
+use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
+use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Configuration;
@@ -45,8 +47,13 @@ class InstanceTest extends \PHPUnit_Framework_TestCase
         $this->instance = \Google\Cloud\Dev\stub(Instance::class, [
             $this->connection->reveal(),
             $this->prophesize(SessionPoolInterface::class)->reveal(),
+            $this->prophesize(LongRunningConnectionInterface::class)->reveal(),
+            [],
             self::PROJECT_ID,
             self::NAME
+        ], [
+            'info',
+            'connection'
         ]);
     }
 
@@ -59,8 +66,8 @@ class InstanceTest extends \PHPUnit_Framework_TestCase
     {
         $this->connection->getInstance()->shouldNotBeCalled();
 
-        $instance = new Instance($this->connection->reveal(), $this->prophesize(SessionPoolInterface::class)->reveal(), self::PROJECT_ID, self::NAME, false, ['foo' => 'bar']);
-        $this->assertEquals('bar', $instance->info()['foo']);
+        $this->instance->___setProperty('info', ['foo' => 'bar']);
+        $this->assertEquals('bar', $this->instance->info()['foo']);
     }
 
     public function testInfoWithReload()
@@ -220,10 +227,6 @@ class InstanceTest extends \PHPUnit_Framework_TestCase
 
     public function testCreateDatabase()
     {
-        $dbInfo = [
-            'name' => 'test-database'
-        ];
-
         $extra = ['foo', 'bar'];
 
         $this->connection->createDatabase([
@@ -232,7 +235,7 @@ class InstanceTest extends \PHPUnit_Framework_TestCase
             'extraStatements' => $extra
         ])
             ->shouldBeCalled()
-            ->willReturn($dbInfo);
+            ->willReturn(['name' => 'operations/foo']);
 
         $this->instance->___setProperty('connection', $this->connection->reveal());
 
@@ -240,8 +243,7 @@ class InstanceTest extends \PHPUnit_Framework_TestCase
             'statements' => $extra
         ]);
 
-        $this->assertInstanceOf(Database::class, $database);
-        $this->assertEquals('test-database', $database->name());
+        $this->assertInstanceOf(LongRunningOperation::class, $database);
     }
 
     public function testDatabase()

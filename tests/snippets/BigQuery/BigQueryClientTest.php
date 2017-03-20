@@ -62,8 +62,8 @@ class BigQueryClientTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->client = new \BigQueryClientStub;
-        $this->client->setConnection($this->connection->reveal());
+        $this->client = \Google\Cloud\Dev\stub(BigQueryClient::class);
+        $this->client->___setProperty('connection', $this->connection->reveal());
     }
 
     public function testClass()
@@ -90,7 +90,7 @@ class BigQueryClientTest extends SnippetTestCase
         $this->connection->getQueryResults(Argument::any())
             ->shouldBeCalledTimes(1)
             ->willReturn($this->result);
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
         $res = $snippet->invoke('queryResults');
 
         $this->assertInstanceOf(QueryResults::class, $res->returnVal());
@@ -133,7 +133,7 @@ class BigQueryClientTest extends SnippetTestCase
         $this->connection->getQueryResults(Argument::any())
             ->shouldBeCalledTimes(1)
             ->willReturn($this->result);
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
         $res = $snippet->invoke('queryResults');
 
         $this->assertInstanceOf(QueryResults::class, $res->returnVal());
@@ -166,7 +166,7 @@ class BigQueryClientTest extends SnippetTestCase
         $this->connection->getQueryResults(Argument::any())
             ->shouldBeCalledTimes(1)
             ->willReturn($this->result);
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
         $res = $snippet->invoke('queryResults');
 
         $this->assertInstanceOf(QueryResults::class, $res->returnVal());
@@ -197,7 +197,7 @@ class BigQueryClientTest extends SnippetTestCase
                 ],
                 $this->result
             );
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
         $res = $snippet->invoke('queryResults');
 
         $this->assertInstanceOf(QueryResults::class, $res->returnVal());
@@ -208,7 +208,7 @@ class BigQueryClientTest extends SnippetTestCase
     {
         $snippet = $this->snippetFromMethod(BigQueryClient::class, 'job');
         $snippet->addLocal('bigQuery', $this->client);
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
         $res = $snippet->invoke('job');
 
         $this->assertInstanceOf(Job::class, $res->returnVal());
@@ -229,7 +229,7 @@ class BigQueryClientTest extends SnippetTestCase
                     ]
                 ]
             ]);
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
         $res = $snippet->invoke('jobs');
 
         $this->assertInstanceOf(\Generator::class, $res->returnVal());
@@ -240,7 +240,7 @@ class BigQueryClientTest extends SnippetTestCase
     {
         $snippet = $this->snippetFromMethod(BigQueryClient::class, 'dataset');
         $snippet->addLocal('bigQuery', $this->client);
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
         $res = $snippet->invoke('dataset');
 
         $this->assertInstanceOf(Dataset::class, $res->returnVal());
@@ -261,7 +261,7 @@ class BigQueryClientTest extends SnippetTestCase
                     ]
                 ]
             ]);
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
         $res = $snippet->invoke('datasets');
 
         $this->assertInstanceOf(\Generator::class, $res->returnVal());
@@ -275,7 +275,7 @@ class BigQueryClientTest extends SnippetTestCase
         $this->connection->insertDataset(Argument::any())
             ->shouldBeCalledTimes(1)
             ->willReturn([]);
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
         $res = $snippet->invoke('dataset');
 
         $this->assertInstanceOf(Dataset::class, $res->returnVal());
@@ -285,7 +285,7 @@ class BigQueryClientTest extends SnippetTestCase
     {
         $snippet = $this->snippetFromMethod(BigQueryClient::class, 'bytes');
         $snippet->addLocal('bigQuery', $this->client);
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
         $res = $snippet->invoke('bytes');
 
         $this->assertInstanceOf(Bytes::class, $res->returnVal());
@@ -295,7 +295,7 @@ class BigQueryClientTest extends SnippetTestCase
     {
         $snippet = $this->snippetFromMethod(BigQueryClient::class, 'date');
         $snippet->addLocal('bigQuery', $this->client);
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
         $res = $snippet->invoke('date');
 
         $this->assertInstanceOf(Date::class, $res->returnVal());
@@ -305,7 +305,7 @@ class BigQueryClientTest extends SnippetTestCase
     {
         $snippet = $this->snippetFromMethod(BigQueryClient::class, 'int64');
         $snippet->addLocal('bigQuery', $this->client);
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
         $res = $snippet->invoke('int64');
 
         $this->assertInstanceOf(Int64::class, $res->returnVal());
@@ -315,7 +315,7 @@ class BigQueryClientTest extends SnippetTestCase
     {
         $snippet = $this->snippetFromMethod(BigQueryClient::class, 'time');
         $snippet->addLocal('bigQuery', $this->client);
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
         $res = $snippet->invoke('time');
 
         $this->assertInstanceOf(Time::class, $res->returnVal());
@@ -325,7 +325,7 @@ class BigQueryClientTest extends SnippetTestCase
     {
         $snippet = $this->snippetFromMethod(BigQueryClient::class, 'timestamp');
         $snippet->addLocal('bigQuery', $this->client);
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
         $res = $snippet->invoke('timestamp');
 
         $this->assertInstanceOf(Timestamp::class, $res->returnVal());

@@ -17,33 +17,55 @@
 
 namespace Google\Cloud\Spanner\Connection;
 
-use Google\Cloud\LongRunning\LongRunningConnectionInterface;
+use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 
+/**
+ * Represents a connection to the Long Running Operations portion of the
+ * Cloud Spanner API.
+ */
 class LongRunningConnection implements LongRunningConnectionInterface
 {
+    /**
+     * @var ConnectionInterface
+     */
     private $connection;
 
+    /**
+     * @param ConnectionInterface $connection
+     */
     public function __construct(ConnectionInterface $connection)
     {
         $this->connection = $connection;
     }
 
+    /**
+     * @param array $args
+     */
     public function get(array $args)
     {
         return $this->connection->getOperation($args);
     }
 
+    /**
+     * @param array $args
+     */
     public function cancel(array $args)
     {
         return $this->connection->cancelOperation($args);
     }
 
+    /**
+     * @param array $args
+     */
     public function delete(array $args)
     {
         return $this->connection->deleteOperation($args);
     }
 
-    public function list(array $args)
+    /**
+     * @param array $args
+     */
+    public function operations(array $args)
     {
         return $this->connection->listOperations($args);
     }

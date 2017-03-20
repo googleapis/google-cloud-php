@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\LongRunning;
+namespace Google\Cloud\Core\LongRunning;
 
 /**
  * Represent and interact with a Long Running Operation.
@@ -58,6 +58,11 @@ class LongRunningOperation
      * @var array|null
      */
     private $result;
+
+    /**
+     * @var array|null
+     */
+    private $error;
 
     /**
      * @var array
@@ -112,7 +117,7 @@ class LongRunningOperation
      */
     public function done()
     {
-        return (isset($this->info['done']))
+        return (isset($this->info()['done']))
             ? $this->info['done']
             : false;
     }
@@ -177,6 +182,7 @@ class LongRunningOperation
      */
     public function result()
     {
+        $this->info();
         return $this->result;
     }
 
@@ -199,6 +205,7 @@ class LongRunningOperation
      */
     public function error()
     {
+        $this->info();
         return $this->error;
     }
 
@@ -345,7 +352,7 @@ class LongRunningOperation
             return null;
         }
 
-        $callables = array_filter($this->callablesMap, function($callable) use ($type) {
+        $callables = array_filter($this->callablesMap, function ($callable) use ($type) {
             return $callable['typeUrl'] === $type;
         });
 

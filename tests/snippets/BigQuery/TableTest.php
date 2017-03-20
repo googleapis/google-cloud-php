@@ -23,9 +23,10 @@ use Google\Cloud\BigQuery\InsertResponse;
 use Google\Cloud\BigQuery\Job;
 use Google\Cloud\BigQuery\Table;
 use Google\Cloud\BigQuery\ValueMapper;
+use Google\Cloud\Core\Upload\MultipartUploader;
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
 use Google\Cloud\Storage\Connection\ConnectionInterface as StorageConnectionInterface;
-use Google\Cloud\Core\Upload\MultipartUploader;
+use Google\Cloud\Storage\StorageClient;
 use Prophecy\Argument;
 
 /**
@@ -65,14 +66,14 @@ class TableTest extends SnippetTestCase
 
         $this->mapper = new ValueMapper(false);
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->table = new \TableStub(
+        $this->table = \Google\Cloud\Dev\Stub(Table::class, [
             $this->connection->reveal(),
             self::ID,
             self::DSID,
             self::PROJECT,
             $this->mapper,
             $this->info
-        );
+        ]);
     }
 
     public function testExists()
@@ -84,7 +85,7 @@ class TableTest extends SnippetTestCase
             ->shouldBeCalled()
             ->willReturn([]);
 
-        $this->table->setConnection($this->connection->reveal());
+        $this->table->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke();
         $this->assertEquals('Table exists!', $res->output());
@@ -98,7 +99,7 @@ class TableTest extends SnippetTestCase
         $this->connection->deleteTable(Argument::any())
             ->shouldBeCalled();
 
-        $this->table->setConnection($this->connection->reveal());
+        $this->table->___setProperty('connection', $this->connection->reveal());
 
         $snippet->invoke();
     }
@@ -111,7 +112,7 @@ class TableTest extends SnippetTestCase
         $this->connection->patchTable(Argument::any())
             ->shouldBeCalled();
 
-        $this->table->setConnection($this->connection->reveal());
+        $this->table->___setProperty('connection', $this->connection->reveal());
 
         $snippet->invoke();
     }
@@ -127,7 +128,7 @@ class TableTest extends SnippetTestCase
                 'rows' => $this->info['rows']
             ]);
 
-        $this->table->setConnection($this->connection->reveal());
+        $this->table->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke('rows');
         $this->assertInstanceOf(\Generator::class, $res->returnVal());
@@ -136,11 +137,11 @@ class TableTest extends SnippetTestCase
 
     public function testCopy()
     {
-        $bq = new \BigQueryClientStub;
+        $bq = \Google\Cloud\Dev\stub(BigQueryClient::class);
         $snippet = $this->snippetFromMethod(Table::class, 'copy');
         $snippet->addLocal('bigQuery', $bq);
 
-        $bq->setConnection($this->connection->reveal());
+        $bq->___setProperty('connection', $this->connection->reveal());
 
         $this->connection->insertJob(Argument::any())
             ->shouldBeCalled()
@@ -150,7 +151,7 @@ class TableTest extends SnippetTestCase
                 ]
             ]);
 
-        $this->table->setConnection($this->connection->reveal());
+        $this->table->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke('job');
         $this->assertInstanceOf(Job::class, $res->returnVal());
@@ -158,8 +159,8 @@ class TableTest extends SnippetTestCase
 
     public function testExport()
     {
-        $storage = new \StorageClientStub;
-        $storage->setConnection($this->prophesize(StorageConnectionInterface::class)->reveal());
+        $storage = \Google\Cloud\Dev\stub(StorageClient::class);
+        $storage->___setProperty('connection', $this->prophesize(StorageConnectionInterface::class)->reveal());
 
         $snippet = $this->snippetFromMethod(Table::class, 'export');
         $snippet->addLocal('storage', $storage);
@@ -173,7 +174,7 @@ class TableTest extends SnippetTestCase
                 ]
             ]);
 
-        $this->table->setConnection($this->connection->reveal());
+        $this->table->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke('job');
         $this->assertInstanceOf(Job::class, $res->returnVal());
@@ -198,7 +199,7 @@ class TableTest extends SnippetTestCase
             ->shouldBeCalled()
             ->willReturn($uploader->reveal());
 
-        $this->table->setConnection($this->connection->reveal());
+        $this->table->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke('job');
         $this->assertInstanceOf(Job::class, $res->returnVal());
@@ -206,8 +207,8 @@ class TableTest extends SnippetTestCase
 
     public function testLoadFromStorage()
     {
-        $storage = new \StorageClientStub;
-        $storage->setConnection($this->prophesize(StorageConnectionInterface::class)->reveal());
+        $storage = \Google\Cloud\Dev\stub(StorageClient::class);
+        $storage->___setProperty('connection', $this->prophesize(StorageConnectionInterface::class)->reveal());
 
         $snippet = $this->snippetFromMethod(Table::class, 'loadFromStorage');
         $snippet->addLocal('storage', $storage);
@@ -226,7 +227,7 @@ class TableTest extends SnippetTestCase
             ->shouldBeCalled()
             ->willReturn($uploader->reveal());
 
-        $this->table->setConnection($this->connection->reveal());
+        $this->table->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke('job');
         $this->assertInstanceOf(Job::class, $res->returnVal());
@@ -243,7 +244,7 @@ class TableTest extends SnippetTestCase
 
             ]);
 
-        $this->table->setConnection($this->connection->reveal());
+        $this->table->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke('insertResponse');
         $this->assertInstanceOf(InsertResponse::class, $res->returnVal());
@@ -260,7 +261,7 @@ class TableTest extends SnippetTestCase
 
             ]);
 
-        $this->table->setConnection($this->connection->reveal());
+        $this->table->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke('insertResponse');
         $this->assertInstanceOf(InsertResponse::class, $res->returnVal());
@@ -286,7 +287,7 @@ class TableTest extends SnippetTestCase
                 'friendlyName' => 'El Jefe'
             ]);
 
-        $this->table->setConnection($this->connection->reveal());
+        $this->table->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke();
         $this->assertEquals('El Jefe', $res->output());

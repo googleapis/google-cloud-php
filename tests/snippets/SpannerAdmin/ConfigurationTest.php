@@ -66,17 +66,19 @@ class ConfigurationTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Configuration::class, 'info');
         $snippet->addLocal('configuration', $this->config);
 
+        $info = [
+            'name' => 'projects/'. self::PROJECT .'/instanceConfigs/'. self::CONFIG,
+            'displayName' => self::CONFIG
+        ];
+
         $this->connection->getConfig(Argument::any())
             ->shouldBeCalled()
-            ->willReturn([
-                'name' => 'projects/'. self::PROJECT .'/instanceConfigs/'. self::CONFIG,
-                'displayName' => self::CONFIG
-            ]);
+            ->willReturn($info);
 
         $this->config->___setProperty('connection', $this->connection->reveal());
 
-        $res = $snippet->invoke();
-        $this->assertEquals(self::CONFIG, $res->output());
+        $res = $snippet->invoke('info');
+        $this->assertEquals($info, $res->returnVal());
     }
 
     public function testExists()

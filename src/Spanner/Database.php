@@ -17,13 +17,12 @@
 
 namespace Google\Cloud\Spanner;
 
-use Google\Cloud\ArrayTrait;
-use Google\Cloud\Exception\AbortedException;
-use Google\Cloud\Exception\NotFoundException;
-use Google\Cloud\Iam\Iam;
-use Google\Cloud\LongRunning\LROTrait;
-use Google\Cloud\LongRunning\LongRunningConnectionInterface;
-use Google\Cloud\Retry;
+use Google\Cloud\Core\Exception\AbortedException;
+use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\Core\Iam\Iam;
+use Google\Cloud\Core\LongRunning\LROTrait;
+use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
+use Google\Cloud\Core\Retry;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Connection\IamDatabase;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
@@ -52,20 +51,9 @@ use Google\Cloud\Spanner\V1\SpannerClient as GrpcSpannerClient;
  * $instance = $spanner->instance('my-instance');
  * $database = $instance->database('my-database');
  * ```
- *
- * @method lro() {
- *     @param string $operationName The name of the Operation to resume.
- *     @return LongRunningOperation
- *
- *     Example:
- *     ```
- *     $operation = $database->lro($operationName);
- *     ```
- * }
  */
 class Database
 {
-    use ArrayTrait;
     use LROTrait;
     use TransactionConfigurationTrait;
 
@@ -145,10 +133,6 @@ class Database
         $this->name = $name;
 
         $this->operation = new Operation($connection, $returnInt64AsObject);
-        $this->iam = new Iam(
-            new IamDatabase($this->connection),
-            $this->fullyQualifiedDatabaseName()
-        );
     }
 
     /**
@@ -261,7 +245,7 @@ class Database
             'statements' => $statements,
         ]);
 
-        return $this->lro($operation['name']);
+        return $this->lro($this->lroConnection, $operation['name'], $this->lroCallables);
     }
 
     /**
@@ -330,6 +314,13 @@ class Database
      */
     public function iam()
     {
+        if (!$this->iam) {
+            $this->iam = new Iam(
+                new IamDatabase($this->connection),
+                $this->fullyQualifiedDatabaseName()
+            );
+        }
+
         return $this->iam;
     }
 
@@ -495,7 +486,7 @@ class Database
             time_nanosleep($delay['seconds'], $delay['nanos']);
         };
 
-        $commitFn = function($operation, $session, $options) use ($startTransactionFn) {
+        $commitFn = function ($operation, $session, $options) use ($startTransactionFn) {
             $transaction = call_user_func_array($startTransactionFn, [
                 $session,
                 $options
@@ -1088,7 +1079,8 @@ class Database
      * @param string $context The session context.
      * @return Session
      */
-    private function selectSession($context = SessionPoolInterface::CONTEXT_READ) {
+    private function selectSession($context = SessionPoolInterface::CONTEXT_READ)
+    {
         return $this->sessionPool->session(
             $this->instance->name(),
             $this->name,

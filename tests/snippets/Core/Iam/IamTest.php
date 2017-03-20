@@ -39,8 +39,8 @@ class IamTest extends SnippetTestCase
         $this->resource = 'testObject';
 
         $this->connection = $this->prophesize(IamConnectionInterface::class);
-        $this->iam = new \IamStub($this->connection->reveal(), $this->resource);
-        $this->iam->setConnection($this->connection->reveal());
+        $this->iam = \Google\Cloud\Dev\stub(Iam::class, [$this->connection->reveal(), $this->resource]);
+        $this->iam->___setProperty('connection', $this->connection->reveal());
     }
 
     public function testClass()
@@ -60,7 +60,7 @@ class IamTest extends SnippetTestCase
             ->shouldBeCalled()
             ->willReturn('foo');
 
-        $this->iam->setConnection($this->connection->reveal());
+        $this->iam->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke('policy');
 
@@ -92,7 +92,7 @@ class IamTest extends SnippetTestCase
             'resource' => $this->resource
         ])->shouldBeCalled()->willReturn('foo');
 
-        $this->iam->setConnection($this->connection->reveal());
+        $this->iam->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke('policy');
 
@@ -116,7 +116,7 @@ class IamTest extends SnippetTestCase
             ->shouldBeCalled()
             ->willReturn($permissions);
 
-        $this->iam->setConnection($this->connection->reveal());
+        $this->iam->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke('allowedPermissions');
         $this->assertEquals($permissions, $res->returnVal());
@@ -131,7 +131,7 @@ class IamTest extends SnippetTestCase
             ->shouldBeCalled()
             ->willReturn('foo');
 
-        $this->iam->setConnection($this->connection->reveal());
+        $this->iam->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke('policy');
         $this->assertEquals('foo', $res->returnVal());

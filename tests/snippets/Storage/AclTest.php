@@ -33,7 +33,11 @@ class AclTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->acl = new \AclStub($this->connection->reveal(), 'bucketAccessControls', []);
+        $this->acl = \Google\Cloud\Dev\stub(Acl::class, [
+            $this->connection->reveal(),
+            'bucketAccessControls',
+            []
+        ]);
     }
     public function testClass()
     {
@@ -51,7 +55,7 @@ class AclTest extends SnippetTestCase
         $this->connection->deleteAcl(Argument::any())
             ->shouldBeCalled();
 
-        $this->acl->setConnection($this->connection->reveal());
+        $this->acl->___setProperty('connection', $this->connection->reveal());
 
         $snippet->invoke();
     }
@@ -65,7 +69,7 @@ class AclTest extends SnippetTestCase
             ->shouldBeCalled()
             ->willReturn('foo');
 
-        $this->acl->setConnection($this->connection->reveal());
+        $this->acl->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke('res');
         $this->assertEquals('foo', $res->returnVal());
@@ -79,7 +83,7 @@ class AclTest extends SnippetTestCase
         $this->connection->insertAcl(Argument::any())
             ->shouldBecalled();
 
-        $this->acl->setConnection($this->connection->reveal());
+        $this->acl->___setProperty('connection', $this->connection->reveal());
 
         $snippet->invoke();
     }
@@ -92,7 +96,7 @@ class AclTest extends SnippetTestCase
         $this->connection->patchAcl(Argument::any())
             ->shouldBeCalled();
 
-        $this->acl->setConnection($this->connection->reveal());
+        $this->acl->___setProperty('connection', $this->connection->reveal());
         $snippet->invoke();
     }
 }

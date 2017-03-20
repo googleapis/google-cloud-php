@@ -17,8 +17,10 @@
 
 namespace Google\Cloud\Tests\Snippets\SpannerAdmin;
 
+use Google\Cloud\Core\Iam\Iam;
+use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
+use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
-use Google\Cloud\Iam\Iam;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
@@ -43,6 +45,8 @@ class InstanceTest extends SnippetTestCase
         $this->instance = \Google\Cloud\Dev\stub(Instance::class, [
             $this->connection->reveal(),
             $this->prophesize(SessionPoolInterface::class)->reveal(),
+            $this->prophesize(LongRunningConnectionInterface::class)->reveal(),
+            [],
             self::PROJECT,
             self::INSTANCE
         ]);
@@ -169,8 +173,7 @@ class InstanceTest extends SnippetTestCase
         $this->instance->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke('database');
-        $this->assertInstanceOf(Database::class, $res->returnVal());
-        $this->assertEquals(self::DATABASE, $res->returnVal()->name());
+        $this->assertInstanceOf(LongRunningOperation::class, $res->returnVal());
     }
 
     public function testDatabase()

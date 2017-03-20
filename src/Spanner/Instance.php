@@ -17,10 +17,10 @@
 
 namespace Google\Cloud\Spanner;
 
-use Google\Cloud\Exception\NotFoundException;
-use Google\Cloud\Iam\Iam;
-use Google\Cloud\LongRunning\LROTrait;
-use Google\Cloud\LongRunning\LongRunningConnectionInterface;
+use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\Core\Iam\Iam;
+use Google\Cloud\Core\LongRunning\LROTrait;
+use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
@@ -40,16 +40,6 @@ use google\spanner\admin\instance\v1\Instance\State;
  *
  * $instance = $spanner->instance('my-instance');
  * ```
- *
- * @method lro() {
- *     @param string $operationName The name of the Operation to resume.
- *     @return LongRunningOperation
- *
- *     Example:
- *     ```
- *     $operation = $instance->lro($operationName);
- *     ```
- * }
  */
 class Instance
 {
@@ -137,10 +127,6 @@ class Instance
         $this->name = $name;
         $this->returnInt64AsObject = $returnInt64AsObject;
         $this->info = $info;
-        $this->iam = new Iam(
-            new IamInstance($this->connection),
-            $this->fullyQualifiedInstanceName()
-        );
     }
 
     /**
@@ -301,7 +287,7 @@ class Instance
             'name' => $this->fullyQualifiedInstanceName(),
         ] + $options);
 
-        return $this->lro($operation['name']);
+        return $this->lro($this->lroConnection, $operation['name'], $this->lroCallables);
     }
 
     /**
@@ -360,7 +346,7 @@ class Instance
             'extraStatements' => $options['statements']
         ]);
 
-        return $this->lro($operation['name']);
+        return $this->lro($this->lroConnection, $operation['name'], $this->lroCallables);
     }
 
     /**
@@ -424,7 +410,7 @@ class Instance
             $pageToken = (isset($res['nextPageToken']))
                 ? $res['nextPageToken']
                 : null;
-        } while($pageToken);
+        } while ($pageToken);
     }
 
     /**
@@ -439,6 +425,13 @@ class Instance
      */
     public function iam()
     {
+        if (!$this->iam) {
+            $this->iam = new Iam(
+                new IamInstance($this->connection),
+                $this->fullyQualifiedInstanceName()
+            );
+        }
+
         return $this->iam;
     }
 

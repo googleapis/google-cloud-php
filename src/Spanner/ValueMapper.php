@@ -17,8 +17,8 @@
 
 namespace Google\Cloud\Spanner;
 
-use Google\Cloud\ArrayTrait;
-use Google\Cloud\Int64;
+use Google\Cloud\Core\ArrayTrait;
+use Google\Cloud\Core\Int64;
 use google\spanner\v1\TypeCode;
 
 class ValueMapper
@@ -174,7 +174,6 @@ class ValueMapper
                 break;
 
             case self::TYPE_FLOAT64:
-
                 // NaN, Infinite and -Infinite are possible FLOAT64 values,
                 // but when the gRPC response is decoded, they are represented
                 // as strings. This conditional checks for a string, converts to
@@ -245,7 +244,6 @@ class ValueMapper
                 break;
 
             case 'array':
-
                 if ($this->isAssoc($value)) {
                     throw new \InvalidArgumentException('Associative arrays are not supported');
                 }

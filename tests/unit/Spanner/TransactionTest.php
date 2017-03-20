@@ -301,13 +301,6 @@ class TransactionTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(Transaction::STATE_COMMITTED, $this->transaction->state());
     }
 
-    public function testMutations()
-    {
-        $this->assertEmpty($this->transaction->mutations());
-        $this->transaction->insert('Posts', []);
-        $this->assertEquals(1, count($this->transaction->mutations()));
-    }
-
     // *******
     // Helpers
 

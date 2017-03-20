@@ -15,25 +15,30 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\LongRunning;
+namespace Google\Cloud\Core\LongRunning;
 
 /**
- * Provide Long Running Operation support to Google Cloud PHP Clients.
+ * Defines the calls required to manage Long Running Operations
  */
-trait LROTrait
+interface LongRunningConnectionInterface
 {
     /**
-     * Create a Long Running Operation from an operation name.
-     *
-     * @param string $operationName The name of the Operation.
-     * @return LongRunningOperation
+     * @param array $args
      */
-    public function lro($operationName)
-    {
-        return new LongRunningOperation(
-            $this->lroConnection,
-            $operationName,
-            $this->lroCallables
-        );
-    }
+    public function get(array $args);
+
+    /**
+     * @param array $args
+     */
+    public function cancel(array $args);
+
+    /**
+     * @param array $args
+     */
+    public function delete(array $args);
+
+    /**
+     * @param array $args
+     */
+    public function operations(array $args);
 }

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\LongRunning;
+namespace Google\Cloud\Core\LongRunning;
 
 use DrSlump\Protobuf\CodecInterface;
 use Google\GAX\OperationResponse;
@@ -63,7 +63,7 @@ trait OperationResponseTrait
 
     private function deserializeResult($operation, $type, $codec, $mappers)
     {
-        $mappers = array_filter($mappers, function($mapper) use ($type) {
+        $mappers = array_filter($mappers, function ($mapper) use ($type) {
             return $mapper['typeUrl'] === $type;
         });
 

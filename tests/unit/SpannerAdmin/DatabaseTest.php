@@ -17,8 +17,10 @@
 
 namespace Google\Cloud\Tests\Unit\SpannerAdmin;
 
-use Google\Cloud\Exception\NotFoundException;
-use Google\Cloud\Iam\Iam;
+use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\Core\Iam\Iam;
+use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
+use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Database;
@@ -49,6 +51,8 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
             $this->connection->reveal(),
             $this->instance->reveal(),
             $this->prophesize(SessionPoolInterface::class)->reveal(),
+            $this->prophesize(LongRunningConnectionInterface::class)->reveal(),
+            [],
             self::PROJECT_ID,
             self::NAME
         ]);
@@ -112,13 +116,13 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
         $statement = 'foo';
         $this->connection->updateDatabase([
             'name' => DatabaseAdminClient::formatDatabaseName(self::PROJECT_ID, self::INSTANCE_NAME, self::NAME),
-            'statements' => ['foo'],
-            'operationId' => null,
-        ])->shouldBeCalled();
+            'statements' => ['foo']
+        ])->shouldBeCalled()->willReturn(['name' => 'operations/foo']);
 
         $this->database->___setProperty('connection', $this->connection->reveal());
 
-        $this->database->updateDdl($statement);
+        $res = $this->database->updateDdl($statement);
+        $this->assertInstanceOf(LongRunningOperation::class, $res);
     }
 
     public function testDrop()

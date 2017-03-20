@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Spanner;
 
-use Google\Cloud\ArrayTrait;
+use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 
 trait TransactionConfigurationTrait
