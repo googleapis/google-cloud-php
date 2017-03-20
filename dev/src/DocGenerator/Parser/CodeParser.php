@@ -31,8 +31,10 @@ class CodeParser implements ParserInterface
 
     const SNIPPET_NAME_REGEX = '/\/\/\s?\[snippet\=(\w{0,})\]/';
 
+    private static $composerFiles = [];
+
     private $path;
-    private $outputName;
+    private $fileName;
     private $reflector;
     private $markdown;
     private $projectRoot;
@@ -40,20 +42,20 @@ class CodeParser implements ParserInterface
     private $componentId;
     private $manifestPath;
     private $release;
-    private $linkCrossComponent;
+    private $isComponent;
 
     public function __construct(
         $path,
-        $outputName,
+        $fileName,
         FileReflector $reflector,
         $projectRoot,
         $componentId,
         $manifestPath,
         $release,
-        $linkCrossComponent = true
+        $isComponent = true
     ) {
         $this->path = $path;
-        $this->outputName = $outputName;
+        $this->fileName = $fileName;
         $this->reflector = $reflector;
         $this->markdown = \Parsedown::instance();
         $this->projectRoot = $projectRoot;
@@ -61,7 +63,7 @@ class CodeParser implements ParserInterface
         $this->componentId = $componentId;
         $this->manifestPath = $manifestPath;
         $this->release = $release;
-        $this->linkCrossComponent = $linkCrossComponent;
+        $this->isComponent = $isComponent;
     }
 
     public function parse()
@@ -84,7 +86,7 @@ class CodeParser implements ParserInterface
             return $fileReflector->getTraits()[0];
         }
 
-        throw new \Exception('Could not get reflector for '. $this->outputName);
+        throw new \Exception('Could not get reflector for '. $this->fileName);
     }
 
     private function buildDocument($reflector)
@@ -219,7 +221,7 @@ class CodeParser implements ParserInterface
             'id' => $method->getName(),
             'type' => $method->getName() === '__construct' ? 'constructor' : 'instance',
             'name' => $method->getName(),
-            'source' => $this->outputName . '#L' . $method->getLineNumber(),
+            'source' => $this->getSource() . '#L' . $method->getLineNumber(),
             'description' => $this->buildDescription($docBlock, $split['description']),
             'examples' => $this->buildExamples($split['examples']),
             'resources' => $this->buildResources($resources),
@@ -252,7 +254,7 @@ class CodeParser implements ParserInterface
             'id' => $magicMethod->getMethodName(),
             'type' => $magicMethod->getMethodName() === '__construct' ? 'constructor' : 'instance',
             'name' => $magicMethod->getMethodName(),
-            'source' => $this->outputName,
+            'source' => $this->getSource(),
             'description' => $this->buildDescription($docBlock, $docText),
             'examples' => $this->buildExamples($examples),
             'resources' => $this->buildResources($resources),
@@ -532,7 +534,7 @@ class CodeParser implements ParserInterface
     private function buildLink($content)
     {
         $componentId = null;
-        if ($this->linkCrossComponent && substr_compare(trim($content, '\\'), 'Google\Cloud', 0, 12) === 0) {
+        if ($this->isComponent && substr_compare(trim($content, '\\'), 'Google\Cloud', 0, 12) === 0) {
             try {
                 $matches = [];
                 preg_match('/[Generator\<]?(Google\\\Cloud\\\[\w\\\]{0,})[\>]?[\[\]]?/', $content, $matches);
@@ -611,8 +613,6 @@ class CodeParser implements ParserInterface
         ];
     }
 
-    private static $composerFiles = [];
-
     private function isComponent($composerPath)
     {
         if (isset(self::$composerFiles[$composerPath])) {
@@ -627,5 +627,10 @@ class CodeParser implements ParserInterface
         }
 
         return false;
+    }
+
+    private function getSource()
+    {
+        return 'src' . explode('src', $this->path)[1];
     }
 }
