@@ -41,7 +41,7 @@ class NaturalLanguageClient
 {
     use ClientTrait;
 
-    const VERSION = '0.1.0';
+    const VERSION = '0.2.0';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/cloud-platform';
 

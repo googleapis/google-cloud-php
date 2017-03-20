@@ -4,7 +4,7 @@
     "license": "Apache-2.0",
     "minimum-stability": "stable",
     "require": {
-        "google/cloud-core": "*"
+        "google/cloud-core": "^1.0"
     },
     "suggest": {
         "google/gax": "Required to support gRPC",

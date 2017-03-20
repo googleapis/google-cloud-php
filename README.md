@@ -6,17 +6,19 @@
 * [Homepage](http://googlecloudplatform.github.io/google-cloud-php)
 * [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs)
 
+This client supports the following Google Cloud Platform services at a [General Availability](#versioning) quality level:
+* [Google BigQuery](#google-bigquery-ga) (GA)
+* [Google Stackdriver Logging](#google-stackdriver-logging-ga) (GA)
+* [Google Cloud Datastore](#google-cloud-datastore-ga) (GA)
+* [Google Cloud Storage](#google-cloud-storage-ga) (GA)
+
 This client supports the following Google Cloud Platform services at a [Beta](#versioning) quality level:
 
-* [Google BigQuery](#google-bigquery-beta) (Beta)
-* [Google Stackdriver Logging](#google-stackdriver-logging-beta) (Beta)
-* [Google Cloud Datastore](#google-cloud-datastore-beta) (Beta)
-* [Google Cloud Storage](#google-cloud-storage-beta) (Beta)
+* [Google Cloud Pub/Sub](#google-cloud-pubsub-beta) (Beta)
 * [Google Cloud Vision](#google-cloud-vision-beta) (Beta)
 
 This client supports the following Google Cloud Platform services at an [Alpha](#versioning) quality level:
 * [Google Cloud Natural Language](#google-cloud-natural-language-alpha) (Alpha)
-* [Google Cloud Pub/Sub](#google-cloud-pubsub-alpha) (Alpha)
 * [Google Cloud Speech](#google-cloud-speech-alpha) (Alpha)
 * [Google Cloud Translation](#google-cloud-translation-alpha) (Alpha)
 
@@ -28,7 +30,7 @@ If you need support for other Google APIs, please check out the [Google APIs Cli
 $ composer require google/cloud
 ```
 
-## Google BigQuery (Beta)
+## Google BigQuery (GA)
 
 - [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/bigquery/bigqueryclient)
 - [Official Documentation](https://cloud.google.com/bigquery/docs)
@@ -69,7 +71,7 @@ Google BigQuery can be installed separately by requiring the `google/cloud-bigqu
 $ require google/cloud-bigquery
 ```
 
-## Google Stackdriver Logging (Beta)
+## Google Stackdriver Logging (GA)
 
 - [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/logging/loggingclient)
 - [Official Documentation](https://cloud.google.com/logging/docs)
@@ -109,7 +111,7 @@ Google Stackdriver Logging can be installed separately by requiring the `google/
 $ require google/cloud-logging
 ```
 
-## Google Cloud Datastore (Beta)
+## Google Cloud Datastore (GA)
 
 - [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/datastore/datastoreclient)
 - [Official Documentation](https://cloud.google.com/datastore/docs/)
@@ -148,7 +150,7 @@ Google Cloud Datastore can be installed separately by requiring the `google/clou
 $ require google/cloud-datastore
 ```
 
-## Google Cloud Storage (Beta)
+## Google Cloud Storage (GA)
 
 - [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/storage/storageclient)
 - [Official Documentation](https://cloud.google.com/storage/docs)
@@ -197,6 +199,53 @@ Google Cloud Storage can be installed separately by requiring the `google/cloud-
 
 ```
 $ require google/cloud-storage
+```
+
+## Google Cloud Pub/Sub (Beta)
+
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/pubsub/pubsubclient)
+- [Official Documentation](https://cloud.google.com/pubsub/docs)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\PubSub\PubSubClient;
+
+$pubSub = new PubSubClient([
+    'projectId' => 'my_project'
+]);
+
+// Get an instance of a previously created topic.
+$topic = $pubSub->topic('my_topic');
+
+// Publish a message to the topic.
+$topic->publish([
+    'data' => 'My new message.',
+    'attributes' => [
+        'location' => 'Detroit'
+    ]
+]);
+
+// Get an instance of a previously created subscription.
+$subscription = $pubSub->subscription('my_subscription');
+
+// Pull all available messages.
+$messages = $subscription->pull();
+
+foreach ($messages as $message) {
+    echo $message->data() . "\n";
+    echo $message->attribute('location');
+}
+```
+
+#### google/cloud-pubsub
+
+Google Cloud Pub/Sub can be installed separately by requiring the `google/cloud-pubsub` composer package:
+
+```
+$ require google/cloud-pubsub
 ```
 
 ## Google Cloud Vision (Beta)
@@ -340,53 +389,6 @@ Google Cloud Natural Language can be installed separately by requiring the `goog
 $ require google/cloud-natural-language
 ```
 
-## Google Cloud Pub/Sub (Alpha)
-
-- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/pubsub/pubsubclient)
-- [Official Documentation](https://cloud.google.com/pubsub/docs)
-
-#### Preview
-
-```php
-require 'vendor/autoload.php';
-
-use Google\Cloud\PubSub\PubSubClient;
-
-$pubSub = new PubSubClient([
-    'projectId' => 'my_project'
-]);
-
-// Get an instance of a previously created topic.
-$topic = $pubSub->topic('my_topic');
-
-// Publish a message to the topic.
-$topic->publish([
-	'data' => 'My new message.',
-	'attributes' => [
-		'location' => 'Detroit'
-	]
-]);
-
-// Get an instance of a previously created subscription.
-$subscription = $pubSub->subscription('my_subscription');
-
-// Pull all available messages.
-$messages = $subscription->pull();
-
-foreach ($messages as $message) {
-    echo $message->data() . "\n";
-    echo $message->attribute('location');
-}
-```
-
-#### google/cloud-pubsub
-
-Google Cloud Pub/Sub can be installed separately by requiring the `google/cloud-pubsub` composer package:
-
-```
-$ require google/cloud-pubsub
-```
-
 ## Google Cloud Speech (Alpha)
 
 - [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/speech/speechclient)
@@ -446,11 +448,19 @@ $storage = new StorageClient([
 
 This library follows [Semantic Versioning](http://semver.org/).
 
-Please note it is currently under active development. Any release versioned 0.x.y is subject to backwards incompatible changes at any time.
+Please note it is currently under active development. Any release versioned
+0.x.y is subject to backwards incompatible changes at any time.
 
-**Beta**: Libraries defined at a Beta quality level are expected to be mostly stable and we're working towards their release candidate. We will address issues and requests with a higher priority.
+**GA**: Libraries defined at a GA quality level are stable, and will not
+introduce backwards-incompatible changes in any minor or patch releases. We will
+address issues and requests with the highest priority.
 
-**Alpha**: Libraries defined at an Alpha quality level are still a work-in-progress and are more likely to get backwards-incompatible updates.
+**Beta**: Libraries defined at a Beta quality level are expected to be mostly
+stable and we're working towards their release candidate. We will address issues
+and requests with a higher priority.
+
+**Alpha**: Libraries defined at an Alpha quality level are still a
+work-in-progress and are more likely to get backwards-incompatible updates.
 
 ## Contributing
 
