@@ -86,6 +86,8 @@ use Google\Cloud\Core\CallTrait;
  *
  *     @return array
  * }
+ *
+ * @see https://cloud.google.com/vision/docs/reference/rest/v1/images/annotate#SafeSearchAnnotation SafeSearchAnnotation
  */
 class SafeSearch extends AbstractFeature
 {
