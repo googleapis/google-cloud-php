@@ -158,9 +158,10 @@ class Docs extends Command
         $toc = new TableOfContents(
             $tocTemplate,
             $component['id'],
-            $release,
+            $this->getComponentVersion($paths['manifest'], 'google-cloud'),
             $paths['toc'],
-            $outputPath
+            $outputPath,
+            $release
         );
         $toc->generate($pretty);
 
