@@ -18,8 +18,9 @@
 namespace Google\Cloud\Tests\Unit\Storage;
 
 use Google\Cloud\Core\Exception\NotFoundException;
-use Google\Cloud\Storage\Connection\ConnectionInterface;
 use Google\Cloud\Storage\Bucket;
+use Google\Cloud\Storage\Connection\ConnectionInterface;
+use Google\Cloud\Storage\Iam;
 use Google\Cloud\Storage\StorageObject;
 use GuzzleHttp\Psr7;
 use Prophecy\Argument;
@@ -518,5 +519,12 @@ class StorageObjectTest extends \PHPUnit_Framework_TestCase
 
         $expectedUri = sprintf('gs://%s/%s', $bucketName, $name);
         $this->assertEquals($expectedUri, $object->gcsUri());
+    }
+
+    public function testIam()
+    {
+        $object = new StorageObject($this->connection->reveal(), $name = 'object.txt', $bucketName = 'bucket');
+
+        $this->assertInstanceOf(Iam::class, $object->iam());
     }
 }

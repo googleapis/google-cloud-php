@@ -24,6 +24,7 @@ use Google\Cloud\Core\Upload\ResumableUploader;
 use Google\Cloud\Storage\Acl;
 use Google\Cloud\Storage\Bucket;
 use Google\Cloud\Storage\Connection\ConnectionInterface;
+use Google\Cloud\Storage\Iam;
 use Google\Cloud\Storage\StorageObject;
 use Prophecy\Argument;
 
@@ -349,5 +350,17 @@ class BucketTest extends \PHPUnit_Framework_TestCase
         $this->resumableUploader->getResumeUri()->willThrow(new ServerException('maintainence'));
         $bucket = new Bucket($this->connection->reveal(), $name = 'bucket');
         $bucket->isWritable(); // raises exception
+    }
+
+    public function testIam()
+    {
+        $bucketInfo = [
+            'name' => 'bucket',
+            'etag' => 'ABC',
+            'kind' => 'storage#bucket'
+        ];
+        $bucket = new Bucket($this->connection->reveal(), 'bucket', $bucketInfo);
+
+        $this->assertInstanceOf(Iam::class, $bucket->iam());
     }
 }

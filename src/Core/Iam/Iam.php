@@ -53,16 +53,16 @@ class Iam
     /**
      * @var string
      */
-    private $resource;
+    protected $resource;
 
     /**
      * @var array
      */
-    private $policy;
+    protected $policy;
 
     /**
-     * @param  IamConnectionInterface $connection
-     * @param  string $resource
+     * @param IamConnectionInterface $connection
+     * @param string $resource
      * @access private
      */
     public function __construct(IamConnectionInterface $connection, $resource)
@@ -109,16 +109,23 @@ class Iam
      * $policy = $iam->setPolicy($oldPolicy);
      * ```
      *
-     * @param  array $policy A new policy array
+     * @param  array|PolicyBuilder $policy The new policy, as an array or an
+     *         instance of {@see Google\Cloud\Core\PolicyBuilder}.
      * @param  array $options Configuration Options
      * @return array An array of policy data
+     * @throws BadMethodCallException If the given policy is not an array or PolicyBuilder.
      */
-    public function setPolicy(array $policy, array $options = [])
+    public function setPolicy($policy, array $options = [])
     {
-        return $this->policy = $this->connection->setPolicy($options + [
-            'policy' => $policy,
-            'resource' => $this->resource
-        ]);
+        if ($policy instanceof PolicyBuilder) {
+            $policy = $policy->result();
+        }
+
+        if (!is_array($policy)) {
+            throw new \BadMethodCallException('Given policy data must be an array or an instance of PolicyBuilder.');
+        }
+
+        return $this->policy = $this->sendSetPolicyRequest($policy, $options);
     }
 
     /**
@@ -143,10 +150,7 @@ class Iam
      */
     public function testPermissions(array $permissions, array $options = [])
     {
-        return $this->connection->testPermissions($options + [
-            'permissions' => $permissions,
-            'resource' => $this->resource
-        ]);
+        return $this->sendTestPermissionsRequest($permissions, $options);
     }
 
     /**
@@ -162,7 +166,51 @@ class Iam
      */
     public function reload(array $options = [])
     {
-        return $this->policy = $this->connection->getPolicy($options + [
+        return $this->policy = $this->sendGetPolicyRequest($options);
+    }
+
+    /**
+     * For APIs with non-standard IAM APIs, implementing clients may extend this
+     * class and override this method.
+     *
+     * @param array $policy
+     * @param array $options
+     * @return array
+     */
+    protected function sendSetPolicyRequest(array $policy, array $options)
+    {
+        return $this->connection->setPolicy($options + [
+            'policy' => $policy,
+            'resource' => $this->resource
+        ]);
+    }
+
+    /**
+     * For APIs with non-standard IAM APIs, implementing clients may extend this
+     * class and override this method.
+     *
+     * @param array $options
+     * @return array
+     */
+    protected function sendGetPolicyRequest(array $options)
+    {
+        return $this->connection->getPolicy($options + [
+            'resource' => $this->resource
+        ]);
+    }
+
+    /**
+     * For APIs with non-standard IAM APIs, implementing clients may extend this
+     * class and override this method.
+     *
+     * @param array $permissions
+     * @param array $options
+     * @return array
+     */
+    protected function sendTestPermissionsRequest(array $permissions, array $options)
+    {
+        return $this->connection->testPermissions($options + [
+            'permissions' => $permissions,
             'resource' => $this->resource
         ]);
     }

@@ -18,11 +18,12 @@
 namespace Google\Cloud\Storage;
 
 use Google\Cloud\Core\ArrayTrait;
+use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Core\Upload\ResumableUploader;
 use Google\Cloud\Core\Upload\StreamableUploader;
-use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Storage\Connection\ConnectionInterface;
+use Google\Cloud\Storage\Connection\IamBucket;
 use GuzzleHttp\Psr7;
 use Psr\Http\Message\StreamInterface;
 
@@ -68,6 +69,11 @@ class Bucket
      * @var array The bucket's metadata.
      */
     private $info;
+
+    /**
+     * @var Iam
+     */
+    private $iam;
 
     /**
      * @param ConnectionInterface $connection Represents a connection to Cloud
@@ -770,5 +776,37 @@ class Bucket
         }
 
         return true;
+    }
+
+    /**
+     * Manage the IAM policy for the current Bucket.
+     *
+     * Example:
+     * ```
+     * $iam = $bucket->iam();
+     * ```
+     *
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/storage/docs/access-control/iam-with-json-and-xml Storage Access Control Documentation
+     * @see https://cloud.google.com/storage/docs/json_api/v1/buckets/getIamPolicy Get Bucket IAM Policy
+     * @see https://cloud.google.com/storage/docs/json_api/v1/buckets/setIamPolicy Set Bucket IAM Policy
+     * @see https://cloud.google.com/storage/docs/json_api/v1/buckets/testIamPermissions Test Bucket Permissions
+     * @codingStandardsIgnoreEnd
+     *
+     * @return Iam
+     */
+    public function iam()
+    {
+        if (!$this->iam) {
+            $iamConnection = new IamBucket($this->connection);
+            $this->iam = new Iam(
+                $iamConnection,
+                $this->identity['bucket'],
+                ['bucket' => $this->identity['bucket']],
+                'bucket'
+            );
+        }
+
+        return $this->iam;
     }
 }

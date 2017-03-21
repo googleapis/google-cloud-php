@@ -19,6 +19,7 @@ namespace Google\Cloud\Storage;
 
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Storage\Connection\ConnectionInterface;
+use Google\Cloud\Storage\Connection\IamObject;
 use GuzzleHttp\Psr7;
 use Psr\Http\Message\StreamInterface;
 
@@ -63,6 +64,11 @@ class StorageObject
      * @var array The object's metadata.
      */
     private $info;
+
+    /**
+     * @var Iam
+     */
+    private $iam;
 
     /**
      * @param ConnectionInterface $connection Represents a connection to Cloud
@@ -777,6 +783,41 @@ class StorageObject
             $this->identity['bucket'],
             $this->identity['object']
         );
+    }
+
+    /**
+     * Manage the IAM policy for the current Object.
+     *
+     * Example:
+     * ```
+     * $iam = $object->iam();
+     * ```
+     *
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/storage/docs/access-control/iam-with-json-and-xml Storage Access Control Documentation
+     * @see https://cloud.google.com/storage/docs/json_api/v1/objects/getIamPolicy Get Object IAM Policy
+     * @see https://cloud.google.com/storage/docs/json_api/v1/objects/setIamPolicy Set Object IAM Policy
+     * @see https://cloud.google.com/storage/docs/json_api/v1/objects/testIamPermissions Test Object Permissions
+     * @codingStandardsIgnoreEnd
+     *
+     * @return Iam
+     */
+    public function iam()
+    {
+        if (!$this->iam) {
+            $iamConnection = new IamObject($this->connection);
+            $this->iam = new Iam(
+                $iamConnection,
+                $this->name(),
+                [
+                    'bucket' => $this->identity['bucket'],
+                    'object' => $this->identity['object']
+                ],
+                'bucket'
+            );
+        }
+
+        return $this->iam;
     }
 
     /**
