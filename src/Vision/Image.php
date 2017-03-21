@@ -36,7 +36,7 @@ use InvalidArgumentException;
  * combined size of all images in a request. Reducing your file size can
  * significantly improve throughput; however, be careful not to reduce image
  * quality in the process. See
- * [Best Practices - Image Sizing](https://cloud.google.com/vision/docs/image-best-practices#image_sizing)
+ * [Best Practices - Image Sizing](https://cloud.google.com/vision/docs/best-practices#image_sizing)
  * for current file size limits.
  *
  * Example:
@@ -138,7 +138,7 @@ use InvalidArgumentException;
  * ]);
  * ```
  *
- * @see https://cloud.google.com/vision/docs/image-best-practices Best Practices
+ * @see https://cloud.google.com/vision/docs/best-practices Best Practices
  * @see https://cloud.google.com/vision/docs/pricing Pricing
  */
 class Image

@@ -214,6 +214,8 @@ class Annotation
      * $faces = $annotation->faces();
      * ```
      *
+     * @see https://cloud.google.com/vision/docs/reference/rest/v1/images/annotate#FaceAnnotation FaceAnnotation
+     *
      * @return Face[]|null
      */
     public function faces()
@@ -228,6 +230,8 @@ class Annotation
      * ```
      * $landmarks = $annotation->landmarks();
      * ```
+     *
+     * @see https://cloud.google.com/vision/docs/reference/rest/v1/images/annotate#EntityAnnotation EntityAnnotation
      *
      * @return Entity[]|null
      */
@@ -244,6 +248,8 @@ class Annotation
      * $logos = $annotation->logos();
      * ```
      *
+     * @see https://cloud.google.com/vision/docs/reference/rest/v1/images/annotate#EntityAnnotation EntityAnnotation
+     *
      * @return Entity[]|null
      */
     public function logos()
@@ -259,6 +265,8 @@ class Annotation
      * $labels = $annotation->labels();
      * ```
      *
+     * @see https://cloud.google.com/vision/docs/reference/rest/v1/images/annotate#EntityAnnotation EntityAnnotation
+     *
      * @return Entity[]|null
      */
     public function labels()
@@ -273,6 +281,8 @@ class Annotation
      * ```
      * $text = $annotation->text();
      * ```
+     *
+     * @see https://cloud.google.com/vision/docs/reference/rest/v1/images/annotate#EntityAnnotation EntityAnnotation
      *
      * @return Entity[]|null
      */
@@ -306,6 +316,10 @@ class Annotation
      * $safeSearch = $annotation->safeSearch();
      * ```
      *
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/vision/docs/reference/rest/v1/images/annotate#SafeSearchAnnotation SafeSearchAnnotation
+     * @codingStandardsIgnoreEnd
+     *
      * @return SafeSearch|null
      */
     public function safeSearch()
@@ -320,6 +334,8 @@ class Annotation
      * ```
      * $properties = $annotation->imageProperties();
      * ```
+     *
+     * @see https://cloud.google.com/vision/docs/reference/rest/v1/images/annotate#ImageProperties ImageProperties
      *
      * @return ImageProperties|null
      */
@@ -336,6 +352,10 @@ class Annotation
      * $hints = $annotation->cropHints();
      * ```
      *
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/vision/docs/reference/rest/v1/images/annotate#CropHintsAnnotation CropHintsAnnotation
+     * @codingStandardsIgnoreEnd
+     *
      * @return CropHint[]|null
      */
     public function cropHints()
@@ -350,6 +370,8 @@ class Annotation
      * ```
      * $web = $annotation->web();
      * ```
+     *
+     * @see https://cloud.google.com/vision/docs/reference/rest/v1/images/annotate#WebDetection WebDetection
      *
      * @return Web|null
      */

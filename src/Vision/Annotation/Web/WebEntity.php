@@ -69,6 +69,8 @@ use Google\Cloud\Vision\Annotation\AbstractFeature;
  *
  *     @return string
  * }
+ *
+ * @see https://cloud.google.com/vision/docs/reference/rest/v1/images/annotate#WebEntity WebEntity
  */
 class WebEntity extends AbstractFeature
 {

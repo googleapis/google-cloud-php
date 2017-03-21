@@ -457,6 +457,8 @@ class Transaction
      * $transaction->commit();
      * ```
      *
+     * @see https://cloud.google.com/datastore/docs/reference/rest/v1/projects/commit Commit API documentation
+     *
      * @param array $options [optional] Configuration Options.
      * @return array [Response Body](https://cloud.google.com/datastore/reference/rest/v1/projects/commit#response-body)
      */
