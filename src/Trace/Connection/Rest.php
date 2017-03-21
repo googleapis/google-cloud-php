@@ -40,14 +40,6 @@ class Rest implements ConnectionInterface
      */
     public function __construct(array $config = [])
     {
-        $emulatorHost = getenv('TRACE_EMULATOR_HOST');
-
-        $baseUri = $this->getEmulatorBaseUri(self::BASE_URI, $emulatorHost);
-
-        if ($emulatorHost) {
-            $config['shouldSignRequest'] = false;
-        }
-
         $config += [
             'serviceDefinitionPath' => __DIR__ . '/ServiceDefinition/trace-v1.json'
         ];
@@ -55,7 +47,7 @@ class Rest implements ConnectionInterface
         $this->setRequestWrapper(new RequestWrapper($config));
         $this->setRequestBuilder(new RequestBuilder(
             $config['serviceDefinitionPath'],
-            $baseUri
+            self::BASE_URI
         ));
     }
 
