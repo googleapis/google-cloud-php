@@ -122,7 +122,7 @@ class Docs extends Command
         $tocTemplate,
         $release = false,
         $pretty = false,
-        $linkCrossComponent = true
+        $isComponent = true
     ) {
         $output->writeln(sprintf('Writing documentation for %s', $component['id']));
         $output->writeln('--------------');
@@ -145,7 +145,7 @@ class Docs extends Command
             $component['id'],
             $paths['manifest'],
             $release,
-            $linkCrossComponent
+            $isComponent
         );
 
         $docs->generate($component['path'], $pretty);
@@ -158,9 +158,10 @@ class Docs extends Command
         $toc = new TableOfContents(
             $tocTemplate,
             $component['id'],
-            $release,
+            $this->getComponentVersion($paths['manifest'], 'google-cloud'),
             $paths['toc'],
-            $outputPath
+            $outputPath,
+            $release
         );
         $toc->generate($pretty);
 

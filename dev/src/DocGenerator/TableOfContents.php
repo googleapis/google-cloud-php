@@ -24,14 +24,16 @@ class TableOfContents
     private $componentVersion;
     private $contentsPath;
     private $outputPath;
+    private $release;
 
-    public function __construct(array $template, $componentId, $componentVersion, $contentsPath, $outputPath)
+    public function __construct(array $template, $componentId, $componentVersion, $contentsPath, $outputPath, $release = false)
     {
         $this->template = $template;
         $this->componentId = $componentId;
         $this->componentVersion = $componentVersion;
         $this->contentsPath = $contentsPath;
         $this->outputPath = $outputPath;
+        $this->release = $release;
     }
 
     public function generate($pretty = false)
@@ -40,7 +42,9 @@ class TableOfContents
 
         $tpl = $this->template;
         $tpl['services'] = $this->services($toc);
-        $tpl['tagName'] = $this->componentVersion;
+        $tpl['tagName'] = $this->release
+            ? $this->componentVersion
+            : 'master';
 
         $writer = new Writer($tpl, $this->outputPath, $pretty);
         $writer->write('toc.json');
