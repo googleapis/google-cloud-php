@@ -85,7 +85,7 @@ class TraceSpan
     /**
      * Set the start time for this span.
      *
-     * @param  \DateTime $when [optional] The start time of this span.
+     * @param  \DateTimeInterface $when [optional] The start time of this span.
      *         **Defaults to** now.
      */
     public function setStart(\DateTimeInterface $when = null)
@@ -96,7 +96,7 @@ class TraceSpan
     /**
      * Set the end time for this span.
      *
-     * @param  \DateTime $when [optional] The end time of this span.
+     * @param  \DateTimeInterface $when [optional] The end time of this span.
      *         **Defaults to** now.
      */
     public function setFinish(\DateTimeInterface $when = null)
@@ -164,7 +164,7 @@ class TraceSpan
      * Returns a "Zulu" formatted string representing the
      * provided \DateTime.
      *
-     * @param  \DateTime $when [optional] The end time of this span.
+     * @param  \DateTimeInterface $when [optional] The end time of this span.
      *         **Defaults to** now.
      * @return string
      */

@@ -91,12 +91,13 @@ class TraceClient
      * @see https://cloud.google.com/trace/docs/reference/v1/rest/v1/projects/patchTraces
      *
      * @param  Trace $trace The trace log to send.
+     * @param array $options [optional] Configuration Options
      * @return bool
      * @throws ServiceException
      */
-    public function insert(Trace $trace)
+    public function insert(Trace $trace, array $options = [])
     {
-        return $this->insertBatch([$trace]);
+        return $this->insertBatch([$trace], $options);
     }
 
     /**
@@ -105,18 +106,25 @@ class TraceClient
      * @see https://cloud.google.com/trace/docs/reference/v1/rest/v1/projects/patchTraces
      *
      * @param Trace[] $traces The trace logs to send.
+     * @param array $options [optional] Configuration Options
      * @return bool
      * @throws ServiceException
      */
-    public function insertBatch(array $traces)
+    public function insertBatch(array $traces, array $options = [])
     {
         // throws ServiceException on failure
         $this->connection->patchTraces([
             'projectId' => $this->projectId,
             'traces' => array_map(function ($trace) {
-                return $trace->info();
+                return [
+                    'projectId' => $this->projectId,
+                    'traceId' => $trace->traceId(),
+                    'spans' => array_map(function($span) {
+                        return $span->info();
+                    }, $trace->spans())
+                ];
             }, $traces)
-        ]);
+        ] + $options);
         return true;
     }
 
@@ -169,7 +177,7 @@ class TraceClient
                     return new Trace($this->connection, $trace['projectId'], $trace['traceId'], $trace['spans']);
                 },
                 [$this->connection, 'listTraces'],
-                $options + ['projectId' => $this->projectId],
+                ['projectId' => $this->projectId] + $options,
                 ['itemsKey' => 'traces']
             )
         );

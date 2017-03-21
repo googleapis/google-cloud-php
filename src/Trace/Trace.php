@@ -110,34 +110,33 @@ class Trace
      * Returns a serializable array representing this trace. If no span data
      * is cached, a network request will be made to retrieve it.
      *
+     * @see https://cloud.google.com/trace/docs/reference/v1/rest/v1/projects.traces/get
+     *
+     * @param array $options [optional] Configuration Options
+     *
      * @return array
      */
-    public function info()
+    public function info(array $options = [])
     {
         if (!$this->spans) {
             $this->reload();
         }
-
-        return [
-            'projectId' => $this->projectId,
-            'traceId' => $this->traceId,
-            'spans' => array_map(function ($span) {
-                return $span->info();
-            }, $this->spans)
-        ];
+        return $this->info;
     }
 
     /**
      * Triggers a network request to load a span's details.
      *
      * @see https://cloud.google.com/trace/docs/reference/v1/rest/v1/projects.traces/get
+     *
+     * @param array $options [optional] Configuration Options
      */
-    public function reload()
+    public function reload(array $options = [])
     {
         $trace = $this->connection->getTrace([
             'projectId' => $this->projectId,
             'traceId' => $this->traceId
-        ]);
+        ] + $options);
 
         if (empty($trace)) {
             throw new NotFoundException('Trace ID does not exist', 404);
@@ -146,6 +145,8 @@ class Trace
         $this->spans = array_map(function ($span) {
             return new TraceSpan($span);
         }, $trace['spans']);
+
+        return $this->info = $trace;
     }
 
     /**
