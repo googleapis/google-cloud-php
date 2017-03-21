@@ -54,6 +54,12 @@ class Trace
     private $spans = [];
 
     /**
+     * Serialized representation of a this trace.
+     * @var array
+     */
+    private $info;
+
+    /**
      * Instantiate a new Trace instance.
      *
      * @param ConnectionInterface $connection The connection to Stackdriver Trace.
@@ -118,10 +124,7 @@ class Trace
      */
     public function info(array $options = [])
     {
-        if (!$this->spans) {
-            $this->reload();
-        }
-        return $this->info;
+        return $this->info ?: $this->reload($options);
     }
 
     /**

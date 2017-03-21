@@ -84,10 +84,4 @@ class TraceTest extends \PHPUnit_Framework_TestCase
         $trace = new Trace($this->connection->reveal(), 'myproject', '1');
         $trace->info();
     }
-
-    public function testSpecifyingSpansSkipsTraceGetCall()
-    {
-        $trace = new Trace($this->connection->reveal(), 'myproject', '1', [['name' => 'main']]);
-        $trace->info();
-    }
 }

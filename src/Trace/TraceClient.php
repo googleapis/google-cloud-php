@@ -119,7 +119,7 @@ class TraceClient
                 return [
                     'projectId' => $this->projectId,
                     'traceId' => $trace->traceId(),
-                    'spans' => array_map(function($span) {
+                    'spans' => array_map(function ($span) {
                         return $span->info();
                     }, $trace->spans())
                 ];
