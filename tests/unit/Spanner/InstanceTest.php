@@ -15,10 +15,11 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Unit\SpannerAdmin;
+namespace Google\Cloud\Tests\Unit\Spanner;
 
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Iam\Iam;
+use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
@@ -269,7 +270,7 @@ class InstanceTest extends \PHPUnit_Framework_TestCase
 
         $dbs = $this->instance->databases();
 
-        $this->assertInstanceOf(\Generator::class, $dbs);
+        $this->assertInstanceOf(ItemIterator::class, $dbs);
 
         $dbs = iterator_to_array($dbs);
 
@@ -294,7 +295,7 @@ class InstanceTest extends \PHPUnit_Framework_TestCase
 
         $dbs = $this->instance->databases();
 
-        $this->assertInstanceOf(\Generator::class, $dbs);
+        $this->assertInstanceOf(ItemIterator::class, $dbs);
 
         $dbs = iterator_to_array($dbs);
 

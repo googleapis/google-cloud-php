@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Snippets\SpannerAdmin;
+namespace Google\Cloud\Tests\Snippets\Spanner;
 
 use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 use Google\Cloud\Core\Iam\Iam;
@@ -27,6 +27,7 @@ use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Prophecy\Argument;
 
 /**
+ * @group spanner
  * @group spanneradmin
  */
 class DatabaseTest extends SnippetTestCase

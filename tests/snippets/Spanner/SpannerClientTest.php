@@ -15,8 +15,9 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Snippets\SpannerAdmin;
+namespace Google\Cloud\Tests\Snippets\Spanner;
 
+use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
 use Google\Cloud\Spanner\Configuration;
@@ -26,6 +27,7 @@ use Google\Cloud\Spanner\SpannerClient;
 use Prophecy\Argument;
 
 /**
+ * @group spanner
  * @group spanneradmin
  */
 class SpannerClientTest extends SnippetTestCase
@@ -61,7 +63,7 @@ class SpannerClientTest extends SnippetTestCase
 
         $res = $snippet->invoke('configurations');
 
-        $this->assertInstanceOf(\Generator::class, $res->returnVal());
+        $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
         $this->assertInstanceOf(Configuration::class, $res->returnVal()->current());
         $this->assertEquals('Foo', $res->returnVal()->current()->name());
     }
@@ -122,7 +124,7 @@ class SpannerClientTest extends SnippetTestCase
         $this->client->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke('instances');
-        $this->assertInstanceOf(\Generator::class, $res->returnVal());
+        $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
         $this->assertInstanceOf(Instance::class, $res->returnVal()->current());
         $this->assertEquals(self::INSTANCE, $res->returnVal()->current()->name());
     }

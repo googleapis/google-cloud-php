@@ -1116,7 +1116,6 @@ class Database
             'name' => $this->name,
             'instance' => $this->instance,
             'sessionPool' => $this->sessionPool,
-            'returnInt64AsObject' => $this->returnInt64AsObject,
         ];
     }
 }

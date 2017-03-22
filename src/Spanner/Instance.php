@@ -17,8 +17,11 @@
 
 namespace Google\Cloud\Spanner;
 
+use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Iam\Iam;
+use Google\Cloud\Core\Iterator\ItemIterator;
+use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Core\LongRunning\LROTrait;
 use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
@@ -43,6 +46,7 @@ use google\spanner\admin\instance\v1\Instance\State;
  */
 class Instance
 {
+    use ArrayTrait;
     use LROTrait;
 
     const STATE_READY = State::READY;
@@ -386,31 +390,35 @@ class Instance
      * @see https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.admin.database.v1#listdatabasesrequest ListDatabasesRequest
      * @codingStandardsIgnoreEnd
      *
-     * @param array $options Configuration options.
-     * @return \Generator<Database>
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type int $pageSize Maximum number of results to return per
+     *           request.
+     *     @type int $resultLimit Limit the number of results returned in total.
+     *           **Defaults to** `0` (return all results).
+     *     @type string $pageToken A previously-returned page token used to
+     *           resume the loading of results from a specific point.
+     * }
+     * @return ItemIterator<Database>
      */
     public function databases(array $options = [])
     {
-        $pageToken = null;
-        do {
-            $res = $this->connection->listDatabases($options + [
-                'instance' => $this->fullyQualifiedInstanceName(),
-                'pageToken' => $pageToken
-            ]);
-
-            $databases = [];
-            if (isset($res['databases'])) {
-                foreach ($res['databases'] as $database) {
-                    yield $this->database(
-                        DatabaseAdminClient::parseDatabaseFromDatabaseName($database['name'])
-                    );
-                }
-            }
-
-            $pageToken = (isset($res['nextPageToken']))
-                ? $res['nextPageToken']
-                : null;
-        } while ($pageToken);
+        $resultLimit = $this->pluck('resultLimit', $options, false);
+        return new ItemIterator(
+            new PageIterator(
+                function (array $database) {
+                    $name = DatabaseAdminClient::parseDatabaseFromDatabaseName($database['name']);
+                    return $this->database($name);
+                },
+                [$this->connection, 'listDatabases'],
+                $options + ['instance' => $this->fullyQualifiedInstanceName()],
+                [
+                    'itemsKey' => 'databases',
+                    'resultLimit' => $resultLimit
+                ]
+            )
+        );
     }
 
     /**

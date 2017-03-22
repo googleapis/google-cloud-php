@@ -18,6 +18,7 @@
 namespace Google\Cloud\Tests\Spanner;
 
 use Google\Cloud\Core\Int64;
+use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Spanner\Bytes;
 use Google\Cloud\Spanner\Configuration;
@@ -76,7 +77,7 @@ class SpannerClientTest extends \PHPUnit_Framework_TestCase
 
         $configs = $this->client->configurations();
 
-        $this->assertInstanceOf(\Generator::class, $configs);
+        $this->assertInstanceOf(ItemIterator::class, $configs);
 
         $configs = iterator_to_array($configs);
         $this->assertEquals(2, count($configs));
@@ -116,7 +117,7 @@ class SpannerClientTest extends \PHPUnit_Framework_TestCase
 
         $configs = $this->client->configurations();
 
-        $this->assertInstanceOf(\Generator::class, $configs);
+        $this->assertInstanceOf(ItemIterator::class, $configs);
 
         $configs = iterator_to_array($configs);
         $this->assertEquals(2, count($configs));
@@ -197,7 +198,7 @@ class SpannerClientTest extends \PHPUnit_Framework_TestCase
         $this->client->___setProperty('connection', $this->connection->reveal());
 
         $instances = $this->client->instances();
-        $this->assertInstanceOf(\Generator::class, $instances);
+        $this->assertInstanceOf(ItemIterator::class, $instances);
 
         $instances = iterator_to_array($instances);
         $this->assertEquals(2, count($instances));

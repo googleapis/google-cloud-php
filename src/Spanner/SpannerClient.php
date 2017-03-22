@@ -17,9 +17,12 @@
 
 namespace Google\Cloud\Spanner;
 
+use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Int64;
+use Google\Cloud\Core\Iterator\ItemIterator;
+use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Core\LongRunning\LROTrait;
 use Google\Cloud\Core\ValidateTrait;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
@@ -52,6 +55,7 @@ use google\spanner\admin\instance\v1\Instance\State;
  */
 class SpannerClient
 {
+    use ArrayTrait;
     use ClientTrait;
     use LROTrait;
     use ValidateTrait;
@@ -169,29 +173,36 @@ class SpannerClient
      * @see https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.admin.instance.v1#google.spanner.admin.instance.v1.ListInstanceConfigsRequest ListInstanceConfigsRequest
      * @codingStandardsIgnoreEnd
      *
-     * @param array $options [optional] Configuration Options.
-     * @return Generator<Configuration>
+     * @param array $options [optional] {
+     *     Configuration Options.
+     *
+     *     @type int $pageSize Maximum number of results to return per
+     *           request.
+     *     @type int $resultLimit Limit the number of results returned in total.
+     *           **Defaults to** `0` (return all results).
+     *     @type string $pageToken A previously-returned page token used to
+     *           resume the loading of results from a specific point.
+     * }
+     * @return ItemIterator<Configuration>
      */
     public function configurations(array $options = [])
     {
-        $pageToken = null;
-        do {
-            $res = $this->connection->listConfigs([
-                'projectId' => InstanceAdminClient::formatProjectName($this->projectId),
-                'pageToken' => $pageToken
-            ] + $options);
+        $resultLimit = $this->pluck('resultLimit', $options, false) ?: 0;
 
-            if (isset($res['instanceConfigs'])) {
-                foreach ($res['instanceConfigs'] as $config) {
+        return new ItemIterator(
+            new PageIterator(
+                function (array $config) {
                     $name = InstanceAdminClient::parseInstanceConfigFromInstanceConfigName($config['name']);
-                    yield $this->configuration($name, $config);
-                }
-            }
-
-            $pageToken = (isset($res['nextPageToken']))
-                ? $res['nextPageToken']
-                : null;
-        } while ($pageToken);
+                    return $this->configuration($name, $config);
+                },
+                [$this->connection, 'listConfigs'],
+                ['projectId' => InstanceAdminClient::formatProjectName($this->projectId)] + $options,
+                [
+                    'itemsKey' => 'instanceConfigs',
+                    'resultLimit' => $resultLimit
+                ]
+            )
+        );
     }
 
     /**
@@ -306,8 +317,19 @@ class SpannerClient
      * @see https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.admin.instance.v1#listinstancesrequest ListInstancesRequest
      * @codingStandardsIgnoreEnd
      *
-     * @param array $options [optional] Configuration options
-     * @return Generator<Instance>
+     * @param array $options [optional] {
+     *     Configuration options
+     *
+     *     @type string $filter An expression for filtering the results of the
+     *           request.
+     *     @type int $pageSize Maximum number of results to return per
+     *           request.
+     *     @type int $resultLimit Limit the number of results returned in total.
+     *           **Defaults to** `0` (return all results).
+     *     @type string $pageToken A previously-returned page token used to
+     *           resume the loading of results from a specific point.
+     * }
+     * @return ItemIterator<Instance>
      */
     public function instances(array $options = [])
     {
@@ -315,18 +337,21 @@ class SpannerClient
             'filter' => null
         ];
 
-        $res = $this->connection->listInstances($options + [
-            'projectId' => InstanceAdminClient::formatProjectName($this->projectId),
-        ]);
-
-        if (isset($res['instances'])) {
-            foreach ($res['instances'] as $instance) {
-                yield $this->instance(
-                    InstanceAdminClient::parseInstanceFromInstanceName($instance['name']),
-                    $instance
-                );
-            }
-        }
+        $resultLimit = $this->pluck('resultLimit', $options, false);
+        return new ItemIterator(
+            new PageIterator(
+                function (array $instance) {
+                    $name = InstanceAdminClient::parseInstanceFromInstanceName($instance['name']);
+                    return $this->instance($name, $instance);
+                },
+                [$this->connection, 'listInstances'],
+                ['projectId' => InstanceAdminClient::formatProjectName($this->projectId)] + $options,
+                [
+                    'itemsKey' => 'instances',
+                    'resultLimit' => $resultLimit
+                ]
+            )
+        );
     }
 
     /**

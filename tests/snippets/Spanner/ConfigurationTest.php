@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Snippets\SpannerAdmin;
+namespace Google\Cloud\Tests\Snippets\Spanner;
 
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
 use Google\Cloud\Spanner\Configuration;
@@ -23,6 +23,7 @@ use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Prophecy\Argument;
 
 /**
+ * @group spanner
  * @group spanneradmin
  */
 class ConfigurationTest extends SnippetTestCase
