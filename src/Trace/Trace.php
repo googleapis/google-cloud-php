@@ -22,9 +22,8 @@ use Google\Cloud\Core\ValidateTrait;
 use Google\Cloud\Trace\Connection\ConnectionInterface;
 
 /**
- * This plain PHP class represents a Trace resource. Traces belong to a
- * project and have many TraceSpans. See:
- * https://cloud.google.com/trace/docs/reference/v1/rest/v1/projects.traces#resource-trace
+ * This plain PHP class represents a Trace resource. For more information see
+ * [TraceResource](https://cloud.google.com/trace/docs/reference/v1/rest/v1/projects.traces#resource-trace)
  */
 class Trace
 {
@@ -36,26 +35,22 @@ class Trace
     private $connection;
 
     /**
-     * The id of the project this trace belongs to.
-     * @var string
+     * @var string The id of the project this trace belongs to.
      */
     private $projectId;
 
     /**
-     * The trace id for this trace. 128-bit numeric formatted as a 32-byte hex string
-     * @var string
+     * @var string The trace id for this trace. 128-bit numeric formatted as a 32-byte hex string
      */
     private $traceId;
 
     /**
-     * List of TraceSpans to report
-     * @var TraceSpan[]
+     * @var TraceSpan[] List of TraceSpans to report
      */
     private $spans = [];
 
     /**
-     * Serialized representation of a this trace.
-     * @var array
+     * @var array Serialized representation of this trace.
      */
     private $info;
 
@@ -113,13 +108,13 @@ class Trace
     }
 
     /**
-     * Returns a serializable array representing this trace. If no span data
-     * is cached, a network request will be made to retrieve it.
+     * Returns a serializable array representing this trace. If no data is cached,
+     * a network request will be made to retrieve it and will wipe out any spans
+     * currently set.
      *
-     * @see https://cloud.google.com/trace/docs/reference/v1/rest/v1/projects.traces/get
+     * @see https://cloud.google.com/trace/docs/reference/v1/rest/v1/projects.traces/get Traces get API documentation.
      *
      * @param array $options [optional] Configuration Options
-     *
      * @return array
      */
     public function info(array $options = [])
@@ -130,9 +125,10 @@ class Trace
     /**
      * Triggers a network request to load a span's details.
      *
-     * @see https://cloud.google.com/trace/docs/reference/v1/rest/v1/projects.traces/get
+     * @see https://cloud.google.com/trace/docs/reference/v1/rest/v1/projects.traces/get Traces get API documentation.
      *
      * @param array $options [optional] Configuration Options
+     * @return array
      */
     public function reload(array $options = [])
     {

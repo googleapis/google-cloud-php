@@ -88,9 +88,9 @@ class TraceClient
     /**
      * Sends a Trace log in a simple fashion.
      *
-     * @see https://cloud.google.com/trace/docs/reference/v1/rest/v1/projects/patchTraces
+     * @see https://cloud.google.com/trace/docs/reference/v1/rest/v1/projects/patchTraces Project patchTraces API documentation.
      *
-     * @param  Trace $trace The trace log to send.
+     * @param Trace $trace The trace log to send.
      * @param array $options [optional] Configuration Options
      * @return bool
      * @throws ServiceException
@@ -103,7 +103,7 @@ class TraceClient
     /**
      * Sends multiple Trace logs in a simple fashion.
      *
-     * @see https://cloud.google.com/trace/docs/reference/v1/rest/v1/projects/patchTraces
+     * @see https://cloud.google.com/trace/docs/reference/v1/rest/v1/projects/patchTraces Project patchTraces API documentation.
      *
      * @param Trace[] $traces The trace logs to send.
      * @param array $options [optional] Configuration Options
@@ -131,9 +131,10 @@ class TraceClient
     /**
      * Lazily find or instantiates a trace. There are no network requests made at this
      * point. To see the operations that can be performed on a trace please
-     * see {@see Google\Cloud\Trace\Trace}.
+     * see {@see Google\Cloud\Trace\Trace}. If no traceId is provided, one will be
+     * generated for you.
 
-     * @param  string $traceId [optional] The trace id of the trace to reference.
+     * @param string $traceId [optional] The trace id of the trace to reference.
      * @return Trace
      */
     public function trace($traceId = null)
@@ -144,7 +145,7 @@ class TraceClient
     /**
      * Fetch all traces in the project
      *
-     * @see https://cloud.google.com/trace/docs/reference/v1/rest/v1/projects.traces/list Trace list API documentation.
+     * @see https://cloud.google.com/trace/docs/reference/v1/rest/v1/projects.traces/list Traces list API documentation.
      *
      * @param array $options [optional] {
      *      Configuration options.
@@ -152,7 +153,9 @@ class TraceClient
      *      @type string $viewType Type of data returned for traces in the list.
      *            Can be one of 'VIEW_TYPE_UNSPECIFIED', 'MINIMAL', 'ROOTSPAN', or
      *            'COMPLETE'
-     *      @type int $pageSize Maximum number of traces to return
+     *      @type int $pageSize Maximum number of traces to return per page.
+     *      @type int $resultLimit Limit the number of results returned in total.
+     *           **Defaults to** `0` (return all results).
      *      @type string $pageToken Token identifying the page of results to return
      *      @type string $startTime Start of the time interval during which trace data
      *            was collected. This timestamp in nanoseconds should be in "Zulu" format.

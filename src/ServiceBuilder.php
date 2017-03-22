@@ -251,9 +251,9 @@ class ServiceBuilder
 
 
     /**
-     * Google Stackdriver Trace client. Allows you to collect latency data from
-     * your applications and display it in the Google Cloud Platform Console.
-     * Find more information at [Stackdriver Trace API docs](https://cloud.google.com/trace/docs/).
+     * Google Stackdriver Trace allows you to collect latency data from your applications
+     * and display it in the Google Cloud Platform Console. Find more information at
+     * [Stackdriver Trace API docs](https://cloud.google.com/trace/docs/).
      *
      * Example:
      * ```

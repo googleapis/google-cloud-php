@@ -19,9 +19,7 @@ namespace Google\Cloud\Trace\Connection;
 
 use Google\Cloud\Core\RequestBuilder;
 use Google\Cloud\Core\RequestWrapper;
-use Google\Cloud\Core\EmulatorTrait;
 use Google\Cloud\Core\RestTrait;
-use Google\Cloud\Core\UriTrait;
 
 /**
  * Implementation of the
@@ -29,9 +27,7 @@ use Google\Cloud\Core\UriTrait;
  */
 class Rest implements ConnectionInterface
 {
-    use EmulatorTrait;
     use RestTrait;
-    use UriTrait;
 
     const BASE_URI = 'https://cloudtrace.googleapis.com/';
 
