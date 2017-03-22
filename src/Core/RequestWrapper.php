@@ -58,7 +58,7 @@ class RequestWrapper
     /**
      * @var array HTTP client specific configuration options.
      */
-    private $httpOptions;
+    private $restOptions;
 
     /**
      * @var array
@@ -96,7 +96,7 @@ class RequestWrapper
      *     @type callable $authHttpHandler A handler used to deliver Psr7
      *           requests specifically for authentication.
      *     @type callable $httpHandler A handler used to deliver Psr7 requests.
-     *     @type array $httpOptions HTTP client specific configuration options.
+     *     @type array $restOptions HTTP client specific configuration options.
      *     @type bool $shouldSignRequest Whether to enable request signing.
      * }
      */
@@ -107,7 +107,7 @@ class RequestWrapper
             'accessToken' => null,
             'authHttpHandler' => null,
             'httpHandler' => null,
-            'httpOptions' => [],
+            'restOptions' => [],
             'shouldSignRequest' => true,
             'componentVersion' => null
         ];
@@ -116,7 +116,7 @@ class RequestWrapper
         $this->accessToken = $config['accessToken'];
         $this->httpHandler = $config['httpHandler'] ?: HttpHandlerFactory::build();
         $this->authHttpHandler = $config['authHttpHandler'] ?: $this->httpHandler;
-        $this->httpOptions = $config['httpOptions'];
+        $this->restOptions = $config['restOptions'];
         $this->shouldSignRequest = $config['shouldSignRequest'];
     }
 
@@ -127,20 +127,27 @@ class RequestWrapper
      * @param array $options [optional] {
      *     Request options.
      *
+     *     @type float $requestTimeout Seconds to wait before timing out the
+     *           request. **Defaults to** `0`.
      *     @type int $retries Number of retries for a failed request.
      *           **Defaults to** `3`.
-     *     @type array $httpOptions HTTP client specific configuration options.
+     *     @type array $restOptions HTTP client specific configuration options.
      * }
      * @return ResponseInterface
      */
     public function send(RequestInterface $request, array $options = [])
     {
         $retries = isset($options['retries']) ? $options['retries'] : $this->retries;
-        $httpOptions = isset($options['httpOptions']) ? $options['httpOptions'] : $this->httpOptions;
+        $restOptions = isset($options['restOptions']) ? $options['restOptions'] : $this->restOptions;
+        $timeout = isset($options['requestTimeout']) ? $options['requestTimeout'] : $this->requestTimeout;
         $backoff = new ExponentialBackoff($retries, $this->getRetryFunction());
 
+        if ($timeout && !array_key_exists('timeout', $restOptions)) {
+            $restOptions['timeout'] = $timeout;
+        }
+
         try {
-            return $backoff->execute($this->httpHandler, [$this->applyHeaders($request), $httpOptions]);
+            return $backoff->execute($this->httpHandler, [$this->applyHeaders($request), $restOptions]);
         } catch (\Exception $ex) {
             throw $this->convertToGoogleException($ex);
         }

@@ -21,6 +21,7 @@ use Google\Cloud\Dev\Snippet\SnippetTestCase;
 use Google\Cloud\Storage\Bucket;
 use Google\Cloud\Storage\Connection\ConnectionInterface;
 use Google\Cloud\Storage\StorageClient;
+use Google\Cloud\Core\Iterator\ItemIterator;
 use Prophecy\Argument;
 
 /**
@@ -73,7 +74,7 @@ class StorageClientTest extends SnippetTestCase
         $this->client->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke('buckets');
-        $this->assertInstanceOf(\Generator::class, $res->returnVal());
+        $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
 
         $buckets = iterator_to_array($res->returnVal());
         $this->assertEquals('album 1', $buckets[0]->name());
@@ -97,7 +98,7 @@ class StorageClientTest extends SnippetTestCase
         $this->client->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke('buckets');
-        $this->assertInstanceOf(\Generator::class, $res->returnVal());
+        $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
         $this->assertEquals('album 1', explode("\n", $res->output())[0]);
         $this->assertEquals('album 2', explode("\n", $res->output())[1]);
     }

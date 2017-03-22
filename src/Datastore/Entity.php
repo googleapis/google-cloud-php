@@ -63,6 +63,8 @@ use Psr\Http\Message\StreamInterface;
  * echo $entity['firstName']; // 'Bob'
  * $entity['location'] = 'Detroit, MI';
  * ```
+ *
+ * @see https://cloud.google.com/datastore/docs/reference/rest/v1/Entity Entity API documentation
  */
 class Entity implements ArrayAccess
 {
@@ -178,6 +180,8 @@ class Entity implements ArrayAccess
      * $cursor = $entity->cursor();
      * ```
      *
+     * @see https://cloud.google.com/datastore/docs/reference/rest/v1/EntityResult EntityResult.cursor
+     *
      * @return string|null
      */
     public function cursor()
@@ -195,6 +199,8 @@ class Entity implements ArrayAccess
      * ```
      * $baseVersion = $entity->baseVersion();
      * ```
+     *
+     * @see https://cloud.google.com/datastore/docs/reference/rest/v1/EntityResult EntitResult.version
      *
      * @return string|null
      */

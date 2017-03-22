@@ -18,6 +18,8 @@
 namespace Google\Cloud\BigQuery;
 
 use Google\Cloud\Core\ArrayTrait;
+use Google\Cloud\Core\Iterator\ItemIterator;
+use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\BigQuery\Connection\ConnectionInterface;
 use Google\Cloud\BigQuery\Connection\Rest;
 use Google\Cloud\Core\ClientTrait;
@@ -351,35 +353,39 @@ class BigQueryClient
      *
      *     @type bool $allUsers Whether to display jobs owned by all users in
      *           the project. **Defaults to** `false`.
-     *     @type int $maxResults Maximum number of results to return.
+     *     @type int $maxResults Maximum number of results to return per page.
+     *     @type int $resultLimit Limit the number of results returned in total.
+     *           **Defaults to** `0` (return all results).
+     *     @type string $pageToken A previously-returned page token used to
+     *           resume the loading of results from a specific point.
      *     @type string $stateFilter Filter for job state. Maybe be either
      *           `done`, `pending`, or `running`.
      * }
-     * @return \Generator<Google\Cloud\BigQuery\Job>
+     * @return ItemIterator<Google\Cloud\BigQuery\Job>
      */
     public function jobs(array $options = [])
     {
-        $options['pageToken'] = null;
+        $resultLimit = $this->pluck('resultLimit', $options, false);
 
-        do {
-            $response = $this->connection->listJobs($options + ['projectId' => $this->projectId]);
-
-            if (!isset($response['jobs'])) {
-                return;
-            }
-
-            foreach ($response['jobs'] as $job) {
-                yield new Job(
-                    $this->connection,
-                    $job['jobReference']['jobId'],
-                    $this->projectId,
-                    $job,
-                    $this->mapper
-                );
-            }
-
-            $options['pageToken'] = isset($response['nextPageToken']) ? $response['nextPageToken'] : null;
-        } while ($options['pageToken']);
+        return new ItemIterator(
+            new PageIterator(
+                function (array $job) {
+                    return new Job(
+                        $this->connection,
+                        $job['jobReference']['jobId'],
+                        $this->projectId,
+                        $job,
+                        $this->mapper
+                    );
+                },
+                [$this->connection, 'listJobs'],
+                $options + ['project' => $this->projectId],
+                [
+                    'itemsKey' => 'jobs',
+                    'resultLimit' => $resultLimit
+                ]
+            )
+        );
     }
 
     /**
@@ -423,33 +429,37 @@ class BigQueryClient
      *     Configuration options.
      *
      *     @type bool $all Whether to list all datasets, including hidden ones.
-     *     @type int $maxResults Maximum number of results to return.
+     *     @type int $maxResults Maximum number of results to return per page.
+     *     @type int $resultLimit Limit the number of results returned in total.
+     *           **Defaults to** `0` (return all results).
+     *     @type string $pageToken A previously-returned page token used to
+     *           resume the loading of results from a specific point.
      * }
-     * @return \Generator<Google\Cloud\BigQuery\Dataset>
+     * @return ItemIterator<Google\Cloud\BigQuery\Dataset>
      */
     public function datasets(array $options = [])
     {
-        $options['pageToken'] = null;
+        $resultLimit = $this->pluck('resultLimit', $options, false);
 
-        do {
-            $response = $this->connection->listDatasets($options + ['projectId' => $this->projectId]);
-
-            if (!isset($response['datasets'])) {
-                return;
-            }
-
-            foreach ($response['datasets'] as $dataset) {
-                yield new Dataset(
-                    $this->connection,
-                    $dataset['datasetReference']['datasetId'],
-                    $this->projectId,
-                    $this->mapper,
-                    $dataset
-                );
-            }
-
-            $options['pageToken'] = isset($response['nextPageToken']) ? $response['nextPageToken'] : null;
-        } while ($options['pageToken']);
+        return new ItemIterator(
+            new PageIterator(
+                function (array $dataset) {
+                    return new Dataset(
+                        $this->connection,
+                        $dataset['datasetReference']['datasetId'],
+                        $this->projectId,
+                        $this->mapper,
+                        $dataset
+                    );
+                },
+                [$this->connection, 'listDatasets'],
+                $options + ['project' => $this->projectId],
+                [
+                    'itemsKey' => 'datasets',
+                    'resultLimit' => $resultLimit
+                ]
+            )
+        );
     }
 
     /**

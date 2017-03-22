@@ -67,6 +67,8 @@ use Google\Cloud\Core\CallTrait;
  *
  *     @return float
  * }
+ *
+ * @see https://cloud.google.com/vision/docs/reference/rest/v1/images/annotate#CropHint CropHint
  */
 class CropHint extends AbstractFeature
 {

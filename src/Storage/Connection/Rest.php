@@ -208,7 +208,7 @@ class Rest implements ConnectionInterface
         ];
 
         $requestOptions = array_intersect_key($args, [
-            'httpOptions' => null,
+            'restOptions' => null,
             'retries' => null
         ]);
 
@@ -297,8 +297,9 @@ class Rest implements ConnectionInterface
             : Psr7\mimetype_from_filename($args['metadata']['name']);
 
         $uploaderOptionKeys = [
-            'httpOptions',
+            'restOptions',
             'retries',
+            'requestTimeout',
             'chunkSize',
             'contentType',
             'metadata'

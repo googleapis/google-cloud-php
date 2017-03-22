@@ -21,6 +21,7 @@ use Google\Cloud\Dev\Snippet\SnippetTestCase;
 use Google\Cloud\Logging\Connection\ConnectionInterface;
 use Google\Cloud\Logging\Entry;
 use Google\Cloud\Logging\Logger;
+use Google\Cloud\Core\Iterator\ItemIterator;
 use Prophecy\Argument;
 
 /**
@@ -82,7 +83,7 @@ class LoggerTest extends SnippetTestCase
         $this->logger->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke('entries');
-        $this->assertInstanceOf(\Generator::class, $res->returnVal());
+        $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
         $this->assertEquals('foo', explode(PHP_EOL, $res->output())[0]);
         $this->assertEquals('bar', explode(PHP_EOL, $res->output())[1]);
     }
@@ -108,7 +109,7 @@ class LoggerTest extends SnippetTestCase
         $this->logger->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke('entries');
-        $this->assertInstanceOf(\Generator::class, $res->returnVal());
+        $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
         $this->assertEquals('foo', explode(PHP_EOL, $res->output())[0]);
         $this->assertEquals('bar', explode(PHP_EOL, $res->output())[1]);
     }

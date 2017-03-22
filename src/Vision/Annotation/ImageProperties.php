@@ -43,6 +43,8 @@ namespace Google\Cloud\Vision\Annotation;
  *
  *     @return array
  * }
+ *
+ * @see https://cloud.google.com/vision/docs/reference/rest/v1/images/annotate#ImageProperties ImageProperties
  */
 class ImageProperties extends AbstractFeature
 {

@@ -22,8 +22,6 @@ use InvalidArgumentException;
 use JsonSerializable;
 
 /**
- * Represents a Datastore Key.
- *
  * Keys are unique identifiers for entities.
  *
  * Keys may be considered either "named" or "incomplete". A named Key is one in

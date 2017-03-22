@@ -18,8 +18,10 @@
 namespace Google\Cloud\Logging;
 
 use Google\Cloud\Core\ArrayTrait;
-use Google\Cloud\Logging\Connection\ConnectionInterface;
+use Google\Cloud\Core\Iterator\ItemIterator;
+use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Core\ValidateTrait;
+use Google\Cloud\Logging\Connection\ConnectionInterface;
 
 /**
  * A logger used to write entries to Google Stackdriver Logging.
@@ -182,33 +184,37 @@ class Logger
      *           **Defaults to** `"timestamp asc"`.
      *     @type int $pageSize The maximum number of results to return per
      *           request.
+     *     @type int $resultLimit Limit the number of results returned in total.
+     *           **Defaults to** `0` (return all results).
+     *     @type string $pageToken A previously-returned page token used to
+     *           resume the loading of results from a specific point.
      * }
-     * @return \Generator<Google\Cloud\Logging\Entry>
+     * @return ItemIterator<Google\Cloud\Logging\Entry>
      */
     public function entries(array $options = [])
     {
+        $resultLimit = $this->pluck('resultLimit', $options, false);
         $logNameFilter = "logName = $this->formattedName";
         $options += [
-            'pageToken' => null,
             'resourceNames' => ["projects/$this->projectId"],
             'filter' => isset($options['filter'])
                 ? $options['filter'] .= " AND $logNameFilter"
                 : $logNameFilter
         ];
 
-        do {
-            $response = $this->connection->listEntries($options);
-
-            if (!isset($response['entries'])) {
-                return;
-            }
-
-            foreach ($response['entries'] as $entry) {
-                yield new Entry($entry);
-            }
-
-            $options['pageToken'] = isset($response['nextPageToken']) ? $response['nextPageToken'] : null;
-        } while ($options['pageToken']);
+        return new ItemIterator(
+            new PageIterator(
+                function (array $entry) {
+                    return new Entry($entry);
+                },
+                [$this->connection, 'listEntries'],
+                $options,
+                [
+                    'itemsKey' => 'entries',
+                    'resultLimit' => $resultLimit
+                ]
+            )
+        );
     }
 
     /**

@@ -23,6 +23,7 @@ use Google\Cloud\BigQuery\InsertResponse;
 use Google\Cloud\BigQuery\Job;
 use Google\Cloud\BigQuery\Table;
 use Google\Cloud\BigQuery\ValueMapper;
+use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Upload\MultipartUploader;
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
 use Google\Cloud\Storage\Connection\ConnectionInterface as StorageConnectionInterface;
@@ -131,7 +132,7 @@ class TableTest extends SnippetTestCase
         $this->table->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke('rows');
-        $this->assertInstanceOf(\Generator::class, $res->returnVal());
+        $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
         $this->assertEquals('abcd' . PHP_EOL, $res->output());
     }
 

@@ -21,6 +21,7 @@ use Google\Cloud\BigQuery\Connection\ConnectionInterface;
 use Google\Cloud\BigQuery\Dataset;
 use Google\Cloud\BigQuery\Table;
 use Google\Cloud\BigQuery\ValueMapper;
+use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
 use Prophecy\Argument;
 
@@ -116,7 +117,7 @@ class DatasetTest extends SnippetTestCase
         $snippet->addLocal('dataset', $dataset);
         $res = $snippet->invoke('tables');
 
-        $this->assertInstanceOf(\Generator::class, $res->returnVal());
+        $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
         $this->assertEquals('table', trim($res->output()));
     }
 

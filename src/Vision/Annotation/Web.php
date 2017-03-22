@@ -36,6 +36,8 @@ use Google\Cloud\Vision\Annotation\Web\WebPage;
  *
  * $web = $annotation->web();
  * ```
+ *
+ * @see https://cloud.google.com/vision/docs/reference/rest/v1/images/annotate#WebDetection WebDetection
  */
 class Web extends AbstractFeature
 {

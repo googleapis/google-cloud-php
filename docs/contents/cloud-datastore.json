@@ -14,16 +14,20 @@
         "title": "Key",
         "type": "datastore/key"
     }, {
-        "title": "Query",
-        "type": "datastore/query/query"
-    }, {
-        "title": "GQL Query",
-        "type": "datastore/query/gqlquery"
-    }, {
         "title": "GeoPoint",
         "type": "datastore/geopoint"
     }, {
         "title": "Blob",
         "type": "datastore/blob"
+    }, {
+        "title": "Queries",
+        "type": "datastore/queryinterface",
+        "nav": [{
+            "title": "GQL Query",
+            "type": "datastore/query/gqlquery"
+        }, {
+            "title": "Query",
+            "type": "datastore/query/query"
+        }]
     }]
 }

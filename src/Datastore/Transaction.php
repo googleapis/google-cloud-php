@@ -437,7 +437,7 @@ class Transaction
      *           Must be a subclass of {@see Google\Cloud\Datastore\Entity}.
      *           If not set, {@see Google\Cloud\Datastore\Entity} will be used.
      * }
-     * @return \Generator<Google\Cloud\Datastore\Entity>
+     * @return EntityIterator<Google\Cloud\Datastore\Entity>
      */
     public function runQuery(QueryInterface $query, array $options = [])
     {
@@ -456,6 +456,8 @@ class Transaction
      * ```
      * $transaction->commit();
      * ```
+     *
+     * @see https://cloud.google.com/datastore/docs/reference/rest/v1/projects/commit Commit API documentation
      *
      * @param array $options [optional] Configuration Options.
      * @return array [Response Body](https://cloud.google.com/datastore/reference/rest/v1/projects/commit#response-body)

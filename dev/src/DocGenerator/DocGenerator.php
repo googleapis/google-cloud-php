@@ -35,7 +35,7 @@ class DocGenerator
     private $componentId;
     private $manifestPath;
     private $release;
-    private $linkCrossComponent;
+    private $isComponent;
 
     /**
      * @param array $files
@@ -48,7 +48,7 @@ class DocGenerator
         $componentId,
         $manifestPath,
         $release,
-        $linkCrossComponent = true
+        $isComponent = true
     ) {
         $this->types = $types;
         $this->files = $files;
@@ -57,7 +57,7 @@ class DocGenerator
         $this->componentId = $componentId;
         $this->manifestPath = $manifestPath;
         $this->release = $release;
-        $this->linkCrossComponent = $linkCrossComponent;
+        $this->isComponent = $isComponent;
     }
 
     /**
@@ -88,7 +88,7 @@ class DocGenerator
                     $this->componentId,
                     $this->manifestPath,
                     $this->release,
-                    $this->linkCrossComponent
+                    $this->isComponent
                 );
             } else {
                 $content = file_get_contents($file);
@@ -104,7 +104,7 @@ class DocGenerator
             $this->types->addType([
                 'id' => $document['id'],
                 'title' => $document['title'],
-                'contents' => ($this->linkCrossComponent)
+                'contents' => ($this->isComponent)
                     ? $this->prune($document['id'] . '.json')
                     : $document['id'] . '.json'
             ]);
