@@ -50,11 +50,6 @@ class Trace
     private $spans = [];
 
     /**
-     * @var array Serialized representation of this trace.
-     */
-    private $info;
-
-    /**
      * Instantiate a new Trace instance.
      *
      * @param ConnectionInterface $connection The connection to Stackdriver Trace.
@@ -88,9 +83,8 @@ class Trace
     }
 
     /**
-     * Returns a serializable array representing this trace. If no data is cached,
-     * a network request will be made to retrieve it and will wipe out any spans
-     * currently set.
+     * Returns a serializable array representing this trace. If no span data
+     * is cached, a network request will be made to retrieve it.
      *
      * @see https://cloud.google.com/trace/docs/reference/v1/rest/v1/projects.traces/get Traces get API documentation.
      *
@@ -99,7 +93,20 @@ class Trace
      */
     public function info(array $options = [])
     {
-        return $this->info ?: $this->reload($options);
+        // We don't want to maintain both an info array and array of TraceSpans,
+        // so we'll rely on the presence of the loaded/specified spans for whether
+        // or not we should fetch remote data.
+        if (!$this->spans) {
+            $this->reload($options);
+        }
+
+        return [
+            'projectId' => $this->projectId,
+            'traceId' => $this->traceId,
+            'spans' => array_map(function ($span) {
+                return $span->info();
+            }, $this->spans)
+        ];
     }
 
     /**
@@ -108,7 +115,6 @@ class Trace
      * @see https://cloud.google.com/trace/docs/reference/v1/rest/v1/projects.traces/get Traces get API documentation.
      *
      * @param array $options [optional] Configuration Options
-     * @return array
      */
     public function reload(array $options = [])
     {
@@ -124,8 +130,6 @@ class Trace
         $this->spans = array_map(function ($span) {
             return new TraceSpan($span);
         }, $trace['spans']);
-
-        return $this->info = $trace;
     }
 
     /**

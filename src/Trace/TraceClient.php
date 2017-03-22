@@ -117,13 +117,7 @@ class TraceClient
         $this->connection->patchTraces([
             'projectId' => $this->projectId,
             'traces' => array_map(function ($trace) {
-                return [
-                    'projectId' => $this->projectId,
-                    'traceId' => $trace->traceId(),
-                    'spans' => array_map(function ($span) {
-                        return $span->info();
-                    }, $trace->spans())
-                ];
+                return $trace->info();
             }, $traces)
         ] + $options);
         return true;
