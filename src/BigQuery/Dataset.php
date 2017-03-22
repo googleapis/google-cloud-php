@@ -153,7 +153,7 @@ class Dataset
      * ```
      *
      * @param string $id The id of the table to request.
-     * @return Dataset
+     * @return Table
      */
     public function table($id)
     {
