@@ -174,7 +174,7 @@ class TraceClient
      */
     public function traces(array $options = [])
     {
-        $resultLimit = $this->pluck('resultLimit', $options, true);
+        $resultLimit = $this->pluck('resultLimit', $options, false);
 
         return new ItemIterator(
             new PageIterator(

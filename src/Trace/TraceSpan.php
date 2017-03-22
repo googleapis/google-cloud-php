@@ -197,8 +197,14 @@ class TraceSpan
      */
     private function generateSpanName()
     {
-        // FIXME: clean backtrace rather than guessing the stack depth
-        $caller = debug_backtrace(0, 5)[4];
-        return sprintf('app/%s/%s/%d', $caller['class'], $caller['function'], $caller['line']);
+        // Try to find the first stacktrace class entry that doesn't start with Google\Cloud\Trace
+        foreach (debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS) as $bt) {
+            if (substr($bt['class'], 0, 18) != 'Google\Cloud\Trace') {
+                return sprintf('app/%s/%s/%d', $bt['class'], $bt['function'], $bt['line']);
+            }
+        }
+
+        // We couldn't find a suitable backtrace entry - generate a random one
+        return uniqid('span');
     }
 }
