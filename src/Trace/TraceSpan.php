@@ -37,8 +37,7 @@ class TraceSpan
     const SPAN_KIND_RPC_CLIENT = 'RPC_CLIENT';
 
     /**
-     * Associative array containing all the fields representing this TraceSpan.
-     * @var array
+     * @var array Associative array containing all the fields representing this TraceSpan.
      */
     private $info;
 
@@ -175,6 +174,7 @@ class TraceSpan
             $micro = sprintf("%06d", $usec * 1000000);
             $when = new \DateTime(date('Y-m-d H:i:s.' . $micro));
         }
+        $when->setTimezone(new \DateTimeZone('UTC'));
         return $when->format('Y-m-d\TH:i:s.u000\Z');
     }
 

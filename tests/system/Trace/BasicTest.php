@@ -22,6 +22,9 @@ use Google\Cloud\Trace\TraceClient;
 use Google\Cloud\Trace\TraceSpan;
 use Google\Cloud\Trace\Trace;
 
+/**
+ * @group trace
+ */
 class BasicTest extends \PHPUnit_Framework_TestCase
 {
     private $traceClient;

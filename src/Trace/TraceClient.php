@@ -21,12 +21,11 @@ use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
-use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Trace\Connection\ConnectionInterface;
 use Google\Cloud\Trace\Connection\Rest;
 
 /**
- * Google Stackdriver Trace client. Allows you to collect latency data from
+ * Google Stackdriver Trace allows you to collect latency data from
  * your applications and display it in the Google Cloud Platform Console.
  * Find more information at [Stackdriver Trace API docs](https://cloud.google.com/trace/docs/).
  *
@@ -95,7 +94,6 @@ class TraceClient
      * @param Trace $trace The trace log to send.
      * @param array $options [optional] Configuration Options
      * @return bool
-     * @throws ServiceException
      */
     public function insert(Trace $trace, array $options = [])
     {
@@ -112,7 +110,6 @@ class TraceClient
      * @param Trace[] $traces The trace logs to send.
      * @param array $options [optional] Configuration Options
      * @return bool
-     * @throws ServiceException
      */
     public function insertBatch(array $traces, array $options = [])
     {
@@ -177,6 +174,8 @@ class TraceClient
      */
     public function traces(array $options = [])
     {
+        $resultLimit = $this->pluck('resultLimit', $options, true);
+
         return new ItemIterator(
             new PageIterator(
                 function (array $trace) {
@@ -185,7 +184,10 @@ class TraceClient
                 },
                 [$this->connection, 'listTraces'],
                 ['projectId' => $this->projectId] + $options,
-                ['itemsKey' => 'traces']
+                [
+                    'itemsKey' => 'traces',
+                    'resultLimit' => $resultLimit
+                ]
             )
         );
     }

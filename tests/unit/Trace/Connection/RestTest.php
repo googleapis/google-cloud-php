@@ -28,7 +28,7 @@ use Psr\Http\Message\RequestInterface;
 use Rize\UriTemplate;
 
 /**
- * @group translate
+ * @group trace
  */
 class RestTest extends \PHPUnit_Framework_TestCase
 {
