@@ -88,7 +88,9 @@ class TraceClient
     /**
      * Sends a Trace log in a simple fashion.
      *
+     * @codingStandardsIgnoreStart
      * @see https://cloud.google.com/trace/docs/reference/v1/rest/v1/projects/patchTraces Project patchTraces API documentation.
+     * @codingStandardsIgnoreEnd
      *
      * @param Trace $trace The trace log to send.
      * @param array $options [optional] Configuration Options
@@ -103,7 +105,9 @@ class TraceClient
     /**
      * Sends multiple Trace logs in a simple fashion.
      *
+     * @codingStandardsIgnoreStart
      * @see https://cloud.google.com/trace/docs/reference/v1/rest/v1/projects/patchTraces Project patchTraces API documentation.
+     * @codingStandardsIgnoreEnd
      *
      * @param Trace[] $traces The trace logs to send.
      * @param array $options [optional] Configuration Options
