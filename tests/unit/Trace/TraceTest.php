@@ -50,7 +50,6 @@ class TraceTest extends \PHPUnit_Framework_TestCase
                 ]
             ]
         );
-        $this->assertEquals('myproject', $trace->projectId());
         $this->assertEquals('1234abcd', $trace->traceId());
         $this->assertEquals(1, count($trace->spans()));
         foreach($trace->spans() as $span) {

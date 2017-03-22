@@ -88,26 +88,6 @@ class Trace
     }
 
     /**
-     * Retrieves the trace's projectId.
-     *
-     * @return string
-     */
-    public function projectId()
-    {
-        return $this->projectId;
-    }
-
-    /**
-     * Set the trace's projectId
-     *
-     * @param string $projectId
-     */
-    public function setProjectId($projectId)
-    {
-        $this->projectId = $projectId;
-    }
-
-    /**
      * Returns a serializable array representing this trace. If no data is cached,
      * a network request will be made to retrieve it and will wipe out any spans
      * currently set.
