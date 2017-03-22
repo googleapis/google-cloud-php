@@ -199,8 +199,10 @@ class TraceSpan
     {
         // Try to find the first stacktrace class entry that doesn't start with Google\Cloud\Trace
         foreach (debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS) as $bt) {
-            if (substr($bt['class'], 0, 18) != 'Google\Cloud\Trace') {
-                return sprintf('app/%s/%s/%d', $bt['class'], $bt['function'], $bt['line']);
+            if (!array_key_exists('class', $bt)) {
+                return implode('/', array_filter(['app', basename($bt['file']), $b['function'], $bt['line']]));
+            } elseif (substr($bt['class'], 0, 18) != 'Google\Cloud\Trace') {
+                return implode('/', array_filter(['app', $bt['class'], $b['function'], $bt['line']]));
             }
         }
 
