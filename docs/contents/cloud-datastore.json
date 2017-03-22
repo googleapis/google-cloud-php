@@ -21,7 +21,8 @@
         "type": "datastore/blob"
     }, {
         "title": "Queries",
-        "type": "datastore/queryinterface",
+        "type": "datastore/query/queryinterface",
+        "patterns": ["datastore\/query\/\\w{1,}"],
         "nav": [{
             "title": "GQL Query",
             "type": "datastore/query/gqlquery"
