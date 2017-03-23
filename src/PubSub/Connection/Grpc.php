@@ -61,9 +61,13 @@ class Grpc implements ConnectionInterface
      */
     public function __construct(array $config = [])
     {
-        $this->codec = new PhpArray(['publishTime' => function ($v) {
-            return $this->formatTimestampFromApi($v);
-        }]);
+        $this->codec = new PhpArray([
+            'customFilters' => [
+                'publishTime' => function ($v) {
+                    return $this->formatTimestampFromApi($v);
+                }
+            ]
+        ]);
         $config['codec'] = $this->codec;
         $this->setRequestWrapper(new GrpcRequestWrapper($config));
         $grpcConfig = $this->getGaxConfig(PubSubClient::VERSION);

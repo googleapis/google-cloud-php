@@ -72,7 +72,8 @@
         "psr-4": {
             "Google\\Cloud\\Dev\\": "dev/src",
             "Google\\Cloud\\Tests\\System\\": "tests/system"
-        }
+        },
+        "files": ["dev/src/Functions.php"]
     },
     "scripts": {
         "google-cloud": "dev/google-cloud"

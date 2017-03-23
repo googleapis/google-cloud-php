@@ -178,4 +178,24 @@ trait GrpcTrait
                 return ['list_value' => $this->formatListForApi($value)];
         }
     }
+
+    /**
+     * Format a timestamp for the API with nanosecond precision.
+     *
+     * @param string $value
+     * @return array
+     */
+    private function formatTimestampForApi($value)
+    {
+        preg_match('/\.(\d{1,9})Z/', $value, $matches);
+        $value = preg_replace('/\.(\d{1,9})Z/', '.000000Z', $value);
+
+        $dt = \DateTimeImmutable::createFromFormat('Y-m-d\TH:i:s.u\Z', $value);
+        $nanos = (isset($matches[1])) ? $matches[1] : 0;
+
+        return [
+            'seconds' => (int)$dt->format('U'),
+            'nanos' => (int)$nanos
+        ];
+    }
 }

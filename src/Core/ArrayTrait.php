@@ -78,4 +78,21 @@ trait ArrayTrait
     {
         return array_keys($arr) !== range(0, count($arr) - 1);
     }
+
+    /**
+     * Just like array_filter(), but preserves falsey values except null.
+     *
+     * @param array $arr
+     * @return array
+     */
+    private function arrayFilterRemoveNull(array $arr)
+    {
+        return array_filter($arr, function ($element) {
+            if (!is_null($element)) {
+                return true;
+            }
+
+            return false;
+        });
+    }
 }

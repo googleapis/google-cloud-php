@@ -33,8 +33,8 @@ class NaturalLanguageClientTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->client = new \NaturalLanguageClientStub;
-        $this->client->setConnection($this->connection->reveal());
+        $this->client = \Google\Cloud\Dev\stub(NaturalLanguageClient::class);
+        $this->client->___setProperty('connection', $this->connection->reveal());
     }
 
     public function testClass()
@@ -56,7 +56,7 @@ class NaturalLanguageClientTest extends SnippetTestCase
                 ]
             ]);
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
 
         $snippet = $this->snippetFromMethod(NaturalLanguageClient::class, 'analyzeEntities');
         $snippet->addLocal('language', $this->client);
@@ -75,7 +75,7 @@ class NaturalLanguageClientTest extends SnippetTestCase
                 ]
             ]);
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
 
         $snippet = $this->snippetFromMethod(NaturalLanguageClient::class, 'analyzeSentiment');
         $snippet->addLocal('language', $this->client);
@@ -98,7 +98,7 @@ class NaturalLanguageClientTest extends SnippetTestCase
                 ]
             ]);
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
 
         $snippet = $this->snippetFromMethod(NaturalLanguageClient::class, 'analyzeSyntax');
         $snippet->addLocal('language', $this->client);
@@ -117,7 +117,7 @@ class NaturalLanguageClientTest extends SnippetTestCase
                 ]
             ]);
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
 
         $snippet = $this->snippetFromMethod(NaturalLanguageClient::class, 'annotateText');
         $snippet->addLocal('language', $this->client);
@@ -139,7 +139,7 @@ class NaturalLanguageClientTest extends SnippetTestCase
                 ]
             ]);
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
 
         $snippet = $this->snippetFromMethod(NaturalLanguageClient::class, 'annotateText', 1);
         $snippet->addLocal('language', $this->client);
