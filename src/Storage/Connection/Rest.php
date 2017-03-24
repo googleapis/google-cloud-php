@@ -302,7 +302,8 @@ class Rest implements ConnectionInterface
             'requestTimeout',
             'chunkSize',
             'contentType',
-            'metadata'
+            'metadata',
+            'uploadProgressCallback'
         ];
 
         $args['uploaderOptions'] = array_intersect_key($args, array_flip($uploaderOptionKeys));

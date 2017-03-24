@@ -30,6 +30,11 @@ use Psr\Http\Message\ResponseInterface;
 class ResumableUploader extends AbstractUploader
 {
     use JsonTrait;
+    
+    /**
+     * @var callable
+     */
+    private $uploadProgressCallback;
 
     /**
      * @var int
@@ -40,6 +45,14 @@ class ResumableUploader extends AbstractUploader
      * @var string
      */
     private $resumeUri;
+    
+    public function __construct(RequestWrapper $requestWrapper, $data, $uri, array $options = array())
+    {
+        parent::__construct($requestWrapper, $data, $uri, $options);
+
+        // Set uploadProgressCallback if it's passed as an option.
+        $this->uploadProgressCallback = isset($options['uploadProgressCallback']) ? $options['uploadProgressCallback'] : null;
+    }
 
     /**
      * Gets the resume URI.
@@ -120,6 +133,11 @@ class ResumableUploader extends AbstractUploader
                     "Upload failed. Please use this URI to resume your upload: $this->resumeUri",
                     $ex->getCode()
                 );
+            }
+            
+            if (is_callable($this->uploadProgressCallback))
+            {
+                call_user_func($this->uploadProgressCallback, $rangeEnd - $rangeStart + 1);
             }
 
             $rangeStart = $this->getRangeStart($response->getHeaderLine('Range'));
