@@ -23,6 +23,7 @@ use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\LimitStream;
 use GuzzleHttp\Psr7\Request;
 use Psr\Http\Message\ResponseInterface;
+use Google\Cloud\Core\RequestWrapper;
 
 /**
  * Resumable upload implementation.
