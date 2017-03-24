@@ -47,6 +47,27 @@ class ResumableUploader extends AbstractUploader
      */
     private $resumeUri;
     
+    /**
+     * Extend the parent constructor with the specific 
+     * for resumable upload option "uploadProgressCallback"
+     * 
+     * @param RequestWrapper $requestWrapper
+     * @param string|resource|StreamInterface $data
+     * @param string $uri
+     * @param array $options [optional] {
+     *     Optional configuration.
+     *
+     *     @type array $metadata Metadata on the resource.
+     *     @type callable $uploadProgressCallback to be called on each
+     *           successfully uploaded chunk.
+     *     @type int $chunkSize Size of the chunks to send incrementally during
+     *           a resumable upload. Must be in multiples of 262144 bytes.
+     *     @type array $httpOptions HTTP client specific configuration options.
+     *     @type int $retries Number of retries for a failed request.
+     *           **Defaults to** `3`.
+     *     @type string $contentType Content type of the resource.
+     * }
+     */
     public function __construct(RequestWrapper $requestWrapper, $data, $uri, array $options = array())
     {
         parent::__construct($requestWrapper, $data, $uri, $options);
