@@ -24,6 +24,7 @@ use GuzzleHttp\Psr7\LimitStream;
 use GuzzleHttp\Psr7\Request;
 use Psr\Http\Message\ResponseInterface;
 use Google\Cloud\Core\RequestWrapper;
+use Psr\Http\Message\StreamInterface;
 
 /**
  * Resumable upload implementation.
