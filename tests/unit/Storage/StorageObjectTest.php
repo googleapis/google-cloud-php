@@ -520,11 +520,4 @@ class StorageObjectTest extends \PHPUnit_Framework_TestCase
         $expectedUri = sprintf('gs://%s/%s', $bucketName, $name);
         $this->assertEquals($expectedUri, $object->gcsUri());
     }
-
-    public function testIam()
-    {
-        $object = new StorageObject($this->connection->reveal(), $name = 'object.txt', $bucketName = 'bucket');
-
-        $this->assertInstanceOf(Iam::class, $object->iam());
-    }
 }

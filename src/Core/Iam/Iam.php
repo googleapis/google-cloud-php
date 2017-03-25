@@ -146,11 +146,17 @@ class Iam
      *
      * @param  array $permissions A list of permissions to test
      * @param  array $options Configuration Options
-     * @return array A subset of $permissions, with only those allowed included.
+     * @return array|null A subset of $permissions, with only those allowed
+     *         included, or null.
      */
     public function testPermissions(array $permissions, array $options = [])
     {
-        return $this->sendTestPermissionsRequest($permissions, $options);
+        $res = $this->sendTestPermissionsRequest($permissions, $options);
+        if (isset($res['permissions'])) {
+            return $res['permissions'];
+        }
+
+        return null;
     }
 
     /**

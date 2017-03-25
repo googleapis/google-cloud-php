@@ -21,7 +21,9 @@ use Google\Cloud\Core\Iam\Iam as IamBase;
 use Google\Cloud\Core\Iam\IamConnectionInterface;
 
 /**
- * IAM implementation for Google Cloud Storage
+ * IAM implementation for Google Cloud Storage.
+ *
+ * For usage, see {@see Google\Cloud\Core\Iam\Iam}.
  *
  * @see https://cloud.google.com/storage/docs/access-control/iam-with-json-and-xml IAM with JSON and XML
  */
@@ -35,9 +37,11 @@ class Iam extends IamBase
     private $resourceArgs;
 
     /**
-     * @param IamConnectionInterface $connection
-     * @param string $resource
-     * @param string $resourceArgumentName
+     * @param IamConnectionInterface $connection A connection to the GCS IAM API.
+     * @param string $resource The resource managed by this IAM instance.
+     * @param string $resourceArgs An array, containing a key named `bucket`,
+     *        and optionally a key named 'object' referring to the bucket or
+     *        storage object managed by this instance.
      * @access private
      */
     public function __construct(
@@ -66,6 +70,10 @@ class Iam extends IamBase
      */
     protected function sendSetPolicyRequest(array $policy, array $options)
     {
+        if (!isset($policy['bindings'])) {
+            throw new \BadMethodCallException('Policy must supply bindings.');
+        }
+
         $args = [
             'kind' => self::KIND,
             'bindings' => $policy['bindings'],

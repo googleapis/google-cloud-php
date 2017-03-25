@@ -116,7 +116,7 @@ class IamTest extends \PHPUnit_Framework_TestCase
         ];
 
         $this->connection->testPermissions(Argument::withEntry('permissions', $permissions))
-            ->willReturn($permissions);
+            ->willReturn(['permissions' => $permissions]);
 
         $iam = new Iam($this->connection->reveal(), self::RESOURCE);
         $this->assertEquals($permissions, $iam->testPermissions($permissions));

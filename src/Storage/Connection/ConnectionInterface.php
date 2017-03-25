@@ -132,19 +132,4 @@ interface ConnectionInterface
      * @param array $args
      */
     public function insertObject(array $args = []);
-
-    /**
-     * @param  array $args
-     */
-    public function getObjectIamPolicy(array $args);
-
-    /**
-     * @param  array $args
-     */
-    public function setObjectIamPolicy(array $args);
-
-    /**
-     * @param  array $args
-     */
-    public function testObjectIamPermissions(array $args);
 }
