@@ -17,10 +17,8 @@
 
 namespace Google\Cloud\Core\Batch;
 
-require_once __DIR__ . '/../../../vendor/autoload.php';
-
 /**
- * An external processes for executing the batch jobs.
+ * An external daemon script for executing the batch jobs.
  */
 class BatchDaemon
 {
