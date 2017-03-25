@@ -33,10 +33,15 @@ class BatchDaemon
     /* @var array */
     private $descriptorspec;
 
+    /* @var string */
+    private $command;
+
     /**
      * Prepare the descriptor spec and install signal handlers.
+     *
+     * @param string $entrypoint Daemon's entrypoint script.
      */
-    public function __construct()
+    public function __construct($entrypoint)
     {
         $this->runner = new BatchRunner();
         $this->shutdown = false;
@@ -50,6 +55,7 @@ class BatchDaemon
         pcntl_signal(SIGTERM, array($this, "sigHandler"));
         pcntl_signal(SIGINT, array($this, "sigHandler"));
         pcntl_signal(SIGHUP, array($this, "sigHandler"));
+        $this->command = sprintf('php -d auto_prepend_file="" %s', $entrypoint);
     }
 
     /**
@@ -62,19 +68,6 @@ class BatchDaemon
             case SIGTERM:
                 $this->shutdown = true;
                 break;
-        }
-    }
-
-    /**
-     * Entrypoint.
-     */
-    public function run()
-    {
-        global $argv;
-        if (count($argv) === 1) {
-            $this->runParent();
-        } else {
-            $this->runChild();
         }
     }
 
@@ -92,7 +85,7 @@ class BatchDaemon
                     $procs[$job->getIdentifier()] = array();
                     for ($i = 0; $i < $job->getWorkerNum(); $i++) {
                         $procs[$job->getIdentifier()][] = proc_open(
-                            sprintf('php %s %d', __FILE__, $job->getIdNum()),
+                            sprintf('%s %d', $this->command, $job->getIdNum()),
                             $this->descriptorspec,
                             $pipes
                         );
@@ -119,12 +112,12 @@ class BatchDaemon
 
     /**
      * A loop for the children.
+     *
+     * @param int $idNum Numeric id for the job.
      */
-    public function runChild()
+    public function runChild($idNum)
     {
-        global $argv;
         // child process
-        $idNum = intval($argv[1]);
         $sysvKey = SysvUtils::getSysvKey($idNum);
         $q = msg_get_queue($sysvKey);
         $items = array();
@@ -175,7 +168,3 @@ class BatchDaemon
         }
     }
 }
-
-
-$__daemon = new BatchDaemon();
-$__daemon->run();
