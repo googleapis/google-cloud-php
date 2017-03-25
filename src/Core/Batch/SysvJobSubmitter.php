@@ -17,6 +17,9 @@
 
 namespace Google\Cloud\Core\Batch;
 
+/**
+ * JobSubmitInterface implementation with SysV IPC message queue.
+ */
 class SysvJobSubmitter implements JobSubmitInterface
 {
     /* @var array */

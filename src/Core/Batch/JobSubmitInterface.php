@@ -17,6 +17,9 @@
 
 namespace Google\Cloud\Core\Batch;
 
+/**
+ * An interface for submitting the items.
+ */
 interface JobSubmitInterface
 {
     /**

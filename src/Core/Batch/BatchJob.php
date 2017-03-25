@@ -17,6 +17,9 @@
 
 namespace Google\Cloud\Core\Batch;
 
+/**
+ * Represent batch jobs.
+ */
 class BatchJob
 {
     const DEFAULT_BATCH_SIZE = 100;
