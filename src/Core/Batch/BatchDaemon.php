@@ -135,15 +135,16 @@ class BatchDaemon
             } else {
                 $flag = MSG_IPC_NOWAIT;
             }
-            if (msg_receive($q,
-                            0,
-                            $type,
-                            8192,
-                            $message,
-                            true,
-                            $flag,
-                            $errorcode)
-            ) {
+            if (msg_receive(
+                $q,
+                0,
+                $type,
+                8192,
+                $message,
+                true,
+                $flag,
+                $errorcode
+            )) {
                 if ($type === SysvUtils::TYPE_DIRECT) {
                     $items[] = $message;
                 } elseif ($type === SysvUtils::TYPE_FILE) {

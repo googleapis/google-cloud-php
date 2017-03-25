@@ -17,6 +17,9 @@
 
 namespace Google\Cloud\Core\Batch;
 
+/**
+ * ConfigStorageInterface implementation with SystemV IPC shared memory.
+ */
 class SysvConfigStorage implements ConfigStorageInterface
 {
     const VAR_KEY = 1;
