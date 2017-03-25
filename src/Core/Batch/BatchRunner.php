@@ -40,7 +40,7 @@ class BatchRunner
     /**
      * Determine internal implementation and loads the configuration.
      */
-    function __construct()
+    public function __construct()
     {
         // TODO: switch the implementation
         $this->configStorage = new SysvConfigStorage();

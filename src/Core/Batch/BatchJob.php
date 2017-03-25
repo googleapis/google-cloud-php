@@ -19,22 +19,19 @@ namespace Google\Cloud\Core\Batch;
 
 class BatchJob
 {
-
     const DEFAULT_BATCH_SIZE = 100;
-
     const DEFAULT_CALL_PERIOD = 2;
-
     const DEFAULT_WORKERS = 1;
 
     /**
      * @var string
      */
-	private $identifier;
+    private $identifier;
 
     /**
      * @var callable
      */
-	private $func;
+    private $func;
 
     /**
      * @var int
@@ -76,13 +73,13 @@ class BatchJob
      *                 job. It's needed for registering global functions.
      * }
      */
-	public function __construct(
+    public function __construct(
         $identifier,
         callable $func,
-        array $options = [],
-        $idNum
+        $idNum,
+        array $options = []
     ) {
-		$this->identifier = $identifier;
+        $this->identifier = $identifier;
         $this->func = $func;
         $this->idNum = $idNum;
         $this->batchSize = array_key_exists('batchSize', $options) ?
@@ -93,20 +90,20 @@ class BatchJob
             ? $options['bootstrapFile'] : null;
         $this->workerNum = array_key_exists('workerNum', $options)
             ? $options['workerNum'] : self::DEFAULT_WORKERS;
-	}
+    }
 
     /**
      * Run the job with the given items.
      *
      * @param mixed[]
      */
-	public function run($items)
-	{
+    public function run($items)
+    {
         if (! is_null($this->bootstrapFile)) {
             require_once($this->bootstrapFile);
         }
         call_user_func_array($this->func, array($items));
-	}
+    }
 
     /**
      * @return int

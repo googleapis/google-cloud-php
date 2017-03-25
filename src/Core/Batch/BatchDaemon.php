@@ -46,13 +46,13 @@ class BatchDaemon
         // setup signal handlers
         pcntl_signal(SIGTERM, array($this, "sigHandler"));
         pcntl_signal(SIGINT, array($this, "sigHandler"));
-        pcntl_signal(SIGHUP,  array($this, "sigHandler"));
+        pcntl_signal(SIGHUP, array($this, "sigHandler"));
     }
 
     /**
      * A signal handler for the terminate switch.
      */
-    public function sigHandler($signo , $signinfo)
+    public function sigHandler($signo, $signinfo)
     {
         switch ($signo) {
             case SIGINT:
@@ -100,7 +100,7 @@ class BatchDaemon
             if ($this->shutdown) {
                 echo 'Shutting down, waiting for the children' . PHP_EOL;
                 foreach ($procs as $k => $v) {
-                    foreach($v as $proc) {
+                    foreach ($v as $proc) {
                         @proc_terminate($proc);
                         @proc_close($proc);
                     }
@@ -135,11 +135,18 @@ class BatchDaemon
             } else {
                 $flag = MSG_IPC_NOWAIT;
             }
-            if (msg_receive(
-                    $q, 0, $type, 8192, $message, true, $flag, $errorcode)) {
+            if (msg_receive($q,
+                            0,
+                            $type,
+                            8192,
+                            $message,
+                            true,
+                            $flag,
+                            $errorcode)
+            ) {
                 if ($type === SysvUtils::TYPE_DIRECT) {
                     $items[] = $message;
-                } else if ($type === SysvUtils::TYPE_FILE) {
+                } elseif ($type === SysvUtils::TYPE_FILE) {
                     $items[] = unserialize(file_get_contents($message));
                     @unlink($message);
                 }
@@ -148,8 +155,10 @@ class BatchDaemon
                 || (count($items) !== 0
                     && microtime(true) > $lastInvoked + $period)) {
                 // TODO: check result
-                printf('Running the job with %d items' . PHP_EOL,
-                       count($items));
+                printf(
+                    'Running the job with %d items' . PHP_EOL,
+                    count($items)
+                );
                 $job->run($items);
                 $items = array();
                 $lastInvoked = microtime(true);

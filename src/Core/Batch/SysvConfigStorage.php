@@ -43,7 +43,7 @@ class SysvConfigStorage implements ConfigStorageInterface
      */
     public function lock()
     {
-        return sem_acquire($this->semid, false);
+        return sem_acquire($this->semid);
     }
 
     /**

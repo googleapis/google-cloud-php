@@ -25,7 +25,7 @@ class BatchConfig
     /**
      * @var \Google\Cloud\Core\Batch\BatchJob[]
      */
-	private $jobs;
+    private $jobs;
 
     /**
      * @var array
@@ -54,12 +54,12 @@ class BatchConfig
      *
      * @return \Google\Cloud\Core\Batch\BatchJob|null
      */
-	public function getJobFromId($identifier)
-	{
-		return array_key_exists($identifier, $this->idmap) ?
+    public function getJobFromId($identifier)
+    {
+        return array_key_exists($identifier, $this->idmap) ?
             $this->jobs[$identifier] :
             null;
-	}
+    }
 
     /**
      * Get the job with the given numeric id.
@@ -93,7 +93,7 @@ class BatchConfig
      * }
      * @return void
      */
-	public function registerJob($identifier, $func, $options = [])
+    public function registerJob($identifier, $func, $options = [])
     {
         if (array_key_exists($identifier, $this->idmap)) {
             $idNum = $this->idmap[$identifier];
@@ -101,11 +101,11 @@ class BatchConfig
             $idNum = count($this->idmap) + 1;
             $this->idmap_reverse[$idNum] = $identifier;
         }
-		$this->jobs[$identifier] = new BatchJob(
+        $this->jobs[$identifier] = new BatchJob(
             $identifier,
             $func,
-            $options,
-            $idNum
+            $idNum,
+            $options
         );
         $this->idmap[$identifier] = $idNum;
     }
