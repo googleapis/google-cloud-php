@@ -98,7 +98,7 @@ class BatchJob
     /**
      * Run the job with the given items.
      *
-     * @param mixed[]
+     * @param array $items An array of items.
      */
     public function run($items)
     {
