@@ -19,6 +19,9 @@ namespace Google\Cloud\Storage\Connection;
 
 use Google\Cloud\Core\Iam\IamConnectionInterface;
 
+/**
+ * IAM Implementation for GCS Buckets
+ */
 class IamBucket implements IamConnectionInterface
 {
     /**

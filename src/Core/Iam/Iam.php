@@ -23,9 +23,6 @@ namespace Google\Cloud\Core\Iam;
  * This class is not meant to be used directly. It should be accessed
  * through other objects which support IAM.
  *
- * Note that examples make use of the PubSub API, and the
- * {@see Google\Cloud\PubSub\Topic} class.
- *
  * Policies can be created using the {@see Google\Cloud\Core\Iam\PolicyBuilder}
  * to help ensure their validity.
  *
@@ -110,7 +107,7 @@ class Iam
      * ```
      *
      * @param  array|PolicyBuilder $policy The new policy, as an array or an
-     *         instance of {@see Google\Cloud\Core\PolicyBuilder}.
+     *         instance of {@see Google\Cloud\Core\Iam\PolicyBuilder}.
      * @param  array $options Configuration Options
      * @return array An array of policy data
      * @throws BadMethodCallException If the given policy is not an array or PolicyBuilder.
