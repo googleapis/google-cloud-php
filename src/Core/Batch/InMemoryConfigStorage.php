@@ -90,7 +90,7 @@ class InMemoryConfigStorage
     /**
      * Load a BatchConfig from the storage.
      *
-     * @return \Google\Cloud\Batch\BatchConfig
+     * @return \Google\Cloud\Core\Batch\BatchConfig
      */
     public function load()
     {
