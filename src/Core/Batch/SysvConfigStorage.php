@@ -81,7 +81,7 @@ class SysvConfigStorage implements ConfigStorageInterface
     /**
      * Load a BatchConfig from the storage.
      *
-     * @return BatchConfig
+     * @return \Google\Cloud\Batch\BatchConfig
      * @throws \RuntimeException when failed to attach to the shared memory.
      */
     public function load()

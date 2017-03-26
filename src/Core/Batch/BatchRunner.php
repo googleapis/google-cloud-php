@@ -42,10 +42,13 @@ class BatchRunner
      */
     public function __construct()
     {
-        // TODO: switch the implementation
-        $this->configStorage = new SysvConfigStorage();
-        // TODO: switch the implementation
-        $this->submitter = new SysvJobSubmitter();
+        if ($this->isSysvIPCLoaded()) {
+            $this->configStorage = new SysvConfigStorage();
+            $this->submitter = new SysvJobSubmitter();
+        } else {
+            $this->configStorage = new InMemoryConfigStorage();
+            $this->submitter = $this->configStorage;
+        }
         $this->loadConfig();
     }
 
