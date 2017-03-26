@@ -20,8 +20,9 @@ namespace Google\Cloud\Core\Batch;
 /**
  * In-memory ConfigStorageInterface implementation.
  */
-class InMemoryConfigStorage
-    implements ConfigStorageInterface, JobSubmitInterface
+class InMemoryConfigStorage implements
+    ConfigStorageInterface,
+    JobSubmitInterface
 {
 
     /* @var \Google\Cloud\Core\Batch\Config */
@@ -145,7 +146,7 @@ class InMemoryConfigStorage
      */
     public function shutdown()
     {
-        foreach($this->items as $idNum => $items) {
+        foreach ($this->items as $idNum => $items) {
             if (count($items) !== 0) {
                 $this->run($idNum);
             }
