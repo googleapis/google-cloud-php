@@ -22,6 +22,8 @@ namespace Google\Cloud\Core\Batch;
  */
 class SysvJobSubmitter implements JobSubmitInterface
 {
+    use SysvTrait;
+
     /* @var array */
     private $sysvQs;
 
@@ -40,11 +42,11 @@ class SysvJobSubmitter implements JobSubmitInterface
     {
         if (!array_key_exists($idNum, $this->sysvQs)) {
             $this->sysvQs[$idNum] =
-                msg_get_queue(SysvUtils::getSysvKey($idNum));
+                msg_get_queue($this->getSysvKey($idNum));
         }
         $result = @msg_send(
             $this->sysvQs[$idNum],
-            SysvUtils::TYPE_DIRECT,
+            self::$typeDirect,
             $item
         );
         if ($result === false) {
@@ -58,7 +60,7 @@ class SysvJobSubmitter implements JobSubmitInterface
             }
             $result = @msg_send(
                 $this->sysvQs[$idNum],
-                SysvUtils::TYPE_FILE,
+                self::$typeFile,
                 $tempFile
             );
             if ($result === false) {

@@ -20,7 +20,7 @@ namespace Google\Cloud\Core\Batch;
 /**
  * In-memory ConfigStorageInterface implementation.
  */
-class InMemoryConfigStorage implements
+final class InMemoryConfigStorage implements
     ConfigStorageInterface,
     JobSubmitInterface
 {
@@ -41,10 +41,36 @@ class InMemoryConfigStorage implements
     private $failureFile;
 
     /**
+     * Singleton getInstance.
+     *
+     * @return InMemoryConfigStorage
+     */
+    public static function getInstance()
+    {
+        static $instance = null;
+        if ($instance === null) {
+            $instance = new InMemoryConfigStorage();
+        }
+        return $instance;
+    }
+
+    private function __clone()
+    {
+    }
+
+    private function __sleep()
+    {
+    }
+
+    private function __wakeup()
+    {
+    }
+
+    /**
      * The constructor registers the shutdown function for running the job for
      * remainder items when the script exits.
      */
-    public function __construct()
+    private function __construct()
     {
         $this->config = new BatchConfig();
         $this->items = array();

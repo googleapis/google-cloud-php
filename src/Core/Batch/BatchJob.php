@@ -78,7 +78,7 @@ class BatchJob
      */
     public function __construct(
         $identifier,
-        callable $func,
+        $func,
         $idNum,
         array $options = []
     ) {
@@ -146,5 +146,13 @@ class BatchJob
     public function getWorkerNum()
     {
         return $this->workerNum;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBootstrapFile()
+    {
+        return $this->bootstrapFile;
     }
 }

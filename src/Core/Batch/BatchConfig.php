@@ -76,7 +76,7 @@ class BatchConfig
     }
 
     /**
-     * Register a job for.
+     * Register a job for executing in batch.
      *
      * @param string $identifier Unique identifier of the job.
      * @param callable $func Any Callable except for Closure. The callable

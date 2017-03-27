@@ -18,12 +18,12 @@
 namespace Google\Cloud\Core\Batch;
 
 /**
- * A utility class related to System V IPC.
+ * A utility trait related to System V IPC.
  */
-class SysvUtils
+trait SysvTrait
 {
-    const TYPE_DIRECT = 1;
-    const TYPE_FILE = 2;
+    private static $typeDirect = 1;
+    private static $typeFile = 2;
 
     /**
      * Create a SystemV IPC key for the given id number.
@@ -32,12 +32,34 @@ class SysvUtils
      *
      * @return int
      */
-    public static function getSysvKey($idNum)
+    private function getSysvKey($idNum)
     {
         $base = ftok(__FILE__, 'S');
         if ($base == PHP_INT_MAX) {
             $base = 1;
         }
         return $base + $idNum;
+    }
+
+    /**
+     * Determine whether the SystemV IPC extension family is loaded.
+     *
+     * @return boolean
+     */
+    private function isSysvIPCLoaded()
+    {
+        return extension_loaded('sysvmsg')
+            && extension_loaded('sysvsem')
+            && extension_loaded('sysvshm');
+    }
+
+    /**
+     * Returns if the BatchDaemon is supposed running.
+     *
+     * @return boolean
+     */
+    private function isDaemonRunning()
+    {
+        return getenv('IS_BATCH_DAEMON_RUNNING') !== false;
     }
 }

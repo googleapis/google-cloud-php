@@ -22,6 +22,8 @@ namespace Google\Cloud\Core\Batch;
  */
 class BatchDaemon
 {
+    use SysvTrait;
+
     /* @var BatchRunner */
     private $runner;
     
@@ -29,7 +31,7 @@ class BatchDaemon
     private $shutdown;
 
     /* @var array */
-    private $descriptorspec;
+    private $descriptorSpec;
 
     /* @var string */
     private $command;
@@ -44,10 +46,16 @@ class BatchDaemon
      */
     public function __construct($entrypoint)
     {
-        $this->runner = new BatchRunner();
+        if (! $this->isSysvIPCLoaded()) {
+            throw new \RuntimeException('SystemV IPC exntensions are missing.');
+        }
+        $this->runner = new BatchRunner(
+            new SysvConfigStorage(),
+            new SysvJobSubmitter()
+        );
         $this->shutdown = false;
         // Just share the usual descriptors.
-        $this->descriptorspec = array(
+        $this->descriptorSpec = array(
             0 => array('file', 'php://stdin', 'r'),
             1 => array('file', 'php://stdout', 'w'),
             1 => array('file', 'php://stderr', 'w')
@@ -64,7 +72,7 @@ class BatchDaemon
     }
 
     /**
-     * A signal handler for the terminate switch.
+     * A signal handler for setting the terminate switch.
      */
     public function sigHandler($signo, $signinfo)
     {
@@ -91,7 +99,7 @@ class BatchDaemon
                     for ($i = 0; $i < $job->getWorkerNum(); $i++) {
                         $procs[$job->getIdentifier()][] = proc_open(
                             sprintf('%s %d', $this->command, $job->getIdNum()),
-                            $this->descriptorspec,
+                            $this->descriptorSpec,
                             $pipes
                         );
                     }
@@ -123,7 +131,7 @@ class BatchDaemon
     public function runChild($idNum)
     {
         // child process
-        $sysvKey = SysvUtils::getSysvKey($idNum);
+        $sysvKey = $this->getSysvKey($idNum);
         $q = msg_get_queue($sysvKey);
         $items = array();
         $job = $this->runner->getJobFromIdNum($idNum);
@@ -146,9 +154,9 @@ class BatchDaemon
                 $flag,
                 $errorcode
             )) {
-                if ($type === SysvUtils::TYPE_DIRECT) {
+                if ($type === self::$typeDirect) {
                     $items[] = $message;
-                } elseif ($type === SysvUtils::TYPE_FILE) {
+                } elseif ($type === self::$typeFile) {
                     $items[] = unserialize(file_get_contents($message));
                     @unlink($message);
                 }

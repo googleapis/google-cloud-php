@@ -22,6 +22,8 @@ namespace Google\Cloud\Core\Batch;
  */
 class BatchRunner
 {
+    use SysvTrait;
+
     /**
      * @var \Google\Cloud\Core\Batch\Config
      */
@@ -39,29 +41,28 @@ class BatchRunner
 
     /**
      * Determine internal implementation and loads the configuration.
-     */
-    public function __construct()
-    {
-        if ($this->isSysvIPCLoaded()) {
-            $this->configStorage = new SysvConfigStorage();
-            $this->submitter = new SysvJobSubmitter();
-        } else {
-            $this->configStorage = new InMemoryConfigStorage();
-            $this->submitter = $this->configStorage;
-        }
-        $this->loadConfig();
-    }
-
-    /**
-     * Determine whether the SystemV IPC extension family is loaded.
      *
-     * @return boolean
+     * @param ConfigStorageInterface $configStorage [optional] The
+     *        ConfigStorage object to use. **Defaults to** null.
+     * @param JobSubmitInterface $jobSubmitter [optional] The JobSubmitter
+     *        object to use. **Defaults to** null.
      */
-    private function isSysvIPCLoaded()
-    {
-        return extension_loaded('sysvmsg')
-            && extension_loaded('sysvsem')
-            && extension_loaded('sysvshm');
+    public function __construct(
+        ConfigStorageInterface $configStorage = null,
+        JobSubmitInterface $jobSubmitter = null
+    ) {
+        if ($configStorage === null || $jobSubmitter === null) {
+            if ($this->isSysvIPCLoaded() && $this->isDaemonRunning()) {
+                $configStorage = new SysvConfigStorage();
+                $jobSubmitter = new SysvJobSubmitter();
+            } else {
+                $configStorage = InMemoryConfigStorage::getInstance();
+                $jobSubmitter = $configStorage;
+            }
+        }
+        $this->configStorage = $configStorage;
+        $this->submitter = $jobSubmitter;
+        $this->loadConfig();
     }
 
     /**
