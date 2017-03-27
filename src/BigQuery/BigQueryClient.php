@@ -310,8 +310,8 @@ class BigQueryClient
             $this->connection,
             $response['jobReference']['jobId'],
             $this->projectId,
-            $response,
-            $this->mapper
+            $this->mapper,
+            $response
         );
     }
 
@@ -330,7 +330,7 @@ class BigQueryClient
      */
     public function job($id)
     {
-        return new Job($this->connection, $id, $this->projectId, [], $this->mapper);
+        return new Job($this->connection, $id, $this->projectId, $this->mapper);
     }
 
     /**
@@ -376,8 +376,8 @@ class BigQueryClient
                         $this->connection,
                         $job['jobReference']['jobId'],
                         $this->projectId,
-                        $job,
-                        $this->mapper
+                        $this->mapper,
+                        $job
                     );
                 },
                 [$this->connection, 'listJobs'],

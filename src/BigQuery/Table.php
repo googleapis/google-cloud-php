@@ -246,7 +246,13 @@ class Table
 
         $response = $this->connection->insertJob($config);
 
-        return new Job($this->connection, $response['jobReference']['jobId'], $this->identity['projectId'], $response);
+        return new Job(
+            $this->connection,
+            $response['jobReference']['jobId'],
+            $this->identity['projectId'],
+            $this->mapper,
+            $response
+        );
     }
 
     /**
@@ -292,7 +298,13 @@ class Table
 
         $response = $this->connection->insertJob($config);
 
-        return new Job($this->connection, $response['jobReference']['jobId'], $this->identity['projectId'], $response);
+        return new Job(
+            $this->connection,
+            $response['jobReference']['jobId'],
+            $this->identity['projectId'],
+            $this->mapper,
+            $response
+        );
     }
 
     /**
@@ -336,6 +348,7 @@ class Table
             $this->connection,
             $response['jobReference']['jobId'],
             $this->identity['projectId'],
+            $this->mapper,
             $response
         );
     }
