@@ -20,6 +20,7 @@ namespace Google\Cloud\Tests\Snippets\BigQuery;
 use Google\Cloud\BigQuery\Connection\ConnectionInterface;
 use Google\Cloud\BigQuery\Job;
 use Google\Cloud\BigQuery\QueryResults;
+use Google\Cloud\BigQuery\ValueMapper;
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
 use Prophecy\Argument;
 
