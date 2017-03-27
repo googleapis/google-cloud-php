@@ -49,7 +49,7 @@ class StorageClient
     const READ_WRITE_SCOPE = 'https://www.googleapis.com/auth/devstorage.read_write';
 
     /**
-     * @var ConnectionInterface $connection Represents a connection to Storage.
+     * @var ConnectionInterface Represents a connection to Storage.
      */
     protected $connection;
 

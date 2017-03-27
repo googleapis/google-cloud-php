@@ -72,7 +72,7 @@ class Metric
      * Example:
      * ```
      * if ($metric->exists()) {
-     *     echo "Metric exists!";
+     *     echo 'Metric exists!';
      * }
      * ```
      *

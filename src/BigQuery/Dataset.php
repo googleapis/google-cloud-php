@@ -17,11 +17,11 @@
 
 namespace Google\Cloud\BigQuery;
 
+use Google\Cloud\BigQuery\Connection\ConnectionInterface;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
-use Google\Cloud\BigQuery\Connection\ConnectionInterface;
 
 /**
  * [Datasets](https://cloud.google.com/bigquery/what-is-bigquery#datasets) allow
@@ -32,7 +32,7 @@ class Dataset
     use ArrayTrait;
 
     /**
-     * @var ConnectionInterface $connection Represents a connection to BigQuery.
+     * @var ConnectionInterface Represents a connection to BigQuery.
      */
     private $connection;
 
@@ -321,7 +321,7 @@ class Dataset
     /**
      * Retrieves the dataset's identity.
      *
-     * An identity provides a description of resource that is nested in nature.
+     * An identity provides a description of a resource that is nested in nature.
      *
      * Example:
      * ```
