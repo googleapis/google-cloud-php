@@ -20,6 +20,7 @@ namespace Google\Cloud\Storage;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Exception\ServiceException;
+use Google\Cloud\Core\Iam\Iam;
 use Google\Cloud\Core\Upload\ResumableUploader;
 use Google\Cloud\Core\Upload\StreamableUploader;
 use Google\Cloud\Storage\Connection\ConnectionInterface;
@@ -798,12 +799,15 @@ class Bucket
     public function iam()
     {
         if (!$this->iam) {
-            $iamConnection = new IamBucket($this->connection);
             $this->iam = new Iam(
-                $iamConnection,
+                new IamBucket($this->connection),
                 $this->identity['bucket'],
-                ['bucket' => $this->identity['bucket']],
-                'bucket'
+                [
+                    'parent' => null,
+                    'args' => [
+                        'bucket' => $this->identity['bucket']
+                    ]
+                ]
             );
         }
 

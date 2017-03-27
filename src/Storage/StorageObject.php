@@ -19,7 +19,6 @@ namespace Google\Cloud\Storage;
 
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Storage\Connection\ConnectionInterface;
-use Google\Cloud\Storage\Connection\IamObject;
 use GuzzleHttp\Psr7;
 use Psr\Http\Message\StreamInterface;
 

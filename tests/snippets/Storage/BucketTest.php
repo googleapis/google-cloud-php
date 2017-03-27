@@ -18,6 +18,7 @@
 namespace Google\Cloud\Tests\Snippets\Storage;
 
 use Google\Cloud\Core\Exception\GoogleException;
+use Google\Cloud\Core\Iam\Iam;
 use Google\Cloud\Core\Upload\MultipartUploader;
 use Google\Cloud\Core\Upload\ResumableUploader;
 use Google\Cloud\Core\Upload\StreamableUploader;
@@ -25,7 +26,6 @@ use Google\Cloud\Dev\Snippet\SnippetTestCase;
 use Google\Cloud\Storage\Acl;
 use Google\Cloud\Storage\Bucket;
 use Google\Cloud\Storage\Connection\ConnectionInterface;
-use Google\Cloud\Storage\Iam;
 use Google\Cloud\Storage\ObjectIterator;
 use Google\Cloud\Storage\StorageObject;
 use Prophecy\Argument;

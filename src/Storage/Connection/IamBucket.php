@@ -50,6 +50,7 @@ class IamBucket implements IamConnectionInterface
      */
     public function setPolicy(array $args)
     {
+        unset($args['resource']);
         return $this->connection->setBucketIamPolicy($args);
     }
 
@@ -58,6 +59,7 @@ class IamBucket implements IamConnectionInterface
      */
     public function testPermissions(array $args)
     {
+        unset($args['resource']);
         return $this->connection->testBucketIamPermissions($args);
     }
 }

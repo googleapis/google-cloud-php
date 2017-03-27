@@ -21,7 +21,6 @@ use Google\Cloud\Dev\Snippet\SnippetTestCase;
 use Google\Cloud\Storage\Acl;
 use Google\Cloud\Storage\Bucket;
 use Google\Cloud\Storage\Connection\ConnectionInterface;
-use Google\Cloud\Storage\Iam;
 use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Storage\StorageObject;
 use Prophecy\Argument;

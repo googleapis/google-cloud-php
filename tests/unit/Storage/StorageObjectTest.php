@@ -20,7 +20,6 @@ namespace Google\Cloud\Tests\Unit\Storage;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Storage\Bucket;
 use Google\Cloud\Storage\Connection\ConnectionInterface;
-use Google\Cloud\Storage\Iam;
 use Google\Cloud\Storage\StorageObject;
 use GuzzleHttp\Psr7;
 use Prophecy\Argument;

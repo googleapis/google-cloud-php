@@ -45,27 +45,47 @@ class Iam
     /**
      * @var IamConnectionInterface
      */
-    protected $connection;
+    private $connection;
 
     /**
      * @var string
      */
-    protected $resource;
+    private $resource;
 
     /**
      * @var array
      */
-    protected $policy;
+    private $policy;
+
+    /**
+     * @var array
+     */
+    private $args;
 
     /**
      * @param IamConnectionInterface $connection
      * @param string $resource
+     * @param array $options [optional] {
+     *     Configuration Options
+     *
+     *     @type string|null $parent The parent request parameter for the policy.
+     *           If set, policy data will be sent as `request.{$parent}`.
+     *           Otherwise, policy will be sent in request root. **Defaults to**
+     *           `policy`.
+     *     @type array $args Arbitrary data to be sent with the request.
+     * }
      * @access private
      */
-    public function __construct(IamConnectionInterface $connection, $resource)
+    public function __construct(IamConnectionInterface $connection, $resource, array $options = [])
     {
+        $options += [
+            'parent' => 'policy',
+            'args' => []
+        ];
+
         $this->connection = $connection;
         $this->resource = $resource;
+        $this->options = $options;
     }
 
     /**
@@ -122,7 +142,17 @@ class Iam
             throw new \BadMethodCallException('Given policy data must be an array or an instance of PolicyBuilder.');
         }
 
-        return $this->policy = $this->sendSetPolicyRequest($policy, $options);
+        $request = [];
+        if ($this->options['parent']) {
+            $parent = $this->options['parent'];
+            $request[$parent] = $policy;
+        } else {
+            $request = $policy;
+        }
+
+        return $this->policy = $this->connection->setPolicy([
+            'resource' => $this->resource
+        ] + $request + $options + $this->options['args']);
     }
 
     /**
@@ -147,7 +177,11 @@ class Iam
      */
     public function testPermissions(array $permissions, array $options = [])
     {
-        $res = $this->sendTestPermissionsRequest($permissions, $options);
+        $res = $this->connection->testPermissions([
+            'permissions' => $permissions,
+            'resource' => $this->resource
+        ] + $options + $this->options['args']);
+
         return (isset($res['permissions'])) ? $res['permissions'] : [];
     }
 
@@ -164,52 +198,8 @@ class Iam
      */
     public function reload(array $options = [])
     {
-        return $this->policy = $this->sendGetPolicyRequest($options);
-    }
-
-    /**
-     * For APIs with non-standard IAM APIs, implementing clients may extend this
-     * class and override this method.
-     *
-     * @param array $policy
-     * @param array $options
-     * @return array
-     */
-    protected function sendSetPolicyRequest(array $policy, array $options)
-    {
-        return $this->connection->setPolicy($options + [
-            'policy' => $policy,
+        return $this->policy = $this->connection->getPolicy([
             'resource' => $this->resource
-        ]);
-    }
-
-    /**
-     * For APIs with non-standard IAM APIs, implementing clients may extend this
-     * class and override this method.
-     *
-     * @param array $options
-     * @return array
-     */
-    protected function sendGetPolicyRequest(array $options)
-    {
-        return $this->connection->getPolicy($options + [
-            'resource' => $this->resource
-        ]);
-    }
-
-    /**
-     * For APIs with non-standard IAM APIs, implementing clients may extend this
-     * class and override this method.
-     *
-     * @param array $permissions
-     * @param array $options
-     * @return array
-     */
-    protected function sendTestPermissionsRequest(array $permissions, array $options)
-    {
-        return $this->connection->testPermissions($options + [
-            'permissions' => $permissions,
-            'resource' => $this->resource
-        ]);
+        ] + $options + $this->options['args']);
     }
 }
