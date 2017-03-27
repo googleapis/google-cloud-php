@@ -130,7 +130,7 @@ class Iam
      *         instance of {@see Google\Cloud\Core\Iam\PolicyBuilder}.
      * @param  array $options Configuration Options
      * @return array An array of policy data
-     * @throws BadMethodCallException If the given policy is not an array or PolicyBuilder.
+     * @throws \InvalidArgumentException If the given policy is not an array or PolicyBuilder.
      */
     public function setPolicy($policy, array $options = [])
     {
@@ -139,7 +139,7 @@ class Iam
         }
 
         if (!is_array($policy)) {
-            throw new \BadMethodCallException('Given policy data must be an array or an instance of PolicyBuilder.');
+            throw new \InvalidArgumentException('Given policy data must be an array or an instance of PolicyBuilder.');
         }
 
         $request = [];
