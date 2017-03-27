@@ -19,11 +19,11 @@ namespace Google\Cloud\Core\Upload;
 
 use Google\Cloud\Core\Exception\GoogleException;
 use Google\Cloud\Core\JsonTrait;
+use Google\Cloud\Core\RequestWrapper;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\LimitStream;
 use GuzzleHttp\Psr7\Request;
 use Psr\Http\Message\ResponseInterface;
-use Google\Cloud\Core\RequestWrapper;
 use Psr\Http\Message\StreamInterface;
 
 /**
@@ -63,14 +63,18 @@ class ResumableUploader extends AbstractUploader
      *           successfully uploaded chunk.
      *     @type int $chunkSize Size of the chunks to send incrementally during
      *           a resumable upload. Must be in multiples of 262144 bytes.
-     *     @type array $httpOptions HTTP client specific configuration options.
+     *     @type array $restOptions HTTP client specific configuration options.
      *     @type int $retries Number of retries for a failed request.
      *           **Defaults to** `3`.
      *     @type string $contentType Content type of the resource.
      * }
      */
-    public function __construct(RequestWrapper $requestWrapper, $data, $uri, array $options = array())
-    {
+    public function __construct(
+        RequestWrapper $requestWrapper,
+        $data,
+        $uri,
+        array $options = []
+    ) {
         parent::__construct($requestWrapper, $data, $uri, $options);
 
         // Set uploadProgressCallback if it's passed as an option.
@@ -135,9 +139,13 @@ class ResumableUploader extends AbstractUploader
                 $this->chunkSize ?: - 1,
                 $rangeStart
             );
-            $rangeEnd = $rangeStart + ($data->getSize() - 1);
+            
+            $currStreamLimitSize = $data->getSize();
+            
+            $rangeEnd = $rangeStart + ($currStreamLimitSize - 1);
+            
             $headers = [
-                'Content-Length' => $data->getSize(),
+                'Content-Length' => $currStreamLimitSize,
                 'Content-Type' => $this->contentType,
                 'Content-Range' => "bytes $rangeStart-$rangeEnd/$size",
             ];
@@ -158,12 +166,12 @@ class ResumableUploader extends AbstractUploader
                 );
             }
             
-            if (is_callable($this->uploadProgressCallback))
-            {
-                call_user_func($this->uploadProgressCallback, $rangeEnd - $rangeStart + 1);
+            if (is_callable($this->uploadProgressCallback)) {
+                call_user_func($this->uploadProgressCallback, $currStreamLimitSize);
             }
 
             $rangeStart = $this->getRangeStart($response->getHeaderLine('Range'));
+            
         } while ($response->getStatusCode() === 308);
 
         return $this->jsonDecode($response->getBody(), true);
