@@ -167,7 +167,7 @@ class ManageObjectsTest extends StorageTestCase
 
     public function testStringNormalization()
     {
-        $bucket = self::$client->bucket('storage-library-test-bucket');
+        $bucket = self::$client->bucket(self::NORMALIZATION_TEST_BUCKET);
 
         $cases = [
             ["Caf\xC3\xA9", "Normalization Form C"],
