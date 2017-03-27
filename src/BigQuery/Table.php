@@ -352,7 +352,10 @@ class Table
      *
      * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs Jobs insert API Documentation.
      *
-     * @param StorageObject $destination The object to load data from.
+     * @param string|StorageObject $object The object to load data from. May be
+     *        a {@see Google\Cloud\Storage\StorageObject} or a URI pointing to a
+     *        Google Cloud Storage object in the format of
+     *        `gs://{bucket-name}/{object-name}`.
      * @param array $options [optional] {
      *     Configuration options.
      *
@@ -362,10 +365,13 @@ class Table
      * }
      * @return Job
      */
-    public function loadFromStorage(StorageObject $object, array $options = [])
+    public function loadFromStorage($object, array $options = [])
     {
-        $objIdentity = $object->identity();
-        $options['jobConfig']['sourceUris'] = ['gs://' . $objIdentity['bucket'] . '/' . $objIdentity['object']];
+        if ($object instanceof StorageObject) {
+            $object = $object->gcsUri();
+        }
+
+        $options['jobConfig']['sourceUris'] = [$object];
 
         return $this->load(null, $options);
     }
