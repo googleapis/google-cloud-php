@@ -18,6 +18,7 @@
 namespace Google\Cloud\NaturalLanguage;
 
 use Google\Cloud\Core\ClientTrait;
+use Google\Cloud\Core\RetryDeciderTrait;
 use Google\Cloud\NaturalLanguage\Connection\ConnectionInterface;
 use Google\Cloud\NaturalLanguage\Connection\Rest;
 use Google\Cloud\Storage\StorageObject;
@@ -40,6 +41,7 @@ use Psr\Cache\CacheItemPoolInterface;
 class NaturalLanguageClient
 {
     use ClientTrait;
+    use RetryDeciderTrait;
 
     const VERSION = '0.1.0';
 
@@ -88,9 +90,10 @@ class NaturalLanguageClient
      */
     public function __construct(array $config = [])
     {
-        if (!isset($config['scopes'])) {
-            $config['scopes'] = [self::FULL_CONTROL_SCOPE];
-        }
+        $config += [
+            'scopes' => [self::FULL_CONTROL_SCOPE],
+            'restRetryFunction' => $this->getRetryFunction(false)
+        ];
 
         $this->connection = new Rest($this->configureAuthentication($config));
     }
