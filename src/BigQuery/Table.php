@@ -26,9 +26,9 @@ use Google\Cloud\Storage\StorageObject;
 use Psr\Http\Message\StreamInterface;
 
 /**
- * [BigQuery Tables](https://cloud.google.com/bigquery/docs/tables) are a
- * standard two-dimensional table with individual records organized in rows, and
- * a data type assigned to each column (also called a field).
+ * [Tables](https://cloud.google.com/bigquery/docs/tables) are a standard
+ * two-dimensional table with individual records organized in rows, and a data
+ * type assigned to each column (also called a field).
  */
 class Table
 {
@@ -36,7 +36,7 @@ class Table
     use JobConfigurationTrait;
 
     /**
-     * @var ConnectionInterface $connection Represents a connection to BigQuery.
+     * @var ConnectionInterface Represents a connection to BigQuery.
      */
     protected $connection;
 
@@ -88,7 +88,7 @@ class Table
      * Example:
      * ```
      * if ($table->exists()) {
-     *     echo "Table exists!";
+     *     echo 'Table exists!';
      * }
      * ```
      *

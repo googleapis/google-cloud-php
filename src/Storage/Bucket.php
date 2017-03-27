@@ -18,10 +18,10 @@
 namespace Google\Cloud\Storage;
 
 use Google\Cloud\Core\ArrayTrait;
+use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Core\Upload\ResumableUploader;
 use Google\Cloud\Core\Upload\StreamableUploader;
-use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Storage\Connection\ConnectionInterface;
 use GuzzleHttp\Psr7;
 use Psr\Http\Message\StreamInterface;
@@ -65,7 +65,7 @@ class Bucket
     private $identity;
 
     /**
-     * @var array The bucket's metadata.
+     * @var array|null The bucket's metadata.
      */
     private $info;
 
@@ -189,7 +189,8 @@ class Bucket
      * @param array $options [optional] {
      *     Configuration options.
      *
-     *     @type string $name The name of the destination.
+     *     @type string $name The name of the destination. Required when data is
+     *           of type string or null.
      *     @type bool $resumable Indicates whether or not the upload will be
      *           performed in a resumable fashion.
      *     @type bool $validate Indicates whether or not validation will be
@@ -219,8 +220,8 @@ class Bucket
      */
     public function upload($data, array $options = [])
     {
-        if (is_string($data) && !isset($options['name'])) {
-            throw new \InvalidArgumentException('A name is required when data is of type string.');
+        if ($this->isObjectNameRequired($data) && !isset($options['name'])) {
+            throw new \InvalidArgumentException('A name is required when data is of type string or null.');
         }
 
         $encryptionKey = isset($options['encryptionKey']) ? $options['encryptionKey'] : null;
@@ -271,7 +272,8 @@ class Bucket
      * @param array $options [optional] {
      *     Configuration options.
      *
-     *     @type string $name The name of the destination.
+     *     @type string $name The name of the destination. Required when data is
+     *           of type string or null.
      *     @type bool $validate Indicates whether or not validation will be
      *           applied using md5 hashing functionality. If true and the
      *           calculated hash does not match that of the upstream server the
@@ -295,8 +297,8 @@ class Bucket
      */
     public function getResumableUploader($data, array $options = [])
     {
-        if (is_string($data) && !isset($options['name'])) {
-            throw new \InvalidArgumentException('A name is required when data is of type string.');
+        if ($this->isObjectNameRequired($data) && !isset($options['name'])) {
+            throw new \InvalidArgumentException('A name is required when data is of type string or null.');
         }
 
         return $this->connection->insertObject(
@@ -332,7 +334,8 @@ class Bucket
      * @param array $options [optional] {
      *     Configuration options.
      *
-     *     @type string $name The name of the destination.
+     *     @type string $name The name of the destination. Required when data is
+     *           of type string or null.
      *     @type bool $validate Indicates whether or not validation will be
      *           applied using md5 hashing functionality. If true and the
      *           calculated hash does not match that of the upstream server the
@@ -360,8 +363,8 @@ class Bucket
      */
     public function getStreamableUploader($data, array $options = [])
     {
-        if (is_string($data) && !isset($options['name'])) {
-            throw new \InvalidArgumentException('A name is required when data is of type string.');
+        if ($this->isObjectNameRequired($data) && !isset($options['name'])) {
+            throw new \InvalidArgumentException('A name is required when data is of type string or null.');
         }
 
         return $this->connection->insertObject(
@@ -444,8 +447,8 @@ class Bucket
      *           from the prefix, contain delimiter will have their name,
      *           truncated after the delimiter, returned in prefixes. Duplicate
      *           prefixes are omitted.
-     *     @type integer $maxResults Maximum number of results to return per
-     *           request. Defaults to `1000`.
+     *     @type int $maxResults Maximum number of results to return per
+     *           request. **Defaults to** `1000`.
      *     @type int $resultLimit Limit the number of results returned in total.
      *           **Defaults to** `0` (return all results).
      *     @type string $pageToken A previously-returned page token used to
@@ -454,7 +457,7 @@ class Bucket
      *     @type string $projection Determines which properties to return. May
      *           be either `"full"` or `"noAcl"`.
      *     @type bool $versions If true, lists all versions of an object as
-     *           distinct results. The default is false.
+     *           distinct results. **Defaults to** `false`.
      *     @type string $fields Selector which will cause the response to only
      *           return the specified fields.
      * }
@@ -537,7 +540,10 @@ class Bucket
      *           `"bucketOwnerFullControl"`, `"bucketOwnerRead"`, `"private"`,
      *           `"projectPrivate"`, and `"publicRead"`.
      *     @type string $predefinedDefaultObjectAcl Apply a predefined set of
-     *           default object access controls to this bucket.
+     *           default object access controls to this bucket. Acceptable
+     *           values include, `"authenticatedRead"`,
+     *           `"bucketOwnerFullControl"`, `"bucketOwnerRead"`, `"private"`,
+     *           `"projectPrivate"`, and `"publicRead"`.
      *     @type string $projection Determines which properties to return. May
      *           be either `"full"` or `"noAcl"`.
      *     @type string $fields Selector which will cause the response to only
@@ -747,8 +753,8 @@ class Bucket
      * Tries to create a temporary file as a resumable upload which will
      * not be completed (and cleaned up by GCS).
      *
-     * @param  string $file Optional file to try to write.
-     * @return boolean
+     * @param  string $file [optional] File to try to write.
+     * @return bool
      * @throws ServiceException
      */
     public function isWritable($file = null)
@@ -770,5 +776,20 @@ class Bucket
         }
 
         return true;
+    }
+
+    /**
+     * Determines if an object name is required.
+     *
+     * @param mixed $data
+     * @return bool
+     */
+    private function isObjectNameRequired($data)
+    {
+        if (is_string($data) || is_null($data)) {
+            return true;
+        }
+
+        return false;
     }
 }

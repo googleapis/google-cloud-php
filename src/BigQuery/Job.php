@@ -17,8 +17,8 @@
 
 namespace Google\Cloud\BigQuery;
 
-use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\BigQuery\Connection\ConnectionInterface;
+use Google\Cloud\Core\Exception\NotFoundException;
 
 /**
  * [Jobs](https://cloud.google.com/bigquery/docs/reference/v2/jobs) are objects
@@ -28,7 +28,7 @@ use Google\Cloud\BigQuery\Connection\ConnectionInterface;
 class Job
 {
     /**
-     * @var ConnectionInterface $connection Represents a connection to BigQuery.
+     * @var ConnectionInterface Represents a connection to BigQuery.
      */
     private $connection;
 
@@ -53,7 +53,7 @@ class Job
      * @param string $id The job's ID.
      * @param string $projectId The project's ID.
      * @param array $info [optional] The job's metadata.
-     * @param ValueMapper $mapper Maps values between PHP and BigQuery.
+     * @param ValueMapper $mapper [optional] Maps values between PHP and BigQuery.
      */
     public function __construct(
         ConnectionInterface $connection,
@@ -68,7 +68,7 @@ class Job
             'jobId' => $id,
             'projectId' => $projectId
         ];
-        $this->mapper = $mapper;
+        $this->mapper = $mapper ?: new ValueMapper(false);
     }
 
     /**
@@ -151,7 +151,7 @@ class Job
             $this->identity['projectId'],
             $response,
             $options,
-            $this->mapper ?: new ValueMapper(false)
+            $this->mapper
         );
     }
 
