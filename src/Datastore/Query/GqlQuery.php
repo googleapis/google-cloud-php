@@ -27,7 +27,7 @@ use InvalidArgumentException;
  *
  * By default, parameters MUST be bound using named or positional bindings.
  * Literals are disabled by default, and must be enabled by setting
- * `$options['allowLiterals']` to `true`. As with any SQL-style language, using
+ * `$options['allowLiterals']` to `true`. As with any SQL dialect, using
  * parameter binding is highly recommended.
  *
  * Idiomatic usage is via {@see Google\Cloud\Datastore\DatastoreClient::gqlQuery()}.

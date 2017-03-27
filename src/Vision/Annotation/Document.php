@@ -65,6 +65,8 @@ use Google\Cloud\Core\CallTrait;
  *
  *     @return array
  * }
+ *
+ * @see https://cloud.google.com/vision/docs/reference/rest/v1/images/annotate#TextAnnotation TextAnnotation
  */
 class Document extends AbstractFeature
 {

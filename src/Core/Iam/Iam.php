@@ -160,9 +160,6 @@ class Iam
      *
      * Invalid permissions will raise a BadRequestException.
      *
-     * A list of allowed permissions can be found in the
-     * [access control documentation](https://cloud.google.com/pubsub/access_control#permissions).
-     *
      * Example:
      * ```
      * $allowedPermissions = $iam->testPermissions([
