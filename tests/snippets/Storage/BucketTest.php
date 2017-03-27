@@ -17,16 +17,17 @@
 
 namespace Google\Cloud\Tests\Snippets\Storage;
 
-use Google\Cloud\Dev\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Exception\GoogleException;
+use Google\Cloud\Core\Iam\Iam;
+use Google\Cloud\Core\Upload\MultipartUploader;
+use Google\Cloud\Core\Upload\ResumableUploader;
+use Google\Cloud\Core\Upload\StreamableUploader;
+use Google\Cloud\Dev\Snippet\SnippetTestCase;
 use Google\Cloud\Storage\Acl;
 use Google\Cloud\Storage\Bucket;
 use Google\Cloud\Storage\Connection\ConnectionInterface;
 use Google\Cloud\Storage\ObjectIterator;
 use Google\Cloud\Storage\StorageObject;
-use Google\Cloud\Core\Upload\MultipartUploader;
-use Google\Cloud\Core\Upload\ResumableUploader;
-use Google\Cloud\Core\Upload\StreamableUploader;
 use Prophecy\Argument;
 
 /**
@@ -368,5 +369,14 @@ class BucketTest extends SnippetTestCase
 
         $res = $snippet->invoke();
         $this->assertEquals(self::BUCKET, $res->output());
+    }
+
+    public function testIam()
+    {
+        $snippet = $this->snippetFromMethod(Bucket::class, 'iam');
+        $snippet->addLocal('bucket', $this->bucket);
+
+        $res = $snippet->invoke('iam');
+        $this->assertInstanceOf(Iam::class, $res->returnVal());
     }
 }
