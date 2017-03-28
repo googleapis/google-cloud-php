@@ -52,7 +52,6 @@
         "phpdocumentor/reflection": "^3.0",
         "symfony/console": "^3.0",
         "league/json-guard": "^0.3",
-        "james-heinrich/getid3": "^1.9",
         "erusev/parsedown": "^1.6",
         "vierbergenlars/php-semver": "^3.0",
         "google/proto-client-php": "^0.9",
@@ -60,8 +59,7 @@
     },
     "suggest": {
         "google/gax": "Required to support gRPC",
-        "google/proto-client-php": "Required to support gRPC",
-        "james-heinrich/getid3": "Allows the Google Cloud Speech client to determine sample rate and encoding of audio inputs"
+        "google/proto-client-php": "Required to support gRPC"
     },
     "autoload": {
         "psr-4": {

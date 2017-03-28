@@ -217,11 +217,20 @@ class ServiceBuilder
      *
      * Example:
      * ```
-     * $speech = $cloud->speech();
+     * $speech = $cloud->speech([
+     *     'languageCode' => 'en-US'
+     * ]);
      * ```
      *
-     * @param array $config [optional] Configuration options. See
-     *        {@see Google\Cloud\ServiceBuilder::__construct()} for the available options.
+     * @param array $config [optional] {
+     *     Configuration options. See
+     *     {@see Google\Cloud\ServiceBuilder::__construct()} for the other available options.
+     *
+     *     @type string $languageCode Required. The language of the content to
+     *           be recognized. Only BCP-47 (e.g., `"en-US"`, `"es-ES"`)
+     *           language codes are accepted. See
+     *           [Language Support](https://cloud.google.com/speech/docs/languages)
+     *           for a list of the currently supported language codes.
      * @return SpeechClient
      */
     public function speech(array $config = [])

@@ -400,17 +400,17 @@ require 'vendor/autoload.php';
 use Google\Cloud\Speech\SpeechClient;
 
 $speech = new SpeechClient([
-    'projectId' => 'my_project'
+    'projectId' => 'my_project',
+    'languageCode' => 'en-US'
 ]);
 
 // Recognize the speech in an audio file.
 $results = $speech->recognize(
-    fopen('/data/audio_sample.flac', 'r')
+    fopen(__DIR__ . '/audio_sample.flac', 'r')
 );
 
 foreach ($results as $result) {
     echo $result['transcript'] . "\n";
-    echo $result['confidence'] . "\n";
 }
 ```
 
