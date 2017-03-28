@@ -32,7 +32,7 @@ trait SysvTrait
      *
      * @return int
      */
-    private function getSysvKey($idNum)
+    public function getSysvKey($idNum)
     {
         $base = ftok(__FILE__, 'S');
         if ($base == PHP_INT_MAX) {
@@ -46,7 +46,7 @@ trait SysvTrait
      *
      * @return boolean
      */
-    private function isSysvIPCLoaded()
+    public function isSysvIPCLoaded()
     {
         return extension_loaded('sysvmsg')
             && extension_loaded('sysvsem')
@@ -58,7 +58,7 @@ trait SysvTrait
      *
      * @return boolean
      */
-    private function isDaemonRunning()
+    public function isDaemonRunning()
     {
         return getenv('IS_BATCH_DAEMON_RUNNING') !== false;
     }

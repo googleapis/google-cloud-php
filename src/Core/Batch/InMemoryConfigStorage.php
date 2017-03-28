@@ -153,10 +153,6 @@ final class InMemoryConfigStorage implements
     private function run($idNum)
     {
         $job = $this->config->getJobFromIdNum($idNum);
-        printf(
-            'Running the job with %d items' . PHP_EOL,
-            count($this->items[$idNum])
-        );
         if (! $job->run($this->items[$idNum])) {
             // Try to save the items.
             $f = @fopen($this->failureFile, 'w');
