@@ -150,33 +150,6 @@ class StorageObjectTest extends SnippetTestCase
         $this->assertInstanceOf(StorageObject::class, $res->returnVal());
     }
 
-    public function testCopyToBucket()
-    {
-        $bucket = $this->prophesize(Bucket::class);
-        $bucket->name()->willReturn('foo');
-
-        $storage = $this->prophesize(StorageClient::class);
-        $storage->bucket(Argument::any())
-            ->willReturn($bucket->reveal());
-
-        $snippet = $this->snippetFromMethod(StorageObject::class, 'copy', 1);
-        $snippet->addLocal('object', $this->object);
-        $snippet->addLocal('storage', $storage->reveal());
-
-        $this->connection->copyObject(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
-                'name' => 'New Object',
-                'bucket' => self::BUCKET,
-                'generation' => 'foo'
-            ]);
-
-        $this->object->setConnection($this->connection->reveal());
-
-        $res = $snippet->invoke('copiedObject');
-        $this->assertInstanceOf(StorageObject::class, $res->returnVal());
-    }
-
     public function testRewrite()
     {
         $snippet = $this->snippetFromMethod(StorageObject::class, 'rewrite');
