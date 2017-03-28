@@ -20,6 +20,7 @@ namespace Google\Cloud\Tests\Unit\Storage;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Exception\ServerException;
 use Google\Cloud\Core\Exception\ServiceException;
+use Google\Cloud\Core\Iam\Iam;
 use Google\Cloud\Core\Upload\ResumableUploader;
 use Google\Cloud\Storage\Acl;
 use Google\Cloud\Storage\Bucket;
@@ -349,5 +350,17 @@ class BucketTest extends \PHPUnit_Framework_TestCase
         $this->resumableUploader->getResumeUri()->willThrow(new ServerException('maintainence'));
         $bucket = new Bucket($this->connection->reveal(), $name = 'bucket');
         $bucket->isWritable(); // raises exception
+    }
+
+    public function testIam()
+    {
+        $bucketInfo = [
+            'name' => 'bucket',
+            'etag' => 'ABC',
+            'kind' => 'storage#bucket'
+        ];
+        $bucket = new Bucket($this->connection->reveal(), 'bucket', $bucketInfo);
+
+        $this->assertInstanceOf(Iam::class, $bucket->iam());
     }
 }

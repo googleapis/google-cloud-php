@@ -17,11 +17,11 @@
 
 namespace Google\Cloud\BigQuery;
 
+use Google\Cloud\BigQuery\Connection\ConnectionInterface;
+use Google\Cloud\BigQuery\Connection\Rest;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
-use Google\Cloud\BigQuery\Connection\ConnectionInterface;
-use Google\Cloud\BigQuery\Connection\Rest;
 use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Core\Int64;
 use Psr\Cache\CacheItemPoolInterface;
@@ -30,7 +30,7 @@ use Psr\Http\Message\StreamInterface;
 /**
  * Google Cloud BigQuery allows you to create, manage, share and query data.
  * Find more information at the
- * [Google Cloud BigQuery Docs](https://cloud.google.com/bigquery/what-is-bigquery).
+ * [Google Cloud BigQuery Docs](https://cloud.google.com/bigquery/docs).
  *
  * Example:
  * ```
@@ -51,7 +51,7 @@ class BigQueryClient
     const INSERT_SCOPE = 'https://www.googleapis.com/auth/bigquery.insertdata';
 
     /**
-     * @var ConnectionInterface $connection Represents a connection to BigQuery.
+     * @var ConnectionInterface Represents a connection to BigQuery.
      */
     protected $connection;
 
@@ -210,7 +210,9 @@ class BigQueryClient
      *     @type bool $useQueryCache Whether to look for the result in the query
      *           cache.
      *     @type bool $useLegacySql Specifies whether to use BigQuery's legacy
-     *           SQL dialect for this query.
+     *           SQL dialect for this query. **Defaults to** `true`. If set to
+     *           false, the query will use
+     *           [BigQuery's standard SQL](https://cloud.google.com/bigquery/sql-reference).
      *     @type array $parameters Only available for standard SQL queries.
      *           When providing a non-associative array positional parameters
      *           (`?`) will be used. When providing an associative array
@@ -308,8 +310,8 @@ class BigQueryClient
             $this->connection,
             $response['jobReference']['jobId'],
             $this->projectId,
-            $response,
-            $this->mapper
+            $this->mapper,
+            $response
         );
     }
 
@@ -328,7 +330,7 @@ class BigQueryClient
      */
     public function job($id)
     {
-        return new Job($this->connection, $id, $this->projectId, [], $this->mapper);
+        return new Job($this->connection, $id, $this->projectId, $this->mapper);
     }
 
     /**
@@ -374,8 +376,8 @@ class BigQueryClient
                         $this->connection,
                         $job['jobReference']['jobId'],
                         $this->projectId,
-                        $job,
-                        $this->mapper
+                        $this->mapper,
+                        $job
                     );
                 },
                 [$this->connection, 'listJobs'],
@@ -429,6 +431,7 @@ class BigQueryClient
      *     Configuration options.
      *
      *     @type bool $all Whether to list all datasets, including hidden ones.
+     *           **Defaults to** `false`.
      *     @type int $maxResults Maximum number of results to return per page.
      *     @type int $resultLimit Limit the number of results returned in total.
      *           **Defaults to** `0` (return all results).
@@ -453,7 +456,7 @@ class BigQueryClient
                     );
                 },
                 [$this->connection, 'listDatasets'],
-                $options + ['project' => $this->projectId],
+                $options + ['projectId' => $this->projectId],
                 [
                     'itemsKey' => 'datasets',
                     'resultLimit' => $resultLimit
@@ -546,7 +549,7 @@ class BigQueryClient
      * $int64 = $bigQuery->int64('9223372036854775807');
      * ```
      *
-     * @param string $value
+     * @param string $value The 64 bit integer value in string format.
      * @return Int64
      */
     public function int64($value)

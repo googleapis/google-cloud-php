@@ -137,9 +137,6 @@ class Subscription
                 ? $this->formatName('topic', $topicName, $projectId)
                 : null;
         }
-
-        $iamConnection = new IamSubscription($this->connection);
-        $this->iam = new Iam($iamConnection, $this->name);
     }
 
     /**
@@ -556,6 +553,11 @@ class Subscription
      */
     public function iam()
     {
+        if (!$this->iam) {
+            $iamConnection = new IamSubscription($this->connection);
+            $this->iam = new Iam($iamConnection, $this->name);
+        }
+
         return $this->iam;
     }
 

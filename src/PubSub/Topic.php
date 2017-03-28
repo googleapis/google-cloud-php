@@ -105,9 +105,6 @@ class Topic
         } else {
             $this->name = $this->formatName('topic', $name, $projectId);
         }
-
-        $iamConnection = new IamTopic($this->connection);
-        $this->iam = new Iam($iamConnection, $this->name);
     }
 
     /**
@@ -441,6 +438,11 @@ class Topic
      */
     public function iam()
     {
+        if (!$this->iam) {
+            $iamConnection = new IamTopic($this->connection);
+            $this->iam = new Iam($iamConnection, $this->name);
+        }
+
         return $this->iam;
     }
 

@@ -34,6 +34,7 @@ use Psr\Http\Message\StreamInterface;
  *
  * $bucket = $storage->bucket('my-bucket');
  * $object = $bucket->object('my-object');
+ * ```
  */
 class StorageObject
 {
@@ -50,7 +51,7 @@ class StorageObject
     protected $connection;
 
     /**
-     * @var array The object's encryption data.
+     * @var array|null The object's encryption data.
      */
     private $encryptionData;
 
@@ -60,7 +61,7 @@ class StorageObject
     private $identity;
 
     /**
-     * @var array The object's metadata.
+     * @var array|null The object's metadata.
      */
     private $info;
 
@@ -122,7 +123,7 @@ class StorageObject
      * Example:
      * ```
      * if ($object->exists()) {
-     *     echo "Object exists!";
+     *     echo 'Object exists!';
      * }
      * ```
      *
