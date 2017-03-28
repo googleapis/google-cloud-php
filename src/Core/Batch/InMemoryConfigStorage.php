@@ -76,9 +76,10 @@ final class InMemoryConfigStorage implements
         $this->items = array();
         $this->lastInvoked = array();
         $this->created = microtime(true);
-        $this->failureFile = tempnam(
+        $this->failureFile = sprintf(
+            '%s/batch-daemon-failure-%d',
             sys_get_temp_dir(),
-            sprintf('batch-daemon-failure-%d', getmypid())
+            getmypid()
         );
         register_shutdown_function(array($this, 'shutdown'));
     }
@@ -155,7 +156,7 @@ final class InMemoryConfigStorage implements
         $job = $this->config->getJobFromIdNum($idNum);
         if (! $job->run($this->items[$idNum])) {
             // Try to save the items.
-            $f = @fopen($this->failureFile, 'w');
+            $f = @fopen($this->failureFile, 'w+');
             foreach ($this->items[$idNum] as $item) {
                 @fwrite($f, serialize($item) . PHP_EOL);
             }

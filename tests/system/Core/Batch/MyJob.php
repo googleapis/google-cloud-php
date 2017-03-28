@@ -32,7 +32,10 @@ class MyJob
             }
         } else {
             echo 'Could not get the lock';
+            @fclose($fp);
+            return false;
         }
         fclose($fp);
+        return true;
     }
 }

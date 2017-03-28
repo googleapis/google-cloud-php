@@ -76,5 +76,6 @@ class BatchJobTest extends \PHPUnit_Framework_TestCase
         foreach ($items as $item) {
             $this->items[] = strtoupper($item);
         }
+        return true;
     }
 }

@@ -171,7 +171,7 @@ class BatchDaemon
                 );
                 if (! $job->run($items)) {
                     // Try to save the items.
-                    $f = @fopen($this->failureFile, 'w');
+                    $f = @fopen($this->failureFile, 'w+');
                     foreach ($items as $item) {
                         @fwrite($f, serialize($item) . PHP_EOL);
                     }
