@@ -35,12 +35,12 @@ class InMemoryConfigStorageTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($configStorage1, $configStorage2);
     }
 
-    /**
-     * @expectedException Error
-     */
     public function testConstructorIsForbidden()
     {
-        $configStorage = new InMemoryConfigStorage();
+        $reflection = new \ReflectionClass(
+            '\Google\Cloud\Core\Batch\InMemoryConfigStorage');
+        $constructor = $reflection->getConstructor();
+        $this->assertFalse($constructor->isPublic());
     }
 
     public function testLock()
