@@ -32,6 +32,10 @@ class SysvTraitTest extends \PHPUnit_Framework_TestCase
 
     public function testGetSysvKey()
     {
+        if (! $this->impl->isSysvIPCLoaded()) {
+            $this->markTestSkipped(
+                'SysV IPC extensions are not available, skipped');
+        }
         $key1 = $this->impl->getSysvKey(1);
         $key2 = $this->impl->getSysvKey(2);
         $this->assertEquals(1, $key2 - $key1);
