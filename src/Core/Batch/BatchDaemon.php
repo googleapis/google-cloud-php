@@ -65,9 +65,10 @@ class BatchDaemon
         pcntl_signal(SIGINT, array($this, "sigHandler"));
         pcntl_signal(SIGHUP, array($this, "sigHandler"));
         $this->command = sprintf('php -d auto_prepend_file="" %s', $entrypoint);
-        $this->failureFile = tempnam(
+        $this->failureFile = sprintf(
+            '%s/batch-daemon-failure-%d',
             sys_get_temp_dir(),
-            sprintf('batch-daemon-failure-%d', getmypid())
+            getmypid()
         );
     }
 

@@ -99,13 +99,15 @@ class BatchJob
      * Run the job with the given items.
      *
      * @param array $items An array of items.
+     *
+     * @return boolean the result of the callback
      */
     public function run($items)
     {
         if (! is_null($this->bootstrapFile)) {
             require_once($this->bootstrapFile);
         }
-        call_user_func_array($this->func, array($items));
+        return call_user_func_array($this->func, array($items));
     }
 
     /**
