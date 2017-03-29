@@ -18,6 +18,7 @@
 namespace Google\Cloud\Tests\System\Core\Batch;
 
 use Google\Cloud\Core\Batch\BatchRunner;
+use Google\Cloud\Core\Batch\Retry;
 
 /**
  * @group core
@@ -36,6 +37,7 @@ class BatchRunnerTest extends \PHPUnit_Framework_TestCase
     private static $targetFile;
     private static $commandFile;
     private static $testDir;
+    private static $run_daemon;
 
     public static function delTree($dir)
     {
@@ -54,6 +56,7 @@ class BatchRunnerTest extends \PHPUnit_Framework_TestCase
             sys_get_temp_dir(),
             getmypid()
         );
+        @mkdir(self::$testDir);
         putenv('GOOGLE_CLOUD_BATCH_DAEMON_FAILURE_DIR=' . self::$testDir);
         $daemon_executable = __DIR__
             . '/../../../../bin/google-cloud-batch-daemon';
@@ -65,10 +68,11 @@ class BatchRunnerTest extends \PHPUnit_Framework_TestCase
             sys_get_temp_dir(),
             'batch-daemon-system-test'
         );
-        $run_daemon = getenv('GOOGLE_CLOUD_PHP_TESTS_WITHOUT_DAEMON') === false;
+        self::$run_daemon =
+            getenv('GOOGLE_CLOUD_PHP_TESTS_WITHOUT_DAEMON') === false;
         if (extension_loaded('sysvmsg')
             && extension_loaded('sysvsem')
-            && extension_loaded('sysvshm') && $run_daemon) {
+            && extension_loaded('sysvshm') && self::$run_daemon) {
             $descriptorSpec = array(
                 0 => array('file', 'php://stdin', 'r'),
                 1 => array('file', 'php://stdout', 'w'),
@@ -80,6 +84,9 @@ class BatchRunnerTest extends \PHPUnit_Framework_TestCase
                 $pipes
             );
             putenv('IS_BATCH_DAEMON_RUNNING=true');
+        } else {
+            // Use in-memory implementation.
+            putenv('IS_BATCH_DAEMON_RUNNING');
         }
     }
 
@@ -115,7 +122,7 @@ class BatchRunnerTest extends \PHPUnit_Framework_TestCase
         $result = file_get_contents(self::$targetFile);
         $this->assertEmpty($result);
         $this->runner->submitItem('batch-daemon-system-test', 'orange');
-        sleep(1);
+        usleep(100000);
         $result = file_get_contents(self::$targetFile);
         $this->assertContains('APPLE', $result);
         $this->assertContains('ORANGE', $result);
@@ -132,10 +139,17 @@ class BatchRunnerTest extends \PHPUnit_Framework_TestCase
 
         // Retry simulation
         unlink(self::$commandFile);
-        $retry_executable = __DIR__
-            . '/../../../../bin/google-cloud-batch-retry';
-        exec($retry_executable);
-        sleep(1);
+        if (self::$run_daemon) {
+            $retry_executable = __DIR__
+                . '/../../../../bin/google-cloud-batch-retry';
+            exec($retry_executable);
+        } else {
+            // The in-memory implementation doesn't share the BatchConfig with
+            // other processes, so we need to run retryAll in the same process.
+            $retry = new Retry();
+            $retry->retryAll();
+        }
+        usleep(100000);
         $result = file_get_contents(self::$targetFile);
         $this->assertContains('BANANA', $result);
         $this->assertContains('LEMON', $result);
