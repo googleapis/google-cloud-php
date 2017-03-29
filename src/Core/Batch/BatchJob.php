@@ -65,6 +65,7 @@ class BatchJob
      * @param string $identifier Unique identifier of the job.
      * @param callable $func Any Callable except for Closure. The callable
      *        should accept an array of items as the first argument.
+     * @param int $idNum A numeric id for the job.
      * @param array $options [optional] {
      *    Configuration options.
      *    @type int $batchSize The size of the batch.

@@ -23,7 +23,7 @@ namespace Google\Cloud\Core\Batch;
 class SysvConfigStorage implements ConfigStorageInterface
 {
     const VAR_KEY = 1;
-    
+
     /* @var int */
     private $sysvKey;
 
@@ -62,8 +62,8 @@ class SysvConfigStorage implements ConfigStorageInterface
     /**
      * Save the given BatchConfig.
      *
-     * @return boolean
-     * @throws \RuntimeException when failed to attach to the shared memory.
+     * @param BatchConfig $config A BatchConfig to save.
+     * @return bool
      */
     public function save(BatchConfig $config)
     {

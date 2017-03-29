@@ -26,7 +26,7 @@ final class InMemoryConfigStorage implements
 {
     use HandleFailureTrait;
 
-    /* @var \Google\Cloud\Core\Batch\Config */
+    /* @var \Google\Cloud\Core\Batch\BatchConfig */
     private $config;
 
     /* @var array */
@@ -101,7 +101,8 @@ final class InMemoryConfigStorage implements
     /**
      * Save the given BatchConfig.
      *
-     * @return boolean
+     * @param BatchConfig $config A BatchConfig to save.
+     * @return bool
      */
     public function save(BatchConfig $config)
     {
@@ -122,6 +123,9 @@ final class InMemoryConfigStorage implements
     /**
      * Hold the items in memory and run the job in the same process when it
      * meets the condition.
+     * @param mixed $item An item to submit.
+     * @param int $idNum A numeric id for the job.
+     * @return void
      */
     public function submit($item, $idNum)
     {
@@ -144,6 +148,7 @@ final class InMemoryConfigStorage implements
 
     /**
      * Run the job with the given id.
+     * @param int $idNum A numeric id for the job.
      */
     private function run($idNum)
     {

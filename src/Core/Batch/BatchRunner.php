@@ -25,7 +25,7 @@ class BatchRunner
     use SysvTrait;
 
     /**
-     * @var \Google\Cloud\Core\Batch\Config
+     * @var \Google\Cloud\Core\Batch\BatchConfig
      */
     private $config;
 
@@ -96,7 +96,7 @@ class BatchRunner
         }
         $this->config = $this->configStorage->load();
         $this->config->registerJob($identifier, $func, $options);
-        
+
         $result = $this->configStorage->save($this->config);
         if ($result === false) {
             return false;
@@ -174,7 +174,7 @@ class BatchRunner
         $this->configStorage->unlock();
         if ($result === false) {
             // TODO: think what to do
-            return fasle;
+            return false;
         }
         $this->config = $result;
         return true;

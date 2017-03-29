@@ -34,11 +34,13 @@ interface ConfigStorageInterface
 
     /**
      * saves the BatchConfig to the storage
+     * @param BatchConfig $config A BatchConfig to save.
+     * @return boolean true on success, false on failure
      */
     public function save(BatchConfig $config);
 
     /**
-     * loads the AsyncBatchConfig from the storage
+     * loads the BatchConfig from the storage
      *
      * @return BatchConfig
      */

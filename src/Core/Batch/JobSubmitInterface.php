@@ -24,6 +24,11 @@ interface JobSubmitInterface
 {
     /**
      * Submit a job for async processing.
+     *
+     * @param mixed $item An item to submit.
+     * @param int $idNum A numeric id of the job.
+     * @return void
+     * @throws \RuntimeException when failed to store the item.
      */
     public function submit($item, $idNum);
 }
