@@ -74,7 +74,10 @@
             "Google\\Cloud\\Tests\\System\\": "tests/system"
         }
     },
-    "bin": ["bin/google-cloud-batch-daemon"],
+    "bin": [
+        "bin/google-cloud-batch-daemon",
+        "bin/google-cloud-batch-retry"
+    ],
     "scripts": {
         "google-cloud": "dev/google-cloud"
     },
