@@ -41,6 +41,8 @@ class TraceClient
     use ArrayTrait;
     use ClientTrait;
 
+    const VERSION = '0.1.0';
+
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/cloud-platform';
     const READ_ONLY_SCOPE = 'https://www.googleapis.com/auth/trace.readonly';
 
