@@ -62,7 +62,7 @@ class ObjectPageIterator implements \Iterator
     }
 
     /**
-     * Get the current page.
+     * Add new prefixes to the list.
      *
      * @return array
      */
