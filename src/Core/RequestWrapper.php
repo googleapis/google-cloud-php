@@ -33,9 +33,11 @@ class RequestWrapper
 {
     use JsonTrait;
     use RequestWrapperTrait;
+    use RetryDeciderTrait;
 
     /**
-     * @var string
+     * @var string The current version of the component from which the request
+     * originated.
      */
     private $componentVersion;
 
@@ -61,26 +63,15 @@ class RequestWrapper
     private $restOptions;
 
     /**
-     * @var array
-     */
-    private $httpRetryCodes = [
-        500,
-        502,
-        503
-    ];
-
-    /**
-     * @var array
-     */
-    private $httpRetryMessages = [
-        'rateLimitExceeded',
-        'userRateLimitExceeded'
-    ];
-
-    /**
      * @var bool $shouldSignRequest Whether to enable request signing.
      */
     private $shouldSignRequest;
+
+    /**
+     * @var callable $retryFunction Sets the conditions for whether or not a
+     * request should attempt to retry.
+     */
+    private $retryFunction;
 
     /**
      * @param array $config [optional] {
@@ -88,8 +79,6 @@ class RequestWrapper
      *     {@see Google\Cloud\Core\RequestWrapperTrait::setCommonDefaults()} for
      *     the other available options.
      *
-     *     @type string $componentName The name of the component from which the request
-     *           originated.
      *     @type string $componentVersion The current version of the component from
      *           which the request originated.
      *     @type string $accessToken Access token used to sign requests.
@@ -98,6 +87,8 @@ class RequestWrapper
      *     @type callable $httpHandler A handler used to deliver Psr7 requests.
      *     @type array $restOptions HTTP client specific configuration options.
      *     @type bool $shouldSignRequest Whether to enable request signing.
+     *     @type callable $restRetryFunction Sets the conditions for whether or
+     *           not a request should attempt to retry.
      * }
      */
     public function __construct(array $config = [])
@@ -109,7 +100,8 @@ class RequestWrapper
             'httpHandler' => null,
             'restOptions' => [],
             'shouldSignRequest' => true,
-            'componentVersion' => null
+            'componentVersion' => null,
+            'restRetryFunction' => null
         ];
 
         $this->componentVersion = $config['componentVersion'];
@@ -118,6 +110,7 @@ class RequestWrapper
         $this->authHttpHandler = $config['authHttpHandler'] ?: $this->httpHandler;
         $this->restOptions = $config['restOptions'];
         $this->shouldSignRequest = $config['shouldSignRequest'];
+        $this->retryFunction = $config['restRetryFunction'] ?: $this->getRetryFunction();
     }
 
     /**
@@ -131,6 +124,8 @@ class RequestWrapper
      *           request. **Defaults to** `0`.
      *     @type int $retries Number of retries for a failed request.
      *           **Defaults to** `3`.
+     *     @type callable $restRetryFunction Sets the conditions for whether or
+     *           not a request should attempt to retry.
      *     @type array $restOptions HTTP client specific configuration options.
      * }
      * @return ResponseInterface
@@ -140,7 +135,10 @@ class RequestWrapper
         $retries = isset($options['retries']) ? $options['retries'] : $this->retries;
         $restOptions = isset($options['restOptions']) ? $options['restOptions'] : $this->restOptions;
         $timeout = isset($options['requestTimeout']) ? $options['requestTimeout'] : $this->requestTimeout;
-        $backoff = new ExponentialBackoff($retries, $this->getRetryFunction());
+        $retryFunction = isset($options['restRetryFunction'])
+            ? $options['restRetryFunction']
+            : $this->retryFunction;
+        $backoff = new ExponentialBackoff($retries, $retryFunction);
 
         if ($timeout && !array_key_exists('timeout', $restOptions)) {
             $restOptions['timeout'] = $timeout;
@@ -263,38 +261,5 @@ class RequestWrapper
         }
 
         return $ex->getMessage();
-    }
-
-    /**
-     * Determines whether or not the request should be retried.
-     *
-     * @return bool
-     */
-    private function getRetryFunction()
-    {
-        $httpRetryCodes = $this->httpRetryCodes;
-        $httpRetryMessages = $this->httpRetryMessages;
-
-        return function (\Exception $ex) use ($httpRetryCodes, $httpRetryMessages) {
-            $statusCode = $ex->getCode();
-
-            if (in_array($statusCode, $httpRetryCodes)) {
-                return true;
-            }
-
-            $message = json_decode($ex->getMessage(), true);
-
-            if (!isset($message['error']['errors'])) {
-                return false;
-            }
-
-            foreach ($message['error']['errors'] as $error) {
-                if (in_array($error['reason'], $httpRetryMessages)) {
-                    return true;
-                }
-            }
-
-            return false;
-        };
     }
 }
