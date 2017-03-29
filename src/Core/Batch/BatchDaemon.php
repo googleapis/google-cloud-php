@@ -56,7 +56,7 @@ class BatchDaemon
         $this->descriptorSpec = array(
             0 => array('file', 'php://stdin', 'r'),
             1 => array('file', 'php://stdout', 'w'),
-            1 => array('file', 'php://stderr', 'w')
+            2 => array('file', 'php://stderr', 'w')
         );
         // setup signal handlers
         pcntl_signal(SIGTERM, array($this, "sigHandler"));
