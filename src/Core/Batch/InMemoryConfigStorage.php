@@ -24,6 +24,7 @@ final class InMemoryConfigStorage implements
     ConfigStorageInterface,
     JobSubmitInterface
 {
+    use HandleFailureTrait;
 
     /* @var \Google\Cloud\Core\Batch\Config */
     private $config;
@@ -36,9 +37,6 @@ final class InMemoryConfigStorage implements
 
     /* @var float */
     private $created;
-
-    /* @var string */
-    private $failureFile;
 
     /**
      * Singleton getInstance.
@@ -76,11 +74,7 @@ final class InMemoryConfigStorage implements
         $this->items = array();
         $this->lastInvoked = array();
         $this->created = microtime(true);
-        $this->failureFile = sprintf(
-            '%s/batch-daemon-failure-%d',
-            sys_get_temp_dir(),
-            getmypid()
-        );
+        $this->initFailureFile();
         register_shutdown_function(array($this, 'shutdown'));
     }
 
@@ -155,12 +149,7 @@ final class InMemoryConfigStorage implements
     {
         $job = $this->config->getJobFromIdNum($idNum);
         if (! $job->run($this->items[$idNum])) {
-            // Try to save the items.
-            $f = @fopen($this->failureFile, 'w+');
-            foreach ($this->items[$idNum] as $item) {
-                @fwrite($f, serialize($item) . PHP_EOL);
-            }
-            @fclose($f);
+            $this->handleFailure($idNum, $this->items[$idNum]);
         }
     }
 

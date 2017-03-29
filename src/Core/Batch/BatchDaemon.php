@@ -23,6 +23,7 @@ namespace Google\Cloud\Core\Batch;
 class BatchDaemon
 {
     use SysvTrait;
+    use HandleFailureTrait;
 
     /* @var BatchRunner */
     private $runner;
@@ -35,9 +36,6 @@ class BatchDaemon
 
     /* @var string */
     private $command;
-
-    /* @var string */
-    private $failureFile;
 
     /**
      * Prepare the descriptor spec and install signal handlers.
@@ -65,11 +63,7 @@ class BatchDaemon
         pcntl_signal(SIGINT, array($this, "sigHandler"));
         pcntl_signal(SIGHUP, array($this, "sigHandler"));
         $this->command = sprintf('php -d auto_prepend_file="" %s', $entrypoint);
-        $this->failureFile = sprintf(
-            '%s/batch-daemon-failure-%d',
-            sys_get_temp_dir(),
-            getmypid()
-        );
+        $this->initFailureFile();
     }
 
     /**
@@ -170,12 +164,7 @@ class BatchDaemon
                     count($items)
                 );
                 if (! $job->run($items)) {
-                    // Try to save the items.
-                    $f = @fopen($this->failureFile, 'w+');
-                    foreach ($items as $item) {
-                        @fwrite($f, serialize($item) . PHP_EOL);
-                    }
-                    @fclose($f);
+                    $this->handleFailure($idNum, $items);
                 }
                 $items = array();
                 $lastInvoked = microtime(true);
