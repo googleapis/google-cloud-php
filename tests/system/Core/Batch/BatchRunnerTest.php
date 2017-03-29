@@ -33,17 +33,38 @@ class BatchRunnerTest extends \PHPUnit_Framework_TestCase
     private $runner;
 
     private static $daemon;
-    private static $target_file;
+    private static $targetFile;
+    private static $commandFile;
+    private static $testDir;
+
+    public static function delTree($dir)
+    {
+        $files = array_diff(scandir($dir), array('.', '..'));
+        foreach ($files as $file) {
+            $target = "$dir/$file";
+            (is_dir($target)) ? self::delTree($target) : unlink($target);
+        }
+        return rmdir($dir);
+    }
 
     public static function setUpBeforeClass()
     {
+        self::$testDir = sprintf(
+            '%s/google-cloud-system-test-%d',
+            sys_get_temp_dir(),
+            getmypid()
+        );
+        putenv('GOOGLE_CLOUD_BATCH_DAEMON_FAILURE_DIR=' . self::$testDir);
         $daemon_executable = __DIR__
             . '/../../../../bin/google-cloud-batch-daemon';
-        self::$target_file = tempnam(
+        self::$commandFile = tempnam(
             sys_get_temp_dir(),
             'batch-daemon-system-test'
         );
-        putenv('BATCH_DAEMON_SYSTEM_TEST_FILE=' . self::$target_file);
+        self::$targetFile = tempnam(
+            sys_get_temp_dir(),
+            'batch-daemon-system-test'
+        );
         $run_daemon = getenv('GOOGLE_CLOUD_PHP_TESTS_WITHOUT_DAEMON') === false;
         if (extension_loaded('sysvmsg')
             && extension_loaded('sysvsem')
@@ -66,13 +87,17 @@ class BatchRunnerTest extends \PHPUnit_Framework_TestCase
     {
         @proc_terminate(self::$daemon);
         @proc_close(self::$daemon);
-        unlink(self::$target_file);
+        @unlink(self::$targetFile);
+        @unlink(self::$commandFile);
+        self::delTree(self::$testDir);
+        putenv('GOOGLE_CLOUD_BATCH_DAEMON_FAILURE_DIR');
+        putenv('IS_BATCH_DAEMON_RUNNING');
     }
 
     public function setup()
     {
         $this->runner = new BatchRunner();
-        $myJob = new MyJob();
+        $myJob = new MyJob(self::$commandFile, self::$targetFile);
         $this->runner->registerjob(
             'batch-daemon-system-test',
             array($myJob, 'runJob'),
@@ -86,14 +111,33 @@ class BatchRunnerTest extends \PHPUnit_Framework_TestCase
 
     public function testSubmit()
     {
-        $file = getenv('BATCH_DAEMON_SYSTEM_TEST_FILE');
         $this->runner->submitItem('batch-daemon-system-test', 'apple');
-        $result = file_get_contents($file);
+        $result = file_get_contents(self::$targetFile);
         $this->assertEmpty($result);
         $this->runner->submitItem('batch-daemon-system-test', 'orange');
         sleep(1);
-        $result = file_get_contents($file);
+        $result = file_get_contents(self::$targetFile);
         $this->assertContains('APPLE', $result);
         $this->assertContains('ORANGE', $result);
+
+        // Failure simulation
+        file_put_contents(self::$commandFile, 'fail');
+
+        $this->runner->submitItem('batch-daemon-system-test', 'banana');
+        $this->runner->submitItem('batch-daemon-system-test', 'lemon');
+        sleep(1);
+        $result = file_get_contents(self::$targetFile);
+        $this->assertNotContains('BANANA', $result);
+        $this->assertNotContains('LEMON', $result);
+
+        // Retry simulation
+        unlink(self::$commandFile);
+        $retry_executable = __DIR__
+            . '/../../../../bin/google-cloud-batch-retry';
+        exec($retry_executable);
+        sleep(1);
+        $result = file_get_contents(self::$targetFile);
+        $this->assertContains('BANANA', $result);
+        $this->assertContains('LEMON', $result);
     }
 }

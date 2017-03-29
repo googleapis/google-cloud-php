@@ -52,10 +52,19 @@ class SysvTraitTest extends \PHPUnit_Framework_TestCase
     public function testIsDaemonRunning()
     {
         // Clear the env
-        putenv('IS_BATCH_DAEMON_RUNNING');
-        $this->assertFalse($this->impl->isDaemonRunning());
-        putenv('IS_BATCH_DAEMON_RUNNING=true');
-        $this->assertTrue($this->impl->isDaemonRunning());
+        $orig = getenv('IS_BATCH_DAEMON_RUNNING');
+        try {
+            putenv('IS_BATCH_DAEMON_RUNNING');
+            $this->assertFalse($this->impl->isDaemonRunning());
+            putenv('IS_BATCH_DAEMON_RUNNING=true');
+            $this->assertTrue($this->impl->isDaemonRunning());
+        } finally {
+            if ($orig === false) {
+                putenv('IS_BATCH_DAEMON_RUNNING');
+            } else {
+                putenv('IS_BATCH_DAEMON_RUNNING=' . $orig);
+            }
+        }
     }
 }
 

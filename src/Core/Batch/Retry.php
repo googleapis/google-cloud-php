@@ -29,13 +29,21 @@ class Retry
 
     /**
      * Initialize a BatchRunner and $failureFile.
+     *
+     * @param BatchRunner $runner [optional] **Defaults to** null.
      */
-    public function __construct()
+    public function __construct(BatchRunner $runner = null)
     {
-        $this->runner = new BatchRunner();
+        if ($runner === null) {
+            $runner = new BatchRunner();
+        }
+        $this->runner = $runner;
         $this->initFailureFile();
     }
 
+    /**
+     * Retry all the failed items.
+     */
     public function retryAll()
     {
         foreach ($this->getFailedFiles() as $file) {

@@ -19,13 +19,26 @@ namespace Google\Cloud\Tests\System\Core\Batch;
 
 class MyJob
 {
+    private $commandFile;
+    private $targetFile;
+
+    public function __construct($commandFile, $targetFile)
+    {
+        $this->commandFile = $commandFile;
+        $this->targetFile = $targetFile;
+    }
+
     /**
-     * A method that we use for the test.
+     * A method that we use for the test. It will return false when
+     * the command file contains 'fail'.
      */
     public function runJob($items)
     {
-        $file = getenv('BATCH_DAEMON_SYSTEM_TEST_FILE');
-        $fp = fopen($file, 'w+');
+        $failCommand = @file_get_contents($this->commandFile);
+        if ($failCommand === 'fail') {
+            return false;
+        }
+        $fp = fopen($this->targetFile, 'w+');
         if (flock($fp, LOCK_EX)) {
             foreach ($items as $item) {
                 fwrite($fp, strtoupper($item) . PHP_EOL);
