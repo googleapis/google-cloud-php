@@ -111,29 +111,42 @@ class BatchRunnerTest extends \PHPUnit_Framework_TestCase
             array(
                 'workerNum' => 1,
                 'batchSize' => 2,
-                'callPeriod' => 2,
+                'callPeriod' => 1,
             )
         );
+    }
+
+    public function getResult()
+    {
+        usleep(100000);
+        return file_get_contents(self::$targetFile);
+    }
+
+    public function assertResultContains($expected)
+    {
+        $this->assertContains($expected, $this->getResult());
     }
 
     public function testSubmit()
     {
         $this->runner->submitItem('batch-daemon-system-test', 'apple');
-        $result = file_get_contents(self::$targetFile);
-        $this->assertEmpty($result);
+        // It should be still in the buffer.
+        $this->assertEmpty($this->getResult());
         $this->runner->submitItem('batch-daemon-system-test', 'orange');
-        usleep(100000);
-        $result = file_get_contents(self::$targetFile);
-        $this->assertContains('APPLE', $result);
-        $this->assertContains('ORANGE', $result);
+        $this->assertResultContains('APPLE');
+        $this->assertResultContains('ORANGE');
+
+        // This item should be picked by the call period.
+        sleep(1);
+        $this->runner->submitItem('batch-daemon-system-test', 'peach');
+        $this->assertResultContains('PEACH');
 
         // Failure simulation
         file_put_contents(self::$commandFile, 'fail');
 
         $this->runner->submitItem('batch-daemon-system-test', 'banana');
         $this->runner->submitItem('batch-daemon-system-test', 'lemon');
-        sleep(1);
-        $result = file_get_contents(self::$targetFile);
+        $result = $this->getResult();
         $this->assertNotContains('BANANA', $result);
         $this->assertNotContains('LEMON', $result);
 
@@ -149,9 +162,7 @@ class BatchRunnerTest extends \PHPUnit_Framework_TestCase
             $retry = new Retry();
             $retry->retryAll();
         }
-        usleep(100000);
-        $result = file_get_contents(self::$targetFile);
-        $this->assertContains('BANANA', $result);
-        $this->assertContains('LEMON', $result);
+        $this->assertResultContains('BANANA');
+        $this->assertResultContains('LEMON');
     }
 }

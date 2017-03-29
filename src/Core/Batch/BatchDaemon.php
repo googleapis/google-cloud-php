@@ -69,7 +69,7 @@ class BatchDaemon
     /**
      * A signal handler for setting the terminate switch.
      */
-    public function sigHandler($signo, $signinfo)
+    public function sigHandler($signo, $signinfo = null)
     {
         switch ($signo) {
             case SIGINT:
