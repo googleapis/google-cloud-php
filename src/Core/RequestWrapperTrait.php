@@ -114,6 +114,7 @@ trait RequestWrapperTrait
         $this->retries = $config['retries'];
         $this->scopes = $config['scopes'];
         $this->keyFile = $config['keyFile'];
+        $this->requestTimeout = $config['requestTimeout'];
     }
 
     /**
