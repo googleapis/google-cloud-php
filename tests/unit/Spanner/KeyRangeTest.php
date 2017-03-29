@@ -49,7 +49,7 @@ class KeyRangeTest extends \PHPUnit_Framework_TestCase
     {
         $this->range->setStart(KeyRange::TYPE_OPEN, ['foo']);
         $this->assertEquals(['foo'], $this->range->start());
-        $this->assertEquals(KeyRange::TYPE_OPEN, $this->range->types()['start']);
+        $this->assertEquals('startOpen', $this->range->types()['start']);
     }
 
     /**
@@ -64,7 +64,7 @@ class KeyRangeTest extends \PHPUnit_Framework_TestCase
     {
         $this->range->setEnd(KeyRange::TYPE_OPEN, ['foo']);
         $this->assertEquals(['foo'], $this->range->end());
-        $this->assertEquals(KeyRange::TYPE_OPEN, $this->range->types()['end']);
+        $this->assertEquals('endOpen', $this->range->types()['end']);
     }
 
     /**

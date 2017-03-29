@@ -17,24 +17,32 @@
 
 namespace Google\Cloud\Tests\Snippets\Spanner;
 
-use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 use Google\Cloud\Core\Iam\Iam;
+use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
+use Google\Cloud\Spanner\KeySet;
+use Google\Cloud\Spanner\Operation;
+use Google\Cloud\Spanner\Result;
+use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
+use Google\Cloud\Spanner\Snapshot;
+use Google\Cloud\Spanner\Timestamp;
+use Google\Cloud\Spanner\Transaction;
+use Google\Cloud\Spanner\ValueMapper;
 use Prophecy\Argument;
 
 /**
  * @group spanner
- * @group spanneradmin
  */
 class DatabaseTest extends SnippetTestCase
 {
     const PROJECT = 'my-awesome-project';
     const DATABASE = 'my-database';
     const INSTANCE = 'my-instance';
+    const TRANSACTION = 'my-transaction';
 
     private $connection;
     private $database;
@@ -44,16 +52,47 @@ class DatabaseTest extends SnippetTestCase
         $instance = $this->prophesize(Instance::class);
         $instance->name()->willReturn(self::INSTANCE);
 
+        $session = $this->prophesize(Session::class);
+
+        $sessionPool = $this->prophesize(SessionPoolInterface::class);
+        $sessionPool->session(Argument::any(), Argument::any(), Argument::any())
+            ->willReturn($session->reveal());
+
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->database = \Google\Cloud\Dev\stub(Database::class, [
             $this->connection->reveal(),
             $instance->reveal(),
-            $this->prophesize(SessionPoolInterface::class)->reveal(),
+            $sessionPool->reveal(),
             $this->prophesize(LongRunningConnectionInterface::class)->reveal(),
             [],
             self::PROJECT,
             self::DATABASE
+        ], ['connection', 'operation']);
+    }
+
+    private function stubOperation()
+    {
+        $operation = \Google\Cloud\Dev\stub(Operation::class, [
+            $this->connection->reveal(), false
         ]);
+
+        $this->database->___setProperty('operation', $operation);
+    }
+
+    public function testClass()
+    {
+        $snippet = $this->snippetFromClass(Database::class);
+        $res = $snippet->invoke('database');
+        $this->assertInstanceOf(Database::class, $res->returnVal());
+        $this->assertEquals(self::DATABASE, $res->returnVal()->name());
+    }
+
+    public function testClassViaInstance()
+    {
+        $snippet = $this->snippetFromClass(Database::class, 1);
+        $res = $snippet->invoke('database');
+        $this->assertInstanceOf(Database::class, $res->returnVal());
+        $this->assertEquals(self::DATABASE, $res->returnVal()->name());
     }
 
     public function testName()
@@ -64,6 +103,9 @@ class DatabaseTest extends SnippetTestCase
         $this->assertEquals(self::DATABASE, $res->returnVal());
     }
 
+    /**
+     * @group spanneradmin
+     */
     public function testExists()
     {
         $snippet = $this->snippetFromMethod(Database::class, 'exists');
@@ -79,6 +121,9 @@ class DatabaseTest extends SnippetTestCase
         $this->assertEquals('Database exists!', $res->output());
     }
 
+    /**
+     * @group spanneradmin
+     */
     public function testUpdateDdl()
     {
         $snippet = $this->snippetFromMethod(Database::class, 'updateDdl');
@@ -92,6 +137,9 @@ class DatabaseTest extends SnippetTestCase
         $snippet->invoke();
     }
 
+    /**
+     * @group spanneradmin
+     */
     public function testUpdateDdlBatch()
     {
         $snippet = $this->snippetFromMethod(Database::class, 'updateDdlBatch');
@@ -105,6 +153,9 @@ class DatabaseTest extends SnippetTestCase
         $snippet->invoke();
     }
 
+    /**
+     * @group spanneradmin
+     */
     public function testDrop()
     {
         $snippet = $this->snippetFromMethod(Database::class, 'drop');
@@ -118,6 +169,9 @@ class DatabaseTest extends SnippetTestCase
         $snippet->invoke();
     }
 
+    /**
+     * @group spanneradmin
+     */
     public function testDdl()
     {
         $snippet = $this->snippetFromMethod(Database::class, 'ddl');
@@ -138,6 +192,514 @@ class DatabaseTest extends SnippetTestCase
 
         $res = $snippet->invoke('statements');
         $this->assertEquals($stmts, $res->returnVal());
+    }
+
+    public function testSnapshot()
+    {
+        $this->connection->beginTransaction(Argument::any(), Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([
+                'id' => self::TRANSACTION
+            ]);
+
+        $this->stubOperation();
+
+        $snippet = $this->snippetFromMethod(Database::class, 'snapshot');
+        $snippet->addLocal('database', $this->database);
+
+        $res = $snippet->invoke('snapshot');
+        $this->assertInstanceOf(Snapshot::class, $res->returnVal());
+    }
+
+    public function testSnapshotReadTimestamp()
+    {
+        $this->connection->beginTransaction(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([
+                'id' => self::TRANSACTION,
+                'readTimestamp' => (new Timestamp(new \DateTime))->formatAsString()
+            ]);
+
+        $this->stubOperation();
+
+        $snippet = $this->snippetFromMethod(Database::class, 'snapshot', 1);
+        $snippet->addLocal('database', $this->database);
+
+        $res = $snippet->invoke('timestamp');
+        $this->assertInstanceOf(Timestamp::class, $res->returnVal());
+    }
+
+    public function testRunTransaction()
+    {
+        $this->connection->beginTransaction(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([
+                'id' => self::TRANSACTION
+            ]);
+
+        $this->connection->commit(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([
+                'commitTimestamp' => (new Timestamp(new \DateTime))->formatAsString()
+            ]);
+
+        $this->connection->rollback(Argument::any())
+            ->shouldNotBeCalled();
+
+        $this->connection->executeSql(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([
+                'metadata' => [
+                    'rowType' => [
+                        'fields' => [
+                            [
+                                'name' => 'loginCount',
+                                'type' => [
+                                    'code' => ValueMapper::TYPE_INT64
+                                ]
+                            ]
+                        ]
+                    ]
+                ],
+                'rows' => [
+                    [
+                        0
+                    ]
+                ]
+            ]);
+
+        $this->stubOperation();
+
+        $snippet = $this->snippetFromMethod(Database::class, 'runTransaction');
+        $snippet->addUse(Transaction::class);
+        $snippet->addLocal('database', $this->database);
+        $snippet->addLocal('username', 'foo');
+        $snippet->addLocal('password', 'bar');
+
+        $snippet->invoke();
+    }
+
+    public function testRunTransactionRollback()
+    {
+        $this->connection->beginTransaction(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([
+                'id' => self::TRANSACTION
+            ]);
+
+        $this->connection->commit(Argument::any())
+            ->shouldNotBeCalled();
+
+        $this->connection->rollback(Argument::any())
+            ->shouldBeCalled();
+
+        $this->connection->executeSql(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([
+                'metadata' => [
+                    'rowType' => []
+                ],
+                'rows' => []
+            ]);
+
+        $this->stubOperation();
+
+        $snippet = $this->snippetFromMethod(Database::class, 'runTransaction');
+        $snippet->addUse(Transaction::class);
+        $snippet->addLocal('database', $this->database);
+        $snippet->addLocal('username', 'foo');
+        $snippet->addLocal('password', 'bar');
+
+        $snippet->invoke();
+    }
+
+    public function testTransaction()
+    {
+        $this->connection->beginTransaction(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([
+                'id' => self::TRANSACTION
+            ]);
+
+        $this->stubOperation();
+
+        $snippet = $this->snippetFromMethod(Database::class, 'transaction');
+        $snippet->addLocal('database', $this->database);
+        $res = $snippet->invoke('transaction');
+        $this->assertInstanceOf(Transaction::class, $res->returnVal());
+    }
+
+    public function testInsert()
+    {
+        $this->connection->commit(Argument::that(function ($args) {
+            if (!isset($args['mutations'][0]['insert'])) return false;
+            return true;
+        }))->shouldBeCalled()->willReturn([
+            'commitTimestamp' => (new Timestamp(new \DateTime))->formatAsString()
+        ]);
+
+        $this->stubOperation();
+
+        $snippet = $this->snippetFromMethod(Database::class, 'insert');
+        $snippet->addLocal('database', $this->database);
+        $res = $snippet->invoke();
+    }
+
+
+    public function testInsertBatch()
+    {
+        $this->connection->commit(Argument::that(function ($args) {
+            if (!isset($args['mutations'][0]['insert'])) return false;
+            if (!isset($args['mutations'][1]['insert'])) return false;
+            return true;
+        }))->shouldBeCalled()->willReturn([
+            'commitTimestamp' => (new Timestamp(new \DateTime))->formatAsString()
+        ]);
+
+        $this->stubOperation();
+
+        $snippet = $this->snippetFromMethod(Database::class, 'insertBatch');
+        $snippet->addLocal('database', $this->database);
+        $res = $snippet->invoke();
+    }
+
+    public function testUpdate()
+    {
+        $this->connection->commit(Argument::that(function ($args) {
+            if (!isset($args['mutations'][0]['update'])) return false;
+            return true;
+        }))->shouldBeCalled()->willReturn([
+            'commitTimestamp' => (new Timestamp(new \DateTime))->formatAsString()
+        ]);
+
+        $this->stubOperation();
+
+        $snippet = $this->snippetFromMethod(Database::class, 'update');
+        $snippet->addLocal('database', $this->database);
+        $res = $snippet->invoke();
+    }
+
+
+    public function testUpdateBatch()
+    {
+        $this->connection->commit(Argument::that(function ($args) {
+            if (!isset($args['mutations'][0]['update'])) return false;
+            if (!isset($args['mutations'][1]['update'])) return false;
+            return true;
+        }))->shouldBeCalled()->willReturn([
+            'commitTimestamp' => (new Timestamp(new \DateTime))->formatAsString()
+        ]);
+
+        $this->stubOperation();
+
+        $snippet = $this->snippetFromMethod(Database::class, 'updateBatch');
+        $snippet->addLocal('database', $this->database);
+        $res = $snippet->invoke();
+    }
+
+    public function testInsertOrUpdate()
+    {
+        $this->connection->commit(Argument::that(function ($args) {
+            if (!isset($args['mutations'][0]['insertOrUpdate'])) return false;
+            return true;
+        }))->shouldBeCalled()->willReturn([
+            'commitTimestamp' => (new Timestamp(new \DateTime))->formatAsString()
+        ]);
+
+        $this->stubOperation();
+
+        $snippet = $this->snippetFromMethod(Database::class, 'insertOrUpdate');
+        $snippet->addLocal('database', $this->database);
+        $res = $snippet->invoke();
+    }
+
+
+    public function testInsertOrUpdateBatch()
+    {
+        $this->connection->commit(Argument::that(function ($args) {
+            if (!isset($args['mutations'][0]['insertOrUpdate'])) return false;
+            if (!isset($args['mutations'][1]['insertOrUpdate'])) return false;
+            return true;
+        }))->shouldBeCalled()->willReturn([
+            'commitTimestamp' => (new Timestamp(new \DateTime))->formatAsString()
+        ]);
+
+        $this->stubOperation();
+
+        $snippet = $this->snippetFromMethod(Database::class, 'insertOrUpdateBatch');
+        $snippet->addLocal('database', $this->database);
+        $res = $snippet->invoke();
+    }
+
+    public function testReplace()
+    {
+        $this->connection->commit(Argument::that(function ($args) {
+            if (!isset($args['mutations'][0]['replace'])) return false;
+            return true;
+        }))->shouldBeCalled()->willReturn([
+            'commitTimestamp' => (new Timestamp(new \DateTime))->formatAsString()
+        ]);
+
+        $this->stubOperation();
+
+        $snippet = $this->snippetFromMethod(Database::class, 'replace');
+        $snippet->addLocal('database', $this->database);
+        $res = $snippet->invoke();
+    }
+
+
+    public function testReplaceBatch()
+    {
+        $this->connection->commit(Argument::that(function ($args) {
+            if (!isset($args['mutations'][0]['replace'])) return false;
+            if (!isset($args['mutations'][1]['replace'])) return false;
+            return true;
+        }))->shouldBeCalled()->willReturn([
+            'commitTimestamp' => (new Timestamp(new \DateTime))->formatAsString()
+        ]);
+
+        $this->stubOperation();
+
+        $snippet = $this->snippetFromMethod(Database::class, 'replaceBatch');
+        $snippet->addLocal('database', $this->database);
+        $res = $snippet->invoke();
+    }
+
+    public function testDelete()
+    {
+        $this->connection->commit(Argument::that(function ($args) {
+            if (!isset($args['mutations'][0]['delete'])) return false;
+
+            return true;
+        }))->shouldBeCalled()->willReturn([
+            'commitTimestamp' => (new Timestamp(new \DateTime))->formatAsString()
+        ]);
+
+        $this->stubOperation();
+
+        $snippet = $this->snippetFromMethod(Database::class, 'delete');
+        $snippet->addUse(KeySet::class);
+        $snippet->addLocal('database', $this->database);
+        $snippet->invoke();
+    }
+
+    public function testExecute()
+    {
+        $this->connection->executeSql(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([
+                'metadata' => [
+                    'rowType' => [
+                        'fields' => [
+                            [
+                                'name' => 'loginCount',
+                                'type' => [
+                                    'code' => ValueMapper::TYPE_INT64
+                                ]
+                            ]
+                        ]
+                    ]
+                ],
+                'rows' => [
+                    [
+                        0
+                    ]
+                ]
+            ]);
+
+        $this->stubOperation();
+
+        $snippet = $this->snippetFromMethod(Database::class, 'execute');
+        $snippet->addLocal('database', $this->database);
+
+        $res = $snippet->invoke('result');
+        $this->assertInstanceOf(Result::class, $res->returnVal());
+    }
+
+    public function testExecuteBeginSnapshot()
+    {
+        $this->connection->executeSql(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([
+                'metadata' => [
+                    'rowType' => [
+                        'fields' => [
+                            [
+                                'name' => 'loginCount',
+                                'type' => [
+                                    'code' => ValueMapper::TYPE_INT64
+                                ]
+                            ]
+                        ]
+                    ],
+                    'transaction' => [
+                        'id' => self::TRANSACTION
+                    ]
+                ],
+                'rows' => [
+                    [
+                        0
+                    ]
+                ]
+            ]);
+
+        $this->stubOperation();
+
+        $snippet = $this->snippetFromMethod(Database::class, 'execute', 1);
+        $snippet->addLocal('database', $this->database);
+
+        $res = $snippet->invoke('result');
+        $this->assertInstanceOf(Result::class, $res->returnVal());
+        $this->assertInstanceOf(Snapshot::class, $res->returnVal()->snapshot());
+    }
+
+    public function testExecuteBeginTransaction()
+    {
+        $this->connection->executeSql(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([
+                'metadata' => [
+                    'rowType' => [
+                        'fields' => [
+                            [
+                                'name' => 'loginCount',
+                                'type' => [
+                                    'code' => ValueMapper::TYPE_INT64
+                                ]
+                            ]
+                        ]
+                    ],
+                    'transaction' => [
+                        'id' => self::TRANSACTION
+                    ]
+                ],
+                'rows' => [
+                    [
+                        0
+                    ]
+                ]
+            ]);
+
+        $this->stubOperation();
+
+        $snippet = $this->snippetFromMethod(Database::class, 'execute', 2);
+        $snippet->addLocal('database', $this->database);
+        $snippet->addUse(SessionPoolInterface::class);
+
+        $res = $snippet->invoke('result');
+        $this->assertInstanceOf(Result::class, $res->returnVal());
+        $this->assertInstanceOf(Transaction::class, $res->returnVal()->transaction());
+    }
+
+    public function testRead()
+    {
+        $this->connection->read(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([
+                'metadata' => [
+                    'rowType' => [
+                        'fields' => [
+                            [
+                                'name' => 'loginCount',
+                                'type' => [
+                                    'code' => ValueMapper::TYPE_INT64
+                                ]
+                            ]
+                        ]
+                    ]
+                ],
+                'rows' => [
+                    [
+                        0
+                    ]
+                ]
+            ]);
+
+        $this->stubOperation();
+
+        $snippet = $this->snippetFromMethod(Database::class, 'read');
+        $snippet->addLocal('database', $this->database);
+        $snippet->addUse(KeySet::class);
+
+        $res = $snippet->invoke('result');
+        $this->assertInstanceOf(Result::class, $res->returnVal());
+    }
+
+    public function testReadWithSnapshot()
+    {
+        $this->connection->read(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([
+                'metadata' => [
+                    'rowType' => [
+                        'fields' => [
+                            [
+                                'name' => 'loginCount',
+                                'type' => [
+                                    'code' => ValueMapper::TYPE_INT64
+                                ]
+                            ]
+                        ]
+                    ],
+                    'transaction' => [
+                        'id' => self::TRANSACTION
+                    ]
+                ],
+                'rows' => [
+                    [
+                        0
+                    ]
+                ]
+            ]);
+
+        $this->stubOperation();
+
+        $snippet = $this->snippetFromMethod(Database::class, 'read', 1);
+        $snippet->addLocal('database', $this->database);
+        $snippet->addUse(KeySet::class);
+
+        $res = $snippet->invoke('result');
+        $this->assertInstanceOf(Result::class, $res->returnVal());
+        $this->assertInstanceOf(Snapshot::class, $res->returnVal()->snapshot());
+    }
+
+    public function testReadWithTransaction()
+    {
+        $this->connection->read(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([
+                'metadata' => [
+                    'rowType' => [
+                        'fields' => [
+                            [
+                                'name' => 'loginCount',
+                                'type' => [
+                                    'code' => ValueMapper::TYPE_INT64
+                                ]
+                            ]
+                        ]
+                    ],
+                    'transaction' => [
+                        'id' => self::TRANSACTION
+                    ]
+                ],
+                'rows' => [
+                    [
+                        0
+                    ]
+                ]
+            ]);
+
+        $this->stubOperation();
+
+        $snippet = $this->snippetFromMethod(Database::class, 'read', 2);
+        $snippet->addLocal('database', $this->database);
+        $snippet->addUse(KeySet::class);
+        $snippet->addUse(SessionPoolInterface::class);
+
+        $res = $snippet->invoke('result');
+        $this->assertInstanceOf(Result::class, $res->returnVal());
+        $this->assertInstanceOf(Transaction::class, $res->returnVal()->transaction());
     }
 
     public function testIam()

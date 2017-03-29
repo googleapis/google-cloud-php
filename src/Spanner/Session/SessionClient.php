@@ -26,15 +26,6 @@ use Google\Cloud\Spanner\V1\SpannerClient;
  * In general, sessions are handled by the Spanner client internally. Direct
  * management of sessions is discouraged except in special cases where granular
  * control is most desirable.
- *
- * Example:
- * ```
- * use Google\Cloud\ServiceBuilder;
- *
- * $cloud = new ServiceBuilder();
- * $spanner = $cloud->spanner();
- *
- * $sessionClient = $spanner->sessionClient();
  */
 class SessionClient
 {
@@ -62,11 +53,6 @@ class SessionClient
 
     /**
      * Create a new session in the given instance and database.
-     *
-     * Example:
-     * ```
-     * $sessionName = $sessionClient->create('test-instance', 'test-database');
-     * ```
      *
      * @param string $instance The simple instance name.
      * @param string $database The simple database name.

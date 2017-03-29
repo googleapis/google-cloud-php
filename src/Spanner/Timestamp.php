@@ -28,7 +28,16 @@ namespace Google\Cloud\Spanner;
  *
  * Example:
  * ```
+ * use Google\Cloud\Spanner\SpannerClient;
+ *
+ * $spanner = new SpannerClient();
+ *
  * $timestamp = $spanner->timestamp(new \DateTime('2003-02-05 11:15:02.421827Z'));
+ * ```
+ *
+ * ```
+ * // Timestamps can be cast to strings.
+ * echo (string) $timestamp;
  * ```
  */
 class Timestamp implements ValueInterface
@@ -59,6 +68,13 @@ class Timestamp implements ValueInterface
     /**
      * Get the underlying `\DateTimeInterface` implementation.
      *
+     * Please note that nanosecond precision is not present in this method.
+     *
+     * Example:
+     * ```
+     * $dateTime = $timestamp->get();
+     * ```
+     *
      * @return \DateTimeInterface
      */
     public function get()
@@ -69,6 +85,11 @@ class Timestamp implements ValueInterface
     /**
      * Get the type.
      *
+     * Example:
+     * ```
+     * $type = $timestamp->type();
+     * ```
+     *
      * @return string
      */
     public function type()
@@ -78,6 +99,13 @@ class Timestamp implements ValueInterface
 
     /**
      * Format the value as a string.
+     *
+     * This method retains nanosecond precision, if available.
+     *
+     * Example:
+     * ```
+     * $value = $timestamp->formatAsString();
+     * ```
      *
      * @return string
      */
@@ -92,6 +120,7 @@ class Timestamp implements ValueInterface
      * Format the value as a string.
      *
      * @return string
+     * @access private
      */
     public function __toString()
     {

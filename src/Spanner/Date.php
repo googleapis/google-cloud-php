@@ -23,12 +23,11 @@ namespace Google\Cloud\Spanner;
  *
  * Example:
  * ```
- * use Google\Cloud\ServiceBuilder;
+ * use Google\Cloud\Spanner\SpannerClient;
  *
- * $cloud = new ServiceBuilder();
- * $spanner = $cloud->spanner();
+ * $spanner = new SpannerClient();
  *
- * $date = $spanner->date(new \DateTime('1995-02-04'));
+ * $date = $spanner->date(new \DateTimeImmutable('1995-02-04'));
  * ```
  *
  * ```

@@ -245,7 +245,9 @@ class ValueMapper
 
             case 'array':
                 if ($this->isAssoc($value)) {
-                    throw new \InvalidArgumentException('Associative arrays are not supported');
+                    throw new \InvalidArgumentException(
+                        'Associative arrays are not supported. Did you mean to call a batch method?'
+                    );
                 }
 
                 $res = [];

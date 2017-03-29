@@ -53,7 +53,7 @@ class SnippetTestCase extends \PHPUnit_Framework_TestCase
 
         self::$coverage->cover($snippet->identifier());
 
-        return $snippet;
+        return clone $snippet;
     }
 
     /**
@@ -77,7 +77,7 @@ class SnippetTestCase extends \PHPUnit_Framework_TestCase
 
         self::$coverage->cover($identifier);
 
-        return $snippet;
+        return clone $snippet;
     }
 
     /**
@@ -100,6 +100,6 @@ class SnippetTestCase extends \PHPUnit_Framework_TestCase
 
         self::$coverage->cover($identifier);
 
-        return $snippet;
+        return clone $snippet;
     }
 }

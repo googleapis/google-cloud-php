@@ -20,8 +20,6 @@ namespace Google\Cloud\Spanner;
 /**
  * Represents a Google Cloud Spanner KeyRange.
  *
- * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#google.spanner.v1.KeyRange KeyRange
- *
  * Example:
  * ```
  * use Google\Cloud\ServiceBuilder;
@@ -40,6 +38,8 @@ namespace Google\Cloud\Spanner;
  *     'end' => ['Bob', $end]
  * ]);
  * ```
+ *
+ * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#google.spanner.v1.KeyRange KeyRange
  */
 class KeyRange
 {
@@ -47,14 +47,24 @@ class KeyRange
     const TYPE_CLOSED = 'closed';
 
     /**
-     * @var array
+     * @var string
      */
-    private $types = [];
+    private $startType;
 
     /**
      * @var array
      */
-    private $range = [];
+    private $start;
+
+    /**
+     * @var string
+     */
+    private $endType;
+
+    /**
+     * @var array
+     */
+    private $end;
 
     /**
      * @var array
@@ -88,20 +98,17 @@ class KeyRange
      */
     public function __construct(array $options = [])
     {
-        $options = array_filter($options + [
+        $options += [
             'startType' => null,
-            'start' => [],
+            'start' => null,
             'endType' => null,
-            'end' => []
-        ]);
+            'end' => null
+        ];
 
-        if (isset($options['startType']) && isset($options['start'])) {
-            $this->setStart($options['startType'], $options['start']);
-        }
-
-        if (isset($options['endType']) && isset($options['end'])) {
-            $this->setEnd($options['endType'], $options['end']);
-        }
+        $this->startType = $options['startType'];
+        $this->start = $options['start'];
+        $this->endType = $options['endType'];
+        $this->end = $options['end'];
     }
 
     /**
@@ -112,12 +119,11 @@ class KeyRange
      * $start = $range->start();
      * ```
      *
-     * @return array
+     * @return array|null
      */
     public function start()
     {
-        $type = $this->types['start'];
-        return $this->range[$this->definition[$type]['start']];
+        return $this->start;
     }
 
     /**
@@ -145,8 +151,8 @@ class KeyRange
 
         $rangeKey = $this->definition[$type]['start'];
 
-        $this->types['start'] = $type;
-        $this->range[$rangeKey] = $start;
+        $this->startType = $rangeKey;
+        $this->start = $start;
     }
 
     /**
@@ -161,8 +167,7 @@ class KeyRange
      */
     public function end()
     {
-        $type = $this->types['end'];
-        return $this->range[$this->definition[$type]['end']];
+        return $this->end;
     }
 
     /**
@@ -190,8 +195,8 @@ class KeyRange
 
         $rangeKey = $this->definition[$type]['end'];
 
-        $this->types['end'] = $type;
-        $this->range[$rangeKey] = $end;
+        $this->endType = $rangeKey;
+        $this->end = $end;
     }
 
     /**
@@ -202,11 +207,14 @@ class KeyRange
      * $types = $range->types();
      * ```
      *
-     * @return array
+     * @return array An array containing `start` and `end` keys.
      */
     public function types()
     {
-        return $this->types;
+        return [
+            'start' => $this->startType,
+            'end' => $this->endType
+        ];
     }
 
     /**
@@ -217,10 +225,13 @@ class KeyRange
      */
     public function keyRangeObject()
     {
-        if (count($this->range) !== 2) {
+        if (!$this->start || !$this->end) {
             throw new \BadMethodCallException('Key Range must supply a start and an end');
         }
 
-        return $this->range;
+        return [
+            $this->startType => $this->start,
+            $this->endType => $this->end
+        ];
     }
 }

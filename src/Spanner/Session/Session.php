@@ -23,17 +23,6 @@ use Google\Cloud\Spanner\V1\SpannerClient;
 
 /**
  * Represents and manages a single Cloud Spanner session.
- *
- * Example:
- * ```
- * use Google\Cloud\ServiceBuilder;
- *
- * $cloud = new ServiceBuilder();
- * $spanner = $cloud->spanner();
- *
- * $sessionClient = $spanner->sessionClient();
- * $session = $sessionClient->create('test-instance', 'test-database');
- * ```
  */
 class Session
 {
@@ -81,11 +70,6 @@ class Session
     /**
      * Return info on the session
      *
-     * Example:
-     * ```
-     * print_r($session->info());
-     * ```
-     *
      * @return array An array containing the `projectId`, `instance`, `database` and session `name` keys.
      */
     public function info()
@@ -100,13 +84,6 @@ class Session
 
     /**
      * Check if the session exists.
-     *
-     * Example:
-     * ```
-     * if ($session->exists()) {
-     *     echo 'The session is valid!';
-     * }
-     * ```
      *
      * @param array $options [optional] Configuration options.
      * @return array
@@ -126,11 +103,6 @@ class Session
 
     /**
      * Delete the session.
-     *
-     * Example:
-     * ```
-     * $session->delete();
-     * ```
      *
      * @param array $options [optional] Configuration options.
      * @return void

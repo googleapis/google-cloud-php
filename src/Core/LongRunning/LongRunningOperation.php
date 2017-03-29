@@ -19,17 +19,6 @@ namespace Google\Cloud\Core\LongRunning;
 
 /**
  * Represent and interact with a Long Running Operation.
- *
- * Example:
- * ```
- * use Google\Cloud\ServiceBuilder;
- *
- * $cloud = new ServiceBuilder();
- * $spanner = $cloud->spanner();
- * $instance = $spanner->instance('my-instance');
- *
- * $operation = $instance->createDatabase('my-database');
- * ```
  */
 class LongRunningOperation
 {
@@ -73,7 +62,7 @@ class LongRunningOperation
      * @param LongRunningConnectionInterface $connection An implementation
      *        mapping to methods which handle LRO resolution in the service.
      * @param string $name The Operation name.
-     * @param array $callablesMap An collection of form [(string) type, (callable) callable]
+     * @param array $callablesMap An collection of form [(string) typeUrl, (callable) callable]
      *        providing a function to invoke when an operation completes. The
      *        callable Type should correspond to an expected value of
      *        operation.metadata.typeUrl.
@@ -106,6 +95,9 @@ class LongRunningOperation
     /**
      * Check if the Operation is done.
      *
+     * If the Operation state is not available, a service request may be executed
+     * by this method.
+     *
      * Example:
      * ```
      * if ($operation->done()) {
@@ -113,11 +105,12 @@ class LongRunningOperation
      * }
      * ```
      *
+     * @param array $options [optional] Configuration options.
      * @return bool
      */
-    public function done()
+    public function done(array $options = [])
     {
-        return (isset($this->info()['done']))
+        return (isset($this->info($options)['done']))
             ? $this->info['done']
             : false;
     }
@@ -128,6 +121,9 @@ class LongRunningOperation
      * Return value will be one of `LongRunningOperation::STATE_IN_PROGRESS`,
      * `LongRunningOperation::STATE_SUCCESS` or
      * `LongRunningOperation::STATE_ERROR`.
+     *
+     * If the Operation state is not available, a service request may be executed
+     * by this method.
      *
      * Example:
      * ```
@@ -146,15 +142,16 @@ class LongRunningOperation
      * }
      * ```
      *
+     * @param array $options [optional] Configuration options.
      * @return string
      */
-    public function state()
+    public function state(array $options = [])
     {
-        if (!$this->done()) {
+        if (!$this->done($options)) {
             return self::STATE_IN_PROGRESS;
         }
 
-        if (isset($this->info['response'])) {
+        if ($this->done() && $this->result()) {
             return self::STATE_SUCCESS;
         }
 
@@ -168,21 +165,20 @@ class LongRunningOperation
      *
      * Returns null if the Operation is not yet complete, or if an error occurred.
      *
-     * Note that if the Operation has not yet been reloaded, this may return
-     * null even when the operation has completed. Use
-     * {@see Google\Cloud\LongRunning\LongRunningOperation::reload()} to get the
-     * Operation state before retrieving the result.
+     * If the Operation state is not available, a service request may be executed
+     * by this method.
      *
      * Example:
      * ```
      * $result = $operation->result();
      * ```
      *
+     * @param array $options [optional] Configuration options.
      * @return mixed|null
      */
-    public function result()
+    public function result(array $options = [])
     {
-        $this->info();
+        $this->info($options);
         return $this->result;
     }
 
@@ -191,29 +187,28 @@ class LongRunningOperation
      *
      * Returns null if the Operation is not yet complete, or if no error occurred.
      *
-     * Note that if the Operation has not yet been reloaded, this may return
-     * null even when the operation has completed. Use
-     * {@see Google\Cloud\LongRunning\LongRunningOperation::reload()} to get the
-     * Operation state before retrieving the result.
+     * If the Operation state is not available, a service request may be executed
+     * by this method.
      *
      * Example:
      * ```
      * $error = $operation->error();
      * ```
      *
+     * @param array $options [optional] Configuration options.
      * @return array|null
      */
-    public function error()
+    public function error(array $options = [])
     {
-        $this->info();
+        $this->info($options);
         return $this->error;
     }
 
     /**
      * Get the Operation info.
      *
-     * If the Operation has not been checked previously, a service call will be
-     * executed.
+     * If the Operation state is not available, a service request may be executed
+     * by this method.
      *
      * Example:
      * ```
@@ -221,7 +216,7 @@ class LongRunningOperation
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @param array $options Configuration options.
+     * @param array $options [optional] Configuration options.
      * @return array [google.longrunning.Operation](https://cloud.google.com/spanner/docs/reference/rpc/google.longrunning#google.longrunning.Operation)
      * @codingStandardsIgnoreEnd
      */
@@ -235,11 +230,11 @@ class LongRunningOperation
      *
      * Example:
      * ```
-     * $operation->reload();
+     * $result = $operation->reload();
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @param array $options Configuration Options.
+     * @param array $options [optional] Configuration Options.
      * @return array [google.longrunning.Operation](https://cloud.google.com/spanner/docs/reference/rpc/google.longrunning#google.longrunning.Operation)
      * @codingStandardsIgnoreEnd
      */
@@ -249,6 +244,8 @@ class LongRunningOperation
             'name' => $this->name,
         ] + $options);
 
+        $this->result = null;
+        $this->error = null;
         if (isset($res['done']) && $res['done']) {
             $type = $res['metadata']['typeUrl'];
             $this->result = $this->executeDoneCallback($type, $res['response']);

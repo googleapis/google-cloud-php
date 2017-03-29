@@ -40,14 +40,6 @@ use google\spanner\admin\instance\v1\Instance\State;
  *
  * Example:
  * ```
- * use Google\Cloud\ServiceBuilder;
- *
- * $cloud = new ServiceBuilder();
- * $spanner = $cloud->spanner();
- * ```
- *
- * ```
- * // SpannerClient can be instantiated directly.
  * use Google\Cloud\Spanner\SpannerClient;
  *
  * $spanner = new SpannerClient();
@@ -380,6 +372,16 @@ class SpannerClient
     /**
      * Create a new KeySet object
      *
+     * Example:
+     * ```
+     * $keySet = $spanner->keySet();
+     * ```
+     *
+     * ```
+     * // Create a keyset to return all rows in a table.
+     * $keySet = $spanner->keySet(['all' => true]);
+     * ```
+     *
      * @param array $options [optional] {
      *     Configuration Options
      *
@@ -396,6 +398,21 @@ class SpannerClient
 
     /**
      * Create a new KeyRange object
+     *
+     * Example:
+     * ```
+     * $range = $spanner->keyRange();
+     * ```
+     *
+     * ```
+     * // Ranges can be created with all data supplied.
+     * $range = $spanner->keyRange([
+     *     'startType' => KeyRange::TYPE_OPEN,
+     *     'start' => ['Bob'],
+     *     'endType' => KeyRange::TYPE_OPEN,
+     *     'end' => ['Jill']
+     * ]);
+     * ```
      *
      * @param array $options [optional] {
      *     Configuration Options.
@@ -517,6 +534,11 @@ class SpannerClient
 
     /**
      * Resume a Long Running Operation
+     *
+     * Example:
+     * ```
+     * $operation = $spanner->resumeOperation($operationName);
+     * ```
      *
      * @param string $operationName The Long Running Operation name.
      * @return LongRunningOperation
