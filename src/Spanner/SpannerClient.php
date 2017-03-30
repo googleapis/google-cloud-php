@@ -303,8 +303,6 @@ class SpannerClient
      * $instances = $spanner->instances();
      * ```
      *
-     * @todo implement pagination!
-     *
      * @codingStandardsIgnoreStart
      * @see https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.admin.instance.v1#listinstancesrequest ListInstancesRequest
      * @codingStandardsIgnoreEnd
