@@ -42,7 +42,7 @@ class JobTest extends \PHPUnit_Framework_TestCase
     public function getJob($connection, array $data = [])
     {
         $mapper = $this->prophesize(ValueMapper::class);
-        return new Job($connection->reveal(), $this->jobId, $this->projectId, $data, $mapper->reveal());
+        return new Job($connection->reveal(), $this->jobId, $this->projectId, $mapper->reveal(), $data);
     }
 
     public function testDoesExistTrue()

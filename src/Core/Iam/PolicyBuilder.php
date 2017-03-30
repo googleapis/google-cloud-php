@@ -33,8 +33,6 @@ use InvalidArgumentException;
  */
 class PolicyBuilder
 {
-    const MEMBER_REGEX = '/^((user\:|serviceAccount\:|group\:|domain\:).)|allUsers|allAuthenticatedUsers/';
-
     /**
      * @var array
      */
@@ -117,10 +115,6 @@ class PolicyBuilder
      */
     public function addBinding($role, array $members)
     {
-        foreach ($members as $member) {
-            $this->validateMember($member);
-        }
-
         $this->bindings[] = [
             'role' => $role,
             'members' => $members
@@ -184,19 +178,5 @@ class PolicyBuilder
             'bindings' => $this->bindings,
             'version' => $this->version
         ]);
-    }
-
-    /**
-     * Validate that each member is in the correct format.
-     *
-     * @param  string $member
-     * @throws InvalidArgumentException
-     * @return void
-     */
-    private function validateMember($member)
-    {
-        if (preg_match(self::MEMBER_REGEX, $member) === 0) {
-            throw new InvalidArgumentException('member name is not a valid value.');
-        }
     }
 }

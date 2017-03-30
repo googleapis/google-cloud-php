@@ -164,4 +164,21 @@ class ManageObjectsTest extends StorageTestCase
     {
         $this->assertEquals('storage#object', self::$object->reload()['kind']);
     }
+
+    public function testStringNormalization()
+    {
+        $bucket = self::$client->bucket(self::NORMALIZATION_TEST_BUCKET);
+
+        $cases = [
+            ["Caf\xC3\xA9", "Normalization Form C"],
+            ["Cafe\xCC\x81", "Normalization Form D"],
+        ];
+
+        foreach ($cases as list($name, $expectedContent)) {
+            $object = $bucket->object($name);
+            $actualContent = $object->downloadAsString();
+
+            $this->assertSame($expectedContent, $actualContent);
+        }
+    }
 }

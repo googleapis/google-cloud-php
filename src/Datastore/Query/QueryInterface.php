@@ -20,7 +20,9 @@ namespace Google\Cloud\Datastore\Query;
 use JsonSerializable;
 
 /**
- * Represents a Datastore Query
+ * Represents a Datastore Query.
+ *
+ * @see https://cloud.google.com/datastore/docs/concepts/queries Datastore Queries
  */
 interface QueryInterface extends JsonSerializable
 {

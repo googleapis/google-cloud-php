@@ -59,6 +59,8 @@ use Google\Cloud\Vision\Annotation\AbstractFeature;
  *
  *     @return float
  * }
+ *
+ * @see https://cloud.google.com/vision/docs/reference/rest/v1/images/annotate#WebPage WebPage
  */
 class WebPage extends AbstractFeature
 {

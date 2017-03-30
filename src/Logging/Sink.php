@@ -70,7 +70,7 @@ class Sink
      * Example:
      * ```
      * if ($sink->exists()) {
-     *     echo "Sink exists!";
+     *     echo 'Sink exists!';
      * }
      * ```
      *

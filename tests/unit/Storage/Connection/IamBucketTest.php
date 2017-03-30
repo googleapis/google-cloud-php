@@ -15,16 +15,15 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Unit\PubSub\Connection;
+namespace Google\Cloud\Tests\Unit\Storage\Connection;
 
-use Google\Cloud\PubSub\Connection\ConnectionInterface;
-use Google\Cloud\PubSub\Connection\IamSubscription;
-use Prophecy\Argument;
+use Google\Cloud\Storage\Connection\ConnectionInterface;
+use Google\Cloud\Storage\Connection\IamBucket;
 
 /**
- * @group pubsub
+ * @group storage
  */
-class IamSubscriptionTest extends \PHPUnit_Framework_TestCase
+class IamBucketTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @dataProvider methodProvider
@@ -36,7 +35,7 @@ class IamSubscriptionTest extends \PHPUnit_Framework_TestCase
             ->willReturn($args)
             ->shouldBeCalledTimes(1);
 
-        $iam = new IamSubscription($connection->reveal());
+        $iam = new IamBucket($connection->reveal());
 
         $this->assertEquals($args, $iam->$methodName($args));
     }
@@ -45,9 +44,9 @@ class IamSubscriptionTest extends \PHPUnit_Framework_TestCase
     {
         $args = ['foo' => 'bar'];
         return [
-            ['getPolicy', 'getSubscriptionIamPolicy', $args],
-            ['setPolicy', 'setSubscriptionIamPolicy', $args],
-            ['testPermissions', 'testSubscriptionIamPermissions', $args],
+            ['getPolicy', 'getBucketIamPolicy', $args],
+            ['setPolicy', 'setBucketIamPolicy', $args],
+            ['testPermissions', 'testBucketIamPermissions', $args],
         ];
     }
 }

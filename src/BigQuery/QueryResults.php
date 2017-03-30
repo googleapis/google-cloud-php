@@ -33,7 +33,7 @@ use Google\Cloud\Core\Iterator\PageIterator;
 class QueryResults
 {
     /**
-     * @var ConnectionInterface $connection Represents a connection to BigQuery.
+     * @var ConnectionInterface Represents a connection to BigQuery.
      */
     protected $connection;
 

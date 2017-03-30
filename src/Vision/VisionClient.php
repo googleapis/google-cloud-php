@@ -210,6 +210,8 @@ class VisionClient
      * $result = $vision->annotate($image);
      * ```
      *
+     * @see https://cloud.google.com/vision/docs/reference/rest/v1/images/annotate Annotate API documentation
+     *
      * @param  Image $image The image to annotate
      * @param  array $options Configuration options
      * @return Annotation
@@ -240,6 +242,8 @@ class VisionClient
      *
      * $result = $vision->annotateBatch($images);
      * ```
+     *
+     * @see https://cloud.google.com/vision/docs/reference/rest/v1/images/annotate Annotate API documentation
      *
      * @param  Image[] $images An array consisting of instances of
      *         {@see Google\Cloud\Vision\Image}.

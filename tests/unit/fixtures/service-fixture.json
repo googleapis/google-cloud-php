@@ -24,6 +24,12 @@
               "type": "string",
               "required": true,
               "location": "path"
+            },
+            "repeatedParam": {
+              "type": "string",
+              "required": true,
+              "repeated": true,
+              "location": "query"
             }
           },
           "request": {

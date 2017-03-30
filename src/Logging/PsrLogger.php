@@ -34,6 +34,8 @@ use Psr\Log\LogLevel;
  *
  * $psrLogger = $logging->psrLogger('my-log');
  * ```
+ *
+ * @see http://www.php-fig.org/psr/psr-3/#psrlogloggerinterface Psr\Log\LoggerInterface
  */
 class PsrLogger implements LoggerInterface
 {
