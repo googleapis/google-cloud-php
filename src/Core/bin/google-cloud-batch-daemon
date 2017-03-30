@@ -16,18 +16,22 @@
  * limitations under the License.
  */
 
-if (file_exists(__DIR__ . '/../vendor/autoload.php')) {
+if (file_exists(__DIR__ . '/../../../vendor/autoload.php')) {
     // Called from local git clone.
-    require __DIR__ . '/../vendor/autoload.php';
+    require __DIR__ . '/../../../vendor/autoload.php';
 } elseif (file_exists(__DIR__ . '/../../../autoload.php')) {
-    // Called from your project's vendor dir.
     require __DIR__ . '/../../../autoload.php';
 } else {
     die('No autoloader found');
 }
 
-use Google\Cloud\Core\Batch\Retry;
+use Google\Cloud\Core\Batch\BatchDaemon;
 
-$retry = new Retry();
+$daemon = new BatchDaemon(__FILE__);
 
-$retry->retryAll();
+if (count($argv) == 1) {
+    $daemon->runParent();
+} else {
+    $idNum = intval($argv[1]);
+    $daemon->runChild($idNum);
+}
