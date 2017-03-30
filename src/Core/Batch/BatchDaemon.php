@@ -19,6 +19,11 @@ namespace Google\Cloud\Core\Batch;
 
 /**
  * An external daemon script for executing the batch jobs.
+ *
+ * @codeCoverageIgnore
+ *
+ * The system test is responsible for testing this class.
+ * {@see \Google\Cloud\Tests\System\Core\Batch}
  */
 class BatchDaemon
 {

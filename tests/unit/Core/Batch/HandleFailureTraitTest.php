@@ -48,12 +48,23 @@ class HandleFailureTraitTest extends \PHPUnit_Framework_TestCase
             getmypid()
         );
         @mkdir($this->testDir);
+        putenv('GOOGLE_CLOUD_BATCH_DAEMON_FAILURE_DIR');
     }
 
     public function tearDown()
     {
         $this->delTree($this->testDir);
         putenv('GOOGLE_CLOUD_BATCH_DAEMON_FAILURE_DIR');
+    }
+
+    /**
+     * @ExpectedException \RuntimeException
+     */
+    public function testInitFailureFileThrowsException()
+    {
+        putenv(
+            'GOOGLE_CLOUD_BATCH_DAEMON_FAILURE_DIR=/tmp/non-existent/subdir');
+        $this->impl->initFailureFile();
     }
 
     public function testInitFailureFile()

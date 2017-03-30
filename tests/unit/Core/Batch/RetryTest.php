@@ -30,8 +30,35 @@ class RetryTest extends \PHPUnit_Framework_TestCase
     private $runner;
     private $job;
     private $retry;
+    private static $testDir;
 
-    public function setup()
+    public static function delTree($dir)
+    {
+        $files = array_diff(scandir($dir), array('.', '..'));
+        foreach ($files as $file) {
+            $target = "$dir/$file";
+            (is_dir($target)) ? self::delTree($target) : unlink($target);
+        }
+        return rmdir($dir);
+    }
+
+    public static function setUpBeforeClass()
+    {
+        self::$testDir = sprintf(
+            '%s/google-cloud-unit-test-%d',
+            sys_get_temp_dir(),
+            getmypid()
+        );
+        putenv('GOOGLE_CLOUD_BATCH_DAEMON_FAILURE_DIR=' . self::$testDir);
+    }
+
+    public static function tearDownAfterClass()
+    {
+        self::delTree(self::$testDir);
+        putenv('GOOGLE_CLOUD_BATCH_DAEMON_FAILURE_DIR');
+    }
+
+    public function setUp()
     {
         $this->runner = $this->prophesize(BatchRunner::class);
         $this->job = $this->prophesize(BatchJob::class);
@@ -43,9 +70,28 @@ class RetryTest extends \PHPUnit_Framework_TestCase
             ->willReturn(true)
             ->shouldBeCalledTimes(1);
         $this->runner->getJobFromIdNum(1)
-            ->willReturn($this->job->reveal());
+            ->willReturn($this->job->reveal())
+            ->shouldBeCalledTimes(1);
+        $this->retry = new Retry($this->runner->reveal());
+        $this->retry->handleFailure(1, array('apple', 'orange'));
+        $this->assertEquals(1, count(glob(self::$testDir . '/failed-items*')));
+        $this->retry->retryAll();
+        $this->assertEquals(0, count(glob(self::$testDir . '/failed-items*')));
+    }
+
+    public function testRetryAllWithSingleFailure()
+    {
+        $this->job->run(array('apple', 'orange'))
+            ->willReturn(false, true)
+            ->shouldBeCalledTimes(2);
+        $this->runner->getJobFromIdNum(1)
+            ->willReturn($this->job->reveal())
+            ->shouldBeCalledTimes(2);
         $this->retry = new Retry($this->runner->reveal());
         $this->retry->handleFailure(1, array('apple', 'orange'));
         $this->retry->retryAll();
+        $this->assertEquals(1, count(glob(self::$testDir . '/failed-items*')));
+        $this->retry->retryAll();
+        $this->assertEquals(0, count(glob(self::$testDir . '/failed-items*')));
     }
 }

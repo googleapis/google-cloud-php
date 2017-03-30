@@ -24,9 +24,12 @@ trait SysvTrait
 {
     private static $typeDirect = 1;
     private static $typeFile = 2;
+    private static $productionKey = 'P';
 
     /**
      * Create a SystemV IPC key for the given id number.
+     *
+     * Set GOOGLE_CLOUD_SYSV_ID envvar to change the base id.
      *
      * @param int $idNum An id number of the job
      *
@@ -34,7 +37,8 @@ trait SysvTrait
      */
     public function getSysvKey($idNum)
     {
-        $base = ftok(__FILE__, 'S');
+        $key = getenv('GOOGLE_CLOUD_SYSV_ID') ?: self::$productionKey;
+        $base = ftok(__FILE__, $key);
         if ($base == PHP_INT_MAX) {
             $base = 1;
         }

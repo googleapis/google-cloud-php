@@ -47,11 +47,15 @@ class Retry
     public function retryAll()
     {
         foreach ($this->getFailedFiles() as $file) {
-            $fp = @fopen($file, 'r');
+            // Rename the file first
+            $tmpFile = $file . '-retrying';
+            rename($file, $tmpFile);
+
+            $fp = @fopen($tmpFile, 'r');
             if ($fp === false) {
                 fwrite(
                     STDERR,
-                    sprintf('Could not open the file: %s' . PHP_EOL, $file)
+                    sprintf('Could not open the file: %s' . PHP_EOL, $tmpFile)
                 );
                 continue;
             }
@@ -64,7 +68,7 @@ class Retry
                 }
             }
             @fclose($fp);
-            @unlink($file);
+            @unlink($tmpFile);
         }
     }
 }
