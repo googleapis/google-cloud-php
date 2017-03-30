@@ -67,14 +67,15 @@ class BatchJob
      *        should accept an array of items as the first argument.
      * @param int $idNum A numeric id for the job.
      * @param array $options [optional] {
-     *    Configuration options.
-     *    @type int $batchSize The size of the batch.
-     *    @type int $callPeriod The period in seconds from the last execution
-     *              to force executing the job.
-     *    @type int $workerNum The number of child processes. It only takes
-     *              effect when you run the \Google\Cloud\Core\BatchDaemon.
-     *    @type string $bootstrapFile A file to load before executing the
-     *                 job. It's needed for registering global functions.
+     *     Configuration options.
+     *
+     *     @type int $batchSize The size of the batch.
+     *     @type int $callPeriod The period in seconds from the last execution
+     *               to force executing the job.
+     *     @type int $workerNum The number of child processes. It only takes
+     *               effect with the {@see \Google\Cloud\Core\BatchDaemon}.
+     *     @type string $bootstrapFile A file to load before executing the
+     *                  job. It's needed for registering global functions.
      * }
      */
     public function __construct(

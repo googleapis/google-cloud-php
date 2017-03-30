@@ -18,41 +18,31 @@
 namespace Google\Cloud\Core\Batch;
 
 /**
- * Hold configurations for the \Google\Cloud\Core\Batch\BatchRunner.
+ * Hold configurations for the {@see \Google\Cloud\Core\Batch\BatchRunner}.
  */
 class BatchConfig
 {
     /**
-     * @var \Google\Cloud\Core\Batch\BatchJob[]
+     * @var BatchJob[]
      */
-    private $jobs;
+    private $jobs = [];
 
     /**
      * @var array
      */
-    private $idmap;
+    private $idmap = [];
 
     /**
      * @var array
      */
-    private $idmap_reverse;
-
-    /**
-     * Just initialize the internal arrays.
-     */
-    public function __construct()
-    {
-        $this->jobs = array();
-        $this->idmap = array();
-        $this->idmap_reverse = array();
-    }
+    private $idmap_reverse = [];
 
     /**
      * Get the job with the given identifier.
      *
      * @param string $identifier Unique identifier of the job.
      *
-     * @return \Google\Cloud\Core\Batch\BatchJob|null
+     * @return BatchJob|null
      */
     public function getJobFromId($identifier)
     {
@@ -66,13 +56,13 @@ class BatchConfig
      *
      * @param int $idNum A numeric id of the job.
      *
-     * @return \Google\Cloud\Core\Batch\BatchJob|null
+     * @return BatchJob|null
      */
     public function getJobFromIdNum($idNum)
     {
-        return array_key_exists($idNum, $this->idmap_reverse) ?
-            $this->jobs[$this->idmap_reverse[$idNum]] :
-            null;
+        return array_key_exists($idNum, $this->idmap_reverse)
+            ? $this->jobs[$this->idmap_reverse[$idNum]]
+            : null;
     }
 
     /**
@@ -82,14 +72,15 @@ class BatchConfig
      * @param callable $func Any Callable except for Closure. The callable
      *        should accept an array of items as the first argument.
      * @param array $options [optional] {
-     *    Configuration options.
-     *    @type int $batchSize The size of the batch.
-     *    @type int $callPeriod The period in seconds from the last execution
-     *              to force executing the job.
-     *    @type int $workerNum The number of child processes. It only takes
-     *              effect when you run the \Google\Cloud\Core\BatchDaemon.
-     *    @type string $bootstrapFile A file to load before executing the
-     *                 job. It's needed for registering global functions.
+     *     Configuration options.
+     *
+     *     @type int $batchSize The size of the batch.
+     *     @type int $callPeriod The period in seconds from the last execution
+     *               to force executing the job.
+     *     @type int $workerNum The number of child processes. It only takes
+     *               effect with the {@see \Google\Cloud\Core\BatchDaemon}.
+     *     @type string $bootstrapFile A file to load before executing the
+     *                  job. It's needed for registering global functions.
      * }
      * @return void
      */
@@ -113,7 +104,7 @@ class BatchConfig
     /**
      * Get all the jobs.
      *
-     * @return \Google\Cloud\Core\Batch\BatchJob[]
+     * @return BatchJob[]
      */
     public function getJobs()
     {

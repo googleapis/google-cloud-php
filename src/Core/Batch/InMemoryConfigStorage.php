@@ -26,7 +26,7 @@ final class InMemoryConfigStorage implements
 {
     use HandleFailureTrait;
 
-    /* @var \Google\Cloud\Core\Batch\BatchConfig */
+    /* @var BatchConfig */
     private $config;
 
     /* @var array */
@@ -113,7 +113,7 @@ final class InMemoryConfigStorage implements
     /**
      * Load a BatchConfig from the storage.
      *
-     * @return \Google\Cloud\Core\Batch\BatchConfig
+     * @return BatchConfig
      */
     public function load()
     {

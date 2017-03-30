@@ -68,6 +68,13 @@ class BatchDaemon
 
     /**
      * A signal handler for setting the terminate switch.
+     * {@see http://php.net/manual/en/function.pcntl-signal.php}
+     *
+     * @param int $signo The received signal.
+     * @param mixed $siginfo [optional] An array representing the signal
+     *              information. **Defaults to** null.
+     *
+     * @return void
      */
     public function sigHandler($signo, $signinfo = null)
     {
@@ -81,6 +88,8 @@ class BatchDaemon
 
     /**
      * A loop for the parent.
+     *
+     * @return void
      */
     public function runParent()
     {
@@ -122,6 +131,7 @@ class BatchDaemon
      * A loop for the children.
      *
      * @param int $idNum Numeric id for the job.
+     * @return void
      */
     public function runChild($idNum)
     {

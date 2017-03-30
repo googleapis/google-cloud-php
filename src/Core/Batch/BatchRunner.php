@@ -25,17 +25,17 @@ class BatchRunner
     use SysvTrait;
 
     /**
-     * @var \Google\Cloud\Core\Batch\BatchConfig
+     * @var BatchConfig
      */
     private $config;
 
     /**
-     * @var \Google\Cloud\Core\Batch\ConfigStorageInterface
+     * @var ConfigStorageInterface
      */
     private $configStorage;
 
     /**
-     * @var \Google\Cloud\Core\Batch\JobSubmitInterface
+     * @var JobSubmitInterface
      */
     private $submitter;
 
@@ -72,14 +72,15 @@ class BatchRunner
      * @param callable $func Any Callable except for Closure. The callable
      *        should accept an array of items as the first argument.
      * @param array $options [optional] {
-     *    Configuration options.
-     *    @type int $batchSize The size of the batch.
-     *    @type int $callPeriod The period in seconds from the last execution
-     *              to force executing the job.
-     *    @type int $workerNum The number of child processes. It only takes
-     *              effect when you run the \Google\Cloud\Core\BatchDaemon.
-     *    @type string $bootstrapFile A file to load before executing the
-     *                 job. It's needed for registering global functions.
+     *     Configuration options.
+     *
+     *     @type int $batchSize The size of the batch.
+     *     @type int $callPeriod The period in seconds from the last execution
+     *               to force executing the job.
+     *     @type int $workerNum The number of child processes. It only takes
+     *               effect with the {@see \Google\Cloud\Core\BatchDaemon}.
+     *     @type string $bootstrapFile A file to load before executing the
+     *                  job. It's needed for registering global functions.
      * }
      * @return boolean true on success, false on failure
      */
@@ -106,7 +107,7 @@ class BatchRunner
     }
 
     /**
-     * Submit an item
+     * Submit an item.
      *
      * @param string $identifier Unique identifier of the job.
      * @param mixed $item It needs to be serializable.
@@ -130,11 +131,11 @@ class BatchRunner
      *
      * @param string $identifier Unique identifier of the job.
      *
-     * @return \Google\Cloud\Core\Batch\BatchJob|null
+     * @return BatchJob|null
      */
     public function getJobFromId($identifier)
     {
-        return $this->config->getjobFromId($identifier);
+        return $this->config->getJobFromId($identifier);
     }
 
     /**
@@ -142,17 +143,17 @@ class BatchRunner
      *
      * @param int $idNum A numeric id of the job.
      *
-     * @return \Google\Cloud\Core\Batch\BatchJob|null
+     * @return BatchJob|null
      */
     public function getJobFromIdNum($idNum)
     {
-        return $this->config->getjobFromIdNum($idNum);
+        return $this->config->getJobFromIdNum($idNum);
     }
 
     /**
      * Get all the jobs.
      *
-     * @return \Google\Cloud\Core\Batch\BatchJob[]
+     * @return BatchJob[]
      */
     public function getJobs()
     {
