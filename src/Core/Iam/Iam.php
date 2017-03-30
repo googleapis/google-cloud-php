@@ -23,9 +23,6 @@ namespace Google\Cloud\Core\Iam;
  * This class is not meant to be used directly. It should be accessed
  * through other objects which support IAM.
  *
- * Note that examples make use of the PubSub API, and the
- * {@see Google\Cloud\PubSub\Topic} class.
- *
  * Policies can be created using the {@see Google\Cloud\Core\Iam\PolicyBuilder}
  * to help ensure their validity.
  *
@@ -48,7 +45,7 @@ class Iam
     /**
      * @var IamConnectionInterface
      */
-    protected $connection;
+    private $connection;
 
     /**
      * @var string
@@ -61,14 +58,34 @@ class Iam
     private $policy;
 
     /**
-     * @param  IamConnectionInterface $connection
-     * @param  string $resource
+     * @var array
+     */
+    private $args;
+
+    /**
+     * @param IamConnectionInterface $connection
+     * @param string $resource
+     * @param array $options [optional] {
+     *     Configuration Options
+     *
+     *     @type string|null $parent The parent request parameter for the policy.
+     *           If set, policy data will be sent as `request.{$parent}`.
+     *           Otherwise, policy will be sent in request root. **Defaults to**
+     *           `policy`.
+     *     @type array $args Arbitrary data to be sent with the request.
+     * }
      * @access private
      */
-    public function __construct(IamConnectionInterface $connection, $resource)
+    public function __construct(IamConnectionInterface $connection, $resource, array $options = [])
     {
+        $options += [
+            'parent' => 'policy',
+            'args' => []
+        ];
+
         $this->connection = $connection;
         $this->resource = $resource;
+        $this->options = $options;
     }
 
     /**
@@ -109,16 +126,33 @@ class Iam
      * $policy = $iam->setPolicy($oldPolicy);
      * ```
      *
-     * @param  array $policy A new policy array
+     * @param  array|PolicyBuilder $policy The new policy, as an array or an
+     *         instance of {@see Google\Cloud\Core\Iam\PolicyBuilder}.
      * @param  array $options Configuration Options
      * @return array An array of policy data
+     * @throws \InvalidArgumentException If the given policy is not an array or PolicyBuilder.
      */
-    public function setPolicy(array $policy, array $options = [])
+    public function setPolicy($policy, array $options = [])
     {
-        return $this->policy = $this->connection->setPolicy($options + [
-            'policy' => $policy,
+        if ($policy instanceof PolicyBuilder) {
+            $policy = $policy->result();
+        }
+
+        if (!is_array($policy)) {
+            throw new \InvalidArgumentException('Given policy data must be an array or an instance of PolicyBuilder.');
+        }
+
+        $request = [];
+        if ($this->options['parent']) {
+            $parent = $this->options['parent'];
+            $request[$parent] = $policy;
+        } else {
+            $request = $policy;
+        }
+
+        return $this->policy = $this->connection->setPolicy([
             'resource' => $this->resource
-        ]);
+        ] + $request + $options + $this->options['args']);
     }
 
     /**
@@ -140,10 +174,12 @@ class Iam
      */
     public function testPermissions(array $permissions, array $options = [])
     {
-        return $this->connection->testPermissions($options + [
+        $res = $this->connection->testPermissions([
             'permissions' => $permissions,
             'resource' => $this->resource
-        ]);
+        ] + $options + $this->options['args']);
+
+        return (isset($res['permissions'])) ? $res['permissions'] : [];
     }
 
     /**
@@ -159,8 +195,8 @@ class Iam
      */
     public function reload(array $options = [])
     {
-        return $this->policy = $this->connection->getPolicy($options + [
+        return $this->policy = $this->connection->getPolicy([
             'resource' => $this->resource
-        ]);
+        ] + $options + $this->options['args']);
     }
 }

@@ -122,7 +122,7 @@ class IamTest extends SnippetTestCase
             'resource' => $this->resource
         ])
             ->shouldBeCalled()
-            ->willReturn($permissions);
+            ->willReturn(['permissions' => $permissions]);
 
         $this->iam->___setProperty('connection', $this->connection->reveal());
 

@@ -86,4 +86,40 @@ class ManageBucketsTest extends StorageTestCase
     {
         $this->assertEquals('storage#bucket', self::$bucket->reload()['kind']);
     }
+
+    /**
+     * @group storageiam
+     */
+    public function testIam()
+    {
+        $iam = self::$bucket->iam();
+        $policy = $iam->policy();
+
+        // pop the version off the resourceId to make the assertion below more robust.
+        $resourceId = explode('#', $policy['resourceId'])[0];
+
+        $bucketName = self::$bucket->name();
+        $this->assertEquals($resourceId, sprintf('buckets/%s', $bucketName));
+
+        $role = 'roles/storage.admin';
+
+        $policy['bindings'][] = [
+            'role' => $role,
+            'members' => ['projectOwner:gcloud-php-integration-tests']
+        ];
+
+        $iam->setPolicy($policy);
+
+        $policy = $iam->reload();
+
+        $newBinding = array_filter($policy['bindings'], function ($binding) use ($role) {
+            return ($binding['role'] === $role);
+        });
+
+        $this->assertEquals(1, count($newBinding));
+
+        $permissions = ['storage.buckets.get'];
+        $test = $iam->testPermissions($permissions);
+        $this->assertEquals($permissions, $test);
+    }
 }

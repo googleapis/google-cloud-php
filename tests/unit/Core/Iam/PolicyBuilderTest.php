@@ -69,17 +69,6 @@ class PolicyBuilderTest extends \PHPUnit_Framework_TestCase
         $builder = new PolicyBuilder($policy);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
-    public function testInvalidMember()
-    {
-        $builder = new PolicyBuilder;
-        $builder->addBinding('test', [
-            'test@test.com'
-        ]);
-    }
-
     public function testSetBindings()
     {
         $role = 'test';
