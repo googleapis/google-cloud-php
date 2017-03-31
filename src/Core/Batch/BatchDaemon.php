@@ -58,15 +58,15 @@ class BatchDaemon
         );
         $this->shutdown = false;
         // Just share the usual descriptors.
-        $this->descriptorSpec = array(
-            0 => array('file', 'php://stdin', 'r'),
-            1 => array('file', 'php://stdout', 'w'),
-            2 => array('file', 'php://stderr', 'w')
-        );
+        $this->descriptorSpec = [
+            0 => ['file', 'php://stdin', 'r'],
+            1 => ['file', 'php://stdout', 'w'],
+            2 => ['file', 'php://stderr', 'w']
+        ];
         // setup signal handlers
-        pcntl_signal(SIGTERM, array($this, "sigHandler"));
-        pcntl_signal(SIGINT, array($this, "sigHandler"));
-        pcntl_signal(SIGHUP, array($this, "sigHandler"));
+        pcntl_signal(SIGTERM, [$this, "sigHandler"]);
+        pcntl_signal(SIGINT, [$this, "sigHandler"]);
+        pcntl_signal(SIGHUP, [$this, "sigHandler"]);
         $this->command = sprintf('php -d auto_prepend_file="" %s', $entrypoint);
         $this->initFailureFile();
     }
@@ -98,13 +98,13 @@ class BatchDaemon
      */
     public function runParent()
     {
-        $procs = array();
+        $procs = [];
         while (true) {
             $jobs = $this->runner->getJobs();
             foreach ($jobs as $job) {
                 if (! array_key_exists($job->getIdentifier(), $procs)) {
                     echo 'Spawning children' . PHP_EOL;
-                    $procs[$job->getIdentifier()] = array();
+                    $procs[$job->getIdentifier()] = [];
                     for ($i = 0; $i < $job->getWorkerNum(); $i++) {
                         $procs[$job->getIdentifier()][] = proc_open(
                             sprintf('%s %d', $this->command, $job->getIdNum()),
@@ -143,7 +143,7 @@ class BatchDaemon
         // child process
         $sysvKey = $this->getSysvKey($idNum);
         $q = msg_get_queue($sysvKey);
-        $items = array();
+        $items = [];
         $job = $this->runner->getJobFromIdNum($idNum);
         $period = $job->getCallPeriod();
         $lastInvoked = microtime(true);
@@ -181,7 +181,7 @@ class BatchDaemon
                 if (! $job->run($items)) {
                     $this->handleFailure($idNum, $items);
                 }
-                $items = array();
+                $items = [];
                 $lastInvoked = microtime(true);
             }
             pcntl_signal_dispatch();

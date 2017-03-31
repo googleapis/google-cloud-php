@@ -25,15 +25,7 @@ class SysvJobSubmitter implements JobSubmitInterface
     use SysvTrait;
 
     /* @var array */
-    private $sysvQs;
-
-    /**
-     * Just initialize the internal array.
-     */
-    public function __construct()
-    {
-        $this->sysvQs = array();
-    }
+    private $sysvQs = [];
 
     /**
      * Submit an item for async processing.

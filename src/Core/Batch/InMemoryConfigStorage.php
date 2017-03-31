@@ -30,10 +30,10 @@ final class InMemoryConfigStorage implements
     private $config;
 
     /* @var array */
-    private $items;
+    private $items = [];
 
     /* @var array */
-    private $lastInvoked;
+    private $lastInvoked = [];
 
     /* @var float */
     private $created;
@@ -71,11 +71,9 @@ final class InMemoryConfigStorage implements
     private function __construct()
     {
         $this->config = new BatchConfig();
-        $this->items = array();
-        $this->lastInvoked = array();
         $this->created = microtime(true);
         $this->initFailureFile();
-        register_shutdown_function(array($this, 'shutdown'));
+        register_shutdown_function([$this, 'shutdown']);
     }
 
     /**
@@ -130,7 +128,7 @@ final class InMemoryConfigStorage implements
     public function submit($item, $idNum)
     {
         if (!array_key_exists($idNum, $this->items)) {
-            $this->items[$idNum] = array();
+            $this->items[$idNum] = [];
             $this->lastInvoked[$idNum] = $this->created;
         }
         $this->items[$idNum][] = $item;
@@ -141,7 +139,7 @@ final class InMemoryConfigStorage implements
              || (count($this->items[$idNum]) !== 0
                  && microtime(true) > $this->lastInvoked[$idNum] + $period)) {
             $this->run($idNum);
-            $this->items[$idNum] = array();
+            $this->items[$idNum] = [];
             $this->lastInvoked[$idNum] = microtime(true);
         }
     }

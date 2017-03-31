@@ -72,7 +72,7 @@ trait HandleFailureTrait
     public function handleFailure($idNum, $items)
     {
         $fp = @fopen($this->failureFile, 'a');
-        @fwrite($fp, serialize(array($idNum => $items)) . PHP_EOL);
+        @fwrite($fp, serialize([$idNum => $items]) . PHP_EOL);
         @fclose($fp);
     }
 

@@ -109,7 +109,7 @@ class BatchJob
         if (! is_null($this->bootstrapFile)) {
             require_once($this->bootstrapFile);
         }
-        return call_user_func_array($this->func, array($items));
+        return call_user_func_array($this->func, [$items]);
     }
 
     /**
