@@ -55,7 +55,7 @@
         "james-heinrich/getid3": "^1.9",
         "erusev/parsedown": "^1.6",
         "vierbergenlars/php-semver": "^3.0",
-        "google/proto-client-php": "^0.9",
+        "google/proto-client-php": "^0.10",
         "google/gax": "^0.8"
     },
     "suggest": {
