@@ -59,7 +59,7 @@ class OperationTest extends SnippetTestCase
 
         $connectionStub = $this->prophesize(ConnectionInterface::class);
 
-        $connectionStub->asyncRecognize(Argument::any())
+        $connectionStub->longRunningRecognize(Argument::any())
             ->willReturn(['name' => 'foo']);
 
         $snippet->addLocal('connectionStub', $connectionStub->reveal());
