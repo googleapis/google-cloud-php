@@ -28,14 +28,75 @@ use Google\Cloud\Spanner\Session\SessionPoolInterface;
  *
  * Example:
  * ```
- * use Google\Cloud\ServiceBuilder;
+ * use Google\Cloud\Spanner\SpannerClient;
  *
- * $cloud = new ServiceBuilder;
- * $spanner = $cloud->spanner();
+ * $spanner = new SpannerClient();
  *
  * $database = $spanner->connect('my-instance', 'my-database');
  * $snapshot = $database->snapshot();
  * ```
+ *
+ * @method execute() {
+ *     Run a query.
+ *
+ *     Example:
+ *     ```
+ *     $result = $snapshot->execute(
+ *         'SELECT * FROM Users WHERE id = @userId',
+ *         [
+ *              'parameters' => [
+ *                  'userId' => 1
+ *              ]
+ *          ]
+ *     );
+ *     ```
+ *
+ *     @param string $sql The query string to execute.
+ *     @param array $options [optional] {
+ *         Configuration options.
+ *
+ *         @type array $parameters A key/value array of Query Parameters, where
+ *               the key is represented in the query string prefixed by a `@`
+ *               symbol.
+ *     }
+ *     @return Result
+ * }
+ * @method read() {
+ *     Lookup rows in a table.
+ *
+ *     Example:
+ *     ```
+ *     $keySet = new KeySet([
+ *         'keys' => [10]
+ *     ]);
+ *
+ *     $columns = ['ID', 'title', 'content'];
+ *
+ *     $result = $snapshot->read('Posts', $keySet, $columns);
+ *     ```
+ *
+ *     @param string $table The table name.
+ *     @param KeySet $keySet The KeySet to select rows.
+ *     @param array $columns A list of column names to return.
+ *     @param array $options [optional] {
+ *         Configuration Options.
+ *
+ *         @type string $index The name of an index on the table.
+ *         @type int $offset The number of rows to offset results by.
+ *         @type int $limit The number of results to return.
+ *     }
+ *     @return Result
+ * }
+ * @method id() {
+ *     Retrieve the Transaction ID.
+ *
+ *     Example:
+ *     ```
+ *     $id = $snapshot->id();
+ *     ```
+ *
+ *     @return string
+ * }
  */
 class Snapshot
 {
@@ -73,7 +134,7 @@ class Snapshot
      *
      * Example:
      * ```
-     * $timestamp = $transaction->readTimestamp();
+     * $timestamp = $snapshot->readTimestamp();
      * ```
      *
      * @return Timestamp

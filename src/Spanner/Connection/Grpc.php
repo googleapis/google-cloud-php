@@ -74,7 +74,7 @@ class Grpc implements ConnectionInterface
     private $mutationSetters = [
         'insert' => 'setInsert',
         'update' => 'setUpdate',
-        'upsert' => 'setInsertOrUpdate',
+        'insertOrUpdate' => 'setInsertOrUpdate',
         'replace' => 'setReplace',
         'delete' => 'setDelete'
     ];
@@ -399,12 +399,11 @@ class Grpc implements ConnectionInterface
      */
     public function executeSql(array $args = [])
     {
-        $params = new protobuf\Struct;
-        if (!empty($args['params'])) {
-            $params->deserialize($this->formatStructForApi($args['params']), $this->codec);
+        $params = $this->pluck('params', $args);
+        if ($params) {
+            $args['params'] = (new protobuf\Struct)
+                ->deserialize($this->formatStructForApi($params), $this->codec);
         }
-
-        $args['params'] = $params;
 
         foreach ($args['paramTypes'] as $key => $param) {
             $args['paramTypes'][$key] = (new Type)
@@ -488,23 +487,19 @@ class Grpc implements ConnectionInterface
                 $data = $mutation[$type];
 
                 switch ($type) {
-                    case 'insert':
-                    case 'update':
-                    case 'upsert':
-                    case 'replace':
-                        $data['values'] = $this->formatListForApi($data['values']);
-
-                        $operation = (new Mutation\Write)
-                            ->deserialize($data, $this->codec);
-
-                        break;
-
                     case 'delete':
                         if (isset($data['keySet'])) {
                             $data['keySet'] = $this->formatKeySet($data['keySet']);
                         }
 
                         $operation = (new Mutation\Delete)
+                            ->deserialize($data, $this->codec);
+
+                        break;
+                    default:
+                        $data['values'] = $this->formatListForApi($data['values']);
+
+                        $operation = (new Mutation\Write)
                             ->deserialize($data, $this->codec);
 
                         break;
@@ -605,6 +600,10 @@ class Grpc implements ConnectionInterface
                 }
 
                 $keySet['ranges'][$index] = $rangeItem;
+            }
+
+            if (empty($keySet['ranges'])) {
+                unset($keySet['ranges']);
             }
         }
 

@@ -47,17 +47,6 @@ trait TransactionReadTrait
     /**
      * Run a query.
      *
-     * Example:
-     * ```
-     * $result = $transaction->execute(
-     *     'SELECT * FROM Users WHERE id = @userId',
-     *     [
-     *          'parameters' => [
-     *              'userId' => 1
-     *          ]
-     *     ]
-     * );
-     * ```
      * @param string $sql The query string to execute.
      * @param array $options [optional] {
      *     Configuration options.
@@ -82,20 +71,6 @@ trait TransactionReadTrait
 
     /**
      * Lookup rows in a table.
-     *
-     * Note that if no KeySet is specified, all rows in a table will be
-     * returned.
-     *
-     * Example:
-     * ```
-     * $keySet = $spanner->keySet([
-     *     'keys' => [10]
-     * ]);
-     *
-     * $result = $database->read('Posts', [
-     *     'keySet' => $keySet
-     * ]);
-     * ```
      *
      * @param string $table The table name.
      * @param KeySet $keySet The KeySet to select rows.
@@ -123,11 +98,6 @@ trait TransactionReadTrait
 
     /**
      * Retrieve the Transaction ID.
-     *
-     * Example:
-     * ```
-     * $id = $transaction->id();
-     * ```
      *
      * @return string
      */

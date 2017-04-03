@@ -84,7 +84,7 @@ class SpannerClient
     /**
      * The default address of the service.
      */
-    const SERVICE_ADDRESS = 'wrenchworks.googleapis.com';
+    const SERVICE_ADDRESS = 'spanner.googleapis.com';
 
     /**
      * The default port of the service.

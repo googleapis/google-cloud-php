@@ -26,16 +26,15 @@ use Psr\Http\Message\StreamInterface;
  *
  * Example:
  * ```
- * use Google\Cloud\ServiceBuilder;
+ * use Google\Cloud\Spanner\SpannerClient;
  *
- * $cloud = new ServiceBuilder();
- * $spanner = $cloud->spanner();
+ * $spanner = new SpannerClient();
  *
  * $bytes = $spanner->bytes('hello world');
  * ```
  *
  * ```
- * // Bytes objects can be cast to strings for easy display.
+ * // Byte instances can be cast to base64-encoded strings.
  * echo (string) $bytes;
  * ```
  */

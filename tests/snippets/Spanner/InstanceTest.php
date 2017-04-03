@@ -18,6 +18,7 @@
 namespace Google\Cloud\Tests\Snippets\Spanner;
 
 use Google\Cloud\Core\Iam\Iam;
+use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
@@ -187,7 +188,7 @@ class InstanceTest extends SnippetTestCase
         $this->assertEquals(self::DATABASE, $res->returnVal()->name());
     }
 
-    public function databases()
+    public function testDatabases()
     {
         $snippet = $this->snippetFromMethod(Instance::class, 'databases');
         $snippet->addLocal('instance', $this->instance);
@@ -196,7 +197,9 @@ class InstanceTest extends SnippetTestCase
             ->shouldBeCalled()
             ->willReturn([
                 'databases' => [
-                    'projects/'. self::PROJECT .'/instances/'. self::INSTANCE .'/database/'. self::DATABASE
+                    [
+                        'name' => 'projects/'. self::PROJECT .'/instances/'. self::INSTANCE .'/databases/'. self::DATABASE
+                    ]
                 ]
             ]);
 
@@ -204,7 +207,7 @@ class InstanceTest extends SnippetTestCase
 
         $res = $snippet->invoke('databases');
 
-        $this->assertInstanceOf(\Generator::class, $res->returnVal());
+        $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
         $this->assertInstanceOf(Database::class, $res->returnVal()->current());
     }
 

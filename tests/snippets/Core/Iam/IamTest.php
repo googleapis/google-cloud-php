@@ -51,14 +51,6 @@ class IamTest extends SnippetTestCase
         $this->assertInstanceOf(Iam::class, $res->returnVal());
     }
 
-    public function testClass()
-    {
-        $snippet = $this->snippetFromClass(Iam::class);
-        $res = $snippet->invoke('iam');
-
-        $this->assertInstanceOf(Iam::class, $res->returnVal());
-    }
-
     public function testPolicy()
     {
         $snippet = $this->snippetFromMethod(Iam::class, 'policy');

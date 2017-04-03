@@ -414,24 +414,25 @@ class Database
      *
      * Example:
      * ```
-     * $transaction = $database->runTransaction(function (Transaction $t) use ($userName, $password) {
+     * $transaction = $database->runTransaction(function (Transaction $t) use ($username, $password) {
      *     $user = $t->execute('SELECT * FROM Users WHERE Name = @name and PasswordHash = @password', [
      *         'parameters' => [
-     *             'name' => $userName,
-     *             'password' => password_hash($password)
+     *             'name' => $username,
+     *             'password' => password_hash($password, PASSWORD_DEFAULT)
      *         ]
      *     ])->firstRow();
      *
      *     if ($user) {
-     *         grantAccess($user);
+     *         // Do something here to grant the user access.
+     *         // Maybe set a cookie?
      *
      *         $user['loginCount'] = $user['loginCount'] + 1;
      *         $t->update('Users', $user);
+     *
+     *         $t->commit();
      *     } else {
      *         $t->rollback();
      *     }
-     *
-     *     $t->commit();
      * });
      * ```
      *
@@ -469,6 +470,8 @@ class Database
         $startTransactionFn = function ($session, $options) use ($options, &$attempt) {
             if ($attempt === 0 && $options['transaction'] instanceof Transaction) {
                 $transaction = $options['transaction'];
+            } elseif ($attempt === 0 && $options['transaction']) {
+                throw new \InvalidArgumentException('Given transaction must be an instance of Transaction.');
             } else {
                 $transaction = $this->operation->transaction($session, $options);
             }
@@ -573,7 +576,7 @@ class Database
      *
      * Example:
      * ```
-     * $database->insert('Posts', [
+     * $database->insertBatch('Posts', [
      *     [
      *         'ID' => 1337,
      *         'postTitle' => 'Hello World!',
@@ -650,7 +653,7 @@ class Database
      *
      * Example:
      * ```
-     * $database->update('Posts', [
+     * $database->updateBatch('Posts', [
      *     [
      *         'ID' => 1337,
      *         'postContent' => 'Thanks for visiting our site!'
@@ -846,7 +849,7 @@ class Database
      *
      * Example:
      * ```
-     * $keySet = $spanner->keySet([
+     * $keySet = new KeySet([
      *     'keys' => [
      *         1337, 1338
      *     ]
@@ -879,7 +882,7 @@ class Database
      *
      * Example:
      * ```
-     * $result = $spanner->execute('SELECT * FROM Posts WHERE ID = @postId', [
+     * $result = $database->execute('SELECT * FROM Posts WHERE ID = @postId', [
      *     'parameters' => [
      *         'postId' => 1337
      *     ]
@@ -888,7 +891,7 @@ class Database
      *
      * ```
      * // Execute a read and return a new Snapshot for further reads.
-     * $result = $spanner->execute('SELECT * FROM Posts WHERE ID = @postId', [
+     * $result = $database->execute('SELECT * FROM Posts WHERE ID = @postId', [
      *      'parameters' => [
      *         'postId' => 1337
      *     ],
@@ -900,7 +903,7 @@ class Database
      *
      * ```
      * // Execute a read and return a new Transaction for further reads and writes.
-     * $result = $spanner->execute('SELECT * FROM Posts WHERE ID = @postId', [
+     * $result = $database->execute('SELECT * FROM Posts WHERE ID = @postId', [
      *      'parameters' => [
      *         'postId' => 1337
      *     ],
@@ -971,12 +974,9 @@ class Database
     /**
      * Lookup rows in a table.
      *
-     * Note that if no KeySet is specified, all rows in a table will be
-     * returned.
-     *
      * Example:
      * ```
-     * $keySet = $spanner->keySet([
+     * $keySet = new KeySet([
      *     'keys' => [1337]
      * ]);
      *
@@ -987,7 +987,7 @@ class Database
      *
      * ```
      * // Execute a read and return a new Snapshot for further reads.
-     * $keySet = $spanner->keySet([
+     * $keySet = new KeySet([
      *     'keys' => [1337]
      * ]);
      *
@@ -1002,7 +1002,7 @@ class Database
      *
      * ```
      * // Execute a read and return a new Transaction for further reads and writes.
-     * $keySet = $spanner->keySet([
+     * $keySet = new KeySet([
      *     'keys' => [1337]
      * ]);
      *

@@ -22,10 +22,9 @@ namespace Google\Cloud\Spanner;
  *
  * Example:
  * ```
- * use Google\Cloud\ServiceBuilder;
+ * use Google\Cloud\Spanner\SpannerClient;
  *
- * $cloud = new ServiceBuilder();
- * $spanner = $cloud->spanner();
+ * $spanner = new SpannerClient;
  *
  * $seconds = 100;
  * $nanoSeconds = 000001;
@@ -33,7 +32,7 @@ namespace Google\Cloud\Spanner;
  * ```
  *
  * ```
- * // Duration objects can be cast to strings for easy display.
+ * // Duration objects can be cast to json-encoded strings.
  * echo (string) $duration;
  * ```
  */
@@ -99,7 +98,7 @@ class Duration implements ValueInterface
      *
      * Example:
      * ```
-     * echo $date->formatAsString();
+     * echo $duration->formatAsString();
      * ```
      *
      * @return string

@@ -24,10 +24,9 @@ use Google\Cloud\Core\ValidateTrait;
  *
  * Example:
  * ```
- * use Google\Cloud\ServiceBuilder;
+ * use Google\Cloud\Spanner\SpannerClient;
  *
- * $cloud = new ServiceBuilder();
- * $spanner = $cloud->spanner();
+ * $spanner = new SpannerClient();
  *
  * $keySet = $spanner->keySet();
  * ```
@@ -101,7 +100,7 @@ class KeySet
      *
      * Example:
      * ```
-     * $range = $spanner->keyRange();
+     * $range = new KeyRange();
      * $keySet->addRange($range);
      * ```
      *
@@ -120,7 +119,7 @@ class KeySet
      *
      * Example:
      * ```
-     * $range = $spanner->keyRange();
+     * $range = new KeyRange();
      * $keySet->setRanges([$range]);
      * ```
      *
@@ -208,7 +207,7 @@ class KeySet
      *
      * Example:
      * ```
-     * $keySet->matchAll(true);
+     * $keySet->setMatchAll(true);
      * ```
      *
      * @param bool $all If true, all keys in a table will be matched.

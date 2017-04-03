@@ -21,7 +21,6 @@ use Google\Cloud\Datastore\Connection\ConnectionInterface;
 use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Datastore\EntityIterator;
 use Google\Cloud\Datastore\EntityMapper;
-use Google\Cloud\Datastore\EntityIterator;
 use Google\Cloud\Datastore\Operation;
 use Google\Cloud\Datastore\Query\GqlQuery;
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
