@@ -48,6 +48,10 @@ class SpannerClientTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
+        if (!extension_loaded('grpc')) {
+            $this->markTestSkipped('Must have the grpc extension installed to run this test.');
+        }
+
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->client = \Google\Cloud\Dev\stub(SpannerClient::class, [
             ['projectId' => self::PROJECT]
