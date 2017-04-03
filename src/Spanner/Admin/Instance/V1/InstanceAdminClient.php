@@ -281,7 +281,7 @@ class InstanceAdminClient
         return $pageStreamingDescriptors;
     }
 
-    public static function getLongRunningDescriptors()
+    private static function getLongRunningDescriptors()
     {
         return [
             'createInstance' => [

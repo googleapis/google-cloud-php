@@ -17,6 +17,9 @@
 
 namespace Google\Cloud\Spanner\Connection;
 
+/**
+ * Describes a connection to the Cloud Spanner API
+ */
 interface ConnectionInterface
 {
     /**

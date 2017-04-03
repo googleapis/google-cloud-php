@@ -20,6 +20,7 @@ namespace Google\Cloud\Spanner;
 use Google\Cloud\Core\Exception\AbortedException;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Iam\Iam;
+use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\LongRunning\LROTrait;
 use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 use Google\Cloud\Core\Retry;
@@ -111,8 +112,8 @@ class Database
      * @param string $projectId The project ID.
      * @param string $name The database name.
      * @param bool $returnInt64AsObject If true, 64 bit integers will be
-     *        returned as a {@see Google\Cloud\Int64} object for 32 bit platform
-     *        compatibility. **Defaults to** false.
+     *        returned as a {@see Google\Cloud\Core\Int64} object for 32 bit
+     *        platform compatibility. **Defaults to** false.
      */
     public function __construct(
         ConnectionInterface $connection,
@@ -397,7 +398,7 @@ class Database
      * new transaction.
      *
      * If a transaction exceeds the maximum number of retries,
-     * {@see Google\Cloud\Exception\AbortedException} will be thrown. Any other
+     * {@see Google\Cloud\Core\Exception\AbortedException} will be thrown. Any other
      * exception types will immediately bubble up and will interrupt the retry
      * operation.
      *
@@ -507,7 +508,7 @@ class Database
      *
      * When manually using a Transaction, it is advised that retry logic be
      * implemented to reapply all operations when an instance of
-     * {@see Google\Cloud\Exception\AbortedException} is thrown.
+     * {@see Google\Cloud\Core\Exception\AbortedException} is thrown.
      *
      * If you wish Google Cloud PHP to handle retry logic for you (recommended
      * for most cases), use {@see Google\Cloud\Spanner\Database::runTransaction()}.

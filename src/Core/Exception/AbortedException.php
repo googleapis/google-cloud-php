@@ -22,6 +22,11 @@ namespace Google\Cloud\Core\Exception;
  */
 class AbortedException extends ServiceException
 {
+    /**
+     * Return the delay in seconds and nanos before retrying the failed request.
+     *
+     * @return array
+     */
     public function getRetryDelay()
     {
         $metadata = array_filter($this->options, function ($metadataItem) {

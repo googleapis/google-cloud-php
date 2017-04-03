@@ -129,6 +129,9 @@ class Session
         );
     }
 
+    /**
+     * @access private
+     */
     public function __debugInfo()
     {
         return [

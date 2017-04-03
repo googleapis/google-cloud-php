@@ -235,7 +235,7 @@ class DatabaseAdminClient
         return $pageStreamingDescriptors;
     }
 
-    public static function getLongRunningDescriptors()
+    private static function getLongRunningDescriptors()
     {
         return [
             'createDatabase' => [

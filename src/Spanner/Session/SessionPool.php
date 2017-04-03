@@ -17,6 +17,9 @@
 
 namespace Google\Cloud\Spanner\Session;
 
+/**
+ * Manages a pool of sessions
+ */
 class SessionPool implements SessionPoolInterface
 {
     private $sessionClient;
@@ -26,21 +29,33 @@ class SessionPool implements SessionPoolInterface
      */
     private $sessions = [];
 
+    /**
+     * @access private
+     */
     public function __construct(SessionClient $sessionClient)
     {
         $this->sessionClient = $sessionClient;
     }
 
+    /**
+     * @access private
+     */
     public function addSession(Session $session)
     {
         $this->sessions[] = $sessions;
     }
 
+    /**
+     * @access private
+     */
     public function session($instance, $database, $context, array $options = [])
     {
         return array_rand($this->sessions);
     }
 
+    /**
+     * @access private
+     */
     public function refreshSessions()
     {
         // send a request from each session to keep it alive.

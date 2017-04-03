@@ -1,0 +1,8 @@
+{
+    "title": "Spanner",
+    "pattern": "spanner\/\\w{1,}",
+    "nav": [{
+      "title": "SpannerClient",
+      "type": "spanner/spannerclient"
+    }]
+}

@@ -58,8 +58,8 @@ class Operation
      * @param ConnectionInterface $connection A connection to Google Cloud
      *        Spanner.
      * @param bool $returnInt64AsObject If true, 64 bit integers will be
-     *        returned as a {@see Google\Cloud\Int64} object for 32 bit platform
-     *        compatibility.
+     *        returned as a {@see Google\Cloud\Core\Int64} object for 32 bit
+     *        platform compatibility.
      */
     public function __construct(ConnectionInterface $connection, $returnInt64AsObject)
     {
@@ -115,7 +115,7 @@ class Operation
      * @param array $options [optional] {
      *     Configuration options.
      *
-     *     @type string $transactionId
+     *     @type string $transactionId The ID of the transaction.
      * }
      * @return Timestamp The commit Timestamp.
      */

@@ -17,6 +17,9 @@
 
 namespace Google\Cloud\Spanner\Session;
 
+/**
+ * A simple session pool.
+ */
 class SimpleSessionPool implements SessionPoolInterface
 {
     /**
@@ -29,11 +32,17 @@ class SimpleSessionPool implements SessionPoolInterface
      */
     private $sessions = [];
 
+    /**
+     * @access private
+     */
     public function __construct(SessionClient $sessionClient)
     {
         $this->sessionClient = $sessionClient;
     }
 
+    /**
+     * @access private
+     */
     public function session($instance, $database, $mode, array $options = [])
     {
         if (!isset($this->sessions[$instance.$database.$mode])) {

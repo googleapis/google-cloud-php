@@ -17,10 +17,16 @@
 
 namespace Google\Cloud\Spanner\Session;
 
+/**
+ * Describes a session pool.
+ */
 interface SessionPoolInterface
 {
     const CONTEXT_READ = 'r';
     const CONTEXT_READWRITE = 'rw';
 
+    /**
+     * Get a session from the pool
+     */
     public function session($instance, $database, $context, array $options = []);
 }

@@ -23,6 +23,7 @@ use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
+use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\LongRunning\LROTrait;
 use Google\Cloud\Core\ValidateTrait;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
@@ -32,6 +33,7 @@ use Google\Cloud\Spanner\Connection\LongRunningConnection;
 use Google\Cloud\Spanner\Session\SessionClient;
 use Google\Cloud\Spanner\Session\SimpleSessionPool;
 use google\spanner\admin\instance\v1\Instance\State;
+use Psr\Http\StreamInterface;
 
 /**
  * Google Cloud Spanner is a highly scalable, transactional, managed, NewSQL
@@ -104,7 +106,7 @@ class SpannerClient
      *           **Defaults to** `3`.
      *     @type array $scopes Scopes to be used for the request.
      *     @type bool $returnInt64AsObject If true, 64 bit integers will be
-     *           returned as a {@see Google\Cloud\Int64} object for 32 bit
+     *           returned as a {@see Google\Cloud\Core\Int64} object for 32 bit
      *           platform compatibility. **Defaults to** false.
      * }
      * @throws Google\Cloud\Exception\GoogleException

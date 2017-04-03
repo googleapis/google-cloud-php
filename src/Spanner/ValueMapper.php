@@ -21,6 +21,9 @@ use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Int64;
 use google\spanner\v1\TypeCode;
 
+/**
+ * Manage value mappings between Google Cloud PHP and Cloud Spanner
+ */
 class ValueMapper
 {
     use ArrayTrait;
@@ -43,6 +46,9 @@ class ValueMapper
      */
     private $returnInt64AsObject;
 
+    /**
+     * @param bool $returnInt64AsObject
+     */
     public function __construct($returnInt64AsObject)
     {
         $this->returnInt64AsObject = $returnInt64AsObject;

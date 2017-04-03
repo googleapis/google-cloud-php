@@ -35,7 +35,7 @@ use RuntimeException;
  * {@see Google\Cloud\Spanner\Snapshot} is a better solution which does not
  * require a commit or rollback and does not lock any data.
  *
- * Transactions may raise {@see Google\Cloud\Exception\AbortedException} errors
+ * Transactions may raise {@see Google\Cloud\Core\Exception\AbortedException} errors
  * when the transaction cannot complete for any reason. In this case, the entire
  * operation (all reads and writes) should be reapplied atomically. Google Cloud
  * PHP handles this transparently when using
