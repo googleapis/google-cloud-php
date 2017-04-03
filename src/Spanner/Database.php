@@ -467,7 +467,7 @@ class Database
         $session = $this->selectSession(SessionPoolInterface::CONTEXT_READWRITE);
 
         $attempt = 0;
-        $startTransactionFn = function ($session, $options) use ($options, &$attempt) {
+        $startTransactionFn = function ($session, $options) use (&$attempt) {
             if ($attempt === 0 && $options['transaction'] instanceof Transaction) {
                 $transaction = $options['transaction'];
             } elseif ($attempt === 0 && $options['transaction']) {
