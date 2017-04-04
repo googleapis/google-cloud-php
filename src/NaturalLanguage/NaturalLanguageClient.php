@@ -220,9 +220,10 @@ class NaturalLanguageClient
      * Example:
      * ```
      * $annotation = $language->analyzeEntitySentiment('Google Cloud Platform is a powerful tool.');
-     * $sentiment = $annotation->sentiment();
+     * $entities = $annotation->entities();
      *
-     * if ($sentiment['score'] > 0) {
+     * echo 'Entity name: '. $entities[0]['name'] . PHP_EOL;
+     * if ($entities[0]['sentiment']['score'] > 0) {
      *     echo 'This is a positive message.';
      * }
      * ```
