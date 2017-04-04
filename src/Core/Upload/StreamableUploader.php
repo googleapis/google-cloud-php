@@ -17,8 +17,8 @@
 
 namespace Google\Cloud\Core\Upload;
 
-use Google\Cloud\Exception\GoogleException;
-use Google\Cloud\Exception\ServiceException;
+use Google\Cloud\Core\Exception\GoogleException;
+use Google\Cloud\Core\Exception\ServiceException;
 use GuzzleHttp\Psr7\Request;
 
 /**
