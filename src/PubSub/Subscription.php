@@ -115,7 +115,7 @@ class Subscription
         $name,
         $topicName,
         $encode,
-        array $info = null
+        array $info = []
     ) {
         $this->connection = $connection;
         $this->projectId = $projectId;
@@ -179,12 +179,25 @@ class Subscription
      * @param array $options [optional] {
      *     Configuration Options
      *
-     *     @type int $ackDeadlineSeconds This value is the maximum time after a
-     *           subscriber receives a message before the subscriber should
-     *           acknowledge the message. **Defaults to** `10`.
-     *     @type array $pushConfig See {@see Google\Cloud\PubSub\Subscription::modifyPushConfig()} or
-     *           [PushConfig](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions#PushConfig)
-     *           for usage.
+     *     For information regarding the push configuration settings, see
+     *     [PushConfig](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions#PushConfig).
+     *
+     *     @type string $pushConfig.pushEndpoint A URL locating the endpoint to which
+     *           messages should be pushed. For example, a Webhook endpoint
+     *           might use "https://example.com/push".
+     *     @type array $pushConfig.attributes Endpoint configuration attributes.
+     *     @type int $ackDeadlineSeconds The maximum time after a subscriber
+     *           receives a message before the subscriber should acknowledge the
+     *           message.
+     *     @type bool $retainAckedMessages Indicates whether to retain
+     *           acknowledged messages.
+     *     @type Duration $messageRetentionDuration How long to retain
+     *           unacknowledged messages in the subscription's backlog, from the
+     *           moment a message is published. If `$retainAckedMessages` is
+     *           true, then this also configures the retention of acknowledged
+     *           messages, and thus configures how far back in time a `Seek`
+     *           can be done. Cannot be more than 7 days or less than 10 minutes.
+     *           **Defaults to** 7 days.
      * }
      * @return array An array of subscription info
      * @throws \InvalidArgumentException
@@ -205,6 +218,42 @@ class Subscription
         ]);
 
         return $this->info;
+    }
+
+    /**
+     * Update the subscription.
+     *
+     * @param array $subscription {
+     *     The Subscription data.
+     *
+     *     For information regarding the push configuration settings, see
+     *     [PushConfig](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions#PushConfig).
+     *
+     *     @type string $pushConfig.pushEndpoint A URL locating the endpoint to which
+     *           messages should be pushed. For example, a Webhook endpoint
+     *           might use "https://example.com/push".
+     *     @type array $pushConfig.attributes Endpoint configuration attributes.
+     *     @type int $ackDeadlineSeconds The maximum time after a subscriber
+     *           receives a message before the subscriber should acknowledge the
+     *           message.
+     *     @type bool $retainAckedMessages Indicates whether to retain
+     *           acknowledged messages.
+     *     @type Duration $messageRetentionDuration How long to retain
+     *           unacknowledged messages in the subscription's backlog, from the
+     *           moment a message is published. If `$retainAckedMessages` is
+     *           true, then this also configures the retention of acknowledged
+     *           messages, and thus configures how far back in time a `Seek`
+     *           can be done. Cannot be more than 7 days or less than 10 minutes.
+     *           **Defaults to** 7 days.
+     * }
+     * @param array $options [optional] Configuration options.
+     * @return array The subscription info.
+     */
+    public function update(array $subscription, array $options = [])
+    {
+        return $this->info = $this->connection->updateSubscription([
+            'name' => $this->name
+        ] + $options + $subscription);
     }
 
     /**
@@ -531,6 +580,41 @@ class Subscription
         $this->connection->modifyPushConfig($options + [
             'subscription' => $this->name,
             'pushConfig' => $pushConfig
+        ]);
+    }
+
+    /**
+     * Seek to a given timestamp.
+     *
+     * When you seek to a time, it has the effect of marking every message
+     * received before this time as acknowledged, and all messages received
+     * after the time as unacknowledged.
+     *
+     * @param Timestamp $timestamp The time to seek to.
+     * @return void
+     */
+    public function seekToTime(Timestamp $timestamp)
+    {
+        return $this->connection->seek([
+            'subscription' => $this->name,
+            'time' => $timestamp
+        ]);
+    }
+
+    /**
+     * Seek to a given snapshot.
+     *
+     * When seeking to a snapshot, any message that had an "unacknowledged"
+     * state when the snapshot was created can be re-delivered.
+     *
+     * @param Snapshot $snapshot The snapshot to seek to.
+     * @return void
+     */
+    public function seekToSnapshot(Snapshot $snapshot)
+    {
+        return $this->connection->seek([
+            'subscription' => $this->name,
+            'snapshot' => $this->formatName('snapshot', $snapshot->name(), $this->projectId)
         ]);
     }
 

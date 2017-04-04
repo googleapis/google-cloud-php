@@ -92,7 +92,7 @@ class Topic
         $projectId,
         $name,
         $encode,
-        array $info = null
+        array $info = []
     ) {
         $this->connection = $connection;
         $this->projectId = $projectId;

@@ -30,7 +30,8 @@ trait ResourceNameTrait
     private $templates = [
         'project' => 'projects/%1$s',
         'topic' => 'projects/%2$s/topics/%1$s',
-        'subscription' => 'projects/%2$s/subscriptions/%1$s'
+        'subscription' => 'projects/%2$s/subscriptions/%1$s',
+        'snapshot' => 'projects/%2$s/snapshots/%1$s'
     ];
 
     /**
@@ -39,7 +40,8 @@ trait ResourceNameTrait
     private $regexes = [
         'project' => '/^projects\/([^\/]*)$/',
         'topic' => '/projects\/[^\/]*\/topics\/(.*)/',
-        'subscription' => '/projects\/[^\/]*\/subscriptions\/(.*)/'
+        'subscription' => '/projects\/[^\/]*\/subscriptions\/(.*)/',
+        'snapshot' => '/projects\/[^\/]*\/snapshots\/(.*)/'
     ];
 
     /**
