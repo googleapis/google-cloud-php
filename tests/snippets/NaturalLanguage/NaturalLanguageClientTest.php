@@ -84,6 +84,25 @@ class NaturalLanguageClientTest extends SnippetTestCase
         $this->assertEquals("This is a positive message.", $res->output());
     }
 
+    public function testAnalyzeEntitySentiment()
+    {
+        $this->connection->analyzeEntitySentiment(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([
+                'documentSentiment' => [
+                    'score' => 1.0
+                ]
+            ]);
+
+        $this->client->setConnection($this->connection->reveal());
+
+        $snippet = $this->snippetFromMethod(NaturalLanguageClient::class, 'analyzeEntitySentiment');
+        $snippet->addLocal('language', $this->client);
+
+        $res = $snippet->invoke();
+        $this->assertEquals("This is a positive message.", $res->output());
+    }
+
     public function testAnalyzeSyntax()
     {
         $this->connection->analyzeSyntax(Argument::any())

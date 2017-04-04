@@ -39,6 +39,12 @@ interface ConnectionInterface
      * @param array $args
      * @return array
      */
+    public function analyzeEntitySentiment(array $args = []);
+
+    /**
+     * @param array $args
+     * @return array
+     */
     public function analyzeSyntax(array $args = []);
 
     /**
