@@ -43,7 +43,7 @@ require 'vendor/autoload.php';
 use Google\Cloud\Logging\LoggingClient;
 
 $logging = new LoggingClient([
-	'projectId' => 'my_project'
+    'projectId' => 'my_project'
 ]);
 
 // Get a logger instance.
@@ -54,7 +54,7 @@ $logger->write('my message');
 
 // List log entries from a specific log.
 $entries = $logging->entries([
-	'filter' => 'logName = projects/my_project/logs/my_log'
+    'filter' => 'logName = projects/my_project/logs/my_log'
 ]);
 
 foreach ($entries as $entry) {
