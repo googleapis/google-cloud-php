@@ -72,4 +72,32 @@ class RestTraitTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(json_decode($responseBody, true), $actualResponse);
     }
+
+    public function testSendsRequestWithOverriddenRequestBuilder()
+    {
+        $actualRequestBuilder = $this->prophesize(RequestBuilder::class);
+        $actualRequestBuilder->build(Argument::cetera())
+            ->willReturn(new Request('GET', '/someplace'));
+
+        $this->requestBuilder->build(Argument::any())
+            ->shouldNotBeCalled();
+
+        $restOptions = [
+            'restOptions' => ['debug' => true],
+            'retries' => 5,
+            'requestTimeout' => 3.5
+        ];
+        $responseBody = '{"whatAWonderful": "response"}';
+
+        $this->requestWrapper->send(Argument::any(), $restOptions)
+            ->willReturn(new Response(200, [], $responseBody));
+
+        $this->implementation->setRequestBuilder($this->requestBuilder->reveal());
+        $this->implementation->setRequestWrapper($this->requestWrapper->reveal());
+        $actualResponse = $this->implementation->send('resource', 'method', $restOptions + [
+            'requestBuilder' => $actualRequestBuilder->reveal()
+        ]);
+
+        $this->assertEquals(json_decode($responseBody, true), $actualResponse);
+    }
 }

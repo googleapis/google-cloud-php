@@ -31,6 +31,7 @@ use Google\Cloud\Core\CallTrait;
  * Annotations are returned by
  * {@see Google\Cloud\NaturalLanguage\NaturalLanguageClient::analyzeEntities()},
  * {@see Google\Cloud\NaturalLanguage\NaturalLanguageClient::analyzeSentiment()},
+ * {@see Google\Cloud\NaturalLanguage\NaturalLanguageClient::analyzeEntitySentiment()},
  * {@see Google\Cloud\NaturalLanguage\NaturalLanguageClient::analyzeSyntax()} and
  * {@see Google\Cloud\NaturalLanguage\NaturalLanguageClient::annotateText()}.
  *
@@ -53,7 +54,7 @@ use Google\Cloud\Core\CallTrait;
  *     }
  *     ```
  *
- *     @see https://cloud.google.com/natural-language/docs/reference/rest/v1beta1/Sentence Sentence type documentation
+ *     @see https://cloud.google.com/natural-language/docs/reference/rest/v1/Sentence Sentence type documentation
  *
  *     @return array|null
  * }
@@ -67,7 +68,7 @@ use Google\Cloud\Core\CallTrait;
  *     }
  *     ```
  *
- *     @see https://cloud.google.com/natural-language/docs/reference/rest/v1beta1/Token Token type documentation
+ *     @see https://cloud.google.com/natural-language/docs/reference/rest/v1/Token Token type documentation
  *
  *     @return array|null
  * }
@@ -81,7 +82,7 @@ use Google\Cloud\Core\CallTrait;
  *     }
  *     ```
  *
- *     @see https://cloud.google.com/natural-language/docs/reference/rest/v1beta1/Entity Entity type documentation
+ *     @see https://cloud.google.com/natural-language/docs/reference/rest/v1/Entity Entity type documentation
  *
  *     @return array|null
  * }
@@ -124,7 +125,7 @@ class Annotation
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/natural-language/docs/reference/rest/v1beta1/documents/annotateText#response-body Annotate Text documentation
+     * @see https://cloud.google.com/natural-language/docs/reference/rest/v1/documents/annotateText#response-body Annotate Text documentation
      * @codingStandardsIgnoreEnd
      *
      * @return array
@@ -146,7 +147,7 @@ class Annotation
      * }
      * ```
      *
-     * @see https://cloud.google.com/natural-language/docs/reference/rest/v1beta1/Sentiment Sentiment type documentation
+     * @see https://cloud.google.com/natural-language/docs/reference/rest/v1/Sentiment Sentiment type documentation
      *
      * @return array|null
      */
@@ -168,7 +169,7 @@ class Annotation
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/natural-language/docs/reference/rest/v1beta1/Token#Tag Token tags documentation
+     * @see https://cloud.google.com/natural-language/docs/reference/rest/v1/Token#Tag Token tags documentation
      * @codingStandardsIgnoreEnd
      *
      * @return array|null
@@ -195,7 +196,7 @@ class Annotation
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/natural-language/docs/reference/rest/v1beta1/Token#Label Token labels documentation
+     * @see https://cloud.google.com/natural-language/docs/reference/rest/v1/Token#Label Token labels documentation
      * @codingStandardsIgnoreEnd
      *
      * @return array|null
@@ -222,7 +223,7 @@ class Annotation
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/natural-language/docs/reference/rest/v1beta1/Entity#Type Entity types documentation
+     * @see https://cloud.google.com/natural-language/docs/reference/rest/v1/Entity#Type Entity types documentation
      * @codingStandardsIgnoreEnd
      *
      * @return array|null
