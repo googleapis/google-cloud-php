@@ -15,11 +15,11 @@ This client supports the following Google Cloud Platform services at a [Beta](#v
 
 * [Google BigQuery](#google-bigquery-beta) (Beta)
 * [Google Cloud Natural Language](#google-cloud-natural-language-beta) (Beta)
-* [Google Cloud Pub/Sub](#google-cloud-pubsub-beta) (Beta)
 * [Google Cloud Translation](#google-cloud-translation-beta) (Beta)
 * [Google Cloud Vision](#google-cloud-vision-beta) (Beta)
 
 This client supports the following Google Cloud Platform services at an [Alpha](#versioning) quality level:
+* [Google Cloud Pub/Sub](#google-cloud-pubsub-alpha) (Alpha)
 * [Google Cloud Speech](#google-cloud-speech-alpha) (Alpha)
 
 If you need support for other Google APIs, please check out the [Google APIs Client Library for PHP](https://github.com/google/google-api-php-client).
@@ -248,53 +248,6 @@ Google Cloud Natural Language can be installed separately by requiring the `goog
 $ require google/cloud-natural-language
 ```
 
-## Google Cloud Pub/Sub (Beta)
-
-- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/pubsub/pubsubclient)
-- [Official Documentation](https://cloud.google.com/pubsub/docs)
-
-#### Preview
-
-```php
-require 'vendor/autoload.php';
-
-use Google\Cloud\PubSub\PubSubClient;
-
-$pubSub = new PubSubClient([
-    'projectId' => 'my_project'
-]);
-
-// Get an instance of a previously created topic.
-$topic = $pubSub->topic('my_topic');
-
-// Publish a message to the topic.
-$topic->publish([
-    'data' => 'My new message.',
-    'attributes' => [
-        'location' => 'Detroit'
-    ]
-]);
-
-// Get an instance of a previously created subscription.
-$subscription = $pubSub->subscription('my_subscription');
-
-// Pull all available messages.
-$messages = $subscription->pull();
-
-foreach ($messages as $message) {
-    echo $message->data() . "\n";
-    echo $message->attribute('location');
-}
-```
-
-#### google/cloud-pubsub
-
-Google Cloud Pub/Sub can be installed separately by requiring the `google/cloud-pubsub` composer package:
-
-```
-$ require google/cloud-pubsub
-```
-
 ## Google Cloud Translation (Beta)
 
 - [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/translate/translateclient)
@@ -387,6 +340,53 @@ Google Cloud Vision can be installed separately by requiring the `google/cloud-v
 
 ```
 $ require google/cloud-vision
+```
+
+## Google Cloud Pub/Sub (Alpha)
+
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/pubsub/pubsubclient)
+- [Official Documentation](https://cloud.google.com/pubsub/docs)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\PubSub\PubSubClient;
+
+$pubSub = new PubSubClient([
+    'projectId' => 'my_project'
+]);
+
+// Get an instance of a previously created topic.
+$topic = $pubSub->topic('my_topic');
+
+// Publish a message to the topic.
+$topic->publish([
+    'data' => 'My new message.',
+    'attributes' => [
+        'location' => 'Detroit'
+    ]
+]);
+
+// Get an instance of a previously created subscription.
+$subscription = $pubSub->subscription('my_subscription');
+
+// Pull all available messages.
+$messages = $subscription->pull();
+
+foreach ($messages as $message) {
+    echo $message->data() . "\n";
+    echo $message->attribute('location');
+}
+```
+
+#### google/cloud-pubsub
+
+Google Cloud Pub/Sub can be installed separately by requiring the `google/cloud-pubsub` composer package:
+
+```
+$ require google/cloud-pubsub
 ```
 
 ## Google Cloud Speech (Alpha)
