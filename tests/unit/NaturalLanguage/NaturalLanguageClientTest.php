@@ -74,6 +74,23 @@ class NaturalLanguageClientTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider analyzeDataProvider
      */
+    public function testAnalyzeEntitySentiment($options, $expectedOptions)
+    {
+        $content = $options['content'];
+        unset($options['content']);
+        $this->connection
+            ->analyzeEntitySentiment($expectedOptions)
+            ->willReturn([])
+            ->shouldBeCalledTimes(1);
+        $this->client->setConnection($this->connection->reveal());
+        $annotation = $this->client->analyzeEntitySentiment($content, $options);
+
+        $this->assertInstanceOf(Annotation::class, $annotation);
+    }
+
+    /**
+     * @dataProvider analyzeDataProvider
+     */
     public function testAnalyzeSyntax($options, $expectedOptions)
     {
         $content = $options['content'];

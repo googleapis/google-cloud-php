@@ -84,6 +84,32 @@ class NaturalLanguageClientTest extends SnippetTestCase
         $this->assertEquals("This is a positive message.", $res->output());
     }
 
+    public function testAnalyzeEntitySentiment()
+    {
+        $this->connection->analyzeEntitySentiment(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([
+                'entities' => [
+                    [
+                        'name' => 'Google Cloud Platform',
+                        'sentiment' => [
+                            'score' => 1.0
+                        ]
+                    ]
+                ]
+            ]);
+
+        $this->client->setConnection($this->connection->reveal());
+
+        $snippet = $this->snippetFromMethod(NaturalLanguageClient::class, 'analyzeEntitySentiment');
+        $snippet->addLocal('language', $this->client);
+
+        $res = $snippet->invoke();
+        $lines = explode(PHP_EOL, $res->output());
+        $this->assertEquals('Entity name: Google Cloud Platform', $lines[0]);
+        $this->assertEquals("This is a positive message.", $lines[1]);
+    }
+
     public function testAnalyzeSyntax()
     {
         $this->connection->analyzeSyntax(Argument::any())
