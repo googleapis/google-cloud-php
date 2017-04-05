@@ -11,6 +11,7 @@
             "name": "google/cloud",
             "defaultService": "servicebuilder",
             "versions": [
+                "v0.25.1",
                 "v0.25.0",
                 "v0.24.0",
                 "v0.23.0",
@@ -57,6 +58,7 @@
             "name": "google/cloud-core",
             "defaultService": "core/readme",
             "versions": [
+                "v1.0.1",
                 "v1.0.0",
                 "v0.1.0",
                 "master"
