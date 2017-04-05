@@ -113,7 +113,7 @@ class NaturalLanguageClient
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/natural-language/docs/reference/rest/v1/documents/analyzeEntities Analyze Entities API documentation
+     * @see https://cloud.google.com/natural-language/docs/reference/rest/v1beta1/documents/analyzeEntities Analyze Entities API documentation
      * @codingStandardsIgnoreEnd
      *
      * @param string|StorageObject $content The content to analyze. May be
@@ -170,7 +170,7 @@ class NaturalLanguageClient
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/natural-language/docs/reference/rest/v1/documents/analyzeSentiment Analyze Sentiment API documentation
+     * @see https://cloud.google.com/natural-language/docs/reference/rest/v1beta1/documents/analyzeSentiment Analyze Sentiment API documentation
      * @codingStandardsIgnoreEnd
      *
      * @param string|StorageObject $content The content to analyze. May be
@@ -214,65 +214,6 @@ class NaturalLanguageClient
     }
 
     /**
-     * Finds entities in the text and analyzes sentiment associated with each
-     * entity and its mentions.
-     *
-     * Example:
-     * ```
-     * $annotation = $language->analyzeEntitySentiment('Google Cloud Platform is a powerful tool.');
-     * $entities = $annotation->entities();
-     *
-     * echo 'Entity name: ' . $entities[0]['name'] . PHP_EOL;
-     * if ($entities[0]['sentiment']['score'] > 0) {
-     *     echo 'This is a positive message.';
-     * }
-     * ```
-     *
-     * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/natural-language/docs/reference/rest/v1beta2/documents/analyzeEntitySentiment Analyze Entity Sentiment API documentation
-     * @codingStandardsIgnoreEnd
-     *
-     * @param string|StorageObject $content The content to analyze. May be
-     *        either a string of UTF-8 encoded content, a URI pointing to a
-     *        Google Cloud Storage object in the format of
-     *        `gs://{bucket-name}/{object-name}` or a
-     *        {@see Google\Cloud\Storage\StorageObject}.
-     * @param array $options [optional] {
-     *     Configuration options.
-     *
-     *     @type bool $detectGcsUri When providing $content as a string, this
-     *           flag determines whether or not to attempt to detect if the
-     *           string represents a Google Cloud Storage URI in the format of
-     *           `gs://{bucket-name}/{object-name}`. **Defaults to** `true`.
-     *     @type string $type The document type. Acceptable values are
-     *           `PLAIN_TEXT` or `HTML`. **Defaults to** `"PLAIN_TEXT"`.
-     *     @type string $language The language of the document. Both ISO
-     *           (e.g., en, es) and BCP-47 (e.g., en-US, es-ES) language codes
-     *           are accepted. If no value is provided, the language will be
-     *           detected by the service.
-     *     @type string $encodingType The text encoding type used by the API to
-     *           calculate offsets. Acceptable values are `"NONE"`, `"UTF8"`,
-     *           `"UTF16"` and `"UTF32"`. **Defaults to** `"UTF8"`. Please note
-     *           the following behaviors for the encoding type setting: `"NONE"`
-     *           will return a value of "-1" for offsets. `"UTF8"` will
-     *           return byte offsets. `"UTF16"` will return
-     *           [code unit](http://unicode.org/glossary/#code_unit) offsets.
-     *           `"UTF32"` will return
-     *           [unicode character](http://unicode.org/glossary/#character)
-     *           offsets.
-     * }
-     * @return Annotation
-     */
-    public function analyzeEntitySentiment($content, array $options = [])
-    {
-        return new Annotation(
-            $this->connection->analyzeEntitySentiment(
-                $this->formatRequest($content, $options)
-            )
-        );
-    }
-
-    /**
      * Analyzes the document and provides a full set of text annotations.
      *
      * Example:
@@ -285,7 +226,7 @@ class NaturalLanguageClient
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/natural-language/docs/reference/rest/v1/documents/analyzeSyntax Analyze Syntax API documentation
+     * @see https://cloud.google.com/natural-language/docs/reference/rest/v1beta1/documents/analyzeSyntax Analyze Syntax API documentation
      * @codingStandardsIgnoreEnd
      *
      * @param string|StorageObject $content The content to analyze. May be
@@ -353,7 +294,7 @@ class NaturalLanguageClient
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/natural-language/docs/reference/rest/v1/documents/annotateText Annotate Text API documentation
+     * @see https://cloud.google.com/natural-language/docs/reference/rest/v1beta1/documents/annotateText Annotate Text API documentation
      * @codingStandardsIgnoreEnd
      *
      * @param string|StorageObject $content The content to analyze. May be

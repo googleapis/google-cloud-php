@@ -75,7 +75,6 @@ class RestTest extends \PHPUnit_Framework_TestCase
     {
         return [
             ['analyzeSentiment'],
-            ['analyzeEntitySentiment'],
             ['analyzeEntities'],
             ['analyzeSyntax'],
             ['annotateText']

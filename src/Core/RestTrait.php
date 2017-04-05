@@ -63,14 +63,7 @@ trait RestTrait
      *
      * @param string $resource The resource type used for the request.
      * @param string $method The method used for the request.
-     * @param array $options [optional] {
-     *     Options used to build out the request.
-     *
-     *     @type RequestBuilder $requestBuilder An instance of RequestBuilder.
-     *           If provided, the request will be constructed using the given
-     *           instance, rather than the one found in the `$requestBuilder`
-     *           property.
-     * }
+     * @param array $options [optional] Options used to build out the request.
      * @return array
      */
     public function send($resource, $method, array $options = [])
@@ -81,14 +74,9 @@ trait RestTrait
             'requestTimeout'
         ], $options);
 
-        $requestBuilder = $this->pluck('requestBuilder', $options, false);
-        if (is_null($requestBuilder) || !($requestBuilder instanceof RequestBuilder)) {
-            $requestBuilder = $this->requestBuilder;
-        }
-
         return json_decode(
             $this->requestWrapper->send(
-                $requestBuilder->build($resource, $method, $options),
+                $this->requestBuilder->build($resource, $method, $options),
                 $requestOptions
             )->getBody(),
             true

@@ -35,11 +35,6 @@ class Rest implements ConnectionInterface
     const BASE_URI = 'https://language.googleapis.com/';
 
     /**
-     * @var RequestBuilder
-     */
-    private $betaRequestBuilder;
-
-    /**
      * @param array $config
      */
     public function __construct(array $config = [])
@@ -54,11 +49,6 @@ class Rest implements ConnectionInterface
             $config['serviceDefinitionPath'],
             self::BASE_URI
         ));
-
-        $this->betaRequestBuilder = new RequestBuilder(
-            __DIR__ . '/ServiceDefinition/language-v1beta2.json',
-            self::BASE_URI
-        );
     }
 
     /**
@@ -77,17 +67,6 @@ class Rest implements ConnectionInterface
     public function analyzeSentiment(array $args = [])
     {
         return $this->send('documents', 'analyzeSentiment', $args);
-    }
-
-    /**
-     * @param array $args
-     * @return array
-     */
-    public function analyzeEntitySentiment(array $args = [])
-    {
-        return $this->send('documents', 'analyzeEntitySentiment', [
-            'requestBuilder' => $this->betaRequestBuilder
-        ] + $args);
     }
 
     /**
