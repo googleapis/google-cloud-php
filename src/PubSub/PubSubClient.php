@@ -344,6 +344,14 @@ class PubSubClient
     /**
      * Create a snapshot.
      *
+     * Example:
+     * ```
+     * $subscription = $pubsub->subscription($subscriptionName);
+     * $snapshot = $pubsub->createSnapshot('my-snapshot', $subscription);
+     * ```
+     *
+     * @see <API DOC>
+     *
      * @param string $name The snapshot name.
      * @param Subscription $subscription The subscription to take a snapshot of.
      * @param array $options [optional] Configuration options.
@@ -363,6 +371,10 @@ class PubSubClient
     /**
      * Lazily create a snapshot instance.
      *
+     * Example:
+     * ```
+     * $snapshot = $pubsub->snapshot('my-snapshot');
+     *
      * @param string $name The snapshot name.
      * @param array $info [optional] Snapshot info.
      * @return Snapshot
@@ -380,6 +392,7 @@ class PubSubClient
      * $snapshots = $pubsub->snapshots();
      * foreach ($snapshots as $snapshot) {
      *      $info = $snapshot->info();
+     *      echo $snapshot['name'] . PHP_EOL;
      * }
      * ```
      *
@@ -527,6 +540,7 @@ class PubSubClient
 
     /**
      * @access private
+     * @codeCoverageIgnore
      */
     public function __debugInfo()
     {

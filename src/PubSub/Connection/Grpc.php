@@ -190,7 +190,7 @@ class Grpc implements ConnectionInterface
         $mask = array_keys($subscriptionObject->serialize(new PhpArray([], false)));
 
         // Remove immutable properties.
-        $mask = array_diff($mask, ['name', 'topic']);
+        $mask = array_values(array_diff($mask, ['name', 'topic']));
 
         $fieldMask = (new protobuf\FieldMask())->deserialize(['paths' => $mask], $this->codec);
 

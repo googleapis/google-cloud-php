@@ -223,6 +223,16 @@ class Subscription
     /**
      * Update the subscription.
      *
+     * Note that subscription name and topic are immutable properties and may
+     * not be modified.
+     *
+     * Example:
+     * ```
+     * $subscription->update([
+     *     'retainAckedMessages' => true
+     * ]);
+     * ```
+     *
      * @param array $subscription {
      *     The Subscription data.
      *
@@ -590,6 +600,12 @@ class Subscription
      * received before this time as acknowledged, and all messages received
      * after the time as unacknowledged.
      *
+     * Example:
+     * ```
+     * $time = $pubsub->timestamp(new \DateTime('2017-04-01'));
+     * $subscription->seekToTime($time);
+     * ```
+     *
      * @param Timestamp $timestamp The time to seek to.
      * @return void
      */
@@ -597,7 +613,7 @@ class Subscription
     {
         return $this->connection->seek([
             'subscription' => $this->name,
-            'time' => $timestamp
+            'time' => $timestamp->formatAsString()
         ]);
     }
 
@@ -607,6 +623,12 @@ class Subscription
      * When seeking to a snapshot, any message that had an "unacknowledged"
      * state when the snapshot was created can be re-delivered.
      *
+     * Example:
+     * ```
+     * $snapshot = $pubsub->snapshot('my-snapshot');
+     * $subscription->seekToSnapshot($snapshot);
+     * ```
+     *
      * @param Snapshot $snapshot The snapshot to seek to.
      * @return void
      */
@@ -614,7 +636,7 @@ class Subscription
     {
         return $this->connection->seek([
             'subscription' => $this->name,
-            'snapshot' => $this->formatName('snapshot', $snapshot->name(), $this->projectId)
+            'snapshot' => $snapshot->name()
         ]);
     }
 

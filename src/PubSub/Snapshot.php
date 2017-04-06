@@ -39,7 +39,7 @@ class Snapshot
     /**
      * @var ConnectionInterface
      */
-    private $connection;
+    protected $connection;
 
     /**
      * @var string
@@ -107,7 +107,25 @@ class Snapshot
     }
 
     /**
+     * Get the snapshot info.
+     *
+     * Example:
+     * ```
+     * $info = $snapshot->info();
+     * ```
+     *
+     * @return array
+     */
+    public function info()
+    {
+        return $this->info;
+    }
+
+    /**
      * Create a new Snapshot.
+     *
+     * When creating a snapshot, a subscription name must be supplied at
+     * instantiation.
      *
      * Example:
      * ```
@@ -162,7 +180,7 @@ class Snapshot
     public function topic()
     {
         return $this->info['topic']
-            ? new Topic($this->connection, $this->projectId, $this->info['topic'])
+            ? new Topic($this->connection, $this->projectId, $this->info['topic'], $this->encode)
             : null;
     }
 
@@ -179,12 +197,13 @@ class Snapshot
     public function subscription()
     {
         return $this->info['subscription']
-            ? new Subscription($this->connection, $this->projectId, $this->info['subscription'], null)
+            ? new Subscription($this->connection, $this->projectId, $this->info['subscription'], null, $this->encode)
             : null;
     }
 
     /**
      * @access private
+     * @codeCoverageIgnore
      */
     public function __debugInfo()
     {
