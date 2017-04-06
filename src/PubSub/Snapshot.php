@@ -64,8 +64,7 @@ class Snapshot
     /**
      * @param ConnectionInterface $connection A connection to Cloud Pub/Sub
      * @param string $projectId The current Project ID.
-     * @param string $name The snapshot name. This value should be the bare
-     *        name, not fully qualified. (e.g. `foo`, rather than `projects/<projectId>/snapshots/foo`).
+     * @param string $name The snapshot name.
      * @param bool $encode Whether certain request arguments should be base64-encoded.
      * @param array $info [optional] The snapshot data. When creating a
      *        Snapshot, this array **must** contain a `$info.subscription`
@@ -75,10 +74,17 @@ class Snapshot
     {
         $this->connection = $connection;
         $this->projectId = $projectId;
-        $this->name = $name;
         $this->encode = $encode;
+
+        // Accept either a simple name or a fully-qualified name.
+        if ($this->isFullyQualifiedName('snapshot', $name)) {
+            $this->name = $name;
+        } else {
+            $this->name = $this->formatName('snapshot', $name, $projectId);
+        }
+
         $this->info = $info + [
-            'name' => null,
+            'name' => $this->name,
             'subscription' => null,
             'topic' => null,
             'expirationTime' => null
@@ -120,7 +126,7 @@ class Snapshot
 
         return $this->info = $this->connection->createSnapshot([
             'project' => $this->formatName('project', $this->projectId),
-            'name' => $this->formatName('snapshot', $this->name, $this->projectId),
+            'name' => $this->name,
             'subscription' => $this->info['subscription']
         ]);
     }
@@ -139,7 +145,7 @@ class Snapshot
     public function delete(array $options = [])
     {
         $this->connection->deleteSnapshot([
-            'snapshot' => $this->formatName('snapshot', $this->name, $this->projectId)
+            'snapshot' => $this->name
         ]);
     }
 
