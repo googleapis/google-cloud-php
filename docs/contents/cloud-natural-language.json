@@ -2,7 +2,7 @@
     "title": "Natural Language",
     "pattern": "naturallanguage\/\\w{1,}",
     "services": [{
-        "title": "NaturalLanguageClient",
+        "title": "LanguageClient",
         "type": "naturallanguage/naturallanguageclient"
     }, {
         "title": "Annotation",

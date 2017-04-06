@@ -15,25 +15,25 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Unit\NaturalLanguage;
+namespace Google\Cloud\Tests\Unit\Language;
 
-use Google\Cloud\NaturalLanguage\Annotation;
-use Google\Cloud\NaturalLanguage\Connection\ConnectionInterface;
-use Google\Cloud\NaturalLanguage\NaturalLanguageClient;
+use Google\Cloud\Language\Annotation;
+use Google\Cloud\Language\Connection\ConnectionInterface;
+use Google\Cloud\Language\LanguageClient;
 use Google\Cloud\Storage\StorageObject;
 use Prophecy\Argument;
 
 /**
  * @group naturallanguage
  */
-class NaturalLanguageClientTest extends \PHPUnit_Framework_TestCase
+class LanguageClientTest extends \PHPUnit_Framework_TestCase
 {
     private $client;
     private $connection;
 
     public function setUp()
     {
-        $this->client = new NaturalLanguageTestClient();
+        $this->client = new LanguageTestClient();
         $this->connection = $this->prophesize(ConnectionInterface::class);
     }
 
@@ -164,7 +164,7 @@ class NaturalLanguageClientTest extends \PHPUnit_Framework_TestCase
     }
 }
 
-class NaturalLanguageTestClient extends NaturalLanguageClient
+class LanguageTestClient extends LanguageClient
 {
     public function setConnection($connection)
     {

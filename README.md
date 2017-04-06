@@ -211,9 +211,9 @@ $ require google/cloud-bigquery
 ```php
 require 'vendor/autoload.php';
 
-use Google\Cloud\NaturalLanguage\NaturalLanguageClient;
+use Google\Cloud\Language\LanguageClient;
 
-$language = new NaturalLanguageClient([
+$language = new LanguageClient([
     'projectId' => 'my_project'
 ]);
 

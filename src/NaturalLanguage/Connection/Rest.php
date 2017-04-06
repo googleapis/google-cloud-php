@@ -15,13 +15,13 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\NaturalLanguage\Connection;
+namespace Google\Cloud\Language\Connection;
 
 use Google\Cloud\Core\RequestBuilder;
 use Google\Cloud\Core\RequestWrapper;
 use Google\Cloud\Core\RestTrait;
 use Google\Cloud\Core\UriTrait;
-use Google\Cloud\NaturalLanguage\NaturalLanguageClient;
+use Google\Cloud\Language\LanguageClient;
 
 /**
  * Implementation of the
@@ -41,7 +41,7 @@ class Rest implements ConnectionInterface
     {
         $config += [
             'serviceDefinitionPath' => __DIR__ . '/ServiceDefinition/language-v1.json',
-            'componentVersion' => NaturalLanguageClient::VERSION
+            'componentVersion' => LanguageClient::VERSION
         ];
 
         $this->setRequestWrapper(new RequestWrapper($config));

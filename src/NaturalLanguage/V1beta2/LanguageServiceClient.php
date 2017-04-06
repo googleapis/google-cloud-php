@@ -26,7 +26,7 @@
  * backwards compatibility.
  */
 
-namespace Google\Cloud\NaturalLanguage\V1beta2;
+namespace Google\Cloud\Language\V1beta2;
 
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;

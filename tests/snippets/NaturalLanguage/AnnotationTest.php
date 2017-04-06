@@ -15,11 +15,11 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Snippets\NaturalLanguage;
+namespace Google\Cloud\Tests\Snippets\Language;
 
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
-use Google\Cloud\NaturalLanguage\Annotation;
-use Google\Cloud\NaturalLanguage\Connection\ConnectionInterface;
+use Google\Cloud\Language\Annotation;
+use Google\Cloud\Language\Connection\ConnectionInterface;
 use Prophecy\Argument;
 
 /**

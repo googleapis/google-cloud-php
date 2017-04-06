@@ -20,7 +20,7 @@ namespace Google\Cloud\Tests\Unit;
 use Google\Cloud\BigQuery\BigQueryClient;
 use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Logging\LoggingClient;
-use Google\Cloud\NaturalLanguage\NaturalLanguageClient;
+use Google\Cloud\Language\LanguageClient;
 use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\ServiceBuilder;
 use Google\Cloud\Speech\SpeechClient;
@@ -74,8 +74,8 @@ class ServiceBuilderTest extends \PHPUnit_Framework_TestCase
                 'logging',
                 LoggingClient::class
             ], [
-                'naturalLanguage',
-                NaturalLanguageClient::class
+                'language',
+                LanguageClient::class
             ], [
                 'pubsub',
                 PubSubClient::class

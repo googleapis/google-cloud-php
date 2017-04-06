@@ -15,12 +15,12 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\System\NaturalLanguage;
+namespace Google\Cloud\Tests\System\Language;
 
 /**
  * @group naturallanguage
  */
-class AnalyzeTest extends NaturalLanguageTestCase
+class AnalyzeTest extends LanguageTestCase
 {
     /**
      * @dataProvider analyzeSyntaxProvider

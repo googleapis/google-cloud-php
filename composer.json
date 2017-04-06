@@ -15,6 +15,7 @@
         "big query",
         "datastore",
         "stackdriver logging",
+        "language",
         "natural language",
         "pubsub",
         "pub sub",
