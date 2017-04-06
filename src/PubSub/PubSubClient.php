@@ -392,7 +392,7 @@ class PubSubClient
      * $snapshots = $pubsub->snapshots();
      * foreach ($snapshots as $snapshot) {
      *      $info = $snapshot->info();
-     *      echo $snapshot['name'] . PHP_EOL;
+     *      echo $info['name'];
      * }
      * ```
      *

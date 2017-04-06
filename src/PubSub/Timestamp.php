@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\PubSUb;
+namespace Google\Cloud\PubSub;
 
 /**
  * Represents a Timestamp value.

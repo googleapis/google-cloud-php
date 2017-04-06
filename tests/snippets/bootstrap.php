@@ -54,6 +54,7 @@ stub('OperationStub', Google\Cloud\Datastore\Operation::class);
 stub('PubSubClientStub', Google\Cloud\PubSub\PubSubClient::class);
 stub('QueryResultsStub', Google\Cloud\BigQuery\QueryResults::class);
 stub('SinkStub', Google\Cloud\Logging\Sink::class);
+stub('SnapshotStub', Google\Cloud\PubSub\Snapshot::class);
 stub('SpeechClientStub', Google\Cloud\Speech\SpeechClient::class);
 stub('SpeechOperationStub', Google\Cloud\Speech\Operation::class);
 stub('StorageClientStub', Google\Cloud\Storage\StorageClient::class);
