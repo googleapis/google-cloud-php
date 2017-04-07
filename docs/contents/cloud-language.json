@@ -7,5 +7,15 @@
     }, {
         "title": "Annotation",
         "type": "language/annotation"
+    }, {
+        "title": "v1beta2",
+        "type": "language/v1beta2/readme",
+        "patterns": [
+          "language/v1beta2/\\w{1,}"
+        ],
+        "nav": [{
+            "title": "LanguageServiceClient",
+            "type": "language/v1beta2/languageserviceclient"
+        }]
     }]
 }
