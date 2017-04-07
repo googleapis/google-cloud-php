@@ -788,6 +788,8 @@ class Bucket
     /**
      * Manage the IAM policy for the current Bucket.
      *
+     * Please note that this method may not yet be available in your project.
+     *
      * Example:
      * ```
      * $iam = $bucket->iam();
