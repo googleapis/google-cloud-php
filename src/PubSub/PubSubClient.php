@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2016 Google Inc. All Rights Reserved.
+ * Copyright 2017 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -350,8 +350,6 @@ class PubSubClient
      * $snapshot = $pubsub->createSnapshot('my-snapshot', $subscription);
      * ```
      *
-     * @see <API DOC>
-     *
      * @param string $name The snapshot name.
      * @param Subscription $subscription The subscription to take a snapshot of.
      * @param array $options [optional] Configuration options.
@@ -374,6 +372,7 @@ class PubSubClient
      * Example:
      * ```
      * $snapshot = $pubsub->snapshot('my-snapshot');
+     * ```
      *
      * @param string $name The snapshot name.
      * @param array $info [optional] Snapshot info.
@@ -395,8 +394,6 @@ class PubSubClient
      *      echo $info['name'];
      * }
      * ```
-     *
-     * @see <API DOC>
      *
      * @param array $options [optional] {
      *     Configuration Options

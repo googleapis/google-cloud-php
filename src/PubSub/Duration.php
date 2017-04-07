@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2016 Google Inc. All Rights Reserved.
+ * Copyright 2017 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,16 +18,16 @@
 namespace Google\Cloud\PubSub;
 
 /**
- * Represents a Duration protobuf type.
+ * Represents a Duration type.
  *
  * Example:
  * ```
  * use Google\Cloud\PubSub\PubSubClient;
  *
- * $pubsub = new PubSubClient;
+ * $pubsub = new PubSubClient();
  *
  * $seconds = 100;
- * $nanoSeconds = 000001;
+ * $nanoSeconds = 1000;
  * $duration = $pubsub->duration($seconds, $nanoSeconds);
  * ```
  *
@@ -52,7 +52,7 @@ class Duration
 
     /**
      * @param int $seconds The number of seconds in the duration.
-     * @param int $nanos The number of nanoseconds in the duration.
+     * @param int $nanos [optional] The number of nanoseconds in the duration.
      */
     public function __construct($seconds, $nanos = 0)
     {
