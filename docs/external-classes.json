@@ -14,6 +14,9 @@
   "name": "google\\cloud\\language\\v1\\",
   "uri": "https://github.com/googleapis/proto-client-php/tree/master/src/language/v1"
 }, {
+  "name": "google\\cloud\\language\\v1beta2\\",
+  "uri": "https://github.com/googleapis/proto-client-php/tree/master/src/language/v1beta2"
+}, {
   "name": "google\\logging\\v2\\",
   "uri": "https://github.com/googleapis/proto-client-php/tree/master/src/logging/v2"
 }, {

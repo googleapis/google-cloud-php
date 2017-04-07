@@ -15,12 +15,12 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Unit\NaturalLanguage;
+namespace Google\Cloud\Tests\Unit\Language;
 
-use Google\Cloud\NaturalLanguage\Annotation;
+use Google\Cloud\Language\Annotation;
 
 /**
- * @group naturallanguage
+ * @group language
  */
 class AnnotationTest extends \PHPUnit_Framework_TestCase
 {

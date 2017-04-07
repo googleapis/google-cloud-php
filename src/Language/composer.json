@@ -1,5 +1,5 @@
 {
-    "name": "google/cloud-natural-language",
+    "name": "google/cloud-language",
     "description": "Cloud Natural Language Client for PHP",
     "license": "Apache-2.0",
     "minimum-stability": "stable",
@@ -11,15 +11,15 @@
     },
     "extra": {
         "component": {
-            "id": "cloud-natural-language",
-            "target": "GoogleCloudPlatform/google-cloud-php-naturallanguage.git",
-            "path": "src/NaturalLanguage",
-            "entry": "NaturalLanguageClient.php"
+            "id": "cloud-language",
+            "target": "GoogleCloudPlatform/google-cloud-php-language.git",
+            "path": "src/Language",
+            "entry": "LanguageClient.php"
         }
     },
     "autoload": {
         "psr-4": {
-            "Google\\Cloud\\NaturalLanguage\\": ""
+            "Google\\Cloud\\Language\\": ""
         }
     }
 }

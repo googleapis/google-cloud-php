@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\NaturalLanguage\Connection;
+namespace Google\Cloud\Language\Connection;
 
 /**
  * Represents a connection to

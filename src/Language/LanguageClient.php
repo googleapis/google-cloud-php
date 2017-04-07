@@ -15,12 +15,12 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\NaturalLanguage;
+namespace Google\Cloud\Language;
 
 use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Core\RetryDeciderTrait;
-use Google\Cloud\NaturalLanguage\Connection\ConnectionInterface;
-use Google\Cloud\NaturalLanguage\Connection\Rest;
+use Google\Cloud\Language\Connection\ConnectionInterface;
+use Google\Cloud\Language\Connection\Rest;
 use Google\Cloud\Storage\StorageObject;
 use Psr\Cache\CacheItemPoolInterface;
 
@@ -33,12 +33,12 @@ use Psr\Cache\CacheItemPoolInterface;
  *
  * Example:
  * ```
- * use Google\Cloud\NaturalLanguage\NaturalLanguageClient;
+ * use Google\Cloud\Language\LanguageClient;
  *
- * $language = new NaturalLanguageClient();
+ * $language = new LanguageClient();
  * ```
  */
-class NaturalLanguageClient
+class LanguageClient
 {
     use ClientTrait;
     use RetryDeciderTrait;
@@ -62,7 +62,7 @@ class NaturalLanguageClient
     protected $connection;
 
     /**
-     * Create a NaturalLanguage client.
+     * Create a Language client.
      *
      * @param array $config [optional] {
      *     Configuration Options.
