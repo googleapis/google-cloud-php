@@ -48,7 +48,6 @@ class InstanceTest extends \PHPUnit_Framework_TestCase
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->instance = \Google\Cloud\Dev\stub(Instance::class, [
             $this->connection->reveal(),
-            $this->prophesize(SessionPoolInterface::class)->reveal(),
             $this->prophesize(LongRunningConnectionInterface::class)->reveal(),
             [],
             self::PROJECT_ID,

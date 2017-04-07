@@ -129,13 +129,15 @@ interface ConnectionInterface
 
     /**
      * @param array $args [optional]
+     * @return \Generator
      */
-    public function executeSql(array $args = []);
+    public function executeStreamingSql(array $args = []);
 
     /**
      * @param array $args [optional]
+     * @return \Generator
      */
-    public function read(array $args = []);
+    public function streamingRead(array $args = []);
 
     /**
      * @param array $args [optional]

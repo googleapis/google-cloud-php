@@ -24,7 +24,7 @@ namespace Google\Cloud\Spanner;
  * ```
  * use Google\Cloud\Spanner\SpannerClient;
  *
- * $spanner = new SpannerClient;
+ * $spanner = new SpannerClient();
  *
  * $seconds = 100;
  * $nanoSeconds = 000001;

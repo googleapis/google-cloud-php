@@ -29,7 +29,6 @@ use Google\Cloud\Spanner\Duration;
 use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\KeyRange;
 use Google\Cloud\Spanner\KeySet;
-use Google\Cloud\Spanner\Session\SessionClient;
 use Google\Cloud\Spanner\SpannerClient;
 use Google\Cloud\Spanner\Timestamp;
 use Prophecy\Argument;
@@ -278,11 +277,5 @@ class SpannerClientTest extends \PHPUnit_Framework_TestCase
     {
         $d = $this->client->duration(10, 1);
         $this->assertInstanceOf(Duration::class, $d);
-    }
-
-    public function testSessionClient()
-    {
-        $sc = $this->client->sessionClient();
-        $this->assertInstanceOf(SessionClient::class, $sc);
     }
 }

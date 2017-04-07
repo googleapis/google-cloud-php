@@ -29,6 +29,7 @@ use Google\GAX\ApiException;
 use Google\GAX\OperationResponse;
 use Google\GAX\PagedListResponse;
 use Google\GAX\RetrySettings;
+use Google\GAX\ServerStream;
 use Grpc;
 
 /**
@@ -158,7 +159,7 @@ class GrpcRequestWrapper
      * Serializes a gRPC response.
      *
      * @param mixed $response
-     * @return array|null
+     * @return \Generator|array|null
      */
     private function handleResponse($response)
     {
@@ -174,7 +175,28 @@ class GrpcRequestWrapper
             return $response;
         }
 
+        if ($response instanceof ServerStream) {
+            return $this->handleStream($response);
+        }
+
         return null;
+    }
+
+    /**
+     * Handles a streaming response.
+     *
+     * @param ServerStream $response
+     * @return \Generator|array|null
+     */
+    private function handleStream(ServerStream $response)
+    {
+        try {
+            foreach ($response->readAll() as $count => $result) {
+                yield $result->serialize($this->codec);
+            }
+        } catch (\Exception $ex) {
+            throw $this->convertToGoogleException($ex);
+        }
     }
 
     /**

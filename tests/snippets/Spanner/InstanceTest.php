@@ -25,7 +25,6 @@ use Google\Cloud\Dev\Snippet\SnippetTestCase;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
-use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Prophecy\Argument;
 
 /**
@@ -46,7 +45,6 @@ class InstanceTest extends SnippetTestCase
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->instance = \Google\Cloud\Dev\stub(Instance::class, [
             $this->connection->reveal(),
-            $this->prophesize(SessionPoolInterface::class)->reveal(),
             $this->prophesize(LongRunningConnectionInterface::class)->reveal(),
             [],
             self::PROJECT,

@@ -44,10 +44,9 @@ use RuntimeException;
  *
  * Example:
  * ```
- * use Google\Cloud\ServiceBuilder;
+ * use Google\Cloud\Spanner\SpannerClient;
  *
- * $cloud = new ServiceBuilder();
- * $spanner = $cloud->spanner();
+ * $spanner = new SpannerClient();
  *
  * $database = $spanner->connect('my-instance', 'my-database');
  *
@@ -76,6 +75,10 @@ use RuntimeException;
  *              ]
  *          ]
  *     );
+ *
+ *     $firstRow = $result
+ *         ->rows()
+ *         ->current();
  *     ```
  *
  *     @param string $sql The query string to execute.
@@ -100,6 +103,10 @@ use RuntimeException;
  *     $columns = ['ID', 'title', 'content'];
  *
  *     $result = $transaction->read('Posts', $keySet, $columns);
+ *
+ *     $firstRow = $result
+ *         ->rows()
+ *         ->current();
  *     ```
  *
  *     @param string $table The table name.
@@ -442,6 +449,11 @@ class Transaction
     public function state()
     {
         return $this->state;
+    }
+
+    public function id()
+    {
+        return $this->transactionId;
     }
 
     /**

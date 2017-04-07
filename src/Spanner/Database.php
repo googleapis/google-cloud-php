@@ -26,28 +26,27 @@ use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 use Google\Cloud\Core\Retry;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Connection\IamDatabase;
+use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\V1\SpannerClient as GrpcSpannerClient;
 
 /**
- * Represents a Google Cloud Spanner Database
+ * Represents a Google Cloud Spanner Database.
  *
  * Example:
  * ```
- * use Google\Cloud\ServiceBuilder;
+ * use Google\Cloud\Spanner\SpannerClient;
  *
- * $cloud = new ServiceBuilder();
- * $spanner = $cloud->spanner();
+ * $spanner = new SpannerClient();
  *
  * $database = $spanner->connect('my-instance', 'my-database');
  * ```
  *
  * ```
  * // Databases can also be connected to via an Instance.
- * use Google\Cloud\ServiceBuilder;
+ * use Google\Cloud\Spanner\SpannerClient;
  *
- * $cloud = new ServiceBuilder();
- * $spanner = $cloud->spanner();
+ * $spanner = new SpannerClient();
  *
  * $instance = $spanner->instance('my-instance');
  * $database = $instance->database('my-database');
@@ -69,11 +68,6 @@ class Database
      * @var Instance
      */
     private $instance;
-
-    /**
-     * @var SessionPoolInterface
-     */
-    private $sessionPool;
 
     /**
      * @var LongRunningConnectionInterface
@@ -101,39 +95,53 @@ class Database
     private $iam;
 
     /**
+     * @var Session|null
+     */
+    private $session;
+
+    /**
+     * @var SessionPoolInterface|null
+     */
+    private $sessionPool;
+
+    /**
      * Create an object representing a Database.
      *
      * @param ConnectionInterface $connection The connection to the
      *        Google Cloud Spanner Admin API.
      * @param Instance $instance The instance in which the database exists.
-     * @param SessionPoolInterface $sessionPool The session pool implementation.
      * @param LongRunningConnectionInterface $lroConnection An implementation
      *        mapping to methods which handle LRO resolution in the service.
      * @param string $projectId The project ID.
      * @param string $name The database name.
-     * @param bool $returnInt64AsObject If true, 64 bit integers will be
-     *        returned as a {@see Google\Cloud\Core\Int64} object for 32 bit
+     * @param SessionPoolInterface $sessionPool [optional] The session pool
+     *        implementation.
+     * @param bool $returnInt64AsObject [optional If true, 64 bit integers will
+     *        be returned as a {@see Google\Cloud\Core\Int64} object for 32 bit
      *        platform compatibility. **Defaults to** false.
      */
     public function __construct(
         ConnectionInterface $connection,
         Instance $instance,
-        SessionPoolInterface $sessionPool,
         LongRunningConnectionInterface $lroConnection,
         array $lroCallables,
         $projectId,
         $name,
+        SessionPoolInterface $sessionPool = null,
         $returnInt64AsObject = false
     ) {
         $this->connection = $connection;
         $this->instance = $instance;
-        $this->sessionPool = $sessionPool;
         $this->lroConnection = $lroConnection;
         $this->lroCallables = $lroCallables;
         $this->projectId = $projectId;
         $this->name = $name;
-
+        $this->sessionPool = $sessionPool;
         $this->operation = new Operation($connection, $returnInt64AsObject);
+
+        if ($this->sessionPool) {
+            $this->sessionPool->setDatabase($this);
+        }
     }
 
     /**
@@ -386,7 +394,11 @@ class Database
 
         $session = $this->selectSession(SessionPoolInterface::CONTEXT_READ);
 
-        return $this->operation->snapshot($session, $transactionOptions);
+        try {
+            return $this->operation->snapshot($session, $transactionOptions);
+        } finally {
+            $session->setExpiration();
+        }
     }
 
     /**
@@ -416,12 +428,13 @@ class Database
      * Example:
      * ```
      * $transaction = $database->runTransaction(function (Transaction $t) use ($username, $password) {
-     *     $user = $t->execute('SELECT * FROM Users WHERE Name = @name and PasswordHash = @password', [
+     *     $rows = $t->execute('SELECT * FROM Users WHERE Name = @name and PasswordHash = @password', [
      *         'parameters' => [
      *             'name' => $username,
      *             'password' => password_hash($password, PASSWORD_DEFAULT)
      *         ]
-     *     ])->firstRow();
+     *     ])->rows();
+     *     $user = $rows->current();
      *
      *     if ($user) {
      *         // Do something here to grant the user access.
@@ -500,7 +513,12 @@ class Database
         };
 
         $retry = new Retry($options['maxRetries'], $delayFn);
-        return $retry->execute($commitFn, [$operation, $session, $options]);
+
+        try {
+            return $retry->execute($commitFn, [$operation, $session, $options]);
+        } finally {
+            $session->setExpiration();
+        }
     }
 
     /**
@@ -539,7 +557,12 @@ class Database
         ];
 
         $session = $this->selectSession(SessionPoolInterface::CONTEXT_READWRITE);
-        return $this->operation->transaction($session, $options);
+
+        try {
+            return $this->operation->transaction($session, $options);
+        } finally {
+            $session->setExpiration();
+        }
     }
 
     /**
@@ -609,7 +632,12 @@ class Database
         $session = $this->selectSession(SessionPoolInterface::CONTEXT_READWRITE);
 
         $options['singleUseTransaction'] = $this->configureTransactionOptions();
-        return $this->operation->commit($session, $mutations, $options);
+
+        try {
+            return $this->operation->commit($session, $mutations, $options);
+        } finally {
+            $session->setExpiration();
+        }
     }
 
     /**
@@ -684,7 +712,12 @@ class Database
         $session = $this->selectSession(SessionPoolInterface::CONTEXT_READWRITE);
 
         $options['singleUseTransaction'] = $this->configureTransactionOptions();
-        return $this->operation->commit($session, $mutations, $options);
+
+        try {
+            return $this->operation->commit($session, $mutations, $options);
+        } finally {
+            $session->setExpiration();
+        }
     }
 
     /**
@@ -762,7 +795,12 @@ class Database
         $session = $this->selectSession(SessionPoolInterface::CONTEXT_READWRITE);
 
         $options['singleUseTransaction'] = $this->configureTransactionOptions();
-        return $this->operation->commit($session, $mutations, $options);
+
+        try {
+            return $this->operation->commit($session, $mutations, $options);
+        } finally {
+            $session->setExpiration();
+        }
     }
 
     /**
@@ -840,7 +878,12 @@ class Database
         $session = $this->selectSession(SessionPoolInterface::CONTEXT_READWRITE);
 
         $options['singleUseTransaction'] = $this->configureTransactionOptions();
-        return $this->operation->commit($session, $mutations, $options);
+
+        try {
+            return $this->operation->commit($session, $mutations, $options);
+        } finally {
+            $session->setExpiration();
+        }
     }
 
     /**
@@ -875,7 +918,12 @@ class Database
         $session = $this->selectSession(SessionPoolInterface::CONTEXT_READWRITE);
 
         $options['singleUseTransaction'] = $this->configureTransactionOptions();
-        return $this->operation->commit($session, $mutations, $options);
+
+        try {
+            return $this->operation->commit($session, $mutations, $options);
+        } finally {
+            $session->setExpiration();
+        }
     }
 
     /**
@@ -888,6 +936,10 @@ class Database
      *         'postId' => 1337
      *     ]
      * ]);
+     *
+     * $firstRow = $result
+     *     ->rows()
+     *     ->current();
      * ```
      *
      * ```
@@ -898,6 +950,8 @@ class Database
      *     ],
      *     'begin' => true
      * ]);
+     *
+     * $result->rows()->current();
      *
      * $snapshot = $result->snapshot();
      * ```
@@ -911,6 +965,8 @@ class Database
      *     'begin' => true,
      *     'transactionType' => SessionPoolInterface::CONTEXT_READWRITE
      * ]);
+     *
+     * $result->rows()->current();
      *
      * $transaction = $result->transaction();
      * ```
@@ -969,7 +1025,11 @@ class Database
         $options['transaction'] = $transactionOptions;
         $options['transactionContext'] = $context;
 
-        return $this->operation->execute($session, $sql, $options);
+        try {
+            return $this->operation->execute($session, $sql, $options);
+        } finally {
+            $session->setExpiration();
+        }
     }
 
     /**
@@ -984,6 +1044,10 @@ class Database
      * $columns = ['ID', 'title', 'content'];
      *
      * $result = $database->read('Posts', $keySet, $columns);
+     *
+     * $firstRow = $result
+     *     ->rows()
+     *     ->current();
      * ```
      *
      * ```
@@ -997,6 +1061,8 @@ class Database
      * $result = $database->read('Posts', $keySet, $columns, [
      *     'begin' => true
      * ]);
+     *
+     * $result->rows()->current();
      *
      * $snapshot = $result->snapshot();
      * ```
@@ -1013,6 +1079,8 @@ class Database
      *     'begin' => true,
      *     'transactionType' => SessionPoolInterface::CONTEXT_READWRITE
      * ]);
+     *
+     * $result->rows()->current();
      *
      * $transaction = $result->transaction();
      * ```
@@ -1071,36 +1139,123 @@ class Database
         $options['transaction'] = $transactionOptions;
         $options['transactionContext'] = $context;
 
-        return $this->operation->read($session, $table, $keySet, $columns, $options);
+        try {
+            return $this->operation->read($session, $table, $keySet, $columns, $options);
+        } finally {
+            $session->setExpiration();
+        }
     }
 
     /**
-     * Retrieve a session from the session pool.
+     * Get the underlying session pool implementation.
      *
-     * @param string $context The session context.
+     * Example:
+     * ```
+     * $pool = $database->sessionPool();
+     * ```
+     *
+     * @return SessionPoolInterface|null
+     */
+    public function sessionPool()
+    {
+        return $this->sessionPool;
+    }
+
+    /**
+     * Closes the database connection by returning the active session back to
+     * the session pool or by deleting the session if there is no pool
+     * associated.
+     *
+     * It is highly important to ensure this is called as it is not always safe
+     * to rely soley on {@see Google\Cloud\Spanner\Database::__destruct()}.
+     *
+     * Example:
+     * ```
+     * $database->close();
+     * ```
+     */
+    public function close()
+    {
+        if ($this->session) {
+            if ($this->sessionPool) {
+                $this->sessionPool->release($this->session);
+            } else {
+                $this->session->delete();
+            }
+
+            $this->session = null;
+        }
+    }
+
+    /**
+     * Closes the database connection.
+     */
+    public function __destruct()
+    {
+        try {
+            $this->close();
+        } catch (\Exception $ex) {
+        }
+    }
+
+    /**
+     * Create a new session.
+     *
+     * Sessions are handled behind the scenes and this method not need to be
+     * called directly.
+     *
+     * @access private
+     * @param array $options [optional] Configuration options.
      * @return Session
      */
-    private function selectSession($context = SessionPoolInterface::CONTEXT_READ)
+    public function createSession(array $options = [])
     {
-        return $this->sessionPool->session(
-            $this->instance->name(),
-            $this->name,
-            $context
+        $res = $this->connection->createSession($options + [
+            'database' => GrpcSpannerClient::formatDatabaseName(
+                $this->projectId,
+                $this->instance->name(),
+                $this->name
+            )
+        ]);
+
+        return $this->session($res['name']);
+    }
+
+    /**
+     * Lazily instantiates a session. There are no network requests made at this
+     * point. To see the operations that can be performed on a session please
+     * see {@see Google\Cloud\Spanner\Session\Session}.
+     *
+     * Sessions are handled behind the scenes and this method not need to be
+     * called directly.
+     *
+     * @access private
+     * @param string $name The session's name.
+     * @return Session
+     */
+    public function session($name)
+    {
+        return new Session(
+            $this->connection,
+            $this->projectId,
+            GrpcSpannerClient::parseInstanceFromSessionName($name),
+            GrpcSpannerClient::parseDatabaseFromSessionName($name),
+            GrpcSpannerClient::parseSessionFromSessionName($name)
         );
     }
 
     /**
-     * Convert the simple database name to a fully qualified name.
+     * Retrieves the database's identity.
      *
-     * @return string
+     * @access private
+     * @return array
      */
-    private function fullyQualifiedDatabaseName()
+    public function identity()
     {
-        return GrpcSpannerClient::formatDatabaseName(
-            $this->projectId,
-            $this->instance->name(),
-            $this->name
-        );
+        return [
+            'database' => $this->name,
+            'instance' => $this->instance->name(),
+        ];
     }
 
     /**
@@ -1118,5 +1273,41 @@ class Database
             'instance' => $this->instance,
             'sessionPool' => $this->sessionPool,
         ];
+    }
+
+    /**
+     * If no session is already associated with the database use the session
+     * pool implementation to retrieve a session one - otherwise create on
+     * demand.
+     *
+     * @param string $context [optional] The session context. **Defaults to**
+     *        `r` (READ).
+     * @return Session
+     */
+    private function selectSession($context = SessionPoolInterface::CONTEXT_READ)
+    {
+        if ($this->session) {
+            return $this->session;
+        }
+
+        if ($this->sessionPool) {
+            return $this->session = $this->sessionPool->acquire($context);
+        } else {
+            return $this->session = $this->createSession();
+        }
+    }
+
+    /**
+     * Convert the simple database name to a fully qualified name.
+     *
+     * @return string
+     */
+    private function fullyQualifiedDatabaseName()
+    {
+        return GrpcSpannerClient::formatDatabaseName(
+            $this->projectId,
+            $this->instance->name(),
+            $this->name
+        );
     }
 }

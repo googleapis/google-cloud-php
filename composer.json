@@ -19,6 +19,7 @@
         "natural language",
         "pubsub",
         "pub sub",
+        "spanner",
         "speech",
         "storage",
         "gcs",
@@ -39,13 +40,14 @@
         }
     ],
     "require": {
-        "php": ">=5.5",
+        "php": ">=5.5.9",
         "rize/uri-template": "~0.3",
         "google/auth": "^0.11",
         "guzzlehttp/guzzle": "^5.3|^6.0",
         "guzzlehttp/psr7": "^1.2",
         "monolog/monolog": "~1",
-        "psr/http-message": "1.0.*"
+        "psr/http-message": "1.0.*",
+        "symfony/lock": "dev-master"
     },
     "require-dev": {
         "phpunit/phpunit": "4.8.*",

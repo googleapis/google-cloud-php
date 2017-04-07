@@ -134,7 +134,6 @@ class Grpc implements ConnectionInterface
         $this->databaseAdminClient = new DatabaseAdminClient($grpcConfig);
         $this->spannerClient = new SpannerClient($grpcConfig);
         $this->operationsClient = $this->instanceAdminClient->getOperationsClient();
-
         $this->longRunningGrpcClients = [
             $this->instanceAdminClient,
             $this->databaseAdminClient
@@ -399,8 +398,9 @@ class Grpc implements ConnectionInterface
 
     /**
      * @param array $args [optional]
+     * @return \Generator
      */
-    public function executeSql(array $args = [])
+    public function executeStreamingSql(array $args = [])
     {
         $params = $this->pluck('params', $args);
         if ($params) {
@@ -415,7 +415,7 @@ class Grpc implements ConnectionInterface
 
         $args['transaction'] = $this->createTransactionSelector($args);
 
-        return $this->send([$this->spannerClient, 'executeSql'], [
+        return $this->send([$this->spannerClient, 'executeStreamingSql'], [
             $this->pluck('session', $args),
             $this->pluck('sql', $args),
             $args
@@ -424,8 +424,9 @@ class Grpc implements ConnectionInterface
 
     /**
      * @param array $args [optional]
+     * @return \Generator
      */
-    public function read(array $args = [])
+    public function streamingRead(array $args = [])
     {
         $keySet = $this->pluck('keySet', $args);
         $keySet = (new KeySet)
@@ -433,7 +434,7 @@ class Grpc implements ConnectionInterface
 
         $args['transaction'] = $this->createTransactionSelector($args);
 
-        return $this->send([$this->spannerClient, 'read'], [
+        return $this->send([$this->spannerClient, 'streamingRead'], [
             $this->pluck('session', $args),
             $this->pluck('table', $args),
             $this->pluck('columns', $args),

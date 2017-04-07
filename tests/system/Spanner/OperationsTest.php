@@ -63,7 +63,7 @@ class OperationsTest extends SpannerTestCase
         $columns = ['id', 'name'];
 
         $res = $db->read(self::TEST_TABLE_NAME, $keySet, $columns);
-        $row = $res->firstRow();
+        $row = $res->rows()->current();
         $this->assertEquals($this->id, $row['id']);
     }
 
@@ -137,6 +137,6 @@ class OperationsTest extends SpannerTestCase
             ]
         ]);
 
-        return $res->firstRow();
+        return $res->rows()->current();
     }
 }

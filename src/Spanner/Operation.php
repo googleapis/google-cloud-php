@@ -134,7 +134,7 @@ class Operation
     }
 
     /**
-     * Rollback a Transaction
+     * Rollback a Transaction.
      *
      * @param Session $session The session to use for the rollback.
      *        Note that the session MUST be the same one in which the
@@ -152,12 +152,12 @@ class Operation
     }
 
     /**
-     * Run a query
+     * Run a query.
      *
      * @param Session $session The session to use to execute the SQL.
      * @param string $sql The query string.
      * @param array $options [optional] Configuration options.
-     * @return array
+     * @return Result
      */
     public function execute(Session $session, $sql, array $options = [])
     {
@@ -171,12 +171,18 @@ class Operation
 
         $context = $this->pluck('transactionContext', $options);
 
-        $res = $this->connection->executeSql([
-            'sql' => $sql,
-            'session' => $session->name()
-        ] + $options);
+        $call = function ($resumeToken = null) use ($session, $sql, $options) {
+            if ($resumeToken) {
+                $options['resumeToken'] = $resumeToken;
+            }
 
-        return $this->createResult($session, $res, $context);
+            return $this->connection->executeStreamingSql([
+                'sql' => $sql,
+                'session' => $session->name()
+            ] + $options);
+        };
+
+        return new Result($this, $session, $call, $context, $this->mapper);
     }
 
     /**
@@ -205,21 +211,25 @@ class Operation
         ];
 
         $context = $this->pluck('transactionContext', $options);
-        $res = $this->connection->read([
-            'table' => $table,
-            'session' => $session->name(),
-            'columns' => $columns,
-            'keySet' => $this->flattenKeySet($keySet)
-        ] + $options);
 
-        return $this->createResult($session, $res, $context);
+        $call = function ($resumeToken = null) use ($table, $session, $columns, $keySet, $options) {
+            if ($resumeToken) {
+                $options['resumeToken'] = $resumeToken;
+            }
+
+            return $this->connection->streamingRead([
+                'table' => $table,
+                'session' => $session->name(),
+                'columns' => $columns,
+                'keySet' => $this->flattenKeySet($keySet)
+            ] + $options);
+        };
+
+        return new Result($this, $session, $call, $context, $this->mapper);
     }
 
     /**
      * Create a read/write transaction.
-     *
-     * @todo if a transaction is already available on the session, get it instead
-     *       of starting a new one?
      *
      * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#google.spanner.v1.BeginTransactionRequest BeginTransactionRequest
      *
@@ -250,6 +260,35 @@ class Operation
     }
 
     /**
+     * Create a Transaction instance from a response object.
+     *
+     * @param Session $session The session the transaction belongs to.
+     * @param array $res The transaction response.
+     * @return Transaction
+     */
+    public function createTransaction(Session $session, array $res)
+    {
+        return new Transaction($this, $session, $res['id']);
+    }
+
+    /**
+     * Create a Snapshot instance from a response object.
+     *
+     * @param Session $session The session the snapshot belongs to.
+     * @param array $res The snapshot response.
+     * @return Snapshot
+     */
+    public function createSnapshot(Session $session, array $res)
+    {
+        $timestamp = null;
+        if (isset($res['readTimestamp'])) {
+            $timestamp = $this->mapper->createTimestampWithNanos($res['readTimestamp']);
+        }
+
+        return new Snapshot($this, $session, $res['id'], $timestamp);
+    }
+
+    /**
      * Execute a service call to begin a transaction or snapshot.
      *
      * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#google.spanner.v1.BeginTransactionRequest BeginTransactionRequest
@@ -267,70 +306,6 @@ class Operation
         return $this->connection->beginTransaction($options + [
             'session' => $session->name(),
         ]);
-    }
-
-    /**
-     * Create a Transaction instance from a response object.
-     *
-     * @param Session $session The session the transaction belongs to.
-     * @param array $res The transaction response.
-     * @return Transaction
-     */
-    private function createTransaction(Session $session, array $res)
-    {
-        return new Transaction($this, $session, $res['id']);
-    }
-
-    /**
-     * Create a Snapshot instance from a response object.
-     *
-     * @param Session $session The session the snapshot belongs to.
-     * @param array $res The snapshot response.
-     * @return Snapshot
-     */
-    private function createSnapshot(Session $session, array $res)
-    {
-        $timestamp = null;
-        if (isset($res['readTimestamp'])) {
-            $timestamp = $this->mapper->createTimestampWithNanos($res['readTimestamp']);
-        }
-
-        return new Snapshot($this, $session, $res['id'], $timestamp);
-    }
-
-    /**
-     * Transform a service read or executeSql response to a friendly result.
-     *
-     * @codingStandardsIgnoreStart
-     * @param Session $session The current session.
-     * @param array $res [ResultSet](https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#google.spanner.v1.ResultSet)
-     * @param string $transactionContext
-     * @return Result
-     * @codingStandardsIgnoreEnd
-     */
-    private function createResult(Session $session, array $res, $transactionContext)
-    {
-        $columns = isset($res['metadata']['rowType']['fields'])
-            ? $res['metadata']['rowType']['fields']
-            : [];
-
-        $rows = [];
-        if (isset($res['rows'])) {
-            foreach ($res['rows'] as $row) {
-                $rows[] = $this->mapper->decodeValues($columns, $row);
-            }
-        }
-
-        $options = [];
-        if (isset($res['metadata']['transaction']['id'])) {
-            if ($transactionContext === SessionPoolInterface::CONTEXT_READ) {
-                $options['snapshot'] = $this->createSnapshot($session, $res['metadata']['transaction']);
-            } else {
-                $options['transaction'] = $this->createTransaction($session, $res['metadata']['transaction']);
-            }
-        }
-
-        return new Result($res, $rows, $options);
     }
 
     /**

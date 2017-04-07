@@ -30,8 +30,6 @@ use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Connection\Grpc;
 use Google\Cloud\Spanner\Connection\LongRunningConnection;
-use Google\Cloud\Spanner\Session\SessionClient;
-use Google\Cloud\Spanner\Session\SimpleSessionPool;
 use google\spanner\admin\instance\v1\Instance\State;
 use Psr\Http\StreamInterface;
 
@@ -71,16 +69,6 @@ class SpannerClient
     private $lroConnection;
 
     /**
-     * @var SessionClient
-     */
-    protected $sessionClient;
-
-    /**
-     * @var SessionPool
-     */
-    protected $sessionPool;
-
-    /**
      * @var bool
      */
     private $returnInt64AsObject;
@@ -109,7 +97,7 @@ class SpannerClient
      *           returned as a {@see Google\Cloud\Core\Int64} object for 32 bit
      *           platform compatibility. **Defaults to** false.
      * }
-     * @throws Google\Cloud\Exception\GoogleException
+     * @throws Google\Cloud\Core\Exception\GoogleException
      */
     public function __construct(array $config = [])
     {
@@ -123,12 +111,7 @@ class SpannerClient
 
         $this->connection = new Grpc($this->configureAuthentication($config));
         $this->lroConnection = new LongRunningConnection($this->connection);
-
-        $this->sessionClient = new SessionClient($this->connection, $this->projectId);
-        $this->sessionPool = new SimpleSessionPool($this->sessionClient);
-
         $this->returnInt64AsObject = $config['returnInt64AsObject'];
-
         $this->lroCallables = [
             [
                 'typeUrl' => 'type.googleapis.com/google.spanner.admin.instance.v1.UpdateInstanceMetadata',
@@ -287,7 +270,6 @@ class SpannerClient
     {
         return new Instance(
             $this->connection,
-            $this->sessionPool,
             $this->lroConnection,
             $this->lroCallables,
             $this->projectId,
@@ -356,15 +338,21 @@ class SpannerClient
      *
      * @param Instance|string $instance The instance object or instance name.
      * @param string $name The database name.
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type SessionPoolInterface $sessionPool A pool used to manage
+     *           sessions.
+     * }
      * @return Database
      */
-    public function connect($instance, $name)
+    public function connect($instance, $name, array $options = [])
     {
         if (is_string($instance)) {
             $instance = $this->instance($instance);
         }
 
-        $database = $instance->database($name);
+        $database = $instance->database($name, $options);
 
         return $database;
     }
@@ -515,21 +503,6 @@ class SpannerClient
     public function duration($seconds, $nanos = 0)
     {
         return new Duration($seconds, $nanos);
-    }
-
-    /**
-     * Get the session client
-     *
-     * Example:
-     * ```
-     * $sessionClient = $spanner->sessionClient();
-     * ```
-     *
-     * @return SessionClient
-     */
-    public function sessionClient()
-    {
-        return $this->sessionClient;
     }
 
     /**

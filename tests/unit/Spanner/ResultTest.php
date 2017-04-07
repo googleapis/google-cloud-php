@@ -17,90 +17,135 @@
 
 namespace Google\Cloud\Tests\Spanner;
 
+use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Result;
+use Google\Cloud\Spanner\Session\Session;
+use Google\Cloud\Spanner\Snapshot;
+use Google\Cloud\Spanner\Transaction;
+use Google\Cloud\Spanner\ValueMapper;
+use Prophecy\Argument;
 
 /**
  * @group spanner
  */
 class ResultTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * @dataProvider streamingDataProvider
+     */
+    public function testRows($chunks, $expectedValues)
+    {
+        $result = iterator_to_array($this->getResultClass($chunks));
+
+        $this->assertEquals($expectedValues, $result);
+    }
+
+    public function streamingDataProvider()
+    {
+        foreach ($this->getStreamingDataFixture()['tests'] as $test) {
+            yield [$test['chunks'], $test['result']['value']];
+        }
+    }
+
     public function testIterator()
     {
-        $result = new Result([], [
-            ['name' => 'John']
-        ]);
+        $fixture = $this->getStreamingDataFixture()['tests'][0];
+        $result = iterator_to_array($this->getResultClass($fixture['chunks']));
 
-        $res = iterator_to_array($result);
-        $this->assertEquals(1, count($res));
-        $this->assertEquals('John', $res[0]['name']);
+        $this->assertEquals($fixture['result']['value'], $result);
     }
 
     public function testMetadata()
     {
-        $result = new Result(['metadata' => 'foo'], []);
-        $this->assertEquals('foo', $result->metadata());
-    }
+        $fixture = $this->getStreamingDataFixture()['tests'][0];
+        $result = $this->getResultClass($fixture['chunks']);
+        $expectedMetadata = json_decode($fixture['chunks'][0], true)['metadata'];
 
-    public function testRows()
-    {
-        $rows = [
-            ['name' => 'John']
-        ];
-
-        $result = new Result([], $rows);
-
-        $this->assertEquals($rows, $result->rows());
-    }
-
-    public function testFirstRow()
-    {
-        $rows = [
-            ['name' => 'John'],
-            ['name' => 'Dave']
-        ];
-
-        $result = new Result([], $rows);
-
-        $this->assertEquals($rows[0], $result->firstRow());
+        $this->assertNull($result->stats());
+        $result->rows()->next();
+        $this->assertEquals($expectedMetadata, $result->metadata());
     }
 
     public function testStats()
     {
-        $result = new Result(['stats' => 'foo'], []);
-        $this->assertEquals('foo', $result->stats());
-    }
+        $fixture = $this->getStreamingDataFixture()['tests'][1];
+        $result = $this->getResultClass($fixture['chunks']);
+        $expectedStats = json_decode($fixture['chunks'][0], true)['stats'];
 
-    public function testInfo()
-    {
-        $info = ['foo' => 'bar'];
-        $result = new Result($info, []);
-
-        $this->assertEquals($info, $result->info());
+        $this->assertNull($result->stats());
+        $result->rows()->next();
+        $this->assertEquals($expectedStats, $result->stats());
     }
 
     public function testTransaction()
     {
-        $result = new Result([], [], [
-            'transaction' => 'foo'
-        ]);
-
-        $this->assertEquals('foo', $result->transaction());
-
-        $result = new Result([], []);
+        $fixture = $this->getStreamingDataFixture()['tests'][1];
+        $result = $this->getResultClass($fixture['chunks'], 'rw');
 
         $this->assertNull($result->transaction());
+        $result->rows()->next();
+        $this->assertInstanceOf(Transaction::class, $result->transaction());
     }
 
     public function testSnapshot()
     {
-        $result = new Result([], [], [
-            'snapshot' => 'foo'
-        ]);
-
-        $this->assertEquals('foo', $result->snapshot());
-
-        $result = new Result([], []);
+        $fixture = $this->getStreamingDataFixture()['tests'][1];
+        $result = $this->getResultClass($fixture['chunks']);
 
         $this->assertNull($result->snapshot());
+        $result->rows()->next();
+        $this->assertInstanceOf(Snapshot::class, $result->snapshot());
+    }
+
+    private function getResultClass($chunks, $context = 'r')
+    {
+        $operation = $this->prophesize(Operation::class);
+        $session = $this->prophesize(Session::class)->reveal();
+        $mapper = $this->prophesize(ValueMapper::class);
+        $transaction = $this->prophesize(Transaction::class);
+        $snapshot = $this->prophesize(Snapshot::class);
+        $mapper->decodeValues(
+            Argument::any(),
+            Argument::any()
+        )->will(function ($args) {
+            return $args[1];
+        });
+
+        if ($context === 'r') {
+            $operation->createSnapshot(
+                $session,
+                Argument::type('array')
+            )->willReturn($snapshot->reveal());
+        } else {
+            $operation->createTransaction(
+                $session,
+                Argument::type('array')
+            )->willReturn($transaction->reveal());
+        }
+
+        return new Result(
+            $operation->reveal(),
+            $session,
+            function () use ($chunks) {
+                return $this->resultGenerator($chunks);
+            },
+            $context,
+            $mapper->reveal()
+        );
+    }
+
+    private function resultGenerator($chunks)
+    {
+        foreach ($chunks as $chunk) {
+            yield json_decode($chunk, true);
+        }
+    }
+
+    private function getStreamingDataFixture()
+    {
+        return json_decode(
+            file_get_contents(__DIR__ .'/../fixtures/spanner/streaming-read-acceptance-test.json'),
+            true
+        );
     }
 }

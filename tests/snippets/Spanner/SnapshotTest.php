@@ -82,9 +82,9 @@ class SnapshotTest extends SnippetTestCase
 
     public function testExecute()
     {
-        $this->connection->executeSql(Argument::any())
+        $this->connection->executeStreamingSql(Argument::any())
             ->shouldBeCalled()
-            ->willReturn([
+            ->willReturn($this->resultGenerator([
                 'metadata' => [
                     'rowType' => [
                         'fields' => [
@@ -97,12 +97,8 @@ class SnapshotTest extends SnippetTestCase
                         ]
                     ]
                 ],
-                'rows' => [
-                    [
-                        0
-                    ]
-                ]
-            ]);
+                'values' => [0]
+            ]));
 
         $this->stubOperation();
 
@@ -115,9 +111,9 @@ class SnapshotTest extends SnippetTestCase
 
     public function testRead()
     {
-        $this->connection->read(Argument::any())
+        $this->connection->streamingRead(Argument::any())
             ->shouldBeCalled()
-            ->willReturn([
+            ->willReturn($this->resultGenerator([
                 'metadata' => [
                     'rowType' => [
                         'fields' => [
@@ -130,12 +126,8 @@ class SnapshotTest extends SnippetTestCase
                         ]
                     ]
                 ],
-                'rows' => [
-                    [
-                        0
-                    ]
-                ]
-            ]);
+                'values' => [0]
+            ]));
 
         $this->stubOperation();
 
@@ -163,5 +155,10 @@ class SnapshotTest extends SnippetTestCase
 
         $res = $snippet->invoke('timestamp');
         $this->assertInstanceOf(Timestamp::class, $res->returnVal());
+    }
+
+    private function resultGenerator(array $data)
+    {
+        yield $data;
     }
 }

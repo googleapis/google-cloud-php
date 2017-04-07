@@ -22,10 +22,9 @@ namespace Google\Cloud\Spanner;
  *
  * Example:
  * ```
- * use Google\Cloud\ServiceBuilder;
+ * use Google\Cloud\Spanner\SpannerClient;
  *
- * $cloud = new ServiceBuilder();
- * $spanner = $cloud->spanner();
+ * $spanner = new SpannerClient();
  *
  * // Create a KeyRange for all people named Bob, born in 1969.
  * $start = $spanner->date(new \DateTime('1969-01-01'));

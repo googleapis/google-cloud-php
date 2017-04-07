@@ -64,7 +64,7 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
         $this->lro = $this->prophesize(LongRunningConnectionInterface::class);
         $this->lroCallables = [];
 
-        $this->sessionPool->session(self::INSTANCE, self::DATABASE, Argument::any())
+        $this->sessionPool->acquire(Argument::type('string'))
             ->willReturn(new Session(
                 $this->connection->reveal(),
                 self::PROJECT,
@@ -72,17 +72,21 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
                 self::DATABASE,
                 self::SESSION
             ));
+        $this->sessionPool->setDatabase(Argument::type(Database::class))
+            ->willReturn(null);
+        $this->sessionPool->release(Argument::type(Session::class))
+            ->willReturn(null);
 
         $this->instance->name()->willReturn(self::INSTANCE);
 
         $args = [
             $this->connection->reveal(),
             $this->instance->reveal(),
-            $this->sessionPool->reveal(),
             $this->lro->reveal(),
             $this->lroCallables,
             self::PROJECT,
             self::DATABASE,
+            $this->sessionPool->reveal()
         ];
 
         $props = [
@@ -528,35 +532,18 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
     {
         $sql = 'SELECT * FROM Table';
 
-        $this->connection->executeSql(Argument::that(function ($arg) use ($sql) {
+        $this->connection->executeStreamingSql(Argument::that(function ($arg) use ($sql) {
             if ($arg['sql'] !== $sql) return false;
 
             return true;
-        }))->shouldBeCalled()->willReturn([
-            'metadata' => [
-                'rowType' => [
-                    'fields' => [
-                        [
-                            'name' => 'ID',
-                            'type' => [
-                                'code' => ValueMapper::TYPE_INT64
-                            ]
-                        ]
-                    ]
-                ]
-            ],
-            'rows' => [
-                [
-                    '10'
-                ]
-            ]
-        ]);
+        }))->shouldBeCalled()->willReturn($this->resultGenerator());
 
         $this->refreshOperation();
 
         $res = $this->database->execute($sql);
         $this->assertInstanceOf(Result::class, $res);
-        $this->assertEquals(10, $res->rows()[0]['ID']);
+        $rows = iterator_to_array($res->rows());
+        $this->assertEquals(10, $rows[0]['ID']);
     }
 
     public function testRead()
@@ -564,13 +551,28 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
         $table = 'Table';
         $opts = ['foo' => 'bar'];
 
-        $this->connection->read(Argument::that(function ($arg) use ($table, $opts) {
+        $this->connection->streamingRead(Argument::that(function ($arg) use ($table, $opts) {
             if ($arg['table'] !== $table) return false;
             if ($arg['keySet']['all'] !== true) return false;
             if ($arg['columns'] !== ['ID']) return false;
 
             return true;
-        }))->shouldBeCalled()->willReturn([
+        }))->shouldBeCalled()->willReturn($this->resultGenerator());
+
+        $this->refreshOperation();
+
+        $res = $this->database->read($table, new KeySet(['all' => true]), ['ID']);
+        $this->assertInstanceOf(Result::class, $res);
+        $rows = iterator_to_array($res->rows());
+        $this->assertEquals(10, $rows[0]['ID']);
+    }
+
+    // *******
+    // Helpers
+
+    private function resultGenerator()
+    {
+        yield [
             'metadata' => [
                 'rowType' => [
                     'fields' => [
@@ -583,22 +585,11 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
                     ]
                 ]
             ],
-            'rows' => [
-                [
-                    '10'
-                ]
+            'values' => [
+                '10'
             ]
-        ]);
-
-        $this->refreshOperation();
-
-        $res = $this->database->read($table, new KeySet(['all' => true]), ['ID']);
-        $this->assertInstanceOf(Result::class, $res);
-        $this->assertEquals(10, $res->rows()[0]['ID']);
+        ];
     }
-
-    // *******
-    // Helpers
 
     private function refreshOperation()
     {

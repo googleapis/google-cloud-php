@@ -55,18 +55,20 @@ class DatabaseTest extends SnippetTestCase
         $session = $this->prophesize(Session::class);
 
         $sessionPool = $this->prophesize(SessionPoolInterface::class);
-        $sessionPool->session(Argument::any(), Argument::any(), Argument::any())
+        $sessionPool->acquire(Argument::any())
             ->willReturn($session->reveal());
+        $sessionPool->setDatabase(Argument::any())
+            ->willReturn(null);
 
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->database = \Google\Cloud\Dev\stub(Database::class, [
             $this->connection->reveal(),
             $instance->reveal(),
-            $sessionPool->reveal(),
             $this->prophesize(LongRunningConnectionInterface::class)->reveal(),
             [],
             self::PROJECT,
-            self::DATABASE
+            self::DATABASE,
+            $sessionPool->reveal()
         ], ['connection', 'operation']);
     }
 
@@ -246,9 +248,9 @@ class DatabaseTest extends SnippetTestCase
         $this->connection->rollback(Argument::any())
             ->shouldNotBeCalled();
 
-        $this->connection->executeSql(Argument::any())
+        $this->connection->executeStreamingSql(Argument::any())
             ->shouldBeCalled()
-            ->willReturn([
+            ->willReturn($this->resultGenerator([
                 'metadata' => [
                     'rowType' => [
                         'fields' => [
@@ -261,12 +263,8 @@ class DatabaseTest extends SnippetTestCase
                         ]
                     ]
                 ],
-                'rows' => [
-                    [
-                        0
-                    ]
-                ]
-            ]);
+                'values' => [0]
+            ]));
 
         $this->stubOperation();
 
@@ -293,14 +291,16 @@ class DatabaseTest extends SnippetTestCase
         $this->connection->rollback(Argument::any())
             ->shouldBeCalled();
 
-        $this->connection->executeSql(Argument::any())
+        $this->connection->executeStreamingSql(Argument::any())
             ->shouldBeCalled()
-            ->willReturn([
+            ->willReturn($this->resultGenerator([
                 'metadata' => [
-                    'rowType' => []
+                    'rowType' => [
+                        'fields' => []
+                    ]
                 ],
-                'rows' => []
-            ]);
+                'values' => []
+            ]));
 
         $this->stubOperation();
 
@@ -485,9 +485,9 @@ class DatabaseTest extends SnippetTestCase
 
     public function testExecute()
     {
-        $this->connection->executeSql(Argument::any())
+        $this->connection->executeStreamingSql(Argument::any())
             ->shouldBeCalled()
-            ->willReturn([
+            ->willReturn($this->resultGenerator([
                 'metadata' => [
                     'rowType' => [
                         'fields' => [
@@ -500,12 +500,8 @@ class DatabaseTest extends SnippetTestCase
                         ]
                     ]
                 ],
-                'rows' => [
-                    [
-                        0
-                    ]
-                ]
-            ]);
+                'values' => [0]
+            ]));
 
         $this->stubOperation();
 
@@ -518,9 +514,9 @@ class DatabaseTest extends SnippetTestCase
 
     public function testExecuteBeginSnapshot()
     {
-        $this->connection->executeSql(Argument::any())
+        $this->connection->executeStreamingSql(Argument::any())
             ->shouldBeCalled()
-            ->willReturn([
+            ->willReturn($this->resultGenerator([
                 'metadata' => [
                     'rowType' => [
                         'fields' => [
@@ -536,12 +532,8 @@ class DatabaseTest extends SnippetTestCase
                         'id' => self::TRANSACTION
                     ]
                 ],
-                'rows' => [
-                    [
-                        0
-                    ]
-                ]
-            ]);
+                'values' => [0]
+            ]));
 
         $this->stubOperation();
 
@@ -555,9 +547,9 @@ class DatabaseTest extends SnippetTestCase
 
     public function testExecuteBeginTransaction()
     {
-        $this->connection->executeSql(Argument::any())
+        $this->connection->executeStreamingSql(Argument::any())
             ->shouldBeCalled()
-            ->willReturn([
+            ->willReturn($this->resultGenerator([
                 'metadata' => [
                     'rowType' => [
                         'fields' => [
@@ -573,12 +565,8 @@ class DatabaseTest extends SnippetTestCase
                         'id' => self::TRANSACTION
                     ]
                 ],
-                'rows' => [
-                    [
-                        0
-                    ]
-                ]
-            ]);
+                'values' => [0]
+            ]));
 
         $this->stubOperation();
 
@@ -593,9 +581,9 @@ class DatabaseTest extends SnippetTestCase
 
     public function testRead()
     {
-        $this->connection->read(Argument::any())
+        $this->connection->streamingRead(Argument::any())
             ->shouldBeCalled()
-            ->willReturn([
+            ->willReturn($this->resultGenerator([
                 'metadata' => [
                     'rowType' => [
                         'fields' => [
@@ -608,12 +596,8 @@ class DatabaseTest extends SnippetTestCase
                         ]
                     ]
                 ],
-                'rows' => [
-                    [
-                        0
-                    ]
-                ]
-            ]);
+                'rows' => [0]
+            ]));
 
         $this->stubOperation();
 
@@ -627,9 +611,9 @@ class DatabaseTest extends SnippetTestCase
 
     public function testReadWithSnapshot()
     {
-        $this->connection->read(Argument::any())
+        $this->connection->streamingRead(Argument::any())
             ->shouldBeCalled()
-            ->willReturn([
+            ->willReturn($this->resultGenerator([
                 'metadata' => [
                     'rowType' => [
                         'fields' => [
@@ -645,12 +629,8 @@ class DatabaseTest extends SnippetTestCase
                         'id' => self::TRANSACTION
                     ]
                 ],
-                'rows' => [
-                    [
-                        0
-                    ]
-                ]
-            ]);
+                'values' => [0]
+            ]));
 
         $this->stubOperation();
 
@@ -665,9 +645,9 @@ class DatabaseTest extends SnippetTestCase
 
     public function testReadWithTransaction()
     {
-        $this->connection->read(Argument::any())
+        $this->connection->streamingRead(Argument::any())
             ->shouldBeCalled()
-            ->willReturn([
+            ->willReturn($this->resultGenerator([
                 'metadata' => [
                     'rowType' => [
                         'fields' => [
@@ -683,12 +663,8 @@ class DatabaseTest extends SnippetTestCase
                         'id' => self::TRANSACTION
                     ]
                 ],
-                'rows' => [
-                    [
-                        0
-                    ]
-                ]
-            ]);
+                'values' => [0]
+            ]));
 
         $this->stubOperation();
 
@@ -702,6 +678,23 @@ class DatabaseTest extends SnippetTestCase
         $this->assertInstanceOf(Transaction::class, $res->returnVal()->transaction());
     }
 
+    public function testSessionPool()
+    {
+        $snippet = $this->snippetFromMethod(Database::class, 'sessionPool');
+        $snippet->addLocal('database', $this->database);
+
+        $res = $snippet->invoke('pool');
+        $this->assertInstanceOf(SessionPoolInterface::class, $res->returnVal());
+    }
+
+    public function testClose()
+    {
+        $snippet = $this->snippetFromMethod(Database::class, 'close');
+        $snippet->addLocal('database', $this->database);
+
+        $res = $snippet->invoke();
+    }
+
     public function testIam()
     {
         $snippet = $this->snippetFromMethod(Database::class, 'iam');
@@ -709,5 +702,10 @@ class DatabaseTest extends SnippetTestCase
 
         $res = $snippet->invoke('iam');
         $this->assertInstanceOf(Iam::class, $res->returnVal());
+    }
+
+    private function resultGenerator(array $data)
+    {
+        yield $data;
     }
 }

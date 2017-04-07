@@ -97,11 +97,11 @@ class ValueMapper
      * Accepts a list of columns (with name and type) and a row from read or
      * executeSql and decodes each value to its corresponding PHP type.
      *
-     * @param array $columns The list of columns
+     * @param array $columns The list of columns.
      * @param array $row The row data.
      * @return array The decoded row data.
      */
-    public function decodeValues(array $columns, array $row, $extractResult = false)
+    public function decodeValues(array $columns, array $row)
     {
         $cols = [];
         $types = [];
@@ -147,6 +147,10 @@ class ValueMapper
      */
     private function decodeValue($value, array $type)
     {
+        if ($value === null || $value === '') {
+            return $value;
+        }
+
         switch ($type['code']) {
             case self::TYPE_INT64:
                 $value = $this->returnInt64AsObject
@@ -176,7 +180,7 @@ class ValueMapper
                 break;
 
             case self::TYPE_STRUCT:
-                $value = $this->decodeValues($type['structType']['fields'], $value, true);
+                $value = $this->decodeValues($type['structType']['fields'], $value);
                 break;
 
             case self::TYPE_FLOAT64:

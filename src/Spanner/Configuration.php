@@ -26,10 +26,9 @@ use Google\Cloud\Spanner\Connection\ConnectionInterface;
  *
  * Example:
  * ```
- * use Google\Cloud\ServiceBuilder;
+ * use Google\Cloud\Spanner\SpannerClient;
  *
- * $cloud = new ServiceBuilder();
- * $spanner = $cloud->spanner();
+ * $spanner = new SpannerClient();
  *
  * $configuration = $spanner->configuration('regional-europe-west');
  * ```

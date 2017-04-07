@@ -18,6 +18,7 @@
 namespace Google\Cloud\Core;
 
 use DrSlump\Protobuf;
+use google\protobuf\Value;
 use google\protobuf\ListValue;
 use google\protobuf\NullValue;
 use google\protobuf\Struct;
@@ -180,7 +181,7 @@ class PhpArray extends Protobuf\Codec\PhpArray
                         $field->getValue(),
                         $field->descriptor()->getFieldByName('value')
                     );
-                    $vals[$field->getKey()] = current($val);
+                    $vals[$field->getKey()] = $val;
                 }
 
                 return $vals;
@@ -190,10 +191,28 @@ class PhpArray extends Protobuf\Codec\PhpArray
                 $vals = [];
 
                 foreach ($value->getValuesList() as $val) {
-                    $vals[] = current($this->encodeMessage($val));
+                    $fields = $val->descriptor()->getFields();
+
+                    foreach ($fields as $field) {
+                        $name = $field->getName();
+                        if ($val->$name) {
+                            $vals[] = $this->filterValue($val->$name, $field);
+                        }
+                    }
                 }
 
                 return $vals;
+            }
+
+            if ($value instanceof Value) {
+                $fields = $value->descriptor()->getFields();
+
+                foreach ($fields as $field) {
+                    $name = $field->getName();
+                    if ($value->$name) {
+                        return $this->filterValue($value->$name, $field);
+                    }
+                }
             }
         }
 

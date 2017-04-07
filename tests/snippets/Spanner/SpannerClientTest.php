@@ -30,7 +30,6 @@ use Google\Cloud\Spanner\Duration;
 use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\KeyRange;
 use Google\Cloud\Spanner\KeySet;
-use Google\Cloud\Spanner\Session\SessionClient;
 use Google\Cloud\Spanner\SpannerClient;
 use Google\Cloud\Spanner\Timestamp;
 use Prophecy\Argument;
@@ -250,15 +249,6 @@ class SpannerClientTest extends SnippetTestCase
 
         $res = $snippet->invoke('duration');
         $this->assertInstanceOf(Duration::class, $res->returnVal());
-    }
-
-    public function testSessionClient()
-    {
-        $snippet = $this->snippetFromMethod(SpannerClient::class, 'sessionClient');
-        $snippet->addLocal('spanner', $this->client);
-
-        $res = $snippet->invoke('sessionClient');
-        $this->assertInstanceOf(SessionClient::class, $res->returnVal());
     }
 
     public function testResumeOperation()

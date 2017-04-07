@@ -98,7 +98,7 @@ class TestMessage extends Message
 {
     public $test_struct = null;
     public $test_labels = [];
-    public $test_stings = [];
+    public $test_strings = [];
 
     protected static $__extensions = array();
 

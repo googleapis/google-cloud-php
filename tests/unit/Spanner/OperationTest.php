@@ -159,7 +159,7 @@ class OperationTest extends \PHPUnit_Framework_TestCase
         $sql = 'SELECT * FROM Posts WHERE ID = @id';
         $params = ['id' => 10];
 
-        $this->connection->executeSql(Argument::that(function ($arg) use ($sql, $params) {
+        $this->connection->executeStreamingSql(Argument::that(function ($arg) use ($sql, $params) {
             if ($arg['sql'] !== $sql) return false;
             if ($arg['session'] !== self::SESSION) return false;
             if ($arg['params'] !== ['id' => '10']) return false;
@@ -175,12 +175,13 @@ class OperationTest extends \PHPUnit_Framework_TestCase
         ]);
 
         $this->assertInstanceOf(Result::class, $res);
-        $this->assertEquals(10, $res->rows()[0]['ID']);
+        $rows = iterator_to_array($res->rows());
+        $this->assertEquals(10, $rows[0]['ID']);
     }
 
     public function testRead()
     {
-        $this->connection->read(Argument::that(function ($arg) {
+        $this->connection->streamingRead(Argument::that(function ($arg) {
             if ($arg['table'] !== 'Posts') return false;
             if ($arg['session'] !== self::SESSION) return false;
             if ($arg['keySet']['all'] !== true) return false;
@@ -193,12 +194,13 @@ class OperationTest extends \PHPUnit_Framework_TestCase
 
         $res = $this->operation->read($this->session, 'Posts', new KeySet(['all' => true]), ['foo']);
         $this->assertInstanceOf(Result::class, $res);
-        $this->assertEquals(10, $res->rows()[0]['ID']);
+        $rows = iterator_to_array($res->rows());
+        $this->assertEquals(10, $rows[0]['ID']);
     }
 
     public function testReadWithTransaction()
     {
-        $this->connection->read(Argument::that(function ($arg) {
+        $this->connection->streamingRead(Argument::that(function ($arg) {
             if ($arg['table'] !== 'Posts') return false;
             if ($arg['session'] !== self::SESSION) return false;
             if ($arg['keySet']['all'] !== true) return false;
@@ -214,13 +216,15 @@ class OperationTest extends \PHPUnit_Framework_TestCase
         $res = $this->operation->read($this->session, 'Posts', new KeySet(['all' => true]), ['foo'], [
             'transactionContext' => SessionPoolInterface::CONTEXT_READWRITE
         ]);
+        $res->rows()->next();
+
         $this->assertInstanceOf(Transaction::class, $res->transaction());
         $this->assertEquals(self::TRANSACTION, $res->transaction()->id());
     }
 
     public function testReadWithSnapshot()
     {
-        $this->connection->read(Argument::that(function ($arg) {
+        $this->connection->streamingRead(Argument::that(function ($arg) {
             if ($arg['table'] !== 'Posts') return false;
             if ($arg['session'] !== self::SESSION) return false;
             if ($arg['keySet']['all'] !== true) return false;
@@ -236,6 +240,8 @@ class OperationTest extends \PHPUnit_Framework_TestCase
         $res = $this->operation->read($this->session, 'Posts', new KeySet(['all' => true]), ['foo'], [
             'transactionContext' => SessionPoolInterface::CONTEXT_READ
         ]);
+        $res->rows()->next();
+
         $this->assertInstanceOf(Snapshot::class, $res->snapshot());
         $this->assertEquals(self::TRANSACTION, $res->snapshot()->id());
     }
@@ -282,7 +288,7 @@ class OperationTest extends \PHPUnit_Framework_TestCase
 
     private function executeAndReadResponse(array $additionalMetadata = [])
     {
-        return [
+        yield [
             'metadata' => array_merge([
                 'rowType' => [
                     'fields' => [
@@ -295,8 +301,8 @@ class OperationTest extends \PHPUnit_Framework_TestCase
                     ]
                 ]
             ], $additionalMetadata),
-            'rows' => [
-                ['10']
+            'values' => [
+                '10'
             ]
         ];
     }

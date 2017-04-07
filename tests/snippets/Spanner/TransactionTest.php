@@ -92,27 +92,9 @@ class TransactionTest extends SnippetTestCase
 
     public function testExecute()
     {
-        $this->connection->executeSql(Argument::any())
+        $this->connection->executeStreamingSql(Argument::any())
             ->shouldBeCalled()
-            ->willReturn([
-                'metadata' => [
-                    'rowType' => [
-                        'fields' => [
-                            [
-                                'name' => 'loginCount',
-                                'type' => [
-                                    'code' => ValueMapper::TYPE_INT64
-                                ]
-                            ]
-                        ]
-                    ]
-                ],
-                'rows' => [
-                    [
-                        0
-                    ]
-                ]
-            ]);
+            ->willReturn($this->resultGenerator());
 
         $this->stubOperation();
 
@@ -125,27 +107,9 @@ class TransactionTest extends SnippetTestCase
 
     public function testRead()
     {
-        $this->connection->read(Argument::any())
+        $this->connection->streamingRead(Argument::any())
             ->shouldBeCalled()
-            ->willReturn([
-                'metadata' => [
-                    'rowType' => [
-                        'fields' => [
-                            [
-                                'name' => 'loginCount',
-                                'type' => [
-                                    'code' => ValueMapper::TYPE_INT64
-                                ]
-                            ]
-                        ]
-                    ]
-                ],
-                'rows' => [
-                    [
-                        0
-                    ]
-                ]
-            ]);
+            ->willReturn($this->resultGenerator());
 
         $this->stubOperation();
 
@@ -326,5 +290,24 @@ class TransactionTest extends SnippetTestCase
 
         $res = $snippet->invoke('state');
         $this->assertEquals(Transaction::STATE_ACTIVE, $res->returnVal());
+    }
+
+    private function resultGenerator()
+    {
+        yield [
+            'metadata' => [
+                'rowType' => [
+                    'fields' => [
+                        [
+                            'name' => 'loginCount',
+                            'type' => [
+                                'code' => ValueMapper::TYPE_INT64
+                            ]
+                        ]
+                    ]
+                ]
+            ],
+            'values' => [0]
+        ];
     }
 }

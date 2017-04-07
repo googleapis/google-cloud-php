@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Spanner\Session;
 
+use Google\Cloud\Spanner\Database;
+
 /**
  * Describes a session pool.
  */
@@ -24,9 +26,34 @@ interface SessionPoolInterface
 {
     const CONTEXT_READ = 'r';
     const CONTEXT_READWRITE = 'rw';
+    const SESSION_EXPIRATION_SECONDS = 3600;
 
     /**
-     * Get a session from the pool
+     * Acquire a session from the pool.
+     *
+     * @param string $context The type of session to fetch. May be either `r`
+     *        (READ) or `rw` (READ/WRITE). **Defaults to** `r`.
+     * @return Session
+     * @throws \RunTimeException
      */
-    public function session($instance, $database, $context, array $options = []);
+    public function acquire($context);
+
+    /**
+     * Release a session back to the pool.
+     *
+     * @param Session $session
+     */
+    public function release(Session $session);
+
+    /**
+     * Clear the session pool.
+     */
+    public function clear();
+
+    /**
+     * Set the database used to make calls to manage sessions.
+     *
+     * @param Database $database
+     */
+    public function setDatabase(Database $database);
 }

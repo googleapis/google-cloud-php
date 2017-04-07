@@ -52,14 +52,24 @@ class Session
     private $name;
 
     /**
+     * @var int|null
+     */
+    private $expiration;
+
+    /**
      * @param ConnectionInterface $connection A connection to Cloud Spanner.
      * @param string $projectId The project ID.
      * @param string $instance The instance name.
      * @param string $database The database name.
      * @param string $name The session name.
      */
-    public function __construct(ConnectionInterface $connection, $projectId, $instance, $database, $name)
-    {
+    public function __construct(
+        ConnectionInterface $connection,
+        $projectId,
+        $instance,
+        $database,
+        $name
+    ) {
         $this->connection = $connection;
         $this->projectId = $projectId;
         $this->instance = $instance;
@@ -68,7 +78,7 @@ class Session
     }
 
     /**
-     * Return info on the session
+     * Return info on the session.
      *
      * @return array An array containing the `projectId`, `instance`, `database` and session `name` keys.
      */
@@ -130,7 +140,33 @@ class Session
     }
 
     /**
+     * Sets the expiration.
+     *
+     * @param int $expiration [optional] The Unix timestamp in seconds upon
+     *        which the session will expire.  **Defaults to** now plus 60
+     *        minutes.
+     * @return int
+     */
+    public function setExpiration($expiration = null)
+    {
+        $this->expiration = $expiration ?: time() + SessionPoolInterface::SESSION_EXPIRATION_SECONDS;
+    }
+
+    /**
+     * Gets the expiration.
+     *
+     * @return int|null
+     */
+    public function expiration()
+    {
+        return $this->expiration;
+    }
+
+    /**
+     * Represent the class in a more readable and digestable fashion.
+     *
      * @access private
+     * @codeCoverageIgnore
      */
     public function __debugInfo()
     {

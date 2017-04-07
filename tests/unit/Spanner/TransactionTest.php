@@ -175,36 +175,19 @@ class TransactionTest extends \PHPUnit_Framework_TestCase
     {
         $sql = 'SELECT * FROM Table';
 
-        $this->connection->executeSql(Argument::that(function ($arg) use ($sql) {
+        $this->connection->executeStreamingSql(Argument::that(function ($arg) use ($sql) {
             if ($arg['transaction']['id'] !== self::TRANSACTION) return false;
             if ($arg['sql'] !== $sql) return false;
 
             return true;
-        }))->shouldBeCalled()->willReturn([
-            'metadata' => [
-                'rowType' => [
-                    'fields' => [
-                        [
-                            'name' => 'ID',
-                            'type' => [
-                                'code' => ValueMapper::TYPE_INT64
-                            ]
-                        ]
-                    ]
-                ]
-            ],
-            'rows' => [
-                [
-                    '10'
-                ]
-            ]
-        ]);
+        }))->shouldBeCalled()->willReturn($this->resultGenerator());
 
         $this->refreshOperation();
 
         $res = $this->transaction->execute($sql);
         $this->assertInstanceOf(Result::class, $res);
-        $this->assertEquals(10, $res->rows()[0]['ID']);
+        $rows = iterator_to_array($res->rows());
+        $this->assertEquals(10, $rows[0]['ID']);
     }
 
     public function testRead()
@@ -212,38 +195,22 @@ class TransactionTest extends \PHPUnit_Framework_TestCase
         $table = 'Table';
         $opts = ['foo' => 'bar'];
 
-        $this->connection->read(Argument::that(function ($arg) use ($table, $opts) {
+        $this->connection->streamingRead(Argument::that(function ($arg) use ($table, $opts) {
             if ($arg['transaction']['id'] !== self::TRANSACTION) return false;
             if ($arg['table'] !== $table) return false;
             if ($arg['keySet']['all'] !== true) return false;
             if ($arg['columns'] !== ['ID']) return false;
 
             return true;
-        }))->shouldBeCalled()->willReturn([
-            'metadata' => [
-                'rowType' => [
-                    'fields' => [
-                        [
-                            'name' => 'ID',
-                            'type' => [
-                                'code' => ValueMapper::TYPE_INT64
-                            ]
-                        ]
-                    ]
-                ]
-            ],
-            'rows' => [
-                [
-                    '10'
-                ]
-            ]
-        ]);
+        }))->shouldBeCalled()->willReturn($this->resultGenerator());
 
         $this->refreshOperation();
 
         $res = $this->transaction->read($table, new KeySet(['all' => true]), ['ID']);
+
         $this->assertInstanceOf(Result::class, $res);
-        $this->assertEquals(10, $res->rows()[0]['ID']);
+        $rows = iterator_to_array($res->rows());
+        $this->assertEquals(10, $rows[0]['ID']);
     }
 
     public function testCommit()
@@ -303,6 +270,27 @@ class TransactionTest extends \PHPUnit_Framework_TestCase
 
     // *******
     // Helpers
+
+    private function resultGenerator()
+    {
+        yield [
+            'metadata' => [
+                'rowType' => [
+                    'fields' => [
+                        [
+                            'name' => 'ID',
+                            'type' => [
+                                'code' => ValueMapper::TYPE_INT64
+                            ]
+                        ]
+                    ]
+                ]
+            ],
+            'values' => [
+                '10'
+            ]
+        ];
+    }
 
     private function refreshOperation()
     {

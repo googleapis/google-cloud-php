@@ -49,6 +49,10 @@ use Google\Cloud\Spanner\Session\SessionPoolInterface;
  *              ]
  *          ]
  *     );
+ *
+ *     $firstRow = $result
+ *         ->rows()
+ *         ->current();
  *     ```
  *
  *     @param string $sql The query string to execute.
@@ -73,7 +77,10 @@ use Google\Cloud\Spanner\Session\SessionPoolInterface;
  *     $columns = ['ID', 'title', 'content'];
  *
  *     $result = $snapshot->read('Posts', $keySet, $columns);
- *     ```
+ *
+ *     $firstRow = $result
+ *         ->rows()
+ *         ->current();
  *
  *     @param string $table The table name.
  *     @param KeySet $keySet The KeySet to select rows.

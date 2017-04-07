@@ -17,17 +17,20 @@
 
 namespace Google\Cloud\Spanner;
 
+use Google\Cloud\Core\Exception\ServiceException;
+use Google\Cloud\Spanner\Session\Session;
+use Google\Cloud\Spanner\Session\SessionPoolInterface;
+
 /**
  * Represent a Google Cloud Spanner lookup result (either read or executeSql).
  *
  * Example:
  * ```
- * use Google\Cloud\ServiceBuilder;
+ * use Google\Cloud\Spanner\SpannerClient;
  *
- * $cloud = new ServiceBuilder();
- * $spanner = $cloud->spanner();
+ * $spanner = new SpannerClient();
+ *
  * $database = $spanner->connect('my-instance', 'my-database');
- *
  * $result = $database->execute('SELECT * FROM Posts');
  * ```
  *
@@ -36,34 +39,117 @@ namespace Google\Cloud\Spanner;
 class Result implements \IteratorAggregate
 {
     /**
-     * @var array
+     * @var array|null
      */
-    private $result;
+    private $cachedValues;
 
     /**
      * @var array
      */
-    private $rows;
+    private $columns = [];
 
     /**
-     * @var array
+     * @var ValueMapper
      */
-    private $options;
+    private $mapper;
 
     /**
-     * @param array $result The query or read result.
-     * @param array $rows The rows, formatted and decoded.
-     * @param array $options Additional result options and info.
+     * @var array|null
      */
-    public function __construct(array $result, array $rows, array $options = [])
-    {
-        $this->result = $result;
-        $this->rows = $rows;
-        $this->options = $options;
+    private $metadata;
+
+    /**
+     * @var Operation
+     */
+    private $operation;
+
+    /**
+     * @var string|null
+     */
+    private $resumeToken;
+
+    /**
+     * @var Session
+     */
+    private $session;
+
+    /**
+     * @var Snapshot|null
+     */
+    private $snapshot;
+
+    /**
+     * @var array|null
+     */
+    private $stats;
+
+    /**
+     * @var Transaction|null
+     */
+    private $transaction;
+
+    /**
+     * @var string
+     */
+    private $transactionContext;
+
+    /**
+     * @param Operation $operation Runs operations against Google Cloud Spanner.
+     * @param Session $session The session used for any operations executed.
+     * @param \Generator $resultGenerator Reads rows from Google Cloud Spanner.
+     * @param string $transactionContext The transaction's context.
+     * @param ValueMapper $mapper Maps values.
+     */
+    public function __construct(
+        Operation $operation,
+        Session $session,
+        callable $call,
+        $transactionContext,
+        ValueMapper $mapper
+    ) {
+        $this->operation = $operation;
+        $this->session = $session;
+        $this->call = $call;
+        $this->transactionContext = $transactionContext;
+        $this->mapper = $mapper;
     }
 
     /**
-     * Return result metadata
+     * Return the formatted and decoded rows.
+     *
+     * If the stream is interrupted an attempt will be made to resume.
+     *
+     * Example:
+     * ```
+     * $rows = $result->rows();
+     * ```
+     *
+     * @return \Generator
+     */
+    public function rows()
+    {
+        $call = $this->call;
+
+        try {
+            foreach ($this->getRows($call()) as $row) {
+                yield $row;
+            }
+        } catch (ServiceException $ex) {
+            if (!$this->resumeToken) {
+                throw $ex;
+            }
+
+            // If we have a token, attempt to resume
+            foreach ($this->getRows($call($this->resumeToken)) as $row) {
+                yield $row;
+            }
+        }
+    }
+
+    /**
+     * Return result metadata.
+     *
+     * Will be populated once the result set is iterated upon.
      *
      * Example:
      * ```
@@ -71,53 +157,20 @@ class Result implements \IteratorAggregate
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @return array [ResultSetMetadata](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#google.spanner.v1.ResultSetMetadata).
+     * @return array|null [ResultSetMetadata](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#google.spanner.v1.ResultSetMetadata).
      * @codingStandardsIgnoreEnd
      */
     public function metadata()
     {
-        return $this->result['metadata'];
-    }
-
-    /**
-     * Return the formatted and decoded rows.
-     *
-     * Example:
-     * ```
-     * $rows = $result->rows();
-     * ```
-     *
-     * @return array|null
-     */
-    public function rows()
-    {
-        return $this->rows;
-    }
-
-    /**
-     * Return the first row, or null.
-     *
-     * Useful when selecting a single row.
-     *
-     * Example:
-     * ```
-     * $row = $result->firstRow();
-     * ```
-     *
-     * @return array|null
-     */
-    public function firstRow()
-    {
-        return (isset($this->rows[0]))
-            ? $this->rows[0]
-            : null;
+        return $this->metadata;
     }
 
     /**
      * Get the query plan and execution statistics for the query that produced
      * this result set.
      *
-     * Stats are not returned by default.
+     * Stats are not returned by default and will not be accessible until the
+     * entire set of results has been iterated through.
      *
      * Example:
      * ```
@@ -137,30 +190,13 @@ class Result implements \IteratorAggregate
      */
     public function stats()
     {
-        return (isset($this->result['stats']))
-            ? $this->result['stats']
-            : null;
-    }
-
-    /**
-     * Returns a transaction which was begun in the read or execute, if one exists.
-     *
-     * Example:
-     * ```
-     * $transaction = $result->transaction();
-     * ```
-     *
-     * @return Transaction|null
-     */
-    public function transaction()
-    {
-        return (isset($this->options['transaction']))
-            ? $this->options['transaction']
-            : null;
+        return $this->stats;
     }
 
     /**
      * Returns a snapshot which was begun in the read or execute, if one exists.
+     *
+     * Will be populated once the result set is iterated upon.
      *
      * Example:
      * ```
@@ -171,26 +207,24 @@ class Result implements \IteratorAggregate
      */
     public function snapshot()
     {
-        return (isset($this->options['snapshot']))
-            ? $this->options['snapshot']
-            : null;
+        return $this->snapshot;
     }
 
     /**
-     * Get the entire query or read response as given by the API.
+     * Returns a transaction which was begun in the read or execute, if one exists.
+     *
+     * Will be populated once the result set is iterated upon.
      *
      * Example:
      * ```
-     * $info = $result->info();
+     * $transaction = $result->transaction();
      * ```
      *
-     * @codingStandardsIgnoreStart
-     * @return array [ResultSet](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#google.spanner.v1.ResultSet).
-     * @codingStandardsIgnoreEnd
+     * @return Transaction|null
      */
-    public function info()
+    public function transaction()
     {
-        return $this->result;
+        return $this->transaction;
     }
 
     /**
@@ -198,6 +232,95 @@ class Result implements \IteratorAggregate
      */
     public function getIterator()
     {
-        return new \ArrayIterator($this->rows);
+        return $this->rows();
+    }
+
+    /**
+     * Yields rows from a partial result set.
+     *
+     * @return \Generator
+     */
+    private function getRowsFromPartial(array $partial)
+    {
+        $this->stats = isset($partial['stats']) ? $partial['stats'] : null;
+        $this->resumeToken = isset($partial['resumeToken']) ? $partial['resumeToken'] : null;
+
+        if (isset($partial['metadata'])) {
+            $this->metadata = $partial['metadata'];
+            $this->columns = $partial['metadata']['rowType']['fields'];
+        }
+
+        if (isset($partial['metadata']['transaction']['id'])) {
+            if ($this->transactionContext === SessionPoolInterface::CONTEXT_READ) {
+                $this->snapshot = $this->operation->createSnapshot(
+                    $this->session,
+                    $partial['metadata']['transaction']
+                );
+            } else {
+                $this->transaction = $this->operation->createTransaction(
+                    $this->session,
+                    $partial['metadata']['transaction']
+                );
+            }
+        }
+
+        if ($this->cachedValues) {
+            $partial['values'] = $this->mergeValues($this->cachedValues, $partial['values']);
+            $this->cachedValues = null;
+        }
+
+        if (isset($partial['chunkedValue'])) {
+            $this->cachedValues = $partial['values'];
+            return;
+        }
+
+        $rows = [];
+        $columnCount = count($this->columns);
+
+        if ($columnCount > 0 && isset($partial['values'])) {
+            $rows = array_chunk($partial['values'], $columnCount);
+        }
+
+        foreach ($rows as $row) {
+            yield $this->mapper->decodeValues($this->columns, $row);
+        }
+    }
+
+    /**
+     * Merge result set values together.
+     *
+     * @param array $cached
+     * @param array $new
+     * @return mixed
+     */
+    private function mergeValues(array $cached, array $new)
+    {
+        $lastCachedItem = array_pop($cached);
+        $firstNewItem = array_shift($new);
+        $item = $firstNewItem;
+
+        if (is_string($lastCachedItem) && is_string($firstNewItem)) {
+            $item = $lastCachedItem . $firstNewItem;
+        } elseif (is_array($lastCachedItem)) {
+            $item = $this->mergeValues($lastCachedItem, $firstNewItem);
+        } else {
+            array_push($cached, $lastCachedItem);
+        }
+
+        array_push($cached, $item);
+        return array_merge($cached, $new);
+    }
+
+    /**
+     * @param \Generator $results
+     * @return \Generator
+     */
+    private function getRows(\Generator $results)
+    {
+        foreach ($results as $partial) {
+            foreach ($this->getRowsFromPartial($partial) as $row) {
+                yield $row;
+            }
+        }
     }
 }

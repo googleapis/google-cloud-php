@@ -52,7 +52,7 @@ trait GrpcTrait
      *
      * @param callable $request
      * @param array $args
-     * @return array
+     * @return \Generator|array
      */
     public function send(callable $request, array $args)
     {

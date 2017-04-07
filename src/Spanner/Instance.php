@@ -37,10 +37,9 @@ use google\spanner\admin\instance\v1\Instance\State;
  *
  * Example:
  * ```
- * use Google\Cloud\ServiceBuilder;
+ * use Google\Cloud\Spanner\SpannerClient;
  *
- * $cloud = new ServiceBuilder();
- * $spanner = $cloud->spanner();
+ * $spanner = new SpannerClient();
  *
  * $instance = $spanner->instance('my-instance');
  * ```
@@ -57,11 +56,6 @@ class Instance
      * @var ConnectionInterface
      */
     private $connection;
-
-    /**
-     * @var SessionPool;
-     */
-    private $sessionPool;
 
     /**
      * @var LongRunningConnectionInterface
@@ -103,20 +97,18 @@ class Instance
      *
      * @param ConnectionInterface $connection The connection to the
      *        Google Cloud Spanner Admin API.
-     * @param SessionPoolInterface $sessionPool The session pool implementation.
      * @param LongRunningConnectionInterface $lroConnection An implementation
      *        mapping to methods which handle LRO resolution in the service.
      * @param array $lroCallables
      * @param string $projectId The project ID.
      * @param string $name The instance name.
-     * @param bool $returnInt64AsObject If true, 64 bit integers will be
+     * @param bool $returnInt64AsObject [optional] If true, 64 bit integers will be
      *        returned as a {@see Google\Cloud\Core\Int64} object for 32 bit platform
      *        compatibility. **Defaults to** false.
      * @param array $info [optional] A representation of the instance object.
      */
     public function __construct(
         ConnectionInterface $connection,
-        SessionPoolInterface $sessionPool,
         LongRunningConnectionInterface $lroConnection,
         array $lroCallables,
         $projectId,
@@ -125,7 +117,6 @@ class Instance
         array $info = []
     ) {
         $this->connection = $connection;
-        $this->sessionPool = $sessionPool;
         $this->lroConnection = $lroConnection;
         $this->lroCallables = $lroCallables;
         $this->projectId = $projectId;
@@ -363,18 +354,24 @@ class Instance
      * ```
      *
      * @param string $name The database name
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type SessionPoolInterface $sessionPool A pool used to manage
+     *           sessions.
+     * }
      * @return Database
      */
-    public function database($name)
+    public function database($name, array $options = [])
     {
         return new Database(
             $this->connection,
             $this,
-            $this->sessionPool,
             $this->lroConnection,
             $this->lroCallables,
             $this->projectId,
             $name,
+            isset($options['sessionPool']) ? $options['sessionPool'] : null,
             $this->returnInt64AsObject
         );
     }

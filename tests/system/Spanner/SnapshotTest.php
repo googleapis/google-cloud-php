@@ -48,10 +48,12 @@ class SnapshotTest extends SpannerTestCase
 
     private function getRow($client)
     {
-        return $client->execute('SELECT * FROM Users WHERE id=@id', [
+        $result = $client->execute('SELECT * FROM Users WHERE id=@id', [
             'parameters' => [
                 'id' => $this->id
             ]
-        ])->firstRow();
+        ]);
+
+        return $result->rows()->current();
     }
 }
