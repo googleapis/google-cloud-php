@@ -33,12 +33,20 @@ class PhpArray extends Protobuf\Codec\PhpArray
     private $customFilters;
 
     /**
+     * @var bool
+     */
+    private $useCamelCase;
+
+    /**
      * @param array $customFilters A set of callbacks to apply to properties in
      *        a gRPC response.
+     * @param bool $useCamelCase Whether to convert key casing to camelCase.
+     * }
      */
-    public function __construct(array $customFilters = [])
+    public function __construct(array $customFilters = [], $useCamelCase = true)
     {
         $this->customFilters = $customFilters;
+        $this->useCamelCase = $useCamelCase;
     }
 
     /**
@@ -96,7 +104,7 @@ class PhpArray extends Protobuf\Codec\PhpArray
                 $v = $this->filterValue($v, $field);
             }
 
-            $key = $this->toCamelCase($key);
+            $key = ($this->useCamelCase) ? $this->toCamelCase($key) : $key;
 
             if (isset($this->customFilters[$key])) {
                 $v = call_user_func($this->customFilters[$key], $v);
