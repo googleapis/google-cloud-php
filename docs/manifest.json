@@ -103,8 +103,8 @@
             ]
         },
         {
-            "id": "cloud-natural-language",
-            "name": "google/cloud-natural-language",
+            "id": "cloud-language",
+            "name": "google/cloud-language",
             "defaultService": "language/languageclient",
             "versions": [
                 "v0.2.0",

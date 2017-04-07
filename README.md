@@ -240,12 +240,12 @@ foreach ($tokens as $token) {
 }
 ```
 
-#### google/cloud-natural-language
+#### google/cloud-language
 
-Google Cloud Natural Language can be installed separately by requiring the `google/cloud-natural-language` composer package:
+Google Cloud Natural Language can be installed separately by requiring the `google/cloud-language` composer package:
 
 ```
-$ require google/cloud-natural-language
+$ require google/cloud-language
 ```
 
 ## Google Cloud Translation (Beta)
