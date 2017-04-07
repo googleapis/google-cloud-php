@@ -203,7 +203,7 @@ $ require google/cloud-bigquery
 
 ## Google Cloud Natural Language (Beta)
 
-- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/naturallanguage/naturallanguageclient)
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/language/languageclient)
 - [Official Documentation](https://cloud.google.com/natural-language/docs)
 
 #### Preview

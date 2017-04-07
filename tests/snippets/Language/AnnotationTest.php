@@ -23,7 +23,7 @@ use Google\Cloud\Language\Connection\ConnectionInterface;
 use Prophecy\Argument;
 
 /**
- * @group naturallanguage
+ * @group language
  */
 class AnnotationTest extends SnippetTestCase
 {

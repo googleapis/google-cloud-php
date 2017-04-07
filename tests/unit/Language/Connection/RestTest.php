@@ -29,7 +29,7 @@ use Psr\Http\Message\RequestInterface;
 use Rize\UriTemplate;
 
 /**
- * @group naturallanguage
+ * @group language
  */
 class RestTest extends \PHPUnit_Framework_TestCase
 {

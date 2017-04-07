@@ -23,7 +23,7 @@ use Google\Cloud\Language\LanguageClient;
 use Prophecy\Argument;
 
 /**
- * @group naturallanguage
+ * @group language
  */
 class LanguageClientTest extends SnippetTestCase
 {

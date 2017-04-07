@@ -24,7 +24,7 @@ use Google\Cloud\Storage\StorageObject;
 use Prophecy\Argument;
 
 /**
- * @group naturallanguage
+ * @group language
  */
 class LanguageClientTest extends \PHPUnit_Framework_TestCase
 {

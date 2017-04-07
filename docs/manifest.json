@@ -105,7 +105,7 @@
         {
             "id": "cloud-natural-language",
             "name": "google/cloud-natural-language",
-            "defaultService": "naturallanguage/naturallanguageclient",
+            "defaultService": "language/languageclient",
             "versions": [
                 "v0.2.0",
                 "v0.1.0",
