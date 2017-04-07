@@ -14,6 +14,9 @@
   "name": "google\\cloud\\language\\v1\\",
   "uri": "https://github.com/googleapis/proto-client-php/tree/master/src/language/v1"
 }, {
+  "name": "google\\cloud\\language\\v1beta2\\",
+  "uri": "https://github.com/googleapis/proto-client-php/tree/master/src/language/v1beta2"
+}, {
   "name": "google\\logging\\v2\\",
   "uri": "https://github.com/googleapis/proto-client-php/tree/master/src/logging/v2"
 }, {
@@ -34,6 +37,9 @@
 }, {
   "name": "google\\cloud\\speech\\v1beta1\\",
   "uri": "https://github.com/googleapis/proto-client-php/blob/master/src/speech/v1beta1/cloud_speech.php"
+}, {
+  "name": "google\\cloud\\speech\\v1\\",
+  "uri": "https://github.com/googleapis/proto-client-php/blob/master/src/speech/v1/cloud_speech.php"
 }, {
   "name": "google\\devtools\\cloudtrace\\v1\\",
   "uri": "https://github.com/googleapis/proto-client-php/blob/master/src/trace/v1/trace.php"

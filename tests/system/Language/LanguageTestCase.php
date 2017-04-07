@@ -15,15 +15,15 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\System\NaturalLanguage;
+namespace Google\Cloud\Tests\System\Language;
 
 use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\BigQuery\BigQueryClient;
-use Google\Cloud\NaturalLanguage\NaturalLanguageClient;
+use Google\Cloud\Language\LanguageClient;
 use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\Storage\StorageClient;
 
-class NaturalLanguageTestCase extends \PHPUnit_Framework_TestCase
+class LanguageTestCase extends \PHPUnit_Framework_TestCase
 {
     protected static $client;
     private static $hasSetUp = false;
@@ -35,7 +35,7 @@ class NaturalLanguageTestCase extends \PHPUnit_Framework_TestCase
         }
 
         $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
-        self::$client = new NaturalLanguageClient([
+        self::$client = new LanguageClient([
             'keyFilePath' => $keyFilePath
         ]);
         self::$hasSetUp = true;

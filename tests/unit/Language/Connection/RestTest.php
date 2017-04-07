@@ -15,12 +15,12 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Unit\NaturalLanguage\Connection;
+namespace Google\Cloud\Tests\Unit\Language\Connection;
 
 use Google\Cloud\Core\RequestBuilder;
 use Google\Cloud\Core\RequestWrapper;
-use Google\Cloud\NaturalLanguage\Connection\Rest;
-use Google\Cloud\NaturalLanguage\NaturalLanguageClient;
+use Google\Cloud\Language\Connection\Rest;
+use Google\Cloud\Language\LanguageClient;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
@@ -29,7 +29,7 @@ use Psr\Http\Message\RequestInterface;
 use Rize\UriTemplate;
 
 /**
- * @group naturallanguage
+ * @group language
  */
 class RestTest extends \PHPUnit_Framework_TestCase
 {

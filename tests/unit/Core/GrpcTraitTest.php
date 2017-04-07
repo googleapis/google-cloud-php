@@ -177,6 +177,18 @@ class GrpcTraitTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $this->implementation->call('formatListForApi', [$list]));
     }
 
+    public function testFormatTimestampForApi()
+    {
+        $seconds = '1491511965';
+        $nanos = '989898989';
+        $ts = '2017-04-06T20:52:45.'. $nanos .'Z';
+
+        $this->assertEquals([
+            'seconds' => $seconds,
+            'nanos' => $nanos
+        ], $this->implementation->call('formatTimestampForApi', [$ts]));
+    }
+
     /**
      * @dataProvider valueProvider
      */

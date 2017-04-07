@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\NaturalLanguage;
+namespace Google\Cloud\Language;
 
 use Google\Cloud\Core\CallTrait;
 
@@ -24,21 +24,21 @@ use Google\Cloud\Core\CallTrait;
  * [Google Cloud Natural Language API](https://cloud.google.com/natural-language/docs).
  *
  * This class is created internally by
- * {@see Google\Cloud\NaturalLanguage\NaturalLanguageClient} and is used to
+ * {@see Google\Cloud\Language\LanguageClient} and is used to
  * represent various document analyzation results. It should not be instantiated
  * externally.
  *
  * Annotations are returned by
- * {@see Google\Cloud\NaturalLanguage\NaturalLanguageClient::analyzeEntities()},
- * {@see Google\Cloud\NaturalLanguage\NaturalLanguageClient::analyzeSentiment()},
- * {@see Google\Cloud\NaturalLanguage\NaturalLanguageClient::analyzeSyntax()} and
- * {@see Google\Cloud\NaturalLanguage\NaturalLanguageClient::annotateText()}.
+ * {@see Google\Cloud\Language\LanguageClient::analyzeEntities()},
+ * {@see Google\Cloud\Language\LanguageClient::analyzeSentiment()},
+ * {@see Google\Cloud\Language\LanguageClient::analyzeSyntax()} and
+ * {@see Google\Cloud\Language\LanguageClient::annotateText()}.
  *
  * Example:
  * ```
- * use Google\Cloud\NaturalLanguage\NaturalLanguageClient;
+ * use Google\Cloud\Language\LanguageClient;
  *
- * $language = new NaturalLanguageClient();
+ * $language = new LanguageClient();
  *
  * $annotation = $language->annotateText('Google Cloud Platform is a powerful tool.');
  * ```
