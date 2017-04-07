@@ -173,14 +173,14 @@ class ServiceBuilder
      *
      * Example:
      * ```
-     * $language = $cloud->naturalLanguage();
+     * $language = $cloud->language();
      * ```
      *
      * @param array $config [optional] Configuration options. See
      *        {@see Google\Cloud\ServiceBuilder::__construct()} for the available options.
      * @return LanguageClient
      */
-    public function naturalLanguage(array $config = [])
+    public function language(array $config = [])
     {
         return new LanguageClient($config ? $this->resolveConfig($config) : $this->config);
     }
