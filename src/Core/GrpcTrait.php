@@ -23,6 +23,7 @@ use Google\Auth\FetchAuthTokenCache;
 use Google\Auth\Cache\MemoryCacheItemPool;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\GrpcRequestWrapper;
+use google\protobuf;
 
 /**
  * Provides shared functionality for gRPC service implementations.
@@ -88,10 +89,16 @@ trait GrpcTrait
      */
     private function formatTimestampFromApi(array $timestamp)
     {
+        $timestamp += [
+            'seconds' => 0,
+            'nanos' => 0
+        ];
+
         $formattedTime = (new DateTime())
             ->setTimeZone(new DateTimeZone('UTC'))
             ->setTimestamp($timestamp['seconds'])
             ->format('Y-m-d\TH:i:s');
+
         $timestamp['nanos'] = str_pad($timestamp['nanos'], 9, '0', STR_PAD_LEFT);
         return $formattedTime .= sprintf('.%sZ', rtrim($timestamp['nanos'], '0'));
     }
@@ -171,6 +178,8 @@ trait GrpcTrait
                 return ['number_value' => $value];
             case 'boolean':
                 return ['bool_value' => $value];
+            case 'NULL':
+                return ['null_value' => protobuf\NullValue::NULL_VALUE];
             case 'array':
                 if ($this->isAssoc($value)) {
                     return ['struct_value' => $this->formatStructForApi($value)];

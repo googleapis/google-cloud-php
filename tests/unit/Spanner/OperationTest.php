@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Spanner;
+namespace Google\Cloud\Tests\Unit\Spanner;
 
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\KeyRange;
@@ -269,7 +269,21 @@ class OperationTest extends \PHPUnit_Framework_TestCase
 
         $snap = $this->operation->snapshot($this->session);
         $this->assertInstanceOf(Snapshot::class, $snap);
+        $this->assertEquals(Snapshot::TYPE_PRE_ALLOCATED, $snap->type());
         $this->assertEquals(self::TRANSACTION, $snap->id());
+    }
+
+    public function testSnapshotSingleUse()
+    {
+        $this->connection->beginTransaction(Argument::any())
+            ->shouldNotBeCalled();
+
+        $this->operation->___setProperty('connection', $this->connection->reveal());
+
+        $snap = $this->operation->snapshot($this->session, ['singleUse' => true]);
+        $this->assertInstanceOf(Snapshot::class, $snap);
+        $this->assertEquals(Snapshot::TYPE_SINGLE_USE, $snap->type());
+        $this->assertNull($snap->id());
     }
 
     public function testSnapshotWithTimestamp()

@@ -37,6 +37,10 @@ class DurationTest extends SnippetTestCase
 
     public function testClass()
     {
+        if (!extension_loaded('grpc')) {
+            $this->markTestSkipped('Must have the grpc extension installed to run this test.');
+        }
+
         $snippet = $this->snippetFromClass(Duration::class);
         $res = $snippet->invoke('duration');
         $this->assertInstanceOf(Duration::class, $res->returnVal());

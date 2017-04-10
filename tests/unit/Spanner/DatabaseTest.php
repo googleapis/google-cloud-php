@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Spanner;
+namespace Google\Cloud\Tests\Unit\Spanner;
 
 use Google\Cloud\Core\Exception\AbortedException;
 use Google\Cloud\Core\Exception\NotFoundException;
@@ -23,6 +23,7 @@ use Google\Cloud\Core\Iam\Iam;
 use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
+use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Duration;
@@ -77,7 +78,7 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
         $this->sessionPool->release(Argument::type(Session::class))
             ->willReturn(null);
 
-        $this->instance->name()->willReturn(self::INSTANCE);
+        $this->instance->name()->willReturn(InstanceAdminClient::formatInstanceName(self::PROJECT, self::INSTANCE));
 
         $args = [
             $this->connection->reveal(),
@@ -96,12 +97,55 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
         $this->database = \Google\Cloud\Dev\stub(Database::class, $args, $props);
     }
 
+    public function testName()
+    {
+        $this->assertEquals($this->database->name(), DatabaseAdminClient::formatDatabaseName(self::PROJECT, self::INSTANCE, self::DATABASE));
+    }
+
+    public function testInfo()
+    {
+        $res = [
+            'name' => $this->database->name()
+        ];
+
+        $this->connection->getDatabase(Argument::any())
+            ->shouldBeCalledTimes(1)
+            ->willReturn($res);
+
+        $this->database->___setProperty('connection', $this->connection->reveal());
+
+        $this->assertEquals($res, $this->database->info());
+
+        // Make sure the request only is sent once.
+        $this->database->info();
+    }
+
+    public function testReload()
+    {
+        $res = [
+            'name' => $this->database->name()
+        ];
+
+        $this->connection->getDatabase(Argument::any())
+            ->shouldBeCalledTimes(2)
+            ->willReturn($res);
+
+        $this->database->___setProperty('connection', $this->connection->reveal());
+
+        $this->assertEquals($res, $this->database->reload());
+
+        // Make sure the request is sent each time the method is called.
+        $this->database->reload();
+    }
+
     /**
      * @group spanneradmin
      */
     public function testExists()
     {
-        $this->connection->getDatabaseDDL(Argument::any())
+        $this->connection->getDatabase(Argument::withEntry(
+            'name', DatabaseAdminClient::formatDatabaseName(self::PROJECT, self::INSTANCE, self::DATABASE)
+        ))
             ->shouldBeCalled()
             ->willReturn([]);
 
@@ -115,7 +159,7 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
      */
     public function testExistsNotFound()
     {
-        $this->connection->getDatabaseDDL(Argument::any())
+        $this->connection->getDatabase(Argument::any())
             ->shouldBeCalled()
             ->willThrow(new NotFoundException('', 404));
 
@@ -130,9 +174,11 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
     public function testUpdateDdl()
     {
         $statement = 'foo';
-        $this->connection->updateDatabase([
+        $this->connection->updateDatabaseDdl([
             'name' => DatabaseAdminClient::formatDatabaseName(self::PROJECT, self::INSTANCE, self::DATABASE),
             'statements' => [$statement]
+        ])->willReturn([
+            'name' => 'my-operation'
         ]);
 
         $this->database->___setProperty('connection', $this->connection->reveal());
@@ -146,14 +192,16 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
     public function testUpdateDdlBatch()
     {
         $statements = ['foo', 'bar'];
-        $this->connection->updateDatabase([
+        $this->connection->updateDatabaseDdl([
             'name' => DatabaseAdminClient::formatDatabaseName(self::PROJECT, self::INSTANCE, self::DATABASE),
             'statements' => $statements
+        ])->willReturn([
+            'name' => 'my-operation'
         ]);
 
         $this->database->___setProperty('connection', $this->connection->reveal());
 
-        $this->database->updateDdl($statements);
+        $this->database->updateDdlBatch($statements);
     }
 
     /**
@@ -162,7 +210,7 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
     public function testUpdateWithSingleStatement()
     {
         $statement = 'foo';
-        $this->connection->updateDatabase([
+        $this->connection->updateDatabaseDdl([
             'name' => DatabaseAdminClient::formatDatabaseName(self::PROJECT, self::INSTANCE, self::DATABASE),
             'statements' => ['foo']
         ])->shouldBeCalled()->willReturn(['name' => 'operations/foo']);
@@ -258,15 +306,38 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
             ->shouldBeCalled()
             ->willReturn(['id' => self::TRANSACTION]);
 
+        $this->connection->commit(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn(['commitTimestamp' => '2017-01-09T18:05:22.534799Z']);
+
         $this->refreshOperation();
 
         $hasTransaction = false;
 
         $this->database->runTransaction(function (Transaction $t) use (&$hasTransaction) {
             $hasTransaction = true;
+
+            $t->commit();
         });
 
         $this->assertTrue($hasTransaction);
+    }
+
+    /**
+     * @expectedException RuntimeException
+     */
+    public function testRunTransactionNoCommit()
+    {
+        $this->connection->beginTransaction(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn(['id' => self::TRANSACTION]);
+
+        $this->connection->rollback(Argument::any())
+            ->shouldBeCalled();
+
+        $this->refreshOperation();
+
+        $this->database->runTransaction(function (Transaction $t) {});
     }
 
     public function testRunTransactionRetry()
@@ -309,8 +380,8 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
         $abort = new AbortedException('foo', 409, null, [
             [
                 'retryDelay' => [
-                    'seconds' => 1,
-                    'nanos' => 0
+                    'seconds' => 0,
+                    'nanos' => 500
                 ]
             ]
         ]);

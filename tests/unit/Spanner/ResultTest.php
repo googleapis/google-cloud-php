@@ -15,21 +15,18 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Spanner;
+namespace Google\Cloud\Tests\Unit\Spanner;
 
-use Google\Cloud\Spanner\Operation;
-use Google\Cloud\Spanner\Result;
-use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\Transaction;
-use Google\Cloud\Spanner\ValueMapper;
-use Prophecy\Argument;
 
 /**
  * @group spanner
  */
 class ResultTest extends \PHPUnit_Framework_TestCase
 {
+    use ResultTestTrait;
+
     /**
      * @dataProvider streamingDataProvider
      */
@@ -38,13 +35,6 @@ class ResultTest extends \PHPUnit_Framework_TestCase
         $result = iterator_to_array($this->getResultClass($chunks));
 
         $this->assertEquals($expectedValues, $result);
-    }
-
-    public function streamingDataProvider()
-    {
-        foreach ($this->getStreamingDataFixture()['tests'] as $test) {
-            yield [$test['chunks'], $test['result']['value']];
-        }
     }
 
     public function testIterator()
@@ -95,57 +85,5 @@ class ResultTest extends \PHPUnit_Framework_TestCase
         $this->assertNull($result->snapshot());
         $result->rows()->next();
         $this->assertInstanceOf(Snapshot::class, $result->snapshot());
-    }
-
-    private function getResultClass($chunks, $context = 'r')
-    {
-        $operation = $this->prophesize(Operation::class);
-        $session = $this->prophesize(Session::class)->reveal();
-        $mapper = $this->prophesize(ValueMapper::class);
-        $transaction = $this->prophesize(Transaction::class);
-        $snapshot = $this->prophesize(Snapshot::class);
-        $mapper->decodeValues(
-            Argument::any(),
-            Argument::any()
-        )->will(function ($args) {
-            return $args[1];
-        });
-
-        if ($context === 'r') {
-            $operation->createSnapshot(
-                $session,
-                Argument::type('array')
-            )->willReturn($snapshot->reveal());
-        } else {
-            $operation->createTransaction(
-                $session,
-                Argument::type('array')
-            )->willReturn($transaction->reveal());
-        }
-
-        return new Result(
-            $operation->reveal(),
-            $session,
-            function () use ($chunks) {
-                return $this->resultGenerator($chunks);
-            },
-            $context,
-            $mapper->reveal()
-        );
-    }
-
-    private function resultGenerator($chunks)
-    {
-        foreach ($chunks as $chunk) {
-            yield json_decode($chunk, true);
-        }
-    }
-
-    private function getStreamingDataFixture()
-    {
-        return json_decode(
-            file_get_contents(__DIR__ .'/../fixtures/spanner/streaming-read-acceptance-test.json'),
-            true
-        );
     }
 }

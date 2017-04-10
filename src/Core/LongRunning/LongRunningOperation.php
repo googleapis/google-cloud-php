@@ -41,7 +41,7 @@ class LongRunningOperation
     /**
      * @var array
      */
-    private $info;
+    private $info = [];
 
     /**
      * @var array|null
@@ -66,15 +66,18 @@ class LongRunningOperation
      *        providing a function to invoke when an operation completes. The
      *        callable Type should correspond to an expected value of
      *        operation.metadata.typeUrl.
+     * @param array $info [optional] The operation info.
      */
     public function __construct(
         LongRunningConnectionInterface $connection,
         $name,
-        array $callablesMap
+        array $callablesMap,
+        array $info = []
     ) {
         $this->connection = $connection;
         $this->name = $name;
         $this->callablesMap = $callablesMap;
+        $this->info = $info;
     }
 
     /**
@@ -371,7 +374,8 @@ class LongRunningOperation
         return [
             'connection' => get_class($this->connection),
             'name' => $this->name,
-            'callablesMap' => array_keys($this->callablesMap)
+            'callablesMap' => array_keys($this->callablesMap),
+            'info' => $this->info
         ];
     }
 }

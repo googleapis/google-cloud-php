@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Spanner;
+namespace Google\Cloud\Tests\Unit\Spanner;
 
 use Google\Cloud\Spanner\Duration;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
@@ -49,7 +49,7 @@ class TransactionConfigurationTraitTest extends \PHPUnit_Framework_TestCase
         $args = [];
         $res = $this->impl->proxyTransactionSelector($args);
         $this->assertEquals(SessionPoolInterface::CONTEXT_READ, $res[1]);
-        $this->assertTrue($res[0]['singleUse']['readOnly']['strong']);
+        $this->assertEquals($res[0]['singleUse']['readOnly'], ['strong' => true]);
     }
 
     public function testTransactionSelectorExistingId()
@@ -68,12 +68,19 @@ class TransactionConfigurationTraitTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($this->impl->proxyConfigureTransactionOptions(), $res[0]['singleUse']);
     }
 
+    public function testTransactionSelectorReadOnly()
+    {
+        $args = ['transactionType' => SessionPoolInterface::CONTEXT_READ];
+        $res = $this->impl->proxyTransactionSelector($args);
+        $this->assertEquals(SessionPoolInterface::CONTEXT_READ, $res[1]);
+    }
+
     public function testBegin()
     {
         $args = ['begin' => true];
         $res = $this->impl->proxyTransactionSelector($args);
         $this->assertEquals(SessionPoolInterface::CONTEXT_READ, $res[1]);
-        $this->assertTrue($res[0]['begin']['readOnly']['strong']);
+        $this->assertEquals($res[0]['begin']['readOnly'], ['strong' => true]);
     }
 
     public function testConfigureSnapshotOptionsReturnReadTimestamp()
@@ -92,7 +99,7 @@ class TransactionConfigurationTraitTest extends \PHPUnit_Framework_TestCase
 
     public function testConfigureSnapshotOptionsMinReadTimestamp()
     {
-        $args = ['minReadTimestamp' => $this->ts];
+        $args = ['minReadTimestamp' => $this->ts, 'singleUse' => true];
         $res = $this->impl->proxyConfigureSnapshotOptions($args);
         $this->assertEquals(self::TIMESTAMP, $res['readOnly']['minReadTimestamp']);
     }
@@ -106,7 +113,7 @@ class TransactionConfigurationTraitTest extends \PHPUnit_Framework_TestCase
 
     public function testConfigureSnapshotOptionsMaxStaleness()
     {
-        $args = ['maxStaleness' => $this->duration];
+        $args = ['maxStaleness' => $this->duration, 'singleUse' => true];
         $res = $this->impl->proxyConfigureSnapshotOptions($args);
         $this->assertEquals($this->dur, $res['readOnly']['maxStaleness']);
     }

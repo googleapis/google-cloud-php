@@ -34,9 +34,9 @@ use google\spanner\admin\instance\v1\Instance\State;
 use Psr\Http\StreamInterface;
 
 /**
- * Google Cloud Spanner is a highly scalable, transactional, managed, NewSQL
+ * Cloud Spanner is a highly scalable, transactional, managed, NewSQL
  * database service. Find more information at
- * [Google Cloud Spanner docs](https://cloud.google.com/spanner/).
+ * [Cloud Spanner docs](https://cloud.google.com/spanner/).
  *
  * Example:
  * ```
@@ -44,6 +44,19 @@ use Psr\Http\StreamInterface;
  *
  * $spanner = new SpannerClient();
  * ```
+ *
+ * @method resumeOperation() {
+ *     Resume a Long Running Operation
+ *
+ *     Example:
+ *     ```
+ *     $operation = $spanner->resumeOperation($operationName);
+ *     ```
+ *
+ *     @param string $operationName The Long Running Operation name.
+ *     @param array $info [optional] The operation data.
+ *     @return LongRunningOperation
+ * }
  */
 class SpannerClient
 {
@@ -56,17 +69,11 @@ class SpannerClient
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/spanner.data';
     const ADMIN_SCOPE = 'https://www.googleapis.com/auth/spanner.admin';
-    const DEFAULT_NODE_COUNT = 1;
 
     /**
      * @var ConnectionInterface
      */
     protected $connection;
-
-    /**
-     * @var LongRunningConnectionInterface
-     */
-    private $lroConnection;
 
     /**
      * @var bool
@@ -110,9 +117,9 @@ class SpannerClient
         ];
 
         $this->connection = new Grpc($this->configureAuthentication($config));
-        $this->lroConnection = new LongRunningConnection($this->connection);
         $this->returnInt64AsObject = $config['returnInt64AsObject'];
-        $this->lroCallables = [
+
+        $this->setLroProperties(new LongRunningConnection($this->connection), [
             [
                 'typeUrl' => 'type.googleapis.com/google.spanner.admin.instance.v1.UpdateInstanceMetadata',
                 'callable' => function ($instance) {
@@ -135,15 +142,15 @@ class SpannerClient
                     return $this->instance($name, $instance);
                 }
             ]
-        ];
+        ]);
     }
 
     /**
-     * List all available configurations.
+     * List all available instance configurations.
      *
      * Example:
      * ```
-     * $configurations = $spanner->configurations();
+     * $configurations = $spanner->instanceConfigurations();
      * ```
      *
      * @codingStandardsIgnoreStart
@@ -160,19 +167,18 @@ class SpannerClient
      *     @type string $pageToken A previously-returned page token used to
      *           resume the loading of results from a specific point.
      * }
-     * @return ItemIterator<Configuration>
+     * @return ItemIterator<InstanceConfiguration>
      */
-    public function configurations(array $options = [])
+    public function instanceConfigurations(array $options = [])
     {
         $resultLimit = $this->pluck('resultLimit', $options, false) ?: 0;
 
         return new ItemIterator(
             new PageIterator(
                 function (array $config) {
-                    $name = InstanceAdminClient::parseInstanceConfigFromInstanceConfigName($config['name']);
-                    return $this->configuration($name, $config);
+                    return $this->instanceConfiguration($config['name'], $config);
                 },
-                [$this->connection, 'listConfigs'],
+                [$this->connection, 'listInstanceConfigs'],
                 ['projectId' => InstanceAdminClient::formatProjectName($this->projectId)] + $options,
                 [
                     'itemsKey' => 'instanceConfigs',
@@ -183,17 +189,17 @@ class SpannerClient
     }
 
     /**
-     * Get a configuration by its name.
+     * Get an instance configuration by its name.
      *
      * NOTE: This method does not execute a service request and does not verify
      * the existence of the given configuration. Unless you know with certainty
      * that the configuration exists, it is advised that you use
-     * {@see Google\Cloud\Spanner\Configuration::exists()} to verify existence
-     * before attempting to use the configuration.
+     * {@see Google\Cloud\Spanner\InstanceConfiguration::exists()} to verify
+     * existence before attempting to use the configuration.
      *
      * Example:
      * ```
-     * $configuration = $spanner->configuration($configurationName);
+     * $configuration = $spanner->instanceConfiguration($configurationName);
      * ```
      *
      * @codingStandardsIgnoreStart
@@ -202,11 +208,11 @@ class SpannerClient
      *
      * @param string $name The Configuration name.
      * @param array $config [optional] The configuration details.
-     * @return Configuration
+     * @return InstanceConfiguration
      */
-    public function configuration($name, array $config = [])
+    public function instanceConfiguration($name, array $config = [])
     {
-        return new Configuration($this->connection, $this->projectId, $name, $config);
+        return new InstanceConfiguration($this->connection, $this->projectId, $name, $config);
     }
 
     /**
@@ -220,7 +226,7 @@ class SpannerClient
      * @codingStandardsIgnoreStart
      * @see https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.admin.instance.v1#createinstancerequest CreateInstanceRequest
      *
-     * @param Configuration $config The configuration to use
+     * @param InstanceConfiguration $config The configuration to use
      * @param string $name The instance name
      * @param array $options [optional] {
      *     Configuration options
@@ -233,26 +239,10 @@ class SpannerClient
      * @return LongRunningOperation<Instance>
      * @codingStandardsIgnoreEnd
      */
-    public function createInstance(Configuration $config, $name, array $options = [])
+    public function createInstance(InstanceConfiguration $config, $name, array $options = [])
     {
-        $options += [
-            'displayName' => $name,
-            'nodeCount' => self::DEFAULT_NODE_COUNT,
-            'labels' => [],
-            'operationName' => null,
-        ];
-
-        // This must always be set to CREATING, so overwrite anything else.
-        $options['state'] = State::CREATING;
-
-        $operation = $this->connection->createInstance([
-            'instanceId' => $name,
-            'name' => InstanceAdminClient::formatInstanceName($this->projectId, $name),
-            'projectId' => InstanceAdminClient::formatProjectName($this->projectId),
-            'config' => InstanceAdminClient::formatInstanceConfigName($this->projectId, $config->name())
-        ] + $options);
-
-        return $this->lro($this->lroConnection, $operation['name'], $this->lroCallables);
+        $instance = $this->instance($name);
+        return $instance->create($config, $options);
     }
 
     /**
@@ -503,21 +493,5 @@ class SpannerClient
     public function duration($seconds, $nanos = 0)
     {
         return new Duration($seconds, $nanos);
-    }
-
-    /**
-     * Resume a Long Running Operation
-     *
-     * Example:
-     * ```
-     * $operation = $spanner->resumeOperation($operationName);
-     * ```
-     *
-     * @param string $operationName The Long Running Operation name.
-     * @return LongRunningOperation
-     */
-    public function resumeOperation($operationName)
-    {
-        return $this->lro($this->lroConnection, $operationName, $this->lroCallables);
     }
 }

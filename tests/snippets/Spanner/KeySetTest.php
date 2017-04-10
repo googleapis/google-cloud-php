@@ -37,6 +37,10 @@ class KeySetTest extends SnippetTestCase
 
     public function testClass()
     {
+        if (!extension_loaded('grpc')) {
+            $this->markTestSkipped('Must have the grpc extension installed to run this test.');
+        }
+
         $snippet = $this->snippetFromClass(KeySet::class);
         $res = $snippet->invoke('keySet');
         $this->assertInstanceOf(KeySet::class, $res->returnVal());

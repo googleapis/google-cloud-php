@@ -27,6 +27,14 @@ use Google\GAX\OperationResponse;
  */
 trait OperationResponseTrait
 {
+    /**
+     * Convert a GAX OperationResponse object to an array.
+     *
+     * @param OperationResponse $operation The operation response
+     * @param CodecInterface $codec The codec to use for gRPC serialization/deserialization.
+     * @param array $lroMappers A list of mappers for deserializing operation results.
+     * @return array
+     */
     private function operationToArray(OperationResponse $operation, CodecInterface $codec, array $lroMappers)
     {
         $response = $operation->getLastProtoResponse();
@@ -58,11 +66,12 @@ trait OperationResponseTrait
      *
      * @param mixed $client A generated client with a `resumeOperation` method.
      * @param string $name The Operation name.
+     * @param string|null $method The method name.
      * @return OperationResponse
      */
-    private function getOperationByName($client, $name)
+    private function getOperationByName($client, $name, $method = null)
     {
-        return $client->resumeOperation($name);
+        return $client->resumeOperation($name, $method);
     }
 
     /**

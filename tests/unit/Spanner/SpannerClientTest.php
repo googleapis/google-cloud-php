@@ -15,18 +15,20 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Spanner;
+namespace Google\Cloud\Tests\Unit\Spanner;
 
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
+use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
+use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Bytes;
-use Google\Cloud\Spanner\Configuration;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Date;
 use Google\Cloud\Spanner\Duration;
 use Google\Cloud\Spanner\Instance;
+use Google\Cloud\Spanner\InstanceConfiguration;
 use Google\Cloud\Spanner\KeyRange;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\SpannerClient;
@@ -60,17 +62,17 @@ class SpannerClientTest extends \PHPUnit_Framework_TestCase
     /**
      * @group spanneradmin
      */
-    public function testConfigurations()
+    public function testInstanceConfigurations()
     {
-        $this->connection->listConfigs(Argument::any())
+        $this->connection->listInstanceConfigs(Argument::any())
             ->shouldBeCalled()
             ->willReturn([
                 'instanceConfigs' => [
                     [
-                        'name' => 'projects/'. self::PROJECT .'/instanceConfigs/'. self::CONFIG,
+                        'name' => InstanceAdminClient::formatInstanceConfigName(self::PROJECT, self::CONFIG),
                         'displayName' => 'Bar'
                     ], [
-                        'name' => 'projects/'. self::PROJECT .'/instanceConfigs/'. self::CONFIG,
+                        'name' => InstanceAdminClient::formatInstanceConfigName(self::PROJECT, self::CONFIG),
                         'displayName' => 'Bat'
                     ]
                 ]
@@ -78,20 +80,20 @@ class SpannerClientTest extends \PHPUnit_Framework_TestCase
 
         $this->client->___setProperty('connection', $this->connection->reveal());
 
-        $configs = $this->client->configurations();
+        $configs = $this->client->instanceConfigurations();
 
         $this->assertInstanceOf(ItemIterator::class, $configs);
 
         $configs = iterator_to_array($configs);
         $this->assertEquals(2, count($configs));
-        $this->assertInstanceOf(Configuration::class, $configs[0]);
-        $this->assertInstanceOf(Configuration::class, $configs[1]);
+        $this->assertInstanceOf(InstanceConfiguration::class, $configs[0]);
+        $this->assertInstanceOf(InstanceConfiguration::class, $configs[1]);
     }
 
     /**
      * @group spanneradmin
      */
-    public function testPagedConfigurations()
+    public function testPagedInstanceConfigurations()
     {
         $firstCall = [
             'instanceConfigs' => [
@@ -112,31 +114,31 @@ class SpannerClientTest extends \PHPUnit_Framework_TestCase
             ]
         ];
 
-        $this->connection->listConfigs(Argument::any())
+        $this->connection->listInstanceConfigs(Argument::any())
             ->shouldBeCalledTimes(2)
             ->willReturn($firstCall, $secondCall);
 
         $this->client->___setProperty('connection', $this->connection->reveal());
 
-        $configs = $this->client->configurations();
+        $configs = $this->client->instanceConfigurations();
 
         $this->assertInstanceOf(ItemIterator::class, $configs);
 
         $configs = iterator_to_array($configs);
         $this->assertEquals(2, count($configs));
-        $this->assertInstanceOf(Configuration::class, $configs[0]);
-        $this->assertInstanceOf(Configuration::class, $configs[1]);
+        $this->assertInstanceOf(InstanceConfiguration::class, $configs[0]);
+        $this->assertInstanceOf(InstanceConfiguration::class, $configs[1]);
     }
 
     /**
      * @group spanneradmin
      */
-    public function testConfiguration()
+    public function testInstanceConfiguration()
     {
-        $config = $this->client->configuration('bar');
+        $config = $this->client->instanceConfiguration('bar');
 
-        $this->assertInstanceOf(Configuration::class, $config);
-        $this->assertEquals('bar', $config->name());
+        $this->assertInstanceOf(InstanceConfiguration::class, $config);
+        $this->assertEquals('bar', InstanceAdminClient::parseInstanceConfigFromInstanceConfigName($config->name()));
     }
 
     /**
@@ -145,8 +147,8 @@ class SpannerClientTest extends \PHPUnit_Framework_TestCase
     public function testCreateInstance()
     {
         $this->connection->createInstance(Argument::that(function ($arg) {
-            if ($arg['name'] !== 'projects/'. self::PROJECT .'/instances/'. self::INSTANCE) return false;
-            if ($arg['config'] !== 'projects/'. self::PROJECT .'/instanceConfigs/'. self::CONFIG) return false;
+            if ($arg['name'] !== InstanceAdminClient::formatInstanceName(self::PROJECT, self::INSTANCE)) return false;
+            if ($arg['config'] !== InstanceAdminClient::formatInstanceConfigName(self::PROJECT, self::CONFIG)) return false;
 
             return true;
         }))
@@ -157,8 +159,8 @@ class SpannerClientTest extends \PHPUnit_Framework_TestCase
 
         $this->client->___setProperty('connection', $this->connection->reveal());
 
-        $config = $this->prophesize(Configuration::class);
-        $config->name()->willReturn(self::CONFIG);
+        $config = $this->prophesize(InstanceConfiguration::class);
+        $config->name()->willReturn(InstanceAdminClient::formatInstanceConfigName(self::PROJECT, self::CONFIG));
 
         $operation = $this->client->createInstance($config->reveal(), self::INSTANCE);
 
@@ -172,7 +174,7 @@ class SpannerClientTest extends \PHPUnit_Framework_TestCase
     {
         $i = $this->client->instance('foo');
         $this->assertInstanceOf(Instance::class, $i);
-        $this->assertEquals('foo', $i->name());
+        $this->assertEquals('foo', InstanceAdminClient::parseInstanceFromInstanceName($i->name()));
     }
 
     /**
@@ -205,8 +207,8 @@ class SpannerClientTest extends \PHPUnit_Framework_TestCase
 
         $instances = iterator_to_array($instances);
         $this->assertEquals(2, count($instances));
-        $this->assertEquals('foo', $instances[0]->name());
-        $this->assertEquals('bar', $instances[1]->name());
+        $this->assertEquals('foo', InstanceAdminClient::parseInstanceFromInstanceName($instances[0]->name()));
+        $this->assertEquals('bar', InstanceAdminClient::parseInstanceFromInstanceName($instances[1]->name()));
     }
 
     /**
@@ -225,7 +227,7 @@ class SpannerClientTest extends \PHPUnit_Framework_TestCase
     {
         $database = $this->client->connect(self::INSTANCE, self::DATABASE);
         $this->assertInstanceOf(Database::class, $database);
-        $this->assertEquals(self::DATABASE, $database->name());
+        $this->assertEquals(self::DATABASE, DatabaseAdminClient::parseDatabaseFromDatabaseName($database->name()));
     }
 
     public function testConnectWithInstance()
@@ -233,7 +235,7 @@ class SpannerClientTest extends \PHPUnit_Framework_TestCase
         $inst = $this->client->instance(self::INSTANCE);
         $database = $this->client->connect($inst, self::DATABASE);
         $this->assertInstanceOf(Database::class, $database);
-        $this->assertEquals(self::DATABASE, $database->name());
+        $this->assertEquals(self::DATABASE, DatabaseAdminClient::parseDatabaseFromDatabaseName($database->name()));
     }
 
     public function testKeyset()

@@ -49,8 +49,10 @@ class SnapshotTest extends SnippetTestCase
         $this->snapshot = \Google\Cloud\Dev\stub(Snapshot::class, [
             $operation->reveal(),
             $session->reveal(),
-            self::TRANSACTION,
-            new Timestamp(new \DateTime)
+            [
+                'id' => self::TRANSACTION,
+                'readTimestamp' => new Timestamp(new \DateTime)
+            ]
         ], ['operation']);
     }
 
@@ -69,6 +71,10 @@ class SnapshotTest extends SnippetTestCase
 
     public function testClass()
     {
+        if (!extension_loaded('grpc')) {
+            $this->markTestSkipped('Must have the grpc extension installed to run this test.');
+        }
+
         $database = $this->prophesize(Database::class);
         $database->snapshot()->shouldBeCalled()->willReturn('foo');
 

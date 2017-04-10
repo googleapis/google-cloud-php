@@ -20,9 +20,10 @@ namespace Google\Cloud\Spanner;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
+use Google\GAX\ValidationException;
 
 /**
- * Represents a Cloud Spanner Configuration.
+ * Represents a Cloud Spanner Instance Configuration.
  *
  * Example:
  * ```
@@ -30,14 +31,14 @@ use Google\Cloud\Spanner\Connection\ConnectionInterface;
  *
  * $spanner = new SpannerClient();
  *
- * $configuration = $spanner->configuration('regional-europe-west');
+ * $configuration = $spanner->instanceConfiguration('regional-europe-west');
  * ```
  *
  * @codingStandardsIgnoreStart
  * @see https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.admin.instance.v1#instanceconfig InstanceConfig
  * @codingStandardsIgnoreEnd
  */
-class Configuration
+class InstanceConfiguration
 {
     /**
      * @var ConnectionInterface
@@ -60,12 +61,12 @@ class Configuration
     private $info;
 
     /**
-     * Create a configuration instance.
+     * Create an instance configuration object.
      *
      * @param ConnectionInterface $connection A service connection for the
      *        Spanner API.
      * @param string $projectId The current project ID.
-     * @param string $name The simple configuration name.
+     * @param string $name The configuration name or ID.
      * @param array $info [optional] A service representation of the
      *        configuration.
      */
@@ -77,7 +78,7 @@ class Configuration
     ) {
         $this->connection = $connection;
         $this->projectId = $projectId;
-        $this->name = $name;
+        $this->name = $this->fullyQualifiedConfigName($name, $projectId);
         $this->info = $info;
     }
 
@@ -167,8 +168,8 @@ class Configuration
      */
     public function reload(array $options = [])
     {
-        $this->info = $this->connection->getConfig($options + [
-            'name' => InstanceAdminClient::formatInstanceConfigName($this->projectId, $this->name),
+        $this->info = $this->connection->getInstanceConfig($options + [
+            'name' => $this->name,
             'projectId' => $this->projectId
         ]);
 
@@ -189,5 +190,24 @@ class Configuration
             'name' => $this->name,
             'info' => $this->info,
         ];
+    }
+
+    /**
+     * Get the fully qualified instance config name.
+     *
+     * @param string $name The configuration name.
+     * @param string $projectId The project ID.
+     * @return string
+     */
+    private function fullyQualifiedConfigName($name, $projectId)
+    {
+        try {
+            return InstanceAdminClient::formatInstanceConfigName(
+                $projectId,
+                $name
+            );
+        } catch (ValidationException $e) {
+            return $name;
+        }
     }
 }

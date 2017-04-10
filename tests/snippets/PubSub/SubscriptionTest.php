@@ -103,7 +103,7 @@ class SubscriptionTest extends SnippetTestCase
         $this->connection->updateSubscription(Argument::any())
             ->shouldBeCalled();
 
-        $this->subscription->setConnection($this->connection->reveal());
+        $this->subscription->___setProperty('connection', $this->connection->reveal());
 
         $snippet->invoke();
     }
@@ -299,7 +299,7 @@ class SubscriptionTest extends SnippetTestCase
         $this->connection->seek(Argument::any())
             ->shouldBeCalled();
 
-        $this->subscription->setConnection($this->connection->reveal());
+        $this->subscription->___setProperty('connection', $this->connection->reveal());
         $snippet->invoke();
     }
 
@@ -312,7 +312,7 @@ class SubscriptionTest extends SnippetTestCase
         $this->connection->seek(Argument::any())
             ->shouldBeCalled();
 
-        $this->subscription->setConnection($this->connection->reveal());
+        $this->subscription->___setProperty('connection', $this->connection->reveal());
         $snippet->invoke();
     }
 

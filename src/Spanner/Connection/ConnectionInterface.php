@@ -23,136 +23,141 @@ namespace Google\Cloud\Spanner\Connection;
 interface ConnectionInterface
 {
     /**
-     * @param array $args [optional]
+     * @param array $args
      */
-    public function listConfigs(array $args = []);
+    public function listInstanceConfigs(array $args);
 
     /**
-     * @param array $args [optional]
+     * @param array $args
      */
-    public function getConfig(array $args = []);
+    public function getInstanceConfig(array $args);
 
     /**
-     * @param array $args [optional]
+     * @param array $args
      */
-    public function listInstances(array $args = []);
+    public function listInstances(array $args);
 
     /**
-     * @param array $args [optional]
+     * @param array $args
      */
-    public function getInstance(array $args = []);
+    public function getInstance(array $args);
 
     /**
-     * @param array $args [optional]
+     * @param array $args
      */
-    public function createInstance(array $args = []);
+    public function createInstance(array $args);
 
     /**
-     * @param array $args [optional]
+     * @param array $args
      */
-    public function updateInstance(array $args = []);
+    public function updateInstance(array $args);
 
     /**
-     * @param array $args [optional]
+     * @param array $args
      */
-    public function deleteInstance(array $args = []);
+    public function deleteInstance(array $args);
 
     /**
-     * @param array $args [optional]
+     * @param array $args
      */
-    public function getInstanceIamPolicy(array $args = []);
+    public function getInstanceIamPolicy(array $args);
 
     /**
-     * @param array $args [optional]
+     * @param array $args
      */
-    public function setInstanceIamPolicy(array $args = []);
+    public function setInstanceIamPolicy(array $args);
 
     /**
-     * @param array $args [optional]
+     * @param array $args
      */
-    public function testInstanceIamPermissions(array $args = []);
+    public function testInstanceIamPermissions(array $args);
 
     /**
-     * @param array $args [optional]
+     * @param array $args
      */
-    public function listDatabases(array $args = []);
+    public function listDatabases(array $args);
 
     /**
-     * @param array $args [optional]
+     * @param array $args
      */
-    public function createDatabase(array $args = []);
+    public function createDatabase(array $args);
 
     /**
-     * @param array $args [optional]
+     * @param array $args
      */
-    public function updateDatabase(array $args = []);
+    public function updateDatabaseDdl(array $args);
 
     /**
-     * @param array $args [optional]
+     * @param array $args
      */
-    public function dropDatabase(array $args = []);
+    public function dropDatabase(array $args);
 
     /**
-     * @param array $args [optional]
+     * @param array $args
      */
-    public function getDatabaseDDL(array $args = []);
+    public function getDatabase(array $args);
 
     /**
-     * @param array $args [optional]
+     * @param array $args
      */
-    public function getDatabaseIamPolicy(array $args = []);
+    public function getDatabaseDDL(array $args);
 
     /**
-     * @param array $args [optional]
+     * @param array $args
      */
-    public function setDatabaseIamPolicy(array $args = []);
+    public function getDatabaseIamPolicy(array $args);
 
     /**
-     * @param array $args [optional]
+     * @param array $args
      */
-    public function testDatabaseIamPermissions(array $args = []);
+    public function setDatabaseIamPolicy(array $args);
 
     /**
-     * @param array $args [optional]
+     * @param array $args
      */
-    public function createSession(array $args = []);
+    public function testDatabaseIamPermissions(array $args);
 
     /**
-     * @param array $args [optional]
+     * @param array $args
      */
-    public function getSession(array $args = []);
+    public function createSession(array $args);
 
     /**
-     * @param array $args [optional]
+     * @param array $args
      */
-    public function deleteSession(array $args = []);
+    public function getSession(array $args);
 
     /**
-     * @param array $args [optional]
+     * @param array $args
+     */
+    public function deleteSession(array $args);
+
+    /**
+     * @param array $args
      * @return \Generator
      */
-    public function executeStreamingSql(array $args = []);
+    public function executeStreamingSql(array $args);
 
     /**
-     * @param array $args [optional]
+     * @param array $args
      * @return \Generator
      */
-    public function streamingRead(array $args = []);
+    public function streamingRead(array $args);
 
     /**
-     * @param array $args [optional]
+     * @param array $args
      */
-    public function beginTransaction(array $args = []);
+    public function beginTransaction(array $args);
 
     /**
-     * @param array $args [optional]
+     * @param array $args
      */
-    public function commit(array $args = []);
+    public function commit(array $args);
 
     /**
-     * @param array $args [optional]
+     * @param array $args
      */
-    public function rollback(array $args = []);
+    public function rollback(array $args);
 
     /**
      * @param array $args

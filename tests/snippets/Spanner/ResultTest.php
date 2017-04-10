@@ -48,6 +48,8 @@ class ResultTest extends SnippetTestCase
             ->willReturn($this->prophesize(Snapshot::class)->reveal());
         $result->transaction()
             ->willReturn($this->prophesize(Transaction::class)->reveal());
+        $result->stats()
+            ->willReturn([]);
         $this->result = $result->reveal();
         $database->execute(Argument::any())
             ->willReturn($this->result);
@@ -56,6 +58,10 @@ class ResultTest extends SnippetTestCase
 
     public function testClass()
     {
+        if (!extension_loaded('grpc')) {
+            $this->markTestSkipped('Must have the grpc extension installed to run this test.');
+        }
+
         $snippet = $this->snippetFromClass(Result::class);
         $snippet->replace('$database =', '//$database =');
         $snippet->addLocal('database', $this->database);
@@ -81,10 +87,20 @@ class ResultTest extends SnippetTestCase
 
     public function testStats()
     {
-        $snippet = $this->snippetFromMethod(Result::class, 'metadata');
+        $snippet = $this->snippetFromMethod(Result::class, 'stats');
         $snippet->addLocal('result', $this->result);
-        $res = $snippet->invoke('metadata');
+        $res = $snippet->invoke('stats');
         $this->assertInternalType('array', $res->returnVal());
+    }
+
+    public function testQueryWithStats()
+    {
+        $db = $this->prophesize(Database::class);
+        $db->execute(Argument::any(), ['queryMode' => 'PROFILE']);
+
+        $snippet = $this->snippetFromMethod(Result::class, 'stats', 1);
+        $snippet->addLocal('database', $db->reveal());
+        $snippet->invoke();
     }
 
     public function testSnapshot()

@@ -24,9 +24,9 @@ use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 
 /**
- * Common interface for running operations against Google Cloud Spanner. This
- * class is intended for internal use by the client library only. Implementors
- * should access these operations via {@see Google\Cloud\Spanner\Database} or
+ * Common interface for running operations against Cloud Spanner. This class is
+ * intended for internal use by the client library only. Implementors should
+ * access these operations via {@see Google\Cloud\Spanner\Database} or
  * {@see Google\Cloud\Spanner\Transaction}.
  *
  * Usage examples may be found in classes making use of this class:
@@ -163,11 +163,12 @@ class Operation
     {
         $options += [
             'parameters' => [],
+            'types' => [],
             'transactionContext' => null
         ];
 
         $parameters = $this->pluck('parameters', $options);
-        $options += $this->mapper->formatParamsForExecuteSql($parameters);
+        $options += $this->mapper->formatParamsForExecuteSql($parameters, $options['types']);
 
         $context = $this->pluck('transactionContext', $options);
 
@@ -234,12 +235,28 @@ class Operation
      * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#google.spanner.v1.BeginTransactionRequest BeginTransactionRequest
      *
      * @param Session $session The session to start the transaction in.
-     * @param array $options [optional] Configuration options.
+     * @param array $options [optional] {
+     *     Configuration Options.
+     *
+     *     @type bool $singleUse If true, a Transaction ID will not be allocated
+     *           up front. Instead, the transaction will be considered
+     *           "single-use", and may be used for only a single operation.
+     *           **Defaults to** `false`.
+     * }
      * @return Transaction
      */
     public function transaction(Session $session, array $options = [])
     {
-        $res = $this->beginTransaction($session, $options);
+        $options += [
+            'singleUse' => false
+        ];
+
+        if (!$options['singleUse']) {
+            $res = $this->beginTransaction($session, $options);
+        } else {
+            $res = [];
+        }
+
         return $this->createTransaction($session, $res);
     }
 
@@ -249,25 +266,44 @@ class Operation
      * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#google.spanner.v1.BeginTransactionRequest BeginTransactionRequest
      *
      * @param Session $session The session to start the snapshot in.
-     * @param array $options [optional] Configuration options.
+     * @param array $options [optional] {
+     *     Configuration Options.
+     *
+     *     @type bool $singleUse If true, a Transaction ID will not be allocated
+     *           up front. Instead, the transaction will be considered
+     *           "single-use", and may be used for only a single operation.
+     *           **Defaults to** `false`.
+     * }
      * @return Snapshot
      */
     public function snapshot(Session $session, array $options = [])
     {
-        $res = $this->beginTransaction($session, $options);
+        $options += [
+            'singleUse' => false
+        ];
 
-        return $this->createSnapshot($session, $res);
+        if (!$options['singleUse']) {
+            $res = $this->beginTransaction($session, $options);
+        } else {
+            $res = [];
+        }
+
+        return $this->createSnapshot($session, $res + $options);
     }
 
     /**
      * Create a Transaction instance from a response object.
      *
      * @param Session $session The session the transaction belongs to.
-     * @param array $res The transaction response.
+     * @param array $res [optional] The createTransaction response.
      * @return Transaction
      */
-    public function createTransaction(Session $session, array $res)
+    public function createTransaction(Session $session, array $res = [])
     {
+        $res += [
+            'id' => null
+        ];
+
         return new Transaction($this, $session, $res['id']);
     }
 
@@ -275,17 +311,21 @@ class Operation
      * Create a Snapshot instance from a response object.
      *
      * @param Session $session The session the snapshot belongs to.
-     * @param array $res The snapshot response.
+     * @param array $res [optional] The createTransaction response.
      * @return Snapshot
      */
-    public function createSnapshot(Session $session, array $res)
+    public function createSnapshot(Session $session, array $res = [])
     {
-        $timestamp = null;
-        if (isset($res['readTimestamp'])) {
-            $timestamp = $this->mapper->createTimestampWithNanos($res['readTimestamp']);
+        $res += [
+            'id' => null,
+            'readTimestamp' => null
+        ];
+
+        if ($res['readTimestamp']) {
+            $res['readTimestamp'] = $this->mapper->createTimestampWithNanos($res['readTimestamp']);
         }
 
-        return new Snapshot($this, $session, $res['id'], $timestamp);
+        return new Snapshot($this, $session, $res);
     }
 
     /**

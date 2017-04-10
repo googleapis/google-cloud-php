@@ -105,9 +105,9 @@ use Google\Cloud\Spanner\Session\SessionPoolInterface;
  *     @return string
  * }
  */
-class Snapshot
+class Snapshot implements TransactionalReadInterface
 {
-    use TransactionReadTrait;
+    use TransactionalReadTrait;
 
     /**
      * @var Timestamp
@@ -117,20 +117,39 @@ class Snapshot
     /**
      * @param Operation $operation The Operation instance.
      * @param Session $session The session to use for spanner interactions.
-     * @param string $transactionId The Transaction ID.
-     * @param Timestamp $readTimestamp [optional] The read timestamp.
+     * @param array $options [optional] {
+     *     Configuration Options.
+     *
+     *     @type string $id The Transaction ID. If no ID is provided,
+     *           the Transaction will be a Single-Use Transaction.
+     *     @type Timestamp $readTimestamp The read timestamp.
+     * }
      */
     public function __construct(
         Operation $operation,
         Session $session,
-        $transactionId,
-        Timestamp $readTimestamp = null
+        array $options = []
     ) {
         $this->operation = $operation;
         $this->session = $session;
-        $this->transactionId = $transactionId;
-        $this->readTimestamp = $readTimestamp;
-        $this->context = SessionPoolInterface::CONTEXT_READWRITE;
+
+        $options += [
+            'id' => null,
+            'readTimestamp' => null
+        ];
+
+        if ($options['readTimestamp'] && !($options['readTimestamp'] instanceof Timestamp)) {
+            throw new \InvalidArgumentException('$options.readTimestamp must be an instance of Timestamp.');
+        }
+
+        $this->transactionId = $options['id'] ?: null;
+        $this->readTimestamp = $options['readTimestamp'];
+        $this->type = $options['id']
+            ? self::TYPE_PRE_ALLOCATED
+            : self::TYPE_SINGLE_USE;
+
+        $this->context = SessionPoolInterface::CONTEXT_READ;
+        $this->options = $options;
     }
 
     /**

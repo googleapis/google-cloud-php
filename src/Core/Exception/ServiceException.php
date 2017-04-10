@@ -32,23 +32,24 @@ class ServiceException extends GoogleException
     /**
      * @var array
      */
-    protected $options;
+    protected $metadata;
 
     /**
      * Handle previous exceptions differently here.
      *
-     * @param  string    $message
-     * @param  int       $code
-     * @param  Exception $serviceException
+     * @param string $message
+     * @param int $code
+     * @param Exception $serviceException
+     * @param array $metadata [optional] Exception metadata.
      */
     public function __construct(
         $message,
         $code = null,
         Exception $serviceException = null,
-        array $options = []
+        array $metadata = []
     ) {
         $this->serviceException = $serviceException;
-        $this->options = $options;
+        $this->metadata = $metadata;
 
         parent::__construct($message, $code);
     }
@@ -71,5 +72,13 @@ class ServiceException extends GoogleException
     public function getServiceException()
     {
         return $this->serviceException;
+    }
+
+    /**
+     * Get exception metadata.
+     */
+    public function getMetadata()
+    {
+        return $this->metadata;
     }
 }

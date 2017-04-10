@@ -19,7 +19,7 @@ namespace Google\Cloud\Tests\Unit\SpannerAdmin;
 
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
-use Google\Cloud\Spanner\Configuration;
+use Google\Cloud\Spanner\InstanceConfiguration;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Prophecy\Argument;
 
@@ -27,7 +27,7 @@ use Prophecy\Argument;
  * @group spanneradmin
  * @group spanner
  */
-class ConfigurationTest extends \PHPUnit_Framework_TestCase
+class InstanceConfigurationTest extends \PHPUnit_Framework_TestCase
 {
     const PROJECT_ID = 'test-project';
     const NAME = 'test-config';
@@ -38,7 +38,7 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->configuration = \Google\Cloud\Dev\stub(Configuration::class, [
+        $this->configuration = \Google\Cloud\Dev\stub(InstanceConfiguration::class, [
             $this->connection->reveal(),
             self::PROJECT_ID,
             self::NAME
@@ -47,16 +47,16 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
 
     public function testName()
     {
-        $this->assertEquals(self::NAME, $this->configuration->name());
+        $this->assertEquals(self::NAME, InstanceAdminClient::parseInstanceConfigFromInstanceConfigName($this->configuration->name()));
     }
 
     public function testInfo()
     {
-        $this->connection->getConfig(Argument::any())->shouldNotBeCalled();
+        $this->connection->getInstanceConfig(Argument::any())->shouldNotBeCalled();
         $this->configuration->___setProperty('connection', $this->connection->reveal());
 
         $info = ['foo' => 'bar'];
-        $config = \Google\Cloud\Dev\stub(Configuration::class, [
+        $config = \Google\Cloud\Dev\stub(InstanceConfiguration::class, [
             $this->connection->reveal(),
             self::PROJECT_ID,
             self::NAME,
@@ -70,7 +70,7 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
     {
         $info = ['foo' => 'bar'];
 
-        $this->connection->getConfig([
+        $this->connection->getInstanceConfig([
             'name' => InstanceAdminClient::formatInstanceConfigName(self::PROJECT_ID, self::NAME),
             'projectId' => self::PROJECT_ID
         ])->shouldBeCalled()->willReturn($info);
@@ -82,7 +82,7 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
 
     public function testExists()
     {
-        $this->connection->getConfig(Argument::any())->willReturn([]);
+        $this->connection->getInstanceConfig(Argument::any())->willReturn([]);
         $this->configuration->___setProperty('connection', $this->connection->reveal());
 
         $this->assertTrue($this->configuration->exists());
@@ -90,7 +90,7 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
 
     public function testExistsDoesntExist()
     {
-        $this->connection->getConfig(Argument::any())->willThrow(new NotFoundException('', 404));
+        $this->connection->getInstanceConfig(Argument::any())->willThrow(new NotFoundException('', 404));
         $this->configuration->___setProperty('connection', $this->connection->reveal());
 
         $this->assertFalse($this->configuration->exists());
@@ -100,7 +100,7 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
     {
         $info = ['foo' => 'bar'];
 
-        $this->connection->getConfig([
+        $this->connection->getInstanceConfig([
             'name' => InstanceAdminClient::formatInstanceConfigName(self::PROJECT_ID, self::NAME),
             'projectId' => self::PROJECT_ID
         ])->shouldBeCalledTimes(1)->willReturn($info);

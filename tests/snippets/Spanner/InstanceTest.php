@@ -22,9 +22,12 @@ use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
+use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
+use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
+use Google\Cloud\Spanner\InstanceConfiguration;
 use Prophecy\Argument;
 
 /**
@@ -49,15 +52,41 @@ class InstanceTest extends SnippetTestCase
             [],
             self::PROJECT,
             self::INSTANCE
-        ]);
+        ], ['connection', 'lroConnection']);
     }
 
     public function testClass()
     {
+        if (!extension_loaded('grpc')) {
+            $this->markTestSkipped('Must have the grpc extension installed to run this test.');
+        }
+
         $snippet = $this->snippetFromClass(Instance::class);
         $res = $snippet->invoke('instance');
         $this->assertInstanceOf(Instance::class, $res->returnVal());
-        $this->assertEquals(self::INSTANCE, $res->returnVal()->name());
+        $this->assertEquals(InstanceAdminClient::formatInstanceName(self::PROJECT, self::INSTANCE), $res->returnVal()->name());
+    }
+
+    /**
+     * @group spanneradmin
+     */
+    public function testCreate()
+    {
+        $config = $this->prophesize(InstanceConfiguration::class);
+        $config->name()->willReturn(InstanceAdminClient::formatInstanceConfigName(self::PROJECT, 'foo'));
+
+        $snippet = $this->snippetFromMethod(Instance::class, 'create');
+        $snippet->addLocal('configuration', $config->reveal());
+        $snippet->addLocal('instance', $this->instance);
+
+        $this->connection->createInstance(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn(['name' => 'operations/foo']);
+
+        $this->instance->___setProperty('connection', $this->connection->reveal());
+
+        $res = $snippet->invoke('operation');
+        $this->assertInstanceOf(LongRunningOperation::class, $res->returnVal());
     }
 
     public function testName()
@@ -66,7 +95,7 @@ class InstanceTest extends SnippetTestCase
         $snippet->addLocal('instance', $this->instance);
 
         $res = $snippet->invoke('name');
-        $this->assertEquals(self::INSTANCE, $res->returnVal());
+        $this->assertEquals(InstanceAdminClient::formatInstanceName(self::PROJECT, self::INSTANCE), $res->returnVal());
     }
 
     public function testInfo()
@@ -136,15 +165,11 @@ class InstanceTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Instance::class, 'update');
         $snippet->addLocal('instance', $this->instance);
 
-        $this->connection->getInstance(Argument::any())
-            ->shouldBeCalledTimes(1)
-            ->willReturn([
-                'displayName' => 'foo',
-                'nodeCount' => 1
-            ]);
-
         $this->connection->updateInstance(Argument::any())
-            ->shouldBeCalled();
+            ->shouldBeCalled()
+            ->willReturn([
+                'name' => 'my-operation'
+            ]);
 
         $this->instance->___setProperty('connection', $this->connection->reveal());
         $snippet->invoke();
@@ -168,11 +193,14 @@ class InstanceTest extends SnippetTestCase
         $snippet->addLocal('instance', $this->instance);
 
         $this->connection->createDatabase(Argument::any())
-            ->shouldBeCalled();
+            ->shouldBeCalled()
+            ->willReturn([
+                'name' => 'my-operation'
+            ]);
 
         $this->instance->___setProperty('connection', $this->connection->reveal());
 
-        $res = $snippet->invoke('database');
+        $res = $snippet->invoke('operation');
         $this->assertInstanceOf(LongRunningOperation::class, $res->returnVal());
     }
 
@@ -183,7 +211,7 @@ class InstanceTest extends SnippetTestCase
 
         $res = $snippet->invoke('database');
         $this->assertInstanceOf(Database::class, $res->returnVal());
-        $this->assertEquals(self::DATABASE, $res->returnVal()->name());
+        $this->assertEquals(self::DATABASE, DatabaseAdminClient::parseDatabaseFromDatabaseName($res->returnVal()->name()));
     }
 
     public function testDatabases()
@@ -196,7 +224,7 @@ class InstanceTest extends SnippetTestCase
             ->willReturn([
                 'databases' => [
                     [
-                        'name' => 'projects/'. self::PROJECT .'/instances/'. self::INSTANCE .'/databases/'. self::DATABASE
+                        'name' => DatabaseAdminClient::formatDatabaseName(self::PROJECT, self::INSTANCE, self::DATABASE)
                     ]
                 ]
             ]);
@@ -216,5 +244,39 @@ class InstanceTest extends SnippetTestCase
 
         $res = $snippet->invoke('iam');
         $this->assertInstanceOf(Iam::class, $res->returnVal());
+    }
+
+    public function testResumeOperation()
+    {
+        $snippet = $this->snippetFromMagicMethod(Instance::class, 'resumeOperation');
+        $snippet->addLocal('instance', $this->instance);
+        $snippet->addLocal('operationName', 'foo');
+
+        $res = $snippet->invoke('operation');
+        $this->assertInstanceOf(LongRunningOperation::class, $res->returnVal());
+        $this->assertEquals('foo', $res->returnVal()->name());
+    }
+
+    public function testLongRunningOperations()
+    {
+        $snippet = $this->snippetFromMethod(Instance::class, 'longRunningOperations');
+        $snippet->addLocal('instance', $this->instance);
+
+        $lroConnection = $this->prophesize(LongRunningConnectionInterface::class);
+        $lroConnection->operations(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([
+                'operations' => [
+                    [
+                        'name' => 'foo'
+                    ]
+                ]
+            ]);
+
+        $this->instance->___setProperty('lroConnection', $lroConnection->reveal());
+
+        $res = $snippet->invoke('operations');
+        $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
+        $this->assertContainsOnlyInstancesOf(LongRunningOperation::class, $res->returnVal());
     }
 }

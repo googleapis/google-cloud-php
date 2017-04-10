@@ -17,12 +17,13 @@
 
 namespace Google\Cloud\Spanner;
 
+use Google\Cloud\Core\Exception\AbortedException;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use RuntimeException;
 
 /**
- * Manages interaction with Google Cloud Spanner inside a Transaction.
+ * Manages interaction with Cloud Spanner inside a Transaction.
  *
  * Transactions can be started via
  * {@see Google\Cloud\Spanner\Database::runTransaction()} (recommended) or via
@@ -65,6 +66,8 @@ use RuntimeException;
  * @method execute() {
  *     Run a query.
  *
+ *     Note that this method is not available in a single-use transaction.
+ *
  *     Example:
  *     ```
  *     $result = $transaction->execute(
@@ -93,6 +96,8 @@ use RuntimeException;
  * }
  * @method read() {
  *     Lookup rows in a table.
+ *
+ *     Note that this method is not available in a single-use transaction.
  *
  *     Example:
  *     ```
@@ -132,13 +137,9 @@ use RuntimeException;
  *     @return string
  * }
  */
-class Transaction
+class Transaction implements TransactionalReadInterface
 {
-    use TransactionReadTrait;
-
-    const STATE_ACTIVE = 0;
-    const STATE_ROLLED_BACK = 1;
-    const STATE_COMMITTED = 2;
+    use TransactionalReadTrait;
 
     /**
      * @var array
@@ -146,23 +147,24 @@ class Transaction
     private $mutations = [];
 
     /**
-     * @var int
-     */
-    private $state = self::STATE_ACTIVE;
-
-    /**
      * @param Operation $operation The Operation instance.
      * @param Session $session The session to use for spanner interactions.
-     * @param string $transactionId The Transaction ID.
+     * @param string $transactionId [optional] The Transaction ID. If no ID is
+     *        provided, the Transaction will be a Single-Use Transaction.
      */
     public function __construct(
         Operation $operation,
         Session $session,
-        $transactionId
+        $transactionId = null
     ) {
         $this->operation = $operation;
         $this->session = $session;
         $this->transactionId = $transactionId;
+
+        $this->type = $transactionId
+            ? self::TYPE_PRE_ALLOCATED
+            : self::TYPE_SINGLE_USE;
+
         $this->context = SessionPoolInterface::CONTEXT_READWRITE;
     }
 
@@ -395,7 +397,11 @@ class Transaction
     public function rollback(array $options = [])
     {
         if ($this->state !== self::STATE_ACTIVE) {
-            throw new \RuntimeException('The transaction cannot be rolled back because it is not active');
+            throw new \BadMethodCallException('The transaction cannot be rolled back because it is not active');
+        }
+
+        if ($this->type === self::TYPE_SINGLE_USE) {
+            throw new \BadMethodCallException('Cannot roll back a single-use transaction.');
         }
 
         $this->state = self::STATE_ROLLED_BACK;
@@ -416,21 +422,39 @@ class Transaction
      * $transaction->commit();
      * ```
      *
-     * @param array $options [optional] Configuration Options.
+     * @param array $options [optional] {
+     *     Configuration Options.
+     *
+     *     @type array $mutations An array of mutations to commit. May be used
+     *           instead of or in addition to enqueing mutations separately.
+     * }
      * @return Timestamp The commit timestamp.
-     * @throws \RuntimeException If the transaction is not active
-     * @throws \AbortedException If the commit is aborted for any reason.
+     * @throws \BadMethodCall If the transaction is not active or already used.
+     * @throws AbortedException If the commit is aborted for any reason.
      */
     public function commit(array $options = [])
     {
         if ($this->state !== self::STATE_ACTIVE) {
-            throw new \RuntimeException('The transaction cannot be committed because it is not active');
+            throw new \BadMethodCallException('The transaction cannot be committed because it is not active');
         }
 
-        $this->state = self::STATE_COMMITTED;
+        if (!$this->singleUseState()) {
+            $this->state = self::STATE_COMMITTED;
+        }
+
+        $options += [
+            'mutations' => []
+        ];
+
+        $options['mutations'] += $this->mutations;
 
         $options['transactionId'] = $this->transactionId;
-        return $this->operation->commit($this->session, $this->mutations, $options);
+
+        $t = $this->transactionOptions($options);
+
+        $options[$t[1]] = $t[0];
+
+        return $this->operation->commit($this->session, $this->pluck('mutations', $options), $options);
     }
 
     /**
@@ -449,11 +473,6 @@ class Transaction
     public function state()
     {
         return $this->state;
-    }
-
-    public function id()
-    {
-        return $this->transactionId;
     }
 
     /**

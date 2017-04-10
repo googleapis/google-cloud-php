@@ -67,6 +67,10 @@ class TransactionTest extends SnippetTestCase
 
     public function testClass()
     {
+        if (!extension_loaded('grpc')) {
+            $this->markTestSkipped('Must have the grpc extension installed to run this test.');
+        }
+
         $database = $this->prophesize(Database::class);
         $database->runTransaction(Argument::type('callable'))->shouldBeCalled();
 

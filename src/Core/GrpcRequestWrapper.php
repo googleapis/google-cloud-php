@@ -75,7 +75,8 @@ class GrpcRequestWrapper
      * @var array Map of error metadata types to RPC wrappers.
      */
     private $metadataTypes = [
-        'google.rpc.retryinfo-bin' => \google\rpc\RetryInfo::class
+        'google.rpc.retryinfo-bin' => \google\rpc\RetryInfo::class,
+        'google.rpc.badrequest-bin' => \google\rpc\BadRequest::class
     ];
 
     /**
@@ -168,7 +169,8 @@ class GrpcRequestWrapper
         }
 
         if ($response instanceof Message) {
-            return $response->serialize($this->codec);
+            $res = $response->serialize($this->codec);
+            return $this->convertNulls($res);
         }
 
         if ($response instanceof OperationResponse) {
@@ -192,7 +194,8 @@ class GrpcRequestWrapper
     {
         try {
             foreach ($response->readAll() as $count => $result) {
-                yield $result->serialize($this->codec);
+                $res = $result->serialize($this->codec);
+                yield $this->convertNulls($res);
             }
         } catch (\Exception $ex) {
             throw $this->convertToGoogleException($ex);
@@ -255,5 +258,24 @@ class GrpcRequestWrapper
         }
 
         return new $exception($ex->getMessage(), $ex->getCode(), $ex, $metadata);
+    }
+
+    /**
+     * Convert NullValue types to PHP null.
+     *
+     * @param array [ref] $result
+     * @return array
+     */
+    private function convertNulls(array &$result)
+    {
+        foreach ($result as $key => $value) {
+            if (is_array($value) && array_key_exists('nullValue', $value) && $value['nullValue'][0] === null) {
+                $result[$key] = null;
+            } elseif (is_array($value)) {
+                $result[$key] = $this->convertNulls($value);
+            }
+        }
+
+        return $result;
     }
 }

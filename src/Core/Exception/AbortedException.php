@@ -29,7 +29,7 @@ class AbortedException extends ServiceException
      */
     public function getRetryDelay()
     {
-        $metadata = array_filter($this->options, function ($metadataItem) {
+        $metadata = array_filter($this->metadata, function ($metadataItem) {
             if (array_key_exists('retryDelay', $metadataItem)) {
                 return true;
             }
@@ -37,11 +37,13 @@ class AbortedException extends ServiceException
             return false;
         });
 
-        $delay = $metadata[0]['retryDelay'];
-        if (!isset($delay['seconds'])) {
-            $delay['seconds'] = 0;
+        if (count($metadata) === 0) {
+            return ['seconds' => 0, 'nanos' => 0];
         }
 
-        return $delay;
+        return $metadata[0]['retryDelay'] + [
+            'seconds' => 0,
+            'nanos' => 0
+        ];
     }
 }

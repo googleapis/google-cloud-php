@@ -18,15 +18,16 @@
 namespace Google\Cloud\Tests\Snippets\Spanner;
 
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
-use Google\Cloud\Spanner\Configuration;
+use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
+use Google\Cloud\Spanner\InstanceConfiguration;
 use Prophecy\Argument;
 
 /**
  * @group spanner
  * @group spanneradmin
  */
-class ConfigurationTest extends SnippetTestCase
+class InstanceConfigurationTest extends SnippetTestCase
 {
     const PROJECT = 'my-awesome-project';
     const CONFIG = 'regional-europe-west';
@@ -37,7 +38,7 @@ class ConfigurationTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->config = \Google\Cloud\Dev\stub(Configuration::class, [
+        $this->config = \Google\Cloud\Dev\stub(InstanceConfiguration::class, [
             $this->connection->reveal(),
             self::PROJECT,
             self::CONFIG
@@ -46,33 +47,37 @@ class ConfigurationTest extends SnippetTestCase
 
     public function testClass()
     {
-        $snippet = $this->snippetFromClass(Configuration::class);
+        if (!extension_loaded('grpc')) {
+            $this->markTestSkipped('Must have the grpc extension installed to run this test.');
+        }
+
+        $snippet = $this->snippetFromClass(InstanceConfiguration::class);
         $res = $snippet->invoke('configuration');
 
-        $this->assertInstanceOf(Configuration::class, $res->returnVal());
-        $this->assertEquals(self::CONFIG, $res->returnVal()->name());
+        $this->assertInstanceOf(InstanceConfiguration::class, $res->returnVal());
+        $this->assertEquals(InstanceAdminClient::formatInstanceConfigName(self::PROJECT, self::CONFIG), $res->returnVal()->name());
     }
 
     public function testName()
     {
-        $snippet = $this->snippetFromMethod(Configuration::class, 'name');
+        $snippet = $this->snippetFromMethod(InstanceConfiguration::class, 'name');
         $snippet->addLocal('configuration', $this->config);
 
         $res = $snippet->invoke('name');
-        $this->assertEquals(self::CONFIG, $res->returnVal());
+        $this->assertEquals(InstanceAdminClient::formatInstanceConfigName(self::PROJECT, self::CONFIG), $res->returnVal());
     }
 
     public function testInfo()
     {
-        $snippet = $this->snippetFromMethod(Configuration::class, 'info');
+        $snippet = $this->snippetFromMethod(InstanceConfiguration::class, 'info');
         $snippet->addLocal('configuration', $this->config);
 
         $info = [
-            'name' => 'projects/'. self::PROJECT .'/instanceConfigs/'. self::CONFIG,
+            'name' => InstanceAdminClient::formatInstanceConfigName(self::PROJECT, self::CONFIG),
             'displayName' => self::CONFIG
         ];
 
-        $this->connection->getConfig(Argument::any())
+        $this->connection->getInstanceConfig(Argument::any())
             ->shouldBeCalled()
             ->willReturn($info);
 
@@ -84,13 +89,13 @@ class ConfigurationTest extends SnippetTestCase
 
     public function testExists()
     {
-        $snippet = $this->snippetFromMethod(Configuration::class, 'exists');
+        $snippet = $this->snippetFromMethod(InstanceConfiguration::class, 'exists');
         $snippet->addLocal('configuration', $this->config);
 
-        $this->connection->getConfig(Argument::any())
+        $this->connection->getInstanceConfig(Argument::any())
             ->shouldBeCalled()
             ->willReturn([
-                'name' => 'projects/'. self::PROJECT .'/instanceConfigs/'. self::CONFIG,
+                'name' => InstanceAdminClient::formatInstanceConfigName(self::PROJECT, self::CONFIG),
                 'displayName' => self::CONFIG
             ]);
 
@@ -103,14 +108,14 @@ class ConfigurationTest extends SnippetTestCase
     public function testReload()
     {
         $info = [
-            'name' => 'projects/'. self::PROJECT .'/instanceConfigs/'. self::CONFIG,
+            'name' => InstanceAdminClient::formatInstanceConfigName(self::PROJECT, self::CONFIG),
             'displayName' => self::CONFIG
         ];
 
-        $snippet = $this->snippetFromMethod(Configuration::class, 'reload');
+        $snippet = $this->snippetFromMethod(InstanceConfiguration::class, 'reload');
         $snippet->addLocal('configuration', $this->config);
 
-        $this->connection->getConfig(Argument::any())
+        $this->connection->getInstanceConfig(Argument::any())
             ->shouldBeCalled()
             ->willReturn($info);
 

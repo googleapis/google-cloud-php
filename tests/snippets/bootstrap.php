@@ -30,6 +30,8 @@ register_shutdown_function(function () {
 
     if (!empty($uncovered)) {
         echo sprintf("\033[31mNOTICE: %s uncovered snippets! \033[0m See build/snippets-uncovered.json for a report.\n", count($uncovered));
-        exit(1);
+        if (extension_loaded('grpc')) {
+            exit(1);
+        }
     }
 });

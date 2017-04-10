@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Spanner;
+namespace Google\Cloud\Tests\Unit\Spanner;
 
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Instance;
@@ -47,6 +47,9 @@ class TransactionTest extends \PHPUnit_Framework_TestCase
     private $session;
     private $database;
 
+    private $transaction;
+    private $singleUseTransaction;
+
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
@@ -71,6 +74,9 @@ class TransactionTest extends \PHPUnit_Framework_TestCase
         ];
 
         $this->transaction = \Google\Cloud\Dev\stub(Transaction::class, $args, $props);
+
+        unset($args[2]);
+        $this->singleUseTransaction = \Google\Cloud\Dev\stub(Transaction::class, $args, $props);
     }
 
     public function testInsert()
@@ -168,7 +174,7 @@ class TransactionTest extends \PHPUnit_Framework_TestCase
         $mutations = $this->transaction->___getProperty('mutations');
         $this->assertEquals('Posts', $mutations[0]['delete']['table']);
         $this->assertEquals('foo', $mutations[0]['delete']['keySet']['keys'][0]);
-        $this->assertFalse($mutations[0]['delete']['keySet']['all']);
+        $this->assertFalse(isset($mutations[0]['delete']['keySet']['all']));
     }
 
     public function testExecute()
@@ -228,7 +234,7 @@ class TransactionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException RuntimeException
+     * @expectedException BadMethodCallException
      */
     public function testCommitInvalidState()
     {
@@ -247,7 +253,7 @@ class TransactionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException RuntimeException
+     * @expectedException BadMethodCallException
      */
     public function testRollbackInvalidState()
     {
@@ -266,6 +272,14 @@ class TransactionTest extends \PHPUnit_Framework_TestCase
 
         $this->transaction->___setProperty('state', Transaction::STATE_COMMITTED);
         $this->assertEquals(Transaction::STATE_COMMITTED, $this->transaction->state());
+    }
+
+    /**
+     * @expectedException BadMethodCallException
+     */
+    public function testInvalidReadContext()
+    {
+        $this->singleUseTransaction->execute('foo');
     }
 
     // *******

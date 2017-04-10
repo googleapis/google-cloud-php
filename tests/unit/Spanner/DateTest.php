@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Spanner;
+namespace Google\Cloud\Tests\Unit\Spanner;
 
 use Google\Cloud\Spanner\Date;
 
@@ -31,6 +31,12 @@ class DateTest extends \PHPUnit_Framework_TestCase
     {
         $this->dt = new \DateTime('1989-10-11');
         $this->date = new Date($this->dt);
+    }
+
+    public function testCreateFromValues()
+    {
+        $date = Date::createFromValues(1989,10,11);
+        $this->assertEquals($date->formatAsString(), $this->date->formatAsString());
     }
 
     public function testGet()

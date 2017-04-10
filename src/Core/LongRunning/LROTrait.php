@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Core\LongRunning;
 
+use Google\Cloud\Core\Iterator\ItemIterator;
+use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 
 /**
@@ -27,19 +29,97 @@ use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 trait LROTrait
 {
     /**
-     * Create a Long Running Operation from an operation name.
+     * @var LongRunningConnectionInterface
+     */
+    private $lroConnection;
+
+    /**
+     * @var array
+     */
+    private $lroCallables;
+
+    /**
+     * @var string
+     */
+    private $lroResource;
+
+    /**
+     * Populate required LRO properties.
      *
-     * @param LongRunningConnectionInterface $connection The LRO connection
-     * @param string $operationName The name of the Operation.
-     * @param array $lroCallables A map of callables to normalize inputs and results.
+     * @param LongRunningConnectionInterface $lroConnection The LRO Connection.
+     * @param array $callablesMap An collection of form [(string) typeUrl, (callable) callable]
+     *        providing a function to invoke when an operation completes. The
+     *        callable Type should correspond to an expected value of
+     *        operation.metadata.typeUrl.
+     * @param string $lroResource [optional] The resource for which operations
+     *        may be listed.
+     */
+    private function setLroProperties(
+        LongRunningConnectionInterface $lroConnection,
+        array $lroCallables,
+        $resource = null
+    ) {
+        $this->lroConnection = $lroConnection;
+        $this->lroCallables = $lroCallables;
+        $this->lroResource = $resource;
+    }
+
+    /**
+     * Resume a Long Running Operation
+     *
+     * @param string $operationName The Long Running Operation name.
+     * @param array $info [optional] The operation data.
      * @return LongRunningOperation
      */
-    private function lro(LongRunningConnectionInterface $connection, $operationName, array $lroCallables)
+    public function resumeOperation($operationName, array $info = [])
     {
         return new LongRunningOperation(
-            $connection,
+            $this->lroConnection,
             $operationName,
-            $lroCallables
+            $this->lroCallables,
+            $info
+        );
+    }
+
+    /**
+     * List long running operations.
+     *
+     * @param array $options [optional] {
+     *     Configuration Options.
+     *
+     *     @type string $name The name of the operation collection.
+     *     @type string $filter The standard list filter.
+     *     @type int $pageSize Maximum number of results to return per
+     *           request.
+     *     @type int $resultLimit Limit the number of results returned in total.
+     *           **Defaults to** `0` (return all results).
+     *     @type string $pageToken A previously-returned page token used to
+     *           resume the loading of results from a specific point.
+     * }
+     * @return ItemIterator<InstanceConfiguration>
+     */
+    public function longRunningOperations(array $options = [])
+    {
+        if (is_null($this->lroResource)) {
+            throw new \BadMethodCallException('This service does list support listing operations.');
+        }
+
+        $resultLimit = $this->pluck('resultLimit', $options, false) ?: 0;
+
+        $options['name'] = $this->lroResource .'/operations';
+
+        return new ItemIterator(
+            new PageIterator(
+                function (array $operation) {
+                    return $this->resumeOperation($operation['name'], $operation);
+                },
+                [$this->lroConnection, 'operations'],
+                $options,
+                [
+                    'itemsKey' => 'operations',
+                    'resultLimit' => $resultLimit
+                ]
+            )
         );
     }
 }

@@ -20,7 +20,7 @@ namespace Google\Cloud\Spanner;
 use Google\Cloud\Core\ValidateTrait;
 
 /**
- * Represents a Google Cloud Spanner KeySet.
+ * Represents a Cloud Spanner KeySet.
  *
  * Example:
  * ```
@@ -73,6 +73,14 @@ class KeySet
         ];
 
         $this->validateBatch($options['ranges'], KeyRange::class);
+
+        if (!is_array($options['keys'])) {
+            throw new \InvalidArgumentException('$options.keys must be an array.');
+        }
+
+        if (!is_bool($options['all'])) {
+            throw new \InvalidArgumentException('$options.all must be a boolean.');
+        }
 
         $this->keys = $options['keys'];
         $this->ranges = $options['ranges'];
@@ -230,10 +238,20 @@ class KeySet
             $ranges[] = $range->keyRangeObject();
         }
 
-        return [
-            'keys' => $this->keys,
-            'ranges' => $ranges,
-            'all' => $this->all
-        ];
+        $set = [];
+
+        if ($this->all) {
+            $set['all'] = true;
+        }
+
+        if ($this->keys) {
+            $set['keys'] = $this->keys;
+        }
+
+        if ($ranges) {
+            $set['ranges'] = $ranges;
+        }
+
+        return $set;
     }
 }

@@ -57,7 +57,7 @@ class ServiceBuilderTest extends SnippetTestCase
             ['logging', LoggingClient::class, 'logging'],
             ['language', LanguageClient::class, 'language'],
             ['pubsub', PubSubClient::class, 'pubsub'],
-            ['spanner', SpannerClient::class, 'spanner'],
+            ['spanner', SpannerClient::class, 'spanner', true],
             ['speech', SpeechClient::class, 'speech'],
             ['storage', StorageClient::class, 'storage'],
             ['trace', TraceClient::class, 'trace'],
@@ -69,8 +69,14 @@ class ServiceBuilderTest extends SnippetTestCase
     /**
      * @dataProvider serviceBuilderMethods
      */
-    public function testServices($method, $returnType, $returnName)
+    public function testServices($method, $returnType, $returnName, $skipIfMissingGrpc = false)
     {
+        if ($skipIfMissingGrpc) {
+            if (!extension_loaded('grpc')) {
+                $this->markTestSkipped('Must have the grpc extension installed to run this test.');
+            }
+        }
+
         $snippet = $this->snippetFromMethod(ServiceBuilder::class, $method);
         $snippet->addLocal('cloud', $this->cloud);
         $res = $snippet->invoke($returnName);

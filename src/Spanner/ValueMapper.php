@@ -39,7 +39,21 @@ class ValueMapper
     const TYPE_BYTES = TypeCode::TYPE_BYTES;
     const TYPE_ARRAY = TypeCode::TYPE_ARRAY;
     const TYPE_STRUCT = TypeCode::TYPE_STRUCT;
-    const TYPE_NULL = 'null';
+
+    /**
+     * @var array
+     */
+    private $allowedTypes = [
+        self::TYPE_BOOL,
+        self::TYPE_INT64,
+        self::TYPE_FLOAT64,
+        self::TYPE_TIMESTAMP,
+        self::TYPE_DATE,
+        self::TYPE_STRING,
+        self::TYPE_BYTES,
+        self::TYPE_ARRAY,
+        self::TYPE_STRUCT,
+    ];
 
     /**
      * @var bool
@@ -60,14 +74,32 @@ class ValueMapper
      * an array of parameters and inferred parameter types.
      *
      * @param array $parameters The key/value parameters.
+     * @param array $types The types of values.
      * @return array An associative array containing params and paramTypes.
      */
-    public function formatParamsForExecuteSql(array $parameters)
+    public function formatParamsForExecuteSql(array $parameters, array $types = [])
     {
         $paramTypes = [];
 
         foreach ($parameters as $key => $value) {
-            list ($parameters[$key], $paramTypes[$key]) = $this->paramType($value);
+            if (is_null($value) && !isset($types[$key])) {
+                throw new \BadMethodCallException(sprintf(
+                    'Null value for parameter @%s must supply a parameter type.',
+                    $key
+                ));
+            }
+
+            $type = isset($types[$key]) ? $types[$key] : null;
+
+            if ($type !== null && !in_array($type, $this->allowedTypes)) {
+                throw new \BadMethodCallException(sprintf(
+                    'Type %s given for parameter @%s is not valid.',
+                    $type,
+                    $key
+                ));
+            }
+
+            list ($parameters[$key], $paramTypes[$key]) = $this->paramType($value, $type);
         }
 
         return [
@@ -135,6 +167,7 @@ class ValueMapper
         $timestamp = preg_replace(self::NANO_REGEX, '.000000Z', $timestamp);
 
         $dt = \DateTimeImmutable::createFromFormat(Timestamp::FORMAT, $timestamp);
+
         return new Timestamp($dt, (isset($matches[1])) ? $matches[1] : 0);
     }
 
@@ -223,7 +256,7 @@ class ValueMapper
      * @param mixed $value The PHP value
      * @return array The Value type
      */
-    private function paramType($value)
+    private function paramType($value, $givenType = null)
     {
         $phpType = gettype($value);
         switch ($phpType) {
@@ -255,7 +288,7 @@ class ValueMapper
 
             case 'array':
                 if ($this->isAssoc($value)) {
-                    throw new \InvalidArgumentException(
+                    throw new \BadMethodCallException(
                         'Associative arrays are not supported. Did you mean to call a batch method?'
                     );
                 }
@@ -265,11 +298,13 @@ class ValueMapper
                 foreach ($value as $element) {
                     $type = $this->paramType($element);
                     $res[] = $type[0];
-                    $types[] = $type[1]['code'];
+                    if (isset($type[1]['code'])) {
+                        $types[] = $type[1]['code'];
+                    }
                 }
 
                 if (count(array_unique($types)) !== 1) {
-                    throw new \InvalidArgumentException('Array values may not be of mixed type');
+                    throw new \BadMethodCallException('Array values may not be of mixed type');
                 }
 
                 $type = $this->typeObject(
@@ -282,7 +317,7 @@ class ValueMapper
                 break;
 
             case 'NULL':
-                $type = null;
+                $type = $this->typeObject($givenType);
                 break;
 
             default:

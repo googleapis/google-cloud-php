@@ -37,6 +37,10 @@ class DateTest extends SnippetTestCase
 
     public function testClass()
     {
+        if (!extension_loaded('grpc')) {
+            $this->markTestSkipped('Must have the grpc extension installed to run this test.');
+        }
+
         $snippet = $this->snippetFromClass(Date::class);
         $res = $snippet->invoke('date');
 
@@ -50,6 +54,15 @@ class DateTest extends SnippetTestCase
         $res = $snippet->invoke();
 
         $this->assertEquals($this->date->formatAsString(), $res->output());
+    }
+
+    public function testCreateFromValues()
+    {
+        $snippet = $this->snippetFromMethod(Date::class, 'createFromValues');
+        $snippet->addUse(Date::class);
+
+        $res = $snippet->invoke('date');
+        $this->assertEquals('1995-02-04', $res->returnVal()->formatAsString());
     }
 
     public function testGet()

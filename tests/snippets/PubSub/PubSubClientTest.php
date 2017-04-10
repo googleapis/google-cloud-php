@@ -196,7 +196,7 @@ class PubSubClientTest extends SnippetTestCase
             ->shouldBecalled()
             ->willReturn([]);
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
 
         $snippet = $this->snippetFromMethod(PubSubClient::class, 'createSnapshot');
         $snippet->addLocal('pubsub', $this->client);
@@ -228,7 +228,7 @@ class PubSubClientTest extends SnippetTestCase
                 ]
             ]);
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke('snapshots');
         $this->assertInstanceOf(ItemIterator::class, $res->returnVal());

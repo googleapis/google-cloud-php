@@ -53,6 +53,27 @@ class Date implements ValueInterface
     }
 
     /**
+     * Create a Date from integer or string values.
+     *
+     * Example:
+     * ```
+     * $date = Date::createFromValues(1995, 02, 04);
+     * ```
+     *
+     * @param int|string $year The year.
+     * @param int|string $month The month (as a number).
+     * @param int|string $day The day of the month.
+     * @return Date
+     */
+    public static function createFromValues($year, $month, $day)
+    {
+        $value = sprintf('%s-%s-%s', $year, $month, $day);
+        $dt = \DateTimeImmutable::createFromFormat(self::FORMAT, $value);
+
+        return new static($dt);
+    }
+
+    /**
      * Get the underlying `\DateTimeInterface` implementation.
      *
      * Example:

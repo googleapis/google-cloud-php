@@ -15,12 +15,13 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Spanner;
+namespace Google\Cloud\Tests\Unit\Spanner;
 
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\Timestamp;
+use Prophecy\Argument;
 
 /**
  * @group spanner
@@ -33,16 +34,70 @@ class SnapshotTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->timestamp = new Timestamp(new \DateTime);
+
+        $args = [
+            'id' => 'foo',
+            'readTimestamp' => $this->timestamp
+        ];
+
         $this->snapshot = new Snapshot(
             $this->prophesize(Operation::class)->reveal(),
             $this->prophesize(Session::class)->reveal(),
-            'foo',
-            $this->timestamp
+            $args
         );
+    }
+
+    public function testTypeIsPreAllocated()
+    {
+        $this->assertEquals(Snapshot::TYPE_PRE_ALLOCATED, $this->snapshot->type());
+    }
+
+    public function testTypeIsSingleUse()
+    {
+        $snapshot = new Snapshot(
+            $this->prophesize(Operation::class)->reveal(),
+            $this->prophesize(Session::class)->reveal()
+        );
+
+        $this->assertEquals(Snapshot::TYPE_SINGLE_USE, $snapshot->type());
     }
 
     public function testReadTimestamp()
     {
         $this->assertEquals($this->timestamp, $this->snapshot->readTimestamp());
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testWithInvalidTimestamp()
+    {
+        $args = [
+            'readTimestamp' => 'foo'
+        ];
+
+        new Snapshot(
+            $this->prophesize(Operation::class)->reveal(),
+            $this->prophesize(Session::class)->reveal(),
+            $args
+        );
+    }
+
+    /**
+     * @expectedException BadMethodCallException
+     */
+    public function testSingleUseFailsOnSecondUse()
+    {
+        $operation = $this->prophesize(Operation::class);
+        $operation->execute(Argument::any(), Argument::any(), Argument::any())
+            ->shouldBeCalled();
+
+        $snapshot = new Snapshot(
+            $operation->reveal(),
+            $this->prophesize(Session::class)->reveal()
+        );
+
+        $snapshot->execute('foo');
+        $snapshot->execute('foo');
     }
 }

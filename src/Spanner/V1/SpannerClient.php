@@ -28,6 +28,7 @@
 
 namespace Google\Cloud\Spanner\V1;
 
+use DrSlump\Protobuf\Codec\PhpArray;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;

@@ -20,18 +20,22 @@ namespace Google\Cloud\Spanner;
 use Google\Cloud\Core\Exception\AbortedException;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Iam\Iam;
-use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\LongRunning\LROTrait;
 use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
+use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\Retry;
+use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
+use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Connection\IamDatabase;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
+use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\V1\SpannerClient as GrpcSpannerClient;
+use Google\GAX\ValidationException;
 
 /**
- * Represents a Google Cloud Spanner Database.
+ * Represents a Cloud Spanner Database.
  *
  * Example:
  * ```
@@ -51,6 +55,41 @@ use Google\Cloud\Spanner\V1\SpannerClient as GrpcSpannerClient;
  * $instance = $spanner->instance('my-instance');
  * $database = $instance->database('my-database');
  * ```
+ *
+ * @method resumeOperation() {
+ *     Resume a Long Running Operation
+ *
+ *     Example:
+ *     ```
+ *     $operation = $database->resumeOperation($operationName);
+ *     ```
+ *
+ *     @param string $operationName The Long Running Operation name.
+ *     @param array $info [optional] The operation data.
+ *     @return LongRunningOperation
+ * }
+ * @method longRunningOperations() {
+ *     List long running operations.
+ *
+ *     Example:
+ *     ```
+ *     $operations = $database->longRunningOperations();
+ *     ```
+ *
+ *     @param array $options [optional] {
+ *         Configuration Options.
+ *
+ *         @type string $name The name of the operation collection.
+ *         @type string $filter The standard list filter.
+ *         @type int $pageSize Maximum number of results to return per
+ *               request.
+ *         @type int $resultLimit Limit the number of results returned in total.
+ *               **Defaults to** `0` (return all results).
+ *         @type string $pageToken A previously-returned page token used to
+ *               resume the loading of results from a specific point.
+ *     }
+ *     @return ItemIterator<InstanceConfiguration>
+ * }
  */
 class Database
 {
@@ -70,11 +109,6 @@ class Database
     private $instance;
 
     /**
-     * @var LongRunningConnectionInterface
-     */
-    private $lroConnection;
-
-    /**
      * @var Operation
      */
     private $operation;
@@ -88,6 +122,11 @@ class Database
      * @var string
      */
     private $name;
+
+    /**
+     * @var array
+     */
+    private $info;
 
     /**
      * @var Iam
@@ -108,12 +147,12 @@ class Database
      * Create an object representing a Database.
      *
      * @param ConnectionInterface $connection The connection to the
-     *        Google Cloud Spanner Admin API.
+     *        Cloud Spanner Admin API.
      * @param Instance $instance The instance in which the database exists.
      * @param LongRunningConnectionInterface $lroConnection An implementation
      *        mapping to methods which handle LRO resolution in the service.
      * @param string $projectId The project ID.
-     * @param string $name The database name.
+     * @param string $name The database name or ID.
      * @param SessionPoolInterface $sessionPool [optional] The session pool
      *        implementation.
      * @param bool $returnInt64AsObject [optional If true, 64 bit integers will
@@ -132,20 +171,20 @@ class Database
     ) {
         $this->connection = $connection;
         $this->instance = $instance;
-        $this->lroConnection = $lroConnection;
-        $this->lroCallables = $lroCallables;
         $this->projectId = $projectId;
-        $this->name = $name;
+        $this->name = $this->fullyQualifiedDatabaseName($name);
         $this->sessionPool = $sessionPool;
         $this->operation = new Operation($connection, $returnInt64AsObject);
 
         if ($this->sessionPool) {
             $this->sessionPool->setDatabase($this);
         }
+
+        $this->setLroProperties($lroConnection, $lroCallables, $this->name);
     }
 
     /**
-     * Return the simple database name.
+     * Return the fully-qualified database name.
      *
      * Example:
      * ```
@@ -157,6 +196,48 @@ class Database
     public function name()
     {
         return $this->name;
+    }
+
+    /**
+     * Get the database info
+     *
+     * Example:
+     * ```
+     * $info = $database->info();
+     * ```
+     *
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.admin.database.v1#google.spanner.admin.database.v1.Database Database
+     * @codingStandardsIgnoreEnd
+     *
+     * @param array $options [optional] Configuration options.
+     * @return array
+     */
+    public function info(array $options = [])
+    {
+        return $this->info ?: $this->reload($options);
+    }
+
+    /**
+     * Reload the database info from the Cloud Spanner API.
+     *
+     * Example:
+     * ```
+     * $info = $database->reload();
+     * ```
+     *
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.admin.database.v1#google.spanner.admin.database.v1.Database Database
+     * @codingStandardsIgnoreEnd
+     *
+     * @param array $options [optional] Configuration options.
+     * @return array
+     */
+    public function reload(array $options = [])
+    {
+        return $this->info = $this->connection->getDatabase([
+            'name' => $this->name
+        ] + $options);
     }
 
     /**
@@ -179,12 +260,48 @@ class Database
     public function exists(array $options = [])
     {
         try {
-            $this->ddl($options);
+            $this->reload($options);
         } catch (NotFoundException $e) {
             return false;
         }
 
         return true;
+    }
+
+    /**
+     * Create a new Cloud Spanner database.
+     *
+     * Example:
+     * ```
+     * $operation = $database->create();
+     * ```
+     *
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.admin.database.v1#createdatabaserequest CreateDatabaseRequest
+     * @codingStandardsIgnoreEnd
+     *
+     * @param array $options [optional] {
+     *     Configuration Options
+     *
+     *     @type array $statements Additional DDL statements.
+     * }
+     * @return LongRunningOperation<Database>
+     */
+    public function create(array $options = [])
+    {
+        $options += [
+            'statements' => [],
+        ];
+
+        $statement = sprintf('CREATE DATABASE `%s`', DatabaseAdminClient::parseDatabaseFromDatabaseName($this->name));
+
+        $operation = $this->connection->createDatabase([
+            'instance' => $this->instance->name(),
+            'createStatement' => $statement,
+            'extraStatements' => $options['statements']
+        ]);
+
+        return $this->resumeOperation($operation['name'], $operation);
     }
 
     /**
@@ -249,12 +366,12 @@ class Database
      */
     public function updateDdlBatch(array $statements, array $options = [])
     {
-        $operation = $this->connection->updateDatabase($options + [
-            'name' => $this->fullyQualifiedDatabaseName(),
+        $operation = $this->connection->updateDatabaseDdl($options + [
+            'name' => $this->name,
             'statements' => $statements,
         ]);
 
-        return $this->lro($this->lroConnection, $operation['name'], $this->lroCallables);
+        return $this->resumeOperation($operation['name'], $operation);
     }
 
     /**
@@ -277,7 +394,7 @@ class Database
     public function drop(array $options = [])
     {
         $this->connection->dropDatabase($options + [
-            'name' => $this->fullyQualifiedDatabaseName()
+            'name' => $this->name
         ]);
     }
 
@@ -301,7 +418,7 @@ class Database
     public function ddl(array $options = [])
     {
         $ddl = $this->connection->getDatabaseDDL($options + [
-            'name' => $this->fullyQualifiedDatabaseName()
+            'name' => $this->name
         ]);
 
         if (isset($ddl['statements'])) {
@@ -326,7 +443,7 @@ class Database
         if (!$this->iam) {
             $this->iam = new Iam(
                 new IamDatabase($this->connection),
-                $this->fullyQualifiedDatabaseName()
+                $this->name
             );
         }
 
@@ -377,25 +494,82 @@ class Database
      *           timestamp.
      *     @type Duration $exactStaleness Represents a number of seconds. Executes
      *           all reads at a timestamp that is $exactStaleness old.
+     *     @type Timestamp $minReadTimestamp Executes all reads at a
+     *           timestamp >= min_read_timestamp. Only available when
+     *           `$options.singleUse` is true.
+     *     @type Duration $maxStaleness Read data at a timestamp >= NOW - max_staleness
+     *           seconds. Guarantees that all writes that have committed more
+     *           than the specified number of seconds ago are visible. Only
+     *           available when `$options.singleUse` is true.
+     *     @type bool $singleUse If true, a Transaction ID will not be allocated
+     *           up front. Instead, the transaction will be considered
+     *           "single-use", and may be used for only a single operation.
+     *           **Defaults to** `false`.
      * }
      * @return Snapshot
      * @codingStandardsIgnoreEnd
      */
     public function snapshot(array $options = [])
     {
-        // These are only available in single-use transactions.
-        if (isset($options['maxStaleness']) || isset($options['minReadTimestamp'])) {
-            throw new \BadMethodCallException(
-                'maxStaleness and minReadTimestamp are only available in single-use transactions.'
-            );
-        }
+        $options += [
+            'singleUse' => false
+        ];
 
-        $transactionOptions = $this->configureSnapshotOptions($options);
+        $options['transactionOptions'] = $this->configureSnapshotOptions($options);
 
         $session = $this->selectSession(SessionPoolInterface::CONTEXT_READ);
 
         try {
-            return $this->operation->snapshot($session, $transactionOptions);
+            return $this->operation->snapshot($session, $options);
+        } finally {
+            $session->setExpiration();
+        }
+    }
+
+    /**
+     * Create and return a new read/write Transaction.
+     *
+     * When manually using a Transaction, it is advised that retry logic be
+     * implemented to reapply all operations when an instance of
+     * {@see Google\Cloud\Core\Exception\AbortedException} is thrown.
+     *
+     * If you wish Google Cloud PHP to handle retry logic for you (recommended
+     * for most cases), use {@see Google\Cloud\Spanner\Database::runTransaction()}.
+     *
+     * Please note that once a transaction reads data, it will lock the read
+     * data, preventing other users from modifying that data. For this reason,
+     * it is important that every transaction commits or rolls back as early as
+     * possible. Do not hold transactions open longer than necessary.
+     *
+     * Example:
+     * ```
+     * $transaction = $database->transaction();
+     * ```
+     *
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#google.spanner.v1.BeginTransactionRequest BeginTransactionRequest
+     * @see https://cloud.google.com/spanner/docs/transactions Transactions
+     * @codingStandardsIgnoreEnd
+     *
+     * @param array $options [optional] {
+     *     Configuration Options.
+     *
+     *     @type bool $singleUse If true, a Transaction ID will not be allocated
+     *           up front. Instead, the transaction will be considered
+     *           "single-use", and may be used for only a single operation.
+     *           **Defaults to** `false`.
+     * }
+     * @return Transaction
+     */
+    public function transaction(array $options = [])
+    {
+        // There isn't anything configurable here.
+        $options['transactionOptions'] = $this->configureTransactionOptions();
+
+        $session = $this->selectSession(SessionPoolInterface::CONTEXT_READWRITE);
+
+        try {
+            return $this->operation->transaction($session, $options);
         } finally {
             $session->setExpiration();
         }
@@ -419,11 +593,10 @@ class Database
      * it is important that every transaction commits or rolls back as early as
      * possible. Do not hold transactions open longer than necessary.
      *
-     * If you have an active transaction which was obtained from elsewhere, you
-     * can provide it to this method and gain the benefits of managed retry by
-     * setting `$options.transaction` to your {@see Google\Cloud\Spanner\Transaction}
-     * instance. Please note that in this case, it is important that ALL reads
-     * and mutations MUST be performed within the runTransaction callable.
+     * If a callable finishes executing without invoking
+     * {@see Google\Cloud\Spanner\Transaction::commit()} or
+     * {@see Google\Cloud\Spanner\Transaction::rollback()}, the transaction will
+     * automatically be rolled back and `RuntimeException` thrown.
      *
      * Example:
      * ```
@@ -462,17 +635,20 @@ class Database
      *
      *     @type int $maxRetries The number of times to attempt to apply the
      *           operation before failing. **Defaults to ** `3`.
-     *     @type Transaction $transaction If provided, the transaction will be
-     *           passed to the callable instead of attempting to begin a new
-     *           transaction.
+     *     @type bool $singleUse If true, a Transaction ID will not be allocated
+     *           up front. Instead, the transaction will be considered
+     *           "single-use", and may be used for only a single operation. Note
+     *           that in a single-use transaction, only a single operation may
+     *           be executed, and rollback is not available. **Defaults to**
+     *           `false`.
      * }
      * @return mixed The return value of `$operation`.
+     * @throws RuntimeException
      */
     public function runTransaction(callable $operation, array $options = [])
     {
         $options += [
             'maxRetries' => self::MAX_RETRIES,
-            'transaction' => null
         ];
 
         // There isn't anything configurable here.
@@ -482,13 +658,7 @@ class Database
 
         $attempt = 0;
         $startTransactionFn = function ($session, $options) use (&$attempt) {
-            if ($attempt === 0 && $options['transaction'] instanceof Transaction) {
-                $transaction = $options['transaction'];
-            } elseif ($attempt === 0 && $options['transaction']) {
-                throw new \InvalidArgumentException('Given transaction must be an instance of Transaction.');
-            } else {
-                $transaction = $this->operation->transaction($session, $options);
-            }
+            $transaction = $this->operation->transaction($session, $options);
 
             $attempt++;
             return $transaction;
@@ -503,63 +673,26 @@ class Database
             time_nanosleep($delay['seconds'], $delay['nanos']);
         };
 
-        $commitFn = function ($operation, $session, $options) use ($startTransactionFn) {
+        $transactionFn = function ($operation, $session, $options) use ($startTransactionFn) {
             $transaction = call_user_func_array($startTransactionFn, [
                 $session,
                 $options
             ]);
 
-            return call_user_func($operation, $transaction);
+            $res = call_user_func($operation, $transaction);
+
+            if ($transaction->state() === Transaction::STATE_ACTIVE) {
+                $transaction->rollback($options);
+                throw new \RuntimeException('Transactions must be rolled back or committed.');
+            }
+
+            return $res;
         };
 
         $retry = new Retry($options['maxRetries'], $delayFn);
 
         try {
-            return $retry->execute($commitFn, [$operation, $session, $options]);
-        } finally {
-            $session->setExpiration();
-        }
-    }
-
-    /**
-     * Create and return a new read/write Transaction.
-     *
-     * When manually using a Transaction, it is advised that retry logic be
-     * implemented to reapply all operations when an instance of
-     * {@see Google\Cloud\Core\Exception\AbortedException} is thrown.
-     *
-     * If you wish Google Cloud PHP to handle retry logic for you (recommended
-     * for most cases), use {@see Google\Cloud\Spanner\Database::runTransaction()}.
-     *
-     * Please note that once a transaction reads data, it will lock the read
-     * data, preventing other users from modifying that data. For this reason,
-     * it is important that every transaction commits or rolls back as early as
-     * possible. Do not hold transactions open longer than necessary.
-     *
-     * Example:
-     * ```
-     * $transaction = $database->transaction();
-     * ```
-     *
-     * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#google.spanner.v1.BeginTransactionRequest BeginTransactionRequest
-     * @see https://cloud.google.com/spanner/docs/transactions Transactions
-     * @codingStandardsIgnoreEnd
-     *
-     * @param array $options [optional] Configuration Options.
-     * @return Transaction
-     */
-    public function transaction(array $options = [])
-    {
-        // There isn't anything configurable here.
-        $options['transactionOptions'] = [
-            'readWrite' => []
-        ];
-
-        $session = $this->selectSession(SessionPoolInterface::CONTEXT_READWRITE);
-
-        try {
-            return $this->operation->transaction($session, $options);
+            return $retry->execute($transactionFn, [$operation, $session, $options]);
         } finally {
             $session->setExpiration();
         }
@@ -629,23 +762,15 @@ class Database
             $mutations[] = $this->operation->mutation(Operation::OP_INSERT, $table, $data);
         }
 
-        $session = $this->selectSession(SessionPoolInterface::CONTEXT_READWRITE);
-
-        $options['singleUseTransaction'] = $this->configureTransactionOptions();
-
-        try {
-            return $this->operation->commit($session, $mutations, $options);
-        } finally {
-            $session->setExpiration();
-        }
+        return $this->commitInSingleUseTransaction($mutations, $options);
     }
 
     /**
      * Update a row.
      *
-     * Only data which you wish to update need be included. You must provide
-     * enough information for the API to determine which row should be modified.
-     * In most cases, this means providing values for the Primary Key fields.
+     * Only data which you wish to update need be included. The list of columns
+     * must contain enough columns to allow Cloud Spanner to derive values for
+     * all primary key columns in the row to be modified.
      *
      * Mutations are committed in a single-use transaction.
      *
@@ -674,9 +799,9 @@ class Database
     /**
      * Update multiple rows.
      *
-     * Only data which you wish to update need be included. You must provide
-     * enough information for the API to determine which row should be modified.
-     * In most cases, this means providing values for the Primary Key fields.
+     * Only data which you wish to update need be included. The list of columns
+     * must contain enough columns to allow Cloud Spanner to derive values for
+     * all primary key columns in the row(s) to be modified.
      *
      * Mutations are committed in a single-use transaction.
      *
@@ -709,15 +834,7 @@ class Database
             $mutations[] = $this->operation->mutation(Operation::OP_UPDATE, $table, $data);
         }
 
-        $session = $this->selectSession(SessionPoolInterface::CONTEXT_READWRITE);
-
-        $options['singleUseTransaction'] = $this->configureTransactionOptions();
-
-        try {
-            return $this->operation->commit($session, $mutations, $options);
-        } finally {
-            $session->setExpiration();
-        }
+        return $this->commitInSingleUseTransaction($mutations, $options);
     }
 
     /**
@@ -792,23 +909,15 @@ class Database
             $mutations[] = $this->operation->mutation(Operation::OP_INSERT_OR_UPDATE, $table, $data);
         }
 
-        $session = $this->selectSession(SessionPoolInterface::CONTEXT_READWRITE);
-
-        $options['singleUseTransaction'] = $this->configureTransactionOptions();
-
-        try {
-            return $this->operation->commit($session, $mutations, $options);
-        } finally {
-            $session->setExpiration();
-        }
+        return $this->commitInSingleUseTransaction($mutations, $options);
     }
 
     /**
      * Replace a row.
      *
-     * Provide data for the entire row. Google Cloud Spanner will attempt to
-     * find a record matching the Primary Key, and will replace the entire row.
-     * If a matching row is not found, it will be inserted.
+     * Provide data for the entire row. Cloud Spanner will attempt to find a
+     * record matching the Primary Key, and will replace the entire row. If a
+     * matching row is not found, it will be inserted.
      *
      * Mutations are committed in a single-use transaction.
      *
@@ -838,9 +947,9 @@ class Database
     /**
      * Replace multiple rows.
      *
-     * Provide data for the entire row. Google Cloud Spanner will attempt to
-     * find a record matching the Primary Key, and will replace the entire row.
-     * If a matching row is not found, it will be inserted.
+     * Provide data for the entire row. Cloud Spanner will attempt to find a
+     * record matching the Primary Key, and will replace the entire row. If a
+     * matching row is not found, it will be inserted.
      *
      * Mutations are committed in a single-use transaction.
      *
@@ -875,15 +984,7 @@ class Database
             $mutations[] = $this->operation->mutation(Operation::OP_REPLACE, $table, $data);
         }
 
-        $session = $this->selectSession(SessionPoolInterface::CONTEXT_READWRITE);
-
-        $options['singleUseTransaction'] = $this->configureTransactionOptions();
-
-        try {
-            return $this->operation->commit($session, $mutations, $options);
-        } finally {
-            $session->setExpiration();
-        }
+        return $this->commitInSingleUseTransaction($mutations, $options);
     }
 
     /**
@@ -915,15 +1016,7 @@ class Database
     {
         $mutations = [$this->operation->deleteMutation($table, $keySet)];
 
-        $session = $this->selectSession(SessionPoolInterface::CONTEXT_READWRITE);
-
-        $options['singleUseTransaction'] = $this->configureTransactionOptions();
-
-        try {
-            return $this->operation->commit($session, $mutations, $options);
-        } finally {
-            $session->setExpiration();
-        }
+        return $this->commitInSingleUseTransaction($mutations, $options);
     }
 
     /**
@@ -948,7 +1041,8 @@ class Database
      *      'parameters' => [
      *         'postId' => 1337
      *     ],
-     *     'begin' => true
+     *     'begin' => true,
+     *     'transactionType' => SessionPoolInterface::CONTEXT_READ
      * ]);
      *
      * $result->rows()->current();
@@ -979,17 +1073,25 @@ class Database
      * @param string $sql The query string to execute.
      * @param array $options [optional] {
      *     Configuration Options.
-     *
      *     See [TransactionOptions](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#google.spanner.v1.TransactionOptions)
-     *     for detailed description of available transaction options.
-     *
-     *     Please note that only one of `$strong`, `$minReadTimestamp`,
+     *     for detailed description of available transaction options. Please
+     *     note that only one of `$strong`, `$minReadTimestamp`,
      *     `$maxStaleness`, `$readTimestamp` or `$exactStaleness` may be set in
      *     a request.
      *
      *     @type array $parameters A key/value array of Query Parameters, where
      *           the key is represented in the query string prefixed by a `@`
      *           symbol.
+     *     @type array $types A key/value array of Query Parameter types.
+     *           Generally, Google Cloud PHP can infer types. Explicit type
+     *           definitions are only necessary for null parameter values.
+     *           Accepted values are defined as constants on
+     *           {@see Google\Cloud\Spanner\ValueMapper}, and are as follows:
+     *           `ValueMapper::TYPE_BOOL`, `ValueMapper::TYPE_INT64`,
+     *           `ValueMapper::TYPE_FLOAT64`, `ValueMapper::TYPE_TIMESTAMP`,
+     *           `ValueMapper::TYPE_DATE`, `ValueMapper::TYPE_STRING`,
+     *           `ValueMapper::TYPE_BYTES`, `ValueMapper::TYPE_ARRAY` and
+     *           `ValueMapper::TYPE_STRUCT`.
      *     @type bool $returnReadTimestamp If true, the Cloud Spanner-selected
      *           read timestamp is included in the Transaction message that
      *           describes the transaction.
@@ -1011,8 +1113,8 @@ class Database
      *     @type string $transactionType One of `SessionPoolInterface::CONTEXT_READ`
      *           or `SessionPoolInterface::CONTEXT_READWRITE`. If read/write is
      *           chosen, any snapshot options will be disregarded. If `$begin`
-     *           is false, this option will be ignored. **Defaults to**
-     *           `SessionPoolInterface::CONTEXT_READ`.
+     *           is false, transaction type MUST be `SessionPoolInterface::CONTEXT_READ`.
+     *           **Defaults to** `SessionPoolInterface::CONTEXT_READ`.
      * }
      * @codingStandardsIgnoreEnd
      * @return Result
@@ -1059,7 +1161,8 @@ class Database
      * $columns = ['ID', 'title', 'content'];
      *
      * $result = $database->read('Posts', $keySet, $columns, [
-     *     'begin' => true
+     *     'begin' => true,
+     *     'transactionType' => SessionPoolInterface::CONTEXT_READ
      * ]);
      *
      * $result->rows()->current();
@@ -1102,7 +1205,6 @@ class Database
      *     a request.
      *
      *     @type string $index The name of an index on the table.
-     *     @type int $offset The number of rows to offset results by.
      *     @type int $limit The number of results to return.
      *     @type bool $returnReadTimestamp If true, the Cloud Spanner-selected
      *           read timestamp is included in the Transaction message that
@@ -1125,8 +1227,8 @@ class Database
      *     @type string $transactionType One of `SessionPoolInterface::CONTEXT_READ`
      *           or `SessionPoolInterface::CONTEXT_READWRITE`. If read/write is
      *           chosen, any snapshot options will be disregarded. If `$begin`
-     *           is false, this option will be ignored. **Defaults to**
-     *           `SessionPoolInterface::CONTEXT_READ`.
+     *           is false, transaction type MUST be `SessionPoolInterface::CONTEXT_READ`.
+     *           **Defaults to** `SessionPoolInterface::CONTEXT_READ`.
      * }
      * @codingStandardsIgnoreEnd
      * @return Result
@@ -1211,11 +1313,7 @@ class Database
     public function createSession(array $options = [])
     {
         $res = $this->connection->createSession($options + [
-            'database' => GrpcSpannerClient::formatDatabaseName(
-                $this->projectId,
-                $this->instance->name(),
-                $this->name
-            )
+            'database' => $this->name
         ]);
 
         return $this->session($res['name']);
@@ -1297,17 +1395,34 @@ class Database
         }
     }
 
+    private function commitInSingleUseTransaction(array $mutations, array $options = [])
+    {
+        $options['mutations'] = $mutations;
+
+        return $this->runTransaction(function (Transaction $t) use ($options) {
+            return $t->commit($options);
+        }, [
+            'singleUse' => true
+        ]);
+    }
+
     /**
      * Convert the simple database name to a fully qualified name.
      *
      * @return string
      */
-    private function fullyQualifiedDatabaseName()
+    private function fullyQualifiedDatabaseName($name)
     {
-        return GrpcSpannerClient::formatDatabaseName(
-            $this->projectId,
-            $this->instance->name(),
-            $this->name
-        );
+        $instance = InstanceAdminClient::parseInstanceFromInstanceName($this->instance->name());
+
+        try {
+            return GrpcSpannerClient::formatDatabaseName(
+                $this->projectId,
+                $instance,
+                $name
+            );
+        } catch (ValidationException $e) {
+            return $name;
+        }
     }
 }

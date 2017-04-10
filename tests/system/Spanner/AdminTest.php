@@ -22,6 +22,7 @@ use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
+use Google\Cloud\Spanner\InstanceConfiguration;
 
 /**
  * @group spanner
@@ -34,15 +35,15 @@ class AdminTest extends SpannerTestCase
 
         $instances = $client->instances();
         $instance = array_filter(iterator_to_array($instances), function ($instance) {
-            return $instance->name() === self::INSTANCE_NAME;
+            return $this->parseName($instance->name()) === self::INSTANCE_NAME;
         });
 
-        $this->assertInstanceOf(Instance::class, $instance[0]);
+        $this->assertInstanceOf(Instance::class, current($instance));
 
         $instance = self::$instance;
         $this->assertTrue($instance->exists());
-        $this->assertEquals($instance->name(), $this->parseName($instance->info()['name']));
-        $this->assertEquals($instance->name(), $this->parseName($instance->reload()['name']));
+        $this->assertEquals($instance->name(), $instance->info()['name']);
+        $this->assertEquals($instance->name(), $instance->reload()['name']);
 
         $this->assertEquals(Instance::STATE_READY, $instance->state());
 
@@ -73,7 +74,7 @@ class AdminTest extends SpannerTestCase
 
         $databases = $instance->databases();
         $database = array_filter(iterator_to_array($databases), function ($db) use ($dbName) {
-            return $db->name() === $dbName;
+            return $this->parseDbName($db->name()) === $dbName;
         });
 
         $this->assertInstanceOf(Database::class, current($database));
@@ -88,6 +89,27 @@ class AdminTest extends SpannerTestCase
         $op->pollUntilComplete();
 
         $this->assertEquals($db->ddl()[0], $stmt);
+    }
+
+    public function testConfigurations()
+    {
+        $client = self::$client;
+
+        $configurations = $client->instanceConfigurations();
+
+        $this->assertContainsOnly(InstanceConfiguration::class, $configurations);
+
+        $res = iterator_to_array($configurations);
+        $firstConfigName = $res[0]->name();
+
+        $config = $client->instanceConfiguration($firstConfigName);
+
+        $this->assertInstanceOf(InstanceConfiguration::class, $config);
+        $this->assertEquals($firstConfigName, $config->name());
+
+        $this->assertTrue($config->exists());
+        $this->assertEquals($config->name(), $config->info()['name']);
+        $this->assertEquals($config->name(), $config->reload()['name']);
     }
 
     private function parseName($name)

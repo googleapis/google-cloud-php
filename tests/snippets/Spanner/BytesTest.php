@@ -38,6 +38,10 @@ class BytesTest extends SnippetTestCase
 
     public function testClass()
     {
+        if (!extension_loaded('grpc')) {
+            $this->markTestSkipped('Must have the grpc extension installed to run this test.');
+        }
+
         $snippet = $this->snippetFromClass(Bytes::class);
         $res = $snippet->invoke('bytes');
         $this->assertInstanceOf(Bytes::class, $res->returnVal());

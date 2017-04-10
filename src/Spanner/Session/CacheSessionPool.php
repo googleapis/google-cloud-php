@@ -49,7 +49,7 @@ use Symfony\Component\Lock\Store\FlockStore;
  * use Symfony\Component\Cache\Adapter\FilesystemAdapter;
  *
  * $spanner = new SpannerClient();
- * $cache = new FilesystemAdapter()
+ * $cache = new FilesystemAdapter();
  * $sessionPool = new CacheSessionPool($cache);
  *
  * $database = $spanner->connect('my-instance', 'my-database', [
@@ -244,7 +244,8 @@ class CacheSessionPool implements SessionPoolInterface
             unset($data['inUse'][$session->name()]);
             array_push($data['queue'], [
                 'name' => $session->name(),
-                'expiration' => $session->expiration() ?: $this->time() + SessionPoolInterface::SESSION_EXPIRATION_SECONDS
+                'expiration' => $session->expiration()
+                    ?: $this->time() + SessionPoolInterface::SESSION_EXPIRATION_SECONDS
             ]);
             $this->cacheItemPool->save($item->set($data));
         });

@@ -60,7 +60,7 @@ class InstanceTest extends \PHPUnit_Framework_TestCase
 
     public function testName()
     {
-        $this->assertEquals(self::NAME, $this->instance->name());
+        $this->assertEquals(self::NAME, InstanceAdminClient::parseInstanceFromInstanceName($this->instance->name()));
     }
 
     public function testInfo()
@@ -150,20 +150,16 @@ class InstanceTest extends \PHPUnit_Framework_TestCase
     {
         $instance = $this->getDefaultInstance();
 
-        $this->connection->getInstance(Argument::any())
-            ->shouldBeCalledTimes(1)
-            ->willReturn($instance);
-
         $this->connection->updateInstance([
+            'displayName' => 'bar',
             'name' => $instance['name'],
-            'displayName' => $instance['displayName'],
-            'nodeCount' => $instance['nodeCount'],
-            'labels' => [],
-        ])->shouldBeCalled();
+        ])->shouldBeCalled()->willReturn([
+            'name' => 'my-operation'
+        ]);
 
         $this->instance->___setProperty('connection', $this->connection->reveal());
 
-        $this->instance->update();
+        $this->instance->update(['displayName' => 'bar']);
     }
 
     public function testUpdateWithExistingLabels()
@@ -171,20 +167,16 @@ class InstanceTest extends \PHPUnit_Framework_TestCase
         $instance = $this->getDefaultInstance();
         $instance['labels'] = ['foo' => 'bar'];
 
-        $this->connection->getInstance(Argument::any())
-            ->shouldBeCalledTimes(1)
-            ->willReturn($instance);
-
         $this->connection->updateInstance([
-            'name' => $instance['name'],
-            'displayName' => $instance['displayName'],
-            'nodeCount' => $instance['nodeCount'],
             'labels' => $instance['labels'],
-        ])->shouldBeCalled();
+            'name' => $instance['name'],
+        ])->shouldBeCalled()->willReturn([
+            'name' => 'my-operation'
+        ]);
 
         $this->instance->___setProperty('connection', $this->connection->reveal());
 
-        $this->instance->update();
+        $this->instance->update(['labels' => $instance['labels']]);
     }
 
     public function testUpdateWithChanges()
@@ -199,16 +191,14 @@ class InstanceTest extends \PHPUnit_Framework_TestCase
             'displayName' => 'New Name',
         ];
 
-        $this->connection->getInstance(Argument::any())
-            ->shouldBeCalledTimes(1)
-            ->willReturn($instance);
-
         $this->connection->updateInstance([
             'name' => $instance['name'],
             'displayName' => $changes['displayName'],
             'nodeCount' => $changes['nodeCount'],
             'labels' => $changes['labels'],
-        ])->shouldBeCalled();
+        ])->shouldBeCalled()->willReturn([
+            'name' => 'my-operation'
+        ]);
 
         $this->instance->___setProperty('connection', $this->connection->reveal());
 
@@ -251,7 +241,7 @@ class InstanceTest extends \PHPUnit_Framework_TestCase
     {
         $database = $this->instance->database('test-database');
         $this->assertInstanceOf(Database::class, $database);
-        $this->assertEquals('test-database', $database->name());
+        $this->assertEquals('test-database', DatabaseAdminClient::parseDatabaseFromDatabaseName($database->name()));
     }
 
     public function testDatabases()
@@ -274,8 +264,8 @@ class InstanceTest extends \PHPUnit_Framework_TestCase
         $dbs = iterator_to_array($dbs);
 
         $this->assertEquals(2, count($dbs));
-        $this->assertEquals('database1', $dbs[0]->name());
-        $this->assertEquals('database2', $dbs[1]->name());
+        $this->assertEquals('database1', DatabaseAdminClient::parseDatabaseFromDatabaseName($dbs[0]->name()));
+        $this->assertEquals('database2', DatabaseAdminClient::parseDatabaseFromDatabaseName($dbs[1]->name()));
     }
 
     public function testDatabasesPaged()
@@ -299,8 +289,8 @@ class InstanceTest extends \PHPUnit_Framework_TestCase
         $dbs = iterator_to_array($dbs);
 
         $this->assertEquals(2, count($dbs));
-        $this->assertEquals('database1', $dbs[0]->name());
-        $this->assertEquals('database2', $dbs[1]->name());
+        $this->assertEquals('database1', DatabaseAdminClient::parseDatabaseFromDatabaseName($dbs[0]->name()));
+        $this->assertEquals('database2', DatabaseAdminClient::parseDatabaseFromDatabaseName($dbs[1]->name()));
     }
 
     public function testIam()

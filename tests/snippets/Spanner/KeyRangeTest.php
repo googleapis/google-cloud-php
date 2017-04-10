@@ -34,10 +34,33 @@ class KeyRangeTest extends SnippetTestCase
 
     public function testClass()
     {
+        if (!extension_loaded('grpc')) {
+            $this->markTestSkipped('Must have the grpc extension installed to run this test.');
+        }
+
         $snippet = $this->snippetFromClass(KeyRange::class);
         $snippet->addUse(KeyRange::class);
         $res = $snippet->invoke('range');
         $this->assertInstanceOf(KeyRange::class, $res->returnVal());
+    }
+
+    public function testPrefixMatch()
+    {
+        $key = ['foo'];
+
+        $range = new KeyRange([
+            'start' => $key,
+            'end' => $key,
+            'startType' => KeyRange::TYPE_CLOSED,
+            'endType' => KeyRange::TYPE_CLOSED,
+        ]);
+
+        $snippet = $this->snippetFromMethod(KeyRange::class, 'prefixMatch');
+        $snippet->addLocal('key', $key);
+        $snippet->addUse(KeyRange::class);
+        $res = $snippet->invoke('range');
+
+        $this->assertEquals($range, $res->returnVal());
     }
 
     public function testStart()

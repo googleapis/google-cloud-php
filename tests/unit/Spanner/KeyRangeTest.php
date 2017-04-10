@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Spanner;
+namespace Google\Cloud\Tests\Unit\Spanner;
 
 use Google\Cloud\Spanner\KeyRange;
 
@@ -29,6 +29,22 @@ class KeyRangeTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->range = new KeyRange;
+    }
+
+    public function testPrefixMatch()
+    {
+        $key = ['foo'];
+
+        $range = new KeyRange([
+            'start' => $key,
+            'end' => $key,
+            'startType' => KeyRange::TYPE_CLOSED,
+            'endType' => KeyRange::TYPE_CLOSED,
+        ]);
+
+        $prefixRange = KeyRange::prefixMatch($key);
+
+        $this->assertEquals($range, $prefixRange);
     }
 
     public function testGetters()

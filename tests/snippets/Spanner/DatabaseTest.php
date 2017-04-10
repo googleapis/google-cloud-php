@@ -18,8 +18,12 @@
 namespace Google\Cloud\Tests\Snippets\Spanner;
 
 use Google\Cloud\Core\Iam\Iam;
+use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
+use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
+use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
+use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
@@ -50,7 +54,7 @@ class DatabaseTest extends SnippetTestCase
     public function setUp()
     {
         $instance = $this->prophesize(Instance::class);
-        $instance->name()->willReturn(self::INSTANCE);
+        $instance->name()->willReturn(InstanceAdminClient::formatInstanceName(self::PROJECT, self::INSTANCE));
 
         $session = $this->prophesize(Session::class);
 
@@ -69,7 +73,7 @@ class DatabaseTest extends SnippetTestCase
             self::PROJECT,
             self::DATABASE,
             $sessionPool->reveal()
-        ], ['connection', 'operation']);
+        ], ['connection', 'operation', 'lroConnection']);
     }
 
     private function stubOperation()
@@ -83,18 +87,26 @@ class DatabaseTest extends SnippetTestCase
 
     public function testClass()
     {
+        if (!extension_loaded('grpc')) {
+            $this->markTestSkipped('Must have the grpc extension installed to run this test.');
+        }
+
         $snippet = $this->snippetFromClass(Database::class);
         $res = $snippet->invoke('database');
         $this->assertInstanceOf(Database::class, $res->returnVal());
-        $this->assertEquals(self::DATABASE, $res->returnVal()->name());
+        $this->assertEquals(self::DATABASE, DatabaseAdminClient::parseDatabaseFromDatabaseName($res->returnVal()->name()));
     }
 
     public function testClassViaInstance()
     {
+        if (!extension_loaded('grpc')) {
+            $this->markTestSkipped('Must have the grpc extension installed to run this test.');
+        }
+
         $snippet = $this->snippetFromClass(Database::class, 1);
         $res = $snippet->invoke('database');
         $this->assertInstanceOf(Database::class, $res->returnVal());
-        $this->assertEquals(self::DATABASE, $res->returnVal()->name());
+        $this->assertEquals(self::DATABASE, DatabaseAdminClient::parseDatabaseFromDatabaseName($res->returnVal()->name()));
     }
 
     public function testName()
@@ -102,7 +114,7 @@ class DatabaseTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Database::class, 'name');
         $snippet->addLocal('database', $this->database);
         $res = $snippet->invoke('name');
-        $this->assertEquals(self::DATABASE, $res->returnVal());
+        $this->assertEquals(self::DATABASE, DatabaseAdminClient::parseDatabaseFromDatabaseName($res->returnVal()));
     }
 
     /**
@@ -113,7 +125,7 @@ class DatabaseTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Database::class, 'exists');
         $snippet->addLocal('database', $this->database);
 
-        $this->connection->getDatabaseDDL(Argument::any())
+        $this->connection->getDatabase(Argument::any())
             ->shouldBeCalled()
             ->willReturn(['statements' => []]);
 
@@ -126,13 +138,78 @@ class DatabaseTest extends SnippetTestCase
     /**
      * @group spanneradmin
      */
+    public function testInfo()
+    {
+        $db = ['name' => 'foo'];
+
+        $snippet = $this->snippetFromMethod(Database::class, 'info');
+        $snippet->addLocal('database', $this->database);
+
+        $this->connection->getDatabase(Argument::any())
+            ->shouldBeCalledTimes(1)
+            ->willReturn($db);
+
+        $this->database->___setProperty('connection', $this->connection->reveal());
+
+        $res = $snippet->invoke('info');
+        $this->assertEquals($db, $res->returnVal());
+        $snippet->invoke();
+    }
+
+    /**
+     * @group spanneradmin
+     */
+    public function testReload()
+    {
+        $db = ['name' => 'foo'];
+
+        $snippet = $this->snippetFromMethod(Database::class, 'reload');
+        $snippet->addLocal('database', $this->database);
+
+        $this->connection->getDatabase(Argument::any())
+            ->shouldBeCalledTimes(2)
+            ->willReturn($db);
+
+        $this->database->___setProperty('connection', $this->connection->reveal());
+
+        $res = $snippet->invoke('info');
+        $this->assertEquals($db, $res->returnVal());
+        $snippet->invoke();
+    }
+
+    /**
+     * @group spanneradmin
+     */
+    public function testCreate()
+    {
+        $snippet = $this->snippetFromMethod(Database::class, 'create');
+        $snippet->addLocal('database', $this->database);
+
+        $this->connection->createDatabase(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([
+                'name' => 'my-operation'
+            ]);
+
+        $this->database->___setProperty('connection', $this->connection->reveal());
+
+        $res = $snippet->invoke('operation');
+        $this->assertInstanceOf(LongRunningOperation::class, $res->returnVal());
+    }
+
+    /**
+     * @group spanneradmin
+     */
     public function testUpdateDdl()
     {
         $snippet = $this->snippetFromMethod(Database::class, 'updateDdl');
         $snippet->addLocal('database', $this->database);
 
-        $this->connection->updateDatabase(Argument::any())
-            ->shouldBeCalled();
+        $this->connection->updateDatabaseDdl(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([
+                'name' => 'my-operation'
+            ]);
 
         $this->database->___setProperty('connection', $this->connection->reveal());
 
@@ -147,8 +224,11 @@ class DatabaseTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Database::class, 'updateDdlBatch');
         $snippet->addLocal('database', $this->database);
 
-        $this->connection->updateDatabase(Argument::any())
-            ->shouldBeCalled();
+        $this->connection->updateDatabaseDdl(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([
+                'name' => 'my-operation'
+            ]);
 
         $this->database->___setProperty('connection', $this->connection->reveal());
 
@@ -539,6 +619,7 @@ class DatabaseTest extends SnippetTestCase
 
         $snippet = $this->snippetFromMethod(Database::class, 'execute', 1);
         $snippet->addLocal('database', $this->database);
+        $snippet->addUse(SessionPoolInterface::class);
 
         $res = $snippet->invoke('result');
         $this->assertInstanceOf(Result::class, $res->returnVal());
@@ -637,6 +718,7 @@ class DatabaseTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Database::class, 'read', 1);
         $snippet->addLocal('database', $this->database);
         $snippet->addUse(KeySet::class);
+        $snippet->addUse(SessionPoolInterface::class);
 
         $res = $snippet->invoke('result');
         $this->assertInstanceOf(Result::class, $res->returnVal());
@@ -702,6 +784,40 @@ class DatabaseTest extends SnippetTestCase
 
         $res = $snippet->invoke('iam');
         $this->assertInstanceOf(Iam::class, $res->returnVal());
+    }
+
+    public function testResumeOperation()
+    {
+        $snippet = $this->snippetFromMagicMethod(Database::class, 'resumeOperation');
+        $snippet->addLocal('database', $this->database);
+        $snippet->addLocal('operationName', 'foo');
+
+        $res = $snippet->invoke('operation');
+        $this->assertInstanceOf(LongRunningOperation::class, $res->returnVal());
+        $this->assertEquals('foo', $res->returnVal()->name());
+    }
+
+    public function testLongRunningOperations()
+    {
+        $snippet = $this->snippetFromMethod(Database::class, 'longRunningOperations');
+        $snippet->addLocal('database', $this->database);
+
+        $lroConnection = $this->prophesize(LongRunningConnectionInterface::class);
+        $lroConnection->operations(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([
+                'operations' => [
+                    [
+                        'name' => 'foo'
+                    ]
+                ]
+            ]);
+
+        $this->database->___setProperty('lroConnection', $lroConnection->reveal());
+
+        $res = $snippet->invoke('operations');
+        $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
+        $this->assertContainsOnlyInstancesOf(LongRunningOperation::class, $res->returnVal());
     }
 
     private function resultGenerator(array $data)

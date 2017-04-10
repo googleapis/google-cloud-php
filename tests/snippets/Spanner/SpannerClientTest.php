@@ -21,13 +21,14 @@ use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
+use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Bytes;
-use Google\Cloud\Spanner\Configuration;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Date;
 use Google\Cloud\Spanner\Duration;
 use Google\Cloud\Spanner\Instance;
+use Google\Cloud\Spanner\InstanceConfiguration;
 use Google\Cloud\Spanner\KeyRange;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\SpannerClient;
@@ -39,7 +40,8 @@ use Prophecy\Argument;
  */
 class SpannerClientTest extends SnippetTestCase
 {
-    const CONFIG = 'Foo';
+    const PROJECT = 'my-awesome-project';
+    const CONFIG = 'foo';
     const INSTANCE = 'my-instance';
 
     private $client;
@@ -47,6 +49,10 @@ class SpannerClientTest extends SnippetTestCase
 
     public function setUp()
     {
+        if (!extension_loaded('grpc')) {
+            $this->markTestSkipped('Must have the grpc extension installed to run this test.');
+        }
+
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->client = \Google\Cloud\Dev\stub(SpannerClient::class);
         $this->client->___setProperty('connection', $this->connection->reveal());
@@ -62,43 +68,43 @@ class SpannerClientTest extends SnippetTestCase
     /**
      * @group spanneradmin
      */
-    public function testConfigurations()
+    public function testInstanceConfigurations()
     {
-        $this->connection->listConfigs(Argument::any())
+        $this->connection->listInstanceConfigs(Argument::any())
             ->shouldBeCalled()
             ->willReturn([
                 'instanceConfigs' => [
-                    ['name' => 'projects/my-awesome-projects/instanceConfigs/Foo'],
-                    ['name' => 'projects/my-awesome-projects/instanceConfigs/Bar'],
+                    ['name' => 'projects/my-awesome-projects/instanceConfigs/foo'],
+                    ['name' => 'projects/my-awesome-projects/instanceConfigs/bar'],
                 ]
             ]);
 
         $this->client->___setProperty('connection', $this->connection->reveal());
 
-        $snippet = $this->snippetFromMethod(SpannerClient::class, 'configurations');
+        $snippet = $this->snippetFromMethod(SpannerClient::class, 'instanceConfigurations');
         $snippet->addLocal('spanner', $this->client);
 
         $res = $snippet->invoke('configurations');
 
         $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
-        $this->assertInstanceOf(Configuration::class, $res->returnVal()->current());
-        $this->assertEquals('Foo', $res->returnVal()->current()->name());
+        $this->assertInstanceOf(InstanceConfiguration::class, $res->returnVal()->current());
+        $this->assertEquals('projects/my-awesome-projects/instanceConfigs/foo', $res->returnVal()->current()->name());
     }
 
     /**
      * @group spanneradmin
      */
-    public function testConfiguration()
+    public function testInstanceConfiguration()
     {
         $configName = 'foo';
 
-        $snippet = $this->snippetFromMethod(SpannerClient::class, 'configuration');
+        $snippet = $this->snippetFromMethod(SpannerClient::class, 'instanceConfiguration');
         $snippet->addLocal('spanner', $this->client);
         $snippet->addLocal('configurationName', self::CONFIG);
 
         $res = $snippet->invoke('configuration');
-        $this->assertInstanceOf(Configuration::class, $res->returnVal());
-        $this->assertEquals(self::CONFIG, $res->returnVal()->name());
+        $this->assertInstanceOf(InstanceConfiguration::class, $res->returnVal());
+        $this->assertEquals(InstanceAdminClient::formatInstanceConfigName(self::PROJECT, $configName), $res->returnVal()->name());
     }
 
     /**
@@ -108,7 +114,7 @@ class SpannerClientTest extends SnippetTestCase
     {
         $snippet = $this->snippetFromMethod(SpannerClient::class, 'createInstance');
         $snippet->addLocal('spanner', $this->client);
-        $snippet->addLocal('configuration', $this->client->configuration(self::CONFIG));
+        $snippet->addLocal('configuration', $this->client->instanceConfiguration(self::CONFIG));
 
         $this->connection->createInstance(Argument::any())
             ->shouldBeCalled()
@@ -130,7 +136,7 @@ class SpannerClientTest extends SnippetTestCase
 
         $res = $snippet->invoke('instance');
         $this->assertInstanceOf(Instance::class, $res->returnVal());
-        $this->assertEquals(self::INSTANCE, $res->returnVal()->name());
+        $this->assertEquals(InstanceAdminClient::formatInstanceName(self::PROJECT, self::INSTANCE), $res->returnVal()->name());
     }
 
     /**
@@ -145,8 +151,8 @@ class SpannerClientTest extends SnippetTestCase
             ->shouldBeCalled()
             ->willReturn([
                 'instances' => [
-                    ['name' => 'projects/my-awesome-project/instances/'. self::INSTANCE],
-                    ['name' => 'projects/my-awesome-project/instances/Bar']
+                    ['name' => InstanceAdminClient::formatInstanceName(self::PROJECT, self::INSTANCE)],
+                    ['name' => InstanceAdminClient::formatInstanceName(self::PROJECT, 'bar')]
                 ]
             ]);
 
@@ -155,7 +161,7 @@ class SpannerClientTest extends SnippetTestCase
         $res = $snippet->invoke('instances');
         $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
         $this->assertInstanceOf(Instance::class, $res->returnVal()->current());
-        $this->assertEquals(self::INSTANCE, $res->returnVal()->current()->name());
+        $this->assertEquals(InstanceAdminClient::formatInstanceName(self::PROJECT, self::INSTANCE), $res->returnVal()->current()->name());
     }
 
     public function testConnect()
@@ -253,7 +259,7 @@ class SpannerClientTest extends SnippetTestCase
 
     public function testResumeOperation()
     {
-        $snippet = $this->snippetFromMethod(SpannerClient::class, 'resumeOperation');
+        $snippet = $this->snippetFromMagicMethod(SpannerClient::class, 'resumeOperation');
         $snippet->addLocal('spanner', $this->client);
         $snippet->addLocal('operationName', 'operations/foo');
 
