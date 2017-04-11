@@ -98,7 +98,7 @@ class TraceSpan
      * @param  \DateTimeInterface $when [optional] The end time of this span.
      *         **Defaults to** now.
      */
-    public function setFinish(\DateTimeInterface $when = null)
+    public function setEnd(\DateTimeInterface $when = null)
     {
         $this->info['endTime'] = $this->formatDate($when);
     }

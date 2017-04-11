@@ -467,7 +467,7 @@ $span = $trace->span([
     'name' => 'main'
 ]);
 $span->setStart();
-$span->setFinish();
+$span->setEnd();
 
 $trace->setSpans([$span]);
 $traceClient->insert($trace);

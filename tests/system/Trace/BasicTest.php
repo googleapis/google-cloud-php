@@ -48,8 +48,8 @@ class BasicTest extends \PHPUnit_Framework_TestCase
         // just add a little bit of time for the spans
         usleep(20);
 
-        $span2->setFinish();
-        $span->setFinish();
+        $span2->setEnd();
+        $span->setEnd();
 
         $trace->setSpans([$span, $span2]);
 

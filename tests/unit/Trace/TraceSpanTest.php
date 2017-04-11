@@ -96,7 +96,7 @@ class TraceSpanTest extends \PHPUnit_Framework_TestCase
     public function testFinishFormat()
     {
         $traceSpan = new TraceSpan();
-        $traceSpan->setFinish();
+        $traceSpan->setEnd();
         $info = $traceSpan->info();
         $this->assertArrayHasKey('endTime', $info);
         $this->assertRegExp(self::EXPECTED_TIMESTAMP_FORMAT, $info['endTime']);
