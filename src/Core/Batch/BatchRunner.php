@@ -35,7 +35,7 @@ class BatchRunner
     private $configStorage;
 
     /**
-     * @var JobSubmitInterface
+     * @var SubmitItemInterface
      */
     private $submitter;
 
@@ -44,24 +44,24 @@ class BatchRunner
      *
      * @param ConfigStorageInterface $configStorage [optional] The
      *        ConfigStorage object to use. **Defaults to** null.
-     * @param JobSubmitInterface $jobSubmitter [optional] The JobSubmitter
+     * @param SubmitItemInterface $submitter [optional] The submitter
      *        object to use. **Defaults to** null.
      */
     public function __construct(
         ConfigStorageInterface $configStorage = null,
-        JobSubmitInterface $jobSubmitter = null
+        SubmitItemInterface $submitter = null
     ) {
-        if ($configStorage === null || $jobSubmitter === null) {
+        if ($configStorage === null || $submitter === null) {
             if ($this->isSysvIPCLoaded() && $this->isDaemonRunning()) {
                 $configStorage = new SysvConfigStorage();
-                $jobSubmitter = new SysvJobSubmitter();
+                $submitter = new SysvSubmitter();
             } else {
                 $configStorage = InMemoryConfigStorage::getInstance();
-                $jobSubmitter = $configStorage;
+                $submitter = $configStorage;
             }
         }
         $this->configStorage = $configStorage;
-        $this->submitter = $jobSubmitter;
+        $this->submitter = $submitter;
         $this->loadConfig();
     }
 

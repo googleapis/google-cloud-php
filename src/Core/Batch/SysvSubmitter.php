@@ -18,9 +18,9 @@
 namespace Google\Cloud\Core\Batch;
 
 /**
- * JobSubmitInterface implementation with SysV IPC message queue.
+ * SubmitItemInterface implementation with SysV IPC message queue.
  */
-class SysvJobSubmitter implements JobSubmitInterface
+class SysvSubmitter implements SubmitItemInterface
 {
     use SysvTrait;
 

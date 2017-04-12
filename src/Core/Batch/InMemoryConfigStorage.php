@@ -22,7 +22,7 @@ namespace Google\Cloud\Core\Batch;
  */
 final class InMemoryConfigStorage implements
     ConfigStorageInterface,
-    JobSubmitInterface
+    SubmitItemInterface
 {
     use HandleFailureTrait;
 
