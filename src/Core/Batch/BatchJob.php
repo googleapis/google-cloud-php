@@ -23,7 +23,7 @@ namespace Google\Cloud\Core\Batch;
 class BatchJob
 {
     const DEFAULT_BATCH_SIZE = 100;
-    const DEFAULT_CALL_PERIOD = 2;
+    const DEFAULT_CALL_PERIOD = 2.0;
     const DEFAULT_WORKERS = 1;
 
     /**
@@ -52,7 +52,7 @@ class BatchJob
     private $batchSize;
 
     /**
-     * @var int
+     * @var float
      */
     private $callPeriod;
 
@@ -70,8 +70,8 @@ class BatchJob
      *     Configuration options.
      *
      *     @type int $batchSize The size of the batch.
-     *     @type int $callPeriod The period in seconds from the last execution
-     *               to force executing the job.
+     *     @type float $callPeriod The period in seconds from the last execution
+     *                 to force executing the job.
      *     @type int $workerNum The number of child processes. It only takes
      *               effect with the {@see \Google\Cloud\Core\BatchDaemon}.
      *     @type string $bootstrapFile A file to load before executing the
@@ -129,7 +129,7 @@ class BatchJob
     }
 
     /**
-     * @return int
+     * @return float
      */
     public function getCallPeriod()
     {

@@ -75,8 +75,8 @@ class BatchConfig
      *     Configuration options.
      *
      *     @type int $batchSize The size of the batch.
-     *     @type int $callPeriod The period in seconds from the last execution
-     *               to force executing the job.
+     *     @type float $callPeriod The period in seconds from the last execution
+     *                 to force executing the job.
      *     @type int $workerNum The number of child processes. It only takes
      *               effect with the {@see \Google\Cloud\Core\BatchDaemon}.
      *     @type string $bootstrapFile A file to load before executing the
