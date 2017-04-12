@@ -83,12 +83,12 @@ class BatchRunner
      *                  job. It's needed for registering global functions.
      * }
      * @return boolean true on success, false on failure
+     * @throws \InvalidArgumentException When receiving a Closure.
      */
     public function registerJob($identifier, $func, $options = [])
     {
         if ($func instanceof \Closure) {
-            trigger_error('Closure is not allowed', E_USER_NOTICE);
-            return false;
+            throw new \InvalidArgumentException('Closure is not allowed');
         }
         // Always work on the latest data
         $result = $this->configStorage->lock();

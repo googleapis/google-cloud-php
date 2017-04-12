@@ -41,7 +41,7 @@ class BatchRunnerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException PHPUnit_Framework_Error_Notice
+     * @expectedException \InvalidArgumentException
      */
     public function testRegisterJobClosure()
     {
@@ -53,7 +53,7 @@ class BatchRunnerTest extends \PHPUnit_Framework_TestCase
             'test',
             function() {}
         );
-        $this->assertFalse($result);
+        $this->assertTrue(false, 'It should throw InvalidArgumentException');
     }
 
     public function testConstructorLoadConfig()
