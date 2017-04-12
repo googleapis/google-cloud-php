@@ -54,7 +54,7 @@ class BatchDaemon
         }
         $this->runner = new BatchRunner(
             new SysvConfigStorage(),
-            new SysvJobSubmitter()
+            new SysvSubmitter()
         );
         $this->shutdown = false;
         // Just share the usual descriptors.
