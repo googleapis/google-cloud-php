@@ -147,4 +147,31 @@ class StreamableUploaderTest extends \PHPUnit_Framework_TestCase
 
         $uploader->upload();
     }
+
+    public function testLastChunkSendsCorrectHeaders()
+    {
+        $resumeUriResponse = new Response(200, ['Location' => 'theResumeUri']);
+        $response = new Response(200, ['Location' => 'theResumeUri'], $this->successBody);
+
+        $this->requestWrapper->send(
+            Argument::which('getMethod', 'POST'),
+            Argument::type('array')
+        )->willReturn($resumeUriResponse);
+
+        $this->requestWrapper->send(
+            Argument::that(function($request) {
+                return $request->getHeaderLine('Content-Length') == '10';
+            }),
+            Argument::type('array')
+        )->willReturn($response);
+
+        $uploader = new StreamableUploader(
+            $this->requestWrapper->reveal(),
+            $this->stream,
+            'http://www.example.com'
+        );
+        $this->stream->setUploader($uploader);
+        $this->stream->write('0123456789');
+        $uploader->upload();
+    }
 }
