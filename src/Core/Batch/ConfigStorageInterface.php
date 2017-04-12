@@ -28,7 +28,7 @@ interface ConfigStorageInterface
     public function lock();
 
     /**
-     * unlocks the lock
+     * releases the lock
      */
     public function unlock();
 
