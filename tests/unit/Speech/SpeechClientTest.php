@@ -19,6 +19,7 @@ namespace Google\Cloud\Tests\Unit\Speech;
 
 use Google\Cloud\Speech\Connection\ConnectionInterface;
 use Google\Cloud\Speech\Operation;
+use Google\Cloud\Speech\Result;
 use Google\Cloud\Speech\SpeechClient;
 use Google\Cloud\Storage\StorageObject;
 use Prophecy\Argument;
@@ -72,29 +73,9 @@ class SpeechClientTest extends \PHPUnit_Framework_TestCase
         $this->client->setConnection($this->connection->reveal());
         $results = $this->client->recognize($audio, $options);
 
-        $this->assertEquals($transcript, $results[0]['transcript']);
-        $this->assertEquals($confidence, $results[0]['confidence']);
+        $this->assertContainsOnlyInstancesOf(Result::class, $results);
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
-    public function testRecognizeThrowsExceptionWhenCannotDetectEncoding()
-    {
-        $this->client->recognize('abcd', [
-            'sampleRate' => 16000
-        ]);
-    }
-
-    /**
-     * @expectedException \InvalidArgumentException
-     */
-    public function testRecognizeThrowsExceptionWhenCannotDetectSampleRate()
-    {
-        $this->client->recognize('abcd', [
-            'encoding' => 'MULAW'
-        ]);
-    }
 
     /**
      * @dataProvider audioProvider
@@ -149,7 +130,6 @@ class SpeechClientTest extends \PHPUnit_Framework_TestCase
                         'content' => base64_encode(file_get_contents($audioPath))
                     ],
                     'config' => [
-                        'encoding' => 'FLAC',
                         'maxAlternatives' => 1,
                         'languageCode' => 'en-GB',
                         'profanityFilter' => false,
@@ -201,9 +181,7 @@ class SpeechClientTest extends \PHPUnit_Framework_TestCase
                         'uri' => 'gs://bucket/object.amr'
                     ],
                     'config' => [
-                        'encoding' => 'AMR',
-                        'sampleRateHertz' => 8000,
-                        'languageCode' => 'en-US',
+                        'languageCode' => 'en-US'
                     ]
                 ]
             ],
@@ -215,9 +193,7 @@ class SpeechClientTest extends \PHPUnit_Framework_TestCase
                         'uri' => 'gs://bucket/object.awb'
                     ],
                     'config' => [
-                        'encoding' => 'AMR_WB',
-                        'sampleRateHertz' => 16000,
-                        'languageCode' => 'en-US',
+                        'languageCode' => 'en-US'
                     ]
                 ]
             ],
@@ -248,9 +224,8 @@ class SpeechClientTest extends \PHPUnit_Framework_TestCase
                         'content' => base64_encode('abcd')
                     ],
                     'config' => [
-                        'encoding' => 'FLAC',
                         'sampleRateHertz' => 16000,
-                        'languageCode' => 'en-US',
+                        'languageCode' => 'en-US'
                     ]
                 ]
             ]

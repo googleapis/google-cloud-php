@@ -119,7 +119,7 @@ class SpeechClient
      * );
      *
      * foreach ($results as $result) {
-     *     echo $result['transcript'];
+     *     echo $result->topAlternative()['transcript'] . PHP_EOL;
      * }
      * ```
      *
@@ -140,18 +140,18 @@ class SpeechClient
      * ]);
      *
      * foreach ($results as $result) {
-     *     echo $result['transcript'];
+     *     echo $result->topAlternative()['transcript'] . PHP_EOL;
      * }
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/speech/reference/rest/v1/speech/recognize#SpeechRecognitionAlternative SpeechRecognitionAlternative
+     * @see https://cloud.google.com/speech/reference/rest/v1/speech/recognize#SpeechRecognitionResult SpeechRecognitionResult
      * @see https://cloud.google.com/speech/reference/rest/v1/speech/recognize Recognize API documentation
      * @see https://cloud.google.com/speech/reference/rest/v1/RecognitionConfig#AudioEncoding AudioEncoding types
      * @see https://cloud.google.com/speech/docs/best-practices Speech API best practices
      * @codingStandardsIgnoreEnd
      *
-    * @param resource|string|StorageObject $audio The audio to recognize. May
+     * @param resource|string|StorageObject $audio The audio to recognize. May
      *        be a resource, string of bytes, a URI pointing to a
      *        Google Cloud Storage object in the format of
      *        `gs://{bucket-name}/{object-name}` or a
@@ -172,14 +172,13 @@ class SpeechClient
      *           audio. Valid values are: 8000-48000. 16000 is optimal. For best
      *           results, set the sampling rate of the audio source to 16000 Hz.
      *           If that's not possible, use the native sample rate of the audio
-     *           source (instead of re-sampling). **Defaults to** `8000` with
-     *           .amr files and `16000` with .awb files. For .flac files the
-     *           Speech API will make a best effort to read the sample rate from
-     *           the file's headers.
+     *           source (instead of re-sampling). For .flac files the Speech API
+     *           will make a best effort to read the sample rate from the file's
+     *           headers.
      *     @type string $encoding Encoding of the provided audio. May be one of
-     *           `"LINEAR16"`, `"FLAC"`, `"MULAW"`, `"AMR"`, `"AMR_WB"`.
-     *           **Defaults to** `"FLAC"` with .flac files, `"AMR"` with .amr
-     *           files and `"AMR_WB"` with .awb files.
+     *           `"LINEAR16"`, `"FLAC"`, `"MULAW"`, `"AMR"`, `"AMR_WB"`. For
+     *           .flac files the Speech API will make a best effort to determine
+     *           the encoding type from the file's headers.
      *     @type int $maxAlternatives Maximum number of alternatives to be
      *           returned. Valid values are 1-30. **Defaults to** `1`.
      *     @type bool $profanityFilter If set to `true`, the server will attempt
@@ -193,20 +192,25 @@ class SpeechClient
      *           [SpeechContext](https://cloud.google.com/speech/reference/rest/v1/RecognitionConfig#SpeechContext)
      *           for more information.
      * }
-     * @return array The transcribed results. Each element of the array contains
-     *         a `transcript` key which holds the transcribed text. Optionally
-     *         a `confidence` key holding the confidence estimate ranging from
-     *         0.0 to 1.0 may be present. `confidence` is typically provided
-     *         only for the top hypothesis.
+     * @return array Result[]
      * @throws \InvalidArgumentException
      */
     public function recognize($audio, array $options = [])
     {
+        $results = [];
         $response = $this->connection->recognize(
             $this->formatRequest($audio, $options)
         );
 
-        return isset($response['results']) ? $response['results'][0]['alternatives'] : [];
+        if (!isset($response['results'])) {
+            return $results;
+        }
+
+        foreach ($response['results'] as $result) {
+            $results[] = new Result($result);
+        }
+
+        return $results;
     }
 
     /**
@@ -237,7 +241,8 @@ class SpeechClient
      *     $isComplete = $operation->isComplete();
      * }
      *
-     * print_r($operation->results());
+     * $result = $operation->results()[0];
+     * print_r($result->topAlternative());
      * ```
      *
      * ```
@@ -264,7 +269,8 @@ class SpeechClient
      *     $isComplete = $operation->isComplete();
      * }
      *
-     * print_r($operation->results());
+     * $result = $operation->results()[0];
+     * print_r($result->topAlternative());
      * ```
      *
      * @codingStandardsIgnoreStart
@@ -295,14 +301,13 @@ class SpeechClient
      *           audio. Valid values are: 8000-48000. 16000 is optimal. For best
      *           results, set the sampling rate of the audio source to 16000 Hz.
      *           If that's not possible, use the native sample rate of the audio
-     *           source (instead of re-sampling). **Defaults to** `8000` with
-     *           .amr files and `16000` with .awb files. For .flac files the
-     *           Speech API will make a best effort to read the sample rate from
-     *           the file's headers.
+     *           source (instead of re-sampling). For .flac files the Speech API
+     *           will make a best effort to read the sample rate from the file's
+     *           headers.
      *     @type string $encoding Encoding of the provided audio. May be one of
-     *           `"LINEAR16"`, `"FLAC"`, `"MULAW"`, `"AMR"`, `"AMR_WB"`.
-     *           **Defaults to** `"FLAC"` with .flac files, `"AMR"` with .amr
-     *           files and `"AMR_WB"` with .awb files.
+     *           `"LINEAR16"`, `"FLAC"`, `"MULAW"`, `"AMR"`, `"AMR_WB"`. For
+     *           .flac files the Speech API will make a best effort to determine
+     *           the encoding type from the file's headers.
      *     @type int $maxAlternatives Maximum number of alternatives to be
      *           returned. Valid values are 1-30. **Defaults to** `1`.
      *     @type bool $profanityFilter If set to `true`, the server will attempt
@@ -391,18 +396,6 @@ class SpeechClient
             ? $options['languageCode']
             : $this->languageCode;
 
-        $options['encoding'] = isset($options['encoding'])
-            ? $options['encoding']
-            : $this->determineEncoding($fileFormat);
-
-        $options['sampleRateHertz'] = isset($options['sampleRateHertz'])
-            ? $options['sampleRateHertz']
-            : $this->determineSampleRate($options['encoding']);
-
-        if (!$options['sampleRateHertz']) {
-            unset($options['sampleRateHertz']);
-        }
-
         foreach ($options as $option => $value) {
             if (in_array($option, $recognizeOptions)) {
                 $options['config'][$option] = $value;
@@ -411,51 +404,5 @@ class SpeechClient
         }
 
         return $options;
-    }
-
-    /**
-     * Attempts to determine the encoding based on the file format.
-     *
-     * @param string $fileFormat
-     * @return string
-     * @throws \InvalidArgumentException
-     */
-    private function determineEncoding($fileFormat)
-    {
-        switch ($fileFormat) {
-            case 'flac':
-                return 'FLAC';
-            case 'amr':
-                return 'AMR';
-            case 'awb':
-                return 'AMR_WB';
-            default:
-                throw new \InvalidArgumentException(
-                    'Unable to determine encoding. Please provide the value manually.'
-                );
-        }
-    }
-
-    /**
-     * Attempts to determine the sample rate based on the encoding.
-     *
-     * @param string $encoding
-     * @return int|null
-     * @throws \InvalidArgumentException
-     */
-    private function determineSampleRate($encoding)
-    {
-        switch ($encoding) {
-            case 'AMR':
-                return 8000;
-            case 'AMR_WB':
-                return 16000;
-            case 'FLAC':
-                return null;
-            default:
-                throw new \InvalidArgumentException(
-                    'Unable to determine sample rate. Please provide the value manually.'
-                );
-        }
     }
 }

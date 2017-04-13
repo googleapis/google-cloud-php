@@ -20,6 +20,7 @@ namespace Google\Cloud\Tests\Snippets\Speech;
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
 use Google\Cloud\Speech\Connection\ConnectionInterface;
 use Google\Cloud\Speech\Operation;
+use Google\Cloud\Speech\Result;
 use Google\Cloud\Speech\SpeechClient;
 use Prophecy\Argument;
 
@@ -50,9 +51,6 @@ class OperationTest extends SnippetTestCase
         $this->operation = new \SpeechOperationStub($this->connection->reveal(), $this->opData['name'], $this->opData);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testClass()
     {
         $snippet = $this->snippetFromClass(Operation::class);
@@ -63,6 +61,12 @@ class OperationTest extends SnippetTestCase
             ->willReturn(['name' => 'foo']);
 
         $snippet->addLocal('connectionStub', $connectionStub->reveal());
+        $snippet->insertAfterLine(4, '$reflection = new \ReflectionClass($speech);
+            $property = $reflection->getProperty(\'connection\');
+            $property->setAccessible(true);
+            $property->setValue($speech, $connectionStub);
+            $property->setAccessible(false);'
+        );
 
         $snippet->replace("__DIR__  . '/audio.flac'", '"php://temp"');
 
@@ -84,7 +88,7 @@ class OperationTest extends SnippetTestCase
         $snippet->addLocal('operation', $this->operation);
 
         $res = $snippet->invoke('results');
-        $this->assertEquals($this->opData['response']['results'][0]['alternatives'], $res->returnVal());
+        $this->assertContainsOnlyInstancesOf(Result::class, $res->returnVal());
     }
 
     public function testExists()
