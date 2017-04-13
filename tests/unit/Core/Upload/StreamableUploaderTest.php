@@ -90,7 +90,7 @@ class StreamableUploaderTest extends \PHPUnit_Framework_TestCase
         $this->requestWrapper->send(
             Argument::type(RequestInterface::class),
             Argument::type('array')
-        )->willReturn($response)->shouldHaveBeenCalledOnce();
+        )->willReturn($response)->shouldBeCalled();
 
         $uploader = new StreamableUploader(
             $this->requestWrapper->reveal(),
@@ -110,7 +110,7 @@ class StreamableUploaderTest extends \PHPUnit_Framework_TestCase
         $this->requestWrapper->send(
             Argument::type(RequestInterface::class),
             Argument::type('array')
-        )->willReturn($response)->shouldHaveBeenCalledOnce();
+        )->willReturn($response)->shouldBeCalled();
 
         $uploader = new StreamableUploader(
             $this->requestWrapper->reveal(),
@@ -132,12 +132,12 @@ class StreamableUploaderTest extends \PHPUnit_Framework_TestCase
         $this->requestWrapper->send(
             Argument::which('getMethod', 'POST'),
             Argument::type('array')
-        )->willReturn($resumeUriResponse)->shouldHaveBeenCalledOnce();
+        )->willReturn($resumeUriResponse)->shouldBeCalled();
 
         $this->requestWrapper->send(
             Argument::which('getMethod', 'PUT'),
             Argument::type('array')
-        )->willThrow(GoogleException::class)->shouldHaveBeenCalledOnce();
+        )->willThrow(GoogleException::class)->shouldBeCalled();
 
         $uploader = new StreamableUploader(
             $this->requestWrapper->reveal(),
@@ -156,14 +156,14 @@ class StreamableUploaderTest extends \PHPUnit_Framework_TestCase
         $this->requestWrapper->send(
             Argument::which('getMethod', 'POST'),
             Argument::type('array')
-        )->willReturn($resumeUriResponse)->shouldHaveBeenCalledOnce();
+        )->willReturn($resumeUriResponse)->shouldBeCalled();
 
         $this->requestWrapper->send(
             Argument::that(function($request) {
                 return $request->getHeaderLine('Content-Length') == '10';
             }),
             Argument::type('array')
-        )->willReturn($response)->shouldHaveBeenCalledOnce();
+        )->willReturn($response)->shouldBeCalled();
 
         $uploader = new StreamableUploader(
             $this->requestWrapper->reveal(),
