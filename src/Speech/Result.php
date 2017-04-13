@@ -32,6 +32,10 @@ namespace Google\Cloud\Speech;
  *     fopen(__DIR__  . '/audio.flac', 'r')
  * );
  * ```
+ *
+ * @codingStandardsIgnoreStart
+ * @see https://cloud.google.com/speech/reference/rest/v1/speech/recognize#SpeechRecognitionResult SpeechRecognitionResult
+ * @codingStandardsIgnoreEnd
  */
 class Result
 {
