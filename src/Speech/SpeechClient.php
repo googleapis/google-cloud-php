@@ -172,13 +172,13 @@ class SpeechClient
      *           audio. Valid values are: 8000-48000. 16000 is optimal. For best
      *           results, set the sampling rate of the audio source to 16000 Hz.
      *           If that's not possible, use the native sample rate of the audio
-     *           source (instead of re-sampling). For .flac files the Speech API
-     *           will make a best effort to read the sample rate from the file's
-     *           headers.
+     *           source (instead of re-sampling). For .flac and .wav files the
+     *           Speech API will make a best effort to read the sample rate from
+     *           the file's headers.
      *     @type string $encoding Encoding of the provided audio. May be one of
      *           `"LINEAR16"`, `"FLAC"`, `"MULAW"`, `"AMR"`, `"AMR_WB"`. For
-     *           .flac files the Speech API will make a best effort to determine
-     *           the encoding type from the file's headers.
+     *           .flac and .wav files the Speech API will make a best effort to
+     *           determine the encoding type from the file's headers.
      *     @type int $maxAlternatives Maximum number of alternatives to be
      *           returned. Valid values are 1-30. **Defaults to** `1`.
      *     @type bool $profanityFilter If set to `true`, the server will attempt
@@ -301,13 +301,13 @@ class SpeechClient
      *           audio. Valid values are: 8000-48000. 16000 is optimal. For best
      *           results, set the sampling rate of the audio source to 16000 Hz.
      *           If that's not possible, use the native sample rate of the audio
-     *           source (instead of re-sampling). For .flac files the Speech API
-     *           will make a best effort to read the sample rate from the file's
-     *           headers.
+     *           source (instead of re-sampling). For .flac and .wav files the
+     *           Speech API will make a best effort to read the sample rate from
+     *           the file's headers.
      *     @type string $encoding Encoding of the provided audio. May be one of
      *           `"LINEAR16"`, `"FLAC"`, `"MULAW"`, `"AMR"`, `"AMR_WB"`. For
-     *           .flac files the Speech API will make a best effort to determine
-     *           the encoding type from the file's headers.
+     *           .flac and .wav files the Speech API will make a best effort to
+     *           determine the encoding type from the file's headers.
      *     @type int $maxAlternatives Maximum number of alternatives to be
      *           returned. Valid values are 1-30. **Defaults to** `1`.
      *     @type bool $profanityFilter If set to `true`, the server will attempt
