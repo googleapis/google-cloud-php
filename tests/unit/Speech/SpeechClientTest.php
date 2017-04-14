@@ -29,6 +29,8 @@ use Prophecy\Argument;
  */
 class SpeechClientTest extends \PHPUnit_Framework_TestCase
 {
+    CONST GCS_URI = 'gs://bucket/object';
+
     private $client;
     private $connection;
 
@@ -43,9 +45,10 @@ class SpeechClientTest extends \PHPUnit_Framework_TestCase
     /**
      * @expectedException \InvalidArgumentException
      */
-    public function testClientInstantiationThrowsExceptionWithoutLanguageCode()
+    public function testThrowsExceptionWithoutLanguageCode()
     {
         $client = new SpeechTestClient();
+        $client->recognize(self::GCS_URI);
     }
 
     /**
@@ -105,11 +108,10 @@ class SpeechClientTest extends \PHPUnit_Framework_TestCase
     {
         stream_wrapper_unregister('http');
         stream_wrapper_register('http', HttpStreamWrapper::class);
-        $gcsUri = 'gs://bucket/object';
         $amrMock = $this->prophesize(StorageObject::class);
-        $amrMock->gcsUri(Argument::any())->willReturn($gcsUri . '.amr');
+        $amrMock->gcsUri(Argument::any())->willReturn(self::GCS_URI . '.amr');
         $awbMock = $this->prophesize(StorageObject::class);
-        $awbMock->gcsUri(Argument::any())->willReturn($gcsUri . '.awb');
+        $awbMock->gcsUri(Argument::any())->willReturn(self::GCS_URI . '.awb');
         $audioPath = __DIR__ . '/../data/brooklyn.flac';
 
         return [
@@ -198,14 +200,14 @@ class SpeechClientTest extends \PHPUnit_Framework_TestCase
                 ]
             ],
             [
-                $gcsUri,
+                self::GCS_URI,
                 [
                     'encoding' => 'FLAC',
                     'sampleRateHertz' => 16000
                 ],
                 [
                     'audio' => [
-                        'uri' => $gcsUri
+                        'uri' => self::GCS_URI
                     ],
                     'config' => [
                         'encoding' => 'FLAC',

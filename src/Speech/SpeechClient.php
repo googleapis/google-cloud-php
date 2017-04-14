@@ -80,37 +80,30 @@ class SpeechClient
      *     @type int $retries Number of retries for a failed request.
      *           **Defaults to** `3`.
      *     @type array $scopes Scopes to be used for the request.
-     *     @type string $languageCode Required. The language of the content to
-     *           be recognized. Only BCP-47 (e.g., `"en-US"`, `"es-ES"`)
-     *           language codes are accepted. See
+     *     @type string $languageCode The language of the content to be
+     *           recognized. Only BCP-47 (e.g., `"en-US"`, `"es-ES"`) language
+     *           codes are accepted. See
      *           [Language Support](https://cloud.google.com/speech/docs/languages)
      *           for a list of the currently supported language codes.
      * }
-     * @throws \InvalidArgumentException
      */
     public function __construct(array $config = [])
     {
-        if (!isset($config['languageCode'])) {
-            throw new \InvalidArgumentException('A valid BCP-47 language code is required.');
-        }
-
         if (!isset($config['scopes'])) {
             $config['scopes'] = [self::SCOPE];
         }
 
-        $this->languageCode = $config['languageCode'];
-        unset($config['languageCode']);
+        if (isset($config['languageCode'])) {
+            $this->languageCode = $config['languageCode'];
+            unset($config['languageCode']);
+        }
+
         $this->connection = new Rest($this->configureAuthentication($config));
     }
 
     /**
      * Runs a recognize request and returns the results immediately. Ideal when
      * working with audio up to approximately one minute in length.
-     *
-     * The Google Cloud Client Library will attempt to infer the sample rate
-     * and encoding used by the provided audio file for you. This feature is
-     * recommended only if you are unsure of what the values may be and is
-     * currently limited to .flac, .amr, and .awb file types.
      *
      * Example:
      * ```
@@ -217,11 +210,6 @@ class SpeechClient
      * Runs a recognize request as an operation. Ideal when working with audio
      * longer than approximately one minute. Requires polling of the returned
      * operation in order to fetch results.
-     *
-     * The Google Cloud Client Library will attempt to infer the sample rate
-     * and encoding used by the provided audio file for you. This feature is
-     * recommended only if you are unsure of what the values may be and is
-     * currently limited to .flac, .amr, and .awb file types.
      *
      * For longer audio, up to approximately 80 minutes, you must use Google
      * Cloud Storage objects as input. In addition to this restriction, only
@@ -367,7 +355,10 @@ class SpeechClient
     private function formatRequest($audio, array $options)
     {
         $fileFormat = null;
-        $options += ['detectGcsUri' => true];
+        $options += [
+            'detectGcsUri' => true,
+            'languageCode' => $this->languageCode
+        ];
         $recognizeOptions = [
             'encoding',
             'sampleRateHertz',
@@ -392,9 +383,9 @@ class SpeechClient
 
         unset($options['detectGcsUri']);
 
-        $options['languageCode'] = isset($options['languageCode'])
-            ? $options['languageCode']
-            : $this->languageCode;
+        if (!$options['languageCode']) {
+            throw new \InvalidArgumentException('A valid BCP-47 language code is required.');
+        }
 
         foreach ($options as $option => $value) {
             if (in_array($option, $recognizeOptions)) {
