@@ -84,7 +84,10 @@ class SpeechClient
      *           recognized. Only BCP-47 (e.g., `"en-US"`, `"es-ES"`) language
      *           codes are accepted. See
      *           [Language Support](https://cloud.google.com/speech/docs/languages)
-     *           for a list of the currently supported language codes.
+     *           for a list of the currently supported language codes. This
+     *           value will be used by default for any requests sent through the
+     *           client. If not provided, you must include a language code with
+     *           each individual request.
      * }
      */
     public function __construct(array $config = [])
@@ -159,8 +162,9 @@ class SpeechClient
      *     @type string $languageCode The language of the content. BCP-47
      *           (e.g., `"en-US"`, `"es-ES"`) language codes are accepted. See
      *           [Language Support](https://cloud.google.com/speech/docs/languages)
-     *           for a list of the currently supported language codes.
-     *           **Defaults to** the value set on the client.
+     *           for a list of the currently supported language codes. This
+     *           value will be required if a default has not been set on the
+     *           client. **Defaults to** the value set on the client.
      *     @type int $sampleRateHertz Sample rate in Hertz of the provided
      *           audio. Valid values are: 8000-48000. 16000 is optimal. For best
      *           results, set the sampling rate of the audio source to 16000 Hz.
@@ -283,8 +287,9 @@ class SpeechClient
      *     @type string $languageCode The language of the content. BCP-47
      *           (e.g., `"en-US"`, `"es-ES"`) language codes are accepted. See
      *           [Language Support](https://cloud.google.com/speech/docs/languages)
-     *           for a list of the currently supported language codes.
-     *           **Defaults to** the value set on the client.
+     *           for a list of the currently supported language codes. This
+     *           value will be required if a default has not been set on the
+     *           client. **Defaults to** the value set on the client.
      *     @type int $sampleRateHertz Sample rate in Hertz of the provided
      *           audio. Valid values are: 8000-48000. 16000 is optimal. For best
      *           results, set the sampling rate of the audio source to 16000 Hz.
