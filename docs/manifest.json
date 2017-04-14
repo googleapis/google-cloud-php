@@ -11,6 +11,7 @@
             "name": "google/cloud",
             "defaultService": "servicebuilder",
             "versions": [
+                "v0.27.0",
                 "v0.26.0",
                 "v0.25.1",
                 "v0.25.0",
@@ -59,6 +60,7 @@
             "name": "google/cloud-core",
             "defaultService": "core/readme",
             "versions": [
+                "v1.1.1",
                 "v1.1.0",
                 "v1.0.1",
                 "v1.0.0",
@@ -131,6 +133,7 @@
             "name": "google/cloud-speech",
             "defaultService": "speech/speechclient",
             "versions": [
+                "v0.3.0",
                 "v0.2.0",
                 "v0.1.0",
                 "master"
