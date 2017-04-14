@@ -20,6 +20,7 @@ namespace Google\Cloud\Tests\Unit\Speech;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Speech\Connection\ConnectionInterface;
 use Google\Cloud\Speech\Operation;
+use Google\Cloud\Speech\Result;
 use Prophecy\Argument;
 
 /**
@@ -61,26 +62,18 @@ class OperationTest extends \PHPUnit_Framework_TestCase
 
     public function testGetsResults()
     {
-        $transcript = 'testing';
-        $confidence = 1.0;
         $operation = $this->getOperation($this->connection, $this->operationData + [
             'response' => [
                 'results' => [
                     [
-                        'alternatives' => [
-                            [
-                                'transcript' => $transcript,
-                                'confidence' => $confidence
-                            ]
-                        ]
+                        'alternatives' => []
                     ]
                 ]
             ]
         ]);
         $results = $operation->results();
 
-        $this->assertEquals($transcript, $results[0]['transcript']);
-        $this->assertEquals($confidence, $results[0]['confidence']);
+        $this->assertContainsOnlyInstancesOf(Result::class, $results);
     }
 
     public function testDoesExistTrue()
