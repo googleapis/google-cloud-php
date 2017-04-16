@@ -67,6 +67,7 @@ class BatchDaemon
         pcntl_signal(SIGTERM, [$this, "sigHandler"]);
         pcntl_signal(SIGINT, [$this, "sigHandler"]);
         pcntl_signal(SIGHUP, [$this, "sigHandler"]);
+        pcntl_signal(SIGALRM, [$this, "sigHandler"]);
         $this->command = sprintf('exec php -d auto_prepend_file="" %s', $entrypoint);
         $this->initFailureFile();
     }
@@ -98,8 +99,6 @@ class BatchDaemon
      */
     public function runParent()
     {
-        // Initial wait for the child processes to install the signal handler.
-        $wait = 1000000;
         $procs = [];
         while (true) {
             $jobs = $this->runner->getJobs();
@@ -114,11 +113,6 @@ class BatchDaemon
                             $pipes
                         );
                     }
-                } else {
-                    foreach ($procs[$job->getIdentifier()] as $child) {
-                        // This will unblock the blocking msg_receive
-                        @proc_terminate($child, SIGHUP);
-                    }
                 }
             }
             pcntl_signal_dispatch();
@@ -130,7 +124,7 @@ class BatchDaemon
                         // Keep sending SIGTERM until the child exits.
                         while ($status['running'] === true) {
                             @proc_terminate($proc);
-                            usleep($wait);
+                            usleep(50000);
                             $status = proc_get_status($proc);
                         }
                         @proc_close($proc);
@@ -139,9 +133,7 @@ class BatchDaemon
                 echo 'BatchDaemon exiting' . PHP_EOL;
                 exit;
             }
-            usleep($wait);
-            // Unblocking the children for every 50ms.
-            $wait = 50000;
+            usleep(1000000); // Reload the config after 1 second
             // Reload the config
             $this->runner->loadConfig();
         }
@@ -164,6 +156,8 @@ class BatchDaemon
         $lastInvoked = microtime(true);
         $batchSize = $job->getBatchSize();
         while (true) {
+            // Fire SIGALRM after 1 second to unblock the blocking call.
+            pcntl_alarm(1);
             if (msg_receive(
                 $q,
                 0,
