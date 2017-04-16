@@ -98,6 +98,8 @@ class BatchDaemon
      */
     public function runParent()
     {
+        // Initial wait for the child processes to install the signal handler.
+        $wait = 1000000;
         $procs = [];
         while (true) {
             $jobs = $this->runner->getJobs();
@@ -112,6 +114,11 @@ class BatchDaemon
                             $pipes
                         );
                     }
+                } else {
+                    foreach ($procs[$job->getIdentifier()] as $child) {
+                        // This will unblock the blocking msg_receive
+                        @proc_terminate($child, SIGHUP);
+                    }
                 }
             }
             pcntl_signal_dispatch();
@@ -119,14 +126,22 @@ class BatchDaemon
                 echo 'Shutting down, waiting for the children' . PHP_EOL;
                 foreach ($procs as $k => $v) {
                     foreach ($v as $proc) {
-                        @proc_terminate($proc);
+                        $status = proc_get_status($proc);
+                        // Keep sending SIGTERM until the child exits.
+                        while ($status['running'] === true) {
+                            @proc_terminate($proc);
+                            usleep($wait);
+                            $status = proc_get_status($proc);
+                        }
                         @proc_close($proc);
                     }
                 }
                 echo 'BatchDaemon exiting' . PHP_EOL;
                 exit;
             }
-            sleep(1);
+            usleep($wait);
+            // Unblocking the children for every 50ms.
+            $wait = 50000;
             // Reload the config
             $this->runner->loadConfig();
         }
@@ -149,11 +164,6 @@ class BatchDaemon
         $lastInvoked = microtime(true);
         $batchSize = $job->getBatchSize();
         while (true) {
-            if (count($items) === 0) {
-                $flag = 0;
-            } else {
-                $flag = MSG_IPC_NOWAIT;
-            }
             if (msg_receive(
                 $q,
                 0,
@@ -161,7 +171,7 @@ class BatchDaemon
                 8192,
                 $message,
                 true,
-                $flag,
+                0, // blocking mode
                 $errorcode
             )) {
                 if ($type === self::$typeDirect) {
@@ -171,9 +181,15 @@ class BatchDaemon
                     @unlink($message);
                 }
             }
+            pcntl_signal_dispatch();
+            // It runs the job when
+            // 1. Number of items reaches the batchSize.
+            // 2-a. Count is >0 and the current time is larger than lastInvoked + period.
+            // 2-b. Count is >0 and the shutdown flag is true.
             if ((count($items) >= $batchSize)
-                || (count($items) !== 0
-                    && microtime(true) > $lastInvoked + $period)) {
+                || (count($items) > 0
+                    && (microtime(true) > $lastInvoked + $period
+                        || $this->shutdown))) {
                 printf(
                     'Running the job with %d items' . PHP_EOL,
                     count($items)
@@ -184,7 +200,6 @@ class BatchDaemon
                 $items = [];
                 $lastInvoked = microtime(true);
             }
-            pcntl_signal_dispatch();
             gc_collect_cycles();
             if ($this->shutdown) {
                 exit;
