@@ -48,7 +48,7 @@ class Retry
     {
         foreach ($this->getFailedFiles() as $file) {
             // Rename the file first
-            $tmpFile = $file . '-retrying';
+            $tmpFile = dirname($file) . '/retrying-' . basename($file);
             rename($file, $tmpFile);
 
             $fp = @fopen($tmpFile, 'r');
