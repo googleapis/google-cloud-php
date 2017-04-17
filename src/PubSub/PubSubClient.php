@@ -83,7 +83,7 @@ class PubSubClient
     use IncomingMessageTrait;
     use ResourceNameTrait;
 
-    const VERSION = '0.2.0';
+    const VERSION = '0.3.0';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/pubsub';
 
@@ -344,6 +344,8 @@ class PubSubClient
     /**
      * Create a snapshot.
      *
+     * Please note that this method may not yet be available in your project.
+     *
      * Example:
      * ```
      * $subscription = $pubsub->subscription($subscriptionName);
@@ -385,6 +387,8 @@ class PubSubClient
 
     /**
      * Get a list of the snapshots in the project.
+     *
+     * Please note that this method may not yet be available in your project.
      *
      * Example:
      * ```

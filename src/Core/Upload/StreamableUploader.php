@@ -50,7 +50,8 @@ class StreamableUploader extends ResumableUploader
             $data = $this->data->read($writeSize);
         } else {
             $rangeEnd = '*';
-            $data = $this->data;
+            $data = $this->data->getContents();
+            $writeSize = strlen($data);
         }
 
         // do the streaming write

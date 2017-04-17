@@ -72,7 +72,7 @@ class SpeechClientTest extends SnippetTestCase
         $this->client->setConnection($this->connection->reveal());
 
         $res = $snippet->invoke();
-        $this->assertEquals($transcript, $res->output());
+        $this->assertEquals($transcript . PHP_EOL, $res->output());
     }
 
     public function testRecognizeWithOptions()
@@ -99,7 +99,7 @@ class SpeechClientTest extends SnippetTestCase
         $this->client->setConnection($this->connection->reveal());
 
         $res = $snippet->invoke();
-        $this->assertEquals($transcript, $res->output());
+        $this->assertEquals($transcript . PHP_EOL, $res->output());
     }
 
     public function testBeginRecognizeOperation()
@@ -130,7 +130,7 @@ class SpeechClientTest extends SnippetTestCase
         $this->client->setConnection($this->connection->reveal());
 
         $res = $snippet->invoke();
-        $this->assertEquals(print_r($results[0]['alternatives'], true), $res->output());
+        $this->assertEquals(print_r($results[0]['alternatives'][0], true), $res->output());
     }
 
     public function testBeginRecognizeOperationWithOptions()
@@ -161,7 +161,7 @@ class SpeechClientTest extends SnippetTestCase
         $this->client->setConnection($this->connection->reveal());
 
         $res = $snippet->invoke();
-        $this->assertEquals(print_r($results[0]['alternatives'], true), $res->output());
+        $this->assertEquals(print_r($results[0]['alternatives'][0], true), $res->output());
     }
 
     public function testOperation()

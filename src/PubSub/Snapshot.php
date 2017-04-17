@@ -127,6 +127,8 @@ class Snapshot
      * When creating a snapshot, a subscription name must be supplied at
      * instantiation.
      *
+     * Please note that this method may not yet be available in your project.
+     *
      * Example:
      * ```
      * $info = $snapshot->create();
@@ -151,6 +153,8 @@ class Snapshot
 
     /**
      * Delete the snapshot.
+     *
+     * Please note that this method may not yet be available in your project.
      *
      * Example:
      * ```

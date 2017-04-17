@@ -600,6 +600,8 @@ class Subscription
      * received before this time as acknowledged, and all messages received
      * after the time as unacknowledged.
      *
+     * Please note that this method may not yet be available in your project.
+     *
      * Example:
      * ```
      * $time = $pubsub->timestamp(new \DateTime('2017-04-01'));
@@ -622,6 +624,8 @@ class Subscription
      *
      * When seeking to a snapshot, any message that had an "unacknowledged"
      * state when the snapshot was created can be re-delivered.
+     *
+     * Please note that this method may not yet be available in your project.
      *
      * Example:
      * ```

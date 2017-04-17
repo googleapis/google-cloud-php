@@ -49,7 +49,7 @@ use Psr\Cache\CacheItemPoolInterface;
  */
 class ServiceBuilder
 {
-    const VERSION = '0.25.1';
+    const VERSION = '0.27.0';
 
     /**
      * @var array Configuration options to be used between clients.
@@ -227,7 +227,7 @@ class ServiceBuilder
      *     Configuration options. See
      *     {@see Google\Cloud\ServiceBuilder::__construct()} for the other available options.
      *
-     *     @type string $languageCode Required. The language of the content to
+     *     @type string $languageCode The language of the content to
      *           be recognized. Only BCP-47 (e.g., `"en-US"`, `"es-ES"`)
      *           language codes are accepted. See
      *           [Language Support](https://cloud.google.com/speech/docs/languages)

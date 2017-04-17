@@ -413,7 +413,7 @@ $results = $speech->recognize(
 );
 
 foreach ($results as $result) {
-    echo $result['transcript'] . "\n";
+    echo $result->topAlternative()['transcript'] . "\n";
 }
 ```
 
