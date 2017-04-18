@@ -60,7 +60,8 @@ class QpsSampler implements SamplerInterface
      * both (all) be sampled.
      *
      * @param CacheItemPoolInterface $cache The cache store to use
-     * @param string $cacheItemClass [optional] The class of the item to use. This class must implement CacheItemInterface.
+     * @param string $cacheItemClass [optional] The class of the item to use. This class must implement
+     *        CacheItemInterface.
      * @param float $rate [optional] The number of queries per second to allow. Must be less than or equal to 1.
      *        **Defaults to** `0.1`
      * @param string $key [optional] The cache key to use. **Defaults to** `__google_cloud_trace__`

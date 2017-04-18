@@ -270,7 +270,8 @@ class RequestHandler
         return null;
     }
 
-    private function persistContextHeader($context) {
+    private function persistContextHeader($context)
+    {
         if (!headers_sent()) {
             header('X-Cloud-Trace-Context: ' . $context);
         }

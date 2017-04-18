@@ -56,7 +56,7 @@ class SamplerFactory
             'rate' => 0.1
         ];
 
-        switch($options['type']) {
+        switch ($options['type']) {
             case 'qps':
                 $options += [
                     'cache' => null,
