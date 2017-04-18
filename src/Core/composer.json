@@ -20,6 +20,10 @@
             "entry": null
         }
     },
+    "bin": [
+        "bin/google-cloud-batch-daemon",
+        "bin/google-cloud-batch-retry"
+    ],
     "autoload": {
         "psr-4": {
             "Google\\Cloud\\Core\\": ""
