@@ -48,7 +48,7 @@ class Bootstrap
                 'errorHandler'
             )
         );
-   }
+    }
 
     /**
      * Return a string prefix for the given error level.

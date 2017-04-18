@@ -24,7 +24,7 @@ use Psr\Log\InvalidArgumentException;
 /**
  * A trait for PSR-3 compliant logger used to write entries to Google Stackdriver Logging.
  */
-Trait PsrLoggerTrait
+trait PsrLoggerTrait
 {
     /**
      * Log an emergency entry.

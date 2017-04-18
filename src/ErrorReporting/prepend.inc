@@ -42,11 +42,11 @@ if (file_exists(__DIR__ . '/../../vendor/autoload.php')) {
 function getPsrBatchLogger()
 {
     $bootstrapFile = 'ErrorReportingBootstrap';
-    if (file_exists(__DIR__ . '/../../' . $bootstrapFile)){
+    if (file_exists(__DIR__ . '/../../' . $bootstrapFile)) {
         // when running from a git clone.
         return include __DIR__ . '/../../' . $bootstrapFile;
     }
-    if (file_exists(__DIR__ . '/../../../' . $bootstrapFile)){
+    if (file_exists(__DIR__ . '/../../../' . $bootstrapFile)) {
         // when running from a project's vendor dir.
         return include __DIR__ . '/../../../' . $bootstrapFile;
     }
