@@ -70,5 +70,24 @@ class SysvTraitTest extends \PHPUnit_Framework_TestCase
 
 class MySysvClass
 {
-    use SysvTrait;
+    use SysvTrait {
+        isDaemonRunning as privateIsDaemonRunning;
+        isSysvIPCLoaded as privateIsSysvIPCLoaded;
+        getSysvKey as privateGetSysvKey;
+    }
+
+    function isDaemonRunning()
+    {
+        return $this->privateIsDaemonRunning();
+    }
+
+    function isSysvIPCLoaded()
+    {
+        return $this->privateIsSysvIPCLoaded();
+    }
+
+    function getSysvKey($id)
+    {
+        return $this->privateGetSysvKey($id);
+    }
 }

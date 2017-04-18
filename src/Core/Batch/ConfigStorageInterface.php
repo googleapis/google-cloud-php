@@ -24,18 +24,22 @@ interface ConfigStorageInterface
 {
     /**
      * locks the storage
+     *
+     * @return bool
      */
     public function lock();
 
     /**
      * releases the lock
+     *
+     * @return bool
      */
     public function unlock();
 
     /**
      * saves the BatchConfig to the storage
      * @param BatchConfig $config A BatchConfig to save.
-     * @return boolean true on success, false on failure
+     * @return bool true on success, false on failure
      */
     public function save(BatchConfig $config);
 
@@ -43,6 +47,7 @@ interface ConfigStorageInterface
      * loads the BatchConfig from the storage
      *
      * @return BatchConfig
+     * @throws \RuntimeException when failed to load the BatchConfig.
      */
     public function load();
 }

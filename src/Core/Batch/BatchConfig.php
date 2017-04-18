@@ -46,9 +46,9 @@ class BatchConfig
      */
     public function getJobFromId($identifier)
     {
-        return array_key_exists($identifier, $this->idmap) ?
-            $this->jobs[$identifier] :
-            null;
+        return array_key_exists($identifier, $this->idmap)
+            ? $this->jobs[$identifier]
+            : null;
     }
 
     /**
@@ -84,7 +84,7 @@ class BatchConfig
      * }
      * @return void
      */
-    public function registerJob($identifier, $func, $options = [])
+    public function registerJob($identifier, $func, array $options = [])
     {
         if (array_key_exists($identifier, $this->idmap)) {
             $idNum = $this->idmap[$identifier];

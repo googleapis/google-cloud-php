@@ -32,6 +32,6 @@ $daemon = new BatchDaemon(__FILE__);
 if (count($argv) == 1) {
     $daemon->runParent();
 } else {
-    $idNum = intval($argv[1]);
+    $idNum = (int) $argv[1];
     $daemon->runChild($idNum);
 }

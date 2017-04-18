@@ -35,7 +35,7 @@ trait SysvTrait
      *
      * @return int
      */
-    public function getSysvKey($idNum)
+    private function getSysvKey($idNum)
     {
         $key = getenv('GOOGLE_CLOUD_SYSV_ID') ?: self::$productionKey;
         $base = ftok(__FILE__, $key);
@@ -48,9 +48,9 @@ trait SysvTrait
     /**
      * Determine whether the SystemV IPC extension family is loaded.
      *
-     * @return boolean
+     * @return bool
      */
-    public function isSysvIPCLoaded()
+    private function isSysvIPCLoaded()
     {
         return extension_loaded('sysvmsg')
             && extension_loaded('sysvsem')
@@ -60,9 +60,9 @@ trait SysvTrait
     /**
      * Returns if the BatchDaemon is supposed running.
      *
-     * @return boolean
+     * @return bool
      */
-    public function isDaemonRunning()
+    private function isDaemonRunning()
     {
         return getenv('IS_BATCH_DAEMON_RUNNING') !== false;
     }

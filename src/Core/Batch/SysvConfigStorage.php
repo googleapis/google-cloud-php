@@ -42,7 +42,7 @@ class SysvConfigStorage implements ConfigStorageInterface
     /**
      * Acquire a lock.
      *
-     * @return boolean
+     * @return bool
      */
     public function lock()
     {
@@ -52,7 +52,7 @@ class SysvConfigStorage implements ConfigStorageInterface
     /**
      * Release a lock.
      *
-     * @return boolean
+     * @return bool
      */
     public function unlock()
     {
@@ -64,6 +64,7 @@ class SysvConfigStorage implements ConfigStorageInterface
      *
      * @param BatchConfig $config A BatchConfig to save.
      * @return bool
+     * @throws \RuntimeException when failed to attach to the shared memory.
      */
     public function save(BatchConfig $config)
     {

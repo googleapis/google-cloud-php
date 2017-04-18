@@ -35,7 +35,7 @@ trait HandleFailureTrait
     /**
      * Determine the failureFile.
      */
-    public function initFailureFile()
+    private function initFailureFile()
     {
         $this->baseDir = getenv('GOOGLE_CLOUD_BATCH_DAEMON_FAILURE_DIR');
         if ($this->baseDir === false) {
@@ -69,7 +69,7 @@ trait HandleFailureTrait
      * @param int $idNum A numeric id for the job.
      * @param array $items Items to save.
      */
-    public function handleFailure($idNum, $items)
+    public function handleFailure($idNum, array $items)
     {
         $fp = @fopen($this->failureFile, 'a');
         @fwrite($fp, serialize([$idNum => $items]) . PHP_EOL);
@@ -81,7 +81,7 @@ trait HandleFailureTrait
      *
      * @return array Filenames for all the failure files.
      */
-    public function getFailedFiles()
+    private function getFailedFiles()
     {
         $pattern = sprintf('%s/failed-items-*', $this->baseDir);
         return glob($pattern) ?: [];

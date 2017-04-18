@@ -52,14 +52,23 @@ final class InMemoryConfigStorage implements
         return $instance;
     }
 
+    /**
+     * To prevent cloning.
+     */
     private function __clone()
     {
     }
 
+    /**
+     * To prevent serialize.
+     */
     private function __sleep()
     {
     }
 
+    /**
+     * To prevent unserialize.
+     */
     private function __wakeup()
     {
     }
@@ -79,7 +88,7 @@ final class InMemoryConfigStorage implements
     /**
      * Just return true
      *
-     * @return boolean
+     * @return bool
      */
     public function lock()
     {
@@ -89,7 +98,7 @@ final class InMemoryConfigStorage implements
     /**
      * Just return true
      *
-     * @return boolean
+     * @return bool
      */
     public function unlock()
     {
@@ -112,6 +121,7 @@ final class InMemoryConfigStorage implements
      * Load a BatchConfig from the storage.
      *
      * @return BatchConfig
+     * @throws \RuntimeException when failed to load the BatchConfig.
      */
     public function load()
     {

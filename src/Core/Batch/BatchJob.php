@@ -69,7 +69,7 @@ class BatchJob
      * @param array $options [optional] {
      *     Configuration options.
      *
-     *     @type int $batchSize The size of the batch.
+     *     @type int $batchSize The size of the batch. **Defaults to** 100.
      *     @type float $callPeriod The period in seconds from the last execution
      *                 to force executing the job.
      *     @type int $workerNum The number of child processes. It only takes
@@ -87,14 +87,18 @@ class BatchJob
         $this->identifier = $identifier;
         $this->func = $func;
         $this->idNum = $idNum;
-        $this->batchSize = array_key_exists('batchSize', $options) ?
-            $options['batchSize'] : self::DEFAULT_BATCH_SIZE;
-        $this->callPeriod = array_key_exists('callPeriod', $options) ?
-            $options['callPeriod'] : self::DEFAULT_CALL_PERIOD;
+        $this->batchSize = array_key_exists('batchSize', $options)
+            ? $options['batchSize']
+            : self::DEFAULT_BATCH_SIZE;
+        $this->callPeriod = array_key_exists('callPeriod', $options)
+            ? $options['callPeriod']
+            : self::DEFAULT_CALL_PERIOD;
         $this->bootstrapFile = array_key_exists('bootstrapFile', $options)
-            ? $options['bootstrapFile'] : null;
+            ? $options['bootstrapFile']
+            : null;
         $this->workerNum = array_key_exists('workerNum', $options)
-            ? $options['workerNum'] : self::DEFAULT_WORKERS;
+            ? $options['workerNum']
+            : self::DEFAULT_WORKERS;
     }
 
     /**
@@ -102,9 +106,9 @@ class BatchJob
      *
      * @param array $items An array of items.
      *
-     * @return boolean the result of the callback
+     * @return bool the result of the callback
      */
-    public function run($items)
+    public function run(array $items)
     {
         if (! is_null($this->bootstrapFile)) {
             require_once($this->bootstrapFile);

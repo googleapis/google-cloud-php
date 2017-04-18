@@ -112,7 +112,10 @@ class HandleFailureTraitTest extends \PHPUnit_Framework_TestCase
 
 class HandleFailureClass
 {
-    use HandleFailureTrait;
+    use HandleFailureTrait {
+        initFailureFile as privateInitFailureFile;
+        getFailedFiles as privateGetFailedFiles;
+    }
 
     public function getFailureFile()
     {
@@ -122,5 +125,15 @@ class HandleFailureClass
     public function getBaseDir()
     {
         return $this->baseDir;
+    }
+
+    public function initFailureFile()
+    {
+        return $this->privateInitFailureFile();
+    }
+
+    public function getFailedFiles()
+    {
+        return $this->privateGetFailedFiles();
     }
 }

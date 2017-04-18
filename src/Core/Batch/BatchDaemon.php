@@ -33,7 +33,7 @@ class BatchDaemon
     /* @var BatchRunner */
     private $runner;
     
-    /* @var boolean */
+    /* @var bool */
     private $shutdown;
 
     /* @var array */
@@ -41,6 +41,33 @@ class BatchDaemon
 
     /* @var string */
     private $command;
+
+    /**
+     * Determines if it should run the job.
+     *
+     * It runs the job when
+     * 1. Number of items reaches the batchSize.
+     * 2-a. Count is >0 and the current time is larger than lastInvoked + period.
+     * 2-b. Count is >0 and the shutdown flag is true.
+     *
+     * @param array $items An array containing the current items in the buffer.
+     * @param int $batchSize Maximum batch size.
+     * @param float $lastInvoked The time of the last job execution in float.
+     * @param float $period When this time period has passed from the last job execution,
+     *              it should run the job.
+     */
+    private function shouldRunTheJob(array $items, $batchSize, $lastInvoked, $period)
+    {
+        if (count($items) >= $batchSize) {
+            return true;
+        }
+        if (count($items) > 0
+            && (microtime(true) > $lastInvoked + $period
+                || $this->shutdown)) {
+            return true;
+        }
+        return false;
+    }
 
     /**
      * Prepare the descriptor spec and install signal handlers.
@@ -176,14 +203,7 @@ class BatchDaemon
                 }
             }
             pcntl_signal_dispatch();
-            // It runs the job when
-            // 1. Number of items reaches the batchSize.
-            // 2-a. Count is >0 and the current time is larger than lastInvoked + period.
-            // 2-b. Count is >0 and the shutdown flag is true.
-            if ((count($items) >= $batchSize)
-                || (count($items) > 0
-                    && (microtime(true) > $lastInvoked + $period
-                        || $this->shutdown))) {
+            if ($this->shouldRunTheJob($items, $batchSize, $lastInvoked, $period)) {
                 printf(
                     'Running the job with %d items' . PHP_EOL,
                     count($items)

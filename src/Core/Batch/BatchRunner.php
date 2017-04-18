@@ -43,9 +43,10 @@ class BatchRunner
      * Determine internal implementation and loads the configuration.
      *
      * @param ConfigStorageInterface $configStorage [optional] The
-     *        ConfigStorage object to use. **Defaults to** null.
-     * @param SubmitItemInterface $submitter [optional] The submitter
-     *        object to use. **Defaults to** null.
+     *        ConfigStorage object to use. **Defaults to** null. This is only
+     *        for testing purpose.
+     * @param SubmitItemInterface $submitter [optional] The submitter object
+     *        to use. **Defaults to** null. This is only for testing purpose.
      */
     public function __construct(
         ConfigStorageInterface $configStorage = null,
@@ -82,10 +83,10 @@ class BatchRunner
      *     @type string $bootstrapFile A file to load before executing the
      *                  job. It's needed for registering global functions.
      * }
-     * @return boolean true on success, false on failure
+     * @return bool true on success, false on failure
      * @throws \InvalidArgumentException When receiving a Closure.
      */
-    public function registerJob($identifier, $func, $options = [])
+    public function registerJob($identifier, $func, array $options = [])
     {
         if ($func instanceof \Closure) {
             throw new \InvalidArgumentException('Closure is not allowed');
@@ -112,14 +113,14 @@ class BatchRunner
      * @param string $identifier Unique identifier of the job.
      * @param mixed $item It needs to be serializable.
      *
-     * @return boolean true on success, false on failure
+     * @return bool true on success, false on failure
      */
     public function submitItem($identifier, $item)
     {
         $job = $this->getJobFromId($identifier);
         if ($job === null) {
             throw new \RuntimeException(
-                'The identifier does not exist: ' . $identifier
+                "The identifier does not exist: $identifier"
             );
         }
         $idNum = $job->getIdnum();
@@ -163,19 +164,19 @@ class BatchRunner
     /**
      * Load the config from the storage.
      *
-     * @return boolean true on success, false on failure
+     * @return bool true on success
+     * @throws \RuntimeException when it fails to load the config.
      */
     public function loadConfig()
     {
         $result = $this->configStorage->lock();
         if ($result === false) {
-            return false;
+            throw new \RuntimeException('Failed to lock the configStorage');
         }
         $result = $this->configStorage->load();
         $this->configStorage->unlock();
         if ($result === false) {
-            // TODO: think what to do
-            return false;
+            throw new \RuntimeException('Failed to load the BatchConfig');
         }
         $this->config = $result;
         return true;
