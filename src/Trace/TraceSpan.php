@@ -28,7 +28,7 @@ use Google\Cloud\Core\ArrayTrait;
  * for its suboperations. Spans do not need to be contiguous. There may be
  * gaps between spans in a trace.
  */
-class TraceSpan
+class TraceSpan implements \JsonSerializable
 {
     use ArrayTrait;
 
@@ -53,10 +53,10 @@ class TraceSpan
      *            in a particular context. **Defaults to**
      *            SPAN_KIND_UNSPECIFIED.
      *      @type string $name The name of the span.
-     *      @type string $startTime Start time of the span in
-     *            nanoseconds in "Zulu" format.
-     *      @type string $endTime End time of the span in
-     *            nanoseconds in "Zulu" format.
+     *      @type \DateTimeInterface|int|float|string $startTime Start time of the span in nanoseconds.
+     *            If provided as a string, it must be in "Zulu" format.
+     *      @type \DateTimeInterface|int|float|string $endTime End time of the span in nanoseconds.
+     *            If provided as a string, it must be in "Zulu" format.
      *      @type string $parentSpanId ID of the parent span if any.
      *      @type array $labels Associative array of $label => $value
      *            to attach to this span.
@@ -65,9 +65,17 @@ class TraceSpan
     public function __construct($options = [])
     {
         $this->info = $this->pluckArray(
-            ['spanId', 'kind', 'name', 'startTime', 'endTime', 'parentSpanId', 'labels'],
+            ['spanId', 'kind', 'name', 'parentSpanId', 'labels'],
             $options
         );
+
+        if (array_key_exists('startTime', $options)) {
+            $this->setStart($options['startTime']);
+        }
+        if (array_key_exists('endTime', $options)) {
+            $this->setEnd($options['endTime']);
+        }
+
         $this->info += [
             'kind' => self::SPAN_KIND_UNSPECIFIED
         ];
@@ -84,10 +92,10 @@ class TraceSpan
     /**
      * Set the start time for this span.
      *
-     * @param  \DateTimeInterface $when [optional] The start time of this span.
+     * @param  \DateTimeInterface|int|float|string $when [optional] The start time of this span.
      *         **Defaults to** now.
      */
-    public function setStart(\DateTimeInterface $when = null)
+    public function setStart($when = null)
     {
         $this->info['startTime'] = $this->formatDate($when);
     }
@@ -95,10 +103,10 @@ class TraceSpan
     /**
      * Set the end time for this span.
      *
-     * @param  \DateTimeInterface $when [optional] The end time of this span.
+     * @param  \DateTimeInterface|int|float|string $when [optional] The end time of this span.
      *         **Defaults to** now.
      */
-    public function setEnd(\DateTimeInterface $when = null)
+    public function setEnd($when = null)
     {
         $this->info['endTime'] = $this->formatDate($when);
     }
@@ -134,6 +142,16 @@ class TraceSpan
     }
 
     /**
+     * Returns the info array for serialization.
+     *
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        return $this->info;
+    }
+
+    /**
      * Attach labels to this span.
      *
      * @param array $labels Labels in the form of $label => $value
@@ -160,19 +178,24 @@ class TraceSpan
     }
 
     /**
-     * Returns a "Zulu" formatted string representing the
-     * provided \DateTime.
+     * Returns a "Zulu" formatted string representing the provided \DateTime.
      *
-     * @param  \DateTimeInterface $when [optional] The end time of this span.
+     * @param  \DateTimeInterface|int|float|string $when [optional] The end time of this span.
      *         **Defaults to** now.
      * @return string
      */
-    private function formatDate(\DateTimeInterface $when = null)
+    private function formatDate($when = null)
     {
-        if (!$when) {
+        if (is_string($when)) {
+            return $when;
+        } elseif (!$when) {
             list($usec, $sec) = explode(' ', microtime());
             $micro = sprintf("%06d", $usec * 1000000);
             $when = new \DateTime(date('Y-m-d H:i:s.' . $micro));
+        } elseif (is_numeric($when)) {
+            // Expect that this is a timestamp
+            $micro = sprintf("%06d",($when - floor($when)) * 1000000);
+            $when = new \DateTime(date('Y-m-d H:i:s.'. $micro, (int) $when));
         }
         $when->setTimezone(new \DateTimeZone('UTC'));
         return $when->format('Y-m-d\TH:i:s.u000\Z');
