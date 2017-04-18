@@ -22,7 +22,6 @@ namespace Google\Cloud\ErrorReporting;
  * `auto_prepend_file` php configuration directive to enable automatic error
  * reporting.
  *
- * @codeCoverageIgnore
  */
 if (file_exists(__DIR__ . '/../../vendor/autoload.php')) {
     // when running from a git clone.
@@ -32,6 +31,26 @@ if (file_exists(__DIR__ . '/../../vendor/autoload.php')) {
     require_once __DIR__ . '/../../../vendor/autoload.php';
 }
 
-use Google\Cloud\ErrorReporting\Bootstrap;
+/**
+ * Return a user specified PsrBatchLogger.
+ *
+ * Put a file named 'ErrorReportingBootstrap' in the project directory which
+ * returns a PsrBatchLogger object.
+ *
+ * @return \Google\Cloud\Logging\PsrBatchLogger
+ */
+function getPsrBatchLogger()
+{
+    $bootstrapFile = 'ErrorReportingBootstrap';
+    if (file_exists(__DIR__ . '/../../' . $bootstrapFile)){
+        // when running from a git clone.
+        return include __DIR__ . '/../../' . $bootstrapFile;
+    }
+    if (file_exists(__DIR__ . '/../../../' . $bootstrapFile)){
+        // when running from a project's vendor dir.
+        return include __DIR__ . '/../../../' . $bootstrapFile;
+    }
+    return null;
+}
 
-Bootstrap::init();
+Bootstrap::init(getPsrBatchLogger());

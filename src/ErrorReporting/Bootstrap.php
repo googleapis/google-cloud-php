@@ -2,7 +2,7 @@
 
 namespace Google\Cloud\ErrorReporting;
 
-use Google\Cloud\Logging\BatchLogger;
+use Google\Cloud\Logging\PsrBatchLogger;
 
 /**
  * Static methods for bootstrapping Stackdriver Error Reporting.
@@ -11,17 +11,25 @@ class Bootstrap
 {
     const DEFAULT_LOGNAME = 'app-error';
 
-    /** @var BatchLogger */
-    public static $batchLogger;
+    /** @var PsrBatchLogger */
+    public static $psrBatchLogger;
 
     /**
      * Register hooks for error reporting.
      *
-     * @param BatchLogger $batchLogger
+     * @param PsrBatchLogger $psrBatchLogger
      * @return void
      */
-    public static function init(BatchLogger $batchLogger = null)
+    public static function init(PsrBatchLogger $psrBatchLogger = null)
     {
+        self::$psrBatchLogger = $psrBatchLogger
+            ?: new psrBatchLogger(
+                self::DEFAULT_LOGNAME,
+                [
+                    'debugOutput' => true,
+                    'batchOptions' => ['workerNum' => 2]
+                ]
+            );
         register_shutdown_function(
             [
                 '\\Google\\Cloud\\ErrorReporting\\Bootstrap',
@@ -40,16 +48,7 @@ class Bootstrap
                 'errorHandler'
             )
         );
-        // TODO: Allow users to use own BatchLogger.
-        self::$batchLogger = $batchLogger
-            ?: new BatchLogger(
-                self::DEFAULT_LOGNAME,
-                [
-                    'debugOutput' => true,
-                    'batchOptions' => ['workerNum' => 2]
-                ]
-            );
-    }
+   }
 
     /**
      * Return a string prefix for the given error level.
@@ -130,7 +129,7 @@ class Bootstrap
     public static function exceptionHandler($ex)
     {
         $message = sprintf('PHP Notice: %s', (string)$ex);
-        self::$batchLogger->error($message);
+        self::$psrBatchLogger->error($message);
     }
 
     /**
@@ -144,8 +143,8 @@ class Bootstrap
         if (!($level & \error_reporting())) {
             return true;
         }
-        $service = self::$batchLogger->getMetadataProvider()->getService();
-        $version = self::$batchLogger->getMetadataProvider()->getVersion();
+        $service = self::$psrBatchLogger->getMetadataProvider()->getService();
+        $version = self::$psrBatchLogger->getMetadataProvider()->getVersion();
         $message =  sprintf(
             '%s: %s in %s on line %d',
             self::getErrorPrefix($level),
@@ -166,7 +165,7 @@ class Bootstrap
                 'version' => $version
             ]
         ];
-        self::$batchLogger->log(self::getErrorLevelString($level), $message, $context);
+        self::$psrBatchLogger->log(self::getErrorLevelString($level), $message, $context);
     }
 
     /**
@@ -176,8 +175,8 @@ class Bootstrap
     public static function shutdownHandler()
     {
         if ($err = error_get_last()) {
-            $service = self::$batchLogger->getMetadataProvider()->getService();
-            $version = self::$batchLogger->getMetadataProvider()->getVersion();
+            $service = self::$psrBatchLogger->getMetadataProvider()->getService();
+            $version = self::$psrBatchLogger->getMetadataProvider()->getVersion();
             switch ($err['type']) {
                 case E_ERROR:
                 case E_PARSE:
@@ -205,7 +204,7 @@ class Bootstrap
                             'version' => $version
                         ]
                     ];
-                    self::$batchLogger->log(self::getErrorLevelString($err['type']), $message, $context);
+                    self::$psrBatchLogger->log(self::getErrorLevelString($err['type']), $message, $context);
                     break;
             }
         }
