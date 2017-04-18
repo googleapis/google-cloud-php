@@ -1,4 +1,6 @@
 # Google Cloud PHP Client
+
+[![Join the chat at https://gitter.im/GoogleCloudPlatform/gcloud-php](https://badges.gitter.im/GoogleCloudPlatform/gcloud-php.svg)](https://gitter.im/GoogleCloudPlatform/gcloud-php?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 > Idiomatic PHP client for [Google Cloud Platform](https://cloud.google.com/) services.
 
 [![Travis Build Status](https://travis-ci.org/GoogleCloudPlatform/google-cloud-php.svg?branch=master)](https://travis-ci.org/GoogleCloudPlatform/google-cloud-php/) [![codecov](https://codecov.io/gh/googlecloudplatform/google-cloud-php/branch/master/graph/badge.svg)](https://codecov.io/gh/googlecloudplatform/google-cloud-php)
