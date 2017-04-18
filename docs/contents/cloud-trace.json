@@ -1,0 +1,14 @@
+{
+    "title": "Trace",
+    "pattern": "trace\/\\w{1,}",
+    "services": [{
+        "title": "TraceClient",
+        "type": "trace/traceclient"
+    }, {
+        "title": "Trace",
+        "type": "trace/trace"
+    }, {
+        "title": "TraceSpan",
+        "type": "trace/tracespan"
+    }]
+}

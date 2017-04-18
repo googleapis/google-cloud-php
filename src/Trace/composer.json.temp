@@ -1,0 +1,22 @@
+{
+    "name": "google/cloud-trace",
+    "description": "Stackdriver Trace Client for PHP",
+    "license": "Apache-2.0",
+    "minimum-stability": "stable",
+    "require": {
+        "google/cloud-core": "*"
+    },
+    "extra": {
+        "component": {
+            "id": "cloud-trace",
+            "target": "GoogleCloudPlatform/google-cloud-php-trace.git",
+            "path": "src/Trace",
+            "entry": "TraceClient.php"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Google\\Cloud\\Trace\\": ""
+        }
+    }
+}

@@ -21,6 +21,7 @@ This client supports the following Google Cloud Platform services at a [Beta](#v
 This client supports the following Google Cloud Platform services at an [Alpha](#versioning) quality level:
 * [Google Cloud Pub/Sub](#google-cloud-pubsub-alpha) (Alpha)
 * [Google Cloud Speech](#google-cloud-speech-alpha) (Alpha)
+* [Google Stackdriver Trace](#google-stackdriver-trace-alpha) (Alpha)
 
 If you need support for other Google APIs, please check out the [Google APIs Client Library for PHP](https://github.com/google/google-api-php-client).
 
@@ -442,6 +443,39 @@ $cache = new ArrayAdapter();
 $storage = new StorageClient([
     'authCache' => $cache
 ]);
+```
+
+## Google Stackdriver Trace (Alpha)
+
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/trace/traceclient)
+- [Official Documentation](https://cloud.google.com/trace/docs)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Trace\TraceClient;
+
+$traceClient = new SpeechClient([
+    'projectId' => 'my_project'
+]);
+
+// Create a Trace
+$trace = $traceClient->trace();
+$span = $trace->span([
+    'name' => 'main'
+]);
+$span->setStart();
+$span->setEnd();
+
+$trace->setSpans([$span]);
+$traceClient->insert($trace);
+
+// List recent Traces
+foreach($traceClient->traces() as $trace) {
+    var_dump($trace->traceId());
+}
 ```
 
 ## Versioning
