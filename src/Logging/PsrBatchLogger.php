@@ -36,11 +36,11 @@ use Psr\Log\LogLevel;
  *
  * $logging = new LoggingClient();
  *
- * $batchLogger = $logging->batchPsrLogger('app');
+ * $batchLogger = $logging->psrBatchLogger('my-log');
  * ```
  * @see http://www.php-fig.org/psr/psr-3/#psrlogloggerinterface Psr\Log\LoggerInterface
  */
-class BatchLogger implements LoggerInterface
+class PsrBatchLogger implements LoggerInterface
 {
     use PsrLoggerTrait;
 
@@ -51,7 +51,7 @@ class BatchLogger implements LoggerInterface
     private $batchOptions;
 
     /** @var array */
-    private $clientOptions;
+    private $clientConfig;
 
     /** @var string */
     private $logName;
@@ -80,7 +80,7 @@ class BatchLogger implements LoggerInterface
     {
         static $loggers = [];
         if (! array_key_exists($this->logName, $loggers)) {
-            $c = new LoggingClient($this->clientOptions);
+            $c = new LoggingClient($this->clientConfig);
             $resource = $this->metadataProvider->getMonitoredResource();
             if (empty($resource)) {
                 $loggers[$this->logName] = $c->logger($this->logName);
@@ -93,7 +93,7 @@ class BatchLogger implements LoggerInterface
 
     /**
      * @param string $logName The name of the log.
-     * @param array $config [optional] {
+     * @param array $options [optional] {
      *     Configuration options.
      *     @type bool $debugOutput Whether or not to output debug information.
      *           **Defaults to** false
@@ -102,7 +102,7 @@ class BatchLogger implements LoggerInterface
      *           **Defaults to** ['batchSize' => 1000,
                                   'callPeriod' => 2.0,
                                   'workerNum' => 10]
-     *     @type array $clientOptions An option to LoggingClient
+     *     @type array $clientConfig A config to LoggingClient
      *           {@see \Google\Cloud\Logging\LoggingClient::__construct()}
      *           **Defaults to** []
      *     @type MetadataProviderInterface $metadataProvider
@@ -112,30 +112,30 @@ class BatchLogger implements LoggerInterface
      *           BatchRunner.
      * }
      */
-    public function __construct($logName, array $config = [])
+    public function __construct($logName, array $options = [])
     {
         $this->logName = $logName;
-        $this->debugOutput = isset($config['debugOutput'])
-            ? $config['debugOutput']
+        $this->debugOutput = isset($options['debugOutput'])
+            ? $options['debugOutput']
             : false;
         $this->identifier = sprintf(self::ID_TEMPLATE, $this->logName);
-        $this->metadataProvider = isset($config['metadataProvider'])
-            ? $config['metadataProvider']
+        $this->metadataProvider = isset($options['metadataProvider'])
+            ? $options['metadataProvider']
             : MetadataProviderUtils::autoSelect();
-        $this->clientOptions = isset($config['clientOptions'])
-            ? $config['clientOptions']
+        $this->clientConfig = isset($options['clientConfig'])
+            ? $options['clientConfig']
             : [];
-        $batchOptions = isset($config['batchOptions'])
-            ? $config['batchOptions']
+        $batchOptions = isset($options['batchOptions'])
+            ? $options['batchOptions']
             : [];
         $this->batchOptions = array_merge(
-            $batchOptions,
             ['batchSize' => 1000,
              'callPeriod' => 2.0,
-             'workerNum' => 10]
+             'workerNum' => 10],
+            $batchOptions
         );
-        $this->batchRunner = isset($config['batchRunner'])
-            ? $config['batchRunner']
+        $this->batchRunner = isset($options['batchRunner'])
+            ? $options['batchRunner']
             : new BatchRunner();
         $this->batchRunner->registerJob(
             $this->identifier,
