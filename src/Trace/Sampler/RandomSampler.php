@@ -33,7 +33,7 @@ class RandomSampler implements SamplerInterface
      *
      * @param float $percentage The percentage of requests to sample. Must be between 0 and 1.
      */
-    public function __construct(float $rate)
+    public function __construct($rate)
     {
         if ($rate > 1 || $rate < 0) {
             throw new \InvalidArgumentException('Percentage must be between 0 and 1');

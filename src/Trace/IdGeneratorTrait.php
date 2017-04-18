@@ -17,8 +17,6 @@
 
 namespace Google\Cloud\Trace;
 
-use InvalidArgumentException;
-
 /**
  * Trait which provides helper methods for customer-supplied encryption.
  */
