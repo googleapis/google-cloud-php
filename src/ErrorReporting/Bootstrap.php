@@ -41,11 +41,14 @@ class Bootstrap
             )
         );
         // TODO: Allow users to use own BatchLogger.
-        self::$batchLogger = $batchLogger !== null ?: new BatchLogger(
-            self::DEFAULT_LOGNAME,
-            true, // debug output
-            ['workerNum' => 2]
-        );
+        self::$batchLogger = $batchLogger
+            ?: new BatchLogger(
+                self::DEFAULT_LOGNAME,
+                [
+                    'debugOutput' => true,
+                    'batchOptions' => ['workerNum' => 2]
+                ]
+            );
     }
 
     /**
@@ -89,34 +92,34 @@ class Bootstrap
     }
 
     /**
-     * Return a string PSR-3 error level for the given PHP error level.
+     * Return an error level string for the given PHP error level.
      *
      * @param int $level
-     * @return string A PSR-3 error level string.
+     * @return string An error level string.
      */
-    public static function getPsr3ErrorLevel($level)
+    public static function getErrorLevelString($level)
     {
         switch ($level) {
             case E_PARSE:
-                return 'critical';
+                return 'CRITICAL';
             case E_ERROR:
             case E_CORE_ERROR:
             case E_COMPILE_ERROR:
             case E_USER_ERROR:
             case E_RECOVERABLE_ERROR:
-                return 'error';
+                return 'ERROR';
             case E_WARNING:
             case E_CORE_WARNING:
             case E_COMPILE_WARNING:
             case E_USER_WARNING:
-                return 'warning';
+                return 'WARNING';
             case E_NOTICE:
             case E_USER_NOTICE:
-                return 'notice';
+                return 'NOTICE';
             case E_STRICT:
-                return 'debug';
+                return 'DEBUG';
             default:
-                return 'notice';
+                return 'NOTICE';
         }
         return $prefix;
     }
@@ -163,7 +166,7 @@ class Bootstrap
                 'version' => $version
             ]
         ];
-        self::$batchLogger->log(self::getPsr3ErrorLevel($level), $message, $context);
+        self::$batchLogger->log(self::getErrorLevelString($level), $message, $context);
     }
 
     /**
@@ -202,7 +205,7 @@ class Bootstrap
                             'version' => $version
                         ]
                     ];
-                    self::$batchLogger->log(self::getPsr3ErrorLevel($err['type']), $message, $context);
+                    self::$batchLogger->log(self::getErrorLevelString($err['type']), $message, $context);
                     break;
             }
         }
