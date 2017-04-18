@@ -44,10 +44,10 @@ class LoggerReporter implements ReporterInterface
      * @param LoggerInterface $logger The logger to write to.
      * @param string $level The logger level to write as. **Defaults to** `notice`.
      */
-    public function __construct(LoggerInterface $logger, $level = null)
+    public function __construct(LoggerInterface $logger, $level = self::DEFAULT_LOG_LEVEL)
     {
         $this->logger = $logger;
-        $this->level = $level ?: self::DEFAULT_LOG_LEVEL;
+        $this->level = $level;
     }
 
     /**
