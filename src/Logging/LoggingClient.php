@@ -464,6 +464,7 @@ class LoggingClient
      * Example:
      * ```
      * $psrBatchLogger = $logging->psrBatchLogger('my-log');
+     * ```
      *
      * @param string $name The name of the log to write entries to.
      * @param array $options Options for PsrBatchLogger. **Defaults to** [].

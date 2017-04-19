@@ -36,7 +36,7 @@ use Psr\Log\LogLevel;
  *
  * $logging = new LoggingClient();
  *
- * $batchLogger = $logging->psrBatchLogger('my-log');
+ * $psrBatchLogger = $logging->psrBatchLogger('my-log');
  * ```
  * @see http://www.php-fig.org/psr/psr-3/#psrlogloggerinterface Psr\Log\LoggerInterface
  */
