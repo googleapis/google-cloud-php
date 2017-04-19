@@ -45,7 +45,6 @@ class PsrBatchLogger implements LoggerInterface
     use PsrLoggerTrait;
 
     const ID_TEMPLATE = 'stackdriver-logging-%s';
-    const MESSAGE_KEY = 'message';
 
     /** @var array */
     private $batchOptions;
@@ -168,7 +167,7 @@ class PsrBatchLogger implements LoggerInterface
      * @param array $entries An array of entries to send.
      * @return boolean
      */
-    public function sendEntries($entries)
+    public function sendEntries(array $entries)
     {
         $start = microtime(true);
         try {
