@@ -23,16 +23,7 @@ namespace Google\Cloud\Core\Report;
 class SimpleMetadataProvider implements MetadataProviderInterface
 {
     /** @var array */
-    private $monitoredResource;
-
-    /** @var string */
-    private $projectId;
-
-    /** @var string */
-    private $serviceId;
-
-    /** @var string */
-    private $versionId;
+    private $data = [];
 
     /**
      * @param array $monitoredResource.
@@ -44,10 +35,10 @@ class SimpleMetadataProvider implements MetadataProviderInterface
         $serviceId = '',
         $versionId = ''
     ) {
-        $this->monitoredResource = $monitoredResource;
-        $this->projectId = $projectId;
-        $this->serviceId = $serviceId;
-        $this->versionId = $versionId;
+        $this->data['monitoredResource'] = $monitoredResource;
+        $this->data['projectId'] = $projectId;
+        $this->data['serviceId'] = $serviceId;
+        $this->data['versionId'] = $versionId;
     }
 
     /**
@@ -56,35 +47,35 @@ class SimpleMetadataProvider implements MetadataProviderInterface
      *
      * @return array
      */
-    public function getMonitoredResource()
+    public function monitoredResource()
     {
-        return $this->monitoredResource;
+        return $this->data['monitoredResource'];
     }
 
     /**
      * Return the project id.
      * @return string
      */
-    public function getProjectId()
+    public function projectId()
     {
-        return $this->projectId;
+        return $this->data['projectId'];
     }
 
     /**
      * Return the service id.
      * @return string
      */
-    public function getService()
+    public function serviceId()
     {
-        return $this->serviceId;
+        return $this->data['serviceId'];
     }
 
     /**
      * Return the version id.
      * @return string
      */
-    public function getVersion()
+    public function versionId()
     {
-        return $this->versionId;
+        return $this->data['versionId'];
     }
 }

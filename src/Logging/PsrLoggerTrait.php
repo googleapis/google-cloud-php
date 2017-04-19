@@ -27,6 +27,13 @@ use Psr\Log\InvalidArgumentException;
 trait PsrLoggerTrait
 {
     /**
+     * Return a Logger for sending logs.
+     *
+     * @return Logger
+     */
+    protected abstract function getLogger();
+
+    /**
      * Log an emergency entry.
      *
      * Example:

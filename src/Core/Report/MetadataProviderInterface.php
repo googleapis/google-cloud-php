@@ -28,23 +28,23 @@ interface MetadataProviderInterface
      *
      * @return array
      */
-    public function getMonitoredResource();
+    public function monitoredResource();
 
     /**
      * Return the project id.
      * @return string
      */
-    public function getProjectId();
+    public function projectId();
 
     /**
      * Return the service id.
      * @return string
      */
-    public function getService();
+    public function serviceId();
 
     /**
      * Return the version id.
      * @return string
      */
-    public function getVersion();
+    public function versionId();
 }

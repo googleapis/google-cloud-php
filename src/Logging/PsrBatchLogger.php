@@ -74,26 +74,6 @@ class PsrBatchLogger implements LoggerInterface
     private $messageKey = 'message';
 
     /**
-     * Return a Logger object for the current logName.
-     *
-     * @return Logger
-     */
-    private function getLogger()
-    {
-        if (! array_key_exists($this->logName, self::$loggers)) {
-            $c = new LoggingClient($this->clientConfig);
-            $resource = $this->metadataProvider->getMonitoredResource();
-            if (empty($resource)) {
-                self::$loggers[$this->logName] = $c->logger($this->logName);
-            } else {
-                self::$loggers[$this->logName] =
-                    $c->logger($this->logName, ['resource' => $resource]);
-            }
-        }
-        return self::$loggers[$this->logName];
-    }
-
-    /**
      * @param string $logName The name of the log.
      * @param array $options [optional] {
      *     Configuration options.
@@ -102,8 +82,8 @@ class PsrBatchLogger implements LoggerInterface
      *     @type array $batchOptions An option to BatchJob.
      *           {@see \Google\Cloud\Core\Batch\BatchJob::__construct()}
      *           **Defaults to** ['batchSize' => 1000,
-                                  'callPeriod' => 2.0,
-                                  'workerNum' => 10]
+     *                            'callPeriod' => 2.0,
+     *                            'workerNum' => 10]
      *     @type array $clientConfig A config to LoggingClient
      *           {@see \Google\Cloud\Logging\LoggingClient::__construct()}
      *           **Defaults to** []
@@ -144,6 +124,26 @@ class PsrBatchLogger implements LoggerInterface
             [$this, 'sendEntries'],
             $this->batchOptions
         );
+    }
+
+    /**
+     * Return a Logger object for the current logName.
+     *
+     * @return Logger
+     */
+    protected function getLogger()
+    {
+        if (!array_key_exists($this->logName, self::$loggers)) {
+            $c = new LoggingClient($this->clientConfig);
+            $resource = $this->metadataProvider->monitoredResource();
+            if (empty($resource)) {
+                self::$loggers[$this->logName] = $c->logger($this->logName);
+            } else {
+                self::$loggers[$this->logName] =
+                    $c->logger($this->logName, ['resource' => $resource]);
+            }
+        }
+        return self::$loggers[$this->logName];
     }
 
     /**

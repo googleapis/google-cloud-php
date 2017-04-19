@@ -52,9 +52,22 @@ class PsrLogger implements LoggerInterface
     private $messageKey;
 
     /**
-     * Just return the $logger. It's for allowing to use the trait.
+     * @param Logger $logger The logger used to write entries.
+     * @param string $messageKey The key in the `jsonPayload` used to contain
+     *        the logged message. **Defaults to** `message`.
      */
-    private function getLogger()
+    public function __construct(Logger $logger, $messageKey = 'message')
+    {
+        $this->logger = $logger;
+        $this->messageKey = $messageKey;
+    }
+
+    /**
+     * Just return the $logger. It's for allowing to use the trait.
+     *
+     * @return Logger
+     */
+    protected function getLogger()
     {
         return $this->logger;
     }
@@ -65,16 +78,5 @@ class PsrLogger implements LoggerInterface
     private function sendEntry(Entry $entry)
     {
         $this->logger->write($entry);
-    }
-
-    /**
-     * @param Logger $logger The logger used to write entries.
-     * @param string $messageKey The key in the `jsonPayload` used to contain
-     *        the logged message. **Defaults to** `message`.
-     */
-    public function __construct(Logger $logger, $messageKey = 'message')
-    {
-        $this->logger = $logger;
-        $this->messageKey = $messageKey;
     }
 }

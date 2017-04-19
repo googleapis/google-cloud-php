@@ -30,17 +30,17 @@ class SimpleMetadataProviderTest extends \PHPUnit_Framework_TestCase
 
     private $projectId = 'my-project';
 
-    private $service = 'my-service';
+    private $serviceId = 'my-service';
 
-    private $version = 'my-version';
+    private $versionId = 'my-version';
 
     public function setup()
     {
         $this->metadataProvider = new SimpleMetadataProvider(
             $this->monitoredResource,
             $this->projectId,
-            $this->service,
-            $this->version
+            $this->serviceId,
+            $this->versionId
         );
     }
 
@@ -48,7 +48,7 @@ class SimpleMetadataProviderTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertEquals(
             $this->monitoredResource,
-            $this->metadataProvider->getMonitoredResource()
+            $this->metadataProvider->monitoredResource()
         );
     }
 
@@ -56,23 +56,23 @@ class SimpleMetadataProviderTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertEquals(
             $this->projectId,
-            $this->metadataProvider->getProjectId()
+            $this->metadataProvider->projectId()
         );
     }
 
     public function testService()
     {
         $this->assertEquals(
-            $this->service,
-            $this->metadataProvider->getService()
+            $this->serviceId,
+            $this->metadataProvider->serviceId()
         );
     }
 
     public function testVersion()
     {
         $this->assertEquals(
-            $this->version,
-            $this->metadataProvider->getVersion()
+            $this->versionId,
+            $this->metadataProvider->versionId()
         );
     }
 }

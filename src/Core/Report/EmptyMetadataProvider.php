@@ -29,7 +29,7 @@ class EmptyMetadataProvider implements MetadataProviderInterface
      *
      * @return array
      */
-    public function getMonitoredResource()
+    public function monitoredResource()
     {
         return [];
     }
@@ -38,7 +38,7 @@ class EmptyMetadataProvider implements MetadataProviderInterface
      * Return the project id.
      * @return string
      */
-    public function getProjectId()
+    public function projectId()
     {
         return '';
     }
@@ -47,7 +47,7 @@ class EmptyMetadataProvider implements MetadataProviderInterface
      * Return the service id.
      * @return string
      */
-    public function getService()
+    public function serviceId()
     {
         return '';
     }
@@ -56,7 +56,7 @@ class EmptyMetadataProvider implements MetadataProviderInterface
      * Return the version id.
      * @return string
      */
-    public function getVersion()
+    public function versionId()
     {
         return '';
     }

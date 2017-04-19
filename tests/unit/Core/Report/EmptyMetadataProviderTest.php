@@ -31,27 +31,27 @@ class EmptyMetadataProviderTest extends \PHPUnit_Framework_TestCase
         $this->metadataProvider = new EmptyMetadataProvider();
     }
 
-    public function testGetMonitoredResource()
+    public function testMonitoredResource()
     {
         $this->assertEquals(
             [],
-            $this->metadataProvider->getMonitoredResource()
+            $this->metadataProvider->monitoredResource()
         );
     }
 
     public function testProjectId()
     {
-        $this->assertEquals('', $this->metadataProvider->getProjectId());
+        $this->assertEquals('', $this->metadataProvider->projectId());
     }
 
-    public function testService()
+    public function testServiceId()
     {
-        $this->assertEquals('', $this->metadataProvider->getService());
+        $this->assertEquals('', $this->metadataProvider->serviceId());
     }
 
-    public function testVersion()
+    public function testVersionId()
     {
-        $this->assertEquals('', $this->metadataProvider->getVersion());
+        $this->assertEquals('', $this->metadataProvider->versionId());
     }
 }
 

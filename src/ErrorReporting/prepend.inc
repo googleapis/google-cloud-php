@@ -22,6 +22,10 @@ namespace Google\Cloud\ErrorReporting;
  * `auto_prepend_file` php configuration directive to enable automatic error
  * reporting.
  *
+ * ```
+ * auto_prepend_file = '/app/vendor/google/cloud-error-reporting/prepend.inc'
+ * ```
+ *
  * @codingStandardsIgnoreFile
  */
 if (file_exists(__DIR__ . '/../../vendor/autoload.php')) {

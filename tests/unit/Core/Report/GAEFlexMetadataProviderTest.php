@@ -53,11 +53,11 @@ class GAEFlexMetadataProviderTest extends \PHPUnit_Framework_TestCase
                     'module_id' => 'my-service'
                 ]
             ],
-            $metadataProvider->getMonitoredResource()
+            $metadataProvider->monitoredResource()
         );
-        $this->assertEquals('my-project', $metadataProvider->getProjectId());
-        $this->assertEquals('my-service', $metadataProvider->getService());
-        $this->assertEquals('my-version', $metadataProvider->getVersion());
+        $this->assertEquals('my-project', $metadataProvider->projectId());
+        $this->assertEquals('my-service', $metadataProvider->serviceId());
+        $this->assertEquals('my-version', $metadataProvider->versionId());
     }
 
     public function testWithOutEnvs()
@@ -75,13 +75,13 @@ class GAEFlexMetadataProviderTest extends \PHPUnit_Framework_TestCase
                     'module_id' => 'unknown-service'
                 ]
             ],
-            $metadataProvider->getMonitoredResource()
+            $metadataProvider->monitoredResource()
         );
         $this->assertEquals(
             'unknown-projectid',
-            $metadataProvider->getProjectId()
+            $metadataProvider->projectId()
         );
-        $this->assertEquals('unknown-service', $metadataProvider->getService());
-        $this->assertEquals('unknown-version', $metadataProvider->getVersion());
+        $this->assertEquals('unknown-service', $metadataProvider->serviceId());
+        $this->assertEquals('unknown-version', $metadataProvider->versionId());
     }
 }

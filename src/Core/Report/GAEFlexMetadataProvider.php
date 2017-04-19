@@ -31,21 +31,21 @@ class GAEFlexMetadataProvider implements MetadataProviderInterface
     public function __construct()
     {
         $projectId = getenv('GCLOUD_PROJECT') ?: 'unknown-projectid';
-        $service = getenv('GAE_SERVICE') ?: 'unknown-service';
-        $version = getenv('GAE_VERSION') ?: 'unknown-version';
+        $serviceId = getenv('GAE_SERVICE') ?: 'unknown-service';
+        $versionId = getenv('GAE_VERSION') ?: 'unknown-version';
         $this->data =
             [
                 'resource' => [
                     'type' => 'gae_app',
                     'labels' => [
                         'project_id' => $projectId,
-                        'version_id' => $version,
-                        'module_id' => $service
+                        'version_id' => $versionId,
+                        'module_id' => $serviceId
                     ]
                 ],
                 'projectId' => $projectId,
-                'service' => $service,
-                'version' => $version
+                'serviceId' => $serviceId,
+                'versionId' => $versionId
             ];
     }
 
@@ -55,7 +55,7 @@ class GAEFlexMetadataProvider implements MetadataProviderInterface
      *
      * @return array
      */
-    public function getMonitoredResource()
+    public function monitoredResource()
     {
         return $this->data['resource'];
     }
@@ -64,7 +64,7 @@ class GAEFlexMetadataProvider implements MetadataProviderInterface
      * Return the project id.
      * @return string
      */
-    public function getProjectId()
+    public function projectId()
     {
         return $this->data['projectId'];
     }
@@ -73,17 +73,17 @@ class GAEFlexMetadataProvider implements MetadataProviderInterface
      * Return the service id.
      * @return string
      */
-    public function getService()
+    public function serviceId()
     {
-        return $this->data['service'];
+        return $this->data['serviceId'];
     }
 
     /**
      * Return the version id.
      * @return string
      */
-    public function getVersion()
+    public function versionId()
     {
-        return $this->data['version'];
+        return $this->data['versionId'];
     }
 }

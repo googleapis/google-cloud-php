@@ -30,24 +30,9 @@ class Bootstrap
                     'batchOptions' => ['workerNum' => 2]
                 ]
             );
-        register_shutdown_function(
-            [
-                '\\Google\\Cloud\\ErrorReporting\\Bootstrap',
-                'shutdownHandler'
-            ]
-        );
-        set_exception_handler(
-            array(
-                '\\Google\\Cloud\\ErrorReporting\\Bootstrap',
-                'exceptionHandler'
-            )
-        );
-        set_error_handler(
-            array(
-                '\\Google\\Cloud\\ErrorReporting\\Bootstrap',
-                'errorHandler'
-            )
-        );
+        register_shutdown_function([self::class, 'shutdownHandler']);
+        set_exception_handler([self::class, 'exceptionHandler']);
+        set_error_handler([self::class, 'errorHandler']);
     }
 
     /**
@@ -129,7 +114,11 @@ class Bootstrap
     public static function exceptionHandler($ex)
     {
         $message = sprintf('PHP Notice: %s', (string)$ex);
-        self::$psrBatchLogger->error($message);
+        if (self::$psrBatchLogger) {
+            self::$psrBatchLogger->error($message);
+        } else {
+            fwrite(STDERR, $message . PHP_EOL);
+        }
     }
 
     /**
@@ -140,11 +129,11 @@ class Bootstrap
      */
     public static function errorHandler($level, $message, $file, $line)
     {
-        if (!($level & \error_reporting())) {
+        if (!($level & error_reporting())) {
             return true;
         }
-        $service = self::$psrBatchLogger->getMetadataProvider()->getService();
-        $version = self::$psrBatchLogger->getMetadataProvider()->getVersion();
+        $service = self::$psrBatchLogger->getMetadataProvider()->serviceId();
+        $version = self::$psrBatchLogger->getMetadataProvider()->versionId();
         $message =  sprintf(
             '%s: %s in %s on line %d',
             self::getErrorPrefix($level),
@@ -165,7 +154,15 @@ class Bootstrap
                 'version' => $version
             ]
         ];
-        self::$psrBatchLogger->log(self::getErrorLevelString($level), $message, $context);
+        if (self::$psrBatchLogger) {
+            self::$psrBatchLogger->log(
+                self::getErrorLevelString($level),
+                $message,
+                $context
+            );
+        } else {
+            fwrite(STDERR, $message . PHP_EOL);
+        }
     }
 
     /**
@@ -175,8 +172,8 @@ class Bootstrap
     public static function shutdownHandler()
     {
         if ($err = error_get_last()) {
-            $service = self::$psrBatchLogger->getMetadataProvider()->getService();
-            $version = self::$psrBatchLogger->getMetadataProvider()->getVersion();
+            $service = self::$psrBatchLogger->getMetadataProvider()->serviceId();
+            $version = self::$psrBatchLogger->getMetadataProvider()->versionId();
             switch ($err['type']) {
                 case E_ERROR:
                 case E_PARSE:
@@ -204,7 +201,13 @@ class Bootstrap
                             'version' => $version
                         ]
                     ];
-                    self::$psrBatchLogger->log(self::getErrorLevelString($err['type']), $message, $context);
+                    if (self::$psrBatchLogger) {
+                        self::$psrBatchLogger->log(
+                            self::getErrorLevelString($err['type']),
+                            $message,
+                            $context
+                        );
+                    }
                     break;
             }
         }
