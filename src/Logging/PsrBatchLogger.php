@@ -47,6 +47,9 @@ class PsrBatchLogger implements LoggerInterface
     const ID_TEMPLATE = 'stackdriver-logging-%s';
 
     /** @var array */
+    private static $loggers = [];
+
+    /** @var array */
     private $batchOptions;
 
     /** @var array */
@@ -77,17 +80,17 @@ class PsrBatchLogger implements LoggerInterface
      */
     private function getLogger()
     {
-        static $loggers = [];
-        if (! array_key_exists($this->logName, $loggers)) {
+        if (! array_key_exists($this->logName, self::$loggers)) {
             $c = new LoggingClient($this->clientConfig);
             $resource = $this->metadataProvider->getMonitoredResource();
             if (empty($resource)) {
-                $loggers[$this->logName] = $c->logger($this->logName);
+                self::$loggers[$this->logName] = $c->logger($this->logName);
             } else {
-                $loggers[$this->logName] = $c->logger($this->logName, ['resource' => $resource]);
+                self::$loggers[$this->logName] =
+                    $c->logger($this->logName, ['resource' => $resource]);
             }
         }
-        return $loggers[$this->logName];
+        return self::$loggers[$this->logName];
     }
 
     /**

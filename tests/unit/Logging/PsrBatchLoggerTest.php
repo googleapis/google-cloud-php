@@ -48,7 +48,16 @@ class PsrBatchLoggerTest extends \PHPUnit_Framework_TestCase
         $options,
         $expectedOutput
     ) {
+        $logger = $this->prophesize(Logger::class);
+        $logger->writeBatch(Argument::any())
+            ->willReturn(true)
+            ->shouldBeCalledTimes(1);
         $psrBatchLogger = new PsrBatchLogger($logName, $options);
+        $class =
+            new \ReflectionClass('\\Google\\Cloud\\Logging\\PsrBatchLogger');
+        $prop = $class->getProperty('loggers');
+        $prop->setAccessible(true);
+        $prop = $prop->setValue([$logName => $logger->reveal()]);
         ob_start();
         $psrBatchLogger->sendEntries([new Entry()]);
         $output = ob_get_contents();
@@ -91,24 +100,15 @@ class PsrBatchLoggerTest extends \PHPUnit_Framework_TestCase
 
     public function optionProvider()
     {
-        $dumbHandler = function($request, $option = []) {
-            return new Response(
-                200,
-                ['Content-Type' => 'application/json'],
-                '{"access_token": "xxx"}'
-            );
-        };
         return [
             [
                 'log1',
-                ['debugOutput' => true,
-                 'clientConfig' => ['httpHandler' => $dumbHandler]],
+                ['debugOutput' => true],
                 'seconds for writeBatch',
             ],
             [
                 'log2',
-                ['debugOutput' => false,
-                 'clientConfig' => ['httpHandler' => $dumbHandler]],
+                ['debugOutput' => false],
                 false,
             ],
         ];
