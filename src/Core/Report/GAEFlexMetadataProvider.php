@@ -20,7 +20,7 @@ namespace Google\Cloud\Core\Report;
 /**
  * An MetadataProvider for GAE Flex.
  */
-class GAEFlexMetadataProvider
+class GAEFlexMetadataProvider implements MetadataProviderInterface
 {
     /** @var array */
     private $data;
@@ -32,7 +32,7 @@ class GAEFlexMetadataProvider
     {
         $projectId = getenv('GCLOUD_PROJECT') ?: 'unknown-projectid';
         $service = getenv('GAE_SERVICE') ?: 'unknown-service';
-        $version = getenv('GAE_VERSION') ?: 'unkown-version';
+        $version = getenv('GAE_VERSION') ?: 'unknown-version';
         $this->data =
             [
                 'resource' => [

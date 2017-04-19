@@ -21,7 +21,7 @@ namespace Google\Cloud\Core\Report;
  * An empty MetadataProvider.
  */
 
-class EmptyMetadataProvider
+class EmptyMetadataProvider implements MetadataProviderInterface
 {
     /**
      * Return an array representing MonitoredResource.

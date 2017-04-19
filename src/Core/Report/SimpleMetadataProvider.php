@@ -15,12 +15,12 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Core;
+namespace Google\Cloud\Core\Report;
 
 /**
  * Simple MetadataProvider.
  */
-class SimpleMetadataProvider
+class SimpleMetadataProvider implements MetadataProviderInterface
 {
     /** @var array */
     private $monitoredResource;
