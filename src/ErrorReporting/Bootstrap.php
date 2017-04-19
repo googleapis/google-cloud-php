@@ -19,6 +19,7 @@ class Bootstrap
      *
      * @param PsrBatchLogger $psrBatchLogger
      * @return void
+     * @codeCoverageIgnore
      */
     public static function init(PsrBatchLogger $psrBatchLogger = null)
     {
@@ -132,8 +133,6 @@ class Bootstrap
         if (!($level & error_reporting())) {
             return true;
         }
-        $service = self::$psrBatchLogger->getMetadataProvider()->serviceId();
-        $version = self::$psrBatchLogger->getMetadataProvider()->versionId();
         $message =  sprintf(
             '%s: %s in %s on line %d',
             self::getErrorPrefix($level),
@@ -141,6 +140,11 @@ class Bootstrap
             $file,
             $line
         );
+        if (!self::$psrBatchLogger) {
+            return false;
+        }
+        $service = self::$psrBatchLogger->getMetadataProvider()->serviceId();
+        $version = self::$psrBatchLogger->getMetadataProvider()->versionId();
         $context = [
             'context' => [
                 'reportLocation' => [
@@ -154,15 +158,11 @@ class Bootstrap
                 'version' => $version
             ]
         ];
-        if (self::$psrBatchLogger) {
-            self::$psrBatchLogger->log(
-                self::getErrorLevelString($level),
-                $message,
-                $context
-            );
-        } else {
-            fwrite(STDERR, $message . PHP_EOL);
-        }
+        self::$psrBatchLogger->log(
+            self::getErrorLevelString($level),
+            $message,
+            $context
+        );
     }
 
     /**
@@ -172,15 +172,17 @@ class Bootstrap
     public static function shutdownHandler()
     {
         if ($err = error_get_last()) {
-            $service = self::$psrBatchLogger->getMetadataProvider()->serviceId();
-            $version = self::$psrBatchLogger->getMetadataProvider()->versionId();
             switch ($err['type']) {
                 case E_ERROR:
                 case E_PARSE:
                 case E_COMPILE_ERROR:
-                case E_COMPILE_WARNING:
                 case E_CORE_ERROR:
-                case E_CORE_WARNING:
+                    $service = self::$psrBatchLogger
+                        ->getMetadataProvider()
+                        ->serviceId();
+                    $version = self::$psrBatchLogger
+                        ->getMetadataProvider()
+                        ->versionId();
                     $message = sprintf(
                         '%s: %s in %s on line %d',
                         self::getErrorPrefix($err['type']),
@@ -194,7 +196,7 @@ class Bootstrap
                                 'filePath' => $err['file'],
                                 'lineNumber' => $err['line'],
                                 'functionName' => 'unknown'
-                             ]
+                            ]
                         ],
                         'serviceContext' => [
                             'service' => $service,
