@@ -19,7 +19,11 @@
 if (file_exists(__DIR__ . '/../../../vendor/autoload.php')) {
     // Called from local git clone.
     require __DIR__ . '/../../../vendor/autoload.php';
+} elseif (file_exists(__DIR__ . '/../../../../../autoload.php')) {
+    // Called from google/cloud umbrella project
+    require __DIR__ . '/../../../../../autoload.php';
 } elseif (file_exists(__DIR__ . '/../../../autoload.php')) {
+    // Called from google/core
     require __DIR__ . '/../../../autoload.php';
 } else {
     die('No autoloader found');
