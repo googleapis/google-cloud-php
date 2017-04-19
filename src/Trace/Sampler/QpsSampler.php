@@ -60,22 +60,31 @@ class QpsSampler implements SamplerInterface
      * both (all) be sampled.
      *
      * @param CacheItemPoolInterface $cache The cache store to use
-     * @param string $cacheItemClass [optional] The class of the item to use. This class must implement
-     *        CacheItemInterface.
-     * @param float $rate [optional] The number of queries per second to allow. Must be less than or equal to 1.
-     *        **Defaults to** `0.1`
-     * @param string $key [optional] The cache key to use. **Defaults to** `__google_cloud_trace__`
+     * @param array $options [optional] {
+     *     configuration options.
+     *
+     *     @type string $cacheItemClass The class of the item to use. This class must implement
+     *           CacheItemInterface.
+     *     @type float $rate The number of queries per second to allow. Must be less than or equal to 1.
+     *           **Defaults to** `0.1`
+     *     @type string $key The cache key to use. **Defaults to** `__google_cloud_trace__`
+     * }
      */
-    public function __construct(CacheItemPoolInterface $cache = null, $cacheItemClass = null, $rate = null, $key = null)
+    public function __construct(CacheItemPoolInterface $cache = null, $options = [])
     {
-        $this->cacheItemClass = $cacheItemClass ?: self::DEFAULT_CACHE_ITEM_CLASS;
         $this->cache = $cache ?: $this->defaultCache();
         if (!$this->cache) {
             throw new \InvalidArgumentException('Cannot use QpsSampler without providing a PSR-6 $cache');
         }
 
-        $this->rate = is_null($rate) ? self::DEFAULT_QPS_RATE : $rate;
-        $this->key = $key ?: self::DEFAULT_CACHE_KEY;
+        $options += [
+            'cacheItemClass' => self::DEFAULT_CACHE_ITEM_CLASS,
+            'rate' => self::DEFAULT_QPS_RATE,
+            'key' => self::DEFAULT_CACHE_KEY
+        ];
+        $this->cacheItemClass = $options['cacheItemClass'];
+        $this->rate = $options['rate'];
+        $this->key = $options['key'];
 
         if ($this->rate > 1 || $this->rate <= 0) {
             throw new \InvalidArgumentException('QPS sampling rate must be less that 1 query per second');

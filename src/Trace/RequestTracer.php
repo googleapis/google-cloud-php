@@ -29,28 +29,23 @@ use Google\Cloud\Trace\Reporter\ReporterInterface;
  *
  * Example:
  * ```
- * use Google\Cloud\ServiceBuilder;
+ * use Google\Cloud\Trace\RequestTracer;
+ * use Google\Cloud\Trace\TraceClient;
  * use Google\Cloud\Trace\Reporter\SyncReporter;
  *
- * $builder = new ServiceBuilder();
- * $reporter = new SyncReporter($builder->trace());
+ * $trace = new TraceClient();
+ * $reporter = new SyncReporter($trace);
  * RequestTracer::start($reporter);
  * ```
  *
  * In the above example, every request is traced. This is not advised as it will
  * add some latency to each request. We provide a sampling mechanism via the
- * `SamplerInterface`. To add a sampler to your request tracer, provide the `sampler`
- * option to your `start` function.
+ * {@see Google\Cloud\Trace\Sampler\SamplerInterface}. To add sampling to your
+ * request tracer, provide the "sampler" option:
  *
- * Example:
  * ```
- * use Cache\Adapter\Common\CacheItem;
- * use Cache\Adapter\Apcu\ApcuCachePool;
- * use Google\Cloud\Trace\Sampler\QpsSampler;
- *
- * // a PSR-6 cache implementation
- * $cache = new ApcuCachePool();
- * $sampler = new QpsSampler($cache, CacheItem::class, 0.1);
+ * // $cache is a PSR-6 cache implementation
+ * $sampler = new QpsSampler($cache, ['rate' => 0.1]);
  * RequestTracer::start($reporter, [
  *   'sampler' => $sampler
  * ]);
@@ -58,33 +53,25 @@ use Google\Cloud\Trace\Reporter\ReporterInterface;
  *
  * The above uses a query-per-second sampler at 0.1 requests/second. The implementation
  * requires a PSR-6 cache. See {@see Google\Cloud\Trace\Sampler\QpsSampler} for more information.
- * You may provide your own implementation of `SamplerInterface` or use one of the provided.
- * You may provide a configuration array for the sampler instead. See
- * {@see Google\Cloud\Trace\Sampler\SamplerFactory::build()} for builder options.
+ * You may provide your own implementation of {@see Google\Cloud\Trace\Sampler\SamplerInterface}
+ * or use one of the provided. You may provide a configuration array for the sampler instead. See
+ * {@see Google\Cloud\Trace\Sampler\SamplerFactory::build()} for builder options:
  *
- * Example using configuration:
  * ```
- * use Cache\Adapter\Common\CacheItem;
- * use Cache\Adapter\Apcu\ApcuCachePool;
- *
- * $cache = new ApcuCachePool();
- * RequestTracer::start([
+ * // $cache is a PSR-6 cache implementation
+ * RequestTracer::start($reporter, [
  *   'sampler' => [
  *     'type' => 'qps',
  *     'rate' => 0.1,
- *     'cache' => $cache,
- *     'cacheItemClass' => CacheItem::class
+ *     'cache' => $cache
  *   ]
  * ]);
  * ```
  *
- * To trace code, you can use static functions on the `RequestTracer`. To create a `TraceSpan`
- * for a callable, use the `RequestTracer::inSpan` function. The following code creates 1 Trace
- * with 3 nested TraceSpan instances - the root span, the 'outer' span, and the 'inner' span.
+ * To trace code, you can use static {@see Google\Cloud\Trace\RequestTracer::inSpan()} helper function:
  *
- * Example:
  * ```
- * RequestTracer::start();
+ * RequestTracer::start($reporter);
  * RequestTracer::inSpan(['name' => 'outer'], function () {
  *   // some code
  *   RequestTracer::inSpan(['name' => 'inner'], function () {
@@ -96,20 +83,25 @@ use Google\Cloud\Trace\Reporter\ReporterInterface;
  *
  * You can also start and finish spans independently throughout your code.
  *
- * Example:
+ * Explicitly tracing spans:
  * ```
+ * RequestTracer::start($reporter);
  * RequestTracer::startSpan(['name' => 'expensive-operation']);
- * // do expensive operation
- * RequestTracer::endSpan();
+ * try {
+ *     // do expensive operation
+ * } catch (\Exception $e) {
+ *     RequestTracer::endSpan();
+ * }
  * ```
  *
- * It is recommended that you use the `inSpan` method where you can. An uncaught exception between a
- * `startSpan` and `endSpan` may not correctly close spans.
+ * It is recommended that you use the {@see Google\Cloud\Trace\RequestTracer::inSpan()}
+ * method where you can. An uncaught exception between {@see Google\Cloud\Trace\RequestTracer::startSpan()}
+ * and {@see Google\Cloud\Trace\RequestTracer::endSpan()} may not correctly close spans.
  */
 class RequestTracer
 {
     /**
-     * @var RequestTracer Singleton instance
+     * @var RequestHandler Singleton instance
      */
     private static $instance;
 
@@ -126,7 +118,7 @@ class RequestTracer
      *          {@see Google\Cloud\Trace\Sampler\SamplerFactory::build()} for the available options.
      *      @type array $headers Optional array of headers to use in place of $_SERVER
      * }
-     * @return RequestTracer
+     * @return RequestHandler
      */
     public static function start(ReporterInterface $reporter, array $options = [])
     {
@@ -144,14 +136,18 @@ class RequestTracer
      *
      * Example:
      * ```
-     * RequestTracer::inSpan(['name' => 'expensive-operation'], function () {
+     * // Instrumenting code as a closure
+     * RequestTracer::inSpan(['name' => 'some-closure'], function () {
      *   // do something expensive
      * });
+     * ```
      *
+     * ```
+     * // Instrumenting code as a callable (parameters optional)
      * function fib($n) {
      *   // do something expensive
      * }
-     * $number = RequestTracer::inSpan(['name' => 'fibonacci'], 'fib', [10]);
+     * $number = RequestTracer::inSpan(['name' => 'some-callable'], 'fib', [10]);
      * ```
      *
      * @param array $spanOptions Options for the span.
@@ -170,9 +166,12 @@ class RequestTracer
      *
      * Example:
      * ```
-     * RequestTracer::startSpan(['name'= > 'expensive-operation']);
-     * // do something expensive
-     * RequestTracer::endSpan();
+     * RequestTracer::startSpan(['name' => 'expensive-operation']);
+     * try {
+     *     // do something expensive
+     * } catch (\Exception $e) {
+     *     RequestTracer::endSpan();
+     * }
      * ```
      *
      * @param array $spanOptions [optional] Options for the span.
@@ -199,5 +198,15 @@ class RequestTracer
     public static function context()
     {
         return self::$instance->context();
+    }
+
+    /**
+     * Returns the RequestHandler instance
+     *
+     * @return RequestHandler
+     */
+    public static function instance()
+    {
+        return self::$instance;
     }
 }

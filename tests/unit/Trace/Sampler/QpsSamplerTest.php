@@ -67,7 +67,9 @@ class QpsSamplerTest extends \PHPUnit_Framework_TestCase
     public function testInvalidRate($rate)
     {
         $cache = $this->prophesize(CacheItemPoolInterface::class);
-        $sampler = new QpsSampler($cache->reveal(), null, $rate);
+        $sampler = new QpsSampler($cache->reveal(), [
+            'rate' => $rate
+        ]);
     }
 
     public function invalidRates()

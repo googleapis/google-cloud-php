@@ -53,21 +53,15 @@ class SamplerFactory
 
         $options += [
             'type' => 'enabled',
-            'rate' => 0.1
+            'rate' => 0.1,
+            'cache' => null
         ];
 
         switch ($options['type']) {
             case 'qps':
-                $options += [
-                    'cache' => null,
-                    'cacheItemClass' => null,
-                    'cacheKey' => null
-                ];
                 return new QpsSampler(
                     $options['cache'],
-                    $options['cacheItemClass'],
-                    $options['rate'],
-                    $options['cacheKey']
+                    $options
                 );
             case 'random':
                 return new RandomSampler($options['rate']);

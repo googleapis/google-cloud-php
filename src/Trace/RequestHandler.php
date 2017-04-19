@@ -157,18 +157,6 @@ class RequestHandler
      * If an exception is thrown while executing the callable, the exception will be caught,
      * the span will be closed, and the exception will be re-thrown.
      *
-     * Example:
-     * ```
-     * RequestTracer::inSpan(['name' => 'expensive-operation'], function () {
-     *   // do something expensive
-     * });
-     *
-     * function fib($n) {
-     *   // do something expensive
-     * }
-     * $number = RequestTracer::inSpan(['name' => 'fibonacci'], 'fib', [10]);
-     * ```
-     *
      * @param array $spanOptions Options for the span.
      *      {@see Google\Cloud\Trace\TraceSpan::__construct()}
      * @param  callable $callable    The callable to inSpan.
@@ -182,13 +170,6 @@ class RequestHandler
     /**
      * Explicitly start a new TraceSpan. You will need to manage finishing the TraceSpan,
      * including handling any thrown exceptions.
-     *
-     * Example:
-     * ```
-     * RequestTracer::startSpan(['name'= > 'expensive-operation']);
-     * // do something expensive
-     * RequestTracer::endSpan();
-     * ```
      *
      * @param array $spanOptions [optional] Options for the span.
      *      {@see Google\Cloud\Trace\TraceSpan::__construct()}
