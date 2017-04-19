@@ -48,11 +48,6 @@ trait PsrLoggerTrait
     /**
      * Log an alert entry.
      *
-     * Example:
-     * ```
-     * $psrLogger->alert('alert message');
-     * ```
-     *
      * @param string $message The message to log.
      * @param array $context [optional] Please see {@see Google\Cloud\Logging\PsrLogger::log()}
      *        for the available options.
@@ -64,11 +59,6 @@ trait PsrLoggerTrait
 
     /**
      * Log a critical entry.
-     *
-     * Example:
-     * ```
-     * $psrLogger->critical('critical message');
-     * ```
      *
      * @param string $message The message to log.
      * @param array $context [optional] Please see {@see Google\Cloud\Logging\PsrLogger::log()}
@@ -82,11 +72,6 @@ trait PsrLoggerTrait
     /**
      * Log an error entry.
      *
-     * Example:
-     * ```
-     * $psrLogger->error('error message');
-     * ```
-     *
      * @param string $message The message to log.
      * @param array $context [optional] Please see {@see Google\Cloud\Logging\PsrLogger::log()}
      *        for the available options.
@@ -98,11 +83,6 @@ trait PsrLoggerTrait
 
     /**
      * Log a warning entry.
-     *
-     * Example:
-     * ```
-     * $psrLogger->warning('warning message');
-     * ```
      *
      * @param string $message The message to log.
      * @param array $context [optional] Please see {@see Google\Cloud\Logging\PsrLogger::log()}
@@ -116,11 +96,6 @@ trait PsrLoggerTrait
     /**
      * Log a notice entry.
      *
-     * Example:
-     * ```
-     * $psrLogger->notice('notice message');
-     * ```
-     *
      * @param string $message The message to log.
      * @param array $context [optional] Please see {@see Google\Cloud\Logging\PsrLogger::log()}
      *        for the available options.
@@ -132,11 +107,6 @@ trait PsrLoggerTrait
 
     /**
      * Log an info entry.
-     *
-     * Example:
-     * ```
-     * $psrLogger->info('info message');
-     * ```
      *
      * @param string $message The message to log.
      * @param array $context [optional] Please see {@see Google\Cloud\Logging\PsrLogger::log()}
@@ -150,11 +120,6 @@ trait PsrLoggerTrait
     /**
      * Log a debug entry.
      *
-     * Example:
-     * ```
-     * $psrLogger->debug('debug message');
-     * ```
-     *
      * @param string $message The message to log.
      * @param array $context [optional] Please see {@see Google\Cloud\Logging\PsrLogger::log()}
      *        for the available options.
@@ -166,35 +131,6 @@ trait PsrLoggerTrait
 
     /**
      * Write a log entry.
-     *
-     * Example:
-     * ```
-     * use Google\Cloud\Logging\Logger;
-     *
-     * $psrLogger->log(Logger::ALERT, 'alert message');
-     * ```
-     *
-     * ```
-     * // Write a log entry using the context array with placeholders.
-     * use Google\Cloud\Logging\Logger;
-     *
-     * $psrLogger->log(Logger::ALERT, 'alert: {message}', [
-     *     'message' => 'my alert message'
-     * ]);
-     * ```
-     *
-     * ```
-     * // Log information regarding an HTTP request
-     * use Google\Cloud\Logging\Logger;
-     *
-     * $psrLogger->log(Logger::ALERT, 'alert message', [
-     *     'stackdriverOptions' => [
-     *         'httpRequest' => [
-     *             'requestMethod' => 'GET'
-     *         ]
-     *     ]
-     * ]);
-     * ```
      *
      * @param string|int $level The severity of the log entry.
      * @param string $message The message to log.

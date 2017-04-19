@@ -49,8 +49,167 @@ use Psr\Log\LogLevel;
  *            options.
  * }
  *
- * @see http://www.php-fig.org/psr/psr-3/#psrlogloggerinterface Psr\Log\LoggerInterface
+ * @method alert() {
+ *     Log an alert entry.
  *
+ *     Example:
+ *     ```
+ *     $psrLogger->alert('alert message');
+ *     ```
+ *
+ *     @param string $message The message to log.
+ *     @param array $context [optional] Please see
+ *            {@see Google\Cloud\Logging\PsrLogger::log()} for the available
+ *            options.
+ * }
+ *
+ * @method critical() {
+ *     Log a critical entry.
+ *
+ *     Example:
+ *     ```
+ *     $psrLogger->critical('critical message');
+ *     ```
+ *
+ *     @param string $message The message to log.
+ *     @param array $context [optional] Please see
+ *            {@see Google\Cloud\Logging\PsrLogger::log()} for the available
+ *            options.
+ * }
+ *
+ * @method error() {
+ *     Log an error entry.
+ *
+ *     Example:
+ *     ```
+ *     $psrLogger->error('error message');
+ *     ```
+ *
+ *     @param string $message The message to log.
+ *     @param array $context [optional] Please see
+ *            {@see Google\Cloud\Logging\PsrLogger::log()} for the available
+ *            options.
+ * }
+ *
+ * @method warning() {
+ *     Log a warning entry.
+ *
+ *     Example:
+ *     ```
+ *     $psrLogger->warning('warning message');
+ *     ```
+ *
+ *     @param string $message The message to log.
+ *     @param array $context [optional] Please see
+ *            {@see Google\Cloud\Logging\PsrLogger::log()} for the available
+ *            options.
+ * }
+ *
+ * @method notice() {
+ *     Log a notice entry.
+ *
+ *     Example:
+ *     ```
+ *     $psrLogger->notice('notice message');
+ *     ```
+ *
+ *     @param string $message The message to log.
+ *     @param array $context [optional] Please see
+ *            {@see Google\Cloud\Logging\PsrLogger::log()} for the available
+ *            options.
+ * }
+ *
+ * @method info() {
+ *     Log an info entry.
+ *
+ *     Example:
+ *     ```
+ *     $psrLogger->info('info message');
+ *     ```
+ *
+ *     @param string $message The message to log.
+ *     @param array $context [optional] Please see
+ *            {@see Google\Cloud\Logging\PsrLogger::log()} for the available
+ *            options.
+ * }
+ *
+ * @method debug() {
+ *     Log a debug entry.
+ *
+ *     Example:
+ *     ```
+ *     $psrLogger->debug('debug message');
+ *     ```
+ *
+ *     @param string $message The message to log.
+ *     @param array $context [optional] Please see
+ *            {@see Google\Cloud\Logging\PsrLogger::log()} for the available
+ *            options.
+ * }
+ *
+ * @method log() {
+ *     Write a log entry.
+ *
+ *     Example:
+ *     ```
+ *     use Google\Cloud\Logging\Logger;
+ *
+ *     $psrLogger->log(Logger::ALERT, 'alert message');
+ *     ```
+ *
+ *     ```
+ *     // Write a log entry using the context array with placeholders.
+ *     use Google\Cloud\Logging\Logger;
+ *
+ *     $psrLogger->log(Logger::ALERT, 'alert: {message}', [
+ *         'message' => 'my alert message'
+ *     ]);
+ *     ```
+ *
+ *     ```
+ *     // Log information regarding an HTTP request
+ *     use Google\Cloud\Logging\Logger;
+ *
+ *     $psrLogger->log(Logger::ALERT, 'alert message', [
+ *         'stackdriverOptions' => [
+ *             'httpRequest' => [
+ *                 'requestMethod' => 'GET'
+ *             ]
+ *         ]
+ *     ]);
+ *     ```
+ *
+ *     @param string|int $level The severity of the log entry.
+ *     @param string $message The message to log.
+ *     @param array $context {
+ *         Context is an associative array which can include placeholders to be
+ *         used in the `$message`. Placeholders must be delimited with a single
+ *         opening brace `{` and a single closing brace `}`. The context will be
+ *         added as additional information on the `jsonPayload`. Please note
+ *         that the key `stackdriverOptions` is reserved for logging Google
+ *         Stackdriver specific data.
+ *
+ *         @type array $stackdriverOptions['resource'] The
+ *               [monitored resource](https://cloud.google.com/logging/docs/api/reference/rest/v2/MonitoredResource)
+ *               to associate this log entry with. **Defaults to** type global.
+ *         @type array $stackdriverOptions['httpRequest'] Information about the
+ *               HTTP request associated with this log entry, if applicable.
+ *               Please see
+ *               [the API docs](https://cloud.google.com/logging/docs/api/reference/rest/v2/LogEntry#httprequest)
+ *               for more information.
+ *         @type array $stackdriverOptions['labels'] A set of user-defined
+ *               (key, value) data that provides additional information about
+ *               the log entry.
+ *         @type array $stackdriverOptions['operation'] Additional information
+ *               about a potentially long-running operation with which a log
+ *               entry is associated. Please see
+ *               [the API docs](https://cloud.google.com/logging/docs/api/reference/rest/v2/LogEntry#logentryoperation)
+ *               for more information.
+ *     }
+ *     @throws InvalidArgumentException
+ * }
+ *
+ * @see http://www.php-fig.org/psr/psr-3/#psrlogloggerinterface Psr\Log\LoggerInterface
  */
 class PsrLogger implements LoggerInterface
 {
