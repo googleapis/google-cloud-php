@@ -62,7 +62,7 @@ class AsyncReporter implements ReporterInterface
      *           {@see \Google\Cloud\Core\Batch\BatchJob::__construct()}
      *           **Defaults to** ['batchSize' => 1000,
      *                            'callPeriod' => 2.0,
-     *                            'workerNum' => 10]
+     *                            'workerNum' => 2]
      *     @type array $clientConfig A config to LoggingClient
      *           {@see \Google\Cloud\Logging\LoggingClient::__construct()}
      *           **Defaults to** []
@@ -85,7 +85,7 @@ class AsyncReporter implements ReporterInterface
         $this->batchOptions = $batchOptions + [
             'batchSize' => 1000,
             'callPeriod' => 2.0,
-            'workerNum' => 10
+            'workerNum' => 2
         ];
 
         $this->batchRunner = array_key_exists('batchRunner', $options)
