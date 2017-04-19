@@ -36,11 +36,6 @@ trait PsrLoggerTrait
     /**
      * Log an emergency entry.
      *
-     * Example:
-     * ```
-     * $psrLogger->emergency('emergency message');
-     * ```
-     *
      * @param string $message The message to log.
      * @param array $context [optional] Please see {@see Google\Cloud\Logging\PsrLogger::log()}
      *        for the available options.

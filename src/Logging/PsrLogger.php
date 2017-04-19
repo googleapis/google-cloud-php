@@ -35,7 +35,22 @@ use Psr\Log\LogLevel;
  * $psrLogger = $logging->psrLogger('my-log');
  * ```
  *
+ * @method emergency() {
+ *     Log an emergency entry.
+ *
+ *     Example:
+ *     ```
+ *     $psrLogger->emergency('emergency message');
+ *     ```
+ *
+ *     @param string $message The message to log.
+ *     @param array $context [optional] Please see
+ *            {@see Google\Cloud\Logging\PsrLogger::log()} for the available
+ *            options.
+ * }
+ *
  * @see http://www.php-fig.org/psr/psr-3/#psrlogloggerinterface Psr\Log\LoggerInterface
+ *
  */
 class PsrLogger implements LoggerInterface
 {
