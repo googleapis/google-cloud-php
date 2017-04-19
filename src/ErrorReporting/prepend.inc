@@ -22,6 +22,7 @@ namespace Google\Cloud\ErrorReporting;
  * `auto_prepend_file` php configuration directive to enable automatic error
  * reporting.
  *
+ * @codingStandardsIgnoreFile
  */
 if (file_exists(__DIR__ . '/../../vendor/autoload.php')) {
     // when running from a git clone.
