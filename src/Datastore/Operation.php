@@ -418,6 +418,51 @@ class Operation
     }
 
     /**
+     * Run a query and return an array of entities
+     *
+     * @param QueryInterface $query The query object.
+     * @param array $options {
+     *     Configuration Options
+     *
+     *     @type string $transaction The transaction ID, if the query should be
+     *           run in a transaction.
+     *     @type string $className The name of the class to return results as.
+     *           Must be a subclass of {@see Google\Cloud\Datastore\Entity}.
+     *           If not set, {@see Google\Cloud\Datastore\Entity} will be used.
+     *     @type string $readConsistency If not in a transaction, set to STRONG
+     *           or EVENTUAL, depending on default value in DatastoreClient.
+     *           See
+     *           [ReadConsistency](https://cloud.google.com/datastore/reference/rest/v1/ReadOptions#ReadConsistency).
+     * }
+     * @return array
+     */
+    public function runQueryToArray(QueryInterface $query, array $options = [])
+    {
+        $options += [
+            'className' => null
+        ];
+        $request = $options + [
+                'projectId' => $this->projectId,
+                'partitionId' => $this->partitionId($this->projectId, $this->namespaceId),
+                'readOptions' => $this->readOptions($options),
+                $query->queryKey() => $query->queryObject()
+            ];
+
+        $res = $this->connection->runQuery($request);
+
+        $results = [];
+
+        if (isset($res['batch']['entityResults']) && is_array($res['batch']['entityResults'])) {
+            $results = $this->mapEntityResult(
+                $res['batch']['entityResults'],
+                $options['className']
+            );
+        }
+
+        return $results;
+    }
+
+    /**
      * Commit all mutations
      *
      * Calling this method will end the operation (and close the transaction,

@@ -980,6 +980,35 @@ class DatastoreClient
     }
 
     /**
+     * Run a query and return an array of entities
+     *
+     * To query datastore inside a transaction, use
+     * {@see Google\Cloud\Datastore\Transaction::runQuery()}.
+     *
+     * Example:
+     * ```
+     * $results = $datastore->runQueryToArray($query);
+     * ```
+     *
+     * @param QueryInterface $query A query object.
+     * @param array $options {
+     *     Configuration Options
+     *
+     *     @type string $className The name of the class to return results as.
+     *           Must be a subclass of {@see Google\Cloud\Datastore\Entity}.
+     *           If not set, {@see Google\Cloud\Datastore\Entity} will be used.
+     *     @type string $readConsistency See
+     *           [ReadConsistency](https://cloud.google.com/datastore/reference/rest/v1/ReadOptions#ReadConsistency).
+     *           "EVENTUAL" by default.
+     * }
+     * @return array
+     */
+    public function runQueryToArray(QueryInterface $query, array $options = [])
+    {
+        return $this->operation->runQueryToArray($query, $options);
+    }
+
+    /**
      * Handle mutation results
      *
      * @codingStandardsIgnoreStart
