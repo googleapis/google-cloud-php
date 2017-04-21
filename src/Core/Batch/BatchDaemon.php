@@ -68,7 +68,7 @@ class BatchDaemon
         pcntl_signal(SIGINT, [$this, "sigHandler"]);
         pcntl_signal(SIGHUP, [$this, "sigHandler"]);
         pcntl_signal(SIGALRM, [$this, "sigHandler"]);
-        $this->command = sprintf('exec php -d auto_prepend_file="" %s', $entrypoint);
+        $this->command = sprintf('exec php -d auto_prepend_file="" %s daemon', $entrypoint);
         $this->initFailureFile();
     }
 

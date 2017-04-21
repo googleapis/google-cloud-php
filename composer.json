@@ -77,8 +77,7 @@
         "google-cloud": "dev/google-cloud"
     },
     "bin": [
-        "src/Core/bin/google-cloud-batch-daemon",
-        "src/Core/bin/google-cloud-batch-retry"
+        "src/Core/bin/google-cloud-batch"
     ],
     "extra": {
         "component": {

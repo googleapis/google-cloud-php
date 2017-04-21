@@ -1,3 +1,4 @@
+#!/usr/bin/env php
 <?php
 /**
  * Copyright 2017 Google Inc.
@@ -15,10 +16,9 @@
  * limitations under the License.
  */
 
-/**
- * Load the autoloader.php
- */
+namespace Google\Cloud\Core\Batch;
 
+// Load the autoloader
 if (file_exists(__DIR__ . '/../../../vendor/autoload.php')) {
     // Called from local git clone.
     require_once __DIR__ . '/../../../vendor/autoload.php';
@@ -30,4 +30,28 @@ if (file_exists(__DIR__ . '/../../../vendor/autoload.php')) {
     require_once __DIR__ . '/../../../../../autoload.php';
 } else {
     die('No autoloader found');
+}
+
+function showUsageAndDie()
+{
+    die("usage: " . __FILE__ . " [daemon|retry] {id}");
+}
+
+if (count($argv) < 2) {
+    showUsageAndDie();
+}
+
+if ($argv[1] === 'daemon') {
+    $daemon = new BatchDaemon(__FILE__);
+    if (count($argv) == 2) {
+        $daemon->runParent();
+    } else {
+        $idNum = (int) $argv[2];
+        $daemon->runChild($idNum);
+    }
+} elseif ($argv[1] === 'retry') {
+    $retry = new Retry();
+    $retry->retryAll();
+} else {
+    showUsageAndDie();
 }

@@ -58,8 +58,8 @@ class BatchRunnerTest extends \PHPUnit_Framework_TestCase
         );
         @mkdir(self::$testDir);
         putenv('GOOGLE_CLOUD_BATCH_DAEMON_FAILURE_DIR=' . self::$testDir);
-        $daemon_executable = __DIR__
-            . '/../../../../src/Core/bin/google-cloud-batch-daemon';
+        $daemon_command = __DIR__
+            . '/../../../../src/Core/bin/google-cloud-batch daemon';
         self::$commandFile = tempnam(
             sys_get_temp_dir(),
             'batch-daemon-system-test'
@@ -79,7 +79,7 @@ class BatchRunnerTest extends \PHPUnit_Framework_TestCase
                 1 => array('file', 'php://stderr', 'w')
             );
             self::$daemon = proc_open(
-                $daemon_executable,
+                $daemon_command,
                 $descriptorSpec,
                 $pipes
             );
@@ -153,9 +153,9 @@ class BatchRunnerTest extends \PHPUnit_Framework_TestCase
         // Retry simulation
         unlink(self::$commandFile);
         if (self::$run_daemon) {
-            $retry_executable = __DIR__
-                . '/../../../../src/Core/bin/google-cloud-batch-retry';
-            exec($retry_executable);
+            $retry_command = __DIR__
+                . '/../../../../src/Core/bin/google-cloud-batch retry';
+            exec($retry_command);
         } else {
             // The in-memory implementation doesn't share the BatchConfig with
             // other processes, so we need to run retryAll in the same process.
