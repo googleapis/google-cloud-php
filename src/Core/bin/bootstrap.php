@@ -1,4 +1,3 @@
-#!/usr/bin/env php
 <?php
 /**
  * Copyright 2017 Google Inc.
@@ -16,15 +15,19 @@
  * limitations under the License.
  */
 
-require_once __DIR__ . '/bootstrap.php';
+/**
+ * Load the autoloader.php
+ */
 
-use Google\Cloud\Core\Batch\BatchDaemon;
-
-$daemon = new BatchDaemon(__FILE__);
-
-if (count($argv) == 1) {
-    $daemon->runParent();
+if (file_exists(__DIR__ . '/../../../vendor/autoload.php')) {
+    // Called from local git clone.
+    require_once __DIR__ . '/../../../vendor/autoload.php';
+} elseif (file_exists(__DIR__ . '/../../../autoload.php')) {
+    // Called from google/cloud-core installation.
+    require_once __DIR__ . '/../../../autoload.php';
+} elseif (file_exists(__DIR__ . '/../../../../autoload.php')) {
+    // Called from google/cloud installation.
+    require_once __DIR__ . '/../../../../autoload.php';
 } else {
-    $idNum = (int) $argv[1];
-    $daemon->runChild($idNum);
+    die('No autoloader found');
 }

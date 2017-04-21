@@ -16,15 +16,7 @@
  * limitations under the License.
  */
 
-if (file_exists(__DIR__ . '/../../../vendor/autoload.php')) {
-    // Called from local git clone.
-    require __DIR__ . '/../../../vendor/autoload.php';
-} elseif (file_exists(__DIR__ . '/../../../autoload.php')) {
-    // Called from your project's vendor dir.
-    require __DIR__ . '/../../../autoload.php';
-} else {
-    die('No autoloader found');
-}
+require_once __DIR__ . '/bootstrap.php';
 
 use Google\Cloud\Core\Batch\Retry;
 
