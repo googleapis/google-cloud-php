@@ -29,11 +29,12 @@ namespace Google\Cloud\ErrorReporting;
  * @codingStandardsIgnoreFile
  */
 if (file_exists(__DIR__ . '/../../vendor/autoload.php')) {
-    // when running from a git clone.
+    // when running from a git clone or google/cloud-error-reporting
+    // installation.
     require_once __DIR__ . '/../../vendor/autoload.php';
-} elseif (file_exists(__DIR__ . '/../../../vendor/autoload.php')) {
-    // when running from a project's vendor dir.
-    require_once __DIR__ . '/../../../vendor/autoload.php';
+} elseif (file_exists(__DIR__ . '/../../../../vendor/autoload.php')) {
+    // when running from google/cloud installation.
+    require_once __DIR__ . '/../../../../vendor/autoload.php';
 }
 
 /**
@@ -48,12 +49,13 @@ function getPsrBatchLogger()
 {
     $bootstrapFile = 'ErrorReportingBootstrap';
     if (file_exists(__DIR__ . '/../../' . $bootstrapFile)) {
-        // when running from a git clone.
+        // when running from a git clone or google/cloud-error-reporting
+        // installation.
         return include __DIR__ . '/../../' . $bootstrapFile;
     }
-    if (file_exists(__DIR__ . '/../../../' . $bootstrapFile)) {
-        // when running from a project's vendor dir.
-        return include __DIR__ . '/../../../' . $bootstrapFile;
+    if (file_exists(__DIR__ . '/../../../../' . $bootstrapFile)) {
+        // when running from google/cloud installation.
+        return include __DIR__ . '/../../../../' . $bootstrapFile;
     }
     return null;
 }
