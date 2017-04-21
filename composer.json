@@ -76,6 +76,10 @@
     "scripts": {
         "google-cloud": "dev/google-cloud"
     },
+    "bin": [
+        "src/Core/bin/google-cloud-batch-daemon",
+        "src/Core/bin/google-cloud-batch-retry"
+    ],
     "extra": {
         "component": {
             "id": "google-cloud",
