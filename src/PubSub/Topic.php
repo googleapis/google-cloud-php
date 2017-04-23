@@ -268,7 +268,7 @@ class Topic
      * $topic->publish([
      *     'data' => 'New User Registered',
      *     'attributes' => [
-     *         'id' => 1,
+     *         'id' => '1',
      *         'userName' => 'John',
      *         'location' => 'Detroit'
      *     ]
@@ -295,14 +295,14 @@ class Topic
      *     [
      *         'data' => 'New User Registered',
      *         'attributes' => [
-     *             'id' => 1,
+     *             'id' => '1',
      *             'userName' => 'John',
      *             'location' => 'Detroit'
      *         ]
      *     ], [
      *         'data' => 'New User Registered',
      *         'attributes' => [
-     *             'id' => 2,
+     *             'id' => '2',
      *             'userName' => 'Steve',
      *             'location' => 'Mountain View'
      *         ]
