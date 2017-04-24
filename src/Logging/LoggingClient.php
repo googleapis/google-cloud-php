@@ -84,6 +84,11 @@ class LoggingClient
     private $formattedProjectName;
 
     /**
+     * @var array The config given to the constructor.
+     */
+    private $config;
+
+    /**
      * Create a Logging client.
      *
      * @param array $config [optional] {
@@ -114,6 +119,7 @@ class LoggingClient
      */
     public function __construct(array $config = [])
     {
+        $this->config = $config;
         $connectionType = $this->getConnectionType($config);
         if (!isset($config['scopes'])) {
             $config['scopes'] = [self::FULL_CONTROL_SCOPE];
@@ -449,6 +455,27 @@ class LoggingClient
         return $messageKey
             ? new PsrLogger($this->logger($name, $options), $messageKey)
             : new PsrLogger($this->logger($name, $options));
+    }
+
+    /**
+     * Fetches a logger which will write log entries to Stackdriver Logging in
+     * batch and implements the PSR-3 specification.
+     *
+     * Example:
+     * ```
+     * $psrBatchLogger = $logging->psrBatchLogger('my-log');
+     * ```
+     *
+     * @param string $name The name of the log to write entries to.
+     * @param array $options Options for PsrBatchLogger. **Defaults to** [].
+     *        {@see \Google\Cloud\Logging\PsrBatchLogger::__construct()}
+     *
+     * @return PsrBatchLogger
+     */
+    public function psrBatchLogger($name, array $options = [])
+    {
+        $options['clientConfig'] = $this->config;
+        return new PsrBatchLogger($name, $options);
     }
 
     /**

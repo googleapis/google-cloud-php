@@ -97,17 +97,18 @@ class DocGenerator
             }
 
             $document = $parser->parse();
+            if ($document) {
+                $writer = new Writer($document, $this->outputPath, $pretty);
+                $writer->write($currentFile);
 
-            $writer = new Writer($document, $this->outputPath, $pretty);
-            $writer->write($currentFile);
-
-            $this->types->addType([
-                'id' => $document['id'],
-                'title' => $document['title'],
-                'contents' => ($this->isComponent)
-                    ? $this->prune($document['id'] . '.json')
-                    : $document['id'] . '.json'
-            ]);
+                $this->types->addType([
+                    'id' => $document['id'],
+                    'title' => $document['title'],
+                    'contents' => ($this->isComponent)
+                        ? $this->prune($document['id'] . '.json')
+                        : $document['id'] . '.json'
+                ]);
+            }
         }
     }
 

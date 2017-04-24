@@ -38,6 +38,9 @@ final class InMemoryConfigStorage implements
     /* @var float */
     private $created;
 
+    /* @var bool */
+    private $hasShutdownHookRegistered;
+
     /**
      * Singleton getInstance.
      *
@@ -82,7 +85,7 @@ final class InMemoryConfigStorage implements
         $this->config = new BatchConfig();
         $this->created = microtime(true);
         $this->initFailureFile();
-        register_shutdown_function([$this, 'shutdown']);
+        $this->hasShutdownHookRegistered = false;
     }
 
     /**
@@ -131,12 +134,22 @@ final class InMemoryConfigStorage implements
     /**
      * Hold the items in memory and run the job in the same process when it
      * meets the condition.
+     *
+     * We want to delay registering the shutdown function. The error
+     * reporter also registers a shutdown function and the order matters.
+     * {@see Google\ErrorReporting\Bootstrap::init()}
+     * {@see http://php.net/manual/en/function.register-shutdown-function.php}
+     *
      * @param mixed $item An item to submit.
      * @param int $idNum A numeric id for the job.
      * @return void
      */
     public function submit($item, $idNum)
     {
+        if (!$this->hasShutdownHookRegistered) {
+            register_shutdown_function([$this, 'shutdown']);
+            $this->hasShutdownHookRegistered = true;
+        }
         if (!array_key_exists($idNum, $this->items)) {
             $this->items[$idNum] = [];
             $this->lastInvoked[$idNum] = $this->created;

@@ -22,6 +22,7 @@ use Google\Cloud\Logging\Connection\ConnectionInterface;
 use Google\Cloud\Logging\Logger;
 use Google\Cloud\Logging\LoggingClient;
 use Google\Cloud\Logging\Metric;
+use Google\Cloud\Logging\PsrBatchLogger;
 use Google\Cloud\Logging\PsrLogger;
 use Google\Cloud\Logging\Sink;
 use Google\Cloud\Core\Iterator\ItemIterator;
@@ -194,6 +195,18 @@ class LoggingClientTest extends SnippetTestCase
 
         $res = $snippet->invoke('psrLogger');
         $this->assertInstanceOf(PsrLogger::class, $res->returnVal());
+    }
+
+    public function testPsrBatchLogger()
+    {
+        $snippet = $this->snippetFromMethod(
+            LoggingClient::class,
+            'psrBatchLogger'
+        );
+        $snippet->addLocal('logging', $this->client);
+
+        $res = $snippet->invoke('psrBatchLogger');
+        $this->assertInstanceOf(PsrBatchLogger::class, $res->returnVal());
     }
 
     public function testLogger()
