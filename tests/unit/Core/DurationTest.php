@@ -15,12 +15,12 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\PubSub;
+namespace Google\Cloud\Tests\Core;
 
-use Google\Cloud\PubSub\Duration;
+use Google\Cloud\Core\Duration;
 
 /**
- * @group pubsub
+ * @group core
  */
 class DurationTest extends \PHPUnit_Framework_TestCase
 {

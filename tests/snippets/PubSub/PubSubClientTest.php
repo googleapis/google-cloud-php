@@ -17,16 +17,16 @@
 
 namespace Google\Cloud\Tests\Snippets\PubSub;
 
+use Google\Cloud\Core\Duration;
 use Google\Cloud\Core\Iterator\ItemIterator;
+use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Dev\SetStubConnectionTrait;
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
 use Google\Cloud\PubSub\Connection\ConnectionInterface;
-use Google\Cloud\PubSub\Duration;
 use Google\Cloud\PubSub\Message;
 use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\PubSub\Snapshot;
 use Google\Cloud\PubSub\Subscription;
-use Google\Cloud\PubSub\Timestamp;
 use Google\Cloud\PubSub\Topic;
 use Prophecy\Argument;
 

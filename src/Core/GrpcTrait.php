@@ -92,6 +92,7 @@ trait GrpcTrait
             ->setTimeZone(new DateTimeZone('UTC'))
             ->setTimestamp($timestamp['seconds'])
             ->format('Y-m-d\TH:i:s');
+        $timestamp['nanos'] = str_pad($timestamp['nanos'], 9, '0', STR_PAD_LEFT);
         return $formattedTime .= sprintf('.%sZ', rtrim($timestamp['nanos'], '0'));
     }
 
@@ -190,7 +191,8 @@ trait GrpcTrait
         preg_match('/\.(\d{1,9})Z/', $value, $matches);
         $value = preg_replace('/\.(\d{1,9})Z/', '.000000Z', $value);
         $dt = \DateTimeImmutable::createFromFormat('Y-m-d\TH:i:s.u\Z', $value);
-        $nanos = (isset($matches[1])) ? $matches[1] : 0;
+        $nanos = (isset($matches[1])) ? str_pad($matches[1], 9, '0') : 0;
+
         return [
             'seconds' => (int)$dt->format('U'),
             'nanos' => (int)$nanos

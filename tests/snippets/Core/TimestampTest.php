@@ -15,13 +15,13 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Snippets\PubSub;
+namespace Google\Cloud\Tests\Snippets\Core;
 
+use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
-use Google\Cloud\PubSub\Timestamp;
 
 /**
- * @group pubsub
+ * @group core
  */
 class TimestampTest extends SnippetTestCase
 {

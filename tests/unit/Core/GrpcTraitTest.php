@@ -108,7 +108,7 @@ class GrpcTraitTest extends \PHPUnit_Framework_TestCase
             'nanos' => '1'
         ];
 
-        $this->assertEquals('2016-08-15T06:35:09.1Z', $this->implementation->call('formatTimestampFromApi', [$timestamp]));
+        $this->assertEquals('2016-08-15T06:35:09.000000001Z', $this->implementation->call('formatTimestampFromApi', [$timestamp]));
     }
 
     public function testFormatsLabels()

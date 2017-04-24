@@ -17,12 +17,12 @@
 
 namespace Google\Cloud\Tests\Unit\PubSub;
 
+use Google\Cloud\Core\Duration;
 use Google\Cloud\Core\Iterator\ItemIterator;
-use Google\Cloud\PubSub\Timestamp;
+use Google\Cloud\Core\Timestamp;
 use Google\Cloud\PubSub\Connection\ConnectionInterface;
 use Google\Cloud\PubSub\Connection\Grpc;
 use Google\Cloud\PubSub\Connection\Rest;
-use Google\Cloud\PubSub\Duration;
 use Google\Cloud\PubSub\Message;
 use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\PubSub\Snapshot;
