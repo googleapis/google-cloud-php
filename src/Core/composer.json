@@ -21,8 +21,7 @@
         }
     },
     "bin": [
-        "bin/google-cloud-batch-daemon",
-        "bin/google-cloud-batch-retry"
+        "bin/google-cloud-batch"
     ],
     "autoload": {
         "psr-4": {
