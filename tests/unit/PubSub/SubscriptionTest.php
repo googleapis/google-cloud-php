@@ -20,7 +20,7 @@ namespace Google\Cloud\Tests\Unit\PubSub;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Iam\Iam;
 use Google\Cloud\Core\Iterator\ItemIterator;
-use Google\Cloud\PubSUb\Timestamp;
+use Google\Cloud\Core\Timestamp;
 use Google\Cloud\PubSub\Connection\ConnectionInterface;
 use Google\Cloud\PubSub\Message;
 use Google\Cloud\PubSub\Snapshot;

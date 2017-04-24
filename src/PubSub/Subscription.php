@@ -18,7 +18,9 @@
 namespace Google\Cloud\PubSub;
 
 use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\Core\Duration;
 use Google\Cloud\Core\Iam\Iam;
+use Google\Cloud\Core\Timestamp;
 use Google\Cloud\PubSub\Connection\ConnectionInterface;
 use Google\Cloud\PubSub\Connection\IamSubscription;
 use Google\Cloud\PubSub\IncomingMessageTrait;

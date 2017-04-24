@@ -19,8 +19,10 @@ namespace Google\Cloud\PubSub;
 
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\ClientTrait;
+use Google\Cloud\Core\Duration;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
+use Google\Cloud\Core\Timestamp;
 use Google\Cloud\PubSub\Connection\Grpc;
 use Google\Cloud\PubSub\Connection\Rest;
 use InvalidArgumentException;
