@@ -55,7 +55,7 @@
         "league/json-guard": "^0.3",
         "erusev/parsedown": "^1.6",
         "vierbergenlars/php-semver": "^3.0",
-        "google/proto-client-php": "^0.11",
+        "google/proto-client-php": "^0.12",
         "google/gax": "^0.8"
     },
     "suggest": {
