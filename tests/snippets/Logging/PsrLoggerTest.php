@@ -171,7 +171,7 @@ class PsrLoggerTest extends SnippetTestCase
 
     public function testLog()
     {
-        $snippet = $this->snippetFromMethod(PsrLogger::class, 'log');
+        $snippet = $this->snippetFromMagicMethod(PsrLogger::class, 'log');
         $snippet->addLocal('psrLogger', $this->psr);
 
         $this->connection->writeEntries(Argument::that(function ($args) {
@@ -186,7 +186,7 @@ class PsrLoggerTest extends SnippetTestCase
 
     public function testLogPlaceholder()
     {
-        $snippet = $this->snippetFromMethod(PsrLogger::class, 'log', 1);
+        $snippet = $this->snippetFromMagicMethod(PsrLogger::class, 'log', 1);
         $snippet->addLocal('psrLogger', $this->psr);
 
         $this->connection->writeEntries(Argument::that(function ($args) {
@@ -202,7 +202,7 @@ class PsrLoggerTest extends SnippetTestCase
 
     public function testLogStackdriver()
     {
-        $snippet = $this->snippetFromMethod(PsrLogger::class, 'log', 2);
+        $snippet = $this->snippetFromMagicMethod(PsrLogger::class, 'log', 2);
         $snippet->addLocal('psrLogger', $this->psr);
 
         $this->connection->writeEntries(Argument::that(function ($args) {

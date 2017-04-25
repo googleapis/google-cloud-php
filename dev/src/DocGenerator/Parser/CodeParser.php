@@ -69,7 +69,11 @@ class CodeParser implements ParserInterface
     public function parse()
     {
         $this->reflector->process();
-        return $this->buildDocument($this->getReflector($this->reflector));
+        $reflector = $this->getReflector($this->reflector);
+
+        return $reflector
+            ? $this->buildDocument($reflector)
+            : null;
     }
 
     private function getReflector($fileReflector)
@@ -86,7 +90,7 @@ class CodeParser implements ParserInterface
             return $fileReflector->getTraits()[0];
         }
 
-        throw new \Exception('Could not get reflector for '. $this->fileName);
+        return null;
     }
 
     private function buildDocument($reflector)
