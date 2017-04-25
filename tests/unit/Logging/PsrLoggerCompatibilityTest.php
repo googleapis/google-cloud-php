@@ -26,7 +26,7 @@ use Prophecy\Argument;
 /**
  * @group logging
  */
-class PsrLoggerCompatabilityTest extends LoggerInterfaceTest
+class PsrLoggerCompatibilityTest extends LoggerInterfaceTest
 {
     public static $logs = [];
 
