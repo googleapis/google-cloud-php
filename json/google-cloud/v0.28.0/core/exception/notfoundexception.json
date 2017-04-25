@@ -1,0 +1,1 @@
+{"id":"core\/exception\/notfoundexception","type":"","title":"Google\\Cloud\\Core\\Exception\\NotFoundException","name":"NotFoundException","description":"<p>Exception thrown when a resource is not found.<\/p>","examples":[],"resources":[],"methods":[]}

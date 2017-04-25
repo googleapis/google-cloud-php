@@ -1,0 +1,1 @@
+{"id":"core\/exception\/serverexception","type":"","title":"Google\\Cloud\\Core\\Exception\\ServerException","name":"ServerException","description":"<p>Exception thrown when a request fails due to an error on the server.<\/p>\n<p>In REST context, this exception indicates a status code 500.<\/p>","examples":[],"resources":[],"methods":[]}
