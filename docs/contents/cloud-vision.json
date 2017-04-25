@@ -41,8 +41,8 @@
           "vision/v1/\\w{1,}"
         ],
         "nav": [{
-            "title": "VisionClient",
-            "type": "vision/v1/visionclient"
+            "title": "ImageAnnotatorClient",
+            "type": "vision/v1/imageannotatorclient"
         }]
     }]
 }
