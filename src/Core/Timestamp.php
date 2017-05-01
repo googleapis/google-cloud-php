@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\PubSub;
+namespace Google\Cloud\Core;
 
 /**
  * Represents a Timestamp value.
@@ -27,11 +27,10 @@ namespace Google\Cloud\PubSub;
  *
  * Example:
  * ```
- * use Google\Cloud\PubSub\PubSubClient;
+ * use Google\Cloud\Core\Timestamp;
  *
- * $pubsub = new PubSubClient();
+ * $timestamp = new Timestamp(new \DateTime('2003-02-05 11:15:02.421827Z'));
  *
- * $timestamp = $pubsub->timestamp(new \DateTime('2003-02-05 11:15:02.421827Z'));
  * ```
  *
  * ```

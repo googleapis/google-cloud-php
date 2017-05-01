@@ -314,6 +314,12 @@ class Grpc implements ConnectionInterface
             $entry['jsonPayload'] = $this->formatStructForApi($entry['jsonPayload']);
         }
 
+        if (isset($entry['timestamp'])) {
+            $entry['timestamp'] = $this->formatTimestampForApi($entry['timestamp']);
+        } else {
+            unset($entry['timestamp']);
+        }
+
         if (isset($entry['labels'])) {
             $entry['labels'] = $this->formatLabelsForApi($entry['labels']);
         }

@@ -58,7 +58,8 @@ class PsrLoggerTest extends \PHPUnit_Framework_TestCase
                     'severity' => array_flip(Logger::getLogLevelMap())[$level],
                     'jsonPayload' => ['message' => $this->textPayload],
                     'logName' => $this->formattedName,
-                    'resource' => $this->resource
+                    'resource' => $this->resource,
+                    'timestamp' => null
                 ]
             ]
         ])
@@ -66,7 +67,11 @@ class PsrLoggerTest extends \PHPUnit_Framework_TestCase
             ->shouldBeCalledTimes(1);
         $psrLogger = $this->getPsrLogger($this->connection);
 
-        $this->assertNull($psrLogger->$level($this->textPayload));
+        $this->assertNull(
+            $psrLogger->$level($this->textPayload, [
+                'stackdriverOptions' => ['timestamp' => null]
+            ])
+        );
     }
 
     public function levelProvider()
@@ -91,7 +96,8 @@ class PsrLoggerTest extends \PHPUnit_Framework_TestCase
                     'severity' => $this->severity,
                     'jsonPayload' => ['message' => $this->textPayload],
                     'logName' => $this->formattedName,
-                    'resource' => $this->resource
+                    'resource' => $this->resource,
+                    'timestamp' => null
                 ]
             ]
         ])
@@ -99,7 +105,11 @@ class PsrLoggerTest extends \PHPUnit_Framework_TestCase
             ->shouldBeCalledTimes(1);
         $psrLogger = $this->getPsrLogger($this->connection);
 
-        $this->assertNull($psrLogger->log($this->severity, $this->textPayload));
+        $this->assertNull(
+            $psrLogger->log($this->severity, $this->textPayload, [
+                'stackdriverOptions' => ['timestamp' => null]
+            ])
+        );
     }
 
     public function testPsrLoggerUsesDefaults()
@@ -113,7 +123,8 @@ class PsrLoggerTest extends \PHPUnit_Framework_TestCase
                     'jsonPayload' => ['message' => $this->textPayload],
                     'logName' => $this->formattedName,
                     'resource' => $resource,
-                    'labels' => $labels
+                    'labels' => $labels,
+                    'timestamp' => null
                 ]
             ]
         ])
@@ -121,7 +132,11 @@ class PsrLoggerTest extends \PHPUnit_Framework_TestCase
             ->shouldBeCalledTimes(1);
         $psrLogger = $this->getPsrLogger($this->connection, $resource, $labels);
 
-        $this->assertNull($psrLogger->log($this->severity, $this->textPayload));
+        $this->assertNull(
+            $psrLogger->log($this->severity, $this->textPayload, [
+                'stackdriverOptions' => ['timestamp' => null]
+            ])
+        );
     }
 
     public function testOverridePsrLoggerDefaults()
@@ -136,7 +151,8 @@ class PsrLoggerTest extends \PHPUnit_Framework_TestCase
                     'jsonPayload' => ['message' => $this->textPayload],
                     'logName' => $this->formattedName,
                     'resource' => $newResource,
-                    'labels' => $newLabels
+                    'labels' => $newLabels,
+                    'timestamp' => null
                 ]
             ]
         ])
@@ -148,7 +164,8 @@ class PsrLoggerTest extends \PHPUnit_Framework_TestCase
             $psrLogger->log($this->severity, $this->textPayload, [
                 'stackdriverOptions' => [
                     'resource' => $newResource,
-                    'labels' => $newLabels
+                    'labels' => $newLabels,
+                    'timestamp' => null
                 ]
             ])
         );
@@ -175,7 +192,8 @@ class PsrLoggerTest extends \PHPUnit_Framework_TestCase
                         'exception' => (string) $exception
                     ],
                     'logName' => $this->formattedName,
-                    'resource' => $this->resource
+                    'resource' => $this->resource,
+                    'timestamp' => null
                 ]
             ]
         ])
@@ -183,7 +201,8 @@ class PsrLoggerTest extends \PHPUnit_Framework_TestCase
             ->shouldBeCalledTimes(1);
         $psrLogger = $this->getPsrLogger($this->connection);
         $psrLogger->log($this->severity, $this->textPayload, [
-            'exception' => $exception
+            'exception' => $exception,
+            'stackdriverOptions' => ['timestamp' => null]
         ]);
     }
 
@@ -196,13 +215,16 @@ class PsrLoggerTest extends \PHPUnit_Framework_TestCase
                     'severity' => $this->severity,
                     'jsonPayload' => [$customKey => $this->textPayload],
                     'logName' => $this->formattedName,
-                    'resource' => $this->resource
+                    'resource' => $this->resource,
+                    'timestamp' => null
                 ]
             ]
         ])
             ->willReturn([])
             ->shouldBeCalledTimes(1);
         $psrLogger = $this->getPsrLogger($this->connection, null, null, $customKey);
-        $psrLogger->log($this->severity, $this->textPayload);
+        $psrLogger->log($this->severity, $this->textPayload, [
+            'stackdriverOptions' => ['timestamp' => null]
+        ]);
     }
 }

@@ -15,12 +15,12 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\PubSub;
+namespace Google\Cloud\Tests\Core;
 
-use Google\Cloud\PubSub\Timestamp;
+use Google\Cloud\Core\Timestamp;
 
 /**
- * @group pubsub
+ * @group core
  */
 class TimestampTest extends \PHPUnit_Framework_TestCase
 {

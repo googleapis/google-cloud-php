@@ -15,20 +15,18 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\PubSub;
+namespace Google\Cloud\Core;
 
 /**
  * Represents a Duration type.
  *
  * Example:
  * ```
- * use Google\Cloud\PubSub\PubSubClient;
- *
- * $pubsub = new PubSubClient();
+ * use Google\Cloud\Core\Duration;
  *
  * $seconds = 100;
  * $nanoSeconds = 1000;
- * $duration = $pubsub->duration($seconds, $nanoSeconds);
+ * $duration = new Duration($seconds, $nanoSeconds);
  * ```
  *
  * ```
