@@ -60,4 +60,13 @@ class EmptyMetadataProvider implements MetadataProviderInterface
     {
         return '';
     }
+
+    /**
+     * Return the labels.
+     * @return array
+     */
+    public function labels()
+    {
+        return [];
+    }
 }

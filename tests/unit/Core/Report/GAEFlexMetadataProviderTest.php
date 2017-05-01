@@ -24,26 +24,16 @@ use Google\Cloud\Core\Report\GAEFlexMetadataProvider;
  */
 class GAEFlexMetadataProviderTest extends \PHPUnit_Framework_TestCase
 {
-    use EnvTestTrait;
-
-    private $envs = ['GAE_SERVICE', 'GAE_VERSION', 'GCLOUD_PROJECT'];
-
-    public function setup()
-    {
-        $this->preserveEnvs($this->envs);
-    }
-
-    public function tearDown()
-    {
-        $this->restoreEnvs($this->envs);
-    }
+    private $envs = [
+        'GAE_SERVICE' => 'my-service',
+        'GAE_VERSION' => 'my-version',
+        'GCLOUD_PROJECT' => 'my-project',
+        'HTTP_X_CLOUD_TRACE_CONTEXT' => 'my-traceId'
+    ];
 
     public function testWithEnvs()
     {
-        $this->setEnv('GAE_SERVICE', 'my-service');
-        $this->setEnv('GAE_VERSION', 'my-version');
-        $this->setenv('GCLOUD_PROJECT', 'my-project');
-        $metadataProvider = new GAEFlexMetadataProvider();
+        $metadataProvider = new GAEFlexMetadataProvider($this->envs);
         $this->assertEquals(
             [
                 'type' => 'gae_app',
@@ -58,14 +48,17 @@ class GAEFlexMetadataProviderTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('my-project', $metadataProvider->projectId());
         $this->assertEquals('my-service', $metadataProvider->serviceId());
         $this->assertEquals('my-version', $metadataProvider->versionId());
+        $this->assertEquals(
+            [
+                'appengine.googleapis.com/trace_id' => 'my-traceId'
+            ],
+            $metadataProvider->labels()
+        );
     }
 
     public function testWithOutEnvs()
     {
-        $this->setEnv('GAE_SERVICE', false);
-        $this->setEnv('GAE_VERSION', false);
-        $this->setenv('GCLOUD_PROJECT', false);
-        $metadataProvider = new GAEFlexMetadataProvider();
+        $metadataProvider = new GAEFlexMetadataProvider([]);
         $this->assertEquals(
             [
                 'type' => 'gae_app',
@@ -83,5 +76,6 @@ class GAEFlexMetadataProviderTest extends \PHPUnit_Framework_TestCase
         );
         $this->assertEquals('unknown-service', $metadataProvider->serviceId());
         $this->assertEquals('unknown-version', $metadataProvider->versionId());
+        $this->assertEquals([], $metadataProvider->labels());
     }
 }

@@ -53,5 +53,10 @@ class EmptyMetadataProviderTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertEquals('', $this->metadataProvider->versionId());
     }
+
+    public function testLabels()
+    {
+        $this->assertEquals([], $this->metadataProvider->labels());
+    }
 }
 

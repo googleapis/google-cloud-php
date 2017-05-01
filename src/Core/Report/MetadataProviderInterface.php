@@ -47,4 +47,10 @@ interface MetadataProviderInterface
      * @return string
      */
     public function versionId();
+
+    /**
+     * Return the labels.
+     * @return array
+     */
+    public function labels();
 }

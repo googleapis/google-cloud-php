@@ -26,13 +26,24 @@ class GAEFlexMetadataProvider implements MetadataProviderInterface
     private $data;
 
     /**
-     * Use the environment variables for populate the values.
+     * @param array $server An array for holding the values. Normally just use
+     *              $_SERVER.
      */
-    public function __construct()
+    public function __construct(array $server)
     {
-        $projectId = getenv('GCLOUD_PROJECT') ?: 'unknown-projectid';
-        $serviceId = getenv('GAE_SERVICE') ?: 'unknown-service';
-        $versionId = getenv('GAE_VERSION') ?: 'unknown-version';
+        $projectId = isset($server['GCLOUD_PROJECT'])
+            ? $server['GCLOUD_PROJECT']
+            : 'unknown-projectid';
+        $serviceId = isset($server['GAE_SERVICE'])
+            ? $server['GAE_SERVICE']
+            : 'unknown-service';
+        $versionId = isset($server['GAE_VERSION'])
+            ? $server['GAE_VERSION']
+            : 'unknown-version';
+        $labels = isset($server['HTTP_X_CLOUD_TRACE_CONTEXT'])
+            ? ['appengine.googleapis.com/trace_id' =>
+               substr($server['HTTP_X_CLOUD_TRACE_CONTEXT'], 0, 32)]
+            : [];
         $this->data =
             [
                 'resource' => [
@@ -45,7 +56,8 @@ class GAEFlexMetadataProvider implements MetadataProviderInterface
                 ],
                 'projectId' => $projectId,
                 'serviceId' => $serviceId,
-                'versionId' => $versionId
+                'versionId' => $versionId,
+                'labels' => $labels
             ];
     }
 
@@ -85,5 +97,14 @@ class GAEFlexMetadataProvider implements MetadataProviderInterface
     public function versionId()
     {
         return $this->data['versionId'];
+    }
+
+    /**
+     * Return the labels.
+     * @return array
+     */
+    public function labels()
+    {
+        return $this->data['labels'];
     }
 }

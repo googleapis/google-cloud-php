@@ -28,17 +28,23 @@ class SimpleMetadataProvider implements MetadataProviderInterface
     /**
      * @param array $monitoredResource.
      * {@see https://cloud.google.com/logging/docs/reference/v2/rest/v2/MonitoredResource}
+     * @param string $projectId [optional] **Defaults to** ''
+     * @param string $serviceId [optional] **Defaults to** ''
+     * @param string $versionId [optional] **Defaults to** ''
+     * @param array $labels [optional] **Defaults to** []
      */
     public function __construct(
         $monitoredResource = [],
         $projectId = '',
         $serviceId = '',
-        $versionId = ''
+        $versionId = '',
+        $labels = []
     ) {
         $this->data['monitoredResource'] = $monitoredResource;
         $this->data['projectId'] = $projectId;
         $this->data['serviceId'] = $serviceId;
         $this->data['versionId'] = $versionId;
+        $this->data['labels'] = $labels;
     }
 
     /**
@@ -77,5 +83,14 @@ class SimpleMetadataProvider implements MetadataProviderInterface
     public function versionId()
     {
         return $this->data['versionId'];
+    }
+
+    /**
+     * Return the labels.
+     * @return array
+     */
+    public function labels()
+    {
+        return $this->data['labels'];
     }
 }
