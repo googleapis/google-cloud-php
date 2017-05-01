@@ -103,7 +103,7 @@ class PsrBatchLogger implements LoggerInterface
         $this->identifier = sprintf(self::ID_TEMPLATE, $this->logName);
         $this->metadataProvider = isset($options['metadataProvider'])
             ? $options['metadataProvider']
-            : MetadataProviderUtils::autoSelect();
+            : MetadataProviderUtils::autoSelect($_SERVER);
         $this->clientConfig = isset($options['clientConfig'])
             ? $options['clientConfig']
             : [];

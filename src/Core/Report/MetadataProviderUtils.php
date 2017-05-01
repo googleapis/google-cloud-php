@@ -25,12 +25,13 @@ class MetadataProviderUtils
     /**
      * Automatically choose the most appropriate MetadataProvider and return it.
      *
+     * @param array $server Normally pass the $_SERVER.
      * @return MetadataProviderInterface
      */
-    public static function autoSelect()
+    public static function autoSelect($server)
     {
-        if (getenv('GAE_SERVICE') !== false) {
-            return new GAEFlexMetadataProvider();
+        if (isset($server['GAE_SERVICE'])) {
+            return new GAEFlexMetadataProvider($server);
         }
         return new EmptyMetadataProvider();
     }

@@ -26,30 +26,16 @@ use Google\Cloud\Core\Report\MetadataProviderUtils;
  */
 class MetadataProviderUtilsTest extends \PHPUnit_Framework_TestCase
 {
-    use EnvTestTrait;
-
-    private $envs = ['GAE_SERVICE'];
-
-    public function setup()
-    {
-        $this->preserveEnvs($this->envs);
-    }
-
-    public function tearDown()
-    {
-        $this->restoreEnvs($this->envs);
-    }
+    private $envs = ['GAE_SERVICE' => 'my-service'];
 
     public function testAutoSelect()
     {
-        $this->setEnv('GAE_SERVICE', 'my-service');
-        $metadataProvider = MetadataProviderUtils::autoSelect();
+        $metadataProvider = MetadataProviderUtils::autoSelect($this->envs);
         $this->assertInstanceOf(
             GaeFlexMetadataProvider::class,
             $metadataProvider
         );
-        $this->setEnv('GAE_SERVICE', false);
-        $metadataProvider = MetadataProviderUtils::autoSelect();
+        $metadataProvider = MetadataProviderUtils::autoSelect([]);
         $this->assertInstanceOf(
             EmptyMetadataProvider::class,
             $metadataProvider

@@ -34,13 +34,16 @@ class SimpleMetadataProviderTest extends \PHPUnit_Framework_TestCase
 
     private $versionId = 'my-version';
 
+    private $labels = ['key' => 'value'];
+
     public function setup()
     {
         $this->metadataProvider = new SimpleMetadataProvider(
             $this->monitoredResource,
             $this->projectId,
             $this->serviceId,
-            $this->versionId
+            $this->versionId,
+            $this->labels
         );
     }
 
@@ -73,6 +76,14 @@ class SimpleMetadataProviderTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(
             $this->versionId,
             $this->metadataProvider->versionId()
+        );
+    }
+
+    public function testLabels()
+    {
+        $this->assertEquals(
+            $this->labels,
+            $this->metadataProvider->labels()
         );
     }
 }
