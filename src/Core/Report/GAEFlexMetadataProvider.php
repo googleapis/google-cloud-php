@@ -40,10 +40,6 @@ class GAEFlexMetadataProvider implements MetadataProviderInterface
         $versionId = isset($server['GAE_VERSION'])
             ? $server['GAE_VERSION']
             : 'unknown-version';
-        $labels = isset($server['HTTP_X_CLOUD_TRACE_CONTEXT'])
-            ? ['appengine.googleapis.com/trace_id' =>
-               substr($server['HTTP_X_CLOUD_TRACE_CONTEXT'], 0, 32)]
-            : [];
         $this->data =
             [
                 'resource' => [
@@ -56,8 +52,7 @@ class GAEFlexMetadataProvider implements MetadataProviderInterface
                 ],
                 'projectId' => $projectId,
                 'serviceId' => $serviceId,
-                'versionId' => $versionId,
-                'labels' => $labels
+                'versionId' => $versionId
             ];
     }
 
@@ -100,11 +95,16 @@ class GAEFlexMetadataProvider implements MetadataProviderInterface
     }
 
     /**
-     * Return the labels.
+     * Return the labels. We need to evaluate $_SERVER for each request.
      * @return array
      */
     public function labels()
     {
-        return $this->data['labels'];
+        if (isset($_SERVER['HTTP_X_CLOUD_TRACE_CONTEXT'])) {
+            return ['appengine.googleapis.com/trace_id' =>
+                    substr($_SERVER['HTTP_X_CLOUD_TRACE_CONTEXT'], 0, 32)];
+        } else {
+            return [];
+        }
     }
 }
