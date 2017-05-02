@@ -127,6 +127,17 @@ class PsrBatchLogger implements LoggerInterface
     }
 
     /**
+     * Return additional labels. Now it returns labels for log request
+     * correlation.
+     *
+     * @return array
+     */
+    protected function getLabels()
+    {
+        return $this->metadataProvider->labels();
+    }
+
+    /**
      * Return a Logger object for the current logName.
      *
      * @return Logger

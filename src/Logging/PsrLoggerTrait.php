@@ -34,6 +34,16 @@ trait PsrLoggerTrait
     protected abstract function getLogger();
 
     /**
+     * Return common labels for each log entry.
+     *
+     * @return array
+     */
+    protected function getLabels()
+    {
+        return [];
+    }
+
+    /**
      * Log an emergency entry.
      *
      * @param string $message The message to log.
@@ -197,7 +207,7 @@ trait PsrLoggerTrait
             $jsonPayload + $processedData['context'],
             $options + [
                 'severity' => $level
-            ]
+            ] + $this->getLabels()
         );
         $this->sendEntry($entry);
     }
