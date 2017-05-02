@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Logging;
 
+use Google\Cloud\Core\Report\MetadataProviderInterface;
+use Google\Cloud\Core\Report\MetadataProviderUtils;
 use Monolog\Formatter\NormalizerFormatter;
 use Monolog\Processor\PsrLogMessageProcessor;
 use Psr\Log\InvalidArgumentException;
@@ -229,11 +231,22 @@ class PsrLogger implements LoggerInterface
      * @param Logger $logger The logger used to write entries.
      * @param string $messageKey The key in the `jsonPayload` used to contain
      *        the logged message. **Defaults to** `message`.
+     * @param array $options [optional] {
+     *     Configuration options.
+     *     @type MetadataProviderInterface $metadataProvider
+     *           **Defaults to null** If null, it will be automatically chosen.
+     * }
      */
-    public function __construct(Logger $logger, $messageKey = 'message')
-    {
+    public function __construct(
+        Logger $logger,
+        $messageKey = 'message',
+        array $options = []
+    ) {
         $this->logger = $logger;
         $this->messageKey = $messageKey;
+        $this->metadataProvider = isset($options['metadataProvider'])
+            ? $options['metadataProvider']
+            : MetadataProviderUtils::autoSelect($_SERVER);
     }
 
     /**
