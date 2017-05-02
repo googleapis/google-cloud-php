@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Logging;
 
+use Google\Cloud\Core\Report\MetadataProviderInterface;
 use Monolog\Formatter\NormalizerFormatter;
 use Monolog\Processor\PsrLogMessageProcessor;
 use Psr\Log\InvalidArgumentException;
