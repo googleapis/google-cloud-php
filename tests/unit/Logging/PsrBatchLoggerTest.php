@@ -79,9 +79,10 @@ class PsrBatchLoggerTest extends \PHPUnit_Framework_TestCase
         $expectedLabels
     ) {
         if (empty($traceId)) {
+            $server = [];
             unset($_SERVER['HTTP_X_CLOUD_TRACE_CONTEXT']);
         } else {
-            $_SERVER['HTTP_X_CLOUD_TRACE_CONTEXT'] = $traceId;
+            $server = ['HTTP_X_CLOUD_TRACE_CONTEXT' => $traceId];
         }
         $this->runner->submitItem(
             'stackdriver-logging-my-log', Argument::any()
@@ -98,7 +99,7 @@ class PsrBatchLoggerTest extends \PHPUnit_Framework_TestCase
             'my-log',
             [
                 'batchRunner' => $this->runner->reveal(),
-                'metadataProvider' => new GaeFlexMetadataProvider([])
+                'metadataProvider' => new GaeFlexMetadataProvider($server)
             ]
         );
         $psrBatchLogger->info(

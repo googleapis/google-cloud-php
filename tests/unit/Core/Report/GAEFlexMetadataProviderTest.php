@@ -28,11 +28,11 @@ class GAEFlexMetadataProviderTest extends \PHPUnit_Framework_TestCase
         'GAE_SERVICE' => 'my-service',
         'GAE_VERSION' => 'my-version',
         'GCLOUD_PROJECT' => 'my-project',
+        'HTTP_X_CLOUD_TRACE_CONTEXT' => 'my-traceId'
     ];
 
     public function testWithEnvs()
     {
-        $_SERVER['HTTP_X_CLOUD_TRACE_CONTEXT'] = 'my-traceId';
         $metadataProvider = new GAEFlexMetadataProvider($this->envs);
         $this->assertEquals(
             [
@@ -58,7 +58,6 @@ class GAEFlexMetadataProviderTest extends \PHPUnit_Framework_TestCase
 
     public function testWithOutEnvs()
     {
-        unset($_SERVER['HTTP_X_CLOUD_TRACE_CONTEXT']);
         $metadataProvider = new GAEFlexMetadataProvider([]);
         $this->assertEquals(
             [
