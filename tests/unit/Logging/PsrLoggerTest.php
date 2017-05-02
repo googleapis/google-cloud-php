@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Tests\Unit\Logging;
 
+use Google\Cloud\Core\Report\EmptyMetadataProvider;
 use Google\Cloud\Logging\Logger;
 use Google\Cloud\Logging\PsrLogger;
 use Google\Cloud\Logging\Connection\ConnectionInterface;
@@ -44,7 +45,7 @@ class PsrLoggerTest extends \PHPUnit_Framework_TestCase
     public function getPsrLogger($connection, array $resource = null, array $labels = null, $messageKey = 'message')
     {
         $logger = new Logger($connection->reveal(), $this->logName, $this->projectId, $resource, $labels);
-        return new PsrLogger($logger, $messageKey);
+        return new PsrLogger($logger, $messageKey, ['metadataProvider' => new EmptyMetadataProvider()]);
     }
 
     /**

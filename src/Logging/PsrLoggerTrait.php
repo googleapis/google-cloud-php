@@ -26,6 +26,9 @@ use Psr\Log\InvalidArgumentException;
  */
 trait PsrLoggerTrait
 {
+    /** @var MetadataProviderInterface */
+    private $metadataProvider;
+
     /**
      * Return a Logger for sending logs.
      *
@@ -34,13 +37,24 @@ trait PsrLoggerTrait
     protected abstract function getLogger();
 
     /**
-     * Return common labels for each log entry.
+     * Return additional labels. Now it returns labels for log request
+     * correlation.
      *
      * @return array
      */
     protected function getLabels()
     {
-        return [];
+        return $this->metadataProvider->labels();
+    }
+
+    /**
+     * Return the MetadataProvider.
+     *
+     * @return MetadataProviderInterface
+     */
+    public function getMetadataProvider()
+    {
+        return $this->metadataProvider;
     }
 
     /**
@@ -210,6 +224,14 @@ trait PsrLoggerTrait
                 (isset($options['labels'])
                  ? $options['labels']
                  : []) + $labels;
+        }
+        // Adding MonitoredResource
+        $resource = $this->metadataProvider->monitoredResource();
+        if (! empty($resource)) {
+            $options['resource'] =
+                (isset($options['resource'])
+                 ? $options['resource']
+                 : []) + $resource;
         }
         $entry = $this->getLogger()->entry(
             $jsonPayload + $processedData['context'],

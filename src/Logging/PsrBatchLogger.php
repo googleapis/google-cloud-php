@@ -58,9 +58,6 @@ class PsrBatchLogger implements LoggerInterface
     /** @var string */
     private $logName;
 
-    /** @var MetadataProviderInterface */
-    private $metadataProvider;
-
     /** @var BatchRunner */
     private $batchRunner;
 
@@ -127,17 +124,6 @@ class PsrBatchLogger implements LoggerInterface
     }
 
     /**
-     * Return additional labels. Now it returns labels for log request
-     * correlation.
-     *
-     * @return array
-     */
-    protected function getLabels()
-    {
-        return $this->metadataProvider->labels();
-    }
-
-    /**
      * Return a Logger object for the current logName.
      *
      * @return Logger
@@ -146,25 +132,9 @@ class PsrBatchLogger implements LoggerInterface
     {
         if (!array_key_exists($this->logName, self::$loggers)) {
             $c = new LoggingClient($this->clientConfig);
-            $resource = $this->metadataProvider->monitoredResource();
-            if (empty($resource)) {
-                self::$loggers[$this->logName] = $c->logger($this->logName);
-            } else {
-                self::$loggers[$this->logName] =
-                    $c->logger($this->logName, ['resource' => $resource]);
-            }
+            self::$loggers[$this->logName] = $c->logger($this->logName);
         }
         return self::$loggers[$this->logName];
-    }
-
-    /**
-     * Return the MetadataProvider.
-     *
-     * @return MetadataProviderInterface
-     */
-    public function getMetadataProvider()
-    {
-        return $this->metadataProvider;
     }
 
     /**
