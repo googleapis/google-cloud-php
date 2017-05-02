@@ -203,11 +203,19 @@ trait PsrLoggerTrait
         ]);
         $jsonPayload = [$this->messageKey => $processedData['message']];
 
+        // Adding labels for log request correlation.
+        $labels = $this->getLabels();
+        if (! empty($labels)) {
+            $options['labels'] =
+                (isset($options['labels'])
+                 ? $options['labels']
+                 : []) + $labels;
+        }
         $entry = $this->getLogger()->entry(
             $jsonPayload + $processedData['context'],
             $options + [
                 'severity' => $level
-            ] + $this->getLabels()
+            ]
         );
         $this->sendEntry($entry);
     }
