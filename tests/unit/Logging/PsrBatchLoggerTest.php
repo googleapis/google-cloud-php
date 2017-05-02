@@ -18,6 +18,7 @@
 namespace Google\Cloud\Tests\Unit\Logging;
 
 use Google\Cloud\Core\Batch\BatchRunner;
+use Google\Cloud\Core\Report\GAEFlexMetadataProvider;
 use Google\Cloud\Logging\Entry;
 use Google\Cloud\Logging\Logger;
 use Google\Cloud\Logging\LoggingClient;
@@ -70,6 +71,43 @@ class PsrBatchLoggerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @dataProvider traceIdProvider
+     */
+    public function testTraceIdLabelOnGAEFlex(
+        $traceId,
+        $labels,
+        $expectedLabels
+    ) {
+        if (empty($traceId)) {
+            unset($_SERVER['HTTP_X_CLOUD_TRACE_CONTEXT']);
+        } else {
+            $_SERVER['HTTP_X_CLOUD_TRACE_CONTEXT'] = $traceId;
+        }
+        $this->runner->submitItem(
+            'stackdriver-logging-my-log', Argument::any()
+        )
+            ->will(function($args) {
+                self::$logName = $args[0];
+                self::$entry = $args[1];
+            })
+            ->shouldBeCalledTimes(1);
+        $this->runner->registerJob(
+            Argument::any(), Argument::any(), Argument::any()
+        )->willReturn(true);
+        $psrBatchLogger = new PsrBatchLogger(
+            'my-log',
+            ['batchRunner' => $this->runner->reveal()]
+        );
+        $psrBatchLogger->info(
+            'test log',
+            ['stackdriverOptions' => ['labels' => $labels]]
+        );
+        $this->assertEquals('stackdriver-logging-my-log', self::$logName);
+        $info = self::$entry->info();
+        $this->assertEquals($expectedLabels, $info['labels']);
+    }
+
+    /**
      * @dataProvider levelProvider
      */
     public function testWritesEntryWithLevels($level)
@@ -87,7 +125,10 @@ class PsrBatchLoggerTest extends \PHPUnit_Framework_TestCase
         )->willReturn(true);
         $psrBatchLogger = new PsrBatchLogger(
             'my-log',
-            ['batchRunner' => $this->runner->reveal()]
+            [
+                'batchRunner' => $this->runner->reveal(),
+                'metadataProvider' => new GaeFlexMetadataProvider([])
+            ]
         );
         $psrBatchLogger->$level('test log');
         $this->assertEquals('stackdriver-logging-my-log', self::$logName);
@@ -96,6 +137,30 @@ class PsrBatchLoggerTest extends \PHPUnit_Framework_TestCase
             array_flip(Logger::getLogLevelMap())[$level],
             $info['severity']
         );
+    }
+
+    public function traceIdProvider()
+    {
+        return [
+            [
+                '',
+                [],
+                [],
+            ],
+            [
+                str_repeat('x', 32),
+                [],
+                ['appengine.googleapis.com/trace_id' => str_repeat('x', 32)]
+            ],
+            [
+                str_repeat('x', 32),
+                ['myKey' => 'myVal'],
+                [
+                    'appengine.googleapis.com/trace_id' => str_repeat('x', 32),
+                    'myKey' => 'myVal'
+                ]
+            ],
+        ];
     }
 
     public function optionProvider()
