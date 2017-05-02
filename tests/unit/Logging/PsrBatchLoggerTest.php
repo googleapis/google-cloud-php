@@ -96,7 +96,10 @@ class PsrBatchLoggerTest extends \PHPUnit_Framework_TestCase
         )->willReturn(true);
         $psrBatchLogger = new PsrBatchLogger(
             'my-log',
-            ['batchRunner' => $this->runner->reveal()]
+            [
+                'batchRunner' => $this->runner->reveal(),
+                'metadataProvider' => new GaeFlexMetadataProvider([])
+            ]
         );
         $psrBatchLogger->info(
             'test log',
@@ -125,10 +128,7 @@ class PsrBatchLoggerTest extends \PHPUnit_Framework_TestCase
         )->willReturn(true);
         $psrBatchLogger = new PsrBatchLogger(
             'my-log',
-            [
-                'batchRunner' => $this->runner->reveal(),
-                'metadataProvider' => new GaeFlexMetadataProvider([])
-            ]
+            ['batchRunner' => $this->runner->reveal()]
         );
         $psrBatchLogger->$level('test log');
         $this->assertEquals('stackdriver-logging-my-log', self::$logName);
