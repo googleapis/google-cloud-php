@@ -65,12 +65,20 @@ interface TracerInterface
     public function spans();
 
     /**
-     * Add a label to the primary TraceSpan
+     * Add a label to the current TraceSpan
      *
      * @param string $label
      * @param string $value
      */
     public function addLabel($label, $value);
+
+    /**
+     * Add a label to the primary TraceSpan
+     *
+     * @param string $label
+     * @param string $value
+     */
+    public function addRootLabel($label, $value);
 
     /**
      * Whether or not this tracer is enabled.

@@ -97,6 +97,8 @@ class ContextTracer implements TracerInterface
 
     /**
      * Finish the current context's Span.
+     *
+     * @return bool
      */
     public function endSpan()
     {
@@ -104,7 +106,9 @@ class ContextTracer implements TracerInterface
         $this->context->setSpanId(empty($this->stack) ? null : $this->stack[0]->spanId());
         if ($span) {
             $span->setEnd();
+            return true;
         }
+        return false;
     }
 
     /**
@@ -128,12 +132,25 @@ class ContextTracer implements TracerInterface
     }
 
     /**
-     * Add a label to the primary TraceSpan
+     * Add a label to the current TraceSpan
      *
      * @param string $label
      * @param string $value
      */
     public function addLabel($label, $value)
+    {
+        if (!empty($this->stack)) {
+            $this->stack[0]->addLabel($label, $value);
+        }
+    }
+
+    /**
+     * Add a label to the primary TraceSpan
+     *
+     * @param string $label
+     * @param string $value
+     */
+    public function addRootLabel($label, $value)
     {
         if (!empty($this->spans)) {
             $this->spans[0]->addLabel($label, $value);

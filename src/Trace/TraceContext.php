@@ -100,16 +100,6 @@ class TraceContext
     }
 
     /**
-     * Set the current traceId.
-     *
-     * @param string $traceId The traceId to set.
-     */
-    public function setTraceId($traceId)
-    {
-        $this->traceId = $traceId;
-    }
-
-    /**
      * Fetch the current spanId.
      *
      * @return string

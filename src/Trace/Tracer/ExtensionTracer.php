@@ -30,11 +30,6 @@ class ExtensionTracer implements TracerInterface
     use ArrayTrait;
 
     /**
-     * @var TraceContext The current context of this tracer.
-     */
-    private $context;
-
-    /**
      * Create a new ContextTracer
      *
      * @param TraceContext $context [optional] The TraceContext to begin with. If none
@@ -57,12 +52,11 @@ class ExtensionTracer implements TracerInterface
      */
     public function inSpan(array $spanOptions, callable $callable, array $arguments = [])
     {
-        $name = $this->pluck('name', $spanOptions, false) ?: $this->generateSpanName();
-        stackdriver_trace_begin($name, $spanOptions);
+        $this->startSpan($spanOptions);
         try {
             return call_user_func_array($callable, $arguments);
         } finally {
-            stackdriver_trace_finish();
+            $this->endSpan();
         }
     }
 
@@ -80,6 +74,8 @@ class ExtensionTracer implements TracerInterface
 
     /**
      * Finish the current context's Span.
+     *
+     * @return bool
      */
     public function endSpan()
     {

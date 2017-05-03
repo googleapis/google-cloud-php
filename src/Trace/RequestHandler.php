@@ -127,13 +127,13 @@ class RequestHandler
         if ($responseCode == 301 || $responseCode == 302) {
             foreach (headers_list() as $header) {
                 if (substr($header, 0, 9) == "Location:") {
-                    $this->tracer->addLabel(self::HTTP_REDIRECTED_URL, substr($header, 10));
+                    $this->tracer->addRootLabel(self::HTTP_REDIRECTED_URL, substr($header, 10));
                     break;
                 }
             }
         }
 
-        $this->tracer->addLabel(self::HTTP_STATUS_CODE, $responseCode);
+        $this->tracer->addRootLabel(self::HTTP_STATUS_CODE, $responseCode);
 
         // close all open spans
         do {
