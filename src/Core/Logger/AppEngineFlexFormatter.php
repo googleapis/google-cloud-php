@@ -31,7 +31,7 @@ class AppEngineFlexFormatter extends LineFormatter
      * @param string $dateFormat [optional] The format of the timestamp
      * @param bool $ignoreEmptyContextAndExtra [optional]
      */
-    public function __construct($format = null, $dateFormat = null, $ignoreEmptyContextAndExtra = false)
+    public function __construct($format = '%message%', $dateFormat = null, $ignoreEmptyContextAndExtra = false)
     {
         parent::__construct($format, $dateFormat, true, $ignoreEmptyContextAndExtra);
     }
@@ -56,6 +56,12 @@ class AppEngineFlexFormatter extends LineFormatter
             'thread' => '',
             'severity' => $record['level_name'],
         ];
+        if (!empty($record['context'])) {
+            $payload['context'] = $record['context'];
+        }
+        if (!empty($record['extra'])) {
+            $payload['extra'] = $record['extra'];
+        }
         if (isset($_SERVER['HTTP_X_CLOUD_TRACE_CONTEXT'])) {
             $payload['traceId'] = explode(
                 "/",
