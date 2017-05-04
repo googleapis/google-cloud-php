@@ -36,8 +36,6 @@ class EchoReporterTest extends \PHPUnit_Framework_TestCase
 
     public function testLogsTrace()
     {
-        $tempfile = tempnam(sys_get_temp_dir(), 'report');
-
         $spans = [
             new TraceSpan([
                 'name' => 'span',
@@ -49,7 +47,7 @@ class EchoReporterTest extends \PHPUnit_Framework_TestCase
         $this->tracer->spans()->willReturn($spans);
 
         ob_start();
-        $reporter = new EchoReporter($this->filename);
+        $reporter = new EchoReporter();
         $this->assertTrue($reporter->report($this->tracer->reveal()));
         $output = ob_get_contents();
         ob_end_clean();
