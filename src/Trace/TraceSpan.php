@@ -122,6 +122,18 @@ class TraceSpan implements \JsonSerializable
     }
 
     /**
+     * Retrieve the ID of this span's parent if it exists.
+     *
+     * @return string
+     */
+    public function parentSpanId()
+    {
+        return array_key_exists('parentSpanId', $this->info)
+            ? $this->info['parentSpanId']
+            : null;
+    }
+
+    /**
      * Retrieve the name of this span.
      *
      * @return string
