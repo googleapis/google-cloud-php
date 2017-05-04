@@ -52,7 +52,7 @@ class ClientTraitTest extends \PHPUnit_Framework_TestCase
             [
                 [true, true],
                 [],
-                'grpc'
+                'rest'
             ],
             [
                 [false, false],
@@ -63,6 +63,11 @@ class ClientTraitTest extends \PHPUnit_Framework_TestCase
                 [false, true],
                 [],
                 'rest'
+            ],
+            [
+                [true, true],
+                ['transport' => 'grpc'],
+                'grpc'
             ]
         ];
     }
