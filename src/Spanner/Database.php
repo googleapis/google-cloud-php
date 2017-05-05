@@ -1303,8 +1303,8 @@ class Database
     /**
      * Create a new session.
      *
-     * Sessions are handled behind the scenes and this method not need to be
-     * called directly.
+     * Sessions are handled behind the scenes and this method does not need to
+     * be called directly.
      *
      * @access private
      * @param array $options [optional] Configuration options.
@@ -1324,8 +1324,8 @@ class Database
      * point. To see the operations that can be performed on a session please
      * see {@see Google\Cloud\Spanner\Session\Session}.
      *
-     * Sessions are handled behind the scenes and this method not need to be
-     * called directly.
+     * Sessions are handled behind the scenes and this method does not need to
+     * be called directly.
      *
      * @access private
      * @param string $name The session's name.

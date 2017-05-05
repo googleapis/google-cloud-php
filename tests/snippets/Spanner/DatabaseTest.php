@@ -378,8 +378,7 @@ class DatabaseTest extends SnippetTestCase
                     'rowType' => [
                         'fields' => []
                     ]
-                ],
-                'values' => []
+                ]
             ]));
 
         $this->stubOperation();

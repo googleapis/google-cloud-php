@@ -414,10 +414,8 @@ class Grpc implements ConnectionInterface
     {
         $params = $this->pluck('params', $args);
         if ($params) {
-            // print_r($this->formatStructForApi($params));
             $args['params'] = (new protobuf\Struct)
                 ->deserialize($this->formatStructForApi($params), $this->codec);
-            // var_dump($args['params']);exit;
         }
 
         if (isset($args['paramTypes']) && is_array($args['paramTypes'])) {

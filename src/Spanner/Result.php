@@ -17,7 +17,9 @@
 
 namespace Google\Cloud\Spanner;
 
+use Grpc;
 use Google\Cloud\Core\Exception\ServiceException;
+use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\Timestamp;
@@ -39,15 +41,17 @@ use Google\Cloud\Spanner\Timestamp;
  */
 class Result implements \IteratorAggregate
 {
-    /**
-     * @var array|null
-     */
-    private $cachedValues;
+    const BUFFER_RESULT_LIMIT = 10;
 
     /**
      * @var array
      */
     private $columns = [];
+
+    /**
+     * @var int
+     */
+    private $columnCount;
 
     /**
      * @var ValueMapper
@@ -63,6 +67,11 @@ class Result implements \IteratorAggregate
      * @var Operation
      */
     private $operation;
+
+    /**
+     * @var int
+     */
+    private $retries;
 
     /**
      * @var string|null
@@ -100,25 +109,29 @@ class Result implements \IteratorAggregate
      * @param \Generator $resultGenerator Reads rows from Google Cloud Spanner.
      * @param string $transactionContext The transaction's context.
      * @param ValueMapper $mapper Maps values.
+     * @param int $retries Number of attempts to resume a broken stream, assuming
+     *        a resume token is present. **Defaults to** 3.
      */
     public function __construct(
         Operation $operation,
         Session $session,
         callable $call,
         $transactionContext,
-        ValueMapper $mapper
+        ValueMapper $mapper,
+        $retries = 3
     ) {
         $this->operation = $operation;
         $this->session = $session;
         $this->call = $call;
         $this->transactionContext = $transactionContext;
         $this->mapper = $mapper;
+        $this->retries = $retries;
     }
 
     /**
-     * Return the formatted and decoded rows.
-     *
-     * If the stream is interrupted an attempt will be made to resume.
+     * Return the formatted and decoded rows. If the stream is interrupted and
+     * a resume token is available, attempts will be made on your behalf to
+     * resume.
      *
      * Example:
      * ```
@@ -129,20 +142,67 @@ class Result implements \IteratorAggregate
      */
     public function rows()
     {
+        $bufferedResults = [];
         $call = $this->call;
+        $generator = $call();
+        $shouldRetry = false;
 
-        try {
-            foreach ($this->getRows($call()) as $row) {
-                yield $row;
-            }
-        } catch (ServiceException $ex) {
-            if (!$this->resumeToken) {
+        while ($generator->valid()) {
+            try {
+                $result = $generator->current();
+                $bufferedResults[] = $result;
+                $this->setResultData($result);
+
+                if (!isset($result['values'])) {
+                    return;
+                }
+
+                if (isset($result['resumeToken']) || count($bufferedResults) >= self::BUFFER_RESULT_LIMIT) {
+                    list($yieldableRows, $chunkedResult) = $this->parseRowsFromBufferedResults($bufferedResults);
+
+                    foreach ($yieldableRows as $row) {
+                        yield $this->mapper->decodeValues($this->columns, $row);
+                    }
+
+                    // Now that we've yielded all available rows, flush the buffer.
+                    $bufferedResults = [];
+                    $shouldRetry = isset($result['resumeToken'])
+                        ? true
+                        : false;
+
+                    // If the last item in the buffer had a chunked value let's
+                    // hold on to it so we can stitch it together into a yieldable
+                    // result.
+                    if ($chunkedResult) {
+                        $bufferedResults[] = $chunkedResult;
+                    }
+                }
+
+                $generator->next();
+            } catch (\Exception $ex) {
+                if ($shouldRetry && $ex->getCode() === Grpc\STATUS_UNAVAILABLE) {
+                    $backoff = new ExponentialBackoff($this->retries, function (\Exception $ex) {
+                        return $ex->getCode() === Grpc\STATUS_UNAVAILABLE
+                            ? true
+                            : false;
+                    });
+
+                    // Attempt to resume using our last stored resume token. If we
+                    // successfully resume, flush the buffer.
+                    $generator = $backoff->execute($call, [$this->resumeToken]);
+                    $bufferedResults = [];
+                }
+
                 throw $ex;
             }
+        }
 
-            // If we have a token, attempt to resume
-            foreach ($this->getRows($call($this->resumeToken)) as $row) {
-                yield $row;
+        // If there are any results remaining in the buffer, yield them.
+        if ($bufferedResults) {
+            list($yieldableRows, $chunkedResult) = $this->parseRowsFromBufferedResults($bufferedResults);
+
+            foreach ($yieldableRows as $row) {
+                yield $this->mapper->decodeValues($this->columns, $row);
             }
         }
     }
@@ -230,6 +290,7 @@ class Result implements \IteratorAggregate
 
     /**
      * @access private
+     * @return \Generator
      */
     public function getIterator()
     {
@@ -237,91 +298,100 @@ class Result implements \IteratorAggregate
     }
 
     /**
-     * Yields rows from a partial result set.
-     *
-     * @return \Generator
+     * @param array $bufferedResults
+     * @return array
      */
-    private function getRowsFromPartial(array $partial)
+    private function parseRowsFromBufferedResults(array $bufferedResults)
     {
-        $this->stats = isset($partial['stats']) ? $partial['stats'] : null;
-        $this->resumeToken = isset($partial['resumeToken']) ? $partial['resumeToken'] : null;
+        $values = [];
+        $chunkedResult = null;
+        $shouldMergeValues = isset($bufferedResults[0]['chunkedValue']);
 
-        if (isset($partial['metadata'])) {
-            $this->metadata = $partial['metadata'];
-            $this->columns = $partial['metadata']['rowType']['fields'];
+        foreach ($bufferedResults as $key => $result) {
+            if ($key === 0) {
+                $values = $bufferedResults[0]['values'];
+                continue;
+            }
+
+            $values = $shouldMergeValues
+                ? $this->mergeValues($values, $result['values'])
+                : array_merge($values, $result['values']);
+            $shouldMergeValues = (isset($result['chunkedValue']))
+                ? true
+                : false;
         }
 
-        if (isset($partial['metadata']['transaction']['id'])) {
+        $yieldableRows = array_chunk($values, $this->columnCount);
+
+        if (isset($result['chunkedValue'])) {
+            $chunkedResult = [
+                'values' => array_pop($yieldableRows),
+                'chunkedValue' => true
+            ];
+        }
+
+        return [
+            $yieldableRows,
+            $chunkedResult
+        ];
+    }
+
+    /**
+     * @param array $result
+     */
+    private function setResultData(array $result)
+    {
+        $this->stats = isset($result['stats'])
+            ? $result['stats']
+            : null;
+
+        if (isset($result['resumeToken'])) {
+            $this->resumeToken = $result['resumeToken'];
+        }
+
+        if (isset($result['metadata'])) {
+            $this->metadata = $result['metadata'];
+            $this->columns = $result['metadata']['rowType']['fields'];
+            $this->columnCount = count($this->columns);
+        }
+
+        if (isset($result['metadata']['transaction']['id'])) {
             if ($this->transactionContext === SessionPoolInterface::CONTEXT_READ) {
                 $this->snapshot = $this->operation->createSnapshot(
                     $this->session,
-                    $partial['metadata']['transaction']
+                    $result['metadata']['transaction']
                 );
             } else {
                 $this->transaction = $this->operation->createTransaction(
                     $this->session,
-                    $partial['metadata']['transaction']
+                    $result['metadata']['transaction']
                 );
             }
-        }
-
-        if ($this->cachedValues) {
-            $partial['values'] = $this->mergeValues($this->cachedValues, $partial['values']);
-            $this->cachedValues = null;
-        }
-
-        if (isset($partial['chunkedValue'])) {
-            $this->cachedValues = $partial['values'];
-            return;
-        }
-
-        $rows = [];
-        $columnCount = count($this->columns);
-
-        if ($columnCount > 0 && isset($partial['values'])) {
-            $rows = array_chunk($partial['values'], $columnCount);
-        }
-
-        foreach ($rows as $row) {
-            yield $this->mapper->decodeValues($this->columns, $row);
         }
     }
 
     /**
      * Merge result set values together.
      *
-     * @param array $cached
-     * @param array $new
-     * @return mixed
+     * @param array $set1
+     * @param array $set2
+     * @return array
      */
-    private function mergeValues(array $cached, array $new)
+    private function mergeValues(array $set1, array $set2)
     {
-        $lastCachedItem = array_pop($cached);
-        $firstNewItem = array_shift($new);
-        $item = $firstNewItem;
+        $lastItemSet1 = array_pop($set1);
+        $firstItemSet2 = array_shift($set2);
+        $item = $firstItemSet2;
 
-        if (is_string($lastCachedItem) && is_string($firstNewItem)) {
-            $item = $lastCachedItem . $firstNewItem;
-        } elseif (is_array($lastCachedItem)) {
-            $item = $this->mergeValues($lastCachedItem, $firstNewItem);
+        if (is_string($lastItemSet1) && is_string($firstItemSet2)) {
+            $item = $lastItemSet1 . $firstItemSet2;
+        } elseif (is_array($lastItemSet1)) {
+            $item = $this->mergeValues($lastItemSet1, $firstItemSet2);
         } else {
-            array_push($cached, $lastCachedItem);
+            array_push($set1, $lastItemSet1);
         }
 
-        array_push($cached, $item);
-        return array_merge($cached, $new);
-    }
-
-    /**
-     * @param \Generator $results
-     * @return \Generator
-     */
-    private function getRows(\Generator $results)
-    {
-        foreach ($results as $partial) {
-            foreach ($this->getRowsFromPartial($partial) as $row) {
-                yield $row;
-            }
-        }
+        array_push($set1, $item);
+        return array_merge($set1, $set2);
     }
 }

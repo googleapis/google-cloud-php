@@ -26,7 +26,7 @@ use Symfony\Component\Lock\Store\FlockStore;
 
 /**
  * This session pool implementation accepts a PSR-6 compatible cache
- * implementation and utilizies it to store sessions between requests.
+ * implementation and utilizes it to store sessions between requests.
  *
  * Please note that if you configure a high minimum session value the first
  * request and any after a period of inactivity greater than an hour (the point
@@ -65,7 +65,7 @@ class CacheSessionPool implements SessionPoolInterface
      * @var array
      */
     private static $defaultConfig = [
-        'maxSessions' => PHP_INT_MAX,
+        'maxSessions' => 500,
         'minSessions' => 1,
         'shouldWaitForSession' => true,
         'maxCyclesToWaitForSession' => 30,
@@ -252,7 +252,8 @@ class CacheSessionPool implements SessionPoolInterface
     }
 
     /**
-     * Clear the session pool.
+     * Clear the session pool. Please note that this simply removes sessions
+     * data from the cache and does not delete the sessions themselves.
      */
     public function clear()
     {

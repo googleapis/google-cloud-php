@@ -22,7 +22,7 @@ use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Timestamp;
 
 /**
- * @group spannerz
+ * @group spanner
  */
 class TransactionTest extends SpannerTestCase
 {
@@ -37,7 +37,7 @@ class TransactionTest extends SpannerTestCase
             'name' => uniqid(self::TESTING_PREFIX),
             'birthday' => new Date(new \DateTime('2000-01-01'))
         ];
-        echo 'inserting row'.PHP_EOL;
+
         self::$database->insert(self::TEST_TABLE_NAME, self::$row);
     }
 
@@ -100,16 +100,7 @@ class TransactionTest extends SpannerTestCase
 
         list($keySet, $cols) = $this->readArgs();
 
-        echo "Cached row data (should match snapshot result)".PHP_EOL;
-        print_r(self::$row);
-
         $res = $snapshot->read(self::TEST_TABLE_NAME, $keySet, $cols)->rows();
-        echo PHP_EOL."Snapshot Result". PHP_EOL;
-        print_r(iterator_to_array($res));
-
-        echo PHP_EOL."Database Result". PHP_EOL;
-        print_r(iterator_to_array($db->read(self::TEST_TABLE_NAME, $keySet, $cols)->rows()));
-        exit;
         $row = $res->current();
 
         $this->assertEquals($ts->get(), $snapshot->readTimestamp()->get());
