@@ -64,7 +64,7 @@ use google\cloud\vision\v1\ImageAnnotatorGrpcClient;
  * a parse method to extract the individual identifiers contained within names that are
  * returned.
  */
-class ImageAnnotatorClient
+class ImageAnnotatorGapicClient
 {
     /**
      * The default address of the service.
