@@ -95,7 +95,7 @@ trait ImageAnnotatorTrait
 
     /**
      * @param resource|string|StorageObject $image
-     * @param \Google\Cloud\Vision\V1\Feature\Type $featureType
+     * @param \Google\Cloud\Vision\V1\Feature\Type|int $featureType
      * @param string $getFeatureMethod
      * @param array $optionalArgs {
      *
@@ -123,7 +123,7 @@ trait ImageAnnotatorTrait
 
     /**
      * @param FaceAnnotation $faceAnnotation
-     * @param FaceAnnotation\Landmark\Type $landmarkType
+     * @param FaceAnnotation\Landmark\Type|int $landmarkType
      * @return Position|null Landmark position
      */
     protected function getFaceLandmarkPositionImpl($faceAnnotation, $landmarkType)

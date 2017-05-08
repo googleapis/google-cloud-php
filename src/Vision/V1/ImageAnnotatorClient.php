@@ -22,7 +22,7 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
 
     /**
      * @param resource|string|StorageObject $image
-     * @param \Google\Cloud\Vision\V1\Feature\Type[] $features
+     * @param \Google\Cloud\Vision\V1\Feature\Type[]|int $features
      * @param array $optionalArgs {
      *
      *     @type array $maxResults An array of maximum number of features to return
@@ -64,10 +64,10 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
 
     /**
      * @param FaceAnnotation $faceAnnotation
-     * @param FaceAnnotation\Landmark\Type $landmarkType
+     * @param FaceAnnotation\Landmark\Type|int $landmarkType
      * @return Position|null Landmark position
      */
-    function getLandmarkByType($faceAnnotation, $landmarkType)
+    function getFaceLandmarkPosition($faceAnnotation, $landmarkType)
     {
         return $this->getFaceLandmarkPositionImpl($faceAnnotation, $landmarkType);
     }
