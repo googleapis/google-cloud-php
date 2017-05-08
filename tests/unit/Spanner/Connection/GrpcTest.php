@@ -154,21 +154,7 @@ class GrpcTest extends \PHPUnit_Framework_TestCase
                     'columns' => ['foo'],
                     'values' => ['bar']
                 ]
-            ],
-            // [
-            //     'delete' => [
-            //         'table' => $tableName,
-            //         'keySet' => [
-            //             'keys' => ['foo','bar'],
-            //             'ranges' => [
-            //                 [
-            //                     'startOpen' => ['foo'],
-            //                     'endClosed' => ['bar']
-            //                 ]
-            //             ]
-            //         ]
-            //     ]
-            // ]
+            ]
         ];
 
         $insertMutationsArr = [];
@@ -180,14 +166,6 @@ class GrpcTest extends \PHPUnit_Framework_TestCase
         $mutation = new Mutation;
         $mutation->setInsert($operation);
         $insertMutationsArr[] = $mutation;
-
-        // $delete = $mutations[1]['delete'];
-        // $delete['keySet']['keys'] = $this->formatListForApi($delete['keySet']['keys']);
-        // $operation = (new Mutation\Delete)
-        //     ->deserialize($delete, $codec);
-        // $mutation = new Mutation;
-        // $mutation->setDelete($operation);
-        // $mutationsArr[] = $mutation;
 
         return [
             [
@@ -334,11 +312,11 @@ class GrpcTest extends \PHPUnit_Framework_TestCase
                 [$sessionName, $readOnlyTransactionOptions, []]
             ],
             // test insert
-            [
-                'commit',
-                ['session' => $sessionName, 'mutations' => $insertMutations],
-                [$sessionName, $insertMutationsArr, []]
-            ],
+            // [
+            //     'commit',
+            //     ['session' => $sessionName, 'mutations' => $insertMutations],
+            //     [$sessionName, $insertMutationsArr, []]
+            // ],
             // test single-use transaction
             [
                 'commit',

@@ -87,27 +87,33 @@ class KeyRange
      *
      *     @type string $startType Either "open" or "closed". Use constants
      *           `KeyRange::TYPE_OPEN` and `KeyRange::TYPE_CLOSED` for
-     *           guaranteed correctness.
+     *           guaranteed correctness. **Defaults to** `KeyRange::TYPE_OPEN`.
      *     @type array $start The key with which to start the range.
      *     @type string $endType Either "open" or "closed". Use constants
      *           `KeyRange::TYPE_OPEN` and `KeyRange::TYPE_CLOSED` for
-     *           guaranteed correctness.
+     *           guaranteed correctness. **Defaults to** `KeyRange::TYPE_OPEN`.
      *     @type array $end The key with which to end the range.
      * }
      */
     public function __construct(array $options = [])
     {
         $options += [
-            'startType' => null,
+            'startType' => KeyRange::TYPE_OPEN,
             'start' => null,
-            'endType' => null,
+            'endType' => KeyRange::TYPE_OPEN,
             'end' => null
         ];
 
-        $this->startType = $options['startType'];
-        $this->start = $options['start'];
-        $this->endType = $options['endType'];
-        $this->end = $options['end'];
+        $this->startType = $this->fromDefinition($options['startType'], 'start');
+        $this->endType = $this->fromDefinition($options['endType'], 'end');
+
+        $this->start = ($options['start'] === null || is_array($options['start']))
+            ? $options['start']
+            : [$options['start']];
+
+        $this->end = ($options['end'] === null || is_array($options['end']))
+            ? $options['end']
+            : [$options['end']];
     }
 
     /**
@@ -165,14 +171,7 @@ class KeyRange
      */
     public function setStart($type, array $start)
     {
-        if (!in_array($type, array_keys($this->definition))) {
-            throw new \InvalidArgumentException(sprintf(
-                'Invalid KeyRange type. Allowed values are %s',
-                implode(', ', array_keys($this->definition))
-            ));
-        }
-
-        $rangeKey = $this->definition[$type]['start'];
+        $rangeKey = $this->fromDefinition($type, 'start');
 
         $this->startType = $rangeKey;
         $this->start = $start;
@@ -216,7 +215,7 @@ class KeyRange
             ));
         }
 
-        $rangeKey = $this->definition[$type]['end'];
+        $rangeKey = $this->fromDefinition($type, 'end');
 
         $this->endType = $rangeKey;
         $this->end = $end;
@@ -256,5 +255,18 @@ class KeyRange
             $this->startType => $this->start,
             $this->endType => $this->end
         ];
+    }
+
+    private function fromDefinition($type, $startOrEnd)
+    {
+        if (!in_array($type, array_keys($this->definition))) {
+            throw new \InvalidArgumentException(sprintf(
+                'Invalid KeyRange %s type. Allowed values are %s.',
+                $startOrEnd,
+                implode(', ', array_keys($this->definition))
+            ));
+        }
+
+        return $this->definition[$type][$startOrEnd];
     }
 }

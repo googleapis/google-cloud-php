@@ -91,6 +91,19 @@ use RuntimeException;
  *         @type array $parameters A key/value array of Query Parameters, where
  *               the key is represented in the query string prefixed by a `@`
  *               symbol.
+ *         @type array $types A key/value array of Query Parameter types.
+ *               Generally, Google Cloud PHP can infer types. Explicit type
+ *               definitions are only necessary for null parameter values.
+ *               Accepted values are defined as constants on
+ *               {@see Google\Cloud\Spanner\ValueMapper}, and are as follows:
+ *               `ValueMapper::TYPE_BOOL`, `ValueMapper::TYPE_INT64`,
+ *               `ValueMapper::TYPE_FLOAT64`, `ValueMapper::TYPE_TIMESTAMP`,
+ *               `ValueMapper::TYPE_DATE`, `ValueMapper::TYPE_STRING`,
+ *               `ValueMapper::TYPE_BYTES`, `ValueMapper::TYPE_ARRAY` and
+ *               `ValueMapper::TYPE_STRUCT`. If the parameter type is an array,
+ *               the type should be given as an array, where the first element
+ *               is `ValueMapper::TYPE_ARRAY` and the second element is the
+ *               array type, for instance `[ValueMapper::TYPE_ARRAY, ValueMapper::TYPE_INT64]`.
  *     }
  *     @return Result
  * }
@@ -147,6 +160,11 @@ class Transaction implements TransactionalReadInterface
     private $mutations = [];
 
     /**
+     * @var bool
+     */
+    private $isRetry = false;
+
+    /**
      * @param Operation $operation The Operation instance.
      * @param Session $session The session to use for spanner interactions.
      * @param string $transactionId [optional] The Transaction ID. If no ID is
@@ -155,11 +173,13 @@ class Transaction implements TransactionalReadInterface
     public function __construct(
         Operation $operation,
         Session $session,
-        $transactionId = null
+        $transactionId = null,
+        $isRetry = false
     ) {
         $this->operation = $operation;
         $this->session = $session;
         $this->transactionId = $transactionId;
+        $this->isRetry = $isRetry;
 
         $this->type = $transactionId
             ? self::TYPE_PRE_ALLOCATED
@@ -473,6 +493,29 @@ class Transaction implements TransactionalReadInterface
     public function state()
     {
         return $this->state;
+    }
+
+    /**
+     * Check whether the current transaction is a retry transaction.
+     *
+     * When using {@see Google\Cloud\Spanner\Database::runTransaction()},
+     * transactions are automatically retried when a conflict causes it to abort.
+     * In such cases, subsequent invocations of the transaction callable will
+     * provide a transaction where `$transaction->isRetry()` is true. This can
+     * be useful for debugging and understanding how code is working.
+     *
+     * Example:
+     * ```
+     * if ($transaction->isRetry()) {
+     *     echo 'This is a retry transaction!';
+     * }
+     * ```
+     *
+     * @return bool
+     */
+    public function isRetry()
+    {
+        return $this->isRetry;
     }
 
     /**

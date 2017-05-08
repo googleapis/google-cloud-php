@@ -414,8 +414,19 @@ class Grpc implements ConnectionInterface
     {
         $params = $this->pluck('params', $args);
         if ($params) {
-            $args['params'] = (new protobuf\Struct)
-                ->deserialize($this->formatStructForApi($params), $this->codec);
+            $args['params'] = [];
+
+            $args['params'] = new protobuf\Struct;
+
+            foreach ($params as $key => $param) {
+                $field = $this->fieldValue($param);
+
+                $fields = new protobuf\Struct\FieldsEntry;
+                $fields->setKey($key);
+                $fields->setValue($field);
+
+                $args['params']->addFields($fields);
+            }
         }
 
         if (isset($args['paramTypes']) && is_array($args['paramTypes'])) {
@@ -462,19 +473,10 @@ class Grpc implements ConnectionInterface
     {
         $options = new TransactionOptions;
 
-        $transactionOptions = $this->pluck('transactionOptions', $args);
+        $transactionOptions = $this->formatTransactionOptions($this->pluck('transactionOptions', $args));
         if (isset($transactionOptions['readOnly'])) {
-            $ro = $transactionOptions['readOnly'];
-            if (isset($ro['minReadTimestamp'])) {
-                $ro['minReadTimestamp'] = $this->formatTimestampForApi($ro['minReadTimestamp']);
-            }
-
-            if (isset($ro['readTimestamp'])) {
-                $ro['readTimestamp'] = $this->formatTimestampForApi($ro['readTimestamp']);
-            }
-
             $readOnly = (new TransactionOptions\ReadOnly)
-                ->deserialize($ro, $this->codec);
+                ->deserialize($transactionOptions['readOnly'], $this->codec);
 
             $options->setReadOnly($readOnly);
         } else {
@@ -513,10 +515,18 @@ class Grpc implements ConnectionInterface
 
                         break;
                     default:
-                        $data['values'] = $this->formatListForApi($data['values']);
+                        $operation = new Mutation\Write;
+                        $operation->setTable($data['table']);
+                        $operation->setColumns($data['columns']);
 
-                        $operation = (new Mutation\Write)
-                            ->deserialize($data, $this->codec);
+                        $list = new protobuf\ListValue;
+                        foreach ($data['values'] as $key => $param) {
+                            $field = $this->fieldValue($param);
+
+                            $list->addValues($field);
+                        }
+
+                        $operation->setValues($list);
 
                         break;
                 }
@@ -621,7 +631,11 @@ class Grpc implements ConnectionInterface
     {
         $keys = $this->pluck('keys', $keySet, false);
         if ($keys) {
-            $keySet['keys'] = $this->formatListForApi($keys);
+            $keySet['keys'] = [];
+
+            foreach ($keys as $key) {
+                $keySet['keys'][] = $this->formatListForApi([$key]);
+            }
         }
 
         if (isset($keySet['ranges'])) {
@@ -649,7 +663,17 @@ class Grpc implements ConnectionInterface
     {
         $selector = new TransactionSelector;
         if (isset($args['transaction'])) {
-            $selector = $selector->deserialize($this->pluck('transaction', $args), $this->codec);
+            $transaction = $this->pluck('transaction', $args);
+
+            if (isset($transaction['singleUse'])) {
+                $transaction['singleUse'] = $this->formatTransactionOptions($transaction['singleUse']);
+            }
+
+            if (isset($transaction['begin'])) {
+                $transaction['begin'] = $this->formatTransactionOptions($transaction['begin']);
+            }
+
+            $selector = $selector->deserialize($transaction, $this->codec);
         } elseif (isset($args['transactionId'])) {
             $selector = $selector->deserialize(['id' => $this->pluck('transactionId', $args)], $this->codec);
         }
@@ -676,5 +700,70 @@ class Grpc implements ConnectionInterface
             'state' => $this->pluck('state', $args, $required),
             'labels' => $labels
         ]), $this->codec);
+    }
+
+    /**
+     * @param mixed $param
+     * @return Value
+     */
+    private function fieldValue($param)
+    {
+        $field = new protobuf\Value;
+        $value = $this->formatValueForApi($param);
+
+        switch (array_keys($value)[0]) {
+            case 'string_value':
+                $setter = 'setStringValue';
+                break;
+            case 'number_value':
+                $setter = 'setNumberValue';
+                break;
+            case 'bool_value':
+                $setter = 'setBoolValue';
+                break;
+            case 'null_value':
+                $setter = 'setNullValue';
+                break;
+            case 'struct_value':
+                $setter = 'setStructValue';
+                break;
+            case 'list_value':
+                $setter = 'setListValue';
+                $list = new protobuf\ListValue;
+                foreach ($param as $item) {
+                    $list->addValues($this->fieldValue($item));
+                }
+
+                $value = $list;
+
+                break;
+        }
+
+        $value = is_array($value) ? current($value) : $value;
+        $field->$setter($value);
+
+        return $field;
+    }
+
+    /**
+     * @param array $transactionOptions
+     * @return array
+     */
+    private function formatTransactionOptions(array $transactionOptions)
+    {
+        if (isset($transactionOptions['readOnly'])) {
+            $ro = $transactionOptions['readOnly'];
+            if (isset($ro['minReadTimestamp'])) {
+                $ro['minReadTimestamp'] = $this->formatTimestampForApi($ro['minReadTimestamp']);
+            }
+
+            if (isset($ro['readTimestamp'])) {
+                $ro['readTimestamp'] = $this->formatTimestampForApi($ro['readTimestamp']);
+            }
+
+            $transactionOptions['readOnly'] = $ro;
+        }
+
+        return $transactionOptions;
     }
 }

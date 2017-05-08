@@ -71,6 +71,19 @@ trait TransactionalReadTrait
      *     @type array $parameters A key/value array of Query Parameters, where
      *           the key is represented in the query string prefixed by a `@`
      *           symbol.
+     *     @type array $types A key/value array of Query Parameter types.
+     *           Generally, Google Cloud PHP can infer types. Explicit type
+     *           definitions are only necessary for null parameter values.
+     *           Accepted values are defined as constants on
+     *           {@see Google\Cloud\Spanner\ValueMapper}, and are as follows:
+     *           `ValueMapper::TYPE_BOOL`, `ValueMapper::TYPE_INT64`,
+     *           `ValueMapper::TYPE_FLOAT64`, `ValueMapper::TYPE_TIMESTAMP`,
+     *           `ValueMapper::TYPE_DATE`, `ValueMapper::TYPE_STRING`,
+     *           `ValueMapper::TYPE_BYTES`, `ValueMapper::TYPE_ARRAY` and
+     *           `ValueMapper::TYPE_STRUCT`. If the parameter type is an array,
+     *           the type should be given as an array, where the first element
+     *           is `ValueMapper::TYPE_ARRAY` and the second element is the
+     *           array type, for instance `[ValueMapper::TYPE_ARRAY, ValueMapper::TYPE_INT64]`.
      * }
      * @return Result
      */

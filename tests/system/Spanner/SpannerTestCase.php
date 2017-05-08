@@ -34,6 +34,7 @@ class SpannerTestCase extends \PHPUnit_Framework_TestCase
     protected static $client;
     protected static $instance;
     protected static $database;
+    protected static $database2;
     protected static $deletionQueue = [];
 
     private static $hasSetUp = false;
@@ -73,6 +74,7 @@ class SpannerTestCase extends \PHPUnit_Framework_TestCase
         )->pollUntilComplete();
 
         self::$database = $db;
+        self::$database2 = self::$client->connect(self::INSTANCE_NAME, $dbName);
     }
 
     public static function tearDownFixtures()
@@ -82,5 +84,10 @@ class SpannerTestCase extends \PHPUnit_Framework_TestCase
         foreach (self::$deletionQueue as $item) {
             $backoff->execute($item);
         }
+    }
+
+    public static function randId()
+    {
+        return rand(1,9999999);
     }
 }

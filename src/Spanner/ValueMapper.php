@@ -28,7 +28,7 @@ class ValueMapper
 {
     use ArrayTrait;
 
-    const NANO_REGEX = '/\.(\d{1,9})Z/';
+    const NANO_REGEX = '/(?:\.(\d{1,9})Z)|(?:Z)/';
 
     const TYPE_BOOL = TypeCode::TYPE_BOOL;
     const TYPE_INT64 = TypeCode::TYPE_INT64;
@@ -90,6 +90,11 @@ class ValueMapper
             }
 
             $type = isset($types[$key]) ? $types[$key] : null;
+            $arrayType = null;
+            if (is_array($type)) {
+                $arrayType = $type[1];
+                $type = $type[0];
+            }
 
             if ($type !== null && !in_array($type, $this->allowedTypes)) {
                 throw new \BadMethodCallException(sprintf(
@@ -99,7 +104,15 @@ class ValueMapper
                 ));
             }
 
-            list ($parameters[$key], $paramTypes[$key]) = $this->paramType($value, $type);
+            if ($arrayType !== null && !in_array($arrayType, $this->allowedTypes)) {
+                throw new \BadMethodCallException(sprintf(
+                    'Type %s given for parameter @%s is not valid.',
+                    $type,
+                    $key
+                ));
+            }
+
+            list ($parameters[$key], $paramTypes[$key]) = $this->paramType($value, $type, $arrayType);
         }
 
         return [
@@ -166,7 +179,7 @@ class ValueMapper
         preg_match(self::NANO_REGEX, $timestamp, $matches);
         $timestamp = preg_replace(self::NANO_REGEX, '.000000Z', $timestamp);
 
-        $dt = \DateTimeImmutable::createFromFormat(Timestamp::FORMAT, $timestamp);
+        $dt = \DateTimeImmutable::createFromFormat(Timestamp::FORMAT, str_replace('..', '.', $timestamp));
 
         return new Timestamp($dt, (isset($matches[1])) ? $matches[1] : 0);
     }
@@ -254,31 +267,47 @@ class ValueMapper
      * Create a spanner parameter type value object from a PHP value type.
      *
      * @param mixed $value The PHP value
+     * @param int $givenType
+     * @param int $arrayType
      * @return array The Value type
      */
-    private function paramType($value, $givenType = null)
+    private function paramType($value, $givenType = null, $arrayType = null)
     {
         $phpType = gettype($value);
         switch ($phpType) {
             case 'boolean':
-                $type = $this->typeObject(self::TYPE_BOOL);
+                $type = $this->typeObject($givenType ?: self::TYPE_BOOL);
                 break;
 
             case 'integer':
                 $value = (string) $value;
-                $type = $this->typeObject(self::TYPE_INT64);
+                $type = $this->typeObject($givenType ?: self::TYPE_INT64);
                 break;
 
             case 'double':
-                $type = $this->typeObject(self::TYPE_FLOAT64);
+                $type = $this->typeObject($givenType ?: self::TYPE_FLOAT64);
+                switch ($value) {
+                    case INF:
+                        $value = 'Infinity';
+                        break;
+
+                    case -INF:
+                        $value = '-Infinity';
+                        break;
+                }
+
+                if (!is_string($value) && is_nan($value)) {
+                    $value = 'NaN';
+                }
+
                 break;
 
             case 'string':
-                $type = $this->typeObject(self::TYPE_STRING);
+                $type = $this->typeObject($givenType ?: self::TYPE_STRING);
                 break;
 
             case 'resource':
-                $type = $this->typeObject(self::TYPE_BYTES);
+                $type = $this->typeObject($givenType ?: self::TYPE_BYTES);
                 $value = base64_encode(stream_get_contents($value));
                 break;
 
@@ -287,7 +316,7 @@ class ValueMapper
                 break;
 
             case 'array':
-                if ($this->isAssoc($value)) {
+                if (!empty($value) && $this->isAssoc($value)) {
                     throw new \BadMethodCallException(
                         'Associative arrays are not supported. Did you mean to call a batch method?'
                     );
@@ -303,13 +332,13 @@ class ValueMapper
                     }
                 }
 
-                if (count(array_unique($types)) !== 1) {
+                if (count(array_unique($types)) > 1) {
                     throw new \BadMethodCallException('Array values may not be of mixed type');
                 }
 
                 $type = $this->typeObject(
                     self::TYPE_ARRAY,
-                    $this->typeObject($types[0]),
+                    $this->typeObject((isset($types[0])) ? $types[0] : null),
                     'arrayElementType'
                 );
 
@@ -317,7 +346,15 @@ class ValueMapper
                 break;
 
             case 'NULL':
-                $type = $this->typeObject($givenType);
+                if ($givenType === self::TYPE_ARRAY) {
+                    $type = $this->typeObject(
+                        $givenType,
+                        $this->typeObject($arrayType),
+                        'arrayElementType'
+                    );
+                } else {
+                    $type = $this->typeObject($givenType);
+                }
                 break;
 
             default:

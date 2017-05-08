@@ -58,7 +58,7 @@ class KeyRangeTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(['foo'], $range->start());
         $this->assertEquals(['bar'], $range->end());
-        $this->assertEquals(['start' => KeyRange::TYPE_CLOSED, 'end' => KeyRange::TYPE_OPEN], $range->types());
+        $this->assertEquals(['start' => 'startClosed', 'end' => 'endOpen'], $range->types());
     }
 
     public function testSetStart()

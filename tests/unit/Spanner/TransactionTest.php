@@ -282,6 +282,25 @@ class TransactionTest extends \PHPUnit_Framework_TestCase
         $this->singleUseTransaction->execute('foo');
     }
 
+    public function testIsRetryFalse()
+    {
+        $this->assertFalse($this->transaction->isRetry());
+    }
+
+    public function testIsRetryTrue()
+    {
+        $args = [
+            $this->operation,
+            $this->session,
+            self::TRANSACTION,
+            true
+        ];
+
+        $transaction = \Google\Cloud\Dev\stub(Transaction::class, $args);
+
+        $this->assertTrue($transaction->isRetry());
+    }
+
     // *******
     // Helpers
 

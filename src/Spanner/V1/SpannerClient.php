@@ -959,7 +959,7 @@ class SpannerClient
             $mergedSettings,
             $this->descriptors['streamingRead']
         );
-
+// print_r($request->serialize(new PhpArray));exit;
         return $callable(
             $request,
             [],

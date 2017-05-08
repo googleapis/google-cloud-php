@@ -369,7 +369,15 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
 
         $this->refreshOperation();
 
-        $this->database->runTransaction(function($t){$t->commit();});
+        $this->database->runTransaction(function($t) use ($it) {
+            if ($it > 0) {
+                $this->assertTrue($t->isRetry());
+            } else {
+                $this->assertFalse($t->isRetry());
+            }
+
+            $t->commit();
+        });
     }
 
     /**
@@ -395,7 +403,7 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
             ->shouldBeCalled()
             ->will(function() use (&$it, $abort) {
                 $it++;
-                if ($it <= 8) {
+                if ($it <= Database::MAX_RETRIES+1) {
                     throw $abort;
                 }
 

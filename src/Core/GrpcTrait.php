@@ -181,7 +181,7 @@ trait GrpcTrait
             case 'NULL':
                 return ['null_value' => protobuf\NullValue::NULL_VALUE];
             case 'array':
-                if ($this->isAssoc($value)) {
+                if (!empty($value) && $this->isAssoc($value)) {
                     return ['struct_value' => $this->formatStructForApi($value)];
                 }
 

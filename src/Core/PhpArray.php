@@ -159,7 +159,7 @@ class PhpArray extends Protobuf\Codec\PhpArray
     protected function filterValue($value, Protobuf\Field $field)
     {
         if (trim($field->getReference(), '\\') === NullValue::class) {
-            return 0;
+            return null;
         }
 
         if ($value instanceof Protobuf\Message) {
@@ -195,7 +195,7 @@ class PhpArray extends Protobuf\Codec\PhpArray
 
                     foreach ($fields as $field) {
                         $name = $field->getName();
-                        if ($val->$name) {
+                        if ($val->$name !== null) {
                             $vals[] = $this->filterValue($val->$name, $field);
                         }
                     }
@@ -209,7 +209,7 @@ class PhpArray extends Protobuf\Codec\PhpArray
 
                 foreach ($fields as $field) {
                     $name = $field->getName();
-                    if ($value->$name) {
+                    if ($value->$name !== null) {
                         return $this->filterValue($value->$name, $field);
                     }
                 }

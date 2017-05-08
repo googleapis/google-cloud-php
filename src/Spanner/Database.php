@@ -96,7 +96,7 @@ class Database
     use LROTrait;
     use TransactionConfigurationTrait;
 
-    const MAX_RETRIES = 3;
+    const MAX_RETRIES = 10;
 
     /**
      * @var ConnectionInterface
@@ -634,7 +634,7 @@ class Database
      *     Configuration Options
      *
      *     @type int $maxRetries The number of times to attempt to apply the
-     *           operation before failing. **Defaults to ** `3`.
+     *           operation before failing. **Defaults to ** `10`.
      *     @type bool $singleUse If true, a Transaction ID will not be allocated
      *           up front. Instead, the transaction will be considered
      *           "single-use", and may be used for only a single operation. Note
@@ -658,6 +658,10 @@ class Database
 
         $attempt = 0;
         $startTransactionFn = function ($session, $options) use (&$attempt) {
+            if ($attempt > 0) {
+                $options['isRetry'] = true;
+            }
+
             $transaction = $this->operation->transaction($session, $options);
 
             $attempt++;
@@ -681,7 +685,9 @@ class Database
 
             $res = call_user_func($operation, $transaction);
 
-            if ($transaction->state() === Transaction::STATE_ACTIVE) {
+            $active = $transaction->state() === Transaction::STATE_ACTIVE;
+            $singleUse = $transaction->type() === Transaction::TYPE_SINGLE_USE;
+            if ($active && !$singleUse) {
                 $transaction->rollback($options);
                 throw new \RuntimeException('Transactions must be rolled back or committed.');
             }
@@ -1091,7 +1097,10 @@ class Database
      *           `ValueMapper::TYPE_FLOAT64`, `ValueMapper::TYPE_TIMESTAMP`,
      *           `ValueMapper::TYPE_DATE`, `ValueMapper::TYPE_STRING`,
      *           `ValueMapper::TYPE_BYTES`, `ValueMapper::TYPE_ARRAY` and
-     *           `ValueMapper::TYPE_STRUCT`.
+     *           `ValueMapper::TYPE_STRUCT`. If the parameter type is an array,
+     *           the type should be given as an array, where the first element
+     *           is `ValueMapper::TYPE_ARRAY` and the second element is the
+     *           array type, for instance `[ValueMapper::TYPE_ARRAY, ValueMapper::TYPE_INT64]`.
      *     @type bool $returnReadTimestamp If true, the Cloud Spanner-selected
      *           read timestamp is included in the Transaction message that
      *           describes the transaction.
