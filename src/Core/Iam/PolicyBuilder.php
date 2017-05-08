@@ -128,6 +128,15 @@ class PolicyBuilder
      *
      * Example:
      * ```
+     * $builder->setBindings([
+     *     [
+     *         'role' => 'roles/admin',
+     *         'members' => [
+     *             'user:admin@domain.com',
+     *             'user2:admin@domain.com'
+     *         ]
+     *     ]
+     * ]);
      * $builder->removeBinding('roles/admin', [ 'user:admin@domain.com' ]);
      * ```
      *
@@ -139,7 +148,7 @@ class PolicyBuilder
     public function removeBinding($role, array $members)
     {
         $bindings = $this->bindings;
-        foreach ($bindings as $i => $binding) {
+        foreach ((array) $bindings as $i => $binding) {
             if ($binding['role'] == $role) {
                 $newMembers = array_diff($binding['members'], $members);
                 if (count($newMembers) != count($binding['members']) - count($members)) {
