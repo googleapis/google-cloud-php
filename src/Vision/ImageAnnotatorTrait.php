@@ -18,9 +18,7 @@
 namespace Google\Cloud\Vision;
 
 use Google\Cloud\Storage\StorageObject;
-use google\cloud\vision\v1\AnnotateImageRequest;
 use google\cloud\vision\v1\FaceAnnotation;
-use google\cloud\vision\v1\Feature;
 use google\cloud\vision\v1\ImageSource;
 use google\cloud\vision\v1\Position;
 use InvalidArgumentException;
