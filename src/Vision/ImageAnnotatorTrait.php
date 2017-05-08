@@ -126,7 +126,7 @@ trait ImageAnnotatorTrait
      */
     protected function getFaceLandmarkPositionImpl($faceAnnotation, $landmarkType)
     {
-        foreach($faceAnnotation->getLandmarksList() as $landmark) {
+        foreach ($faceAnnotation->getLandmarksList() as $landmark) {
             if ($landmark->getType() === $landmarkType) {
                 return $landmark->getPosition();
             }
@@ -140,9 +140,11 @@ trait ImageAnnotatorTrait
      * @param string $imageSourceClass
      * @return Image
      */
-    protected function resolveImage($imageInput, $imageObjClass = '\google\cloud\vision\v1\Image',
-                                    $imageSourceClass = '\google\cloud\vision\v1\ImageSource')
-    {
+    protected function resolveImage(
+        $imageInput,
+        $imageObjClass = '\google\cloud\vision\v1\Image',
+        $imageSourceClass = '\google\cloud\vision\v1\ImageSource'
+    ) {
         $imageObj = new $imageObjClass();
         $imageSource = new $imageSourceClass();
         if (is_string($imageInput) && in_array(parse_url($imageInput, PHP_URL_SCHEME), self::$URL_SCHEMES)) {
@@ -163,4 +165,3 @@ trait ImageAnnotatorTrait
         return $imageObj;
     }
 }
-

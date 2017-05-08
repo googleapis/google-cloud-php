@@ -17,5 +17,7 @@
 
 namespace Google\Cloud\Vision;
 
-class_alias('\Google\Cloud\Vision\V1\ImageAnnotatorClient',
-    '\Google\Cloud\Vision\ImageAnnotatorClient');
+class_alias(
+    '\Google\Cloud\Vision\V1\ImageAnnotatorClient',
+    '\Google\Cloud\Vision\ImageAnnotatorClient'
+);

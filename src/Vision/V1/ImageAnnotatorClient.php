@@ -23,7 +23,7 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
 {
     use ImageAnnotatorTrait;
 
-    function __construct(array $options = [])
+    public function __construct(array $options = [])
     {
         parent::__construct($options);
         $this->setClient($this);
@@ -45,7 +45,7 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
      * }
      * @return \Google\Cloud\Vision\V1\AnnotateImageResponse The server response
      */
-    function annotateImage($image, $features, $optionalArgs = [])
+    public function annotateImage($image, $features, $optionalArgs = [])
     {
         return $this->annotateImageImpl($image, $features, $optionalArgs);
     }
@@ -65,10 +65,14 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
      * }
      * @return FaceAnnotation[] Array of face annotations
      */
-    function annotateFaces($image, $optionalArgs = [])
+    public function annotateFaces($image, $optionalArgs = [])
     {
-        return $this->annotateFeatureTypeImpl($image, Feature\Type::FACE_DETECTION,
-            'getFaceAnnotationsList', $optionalArgs);
+        return $this->annotateFeatureTypeImpl(
+            $image,
+            Feature\Type::FACE_DETECTION,
+            'getFaceAnnotationsList',
+            $optionalArgs
+        );
     }
 
     /**
@@ -76,7 +80,7 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
      * @param FaceAnnotation\Landmark\Type|int $landmarkType
      * @return Position|null Landmark position
      */
-    function getFaceLandmarkPosition($faceAnnotation, $landmarkType)
+    public function getFaceLandmarkPosition($faceAnnotation, $landmarkType)
     {
         return $this->getFaceLandmarkPositionImpl($faceAnnotation, $landmarkType);
     }
