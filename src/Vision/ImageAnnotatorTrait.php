@@ -17,8 +17,8 @@
 
 namespace Google\Cloud\Vision;
 
-use Google\Cloud\Storage\StorageObject;
 use google\cloud\vision\v1\FaceAnnotation;
+use google\cloud\vision\v1\Image;
 use google\cloud\vision\v1\ImageSource;
 use google\cloud\vision\v1\Position;
 use InvalidArgumentException;
@@ -39,7 +39,7 @@ trait ImageAnnotatorTrait
     }
 
     /**
-     * @param resource|string|StorageObject $image
+     * @param resource|string|Image $image
      * @param \Google\Cloud\Vision\V1\Feature\Type[] $features
      * @param array $optionalArgs {
      *
@@ -56,7 +56,7 @@ trait ImageAnnotatorTrait
      * }
      * @return \Google\Cloud\Vision\V1\AnnotateImageResponse The server response
      */
-    protected function detectFeaturesImpl($image, $features, $optionalArgs = [])
+    protected function annotateImageImpl($image, $features, $optionalArgs = [])
     {
         $defaultArgs = [
             'maxResults' => [],
@@ -92,7 +92,7 @@ trait ImageAnnotatorTrait
     }
 
     /**
-     * @param resource|string|StorageObject $image
+     * @param resource|string|Image $image
      * @param \Google\Cloud\Vision\V1\Feature\Type|int $featureType
      * @param string $getFeatureMethod
      * @param array $optionalArgs {
@@ -108,14 +108,14 @@ trait ImageAnnotatorTrait
      * }
      * @return FaceAnnotation[] Array of face annotations
      */
-    protected function detectFeatureTypeImpl($image, $featureType, $getFeatureMethod, $optionalArgs = [])
+    protected function annotateFeatureTypeImpl($image, $featureType, $getFeatureMethod, $optionalArgs = [])
     {
         $maxResults = [];
         if (isset($optionalArgs['maxResults'])) {
             $maxResults[$featureType] = $optionalArgs['maxResults'];
         }
         $optionalArgs['maxResults'] = $maxResults;
-        $response = $this->detectFeatures($image, [$featureType], $optionalArgs);
+        $response = $this->annotateImage($image, [$featureType], $optionalArgs);
         return $response->$getFeatureMethod();
     }
 
@@ -135,27 +135,23 @@ trait ImageAnnotatorTrait
     }
 
     /**
-     * @param resource|string|StorageObject $imageInput
-     * @param \google\cloud\vision\v1\Image $imageObj
-     * @param \google\cloud\vision\v1\ImageSource $imageSource
-     * @return \google\cloud\vision\v1\Image
+     * @param resource|string|Image $imageInput
+     * @param string $imageObjClass
+     * @param string $imageSourceClass
+     * @return Image
      */
-    protected function resolveImage($imageInput, $imageObj = null, $imageSource = null)
+    protected function resolveImage($imageInput, $imageObjClass = '\google\cloud\vision\v1\Image',
+                                    $imageSourceClass = '\google\cloud\vision\v1\ImageSource')
     {
-        if (is_null($imageObj)) {
-            $imageObj = new \google\cloud\vision\v1\Image();
-        }
-        if (is_null($imageSource)) {
-            $imageSource = new ImageSource();
-        }
+        $imageObj = new $imageObjClass();
+        $imageSource = new $imageSourceClass();
         if (is_string($imageInput) && in_array(parse_url($imageInput, PHP_URL_SCHEME), self::$URL_SCHEMES)) {
             $imageSource->setImageUri($imageInput);
             $imageObj->setSource($imageSource);
         } elseif (is_string($imageInput)) {
             $imageObj->setContent($imageInput);
-        } elseif ($imageInput instanceof StorageObject) {
-            $imageSource->setImageUri($imageInput->gcsUri());
-            $imageObj->setSource($imageSource);
+        } elseif (is_a($imageInput, $imageObjClass)) {
+            $imageObj = $imageInput;
         } elseif (is_resource($imageInput)) {
             $imageObj->setContent(stream_get_contents($imageInput));
         } else {

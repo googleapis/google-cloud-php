@@ -30,7 +30,7 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
     }
 
     /**
-     * @param resource|string|StorageObject $image
+     * @param resource|string|Image $image
      * @param \Google\Cloud\Vision\V1\Feature\Type[]|int $features
      * @param array $optionalArgs {
      *
@@ -45,13 +45,13 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
      * }
      * @return \Google\Cloud\Vision\V1\AnnotateImageResponse The server response
      */
-    function detectFeatures($image, $features, $optionalArgs = [])
+    function annotateImage($image, $features, $optionalArgs = [])
     {
-        return $this->detectFeaturesImpl($image, $features, $optionalArgs);
+        return $this->annotateImageImpl($image, $features, $optionalArgs);
     }
 
     /**
-     * @param resource|string|StorageObject $image
+     * @param resource|string|Image $image
      * @param array $optionalArgs {
      *
      *     @type integer $maxResults A maximum number of features to return
@@ -65,9 +65,9 @@ class ImageAnnotatorClient extends ImageAnnotatorGapicClient
      * }
      * @return FaceAnnotation[] Array of face annotations
      */
-    function detectFaces($image, $optionalArgs = [])
+    function annotateFaces($image, $optionalArgs = [])
     {
-        return $this->detectFeatureTypeImpl($image, Feature\Type::FACE_DETECTION,
+        return $this->annotateFeatureTypeImpl($image, Feature\Type::FACE_DETECTION,
             'getFaceAnnotationsList', $optionalArgs);
     }
 

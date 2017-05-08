@@ -44,7 +44,7 @@ class ImageAnnotatorClientV1Test extends \PHPUnit_Framework_TestCase
     public function testFeatureDetection()
     {
         $image = file_get_contents($this->getFixtureFilePath('obama.jpg'));
-        $response = self::$client->detectFeatures($image, [Feature\Type::FACE_DETECTION]);
+        $response = self::$client->annotateImage($image, [Feature\Type::FACE_DETECTION]);
         $this->assertSame(1, count($response->getFaceAnnotationsList()));
         $face = $response->getFaceAnnotationsList()[0];
         $leftEyePosition = self::$client->getFaceLandmarkPosition(
@@ -56,7 +56,7 @@ class ImageAnnotatorClientV1Test extends \PHPUnit_Framework_TestCase
     public function testFaceDetection()
     {
         $image = file_get_contents($this->getFixtureFilePath('obama.jpg'));
-        $faces = self::$client->detectFaces($image);
+        $faces = self::$client->annotateFaces($image);
         $this->assertSame(1, count($faces));
         $this->assertInstanceOf('\google\cloud\vision\v1\FaceAnnotation', $faces[0]);
     }
