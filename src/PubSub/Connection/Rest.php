@@ -22,6 +22,7 @@ use Google\Cloud\Core\RequestBuilder;
 use Google\Cloud\Core\RequestWrapper;
 use Google\Cloud\Core\RestTrait;
 use Google\Cloud\Core\UriTrait;
+use Google\Cloud\Core\WhitelistTrait;
 use Google\Cloud\PubSub\PubSubClient;
 
 /**
@@ -36,6 +37,7 @@ class Rest implements ConnectionInterface
     use EmulatorTrait;
     use RestTrait;
     use UriTrait;
+    use WhitelistTrait;
 
     const BASE_URI = 'https://pubsub.googleapis.com/';
 
@@ -214,7 +216,11 @@ class Rest implements ConnectionInterface
      */
     public function listSnapshots(array $args)
     {
-        return $this->send('snapshots', 'list', $args);
+        return $this->whitelist([$this, 'send'], [
+            'snapshots',
+            'list',
+            $args
+        ]);
     }
 
     /**
@@ -222,7 +228,11 @@ class Rest implements ConnectionInterface
      */
     public function createSnapshot(array $args)
     {
-        return $this->send('snapshots', 'create', $args);
+        return $this->whitelist([$this, 'send'], [
+            'snapshots',
+            'create',
+            $args
+        ]);
     }
 
     /**
@@ -230,7 +240,11 @@ class Rest implements ConnectionInterface
      */
     public function deleteSnapshot(array $args)
     {
-        return $this->send('snapshots', 'delete', $args);
+        return $this->whitelist([$this, 'send'], [
+            'snapshots',
+            'delete',
+            $args
+        ]);
     }
 
     /**
@@ -238,7 +252,11 @@ class Rest implements ConnectionInterface
      */
     public function seek(array $args)
     {
-        return $this->send('subscriptions', 'seek', $args);
+        return $this->whitelist([$this, 'send'], [
+            'subscriptions',
+            'seek',
+            $args
+        ]);
     }
 
     /**

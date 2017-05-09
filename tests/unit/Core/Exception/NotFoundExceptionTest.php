@@ -1,12 +1,12 @@
 <?php
 /**
- * Copyright 2016 Google Inc. All Rights Reserved.
+ * Copyright 2016 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -15,22 +15,22 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Core\Exception;
+namespace Google\Cloud\Tests\Unit\Core\Exception;
+
+use Google\Cloud\Core\Exception\NotFoundException;
 
 /**
- * Exception thrown when a resource is not found.
+ * @group core
+ * @group exception
  */
-class NotFoundException extends ServiceException
+class NotFoundExceptionTest extends \PHPUnit_Framework_TestCase
 {
-    /**
-     * Allows overriding message for injection of Whitelist Notice.
-     *
-     * @param string $message the new message
-     * @return void
-     * @access private
-     */
-    public function setMessage($message)
+    public function testSetMessage()
     {
-        $this->message = $message;
+        $ex = new NotFoundException('hello');
+        $this->assertEquals($ex->getMessage(), 'hello');
+
+        $ex->setMessage('world');
+        $this->assertEquals($ex->getMessage(), 'world');
     }
 }
