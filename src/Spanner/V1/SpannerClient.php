@@ -34,22 +34,21 @@ use Google\GAX\CallSettings;
 use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PathTemplate;
-use google\protobuf\Struct;
-use google\spanner\v1\BeginTransactionRequest;
-use google\spanner\v1\CommitRequest;
-use google\spanner\v1\CreateSessionRequest;
-use google\spanner\v1\DeleteSessionRequest;
-use google\spanner\v1\ExecuteSqlRequest;
-use google\spanner\v1\ExecuteSqlRequest\ParamTypesEntry;
-use google\spanner\v1\ExecuteSqlRequest\QueryMode;
-use google\spanner\v1\GetSessionRequest;
-use google\spanner\v1\KeySet;
-use google\spanner\v1\Mutation;
-use google\spanner\v1\ReadRequest;
-use google\spanner\v1\RollbackRequest;
-use google\spanner\v1\SpannerGrpcClient;
-use google\spanner\v1\TransactionOptions;
-use google\spanner\v1\TransactionSelector;
+use Google\Protobuf\Struct;
+use Google\Spanner\V1\BeginTransactionRequest;
+use Google\Spanner\V1\CommitRequest;
+use Google\Spanner\V1\CreateSessionRequest;
+use Google\Spanner\V1\DeleteSessionRequest;
+use Google\Spanner\V1\ExecuteSqlRequest;
+use Google\Spanner\V1\ExecuteSqlRequest_QueryMode as QueryMode;
+use Google\Spanner\V1\GetSessionRequest;
+use Google\Spanner\V1\KeySet;
+use Google\Spanner\V1\Mutation;
+use Google\Spanner\V1\ReadRequest;
+use Google\Spanner\V1\RollbackRequest;
+use Google\Spanner\V1\SpannerGrpcClient;
+use Google\Spanner\V1\TransactionOptions;
+use Google\Spanner\V1\TransactionSelector;
 
 /**
  * Service Description: Cloud Spanner API.
@@ -396,7 +395,7 @@ class SpannerClient
      *          is not set.
      * }
      *
-     * @return \google\spanner\v1\Session
+     * @return \Google\Spanner\V1\Session
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
@@ -449,7 +448,7 @@ class SpannerClient
      *          is not set.
      * }
      *
-     * @return \google\spanner\v1\Session
+     * @return \Google\Spanner\V1\Session
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
@@ -598,7 +597,7 @@ class SpannerClient
      *          is not set.
      * }
      *
-     * @return \google\spanner\v1\ResultSet
+     * @return \Google\Spanner\V1\ResultSet
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
@@ -614,9 +613,7 @@ class SpannerClient
             $request->setParams($optionalArgs['params']);
         }
         if (isset($optionalArgs['paramTypes'])) {
-            foreach ($optionalArgs['paramTypes'] as $key => $value) {
-                $request->addParamTypes((new ParamTypesEntry())->setKey($key)->setValue($value));
-            }
+            $request->setParamTypes($optionalArgs['paramTypes']);
         }
         if (isset($optionalArgs['resumeToken'])) {
             $request->setResumeToken($optionalArgs['resumeToken']);
@@ -726,9 +723,7 @@ class SpannerClient
             $request->setParams($optionalArgs['params']);
         }
         if (isset($optionalArgs['paramTypes'])) {
-            foreach ($optionalArgs['paramTypes'] as $key => $value) {
-                $request->addParamTypes((new ParamTypesEntry())->setKey($key)->setValue($value));
-            }
+            $request->setParamTypes($optionalArgs['paramTypes']);
         }
         if (isset($optionalArgs['resumeToken'])) {
             $request->setResumeToken($optionalArgs['resumeToken']);
@@ -824,7 +819,7 @@ class SpannerClient
      *          is not set.
      * }
      *
-     * @return \google\spanner\v1\ResultSet
+     * @return \Google\Spanner\V1\ResultSet
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
@@ -833,9 +828,7 @@ class SpannerClient
         $request = new ReadRequest();
         $request->setSession($session);
         $request->setTable($table);
-        foreach ($columns as $elem) {
-            $request->addColumns($elem);
-        }
+        $request->setColumns($columns);
         $request->setKeySet($keySet);
         if (isset($optionalArgs['transaction'])) {
             $request->setTransaction($optionalArgs['transaction']);
@@ -938,9 +931,7 @@ class SpannerClient
         $request = new ReadRequest();
         $request->setSession($session);
         $request->setTable($table);
-        foreach ($columns as $elem) {
-            $request->addColumns($elem);
-        }
+        $request->setColumns($columns);
         $request->setKeySet($keySet);
         if (isset($optionalArgs['transaction'])) {
             $request->setTransaction($optionalArgs['transaction']);
@@ -1002,7 +993,7 @@ class SpannerClient
      *          is not set.
      * }
      *
-     * @return \google\spanner\v1\Transaction
+     * @return \Google\Spanner\V1\Transaction
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
@@ -1077,7 +1068,7 @@ class SpannerClient
      *          is not set.
      * }
      *
-     * @return \google\spanner\v1\CommitResponse
+     * @return \Google\Spanner\V1\CommitResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
@@ -1085,9 +1076,7 @@ class SpannerClient
     {
         $request = new CommitRequest();
         $request->setSession($session);
-        foreach ($mutations as $elem) {
-            $request->addMutations($elem);
-        }
+        $request->setMutations($mutations);
         if (isset($optionalArgs['transactionId'])) {
             $request->setTransactionId($optionalArgs['transactionId']);
         }

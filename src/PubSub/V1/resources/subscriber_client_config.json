@@ -8,6 +8,13 @@
         ],
         "non_idempotent": [
           "UNAVAILABLE"
+        ],
+        "pull": [
+          "CANCELLED",
+          "DEADLINE_EXCEEDED",
+          "RESOURCE_EXHAUSTED",
+          "INTERNAL",
+          "UNAVAILABLE"
         ]
       },
       "retry_params": {
@@ -68,12 +75,12 @@
         },
         "Pull": {
           "timeout_millis": 60000,
-          "retry_codes_name": "non_idempotent",
+          "retry_codes_name": "pull",
           "retry_params_name": "messaging"
         },
         "StreamingPull": {
           "timeout_millis": 60000,
-          "retry_codes_name": "non_idempotent",
+          "retry_codes_name": "pull",
           "retry_params_name": "messaging"
         },
         "ModifyPushConfig": {

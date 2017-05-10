@@ -17,19 +17,16 @@
 
 namespace Google\Cloud\Core;
 
-use DrSlump\Protobuf\Codec\Binary;
-use DrSlump\Protobuf\Codec\CodecInterface;
-use DrSlump\Protobuf\Message;
-use Google\Auth\FetchAuthTokenInterface;
 use Google\Auth\HttpHandler\HttpHandlerFactory;
 use Google\Cloud\Core\Exception;
-use Google\Cloud\Core\PhpArray;
-use Google\Cloud\Core\RequestWrapperTrait;
 use Google\GAX\ApiException;
 use Google\GAX\OperationResponse;
 use Google\GAX\PagedListResponse;
 use Google\GAX\RetrySettings;
 use Google\GAX\ServerStream;
+use Google\Protobuf\Internal\Message;
+use Google\Rpc\BadRequest;
+use Google\Rpc\RetryInfo;
 use Grpc;
 
 /**
@@ -46,14 +43,9 @@ class GrpcRequestWrapper
     private $authHttpHandler;
 
     /**
-     * @var CodecInterface A codec used to encode responses.
+     * @var Serializer A serializer used to encode responses.
      */
-    private $codec;
-
-    /**
-     * @var CodecInterface A codec used for binary deserialization.
-     */
-    private $binaryCodec;
+    private $serializer;
 
     /**
      * @var array gRPC specific configuration options passed off to the GAX
@@ -75,8 +67,8 @@ class GrpcRequestWrapper
      * @var array Map of error metadata types to RPC wrappers.
      */
     private $metadataTypes = [
-        'google.rpc.retryinfo-bin' => \google\rpc\RetryInfo::class,
-        'google.rpc.badrequest-bin' => \google\rpc\BadRequest::class
+        'google.rpc.retryinfo-bin' => RetryInfo::class,
+        'google.rpc.badrequest-bin' => BadRequest::class
     ];
 
     /**
@@ -87,7 +79,7 @@ class GrpcRequestWrapper
      *
      *     @type callable $authHttpHandler A handler used to deliver Psr7
      *           requests specifically for authentication.
-     *     @type CodecInterface $codec A codec used to encode responses.
+     *     @type Serializer $serializer A serializer used to encode responses.
      *     @type array $grpcOptions gRPC specific configuration options passed
      *           off to the GAX library.
      * }
@@ -97,14 +89,13 @@ class GrpcRequestWrapper
         $this->setCommonDefaults($config);
         $config += [
             'authHttpHandler' => null,
-            'codec' => new PhpArray(),
+            'serializer' => new Serializer(),
             'grpcOptions' => []
         ];
 
         $this->authHttpHandler = $config['authHttpHandler'] ?: HttpHandlerFactory::build();
-        $this->codec = $config['codec'];
+        $this->serializer = $config['serializer'];
         $this->grpcOptions = $config['grpcOptions'];
-        $this->binaryCodec = new Binary;
     }
 
     /**
@@ -169,8 +160,7 @@ class GrpcRequestWrapper
         }
 
         if ($response instanceof Message) {
-            $res = $response->serialize($this->codec);
-            return $res;
+            return $this->serializer->encodeMessage($response);
         }
 
         if ($response instanceof OperationResponse) {
@@ -250,10 +240,9 @@ class GrpcRequestWrapper
                 if (!isset($this->metadataTypes[$type])) {
                     continue;
                 }
-
-                $metadata[] = (new $this->metadataTypes[$type])
-                    ->deserialize($binaryValue[0], $this->binaryCodec)
-                    ->serialize($this->codec);
+                $metadataElement = new $this->metadataTypes[$type];
+                $metadataElement->mergeFromString($binaryValue[0]);
+                $metadata[] = $this->serializer->encodeMessage($metadataElement);
             }
         }
 

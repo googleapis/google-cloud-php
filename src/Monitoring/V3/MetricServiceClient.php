@@ -28,6 +28,7 @@
 
 namespace Google\Cloud\Monitoring\V3;
 
+use Google\Api\MetricDescriptor;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
@@ -35,20 +36,19 @@ use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
-use google\api\MetricDescriptor;
-use google\monitoring\v3\Aggregation;
-use google\monitoring\v3\CreateMetricDescriptorRequest;
-use google\monitoring\v3\CreateTimeSeriesRequest;
-use google\monitoring\v3\DeleteMetricDescriptorRequest;
-use google\monitoring\v3\GetMetricDescriptorRequest;
-use google\monitoring\v3\GetMonitoredResourceDescriptorRequest;
-use google\monitoring\v3\ListMetricDescriptorsRequest;
-use google\monitoring\v3\ListMonitoredResourceDescriptorsRequest;
-use google\monitoring\v3\ListTimeSeriesRequest;
-use google\monitoring\v3\ListTimeSeriesRequest\TimeSeriesView;
-use google\monitoring\v3\MetricServiceGrpcClient;
-use google\monitoring\v3\TimeInterval;
-use google\monitoring\v3\TimeSeries;
+use Google\Monitoring\V3\Aggregation;
+use Google\Monitoring\V3\CreateMetricDescriptorRequest;
+use Google\Monitoring\V3\CreateTimeSeriesRequest;
+use Google\Monitoring\V3\DeleteMetricDescriptorRequest;
+use Google\Monitoring\V3\GetMetricDescriptorRequest;
+use Google\Monitoring\V3\GetMonitoredResourceDescriptorRequest;
+use Google\Monitoring\V3\ListMetricDescriptorsRequest;
+use Google\Monitoring\V3\ListMonitoredResourceDescriptorsRequest;
+use Google\Monitoring\V3\ListTimeSeriesRequest;
+use Google\Monitoring\V3\ListTimeSeriesRequest_TimeSeriesView as TimeSeriesView;
+use Google\Monitoring\V3\MetricServiceGrpcClient;
+use Google\Monitoring\V3\TimeInterval;
+use Google\Monitoring\V3\TimeSeries;
 
 /**
  * Service Description: Manages metric descriptors, monitored resource descriptors, and
@@ -236,24 +236,30 @@ class MetricServiceClient
     {
         $listMonitoredResourceDescriptorsPageStreamingDescriptor =
                 new PageStreamingDescriptor([
-                    'requestPageTokenField' => 'page_token',
-                    'requestPageSizeField' => 'page_size',
-                    'responsePageTokenField' => 'next_page_token',
-                    'resourceField' => 'resource_descriptors',
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getResourceDescriptors',
                 ]);
         $listMetricDescriptorsPageStreamingDescriptor =
                 new PageStreamingDescriptor([
-                    'requestPageTokenField' => 'page_token',
-                    'requestPageSizeField' => 'page_size',
-                    'responsePageTokenField' => 'next_page_token',
-                    'resourceField' => 'metric_descriptors',
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getMetricDescriptors',
                 ]);
         $listTimeSeriesPageStreamingDescriptor =
                 new PageStreamingDescriptor([
-                    'requestPageTokenField' => 'page_token',
-                    'requestPageSizeField' => 'page_size',
-                    'responsePageTokenField' => 'next_page_token',
-                    'resourceField' => 'time_series',
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getTimeSeries',
                 ]);
 
         $pageStreamingDescriptors = [
@@ -414,7 +420,7 @@ class MetricServiceClient
      *                             Optional.
      *
      *     @type string $filter
-     *          An optional [filter](https://cloud.google.com/monitoring/api/v3/filters) describing
+     *          An optional [filter](/monitoring/api/v3/filters) describing
      *          the descriptors to be returned.  The filter can reference
      *          the descriptor's type and labels. For example, the
      *          following filter returns only Google Compute Engine descriptors
@@ -501,7 +507,7 @@ class MetricServiceClient
      *          is not set.
      * }
      *
-     * @return \google\api\MonitoredResourceDescriptor
+     * @return \Google\Api\MonitoredResourceDescriptor
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
@@ -560,10 +566,10 @@ class MetricServiceClient
      *     @type string $filter
      *          If this field is empty, all custom and
      *          system-defined metric descriptors are returned.
-     *          Otherwise, the [filter](https://cloud.google.com/monitoring/api/v3/filters)
+     *          Otherwise, the [filter](/monitoring/api/v3/filters)
      *          specifies which metric descriptors are to be
      *          returned. For example, the following filter matches all
-     *          [custom metrics](https://cloud.google.com/monitoring/custom-metrics):
+     *          [custom metrics](/monitoring/custom-metrics):
      *
      *              metric.type = starts_with("custom.googleapis.com/")
      *     @type int $pageSize
@@ -646,7 +652,7 @@ class MetricServiceClient
      *          is not set.
      * }
      *
-     * @return \google\api\MetricDescriptor
+     * @return \Google\Api\MetricDescriptor
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
@@ -674,7 +680,7 @@ class MetricServiceClient
     /**
      * Creates a new metric descriptor.
      * User-created metric descriptors define
-     * [custom metrics](https://cloud.google.com/monitoring/custom-metrics).
+     * [custom metrics](/monitoring/custom-metrics).
      *
      * Sample code:
      * ```
@@ -690,7 +696,7 @@ class MetricServiceClient
      *
      * @param string           $name             The project on which to execute the request. The format is
      *                                           `"projects/{project_id_or_number}"`.
-     * @param MetricDescriptor $metricDescriptor The new [custom metric](https://cloud.google.com/monitoring/custom-metrics)
+     * @param MetricDescriptor $metricDescriptor The new [custom metric](/monitoring/custom-metrics)
      *                                           descriptor.
      * @param array            $optionalArgs     {
      *                                           Optional.
@@ -703,7 +709,7 @@ class MetricServiceClient
      *          is not set.
      * }
      *
-     * @return \google\api\MetricDescriptor
+     * @return \Google\Api\MetricDescriptor
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
@@ -731,7 +737,7 @@ class MetricServiceClient
 
     /**
      * Deletes a metric descriptor. Only user-created
-     * [custom metrics](https://cloud.google.com/monitoring/custom-metrics) can be deleted.
+     * [custom metrics](/monitoring/custom-metrics) can be deleted.
      *
      * Sample code:
      * ```
@@ -813,7 +819,7 @@ class MetricServiceClient
      *
      * @param string $name   The project on which to execute the request. The format is
      *                       "projects/{project_id_or_number}".
-     * @param string $filter A [monitoring filter](https://cloud.google.com/monitoring/api/v3/filters) that specifies which time
+     * @param string $filter A [monitoring filter](/monitoring/api/v3/filters) that specifies which time
      *                       series should be returned.  The filter must specify a single metric type,
      *                       and can additionally specify metric labels and other information. For
      *                       example:
@@ -934,9 +940,7 @@ class MetricServiceClient
     {
         $request = new CreateTimeSeriesRequest();
         $request->setName($name);
-        foreach ($timeSeries as $elem) {
-            $request->addTimeSeries($elem);
-        }
+        $request->setTimeSeries($timeSeries);
 
         $mergedSettings = $this->defaultCallSettings['createTimeSeries']->merge(
             new CallSettings($optionalArgs)

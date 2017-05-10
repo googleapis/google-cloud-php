@@ -115,10 +115,7 @@ class GrpcTraitTest extends \PHPUnit_Framework_TestCase
     {
         $labels = ['test' => 'label'];
         $expected = [
-            [
-                'key' => key($labels),
-                'value' => current($labels)
-            ]
+            key($labels) => current($labels)
         ];
 
         $this->assertEquals($expected, $this->implementation->call('formatLabelsForApi', [$labels]));
@@ -135,17 +132,11 @@ class GrpcTraitTest extends \PHPUnit_Framework_TestCase
 
         $expected = [
             'fields' => [
-                [
-                    'key' => $value,
-                    'value' => [
-                        'struct_value' => [
-                            'fields' => [
-                                [
-                                    'key' => $value,
-                                    'value' => [
-                                        'string_value' => $value
-                                    ]
-                                ]
+                $value => [
+                    'struct_value' => [
+                        'fields' => [
+                            $value => [
+                                'string_value' => $value
                             ]
                         ]
                     ]
@@ -220,11 +211,8 @@ class GrpcTraitTest extends \PHPUnit_Framework_TestCase
                 [
                     'struct_value' => [
                         'fields' => [
-                            [
-                                'key' => 'test',
-                                'value' => [
-                                    'string_value' => 'test'
-                                ]
+                            'test' => [
+                                'string_value' => 'test'
                             ]
                         ]
                     ]

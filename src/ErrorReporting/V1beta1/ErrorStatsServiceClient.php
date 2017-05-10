@@ -28,6 +28,14 @@
 
 namespace Google\Cloud\ErrorReporting\V1beta1;
 
+use Google\Devtools\Clouderrorreporting\V1beta1\DeleteEventsRequest;
+use Google\Devtools\Clouderrorreporting\V1beta1\ErrorGroupOrder;
+use Google\Devtools\Clouderrorreporting\V1beta1\ErrorStatsServiceGrpcClient;
+use Google\Devtools\Clouderrorreporting\V1beta1\ListEventsRequest;
+use Google\Devtools\Clouderrorreporting\V1beta1\ListGroupStatsRequest;
+use Google\Devtools\Clouderrorreporting\V1beta1\QueryTimeRange;
+use Google\Devtools\Clouderrorreporting\V1beta1\ServiceContextFilter;
+use Google\Devtools\Clouderrorreporting\V1beta1\TimedCountAlignment;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
@@ -35,16 +43,8 @@ use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
-use google\devtools\clouderrorreporting\v1beta1\DeleteEventsRequest;
-use google\devtools\clouderrorreporting\v1beta1\ErrorGroupOrder;
-use google\devtools\clouderrorreporting\v1beta1\ErrorStatsServiceGrpcClient;
-use google\devtools\clouderrorreporting\v1beta1\ListEventsRequest;
-use google\devtools\clouderrorreporting\v1beta1\ListGroupStatsRequest;
-use google\devtools\clouderrorreporting\v1beta1\QueryTimeRange;
-use google\devtools\clouderrorreporting\v1beta1\ServiceContextFilter;
-use google\devtools\clouderrorreporting\v1beta1\TimedCountAlignment;
-use google\protobuf\Duration;
-use google\protobuf\Timestamp;
+use Google\Protobuf\Duration;
+use Google\Protobuf\Timestamp;
 
 /**
  * Service Description: An API for retrieving and managing error statistics as well as data for
@@ -153,17 +153,21 @@ class ErrorStatsServiceClient
     {
         $listGroupStatsPageStreamingDescriptor =
                 new PageStreamingDescriptor([
-                    'requestPageTokenField' => 'page_token',
-                    'requestPageSizeField' => 'page_size',
-                    'responsePageTokenField' => 'next_page_token',
-                    'resourceField' => 'error_group_stats',
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getErrorGroupStats',
                 ]);
         $listEventsPageStreamingDescriptor =
                 new PageStreamingDescriptor([
-                    'requestPageTokenField' => 'page_token',
-                    'requestPageSizeField' => 'page_size',
-                    'responsePageTokenField' => 'next_page_token',
-                    'resourceField' => 'error_events',
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getErrorEvents',
                 ]);
 
         $pageStreamingDescriptors = [
@@ -371,9 +375,7 @@ class ErrorStatsServiceClient
         $request->setProjectName($projectName);
         $request->setTimeRange($timeRange);
         if (isset($optionalArgs['groupId'])) {
-            foreach ($optionalArgs['groupId'] as $elem) {
-                $request->addGroupId($elem);
-            }
+            $request->setGroupId($optionalArgs['groupId']);
         }
         if (isset($optionalArgs['serviceFilter'])) {
             $request->setServiceFilter($optionalArgs['serviceFilter']);
@@ -542,7 +544,7 @@ class ErrorStatsServiceClient
      *          is not set.
      * }
      *
-     * @return \google\devtools\clouderrorreporting\v1beta1\DeleteEventsResponse
+     * @return \Google\Devtools\Clouderrorreporting\V1beta1\DeleteEventsResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */

@@ -56,8 +56,8 @@
         "league/json-guard": "^0.3",
         "erusev/parsedown": "^1.6",
         "vierbergenlars/php-semver": "^3.0",
-        "google/proto-client-php": "^0.13",
-        "google/gax": "^0.9",
+        "google/proto-client-php": "dev-proto3",
+        "google/gax": "dev-proto3",
         "symfony/lock": "dev-master#1ba6ac9"
     },
     "suggest": {
@@ -67,7 +67,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Google\\Cloud\\": "src"
+            "Google\\Cloud\\": "src",
+            "": "src/proto"
         }
     },
     "autoload-dev": {

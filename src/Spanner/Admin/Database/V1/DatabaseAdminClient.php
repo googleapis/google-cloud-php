@@ -37,20 +37,20 @@ use Google\GAX\LongRunning\OperationsClient;
 use Google\GAX\OperationResponse;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
-use google\iam\v1\GetIamPolicyRequest;
-use google\iam\v1\Policy;
-use google\iam\v1\SetIamPolicyRequest;
-use google\iam\v1\TestIamPermissionsRequest;
-use google\spanner\admin\database\v1\CreateDatabaseMetadata;
-use google\spanner\admin\database\v1\CreateDatabaseRequest;
-use google\spanner\admin\database\v1\Database;
-use google\spanner\admin\database\v1\DatabaseAdminGrpcClient;
-use google\spanner\admin\database\v1\DropDatabaseRequest;
-use google\spanner\admin\database\v1\GetDatabaseDdlRequest;
-use google\spanner\admin\database\v1\GetDatabaseRequest;
-use google\spanner\admin\database\v1\ListDatabasesRequest;
-use google\spanner\admin\database\v1\UpdateDatabaseDdlMetadata;
-use google\spanner\admin\database\v1\UpdateDatabaseDdlRequest;
+use Google\Iam\V1\GetIamPolicyRequest;
+use Google\Iam\V1\Policy;
+use Google\Iam\V1\SetIamPolicyRequest;
+use Google\Iam\V1\TestIamPermissionsRequest;
+use Google\Spanner\Admin\Database\V1\CreateDatabaseMetadata;
+use Google\Spanner\Admin\Database\V1\CreateDatabaseRequest;
+use Google\Spanner\Admin\Database\V1\Database;
+use Google\Spanner\Admin\Database\V1\DatabaseAdminGrpcClient;
+use Google\Spanner\Admin\Database\V1\DropDatabaseRequest;
+use Google\Spanner\Admin\Database\V1\GetDatabaseDdlRequest;
+use Google\Spanner\Admin\Database\V1\GetDatabaseRequest;
+use Google\Spanner\Admin\Database\V1\ListDatabasesRequest;
+use Google\Spanner\Admin\Database\V1\UpdateDatabaseDdlMetadata;
+use Google\Spanner\Admin\Database\V1\UpdateDatabaseDdlRequest;
 
 /**
  * Service Description: Cloud Spanner Database Admin API.
@@ -222,10 +222,12 @@ class DatabaseAdminClient
     {
         $listDatabasesPageStreamingDescriptor =
                 new PageStreamingDescriptor([
-                    'requestPageTokenField' => 'page_token',
-                    'requestPageSizeField' => 'page_size',
-                    'responsePageTokenField' => 'next_page_token',
-                    'resourceField' => 'databases',
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getDatabases',
                 ]);
 
         $pageStreamingDescriptors = [
@@ -239,12 +241,12 @@ class DatabaseAdminClient
     {
         return [
             'createDatabase' => [
-                'operationReturnType' => '\google\spanner\admin\database\v1\Database',
-                'metadataReturnType' => '\google\spanner\admin\database\v1\CreateDatabaseMetadata',
+                'operationReturnType' => '\Google\Spanner\Admin\Database\V1\Database',
+                'metadataReturnType' => '\Google\Spanner\Admin\Database\V1\CreateDatabaseMetadata',
             ],
             'updateDatabaseDdl' => [
-                'operationReturnType' => '\google\protobuf\EmptyC',
-                'metadataReturnType' => '\google\spanner\admin\database\v1\UpdateDatabaseDdlMetadata',
+                'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                'metadataReturnType' => '\Google\Spanner\Admin\Database\V1\UpdateDatabaseDdlMetadata',
             ],
         ];
     }
@@ -561,7 +563,7 @@ class DatabaseAdminClient
      *          is not set.
      * }
      *
-     * @return \google\longrunning\Operation
+     * @return \Google\Longrunning\Operation
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
@@ -571,9 +573,7 @@ class DatabaseAdminClient
         $request->setParent($parent);
         $request->setCreateStatement($createStatement);
         if (isset($optionalArgs['extraStatements'])) {
-            foreach ($optionalArgs['extraStatements'] as $elem) {
-                $request->addExtraStatements($elem);
-            }
+            $request->setExtraStatements($optionalArgs['extraStatements']);
         }
 
         $mergedSettings = $this->defaultCallSettings['createDatabase']->merge(
@@ -619,7 +619,7 @@ class DatabaseAdminClient
      *          is not set.
      * }
      *
-     * @return \google\spanner\admin\database\v1\Database
+     * @return \Google\Spanner\Admin\Database\V1\Database
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
@@ -721,7 +721,7 @@ class DatabaseAdminClient
      *          is not set.
      * }
      *
-     * @return \google\longrunning\Operation
+     * @return \Google\Longrunning\Operation
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
@@ -729,9 +729,7 @@ class DatabaseAdminClient
     {
         $request = new UpdateDatabaseDdlRequest();
         $request->setDatabase($database);
-        foreach ($statements as $elem) {
-            $request->addStatements($elem);
-        }
+        $request->setStatements($statements);
         if (isset($optionalArgs['operationId'])) {
             $request->setOperationId($optionalArgs['operationId']);
         }
@@ -829,7 +827,7 @@ class DatabaseAdminClient
      *          is not set.
      * }
      *
-     * @return \google\spanner\admin\database\v1\GetDatabaseDdlResponse
+     * @return \Google\Spanner\Admin\Database\V1\GetDatabaseDdlResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
@@ -891,7 +889,7 @@ class DatabaseAdminClient
      *          is not set.
      * }
      *
-     * @return \google\iam\v1\Policy
+     * @return \Google\Iam\V1\Policy
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
@@ -949,7 +947,7 @@ class DatabaseAdminClient
      *          is not set.
      * }
      *
-     * @return \google\iam\v1\Policy
+     * @return \Google\Iam\V1\Policy
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
@@ -1012,7 +1010,7 @@ class DatabaseAdminClient
      *          is not set.
      * }
      *
-     * @return \google\iam\v1\TestIamPermissionsResponse
+     * @return \Google\Iam\V1\TestIamPermissionsResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
@@ -1020,9 +1018,7 @@ class DatabaseAdminClient
     {
         $request = new TestIamPermissionsRequest();
         $request->setResource($resource);
-        foreach ($permissions as $elem) {
-            $request->addPermissions($elem);
-        }
+        $request->setPermissions($permissions);
 
         $mergedSettings = $this->defaultCallSettings['testIamPermissions']->merge(
             new CallSettings($optionalArgs)

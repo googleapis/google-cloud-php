@@ -28,15 +28,15 @@
 
 namespace Google\Cloud\ErrorReporting\V1beta1;
 
+use Google\Devtools\Clouderrorreporting\V1beta1\ReportErrorEventRequest;
+use Google\Devtools\Clouderrorreporting\V1beta1\ReportErrorsServiceGrpcClient;
+use Google\Devtools\Clouderrorreporting\V1beta1\ReportedErrorEvent;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
 use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PathTemplate;
-use google\devtools\clouderrorreporting\v1beta1\ReportErrorEventRequest;
-use google\devtools\clouderrorreporting\v1beta1\ReportErrorsServiceGrpcClient;
-use google\devtools\clouderrorreporting\v1beta1\ReportedErrorEvent;
 
 /**
  * Service Description: An API for reporting error events.
@@ -269,7 +269,7 @@ class ReportErrorsServiceClient
      *          is not set.
      * }
      *
-     * @return \google\devtools\clouderrorreporting\v1beta1\ReportErrorEventResponse
+     * @return \Google\Devtools\Clouderrorreporting\V1beta1\ReportErrorEventResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */

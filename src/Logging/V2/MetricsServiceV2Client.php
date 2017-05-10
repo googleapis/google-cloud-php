@@ -35,13 +35,13 @@ use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
-use google\logging\v2\CreateLogMetricRequest;
-use google\logging\v2\DeleteLogMetricRequest;
-use google\logging\v2\GetLogMetricRequest;
-use google\logging\v2\ListLogMetricsRequest;
-use google\logging\v2\LogMetric;
-use google\logging\v2\MetricsServiceV2GrpcClient;
-use google\logging\v2\UpdateLogMetricRequest;
+use Google\Logging\V2\CreateLogMetricRequest;
+use Google\Logging\V2\DeleteLogMetricRequest;
+use Google\Logging\V2\GetLogMetricRequest;
+use Google\Logging\V2\ListLogMetricsRequest;
+use Google\Logging\V2\LogMetric;
+use Google\Logging\V2\MetricsServiceV2GrpcClient;
+use Google\Logging\V2\UpdateLogMetricRequest;
 
 /**
  * Service Description: Service for configuring logs-based metrics.
@@ -188,10 +188,12 @@ class MetricsServiceV2Client
     {
         $listLogMetricsPageStreamingDescriptor =
                 new PageStreamingDescriptor([
-                    'requestPageTokenField' => 'page_token',
-                    'requestPageSizeField' => 'page_size',
-                    'responsePageTokenField' => 'next_page_token',
-                    'resourceField' => 'metrics',
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getMetrics',
                 ]);
 
         $pageStreamingDescriptors = [
@@ -424,7 +426,7 @@ class MetricsServiceV2Client
      *          is not set.
      * }
      *
-     * @return \google\logging\v2\LogMetric
+     * @return \Google\Logging\V2\LogMetric
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
@@ -482,7 +484,7 @@ class MetricsServiceV2Client
      *          is not set.
      * }
      *
-     * @return \google\logging\v2\LogMetric
+     * @return \Google\Logging\V2\LogMetric
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
@@ -542,7 +544,7 @@ class MetricsServiceV2Client
      *          is not set.
      * }
      *
-     * @return \google\logging\v2\LogMetric
+     * @return \Google\Logging\V2\LogMetric
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */

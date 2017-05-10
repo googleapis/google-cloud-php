@@ -23,7 +23,7 @@ use Google\Auth\FetchAuthTokenCache;
 use Google\Auth\Cache\MemoryCacheItemPool;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\GrpcRequestWrapper;
-use google\protobuf;
+use Google\Protobuf\NullValue;
 
 /**
  * Provides shared functionality for gRPC service implementations.
@@ -111,6 +111,7 @@ trait GrpcTrait
      */
     private function formatLabelsForApi(array $labels)
     {
+        return $labels;
         $fLabels = [];
 
         foreach ($labels as $key => $value) {
@@ -134,13 +135,41 @@ trait GrpcTrait
         $fFields = [];
 
         foreach ($fields as $key => $value) {
-            $fFields[] = [
-                'key' => $key,
-                'value' => $this->formatValueForApi($value)
-            ];
+            $fFields[$key] = $this->formatValueForApi($value);
         }
 
         return ['fields' => $fFields];
+    }
+
+    private function unpackStructFromApi(array $struct) {
+        $vals = [];
+        foreach ($struct['fields'] as $key => $val) {
+            $vals[$key] = $this->unpackValue($val);
+        }
+        return $vals;
+    }
+
+    private function unpackValue($value)
+    {
+        if (count($value) > 1) {
+            throw new \RuntimeException("Unexpected fields in struct: $value");
+        }
+
+        foreach ($value as $setField => $setValue) {
+            switch ($setField)
+            {
+                case 'listValue':
+                    $valueList = [];
+                    foreach ($setValue['values'] as $innerValue) {
+                        $valueList[] = $this->unpackValue($innerValue);
+                    }
+                    return $valueList;
+                case 'structValue':
+                    return $this->unpackStructFromApi($setValue['structValue']);
+                default:
+                    return $setValue;
+            }
+        }
     }
 
     /**
@@ -179,7 +208,7 @@ trait GrpcTrait
             case 'boolean':
                 return ['bool_value' => $value];
             case 'NULL':
-                return ['null_value' => protobuf\NullValue::NULL_VALUE];
+                return ['null_value' => NullValue::NULL_VALUE];
             case 'array':
                 if (!empty($value) && $this->isAssoc($value)) {
                     return ['struct_value' => $this->formatStructForApi($value)];

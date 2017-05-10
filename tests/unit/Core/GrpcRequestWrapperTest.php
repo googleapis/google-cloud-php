@@ -18,13 +18,14 @@
 
 namespace Google\Cloud\Tests\Unit\Core;
 
-use DrSlump\Protobuf\Message;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Core\Exception;
 use Google\Cloud\Core\GrpcRequestWrapper;
+use Google\Cloud\Core\Serializer;
 use Google\GAX\ApiException;
 use Google\GAX\Page;
 use Google\GAX\PagedListResponse;
+use Google\Protobuf\Internal\Message;
 use Prophecy\Argument;
 
 /**
@@ -42,9 +43,9 @@ class GrpcRequestWrapperTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider responseProvider
      */
-    public function testSuccessfullySendsRequest($response, $expectedMessage)
+    public function testSuccessfullySendsRequest($response, $expectedMessage, $serializer)
     {
-        $requestWrapper = new GrpcRequestWrapper();
+        $requestWrapper = new GrpcRequestWrapper(['serializer' => $serializer]);
         $requestOptions = [
             'requestTimeout' => 3.5
         ];
@@ -65,16 +66,17 @@ class GrpcRequestWrapperTest extends \PHPUnit_Framework_TestCase
     {
         $expectedMessage = ['successful' => 'request'];
         $message = $this->prophesize(Message::class);
-        $message->serialize(Argument::any())->willReturn($expectedMessage);
+        $serializer = $this->prophesize(Serializer::class);
+        $serializer->encodeMessage($message->reveal())->willReturn($expectedMessage);
         $pagedMessage = $this->prophesize(PagedListResponse::class);
         $page = $this->prophesize(Page::class);
         $page->getResponseObject()->willReturn($message->reveal());
         $pagedMessage->getPage()->willReturn($page->reveal());
 
         return [
-            [$message->reveal(), $expectedMessage],
-            [$pagedMessage->reveal(), $expectedMessage],
-            [null, null]
+            [$message->reveal(), $expectedMessage, $serializer->reveal()],
+            [$pagedMessage->reveal(), $expectedMessage, $serializer->reveal()],
+            [null, null, $serializer->reveal()]
         ];
     }
 
