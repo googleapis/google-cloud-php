@@ -60,7 +60,12 @@ $sampler = new QpsSampler($cache, ['rate' => 0.1]); // sample 0.1 requests per s
 RequestTracer::start($reporter, ['sampler' => $sampler]);
 ```
 
-If no cache is available, you can use the `RandomSampler` which simply samples a flat
+The PHP Cache organization provides many
+[PSR-6 cache implementations](http://www.php-cache.com/en/latest/#cache-pool-implementations).
+If the APCu extension is available (available on Google AppEngine Flexible Environment)
+and you include the cache/apcu-adapter composer package, we will set up the cache for you.
+
+You can also choose to use the `RandomSampler` which simply samples a flat
 percentage of requests.
 
 ```php
