@@ -49,14 +49,11 @@ class PubSubClientTest extends \PHPUnit_Framework_TestCase
         ]);
     }
 
-    public function testUsesGrpcConnectionByDefault()
+    public function testUsesRestConnectionByDefault()
     {
-        if (!extension_loaded('grpc')) {
-            $this->markTestSkipped('Must have the grpc extension installed to run this test.');
-        }
         $client = new PubSubClientStub(['projectId' => 'project']);
 
-        $this->assertInstanceOf(Grpc::class, $client->getConnection());
+        $this->assertInstanceOf(Rest::class, $client->getConnection());
     }
 
     public function testCreateTopic()

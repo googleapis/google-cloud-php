@@ -38,8 +38,8 @@ trait ClientTrait
     private $projectId;
 
     /**
-     * Get either a gRPC or REST connection based on the provided config
-     * and system settings.
+     * Get either a gRPC or REST connection based on the provided config.
+     *
      *
      * @param array $config
      * @return string
@@ -47,13 +47,12 @@ trait ClientTrait
      */
     private function getConnectionType(array $config)
     {
-        list($isGrpcExtensionLoaded, $isGrpcLibraryLoaded) = $this->getGrpcDependencyStatus();
-        $defaultTransport = $isGrpcExtensionLoaded && $isGrpcLibraryLoaded ? 'grpc' : 'rest';
         $transport = isset($config['transport'])
             ? strtolower($config['transport'])
-            : $defaultTransport;
-
+            : 'rest';
         if ($transport === 'grpc') {
+            list($isGrpcExtensionLoaded, $isGrpcLibraryLoaded) =
+                $this->getGrpcDependencyStatus();
             if (!$isGrpcExtensionLoaded || !$isGrpcLibraryLoaded) {
                 throw new GoogleException(
                     'gRPC support has been requested but required dependencies ' .
