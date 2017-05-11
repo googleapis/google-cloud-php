@@ -22,15 +22,16 @@ use Google\Cloud\Trace\TraceContext;
 use Google\Cloud\Trace\TraceSpan;
 
 /**
- * This implementation of the TracerInterface is the null object implementation.
- * All methods are no ops. This tracer should be used if tracing is disabled.
+ * This implementation of the TracerInterface utilizes the stackdriver extension
+ * to manage span context. The stackdriver extension augments user created spans and
+ * adds automatic tracing to several commonly desired events.
  */
 class ExtensionTracer implements TracerInterface
 {
     use ArrayTrait;
 
     /**
-     * Create a new ContextTracer
+     * Create a new ExtensionTracer
      *
      * @param TraceContext $context [optional] The TraceContext to begin with. If none
      *      provided, a fresh TraceContext will be generated.
