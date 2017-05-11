@@ -381,7 +381,7 @@ class BigQueryClient
                     );
                 },
                 [$this->connection, 'listJobs'],
-                $options + ['project' => $this->projectId],
+                $options + ['projectId' => $this->projectId],
                 [
                     'itemsKey' => 'jobs',
                     'resultLimit' => $resultLimit
