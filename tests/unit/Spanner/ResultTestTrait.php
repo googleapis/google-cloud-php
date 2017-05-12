@@ -42,19 +42,34 @@ trait ResultTestTrait
         }
     }
 
-    private function getResultClass($chunks, $context = 'r')
-    {
+    private function getResultClass(
+        $chunks = null,
+        $context = 'r',
+        $mapper = null,
+        $call = null
+    ) {
         $operation = $this->prophesize(Operation::class);
         $session = $this->prophesize(Session::class)->reveal();
-        $mapper = $this->prophesize(ValueMapper::class);
         $transaction = $this->prophesize(Transaction::class);
         $snapshot = $this->prophesize(Snapshot::class);
-        $mapper->decodeValues(
-            Argument::any(),
-            Argument::any()
-        )->will(function ($args) {
-            return $args[1];
-        });
+
+        if (!$mapper) {
+            $mapper = $this->prophesize(ValueMapper::class);
+            $mapper->decodeValues(
+                Argument::any(),
+                Argument::any(),
+                Argument::any()
+            )->will(function ($args) {
+                return $args[1];
+            });
+            $mapper = $mapper->reveal();
+        }
+
+        if (!$call) {
+            $call = function () use ($chunks) {
+                return $this->resultGenerator($chunks);
+            };
+        }
 
         if ($context === 'r') {
             $operation->createSnapshot(
@@ -71,11 +86,9 @@ trait ResultTestTrait
         return new Result(
             $operation->reveal(),
             $session,
-            function () use ($chunks) {
-                return $this->resultGenerator($chunks);
-            },
+            $call,
             $context,
-            $mapper->reveal()
+            $mapper
         );
     }
 

@@ -22,7 +22,6 @@ use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
-use Google\Cloud\Spanner\Timestamp;
 
 /**
  * Represent a Cloud Spanner lookup result (either read or executeSql).
@@ -43,6 +42,10 @@ class Result implements \IteratorAggregate
 {
     const BUFFER_RESULT_LIMIT = 10;
 
+    const RETURN_NAME_VALUE_PAIR = 'nameValuePair';
+    const RETURN_ASSOCIATIVE = 'associative';
+    const RETURN_ZERO_INDEXED = 'zeroIndexed';
+
     /**
      * @var array
      */
@@ -51,7 +54,12 @@ class Result implements \IteratorAggregate
     /**
      * @var int
      */
-    private $columnCount;
+    private $columnCount = 0;
+
+    /**
+     * @var array|null
+     */
+    private $columnNames;
 
     /**
      * @var ValueMapper
@@ -138,9 +146,23 @@ class Result implements \IteratorAggregate
      * $rows = $result->rows();
      * ```
      *
+     * @param string $format Determines the format in which rows are returned.
+     *        `Result::RETURN_NAME_VALUE_PAIR` returns items as a
+     *        multi-dimensional array containing a name and a value key.
+     *        Ex: `[0 => ['name' => 'column1', 'value' => 'my_value']]`.
+     *        `Result::RETURN_ASSOCIATIVE` returns items as an associative array
+     *        with the column name as the key. Please note with this option, if
+     *        duplicate column names are present a `\RuntimeException` will be
+     *        thrown. `Result::RETURN_ZERO_INDEXED` returns items as a 0 indexed
+     *        array, with the key representing the column number as found by
+     *        executing {@see Google\Cloud\Spanner\Result::columns()}. Ex:
+     *        `[0 => 'my_value']`. **Defaults to** `Result::RETURN_ASSOCIATIVE`.
      * @return \Generator
+     * @throws \InvalidArgumentException When an invalid format is provided.
+     * @throws \RuntimeException When duplicate column names exist with a
+     *         selected format of `Result::RETURN_ASSOCIATIVE`.
      */
-    public function rows()
+    public function rows($format = self::RETURN_ASSOCIATIVE)
     {
         $bufferedResults = [];
         $call = $this->call;
@@ -151,7 +173,7 @@ class Result implements \IteratorAggregate
             try {
                 $result = $generator->current();
                 $bufferedResults[] = $result;
-                $this->setResultData($result);
+                $this->setResultData($result, $format);
 
                 if (!isset($result['values'])) {
                     return;
@@ -161,7 +183,7 @@ class Result implements \IteratorAggregate
                     list($yieldableRows, $chunkedResult) = $this->parseRowsFromBufferedResults($bufferedResults);
 
                     foreach ($yieldableRows as $row) {
-                        yield $this->mapper->decodeValues($this->columns, $row);
+                        yield $this->mapper->decodeValues($this->columns, $row, $format);
                     }
 
                     // Now that we've yielded all available rows, flush the buffer.
@@ -179,21 +201,21 @@ class Result implements \IteratorAggregate
                 }
 
                 $generator->next();
-            } catch (\Exception $ex) {
-                if ($shouldRetry && $ex->getCode() === Grpc\STATUS_UNAVAILABLE) {
-                    $backoff = new ExponentialBackoff($this->retries, function (\Exception $ex) {
-                        return $ex->getCode() === Grpc\STATUS_UNAVAILABLE
-                            ? true
-                            : false;
-                    });
-
-                    // Attempt to resume using our last stored resume token. If we
-                    // successfully resume, flush the buffer.
-                    $generator = $backoff->execute($call, [$this->resumeToken]);
-                    $bufferedResults = [];
+            } catch (ServiceException $ex) {
+                if (!$shouldRetry || $ex->getCode() !== Grpc\STATUS_UNAVAILABLE) {
+                    throw $ex;
                 }
 
-                throw $ex;
+                $backoff = new ExponentialBackoff($this->retries, function (ServiceException $ex) {
+                    return $ex->getCode() === Grpc\STATUS_UNAVAILABLE
+                        ? true
+                        : false;
+                });
+
+                // Attempt to resume using our last stored resume token. If we
+                // successfully resume, flush the buffer.
+                $generator = $backoff->execute($call, [$this->resumeToken]);
+                $bufferedResults = [];
             }
         }
 
@@ -202,9 +224,26 @@ class Result implements \IteratorAggregate
             list($yieldableRows, $chunkedResult) = $this->parseRowsFromBufferedResults($bufferedResults);
 
             foreach ($yieldableRows as $row) {
-                yield $this->mapper->decodeValues($this->columns, $row);
+                yield $this->mapper->decodeValues($this->columns, $row, $format);
             }
         }
+    }
+
+    /**
+     * Return column names.
+     *
+     * Will be populated once the result set is iterated upon.
+     *
+     * Example:
+     * ```
+     * $columns = $result->columns();
+     * ```
+     *
+     * @return array|null
+     */
+    public function columns()
+    {
+        return $this->columnNames;
     }
 
     /**
@@ -224,6 +263,21 @@ class Result implements \IteratorAggregate
     public function metadata()
     {
         return $this->metadata;
+    }
+
+    /**
+     * Return the session associated with the result stream.
+     *
+     * Example:
+     * ```
+     * $session = $result->session();
+     * ```
+     *
+     * @return Session
+     */
+    public function session()
+    {
+        return $this->session;
     }
 
     /**
@@ -338,8 +392,10 @@ class Result implements \IteratorAggregate
 
     /**
      * @param array $result
+     * @param string $format
+     * @throws \RuntimeException
      */
-    private function setResultData(array $result)
+    private function setResultData(array $result, $format)
     {
         $this->stats = isset($result['stats'])
             ? $result['stats']
@@ -350,9 +406,28 @@ class Result implements \IteratorAggregate
         }
 
         if (isset($result['metadata'])) {
+            $this->columnNames = [];
+            $this->columns = [];
+            $this->columnCount = 0;
             $this->metadata = $result['metadata'];
             $this->columns = $result['metadata']['rowType']['fields'];
-            $this->columnCount = count($this->columns);
+
+            foreach ($this->columns as $key => $column) {
+                $this->columnNames[] = isset($column['name'])
+                    ? $column['name']
+                    : $key;
+                $this->columnCount++;
+            }
+
+            if ($format === self::RETURN_ASSOCIATIVE
+                && $this->columnCount !== count(array_unique($this->columnNames))
+            ) {
+                throw new \RuntimeException(
+                    'Duplicate column names are not supported when returning' .
+                    ' rows in the associative format. Please consider aliasing' .
+                    ' your column names.'
+                );
+            }
         }
 
         if (isset($result['metadata']['transaction']['id'])) {

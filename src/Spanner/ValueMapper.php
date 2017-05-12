@@ -144,27 +144,43 @@ class ValueMapper
      *
      * @param array $columns The list of columns.
      * @param array $row The row data.
+     * @param string $format The format in which to return the rows.
      * @return array The decoded row data.
+     * @throws \InvalidArgumentException
      */
-    public function decodeValues(array $columns, array $row)
+    public function decodeValues(array $columns, array $row, $format)
     {
-        $cols = [];
-        $types = [];
+        switch ($format) {
+            case Result::RETURN_NAME_VALUE_PAIR:
+                foreach ($row as $index => $value) {
+                    $row[$index] = [
+                        'name' => $this->getColumnName($columns, $index),
+                        'value' => $this->decodeValue($value, $columns[$index]['type'])
+                    ];
+                }
 
-        foreach ($columns as $index => $column) {
-            $cols[] = (isset($column['name']))
-                ? $column['name']
-                : $index;
-            $types[] = $column['type'];
+                return $row;
+
+            case Result::RETURN_ASSOCIATIVE:
+                foreach ($row as $index => $value) {
+                    unset($row[$index]);
+                    $row[$this->getColumnName($columns, $index)] = $this->decodeValue(
+                        $value,
+                        $columns[$index]['type']
+                    );
+                }
+
+                return $row;
+
+            case Result::RETURN_ZERO_INDEXED:
+                foreach ($row as $index => $value) {
+                    $row[$index] = $this->decodeValue($value, $columns[$index]['type']);
+                }
+
+                return $row;
+            default:
+                throw new \InvalidArgumentException('Invalid format provided.');
         }
-
-        $res = [];
-        foreach ($row as $index => $value) {
-            $i = $cols[$index];
-            $res[$i] = $this->decodeValue($value, $types[$index]);
-        }
-
-        return $res;
     }
 
     /**
@@ -226,7 +242,7 @@ class ValueMapper
                 break;
 
             case self::TYPE_STRUCT:
-                $value = $this->decodeValues($type['structType']['fields'], $value);
+                $value = $this->decodeValues($type['structType']['fields'], $value, Result::RETURN_ASSOCIATIVE);
                 break;
 
             case self::TYPE_FLOAT64:
@@ -396,5 +412,12 @@ class ValueMapper
             'code' => $type,
             $nestedDefinitionType => $nestedDefinition
         ]);
+    }
+
+    private function getColumnName($columns, $index)
+    {
+        return isset($columns[$index]['name'])
+            ? $columns[$index]['name']
+            : $index;
     }
 }

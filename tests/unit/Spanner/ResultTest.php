@@ -17,8 +17,13 @@
 
 namespace Google\Cloud\Tests\Unit\Spanner;
 
-use Google\Cloud\Spanner\Snapshot;
+use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Spanner\Transaction;
+use Google\Cloud\Spanner\Result;
+use Google\Cloud\Spanner\Session\Session;
+use Google\Cloud\Spanner\Snapshot;
+use Google\Cloud\Spanner\ValueMapper;
+use Prophecy\Argument;
 
 /**
  * @group spanner
@@ -27,12 +32,30 @@ class ResultTest extends \PHPUnit_Framework_TestCase
 {
     use ResultTestTrait;
 
+    private $metadata = [
+        'rowType' => [
+            'fields' => [
+                [
+                    'name' => 'f1',
+                    'type' => 6
+                ]
+            ]
+        ]
+    ];
+
+    public function setUp()
+    {
+        if (!extension_loaded('grpc')) {
+            $this->markTestSkipped('Must have the grpc extension installed to run this test.');
+        }
+    }
+
     /**
      * @dataProvider streamingDataProvider
      */
     public function testRows($chunks, $expectedValues)
     {
-        $result = iterator_to_array($this->getResultClass($chunks));
+        $result = iterator_to_array($this->getResultClass($chunks)->rows());
 
         $this->assertEquals($expectedValues, $result);
     }
@@ -45,6 +68,86 @@ class ResultTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($fixture['result']['value'], $result);
     }
 
+    public function testResumesBrokenStream()
+    {
+        $timesCalled = 0;
+        $chunks = [
+            [
+                'metadata' => $this->metadata,
+                'values' => ['a']
+            ],
+            [
+                'values' => ['b'],
+                'resumeToken' => 'abc'
+            ],
+            [
+                'values' => ['c']
+            ]
+        ];
+
+        $result = $this->getResultClass(
+            null,
+            'r',
+            null,
+            function () use ($chunks, &$timesCalled) {
+                $timesCalled++;
+
+                foreach ($chunks as $key => $chunk) {
+                    if ($timesCalled === 1 && $key === 2) {
+                        throw new ServiceException('Unavailable', 14);
+                    }
+                    yield $chunk;
+                }
+
+            }
+        );
+        iterator_to_array($result->rows());
+        $this->assertEquals(2, $timesCalled);
+    }
+
+    /**
+     * @expectedException Google\Cloud\Core\Exception\ServiceException
+     */
+    public function testThrowsExceptionWhenCannotRetry()
+    {
+        $chunks = [
+            [
+                'metadata' => $this->metadata,
+                'values' => ['a']
+            ],
+            [
+                'values' => ['b']
+            ]
+        ];
+
+        $result = $this->getResultClass(
+            null,
+            'r',
+            null,
+            function () use ($chunks) {
+                foreach ($chunks as $key => $chunk) {
+                    if ($key === 1) {
+                        throw new ServiceException('Should not retry this.');
+                    }
+                    yield $chunk;
+                }
+
+            }
+        );
+        iterator_to_array($result->rows());
+    }
+
+    public function testColumns()
+    {
+        $fixture = $this->getStreamingDataFixture()['tests'][0];
+        $result = $this->getResultClass($fixture['chunks']);
+        $expectedColumnNames = ['f1', 'f2', 'f3', 'f4', 'f5', 'f6', 'f7'];
+
+        $this->assertNull($result->columns());
+        $result->rows()->next();
+        $this->assertEquals($expectedColumnNames, $result->columns());
+    }
+
     public function testMetadata()
     {
         $fixture = $this->getStreamingDataFixture()['tests'][0];
@@ -54,6 +157,14 @@ class ResultTest extends \PHPUnit_Framework_TestCase
         $this->assertNull($result->stats());
         $result->rows()->next();
         $this->assertEquals($expectedMetadata, $result->metadata());
+    }
+
+    public function testSession()
+    {
+        $fixture = $this->getStreamingDataFixture()['tests'][0];
+        $result = $this->getResultClass($fixture['chunks']);
+
+        $this->assertInstanceOf(Session::class, $result->session());
     }
 
     public function testStats()
@@ -85,5 +196,45 @@ class ResultTest extends \PHPUnit_Framework_TestCase
         $this->assertNull($result->snapshot());
         $result->rows()->next();
         $this->assertInstanceOf(Snapshot::class, $result->snapshot());
+    }
+
+    public function testUsesCorrectDefaultFormatOption()
+    {
+        $mapper = $this->prophesize(ValueMapper::class);
+        $mapper->decodeValues(
+            Argument::any(),
+            Argument::any(),
+            'nameValuePair'
+        );
+        $result = $this->getResultClass([], 'r', $mapper->reveal());
+
+        $rows = $result->rows();
+        $rows->current();
+    }
+
+    /**
+     * @dataProvider formatProvider
+     */
+    public function testRecievesCorrectFormatOption($format)
+    {
+        $mapper = $this->prophesize(ValueMapper::class);
+        $mapper->decodeValues(
+            Argument::any(),
+            Argument::any(),
+            $format
+        );
+        $result = $this->getResultClass([], 'r', $mapper->reveal());
+
+        $rows = $result->rows($format);
+        $rows->current();
+    }
+
+    public function formatProvider()
+    {
+        return [
+            ['nameValuePair'],
+            ['associative'],
+            ['zeroIndexed']
+        ];
     }
 }

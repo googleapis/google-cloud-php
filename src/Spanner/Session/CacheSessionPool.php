@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Spanner\Session;
 
+use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Lock\LockInterface;
 use Google\Cloud\Core\Lock\SymfonyLockAdapter;
 use Google\Cloud\Spanner\Database;
@@ -28,19 +29,47 @@ use Symfony\Component\Lock\Store\FlockStore;
  * This session pool implementation accepts a PSR-6 compatible cache
  * implementation and utilizes it to store sessions between requests.
  *
- * Please note that if you configure a high minimum session value the first
- * request and any after a period of inactivity greater than an hour (the point
- * at which sessions will expire) will have an increased amount of latency. This
- * is due to the pool attempting to create as many sessions as needed to fill
- * itself to match the minimum value.
+ * Please note that when
+ * {@see Google\Cloud\Spanner\Session\CacheSessionPool::acquire()} is called at
+ * most only a single session is created. Due to this, it is possible to sit
+ * under the minimum session value declared when constructing this instance. In
+ * order to have the pool match the minimum session value please use the
+ * {@see Google\Cloud\Spanner\Session\CacheSessionPool::warmup()} method. This
+ * will create as many sessions as needed to match the minimum value, and is the
+ * recommended way to bootstrap the session pool.
  *
- * For this reason, it is highly recommended to configure a script to make an
- * initial request to warm up the pool and manage subsequent requests during
- * off-peak hours to keep the pool active.
+ * Sessions are created on demand up to the maximum session value set during
+ * instantiation of the pool. After peak usage hours, you may find that more
+ * sessions are available than your demand may require. It is important to make
+ * sure the number of active sessions managed by the Spanner backend is kept
+ * as minimal as possible. In order to help maintain this balance, please use
+ * the {@see Google\Cloud\Spanner\Session\CacheSessionPool::downsize()} method
+ * on an interval that matches when you expect to see a decrease in traffic.
+ * This will help ensure you never run into issues where the Spanner backend is
+ * locked up after having met the maximum number of sessions assigned per node
+ * (The current maximum sessions per node is 10k).
+ *
+ * Additionally, when expecting a long period of inactivity (such as a
+ * maintenance window), please make sure to call
+ * {@see Google\Cloud\Spanner\Session\CacheSessionPool::clear()} in order to
+ * delete any active sessions.
  *
  * Please note: While required for the session pool, a PSR-6 implementation is
  * not included in this library. It will be neccesary to include a separate
- * dependency to fulfill this requirement.
+ * dependency to fulfill this requirement. The below example makes use of
+ * [Symfony's Cache Component](https://github.com/symfony/cache). For more
+ * implementations please see the
+ * [Packagist PHP Package Repository](https://packagist.org/providers/psr/cache-implementation).
+ *
+ * Furthermore, [Symfony's Lock Component](https://github.com/symfony/lock) is
+ * also required to be installed as a separate dependency. In our current alpha
+ * state with Spanner we are relying on the following dev commit:
+ *
+ * `composer require symfony/lock:dev-master#1ba6ac9`
+ *
+ * As development continues, this dependency on a dev-master branch will be
+ * discontinued. Please also note, since this is a dev-master dependency it may
+ * require modifications to your composer minimum-stability settings.
  *
  * Example:
  * ```
@@ -59,7 +88,10 @@ use Symfony\Component\Lock\Store\FlockStore;
  */
 class CacheSessionPool implements SessionPoolInterface
 {
-    const CACHE_KEY_TEMPLATE = 'cache-session-pool.%s.%s';
+    const CACHE_KEY_TEMPLATE = 'cache-session-pool.%s.%s.%s';
+
+    const DURATION_TWENTY_MINUTES = 1200;
+    const DURATION_ONE_MINUTE = 60;
 
     /**
      * @var array
@@ -99,7 +131,7 @@ class CacheSessionPool implements SessionPoolInterface
      *     Configuration Options.
      *
      *     @type int $maxSessions The maximum number of sessions to store in the
-     *           pool. **Defaults to** PHP_INT_MAX.
+     *           pool. **Defaults to** `500`.
      *     @type int $minSessions The minimum number of sessions to store in the
      *           pool. **Defaults to** `1`.
      *     @type bool $shouldWaitForSession If the pool is full, whether to block
@@ -142,7 +174,7 @@ class CacheSessionPool implements SessionPoolInterface
         list($session, $toCreate) = $this->config['lock']->synchronize(function () {
             $toCreate = [];
             $session = null;
-            $shouldSave = false;
+            $shouldSave = true;
             $item = $this->cacheItemPool->getItem($this->cacheKey);
             $data = (array) $item->get() ?: $this->initialize();
 
@@ -152,51 +184,57 @@ class CacheSessionPool implements SessionPoolInterface
             // for more.
             if ($data['queue']) {
                 $session = $this->getSession($data);
-                $shouldSave = true;
             } elseif ($this->config['maxSessions'] <= $this->getSessionCount($data)) {
                 $this->purgeOrphanedInUseSessions($data);
                 $this->purgeOrphanedToCreateItems($data);
-                $shouldSave = true;
+                $session = $this->getSession($data);
             }
 
-            $toCreate = $this->buildToCreateList($data, is_array($session));
-            $data['toCreate'] += $toCreate;
+            if (!$session) {
+                $count = $this->getSessionCount($data);
 
-            if ($shouldSave || $toCreate) {
+                if ($count < $this->config['maxSessions']) {
+                    $toCreate = $this->buildToCreateList(1);
+                    $data['toCreate'] += $toCreate;
+                } else {
+                    $shouldSave = false;
+                }
+            }
+
+            if ($shouldSave) {
                 $this->cacheItemPool->save($item->set($data));
             }
 
             return [$session, $toCreate];
         });
 
-        // Create sessions if needed.
+        // Create a session if needed.
         if ($toCreate) {
             $createdSessions = [];
             $exception = null;
 
             try {
                 $createdSessions = $this->createSessions(count($toCreate));
-            } catch (\Exception $ex) {
-                $exception = $ex;
+            } catch (\Exception $exception) {
             }
 
             $session = $this->config['lock']->synchronize(function () use (
-                $session,
                 $toCreate,
                 $createdSessions,
                 $exception
             ) {
+                $session = null;
                 $item = $this->cacheItemPool->getItem($this->cacheKey);
                 $data = $item->get();
                 $data['queue'] = array_merge($data['queue'], $createdSessions);
 
-                // Now that we've created the sessions, we can remove them from
+                // Now that we've created the session, we can remove it from
                 // the list of intent.
                 foreach ($toCreate as $id => $time) {
                     unset($data['toCreate'][$id]);
                 }
 
-                if (!$session && !$exception) {
+                if (!$exception) {
                     $session = array_shift($data['queue']);
 
                     $data['inUse'][$session['name']] = $session + [
@@ -252,12 +290,203 @@ class CacheSessionPool implements SessionPoolInterface
     }
 
     /**
-     * Clear the session pool. Please note that this simply removes sessions
-     * data from the cache and does not delete the sessions themselves.
+     * Keeps a checked out session alive.
+     *
+     * In use sessions that have not had their `lastActive` time updated
+     * in the last 20 minutes will be considered eligible to be moved back into
+     * the queue if the max sessions value has been met. In order to work around
+     * this when performing a large streaming execute or read call please make
+     * sure to call this method roughly every 15 minutes between reading rows
+     * to keep your session active.
+     *
+     * @param Session $session The session to keep alive.
+     */
+    public function keepAlive(Session $session)
+    {
+        $this->config['lock']->synchronize(function () use ($session) {
+            $item = $this->cacheItemPool->getItem($this->cacheKey);
+            $data = $item->get();
+            $data['inUse'][$session->name()]['lastActive'] = $this->time();
+
+            $this->cacheItemPool->save($item->set($data));
+        });
+    }
+
+    /**
+     * Downsizes the queue of available sessions by the given percentage. This is
+     * relative to the minimum sessions value. For example: Assuming a full
+     * queue, with maximum sessions of 10 and a minimum of 2, downsizing by 50%
+     * would leave 6 sessions in the queue. The count of items to be deleted will
+     * be rounded up in the case of a fraction.
+     *
+     * A session may be removed from the cache, but still tracked as active by
+     * the Spanner backend if a delete operation failed. To ensure you do not
+     * exceed the maximum number of sessions available per node, please be sure
+     * to check the return value of this method to be certain all sessions have
+     * been deleted.
+     *
+     * Please note this method will attempt to synchronously delete sessions and
+     * will block until complete.
+     *
+     * @param int $percent The percentage to downsize the pool by. Must be
+     *        between 1 and 100.
+     * @return array An associative array containing a key `deleted` which holds
+     *         an integer value representing the number of queued sessions
+     *         deleted on the backend and a key `failed` which holds a list of
+     *         queued {@see Google\Cloud\Spanner\Session\Session} objects which
+     *         failed to delete.
+     * @throws \InvaldArgumentException
+     */
+    public function downsize($percent)
+    {
+        if ($percent < 1 || 100 < $percent) {
+            throw new \InvalidArgumentException('The provided percent must be between 1 and 100.');
+        }
+
+        $failed = [];
+        $toDelete = $this->config['lock']->synchronize(function () use ($percent) {
+            $item = $this->cacheItemPool->getItem($this->cacheKey);
+            $data = (array) $item->get() ?: $this->initialize();
+            $toDelete = [];
+            $queueCount = count($data['queue']);
+            $availableCount = max($queueCount - $this->config['minSessions'], 0);
+            $countToDelete = ceil($availableCount * ($percent * 0.01));
+
+            if ($countToDelete) {
+                $toDelete = array_splice($data['queue'], (int) -$countToDelete);
+            }
+
+            $this->cacheItemPool->save($item->set($data));
+            return $toDelete;
+        });
+
+        foreach ($toDelete as $sessionData) {
+            $session = $this->database->session($sessionData['name']);
+
+            try {
+                $session->delete();
+            } catch (\Exception $ex) {
+                if ($ex instanceof NotFoundException) {
+                    continue;
+                }
+
+                $failed[] = $session;
+            }
+        }
+
+        return [
+            'deleted' => count($toDelete) - count($failed),
+            'failed' => $failed
+        ];
+    }
+
+    /**
+     * Create enough sessions to meet the minimum session constraint.
+     *
+     * @return int The number of sessions created and added to the queue.
+     */
+    public function warmup()
+    {
+        $toCreate = $this->config['lock']->synchronize(function () {
+            $item = $this->cacheItemPool->getItem($this->cacheKey);
+            $data = (array) $item->get() ?: $this->initialize();
+            $count = $this->getSessionCount($data);
+            $toCreate = [];
+
+            if ($count < $this->config['minSessions']) {
+                $toCreate = $this->buildToCreateList($this->config['minSessions'] - $count);
+                $data['toCreate'] += $toCreate;
+                $this->cacheItemPool->save($item->set($data));
+            }
+
+            return $toCreate;
+        });
+
+        if (!$toCreate) {
+            return 0;
+        }
+
+        $createdSessions = [];
+        $exception = null;
+
+        try {
+            $createdSessions = $this->createSessions(count($toCreate));
+        } catch (\Exception $exception) {
+        }
+
+        $this->config['lock']->synchronize(function () use ($toCreate, $createdSessions) {
+            $item = $this->cacheItemPool->getItem($this->cacheKey);
+            $data = $item->get();
+            $data['queue'] = array_merge($data['queue'], $createdSessions);
+
+            // Now that we've created the sessions, we can remove them from
+            // the list of intent.
+            foreach ($toCreate as $id => $time) {
+                unset($data['toCreate'][$id]);
+            }
+
+            $this->cacheItemPool->save($item->set($data));
+        });
+
+        if ($exception) {
+            throw $exception;
+        }
+
+        return count($toCreate);
+    }
+
+    /**
+     * Clear the cache and attempt to delete all sessions in the pool.
+     *
+     * A session may be removed from the cache, but still tracked as active by
+     * the Spanner backend if a delete operation failed. To ensure you do not
+     * exceed the maximum number of sessions available per node, please be sure
+     * to check the return value of this method to be certain all sessions have
+     * been deleted.
+     *
+     * Please note this method will attempt to synchronously delete sessions and
+     * will block until complete.
+     *
+     * @return array An array containing a list of
+     *         {@see Google\Cloud\Spanner\Session\Session} objects which failed
+     *         to delete.
      */
     public function clear()
     {
-        $this->cacheItemPool->clear();
+        $failed = [];
+        $sessions = $this->config['lock']->synchronize(function () {
+            $sessions = [];
+            $item = $this->cacheItemPool->getItem($this->cacheKey);
+            $data = (array) $item->get() ?: $this->initialize();
+
+            foreach ($data['queue'] as $session) {
+                $sessions[] = $session['name'];
+            }
+
+            foreach ($data['inUse'] as $session) {
+                $sessions[] = $session['name'];
+            }
+
+            $this->cacheItemPool->clear();
+
+            return $sessions;
+        });
+
+        foreach ($sessions as $sessionName) {
+            $session = $this->database->session($sessionName);
+
+            try {
+                $session->delete();
+            } catch (\Exception $ex) {
+                if ($ex instanceof NotFoundException) {
+                    continue;
+                }
+
+                $failed[] = $session;
+            }
+        }
+
+        return $failed;
     }
 
     /**
@@ -269,7 +498,12 @@ class CacheSessionPool implements SessionPoolInterface
     {
         $this->database = $database;
         $identity = $database->identity();
-        $this->cacheKey = sprintf(self::CACHE_KEY_TEMPLATE, $identity['instance'], $identity['database']);
+        $this->cacheKey = sprintf(
+            self::CACHE_KEY_TEMPLATE,
+            $identity['projectId'],
+            $identity['instance'],
+            $identity['database']
+        );
     }
 
     /**
@@ -296,22 +530,13 @@ class CacheSessionPool implements SessionPoolInterface
      * Builds out a list of timestamps indicating the start time of the intent
      * to create a session.
      *
-     * @param array $data
-     * @param bool $hasSession
+     * @param int $number
      * @return array
      */
-    private function buildToCreateList(array $data, $hasSession)
+    private function buildToCreateList($number)
     {
-        $number = 0;
         $toCreate = [];
         $time = $this->time();
-        $count = $this->getSessionCount($data);
-
-        if ($count < $this->config['minSessions']) {
-            $number = $this->config['minSessions'] - $count;
-        } elseif (!$hasSession && !$data['queue'] && $count < $this->config['maxSessions']) {
-            $number++;
-        }
 
         for ($i = 0; $i < $number; $i++) {
             $toCreate[uniqid($time . '_')] = $time;
@@ -329,21 +554,29 @@ class CacheSessionPool implements SessionPoolInterface
     private function purgeOrphanedToCreateItems(array &$data)
     {
         foreach ($data['toCreate'] as $key => $timestamp) {
-            if ($timestamp + 1200 < $this->time()) {
+            $time = $this->time();
+
+            if ($timestamp + self::DURATION_TWENTY_MINUTES < $this->time()) {
                 unset($data['toCreate'][$key]);
             }
         }
     }
 
     /**
-     * Purge any in use sessions that have been inactive for 20 minutes or more.
+     * Purges in use sessions. If a session was last active an hour ago, we
+     * assume it is expired and remove it from the pool. If last active 20
+     * minutes ago, we attempt to return the session back to the queue.
      *
      * @param array $data
      */
     private function purgeOrphanedInUseSessions(array &$data)
     {
         foreach ($data['inUse'] as $key => $session) {
-            if ($session['lastActive'] + 1200 < $this->time()) {
+            if ($session['lastActive'] + SessionPoolInterface::SESSION_EXPIRATION_SECONDS < $this->time()) {
+                unset($data['inUse'][$key]);
+            } elseif ($session['lastActive'] + self::DURATION_TWENTY_MINUTES < $this->time()) {
+                unset($session['lastActive']);
+                array_push($data['queue'], $session);
                 unset($data['inUse'][$key]);
             }
         }
@@ -392,7 +625,7 @@ class CacheSessionPool implements SessionPoolInterface
         $session = array_shift($data['queue']);
 
         if ($session) {
-            if ($session['expiration'] - 60 < $this->time()) {
+            if ($session['expiration'] - self::DURATION_ONE_MINUTE < $this->time()) {
                 return $this->getSession($data);
             }
 
@@ -510,9 +743,21 @@ class CacheSessionPool implements SessionPoolInterface
      * Get the default lock.
      *
      * @return LockInterface
+     * @throws \RunTimeException
      */
     private function getDefaultLock()
     {
+        if (!class_exists(FlockStore::class)) {
+            throw new \RuntimeException(
+                'The symfony/lock component must be installed in order for ' .
+                'a default lock to be assumed. Please run the following from ' .
+                'the command line: composer require symfony/lock:dev-master#1ba6ac9. ' .
+                'Please note, since this is a dev-master dependency it may ' .
+                'require modifications to your composer minimum-stability ' .
+                'settings.'
+            );
+        }
+
         $store = new FlockStore(sys_get_temp_dir());
 
         return new SymfonyLockAdapter(

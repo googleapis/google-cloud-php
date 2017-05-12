@@ -596,7 +596,7 @@ class Database
      * If a callable finishes executing without invoking
      * {@see Google\Cloud\Spanner\Transaction::commit()} or
      * {@see Google\Cloud\Spanner\Transaction::rollback()}, the transaction will
-     * automatically be rolled back and `RuntimeException` thrown.
+     * automatically be rolled back and `\RuntimeException` thrown.
      *
      * Example:
      * ```
@@ -643,7 +643,7 @@ class Database
      *           `false`.
      * }
      * @return mixed The return value of `$operation`.
-     * @throws RuntimeException
+     * @throws \RuntimeException
      */
     public function runTransaction(callable $operation, array $options = [])
     {
@@ -1274,7 +1274,7 @@ class Database
 
     /**
      * Closes the database connection by returning the active session back to
-     * the session pool or by deleting the session if there is no pool
+     * the session pool queue or by deleting the session if there is no pool
      * associated.
      *
      * It is highly important to ensure this is called as it is not always safe
@@ -1359,9 +1359,13 @@ class Database
      */
     public function identity()
     {
+        $databaseParts = explode('/', $this->name);
+        $instanceParts = explode('/', $this->instance->name());
+
         return [
-            'database' => $this->name,
-            'instance' => $this->instance->name(),
+            'projectId' => $this->projectId,
+            'database' => end($databaseParts),
+            'instance' => end($instanceParts),
         ];
     }
 

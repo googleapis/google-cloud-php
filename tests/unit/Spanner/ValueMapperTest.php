@@ -20,6 +20,7 @@ namespace Google\Cloud\Tests\Unit\Spanner;
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Spanner\Bytes;
 use Google\Cloud\Spanner\Date;
+use Google\Cloud\Spanner\Result;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\ValueMapper;
 
@@ -28,6 +29,8 @@ use Google\Cloud\Spanner\ValueMapper;
  */
 class ValueMapperTest extends \PHPUnit_Framework_TestCase
 {
+    const FORMAT_TEST_VALUE = 'abc';
+
     private $mapper;
 
     public function setUp()
@@ -171,11 +174,63 @@ class ValueMapperTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($vals['array'], $res[10]);
     }
 
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function testDecodeValuesThrowsExceptionWithInvalidFormat()
+    {
+        $res = $this->mapper->decodeValues(
+            $this->createField(ValueMapper::TYPE_STRING),
+            $this->createRow(self::FORMAT_TEST_VALUE),
+            'Not a real format'
+        );
+    }
+
+    /**
+     * @dataProvider formatProvider
+     */
+    public function testDecodeValuesReturnsVariedFormats($expectedOutput, $format)
+    {
+        $res = $this->mapper->decodeValues(
+            $this->createField(ValueMapper::TYPE_STRING),
+            $this->createRow(self::FORMAT_TEST_VALUE),
+            $format
+        );
+
+        $this->assertEquals($expectedOutput, $res);
+    }
+
+    public function formatProvider()
+    {
+        return [
+            [
+                ['rowName' => self::FORMAT_TEST_VALUE],
+                Result::RETURN_ASSOCIATIVE
+            ],
+            [
+                [
+                    [
+                        'name' => 'rowName',
+                        'value' => self::FORMAT_TEST_VALUE
+                    ]
+                ],
+                Result::RETURN_NAME_VALUE_PAIR
+            ],
+            [
+                [
+                    0 => self::FORMAT_TEST_VALUE
+                ],
+                Result::RETURN_ZERO_INDEXED
+            ],
+        ];
+    }
+
     public function testDecodeValuesBool()
     {
         $res = $this->mapper->decodeValues(
             $this->createField(ValueMapper::TYPE_BOOL),
-            $this->createRow(false)
+            $this->createRow(false),
+            Result::RETURN_ASSOCIATIVE
         );
         $this->assertEquals(false, $res['rowName']);
     }
@@ -184,7 +239,8 @@ class ValueMapperTest extends \PHPUnit_Framework_TestCase
     {
         $res = $this->mapper->decodeValues(
             $this->createField(ValueMapper::TYPE_INT64),
-            $this->createRow('555')
+            $this->createRow('555'),
+            Result::RETURN_ASSOCIATIVE
         );
         $this->assertEquals(555, $res['rowName']);
     }
@@ -194,7 +250,8 @@ class ValueMapperTest extends \PHPUnit_Framework_TestCase
         $mapper = new ValueMapper(true);
         $res = $mapper->decodeValues(
             $this->createField(ValueMapper::TYPE_INT64),
-            $this->createRow('555')
+            $this->createRow('555'),
+            Result::RETURN_ASSOCIATIVE
         );
         $this->assertInstanceOf(Int64::class, $res['rowName']);
         $this->assertEquals('555', $res['rowName']->get());
@@ -204,7 +261,8 @@ class ValueMapperTest extends \PHPUnit_Framework_TestCase
     {
         $res = $this->mapper->decodeValues(
             $this->createField(ValueMapper::TYPE_FLOAT64),
-            $this->createRow(3.1415)
+            $this->createRow(3.1415),
+            Result::RETURN_ASSOCIATIVE
         );
         $this->assertEquals(3.1415, $res['rowName']);
     }
@@ -213,7 +271,8 @@ class ValueMapperTest extends \PHPUnit_Framework_TestCase
     {
         $res = $this->mapper->decodeValues(
             $this->createField(ValueMapper::TYPE_FLOAT64),
-            $this->createRow('NaN')
+            $this->createRow('NaN'),
+            Result::RETURN_ASSOCIATIVE
         );
         $this->assertTrue(is_nan($res['rowName']));
     }
@@ -222,7 +281,8 @@ class ValueMapperTest extends \PHPUnit_Framework_TestCase
     {
         $res = $this->mapper->decodeValues(
             $this->createField(ValueMapper::TYPE_FLOAT64),
-            $this->createRow('Infinity')
+            $this->createRow('Infinity'),
+            Result::RETURN_ASSOCIATIVE
         );
 
         $this->assertTrue(is_infinite($res['rowName']));
@@ -233,7 +293,8 @@ class ValueMapperTest extends \PHPUnit_Framework_TestCase
     {
         $res = $this->mapper->decodeValues(
             $this->createField(ValueMapper::TYPE_FLOAT64),
-            $this->createRow('-Infinity')
+            $this->createRow('-Infinity'),
+            Result::RETURN_ASSOCIATIVE
         );
 
         $this->assertTrue(is_infinite($res['rowName']));
@@ -247,7 +308,8 @@ class ValueMapperTest extends \PHPUnit_Framework_TestCase
     {
         $res = $this->mapper->decodeValues(
             $this->createField(ValueMapper::TYPE_FLOAT64),
-            $this->createRow('foo')
+            $this->createRow('foo'),
+            Result::RETURN_ASSOCIATIVE
         );
     }
 
@@ -255,7 +317,8 @@ class ValueMapperTest extends \PHPUnit_Framework_TestCase
     {
         $res = $this->mapper->decodeValues(
             $this->createField(ValueMapper::TYPE_STRING),
-            $this->createRow('foo')
+            $this->createRow('foo'),
+            Result::RETURN_ASSOCIATIVE
         );
         $this->assertEquals('foo', $res['rowName']);
     }
@@ -265,7 +328,8 @@ class ValueMapperTest extends \PHPUnit_Framework_TestCase
         $dt = new \DateTime;
         $res = $this->mapper->decodeValues(
             $this->createField(ValueMapper::TYPE_TIMESTAMP),
-            $this->createRow($dt->format(Timestamp::FORMAT))
+            $this->createRow($dt->format(Timestamp::FORMAT)),
+            Result::RETURN_ASSOCIATIVE
         );
 
         $this->assertInstanceOf(Timestamp::class, $res['rowName']);
@@ -277,7 +341,8 @@ class ValueMapperTest extends \PHPUnit_Framework_TestCase
         $dt = new \DateTime;
         $res = $this->mapper->decodeValues(
             $this->createField(ValueMapper::TYPE_DATE),
-            $this->createRow($dt->format(Date::FORMAT))
+            $this->createRow($dt->format(Date::FORMAT)),
+            Result::RETURN_ASSOCIATIVE
         );
 
         $this->assertInstanceOf(Date::class, $res['rowName']);
@@ -288,7 +353,8 @@ class ValueMapperTest extends \PHPUnit_Framework_TestCase
     {
         $res = $this->mapper->decodeValues(
             $this->createField(ValueMapper::TYPE_BYTES),
-            $this->createRow(base64_encode('hello world'))
+            $this->createRow(base64_encode('hello world')),
+            Result::RETURN_ASSOCIATIVE
         );
 
         $this->assertInstanceOf(Bytes::class, $res['rowName']);
@@ -300,7 +366,9 @@ class ValueMapperTest extends \PHPUnit_Framework_TestCase
         $res = $this->mapper->decodeValues(
             $this->createField(ValueMapper::TYPE_ARRAY, 'arrayElementType', [
                 'code' => ValueMapper::TYPE_STRING
-            ]), $this->createRow(['foo', 'bar'])
+            ]),
+            $this->createRow(['foo', 'bar']),
+            Result::RETURN_ASSOCIATIVE
         );
 
         $this->assertEquals('foo', $res['rowName'][0]);
@@ -337,7 +405,8 @@ class ValueMapperTest extends \PHPUnit_Framework_TestCase
 
         $res = $this->mapper->decodeValues(
             [$field],
-            [$row]
+            [$row],
+            Result::RETURN_ASSOCIATIVE
         );
 
         $this->assertEquals('Hello World', $res['structTest'][0]['rowName']);
@@ -360,7 +429,7 @@ class ValueMapperTest extends \PHPUnit_Framework_TestCase
 
         $row = ['1337', 'John'];
 
-        $res = $this->mapper->decodeValues($fields, $row);
+        $res = $this->mapper->decodeValues($fields, $row, Result::RETURN_ASSOCIATIVE);
 
         $this->assertEquals('1337', $res['ID']);
         $this->assertEquals('John', $res[1]);

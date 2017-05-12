@@ -31,7 +31,8 @@ use Prophecy\Argument\ArgumentsWildcard;
  */
 class CacheSessionPoolTest extends \PHPUnit_Framework_TestCase
 {
-    const CACHE_KEY_TEMPLATE = 'cache-session-pool.%s.%s';
+    const CACHE_KEY_TEMPLATE = 'cache-session-pool.%s.%s.%s';
+    const PROJECT_ID = 'project';
     const DATABASE_NAME = 'database';
     const INSTANCE_NAME = 'instance';
 
@@ -135,7 +136,7 @@ class CacheSessionPoolTest extends \PHPUnit_Framework_TestCase
 
         $actualItemPool = $pool->cacheItemPool();
         $actualCacheData = $actualItemPool->getItem(
-            sprintf(self::CACHE_KEY_TEMPLATE, self::INSTANCE_NAME, self::DATABASE_NAME)
+            sprintf(self::CACHE_KEY_TEMPLATE, self::PROJECT_ID, self::INSTANCE_NAME, self::DATABASE_NAME)
         )->get();
 
         $this->assertEmpty($actualCacheData['toCreate']);
@@ -175,19 +176,165 @@ class CacheSessionPoolTest extends \PHPUnit_Framework_TestCase
         $pool->release($session->reveal());
         $actualItemPool = $pool->cacheItemPool();
         $actualCacheData = $actualItemPool->getItem(
-            sprintf(self::CACHE_KEY_TEMPLATE, self::INSTANCE_NAME, self::DATABASE_NAME)
+            sprintf(self::CACHE_KEY_TEMPLATE, self::PROJECT_ID, self::INSTANCE_NAME, self::DATABASE_NAME)
         )->get();
 
         $this->assertEquals($expectedCacheData, $actualCacheData);
     }
 
+    public function testKeepAlive()
+    {
+        $sessionName = 'alreadyCheckedOut';
+        $lastActiveOriginal = 1000;
+        $session = $this->prophesize(Session::class);
+        $session->name()
+            ->willReturn($sessionName);
+        $pool = new CacheSessionPoolStub($this->getCacheItemPool([
+            'queue' => [],
+            'inUse' => [
+                $sessionName => [
+                    'name' => $sessionName,
+                    'expiration' => $this->time + 3600,
+                    'lastActive' => $lastActiveOriginal
+                ]
+            ],
+            'toCreate' => []
+        ]), [], $this->time);
+        $pool->setDatabase($this->getDatabase());
+        $actualItemPool = $pool->cacheItemPool();
+        $actualCacheData = $actualItemPool->getItem(
+            sprintf(self::CACHE_KEY_TEMPLATE, self::PROJECT_ID, self::INSTANCE_NAME, self::DATABASE_NAME)
+        )->get();
+
+        $this->assertEquals($lastActiveOriginal, $actualCacheData['inUse'][$sessionName]['lastActive']);
+
+        $pool->keepAlive($session->reveal());
+        $actualCacheData = $actualItemPool->getItem(
+            sprintf(self::CACHE_KEY_TEMPLATE, self::PROJECT_ID, self::INSTANCE_NAME, self::DATABASE_NAME)
+        )->get();
+
+        $this->assertEquals($this->time, $actualCacheData['inUse'][$sessionName]['lastActive']);
+    }
+
+    /**
+     * @dataProvider downsizeDataProvider
+     */
+    public function testDownsizeDeletes($percent, $expectedDeleteCount)
+    {
+        $time = time() + 3600;
+        $pool = new CacheSessionPoolStub($this->getCacheItemPool([
+            'queue' => [
+                [
+                    'name' => 'session0',
+                    'expiration' => $time
+                ],
+                [
+                    'name' => 'session1',
+                    'expiration' => $time
+                ],
+                [
+                    'name' => 'session2',
+                    'expiration' => $time
+                ],
+                [
+                    'name' => 'session3',
+                    'expiration' => $time
+                ],
+                [
+                    'name' => 'session4',
+                    'expiration' => $time
+                ]
+            ],
+            'inUse' => [],
+            'toCreate' => []
+        ]));
+        $pool->setDatabase($this->getDatabase(false, true));
+        $response = $pool->downsize($percent);
+
+        $this->assertEquals($expectedDeleteCount, $response['deleted']);
+    }
+
+    public function downsizeDataProvider()
+    {
+        return [
+            [50, 2],
+            [1, 1],
+            [100, 4]
+        ];
+    }
+
+    public function testDownsizeFails()
+    {
+        $time = time() + 3600;
+        $pool = new CacheSessionPoolStub($this->getCacheItemPool([
+            'queue' => [
+                [
+                    'name' => 'session0',
+                    'expiration' => $time
+                ],
+                [
+                    'name' => 'session1',
+                    'expiration' => $time
+                ]
+            ],
+            'inUse' => [],
+            'toCreate' => []
+        ]));
+        $pool->setDatabase($this->getDatabase());
+        $response = $pool->downsize(100);
+
+        $this->assertEquals(0, $response['deleted']);
+        $this->assertEquals(1, count($response['failed']));
+        $this->assertContainsOnlyInstancesOf(Session::class, $response['failed']);
+    }
+
+    /**
+     * @dataProvider invalidPercentDownsizeDataProvider
+     */
+    public function testDownsizeThrowsExceptionWithInvalidPercent($percent)
+    {
+        $pool = new CacheSessionPoolStub($this->getCacheItemPool());
+        $exceptionThrown = false;
+
+        try {
+            $pool->downsize($percent);
+        } catch (\InvalidArgumentException $ex) {
+            $exceptionThrown = true;
+        }
+
+        $this->assertTrue($exceptionThrown);
+    }
+
+    public function invalidPercentDownsizeDataProvider()
+    {
+        return [
+            [-1],
+            [0],
+            [101]
+        ];
+    }
+
+    public function testWarmup()
+    {
+        $expectedCreationCount = 5;
+        $pool = new CacheSessionPoolStub(
+            $this->getCacheItemPool(),
+            ['minSessions' => $expectedCreationCount]
+        );
+        $pool->setDatabase($this->getDatabase());
+        $response = $pool->warmup();
+
+        $this->assertEquals($expectedCreationCount, $response);
+    }
+
     public function testClearPool()
     {
         $pool = new CacheSessionPoolStub($this->getCacheItemPool());
+        $pool->setDatabase($this->getDatabase());
         $pool->clear();
         $actualItemPool = $pool->cacheItemPool();
         $actualCacheData = $actualItemPool->getItem(
-            sprintf(self::CACHE_KEY_TEMPLATE, self::INSTANCE_NAME, self::DATABASE_NAME)
+            sprintf(self::CACHE_KEY_TEMPLATE, self::PROJECT_ID, self::INSTANCE_NAME, self::DATABASE_NAME)
         )->get();
 
         $this->assertNull($actualCacheData);
@@ -203,7 +350,7 @@ class CacheSessionPoolTest extends \PHPUnit_Framework_TestCase
         $actualSession = $pool->acquire();
         $actualItemPool = $pool->cacheItemPool();
         $actualCacheData = $actualItemPool->getItem(
-            sprintf(self::CACHE_KEY_TEMPLATE, self::INSTANCE_NAME, self::DATABASE_NAME)
+            sprintf(self::CACHE_KEY_TEMPLATE, self::PROJECT_ID, self::INSTANCE_NAME, self::DATABASE_NAME)
         )->get();
 
         $this->assertInstanceOf(Session::class, $actualSession);
@@ -232,37 +379,24 @@ class CacheSessionPoolTest extends \PHPUnit_Framework_TestCase
                 ],
                 $time
             ],
-            // Set #1: Purge expired session from queue and create sessions up to min
+            // Set #1: Purge expired session from queue and create
             [
-                ['minSessions' => 3],
+                ['minSessions' => 1],
                 [
                     'queue' => [
                         [
                             'name' => 'expired',
                             'expiration' => $time - 3000
-                        ],
-                        [
-                            'name' => 'stillValid',
-                            'expiration' => $time + 3600
                         ]
                     ],
                     'inUse' => [],
                     'toCreate' => []
                 ],
                 [
-                    'queue' => [
-                        [
-                            'name' => 'session0',
-                            'expiration' => $time + 3600
-                        ],
-                        [
-                            'name' => 'session1',
-                            'expiration' => $time + 3600
-                        ]
-                    ],
+                    'queue' => [],
                     'inUse' => [
-                        'stillValid' => [
-                            'name' => 'stillValid',
+                        'session0' => [
+                            'name' => 'session0',
                             'expiration' => $time + 3600,
                             'lastActive' => $time
                         ]
@@ -271,8 +405,8 @@ class CacheSessionPoolTest extends \PHPUnit_Framework_TestCase
                 ],
                 $time
             ],
-            // // Set #2: Create a new session when all available are checked out
-            // // and we have not reached the max limit
+            // Set #2: Create a new session when all available are checked out
+            // and we have not reached the max limit
             [
                 [],
                 [
@@ -318,7 +452,7 @@ class CacheSessionPoolTest extends \PHPUnit_Framework_TestCase
                         'expiredInUse2' => [
                             'name' => 'expiredInUse2',
                             'expiration' => $time - 5000,
-                            'lastActive' => $time - 1201
+                            'lastActive' => $time - 3601
                         ]
                     ],
                     'toCreate' => [
@@ -393,11 +527,38 @@ class CacheSessionPoolTest extends \PHPUnit_Framework_TestCase
                     'toCreate' => []
                 ],
                 $time
-            ]
+            ],
+            // Set #6: Return inactive in use session back to queue
+            [
+                ['maxSessions' => 1],
+                [
+                    'queue' => [],
+                    'inUse' => [
+                        'inactiveInUse1' => [
+                            'name' => 'inactiveInUse1',
+                            'expiration' => $time + 3600,
+                            'lastActive' => $time - 1201
+                        ]
+                    ],
+                    'toCreate' => []
+                ],
+                [
+                    'queue' => [],
+                    'inUse' => [
+                        'inactiveInUse1' => [
+                            'name' => 'inactiveInUse1',
+                            'expiration' => $time + 3600,
+                            'lastActive' => $time
+                        ]
+                    ],
+                    'toCreate' => []
+                ],
+                $time
+            ],
         ];
     }
 
-    private function getDatabase($shouldCreateThrowException = false)
+    private function getDatabase($shouldCreateThrowException = false, $willDeleteSessions = false)
     {
         $database = $this->prophesize(Database::class);
         $createdSession = $this->prophesize(Session::class);
@@ -408,6 +569,11 @@ class CacheSessionPoolTest extends \PHPUnit_Framework_TestCase
             ->willReturn($this->time + 3600);
         $session->exists()
             ->willReturn(false);
+
+        if ($willDeleteSessions) {
+            $session->delete()
+                ->willReturn(null);
+        }
         $database->session(Argument::any())
             ->will(function ($args) use ($session) {
                 $session->name()
@@ -417,6 +583,7 @@ class CacheSessionPoolTest extends \PHPUnit_Framework_TestCase
             });
         $database->identity()
             ->willReturn([
+                'projectId' => self::PROJECT_ID,
                 'database' => self::DATABASE_NAME,
                 'instance' => self::INSTANCE_NAME
             ]);
@@ -446,7 +613,7 @@ class CacheSessionPoolTest extends \PHPUnit_Framework_TestCase
     {
         $cacheItemPool = new MemoryCacheItemPool();
         $cacheItem = $cacheItemPool->getItem(
-            sprintf(self::CACHE_KEY_TEMPLATE, self::INSTANCE_NAME, self::DATABASE_NAME)
+            sprintf(self::CACHE_KEY_TEMPLATE, self::PROJECT_ID, self::INSTANCE_NAME, self::DATABASE_NAME)
         );
         $cacheItemPool->save($cacheItem->set($cacheData));
 
@@ -466,6 +633,6 @@ class CacheSessionPoolStub extends CacheSessionPool
 
     protected function time()
     {
-        return $this->time ?: parent::$this->time();
+        return $this->time ?: parent::time();
     }
 }

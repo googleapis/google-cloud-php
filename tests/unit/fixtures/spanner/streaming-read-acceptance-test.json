@@ -366,6 +366,82 @@
         "{\n  \"values\": [\"f\"]\n}"
       ],
       "name": "Multiple Row Chunks/Non Chunks Interleaved"
+    },
+    {
+      "result": {
+        "value": [
+          [
+            "a"
+          ],
+          [
+            "b"
+          ],
+          [
+            "c"
+          ]
+        ]
+      },
+      "chunks": [
+        "{\n  \"metadata\": {\n    \"rowType\": {\n      \"fields\": [{\n        \"name\": \"f1\",\n        \"type\": {\n          \"code\": 6\n        }\n      }]\n    }\n  },\n  \"values\": [\"a\"]\n}",
+        "{\n  \"values\": [\"b\"]\n}",
+        "{\n  \"values\": [\"c\"],\n  \"resumeToken\": \"theToken\"\n}"
+      ],
+      "name": "Buffers up to resume token"
+    },
+    {
+      "result": {
+        "value": [
+          [
+            "a"
+          ],
+          [
+            "b"
+          ],
+          [
+            "c"
+          ],
+          [
+            "d"
+          ],
+          [
+            "e"
+          ],
+          [
+            "f"
+          ],
+          [
+            "g"
+          ],
+          [
+            "h"
+          ],
+          [
+            "i"
+          ]
+        ]
+      },
+      "chunks": [
+        "{\n  \"metadata\": {\n    \"rowType\": {\n      \"fields\": [{\n        \"name\": \"f1\",\n        \"type\": {\n          \"code\": 6\n        }\n      }]\n    }\n  },\n  \"values\": [\"a\"]\n}",
+        "{\n  \"values\": [\"b\"]\n}",
+        "{\n  \"values\": [\"c\"]\n}",
+        "{\n  \"values\": [\"d\"]\n}",
+        "{\n  \"values\": [\"e\"]\n}",
+        "{\n  \"values\": [\"f\"]\n}",
+        "{\n  \"values\": [\"g\"]\n}",
+        "{\n  \"values\": [\"h\"]\n}",
+        "{\n  \"values\": [\"i\"]\n}",
+        "{\n  \"values\": [\"j\"],\n  \"chunkedValue\": true\n}"
+      ],
+      "name": "Buffers up to buffer limit"
+    },
+    {
+      "result": {
+        "value": []
+      },
+      "chunks": [
+        "{\n  \"metadata\": {\n    \"rowType\": {\n      \"fields\": [{\n        \"name\": \"f1\",\n        \"type\": {\n          \"code\": 6\n        }\n      }]\n    }\n  }}"
+      ],
+      "name": "Returns early with no values"
     }
   ]
 }

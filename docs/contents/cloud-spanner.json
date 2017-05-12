@@ -40,5 +40,8 @@
     }, {
         "title": "Timestamp",
         "type": "spanner/timestamp"
+    },{
+        "title": "CacheSessionPool",
+        "type": "spanner/session/cachesessionpool"
     }]
 }
