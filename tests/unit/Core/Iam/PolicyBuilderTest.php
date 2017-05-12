@@ -137,4 +137,91 @@ class PolicyBuilderTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals($policy, $result);
     }
+
+    public function testRemoveBinding()
+    {
+        $policy = [
+            'bindings' => [
+                [
+                    'role' => 'test',
+                    'members' => [
+                        'user:test@test.com',
+                        'user2:test@test.com'
+                    ]
+                ]
+            ]
+        ];
+
+        $builder = new PolicyBuilder($policy);
+        $builder->removeBinding('test', ['user:test@test.com']);
+
+        $this->assertEquals('user2:test@test.com', $builder->result()['bindings'][0]['members'][0]);
+    }
+
+    public function testRemoveBindingAndRole()
+    {
+        $policy = [
+            'bindings' => [
+                [
+                    'role' => 'test',
+                    'members' => [
+                        'user:test@test.com',
+                    ]
+                ],
+                [
+                    'role' => 'test2',
+                    'members' => [
+                        'user2:test@test.com'
+                    ]
+                ]
+            ]
+        ];
+
+        $builder = new PolicyBuilder($policy);
+        $builder->removeBinding('test', ['user:test@test.com']);
+
+        $this->assertEquals('user2:test@test.com', $builder->result()['bindings'][0]['members'][0]);
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     * @expectedExceptionMessage One or more role-members were not found.
+     */
+    public function testRemoveBindingInvalidMemberThrowsException()
+    {
+        $policy = [
+            'bindings' => [
+                [
+                    'role' => 'test',
+                    'members' => [
+                        'user:test@test.com',
+                    ]
+                ],
+            ]
+        ];
+
+        $builder = new PolicyBuilder($policy);
+        $builder->removeBinding('test', ['user2:test@test.com']);
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     * @expectedExceptionMessage The role was not found.
+     */
+    public function testRemoveBindingInvalidRoleThrowsException()
+    {
+        $policy = [
+            'bindings' => [
+                [
+                    'role' => 'test',
+                    'members' => [
+                        'user:test@test.com',
+                    ]
+                ],
+            ]
+        ];
+
+        $builder = new PolicyBuilder($policy);
+        $builder->removeBinding('test2', ['user:test@test.com']);
+    }
 }
