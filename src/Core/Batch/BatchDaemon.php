@@ -104,10 +104,34 @@ class BatchDaemon
             $jobs = $this->runner->getJobs();
             foreach ($jobs as $job) {
                 if (! array_key_exists($job->getIdentifier(), $procs)) {
-                    echo 'Spawning children' . PHP_EOL;
                     $procs[$job->getIdentifier()] = [];
-                    for ($i = 0; $i < $job->getWorkerNum(); $i++) {
-                        $procs[$job->getIdentifier()][] = proc_open(
+                }
+                while(count($procs[$job->getIdentifier()]) > $job->getWorkerNum()) {
+                    // Stopping an excessive child.
+                    echo 'Stopping an excessive child.' . PHP_EOL;
+                    $proc = array_pop($procs[$job->getIdentifier()]);
+                    $status = proc_get_status($proc);
+                    // Keep sending SIGTERM until the child exits.
+                    while ($status['running'] === true) {
+                        @proc_terminate($proc);
+                        usleep(50000);
+                        $status = proc_get_status($proc);
+                    }
+                    @proc_close($proc);
+                }
+                for ($i = 0; $i < $job->getWorkerNum(); $i++) {
+                    $needStart = false;
+                    if (array_key_exists($i, $procs[$job->getIdentifier()])) {
+                        $status = proc_get_status($procs[$job->getIdentifier()][$i]);
+                        if ($status['running'] !== true) {
+                            $needStart = true;
+                        }
+                    } else {
+                        $needStart = true;
+                    }
+                    if ($needStart) {
+                        echo 'Starting a child.' . PHP_EOL;
+                        $procs[$job->getIdentifier()][$i] = proc_open(
                             sprintf('%s %d', $this->command, $job->getIdNum()),
                             $this->descriptorSpec,
                             $pipes
@@ -115,6 +139,7 @@ class BatchDaemon
                     }
                 }
             }
+            usleep(1000000); // Reload the config after 1 second
             pcntl_signal_dispatch();
             if ($this->shutdown) {
                 echo 'Shutting down, waiting for the children' . PHP_EOL;
@@ -133,7 +158,6 @@ class BatchDaemon
                 echo 'BatchDaemon exiting' . PHP_EOL;
                 exit;
             }
-            usleep(1000000); // Reload the config after 1 second
             // Reload the config
             $this->runner->loadConfig();
         }
