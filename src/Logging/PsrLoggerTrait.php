@@ -237,7 +237,7 @@ trait PsrLoggerTrait
         $entry = $this->getLogger()->entry(
             $jsonPayload + $processedData['context'],
             $options + [
-                'severity' => is_string($level) ? strtoupper($level) : $level
+                'severity' => $level
             ]
         );
         $this->sendEntry($entry);
