@@ -106,7 +106,7 @@ class BatchDaemon
                 if (! array_key_exists($job->getIdentifier(), $procs)) {
                     $procs[$job->getIdentifier()] = [];
                 }
-                while(count($procs[$job->getIdentifier()]) > $job->getWorkerNum()) {
+                while (count($procs[$job->getIdentifier()]) > $job->getWorkerNum()) {
                     // Stopping an excessive child.
                     echo 'Stopping an excessive child.' . PHP_EOL;
                     $proc = array_pop($procs[$job->getIdentifier()]);
