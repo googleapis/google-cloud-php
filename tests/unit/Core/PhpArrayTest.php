@@ -28,7 +28,7 @@ class PhpArrayTest extends \PHPUnit_Framework_TestCase
 {
     private function getCodec($customFilters = [])
     {
-        return new PhpArray($customFilters);
+        return new PhpArray(['customFilters' => $customFilters]);
     }
 
     /**

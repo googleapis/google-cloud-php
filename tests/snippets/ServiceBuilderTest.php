@@ -24,6 +24,7 @@ use Google\Cloud\Logging\LoggingClient;
 use Google\Cloud\Language\LanguageClient;
 use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\ServiceBuilder;
+use Google\Cloud\Spanner\SpannerClient;
 use Google\Cloud\Speech\SpeechClient;
 use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Trace\TraceClient;
@@ -56,6 +57,7 @@ class ServiceBuilderTest extends SnippetTestCase
             ['logging', LoggingClient::class, 'logging'],
             ['language', LanguageClient::class, 'language'],
             ['pubsub', PubSubClient::class, 'pubsub'],
+            ['spanner', SpannerClient::class, 'spanner'],
             ['speech', SpeechClient::class, 'speech'],
             ['storage', StorageClient::class, 'storage'],
             ['trace', TraceClient::class, 'trace'],

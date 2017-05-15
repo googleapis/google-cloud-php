@@ -33,35 +33,3 @@ register_shutdown_function(function () {
         exit(1);
     }
 });
-
-function stub($name, $extends)
-{
-    $tpl = 'class %s extends %s {use \Google\Cloud\Dev\SetStubConnectionTrait; }';
-
-    eval(sprintf($tpl, $name, $extends));
-}
-
-stub('AclStub', Google\Cloud\Storage\Acl::class);
-stub('BigQueryClientStub', Google\Cloud\BigQuery\BigQueryClient::class);
-stub('BucketStub', Google\Cloud\Storage\Bucket::class);
-stub('DatastoreClientStub', Google\Cloud\Datastore\DatastoreClient::class);
-stub('IamStub', Google\Cloud\Core\Iam\Iam::class);
-stub('LoggerStub', Google\Cloud\Logging\Logger::class);
-stub('LoggingClientStub', Google\Cloud\Logging\LoggingClient::class);
-stub('MetricStub', Google\Cloud\Logging\Metric::class);
-stub('LanguageClientStub', Google\Cloud\Language\LanguageClient::class);
-stub('OperationStub', Google\Cloud\Datastore\Operation::class);
-stub('PubSubClientStub', Google\Cloud\PubSub\PubSubClient::class);
-stub('QueryResultsStub', Google\Cloud\BigQuery\QueryResults::class);
-stub('SinkStub', Google\Cloud\Logging\Sink::class);
-stub('SnapshotStub', Google\Cloud\PubSub\Snapshot::class);
-stub('SpeechClientStub', Google\Cloud\Speech\SpeechClient::class);
-stub('SpeechOperationStub', Google\Cloud\Speech\Operation::class);
-stub('StorageClientStub', Google\Cloud\Storage\StorageClient::class);
-stub('StorageObjectStub', Google\Cloud\Storage\StorageObject::class);
-stub('SubscriptionStub', Google\Cloud\PubSub\Subscription::class);
-stub('TableStub', Google\Cloud\BigQuery\Table::class);
-stub('TopicStub', Google\Cloud\PubSub\Topic::class);
-stub('TraceClientStub', Google\Cloud\Trace\TraceClient::class);
-stub('TranslateClientStub', Google\Cloud\Translate\TranslateClient::class);
-stub('VisionClientStub', Google\Cloud\Vision\VisionClient::class);

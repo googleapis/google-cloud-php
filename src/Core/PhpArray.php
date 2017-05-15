@@ -18,8 +18,9 @@
 namespace Google\Cloud\Core;
 
 use DrSlump\Protobuf;
-use google\protobuf\Struct;
 use google\protobuf\ListValue;
+use google\protobuf\NullValue;
+use google\protobuf\Struct;
 
 /**
  * Extend the Protobuf-PHP array codec to allow messages to match the format
@@ -156,6 +157,10 @@ class PhpArray extends Protobuf\Codec\PhpArray
 
     protected function filterValue($value, Protobuf\Field $field)
     {
+        if (trim($field->getReference(), '\\') === NullValue::class) {
+            return null;
+        }
+
         if ($value instanceof Protobuf\Message) {
             if ($this->isKeyValueMessage($value)) {
                 $v = $value->getValue();

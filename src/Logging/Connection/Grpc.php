@@ -90,15 +90,17 @@ class Grpc implements ConnectionInterface
     public function __construct(array $config = [])
     {
         $this->codec = new PhpArray([
-            'timestamp' => function ($v) {
-                return $this->formatTimestampFromApi($v);
-            },
-            'severity' => function ($v) {
-                return Logger::getLogLevelMap()[$v];
-            },
-            'outputVersionFormat' => function ($v) {
-                return self::$versionFormatMap[$v];
-            }
+            'customFilters' => [
+                'timestamp' => function ($v) {
+                    return $this->formatTimestampFromApi($v);
+                },
+                'severity' => function ($v) {
+                    return Logger::getLogLevelMap()[$v];
+                },
+                'outputVersionFormat' => function ($v) {
+                    return self::$versionFormatMap[$v];
+                }
+            ]
         ]);
         $config['codec'] = $this->codec;
         $this->setRequestWrapper(new GrpcRequestWrapper($config));

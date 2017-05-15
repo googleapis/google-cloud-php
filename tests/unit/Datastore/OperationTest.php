@@ -893,6 +893,11 @@ class OperationTest extends \PHPUnit_Framework_TestCase
 
 class OperationStub extends Operation
 {
+    // public function runQuery(QueryInterface $q, array $args = [])
+    // {
+    //     echo 'test';
+    //     exit;
+    // }
     public function setConnection($connection)
     {
         $this->connection = $connection;

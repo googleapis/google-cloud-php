@@ -36,7 +36,11 @@ class SinkTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->sink = new \SinkStub($this->connection->reveal(), self::SINK, self::PROJECT);
+        $this->sink = \Google\Cloud\Dev\stub(Sink::class, [
+            $this->connection->reveal(),
+            self::SINK,
+            self::PROJECT
+        ]);
     }
 
     public function testClass()
@@ -56,7 +60,7 @@ class SinkTest extends SnippetTestCase
             ->shouldBeCalled()
             ->willReturn([]);
 
-        $this->sink->setConnection($this->connection->reveal());
+        $this->sink->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke();
         $this->assertEquals('Sink exists!', $res->output());
@@ -70,7 +74,7 @@ class SinkTest extends SnippetTestCase
         $this->connection->deleteSink(Argument::any())
             ->shouldBeCalled();
 
-        $this->sink->setConnection($this->connection->reveal());
+        $this->sink->___setProperty('connection', $this->connection->reveal());
 
         $snippet->invoke();
     }
@@ -89,7 +93,7 @@ class SinkTest extends SnippetTestCase
                 'destination' => 'Foo'
             ]);
 
-        $this->sink->setConnection($this->connection->reveal());
+        $this->sink->___setProperty('connection', $this->connection->reveal());
 
         $snippet->invoke();
     }
@@ -105,7 +109,7 @@ class SinkTest extends SnippetTestCase
                 'destination' => 'Foo'
             ]);
 
-        $this->sink->setConnection($this->connection->reveal());
+        $this->sink->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke();
         $this->assertEquals('Foo', $res->output());
@@ -122,7 +126,7 @@ class SinkTest extends SnippetTestCase
                 'destination' => 'Foo'
             ]);
 
-        $this->sink->setConnection($this->connection->reveal());
+        $this->sink->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke();
         $this->assertEquals('Foo', $res->output());

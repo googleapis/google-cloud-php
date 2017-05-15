@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Core;
 
+use DrSlump\Protobuf\Codec\Binary;
 use DrSlump\Protobuf\Codec\CodecInterface;
 use DrSlump\Protobuf\Message;
 use Google\Auth\FetchAuthTokenInterface;
@@ -25,6 +26,7 @@ use Google\Cloud\Core\Exception;
 use Google\Cloud\Core\PhpArray;
 use Google\Cloud\Core\RequestWrapperTrait;
 use Google\GAX\ApiException;
+use Google\GAX\OperationResponse;
 use Google\GAX\PagedListResponse;
 use Google\GAX\RetrySettings;
 use Grpc;
@@ -48,6 +50,11 @@ class GrpcRequestWrapper
     private $codec;
 
     /**
+     * @var CodecInterface A codec used for binary deserialization.
+     */
+    private $binaryCodec;
+
+    /**
      * @var array gRPC specific configuration options passed off to the GAX
      * library.
      */
@@ -61,6 +68,13 @@ class GrpcRequestWrapper
         Grpc\STATUS_INTERNAL,
         Grpc\STATUS_UNAVAILABLE,
         Grpc\STATUS_DATA_LOSS
+    ];
+
+    /**
+     * @var array Map of error metadata types to RPC wrappers.
+     */
+    private $metadataTypes = [
+        'google.rpc.retryinfo-bin' => \google\rpc\RetryInfo::class
     ];
 
     /**
@@ -88,6 +102,7 @@ class GrpcRequestWrapper
         $this->authHttpHandler = $config['authHttpHandler'] ?: HttpHandlerFactory::build();
         $this->codec = $config['codec'];
         $this->grpcOptions = $config['grpcOptions'];
+        $this->binaryCodec = new Binary;
     }
 
     /**
@@ -134,7 +149,7 @@ class GrpcRequestWrapper
 
         try {
             return $this->handleResponse($backoff->execute($request, $args));
-        } catch (\Exception $ex) {
+        } catch (ApiException $ex) {
             throw $this->convertToGoogleException($ex);
         }
     }
@@ -153,6 +168,10 @@ class GrpcRequestWrapper
 
         if ($response instanceof Message) {
             return $response->serialize($this->codec);
+        }
+
+        if ($response instanceof OperationResponse) {
+            return $response;
         }
 
         return null;
@@ -179,6 +198,10 @@ class GrpcRequestWrapper
                 $exception = Exception\ConflictException::class;
                 break;
 
+            case Grpc\STATUS_FAILED_PRECONDITION:
+                $exception = Exception\FailedPreconditionException::class;
+                break;
+
             case Grpc\STATUS_UNKNOWN:
                 $exception = Exception\ServerException::class;
                 break;
@@ -187,11 +210,28 @@ class GrpcRequestWrapper
                 $exception = Exception\ServerException::class;
                 break;
 
+            case Grpc\STATUS_ABORTED:
+                $exception = Exception\AbortedException::class;
+                break;
+
             default:
                 $exception = Exception\ServiceException::class;
                 break;
         }
 
-        return new $exception($ex->getMessage(), $ex->getCode(), $ex);
+        $metadata = [];
+        if ($ex->getMetadata()) {
+            foreach ($ex->getMetadata() as $type => $binaryValue) {
+                if (!isset($this->metadataTypes[$type])) {
+                    continue;
+                }
+
+                $metadata[] = (new $this->metadataTypes[$type])
+                    ->deserialize($binaryValue[0], $this->binaryCodec)
+                    ->serialize($this->codec);
+            }
+        }
+
+        return new $exception($ex->getMessage(), $ex->getCode(), $ex, $metadata);
     }
 }

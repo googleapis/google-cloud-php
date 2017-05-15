@@ -15,12 +15,18 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Dev;
+namespace Google\Cloud\Spanner\Session;
 
-trait SetStubConnectionTrait
+/**
+ * Describes a session pool.
+ */
+interface SessionPoolInterface
 {
-    public function setConnection($conn)
-    {
-        $this->connection = $conn;
-    }
+    const CONTEXT_READ = 'r';
+    const CONTEXT_READWRITE = 'rw';
+
+    /**
+     * Get a session from the pool
+     */
+    public function session($instance, $database, $context, array $options = []);
 }
