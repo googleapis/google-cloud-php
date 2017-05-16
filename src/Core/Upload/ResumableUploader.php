@@ -49,9 +49,9 @@ class ResumableUploader extends AbstractUploader
     private $resumeUri;
     
     /**
-     * Extend the parent constructor with the specific 
+     * Extend the parent constructor with the specific
      * for resumable upload option "uploadProgressCallback"
-     * 
+     *
      * @param RequestWrapper $requestWrapper
      * @param string|resource|StreamInterface $data
      * @param string $uri
@@ -78,7 +78,9 @@ class ResumableUploader extends AbstractUploader
         parent::__construct($requestWrapper, $data, $uri, $options);
 
         // Set uploadProgressCallback if it's passed as an option.
-        $this->uploadProgressCallback = isset($options['uploadProgressCallback']) ? $options['uploadProgressCallback'] : null;
+        if(isset($options['uploadProgressCallback'])) {
+            $this->uploadProgressCallback = $options['uploadProgressCallback'];
+        }
     }
 
     /**
@@ -170,8 +172,7 @@ class ResumableUploader extends AbstractUploader
                 call_user_func($this->uploadProgressCallback, $currStreamLimitSize);
             }
 
-            $rangeStart = $this->getRangeStart($response->getHeaderLine('Range'));
-            
+            $rangeStart = $this->getRangeStart($response->getHeaderLine('Range'));   
         } while ($response->getStatusCode() === 308);
 
         return $this->jsonDecode($response->getBody(), true);
