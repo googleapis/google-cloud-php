@@ -49,7 +49,7 @@ class TransactionTest extends SnippetTestCase
             $operation->reveal(),
             $session->reveal(),
             self::TRANSACTION
-        ], ['operation']);
+        ], ['operation', 'isRetry']);
     }
 
     private function stubOperation($stub = null)
@@ -294,6 +294,17 @@ class TransactionTest extends SnippetTestCase
 
         $res = $snippet->invoke('state');
         $this->assertEquals(Transaction::STATE_ACTIVE, $res->returnVal());
+    }
+
+    public function testIsRetry()
+    {
+        $snippet = $this->snippetFromMethod(Transaction::class, 'isRetry');
+        $snippet->addLocal('transaction', $this->transaction);
+
+        $this->transaction->___setProperty('isRetry', true);
+
+        $res = $snippet->invoke();
+        $this->assertEquals('This is a retry transaction!', $res->output());
     }
 
     private function resultGenerator()

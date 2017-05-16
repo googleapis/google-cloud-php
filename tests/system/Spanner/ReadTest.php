@@ -82,14 +82,6 @@ class ReadTest extends SpannerTestCase
         }
     }
 
-    // public function rangeProvider()
-    // {
-    //     return [
-    //         // single key, open-open
-
-    //     ];
-    // }
-
     /**
      * covers 8
      */
@@ -353,6 +345,7 @@ class ReadTest extends SpannerTestCase
         $row = $res->rows()->current();
         $this->assertInstanceOf(Bytes::class, $row['foo']);
         $this->assertEquals($str, base64_decode($bytes->formatAsString()));
+        $this->assertEquals($str, (string)$bytes->get());
     }
 
     /**

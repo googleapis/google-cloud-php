@@ -20,6 +20,7 @@ This client supports the following Google Cloud Platform services at a [Beta](#v
 
 This client supports the following Google Cloud Platform services at an [Alpha](#versioning) quality level:
 * [Google Cloud Pub/Sub](#google-cloud-pubsub-alpha) (Alpha)
+* [Cloud Spanner](#cloud-spanner-alpha) (Alpha)
 * [Google Cloud Speech](#google-cloud-speech-alpha) (Alpha)
 * [Google Stackdriver Trace](#google-stackdriver-trace-alpha) (Alpha)
 
@@ -388,6 +389,43 @@ Google Cloud Pub/Sub can be installed separately by requiring the `google/cloud-
 
 ```
 $ require google/cloud-pubsub
+```
+
+## Cloud Spanner (Alpha)
+
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/spanner/spannerclient)
+- [Official Documentation](https://cloud.google.com/spanner/docs)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Spanner\SpannerClient;
+
+$spanner = new SpannerClient([
+    'projectId' => 'my_project'
+]);
+
+$db = $spanner->connect('my-instance', 'my-database');
+
+$userQuery = $db->execute('SELECT * FROM Users WHERE id = @id', [
+    'parameters' => [
+        'id' => $userId
+    ]
+]);
+
+$user = $userQuery->rows()->current();
+
+echo 'Hello ' . $user['firstName'];
+```
+
+#### google/cloud-spanner
+
+Cloud Spanner can be installed separately by requiring the `google/cloud-spanner` composer package:
+
+```
+$ require google/cloud-spanner
 ```
 
 ## Google Cloud Speech (Alpha)

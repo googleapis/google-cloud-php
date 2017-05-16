@@ -4,11 +4,13 @@
     "license": "Apache-2.0",
     "minimum-stability": "stable",
     "require": {
-        "google/cloud-core": "*"
+        "ext-grpc": "*",
+        "google/cloud-core": "^1.0",
+        "google/gax": "^0.8",
+        "google/proto-client-php": "^0.8"
     },
     "suggest": {
-        "google/gax": "Required to support gRPC",
-        "google/proto-client-php": "Required to support gRPC"
+        "symfony/lock": "Required for the default session handler. Should be included as follows: symfony/lock:dev-master#1ba6ac9"
     },
     "extra": {
         "component": {
