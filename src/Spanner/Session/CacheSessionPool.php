@@ -47,7 +47,9 @@ use Symfony\Component\Lock\Store\FlockStore;
  * on an interval that matches when you expect to see a decrease in traffic.
  * This will help ensure you never run into issues where the Spanner backend is
  * locked up after having met the maximum number of sessions assigned per node
- * (The current maximum sessions per node is 10k).
+ * For reference, the current maximum sessions per database per node is 10k. For
+ * more information on limits please see
+ * [here](https://cloud.google.com/spanner/docs/limits).
  *
  * Additionally, when expecting a long period of inactivity (such as a
  * maintenance window), please make sure to call
