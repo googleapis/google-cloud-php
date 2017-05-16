@@ -17,8 +17,8 @@
 
 namespace Google\Cloud\Core\Upload;
 
-use Google\Cloud\Exception\GoogleException;
-use Google\Cloud\Exception\ServiceException;
+use Google\Cloud\Core\Exception\GoogleException;
+use Google\Cloud\Core\Exception\ServiceException;
 use GuzzleHttp\Psr7\Request;
 
 /**
@@ -50,7 +50,8 @@ class StreamableUploader extends ResumableUploader
             $data = $this->data->read($writeSize);
         } else {
             $rangeEnd = '*';
-            $data = $this->data;
+            $data = $this->data->getContents();
+            $writeSize = strlen($data);
         }
 
         // do the streaming write

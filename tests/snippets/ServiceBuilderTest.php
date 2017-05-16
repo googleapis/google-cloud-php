@@ -21,11 +21,12 @@ use Google\Cloud\BigQuery\BigQueryClient;
 use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
 use Google\Cloud\Logging\LoggingClient;
-use Google\Cloud\NaturalLanguage\NaturalLanguageClient;
+use Google\Cloud\Language\LanguageClient;
 use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\ServiceBuilder;
 use Google\Cloud\Speech\SpeechClient;
 use Google\Cloud\Storage\StorageClient;
+use Google\Cloud\Trace\TraceClient;
 use Google\Cloud\Translate\TranslateClient;
 use Google\Cloud\Vision\VisionClient;
 
@@ -53,10 +54,11 @@ class ServiceBuilderTest extends SnippetTestCase
             ['bigQuery', BigQueryClient::class, 'bigQuery'],
             ['datastore', DatastoreClient::class, 'datastore'],
             ['logging', LoggingClient::class, 'logging'],
-            ['naturalLanguage', NaturalLanguageClient::class, 'language'],
+            ['language', LanguageClient::class, 'language'],
             ['pubsub', PubSubClient::class, 'pubsub'],
             ['speech', SpeechClient::class, 'speech'],
             ['storage', StorageClient::class, 'storage'],
+            ['trace', TraceClient::class, 'trace'],
             ['vision', VisionClient::class, 'vision'],
             ['translate', TranslateClient::class, 'translate']
         ];

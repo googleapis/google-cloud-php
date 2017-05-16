@@ -1,0 +1,27 @@
+{
+    "name": "google/cloud-language",
+    "description": "Cloud Natural Language Client for PHP",
+    "license": "Apache-2.0",
+    "minimum-stability": "stable",
+    "require": {
+        "google/cloud-core": "^1.0"
+    },
+    "suggest": {
+        "google/cloud-storage": "Analyze documents stored in Google Cloud Storage",
+        "google/gax": "Required to support gRPC",
+        "google/proto-client-php": "Required to support gRPC"
+    },
+    "extra": {
+        "component": {
+            "id": "cloud-language",
+            "target": "GoogleCloudPlatform/google-cloud-php-language.git",
+            "path": "src/Language",
+            "entry": "LanguageClient.php"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Google\\Cloud\\Language\\": ""
+        }
+    }
+}

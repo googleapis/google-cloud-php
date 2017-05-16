@@ -20,8 +20,10 @@ namespace Google\Cloud\Tests\Unit\PubSub;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Iam\Iam;
 use Google\Cloud\Core\Iterator\ItemIterator;
+use Google\Cloud\Core\Timestamp;
 use Google\Cloud\PubSub\Connection\ConnectionInterface;
 use Google\Cloud\PubSub\Message;
+use Google\Cloud\PubSub\Snapshot;
 use Google\Cloud\PubSub\Subscription;
 use Prophecy\Argument;
 
@@ -82,6 +84,28 @@ class SubscriptionTest extends \PHPUnit_Framework_TestCase
         );
 
         $sub = $subscription->create();
+    }
+
+    public function testUpdate()
+    {
+        $args = [
+            'foo' => 'bar'
+        ];
+
+        $argsWithName = $args + [
+            'name' => $this->subscription->name()
+        ];
+
+        $this->connection->updateSubscription($argsWithName)
+            ->shouldBeCalled()
+            ->willReturn($argsWithName);
+
+        $this->subscription->setConnection($this->connection->reveal());
+
+        $res = $this->subscription->update($args);
+
+        $this->assertEquals($res, $argsWithName);
+        $this->assertEquals($this->subscription->info(), $argsWithName);
     }
 
     public function testDelete()
@@ -356,6 +380,40 @@ class SubscriptionTest extends \PHPUnit_Framework_TestCase
         $this->subscription->setConnection($this->connection->reveal());
 
         $this->subscription->modifyPushConfig($config, ['foo' => 'bar']);
+    }
+
+    public function testSeekToTime()
+    {
+        $dt = new \DateTime;
+        $timestamp = new Timestamp($dt);
+
+        $this->connection->seek([
+            'subscription' => $this->subscription->name(),
+            'time' => $timestamp->formatAsString()
+        ])->shouldBeCalled()->willReturn('foo');
+
+        $this->subscription->setConnection($this->connection->reveal());
+
+        $res = $this->subscription->seekToTime($timestamp);
+        $this->assertEquals('foo', $res);
+    }
+
+    public function testSeekToSnapshot()
+    {
+        $stub = $this->prophesize(Snapshot::class);
+        $stub->name()->willReturn('foo');
+
+        $snapshot = $stub->reveal();
+
+        $this->connection->seek([
+            'subscription' => $this->subscription->name(),
+            'snapshot' => $snapshot->name()
+        ])->shouldBeCalled()->willReturn('foo');
+
+        $this->subscription->setConnection($this->connection->reveal());
+
+        $res = $this->subscription->seekToSnapshot($snapshot);
+        $this->assertEquals('foo', $res);
     }
 
     public function testIam()

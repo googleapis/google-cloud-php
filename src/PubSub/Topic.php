@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2016 Google Inc. All Rights Reserved.
+ * Copyright 2017 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -92,7 +92,7 @@ class Topic
         $projectId,
         $name,
         $encode,
-        array $info = null
+        array $info = []
     ) {
         $this->connection = $connection;
         $this->projectId = $projectId;
@@ -105,9 +105,6 @@ class Topic
         } else {
             $this->name = $this->formatName('topic', $name, $projectId);
         }
-
-        $iamConnection = new IamTopic($this->connection);
-        $this->iam = new Iam($iamConnection, $this->name);
     }
 
     /**
@@ -271,7 +268,7 @@ class Topic
      * $topic->publish([
      *     'data' => 'New User Registered',
      *     'attributes' => [
-     *         'id' => 1,
+     *         'id' => '1',
      *         'userName' => 'John',
      *         'location' => 'Detroit'
      *     ]
@@ -298,14 +295,14 @@ class Topic
      *     [
      *         'data' => 'New User Registered',
      *         'attributes' => [
-     *             'id' => 1,
+     *             'id' => '1',
      *             'userName' => 'John',
      *             'location' => 'Detroit'
      *         ]
      *     ], [
      *         'data' => 'New User Registered',
      *         'attributes' => [
-     *             'id' => 2,
+     *             'id' => '2',
      *             'userName' => 'Steve',
      *             'location' => 'Mountain View'
      *         ]
@@ -441,6 +438,11 @@ class Topic
      */
     public function iam()
     {
+        if (!$this->iam) {
+            $iamConnection = new IamTopic($this->connection);
+            $this->iam = new Iam($iamConnection, $this->name);
+        }
+
         return $this->iam;
     }
 

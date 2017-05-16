@@ -4,4 +4,3 @@ composer.phar
 composer.lock
 docs/json/*
 vendor/
-/nbproject/private/

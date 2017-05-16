@@ -17,21 +17,26 @@
 
 namespace Google\Cloud\Tests\Unit\PubSub\Connection;
 
-use Google\Cloud\PubSub\Connection\Grpc;
 use Google\Cloud\Core\GrpcRequestWrapper;
+use Google\Cloud\Core\GrpcTrait;
+use Google\Cloud\PubSub\Connection\Grpc;
 use Prophecy\Argument;
 use google\iam\v1\Binding;
 use google\iam\v1\Policy;
+use google\protobuf;
 use google\pubsub\v1\PubsubMessage;
 use google\pubsub\v1\PubsubMessage\AttributesEntry as MessageAttributesEntry;
-use google\pubsub\v1\PushConfig\AttributesEntry as PushConfigAttributesEntry;
 use google\pubsub\v1\PushConfig;
+use google\pubsub\v1\PushConfig\AttributesEntry as PushConfigAttributesEntry;
+use google\pubsub\v1\Subscription;
 
 /**
  * @group pubsub
  */
 class GrpcTest extends \PHPUnit_Framework_TestCase
 {
+    use GrpcTrait;
+
     private $requestWrapper;
     private $successMessage;
 
@@ -94,7 +99,45 @@ class GrpcTest extends \PHPUnit_Framework_TestCase
         $maxMessages = 100;
         $ackDeadlineSeconds = 1;
 
+        $snapshotName = 'projects/foo/snapshots/bar';
+        $subscriptionName = 'projects/foo/subscriptions/bar';
+        $subscription = new Subscription;
+        $subscription->setName($subscriptionName);
+        $subscription->setRetainAckedMessages(true);
+
+        $fieldMask = (new protobuf\FieldMask())->deserialize([
+            'paths' => ['retain_acked_messages']
+        ], new \Google\Cloud\Core\PhpArray([], false));
+
+        $time = (new \DateTime)->format('Y-m-d\TH:i:s.u\Z');
+        $timestamp = (new protobuf\Timestamp)->deserialize($this->formatTimestampForApi($time), new \Google\Cloud\Core\PhpArray);
+
         return [
+            [
+                'updateSubscription',
+                ['name' => 'projects/foo/subscriptions/bar', 'retainAckedMessages' => true],
+                [$subscription, $fieldMask, []]
+            ],
+            [
+                'listSnapshots',
+                ['project' => 'projectId'],
+                ['projectId', []]
+            ],
+            [
+                'createSnapshot',
+                ['name' => $snapshotName, 'subscription' => $subscriptionName],
+                [$snapshotName, $subscriptionName, []]
+            ],
+            [
+                'deleteSnapshot',
+                ['snapshot' => $snapshotName],
+                [$snapshotName, []]
+            ],
+            [
+                'seek',
+                ['subscription' => $subscriptionName, 'time' => $time],
+                [$subscriptionName, ['time' => $timestamp]]
+            ],
             [
                 'createTopic',
                 ['name' => $value],

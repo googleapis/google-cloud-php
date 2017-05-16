@@ -26,9 +26,9 @@ use Google\Cloud\Storage\StorageObject;
 use Psr\Http\Message\StreamInterface;
 
 /**
- * [BigQuery Tables](https://cloud.google.com/bigquery/docs/tables) are a
- * standard two-dimensional table with individual records organized in rows, and
- * a data type assigned to each column (also called a field).
+ * [Tables](https://cloud.google.com/bigquery/docs/tables) are a standard
+ * two-dimensional table with individual records organized in rows, and a data
+ * type assigned to each column (also called a field).
  */
 class Table
 {
@@ -36,7 +36,7 @@ class Table
     use JobConfigurationTrait;
 
     /**
-     * @var ConnectionInterface $connection Represents a connection to BigQuery.
+     * @var ConnectionInterface Represents a connection to BigQuery.
      */
     protected $connection;
 
@@ -88,7 +88,7 @@ class Table
      * Example:
      * ```
      * if ($table->exists()) {
-     *     echo "Table exists!";
+     *     echo 'Table exists!';
      * }
      * ```
      *
@@ -246,7 +246,13 @@ class Table
 
         $response = $this->connection->insertJob($config);
 
-        return new Job($this->connection, $response['jobReference']['jobId'], $this->identity['projectId'], $response);
+        return new Job(
+            $this->connection,
+            $response['jobReference']['jobId'],
+            $this->identity['projectId'],
+            $this->mapper,
+            $response
+        );
     }
 
     /**
@@ -292,7 +298,13 @@ class Table
 
         $response = $this->connection->insertJob($config);
 
-        return new Job($this->connection, $response['jobReference']['jobId'], $this->identity['projectId'], $response);
+        return new Job(
+            $this->connection,
+            $response['jobReference']['jobId'],
+            $this->identity['projectId'],
+            $this->mapper,
+            $response
+        );
     }
 
     /**
@@ -336,6 +348,7 @@ class Table
             $this->connection,
             $response['jobReference']['jobId'],
             $this->identity['projectId'],
+            $this->mapper,
             $response
         );
     }
@@ -352,7 +365,10 @@ class Table
      *
      * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs Jobs insert API Documentation.
      *
-     * @param StorageObject $destination The object to load data from.
+     * @param string|StorageObject $object The object to load data from. May be
+     *        a {@see Google\Cloud\Storage\StorageObject} or a URI pointing to a
+     *        Google Cloud Storage object in the format of
+     *        `gs://{bucket-name}/{object-name}`.
      * @param array $options [optional] {
      *     Configuration options.
      *
@@ -362,10 +378,13 @@ class Table
      * }
      * @return Job
      */
-    public function loadFromStorage(StorageObject $object, array $options = [])
+    public function loadFromStorage($object, array $options = [])
     {
-        $objIdentity = $object->identity();
-        $options['jobConfig']['sourceUris'] = ['gs://' . $objIdentity['bucket'] . '/' . $objIdentity['object']];
+        if ($object instanceof StorageObject) {
+            $object = $object->gcsUri();
+        }
+
+        $options['jobConfig']['sourceUris'] = [$object];
 
         return $this->load(null, $options);
     }

@@ -27,11 +27,12 @@ use Google\Cloud\Speech\Connection\ConnectionInterface;
  * ```
  * use Google\Cloud\Speech\SpeechClient;
  *
- * $speech = new SpeechClient();
+ * $speech = new SpeechClient([
+ *     'languageCode' => 'en-US'
+ * ]);
  *
- * $audioFileStream = fopen(__DIR__  . '/audio.flac', 'r');
  * $operation = $speech->beginRecognizeOperation(
- *     $audioFileStream
+ *     fopen(__DIR__  . '/audio.flac', 'r')
  * );
  * ```
  */
@@ -98,23 +99,26 @@ class Operation
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/speech/reference/rest/v1beta1/speech/syncrecognize#SpeechRecognitionAlternative SpeechRecognitionAlternative
+     * @see https://cloud.google.com/speech/reference/rest/v1/speech/recognize#SpeechRecognitionResult SpeechRecognitionResult
      * @codingStandardsIgnoreEnd
      *
      * @param array $options [optional] Configuration Options.
-     * @return array The transcribed results. Each element of the array contains
-     *         a `transcript` key which holds the transcribed text. Optionally
-     *         a `confidence` key holding the confidence estimate ranging from
-     *         0.0 to 1.0 may be present. `confidence` is typically provided
-     *         only for the top hypothesis.
+     * @return Result[]
      */
     public function results(array $options = [])
     {
         $info = $this->info($options);
+        $results = [];
 
-        return isset($info['response']['results'])
-            ? $info['response']['results'][0]['alternatives']
-            : [];
+        if (!isset($info['response']['results'])) {
+            return $results;
+        }
+
+        foreach ($info['response']['results'] as $result) {
+            $results[] = new Result($result);
+        }
+
+        return $results;
     }
 
     /**
@@ -152,8 +156,8 @@ class Operation
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/speech/reference/rest/v1beta1/operations/get Operations get API documentation.
-     * @see https://cloud.google.com/speech/reference/rest/v1beta1/operations#Operation Operation resource documentation.
+     * @see https://cloud.google.com/speech/reference/rest/v1/operations/get Operations get API documentation.
+     * @see https://cloud.google.com/speech/reference/rest/v1/operations#Operation Operation resource documentation.
      * @codingStandardsIgnoreEnd
      *
      * @param array $options [optional] Configuration Options.
@@ -179,8 +183,8 @@ class Operation
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/speech/reference/rest/v1beta1/operations/get Operations get API documentation.
-     * @see https://cloud.google.com/speech/reference/rest/v1beta1/operations#Operation Operation resource documentation.
+     * @see https://cloud.google.com/speech/reference/rest/v1/operations/get Operations get API documentation.
+     * @see https://cloud.google.com/speech/reference/rest/v1/operations#Operation Operation resource documentation.
      * @codingStandardsIgnoreEnd
      *
      * @param array $options [optional] Configuration Options.

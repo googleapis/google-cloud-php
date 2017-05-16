@@ -23,6 +23,7 @@ use Google\Cloud\Storage\StorageClient;
 class StorageTestCase extends \PHPUnit_Framework_TestCase
 {
     const TESTING_PREFIX = 'gcloud_testing_';
+    const NORMALIZATION_TEST_BUCKET = 'storage-library-test-bucket';
 
     protected static $bucket;
     protected static $client;

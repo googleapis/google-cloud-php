@@ -21,10 +21,11 @@ use Google\Auth\HttpHandler\HttpHandlerFactory;
 use Google\Cloud\BigQuery\BigQueryClient;
 use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Logging\LoggingClient;
-use Google\Cloud\NaturalLanguage\NaturalLanguageClient;
+use Google\Cloud\Language\LanguageClient;
 use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\Speech\SpeechClient;
 use Google\Cloud\Storage\StorageClient;
+use Google\Cloud\Trace\TraceClient;
 use Google\Cloud\Translate\TranslateClient;
 use Google\Cloud\Vision\VisionClient;
 use Psr\Cache\CacheItemPoolInterface;
@@ -48,7 +49,7 @@ use Psr\Cache\CacheItemPoolInterface;
  */
 class ServiceBuilder
 {
-    const VERSION = '0.24.0';
+    const VERSION = '0.28.0';
 
     /**
      * @var array Configuration options to be used between clients.
@@ -99,7 +100,7 @@ class ServiceBuilder
     /**
      * Google Cloud BigQuery allows you to create, manage, share and query
      * data. Find more information at the
-     * [Google Cloud BigQuery Docs](https://cloud.google.com/bigquery/what-is-bigquery).
+     * [Google Cloud BigQuery Docs](https://cloud.google.com/bigquery/docs).
      *
      * Example:
      * ```
@@ -173,16 +174,16 @@ class ServiceBuilder
      *
      * Example:
      * ```
-     * $language = $cloud->naturalLanguage();
+     * $language = $cloud->language();
      * ```
      *
      * @param array $config [optional] Configuration options. See
      *        {@see Google\Cloud\ServiceBuilder::__construct()} for the available options.
-     * @return NaturalLanguageClient
+     * @return LanguageClient
      */
-    public function naturalLanguage(array $config = [])
+    public function language(array $config = [])
     {
-        return new NaturalLanguageClient($config ? $this->resolveConfig($config) : $this->config);
+        return new LanguageClient($config ? $this->resolveConfig($config) : $this->config);
     }
 
     /**
@@ -217,11 +218,20 @@ class ServiceBuilder
      *
      * Example:
      * ```
-     * $speech = $cloud->speech();
+     * $speech = $cloud->speech([
+     *     'languageCode' => 'en-US'
+     * ]);
      * ```
      *
-     * @param array $config [optional] Configuration options. See
-     *        {@see Google\Cloud\ServiceBuilder::__construct()} for the available options.
+     * @param array $config [optional] {
+     *     Configuration options. See
+     *     {@see Google\Cloud\ServiceBuilder::__construct()} for the other available options.
+     *
+     *     @type string $languageCode The language of the content to
+     *           be recognized. Only BCP-47 (e.g., `"en-US"`, `"es-ES"`)
+     *           language codes are accepted. See
+     *           [Language Support](https://cloud.google.com/speech/docs/languages)
+     *           for a list of the currently supported language codes.
      * @return SpeechClient
      */
     public function speech(array $config = [])
@@ -246,6 +256,26 @@ class ServiceBuilder
     public function storage(array $config = [])
     {
         return new StorageClient($config ? $this->resolveConfig($config) : $this->config);
+    }
+
+
+    /**
+     * Google Stackdriver Trace allows you to collect latency data from your applications
+     * and display it in the Google Cloud Platform Console. Find more information at
+     * [Stackdriver Trace API docs](https://cloud.google.com/trace/docs/).
+     *
+     * Example:
+     * ```
+     * $trace = $cloud->trace();
+     * ```
+     *
+     * @param array $config [optional] Configuration options. See
+     *        {@see Google\Cloud\ServiceBuilder::__construct()} for the available options.
+     * @return TraceClient
+     */
+    public function trace(array $config = [])
+    {
+        return new TraceClient($config ? $this->resolveConfig($config) : $this->config);
     }
 
     /**

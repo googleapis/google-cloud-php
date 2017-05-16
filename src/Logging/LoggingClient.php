@@ -67,7 +67,7 @@ class LoggingClient
     use ArrayTrait;
     use ClientTrait;
 
-    const VERSION = '0.1.0';
+    const VERSION = '1.1.0';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/logging.admin';
     const READ_ONLY_SCOPE = 'https://www.googleapis.com/auth/logging.read';
@@ -108,8 +108,7 @@ class LoggingClient
      *           **Defaults to** `3`.
      *     @type array $scopes Scopes to be used for the request.
      *     @type string $transport The transport type used for requests. May be
-     *           either `grpc` or `rest`. **Defaults to** `grpc` if gRPC support
-     *           is detected on the system.
+     *           either `grpc` or `rest`. **Defaults to** `rest`.
      * }
      */
     public function __construct(array $config = [])

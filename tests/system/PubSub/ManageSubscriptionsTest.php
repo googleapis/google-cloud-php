@@ -62,6 +62,33 @@ class ManageSubscriptionsTest extends PubSubTestCase
         $this->assertEquals($sub->name(), $sub->reload()['name']);
     }
 
+    /**
+     * @dataProvider clientProvider
+     */
+    public function testCreateAndListSnapshots($client)
+    {
+        $subs = $client->subscriptions();
+        $sub = $subs->current();
+
+        $snapName = uniqid(self::TESTING_PREFIX);
+
+        $snap = $client->createSnapshot($snapName, $sub);
+        $this->assertInstanceOf(Snapshot::class, $snap);
+
+        $snaps = $client->snapshots();
+        $filtered = array_filter(iterator_to_array($snaps), function ($snap) use ($snapName) {
+            return strpos($snap->name(), $snapName) !== false;
+        });
+
+        $this->assertEquals(1, count($filtered));
+
+        self::$deletionQueue[] = $snap;
+
+        $this->sub->seekToSnapshot($client->snapshot($this->snapName));
+
+        $this->sub->seekToTime($client->timestamp(new \DateTime));
+    }
+
     private function assertSubsFound($subs, $expectedSubs)
     {
         $foundSubs = [];

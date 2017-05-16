@@ -34,5 +34,15 @@
                 "type": "vision/annotation/web"
             }
         ]
+    }, {
+        "title": "v1",
+        "type": "vision/v1/readme",
+        "patterns": [
+          "vision/v1/\\w{1,}"
+        ],
+        "nav": [{
+            "title": "ImageAnnotatorClient",
+            "type": "vision/v1/imageannotatorclient"
+        }]
     }]
 }

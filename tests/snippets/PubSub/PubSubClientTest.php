@@ -17,14 +17,17 @@
 
 namespace Google\Cloud\Tests\Snippets\PubSub;
 
+use Google\Cloud\Core\Duration;
+use Google\Cloud\Core\Iterator\ItemIterator;
+use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Dev\SetStubConnectionTrait;
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
 use Google\Cloud\PubSub\Connection\ConnectionInterface;
 use Google\Cloud\PubSub\Message;
 use Google\Cloud\PubSub\PubSubClient;
+use Google\Cloud\PubSub\Snapshot;
 use Google\Cloud\PubSub\Subscription;
 use Google\Cloud\PubSub\Topic;
-use Google\Cloud\Core\Iterator\ItemIterator;
 use Prophecy\Argument;
 
 /**
@@ -34,6 +37,7 @@ class PubSubClientTest extends SnippetTestCase
 {
     const TOPIC = 'projects/my-awesome-project/topics/my-new-topic';
     const SUBSCRIPTION = 'projects/my-awesome-project/subscriptions/my-new-subscription';
+    const SNAPSHOT = 'projects/my-awesome-project/snapshots/my-snapshot';
 
     private $connection;
     private $client;
@@ -186,6 +190,51 @@ class PubSubClientTest extends SnippetTestCase
         $this->assertEquals(self::SUBSCRIPTION, $res->output());
     }
 
+    public function testCreateSnapshot()
+    {
+        $this->connection->createSnapshot(Argument::any())
+            ->shouldBecalled()
+            ->willReturn([]);
+
+        $this->client->setConnection($this->connection->reveal());
+
+        $snippet = $this->snippetFromMethod(PubSubClient::class, 'createSnapshot');
+        $snippet->addLocal('pubsub', $this->client);
+        $snippet->addLocal('subscriptionName', self::SUBSCRIPTION);
+
+        $res = $snippet->invoke('snapshot');
+        $this->assertInstanceOf(Snapshot::class, $res->returnVal());
+    }
+
+    public function testSnapshot()
+    {
+        $snippet = $this->snippetFromMethod(PubSubClient::class, 'snapshot');
+        $snippet->addLocal('pubsub', $this->client);
+
+        $res = $snippet->invoke('snapshot');
+        $this->assertInstanceOf(Snapshot::class, $res->returnVal());
+    }
+
+    public function testSnapshots()
+    {
+        $snippet = $this->snippetFromMethod(PubSubClient::class, 'snapshots');
+        $snippet->addLocal('pubsub', $this->client);
+
+        $this->connection->listSnapshots(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([
+                'snapshots' => [
+                    ['name' => self::SNAPSHOT]
+                ]
+            ]);
+
+        $this->client->setConnection($this->connection->reveal());
+
+        $res = $snippet->invoke('snapshots');
+        $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
+        $this->assertEquals(self::SNAPSHOT, $res->output());
+    }
+
     public function testConsume()
     {
         $message = [
@@ -204,5 +253,21 @@ class PubSubClientTest extends SnippetTestCase
 
         $res = $snippet->invoke('message');
         $this->assertInstanceOf(Message::class, $res->returnVal());
+    }
+
+    public function testTimestamp()
+    {
+        $snippet = $this->snippetFromMethod(PubSubClient::class, 'timestamp');
+        $snippet->addLocal('pubsub', $this->client);
+        $res = $snippet->invoke('timestamp');
+        $this->assertInstanceOf(Timestamp::class, $res->returnVal());
+    }
+
+    public function testDuration()
+    {
+        $snippet = $this->snippetFromMethod(PubSubClient::class, 'duration');
+        $snippet->addLocal('pubsub', $this->client);
+        $res = $snippet->invoke('duration');
+        $this->assertInstanceOf(Duration::class, $res->returnVal());
     }
 }

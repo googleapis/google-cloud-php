@@ -38,14 +38,15 @@ class RequestBuilderTest extends \PHPUnit_Framework_TestCase
         $parameters = [
             'queryParam' => 'query',
             'pathParam' => 'path',
-            'referenceProp' => 'reference'
+            'referenceProp' => 'reference',
+            'repeatedParam' => ['foo','bar']
         ];
 
         $request = $this->builder->build('myResource', 'myMethod', $parameters);
         $uri = $request->getUri();
 
         $this->assertEquals('/path', $uri->getPath());
-        $this->assertEquals('queryParam=query', $uri->getQuery());
+        $this->assertEquals('queryParam=query&repeatedParam=foo&repeatedParam=bar', $uri->getQuery());
         $this->assertEquals('{"referenceProp":"reference"}', (string) $request->getBody());
     }
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2016 Google Inc. All Rights Reserved.
+ * Copyright 2017 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -148,6 +148,14 @@ class Rest implements ConnectionInterface
     /**
      * @param array $args
      */
+    public function updateSubscription(array $args)
+    {
+        return $this->send('subscriptions', 'patch', $args);
+    }
+
+    /**
+     * @param array $args
+     */
     public function getSubscription(array $args)
     {
         return $this->send('subscriptions', 'get', $args);
@@ -199,6 +207,38 @@ class Rest implements ConnectionInterface
     public function acknowledge(array $args)
     {
         return $this->send('subscriptions', 'acknowledge', $args);
+    }
+
+    /**
+     * @param array $args
+     */
+    public function listSnapshots(array $args)
+    {
+        return $this->send('snapshots', 'list', $args);
+    }
+
+    /**
+     * @param array $args
+     */
+    public function createSnapshot(array $args)
+    {
+        return $this->send('snapshots', 'create', $args);
+    }
+
+    /**
+     * @param array $args
+     */
+    public function deleteSnapshot(array $args)
+    {
+        return $this->send('snapshots', 'delete', $args);
+    }
+
+    /**
+     * @param array $args
+     */
+    public function seek(array $args)
+    {
+        return $this->send('subscriptions', 'seek', $args);
     }
 
     /**

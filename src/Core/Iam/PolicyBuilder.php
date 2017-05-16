@@ -33,8 +33,6 @@ use InvalidArgumentException;
  */
 class PolicyBuilder
 {
-    const MEMBER_REGEX = '/^((user\:|serviceAccount\:|group\:|domain\:).)|allUsers|allAuthenticatedUsers/';
-
     /**
      * @var array
      */
@@ -117,16 +115,59 @@ class PolicyBuilder
      */
     public function addBinding($role, array $members)
     {
-        foreach ($members as $member) {
-            $this->validateMember($member);
-        }
-
         $this->bindings[] = [
             'role' => $role,
             'members' => $members
         ];
 
         return $this;
+    }
+
+    /**
+     * Remove a binding from the policy.
+     *
+     * Example:
+     * ```
+     * $builder->setBindings([
+     *     [
+     *         'role' => 'roles/admin',
+     *         'members' => [
+     *             'user:admin@domain.com',
+     *             'user2:admin@domain.com'
+     *         ]
+     *     ]
+     * ]);
+     * $builder->removeBinding('roles/admin', [ 'user:admin@domain.com' ]);
+     * ```
+     *
+     * @param  string $role A valid role for the service
+     * @param  array  $members An array of members to remove from the role
+     * @return PolicyBuilder
+     * @throws InvalidArgumentException
+     */
+    public function removeBinding($role, array $members)
+    {
+        $bindings = $this->bindings;
+        foreach ((array) $bindings as $i => $binding) {
+            if ($binding['role'] == $role) {
+                $newMembers = array_diff($binding['members'], $members);
+                if (count($newMembers) != count($binding['members']) - count($members)) {
+                    throw new InvalidArgumentException('One or more role-members were not found.');
+                }
+                if (empty($newMembers)) {
+                    unset($bindings[$i]);
+                    $bindings = array_values($bindings);
+                } else {
+                    $binding['members'] = array_values($newMembers);
+                    $bindings[$i] = $binding;
+                }
+                $this->bindings = $bindings;
+
+                return $this;
+            }
+        }
+
+        throw new InvalidArgumentException('The role was not found.');
     }
 
     /**
@@ -184,19 +225,5 @@ class PolicyBuilder
             'bindings' => $this->bindings,
             'version' => $this->version
         ]);
-    }
-
-    /**
-     * Validate that each member is in the correct format.
-     *
-     * @param  string $member
-     * @throws InvalidArgumentException
-     * @return void
-     */
-    private function validateMember($member)
-    {
-        if (preg_match(self::MEMBER_REGEX, $member) === 0) {
-            throw new InvalidArgumentException('member name is not a valid value.');
-        }
     }
 }

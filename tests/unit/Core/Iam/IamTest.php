@@ -19,6 +19,7 @@ namespace Google\Cloud\Tests\Unit\Core\Iam;
 
 use Google\Cloud\Core\Iam\Iam;
 use Google\Cloud\Core\Iam\IamConnectionInterface;
+use Google\Cloud\Core\Iam\PolicyBuilder;
 use Prophecy\Argument;
 
 /**
@@ -83,6 +84,31 @@ class IamTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($iam->policy(), $policies[1]);
     }
 
+    public function testSetPolicyWithPolicyBuilder()
+    {
+        $policies = $this->policies();
+
+        $pb = $this->prophesize(PolicyBuilder::class);
+        $pb->result()->willReturn($policies[1]);
+
+        $this->connection->setPolicy(Argument::withEntry('policy', $policies[1]))
+            ->willReturn($policies[1]);
+
+        $iam = new Iam($this->connection->reveal(), self::RESOURCE);
+        $res = $iam->setPolicy($pb->reveal());
+
+        $this->assertEquals($policies[1], $res);
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testSetPolicyWithInvalidPolicy()
+    {
+        $iam = new Iam($this->connection->reveal(), self::RESOURCE);
+        $res = $iam->setPolicy('foo');
+    }
+
     public function testTestPermissions()
     {
         $permissions = [
@@ -90,7 +116,7 @@ class IamTest extends \PHPUnit_Framework_TestCase
         ];
 
         $this->connection->testPermissions(Argument::withEntry('permissions', $permissions))
-            ->willReturn($permissions);
+            ->willReturn(['permissions' => $permissions]);
 
         $iam = new Iam($this->connection->reveal(), self::RESOURCE);
         $this->assertEquals($permissions, $iam->testPermissions($permissions));

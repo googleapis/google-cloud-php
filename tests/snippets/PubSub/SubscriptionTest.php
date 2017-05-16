@@ -95,6 +95,19 @@ class SubscriptionTest extends SnippetTestCase
         $this->assertEquals($return, $res->returnVal());
     }
 
+    public function testUpdate()
+    {
+        $snippet = $this->snippetFromMethod(Subscription::class, 'update');
+        $snippet->addLocal('subscription', $this->subscription);
+
+        $this->connection->updateSubscription(Argument::any())
+            ->shouldBeCalled();
+
+        $this->subscription->setConnection($this->connection->reveal());
+
+        $snippet->invoke();
+    }
+
     public function testDelete()
     {
         $snippet = $this->snippetFromMethod(Subscription::class, 'delete');
@@ -275,6 +288,32 @@ class SubscriptionTest extends SnippetTestCase
         $this->subscription->setConnection($this->connection->reveal());
 
         $res = $snippet->invoke();
+    }
+
+    public function testSeekToTime()
+    {
+        $snippet = $this->snippetFromMethod(Subscription::class, 'seekToTime');
+        $snippet->addLocal('pubsub', $this->pubsub);
+        $snippet->addLocal('subscription', $this->subscription);
+
+        $this->connection->seek(Argument::any())
+            ->shouldBeCalled();
+
+        $this->subscription->setConnection($this->connection->reveal());
+        $snippet->invoke();
+    }
+
+    public function testSeekToSnapshot()
+    {
+        $snippet = $this->snippetFromMethod(Subscription::class, 'seekToSnapshot');
+        $snippet->addLocal('pubsub', $this->pubsub);
+        $snippet->addLocal('subscription', $this->subscription);
+
+        $this->connection->seek(Argument::any())
+            ->shouldBeCalled();
+
+        $this->subscription->setConnection($this->connection->reveal());
+        $snippet->invoke();
     }
 
     public function testIam()

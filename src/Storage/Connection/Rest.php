@@ -311,4 +311,28 @@ class Rest implements ConnectionInterface
 
         return $args;
     }
+
+    /**
+     * @param  array $args
+     */
+    public function getBucketIamPolicy(array $args)
+    {
+        return $this->send('buckets', 'getIamPolicy', $args);
+    }
+
+    /**
+     * @param  array $args
+     */
+    public function setBucketIamPolicy(array $args)
+    {
+        return $this->send('buckets', 'setIamPolicy', $args);
+    }
+
+    /**
+     * @param  array $args
+     */
+    public function testBucketIamPermissions(array $args)
+    {
+        return $this->send('buckets', 'testIamPermissions', $args);
+    }
 }

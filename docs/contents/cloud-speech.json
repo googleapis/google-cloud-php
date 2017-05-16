@@ -8,6 +8,9 @@
         "title": "Operation",
         "type": "speech/operation"
     }, {
+        "title": "Result",
+        "type": "speech/result"
+    }, {
         "title": "v1beta1",
         "type": "speech/v1beta1/readme",
         "patterns": [
@@ -16,6 +19,16 @@
         "nav": [{
             "title": "SpeechClient",
             "type": "speech/v1beta1/speechclient"
+        }]
+    }, {
+        "title": "v1",
+        "type": "speech/v1/readme",
+        "patterns": [
+          "speech/v1/\\w{1,}"
+        ],
+        "nav": [{
+            "title": "SpeechClient",
+            "type": "speech/v1/speechclient"
         }]
     }]
 }

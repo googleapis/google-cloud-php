@@ -21,6 +21,7 @@ use Google\Cloud\Core\RequestBuilder;
 use Google\Cloud\Core\RequestWrapper;
 use Google\Cloud\Core\Upload\MultipartUploader;
 use Google\Cloud\Core\Upload\ResumableUploader;
+use Google\Cloud\Core\Upload\StreamableUploader;
 use Google\Cloud\Storage\Connection\Rest;
 use Google\Cloud\Storage\StorageClient;
 use GuzzleHttp\Psr7;
@@ -96,7 +97,10 @@ class RestTest extends \PHPUnit_Framework_TestCase
             ['listObjects'],
             ['patchObject'],
             ['rewriteObject'],
-            ['composeObject']
+            ['composeObject'],
+            ['getBucketIamPolicy'],
+            ['setBucketIamPolicy'],
+            ['testBucketIamPermissions'],
         ];
     }
 
@@ -221,6 +225,28 @@ class RestTest extends \PHPUnit_Framework_TestCase
                     ]
                 ],
                 ResumableUploader::class,
+                'text/plain',
+                [
+                    'name' => 'file.ext',
+                    'metadata' => [
+                        'here' => 'wego'
+                    ]
+                ]
+            ],
+            [
+                [
+                    'data' => 'abcdefg',
+                    'name' => 'file.ext',
+                    'streamable' => true,
+                    'validate' => false,
+                    'metadata' => [
+                        'contentType' => 'text/plain',
+                        'metadata' => [
+                            'here' => 'wego'
+                        ]
+                    ]
+                ],
+                StreamableUploader::class,
                 'text/plain',
                 [
                     'name' => 'file.ext',

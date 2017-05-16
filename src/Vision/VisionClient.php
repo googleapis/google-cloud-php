@@ -42,7 +42,7 @@ class VisionClient
     use ClientTrait;
     use ValidateTrait;
 
-    const VERSION = '0.1.0';
+    const VERSION = '0.3.0';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/cloud-platform';
 
@@ -75,7 +75,7 @@ class VisionClient
      *           **Defaults to** `3`.
      *     @type array $scopes Scopes to be used for the request.
      * }
-     * @throws Google\Cloud\Exception\GoogleException
+     * @throws Google\Cloud\Core\Exception\GoogleException
      */
     public function __construct(array $config = [])
     {
