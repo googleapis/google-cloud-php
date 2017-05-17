@@ -124,6 +124,53 @@ class PolicyBuilder
     }
 
     /**
+     * Remove a binding from the policy.
+     *
+     * Example:
+     * ```
+     * $builder->setBindings([
+     *     [
+     *         'role' => 'roles/admin',
+     *         'members' => [
+     *             'user:admin@domain.com',
+     *             'user2:admin@domain.com'
+     *         ]
+     *     ]
+     * ]);
+     * $builder->removeBinding('roles/admin', [ 'user:admin@domain.com' ]);
+     * ```
+     *
+     * @param  string $role A valid role for the service
+     * @param  array  $members An array of members to remove from the role
+     * @return PolicyBuilder
+     * @throws InvalidArgumentException
+     */
+    public function removeBinding($role, array $members)
+    {
+        $bindings = $this->bindings;
+        foreach ((array) $bindings as $i => $binding) {
+            if ($binding['role'] == $role) {
+                $newMembers = array_diff($binding['members'], $members);
+                if (count($newMembers) != count($binding['members']) - count($members)) {
+                    throw new InvalidArgumentException('One or more role-members were not found.');
+                }
+                if (empty($newMembers)) {
+                    unset($bindings[$i]);
+                    $bindings = array_values($bindings);
+                } else {
+                    $binding['members'] = array_values($newMembers);
+                    $bindings[$i] = $binding;
+                }
+                $this->bindings = $bindings;
+
+                return $this;
+            }
+        }
+
+        throw new InvalidArgumentException('The role was not found.');
+    }
+
+    /**
      * Update the etag on the policy.
      *
      * Example:
