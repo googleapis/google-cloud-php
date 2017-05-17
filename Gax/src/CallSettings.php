@@ -43,6 +43,7 @@ class CallSettings
 
     private $timeoutMillis;
     private $retrySettings;
+    private $userHeaders;
 
     /**
      * Constructs an array mapping method names to CallSettings.
@@ -161,14 +162,16 @@ class CallSettings
     /**
      * Construct an instance.
      *
-     * @param array $options {
+     * @param array $settings {
      *    Optional.
-     *    @type Google\GAX\RetrySettings $retrySettings
+     *    @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this method. If present, then
      *          $timeout is ignored.
      *    @type integer $timeoutMillis
      *          Timeout to use for the call. Only used if $retrySettings
      *          is not set.
+     *    @type array $userHeaders
+     *          An array of headers to be included in the request.
      * }
      */
     public function __construct($settings = [])
@@ -182,6 +185,9 @@ class CallSettings
         if (array_key_exists('retrySettings', $settings)) {
             $this->retrySettings = $settings['retrySettings'];
         }
+        if (array_key_exists('userHeaders', $settings)) {
+            $this->userHeaders = $settings['userHeaders'];
+        }
     }
 
     public function getTimeoutMillis()
@@ -194,19 +200,27 @@ class CallSettings
         return $this->retrySettings;
     }
 
+    public function getUserHeaders()
+    {
+        return $this->userHeaders;
+    }
+
     /**
      * Returns a new CallSettings merged from this and another CallSettings object.
      *
      * @param CallSettings $otherSettings
      *     A CallSettings whose values override those in this object. If
      *     null, then a copy of this object is returned.
+     * @return CallSettings
      */
     public function merge(CallSettings $otherSettings = null)
     {
         if (is_null($otherSettings)) {
             return new CallSettings([
                 'timeoutMillis' => $this->timeoutMillis,
-                'retrySettings' => $this->retrySettings]);
+                'retrySettings' => $this->retrySettings,
+                'userHeaders' => $this->userHeaders,
+            ]);
         } else {
             $timeoutMillis = $this->timeoutMillis;
             if ($otherSettings->getTimeoutMillis() != self::INHERIT_TIMEOUT) {
@@ -217,9 +231,15 @@ class CallSettings
                 || !$otherSettings->getRetrySettings()->shouldInherit()) {
                 $retrySettings = $otherSettings->getRetrySettings();
             }
+            $userHeaders = $this->userHeaders;
+            if (!is_null($otherSettings->userHeaders)) {
+                $userHeaders = $otherSettings->userHeaders;
+            }
             return new CallSettings([
                 'timeoutMillis' => $timeoutMillis,
-                'retrySettings' => $retrySettings]);
+                'retrySettings' => $retrySettings,
+                'userHeaders' => $userHeaders,
+            ]);
         }
     }
 }

@@ -496,6 +496,73 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($expectedMetadata, $actualCalls[0]->getMetadata());
     }
 
+    public function testUserHeaders()
+    {
+        $stub = MockStub::create(new MockPageStreamingResponse());
+        $headerDescriptor = new AgentHeaderDescriptor([
+            'libName' => 'gccl',
+            'libVersion' => '0.0.0',
+            'gapicVersion' => '0.9.0',
+            'gaxVersion' => '1.0.0',
+            'phpVersion' => '5.5.0',
+            'grpcVersion' => '1.0.1'
+        ]);
+        $userHeaders = [
+            'google-cloud-resource-prefix' => ['my-database'],
+        ];
+        $callSettings = new CallSettings([
+            'userHeaders' => $userHeaders,
+        ]);
+        $apiCall = ApiCallable::createApiCall(
+            $stub,
+            'takeAction',
+            $callSettings,
+            ['headerDescriptor' => $headerDescriptor]
+        );
+        $resources = $apiCall(new MockPageStreamingRequest(), [], []);
+        $actualCalls = $stub->getReceivedCalls();
+        $this->assertEquals(1, count($actualCalls));
+        $expectedMetadata = [
+            'x-goog-api-client' => ['gl-php/5.5.0 gccl/0.0.0 gapic/0.9.0 gax/1.0.0 grpc/1.0.1'],
+            'google-cloud-resource-prefix' => ['my-database'],
+        ];
+        $this->assertEquals($expectedMetadata, $actualCalls[0]->getMetadata());
+    }
+
+    public function testUserHeadersOverwriteBehavior()
+    {
+        $stub = MockStub::create(new MockPageStreamingResponse());
+        $headerDescriptor = new AgentHeaderDescriptor([
+            'libName' => 'gccl',
+            'libVersion' => '0.0.0',
+            'gapicVersion' => '0.9.0',
+            'gaxVersion' => '1.0.0',
+            'phpVersion' => '5.5.0',
+            'grpcVersion' => '1.0.1'
+        ]);
+        $userHeaders = [
+            'x-goog-api-client' => ['this-should-not-be-used'],
+            'new-header' => ['this-should-be-used']
+        ];
+        $callSettings = new CallSettings([
+            'userHeaders' => $userHeaders,
+        ]);
+        $apiCall = ApiCallable::createApiCall(
+            $stub,
+            'takeAction',
+            $callSettings,
+            ['headerDescriptor' => $headerDescriptor]
+        );
+        $resources = $apiCall(new MockPageStreamingRequest(), [], []);
+        $actualCalls = $stub->getReceivedCalls();
+        $this->assertEquals(1, count($actualCalls));
+        $expectedMetadata = [
+            'x-goog-api-client' => ['gl-php/5.5.0 gccl/0.0.0 gapic/0.9.0 gax/1.0.0 grpc/1.0.1'],
+            'new-header' => ['this-should-be-used'],
+        ];
+        $this->assertEquals($expectedMetadata, $actualCalls[0]->getMetadata());
+    }
+
     public static function createIncompleteOperationResponse($name, $metadataString = '')
     {
         $metadata = OperationResponseTest::createAny(OperationResponseTest::createStatus(Code::OK, $metadataString));
