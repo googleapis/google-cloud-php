@@ -40,7 +40,7 @@ class AgentHeaderDescriptor
     const AGENT_HEADER_KEY = 'x-goog-api-client';
     // TODO(michaelbausor): include bumping this version in a streamlined
     // release process. Issue: https://github.com/googleapis/gax-php/issues/48
-    const GAX_VERSION = '0.8.1';
+    const GAX_VERSION = '0.9.0';
     const UNKNOWN_VERSION = '';
 
     private $metricsHeaders;
