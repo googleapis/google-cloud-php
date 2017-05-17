@@ -46,7 +46,7 @@ use Symfony\Component\Lock\Store\FlockStore;
  * the {@see Google\Cloud\Spanner\Session\CacheSessionPool::downsize()} method
  * on an interval that matches when you expect to see a decrease in traffic.
  * This will help ensure you never run into issues where the Spanner backend is
- * locked up after having met the maximum number of sessions assigned per node
+ * locked up after having met the maximum number of sessions assigned per node.
  * For reference, the current maximum sessions per database per node is 10k. For
  * more information on limits please see
  * [here](https://cloud.google.com/spanner/docs/limits).
@@ -176,7 +176,7 @@ class CacheSessionPool implements SessionPoolInterface
         list($session, $toCreate) = $this->config['lock']->synchronize(function () {
             $toCreate = [];
             $session = null;
-            $shouldSave = true;
+            $shouldSave = false;
             $item = $this->cacheItemPool->getItem($this->cacheKey);
             $data = (array) $item->get() ?: $this->initialize();
 
@@ -186,10 +186,12 @@ class CacheSessionPool implements SessionPoolInterface
             // for more.
             if ($data['queue']) {
                 $session = $this->getSession($data);
+                $shouldSave = true;
             } elseif ($this->config['maxSessions'] <= $this->getSessionCount($data)) {
                 $this->purgeOrphanedInUseSessions($data);
                 $this->purgeOrphanedToCreateItems($data);
                 $session = $this->getSession($data);
+                $shouldSave = true;
             }
 
             if (!$session) {
@@ -198,8 +200,7 @@ class CacheSessionPool implements SessionPoolInterface
                 if ($count < $this->config['maxSessions']) {
                     $toCreate = $this->buildToCreateList(1);
                     $data['toCreate'] += $toCreate;
-                } else {
-                    $shouldSave = false;
+                    $shouldSave = true;
                 }
             }
 
@@ -541,7 +542,7 @@ class CacheSessionPool implements SessionPoolInterface
         $time = $this->time();
 
         for ($i = 0; $i < $number; $i++) {
-            $toCreate[uniqid($time . '_')] = $time;
+            $toCreate[uniqid($time . '_', true)] = $time;
         }
 
         return $toCreate;
