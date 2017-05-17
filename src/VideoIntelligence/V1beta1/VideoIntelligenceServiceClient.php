@@ -341,7 +341,7 @@ class VideoIntelligenceServiceClient
      *                                [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT]). For more information, see
      *                                [Request URIs](/storage/docs/reference-uris).
      *                                A video URI may include wildcards in `object-id`, and thus identify
-     *                                multiple videos. Supported wildcards: '&#42;' to match 0 or more characters;
+     *                                multiple videos. Supported wildcards: '*' to match 0 or more characters;
      *                                '?' to match 1 character. If unset, the input video should be embedded
      *                                in the request as `input_content`. If set, `input_content` should be unset.
      * @param int[]     $features     Requested video annotation features. For allowed values, use constants defined on
