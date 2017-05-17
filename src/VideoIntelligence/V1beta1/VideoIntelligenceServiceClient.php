@@ -26,7 +26,7 @@
  * backwards compatibility.
  */
 
-namespace Google\Cloud\VideoIntelligence\V1Beta1;
+namespace Google\Cloud\VideoIntelligence\V1beta1;
 
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
