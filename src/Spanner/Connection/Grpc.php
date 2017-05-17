@@ -144,9 +144,10 @@ class Grpc implements ConnectionInterface
      */
     public function listInstanceConfigs(array $args)
     {
+        $projectId = $this->pluck('projectId', $args);
         return $this->send([$this->instanceAdminClient, 'listInstanceConfigs'], [
-            $this->pluck('projectId', $args),
-            $args
+            $projectId,
+            $this->addResourcePrefixHeader($args, $projectId)
         ]);
     }
 
@@ -155,9 +156,10 @@ class Grpc implements ConnectionInterface
      */
     public function getInstanceConfig(array $args)
     {
+        $projectId = $this->pluck('projectId', $args);
         return $this->send([$this->instanceAdminClient, 'getInstanceConfig'], [
             $this->pluck('name', $args),
-            $args
+            $this->addResourcePrefixHeader($args, $projectId)
         ]);
     }
 
@@ -166,9 +168,10 @@ class Grpc implements ConnectionInterface
      */
     public function listInstances(array $args)
     {
+        $projectId = $this->pluck('projectId', $args);
         return $this->send([$this->instanceAdminClient, 'listInstances'], [
-            $this->pluck('projectId', $args),
-            $args
+            $projectId,
+            $this->addResourcePrefixHeader($args, $projectId)
         ]);
     }
 
@@ -177,9 +180,10 @@ class Grpc implements ConnectionInterface
      */
     public function getInstance(array $args)
     {
+        $projectId = $this->pluck('projectId', $args);
         return $this->send([$this->instanceAdminClient, 'getInstance'], [
             $this->pluck('name', $args),
-            $args
+            $this->addResourcePrefixHeader($args, $projectId)
         ]);
     }
 
@@ -188,12 +192,14 @@ class Grpc implements ConnectionInterface
      */
     public function createInstance(array $args)
     {
+        $instanceName = $args['name'];
+
         $instance = $this->instanceObject($args, true);
         $res = $this->send([$this->instanceAdminClient, 'createInstance'], [
             $this->pluck('projectId', $args),
             $this->pluck('instanceId', $args),
             $instance,
-            $args
+            $this->addResourcePrefixHeader($args, $instanceName)
         ]);
 
         return $this->operationToArray($res, $this->codec, $this->lroResponseMappers);
@@ -204,6 +210,7 @@ class Grpc implements ConnectionInterface
      */
     public function updateInstance(array $args)
     {
+        $instanceName = $args['name'];
         $instanceObject = $this->instanceObject($args);
 
         $mask = array_keys($instanceObject->serialize(new PhpArray([], false)));
@@ -213,7 +220,7 @@ class Grpc implements ConnectionInterface
         $res = $this->send([$this->instanceAdminClient, 'updateInstance'], [
             $instanceObject,
             $fieldMask,
-            $args
+            $this->addResourcePrefixHeader($args, $instanceName)
         ]);
 
         return $this->operationToArray($res, $this->codec, $this->lroResponseMappers);
@@ -224,9 +231,10 @@ class Grpc implements ConnectionInterface
      */
     public function deleteInstance(array $args)
     {
+        $instanceName = $this->pluck('name', $args);
         return $this->send([$this->instanceAdminClient, 'deleteInstance'], [
-            $this->pluck('name', $args),
-            $args
+            $instanceName,
+            $this->addResourcePrefixHeader($args, $instanceName)
         ]);
     }
 
@@ -235,9 +243,10 @@ class Grpc implements ConnectionInterface
      */
     public function getInstanceIamPolicy(array $args)
     {
+        $resource = $this->pluck('resource', $args);
         return $this->send([$this->instanceAdminClient, 'getIamPolicy'], [
-            $this->pluck('resource', $args),
-            $args
+            $resource,
+            $this->addResourcePrefixHeader($args, $resource)
         ]);
     }
 
@@ -246,10 +255,11 @@ class Grpc implements ConnectionInterface
      */
     public function setInstanceIamPolicy(array $args)
     {
+        $resource = $this->pluck('resource', $args);
         return $this->send([$this->instanceAdminClient, 'setIamPolicy'], [
-            $this->pluck('resource', $args),
+            $resource,
             $this->pluck('policy', $args),
-            $args
+            $this->addResourcePrefixHeader($args, $resource)
         ]);
     }
 
@@ -258,10 +268,11 @@ class Grpc implements ConnectionInterface
      */
     public function testInstanceIamPermissions(array $args)
     {
+        $resource = $this->pluck('resource', $args);
         return $this->send([$this->instanceAdminClient, 'testIamPermissions'], [
-            $this->pluck('resource', $args),
+            $resource,
             $this->pluck('permissions', $args),
-            $args
+            $this->addResourcePrefixHeader($args, $resource)
         ]);
     }
 
@@ -270,9 +281,10 @@ class Grpc implements ConnectionInterface
      */
     public function listDatabases(array $args)
     {
+        $instanceName = $this->pluck('instance', $args);
         return $this->send([$this->databaseAdminClient, 'listDatabases'], [
-            $this->pluck('instance', $args),
-            $args
+            $instanceName,
+            $this->addResourcePrefixHeader($args, $instanceName)
         ]);
     }
 
@@ -281,11 +293,12 @@ class Grpc implements ConnectionInterface
      */
     public function createDatabase(array $args)
     {
+        $instanceName = $this->pluck('instance', $args);
         $res = $this->send([$this->databaseAdminClient, 'createDatabase'], [
-            $this->pluck('instance', $args),
+            $instanceName,
             $this->pluck('createStatement', $args),
             $this->pluck('extraStatements', $args),
-            $args
+            $this->addResourcePrefixHeader($args, $instanceName)
         ]);
 
         return $this->operationToArray($res, $this->codec, $this->lroResponseMappers);
@@ -296,10 +309,11 @@ class Grpc implements ConnectionInterface
      */
     public function updateDatabaseDdl(array $args)
     {
+        $databaseName = $this->pluck('name', $args);
         $res = $this->send([$this->databaseAdminClient, 'updateDatabaseDdl'], [
-            $this->pluck('name', $args),
+            $databaseName,
             $this->pluck('statements', $args),
-            $args
+            $this->addResourcePrefixHeader($args, $databaseName)
         ]);
 
         return $this->operationToArray($res, $this->codec, $this->lroResponseMappers);
@@ -310,9 +324,10 @@ class Grpc implements ConnectionInterface
      */
     public function dropDatabase(array $args)
     {
+        $databaseName = $this->pluck('name', $args);
         return $this->send([$this->databaseAdminClient, 'dropDatabase'], [
-            $this->pluck('name', $args),
-            $args
+            $databaseName,
+            $this->addResourcePrefixHeader($args, $databaseName)
         ]);
     }
 
@@ -321,9 +336,10 @@ class Grpc implements ConnectionInterface
      */
     public function getDatabase(array $args)
     {
+        $databaseName = $this->pluck('name', $args);
         return $this->send([$this->databaseAdminClient, 'getDatabase'], [
-            $this->pluck('name', $args),
-            $args
+            $databaseName,
+            $this->addResourcePrefixHeader($args, $databaseName)
         ]);
     }
 
@@ -332,9 +348,10 @@ class Grpc implements ConnectionInterface
      */
     public function getDatabaseDDL(array $args)
     {
+        $databaseName = $this->pluck('name', $args);
         return $this->send([$this->databaseAdminClient, 'getDatabaseDDL'], [
-            $this->pluck('name', $args),
-            $args
+            $databaseName,
+            $this->addResourcePrefixHeader($args, $databaseName)
         ]);
     }
 
@@ -343,9 +360,10 @@ class Grpc implements ConnectionInterface
      */
     public function getDatabaseIamPolicy(array $args)
     {
+        $databaseName = $this->pluck('resource', $args);
         return $this->send([$this->databaseAdminClient, 'getIamPolicy'], [
-            $this->pluck('resource', $args),
-            $args
+            $databaseName,
+            $this->addResourcePrefixHeader($args, $databaseName)
         ]);
     }
 
@@ -354,10 +372,11 @@ class Grpc implements ConnectionInterface
      */
     public function setDatabaseIamPolicy(array $args)
     {
+        $databaseName = $this->pluck('resource', $args);
         return $this->send([$this->databaseAdminClient, 'setIamPolicy'], [
-            $this->pluck('resource', $args),
+            $databaseName,
             $this->pluck('policy', $args),
-            $args
+            $this->addResourcePrefixHeader($args, $databaseName)
         ]);
     }
 
@@ -366,10 +385,11 @@ class Grpc implements ConnectionInterface
      */
     public function testDatabaseIamPermissions(array $args)
     {
+        $databaseName = $this->pluck('resource', $args);
         return $this->send([$this->databaseAdminClient, 'testIamPermissions'], [
-            $this->pluck('resource', $args),
+            $databaseName,
             $this->pluck('permissions', $args),
-            $args
+            $this->addResourcePrefixHeader($args, $databaseName)
         ]);
     }
 
@@ -378,9 +398,10 @@ class Grpc implements ConnectionInterface
      */
     public function createSession(array $args)
     {
+        $databaseName = $this->pluck('database', $args);
         return $this->send([$this->spannerClient, 'createSession'], [
-            $this->pluck('database', $args),
-            $args
+            $databaseName,
+            $this->addResourcePrefixHeader($args, $databaseName)
         ]);
     }
 
@@ -389,9 +410,10 @@ class Grpc implements ConnectionInterface
      */
     public function getSession(array $args)
     {
+        $database = $this->pluck('database', $args);
         return $this->send([$this->spannerClient, 'getSession'], [
             $this->pluck('name', $args),
-            $args
+            $this->addResourcePrefixHeader($args, $database)
         ]);
     }
 
@@ -400,9 +422,10 @@ class Grpc implements ConnectionInterface
      */
     public function deleteSession(array $args)
     {
+        $database = $this->pluck('database', $args);
         return $this->send([$this->spannerClient, 'deleteSession'], [
             $this->pluck('name', $args),
-            $args
+            $this->addResourcePrefixHeader($args, $database)
         ]);
     }
 
@@ -438,10 +461,11 @@ class Grpc implements ConnectionInterface
 
         $args['transaction'] = $this->createTransactionSelector($args);
 
+        $database = $this->pluck('database', $args);
         return $this->send([$this->spannerClient, 'executeStreamingSql'], [
             $this->pluck('session', $args),
             $this->pluck('sql', $args),
-            $args
+            $this->addResourcePrefixHeader($args, $database)
         ]);
     }
 
@@ -457,12 +481,13 @@ class Grpc implements ConnectionInterface
 
         $args['transaction'] = $this->createTransactionSelector($args);
 
+        $database = $this->pluck('database', $args);
         return $this->send([$this->spannerClient, 'streamingRead'], [
             $this->pluck('session', $args),
             $this->pluck('table', $args),
             $this->pluck('columns', $args),
             $keySet,
-            $args
+            $this->addResourcePrefixHeader($args, $database)
         ]);
     }
 
@@ -484,10 +509,11 @@ class Grpc implements ConnectionInterface
             $options->setReadWrite($readWrite);
         }
 
+        $database = $this->pluck('database', $args);
         return $this->send([$this->spannerClient, 'beginTransaction'], [
             $this->pluck('session', $args),
             $options,
-            $args
+            $this->addResourcePrefixHeader($args, $database)
         ]);
     }
 
@@ -547,10 +573,11 @@ class Grpc implements ConnectionInterface
             $args['singleUseTransaction'] = $options;
         }
 
+        $database = $this->pluck('database', $args);
         return $this->send([$this->spannerClient, 'commit'], [
             $this->pluck('session', $args),
             $mutations,
-            $args
+            $this->addResourcePrefixHeader($args, $database)
         ]);
     }
 
@@ -559,10 +586,11 @@ class Grpc implements ConnectionInterface
      */
     public function rollback(array $args)
     {
+        $database = $this->pluck('database', $args);
         return $this->send([$this->spannerClient, 'rollback'], [
             $this->pluck('session', $args),
             $this->pluck('transactionId', $args),
-            $args
+            $this->addResourcePrefixHeader($args, $database)
         ]);
     }
 
@@ -765,5 +793,21 @@ class Grpc implements ConnectionInterface
         }
 
         return $transactionOptions;
+    }
+
+    /**
+     * Add the `google-cloud-resource-prefix` header value to the request.
+     *
+     * @param array $args
+     * @param string $value
+     * @return array
+     */
+    private function addResourcePrefixHeader(array $args, $value)
+    {
+        $args['userHeaders'] = [
+            'google-cloud-resource-prefix' => [$value]
+        ];
+
+        return $args;
     }
 }

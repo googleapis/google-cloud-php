@@ -235,7 +235,8 @@ class Instance
     public function reload(array $options = [])
     {
         $this->info = $this->connection->getInstance($options + [
-            'name' => $this->name
+            'name' => $this->name,
+            'projectId' => $this->projectId
         ]);
 
         return $this->info;

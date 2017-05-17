@@ -127,7 +127,8 @@ class Operation
 
         $res = $this->connection->commit($this->arrayFilterRemoveNull([
             'mutations' => $mutations,
-            'session' => $session->name()
+            'session' => $session->name(),
+            'database' => $session->info()['database']
         ]) + $options);
 
         return $this->mapper->createTimestampWithNanos($res['commitTimestamp']);
@@ -147,7 +148,8 @@ class Operation
     {
         return $this->connection->rollback([
             'transactionId' => $transactionId,
-            'session' => $session->name()
+            'session' => $session->name(),
+            'database' => $session->info()['database']
         ] + $options);
     }
 
@@ -180,7 +182,8 @@ class Operation
 
             return $this->connection->executeStreamingSql([
                 'sql' => $sql,
-                'session' => $session->name()
+                'session' => $session->name(),
+                'database' => $session->info()['database']
             ] + $options);
         };
 
@@ -223,7 +226,8 @@ class Operation
                 'table' => $table,
                 'session' => $session->name(),
                 'columns' => $columns,
-                'keySet' => $this->flattenKeySet($keySet)
+                'keySet' => $this->flattenKeySet($keySet),
+                'database' => $session->info()['database']
             ] + $options);
         };
 
@@ -355,6 +359,7 @@ class Operation
 
         return $this->connection->beginTransaction($options + [
             'session' => $session->name(),
+            'database' => $session->info()['database']
         ]);
     }
 

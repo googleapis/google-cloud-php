@@ -709,6 +709,11 @@ class Database
      *
      * Mutations are committed in a single-use transaction.
      *
+     * Since this method does not feature replay protection, it may attempt to
+     * apply mutations more than once; if the mutations are not idempotent, this
+     * may lead to a failure being reported when the mutation was previously
+     * applied.
+     *
      * Example:
      * ```
      * $database->insert('Posts', [
@@ -736,6 +741,11 @@ class Database
      * Insert multiple rows.
      *
      * Mutations are committed in a single-use transaction.
+     *
+     * Since this method does not feature replay protection, it may attempt to
+     * apply mutations more than once; if the mutations are not idempotent, this
+     * may lead to a failure being reported when the mutation was previously
+     * applied.
      *
      * Example:
      * ```
@@ -997,6 +1007,11 @@ class Database
      * Delete one or more rows.
      *
      * Mutations are committed in a single-use transaction.
+     *
+     * Since this method does not feature replay protection, it may attempt to
+     * apply mutations more than once; if the mutations are not idempotent, this
+     * may lead to a failure being reported when the mutation was previously
+     * applied.
      *
      * Example:
      * ```

@@ -37,6 +37,7 @@ class OperationTest extends \PHPUnit_Framework_TestCase
 {
     const SESSION = 'my-session-id';
     const TRANSACTION = 'my-transaction-id';
+    const DATABASE = 'my-database';
     const TIMESTAMP = '2017-01-09T18:05:22.534799Z';
 
     private $connection;
@@ -54,6 +55,7 @@ class OperationTest extends \PHPUnit_Framework_TestCase
 
         $session = $this->prophesize(Session::class);
         $session->name()->willReturn(self::SESSION);
+        $session->info()->willReturn(['database' => self::DATABASE]);
         $this->session = $session->reveal();
     }
 
