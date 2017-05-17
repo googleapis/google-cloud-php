@@ -9,6 +9,16 @@
 support requests, bug reports, or development contributions should be directed to
 that project.
 
+This client supports transport over gRPC. In order to enable gRPC support please make sure to install and enable
+the gRPC extension through PECL:
+
+```sh
+$ pecl install grpc
+```
+
+NOTE: Support for gRPC is currently at an Alpha quality level, meaning it is still
+a work in progress and is more likely to get backwards-incompatible updates.
+
 ## Installation
 
 ```
