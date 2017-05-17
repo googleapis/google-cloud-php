@@ -168,16 +168,26 @@ class ApiCallable
         }
     }
 
-    private static function setCustomHeader($callable, $headerDescriptor)
+    private static function setCustomHeader($callable, $headerDescriptor, $userHeaders = null)
     {
-        $inner = function () use ($callable, $headerDescriptor) {
+        $inner = function () use ($callable, $headerDescriptor, $userHeaders) {
             $params = func_get_args();
             if (count($params) != self::GRPC_CALLABLE_PARAM_COUNT ||
-                !is_array($params[self::GRPC_CALLABLE_METADATA_INDEX])) {
+                !is_array($params[self::GRPC_CALLABLE_METADATA_INDEX])
+            ) {
                 throw new InvalidArgumentException('Metadata argument is not found.');
             } else {
                 $metadata = $params[self::GRPC_CALLABLE_METADATA_INDEX];
-                $headers = $headerDescriptor->getHeader();
+                $headers = [];
+                // Check $userHeaders first, and then merge $headerDescriptor headers, to ensure
+                // that $headerDescriptor headers such as x-goog-api-client cannot be overwritten
+                // by the $userHeaders.
+                if (!is_null($userHeaders)) {
+                    $headers = $userHeaders;
+                }
+                if (!is_null($headerDescriptor)) {
+                    $headers = array_merge($headers, $headerDescriptor->getHeader());
+                }
                 $params[self::GRPC_CALLABLE_METADATA_INDEX] = array_merge($headers, $metadata);
                 return call_user_func_array($callable, $params);
             }
@@ -233,8 +243,8 @@ class ApiCallable
             $apiCall = self::setLongRunnning($apiCall, $options['longRunningDescriptor']);
         }
 
-        if (array_key_exists('headerDescriptor', $options)) {
-            $apiCall = self::setCustomHeader($apiCall, $options['headerDescriptor']);
+        if (array_key_exists('headerDescriptor', $options) || !is_null($settings->getUserHeaders())) {
+            $apiCall = self::setCustomHeader($apiCall, $options['headerDescriptor'], $settings->getUserHeaders());
         }
         return $apiCall;
     }
