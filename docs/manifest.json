@@ -164,6 +164,15 @@
             ]
         },
         {
+            "id": "cloud-videointelligence",
+            "name": "google/cloud-videointelligence",
+            "defaultService": "videointelligence/videointelligenceserviceclient",
+            "versions": [
+                "v0.1.0",
+                "master"
+            ]
+        },
+        {
             "id": "cloud-vision",
             "name": "google/cloud-vision",
             "defaultService": "vision/visionclient",
