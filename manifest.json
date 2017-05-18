@@ -11,6 +11,7 @@
             "name": "google/cloud",
             "defaultService": "servicebuilder",
             "versions": [
+                "v0.30.0",
                 "v0.29.0",
                 "v0.28.0",
                 "v0.27.0",
@@ -63,6 +64,7 @@
             "name": "google/cloud-core",
             "defaultService": "core/readme",
             "versions": [
+                "v1.4.0",
                 "v1.3.0",
                 "v1.2.0",
                 "v1.1.1",
@@ -144,6 +146,7 @@
             "name": "google/cloud-spanner",
             "defaultService": "spanner/spannerclient",
             "versions": [
+                "v0.1.0",
                 "master"
             ]
         },
