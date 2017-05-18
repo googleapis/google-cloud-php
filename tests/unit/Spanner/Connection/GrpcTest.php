@@ -230,7 +230,7 @@ class GrpcTest extends \PHPUnit_Framework_TestCase
             [
                 'createDatabase',
                 ['instance' => $instanceName, 'createStatement' => $createStmt, 'extraStatements' => []],
-                [$instanceName, $createStmt, [], ['userHeaders' => ['google-cloud-resource-prefix' => [$instanceName]]]],
+                [$instanceName, $createStmt, ['extraStatements' => [], 'userHeaders' => ['google-cloud-resource-prefix' => [$instanceName]]]],
                 $lro,
                 null
             ],
