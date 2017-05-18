@@ -10,8 +10,10 @@
         "guzzlehttp/guzzle": "^5.3|^6.0",
         "guzzlehttp/psr7": "^1.2",
         "monolog/monolog": "~1",
-        "psr/http-message": "1.0.*",
-        "symfony/lock": "dev-master"
+        "psr/http-message": "1.0.*"
+    },
+    "suggest": {
+        "symfony/lock": "Required for the Spanner cached based session pool. Please require the following commit: dev-master#1ba6ac9"
     },
     "extra": {
         "component": {
