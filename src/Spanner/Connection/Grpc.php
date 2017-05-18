@@ -297,7 +297,6 @@ class Grpc implements ConnectionInterface
         $res = $this->send([$this->databaseAdminClient, 'createDatabase'], [
             $instanceName,
             $this->pluck('createStatement', $args),
-            $this->pluck('extraStatements', $args),
             $this->addResourcePrefixHeader($args, $instanceName)
         ]);
 
