@@ -51,6 +51,7 @@
             "name": "google/cloud-bigquery",
             "defaultService": "bigquery/bigqueryclient",
             "versions": [
+                "v0.2.1",
                 "v0.2.0",
                 "v0.1.0",
                 "master"
@@ -61,6 +62,7 @@
             "name": "google/cloud-core",
             "defaultService": "core/readme",
             "versions": [
+                "v1.3.0",
                 "v1.2.0",
                 "v1.1.1",
                 "v1.1.0",
@@ -85,6 +87,7 @@
             "name": "google/cloud-error-reporting",
             "defaultService": "errorreporting/readme",
             "versions": [
+                "v0.2.0",
                 "v0.1.0",
                 "master"
             ]
@@ -94,6 +97,7 @@
             "name": "google/cloud-logging",
             "defaultService": "logging/loggingclient",
             "versions": [
+                "v1.2.0",
                 "v1.1.0",
                 "v1.0.0",
                 "v0.1.0",
@@ -105,6 +109,7 @@
             "name": "google/cloud-monitoring",
             "defaultService": "monitoring/readme",
             "versions": [
+                "v0.2.0",
                 "v0.1.0",
                 "master"
             ]
@@ -125,6 +130,7 @@
             "name": "google/cloud-pubsub",
             "defaultService": "pubsub/pubsubclient",
             "versions": [
+                "v0.5.0",
                 "v0.4.0",
                 "v0.3.0",
                 "v0.2.0",
@@ -159,6 +165,15 @@
             "defaultService": "translate/translateclient",
             "versions": [
                 "v0.2.0",
+                "v0.1.0",
+                "master"
+            ]
+        },
+        {
+            "id": "cloud-videointelligence",
+            "name": "google/cloud-videointelligence",
+            "defaultService": "videointelligence/videointelligenceserviceclient",
+            "versions": [
                 "v0.1.0",
                 "master"
             ]
