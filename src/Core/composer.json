@@ -10,8 +10,7 @@
         "guzzlehttp/guzzle": "^5.3|^6.0",
         "guzzlehttp/psr7": "^1.2",
         "monolog/monolog": "~1",
-        "psr/http-message": "1.0.*",
-        "symfony/lock": "dev-master"
+        "psr/http-message": "1.0.*"
     },
     "extra": {
         "component": {
