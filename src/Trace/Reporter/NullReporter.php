@@ -25,7 +25,7 @@ use Google\Cloud\Trace\Tracer\TracerInterface;
 class NullReporter implements ReporterInterface
 {
     /**
-     * Report the provided Trace to a backend.
+     * Does nothing.
      *
      * @param  TracerInterface $tracer
      * @return bool

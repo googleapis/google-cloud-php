@@ -47,7 +47,7 @@ class SamplerFactory
      */
     public static function build($options)
     {
-        if (is_a($options, SamplerInterface::class)) {
+        if ($options instanceof SamplerInterface) {
             return $options;
         }
 

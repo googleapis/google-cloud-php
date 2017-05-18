@@ -54,9 +54,11 @@ class TraceSpan implements \JsonSerializable
      *            SPAN_KIND_UNSPECIFIED.
      *      @type string $name The name of the span.
      *      @type \DateTimeInterface|int|float|string $startTime Start time of the span in nanoseconds.
-     *            If provided as a string, it must be in "Zulu" format.
+     *            If provided as a string, it must be in "Zulu" format. If provided as an int or float, it is
+     *            expected to be a Unix timestamp.
      *      @type \DateTimeInterface|int|float|string $endTime End time of the span in nanoseconds.
-     *            If provided as a string, it must be in "Zulu" format.
+     *            If provided as a string, it must be in "Zulu" format. If provided as an int or float, it is
+     *            expected to be a Unix timestamp.
      *      @type string $parentSpanId ID of the parent span if any.
      *      @type array $labels Associative array of $label => $value
      *            to attach to this span.
@@ -93,7 +95,8 @@ class TraceSpan implements \JsonSerializable
      * Set the start time for this span.
      *
      * @param  \DateTimeInterface|int|float|string $when [optional] The start time of this span.
-     *         **Defaults to** now.
+     *         **Defaults to** now. If provided as a string, it must be in "Zulu" format.
+     *         If provided as an int or float, it is expected to be a Unix timestamp.
      */
     public function setStart($when = null)
     {
@@ -104,7 +107,8 @@ class TraceSpan implements \JsonSerializable
      * Set the end time for this span.
      *
      * @param  \DateTimeInterface|int|float|string $when [optional] The end time of this span.
-     *         **Defaults to** now.
+     *         **Defaults to** now. If provided as a string, it must be in "Zulu" format.
+     *         If provided as an int or float, it is expected to be a Unix timestamp.
      */
     public function setEnd($when = null)
     {
@@ -193,7 +197,8 @@ class TraceSpan implements \JsonSerializable
      * Returns a "Zulu" formatted string representing the provided \DateTime.
      *
      * @param  \DateTimeInterface|int|float|string $when [optional] The end time of this span.
-     *         **Defaults to** now.
+     *         **Defaults to** now. If provided as a string, it must be in "Zulu" format.
+     *         If provided as an int or float, it is expected to be a Unix timestamp.
      * @return string
      */
     private function formatDate($when = null)
