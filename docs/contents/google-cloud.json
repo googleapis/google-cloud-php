@@ -15,6 +15,7 @@
         "cloud-speech",
         "cloud-storage",
         "cloud-translate",
+        "cloud-videointelligence",
         "cloud-vision",
         "cloud-core"
     ]
