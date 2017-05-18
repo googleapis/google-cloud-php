@@ -5,14 +5,14 @@
         "title": "SpannerClient",
         "type": "spanner/spannerclient"
     }, {
-        "title": "Configuration",
-        "type": "spanner/configuration"
-    }, {
         "title": "Database",
         "type": "spanner/database"
     }, {
         "title": "Instance",
         "type": "spanner/instance"
+    }, {
+        "title": "InstanceConfiguration",
+        "type": "spanner/instanceconfiguration"
     }, {
         "title": "Snapshot",
         "type": "spanner/snapshot"
@@ -43,5 +43,23 @@
     },{
         "title": "CacheSessionPool",
         "type": "spanner/session/cachesessionpool"
+    }, {
+        "title": "v1",
+        "type": "spanner/v1/readme",
+        "patterns": [
+            "spanner/v1/\\w{1,}",
+            "spanner/admin/database/v1/\\w{1,}",
+            "spanner/admin/instance/v1/\\w{1,}"
+        ],
+        "nav": [{
+            "title": "SpannerClient",
+            "type": "spanner/v1/spannerclient"
+        }, {
+            "title": "DatabaseAdminClient",
+            "type": "spanner/admin/database/v1/databaseadminclient"
+        }, {
+            "title": "InstanceAdminClient",
+            "type": "spanner/admin/instance/v1/instanceadminclient"
+        }]
     }]
 }
