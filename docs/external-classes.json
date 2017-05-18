@@ -85,5 +85,14 @@
 }, {
   "name": "PushConfig",
   "uri": "https://github.com/googleapis/proto-client-php/blob/master/src/pubsub/v1/pubsub.php#L1827"
+}, {
+  "name": "google\\cloud\\videointelligence\\v1beta1\\",
+  "uri": "https://github.com/googleapis/proto-client-php/tree/master/src/videointelligence/v1beta1"
+}, {
+  "name": "VideoContext",
+  "uri": "https://github.com/googleapis/proto-client-php/blob/master/src/videointelligence/v1beta1/video_intelligence.php#L379"
+}, {
+  "name": "google\\cloud\\videointelligence\\v1beta1\\Feature",
+  "uri": "https://github.com/googleapis/proto-client-php/blob/master/src/videointelligence/v1beta1/video_intelligence.php#8"
 }]
 

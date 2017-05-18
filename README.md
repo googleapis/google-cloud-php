@@ -21,6 +21,7 @@ This client supports the following Google Cloud Platform services at a [Beta](#v
 This client supports the following Google Cloud Platform services at an [Alpha](#versioning) quality level:
 * [Google Cloud Pub/Sub](#google-cloud-pubsub-alpha) (Alpha)
 * [Google Cloud Speech](#google-cloud-speech-alpha) (Alpha)
+* [Google Cloud Video Intelligence](#google-cloud-videointelligence-alpha) (Alpha)
 * [Google Stackdriver Trace](#google-stackdriver-trace-alpha) (Alpha)
 
 If you need support for other Google APIs, please check out the [Google APIs Client Library for PHP](https://github.com/google/google-api-php-client).
@@ -443,6 +444,40 @@ $cache = new ArrayAdapter();
 $storage = new StorageClient([
     'authCache' => $cache
 ]);
+```
+
+## Google Cloud Video Intelligence (Alpha)
+
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/videointelligence/readme)
+- [Official Documentation](https://cloud.google.com/video-intelligence/docs)
+
+#### Preview
+
+```php
+require __DIR__ . '/vendor/autoload.php';
+
+use Google\Cloud\VideoIntelligence\V1beta1\VideoIntelligenceServiceClient;
+use google\cloud\videointelligence\v1beta1\Feature;
+
+$client = new VideoIntelligenceServiceClient();
+
+$inputUri = "gs://example-bucket/example-video.mp4";
+$features = [
+    Feature::LABEL_DETECTION,
+];
+$operationResponse = $client->annotateVideo($inputUri, $features);
+$operationResponse->pollUntilComplete();
+if ($operationResponse->operationSucceeded()) {
+    $results = $operationResponse->getResult();
+    foreach ($results->getAnnotationResultsList() as $result) {
+        foreach ($result->getLabelAnnotationsList() as $labelAnnotation) {
+            echo "Label: " . $labelAnnotation->getDescription() . "\n";
+        }
+    }
+} else {
+    $error = $operationResponse->getError();
+    echo "error: " . $error->getMessage() . "\n";
+}
 ```
 
 ## Google Stackdriver Trace (Alpha)
