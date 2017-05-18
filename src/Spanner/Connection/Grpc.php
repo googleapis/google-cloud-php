@@ -661,7 +661,7 @@ class Grpc implements ConnectionInterface
             $keySet['keys'] = [];
 
             foreach ($keys as $key) {
-                $keySet['keys'][] = $this->formatListForApi([$key]);
+                $keySet['keys'][] = $this->formatListForApi((array) $key);
             }
         }
 
