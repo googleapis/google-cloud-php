@@ -56,7 +56,7 @@
         "league/json-guard": "^0.3",
         "erusev/parsedown": "^1.6",
         "vierbergenlars/php-semver": "^3.0",
-        "google/proto-client-php": "^0.12",
+        "google/proto-client-php": "^0.13",
         "google/gax": "^0.9",
         "symfony/lock": "dev-master#1ba6ac9"
     },
