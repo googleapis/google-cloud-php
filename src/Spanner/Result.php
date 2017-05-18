@@ -202,20 +202,22 @@ class Result implements \IteratorAggregate
 
                 $generator->next();
             } catch (ServiceException $ex) {
-                if (!$shouldRetry || $ex->getCode() !== Grpc\STATUS_UNAVAILABLE) {
-                    throw $ex;
+                if ($shouldRetry && $ex->getCode() === Grpc\STATUS_UNAVAILABLE) {
+                    $backoff = new ExponentialBackoff($this->retries, function (ServiceException $ex) {
+                        return $ex->getCode() === Grpc\STATUS_UNAVAILABLE
+                            ? true
+                            : false;
+                    });
+
+                    // Attempt to resume using our last stored resume token. If we
+                    // successfully resume, flush the buffer.
+                    $generator = $backoff->execute($call, [$this->resumeToken]);
+                    $bufferedResults = [];
+
+                    continue;
                 }
 
-                $backoff = new ExponentialBackoff($this->retries, function (ServiceException $ex) {
-                    return $ex->getCode() === Grpc\STATUS_UNAVAILABLE
-                        ? true
-                        : false;
-                });
-
-                // Attempt to resume using our last stored resume token. If we
-                // successfully resume, flush the buffer.
-                $generator = $backoff->execute($call, [$this->resumeToken]);
-                $bufferedResults = [];
+                throw $ex;
             }
         }
 
