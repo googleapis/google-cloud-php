@@ -1,0 +1,1 @@
+{"id":"core\/exception\/failedpreconditionexception","type":"","title":"Google\\Cloud\\Core\\Exception\\FailedPreconditionException","name":"FailedPreconditionException","description":"<p>Exception thrown when a request fails due to a failed precondition.<\/p>\n<p>In REST context, this exception indicates a status code 412.<\/p>","examples":[],"resources":[],"methods":[]}
