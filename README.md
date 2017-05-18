@@ -21,7 +21,7 @@ This client supports the following Google Cloud Platform services at a [Beta](#v
 This client supports the following Google Cloud Platform services at an [Alpha](#versioning) quality level:
 * [Google Cloud Pub/Sub](#google-cloud-pubsub-alpha) (Alpha)
 * [Google Cloud Speech](#google-cloud-speech-alpha) (Alpha)
-* [Google Cloud Video Intelligence](#google-cloud-videointelligence-alpha) (Alpha)
+* [Google Cloud Video Intelligence](#google-cloud-video-intelligence-alpha) (Alpha)
 * [Google Stackdriver Trace](#google-stackdriver-trace-alpha) (Alpha)
 
 If you need support for other Google APIs, please check out the [Google APIs Client Library for PHP](https://github.com/google/google-api-php-client).
@@ -426,26 +426,6 @@ Google Cloud Speech can be installed separately by requiring the `google/cloud-s
 $ require google/cloud-speech
 ```
 
-## Caching Access Tokens
-
-By default the library will use a simple in-memory caching implementation, however it is possible to override this behavior by passing a [PSR-6](http://www.php-fig.org/psr/psr-6/) caching implementation in to the desired client.
-
-The following example takes advantage of [Symfony's Cache Component](https://github.com/symfony/cache).
-
-```php
-require 'vendor/autoload.php';
-
-use Google\Cloud\Storage\StorageClient;
-use Symfony\Component\Cache\Adapter\ArrayAdapter;
-
-// Please take the proper precautions when storing your access tokens in a cache no matter the implementation.
-$cache = new ArrayAdapter();
-
-$storage = new StorageClient([
-    'authCache' => $cache
-]);
-```
-
 ## Google Cloud Video Intelligence (Alpha)
 
 - [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/videointelligence/readme)
@@ -511,6 +491,26 @@ $traceClient->insert($trace);
 foreach($traceClient->traces() as $trace) {
     var_dump($trace->traceId());
 }
+```
+
+## Caching Access Tokens
+
+By default the library will use a simple in-memory caching implementation, however it is possible to override this behavior by passing a [PSR-6](http://www.php-fig.org/psr/psr-6/) caching implementation in to the desired client.
+
+The following example takes advantage of [Symfony's Cache Component](https://github.com/symfony/cache).
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Storage\StorageClient;
+use Symfony\Component\Cache\Adapter\ArrayAdapter;
+
+// Please take the proper precautions when storing your access tokens in a cache no matter the implementation.
+$cache = new ArrayAdapter();
+
+$storage = new StorageClient([
+    'authCache' => $cache
+]);
 ```
 
 ## Versioning
