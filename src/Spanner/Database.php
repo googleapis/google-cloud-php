@@ -283,7 +283,7 @@ class Database
      * @param array $options [optional] {
      *     Configuration Options
      *
-     *     @type array $statements Additional DDL statements.
+     *     @type string[] $statements Additional DDL statements.
      * }
      * @return LongRunningOperation<Database>
      */
