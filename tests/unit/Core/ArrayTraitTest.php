@@ -83,6 +83,26 @@ class ArrayTraitTest extends \PHPUnit_Framework_TestCase
 
         $this->assertFalse($actual);
     }
+
+    public function testArrayFilterRemoveNull()
+    {
+        $input = [
+            'null' => null,
+            'false' => false,
+            'zero' => 0,
+            'float' => 0.0,
+            'empty' => '',
+            'array' => [],
+        ];
+
+        $res = $this->implementation->call('arrayFilterRemoveNull', [$input]);
+        $this->assertFalse(array_key_exists('null', $res));
+        $this->assertTrue(array_key_exists('false', $res));
+        $this->assertTrue(array_key_exists('zero', $res));
+        $this->assertTrue(array_key_exists('float', $res));
+        $this->assertTrue(array_key_exists('empty', $res));
+        $this->assertTrue(array_key_exists('array', $res));
+    }
 }
 
 class ArrayTraitStub

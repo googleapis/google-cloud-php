@@ -40,11 +40,11 @@ class StorageObjectTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->object = new \StorageObjectStub(
+        $this->object = \Google\Cloud\Dev\stub(StorageObject::class, [
             $this->connection->reveal(),
             self::OBJECT,
             self::BUCKET
-        );
+        ]);
     }
 
     public function testClass()
@@ -72,7 +72,7 @@ class StorageObjectTest extends SnippetTestCase
             ->shouldBeCalled()
             ->willReturn([]);
 
-        $this->object->setConnection($this->connection->reveal());
+        $this->object->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke();
         $this->assertEquals('Object exists!', $res->output());
@@ -86,7 +86,7 @@ class StorageObjectTest extends SnippetTestCase
         $this->connection->deleteObject(Argument::any())
             ->shouldBeCalled();
 
-        $this->object->setConnection($this->connection->reveal());
+        $this->object->___setProperty('connection', $this->connection->reveal());
 
         $snippet->invoke();
     }
@@ -99,7 +99,7 @@ class StorageObjectTest extends SnippetTestCase
         $this->connection->patchObject(Argument::any())
             ->shouldBeCalled();
 
-        $this->object->setConnection($this->connection->reveal());
+        $this->object->___setProperty('connection', $this->connection->reveal());
 
         $snippet->invoke();
     }
@@ -117,7 +117,7 @@ class StorageObjectTest extends SnippetTestCase
                 'generation' => 'foo'
             ]);
 
-        $this->object->setConnection($this->connection->reveal());
+        $this->object->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke('copiedObject');
         $this->assertInstanceOf(StorageObject::class, $res->returnVal());
@@ -144,7 +144,7 @@ class StorageObjectTest extends SnippetTestCase
                 'generation' => 'foo'
             ]);
 
-        $this->object->setConnection($this->connection->reveal());
+        $this->object->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke('copiedObject');
         $this->assertInstanceOf(StorageObject::class, $res->returnVal());
@@ -165,7 +165,7 @@ class StorageObjectTest extends SnippetTestCase
                 ]
             ]);
 
-        $this->object->setConnection($this->connection->reveal());
+        $this->object->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke('rewrittenObject');
         $this->assertInstanceOf(StorageObject::class, $res->returnVal());
@@ -194,7 +194,7 @@ class StorageObjectTest extends SnippetTestCase
                 ]
             ]);
 
-        $this->object->setConnection($this->connection->reveal());
+        $this->object->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke('rewrittenObject');
         $this->assertInstanceOf(StorageObject::class, $res->returnVal());
@@ -216,7 +216,7 @@ class StorageObjectTest extends SnippetTestCase
                 ]
             ]);
 
-        $this->object->setConnection($this->connection->reveal());
+        $this->object->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke('rewrittenObject');
         $this->assertInstanceOf(StorageObject::class, $res->returnVal());
@@ -238,7 +238,7 @@ class StorageObjectTest extends SnippetTestCase
         $this->connection->deleteObject(Argument::any())
             ->shouldBeCalled();
 
-        $this->object->setConnection($this->connection->reveal());
+        $this->object->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke();
         $this->assertEquals('object2.txt', $res->output());
@@ -253,7 +253,7 @@ class StorageObjectTest extends SnippetTestCase
             ->shouldBeCalled()
             ->willReturn(\GuzzleHttp\Psr7\stream_for('test'));
 
-        $this->object->setConnection($this->connection->reveal());
+        $this->object->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke();
         $this->assertEquals('test', $res->output());
@@ -269,7 +269,7 @@ class StorageObjectTest extends SnippetTestCase
             ->shouldBeCalled()
             ->willReturn(\GuzzleHttp\Psr7\stream_for('test'));
 
-        $this->object->setConnection($this->connection->reveal());
+        $this->object->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke('stream');
 
@@ -285,7 +285,7 @@ class StorageObjectTest extends SnippetTestCase
             ->shouldBeCalled()
             ->willReturn(\GuzzleHttp\Psr7\stream_for('test'));
 
-        $this->object->setConnection($this->connection->reveal());
+        $this->object->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke();
 
@@ -306,7 +306,7 @@ class StorageObjectTest extends SnippetTestCase
                 'location' => 'right behind you!'
             ]);
 
-        $this->object->setConnection($this->connection->reveal());
+        $this->object->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke();
         $this->assertEquals('1', $res->output());
@@ -326,7 +326,7 @@ class StorageObjectTest extends SnippetTestCase
                 'location' => 'right behind you!'
             ]);
 
-        $this->object->setConnection($this->connection->reveal());
+        $this->object->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke();
         $this->assertEquals('right behind you!', $res->output());

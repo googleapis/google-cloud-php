@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Tests\Snippets\BigQuery;
 
+use Google\Cloud\BigQuery\BigQueryClient;
 use Google\Cloud\BigQuery\Time;
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
 
@@ -28,7 +29,7 @@ class TimeTest extends SnippetTestCase
     public function testClass()
     {
         $snippet = $this->snippetFromClass(Time::class);
-        $snippet->addLocal('bigQuery', new \BigQueryClientStub);
+        $snippet->addLocal('bigQuery', \Google\Cloud\Dev\stub(BigQueryClient::class));
         $res = $snippet->invoke('time');
 
         $this->assertInstanceOf(Time::class, $res->returnVal());

@@ -28,7 +28,7 @@ class PhpArrayTest extends \PHPUnit_Framework_TestCase
 {
     private function getCodec($customFilters = [])
     {
-        return new PhpArray($customFilters);
+        return new PhpArray(['customFilters' => $customFilters]);
     }
 
     /**
@@ -98,7 +98,7 @@ class TestMessage extends Message
 {
     public $test_struct = null;
     public $test_labels = [];
-    public $test_stings = [];
+    public $test_strings = [];
 
     protected static $__extensions = array();
 

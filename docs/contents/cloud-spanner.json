@@ -1,0 +1,47 @@
+{
+    "title": "Spanner",
+    "pattern": "spanner\/\\w{1,}",
+    "services": [{
+        "title": "SpannerClient",
+        "type": "spanner/spannerclient"
+    }, {
+        "title": "Configuration",
+        "type": "spanner/configuration"
+    }, {
+        "title": "Database",
+        "type": "spanner/database"
+    }, {
+        "title": "Instance",
+        "type": "spanner/instance"
+    }, {
+        "title": "Snapshot",
+        "type": "spanner/snapshot"
+    }, {
+        "title": "Transaction",
+        "type": "spanner/transaction"
+    }, {
+        "title": "Bytes",
+        "type": "spanner/bytes"
+    }, {
+        "title": "Date",
+        "type": "spanner/date"
+    }, {
+        "title": "Duration",
+        "type": "spanner/duration"
+    }, {
+        "title": "KeyRange",
+        "type": "spanner/keyrange"
+    }, {
+        "title": "KeySet",
+        "type": "spanner/keyset"
+    }, {
+        "title": "Result",
+        "type": "spanner/result"
+    }, {
+        "title": "Timestamp",
+        "type": "spanner/timestamp"
+    },{
+        "title": "CacheSessionPool",
+        "type": "spanner/session/cachesessionpool"
+    }]
+}

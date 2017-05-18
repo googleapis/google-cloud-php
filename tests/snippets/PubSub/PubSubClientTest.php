@@ -45,7 +45,7 @@ class PubSubClientTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->client = new \PubSubClientStub(['transport' => 'rest']);
+        $this->client = \Google\Cloud\Dev\stub(PubSubClient::class, [['transport' => 'rest']]);
     }
 
     public function testClassExample()
@@ -73,7 +73,7 @@ class PubSubClientTest extends SnippetTestCase
                 'name' => self::TOPIC
             ]);
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
 
         $snippet = $this->snippetFromMethod(PubSubClient::class, 'createTopic');
         $snippet->addLocal('pubsub', $this->client);
@@ -96,7 +96,7 @@ class PubSubClientTest extends SnippetTestCase
                 'name' => self::TOPIC
             ]);
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke('topic');
 
@@ -118,7 +118,7 @@ class PubSubClientTest extends SnippetTestCase
                 ]
             ]);
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke('topics');
 
@@ -138,7 +138,7 @@ class PubSubClientTest extends SnippetTestCase
                 'topic' => self::TOPIC
             ]);
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke('subscription');
 
@@ -160,7 +160,7 @@ class PubSubClientTest extends SnippetTestCase
                 'topic' => self::TOPIC
             ]);
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke('subscription');
 
@@ -183,7 +183,7 @@ class PubSubClientTest extends SnippetTestCase
                 ]
             ]);
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke('subscriptions');
         $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
@@ -196,7 +196,7 @@ class PubSubClientTest extends SnippetTestCase
             ->shouldBecalled()
             ->willReturn([]);
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
 
         $snippet = $this->snippetFromMethod(PubSubClient::class, 'createSnapshot');
         $snippet->addLocal('pubsub', $this->client);
@@ -228,7 +228,7 @@ class PubSubClientTest extends SnippetTestCase
                 ]
             ]);
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke('snapshots');
         $this->assertInstanceOf(ItemIterator::class, $res->returnVal());

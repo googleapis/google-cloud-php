@@ -19,6 +19,7 @@
         "natural language",
         "pubsub",
         "pub sub",
+        "spanner",
         "speech",
         "storage",
         "gcs",
@@ -56,11 +57,13 @@
         "erusev/parsedown": "^1.6",
         "vierbergenlars/php-semver": "^3.0",
         "google/proto-client-php": "^0.13",
-        "google/gax": "^0.8"
+        "google/gax": "^0.9",
+        "symfony/lock": "dev-master#1ba6ac9"
     },
     "suggest": {
         "google/gax": "Required to support gRPC",
-        "google/proto-client-php": "Required to support gRPC"
+        "google/proto-client-php": "Required to support gRPC",
+        "symfony/lock": "Required for the Spanner cached based session pool. Please require the following commit: dev-master#1ba6ac9"
     },
     "autoload": {
         "psr-4": {
@@ -70,8 +73,10 @@
     "autoload-dev": {
         "psr-4": {
             "Google\\Cloud\\Dev\\": "dev/src",
-            "Google\\Cloud\\Tests\\System\\": "tests/system"
-        }
+            "Google\\Cloud\\Tests\\System\\": "tests/system",
+            "Google\\Cloud\\Tests\\Unit\\": "tests/unit"
+        },
+        "files": ["dev/src/Functions.php"]
     },
     "scripts": {
         "google-cloud": "dev/google-cloud"
