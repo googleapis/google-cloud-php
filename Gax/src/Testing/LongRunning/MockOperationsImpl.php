@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016, Google Inc. All rights reserved.
+ * Copyright 2017, Google Inc. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -36,9 +36,15 @@
 
 namespace Google\GAX\Testing\LongRunning;
 
-use Google\GAX\Testing\MockStubTrait;
-use google\longrunning\OperationsGrpcClient;
-use google\protobuf\Any;
+use \Google\GAX\GrpcCredentialsHelper;
+use \Google\GAX\LongRunning\OperationsClient;
+use \Google\GAX\Testing\LongRunning\MockOperationsImpl;
+use \Google\GAX\Testing\MockStubTrait;
+use \PHPUnit_Framework_TestCase;
+use \google\longrunning\GetOperationRequest;
+use \google\longrunning\OperationsGrpcClient;
+use \google\protobuf\Any;
+use \google\protobuf\EmptyC;
 
 class MockOperationsImpl extends OperationsGrpcClient
 {
