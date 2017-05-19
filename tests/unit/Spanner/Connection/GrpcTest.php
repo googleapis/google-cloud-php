@@ -124,6 +124,10 @@ class GrpcTest extends \PHPUnit_Framework_TestCase
         $keySetArgs = [];
         $keySet = (new KeySet)
             ->deserialize($keySetArgs, $codec);
+        $keySetSingular = (new KeySet())
+            ->deserialize(['keys' => [['values' => ['number_value' => 1]]]], $codec);
+        $keySetComposite = (new KeySet())
+            ->deserialize(['keys' => [['values' => [['number_value' => 1], ['number_value' => 1]]]]], $codec);
 
         $readWriteTransactionArgs = ['readWrite' => []];
         $readWriteTransactionOptions = new TransactionOptions;
@@ -307,6 +311,30 @@ class GrpcTest extends \PHPUnit_Framework_TestCase
                     'database' => $databaseName,
                 ],
                 [$sessionName, $tableName, $columns, $keySet, ['transaction' => $transactionSelector, 'userHeaders' => ['google-cloud-resource-prefix' => [$databaseName]]]]
+            ],
+            [
+                'streamingRead',
+                [
+                    'keySet' => ['keys' => [1]],
+                    'transactionId' => $transactionName,
+                    'session' => $sessionName,
+                    'table' => $tableName,
+                    'columns' => $columns,
+                    'database' => $databaseName,
+                ],
+                [$sessionName, $tableName, $columns, $keySetSingular, ['transaction' => $transactionSelector, 'userHeaders' => ['google-cloud-resource-prefix' => [$databaseName]]]]
+            ],
+            [
+                'streamingRead',
+                [
+                    'keySet' => ['keys' => [[1,1]]],
+                    'transactionId' => $transactionName,
+                    'session' => $sessionName,
+                    'table' => $tableName,
+                    'columns' => $columns,
+                    'database' => $databaseName,
+                ],
+                [$sessionName, $tableName, $columns, $keySetComposite, ['transaction' => $transactionSelector, 'userHeaders' => ['google-cloud-resource-prefix' => [$databaseName]]]]
             ],
             // test read write
             [
