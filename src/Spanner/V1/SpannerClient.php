@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016, Google Inc. All rights reserved.
+ * Copyright 2017, Google Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,7 +28,6 @@
 
 namespace Google\Cloud\Spanner\V1;
 
-use DrSlump\Protobuf\Codec\PhpArray;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
@@ -105,7 +104,7 @@ class SpannerClient
     /**
      * The code generator version, to be included in the agent header.
      */
-    const CODEGEN_VERSION = '0.1.0';
+    const CODEGEN_VERSION = '0.0.5';
 
     private static $databaseNameTemplate;
     private static $sessionNameTemplate;
@@ -236,6 +235,17 @@ class SpannerClient
         ];
     }
 
+    private static function getGapicVersion()
+    {
+        if (file_exists(__DIR__.'/../VERSION')) {
+            return trim(file_get_contents(__DIR__.'/../VERSION'));
+        } elseif (class_exists('\Google\Cloud\ServiceBuilder')) {
+            return \Google\Cloud\ServiceBuilder::VERSION;
+        } else {
+            return;
+        }
+    }
+
     // TODO(garrettjones): add channel (when supported in gRPC)
     /**
      * Constructor.
@@ -251,7 +261,7 @@ class SpannerClient
      *           Default: a credentials object returned from
      *           \Grpc\ChannelCredentials::createSsl()
      *     @type array $scopes A string array of scopes to use when acquiring credentials.
-     *                         Default the scopes for the Google Cloud Spanner API.
+     *                         Default the scopes for the Cloud Spanner API.
      *     @type array $retryingOverride
      *           An associative array of string => RetryOptions, where the keys
      *           are method names (e.g. 'createFoo'), that overrides default retrying
@@ -261,9 +271,6 @@ class SpannerClient
      *                              that don't use retries. For calls that use retries,
      *                              set the timeout in RetryOptions.
      *                              Default: 30000 (30 seconds)
-     *     @type string $appName The codename of the calling service. Default 'gax'.
-     *     @type string $appVersion The version of the calling service.
-     *                              Default: the current version of GAX.
      *     @type \Google\Auth\CredentialsLoader $credentialsLoader
      *                              A CredentialsLoader object created using the
      *                              Google\Auth library.
@@ -280,18 +287,17 @@ class SpannerClient
             ],
             'retryingOverride' => null,
             'timeoutMillis' => self::DEFAULT_TIMEOUT_MILLIS,
-            'appName' => 'gax',
-            'appVersion' => AgentHeaderDescriptor::getGaxVersion(),
+            'libName' => null,
+            'libVersion' => null,
         ];
         $options = array_merge($defaultOptions, $options);
 
+        $gapicVersion = $options['libVersion'] ?: self::getGapicVersion();
+
         $headerDescriptor = new AgentHeaderDescriptor([
-            'clientName' => $options['appName'],
-            'clientVersion' => $options['appVersion'],
-            'codeGenName' => self::CODEGEN_NAME,
-            'codeGenVersion' => self::CODEGEN_VERSION,
-            'gaxVersion' => AgentHeaderDescriptor::getGaxVersion(),
-            'phpVersion' => phpversion(),
+            'libName' => $options['libName'],
+            'libVersion' => $options['libVersion'],
+            'gapicVersion' => $gapicVersion,
         ]);
 
         $defaultDescriptors = ['headerDescriptor' => $headerDescriptor];
@@ -360,10 +366,9 @@ class SpannerClient
      *
      * Cloud Spanner limits the number of sessions that can exist at any given
      * time; thus, it is a good idea to delete idle and/or unneeded sessions.
-     * Aside from explicit deletes, Cloud Spanner can delete sessions for
-     * which no operations are sent for more than an hour, or due to
-     * internal errors. If a session is deleted, requests to it
-     * return `NOT_FOUND`.
+     * Aside from explicit deletes, Cloud Spanner can delete sessions for which no
+     * operations are sent for more than an hour. If a session is deleted,
+     * requests to it return `NOT_FOUND`.
      *
      * Idle sessions can be kept alive by sending a trivial SQL query
      * periodically, e.g., `"SELECT 1"`.
@@ -959,7 +964,7 @@ class SpannerClient
             $mergedSettings,
             $this->descriptors['streamingRead']
         );
-// print_r($request->serialize(new PhpArray));exit;
+
         return $callable(
             $request,
             [],

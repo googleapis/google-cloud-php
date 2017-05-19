@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016, Google Inc. All rights reserved.
+ * Copyright 2017, Google Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -118,7 +118,7 @@ class DatabaseAdminClient
     /**
      * The code generator version, to be included in the agent header.
      */
-    const CODEGEN_VERSION = '0.1.0';
+    const CODEGEN_VERSION = '0.0.5';
 
     private static $instanceNameTemplate;
     private static $databaseNameTemplate;
@@ -249,6 +249,17 @@ class DatabaseAdminClient
         ];
     }
 
+    private static function getGapicVersion()
+    {
+        if (file_exists(__DIR__.'/../VERSION')) {
+            return trim(file_get_contents(__DIR__.'/../VERSION'));
+        } elseif (class_exists('\Google\Cloud\ServiceBuilder')) {
+            return \Google\Cloud\ServiceBuilder::VERSION;
+        } else {
+            return;
+        }
+    }
+
     /**
      * Return an OperationsClient object with the same endpoint as $this.
      *
@@ -300,7 +311,7 @@ class DatabaseAdminClient
      *           Default: a credentials object returned from
      *           \Grpc\ChannelCredentials::createSsl()
      *     @type array $scopes A string array of scopes to use when acquiring credentials.
-     *                         Default the scopes for the Google Cloud Spanner Database Admin API.
+     *                         Default the scopes for the Cloud Spanner Database Admin API.
      *     @type array $retryingOverride
      *           An associative array of string => RetryOptions, where the keys
      *           are method names (e.g. 'createFoo'), that overrides default retrying
@@ -310,9 +321,6 @@ class DatabaseAdminClient
      *                              that don't use retries. For calls that use retries,
      *                              set the timeout in RetryOptions.
      *                              Default: 30000 (30 seconds)
-     *     @type string $appName The codename of the calling service. Default 'gax'.
-     *     @type string $appVersion The version of the calling service.
-     *                              Default: the current version of GAX.
      *     @type \Google\Auth\CredentialsLoader $credentialsLoader
      *                              A CredentialsLoader object created using the
      *                              Google\Auth library.
@@ -329,8 +337,8 @@ class DatabaseAdminClient
             ],
             'retryingOverride' => null,
             'timeoutMillis' => self::DEFAULT_TIMEOUT_MILLIS,
-            'appName' => 'gax',
-            'appVersion' => AgentHeaderDescriptor::getGaxVersion(),
+            'libName' => null,
+            'libVersion' => null,
         ];
         $options = array_merge($defaultOptions, $options);
 
@@ -340,16 +348,17 @@ class DatabaseAdminClient
             $this->operationsClient = new OperationsClient([
                 'serviceAddress' => $options['serviceAddress'],
                 'scopes' => $options['scopes'],
+                'libName' => $options['libName'],
+                'libVersion' => $options['libVersion'],
             ]);
         }
 
+        $gapicVersion = $options['libVersion'] ?: self::getGapicVersion();
+
         $headerDescriptor = new AgentHeaderDescriptor([
-            'clientName' => $options['appName'],
-            'clientVersion' => $options['appVersion'],
-            'codeGenName' => self::CODEGEN_NAME,
-            'codeGenVersion' => self::CODEGEN_VERSION,
-            'gaxVersion' => AgentHeaderDescriptor::getGaxVersion(),
-            'phpVersion' => phpversion(),
+            'libName' => $options['libName'],
+            'libVersion' => $options['libVersion'],
+            'gapicVersion' => $gapicVersion,
         ]);
 
         $defaultDescriptors = ['headerDescriptor' => $headerDescriptor];
@@ -701,7 +710,7 @@ class DatabaseAdminClient
      *          [longrunning.Operation][google.longrunning.Operation]: `<database>/operations/<operation_id>`.
      *
      *          `operation_id` should be unique within the database, and must be
-     *          a valid identifier: `[a-zA-Z][a-zA-Z0-9_]&#42;`. Note that
+     *          a valid identifier: `[a-z][a-z0-9_]&#42;`. Note that
      *          automatically-generated operation IDs always begin with an
      *          underscore. If the named operation already exists,
      *          [UpdateDatabaseDdl][google.spanner.admin.database.v1.DatabaseAdmin.UpdateDatabaseDdl] returns
