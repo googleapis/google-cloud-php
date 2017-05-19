@@ -23,6 +23,7 @@ use Google\Cloud\Trace\Reporter\ReporterInterface;
 use Google\Cloud\Trace\RequestTracer;
 use Google\Cloud\Trace\RequestHandler;
 use Google\Cloud\Trace\Sampler\QpsSampler;
+use Google\Cloud\Trace\TraceClient;
 use Prophecy\Argument;
 use Psr\Cache\CacheItemPoolInterface;
 
@@ -37,8 +38,8 @@ class RequestTracerTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->client = new \TraceClientStub;
-        $this->client->setConnection($this->connection->reveal());
+        $this->client = \Google\Cloud\Dev\stub(TraceClient::class);
+        $this->client->___setProperty('connection', $this->connection->reveal());
     }
 
     public function testClass()
