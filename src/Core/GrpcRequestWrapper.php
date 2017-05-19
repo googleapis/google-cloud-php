@@ -216,6 +216,7 @@ class GrpcRequestWrapper
                 break;
 
             case Grpc\STATUS_NOT_FOUND:
+            case Grpc\STATUS_UNIMPLEMENTED:
                 $exception = Exception\NotFoundException::class;
                 break;
 
