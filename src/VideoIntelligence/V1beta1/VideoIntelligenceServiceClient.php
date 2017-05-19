@@ -237,6 +237,8 @@ class VideoIntelligenceServiceClient
                 'scopes' => $options['scopes'],
                 'libName' => $options['libName'],
                 'libVersion' => $options['libVersion'],
+                'sslCreds' => $options['sslCreds'],
+                'credentialsLoader' => $options['credentialsLoader'],
             ]);
         }
 
