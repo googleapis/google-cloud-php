@@ -12,9 +12,11 @@
         "cloud-monitoring",
         "cloud-language",
         "cloud-pubsub",
+        "cloud-spanner",
         "cloud-speech",
         "cloud-storage",
         "cloud-translate",
+        "cloud-videointelligence",
         "cloud-vision",
         "cloud-core"
     ]

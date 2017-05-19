@@ -36,8 +36,10 @@ class SpeechClientTest extends SnippetTestCase
     {
         $this->testFile = "'" . __DIR__ . '/../fixtures/Speech/demo.flac' . "'";
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->client = new \SpeechClientStub(['languageCode' => 'en-US']);
-        $this->client->setConnection($this->connection->reveal());
+        $this->client = \Google\Cloud\Dev\stub(SpeechClient::class, [
+            ['languageCode' => 'en-US']
+        ]);
+        $this->client->___setProperty('connection', $this->connection->reveal());
     }
 
     public function testClass()
@@ -69,7 +71,7 @@ class SpeechClientTest extends SnippetTestCase
                 ]
             ]);
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke();
         $this->assertEquals($transcript . PHP_EOL, $res->output());
@@ -96,7 +98,7 @@ class SpeechClientTest extends SnippetTestCase
                 ]
             ]);
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke();
         $this->assertEquals($transcript . PHP_EOL, $res->output());
@@ -127,7 +129,7 @@ class SpeechClientTest extends SnippetTestCase
                 ]
             ]);
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke();
         $this->assertEquals(print_r($results[0]['alternatives'][0], true), $res->output());
@@ -158,7 +160,7 @@ class SpeechClientTest extends SnippetTestCase
                 ]
             ]);
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke();
         $this->assertEquals(print_r($results[0]['alternatives'][0], true), $res->output());

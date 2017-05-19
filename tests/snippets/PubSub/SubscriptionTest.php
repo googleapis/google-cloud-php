@@ -41,16 +41,16 @@ class SubscriptionTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->subscription = new \SubscriptionStub(
+        $this->subscription = \Google\Cloud\Dev\stub(Subscription::class, [
             $this->connection->reveal(),
             'foo',
             self::SUBSCRIPTION,
             self::TOPIC,
             false
-        );
+        ]);
 
-        $this->pubsub = new \PubSubClientStub(['transport' => 'rest']);
-        $this->pubsub->setConnection($this->connection->reveal());
+        $this->pubsub = \Google\Cloud\Dev\stub(PubSubClient::class, [['transport' => 'rest']]);
+        $this->pubsub->___setProperty('connection', $this->connection->reveal());
     }
 
     public function testClassThroughTopic()
@@ -89,7 +89,7 @@ class SubscriptionTest extends SnippetTestCase
             ->shouldBeCalled()
             ->willReturn($return);
 
-        $this->pubsub->setConnection($this->connection->reveal());
+        $this->pubsub->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke('result');
         $this->assertEquals($return, $res->returnVal());
@@ -103,7 +103,7 @@ class SubscriptionTest extends SnippetTestCase
         $this->connection->updateSubscription(Argument::any())
             ->shouldBeCalled();
 
-        $this->subscription->setConnection($this->connection->reveal());
+        $this->subscription->___setProperty('connection', $this->connection->reveal());
 
         $snippet->invoke();
     }
@@ -116,7 +116,7 @@ class SubscriptionTest extends SnippetTestCase
         $this->connection->deleteSubscription(Argument::any())
             ->shouldBeCalled();
 
-        $this->subscription->setConnection($this->connection->reveal());
+        $this->subscription->___setProperty('connection', $this->connection->reveal());
 
         $snippet->invoke();
     }
@@ -129,7 +129,7 @@ class SubscriptionTest extends SnippetTestCase
         $this->connection->getSubscription(Argument::any())
             ->shouldBeCalled();
 
-        $this->subscription->setConnection($this->connection->reveal());
+        $this->subscription->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke();
         $this->assertEquals('Subscription exists!', $res->output());
@@ -144,7 +144,7 @@ class SubscriptionTest extends SnippetTestCase
             ->shouldBeCalled()
             ->willReturn(['name' => self::SUBSCRIPTION]);
 
-        $this->subscription->setConnection($this->connection->reveal());
+        $this->subscription->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke();
         $this->assertEquals(self::SUBSCRIPTION, $res->output());
@@ -159,7 +159,7 @@ class SubscriptionTest extends SnippetTestCase
             ->shouldBeCalled()
             ->willReturn(['name' => self::SUBSCRIPTION]);
 
-        $this->subscription->setConnection($this->connection->reveal());
+        $this->subscription->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke();
 
@@ -180,7 +180,7 @@ class SubscriptionTest extends SnippetTestCase
                 ]
             ]);
 
-        $this->subscription->setConnection($this->connection->reveal());
+        $this->subscription->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke('messages');
         $this->assertContainsOnlyInstancesOf(Message::class, $res->returnVal());
@@ -203,7 +203,7 @@ class SubscriptionTest extends SnippetTestCase
         $this->connection->acknowledge(Argument::any())
             ->shouldBeCalled();
 
-        $this->subscription->setConnection($this->connection->reveal());
+        $this->subscription->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke();
     }
@@ -224,7 +224,7 @@ class SubscriptionTest extends SnippetTestCase
         $this->connection->acknowledge(Argument::any())
             ->shouldBeCalled();
 
-        $this->subscription->setConnection($this->connection->reveal());
+        $this->subscription->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke();
     }
@@ -248,7 +248,7 @@ class SubscriptionTest extends SnippetTestCase
         $this->connection->modifyAckDeadline(Argument::any())
             ->shouldBeCalled();
 
-        $this->subscription->setConnection($this->connection->reveal());
+        $this->subscription->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke();
     }
@@ -272,7 +272,7 @@ class SubscriptionTest extends SnippetTestCase
         $this->connection->modifyAckDeadline(Argument::any())
             ->shouldBeCalled();
 
-        $this->subscription->setConnection($this->connection->reveal());
+        $this->subscription->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke();
     }
@@ -285,7 +285,7 @@ class SubscriptionTest extends SnippetTestCase
         $this->connection->modifyPushConfig(Argument::any())
             ->shouldBeCalled();
 
-        $this->subscription->setConnection($this->connection->reveal());
+        $this->subscription->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke();
     }
@@ -299,7 +299,7 @@ class SubscriptionTest extends SnippetTestCase
         $this->connection->seek(Argument::any())
             ->shouldBeCalled();
 
-        $this->subscription->setConnection($this->connection->reveal());
+        $this->subscription->___setProperty('connection', $this->connection->reveal());
         $snippet->invoke();
     }
 
@@ -312,7 +312,7 @@ class SubscriptionTest extends SnippetTestCase
         $this->connection->seek(Argument::any())
             ->shouldBeCalled();
 
-        $this->subscription->setConnection($this->connection->reveal());
+        $this->subscription->___setProperty('connection', $this->connection->reveal());
         $snippet->invoke();
     }
 

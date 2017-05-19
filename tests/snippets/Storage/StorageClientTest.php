@@ -37,8 +37,8 @@ class StorageClientTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->client = new \StorageClientStub;
-        $this->client->setConnection($this->connection->reveal());
+        $this->client = \Google\Cloud\Dev\stub(StorageClient::class);
+        $this->client->___setProperty('connection', $this->connection->reveal());
     }
 
     public function testClass()
@@ -71,7 +71,7 @@ class StorageClientTest extends SnippetTestCase
                 ]
             ]);
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke('buckets');
         $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
@@ -95,7 +95,7 @@ class StorageClientTest extends SnippetTestCase
                 ]
             ]);
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke('buckets');
         $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
@@ -112,7 +112,7 @@ class StorageClientTest extends SnippetTestCase
             ->shouldBeCalled()
             ->willReturn([]);
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke('bucket');
         $this->assertInstanceOf(Bucket::class, $res->returnVal());
@@ -127,9 +127,9 @@ class StorageClientTest extends SnippetTestCase
             ->shouldBeCalled()
             ->willReturn([]);
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke('bucket');
         $this->assertInstanceOf(Bucket::class, $res->returnVal());
     }
-}
+    }

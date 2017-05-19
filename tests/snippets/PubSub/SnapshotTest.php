@@ -38,7 +38,7 @@ class SnapshotTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->snapshot = new \SnapshotStub(
+        $this->snapshot = \Google\Cloud\Dev\stub(Snapshot::class, [
             $this->connection->reveal(),
             self::PROJECT,
             self::SNAPSHOT,
@@ -47,7 +47,7 @@ class SnapshotTest extends SnippetTestCase
                 'topic' => 'foo',
                 'subscription' => 'bar'
             ]
-        );
+        ]);
     }
 
     public function testClass()
@@ -89,7 +89,7 @@ class SnapshotTest extends SnippetTestCase
             ->shouldBeCalled()
             ->willReturn($info);
 
-        $this->snapshot->setConnection($this->connection->reveal());
+        $this->snapshot->___setProperty('connection', $this->connection->reveal());
 
         $snippet = $this->snippetFromMethod(Snapshot::class, 'create');
         $snippet->addLocal('snapshot', $this->snapshot);
@@ -103,7 +103,7 @@ class SnapshotTest extends SnippetTestCase
         $this->connection->deleteSnapshot(Argument::any())
             ->shouldBeCalled();
 
-        $this->snapshot->setConnection($this->connection->reveal());
+        $this->snapshot->___setProperty('connection', $this->connection->reveal());
 
         $snippet = $this->snippetFromMethod(Snapshot::class, 'delete');
         $snippet->addLocal('snapshot', $this->snapshot);
