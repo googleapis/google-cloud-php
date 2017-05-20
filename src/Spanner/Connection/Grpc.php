@@ -207,7 +207,7 @@ class Grpc implements ConnectionInterface
             $this->addResourcePrefixHeader($args, $instanceName)
         ]);
 
-        return $this->operationToArray($res, $this->codec, $this->lroResponseMappers);
+        return $this->operationToArray($res, $this->serializer, $this->lroResponseMappers);
     }
 
     /**

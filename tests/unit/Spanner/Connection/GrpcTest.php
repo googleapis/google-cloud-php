@@ -46,7 +46,7 @@ class GrpcTest extends \PHPUnit_Framework_TestCase
 
     const PROJECT = 'projects/my-project';
 
-    private $requestWrapper;
+    //private $requestWrapper;
     private $successMessage;
 
     public function setUp()
@@ -138,10 +138,34 @@ class GrpcTest extends \PHPUnit_Framework_TestCase
         $keySetArgs = [];
         $keySet = $serializer->decodeMessage(new KeySet, $keySetArgs);
         $keySetSingular = $serializer->decodeMessage(
-            new KeySet, ['keys' => [['values' => ['number_value' => 1]]]]);
+            new KeySet, [
+                'keys' => [
+                    [
+                        'values' => [
+                            [
+                                'number_value' => 1
+                            ]
+                        ]
+                    ],
+                ]
+            ]
+        );
         $keySetComposite = $serializer->decodeMessage(
-            new KeySet, ['keys' => [['values' => [['number_value' => 1], ['number_value' => 1]]]]]);
-
+            new KeySet, [
+                'keys' => [
+                    [
+                        'values' => [
+                            [
+                                'number_value' => 1
+                            ],
+                            [
+                                'number_value' => 1
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        );
         $readWriteTransactionArgs = ['readWrite' => []];
         $readWriteTransactionOptions = new TransactionOptions;
         $rw = new TransactionOptions_ReadWrite();
@@ -168,14 +192,19 @@ class GrpcTest extends \PHPUnit_Framework_TestCase
                 'insert' => [
                     'table' => $tableName,
                     'columns' => ['foo'],
-                    'values' => ['bar']
+                    'values' => [
+                        ['bar']
+                    ]
                 ]
             ]
         ];
 
         $insertMutationsArr = [];
         $insert = $insertMutations[0]['insert'];
-        $insert['values'] = $this->formatListForApi($insertMutations[0]['insert']['values']);
+        $insert['values'] = [];
+        foreach ($insertMutations[0]['insert']['values'] as $list) {
+            $insert['values'][] = $this->formatListForApi($list);
+        }
         $operation = $serializer->decodeMessage(new Mutation_Write, $insert);
 
         $mutation = new Mutation;
@@ -397,6 +426,7 @@ class GrpcTest extends \PHPUnit_Framework_TestCase
             // ['cancelOperation'],
             // ['deleteOperation'],
             // ['listOperations']
+
         ];
     }
 }
