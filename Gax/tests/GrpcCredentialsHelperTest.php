@@ -144,4 +144,25 @@ class GrpcCredentialsHelperTest extends PHPUnit_Framework_TestCase
             $createStubResult['stubOpts']['grpc.ssl_target_name_override']
         );
     }
+
+    public function testCreateStubWithInsecureSslCreds()
+    {
+        $grpcCredentialsHelper = new MockGrpcCredentialsHelper($this->defaultScope);
+        $createStubCallback = function ($hostname, $stubOpts) {
+            return ['hostname' => $hostname, 'stubOpts' => $stubOpts];
+        };
+        $insecureCreds = \Grpc\ChannelCredentials::createInsecure();
+        $createStubResult = $grpcCredentialsHelper->createStub(
+            $createStubCallback,
+            'my-service-address',
+            8443,
+            ['sslCreds' => $insecureCreds]
+        );
+        $this->assertEquals('my-service-address:8443', $createStubResult['hostname']);
+        $this->assertEquals($insecureCreds, $createStubResult['stubOpts']['credentials']);
+        $this->assertEquals(
+            'my-service-address:8443',
+            $createStubResult['stubOpts']['grpc.ssl_target_name_override']
+        );
+    }
 }
