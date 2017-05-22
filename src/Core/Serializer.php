@@ -89,8 +89,7 @@ class Serializer
                     $arr[$this->encodeElement($keyField, $k)] = $this->encodeElement($valueField, $vv);
                 }
                 $v = $arr;
-            }
-            elseif ($field->isRepeated()) {
+            } elseif ($field->isRepeated()) {
                 $arr = [];
                 foreach ($v as $k => $vv) {
                     $arr[$k] = $this->encodeElement($field, $vv);
