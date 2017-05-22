@@ -31,7 +31,7 @@ trait WhitelistTrait
      * @param array $callable The request callable.
      * @param array $args Request arguments.
      * @return array
-     * @throws WhitelistException
+     * @throws NotFoundException
      * @throws ServiceException
      */
     private function whitelist(callable $callable, array $args)
@@ -41,8 +41,6 @@ trait WhitelistTrait
         } catch (NotFoundException $e) {
             $e->setMessage('NOTE: Error may be due to Whitelist Restriction. ' . $e->getMessage());
 
-            throw $e;
-        } catch (\Exception $e) {
             throw $e;
         }
     }
