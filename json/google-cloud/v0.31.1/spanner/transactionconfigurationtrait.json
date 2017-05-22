@@ -1,0 +1,1 @@
+{"id":"spanner\/transactionconfigurationtrait","type":"","title":"Google\\Cloud\\Spanner\\TransactionConfigurationTrait","name":"TransactionConfigurationTrait","description":"<p>Configure transaction selection for read, executeSql, rollback and commit.<\/p>","examples":[],"resources":[],"methods":[]}
