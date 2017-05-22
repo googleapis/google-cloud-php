@@ -130,7 +130,8 @@ class GrpcCredentialsHelper
     public function createStub($generatedCreateStub, $serviceAddress, $port, $options = [])
     {
         $stubOpts = [];
-        if (empty($options['sslCreds'])) {
+        // We need to use array_key_exists here because null is a valid value
+        if (!array_key_exists('sslCreds', $options)) {
             $stubOpts['credentials'] = $this->createSslChannelCredentials();
         } else {
             $stubOpts['credentials'] = $options['sslCreds'];
