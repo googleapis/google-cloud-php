@@ -19,9 +19,10 @@ namespace Google\Cloud\Core;
 
 use DateTime;
 use DateTimeZone;
-use Google\Auth\FetchAuthTokenCache;
 use Google\Auth\Cache\MemoryCacheItemPool;
+use Google\Auth\FetchAuthTokenCache;
 use Google\Cloud\Core\ArrayTrait;
+use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use google\protobuf;
 
@@ -31,6 +32,7 @@ use google\protobuf;
 trait GrpcTrait
 {
     use ArrayTrait;
+    use WhitelistTrait;
 
     /**
      * @var GrpcRequestWrapper Wrapper used to handle sending requests to the
@@ -53,9 +55,10 @@ trait GrpcTrait
      *
      * @param callable $request
      * @param array $args
+     * @param bool $whitelisted
      * @return \Generator|array
      */
-    public function send(callable $request, array $args)
+    public function send(callable $request, array $args, $whitelisted = false)
     {
         $requestOptions = $this->pluckArray([
             'grpcOptions',
@@ -63,7 +66,15 @@ trait GrpcTrait
             'requestTimeout'
         ], $args[count($args) - 1]);
 
-        return $this->requestWrapper->send($request, $args, $requestOptions);
+        try {
+            return $this->requestWrapper->send($request, $args, $requestOptions);
+        } catch (NotFoundException $e) {
+            if ($whitelisted) {
+                throw $this->modifyWhitelistedError($e);
+            }
+
+            throw $e;
+        }
     }
 
     /**

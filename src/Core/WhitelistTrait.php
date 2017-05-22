@@ -25,23 +25,15 @@ use Google\Cloud\Core\Exception\NotFoundException;
 trait WhitelistTrait
 {
     /**
-     * Check if the error is due to a whitelist restriction, modify the message
-     * and throw the updated exception, otherwise pass through with no changes.
+     * Modify the error message of a whitelisted exception.
      *
-     * @param array $callable The request callable.
-     * @param array $args Request arguments.
-     * @return array
-     * @throws NotFoundException
-     * @throws ServiceException
+     * @param NotFoundException $e The exception.
+     * @return NotFoundException
      */
-    private function whitelist(callable $callable, array $args)
+    private function modifyWhitelistedError(NotFoundException $e)
     {
-        try {
-            return call_user_func_array($callable, $args);
-        } catch (NotFoundException $e) {
-            $e->setMessage('NOTE: Error may be due to Whitelist Restriction. ' . $e->getMessage());
+        $e->setMessage('NOTE: Error may be due to Whitelist Restriction. ' . $e->getMessage());
 
-            throw $e;
-        }
+        return $e;
     }
 }

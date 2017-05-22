@@ -22,7 +22,6 @@ use Google\Cloud\Core\EmulatorTrait;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\GrpcTrait;
 use Google\Cloud\Core\PhpArray;
-use Google\Cloud\Core\WhitelistTrait;
 use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\PubSub\V1\PublisherClient;
 use Google\Cloud\PubSub\V1\SubscriberClient;
@@ -41,7 +40,6 @@ class Grpc implements ConnectionInterface
 {
     use EmulatorTrait;
     use GrpcTrait;
-    use WhitelistTrait;
 
     const BASE_URI = 'https://pubsub.googleapis.com/';
 
@@ -290,13 +288,11 @@ class Grpc implements ConnectionInterface
      */
     public function listSnapshots(array $args)
     {
-        return $this->whitelist([$this, 'send'], [
-            [$this->subscriberClient, 'listSnapshots'],
-            [
-                $this->pluck('project', $args),
-                $args
-            ]
-        ]);
+        $whitelisted = true;
+        return $this->send([$this->subscriberClient, 'listSnapshots'], [
+            $this->pluck('project', $args),
+            $args
+        ], $whitelisted);
     }
 
     /**
@@ -304,14 +300,12 @@ class Grpc implements ConnectionInterface
      */
     public function createSnapshot(array $args)
     {
-        return $this->whitelist([$this, 'send'], [
-            [$this->subscriberClient, 'createSnapshot'],
-            [
-                $this->pluck('name', $args),
-                $this->pluck('subscription', $args),
-                $args
-            ]
-        ]);
+        $whitelisted = true;
+        return $this->send([$this->subscriberClient, 'createSnapshot'], [
+            $this->pluck('name', $args),
+            $this->pluck('subscription', $args),
+            $args
+        ], $whitelisted);
     }
 
     /**
@@ -319,13 +313,11 @@ class Grpc implements ConnectionInterface
      */
     public function deleteSnapshot(array $args)
     {
-        return $this->whitelist([$this, 'send'], [
-            [$this->subscriberClient, 'deleteSnapshot'],
-            [
-                $this->pluck('snapshot', $args),
-                $args
-            ]
-        ]);
+        $whitelisted = true;
+        return $this->send([$this->subscriberClient, 'deleteSnapshot'], [
+            $this->pluck('snapshot', $args),
+            $args
+        ], $whitelisted);
     }
 
     /**
@@ -338,13 +330,11 @@ class Grpc implements ConnectionInterface
             $args['time'] = (new protobuf\Timestamp)->deserialize($time, $this->codec);
         }
 
-        return $this->whitelist([$this, 'send'], [
-            [$this->subscriberClient, 'seek'],
-            [
-                $this->pluck('subscription', $args),
-                $args
-            ]
-        ]);
+        $whitelisted = true;
+        return $this->send([$this->subscriberClient, 'seek'], [
+            $this->pluck('subscription', $args),
+            $args
+        ], $whitelisted);
     }
 
     /**

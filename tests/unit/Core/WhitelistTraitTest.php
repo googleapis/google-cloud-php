@@ -33,32 +33,17 @@ class WhitelistTraitTest extends \PHPUnit_Framework_TestCase
         $this->trait = new WhitelistTraitStub;
     }
 
-    public function testWhitelistWithNotFoundException()
+    public function testModifyWhitelistedError()
     {
-        $callable = function() {
-            throw new NotFoundException('hello world');
-        };
+        $ex = new NotFoundException('hello world');
 
-        try {
-            $res = $this->trait->call('whitelist', [$callable, []]);
-        } catch (\Exception $e) {
-            $this->assertInstanceOf(NotFoundException::class, $e);
-            $this->assertTrue(strpos($e->getMessage(), 'hello world') !== false);
-        }
-    }
+        $res = $this->trait->call('modifyWhitelistedError', [$ex]);
 
-    public function testWhitelistWithNotOtherException()
-    {
-        $callable = function() {
-            throw new ServiceException('hello world');
-        };
-
-        try {
-            $res = $this->trait->call('whitelist', [$callable, []]);
-        } catch (\Exception $e) {
-            $this->assertInstanceOf(ServiceException::class, $e);
-            $this->assertEquals('hello world', $e->getMessage());
-        }
+        $this->assertInstanceOf(NotFoundException::class, $res);
+        $this->assertEquals(
+            $res->getMessage(),
+            'NOTE: Error may be due to Whitelist Restriction. hello world'
+        );
     }
 }
 
