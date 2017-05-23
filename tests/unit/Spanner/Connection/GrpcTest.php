@@ -46,7 +46,7 @@ class GrpcTest extends \PHPUnit_Framework_TestCase
 
     const PROJECT = 'projects/my-project';
 
-    //private $requestWrapper;
+    private $requestWrapper;
     private $successMessage;
 
     public function setUp()
@@ -426,7 +426,6 @@ class GrpcTest extends \PHPUnit_Framework_TestCase
             // ['cancelOperation'],
             // ['deleteOperation'],
             // ['listOperations']
-
         ];
     }
 }

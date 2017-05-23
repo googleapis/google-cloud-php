@@ -22,6 +22,9 @@ use Google\Logging\V2\LogEntry;
 use Google\Protobuf\Any;
 use Google\Protobuf\Field;
 use Google\Protobuf\FieldMask;
+use Google\Protobuf\ListValue;
+use Google\Protobuf\Struct;
+use Google\Protobuf\Value;
 use Google\Rpc\Status;
 
 /**
@@ -112,67 +115,61 @@ class SerializerTest extends \PHPUnit_Framework_TestCase
         ]);
     }
 
-    /**
-     * @expectedException \UnexpectedValueException
-     */
-    /*
-    public function testThrowsExceptionWithoutRequiredField()
-    {
-        $message = new TestMessage();
-        $serializedMessage = $message->serialize($this->getCodec());
-    }
-
     public function testProperlyHandlesMessage()
     {
         $value = 'test';
-        $message = new TestMessage();
-        $message = $message->mergeFromString([
-            'testStruct' => [
+
+        // Using this class because it contains maps, oneofs and structs
+        $message = new \Google\Api\Servicecontrol\V1\LogEntry();
+
+        $labels = [
+            strtoupper($value) => strtoupper($value),
+            $value => $value,
+        ];
+
+        $innerValue1 = new Value();
+        $innerValue1->setStringValue($value);
+        $innerValue2 = new Value();
+        $innerValue2->setBoolValue(true);
+        $innerValues = [$innerValue1, $innerValue2];
+        $listValue = new ListValue();
+        $listValue->setValues($innerValues);
+        $fieldValue = new Value();
+        $fieldValue->setListValue($listValue);
+        $structValue = new Struct();
+        $fields = [
+            'listField' => $fieldValue,
+        ];
+        $structValue->setFields($fields);
+
+        $message->setName($value);
+        $message->setLabels($labels);
+        $message->setStructPayload($structValue);
+
+        $this->backAndForth($message, [
+            'name' => $value,
+            'labels' => [
+                strtoupper($value) => strtoupper($value),
+                $value => $value,
+            ],
+            'severity' => 0,
+            'insertId' => '',
+            'structPayload' => [
                 'fields' => [
-                    'key' => $value,
-                    'value' => [
-                        'list_value' => [
+                    'listField' => [
+                        'listValue' => [
                             'values' => [
-                                'string_value' => $value
+                                [
+                                    'stringValue' => $value,
+                                ],
+                                [
+                                    'boolValue' => true,
+                                ]
                             ]
                         ]
                     ]
-                ]
-            ],
-            'testLabels' => [
-                [
-                    'key' => strtoupper($value),
-                    'value' => strtoupper($value)
                 ],
-                [
-                    'key' => $value,
-                    'value' => $value
-                ]
             ],
-            'testStrings' => [
-                $value,
-                $value
-            ]
         ]);
-        $serializedMessage = $message->serializeToString();
-
-        $expected = [
-            'testStruct' => [
-                $value => [
-                    $value
-                ]
-            ],
-            'testLabels' => [
-                strtoupper($value) => strtoupper($value),
-                $value => $value
-            ],
-            'testStrings' => [
-                $value,
-                $value
-            ]
-        ];
-
-        $this->assertEquals($expected, $serializedMessage);
     }
-    */
 }
