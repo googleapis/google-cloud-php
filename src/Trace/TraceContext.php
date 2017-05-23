@@ -43,12 +43,12 @@ class TraceContext
     private $traceId;
 
     /**
-     * @var string The current spanId. This is the deepest nested span currently open.
+     * @var string|null The current spanId. This is the deepest nested span currently open.
      */
     private $spanId;
 
     /**
-     * @var bool Whether or not tracing is enabled for this request.
+     * @var bool|null Whether or not tracing is enabled for this request.
      */
     private $enabled;
 

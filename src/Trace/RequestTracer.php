@@ -47,7 +47,7 @@ use Google\Cloud\Trace\Reporter\ReporterInterface;
  * // $cache is a PSR-6 cache implementation
  * $sampler = new QpsSampler($cache, ['rate' => 0.1]);
  * RequestTracer::start($reporter, [
- *   'sampler' => $sampler
+ *     'sampler' => $sampler
  * ]);
  * ```
  *
