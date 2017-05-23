@@ -29,7 +29,7 @@ class SamplerFactory
     /**
      * Builds a sampler given the provided configuration options.
      *
-     * @param array|SamplerInterface $options {
+     * @param array $options {
      *     Configuration options.
      *
      *     @type string $type Which type of sampler to build. May be one of:
@@ -47,10 +47,6 @@ class SamplerFactory
      */
     public static function build($options)
     {
-        if ($options instanceof SamplerInterface) {
-            return $options;
-        }
-
         $options += [
             'type' => 'enabled',
             'rate' => 0.1,

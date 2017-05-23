@@ -124,7 +124,10 @@ class RequestTracer
     {
         $samplerOptions = array_key_exists('sampler', $options) ? $options['sampler'] : [];
         unset($options['sampler']);
-        $sampler = SamplerFactory::build($samplerOptions);
+
+        $sampler = ($samplerOptions instanceof SamplerInterface)
+            ? $samplerOptions
+            : SamplerFactory::build($samplerOptions);
 
         return self::$instance = new RequestHandler($reporter, $sampler, $options);
     }

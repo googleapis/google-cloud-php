@@ -29,14 +29,6 @@ use Psr\Cache\CacheItemPoolInterface;
  */
 class SamplerFactoryTest extends \PHPUnit_Framework_TestCase
 {
-    public function testReturnsSamplerInterface()
-    {
-        $sampler = $this->prophesize(SamplerInterface::class);
-        $sampler = SamplerFactory::build($sampler->reveal());
-
-        $this->assertInstanceOf(SamplerInterface::class, $sampler);
-    }
-
     public function testDefaultEnabled()
     {
         $sampler = SamplerFactory::build([]);

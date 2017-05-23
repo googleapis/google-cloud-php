@@ -76,8 +76,8 @@ class TraceContext
      * Creates a new TraceContext instance
      *
      * @param string $traceId The current traceId. If not set, one will be generated for you.
-     * @param string $spanId The current spanId. **Defaults to** `null`.
-     * @param bool $enabled Whether or not tracing is enabled on this request. **Defaults to** `null`.
+     * @param string|null $spanId The current spanId. **Defaults to** `null`.
+     * @param bool|null $enabled Whether or not tracing is enabled on this request. **Defaults to** `null`.
      * @param bool $fromHeader Whether or not the context was detected from an incoming header. **Defaults to** `false`.
      */
     public function __construct($traceId = null, $spanId = null, $enabled = null, $fromHeader = false)
@@ -111,7 +111,7 @@ class TraceContext
     /**
      * Set the current spanId.
      *
-     * @param string $spanId The spanId to set.
+     * @param string|null $spanId The spanId to set.
      */
     public function setSpanId($spanId)
     {
@@ -131,7 +131,7 @@ class TraceContext
     /**
      * Set whether or not the request is being traced.
      *
-     * @param bool $enabled
+     * @param bool|null $enabled
      */
     public function setEnabled($enabled)
     {
