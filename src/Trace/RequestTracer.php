@@ -18,6 +18,7 @@
 namespace Google\Cloud\Trace;
 
 use Google\Cloud\Trace\Sampler\SamplerFactory;
+use Google\Cloud\Trace\Sampler\SamplerInterface;
 use Google\Cloud\Trace\Reporter\ReporterInterface;
 
 /**
