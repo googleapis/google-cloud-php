@@ -550,7 +550,8 @@ class Grpc implements ConnectionInterface
 
                         $list = new ListValue;
                         $list->setValues($modifiedData);
-                        $operation->setValues($list);
+                        $values = [$list];
+                        $operation->setValues($values);
 
                         break;
                 }
