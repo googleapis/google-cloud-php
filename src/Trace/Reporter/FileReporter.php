@@ -48,9 +48,6 @@ class FileReporter implements ReporterInterface
      */
     public function report(TracerInterface $tracer)
     {
-        $fp = fopen($this->filename, 'a');
-        fwrite($fp, json_encode($tracer->spans()) . PHP_EOL);
-        fclose($fp);
-        return true;
+        return file_put_contents($this->filename, json_encode($tracer->spans()) . PHP_EOL, FILE_APPEND) !== false;
     }
 }
