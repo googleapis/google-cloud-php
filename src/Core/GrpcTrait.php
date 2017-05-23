@@ -183,6 +183,29 @@ trait GrpcTrait
         }
     }
 
+    private function flattenStruct(array $struct)
+    {
+        return $struct['fields'];
+    }
+
+    private function flattenValue(array $value)
+    {
+        if (count($value) > 1) {
+            throw new \RuntimeException("Unexpected fields in struct: $value");
+        }
+
+        if (isset($value['nullValue'])) {
+            return null;
+        }
+
+        return array_pop($value);
+    }
+
+    private function flattenListValue(array $value)
+    {
+        return $value['values'];
+    }
+
     /**
      * Format a list for the API.
      *

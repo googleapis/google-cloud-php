@@ -361,7 +361,7 @@ class Result implements \IteratorAggregate
     {
         $values = [];
         $chunkedResult = null;
-        $shouldMergeValues = isset($bufferedResults[0]['chunkedValue']);
+        $shouldMergeValues = isset($bufferedResults[0]['chunkedValue']) && $bufferedResults[0]['chunkedValue'];
 
         foreach ($bufferedResults as $key => $result) {
             if ($key === 0) {
@@ -372,14 +372,14 @@ class Result implements \IteratorAggregate
             $values = $shouldMergeValues
                 ? $this->mergeValues($values, $result['values'])
                 : array_merge($values, $result['values']);
-            $shouldMergeValues = (isset($result['chunkedValue']))
+            $shouldMergeValues = (isset($result['chunkedValue']) && $result['chunkedValue'])
                 ? true
                 : false;
         }
 
         $yieldableRows = array_chunk($values, $this->columnCount);
 
-        if (isset($result['chunkedValue'])) {
+        if (isset($result['chunkedValue']) && $result['chunkedValue']) {
             $chunkedResult = [
                 'values' => array_pop($yieldableRows),
                 'chunkedValue' => true
