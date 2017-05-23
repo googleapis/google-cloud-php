@@ -122,10 +122,10 @@ class Grpc implements ConnectionInterface
     public function __construct(array $config = [])
     {
         $this->serializer = new Serializer([
-            'commitTimestamp' => function ($v) {
+            'commit_timestamp' => function ($v) {
                 return $this->formatTimestampFromApi($v);
             },
-            'readTimestamp' => function ($v) {
+            'read_timestamp' => function ($v) {
                 return $this->formatTimestampFromApi($v);
             }
         ]);

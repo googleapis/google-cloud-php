@@ -184,7 +184,7 @@ class GrpcRequestWrapper
     {
         try {
             foreach ($response->readAll() as $count => $result) {
-                $res = $result->serialize($this->codec);
+                $res = $this->serializer->encodeMessage($result);
                 yield $res;
             }
         } catch (\Exception $ex) {
