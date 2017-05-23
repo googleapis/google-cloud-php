@@ -128,6 +128,10 @@ class Grpc implements ConnectionInterface
             'read_timestamp' => function ($v) {
                 return $this->formatTimestampFromApi($v);
             }
+        ], [
+            '\Google\Protobuf\Value' => function ($v) {
+                return $this->unpackValue($v);
+            },
         ]);
 
         $config['serializer'] = $this->serializer;

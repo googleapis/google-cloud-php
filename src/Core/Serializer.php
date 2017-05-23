@@ -28,10 +28,12 @@ use RuntimeException;
 class Serializer
 {
     private $fieldTransformers;
+    private $messageTypeTransformers;
 
-    public function __construct($fieldTransformers = [])
+    public function __construct($fieldTransformers = [], $messageTypeTransformers = [])
     {
         $this->fieldTransformers = $fieldTransformers;
+        $this->messageTypeTransformers = $messageTypeTransformers;
     }
 
     private function encodeElement(FieldDescriptor $field, $data)
@@ -39,12 +41,17 @@ class Serializer
         switch ($field->getType()) {
             case GPBType::MESSAGE:
                 if (is_array($data)) {
-                    return $data;
+                    $result = $data;
+                } else {
+                    if (!($data instanceof Message)) {
+                        throw new RuntimeException("Expected message, instead got " . get_class($data));
+                    }
+                    $result = $this->encodeMessageImpl($data, $field->getMessageType());
                 }
-                if (!($data instanceof Message)) {
-                    throw new RuntimeException("Expected message, instead got " . get_class($data));
+                $messageType = $field->getMessageType()->getFullName();
+                if (isset($this->messageTypeTransformers[$messageType])) {
+                    $result = $this->messageTypeTransformers[$messageType]($result);
                 }
-                $result = $this->encodeMessageImpl($data, $field->getMessageType());
                 break;
             default:
                 $result = $data;
