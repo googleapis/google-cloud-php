@@ -60,11 +60,11 @@ use Google\Cloud\Trace\Reporter\ReporterInterface;
  * ```
  * // $cache is a PSR-6 cache implementation
  * RequestTracer::start($reporter, [
- *   'sampler' => [
- *     'type' => 'qps',
- *     'rate' => 0.1,
- *     'cache' => $cache
- *   ]
+ *     'sampler' => [
+ *         'type' => 'qps',
+ *         'rate' => 0.1,
+ *         'cache' => $cache
+ *     ]
  * ]);
  * ```
  *
@@ -73,11 +73,11 @@ use Google\Cloud\Trace\Reporter\ReporterInterface;
  * ```
  * RequestTracer::start($reporter);
  * RequestTracer::inSpan(['name' => 'outer'], function () {
- *   // some code
- *   RequestTracer::inSpan(['name' => 'inner'], function () {
  *     // some code
- *   });
- *   // some code
+ *     RequestTracer::inSpan(['name' => 'inner'], function () {
+ *         // some code
+ *     });
+ *     // some code
  * });
  * ```
  *

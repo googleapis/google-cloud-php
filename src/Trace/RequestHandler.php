@@ -126,7 +126,7 @@ class RequestHandler
         // If a redirect, add the HTTP_REDIRECTED_URL label to the main span
         if ($responseCode == 301 || $responseCode == 302) {
             foreach (headers_list() as $header) {
-                if (substr($header, 0, 9) == "Location:") {
+                if (substr($header, 0, 9) == 'Location:') {
                     $this->tracer->addRootLabel(self::HTTP_REDIRECTED_URL, substr($header, 10));
                     break;
                 }
@@ -153,7 +153,7 @@ class RequestHandler
     }
 
     /**
-     * inSpan a callable by creating a TraceSpan that manages the startTime and endTime.
+     * Instrument a callable by creating a TraceSpan that manages the startTime and endTime.
      * If an exception is thrown while executing the callable, the exception will be caught,
      * the span will be closed, and the exception will be re-thrown.
      *

@@ -92,8 +92,8 @@ and close spans yourself.
 
 ```php
 $pi = RequestTracer::inSpan(['name' => 'expensive-operation'], function() {
-  // some expensive operation
-  return calculatePi(1000);
+    // some expensive operation
+    return calculatePi(1000);
 });
 
 $pi = RequestTracer::inSpan(['name' => 'expensive-operation'], 'calculatePi', [1000]);

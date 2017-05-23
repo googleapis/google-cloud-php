@@ -18,6 +18,7 @@
 namespace Google\Cloud\Tests\Unit\Trace;
 
 use Google\Cloud\Trace\TraceContext;
+
 /**
  * @group trace
  */

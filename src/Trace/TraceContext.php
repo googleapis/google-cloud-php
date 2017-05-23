@@ -23,7 +23,6 @@ namespace Google\Cloud\Trace;
  * or not the request is being traced.
  *
  * Example:
- *
  * ```
  * use Google\Cloud\Trace\RequestTracer;
  *
@@ -77,8 +76,8 @@ class TraceContext
      * Creates a new TraceContext instance
      *
      * @param string $traceId The current traceId. If not set, one will be generated for you.
-     * @param string $spanId The current spanId
-     * @param bool $enabled Whether or not tracing is enabled on this request **Defaults to** `null`.
+     * @param string $spanId The current spanId. **Defaults to** `null`.
+     * @param bool $enabled Whether or not tracing is enabled on this request. **Defaults to** `null`.
      * @param bool $fromHeader Whether or not the context was detected from an incoming header. **Defaults to** `false`.
      */
     public function __construct($traceId = null, $spanId = null, $enabled = null, $fromHeader = false)
