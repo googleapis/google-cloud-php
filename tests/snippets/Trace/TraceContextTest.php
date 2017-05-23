@@ -18,29 +18,19 @@
 namespace Google\Cloud\Tests\Snippets\Trace;
 
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
-use Google\Cloud\Trace\Connection\ConnectionInterface;
-use Google\Cloud\Trace\TraceClient;
+use Google\Cloud\Trace\TraceContext;
 use Prophecy\Argument;
 
 /**
  * @group trace
  */
-class TraceClientTest extends SnippetTestCase
+class TraceContextTest extends SnippetTestCase
 {
-    private $connection;
-    private $client;
-
-    public function setUp()
-    {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->client = \Google\Cloud\Dev\stub(TraceClient::class);
-        $this->client->___setProperty('connection', $this->connection->reveal());
-    }
-
     public function testClass()
     {
-        $snippet = $this->snippetFromClass(TraceClient::class);
-        $res = $snippet->invoke('trace');
-        $this->assertInstanceOf(TraceClient::class, $res->returnVal());
+        $snippet = $this->snippetFromClass(TraceContext::class);
+        $res = $snippet->invoke('context');
+
+        $this->assertInstanceOf(TraceContext::class, $res->returnVal());
     }
 }
