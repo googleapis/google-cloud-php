@@ -214,7 +214,8 @@ class Rest implements ConnectionInterface
      */
     public function listSnapshots(array $args)
     {
-        return $this->send('snapshots', 'list', $args);
+        $whitelisted = true;
+        return $this->send('snapshots', 'list', $args, $whitelisted);
     }
 
     /**
@@ -222,7 +223,8 @@ class Rest implements ConnectionInterface
      */
     public function createSnapshot(array $args)
     {
-        return $this->send('snapshots', 'create', $args);
+        $whitelisted = true;
+        return $this->send('snapshots', 'create', $args, $whitelisted);
     }
 
     /**
@@ -230,7 +232,8 @@ class Rest implements ConnectionInterface
      */
     public function deleteSnapshot(array $args)
     {
-        return $this->send('snapshots', 'delete', $args);
+        $whitelisted = true;
+        return $this->send('snapshots', 'delete', $args, $whitelisted);
     }
 
     /**
@@ -238,7 +241,8 @@ class Rest implements ConnectionInterface
      */
     public function seek(array $args)
     {
-        return $this->send('subscriptions', 'seek', $args);
+        $whitelisted = true;
+        return $this->send('subscriptions', 'seek', $args, $whitelisted);
     }
 
     /**
