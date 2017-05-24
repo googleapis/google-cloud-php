@@ -25,6 +25,8 @@ use Google\Cloud\Dev\GetComponentsTrait;
 
 include __DIR__ .'/../../vendor/autoload.php';
 
+define('BASE_PATH', __DIR__ .'/../..');
+
 class GetComponentsImpl
 {
     use GetComponentsTrait;
@@ -32,28 +34,36 @@ class GetComponentsImpl
     public function components()
     {
         return $this->getComponents(
-            __DIR__ .'/../../src',
-            __DIR__ .'/../../composer.json'
+            BASE_PATH .'/src',
+            BASE_PATH .'/composer.json'
         );
     }
 }
 
 $composer = [];
 $composer['require'] = [];
+$composer['repositories'] = [];
+$composer['minimum-stability'] = 'dev';
 
 foreach((new GetComponentsImpl)->components() as $component) {
     if ($component['id'] === 'google-cloud') continue;
+    if ($component['id'] === 'cloud-core') continue;
 
     $composer['require']['google/'. $component['id']] = '*';
+    $composer['repositories'][] = [
+        'type' => 'path',
+        'url' => BASE_PATH .'/'. $component['path']
+    ];
 }
 
-file_put_contents(__DIR__ .'/composer.json', json_encode($composer));
-$out = [];
-$ret = null;
-exec('cd '. __DIR__ .' && composer install --dry-run', $out, $ret);
+file_put_contents(__DIR__ .'/composer.json', json_encode($composer, JSON_UNESCAPED_SLASHES));
+
+$res = shell_exec('cd '. __DIR__ .' && composer install --dry-run 2>&1');
 unlink(__DIR__ .'/composer.json');
 
-if ($ret !== 0) {
-    echo "Problem installing components!";
+if (strpos($res, 'Your requirements could not be resolved to an installable set of packages.') !== false) {
+    echo "Problem installing components!" . PHP_EOL . PHP_EOL;
+
+    echo $res;
     exit(1);
 }
