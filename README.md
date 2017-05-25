@@ -518,7 +518,7 @@ require 'vendor/autoload.php';
 
 use Google\Cloud\Trace\TraceClient;
 
-$traceClient = new SpeechClient([
+$traceClient = new TraceClient([
     'projectId' => 'my_project'
 ]);
 
