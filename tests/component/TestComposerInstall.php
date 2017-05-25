@@ -58,12 +58,14 @@ foreach((new GetComponentsImpl)->components() as $component) {
 
 file_put_contents(__DIR__ .'/composer.json', json_encode($composer, JSON_UNESCAPED_SLASHES));
 
-$res = shell_exec('cd '. __DIR__ .' && composer install --dry-run 2>&1');
+$out = [];
+$return = null;
+exec('composer install --dry-run --working-dir='. __DIR__ .' 2>&1', $out, $return);
 unlink(__DIR__ .'/composer.json');
 
-if (strpos($res, 'Your requirements could not be resolved to an installable set of packages.') !== false) {
+if ($return !== 0) {
     echo "Problem installing components!" . PHP_EOL . PHP_EOL;
 
-    echo $res;
+    echo implode("\n", $out);
     exit(1);
 }
