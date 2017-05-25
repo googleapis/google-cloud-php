@@ -23,6 +23,11 @@
 
 use Google\Cloud\Dev\GetComponentsTrait;
 
+if (!extension_loaded('grpc')) {
+    echo "gRPC Not Installed.";
+    exit(0);
+}
+
 include __DIR__ .'/../../vendor/autoload.php';
 
 define('BASE_PATH', __DIR__ .'/../..');
