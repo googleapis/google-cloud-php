@@ -18,6 +18,7 @@ before_script:
 
 script:
   - ./dev/sh/tests
+  - ./dev/sh/test-composer
   - vendor/bin/phpcs --standard=./phpcs-ruleset.xml
   - ./dev/sh/build-docs
 

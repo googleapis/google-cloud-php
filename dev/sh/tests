@@ -5,19 +5,19 @@ set -e
 function unit () {
   echo "Running Unit Test Suite"
 
-  vendor/bin/phpunit
+  $(dirname $0)/../../vendor/bin/phpunit
 }
 
 function system () {
   echo "Running System Test Suite"
 
-  vendor/bin/phpunit -c phpunit-system.xml.dist
+  $(dirname $0)/../../vendor/bin/phpunit -c phpunit-system.xml.dist
 }
 
 function snippets() {
   echo "Running Snippet Test Suite"
 
-  vendor/bin/phpunit -c phpunit-snippets.xml.dist
+  $(dirname $0)/../../vendor/bin/phpunit -c phpunit-snippets.xml.dist
 }
 
 unit
