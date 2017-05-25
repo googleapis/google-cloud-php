@@ -15,6 +15,7 @@
         "cloud-spanner",
         "cloud-speech",
         "cloud-storage",
+        "cloud-trace",
         "cloud-translate",
         "cloud-videointelligence",
         "cloud-vision",
