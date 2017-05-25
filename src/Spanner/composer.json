@@ -10,7 +10,7 @@
         "google/proto-client-php": "^0.13"
     },
     "suggest": {
-        "symfony/lock": "Required for the default session handler. Should be included as follows: symfony/lock:dev-master#1ba6ac9"
+        "symfony/lock": "Required for the default session handler. Should be included as follows: 3.3.x-dev#1ba6ac9"
     },
     "extra": {
         "component": {
