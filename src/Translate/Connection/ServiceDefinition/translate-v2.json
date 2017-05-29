@@ -167,7 +167,7 @@
         "list": {
           "id": "language.detections.list",
           "path": "v2/detect",
-          "httpMethod": "GET",
+          "httpMethod": "POST",
           "description": "Detect the language of text.",
           "parameters": {
             "q": {
@@ -212,7 +212,7 @@
         "list": {
           "id": "language.translations.list",
           "path": "v2",
-          "httpMethod": "GET",
+          "httpMethod": "POST",
           "description": "Returns text translations from one language to another.",
           "parameters": {
             "cid": {
