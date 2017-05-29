@@ -242,7 +242,11 @@ class ValueMapper
                 break;
 
             case self::TYPE_STRUCT:
-                $value = $this->decodeValues($type['structType']['fields'], $value, Result::RETURN_ASSOCIATIVE);
+                $fields = isset($type['structType']['fields'])
+                    ? $type['structType']['fields']
+                    : [];
+
+                $value = $this->decodeValues($fields, $value, Result::RETURN_ASSOCIATIVE);
                 break;
 
             case self::TYPE_FLOAT64:
@@ -354,7 +358,7 @@ class ValueMapper
 
                 $type = $this->typeObject(
                     self::TYPE_ARRAY,
-                    $this->typeObject((isset($types[0])) ? $types[0] : null),
+                    $this->typeObject((isset($types[0])) ? $types[0] : $arrayType),
                     'arrayElementType'
                 );
 
