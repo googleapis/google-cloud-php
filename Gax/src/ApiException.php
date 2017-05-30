@@ -36,10 +36,13 @@ use Exception;
 class ApiException extends Exception
 {
     private $metadata;
+    private $basicMessage;
 
-    public function __construct($message, $code, \Exception $previous = null)
+    public function __construct($message, $code, \Exception $previous = null, $metadata = null, $basicMessage = null)
     {
         parent::__construct($message, $code, $previous);
+        $this->metadata = $metadata;
+        $this->basicMessage = isset($basicMessage) ? $basicMessage : $message;
     }
 
     /**
@@ -48,11 +51,25 @@ class ApiException extends Exception
      */
     public static function createFromStdClass($status)
     {
-        $ex = new ApiException($status->details, $status->code);
-        if (property_exists($status, 'metadata')) {
-            $ex->metadata = $status->metadata;
-        }
-        return $ex;
+        $basicMessage = $status->details;
+        $code = $status->code;
+        $metadata = property_exists($status, 'metadata') ? $status->metadata : null;
+
+        $messageData = [
+            'message' => $basicMessage,
+            'code' => $code,
+            'status' => GrpcConstants::getStatusNameFromCode($status->code),
+            'details' => Serializer::decodeMetadata($metadata)
+        ];
+
+        $message = json_encode($messageData, JSON_PRETTY_PRINT);
+
+        return new ApiException($message, $code, null, $metadata, $basicMessage);
+    }
+
+    public function getBasicMessage()
+    {
+        return $this->basicMessage;
     }
 
     /**
@@ -63,9 +80,12 @@ class ApiException extends Exception
         return $this->metadata;
     }
 
-    // custom string representation of object
+    /**
+     * String representation of ApiException
+     * @return string
+     */
     public function __toString()
     {
-        return __CLASS__ . ": [{$this->code}]: {$this->message}\n";
+        return __CLASS__ . ": $this->message\n";
     }
 }

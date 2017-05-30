@@ -32,7 +32,9 @@
 
 namespace Google\GAX;
 
+use Exception;
 use Grpc;
+use InvalidArgumentException;
 
 /**
  * Holds constants necessary for interacting with gRPC.
@@ -40,6 +42,7 @@ use Grpc;
 class GrpcConstants
 {
     private static $statusCodeNames;
+    private static $statusCodesToNames;
 
     /**
      * This should not be called outside of the implementation file.
@@ -47,7 +50,7 @@ class GrpcConstants
     private static function initStatusCodeNames()
     {
         if (!empty(self::$statusCodeNames)) {
-            throw new \Exception("GrpcConstants::initStatusCodeNames called more than once");
+            throw new Exception("GrpcConstants::initStatusCodeNames called more than once");
         }
         self::$statusCodeNames = [
             'ABORTED' => Grpc\STATUS_ABORTED,
@@ -68,6 +71,7 @@ class GrpcConstants
             'UNIMPLEMENTED' => Grpc\STATUS_UNIMPLEMENTED,
             'UNKNOWN' => Grpc\STATUS_UNKNOWN
         ];
+        self::$statusCodesToNames = array_flip(self::$statusCodeNames);
     }
 
     /**
@@ -80,5 +84,43 @@ class GrpcConstants
             self::initStatusCodeNames();
         }
         return self::$statusCodeNames;
+    }
+
+    /**
+     * Provides an array that maps from status codes to status names.
+     * @return array
+     */
+    public static function getStatusCodesToNamesMap()
+    {
+        if (!self::$statusCodesToNames) {
+            self::initStatusCodeNames();
+        }
+        return self::$statusCodesToNames;
+    }
+
+    /**
+     * @param string $name
+     * @return int
+     */
+    public static function getCodeFromStatusName($name)
+    {
+        $codeNames = self::getStatusCodeNames();
+        if (!isset($codeNames[$name])) {
+            return -1;
+        }
+        return $codeNames[$name];
+    }
+
+    /**
+     * @param int $code
+     * @return string
+     */
+    public static function getStatusNameFromCode($code)
+    {
+        $codeNames = self::getStatusCodesToNamesMap();
+        if (!isset($codeNames[$code])) {
+            return "UNEXPECTED_CODE";
+        }
+        return $codeNames[$code];
     }
 }
