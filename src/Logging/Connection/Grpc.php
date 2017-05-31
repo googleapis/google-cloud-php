@@ -19,12 +19,12 @@ namespace Google\Cloud\Logging\Connection;
 
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\GrpcTrait;
-use Google\Cloud\Core\Serializer;
 use Google\Cloud\Logging\Logger;
 use Google\Cloud\Logging\LoggingClient;
 use Google\Cloud\Logging\V2\ConfigServiceV2Client;
 use Google\Cloud\Logging\V2\LoggingServiceV2Client;
 use Google\Cloud\Logging\V2\MetricsServiceV2Client;
+use Google\GAX\Serializer;
 use Google\Logging\V2\LogEntry;
 use Google\Logging\V2\LogMetric;
 use Google\Logging\V2\LogSink;

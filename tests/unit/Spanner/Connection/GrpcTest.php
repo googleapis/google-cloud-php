@@ -19,10 +19,10 @@ namespace Google\Cloud\Tests\Unit\Spanner\Connection;
 
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\GrpcTrait;
-use Google\Cloud\Core\Serializer;
 use Google\Cloud\Spanner\Connection\Grpc;
 use Google\Cloud\Spanner\ValueMapper;
 use Google\GAX\OperationResponse;
+use Google\GAX\Serializer;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\Struct;
 use Google\Spanner\Admin\Instance\V1\Instance;

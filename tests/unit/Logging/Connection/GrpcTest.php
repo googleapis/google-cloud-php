@@ -17,9 +17,9 @@
 
 namespace Google\Cloud\Tests\Unit\Logging\Connection;
 
-use Google\Cloud\Core\Serializer;
 use Google\Cloud\Logging\Connection\Grpc;
 use Google\Cloud\Core\GrpcRequestWrapper;
+use Google\GAX\Serializer;
 use Google\Logging\V2\LogEntry;
 use Google\Logging\V2\LogMetric;
 use Google\Logging\V2\LogSink;

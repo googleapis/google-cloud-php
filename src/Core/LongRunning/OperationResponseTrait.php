@@ -17,8 +17,8 @@
 
 namespace Google\Cloud\Core\LongRunning;
 
-use Google\Cloud\Core\Serializer;
 use Google\GAX\OperationResponse;
+use Google\GAX\Serializer;
 
 /**
  * Serializes and deserializes GAX LRO Response objects.

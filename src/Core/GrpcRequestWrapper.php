@@ -23,6 +23,7 @@ use Google\GAX\ApiException;
 use Google\GAX\OperationResponse;
 use Google\GAX\PagedListResponse;
 use Google\GAX\RetrySettings;
+use Google\GAX\Serializer;
 use Google\GAX\ServerStream;
 use Google\Protobuf\Internal\Message;
 use Google\Rpc\BadRequest;

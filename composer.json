@@ -57,13 +57,11 @@
         "league/json-guard": "^0.3",
         "erusev/parsedown": "^1.6",
         "vierbergenlars/php-semver": "^3.0",
-        "google/proto-client-php": "dev-proto3",
         "google/gax": "dev-proto3",
         "symfony/lock": "3.3.x-dev#1ba6ac9"
     },
     "suggest": {
         "google/gax": "Required to support gRPC",
-        "google/proto-client-php": "Required to support gRPC",
         "symfony/lock": "Required for the Spanner cached based session pool. Please require the following commit: 3.3.x-dev#1ba6ac9"
     },
     "autoload": {

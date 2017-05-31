@@ -19,8 +19,8 @@ namespace Google\Cloud\Tests\Unit\PubSub\Connection;
 
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\GrpcTrait;
-use Google\Cloud\Core\Serializer;
 use Google\Cloud\PubSub\Connection\Grpc;
+use Google\GAX\Serializer;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\Timestamp;
 use Prophecy\Argument;

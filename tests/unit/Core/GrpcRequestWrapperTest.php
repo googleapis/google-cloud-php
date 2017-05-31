@@ -21,10 +21,10 @@ namespace Google\Cloud\Tests\Unit\Core;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Core\Exception;
 use Google\Cloud\Core\GrpcRequestWrapper;
-use Google\Cloud\Core\Serializer;
 use Google\GAX\ApiException;
 use Google\GAX\Page;
 use Google\GAX\PagedListResponse;
+use Google\GAX\Serializer;
 use Google\Protobuf\Internal\Message;
 use Prophecy\Argument;
 
