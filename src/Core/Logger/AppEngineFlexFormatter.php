@@ -62,6 +62,6 @@ class AppEngineFlexFormatter extends LineFormatter
                 $_SERVER['HTTP_X_CLOUD_TRACE_CONTEXT']
             )[0];
         }
-        return "\n" . $this->jsonEncode($payload);
+        return $this->jsonEncode($payload) . "\n";
     }
 }
