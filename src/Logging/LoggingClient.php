@@ -113,6 +113,10 @@ class LoggingClient
      */
     public function __construct(array $config = [])
     {
+        // Only use grpc when explicitly specified
+        if (!isset($config['transport'])) {
+            $config['transport'] = 'rest';
+        }
         $connectionType = $this->getConnectionType($config);
         if (!isset($config['scopes'])) {
             $config['scopes'] = [self::FULL_CONTROL_SCOPE];
