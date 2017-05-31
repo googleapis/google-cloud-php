@@ -67,7 +67,7 @@ use Symfony\Component\Lock\Store\FlockStore;
  * also required to be installed as a separate dependency. In our current alpha
  * state with Spanner we are relying on the following dev commit:
  *
- * `composer require symfony/lock:dev-master#1ba6ac9`
+ * `composer require symfony/lock:3.3.x-dev#1ba6ac9`
  *
  * As development continues, this dependency on a dev-master branch will be
  * discontinued. Please also note, since this is a dev-master dependency it may
@@ -754,7 +754,7 @@ class CacheSessionPool implements SessionPoolInterface
             throw new \RuntimeException(
                 'The symfony/lock component must be installed in order for ' .
                 'a default lock to be assumed. Please run the following from ' .
-                'the command line: composer require symfony/lock:dev-master#1ba6ac9. ' .
+                'the command line: composer require symfony/lock:3.3.x-dev#1ba6ac9. ' .
                 'Please note, since this is a dev-master dependency it may ' .
                 'require modifications to your composer minimum-stability ' .
                 'settings.'

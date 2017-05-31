@@ -1086,6 +1086,35 @@ class Database
      * $transaction = $result->transaction();
      * ```
      *
+     * ```
+     * // Parameters which may be null must include an expected parameter type.
+     * $result = $database->execute('SELECT * FROM Posts WHERE lastModifiedTime = @timestamp', [
+     *     'parameters' => [
+     *         'timestamp' => $timestamp
+     *     ],
+     *     'types' => [
+     *         'timestamp' => ValueMapper::TYPE_TIMESTAMP
+     *     ]
+     * ]);
+     *
+     * $neverEditedPosts = $result->rows();
+     * ```
+     *
+     * ```
+     * // Array parameters which may be null or empty must include the array value type.
+     * $result = $database->execute('SELECT @emptyArrayOfIntegers as numbers', [
+     *     'parameters' => [
+     *         'emptyArrayOfIntegers' => []
+     *     ],
+     *     'types' => [
+     *         'emptyArrayOfIntegers' => [ValueMapper::TYPE_ARRAY, ValueMapper::TYPE_INT64]
+     *     ]
+     * ]);
+     *
+     * $row = $result->rows()->current();
+     * $emptyArray = $row['numbers'];
+     * ```
+     *
      * @codingStandardsIgnoreStart
      * @see https://cloud.google.com/spanner/reference/rpc/google.spanner.v1#google.spanner.v1.ExecuteSqlRequest ExecuteSqlRequest
      * @codingStandardsIgnoreEnd

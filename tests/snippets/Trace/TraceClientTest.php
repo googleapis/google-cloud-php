@@ -27,8 +27,6 @@ use Prophecy\Argument;
  */
 class TraceClientTest extends SnippetTestCase
 {
-    const BUCKET = 'my-bucket';
-
     private $connection;
     private $client;
 

@@ -498,6 +498,14 @@ if ($operationResponse->operationSucceeded()) {
 }
 ```
 
+#### google/cloud-videointelligence
+
+Cloud Video Intelligence can be installed separately by requiring the `google/cloud-videointelligence` composer package:
+
+```
+$ require google/cloud-videointelligence
+```
+
 ## Google Stackdriver Trace (Alpha)
 
 - [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/trace/traceclient)
@@ -510,7 +518,7 @@ require 'vendor/autoload.php';
 
 use Google\Cloud\Trace\TraceClient;
 
-$traceClient = new SpeechClient([
+$traceClient = new TraceClient([
     'projectId' => 'my_project'
 ]);
 
@@ -529,6 +537,14 @@ $traceClient->insert($trace);
 foreach($traceClient->traces() as $trace) {
     var_dump($trace->traceId());
 }
+```
+
+#### google/cloud-trace
+
+Stackdriver Trace can be installed separately by requiring the `google/cloud-trace` composer package:
+
+```
+$ require google/cloud-trace
 ```
 
 ## Caching Access Tokens
