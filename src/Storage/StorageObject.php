@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Storage;
 
+use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Storage\Connection\ConnectionInterface;
 use GuzzleHttp\Psr7;
@@ -38,6 +39,7 @@ use Psr\Http\Message\StreamInterface;
  */
 class StorageObject
 {
+    use ArrayTrait;
     use EncryptionTrait;
 
     /**
@@ -66,6 +68,11 @@ class StorageObject
     private $info;
 
     /**
+     * @var string|null
+     */
+    private $requesterProjectId;
+
+    /**
      * @param ConnectionInterface $connection Represents a connection to Cloud
      *        Storage.
      * @param string $name The object's name.
@@ -82,7 +89,7 @@ class StorageObject
         $name,
         $bucket,
         $generation = null,
-        array $info = null,
+        array $info = [],
         $encryptionKey = null,
         $encryptionKeySHA256 = null
     ) {
@@ -98,6 +105,7 @@ class StorageObject
             'generation' => $generation
         ];
         $this->acl = new Acl($this->connection, 'objectAccessControls', $this->identity);
+        $this->requesterProjectId = $this->pluck('requesterProjectId', $this->info, false);
     }
 
     /**
@@ -132,7 +140,9 @@ class StorageObject
     public function exists()
     {
         try {
-            $this->connection->getObject($this->identity + ['fields' => 'name']);
+            $this->connection->getObject(
+                $this->addUserProject($this->identity + ['fields' => 'name'])
+            );
         } catch (NotFoundException $ex) {
             return false;
         }
@@ -170,7 +180,9 @@ class StorageObject
      */
     public function delete(array $options = [])
     {
-        $this->connection->deleteObject($options + $this->identity);
+        $this->connection->deleteObject(
+            $this->addUserProject($options + $this->identity)
+        );
     }
 
     /**
@@ -226,7 +238,9 @@ class StorageObject
             $options['acl'] = null;
         }
 
-        return $this->info = $this->connection->patchObject($options + $this->identity);
+        return $this->info = $this->connection->patchObject(
+            $this->addUserProject($options + $this->identity)
+        );
     }
 
     /**
@@ -305,7 +319,7 @@ class StorageObject
         $keySHA256 = isset($options['encryptionKeySHA256']) ? $options['encryptionKeySHA256'] : null;
 
         $response = $this->connection->copyObject(
-            $this->formatDestinationRequest($destination, $options)
+            $this->addUserProject($this->formatDestinationRequest($destination, $options))
         );
 
         return new StorageObject(
@@ -433,7 +447,9 @@ class StorageObject
         $options = $this->formatDestinationRequest($destination, $options);
 
         do {
-            $response = $this->connection->rewriteObject($options);
+            $response = $this->connection->rewriteObject(
+                $this->addUserProject($options)
+            );
             $options['rewriteToken'] = isset($response['rewriteToken']) ? $response['rewriteToken'] : null;
         } while ($options['rewriteToken']);
 
@@ -620,10 +636,12 @@ class StorageObject
     public function downloadAsStream(array $options = [])
     {
         return $this->connection->downloadObject(
-            $this->formatEncryptionHeaders(
-                $options
-                + $this->encryptionData
-                + $this->identity
+            $this->addUserProject(
+                $this->formatEncryptionHeaders(
+                    $options
+                    + $this->encryptionData
+                    + $this->identity
+                )
             )
         );
     }
@@ -672,11 +690,7 @@ class StorageObject
      */
     public function info(array $options = [])
     {
-        if (!$this->info) {
-            $this->reload($options);
-        }
-
-        return $this->info;
+        return $this->info ?: $this->reload($options);
     }
 
     /**
@@ -722,10 +736,12 @@ class StorageObject
     public function reload(array $options = [])
     {
         return $this->info = $this->connection->getObject(
-            $this->formatEncryptionHeaders(
-                $options
-                + $this->encryptionData
-                + $this->identity
+            $this->addUserProject(
+                $this->formatEncryptionHeaders(
+                    $options
+                    + $this->encryptionData
+                    + $this->identity
+                )
             )
         );
     }
@@ -809,5 +825,20 @@ class StorageObject
             'sourceObject' => $this->identity['object'],
             'sourceGeneration' => $this->identity['generation']
         ]) + $this->formatEncryptionHeaders($options + $this->encryptionData);
+    }
+
+    /**
+     * Add the billing project ID in to a request.
+     *
+     * @param array $args
+     * @return array
+     */
+    public function addUserProject(array $args)
+    {
+        if ($this->requesterProjectId) {
+            $args['userProject'] = $this->requesterProjectId;
+        }
+
+        return $args;
     }
 }

@@ -72,6 +72,11 @@ class Bucket
     private $info;
 
     /**
+     * @var string|null
+     */
+    private $requesterProjectId;
+
+    /**
      * @var Iam
      */
     private $iam;
@@ -82,13 +87,14 @@ class Bucket
      * @param string $name The bucket's name.
      * @param array $info [optional] The bucket's metadata.
      */
-    public function __construct(ConnectionInterface $connection, $name, array $info = null)
+    public function __construct(ConnectionInterface $connection, $name, array $info = [])
     {
         $this->connection = $connection;
         $this->identity = ['bucket' => $name];
         $this->info = $info;
         $this->acl = new Acl($this->connection, 'bucketAccessControls', $this->identity);
         $this->defaultAcl = new Acl($this->connection, 'defaultObjectAccessControls', $this->identity);
+        $this->requesterProjectId = $this->pluck('requesterProjectId', $this->info, false);
     }
 
     /**
@@ -141,7 +147,9 @@ class Bucket
     public function exists()
     {
         try {
-            $this->connection->getBucket($this->identity + ['fields' => 'name']);
+            $this->connection->getBucket(
+                $this->addUserProject($this->identity + ['fields' => 'name'])
+            );
         } catch (NotFoundException $ex) {
             return false;
         }
@@ -235,10 +243,12 @@ class Bucket
         $encryptionKeySHA256 = isset($options['encryptionKeySHA256']) ? $options['encryptionKeySHA256'] : null;
 
         $response = $this->connection->insertObject(
-            $this->formatEncryptionHeaders($options) + [
-                'bucket' => $this->identity['bucket'],
-                'data' => $data
-            ]
+            $this->addUserProject(
+                $this->formatEncryptionHeaders($options) + [
+                    'bucket' => $this->identity['bucket'],
+                    'data' => $data
+                ]
+            )
         )->upload();
 
         return new StorageObject(
@@ -309,11 +319,13 @@ class Bucket
         }
 
         return $this->connection->insertObject(
-            $this->formatEncryptionHeaders($options) + [
-                'bucket' => $this->identity['bucket'],
-                'data' => $data,
-                'resumable' => true
-            ]
+            $this->addUserProject(
+                $this->formatEncryptionHeaders($options) + [
+                    'bucket' => $this->identity['bucket'],
+                    'data' => $data,
+                    'resumable' => true
+                ]
+            )
         );
     }
 
@@ -375,12 +387,14 @@ class Bucket
         }
 
         return $this->connection->insertObject(
-            $this->formatEncryptionHeaders($options) + [
-                'bucket' => $this->identity['bucket'],
-                'data' => $data,
-                'streamable' => true,
-                'validate' => false
-            ]
+            $this->addUserProject(
+                $this->formatEncryptionHeaders($options) + [
+                    'bucket' => $this->identity['bucket'],
+                    'data' => $data,
+                    'streamable' => true,
+                    'validate' => false
+                ]
+            )
         );
     }
 
@@ -421,7 +435,7 @@ class Bucket
             $name,
             $this->identity['bucket'],
             $generation,
-            null,
+            ['requesterProjectId' => $this->requesterProjectId],
             $encryptionKey,
             $encryptionKeySHA256
         );
@@ -482,11 +496,11 @@ class Bucket
                         $object['name'],
                         $this->identity['bucket'],
                         isset($object['generation']) ? $object['generation'] : null,
-                        $object
+                        $object + ['requesterProjectId' => $this->requesterProjectId]
                     );
                 },
                 [$this->connection, 'listObjects'],
-                $options + $this->identity,
+                $this->addUserProject($options + $this->identity),
                 ['resultLimit' => $resultLimit]
             )
         );
@@ -513,7 +527,9 @@ class Bucket
      */
     public function delete(array $options = [])
     {
-        $this->connection->deleteBucket($options + $this->identity);
+        $this->connection->deleteBucket(
+            $this->addUserProject($options + $this->identity)
+        );
     }
 
     /**
@@ -576,7 +592,9 @@ class Bucket
      */
     public function update(array $options = [])
     {
-        return $this->info = $this->connection->patchBucket($options + $this->identity);
+        return $this->info = $this->connection->patchBucket(
+            $this->addUserProject($options + $this->identity)
+        );
     }
 
     /**
@@ -663,7 +681,7 @@ class Bucket
         unset($options['metadata']);
         unset($options['predefinedAcl']);
 
-        $response = $this->connection->composeObject(array_filter($options));
+        $response = $this->connection->composeObject(array_filter($this->addUserProject($options)));
 
         return new StorageObject(
             $this->connection,
@@ -702,11 +720,7 @@ class Bucket
      */
     public function info(array $options = [])
     {
-        if (!$this->info) {
-            $this->reload($options);
-        }
-
-        return $this->info;
+        return $this->info ?: $this->reload($options);
     }
 
     /**
@@ -737,7 +751,9 @@ class Bucket
      */
     public function reload(array $options = [])
     {
-        return $this->info = $this->connection->getBucket($options + $this->identity);
+        return $this->info = $this->connection->getBucket(
+            $this->addUserProject($options + $this->identity)
+        );
     }
 
     /**
@@ -812,9 +828,9 @@ class Bucket
                 $this->identity['bucket'],
                 [
                     'parent' => null,
-                    'args' => [
+                    'args' => $this->addUserProject([
                         'bucket' => $this->identity['bucket']
-                    ]
+                    ])
                 ]
             );
         }
@@ -835,5 +851,20 @@ class Bucket
         }
 
         return false;
+    }
+
+    /**
+     * Add the billing project ID in to a request.
+     *
+     * @param array $args
+     * @return array
+     */
+    public function addUserProject(array $args)
+    {
+        if ($this->requesterProjectId) {
+            $args['userProject'] = $this->requesterProjectId;
+        }
+
+        return $args;
     }
 }
