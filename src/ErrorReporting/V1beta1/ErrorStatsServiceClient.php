@@ -28,14 +28,6 @@
 
 namespace Google\Cloud\ErrorReporting\V1beta1;
 
-use Google\Devtools\Clouderrorreporting\V1beta1\DeleteEventsRequest;
-use Google\Devtools\Clouderrorreporting\V1beta1\ErrorGroupOrder;
-use Google\Devtools\Clouderrorreporting\V1beta1\ErrorStatsServiceGrpcClient;
-use Google\Devtools\Clouderrorreporting\V1beta1\ListEventsRequest;
-use Google\Devtools\Clouderrorreporting\V1beta1\ListGroupStatsRequest;
-use Google\Devtools\Clouderrorreporting\V1beta1\QueryTimeRange;
-use Google\Devtools\Clouderrorreporting\V1beta1\ServiceContextFilter;
-use Google\Devtools\Clouderrorreporting\V1beta1\TimedCountAlignment;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
@@ -544,7 +536,7 @@ class ErrorStatsServiceClient
      *          is not set.
      * }
      *
-     * @return \Google\Devtools\Clouderrorreporting\V1beta1\DeleteEventsResponse
+     * @return \Google\Cloud\ErrorReporting\V1beta1\DeleteEventsResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */

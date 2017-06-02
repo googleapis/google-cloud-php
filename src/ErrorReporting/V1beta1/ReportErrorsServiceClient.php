@@ -28,9 +28,6 @@
 
 namespace Google\Cloud\ErrorReporting\V1beta1;
 
-use Google\Devtools\Clouderrorreporting\V1beta1\ReportErrorEventRequest;
-use Google\Devtools\Clouderrorreporting\V1beta1\ReportErrorsServiceGrpcClient;
-use Google\Devtools\Clouderrorreporting\V1beta1\ReportedErrorEvent;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
@@ -269,7 +266,7 @@ class ReportErrorsServiceClient
      *          is not set.
      * }
      *
-     * @return \Google\Devtools\Clouderrorreporting\V1beta1\ReportErrorEventResponse
+     * @return \Google\Cloud\ErrorReporting\V1beta1\ReportErrorEventResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */

@@ -35,13 +35,6 @@ use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
-use Google\Logging\V2\CreateLogMetricRequest;
-use Google\Logging\V2\DeleteLogMetricRequest;
-use Google\Logging\V2\GetLogMetricRequest;
-use Google\Logging\V2\ListLogMetricsRequest;
-use Google\Logging\V2\LogMetric;
-use Google\Logging\V2\MetricsServiceV2GrpcClient;
-use Google\Logging\V2\UpdateLogMetricRequest;
 
 /**
  * Service Description: Service for configuring logs-based metrics.
@@ -426,7 +419,7 @@ class MetricsServiceV2Client
      *          is not set.
      * }
      *
-     * @return \Google\Logging\V2\LogMetric
+     * @return \Google\Cloud\Logging\V2\LogMetric
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
@@ -484,7 +477,7 @@ class MetricsServiceV2Client
      *          is not set.
      * }
      *
-     * @return \Google\Logging\V2\LogMetric
+     * @return \Google\Cloud\Logging\V2\LogMetric
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
@@ -544,7 +537,7 @@ class MetricsServiceV2Client
      *          is not set.
      * }
      *
-     * @return \Google\Logging\V2\LogMetric
+     * @return \Google\Cloud\Logging\V2\LogMetric
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */

@@ -32,17 +32,17 @@ use Google\Protobuf\GPBEmpty;
 use Google\Protobuf\ListValue;
 use Google\Protobuf\Struct;
 use Google\Protobuf\Value;
-use Google\Spanner\Admin\Database\V1\Database;
-use Google\Spanner\Admin\Instance\V1\Instance;
-use Google\Spanner\V1\KeySet;
-use Google\Spanner\V1\Mutation;
-use Google\Spanner\V1\Mutation_Delete;
-use Google\Spanner\V1\Mutation_Write;
-use Google\Spanner\V1\TransactionOptions;
-use Google\Spanner\V1\TransactionOptions_ReadOnly;
-use Google\Spanner\V1\TransactionOptions_ReadWrite;
-use Google\Spanner\V1\TransactionSelector;
-use Google\Spanner\V1\Type;
+use Google\Cloud\Spanner\Admin\Database\V1\Database;
+use Google\Cloud\Spanner\Admin\Instance\V1\Instance;
+use Google\Cloud\Spanner\V1\KeySet;
+use Google\Cloud\Spanner\V1\Mutation;
+use Google\Cloud\Spanner\V1\Mutation_Delete;
+use Google\Cloud\Spanner\V1\Mutation_Write;
+use Google\Cloud\Spanner\V1\TransactionOptions;
+use Google\Cloud\Spanner\V1\TransactionOptions_ReadOnly;
+use Google\Cloud\Spanner\V1\TransactionOptions_ReadWrite;
+use Google\Cloud\Spanner\V1\TransactionSelector;
+use Google\Cloud\Spanner\V1\Type;
 
 /**
  * Connection to Cloud Spanner over gRPC

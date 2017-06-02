@@ -28,6 +28,7 @@
 
 namespace Google\Cloud\Spanner\V1;
 
+use Google\Cloud\Spanner\V1\ExecuteSqlRequest_QueryMode as QueryMode;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
@@ -35,20 +36,6 @@ use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PathTemplate;
 use Google\Protobuf\Struct;
-use Google\Spanner\V1\BeginTransactionRequest;
-use Google\Spanner\V1\CommitRequest;
-use Google\Spanner\V1\CreateSessionRequest;
-use Google\Spanner\V1\DeleteSessionRequest;
-use Google\Spanner\V1\ExecuteSqlRequest;
-use Google\Spanner\V1\ExecuteSqlRequest_QueryMode as QueryMode;
-use Google\Spanner\V1\GetSessionRequest;
-use Google\Spanner\V1\KeySet;
-use Google\Spanner\V1\Mutation;
-use Google\Spanner\V1\ReadRequest;
-use Google\Spanner\V1\RollbackRequest;
-use Google\Spanner\V1\SpannerGrpcClient;
-use Google\Spanner\V1\TransactionOptions;
-use Google\Spanner\V1\TransactionSelector;
 
 /**
  * Service Description: Cloud Spanner API.
@@ -395,7 +382,7 @@ class SpannerClient
      *          is not set.
      * }
      *
-     * @return \Google\Spanner\V1\Session
+     * @return \Google\Cloud\Spanner\V1\Session
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
@@ -448,7 +435,7 @@ class SpannerClient
      *          is not set.
      * }
      *
-     * @return \Google\Spanner\V1\Session
+     * @return \Google\Cloud\Spanner\V1\Session
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
@@ -597,7 +584,7 @@ class SpannerClient
      *          is not set.
      * }
      *
-     * @return \Google\Spanner\V1\ResultSet
+     * @return \Google\Cloud\Spanner\V1\ResultSet
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
@@ -819,7 +806,7 @@ class SpannerClient
      *          is not set.
      * }
      *
-     * @return \Google\Spanner\V1\ResultSet
+     * @return \Google\Cloud\Spanner\V1\ResultSet
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
@@ -993,7 +980,7 @@ class SpannerClient
      *          is not set.
      * }
      *
-     * @return \Google\Spanner\V1\Transaction
+     * @return \Google\Cloud\Spanner\V1\Transaction
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
@@ -1068,7 +1055,7 @@ class SpannerClient
      *          is not set.
      * }
      *
-     * @return \Google\Spanner\V1\CommitResponse
+     * @return \Google\Cloud\Spanner\V1\CommitResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */

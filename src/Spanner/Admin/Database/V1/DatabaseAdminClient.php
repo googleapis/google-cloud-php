@@ -28,6 +28,10 @@
 
 namespace Google\Cloud\Spanner\Admin\Database\V1;
 
+use Google\Cloud\Iam\V1\GetIamPolicyRequest;
+use Google\Cloud\Iam\V1\Policy;
+use Google\Cloud\Iam\V1\SetIamPolicyRequest;
+use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
@@ -37,20 +41,6 @@ use Google\GAX\LongRunning\OperationsClient;
 use Google\GAX\OperationResponse;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
-use Google\Iam\V1\GetIamPolicyRequest;
-use Google\Iam\V1\Policy;
-use Google\Iam\V1\SetIamPolicyRequest;
-use Google\Iam\V1\TestIamPermissionsRequest;
-use Google\Spanner\Admin\Database\V1\CreateDatabaseMetadata;
-use Google\Spanner\Admin\Database\V1\CreateDatabaseRequest;
-use Google\Spanner\Admin\Database\V1\Database;
-use Google\Spanner\Admin\Database\V1\DatabaseAdminGrpcClient;
-use Google\Spanner\Admin\Database\V1\DropDatabaseRequest;
-use Google\Spanner\Admin\Database\V1\GetDatabaseDdlRequest;
-use Google\Spanner\Admin\Database\V1\GetDatabaseRequest;
-use Google\Spanner\Admin\Database\V1\ListDatabasesRequest;
-use Google\Spanner\Admin\Database\V1\UpdateDatabaseDdlMetadata;
-use Google\Spanner\Admin\Database\V1\UpdateDatabaseDdlRequest;
 
 /**
  * Service Description: Cloud Spanner Database Admin API.
@@ -241,12 +231,12 @@ class DatabaseAdminClient
     {
         return [
             'createDatabase' => [
-                'operationReturnType' => '\Google\Spanner\Admin\Database\V1\Database',
-                'metadataReturnType' => '\Google\Spanner\Admin\Database\V1\CreateDatabaseMetadata',
+                'operationReturnType' => '\Google\Cloud\Spanner\Admin\Database\V1\Database',
+                'metadataReturnType' => '\Google\Cloud\Spanner\Admin\Database\V1\CreateDatabaseMetadata',
             ],
             'updateDatabaseDdl' => [
                 'operationReturnType' => '\Google\Protobuf\GPBEmpty',
-                'metadataReturnType' => '\Google\Spanner\Admin\Database\V1\UpdateDatabaseDdlMetadata',
+                'metadataReturnType' => '\Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseDdlMetadata',
             ],
         ];
     }
@@ -563,7 +553,7 @@ class DatabaseAdminClient
      *          is not set.
      * }
      *
-     * @return \Google\Longrunning\Operation
+     * @return \Google\LongRunning\Operation
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
@@ -619,7 +609,7 @@ class DatabaseAdminClient
      *          is not set.
      * }
      *
-     * @return \Google\Spanner\Admin\Database\V1\Database
+     * @return \Google\Cloud\Spanner\Admin\Database\V1\Database
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
@@ -721,7 +711,7 @@ class DatabaseAdminClient
      *          is not set.
      * }
      *
-     * @return \Google\Longrunning\Operation
+     * @return \Google\LongRunning\Operation
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
@@ -827,7 +817,7 @@ class DatabaseAdminClient
      *          is not set.
      * }
      *
-     * @return \Google\Spanner\Admin\Database\V1\GetDatabaseDdlResponse
+     * @return \Google\Cloud\Spanner\Admin\Database\V1\GetDatabaseDdlResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
@@ -889,7 +879,7 @@ class DatabaseAdminClient
      *          is not set.
      * }
      *
-     * @return \Google\Iam\V1\Policy
+     * @return \Google\Cloud\Iam\V1\Policy
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
@@ -947,7 +937,7 @@ class DatabaseAdminClient
      *          is not set.
      * }
      *
-     * @return \Google\Iam\V1\Policy
+     * @return \Google\Cloud\Iam\V1\Policy
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
@@ -1010,7 +1000,7 @@ class DatabaseAdminClient
      *          is not set.
      * }
      *
-     * @return \Google\Iam\V1\TestIamPermissionsResponse
+     * @return \Google\Cloud\Iam\V1\TestIamPermissionsResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */

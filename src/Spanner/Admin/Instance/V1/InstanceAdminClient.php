@@ -28,6 +28,10 @@
 
 namespace Google\Cloud\Spanner\Admin\Instance\V1;
 
+use Google\Cloud\Iam\V1\GetIamPolicyRequest;
+use Google\Cloud\Iam\V1\Policy;
+use Google\Cloud\Iam\V1\SetIamPolicyRequest;
+use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
@@ -37,22 +41,7 @@ use Google\GAX\LongRunning\OperationsClient;
 use Google\GAX\OperationResponse;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
-use Google\Iam\V1\GetIamPolicyRequest;
-use Google\Iam\V1\Policy;
-use Google\Iam\V1\SetIamPolicyRequest;
-use Google\Iam\V1\TestIamPermissionsRequest;
 use Google\Protobuf\FieldMask;
-use Google\Spanner\Admin\Instance\V1\CreateInstanceMetadata;
-use Google\Spanner\Admin\Instance\V1\CreateInstanceRequest;
-use Google\Spanner\Admin\Instance\V1\DeleteInstanceRequest;
-use Google\Spanner\Admin\Instance\V1\GetInstanceConfigRequest;
-use Google\Spanner\Admin\Instance\V1\GetInstanceRequest;
-use Google\Spanner\Admin\Instance\V1\Instance;
-use Google\Spanner\Admin\Instance\V1\InstanceAdminGrpcClient;
-use Google\Spanner\Admin\Instance\V1\ListInstanceConfigsRequest;
-use Google\Spanner\Admin\Instance\V1\ListInstancesRequest;
-use Google\Spanner\Admin\Instance\V1\UpdateInstanceMetadata;
-use Google\Spanner\Admin\Instance\V1\UpdateInstanceRequest;
 
 /**
  * Service Description: Cloud Spanner Instance Admin API.
@@ -289,12 +278,12 @@ class InstanceAdminClient
     {
         return [
             'createInstance' => [
-                'operationReturnType' => '\Google\Spanner\Admin\Instance\V1\Instance',
-                'metadataReturnType' => '\Google\Spanner\Admin\Instance\V1\CreateInstanceMetadata',
+                'operationReturnType' => '\Google\Cloud\Spanner\Admin\Instance\V1\Instance',
+                'metadataReturnType' => '\Google\Cloud\Spanner\Admin\Instance\V1\CreateInstanceMetadata',
             ],
             'updateInstance' => [
-                'operationReturnType' => '\Google\Spanner\Admin\Instance\V1\Instance',
-                'metadataReturnType' => '\Google\Spanner\Admin\Instance\V1\UpdateInstanceMetadata',
+                'operationReturnType' => '\Google\Cloud\Spanner\Admin\Instance\V1\Instance',
+                'metadataReturnType' => '\Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceMetadata',
             ],
         ];
     }
@@ -572,7 +561,7 @@ class InstanceAdminClient
      *          is not set.
      * }
      *
-     * @return \Google\Spanner\Admin\Instance\V1\InstanceConfig
+     * @return \Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
@@ -726,7 +715,7 @@ class InstanceAdminClient
      *          is not set.
      * }
      *
-     * @return \Google\Spanner\Admin\Instance\V1\Instance
+     * @return \Google\Cloud\Spanner\Admin\Instance\V1\Instance
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
@@ -843,7 +832,7 @@ class InstanceAdminClient
      *          is not set.
      * }
      *
-     * @return \Google\Longrunning\Operation
+     * @return \Google\LongRunning\Operation
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
@@ -966,7 +955,7 @@ class InstanceAdminClient
      *          is not set.
      * }
      *
-     * @return \Google\Longrunning\Operation
+     * @return \Google\LongRunning\Operation
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
@@ -1089,7 +1078,7 @@ class InstanceAdminClient
      *          is not set.
      * }
      *
-     * @return \Google\Iam\V1\Policy
+     * @return \Google\Cloud\Iam\V1\Policy
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
@@ -1147,7 +1136,7 @@ class InstanceAdminClient
      *          is not set.
      * }
      *
-     * @return \Google\Iam\V1\Policy
+     * @return \Google\Cloud\Iam\V1\Policy
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
@@ -1210,7 +1199,7 @@ class InstanceAdminClient
      *          is not set.
      * }
      *
-     * @return \Google\Iam\V1\TestIamPermissionsResponse
+     * @return \Google\Cloud\Iam\V1\TestIamPermissionsResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */

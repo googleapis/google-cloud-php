@@ -28,12 +28,7 @@
 
 namespace Google\Cloud\Trace\V1;
 
-use Google\Devtools\Cloudtrace\V1\GetTraceRequest;
-use Google\Devtools\Cloudtrace\V1\ListTracesRequest;
-use Google\Devtools\Cloudtrace\V1\ListTracesRequest_ViewType as ViewType;
-use Google\Devtools\Cloudtrace\V1\PatchTracesRequest;
-use Google\Devtools\Cloudtrace\V1\TraceServiceGrpcClient;
-use Google\Devtools\Cloudtrace\V1\Traces;
+use Google\Cloud\Trace\V1\ListTracesRequest_ViewType as ViewType;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
@@ -317,7 +312,7 @@ class TraceServiceClient
      *          is not set.
      * }
      *
-     * @return \Google\Devtools\Cloudtrace\V1\Trace
+     * @return \Google\Cloud\Trace\V1\Trace
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */

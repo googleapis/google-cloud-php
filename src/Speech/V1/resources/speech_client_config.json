@@ -33,9 +33,7 @@
           "retry_params_name": "default"
         },
         "StreamingRecognize": {
-          "timeout_millis": 190000,
-          "retry_codes_name": "idempotent",
-          "retry_params_name": "default"
+          "timeout_millis": 190000
         }
       }
     }

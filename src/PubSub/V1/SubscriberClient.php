@@ -28,6 +28,11 @@
 
 namespace Google\Cloud\PubSub\V1;
 
+use Google\Cloud\Iam\V1\GetIamPolicyRequest;
+use Google\Cloud\Iam\V1\IAMPolicyGrpcClient;
+use Google\Cloud\Iam\V1\Policy;
+use Google\Cloud\Iam\V1\SetIamPolicyRequest;
+use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
@@ -35,30 +40,9 @@ use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
-use Google\Iam\V1\GetIamPolicyRequest;
-use Google\Iam\V1\IAMPolicyGrpcClient;
-use Google\Iam\V1\Policy;
-use Google\Iam\V1\SetIamPolicyRequest;
-use Google\Iam\V1\TestIamPermissionsRequest;
 use Google\Protobuf\Duration;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\Timestamp;
-use Google\Pubsub\V1\AcknowledgeRequest;
-use Google\Pubsub\V1\CreateSnapshotRequest;
-use Google\Pubsub\V1\DeleteSnapshotRequest;
-use Google\Pubsub\V1\DeleteSubscriptionRequest;
-use Google\Pubsub\V1\GetSubscriptionRequest;
-use Google\Pubsub\V1\ListSnapshotsRequest;
-use Google\Pubsub\V1\ListSubscriptionsRequest;
-use Google\Pubsub\V1\ModifyAckDeadlineRequest;
-use Google\Pubsub\V1\ModifyPushConfigRequest;
-use Google\Pubsub\V1\PullRequest;
-use Google\Pubsub\V1\PushConfig;
-use Google\Pubsub\V1\SeekRequest;
-use Google\Pubsub\V1\StreamingPullRequest;
-use Google\Pubsub\V1\SubscriberGrpcClient;
-use Google\Pubsub\V1\Subscription;
-use Google\Pubsub\V1\UpdateSubscriptionRequest;
 
 /**
  * Service Description: The service that an application uses to manipulate subscriptions and to
@@ -532,7 +516,7 @@ class SubscriberClient
      *          is not set.
      * }
      *
-     * @return \Google\Pubsub\V1\Subscription
+     * @return \Google\Cloud\PubSub\V1\Subscription
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
@@ -597,7 +581,7 @@ class SubscriberClient
      *          is not set.
      * }
      *
-     * @return \Google\Pubsub\V1\Subscription
+     * @return \Google\Cloud\PubSub\V1\Subscription
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
@@ -652,7 +636,7 @@ class SubscriberClient
      *          is not set.
      * }
      *
-     * @return \Google\Pubsub\V1\Subscription
+     * @return \Google\Cloud\PubSub\V1\Subscription
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
@@ -977,7 +961,7 @@ class SubscriberClient
      *          is not set.
      * }
      *
-     * @return \Google\Pubsub\V1\PullResponse
+     * @return \Google\Cloud\PubSub\V1\PullResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
@@ -1280,7 +1264,7 @@ class SubscriberClient
      *          is not set.
      * }
      *
-     * @return \Google\Pubsub\V1\Snapshot
+     * @return \Google\Cloud\PubSub\V1\Snapshot
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
@@ -1402,7 +1386,7 @@ class SubscriberClient
      *          is not set.
      * }
      *
-     * @return \Google\Pubsub\V1\SeekResponse
+     * @return \Google\Cloud\PubSub\V1\SeekResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
@@ -1467,7 +1451,7 @@ class SubscriberClient
      *          is not set.
      * }
      *
-     * @return \Google\Iam\V1\Policy
+     * @return \Google\Cloud\Iam\V1\Policy
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
@@ -1523,7 +1507,7 @@ class SubscriberClient
      *          is not set.
      * }
      *
-     * @return \Google\Iam\V1\Policy
+     * @return \Google\Cloud\Iam\V1\Policy
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
@@ -1583,7 +1567,7 @@ class SubscriberClient
      *          is not set.
      * }
      *
-     * @return \Google\Iam\V1\TestIamPermissionsResponse
+     * @return \Google\Cloud\Iam\V1\TestIamPermissionsResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */

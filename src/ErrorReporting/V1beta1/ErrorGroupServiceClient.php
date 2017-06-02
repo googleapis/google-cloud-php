@@ -28,10 +28,6 @@
 
 namespace Google\Cloud\ErrorReporting\V1beta1;
 
-use Google\Devtools\Clouderrorreporting\V1beta1\ErrorGroup;
-use Google\Devtools\Clouderrorreporting\V1beta1\ErrorGroupServiceGrpcClient;
-use Google\Devtools\Clouderrorreporting\V1beta1\GetGroupRequest;
-use Google\Devtools\Clouderrorreporting\V1beta1\UpdateGroupRequest;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
@@ -275,7 +271,7 @@ class ErrorGroupServiceClient
      *          is not set.
      * }
      *
-     * @return \Google\Devtools\Clouderrorreporting\V1beta1\ErrorGroup
+     * @return \Google\Cloud\ErrorReporting\V1beta1\ErrorGroup
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
@@ -327,7 +323,7 @@ class ErrorGroupServiceClient
      *          is not set.
      * }
      *
-     * @return \Google\Devtools\Clouderrorreporting\V1beta1\ErrorGroup
+     * @return \Google\Cloud\ErrorReporting\V1beta1\ErrorGroup
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */

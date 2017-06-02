@@ -218,12 +218,10 @@ class SpeechClient
         if (array_key_exists('operationsClient', $options)) {
             $this->operationsClient = $options['operationsClient'];
         } else {
-            $this->operationsClient = new OperationsClient([
-                'serviceAddress' => $options['serviceAddress'],
-                'scopes' => $options['scopes'],
-                'libName' => $options['libName'],
-                'libVersion' => $options['libVersion'],
-            ]);
+            $operationsClientOptions = $options;
+            unset($operationsClientOptions['timeoutMillis']);
+            unset($operationsClientOptions['retryingOverride']);
+            $this->operationsClient = new OperationsClient($operationsClientOptions);
         }
 
         $gapicVersion = $options['libVersion'] ?: self::getGapicVersion();
@@ -412,7 +410,7 @@ class SpeechClient
      *          is not set.
      * }
      *
-     * @return \Google\Longrunning\Operation
+     * @return \Google\LongRunning\Operation
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */

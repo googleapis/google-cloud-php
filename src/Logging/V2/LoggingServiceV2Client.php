@@ -29,6 +29,7 @@
 namespace Google\Cloud\Logging\V2;
 
 use Google\Api\MonitoredResource;
+
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
@@ -36,13 +37,6 @@ use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
-use Google\Logging\V2\DeleteLogRequest;
-use Google\Logging\V2\ListLogEntriesRequest;
-use Google\Logging\V2\ListLogsRequest;
-use Google\Logging\V2\ListMonitoredResourceDescriptorsRequest;
-use Google\Logging\V2\LogEntry;
-use Google\Logging\V2\LoggingServiceV2GrpcClient;
-use Google\Logging\V2\WriteLogEntriesRequest;
 
 /**
  * Service Description: Service for ingesting and querying logs.
@@ -416,7 +410,7 @@ class LoggingServiceV2Client
      * not matter.
      *
      * To improve throughput and to avoid exceeding the
-     * [quota limit](/logging/quota-policy) for calls to `entries.write`,
+     * [quota limit](https://cloud.google.com/logging/quota-policy) for calls to `entries.write`,
      * you should write multiple log entries at once rather than
      * calling this method for each individual log entry.
      * @param array $optionalArgs {
@@ -464,7 +458,7 @@ class LoggingServiceV2Client
      *          is not set.
      * }
      *
-     * @return \Google\Logging\V2\WriteLogEntriesResponse
+     * @return \Google\Cloud\Logging\V2\WriteLogEntriesResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
@@ -504,7 +498,7 @@ class LoggingServiceV2Client
     /**
      * Lists log entries.  Use this method to retrieve log entries from
      * Stackdriver Logging.  For ways to export log entries, see
-     * [Exporting Logs](/logging/docs/export).
+     * [Exporting Logs](https://cloud.google.com/logging/docs/export).
      *
      * Sample code:
      * ```
@@ -549,7 +543,7 @@ class LoggingServiceV2Client
      *          `resource_names`.
      *     @type string $filter
      *          Optional. A filter that chooses which log entries to return.  See [Advanced
-     *          Logs Filters](/logging/docs/view/advanced_filters).  Only log entries that
+     *          Logs Filters](https://cloud.google.com/logging/docs/view/advanced_filters).  Only log entries that
      *          match the filter are returned.  An empty filter matches all log entries in
      *          the resources listed in `resource_names`. Referencing a parent resource
      *          that is not listed in `resource_names` will cause the filter to return no

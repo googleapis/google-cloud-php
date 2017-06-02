@@ -344,7 +344,7 @@ class SpeechClient
     /**
      * Performs asynchronous speech recognition: receive results via the
      * [google.longrunning.Operations]
-     * (https://cloud.google.com/speech/reference/rest/v1beta1/operations#Operation)
+     * (/speech/reference/rest/v1beta1/operations#Operation)
      * interface. Returns either an
      * `Operation.error` or an `Operation.response` which contains
      * an `AsyncRecognizeResponse` message.
@@ -406,7 +406,7 @@ class SpeechClient
      *          is not set.
      * }
      *
-     * @return \Google\Longrunning\Operation
+     * @return \Google\LongRunning\Operation
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */

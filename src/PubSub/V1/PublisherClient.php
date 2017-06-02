@@ -28,6 +28,11 @@
 
 namespace Google\Cloud\PubSub\V1;
 
+use Google\Cloud\Iam\V1\GetIamPolicyRequest;
+use Google\Cloud\Iam\V1\IAMPolicyGrpcClient;
+use Google\Cloud\Iam\V1\Policy;
+use Google\Cloud\Iam\V1\SetIamPolicyRequest;
+use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
@@ -35,19 +40,6 @@ use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
-use Google\Iam\V1\GetIamPolicyRequest;
-use Google\Iam\V1\IAMPolicyGrpcClient;
-use Google\Iam\V1\Policy;
-use Google\Iam\V1\SetIamPolicyRequest;
-use Google\Iam\V1\TestIamPermissionsRequest;
-use Google\Pubsub\V1\DeleteTopicRequest;
-use Google\Pubsub\V1\GetTopicRequest;
-use Google\Pubsub\V1\ListTopicSubscriptionsRequest;
-use Google\Pubsub\V1\ListTopicsRequest;
-use Google\Pubsub\V1\PublishRequest;
-use Google\Pubsub\V1\PublisherGrpcClient;
-use Google\Pubsub\V1\PubsubMessage;
-use Google\Pubsub\V1\Topic;
 
 /**
  * Service Description: The service that an application uses to manipulate topics, and to send
@@ -368,7 +360,7 @@ class PublisherClient
      *          is not set.
      * }
      *
-     * @return \Google\Pubsub\V1\Topic
+     * @return \Google\Cloud\PubSub\V1\Topic
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
@@ -427,7 +419,7 @@ class PublisherClient
      *          is not set.
      * }
      *
-     * @return \Google\Pubsub\V1\PublishResponse
+     * @return \Google\Cloud\PubSub\V1\PublishResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
@@ -480,7 +472,7 @@ class PublisherClient
      *          is not set.
      * }
      *
-     * @return \Google\Pubsub\V1\Topic
+     * @return \Google\Cloud\PubSub\V1\Topic
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
@@ -751,7 +743,7 @@ class PublisherClient
      *          is not set.
      * }
      *
-     * @return \Google\Iam\V1\Policy
+     * @return \Google\Cloud\Iam\V1\Policy
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
@@ -807,7 +799,7 @@ class PublisherClient
      *          is not set.
      * }
      *
-     * @return \Google\Iam\V1\Policy
+     * @return \Google\Cloud\Iam\V1\Policy
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
@@ -867,7 +859,7 @@ class PublisherClient
      *          is not set.
      * }
      *
-     * @return \Google\Iam\V1\TestIamPermissionsResponse
+     * @return \Google\Cloud\Iam\V1\TestIamPermissionsResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      */
