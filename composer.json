@@ -67,7 +67,7 @@
     "autoload": {
         "psr-4": {
             "Google\\Cloud\\": "src",
-            "": "src/proto"
+            "GPBMetadata\\": "src/GPBMetadata"
         }
     },
     "autoload-dev": {
