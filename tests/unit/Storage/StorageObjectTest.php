@@ -519,4 +519,14 @@ class StorageObjectTest extends \PHPUnit_Framework_TestCase
         $expectedUri = sprintf('gs://%s/%s', $bucketName, $name);
         $this->assertEquals($expectedUri, $object->gcsUri());
     }
+
+    public function testRequesterPays()
+    {
+        $this->connection->getObject(Argument::withEntry('userProject', 'foo'))
+            ->willReturn([]);
+
+        $object = new StorageObject($this->connection->reveal(), 'object', 'bucket', null, ['requesterProjectId' => 'foo']);
+
+        $object->reload();
+    }
 }

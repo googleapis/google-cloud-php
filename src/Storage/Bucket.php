@@ -587,6 +587,7 @@ class Bucket
      *           `"STANDARD"` and `"DURABLE_REDUCED_AVAILABILITY"`.
      *     @type array $versioning The bucket's versioning configuration.
      *     @type array $website The bucket's website configuration.
+     *     @type array $billing The bucket's billing configuration.
      * }
      * @return array
      */

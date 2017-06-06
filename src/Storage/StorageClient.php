@@ -232,6 +232,7 @@ class StorageClient
      *           **Defaults to** `STANDARD`.
      *     @type array $versioning The bucket's versioning configuration.
      *     @type array $website The bucket's website configuration.
+     *     @type array $billing The bucket's billing configuration.
      * }
      * @return Bucket
      */

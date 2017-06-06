@@ -363,4 +363,14 @@ class BucketTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf(Iam::class, $bucket->iam());
     }
+
+    public function testRequesterPays()
+    {
+        $this->connection->getBucket(Argument::withEntry('userProject', 'foo'))
+            ->willReturn([]);
+
+        $bucket = new Bucket($this->connection->reveal(), 'bucket', ['requesterProjectId' => 'foo']);
+
+        $bucket->reload();
+    }
 }
