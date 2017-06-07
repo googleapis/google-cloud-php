@@ -19,6 +19,7 @@ namespace Google\Cloud\Tests\System\Storage;
 
 /**
  * @group storage
+ * @group storage-bucket
  */
 class ManageBucketsTest extends StorageTestCase
 {
@@ -121,5 +122,40 @@ class ManageBucketsTest extends StorageTestCase
         $permissions = ['storage.buckets.get'];
         $test = $iam->testPermissions($permissions);
         $this->assertEquals($permissions, $test);
+    }
+
+    public function testLabels()
+    {
+        $bucket = self::$bucket;
+
+        $bucket->update([
+            'labels' => [
+                'foo' => 'bar'
+            ]
+        ]);
+
+        $bucket->reload();
+
+        $this->assertEquals($bucket->info()['labels']['foo'], 'bar');
+
+        $bucket->update([
+            'labels' => [
+                'foo' => 'bat'
+            ]
+        ]);
+
+        $bucket->reload();
+
+        $this->assertEquals($bucket->info()['labels']['foo'], 'bat');
+
+        $bucket->update([
+            'labels' => [
+                'foo' => null
+            ]
+        ]);
+
+        $bucket->reload();
+
+        $this->assertFalse(isset($bucket->info()['labels']['foo']));
     }
 }

@@ -163,6 +163,14 @@
                     "description": "The kind of item this is. For buckets, this is always storage#bucket.",
                     "default": "storage#bucket"
                 },
+                "labels": {
+                    "type": "object",
+                    "description": "User-provided labels, in key/value pairs.",
+                    "additionalProperties": {
+                        "type": "string",
+                        "description": "An individual label entry."
+                    }
+                },
                 "lifecycle": {
                     "type": "object",
                     "description": "The bucket's lifecycle configuration. See lifecycle management for more information.",
