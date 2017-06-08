@@ -94,4 +94,37 @@ class UploadObjectsTest extends StorageTestCase
         $this->assertEquals($sha, $object->info()['customerEncryption']['keySha256']);
         $this->assertEquals(strlen($data), $object->info()['size']);
     }
+    
+    private $testFileSize = 0;
+    private $totalStoredBytes = 0;
+    
+    public function testUploadsObjectWithProgressTracking()
+    {
+        $path = __DIR__ . '/../data/5mb.txt';
+        
+        $this->testFileSize = filesize($path);
+
+        $options = [
+            'resumable' => true, // It's required to be in resumable upload if we want to track the progress with callback method.
+            'chunkSize' => 1 * 1024 * 1024, //1MB; The upload progress will be done in chunks. The size must be in multiples of 262144 bytes.
+            'uploadProgressCallback' => array($this, 'onStoredFileChunk')
+        ];
+
+        $object = self::$bucket->upload(fopen($path, 'r'), $options);
+
+        self::$deletionQueue[] = $object;
+
+        $this->assertEquals('5mb.txt', $object->name());
+    }
+    
+    public function onStoredFileChunk($storedBytes)
+    {
+        $this->totalStoredBytes += $storedBytes;
+        
+        $this->assertFalse($this->testFileSize < $this->totalStoredBytes);
+        
+        if ($this->testFileSize == $this->totalStoredBytes) {
+            $this->assertEquals(filesize(__DIR__ . '/../data/5mb.txt'), $this->totalStoredBytes);
+        }
+    }
 }
