@@ -77,7 +77,7 @@ class RequesterPaysTest extends StorageTestCase
      * @dataProvider requesterPaysMethods
      * @expectedException Google\Cloud\Core\Exception\BadRequestException
      */
-    public function testRequesterPaysMethodsWithoutUserProject($name, callable $call)
+    public function testRequesterPaysMethodsWithoutUserProject(callable $call)
     {
         $bucket = $this->requesterPaysClient->bucket(self::$bucketName);
         $object = $bucket->object(self::$object1->name());
@@ -89,110 +89,90 @@ class RequesterPaysTest extends StorageTestCase
     {
         return [
             [
-                'Bucket -> Exists',
                 function (Bucket $bucket) {
                     $bucket->exists();
                 },
             ], [
-                'Bucket -> Upload',
                 function (Bucket $bucket) {
                     $bucket->upload(
                         fopen(self::$path, 'r')
                     );
                 },
             ], [
-                'Bucket -> GetResumableUploader',
                 function (Bucket $bucket) {
                     $bucket->getResumableUploader(
                         fopen(self::$path, 'r')
                     )->upload();
                 },
             ], [
-                'Bucket -> GetStreamableUploader',
                 function (Bucket $bucket) {
                     $bucket->getStreamableUploader(
                         fopen(self::$path, 'r')
                     )->upload();
                 },
             ], [
-                'Bucket -> Objects',
                 function (Bucket $bucket) {
                     iterator_to_array($bucket->objects());
                 },
             ], [
-                'Update',
                 function (Bucket $bucket) {
                     $bucket->update([]);
                 },
             ], [
-                'Bucket -> Compose',
                 function (Bucket $bucket) {
                     $bucket->compose([self::$object1, self::$object2], uniqid(self::TESTING_PREFIX), [
                         'metadata' => ['contentType' => 'text/plain']
                     ]);
                 },
             ], [
-                'Bucket -> Reload',
                 function (Bucket $bucket) {
                     $bucket->reload();
                 }
             ], [
-                'Object -> Exists',
                 function (Bucket $bucket, StorageObject $object) {
                     $object->exists();
                 }
             ], [
-                'Object -> Update',
                 function (Bucket $bucket, StorageObject $object) {
                     $object->update([]);
                 }
             ], [
-                'Object -> Copy',
                 function (Bucket $bucket, StorageObject $object) {
                     $object->copy($bucket);
                 }
             ], [
-                'Object -> Rewrite',
                 function (Bucket $bucket, StorageObject $object) {
                     $object->rewrite($bucket);
                 }
             ], [
-                'Object -> DownloadAsString',
                 function (Bucket $bucket, StorageObject $object) {
                     $object->downloadAsString();
                 }
             ], [
-                'Object -> DownloadToFile',
                 function (Bucket $bucket, StorageObject $object) {
-                    $object->downloadToFile('/dev/null');
+                    $object->downloadToFile('php://temp');
                 }
             ], [
-                'Object -> DownloadAsStream',
                 function (Bucket $bucket, StorageObject $object) {
                     $object->downloadAsStream();
                 }
             ], [
-                'Object -> Reload',
                 function (Bucket $bucket, StorageObject $object) {
                     $object->reload();
                 }
             ], [
-                'IAM -> Policy',
                 function (Bucket $bucket, StorageObject $object) {
                     $bucket->iam()->policy();
                 }
             ], [
-                'IAM -> SetPolicy',
                 function (Bucket $bucket, StorageObject $object) {
                     $bucket->iam()->setPolicy([]);
                 }
             ], [
-                'IAM -> TestPermissions',
                 function (Bucket $bucket, StorageObject $object) {
                     $bucket->iam()->testPermissions(['foo']);
                 }
             ], [
-                'IAM -> Reload',
                 function (Bucket $bucket, StorageObject $object) {
                     $bucket->iam()->reload();
                 }

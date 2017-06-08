@@ -222,11 +222,11 @@ class BucketTest extends \PHPUnit_Framework_TestCase
         $destinationBucket = 'bucket';
         $destinationObject = 'combined-files.txt';
         $this->connection->composeObject([
+                'destinationBucket' => $destinationBucket,
+                'destinationObject' => $destinationObject,
                 'destinationPredefinedAcl' => $acl,
                 'destination' => $metadata + ['contentType' => 'text/plain'],
                 'sourceObjects' => $expectedSourceObjects,
-                'destinationBucket' => $destinationBucket,
-                'destinationObject' => $destinationObject
             ])
             ->willReturn([
                 'name' => $destinationObject,
