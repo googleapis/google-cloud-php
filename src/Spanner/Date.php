@@ -100,7 +100,7 @@ class Date implements ValueInterface
      */
     public function type()
     {
-        return ValueMapper::TYPE_DATE;
+        return Database::TYPE_DATE;
     }
 
     /**

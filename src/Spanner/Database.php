@@ -33,6 +33,7 @@ use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\V1\SpannerClient as GrpcSpannerClient;
 use Google\GAX\ValidationException;
+use google\spanner\v1\TypeCode;
 
 /**
  * Represents a Cloud Spanner Database.
@@ -97,6 +98,16 @@ class Database
     use TransactionConfigurationTrait;
 
     const MAX_RETRIES = 10;
+
+    const TYPE_BOOL = TypeCode::TYPE_BOOL;
+    const TYPE_INT64 = TypeCode::TYPE_INT64;
+    const TYPE_FLOAT64 = TypeCode::TYPE_FLOAT64;
+    const TYPE_TIMESTAMP = TypeCode::TYPE_TIMESTAMP;
+    const TYPE_DATE = TypeCode::TYPE_DATE;
+    const TYPE_STRING = TypeCode::TYPE_STRING;
+    const TYPE_BYTES = TypeCode::TYPE_BYTES;
+    const TYPE_ARRAY = TypeCode::TYPE_ARRAY;
+    const TYPE_STRUCT = TypeCode::TYPE_STRUCT;
 
     /**
      * @var ConnectionInterface
@@ -1093,7 +1104,7 @@ class Database
      *         'timestamp' => $timestamp
      *     ],
      *     'types' => [
-     *         'timestamp' => ValueMapper::TYPE_TIMESTAMP
+     *         'timestamp' => Database::TYPE_TIMESTAMP
      *     ]
      * ]);
      *
@@ -1107,7 +1118,7 @@ class Database
      *         'emptyArrayOfIntegers' => []
      *     ],
      *     'types' => [
-     *         'emptyArrayOfIntegers' => [ValueMapper::TYPE_ARRAY, ValueMapper::TYPE_INT64]
+     *         'emptyArrayOfIntegers' => [Database::TYPE_ARRAY, Database::TYPE_INT64]
      *     ]
      * ]);
      *
@@ -1137,14 +1148,14 @@ class Database
      *           definitions are only necessary for null parameter values.
      *           Accepted values are defined as constants on
      *           {@see Google\Cloud\Spanner\ValueMapper}, and are as follows:
-     *           `ValueMapper::TYPE_BOOL`, `ValueMapper::TYPE_INT64`,
-     *           `ValueMapper::TYPE_FLOAT64`, `ValueMapper::TYPE_TIMESTAMP`,
-     *           `ValueMapper::TYPE_DATE`, `ValueMapper::TYPE_STRING`,
-     *           `ValueMapper::TYPE_BYTES`, `ValueMapper::TYPE_ARRAY` and
-     *           `ValueMapper::TYPE_STRUCT`. If the parameter type is an array,
+     *           `Database::TYPE_BOOL`, `Database::TYPE_INT64`,
+     *           `Database::TYPE_FLOAT64`, `Database::TYPE_TIMESTAMP`,
+     *           `Database::TYPE_DATE`, `Database::TYPE_STRING`,
+     *           `Database::TYPE_BYTES`, `Database::TYPE_ARRAY` and
+     *           `Database::TYPE_STRUCT`. If the parameter type is an array,
      *           the type should be given as an array, where the first element
-     *           is `ValueMapper::TYPE_ARRAY` and the second element is the
-     *           array type, for instance `[ValueMapper::TYPE_ARRAY, ValueMapper::TYPE_INT64]`.
+     *           is `Database::TYPE_ARRAY` and the second element is the
+     *           array type, for instance `[Database::TYPE_ARRAY, Database::TYPE_INT64]`.
      *     @type bool $returnReadTimestamp If true, the Cloud Spanner-selected
      *           read timestamp is included in the Transaction message that
      *           describes the transaction.

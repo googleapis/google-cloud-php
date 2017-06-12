@@ -337,7 +337,7 @@ class DatabaseTest extends SnippetTestCase
                             [
                                 'name' => 'loginCount',
                                 'type' => [
-                                    'code' => ValueMapper::TYPE_INT64
+                                    'code' => Database::TYPE_INT64
                                 ]
                             ]
                         ]
@@ -573,7 +573,7 @@ class DatabaseTest extends SnippetTestCase
                             [
                                 'name' => 'loginCount',
                                 'type' => [
-                                    'code' => ValueMapper::TYPE_INT64
+                                    'code' => Database::TYPE_INT64
                                 ]
                             ]
                         ]
@@ -602,7 +602,7 @@ class DatabaseTest extends SnippetTestCase
                             [
                                 'name' => 'loginCount',
                                 'type' => [
-                                    'code' => ValueMapper::TYPE_INT64
+                                    'code' => Database::TYPE_INT64
                                 ]
                             ]
                         ]
@@ -636,7 +636,7 @@ class DatabaseTest extends SnippetTestCase
                             [
                                 'name' => 'loginCount',
                                 'type' => [
-                                    'code' => ValueMapper::TYPE_INT64
+                                    'code' => Database::TYPE_INT64
                                 ]
                             ]
                         ]
@@ -664,7 +664,7 @@ class DatabaseTest extends SnippetTestCase
         $this->connection->executeStreamingSql(Argument::that(function ($arg) {
             if (!isset($arg['params'])) return false;
             if (!isset($arg['paramTypes'])) return false;
-            if ($arg['paramTypes']['timestamp']['code'] !== ValueMapper::TYPE_TIMESTAMP) return false;
+            if ($arg['paramTypes']['timestamp']['code'] !== Database::TYPE_TIMESTAMP) return false;
 
             return true;
         }))->shouldBeCalled()->willReturn($this->resultGenerator([
@@ -674,7 +674,7 @@ class DatabaseTest extends SnippetTestCase
                         [
                             'name' => 'lastModifiedTime',
                             'type' => [
-                                'code' => ValueMapper::TYPE_TIMESTAMP
+                                'code' => Database::TYPE_TIMESTAMP
                             ]
                         ]
                     ]
@@ -688,7 +688,7 @@ class DatabaseTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Database::class, 'execute', 3);
         $snippet->addLocal('database', $this->database);
         $snippet->addLocal('timestamp', null);
-        $snippet->addUse(ValueMapper::class);
+        $snippet->addUse(Database::class);
 
         $res = $snippet->invoke('neverEditedPosts');
         $this->assertNull($res->returnVal()->current()['lastModifiedTime']);
@@ -699,8 +699,8 @@ class DatabaseTest extends SnippetTestCase
         $this->connection->executeStreamingSql(Argument::that(function ($arg) {
             if (!isset($arg['params'])) return false;
             if (!isset($arg['paramTypes'])) return false;
-            if ($arg['paramTypes']['emptyArrayOfIntegers']['code'] !== ValueMapper::TYPE_ARRAY) return false;
-            if ($arg['paramTypes']['emptyArrayOfIntegers']['arrayElementType']['code'] !== ValueMapper::TYPE_INT64) return false;
+            if ($arg['paramTypes']['emptyArrayOfIntegers']['code'] !== Database::TYPE_ARRAY) return false;
+            if ($arg['paramTypes']['emptyArrayOfIntegers']['arrayElementType']['code'] !== Database::TYPE_INT64) return false;
 
             return true;
         }))->shouldBeCalled()->willReturn($this->resultGenerator([
@@ -710,9 +710,9 @@ class DatabaseTest extends SnippetTestCase
                         [
                             'name' => 'numbers',
                             'type' => [
-                                'code' => ValueMapper::TYPE_ARRAY,
+                                'code' => Database::TYPE_ARRAY,
                                 'arrayElementType' => [
-                                    'code' => ValueMapper::TYPE_INT64
+                                    'code' => Database::TYPE_INT64
                                 ]
                             ]
                         ]
@@ -726,7 +726,7 @@ class DatabaseTest extends SnippetTestCase
 
         $snippet = $this->snippetFromMethod(Database::class, 'execute', 4);
         $snippet->addLocal('database', $this->database);
-        $snippet->addUse(ValueMapper::class);
+        $snippet->addUse(Database::class);
 
         $res = $snippet->invoke('emptyArray');
         $this->assertEmpty($res->returnVal());
@@ -743,7 +743,7 @@ class DatabaseTest extends SnippetTestCase
                             [
                                 'name' => 'loginCount',
                                 'type' => [
-                                    'code' => ValueMapper::TYPE_INT64
+                                    'code' => Database::TYPE_INT64
                                 ]
                             ]
                         ]
@@ -773,7 +773,7 @@ class DatabaseTest extends SnippetTestCase
                             [
                                 'name' => 'loginCount',
                                 'type' => [
-                                    'code' => ValueMapper::TYPE_INT64
+                                    'code' => Database::TYPE_INT64
                                 ]
                             ]
                         ]
@@ -808,7 +808,7 @@ class DatabaseTest extends SnippetTestCase
                             [
                                 'name' => 'loginCount',
                                 'type' => [
-                                    'code' => ValueMapper::TYPE_INT64
+                                    'code' => Database::TYPE_INT64
                                 ]
                             ]
                         ]
