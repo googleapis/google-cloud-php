@@ -340,6 +340,25 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
         $this->database->runTransaction(function (Transaction $t) {});
     }
 
+    /**
+     * @expectedException BadMethodCallException
+     */
+    public function testRunTransactionNestedTransaction()
+    {
+        $this->connection->beginTransaction(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn(['id' => self::TRANSACTION]);
+
+        $this->connection->rollback(Argument::any())
+            ->shouldNotBeCalled();
+
+        $this->refreshOperation();
+
+        $this->database->runTransaction(function ($t) {
+            $this->database->runTransaction(function ($t) {});
+        });
+    }
+
     public function testRunTransactionRetry()
     {
         $abort = new AbortedException('foo', 409, null, [
