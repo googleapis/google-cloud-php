@@ -169,6 +169,7 @@ final class InMemoryConfigStorage implements
 
     /**
      * Run the job with the given id.
+     *
      * @param int $idNum A numeric id for the job.
      */
     private function run($idNum)

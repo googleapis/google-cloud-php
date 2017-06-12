@@ -50,7 +50,7 @@ class BatchDaemon
     public function __construct($entrypoint)
     {
         if (! $this->isSysvIPCLoaded()) {
-            throw new \RuntimeException('SystemV IPC exntensions are missing.');
+            throw new \RuntimeException('SystemV IPC extensions are missing.');
         }
         $this->runner = new BatchRunner(
             new SysvConfigStorage(),

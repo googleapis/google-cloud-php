@@ -233,6 +233,7 @@ class PsrLogger implements LoggerInterface
      *        the logged message. **Defaults to** `message`.
      * @param array $options [optional] {
      *     Configuration options.
+     *
      *     @type MetadataProviderInterface $metadataProvider
      *           **Defaults to null** If null, it will be automatically chosen.
      * }
@@ -260,7 +261,9 @@ class PsrLogger implements LoggerInterface
     }
 
     /**
-     * Send the given entry
+     * Send the given entry.
+     *
+     * @param Entry $entry
      */
     private function sendEntry(Entry $entry)
     {
