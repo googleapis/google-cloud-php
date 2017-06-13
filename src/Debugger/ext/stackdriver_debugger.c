@@ -19,7 +19,6 @@
 #include "stackdriver_debugger.h"
 #include "zend_language_scanner.h"
 #include "zend_language_parser.h"
-// #include "debug.h"
 #include "ext/standard/php_string.h"
 #include "Zend/zend_virtual_cwd.h"
 #include "zend_extensions.h"

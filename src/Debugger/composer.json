@@ -1,5 +1,4 @@
 {
-
     "name": "google/cloud-debugger",
     "description": "Stackdriver Debugger Client for PHP",
     "license": "Apache-2.0",
@@ -19,5 +18,8 @@
         "psr-4": {
             "Google\\Cloud\\Debugger\\": ""
         }
+    },
+    "archive": {
+        "exclude": ["/ext"]
     }
 }
