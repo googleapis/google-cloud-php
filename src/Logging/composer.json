@@ -7,8 +7,7 @@
         "google/cloud-core": "^1.0"
     },
     "suggest": {
-        "google/gax": "Required to support gRPC",
-        "google/proto-client-php": "Required to support gRPC"
+        "google/gax": "Required to support gRPC"
     },
     "extra": {
         "component": {
@@ -21,6 +20,9 @@
     "autoload": {
         "psr-4": {
             "Google\\Cloud\\Logging\\": ""
-        }
+        },
+        "classmap": [
+            "V2/GPBMetadata"
+        ]
     }
 }

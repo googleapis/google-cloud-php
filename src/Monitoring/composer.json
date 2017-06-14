@@ -5,7 +5,6 @@
     "minimum-stability": "stable",
     "require": {
         "ext-grpc": "*",
-        "google/proto-client-php": "^0.13",
         "google/gax": "^0.9"
     },
     "extra": {
@@ -19,6 +18,9 @@
     "autoload": {
         "psr-4": {
             "Google\\Cloud\\Monitoring\\": ""
-        }
+        },
+        "classmap": [
+            "V3/GPBMetadata"
+        ]
     }
 }
