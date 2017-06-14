@@ -20,8 +20,10 @@ namespace Google\Cloud\Tests\Unit\Core;
 use Google\Auth\Cache\MemoryCacheItemPool;
 use Google\Auth\FetchAuthTokenCache;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\GrpcTrait;
+use google\protobuf;
 use Prophecy\Argument;
 
 /**
@@ -38,8 +40,14 @@ class GrpcTraitTest extends \PHPUnit_Framework_TestCase
             $this->markTestSkipped('Must have the grpc extension installed to run this test.');
         }
 
-        $this->implementation = new GrpcTraitStub();
+        $this->implementation = \Google\Cloud\Dev\impl(GrpcTrait::class);
         $this->requestWrapper = $this->prophesize(GrpcRequestWrapper::class);
+    }
+
+    public function testSetGetRequestWrapper()
+    {
+        $this->implementation->setRequestWrapper($this->requestWrapper->reveal());
+        $this->assertInstanceOf(GrpcRequestWrapper::class, $this->implementation->requestWrapper());
     }
 
     public function testSendsRequest()
@@ -82,6 +90,52 @@ class GrpcTraitTest extends \PHPUnit_Framework_TestCase
         }, [$options]);
 
         $this->assertEquals($message, $actualResponse);
+    }
+
+    public function testSendsRequestNotFoundWhitelisted()
+    {
+        $grpcOptions = [
+            'timeoutMs' => 100
+        ];
+        $this->requestWrapper->send(
+            Argument::type('callable'),
+            Argument::type('array'),
+            ['grpcOptions' => $grpcOptions]
+        )->willThrow(new NotFoundException('uh oh'));
+
+        $this->implementation->setRequestWrapper($this->requestWrapper->reveal());
+
+        $msg = null;
+        try {
+            $this->implementation->send(function () {}, [['grpcOptions' => $grpcOptions]], true);
+        } catch (NotFoundException $e) {
+            $msg = $e->getMessage();
+        }
+
+        $this->assertFalse(strpos($msg, 'NOTE: Error may be due to Whitelist Restriction.') === false);
+    }
+
+    public function testSendsRequestNotFoundNotWhitelisted()
+    {
+        $grpcOptions = [
+            'timeoutMs' => 100
+        ];
+        $this->requestWrapper->send(
+            Argument::type('callable'),
+            Argument::type('array'),
+            ['grpcOptions' => $grpcOptions]
+        )->willThrow(new NotFoundException('uh oh'));
+
+        $this->implementation->setRequestWrapper($this->requestWrapper->reveal());
+
+        $msg = null;
+        try {
+            $this->implementation->send(function () {}, [['grpcOptions' => $grpcOptions]], false);
+        } catch (NotFoundException $e) {
+            $msg = $e->getMessage();
+        }
+
+        $this->assertTrue(strpos($msg, 'NOTE: Error may be due to Whitelist Restriction.') === false);
     }
 
     public function testGetsGaxConfig()
@@ -203,6 +257,7 @@ class GrpcTraitTest extends \PHPUnit_Framework_TestCase
             ['string', ['string_value' => 'string']],
             [true, ['bool_value' => true]],
             [1, ['number_value' => 1]],
+            [null, ['null_value' => protobuf\NullValue::NULL_VALUE]],
             [
                 ['1'],
                 [
@@ -231,15 +286,5 @@ class GrpcTraitTest extends \PHPUnit_Framework_TestCase
                 ]
             ]
         ];
-    }
-}
-
-class GrpcTraitStub
-{
-    use GrpcTrait;
-
-    public function call($fn, array $args = [])
-    {
-        return call_user_func_array([$this, $fn], $args);
     }
 }

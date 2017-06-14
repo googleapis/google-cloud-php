@@ -17,12 +17,14 @@
 
 namespace Google\Cloud\Tests\Unit\Core;
 
+use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\RequestBuilder;
 use Google\Cloud\Core\RequestWrapper;
 use Google\Cloud\Core\RestTrait;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use Prophecy\Argument;
+use Psr\Http\Message\RequestInterface;
 
 /**
  * @group core
@@ -40,6 +42,12 @@ class RestTraitTest extends \PHPUnit_Framework_TestCase
         $this->requestBuilder = $this->prophesize(RequestBuilder::class);
         $this->requestBuilder->build(Argument::cetera())
             ->willReturn(new Request('GET', '/someplace'));
+    }
+
+    public function testSetGetRequestWrapper()
+    {
+        $this->implementation->setRequestWrapper($this->requestWrapper->reveal());
+        $this->assertInstanceOf(RequestWrapper::class, $this->implementation->requestWrapper());
     }
 
     public function testSendsRequest()
@@ -71,5 +79,45 @@ class RestTraitTest extends \PHPUnit_Framework_TestCase
         $actualResponse = $this->implementation->send('resource', 'method', $restOptions);
 
         $this->assertEquals(json_decode($responseBody, true), $actualResponse);
+    }
+
+    public function testSendsRequestNotFoundWhitelisted()
+    {
+        $this->requestWrapper->send(
+            Argument::type(RequestInterface::class),
+            Argument::type('array')
+        )->willThrow(new NotFoundException('uh oh'));
+
+        $this->implementation->setRequestBuilder($this->requestBuilder->reveal());
+        $this->implementation->setRequestWrapper($this->requestWrapper->reveal());
+
+        $msg = null;
+        try {
+            $this->implementation->send('foo', 'bar', [], true);
+        } catch (NotFoundException $e) {
+            $msg = $e->getMessage();
+        }
+
+        $this->assertFalse(strpos($msg, 'NOTE: Error may be due to Whitelist Restriction.') === false);
+    }
+
+    public function testSendsRequestNotFoundNotWhitelisted()
+    {
+        $this->requestWrapper->send(
+            Argument::type(RequestInterface::class),
+            Argument::type('array')
+        )->willThrow(new NotFoundException('uh oh'));
+
+        $this->implementation->setRequestBuilder($this->requestBuilder->reveal());
+        $this->implementation->setRequestWrapper($this->requestWrapper->reveal());
+
+        $msg = null;
+        try {
+            $this->implementation->send('foo', 'bar', [], false);
+        } catch (NotFoundException $e) {
+            $msg = $e->getMessage();
+        }
+
+        $this->assertTrue(strpos($msg, 'NOTE: Error may be due to Whitelist Restriction.') === false);
     }
 }

@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Tests\Unit\Storage;
 
+use Google\Cloud\Storage\Bucket;
+use Google\Cloud\Storage\Connection\ConnectionInterface;
 use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Storage\StreamWrapper;
 use Prophecy\Argument;
@@ -30,13 +32,13 @@ class StorageClientTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->connection = $this->prophesize('Google\Cloud\Storage\Connection\ConnectionInterface');
-        $this->client = new StorageTestClient(['projectId' => 'project']);
+        $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->client = \Google\Cloud\Dev\stub(StorageClient::class, [['projectId' => 'project']]);
     }
 
     public function testGetBucket()
     {
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
         $this->assertInstanceOf('Google\Cloud\Storage\Bucket', $this->client->bucket('myBucket'));
     }
 
@@ -48,7 +50,7 @@ class StorageClientTest extends \PHPUnit_Framework_TestCase
             ]
         ]);
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
         $buckets = iterator_to_array($this->client->buckets());
 
         $this->assertEquals('bucket1', $buckets[0]->name());
@@ -70,7 +72,7 @@ class StorageClientTest extends \PHPUnit_Framework_TestCase
             ]
         );
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
         $bucket = iterator_to_array($this->client->buckets());
 
         $this->assertEquals('bucket2', $bucket[1]->name());
@@ -79,9 +81,9 @@ class StorageClientTest extends \PHPUnit_Framework_TestCase
     public function testCreatesBucket()
     {
         $this->connection->insertBucket(Argument::any())->willReturn(['name' => 'bucket']);
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
 
-        $this->assertInstanceOf('Google\Cloud\Storage\Bucket', $this->client->createBucket('bucket'));
+        $this->assertInstanceOf(Bucket::class, $this->client->createBucket('bucket'));
     }
 
     public function testRegisteringStreamWrapper()
@@ -90,13 +92,5 @@ class StorageClientTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($this->client, StreamWrapper::getClient());
         $this->assertTrue(in_array('gs', stream_get_wrappers()));
         $this->client->unregisterStreamWrapper();
-    }
-}
-
-class StorageTestClient extends StorageClient
-{
-    public function setConnection($connection)
-    {
-        $this->connection = $connection;
     }
 }

@@ -18,6 +18,7 @@
 namespace Google\Cloud\Storage;
 
 use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Storage\Connection\ConnectionInterface;
 use GuzzleHttp\Psr7;
 use Psr\Http\Message\StreamInterface;
@@ -39,6 +40,8 @@ use Psr\Http\Message\StreamInterface;
 class StorageObject
 {
     use EncryptionTrait;
+
+    const DEFAULT_DOWNLOAD_URL = 'https://storage.googleapis.com';
 
     /**
      * @var Acl ACL for the object.
@@ -626,6 +629,178 @@ class StorageObject
                 + $this->identity
             )
         );
+    }
+
+    /**
+     * Create a Signed URL for this object.
+     *
+     * Please note that using this method requires that the OpenSSL extension be
+     * available in your PHP installation. In most cases, it will be by default,
+     * but failures can often be rectified by installing OpenSSL.
+     *
+     * Example:
+     * ```
+     * $url = $object->signedUrl(new Timestamp(new DateTime('tomorrow')));
+     * ```
+     *
+     * ```
+     * // Create a signed URL allowing updates to the object.
+     * $url = $object->signedUrl(new Timestamp(new DateTime('tomorrow')), [
+     *     'method' => 'PUT'
+     * ]);
+     * ```
+     *
+     * @see http://php.net/manual/en/book.openssl.php OpenSSL
+     *
+     * @param Timestamp $expires A Timestamp specifying when the URL will expire.
+     * @param array $options {
+     *     Configuration Options.
+     *
+     *     @type string $method One of `GET`, `PUT` or `DELETE`. **Defaults to**
+     *           `GET`.
+     *     @type string $cname The CNAME for the bucket, for instance
+     *           `https://cdn.example.com`. **Defaults to**
+     *           `https://storage.googleapis.com`.
+     *     @type string $contentMd5 The MD5 digest value in base64. If you
+     *           provide this, the client must provide this HTTP header with
+     *           this same value in its request. If provided, take care to
+     *           always provide this value as a base64 encoded string.
+     *     @type string $contentType If you provide this value, the client must
+     *           provide this HTTP header set to the same value.
+     *     @type array $headers If these headers are used, the server will check
+     *           to make sure that the client provides matching values. Provide
+     *           headers as a key/value array, where the key is the header name,
+     *           and the value is the header value.
+     *     @type string $saveAsName The filename to prompt the user to save the
+     *           file as when the signed url is accessed. This is ignored if
+     *           `$options.responseDisposition` is set.
+     *     @type string $responseDisposition The
+     *           [`response-content-disposition`](http://www.iana.org/assignments/cont-disp/cont-disp.xhtml)
+     *           parameter of the signed url.
+     *     @type string $responseType The `response-content-type` parameter of the
+     *           signed url.
+     *     @type array $keyFile Keyfile data to use in place of the keyfile with
+     *           which the client was constructed. If `$options.keyFilePath` is
+     *           set, this option is ignored.
+     *     @type string $keyFilePath A path to a valid Keyfile to use in place
+     *           of the keyfile with which the client was constructed.
+     * }
+     * @return string
+     */
+    public function signedUrl(Timestamp $expires, array $options = [])
+    {
+        // @codeCoverageIgnoreStart
+        if (!extension_loaded('openssl')) {
+            throw new \RuntimeException('OpenSSL is not installed.');
+        }
+        // @codeCoverageIgnoreEnd
+
+        $options += [
+            'method' => 'GET',
+            'cname' => self::DEFAULT_DOWNLOAD_URL,
+            'contentMd5' => null,
+            'contentType' => null,
+            'headers' => [],
+            'saveAsName' => null,
+            'responseDisposition' => null,
+            'responseType' => null,
+            'keyFile' => null,
+            'keyFilePath' => null
+        ];
+
+        $seconds = $expires->get()->format('U');
+        if ($seconds < time()) {
+            throw new \InvalidArgumentException('Expiration cannot be in the past.');
+        }
+
+        $allowedMethods = ['GET', 'PUT', 'DELETE'];
+        $options['method'] = strtoupper($options['method']);
+        if (!in_array($options['method'], $allowedMethods)) {
+            throw new \InvalidArgumentException('$options.method must be one of `GET`, `PUT` or `DELETE`.');
+        }
+
+        $options['cname'] = trim($options['cname'], '/');
+
+        $resource = sprintf('/%s/%s', $this->identity['bucket'], $this->identity['object']);
+
+        $headers = [];
+        foreach ($options['headers'] as $name => $value) {
+            $value = (is_array($value))
+                ? implode(',', $value)
+                : $value;
+
+            $headers[] = $name .':'. $value;
+        }
+
+        if ($headers) {
+            $headers[] = "";
+        }
+
+        $toSign = [
+            $options['method'],
+            $options['contentMd5'],
+            $options['contentType'],
+            $seconds,
+            implode("\n", $headers) . $resource,
+        ];
+
+        if ($options['keyFilePath']) {
+            if (!file_exists($options['keyFilePath'])) {
+                throw new \InvalidArgumentException(sprintf(
+                    'Keyfile path %s does not exist.',
+                    $options['keyFilePath']
+                ));
+            }
+
+            $keyFile = json_decode(file_get_contents($options['keyFilePath']), true);
+            if (json_last_error() !== JSON_ERROR_NONE) {
+                throw new \InvalidArgumentException(sprintf(
+                    'Keyfile path %s does not contain valid json.',
+                    $options['keyFilePath']
+                ));
+            }
+        } elseif ($options['keyFile']) {
+            $keyFile = $options['keyFile'];
+        } else {
+            $requestWrapper = $this->connection->requestWrapper();
+            $keyFile = $requestWrapper->keyFile();
+        }
+
+        if (!isset($keyFile['private_key']) || !isset($keyFile['client_email'])) {
+            throw new \RuntimeException(
+                'Keyfile does not provide required information. ' .
+                'Please ensure keyfile includes `private_key` and `client_email`.'
+            );
+        }
+
+        $string = implode("\n", $toSign);
+        $signature = $this->signString($keyFile['private_key'], $string);
+        $encodedSignature = urlencode(base64_encode($signature));
+
+        $query = [];
+        $query[] = 'GoogleAccessId='. $keyFile['client_email'];
+        $query[] = 'Expires='. $seconds;
+        $query[] = 'Signature='. $encodedSignature;
+
+        if ($options['contentType']) {
+            $query[] = 'response-content-type='. urlencode($options['contentType']);
+        }
+
+        if ($options['responseDisposition']) {
+            $query[] = 'response-content-disposition='. urlencode($options['responseDisposition']);
+        } elseif ($options['saveAsName']) {
+            $query[] = 'response-content-disposition=attachment;filename="'. urlencode($options['saveAsName']) .'"';
+        }
+
+        if ($options['responseType']) {
+            $query[] = 'response-content-type='. urlencode($options['responseType']);
+        }
+
+        if ($this->identity['generation']) {
+            $query[] = 'generation='. $this->identity['generation'];
+        }
+
+        return $options['cname'] . $resource .'?'. implode('&', $query);
     }
 
     /**

@@ -109,4 +109,20 @@ trait EncryptionTrait
 
         return [];
     }
+
+    /**
+     * Sign a string using a given private key.
+     *
+     * @param string $privateKey The private key to use to sign the data.
+     * @param string $data The data to sign.
+     * @param mixed $algo The algorithm to use to sign.
+     * @return string The signature
+     */
+    private function signString($privateKey, $data, $algo = 'sha256WithRSAEncryption')
+    {
+        $signature = '';
+        $result = openssl_sign($data, $signature, $privateKey, $algo);
+
+        return $signature;
+    }
 }

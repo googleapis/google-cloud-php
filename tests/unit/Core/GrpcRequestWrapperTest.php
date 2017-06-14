@@ -39,6 +39,17 @@ class GrpcRequestWrapperTest extends \PHPUnit_Framework_TestCase
         }
     }
 
+    public function testGetKeyfile()
+    {
+        $kf = 'hello world';
+
+        $requestWrapper = new GrpcRequestWrapper([
+            'keyFile' => $kf
+        ]);
+
+        $this->assertEquals($kf, $requestWrapper->keyFile());
+    }
+
     /**
      * @dataProvider responseProvider
      */
@@ -172,12 +183,15 @@ class GrpcRequestWrapperTest extends \PHPUnit_Framework_TestCase
     public function exceptionProvider()
     {
         return [
-            [3, Exception\BadRequestException::class],
-            [5, Exception\NotFoundException::class],
-            [6, Exception\ConflictException::class],
-            [2, Exception\ServerException::class],
-            [13, Exception\ServerException::class],
-            [15, Exception\ServiceException::class]
+            [\Grpc\STATUS_INVALID_ARGUMENT, Exception\BadRequestException::class],
+            [\Grpc\STATUS_NOT_FOUND, Exception\NotFoundException::class],
+            [\Grpc\STATUS_UNIMPLEMENTED, Exception\NotFoundException::class],
+            [\Grpc\STATUS_ALREADY_EXISTS, Exception\ConflictException::class],
+            [\Grpc\STATUS_FAILED_PRECONDITION, Exception\FailedPreconditionException::class],
+            [\Grpc\STATUS_UNKNOWN, Exception\ServerException::class],
+            [\Grpc\STATUS_INTERNAL, Exception\ServerException::class],
+            [\Grpc\STATUS_ABORTED, Exception\AbortedException::class],
+            [999, Exception\ServiceException::class]
         ];
     }
 }
