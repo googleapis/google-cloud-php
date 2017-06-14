@@ -111,16 +111,6 @@ class GrpcTraitTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('2016-08-15T06:35:09.000000001Z', $this->implementation->call('formatTimestampFromApi', [$timestamp]));
     }
 
-    public function testFormatsLabels()
-    {
-        $labels = ['test' => 'label'];
-        $expected = [
-            key($labels) => current($labels)
-        ];
-
-        $this->assertEquals($expected, $this->implementation->call('formatLabelsForApi', [$labels]));
-    }
-
     public function testFormatsStruct()
     {
         $value = 'test';

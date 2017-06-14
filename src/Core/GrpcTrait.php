@@ -115,27 +115,6 @@ trait GrpcTrait
     }
 
     /**
-     * Format a set of labels for the API.
-     *
-     * @param array $labels
-     * @return array
-     */
-    private function formatLabelsForApi(array $labels)
-    {
-        return $labels;
-        $fLabels = [];
-
-        foreach ($labels as $key => $value) {
-            $fLabels[] = [
-                'key' => $key,
-                'value' => $value
-            ];
-        }
-
-        return $fLabels;
-    }
-
-    /**
      * Format a struct for the API.
      *
      * @param array $fields

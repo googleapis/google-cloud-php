@@ -226,11 +226,12 @@ class Grpc implements ConnectionInterface
     public function updateInstance(array $args)
     {
         $instanceName = $args['name'];
-        $instanceObject = $this->instanceObject($args);
 
-        $mask = array_keys($this->serializer->encodeMessage($instanceObject));
-
+        $instanceArray = $this->instanceArray($args);
+        $mask = array_keys($instanceArray);
         $fieldMask = $this->serializer->decodeMessage(new FieldMask(), ['paths' => $mask]);
+
+        $instanceObject = $this->serializer->decodeMessage(new Instance(), $instanceArray);
 
         $res = $this->send([$this->instanceAdminClient, 'updateInstance'], [
             $instanceObject,
@@ -722,27 +723,33 @@ class Grpc implements ConnectionInterface
 
     /**
      * @param array $args
-     * @param bool $isRequired
+     * @param bool $required
+     * @return Instance
      */
     private function instanceObject(array &$args, $required = false)
     {
-        $labels = null;
-        if (isset($args['labels'])) {
-            $labels = $this->formatLabelsForApi(
-                $this->pluck('labels', $args, $required));
-        }
-
         return $this->serializer->decodeMessage(
             new Instance(),
-            array_filter([
-                'name' => $this->pluck('name', $args, $required),
-                'config' => $this->pluck('config', $args, $required),
-                'displayName' => $this->pluck('displayName', $args, $required),
-                'nodeCount' => $this->pluck('nodeCount', $args, $required),
-                'state' => $this->pluck('state', $args, $required),
-                'labels' => $labels
-            ])
+            $this->instanceArray($args, $required)
         );
+    }
+
+    /**
+     * @param array $args
+     * @param bool $required
+     * @return array
+     */
+    private function instanceArray(array &$args, $required = false)
+    {
+        $argsCopy = $args;
+        return array_intersect_key([
+            'name' => $this->pluck('name', $args, $required),
+            'config' => $this->pluck('config', $args, $required),
+            'displayName' => $this->pluck('displayName', $args, $required),
+            'nodeCount' => $this->pluck('nodeCount', $args, $required),
+            'state' => $this->pluck('state', $args, $required),
+            'labels' => $this->pluck('labels', $args, $required),
+        ], $argsCopy);
     }
 
     /**

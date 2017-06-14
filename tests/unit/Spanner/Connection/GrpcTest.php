@@ -99,17 +99,30 @@ class GrpcTest extends \PHPUnit_Framework_TestCase
 
         $instance = $serializer->decodeMessage(
             new Instance(),
-            array_filter([
-                    'labels' => $this->formatLabelsForApi([])
-                ] + $instanceArgs
-            )
+            $instanceArgs
         );
 
         $lro = $this->prophesize(OperationResponse::class)->reveal();
 
-        $mask = array_keys($serializer->encodeMessage($instance));
+        $mask = array_keys($instanceArgs);
 
         $fieldMask = $serializer->decodeMessage(new FieldMask(), ['paths' => $mask]);
+
+        $instanceArgsPartial = [
+            'name' => $instanceName,
+            'displayName' => "",
+        ];
+
+        $instancePartial = $serializer->decodeMessage(
+            new Instance(),
+            $instanceArgsPartial
+        );
+
+        $lroPartial = $this->prophesize(OperationResponse::class)->reveal();
+
+        $maskPartial = array_keys($instanceArgsPartial);
+
+        $fieldMaskPartial = $serializer->decodeMessage(new FieldMask(), ['paths' => $maskPartial]);
 
         $tableName = 'foo';
 
@@ -244,6 +257,13 @@ class GrpcTest extends \PHPUnit_Framework_TestCase
                 $instanceArgs,
                 [$instance, $fieldMask, ['userHeaders' => ['google-cloud-resource-prefix' => [$instanceName]]]],
                 $lro,
+                null
+            ],
+            [
+                'updateInstance',
+                $instanceArgsPartial,
+                [$instancePartial, $fieldMaskPartial, ['userHeaders' => ['google-cloud-resource-prefix' => [$instanceName]]]],
+                $lroPartial,
                 null
             ],
             [

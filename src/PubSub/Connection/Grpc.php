@@ -414,10 +414,6 @@ class Grpc implements ConnectionInterface
      */
     private function buildMessage(array $message)
     {
-        if (isset($message['attributes'])) {
-            $message['attributes'] = $this->formatLabelsForApi($message['attributes']);
-        }
-
         return $this->serializer->decodeMessage(new PubsubMessage(), $message);
     }
 
@@ -436,10 +432,6 @@ class Grpc implements ConnectionInterface
      */
     private function buildPushConfig(array $pushConfig)
     {
-        if (isset($pushConfig['attributes'])) {
-            $pushConfig['attributes'] = $this->formatLabelsForApi($pushConfig['attributes']);
-        }
-
         return $this->serializer->decodeMessage(new PushConfig(), $pushConfig);
     }
 
