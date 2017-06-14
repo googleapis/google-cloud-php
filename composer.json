@@ -57,7 +57,7 @@
         "league/json-guard": "^0.3",
         "erusev/parsedown": "^1.6",
         "vierbergenlars/php-semver": "^3.0",
-        "google/gax": "dev-proto3-review",
+        "google/gax": "dev-proto3",
         "google/protobuf": "dev-master",
         "symfony/lock": "3.3.x-dev#1ba6ac9"
     },
