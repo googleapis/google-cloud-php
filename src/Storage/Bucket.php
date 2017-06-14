@@ -208,6 +208,15 @@ class Bucket
      *           The size must be in multiples of 262144 bytes. With chunking
      *           you have increased reliability at the risk of higher overhead.
      *           It is recommended to not use chunking.
+     *     @type callable $uploadProgressCallback If provided together with
+     *           $resumable == true the given callable function/method will be
+     *           called after each successfully uploaded chunk. The callable
+     *           function/method will receive the number of uploaded bytes
+     *           after each uploaded chunk as a parameter to this callable.
+     *           It's useful if you want to create a progress bar when using
+     *           resumable upload type together with $chunkSize parameter.
+     *           If $chunkSize is not set the callable function/method will be
+     *           called only once after the successful file upload.
      *     @type string $predefinedAcl Predefined ACL to apply to the object.
      *           Acceptable values include, `"authenticatedRead"`,
      *           `"bucketOwnerFullControl"`, `"bucketOwnerRead"`, `"private"`,
@@ -532,6 +541,7 @@ class Bucket
      * ```
      *
      * @see https://cloud.google.com/storage/docs/json_api/v1/buckets/patch Buckets patch API documentation.
+     * @see https://cloud.google.com/storage/docs/key-terms#bucket-labels Bucket Labels
      *
      * @param array $options [optional] {
      *     Configuration options.
@@ -571,6 +581,9 @@ class Bucket
      *           `"STANDARD"` and `"DURABLE_REDUCED_AVAILABILITY"`.
      *     @type array $versioning The bucket's versioning configuration.
      *     @type array $website The bucket's website configuration.
+     *     @type array $labels The Bucket labels. Labels are represented as an
+     *           array of keys and values. To remove an existing label, set its
+     *           value to `null`.
      * }
      * @return array
      */
