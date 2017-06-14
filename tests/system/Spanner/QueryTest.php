@@ -19,9 +19,9 @@ namespace Google\Cloud\Tests\System\Spanner;
 
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Spanner\Bytes;
+use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Date;
 use Google\Cloud\Spanner\Timestamp;
-use Google\Cloud\Spanner\ValueMapper;
 
 /**
  * @group spanner
@@ -105,7 +105,7 @@ class QueryTest extends SpannerTestCase
                 'param' => null
             ],
             'types' => [
-                'param' => ValueMapper::TYPE_BOOL
+                'param' => Database::TYPE_BOOL
             ]
         ]);
 
@@ -159,7 +159,7 @@ class QueryTest extends SpannerTestCase
                 'param' => null
             ],
             'types' => [
-                'param' => ValueMapper::TYPE_INT64
+                'param' => Database::TYPE_INT64
             ]
         ]);
 
@@ -197,7 +197,7 @@ class QueryTest extends SpannerTestCase
                 'param' => null
             ],
             'types' => [
-                'param' => ValueMapper::TYPE_FLOAT64
+                'param' => Database::TYPE_FLOAT64
             ]
         ]);
 
@@ -235,7 +235,7 @@ class QueryTest extends SpannerTestCase
                 'param' => null
             ],
             'types' => [
-                'param' => ValueMapper::TYPE_STRING
+                'param' => Database::TYPE_STRING
             ]
         ]);
 
@@ -276,7 +276,7 @@ class QueryTest extends SpannerTestCase
                 'param' => null
             ],
             'types' => [
-                'param' => ValueMapper::TYPE_BYTES
+                'param' => Database::TYPE_BYTES
             ]
         ]);
 
@@ -316,7 +316,7 @@ class QueryTest extends SpannerTestCase
                 'param' => null
             ],
             'types' => [
-                'param' => ValueMapper::TYPE_TIMESTAMP
+                'param' => Database::TYPE_TIMESTAMP
             ]
         ]);
 
@@ -356,7 +356,7 @@ class QueryTest extends SpannerTestCase
                 'param' => null
             ],
             'types' => [
-                'param' => ValueMapper::TYPE_DATE
+                'param' => Database::TYPE_DATE
             ]
         ]);
 
@@ -416,7 +416,7 @@ class QueryTest extends SpannerTestCase
                 'param' => []
             ],
             'types' => [
-                'param' => [ValueMapper::TYPE_ARRAY, $type]
+                'param' => [Database::TYPE_ARRAY, $type]
             ]
         ]);
 
@@ -444,7 +444,7 @@ class QueryTest extends SpannerTestCase
                 'param' => null
             ],
             'types' => [
-                'param' => [ValueMapper::TYPE_ARRAY, $type]
+                'param' => [Database::TYPE_ARRAY, $type]
             ]
         ]);
 
@@ -586,26 +586,26 @@ class QueryTest extends SpannerTestCase
     public function arrayTypesEmpty()
     {
         return [
-            [ValueMapper::TYPE_BOOL],
-            [ValueMapper::TYPE_INT64],
-            [ValueMapper::TYPE_FLOAT64],
-            [ValueMapper::TYPE_STRING],
-            [ValueMapper::TYPE_BYTES],
-            [ValueMapper::TYPE_TIMESTAMP],
-            [ValueMapper::TYPE_DATE],
+            [Database::TYPE_BOOL],
+            [Database::TYPE_INT64],
+            [Database::TYPE_FLOAT64],
+            [Database::TYPE_STRING],
+            [Database::TYPE_BYTES],
+            [Database::TYPE_TIMESTAMP],
+            [Database::TYPE_DATE],
         ];
     }
 
     public function arrayTypesNull()
     {
         return [
-            [ValueMapper::TYPE_BOOL],
-            [ValueMapper::TYPE_INT64],
-            [ValueMapper::TYPE_FLOAT64],
-            [ValueMapper::TYPE_STRING],
-            [ValueMapper::TYPE_BYTES],
-            [ValueMapper::TYPE_TIMESTAMP],
-            [ValueMapper::TYPE_DATE],
+            [Database::TYPE_BOOL],
+            [Database::TYPE_INT64],
+            [Database::TYPE_FLOAT64],
+            [Database::TYPE_STRING],
+            [Database::TYPE_BYTES],
+            [Database::TYPE_TIMESTAMP],
+            [Database::TYPE_DATE],
         ];
     }
 }

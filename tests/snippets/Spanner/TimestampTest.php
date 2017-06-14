@@ -18,6 +18,7 @@
 namespace Google\Cloud\Tests\Snippets\Spanner;
 
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
+use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\ValueMapper;
 
@@ -69,7 +70,7 @@ class TimestampTest extends SnippetTestCase
         $snippet->addLocal('timestamp', $this->timestamp);
 
         $res = $snippet->invoke('type');
-        $this->assertEquals(ValueMapper::TYPE_TIMESTAMP, $res->returnVal());
+        $this->assertEquals(Database::TYPE_TIMESTAMP, $res->returnVal());
     }
 
     public function testFormatAsString()
