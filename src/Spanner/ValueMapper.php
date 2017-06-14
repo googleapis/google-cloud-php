@@ -420,7 +420,7 @@ class ValueMapper
 
     private function getColumnName($columns, $index)
     {
-        return isset($columns[$index]['name'])
+        return (isset($columns[$index]['name']) && $columns[$index]['name'])
             ? $columns[$index]['name']
             : $index;
     }

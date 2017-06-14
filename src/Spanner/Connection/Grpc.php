@@ -228,8 +228,8 @@ class Grpc implements ConnectionInterface
         $instanceName = $args['name'];
 
         $instanceArray = $this->instanceArray($args);
-        $mask = array_keys($instanceArray);
-        $fieldMask = $this->serializer->decodeMessage(new FieldMask(), ['paths' => $mask]);
+
+        $fieldMask = $this->fieldMask($instanceArray);
 
         $instanceObject = $this->serializer->decodeMessage(new Instance(), $instanceArray);
 
@@ -750,6 +750,19 @@ class Grpc implements ConnectionInterface
             'state' => $this->pluck('state', $args, $required),
             'labels' => $this->pluck('labels', $args, $required),
         ], $argsCopy);
+    }
+
+    /**
+     * @param array $instanceArray
+     * @return FieldMask
+     */
+    private function fieldMask($instanceArray)
+    {
+        $mask = [];
+        foreach (array_keys($instanceArray) as $key) {
+            $mask[] = Serializer::toSnakeCase($key);
+        }
+        return $this->serializer->decodeMessage(new FieldMask(), ['paths' => $mask]);
     }
 
     /**
