@@ -79,6 +79,7 @@
             "src/Spanner/Admin/Instance/V1/GPBMetadata",
             "src/Spanner/V1/GPBMetadata",
             "src/Speech/V1/GPBMetadata",
+            "src/Speech/V1beta1/GPBMetadata",
             "src/VideoIntelligence/V1beta1/GPBMetadata",
             "src/Vision/V1/GPBMetadata"
         ]
