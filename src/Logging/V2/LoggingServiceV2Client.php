@@ -24,6 +24,8 @@
  * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
  * more frequently than those which have been declared beta or 1.0, including changes which break
  * backwards compatibility.
+ *
+ * @experimental
  */
 
 namespace Google\Cloud\Logging\V2;
@@ -69,6 +71,8 @@ use google\logging\v2\WriteLogEntriesRequest\LabelsEntry;
  * with these names, this class includes a format method for each type of name, and additionally
  * a parse method to extract the individual identifiers contained within names that are
  * returned.
+ *
+ * @experimental
  */
 class LoggingServiceV2Client
 {
@@ -109,6 +113,11 @@ class LoggingServiceV2Client
     /**
      * Formats a string containing the fully-qualified path to represent
      * a project resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project resource.
+     * @experimental
      */
     public static function formatProjectName($project)
     {
@@ -120,6 +129,12 @@ class LoggingServiceV2Client
     /**
      * Formats a string containing the fully-qualified path to represent
      * a log resource.
+     *
+     * @param string $project
+     * @param string $log
+     *
+     * @return string The formatted log resource.
+     * @experimental
      */
     public static function formatLogName($project, $log)
     {
@@ -132,6 +147,11 @@ class LoggingServiceV2Client
     /**
      * Parses the project from the given fully-qualified path which
      * represents a project resource.
+     *
+     * @param string $projectName The fully-qualified project resource.
+     *
+     * @return string The extracted project value.
+     * @experimental
      */
     public static function parseProjectFromProjectName($projectName)
     {
@@ -141,6 +161,11 @@ class LoggingServiceV2Client
     /**
      * Parses the project from the given fully-qualified path which
      * represents a log resource.
+     *
+     * @param string $logName The fully-qualified log resource.
+     *
+     * @return string The extracted project value.
+     * @experimental
      */
     public static function parseProjectFromLogName($logName)
     {
@@ -150,6 +175,11 @@ class LoggingServiceV2Client
     /**
      * Parses the log from the given fully-qualified path which
      * represents a log resource.
+     *
+     * @param string $logName The fully-qualified log resource.
+     *
+     * @return string The extracted log value.
+     * @experimental
      */
     public static function parseLogFromLogName($logName)
     {
@@ -247,6 +277,7 @@ class LoggingServiceV2Client
      *                              A CredentialsLoader object created using the
      *                              Google\Auth library.
      * }
+     * @experimental
      */
     public function __construct($options = [])
     {
@@ -325,6 +356,8 @@ class LoggingServiceV2Client
     /**
      * Deletes all the log entries in a log.
      * The log reappears if it receives new entries.
+     * Log entries written shortly before the delete operation might not be
+     * deleted.
      *
      * Sample code:
      * ```
@@ -341,6 +374,8 @@ class LoggingServiceV2Client
      *
      *     "projects/[PROJECT_ID]/logs/[LOG_ID]"
      *     "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]"
+     *     "folders/[FOLDER_ID]/logs/[LOG_ID]"
      *
      * `[LOG_ID]` must be URL-encoded. For example,
      * `"projects/my-project-id/logs/syslog"`,
@@ -359,6 +394,7 @@ class LoggingServiceV2Client
      * }
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function deleteLog($logName, $optionalArgs = [])
     {
@@ -382,8 +418,7 @@ class LoggingServiceV2Client
     }
 
     /**
-     * Writes log entries to Stackdriver Logging.  All log entries are
-     * written by this method.
+     * Writes log entries to Stackdriver Logging.
      *
      * Sample code:
      * ```
@@ -396,10 +431,16 @@ class LoggingServiceV2Client
      * }
      * ```
      *
-     * @param LogEntry[] $entries Required. The log entries to write. Values supplied for the fields
+     * @param LogEntry[] $entries Required.  The log entries to write. Values supplied for the fields
      *                            `log_name`, `resource`, and `labels` in this `entries.write` request are
-     *                            added to those log entries that do not provide their own values for the
-     *                            fields.
+     *                            inserted into those log entries in this list that do not provide their own
+     *                            values.
+     *
+     * Stackdriver Logging also creates and inserts values for `timestamp` and
+     * `insert_id` if the entries do not provide them. The created `insert_id` for
+     * the N'th entry in this list will be greater than earlier entries and less
+     * than later entries.  Otherwise, the order of log entries in this list does
+     * not matter.
      *
      * To improve throughput and to avoid exceeding the
      * [quota limit](https://cloud.google.com/logging/quota-policy) for calls to `entries.write`,
@@ -414,6 +455,8 @@ class LoggingServiceV2Client
      *
      *              "projects/[PROJECT_ID]/logs/[LOG_ID]"
      *              "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
+     *              "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]"
+     *              "folders/[FOLDER_ID]/logs/[LOG_ID]"
      *
      *          `[LOG_ID]` must be URL-encoded. For example,
      *          `"projects/my-project-id/logs/syslog"` or
@@ -437,9 +480,9 @@ class LoggingServiceV2Client
      *     @type bool $partialSuccess
      *          Optional. Whether valid entries should be written even if some other
      *          entries fail due to INVALID_ARGUMENT or PERMISSION_DENIED errors. If any
-     *          entry is not written, the response status will be the error associated
-     *          with one of the failed entries and include error details in the form of
-     *          WriteLogEntriesPartialErrors.
+     *          entry is not written, then the response status is the error associated
+     *          with one of the failed entries and the response includes error details
+     *          keyed by the entries' zero-based index in the `entries.write` method.
      *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
@@ -451,6 +494,7 @@ class LoggingServiceV2Client
      * @return \google\logging\v2\WriteLogEntriesResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function writeLogEntries($entries, $optionalArgs = [])
     {
@@ -517,11 +561,13 @@ class LoggingServiceV2Client
      * }
      * ```
      *
-     * @param string[] $resourceNames Required. Names of one or more resources from which to retrieve log
-     *                                entries:
+     * @param string[] $resourceNames Required. Names of one or more parent resources from which to
+     *                                retrieve log entries:
      *
      *     "projects/[PROJECT_ID]"
      *     "organizations/[ORGANIZATION_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]"
+     *     "folders/[FOLDER_ID]"
      *
      * Projects listed in the `project_ids` field are added to this list.
      * @param array $optionalArgs {
@@ -547,7 +593,7 @@ class LoggingServiceV2Client
      *          option returns entries in order of increasing values of
      *          `LogEntry.timestamp` (oldest first), and the second option returns entries
      *          in order of decreasing timestamps (newest first).  Entries with equal
-     *          timestamps are returned in order of `LogEntry.insertId`.
+     *          timestamps are returned in order of their `insert_id` values.
      *     @type int $pageSize
      *          The maximum number of resources contained in the underlying API
      *          response. The API may return fewer values in a page, even if
@@ -568,6 +614,7 @@ class LoggingServiceV2Client
      * @return \Google\GAX\PagedListResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function listLogEntries($resourceNames, $optionalArgs = [])
     {
@@ -659,6 +706,7 @@ class LoggingServiceV2Client
      * @return \Google\GAX\PagedListResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function listMonitoredResourceDescriptors($optionalArgs = [])
     {
@@ -687,7 +735,7 @@ class LoggingServiceV2Client
     }
 
     /**
-     * Lists the logs in projects or organizations.
+     * Lists the logs in projects, organizations, folders, or billing accounts.
      * Only logs that have entries are listed.
      *
      * Sample code:
@@ -717,6 +765,8 @@ class LoggingServiceV2Client
      *
      *     "projects/[PROJECT_ID]"
      *     "organizations/[ORGANIZATION_ID]"
+     *     "billingAccounts/[BILLING_ACCOUNT_ID]"
+     *     "folders/[FOLDER_ID]"
      * @param array $optionalArgs {
      *                            Optional.
      *
@@ -740,6 +790,7 @@ class LoggingServiceV2Client
      * @return \Google\GAX\PagedListResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function listLogs($parent, $optionalArgs = [])
     {
@@ -771,6 +822,8 @@ class LoggingServiceV2Client
     /**
      * Initiates an orderly shutdown in which preexisting calls continue but new
      * calls are immediately cancelled.
+     *
+     * @experimental
      */
     public function close()
     {

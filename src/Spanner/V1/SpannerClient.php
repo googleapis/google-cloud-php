@@ -24,6 +24,8 @@
  * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
  * more frequently than those which have been declared beta or 1.0, including changes which break
  * backwards compatibility.
+ *
+ * @experimental
  */
 
 namespace Google\Cloud\Spanner\V1;
@@ -78,6 +80,8 @@ use google\spanner\v1\TransactionSelector;
  * with these names, this class includes a format method for each type of name, and additionally
  * a parse method to extract the individual identifiers contained within names that are
  * returned.
+ *
+ * @experimental
  */
 class SpannerClient
 {
@@ -118,6 +122,13 @@ class SpannerClient
     /**
      * Formats a string containing the fully-qualified path to represent
      * a database resource.
+     *
+     * @param string $project
+     * @param string $instance
+     * @param string $database
+     *
+     * @return string The formatted database resource.
+     * @experimental
      */
     public static function formatDatabaseName($project, $instance, $database)
     {
@@ -131,6 +142,14 @@ class SpannerClient
     /**
      * Formats a string containing the fully-qualified path to represent
      * a session resource.
+     *
+     * @param string $project
+     * @param string $instance
+     * @param string $database
+     * @param string $session
+     *
+     * @return string The formatted session resource.
+     * @experimental
      */
     public static function formatSessionName($project, $instance, $database, $session)
     {
@@ -145,6 +164,11 @@ class SpannerClient
     /**
      * Parses the project from the given fully-qualified path which
      * represents a database resource.
+     *
+     * @param string $databaseName The fully-qualified database resource.
+     *
+     * @return string The extracted project value.
+     * @experimental
      */
     public static function parseProjectFromDatabaseName($databaseName)
     {
@@ -154,6 +178,11 @@ class SpannerClient
     /**
      * Parses the instance from the given fully-qualified path which
      * represents a database resource.
+     *
+     * @param string $databaseName The fully-qualified database resource.
+     *
+     * @return string The extracted instance value.
+     * @experimental
      */
     public static function parseInstanceFromDatabaseName($databaseName)
     {
@@ -163,6 +192,11 @@ class SpannerClient
     /**
      * Parses the database from the given fully-qualified path which
      * represents a database resource.
+     *
+     * @param string $databaseName The fully-qualified database resource.
+     *
+     * @return string The extracted database value.
+     * @experimental
      */
     public static function parseDatabaseFromDatabaseName($databaseName)
     {
@@ -172,6 +206,11 @@ class SpannerClient
     /**
      * Parses the project from the given fully-qualified path which
      * represents a session resource.
+     *
+     * @param string $sessionName The fully-qualified session resource.
+     *
+     * @return string The extracted project value.
+     * @experimental
      */
     public static function parseProjectFromSessionName($sessionName)
     {
@@ -181,6 +220,11 @@ class SpannerClient
     /**
      * Parses the instance from the given fully-qualified path which
      * represents a session resource.
+     *
+     * @param string $sessionName The fully-qualified session resource.
+     *
+     * @return string The extracted instance value.
+     * @experimental
      */
     public static function parseInstanceFromSessionName($sessionName)
     {
@@ -190,6 +234,11 @@ class SpannerClient
     /**
      * Parses the database from the given fully-qualified path which
      * represents a session resource.
+     *
+     * @param string $sessionName The fully-qualified session resource.
+     *
+     * @return string The extracted database value.
+     * @experimental
      */
     public static function parseDatabaseFromSessionName($sessionName)
     {
@@ -199,6 +248,11 @@ class SpannerClient
     /**
      * Parses the session from the given fully-qualified path which
      * represents a session resource.
+     *
+     * @param string $sessionName The fully-qualified session resource.
+     *
+     * @return string The extracted session value.
+     * @experimental
      */
     public static function parseSessionFromSessionName($sessionName)
     {
@@ -275,6 +329,7 @@ class SpannerClient
      *                              A CredentialsLoader object created using the
      *                              Google\Auth library.
      * }
+     * @experimental
      */
     public function __construct($options = [])
     {
@@ -399,6 +454,7 @@ class SpannerClient
      * @return \google\spanner\v1\Session
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function createSession($database, $optionalArgs = [])
     {
@@ -452,6 +508,7 @@ class SpannerClient
      * @return \google\spanner\v1\Session
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function getSession($name, $optionalArgs = [])
     {
@@ -501,6 +558,7 @@ class SpannerClient
      * }
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function deleteSession($name, $optionalArgs = [])
     {
@@ -587,9 +645,10 @@ class SpannerClient
      *          enables the new SQL query execution to resume where the last one left
      *          off. The rest of the request parameters must exactly match the
      *          request that yielded this token.
-     *     @type QueryMode $queryMode
+     *     @type int $queryMode
      *          Used to control the amount of debugging information returned in
      *          [ResultSetStats][google.spanner.v1.ResultSetStats].
+     *          For allowed values, use constants defined on {@see \google\spanner\v1\ExecuteSqlRequest\QueryMode}
      *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
@@ -601,6 +660,7 @@ class SpannerClient
      * @return \google\spanner\v1\ResultSet
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function executeSql($session, $sql, $optionalArgs = [])
     {
@@ -703,9 +763,10 @@ class SpannerClient
      *          enables the new SQL query execution to resume where the last one left
      *          off. The rest of the request parameters must exactly match the
      *          request that yielded this token.
-     *     @type QueryMode $queryMode
+     *     @type int $queryMode
      *          Used to control the amount of debugging information returned in
      *          [ResultSetStats][google.spanner.v1.ResultSetStats].
+     *          For allowed values, use constants defined on {@see \google\spanner\v1\ExecuteSqlRequest\QueryMode}
      *     @type int $timeoutMillis
      *          Timeout to use for this call.
      * }
@@ -713,6 +774,7 @@ class SpannerClient
      * @return \Google\GAX\ServerStreamingResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function executeStreamingSql($session, $sql, $optionalArgs = [])
     {
@@ -827,6 +889,7 @@ class SpannerClient
      * @return \google\spanner\v1\ResultSet
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function read($session, $table, $columns, $keySet, $optionalArgs = [])
     {
@@ -932,6 +995,7 @@ class SpannerClient
      * @return \Google\GAX\ServerStreamingResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function streamingRead($session, $table, $columns, $keySet, $optionalArgs = [])
     {
@@ -1005,6 +1069,7 @@ class SpannerClient
      * @return \google\spanner\v1\Transaction
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function beginTransaction($session, $options, $optionalArgs = [])
     {
@@ -1080,6 +1145,7 @@ class SpannerClient
      * @return \google\spanner\v1\CommitResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function commit($session, $mutations, $optionalArgs = [])
     {
@@ -1147,6 +1213,7 @@ class SpannerClient
      * }
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function rollback($session, $transactionId, $optionalArgs = [])
     {
@@ -1173,6 +1240,8 @@ class SpannerClient
     /**
      * Initiates an orderly shutdown in which preexisting calls continue but new
      * calls are immediately cancelled.
+     *
+     * @experimental
      */
     public function close()
     {

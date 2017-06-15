@@ -24,6 +24,8 @@
  * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
  * more frequently than those which have been declared beta or 1.0, including changes which break
  * backwards compatibility.
+ *
+ * @experimental
  */
 
 namespace Google\Cloud\ErrorReporting\V1beta1;
@@ -63,6 +65,8 @@ use google\devtools\clouderrorreporting\v1beta1\UpdateGroupRequest;
  * with these names, this class includes a format method for each type of name, and additionally
  * a parse method to extract the individual identifiers contained within names that are
  * returned.
+ *
+ * @experimental
  */
 class ErrorGroupServiceClient
 {
@@ -102,6 +106,12 @@ class ErrorGroupServiceClient
     /**
      * Formats a string containing the fully-qualified path to represent
      * a group resource.
+     *
+     * @param string $project
+     * @param string $group
+     *
+     * @return string The formatted group resource.
+     * @experimental
      */
     public static function formatGroupName($project, $group)
     {
@@ -114,6 +124,11 @@ class ErrorGroupServiceClient
     /**
      * Parses the project from the given fully-qualified path which
      * represents a group resource.
+     *
+     * @param string $groupName The fully-qualified group resource.
+     *
+     * @return string The extracted project value.
+     * @experimental
      */
     public static function parseProjectFromGroupName($groupName)
     {
@@ -123,6 +138,11 @@ class ErrorGroupServiceClient
     /**
      * Parses the group from the given fully-qualified path which
      * represents a group resource.
+     *
+     * @param string $groupName The fully-qualified group resource.
+     *
+     * @return string The extracted group value.
+     * @experimental
      */
     public static function parseGroupFromGroupName($groupName)
     {
@@ -178,6 +198,7 @@ class ErrorGroupServiceClient
      *                              A CredentialsLoader object created using the
      *                              Google\Auth library.
      * }
+     * @experimental
      */
     public function __construct($options = [])
     {
@@ -278,6 +299,7 @@ class ErrorGroupServiceClient
      * @return \google\devtools\clouderrorreporting\v1beta1\ErrorGroup
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function getGroup($groupName, $optionalArgs = [])
     {
@@ -330,6 +352,7 @@ class ErrorGroupServiceClient
      * @return \google\devtools\clouderrorreporting\v1beta1\ErrorGroup
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function updateGroup($group, $optionalArgs = [])
     {
@@ -355,6 +378,8 @@ class ErrorGroupServiceClient
     /**
      * Initiates an orderly shutdown in which preexisting calls continue but new
      * calls are immediately cancelled.
+     *
+     * @experimental
      */
     public function close()
     {

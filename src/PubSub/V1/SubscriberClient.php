@@ -24,6 +24,8 @@
  * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
  * more frequently than those which have been declared beta or 1.0, including changes which break
  * backwards compatibility.
+ *
+ * @experimental
  */
 
 namespace Google\Cloud\PubSub\V1;
@@ -86,6 +88,8 @@ use google\pubsub\v1\UpdateSubscriptionRequest;
  * with these names, this class includes a format method for each type of name, and additionally
  * a parse method to extract the individual identifiers contained within names that are
  * returned.
+ *
+ * @experimental
  */
 class SubscriberClient
 {
@@ -129,6 +133,11 @@ class SubscriberClient
     /**
      * Formats a string containing the fully-qualified path to represent
      * a project resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project resource.
+     * @experimental
      */
     public static function formatProjectName($project)
     {
@@ -140,6 +149,12 @@ class SubscriberClient
     /**
      * Formats a string containing the fully-qualified path to represent
      * a snapshot resource.
+     *
+     * @param string $project
+     * @param string $snapshot
+     *
+     * @return string The formatted snapshot resource.
+     * @experimental
      */
     public static function formatSnapshotName($project, $snapshot)
     {
@@ -152,6 +167,12 @@ class SubscriberClient
     /**
      * Formats a string containing the fully-qualified path to represent
      * a subscription resource.
+     *
+     * @param string $project
+     * @param string $subscription
+     *
+     * @return string The formatted subscription resource.
+     * @experimental
      */
     public static function formatSubscriptionName($project, $subscription)
     {
@@ -164,6 +185,12 @@ class SubscriberClient
     /**
      * Formats a string containing the fully-qualified path to represent
      * a topic resource.
+     *
+     * @param string $project
+     * @param string $topic
+     *
+     * @return string The formatted topic resource.
+     * @experimental
      */
     public static function formatTopicName($project, $topic)
     {
@@ -176,6 +203,11 @@ class SubscriberClient
     /**
      * Parses the project from the given fully-qualified path which
      * represents a project resource.
+     *
+     * @param string $projectName The fully-qualified project resource.
+     *
+     * @return string The extracted project value.
+     * @experimental
      */
     public static function parseProjectFromProjectName($projectName)
     {
@@ -185,6 +217,11 @@ class SubscriberClient
     /**
      * Parses the project from the given fully-qualified path which
      * represents a snapshot resource.
+     *
+     * @param string $snapshotName The fully-qualified snapshot resource.
+     *
+     * @return string The extracted project value.
+     * @experimental
      */
     public static function parseProjectFromSnapshotName($snapshotName)
     {
@@ -194,6 +231,11 @@ class SubscriberClient
     /**
      * Parses the snapshot from the given fully-qualified path which
      * represents a snapshot resource.
+     *
+     * @param string $snapshotName The fully-qualified snapshot resource.
+     *
+     * @return string The extracted snapshot value.
+     * @experimental
      */
     public static function parseSnapshotFromSnapshotName($snapshotName)
     {
@@ -203,6 +245,11 @@ class SubscriberClient
     /**
      * Parses the project from the given fully-qualified path which
      * represents a subscription resource.
+     *
+     * @param string $subscriptionName The fully-qualified subscription resource.
+     *
+     * @return string The extracted project value.
+     * @experimental
      */
     public static function parseProjectFromSubscriptionName($subscriptionName)
     {
@@ -212,6 +259,11 @@ class SubscriberClient
     /**
      * Parses the subscription from the given fully-qualified path which
      * represents a subscription resource.
+     *
+     * @param string $subscriptionName The fully-qualified subscription resource.
+     *
+     * @return string The extracted subscription value.
+     * @experimental
      */
     public static function parseSubscriptionFromSubscriptionName($subscriptionName)
     {
@@ -221,6 +273,11 @@ class SubscriberClient
     /**
      * Parses the project from the given fully-qualified path which
      * represents a topic resource.
+     *
+     * @param string $topicName The fully-qualified topic resource.
+     *
+     * @return string The extracted project value.
+     * @experimental
      */
     public static function parseProjectFromTopicName($topicName)
     {
@@ -230,6 +287,11 @@ class SubscriberClient
     /**
      * Parses the topic from the given fully-qualified path which
      * represents a topic resource.
+     *
+     * @param string $topicName The fully-qualified topic resource.
+     *
+     * @return string The extracted topic value.
+     * @experimental
      */
     public static function parseTopicFromTopicName($topicName)
     {
@@ -347,6 +409,7 @@ class SubscriberClient
      *                              A CredentialsLoader object created using the
      *                              Google\Auth library.
      * }
+     * @experimental
      */
     public function __construct($options = [])
     {
@@ -531,6 +594,7 @@ class SubscriberClient
      * @return \google\pubsub\v1\Subscription
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function createSubscription($name, $topic, $optionalArgs = [])
     {
@@ -596,6 +660,7 @@ class SubscriberClient
      * @return \google\pubsub\v1\Subscription
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function getSubscription($subscription, $optionalArgs = [])
     {
@@ -651,6 +716,7 @@ class SubscriberClient
      * @return \google\pubsub\v1\Subscription
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function updateSubscription($subscription, $updateMask, $optionalArgs = [])
     {
@@ -725,6 +791,7 @@ class SubscriberClient
      * @return \Google\GAX\PagedListResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function listSubscriptions($project, $optionalArgs = [])
     {
@@ -785,6 +852,7 @@ class SubscriberClient
      * }
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function deleteSubscription($subscription, $optionalArgs = [])
     {
@@ -849,6 +917,7 @@ class SubscriberClient
      * }
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function modifyAckDeadline($subscription, $ackIds, $ackDeadlineSeconds, $optionalArgs = [])
     {
@@ -912,6 +981,7 @@ class SubscriberClient
      * }
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function acknowledge($subscription, $ackIds, $optionalArgs = [])
     {
@@ -980,6 +1050,7 @@ class SubscriberClient
      * @return \google\pubsub\v1\PullResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function pull($subscription, $maxMessages, $optionalArgs = [])
     {
@@ -1070,6 +1141,7 @@ class SubscriberClient
      * @return \Google\GAX\BidiStreamingResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function streamingPull($optionalArgs = [])
     {
@@ -1129,6 +1201,7 @@ class SubscriberClient
      * }
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function modifyPushConfig($subscription, $pushConfig, $optionalArgs = [])
     {
@@ -1203,6 +1276,7 @@ class SubscriberClient
      * @return \Google\GAX\PagedListResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function listSnapshots($project, $optionalArgs = [])
     {
@@ -1283,6 +1357,7 @@ class SubscriberClient
      * @return \google\pubsub\v1\Snapshot
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function createSnapshot($name, $subscription, $optionalArgs = [])
     {
@@ -1337,6 +1412,7 @@ class SubscriberClient
      * }
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function deleteSnapshot($snapshot, $optionalArgs = [])
     {
@@ -1405,6 +1481,7 @@ class SubscriberClient
      * @return \google\pubsub\v1\SeekResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function seek($subscription, $optionalArgs = [])
     {
@@ -1470,6 +1547,7 @@ class SubscriberClient
      * @return \google\iam\v1\Policy
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function setIamPolicy($resource, $policy, $optionalArgs = [])
     {
@@ -1526,6 +1604,7 @@ class SubscriberClient
      * @return \google\iam\v1\Policy
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function getIamPolicy($resource, $optionalArgs = [])
     {
@@ -1569,7 +1648,7 @@ class SubscriberClient
      *                               `resource` is usually specified as a path. For example, a Project
      *                               resource is specified as `projects/{project}`.
      * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
-     *                               wildcards (such as '&#42;' or 'storage.&#42;') are not allowed. For more
+     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
      *                               information see
      *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      * @param array    $optionalArgs {
@@ -1586,6 +1665,7 @@ class SubscriberClient
      * @return \google\iam\v1\TestIamPermissionsResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function testIamPermissions($resource, $permissions, $optionalArgs = [])
     {
@@ -1614,6 +1694,8 @@ class SubscriberClient
     /**
      * Initiates an orderly shutdown in which preexisting calls continue but new
      * calls are immediately cancelled.
+     *
+     * @experimental
      */
     public function close()
     {
