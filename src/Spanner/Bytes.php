@@ -80,7 +80,7 @@ class Bytes implements ValueInterface
      */
     public function type()
     {
-        return ValueMapper::TYPE_BYTES;
+        return Database::TYPE_BYTES;
     }
 
     /**

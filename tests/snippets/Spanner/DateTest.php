@@ -18,6 +18,7 @@
 namespace Google\Cloud\Tests\Snippets\Spanner;
 
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
+use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Date;
 use Google\Cloud\Spanner\ValueMapper;
 
@@ -78,7 +79,7 @@ class DateTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Date::class, 'type');
         $snippet->addLocal('date', $this->date);
         $res = $snippet->invoke();
-        $this->assertEquals(ValueMapper::TYPE_DATE, $res->output());
+        $this->assertEquals(Database::TYPE_DATE, $res->output());
     }
 
     public function testFormatAsString()
