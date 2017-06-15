@@ -104,7 +104,10 @@ class GrpcTest extends \PHPUnit_Framework_TestCase
 
         $lro = $this->prophesize(OperationResponse::class)->reveal();
 
-        $mask = array_keys($instanceArgs);
+        $mask = [];
+        foreach (array_keys($instanceArgs) as $key) {
+            $mask[] = Serializer::toSnakeCase($key);
+        }
 
         $fieldMask = $serializer->decodeMessage(new FieldMask(), ['paths' => $mask]);
 
@@ -120,7 +123,10 @@ class GrpcTest extends \PHPUnit_Framework_TestCase
 
         $lroPartial = $this->prophesize(OperationResponse::class)->reveal();
 
-        $maskPartial = array_keys($instanceArgsPartial);
+        $maskPartial = [];
+        foreach (array_keys($instanceArgsPartial) as $key) {
+            $maskPartial[] = Serializer::toSnakeCase($key);
+        }
 
         $fieldMaskPartial = $serializer->decodeMessage(new FieldMask(), ['paths' => $maskPartial]);
 
