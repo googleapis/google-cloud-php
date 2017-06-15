@@ -452,7 +452,6 @@ class Grpc implements ConnectionInterface
     {
         $params = $this->pluck('params', $args);
         if ($params) {
-
             $modifiedParams = [];
             foreach ($params as $key => $param) {
                 $modifiedParams[$key] = $this->fieldValue($param);

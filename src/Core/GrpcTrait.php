@@ -131,7 +131,8 @@ trait GrpcTrait
         return ['fields' => $fFields];
     }
 
-    private function unpackStructFromApi(array $struct) {
+    private function unpackStructFromApi(array $struct)
+    {
         $vals = [];
         foreach ($struct['fields'] as $key => $val) {
             $vals[$key] = $this->unpackValue($val);
@@ -146,8 +147,7 @@ trait GrpcTrait
         }
 
         foreach ($value as $setField => $setValue) {
-            switch ($setField)
-            {
+            switch ($setField) {
                 case 'listValue':
                     $valueList = [];
                     foreach ($setValue['values'] as $innerValue) {

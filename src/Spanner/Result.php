@@ -179,7 +179,8 @@ class Result implements \IteratorAggregate
                     return;
                 }
 
-                if ($this->isSetAndTrue($result, 'resumeToken') || count($bufferedResults) >= self::BUFFER_RESULT_LIMIT) {
+                $hasResumeToken = $this->isSetAndTrue($result, 'resumeToken');
+                if ($hasResumeToken || count($bufferedResults) >= self::BUFFER_RESULT_LIMIT) {
                     list($yieldableRows, $chunkedResult) = $this->parseRowsFromBufferedResults($bufferedResults);
 
                     foreach ($yieldableRows as $row) {
@@ -188,7 +189,7 @@ class Result implements \IteratorAggregate
 
                     // Now that we've yielded all available rows, flush the buffer.
                     $bufferedResults = [];
-                    $shouldRetry = $this->isSetAndTrue($result, 'resumeToken');
+                    $shouldRetry = $hasResumeToken;
 
                     // If the last item in the buffer had a chunked value let's
                     // hold on to it so we can stitch it together into a yieldable
