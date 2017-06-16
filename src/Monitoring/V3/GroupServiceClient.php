@@ -49,7 +49,7 @@ use google\monitoring\v3\UpdateGroupRequest;
 
 /**
  * Service Description: The Group API lets you inspect and manage your
- * [groups](https://cloud.google.comgoogle.monitoring.v3.Group).
+ * [groups][google.monitoring.v3.Group].
  *
  * A group is a named filter that is used to identify
  * a collection of monitored resources. Groups are typically used to
