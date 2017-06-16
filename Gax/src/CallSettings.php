@@ -132,7 +132,8 @@ class CallSettings
         $codes = [];
         if (!empty($retryCodes)) {
             foreach ($retryCodes as $retryCodesName => $retryCodeList) {
-                if ($retryCodesName === $methodConfig['retry_codes_name'] &&
+                if (isset($methodConfig['retry_codes_name']) &&
+                    $retryCodesName === $methodConfig['retry_codes_name'] &&
                     !empty($retryCodeList)) {
                     foreach ($retryCodeList as $retryCodeName) {
                         if (!array_key_exists($retryCodeName, $statusCodes)) {
