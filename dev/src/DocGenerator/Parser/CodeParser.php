@@ -242,11 +242,11 @@ class CodeParser implements ParserInterface
         $docText = '';
         $examples = null;
 
-        $parts = explode('Example:', $fullDescription);
+        $parts = explode('Sample Code:', $fullDescription);
 
         $docText = $parts[0];
 
-        if (strpos($fullDescription, 'Example:') !== false) {
+        if (strpos($fullDescription, 'Sample Code:' . PHP_EOL) !== false) {
             $examples = $parts[1];
         }
 
@@ -600,10 +600,10 @@ class CodeParser implements ParserInterface
 
     private function splitDescription($description)
     {
-        $parts = explode('Example:', $description);
+        $parts = explode('Sample Code:', $description);
         $examples = null;
 
-        if (strpos($description, 'Example:') !== false) {
+        if (strpos($description, 'Sample Code:' . PHP_EOL) !== false) {
             $examples = $parts[1];
         }
 
