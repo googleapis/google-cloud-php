@@ -67,7 +67,7 @@ class TraceSpan implements \JsonSerializable
     public function __construct($options = [])
     {
         $this->info = $this->pluckArray(
-            ['spanId', 'kind', 'name', 'parentSpanId', 'labels'],
+            ['spanId', 'kind', 'name', 'parentSpanId'],
             $options
         );
 
@@ -76,6 +76,10 @@ class TraceSpan implements \JsonSerializable
         }
         if (array_key_exists('endTime', $options)) {
             $this->setEnd($options['endTime']);
+        }
+
+        if (array_key_exists('labels', $options)) {
+            $this->addLabels($options['labels']);
         }
 
         $this->info += [
