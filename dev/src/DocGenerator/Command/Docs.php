@@ -180,6 +180,9 @@ class Docs extends Command
         $files = [];
 
         foreach ($regexIterator as $item) {
+            if (strpos($item[0], 'GPBMetadata')) {
+                continue;
+            }
             array_push($files, $item[0]);
         }
 

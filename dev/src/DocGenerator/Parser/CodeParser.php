@@ -111,20 +111,24 @@ class CodeParser implements ParserInterface
 
         $methods = $reflector->getMethods();
 
-        if (is_null($docBlock)) {
-            throw new \Exception(sprintf('%s has no description', $reflector->getName()));
+        $description = '';
+        $examples = [];
+        $resources = [];
+        if (!is_null($docBlock)) {
+            $split = $this->splitDescription($docBlock->getText());
+            $description = $this->buildDescription($docBlock, $split['description']);
+            $examples = $this->buildExamples($split['examples']);
+            $resources = $this->buildResources($docBlock->getTagsByName('see'));
         }
-
-        $split = $this->splitDescription($docBlock->getText());
 
         return [
             'id' => strtolower($id),
             'type' => strtolower($type),
             'title' => $reflector->getNamespace() . '\\' . $name,
             'name' => $name,
-            'description' => $this->buildDescription($docBlock, $split['description']),
-            'examples' => $this->buildExamples($split['examples']),
-            'resources' => $this->buildResources($docBlock->getTagsByName('see')),
+            'description' => $description,
+            'examples' => $examples,
+            'resources' => $resources,
             'methods' => array_merge(
                 $this->buildMethods($methods, $name),
                 $magic
@@ -172,7 +176,8 @@ class CodeParser implements ParserInterface
 
             $docBlock = $method->getDocBlock();
             if (is_null($docBlock)) {
-                throw new \Exception(sprintf('%s::%s has no description', $className, $name));
+                $methodArray[] = $this->buildUndocumentedMethod($method);
+                continue;
             }
 
             $access = $docBlock->getTagsByName('access');
@@ -228,6 +233,22 @@ class CodeParser implements ParserInterface
             'params' => $this->buildParams($params),
             'exceptions' => $this->buildExceptions($exceptions),
             'returns' => $this->buildReturns($returns)
+        ];
+    }
+
+    private function buildUndocumentedMethod($method)
+    {
+        return [
+            'id' => $method->getName(),
+            'type' => $method->getName() === '__construct' ? 'constructor' : 'instance',
+            'name' => $method->getName(),
+            'source' => $this->getSource() . '#L' . $method->getLineNumber(),
+            'description' => '',
+            'examples' => [],
+            'resources' => [],
+            'params' => [],
+            'exceptions' => [],
+            'returns' => [],
         ];
     }
 
