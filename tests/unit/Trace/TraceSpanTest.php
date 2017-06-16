@@ -67,6 +67,13 @@ class TraceSpanTest extends \PHPUnit_Framework_TestCase
         $this->assertArrayNotHasKey('labels', $info);
     }
 
+    public function testEmptyLabels()
+    {
+        $traceSpan = new TraceSpan(['labels' => []]);
+        $info = $traceSpan->info();
+        $this->assertArrayNotHasKey('labels', $info);
+    }
+
     public function testGeneratesDefaultSpanName()
     {
         $traceSpan = new TraceSpan();
