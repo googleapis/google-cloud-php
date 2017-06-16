@@ -24,7 +24,7 @@ use Psr\Http\Message\StreamInterface;
  * Represents a value with a data type of
  * [bytes](https://cloud.google.com/bigquery/docs/reference/standard-sql/data-types#bytes-type).
  *
- * Example:
+ * Sample Code:
  * ```
  * use Google\Cloud\BigQuery\BigQueryClient;
  *

@@ -24,7 +24,7 @@ use Google\Cloud\Vision\Annotation\Web\WebPage;
 /**
  * Represents a Web Detection result
  *
- * Example:
+ * Sample Code:
  * ```
  * use Google\Cloud\Vision\VisionClient;
  *
@@ -106,7 +106,7 @@ class Web extends AbstractFeature
     /**
      * Entities deduced from similar images on the Internet.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $entities = $web->entities();
      * ```
@@ -124,7 +124,7 @@ class Web extends AbstractFeature
      * Images are most likely near duplicates, and most often are a copy of the
      * given query image with a size change.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $images = $web->matchingImages();
      * ```
@@ -142,7 +142,7 @@ class Web extends AbstractFeature
      * Those images are similar enough to share some key-point features. For
      * example an original image will likely have partial matching for its crops.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $images = $web->partialMatchingImages();
      * ```
@@ -157,7 +157,7 @@ class Web extends AbstractFeature
     /**
      * Web pages containing the matching images from the Internet.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $pages = $web->pages();
      * ```

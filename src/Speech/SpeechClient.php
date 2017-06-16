@@ -29,7 +29,7 @@ use Psr\Cache\CacheItemPoolInterface;
  * transcription from the Cloud Speech API service. Find more information at the
  * [Google Cloud Speech docs](https://cloud.google.com/speech/docs/).
  *
- * Example:
+ * Sample Code:
  * ```
  * use Google\Cloud\Speech\SpeechClient;
  *
@@ -108,7 +108,7 @@ class SpeechClient
      * Runs a recognize request and returns the results immediately. Ideal when
      * working with audio up to approximately one minute in length.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $results = $speech->recognize(
      *     fopen(__DIR__  . '/audio.flac', 'r')
@@ -219,7 +219,7 @@ class SpeechClient
      * Cloud Storage objects as input. In addition to this restriction, only
      * LINEAR16 audio encoding can be used for long audio inputs.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $operation = $speech->beginRecognizeOperation(
      *     fopen(__DIR__  . '/audio.flac', 'r')
@@ -335,7 +335,7 @@ class SpeechClient
      * this point. To see the operations that can be performed on an operation
      * please see {@see Google\Cloud\Speech\Operation}.
      *
-     * Example:
+     * Sample Code:
      * ```
      * // Access an existing operation by its server generated name.
      * $operation = $speech->operation($operationName);

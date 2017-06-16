@@ -22,7 +22,7 @@ use Google\Cloud\Logging\Connection\ConnectionInterface;
 /**
  * An individual entry in a log.
  *
- * Example:
+ * Sample Code:
  * ```
  * use Google\Cloud\Logging\LoggingClient;
  *
@@ -51,7 +51,7 @@ class Entry
     /**
      * Retrieves the entry's details.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $info = $entry->info();
      * echo $info['textPayload'];

@@ -85,7 +85,7 @@ class Table
     /**
      * Check whether or not the table exists.
      *
-     * Example:
+     * Sample Code:
      * ```
      * if ($table->exists()) {
      *     echo 'Table exists!';
@@ -108,7 +108,7 @@ class Table
     /**
      * Delete the table.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $table->delete();
      * ```
@@ -125,7 +125,7 @@ class Table
     /**
      * Update the table.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $table->update([
      *     'friendlyName' => 'A friendly name.'
@@ -150,7 +150,7 @@ class Table
      * Retrieves the rows associated with the table and merges them together
      * with the schema.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $rows = $table->rows();
      *
@@ -212,7 +212,7 @@ class Table
     /**
      * Runs a copy job which copies this table to a specified destination table.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $sourceTable = $bigQuery->dataset('myDataset')->table('mySourceTable');
      * $destinationTable = $bigQuery->dataset('myDataset')->table('myDestinationTable');
@@ -259,7 +259,7 @@ class Table
      * Runs an extract job which exports the contents of a table to Cloud
      * Storage.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $destinationObject = $storage->bucket('myBucket')->object('tableOutput');
      * $job = $table->export($destinationObject);
@@ -310,7 +310,7 @@ class Table
     /**
      * Runs a load job which loads the provided data into the table.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $job = $table->load(fopen('/path/to/my/data.csv', 'r'));
      * ```
@@ -357,7 +357,7 @@ class Table
      * Runs a load job which loads data from a file in a Storage bucket into the
      * table.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $object = $storage->bucket('myBucket')->object('important-data.csv');
      * $job = $table->load($object);
@@ -392,7 +392,7 @@ class Table
     /**
      * Insert a record into the table without running a load job.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $row = [
      *     'city' => 'Detroit',
@@ -446,7 +446,7 @@ class Table
     /**
      * Insert records into the table without running a load job.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $rows = [
      *     [
@@ -536,7 +536,7 @@ class Table
      * Retrieves the table's details. If no table data is cached a network
      * request will be made to retrieve it.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $info = $table->info();
      * echo $info['friendlyName'];
@@ -559,7 +559,7 @@ class Table
     /**
      * Triggers a network request to reload the table's details.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $table->reload();
      * $info = $table->info();
@@ -579,7 +579,7 @@ class Table
     /**
      * Retrieves the table's ID.
      *
-     * Example:
+     * Sample Code:
      * ```
      * echo $table->id();
      * ```
@@ -596,7 +596,7 @@ class Table
      *
      * An identity provides a description of a nested resource.
      *
-     * Example:
+     * Sample Code:
      * ```
      * echo $table->identity()['projectId'];
      * ```

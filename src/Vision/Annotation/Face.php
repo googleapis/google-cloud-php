@@ -23,7 +23,7 @@ use Google\Cloud\Vision\Annotation\Face\Landmarks;
 /**
  * Represents a face annotation result
  *
- * Example:
+ * Sample Code:
  * ```
  * use Google\Cloud\Vision\VisionClient;
  *
@@ -40,7 +40,7 @@ use Google\Cloud\Vision\Annotation\Face\Landmarks;
  * @method boundingPoly() {
  *     The bounding polygon around the face.
  *
- *     Example:
+ *     Sample Code:
  *     ```
  *     print_R($face->boundingPoly());
  *     ```
@@ -52,7 +52,7 @@ use Google\Cloud\Vision\Annotation\Face\Landmarks;
  *
  *     Tighter than `boundingPoly` and encloses only the skin part of the face.
  *
- *     Example:
+ *     Sample Code:
  *     ```
  *     print_R($face->fdBoundingPoly());
  *     ```
@@ -65,7 +65,7 @@ use Google\Cloud\Vision\Annotation\Face\Landmarks;
  *     Indicates the amount of clockwise/anti-clockwise rotation of the face.
  *     Range [-180,180]
  *
- *     Example:
+ *     Sample Code:
  *     ```
  *     print_R($face->rollAngle());
  *     ```
@@ -78,7 +78,7 @@ use Google\Cloud\Vision\Annotation\Face\Landmarks;
  *     Indicates the leftward/rightward angle that the face is pointing. Range
  *     [-180,180]
  *
- *     Example:
+ *     Sample Code:
  *     ```
  *     print_R($face->panAngle());
  *     ```
@@ -91,7 +91,7 @@ use Google\Cloud\Vision\Annotation\Face\Landmarks;
  *     Indicates the upwards/downwards angle that the face is pointing. Range
  *     [-180,180]
  *
- *     Example:
+ *     Sample Code:
  *     ```
  *     print_R($face->tiltAngle());
  *     ```
@@ -103,7 +103,7 @@ use Google\Cloud\Vision\Annotation\Face\Landmarks;
  *
  *     Range [0,1]
  *
- *     Example:
+ *     Sample Code:
  *     ```
  *     print_R($face->detectionConfidence());
  *     ```
@@ -115,7 +115,7 @@ use Google\Cloud\Vision\Annotation\Face\Landmarks;
  *
  *     Range [0,1]
  *
- *     Example:
+ *     Sample Code:
  *     ```
  *     print_R($face->landmarkingConfidence());
  *     ```
@@ -125,7 +125,7 @@ use Google\Cloud\Vision\Annotation\Face\Landmarks;
  * @method joyLikelihood() {
  *     Joy likelihood.
  *
- *     Example:
+ *     Sample Code:
  *     ```
  *     echo $face->joyLikelihood();
  *     ```
@@ -135,7 +135,7 @@ use Google\Cloud\Vision\Annotation\Face\Landmarks;
  * @method sorrowLikelihood() {
  *     Sorrow likelihood.
  *
- *     Example:
+ *     Sample Code:
  *     ```
  *     echo $face->sorrowLikelihood();
  *     ```
@@ -145,7 +145,7 @@ use Google\Cloud\Vision\Annotation\Face\Landmarks;
  * @method angerLikelihood() {
  *     Anger likelihood.
  *
- *     Example:
+ *     Sample Code:
  *     ```
  *     echo $face->angerLikelihood();
  *     ```
@@ -155,7 +155,7 @@ use Google\Cloud\Vision\Annotation\Face\Landmarks;
  * @method surpriseLikelihood() {
  *     Surprise likelihood.
  *
- *     Example:
+ *     Sample Code:
  *     ```
  *     echo $face->surpriseLikelihood();
  *     ```
@@ -165,7 +165,7 @@ use Google\Cloud\Vision\Annotation\Face\Landmarks;
  * @method underExposedLikelihood() {
  *     Under exposure likelihood.
  *
- *     Example:
+ *     Sample Code:
  *     ```
  *     echo $face->underExposedLikelihood();
  *     ```
@@ -175,7 +175,7 @@ use Google\Cloud\Vision\Annotation\Face\Landmarks;
  * @method blurredLikelihood() {
  *     Blurred likelihood.
  *
- *     Example:
+ *     Sample Code:
  *     ```
  *     echo $face->blurredLikelihood();
  *     ```
@@ -185,7 +185,7 @@ use Google\Cloud\Vision\Annotation\Face\Landmarks;
  * @method headwearLikelihood() {
  *     Headwear likelihood.
  *
- *     Example:
+ *     Sample Code:
  *     ```
  *     echo $face->headwearLikelihood();
  *     ```
@@ -195,7 +195,7 @@ use Google\Cloud\Vision\Annotation\Face\Landmarks;
  * @method info() {
  *     Get the raw annotation result
  *
- *     Example:
+ *     Sample Code:
  *     ```
  *     $info = $face->info();
  *     ```
@@ -235,7 +235,7 @@ class Face extends AbstractFeature
     /**
      * Returns an object detailing facial landmarks and their location.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $leftEye = $face->landmarks()->leftEye();
      * ```
@@ -249,7 +249,7 @@ class Face extends AbstractFeature
     /**
      * Check whether the face is joyful.
      *
-     * Example:
+     * Sample Code:
      * ```
      * if ($face->isJoyful()) {
      *     echo "Face is Joyful";
@@ -270,7 +270,7 @@ class Face extends AbstractFeature
     /**
      * Check whether the face is sorrowful.
      *
-     * Example:
+     * Sample Code:
      * ```
      * if ($face->isSorrowful()) {
      *     echo "Face is Sorrowful";
@@ -291,7 +291,7 @@ class Face extends AbstractFeature
     /**
      * Check whether the face is angry.
      *
-     * Example:
+     * Sample Code:
      * ```
      * if ($face->isAngry()) {
      *     echo "Face is Angry";
@@ -312,7 +312,7 @@ class Face extends AbstractFeature
     /**
      * Check whether the face is surprised.
      *
-     * Example:
+     * Sample Code:
      * ```
      * if ($face->isSurprised()) {
      *     echo "Face is Surprised";
@@ -333,7 +333,7 @@ class Face extends AbstractFeature
     /**
      * Check whether the face is under exposed.
      *
-     * Example:
+     * Sample Code:
      * ```
      * if ($face->isUnderExposed()) {
      *     echo "Face is Under Exposed";
@@ -354,7 +354,7 @@ class Face extends AbstractFeature
     /**
      * Check whether the face is blurred.
      *
-     * Example:
+     * Sample Code:
      * ```
      * if ($face->isBlurred()) {
      *     echo "Face is Blurred";
@@ -375,7 +375,7 @@ class Face extends AbstractFeature
     /**
      * Check whether the person is wearing headwear.
      *
-     * Example:
+     * Sample Code:
      * ```
      * if ($face->hasHeadwear()) {
      *     echo "Face has Headwear";

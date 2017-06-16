@@ -22,7 +22,7 @@ use Google\Cloud\Core\CallTrait;
 /**
  * Represents a SafeSearch annotation result
  *
- * Example:
+ * Sample Code:
  * ```
  * use Google\Cloud\Vision\VisionClient;
  *
@@ -38,7 +38,7 @@ use Google\Cloud\Core\CallTrait;
  * @method adult() {
  *     Represents the adult contents likelihood for the image.
  *
- *     Example:
+ *     Sample Code:
  *     ```
  *     echo $safeSearch->adult();
  *     ```
@@ -49,7 +49,7 @@ use Google\Cloud\Core\CallTrait;
  *     Spoof likelihood. The likelihood that an obvious modification was made to
  *     the image's canonical version to make it appear funny or offensive.
  *
- *     Example:
+ *     Sample Code:
  *     ```
  *     echo $safeSearch->spoof();
  *     ```
@@ -59,7 +59,7 @@ use Google\Cloud\Core\CallTrait;
  * @method medical() {
  *     Likelihood this is a medical image.
  *
- *     Example:
+ *     Sample Code:
  *     ```
  *     echo $safeSearch->medical();
  *     ```
@@ -69,7 +69,7 @@ use Google\Cloud\Core\CallTrait;
  * @method violence() {
  *     Violence likelihood.
  *
- *     Example:
+ *     Sample Code:
  *     ```
  *     echo $safeSearch->violence();
  *     ```
@@ -79,7 +79,7 @@ use Google\Cloud\Core\CallTrait;
  * @method info() {
  *     Get the raw annotation result
  *
- *     Example:
+ *     Sample Code:
  *     ```
  *     $info = $safeSearch->info();
  *     ```
@@ -111,7 +111,7 @@ class SafeSearch extends AbstractFeature
     /**
      * Check whether the image contains adult content.
      *
-     * Example:
+     * Sample Code:
      * ```
      * if ($safeSearch->isAdult()) {
      *     echo "Image contains adult content.";
@@ -132,7 +132,7 @@ class SafeSearch extends AbstractFeature
     /**
      * Check whether the image was modified to make it appear funny or offensive.
      *
-     * Example:
+     * Sample Code:
      * ```
      * if ($safeSearch->isSpoof()) {
      *     echo "Image contains spoofed content.";
@@ -153,7 +153,7 @@ class SafeSearch extends AbstractFeature
     /**
      * Check whether the image contains medical content
      *
-     * Example:
+     * Sample Code:
      * ```
      * if ($safeSearch->medical()) {
      *     echo "Image contains medical content.";
@@ -174,7 +174,7 @@ class SafeSearch extends AbstractFeature
     /**
      * Check whether the image contains violent content
      *
-     * Example:
+     * Sample Code:
      * ```
      * if ($safeSearch->isViolent()) {
      *     echo "Image contains violent content.";

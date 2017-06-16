@@ -26,7 +26,7 @@ namespace Google\Cloud\Core\Iam;
  * Policies can be created using the {@see Google\Cloud\Core\Iam\PolicyBuilder}
  * to help ensure their validity.
  *
- * Example:
+ * Sample Code:
  * ```
  * // IAM policies are obtained via resources which implement IAM.
  * // In this example, we'll use PubSub topics to demonstrate
@@ -95,7 +95,7 @@ class Iam
      * To fetch a fresh copy of the policy, use
      * {@see Google\Cloud\Core\Iam\Iam::reload()}.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $policy = $iam->policy();
      * ```
@@ -118,7 +118,7 @@ class Iam
      * Bindings with invalid roles, or non-existent members will raise a server
      * error.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $oldPolicy = $iam->policy();
      * $oldPolicy['bindings'][0]['members'] = 'user:test@example.com';
@@ -160,7 +160,7 @@ class Iam
      *
      * Invalid permissions will raise a BadRequestException.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $allowedPermissions = $iam->testPermissions([
      *     'pubsub.topics.publish',
@@ -185,7 +185,7 @@ class Iam
     /**
      * Refresh the IAM policy for this resource.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $policy = $iam->reload();
      * ```

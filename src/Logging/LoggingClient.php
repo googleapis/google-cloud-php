@@ -55,7 +55,7 @@ use Psr\Cache\CacheItemPoolInterface;
  * NOTE: Support for gRPC is currently at an Alpha quality level, meaning it is still
  * a work in progress and is more likely to get backwards-incompatible updates.
  *
- * Example:
+ * Sample Code:
  * ```
  * use Google\Cloud\Logging\LoggingClient;
  *
@@ -128,7 +128,7 @@ class LoggingClient
     /**
      * Create a sink.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $sink = $logging->createSink('my-sink', 'storage.googleapis.com/my-bucket');
      * ```
@@ -170,7 +170,7 @@ class LoggingClient
      * point. To see the operations that can be performed on a sink please see
      * {@see Google\Cloud\Logging\Sink}.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $sink = $logging->sink('my-sink');
      * echo $sink->name();
@@ -187,7 +187,7 @@ class LoggingClient
     /**
      * Fetches sinks associated with your project.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $sinks = $logging->sinks();
      *
@@ -234,7 +234,7 @@ class LoggingClient
     /**
      * Create a metric.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $metric = $logging->createMetric(
      *     'my-metric',
@@ -271,7 +271,7 @@ class LoggingClient
      * point. To see the operations that can be performed on a metric please see
      * {@see Google\Cloud\Logging\Metric}.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $metric = $logging->metric('my-metric');
      * echo $metric->name();
@@ -288,7 +288,7 @@ class LoggingClient
     /**
      * Fetches metrics associated with your project.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $metrics = $logging->metrics();
      *
@@ -335,7 +335,7 @@ class LoggingClient
     /**
      * Fetches log entries.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $entries = $logging->entries();
      *
@@ -417,7 +417,7 @@ class LoggingClient
      * Fetches a logger which will write log entries to Stackdriver Logging and
      * implements the PSR-3 specification.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $psrLogger = $logging->psrLogger('my-log');
      * ```
@@ -453,7 +453,7 @@ class LoggingClient
     /**
      * Fetches a logger which will write log entries to Stackdriver Logging.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $logger = $logging->logger('my-log');
      * ```

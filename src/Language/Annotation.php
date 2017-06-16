@@ -34,7 +34,7 @@ use Google\Cloud\Core\CallTrait;
  * {@see Google\Cloud\Language\LanguageClient::analyzeSyntax()} and
  * {@see Google\Cloud\Language\LanguageClient::annotateText()}.
  *
- * Example:
+ * Sample Code:
  * ```
  * use Google\Cloud\Language\LanguageClient;
  *
@@ -46,7 +46,7 @@ use Google\Cloud\Core\CallTrait;
  * @method sentences() {
  *     Returns an array of sentences found in the document.
  *
- *     Example:
+ *     Sample Code:
  *     ```
  *     foreach ($annotation->sentences() as $sentence) {
  *         echo $sentence['text']['content'];
@@ -60,7 +60,7 @@ use Google\Cloud\Core\CallTrait;
  * @method tokens() {
  *     Returns an array of tokens found in the document.
  *
- *     Example:
+ *     Sample Code:
  *     ```
  *     foreach ($annotation->tokens() as $token) {
  *         echo $token['text']['content'];
@@ -74,7 +74,7 @@ use Google\Cloud\Core\CallTrait;
  * @method entities() {
  *     Returns an array of entities found in the document.
  *
- *     Example:
+ *     Sample Code:
  *     ```
  *     foreach ($annotation->entities() as $entity) {
  *         echo $entity['type'];
@@ -88,7 +88,7 @@ use Google\Cloud\Core\CallTrait;
  * @method language() {
  *     Returns the language of the document.
  *
- *     Example:
+ *     Sample Code:
  *     ```
  *     echo $annotation->language();
  *     ```
@@ -118,7 +118,7 @@ class Annotation
     /**
      * Returns the full response from the API.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $info = $annotation->info();
      * ```
@@ -137,7 +137,7 @@ class Annotation
     /**
      * Returns the sentiment of the document.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $sentiment = $annotation->sentiment();
      *
@@ -158,7 +158,7 @@ class Annotation
     /**
      * Returns an array of tokens filtered by the given tag.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $tokens = $annotation->tokensByTag('NOUN');
      *
@@ -185,7 +185,7 @@ class Annotation
     /**
      * Returns an array of tokens filtered by the given label.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $tokens = $annotation->tokensByLabel('P');
      *
@@ -212,7 +212,7 @@ class Annotation
     /**
      * Returns an array of entities filtered by the given type.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $entities = $annotation->entitiesByType('PERSON');
      *

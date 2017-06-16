@@ -20,7 +20,7 @@ namespace Google\Cloud\Vision\Annotation;
 /**
  * Represents the imageProperties feature result
  *
- * Example:
+ * Sample Code:
  * ```
  * use Google\Cloud\Vision\VisionClient;
  *
@@ -36,7 +36,7 @@ namespace Google\Cloud\Vision\Annotation;
  * @method info() {
  *     Get the raw annotation result
  *
- *     Example:
+ *     Sample Code:
  *     ```
  *     $info = $imageProperties->info();
  *     ```
@@ -65,7 +65,7 @@ class ImageProperties extends AbstractFeature
     /**
      * Get the dominant colors in the image
      *
-     * Example:
+     * Sample Code:
      * ```
      * $colors = $imageProperties->colors();
      * ```

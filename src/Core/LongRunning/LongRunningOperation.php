@@ -83,7 +83,7 @@ class LongRunningOperation
     /**
      * Return the Operation name.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $name = $operation->name();
      * ```
@@ -101,7 +101,7 @@ class LongRunningOperation
      * If the Operation state is not available, a service request may be executed
      * by this method.
      *
-     * Example:
+     * Sample Code:
      * ```
      * if ($operation->done()) {
      *     echo "The operation is done!";
@@ -128,7 +128,7 @@ class LongRunningOperation
      * If the Operation state is not available, a service request may be executed
      * by this method.
      *
-     * Example:
+     * Sample Code:
      * ```
      * switch ($operation->state()) {
      *     case LongRunningOperation::STATE_IN_PROGRESS:
@@ -171,7 +171,7 @@ class LongRunningOperation
      * If the Operation state is not available, a service request may be executed
      * by this method.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $result = $operation->result();
      * ```
@@ -193,7 +193,7 @@ class LongRunningOperation
      * If the Operation state is not available, a service request may be executed
      * by this method.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $error = $operation->error();
      * ```
@@ -213,7 +213,7 @@ class LongRunningOperation
      * If the Operation state is not available, a service request may be executed
      * by this method.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $info = $operation->info();
      * ```
@@ -231,7 +231,7 @@ class LongRunningOperation
     /**
      * Reload the Operation to check its status.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $result = $operation->reload();
      * ```
@@ -267,7 +267,7 @@ class LongRunningOperation
      * `$options.maxPollingDurationSeconds` is set, and the poll exceeds the
      * limit, the return will be `null`.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $result = $operation->pollUntilComplete();
      * ```
@@ -305,7 +305,7 @@ class LongRunningOperation
     /**
      * Cancel a Long Running Operation.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $operation->cancel();
      * ```
@@ -323,7 +323,7 @@ class LongRunningOperation
     /**
      * Delete a Long Running Operation.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $operation->delete();
      * ```

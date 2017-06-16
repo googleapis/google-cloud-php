@@ -29,7 +29,7 @@ use Google\Cloud\Vision\Annotation\Web;
  * Represents a [Google Cloud Vision](https://cloud.google.com/vision) image
  * annotation result.
  *
- * Example:
+ * Sample Code:
  * ```
  * use Google\Cloud\Vision\VisionClient;
  *
@@ -190,7 +190,7 @@ class Annotation
     /**
      * Return raw annotation response array
      *
-     * Example:
+     * Sample Code:
      * ```
      * $info = $annotation->info();
      * ```
@@ -209,7 +209,7 @@ class Annotation
     /**
      * Return an array of faces
      *
-     * Example:
+     * Sample Code:
      * ```
      * $faces = $annotation->faces();
      * ```
@@ -226,7 +226,7 @@ class Annotation
     /**
      * Return an array of landmarks
      *
-     * Example:
+     * Sample Code:
      * ```
      * $landmarks = $annotation->landmarks();
      * ```
@@ -243,7 +243,7 @@ class Annotation
     /**
      * Return an array of logos
      *
-     * Example:
+     * Sample Code:
      * ```
      * $logos = $annotation->logos();
      * ```
@@ -260,7 +260,7 @@ class Annotation
     /**
      * Return an array of labels
      *
-     * Example:
+     * Sample Code:
      * ```
      * $labels = $annotation->labels();
      * ```
@@ -277,7 +277,7 @@ class Annotation
     /**
      * Return an array containing all text found in the image
      *
-     * Example:
+     * Sample Code:
      * ```
      * $text = $annotation->text();
      * ```
@@ -294,7 +294,7 @@ class Annotation
     /**
      * Return the full text annotation.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $fullText = $annotation->fullText();
      * ```
@@ -311,7 +311,7 @@ class Annotation
     /**
      * Get the result of a safe search detection
      *
-     * Example:
+     * Sample Code:
      * ```
      * $safeSearch = $annotation->safeSearch();
      * ```
@@ -330,7 +330,7 @@ class Annotation
     /**
      * Fetch image properties
      *
-     * Example:
+     * Sample Code:
      * ```
      * $properties = $annotation->imageProperties();
      * ```
@@ -347,7 +347,7 @@ class Annotation
     /**
      * Fetch Crop Hints
      *
-     * Example:
+     * Sample Code:
      * ```
      * $hints = $annotation->cropHints();
      * ```
@@ -366,7 +366,7 @@ class Annotation
     /**
      * Fetch the Web Annotatation.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $web = $annotation->web();
      * ```
@@ -383,7 +383,7 @@ class Annotation
     /**
      * Get error information, if present
      *
-     * Example:
+     * Sample Code:
      * ```
      * $error = $annotation->error();
      * ```

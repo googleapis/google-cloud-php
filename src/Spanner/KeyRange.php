@@ -20,7 +20,7 @@ namespace Google\Cloud\Spanner;
 /**
  * Represents a Cloud Spanner KeyRange.
  *
- * Example:
+ * Sample Code:
  * ```
  * use Google\Cloud\Spanner\SpannerClient;
  *
@@ -122,7 +122,7 @@ class KeyRange
      * Equivalent to calling `KeyRange::__construct()` with closed type for start
      * and end, and the same key for the start and end.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $range = KeyRange::prefixMatch($key);
      * ```
@@ -143,7 +143,7 @@ class KeyRange
     /**
      * Get the range start.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $start = $range->start();
      * ```
@@ -158,7 +158,7 @@ class KeyRange
     /**
      * Set the range start.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $range->setStart(KeyRange::TYPE_OPEN, ['Bob']);
      * ```
@@ -180,7 +180,7 @@ class KeyRange
     /**
      * Get the range end.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $end = $range->end();
      * ```
@@ -195,7 +195,7 @@ class KeyRange
     /**
      * Set the range end.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $range->setEnd(KeyRange::TYPE_CLOSED, ['Jill']);
      * ```
@@ -224,7 +224,7 @@ class KeyRange
     /**
      * Get the start and end types
      *
-     * Example:
+     * Sample Code:
      * ```
      * $types = $range->types();
      * ```

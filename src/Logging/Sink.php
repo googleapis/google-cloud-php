@@ -23,7 +23,7 @@ use Google\Cloud\Logging\Connection\ConnectionInterface;
 /**
  * A sink is used to export log entries outside Stackdriver Logging.
  *
- * Example:
+ * Sample Code:
  * ```
  * use Google\Cloud\Logging\LoggingClient;
  *
@@ -67,7 +67,7 @@ class Sink
     /**
      * Check whether or not the sink exists.
      *
-     * Example:
+     * Sample Code:
      * ```
      * if ($sink->exists()) {
      *     echo 'Sink exists!';
@@ -91,7 +91,7 @@ class Sink
     /**
      * Delete the sink.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $sink->delete();
      * ```
@@ -113,7 +113,7 @@ class Sink
      * Update the sink. Please note this will trigger a network request if
      * cached data is not available to perform the update with.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $sink->update([
      *     'destination' => 'storage.googleapis.com/my-bucket'
@@ -153,7 +153,7 @@ class Sink
      * Retrieves the sink's details. If no sink data is cached a network
      * request will be made to retrieve it.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $info = $sink->info();
      * echo $info['destination'];
@@ -178,7 +178,7 @@ class Sink
     /**
      * Triggers a network request to reload the sink's details.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $sink->reload();
      * $info = $sink->info();
@@ -202,7 +202,7 @@ class Sink
     /**
      * Returns the sink's name.
      *
-     * Example:
+     * Sample Code:
      * ```
      * echo $sink->name();
      * ```

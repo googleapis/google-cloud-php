@@ -21,7 +21,7 @@ namespace Google\Cloud\Core;
  * Represents a 64 bit integer. This can be useful when working on a 32 bit
  * platform.
  *
- * Example:
+ * Sample Code:
  * ```
  * $int64 = new Int64('9223372036854775807');
  * ```
@@ -44,7 +44,7 @@ class Int64
     /**
      * Get the value.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $value = $int64->get();
      * ```

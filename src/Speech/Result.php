@@ -20,7 +20,7 @@ namespace Google\Cloud\Speech;
 /**
  * Represents a speech recognition result.
  *
- * Example:
+ * Sample Code:
  * ```
  * use Google\Cloud\Speech\SpeechClient;
  *
@@ -55,7 +55,7 @@ class Result
     /**
      * Retrieves the alternatives.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $alternatives = $result->alternatives();
      *
@@ -83,7 +83,7 @@ class Result
      * Retrieves the top alternative. This is typically the most reliable
      * transcription.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $alternative = $result->topAlternative();
      *
@@ -102,7 +102,7 @@ class Result
     /**
      * Retrieves all available result data.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $info = $result->info();
      *

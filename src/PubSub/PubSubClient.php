@@ -60,7 +60,7 @@ use Psr\Cache\CacheItemPoolInterface;
  * NOTE: Support for gRPC is currently at an Alpha quality level, meaning it is still
  * a work in progress and is more likely to get backwards-incompatible updates.
  *
- * Example:
+ * Sample Code:
  * ```
  * use Google\Cloud\PubSub\PubSubClient;
  *
@@ -151,7 +151,7 @@ class PubSubClient
      * create the topic. If the topic already exists, an exception will be
      * thrown. When in doubt, use {@see Google\Cloud\PubSub\PubSubClient::topic()}.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $topic = $pubsub->createTopic('my-new-topic');
      * echo $topic->info()['name']; // `projects/my-awesome-project/topics/my-new-topic`
@@ -177,7 +177,7 @@ class PubSubClient
      * No API requests are made by this method. If you want to create a new
      * topic, use {@see Google\Cloud\PubSub\Topic::createTopic()}.
      *
-     * Example:
+     * Sample Code:
      * ```
      * // No API request yet!
      * $topic = $pubsub->topic('my-new-topic');
@@ -197,7 +197,7 @@ class PubSubClient
     /**
      * Get a list of the topics registered to your project.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $topics = $pubsub->topics();
      * foreach ($topics as $topic) {
@@ -247,7 +247,7 @@ class PubSubClient
      * without any API requests. If the topic already exists, an exception will
      * be thrown. When in doubt, use {@see Google\Cloud\PubSub\PubSubClient::subscription()}.
      *
-     * Example:
+     * Sample Code:
      * ```
      * // Create a subscription. If it doesn't exist in the API, it will be created.
      * $subscription = $pubsub->subscribe('my-new-subscription', 'my-topic-name');
@@ -278,7 +278,7 @@ class PubSubClient
      * Unless you are sure the subscription exists, you should check its
      * existence before using it.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $subscription = $pubsub->subscription('my-new-subscription');
      * ```
@@ -296,7 +296,7 @@ class PubSubClient
      * Get a list of the subscriptions registered to all of your project's
      * topics.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $subscriptions = $pubsub->subscriptions();
      * foreach ($subscriptions as $subscription) {
@@ -347,7 +347,7 @@ class PubSubClient
      *
      * Please note that this method may not yet be available in your project.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $subscription = $pubsub->subscription($subscriptionName);
      * $snapshot = $pubsub->createSnapshot('my-snapshot', $subscription);
@@ -372,7 +372,7 @@ class PubSubClient
     /**
      * Lazily create a snapshot instance.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $snapshot = $pubsub->snapshot('my-snapshot');
      * ```
@@ -391,7 +391,7 @@ class PubSubClient
      *
      * Please note that this method may not yet be available in your project.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $snapshots = $pubsub->snapshots();
      * foreach ($snapshots as $snapshot) {
@@ -442,7 +442,7 @@ class PubSubClient
      *
      * This method is for use with push delivery only.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $httpPostRequestBody = file_get_contents('php://input');
      * $requestData = json_decode($httpPostRequestBody, true);
@@ -461,7 +461,7 @@ class PubSubClient
     /**
      * Create a Timestamp object.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $timestamp = $pubsub->timestamp(new \DateTime('2003-02-05 11:15:02.421827Z'));
      * ```
@@ -478,7 +478,7 @@ class PubSubClient
     /**
      * Create a Duration object.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $duration = $pubsub->duration(100, 00001);
      * ```

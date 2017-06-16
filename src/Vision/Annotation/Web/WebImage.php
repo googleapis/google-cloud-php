@@ -23,7 +23,7 @@ use Google\Cloud\Vision\Annotation\AbstractFeature;
 /**
  * Represents a Web Image from a Web Detection operation.
  *
- * Example:
+ * Sample Code:
  * ```
  * use Google\Cloud\Vision\VisionClient;
  *
@@ -40,7 +40,7 @@ use Google\Cloud\Vision\Annotation\AbstractFeature;
  * @method url() {
  *     The result image URL
  *
- *     Example:
+ *     Sample Code:
  *     ```
  *     $url = $image->url();
  *     ```
@@ -52,7 +52,7 @@ use Google\Cloud\Vision\Annotation\AbstractFeature;
  *
  *     Not normalized and not comparable across different image queries.
  *
- *     Example:
+ *     Sample Code:
  *     ```
  *     $score = $image->score();
  *     ```

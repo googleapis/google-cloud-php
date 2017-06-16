@@ -26,7 +26,7 @@ use Psr\Log\LogLevel;
 /**
  * A PSR-3 compliant logger used to write entries to Google Stackdriver Logging.
  *
- * Example:
+ * Sample Code:
  * ```
  * use Google\Cloud\Logging\LoggingClient;
  *
@@ -63,7 +63,7 @@ class PsrLogger implements LoggerInterface
     /**
      * Log an emergency entry.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $psrLogger->emergency('emergency message');
      * ```
@@ -80,7 +80,7 @@ class PsrLogger implements LoggerInterface
     /**
      * Log an alert entry.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $psrLogger->alert('alert message');
      * ```
@@ -97,7 +97,7 @@ class PsrLogger implements LoggerInterface
     /**
      * Log a critical entry.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $psrLogger->critical('critical message');
      * ```
@@ -114,7 +114,7 @@ class PsrLogger implements LoggerInterface
     /**
      * Log an error entry.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $psrLogger->error('error message');
      * ```
@@ -131,7 +131,7 @@ class PsrLogger implements LoggerInterface
     /**
      * Log a warning entry.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $psrLogger->warning('warning message');
      * ```
@@ -148,7 +148,7 @@ class PsrLogger implements LoggerInterface
     /**
      * Log a notice entry.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $psrLogger->notice('notice message');
      * ```
@@ -165,7 +165,7 @@ class PsrLogger implements LoggerInterface
     /**
      * Log an info entry.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $psrLogger->info('info message');
      * ```
@@ -182,7 +182,7 @@ class PsrLogger implements LoggerInterface
     /**
      * Log a debug entry.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $psrLogger->debug('debug message');
      * ```
@@ -199,7 +199,7 @@ class PsrLogger implements LoggerInterface
     /**
      * Write a log entry.
      *
-     * Example:
+     * Sample Code:
      * ```
      * use Google\Cloud\Logging\Logger;
      *

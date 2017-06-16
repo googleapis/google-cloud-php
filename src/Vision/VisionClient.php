@@ -30,7 +30,7 @@ use Psr\Cache\CacheItemPoolInterface;
  * more information at the
  * [Google Cloud Vision docs](https://cloud.google.com/vision/docs/).
  *
- * Example:
+ * Sample Code:
  * ```
  * use Google\Cloud\Vision\VisionClient;
  *
@@ -102,7 +102,7 @@ class VisionClient
      * For more information, including best practices and examples detailing
      * other usage such as `$imageContext`, see {@see Google\Cloud\Vision\Image::__construct()}.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $imageResource = fopen(__DIR__ . '/assets/family-photo.jpg', 'r');
      *
@@ -158,7 +158,7 @@ class VisionClient
      * For more information, including best practices and examples detailing
      * other usage such as `$imageContext`, see {@see Google\Cloud\Vision\Image::__construct()}.
      *
-     * Example:
+     * Sample Code:
      * ```
      * // In the example below, both images will have the same settings applied.
      * // They will both run face detection and return up to 10 results.
@@ -199,7 +199,7 @@ class VisionClient
     /**
      * Annotate a single image.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $familyPhotoResource = fopen(__DIR__ . '/assets/family-photo.jpg', 'r');
      *
@@ -225,7 +225,7 @@ class VisionClient
     /**
      * Annotate a set of images.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $images = [];
      *

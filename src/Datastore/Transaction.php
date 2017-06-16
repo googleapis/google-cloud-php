@@ -44,7 +44,7 @@ use Google\Cloud\Datastore\Query\QueryInterface;
  * lookups and mutations can be executed outside of a Transaction from
  * {@see Google\Cloud\Datastore\DatastoreClient}.
  *
- * Example:
+ * Sample Code:
  * ```
  * use Google\Cloud\Datastore\DatastoreClient;
  *
@@ -100,7 +100,7 @@ class Transaction
      * No service requests are run when this method is called.
      * Use {@see Google\Cloud\Datastore\Transaction::commit()} to commit changes.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $key = $datastore->key('Person', 'Bob');
      * $entity = $datastore->entity($key, ['firstName' => 'Bob']);
@@ -123,7 +123,7 @@ class Transaction
      * No service requests are run when this method is called.
      * Use {@see Google\Cloud\Datastore\Transaction::commit()} to commit changes.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $entities = [
      *     $datastore->entity('Person', ['firstName' => 'Bob']),
@@ -153,7 +153,7 @@ class Transaction
      * No service requests are run when this method is called.
      * Use {@see Google\Cloud\Datastore\Transaction::commit()} to commit changes.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $entity['firstName'] = 'Bob';
      *
@@ -191,7 +191,7 @@ class Transaction
      * No service requests are run when this method is called.
      * Use {@see Google\Cloud\Datastore\Transaction::commit()} to commit changes.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $entities[0]['firstName'] = 'Bob';
      * $entities[1]['firstName'] = 'John';
@@ -238,7 +238,7 @@ class Transaction
      * Upsert will create a record if one does not already exist, or overwrite
      * existing record if one already exists.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $key = $datastore->key('Person', 'Bob');
      * $entity = $datastore->entity($key, ['firstName' => 'Bob']);
@@ -264,7 +264,7 @@ class Transaction
      * Upsert will create a record if one does not already exist, or overwrite
      * existing record if one already exists.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $keys = [
      *     $datastore->key('Person', 'Bob'),
@@ -298,7 +298,7 @@ class Transaction
      * No service requests are run when this method is called.
      * Use {@see Google\Cloud\Datastore\Transaction::commit()} to commit changes.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $key = $datastore->key('Person', 'Bob');
      *
@@ -320,7 +320,7 @@ class Transaction
      * No service requests are run when this method is called.
      * Use {@see Google\Cloud\Datastore\Transaction::commit()} to commit changes.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $keys = [
      *     $datastore->key('Person', 'Bob'),
@@ -346,7 +346,7 @@ class Transaction
     /**
      * Retrieve an entity from the datastore inside a transaction
      *
-     * Example:
+     * Sample Code:
      * ```
      * $key = $datastore->key('Person', 'Bob');
      *
@@ -378,7 +378,7 @@ class Transaction
     /**
      * Get multiple entities inside a transaction
      *
-     * Example:
+     * Sample Code:
      * ```
      * $keys = [
      *     $datastore->key('Person', 'Bob'),
@@ -420,7 +420,7 @@ class Transaction
     /**
      * Run a query and return entities inside a Transaction
      *
-     * Example:
+     * Sample Code:
      * ```
      * $result = $transaction->runQuery($query);
      *
@@ -452,7 +452,7 @@ class Transaction
      * Calling this method will end the operation (and close the transaction,
      * if one is specified).
      *
-     * Example:
+     * Sample Code:
      * ```
      * $transaction->commit();
      * ```
@@ -472,7 +472,7 @@ class Transaction
     /**
      * Roll back a Transaction
      *
-     * Example:
+     * Sample Code:
      * ```
      * $transaction->rollback();
      * ```

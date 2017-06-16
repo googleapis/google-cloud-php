@@ -77,7 +77,7 @@ class Dataset
     /**
      * Check whether or not the dataset exists.
      *
-     * Example:
+     * Sample Code:
      * ```
      * echo $dataset->exists();
      * ```
@@ -98,7 +98,7 @@ class Dataset
     /**
      * Delete the dataset.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $dataset->delete();
      * ```
@@ -121,7 +121,7 @@ class Dataset
     /**
      * Update the dataset.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $dataset->update([
      *     'friendlyName' => 'A fanciful dataset.'
@@ -147,7 +147,7 @@ class Dataset
      * point. To see the operations that can be performed on a dataset please
      * see {@see Google\Cloud\BigQuery\Table}.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $table = $dataset->table('myTableId');
      * ```
@@ -169,7 +169,7 @@ class Dataset
     /**
      * Fetches tables in the dataset.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $tables = $dataset->tables();
      *
@@ -220,7 +220,7 @@ class Dataset
     /**
      * Creates a table.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $table = $dataset->createTable('aTable');
      * ```
@@ -263,7 +263,7 @@ class Dataset
      * Retrieves the dataset's details. If no dataset data is cached a network
      * request will be made to retrieve it.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $info = $dataset->info();
      * echo $info['friendlyName'];
@@ -286,7 +286,7 @@ class Dataset
     /**
      * Triggers a network request to reload the dataset's details.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $dataset->reload();
      * $info = $dataset->info();
@@ -306,7 +306,7 @@ class Dataset
     /**
      * Retrieves the dataset's ID.
      *
-     * Example:
+     * Sample Code:
      * ```
      * echo $dataset->id();
      * ```
@@ -323,7 +323,7 @@ class Dataset
      *
      * An identity provides a description of a resource that is nested in nature.
      *
-     * Example:
+     * Sample Code:
      * ```
      * echo $dataset->identity()['projectId'];
      * ```

@@ -74,7 +74,7 @@ class Job
     /**
      * Check whether or not the job exists.
      *
-     * Example:
+     * Sample Code:
      * ```
      * echo $job->exists();
      * ```
@@ -96,7 +96,7 @@ class Job
      * Requests that a job be cancelled. You will need to poll the job to ensure
      * the cancel request successfully goes through.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $job->cancel();
      *
@@ -123,7 +123,7 @@ class Job
     /**
      * Retrieves the results of a query job.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $queryResults = $job->queryResults();
      * ```
@@ -159,7 +159,7 @@ class Job
      * Checks the job's completeness. Useful in combination with
      * {@see Google\Cloud\BigQuery\Job::reload()} to poll for job status.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $isComplete = $job->isComplete();
      *
@@ -183,7 +183,7 @@ class Job
      * Retrieves the job's details. If no job data is cached a network request
      * will be made to retrieve it.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $info = $job->info();
      * echo $info['statistics']['startTime'];
@@ -206,7 +206,7 @@ class Job
     /**
      * Triggers a network request to reload the job's details.
      *
-     * Example:
+     * Sample Code:
      * ```
      * echo $job->isComplete(); // false
      * sleep(1); // let's wait for a moment...
@@ -227,7 +227,7 @@ class Job
     /**
      * Retrieves the job's ID.
      *
-     * Example:
+     * Sample Code:
      * ```
      * echo $job->id();
      * ```
@@ -244,7 +244,7 @@ class Job
      *
      * An identity provides a description of a nested resource.
      *
-     * Example:
+     * Sample Code:
      * ```
      * echo $job->identity()['projectId'];
      * ```

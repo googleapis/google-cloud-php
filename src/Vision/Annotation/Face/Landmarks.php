@@ -22,7 +22,7 @@ use Google\Cloud\Vision\Annotation\AbstractFeature;
 /**
  * Describes landmarks on a face (eyes, nose, chin, etc).
  *
- * Example:
+ * Sample Code:
  * ```
  * use Google\Cloud\Vision\VisionClient;
  *
@@ -43,7 +43,7 @@ use Google\Cloud\Vision\Annotation\AbstractFeature;
  * @method info() {
  *     Get the raw landmarks annotation result
  *
- *     Example:
+ *     Sample Code:
  *     ```
  *     $info = $landmarks->info();
  *     ```
@@ -70,7 +70,7 @@ class Landmarks extends AbstractFeature
     /**
      * Fetch the left eye position.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $pos = $landmarks->leftEye();
      * echo "x position: ". $pos['x'] . PHP_EOL;
@@ -90,7 +90,7 @@ class Landmarks extends AbstractFeature
     /**
      * Fetch the left eye pupil position.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $pos = $landmarks->leftEyePupil();
      * echo "x position: ". $pos['x'] . PHP_EOL;
@@ -114,7 +114,7 @@ class Landmarks extends AbstractFeature
      * The value of each of these keys is of the normal Position format described
      * in the Cloud Vision documentation.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $positions = $landmarks->leftEyeBoundaries();
      * foreach ($positions as $name => $pos) {
@@ -146,7 +146,7 @@ class Landmarks extends AbstractFeature
      * The value of each of these keys is of the normal Position format described
      * in the Cloud Vision documentation.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $positions = $landmarks->leftEyebrow();
      * foreach ($positions as $name => $pos) {
@@ -173,7 +173,7 @@ class Landmarks extends AbstractFeature
     /**
      * Fetch the right eye position.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $pos = $landmarks->rightEye();
      * echo "x position: ". $pos['x'] . PHP_EOL;
@@ -193,7 +193,7 @@ class Landmarks extends AbstractFeature
     /**
      * Fetch the right eye pupil position.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $pos = $landmarks->rightEyePupil();
      * echo "x position: ". $pos['x'] . PHP_EOL;
@@ -217,7 +217,7 @@ class Landmarks extends AbstractFeature
      * The value of each of these keys is of the normal Position format described
      * in the Cloud Vision documentation.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $positions = $landmarks->rightEyeBoundaries();
      * foreach ($positions as $name => $pos) {
@@ -249,7 +249,7 @@ class Landmarks extends AbstractFeature
      * The value of each of these keys is of the normal Position format described
      * in the Cloud Vision documentation.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $positions = $landmarks->rightEyebrow();
      * foreach ($positions as $name => $pos) {
@@ -276,7 +276,7 @@ class Landmarks extends AbstractFeature
     /**
      * Get the position of the midpoint beteeen the eyes.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $pos = $landmarks->midpointBetweenEyes();
      * echo "x position: ". $pos['x'] . PHP_EOL;
@@ -300,7 +300,7 @@ class Landmarks extends AbstractFeature
      * The value of each of these keys is of the normal Position format described
      * in the Cloud Vision documentation.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $positions = $landmarks->lips();
      * foreach ($positions as $name => $pos) {
@@ -330,7 +330,7 @@ class Landmarks extends AbstractFeature
      * The value of each of these keys is of the normal Position format described
      * in the Cloud Vision documentation.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $positions = $landmarks->mouth();
      * foreach ($positions as $name => $pos) {
@@ -361,7 +361,7 @@ class Landmarks extends AbstractFeature
      * The value of each of these keys is of the normal Position format described
      * in the Cloud Vision documentation.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $positions = $landmarks->nose();
      * foreach ($positions as $name => $pos) {
@@ -393,7 +393,7 @@ class Landmarks extends AbstractFeature
      * The value of each of these keys is of the normal Position format described
      * in the Cloud Vision documentation.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $positions = $landmarks->ears();
      * foreach ($positions as $name => $pos) {
@@ -420,7 +420,7 @@ class Landmarks extends AbstractFeature
     /**
      * Get the position of the forehead glabella.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $pos = $landmarks->forehead();
      * echo "x position: ". $pos['x'] . PHP_EOL;
@@ -444,7 +444,7 @@ class Landmarks extends AbstractFeature
      * The value of each of these keys is of the normal Position format described
      * in the Cloud Vision documentation.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $positions = $landmarks->chin();
      * foreach ($positions as $name => $pos) {

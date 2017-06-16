@@ -20,7 +20,7 @@ namespace Google\Cloud\Core;
 /**
  * Represents a Duration type.
  *
- * Example:
+ * Sample Code:
  * ```
  * use Google\Cloud\Core\Duration;
  *
@@ -61,7 +61,7 @@ class Duration
     /**
      * Get the duration
      *
-     * Example:
+     * Sample Code:
      * ```
      * $res = $duration->get();
      * ```
@@ -79,7 +79,7 @@ class Duration
     /**
      * Format the value as a string.
      *
-     * Example:
+     * Sample Code:
      * ```
      * echo $duration->formatAsString();
      * ```

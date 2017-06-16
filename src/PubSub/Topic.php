@@ -29,7 +29,7 @@ use InvalidArgumentException;
 /**
  * A named resource to which messages are sent by publishers.
  *
- * Example:
+ * Sample Code:
  * ```
  * use Google\Cloud\PubSub\PubSubClient;
  *
@@ -110,7 +110,7 @@ class Topic
     /**
      * Get the topic name
      *
-     * Example:
+     * Sample Code:
      * ```
      * echo $topic->name();
      * ```
@@ -125,7 +125,7 @@ class Topic
     /**
      * Create a topic.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $topicInfo = $topic->create();
      * ```
@@ -147,7 +147,7 @@ class Topic
     /**
      * Delete a topic.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $topic->delete();
      * ```
@@ -171,7 +171,7 @@ class Topic
      * a boolean value. If you want to check for errors, use
      * {@see Google\Cloud\PubSub\Topic::info()}.
      *
-     * Example:
+     * Sample Code:
      * ```
      * if ($topic->exists()) {
      *     echo 'Topic exists';
@@ -203,7 +203,7 @@ class Topic
      * This method will use the previously cached result, if available. To force
      * a refresh from the API, use {@see Google\Cloud\Pubsub\Topic::reload()}.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $info = $topic->info();
      * echo $info['name']; // projects/my-awesome-project/topics/my-new-topic
@@ -237,7 +237,7 @@ class Topic
      * This method will retrieve a new result from the API. To use a previously
      * cached result, if one exists, use {@see Google\Cloud\Pubsub\Topic::info()}.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $topic->reload();
      * $info = $topic->info();
@@ -263,7 +263,7 @@ class Topic
      *
      * $message must provide at least one of `data` and `attributes` members.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $topic->publish([
      *     'data' => 'New User Registered',
@@ -289,7 +289,7 @@ class Topic
     /**
      * Publish multiple messages at once.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $topic->publishBatch([
      *     [
@@ -336,7 +336,7 @@ class Topic
     /**
      * Create a subscription to the topic.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $subscription = $topic->subscribe('my-new-subscription');
      * ```
@@ -361,7 +361,7 @@ class Topic
      * This method will not run any API requests. You will receive a
      * Subscription object that you can use to interact with the API.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $subscription = $topic->subscription('my-new-subscription');
      * ```
@@ -377,7 +377,7 @@ class Topic
     /**
      * Retrieve a list of active subscriptions to the current topic.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $subscriptions = $topic->subscriptions();
      * foreach ($subscriptions as $subscription) {
@@ -422,7 +422,7 @@ class Topic
     /**
      * Manage the IAM policy for the current Topic.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $iam = $topic->iam();
      * ```

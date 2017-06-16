@@ -40,7 +40,7 @@ use Google\Cloud\Translate\Connection\Rest;
  * [before you begin](https://cloud.google.com/translation/v2/translating-text-with-rest#before-you-begin)
  * instructions to learn how to generate a key.
  *
- * Example:
+ * Sample Code:
  * ```
  * use Google\Cloud\Translate\TranslateClient;
  *
@@ -129,7 +129,7 @@ class TranslateClient
     /**
      * Translate a string from one language to another.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $result = $translate->translate('Hello world!');
      *
@@ -170,7 +170,7 @@ class TranslateClient
     /**
      * Translate multiple strings from one language to another.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $results = $translate->translateBatch([
      *     'Hello world!',
@@ -250,7 +250,7 @@ class TranslateClient
     /**
      * Detect the language of a string.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $result = $translate->detectLanguage('Hello world!');
      *
@@ -275,7 +275,7 @@ class TranslateClient
     /**
      * Detect the language of multiple strings.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $results = $translate->detectLanguageBatch([
      *     'Hello World!',
@@ -322,7 +322,7 @@ class TranslateClient
     /**
      * Get all supported languages.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $languages = $translate->languages();
      *
@@ -354,7 +354,7 @@ class TranslateClient
      * will return the localized language names in addition to the ISO 639-1
      * language codes.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $languages = $translate->localizedLanguages();
      *

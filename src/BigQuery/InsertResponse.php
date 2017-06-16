@@ -49,7 +49,7 @@ class InsertResponse
     /**
      * Determines if the request was successful.
      *
-     * Example:
+     * Sample Code:
      * ```
      * if (!$insertResponse->isSuccessful()) {
      *    print_r($insertResponse->failedRows());
@@ -67,7 +67,7 @@ class InsertResponse
      * Returns the rows which failed to insert along with their associated
      * errors and index in the original data set.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $rows = $insertResponse->failedRows();
      *
@@ -105,7 +105,7 @@ class InsertResponse
     /**
      * Retrieves the full API response.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $info = $insertResponse->info();
      * print_r($info['insertErrors']);

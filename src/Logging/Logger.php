@@ -27,7 +27,7 @@ use Google\Cloud\Logging\Connection\ConnectionInterface;
 /**
  * A logger used to write entries to Google Stackdriver Logging.
  *
- * Example:
+ * Sample Code:
  * ```
  * use Google\Cloud\Logging\LoggingClient;
  *
@@ -132,7 +132,7 @@ class Logger
      * Deletes this log and all its log entries. The log will reappear if it
      * receives new entries.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $logger->delete();
      * ```
@@ -154,7 +154,7 @@ class Logger
      * Please note that a default filter specifying the logName will be applied
      * for you.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $entries = $logger->entries();
      *
@@ -225,7 +225,7 @@ class Logger
      * the entry to the log please use {@see Google\Cloud\Logging\Logger::write()}
      * or {@see Google\Cloud\Logging\Logger::writeBatch()}.
      *
-     * Example:
+     * Sample Code:
      * ```
      * // Create an entry with a key/value set of data
      * $entry = $logger->entry(['user' => 'calvin']);
@@ -313,7 +313,7 @@ class Logger
     /**
      * Write a single entry to the log.
      *
-     * Example:
+     * Sample Code:
      * ```
      * // Writing a simple log entry.
      * $logger->write('a log entry');
@@ -356,7 +356,7 @@ class Logger
     /**
      * Write a set of entries to the log.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $entries = [];
      * $entries[] = $logger->entry('my message');

@@ -29,7 +29,7 @@ use Google\Cloud\Trace\Connection\Rest;
  * your applications and display it in the Google Cloud Platform Console.
  * Find more information at [Stackdriver Trace API docs](https://cloud.google.com/trace/docs/).
  *
- * Example:
+ * Sample Code:
  * ```
  * use Google\Cloud\Trace\TraceClient;
  *

@@ -42,7 +42,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      * <pre>
      * *Required* The language of the supplied audio as a
      * [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag.
-     * Example: "en-US".
+     * Sample Code: "en-US".
      * See [Language Support](https://cloud.google.com/speech/docs/languages)
      * for a list of the currently supported language codes.
      * </pre>
@@ -154,7 +154,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      * <pre>
      * *Required* The language of the supplied audio as a
      * [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag.
-     * Example: "en-US".
+     * Sample Code: "en-US".
      * See [Language Support](https://cloud.google.com/speech/docs/languages)
      * for a list of the currently supported language codes.
      * </pre>
@@ -170,7 +170,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      * <pre>
      * *Required* The language of the supplied audio as a
      * [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag.
-     * Example: "en-US".
+     * Sample Code: "en-US".
      * See [Language Support](https://cloud.google.com/speech/docs/languages)
      * for a list of the currently supported language codes.
      * </pre>

@@ -32,7 +32,7 @@ use Psr\Http\Message\StreamInterface;
  * Buckets are the basic containers that hold your data. Everything that you
  * store in Google Cloud Storage must be contained in a bucket.
  *
- * Example:
+ * Sample Code:
  * ```
  * use Google\Cloud\Storage\StorageClient;
  *
@@ -94,7 +94,7 @@ class Bucket
     /**
      * Configure ACL for this bucket.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $acl = $bucket->acl();
      * ```
@@ -112,7 +112,7 @@ class Bucket
     /**
      * Configure default object ACL for this bucket.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $acl = $bucket->defaultAcl();
      * ```
@@ -129,7 +129,7 @@ class Bucket
     /**
      * Check whether or not the bucket exists.
      *
-     * Example:
+     * Sample Code:
      * ```
      * if ($bucket->exists()) {
      *     echo 'Bucket exists!';
@@ -153,7 +153,7 @@ class Bucket
      * Upload your data in a simple fashion. Uploads will default to being
      * resumable if the file size is greater than 5mb.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $object = $bucket->upload(
      *     fopen(__DIR__ . '/image.jpg', 'r')
@@ -266,7 +266,7 @@ class Bucket
      * upload process. This is recommended when dealing with large files where
      * reliability is key.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $uploader = $bucket->getResumableUploader(
      *     fopen(__DIR__ . '/image.jpg', 'r')
@@ -331,7 +331,7 @@ class Bucket
      * upload process. This is useful for generating large files and uploading
      * the contents in chunks.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $uploader = $bucket->getStreamableUploader(
      *     'initial contents',
@@ -398,7 +398,7 @@ class Bucket
      * point. To see the operations that can be performed on an object please
      * see {@see Google\Cloud\Storage\StorageObject}.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $object = $bucket->object('file.txt');
      * ```
@@ -439,7 +439,7 @@ class Bucket
     /**
      * Fetches all objects in the bucket.
      *
-     * Example:
+     * Sample Code:
      * ```
      * // Get all objects beginning with the prefix 'photo'
      * $objects = $bucket->objects([
@@ -504,7 +504,7 @@ class Bucket
     /**
      * Delete the bucket.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $bucket->delete();
      * ```
@@ -529,7 +529,7 @@ class Bucket
      * Update the bucket. Upon receiving a result the local bucket's data will
      * be updated.
      *
-     * Example:
+     * Sample Code:
      * ```
      * // Enable logging on an existing bucket.
      * $bucket->update([
@@ -598,7 +598,7 @@ class Bucket
      * Please note that all objects to be composed must come from the same
      * bucket.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $sourceObjects = ['log1.txt', 'log2.txt'];
      * $singleObject = $bucket->compose($sourceObjects, 'combined-logs.txt');
@@ -691,7 +691,7 @@ class Bucket
      * Retrieves the bucket's details. If no bucket data is cached a network
      * request will be made to retrieve it.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $info = $bucket->info();
      * echo $info['location'];
@@ -725,7 +725,7 @@ class Bucket
     /**
      * Triggers a network request to reload the bucket's details.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $bucket->reload();
      * $info = $bucket->info();
@@ -756,7 +756,7 @@ class Bucket
     /**
      * Retrieves the bucket's name.
      *
-     * Example:
+     * Sample Code:
      * ```
      * echo $bucket->name();
      * ```
@@ -803,7 +803,7 @@ class Bucket
      *
      * Please note that this method may not yet be available in your project.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $iam = $bucket->iam();
      * ```

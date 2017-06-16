@@ -29,7 +29,7 @@ use InvalidArgumentException;
  * a [Query](https://cloud.google.com/datastore/reference/rest/v1/projects/runQuery#query)
  * when creating this object.
  *
- * Example:
+ * Sample Code:
  * ```
  * use Google\Cloud\Datastore\DatastoreClient;
  *
@@ -153,7 +153,7 @@ class Query implements QueryInterface
      * Accepts an array of properties. If set, only these properties will be
      * returned.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $query->projection(['firstName', 'lastName']);
      * ```
@@ -180,7 +180,7 @@ class Query implements QueryInterface
     /**
      * Set the query to return only keys (no properties).
      *
-     * Example:
+     * Sample Code:
      * ```
      * $query->keysOnly();
      * ```
@@ -201,7 +201,7 @@ class Query implements QueryInterface
      * results. While you may supply as many kinds as you wish, datastore currently
      * only accepts one at a time.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $query->kind('Person');
      * ```
@@ -229,7 +229,7 @@ class Query implements QueryInterface
      * If the top-level filter is specified as a propertyFilter, it will be replaced.
      * Any composite filters will be preserved and the new filter will be added.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $query->filter('firstName', '=', 'Bob')
      *     ->filter('lastName', '=', 'Testguy');
@@ -271,7 +271,7 @@ class Query implements QueryInterface
      * object, or by providing a kind, identifier and (optionally) an identifier
      * type.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $key = $datastore->key('Person', 'Bob');
      * $query->hasAncestor($key);
@@ -298,7 +298,7 @@ class Query implements QueryInterface
     /**
      * Specify an order for the query.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $query->order('birthDate', Query::ORDER_DESCENDING);
      * ```
@@ -329,7 +329,7 @@ class Query implements QueryInterface
      * combination of values for the given properties (if empty, all results
      * are returned).
      *
-     * Example:
+     * Sample Code:
      * ```
      * $query->distinctOn('lastName');
      * ```
@@ -353,7 +353,7 @@ class Query implements QueryInterface
     /**
      * The starting point for the query results.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $query->start($lastResultCursor);
      * ```
@@ -375,7 +375,7 @@ class Query implements QueryInterface
     /**
      * The ending point for the query results.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $query->end($lastResultCursor);
      * ```
@@ -397,7 +397,7 @@ class Query implements QueryInterface
     /**
      * The number of results to skip.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $query->offset(2);
      * ```
@@ -419,7 +419,7 @@ class Query implements QueryInterface
     /**
      * The number of results to return.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $query->limit(50);
      * ```

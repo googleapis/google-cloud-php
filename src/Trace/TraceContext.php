@@ -22,7 +22,7 @@ namespace Google\Cloud\Trace;
  * 3 fields: the `traceId`, the current `spanId`, and an `enabled` flag which indicates whether
  * or not the request is being traced.
  *
- * Example:
+ * Sample Code:
  * ```
  * use Google\Cloud\Trace\RequestTracer;
  *

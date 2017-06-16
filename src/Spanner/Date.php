@@ -21,7 +21,7 @@ namespace Google\Cloud\Spanner;
  * Represents a value with a data type of
  * [Date](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#google.spanner.v1.TypeCode).
  *
- * Example:
+ * Sample Code:
  * ```
  * use Google\Cloud\Spanner\SpannerClient;
  *
@@ -55,7 +55,7 @@ class Date implements ValueInterface
     /**
      * Create a Date from integer or string values.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $date = Date::createFromValues(1995, 02, 04);
      * ```
@@ -76,7 +76,7 @@ class Date implements ValueInterface
     /**
      * Get the underlying `\DateTimeInterface` implementation.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $dateTime = $date->get();
      * ```
@@ -91,7 +91,7 @@ class Date implements ValueInterface
     /**
      * Get the type.
      *
-     * Example:
+     * Sample Code:
      * ```
      * echo $date->type();
      * ```
@@ -106,7 +106,7 @@ class Date implements ValueInterface
     /**
      * Format the value as a string.
      *
-     * Example:
+     * Sample Code:
      * ```
      * echo $date->formatAsString();
      * ```

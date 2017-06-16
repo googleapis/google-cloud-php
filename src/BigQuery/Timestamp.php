@@ -21,7 +21,7 @@ namespace Google\Cloud\BigQuery;
  * Represents a value with a data type of
  * [Timestamp](https://cloud.google.com/bigquery/docs/reference/standard-sql/data-types#timestamp-type).
  *
- * Example:
+ * Sample Code:
  * ```
  * use Google\Cloud\BigQuery\BigQueryClient;
  *

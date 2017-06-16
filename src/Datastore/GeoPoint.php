@@ -22,7 +22,7 @@ use InvalidArgumentException;
 /**
  * Represents a geographical point.
  *
- * Example:
+ * Sample Code:
  * ```
  * use Google\Cloud\Datastore\DatastoreClient;
  *
@@ -64,7 +64,7 @@ class GeoPoint
     /**
      * Get the latitude
      *
-     * Example:
+     * Sample Code:
      * ```
      * $latitude = $point->latitude();
      * ```
@@ -82,7 +82,7 @@ class GeoPoint
      *
      * Non-numeric values will result in an exception
      *
-     * Example:
+     * Sample Code:
      * ```
      * $point->setLatitude(42.279594);
      * ```
@@ -107,7 +107,7 @@ class GeoPoint
     /**
      * Get the longitude
      *
-     * Example:
+     * Sample Code:
      * ```
      * $longitude = $point->longitude();
      * ```
@@ -125,7 +125,7 @@ class GeoPoint
      *
      * Non-numeric values will result in an exception.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $point->setLongitude(-83.732124);
      * ```
@@ -150,7 +150,7 @@ class GeoPoint
     /**
      * Return a GeoPoint
      *
-     * Example:
+     * Sample Code:
      * ```
      * $point = $point->point();
      * ```

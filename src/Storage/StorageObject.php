@@ -26,7 +26,7 @@ use Psr\Http\Message\StreamInterface;
  * Objects are the individual pieces of data that you store in Google Cloud
  * Storage.
  *
- * Example:
+ * Sample Code:
  * ```
  * use Google\Cloud\Storage\StorageClient;
  *
@@ -103,7 +103,7 @@ class StorageObject
     /**
      * Configure ACL for this object.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $acl = $object->acl();
      * ```
@@ -120,7 +120,7 @@ class StorageObject
     /**
      * Check whether or not the object exists.
      *
-     * Example:
+     * Sample Code:
      * ```
      * if ($object->exists()) {
      *     echo 'Object exists!';
@@ -143,7 +143,7 @@ class StorageObject
     /**
      * Delete the object.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $object->delete();
      * ```
@@ -177,7 +177,7 @@ class StorageObject
      * Update the object. Upon receiving a result the local object's data will
      * be updated.
      *
-     * Example:
+     * Sample Code:
      * ```
      * // Add custom metadata to an existing object.
      * $object->update([
@@ -236,7 +236,7 @@ class StorageObject
      * bucket and a new name is not provided the source object will be replaced
      * with the copy of itself.
      *
-     * Example:
+     * Sample Code:
      * ```
      * // Provide your destination bucket as a string and retain the source
      * // object's name.
@@ -330,7 +330,7 @@ class StorageObject
      * bucket and a new name is not provided the source object will be replaced
      * with the copy of itself.
      *
-     * Example:
+     * Sample Code:
      * ```
      * // Provide your destination bucket as a string and retain the source
      * // object's name.
@@ -456,7 +456,7 @@ class StorageObject
      * and delete. Upon success the source object's metadata will be cleared,
      * please use the returned object instead.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $object2 = $object->rename('object2.txt');
      * echo $object2->name();
@@ -532,7 +532,7 @@ class StorageObject
     /**
      * Download an object as a string.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $string = $object->downloadAsString();
      * echo $string;
@@ -560,7 +560,7 @@ class StorageObject
     /**
      * Download an object to a specified location.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $stream = $object->downloadToFile(__DIR__ . '/my-file.txt');
      * ```
@@ -597,7 +597,7 @@ class StorageObject
     /**
      * Download an object as a stream.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $stream = $object->downloadAsStream();
      * echo $stream->getContents();
@@ -632,7 +632,7 @@ class StorageObject
      * Retrieves the object's details. If no object data is cached a network
      * request will be made to retrieve it.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $info = $object->info();
      * echo $info['size'];
@@ -682,7 +682,7 @@ class StorageObject
     /**
      * Triggers a network request to reload the object's details.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $object->reload();
      * $info = $object->info();
@@ -733,7 +733,7 @@ class StorageObject
     /**
      * Retrieves the object's name.
      *
-     * Example:
+     * Sample Code:
      * ```
      * echo $object->name();
      * ```
@@ -748,7 +748,7 @@ class StorageObject
     /**
      * Retrieves the object's identity.
      *
-     * Example:
+     * Sample Code:
      * ```
      * echo $object->identity()['object'];
      * ```
@@ -764,7 +764,7 @@ class StorageObject
      * Formats the object as a string in the following format:
      * `gs://{bucket-name}/{object-name}`.
      *
-     * Example:
+     * Sample Code:
      * ```
      * echo $object->gcsUri();
      * ```

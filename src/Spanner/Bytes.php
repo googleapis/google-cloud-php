@@ -24,7 +24,7 @@ use Psr\Http\Message\StreamInterface;
  * Represents a value with a data type of
  * [bytes](https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.v1#google.spanner.v1.TypeCode).
  *
- * Example:
+ * Sample Code:
  * ```
  * use Google\Cloud\Spanner\SpannerClient;
  *
@@ -56,7 +56,7 @@ class Bytes implements ValueInterface
     /**
      * Get the bytes as a stream.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $stream = $bytes->get();
      * ```
@@ -71,7 +71,7 @@ class Bytes implements ValueInterface
     /**
      * Get the type.
      *
-     * Example:
+     * Sample Code:
      * ```
      * echo $bytes->type();
      * ```
@@ -86,7 +86,7 @@ class Bytes implements ValueInterface
     /**
      * Format the value as a string.
      *
-     * Example:
+     * Sample Code:
      * ```
      * echo $bytes->formatAsString();
      * ```

@@ -107,7 +107,7 @@ class QueryResults
      * | `string`                                   | `STRING`                             |
      * | `bool`                                     | `BOOLEAN`                            |
      *
-     * Example:
+     * Sample Code:
      * ```
      * $isComplete = $queryResults->isComplete();
      *
@@ -167,7 +167,7 @@ class QueryResults
      * Checks the query's completeness. Useful in combination with
      * {@see Google\Cloud\BigQuery\QueryResults::reload()} to poll for query status.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $isComplete = $queryResults->isComplete();
      *
@@ -190,7 +190,7 @@ class QueryResults
     /**
      * Retrieves the cached query details.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $info = $queryResults->info();
      * echo $info['totalBytesProcessed'];
@@ -215,7 +215,7 @@ class QueryResults
      * {@see Google\Cloud\BigQuery\BigQueryClient::runQuery()}, but they can be
      * overridden if needed.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $queryResults->isComplete(); // returns false
      * sleep(1); // let's wait for a moment...
@@ -249,7 +249,7 @@ class QueryResults
      *
      * An identity provides a description of a nested resource.
      *
-     * Example:
+     * Sample Code:
      * ```
      * echo $queryResults->identity()['projectId'];
      * ```

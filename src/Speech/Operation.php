@@ -23,7 +23,7 @@ use Google\Cloud\Speech\Connection\ConnectionInterface;
 /**
  * Represents a long-running operation that is the result of a network API call.
  *
- * Example:
+ * Sample Code:
  * ```
  * use Google\Cloud\Speech\SpeechClient;
  *
@@ -70,7 +70,7 @@ class Operation
      * Check whether or not the operation is complete. A network request will be
      * triggered if no cached data exists.
      *
-     * Example:
+     * Sample Code:
      * ```
      * if ($operation->isComplete()) {
      *     echo "The operation is complete!";
@@ -91,7 +91,7 @@ class Operation
      * Retrieves the results of the operation. A network request will be
      * triggered if no cached data exists.
      *
-     * Example:
+     * Sample Code:
      * ```
      * if ($operation->isComplete()) {
      *     $results = $operation->results();
@@ -124,7 +124,7 @@ class Operation
     /**
      * Check whether or not the operation exists.
      *
-     * Example:
+     * Sample Code:
      * ```
      * if ($operation->exists()) {
      *     echo "The operation exists.";
@@ -149,7 +149,7 @@ class Operation
      * Retrieves the operation's details. If no data is cached a network request
      * will be made to retrieve it.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $info = $operation->info();
      * print_r($info['response']);
@@ -175,7 +175,7 @@ class Operation
     /**
      * Triggers a network request to reload the operation's details.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $operation->reload();
      * $info = $operation->info();
@@ -200,7 +200,7 @@ class Operation
     /**
      * Returns the operation's name.
      *
-     * Example:
+     * Sample Code:
      * ```
      * echo $operation->name();
      * ```

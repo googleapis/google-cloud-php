@@ -36,7 +36,7 @@ use Google\Cloud\Spanner\Admin\Instance\V1\Instance_State;
 /**
  * Represents a Cloud Spanner instance
  *
- * Example:
+ * Sample Code:
  * ```
  * use Google\Cloud\Spanner\SpannerClient;
  *
@@ -48,7 +48,7 @@ use Google\Cloud\Spanner\Admin\Instance\V1\Instance_State;
  * @method resumeOperation() {
  *     Resume a Long Running Operation
  *
- *     Example:
+ *     Sample Code:
  *     ```
  *     $operation = $instance->resumeOperation($operationName);
  *     ```
@@ -60,7 +60,7 @@ use Google\Cloud\Spanner\Admin\Instance\V1\Instance_State;
  * @method longRunningOperations() {
  *     List long running operations.
  *
- *     Example:
+ *     Sample Code:
  *     ```
  *     $operations = $instance->longRunningOperations();
  *     ```
@@ -156,7 +156,7 @@ class Instance
     /**
      * Return the instance name.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $name = $instance->name();
      * ```
@@ -173,7 +173,7 @@ class Instance
      *
      * This method may require a service call.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $info = $instance->info();
      * echo $info['nodeCount'];
@@ -196,7 +196,7 @@ class Instance
      *
      * This method requires a service call.
      *
-     * Example:
+     * Sample Code:
      * ```
      * if ($instance->exists()) {
      *    echo 'Instance exists!';
@@ -220,7 +220,7 @@ class Instance
     /**
      * Fetch a fresh representation of the instance from the service.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $info = $instance->reload();
      * ```
@@ -245,7 +245,7 @@ class Instance
     /**
      * Create a new instance.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $operation = $instance->create($configuration);
      * ```
@@ -295,7 +295,7 @@ class Instance
      * they are ready for use. This method allows for checking whether an
      * instance is ready.
      *
-     * Example:
+     * Sample Code:
      * ```
      * if ($instance->state() === Instance::STATE_READY) {
      *     echo 'Instance is ready!';
@@ -317,7 +317,7 @@ class Instance
     /**
      * Update the instance
      *
-     * Example:
+     * Sample Code:
      * ```
      * $instance->update([
      *     'displayName' => 'My Instance',
@@ -354,7 +354,7 @@ class Instance
     /**
      * Delete the instance, any databases in the instance, and all data.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $instance->delete();
      * ```
@@ -376,7 +376,7 @@ class Instance
     /**
      * Create a Database
      *
-     * Example:
+     * Sample Code:
      * ```
      * $operation = $instance->createDatabase('my-database');
      * ```
@@ -406,7 +406,7 @@ class Instance
     /**
      * Lazily instantiate a database object
      *
-     * Example:
+     * Sample Code:
      * ```
      * $database = $instance->database('my-database');
      * ```
@@ -437,7 +437,7 @@ class Instance
     /**
      * List databases in an instance
      *
-     * Example:
+     * Sample Code:
      * ```
      * $databases = $instance->databases();
      * ```
@@ -479,7 +479,7 @@ class Instance
     /**
      * Manage the instance IAM policy
      *
-     * Example:
+     * Sample Code:
      * ```
      * $iam = $instance->iam();
      * ```

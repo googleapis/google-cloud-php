@@ -43,7 +43,7 @@ use RuntimeException;
  * {@see Google\Cloud\Spanner\Database::runTransaction()}. In other cases, it is
  * highly recommended that applications implement their own retry logic.
  *
- * Example:
+ * Sample Code:
  * ```
  * use Google\Cloud\Spanner\SpannerClient;
  *
@@ -68,7 +68,7 @@ use RuntimeException;
  *
  *     Note that this method is not available in a single-use transaction.
  *
- *     Example:
+ *     Sample Code:
  *     ```
  *     $result = $transaction->execute(
  *         'SELECT * FROM Users WHERE id = @userId',
@@ -112,7 +112,7 @@ use RuntimeException;
  *
  *     Note that this method is not available in a single-use transaction.
  *
- *     Example:
+ *     Sample Code:
  *     ```
  *     $keySet = new KeySet([
  *         'keys' => [10]
@@ -142,7 +142,7 @@ use RuntimeException;
  * @method id() {
  *     Retrieve the Transaction ID.
  *
- *     Example:
+ *     Sample Code:
  *     ```
  *     $id = $transaction->id();
  *     ```
@@ -191,7 +191,7 @@ class Transaction implements TransactionalReadInterface
     /**
      * Enqueue an insert mutation.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $transaction->insert('Posts', [
      *     'ID' => 10,
@@ -212,7 +212,7 @@ class Transaction implements TransactionalReadInterface
     /**
      * Enqueue one or more insert mutations.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $transaction->insertBatch('Posts', [
      *     [
@@ -237,7 +237,7 @@ class Transaction implements TransactionalReadInterface
     /**
      * Enqueue an update mutation.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $transaction->update('Posts', [
      *     'ID' => 10,
@@ -258,7 +258,7 @@ class Transaction implements TransactionalReadInterface
     /**
      * Enqueue one or more update mutations.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $transaction->updateBatch('Posts', [
      *     [
@@ -283,7 +283,7 @@ class Transaction implements TransactionalReadInterface
     /**
      * Enqueue an insert or update mutation.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $transaction->insertOrUpdate('Posts', [
      *     'ID' => 10,
@@ -304,7 +304,7 @@ class Transaction implements TransactionalReadInterface
     /**
      * Enqueue one or more insert or update mutations.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $transaction->insertOrUpdateBatch('Posts', [
      *     [
@@ -329,7 +329,7 @@ class Transaction implements TransactionalReadInterface
     /**
      * Enqueue an replace mutation.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $transaction->replace('Posts', [
      *     'ID' => 10,
@@ -350,7 +350,7 @@ class Transaction implements TransactionalReadInterface
     /**
      * Enqueue one or more replace mutations.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $transaction->replaceBatch('Posts', [
      *     [
@@ -375,7 +375,7 @@ class Transaction implements TransactionalReadInterface
     /**
      * Enqueue an delete mutation.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $keySet = new KeySet([
      *     'keys' => [10]
@@ -406,7 +406,7 @@ class Transaction implements TransactionalReadInterface
      *
      * Rollback will NOT error if the transaction is not found or was already aborted.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $transaction->rollback();
      * ```
@@ -437,7 +437,7 @@ class Transaction implements TransactionalReadInterface
      * advantage of automated transaction retry in case of a transaction aborted
      * error.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $transaction->commit();
      * ```
@@ -483,7 +483,7 @@ class Transaction implements TransactionalReadInterface
      * Will be one of `Transaction::STATE_ACTIVE`,
      * `Transaction::STATE_COMMITTED`, or `Transaction::STATE_ROLLED_BACK`.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $state = $transaction->state();
      * ```
@@ -504,7 +504,7 @@ class Transaction implements TransactionalReadInterface
      * provide a transaction where `$transaction->isRetry()` is true. This can
      * be useful for debugging and understanding how code is working.
      *
-     * Example:
+     * Sample Code:
      * ```
      * if ($transaction->isRetry()) {
      *     echo 'This is a retry transaction!';

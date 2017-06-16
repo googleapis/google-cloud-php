@@ -28,7 +28,7 @@ use Google\Cloud\Trace\Reporter\ReporterInterface;
  * will collect trace data during your request and report the results at the
  * request using the provided reporter.
  *
- * Example:
+ * Sample Code:
  * ```
  * use Google\Cloud\Trace\RequestTracer;
  * use Google\Cloud\Trace\TraceClient;
@@ -138,7 +138,7 @@ class RequestTracer
      * If an exception is thrown while executing the callable, the exception will be caught,
      * the span will be closed, and the exception will be re-thrown.
      *
-     * Example:
+     * Sample Code:
      * ```
      * // Instrumenting code as a closure
      * RequestTracer::inSpan(['name' => 'some-closure'], function () {
@@ -168,7 +168,7 @@ class RequestTracer
      * Explicitly start a new TraceSpan. You will need to manage finishing the TraceSpan,
      * including handling any thrown exceptions.
      *
-     * Example:
+     * Sample Code:
      * ```
      * RequestTracer::startSpan(['name' => 'expensive-operation']);
      * try {

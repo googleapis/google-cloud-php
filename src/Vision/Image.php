@@ -39,7 +39,7 @@ use InvalidArgumentException;
  * [Best Practices - Image Sizing](https://cloud.google.com/vision/docs/best-practices#image_sizing)
  * for current file size limits.
  *
- * Example:
+ * Sample Code:
  * ```
  * //[snippet=default]
  * use Google\Cloud\Vision\VisionClient;
@@ -261,7 +261,7 @@ class Image
      * This method is used internally by {@see Google\Cloud\Vision\VisionClient}
      * and is not generally intended for use outside of that context.
      *
-     * Example:
+     * Sample Code:
      * ```
      * use Google\Cloud\Vision\Image;
      *

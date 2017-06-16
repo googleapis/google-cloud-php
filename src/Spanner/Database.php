@@ -38,7 +38,7 @@ use Google\Cloud\Spanner\V1\TypeCode;
 /**
  * Represents a Cloud Spanner Database.
  *
- * Example:
+ * Sample Code:
  * ```
  * use Google\Cloud\Spanner\SpannerClient;
  *
@@ -60,7 +60,7 @@ use Google\Cloud\Spanner\V1\TypeCode;
  * @method resumeOperation() {
  *     Resume a Long Running Operation
  *
- *     Example:
+ *     Sample Code:
  *     ```
  *     $operation = $database->resumeOperation($operationName);
  *     ```
@@ -72,7 +72,7 @@ use Google\Cloud\Spanner\V1\TypeCode;
  * @method longRunningOperations() {
  *     List long running operations.
  *
- *     Example:
+ *     Sample Code:
  *     ```
  *     $operations = $database->longRunningOperations();
  *     ```
@@ -197,7 +197,7 @@ class Database
     /**
      * Return the fully-qualified database name.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $name = $database->name();
      * ```
@@ -212,7 +212,7 @@ class Database
     /**
      * Get the database info
      *
-     * Example:
+     * Sample Code:
      * ```
      * $info = $database->info();
      * ```
@@ -232,7 +232,7 @@ class Database
     /**
      * Reload the database info from the Cloud Spanner API.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $info = $database->reload();
      * ```
@@ -258,7 +258,7 @@ class Database
      *
      * **NOTE**: Requires `https://www.googleapis.com/auth/spanner.admin` scope.
      *
-     * Example:
+     * Sample Code:
      * ```
      * if ($database->exists()) {
      *     echo 'Database exists!';
@@ -282,7 +282,7 @@ class Database
     /**
      * Create a new Cloud Spanner database.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $operation = $database->create();
      * ```
@@ -320,7 +320,7 @@ class Database
      *
      * **NOTE**: Requires `https://www.googleapis.com/auth/spanner.admin` scope.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $database->updateDdl(
      *     'CREATE TABLE Users (
@@ -350,7 +350,7 @@ class Database
      *
      * **NOTE**: Requires `https://www.googleapis.com/auth/spanner.admin` scope.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $database->updateDdlBatch([
      *     'CREATE TABLE Users (
@@ -390,7 +390,7 @@ class Database
      *
      * **NOTE**: Requires `https://www.googleapis.com/auth/spanner.admin` scope.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $database->drop();
      * ```
@@ -414,7 +414,7 @@ class Database
      *
      * **NOTE**: Requires `https://www.googleapis.com/auth/spanner.admin` scope.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $statements = $database->ddl();
      * ```
@@ -442,7 +442,7 @@ class Database
     /**
      * Manage the database IAM policy
      *
-     * Example:
+     * Sample Code:
      * ```
      * $iam = $database->iam();
      * ```
@@ -469,7 +469,7 @@ class Database
      *
      * Snapshots are executed behind the scenes using a Read-Only Transaction.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $snapshot = $database->snapshot();
      * ```
@@ -552,7 +552,7 @@ class Database
      * it is important that every transaction commits or rolls back as early as
      * possible. Do not hold transactions open longer than necessary.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $transaction = $database->transaction();
      * ```
@@ -609,7 +609,7 @@ class Database
      * {@see Google\Cloud\Spanner\Transaction::rollback()}, the transaction will
      * automatically be rolled back and `\RuntimeException` thrown.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $transaction = $database->runTransaction(function (Transaction $t) use ($username, $password) {
      *     $rows = $t->execute('SELECT * FROM Users WHERE Name = @name and PasswordHash = @password', [
@@ -725,7 +725,7 @@ class Database
      * may lead to a failure being reported when the mutation was previously
      * applied.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $database->insert('Posts', [
      *     'ID' => 1337,
@@ -758,7 +758,7 @@ class Database
      * may lead to a failure being reported when the mutation was previously
      * applied.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $database->insertBatch('Posts', [
      *     [
@@ -801,7 +801,7 @@ class Database
      *
      * Mutations are committed in a single-use transaction.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $database->update('Posts', [
      *     'ID' => 1337,
@@ -832,7 +832,7 @@ class Database
      *
      * Mutations are committed in a single-use transaction.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $database->updateBatch('Posts', [
      *     [
@@ -873,7 +873,7 @@ class Database
      *
      * Mutations are committed in a single-use transaction.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $database->insertOrUpdate('Posts', [
      *     'ID' => 1337,
@@ -905,7 +905,7 @@ class Database
      *
      * Mutations are committed in a single-use transaction.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $database->insertOrUpdateBatch('Posts', [
      *     [
@@ -948,7 +948,7 @@ class Database
      *
      * Mutations are committed in a single-use transaction.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $database->replace('Posts', [
      *     'ID' => 1337,
@@ -980,7 +980,7 @@ class Database
      *
      * Mutations are committed in a single-use transaction.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $database->replaceBatch('Posts', [
      *     [
@@ -1024,7 +1024,7 @@ class Database
      * may lead to a failure being reported when the mutation was previously
      * applied.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $keySet = new KeySet([
      *     'keys' => [
@@ -1054,7 +1054,7 @@ class Database
     /**
      * Run a query.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $result = $database->execute('SELECT * FROM Posts WHERE ID = @postId', [
      *     'parameters' => [
@@ -1201,7 +1201,7 @@ class Database
     /**
      * Lookup rows in a table.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $keySet = new KeySet([
      *     'keys' => [1337]
@@ -1315,7 +1315,7 @@ class Database
     /**
      * Get the underlying session pool implementation.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $pool = $database->sessionPool();
      * ```
@@ -1335,7 +1335,7 @@ class Database
      * It is highly important to ensure this is called as it is not always safe
      * to rely soley on {@see Google\Cloud\Spanner\Database::__destruct()}.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $database->close();
      * ```

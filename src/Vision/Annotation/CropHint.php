@@ -22,7 +22,7 @@ use Google\Cloud\Core\CallTrait;
 /**
  * Represents a recommended image crop.
  *
- * Example:
+ * Sample Code:
  * ```
  * use Google\Cloud\Vision\VisionClient;
  *
@@ -39,7 +39,7 @@ use Google\Cloud\Core\CallTrait;
  * @method boundingPoly() {
  *     The bounding polygon of the recommended crop.
  *
- *     Example:
+ *     Sample Code:
  *     ```
  *     $poly = $hint->boundingPoly();
  *     ```
@@ -49,7 +49,7 @@ use Google\Cloud\Core\CallTrait;
  * @method confidence() {
  *     Confidence of this being a salient region.  Range [0, 1].
  *
- *     Example:
+ *     Sample Code:
  *     ```
  *     $confidence = $hint->confidence();
  *     ```
@@ -60,7 +60,7 @@ use Google\Cloud\Core\CallTrait;
  *     Fraction of importance of this salient region with respect to the
  *     original image.
  *
- *     Example:
+ *     Sample Code:
  *     ```
  *     $importance = $hint->importanceFraction();
  *     ```

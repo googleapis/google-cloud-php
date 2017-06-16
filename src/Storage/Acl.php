@@ -27,7 +27,7 @@ use InvalidArgumentException;
  * information please see the overview on
  * [access-control](https://cloud.google.com/storage/docs/access-control).
  *
- * Example:
+ * Sample Code:
  * ```
  * use Google\Cloud\Storage\StorageClient;
  *
@@ -81,7 +81,7 @@ class Acl
      * Delete access controls on a {@see Google\Cloud\Storage\Bucket} or
      * {@see Google\Cloud\Storage\StorageObject} for a specified entity.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $acl->delete('allAuthenticatedUsers');
      * ```
@@ -109,7 +109,7 @@ class Acl
      * access controls. You may optionally specify a single entity to return
      * details for as well.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $res = $acl->get(['entity' => 'allAuthenticatedUsers']);
      * ```
@@ -142,7 +142,7 @@ class Acl
      * Add access controls on a {@see Google\Cloud\Storage\Bucket} or
      * {@see Google\Cloud\Storage\StorageObject}.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $acl->add('allAuthenticatedUsers', 'WRITER');
      * ```
@@ -174,7 +174,7 @@ class Acl
      * Update access controls on a {@see Google\Cloud\Storage\Bucket} or
      * {@see Google\Cloud\Storage\StorageObject}.
      *
-     * Example:
+     * Sample Code:
      * ```
      * $acl->update('allAuthenticatedUsers', 'READER');
      * ```
