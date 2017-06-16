@@ -494,7 +494,7 @@ class SpeechClient
      *          Timeout to use for this call.
      * }
      *
-     * @return \Google\GAX\BidiStreamingResponse
+     * @return \Google\GAX\BidiStream
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      * @experimental

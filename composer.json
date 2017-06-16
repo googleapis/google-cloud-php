@@ -58,7 +58,7 @@
         "erusev/parsedown": "^1.6",
         "vierbergenlars/php-semver": "^3.0",
         "google/proto-client-php": "^0.13",
-        "google/gax": "^0.9",
+        "google/gax": "^0.10",
         "symfony/lock": "3.3.x-dev#1ba6ac9"
     },
     "suggest": {
