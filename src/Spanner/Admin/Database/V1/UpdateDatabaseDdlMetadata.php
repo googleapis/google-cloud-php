@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * [UpdateDatabaseDdl][google.spanner.admin.database.v1.DatabaseAdmin.UpdateDatabaseDdl].
  * </pre>
  *
- * Protobuf type <code>google.spanner.admin.database.v1.UpdateDatabaseDdlMetadata</code>
+ * Protobuf type <code>Google\Spanner\Admin\Database\V1\UpdateDatabaseDdlMetadata</code>
  */
 class UpdateDatabaseDdlMetadata extends \Google\Protobuf\Internal\Message
 {
@@ -57,6 +57,7 @@ class UpdateDatabaseDdlMetadata extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string database = 1;</code>
+     * @return string
      */
     public function getDatabase()
     {
@@ -69,6 +70,7 @@ class UpdateDatabaseDdlMetadata extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string database = 1;</code>
+     * @param string $var
      */
     public function setDatabase($var)
     {
@@ -85,6 +87,7 @@ class UpdateDatabaseDdlMetadata extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated string statements = 2;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getStatements()
     {
@@ -98,6 +101,7 @@ class UpdateDatabaseDdlMetadata extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated string statements = 2;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setStatements(&$var)
     {
@@ -115,6 +119,7 @@ class UpdateDatabaseDdlMetadata extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.protobuf.Timestamp commit_timestamps = 3;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getCommitTimestamps()
     {
@@ -129,6 +134,7 @@ class UpdateDatabaseDdlMetadata extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.protobuf.Timestamp commit_timestamps = 3;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setCommitTimestamps(&$var)
     {

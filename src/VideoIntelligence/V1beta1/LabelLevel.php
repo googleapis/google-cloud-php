@@ -9,7 +9,7 @@ namespace Google\Cloud\VideoIntelligence\V1beta1;
  * Label level (scope).
  * </pre>
  *
- * Protobuf enum <code>google.cloud.videointelligence.v1beta1.LabelLevel</code>
+ * Protobuf enum <code>Google\Cloud\Videointelligence\V1beta1\LabelLevel</code>
  */
 class LabelLevel
 {

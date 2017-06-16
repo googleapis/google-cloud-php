@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Node information for nodes appearing in a [QueryPlan.plan_nodes][google.spanner.v1.QueryPlan.plan_nodes].
  * </pre>
  *
- * Protobuf type <code>google.spanner.v1.PlanNode</code>
+ * Protobuf type <code>Google\Spanner\V1\PlanNode</code>
  */
 class PlanNode extends \Google\Protobuf\Internal\Message
 {
@@ -98,6 +98,7 @@ class PlanNode extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 index = 1;</code>
+     * @return int
      */
     public function getIndex()
     {
@@ -110,6 +111,7 @@ class PlanNode extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 index = 1;</code>
+     * @param int $var
      */
     public function setIndex($var)
     {
@@ -129,6 +131,7 @@ class PlanNode extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.PlanNode.Kind kind = 2;</code>
+     * @return int
      */
     public function getKind()
     {
@@ -145,6 +148,7 @@ class PlanNode extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.PlanNode.Kind kind = 2;</code>
+     * @param int $var
      */
     public function setKind($var)
     {
@@ -160,6 +164,7 @@ class PlanNode extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string display_name = 3;</code>
+     * @return string
      */
     public function getDisplayName()
     {
@@ -172,6 +177,7 @@ class PlanNode extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string display_name = 3;</code>
+     * @param string $var
      */
     public function setDisplayName($var)
     {
@@ -187,6 +193,7 @@ class PlanNode extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.spanner.v1.PlanNode.ChildLink child_links = 4;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getChildLinks()
     {
@@ -199,6 +206,7 @@ class PlanNode extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.spanner.v1.PlanNode.ChildLink child_links = 4;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setChildLinks(&$var)
     {
@@ -214,6 +222,7 @@ class PlanNode extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.PlanNode.ShortRepresentation short_representation = 5;</code>
+     * @return Google\Cloud\Spanner\V1\PlanNode_ShortRepresentation
      */
     public function getShortRepresentation()
     {
@@ -226,6 +235,7 @@ class PlanNode extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.PlanNode.ShortRepresentation short_representation = 5;</code>
+     * @param Google\Cloud\Spanner\V1\PlanNode_ShortRepresentation $var
      */
     public function setShortRepresentation(&$var)
     {
@@ -247,6 +257,7 @@ class PlanNode extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Struct metadata = 6;</code>
+     * @return Google\Protobuf\Struct
      */
     public function getMetadata()
     {
@@ -265,6 +276,7 @@ class PlanNode extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Struct metadata = 6;</code>
+     * @param Google\Protobuf\Struct $var
      */
     public function setMetadata(&$var)
     {
@@ -283,6 +295,7 @@ class PlanNode extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Struct execution_stats = 7;</code>
+     * @return Google\Protobuf\Struct
      */
     public function getExecutionStats()
     {
@@ -298,6 +311,7 @@ class PlanNode extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Struct execution_stats = 7;</code>
+     * @param Google\Protobuf\Struct $var
      */
     public function setExecutionStats(&$var)
     {

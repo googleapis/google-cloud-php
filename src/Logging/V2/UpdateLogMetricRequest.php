@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * The parameters to UpdateLogMetric.
  * </pre>
  *
- * Protobuf type <code>google.logging.v2.UpdateLogMetricRequest</code>
+ * Protobuf type <code>Google\Logging\V2\UpdateLogMetricRequest</code>
  */
 class UpdateLogMetricRequest extends \Google\Protobuf\Internal\Message
 {
@@ -53,6 +53,7 @@ class UpdateLogMetricRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string metric_name = 1;</code>
+     * @return string
      */
     public function getMetricName()
     {
@@ -69,6 +70,7 @@ class UpdateLogMetricRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string metric_name = 1;</code>
+     * @param string $var
      */
     public function setMetricName($var)
     {
@@ -84,6 +86,7 @@ class UpdateLogMetricRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.logging.v2.LogMetric metric = 2;</code>
+     * @return Google\Cloud\Logging\V2\LogMetric
      */
     public function getMetric()
     {
@@ -96,6 +99,7 @@ class UpdateLogMetricRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.logging.v2.LogMetric metric = 2;</code>
+     * @param Google\Cloud\Logging\V2\LogMetric $var
      */
     public function setMetric(&$var)
     {

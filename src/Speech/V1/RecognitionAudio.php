@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * [audio limits](https://cloud.google.com/speech/limits#content).
  * </pre>
  *
- * Protobuf type <code>google.cloud.speech.v1.RecognitionAudio</code>
+ * Protobuf type <code>Google\Cloud\Speech\V1\RecognitionAudio</code>
  */
 class RecognitionAudio extends \Google\Protobuf\Internal\Message
 {
@@ -35,6 +35,7 @@ class RecognitionAudio extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>bytes content = 1;</code>
+     * @return string
      */
     public function getContent()
     {
@@ -49,6 +50,7 @@ class RecognitionAudio extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>bytes content = 1;</code>
+     * @param string $var
      */
     public function setContent($var)
     {
@@ -69,6 +71,7 @@ class RecognitionAudio extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string uri = 2;</code>
+     * @return string
      */
     public function getUri()
     {
@@ -86,6 +89,7 @@ class RecognitionAudio extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string uri = 2;</code>
+     * @param string $var
      */
     public function setUri($var)
     {
@@ -95,6 +99,9 @@ class RecognitionAudio extends \Google\Protobuf\Internal\Message
         return $this;
     }
 
+    /**
+     * @return string
+     */
     public function getAudioSource()
     {
         return $this->whichOneof("audio_source");

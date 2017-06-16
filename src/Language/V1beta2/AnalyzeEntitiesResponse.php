@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * The entity analysis response message.
  * </pre>
  *
- * Protobuf type <code>google.cloud.language.v1beta2.AnalyzeEntitiesResponse</code>
+ * Protobuf type <code>Google\Cloud\Language\V1beta2\AnalyzeEntitiesResponse</code>
  */
 class AnalyzeEntitiesResponse extends \Google\Protobuf\Internal\Message
 {
@@ -47,6 +47,7 @@ class AnalyzeEntitiesResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.language.v1beta2.Entity entities = 1;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getEntities()
     {
@@ -59,6 +60,7 @@ class AnalyzeEntitiesResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.language.v1beta2.Entity entities = 1;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setEntities(&$var)
     {
@@ -76,6 +78,7 @@ class AnalyzeEntitiesResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string language = 2;</code>
+     * @return string
      */
     public function getLanguage()
     {
@@ -90,6 +93,7 @@ class AnalyzeEntitiesResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string language = 2;</code>
+     * @param string $var
      */
     public function setLanguage($var)
     {

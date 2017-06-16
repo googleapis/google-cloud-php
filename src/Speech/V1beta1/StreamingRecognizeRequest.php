@@ -17,7 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * `streaming_config` message.
  * </pre>
  *
- * Protobuf type <code>google.cloud.speech.v1beta1.StreamingRecognizeRequest</code>
+ * Protobuf type <code>Google\Cloud\Speech\V1beta1\StreamingRecognizeRequest</code>
  */
 class StreamingRecognizeRequest extends \Google\Protobuf\Internal\Message
 {
@@ -36,6 +36,7 @@ class StreamingRecognizeRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.speech.v1beta1.StreamingRecognitionConfig streaming_config = 1;</code>
+     * @return Google\Cloud\Speech\V1beta1\StreamingRecognitionConfig
      */
     public function getStreamingConfig()
     {
@@ -50,6 +51,7 @@ class StreamingRecognizeRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.speech.v1beta1.StreamingRecognitionConfig streaming_config = 1;</code>
+     * @param Google\Cloud\Speech\V1beta1\StreamingRecognitionConfig $var
      */
     public function setStreamingConfig(&$var)
     {
@@ -72,6 +74,7 @@ class StreamingRecognizeRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>bytes audio_content = 2;</code>
+     * @return string
      */
     public function getAudioContent()
     {
@@ -91,6 +94,7 @@ class StreamingRecognizeRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>bytes audio_content = 2;</code>
+     * @param string $var
      */
     public function setAudioContent($var)
     {
@@ -100,6 +104,9 @@ class StreamingRecognizeRequest extends \Google\Protobuf\Internal\Message
         return $this;
     }
 
+    /**
+     * @return string
+     */
     public function getStreamingRequest()
     {
         return $this->whichOneof("streaming_request");

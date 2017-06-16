@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Result returned from `ListSinks`.
  * </pre>
  *
- * Protobuf type <code>google.logging.v2.ListSinksResponse</code>
+ * Protobuf type <code>Google\Logging\V2\ListSinksResponse</code>
  */
 class ListSinksResponse extends \Google\Protobuf\Internal\Message
 {
@@ -47,6 +47,7 @@ class ListSinksResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.logging.v2.LogSink sinks = 1;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getSinks()
     {
@@ -59,6 +60,7 @@ class ListSinksResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.logging.v2.LogSink sinks = 1;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setSinks(&$var)
     {
@@ -76,6 +78,7 @@ class ListSinksResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string next_page_token = 2;</code>
+     * @return string
      */
     public function getNextPageToken()
     {
@@ -90,6 +93,7 @@ class ListSinksResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string next_page_token = 2;</code>
+     * @param string $var
      */
     public function setNextPageToken($var)
     {

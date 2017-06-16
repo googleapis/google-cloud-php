@@ -9,7 +9,7 @@ namespace Google\Cloud\Language\V1beta2;
  * The part of speech tags enum.
  * </pre>
  *
- * Protobuf enum <code>google.cloud.language.v1beta2.PartOfSpeech.Tag</code>
+ * Protobuf enum <code>Google\Cloud\Language\V1beta2\PartOfSpeech\Tag</code>
  */
 class PartOfSpeech_Tag
 {

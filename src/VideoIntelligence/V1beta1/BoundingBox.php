@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Bounding box.
  * </pre>
  *
- * Protobuf type <code>google.cloud.videointelligence.v1beta1.BoundingBox</code>
+ * Protobuf type <code>Google\Cloud\Videointelligence\V1beta1\BoundingBox</code>
  */
 class BoundingBox extends \Google\Protobuf\Internal\Message
 {
@@ -61,6 +61,7 @@ class BoundingBox extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 left = 1;</code>
+     * @return int
      */
     public function getLeft()
     {
@@ -73,6 +74,7 @@ class BoundingBox extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 left = 1;</code>
+     * @param int $var
      */
     public function setLeft($var)
     {
@@ -88,6 +90,7 @@ class BoundingBox extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 right = 2;</code>
+     * @return int
      */
     public function getRight()
     {
@@ -100,6 +103,7 @@ class BoundingBox extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 right = 2;</code>
+     * @param int $var
      */
     public function setRight($var)
     {
@@ -115,6 +119,7 @@ class BoundingBox extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 bottom = 3;</code>
+     * @return int
      */
     public function getBottom()
     {
@@ -127,6 +132,7 @@ class BoundingBox extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 bottom = 3;</code>
+     * @param int $var
      */
     public function setBottom($var)
     {
@@ -142,6 +148,7 @@ class BoundingBox extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 top = 4;</code>
+     * @return int
      */
     public function getTop()
     {
@@ -154,6 +161,7 @@ class BoundingBox extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 top = 4;</code>
+     * @param int $var
      */
     public function setTop($var)
     {

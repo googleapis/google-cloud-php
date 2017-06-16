@@ -14,14 +14,14 @@ use Google\Protobuf\Internal\GPBUtil;
  * [GetInstanceConfigRequest][google.spanner.admin.instance.v1.InstanceAdmin.GetInstanceConfig].
  * </pre>
  *
- * Protobuf type <code>google.spanner.admin.instance.v1.GetInstanceConfigRequest</code>
+ * Protobuf type <code>Google\Spanner\Admin\Instance\V1\GetInstanceConfigRequest</code>
  */
 class GetInstanceConfigRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * <pre>
      * Required. The name of the requested instance configuration. Values are of
-     * the form `projects/&lt;project&gt;/instanceConfigs/&lt;config&gt;`.
+     * the form `projects/<project>/instanceConfigs/<config>`.
      * </pre>
      *
      * <code>string name = 1;</code>
@@ -36,10 +36,11 @@ class GetInstanceConfigRequest extends \Google\Protobuf\Internal\Message
     /**
      * <pre>
      * Required. The name of the requested instance configuration. Values are of
-     * the form `projects/&lt;project&gt;/instanceConfigs/&lt;config&gt;`.
+     * the form `projects/<project>/instanceConfigs/<config>`.
      * </pre>
      *
      * <code>string name = 1;</code>
+     * @return string
      */
     public function getName()
     {
@@ -49,10 +50,11 @@ class GetInstanceConfigRequest extends \Google\Protobuf\Internal\Message
     /**
      * <pre>
      * Required. The name of the requested instance configuration. Values are of
-     * the form `projects/&lt;project&gt;/instanceConfigs/&lt;config&gt;`.
+     * the form `projects/<project>/instanceConfigs/<config>`.
      * </pre>
      *
      * <code>string name = 1;</code>
+     * @param string $var
      */
     public function setName($var)
     {

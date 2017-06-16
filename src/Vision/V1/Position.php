@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * The position coordinates are in the same scale as the original image.
  * </pre>
  *
- * Protobuf type <code>google.cloud.vision.v1.Position</code>
+ * Protobuf type <code>Google\Cloud\Vision\V1\Position</code>
  */
 class Position extends \Google\Protobuf\Internal\Message
 {
@@ -55,6 +55,7 @@ class Position extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>float x = 1;</code>
+     * @return float
      */
     public function getX()
     {
@@ -67,6 +68,7 @@ class Position extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>float x = 1;</code>
+     * @param float $var
      */
     public function setX($var)
     {
@@ -82,6 +84,7 @@ class Position extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>float y = 2;</code>
+     * @return float
      */
     public function getY()
     {
@@ -94,6 +97,7 @@ class Position extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>float y = 2;</code>
+     * @param float $var
      */
     public function setY($var)
     {
@@ -109,6 +113,7 @@ class Position extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>float z = 3;</code>
+     * @return float
      */
     public function getZ()
     {
@@ -121,6 +126,7 @@ class Position extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>float z = 3;</code>
+     * @param float $var
      */
     public function setZ($var)
     {

@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * define the geographic placement of nodes and their replication.
  * </pre>
  *
- * Protobuf type <code>google.spanner.admin.instance.v1.InstanceConfig</code>
+ * Protobuf type <code>Google\Spanner\Admin\Instance\V1\InstanceConfig</code>
  */
 class InstanceConfig extends \Google\Protobuf\Internal\Message
 {
@@ -22,7 +22,7 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
      * <pre>
      * A unique identifier for the instance configuration.  Values
      * are of the form
-     * `projects/&lt;project&gt;/instanceConfigs/[a-z][-a-z0-9]*`
+     * `projects/<project>/instanceConfigs/[a-z][-a-z0-9]*`
      * </pre>
      *
      * <code>string name = 1;</code>
@@ -46,10 +46,11 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
      * <pre>
      * A unique identifier for the instance configuration.  Values
      * are of the form
-     * `projects/&lt;project&gt;/instanceConfigs/[a-z][-a-z0-9]*`
+     * `projects/<project>/instanceConfigs/[a-z][-a-z0-9]*`
      * </pre>
      *
      * <code>string name = 1;</code>
+     * @return string
      */
     public function getName()
     {
@@ -60,10 +61,11 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
      * <pre>
      * A unique identifier for the instance configuration.  Values
      * are of the form
-     * `projects/&lt;project&gt;/instanceConfigs/[a-z][-a-z0-9]*`
+     * `projects/<project>/instanceConfigs/[a-z][-a-z0-9]*`
      * </pre>
      *
      * <code>string name = 1;</code>
+     * @param string $var
      */
     public function setName($var)
     {
@@ -79,6 +81,7 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string display_name = 2;</code>
+     * @return string
      */
     public function getDisplayName()
     {
@@ -91,6 +94,7 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string display_name = 2;</code>
+     * @param string $var
      */
     public function setDisplayName($var)
     {

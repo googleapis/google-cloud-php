@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * values, but are a little trickier to consume.
  * </pre>
  *
- * Protobuf type <code>google.spanner.v1.PartialResultSet</code>
+ * Protobuf type <code>Google\Spanner\V1\PartialResultSet</code>
  */
 class PartialResultSet extends \Google\Protobuf\Internal\Message
 {
@@ -52,22 +52,22 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
      *     to merge the field values.
      * Some examples of merging:
      *     # Strings are concatenated.
-     *     "foo", "bar" =&gt; "foobar"
+     *     "foo", "bar" => "foobar"
      *     # Lists of non-strings are concatenated.
-     *     [2, 3], [4] =&gt; [2, 3, 4]
+     *     [2, 3], [4] => [2, 3, 4]
      *     # Lists are concatenated, but the last and first elements are merged
      *     # because they are strings.
-     *     ["a", "b"], ["c", "d"] =&gt; ["a", "bc", "d"]
+     *     ["a", "b"], ["c", "d"] => ["a", "bc", "d"]
      *     # Lists are concatenated, but the last and first elements are merged
      *     # because they are lists. Recursively, the last and first elements
      *     # of the inner lists are merged because they are strings.
-     *     ["a", ["b", "c"]], [["d"], "e"] =&gt; ["a", ["b", "cd"], "e"]
+     *     ["a", ["b", "c"]], [["d"], "e"] => ["a", ["b", "cd"], "e"]
      *     # Non-overlapping object fields are combined.
-     *     {"a": "1"}, {"b": "2"} =&gt; {"a": "1", "b": 2"}
+     *     {"a": "1"}, {"b": "2"} => {"a": "1", "b": 2"}
      *     # Overlapping object fields are merged.
-     *     {"a": "1"}, {"a": "2"} =&gt; {"a": "12"}
+     *     {"a": "1"}, {"a": "2"} => {"a": "12"}
      *     # Examples of merging objects containing lists of strings.
-     *     {"a": ["1"]}, {"a": ["2"]} =&gt; {"a": ["12"]}
+     *     {"a": ["1"]}, {"a": ["2"]} => {"a": ["12"]}
      * For a more complete example, suppose a streaming SQL query is
      * yielding a result set whose rows contain a single string
      * field. The following `PartialResultSet`s might be yielded:
@@ -140,6 +140,7 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.ResultSetMetadata metadata = 1;</code>
+     * @return Google\Cloud\Spanner\V1\ResultSetMetadata
      */
     public function getMetadata()
     {
@@ -153,6 +154,7 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.ResultSetMetadata metadata = 1;</code>
+     * @param Google\Cloud\Spanner\V1\ResultSetMetadata $var
      */
     public function setMetadata(&$var)
     {
@@ -186,22 +188,22 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
      *     to merge the field values.
      * Some examples of merging:
      *     # Strings are concatenated.
-     *     "foo", "bar" =&gt; "foobar"
+     *     "foo", "bar" => "foobar"
      *     # Lists of non-strings are concatenated.
-     *     [2, 3], [4] =&gt; [2, 3, 4]
+     *     [2, 3], [4] => [2, 3, 4]
      *     # Lists are concatenated, but the last and first elements are merged
      *     # because they are strings.
-     *     ["a", "b"], ["c", "d"] =&gt; ["a", "bc", "d"]
+     *     ["a", "b"], ["c", "d"] => ["a", "bc", "d"]
      *     # Lists are concatenated, but the last and first elements are merged
      *     # because they are lists. Recursively, the last and first elements
      *     # of the inner lists are merged because they are strings.
-     *     ["a", ["b", "c"]], [["d"], "e"] =&gt; ["a", ["b", "cd"], "e"]
+     *     ["a", ["b", "c"]], [["d"], "e"] => ["a", ["b", "cd"], "e"]
      *     # Non-overlapping object fields are combined.
-     *     {"a": "1"}, {"b": "2"} =&gt; {"a": "1", "b": 2"}
+     *     {"a": "1"}, {"b": "2"} => {"a": "1", "b": 2"}
      *     # Overlapping object fields are merged.
-     *     {"a": "1"}, {"a": "2"} =&gt; {"a": "12"}
+     *     {"a": "1"}, {"a": "2"} => {"a": "12"}
      *     # Examples of merging objects containing lists of strings.
-     *     {"a": ["1"]}, {"a": ["2"]} =&gt; {"a": ["12"]}
+     *     {"a": ["1"]}, {"a": ["2"]} => {"a": ["12"]}
      * For a more complete example, suppose a streaming SQL query is
      * yielding a result set whose rows contain a single string
      * field. The following `PartialResultSet`s might be yielded:
@@ -226,6 +228,7 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.protobuf.Value values = 2;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getValues()
     {
@@ -256,22 +259,22 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
      *     to merge the field values.
      * Some examples of merging:
      *     # Strings are concatenated.
-     *     "foo", "bar" =&gt; "foobar"
+     *     "foo", "bar" => "foobar"
      *     # Lists of non-strings are concatenated.
-     *     [2, 3], [4] =&gt; [2, 3, 4]
+     *     [2, 3], [4] => [2, 3, 4]
      *     # Lists are concatenated, but the last and first elements are merged
      *     # because they are strings.
-     *     ["a", "b"], ["c", "d"] =&gt; ["a", "bc", "d"]
+     *     ["a", "b"], ["c", "d"] => ["a", "bc", "d"]
      *     # Lists are concatenated, but the last and first elements are merged
      *     # because they are lists. Recursively, the last and first elements
      *     # of the inner lists are merged because they are strings.
-     *     ["a", ["b", "c"]], [["d"], "e"] =&gt; ["a", ["b", "cd"], "e"]
+     *     ["a", ["b", "c"]], [["d"], "e"] => ["a", ["b", "cd"], "e"]
      *     # Non-overlapping object fields are combined.
-     *     {"a": "1"}, {"b": "2"} =&gt; {"a": "1", "b": 2"}
+     *     {"a": "1"}, {"b": "2"} => {"a": "1", "b": 2"}
      *     # Overlapping object fields are merged.
-     *     {"a": "1"}, {"a": "2"} =&gt; {"a": "12"}
+     *     {"a": "1"}, {"a": "2"} => {"a": "12"}
      *     # Examples of merging objects containing lists of strings.
-     *     {"a": ["1"]}, {"a": ["2"]} =&gt; {"a": ["12"]}
+     *     {"a": ["1"]}, {"a": ["2"]} => {"a": ["12"]}
      * For a more complete example, suppose a streaming SQL query is
      * yielding a result set whose rows contain a single string
      * field. The following `PartialResultSet`s might be yielded:
@@ -296,6 +299,7 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.protobuf.Value values = 2;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setValues(&$var)
     {
@@ -313,6 +317,7 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>bool chunked_value = 3;</code>
+     * @return bool
      */
     public function getChunkedValue()
     {
@@ -327,6 +332,7 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>bool chunked_value = 3;</code>
+     * @param bool $var
      */
     public function setChunkedValue($var)
     {
@@ -346,6 +352,7 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>bytes resume_token = 4;</code>
+     * @return string
      */
     public function getResumeToken()
     {
@@ -362,6 +369,7 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>bytes resume_token = 4;</code>
+     * @param string $var
      */
     public function setResumeToken($var)
     {
@@ -380,6 +388,7 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.ResultSetStats stats = 5;</code>
+     * @return Google\Cloud\Spanner\V1\ResultSetStats
      */
     public function getStats()
     {
@@ -395,6 +404,7 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.ResultSetStats stats = 5;</code>
+     * @param Google\Cloud\Spanner\V1\ResultSetStats $var
      */
     public function setStats(&$var)
     {

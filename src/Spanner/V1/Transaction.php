@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * A transaction.
  * </pre>
  *
- * Protobuf type <code>google.spanner.v1.Transaction</code>
+ * Protobuf type <code>Google\Spanner\V1\Transaction</code>
  */
 class Transaction extends \Google\Protobuf\Internal\Message
 {
@@ -59,6 +59,7 @@ class Transaction extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>bytes id = 1;</code>
+     * @return string
      */
     public function getId()
     {
@@ -77,6 +78,7 @@ class Transaction extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>bytes id = 1;</code>
+     * @param string $var
      */
     public function setId($var)
     {
@@ -94,6 +96,7 @@ class Transaction extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp read_timestamp = 2;</code>
+     * @return Google\Protobuf\Timestamp
      */
     public function getReadTimestamp()
     {
@@ -108,6 +111,7 @@ class Transaction extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp read_timestamp = 2;</code>
+     * @param Google\Protobuf\Timestamp $var
      */
     public function setReadTimestamp(&$var)
     {

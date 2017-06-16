@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * a log entry is associated.
  * </pre>
  *
- * Protobuf type <code>google.logging.v2.LogEntryOperation</code>
+ * Protobuf type <code>Google\Logging\V2\LogEntryOperation</code>
  */
 class LogEntryOperation extends \Google\Protobuf\Internal\Message
 {
@@ -66,6 +66,7 @@ class LogEntryOperation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string id = 1;</code>
+     * @return string
      */
     public function getId()
     {
@@ -79,6 +80,7 @@ class LogEntryOperation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string id = 1;</code>
+     * @param string $var
      */
     public function setId($var)
     {
@@ -96,6 +98,7 @@ class LogEntryOperation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string producer = 2;</code>
+     * @return string
      */
     public function getProducer()
     {
@@ -110,6 +113,7 @@ class LogEntryOperation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string producer = 2;</code>
+     * @param string $var
      */
     public function setProducer($var)
     {
@@ -125,6 +129,7 @@ class LogEntryOperation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>bool first = 3;</code>
+     * @return bool
      */
     public function getFirst()
     {
@@ -137,6 +142,7 @@ class LogEntryOperation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>bool first = 3;</code>
+     * @param bool $var
      */
     public function setFirst($var)
     {
@@ -152,6 +158,7 @@ class LogEntryOperation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>bool last = 4;</code>
+     * @return bool
      */
     public function getLast()
     {
@@ -164,6 +171,7 @@ class LogEntryOperation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>bool last = 4;</code>
+     * @param bool $var
      */
     public function setLast($var)
     {

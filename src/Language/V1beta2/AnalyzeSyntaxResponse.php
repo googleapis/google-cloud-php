@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * The syntax analysis response message.
  * </pre>
  *
- * Protobuf type <code>google.cloud.language.v1beta2.AnalyzeSyntaxResponse</code>
+ * Protobuf type <code>Google\Cloud\Language\V1beta2\AnalyzeSyntaxResponse</code>
  */
 class AnalyzeSyntaxResponse extends \Google\Protobuf\Internal\Message
 {
@@ -55,6 +55,7 @@ class AnalyzeSyntaxResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.language.v1beta2.Sentence sentences = 1;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getSentences()
     {
@@ -67,6 +68,7 @@ class AnalyzeSyntaxResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.language.v1beta2.Sentence sentences = 1;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setSentences(&$var)
     {
@@ -82,6 +84,7 @@ class AnalyzeSyntaxResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.language.v1beta2.Token tokens = 2;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getTokens()
     {
@@ -94,6 +97,7 @@ class AnalyzeSyntaxResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.language.v1beta2.Token tokens = 2;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setTokens(&$var)
     {
@@ -111,6 +115,7 @@ class AnalyzeSyntaxResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string language = 3;</code>
+     * @return string
      */
     public function getLanguage()
     {
@@ -125,6 +130,7 @@ class AnalyzeSyntaxResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string language = 3;</code>
+     * @param string $var
      */
     public function setLanguage($var)
     {

@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * The parameters to `CreateSink`.
  * </pre>
  *
- * Protobuf type <code>google.logging.v2.CreateSinkRequest</code>
+ * Protobuf type <code>Google\Logging\V2\CreateSinkRequest</code>
  */
 class CreateSinkRequest extends \Google\Protobuf\Internal\Message
 {
@@ -73,6 +73,7 @@ class CreateSinkRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string parent = 1;</code>
+     * @return string
      */
     public function getParent()
     {
@@ -90,6 +91,7 @@ class CreateSinkRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string parent = 1;</code>
+     * @param string $var
      */
     public function setParent($var)
     {
@@ -106,6 +108,7 @@ class CreateSinkRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.logging.v2.LogSink sink = 2;</code>
+     * @return Google\Cloud\Logging\V2\LogSink
      */
     public function getSink()
     {
@@ -119,6 +122,7 @@ class CreateSinkRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.logging.v2.LogSink sink = 2;</code>
+     * @param Google\Cloud\Logging\V2\LogSink $var
      */
     public function setSink(&$var)
     {
@@ -143,6 +147,7 @@ class CreateSinkRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>bool unique_writer_identity = 3;</code>
+     * @return bool
      */
     public function getUniqueWriterIdentity()
     {
@@ -164,6 +169,7 @@ class CreateSinkRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>bool unique_writer_identity = 3;</code>
+     * @param bool $var
      */
     public function setUniqueWriterIdentity($var)
     {

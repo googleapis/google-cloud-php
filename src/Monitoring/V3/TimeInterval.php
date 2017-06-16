@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * represents a single point in time.
  * </pre>
  *
- * Protobuf type <code>google.monitoring.v3.TimeInterval</code>
+ * Protobuf type <code>Google\Monitoring\V3\TimeInterval</code>
  */
 class TimeInterval extends \Google\Protobuf\Internal\Message
 {
@@ -49,6 +49,7 @@ class TimeInterval extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp end_time = 2;</code>
+     * @return Google\Protobuf\Timestamp
      */
     public function getEndTime()
     {
@@ -61,6 +62,7 @@ class TimeInterval extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp end_time = 2;</code>
+     * @param Google\Protobuf\Timestamp $var
      */
     public function setEndTime(&$var)
     {
@@ -78,6 +80,7 @@ class TimeInterval extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp start_time = 1;</code>
+     * @return Google\Protobuf\Timestamp
      */
     public function getStartTime()
     {
@@ -92,6 +95,7 @@ class TimeInterval extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp start_time = 1;</code>
+     * @param Google\Protobuf\Timestamp $var
      */
     public function setStartTime(&$var)
     {

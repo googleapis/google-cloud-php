@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * call of the `google::longrunning::Operations` service.
  * </pre>
  *
- * Protobuf type <code>google.cloud.videointelligence.v1beta1.AnnotateVideoProgress</code>
+ * Protobuf type <code>Google\Cloud\Videointelligence\V1beta1\AnnotateVideoProgress</code>
  */
 class AnnotateVideoProgress extends \Google\Protobuf\Internal\Message
 {
@@ -39,6 +39,7 @@ class AnnotateVideoProgress extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.videointelligence.v1beta1.VideoAnnotationProgress annotation_progress = 1;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getAnnotationProgress()
     {
@@ -51,6 +52,7 @@ class AnnotateVideoProgress extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.videointelligence.v1beta1.VideoAnnotationProgress annotation_progress = 1;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setAnnotationProgress(&$var)
     {

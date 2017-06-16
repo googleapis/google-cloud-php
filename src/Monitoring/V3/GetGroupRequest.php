@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * The `GetGroup` request.
  * </pre>
  *
- * Protobuf type <code>google.monitoring.v3.GetGroupRequest</code>
+ * Protobuf type <code>Google\Monitoring\V3\GetGroupRequest</code>
  */
 class GetGroupRequest extends \Google\Protobuf\Internal\Message
 {
@@ -39,6 +39,7 @@ class GetGroupRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string name = 3;</code>
+     * @return string
      */
     public function getName()
     {
@@ -52,6 +53,7 @@ class GetGroupRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string name = 3;</code>
+     * @param string $var
      */
     public function setName($var)
     {

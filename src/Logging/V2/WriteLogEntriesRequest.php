@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * The parameters to WriteLogEntries.
  * </pre>
  *
- * Protobuf type <code>google.logging.v2.WriteLogEntriesRequest</code>
+ * Protobuf type <code>Google\Logging\V2\WriteLogEntriesRequest</code>
  */
 class WriteLogEntriesRequest extends \Google\Protobuf\Internal\Message
 {
@@ -56,7 +56,7 @@ class WriteLogEntriesRequest extends \Google\Protobuf\Internal\Message
      * See [LogEntry][google.logging.v2.LogEntry].
      * </pre>
      *
-     * <code>map&lt;string, string&gt; labels = 3;</code>
+     * <code>map<string, string> labels = 3;</code>
      */
     private $labels;
     /**
@@ -113,6 +113,7 @@ class WriteLogEntriesRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string log_name = 1;</code>
+     * @return string
      */
     public function getLogName()
     {
@@ -135,6 +136,7 @@ class WriteLogEntriesRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string log_name = 1;</code>
+     * @param string $var
      */
     public function setLogName($var)
     {
@@ -155,6 +157,7 @@ class WriteLogEntriesRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.api.MonitoredResource resource = 2;</code>
+     * @return Google\Api\MonitoredResource
      */
     public function getResource()
     {
@@ -172,6 +175,7 @@ class WriteLogEntriesRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.api.MonitoredResource resource = 2;</code>
+     * @param Google\Api\MonitoredResource $var
      */
     public function setResource(&$var)
     {
@@ -189,7 +193,8 @@ class WriteLogEntriesRequest extends \Google\Protobuf\Internal\Message
      * See [LogEntry][google.logging.v2.LogEntry].
      * </pre>
      *
-     * <code>map&lt;string, string&gt; labels = 3;</code>
+     * <code>map<string, string> labels = 3;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getLabels()
     {
@@ -204,7 +209,8 @@ class WriteLogEntriesRequest extends \Google\Protobuf\Internal\Message
      * See [LogEntry][google.logging.v2.LogEntry].
      * </pre>
      *
-     * <code>map&lt;string, string&gt; labels = 3;</code>
+     * <code>map<string, string> labels = 3;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setLabels(&$var)
     {
@@ -232,6 +238,7 @@ class WriteLogEntriesRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.logging.v2.LogEntry entries = 4;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getEntries()
     {
@@ -256,6 +263,7 @@ class WriteLogEntriesRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.logging.v2.LogEntry entries = 4;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setEntries(&$var)
     {
@@ -275,6 +283,7 @@ class WriteLogEntriesRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>bool partial_success = 5;</code>
+     * @return bool
      */
     public function getPartialSuccess()
     {
@@ -291,6 +300,7 @@ class WriteLogEntriesRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>bool partial_success = 5;</code>
+     * @param bool $var
      */
     public function setPartialSuccess($var)
     {

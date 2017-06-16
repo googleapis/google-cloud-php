@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Deletes all events in the project.
  * </pre>
  *
- * Protobuf type <code>google.devtools.clouderrorreporting.v1beta1.DeleteEventsRequest</code>
+ * Protobuf type <code>Google\Devtools\Clouderrorreporting\V1beta1\DeleteEventsRequest</code>
  */
 class DeleteEventsRequest extends \Google\Protobuf\Internal\Message
 {
@@ -45,6 +45,7 @@ class DeleteEventsRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string project_name = 1;</code>
+     * @return string
      */
     public function getProjectName()
     {
@@ -61,6 +62,7 @@ class DeleteEventsRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string project_name = 1;</code>
+     * @param string $var
      */
     public function setProjectName($var)
     {

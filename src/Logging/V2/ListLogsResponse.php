@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Result returned from ListLogs.
  * </pre>
  *
- * Protobuf type <code>google.logging.v2.ListLogsResponse</code>
+ * Protobuf type <code>Google\Logging\V2\ListLogsResponse</code>
  */
 class ListLogsResponse extends \Google\Protobuf\Internal\Message
 {
@@ -51,6 +51,7 @@ class ListLogsResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated string log_names = 3;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getLogNames()
     {
@@ -65,6 +66,7 @@ class ListLogsResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated string log_names = 3;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setLogNames(&$var)
     {
@@ -82,6 +84,7 @@ class ListLogsResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string next_page_token = 2;</code>
+     * @return string
      */
     public function getNextPageToken()
     {
@@ -96,6 +99,7 @@ class ListLogsResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string next_page_token = 2;</code>
+     * @param string $var
      */
     public function setNextPageToken($var)
     {

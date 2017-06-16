@@ -13,7 +13,7 @@ namespace Google\Cloud\Language\V1beta2;
  * differently.
  * </pre>
  *
- * Protobuf enum <code>google.cloud.language.v1beta2.EncodingType</code>
+ * Protobuf enum <code>Google\Cloud\Language\V1beta2\EncodingType</code>
  */
 class EncodingType
 {

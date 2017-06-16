@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Contains a set of requested error events.
  * </pre>
  *
- * Protobuf type <code>google.devtools.clouderrorreporting.v1beta1.ListEventsResponse</code>
+ * Protobuf type <code>Google\Devtools\Clouderrorreporting\V1beta1\ListEventsResponse</code>
  */
 class ListEventsResponse extends \Google\Protobuf\Internal\Message
 {
@@ -55,6 +55,7 @@ class ListEventsResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.devtools.clouderrorreporting.v1beta1.ErrorEvent error_events = 1;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getErrorEvents()
     {
@@ -67,6 +68,7 @@ class ListEventsResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.devtools.clouderrorreporting.v1beta1.ErrorEvent error_events = 1;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setErrorEvents(&$var)
     {
@@ -84,6 +86,7 @@ class ListEventsResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string next_page_token = 2;</code>
+     * @return string
      */
     public function getNextPageToken()
     {
@@ -98,6 +101,7 @@ class ListEventsResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string next_page_token = 2;</code>
+     * @param string $var
      */
     public function setNextPageToken($var)
     {
@@ -113,6 +117,7 @@ class ListEventsResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp time_range_begin = 4;</code>
+     * @return Google\Protobuf\Timestamp
      */
     public function getTimeRangeBegin()
     {
@@ -125,6 +130,7 @@ class ListEventsResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp time_range_begin = 4;</code>
+     * @param Google\Protobuf\Timestamp $var
      */
     public function setTimeRangeBegin(&$var)
     {

@@ -56,7 +56,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *   "to be or not to be".
  * </pre>
  *
- * Protobuf type <code>google.cloud.speech.v1beta1.StreamingRecognizeResponse</code>
+ * Protobuf type <code>Google\Cloud\Speech\V1beta1\StreamingRecognizeResponse</code>
  */
 class StreamingRecognizeResponse extends \Google\Protobuf\Internal\Message
 {
@@ -111,6 +111,7 @@ class StreamingRecognizeResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.rpc.Status error = 1;</code>
+     * @return Google\Rpc\Status
      */
     public function getError()
     {
@@ -124,6 +125,7 @@ class StreamingRecognizeResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.rpc.Status error = 1;</code>
+     * @param Google\Rpc\Status $var
      */
     public function setError(&$var)
     {
@@ -142,6 +144,7 @@ class StreamingRecognizeResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.speech.v1beta1.StreamingRecognitionResult results = 2;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getResults()
     {
@@ -157,6 +160,7 @@ class StreamingRecognizeResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.speech.v1beta1.StreamingRecognitionResult results = 2;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setResults(&$var)
     {
@@ -174,6 +178,7 @@ class StreamingRecognizeResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 result_index = 3;</code>
+     * @return int
      */
     public function getResultIndex()
     {
@@ -188,6 +193,7 @@ class StreamingRecognizeResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 result_index = 3;</code>
+     * @param int $var
      */
     public function setResultIndex($var)
     {
@@ -203,6 +209,7 @@ class StreamingRecognizeResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.speech.v1beta1.StreamingRecognizeResponse.EndpointerType endpointer_type = 4;</code>
+     * @return int
      */
     public function getEndpointerType()
     {
@@ -215,6 +222,7 @@ class StreamingRecognizeResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.speech.v1beta1.StreamingRecognizeResponse.EndpointerType endpointer_type = 4;</code>
+     * @param int $var
      */
     public function setEndpointerType($var)
     {

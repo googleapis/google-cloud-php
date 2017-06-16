@@ -35,7 +35,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * group and its ancestors.
  * </pre>
  *
- * Protobuf type <code>google.monitoring.v3.Group</code>
+ * Protobuf type <code>Google\Monitoring\V3\Group</code>
  */
 class Group extends \Google\Protobuf\Internal\Message
 {
@@ -102,6 +102,7 @@ class Group extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string name = 1;</code>
+     * @return string
      */
     public function getName()
     {
@@ -118,6 +119,7 @@ class Group extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string name = 1;</code>
+     * @param string $var
      */
     public function setName($var)
     {
@@ -133,6 +135,7 @@ class Group extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string display_name = 2;</code>
+     * @return string
      */
     public function getDisplayName()
     {
@@ -145,6 +148,7 @@ class Group extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string display_name = 2;</code>
+     * @param string $var
      */
     public function setDisplayName($var)
     {
@@ -162,6 +166,7 @@ class Group extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string parent_name = 3;</code>
+     * @return string
      */
     public function getParentName()
     {
@@ -176,6 +181,7 @@ class Group extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string parent_name = 3;</code>
+     * @param string $var
      */
     public function setParentName($var)
     {
@@ -191,6 +197,7 @@ class Group extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string filter = 5;</code>
+     * @return string
      */
     public function getFilter()
     {
@@ -203,6 +210,7 @@ class Group extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string filter = 5;</code>
+     * @param string $var
      */
     public function setFilter($var)
     {
@@ -219,6 +227,7 @@ class Group extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>bool is_cluster = 6;</code>
+     * @return bool
      */
     public function getIsCluster()
     {
@@ -232,6 +241,7 @@ class Group extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>bool is_cluster = 6;</code>
+     * @param bool $var
      */
     public function setIsCluster($var)
     {

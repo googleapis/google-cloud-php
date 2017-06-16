@@ -9,7 +9,7 @@ namespace Google\Cloud\Logging\V2;
  * Stackdriver Logging API version.
  * </pre>
  *
- * Protobuf enum <code>google.logging.v2.LogMetric.ApiVersion</code>
+ * Protobuf enum <code>Google\Logging\V2\LogMetric\ApiVersion</code>
  */
 class LogMetric_ApiVersion
 {

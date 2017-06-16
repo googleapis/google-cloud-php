@@ -11,7 +11,7 @@ namespace Google\Cloud\Language\V1beta2;
  * adjective and determiner, take case inflection in agreement with the noun.
  * </pre>
  *
- * Protobuf enum <code>google.cloud.language.v1beta2.PartOfSpeech.Case</code>
+ * Protobuf enum <code>Google\Cloud\Language\V1beta2\PartOfSpeech\Case</code>
  */
 class PartOfSpeech_Case
 {

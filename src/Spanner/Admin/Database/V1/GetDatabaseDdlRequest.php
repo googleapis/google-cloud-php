@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * The request for [GetDatabaseDdl][google.spanner.admin.database.v1.DatabaseAdmin.GetDatabaseDdl].
  * </pre>
  *
- * Protobuf type <code>google.spanner.admin.database.v1.GetDatabaseDdlRequest</code>
+ * Protobuf type <code>Google\Spanner\Admin\Database\V1\GetDatabaseDdlRequest</code>
  */
 class GetDatabaseDdlRequest extends \Google\Protobuf\Internal\Message
 {
@@ -37,6 +37,7 @@ class GetDatabaseDdlRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string database = 1;</code>
+     * @return string
      */
     public function getDatabase()
     {
@@ -49,6 +50,7 @@ class GetDatabaseDdlRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string database = 1;</code>
+     * @param string $var
      */
     public function setDatabase($var)
     {

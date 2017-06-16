@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * NOTE: the vertex coordinates are in the same scale as the original image.
  * </pre>
  *
- * Protobuf type <code>google.cloud.vision.v1.Vertex</code>
+ * Protobuf type <code>Google\Cloud\Vision\V1\Vertex</code>
  */
 class Vertex extends \Google\Protobuf\Internal\Message
 {
@@ -46,6 +46,7 @@ class Vertex extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 x = 1;</code>
+     * @return int
      */
     public function getX()
     {
@@ -58,6 +59,7 @@ class Vertex extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 x = 1;</code>
+     * @param int $var
      */
     public function setX($var)
     {
@@ -73,6 +75,7 @@ class Vertex extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 y = 2;</code>
+     * @return int
      */
     public function getY()
     {
@@ -85,6 +88,7 @@ class Vertex extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 y = 2;</code>
+     * @param int $var
      */
     public function setY($var)
     {

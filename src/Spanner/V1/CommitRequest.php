@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * The request for [Commit][google.spanner.v1.Spanner.Commit].
  * </pre>
  *
- * Protobuf type <code>google.spanner.v1.CommitRequest</code>
+ * Protobuf type <code>Google\Spanner\V1\CommitRequest</code>
  */
 class CommitRequest extends \Google\Protobuf\Internal\Message
 {
@@ -48,6 +48,7 @@ class CommitRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string session = 1;</code>
+     * @return string
      */
     public function getSession()
     {
@@ -60,6 +61,7 @@ class CommitRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string session = 1;</code>
+     * @param string $var
      */
     public function setSession($var)
     {
@@ -75,6 +77,7 @@ class CommitRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>bytes transaction_id = 2;</code>
+     * @return string
      */
     public function getTransactionId()
     {
@@ -87,6 +90,7 @@ class CommitRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>bytes transaction_id = 2;</code>
+     * @param string $var
      */
     public function setTransactionId($var)
     {
@@ -110,6 +114,7 @@ class CommitRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.TransactionOptions single_use_transaction = 3;</code>
+     * @return Google\Cloud\Spanner\V1\TransactionOptions
      */
     public function getSingleUseTransaction()
     {
@@ -130,6 +135,7 @@ class CommitRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.TransactionOptions single_use_transaction = 3;</code>
+     * @param Google\Cloud\Spanner\V1\TransactionOptions $var
      */
     public function setSingleUseTransaction(&$var)
     {
@@ -147,6 +153,7 @@ class CommitRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.spanner.v1.Mutation mutations = 4;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getMutations()
     {
@@ -161,6 +168,7 @@ class CommitRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.spanner.v1.Mutation mutations = 4;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setMutations(&$var)
     {
@@ -170,6 +178,9 @@ class CommitRequest extends \Google\Protobuf\Internal\Message
         return $this;
     }
 
+    /**
+     * @return string
+     */
     public function getTransaction()
     {
         return $this->whichOneof("transaction");

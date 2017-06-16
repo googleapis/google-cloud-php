@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * the image that the color occupies in the image.
  * </pre>
  *
- * Protobuf type <code>google.cloud.vision.v1.ColorInfo</code>
+ * Protobuf type <code>Google\Cloud\Vision\V1\ColorInfo</code>
  */
 class ColorInfo extends \Google\Protobuf\Internal\Message
 {
@@ -55,6 +55,7 @@ class ColorInfo extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.type.Color color = 1;</code>
+     * @return Google\Type\Color
      */
     public function getColor()
     {
@@ -67,6 +68,7 @@ class ColorInfo extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.type.Color color = 1;</code>
+     * @param Google\Type\Color $var
      */
     public function setColor(&$var)
     {
@@ -82,6 +84,7 @@ class ColorInfo extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>float score = 2;</code>
+     * @return float
      */
     public function getScore()
     {
@@ -94,6 +97,7 @@ class ColorInfo extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>float score = 2;</code>
+     * @param float $var
      */
     public function setScore($var)
     {
@@ -110,6 +114,7 @@ class ColorInfo extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>float pixel_fraction = 3;</code>
+     * @return float
      */
     public function getPixelFraction()
     {
@@ -123,6 +128,7 @@ class ColorInfo extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>float pixel_fraction = 3;</code>
+     * @param float $var
      */
     public function setPixelFraction($var)
     {

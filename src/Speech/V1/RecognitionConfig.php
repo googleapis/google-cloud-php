@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * request.
  * </pre>
  *
- * Protobuf type <code>google.cloud.speech.v1.RecognitionConfig</code>
+ * Protobuf type <code>Google\Cloud\Speech\V1\RecognitionConfig</code>
  */
 class RecognitionConfig extends \Google\Protobuf\Internal\Message
 {
@@ -42,7 +42,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      * <pre>
      * *Required* The language of the supplied audio as a
      * [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag.
-     * Sample Code: "en-US".
+     * Example: "en-US".
      * See [Language Support](https://cloud.google.com/speech/docs/languages)
      * for a list of the currently supported language codes.
      * </pre>
@@ -94,6 +94,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.speech.v1.RecognitionConfig.AudioEncoding encoding = 1;</code>
+     * @return int
      */
     public function getEncoding()
     {
@@ -106,6 +107,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.speech.v1.RecognitionConfig.AudioEncoding encoding = 1;</code>
+     * @param int $var
      */
     public function setEncoding($var)
     {
@@ -125,6 +127,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 sample_rate_hertz = 2;</code>
+     * @return int
      */
     public function getSampleRateHertz()
     {
@@ -141,6 +144,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 sample_rate_hertz = 2;</code>
+     * @param int $var
      */
     public function setSampleRateHertz($var)
     {
@@ -154,12 +158,13 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      * <pre>
      * *Required* The language of the supplied audio as a
      * [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag.
-     * Sample Code: "en-US".
+     * Example: "en-US".
      * See [Language Support](https://cloud.google.com/speech/docs/languages)
      * for a list of the currently supported language codes.
      * </pre>
      *
      * <code>string language_code = 3;</code>
+     * @return string
      */
     public function getLanguageCode()
     {
@@ -170,12 +175,13 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      * <pre>
      * *Required* The language of the supplied audio as a
      * [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag.
-     * Sample Code: "en-US".
+     * Example: "en-US".
      * See [Language Support](https://cloud.google.com/speech/docs/languages)
      * for a list of the currently supported language codes.
      * </pre>
      *
      * <code>string language_code = 3;</code>
+     * @param string $var
      */
     public function setLanguageCode($var)
     {
@@ -196,6 +202,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 max_alternatives = 4;</code>
+     * @return int
      */
     public function getMaxAlternatives()
     {
@@ -213,6 +220,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 max_alternatives = 4;</code>
+     * @param int $var
      */
     public function setMaxAlternatives($var)
     {
@@ -231,6 +239,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>bool profanity_filter = 5;</code>
+     * @return bool
      */
     public function getProfanityFilter()
     {
@@ -246,6 +255,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>bool profanity_filter = 5;</code>
+     * @param bool $var
      */
     public function setProfanityFilter($var)
     {
@@ -261,6 +271,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.speech.v1.SpeechContext speech_contexts = 6;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getSpeechContexts()
     {
@@ -273,6 +284,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.speech.v1.SpeechContext speech_contexts = 6;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setSpeechContexts(&$var)
     {

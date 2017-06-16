@@ -9,7 +9,7 @@ namespace Google\Cloud\Language\V1beta2;
  * Count distinctions.
  * </pre>
  *
- * Protobuf enum <code>google.cloud.language.v1beta2.PartOfSpeech.Number</code>
+ * Protobuf enum <code>Google\Cloud\Language\V1beta2\PartOfSpeech\Number</code>
  */
 class PartOfSpeech_Number
 {

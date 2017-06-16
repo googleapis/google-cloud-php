@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * The `ListMetricDescriptors` response.
  * </pre>
  *
- * Protobuf type <code>google.monitoring.v3.ListMetricDescriptorsResponse</code>
+ * Protobuf type <code>Google\Monitoring\V3\ListMetricDescriptorsResponse</code>
  */
 class ListMetricDescriptorsResponse extends \Google\Protobuf\Internal\Message
 {
@@ -49,6 +49,7 @@ class ListMetricDescriptorsResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.api.MetricDescriptor metric_descriptors = 1;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getMetricDescriptors()
     {
@@ -62,6 +63,7 @@ class ListMetricDescriptorsResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.api.MetricDescriptor metric_descriptors = 1;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setMetricDescriptors(&$var)
     {
@@ -79,6 +81,7 @@ class ListMetricDescriptorsResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string next_page_token = 2;</code>
+     * @return string
      */
     public function getNextPageToken()
     {
@@ -93,6 +96,7 @@ class ListMetricDescriptorsResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string next_page_token = 2;</code>
+     * @param string $var
      */
     public function setNextPageToken($var)
     {

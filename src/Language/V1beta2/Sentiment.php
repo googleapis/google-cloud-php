@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * the text.
  * </pre>
  *
- * Protobuf type <code>google.cloud.language.v1beta2.Sentiment</code>
+ * Protobuf type <code>Google\Cloud\Language\V1beta2\Sentiment</code>
  */
 class Sentiment extends \Google\Protobuf\Internal\Message
 {
@@ -51,6 +51,7 @@ class Sentiment extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>float magnitude = 2;</code>
+     * @return float
      */
     public function getMagnitude()
     {
@@ -65,6 +66,7 @@ class Sentiment extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>float magnitude = 2;</code>
+     * @param float $var
      */
     public function setMagnitude($var)
     {
@@ -81,6 +83,7 @@ class Sentiment extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>float score = 3;</code>
+     * @return float
      */
     public function getScore()
     {
@@ -94,6 +97,7 @@ class Sentiment extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>float score = 3;</code>
+     * @param float $var
      */
     public function setScore($var)
     {

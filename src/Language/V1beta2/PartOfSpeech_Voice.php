@@ -10,7 +10,7 @@ namespace Google\Cloud\Language\V1beta2;
  * participants identified by its arguments.
  * </pre>
  *
- * Protobuf enum <code>google.cloud.language.v1beta2.PartOfSpeech.Voice</code>
+ * Protobuf enum <code>Google\Cloud\Language\V1beta2\PartOfSpeech\Voice</code>
  */
 class PartOfSpeech_Voice
 {

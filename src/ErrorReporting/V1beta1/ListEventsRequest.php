@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Specifies a set of error events to return.
  * </pre>
  *
- * Protobuf type <code>google.devtools.clouderrorreporting.v1beta1.ListEventsRequest</code>
+ * Protobuf type <code>Google\Devtools\Clouderrorreporting\V1beta1\ListEventsRequest</code>
  */
 class ListEventsRequest extends \Google\Protobuf\Internal\Message
 {
@@ -89,6 +89,7 @@ class ListEventsRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string project_name = 1;</code>
+     * @return string
      */
     public function getProjectName()
     {
@@ -105,6 +106,7 @@ class ListEventsRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string project_name = 1;</code>
+     * @param string $var
      */
     public function setProjectName($var)
     {
@@ -120,6 +122,7 @@ class ListEventsRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string group_id = 2;</code>
+     * @return string
      */
     public function getGroupId()
     {
@@ -132,6 +135,7 @@ class ListEventsRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string group_id = 2;</code>
+     * @param string $var
      */
     public function setGroupId($var)
     {
@@ -149,6 +153,7 @@ class ListEventsRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3;</code>
+     * @return Google\Cloud\ErrorReporting\V1beta1\ServiceContextFilter
      */
     public function getServiceFilter()
     {
@@ -163,6 +168,7 @@ class ListEventsRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3;</code>
+     * @param Google\Cloud\ErrorReporting\V1beta1\ServiceContextFilter $var
      */
     public function setServiceFilter(&$var)
     {
@@ -180,6 +186,7 @@ class ListEventsRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 4;</code>
+     * @return Google\Cloud\ErrorReporting\V1beta1\QueryTimeRange
      */
     public function getTimeRange()
     {
@@ -194,6 +201,7 @@ class ListEventsRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 4;</code>
+     * @param Google\Cloud\ErrorReporting\V1beta1\QueryTimeRange $var
      */
     public function setTimeRange(&$var)
     {
@@ -209,6 +217,7 @@ class ListEventsRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 page_size = 6;</code>
+     * @return int
      */
     public function getPageSize()
     {
@@ -221,6 +230,7 @@ class ListEventsRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 page_size = 6;</code>
+     * @param int $var
      */
     public function setPageSize($var)
     {
@@ -236,6 +246,7 @@ class ListEventsRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string page_token = 7;</code>
+     * @return string
      */
     public function getPageToken()
     {
@@ -248,6 +259,7 @@ class ListEventsRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string page_token = 7;</code>
+     * @param string $var
      */
     public function setPageToken($var)
     {

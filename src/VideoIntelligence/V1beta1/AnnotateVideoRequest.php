@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Video annotation request.
  * </pre>
  *
- * Protobuf type <code>google.cloud.videointelligence.v1beta1.AnnotateVideoRequest</code>
+ * Protobuf type <code>Google\Cloud\Videointelligence\V1beta1\AnnotateVideoRequest</code>
  */
 class AnnotateVideoRequest extends \Google\Protobuf\Internal\Message
 {
@@ -103,6 +103,7 @@ class AnnotateVideoRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string input_uri = 1;</code>
+     * @return string
      */
     public function getInputUri()
     {
@@ -124,6 +125,7 @@ class AnnotateVideoRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string input_uri = 1;</code>
+     * @param string $var
      */
     public function setInputUri($var)
     {
@@ -140,6 +142,7 @@ class AnnotateVideoRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string input_content = 6;</code>
+     * @return string
      */
     public function getInputContent()
     {
@@ -153,6 +156,7 @@ class AnnotateVideoRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string input_content = 6;</code>
+     * @param string $var
      */
     public function setInputContent($var)
     {
@@ -168,6 +172,7 @@ class AnnotateVideoRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.videointelligence.v1beta1.Feature features = 2;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getFeatures()
     {
@@ -180,6 +185,7 @@ class AnnotateVideoRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.videointelligence.v1beta1.Feature features = 2;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setFeatures(&$var)
     {
@@ -195,6 +201,7 @@ class AnnotateVideoRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.videointelligence.v1beta1.VideoContext video_context = 3;</code>
+     * @return Google\Cloud\VideoIntelligence\V1beta1\VideoContext
      */
     public function getVideoContext()
     {
@@ -207,6 +214,7 @@ class AnnotateVideoRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.videointelligence.v1beta1.VideoContext video_context = 3;</code>
+     * @param Google\Cloud\VideoIntelligence\V1beta1\VideoContext $var
      */
     public function setVideoContext(&$var)
     {
@@ -227,6 +235,7 @@ class AnnotateVideoRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string output_uri = 4;</code>
+     * @return string
      */
     public function getOutputUri()
     {
@@ -244,6 +253,7 @@ class AnnotateVideoRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string output_uri = 4;</code>
+     * @param string $var
      */
     public function setOutputUri($var)
     {
@@ -261,6 +271,7 @@ class AnnotateVideoRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string location_id = 5;</code>
+     * @return string
      */
     public function getLocationId()
     {
@@ -275,6 +286,7 @@ class AnnotateVideoRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string location_id = 5;</code>
+     * @param string $var
      */
     public function setLocationId($var)
     {

@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Metadata about a [ResultSet][google.spanner.v1.ResultSet] or [PartialResultSet][google.spanner.v1.PartialResultSet].
  * </pre>
  *
- * Protobuf type <code>google.spanner.v1.ResultSetMetadata</code>
+ * Protobuf type <code>Google\Spanner\V1\ResultSetMetadata</code>
  */
 class ResultSetMetadata extends \Google\Protobuf\Internal\Message
 {
@@ -58,6 +58,7 @@ class ResultSetMetadata extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.StructType row_type = 1;</code>
+     * @return Google\Cloud\Spanner\V1\StructType
      */
     public function getRowType()
     {
@@ -76,6 +77,7 @@ class ResultSetMetadata extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.StructType row_type = 1;</code>
+     * @param Google\Cloud\Spanner\V1\StructType $var
      */
     public function setRowType(&$var)
     {
@@ -92,6 +94,7 @@ class ResultSetMetadata extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.Transaction transaction = 2;</code>
+     * @return Google\Cloud\Spanner\V1\Transaction
      */
     public function getTransaction()
     {
@@ -105,6 +108,7 @@ class ResultSetMetadata extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.Transaction transaction = 2;</code>
+     * @param Google\Cloud\Spanner\V1\Transaction $var
      */
     public function setTransaction(&$var)
     {

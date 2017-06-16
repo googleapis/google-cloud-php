@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * If a field is unset or empty, it matches arbitrary values.
  * </pre>
  *
- * Protobuf type <code>google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter</code>
+ * Protobuf type <code>Google\Devtools\Clouderrorreporting\V1beta1\ServiceContextFilter</code>
  */
 class ServiceContextFilter extends \Google\Protobuf\Internal\Message
 {
@@ -60,6 +60,7 @@ class ServiceContextFilter extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string service = 2;</code>
+     * @return string
      */
     public function getService()
     {
@@ -73,6 +74,7 @@ class ServiceContextFilter extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string service = 2;</code>
+     * @param string $var
      */
     public function setService($var)
     {
@@ -89,6 +91,7 @@ class ServiceContextFilter extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string version = 3;</code>
+     * @return string
      */
     public function getVersion()
     {
@@ -102,6 +105,7 @@ class ServiceContextFilter extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string version = 3;</code>
+     * @param string $var
      */
     public function setVersion($var)
     {
@@ -118,6 +122,7 @@ class ServiceContextFilter extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string resource_type = 4;</code>
+     * @return string
      */
     public function getResourceType()
     {
@@ -131,6 +136,7 @@ class ServiceContextFilter extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string resource_type = 4;</code>
+     * @param string $var
      */
     public function setResourceType($var)
     {

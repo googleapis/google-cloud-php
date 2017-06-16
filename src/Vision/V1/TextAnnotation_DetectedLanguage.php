@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Detected language for a structural component.
  * </pre>
  *
- * Protobuf type <code>google.cloud.vision.v1.TextAnnotation.DetectedLanguage</code>
+ * Protobuf type <code>Google\Cloud\Vision\V1\TextAnnotation\DetectedLanguage</code>
  */
 class TextAnnotation_DetectedLanguage extends \Google\Protobuf\Internal\Message
 {
@@ -49,6 +49,7 @@ class TextAnnotation_DetectedLanguage extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string language_code = 1;</code>
+     * @return string
      */
     public function getLanguageCode()
     {
@@ -63,6 +64,7 @@ class TextAnnotation_DetectedLanguage extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string language_code = 1;</code>
+     * @param string $var
      */
     public function setLanguageCode($var)
     {
@@ -78,6 +80,7 @@ class TextAnnotation_DetectedLanguage extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>float confidence = 2;</code>
+     * @return float
      */
     public function getConfidence()
     {
@@ -90,6 +93,7 @@ class TextAnnotation_DetectedLanguage extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>float confidence = 2;</code>
+     * @param float $var
      */
     public function setConfidence($var)
     {

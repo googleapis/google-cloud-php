@@ -9,7 +9,7 @@ namespace Google\Cloud\Spanner\V1;
  * Mode in which the query must be processed.
  * </pre>
  *
- * Protobuf enum <code>google.spanner.v1.ExecuteSqlRequest.QueryMode</code>
+ * Protobuf enum <code>Google\Spanner\V1\ExecuteSqlRequest\QueryMode</code>
  */
 class ExecuteSqlRequest_QueryMode
 {

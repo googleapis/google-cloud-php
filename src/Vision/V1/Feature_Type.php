@@ -9,7 +9,7 @@ namespace Google\Cloud\Vision\V1;
  * Type of image feature.
  * </pre>
  *
- * Protobuf enum <code>google.cloud.vision.v1.Feature.Type</code>
+ * Protobuf enum <code>Google\Cloud\Vision\V1\Feature\Type</code>
  */
 class Feature_Type
 {

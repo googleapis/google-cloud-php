@@ -9,7 +9,7 @@ namespace Google\Cloud\Speech\V1;
  * Indicates the type of speech event.
  * </pre>
  *
- * Protobuf enum <code>google.cloud.speech.v1.StreamingRecognizeResponse.SpeechEventType</code>
+ * Protobuf enum <code>Google\Cloud\Speech\V1\StreamingRecognizeResponse\SpeechEventType</code>
  */
 class StreamingRecognizeResponse_SpeechEventType
 {

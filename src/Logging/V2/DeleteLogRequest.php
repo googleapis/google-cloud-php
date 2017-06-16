@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * The parameters to DeleteLog.
  * </pre>
  *
- * Protobuf type <code>google.logging.v2.DeleteLogRequest</code>
+ * Protobuf type <code>Google\Logging\V2\DeleteLogRequest</code>
  */
 class DeleteLogRequest extends \Google\Protobuf\Internal\Message
 {
@@ -55,6 +55,7 @@ class DeleteLogRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string log_name = 1;</code>
+     * @return string
      */
     public function getLogName()
     {
@@ -76,6 +77,7 @@ class DeleteLogRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string log_name = 1;</code>
+     * @param string $var
      */
     public function setLogName($var)
     {

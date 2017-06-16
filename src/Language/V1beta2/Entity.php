@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * as salience and mentions, with entities.
  * </pre>
  *
- * Protobuf type <code>google.cloud.language.v1beta2.Entity</code>
+ * Protobuf type <code>Google\Cloud\Language\V1beta2\Entity</code>
  */
 class Entity extends \Google\Protobuf\Internal\Message
 {
@@ -42,7 +42,7 @@ class Entity extends \Google\Protobuf\Internal\Message
      * available. The associated keys are "wikipedia_url" and "mid", respectively.
      * </pre>
      *
-     * <code>map&lt;string, string&gt; metadata = 3;</code>
+     * <code>map<string, string> metadata = 3;</code>
      */
     private $metadata;
     /**
@@ -89,6 +89,7 @@ class Entity extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string name = 1;</code>
+     * @return string
      */
     public function getName()
     {
@@ -101,6 +102,7 @@ class Entity extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string name = 1;</code>
+     * @param string $var
      */
     public function setName($var)
     {
@@ -116,6 +118,7 @@ class Entity extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.language.v1beta2.Entity.Type type = 2;</code>
+     * @return int
      */
     public function getType()
     {
@@ -128,6 +131,7 @@ class Entity extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.language.v1beta2.Entity.Type type = 2;</code>
+     * @param int $var
      */
     public function setType($var)
     {
@@ -144,7 +148,8 @@ class Entity extends \Google\Protobuf\Internal\Message
      * available. The associated keys are "wikipedia_url" and "mid", respectively.
      * </pre>
      *
-     * <code>map&lt;string, string&gt; metadata = 3;</code>
+     * <code>map<string, string> metadata = 3;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getMetadata()
     {
@@ -158,7 +163,8 @@ class Entity extends \Google\Protobuf\Internal\Message
      * available. The associated keys are "wikipedia_url" and "mid", respectively.
      * </pre>
      *
-     * <code>map&lt;string, string&gt; metadata = 3;</code>
+     * <code>map<string, string> metadata = 3;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setMetadata(&$var)
     {
@@ -178,6 +184,7 @@ class Entity extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>float salience = 4;</code>
+     * @return float
      */
     public function getSalience()
     {
@@ -194,6 +201,7 @@ class Entity extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>float salience = 4;</code>
+     * @param float $var
      */
     public function setSalience($var)
     {
@@ -210,6 +218,7 @@ class Entity extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.language.v1beta2.EntityMention mentions = 5;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getMentions()
     {
@@ -223,6 +232,7 @@ class Entity extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.language.v1beta2.EntityMention mentions = 5;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setMentions(&$var)
     {
@@ -241,6 +251,7 @@ class Entity extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.language.v1beta2.Sentiment sentiment = 6;</code>
+     * @return Google\Cloud\Language\V1beta2\Sentiment
      */
     public function getSentiment()
     {
@@ -256,6 +267,7 @@ class Entity extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.language.v1beta2.Sentiment sentiment = 6;</code>
+     * @param Google\Cloud\Language\V1beta2\Sentiment $var
      */
     public function setSentiment(&$var)
     {

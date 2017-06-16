@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * The request for [CreateSession][google.spanner.v1.Spanner.CreateSession].
  * </pre>
  *
- * Protobuf type <code>google.spanner.v1.CreateSessionRequest</code>
+ * Protobuf type <code>Google\Spanner\V1\CreateSessionRequest</code>
  */
 class CreateSessionRequest extends \Google\Protobuf\Internal\Message
 {
@@ -37,6 +37,7 @@ class CreateSessionRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string database = 1;</code>
+     * @return string
      */
     public function getDatabase()
     {
@@ -49,6 +50,7 @@ class CreateSessionRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string database = 1;</code>
+     * @param string $var
      */
     public function setDatabase($var)
     {

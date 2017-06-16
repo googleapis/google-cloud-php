@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * [CreateDatabase][google.spanner.admin.database.v1.DatabaseAdmin.CreateDatabase].
  * </pre>
  *
- * Protobuf type <code>google.spanner.admin.database.v1.CreateDatabaseMetadata</code>
+ * Protobuf type <code>Google\Spanner\Admin\Database\V1\CreateDatabaseMetadata</code>
  */
 class CreateDatabaseMetadata extends \Google\Protobuf\Internal\Message
 {
@@ -38,6 +38,7 @@ class CreateDatabaseMetadata extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string database = 1;</code>
+     * @return string
      */
     public function getDatabase()
     {
@@ -50,6 +51,7 @@ class CreateDatabaseMetadata extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string database = 1;</code>
+     * @param string $var
      */
     public function setDatabase($var)
     {

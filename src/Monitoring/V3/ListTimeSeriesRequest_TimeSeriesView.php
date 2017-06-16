@@ -9,7 +9,7 @@ namespace Google\Cloud\Monitoring\V3;
  * Controls which fields are returned by `ListTimeSeries`.
  * </pre>
  *
- * Protobuf enum <code>google.monitoring.v3.ListTimeSeriesRequest.TimeSeriesView</code>
+ * Protobuf enum <code>Google\Monitoring\V3\ListTimeSeriesRequest\TimeSeriesView</code>
  */
 class ListTimeSeriesRequest_TimeSeriesView
 {

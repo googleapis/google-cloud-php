@@ -16,7 +16,7 @@ namespace Google\Cloud\Speech\V1beta1;
  * or transmit the audio, particularly if background noise is present.
  * </pre>
  *
- * Protobuf enum <code>google.cloud.speech.v1beta1.RecognitionConfig.AudioEncoding</code>
+ * Protobuf enum <code>Google\Cloud\Speech\V1beta1\RecognitionConfig\AudioEncoding</code>
  */
 class RecognitionConfig_AudioEncoding
 {

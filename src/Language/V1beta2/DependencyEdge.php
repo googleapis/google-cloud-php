@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Represents dependency parse tree information for a token.
  * </pre>
  *
- * Protobuf type <code>google.cloud.language.v1beta2.DependencyEdge</code>
+ * Protobuf type <code>Google\Cloud\Language\V1beta2\DependencyEdge</code>
  */
 class DependencyEdge extends \Google\Protobuf\Internal\Message
 {
@@ -53,6 +53,7 @@ class DependencyEdge extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 head_token_index = 1;</code>
+     * @return int
      */
     public function getHeadTokenIndex()
     {
@@ -69,6 +70,7 @@ class DependencyEdge extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 head_token_index = 1;</code>
+     * @param int $var
      */
     public function setHeadTokenIndex($var)
     {
@@ -84,6 +86,7 @@ class DependencyEdge extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.language.v1beta2.DependencyEdge.Label label = 2;</code>
+     * @return int
      */
     public function getLabel()
     {
@@ -96,6 +99,7 @@ class DependencyEdge extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.language.v1beta2.DependencyEdge.Label label = 2;</code>
+     * @param int $var
      */
     public function setLabel($var)
     {

@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Request for the `Seek` method.
  * </pre>
  *
- * Protobuf type <code>google.pubsub.v1.SeekRequest</code>
+ * Protobuf type <code>Google\Pubsub\V1\SeekRequest</code>
  */
 class SeekRequest extends \Google\Protobuf\Internal\Message
 {
@@ -38,6 +38,7 @@ class SeekRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string subscription = 1;</code>
+     * @return string
      */
     public function getSubscription()
     {
@@ -50,6 +51,7 @@ class SeekRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string subscription = 1;</code>
+     * @param string $var
      */
     public function setSubscription($var)
     {
@@ -75,6 +77,7 @@ class SeekRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp time = 2;</code>
+     * @return Google\Protobuf\Timestamp
      */
     public function getTime()
     {
@@ -97,6 +100,7 @@ class SeekRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp time = 2;</code>
+     * @param Google\Protobuf\Timestamp $var
      */
     public function setTime(&$var)
     {
@@ -114,6 +118,7 @@ class SeekRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string snapshot = 3;</code>
+     * @return string
      */
     public function getSnapshot()
     {
@@ -128,6 +133,7 @@ class SeekRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string snapshot = 3;</code>
+     * @param string $var
      */
     public function setSnapshot($var)
     {
@@ -137,6 +143,9 @@ class SeekRequest extends \Google\Protobuf\Internal\Message
         return $this;
     }
 
+    /**
+     * @return string
+     */
     public function getTarget()
     {
         return $this->whichOneof("target");

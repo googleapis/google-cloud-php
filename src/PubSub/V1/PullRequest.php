@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Request for the `Pull` method.
  * </pre>
  *
- * Protobuf type <code>google.pubsub.v1.PullRequest</code>
+ * Protobuf type <code>Google\Pubsub\V1\PullRequest</code>
  */
 class PullRequest extends \Google\Protobuf\Internal\Message
 {
@@ -61,6 +61,7 @@ class PullRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string subscription = 1;</code>
+     * @return string
      */
     public function getSubscription()
     {
@@ -74,6 +75,7 @@ class PullRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string subscription = 1;</code>
+     * @param string $var
      */
     public function setSubscription($var)
     {
@@ -94,6 +96,7 @@ class PullRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>bool return_immediately = 2;</code>
+     * @return bool
      */
     public function getReturnImmediately()
     {
@@ -111,6 +114,7 @@ class PullRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>bool return_immediately = 2;</code>
+     * @param bool $var
      */
     public function setReturnImmediately($var)
     {
@@ -127,6 +131,7 @@ class PullRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 max_messages = 3;</code>
+     * @return int
      */
     public function getMaxMessages()
     {
@@ -140,6 +145,7 @@ class PullRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 max_messages = 3;</code>
+     * @param int $var
      */
     public function setMaxMessages($var)
     {

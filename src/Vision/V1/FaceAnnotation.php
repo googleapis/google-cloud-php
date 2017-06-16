@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * A face annotation object contains the results of face detection.
  * </pre>
  *
- * Protobuf type <code>google.cloud.vision.v1.FaceAnnotation</code>
+ * Protobuf type <code>Google\Cloud\Vision\V1\FaceAnnotation</code>
  */
 class FaceAnnotation extends \Google\Protobuf\Internal\Message
 {
@@ -38,7 +38,7 @@ class FaceAnnotation extends \Google\Protobuf\Internal\Message
      * is used to eliminate the face from any image analysis that detects the
      * "amount of skin" visible in an image. It is not based on the
      * landmarker results, only on the initial face detection, hence
-     * the &lt;code&gt;fd&lt;/code&gt; (face detection) prefix.
+     * the <code>fd</code> (face detection) prefix.
      * </pre>
      *
      * <code>.google.cloud.vision.v1.BoundingPoly fd_bounding_poly = 2;</code>
@@ -171,6 +171,7 @@ class FaceAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
+     * @return Google\Cloud\Vision\V1\BoundingPoly
      */
     public function getBoundingPoly()
     {
@@ -189,6 +190,7 @@ class FaceAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
+     * @param Google\Cloud\Vision\V1\BoundingPoly $var
      */
     public function setBoundingPoly(&$var)
     {
@@ -205,10 +207,11 @@ class FaceAnnotation extends \Google\Protobuf\Internal\Message
      * is used to eliminate the face from any image analysis that detects the
      * "amount of skin" visible in an image. It is not based on the
      * landmarker results, only on the initial face detection, hence
-     * the &lt;code&gt;fd&lt;/code&gt; (face detection) prefix.
+     * the <code>fd</code> (face detection) prefix.
      * </pre>
      *
      * <code>.google.cloud.vision.v1.BoundingPoly fd_bounding_poly = 2;</code>
+     * @return Google\Cloud\Vision\V1\BoundingPoly
      */
     public function getFdBoundingPoly()
     {
@@ -222,10 +225,11 @@ class FaceAnnotation extends \Google\Protobuf\Internal\Message
      * is used to eliminate the face from any image analysis that detects the
      * "amount of skin" visible in an image. It is not based on the
      * landmarker results, only on the initial face detection, hence
-     * the &lt;code&gt;fd&lt;/code&gt; (face detection) prefix.
+     * the <code>fd</code> (face detection) prefix.
      * </pre>
      *
      * <code>.google.cloud.vision.v1.BoundingPoly fd_bounding_poly = 2;</code>
+     * @param Google\Cloud\Vision\V1\BoundingPoly $var
      */
     public function setFdBoundingPoly(&$var)
     {
@@ -241,6 +245,7 @@ class FaceAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.FaceAnnotation.Landmark landmarks = 3;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getLandmarks()
     {
@@ -253,6 +258,7 @@ class FaceAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.FaceAnnotation.Landmark landmarks = 3;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setLandmarks(&$var)
     {
@@ -270,6 +276,7 @@ class FaceAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>float roll_angle = 4;</code>
+     * @return float
      */
     public function getRollAngle()
     {
@@ -284,6 +291,7 @@ class FaceAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>float roll_angle = 4;</code>
+     * @param float $var
      */
     public function setRollAngle($var)
     {
@@ -301,6 +309,7 @@ class FaceAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>float pan_angle = 5;</code>
+     * @return float
      */
     public function getPanAngle()
     {
@@ -315,6 +324,7 @@ class FaceAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>float pan_angle = 5;</code>
+     * @param float $var
      */
     public function setPanAngle($var)
     {
@@ -331,6 +341,7 @@ class FaceAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>float tilt_angle = 6;</code>
+     * @return float
      */
     public function getTiltAngle()
     {
@@ -344,6 +355,7 @@ class FaceAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>float tilt_angle = 6;</code>
+     * @param float $var
      */
     public function setTiltAngle($var)
     {
@@ -359,6 +371,7 @@ class FaceAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>float detection_confidence = 7;</code>
+     * @return float
      */
     public function getDetectionConfidence()
     {
@@ -371,6 +384,7 @@ class FaceAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>float detection_confidence = 7;</code>
+     * @param float $var
      */
     public function setDetectionConfidence($var)
     {
@@ -386,6 +400,7 @@ class FaceAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>float landmarking_confidence = 8;</code>
+     * @return float
      */
     public function getLandmarkingConfidence()
     {
@@ -398,6 +413,7 @@ class FaceAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>float landmarking_confidence = 8;</code>
+     * @param float $var
      */
     public function setLandmarkingConfidence($var)
     {
@@ -413,6 +429,7 @@ class FaceAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.Likelihood joy_likelihood = 9;</code>
+     * @return int
      */
     public function getJoyLikelihood()
     {
@@ -425,6 +442,7 @@ class FaceAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.Likelihood joy_likelihood = 9;</code>
+     * @param int $var
      */
     public function setJoyLikelihood($var)
     {
@@ -440,6 +458,7 @@ class FaceAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.Likelihood sorrow_likelihood = 10;</code>
+     * @return int
      */
     public function getSorrowLikelihood()
     {
@@ -452,6 +471,7 @@ class FaceAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.Likelihood sorrow_likelihood = 10;</code>
+     * @param int $var
      */
     public function setSorrowLikelihood($var)
     {
@@ -467,6 +487,7 @@ class FaceAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.Likelihood anger_likelihood = 11;</code>
+     * @return int
      */
     public function getAngerLikelihood()
     {
@@ -479,6 +500,7 @@ class FaceAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.Likelihood anger_likelihood = 11;</code>
+     * @param int $var
      */
     public function setAngerLikelihood($var)
     {
@@ -494,6 +516,7 @@ class FaceAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.Likelihood surprise_likelihood = 12;</code>
+     * @return int
      */
     public function getSurpriseLikelihood()
     {
@@ -506,6 +529,7 @@ class FaceAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.Likelihood surprise_likelihood = 12;</code>
+     * @param int $var
      */
     public function setSurpriseLikelihood($var)
     {
@@ -521,6 +545,7 @@ class FaceAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.Likelihood under_exposed_likelihood = 13;</code>
+     * @return int
      */
     public function getUnderExposedLikelihood()
     {
@@ -533,6 +558,7 @@ class FaceAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.Likelihood under_exposed_likelihood = 13;</code>
+     * @param int $var
      */
     public function setUnderExposedLikelihood($var)
     {
@@ -548,6 +574,7 @@ class FaceAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.Likelihood blurred_likelihood = 14;</code>
+     * @return int
      */
     public function getBlurredLikelihood()
     {
@@ -560,6 +587,7 @@ class FaceAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.Likelihood blurred_likelihood = 14;</code>
+     * @param int $var
      */
     public function setBlurredLikelihood($var)
     {
@@ -575,6 +603,7 @@ class FaceAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.Likelihood headwear_likelihood = 15;</code>
+     * @return int
      */
     public function getHeadwearLikelihood()
     {
@@ -587,6 +616,7 @@ class FaceAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.Likelihood headwear_likelihood = 15;</code>
+     * @param int $var
      */
     public function setHeadwearLikelihood($var)
     {

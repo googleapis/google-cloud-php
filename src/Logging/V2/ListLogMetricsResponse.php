@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Result returned from ListLogMetrics.
  * </pre>
  *
- * Protobuf type <code>google.logging.v2.ListLogMetricsResponse</code>
+ * Protobuf type <code>Google\Logging\V2\ListLogMetricsResponse</code>
  */
 class ListLogMetricsResponse extends \Google\Protobuf\Internal\Message
 {
@@ -47,6 +47,7 @@ class ListLogMetricsResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.logging.v2.LogMetric metrics = 1;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getMetrics()
     {
@@ -59,6 +60,7 @@ class ListLogMetricsResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.logging.v2.LogMetric metrics = 1;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setMetrics(&$var)
     {
@@ -76,6 +78,7 @@ class ListLogMetricsResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string next_page_token = 2;</code>
+     * @return string
      */
     public function getNextPageToken()
     {
@@ -90,6 +93,7 @@ class ListLogMetricsResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string next_page_token = 2;</code>
+     * @param string $var
      */
     public function setNextPageToken($var)
     {

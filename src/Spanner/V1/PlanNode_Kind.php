@@ -10,7 +10,7 @@ namespace Google\Cloud\Spanner\V1;
  * nodes that can appear in a query plan.
  * </pre>
  *
- * Protobuf enum <code>google.spanner.v1.PlanNode.Kind</code>
+ * Protobuf enum <code>Google\Spanner\V1\PlanNode\Kind</code>
  */
 class PlanNode_Kind
 {

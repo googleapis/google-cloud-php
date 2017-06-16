@@ -17,7 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Engine logs. All fields are optional.
  * </pre>
  *
- * Protobuf type <code>google.devtools.clouderrorreporting.v1beta1.SourceLocation</code>
+ * Protobuf type <code>Google\Devtools\Clouderrorreporting\V1beta1\SourceLocation</code>
  */
 class SourceLocation extends \Google\Protobuf\Internal\Message
 {
@@ -61,6 +61,7 @@ class SourceLocation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string file_path = 1;</code>
+     * @return string
      */
     public function getFilePath()
     {
@@ -74,6 +75,7 @@ class SourceLocation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string file_path = 1;</code>
+     * @param string $var
      */
     public function setFilePath($var)
     {
@@ -89,6 +91,7 @@ class SourceLocation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 line_number = 2;</code>
+     * @return int
      */
     public function getLineNumber()
     {
@@ -101,6 +104,7 @@ class SourceLocation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 line_number = 2;</code>
+     * @param int $var
      */
     public function setLineNumber($var)
     {
@@ -118,6 +122,7 @@ class SourceLocation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string function_name = 4;</code>
+     * @return string
      */
     public function getFunctionName()
     {
@@ -132,6 +137,7 @@ class SourceLocation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string function_name = 4;</code>
+     * @param string $var
      */
     public function setFunctionName($var)
     {

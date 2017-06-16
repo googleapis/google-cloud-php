@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * A snapshot resource.
  * </pre>
  *
- * Protobuf type <code>google.pubsub.v1.Snapshot</code>
+ * Protobuf type <code>Google\Pubsub\V1\Snapshot</code>
  */
 class Snapshot extends \Google\Protobuf\Internal\Message
 {
@@ -61,6 +61,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string name = 1;</code>
+     * @return string
      */
     public function getName()
     {
@@ -73,6 +74,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string name = 1;</code>
+     * @param string $var
      */
     public function setName($var)
     {
@@ -88,6 +90,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string topic = 2;</code>
+     * @return string
      */
     public function getTopic()
     {
@@ -100,6 +103,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string topic = 2;</code>
+     * @param string $var
      */
     public function setTopic($var)
     {
@@ -123,6 +127,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp expire_time = 3;</code>
+     * @return Google\Protobuf\Timestamp
      */
     public function getExpireTime()
     {
@@ -143,6 +148,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp expire_time = 3;</code>
+     * @param Google\Protobuf\Timestamp $var
      */
     public function setExpireTime(&$var)
     {

@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * table cell or returned from an SQL query.
  * </pre>
  *
- * Protobuf type <code>google.spanner.v1.Type</code>
+ * Protobuf type <code>Google\Spanner\V1\Type</code>
  */
 class Type extends \Google\Protobuf\Internal\Message
 {
@@ -56,6 +56,7 @@ class Type extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.TypeCode code = 1;</code>
+     * @return int
      */
     public function getCode()
     {
@@ -68,6 +69,7 @@ class Type extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.TypeCode code = 1;</code>
+     * @param int $var
      */
     public function setCode($var)
     {
@@ -84,6 +86,7 @@ class Type extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.Type array_element_type = 2;</code>
+     * @return Google\Cloud\Spanner\V1\Type
      */
     public function getArrayElementType()
     {
@@ -97,6 +100,7 @@ class Type extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.Type array_element_type = 2;</code>
+     * @param Google\Cloud\Spanner\V1\Type $var
      */
     public function setArrayElementType(&$var)
     {
@@ -113,6 +117,7 @@ class Type extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.StructType struct_type = 3;</code>
+     * @return Google\Cloud\Spanner\V1\StructType
      */
     public function getStructType()
     {
@@ -126,6 +131,7 @@ class Type extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.StructType struct_type = 3;</code>
+     * @param Google\Cloud\Spanner\V1\StructType $var
      */
     public function setStructType(&$var)
     {

@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * External image source (Google Cloud Storage image location).
  * </pre>
  *
- * Protobuf type <code>google.cloud.vision.v1.ImageSource</code>
+ * Protobuf type <code>Google\Cloud\Vision\V1\ImageSource</code>
  */
 class ImageSource extends \Google\Protobuf\Internal\Message
 {
@@ -64,6 +64,7 @@ class ImageSource extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string gcs_image_uri = 1;</code>
+     * @return string
      */
     public function getGcsImageUri()
     {
@@ -81,6 +82,7 @@ class ImageSource extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string gcs_image_uri = 1;</code>
+     * @param string $var
      */
     public function setGcsImageUri($var)
     {
@@ -105,6 +107,7 @@ class ImageSource extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string image_uri = 2;</code>
+     * @return string
      */
     public function getImageUri()
     {
@@ -126,6 +129,7 @@ class ImageSource extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string image_uri = 2;</code>
+     * @param string $var
      */
     public function setImageUri($var)
     {

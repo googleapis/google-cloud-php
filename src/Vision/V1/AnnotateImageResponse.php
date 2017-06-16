@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Response to an image annotation request.
  * </pre>
  *
- * Protobuf type <code>google.cloud.vision.v1.AnnotateImageResponse</code>
+ * Protobuf type <code>Google\Cloud\Vision\V1\AnnotateImageResponse</code>
  */
 class AnnotateImageResponse extends \Google\Protobuf\Internal\Message
 {
@@ -123,6 +123,7 @@ class AnnotateImageResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.FaceAnnotation face_annotations = 1;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getFaceAnnotations()
     {
@@ -135,6 +136,7 @@ class AnnotateImageResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.FaceAnnotation face_annotations = 1;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setFaceAnnotations(&$var)
     {
@@ -150,6 +152,7 @@ class AnnotateImageResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.EntityAnnotation landmark_annotations = 2;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getLandmarkAnnotations()
     {
@@ -162,6 +165,7 @@ class AnnotateImageResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.EntityAnnotation landmark_annotations = 2;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setLandmarkAnnotations(&$var)
     {
@@ -177,6 +181,7 @@ class AnnotateImageResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.EntityAnnotation logo_annotations = 3;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getLogoAnnotations()
     {
@@ -189,6 +194,7 @@ class AnnotateImageResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.EntityAnnotation logo_annotations = 3;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setLogoAnnotations(&$var)
     {
@@ -204,6 +210,7 @@ class AnnotateImageResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.EntityAnnotation label_annotations = 4;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getLabelAnnotations()
     {
@@ -216,6 +223,7 @@ class AnnotateImageResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.EntityAnnotation label_annotations = 4;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setLabelAnnotations(&$var)
     {
@@ -232,6 +240,7 @@ class AnnotateImageResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.EntityAnnotation text_annotations = 5;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getTextAnnotations()
     {
@@ -245,6 +254,7 @@ class AnnotateImageResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.EntityAnnotation text_annotations = 5;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setTextAnnotations(&$var)
     {
@@ -263,6 +273,7 @@ class AnnotateImageResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.TextAnnotation full_text_annotation = 12;</code>
+     * @return Google\Cloud\Vision\V1\TextAnnotation
      */
     public function getFullTextAnnotation()
     {
@@ -278,6 +289,7 @@ class AnnotateImageResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.TextAnnotation full_text_annotation = 12;</code>
+     * @param Google\Cloud\Vision\V1\TextAnnotation $var
      */
     public function setFullTextAnnotation(&$var)
     {
@@ -293,6 +305,7 @@ class AnnotateImageResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.SafeSearchAnnotation safe_search_annotation = 6;</code>
+     * @return Google\Cloud\Vision\V1\SafeSearchAnnotation
      */
     public function getSafeSearchAnnotation()
     {
@@ -305,6 +318,7 @@ class AnnotateImageResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.SafeSearchAnnotation safe_search_annotation = 6;</code>
+     * @param Google\Cloud\Vision\V1\SafeSearchAnnotation $var
      */
     public function setSafeSearchAnnotation(&$var)
     {
@@ -320,6 +334,7 @@ class AnnotateImageResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.ImageProperties image_properties_annotation = 8;</code>
+     * @return Google\Cloud\Vision\V1\ImageProperties
      */
     public function getImagePropertiesAnnotation()
     {
@@ -332,6 +347,7 @@ class AnnotateImageResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.ImageProperties image_properties_annotation = 8;</code>
+     * @param Google\Cloud\Vision\V1\ImageProperties $var
      */
     public function setImagePropertiesAnnotation(&$var)
     {
@@ -347,6 +363,7 @@ class AnnotateImageResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.CropHintsAnnotation crop_hints_annotation = 11;</code>
+     * @return Google\Cloud\Vision\V1\CropHintsAnnotation
      */
     public function getCropHintsAnnotation()
     {
@@ -359,6 +376,7 @@ class AnnotateImageResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.CropHintsAnnotation crop_hints_annotation = 11;</code>
+     * @param Google\Cloud\Vision\V1\CropHintsAnnotation $var
      */
     public function setCropHintsAnnotation(&$var)
     {
@@ -374,6 +392,7 @@ class AnnotateImageResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.WebDetection web_detection = 13;</code>
+     * @return Google\Cloud\Vision\V1\WebDetection
      */
     public function getWebDetection()
     {
@@ -386,6 +405,7 @@ class AnnotateImageResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.WebDetection web_detection = 13;</code>
+     * @param Google\Cloud\Vision\V1\WebDetection $var
      */
     public function setWebDetection(&$var)
     {
@@ -403,6 +423,7 @@ class AnnotateImageResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.rpc.Status error = 9;</code>
+     * @return Google\Rpc\Status
      */
     public function getError()
     {
@@ -417,6 +438,7 @@ class AnnotateImageResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.rpc.Status error = 9;</code>
+     * @param Google\Rpc\Status $var
      */
     public function setError(&$var)
     {

@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Represents an output piece of text.
  * </pre>
  *
- * Protobuf type <code>google.cloud.language.v1beta2.TextSpan</code>
+ * Protobuf type <code>Google\Cloud\Language\V1beta2\TextSpan</code>
  */
 class TextSpan extends \Google\Protobuf\Internal\Message
 {
@@ -46,6 +46,7 @@ class TextSpan extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string content = 1;</code>
+     * @return string
      */
     public function getContent()
     {
@@ -58,6 +59,7 @@ class TextSpan extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string content = 1;</code>
+     * @param string $var
      */
     public function setContent($var)
     {
@@ -74,6 +76,7 @@ class TextSpan extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 begin_offset = 2;</code>
+     * @return int
      */
     public function getBeginOffset()
     {
@@ -87,6 +90,7 @@ class TextSpan extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 begin_offset = 2;</code>
+     * @param int $var
      */
     public function setBeginOffset($var)
     {

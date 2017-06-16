@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * The `ListGroup` request.
  * </pre>
  *
- * Protobuf type <code>google.monitoring.v3.ListGroupsRequest</code>
+ * Protobuf type <code>Google\Monitoring\V3\ListGroupsRequest</code>
  */
 class ListGroupsRequest extends \Google\Protobuf\Internal\Message
 {
@@ -58,6 +58,7 @@ class ListGroupsRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string name = 7;</code>
+     * @return string
      */
     public function getName()
     {
@@ -71,6 +72,7 @@ class ListGroupsRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string name = 7;</code>
+     * @param string $var
      */
     public function setName($var)
     {
@@ -88,6 +90,7 @@ class ListGroupsRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string children_of_group = 2;</code>
+     * @return string
      */
     public function getChildrenOfGroup()
     {
@@ -102,6 +105,7 @@ class ListGroupsRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string children_of_group = 2;</code>
+     * @param string $var
      */
     public function setChildrenOfGroup($var)
     {
@@ -121,6 +125,7 @@ class ListGroupsRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string ancestors_of_group = 3;</code>
+     * @return string
      */
     public function getAncestorsOfGroup()
     {
@@ -137,6 +142,7 @@ class ListGroupsRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string ancestors_of_group = 3;</code>
+     * @param string $var
      */
     public function setAncestorsOfGroup($var)
     {
@@ -155,6 +161,7 @@ class ListGroupsRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string descendants_of_group = 4;</code>
+     * @return string
      */
     public function getDescendantsOfGroup()
     {
@@ -170,6 +177,7 @@ class ListGroupsRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string descendants_of_group = 4;</code>
+     * @param string $var
      */
     public function setDescendantsOfGroup($var)
     {
@@ -185,6 +193,7 @@ class ListGroupsRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 page_size = 5;</code>
+     * @return int
      */
     public function getPageSize()
     {
@@ -197,6 +206,7 @@ class ListGroupsRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 page_size = 5;</code>
+     * @param int $var
      */
     public function setPageSize($var)
     {
@@ -214,6 +224,7 @@ class ListGroupsRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string page_token = 6;</code>
+     * @return string
      */
     public function getPageToken()
     {
@@ -228,6 +239,7 @@ class ListGroupsRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string page_token = 6;</code>
+     * @param string $var
      */
     public function setPageToken($var)
     {
@@ -237,6 +249,9 @@ class ListGroupsRequest extends \Google\Protobuf\Internal\Message
         return $this;
     }
 
+    /**
+     * @return string
+     */
     public function getFilter()
     {
         return $this->whichOneof("filter");

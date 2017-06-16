@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * A message and its corresponding acknowledgment ID.
  * </pre>
  *
- * Protobuf type <code>google.pubsub.v1.ReceivedMessage</code>
+ * Protobuf type <code>Google\Pubsub\V1\ReceivedMessage</code>
  */
 class ReceivedMessage extends \Google\Protobuf\Internal\Message
 {
@@ -45,6 +45,7 @@ class ReceivedMessage extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string ack_id = 1;</code>
+     * @return string
      */
     public function getAckId()
     {
@@ -57,6 +58,7 @@ class ReceivedMessage extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string ack_id = 1;</code>
+     * @param string $var
      */
     public function setAckId($var)
     {
@@ -72,6 +74,7 @@ class ReceivedMessage extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.pubsub.v1.PubsubMessage message = 2;</code>
+     * @return Google\Cloud\PubSub\V1\PubsubMessage
      */
     public function getMessage()
     {
@@ -84,6 +87,7 @@ class ReceivedMessage extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.pubsub.v1.PubsubMessage message = 2;</code>
+     * @param Google\Cloud\PubSub\V1\PubsubMessage $var
      */
     public function setMessage(&$var)
     {

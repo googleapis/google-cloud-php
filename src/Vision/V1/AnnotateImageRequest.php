@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * image, with user-requested features.
  * </pre>
  *
- * Protobuf type <code>google.cloud.vision.v1.AnnotateImageRequest</code>
+ * Protobuf type <code>Google\Cloud\Vision\V1\AnnotateImageRequest</code>
  */
 class AnnotateImageRequest extends \Google\Protobuf\Internal\Message
 {
@@ -54,6 +54,7 @@ class AnnotateImageRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.Image image = 1;</code>
+     * @return Google\Cloud\Vision\V1\Image
      */
     public function getImage()
     {
@@ -66,6 +67,7 @@ class AnnotateImageRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.Image image = 1;</code>
+     * @param Google\Cloud\Vision\V1\Image $var
      */
     public function setImage(&$var)
     {
@@ -81,6 +83,7 @@ class AnnotateImageRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.Feature features = 2;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getFeatures()
     {
@@ -93,6 +96,7 @@ class AnnotateImageRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.Feature features = 2;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setFeatures(&$var)
     {
@@ -108,6 +112,7 @@ class AnnotateImageRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.ImageContext image_context = 3;</code>
+     * @return Google\Cloud\Vision\V1\ImageContext
      */
     public function getImageContext()
     {
@@ -120,6 +125,7 @@ class AnnotateImageRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.ImageContext image_context = 3;</code>
+     * @param Google\Cloud\Vision\V1\ImageContext $var
      */
     public function setImageContext(&$var)
     {

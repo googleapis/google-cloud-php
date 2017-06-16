@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Response for the `Pull` method.
  * </pre>
  *
- * Protobuf type <code>google.pubsub.v1.PullResponse</code>
+ * Protobuf type <code>Google\Pubsub\V1\PullResponse</code>
  */
 class PullResponse extends \Google\Protobuf\Internal\Message
 {
@@ -43,6 +43,7 @@ class PullResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.pubsub.v1.ReceivedMessage received_messages = 1;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getReceivedMessages()
     {
@@ -58,6 +59,7 @@ class PullResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.pubsub.v1.ReceivedMessage received_messages = 1;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setReceivedMessages(&$var)
     {

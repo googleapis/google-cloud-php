@@ -9,7 +9,7 @@ namespace Google\Cloud\Speech\V1beta1;
  * Indicates the type of endpointer event.
  * </pre>
  *
- * Protobuf enum <code>google.cloud.speech.v1beta1.StreamingRecognizeResponse.EndpointerType</code>
+ * Protobuf enum <code>Google\Cloud\Speech\V1beta1\StreamingRecognizeResponse\EndpointerType</code>
  */
 class StreamingRecognizeResponse_EndpointerType
 {

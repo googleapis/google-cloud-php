@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Request for the Acknowledge method.
  * </pre>
  *
- * Protobuf type <code>google.pubsub.v1.AcknowledgeRequest</code>
+ * Protobuf type <code>Google\Pubsub\V1\AcknowledgeRequest</code>
  */
 class AcknowledgeRequest extends \Google\Protobuf\Internal\Message
 {
@@ -48,6 +48,7 @@ class AcknowledgeRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string subscription = 1;</code>
+     * @return string
      */
     public function getSubscription()
     {
@@ -61,6 +62,7 @@ class AcknowledgeRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string subscription = 1;</code>
+     * @param string $var
      */
     public function setSubscription($var)
     {
@@ -77,6 +79,7 @@ class AcknowledgeRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated string ack_ids = 2;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getAckIds()
     {
@@ -90,6 +93,7 @@ class AcknowledgeRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated string ack_ids = 2;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setAckIds(&$var)
     {

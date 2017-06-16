@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Arguments to [delete][google.spanner.v1.Mutation.delete] operations.
  * </pre>
  *
- * Protobuf type <code>google.spanner.v1.Mutation.Delete</code>
+ * Protobuf type <code>Google\Spanner\V1\Mutation\Delete</code>
  */
 class Mutation_Delete extends \Google\Protobuf\Internal\Message
 {
@@ -45,6 +45,7 @@ class Mutation_Delete extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string table = 1;</code>
+     * @return string
      */
     public function getTable()
     {
@@ -57,6 +58,7 @@ class Mutation_Delete extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string table = 1;</code>
+     * @param string $var
      */
     public function setTable($var)
     {
@@ -72,6 +74,7 @@ class Mutation_Delete extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.KeySet key_set = 2;</code>
+     * @return Google\Cloud\Spanner\V1\KeySet
      */
     public function getKeySet()
     {
@@ -84,6 +87,7 @@ class Mutation_Delete extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.KeySet key_set = 2;</code>
+     * @param Google\Cloud\Spanner\V1\KeySet $var
      */
     public function setKeySet(&$var)
     {

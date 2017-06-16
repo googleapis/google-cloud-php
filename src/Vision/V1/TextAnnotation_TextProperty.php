@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Additional information detected on the structural component.
  * </pre>
  *
- * Protobuf type <code>google.cloud.vision.v1.TextAnnotation.TextProperty</code>
+ * Protobuf type <code>Google\Cloud\Vision\V1\TextAnnotation\TextProperty</code>
  */
 class TextAnnotation_TextProperty extends \Google\Protobuf\Internal\Message
 {
@@ -45,6 +45,7 @@ class TextAnnotation_TextProperty extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.TextAnnotation.DetectedLanguage detected_languages = 1;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getDetectedLanguages()
     {
@@ -57,6 +58,7 @@ class TextAnnotation_TextProperty extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.TextAnnotation.DetectedLanguage detected_languages = 1;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setDetectedLanguages(&$var)
     {
@@ -72,6 +74,7 @@ class TextAnnotation_TextProperty extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.TextAnnotation.DetectedBreak detected_break = 2;</code>
+     * @return Google\Cloud\Vision\V1\TextAnnotation_DetectedBreak
      */
     public function getDetectedBreak()
     {
@@ -84,6 +87,7 @@ class TextAnnotation_TextProperty extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.TextAnnotation.DetectedBreak detected_break = 2;</code>
+     * @param Google\Cloud\Vision\V1\TextAnnotation_DetectedBreak $var
      */
     public function setDetectedBreak(&$var)
     {

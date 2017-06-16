@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * `StructType` defines the fields of a [STRUCT][google.spanner.v1.TypeCode.STRUCT] type.
  * </pre>
  *
- * Protobuf type <code>google.spanner.v1.StructType</code>
+ * Protobuf type <code>Google\Spanner\V1\StructType</code>
  */
 class StructType extends \Google\Protobuf\Internal\Message
 {
@@ -47,6 +47,7 @@ class StructType extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.spanner.v1.StructType.Field fields = 1;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getFields()
     {
@@ -64,6 +65,7 @@ class StructType extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.spanner.v1.StructType.Field fields = 1;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setFields(&$var)
     {

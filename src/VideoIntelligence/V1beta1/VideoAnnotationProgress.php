@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Annotation progress for a single video.
  * </pre>
  *
- * Protobuf type <code>google.cloud.videointelligence.v1beta1.VideoAnnotationProgress</code>
+ * Protobuf type <code>Google\Cloud\Videointelligence\V1beta1\VideoAnnotationProgress</code>
  */
 class VideoAnnotationProgress extends \Google\Protobuf\Internal\Message
 {
@@ -64,6 +64,7 @@ class VideoAnnotationProgress extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string input_uri = 1;</code>
+     * @return string
      */
     public function getInputUri()
     {
@@ -77,6 +78,7 @@ class VideoAnnotationProgress extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string input_uri = 1;</code>
+     * @param string $var
      */
     public function setInputUri($var)
     {
@@ -93,6 +95,7 @@ class VideoAnnotationProgress extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 progress_percent = 2;</code>
+     * @return int
      */
     public function getProgressPercent()
     {
@@ -106,6 +109,7 @@ class VideoAnnotationProgress extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 progress_percent = 2;</code>
+     * @param int $var
      */
     public function setProgressPercent($var)
     {
@@ -121,6 +125,7 @@ class VideoAnnotationProgress extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp start_time = 3;</code>
+     * @return Google\Protobuf\Timestamp
      */
     public function getStartTime()
     {
@@ -133,6 +138,7 @@ class VideoAnnotationProgress extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp start_time = 3;</code>
+     * @param Google\Protobuf\Timestamp $var
      */
     public function setStartTime(&$var)
     {
@@ -148,6 +154,7 @@ class VideoAnnotationProgress extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp update_time = 4;</code>
+     * @return Google\Protobuf\Timestamp
      */
     public function getUpdateTime()
     {
@@ -160,6 +167,7 @@ class VideoAnnotationProgress extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp update_time = 4;</code>
+     * @param Google\Protobuf\Timestamp $var
      */
     public function setUpdateTime(&$var)
     {

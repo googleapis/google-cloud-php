@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Response message for deleting error events.
  * </pre>
  *
- * Protobuf type <code>google.devtools.clouderrorreporting.v1beta1.DeleteEventsResponse</code>
+ * Protobuf type <code>Google\Devtools\Clouderrorreporting\V1beta1\DeleteEventsResponse</code>
  */
 class DeleteEventsResponse extends \Google\Protobuf\Internal\Message
 {

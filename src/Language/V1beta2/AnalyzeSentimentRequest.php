@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * The sentiment analysis request message.
  * </pre>
  *
- * Protobuf type <code>google.cloud.language.v1beta2.AnalyzeSentimentRequest</code>
+ * Protobuf type <code>Google\Cloud\Language\V1beta2\AnalyzeSentimentRequest</code>
  */
 class AnalyzeSentimentRequest extends \Google\Protobuf\Internal\Message
 {
@@ -46,6 +46,7 @@ class AnalyzeSentimentRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.language.v1beta2.Document document = 1;</code>
+     * @return Google\Cloud\Language\V1beta2\Document
      */
     public function getDocument()
     {
@@ -58,6 +59,7 @@ class AnalyzeSentimentRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.language.v1beta2.Document document = 1;</code>
+     * @param Google\Cloud\Language\V1beta2\Document $var
      */
     public function setDocument(&$var)
     {
@@ -74,6 +76,7 @@ class AnalyzeSentimentRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.language.v1beta2.EncodingType encoding_type = 2;</code>
+     * @return int
      */
     public function getEncodingType()
     {
@@ -87,6 +90,7 @@ class AnalyzeSentimentRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.language.v1beta2.EncodingType encoding_type = 2;</code>
+     * @param int $var
      */
     public function setEncodingType($var)
     {

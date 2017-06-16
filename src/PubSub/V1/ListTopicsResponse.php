@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Response for the `ListTopics` method.
  * </pre>
  *
- * Protobuf type <code>google.pubsub.v1.ListTopicsResponse</code>
+ * Protobuf type <code>Google\Pubsub\V1\ListTopicsResponse</code>
  */
 class ListTopicsResponse extends \Google\Protobuf\Internal\Message
 {
@@ -46,6 +46,7 @@ class ListTopicsResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.pubsub.v1.Topic topics = 1;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getTopics()
     {
@@ -58,6 +59,7 @@ class ListTopicsResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.pubsub.v1.Topic topics = 1;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setTopics(&$var)
     {
@@ -74,6 +76,7 @@ class ListTopicsResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string next_page_token = 2;</code>
+     * @return string
      */
     public function getNextPageToken()
     {
@@ -87,6 +90,7 @@ class ListTopicsResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string next_page_token = 2;</code>
+     * @param string $var
      */
     public function setNextPageToken($var)
     {

@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Detected start or end of a structural component.
  * </pre>
  *
- * Protobuf type <code>google.cloud.vision.v1.TextAnnotation.DetectedBreak</code>
+ * Protobuf type <code>Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak</code>
  */
 class TextAnnotation_DetectedBreak extends \Google\Protobuf\Internal\Message
 {
@@ -37,6 +37,7 @@ class TextAnnotation_DetectedBreak extends \Google\Protobuf\Internal\Message
 
     /**
      * <code>.google.cloud.vision.v1.TextAnnotation.DetectedBreak.BreakType type = 1;</code>
+     * @return int
      */
     public function getType()
     {
@@ -45,6 +46,7 @@ class TextAnnotation_DetectedBreak extends \Google\Protobuf\Internal\Message
 
     /**
      * <code>.google.cloud.vision.v1.TextAnnotation.DetectedBreak.BreakType type = 1;</code>
+     * @param int $var
      */
     public function setType($var)
     {
@@ -60,6 +62,7 @@ class TextAnnotation_DetectedBreak extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>bool is_prefix = 2;</code>
+     * @return bool
      */
     public function getIsPrefix()
     {
@@ -72,6 +75,7 @@ class TextAnnotation_DetectedBreak extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>bool is_prefix = 2;</code>
+     * @param bool $var
      */
     public function setIsPrefix($var)
     {

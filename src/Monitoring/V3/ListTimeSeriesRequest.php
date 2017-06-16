@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * The `ListTimeSeries` request.
  * </pre>
  *
- * Protobuf type <code>google.monitoring.v3.ListTimeSeriesRequest</code>
+ * Protobuf type <code>Google\Monitoring\V3\ListTimeSeriesRequest</code>
  */
 class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
 {
@@ -111,6 +111,7 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string name = 10;</code>
+     * @return string
      */
     public function getName()
     {
@@ -124,6 +125,7 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string name = 10;</code>
+     * @param string $var
      */
     public function setName($var)
     {
@@ -144,6 +146,7 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string filter = 2;</code>
+     * @return string
      */
     public function getFilter()
     {
@@ -161,6 +164,7 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string filter = 2;</code>
+     * @param string $var
      */
     public function setFilter($var)
     {
@@ -178,6 +182,7 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.monitoring.v3.TimeInterval interval = 4;</code>
+     * @return Google\Cloud\Monitoring\V3\TimeInterval
      */
     public function getInterval()
     {
@@ -192,6 +197,7 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.monitoring.v3.TimeInterval interval = 4;</code>
+     * @param Google\Cloud\Monitoring\V3\TimeInterval $var
      */
     public function setInterval(&$var)
     {
@@ -209,6 +215,7 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.monitoring.v3.Aggregation aggregation = 5;</code>
+     * @return Google\Cloud\Monitoring\V3\Aggregation
      */
     public function getAggregation()
     {
@@ -223,6 +230,7 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.monitoring.v3.Aggregation aggregation = 5;</code>
+     * @param Google\Cloud\Monitoring\V3\Aggregation $var
      */
     public function setAggregation(&$var)
     {
@@ -240,6 +248,7 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string order_by = 6;</code>
+     * @return string
      */
     public function getOrderBy()
     {
@@ -254,6 +263,7 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string order_by = 6;</code>
+     * @param string $var
      */
     public function setOrderBy($var)
     {
@@ -269,6 +279,7 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.monitoring.v3.ListTimeSeriesRequest.TimeSeriesView view = 7;</code>
+     * @return int
      */
     public function getView()
     {
@@ -281,6 +292,7 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.monitoring.v3.ListTimeSeriesRequest.TimeSeriesView view = 7;</code>
+     * @param int $var
      */
     public function setView($var)
     {
@@ -299,6 +311,7 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 page_size = 8;</code>
+     * @return int
      */
     public function getPageSize()
     {
@@ -314,6 +327,7 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 page_size = 8;</code>
+     * @param int $var
      */
     public function setPageSize($var)
     {
@@ -331,6 +345,7 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string page_token = 9;</code>
+     * @return string
      */
     public function getPageToken()
     {
@@ -345,6 +360,7 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string page_token = 9;</code>
+     * @param string $var
      */
     public function setPageToken($var)
     {

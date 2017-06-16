@@ -9,7 +9,7 @@ namespace Google\Cloud\Language\V1beta2;
  * Reciprocal features of a pronoun.
  * </pre>
  *
- * Protobuf enum <code>google.cloud.language.v1beta2.PartOfSpeech.Reciprocity</code>
+ * Protobuf enum <code>Google\Cloud\Language\V1beta2\PartOfSpeech\Reciprocity</code>
  */
 class PartOfSpeech_Reciprocity
 {

@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * The top-level message sent by the client for the `AsyncRecognize` method.
  * </pre>
  *
- * Protobuf type <code>google.cloud.speech.v1beta1.AsyncRecognizeRequest</code>
+ * Protobuf type <code>Google\Cloud\Speech\V1beta1\AsyncRecognizeRequest</code>
  */
 class AsyncRecognizeRequest extends \Google\Protobuf\Internal\Message
 {
@@ -47,6 +47,7 @@ class AsyncRecognizeRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.speech.v1beta1.RecognitionConfig config = 1;</code>
+     * @return Google\Cloud\Speech\V1beta1\RecognitionConfig
      */
     public function getConfig()
     {
@@ -60,6 +61,7 @@ class AsyncRecognizeRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.speech.v1beta1.RecognitionConfig config = 1;</code>
+     * @param Google\Cloud\Speech\V1beta1\RecognitionConfig $var
      */
     public function setConfig(&$var)
     {
@@ -75,6 +77,7 @@ class AsyncRecognizeRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.speech.v1beta1.RecognitionAudio audio = 2;</code>
+     * @return Google\Cloud\Speech\V1beta1\RecognitionAudio
      */
     public function getAudio()
     {
@@ -87,6 +90,7 @@ class AsyncRecognizeRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.speech.v1beta1.RecognitionAudio audio = 2;</code>
+     * @param Google\Cloud\Speech\V1beta1\RecognitionAudio $var
      */
     public function setAudio(&$var)
     {

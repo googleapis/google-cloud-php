@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Relevant information for the image from the Internet.
  * </pre>
  *
- * Protobuf type <code>google.cloud.vision.v1.WebDetection</code>
+ * Protobuf type <code>Google\Cloud\Vision\V1\WebDetection</code>
  */
 class WebDetection extends \Google\Protobuf\Internal\Message
 {
@@ -65,6 +65,7 @@ class WebDetection extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.WebDetection.WebEntity web_entities = 1;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getWebEntities()
     {
@@ -77,6 +78,7 @@ class WebDetection extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.WebDetection.WebEntity web_entities = 1;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setWebEntities(&$var)
     {
@@ -94,6 +96,7 @@ class WebDetection extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage full_matching_images = 2;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getFullMatchingImages()
     {
@@ -108,6 +111,7 @@ class WebDetection extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage full_matching_images = 2;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setFullMatchingImages(&$var)
     {
@@ -125,6 +129,7 @@ class WebDetection extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage partial_matching_images = 3;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getPartialMatchingImages()
     {
@@ -139,6 +144,7 @@ class WebDetection extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage partial_matching_images = 3;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setPartialMatchingImages(&$var)
     {
@@ -154,6 +160,7 @@ class WebDetection extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.WebDetection.WebPage pages_with_matching_images = 4;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getPagesWithMatchingImages()
     {
@@ -166,6 +173,7 @@ class WebDetection extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.WebDetection.WebPage pages_with_matching_images = 4;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setPagesWithMatchingImages(&$var)
     {

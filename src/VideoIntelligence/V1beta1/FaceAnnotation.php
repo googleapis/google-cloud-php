@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Face annotation.
  * </pre>
  *
- * Protobuf type <code>google.cloud.videointelligence.v1beta1.FaceAnnotation</code>
+ * Protobuf type <code>Google\Cloud\Videointelligence\V1beta1\FaceAnnotation</code>
  */
 class FaceAnnotation extends \Google\Protobuf\Internal\Message
 {
@@ -55,6 +55,7 @@ class FaceAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string thumbnail = 1;</code>
+     * @return string
      */
     public function getThumbnail()
     {
@@ -67,6 +68,7 @@ class FaceAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string thumbnail = 1;</code>
+     * @param string $var
      */
     public function setThumbnail($var)
     {
@@ -84,6 +86,7 @@ class FaceAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.videointelligence.v1beta1.VideoSegment segments = 2;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getSegments()
     {
@@ -98,6 +101,7 @@ class FaceAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.videointelligence.v1beta1.VideoSegment segments = 2;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setSegments(&$var)
     {
@@ -113,6 +117,7 @@ class FaceAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.videointelligence.v1beta1.FaceLocation locations = 3;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getLocations()
     {
@@ -125,6 +130,7 @@ class FaceAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.videointelligence.v1beta1.FaceLocation locations = 3;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setLocations(&$var)
     {

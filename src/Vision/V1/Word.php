@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * A word representation.
  * </pre>
  *
- * Protobuf type <code>google.cloud.vision.v1.Word</code>
+ * Protobuf type <code>Google\Cloud\Vision\V1\Word</code>
  */
 class Word extends \Google\Protobuf\Internal\Message
 {
@@ -68,6 +68,7 @@ class Word extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
+     * @return Google\Cloud\Vision\V1\TextAnnotation_TextProperty
      */
     public function getProperty()
     {
@@ -80,6 +81,7 @@ class Word extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
+     * @param Google\Cloud\Vision\V1\TextAnnotation_TextProperty $var
      */
     public function setProperty(&$var)
     {
@@ -109,6 +111,7 @@ class Word extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.BoundingPoly bounding_box = 2;</code>
+     * @return Google\Cloud\Vision\V1\BoundingPoly
      */
     public function getBoundingBox()
     {
@@ -135,6 +138,7 @@ class Word extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.BoundingPoly bounding_box = 2;</code>
+     * @param Google\Cloud\Vision\V1\BoundingPoly $var
      */
     public function setBoundingBox(&$var)
     {
@@ -151,6 +155,7 @@ class Word extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.Symbol symbols = 3;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getSymbols()
     {
@@ -164,6 +169,7 @@ class Word extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.Symbol symbols = 3;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setSymbols(&$var)
     {

@@ -9,7 +9,7 @@ namespace Google\Cloud\Vision\V1;
  * Type of a block (text, image etc) as identified by OCR.
  * </pre>
  *
- * Protobuf enum <code>google.cloud.vision.v1.Block.BlockType</code>
+ * Protobuf enum <code>Google\Cloud\Vision\V1\Block\BlockType</code>
  */
 class Block_BlockType
 {

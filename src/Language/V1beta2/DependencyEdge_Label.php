@@ -9,7 +9,7 @@ namespace Google\Cloud\Language\V1beta2;
  * The parse label enum for the token.
  * </pre>
  *
- * Protobuf enum <code>google.cloud.language.v1beta2.DependencyEdge.Label</code>
+ * Protobuf enum <code>Google\Cloud\Language\V1beta2\DependencyEdge\Label</code>
  */
 class DependencyEdge_Label
 {
@@ -580,7 +580,7 @@ class DependencyEdge_Label
      *
      * <code>LIST = 70;</code>
      */
-    const GPBLIST = 70;
+    const LIST = 70;
     /**
      * <pre>
      * Nominalized clause

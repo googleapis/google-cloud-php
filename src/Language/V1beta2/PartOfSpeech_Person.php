@@ -9,7 +9,7 @@ namespace Google\Cloud\Language\V1beta2;
  * The distinction between the speaker, second person, third person, etc.
  * </pre>
  *
- * Protobuf enum <code>google.cloud.language.v1beta2.PartOfSpeech.Person</code>
+ * Protobuf enum <code>Google\Cloud\Language\V1beta2\PartOfSpeech\Person</code>
  */
 class PartOfSpeech_Person
 {

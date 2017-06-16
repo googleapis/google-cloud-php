@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * A bounding polygon for the detected image annotation.
  * </pre>
  *
- * Protobuf type <code>google.cloud.vision.v1.BoundingPoly</code>
+ * Protobuf type <code>Google\Cloud\Vision\V1\BoundingPoly</code>
  */
 class BoundingPoly extends \Google\Protobuf\Internal\Message
 {
@@ -37,6 +37,7 @@ class BoundingPoly extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.Vertex vertices = 1;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getVertices()
     {
@@ -49,6 +50,7 @@ class BoundingPoly extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.Vertex vertices = 1;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setVertices(&$var)
     {

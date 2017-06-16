@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * [StreamingRead][google.spanner.v1.Spanner.StreamingRead].
  * </pre>
  *
- * Protobuf type <code>google.spanner.v1.ReadRequest</code>
+ * Protobuf type <code>Google\Spanner\V1\ReadRequest</code>
  */
 class ReadRequest extends \Google\Protobuf\Internal\Message
 {
@@ -111,6 +111,7 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string session = 1;</code>
+     * @return string
      */
     public function getSession()
     {
@@ -123,6 +124,7 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string session = 1;</code>
+     * @param string $var
      */
     public function setSession($var)
     {
@@ -139,6 +141,7 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
+     * @return Google\Cloud\Spanner\V1\TransactionSelector
      */
     public function getTransaction()
     {
@@ -152,6 +155,7 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
+     * @param Google\Cloud\Spanner\V1\TransactionSelector $var
      */
     public function setTransaction(&$var)
     {
@@ -167,6 +171,7 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string table = 3;</code>
+     * @return string
      */
     public function getTable()
     {
@@ -179,6 +184,7 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string table = 3;</code>
+     * @param string $var
      */
     public function setTable($var)
     {
@@ -196,6 +202,7 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string index = 4;</code>
+     * @return string
      */
     public function getIndex()
     {
@@ -210,6 +217,7 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string index = 4;</code>
+     * @param string $var
      */
     public function setIndex($var)
     {
@@ -226,6 +234,7 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated string columns = 5;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getColumns()
     {
@@ -239,6 +248,7 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated string columns = 5;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setColumns(&$var)
     {
@@ -261,6 +271,7 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.KeySet key_set = 6;</code>
+     * @return Google\Cloud\Spanner\V1\KeySet
      */
     public function getKeySet()
     {
@@ -280,6 +291,7 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.KeySet key_set = 6;</code>
+     * @param Google\Cloud\Spanner\V1\KeySet $var
      */
     public function setKeySet(&$var)
     {
@@ -296,6 +308,7 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int64 limit = 8;</code>
+     * @return int|string
      */
     public function getLimit()
     {
@@ -309,6 +322,7 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int64 limit = 8;</code>
+     * @param int|string $var
      */
     public function setLimit($var)
     {
@@ -329,6 +343,7 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>bytes resume_token = 9;</code>
+     * @return string
      */
     public function getResumeToken()
     {
@@ -346,6 +361,7 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>bytes resume_token = 9;</code>
+     * @param string $var
      */
     public function setResumeToken($var)
     {

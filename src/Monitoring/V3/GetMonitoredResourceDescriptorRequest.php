@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * The `GetMonitoredResourceDescriptor` request.
  * </pre>
  *
- * Protobuf type <code>google.monitoring.v3.GetMonitoredResourceDescriptorRequest</code>
+ * Protobuf type <code>Google\Monitoring\V3\GetMonitoredResourceDescriptorRequest</code>
  */
 class GetMonitoredResourceDescriptorRequest extends \Google\Protobuf\Internal\Message
 {
@@ -43,6 +43,7 @@ class GetMonitoredResourceDescriptorRequest extends \Google\Protobuf\Internal\Me
      * </pre>
      *
      * <code>string name = 3;</code>
+     * @return string
      */
     public function getName()
     {
@@ -58,6 +59,7 @@ class GetMonitoredResourceDescriptorRequest extends \Google\Protobuf\Internal\Me
      * </pre>
      *
      * <code>string name = 3;</code>
+     * @param string $var
      */
     public function setName($var)
     {

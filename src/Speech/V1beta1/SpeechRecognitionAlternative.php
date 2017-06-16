@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Alternative hypotheses (a.k.a. n-best list).
  * </pre>
  *
- * Protobuf type <code>google.cloud.speech.v1beta1.SpeechRecognitionAlternative</code>
+ * Protobuf type <code>Google\Cloud\Speech\V1beta1\SpeechRecognitionAlternative</code>
  */
 class SpeechRecognitionAlternative extends \Google\Protobuf\Internal\Message
 {
@@ -51,6 +51,7 @@ class SpeechRecognitionAlternative extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string transcript = 1;</code>
+     * @return string
      */
     public function getTranscript()
     {
@@ -63,6 +64,7 @@ class SpeechRecognitionAlternative extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string transcript = 1;</code>
+     * @param string $var
      */
     public function setTranscript($var)
     {
@@ -84,6 +86,7 @@ class SpeechRecognitionAlternative extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>float confidence = 2;</code>
+     * @return float
      */
     public function getConfidence()
     {
@@ -102,6 +105,7 @@ class SpeechRecognitionAlternative extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>float confidence = 2;</code>
+     * @param float $var
      */
     public function setConfidence($var)
     {

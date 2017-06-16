@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Image context and/or feature-specific parameters.
  * </pre>
  *
- * Protobuf type <code>google.cloud.vision.v1.ImageContext</code>
+ * Protobuf type <code>Google\Cloud\Vision\V1\ImageContext</code>
  */
 class ImageContext extends \Google\Protobuf\Internal\Message
 {
@@ -60,6 +60,7 @@ class ImageContext extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.LatLongRect lat_long_rect = 1;</code>
+     * @return Google\Cloud\Vision\V1\LatLongRect
      */
     public function getLatLongRect()
     {
@@ -72,6 +73,7 @@ class ImageContext extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.LatLongRect lat_long_rect = 1;</code>
+     * @param Google\Cloud\Vision\V1\LatLongRect $var
      */
     public function setLatLongRect(&$var)
     {
@@ -94,6 +96,7 @@ class ImageContext extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated string language_hints = 2;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getLanguageHints()
     {
@@ -113,6 +116,7 @@ class ImageContext extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated string language_hints = 2;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setLanguageHints(&$var)
     {
@@ -128,6 +132,7 @@ class ImageContext extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.CropHintsParams crop_hints_params = 4;</code>
+     * @return Google\Cloud\Vision\V1\CropHintsParams
      */
     public function getCropHintsParams()
     {
@@ -140,6 +145,7 @@ class ImageContext extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.CropHintsParams crop_hints_params = 4;</code>
+     * @param Google\Cloud\Vision\V1\CropHintsParams $var
      */
     public function setCropHintsParams(&$var)
     {

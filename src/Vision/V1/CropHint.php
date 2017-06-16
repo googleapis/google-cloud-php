@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Single crop hint that is used to generate a new crop when serving an image.
  * </pre>
  *
- * Protobuf type <code>google.cloud.vision.v1.CropHint</code>
+ * Protobuf type <code>Google\Cloud\Vision\V1\CropHint</code>
  */
 class CropHint extends \Google\Protobuf\Internal\Message
 {
@@ -56,6 +56,7 @@ class CropHint extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
+     * @return Google\Cloud\Vision\V1\BoundingPoly
      */
     public function getBoundingPoly()
     {
@@ -69,6 +70,7 @@ class CropHint extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
+     * @param Google\Cloud\Vision\V1\BoundingPoly $var
      */
     public function setBoundingPoly(&$var)
     {
@@ -84,6 +86,7 @@ class CropHint extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>float confidence = 2;</code>
+     * @return float
      */
     public function getConfidence()
     {
@@ -96,6 +99,7 @@ class CropHint extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>float confidence = 2;</code>
+     * @param float $var
      */
     public function setConfidence($var)
     {
@@ -112,6 +116,7 @@ class CropHint extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>float importance_fraction = 3;</code>
+     * @return float
      */
     public function getImportanceFraction()
     {
@@ -125,6 +130,7 @@ class CropHint extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>float importance_fraction = 3;</code>
+     * @param float $var
      */
     public function setImportanceFraction($var)
     {

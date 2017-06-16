@@ -13,14 +13,14 @@ use Google\Protobuf\Internal\GPBUtil;
  * The request for [ListInstances][google.spanner.admin.instance.v1.InstanceAdmin.ListInstances].
  * </pre>
  *
- * Protobuf type <code>google.spanner.admin.instance.v1.ListInstancesRequest</code>
+ * Protobuf type <code>Google\Spanner\Admin\Instance\V1\ListInstancesRequest</code>
  */
 class ListInstancesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * <pre>
      * Required. The name of the project for which a list of instances is
-     * requested. Values are of the form `projects/&lt;project&gt;`.
+     * requested. Values are of the form `projects/<project>`.
      * </pre>
      *
      * <code>string parent = 1;</code>
@@ -53,14 +53,14 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
      *   * display_name
      *   * labels.key where key is the name of a label
      * Some examples of using filters are:
-     *   * name:* --&gt; The instance has a name.
-     *   * name:Howl --&gt; The instance's name contains the string "howl".
-     *   * name:HOWL --&gt; Equivalent to above.
-     *   * NAME:howl --&gt; Equivalent to above.
-     *   * labels.env:* --&gt; The instance has the label "env".
-     *   * labels.env:dev --&gt; The instance has the label "env" and the value of
+     *   * name:* --> The instance has a name.
+     *   * name:Howl --> The instance's name contains the string "howl".
+     *   * name:HOWL --> Equivalent to above.
+     *   * NAME:howl --> Equivalent to above.
+     *   * labels.env:* --> The instance has the label "env".
+     *   * labels.env:dev --> The instance has the label "env" and the value of
      *                        the label contains the string "dev".
-     *   * name:howl labels.env:dev --&gt; The instance's name contains "howl" and
+     *   * name:howl labels.env:dev --> The instance's name contains "howl" and
      *                                  it has the label "env" with its value
      *                                  containing "dev".
      * </pre>
@@ -77,10 +77,11 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
     /**
      * <pre>
      * Required. The name of the project for which a list of instances is
-     * requested. Values are of the form `projects/&lt;project&gt;`.
+     * requested. Values are of the form `projects/<project>`.
      * </pre>
      *
      * <code>string parent = 1;</code>
+     * @return string
      */
     public function getParent()
     {
@@ -90,10 +91,11 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
     /**
      * <pre>
      * Required. The name of the project for which a list of instances is
-     * requested. Values are of the form `projects/&lt;project&gt;`.
+     * requested. Values are of the form `projects/<project>`.
      * </pre>
      *
      * <code>string parent = 1;</code>
+     * @param string $var
      */
     public function setParent($var)
     {
@@ -110,6 +112,7 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 page_size = 2;</code>
+     * @return int
      */
     public function getPageSize()
     {
@@ -123,6 +126,7 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 page_size = 2;</code>
+     * @param int $var
      */
     public function setPageSize($var)
     {
@@ -140,6 +144,7 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string page_token = 3;</code>
+     * @return string
      */
     public function getPageToken()
     {
@@ -154,6 +159,7 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string page_token = 3;</code>
+     * @param string $var
      */
     public function setPageToken($var)
     {
@@ -171,19 +177,20 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
      *   * display_name
      *   * labels.key where key is the name of a label
      * Some examples of using filters are:
-     *   * name:* --&gt; The instance has a name.
-     *   * name:Howl --&gt; The instance's name contains the string "howl".
-     *   * name:HOWL --&gt; Equivalent to above.
-     *   * NAME:howl --&gt; Equivalent to above.
-     *   * labels.env:* --&gt; The instance has the label "env".
-     *   * labels.env:dev --&gt; The instance has the label "env" and the value of
+     *   * name:* --> The instance has a name.
+     *   * name:Howl --> The instance's name contains the string "howl".
+     *   * name:HOWL --> Equivalent to above.
+     *   * NAME:howl --> Equivalent to above.
+     *   * labels.env:* --> The instance has the label "env".
+     *   * labels.env:dev --> The instance has the label "env" and the value of
      *                        the label contains the string "dev".
-     *   * name:howl labels.env:dev --&gt; The instance's name contains "howl" and
+     *   * name:howl labels.env:dev --> The instance's name contains "howl" and
      *                                  it has the label "env" with its value
      *                                  containing "dev".
      * </pre>
      *
      * <code>string filter = 4;</code>
+     * @return string
      */
     public function getFilter()
     {
@@ -198,19 +205,20 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
      *   * display_name
      *   * labels.key where key is the name of a label
      * Some examples of using filters are:
-     *   * name:* --&gt; The instance has a name.
-     *   * name:Howl --&gt; The instance's name contains the string "howl".
-     *   * name:HOWL --&gt; Equivalent to above.
-     *   * NAME:howl --&gt; Equivalent to above.
-     *   * labels.env:* --&gt; The instance has the label "env".
-     *   * labels.env:dev --&gt; The instance has the label "env" and the value of
+     *   * name:* --> The instance has a name.
+     *   * name:Howl --> The instance's name contains the string "howl".
+     *   * name:HOWL --> Equivalent to above.
+     *   * NAME:howl --> Equivalent to above.
+     *   * labels.env:* --> The instance has the label "env".
+     *   * labels.env:dev --> The instance has the label "env" and the value of
      *                        the label contains the string "dev".
-     *   * name:howl labels.env:dev --&gt; The instance's name contains "howl" and
+     *   * name:howl labels.env:dev --> The instance's name contains "howl" and
      *                                  it has the label "env" with its value
      *                                  containing "dev".
      * </pre>
      *
      * <code>string filter = 4;</code>
+     * @param string $var
      */
     public function setFilter($var)
     {

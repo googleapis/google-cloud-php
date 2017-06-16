@@ -17,7 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * [Aggregation](/monitoring/api/learn_more#aggregation).
  * </pre>
  *
- * Protobuf type <code>google.monitoring.v3.Aggregation</code>
+ * Protobuf type <code>Google\Monitoring\V3\Aggregation</code>
  */
 class Aggregation extends \Google\Protobuf\Internal\Message
 {
@@ -110,6 +110,7 @@ class Aggregation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Duration alignment_period = 1;</code>
+     * @return Google\Protobuf\Duration
      */
     public function getAlignmentPeriod()
     {
@@ -129,6 +130,7 @@ class Aggregation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Duration alignment_period = 1;</code>
+     * @param Google\Protobuf\Duration $var
      */
     public function setAlignmentPeriod(&$var)
     {
@@ -153,6 +155,7 @@ class Aggregation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.monitoring.v3.Aggregation.Aligner per_series_aligner = 2;</code>
+     * @return int
      */
     public function getPerSeriesAligner()
     {
@@ -174,6 +177,7 @@ class Aggregation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.monitoring.v3.Aggregation.Aligner per_series_aligner = 2;</code>
+     * @param int $var
      */
     public function setPerSeriesAligner($var)
     {
@@ -198,6 +202,7 @@ class Aggregation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.monitoring.v3.Aggregation.Reducer cross_series_reducer = 4;</code>
+     * @return int
      */
     public function getCrossSeriesReducer()
     {
@@ -219,6 +224,7 @@ class Aggregation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.monitoring.v3.Aggregation.Reducer cross_series_reducer = 4;</code>
+     * @param int $var
      */
     public function setCrossSeriesReducer($var)
     {
@@ -247,6 +253,7 @@ class Aggregation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated string group_by_fields = 5;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getGroupByFields()
     {
@@ -272,6 +279,7 @@ class Aggregation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated string group_by_fields = 5;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setGroupByFields(&$var)
     {

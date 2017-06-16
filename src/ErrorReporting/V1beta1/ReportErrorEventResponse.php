@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Data may be added to this message in the future.
  * </pre>
  *
- * Protobuf type <code>google.devtools.clouderrorreporting.v1beta1.ReportErrorEventResponse</code>
+ * Protobuf type <code>Google\Devtools\Clouderrorreporting\V1beta1\ReportErrorEventResponse</code>
  */
 class ReportErrorEventResponse extends \Google\Protobuf\Internal\Message
 {

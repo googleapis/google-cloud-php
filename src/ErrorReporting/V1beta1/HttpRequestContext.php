@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * error report has been generated automatically from Google App Engine logs.
  * </pre>
  *
- * Protobuf type <code>google.devtools.clouderrorreporting.v1beta1.HttpRequestContext</code>
+ * Protobuf type <code>Google\Devtools\Clouderrorreporting\V1beta1\HttpRequestContext</code>
  */
 class HttpRequestContext extends \Google\Protobuf\Internal\Message
 {
@@ -83,6 +83,7 @@ class HttpRequestContext extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string method = 1;</code>
+     * @return string
      */
     public function getMethod()
     {
@@ -95,6 +96,7 @@ class HttpRequestContext extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string method = 1;</code>
+     * @param string $var
      */
     public function setMethod($var)
     {
@@ -110,6 +112,7 @@ class HttpRequestContext extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string url = 2;</code>
+     * @return string
      */
     public function getUrl()
     {
@@ -122,6 +125,7 @@ class HttpRequestContext extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string url = 2;</code>
+     * @param string $var
      */
     public function setUrl($var)
     {
@@ -137,6 +141,7 @@ class HttpRequestContext extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string user_agent = 3;</code>
+     * @return string
      */
     public function getUserAgent()
     {
@@ -149,6 +154,7 @@ class HttpRequestContext extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string user_agent = 3;</code>
+     * @param string $var
      */
     public function setUserAgent($var)
     {
@@ -164,6 +170,7 @@ class HttpRequestContext extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string referrer = 4;</code>
+     * @return string
      */
     public function getReferrer()
     {
@@ -176,6 +183,7 @@ class HttpRequestContext extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string referrer = 4;</code>
+     * @param string $var
      */
     public function setReferrer($var)
     {
@@ -191,6 +199,7 @@ class HttpRequestContext extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 response_status_code = 5;</code>
+     * @return int
      */
     public function getResponseStatusCode()
     {
@@ -203,6 +212,7 @@ class HttpRequestContext extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 response_status_code = 5;</code>
+     * @param int $var
      */
     public function setResponseStatusCode($var)
     {
@@ -221,6 +231,7 @@ class HttpRequestContext extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string remote_ip = 6;</code>
+     * @return string
      */
     public function getRemoteIp()
     {
@@ -236,6 +247,7 @@ class HttpRequestContext extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string remote_ip = 6;</code>
+     * @param string $var
      */
     public function setRemoteIp($var)
     {

@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Request for the ModifyAckDeadline method.
  * </pre>
  *
- * Protobuf type <code>google.pubsub.v1.ModifyAckDeadlineRequest</code>
+ * Protobuf type <code>Google\Pubsub\V1\ModifyAckDeadlineRequest</code>
  */
 class ModifyAckDeadlineRequest extends \Google\Protobuf\Internal\Message
 {
@@ -61,6 +61,7 @@ class ModifyAckDeadlineRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string subscription = 1;</code>
+     * @return string
      */
     public function getSubscription()
     {
@@ -74,6 +75,7 @@ class ModifyAckDeadlineRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string subscription = 1;</code>
+     * @param string $var
      */
     public function setSubscription($var)
     {
@@ -89,6 +91,7 @@ class ModifyAckDeadlineRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated string ack_ids = 4;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getAckIds()
     {
@@ -101,6 +104,7 @@ class ModifyAckDeadlineRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated string ack_ids = 4;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setAckIds(&$var)
     {
@@ -122,6 +126,7 @@ class ModifyAckDeadlineRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 ack_deadline_seconds = 3;</code>
+     * @return int
      */
     public function getAckDeadlineSeconds()
     {
@@ -140,6 +145,7 @@ class ModifyAckDeadlineRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 ack_deadline_seconds = 3;</code>
+     * @param int $var
      */
     public function setAckDeadlineSeconds($var)
     {

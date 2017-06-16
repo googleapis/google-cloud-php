@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Video segment.
  * </pre>
  *
- * Protobuf type <code>google.cloud.videointelligence.v1beta1.VideoSegment</code>
+ * Protobuf type <code>Google\Cloud\Videointelligence\V1beta1\VideoSegment</code>
  */
 class VideoSegment extends \Google\Protobuf\Internal\Message
 {
@@ -45,6 +45,7 @@ class VideoSegment extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int64 start_time_offset = 1;</code>
+     * @return int|string
      */
     public function getStartTimeOffset()
     {
@@ -57,6 +58,7 @@ class VideoSegment extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int64 start_time_offset = 1;</code>
+     * @param int|string $var
      */
     public function setStartTimeOffset($var)
     {
@@ -72,6 +74,7 @@ class VideoSegment extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int64 end_time_offset = 2;</code>
+     * @return int|string
      */
     public function getEndTimeOffset()
     {
@@ -84,6 +87,7 @@ class VideoSegment extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int64 end_time_offset = 2;</code>
+     * @param int|string $var
      */
     public function setEndTimeOffset($var)
     {

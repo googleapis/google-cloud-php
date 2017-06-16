@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Request for the GetTopic method.
  * </pre>
  *
- * Protobuf type <code>google.pubsub.v1.GetTopicRequest</code>
+ * Protobuf type <code>Google\Pubsub\V1\GetTopicRequest</code>
  */
 class GetTopicRequest extends \Google\Protobuf\Internal\Message
 {
@@ -39,6 +39,7 @@ class GetTopicRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string topic = 1;</code>
+     * @return string
      */
     public function getTopic()
     {
@@ -52,6 +53,7 @@ class GetTopicRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string topic = 1;</code>
+     * @param string $var
      */
     public function setTopic($var)
     {

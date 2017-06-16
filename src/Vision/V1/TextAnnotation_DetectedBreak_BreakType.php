@@ -9,7 +9,7 @@ namespace Google\Cloud\Vision\V1;
  * Enum to denote the type of break found. New line, space etc.
  * </pre>
  *
- * Protobuf enum <code>google.cloud.vision.v1.TextAnnotation.DetectedBreak.BreakType</code>
+ * Protobuf enum <code>Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak\BreakType</code>
  */
 class TextAnnotation_DetectedBreak_BreakType
 {

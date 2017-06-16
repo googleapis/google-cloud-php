@@ -10,7 +10,7 @@ namespace Google\Cloud\Monitoring\V3;
  * time series into temporal alignment.
  * </pre>
  *
- * Protobuf enum <code>google.monitoring.v3.Aggregation.Aligner</code>
+ * Protobuf enum <code>Google\Monitoring\V3\Aggregation\Aligner</code>
  */
 class Aggregation_Aligner
 {

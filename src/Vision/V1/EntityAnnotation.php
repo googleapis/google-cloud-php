@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Set of detected entity features.
  * </pre>
  *
- * Protobuf type <code>google.cloud.vision.v1.EntityAnnotation</code>
+ * Protobuf type <code>Google\Cloud\Vision\V1\EntityAnnotation</code>
  */
 class EntityAnnotation extends \Google\Protobuf\Internal\Message
 {
@@ -119,6 +119,7 @@ class EntityAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string mid = 1;</code>
+     * @return string
      */
     public function getMid()
     {
@@ -132,6 +133,7 @@ class EntityAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string mid = 1;</code>
+     * @param string $var
      */
     public function setMid($var)
     {
@@ -148,6 +150,7 @@ class EntityAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string locale = 2;</code>
+     * @return string
      */
     public function getLocale()
     {
@@ -161,6 +164,7 @@ class EntityAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string locale = 2;</code>
+     * @param string $var
      */
     public function setLocale($var)
     {
@@ -176,6 +180,7 @@ class EntityAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string description = 3;</code>
+     * @return string
      */
     public function getDescription()
     {
@@ -188,6 +193,7 @@ class EntityAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string description = 3;</code>
+     * @param string $var
      */
     public function setDescription($var)
     {
@@ -203,6 +209,7 @@ class EntityAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>float score = 4;</code>
+     * @return float
      */
     public function getScore()
     {
@@ -215,6 +222,7 @@ class EntityAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>float score = 4;</code>
+     * @param float $var
      */
     public function setScore($var)
     {
@@ -233,6 +241,7 @@ class EntityAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>float confidence = 5;</code>
+     * @return float
      */
     public function getConfidence()
     {
@@ -248,6 +257,7 @@ class EntityAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>float confidence = 5;</code>
+     * @param float $var
      */
     public function setConfidence($var)
     {
@@ -267,6 +277,7 @@ class EntityAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>float topicality = 6;</code>
+     * @return float
      */
     public function getTopicality()
     {
@@ -283,6 +294,7 @@ class EntityAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>float topicality = 6;</code>
+     * @param float $var
      */
     public function setTopicality($var)
     {
@@ -301,6 +313,7 @@ class EntityAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 7;</code>
+     * @return Google\Cloud\Vision\V1\BoundingPoly
      */
     public function getBoundingPoly()
     {
@@ -316,6 +329,7 @@ class EntityAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 7;</code>
+     * @param Google\Cloud\Vision\V1\BoundingPoly $var
      */
     public function setBoundingPoly(&$var)
     {
@@ -335,6 +349,7 @@ class EntityAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.LocationInfo locations = 8;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getLocations()
     {
@@ -351,6 +366,7 @@ class EntityAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.LocationInfo locations = 8;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setLocations(&$var)
     {
@@ -367,6 +383,7 @@ class EntityAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.Property properties = 9;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getProperties()
     {
@@ -380,6 +397,7 @@ class EntityAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.Property properties = 9;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setProperties(&$var)
     {

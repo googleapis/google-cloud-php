@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Message representing a single field of a struct.
  * </pre>
  *
- * Protobuf type <code>google.spanner.v1.StructType.Field</code>
+ * Protobuf type <code>Google\Spanner\V1\StructType\Field</code>
  */
 class StructType_Field extends \Google\Protobuf\Internal\Message
 {
@@ -57,6 +57,7 @@ class StructType_Field extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string name = 1;</code>
+     * @return string
      */
     public function getName()
     {
@@ -75,6 +76,7 @@ class StructType_Field extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string name = 1;</code>
+     * @param string $var
      */
     public function setName($var)
     {
@@ -90,6 +92,7 @@ class StructType_Field extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.Type type = 2;</code>
+     * @return Google\Cloud\Spanner\V1\Type
      */
     public function getType()
     {
@@ -102,6 +105,7 @@ class StructType_Field extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.Type type = 2;</code>
+     * @param Google\Cloud\Spanner\V1\Type $var
      */
     public function setType(&$var)
     {

@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * The response for [Commit][google.spanner.v1.Spanner.Commit].
  * </pre>
  *
- * Protobuf type <code>google.spanner.v1.CommitResponse</code>
+ * Protobuf type <code>Google\Spanner\V1\CommitResponse</code>
  */
 class CommitResponse extends \Google\Protobuf\Internal\Message
 {
@@ -37,6 +37,7 @@ class CommitResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp commit_timestamp = 1;</code>
+     * @return Google\Protobuf\Timestamp
      */
     public function getCommitTimestamp()
     {
@@ -49,6 +50,7 @@ class CommitResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp commit_timestamp = 1;</code>
+     * @param Google\Protobuf\Timestamp $var
      */
     public function setCommitTimestamp(&$var)
     {

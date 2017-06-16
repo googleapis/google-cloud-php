@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * The parameters to `ListLogEntries`.
  * </pre>
  *
- * Protobuf type <code>google.logging.v2.ListLogEntriesRequest</code>
+ * Protobuf type <code>Google\Logging\V2\ListLogEntriesRequest</code>
  */
 class ListLogEntriesRequest extends \Google\Protobuf\Internal\Message
 {
@@ -107,6 +107,7 @@ class ListLogEntriesRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated string project_ids = 1;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getProjectIds()
     {
@@ -123,6 +124,7 @@ class ListLogEntriesRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated string project_ids = 1;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setProjectIds(&$var)
     {
@@ -144,6 +146,7 @@ class ListLogEntriesRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated string resource_names = 8;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getResourceNames()
     {
@@ -162,6 +165,7 @@ class ListLogEntriesRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated string resource_names = 8;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setResourceNames(&$var)
     {
@@ -183,6 +187,7 @@ class ListLogEntriesRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string filter = 2;</code>
+     * @return string
      */
     public function getFilter()
     {
@@ -201,6 +206,7 @@ class ListLogEntriesRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string filter = 2;</code>
+     * @param string $var
      */
     public function setFilter($var)
     {
@@ -221,6 +227,7 @@ class ListLogEntriesRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string order_by = 3;</code>
+     * @return string
      */
     public function getOrderBy()
     {
@@ -238,6 +245,7 @@ class ListLogEntriesRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string order_by = 3;</code>
+     * @param string $var
      */
     public function setOrderBy($var)
     {
@@ -255,6 +263,7 @@ class ListLogEntriesRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 page_size = 4;</code>
+     * @return int
      */
     public function getPageSize()
     {
@@ -269,6 +278,7 @@ class ListLogEntriesRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 page_size = 4;</code>
+     * @param int $var
      */
     public function setPageSize($var)
     {
@@ -287,6 +297,7 @@ class ListLogEntriesRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string page_token = 5;</code>
+     * @return string
      */
     public function getPageToken()
     {
@@ -302,6 +313,7 @@ class ListLogEntriesRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string page_token = 5;</code>
+     * @param string $var
      */
     public function setPageToken($var)
     {

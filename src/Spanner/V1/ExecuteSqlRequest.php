@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * [ExecuteStreamingSql][google.spanner.v1.Spanner.ExecuteStreamingSql].
  * </pre>
  *
- * Protobuf type <code>google.spanner.v1.ExecuteSqlRequest</code>
+ * Protobuf type <code>Google\Spanner\V1\ExecuteSqlRequest</code>
  */
 class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
 {
@@ -51,7 +51,7 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      * numbers, and underscores.
      * Parameters can appear anywhere that a literal value is expected.  The same
      * parameter name can be used more than once, for example:
-     *   `"WHERE id &gt; &#64;msg_id AND id &lt; &#64;msg_id + 100"`
+     *   `"WHERE id > &#64;msg_id AND id < &#64;msg_id + 100"`
      * It is an error to execute an SQL query with unbound parameters.
      * Parameter values are specified using `params`, which is a JSON
      * object whose keys are parameter names, and whose values are the
@@ -72,7 +72,7 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      * about SQL types.
      * </pre>
      *
-     * <code>map&lt;string, .google.spanner.v1.Type&gt; param_types = 5;</code>
+     * <code>map<string, .google.spanner.v1.Type> param_types = 5;</code>
      */
     private $param_types;
     /**
@@ -109,6 +109,7 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string session = 1;</code>
+     * @return string
      */
     public function getSession()
     {
@@ -121,6 +122,7 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string session = 1;</code>
+     * @param string $var
      */
     public function setSession($var)
     {
@@ -137,6 +139,7 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
+     * @return Google\Cloud\Spanner\V1\TransactionSelector
      */
     public function getTransaction()
     {
@@ -150,6 +153,7 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
+     * @param Google\Cloud\Spanner\V1\TransactionSelector $var
      */
     public function setTransaction(&$var)
     {
@@ -165,6 +169,7 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string sql = 3;</code>
+     * @return string
      */
     public function getSql()
     {
@@ -177,6 +182,7 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string sql = 3;</code>
+     * @param string $var
      */
     public function setSql($var)
     {
@@ -194,7 +200,7 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      * numbers, and underscores.
      * Parameters can appear anywhere that a literal value is expected.  The same
      * parameter name can be used more than once, for example:
-     *   `"WHERE id &gt; &#64;msg_id AND id &lt; &#64;msg_id + 100"`
+     *   `"WHERE id > &#64;msg_id AND id < &#64;msg_id + 100"`
      * It is an error to execute an SQL query with unbound parameters.
      * Parameter values are specified using `params`, which is a JSON
      * object whose keys are parameter names, and whose values are the
@@ -202,6 +208,7 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Struct params = 4;</code>
+     * @return Google\Protobuf\Struct
      */
     public function getParams()
     {
@@ -216,7 +223,7 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      * numbers, and underscores.
      * Parameters can appear anywhere that a literal value is expected.  The same
      * parameter name can be used more than once, for example:
-     *   `"WHERE id &gt; &#64;msg_id AND id &lt; &#64;msg_id + 100"`
+     *   `"WHERE id > &#64;msg_id AND id < &#64;msg_id + 100"`
      * It is an error to execute an SQL query with unbound parameters.
      * Parameter values are specified using `params`, which is a JSON
      * object whose keys are parameter names, and whose values are the
@@ -224,6 +231,7 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Struct params = 4;</code>
+     * @param Google\Protobuf\Struct $var
      */
     public function setParams(&$var)
     {
@@ -244,7 +252,8 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      * about SQL types.
      * </pre>
      *
-     * <code>map&lt;string, .google.spanner.v1.Type&gt; param_types = 5;</code>
+     * <code>map<string, .google.spanner.v1.Type> param_types = 5;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getParamTypes()
     {
@@ -262,7 +271,8 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      * about SQL types.
      * </pre>
      *
-     * <code>map&lt;string, .google.spanner.v1.Type&gt; param_types = 5;</code>
+     * <code>map<string, .google.spanner.v1.Type> param_types = 5;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setParamTypes(&$var)
     {
@@ -283,6 +293,7 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>bytes resume_token = 6;</code>
+     * @return string
      */
     public function getResumeToken()
     {
@@ -300,6 +311,7 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>bytes resume_token = 6;</code>
+     * @param string $var
      */
     public function setResumeToken($var)
     {
@@ -316,6 +328,7 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.ExecuteSqlRequest.QueryMode query_mode = 7;</code>
+     * @return int
      */
     public function getQueryMode()
     {
@@ -329,6 +342,7 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.ExecuteSqlRequest.QueryMode query_mode = 7;</code>
+     * @param int $var
      */
     public function setQueryMode($var)
     {

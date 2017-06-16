@@ -9,7 +9,7 @@ namespace Google\Cloud\ErrorReporting\V1beta1;
  * The supported time ranges.
  * </pre>
  *
- * Protobuf enum <code>google.devtools.clouderrorreporting.v1beta1.QueryTimeRange.Period</code>
+ * Protobuf enum <code>Google\Devtools\Clouderrorreporting\V1beta1\QueryTimeRange\Period</code>
  */
 class QueryTimeRange_Period
 {

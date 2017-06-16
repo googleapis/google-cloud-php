@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Request for the Publish method.
  * </pre>
  *
- * Protobuf type <code>google.pubsub.v1.PublishRequest</code>
+ * Protobuf type <code>Google\Pubsub\V1\PublishRequest</code>
  */
 class PublishRequest extends \Google\Protobuf\Internal\Message
 {
@@ -47,6 +47,7 @@ class PublishRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string topic = 1;</code>
+     * @return string
      */
     public function getTopic()
     {
@@ -60,6 +61,7 @@ class PublishRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string topic = 1;</code>
+     * @param string $var
      */
     public function setTopic($var)
     {
@@ -75,6 +77,7 @@ class PublishRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.pubsub.v1.PubsubMessage messages = 2;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getMessages()
     {
@@ -87,6 +90,7 @@ class PublishRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.pubsub.v1.PubsubMessage messages = 2;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setMessages(&$var)
     {

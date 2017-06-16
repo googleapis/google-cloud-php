@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * The sentiment analysis response message.
  * </pre>
  *
- * Protobuf type <code>google.cloud.language.v1beta2.AnalyzeSentimentResponse</code>
+ * Protobuf type <code>Google\Cloud\Language\V1beta2\AnalyzeSentimentResponse</code>
  */
 class AnalyzeSentimentResponse extends \Google\Protobuf\Internal\Message
 {
@@ -55,6 +55,7 @@ class AnalyzeSentimentResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.language.v1beta2.Sentiment document_sentiment = 1;</code>
+     * @return Google\Cloud\Language\V1beta2\Sentiment
      */
     public function getDocumentSentiment()
     {
@@ -67,6 +68,7 @@ class AnalyzeSentimentResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.language.v1beta2.Sentiment document_sentiment = 1;</code>
+     * @param Google\Cloud\Language\V1beta2\Sentiment $var
      */
     public function setDocumentSentiment(&$var)
     {
@@ -84,6 +86,7 @@ class AnalyzeSentimentResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string language = 2;</code>
+     * @return string
      */
     public function getLanguage()
     {
@@ -98,6 +101,7 @@ class AnalyzeSentimentResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string language = 2;</code>
+     * @param string $var
      */
     public function setLanguage($var)
     {
@@ -113,6 +117,7 @@ class AnalyzeSentimentResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.language.v1beta2.Sentence sentences = 3;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getSentences()
     {
@@ -125,6 +130,7 @@ class AnalyzeSentimentResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.language.v1beta2.Sentence sentences = 3;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setSentences(&$var)
     {

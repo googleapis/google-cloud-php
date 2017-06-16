@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * `GetOperation` call of the `google::longrunning::Operations` service.
  * </pre>
  *
- * Protobuf type <code>google.cloud.speech.v1beta1.AsyncRecognizeResponse</code>
+ * Protobuf type <code>Google\Cloud\Speech\V1beta1\AsyncRecognizeResponse</code>
  */
 class AsyncRecognizeResponse extends \Google\Protobuf\Internal\Message
 {
@@ -42,6 +42,7 @@ class AsyncRecognizeResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.speech.v1beta1.SpeechRecognitionResult results = 2;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getResults()
     {
@@ -55,6 +56,7 @@ class AsyncRecognizeResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.speech.v1beta1.SpeechRecognitionResult results = 2;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setResults(&$var)
     {

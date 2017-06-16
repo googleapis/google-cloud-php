@@ -13,14 +13,14 @@ use Google\Protobuf\Internal\GPBUtil;
  * The request for [CreateDatabase][google.spanner.admin.database.v1.DatabaseAdmin.CreateDatabase].
  * </pre>
  *
- * Protobuf type <code>google.spanner.admin.database.v1.CreateDatabaseRequest</code>
+ * Protobuf type <code>Google\Spanner\Admin\Database\V1\CreateDatabaseRequest</code>
  */
 class CreateDatabaseRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * <pre>
      * Required. The name of the instance that will serve the new database.
-     * Values are of the form `projects/&lt;project&gt;/instances/&lt;instance&gt;`.
+     * Values are of the form `projects/<project>/instances/<instance>`.
      * </pre>
      *
      * <code>string parent = 1;</code>
@@ -30,7 +30,7 @@ class CreateDatabaseRequest extends \Google\Protobuf\Internal\Message
      * <pre>
      * Required. A `CREATE DATABASE` statement, which specifies the ID of the
      * new database.  The database ID must conform to the regular expression
-     * `[a-z][a-z0-9_&#92;-]*[a-z0-9]` and be between 2 and 30 characters in length.
+     * `[a-z][a-z0-9_\-]*[a-z0-9]` and be between 2 and 30 characters in length.
      * </pre>
      *
      * <code>string create_statement = 2;</code>
@@ -56,10 +56,11 @@ class CreateDatabaseRequest extends \Google\Protobuf\Internal\Message
     /**
      * <pre>
      * Required. The name of the instance that will serve the new database.
-     * Values are of the form `projects/&lt;project&gt;/instances/&lt;instance&gt;`.
+     * Values are of the form `projects/<project>/instances/<instance>`.
      * </pre>
      *
      * <code>string parent = 1;</code>
+     * @return string
      */
     public function getParent()
     {
@@ -69,10 +70,11 @@ class CreateDatabaseRequest extends \Google\Protobuf\Internal\Message
     /**
      * <pre>
      * Required. The name of the instance that will serve the new database.
-     * Values are of the form `projects/&lt;project&gt;/instances/&lt;instance&gt;`.
+     * Values are of the form `projects/<project>/instances/<instance>`.
      * </pre>
      *
      * <code>string parent = 1;</code>
+     * @param string $var
      */
     public function setParent($var)
     {
@@ -86,10 +88,11 @@ class CreateDatabaseRequest extends \Google\Protobuf\Internal\Message
      * <pre>
      * Required. A `CREATE DATABASE` statement, which specifies the ID of the
      * new database.  The database ID must conform to the regular expression
-     * `[a-z][a-z0-9_&#92;-]*[a-z0-9]` and be between 2 and 30 characters in length.
+     * `[a-z][a-z0-9_\-]*[a-z0-9]` and be between 2 and 30 characters in length.
      * </pre>
      *
      * <code>string create_statement = 2;</code>
+     * @return string
      */
     public function getCreateStatement()
     {
@@ -100,10 +103,11 @@ class CreateDatabaseRequest extends \Google\Protobuf\Internal\Message
      * <pre>
      * Required. A `CREATE DATABASE` statement, which specifies the ID of the
      * new database.  The database ID must conform to the regular expression
-     * `[a-z][a-z0-9_&#92;-]*[a-z0-9]` and be between 2 and 30 characters in length.
+     * `[a-z][a-z0-9_\-]*[a-z0-9]` and be between 2 and 30 characters in length.
      * </pre>
      *
      * <code>string create_statement = 2;</code>
+     * @param string $var
      */
     public function setCreateStatement($var)
     {
@@ -122,6 +126,7 @@ class CreateDatabaseRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated string extra_statements = 3;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getExtraStatements()
     {
@@ -137,6 +142,7 @@ class CreateDatabaseRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated string extra_statements = 3;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setExtraStatements(&$var)
     {

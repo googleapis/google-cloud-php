@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Label location.
  * </pre>
  *
- * Protobuf type <code>google.cloud.videointelligence.v1beta1.LabelLocation</code>
+ * Protobuf type <code>Google\Cloud\Videointelligence\V1beta1\LabelLocation</code>
  */
 class LabelLocation extends \Google\Protobuf\Internal\Message
 {
@@ -59,6 +59,7 @@ class LabelLocation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.videointelligence.v1beta1.VideoSegment segment = 1;</code>
+     * @return Google\Cloud\VideoIntelligence\V1beta1\VideoSegment
      */
     public function getSegment()
     {
@@ -74,6 +75,7 @@ class LabelLocation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.videointelligence.v1beta1.VideoSegment segment = 1;</code>
+     * @param Google\Cloud\VideoIntelligence\V1beta1\VideoSegment $var
      */
     public function setSegment(&$var)
     {
@@ -89,6 +91,7 @@ class LabelLocation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>float confidence = 2;</code>
+     * @return float
      */
     public function getConfidence()
     {
@@ -101,6 +104,7 @@ class LabelLocation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>float confidence = 2;</code>
+     * @param float $var
      */
     public function setConfidence($var)
     {
@@ -116,6 +120,7 @@ class LabelLocation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.videointelligence.v1beta1.LabelLevel level = 3;</code>
+     * @return int
      */
     public function getLevel()
     {
@@ -128,6 +133,7 @@ class LabelLocation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.videointelligence.v1beta1.LabelLevel level = 3;</code>
+     * @param int $var
      */
     public function setLevel($var)
     {

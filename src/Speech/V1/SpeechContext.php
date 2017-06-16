@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * in the results.
  * </pre>
  *
- * Protobuf type <code>google.cloud.speech.v1.SpeechContext</code>
+ * Protobuf type <code>Google\Cloud\Speech\V1\SpeechContext</code>
  */
 class SpeechContext extends \Google\Protobuf\Internal\Message
 {
@@ -48,6 +48,7 @@ class SpeechContext extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated string phrases = 1;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getPhrases()
     {
@@ -65,6 +66,7 @@ class SpeechContext extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated string phrases = 1;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setPhrases(&$var)
     {

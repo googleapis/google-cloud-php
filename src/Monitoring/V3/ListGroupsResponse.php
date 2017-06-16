@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * The `ListGroups` response.
  * </pre>
  *
- * Protobuf type <code>google.monitoring.v3.ListGroupsResponse</code>
+ * Protobuf type <code>Google\Monitoring\V3\ListGroupsResponse</code>
  */
 class ListGroupsResponse extends \Google\Protobuf\Internal\Message
 {
@@ -47,6 +47,7 @@ class ListGroupsResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.monitoring.v3.Group group = 1;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getGroup()
     {
@@ -59,6 +60,7 @@ class ListGroupsResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.monitoring.v3.Group group = 1;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setGroup(&$var)
     {
@@ -76,6 +78,7 @@ class ListGroupsResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string next_page_token = 2;</code>
+     * @return string
      */
     public function getNextPageToken()
     {
@@ -90,6 +93,7 @@ class ListGroupsResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string next_page_token = 2;</code>
+     * @param string $var
      */
     public function setNextPageToken($var)
     {

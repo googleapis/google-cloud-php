@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Metadata for online images.
  * </pre>
  *
- * Protobuf type <code>google.cloud.vision.v1.WebDetection.WebImage</code>
+ * Protobuf type <code>Google\Cloud\Vision\V1\WebDetection\WebImage</code>
  */
 class WebDetection_WebImage extends \Google\Protobuf\Internal\Message
 {
@@ -46,6 +46,7 @@ class WebDetection_WebImage extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string url = 1;</code>
+     * @return string
      */
     public function getUrl()
     {
@@ -58,6 +59,7 @@ class WebDetection_WebImage extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string url = 1;</code>
+     * @param string $var
      */
     public function setUrl($var)
     {
@@ -74,6 +76,7 @@ class WebDetection_WebImage extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>float score = 2;</code>
+     * @return float
      */
     public function getScore()
     {
@@ -87,6 +90,7 @@ class WebDetection_WebImage extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>float score = 2;</code>
+     * @param float $var
      */
     public function setScore($var)
     {

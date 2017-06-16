@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Label annotation.
  * </pre>
  *
- * Protobuf type <code>google.cloud.videointelligence.v1beta1.LabelAnnotation</code>
+ * Protobuf type <code>Google\Cloud\Videointelligence\V1beta1\LabelAnnotation</code>
  */
 class LabelAnnotation extends \Google\Protobuf\Internal\Message
 {
@@ -53,6 +53,7 @@ class LabelAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string description = 1;</code>
+     * @return string
      */
     public function getDescription()
     {
@@ -65,6 +66,7 @@ class LabelAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string description = 1;</code>
+     * @param string $var
      */
     public function setDescription($var)
     {
@@ -80,6 +82,7 @@ class LabelAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string language_code = 2;</code>
+     * @return string
      */
     public function getLanguageCode()
     {
@@ -92,6 +95,7 @@ class LabelAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string language_code = 2;</code>
+     * @param string $var
      */
     public function setLanguageCode($var)
     {
@@ -107,6 +111,7 @@ class LabelAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.videointelligence.v1beta1.LabelLocation locations = 3;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getLocations()
     {
@@ -119,6 +124,7 @@ class LabelAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.videointelligence.v1beta1.LabelLocation locations = 3;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setLocations(&$var)
     {

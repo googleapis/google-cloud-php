@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * number of log entries that match a logs filter in a given time interval.
  * </pre>
  *
- * Protobuf type <code>google.logging.v2.LogMetric</code>
+ * Protobuf type <code>Google\Logging\V2\LogMetric</code>
  */
 class LogMetric extends \Google\Protobuf\Internal\Message
 {
@@ -51,7 +51,7 @@ class LogMetric extends \Google\Protobuf\Internal\Message
      * Required. An [advanced logs filter](/logging/docs/view/advanced_filters)
      * which is used to match log entries.
      * Example:
-     *     "resource.type=gae_app AND severity&gt;=ERROR"
+     *     "resource.type=gae_app AND severity>=ERROR"
      * The maximum length of the filter is 20000 characters.
      * </pre>
      *
@@ -92,6 +92,7 @@ class LogMetric extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string name = 1;</code>
+     * @return string
      */
     public function getName()
     {
@@ -116,6 +117,7 @@ class LogMetric extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string name = 1;</code>
+     * @param string $var
      */
     public function setName($var)
     {
@@ -131,6 +133,7 @@ class LogMetric extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string description = 2;</code>
+     * @return string
      */
     public function getDescription()
     {
@@ -143,6 +146,7 @@ class LogMetric extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string description = 2;</code>
+     * @param string $var
      */
     public function setDescription($var)
     {
@@ -157,11 +161,12 @@ class LogMetric extends \Google\Protobuf\Internal\Message
      * Required. An [advanced logs filter](/logging/docs/view/advanced_filters)
      * which is used to match log entries.
      * Example:
-     *     "resource.type=gae_app AND severity&gt;=ERROR"
+     *     "resource.type=gae_app AND severity>=ERROR"
      * The maximum length of the filter is 20000 characters.
      * </pre>
      *
      * <code>string filter = 3;</code>
+     * @return string
      */
     public function getFilter()
     {
@@ -173,11 +178,12 @@ class LogMetric extends \Google\Protobuf\Internal\Message
      * Required. An [advanced logs filter](/logging/docs/view/advanced_filters)
      * which is used to match log entries.
      * Example:
-     *     "resource.type=gae_app AND severity&gt;=ERROR"
+     *     "resource.type=gae_app AND severity>=ERROR"
      * The maximum length of the filter is 20000 characters.
      * </pre>
      *
      * <code>string filter = 3;</code>
+     * @param string $var
      */
     public function setFilter($var)
     {
@@ -195,6 +201,7 @@ class LogMetric extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.logging.v2.LogMetric.ApiVersion version = 4;</code>
+     * @return int
      */
     public function getVersion()
     {
@@ -209,6 +216,7 @@ class LogMetric extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.logging.v2.LogMetric.ApiVersion version = 4;</code>
+     * @param int $var
      */
     public function setVersion($var)
     {

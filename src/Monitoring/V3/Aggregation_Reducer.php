@@ -10,7 +10,7 @@ namespace Google\Cloud\Monitoring\V3;
  * time series into a single time series.
  * </pre>
  *
- * Protobuf enum <code>google.monitoring.v3.Aggregation.Reducer</code>
+ * Protobuf enum <code>Google\Monitoring\V3\Aggregation\Reducer</code>
  */
 class Aggregation_Reducer
 {

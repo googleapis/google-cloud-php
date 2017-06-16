@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * The request for [Rollback][google.spanner.v1.Spanner.Rollback].
  * </pre>
  *
- * Protobuf type <code>google.spanner.v1.RollbackRequest</code>
+ * Protobuf type <code>Google\Spanner\V1\RollbackRequest</code>
  */
 class RollbackRequest extends \Google\Protobuf\Internal\Message
 {
@@ -45,6 +45,7 @@ class RollbackRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string session = 1;</code>
+     * @return string
      */
     public function getSession()
     {
@@ -57,6 +58,7 @@ class RollbackRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string session = 1;</code>
+     * @param string $var
      */
     public function setSession($var)
     {
@@ -72,6 +74,7 @@ class RollbackRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>bytes transaction_id = 2;</code>
+     * @return string
      */
     public function getTransactionId()
     {
@@ -84,6 +87,7 @@ class RollbackRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>bytes transaction_id = 2;</code>
+     * @param string $var
      */
     public function setTransactionId($var)
     {

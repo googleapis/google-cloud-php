@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * The parameters to CreateLogMetric.
  * </pre>
  *
- * Protobuf type <code>google.logging.v2.CreateLogMetricRequest</code>
+ * Protobuf type <code>Google\Logging\V2\CreateLogMetricRequest</code>
  */
 class CreateLogMetricRequest extends \Google\Protobuf\Internal\Message
 {
@@ -50,6 +50,7 @@ class CreateLogMetricRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string parent = 1;</code>
+     * @return string
      */
     public function getParent()
     {
@@ -64,6 +65,7 @@ class CreateLogMetricRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string parent = 1;</code>
+     * @param string $var
      */
     public function setParent($var)
     {
@@ -80,6 +82,7 @@ class CreateLogMetricRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.logging.v2.LogMetric metric = 2;</code>
+     * @return Google\Cloud\Logging\V2\LogMetric
      */
     public function getMetric()
     {
@@ -93,6 +96,7 @@ class CreateLogMetricRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.logging.v2.LogMetric metric = 2;</code>
+     * @param Google\Cloud\Logging\V2\LogMetric $var
      */
     public function setMetric(&$var)
     {

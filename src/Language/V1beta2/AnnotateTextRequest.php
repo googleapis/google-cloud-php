@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * analysis types (sentiment, entities, and syntax) in one call.
  * </pre>
  *
- * Protobuf type <code>google.cloud.language.v1beta2.AnnotateTextRequest</code>
+ * Protobuf type <code>Google\Cloud\Language\V1beta2\AnnotateTextRequest</code>
  */
 class AnnotateTextRequest extends \Google\Protobuf\Internal\Message
 {
@@ -54,6 +54,7 @@ class AnnotateTextRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.language.v1beta2.Document document = 1;</code>
+     * @return Google\Cloud\Language\V1beta2\Document
      */
     public function getDocument()
     {
@@ -66,6 +67,7 @@ class AnnotateTextRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.language.v1beta2.Document document = 1;</code>
+     * @param Google\Cloud\Language\V1beta2\Document $var
      */
     public function setDocument(&$var)
     {
@@ -81,6 +83,7 @@ class AnnotateTextRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.language.v1beta2.AnnotateTextRequest.Features features = 2;</code>
+     * @return Google\Cloud\Language\V1beta2\AnnotateTextRequest_Features
      */
     public function getFeatures()
     {
@@ -93,6 +96,7 @@ class AnnotateTextRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.language.v1beta2.AnnotateTextRequest.Features features = 2;</code>
+     * @param Google\Cloud\Language\V1beta2\AnnotateTextRequest_Features $var
      */
     public function setFeatures(&$var)
     {
@@ -108,6 +112,7 @@ class AnnotateTextRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.language.v1beta2.EncodingType encoding_type = 3;</code>
+     * @return int
      */
     public function getEncodingType()
     {
@@ -120,6 +125,7 @@ class AnnotateTextRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.language.v1beta2.EncodingType encoding_type = 3;</code>
+     * @param int $var
      */
     public function setEncodingType($var)
     {

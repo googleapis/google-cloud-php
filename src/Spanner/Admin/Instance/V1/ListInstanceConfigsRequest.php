@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * The request for [ListInstanceConfigs][google.spanner.admin.instance.v1.InstanceAdmin.ListInstanceConfigs].
  * </pre>
  *
- * Protobuf type <code>google.spanner.admin.instance.v1.ListInstanceConfigsRequest</code>
+ * Protobuf type <code>Google\Spanner\Admin\Instance\V1\ListInstanceConfigsRequest</code>
  */
 class ListInstanceConfigsRequest extends \Google\Protobuf\Internal\Message
 {
@@ -21,7 +21,7 @@ class ListInstanceConfigsRequest extends \Google\Protobuf\Internal\Message
      * <pre>
      * Required. The name of the project for which a list of supported instance
      * configurations is requested. Values are of the form
-     * `projects/&lt;project&gt;`.
+     * `projects/<project>`.
      * </pre>
      *
      * <code>string parent = 1;</code>
@@ -56,10 +56,11 @@ class ListInstanceConfigsRequest extends \Google\Protobuf\Internal\Message
      * <pre>
      * Required. The name of the project for which a list of supported instance
      * configurations is requested. Values are of the form
-     * `projects/&lt;project&gt;`.
+     * `projects/<project>`.
      * </pre>
      *
      * <code>string parent = 1;</code>
+     * @return string
      */
     public function getParent()
     {
@@ -70,10 +71,11 @@ class ListInstanceConfigsRequest extends \Google\Protobuf\Internal\Message
      * <pre>
      * Required. The name of the project for which a list of supported instance
      * configurations is requested. Values are of the form
-     * `projects/&lt;project&gt;`.
+     * `projects/<project>`.
      * </pre>
      *
      * <code>string parent = 1;</code>
+     * @param string $var
      */
     public function setParent($var)
     {
@@ -90,6 +92,7 @@ class ListInstanceConfigsRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 page_size = 2;</code>
+     * @return int
      */
     public function getPageSize()
     {
@@ -103,6 +106,7 @@ class ListInstanceConfigsRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 page_size = 2;</code>
+     * @param int $var
      */
     public function setPageSize($var)
     {
@@ -120,6 +124,7 @@ class ListInstanceConfigsRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string page_token = 3;</code>
+     * @return string
      */
     public function getPageToken()
     {
@@ -134,6 +139,7 @@ class ListInstanceConfigsRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string page_token = 3;</code>
+     * @param string $var
      */
     public function setPageToken($var)
     {

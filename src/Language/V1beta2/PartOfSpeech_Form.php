@@ -12,7 +12,7 @@ namespace Google\Cloud\Language\V1beta2;
  * forms of adjectives and participles
  * </pre>
  *
- * Protobuf enum <code>google.cloud.language.v1beta2.PartOfSpeech.Form</code>
+ * Protobuf enum <code>Google\Cloud\Language\V1beta2\PartOfSpeech\Form</code>
  */
 class PartOfSpeech_Form
 {

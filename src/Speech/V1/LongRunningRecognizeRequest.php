@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * method.
  * </pre>
  *
- * Protobuf type <code>google.cloud.speech.v1.LongRunningRecognizeRequest</code>
+ * Protobuf type <code>Google\Cloud\Speech\V1\LongRunningRecognizeRequest</code>
  */
 class LongRunningRecognizeRequest extends \Google\Protobuf\Internal\Message
 {
@@ -48,6 +48,7 @@ class LongRunningRecognizeRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.speech.v1.RecognitionConfig config = 1;</code>
+     * @return Google\Cloud\Speech\V1\RecognitionConfig
      */
     public function getConfig()
     {
@@ -61,6 +62,7 @@ class LongRunningRecognizeRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.speech.v1.RecognitionConfig config = 1;</code>
+     * @param Google\Cloud\Speech\V1\RecognitionConfig $var
      */
     public function setConfig(&$var)
     {
@@ -76,6 +78,7 @@ class LongRunningRecognizeRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.speech.v1.RecognitionAudio audio = 2;</code>
+     * @return Google\Cloud\Speech\V1\RecognitionAudio
      */
     public function getAudio()
     {
@@ -88,6 +91,7 @@ class LongRunningRecognizeRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.speech.v1.RecognitionAudio audio = 2;</code>
+     * @param Google\Cloud\Speech\V1\RecognitionAudio $var
      */
     public function setAudio(&$var)
     {

@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * entry.
  * </pre>
  *
- * Protobuf type <code>google.logging.v2.LogEntrySourceLocation</code>
+ * Protobuf type <code>Google\Logging\V2\LogEntrySourceLocation</code>
  */
 class LogEntrySourceLocation extends \Google\Protobuf\Internal\Message
 {
@@ -62,6 +62,7 @@ class LogEntrySourceLocation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string file = 1;</code>
+     * @return string
      */
     public function getFile()
     {
@@ -75,6 +76,7 @@ class LogEntrySourceLocation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string file = 1;</code>
+     * @param string $var
      */
     public function setFile($var)
     {
@@ -91,6 +93,7 @@ class LogEntrySourceLocation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int64 line = 2;</code>
+     * @return int|string
      */
     public function getLine()
     {
@@ -104,6 +107,7 @@ class LogEntrySourceLocation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int64 line = 2;</code>
+     * @param int|string $var
      */
     public function setLine($var)
     {
@@ -124,6 +128,7 @@ class LogEntrySourceLocation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string function = 3;</code>
+     * @return string
      */
     public function getFunction()
     {
@@ -141,6 +146,7 @@ class LogEntrySourceLocation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string function = 3;</code>
+     * @param string $var
      */
     public function setFunction($var)
     {

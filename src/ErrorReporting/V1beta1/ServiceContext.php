@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Its version changes over time and multiple versions can run in parallel.
  * </pre>
  *
- * Protobuf type <code>google.devtools.clouderrorreporting.v1beta1.ServiceContext</code>
+ * Protobuf type <code>Google\Devtools\Clouderrorreporting\V1beta1\ServiceContext</code>
  */
 class ServiceContext extends \Google\Protobuf\Internal\Message
 {
@@ -68,6 +68,7 @@ class ServiceContext extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string service = 2;</code>
+     * @return string
      */
     public function getService()
     {
@@ -85,6 +86,7 @@ class ServiceContext extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string service = 2;</code>
+     * @param string $var
      */
     public function setService($var)
     {
@@ -101,6 +103,7 @@ class ServiceContext extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string version = 3;</code>
+     * @return string
      */
     public function getVersion()
     {
@@ -114,6 +117,7 @@ class ServiceContext extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string version = 3;</code>
+     * @param string $var
      */
     public function setVersion($var)
     {
@@ -132,6 +136,7 @@ class ServiceContext extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string resource_type = 4;</code>
+     * @return string
      */
     public function getResourceType()
     {
@@ -147,6 +152,7 @@ class ServiceContext extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string resource_type = 4;</code>
+     * @param string $var
      */
     public function setResourceType($var)
     {

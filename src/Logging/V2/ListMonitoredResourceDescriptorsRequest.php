@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * The parameters to ListMonitoredResourceDescriptors
  * </pre>
  *
- * Protobuf type <code>google.logging.v2.ListMonitoredResourceDescriptorsRequest</code>
+ * Protobuf type <code>Google\Logging\V2\ListMonitoredResourceDescriptorsRequest</code>
  */
 class ListMonitoredResourceDescriptorsRequest extends \Google\Protobuf\Internal\Message
 {
@@ -52,6 +52,7 @@ class ListMonitoredResourceDescriptorsRequest extends \Google\Protobuf\Internal\
      * </pre>
      *
      * <code>int32 page_size = 1;</code>
+     * @return int
      */
     public function getPageSize()
     {
@@ -66,6 +67,7 @@ class ListMonitoredResourceDescriptorsRequest extends \Google\Protobuf\Internal\
      * </pre>
      *
      * <code>int32 page_size = 1;</code>
+     * @param int $var
      */
     public function setPageSize($var)
     {
@@ -84,6 +86,7 @@ class ListMonitoredResourceDescriptorsRequest extends \Google\Protobuf\Internal\
      * </pre>
      *
      * <code>string page_token = 2;</code>
+     * @return string
      */
     public function getPageToken()
     {
@@ -99,6 +102,7 @@ class ListMonitoredResourceDescriptorsRequest extends \Google\Protobuf\Internal\
      * </pre>
      *
      * <code>string page_token = 2;</code>
+     * @param string $var
      */
     public function setPageToken($var)
     {

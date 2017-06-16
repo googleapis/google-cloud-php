@@ -9,7 +9,7 @@ namespace Google\Cloud\Spanner\Admin\Database\V1;
  * Indicates the current state of the database.
  * </pre>
  *
- * Protobuf enum <code>google.spanner.admin.database.v1.Database.State</code>
+ * Protobuf enum <code>Google\Spanner\Admin\Database\V1\Database\State</code>
  */
 class Database_State
 {

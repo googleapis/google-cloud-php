@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Represents the smallest syntactic building block of the text.
  * </pre>
  *
- * Protobuf type <code>google.cloud.language.v1beta2.Token</code>
+ * Protobuf type <code>Google\Cloud\Language\V1beta2\Token</code>
  */
 class Token extends \Google\Protobuf\Internal\Message
 {
@@ -61,6 +61,7 @@ class Token extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.language.v1beta2.TextSpan text = 1;</code>
+     * @return Google\Cloud\Language\V1beta2\TextSpan
      */
     public function getText()
     {
@@ -73,6 +74,7 @@ class Token extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.language.v1beta2.TextSpan text = 1;</code>
+     * @param Google\Cloud\Language\V1beta2\TextSpan $var
      */
     public function setText(&$var)
     {
@@ -88,6 +90,7 @@ class Token extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.language.v1beta2.PartOfSpeech part_of_speech = 2;</code>
+     * @return Google\Cloud\Language\V1beta2\PartOfSpeech
      */
     public function getPartOfSpeech()
     {
@@ -100,6 +103,7 @@ class Token extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.language.v1beta2.PartOfSpeech part_of_speech = 2;</code>
+     * @param Google\Cloud\Language\V1beta2\PartOfSpeech $var
      */
     public function setPartOfSpeech(&$var)
     {
@@ -115,6 +119,7 @@ class Token extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.language.v1beta2.DependencyEdge dependency_edge = 3;</code>
+     * @return Google\Cloud\Language\V1beta2\DependencyEdge
      */
     public function getDependencyEdge()
     {
@@ -127,6 +132,7 @@ class Token extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.language.v1beta2.DependencyEdge dependency_edge = 3;</code>
+     * @param Google\Cloud\Language\V1beta2\DependencyEdge $var
      */
     public function setDependencyEdge(&$var)
     {
@@ -142,6 +148,7 @@ class Token extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string lemma = 4;</code>
+     * @return string
      */
     public function getLemma()
     {
@@ -154,6 +161,7 @@ class Token extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string lemma = 4;</code>
+     * @param string $var
      */
     public function setLemma($var)
     {

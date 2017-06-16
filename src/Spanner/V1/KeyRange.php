@@ -72,7 +72,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * because `Key` is a descending column in the schema.
  * </pre>
  *
- * Protobuf type <code>google.spanner.v1.KeyRange</code>
+ * Protobuf type <code>Google\Spanner\V1\KeyRange</code>
  */
 class KeyRange extends \Google\Protobuf\Internal\Message
 {
@@ -91,6 +91,7 @@ class KeyRange extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.ListValue start_closed = 1;</code>
+     * @return Google\Protobuf\ListValue
      */
     public function getStartClosed()
     {
@@ -104,6 +105,7 @@ class KeyRange extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.ListValue start_closed = 1;</code>
+     * @param Google\Protobuf\ListValue $var
      */
     public function setStartClosed(&$var)
     {
@@ -120,6 +122,7 @@ class KeyRange extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.ListValue start_open = 2;</code>
+     * @return Google\Protobuf\ListValue
      */
     public function getStartOpen()
     {
@@ -133,6 +136,7 @@ class KeyRange extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.ListValue start_open = 2;</code>
+     * @param Google\Protobuf\ListValue $var
      */
     public function setStartOpen(&$var)
     {
@@ -149,6 +153,7 @@ class KeyRange extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.ListValue end_closed = 3;</code>
+     * @return Google\Protobuf\ListValue
      */
     public function getEndClosed()
     {
@@ -162,6 +167,7 @@ class KeyRange extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.ListValue end_closed = 3;</code>
+     * @param Google\Protobuf\ListValue $var
      */
     public function setEndClosed(&$var)
     {
@@ -178,6 +184,7 @@ class KeyRange extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.ListValue end_open = 4;</code>
+     * @return Google\Protobuf\ListValue
      */
     public function getEndOpen()
     {
@@ -191,6 +198,7 @@ class KeyRange extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.ListValue end_open = 4;</code>
+     * @param Google\Protobuf\ListValue $var
      */
     public function setEndOpen(&$var)
     {
@@ -200,11 +208,17 @@ class KeyRange extends \Google\Protobuf\Internal\Message
         return $this;
     }
 
+    /**
+     * @return string
+     */
     public function getStartKeyType()
     {
         return $this->whichOneof("start_key_type");
     }
 
+    /**
+     * @return string
+     */
     public function getEndKeyType()
     {
         return $this->whichOneof("end_key_type");

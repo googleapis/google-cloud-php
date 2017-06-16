@@ -12,7 +12,7 @@ namespace Google\Cloud\Vision\V1;
  * typically, is the person's right eye.
  * </pre>
  *
- * Protobuf enum <code>google.cloud.vision.v1.FaceAnnotation.Landmark.Type</code>
+ * Protobuf enum <code>Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type</code>
  */
 class FaceAnnotation_Landmark_Type
 {

@@ -9,7 +9,7 @@ namespace Google\Cloud\ErrorReporting\V1beta1;
  * A sorting order of error groups.
  * </pre>
  *
- * Protobuf enum <code>google.devtools.clouderrorreporting.v1beta1.ErrorGroupOrder</code>
+ * Protobuf enum <code>Google\Devtools\Clouderrorreporting\V1beta1\ErrorGroupOrder</code>
  */
 class ErrorGroupOrder
 {

@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * A topic resource.
  * </pre>
  *
- * Protobuf type <code>google.pubsub.v1.Topic</code>
+ * Protobuf type <code>Google\Pubsub\V1\Topic</code>
  */
 class Topic extends \Google\Protobuf\Internal\Message
 {
@@ -47,6 +47,7 @@ class Topic extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string name = 1;</code>
+     * @return string
      */
     public function getName()
     {
@@ -64,6 +65,7 @@ class Topic extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string name = 1;</code>
+     * @param string $var
      */
     public function setName($var)
     {

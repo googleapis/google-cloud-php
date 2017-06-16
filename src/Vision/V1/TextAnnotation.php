@@ -12,14 +12,14 @@ use Google\Protobuf\Internal\GPBUtil;
  * <pre>
  * TextAnnotation contains a structured representation of OCR extracted text.
  * The hierarchy of an OCR extracted text structure is like this:
- *     TextAnnotation -&gt; Page -&gt; Block -&gt; Paragraph -&gt; Word -&gt; Symbol
+ *     TextAnnotation -> Page -> Block -> Paragraph -> Word -> Symbol
  * Each structural component, starting from Page, may further have their own
  * properties. Properties describe detected languages, breaks etc.. Please
  * refer to the [google.cloud.vision.v1.TextAnnotation.TextProperty][google.cloud.vision.v1.TextAnnotation.TextProperty] message
  * definition below for more detail.
  * </pre>
  *
- * Protobuf type <code>google.cloud.vision.v1.TextAnnotation</code>
+ * Protobuf type <code>Google\Cloud\Vision\V1\TextAnnotation</code>
  */
 class TextAnnotation extends \Google\Protobuf\Internal\Message
 {
@@ -51,6 +51,7 @@ class TextAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.Page pages = 1;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getPages()
     {
@@ -63,6 +64,7 @@ class TextAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.Page pages = 1;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setPages(&$var)
     {
@@ -78,6 +80,7 @@ class TextAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string text = 2;</code>
+     * @return string
      */
     public function getText()
     {
@@ -90,6 +93,7 @@ class TextAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string text = 2;</code>
+     * @param string $var
      */
     public function setText($var)
     {

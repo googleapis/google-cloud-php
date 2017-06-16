@@ -13,14 +13,14 @@ use Google\Protobuf\Internal\GPBUtil;
  * The request for [ListDatabases][google.spanner.admin.database.v1.DatabaseAdmin.ListDatabases].
  * </pre>
  *
- * Protobuf type <code>google.spanner.admin.database.v1.ListDatabasesRequest</code>
+ * Protobuf type <code>Google\Spanner\Admin\Database\V1\ListDatabasesRequest</code>
  */
 class ListDatabasesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * <pre>
      * Required. The instance whose databases should be listed.
-     * Values are of the form `projects/&lt;project&gt;/instances/&lt;instance&gt;`.
+     * Values are of the form `projects/<project>/instances/<instance>`.
      * </pre>
      *
      * <code>string parent = 1;</code>
@@ -54,10 +54,11 @@ class ListDatabasesRequest extends \Google\Protobuf\Internal\Message
     /**
      * <pre>
      * Required. The instance whose databases should be listed.
-     * Values are of the form `projects/&lt;project&gt;/instances/&lt;instance&gt;`.
+     * Values are of the form `projects/<project>/instances/<instance>`.
      * </pre>
      *
      * <code>string parent = 1;</code>
+     * @return string
      */
     public function getParent()
     {
@@ -67,10 +68,11 @@ class ListDatabasesRequest extends \Google\Protobuf\Internal\Message
     /**
      * <pre>
      * Required. The instance whose databases should be listed.
-     * Values are of the form `projects/&lt;project&gt;/instances/&lt;instance&gt;`.
+     * Values are of the form `projects/<project>/instances/<instance>`.
      * </pre>
      *
      * <code>string parent = 1;</code>
+     * @param string $var
      */
     public function setParent($var)
     {
@@ -87,6 +89,7 @@ class ListDatabasesRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 page_size = 3;</code>
+     * @return int
      */
     public function getPageSize()
     {
@@ -100,6 +103,7 @@ class ListDatabasesRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 page_size = 3;</code>
+     * @param int $var
      */
     public function setPageSize($var)
     {
@@ -117,6 +121,7 @@ class ListDatabasesRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string page_token = 4;</code>
+     * @return string
      */
     public function getPageToken()
     {
@@ -131,6 +136,7 @@ class ListDatabasesRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string page_token = 4;</code>
+     * @param string $var
      */
     public function setPageToken($var)
     {

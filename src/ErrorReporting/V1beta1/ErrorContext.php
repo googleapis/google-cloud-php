@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * error report has been generated automatically from Google App Engine logs.
  * </pre>
  *
- * Protobuf type <code>google.devtools.clouderrorreporting.v1beta1.ErrorContext</code>
+ * Protobuf type <code>Google\Devtools\Clouderrorreporting\V1beta1\ErrorContext</code>
  */
 class ErrorContext extends \Google\Protobuf\Internal\Message
 {
@@ -70,6 +70,7 @@ class ErrorContext extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.devtools.clouderrorreporting.v1beta1.HttpRequestContext http_request = 1;</code>
+     * @return Google\Cloud\ErrorReporting\V1beta1\HttpRequestContext
      */
     public function getHttpRequest()
     {
@@ -83,6 +84,7 @@ class ErrorContext extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.devtools.clouderrorreporting.v1beta1.HttpRequestContext http_request = 1;</code>
+     * @param Google\Cloud\ErrorReporting\V1beta1\HttpRequestContext $var
      */
     public function setHttpRequest(&$var)
     {
@@ -105,6 +107,7 @@ class ErrorContext extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string user = 2;</code>
+     * @return string
      */
     public function getUser()
     {
@@ -124,6 +127,7 @@ class ErrorContext extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string user = 2;</code>
+     * @param string $var
      */
     public function setUser($var)
     {
@@ -144,6 +148,7 @@ class ErrorContext extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.devtools.clouderrorreporting.v1beta1.SourceLocation report_location = 3;</code>
+     * @return Google\Cloud\ErrorReporting\V1beta1\SourceLocation
      */
     public function getReportLocation()
     {
@@ -161,6 +166,7 @@ class ErrorContext extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.devtools.clouderrorreporting.v1beta1.SourceLocation report_location = 3;</code>
+     * @param Google\Cloud\ErrorReporting\V1beta1\SourceLocation $var
      */
     public function setReportLocation(&$var)
     {

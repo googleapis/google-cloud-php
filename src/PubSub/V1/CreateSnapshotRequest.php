@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Request for the `CreateSnapshot` method.
  * </pre>
  *
- * Protobuf type <code>google.pubsub.v1.CreateSnapshotRequest</code>
+ * Protobuf type <code>Google\Pubsub\V1\CreateSnapshotRequest</code>
  */
 class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
 {
@@ -61,6 +61,7 @@ class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string name = 1;</code>
+     * @return string
      */
     public function getName()
     {
@@ -77,6 +78,7 @@ class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string name = 1;</code>
+     * @param string $var
      */
     public function setName($var)
     {
@@ -100,6 +102,7 @@ class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string subscription = 2;</code>
+     * @return string
      */
     public function getSubscription()
     {
@@ -120,6 +123,7 @@ class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string subscription = 2;</code>
+     * @param string $var
      */
     public function setSubscription($var)
     {

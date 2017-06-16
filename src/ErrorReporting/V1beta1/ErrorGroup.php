@@ -13,14 +13,14 @@ use Google\Protobuf\Internal\GPBUtil;
  * Description of a group of similar error events.
  * </pre>
  *
- * Protobuf type <code>google.devtools.clouderrorreporting.v1beta1.ErrorGroup</code>
+ * Protobuf type <code>Google\Devtools\Clouderrorreporting\V1beta1\ErrorGroup</code>
  */
 class ErrorGroup extends \Google\Protobuf\Internal\Message
 {
     /**
      * <pre>
      * The group resource name.
-     * Example: &lt;code&gt;projects/my-project-123/groups/my-groupid&lt;/code&gt;
+     * Example: <code>projects/my-project-123/groups/my-groupid</code>
      * </pre>
      *
      * <code>string name = 1;</code>
@@ -52,10 +52,11 @@ class ErrorGroup extends \Google\Protobuf\Internal\Message
     /**
      * <pre>
      * The group resource name.
-     * Example: &lt;code&gt;projects/my-project-123/groups/my-groupid&lt;/code&gt;
+     * Example: <code>projects/my-project-123/groups/my-groupid</code>
      * </pre>
      *
      * <code>string name = 1;</code>
+     * @return string
      */
     public function getName()
     {
@@ -65,10 +66,11 @@ class ErrorGroup extends \Google\Protobuf\Internal\Message
     /**
      * <pre>
      * The group resource name.
-     * Example: &lt;code&gt;projects/my-project-123/groups/my-groupid&lt;/code&gt;
+     * Example: <code>projects/my-project-123/groups/my-groupid</code>
      * </pre>
      *
      * <code>string name = 1;</code>
+     * @param string $var
      */
     public function setName($var)
     {
@@ -85,6 +87,7 @@ class ErrorGroup extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string group_id = 2;</code>
+     * @return string
      */
     public function getGroupId()
     {
@@ -98,6 +101,7 @@ class ErrorGroup extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string group_id = 2;</code>
+     * @param string $var
      */
     public function setGroupId($var)
     {
@@ -113,6 +117,7 @@ class ErrorGroup extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.devtools.clouderrorreporting.v1beta1.TrackingIssue tracking_issues = 3;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getTrackingIssues()
     {
@@ -125,6 +130,7 @@ class ErrorGroup extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.devtools.clouderrorreporting.v1beta1.TrackingIssue tracking_issues = 3;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setTrackingIssues(&$var)
     {

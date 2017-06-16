@@ -13,14 +13,14 @@ use Google\Protobuf\Internal\GPBUtil;
  * The request for [GetDatabase][google.spanner.admin.database.v1.DatabaseAdmin.GetDatabase].
  * </pre>
  *
- * Protobuf type <code>google.spanner.admin.database.v1.GetDatabaseRequest</code>
+ * Protobuf type <code>Google\Spanner\Admin\Database\V1\GetDatabaseRequest</code>
  */
 class GetDatabaseRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * <pre>
      * Required. The name of the requested database. Values are of the form
-     * `projects/&lt;project&gt;/instances/&lt;instance&gt;/databases/&lt;database&gt;`.
+     * `projects/<project>/instances/<instance>/databases/<database>`.
      * </pre>
      *
      * <code>string name = 1;</code>
@@ -35,10 +35,11 @@ class GetDatabaseRequest extends \Google\Protobuf\Internal\Message
     /**
      * <pre>
      * Required. The name of the requested database. Values are of the form
-     * `projects/&lt;project&gt;/instances/&lt;instance&gt;/databases/&lt;database&gt;`.
+     * `projects/<project>/instances/<instance>/databases/<database>`.
      * </pre>
      *
      * <code>string name = 1;</code>
+     * @return string
      */
     public function getName()
     {
@@ -48,10 +49,11 @@ class GetDatabaseRequest extends \Google\Protobuf\Internal\Message
     /**
      * <pre>
      * Required. The name of the requested database. Values are of the form
-     * `projects/&lt;project&gt;/instances/&lt;instance&gt;/databases/&lt;database&gt;`.
+     * `projects/<project>/instances/<instance>/databases/<database>`.
      * </pre>
      *
      * <code>string name = 1;</code>
+     * @param string $var
      */
     public function setName($var)
     {

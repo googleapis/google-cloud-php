@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * The `CreateGroup` request.
  * </pre>
  *
- * Protobuf type <code>google.monitoring.v3.CreateGroupRequest</code>
+ * Protobuf type <code>Google\Monitoring\V3\CreateGroupRequest</code>
  */
 class CreateGroupRequest extends \Google\Protobuf\Internal\Message
 {
@@ -56,6 +56,7 @@ class CreateGroupRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string name = 4;</code>
+     * @return string
      */
     public function getName()
     {
@@ -69,6 +70,7 @@ class CreateGroupRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string name = 4;</code>
+     * @param string $var
      */
     public function setName($var)
     {
@@ -85,6 +87,7 @@ class CreateGroupRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.monitoring.v3.Group group = 2;</code>
+     * @return Google\Cloud\Monitoring\V3\Group
      */
     public function getGroup()
     {
@@ -98,6 +101,7 @@ class CreateGroupRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.monitoring.v3.Group group = 2;</code>
+     * @param Google\Cloud\Monitoring\V3\Group $var
      */
     public function setGroup(&$var)
     {
@@ -113,6 +117,7 @@ class CreateGroupRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>bool validate_only = 3;</code>
+     * @return bool
      */
     public function getValidateOnly()
     {
@@ -125,6 +130,7 @@ class CreateGroupRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>bool validate_only = 3;</code>
+     * @param bool $var
      */
     public function setValidateOnly($var)
     {

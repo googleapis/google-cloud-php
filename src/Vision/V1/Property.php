@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * A `Property` consists of a user-supplied name/value pair.
  * </pre>
  *
- * Protobuf type <code>google.cloud.vision.v1.Property</code>
+ * Protobuf type <code>Google\Cloud\Vision\V1\Property</code>
  */
 class Property extends \Google\Protobuf\Internal\Message
 {
@@ -45,6 +45,7 @@ class Property extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string name = 1;</code>
+     * @return string
      */
     public function getName()
     {
@@ -57,6 +58,7 @@ class Property extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string name = 1;</code>
+     * @param string $var
      */
     public function setName($var)
     {
@@ -72,6 +74,7 @@ class Property extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string value = 2;</code>
+     * @return string
      */
     public function getValue()
     {
@@ -84,6 +87,7 @@ class Property extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string value = 2;</code>
+     * @param string $var
      */
     public function setValue($var)
     {

@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * This type is used for both listing and creating time series.
  * </pre>
  *
- * Protobuf type <code>google.monitoring.v3.TimeSeries</code>
+ * Protobuf type <code>Google\Monitoring\V3\TimeSeries</code>
  */
 class TimeSeries extends \Google\Protobuf\Internal\Message
 {
@@ -92,6 +92,7 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.api.Metric metric = 1;</code>
+     * @return Google\Api\Metric
      */
     public function getMetric()
     {
@@ -105,6 +106,7 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.api.Metric metric = 1;</code>
+     * @param Google\Api\Metric $var
      */
     public function setMetric(&$var)
     {
@@ -121,6 +123,7 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.api.MonitoredResource resource = 2;</code>
+     * @return Google\Api\MonitoredResource
      */
     public function getResource()
     {
@@ -134,6 +137,7 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.api.MonitoredResource resource = 2;</code>
+     * @param Google\Api\MonitoredResource $var
      */
     public function setResource(&$var)
     {
@@ -156,6 +160,7 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.api.MetricDescriptor.MetricKind metric_kind = 3;</code>
+     * @return int
      */
     public function getMetricKind()
     {
@@ -175,6 +180,7 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.api.MetricDescriptor.MetricKind metric_kind = 3;</code>
+     * @param int $var
      */
     public function setMetricKind($var)
     {
@@ -194,6 +200,7 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.api.MetricDescriptor.ValueType value_type = 4;</code>
+     * @return int
      */
     public function getValueType()
     {
@@ -210,6 +217,7 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.api.MetricDescriptor.ValueType value_type = 4;</code>
+     * @param int $var
      */
     public function setValueType($var)
     {
@@ -231,6 +239,7 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.monitoring.v3.Point points = 5;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getPoints()
     {
@@ -249,6 +258,7 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.monitoring.v3.Point points = 5;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setPoints(&$var)
     {

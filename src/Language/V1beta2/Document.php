@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Represents the input to API methods.
  * </pre>
  *
- * Protobuf type <code>google.cloud.language.v1beta2.Document</code>
+ * Protobuf type <code>Google\Cloud\Language\V1beta2\Document</code>
  */
 class Document extends \Google\Protobuf\Internal\Message
 {
@@ -31,7 +31,7 @@ class Document extends \Google\Protobuf\Internal\Message
      * <pre>
      * The language of the document (if not specified, the language is
      * automatically detected). Both ISO and BCP-47 language codes are
-     * accepted.&lt;br&gt;
+     * accepted.<br>
      * [Language Support](https://cloud.google.com/natural-language/docs/languages)
      * lists currently supported languages for each API method.
      * If the language (either specified by the caller or automatically detected)
@@ -56,6 +56,7 @@ class Document extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.language.v1beta2.Document.Type type = 1;</code>
+     * @return int
      */
     public function getType()
     {
@@ -69,6 +70,7 @@ class Document extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.language.v1beta2.Document.Type type = 1;</code>
+     * @param int $var
      */
     public function setType($var)
     {
@@ -84,6 +86,7 @@ class Document extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string content = 2;</code>
+     * @return string
      */
     public function getContent()
     {
@@ -96,6 +99,7 @@ class Document extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string content = 2;</code>
+     * @param string $var
      */
     public function setContent($var)
     {
@@ -114,6 +118,7 @@ class Document extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string gcs_content_uri = 3;</code>
+     * @return string
      */
     public function getGcsContentUri()
     {
@@ -129,6 +134,7 @@ class Document extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string gcs_content_uri = 3;</code>
+     * @param string $var
      */
     public function setGcsContentUri($var)
     {
@@ -142,7 +148,7 @@ class Document extends \Google\Protobuf\Internal\Message
      * <pre>
      * The language of the document (if not specified, the language is
      * automatically detected). Both ISO and BCP-47 language codes are
-     * accepted.&lt;br&gt;
+     * accepted.<br>
      * [Language Support](https://cloud.google.com/natural-language/docs/languages)
      * lists currently supported languages for each API method.
      * If the language (either specified by the caller or automatically detected)
@@ -151,6 +157,7 @@ class Document extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string language = 4;</code>
+     * @return string
      */
     public function getLanguage()
     {
@@ -161,7 +168,7 @@ class Document extends \Google\Protobuf\Internal\Message
      * <pre>
      * The language of the document (if not specified, the language is
      * automatically detected). Both ISO and BCP-47 language codes are
-     * accepted.&lt;br&gt;
+     * accepted.<br>
      * [Language Support](https://cloud.google.com/natural-language/docs/languages)
      * lists currently supported languages for each API method.
      * If the language (either specified by the caller or automatically detected)
@@ -170,6 +177,7 @@ class Document extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string language = 4;</code>
+     * @param string $var
      */
     public function setLanguage($var)
     {
@@ -179,6 +187,9 @@ class Document extends \Google\Protobuf\Internal\Message
         return $this;
     }
 
+    /**
+     * @return string
+     */
     public function getSource()
     {
         return $this->whichOneof("source");

@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * The text annotations response message.
  * </pre>
  *
- * Protobuf type <code>google.cloud.language.v1beta2.AnnotateTextResponse</code>
+ * Protobuf type <code>Google\Cloud\Language\V1beta2\AnnotateTextResponse</code>
  */
 class AnnotateTextResponse extends \Google\Protobuf\Internal\Message
 {
@@ -78,6 +78,7 @@ class AnnotateTextResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.language.v1beta2.Sentence sentences = 1;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getSentences()
     {
@@ -91,6 +92,7 @@ class AnnotateTextResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.language.v1beta2.Sentence sentences = 1;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setSentences(&$var)
     {
@@ -108,6 +110,7 @@ class AnnotateTextResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.language.v1beta2.Token tokens = 2;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getTokens()
     {
@@ -122,6 +125,7 @@ class AnnotateTextResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.language.v1beta2.Token tokens = 2;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setTokens(&$var)
     {
@@ -139,6 +143,7 @@ class AnnotateTextResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.language.v1beta2.Entity entities = 3;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getEntities()
     {
@@ -153,6 +158,7 @@ class AnnotateTextResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.language.v1beta2.Entity entities = 3;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setEntities(&$var)
     {
@@ -169,6 +175,7 @@ class AnnotateTextResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.language.v1beta2.Sentiment document_sentiment = 4;</code>
+     * @return Google\Cloud\Language\V1beta2\Sentiment
      */
     public function getDocumentSentiment()
     {
@@ -182,6 +189,7 @@ class AnnotateTextResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.language.v1beta2.Sentiment document_sentiment = 4;</code>
+     * @param Google\Cloud\Language\V1beta2\Sentiment $var
      */
     public function setDocumentSentiment(&$var)
     {
@@ -199,6 +207,7 @@ class AnnotateTextResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string language = 5;</code>
+     * @return string
      */
     public function getLanguage()
     {
@@ -213,6 +222,7 @@ class AnnotateTextResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string language = 5;</code>
+     * @param string $var
      */
     public function setLanguage($var)
     {

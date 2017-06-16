@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * [UpdateInstance][google.spanner.admin.instance.v1.InstanceAdmin.UpdateInstance].
  * </pre>
  *
- * Protobuf type <code>google.spanner.admin.instance.v1.UpdateInstanceMetadata</code>
+ * Protobuf type <code>Google\Spanner\Admin\Instance\V1\UpdateInstanceMetadata</code>
  */
 class UpdateInstanceMetadata extends \Google\Protobuf\Internal\Message
 {
@@ -65,6 +65,7 @@ class UpdateInstanceMetadata extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.admin.instance.v1.Instance instance = 1;</code>
+     * @return Google\Cloud\Spanner\Admin\Instance\V1\Instance
      */
     public function getInstance()
     {
@@ -77,6 +78,7 @@ class UpdateInstanceMetadata extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.admin.instance.v1.Instance instance = 1;</code>
+     * @param Google\Cloud\Spanner\Admin\Instance\V1\Instance $var
      */
     public function setInstance(&$var)
     {
@@ -93,6 +95,7 @@ class UpdateInstanceMetadata extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp start_time = 2;</code>
+     * @return Google\Protobuf\Timestamp
      */
     public function getStartTime()
     {
@@ -106,6 +109,7 @@ class UpdateInstanceMetadata extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp start_time = 2;</code>
+     * @param Google\Protobuf\Timestamp $var
      */
     public function setStartTime(&$var)
     {
@@ -123,6 +127,7 @@ class UpdateInstanceMetadata extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp cancel_time = 3;</code>
+     * @return Google\Protobuf\Timestamp
      */
     public function getCancelTime()
     {
@@ -137,6 +142,7 @@ class UpdateInstanceMetadata extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp cancel_time = 3;</code>
+     * @param Google\Protobuf\Timestamp $var
      */
     public function setCancelTime(&$var)
     {
@@ -152,6 +158,7 @@ class UpdateInstanceMetadata extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp end_time = 4;</code>
+     * @return Google\Protobuf\Timestamp
      */
     public function getEndTime()
     {
@@ -164,6 +171,7 @@ class UpdateInstanceMetadata extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp end_time = 4;</code>
+     * @param Google\Protobuf\Timestamp $var
      */
     public function setEndTime(&$var)
     {

@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Logical element on the page.
  * </pre>
  *
- * Protobuf type <code>google.cloud.vision.v1.Block</code>
+ * Protobuf type <code>Google\Cloud\Vision\V1\Block</code>
  */
 class Block extends \Google\Protobuf\Internal\Message
 {
@@ -75,6 +75,7 @@ class Block extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
+     * @return Google\Cloud\Vision\V1\TextAnnotation_TextProperty
      */
     public function getProperty()
     {
@@ -87,6 +88,7 @@ class Block extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
+     * @param Google\Cloud\Vision\V1\TextAnnotation_TextProperty $var
      */
     public function setProperty(&$var)
     {
@@ -116,6 +118,7 @@ class Block extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.BoundingPoly bounding_box = 2;</code>
+     * @return Google\Cloud\Vision\V1\BoundingPoly
      */
     public function getBoundingBox()
     {
@@ -142,6 +145,7 @@ class Block extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.BoundingPoly bounding_box = 2;</code>
+     * @param Google\Cloud\Vision\V1\BoundingPoly $var
      */
     public function setBoundingBox(&$var)
     {
@@ -157,6 +161,7 @@ class Block extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.Paragraph paragraphs = 3;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getParagraphs()
     {
@@ -169,6 +174,7 @@ class Block extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.Paragraph paragraphs = 3;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setParagraphs(&$var)
     {
@@ -184,6 +190,7 @@ class Block extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.Block.BlockType block_type = 4;</code>
+     * @return int
      */
     public function getBlockType()
     {
@@ -196,6 +203,7 @@ class Block extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.Block.BlockType block_type = 4;</code>
+     * @param int $var
      */
     public function setBlockType($var)
     {

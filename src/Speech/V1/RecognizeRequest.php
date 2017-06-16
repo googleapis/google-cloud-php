@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * The top-level message sent by the client for the `Recognize` method.
  * </pre>
  *
- * Protobuf type <code>google.cloud.speech.v1.RecognizeRequest</code>
+ * Protobuf type <code>Google\Cloud\Speech\V1\RecognizeRequest</code>
  */
 class RecognizeRequest extends \Google\Protobuf\Internal\Message
 {
@@ -47,6 +47,7 @@ class RecognizeRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.speech.v1.RecognitionConfig config = 1;</code>
+     * @return Google\Cloud\Speech\V1\RecognitionConfig
      */
     public function getConfig()
     {
@@ -60,6 +61,7 @@ class RecognizeRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.speech.v1.RecognitionConfig config = 1;</code>
+     * @param Google\Cloud\Speech\V1\RecognitionConfig $var
      */
     public function setConfig(&$var)
     {
@@ -75,6 +77,7 @@ class RecognizeRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.speech.v1.RecognitionAudio audio = 2;</code>
+     * @return Google\Cloud\Speech\V1\RecognitionAudio
      */
     public function getAudio()
     {
@@ -87,6 +90,7 @@ class RecognizeRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.speech.v1.RecognitionAudio audio = 2;</code>
+     * @param Google\Cloud\Speech\V1\RecognitionAudio $var
      */
     public function setAudio(&$var)
     {

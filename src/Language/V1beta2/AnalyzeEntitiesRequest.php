@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * The entity analysis request message.
  * </pre>
  *
- * Protobuf type <code>google.cloud.language.v1beta2.AnalyzeEntitiesRequest</code>
+ * Protobuf type <code>Google\Cloud\Language\V1beta2\AnalyzeEntitiesRequest</code>
  */
 class AnalyzeEntitiesRequest extends \Google\Protobuf\Internal\Message
 {
@@ -45,6 +45,7 @@ class AnalyzeEntitiesRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.language.v1beta2.Document document = 1;</code>
+     * @return Google\Cloud\Language\V1beta2\Document
      */
     public function getDocument()
     {
@@ -57,6 +58,7 @@ class AnalyzeEntitiesRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.language.v1beta2.Document document = 1;</code>
+     * @param Google\Cloud\Language\V1beta2\Document $var
      */
     public function setDocument(&$var)
     {
@@ -72,6 +74,7 @@ class AnalyzeEntitiesRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.language.v1beta2.EncodingType encoding_type = 2;</code>
+     * @return int
      */
     public function getEncodingType()
     {
@@ -84,6 +87,7 @@ class AnalyzeEntitiesRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.language.v1beta2.EncodingType encoding_type = 2;</code>
+     * @param int $var
      */
     public function setEncodingType($var)
     {

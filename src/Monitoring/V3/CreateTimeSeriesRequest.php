@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * The `CreateTimeSeries` request.
  * </pre>
  *
- * Protobuf type <code>google.monitoring.v3.CreateTimeSeriesRequest</code>
+ * Protobuf type <code>Google\Monitoring\V3\CreateTimeSeriesRequest</code>
  */
 class CreateTimeSeriesRequest extends \Google\Protobuf\Internal\Message
 {
@@ -51,6 +51,7 @@ class CreateTimeSeriesRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string name = 3;</code>
+     * @return string
      */
     public function getName()
     {
@@ -64,6 +65,7 @@ class CreateTimeSeriesRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string name = 3;</code>
+     * @param string $var
      */
     public function setName($var)
     {
@@ -83,6 +85,7 @@ class CreateTimeSeriesRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.monitoring.v3.TimeSeries time_series = 2;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getTimeSeries()
     {
@@ -99,6 +102,7 @@ class CreateTimeSeriesRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.monitoring.v3.TimeSeries time_series = 2;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setTimeSeries(&$var)
     {

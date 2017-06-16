@@ -14,7 +14,7 @@ namespace Google\Cloud\Spanner\V1;
  * `null`.
  * </pre>
  *
- * Protobuf enum <code>google.spanner.v1.TypeCode</code>
+ * Protobuf enum <code>Google\Spanner\V1\TypeCode</code>
  */
 class TypeCode
 {

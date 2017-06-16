@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * The parameters to `DeleteSink`.
  * </pre>
  *
- * Protobuf type <code>google.logging.v2.DeleteSinkRequest</code>
+ * Protobuf type <code>Google\Logging\V2\DeleteSinkRequest</code>
  */
 class DeleteSinkRequest extends \Google\Protobuf\Internal\Message
 {
@@ -49,6 +49,7 @@ class DeleteSinkRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string sink_name = 1;</code>
+     * @return string
      */
     public function getSinkName()
     {
@@ -67,6 +68,7 @@ class DeleteSinkRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string sink_name = 1;</code>
+     * @param string $var
      */
     public function setSinkName($var)
     {

@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Setting each one to true will enable that specific analysis for the input.
  * </pre>
  *
- * Protobuf type <code>google.cloud.language.v1beta2.AnnotateTextRequest.Features</code>
+ * Protobuf type <code>Google\Cloud\Language\V1beta2\AnnotateTextRequest\Features</code>
  */
 class AnnotateTextRequest_Features extends \Google\Protobuf\Internal\Message
 {
@@ -62,6 +62,7 @@ class AnnotateTextRequest_Features extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>bool extract_syntax = 1;</code>
+     * @return bool
      */
     public function getExtractSyntax()
     {
@@ -74,6 +75,7 @@ class AnnotateTextRequest_Features extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>bool extract_syntax = 1;</code>
+     * @param bool $var
      */
     public function setExtractSyntax($var)
     {
@@ -89,6 +91,7 @@ class AnnotateTextRequest_Features extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>bool extract_entities = 2;</code>
+     * @return bool
      */
     public function getExtractEntities()
     {
@@ -101,6 +104,7 @@ class AnnotateTextRequest_Features extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>bool extract_entities = 2;</code>
+     * @param bool $var
      */
     public function setExtractEntities($var)
     {
@@ -116,6 +120,7 @@ class AnnotateTextRequest_Features extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>bool extract_document_sentiment = 3;</code>
+     * @return bool
      */
     public function getExtractDocumentSentiment()
     {
@@ -128,6 +133,7 @@ class AnnotateTextRequest_Features extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>bool extract_document_sentiment = 3;</code>
+     * @param bool $var
      */
     public function setExtractDocumentSentiment($var)
     {
@@ -143,6 +149,7 @@ class AnnotateTextRequest_Features extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>bool extract_entity_sentiment = 4;</code>
+     * @return bool
      */
     public function getExtractEntitySentiment()
     {
@@ -155,6 +162,7 @@ class AnnotateTextRequest_Features extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>bool extract_entity_sentiment = 4;</code>
+     * @param bool $var
      */
     public function setExtractEntitySentiment($var)
     {

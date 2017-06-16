@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * The request for [DeleteSession][google.spanner.v1.Spanner.DeleteSession].
  * </pre>
  *
- * Protobuf type <code>google.spanner.v1.DeleteSessionRequest</code>
+ * Protobuf type <code>Google\Spanner\V1\DeleteSessionRequest</code>
  */
 class DeleteSessionRequest extends \Google\Protobuf\Internal\Message
 {
@@ -37,6 +37,7 @@ class DeleteSessionRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string name = 1;</code>
+     * @return string
      */
     public function getName()
     {
@@ -49,6 +50,7 @@ class DeleteSessionRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string name = 1;</code>
+     * @param string $var
      */
     public function setName($var)
     {

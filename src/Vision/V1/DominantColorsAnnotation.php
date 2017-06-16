@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Set of dominant colors and their corresponding scores.
  * </pre>
  *
- * Protobuf type <code>google.cloud.vision.v1.DominantColorsAnnotation</code>
+ * Protobuf type <code>Google\Cloud\Vision\V1\DominantColorsAnnotation</code>
  */
 class DominantColorsAnnotation extends \Google\Protobuf\Internal\Message
 {
@@ -37,6 +37,7 @@ class DominantColorsAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.ColorInfo colors = 1;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getColors()
     {
@@ -49,6 +50,7 @@ class DominantColorsAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.ColorInfo colors = 1;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setColors(&$var)
     {

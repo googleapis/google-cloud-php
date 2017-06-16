@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Detected page from OCR.
  * </pre>
  *
- * Protobuf type <code>google.cloud.vision.v1.Page</code>
+ * Protobuf type <code>Google\Cloud\Vision\V1\Page</code>
  */
 class Page extends \Google\Protobuf\Internal\Message
 {
@@ -61,6 +61,7 @@ class Page extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
+     * @return Google\Cloud\Vision\V1\TextAnnotation_TextProperty
      */
     public function getProperty()
     {
@@ -73,6 +74,7 @@ class Page extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
+     * @param Google\Cloud\Vision\V1\TextAnnotation_TextProperty $var
      */
     public function setProperty(&$var)
     {
@@ -88,6 +90,7 @@ class Page extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 width = 2;</code>
+     * @return int
      */
     public function getWidth()
     {
@@ -100,6 +103,7 @@ class Page extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 width = 2;</code>
+     * @param int $var
      */
     public function setWidth($var)
     {
@@ -115,6 +119,7 @@ class Page extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 height = 3;</code>
+     * @return int
      */
     public function getHeight()
     {
@@ -127,6 +132,7 @@ class Page extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 height = 3;</code>
+     * @param int $var
      */
     public function setHeight($var)
     {
@@ -142,6 +148,7 @@ class Page extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.Block blocks = 4;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getBlocks()
     {
@@ -154,6 +161,7 @@ class Page extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.Block blocks = 4;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setBlocks(&$var)
     {

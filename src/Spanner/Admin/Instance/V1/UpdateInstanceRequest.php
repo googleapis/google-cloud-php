@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * The request for [UpdateInstance][google.spanner.admin.instance.v1.InstanceAdmin.UpdateInstance].
  * </pre>
  *
- * Protobuf type <code>google.spanner.admin.instance.v1.UpdateInstanceRequest</code>
+ * Protobuf type <code>Google\Spanner\Admin\Instance\V1\UpdateInstanceRequest</code>
  */
 class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
 {
@@ -50,6 +50,7 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.admin.instance.v1.Instance instance = 1;</code>
+     * @return Google\Cloud\Spanner\Admin\Instance\V1\Instance
      */
     public function getInstance()
     {
@@ -63,6 +64,7 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.admin.instance.v1.Instance instance = 1;</code>
+     * @param Google\Cloud\Spanner\Admin\Instance\V1\Instance $var
      */
     public function setInstance(&$var)
     {
@@ -81,6 +83,7 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.FieldMask field_mask = 2;</code>
+     * @return Google\Protobuf\FieldMask
      */
     public function getFieldMask()
     {
@@ -96,6 +99,7 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.FieldMask field_mask = 2;</code>
+     * @param Google\Protobuf\FieldMask $var
      */
     public function setFieldMask(&$var)
     {

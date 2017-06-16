@@ -13,14 +13,14 @@ use Google\Protobuf\Internal\GPBUtil;
  * The request for [CreateInstance][google.spanner.admin.instance.v1.InstanceAdmin.CreateInstance].
  * </pre>
  *
- * Protobuf type <code>google.spanner.admin.instance.v1.CreateInstanceRequest</code>
+ * Protobuf type <code>Google\Spanner\Admin\Instance\V1\CreateInstanceRequest</code>
  */
 class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * <pre>
      * Required. The name of the project in which to create the instance. Values
-     * are of the form `projects/&lt;project&gt;`.
+     * are of the form `projects/<project>`.
      * </pre>
      *
      * <code>string parent = 1;</code>
@@ -39,7 +39,7 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
     /**
      * <pre>
      * Required. The instance to create.  The name may be omitted, but if
-     * specified must be `&lt;parent&gt;/instances/&lt;instance_id&gt;`.
+     * specified must be `<parent>/instances/<instance_id>`.
      * </pre>
      *
      * <code>.google.spanner.admin.instance.v1.Instance instance = 3;</code>
@@ -54,10 +54,11 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
     /**
      * <pre>
      * Required. The name of the project in which to create the instance. Values
-     * are of the form `projects/&lt;project&gt;`.
+     * are of the form `projects/<project>`.
      * </pre>
      *
      * <code>string parent = 1;</code>
+     * @return string
      */
     public function getParent()
     {
@@ -67,10 +68,11 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
     /**
      * <pre>
      * Required. The name of the project in which to create the instance. Values
-     * are of the form `projects/&lt;project&gt;`.
+     * are of the form `projects/<project>`.
      * </pre>
      *
      * <code>string parent = 1;</code>
+     * @param string $var
      */
     public function setParent($var)
     {
@@ -88,6 +90,7 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string instance_id = 2;</code>
+     * @return string
      */
     public function getInstanceId()
     {
@@ -102,6 +105,7 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string instance_id = 2;</code>
+     * @param string $var
      */
     public function setInstanceId($var)
     {
@@ -114,10 +118,11 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
     /**
      * <pre>
      * Required. The instance to create.  The name may be omitted, but if
-     * specified must be `&lt;parent&gt;/instances/&lt;instance_id&gt;`.
+     * specified must be `<parent>/instances/<instance_id>`.
      * </pre>
      *
      * <code>.google.spanner.admin.instance.v1.Instance instance = 3;</code>
+     * @return Google\Cloud\Spanner\Admin\Instance\V1\Instance
      */
     public function getInstance()
     {
@@ -127,10 +132,11 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
     /**
      * <pre>
      * Required. The instance to create.  The name may be omitted, but if
-     * specified must be `&lt;parent&gt;/instances/&lt;instance_id&gt;`.
+     * specified must be `<parent>/instances/<instance_id>`.
      * </pre>
      *
      * <code>.google.spanner.admin.instance.v1.Instance instance = 3;</code>
+     * @param Google\Cloud\Spanner\Admin\Instance\V1\Instance $var
      */
     public function setInstance(&$var)
     {

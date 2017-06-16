@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Face location.
  * </pre>
  *
- * Protobuf type <code>google.cloud.videointelligence.v1beta1.FaceLocation</code>
+ * Protobuf type <code>Google\Cloud\Videointelligence\V1beta1\FaceLocation</code>
  */
 class FaceLocation extends \Google\Protobuf\Internal\Message
 {
@@ -45,6 +45,7 @@ class FaceLocation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.videointelligence.v1beta1.BoundingBox bounding_box = 1;</code>
+     * @return Google\Cloud\VideoIntelligence\V1beta1\BoundingBox
      */
     public function getBoundingBox()
     {
@@ -57,6 +58,7 @@ class FaceLocation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.videointelligence.v1beta1.BoundingBox bounding_box = 1;</code>
+     * @param Google\Cloud\VideoIntelligence\V1beta1\BoundingBox $var
      */
     public function setBoundingBox(&$var)
     {
@@ -72,6 +74,7 @@ class FaceLocation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int64 time_offset = 2;</code>
+     * @return int|string
      */
     public function getTimeOffset()
     {
@@ -84,6 +87,7 @@ class FaceLocation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int64 time_offset = 2;</code>
+     * @param int|string $var
      */
     public function setTimeOffset($var)
     {

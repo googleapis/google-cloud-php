@@ -18,7 +18,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * behaves as if the key were only specified once.
  * </pre>
  *
- * Protobuf type <code>google.spanner.v1.KeySet</code>
+ * Protobuf type <code>Google\Spanner\V1\KeySet</code>
  */
 class KeySet extends \Google\Protobuf\Internal\Message
 {
@@ -67,6 +67,7 @@ class KeySet extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.protobuf.ListValue keys = 1;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getKeys()
     {
@@ -82,6 +83,7 @@ class KeySet extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.protobuf.ListValue keys = 1;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setKeys(&$var)
     {
@@ -98,6 +100,7 @@ class KeySet extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.spanner.v1.KeyRange ranges = 2;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getRanges()
     {
@@ -111,6 +114,7 @@ class KeySet extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.spanner.v1.KeyRange ranges = 2;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setRanges(&$var)
     {
@@ -128,6 +132,7 @@ class KeySet extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>bool all = 3;</code>
+     * @return bool
      */
     public function getAll()
     {
@@ -142,6 +147,7 @@ class KeySet extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>bool all = 3;</code>
+     * @param bool $var
      */
     public function setAll($var)
     {

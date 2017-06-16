@@ -47,7 +47,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *     one or more (repeated) `results`.
  * </pre>
  *
- * Protobuf type <code>google.cloud.speech.v1.StreamingRecognizeResponse</code>
+ * Protobuf type <code>Google\Cloud\Speech\V1\StreamingRecognizeResponse</code>
  */
 class StreamingRecognizeResponse extends \Google\Protobuf\Internal\Message
 {
@@ -92,6 +92,7 @@ class StreamingRecognizeResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.rpc.Status error = 1;</code>
+     * @return Google\Rpc\Status
      */
     public function getError()
     {
@@ -105,6 +106,7 @@ class StreamingRecognizeResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.rpc.Status error = 1;</code>
+     * @param Google\Rpc\Status $var
      */
     public function setError(&$var)
     {
@@ -123,6 +125,7 @@ class StreamingRecognizeResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.speech.v1.StreamingRecognitionResult results = 2;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getResults()
     {
@@ -138,6 +141,7 @@ class StreamingRecognizeResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.speech.v1.StreamingRecognitionResult results = 2;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setResults(&$var)
     {
@@ -153,6 +157,7 @@ class StreamingRecognizeResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.speech.v1.StreamingRecognizeResponse.SpeechEventType speech_event_type = 4;</code>
+     * @return int
      */
     public function getSpeechEventType()
     {
@@ -165,6 +170,7 @@ class StreamingRecognizeResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.speech.v1.StreamingRecognizeResponse.SpeechEventType speech_event_type = 4;</code>
+     * @param int $var
      */
     public function setSpeechEventType($var)
     {

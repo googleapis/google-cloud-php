@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Information related to tracking the progress on resolving the error.
  * </pre>
  *
- * Protobuf type <code>google.devtools.clouderrorreporting.v1beta1.TrackingIssue</code>
+ * Protobuf type <code>Google\Devtools\Clouderrorreporting\V1beta1\TrackingIssue</code>
  */
 class TrackingIssue extends \Google\Protobuf\Internal\Message
 {
@@ -39,6 +39,7 @@ class TrackingIssue extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string url = 1;</code>
+     * @return string
      */
     public function getUrl()
     {
@@ -52,6 +53,7 @@ class TrackingIssue extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string url = 1;</code>
+     * @param string $var
      */
     public function setUrl($var)
     {

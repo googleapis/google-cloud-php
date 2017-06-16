@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * See [TransactionOptions][google.spanner.v1.TransactionOptions] for more information about transactions.
  * </pre>
  *
- * Protobuf type <code>google.spanner.v1.TransactionSelector</code>
+ * Protobuf type <code>Google\Spanner\V1\TransactionSelector</code>
  */
 class TransactionSelector extends \Google\Protobuf\Internal\Message
 {
@@ -35,6 +35,7 @@ class TransactionSelector extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.TransactionOptions single_use = 1;</code>
+     * @return Google\Cloud\Spanner\V1\TransactionOptions
      */
     public function getSingleUse()
     {
@@ -49,6 +50,7 @@ class TransactionSelector extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.TransactionOptions single_use = 1;</code>
+     * @param Google\Cloud\Spanner\V1\TransactionOptions $var
      */
     public function setSingleUse(&$var)
     {
@@ -64,6 +66,7 @@ class TransactionSelector extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>bytes id = 2;</code>
+     * @return string
      */
     public function getId()
     {
@@ -76,6 +79,7 @@ class TransactionSelector extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>bytes id = 2;</code>
+     * @param string $var
      */
     public function setId($var)
     {
@@ -93,6 +97,7 @@ class TransactionSelector extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.TransactionOptions begin = 3;</code>
+     * @return Google\Cloud\Spanner\V1\TransactionOptions
      */
     public function getBegin()
     {
@@ -107,6 +112,7 @@ class TransactionSelector extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.TransactionOptions begin = 3;</code>
+     * @param Google\Cloud\Spanner\V1\TransactionOptions $var
      */
     public function setBegin(&$var)
     {
@@ -116,6 +122,9 @@ class TransactionSelector extends \Google\Protobuf\Internal\Message
         return $this;
     }
 
+    /**
+     * @return string
+     */
     public function getSelector()
     {
         return $this->whichOneof("selector");

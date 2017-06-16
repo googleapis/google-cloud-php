@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * adjusted for lower durations.
  * </pre>
  *
- * Protobuf type <code>google.devtools.clouderrorreporting.v1beta1.QueryTimeRange</code>
+ * Protobuf type <code>Google\Devtools\Clouderrorreporting\V1beta1\QueryTimeRange</code>
  */
 class QueryTimeRange extends \Google\Protobuf\Internal\Message
 {
@@ -38,6 +38,7 @@ class QueryTimeRange extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange.Period period = 1;</code>
+     * @return int
      */
     public function getPeriod()
     {
@@ -50,6 +51,7 @@ class QueryTimeRange extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange.Period period = 1;</code>
+     * @param int $var
      */
     public function setPeriod($var)
     {

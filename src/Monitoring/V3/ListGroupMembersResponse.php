@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * The `ListGroupMembers` response.
  * </pre>
  *
- * Protobuf type <code>google.monitoring.v3.ListGroupMembersResponse</code>
+ * Protobuf type <code>Google\Monitoring\V3\ListGroupMembersResponse</code>
  */
 class ListGroupMembersResponse extends \Google\Protobuf\Internal\Message
 {
@@ -55,6 +55,7 @@ class ListGroupMembersResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.api.MonitoredResource members = 1;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getMembers()
     {
@@ -67,6 +68,7 @@ class ListGroupMembersResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.api.MonitoredResource members = 1;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setMembers(&$var)
     {
@@ -84,6 +86,7 @@ class ListGroupMembersResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string next_page_token = 2;</code>
+     * @return string
      */
     public function getNextPageToken()
     {
@@ -98,6 +101,7 @@ class ListGroupMembersResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string next_page_token = 2;</code>
+     * @param string $var
      */
     public function setNextPageToken($var)
     {
@@ -113,6 +117,7 @@ class ListGroupMembersResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 total_size = 3;</code>
+     * @return int
      */
     public function getTotalSize()
     {
@@ -125,6 +130,7 @@ class ListGroupMembersResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 total_size = 3;</code>
+     * @param int $var
      */
     public function setTotalSize($var)
     {

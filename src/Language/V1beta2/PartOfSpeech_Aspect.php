@@ -9,7 +9,7 @@ namespace Google\Cloud\Language\V1beta2;
  * The characteristic of a verb that expresses time flow during an event.
  * </pre>
  *
- * Protobuf enum <code>google.cloud.language.v1beta2.PartOfSpeech.Aspect</code>
+ * Protobuf enum <code>Google\Cloud\Language\V1beta2\PartOfSpeech\Aspect</code>
  */
 class PartOfSpeech_Aspect
 {

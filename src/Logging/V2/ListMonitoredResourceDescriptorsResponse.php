@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Result returned from ListMonitoredResourceDescriptors.
  * </pre>
  *
- * Protobuf type <code>google.logging.v2.ListMonitoredResourceDescriptorsResponse</code>
+ * Protobuf type <code>Google\Logging\V2\ListMonitoredResourceDescriptorsResponse</code>
  */
 class ListMonitoredResourceDescriptorsResponse extends \Google\Protobuf\Internal\Message
 {
@@ -47,6 +47,7 @@ class ListMonitoredResourceDescriptorsResponse extends \Google\Protobuf\Internal
      * </pre>
      *
      * <code>repeated .google.api.MonitoredResourceDescriptor resource_descriptors = 1;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getResourceDescriptors()
     {
@@ -59,6 +60,7 @@ class ListMonitoredResourceDescriptorsResponse extends \Google\Protobuf\Internal
      * </pre>
      *
      * <code>repeated .google.api.MonitoredResourceDescriptor resource_descriptors = 1;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setResourceDescriptors(&$var)
     {
@@ -76,6 +78,7 @@ class ListMonitoredResourceDescriptorsResponse extends \Google\Protobuf\Internal
      * </pre>
      *
      * <code>string next_page_token = 2;</code>
+     * @return string
      */
     public function getNextPageToken()
     {
@@ -90,6 +93,7 @@ class ListMonitoredResourceDescriptorsResponse extends \Google\Protobuf\Internal
      * </pre>
      *
      * <code>string next_page_token = 2;</code>
+     * @param string $var
      */
     public function setNextPageToken($var)
     {

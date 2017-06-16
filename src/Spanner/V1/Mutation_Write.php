@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * [replace][google.spanner.v1.Mutation.replace] operations.
  * </pre>
  *
- * Protobuf type <code>google.spanner.v1.Mutation.Write</code>
+ * Protobuf type <code>Google\Spanner\V1\Mutation\Write</code>
  */
 class Mutation_Write extends \Google\Protobuf\Internal\Message
 {
@@ -64,6 +64,7 @@ class Mutation_Write extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string table = 1;</code>
+     * @return string
      */
     public function getTable()
     {
@@ -76,6 +77,7 @@ class Mutation_Write extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string table = 1;</code>
+     * @param string $var
      */
     public function setTable($var)
     {
@@ -94,6 +96,7 @@ class Mutation_Write extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated string columns = 2;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getColumns()
     {
@@ -109,6 +112,7 @@ class Mutation_Write extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated string columns = 2;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setColumns(&$var)
     {
@@ -131,6 +135,7 @@ class Mutation_Write extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.protobuf.ListValue values = 3;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getValues()
     {
@@ -150,6 +155,7 @@ class Mutation_Write extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.protobuf.ListValue values = 3;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setValues(&$var)
     {

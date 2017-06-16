@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * An error event which is reported to the Error Reporting system.
  * </pre>
  *
- * Protobuf type <code>google.devtools.clouderrorreporting.v1beta1.ReportedErrorEvent</code>
+ * Protobuf type <code>Google\Devtools\Clouderrorreporting\V1beta1\ReportedErrorEvent</code>
  */
 class ReportedErrorEvent extends \Google\Protobuf\Internal\Message
 {
@@ -68,6 +68,7 @@ class ReportedErrorEvent extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp event_time = 1;</code>
+     * @return Google\Protobuf\Timestamp
      */
     public function getEventTime()
     {
@@ -82,6 +83,7 @@ class ReportedErrorEvent extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp event_time = 1;</code>
+     * @param Google\Protobuf\Timestamp $var
      */
     public function setEventTime(&$var)
     {
@@ -97,6 +99,7 @@ class ReportedErrorEvent extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContext service_context = 2;</code>
+     * @return Google\Cloud\ErrorReporting\V1beta1\ServiceContext
      */
     public function getServiceContext()
     {
@@ -109,6 +112,7 @@ class ReportedErrorEvent extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContext service_context = 2;</code>
+     * @param Google\Cloud\ErrorReporting\V1beta1\ServiceContext $var
      */
     public function setServiceContext(&$var)
     {
@@ -127,6 +131,7 @@ class ReportedErrorEvent extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string message = 3;</code>
+     * @return string
      */
     public function getMessage()
     {
@@ -142,6 +147,7 @@ class ReportedErrorEvent extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string message = 3;</code>
+     * @param string $var
      */
     public function setMessage($var)
     {
@@ -157,6 +163,7 @@ class ReportedErrorEvent extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorContext context = 4;</code>
+     * @return Google\Cloud\ErrorReporting\V1beta1\ErrorContext
      */
     public function getContext()
     {
@@ -169,6 +176,7 @@ class ReportedErrorEvent extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorContext context = 4;</code>
+     * @param Google\Cloud\ErrorReporting\V1beta1\ErrorContext $var
      */
     public function setContext(&$var)
     {

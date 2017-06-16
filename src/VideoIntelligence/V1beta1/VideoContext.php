@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Video context and/or feature-specific parameters.
  * </pre>
  *
- * Protobuf type <code>google.cloud.videointelligence.v1beta1.VideoContext</code>
+ * Protobuf type <code>Google\Cloud\Videointelligence\V1beta1\VideoContext</code>
  */
 class VideoContext extends \Google\Protobuf\Internal\Message
 {
@@ -96,6 +96,7 @@ class VideoContext extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.videointelligence.v1beta1.VideoSegment segments = 1;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getSegments()
     {
@@ -110,6 +111,7 @@ class VideoContext extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.videointelligence.v1beta1.VideoSegment segments = 1;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setSegments(&$var)
     {
@@ -127,6 +129,7 @@ class VideoContext extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.videointelligence.v1beta1.LabelDetectionMode label_detection_mode = 2;</code>
+     * @return int
      */
     public function getLabelDetectionMode()
     {
@@ -141,6 +144,7 @@ class VideoContext extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.videointelligence.v1beta1.LabelDetectionMode label_detection_mode = 2;</code>
+     * @param int $var
      */
     public function setLabelDetectionMode($var)
     {
@@ -157,6 +161,7 @@ class VideoContext extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>bool stationary_camera = 3;</code>
+     * @return bool
      */
     public function getStationaryCamera()
     {
@@ -170,6 +175,7 @@ class VideoContext extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>bool stationary_camera = 3;</code>
+     * @param bool $var
      */
     public function setStationaryCamera($var)
     {
@@ -186,6 +192,7 @@ class VideoContext extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string label_detection_model = 4;</code>
+     * @return string
      */
     public function getLabelDetectionModel()
     {
@@ -199,6 +206,7 @@ class VideoContext extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string label_detection_model = 4;</code>
+     * @param string $var
      */
     public function setLabelDetectionModel($var)
     {
@@ -215,6 +223,7 @@ class VideoContext extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string face_detection_model = 5;</code>
+     * @return string
      */
     public function getFaceDetectionModel()
     {
@@ -228,6 +237,7 @@ class VideoContext extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string face_detection_model = 5;</code>
+     * @param string $var
      */
     public function setFaceDetectionModel($var)
     {
@@ -244,6 +254,7 @@ class VideoContext extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string shot_change_detection_model = 6;</code>
+     * @return string
      */
     public function getShotChangeDetectionModel()
     {
@@ -257,6 +268,7 @@ class VideoContext extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string shot_change_detection_model = 6;</code>
+     * @param string $var
      */
     public function setShotChangeDetectionModel($var)
     {
@@ -273,6 +285,7 @@ class VideoContext extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string safe_search_detection_model = 7;</code>
+     * @return string
      */
     public function getSafeSearchDetectionModel()
     {
@@ -286,6 +299,7 @@ class VideoContext extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string safe_search_detection_model = 7;</code>
+     * @param string $var
      */
     public function setSafeSearchDetectionModel($var)
     {

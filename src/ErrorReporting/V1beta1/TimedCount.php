@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * before counting them.
  * </pre>
  *
- * Protobuf type <code>google.devtools.clouderrorreporting.v1beta1.TimedCount</code>
+ * Protobuf type <code>Google\Devtools\Clouderrorreporting\V1beta1\TimedCount</code>
  */
 class TimedCount extends \Google\Protobuf\Internal\Message
 {
@@ -55,6 +55,7 @@ class TimedCount extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int64 count = 1;</code>
+     * @return int|string
      */
     public function getCount()
     {
@@ -67,6 +68,7 @@ class TimedCount extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int64 count = 1;</code>
+     * @param int|string $var
      */
     public function setCount($var)
     {
@@ -82,6 +84,7 @@ class TimedCount extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp start_time = 2;</code>
+     * @return Google\Protobuf\Timestamp
      */
     public function getStartTime()
     {
@@ -94,6 +97,7 @@ class TimedCount extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp start_time = 2;</code>
+     * @param Google\Protobuf\Timestamp $var
      */
     public function setStartTime(&$var)
     {
@@ -109,6 +113,7 @@ class TimedCount extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp end_time = 3;</code>
+     * @return Google\Protobuf\Timestamp
      */
     public function getEndTime()
     {
@@ -121,6 +126,7 @@ class TimedCount extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp end_time = 3;</code>
+     * @param Google\Protobuf\Timestamp $var
      */
     public function setEndTime(&$var)
     {

@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Entity deduced from similar images on the Internet.
  * </pre>
  *
- * Protobuf type <code>google.cloud.vision.v1.WebDetection.WebEntity</code>
+ * Protobuf type <code>Google\Cloud\Vision\V1\WebDetection\WebEntity</code>
  */
 class WebDetection_WebEntity extends \Google\Protobuf\Internal\Message
 {
@@ -54,6 +54,7 @@ class WebDetection_WebEntity extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string entity_id = 1;</code>
+     * @return string
      */
     public function getEntityId()
     {
@@ -66,6 +67,7 @@ class WebDetection_WebEntity extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string entity_id = 1;</code>
+     * @param string $var
      */
     public function setEntityId($var)
     {
@@ -82,6 +84,7 @@ class WebDetection_WebEntity extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>float score = 2;</code>
+     * @return float
      */
     public function getScore()
     {
@@ -95,6 +98,7 @@ class WebDetection_WebEntity extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>float score = 2;</code>
+     * @param float $var
      */
     public function setScore($var)
     {
@@ -110,6 +114,7 @@ class WebDetection_WebEntity extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string description = 3;</code>
+     * @return string
      */
     public function getDescription()
     {
@@ -122,6 +127,7 @@ class WebDetection_WebEntity extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string description = 3;</code>
+     * @param string $var
      */
     public function setDescription($var)
     {

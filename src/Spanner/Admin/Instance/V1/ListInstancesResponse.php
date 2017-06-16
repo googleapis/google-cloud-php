@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * The response for [ListInstances][google.spanner.admin.instance.v1.InstanceAdmin.ListInstances].
  * </pre>
  *
- * Protobuf type <code>google.spanner.admin.instance.v1.ListInstancesResponse</code>
+ * Protobuf type <code>Google\Spanner\Admin\Instance\V1\ListInstancesResponse</code>
  */
 class ListInstancesResponse extends \Google\Protobuf\Internal\Message
 {
@@ -47,6 +47,7 @@ class ListInstancesResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.spanner.admin.instance.v1.Instance instances = 1;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getInstances()
     {
@@ -59,6 +60,7 @@ class ListInstancesResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.spanner.admin.instance.v1.Instance instances = 1;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setInstances(&$var)
     {
@@ -76,6 +78,7 @@ class ListInstancesResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string next_page_token = 2;</code>
+     * @return string
      */
     public function getNextPageToken()
     {
@@ -90,6 +93,7 @@ class ListInstancesResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string next_page_token = 2;</code>
+     * @param string $var
      */
     public function setNextPageToken($var)
     {

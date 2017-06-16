@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * mentions are supported.
  * </pre>
  *
- * Protobuf type <code>google.cloud.language.v1beta2.EntityMention</code>
+ * Protobuf type <code>Google\Cloud\Language\V1beta2\EntityMention</code>
  */
 class EntityMention extends \Google\Protobuf\Internal\Message
 {
@@ -57,6 +57,7 @@ class EntityMention extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.language.v1beta2.TextSpan text = 1;</code>
+     * @return Google\Cloud\Language\V1beta2\TextSpan
      */
     public function getText()
     {
@@ -69,6 +70,7 @@ class EntityMention extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.language.v1beta2.TextSpan text = 1;</code>
+     * @param Google\Cloud\Language\V1beta2\TextSpan $var
      */
     public function setText(&$var)
     {
@@ -84,6 +86,7 @@ class EntityMention extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.language.v1beta2.EntityMention.Type type = 2;</code>
+     * @return int
      */
     public function getType()
     {
@@ -96,6 +99,7 @@ class EntityMention extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.language.v1beta2.EntityMention.Type type = 2;</code>
+     * @param int $var
      */
     public function setType($var)
     {
@@ -114,6 +118,7 @@ class EntityMention extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.language.v1beta2.Sentiment sentiment = 3;</code>
+     * @return Google\Cloud\Language\V1beta2\Sentiment
      */
     public function getSentiment()
     {
@@ -129,6 +134,7 @@ class EntityMention extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.language.v1beta2.Sentiment sentiment = 3;</code>
+     * @param Google\Cloud\Language\V1beta2\Sentiment $var
      */
     public function setSentiment(&$var)
     {

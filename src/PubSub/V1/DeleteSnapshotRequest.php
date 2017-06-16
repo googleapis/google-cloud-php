@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Request for the `DeleteSnapshot` method.
  * </pre>
  *
- * Protobuf type <code>google.pubsub.v1.DeleteSnapshotRequest</code>
+ * Protobuf type <code>Google\Pubsub\V1\DeleteSnapshotRequest</code>
  */
 class DeleteSnapshotRequest extends \Google\Protobuf\Internal\Message
 {
@@ -39,6 +39,7 @@ class DeleteSnapshotRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string snapshot = 1;</code>
+     * @return string
      */
     public function getSnapshot()
     {
@@ -52,6 +53,7 @@ class DeleteSnapshotRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string snapshot = 1;</code>
+     * @param string $var
      */
     public function setSnapshot($var)
     {

@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * A subscription resource.
  * </pre>
  *
- * Protobuf type <code>google.pubsub.v1.Subscription</code>
+ * Protobuf type <code>Google\Pubsub\V1\Subscription</code>
  */
 class Subscription extends \Google\Protobuf\Internal\Message
 {
@@ -115,6 +115,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string name = 1;</code>
+     * @return string
      */
     public function getName()
     {
@@ -132,6 +133,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string name = 1;</code>
+     * @param string $var
      */
     public function setName($var)
     {
@@ -150,6 +152,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string topic = 2;</code>
+     * @return string
      */
     public function getTopic()
     {
@@ -165,6 +168,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string topic = 2;</code>
+     * @param string $var
      */
     public function setTopic($var)
     {
@@ -182,6 +186,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.pubsub.v1.PushConfig push_config = 4;</code>
+     * @return Google\Cloud\PubSub\V1\PushConfig
      */
     public function getPushConfig()
     {
@@ -196,6 +201,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.pubsub.v1.PushConfig push_config = 4;</code>
+     * @param Google\Cloud\PubSub\V1\PushConfig $var
      */
     public function setPushConfig(&$var)
     {
@@ -226,6 +232,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 ack_deadline_seconds = 5;</code>
+     * @return int
      */
     public function getAckDeadlineSeconds()
     {
@@ -253,6 +260,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 ack_deadline_seconds = 5;</code>
+     * @param int $var
      */
     public function setAckDeadlineSeconds($var)
     {
@@ -271,6 +279,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>bool retain_acked_messages = 7;</code>
+     * @return bool
      */
     public function getRetainAckedMessages()
     {
@@ -286,6 +295,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>bool retain_acked_messages = 7;</code>
+     * @param bool $var
      */
     public function setRetainAckedMessages($var)
     {
@@ -306,6 +316,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Duration message_retention_duration = 8;</code>
+     * @return Google\Protobuf\Duration
      */
     public function getMessageRetentionDuration()
     {
@@ -323,6 +334,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Duration message_retention_duration = 8;</code>
+     * @param Google\Protobuf\Duration $var
      */
     public function setMessageRetentionDuration(&$var)
     {

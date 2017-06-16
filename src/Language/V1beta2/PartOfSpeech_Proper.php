@@ -9,7 +9,7 @@ namespace Google\Cloud\Language\V1beta2;
  * This category shows if the token is part of a proper name.
  * </pre>
  *
- * Protobuf enum <code>google.cloud.language.v1beta2.PartOfSpeech.Proper</code>
+ * Protobuf enum <code>Google\Cloud\Language\V1beta2\PartOfSpeech\Proper</code>
  */
 class PartOfSpeech_Proper
 {

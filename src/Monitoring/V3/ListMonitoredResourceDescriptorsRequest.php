@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * The `ListMonitoredResourceDescriptors` request.
  * </pre>
  *
- * Protobuf type <code>google.monitoring.v3.ListMonitoredResourceDescriptorsRequest</code>
+ * Protobuf type <code>Google\Monitoring\V3\ListMonitoredResourceDescriptorsRequest</code>
  */
 class ListMonitoredResourceDescriptorsRequest extends \Google\Protobuf\Internal\Message
 {
@@ -70,6 +70,7 @@ class ListMonitoredResourceDescriptorsRequest extends \Google\Protobuf\Internal\
      * </pre>
      *
      * <code>string name = 5;</code>
+     * @return string
      */
     public function getName()
     {
@@ -83,6 +84,7 @@ class ListMonitoredResourceDescriptorsRequest extends \Google\Protobuf\Internal\
      * </pre>
      *
      * <code>string name = 5;</code>
+     * @param string $var
      */
     public function setName($var)
     {
@@ -103,6 +105,7 @@ class ListMonitoredResourceDescriptorsRequest extends \Google\Protobuf\Internal\
      * </pre>
      *
      * <code>string filter = 2;</code>
+     * @return string
      */
     public function getFilter()
     {
@@ -120,6 +123,7 @@ class ListMonitoredResourceDescriptorsRequest extends \Google\Protobuf\Internal\
      * </pre>
      *
      * <code>string filter = 2;</code>
+     * @param string $var
      */
     public function setFilter($var)
     {
@@ -135,6 +139,7 @@ class ListMonitoredResourceDescriptorsRequest extends \Google\Protobuf\Internal\
      * </pre>
      *
      * <code>int32 page_size = 3;</code>
+     * @return int
      */
     public function getPageSize()
     {
@@ -147,6 +152,7 @@ class ListMonitoredResourceDescriptorsRequest extends \Google\Protobuf\Internal\
      * </pre>
      *
      * <code>int32 page_size = 3;</code>
+     * @param int $var
      */
     public function setPageSize($var)
     {
@@ -164,6 +170,7 @@ class ListMonitoredResourceDescriptorsRequest extends \Google\Protobuf\Internal\
      * </pre>
      *
      * <code>string page_token = 4;</code>
+     * @return string
      */
     public function getPageToken()
     {
@@ -178,6 +185,7 @@ class ListMonitoredResourceDescriptorsRequest extends \Google\Protobuf\Internal\
      * </pre>
      *
      * <code>string page_token = 4;</code>
+     * @param string $var
      */
     public function setPageToken($var)
     {

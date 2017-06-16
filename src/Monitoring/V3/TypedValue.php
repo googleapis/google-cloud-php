@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * A single strongly-typed value.
  * </pre>
  *
- * Protobuf type <code>google.monitoring.v3.TypedValue</code>
+ * Protobuf type <code>Google\Monitoring\V3\TypedValue</code>
  */
 class TypedValue extends \Google\Protobuf\Internal\Message
 {
@@ -30,6 +30,7 @@ class TypedValue extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>bool bool_value = 1;</code>
+     * @return bool
      */
     public function getBoolValue()
     {
@@ -42,6 +43,7 @@ class TypedValue extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>bool bool_value = 1;</code>
+     * @param bool $var
      */
     public function setBoolValue($var)
     {
@@ -53,10 +55,11 @@ class TypedValue extends \Google\Protobuf\Internal\Message
 
     /**
      * <pre>
-     * A 64-bit integer. Its range is approximately &amp;plusmn;9.2x10&lt;sup&gt;18&lt;/sup&gt;.
+     * A 64-bit integer. Its range is approximately &plusmn;9.2x10<sup>18</sup>.
      * </pre>
      *
      * <code>int64 int64_value = 2;</code>
+     * @return int|string
      */
     public function getInt64Value()
     {
@@ -65,10 +68,11 @@ class TypedValue extends \Google\Protobuf\Internal\Message
 
     /**
      * <pre>
-     * A 64-bit integer. Its range is approximately &amp;plusmn;9.2x10&lt;sup&gt;18&lt;/sup&gt;.
+     * A 64-bit integer. Its range is approximately &plusmn;9.2x10<sup>18</sup>.
      * </pre>
      *
      * <code>int64 int64_value = 2;</code>
+     * @param int|string $var
      */
     public function setInt64Value($var)
     {
@@ -81,11 +85,12 @@ class TypedValue extends \Google\Protobuf\Internal\Message
     /**
      * <pre>
      * A 64-bit double-precision floating-point number. Its magnitude
-     * is approximately &amp;plusmn;10&lt;sup&gt;&amp;plusmn;300&lt;/sup&gt; and it has 16
+     * is approximately &plusmn;10<sup>&plusmn;300</sup> and it has 16
      * significant digits of precision.
      * </pre>
      *
      * <code>double double_value = 3;</code>
+     * @return float
      */
     public function getDoubleValue()
     {
@@ -95,11 +100,12 @@ class TypedValue extends \Google\Protobuf\Internal\Message
     /**
      * <pre>
      * A 64-bit double-precision floating-point number. Its magnitude
-     * is approximately &amp;plusmn;10&lt;sup&gt;&amp;plusmn;300&lt;/sup&gt; and it has 16
+     * is approximately &plusmn;10<sup>&plusmn;300</sup> and it has 16
      * significant digits of precision.
      * </pre>
      *
      * <code>double double_value = 3;</code>
+     * @param float $var
      */
     public function setDoubleValue($var)
     {
@@ -115,6 +121,7 @@ class TypedValue extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string string_value = 4;</code>
+     * @return string
      */
     public function getStringValue()
     {
@@ -127,6 +134,7 @@ class TypedValue extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string string_value = 4;</code>
+     * @param string $var
      */
     public function setStringValue($var)
     {
@@ -142,6 +150,7 @@ class TypedValue extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.api.Distribution distribution_value = 5;</code>
+     * @return Google\Api\Distribution
      */
     public function getDistributionValue()
     {
@@ -154,6 +163,7 @@ class TypedValue extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.api.Distribution distribution_value = 5;</code>
+     * @param Google\Api\Distribution $var
      */
     public function setDistributionValue(&$var)
     {
@@ -163,6 +173,9 @@ class TypedValue extends \Google\Protobuf\Internal\Message
         return $this;
     }
 
+    /**
+     * @return string
+     */
     public function getValue()
     {
         return $this->whichOneof("value");

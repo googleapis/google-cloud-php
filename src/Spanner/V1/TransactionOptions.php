@@ -133,11 +133,11 @@ use Google\Protobuf\Internal\GPBUtil;
  * These timestamp bounds execute reads at a user-specified
  * timestamp. Reads at a timestamp are guaranteed to see a consistent
  * prefix of the global transaction history: they observe
- * modifications done by all transactions with a commit timestamp &lt;=
+ * modifications done by all transactions with a commit timestamp <=
  * the read timestamp, and observe none of the modifications done by
  * transactions with a larger commit timestamp. They will block until
  * all conflicting transactions that may be assigned commit timestamps
- * &lt;= the read timestamp have finished.
+ * <= the read timestamp have finished.
  * The timestamp can either be expressed as an absolute Cloud Spanner commit
  * timestamp or a staleness relative to the current time.
  * These modes do not require a "negotiation phase" to pick a
@@ -180,7 +180,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * too-old read timestamps fail with the error `FAILED_PRECONDITION`.
  * </pre>
  *
- * Protobuf type <code>google.spanner.v1.TransactionOptions</code>
+ * Protobuf type <code>Google\Spanner\V1\TransactionOptions</code>
  */
 class TransactionOptions extends \Google\Protobuf\Internal\Message
 {
@@ -200,6 +200,7 @@ class TransactionOptions extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.TransactionOptions.ReadWrite read_write = 1;</code>
+     * @return Google\Cloud\Spanner\V1\TransactionOptions_ReadWrite
      */
     public function getReadWrite()
     {
@@ -215,6 +216,7 @@ class TransactionOptions extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.TransactionOptions.ReadWrite read_write = 1;</code>
+     * @param Google\Cloud\Spanner\V1\TransactionOptions_ReadWrite $var
      */
     public function setReadWrite(&$var)
     {
@@ -233,6 +235,7 @@ class TransactionOptions extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.TransactionOptions.ReadOnly read_only = 2;</code>
+     * @return Google\Cloud\Spanner\V1\TransactionOptions_ReadOnly
      */
     public function getReadOnly()
     {
@@ -248,6 +251,7 @@ class TransactionOptions extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.TransactionOptions.ReadOnly read_only = 2;</code>
+     * @param Google\Cloud\Spanner\V1\TransactionOptions_ReadOnly $var
      */
     public function setReadOnly(&$var)
     {
@@ -257,6 +261,9 @@ class TransactionOptions extends \Google\Protobuf\Internal\Message
         return $this;
     }
 
+    /**
+     * @return string
+     */
     public function getMode()
     {
         return $this->whichOneof("mode");

@@ -17,7 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * for all other types of unsafe content.
  * </pre>
  *
- * Protobuf type <code>google.cloud.videointelligence.v1beta1.SafeSearchAnnotation</code>
+ * Protobuf type <code>Google\Cloud\Videointelligence\V1beta1\SafeSearchAnnotation</code>
  */
 class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
 {
@@ -82,6 +82,7 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.videointelligence.v1beta1.Likelihood adult = 1;</code>
+     * @return int
      */
     public function getAdult()
     {
@@ -94,6 +95,7 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.videointelligence.v1beta1.Likelihood adult = 1;</code>
+     * @param int $var
      */
     public function setAdult($var)
     {
@@ -110,6 +112,7 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.videointelligence.v1beta1.Likelihood spoof = 2;</code>
+     * @return int
      */
     public function getSpoof()
     {
@@ -123,6 +126,7 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.videointelligence.v1beta1.Likelihood spoof = 2;</code>
+     * @param int $var
      */
     public function setSpoof($var)
     {
@@ -138,6 +142,7 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.videointelligence.v1beta1.Likelihood medical = 3;</code>
+     * @return int
      */
     public function getMedical()
     {
@@ -150,6 +155,7 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.videointelligence.v1beta1.Likelihood medical = 3;</code>
+     * @param int $var
      */
     public function setMedical($var)
     {
@@ -165,6 +171,7 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.videointelligence.v1beta1.Likelihood violent = 4;</code>
+     * @return int
      */
     public function getViolent()
     {
@@ -177,6 +184,7 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.videointelligence.v1beta1.Likelihood violent = 4;</code>
+     * @param int $var
      */
     public function setViolent($var)
     {
@@ -192,6 +200,7 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.videointelligence.v1beta1.Likelihood racy = 5;</code>
+     * @return int
      */
     public function getRacy()
     {
@@ -204,6 +213,7 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.videointelligence.v1beta1.Likelihood racy = 5;</code>
+     * @param int $var
      */
     public function setRacy($var)
     {
@@ -219,6 +229,7 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int64 time_offset = 6;</code>
+     * @return int|string
      */
     public function getTimeOffset()
     {
@@ -231,6 +242,7 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int64 time_offset = 6;</code>
+     * @param int|string $var
      */
     public function setTimeOffset($var)
     {

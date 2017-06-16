@@ -9,7 +9,7 @@ namespace Google\Cloud\Language\V1beta2;
  * The type of the entity.
  * </pre>
  *
- * Protobuf enum <code>google.cloud.language.v1beta2.Entity.Type</code>
+ * Protobuf enum <code>Google\Cloud\Language\V1beta2\Entity\Type</code>
  */
 class Entity_Type
 {

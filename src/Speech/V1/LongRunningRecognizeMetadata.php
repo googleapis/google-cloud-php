@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * `GetOperation` call of the `google::longrunning::Operations` service.
  * </pre>
  *
- * Protobuf type <code>google.cloud.speech.v1.LongRunningRecognizeMetadata</code>
+ * Protobuf type <code>Google\Cloud\Speech\V1\LongRunningRecognizeMetadata</code>
  */
 class LongRunningRecognizeMetadata extends \Google\Protobuf\Internal\Message
 {
@@ -57,6 +57,7 @@ class LongRunningRecognizeMetadata extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 progress_percent = 1;</code>
+     * @return int
      */
     public function getProgressPercent()
     {
@@ -70,6 +71,7 @@ class LongRunningRecognizeMetadata extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 progress_percent = 1;</code>
+     * @param int $var
      */
     public function setProgressPercent($var)
     {
@@ -85,6 +87,7 @@ class LongRunningRecognizeMetadata extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp start_time = 2;</code>
+     * @return Google\Protobuf\Timestamp
      */
     public function getStartTime()
     {
@@ -97,6 +100,7 @@ class LongRunningRecognizeMetadata extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp start_time = 2;</code>
+     * @param Google\Protobuf\Timestamp $var
      */
     public function setStartTime(&$var)
     {
@@ -112,6 +116,7 @@ class LongRunningRecognizeMetadata extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp last_update_time = 3;</code>
+     * @return Google\Protobuf\Timestamp
      */
     public function getLastUpdateTime()
     {
@@ -124,6 +129,7 @@ class LongRunningRecognizeMetadata extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp last_update_time = 3;</code>
+     * @param Google\Protobuf\Timestamp $var
      */
     public function setLastUpdateTime(&$var)
     {

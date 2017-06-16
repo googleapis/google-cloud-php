@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Response to a batch image annotation request.
  * </pre>
  *
- * Protobuf type <code>google.cloud.vision.v1.BatchAnnotateImagesResponse</code>
+ * Protobuf type <code>Google\Cloud\Vision\V1\BatchAnnotateImagesResponse</code>
  */
 class BatchAnnotateImagesResponse extends \Google\Protobuf\Internal\Message
 {
@@ -37,6 +37,7 @@ class BatchAnnotateImagesResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.AnnotateImageResponse responses = 1;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getResponses()
     {
@@ -49,6 +50,7 @@ class BatchAnnotateImagesResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.vision.v1.AnnotateImageResponse responses = 1;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setResponses(&$var)
     {

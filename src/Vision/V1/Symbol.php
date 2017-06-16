@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * A single symbol representation.
  * </pre>
  *
- * Protobuf type <code>google.cloud.vision.v1.Symbol</code>
+ * Protobuf type <code>Google\Cloud\Vision\V1\Symbol</code>
  */
 class Symbol extends \Google\Protobuf\Internal\Message
 {
@@ -67,6 +67,7 @@ class Symbol extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
+     * @return Google\Cloud\Vision\V1\TextAnnotation_TextProperty
      */
     public function getProperty()
     {
@@ -79,6 +80,7 @@ class Symbol extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
+     * @param Google\Cloud\Vision\V1\TextAnnotation_TextProperty $var
      */
     public function setProperty(&$var)
     {
@@ -108,6 +110,7 @@ class Symbol extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.BoundingPoly bounding_box = 2;</code>
+     * @return Google\Cloud\Vision\V1\BoundingPoly
      */
     public function getBoundingBox()
     {
@@ -134,6 +137,7 @@ class Symbol extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.BoundingPoly bounding_box = 2;</code>
+     * @param Google\Cloud\Vision\V1\BoundingPoly $var
      */
     public function setBoundingBox(&$var)
     {
@@ -149,6 +153,7 @@ class Symbol extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string text = 3;</code>
+     * @return string
      */
     public function getText()
     {
@@ -161,6 +166,7 @@ class Symbol extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string text = 3;</code>
+     * @param string $var
      */
     public function setText($var)
     {

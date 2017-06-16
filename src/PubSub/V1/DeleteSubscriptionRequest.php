@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Request for the DeleteSubscription method.
  * </pre>
  *
- * Protobuf type <code>google.pubsub.v1.DeleteSubscriptionRequest</code>
+ * Protobuf type <code>Google\Pubsub\V1\DeleteSubscriptionRequest</code>
  */
 class DeleteSubscriptionRequest extends \Google\Protobuf\Internal\Message
 {
@@ -39,6 +39,7 @@ class DeleteSubscriptionRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string subscription = 1;</code>
+     * @return string
      */
     public function getSubscription()
     {
@@ -52,6 +53,7 @@ class DeleteSubscriptionRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string subscription = 1;</code>
+     * @param string $var
      */
     public function setSubscription($var)
     {

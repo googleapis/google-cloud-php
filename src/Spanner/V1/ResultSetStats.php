@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Additional statistics about a [ResultSet][google.spanner.v1.ResultSet] or [PartialResultSet][google.spanner.v1.PartialResultSet].
  * </pre>
  *
- * Protobuf type <code>google.spanner.v1.ResultSetStats</code>
+ * Protobuf type <code>Google\Spanner\V1\ResultSetStats</code>
  */
 class ResultSetStats extends \Google\Protobuf\Internal\Message
 {
@@ -52,6 +52,7 @@ class ResultSetStats extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.QueryPlan query_plan = 1;</code>
+     * @return Google\Cloud\Spanner\V1\QueryPlan
      */
     public function getQueryPlan()
     {
@@ -64,6 +65,7 @@ class ResultSetStats extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.QueryPlan query_plan = 1;</code>
+     * @param Google\Cloud\Spanner\V1\QueryPlan $var
      */
     public function setQueryPlan(&$var)
     {
@@ -86,6 +88,7 @@ class ResultSetStats extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Struct query_stats = 2;</code>
+     * @return Google\Protobuf\Struct
      */
     public function getQueryStats()
     {
@@ -105,6 +108,7 @@ class ResultSetStats extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Struct query_stats = 2;</code>
+     * @param Google\Protobuf\Struct $var
      */
     public function setQueryStats(&$var)
     {

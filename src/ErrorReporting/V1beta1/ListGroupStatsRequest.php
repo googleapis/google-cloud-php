@@ -13,17 +13,17 @@ use Google\Protobuf\Internal\GPBUtil;
  * Specifies a set of `ErrorGroupStats` to return.
  * </pre>
  *
- * Protobuf type <code>google.devtools.clouderrorreporting.v1beta1.ListGroupStatsRequest</code>
+ * Protobuf type <code>Google\Devtools\Clouderrorreporting\V1beta1\ListGroupStatsRequest</code>
  */
 class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * <pre>
      * [Required] The resource name of the Google Cloud Platform project. Written
-     * as &lt;code&gt;projects/&lt;/code&gt; plus the
-     * &lt;a href="https://support.google.com/cloud/answer/6158840"&gt;Google Cloud
-     * Platform project ID&lt;/a&gt;.
-     * Example: &lt;code&gt;projects/my-project-123&lt;/code&gt;.
+     * as <code>projects/</code> plus the
+     * <a href="https://support.google.com/cloud/answer/6158840">Google Cloud
+     * Platform project ID</a>.
+     * Example: <code>projects/my-project-123</code>.
      * </pre>
      *
      * <code>string project_name = 1;</code>
@@ -31,7 +31,7 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
     private $project_name = '';
     /**
      * <pre>
-     * [Optional] List all &lt;code&gt;ErrorGroupStats&lt;/code&gt; with these IDs.
+     * [Optional] List all <code>ErrorGroupStats</code> with these IDs.
      * </pre>
      *
      * <code>repeated string group_id = 2;</code>
@@ -39,7 +39,7 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
     private $group_id;
     /**
      * <pre>
-     * [Optional] List only &lt;code&gt;ErrorGroupStats&lt;/code&gt; which belong to a service
+     * [Optional] List only <code>ErrorGroupStats</code> which belong to a service
      * context that matches the filter.
      * Data for all service contexts is returned if this field is not specified.
      * </pre>
@@ -52,9 +52,9 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
      * [Optional] List data for the given time range.
      * If not set a default time range is used. The field time_range_begin
      * in the response will specify the beginning of this time range.
-     * Only &lt;code&gt;ErrorGroupStats&lt;/code&gt; with a non-zero count in the given time
+     * Only <code>ErrorGroupStats</code> with a non-zero count in the given time
      * range are returned, unless the request contains an explicit group_id list.
-     * If a group_id list is given, also &lt;code&gt;ErrorGroupStats&lt;/code&gt; with zero
+     * If a group_id list is given, also <code>ErrorGroupStats</code> with zero
      * occurrences are returned.
      * </pre>
      *
@@ -125,13 +125,14 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
     /**
      * <pre>
      * [Required] The resource name of the Google Cloud Platform project. Written
-     * as &lt;code&gt;projects/&lt;/code&gt; plus the
-     * &lt;a href="https://support.google.com/cloud/answer/6158840"&gt;Google Cloud
-     * Platform project ID&lt;/a&gt;.
-     * Example: &lt;code&gt;projects/my-project-123&lt;/code&gt;.
+     * as <code>projects/</code> plus the
+     * <a href="https://support.google.com/cloud/answer/6158840">Google Cloud
+     * Platform project ID</a>.
+     * Example: <code>projects/my-project-123</code>.
      * </pre>
      *
      * <code>string project_name = 1;</code>
+     * @return string
      */
     public function getProjectName()
     {
@@ -141,13 +142,14 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
     /**
      * <pre>
      * [Required] The resource name of the Google Cloud Platform project. Written
-     * as &lt;code&gt;projects/&lt;/code&gt; plus the
-     * &lt;a href="https://support.google.com/cloud/answer/6158840"&gt;Google Cloud
-     * Platform project ID&lt;/a&gt;.
-     * Example: &lt;code&gt;projects/my-project-123&lt;/code&gt;.
+     * as <code>projects/</code> plus the
+     * <a href="https://support.google.com/cloud/answer/6158840">Google Cloud
+     * Platform project ID</a>.
+     * Example: <code>projects/my-project-123</code>.
      * </pre>
      *
      * <code>string project_name = 1;</code>
+     * @param string $var
      */
     public function setProjectName($var)
     {
@@ -159,10 +161,11 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * <pre>
-     * [Optional] List all &lt;code&gt;ErrorGroupStats&lt;/code&gt; with these IDs.
+     * [Optional] List all <code>ErrorGroupStats</code> with these IDs.
      * </pre>
      *
      * <code>repeated string group_id = 2;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getGroupId()
     {
@@ -171,10 +174,11 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * <pre>
-     * [Optional] List all &lt;code&gt;ErrorGroupStats&lt;/code&gt; with these IDs.
+     * [Optional] List all <code>ErrorGroupStats</code> with these IDs.
      * </pre>
      *
      * <code>repeated string group_id = 2;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setGroupId(&$var)
     {
@@ -186,12 +190,13 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * <pre>
-     * [Optional] List only &lt;code&gt;ErrorGroupStats&lt;/code&gt; which belong to a service
+     * [Optional] List only <code>ErrorGroupStats</code> which belong to a service
      * context that matches the filter.
      * Data for all service contexts is returned if this field is not specified.
      * </pre>
      *
      * <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3;</code>
+     * @return Google\Cloud\ErrorReporting\V1beta1\ServiceContextFilter
      */
     public function getServiceFilter()
     {
@@ -200,12 +205,13 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * <pre>
-     * [Optional] List only &lt;code&gt;ErrorGroupStats&lt;/code&gt; which belong to a service
+     * [Optional] List only <code>ErrorGroupStats</code> which belong to a service
      * context that matches the filter.
      * Data for all service contexts is returned if this field is not specified.
      * </pre>
      *
      * <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3;</code>
+     * @param Google\Cloud\ErrorReporting\V1beta1\ServiceContextFilter $var
      */
     public function setServiceFilter(&$var)
     {
@@ -220,13 +226,14 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
      * [Optional] List data for the given time range.
      * If not set a default time range is used. The field time_range_begin
      * in the response will specify the beginning of this time range.
-     * Only &lt;code&gt;ErrorGroupStats&lt;/code&gt; with a non-zero count in the given time
+     * Only <code>ErrorGroupStats</code> with a non-zero count in the given time
      * range are returned, unless the request contains an explicit group_id list.
-     * If a group_id list is given, also &lt;code&gt;ErrorGroupStats&lt;/code&gt; with zero
+     * If a group_id list is given, also <code>ErrorGroupStats</code> with zero
      * occurrences are returned.
      * </pre>
      *
      * <code>.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 5;</code>
+     * @return Google\Cloud\ErrorReporting\V1beta1\QueryTimeRange
      */
     public function getTimeRange()
     {
@@ -238,13 +245,14 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
      * [Optional] List data for the given time range.
      * If not set a default time range is used. The field time_range_begin
      * in the response will specify the beginning of this time range.
-     * Only &lt;code&gt;ErrorGroupStats&lt;/code&gt; with a non-zero count in the given time
+     * Only <code>ErrorGroupStats</code> with a non-zero count in the given time
      * range are returned, unless the request contains an explicit group_id list.
-     * If a group_id list is given, also &lt;code&gt;ErrorGroupStats&lt;/code&gt; with zero
+     * If a group_id list is given, also <code>ErrorGroupStats</code> with zero
      * occurrences are returned.
      * </pre>
      *
      * <code>.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 5;</code>
+     * @param Google\Cloud\ErrorReporting\V1beta1\QueryTimeRange $var
      */
     public function setTimeRange(&$var)
     {
@@ -261,6 +269,7 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Duration timed_count_duration = 6;</code>
+     * @return Google\Protobuf\Duration
      */
     public function getTimedCountDuration()
     {
@@ -274,6 +283,7 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Duration timed_count_duration = 6;</code>
+     * @param Google\Protobuf\Duration $var
      */
     public function setTimedCountDuration(&$var)
     {
@@ -290,6 +300,7 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.devtools.clouderrorreporting.v1beta1.TimedCountAlignment alignment = 7;</code>
+     * @return int
      */
     public function getAlignment()
     {
@@ -303,6 +314,7 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.devtools.clouderrorreporting.v1beta1.TimedCountAlignment alignment = 7;</code>
+     * @param int $var
      */
     public function setAlignment($var)
     {
@@ -319,6 +331,7 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp alignment_time = 8;</code>
+     * @return Google\Protobuf\Timestamp
      */
     public function getAlignmentTime()
     {
@@ -332,6 +345,7 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp alignment_time = 8;</code>
+     * @param Google\Protobuf\Timestamp $var
      */
     public function setAlignmentTime(&$var)
     {
@@ -348,6 +362,7 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroupOrder order = 9;</code>
+     * @return int
      */
     public function getOrder()
     {
@@ -361,6 +376,7 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroupOrder order = 9;</code>
+     * @param int $var
      */
     public function setOrder($var)
     {
@@ -377,6 +393,7 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 page_size = 11;</code>
+     * @return int
      */
     public function getPageSize()
     {
@@ -390,6 +407,7 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 page_size = 11;</code>
+     * @param int $var
      */
     public function setPageSize($var)
     {
@@ -407,6 +425,7 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string page_token = 12;</code>
+     * @return string
      */
     public function getPageToken()
     {
@@ -421,6 +440,7 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string page_token = 12;</code>
+     * @param string $var
      */
     public function setPageToken($var)
     {

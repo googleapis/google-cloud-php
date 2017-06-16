@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Client image to perform Google Cloud Vision API tasks over.
  * </pre>
  *
- * Protobuf type <code>google.cloud.vision.v1.Image</code>
+ * Protobuf type <code>Google\Cloud\Vision\V1\Image</code>
  */
 class Image extends \Google\Protobuf\Internal\Message
 {
@@ -51,6 +51,7 @@ class Image extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>bytes content = 1;</code>
+     * @return string
      */
     public function getContent()
     {
@@ -65,6 +66,7 @@ class Image extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>bytes content = 1;</code>
+     * @param string $var
      */
     public function setContent($var)
     {
@@ -82,6 +84,7 @@ class Image extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.ImageSource source = 2;</code>
+     * @return Google\Cloud\Vision\V1\ImageSource
      */
     public function getSource()
     {
@@ -96,6 +99,7 @@ class Image extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.ImageSource source = 2;</code>
+     * @param Google\Cloud\Vision\V1\ImageSource $var
      */
     public function setSource(&$var)
     {

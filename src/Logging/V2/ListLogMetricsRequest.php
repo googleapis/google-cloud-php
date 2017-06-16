@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * The parameters to ListLogMetrics.
  * </pre>
  *
- * Protobuf type <code>google.logging.v2.ListLogMetricsRequest</code>
+ * Protobuf type <code>Google\Logging\V2\ListLogMetricsRequest</code>
  */
 class ListLogMetricsRequest extends \Google\Protobuf\Internal\Message
 {
@@ -60,6 +60,7 @@ class ListLogMetricsRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string parent = 1;</code>
+     * @return string
      */
     public function getParent()
     {
@@ -73,6 +74,7 @@ class ListLogMetricsRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string parent = 1;</code>
+     * @param string $var
      */
     public function setParent($var)
     {
@@ -91,6 +93,7 @@ class ListLogMetricsRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string page_token = 2;</code>
+     * @return string
      */
     public function getPageToken()
     {
@@ -106,6 +109,7 @@ class ListLogMetricsRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string page_token = 2;</code>
+     * @param string $var
      */
     public function setPageToken($var)
     {
@@ -123,6 +127,7 @@ class ListLogMetricsRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 page_size = 3;</code>
+     * @return int
      */
     public function getPageSize()
     {
@@ -137,6 +142,7 @@ class ListLogMetricsRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 page_size = 3;</code>
+     * @param int $var
      */
     public function setPageSize($var)
     {

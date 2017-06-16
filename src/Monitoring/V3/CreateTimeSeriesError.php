@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Describes the result of a failed request to write data to a time series.
  * </pre>
  *
- * Protobuf type <code>google.monitoring.v3.CreateTimeSeriesError</code>
+ * Protobuf type <code>Google\Monitoring\V3\CreateTimeSeriesError</code>
  */
 class CreateTimeSeriesError extends \Google\Protobuf\Internal\Message
 {
@@ -51,6 +51,7 @@ class CreateTimeSeriesError extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.monitoring.v3.TimeSeries time_series = 1;</code>
+     * @return Google\Cloud\Monitoring\V3\TimeSeries
      */
     public function getTimeSeries()
     {
@@ -66,6 +67,7 @@ class CreateTimeSeriesError extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.monitoring.v3.TimeSeries time_series = 1;</code>
+     * @param Google\Cloud\Monitoring\V3\TimeSeries $var
      */
     public function setTimeSeries(&$var)
     {
@@ -81,6 +83,7 @@ class CreateTimeSeriesError extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.rpc.Status status = 2;</code>
+     * @return Google\Rpc\Status
      */
     public function getStatus()
     {
@@ -93,6 +96,7 @@ class CreateTimeSeriesError extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.rpc.Status status = 2;</code>
+     * @param Google\Rpc\Status $var
      */
     public function setStatus(&$var)
     {

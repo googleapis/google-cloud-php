@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * An isolated set of Cloud Spanner resources on which databases can be hosted.
  * </pre>
  *
- * Protobuf type <code>google.spanner.admin.instance.v1.Instance</code>
+ * Protobuf type <code>Google\Spanner\Admin\Instance\V1\Instance</code>
  */
 class Instance extends \Google\Protobuf\Internal\Message
 {
@@ -21,7 +21,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * <pre>
      * Required. A unique identifier for the instance, which cannot be changed
      * after the instance is created. Values are of the form
-     * `projects/&lt;project&gt;/instances/[a-z][-a-z0-9]*[a-z0-9]`. The final
+     * `projects/<project>/instances/[a-z][-a-z0-9]*[a-z0-9]`. The final
      * segment of the name must be between 6 and 30 characters in length.
      * </pre>
      *
@@ -31,7 +31,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     /**
      * <pre>
      * Required. The name of the instance's configuration. Values are of the form
-     * `projects/&lt;project&gt;/instanceConfigs/&lt;configuration&gt;`. See
+     * `projects/<project>/instanceConfigs/<configuration>`. See
      * also [InstanceConfig][google.spanner.admin.instance.v1.InstanceConfig] and
      * [ListInstanceConfigs][google.spanner.admin.instance.v1.InstanceAdmin.ListInstanceConfigs].
      * </pre>
@@ -90,7 +90,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * allow "_" in a future release.
      * </pre>
      *
-     * <code>map&lt;string, string&gt; labels = 7;</code>
+     * <code>map<string, string> labels = 7;</code>
      */
     private $labels;
 
@@ -103,11 +103,12 @@ class Instance extends \Google\Protobuf\Internal\Message
      * <pre>
      * Required. A unique identifier for the instance, which cannot be changed
      * after the instance is created. Values are of the form
-     * `projects/&lt;project&gt;/instances/[a-z][-a-z0-9]*[a-z0-9]`. The final
+     * `projects/<project>/instances/[a-z][-a-z0-9]*[a-z0-9]`. The final
      * segment of the name must be between 6 and 30 characters in length.
      * </pre>
      *
      * <code>string name = 1;</code>
+     * @return string
      */
     public function getName()
     {
@@ -118,11 +119,12 @@ class Instance extends \Google\Protobuf\Internal\Message
      * <pre>
      * Required. A unique identifier for the instance, which cannot be changed
      * after the instance is created. Values are of the form
-     * `projects/&lt;project&gt;/instances/[a-z][-a-z0-9]*[a-z0-9]`. The final
+     * `projects/<project>/instances/[a-z][-a-z0-9]*[a-z0-9]`. The final
      * segment of the name must be between 6 and 30 characters in length.
      * </pre>
      *
      * <code>string name = 1;</code>
+     * @param string $var
      */
     public function setName($var)
     {
@@ -135,12 +137,13 @@ class Instance extends \Google\Protobuf\Internal\Message
     /**
      * <pre>
      * Required. The name of the instance's configuration. Values are of the form
-     * `projects/&lt;project&gt;/instanceConfigs/&lt;configuration&gt;`. See
+     * `projects/<project>/instanceConfigs/<configuration>`. See
      * also [InstanceConfig][google.spanner.admin.instance.v1.InstanceConfig] and
      * [ListInstanceConfigs][google.spanner.admin.instance.v1.InstanceAdmin.ListInstanceConfigs].
      * </pre>
      *
      * <code>string config = 2;</code>
+     * @return string
      */
     public function getConfig()
     {
@@ -150,12 +153,13 @@ class Instance extends \Google\Protobuf\Internal\Message
     /**
      * <pre>
      * Required. The name of the instance's configuration. Values are of the form
-     * `projects/&lt;project&gt;/instanceConfigs/&lt;configuration&gt;`. See
+     * `projects/<project>/instanceConfigs/<configuration>`. See
      * also [InstanceConfig][google.spanner.admin.instance.v1.InstanceConfig] and
      * [ListInstanceConfigs][google.spanner.admin.instance.v1.InstanceAdmin.ListInstanceConfigs].
      * </pre>
      *
      * <code>string config = 2;</code>
+     * @param string $var
      */
     public function setConfig($var)
     {
@@ -172,6 +176,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string display_name = 3;</code>
+     * @return string
      */
     public function getDisplayName()
     {
@@ -185,6 +190,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string display_name = 3;</code>
+     * @param string $var
      */
     public function setDisplayName($var)
     {
@@ -200,6 +206,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 node_count = 5;</code>
+     * @return int
      */
     public function getNodeCount()
     {
@@ -212,6 +219,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 node_count = 5;</code>
+     * @param int $var
      */
     public function setNodeCount($var)
     {
@@ -231,6 +239,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.admin.instance.v1.Instance.State state = 6;</code>
+     * @return int
      */
     public function getState()
     {
@@ -247,6 +256,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.admin.instance.v1.Instance.State state = 6;</code>
+     * @param int $var
      */
     public function setState($var)
     {
@@ -278,7 +288,8 @@ class Instance extends \Google\Protobuf\Internal\Message
      * allow "_" in a future release.
      * </pre>
      *
-     * <code>map&lt;string, string&gt; labels = 7;</code>
+     * <code>map<string, string> labels = 7;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getLabels()
     {
@@ -307,7 +318,8 @@ class Instance extends \Google\Protobuf\Internal\Message
      * allow "_" in a future release.
      * </pre>
      *
-     * <code>map&lt;string, string&gt; labels = 7;</code>
+     * <code>map<string, string> labels = 7;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setLabels(&$var)
     {

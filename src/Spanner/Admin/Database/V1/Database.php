@@ -13,15 +13,15 @@ use Google\Protobuf\Internal\GPBUtil;
  * A Cloud Spanner database.
  * </pre>
  *
- * Protobuf type <code>google.spanner.admin.database.v1.Database</code>
+ * Protobuf type <code>Google\Spanner\Admin\Database\V1\Database</code>
  */
 class Database extends \Google\Protobuf\Internal\Message
 {
     /**
      * <pre>
      * Required. The name of the database. Values are of the form
-     * `projects/&lt;project&gt;/instances/&lt;instance&gt;/databases/&lt;database&gt;`,
-     * where `&lt;database&gt;` is as specified in the `CREATE DATABASE`
+     * `projects/<project>/instances/<instance>/databases/<database>`,
+     * where `<database>` is as specified in the `CREATE DATABASE`
      * statement. This name can be passed to other API methods to
      * identify the database.
      * </pre>
@@ -46,13 +46,14 @@ class Database extends \Google\Protobuf\Internal\Message
     /**
      * <pre>
      * Required. The name of the database. Values are of the form
-     * `projects/&lt;project&gt;/instances/&lt;instance&gt;/databases/&lt;database&gt;`,
-     * where `&lt;database&gt;` is as specified in the `CREATE DATABASE`
+     * `projects/<project>/instances/<instance>/databases/<database>`,
+     * where `<database>` is as specified in the `CREATE DATABASE`
      * statement. This name can be passed to other API methods to
      * identify the database.
      * </pre>
      *
      * <code>string name = 1;</code>
+     * @return string
      */
     public function getName()
     {
@@ -62,13 +63,14 @@ class Database extends \Google\Protobuf\Internal\Message
     /**
      * <pre>
      * Required. The name of the database. Values are of the form
-     * `projects/&lt;project&gt;/instances/&lt;instance&gt;/databases/&lt;database&gt;`,
-     * where `&lt;database&gt;` is as specified in the `CREATE DATABASE`
+     * `projects/<project>/instances/<instance>/databases/<database>`,
+     * where `<database>` is as specified in the `CREATE DATABASE`
      * statement. This name can be passed to other API methods to
      * identify the database.
      * </pre>
      *
      * <code>string name = 1;</code>
+     * @param string $var
      */
     public function setName($var)
     {
@@ -84,6 +86,7 @@ class Database extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.admin.database.v1.Database.State state = 2;</code>
+     * @return int
      */
     public function getState()
     {
@@ -96,6 +99,7 @@ class Database extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.admin.database.v1.Database.State state = 2;</code>
+     * @param int $var
      */
     public function setState($var)
     {

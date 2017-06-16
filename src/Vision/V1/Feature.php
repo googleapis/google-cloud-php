@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * vertical to operate on and the number of top-scoring results to return.
  * </pre>
  *
- * Protobuf type <code>google.cloud.vision.v1.Feature</code>
+ * Protobuf type <code>Google\Cloud\Vision\V1\Feature</code>
  */
 class Feature extends \Google\Protobuf\Internal\Message
 {
@@ -48,6 +48,7 @@ class Feature extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.Feature.Type type = 1;</code>
+     * @return int
      */
     public function getType()
     {
@@ -60,6 +61,7 @@ class Feature extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.Feature.Type type = 1;</code>
+     * @param int $var
      */
     public function setType($var)
     {
@@ -75,6 +77,7 @@ class Feature extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 max_results = 2;</code>
+     * @return int
      */
     public function getMaxResults()
     {
@@ -87,6 +90,7 @@ class Feature extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 max_results = 2;</code>
+     * @param int $var
      */
     public function setMaxResults($var)
     {

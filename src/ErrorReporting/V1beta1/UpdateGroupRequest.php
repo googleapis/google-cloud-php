@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * A request to replace the existing data for the given group.
  * </pre>
  *
- * Protobuf type <code>google.devtools.clouderrorreporting.v1beta1.UpdateGroupRequest</code>
+ * Protobuf type <code>Google\Devtools\Clouderrorreporting\V1beta1\UpdateGroupRequest</code>
  */
 class UpdateGroupRequest extends \Google\Protobuf\Internal\Message
 {
@@ -37,6 +37,7 @@ class UpdateGroupRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
+     * @return Google\Cloud\ErrorReporting\V1beta1\ErrorGroup
      */
     public function getGroup()
     {
@@ -49,6 +50,7 @@ class UpdateGroupRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
+     * @param Google\Cloud\ErrorReporting\V1beta1\ErrorGroup $var
      */
     public function setGroup(&$var)
     {

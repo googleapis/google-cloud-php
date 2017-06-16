@@ -17,7 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * account, or folder.
  * </pre>
  *
- * Protobuf type <code>google.logging.v2.LogSink</code>
+ * Protobuf type <code>Google\Logging\V2\LogSink</code>
  */
 class LogSink extends \Google\Protobuf\Internal\Message
 {
@@ -55,7 +55,7 @@ class LogSink extends \Google\Protobuf\Internal\Message
      * exported log entries are those that are in the resource owning the sink and
      * that match the filter. The filter must use the log entry format specified
      * by the `output_version_format` parameter.  For example, in the v2 format:
-     *     logName="projects/[PROJECT_ID]/logs/[LOG_ID]" AND severity&gt;=ERROR
+     *     logName="projects/[PROJECT_ID]/logs/[LOG_ID]" AND severity>=ERROR
      * </pre>
      *
      * <code>string filter = 5;</code>
@@ -75,7 +75,7 @@ class LogSink extends \Google\Protobuf\Internal\Message
     private $output_version_format = 0;
     /**
      * <pre>
-     * Output only. An IAM identity&amp;mdash;a service account or group&amp;mdash;under
+     * Output only. An IAM identity&mdash;a service account or group&mdash;under
      * which Stackdriver Logging writes the exported log entries to the sink's
      * destination.  This field is set by
      * [sinks.create](/logging/docs/api/reference/rest/v2/projects.sinks/create)
@@ -151,6 +151,7 @@ class LogSink extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string name = 1;</code>
+     * @return string
      */
     public function getName()
     {
@@ -167,6 +168,7 @@ class LogSink extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string name = 1;</code>
+     * @param string $var
      */
     public function setName($var)
     {
@@ -189,6 +191,7 @@ class LogSink extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string destination = 3;</code>
+     * @return string
      */
     public function getDestination()
     {
@@ -208,6 +211,7 @@ class LogSink extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string destination = 3;</code>
+     * @param string $var
      */
     public function setDestination($var)
     {
@@ -224,10 +228,11 @@ class LogSink extends \Google\Protobuf\Internal\Message
      * exported log entries are those that are in the resource owning the sink and
      * that match the filter. The filter must use the log entry format specified
      * by the `output_version_format` parameter.  For example, in the v2 format:
-     *     logName="projects/[PROJECT_ID]/logs/[LOG_ID]" AND severity&gt;=ERROR
+     *     logName="projects/[PROJECT_ID]/logs/[LOG_ID]" AND severity>=ERROR
      * </pre>
      *
      * <code>string filter = 5;</code>
+     * @return string
      */
     public function getFilter()
     {
@@ -241,10 +246,11 @@ class LogSink extends \Google\Protobuf\Internal\Message
      * exported log entries are those that are in the resource owning the sink and
      * that match the filter. The filter must use the log entry format specified
      * by the `output_version_format` parameter.  For example, in the v2 format:
-     *     logName="projects/[PROJECT_ID]/logs/[LOG_ID]" AND severity&gt;=ERROR
+     *     logName="projects/[PROJECT_ID]/logs/[LOG_ID]" AND severity>=ERROR
      * </pre>
      *
      * <code>string filter = 5;</code>
+     * @param string $var
      */
     public function setFilter($var)
     {
@@ -264,6 +270,7 @@ class LogSink extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.logging.v2.LogSink.VersionFormat output_version_format = 6;</code>
+     * @return int
      */
     public function getOutputVersionFormat()
     {
@@ -280,6 +287,7 @@ class LogSink extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.logging.v2.LogSink.VersionFormat output_version_format = 6;</code>
+     * @param int $var
      */
     public function setOutputVersionFormat($var)
     {
@@ -291,7 +299,7 @@ class LogSink extends \Google\Protobuf\Internal\Message
 
     /**
      * <pre>
-     * Output only. An IAM identity&amp;mdash;a service account or group&amp;mdash;under
+     * Output only. An IAM identity&mdash;a service account or group&mdash;under
      * which Stackdriver Logging writes the exported log entries to the sink's
      * destination.  This field is set by
      * [sinks.create](/logging/docs/api/reference/rest/v2/projects.sinks/create)
@@ -307,6 +315,7 @@ class LogSink extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string writer_identity = 8;</code>
+     * @return string
      */
     public function getWriterIdentity()
     {
@@ -315,7 +324,7 @@ class LogSink extends \Google\Protobuf\Internal\Message
 
     /**
      * <pre>
-     * Output only. An IAM identity&amp;mdash;a service account or group&amp;mdash;under
+     * Output only. An IAM identity&mdash;a service account or group&mdash;under
      * which Stackdriver Logging writes the exported log entries to the sink's
      * destination.  This field is set by
      * [sinks.create](/logging/docs/api/reference/rest/v2/projects.sinks/create)
@@ -331,6 +340,7 @@ class LogSink extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string writer_identity = 8;</code>
+     * @param string $var
      */
     public function setWriterIdentity($var)
     {
@@ -357,6 +367,7 @@ class LogSink extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>bool include_children = 9;</code>
+     * @return bool
      */
     public function getIncludeChildren()
     {
@@ -380,6 +391,7 @@ class LogSink extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>bool include_children = 9;</code>
+     * @param bool $var
      */
     public function setIncludeChildren($var)
     {
@@ -398,6 +410,7 @@ class LogSink extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp start_time = 10;</code>
+     * @return Google\Protobuf\Timestamp
      */
     public function getStartTime()
     {
@@ -413,6 +426,7 @@ class LogSink extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp start_time = 10;</code>
+     * @param Google\Protobuf\Timestamp $var
      */
     public function setStartTime(&$var)
     {
@@ -432,6 +446,7 @@ class LogSink extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp end_time = 11;</code>
+     * @return Google\Protobuf\Timestamp
      */
     public function getEndTime()
     {
@@ -448,6 +463,7 @@ class LogSink extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp end_time = 11;</code>
+     * @param Google\Protobuf\Timestamp $var
      */
     public function setEndTime(&$var)
     {

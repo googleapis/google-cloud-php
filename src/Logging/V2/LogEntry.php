@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * An individual entry in a log.
  * </pre>
  *
- * Protobuf type <code>google.logging.v2.LogEntry</code>
+ * Protobuf type <code>Google\Logging\V2\LogEntry</code>
  */
 class LogEntry extends \Google\Protobuf\Internal\Message
 {
@@ -107,7 +107,7 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * information about the log entry.
      * </pre>
      *
-     * <code>map&lt;string, string&gt; labels = 11;</code>
+     * <code>map<string, string> labels = 11;</code>
      */
     private $labels;
     /**
@@ -166,6 +166,7 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string log_name = 12;</code>
+     * @return string
      */
     public function getLogName()
     {
@@ -192,6 +193,7 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string log_name = 12;</code>
+     * @param string $var
      */
     public function setLogName($var)
     {
@@ -210,6 +212,7 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.api.MonitoredResource resource = 8;</code>
+     * @return Google\Api\MonitoredResource
      */
     public function getResource()
     {
@@ -225,6 +228,7 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.api.MonitoredResource resource = 8;</code>
+     * @param Google\Api\MonitoredResource $var
      */
     public function setResource(&$var)
     {
@@ -242,6 +246,7 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Any proto_payload = 2;</code>
+     * @return Google\Protobuf\Any
      */
     public function getProtoPayload()
     {
@@ -256,6 +261,7 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Any proto_payload = 2;</code>
+     * @param Google\Protobuf\Any $var
      */
     public function setProtoPayload(&$var)
     {
@@ -271,6 +277,7 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string text_payload = 3;</code>
+     * @return string
      */
     public function getTextPayload()
     {
@@ -283,6 +290,7 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string text_payload = 3;</code>
+     * @param string $var
      */
     public function setTextPayload($var)
     {
@@ -299,6 +307,7 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Struct json_payload = 6;</code>
+     * @return Google\Protobuf\Struct
      */
     public function getJsonPayload()
     {
@@ -312,6 +321,7 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Struct json_payload = 6;</code>
+     * @param Google\Protobuf\Struct $var
      */
     public function setJsonPayload(&$var)
     {
@@ -331,6 +341,7 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp timestamp = 9;</code>
+     * @return Google\Protobuf\Timestamp
      */
     public function getTimestamp()
     {
@@ -347,6 +358,7 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp timestamp = 9;</code>
+     * @param Google\Protobuf\Timestamp $var
      */
     public function setTimestamp(&$var)
     {
@@ -362,6 +374,7 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp receive_timestamp = 24;</code>
+     * @return Google\Protobuf\Timestamp
      */
     public function getReceiveTimestamp()
     {
@@ -374,6 +387,7 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp receive_timestamp = 24;</code>
+     * @param Google\Protobuf\Timestamp $var
      */
     public function setReceiveTimestamp(&$var)
     {
@@ -390,6 +404,7 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.logging.type.LogSeverity severity = 10;</code>
+     * @return int
      */
     public function getSeverity()
     {
@@ -403,6 +418,7 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.logging.type.LogSeverity severity = 10;</code>
+     * @param int $var
      */
     public function setSeverity($var)
     {
@@ -423,6 +439,7 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string insert_id = 4;</code>
+     * @return string
      */
     public function getInsertId()
     {
@@ -440,6 +457,7 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string insert_id = 4;</code>
+     * @param string $var
      */
     public function setInsertId($var)
     {
@@ -456,6 +474,7 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.logging.type.HttpRequest http_request = 7;</code>
+     * @return Google\Cloud\Logging\Type\HttpRequest
      */
     public function getHttpRequest()
     {
@@ -469,6 +488,7 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.logging.type.HttpRequest http_request = 7;</code>
+     * @param Google\Cloud\Logging\Type\HttpRequest $var
      */
     public function setHttpRequest(&$var)
     {
@@ -484,7 +504,8 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * information about the log entry.
      * </pre>
      *
-     * <code>map&lt;string, string&gt; labels = 11;</code>
+     * <code>map<string, string> labels = 11;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getLabels()
     {
@@ -497,7 +518,8 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * information about the log entry.
      * </pre>
      *
-     * <code>map&lt;string, string&gt; labels = 11;</code>
+     * <code>map<string, string> labels = 11;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setLabels(&$var)
     {
@@ -514,6 +536,7 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.logging.v2.LogEntryOperation operation = 15;</code>
+     * @return Google\Cloud\Logging\V2\LogEntryOperation
      */
     public function getOperation()
     {
@@ -527,6 +550,7 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.logging.v2.LogEntryOperation operation = 15;</code>
+     * @param Google\Cloud\Logging\V2\LogEntryOperation $var
      */
     public function setOperation(&$var)
     {
@@ -545,6 +569,7 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string trace = 22;</code>
+     * @return string
      */
     public function getTrace()
     {
@@ -560,6 +585,7 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string trace = 22;</code>
+     * @param string $var
      */
     public function setTrace($var)
     {
@@ -576,6 +602,7 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.logging.v2.LogEntrySourceLocation source_location = 23;</code>
+     * @return Google\Cloud\Logging\V2\LogEntrySourceLocation
      */
     public function getSourceLocation()
     {
@@ -589,6 +616,7 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.logging.v2.LogEntrySourceLocation source_location = 23;</code>
+     * @param Google\Cloud\Logging\V2\LogEntrySourceLocation $var
      */
     public function setSourceLocation(&$var)
     {
@@ -598,6 +626,9 @@ class LogEntry extends \Google\Protobuf\Internal\Message
         return $this;
     }
 
+    /**
+     * @return string
+     */
     public function getPayload()
     {
         return $this->whichOneof("payload");

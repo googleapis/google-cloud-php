@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Configuration for a push delivery endpoint.
  * </pre>
  *
- * Protobuf type <code>google.pubsub.v1.PushConfig</code>
+ * Protobuf type <code>Google\Pubsub\V1\PushConfig</code>
  */
 class PushConfig extends \Google\Protobuf\Internal\Message
 {
@@ -46,7 +46,7 @@ class PushConfig extends \Google\Protobuf\Internal\Message
      * * `v1` or `v1beta2`: uses the push format defined in the v1 Pub/Sub API.
      * </pre>
      *
-     * <code>map&lt;string, string&gt; attributes = 2;</code>
+     * <code>map<string, string> attributes = 2;</code>
      */
     private $attributes;
 
@@ -62,6 +62,7 @@ class PushConfig extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string push_endpoint = 1;</code>
+     * @return string
      */
     public function getPushEndpoint()
     {
@@ -75,6 +76,7 @@ class PushConfig extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string push_endpoint = 1;</code>
+     * @param string $var
      */
     public function setPushEndpoint($var)
     {
@@ -104,7 +106,8 @@ class PushConfig extends \Google\Protobuf\Internal\Message
      * * `v1` or `v1beta2`: uses the push format defined in the v1 Pub/Sub API.
      * </pre>
      *
-     * <code>map&lt;string, string&gt; attributes = 2;</code>
+     * <code>map<string, string> attributes = 2;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getAttributes()
     {
@@ -131,7 +134,8 @@ class PushConfig extends \Google\Protobuf\Internal\Message
      * * `v1` or `v1beta2`: uses the push format defined in the v1 Pub/Sub API.
      * </pre>
      *
-     * <code>map&lt;string, string&gt; attributes = 2;</code>
+     * <code>map<string, string> attributes = 2;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setAttributes(&$var)
     {

@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * such as a given time period and/or service filter.
  * </pre>
  *
- * Protobuf type <code>google.devtools.clouderrorreporting.v1beta1.ErrorGroupStats</code>
+ * Protobuf type <code>Google\Devtools\Clouderrorreporting\V1beta1\ErrorGroupStats</code>
  */
 class ErrorGroupStats extends \Google\Protobuf\Internal\Message
 {
@@ -129,6 +129,7 @@ class ErrorGroupStats extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
+     * @return Google\Cloud\ErrorReporting\V1beta1\ErrorGroup
      */
     public function getGroup()
     {
@@ -141,6 +142,7 @@ class ErrorGroupStats extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
+     * @param Google\Cloud\ErrorReporting\V1beta1\ErrorGroup $var
      */
     public function setGroup(&$var)
     {
@@ -157,6 +159,7 @@ class ErrorGroupStats extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int64 count = 2;</code>
+     * @return int|string
      */
     public function getCount()
     {
@@ -170,6 +173,7 @@ class ErrorGroupStats extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int64 count = 2;</code>
+     * @param int|string $var
      */
     public function setCount($var)
     {
@@ -196,6 +200,7 @@ class ErrorGroupStats extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int64 affected_users_count = 3;</code>
+     * @return int|string
      */
     public function getAffectedUsersCount()
     {
@@ -219,6 +224,7 @@ class ErrorGroupStats extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int64 affected_users_count = 3;</code>
+     * @param int|string $var
      */
     public function setAffectedUsersCount($var)
     {
@@ -238,6 +244,7 @@ class ErrorGroupStats extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.devtools.clouderrorreporting.v1beta1.TimedCount timed_counts = 4;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getTimedCounts()
     {
@@ -254,6 +261,7 @@ class ErrorGroupStats extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.devtools.clouderrorreporting.v1beta1.TimedCount timed_counts = 4;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setTimedCounts(&$var)
     {
@@ -271,6 +279,7 @@ class ErrorGroupStats extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp first_seen_time = 5;</code>
+     * @return Google\Protobuf\Timestamp
      */
     public function getFirstSeenTime()
     {
@@ -285,6 +294,7 @@ class ErrorGroupStats extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp first_seen_time = 5;</code>
+     * @param Google\Protobuf\Timestamp $var
      */
     public function setFirstSeenTime(&$var)
     {
@@ -302,6 +312,7 @@ class ErrorGroupStats extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp last_seen_time = 6;</code>
+     * @return Google\Protobuf\Timestamp
      */
     public function getLastSeenTime()
     {
@@ -316,6 +327,7 @@ class ErrorGroupStats extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp last_seen_time = 6;</code>
+     * @param Google\Protobuf\Timestamp $var
      */
     public function setLastSeenTime(&$var)
     {
@@ -333,6 +345,7 @@ class ErrorGroupStats extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.devtools.clouderrorreporting.v1beta1.ServiceContext affected_services = 7;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getAffectedServices()
     {
@@ -347,6 +360,7 @@ class ErrorGroupStats extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.devtools.clouderrorreporting.v1beta1.ServiceContext affected_services = 7;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setAffectedServices(&$var)
     {
@@ -363,6 +377,7 @@ class ErrorGroupStats extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 num_affected_services = 8;</code>
+     * @return int
      */
     public function getNumAffectedServices()
     {
@@ -376,6 +391,7 @@ class ErrorGroupStats extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 num_affected_services = 8;</code>
+     * @param int $var
      */
     public function setNumAffectedServices($var)
     {
@@ -395,6 +411,7 @@ class ErrorGroupStats extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorEvent representative = 9;</code>
+     * @return Google\Cloud\ErrorReporting\V1beta1\ErrorEvent
      */
     public function getRepresentative()
     {
@@ -411,6 +428,7 @@ class ErrorGroupStats extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorEvent representative = 9;</code>
+     * @param Google\Cloud\ErrorReporting\V1beta1\ErrorEvent $var
      */
     public function setRepresentative(&$var)
     {

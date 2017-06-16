@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Options for read-only transactions.
  * </pre>
  *
- * Protobuf type <code>google.spanner.v1.TransactionOptions.ReadOnly</code>
+ * Protobuf type <code>Google\Spanner\V1\TransactionOptions\ReadOnly</code>
  */
 class TransactionOptions_ReadOnly extends \Google\Protobuf\Internal\Message
 {
@@ -40,6 +40,7 @@ class TransactionOptions_ReadOnly extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>bool strong = 1;</code>
+     * @return bool
      */
     public function getStrong()
     {
@@ -53,6 +54,7 @@ class TransactionOptions_ReadOnly extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>bool strong = 1;</code>
+     * @param bool $var
      */
     public function setStrong($var)
     {
@@ -64,7 +66,7 @@ class TransactionOptions_ReadOnly extends \Google\Protobuf\Internal\Message
 
     /**
      * <pre>
-     * Executes all reads at a timestamp &gt;= `min_read_timestamp`.
+     * Executes all reads at a timestamp >= `min_read_timestamp`.
      * This is useful for requesting fresher data than some previous
      * read, or data that is fresh enough to observe the effects of some
      * previously committed transaction whose timestamp is known.
@@ -72,6 +74,7 @@ class TransactionOptions_ReadOnly extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp min_read_timestamp = 2;</code>
+     * @return Google\Protobuf\Timestamp
      */
     public function getMinReadTimestamp()
     {
@@ -80,7 +83,7 @@ class TransactionOptions_ReadOnly extends \Google\Protobuf\Internal\Message
 
     /**
      * <pre>
-     * Executes all reads at a timestamp &gt;= `min_read_timestamp`.
+     * Executes all reads at a timestamp >= `min_read_timestamp`.
      * This is useful for requesting fresher data than some previous
      * read, or data that is fresh enough to observe the effects of some
      * previously committed transaction whose timestamp is known.
@@ -88,6 +91,7 @@ class TransactionOptions_ReadOnly extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp min_read_timestamp = 2;</code>
+     * @param Google\Protobuf\Timestamp $var
      */
     public function setMinReadTimestamp(&$var)
     {
@@ -99,7 +103,7 @@ class TransactionOptions_ReadOnly extends \Google\Protobuf\Internal\Message
 
     /**
      * <pre>
-     * Read data at a timestamp &gt;= `NOW - max_staleness`
+     * Read data at a timestamp >= `NOW - max_staleness`
      * seconds. Guarantees that all writes that have committed more
      * than the specified number of seconds ago are visible. Because
      * Cloud Spanner chooses the exact timestamp, this mode works even if
@@ -113,6 +117,7 @@ class TransactionOptions_ReadOnly extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Duration max_staleness = 3;</code>
+     * @return Google\Protobuf\Duration
      */
     public function getMaxStaleness()
     {
@@ -121,7 +126,7 @@ class TransactionOptions_ReadOnly extends \Google\Protobuf\Internal\Message
 
     /**
      * <pre>
-     * Read data at a timestamp &gt;= `NOW - max_staleness`
+     * Read data at a timestamp >= `NOW - max_staleness`
      * seconds. Guarantees that all writes that have committed more
      * than the specified number of seconds ago are visible. Because
      * Cloud Spanner chooses the exact timestamp, this mode works even if
@@ -135,6 +140,7 @@ class TransactionOptions_ReadOnly extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Duration max_staleness = 3;</code>
+     * @param Google\Protobuf\Duration $var
      */
     public function setMaxStaleness(&$var)
     {
@@ -157,6 +163,7 @@ class TransactionOptions_ReadOnly extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp read_timestamp = 4;</code>
+     * @return Google\Protobuf\Timestamp
      */
     public function getReadTimestamp()
     {
@@ -176,6 +183,7 @@ class TransactionOptions_ReadOnly extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp read_timestamp = 4;</code>
+     * @param Google\Protobuf\Timestamp $var
      */
     public function setReadTimestamp(&$var)
     {
@@ -199,6 +207,7 @@ class TransactionOptions_ReadOnly extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Duration exact_staleness = 5;</code>
+     * @return Google\Protobuf\Duration
      */
     public function getExactStaleness()
     {
@@ -219,6 +228,7 @@ class TransactionOptions_ReadOnly extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Duration exact_staleness = 5;</code>
+     * @param Google\Protobuf\Duration $var
      */
     public function setExactStaleness(&$var)
     {
@@ -235,6 +245,7 @@ class TransactionOptions_ReadOnly extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>bool return_read_timestamp = 6;</code>
+     * @return bool
      */
     public function getReturnReadTimestamp()
     {
@@ -248,6 +259,7 @@ class TransactionOptions_ReadOnly extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>bool return_read_timestamp = 6;</code>
+     * @param bool $var
      */
     public function setReturnReadTimestamp($var)
     {
@@ -257,6 +269,9 @@ class TransactionOptions_ReadOnly extends \Google\Protobuf\Internal\Message
         return $this;
     }
 
+    /**
+     * @return string
+     */
     public function getTimestampBound()
     {
         return $this->whichOneof("timestamp_bound");

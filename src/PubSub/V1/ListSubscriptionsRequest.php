@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Request for the `ListSubscriptions` method.
  * </pre>
  *
- * Protobuf type <code>google.pubsub.v1.ListSubscriptionsRequest</code>
+ * Protobuf type <code>Google\Pubsub\V1\ListSubscriptionsRequest</code>
  */
 class ListSubscriptionsRequest extends \Google\Protobuf\Internal\Message
 {
@@ -57,6 +57,7 @@ class ListSubscriptionsRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string project = 1;</code>
+     * @return string
      */
     public function getProject()
     {
@@ -70,6 +71,7 @@ class ListSubscriptionsRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string project = 1;</code>
+     * @param string $var
      */
     public function setProject($var)
     {
@@ -85,6 +87,7 @@ class ListSubscriptionsRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 page_size = 2;</code>
+     * @return int
      */
     public function getPageSize()
     {
@@ -97,6 +100,7 @@ class ListSubscriptionsRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 page_size = 2;</code>
+     * @param int $var
      */
     public function setPageSize($var)
     {
@@ -114,6 +118,7 @@ class ListSubscriptionsRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string page_token = 3;</code>
+     * @return string
      */
     public function getPageToken()
     {
@@ -128,6 +133,7 @@ class ListSubscriptionsRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string page_token = 3;</code>
+     * @param string $var
      */
     public function setPageToken($var)
     {

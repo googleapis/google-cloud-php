@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * The parameters to ListLogs.
  * </pre>
  *
- * Protobuf type <code>google.logging.v2.ListLogsRequest</code>
+ * Protobuf type <code>Google\Logging\V2\ListLogsRequest</code>
  */
 class ListLogsRequest extends \Google\Protobuf\Internal\Message
 {
@@ -66,6 +66,7 @@ class ListLogsRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string parent = 1;</code>
+     * @return string
      */
     public function getParent()
     {
@@ -82,6 +83,7 @@ class ListLogsRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string parent = 1;</code>
+     * @param string $var
      */
     public function setParent($var)
     {
@@ -99,6 +101,7 @@ class ListLogsRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 page_size = 2;</code>
+     * @return int
      */
     public function getPageSize()
     {
@@ -113,6 +116,7 @@ class ListLogsRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 page_size = 2;</code>
+     * @param int $var
      */
     public function setPageSize($var)
     {
@@ -131,6 +135,7 @@ class ListLogsRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string page_token = 3;</code>
+     * @return string
      */
     public function getPageToken()
     {
@@ -146,6 +151,7 @@ class ListLogsRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string page_token = 3;</code>
+     * @param string $var
      */
     public function setPageToken($var)
     {

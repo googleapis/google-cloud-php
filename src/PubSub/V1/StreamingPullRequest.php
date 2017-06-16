@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * deadline modifications from the client to the server.
  * </pre>
  *
- * Protobuf type <code>google.pubsub.v1.StreamingPullRequest</code>
+ * Protobuf type <code>Google\Pubsub\V1\StreamingPullRequest</code>
  */
 class StreamingPullRequest extends \Google\Protobuf\Internal\Message
 {
@@ -50,10 +50,10 @@ class StreamingPullRequest extends \Google\Protobuf\Internal\Message
      * with `INVALID_ARGUMENT`. Each element in this list is applied to the
      * element in the same position in `modify_deadline_ack_ids`. The new ack
      * deadline is with respect to the time this request was sent to the Pub/Sub
-     * system. Must be &gt;= 0. For example, if the value is 10, the new ack deadline
+     * system. Must be >= 0. For example, if the value is 10, the new ack deadline
      * will expire 10 seconds after this request is received. If the value is 0,
      * the message is immediately made available for another streaming or
-     * non-streaming pull request. If the value is &lt; 0 (an error), the stream will
+     * non-streaming pull request. If the value is < 0 (an error), the stream will
      * be aborted with status `INVALID_ARGUMENT`.
      * </pre>
      *
@@ -98,6 +98,7 @@ class StreamingPullRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string subscription = 1;</code>
+     * @return string
      */
     public function getSubscription()
     {
@@ -113,6 +114,7 @@ class StreamingPullRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string subscription = 1;</code>
+     * @param string $var
      */
     public function setSubscription($var)
     {
@@ -132,6 +134,7 @@ class StreamingPullRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated string ack_ids = 2;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getAckIds()
     {
@@ -148,6 +151,7 @@ class StreamingPullRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated string ack_ids = 2;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setAckIds(&$var)
     {
@@ -165,14 +169,15 @@ class StreamingPullRequest extends \Google\Protobuf\Internal\Message
      * with `INVALID_ARGUMENT`. Each element in this list is applied to the
      * element in the same position in `modify_deadline_ack_ids`. The new ack
      * deadline is with respect to the time this request was sent to the Pub/Sub
-     * system. Must be &gt;= 0. For example, if the value is 10, the new ack deadline
+     * system. Must be >= 0. For example, if the value is 10, the new ack deadline
      * will expire 10 seconds after this request is received. If the value is 0,
      * the message is immediately made available for another streaming or
-     * non-streaming pull request. If the value is &lt; 0 (an error), the stream will
+     * non-streaming pull request. If the value is < 0 (an error), the stream will
      * be aborted with status `INVALID_ARGUMENT`.
      * </pre>
      *
      * <code>repeated int32 modify_deadline_seconds = 3;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getModifyDeadlineSeconds()
     {
@@ -187,14 +192,15 @@ class StreamingPullRequest extends \Google\Protobuf\Internal\Message
      * with `INVALID_ARGUMENT`. Each element in this list is applied to the
      * element in the same position in `modify_deadline_ack_ids`. The new ack
      * deadline is with respect to the time this request was sent to the Pub/Sub
-     * system. Must be &gt;= 0. For example, if the value is 10, the new ack deadline
+     * system. Must be >= 0. For example, if the value is 10, the new ack deadline
      * will expire 10 seconds after this request is received. If the value is 0,
      * the message is immediately made available for another streaming or
-     * non-streaming pull request. If the value is &lt; 0 (an error), the stream will
+     * non-streaming pull request. If the value is < 0 (an error), the stream will
      * be aborted with status `INVALID_ARGUMENT`.
      * </pre>
      *
      * <code>repeated int32 modify_deadline_seconds = 3;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setModifyDeadlineSeconds(&$var)
     {
@@ -214,6 +220,7 @@ class StreamingPullRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated string modify_deadline_ack_ids = 4;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getModifyDeadlineAckIds()
     {
@@ -230,6 +237,7 @@ class StreamingPullRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated string modify_deadline_ack_ids = 4;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setModifyDeadlineAckIds(&$var)
     {
@@ -248,6 +256,7 @@ class StreamingPullRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 stream_ack_deadline_seconds = 5;</code>
+     * @return int
      */
     public function getStreamAckDeadlineSeconds()
     {
@@ -263,6 +272,7 @@ class StreamingPullRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 stream_ack_deadline_seconds = 5;</code>
+     * @param int $var
      */
     public function setStreamAckDeadlineSeconds($var)
     {

@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Stores image properties, such as dominant colors.
  * </pre>
  *
- * Protobuf type <code>google.cloud.vision.v1.ImageProperties</code>
+ * Protobuf type <code>Google\Cloud\Vision\V1\ImageProperties</code>
  */
 class ImageProperties extends \Google\Protobuf\Internal\Message
 {
@@ -37,6 +37,7 @@ class ImageProperties extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.DominantColorsAnnotation dominant_colors = 1;</code>
+     * @return Google\Cloud\Vision\V1\DominantColorsAnnotation
      */
     public function getDominantColors()
     {
@@ -49,6 +50,7 @@ class ImageProperties extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.DominantColorsAnnotation dominant_colors = 1;</code>
+     * @param Google\Cloud\Vision\V1\DominantColorsAnnotation $var
      */
     public function setDominantColors(&$var)
     {

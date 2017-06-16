@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * it must contain either a non-empty data field, or at least one attribute.
  * </pre>
  *
- * Protobuf type <code>google.pubsub.v1.PubsubMessage</code>
+ * Protobuf type <code>Google\Pubsub\V1\PubsubMessage</code>
  */
 class PubsubMessage extends \Google\Protobuf\Internal\Message
 {
@@ -31,7 +31,7 @@ class PubsubMessage extends \Google\Protobuf\Internal\Message
      * Optional attributes for this message.
      * </pre>
      *
-     * <code>map&lt;string, string&gt; attributes = 2;</code>
+     * <code>map<string, string> attributes = 2;</code>
      */
     private $attributes;
     /**
@@ -67,6 +67,7 @@ class PubsubMessage extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>bytes data = 1;</code>
+     * @return string
      */
     public function getData()
     {
@@ -79,6 +80,7 @@ class PubsubMessage extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>bytes data = 1;</code>
+     * @param string $var
      */
     public function setData($var)
     {
@@ -93,7 +95,8 @@ class PubsubMessage extends \Google\Protobuf\Internal\Message
      * Optional attributes for this message.
      * </pre>
      *
-     * <code>map&lt;string, string&gt; attributes = 2;</code>
+     * <code>map<string, string> attributes = 2;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getAttributes()
     {
@@ -105,7 +108,8 @@ class PubsubMessage extends \Google\Protobuf\Internal\Message
      * Optional attributes for this message.
      * </pre>
      *
-     * <code>map&lt;string, string&gt; attributes = 2;</code>
+     * <code>map<string, string> attributes = 2;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setAttributes(&$var)
     {
@@ -124,6 +128,7 @@ class PubsubMessage extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string message_id = 3;</code>
+     * @return string
      */
     public function getMessageId()
     {
@@ -139,6 +144,7 @@ class PubsubMessage extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string message_id = 3;</code>
+     * @param string $var
      */
     public function setMessageId($var)
     {
@@ -156,6 +162,7 @@ class PubsubMessage extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp publish_time = 4;</code>
+     * @return Google\Protobuf\Timestamp
      */
     public function getPublishTime()
     {
@@ -170,6 +177,7 @@ class PubsubMessage extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp publish_time = 4;</code>
+     * @param Google\Protobuf\Timestamp $var
      */
     public function setPublishTime(&$var)
     {

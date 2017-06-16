@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * The `CreateMetricDescriptor` request.
  * </pre>
  *
- * Protobuf type <code>google.monitoring.v3.CreateMetricDescriptorRequest</code>
+ * Protobuf type <code>Google\Monitoring\V3\CreateMetricDescriptorRequest</code>
  */
 class CreateMetricDescriptorRequest extends \Google\Protobuf\Internal\Message
 {
@@ -48,6 +48,7 @@ class CreateMetricDescriptorRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string name = 3;</code>
+     * @return string
      */
     public function getName()
     {
@@ -61,6 +62,7 @@ class CreateMetricDescriptorRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string name = 3;</code>
+     * @param string $var
      */
     public function setName($var)
     {
@@ -77,6 +79,7 @@ class CreateMetricDescriptorRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.api.MetricDescriptor metric_descriptor = 2;</code>
+     * @return Google\Api\MetricDescriptor
      */
     public function getMetricDescriptor()
     {
@@ -90,6 +93,7 @@ class CreateMetricDescriptorRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.api.MetricDescriptor metric_descriptor = 2;</code>
+     * @param Google\Api\MetricDescriptor $var
      */
     public function setMetricDescriptor(&$var)
     {

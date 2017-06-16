@@ -10,7 +10,7 @@ namespace Google\Cloud\Vision\V1;
  * highly stable results across model upgrades.
  * </pre>
  *
- * Protobuf enum <code>google.cloud.vision.v1.Likelihood</code>
+ * Protobuf enum <code>Google\Cloud\Vision\V1\Likelihood</code>
  */
 class Likelihood
 {

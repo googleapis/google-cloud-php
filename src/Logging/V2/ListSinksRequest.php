@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * The parameters to `ListSinks`.
  * </pre>
  *
- * Protobuf type <code>google.logging.v2.ListSinksRequest</code>
+ * Protobuf type <code>Google\Logging\V2\ListSinksRequest</code>
  */
 class ListSinksRequest extends \Google\Protobuf\Internal\Message
 {
@@ -66,6 +66,7 @@ class ListSinksRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string parent = 1;</code>
+     * @return string
      */
     public function getParent()
     {
@@ -82,6 +83,7 @@ class ListSinksRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string parent = 1;</code>
+     * @param string $var
      */
     public function setParent($var)
     {
@@ -100,6 +102,7 @@ class ListSinksRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string page_token = 2;</code>
+     * @return string
      */
     public function getPageToken()
     {
@@ -115,6 +118,7 @@ class ListSinksRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string page_token = 2;</code>
+     * @param string $var
      */
     public function setPageToken($var)
     {
@@ -132,6 +136,7 @@ class ListSinksRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 page_size = 3;</code>
+     * @return int
      */
     public function getPageSize()
     {
@@ -146,6 +151,7 @@ class ListSinksRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 page_size = 3;</code>
+     * @param int $var
      */
     public function setPageSize($var)
     {

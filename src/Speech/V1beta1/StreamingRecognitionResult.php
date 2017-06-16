@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * that is currently being processed.
  * </pre>
  *
- * Protobuf type <code>google.cloud.speech.v1beta1.StreamingRecognitionResult</code>
+ * Protobuf type <code>Google\Cloud\Speech\V1beta1\StreamingRecognitionResult</code>
  */
 class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
 {
@@ -64,6 +64,7 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.speech.v1beta1.SpeechRecognitionAlternative alternatives = 1;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getAlternatives()
     {
@@ -77,6 +78,7 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated .google.cloud.speech.v1beta1.SpeechRecognitionAlternative alternatives = 1;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setAlternatives(&$var)
     {
@@ -96,6 +98,7 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>bool is_final = 2;</code>
+     * @return bool
      */
     public function getIsFinal()
     {
@@ -112,6 +115,7 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>bool is_final = 2;</code>
+     * @param bool $var
      */
     public function setIsFinal($var)
     {
@@ -131,6 +135,7 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>float stability = 3;</code>
+     * @return float
      */
     public function getStability()
     {
@@ -147,6 +152,7 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>float stability = 3;</code>
+     * @param float $var
      */
     public function setStability($var)
     {

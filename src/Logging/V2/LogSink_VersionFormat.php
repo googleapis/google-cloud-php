@@ -11,7 +11,7 @@ namespace Google\Cloud\Logging\V2;
  * Version 2 is the preferred format.
  * </pre>
  *
- * Protobuf enum <code>google.logging.v2.LogSink.VersionFormat</code>
+ * Protobuf enum <code>Google\Logging\V2\LogSink\VersionFormat</code>
  */
 class LogSink_VersionFormat
 {

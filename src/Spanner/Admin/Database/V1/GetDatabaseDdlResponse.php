@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * The response for [GetDatabaseDdl][google.spanner.admin.database.v1.DatabaseAdmin.GetDatabaseDdl].
  * </pre>
  *
- * Protobuf type <code>google.spanner.admin.database.v1.GetDatabaseDdlResponse</code>
+ * Protobuf type <code>Google\Spanner\Admin\Database\V1\GetDatabaseDdlResponse</code>
  */
 class GetDatabaseDdlResponse extends \Google\Protobuf\Internal\Message
 {
@@ -39,6 +39,7 @@ class GetDatabaseDdlResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated string statements = 1;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getStatements()
     {
@@ -52,6 +53,7 @@ class GetDatabaseDdlResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>repeated string statements = 1;</code>
+     * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setStatements(&$var)
     {

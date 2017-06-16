@@ -17,7 +17,7 @@ namespace Google\Cloud\Speech\V1;
  * background noise is present.
  * </pre>
  *
- * Protobuf enum <code>google.cloud.speech.v1.RecognitionConfig.AudioEncoding</code>
+ * Protobuf enum <code>Google\Cloud\Speech\V1\RecognitionConfig\AudioEncoding</code>
  */
 class RecognitionConfig_AudioEncoding
 {

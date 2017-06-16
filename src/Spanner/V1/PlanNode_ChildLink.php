@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * [PlanNode][google.spanner.v1.PlanNode].
  * </pre>
  *
- * Protobuf type <code>google.spanner.v1.PlanNode.ChildLink</code>
+ * Protobuf type <code>Google\Spanner\V1\PlanNode\ChildLink</code>
  */
 class PlanNode_ChildLink extends \Google\Protobuf\Internal\Message
 {
@@ -64,6 +64,7 @@ class PlanNode_ChildLink extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 child_index = 1;</code>
+     * @return int
      */
     public function getChildIndex()
     {
@@ -76,6 +77,7 @@ class PlanNode_ChildLink extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>int32 child_index = 1;</code>
+     * @param int $var
      */
     public function setChildIndex($var)
     {
@@ -94,6 +96,7 @@ class PlanNode_ChildLink extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string type = 2;</code>
+     * @return string
      */
     public function getType()
     {
@@ -109,6 +112,7 @@ class PlanNode_ChildLink extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string type = 2;</code>
+     * @param string $var
      */
     public function setType($var)
     {
@@ -131,6 +135,7 @@ class PlanNode_ChildLink extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string variable = 3;</code>
+     * @return string
      */
     public function getVariable()
     {
@@ -150,6 +155,7 @@ class PlanNode_ChildLink extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string variable = 3;</code>
+     * @param string $var
      */
     public function setVariable($var)
     {

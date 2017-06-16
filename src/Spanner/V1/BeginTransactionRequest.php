@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * The request for [BeginTransaction][google.spanner.v1.Spanner.BeginTransaction].
  * </pre>
  *
- * Protobuf type <code>google.spanner.v1.BeginTransactionRequest</code>
+ * Protobuf type <code>Google\Spanner\V1\BeginTransactionRequest</code>
  */
 class BeginTransactionRequest extends \Google\Protobuf\Internal\Message
 {
@@ -45,6 +45,7 @@ class BeginTransactionRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string session = 1;</code>
+     * @return string
      */
     public function getSession()
     {
@@ -57,6 +58,7 @@ class BeginTransactionRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string session = 1;</code>
+     * @param string $var
      */
     public function setSession($var)
     {
@@ -72,6 +74,7 @@ class BeginTransactionRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.TransactionOptions options = 2;</code>
+     * @return Google\Cloud\Spanner\V1\TransactionOptions
      */
     public function getOptions()
     {
@@ -84,6 +87,7 @@ class BeginTransactionRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.TransactionOptions options = 2;</code>
+     * @param Google\Cloud\Spanner\V1\TransactionOptions $var
      */
     public function setOptions(&$var)
     {

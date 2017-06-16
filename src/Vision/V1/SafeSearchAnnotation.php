@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * violence).
  * </pre>
  *
- * Protobuf type <code>google.cloud.vision.v1.SafeSearchAnnotation</code>
+ * Protobuf type <code>Google\Cloud\Vision\V1\SafeSearchAnnotation</code>
  */
 class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
 {
@@ -65,6 +65,7 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.Likelihood adult = 1;</code>
+     * @return int
      */
     public function getAdult()
     {
@@ -77,6 +78,7 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.Likelihood adult = 1;</code>
+     * @param int $var
      */
     public function setAdult($var)
     {
@@ -94,6 +96,7 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.Likelihood spoof = 2;</code>
+     * @return int
      */
     public function getSpoof()
     {
@@ -108,6 +111,7 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.Likelihood spoof = 2;</code>
+     * @param int $var
      */
     public function setSpoof($var)
     {
@@ -123,6 +127,7 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.Likelihood medical = 3;</code>
+     * @return int
      */
     public function getMedical()
     {
@@ -135,6 +140,7 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.Likelihood medical = 3;</code>
+     * @param int $var
      */
     public function setMedical($var)
     {
@@ -150,6 +156,7 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.Likelihood violence = 4;</code>
+     * @return int
      */
     public function getViolence()
     {
@@ -162,6 +169,7 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.Likelihood violence = 4;</code>
+     * @param int $var
      */
     public function setViolence($var)
     {

@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * A request for reporting an individual error event.
  * </pre>
  *
- * Protobuf type <code>google.devtools.clouderrorreporting.v1beta1.ReportErrorEventRequest</code>
+ * Protobuf type <code>Google\Devtools\Clouderrorreporting\V1beta1\ReportErrorEventRequest</code>
  */
 class ReportErrorEventRequest extends \Google\Protobuf\Internal\Message
 {
@@ -51,6 +51,7 @@ class ReportErrorEventRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string project_name = 1;</code>
+     * @return string
      */
     public function getProjectName()
     {
@@ -66,6 +67,7 @@ class ReportErrorEventRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>string project_name = 1;</code>
+     * @param string $var
      */
     public function setProjectName($var)
     {
@@ -81,6 +83,7 @@ class ReportErrorEventRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.devtools.clouderrorreporting.v1beta1.ReportedErrorEvent event = 2;</code>
+     * @return Google\Cloud\ErrorReporting\V1beta1\ReportedErrorEvent
      */
     public function getEvent()
     {
@@ -93,6 +96,7 @@ class ReportErrorEventRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.devtools.clouderrorreporting.v1beta1.ReportedErrorEvent event = 2;</code>
+     * @param Google\Cloud\ErrorReporting\V1beta1\ReportedErrorEvent $var
      */
     public function setEvent(&$var)
     {

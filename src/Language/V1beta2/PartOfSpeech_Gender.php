@@ -9,7 +9,7 @@ namespace Google\Cloud\Language\V1beta2;
  * Gender classes of nouns reflected in the behaviour of associated words.
  * </pre>
  *
- * Protobuf enum <code>google.cloud.language.v1beta2.PartOfSpeech.Gender</code>
+ * Protobuf enum <code>Google\Cloud\Language\V1beta2\PartOfSpeech\Gender</code>
  */
 class PartOfSpeech_Gender
 {

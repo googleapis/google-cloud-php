@@ -9,7 +9,7 @@ namespace Google\Cloud\Spanner\Admin\Instance\V1;
  * Indicates the current state of the instance.
  * </pre>
  *
- * Protobuf enum <code>google.spanner.admin.instance.v1.Instance.State</code>
+ * Protobuf enum <code>Google\Spanner\Admin\Instance\V1\Instance\State</code>
  */
 class Instance_State
 {

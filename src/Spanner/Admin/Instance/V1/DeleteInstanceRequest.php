@@ -13,14 +13,14 @@ use Google\Protobuf\Internal\GPBUtil;
  * The request for [DeleteInstance][google.spanner.admin.instance.v1.InstanceAdmin.DeleteInstance].
  * </pre>
  *
- * Protobuf type <code>google.spanner.admin.instance.v1.DeleteInstanceRequest</code>
+ * Protobuf type <code>Google\Spanner\Admin\Instance\V1\DeleteInstanceRequest</code>
  */
 class DeleteInstanceRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * <pre>
      * Required. The name of the instance to be deleted. Values are of the form
-     * `projects/&lt;project&gt;/instances/&lt;instance&gt;`
+     * `projects/<project>/instances/<instance>`
      * </pre>
      *
      * <code>string name = 1;</code>
@@ -35,10 +35,11 @@ class DeleteInstanceRequest extends \Google\Protobuf\Internal\Message
     /**
      * <pre>
      * Required. The name of the instance to be deleted. Values are of the form
-     * `projects/&lt;project&gt;/instances/&lt;instance&gt;`
+     * `projects/<project>/instances/<instance>`
      * </pre>
      *
      * <code>string name = 1;</code>
+     * @return string
      */
     public function getName()
     {
@@ -48,10 +49,11 @@ class DeleteInstanceRequest extends \Google\Protobuf\Internal\Message
     /**
      * <pre>
      * Required. The name of the instance to be deleted. Values are of the form
-     * `projects/&lt;project&gt;/instances/&lt;instance&gt;`
+     * `projects/<project>/instances/<instance>`
      * </pre>
      *
      * <code>string name = 1;</code>
+     * @param string $var
      */
     public function setName($var)
     {
