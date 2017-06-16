@@ -53,7 +53,7 @@ class ClientStreamTest extends PHPUnit_Framework_TestCase
 
         $this->assertSame($call, $stream->getClientStreamingCall());
         $this->assertSame($response, $stream->readResponse());
-        $this->assertSame([], $call->getReceivedCalls());
+        $this->assertSame([], $call->popReceivedCalls());
     }
 
     /**
@@ -71,7 +71,7 @@ class ClientStreamTest extends PHPUnit_Framework_TestCase
         $stream = new ClientStream($call);
 
         $this->assertSame($call, $stream->getClientStreamingCall());
-        $this->assertSame([], $call->getReceivedCalls());
+        $this->assertSame([], $call->popReceivedCalls());
         $stream->readResponse();
     }
 
@@ -91,7 +91,7 @@ class ClientStreamTest extends PHPUnit_Framework_TestCase
 
         $this->assertSame($call, $stream->getClientStreamingCall());
         $this->assertEquals($response, $stream->readResponse());
-        $this->assertEquals($requests, $call->getReceivedCalls());
+        $this->assertEquals($requests, $call->popReceivedCalls());
     }
 
     /**
@@ -117,7 +117,7 @@ class ClientStreamTest extends PHPUnit_Framework_TestCase
         }
 
         $this->assertSame($call, $stream->getClientStreamingCall());
-        $this->assertEquals($requests, $call->getReceivedCalls());
+        $this->assertEquals($requests, $call->popReceivedCalls());
         $stream->readResponse();
     }
 
@@ -135,7 +135,7 @@ class ClientStreamTest extends PHPUnit_Framework_TestCase
 
         $this->assertSame($call, $stream->getClientStreamingCall());
         $this->assertEquals($response, $actualResponse);
-        $this->assertEquals($requests, $call->getReceivedCalls());
+        $this->assertEquals($requests, $call->popReceivedCalls());
     }
 
     /**
@@ -160,7 +160,7 @@ class ClientStreamTest extends PHPUnit_Framework_TestCase
             $stream->writeAllAndReadResponse($requests);
         } finally {
             $this->assertSame($call, $stream->getClientStreamingCall());
-            $this->assertEquals($requests, $call->getReceivedCalls());
+            $this->assertEquals($requests, $call->popReceivedCalls());
         }
     }
 

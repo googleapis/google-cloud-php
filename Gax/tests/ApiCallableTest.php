@@ -68,7 +68,7 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
         $actualResponse = $apiCall($request, $metadata, $options);
         $this->assertEquals($response, $actualResponse);
 
-        $actualCalls = $stub->getReceivedCalls();
+        $actualCalls = $stub->popReceivedCalls();
         $this->assertEquals(1, count($actualCalls));
         $this->assertEquals($request, $actualCalls[0]->getRequestObject());
         $this->assertEquals($metadata, $actualCalls[0]->getMetadata());
@@ -87,7 +87,7 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals($response, $actualResponse);
 
-        $actualCalls = $stub->getReceivedCalls();
+        $actualCalls = $stub->popReceivedCalls();
         $this->assertEquals(1, count($actualCalls));
         $this->assertEquals($request, $actualCalls[0]->getRequestObject());
         $this->assertEquals([], $actualCalls[0]->getMetadata());
@@ -119,7 +119,7 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
             $isExceptionRaised = true;
         }
 
-        $actualCalls = $stub->getReceivedCalls();
+        $actualCalls = $stub->popReceivedCalls();
         $this->assertEquals(1, count($actualCalls));
         $this->assertEquals($request, $actualCalls[0]->getRequestObject());
 
@@ -156,7 +156,7 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals($responseC, $actualResponse);
 
-        $actualCalls = $stub->getReceivedCalls();
+        $actualCalls = $stub->popReceivedCalls();
         $this->assertEquals(3, count($actualCalls));
 
         $this->assertEquals($request, $actualCalls[0]->getRequestObject());
@@ -214,7 +214,7 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
             $raisedException = $e;
         }
 
-        $actualCalls = $stub->getReceivedCalls();
+        $actualCalls = $stub->popReceivedCalls();
         $this->assertEquals(3, count($actualCalls));
         $this->assertEquals($request, $actualCalls[0]->getRequestObject());
 
@@ -247,13 +247,13 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
             ['pageStreamingDescriptor' => $descriptor]
         );
         $response = $apiCall($request, [], []);
-        $actualCalls = $stub->getReceivedCalls();
+        $actualCalls = $stub->popReceivedCalls();
         $this->assertEquals(1, count($actualCalls));
         $actualResources = [];
         foreach ($response->iterateAllElements() as $element) {
             array_push($actualResources, $element);
         }
-        $actualCalls = array_merge($actualCalls, $stub->getReceivedCalls());
+        $actualCalls = array_merge($actualCalls, $stub->popReceivedCalls());
         $this->assertEquals(3, count($actualCalls));
         $this->assertEquals(['resource1', 'resource2', 'resource3', 'resource4'], $actualResources);
     }
@@ -283,7 +283,7 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
             ['pageStreamingDescriptor' => $descriptor]
         );
         $response = $apiCall($request, [], []);
-        $actualCalls = $stub->getReceivedCalls();
+        $actualCalls = $stub->popReceivedCalls();
         $this->assertEquals(1, count($actualCalls));
         $actualResources = [];
         $actualTokens = [];
@@ -293,7 +293,7 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
                 array_push($actualResources, $element);
             }
         }
-        $actualCalls = array_merge($actualCalls, $stub->getReceivedCalls());
+        $actualCalls = array_merge($actualCalls, $stub->popReceivedCalls());
         $this->assertEquals(3, count($actualCalls));
         $this->assertEquals(['resource1', 'resource2', 'resource3', 'resource4'], $actualResources);
         $this->assertEquals(
@@ -329,7 +329,7 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
             ['pageStreamingDescriptor' => $descriptor]
         );
         $response = $apiCall($request, [], []);
-        $actualCalls = $stub->getReceivedCalls();
+        $actualCalls = $stub->popReceivedCalls();
         $this->assertEquals(1, count($actualCalls));
         $actualResources = [];
         $collectionCount = 0;
@@ -339,7 +339,7 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
                 array_push($actualResources, $element);
             }
         }
-        $actualCalls = array_merge($actualCalls, $stub->getReceivedCalls());
+        $actualCalls = array_merge($actualCalls, $stub->popReceivedCalls());
         $this->assertEquals(3, count($actualCalls));
         $this->assertEquals(2, $collectionCount);
         $this->assertEquals(['resource1', 'resource2', 'resource3', 'resource4'], $actualResources);
@@ -459,13 +459,13 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
             ['pageStreamingDescriptor' => $descriptor]
         );
         $response = $apiCall($request, [], []);
-        $actualCalls = $stub->getReceivedCalls();
+        $actualCalls = $stub->popReceivedCalls();
         $this->assertEquals(1, count($actualCalls));
         $actualResources = [];
         foreach ($response->iterateAllElements() as $element) {
             array_push($actualResources, $element);
         }
-        $actualCalls = array_merge($actualCalls, $stub->getReceivedCalls());
+        $actualCalls = array_merge($actualCalls, $stub->popReceivedCalls());
         $this->assertEquals(3, count($actualCalls));
         $this->assertEquals(['resource1', 'resource2', 'resource3', 'resource4'], $actualResources);
     }
@@ -488,7 +488,7 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
             ['headerDescriptor' => $headerDescriptor]
         );
         $resources = $apiCall(new MockPageStreamingRequest(), [], []);
-        $actualCalls = $stub->getReceivedCalls();
+        $actualCalls = $stub->popReceivedCalls();
         $this->assertEquals(1, count($actualCalls));
         $expectedMetadata = [
             'x-goog-api-client' => ['gl-php/5.5.0 gccl/0.0.0 gapic/0.9.0 gax/1.0.0 grpc/1.0.1']
@@ -520,7 +520,7 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
             ['headerDescriptor' => $headerDescriptor]
         );
         $resources = $apiCall(new MockPageStreamingRequest(), [], []);
-        $actualCalls = $stub->getReceivedCalls();
+        $actualCalls = $stub->popReceivedCalls();
         $this->assertEquals(1, count($actualCalls));
         $expectedMetadata = [
             'x-goog-api-client' => ['gl-php/5.5.0 gccl/0.0.0 gapic/0.9.0 gax/1.0.0 grpc/1.0.1'],
@@ -554,7 +554,7 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
             ['headerDescriptor' => $headerDescriptor]
         );
         $resources = $apiCall(new MockPageStreamingRequest(), [], []);
-        $actualCalls = $stub->getReceivedCalls();
+        $actualCalls = $stub->popReceivedCalls();
         $this->assertEquals(1, count($actualCalls));
         $expectedMetadata = [
             'x-goog-api-client' => ['gl-php/5.5.0 gccl/0.0.0 gapic/0.9.0 gax/1.0.0 grpc/1.0.1'],
@@ -626,8 +626,8 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
         $metadataResponses = [$response->getMetadata()];
         $isDoneResponses = [$response->isDone()];
 
-        $apiReceivedCalls = $callStub->getReceivedCalls();
-        $opReceivedCallsEmpty = $opStub->getReceivedCalls();
+        $apiReceivedCalls = $callStub->popReceivedCalls();
+        $opReceivedCallsEmpty = $opStub->popReceivedCalls();
 
         $this->assertSame(1, count($apiReceivedCalls));
         $this->assertSame(0, count($opReceivedCallsEmpty));
@@ -640,8 +640,8 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
             $isDoneResponses[] = $response->isDone();
         }
 
-        $apiReceivedCallsEmpty = $callStub->getReceivedCalls();
-        $opReceivedCalls = $opStub->getReceivedCalls();
+        $apiReceivedCallsEmpty = $callStub->popReceivedCalls();
+        $opReceivedCalls = $opStub->popReceivedCalls();
 
         $this->assertSame(0, count($apiReceivedCallsEmpty));
         $this->assertSame(2, count($opReceivedCalls));
@@ -699,8 +699,8 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
         /* @var $response \Google\GAX\OperationResponse */
         $response = $apiCall($request, [], []);
 
-        $apiReceivedCalls = $callStub->getReceivedCalls();
-        $opReceivedCallsEmpty = $opStub->getReceivedCalls();
+        $apiReceivedCalls = $callStub->popReceivedCalls();
+        $opReceivedCallsEmpty = $opStub->popReceivedCalls();
 
         $this->assertSame(1, count($apiReceivedCalls));
         $this->assertSame(0, count($opReceivedCallsEmpty));
@@ -709,8 +709,8 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($complete);
         $this->assertTrue($response->isDone());
 
-        $apiReceivedCallsEmpty = $callStub->getReceivedCalls();
-        $opReceivedCalls = $opStub->getReceivedCalls();
+        $apiReceivedCallsEmpty = $callStub->popReceivedCalls();
+        $opReceivedCalls = $opStub->popReceivedCalls();
 
         $this->assertSame(0, count($apiReceivedCallsEmpty));
         $this->assertSame(2, count($opReceivedCalls));
@@ -769,8 +769,8 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
         /* @var $response \Google\GAX\OperationResponse */
         $response = $apiCall($request, [], []);
 
-        $apiReceivedCalls = $callStub->getReceivedCalls();
-        $opReceivedCallsEmpty = $opStub->getReceivedCalls();
+        $apiReceivedCalls = $callStub->popReceivedCalls();
+        $opReceivedCallsEmpty = $opStub->popReceivedCalls();
 
         $this->assertSame(1, count($apiReceivedCalls));
         $this->assertSame(0, count($opReceivedCallsEmpty));
@@ -782,8 +782,8 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
         $this->assertFalse($complete);
         $this->assertFalse($response->isDone());
 
-        $apiReceivedCallsEmpty = $callStub->getReceivedCalls();
-        $opReceivedCalls = $opStub->getReceivedCalls();
+        $apiReceivedCallsEmpty = $callStub->popReceivedCalls();
+        $opReceivedCalls = $opStub->popReceivedCalls();
 
         $this->assertSame(0, count($apiReceivedCallsEmpty));
         $this->assertSame(2, count($opReceivedCalls));
@@ -842,8 +842,8 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
         $metadataResponses = [$response->getMetadata()];
         $isDoneResponses = [$response->isDone()];
 
-        $apiReceivedCalls = $callStub->getReceivedCalls();
-        $opReceivedCallsEmpty = $opStub->getReceivedCalls();
+        $apiReceivedCalls = $callStub->popReceivedCalls();
+        $opReceivedCallsEmpty = $opStub->popReceivedCalls();
 
         $this->assertSame(1, count($apiReceivedCalls));
         $this->assertSame(0, count($opReceivedCallsEmpty));
@@ -856,8 +856,8 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
             $isDoneResponses[] = $response->isDone();
         }
 
-        $apiReceivedCallsEmpty = $callStub->getReceivedCalls();
-        $opReceivedCalls = $opStub->getReceivedCalls();
+        $apiReceivedCallsEmpty = $callStub->popReceivedCalls();
+        $opReceivedCalls = $opStub->popReceivedCalls();
 
         $this->assertSame(0, count($apiReceivedCallsEmpty));
         $this->assertSame(2, count($opReceivedCalls));
@@ -923,16 +923,16 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
         /* @var $response \Google\GAX\OperationResponse */
         $response = $apiCall($request, [], []);
 
-        $apiReceivedCalls = $callStub->getReceivedCalls();
-        $opReceivedCallsEmpty = $opStub->getReceivedCalls();
+        $apiReceivedCalls = $callStub->popReceivedCalls();
+        $opReceivedCallsEmpty = $opStub->popReceivedCalls();
 
         $this->assertSame(1, count($apiReceivedCalls));
         $this->assertSame(0, count($opReceivedCallsEmpty));
 
         $response->cancel();
 
-        $apiReceivedCallsEmpty = $callStub->getReceivedCalls();
-        $opReceivedCalls = $opStub->getReceivedCalls();
+        $apiReceivedCallsEmpty = $callStub->popReceivedCalls();
+        $opReceivedCalls = $opStub->popReceivedCalls();
 
         $this->assertSame(0, count($apiReceivedCallsEmpty));
         $this->assertSame(1, count($opReceivedCalls));
@@ -941,8 +941,8 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
             $response->reload();
         }
 
-        $apiReceivedCallsEmpty = $callStub->getReceivedCalls();
-        $opReceivedCalls = array_merge($opReceivedCalls, $opStub->getReceivedCalls());
+        $apiReceivedCallsEmpty = $callStub->popReceivedCalls();
+        $opReceivedCalls = array_merge($opReceivedCalls, $opStub->popReceivedCalls());
 
         $this->assertSame(0, count($apiReceivedCallsEmpty));
         $this->assertSame(3, count($opReceivedCalls));
@@ -993,16 +993,16 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
         /* @var $response \Google\GAX\OperationResponse */
         $response = $apiCall($request, [], []);
 
-        $apiReceivedCalls = $callStub->getReceivedCalls();
-        $opReceivedCallsEmpty = $opStub->getReceivedCalls();
+        $apiReceivedCalls = $callStub->popReceivedCalls();
+        $opReceivedCallsEmpty = $opStub->popReceivedCalls();
 
         $this->assertSame(1, count($apiReceivedCalls));
         $this->assertSame(0, count($opReceivedCallsEmpty));
 
         $response->delete();
 
-        $apiReceivedCallsEmpty = $callStub->getReceivedCalls();
-        $opReceivedCalls = $opStub->getReceivedCalls();
+        $apiReceivedCallsEmpty = $callStub->popReceivedCalls();
+        $opReceivedCalls = $opStub->popReceivedCalls();
 
         $this->assertSame(0, count($apiReceivedCallsEmpty));
         $this->assertSame(1, count($opReceivedCalls));
@@ -1055,7 +1055,7 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
         $actualResponse = $stream->writeAllAndReadResponse([$request]);
         $this->assertEquals($response, $actualResponse);
 
-        $actualCalls = $stub->getReceivedCalls();
+        $actualCalls = $stub->popReceivedCalls();
         $this->assertSame(1, count($actualCalls));
         $this->assertNull($actualCalls[0]->getRequestObject());
         $this->assertEquals($metadata, $actualCalls[0]->getMetadata());
@@ -1063,7 +1063,7 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
 
         /* @var $mockClientStreamingCall \Google\GAX\Testing\MockClientStreamingCall */
         $mockClientStreamingCall = $stream->getClientStreamingCall();
-        $actualStreamingCalls = $mockClientStreamingCall->getReceivedCalls();
+        $actualStreamingCalls = $mockClientStreamingCall->popReceivedCalls();
         $this->assertSame(1, count($actualStreamingCalls));
         $this->assertEquals($request, $actualStreamingCalls[0]);
     }
@@ -1098,7 +1098,7 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
         $stream = $apiCall(null, $metadata, $options);
         $stream->write($request);
 
-        $actualCalls = $stub->getReceivedCalls();
+        $actualCalls = $stub->popReceivedCalls();
         $this->assertSame(1, count($actualCalls));
         $this->assertNull($actualCalls[0]->getRequestObject());
         $this->assertEquals($metadata, $actualCalls[0]->getMetadata());
@@ -1106,7 +1106,7 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
 
         /* @var $mockClientStreamingCall \Google\GAX\Testing\MockClientStreamingCall */
         $mockClientStreamingCall = $stream->getClientStreamingCall();
-        $actualStreamingCalls = $mockClientStreamingCall->getReceivedCalls();
+        $actualStreamingCalls = $mockClientStreamingCall->popReceivedCalls();
         $this->assertSame(1, count($actualStreamingCalls));
         $this->assertEquals($request, $actualStreamingCalls[0]);
 
@@ -1157,7 +1157,7 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
         $this->assertSame(1, count($actualResponses));
         $this->assertEquals($responses, $actualResponses);
 
-        $actualCalls = $stub->getReceivedCalls();
+        $actualCalls = $stub->popReceivedCalls();
         $this->assertSame(1, count($actualCalls));
         $this->assertEquals($request, $actualCalls[0]->getRequestObject());
         $this->assertEquals($metadata, $actualCalls[0]->getMetadata());
@@ -1197,7 +1197,7 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
         $this->assertSame(2, count($actualResponses));
         $this->assertEquals($resources, $actualResponses);
 
-        $actualCalls = $stub->getReceivedCalls();
+        $actualCalls = $stub->popReceivedCalls();
         $this->assertSame(1, count($actualCalls));
         $this->assertEquals($request, $actualCalls[0]->getRequestObject());
         $this->assertEquals($metadata, $actualCalls[0]->getMetadata());
@@ -1237,7 +1237,7 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
         foreach ($stream->readAll() as $actualResponse) {
             $this->assertEquals($response, $actualResponse);
 
-            $actualCalls = $stub->getReceivedCalls();
+            $actualCalls = $stub->popReceivedCalls();
             $this->assertSame(1, count($actualCalls));
             $this->assertEquals($request, $actualCalls[0]->getRequestObject());
             $this->assertEquals($metadata, $actualCalls[0]->getMetadata());
@@ -1288,7 +1288,7 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
         $this->assertSame(1, count($actualResponses));
         $this->assertEquals($responses, $actualResponses);
 
-        $actualCalls = $stub->getReceivedCalls();
+        $actualCalls = $stub->popReceivedCalls();
         $this->assertSame(1, count($actualCalls));
         $this->assertNull($actualCalls[0]->getRequestObject());
         $this->assertEquals($metadata, $actualCalls[0]->getMetadata());
@@ -1296,7 +1296,7 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
 
         /* @var $mockBidiStreamingCall \Google\GAX\Testing\MockBidiStreamingCall */
         $mockBidiStreamingCall = $stream->getBidiStreamingCall();
-        $actualStreamingCalls = $mockBidiStreamingCall->getReceivedCalls();
+        $actualStreamingCalls = $mockBidiStreamingCall->popReceivedCalls();
         $this->assertSame(1, count($actualStreamingCalls));
         $this->assertEquals($request, $actualStreamingCalls[0]);
     }
@@ -1334,7 +1334,7 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
         $this->assertSame(2, count($actualResponses));
         $this->assertEquals($resources, $actualResponses);
 
-        $actualCalls = $stub->getReceivedCalls();
+        $actualCalls = $stub->popReceivedCalls();
         $this->assertSame(1, count($actualCalls));
         $this->assertNull($actualCalls[0]->getRequestObject());
         $this->assertEquals($metadata, $actualCalls[0]->getMetadata());
@@ -1342,7 +1342,7 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
 
         /* @var $mockBidiStreamingCall \Google\GAX\Testing\MockBidiStreamingCall */
         $mockBidiStreamingCall = $stream->getBidiStreamingCall();
-        $actualStreamingCalls = $mockBidiStreamingCall->getReceivedCalls();
+        $actualStreamingCalls = $mockBidiStreamingCall->popReceivedCalls();
         $this->assertSame(1, count($actualStreamingCalls));
         $this->assertEquals($request, $actualStreamingCalls[0]);
     }
@@ -1381,7 +1381,7 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
         $actualResponse = $stream->read();
         $this->assertEquals($response, $actualResponse);
 
-        $actualCalls = $stub->getReceivedCalls();
+        $actualCalls = $stub->popReceivedCalls();
         $this->assertSame(1, count($actualCalls));
         $this->assertNull($actualCalls[0]->getRequestObject());
         $this->assertEquals($metadata, $actualCalls[0]->getMetadata());
@@ -1389,7 +1389,7 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
 
         /* @var $mockBidiStreamingCall \Google\GAX\Testing\MockBidiStreamingCall */
         $mockBidiStreamingCall = $stream->getBidiStreamingCall();
-        $actualStreamingCalls = $mockBidiStreamingCall->getReceivedCalls();
+        $actualStreamingCalls = $mockBidiStreamingCall->popReceivedCalls();
         $this->assertSame(1, count($actualStreamingCalls));
         $this->assertEquals($request, $actualStreamingCalls[0]);
 

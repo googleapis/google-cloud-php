@@ -45,6 +45,7 @@ trait MockStubTrait
     private $receivedFuncCalls = [];
     private $responses = [];
     private $serverStreamingStatus = null;
+    private $callObjects = [];
 
     /**
      * Overrides the _simpleRequest method in \Grpc\BaseStub
@@ -72,7 +73,9 @@ trait MockStubTrait
             throw new UnderflowException("ran out of responses");
         }
         list($response, $status) = array_shift($this->responses);
-        return new MockUnaryCall($response, $deserialize, $status);
+        $call = new MockUnaryCall($response, $deserialize, $status);
+        $this->callObjects[] = $call;
+        return $call;
     }
 
     /**
@@ -94,13 +97,15 @@ trait MockStubTrait
         array $metadata = [],
         array $options = []
     ) {
-    
+
         $this->receivedFuncCalls[] = new ReceivedRequest($method, null, $deserialize, $metadata, $options);
         if (count($this->responses) < 1) {
             throw new UnderflowException("ran out of responses");
         }
         list($response, $status) = array_shift($this->responses);
-        return new MockClientStreamingCall($response, $deserialize, $status);
+        $call = new MockClientStreamingCall($response, $deserialize, $status);
+        $this->callObjects[] = $call;
+        return $call;
     }
 
     /**
@@ -125,14 +130,16 @@ trait MockStubTrait
         array $metadata = [],
         array $options = []
     ) {
-    
+
         if (is_a($argument, 'DrSlump\Protobuf\Message')) {
             $argument = $argument::deserialize($argument->serialize());
         }
         $this->receivedFuncCalls[] = new ReceivedRequest($method, $argument, $deserialize, $metadata, $options);
         $responses = MockStubTrait::stripStatusFromResponses($this->responses);
         $this->responses = [];
-        return new MockServerStreamingCall($responses, $deserialize, $this->serverStreamingStatus);
+        $call = new MockServerStreamingCall($responses, $deserialize, $this->serverStreamingStatus);
+        $this->callObjects[] = $call;
+        return $call;
     }
 
     /**
@@ -155,11 +162,13 @@ trait MockStubTrait
         array $metadata = [],
         array $options = []
     ) {
-    
+
         $this->receivedFuncCalls[] = new ReceivedRequest($method, null, $deserialize, $metadata, $options);
         $responses = MockStubTrait::stripStatusFromResponses($this->responses);
         $this->responses = [];
-        return new MockBidiStreamingCall($responses, $deserialize, $this->serverStreamingStatus);
+        $call = new MockBidiStreamingCall($responses, $deserialize, $this->serverStreamingStatus);
+        $this->callObjects[] = $call;
+        return $call;
     }
 
     public static function stripStatusFromResponses($responses)
@@ -201,7 +210,7 @@ trait MockStubTrait
      *
      * @return ReceivedRequest[] An array of received requests
      */
-    public function getReceivedCalls()
+    public function popReceivedCalls()
     {
         $receivedFuncCallsTemp = $this->receivedFuncCalls;
         $this->receivedFuncCalls = [];
@@ -214,6 +223,16 @@ trait MockStubTrait
     public function getReceivedCallCount()
     {
         return count($this->receivedFuncCalls);
+    }
+
+    /**
+     * @return mixed[] The call objects created by calls to the stub
+     */
+    public function popCallObjects()
+    {
+        $callObjectsTemp = $this->callObjects;
+        $this->callObjects = [];
+        return $callObjectsTemp;
     }
 
     /**

@@ -210,7 +210,7 @@ class BidiStreamTest extends PHPUnit_Framework_TestCase
 
         $this->assertSame($call, $stream->getBidiStreamingCall());
         $this->assertSame([], iterator_to_array($stream->closeWriteAndReadAll()));
-        $this->assertEquals($requests, $call->getReceivedCalls());
+        $this->assertEquals($requests, $call->popReceivedCalls());
     }
 
     public function testWriteObjectsSuccess()
@@ -227,7 +227,7 @@ class BidiStreamTest extends PHPUnit_Framework_TestCase
 
         $this->assertSame($call, $stream->getBidiStreamingCall());
         $this->assertSame([], iterator_to_array($stream->closeWriteAndReadAll()));
-        $this->assertEquals($requests, $call->getReceivedCalls());
+        $this->assertEquals($requests, $call->popReceivedCalls());
     }
 
     public function testAlternateReadWriteObjectsSuccess()
@@ -266,7 +266,7 @@ class BidiStreamTest extends PHPUnit_Framework_TestCase
         }
 
         $this->assertSame($call, $stream->getBidiStreamingCall());
-        $this->assertEquals($requests, $call->getReceivedCalls());
+        $this->assertEquals($requests, $call->popReceivedCalls());
     }
 
     /**
@@ -290,7 +290,7 @@ class BidiStreamTest extends PHPUnit_Framework_TestCase
         try {
             $stream->read();
         } finally {
-            $this->assertEquals([$request], $call->getReceivedCalls());
+            $this->assertEquals([$request], $call->popReceivedCalls());
         }
     }
 
