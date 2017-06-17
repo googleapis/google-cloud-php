@@ -580,7 +580,7 @@ class DependencyEdge_Label
      *
      * <code>LIST = 70;</code>
      */
-    const LIST = 70;
+    const GPBLIST = 70;
     /**
      * <pre>
      * Nominalized clause
