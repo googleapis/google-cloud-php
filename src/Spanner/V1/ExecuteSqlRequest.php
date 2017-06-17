@@ -139,7 +139,7 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
-     * @return Google\Cloud\Spanner\V1\TransactionSelector
+     * @return \Google\Cloud\Spanner\V1\TransactionSelector
      */
     public function getTransaction()
     {
@@ -153,7 +153,7 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
-     * @param Google\Cloud\Spanner\V1\TransactionSelector $var
+     * @param \Google\Cloud\Spanner\V1\TransactionSelector $var
      */
     public function setTransaction(&$var)
     {
@@ -208,7 +208,7 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Struct params = 4;</code>
-     * @return Google\Protobuf\Struct
+     * @return \Google\Protobuf\Struct
      */
     public function getParams()
     {
@@ -231,7 +231,7 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Struct params = 4;</code>
-     * @param Google\Protobuf\Struct $var
+     * @param \Google\Protobuf\Struct $var
      */
     public function setParams(&$var)
     {

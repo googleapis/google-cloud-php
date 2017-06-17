@@ -82,7 +82,7 @@ class CreateLogMetricRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.logging.v2.LogMetric metric = 2;</code>
-     * @return Google\Cloud\Logging\V2\LogMetric
+     * @return \Google\Cloud\Logging\V2\LogMetric
      */
     public function getMetric()
     {
@@ -96,7 +96,7 @@ class CreateLogMetricRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.logging.v2.LogMetric metric = 2;</code>
-     * @param Google\Cloud\Logging\V2\LogMetric $var
+     * @param \Google\Cloud\Logging\V2\LogMetric $var
      */
     public function setMetric(&$var)
     {

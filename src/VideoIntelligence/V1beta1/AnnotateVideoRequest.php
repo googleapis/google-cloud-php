@@ -201,7 +201,7 @@ class AnnotateVideoRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.videointelligence.v1beta1.VideoContext video_context = 3;</code>
-     * @return Google\Cloud\VideoIntelligence\V1beta1\VideoContext
+     * @return \Google\Cloud\VideoIntelligence\V1beta1\VideoContext
      */
     public function getVideoContext()
     {
@@ -214,7 +214,7 @@ class AnnotateVideoRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.videointelligence.v1beta1.VideoContext video_context = 3;</code>
-     * @param Google\Cloud\VideoIntelligence\V1beta1\VideoContext $var
+     * @param \Google\Cloud\VideoIntelligence\V1beta1\VideoContext $var
      */
     public function setVideoContext(&$var)
     {

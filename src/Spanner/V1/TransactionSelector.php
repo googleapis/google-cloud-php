@@ -35,7 +35,7 @@ class TransactionSelector extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.TransactionOptions single_use = 1;</code>
-     * @return Google\Cloud\Spanner\V1\TransactionOptions
+     * @return \Google\Cloud\Spanner\V1\TransactionOptions
      */
     public function getSingleUse()
     {
@@ -50,7 +50,7 @@ class TransactionSelector extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.TransactionOptions single_use = 1;</code>
-     * @param Google\Cloud\Spanner\V1\TransactionOptions $var
+     * @param \Google\Cloud\Spanner\V1\TransactionOptions $var
      */
     public function setSingleUse(&$var)
     {
@@ -97,7 +97,7 @@ class TransactionSelector extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.TransactionOptions begin = 3;</code>
-     * @return Google\Cloud\Spanner\V1\TransactionOptions
+     * @return \Google\Cloud\Spanner\V1\TransactionOptions
      */
     public function getBegin()
     {
@@ -112,7 +112,7 @@ class TransactionSelector extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.TransactionOptions begin = 3;</code>
-     * @param Google\Cloud\Spanner\V1\TransactionOptions $var
+     * @param \Google\Cloud\Spanner\V1\TransactionOptions $var
      */
     public function setBegin(&$var)
     {

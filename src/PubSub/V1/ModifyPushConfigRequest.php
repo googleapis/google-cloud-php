@@ -85,7 +85,7 @@ class ModifyPushConfigRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.pubsub.v1.PushConfig push_config = 2;</code>
-     * @return Google\Cloud\PubSub\V1\PushConfig
+     * @return \Google\Cloud\PubSub\V1\PushConfig
      */
     public function getPushConfig()
     {
@@ -102,7 +102,7 @@ class ModifyPushConfigRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.pubsub.v1.PushConfig push_config = 2;</code>
-     * @param Google\Cloud\PubSub\V1\PushConfig $var
+     * @param \Google\Cloud\PubSub\V1\PushConfig $var
      */
     public function setPushConfig(&$var)
     {

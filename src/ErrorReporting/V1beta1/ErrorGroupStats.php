@@ -129,7 +129,7 @@ class ErrorGroupStats extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
-     * @return Google\Cloud\ErrorReporting\V1beta1\ErrorGroup
+     * @return \Google\Cloud\ErrorReporting\V1beta1\ErrorGroup
      */
     public function getGroup()
     {
@@ -142,7 +142,7 @@ class ErrorGroupStats extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
-     * @param Google\Cloud\ErrorReporting\V1beta1\ErrorGroup $var
+     * @param \Google\Cloud\ErrorReporting\V1beta1\ErrorGroup $var
      */
     public function setGroup(&$var)
     {
@@ -279,7 +279,7 @@ class ErrorGroupStats extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp first_seen_time = 5;</code>
-     * @return Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp
      */
     public function getFirstSeenTime()
     {
@@ -294,7 +294,7 @@ class ErrorGroupStats extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp first_seen_time = 5;</code>
-     * @param Google\Protobuf\Timestamp $var
+     * @param \Google\Protobuf\Timestamp $var
      */
     public function setFirstSeenTime(&$var)
     {
@@ -312,7 +312,7 @@ class ErrorGroupStats extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp last_seen_time = 6;</code>
-     * @return Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp
      */
     public function getLastSeenTime()
     {
@@ -327,7 +327,7 @@ class ErrorGroupStats extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp last_seen_time = 6;</code>
-     * @param Google\Protobuf\Timestamp $var
+     * @param \Google\Protobuf\Timestamp $var
      */
     public function setLastSeenTime(&$var)
     {
@@ -411,7 +411,7 @@ class ErrorGroupStats extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorEvent representative = 9;</code>
-     * @return Google\Cloud\ErrorReporting\V1beta1\ErrorEvent
+     * @return \Google\Cloud\ErrorReporting\V1beta1\ErrorEvent
      */
     public function getRepresentative()
     {
@@ -428,7 +428,7 @@ class ErrorGroupStats extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorEvent representative = 9;</code>
-     * @param Google\Cloud\ErrorReporting\V1beta1\ErrorEvent $var
+     * @param \Google\Cloud\ErrorReporting\V1beta1\ErrorEvent $var
      */
     public function setRepresentative(&$var)
     {

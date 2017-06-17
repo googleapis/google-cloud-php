@@ -16,12 +16,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-namespace Google\Cloud\Vision\V1 {
+namespace Google\Cloud\Vision\V1;
 
-  // Service that performs Google Cloud Vision API detection tasks over client
-  // images, such as face, landmark, logo, label, and text detection. The
-  // ImageAnnotator service returns detected entities from the images.
-  class ImageAnnotatorGrpcClient extends \Grpc\BaseStub {
+/**
+ * Service that performs Google Cloud Vision API detection tasks over client
+ * images, such as face, landmark, logo, label, and text detection. The
+ * ImageAnnotator service returns detected entities from the images.
+ */
+class ImageAnnotatorGrpcClient extends \Grpc\BaseStub {
 
     /**
      * @param string $hostname hostname
@@ -29,7 +31,7 @@ namespace Google\Cloud\Vision\V1 {
      * @param \Grpc\Channel $channel (optional) re-use channel object
      */
     public function __construct($hostname, $opts, $channel = null) {
-      parent::__construct($hostname, $opts, $channel);
+        parent::__construct($hostname, $opts, $channel);
     }
 
     /**
@@ -40,12 +42,10 @@ namespace Google\Cloud\Vision\V1 {
      */
     public function BatchAnnotateImages(\Google\Cloud\Vision\V1\BatchAnnotateImagesRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.cloud.vision.v1.ImageAnnotator/BatchAnnotateImages',
-      $argument,
-      ['\Google\Cloud\Vision\V1\BatchAnnotateImagesResponse', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.cloud.vision.v1.ImageAnnotator/BatchAnnotateImages',
+        $argument,
+        ['\Google\Cloud\Vision\V1\BatchAnnotateImagesResponse', 'decode'],
+        $metadata, $options);
     }
-
-  }
 
 }

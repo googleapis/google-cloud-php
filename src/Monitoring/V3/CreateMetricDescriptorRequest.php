@@ -79,7 +79,7 @@ class CreateMetricDescriptorRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.api.MetricDescriptor metric_descriptor = 2;</code>
-     * @return Google\Api\MetricDescriptor
+     * @return \Google\Api\MetricDescriptor
      */
     public function getMetricDescriptor()
     {
@@ -93,7 +93,7 @@ class CreateMetricDescriptorRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.api.MetricDescriptor metric_descriptor = 2;</code>
-     * @param Google\Api\MetricDescriptor $var
+     * @param \Google\Api\MetricDescriptor $var
      */
     public function setMetricDescriptor(&$var)
     {

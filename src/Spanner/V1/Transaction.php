@@ -96,7 +96,7 @@ class Transaction extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp read_timestamp = 2;</code>
-     * @return Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp
      */
     public function getReadTimestamp()
     {
@@ -111,7 +111,7 @@ class Transaction extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp read_timestamp = 2;</code>
-     * @param Google\Protobuf\Timestamp $var
+     * @param \Google\Protobuf\Timestamp $var
      */
     public function setReadTimestamp(&$var)
     {

@@ -87,7 +87,7 @@ class LongRunningRecognizeMetadata extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp start_time = 2;</code>
-     * @return Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp
      */
     public function getStartTime()
     {
@@ -100,7 +100,7 @@ class LongRunningRecognizeMetadata extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp start_time = 2;</code>
-     * @param Google\Protobuf\Timestamp $var
+     * @param \Google\Protobuf\Timestamp $var
      */
     public function setStartTime(&$var)
     {
@@ -116,7 +116,7 @@ class LongRunningRecognizeMetadata extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp last_update_time = 3;</code>
-     * @return Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp
      */
     public function getLastUpdateTime()
     {
@@ -129,7 +129,7 @@ class LongRunningRecognizeMetadata extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp last_update_time = 3;</code>
-     * @param Google\Protobuf\Timestamp $var
+     * @param \Google\Protobuf\Timestamp $var
      */
     public function setLastUpdateTime(&$var)
     {

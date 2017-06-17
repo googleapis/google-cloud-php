@@ -51,7 +51,7 @@ class CreateTimeSeriesError extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.monitoring.v3.TimeSeries time_series = 1;</code>
-     * @return Google\Cloud\Monitoring\V3\TimeSeries
+     * @return \Google\Cloud\Monitoring\V3\TimeSeries
      */
     public function getTimeSeries()
     {
@@ -67,7 +67,7 @@ class CreateTimeSeriesError extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.monitoring.v3.TimeSeries time_series = 1;</code>
-     * @param Google\Cloud\Monitoring\V3\TimeSeries $var
+     * @param \Google\Cloud\Monitoring\V3\TimeSeries $var
      */
     public function setTimeSeries(&$var)
     {
@@ -83,7 +83,7 @@ class CreateTimeSeriesError extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.rpc.Status status = 2;</code>
-     * @return Google\Rpc\Status
+     * @return \Google\Rpc\Status
      */
     public function getStatus()
     {
@@ -96,7 +96,7 @@ class CreateTimeSeriesError extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.rpc.Status status = 2;</code>
-     * @param Google\Rpc\Status $var
+     * @param \Google\Rpc\Status $var
      */
     public function setStatus(&$var)
     {

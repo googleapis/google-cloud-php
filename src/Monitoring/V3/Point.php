@@ -59,7 +59,7 @@ class Point extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.monitoring.v3.TimeInterval interval = 1;</code>
-     * @return Google\Cloud\Monitoring\V3\TimeInterval
+     * @return \Google\Cloud\Monitoring\V3\TimeInterval
      */
     public function getInterval()
     {
@@ -79,7 +79,7 @@ class Point extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.monitoring.v3.TimeInterval interval = 1;</code>
-     * @param Google\Cloud\Monitoring\V3\TimeInterval $var
+     * @param \Google\Cloud\Monitoring\V3\TimeInterval $var
      */
     public function setInterval(&$var)
     {
@@ -95,7 +95,7 @@ class Point extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.monitoring.v3.TypedValue value = 2;</code>
-     * @return Google\Cloud\Monitoring\V3\TypedValue
+     * @return \Google\Cloud\Monitoring\V3\TypedValue
      */
     public function getValue()
     {
@@ -108,7 +108,7 @@ class Point extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.monitoring.v3.TypedValue value = 2;</code>
-     * @param Google\Cloud\Monitoring\V3\TypedValue $var
+     * @param \Google\Cloud\Monitoring\V3\TypedValue $var
      */
     public function setValue(&$var)
     {

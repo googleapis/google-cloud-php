@@ -16,13 +16,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-namespace Google\Cloud\Spanner\V1 {
+namespace Google\Cloud\Spanner\V1;
 
-  // Cloud Spanner API
-  //
-  // The Cloud Spanner API can be used to manage sessions and execute
-  // transactions on data stored in Cloud Spanner databases.
-  class SpannerGrpcClient extends \Grpc\BaseStub {
+/**
+ * Cloud Spanner API
+ *
+ * The Cloud Spanner API can be used to manage sessions and execute
+ * transactions on data stored in Cloud Spanner databases.
+ */
+class SpannerGrpcClient extends \Grpc\BaseStub {
 
     /**
      * @param string $hostname hostname
@@ -30,7 +32,7 @@ namespace Google\Cloud\Spanner\V1 {
      * @param \Grpc\Channel $channel (optional) re-use channel object
      */
     public function __construct($hostname, $opts, $channel = null) {
-      parent::__construct($hostname, $opts, $channel);
+        parent::__construct($hostname, $opts, $channel);
     }
 
     /**
@@ -59,10 +61,10 @@ namespace Google\Cloud\Spanner\V1 {
      */
     public function CreateSession(\Google\Cloud\Spanner\V1\CreateSessionRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.spanner.v1.Spanner/CreateSession',
-      $argument,
-      ['\Google\Cloud\Spanner\V1\Session', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.spanner.v1.Spanner/CreateSession',
+        $argument,
+        ['\Google\Cloud\Spanner\V1\Session', 'decode'],
+        $metadata, $options);
     }
 
     /**
@@ -75,10 +77,10 @@ namespace Google\Cloud\Spanner\V1 {
      */
     public function GetSession(\Google\Cloud\Spanner\V1\GetSessionRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.spanner.v1.Spanner/GetSession',
-      $argument,
-      ['\Google\Cloud\Spanner\V1\Session', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.spanner.v1.Spanner/GetSession',
+        $argument,
+        ['\Google\Cloud\Spanner\V1\Session', 'decode'],
+        $metadata, $options);
     }
 
     /**
@@ -89,10 +91,10 @@ namespace Google\Cloud\Spanner\V1 {
      */
     public function DeleteSession(\Google\Cloud\Spanner\V1\DeleteSessionRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.spanner.v1.Spanner/DeleteSession',
-      $argument,
-      ['\Google\Protobuf\GPBEmpty', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.spanner.v1.Spanner/DeleteSession',
+        $argument,
+        ['\Google\Protobuf\GPBEmpty', 'decode'],
+        $metadata, $options);
     }
 
     /**
@@ -113,10 +115,10 @@ namespace Google\Cloud\Spanner\V1 {
      */
     public function ExecuteSql(\Google\Cloud\Spanner\V1\ExecuteSqlRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.spanner.v1.Spanner/ExecuteSql',
-      $argument,
-      ['\Google\Cloud\Spanner\V1\ResultSet', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.spanner.v1.Spanner/ExecuteSql',
+        $argument,
+        ['\Google\Cloud\Spanner\V1\ResultSet', 'decode'],
+        $metadata, $options);
     }
 
     /**
@@ -131,10 +133,10 @@ namespace Google\Cloud\Spanner\V1 {
      */
     public function ExecuteStreamingSql(\Google\Cloud\Spanner\V1\ExecuteSqlRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_serverStreamRequest('/google.spanner.v1.Spanner/ExecuteStreamingSql',
-      $argument,
-      ['\Google\Cloud\Spanner\V1\PartialResultSet', 'decode'],
-      $metadata, $options);
+        return $this->_serverStreamRequest('/google.spanner.v1.Spanner/ExecuteStreamingSql',
+        $argument,
+        ['\Google\Cloud\Spanner\V1\PartialResultSet', 'decode'],
+        $metadata, $options);
     }
 
     /**
@@ -157,10 +159,10 @@ namespace Google\Cloud\Spanner\V1 {
      */
     public function Read(\Google\Cloud\Spanner\V1\ReadRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.spanner.v1.Spanner/Read',
-      $argument,
-      ['\Google\Cloud\Spanner\V1\ResultSet', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.spanner.v1.Spanner/Read',
+        $argument,
+        ['\Google\Cloud\Spanner\V1\ResultSet', 'decode'],
+        $metadata, $options);
     }
 
     /**
@@ -175,10 +177,10 @@ namespace Google\Cloud\Spanner\V1 {
      */
     public function StreamingRead(\Google\Cloud\Spanner\V1\ReadRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_serverStreamRequest('/google.spanner.v1.Spanner/StreamingRead',
-      $argument,
-      ['\Google\Cloud\Spanner\V1\PartialResultSet', 'decode'],
-      $metadata, $options);
+        return $this->_serverStreamRequest('/google.spanner.v1.Spanner/StreamingRead',
+        $argument,
+        ['\Google\Cloud\Spanner\V1\PartialResultSet', 'decode'],
+        $metadata, $options);
     }
 
     /**
@@ -192,10 +194,10 @@ namespace Google\Cloud\Spanner\V1 {
      */
     public function BeginTransaction(\Google\Cloud\Spanner\V1\BeginTransactionRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.spanner.v1.Spanner/BeginTransaction',
-      $argument,
-      ['\Google\Cloud\Spanner\V1\Transaction', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.spanner.v1.Spanner/BeginTransaction',
+        $argument,
+        ['\Google\Cloud\Spanner\V1\Transaction', 'decode'],
+        $metadata, $options);
     }
 
     /**
@@ -213,10 +215,10 @@ namespace Google\Cloud\Spanner\V1 {
      */
     public function Commit(\Google\Cloud\Spanner\V1\CommitRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.spanner.v1.Spanner/Commit',
-      $argument,
-      ['\Google\Cloud\Spanner\V1\CommitResponse', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.spanner.v1.Spanner/Commit',
+        $argument,
+        ['\Google\Cloud\Spanner\V1\CommitResponse', 'decode'],
+        $metadata, $options);
     }
 
     /**
@@ -234,12 +236,10 @@ namespace Google\Cloud\Spanner\V1 {
      */
     public function Rollback(\Google\Cloud\Spanner\V1\RollbackRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.spanner.v1.Spanner/Rollback',
-      $argument,
-      ['\Google\Protobuf\GPBEmpty', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.spanner.v1.Spanner/Rollback',
+        $argument,
+        ['\Google\Protobuf\GPBEmpty', 'decode'],
+        $metadata, $options);
     }
-
-  }
 
 }

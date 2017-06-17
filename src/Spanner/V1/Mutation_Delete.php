@@ -74,7 +74,7 @@ class Mutation_Delete extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.KeySet key_set = 2;</code>
-     * @return Google\Cloud\Spanner\V1\KeySet
+     * @return \Google\Cloud\Spanner\V1\KeySet
      */
     public function getKeySet()
     {
@@ -87,7 +87,7 @@ class Mutation_Delete extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.KeySet key_set = 2;</code>
-     * @param Google\Cloud\Spanner\V1\KeySet $var
+     * @param \Google\Cloud\Spanner\V1\KeySet $var
      */
     public function setKeySet(&$var)
     {

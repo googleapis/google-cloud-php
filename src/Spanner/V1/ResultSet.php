@@ -61,7 +61,7 @@ class ResultSet extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.ResultSetMetadata metadata = 1;</code>
-     * @return Google\Cloud\Spanner\V1\ResultSetMetadata
+     * @return \Google\Cloud\Spanner\V1\ResultSetMetadata
      */
     public function getMetadata()
     {
@@ -74,7 +74,7 @@ class ResultSet extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.ResultSetMetadata metadata = 1;</code>
-     * @param Google\Cloud\Spanner\V1\ResultSetMetadata $var
+     * @param \Google\Cloud\Spanner\V1\ResultSetMetadata $var
      */
     public function setMetadata(&$var)
     {
@@ -131,7 +131,7 @@ class ResultSet extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.ResultSetStats stats = 3;</code>
-     * @return Google\Cloud\Spanner\V1\ResultSetStats
+     * @return \Google\Cloud\Spanner\V1\ResultSetStats
      */
     public function getStats()
     {
@@ -146,7 +146,7 @@ class ResultSet extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.ResultSetStats stats = 3;</code>
-     * @param Google\Cloud\Spanner\V1\ResultSetStats $var
+     * @param \Google\Cloud\Spanner\V1\ResultSetStats $var
      */
     public function setStats(&$var)
     {

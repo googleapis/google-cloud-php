@@ -108,7 +108,7 @@ class CreateSinkRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.logging.v2.LogSink sink = 2;</code>
-     * @return Google\Cloud\Logging\V2\LogSink
+     * @return \Google\Cloud\Logging\V2\LogSink
      */
     public function getSink()
     {
@@ -122,7 +122,7 @@ class CreateSinkRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.logging.v2.LogSink sink = 2;</code>
-     * @param Google\Cloud\Logging\V2\LogSink $var
+     * @param \Google\Cloud\Logging\V2\LogSink $var
      */
     public function setSink(&$var)
     {

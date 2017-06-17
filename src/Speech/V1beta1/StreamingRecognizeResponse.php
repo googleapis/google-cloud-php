@@ -111,7 +111,7 @@ class StreamingRecognizeResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.rpc.Status error = 1;</code>
-     * @return Google\Rpc\Status
+     * @return \Google\Rpc\Status
      */
     public function getError()
     {
@@ -125,7 +125,7 @@ class StreamingRecognizeResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.rpc.Status error = 1;</code>
-     * @param Google\Rpc\Status $var
+     * @param \Google\Rpc\Status $var
      */
     public function setError(&$var)
     {

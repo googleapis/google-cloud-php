@@ -78,7 +78,7 @@ class FaceAnnotation_Landmark extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.Position position = 4;</code>
-     * @return Google\Cloud\Vision\V1\Position
+     * @return \Google\Cloud\Vision\V1\Position
      */
     public function getPosition()
     {
@@ -91,7 +91,7 @@ class FaceAnnotation_Landmark extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.Position position = 4;</code>
-     * @param Google\Cloud\Vision\V1\Position $var
+     * @param \Google\Cloud\Vision\V1\Position $var
      */
     public function setPosition(&$var)
     {

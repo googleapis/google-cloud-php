@@ -16,11 +16,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-namespace Google\Cloud\Language\V1beta2 {
+namespace Google\Cloud\Language\V1beta2;
 
-  // Provides text analysis operations such as sentiment analysis and entity
-  // recognition.
-  class LanguageServiceGrpcClient extends \Grpc\BaseStub {
+/**
+ * Provides text analysis operations such as sentiment analysis and entity
+ * recognition.
+ */
+class LanguageServiceGrpcClient extends \Grpc\BaseStub {
 
     /**
      * @param string $hostname hostname
@@ -28,7 +30,7 @@ namespace Google\Cloud\Language\V1beta2 {
      * @param \Grpc\Channel $channel (optional) re-use channel object
      */
     public function __construct($hostname, $opts, $channel = null) {
-      parent::__construct($hostname, $opts, $channel);
+        parent::__construct($hostname, $opts, $channel);
     }
 
     /**
@@ -39,10 +41,10 @@ namespace Google\Cloud\Language\V1beta2 {
      */
     public function AnalyzeSentiment(\Google\Cloud\Language\V1beta2\AnalyzeSentimentRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.cloud.language.v1beta2.LanguageService/AnalyzeSentiment',
-      $argument,
-      ['\Google\Cloud\Language\V1beta2\AnalyzeSentimentResponse', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.cloud.language.v1beta2.LanguageService/AnalyzeSentiment',
+        $argument,
+        ['\Google\Cloud\Language\V1beta2\AnalyzeSentimentResponse', 'decode'],
+        $metadata, $options);
     }
 
     /**
@@ -55,10 +57,10 @@ namespace Google\Cloud\Language\V1beta2 {
      */
     public function AnalyzeEntities(\Google\Cloud\Language\V1beta2\AnalyzeEntitiesRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.cloud.language.v1beta2.LanguageService/AnalyzeEntities',
-      $argument,
-      ['\Google\Cloud\Language\V1beta2\AnalyzeEntitiesResponse', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.cloud.language.v1beta2.LanguageService/AnalyzeEntities',
+        $argument,
+        ['\Google\Cloud\Language\V1beta2\AnalyzeEntitiesResponse', 'decode'],
+        $metadata, $options);
     }
 
     /**
@@ -70,10 +72,10 @@ namespace Google\Cloud\Language\V1beta2 {
      */
     public function AnalyzeEntitySentiment(\Google\Cloud\Language\V1beta2\AnalyzeEntitySentimentRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.cloud.language.v1beta2.LanguageService/AnalyzeEntitySentiment',
-      $argument,
-      ['\Google\Cloud\Language\V1beta2\AnalyzeEntitySentimentResponse', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.cloud.language.v1beta2.LanguageService/AnalyzeEntitySentiment',
+        $argument,
+        ['\Google\Cloud\Language\V1beta2\AnalyzeEntitySentimentResponse', 'decode'],
+        $metadata, $options);
     }
 
     /**
@@ -86,10 +88,10 @@ namespace Google\Cloud\Language\V1beta2 {
      */
     public function AnalyzeSyntax(\Google\Cloud\Language\V1beta2\AnalyzeSyntaxRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.cloud.language.v1beta2.LanguageService/AnalyzeSyntax',
-      $argument,
-      ['\Google\Cloud\Language\V1beta2\AnalyzeSyntaxResponse', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.cloud.language.v1beta2.LanguageService/AnalyzeSyntax',
+        $argument,
+        ['\Google\Cloud\Language\V1beta2\AnalyzeSyntaxResponse', 'decode'],
+        $metadata, $options);
     }
 
     /**
@@ -101,12 +103,10 @@ namespace Google\Cloud\Language\V1beta2 {
      */
     public function AnnotateText(\Google\Cloud\Language\V1beta2\AnnotateTextRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.cloud.language.v1beta2.LanguageService/AnnotateText',
-      $argument,
-      ['\Google\Cloud\Language\V1beta2\AnnotateTextResponse', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.cloud.language.v1beta2.LanguageService/AnnotateText',
+        $argument,
+        ['\Google\Cloud\Language\V1beta2\AnnotateTextResponse', 'decode'],
+        $metadata, $options);
     }
-
-  }
 
 }

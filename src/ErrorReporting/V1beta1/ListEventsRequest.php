@@ -153,7 +153,7 @@ class ListEventsRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3;</code>
-     * @return Google\Cloud\ErrorReporting\V1beta1\ServiceContextFilter
+     * @return \Google\Cloud\ErrorReporting\V1beta1\ServiceContextFilter
      */
     public function getServiceFilter()
     {
@@ -168,7 +168,7 @@ class ListEventsRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3;</code>
-     * @param Google\Cloud\ErrorReporting\V1beta1\ServiceContextFilter $var
+     * @param \Google\Cloud\ErrorReporting\V1beta1\ServiceContextFilter $var
      */
     public function setServiceFilter(&$var)
     {
@@ -186,7 +186,7 @@ class ListEventsRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 4;</code>
-     * @return Google\Cloud\ErrorReporting\V1beta1\QueryTimeRange
+     * @return \Google\Cloud\ErrorReporting\V1beta1\QueryTimeRange
      */
     public function getTimeRange()
     {
@@ -201,7 +201,7 @@ class ListEventsRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 4;</code>
-     * @param Google\Cloud\ErrorReporting\V1beta1\QueryTimeRange $var
+     * @param \Google\Cloud\ErrorReporting\V1beta1\QueryTimeRange $var
      */
     public function setTimeRange(&$var)
     {

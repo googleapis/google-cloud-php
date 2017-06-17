@@ -16,11 +16,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-namespace Google\Cloud\Monitoring\V3 {
+namespace Google\Cloud\Monitoring\V3;
 
-  // Manages metric descriptors, monitored resource descriptors, and
-  // time series data.
-  class MetricServiceGrpcClient extends \Grpc\BaseStub {
+/**
+ * Manages metric descriptors, monitored resource descriptors, and
+ * time series data.
+ */
+class MetricServiceGrpcClient extends \Grpc\BaseStub {
 
     /**
      * @param string $hostname hostname
@@ -28,7 +30,7 @@ namespace Google\Cloud\Monitoring\V3 {
      * @param \Grpc\Channel $channel (optional) re-use channel object
      */
     public function __construct($hostname, $opts, $channel = null) {
-      parent::__construct($hostname, $opts, $channel);
+        parent::__construct($hostname, $opts, $channel);
     }
 
     /**
@@ -39,10 +41,10 @@ namespace Google\Cloud\Monitoring\V3 {
      */
     public function ListMonitoredResourceDescriptors(\Google\Cloud\Monitoring\V3\ListMonitoredResourceDescriptorsRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.monitoring.v3.MetricService/ListMonitoredResourceDescriptors',
-      $argument,
-      ['\Google\Cloud\Monitoring\V3\ListMonitoredResourceDescriptorsResponse', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.monitoring.v3.MetricService/ListMonitoredResourceDescriptors',
+        $argument,
+        ['\Google\Cloud\Monitoring\V3\ListMonitoredResourceDescriptorsResponse', 'decode'],
+        $metadata, $options);
     }
 
     /**
@@ -53,10 +55,10 @@ namespace Google\Cloud\Monitoring\V3 {
      */
     public function GetMonitoredResourceDescriptor(\Google\Cloud\Monitoring\V3\GetMonitoredResourceDescriptorRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.monitoring.v3.MetricService/GetMonitoredResourceDescriptor',
-      $argument,
-      ['\Google\Api\MonitoredResourceDescriptor', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.monitoring.v3.MetricService/GetMonitoredResourceDescriptor',
+        $argument,
+        ['\Google\Api\MonitoredResourceDescriptor', 'decode'],
+        $metadata, $options);
     }
 
     /**
@@ -67,10 +69,10 @@ namespace Google\Cloud\Monitoring\V3 {
      */
     public function ListMetricDescriptors(\Google\Cloud\Monitoring\V3\ListMetricDescriptorsRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.monitoring.v3.MetricService/ListMetricDescriptors',
-      $argument,
-      ['\Google\Cloud\Monitoring\V3\ListMetricDescriptorsResponse', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.monitoring.v3.MetricService/ListMetricDescriptors',
+        $argument,
+        ['\Google\Cloud\Monitoring\V3\ListMetricDescriptorsResponse', 'decode'],
+        $metadata, $options);
     }
 
     /**
@@ -81,10 +83,10 @@ namespace Google\Cloud\Monitoring\V3 {
      */
     public function GetMetricDescriptor(\Google\Cloud\Monitoring\V3\GetMetricDescriptorRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.monitoring.v3.MetricService/GetMetricDescriptor',
-      $argument,
-      ['\Google\Api\MetricDescriptor', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.monitoring.v3.MetricService/GetMetricDescriptor',
+        $argument,
+        ['\Google\Api\MetricDescriptor', 'decode'],
+        $metadata, $options);
     }
 
     /**
@@ -97,10 +99,10 @@ namespace Google\Cloud\Monitoring\V3 {
      */
     public function CreateMetricDescriptor(\Google\Cloud\Monitoring\V3\CreateMetricDescriptorRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.monitoring.v3.MetricService/CreateMetricDescriptor',
-      $argument,
-      ['\Google\Api\MetricDescriptor', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.monitoring.v3.MetricService/CreateMetricDescriptor',
+        $argument,
+        ['\Google\Api\MetricDescriptor', 'decode'],
+        $metadata, $options);
     }
 
     /**
@@ -112,10 +114,10 @@ namespace Google\Cloud\Monitoring\V3 {
      */
     public function DeleteMetricDescriptor(\Google\Cloud\Monitoring\V3\DeleteMetricDescriptorRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.monitoring.v3.MetricService/DeleteMetricDescriptor',
-      $argument,
-      ['\Google\Protobuf\GPBEmpty', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.monitoring.v3.MetricService/DeleteMetricDescriptor',
+        $argument,
+        ['\Google\Protobuf\GPBEmpty', 'decode'],
+        $metadata, $options);
     }
 
     /**
@@ -126,10 +128,10 @@ namespace Google\Cloud\Monitoring\V3 {
      */
     public function ListTimeSeries(\Google\Cloud\Monitoring\V3\ListTimeSeriesRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.monitoring.v3.MetricService/ListTimeSeries',
-      $argument,
-      ['\Google\Cloud\Monitoring\V3\ListTimeSeriesResponse', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.monitoring.v3.MetricService/ListTimeSeries',
+        $argument,
+        ['\Google\Cloud\Monitoring\V3\ListTimeSeriesResponse', 'decode'],
+        $metadata, $options);
     }
 
     /**
@@ -143,12 +145,10 @@ namespace Google\Cloud\Monitoring\V3 {
      */
     public function CreateTimeSeries(\Google\Cloud\Monitoring\V3\CreateTimeSeriesRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.monitoring.v3.MetricService/CreateTimeSeries',
-      $argument,
-      ['\Google\Protobuf\GPBEmpty', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.monitoring.v3.MetricService/CreateTimeSeries',
+        $argument,
+        ['\Google\Protobuf\GPBEmpty', 'decode'],
+        $metadata, $options);
     }
-
-  }
 
 }

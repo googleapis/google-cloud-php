@@ -33,7 +33,7 @@ class Mutation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.Mutation.Write insert = 1;</code>
-     * @return Google\Cloud\Spanner\V1\Mutation_Write
+     * @return \Google\Cloud\Spanner\V1\Mutation_Write
      */
     public function getInsert()
     {
@@ -47,7 +47,7 @@ class Mutation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.Mutation.Write insert = 1;</code>
-     * @param Google\Cloud\Spanner\V1\Mutation_Write $var
+     * @param \Google\Cloud\Spanner\V1\Mutation_Write $var
      */
     public function setInsert(&$var)
     {
@@ -64,7 +64,7 @@ class Mutation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.Mutation.Write update = 2;</code>
-     * @return Google\Cloud\Spanner\V1\Mutation_Write
+     * @return \Google\Cloud\Spanner\V1\Mutation_Write
      */
     public function getUpdate()
     {
@@ -78,7 +78,7 @@ class Mutation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.Mutation.Write update = 2;</code>
-     * @param Google\Cloud\Spanner\V1\Mutation_Write $var
+     * @param \Google\Cloud\Spanner\V1\Mutation_Write $var
      */
     public function setUpdate(&$var)
     {
@@ -96,7 +96,7 @@ class Mutation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.Mutation.Write insert_or_update = 3;</code>
-     * @return Google\Cloud\Spanner\V1\Mutation_Write
+     * @return \Google\Cloud\Spanner\V1\Mutation_Write
      */
     public function getInsertOrUpdate()
     {
@@ -111,7 +111,7 @@ class Mutation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.Mutation.Write insert_or_update = 3;</code>
-     * @param Google\Cloud\Spanner\V1\Mutation_Write $var
+     * @param \Google\Cloud\Spanner\V1\Mutation_Write $var
      */
     public function setInsertOrUpdate(&$var)
     {
@@ -130,7 +130,7 @@ class Mutation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.Mutation.Write replace = 4;</code>
-     * @return Google\Cloud\Spanner\V1\Mutation_Write
+     * @return \Google\Cloud\Spanner\V1\Mutation_Write
      */
     public function getReplace()
     {
@@ -146,7 +146,7 @@ class Mutation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.Mutation.Write replace = 4;</code>
-     * @param Google\Cloud\Spanner\V1\Mutation_Write $var
+     * @param \Google\Cloud\Spanner\V1\Mutation_Write $var
      */
     public function setReplace(&$var)
     {
@@ -163,7 +163,7 @@ class Mutation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.Mutation.Delete delete = 5;</code>
-     * @return Google\Cloud\Spanner\V1\Mutation_Delete
+     * @return \Google\Cloud\Spanner\V1\Mutation_Delete
      */
     public function getDelete()
     {
@@ -177,7 +177,7 @@ class Mutation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.Mutation.Delete delete = 5;</code>
-     * @param Google\Cloud\Spanner\V1\Mutation_Delete $var
+     * @param \Google\Cloud\Spanner\V1\Mutation_Delete $var
      */
     public function setDelete(&$var)
     {

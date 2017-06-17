@@ -110,7 +110,7 @@ class Aggregation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Duration alignment_period = 1;</code>
-     * @return Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration
      */
     public function getAlignmentPeriod()
     {
@@ -130,7 +130,7 @@ class Aggregation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Duration alignment_period = 1;</code>
-     * @param Google\Protobuf\Duration $var
+     * @param \Google\Protobuf\Duration $var
      */
     public function setAlignmentPeriod(&$var)
     {

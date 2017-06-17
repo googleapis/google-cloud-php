@@ -271,7 +271,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.speech.v1beta1.SpeechContext speech_context = 6;</code>
-     * @return Google\Cloud\Speech\V1beta1\SpeechContext
+     * @return \Google\Cloud\Speech\V1beta1\SpeechContext
      */
     public function getSpeechContext()
     {
@@ -284,7 +284,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.speech.v1beta1.SpeechContext speech_context = 6;</code>
-     * @param Google\Cloud\Speech\V1beta1\SpeechContext $var
+     * @param \Google\Cloud\Speech\V1beta1\SpeechContext $var
      */
     public function setSpeechContext(&$var)
     {

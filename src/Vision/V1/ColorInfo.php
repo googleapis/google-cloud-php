@@ -55,7 +55,7 @@ class ColorInfo extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.type.Color color = 1;</code>
-     * @return Google\Type\Color
+     * @return \Google\Type\Color
      */
     public function getColor()
     {
@@ -68,7 +68,7 @@ class ColorInfo extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.type.Color color = 1;</code>
-     * @param Google\Type\Color $var
+     * @param \Google\Type\Color $var
      */
     public function setColor(&$var)
     {

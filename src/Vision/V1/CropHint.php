@@ -56,7 +56,7 @@ class CropHint extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
-     * @return Google\Cloud\Vision\V1\BoundingPoly
+     * @return \Google\Cloud\Vision\V1\BoundingPoly
      */
     public function getBoundingPoly()
     {
@@ -70,7 +70,7 @@ class CropHint extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
-     * @param Google\Cloud\Vision\V1\BoundingPoly $var
+     * @param \Google\Cloud\Vision\V1\BoundingPoly $var
      */
     public function setBoundingPoly(&$var)
     {

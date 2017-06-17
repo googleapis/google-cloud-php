@@ -16,30 +16,32 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-namespace Google\Cloud\Spanner\Admin\Instance\V1 {
+namespace Google\Cloud\Spanner\Admin\Instance\V1;
 
-  // Cloud Spanner Instance Admin API
-  //
-  // The Cloud Spanner Instance Admin API can be used to create, delete,
-  // modify and list instances. Instances are dedicated Cloud Spanner serving
-  // and storage resources to be used by Cloud Spanner databases.
-  //
-  // Each instance has a "configuration", which dictates where the
-  // serving resources for the Cloud Spanner instance are located (e.g.,
-  // US-central, Europe). Configurations are created by Google based on
-  // resource availability.
-  //
-  // Cloud Spanner billing is based on the instances that exist and their
-  // sizes. After an instance exists, there are no additional
-  // per-database or per-operation charges for use of the instance
-  // (though there may be additional network bandwidth charges).
-  // Instances offer isolation: problems with databases in one instance
-  // will not affect other instances. However, within an instance
-  // databases can affect each other. For example, if one database in an
-  // instance receives a lot of requests and consumes most of the
-  // instance resources, fewer resources are available for other
-  // databases in that instance, and their performance may suffer.
-  class InstanceAdminGrpcClient extends \Grpc\BaseStub {
+/**
+ * Cloud Spanner Instance Admin API
+ *
+ * The Cloud Spanner Instance Admin API can be used to create, delete,
+ * modify and list instances. Instances are dedicated Cloud Spanner serving
+ * and storage resources to be used by Cloud Spanner databases.
+ *
+ * Each instance has a "configuration", which dictates where the
+ * serving resources for the Cloud Spanner instance are located (e.g.,
+ * US-central, Europe). Configurations are created by Google based on
+ * resource availability.
+ *
+ * Cloud Spanner billing is based on the instances that exist and their
+ * sizes. After an instance exists, there are no additional
+ * per-database or per-operation charges for use of the instance
+ * (though there may be additional network bandwidth charges).
+ * Instances offer isolation: problems with databases in one instance
+ * will not affect other instances. However, within an instance
+ * databases can affect each other. For example, if one database in an
+ * instance receives a lot of requests and consumes most of the
+ * instance resources, fewer resources are available for other
+ * databases in that instance, and their performance may suffer.
+ */
+class InstanceAdminGrpcClient extends \Grpc\BaseStub {
 
     /**
      * @param string $hostname hostname
@@ -47,7 +49,7 @@ namespace Google\Cloud\Spanner\Admin\Instance\V1 {
      * @param \Grpc\Channel $channel (optional) re-use channel object
      */
     public function __construct($hostname, $opts, $channel = null) {
-      parent::__construct($hostname, $opts, $channel);
+        parent::__construct($hostname, $opts, $channel);
     }
 
     /**
@@ -58,10 +60,10 @@ namespace Google\Cloud\Spanner\Admin\Instance\V1 {
      */
     public function ListInstanceConfigs(\Google\Cloud\Spanner\Admin\Instance\V1\ListInstanceConfigsRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.spanner.admin.instance.v1.InstanceAdmin/ListInstanceConfigs',
-      $argument,
-      ['\Google\Cloud\Spanner\Admin\Instance\V1\ListInstanceConfigsResponse', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.spanner.admin.instance.v1.InstanceAdmin/ListInstanceConfigs',
+        $argument,
+        ['\Google\Cloud\Spanner\Admin\Instance\V1\ListInstanceConfigsResponse', 'decode'],
+        $metadata, $options);
     }
 
     /**
@@ -72,10 +74,10 @@ namespace Google\Cloud\Spanner\Admin\Instance\V1 {
      */
     public function GetInstanceConfig(\Google\Cloud\Spanner\Admin\Instance\V1\GetInstanceConfigRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.spanner.admin.instance.v1.InstanceAdmin/GetInstanceConfig',
-      $argument,
-      ['\Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.spanner.admin.instance.v1.InstanceAdmin/GetInstanceConfig',
+        $argument,
+        ['\Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig', 'decode'],
+        $metadata, $options);
     }
 
     /**
@@ -86,10 +88,10 @@ namespace Google\Cloud\Spanner\Admin\Instance\V1 {
      */
     public function ListInstances(\Google\Cloud\Spanner\Admin\Instance\V1\ListInstancesRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.spanner.admin.instance.v1.InstanceAdmin/ListInstances',
-      $argument,
-      ['\Google\Cloud\Spanner\Admin\Instance\V1\ListInstancesResponse', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.spanner.admin.instance.v1.InstanceAdmin/ListInstances',
+        $argument,
+        ['\Google\Cloud\Spanner\Admin\Instance\V1\ListInstancesResponse', 'decode'],
+        $metadata, $options);
     }
 
     /**
@@ -100,10 +102,10 @@ namespace Google\Cloud\Spanner\Admin\Instance\V1 {
      */
     public function GetInstance(\Google\Cloud\Spanner\Admin\Instance\V1\GetInstanceRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.spanner.admin.instance.v1.InstanceAdmin/GetInstance',
-      $argument,
-      ['\Google\Cloud\Spanner\Admin\Instance\V1\Instance', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.spanner.admin.instance.v1.InstanceAdmin/GetInstance',
+        $argument,
+        ['\Google\Cloud\Spanner\Admin\Instance\V1\Instance', 'decode'],
+        $metadata, $options);
     }
 
     /**
@@ -147,10 +149,10 @@ namespace Google\Cloud\Spanner\Admin\Instance\V1 {
      */
     public function CreateInstance(\Google\Cloud\Spanner\Admin\Instance\V1\CreateInstanceRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.spanner.admin.instance.v1.InstanceAdmin/CreateInstance',
-      $argument,
-      ['\Google\LongRunning\Operation', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.spanner.admin.instance.v1.InstanceAdmin/CreateInstance',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
     }
 
     /**
@@ -200,10 +202,10 @@ namespace Google\Cloud\Spanner\Admin\Instance\V1 {
      */
     public function UpdateInstance(\Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.spanner.admin.instance.v1.InstanceAdmin/UpdateInstance',
-      $argument,
-      ['\Google\LongRunning\Operation', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.spanner.admin.instance.v1.InstanceAdmin/UpdateInstance',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
     }
 
     /**
@@ -224,10 +226,10 @@ namespace Google\Cloud\Spanner\Admin\Instance\V1 {
      */
     public function DeleteInstance(\Google\Cloud\Spanner\Admin\Instance\V1\DeleteInstanceRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.spanner.admin.instance.v1.InstanceAdmin/DeleteInstance',
-      $argument,
-      ['\Google\Protobuf\GPBEmpty', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.spanner.admin.instance.v1.InstanceAdmin/DeleteInstance',
+        $argument,
+        ['\Google\Protobuf\GPBEmpty', 'decode'],
+        $metadata, $options);
     }
 
     /**
@@ -242,10 +244,10 @@ namespace Google\Cloud\Spanner\Admin\Instance\V1 {
      */
     public function SetIamPolicy(\Google\Cloud\Iam\V1\SetIamPolicyRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.spanner.admin.instance.v1.InstanceAdmin/SetIamPolicy',
-      $argument,
-      ['\Google\Cloud\Iam\V1\Policy', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.spanner.admin.instance.v1.InstanceAdmin/SetIamPolicy',
+        $argument,
+        ['\Google\Cloud\Iam\V1\Policy', 'decode'],
+        $metadata, $options);
     }
 
     /**
@@ -260,10 +262,10 @@ namespace Google\Cloud\Spanner\Admin\Instance\V1 {
      */
     public function GetIamPolicy(\Google\Cloud\Iam\V1\GetIamPolicyRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.spanner.admin.instance.v1.InstanceAdmin/GetIamPolicy',
-      $argument,
-      ['\Google\Cloud\Iam\V1\Policy', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.spanner.admin.instance.v1.InstanceAdmin/GetIamPolicy',
+        $argument,
+        ['\Google\Cloud\Iam\V1\Policy', 'decode'],
+        $metadata, $options);
     }
 
     /**
@@ -279,12 +281,10 @@ namespace Google\Cloud\Spanner\Admin\Instance\V1 {
      */
     public function TestIamPermissions(\Google\Cloud\Iam\V1\TestIamPermissionsRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.spanner.admin.instance.v1.InstanceAdmin/TestIamPermissions',
-      $argument,
-      ['\Google\Cloud\Iam\V1\TestIamPermissionsResponse', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.spanner.admin.instance.v1.InstanceAdmin/TestIamPermissions',
+        $argument,
+        ['\Google\Cloud\Iam\V1\TestIamPermissionsResponse', 'decode'],
+        $metadata, $options);
     }
-
-  }
 
 }

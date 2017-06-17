@@ -157,7 +157,7 @@ class WriteLogEntriesRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.api.MonitoredResource resource = 2;</code>
-     * @return Google\Api\MonitoredResource
+     * @return \Google\Api\MonitoredResource
      */
     public function getResource()
     {
@@ -175,7 +175,7 @@ class WriteLogEntriesRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.api.MonitoredResource resource = 2;</code>
-     * @param Google\Api\MonitoredResource $var
+     * @param \Google\Api\MonitoredResource $var
      */
     public function setResource(&$var)
     {

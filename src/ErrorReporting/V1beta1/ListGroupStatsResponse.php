@@ -123,7 +123,7 @@ class ListGroupStatsResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp time_range_begin = 4;</code>
-     * @return Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp
      */
     public function getTimeRangeBegin()
     {
@@ -139,7 +139,7 @@ class ListGroupStatsResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp time_range_begin = 4;</code>
-     * @param Google\Protobuf\Timestamp $var
+     * @param \Google\Protobuf\Timestamp $var
      */
     public function setTimeRangeBegin(&$var)
     {

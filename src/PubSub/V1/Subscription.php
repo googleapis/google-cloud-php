@@ -186,7 +186,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.pubsub.v1.PushConfig push_config = 4;</code>
-     * @return Google\Cloud\PubSub\V1\PushConfig
+     * @return \Google\Cloud\PubSub\V1\PushConfig
      */
     public function getPushConfig()
     {
@@ -201,7 +201,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.pubsub.v1.PushConfig push_config = 4;</code>
-     * @param Google\Cloud\PubSub\V1\PushConfig $var
+     * @param \Google\Cloud\PubSub\V1\PushConfig $var
      */
     public function setPushConfig(&$var)
     {
@@ -316,7 +316,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Duration message_retention_duration = 8;</code>
-     * @return Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration
      */
     public function getMessageRetentionDuration()
     {
@@ -334,7 +334,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Duration message_retention_duration = 8;</code>
-     * @param Google\Protobuf\Duration $var
+     * @param \Google\Protobuf\Duration $var
      */
     public function setMessageRetentionDuration(&$var)
     {

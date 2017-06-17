@@ -57,7 +57,7 @@ class EntityMention extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.language.v1beta2.TextSpan text = 1;</code>
-     * @return Google\Cloud\Language\V1beta2\TextSpan
+     * @return \Google\Cloud\Language\V1beta2\TextSpan
      */
     public function getText()
     {
@@ -70,7 +70,7 @@ class EntityMention extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.language.v1beta2.TextSpan text = 1;</code>
-     * @param Google\Cloud\Language\V1beta2\TextSpan $var
+     * @param \Google\Cloud\Language\V1beta2\TextSpan $var
      */
     public function setText(&$var)
     {
@@ -118,7 +118,7 @@ class EntityMention extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.language.v1beta2.Sentiment sentiment = 3;</code>
-     * @return Google\Cloud\Language\V1beta2\Sentiment
+     * @return \Google\Cloud\Language\V1beta2\Sentiment
      */
     public function getSentiment()
     {
@@ -134,7 +134,7 @@ class EntityMention extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.language.v1beta2.Sentiment sentiment = 3;</code>
-     * @param Google\Cloud\Language\V1beta2\Sentiment $var
+     * @param \Google\Cloud\Language\V1beta2\Sentiment $var
      */
     public function setSentiment(&$var)
     {

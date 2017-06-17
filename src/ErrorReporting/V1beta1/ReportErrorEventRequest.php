@@ -83,7 +83,7 @@ class ReportErrorEventRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.devtools.clouderrorreporting.v1beta1.ReportedErrorEvent event = 2;</code>
-     * @return Google\Cloud\ErrorReporting\V1beta1\ReportedErrorEvent
+     * @return \Google\Cloud\ErrorReporting\V1beta1\ReportedErrorEvent
      */
     public function getEvent()
     {
@@ -96,7 +96,7 @@ class ReportErrorEventRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.devtools.clouderrorreporting.v1beta1.ReportedErrorEvent event = 2;</code>
-     * @param Google\Cloud\ErrorReporting\V1beta1\ReportedErrorEvent $var
+     * @param \Google\Cloud\ErrorReporting\V1beta1\ReportedErrorEvent $var
      */
     public function setEvent(&$var)
     {

@@ -74,7 +74,7 @@ class ReceivedMessage extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.pubsub.v1.PubsubMessage message = 2;</code>
-     * @return Google\Cloud\PubSub\V1\PubsubMessage
+     * @return \Google\Cloud\PubSub\V1\PubsubMessage
      */
     public function getMessage()
     {
@@ -87,7 +87,7 @@ class ReceivedMessage extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.pubsub.v1.PubsubMessage message = 2;</code>
-     * @param Google\Cloud\PubSub\V1\PubsubMessage $var
+     * @param \Google\Cloud\PubSub\V1\PubsubMessage $var
      */
     public function setMessage(&$var)
     {

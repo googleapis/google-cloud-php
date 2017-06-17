@@ -59,7 +59,7 @@ class LabelLocation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.videointelligence.v1beta1.VideoSegment segment = 1;</code>
-     * @return Google\Cloud\VideoIntelligence\V1beta1\VideoSegment
+     * @return \Google\Cloud\VideoIntelligence\V1beta1\VideoSegment
      */
     public function getSegment()
     {
@@ -75,7 +75,7 @@ class LabelLocation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.videointelligence.v1beta1.VideoSegment segment = 1;</code>
-     * @param Google\Cloud\VideoIntelligence\V1beta1\VideoSegment $var
+     * @param \Google\Cloud\VideoIntelligence\V1beta1\VideoSegment $var
      */
     public function setSegment(&$var)
     {

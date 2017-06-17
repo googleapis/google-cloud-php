@@ -182,7 +182,7 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.monitoring.v3.TimeInterval interval = 4;</code>
-     * @return Google\Cloud\Monitoring\V3\TimeInterval
+     * @return \Google\Cloud\Monitoring\V3\TimeInterval
      */
     public function getInterval()
     {
@@ -197,7 +197,7 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.monitoring.v3.TimeInterval interval = 4;</code>
-     * @param Google\Cloud\Monitoring\V3\TimeInterval $var
+     * @param \Google\Cloud\Monitoring\V3\TimeInterval $var
      */
     public function setInterval(&$var)
     {
@@ -215,7 +215,7 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.monitoring.v3.Aggregation aggregation = 5;</code>
-     * @return Google\Cloud\Monitoring\V3\Aggregation
+     * @return \Google\Cloud\Monitoring\V3\Aggregation
      */
     public function getAggregation()
     {
@@ -230,7 +230,7 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.monitoring.v3.Aggregation aggregation = 5;</code>
-     * @param Google\Cloud\Monitoring\V3\Aggregation $var
+     * @param \Google\Cloud\Monitoring\V3\Aggregation $var
      */
     public function setAggregation(&$var)
     {

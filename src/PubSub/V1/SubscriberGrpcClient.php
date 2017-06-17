@@ -16,11 +16,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-namespace Google\Cloud\PubSub\V1 {
+namespace Google\Cloud\PubSub\V1;
 
-  // The service that an application uses to manipulate subscriptions and to
-  // consume messages from a subscription via the `Pull` method.
-  class SubscriberGrpcClient extends \Grpc\BaseStub {
+/**
+ * The service that an application uses to manipulate subscriptions and to
+ * consume messages from a subscription via the `Pull` method.
+ */
+class SubscriberGrpcClient extends \Grpc\BaseStub {
 
     /**
      * @param string $hostname hostname
@@ -28,7 +30,7 @@ namespace Google\Cloud\PubSub\V1 {
      * @param \Grpc\Channel $channel (optional) re-use channel object
      */
     public function __construct($hostname, $opts, $channel = null) {
-      parent::__construct($hostname, $opts, $channel);
+        parent::__construct($hostname, $opts, $channel);
     }
 
     /**
@@ -48,10 +50,10 @@ namespace Google\Cloud\PubSub\V1 {
      */
     public function CreateSubscription(\Google\Cloud\PubSub\V1\Subscription $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.pubsub.v1.Subscriber/CreateSubscription',
-      $argument,
-      ['\Google\Cloud\PubSub\V1\Subscription', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.pubsub.v1.Subscriber/CreateSubscription',
+        $argument,
+        ['\Google\Cloud\PubSub\V1\Subscription', 'decode'],
+        $metadata, $options);
     }
 
     /**
@@ -62,10 +64,10 @@ namespace Google\Cloud\PubSub\V1 {
      */
     public function GetSubscription(\Google\Cloud\PubSub\V1\GetSubscriptionRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.pubsub.v1.Subscriber/GetSubscription',
-      $argument,
-      ['\Google\Cloud\PubSub\V1\Subscription', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.pubsub.v1.Subscriber/GetSubscription',
+        $argument,
+        ['\Google\Cloud\PubSub\V1\Subscription', 'decode'],
+        $metadata, $options);
     }
 
     /**
@@ -77,10 +79,10 @@ namespace Google\Cloud\PubSub\V1 {
      */
     public function UpdateSubscription(\Google\Cloud\PubSub\V1\UpdateSubscriptionRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.pubsub.v1.Subscriber/UpdateSubscription',
-      $argument,
-      ['\Google\Cloud\PubSub\V1\Subscription', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.pubsub.v1.Subscriber/UpdateSubscription',
+        $argument,
+        ['\Google\Cloud\PubSub\V1\Subscription', 'decode'],
+        $metadata, $options);
     }
 
     /**
@@ -91,10 +93,10 @@ namespace Google\Cloud\PubSub\V1 {
      */
     public function ListSubscriptions(\Google\Cloud\PubSub\V1\ListSubscriptionsRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.pubsub.v1.Subscriber/ListSubscriptions',
-      $argument,
-      ['\Google\Cloud\PubSub\V1\ListSubscriptionsResponse', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.pubsub.v1.Subscriber/ListSubscriptions',
+        $argument,
+        ['\Google\Cloud\PubSub\V1\ListSubscriptionsResponse', 'decode'],
+        $metadata, $options);
     }
 
     /**
@@ -109,10 +111,10 @@ namespace Google\Cloud\PubSub\V1 {
      */
     public function DeleteSubscription(\Google\Cloud\PubSub\V1\DeleteSubscriptionRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.pubsub.v1.Subscriber/DeleteSubscription',
-      $argument,
-      ['\Google\Protobuf\GPBEmpty', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.pubsub.v1.Subscriber/DeleteSubscription',
+        $argument,
+        ['\Google\Protobuf\GPBEmpty', 'decode'],
+        $metadata, $options);
     }
 
     /**
@@ -127,10 +129,10 @@ namespace Google\Cloud\PubSub\V1 {
      */
     public function ModifyAckDeadline(\Google\Cloud\PubSub\V1\ModifyAckDeadlineRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.pubsub.v1.Subscriber/ModifyAckDeadline',
-      $argument,
-      ['\Google\Protobuf\GPBEmpty', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.pubsub.v1.Subscriber/ModifyAckDeadline',
+        $argument,
+        ['\Google\Protobuf\GPBEmpty', 'decode'],
+        $metadata, $options);
     }
 
     /**
@@ -147,10 +149,10 @@ namespace Google\Cloud\PubSub\V1 {
      */
     public function Acknowledge(\Google\Cloud\PubSub\V1\AcknowledgeRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.pubsub.v1.Subscriber/Acknowledge',
-      $argument,
-      ['\Google\Protobuf\GPBEmpty', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.pubsub.v1.Subscriber/Acknowledge',
+        $argument,
+        ['\Google\Protobuf\GPBEmpty', 'decode'],
+        $metadata, $options);
     }
 
     /**
@@ -164,10 +166,10 @@ namespace Google\Cloud\PubSub\V1 {
      */
     public function Pull(\Google\Cloud\PubSub\V1\PullRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.pubsub.v1.Subscriber/Pull',
-      $argument,
-      ['\Google\Cloud\PubSub\V1\PullResponse', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.pubsub.v1.Subscriber/Pull',
+        $argument,
+        ['\Google\Cloud\PubSub\V1\PullResponse', 'decode'],
+        $metadata, $options);
     }
 
     /**
@@ -187,9 +189,9 @@ namespace Google\Cloud\PubSub\V1 {
      * @param array $options call options
      */
     public function StreamingPull($metadata = [], $options = []) {
-      return $this->_bidiRequest('/google.pubsub.v1.Subscriber/StreamingPull',
-      ['\Google\Cloud\PubSub\V1\StreamingPullResponse','decode'],
-      $metadata, $options);
+        return $this->_bidiRequest('/google.pubsub.v1.Subscriber/StreamingPull',
+        ['\Google\Cloud\PubSub\V1\StreamingPullResponse','decode'],
+        $metadata, $options);
     }
 
     /**
@@ -205,10 +207,10 @@ namespace Google\Cloud\PubSub\V1 {
      */
     public function ModifyPushConfig(\Google\Cloud\PubSub\V1\ModifyPushConfigRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.pubsub.v1.Subscriber/ModifyPushConfig',
-      $argument,
-      ['\Google\Protobuf\GPBEmpty', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.pubsub.v1.Subscriber/ModifyPushConfig',
+        $argument,
+        ['\Google\Protobuf\GPBEmpty', 'decode'],
+        $metadata, $options);
     }
 
     /**
@@ -219,10 +221,10 @@ namespace Google\Cloud\PubSub\V1 {
      */
     public function ListSnapshots(\Google\Cloud\PubSub\V1\ListSnapshotsRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.pubsub.v1.Subscriber/ListSnapshots',
-      $argument,
-      ['\Google\Cloud\PubSub\V1\ListSnapshotsResponse', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.pubsub.v1.Subscriber/ListSnapshots',
+        $argument,
+        ['\Google\Cloud\PubSub\V1\ListSnapshotsResponse', 'decode'],
+        $metadata, $options);
     }
 
     /**
@@ -242,10 +244,10 @@ namespace Google\Cloud\PubSub\V1 {
      */
     public function CreateSnapshot(\Google\Cloud\PubSub\V1\CreateSnapshotRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.pubsub.v1.Subscriber/CreateSnapshot',
-      $argument,
-      ['\Google\Cloud\PubSub\V1\Snapshot', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.pubsub.v1.Subscriber/CreateSnapshot',
+        $argument,
+        ['\Google\Cloud\PubSub\V1\Snapshot', 'decode'],
+        $metadata, $options);
     }
 
     /**
@@ -259,10 +261,10 @@ namespace Google\Cloud\PubSub\V1 {
      */
     public function DeleteSnapshot(\Google\Cloud\PubSub\V1\DeleteSnapshotRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.pubsub.v1.Subscriber/DeleteSnapshot',
-      $argument,
-      ['\Google\Protobuf\GPBEmpty', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.pubsub.v1.Subscriber/DeleteSnapshot',
+        $argument,
+        ['\Google\Protobuf\GPBEmpty', 'decode'],
+        $metadata, $options);
     }
 
     /**
@@ -274,12 +276,10 @@ namespace Google\Cloud\PubSub\V1 {
      */
     public function Seek(\Google\Cloud\PubSub\V1\SeekRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.pubsub.v1.Subscriber/Seek',
-      $argument,
-      ['\Google\Cloud\PubSub\V1\SeekResponse', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.pubsub.v1.Subscriber/Seek',
+        $argument,
+        ['\Google\Cloud\PubSub\V1\SeekResponse', 'decode'],
+        $metadata, $options);
     }
-
-  }
 
 }

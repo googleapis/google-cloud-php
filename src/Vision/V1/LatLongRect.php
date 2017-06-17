@@ -45,7 +45,7 @@ class LatLongRect extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.type.LatLng min_lat_lng = 1;</code>
-     * @return Google\Type\LatLng
+     * @return \Google\Type\LatLng
      */
     public function getMinLatLng()
     {
@@ -58,7 +58,7 @@ class LatLongRect extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.type.LatLng min_lat_lng = 1;</code>
-     * @param Google\Type\LatLng $var
+     * @param \Google\Type\LatLng $var
      */
     public function setMinLatLng(&$var)
     {
@@ -74,7 +74,7 @@ class LatLongRect extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.type.LatLng max_lat_lng = 2;</code>
-     * @return Google\Type\LatLng
+     * @return \Google\Type\LatLng
      */
     public function getMaxLatLng()
     {
@@ -87,7 +87,7 @@ class LatLongRect extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.type.LatLng max_lat_lng = 2;</code>
-     * @param Google\Type\LatLng $var
+     * @param \Google\Type\LatLng $var
      */
     public function setMaxLatLng(&$var)
     {

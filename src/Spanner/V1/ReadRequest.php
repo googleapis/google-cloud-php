@@ -141,7 +141,7 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
-     * @return Google\Cloud\Spanner\V1\TransactionSelector
+     * @return \Google\Cloud\Spanner\V1\TransactionSelector
      */
     public function getTransaction()
     {
@@ -155,7 +155,7 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
-     * @param Google\Cloud\Spanner\V1\TransactionSelector $var
+     * @param \Google\Cloud\Spanner\V1\TransactionSelector $var
      */
     public function setTransaction(&$var)
     {
@@ -271,7 +271,7 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.KeySet key_set = 6;</code>
-     * @return Google\Cloud\Spanner\V1\KeySet
+     * @return \Google\Cloud\Spanner\V1\KeySet
      */
     public function getKeySet()
     {
@@ -291,7 +291,7 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.KeySet key_set = 6;</code>
-     * @param Google\Cloud\Spanner\V1\KeySet $var
+     * @param \Google\Cloud\Spanner\V1\KeySet $var
      */
     public function setKeySet(&$var)
     {

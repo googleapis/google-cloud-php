@@ -200,7 +200,7 @@ class TransactionOptions extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.TransactionOptions.ReadWrite read_write = 1;</code>
-     * @return Google\Cloud\Spanner\V1\TransactionOptions_ReadWrite
+     * @return \Google\Cloud\Spanner\V1\TransactionOptions_ReadWrite
      */
     public function getReadWrite()
     {
@@ -216,7 +216,7 @@ class TransactionOptions extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.TransactionOptions.ReadWrite read_write = 1;</code>
-     * @param Google\Cloud\Spanner\V1\TransactionOptions_ReadWrite $var
+     * @param \Google\Cloud\Spanner\V1\TransactionOptions_ReadWrite $var
      */
     public function setReadWrite(&$var)
     {
@@ -235,7 +235,7 @@ class TransactionOptions extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.TransactionOptions.ReadOnly read_only = 2;</code>
-     * @return Google\Cloud\Spanner\V1\TransactionOptions_ReadOnly
+     * @return \Google\Cloud\Spanner\V1\TransactionOptions_ReadOnly
      */
     public function getReadOnly()
     {
@@ -251,7 +251,7 @@ class TransactionOptions extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.TransactionOptions.ReadOnly read_only = 2;</code>
-     * @param Google\Cloud\Spanner\V1\TransactionOptions_ReadOnly $var
+     * @param \Google\Cloud\Spanner\V1\TransactionOptions_ReadOnly $var
      */
     public function setReadOnly(&$var)
     {

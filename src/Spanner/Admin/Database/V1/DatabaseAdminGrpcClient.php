@@ -16,14 +16,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-namespace Google\Cloud\Spanner\Admin\Database\V1 {
+namespace Google\Cloud\Spanner\Admin\Database\V1;
 
-  // Cloud Spanner Database Admin API
-  //
-  // The Cloud Spanner Database Admin API can be used to create, drop, and
-  // list databases. It also enables updating the schema of pre-existing
-  // databases.
-  class DatabaseAdminGrpcClient extends \Grpc\BaseStub {
+/**
+ * Cloud Spanner Database Admin API
+ *
+ * The Cloud Spanner Database Admin API can be used to create, drop, and
+ * list databases. It also enables updating the schema of pre-existing
+ * databases.
+ */
+class DatabaseAdminGrpcClient extends \Grpc\BaseStub {
 
     /**
      * @param string $hostname hostname
@@ -31,7 +33,7 @@ namespace Google\Cloud\Spanner\Admin\Database\V1 {
      * @param \Grpc\Channel $channel (optional) re-use channel object
      */
     public function __construct($hostname, $opts, $channel = null) {
-      parent::__construct($hostname, $opts, $channel);
+        parent::__construct($hostname, $opts, $channel);
     }
 
     /**
@@ -42,10 +44,10 @@ namespace Google\Cloud\Spanner\Admin\Database\V1 {
      */
     public function ListDatabases(\Google\Cloud\Spanner\Admin\Database\V1\ListDatabasesRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.spanner.admin.database.v1.DatabaseAdmin/ListDatabases',
-      $argument,
-      ['\Google\Cloud\Spanner\Admin\Database\V1\ListDatabasesResponse', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.spanner.admin.database.v1.DatabaseAdmin/ListDatabases',
+        $argument,
+        ['\Google\Cloud\Spanner\Admin\Database\V1\ListDatabasesResponse', 'decode'],
+        $metadata, $options);
     }
 
     /**
@@ -63,10 +65,10 @@ namespace Google\Cloud\Spanner\Admin\Database\V1 {
      */
     public function CreateDatabase(\Google\Cloud\Spanner\Admin\Database\V1\CreateDatabaseRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.spanner.admin.database.v1.DatabaseAdmin/CreateDatabase',
-      $argument,
-      ['\Google\LongRunning\Operation', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.spanner.admin.database.v1.DatabaseAdmin/CreateDatabase',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
     }
 
     /**
@@ -77,10 +79,10 @@ namespace Google\Cloud\Spanner\Admin\Database\V1 {
      */
     public function GetDatabase(\Google\Cloud\Spanner\Admin\Database\V1\GetDatabaseRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.spanner.admin.database.v1.DatabaseAdmin/GetDatabase',
-      $argument,
-      ['\Google\Cloud\Spanner\Admin\Database\V1\Database', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.spanner.admin.database.v1.DatabaseAdmin/GetDatabase',
+        $argument,
+        ['\Google\Cloud\Spanner\Admin\Database\V1\Database', 'decode'],
+        $metadata, $options);
     }
 
     /**
@@ -97,10 +99,10 @@ namespace Google\Cloud\Spanner\Admin\Database\V1 {
      */
     public function UpdateDatabaseDdl(\Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseDdlRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.spanner.admin.database.v1.DatabaseAdmin/UpdateDatabaseDdl',
-      $argument,
-      ['\Google\LongRunning\Operation', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.spanner.admin.database.v1.DatabaseAdmin/UpdateDatabaseDdl',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
     }
 
     /**
@@ -111,10 +113,10 @@ namespace Google\Cloud\Spanner\Admin\Database\V1 {
      */
     public function DropDatabase(\Google\Cloud\Spanner\Admin\Database\V1\DropDatabaseRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.spanner.admin.database.v1.DatabaseAdmin/DropDatabase',
-      $argument,
-      ['\Google\Protobuf\GPBEmpty', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.spanner.admin.database.v1.DatabaseAdmin/DropDatabase',
+        $argument,
+        ['\Google\Protobuf\GPBEmpty', 'decode'],
+        $metadata, $options);
     }
 
     /**
@@ -127,10 +129,10 @@ namespace Google\Cloud\Spanner\Admin\Database\V1 {
      */
     public function GetDatabaseDdl(\Google\Cloud\Spanner\Admin\Database\V1\GetDatabaseDdlRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.spanner.admin.database.v1.DatabaseAdmin/GetDatabaseDdl',
-      $argument,
-      ['\Google\Cloud\Spanner\Admin\Database\V1\GetDatabaseDdlResponse', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.spanner.admin.database.v1.DatabaseAdmin/GetDatabaseDdl',
+        $argument,
+        ['\Google\Cloud\Spanner\Admin\Database\V1\GetDatabaseDdlResponse', 'decode'],
+        $metadata, $options);
     }
 
     /**
@@ -145,10 +147,10 @@ namespace Google\Cloud\Spanner\Admin\Database\V1 {
      */
     public function SetIamPolicy(\Google\Cloud\Iam\V1\SetIamPolicyRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.spanner.admin.database.v1.DatabaseAdmin/SetIamPolicy',
-      $argument,
-      ['\Google\Cloud\Iam\V1\Policy', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.spanner.admin.database.v1.DatabaseAdmin/SetIamPolicy',
+        $argument,
+        ['\Google\Cloud\Iam\V1\Policy', 'decode'],
+        $metadata, $options);
     }
 
     /**
@@ -163,10 +165,10 @@ namespace Google\Cloud\Spanner\Admin\Database\V1 {
      */
     public function GetIamPolicy(\Google\Cloud\Iam\V1\GetIamPolicyRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.spanner.admin.database.v1.DatabaseAdmin/GetIamPolicy',
-      $argument,
-      ['\Google\Cloud\Iam\V1\Policy', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.spanner.admin.database.v1.DatabaseAdmin/GetIamPolicy',
+        $argument,
+        ['\Google\Cloud\Iam\V1\Policy', 'decode'],
+        $metadata, $options);
     }
 
     /**
@@ -182,12 +184,10 @@ namespace Google\Cloud\Spanner\Admin\Database\V1 {
      */
     public function TestIamPermissions(\Google\Cloud\Iam\V1\TestIamPermissionsRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.spanner.admin.database.v1.DatabaseAdmin/TestIamPermissions',
-      $argument,
-      ['\Google\Cloud\Iam\V1\TestIamPermissionsResponse', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.spanner.admin.database.v1.DatabaseAdmin/TestIamPermissions',
+        $argument,
+        ['\Google\Cloud\Iam\V1\TestIamPermissionsResponse', 'decode'],
+        $metadata, $options);
     }
-
-  }
 
 }

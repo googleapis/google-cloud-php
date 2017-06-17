@@ -150,7 +150,7 @@ class TypedValue extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.api.Distribution distribution_value = 5;</code>
-     * @return Google\Api\Distribution
+     * @return \Google\Api\Distribution
      */
     public function getDistributionValue()
     {
@@ -163,7 +163,7 @@ class TypedValue extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.api.Distribution distribution_value = 5;</code>
-     * @param Google\Api\Distribution $var
+     * @param \Google\Api\Distribution $var
      */
     public function setDistributionValue(&$var)
     {

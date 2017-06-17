@@ -222,7 +222,7 @@ class PlanNode extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.PlanNode.ShortRepresentation short_representation = 5;</code>
-     * @return Google\Cloud\Spanner\V1\PlanNode_ShortRepresentation
+     * @return \Google\Cloud\Spanner\V1\PlanNode_ShortRepresentation
      */
     public function getShortRepresentation()
     {
@@ -235,7 +235,7 @@ class PlanNode extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.PlanNode.ShortRepresentation short_representation = 5;</code>
-     * @param Google\Cloud\Spanner\V1\PlanNode_ShortRepresentation $var
+     * @param \Google\Cloud\Spanner\V1\PlanNode_ShortRepresentation $var
      */
     public function setShortRepresentation(&$var)
     {
@@ -257,7 +257,7 @@ class PlanNode extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Struct metadata = 6;</code>
-     * @return Google\Protobuf\Struct
+     * @return \Google\Protobuf\Struct
      */
     public function getMetadata()
     {
@@ -276,7 +276,7 @@ class PlanNode extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Struct metadata = 6;</code>
-     * @param Google\Protobuf\Struct $var
+     * @param \Google\Protobuf\Struct $var
      */
     public function setMetadata(&$var)
     {
@@ -295,7 +295,7 @@ class PlanNode extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Struct execution_stats = 7;</code>
-     * @return Google\Protobuf\Struct
+     * @return \Google\Protobuf\Struct
      */
     public function getExecutionStats()
     {
@@ -311,7 +311,7 @@ class PlanNode extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Struct execution_stats = 7;</code>
-     * @param Google\Protobuf\Struct $var
+     * @param \Google\Protobuf\Struct $var
      */
     public function setExecutionStats(&$var)
     {

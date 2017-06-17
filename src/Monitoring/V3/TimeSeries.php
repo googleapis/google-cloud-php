@@ -92,7 +92,7 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.api.Metric metric = 1;</code>
-     * @return Google\Api\Metric
+     * @return \Google\Api\Metric
      */
     public function getMetric()
     {
@@ -106,7 +106,7 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.api.Metric metric = 1;</code>
-     * @param Google\Api\Metric $var
+     * @param \Google\Api\Metric $var
      */
     public function setMetric(&$var)
     {
@@ -123,7 +123,7 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.api.MonitoredResource resource = 2;</code>
-     * @return Google\Api\MonitoredResource
+     * @return \Google\Api\MonitoredResource
      */
     public function getResource()
     {
@@ -137,7 +137,7 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.api.MonitoredResource resource = 2;</code>
-     * @param Google\Api\MonitoredResource $var
+     * @param \Google\Api\MonitoredResource $var
      */
     public function setResource(&$var)
     {

@@ -212,7 +212,7 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.api.MonitoredResource resource = 8;</code>
-     * @return Google\Api\MonitoredResource
+     * @return \Google\Api\MonitoredResource
      */
     public function getResource()
     {
@@ -228,7 +228,7 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.api.MonitoredResource resource = 8;</code>
-     * @param Google\Api\MonitoredResource $var
+     * @param \Google\Api\MonitoredResource $var
      */
     public function setResource(&$var)
     {
@@ -246,7 +246,7 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Any proto_payload = 2;</code>
-     * @return Google\Protobuf\Any
+     * @return \Google\Protobuf\Any
      */
     public function getProtoPayload()
     {
@@ -261,7 +261,7 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Any proto_payload = 2;</code>
-     * @param Google\Protobuf\Any $var
+     * @param \Google\Protobuf\Any $var
      */
     public function setProtoPayload(&$var)
     {
@@ -307,7 +307,7 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Struct json_payload = 6;</code>
-     * @return Google\Protobuf\Struct
+     * @return \Google\Protobuf\Struct
      */
     public function getJsonPayload()
     {
@@ -321,7 +321,7 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Struct json_payload = 6;</code>
-     * @param Google\Protobuf\Struct $var
+     * @param \Google\Protobuf\Struct $var
      */
     public function setJsonPayload(&$var)
     {
@@ -341,7 +341,7 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp timestamp = 9;</code>
-     * @return Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp
      */
     public function getTimestamp()
     {
@@ -358,7 +358,7 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp timestamp = 9;</code>
-     * @param Google\Protobuf\Timestamp $var
+     * @param \Google\Protobuf\Timestamp $var
      */
     public function setTimestamp(&$var)
     {
@@ -374,7 +374,7 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp receive_timestamp = 24;</code>
-     * @return Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp
      */
     public function getReceiveTimestamp()
     {
@@ -387,7 +387,7 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp receive_timestamp = 24;</code>
-     * @param Google\Protobuf\Timestamp $var
+     * @param \Google\Protobuf\Timestamp $var
      */
     public function setReceiveTimestamp(&$var)
     {
@@ -474,7 +474,7 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.logging.type.HttpRequest http_request = 7;</code>
-     * @return Google\Cloud\Logging\Type\HttpRequest
+     * @return \Google\Cloud\Logging\Type\HttpRequest
      */
     public function getHttpRequest()
     {
@@ -488,7 +488,7 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.logging.type.HttpRequest http_request = 7;</code>
-     * @param Google\Cloud\Logging\Type\HttpRequest $var
+     * @param \Google\Cloud\Logging\Type\HttpRequest $var
      */
     public function setHttpRequest(&$var)
     {
@@ -536,7 +536,7 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.logging.v2.LogEntryOperation operation = 15;</code>
-     * @return Google\Cloud\Logging\V2\LogEntryOperation
+     * @return \Google\Cloud\Logging\V2\LogEntryOperation
      */
     public function getOperation()
     {
@@ -550,7 +550,7 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.logging.v2.LogEntryOperation operation = 15;</code>
-     * @param Google\Cloud\Logging\V2\LogEntryOperation $var
+     * @param \Google\Cloud\Logging\V2\LogEntryOperation $var
      */
     public function setOperation(&$var)
     {
@@ -602,7 +602,7 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.logging.v2.LogEntrySourceLocation source_location = 23;</code>
-     * @return Google\Cloud\Logging\V2\LogEntrySourceLocation
+     * @return \Google\Cloud\Logging\V2\LogEntrySourceLocation
      */
     public function getSourceLocation()
     {
@@ -616,7 +616,7 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.logging.v2.LogEntrySourceLocation source_location = 23;</code>
-     * @param Google\Cloud\Logging\V2\LogEntrySourceLocation $var
+     * @param \Google\Cloud\Logging\V2\LogEntrySourceLocation $var
      */
     public function setSourceLocation(&$var)
     {

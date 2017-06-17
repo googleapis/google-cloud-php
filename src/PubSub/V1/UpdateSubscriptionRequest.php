@@ -46,7 +46,7 @@ class UpdateSubscriptionRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.pubsub.v1.Subscription subscription = 1;</code>
-     * @return Google\Cloud\PubSub\V1\Subscription
+     * @return \Google\Cloud\PubSub\V1\Subscription
      */
     public function getSubscription()
     {
@@ -59,7 +59,7 @@ class UpdateSubscriptionRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.pubsub.v1.Subscription subscription = 1;</code>
-     * @param Google\Cloud\PubSub\V1\Subscription $var
+     * @param \Google\Cloud\PubSub\V1\Subscription $var
      */
     public function setSubscription(&$var)
     {
@@ -76,7 +76,7 @@ class UpdateSubscriptionRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.FieldMask update_mask = 2;</code>
-     * @return Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask
      */
     public function getUpdateMask()
     {
@@ -90,7 +90,7 @@ class UpdateSubscriptionRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.FieldMask update_mask = 2;</code>
-     * @param Google\Protobuf\FieldMask $var
+     * @param \Google\Protobuf\FieldMask $var
      */
     public function setUpdateMask(&$var)
     {

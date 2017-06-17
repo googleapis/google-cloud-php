@@ -16,10 +16,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-namespace Google\Cloud\Speech\V1 {
+namespace Google\Cloud\Speech\V1;
 
-  // Service that implements Google Cloud Speech API.
-  class SpeechGrpcClient extends \Grpc\BaseStub {
+/**
+ * Service that implements Google Cloud Speech API.
+ */
+class SpeechGrpcClient extends \Grpc\BaseStub {
 
     /**
      * @param string $hostname hostname
@@ -27,7 +29,7 @@ namespace Google\Cloud\Speech\V1 {
      * @param \Grpc\Channel $channel (optional) re-use channel object
      */
     public function __construct($hostname, $opts, $channel = null) {
-      parent::__construct($hostname, $opts, $channel);
+        parent::__construct($hostname, $opts, $channel);
     }
 
     /**
@@ -39,10 +41,10 @@ namespace Google\Cloud\Speech\V1 {
      */
     public function Recognize(\Google\Cloud\Speech\V1\RecognizeRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.cloud.speech.v1.Speech/Recognize',
-      $argument,
-      ['\Google\Cloud\Speech\V1\RecognizeResponse', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.cloud.speech.v1.Speech/Recognize',
+        $argument,
+        ['\Google\Cloud\Speech\V1\RecognizeResponse', 'decode'],
+        $metadata, $options);
     }
 
     /**
@@ -56,10 +58,10 @@ namespace Google\Cloud\Speech\V1 {
      */
     public function LongRunningRecognize(\Google\Cloud\Speech\V1\LongRunningRecognizeRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.cloud.speech.v1.Speech/LongRunningRecognize',
-      $argument,
-      ['\Google\LongRunning\Operation', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.cloud.speech.v1.Speech/LongRunningRecognize',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
     }
 
     /**
@@ -69,11 +71,9 @@ namespace Google\Cloud\Speech\V1 {
      * @param array $options call options
      */
     public function StreamingRecognize($metadata = [], $options = []) {
-      return $this->_bidiRequest('/google.cloud.speech.v1.Speech/StreamingRecognize',
-      ['\Google\Cloud\Speech\V1\StreamingRecognizeResponse','decode'],
-      $metadata, $options);
+        return $this->_bidiRequest('/google.cloud.speech.v1.Speech/StreamingRecognize',
+        ['\Google\Cloud\Speech\V1\StreamingRecognizeResponse','decode'],
+        $metadata, $options);
     }
-
-  }
 
 }

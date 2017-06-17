@@ -273,7 +273,7 @@ class AnnotateImageResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.TextAnnotation full_text_annotation = 12;</code>
-     * @return Google\Cloud\Vision\V1\TextAnnotation
+     * @return \Google\Cloud\Vision\V1\TextAnnotation
      */
     public function getFullTextAnnotation()
     {
@@ -289,7 +289,7 @@ class AnnotateImageResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.TextAnnotation full_text_annotation = 12;</code>
-     * @param Google\Cloud\Vision\V1\TextAnnotation $var
+     * @param \Google\Cloud\Vision\V1\TextAnnotation $var
      */
     public function setFullTextAnnotation(&$var)
     {
@@ -305,7 +305,7 @@ class AnnotateImageResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.SafeSearchAnnotation safe_search_annotation = 6;</code>
-     * @return Google\Cloud\Vision\V1\SafeSearchAnnotation
+     * @return \Google\Cloud\Vision\V1\SafeSearchAnnotation
      */
     public function getSafeSearchAnnotation()
     {
@@ -318,7 +318,7 @@ class AnnotateImageResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.SafeSearchAnnotation safe_search_annotation = 6;</code>
-     * @param Google\Cloud\Vision\V1\SafeSearchAnnotation $var
+     * @param \Google\Cloud\Vision\V1\SafeSearchAnnotation $var
      */
     public function setSafeSearchAnnotation(&$var)
     {
@@ -334,7 +334,7 @@ class AnnotateImageResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.ImageProperties image_properties_annotation = 8;</code>
-     * @return Google\Cloud\Vision\V1\ImageProperties
+     * @return \Google\Cloud\Vision\V1\ImageProperties
      */
     public function getImagePropertiesAnnotation()
     {
@@ -347,7 +347,7 @@ class AnnotateImageResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.ImageProperties image_properties_annotation = 8;</code>
-     * @param Google\Cloud\Vision\V1\ImageProperties $var
+     * @param \Google\Cloud\Vision\V1\ImageProperties $var
      */
     public function setImagePropertiesAnnotation(&$var)
     {
@@ -363,7 +363,7 @@ class AnnotateImageResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.CropHintsAnnotation crop_hints_annotation = 11;</code>
-     * @return Google\Cloud\Vision\V1\CropHintsAnnotation
+     * @return \Google\Cloud\Vision\V1\CropHintsAnnotation
      */
     public function getCropHintsAnnotation()
     {
@@ -376,7 +376,7 @@ class AnnotateImageResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.CropHintsAnnotation crop_hints_annotation = 11;</code>
-     * @param Google\Cloud\Vision\V1\CropHintsAnnotation $var
+     * @param \Google\Cloud\Vision\V1\CropHintsAnnotation $var
      */
     public function setCropHintsAnnotation(&$var)
     {
@@ -392,7 +392,7 @@ class AnnotateImageResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.WebDetection web_detection = 13;</code>
-     * @return Google\Cloud\Vision\V1\WebDetection
+     * @return \Google\Cloud\Vision\V1\WebDetection
      */
     public function getWebDetection()
     {
@@ -405,7 +405,7 @@ class AnnotateImageResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.WebDetection web_detection = 13;</code>
-     * @param Google\Cloud\Vision\V1\WebDetection $var
+     * @param \Google\Cloud\Vision\V1\WebDetection $var
      */
     public function setWebDetection(&$var)
     {
@@ -423,7 +423,7 @@ class AnnotateImageResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.rpc.Status error = 9;</code>
-     * @return Google\Rpc\Status
+     * @return \Google\Rpc\Status
      */
     public function getError()
     {
@@ -438,7 +438,7 @@ class AnnotateImageResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.rpc.Status error = 9;</code>
-     * @param Google\Rpc\Status $var
+     * @param \Google\Rpc\Status $var
      */
     public function setError(&$var)
     {

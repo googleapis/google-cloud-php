@@ -92,7 +92,7 @@ class StructType_Field extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.Type type = 2;</code>
-     * @return Google\Cloud\Spanner\V1\Type
+     * @return \Google\Cloud\Spanner\V1\Type
      */
     public function getType()
     {
@@ -105,7 +105,7 @@ class StructType_Field extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.v1.Type type = 2;</code>
-     * @param Google\Cloud\Spanner\V1\Type $var
+     * @param \Google\Cloud\Spanner\V1\Type $var
      */
     public function setType(&$var)
     {

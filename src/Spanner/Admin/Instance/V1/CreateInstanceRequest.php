@@ -122,7 +122,7 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.admin.instance.v1.Instance instance = 3;</code>
-     * @return Google\Cloud\Spanner\Admin\Instance\V1\Instance
+     * @return \Google\Cloud\Spanner\Admin\Instance\V1\Instance
      */
     public function getInstance()
     {
@@ -136,7 +136,7 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.spanner.admin.instance.v1.Instance instance = 3;</code>
-     * @param Google\Cloud\Spanner\Admin\Instance\V1\Instance $var
+     * @param \Google\Cloud\Spanner\Admin\Instance\V1\Instance $var
      */
     public function setInstance(&$var)
     {

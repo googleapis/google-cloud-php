@@ -16,21 +16,23 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-namespace Google\Cloud\Monitoring\V3 {
+namespace Google\Cloud\Monitoring\V3;
 
-  // The Group API lets you inspect and manage your
-  // [groups](google.monitoring.v3.Group).
-  //
-  // A group is a named filter that is used to identify
-  // a collection of monitored resources. Groups are typically used to
-  // mirror the physical and/or logical topology of the environment.
-  // Because group membership is computed dynamically, monitored
-  // resources that are started in the future are automatically placed
-  // in matching groups. By using a group to name monitored resources in,
-  // for example, an alert policy, the target of that alert policy is
-  // updated automatically as monitored resources are added and removed
-  // from the infrastructure.
-  class GroupServiceGrpcClient extends \Grpc\BaseStub {
+/**
+ * The Group API lets you inspect and manage your
+ * [groups](google.monitoring.v3.Group).
+ *
+ * A group is a named filter that is used to identify
+ * a collection of monitored resources. Groups are typically used to
+ * mirror the physical and/or logical topology of the environment.
+ * Because group membership is computed dynamically, monitored
+ * resources that are started in the future are automatically placed
+ * in matching groups. By using a group to name monitored resources in,
+ * for example, an alert policy, the target of that alert policy is
+ * updated automatically as monitored resources are added and removed
+ * from the infrastructure.
+ */
+class GroupServiceGrpcClient extends \Grpc\BaseStub {
 
     /**
      * @param string $hostname hostname
@@ -38,7 +40,7 @@ namespace Google\Cloud\Monitoring\V3 {
      * @param \Grpc\Channel $channel (optional) re-use channel object
      */
     public function __construct($hostname, $opts, $channel = null) {
-      parent::__construct($hostname, $opts, $channel);
+        parent::__construct($hostname, $opts, $channel);
     }
 
     /**
@@ -49,10 +51,10 @@ namespace Google\Cloud\Monitoring\V3 {
      */
     public function ListGroups(\Google\Cloud\Monitoring\V3\ListGroupsRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.monitoring.v3.GroupService/ListGroups',
-      $argument,
-      ['\Google\Cloud\Monitoring\V3\ListGroupsResponse', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.monitoring.v3.GroupService/ListGroups',
+        $argument,
+        ['\Google\Cloud\Monitoring\V3\ListGroupsResponse', 'decode'],
+        $metadata, $options);
     }
 
     /**
@@ -63,10 +65,10 @@ namespace Google\Cloud\Monitoring\V3 {
      */
     public function GetGroup(\Google\Cloud\Monitoring\V3\GetGroupRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.monitoring.v3.GroupService/GetGroup',
-      $argument,
-      ['\Google\Cloud\Monitoring\V3\Group', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.monitoring.v3.GroupService/GetGroup',
+        $argument,
+        ['\Google\Cloud\Monitoring\V3\Group', 'decode'],
+        $metadata, $options);
     }
 
     /**
@@ -77,10 +79,10 @@ namespace Google\Cloud\Monitoring\V3 {
      */
     public function CreateGroup(\Google\Cloud\Monitoring\V3\CreateGroupRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.monitoring.v3.GroupService/CreateGroup',
-      $argument,
-      ['\Google\Cloud\Monitoring\V3\Group', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.monitoring.v3.GroupService/CreateGroup',
+        $argument,
+        ['\Google\Cloud\Monitoring\V3\Group', 'decode'],
+        $metadata, $options);
     }
 
     /**
@@ -92,10 +94,10 @@ namespace Google\Cloud\Monitoring\V3 {
      */
     public function UpdateGroup(\Google\Cloud\Monitoring\V3\UpdateGroupRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.monitoring.v3.GroupService/UpdateGroup',
-      $argument,
-      ['\Google\Cloud\Monitoring\V3\Group', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.monitoring.v3.GroupService/UpdateGroup',
+        $argument,
+        ['\Google\Cloud\Monitoring\V3\Group', 'decode'],
+        $metadata, $options);
     }
 
     /**
@@ -106,10 +108,10 @@ namespace Google\Cloud\Monitoring\V3 {
      */
     public function DeleteGroup(\Google\Cloud\Monitoring\V3\DeleteGroupRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.monitoring.v3.GroupService/DeleteGroup',
-      $argument,
-      ['\Google\Protobuf\GPBEmpty', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.monitoring.v3.GroupService/DeleteGroup',
+        $argument,
+        ['\Google\Protobuf\GPBEmpty', 'decode'],
+        $metadata, $options);
     }
 
     /**
@@ -120,12 +122,10 @@ namespace Google\Cloud\Monitoring\V3 {
      */
     public function ListGroupMembers(\Google\Cloud\Monitoring\V3\ListGroupMembersRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.monitoring.v3.GroupService/ListGroupMembers',
-      $argument,
-      ['\Google\Cloud\Monitoring\V3\ListGroupMembersResponse', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.monitoring.v3.GroupService/ListGroupMembers',
+        $argument,
+        ['\Google\Cloud\Monitoring\V3\ListGroupMembersResponse', 'decode'],
+        $metadata, $options);
     }
-
-  }
 
 }

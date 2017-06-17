@@ -45,7 +45,7 @@ class FaceLocation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.videointelligence.v1beta1.BoundingBox bounding_box = 1;</code>
-     * @return Google\Cloud\VideoIntelligence\V1beta1\BoundingBox
+     * @return \Google\Cloud\VideoIntelligence\V1beta1\BoundingBox
      */
     public function getBoundingBox()
     {
@@ -58,7 +58,7 @@ class FaceLocation extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.videointelligence.v1beta1.BoundingBox bounding_box = 1;</code>
-     * @param Google\Cloud\VideoIntelligence\V1beta1\BoundingBox $var
+     * @param \Google\Cloud\VideoIntelligence\V1beta1\BoundingBox $var
      */
     public function setBoundingBox(&$var)
     {

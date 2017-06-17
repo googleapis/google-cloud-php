@@ -251,7 +251,7 @@ class Entity extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.language.v1beta2.Sentiment sentiment = 6;</code>
-     * @return Google\Cloud\Language\V1beta2\Sentiment
+     * @return \Google\Cloud\Language\V1beta2\Sentiment
      */
     public function getSentiment()
     {
@@ -267,7 +267,7 @@ class Entity extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.language.v1beta2.Sentiment sentiment = 6;</code>
-     * @param Google\Cloud\Language\V1beta2\Sentiment $var
+     * @param \Google\Cloud\Language\V1beta2\Sentiment $var
      */
     public function setSentiment(&$var)
     {

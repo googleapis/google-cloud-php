@@ -84,7 +84,7 @@ class Image extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.ImageSource source = 2;</code>
-     * @return Google\Cloud\Vision\V1\ImageSource
+     * @return \Google\Cloud\Vision\V1\ImageSource
      */
     public function getSource()
     {
@@ -99,7 +99,7 @@ class Image extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.ImageSource source = 2;</code>
-     * @param Google\Cloud\Vision\V1\ImageSource $var
+     * @param \Google\Cloud\Vision\V1\ImageSource $var
      */
     public function setSource(&$var)
     {

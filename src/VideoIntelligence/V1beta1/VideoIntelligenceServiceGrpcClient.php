@@ -16,10 +16,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-namespace Google\Cloud\VideoIntelligence\V1beta1 {
+namespace Google\Cloud\VideoIntelligence\V1beta1;
 
-  // Service that implements Google Cloud Video Intelligence API.
-  class VideoIntelligenceServiceGrpcClient extends \Grpc\BaseStub {
+/**
+ * Service that implements Google Cloud Video Intelligence API.
+ */
+class VideoIntelligenceServiceGrpcClient extends \Grpc\BaseStub {
 
     /**
      * @param string $hostname hostname
@@ -27,7 +29,7 @@ namespace Google\Cloud\VideoIntelligence\V1beta1 {
      * @param \Grpc\Channel $channel (optional) re-use channel object
      */
     public function __construct($hostname, $opts, $channel = null) {
-      parent::__construct($hostname, $opts, $channel);
+        parent::__construct($hostname, $opts, $channel);
     }
 
     /**
@@ -41,12 +43,10 @@ namespace Google\Cloud\VideoIntelligence\V1beta1 {
      */
     public function AnnotateVideo(\Google\Cloud\VideoIntelligence\V1beta1\AnnotateVideoRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.cloud.videointelligence.v1beta1.VideoIntelligenceService/AnnotateVideo',
-      $argument,
-      ['\Google\LongRunning\Operation', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.cloud.videointelligence.v1beta1.VideoIntelligenceService/AnnotateVideo',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
     }
-
-  }
 
 }

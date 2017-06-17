@@ -37,7 +37,7 @@ class CommitResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp commit_timestamp = 1;</code>
-     * @return Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp
      */
     public function getCommitTimestamp()
     {
@@ -50,7 +50,7 @@ class CommitResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp commit_timestamp = 1;</code>
-     * @param Google\Protobuf\Timestamp $var
+     * @param \Google\Protobuf\Timestamp $var
      */
     public function setCommitTimestamp(&$var)
     {

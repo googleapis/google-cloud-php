@@ -16,10 +16,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-namespace Google\Cloud\Logging\V2 {
+namespace Google\Cloud\Logging\V2;
 
-  // Service for configuring logs-based metrics.
-  class MetricsServiceV2GrpcClient extends \Grpc\BaseStub {
+/**
+ * Service for configuring logs-based metrics.
+ */
+class MetricsServiceV2GrpcClient extends \Grpc\BaseStub {
 
     /**
      * @param string $hostname hostname
@@ -27,7 +29,7 @@ namespace Google\Cloud\Logging\V2 {
      * @param \Grpc\Channel $channel (optional) re-use channel object
      */
     public function __construct($hostname, $opts, $channel = null) {
-      parent::__construct($hostname, $opts, $channel);
+        parent::__construct($hostname, $opts, $channel);
     }
 
     /**
@@ -38,10 +40,10 @@ namespace Google\Cloud\Logging\V2 {
      */
     public function ListLogMetrics(\Google\Cloud\Logging\V2\ListLogMetricsRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.logging.v2.MetricsServiceV2/ListLogMetrics',
-      $argument,
-      ['\Google\Cloud\Logging\V2\ListLogMetricsResponse', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.logging.v2.MetricsServiceV2/ListLogMetrics',
+        $argument,
+        ['\Google\Cloud\Logging\V2\ListLogMetricsResponse', 'decode'],
+        $metadata, $options);
     }
 
     /**
@@ -52,10 +54,10 @@ namespace Google\Cloud\Logging\V2 {
      */
     public function GetLogMetric(\Google\Cloud\Logging\V2\GetLogMetricRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.logging.v2.MetricsServiceV2/GetLogMetric',
-      $argument,
-      ['\Google\Cloud\Logging\V2\LogMetric', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.logging.v2.MetricsServiceV2/GetLogMetric',
+        $argument,
+        ['\Google\Cloud\Logging\V2\LogMetric', 'decode'],
+        $metadata, $options);
     }
 
     /**
@@ -66,10 +68,10 @@ namespace Google\Cloud\Logging\V2 {
      */
     public function CreateLogMetric(\Google\Cloud\Logging\V2\CreateLogMetricRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.logging.v2.MetricsServiceV2/CreateLogMetric',
-      $argument,
-      ['\Google\Cloud\Logging\V2\LogMetric', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.logging.v2.MetricsServiceV2/CreateLogMetric',
+        $argument,
+        ['\Google\Cloud\Logging\V2\LogMetric', 'decode'],
+        $metadata, $options);
     }
 
     /**
@@ -80,10 +82,10 @@ namespace Google\Cloud\Logging\V2 {
      */
     public function UpdateLogMetric(\Google\Cloud\Logging\V2\UpdateLogMetricRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.logging.v2.MetricsServiceV2/UpdateLogMetric',
-      $argument,
-      ['\Google\Cloud\Logging\V2\LogMetric', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.logging.v2.MetricsServiceV2/UpdateLogMetric',
+        $argument,
+        ['\Google\Cloud\Logging\V2\LogMetric', 'decode'],
+        $metadata, $options);
     }
 
     /**
@@ -94,12 +96,10 @@ namespace Google\Cloud\Logging\V2 {
      */
     public function DeleteLogMetric(\Google\Cloud\Logging\V2\DeleteLogMetricRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.logging.v2.MetricsServiceV2/DeleteLogMetric',
-      $argument,
-      ['\Google\Protobuf\GPBEmpty', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.logging.v2.MetricsServiceV2/DeleteLogMetric',
+        $argument,
+        ['\Google\Protobuf\GPBEmpty', 'decode'],
+        $metadata, $options);
     }
-
-  }
 
 }

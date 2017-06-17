@@ -37,7 +37,7 @@ class LocationInfo extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.type.LatLng lat_lng = 1;</code>
-     * @return Google\Type\LatLng
+     * @return \Google\Type\LatLng
      */
     public function getLatLng()
     {
@@ -50,7 +50,7 @@ class LocationInfo extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.type.LatLng lat_lng = 1;</code>
-     * @param Google\Type\LatLng $var
+     * @param \Google\Type\LatLng $var
      */
     public function setLatLng(&$var)
     {

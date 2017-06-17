@@ -60,7 +60,7 @@ class ImageContext extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.LatLongRect lat_long_rect = 1;</code>
-     * @return Google\Cloud\Vision\V1\LatLongRect
+     * @return \Google\Cloud\Vision\V1\LatLongRect
      */
     public function getLatLongRect()
     {
@@ -73,7 +73,7 @@ class ImageContext extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.LatLongRect lat_long_rect = 1;</code>
-     * @param Google\Cloud\Vision\V1\LatLongRect $var
+     * @param \Google\Cloud\Vision\V1\LatLongRect $var
      */
     public function setLatLongRect(&$var)
     {
@@ -132,7 +132,7 @@ class ImageContext extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.CropHintsParams crop_hints_params = 4;</code>
-     * @return Google\Cloud\Vision\V1\CropHintsParams
+     * @return \Google\Cloud\Vision\V1\CropHintsParams
      */
     public function getCropHintsParams()
     {
@@ -145,7 +145,7 @@ class ImageContext extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.CropHintsParams crop_hints_params = 4;</code>
-     * @param Google\Cloud\Vision\V1\CropHintsParams $var
+     * @param \Google\Cloud\Vision\V1\CropHintsParams $var
      */
     public function setCropHintsParams(&$var)
     {

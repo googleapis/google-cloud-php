@@ -47,7 +47,7 @@ class UpdateGroupRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.monitoring.v3.Group group = 2;</code>
-     * @return Google\Cloud\Monitoring\V3\Group
+     * @return \Google\Cloud\Monitoring\V3\Group
      */
     public function getGroup()
     {
@@ -61,7 +61,7 @@ class UpdateGroupRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.monitoring.v3.Group group = 2;</code>
-     * @param Google\Cloud\Monitoring\V3\Group $var
+     * @param \Google\Cloud\Monitoring\V3\Group $var
      */
     public function setGroup(&$var)
     {

@@ -74,7 +74,7 @@ class TextAnnotation_TextProperty extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.TextAnnotation.DetectedBreak detected_break = 2;</code>
-     * @return Google\Cloud\Vision\V1\TextAnnotation_DetectedBreak
+     * @return \Google\Cloud\Vision\V1\TextAnnotation_DetectedBreak
      */
     public function getDetectedBreak()
     {
@@ -87,7 +87,7 @@ class TextAnnotation_TextProperty extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.TextAnnotation.DetectedBreak detected_break = 2;</code>
-     * @param Google\Cloud\Vision\V1\TextAnnotation_DetectedBreak $var
+     * @param \Google\Cloud\Vision\V1\TextAnnotation_DetectedBreak $var
      */
     public function setDetectedBreak(&$var)
     {

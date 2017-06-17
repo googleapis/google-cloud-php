@@ -68,7 +68,7 @@ class ReportedErrorEvent extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp event_time = 1;</code>
-     * @return Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp
      */
     public function getEventTime()
     {
@@ -83,7 +83,7 @@ class ReportedErrorEvent extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp event_time = 1;</code>
-     * @param Google\Protobuf\Timestamp $var
+     * @param \Google\Protobuf\Timestamp $var
      */
     public function setEventTime(&$var)
     {
@@ -99,7 +99,7 @@ class ReportedErrorEvent extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContext service_context = 2;</code>
-     * @return Google\Cloud\ErrorReporting\V1beta1\ServiceContext
+     * @return \Google\Cloud\ErrorReporting\V1beta1\ServiceContext
      */
     public function getServiceContext()
     {
@@ -112,7 +112,7 @@ class ReportedErrorEvent extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContext service_context = 2;</code>
-     * @param Google\Cloud\ErrorReporting\V1beta1\ServiceContext $var
+     * @param \Google\Cloud\ErrorReporting\V1beta1\ServiceContext $var
      */
     public function setServiceContext(&$var)
     {
@@ -163,7 +163,7 @@ class ReportedErrorEvent extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorContext context = 4;</code>
-     * @return Google\Cloud\ErrorReporting\V1beta1\ErrorContext
+     * @return \Google\Cloud\ErrorReporting\V1beta1\ErrorContext
      */
     public function getContext()
     {
@@ -176,7 +176,7 @@ class ReportedErrorEvent extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorContext context = 4;</code>
-     * @param Google\Cloud\ErrorReporting\V1beta1\ErrorContext $var
+     * @param \Google\Cloud\ErrorReporting\V1beta1\ErrorContext $var
      */
     public function setContext(&$var)
     {

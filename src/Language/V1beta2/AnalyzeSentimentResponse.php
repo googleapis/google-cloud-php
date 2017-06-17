@@ -55,7 +55,7 @@ class AnalyzeSentimentResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.language.v1beta2.Sentiment document_sentiment = 1;</code>
-     * @return Google\Cloud\Language\V1beta2\Sentiment
+     * @return \Google\Cloud\Language\V1beta2\Sentiment
      */
     public function getDocumentSentiment()
     {
@@ -68,7 +68,7 @@ class AnalyzeSentimentResponse extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.language.v1beta2.Sentiment document_sentiment = 1;</code>
-     * @param Google\Cloud\Language\V1beta2\Sentiment $var
+     * @param \Google\Cloud\Language\V1beta2\Sentiment $var
      */
     public function setDocumentSentiment(&$var)
     {

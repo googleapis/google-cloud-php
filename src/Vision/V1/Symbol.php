@@ -67,7 +67,7 @@ class Symbol extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
-     * @return Google\Cloud\Vision\V1\TextAnnotation_TextProperty
+     * @return \Google\Cloud\Vision\V1\TextAnnotation_TextProperty
      */
     public function getProperty()
     {
@@ -80,7 +80,7 @@ class Symbol extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
-     * @param Google\Cloud\Vision\V1\TextAnnotation_TextProperty $var
+     * @param \Google\Cloud\Vision\V1\TextAnnotation_TextProperty $var
      */
     public function setProperty(&$var)
     {
@@ -110,7 +110,7 @@ class Symbol extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.BoundingPoly bounding_box = 2;</code>
-     * @return Google\Cloud\Vision\V1\BoundingPoly
+     * @return \Google\Cloud\Vision\V1\BoundingPoly
      */
     public function getBoundingBox()
     {
@@ -137,7 +137,7 @@ class Symbol extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.vision.v1.BoundingPoly bounding_box = 2;</code>
-     * @param Google\Cloud\Vision\V1\BoundingPoly $var
+     * @param \Google\Cloud\Vision\V1\BoundingPoly $var
      */
     public function setBoundingBox(&$var)
     {

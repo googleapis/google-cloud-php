@@ -36,7 +36,7 @@ class StreamingRecognizeRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.speech.v1.StreamingRecognitionConfig streaming_config = 1;</code>
-     * @return Google\Cloud\Speech\V1\StreamingRecognitionConfig
+     * @return \Google\Cloud\Speech\V1\StreamingRecognitionConfig
      */
     public function getStreamingConfig()
     {
@@ -51,7 +51,7 @@ class StreamingRecognizeRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.cloud.speech.v1.StreamingRecognitionConfig streaming_config = 1;</code>
-     * @param Google\Cloud\Speech\V1\StreamingRecognitionConfig $var
+     * @param \Google\Cloud\Speech\V1\StreamingRecognitionConfig $var
      */
     public function setStreamingConfig(&$var)
     {

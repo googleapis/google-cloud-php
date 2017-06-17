@@ -16,10 +16,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-namespace Google\Cloud\ErrorReporting\V1beta1 {
+namespace Google\Cloud\ErrorReporting\V1beta1;
 
-  // Service for retrieving and updating individual error groups.
-  class ErrorGroupServiceGrpcClient extends \Grpc\BaseStub {
+/**
+ * Service for retrieving and updating individual error groups.
+ */
+class ErrorGroupServiceGrpcClient extends \Grpc\BaseStub {
 
     /**
      * @param string $hostname hostname
@@ -27,7 +29,7 @@ namespace Google\Cloud\ErrorReporting\V1beta1 {
      * @param \Grpc\Channel $channel (optional) re-use channel object
      */
     public function __construct($hostname, $opts, $channel = null) {
-      parent::__construct($hostname, $opts, $channel);
+        parent::__construct($hostname, $opts, $channel);
     }
 
     /**
@@ -38,10 +40,10 @@ namespace Google\Cloud\ErrorReporting\V1beta1 {
      */
     public function GetGroup(\Google\Cloud\ErrorReporting\V1beta1\GetGroupRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.devtools.clouderrorreporting.v1beta1.ErrorGroupService/GetGroup',
-      $argument,
-      ['\Google\Cloud\ErrorReporting\V1beta1\ErrorGroup', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.devtools.clouderrorreporting.v1beta1.ErrorGroupService/GetGroup',
+        $argument,
+        ['\Google\Cloud\ErrorReporting\V1beta1\ErrorGroup', 'decode'],
+        $metadata, $options);
     }
 
     /**
@@ -53,12 +55,10 @@ namespace Google\Cloud\ErrorReporting\V1beta1 {
      */
     public function UpdateGroup(\Google\Cloud\ErrorReporting\V1beta1\UpdateGroupRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.devtools.clouderrorreporting.v1beta1.ErrorGroupService/UpdateGroup',
-      $argument,
-      ['\Google\Cloud\ErrorReporting\V1beta1\ErrorGroup', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.devtools.clouderrorreporting.v1beta1.ErrorGroupService/UpdateGroup',
+        $argument,
+        ['\Google\Cloud\ErrorReporting\V1beta1\ErrorGroup', 'decode'],
+        $metadata, $options);
     }
-
-  }
 
 }

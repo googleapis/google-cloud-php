@@ -16,11 +16,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-namespace Google\Cloud\Logging\V2 {
+namespace Google\Cloud\Logging\V2;
 
-  // Service for configuring sinks used to export log entries outside of
-  // Stackdriver Logging.
-  class ConfigServiceV2GrpcClient extends \Grpc\BaseStub {
+/**
+ * Service for configuring sinks used to export log entries outside of
+ * Stackdriver Logging.
+ */
+class ConfigServiceV2GrpcClient extends \Grpc\BaseStub {
 
     /**
      * @param string $hostname hostname
@@ -28,7 +30,7 @@ namespace Google\Cloud\Logging\V2 {
      * @param \Grpc\Channel $channel (optional) re-use channel object
      */
     public function __construct($hostname, $opts, $channel = null) {
-      parent::__construct($hostname, $opts, $channel);
+        parent::__construct($hostname, $opts, $channel);
     }
 
     /**
@@ -39,10 +41,10 @@ namespace Google\Cloud\Logging\V2 {
      */
     public function ListSinks(\Google\Cloud\Logging\V2\ListSinksRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.logging.v2.ConfigServiceV2/ListSinks',
-      $argument,
-      ['\Google\Cloud\Logging\V2\ListSinksResponse', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.logging.v2.ConfigServiceV2/ListSinks',
+        $argument,
+        ['\Google\Cloud\Logging\V2\ListSinksResponse', 'decode'],
+        $metadata, $options);
     }
 
     /**
@@ -53,10 +55,10 @@ namespace Google\Cloud\Logging\V2 {
      */
     public function GetSink(\Google\Cloud\Logging\V2\GetSinkRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.logging.v2.ConfigServiceV2/GetSink',
-      $argument,
-      ['\Google\Cloud\Logging\V2\LogSink', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.logging.v2.ConfigServiceV2/GetSink',
+        $argument,
+        ['\Google\Cloud\Logging\V2\LogSink', 'decode'],
+        $metadata, $options);
     }
 
     /**
@@ -71,10 +73,10 @@ namespace Google\Cloud\Logging\V2 {
      */
     public function CreateSink(\Google\Cloud\Logging\V2\CreateSinkRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.logging.v2.ConfigServiceV2/CreateSink',
-      $argument,
-      ['\Google\Cloud\Logging\V2\LogSink', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.logging.v2.ConfigServiceV2/CreateSink',
+        $argument,
+        ['\Google\Cloud\Logging\V2\LogSink', 'decode'],
+        $metadata, $options);
     }
 
     /**
@@ -92,10 +94,10 @@ namespace Google\Cloud\Logging\V2 {
      */
     public function UpdateSink(\Google\Cloud\Logging\V2\UpdateSinkRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.logging.v2.ConfigServiceV2/UpdateSink',
-      $argument,
-      ['\Google\Cloud\Logging\V2\LogSink', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.logging.v2.ConfigServiceV2/UpdateSink',
+        $argument,
+        ['\Google\Cloud\Logging\V2\LogSink', 'decode'],
+        $metadata, $options);
     }
 
     /**
@@ -107,12 +109,10 @@ namespace Google\Cloud\Logging\V2 {
      */
     public function DeleteSink(\Google\Cloud\Logging\V2\DeleteSinkRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.logging.v2.ConfigServiceV2/DeleteSink',
-      $argument,
-      ['\Google\Protobuf\GPBEmpty', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.logging.v2.ConfigServiceV2/DeleteSink',
+        $argument,
+        ['\Google\Protobuf\GPBEmpty', 'decode'],
+        $metadata, $options);
     }
-
-  }
 
 }

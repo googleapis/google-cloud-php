@@ -37,7 +37,7 @@ class UpdateGroupRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
-     * @return Google\Cloud\ErrorReporting\V1beta1\ErrorGroup
+     * @return \Google\Cloud\ErrorReporting\V1beta1\ErrorGroup
      */
     public function getGroup()
     {
@@ -50,7 +50,7 @@ class UpdateGroupRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
-     * @param Google\Cloud\ErrorReporting\V1beta1\ErrorGroup $var
+     * @param \Google\Cloud\ErrorReporting\V1beta1\ErrorGroup $var
      */
     public function setGroup(&$var)
     {

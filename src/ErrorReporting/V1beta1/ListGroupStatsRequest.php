@@ -196,7 +196,7 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3;</code>
-     * @return Google\Cloud\ErrorReporting\V1beta1\ServiceContextFilter
+     * @return \Google\Cloud\ErrorReporting\V1beta1\ServiceContextFilter
      */
     public function getServiceFilter()
     {
@@ -211,7 +211,7 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3;</code>
-     * @param Google\Cloud\ErrorReporting\V1beta1\ServiceContextFilter $var
+     * @param \Google\Cloud\ErrorReporting\V1beta1\ServiceContextFilter $var
      */
     public function setServiceFilter(&$var)
     {
@@ -233,7 +233,7 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 5;</code>
-     * @return Google\Cloud\ErrorReporting\V1beta1\QueryTimeRange
+     * @return \Google\Cloud\ErrorReporting\V1beta1\QueryTimeRange
      */
     public function getTimeRange()
     {
@@ -252,7 +252,7 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 5;</code>
-     * @param Google\Cloud\ErrorReporting\V1beta1\QueryTimeRange $var
+     * @param \Google\Cloud\ErrorReporting\V1beta1\QueryTimeRange $var
      */
     public function setTimeRange(&$var)
     {
@@ -269,7 +269,7 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Duration timed_count_duration = 6;</code>
-     * @return Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration
      */
     public function getTimedCountDuration()
     {
@@ -283,7 +283,7 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Duration timed_count_duration = 6;</code>
-     * @param Google\Protobuf\Duration $var
+     * @param \Google\Protobuf\Duration $var
      */
     public function setTimedCountDuration(&$var)
     {
@@ -331,7 +331,7 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp alignment_time = 8;</code>
-     * @return Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp
      */
     public function getAlignmentTime()
     {
@@ -345,7 +345,7 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp alignment_time = 8;</code>
-     * @param Google\Protobuf\Timestamp $var
+     * @param \Google\Protobuf\Timestamp $var
      */
     public function setAlignmentTime(&$var)
     {

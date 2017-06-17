@@ -74,7 +74,7 @@ class TransactionOptions_ReadOnly extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp min_read_timestamp = 2;</code>
-     * @return Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp
      */
     public function getMinReadTimestamp()
     {
@@ -91,7 +91,7 @@ class TransactionOptions_ReadOnly extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp min_read_timestamp = 2;</code>
-     * @param Google\Protobuf\Timestamp $var
+     * @param \Google\Protobuf\Timestamp $var
      */
     public function setMinReadTimestamp(&$var)
     {
@@ -117,7 +117,7 @@ class TransactionOptions_ReadOnly extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Duration max_staleness = 3;</code>
-     * @return Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration
      */
     public function getMaxStaleness()
     {
@@ -140,7 +140,7 @@ class TransactionOptions_ReadOnly extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Duration max_staleness = 3;</code>
-     * @param Google\Protobuf\Duration $var
+     * @param \Google\Protobuf\Duration $var
      */
     public function setMaxStaleness(&$var)
     {
@@ -163,7 +163,7 @@ class TransactionOptions_ReadOnly extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp read_timestamp = 4;</code>
-     * @return Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp
      */
     public function getReadTimestamp()
     {
@@ -183,7 +183,7 @@ class TransactionOptions_ReadOnly extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Timestamp read_timestamp = 4;</code>
-     * @param Google\Protobuf\Timestamp $var
+     * @param \Google\Protobuf\Timestamp $var
      */
     public function setReadTimestamp(&$var)
     {
@@ -207,7 +207,7 @@ class TransactionOptions_ReadOnly extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Duration exact_staleness = 5;</code>
-     * @return Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration
      */
     public function getExactStaleness()
     {
@@ -228,7 +228,7 @@ class TransactionOptions_ReadOnly extends \Google\Protobuf\Internal\Message
      * </pre>
      *
      * <code>.google.protobuf.Duration exact_staleness = 5;</code>
-     * @param Google\Protobuf\Duration $var
+     * @param \Google\Protobuf\Duration $var
      */
     public function setExactStaleness(&$var)
     {

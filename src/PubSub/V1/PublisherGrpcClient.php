@@ -16,11 +16,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-namespace Google\Cloud\PubSub\V1 {
+namespace Google\Cloud\PubSub\V1;
 
-  // The service that an application uses to manipulate topics, and to send
-  // messages to a topic.
-  class PublisherGrpcClient extends \Grpc\BaseStub {
+/**
+ * The service that an application uses to manipulate topics, and to send
+ * messages to a topic.
+ */
+class PublisherGrpcClient extends \Grpc\BaseStub {
 
     /**
      * @param string $hostname hostname
@@ -28,7 +30,7 @@ namespace Google\Cloud\PubSub\V1 {
      * @param \Grpc\Channel $channel (optional) re-use channel object
      */
     public function __construct($hostname, $opts, $channel = null) {
-      parent::__construct($hostname, $opts, $channel);
+        parent::__construct($hostname, $opts, $channel);
     }
 
     /**
@@ -39,10 +41,10 @@ namespace Google\Cloud\PubSub\V1 {
      */
     public function CreateTopic(\Google\Cloud\PubSub\V1\Topic $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.pubsub.v1.Publisher/CreateTopic',
-      $argument,
-      ['\Google\Cloud\PubSub\V1\Topic', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.pubsub.v1.Publisher/CreateTopic',
+        $argument,
+        ['\Google\Cloud\PubSub\V1\Topic', 'decode'],
+        $metadata, $options);
     }
 
     /**
@@ -55,10 +57,10 @@ namespace Google\Cloud\PubSub\V1 {
      */
     public function Publish(\Google\Cloud\PubSub\V1\PublishRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.pubsub.v1.Publisher/Publish',
-      $argument,
-      ['\Google\Cloud\PubSub\V1\PublishResponse', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.pubsub.v1.Publisher/Publish',
+        $argument,
+        ['\Google\Cloud\PubSub\V1\PublishResponse', 'decode'],
+        $metadata, $options);
     }
 
     /**
@@ -69,10 +71,10 @@ namespace Google\Cloud\PubSub\V1 {
      */
     public function GetTopic(\Google\Cloud\PubSub\V1\GetTopicRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.pubsub.v1.Publisher/GetTopic',
-      $argument,
-      ['\Google\Cloud\PubSub\V1\Topic', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.pubsub.v1.Publisher/GetTopic',
+        $argument,
+        ['\Google\Cloud\PubSub\V1\Topic', 'decode'],
+        $metadata, $options);
     }
 
     /**
@@ -83,10 +85,10 @@ namespace Google\Cloud\PubSub\V1 {
      */
     public function ListTopics(\Google\Cloud\PubSub\V1\ListTopicsRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.pubsub.v1.Publisher/ListTopics',
-      $argument,
-      ['\Google\Cloud\PubSub\V1\ListTopicsResponse', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.pubsub.v1.Publisher/ListTopics',
+        $argument,
+        ['\Google\Cloud\PubSub\V1\ListTopicsResponse', 'decode'],
+        $metadata, $options);
     }
 
     /**
@@ -97,10 +99,10 @@ namespace Google\Cloud\PubSub\V1 {
      */
     public function ListTopicSubscriptions(\Google\Cloud\PubSub\V1\ListTopicSubscriptionsRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.pubsub.v1.Publisher/ListTopicSubscriptions',
-      $argument,
-      ['\Google\Cloud\PubSub\V1\ListTopicSubscriptionsResponse', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.pubsub.v1.Publisher/ListTopicSubscriptions',
+        $argument,
+        ['\Google\Cloud\PubSub\V1\ListTopicSubscriptionsResponse', 'decode'],
+        $metadata, $options);
     }
 
     /**
@@ -115,12 +117,10 @@ namespace Google\Cloud\PubSub\V1 {
      */
     public function DeleteTopic(\Google\Cloud\PubSub\V1\DeleteTopicRequest $argument,
       $metadata = [], $options = []) {
-      return $this->_simpleRequest('/google.pubsub.v1.Publisher/DeleteTopic',
-      $argument,
-      ['\Google\Protobuf\GPBEmpty', 'decode'],
-      $metadata, $options);
+        return $this->_simpleRequest('/google.pubsub.v1.Publisher/DeleteTopic',
+        $argument,
+        ['\Google\Protobuf\GPBEmpty', 'decode'],
+        $metadata, $options);
     }
-
-  }
 
 }
