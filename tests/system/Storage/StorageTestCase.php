@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Tests\System\Storage;
 
+use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\Storage\StorageClient;
 
@@ -59,7 +60,9 @@ class StorageTestCase extends \PHPUnit_Framework_TestCase
 
         foreach (self::$deletionQueue as $item) {
             $backoff->execute(function () use ($item) {
-                $item->delete();
+                try {
+                    $item->delete();
+                } catch (NotFoundException $e) {}
             });
         }
     }
