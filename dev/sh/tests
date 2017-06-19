@@ -23,6 +23,6 @@ function snippets() {
 unit
 snippets
 
-if [ "${TRAVIS_EVENT_TYPE}" == "cron" ]; then
+if [ "${TRAVIS_EVENT_TYPE}" == "cron" ] || [ "${TRAVIS_PULL_REQUEST}" == "false" ]; then
   system
 fi
