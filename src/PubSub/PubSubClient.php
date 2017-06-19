@@ -357,6 +357,8 @@ class PubSubClient
      * @param Subscription $subscription The subscription to take a snapshot of.
      * @param array $options [optional] Configuration options.
      * @return Snapshot
+     * @experimental
+     * @whitelisted
      */
     public function createSnapshot($name, Subscription $subscription, array $options = [])
     {
@@ -411,6 +413,8 @@ class PubSubClient
      *           resume the loading of results from a specific point.
      * }
      * @return ItemIterator<Google\Cloud\PubSub\Snapshot>
+     * @experimental
+     * @whitelisted
      */
     public function snapshots(array $options = [])
     {

@@ -137,6 +137,8 @@ class Snapshot
      * @param array $options [optional] Configuration options.
      * @return array
      * @throws \BadMethodCallException If a subscription name cannot be found.
+     * @experimental
+     * @whitelisted
      */
     public function create(array $options = [])
     {
@@ -163,6 +165,8 @@ class Snapshot
      *
      * @param array $options [optional] Configuration options.
      * @return void
+     * @experimental
+     * @whitelisted
      */
     public function delete(array $options = [])
     {
