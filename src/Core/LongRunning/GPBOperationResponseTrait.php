@@ -17,43 +17,42 @@
 
 namespace Google\Cloud\Core\LongRunning;
 
-use DrSlump\Protobuf\CodecInterface;
 use Google\GAX\OperationResponse;
+use Google\GAX\Serializer;
 
 /**
  * Serializes and deserializes GAX LRO Response objects.
  *
  * This trait should be used in a gRPC Connection class to normalize responses.
- * @deprecated Replaced by {@see GPBOperationResponseTrait}
  */
-trait OperationResponseTrait
+trait GPBOperationResponseTrait
 {
     /**
      * Convert a GAX OperationResponse object to an array.
      *
      * @param OperationResponse $operation The operation response
-     * @param CodecInterface $codec The codec to use for gRPC serialization/deserialization.
+     * @param Serializer $serializer The serializer to use for gRPC serialization/deserialization.
      * @param array $lroMappers A list of mappers for deserializing operation results.
      * @return array
      */
-    private function operationToArray(OperationResponse $operation, CodecInterface $codec, array $lroMappers)
+    private function operationToArray(OperationResponse $operation, Serializer $serializer, array $lroMappers)
     {
         $response = $operation->getLastProtoResponse();
         if (is_null($response)) {
             return null;
         }
 
-        $response = $response->serialize($codec);
+        $response = $serializer->encodeMessage($response);
 
         $result = null;
         if ($operation->isDone()) {
             $type = $response['metadata']['typeUrl'];
-            $result = $this->deserializeResult($operation, $type, $codec, $lroMappers);
+            $result = $this->deserializeResult($operation, $type, $serializer, $lroMappers);
         }
 
         $error = $operation->getError();
         if (!is_null($error)) {
-            $error = $error->serialize($codec);
+            $error = $serializer->encodeMessage($error);
         }
 
         $response['response'] = $result;
@@ -81,11 +80,11 @@ trait OperationResponseTrait
      * @param OperationResponse $operation The operation to serialize.
      * @param string $type The Operation type. The type should correspond to a
      *        member of $mappers.typeUrl.
-     * @param CodecInterface $codec The gRPC codec to use for the deserialization.
+     * @param Serializer $serializer The gRPC serializer to use for the deserialization.
      * @param array $mappers A list of mappers.
      * @return array|null
      */
-    private function deserializeResult(OperationResponse $operation, $type, CodecInterface $codec, array $mappers)
+    private function deserializeResult(OperationResponse $operation, $type, Serializer $serializer, array $mappers)
     {
         $mappers = array_filter($mappers, function ($mapper) use ($type) {
             return $mapper['typeUrl'] === $type;
@@ -105,8 +104,8 @@ trait OperationResponseTrait
             return null;
         }
 
-        $response->parse($anyResponse->getValue());
+        $response->mergeFromString($anyResponse->getValue());
 
-        return $response->serialize($codec);
+        return $serializer->encodeMessage($response);
     }
 }
