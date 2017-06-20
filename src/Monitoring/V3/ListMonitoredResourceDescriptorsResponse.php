@@ -9,31 +9,25 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * The `ListMonitoredResourcDescriptors` response.
- * </pre>
  *
  * Protobuf type <code>Google\Monitoring\V3\ListMonitoredResourceDescriptorsResponse</code>
  */
 class ListMonitoredResourceDescriptorsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The monitored resource descriptors that are available to this project
      * and that match `filter`, if present.
-     * </pre>
      *
-     * <code>repeated .google.api.MonitoredResourceDescriptor resource_descriptors = 1;</code>
+     * Generated from protobuf field <code>repeated .google.api.MonitoredResourceDescriptor resource_descriptors = 1;</code>
      */
     private $resource_descriptors;
     /**
-     * <pre>
      * If there are more results than have been returned, then this field is set
      * to a non-empty value.  To see the additional results,
      * use that value as `pageToken` in the next call to this method.
-     * </pre>
      *
-     * <code>string next_page_token = 2;</code>
+     * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
     private $next_page_token = '';
 
@@ -43,12 +37,10 @@ class ListMonitoredResourceDescriptorsResponse extends \Google\Protobuf\Internal
     }
 
     /**
-     * <pre>
      * The monitored resource descriptors that are available to this project
      * and that match `filter`, if present.
-     * </pre>
      *
-     * <code>repeated .google.api.MonitoredResourceDescriptor resource_descriptors = 1;</code>
+     * Generated from protobuf field <code>repeated .google.api.MonitoredResourceDescriptor resource_descriptors = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getResourceDescriptors()
@@ -57,12 +49,10 @@ class ListMonitoredResourceDescriptorsResponse extends \Google\Protobuf\Internal
     }
 
     /**
-     * <pre>
      * The monitored resource descriptors that are available to this project
      * and that match `filter`, if present.
-     * </pre>
      *
-     * <code>repeated .google.api.MonitoredResourceDescriptor resource_descriptors = 1;</code>
+     * Generated from protobuf field <code>repeated .google.api.MonitoredResourceDescriptor resource_descriptors = 1;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setResourceDescriptors(&$var)
@@ -74,13 +64,11 @@ class ListMonitoredResourceDescriptorsResponse extends \Google\Protobuf\Internal
     }
 
     /**
-     * <pre>
      * If there are more results than have been returned, then this field is set
      * to a non-empty value.  To see the additional results,
      * use that value as `pageToken` in the next call to this method.
-     * </pre>
      *
-     * <code>string next_page_token = 2;</code>
+     * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @return string
      */
     public function getNextPageToken()
@@ -89,13 +77,11 @@ class ListMonitoredResourceDescriptorsResponse extends \Google\Protobuf\Internal
     }
 
     /**
-     * <pre>
      * If there are more results than have been returned, then this field is set
      * to a non-empty value.  To see the additional results,
      * use that value as `pageToken` in the next call to this method.
-     * </pre>
      *
-     * <code>string next_page_token = 2;</code>
+     * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @param string $var
      */
     public function setNextPageToken($var)

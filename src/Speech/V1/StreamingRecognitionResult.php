@@ -9,46 +9,38 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * A streaming speech recognition result corresponding to a portion of the audio
  * that is currently being processed.
- * </pre>
  *
  * Protobuf type <code>Google\Cloud\Speech\V1\StreamingRecognitionResult</code>
  */
 class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * *Output-only* May contain one or more recognition hypotheses (up to the
      * maximum specified in `max_alternatives`).
-     * </pre>
      *
-     * <code>repeated .google.cloud.speech.v1.SpeechRecognitionAlternative alternatives = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.speech.v1.SpeechRecognitionAlternative alternatives = 1;</code>
      */
     private $alternatives;
     /**
-     * <pre>
      * *Output-only* If `false`, this `StreamingRecognitionResult` represents an
      * interim result that may change. If `true`, this is the final time the
      * speech service will return this particular `StreamingRecognitionResult`,
      * the recognizer will not return any further hypotheses for this portion of
      * the transcript and corresponding audio.
-     * </pre>
      *
-     * <code>bool is_final = 2;</code>
+     * Generated from protobuf field <code>bool is_final = 2;</code>
      */
     private $is_final = false;
     /**
-     * <pre>
      * *Output-only* An estimate of the likelihood that the recognizer will not
      * change its guess about this interim result. Values range from 0.0
      * (completely unstable) to 1.0 (completely stable).
      * This field is only provided for interim results (`is_final=false`).
      * The default of 0.0 is a sentinel value indicating `stability` was not set.
-     * </pre>
      *
-     * <code>float stability = 3;</code>
+     * Generated from protobuf field <code>float stability = 3;</code>
      */
     private $stability = 0.0;
 
@@ -58,12 +50,10 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * *Output-only* May contain one or more recognition hypotheses (up to the
      * maximum specified in `max_alternatives`).
-     * </pre>
      *
-     * <code>repeated .google.cloud.speech.v1.SpeechRecognitionAlternative alternatives = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.speech.v1.SpeechRecognitionAlternative alternatives = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getAlternatives()
@@ -72,12 +62,10 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * *Output-only* May contain one or more recognition hypotheses (up to the
      * maximum specified in `max_alternatives`).
-     * </pre>
      *
-     * <code>repeated .google.cloud.speech.v1.SpeechRecognitionAlternative alternatives = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.speech.v1.SpeechRecognitionAlternative alternatives = 1;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setAlternatives(&$var)
@@ -89,15 +77,13 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * *Output-only* If `false`, this `StreamingRecognitionResult` represents an
      * interim result that may change. If `true`, this is the final time the
      * speech service will return this particular `StreamingRecognitionResult`,
      * the recognizer will not return any further hypotheses for this portion of
      * the transcript and corresponding audio.
-     * </pre>
      *
-     * <code>bool is_final = 2;</code>
+     * Generated from protobuf field <code>bool is_final = 2;</code>
      * @return bool
      */
     public function getIsFinal()
@@ -106,15 +92,13 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * *Output-only* If `false`, this `StreamingRecognitionResult` represents an
      * interim result that may change. If `true`, this is the final time the
      * speech service will return this particular `StreamingRecognitionResult`,
      * the recognizer will not return any further hypotheses for this portion of
      * the transcript and corresponding audio.
-     * </pre>
      *
-     * <code>bool is_final = 2;</code>
+     * Generated from protobuf field <code>bool is_final = 2;</code>
      * @param bool $var
      */
     public function setIsFinal($var)
@@ -126,15 +110,13 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * *Output-only* An estimate of the likelihood that the recognizer will not
      * change its guess about this interim result. Values range from 0.0
      * (completely unstable) to 1.0 (completely stable).
      * This field is only provided for interim results (`is_final=false`).
      * The default of 0.0 is a sentinel value indicating `stability` was not set.
-     * </pre>
      *
-     * <code>float stability = 3;</code>
+     * Generated from protobuf field <code>float stability = 3;</code>
      * @return float
      */
     public function getStability()
@@ -143,15 +125,13 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * *Output-only* An estimate of the likelihood that the recognizer will not
      * change its guess about this interim result. Values range from 0.0
      * (completely unstable) to 1.0 (completely stable).
      * This field is only provided for interim results (`is_final=false`).
      * The default of 0.0 is a sentinel value indicating `stability` was not set.
-     * </pre>
      *
-     * <code>float stability = 3;</code>
+     * Generated from protobuf field <code>float stability = 3;</code>
      * @param float $var
      */
     public function setStability($var)

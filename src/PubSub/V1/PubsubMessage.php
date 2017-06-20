@@ -9,50 +9,40 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * A message data and its attributes. The message payload must not be empty;
  * it must contain either a non-empty data field, or at least one attribute.
- * </pre>
  *
  * Protobuf type <code>Google\Pubsub\V1\PubsubMessage</code>
  */
 class PubsubMessage extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The message payload.
-     * </pre>
      *
-     * <code>bytes data = 1;</code>
+     * Generated from protobuf field <code>bytes data = 1;</code>
      */
     private $data = '';
     /**
-     * <pre>
      * Optional attributes for this message.
-     * </pre>
      *
-     * <code>map<string, string> attributes = 2;</code>
+     * Generated from protobuf field <code>map<string, string> attributes = 2;</code>
      */
     private $attributes;
     /**
-     * <pre>
      * ID of this message, assigned by the server when the message is published.
      * Guaranteed to be unique within the topic. This value may be read by a
      * subscriber that receives a `PubsubMessage` via a `Pull` call or a push
      * delivery. It must not be populated by the publisher in a `Publish` call.
-     * </pre>
      *
-     * <code>string message_id = 3;</code>
+     * Generated from protobuf field <code>string message_id = 3;</code>
      */
     private $message_id = '';
     /**
-     * <pre>
      * The time at which the message was published, populated by the server when
      * it receives the `Publish` call. It must not be populated by the
      * publisher in a `Publish` call.
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp publish_time = 4;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp publish_time = 4;</code>
      */
     private $publish_time = null;
 
@@ -62,11 +52,9 @@ class PubsubMessage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The message payload.
-     * </pre>
      *
-     * <code>bytes data = 1;</code>
+     * Generated from protobuf field <code>bytes data = 1;</code>
      * @return string
      */
     public function getData()
@@ -75,11 +63,9 @@ class PubsubMessage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The message payload.
-     * </pre>
      *
-     * <code>bytes data = 1;</code>
+     * Generated from protobuf field <code>bytes data = 1;</code>
      * @param string $var
      */
     public function setData($var)
@@ -91,11 +77,9 @@ class PubsubMessage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Optional attributes for this message.
-     * </pre>
      *
-     * <code>map<string, string> attributes = 2;</code>
+     * Generated from protobuf field <code>map<string, string> attributes = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getAttributes()
@@ -104,11 +88,9 @@ class PubsubMessage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Optional attributes for this message.
-     * </pre>
      *
-     * <code>map<string, string> attributes = 2;</code>
+     * Generated from protobuf field <code>map<string, string> attributes = 2;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setAttributes(&$var)
@@ -120,14 +102,12 @@ class PubsubMessage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * ID of this message, assigned by the server when the message is published.
      * Guaranteed to be unique within the topic. This value may be read by a
      * subscriber that receives a `PubsubMessage` via a `Pull` call or a push
      * delivery. It must not be populated by the publisher in a `Publish` call.
-     * </pre>
      *
-     * <code>string message_id = 3;</code>
+     * Generated from protobuf field <code>string message_id = 3;</code>
      * @return string
      */
     public function getMessageId()
@@ -136,14 +116,12 @@ class PubsubMessage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * ID of this message, assigned by the server when the message is published.
      * Guaranteed to be unique within the topic. This value may be read by a
      * subscriber that receives a `PubsubMessage` via a `Pull` call or a push
      * delivery. It must not be populated by the publisher in a `Publish` call.
-     * </pre>
      *
-     * <code>string message_id = 3;</code>
+     * Generated from protobuf field <code>string message_id = 3;</code>
      * @param string $var
      */
     public function setMessageId($var)
@@ -155,13 +133,11 @@ class PubsubMessage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The time at which the message was published, populated by the server when
      * it receives the `Publish` call. It must not be populated by the
      * publisher in a `Publish` call.
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp publish_time = 4;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp publish_time = 4;</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getPublishTime()
@@ -170,13 +146,11 @@ class PubsubMessage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The time at which the message was published, populated by the server when
      * it receives the `Publish` call. It must not be populated by the
      * publisher in a `Publish` call.
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp publish_time = 4;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp publish_time = 4;</code>
      * @param \Google\Protobuf\Timestamp $var
      */
     public function setPublishTime(&$var)

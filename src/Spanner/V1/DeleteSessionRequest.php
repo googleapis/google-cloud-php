@@ -9,20 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * The request for [DeleteSession][google.spanner.v1.Spanner.DeleteSession].
- * </pre>
  *
  * Protobuf type <code>Google\Spanner\V1\DeleteSessionRequest</code>
  */
 class DeleteSessionRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * Required. The name of the session to delete.
-     * </pre>
      *
-     * <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      */
     private $name = '';
 
@@ -32,11 +28,9 @@ class DeleteSessionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. The name of the session to delete.
-     * </pre>
      *
-     * <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      * @return string
      */
     public function getName()
@@ -45,11 +39,9 @@ class DeleteSessionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. The name of the session to delete.
-     * </pre>
      *
-     * <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
      */
     public function setName($var)

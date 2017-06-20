@@ -9,29 +9,23 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Request for the Publish method.
- * </pre>
  *
  * Protobuf type <code>Google\Pubsub\V1\PublishRequest</code>
  */
 class PublishRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The messages in the request will be published on this topic.
      * Format is `projects/{project}/topics/{topic}`.
-     * </pre>
      *
-     * <code>string topic = 1;</code>
+     * Generated from protobuf field <code>string topic = 1;</code>
      */
     private $topic = '';
     /**
-     * <pre>
      * The messages to publish.
-     * </pre>
      *
-     * <code>repeated .google.pubsub.v1.PubsubMessage messages = 2;</code>
+     * Generated from protobuf field <code>repeated .google.pubsub.v1.PubsubMessage messages = 2;</code>
      */
     private $messages;
 
@@ -41,12 +35,10 @@ class PublishRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The messages in the request will be published on this topic.
      * Format is `projects/{project}/topics/{topic}`.
-     * </pre>
      *
-     * <code>string topic = 1;</code>
+     * Generated from protobuf field <code>string topic = 1;</code>
      * @return string
      */
     public function getTopic()
@@ -55,12 +47,10 @@ class PublishRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The messages in the request will be published on this topic.
      * Format is `projects/{project}/topics/{topic}`.
-     * </pre>
      *
-     * <code>string topic = 1;</code>
+     * Generated from protobuf field <code>string topic = 1;</code>
      * @param string $var
      */
     public function setTopic($var)
@@ -72,11 +62,9 @@ class PublishRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The messages to publish.
-     * </pre>
      *
-     * <code>repeated .google.pubsub.v1.PubsubMessage messages = 2;</code>
+     * Generated from protobuf field <code>repeated .google.pubsub.v1.PubsubMessage messages = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getMessages()
@@ -85,11 +73,9 @@ class PublishRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The messages to publish.
-     * </pre>
      *
-     * <code>repeated .google.pubsub.v1.PubsubMessage messages = 2;</code>
+     * Generated from protobuf field <code>repeated .google.pubsub.v1.PubsubMessage messages = 2;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setMessages(&$var)

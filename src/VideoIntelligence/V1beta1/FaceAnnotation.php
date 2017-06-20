@@ -9,38 +9,30 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Face annotation.
- * </pre>
  *
  * Protobuf type <code>Google\Cloud\Videointelligence\V1beta1\FaceAnnotation</code>
  */
 class FaceAnnotation extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * Thumbnail of a representative face view (in JPEG format). Encoding: base64.
-     * </pre>
      *
-     * <code>string thumbnail = 1;</code>
+     * Generated from protobuf field <code>string thumbnail = 1;</code>
      */
     private $thumbnail = '';
     /**
-     * <pre>
      * All locations where a face was detected.
      * Faces are detected and tracked on a per-video basis
      * (as opposed to across multiple videos).
-     * </pre>
      *
-     * <code>repeated .google.cloud.videointelligence.v1beta1.VideoSegment segments = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1beta1.VideoSegment segments = 2;</code>
      */
     private $segments;
     /**
-     * <pre>
      * Face locations at one frame per second.
-     * </pre>
      *
-     * <code>repeated .google.cloud.videointelligence.v1beta1.FaceLocation locations = 3;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1beta1.FaceLocation locations = 3;</code>
      */
     private $locations;
 
@@ -50,11 +42,9 @@ class FaceAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Thumbnail of a representative face view (in JPEG format). Encoding: base64.
-     * </pre>
      *
-     * <code>string thumbnail = 1;</code>
+     * Generated from protobuf field <code>string thumbnail = 1;</code>
      * @return string
      */
     public function getThumbnail()
@@ -63,11 +53,9 @@ class FaceAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Thumbnail of a representative face view (in JPEG format). Encoding: base64.
-     * </pre>
      *
-     * <code>string thumbnail = 1;</code>
+     * Generated from protobuf field <code>string thumbnail = 1;</code>
      * @param string $var
      */
     public function setThumbnail($var)
@@ -79,13 +67,11 @@ class FaceAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * All locations where a face was detected.
      * Faces are detected and tracked on a per-video basis
      * (as opposed to across multiple videos).
-     * </pre>
      *
-     * <code>repeated .google.cloud.videointelligence.v1beta1.VideoSegment segments = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1beta1.VideoSegment segments = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getSegments()
@@ -94,13 +80,11 @@ class FaceAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * All locations where a face was detected.
      * Faces are detected and tracked on a per-video basis
      * (as opposed to across multiple videos).
-     * </pre>
      *
-     * <code>repeated .google.cloud.videointelligence.v1beta1.VideoSegment segments = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1beta1.VideoSegment segments = 2;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setSegments(&$var)
@@ -112,11 +96,9 @@ class FaceAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Face locations at one frame per second.
-     * </pre>
      *
-     * <code>repeated .google.cloud.videointelligence.v1beta1.FaceLocation locations = 3;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1beta1.FaceLocation locations = 3;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getLocations()
@@ -125,11 +107,9 @@ class FaceAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Face locations at one frame per second.
-     * </pre>
      *
-     * <code>repeated .google.cloud.videointelligence.v1beta1.FaceLocation locations = 3;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1beta1.FaceLocation locations = 3;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setLocations(&$var)

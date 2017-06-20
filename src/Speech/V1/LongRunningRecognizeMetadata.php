@@ -9,39 +9,31 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Describes the progress of a long-running `LongRunningRecognize` call. It is
  * included in the `metadata` field of the `Operation` returned by the
  * `GetOperation` call of the `google::longrunning::Operations` service.
- * </pre>
  *
  * Protobuf type <code>Google\Cloud\Speech\V1\LongRunningRecognizeMetadata</code>
  */
 class LongRunningRecognizeMetadata extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * Approximate percentage of audio processed thus far. Guaranteed to be 100
      * when the audio is fully processed and the results are available.
-     * </pre>
      *
-     * <code>int32 progress_percent = 1;</code>
+     * Generated from protobuf field <code>int32 progress_percent = 1;</code>
      */
     private $progress_percent = 0;
     /**
-     * <pre>
      * Time when the request was received.
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp start_time = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 2;</code>
      */
     private $start_time = null;
     /**
-     * <pre>
      * Time of the most recent processing update.
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp last_update_time = 3;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp last_update_time = 3;</code>
      */
     private $last_update_time = null;
 
@@ -51,12 +43,10 @@ class LongRunningRecognizeMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Approximate percentage of audio processed thus far. Guaranteed to be 100
      * when the audio is fully processed and the results are available.
-     * </pre>
      *
-     * <code>int32 progress_percent = 1;</code>
+     * Generated from protobuf field <code>int32 progress_percent = 1;</code>
      * @return int
      */
     public function getProgressPercent()
@@ -65,12 +55,10 @@ class LongRunningRecognizeMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Approximate percentage of audio processed thus far. Guaranteed to be 100
      * when the audio is fully processed and the results are available.
-     * </pre>
      *
-     * <code>int32 progress_percent = 1;</code>
+     * Generated from protobuf field <code>int32 progress_percent = 1;</code>
      * @param int $var
      */
     public function setProgressPercent($var)
@@ -82,11 +70,9 @@ class LongRunningRecognizeMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Time when the request was received.
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp start_time = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 2;</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getStartTime()
@@ -95,11 +81,9 @@ class LongRunningRecognizeMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Time when the request was received.
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp start_time = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 2;</code>
      * @param \Google\Protobuf\Timestamp $var
      */
     public function setStartTime(&$var)
@@ -111,11 +95,9 @@ class LongRunningRecognizeMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Time of the most recent processing update.
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp last_update_time = 3;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp last_update_time = 3;</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getLastUpdateTime()
@@ -124,11 +106,9 @@ class LongRunningRecognizeMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Time of the most recent processing update.
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp last_update_time = 3;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp last_update_time = 3;</code>
      * @param \Google\Protobuf\Timestamp $var
      */
     public function setLastUpdateTime(&$var)

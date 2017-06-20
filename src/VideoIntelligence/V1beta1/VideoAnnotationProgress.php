@@ -9,46 +9,36 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Annotation progress for a single video.
- * </pre>
  *
  * Protobuf type <code>Google\Cloud\Videointelligence\V1beta1\VideoAnnotationProgress</code>
  */
 class VideoAnnotationProgress extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * Video file location in
      * [Google Cloud Storage](https://cloud.google.com/storage/).
-     * </pre>
      *
-     * <code>string input_uri = 1;</code>
+     * Generated from protobuf field <code>string input_uri = 1;</code>
      */
     private $input_uri = '';
     /**
-     * <pre>
      * Approximate percentage processed thus far.
      * Guaranteed to be 100 when fully processed.
-     * </pre>
      *
-     * <code>int32 progress_percent = 2;</code>
+     * Generated from protobuf field <code>int32 progress_percent = 2;</code>
      */
     private $progress_percent = 0;
     /**
-     * <pre>
      * Time when the request was received.
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp start_time = 3;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 3;</code>
      */
     private $start_time = null;
     /**
-     * <pre>
      * Time of the most recent update.
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp update_time = 4;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 4;</code>
      */
     private $update_time = null;
 
@@ -58,12 +48,10 @@ class VideoAnnotationProgress extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Video file location in
      * [Google Cloud Storage](https://cloud.google.com/storage/).
-     * </pre>
      *
-     * <code>string input_uri = 1;</code>
+     * Generated from protobuf field <code>string input_uri = 1;</code>
      * @return string
      */
     public function getInputUri()
@@ -72,12 +60,10 @@ class VideoAnnotationProgress extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Video file location in
      * [Google Cloud Storage](https://cloud.google.com/storage/).
-     * </pre>
      *
-     * <code>string input_uri = 1;</code>
+     * Generated from protobuf field <code>string input_uri = 1;</code>
      * @param string $var
      */
     public function setInputUri($var)
@@ -89,12 +75,10 @@ class VideoAnnotationProgress extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Approximate percentage processed thus far.
      * Guaranteed to be 100 when fully processed.
-     * </pre>
      *
-     * <code>int32 progress_percent = 2;</code>
+     * Generated from protobuf field <code>int32 progress_percent = 2;</code>
      * @return int
      */
     public function getProgressPercent()
@@ -103,12 +87,10 @@ class VideoAnnotationProgress extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Approximate percentage processed thus far.
      * Guaranteed to be 100 when fully processed.
-     * </pre>
      *
-     * <code>int32 progress_percent = 2;</code>
+     * Generated from protobuf field <code>int32 progress_percent = 2;</code>
      * @param int $var
      */
     public function setProgressPercent($var)
@@ -120,11 +102,9 @@ class VideoAnnotationProgress extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Time when the request was received.
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp start_time = 3;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 3;</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getStartTime()
@@ -133,11 +113,9 @@ class VideoAnnotationProgress extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Time when the request was received.
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp start_time = 3;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 3;</code>
      * @param \Google\Protobuf\Timestamp $var
      */
     public function setStartTime(&$var)
@@ -149,11 +127,9 @@ class VideoAnnotationProgress extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Time of the most recent update.
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp update_time = 4;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 4;</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getUpdateTime()
@@ -162,11 +138,9 @@ class VideoAnnotationProgress extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Time of the most recent update.
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp update_time = 4;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 4;</code>
      * @param \Google\Protobuf\Timestamp $var
      */
     public function setUpdateTime(&$var)

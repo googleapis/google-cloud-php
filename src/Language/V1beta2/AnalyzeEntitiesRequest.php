@@ -9,28 +9,22 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * The entity analysis request message.
- * </pre>
  *
  * Protobuf type <code>Google\Cloud\Language\V1beta2\AnalyzeEntitiesRequest</code>
  */
 class AnalyzeEntitiesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * Input document.
-     * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.Document document = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.Document document = 1;</code>
      */
     private $document = null;
     /**
-     * <pre>
      * The encoding type used by the API to calculate offsets.
-     * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.EncodingType encoding_type = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.EncodingType encoding_type = 2;</code>
      */
     private $encoding_type = 0;
 
@@ -40,11 +34,9 @@ class AnalyzeEntitiesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Input document.
-     * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.Document document = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.Document document = 1;</code>
      * @return \Google\Cloud\Language\V1beta2\Document
      */
     public function getDocument()
@@ -53,11 +45,9 @@ class AnalyzeEntitiesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Input document.
-     * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.Document document = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.Document document = 1;</code>
      * @param \Google\Cloud\Language\V1beta2\Document $var
      */
     public function setDocument(&$var)
@@ -69,11 +59,9 @@ class AnalyzeEntitiesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The encoding type used by the API to calculate offsets.
-     * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.EncodingType encoding_type = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.EncodingType encoding_type = 2;</code>
      * @return int
      */
     public function getEncodingType()
@@ -82,11 +70,9 @@ class AnalyzeEntitiesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The encoding type used by the API to calculate offsets.
-     * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.EncodingType encoding_type = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.EncodingType encoding_type = 2;</code>
      * @param int $var
      */
     public function setEncodingType($var)

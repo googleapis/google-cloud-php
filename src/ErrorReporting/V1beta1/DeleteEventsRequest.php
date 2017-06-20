@@ -9,24 +9,20 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Deletes all events in the project.
- * </pre>
  *
  * Protobuf type <code>Google\Devtools\Clouderrorreporting\V1beta1\DeleteEventsRequest</code>
  */
 class DeleteEventsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * [Required] The resource name of the Google Cloud Platform project. Written
      * as `projects/` plus the
      * [Google Cloud Platform project
      * ID](https://support.google.com/cloud/answer/6158840).
      * Example: `projects/my-project-123`.
-     * </pre>
      *
-     * <code>string project_name = 1;</code>
+     * Generated from protobuf field <code>string project_name = 1;</code>
      */
     private $project_name = '';
 
@@ -36,15 +32,13 @@ class DeleteEventsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * [Required] The resource name of the Google Cloud Platform project. Written
      * as `projects/` plus the
      * [Google Cloud Platform project
      * ID](https://support.google.com/cloud/answer/6158840).
      * Example: `projects/my-project-123`.
-     * </pre>
      *
-     * <code>string project_name = 1;</code>
+     * Generated from protobuf field <code>string project_name = 1;</code>
      * @return string
      */
     public function getProjectName()
@@ -53,15 +47,13 @@ class DeleteEventsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * [Required] The resource name of the Google Cloud Platform project. Written
      * as `projects/` plus the
      * [Google Cloud Platform project
      * ID](https://support.google.com/cloud/answer/6158840).
      * Example: `projects/my-project-123`.
-     * </pre>
      *
-     * <code>string project_name = 1;</code>
+     * Generated from protobuf field <code>string project_name = 1;</code>
      * @param string $var
      */
     public function setProjectName($var)

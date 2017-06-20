@@ -9,24 +9,20 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Detected start or end of a structural component.
- * </pre>
  *
  * Protobuf type <code>Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak</code>
  */
 class TextAnnotation_DetectedBreak extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <code>.google.cloud.vision.v1.TextAnnotation.DetectedBreak.BreakType type = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.TextAnnotation.DetectedBreak.BreakType type = 1;</code>
      */
     private $type = 0;
     /**
-     * <pre>
      * True if break prepends the element.
-     * </pre>
      *
-     * <code>bool is_prefix = 2;</code>
+     * Generated from protobuf field <code>bool is_prefix = 2;</code>
      */
     private $is_prefix = false;
 
@@ -36,7 +32,7 @@ class TextAnnotation_DetectedBreak extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <code>.google.cloud.vision.v1.TextAnnotation.DetectedBreak.BreakType type = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.TextAnnotation.DetectedBreak.BreakType type = 1;</code>
      * @return int
      */
     public function getType()
@@ -45,7 +41,7 @@ class TextAnnotation_DetectedBreak extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <code>.google.cloud.vision.v1.TextAnnotation.DetectedBreak.BreakType type = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.TextAnnotation.DetectedBreak.BreakType type = 1;</code>
      * @param int $var
      */
     public function setType($var)
@@ -57,11 +53,9 @@ class TextAnnotation_DetectedBreak extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * True if break prepends the element.
-     * </pre>
      *
-     * <code>bool is_prefix = 2;</code>
+     * Generated from protobuf field <code>bool is_prefix = 2;</code>
      * @return bool
      */
     public function getIsPrefix()
@@ -70,11 +64,9 @@ class TextAnnotation_DetectedBreak extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * True if break prepends the element.
-     * </pre>
      *
-     * <code>bool is_prefix = 2;</code>
+     * Generated from protobuf field <code>bool is_prefix = 2;</code>
      * @param bool $var
      */
     public function setIsPrefix($var)

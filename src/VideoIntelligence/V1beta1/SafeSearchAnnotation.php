@@ -9,65 +9,51 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Safe search annotation (based on per-frame visual signals only).
  * If no unsafe content has been detected in a frame, no annotations
  * are present for that frame. If only some types of unsafe content
  * have been detected in a frame, the likelihood is set to `UNKNOWN`
  * for all other types of unsafe content.
- * </pre>
  *
  * Protobuf type <code>Google\Cloud\Videointelligence\V1beta1\SafeSearchAnnotation</code>
  */
 class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * Likelihood of adult content.
-     * </pre>
      *
-     * <code>.google.cloud.videointelligence.v1beta1.Likelihood adult = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.videointelligence.v1beta1.Likelihood adult = 1;</code>
      */
     private $adult = 0;
     /**
-     * <pre>
      * Likelihood that an obvious modification was made to the original
      * version to make it appear funny or offensive.
-     * </pre>
      *
-     * <code>.google.cloud.videointelligence.v1beta1.Likelihood spoof = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.videointelligence.v1beta1.Likelihood spoof = 2;</code>
      */
     private $spoof = 0;
     /**
-     * <pre>
      * Likelihood of medical content.
-     * </pre>
      *
-     * <code>.google.cloud.videointelligence.v1beta1.Likelihood medical = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.videointelligence.v1beta1.Likelihood medical = 3;</code>
      */
     private $medical = 0;
     /**
-     * <pre>
      * Likelihood of violent content.
-     * </pre>
      *
-     * <code>.google.cloud.videointelligence.v1beta1.Likelihood violent = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.videointelligence.v1beta1.Likelihood violent = 4;</code>
      */
     private $violent = 0;
     /**
-     * <pre>
      * Likelihood of racy content.
-     * </pre>
      *
-     * <code>.google.cloud.videointelligence.v1beta1.Likelihood racy = 5;</code>
+     * Generated from protobuf field <code>.google.cloud.videointelligence.v1beta1.Likelihood racy = 5;</code>
      */
     private $racy = 0;
     /**
-     * <pre>
      * Video time offset in microseconds.
-     * </pre>
      *
-     * <code>int64 time_offset = 6;</code>
+     * Generated from protobuf field <code>int64 time_offset = 6;</code>
      */
     private $time_offset = 0;
 
@@ -77,11 +63,9 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Likelihood of adult content.
-     * </pre>
      *
-     * <code>.google.cloud.videointelligence.v1beta1.Likelihood adult = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.videointelligence.v1beta1.Likelihood adult = 1;</code>
      * @return int
      */
     public function getAdult()
@@ -90,11 +74,9 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Likelihood of adult content.
-     * </pre>
      *
-     * <code>.google.cloud.videointelligence.v1beta1.Likelihood adult = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.videointelligence.v1beta1.Likelihood adult = 1;</code>
      * @param int $var
      */
     public function setAdult($var)
@@ -106,12 +88,10 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Likelihood that an obvious modification was made to the original
      * version to make it appear funny or offensive.
-     * </pre>
      *
-     * <code>.google.cloud.videointelligence.v1beta1.Likelihood spoof = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.videointelligence.v1beta1.Likelihood spoof = 2;</code>
      * @return int
      */
     public function getSpoof()
@@ -120,12 +100,10 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Likelihood that an obvious modification was made to the original
      * version to make it appear funny or offensive.
-     * </pre>
      *
-     * <code>.google.cloud.videointelligence.v1beta1.Likelihood spoof = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.videointelligence.v1beta1.Likelihood spoof = 2;</code>
      * @param int $var
      */
     public function setSpoof($var)
@@ -137,11 +115,9 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Likelihood of medical content.
-     * </pre>
      *
-     * <code>.google.cloud.videointelligence.v1beta1.Likelihood medical = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.videointelligence.v1beta1.Likelihood medical = 3;</code>
      * @return int
      */
     public function getMedical()
@@ -150,11 +126,9 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Likelihood of medical content.
-     * </pre>
      *
-     * <code>.google.cloud.videointelligence.v1beta1.Likelihood medical = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.videointelligence.v1beta1.Likelihood medical = 3;</code>
      * @param int $var
      */
     public function setMedical($var)
@@ -166,11 +140,9 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Likelihood of violent content.
-     * </pre>
      *
-     * <code>.google.cloud.videointelligence.v1beta1.Likelihood violent = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.videointelligence.v1beta1.Likelihood violent = 4;</code>
      * @return int
      */
     public function getViolent()
@@ -179,11 +151,9 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Likelihood of violent content.
-     * </pre>
      *
-     * <code>.google.cloud.videointelligence.v1beta1.Likelihood violent = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.videointelligence.v1beta1.Likelihood violent = 4;</code>
      * @param int $var
      */
     public function setViolent($var)
@@ -195,11 +165,9 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Likelihood of racy content.
-     * </pre>
      *
-     * <code>.google.cloud.videointelligence.v1beta1.Likelihood racy = 5;</code>
+     * Generated from protobuf field <code>.google.cloud.videointelligence.v1beta1.Likelihood racy = 5;</code>
      * @return int
      */
     public function getRacy()
@@ -208,11 +176,9 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Likelihood of racy content.
-     * </pre>
      *
-     * <code>.google.cloud.videointelligence.v1beta1.Likelihood racy = 5;</code>
+     * Generated from protobuf field <code>.google.cloud.videointelligence.v1beta1.Likelihood racy = 5;</code>
      * @param int $var
      */
     public function setRacy($var)
@@ -224,11 +190,9 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Video time offset in microseconds.
-     * </pre>
      *
-     * <code>int64 time_offset = 6;</code>
+     * Generated from protobuf field <code>int64 time_offset = 6;</code>
      * @return int|string
      */
     public function getTimeOffset()
@@ -237,11 +201,9 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Video time offset in microseconds.
-     * </pre>
      *
-     * <code>int64 time_offset = 6;</code>
+     * Generated from protobuf field <code>int64 time_offset = 6;</code>
      * @param int|string $var
      */
     public function setTimeOffset($var)

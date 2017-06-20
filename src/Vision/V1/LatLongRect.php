@@ -9,28 +9,22 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Rectangle determined by min and max `LatLng` pairs.
- * </pre>
  *
  * Protobuf type <code>Google\Cloud\Vision\V1\LatLongRect</code>
  */
 class LatLongRect extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * Min lat/long pair.
-     * </pre>
      *
-     * <code>.google.type.LatLng min_lat_lng = 1;</code>
+     * Generated from protobuf field <code>.google.type.LatLng min_lat_lng = 1;</code>
      */
     private $min_lat_lng = null;
     /**
-     * <pre>
      * Max lat/long pair.
-     * </pre>
      *
-     * <code>.google.type.LatLng max_lat_lng = 2;</code>
+     * Generated from protobuf field <code>.google.type.LatLng max_lat_lng = 2;</code>
      */
     private $max_lat_lng = null;
 
@@ -40,11 +34,9 @@ class LatLongRect extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Min lat/long pair.
-     * </pre>
      *
-     * <code>.google.type.LatLng min_lat_lng = 1;</code>
+     * Generated from protobuf field <code>.google.type.LatLng min_lat_lng = 1;</code>
      * @return \Google\Type\LatLng
      */
     public function getMinLatLng()
@@ -53,11 +45,9 @@ class LatLongRect extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Min lat/long pair.
-     * </pre>
      *
-     * <code>.google.type.LatLng min_lat_lng = 1;</code>
+     * Generated from protobuf field <code>.google.type.LatLng min_lat_lng = 1;</code>
      * @param \Google\Type\LatLng $var
      */
     public function setMinLatLng(&$var)
@@ -69,11 +59,9 @@ class LatLongRect extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Max lat/long pair.
-     * </pre>
      *
-     * <code>.google.type.LatLng max_lat_lng = 2;</code>
+     * Generated from protobuf field <code>.google.type.LatLng max_lat_lng = 2;</code>
      * @return \Google\Type\LatLng
      */
     public function getMaxLatLng()
@@ -82,11 +70,9 @@ class LatLongRect extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Max lat/long pair.
-     * </pre>
      *
-     * <code>.google.type.LatLng max_lat_lng = 2;</code>
+     * Generated from protobuf field <code>.google.type.LatLng max_lat_lng = 2;</code>
      * @param \Google\Type\LatLng $var
      */
     public function setMaxLatLng(&$var)

@@ -9,34 +9,27 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Data extracted for a specific group based on certain filter criteria,
  * such as a given time period and/or service filter.
- * </pre>
  *
  * Protobuf type <code>Google\Devtools\Clouderrorreporting\V1beta1\ErrorGroupStats</code>
  */
 class ErrorGroupStats extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * Group data that is independent of the filter criteria.
-     * </pre>
      *
-     * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
+     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
      */
     private $group = null;
     /**
-     * <pre>
      * Approximate total number of events in the given group that match
      * the filter criteria.
-     * </pre>
      *
-     * <code>int64 count = 2;</code>
+     * Generated from protobuf field <code>int64 count = 2;</code>
      */
     private $count = 0;
     /**
-     * <pre>
      * Approximate number of affected users in the given group that
      * match the filter criteria.
      * Users are distinguished by data in the `ErrorContext` of the
@@ -49,72 +42,59 @@ class ErrorGroupStats extends \Google\Protobuf\Internal\Message
      * context that was provided in the error report. If more users are
      * implicitly affected, such as due to a crash of the whole service,
      * this is not reflected here.
-     * </pre>
      *
-     * <code>int64 affected_users_count = 3;</code>
+     * Generated from protobuf field <code>int64 affected_users_count = 3;</code>
      */
     private $affected_users_count = 0;
     /**
-     * <pre>
      * Approximate number of occurrences over time.
      * Timed counts returned by ListGroups are guaranteed to be:
      * - Inside the requested time interval
      * - Non-overlapping, and
      * - Ordered by ascending time.
-     * </pre>
      *
-     * <code>repeated .google.devtools.clouderrorreporting.v1beta1.TimedCount timed_counts = 4;</code>
+     * Generated from protobuf field <code>repeated .google.devtools.clouderrorreporting.v1beta1.TimedCount timed_counts = 4;</code>
      */
     private $timed_counts;
     /**
-     * <pre>
      * Approximate first occurrence that was ever seen for this group
      * and which matches the given filter criteria, ignoring the
      * time_range that was specified in the request.
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp first_seen_time = 5;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp first_seen_time = 5;</code>
      */
     private $first_seen_time = null;
     /**
-     * <pre>
      * Approximate last occurrence that was ever seen for this group and
      * which matches the given filter criteria, ignoring the time_range
      * that was specified in the request.
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp last_seen_time = 6;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp last_seen_time = 6;</code>
      */
     private $last_seen_time = null;
     /**
-     * <pre>
      * Service contexts with a non-zero error count for the given filter
      * criteria. This list can be truncated if multiple services are affected.
      * Refer to `num_affected_services` for the total count.
-     * </pre>
      *
-     * <code>repeated .google.devtools.clouderrorreporting.v1beta1.ServiceContext affected_services = 7;</code>
+     * Generated from protobuf field <code>repeated .google.devtools.clouderrorreporting.v1beta1.ServiceContext affected_services = 7;</code>
      */
     private $affected_services;
     /**
-     * <pre>
      * The total number of services with a non-zero error count for the given
      * filter criteria.
-     * </pre>
      *
-     * <code>int32 num_affected_services = 8;</code>
+     * Generated from protobuf field <code>int32 num_affected_services = 8;</code>
      */
     private $num_affected_services = 0;
     /**
-     * <pre>
      * An arbitrary event that is chosen as representative for the whole group.
      * The representative event is intended to be used as a quick preview for
      * the whole group. Events in the group are usually sufficiently similar
      * to each other such that showing an arbitrary representative provides
      * insight into the characteristics of the group as a whole.
-     * </pre>
      *
-     * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorEvent representative = 9;</code>
+     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ErrorEvent representative = 9;</code>
      */
     private $representative = null;
 
@@ -124,11 +104,9 @@ class ErrorGroupStats extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Group data that is independent of the filter criteria.
-     * </pre>
      *
-     * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
+     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
      * @return \Google\Cloud\ErrorReporting\V1beta1\ErrorGroup
      */
     public function getGroup()
@@ -137,11 +115,9 @@ class ErrorGroupStats extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Group data that is independent of the filter criteria.
-     * </pre>
      *
-     * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
+     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
      * @param \Google\Cloud\ErrorReporting\V1beta1\ErrorGroup $var
      */
     public function setGroup(&$var)
@@ -153,12 +129,10 @@ class ErrorGroupStats extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Approximate total number of events in the given group that match
      * the filter criteria.
-     * </pre>
      *
-     * <code>int64 count = 2;</code>
+     * Generated from protobuf field <code>int64 count = 2;</code>
      * @return int|string
      */
     public function getCount()
@@ -167,12 +141,10 @@ class ErrorGroupStats extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Approximate total number of events in the given group that match
      * the filter criteria.
-     * </pre>
      *
-     * <code>int64 count = 2;</code>
+     * Generated from protobuf field <code>int64 count = 2;</code>
      * @param int|string $var
      */
     public function setCount($var)
@@ -184,7 +156,6 @@ class ErrorGroupStats extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Approximate number of affected users in the given group that
      * match the filter criteria.
      * Users are distinguished by data in the `ErrorContext` of the
@@ -197,9 +168,8 @@ class ErrorGroupStats extends \Google\Protobuf\Internal\Message
      * context that was provided in the error report. If more users are
      * implicitly affected, such as due to a crash of the whole service,
      * this is not reflected here.
-     * </pre>
      *
-     * <code>int64 affected_users_count = 3;</code>
+     * Generated from protobuf field <code>int64 affected_users_count = 3;</code>
      * @return int|string
      */
     public function getAffectedUsersCount()
@@ -208,7 +178,6 @@ class ErrorGroupStats extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Approximate number of affected users in the given group that
      * match the filter criteria.
      * Users are distinguished by data in the `ErrorContext` of the
@@ -221,9 +190,8 @@ class ErrorGroupStats extends \Google\Protobuf\Internal\Message
      * context that was provided in the error report. If more users are
      * implicitly affected, such as due to a crash of the whole service,
      * this is not reflected here.
-     * </pre>
      *
-     * <code>int64 affected_users_count = 3;</code>
+     * Generated from protobuf field <code>int64 affected_users_count = 3;</code>
      * @param int|string $var
      */
     public function setAffectedUsersCount($var)
@@ -235,15 +203,13 @@ class ErrorGroupStats extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Approximate number of occurrences over time.
      * Timed counts returned by ListGroups are guaranteed to be:
      * - Inside the requested time interval
      * - Non-overlapping, and
      * - Ordered by ascending time.
-     * </pre>
      *
-     * <code>repeated .google.devtools.clouderrorreporting.v1beta1.TimedCount timed_counts = 4;</code>
+     * Generated from protobuf field <code>repeated .google.devtools.clouderrorreporting.v1beta1.TimedCount timed_counts = 4;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getTimedCounts()
@@ -252,15 +218,13 @@ class ErrorGroupStats extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Approximate number of occurrences over time.
      * Timed counts returned by ListGroups are guaranteed to be:
      * - Inside the requested time interval
      * - Non-overlapping, and
      * - Ordered by ascending time.
-     * </pre>
      *
-     * <code>repeated .google.devtools.clouderrorreporting.v1beta1.TimedCount timed_counts = 4;</code>
+     * Generated from protobuf field <code>repeated .google.devtools.clouderrorreporting.v1beta1.TimedCount timed_counts = 4;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setTimedCounts(&$var)
@@ -272,13 +236,11 @@ class ErrorGroupStats extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Approximate first occurrence that was ever seen for this group
      * and which matches the given filter criteria, ignoring the
      * time_range that was specified in the request.
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp first_seen_time = 5;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp first_seen_time = 5;</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getFirstSeenTime()
@@ -287,13 +249,11 @@ class ErrorGroupStats extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Approximate first occurrence that was ever seen for this group
      * and which matches the given filter criteria, ignoring the
      * time_range that was specified in the request.
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp first_seen_time = 5;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp first_seen_time = 5;</code>
      * @param \Google\Protobuf\Timestamp $var
      */
     public function setFirstSeenTime(&$var)
@@ -305,13 +265,11 @@ class ErrorGroupStats extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Approximate last occurrence that was ever seen for this group and
      * which matches the given filter criteria, ignoring the time_range
      * that was specified in the request.
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp last_seen_time = 6;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp last_seen_time = 6;</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getLastSeenTime()
@@ -320,13 +278,11 @@ class ErrorGroupStats extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Approximate last occurrence that was ever seen for this group and
      * which matches the given filter criteria, ignoring the time_range
      * that was specified in the request.
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp last_seen_time = 6;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp last_seen_time = 6;</code>
      * @param \Google\Protobuf\Timestamp $var
      */
     public function setLastSeenTime(&$var)
@@ -338,13 +294,11 @@ class ErrorGroupStats extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Service contexts with a non-zero error count for the given filter
      * criteria. This list can be truncated if multiple services are affected.
      * Refer to `num_affected_services` for the total count.
-     * </pre>
      *
-     * <code>repeated .google.devtools.clouderrorreporting.v1beta1.ServiceContext affected_services = 7;</code>
+     * Generated from protobuf field <code>repeated .google.devtools.clouderrorreporting.v1beta1.ServiceContext affected_services = 7;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getAffectedServices()
@@ -353,13 +307,11 @@ class ErrorGroupStats extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Service contexts with a non-zero error count for the given filter
      * criteria. This list can be truncated if multiple services are affected.
      * Refer to `num_affected_services` for the total count.
-     * </pre>
      *
-     * <code>repeated .google.devtools.clouderrorreporting.v1beta1.ServiceContext affected_services = 7;</code>
+     * Generated from protobuf field <code>repeated .google.devtools.clouderrorreporting.v1beta1.ServiceContext affected_services = 7;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setAffectedServices(&$var)
@@ -371,12 +323,10 @@ class ErrorGroupStats extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The total number of services with a non-zero error count for the given
      * filter criteria.
-     * </pre>
      *
-     * <code>int32 num_affected_services = 8;</code>
+     * Generated from protobuf field <code>int32 num_affected_services = 8;</code>
      * @return int
      */
     public function getNumAffectedServices()
@@ -385,12 +335,10 @@ class ErrorGroupStats extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The total number of services with a non-zero error count for the given
      * filter criteria.
-     * </pre>
      *
-     * <code>int32 num_affected_services = 8;</code>
+     * Generated from protobuf field <code>int32 num_affected_services = 8;</code>
      * @param int $var
      */
     public function setNumAffectedServices($var)
@@ -402,15 +350,13 @@ class ErrorGroupStats extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * An arbitrary event that is chosen as representative for the whole group.
      * The representative event is intended to be used as a quick preview for
      * the whole group. Events in the group are usually sufficiently similar
      * to each other such that showing an arbitrary representative provides
      * insight into the characteristics of the group as a whole.
-     * </pre>
      *
-     * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorEvent representative = 9;</code>
+     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ErrorEvent representative = 9;</code>
      * @return \Google\Cloud\ErrorReporting\V1beta1\ErrorEvent
      */
     public function getRepresentative()
@@ -419,15 +365,13 @@ class ErrorGroupStats extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * An arbitrary event that is chosen as representative for the whole group.
      * The representative event is intended to be used as a quick preview for
      * the whole group. Events in the group are usually sufficiently similar
      * to each other such that showing an arbitrary representative provides
      * insight into the characteristics of the group as a whole.
-     * </pre>
      *
-     * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorEvent representative = 9;</code>
+     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ErrorEvent representative = 9;</code>
      * @param \Google\Cloud\ErrorReporting\V1beta1\ErrorEvent $var
      */
     public function setRepresentative(&$var)

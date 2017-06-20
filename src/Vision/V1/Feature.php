@@ -9,31 +9,25 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Users describe the type of Google Cloud Vision API tasks to perform over
  * images by using *Feature*s. Each Feature indicates a type of image
  * detection task to perform. Features encode the Cloud Vision API
  * vertical to operate on and the number of top-scoring results to return.
- * </pre>
  *
  * Protobuf type <code>Google\Cloud\Vision\V1\Feature</code>
  */
 class Feature extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The feature type.
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.Feature.Type type = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.Feature.Type type = 1;</code>
      */
     private $type = 0;
     /**
-     * <pre>
      * Maximum number of results of this type.
-     * </pre>
      *
-     * <code>int32 max_results = 2;</code>
+     * Generated from protobuf field <code>int32 max_results = 2;</code>
      */
     private $max_results = 0;
 
@@ -43,11 +37,9 @@ class Feature extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The feature type.
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.Feature.Type type = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.Feature.Type type = 1;</code>
      * @return int
      */
     public function getType()
@@ -56,11 +48,9 @@ class Feature extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The feature type.
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.Feature.Type type = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.Feature.Type type = 1;</code>
      * @param int $var
      */
     public function setType($var)
@@ -72,11 +62,9 @@ class Feature extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Maximum number of results of this type.
-     * </pre>
      *
-     * <code>int32 max_results = 2;</code>
+     * Generated from protobuf field <code>int32 max_results = 2;</code>
      * @return int
      */
     public function getMaxResults()
@@ -85,11 +73,9 @@ class Feature extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Maximum number of results of this type.
-     * </pre>
      *
-     * <code>int32 max_results = 2;</code>
+     * Generated from protobuf field <code>int32 max_results = 2;</code>
      * @param int $var
      */
     public function setMaxResults($var)

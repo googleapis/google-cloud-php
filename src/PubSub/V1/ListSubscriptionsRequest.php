@@ -9,39 +9,31 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Request for the `ListSubscriptions` method.
- * </pre>
  *
  * Protobuf type <code>Google\Pubsub\V1\ListSubscriptionsRequest</code>
  */
 class ListSubscriptionsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The name of the cloud project that subscriptions belong to.
      * Format is `projects/{project}`.
-     * </pre>
      *
-     * <code>string project = 1;</code>
+     * Generated from protobuf field <code>string project = 1;</code>
      */
     private $project = '';
     /**
-     * <pre>
      * Maximum number of subscriptions to return.
-     * </pre>
      *
-     * <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
     private $page_size = 0;
     /**
-     * <pre>
      * The value returned by the last `ListSubscriptionsResponse`; indicates that
      * this is a continuation of a prior `ListSubscriptions` call, and that the
      * system should return the next page of data.
-     * </pre>
      *
-     * <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3;</code>
      */
     private $page_token = '';
 
@@ -51,12 +43,10 @@ class ListSubscriptionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The name of the cloud project that subscriptions belong to.
      * Format is `projects/{project}`.
-     * </pre>
      *
-     * <code>string project = 1;</code>
+     * Generated from protobuf field <code>string project = 1;</code>
      * @return string
      */
     public function getProject()
@@ -65,12 +55,10 @@ class ListSubscriptionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The name of the cloud project that subscriptions belong to.
      * Format is `projects/{project}`.
-     * </pre>
      *
-     * <code>string project = 1;</code>
+     * Generated from protobuf field <code>string project = 1;</code>
      * @param string $var
      */
     public function setProject($var)
@@ -82,11 +70,9 @@ class ListSubscriptionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Maximum number of subscriptions to return.
-     * </pre>
      *
-     * <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2;</code>
      * @return int
      */
     public function getPageSize()
@@ -95,11 +81,9 @@ class ListSubscriptionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Maximum number of subscriptions to return.
-     * </pre>
      *
-     * <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2;</code>
      * @param int $var
      */
     public function setPageSize($var)
@@ -111,13 +95,11 @@ class ListSubscriptionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The value returned by the last `ListSubscriptionsResponse`; indicates that
      * this is a continuation of a prior `ListSubscriptions` call, and that the
      * system should return the next page of data.
-     * </pre>
      *
-     * <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3;</code>
      * @return string
      */
     public function getPageToken()
@@ -126,13 +108,11 @@ class ListSubscriptionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The value returned by the last `ListSubscriptionsResponse`; indicates that
      * this is a continuation of a prior `ListSubscriptions` call, and that the
      * system should return the next page of data.
-     * </pre>
      *
-     * <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3;</code>
      * @param string $var
      */
     public function setPageToken($var)

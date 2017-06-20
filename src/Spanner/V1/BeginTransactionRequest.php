@@ -9,28 +9,22 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * The request for [BeginTransaction][google.spanner.v1.Spanner.BeginTransaction].
- * </pre>
  *
  * Protobuf type <code>Google\Spanner\V1\BeginTransactionRequest</code>
  */
 class BeginTransactionRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * Required. The session in which the transaction runs.
-     * </pre>
      *
-     * <code>string session = 1;</code>
+     * Generated from protobuf field <code>string session = 1;</code>
      */
     private $session = '';
     /**
-     * <pre>
      * Required. Options for the new transaction.
-     * </pre>
      *
-     * <code>.google.spanner.v1.TransactionOptions options = 2;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.TransactionOptions options = 2;</code>
      */
     private $options = null;
 
@@ -40,11 +34,9 @@ class BeginTransactionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. The session in which the transaction runs.
-     * </pre>
      *
-     * <code>string session = 1;</code>
+     * Generated from protobuf field <code>string session = 1;</code>
      * @return string
      */
     public function getSession()
@@ -53,11 +45,9 @@ class BeginTransactionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. The session in which the transaction runs.
-     * </pre>
      *
-     * <code>string session = 1;</code>
+     * Generated from protobuf field <code>string session = 1;</code>
      * @param string $var
      */
     public function setSession($var)
@@ -69,11 +59,9 @@ class BeginTransactionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. Options for the new transaction.
-     * </pre>
      *
-     * <code>.google.spanner.v1.TransactionOptions options = 2;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.TransactionOptions options = 2;</code>
      * @return \Google\Cloud\Spanner\V1\TransactionOptions
      */
     public function getOptions()
@@ -82,11 +70,9 @@ class BeginTransactionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. Options for the new transaction.
-     * </pre>
      *
-     * <code>.google.spanner.v1.TransactionOptions options = 2;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.TransactionOptions options = 2;</code>
      * @param \Google\Cloud\Spanner\V1\TransactionOptions $var
      */
     public function setOptions(&$var)

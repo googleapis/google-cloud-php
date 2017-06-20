@@ -9,40 +9,32 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * The request for [ListDatabases][google.spanner.admin.database.v1.DatabaseAdmin.ListDatabases].
- * </pre>
  *
  * Protobuf type <code>Google\Spanner\Admin\Database\V1\ListDatabasesRequest</code>
  */
 class ListDatabasesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * Required. The instance whose databases should be listed.
      * Values are of the form `projects/<project>/instances/<instance>`.
-     * </pre>
      *
-     * <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1;</code>
      */
     private $parent = '';
     /**
-     * <pre>
      * Number of databases to be returned in the response. If 0 or less,
      * defaults to the server's maximum allowed page size.
-     * </pre>
      *
-     * <code>int32 page_size = 3;</code>
+     * Generated from protobuf field <code>int32 page_size = 3;</code>
      */
     private $page_size = 0;
     /**
-     * <pre>
      * If non-empty, `page_token` should contain a
      * [next_page_token][google.spanner.admin.database.v1.ListDatabasesResponse.next_page_token] from a
      * previous [ListDatabasesResponse][google.spanner.admin.database.v1.ListDatabasesResponse].
-     * </pre>
      *
-     * <code>string page_token = 4;</code>
+     * Generated from protobuf field <code>string page_token = 4;</code>
      */
     private $page_token = '';
 
@@ -52,12 +44,10 @@ class ListDatabasesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. The instance whose databases should be listed.
      * Values are of the form `projects/<project>/instances/<instance>`.
-     * </pre>
      *
-     * <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1;</code>
      * @return string
      */
     public function getParent()
@@ -66,12 +56,10 @@ class ListDatabasesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. The instance whose databases should be listed.
      * Values are of the form `projects/<project>/instances/<instance>`.
-     * </pre>
      *
-     * <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1;</code>
      * @param string $var
      */
     public function setParent($var)
@@ -83,12 +71,10 @@ class ListDatabasesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Number of databases to be returned in the response. If 0 or less,
      * defaults to the server's maximum allowed page size.
-     * </pre>
      *
-     * <code>int32 page_size = 3;</code>
+     * Generated from protobuf field <code>int32 page_size = 3;</code>
      * @return int
      */
     public function getPageSize()
@@ -97,12 +83,10 @@ class ListDatabasesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Number of databases to be returned in the response. If 0 or less,
      * defaults to the server's maximum allowed page size.
-     * </pre>
      *
-     * <code>int32 page_size = 3;</code>
+     * Generated from protobuf field <code>int32 page_size = 3;</code>
      * @param int $var
      */
     public function setPageSize($var)
@@ -114,13 +98,11 @@ class ListDatabasesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If non-empty, `page_token` should contain a
      * [next_page_token][google.spanner.admin.database.v1.ListDatabasesResponse.next_page_token] from a
      * previous [ListDatabasesResponse][google.spanner.admin.database.v1.ListDatabasesResponse].
-     * </pre>
      *
-     * <code>string page_token = 4;</code>
+     * Generated from protobuf field <code>string page_token = 4;</code>
      * @return string
      */
     public function getPageToken()
@@ -129,13 +111,11 @@ class ListDatabasesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If non-empty, `page_token` should contain a
      * [next_page_token][google.spanner.admin.database.v1.ListDatabasesResponse.next_page_token] from a
      * previous [ListDatabasesResponse][google.spanner.admin.database.v1.ListDatabasesResponse].
-     * </pre>
      *
-     * <code>string page_token = 4;</code>
+     * Generated from protobuf field <code>string page_token = 4;</code>
      * @param string $var
      */
     public function setPageToken($var)

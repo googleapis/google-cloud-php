@@ -9,67 +9,54 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * An isolated set of Cloud Spanner resources on which databases can be hosted.
- * </pre>
  *
  * Protobuf type <code>Google\Spanner\Admin\Instance\V1\Instance</code>
  */
 class Instance extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * Required. A unique identifier for the instance, which cannot be changed
      * after the instance is created. Values are of the form
      * `projects/<project>/instances/[a-z][-a-z0-9]*[a-z0-9]`. The final
      * segment of the name must be between 6 and 30 characters in length.
-     * </pre>
      *
-     * <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      */
     private $name = '';
     /**
-     * <pre>
      * Required. The name of the instance's configuration. Values are of the form
      * `projects/<project>/instanceConfigs/<configuration>`. See
      * also [InstanceConfig][google.spanner.admin.instance.v1.InstanceConfig] and
      * [ListInstanceConfigs][google.spanner.admin.instance.v1.InstanceAdmin.ListInstanceConfigs].
-     * </pre>
      *
-     * <code>string config = 2;</code>
+     * Generated from protobuf field <code>string config = 2;</code>
      */
     private $config = '';
     /**
-     * <pre>
      * Required. The descriptive name for this instance as it appears in UIs.
      * Must be unique per project and between 4 and 30 characters in length.
-     * </pre>
      *
-     * <code>string display_name = 3;</code>
+     * Generated from protobuf field <code>string display_name = 3;</code>
      */
     private $display_name = '';
     /**
-     * <pre>
      * Required. The number of nodes allocated to this instance.
-     * </pre>
      *
-     * <code>int32 node_count = 5;</code>
+     * Generated from protobuf field <code>int32 node_count = 5;</code>
      */
     private $node_count = 0;
     /**
-     * <pre>
      * Output only. The current instance state. For
      * [CreateInstance][google.spanner.admin.instance.v1.InstanceAdmin.CreateInstance], the state must be
      * either omitted or set to `CREATING`. For
      * [UpdateInstance][google.spanner.admin.instance.v1.InstanceAdmin.UpdateInstance], the state must be
      * either omitted or set to `READY`.
-     * </pre>
      *
-     * <code>.google.spanner.admin.instance.v1.Instance.State state = 6;</code>
+     * Generated from protobuf field <code>.google.spanner.admin.instance.v1.Instance.State state = 6;</code>
      */
     private $state = 0;
     /**
-     * <pre>
      * Cloud Labels are a flexible and lightweight mechanism for organizing cloud
      * resources into groups that reflect a customer's organizational needs and
      * deployment strategies. Cloud Labels can be used to filter collections of
@@ -88,9 +75,8 @@ class Instance extends \Google\Protobuf\Internal\Message
      * specific characters being disallowed.  For example, representing labels
      * as the string:  name + "_" + value  would prove problematic if we were to
      * allow "_" in a future release.
-     * </pre>
      *
-     * <code>map<string, string> labels = 7;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 7;</code>
      */
     private $labels;
 
@@ -100,14 +86,12 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. A unique identifier for the instance, which cannot be changed
      * after the instance is created. Values are of the form
      * `projects/<project>/instances/[a-z][-a-z0-9]*[a-z0-9]`. The final
      * segment of the name must be between 6 and 30 characters in length.
-     * </pre>
      *
-     * <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      * @return string
      */
     public function getName()
@@ -116,14 +100,12 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. A unique identifier for the instance, which cannot be changed
      * after the instance is created. Values are of the form
      * `projects/<project>/instances/[a-z][-a-z0-9]*[a-z0-9]`. The final
      * segment of the name must be between 6 and 30 characters in length.
-     * </pre>
      *
-     * <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
      */
     public function setName($var)
@@ -135,14 +117,12 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. The name of the instance's configuration. Values are of the form
      * `projects/<project>/instanceConfigs/<configuration>`. See
      * also [InstanceConfig][google.spanner.admin.instance.v1.InstanceConfig] and
      * [ListInstanceConfigs][google.spanner.admin.instance.v1.InstanceAdmin.ListInstanceConfigs].
-     * </pre>
      *
-     * <code>string config = 2;</code>
+     * Generated from protobuf field <code>string config = 2;</code>
      * @return string
      */
     public function getConfig()
@@ -151,14 +131,12 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. The name of the instance's configuration. Values are of the form
      * `projects/<project>/instanceConfigs/<configuration>`. See
      * also [InstanceConfig][google.spanner.admin.instance.v1.InstanceConfig] and
      * [ListInstanceConfigs][google.spanner.admin.instance.v1.InstanceAdmin.ListInstanceConfigs].
-     * </pre>
      *
-     * <code>string config = 2;</code>
+     * Generated from protobuf field <code>string config = 2;</code>
      * @param string $var
      */
     public function setConfig($var)
@@ -170,12 +148,10 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. The descriptive name for this instance as it appears in UIs.
      * Must be unique per project and between 4 and 30 characters in length.
-     * </pre>
      *
-     * <code>string display_name = 3;</code>
+     * Generated from protobuf field <code>string display_name = 3;</code>
      * @return string
      */
     public function getDisplayName()
@@ -184,12 +160,10 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. The descriptive name for this instance as it appears in UIs.
      * Must be unique per project and between 4 and 30 characters in length.
-     * </pre>
      *
-     * <code>string display_name = 3;</code>
+     * Generated from protobuf field <code>string display_name = 3;</code>
      * @param string $var
      */
     public function setDisplayName($var)
@@ -201,11 +175,9 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. The number of nodes allocated to this instance.
-     * </pre>
      *
-     * <code>int32 node_count = 5;</code>
+     * Generated from protobuf field <code>int32 node_count = 5;</code>
      * @return int
      */
     public function getNodeCount()
@@ -214,11 +186,9 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. The number of nodes allocated to this instance.
-     * </pre>
      *
-     * <code>int32 node_count = 5;</code>
+     * Generated from protobuf field <code>int32 node_count = 5;</code>
      * @param int $var
      */
     public function setNodeCount($var)
@@ -230,15 +200,13 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Output only. The current instance state. For
      * [CreateInstance][google.spanner.admin.instance.v1.InstanceAdmin.CreateInstance], the state must be
      * either omitted or set to `CREATING`. For
      * [UpdateInstance][google.spanner.admin.instance.v1.InstanceAdmin.UpdateInstance], the state must be
      * either omitted or set to `READY`.
-     * </pre>
      *
-     * <code>.google.spanner.admin.instance.v1.Instance.State state = 6;</code>
+     * Generated from protobuf field <code>.google.spanner.admin.instance.v1.Instance.State state = 6;</code>
      * @return int
      */
     public function getState()
@@ -247,15 +215,13 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Output only. The current instance state. For
      * [CreateInstance][google.spanner.admin.instance.v1.InstanceAdmin.CreateInstance], the state must be
      * either omitted or set to `CREATING`. For
      * [UpdateInstance][google.spanner.admin.instance.v1.InstanceAdmin.UpdateInstance], the state must be
      * either omitted or set to `READY`.
-     * </pre>
      *
-     * <code>.google.spanner.admin.instance.v1.Instance.State state = 6;</code>
+     * Generated from protobuf field <code>.google.spanner.admin.instance.v1.Instance.State state = 6;</code>
      * @param int $var
      */
     public function setState($var)
@@ -267,7 +233,6 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Cloud Labels are a flexible and lightweight mechanism for organizing cloud
      * resources into groups that reflect a customer's organizational needs and
      * deployment strategies. Cloud Labels can be used to filter collections of
@@ -286,9 +251,8 @@ class Instance extends \Google\Protobuf\Internal\Message
      * specific characters being disallowed.  For example, representing labels
      * as the string:  name + "_" + value  would prove problematic if we were to
      * allow "_" in a future release.
-     * </pre>
      *
-     * <code>map<string, string> labels = 7;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 7;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getLabels()
@@ -297,7 +261,6 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Cloud Labels are a flexible and lightweight mechanism for organizing cloud
      * resources into groups that reflect a customer's organizational needs and
      * deployment strategies. Cloud Labels can be used to filter collections of
@@ -316,9 +279,8 @@ class Instance extends \Google\Protobuf\Internal\Message
      * specific characters being disallowed.  For example, representing labels
      * as the string:  name + "_" + value  would prove problematic if we were to
      * allow "_" in a future release.
-     * </pre>
      *
-     * <code>map<string, string> labels = 7;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 7;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setLabels(&$var)

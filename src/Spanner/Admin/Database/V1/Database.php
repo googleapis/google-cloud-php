@@ -9,32 +9,26 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * A Cloud Spanner database.
- * </pre>
  *
  * Protobuf type <code>Google\Spanner\Admin\Database\V1\Database</code>
  */
 class Database extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * Required. The name of the database. Values are of the form
      * `projects/<project>/instances/<instance>/databases/<database>`,
      * where `<database>` is as specified in the `CREATE DATABASE`
      * statement. This name can be passed to other API methods to
      * identify the database.
-     * </pre>
      *
-     * <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      */
     private $name = '';
     /**
-     * <pre>
      * Output only. The current database state.
-     * </pre>
      *
-     * <code>.google.spanner.admin.database.v1.Database.State state = 2;</code>
+     * Generated from protobuf field <code>.google.spanner.admin.database.v1.Database.State state = 2;</code>
      */
     private $state = 0;
 
@@ -44,15 +38,13 @@ class Database extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. The name of the database. Values are of the form
      * `projects/<project>/instances/<instance>/databases/<database>`,
      * where `<database>` is as specified in the `CREATE DATABASE`
      * statement. This name can be passed to other API methods to
      * identify the database.
-     * </pre>
      *
-     * <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      * @return string
      */
     public function getName()
@@ -61,15 +53,13 @@ class Database extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. The name of the database. Values are of the form
      * `projects/<project>/instances/<instance>/databases/<database>`,
      * where `<database>` is as specified in the `CREATE DATABASE`
      * statement. This name can be passed to other API methods to
      * identify the database.
-     * </pre>
      *
-     * <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
      */
     public function setName($var)
@@ -81,11 +71,9 @@ class Database extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Output only. The current database state.
-     * </pre>
      *
-     * <code>.google.spanner.admin.database.v1.Database.State state = 2;</code>
+     * Generated from protobuf field <code>.google.spanner.admin.database.v1.Database.State state = 2;</code>
      * @return int
      */
     public function getState()
@@ -94,11 +82,9 @@ class Database extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Output only. The current database state.
-     * </pre>
      *
-     * <code>.google.spanner.admin.database.v1.Database.State state = 2;</code>
+     * Generated from protobuf field <code>.google.spanner.admin.database.v1.Database.State state = 2;</code>
      * @param int $var
      */
     public function setState($var)

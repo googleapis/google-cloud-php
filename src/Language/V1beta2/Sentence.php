@@ -9,30 +9,24 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Represents a sentence in the input document.
- * </pre>
  *
  * Protobuf type <code>Google\Cloud\Language\V1beta2\Sentence</code>
  */
 class Sentence extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The sentence text.
-     * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.TextSpan text = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.TextSpan text = 1;</code>
      */
     private $text = null;
     /**
-     * <pre>
      * For calls to [AnalyzeSentiment][] or if
      * [AnnotateTextRequest.Features.extract_document_sentiment][google.cloud.language.v1beta2.AnnotateTextRequest.Features.extract_document_sentiment] is set to
      * true, this field will contain the sentiment for the sentence.
-     * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.Sentiment sentiment = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.Sentiment sentiment = 2;</code>
      */
     private $sentiment = null;
 
@@ -42,11 +36,9 @@ class Sentence extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The sentence text.
-     * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.TextSpan text = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.TextSpan text = 1;</code>
      * @return \Google\Cloud\Language\V1beta2\TextSpan
      */
     public function getText()
@@ -55,11 +47,9 @@ class Sentence extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The sentence text.
-     * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.TextSpan text = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.TextSpan text = 1;</code>
      * @param \Google\Cloud\Language\V1beta2\TextSpan $var
      */
     public function setText(&$var)
@@ -71,13 +61,11 @@ class Sentence extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * For calls to [AnalyzeSentiment][] or if
      * [AnnotateTextRequest.Features.extract_document_sentiment][google.cloud.language.v1beta2.AnnotateTextRequest.Features.extract_document_sentiment] is set to
      * true, this field will contain the sentiment for the sentence.
-     * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.Sentiment sentiment = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.Sentiment sentiment = 2;</code>
      * @return \Google\Cloud\Language\V1beta2\Sentiment
      */
     public function getSentiment()
@@ -86,13 +74,11 @@ class Sentence extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * For calls to [AnalyzeSentiment][] or if
      * [AnnotateTextRequest.Features.extract_document_sentiment][google.cloud.language.v1beta2.AnnotateTextRequest.Features.extract_document_sentiment] is set to
      * true, this field will contain the sentiment for the sentence.
-     * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.Sentiment sentiment = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.Sentiment sentiment = 2;</code>
      * @param \Google\Cloud\Language\V1beta2\Sentiment $var
      */
     public function setSentiment(&$var)

@@ -9,48 +9,38 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Relevant information for the image from the Internet.
- * </pre>
  *
  * Protobuf type <code>Google\Cloud\Vision\V1\WebDetection</code>
  */
 class WebDetection extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * Deduced entities from similar images on the Internet.
-     * </pre>
      *
-     * <code>repeated .google.cloud.vision.v1.WebDetection.WebEntity web_entities = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.WebDetection.WebEntity web_entities = 1;</code>
      */
     private $web_entities;
     /**
-     * <pre>
      * Fully matching images from the Internet.
      * They're definite neardups and most often a copy of the query image with
      * merely a size change.
-     * </pre>
      *
-     * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage full_matching_images = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.WebDetection.WebImage full_matching_images = 2;</code>
      */
     private $full_matching_images;
     /**
-     * <pre>
      * Partial matching images from the Internet.
      * Those images are similar enough to share some key-point features. For
      * example an original image will likely have partial matching for its crops.
-     * </pre>
      *
-     * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage partial_matching_images = 3;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.WebDetection.WebImage partial_matching_images = 3;</code>
      */
     private $partial_matching_images;
     /**
-     * <pre>
      * Web pages containing the matching images from the Internet.
-     * </pre>
      *
-     * <code>repeated .google.cloud.vision.v1.WebDetection.WebPage pages_with_matching_images = 4;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.WebDetection.WebPage pages_with_matching_images = 4;</code>
      */
     private $pages_with_matching_images;
 
@@ -60,11 +50,9 @@ class WebDetection extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Deduced entities from similar images on the Internet.
-     * </pre>
      *
-     * <code>repeated .google.cloud.vision.v1.WebDetection.WebEntity web_entities = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.WebDetection.WebEntity web_entities = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getWebEntities()
@@ -73,11 +61,9 @@ class WebDetection extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Deduced entities from similar images on the Internet.
-     * </pre>
      *
-     * <code>repeated .google.cloud.vision.v1.WebDetection.WebEntity web_entities = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.WebDetection.WebEntity web_entities = 1;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setWebEntities(&$var)
@@ -89,13 +75,11 @@ class WebDetection extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Fully matching images from the Internet.
      * They're definite neardups and most often a copy of the query image with
      * merely a size change.
-     * </pre>
      *
-     * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage full_matching_images = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.WebDetection.WebImage full_matching_images = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getFullMatchingImages()
@@ -104,13 +88,11 @@ class WebDetection extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Fully matching images from the Internet.
      * They're definite neardups and most often a copy of the query image with
      * merely a size change.
-     * </pre>
      *
-     * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage full_matching_images = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.WebDetection.WebImage full_matching_images = 2;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setFullMatchingImages(&$var)
@@ -122,13 +104,11 @@ class WebDetection extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Partial matching images from the Internet.
      * Those images are similar enough to share some key-point features. For
      * example an original image will likely have partial matching for its crops.
-     * </pre>
      *
-     * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage partial_matching_images = 3;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.WebDetection.WebImage partial_matching_images = 3;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getPartialMatchingImages()
@@ -137,13 +117,11 @@ class WebDetection extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Partial matching images from the Internet.
      * Those images are similar enough to share some key-point features. For
      * example an original image will likely have partial matching for its crops.
-     * </pre>
      *
-     * <code>repeated .google.cloud.vision.v1.WebDetection.WebImage partial_matching_images = 3;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.WebDetection.WebImage partial_matching_images = 3;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setPartialMatchingImages(&$var)
@@ -155,11 +133,9 @@ class WebDetection extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Web pages containing the matching images from the Internet.
-     * </pre>
      *
-     * <code>repeated .google.cloud.vision.v1.WebDetection.WebPage pages_with_matching_images = 4;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.WebDetection.WebPage pages_with_matching_images = 4;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getPagesWithMatchingImages()
@@ -168,11 +144,9 @@ class WebDetection extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Web pages containing the matching images from the Internet.
-     * </pre>
      *
-     * <code>repeated .google.cloud.vision.v1.WebDetection.WebPage pages_with_matching_images = 4;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.WebDetection.WebPage pages_with_matching_images = 4;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setPagesWithMatchingImages(&$var)

@@ -9,28 +9,22 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * The request for [Rollback][google.spanner.v1.Spanner.Rollback].
- * </pre>
  *
  * Protobuf type <code>Google\Spanner\V1\RollbackRequest</code>
  */
 class RollbackRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * Required. The session in which the transaction to roll back is running.
-     * </pre>
      *
-     * <code>string session = 1;</code>
+     * Generated from protobuf field <code>string session = 1;</code>
      */
     private $session = '';
     /**
-     * <pre>
      * Required. The transaction to roll back.
-     * </pre>
      *
-     * <code>bytes transaction_id = 2;</code>
+     * Generated from protobuf field <code>bytes transaction_id = 2;</code>
      */
     private $transaction_id = '';
 
@@ -40,11 +34,9 @@ class RollbackRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. The session in which the transaction to roll back is running.
-     * </pre>
      *
-     * <code>string session = 1;</code>
+     * Generated from protobuf field <code>string session = 1;</code>
      * @return string
      */
     public function getSession()
@@ -53,11 +45,9 @@ class RollbackRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. The session in which the transaction to roll back is running.
-     * </pre>
      *
-     * <code>string session = 1;</code>
+     * Generated from protobuf field <code>string session = 1;</code>
      * @param string $var
      */
     public function setSession($var)
@@ -69,11 +59,9 @@ class RollbackRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. The transaction to roll back.
-     * </pre>
      *
-     * <code>bytes transaction_id = 2;</code>
+     * Generated from protobuf field <code>bytes transaction_id = 2;</code>
      * @return string
      */
     public function getTransactionId()
@@ -82,11 +70,9 @@ class RollbackRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. The transaction to roll back.
-     * </pre>
      *
-     * <code>bytes transaction_id = 2;</code>
+     * Generated from protobuf field <code>bytes transaction_id = 2;</code>
      * @param string $var
      */
     public function setTransactionId($var)

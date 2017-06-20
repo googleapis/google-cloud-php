@@ -9,32 +9,25 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * A snapshot resource.
- * </pre>
  *
  * Protobuf type <code>Google\Pubsub\V1\Snapshot</code>
  */
 class Snapshot extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The name of the snapshot.
-     * </pre>
      *
-     * <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      */
     private $name = '';
     /**
-     * <pre>
      * The name of the topic from which this snapshot is retaining messages.
-     * </pre>
      *
-     * <code>string topic = 2;</code>
+     * Generated from protobuf field <code>string topic = 2;</code>
      */
     private $topic = '';
     /**
-     * <pre>
      * The snapshot is guaranteed to exist up until this time.
      * A newly-created snapshot expires no later than 7 days from the time of its
      * creation. Its exact lifetime is determined at creation by the existing
@@ -44,9 +37,8 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      * old. If a snapshot is created from this subscription, the snapshot -- which
      * will always capture this 3-day-old backlog as long as the snapshot
      * exists -- will expire in 4 days.
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp expire_time = 3;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 3;</code>
      */
     private $expire_time = null;
 
@@ -56,11 +48,9 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The name of the snapshot.
-     * </pre>
      *
-     * <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      * @return string
      */
     public function getName()
@@ -69,11 +59,9 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The name of the snapshot.
-     * </pre>
      *
-     * <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
      */
     public function setName($var)
@@ -85,11 +73,9 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The name of the topic from which this snapshot is retaining messages.
-     * </pre>
      *
-     * <code>string topic = 2;</code>
+     * Generated from protobuf field <code>string topic = 2;</code>
      * @return string
      */
     public function getTopic()
@@ -98,11 +84,9 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The name of the topic from which this snapshot is retaining messages.
-     * </pre>
      *
-     * <code>string topic = 2;</code>
+     * Generated from protobuf field <code>string topic = 2;</code>
      * @param string $var
      */
     public function setTopic($var)
@@ -114,7 +98,6 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The snapshot is guaranteed to exist up until this time.
      * A newly-created snapshot expires no later than 7 days from the time of its
      * creation. Its exact lifetime is determined at creation by the existing
@@ -124,9 +107,8 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      * old. If a snapshot is created from this subscription, the snapshot -- which
      * will always capture this 3-day-old backlog as long as the snapshot
      * exists -- will expire in 4 days.
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp expire_time = 3;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 3;</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getExpireTime()
@@ -135,7 +117,6 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The snapshot is guaranteed to exist up until this time.
      * A newly-created snapshot expires no later than 7 days from the time of its
      * creation. Its exact lifetime is determined at creation by the existing
@@ -145,9 +126,8 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      * old. If a snapshot is created from this subscription, the snapshot -- which
      * will always capture this 3-day-old backlog as long as the snapshot
      * exists -- will expire in 4 days.
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp expire_time = 3;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 3;</code>
      * @param \Google\Protobuf\Timestamp $var
      */
     public function setExpireTime(&$var)

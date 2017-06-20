@@ -9,25 +9,21 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * A topic resource.
- * </pre>
  *
  * Protobuf type <code>Google\Pubsub\V1\Topic</code>
  */
 class Topic extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The name of the topic. It must have the format
      * `"projects/{project}/topics/{topic}"`. `{topic}` must start with a letter,
      * and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`),
      * underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent
      * signs (`%`). It must be between 3 and 255 characters in length, and it
      * must not start with `"goog"`.
-     * </pre>
      *
-     * <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      */
     private $name = '';
 
@@ -37,16 +33,14 @@ class Topic extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The name of the topic. It must have the format
      * `"projects/{project}/topics/{topic}"`. `{topic}` must start with a letter,
      * and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`),
      * underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent
      * signs (`%`). It must be between 3 and 255 characters in length, and it
      * must not start with `"goog"`.
-     * </pre>
      *
-     * <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      * @return string
      */
     public function getName()
@@ -55,16 +49,14 @@ class Topic extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The name of the topic. It must have the format
      * `"projects/{project}/topics/{topic}"`. `{topic}` must start with a letter,
      * and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`),
      * underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent
      * signs (`%`). It must be between 3 and 255 characters in length, and it
      * must not start with `"goog"`.
-     * </pre>
      *
-     * <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
      */
     public function setName($var)

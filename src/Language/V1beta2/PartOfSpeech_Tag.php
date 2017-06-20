@@ -5,124 +5,94 @@
 namespace Google\Cloud\Language\V1beta2;
 
 /**
- * <pre>
  * The part of speech tags enum.
- * </pre>
  *
  * Protobuf enum <code>Google\Cloud\Language\V1beta2\PartOfSpeech\Tag</code>
  */
 class PartOfSpeech_Tag
 {
     /**
-     * <pre>
      * Unknown
-     * </pre>
      *
-     * <code>UNKNOWN = 0;</code>
+     * Generated from protobuf enum <code>UNKNOWN = 0;</code>
      */
     const UNKNOWN = 0;
     /**
-     * <pre>
      * Adjective
-     * </pre>
      *
-     * <code>ADJ = 1;</code>
+     * Generated from protobuf enum <code>ADJ = 1;</code>
      */
     const ADJ = 1;
     /**
-     * <pre>
      * Adposition (preposition and postposition)
-     * </pre>
      *
-     * <code>ADP = 2;</code>
+     * Generated from protobuf enum <code>ADP = 2;</code>
      */
     const ADP = 2;
     /**
-     * <pre>
      * Adverb
-     * </pre>
      *
-     * <code>ADV = 3;</code>
+     * Generated from protobuf enum <code>ADV = 3;</code>
      */
     const ADV = 3;
     /**
-     * <pre>
      * Conjunction
-     * </pre>
      *
-     * <code>CONJ = 4;</code>
+     * Generated from protobuf enum <code>CONJ = 4;</code>
      */
     const CONJ = 4;
     /**
-     * <pre>
      * Determiner
-     * </pre>
      *
-     * <code>DET = 5;</code>
+     * Generated from protobuf enum <code>DET = 5;</code>
      */
     const DET = 5;
     /**
-     * <pre>
      * Noun (common and proper)
-     * </pre>
      *
-     * <code>NOUN = 6;</code>
+     * Generated from protobuf enum <code>NOUN = 6;</code>
      */
     const NOUN = 6;
     /**
-     * <pre>
      * Cardinal number
-     * </pre>
      *
-     * <code>NUM = 7;</code>
+     * Generated from protobuf enum <code>NUM = 7;</code>
      */
     const NUM = 7;
     /**
-     * <pre>
      * Pronoun
-     * </pre>
      *
-     * <code>PRON = 8;</code>
+     * Generated from protobuf enum <code>PRON = 8;</code>
      */
     const PRON = 8;
     /**
-     * <pre>
      * Particle or other function word
-     * </pre>
      *
-     * <code>PRT = 9;</code>
+     * Generated from protobuf enum <code>PRT = 9;</code>
      */
     const PRT = 9;
     /**
-     * <pre>
      * Punctuation
-     * </pre>
      *
-     * <code>PUNCT = 10;</code>
+     * Generated from protobuf enum <code>PUNCT = 10;</code>
      */
     const PUNCT = 10;
     /**
-     * <pre>
      * Verb (all tenses and modes)
-     * </pre>
      *
-     * <code>VERB = 11;</code>
+     * Generated from protobuf enum <code>VERB = 11;</code>
      */
     const VERB = 11;
     /**
-     * <pre>
      * Other: foreign words, typos, abbreviations
-     * </pre>
      *
-     * <code>X = 12;</code>
+     * Generated from protobuf enum <code>X = 12;</code>
      */
     const X = 12;
     /**
-     * <pre>
      * Affix
-     * </pre>
      *
-     * <code>AFFIX = 13;</code>
+     * Generated from protobuf enum <code>AFFIX = 13;</code>
      */
     const AFFIX = 13;
 }

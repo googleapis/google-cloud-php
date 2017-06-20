@@ -9,21 +9,17 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Response for the `StreamingPull` method. This response is used to stream
  * messages from the server to the client.
- * </pre>
  *
  * Protobuf type <code>Google\Pubsub\V1\StreamingPullResponse</code>
  */
 class StreamingPullResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * Received Pub/Sub messages. This will not be empty.
-     * </pre>
      *
-     * <code>repeated .google.pubsub.v1.ReceivedMessage received_messages = 1;</code>
+     * Generated from protobuf field <code>repeated .google.pubsub.v1.ReceivedMessage received_messages = 1;</code>
      */
     private $received_messages;
 
@@ -33,11 +29,9 @@ class StreamingPullResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Received Pub/Sub messages. This will not be empty.
-     * </pre>
      *
-     * <code>repeated .google.pubsub.v1.ReceivedMessage received_messages = 1;</code>
+     * Generated from protobuf field <code>repeated .google.pubsub.v1.ReceivedMessage received_messages = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getReceivedMessages()
@@ -46,11 +40,9 @@ class StreamingPullResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Received Pub/Sub messages. This will not be empty.
-     * </pre>
      *
-     * <code>repeated .google.pubsub.v1.ReceivedMessage received_messages = 1;</code>
+     * Generated from protobuf field <code>repeated .google.pubsub.v1.ReceivedMessage received_messages = 1;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setReceivedMessages(&$var)

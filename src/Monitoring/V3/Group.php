@@ -9,7 +9,6 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * The description of a dynamic collection of monitored resources. Each group
  * has a filter that is matched against monitored resources and their associated
  * metadata. If a group's filter matches an available monitored resource, then
@@ -33,57 +32,46 @@ use Google\Protobuf\Internal\GPBUtil;
  * The monitored resources contained in a group can change at any moment,
  * depending on what resources exist and what filters are associated with the
  * group and its ancestors.
- * </pre>
  *
  * Protobuf type <code>Google\Monitoring\V3\Group</code>
  */
 class Group extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * Output only. The name of this group. The format is
      * `"projects/{project_id_or_number}/groups/{group_id}"`.
      * When creating a group, this field is ignored and a new name is created
      * consisting of the project specified in the call to `CreateGroup`
      * and a unique `{group_id}` that is generated automatically.
-     * </pre>
      *
-     * <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      */
     private $name = '';
     /**
-     * <pre>
      * A user-assigned name for this group, used only for display purposes.
-     * </pre>
      *
-     * <code>string display_name = 2;</code>
+     * Generated from protobuf field <code>string display_name = 2;</code>
      */
     private $display_name = '';
     /**
-     * <pre>
      * The name of the group's parent, if it has one.
      * The format is `"projects/{project_id_or_number}/groups/{group_id}"`.
      * For groups with no parent, `parentName` is the empty string, `""`.
-     * </pre>
      *
-     * <code>string parent_name = 3;</code>
+     * Generated from protobuf field <code>string parent_name = 3;</code>
      */
     private $parent_name = '';
     /**
-     * <pre>
      * The filter used to determine which monitored resources belong to this group.
-     * </pre>
      *
-     * <code>string filter = 5;</code>
+     * Generated from protobuf field <code>string filter = 5;</code>
      */
     private $filter = '';
     /**
-     * <pre>
      * If true, the members of this group are considered to be a cluster.
      * The system can perform additional analysis on groups that are clusters.
-     * </pre>
      *
-     * <code>bool is_cluster = 6;</code>
+     * Generated from protobuf field <code>bool is_cluster = 6;</code>
      */
     private $is_cluster = false;
 
@@ -93,15 +81,13 @@ class Group extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Output only. The name of this group. The format is
      * `"projects/{project_id_or_number}/groups/{group_id}"`.
      * When creating a group, this field is ignored and a new name is created
      * consisting of the project specified in the call to `CreateGroup`
      * and a unique `{group_id}` that is generated automatically.
-     * </pre>
      *
-     * <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      * @return string
      */
     public function getName()
@@ -110,15 +96,13 @@ class Group extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Output only. The name of this group. The format is
      * `"projects/{project_id_or_number}/groups/{group_id}"`.
      * When creating a group, this field is ignored and a new name is created
      * consisting of the project specified in the call to `CreateGroup`
      * and a unique `{group_id}` that is generated automatically.
-     * </pre>
      *
-     * <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
      */
     public function setName($var)
@@ -130,11 +114,9 @@ class Group extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * A user-assigned name for this group, used only for display purposes.
-     * </pre>
      *
-     * <code>string display_name = 2;</code>
+     * Generated from protobuf field <code>string display_name = 2;</code>
      * @return string
      */
     public function getDisplayName()
@@ -143,11 +125,9 @@ class Group extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * A user-assigned name for this group, used only for display purposes.
-     * </pre>
      *
-     * <code>string display_name = 2;</code>
+     * Generated from protobuf field <code>string display_name = 2;</code>
      * @param string $var
      */
     public function setDisplayName($var)
@@ -159,13 +139,11 @@ class Group extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The name of the group's parent, if it has one.
      * The format is `"projects/{project_id_or_number}/groups/{group_id}"`.
      * For groups with no parent, `parentName` is the empty string, `""`.
-     * </pre>
      *
-     * <code>string parent_name = 3;</code>
+     * Generated from protobuf field <code>string parent_name = 3;</code>
      * @return string
      */
     public function getParentName()
@@ -174,13 +152,11 @@ class Group extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The name of the group's parent, if it has one.
      * The format is `"projects/{project_id_or_number}/groups/{group_id}"`.
      * For groups with no parent, `parentName` is the empty string, `""`.
-     * </pre>
      *
-     * <code>string parent_name = 3;</code>
+     * Generated from protobuf field <code>string parent_name = 3;</code>
      * @param string $var
      */
     public function setParentName($var)
@@ -192,11 +168,9 @@ class Group extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The filter used to determine which monitored resources belong to this group.
-     * </pre>
      *
-     * <code>string filter = 5;</code>
+     * Generated from protobuf field <code>string filter = 5;</code>
      * @return string
      */
     public function getFilter()
@@ -205,11 +179,9 @@ class Group extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The filter used to determine which monitored resources belong to this group.
-     * </pre>
      *
-     * <code>string filter = 5;</code>
+     * Generated from protobuf field <code>string filter = 5;</code>
      * @param string $var
      */
     public function setFilter($var)
@@ -221,12 +193,10 @@ class Group extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If true, the members of this group are considered to be a cluster.
      * The system can perform additional analysis on groups that are clusters.
-     * </pre>
      *
-     * <code>bool is_cluster = 6;</code>
+     * Generated from protobuf field <code>bool is_cluster = 6;</code>
      * @return bool
      */
     public function getIsCluster()
@@ -235,12 +205,10 @@ class Group extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If true, the members of this group are considered to be a cluster.
      * The system can perform additional analysis on groups that are clusters.
-     * </pre>
      *
-     * <code>bool is_cluster = 6;</code>
+     * Generated from protobuf field <code>bool is_cluster = 6;</code>
      * @param bool $var
      */
     public function setIsCluster($var)

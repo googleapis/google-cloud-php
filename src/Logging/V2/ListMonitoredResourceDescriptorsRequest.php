@@ -9,33 +9,27 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * The parameters to ListMonitoredResourceDescriptors
- * </pre>
  *
  * Protobuf type <code>Google\Logging\V2\ListMonitoredResourceDescriptorsRequest</code>
  */
 class ListMonitoredResourceDescriptorsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * Optional. The maximum number of results to return from this request.
      * Non-positive values are ignored.  The presence of `nextPageToken` in the
      * response indicates that more results might be available.
-     * </pre>
      *
-     * <code>int32 page_size = 1;</code>
+     * Generated from protobuf field <code>int32 page_size = 1;</code>
      */
     private $page_size = 0;
     /**
-     * <pre>
      * Optional. If present, then retrieve the next batch of results from the
      * preceding call to this method.  `pageToken` must be the value of
      * `nextPageToken` from the previous response.  The values of other method
      * parameters should be identical to those in the previous call.
-     * </pre>
      *
-     * <code>string page_token = 2;</code>
+     * Generated from protobuf field <code>string page_token = 2;</code>
      */
     private $page_token = '';
 
@@ -45,13 +39,11 @@ class ListMonitoredResourceDescriptorsRequest extends \Google\Protobuf\Internal\
     }
 
     /**
-     * <pre>
      * Optional. The maximum number of results to return from this request.
      * Non-positive values are ignored.  The presence of `nextPageToken` in the
      * response indicates that more results might be available.
-     * </pre>
      *
-     * <code>int32 page_size = 1;</code>
+     * Generated from protobuf field <code>int32 page_size = 1;</code>
      * @return int
      */
     public function getPageSize()
@@ -60,13 +52,11 @@ class ListMonitoredResourceDescriptorsRequest extends \Google\Protobuf\Internal\
     }
 
     /**
-     * <pre>
      * Optional. The maximum number of results to return from this request.
      * Non-positive values are ignored.  The presence of `nextPageToken` in the
      * response indicates that more results might be available.
-     * </pre>
      *
-     * <code>int32 page_size = 1;</code>
+     * Generated from protobuf field <code>int32 page_size = 1;</code>
      * @param int $var
      */
     public function setPageSize($var)
@@ -78,14 +68,12 @@ class ListMonitoredResourceDescriptorsRequest extends \Google\Protobuf\Internal\
     }
 
     /**
-     * <pre>
      * Optional. If present, then retrieve the next batch of results from the
      * preceding call to this method.  `pageToken` must be the value of
      * `nextPageToken` from the previous response.  The values of other method
      * parameters should be identical to those in the previous call.
-     * </pre>
      *
-     * <code>string page_token = 2;</code>
+     * Generated from protobuf field <code>string page_token = 2;</code>
      * @return string
      */
     public function getPageToken()
@@ -94,14 +82,12 @@ class ListMonitoredResourceDescriptorsRequest extends \Google\Protobuf\Internal\
     }
 
     /**
-     * <pre>
      * Optional. If present, then retrieve the next batch of results from the
      * preceding call to this method.  `pageToken` must be the value of
      * `nextPageToken` from the previous response.  The values of other method
      * parameters should be identical to those in the previous call.
-     * </pre>
      *
-     * <code>string page_token = 2;</code>
+     * Generated from protobuf field <code>string page_token = 2;</code>
      * @param string $var
      */
     public function setPageToken($var)

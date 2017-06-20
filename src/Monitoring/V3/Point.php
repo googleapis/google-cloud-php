@@ -9,16 +9,13 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * A single data point in a time series.
- * </pre>
  *
  * Protobuf type <code>Google\Monitoring\V3\Point</code>
  */
 class Point extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The time interval to which the data point applies.  For GAUGE metrics, only
      * the end time of the interval is used.  For DELTA metrics, the start and end
      * time should specify a non-zero interval, with subsequent points specifying
@@ -27,17 +24,14 @@ class Point extends \Google\Protobuf\Internal\Message
      * points specifying the same start time and increasing end times, until an
      * event resets the cumulative value to zero and sets a new start time for the
      * following points.
-     * </pre>
      *
-     * <code>.google.monitoring.v3.TimeInterval interval = 1;</code>
+     * Generated from protobuf field <code>.google.monitoring.v3.TimeInterval interval = 1;</code>
      */
     private $interval = null;
     /**
-     * <pre>
      * The value of the data point.
-     * </pre>
      *
-     * <code>.google.monitoring.v3.TypedValue value = 2;</code>
+     * Generated from protobuf field <code>.google.monitoring.v3.TypedValue value = 2;</code>
      */
     private $value = null;
 
@@ -47,7 +41,6 @@ class Point extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The time interval to which the data point applies.  For GAUGE metrics, only
      * the end time of the interval is used.  For DELTA metrics, the start and end
      * time should specify a non-zero interval, with subsequent points specifying
@@ -56,9 +49,8 @@ class Point extends \Google\Protobuf\Internal\Message
      * points specifying the same start time and increasing end times, until an
      * event resets the cumulative value to zero and sets a new start time for the
      * following points.
-     * </pre>
      *
-     * <code>.google.monitoring.v3.TimeInterval interval = 1;</code>
+     * Generated from protobuf field <code>.google.monitoring.v3.TimeInterval interval = 1;</code>
      * @return \Google\Cloud\Monitoring\V3\TimeInterval
      */
     public function getInterval()
@@ -67,7 +59,6 @@ class Point extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The time interval to which the data point applies.  For GAUGE metrics, only
      * the end time of the interval is used.  For DELTA metrics, the start and end
      * time should specify a non-zero interval, with subsequent points specifying
@@ -76,9 +67,8 @@ class Point extends \Google\Protobuf\Internal\Message
      * points specifying the same start time and increasing end times, until an
      * event resets the cumulative value to zero and sets a new start time for the
      * following points.
-     * </pre>
      *
-     * <code>.google.monitoring.v3.TimeInterval interval = 1;</code>
+     * Generated from protobuf field <code>.google.monitoring.v3.TimeInterval interval = 1;</code>
      * @param \Google\Cloud\Monitoring\V3\TimeInterval $var
      */
     public function setInterval(&$var)
@@ -90,11 +80,9 @@ class Point extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The value of the data point.
-     * </pre>
      *
-     * <code>.google.monitoring.v3.TypedValue value = 2;</code>
+     * Generated from protobuf field <code>.google.monitoring.v3.TypedValue value = 2;</code>
      * @return \Google\Cloud\Monitoring\V3\TypedValue
      */
     public function getValue()
@@ -103,11 +91,9 @@ class Point extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The value of the data point.
-     * </pre>
      *
-     * <code>.google.monitoring.v3.TypedValue value = 2;</code>
+     * Generated from protobuf field <code>.google.monitoring.v3.TypedValue value = 2;</code>
      * @param \Google\Cloud\Monitoring\V3\TypedValue $var
      */
     public function setValue(&$var)

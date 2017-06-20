@@ -9,39 +9,31 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Label location.
- * </pre>
  *
  * Protobuf type <code>Google\Cloud\Videointelligence\V1beta1\LabelLocation</code>
  */
 class LabelLocation extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * Video segment. Set to [-1, -1] for video-level labels.
      * Set to [timestamp, timestamp] for frame-level labels.
      * Otherwise, corresponds to one of `AnnotateSpec.segments`
      * (if specified) or to shot boundaries (if requested).
-     * </pre>
      *
-     * <code>.google.cloud.videointelligence.v1beta1.VideoSegment segment = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.videointelligence.v1beta1.VideoSegment segment = 1;</code>
      */
     private $segment = null;
     /**
-     * <pre>
      * Confidence that the label is accurate. Range: [0, 1].
-     * </pre>
      *
-     * <code>float confidence = 2;</code>
+     * Generated from protobuf field <code>float confidence = 2;</code>
      */
     private $confidence = 0.0;
     /**
-     * <pre>
      * Label level.
-     * </pre>
      *
-     * <code>.google.cloud.videointelligence.v1beta1.LabelLevel level = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.videointelligence.v1beta1.LabelLevel level = 3;</code>
      */
     private $level = 0;
 
@@ -51,14 +43,12 @@ class LabelLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Video segment. Set to [-1, -1] for video-level labels.
      * Set to [timestamp, timestamp] for frame-level labels.
      * Otherwise, corresponds to one of `AnnotateSpec.segments`
      * (if specified) or to shot boundaries (if requested).
-     * </pre>
      *
-     * <code>.google.cloud.videointelligence.v1beta1.VideoSegment segment = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.videointelligence.v1beta1.VideoSegment segment = 1;</code>
      * @return \Google\Cloud\VideoIntelligence\V1beta1\VideoSegment
      */
     public function getSegment()
@@ -67,14 +57,12 @@ class LabelLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Video segment. Set to [-1, -1] for video-level labels.
      * Set to [timestamp, timestamp] for frame-level labels.
      * Otherwise, corresponds to one of `AnnotateSpec.segments`
      * (if specified) or to shot boundaries (if requested).
-     * </pre>
      *
-     * <code>.google.cloud.videointelligence.v1beta1.VideoSegment segment = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.videointelligence.v1beta1.VideoSegment segment = 1;</code>
      * @param \Google\Cloud\VideoIntelligence\V1beta1\VideoSegment $var
      */
     public function setSegment(&$var)
@@ -86,11 +74,9 @@ class LabelLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Confidence that the label is accurate. Range: [0, 1].
-     * </pre>
      *
-     * <code>float confidence = 2;</code>
+     * Generated from protobuf field <code>float confidence = 2;</code>
      * @return float
      */
     public function getConfidence()
@@ -99,11 +85,9 @@ class LabelLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Confidence that the label is accurate. Range: [0, 1].
-     * </pre>
      *
-     * <code>float confidence = 2;</code>
+     * Generated from protobuf field <code>float confidence = 2;</code>
      * @param float $var
      */
     public function setConfidence($var)
@@ -115,11 +99,9 @@ class LabelLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Label level.
-     * </pre>
      *
-     * <code>.google.cloud.videointelligence.v1beta1.LabelLevel level = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.videointelligence.v1beta1.LabelLevel level = 3;</code>
      * @return int
      */
     public function getLevel()
@@ -128,11 +110,9 @@ class LabelLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Label level.
-     * </pre>
      *
-     * <code>.google.cloud.videointelligence.v1beta1.LabelLevel level = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.videointelligence.v1beta1.LabelLevel level = 3;</code>
      * @param int $var
      */
     public function setLevel($var)

@@ -9,22 +9,18 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Video annotation response. Included in the `response`
  * field of the `Operation` returned by the `GetOperation`
  * call of the `google::longrunning::Operations` service.
- * </pre>
  *
  * Protobuf type <code>Google\Cloud\Videointelligence\V1beta1\AnnotateVideoResponse</code>
  */
 class AnnotateVideoResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * Annotation results for all videos specified in `AnnotateVideoRequest`.
-     * </pre>
      *
-     * <code>repeated .google.cloud.videointelligence.v1beta1.VideoAnnotationResults annotation_results = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1beta1.VideoAnnotationResults annotation_results = 1;</code>
      */
     private $annotation_results;
 
@@ -34,11 +30,9 @@ class AnnotateVideoResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Annotation results for all videos specified in `AnnotateVideoRequest`.
-     * </pre>
      *
-     * <code>repeated .google.cloud.videointelligence.v1beta1.VideoAnnotationResults annotation_results = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1beta1.VideoAnnotationResults annotation_results = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getAnnotationResults()
@@ -47,11 +41,9 @@ class AnnotateVideoResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Annotation results for all videos specified in `AnnotateVideoRequest`.
-     * </pre>
      *
-     * <code>repeated .google.cloud.videointelligence.v1beta1.VideoAnnotationResults annotation_results = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1beta1.VideoAnnotationResults annotation_results = 1;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setAnnotationResults(&$var)

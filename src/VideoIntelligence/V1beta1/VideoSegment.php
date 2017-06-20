@@ -9,28 +9,22 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Video segment.
- * </pre>
  *
  * Protobuf type <code>Google\Cloud\Videointelligence\V1beta1\VideoSegment</code>
  */
 class VideoSegment extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * Start offset in microseconds (inclusive). Unset means 0.
-     * </pre>
      *
-     * <code>int64 start_time_offset = 1;</code>
+     * Generated from protobuf field <code>int64 start_time_offset = 1;</code>
      */
     private $start_time_offset = 0;
     /**
-     * <pre>
      * End offset in microseconds (inclusive). Unset means 0.
-     * </pre>
      *
-     * <code>int64 end_time_offset = 2;</code>
+     * Generated from protobuf field <code>int64 end_time_offset = 2;</code>
      */
     private $end_time_offset = 0;
 
@@ -40,11 +34,9 @@ class VideoSegment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Start offset in microseconds (inclusive). Unset means 0.
-     * </pre>
      *
-     * <code>int64 start_time_offset = 1;</code>
+     * Generated from protobuf field <code>int64 start_time_offset = 1;</code>
      * @return int|string
      */
     public function getStartTimeOffset()
@@ -53,11 +45,9 @@ class VideoSegment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Start offset in microseconds (inclusive). Unset means 0.
-     * </pre>
      *
-     * <code>int64 start_time_offset = 1;</code>
+     * Generated from protobuf field <code>int64 start_time_offset = 1;</code>
      * @param int|string $var
      */
     public function setStartTimeOffset($var)
@@ -69,11 +59,9 @@ class VideoSegment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * End offset in microseconds (inclusive). Unset means 0.
-     * </pre>
      *
-     * <code>int64 end_time_offset = 2;</code>
+     * Generated from protobuf field <code>int64 end_time_offset = 2;</code>
      * @return int|string
      */
     public function getEndTimeOffset()
@@ -82,11 +70,9 @@ class VideoSegment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * End offset in microseconds (inclusive). Unset means 0.
-     * </pre>
      *
-     * <code>int64 end_time_offset = 2;</code>
+     * Generated from protobuf field <code>int64 end_time_offset = 2;</code>
      * @param int|string $var
      */
     public function setEndTimeOffset($var)

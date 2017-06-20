@@ -9,21 +9,17 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Request for the DeleteSubscription method.
- * </pre>
  *
  * Protobuf type <code>Google\Pubsub\V1\DeleteSubscriptionRequest</code>
  */
 class DeleteSubscriptionRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The subscription to delete.
      * Format is `projects/{project}/subscriptions/{sub}`.
-     * </pre>
      *
-     * <code>string subscription = 1;</code>
+     * Generated from protobuf field <code>string subscription = 1;</code>
      */
     private $subscription = '';
 
@@ -33,12 +29,10 @@ class DeleteSubscriptionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The subscription to delete.
      * Format is `projects/{project}/subscriptions/{sub}`.
-     * </pre>
      *
-     * <code>string subscription = 1;</code>
+     * Generated from protobuf field <code>string subscription = 1;</code>
      * @return string
      */
     public function getSubscription()
@@ -47,12 +41,10 @@ class DeleteSubscriptionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The subscription to delete.
      * Format is `projects/{project}/subscriptions/{sub}`.
-     * </pre>
      *
-     * <code>string subscription = 1;</code>
+     * Generated from protobuf field <code>string subscription = 1;</code>
      * @param string $var
      */
     public function setSubscription($var)

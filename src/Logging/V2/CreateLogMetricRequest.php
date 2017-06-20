@@ -9,31 +9,25 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * The parameters to CreateLogMetric.
- * </pre>
  *
  * Protobuf type <code>Google\Logging\V2\CreateLogMetricRequest</code>
  */
 class CreateLogMetricRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The resource name of the project in which to create the metric:
      *     "projects/[PROJECT_ID]"
      * The new metric must be provided in the request.
-     * </pre>
      *
-     * <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1;</code>
      */
     private $parent = '';
     /**
-     * <pre>
      * The new logs-based metric, which must not have an identifier that
      * already exists.
-     * </pre>
      *
-     * <code>.google.logging.v2.LogMetric metric = 2;</code>
+     * Generated from protobuf field <code>.google.logging.v2.LogMetric metric = 2;</code>
      */
     private $metric = null;
 
@@ -43,13 +37,11 @@ class CreateLogMetricRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The resource name of the project in which to create the metric:
      *     "projects/[PROJECT_ID]"
      * The new metric must be provided in the request.
-     * </pre>
      *
-     * <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1;</code>
      * @return string
      */
     public function getParent()
@@ -58,13 +50,11 @@ class CreateLogMetricRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The resource name of the project in which to create the metric:
      *     "projects/[PROJECT_ID]"
      * The new metric must be provided in the request.
-     * </pre>
      *
-     * <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1;</code>
      * @param string $var
      */
     public function setParent($var)
@@ -76,12 +66,10 @@ class CreateLogMetricRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The new logs-based metric, which must not have an identifier that
      * already exists.
-     * </pre>
      *
-     * <code>.google.logging.v2.LogMetric metric = 2;</code>
+     * Generated from protobuf field <code>.google.logging.v2.LogMetric metric = 2;</code>
      * @return \Google\Cloud\Logging\V2\LogMetric
      */
     public function getMetric()
@@ -90,12 +78,10 @@ class CreateLogMetricRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The new logs-based metric, which must not have an identifier that
      * already exists.
-     * </pre>
      *
-     * <code>.google.logging.v2.LogMetric metric = 2;</code>
+     * Generated from protobuf field <code>.google.logging.v2.LogMetric metric = 2;</code>
      * @param \Google\Cloud\Logging\V2\LogMetric $var
      */
     public function setMetric(&$var)

@@ -9,38 +9,30 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * The `CreateGroup` request.
- * </pre>
  *
  * Protobuf type <code>Google\Monitoring\V3\CreateGroupRequest</code>
  */
 class CreateGroupRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The project in which to create the group. The format is
      * `"projects/{project_id_or_number}"`.
-     * </pre>
      *
-     * <code>string name = 4;</code>
+     * Generated from protobuf field <code>string name = 4;</code>
      */
     private $name = '';
     /**
-     * <pre>
      * A group definition. It is an error to define the `name` field because
      * the system assigns the name.
-     * </pre>
      *
-     * <code>.google.monitoring.v3.Group group = 2;</code>
+     * Generated from protobuf field <code>.google.monitoring.v3.Group group = 2;</code>
      */
     private $group = null;
     /**
-     * <pre>
      * If true, validate this request but do not create the group.
-     * </pre>
      *
-     * <code>bool validate_only = 3;</code>
+     * Generated from protobuf field <code>bool validate_only = 3;</code>
      */
     private $validate_only = false;
 
@@ -50,12 +42,10 @@ class CreateGroupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The project in which to create the group. The format is
      * `"projects/{project_id_or_number}"`.
-     * </pre>
      *
-     * <code>string name = 4;</code>
+     * Generated from protobuf field <code>string name = 4;</code>
      * @return string
      */
     public function getName()
@@ -64,12 +54,10 @@ class CreateGroupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The project in which to create the group. The format is
      * `"projects/{project_id_or_number}"`.
-     * </pre>
      *
-     * <code>string name = 4;</code>
+     * Generated from protobuf field <code>string name = 4;</code>
      * @param string $var
      */
     public function setName($var)
@@ -81,12 +69,10 @@ class CreateGroupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * A group definition. It is an error to define the `name` field because
      * the system assigns the name.
-     * </pre>
      *
-     * <code>.google.monitoring.v3.Group group = 2;</code>
+     * Generated from protobuf field <code>.google.monitoring.v3.Group group = 2;</code>
      * @return \Google\Cloud\Monitoring\V3\Group
      */
     public function getGroup()
@@ -95,12 +81,10 @@ class CreateGroupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * A group definition. It is an error to define the `name` field because
      * the system assigns the name.
-     * </pre>
      *
-     * <code>.google.monitoring.v3.Group group = 2;</code>
+     * Generated from protobuf field <code>.google.monitoring.v3.Group group = 2;</code>
      * @param \Google\Cloud\Monitoring\V3\Group $var
      */
     public function setGroup(&$var)
@@ -112,11 +96,9 @@ class CreateGroupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If true, validate this request but do not create the group.
-     * </pre>
      *
-     * <code>bool validate_only = 3;</code>
+     * Generated from protobuf field <code>bool validate_only = 3;</code>
      * @return bool
      */
     public function getValidateOnly()
@@ -125,11 +107,9 @@ class CreateGroupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If true, validate this request but do not create the group.
-     * </pre>
      *
-     * <code>bool validate_only = 3;</code>
+     * Generated from protobuf field <code>bool validate_only = 3;</code>
      * @param bool $var
      */
     public function setValidateOnly($var)

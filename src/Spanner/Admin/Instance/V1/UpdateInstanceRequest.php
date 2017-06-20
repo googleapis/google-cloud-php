@@ -9,32 +9,26 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * The request for [UpdateInstance][google.spanner.admin.instance.v1.InstanceAdmin.UpdateInstance].
- * </pre>
  *
  * Protobuf type <code>Google\Spanner\Admin\Instance\V1\UpdateInstanceRequest</code>
  */
 class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * Required. The instance to update, which must always include the instance
      * name.  Otherwise, only fields mentioned in [][google.spanner.admin.instance.v1.UpdateInstanceRequest.field_mask] need be included.
-     * </pre>
      *
-     * <code>.google.spanner.admin.instance.v1.Instance instance = 1;</code>
+     * Generated from protobuf field <code>.google.spanner.admin.instance.v1.Instance instance = 1;</code>
      */
     private $instance = null;
     /**
-     * <pre>
      * Required. A mask specifying which fields in [][google.spanner.admin.instance.v1.UpdateInstanceRequest.instance] should be updated.
      * The field mask must always be specified; this prevents any future fields in
      * [][google.spanner.admin.instance.v1.Instance] from being erased accidentally by clients that do not know
      * about them.
-     * </pre>
      *
-     * <code>.google.protobuf.FieldMask field_mask = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 2;</code>
      */
     private $field_mask = null;
 
@@ -44,12 +38,10 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. The instance to update, which must always include the instance
      * name.  Otherwise, only fields mentioned in [][google.spanner.admin.instance.v1.UpdateInstanceRequest.field_mask] need be included.
-     * </pre>
      *
-     * <code>.google.spanner.admin.instance.v1.Instance instance = 1;</code>
+     * Generated from protobuf field <code>.google.spanner.admin.instance.v1.Instance instance = 1;</code>
      * @return \Google\Cloud\Spanner\Admin\Instance\V1\Instance
      */
     public function getInstance()
@@ -58,12 +50,10 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. The instance to update, which must always include the instance
      * name.  Otherwise, only fields mentioned in [][google.spanner.admin.instance.v1.UpdateInstanceRequest.field_mask] need be included.
-     * </pre>
      *
-     * <code>.google.spanner.admin.instance.v1.Instance instance = 1;</code>
+     * Generated from protobuf field <code>.google.spanner.admin.instance.v1.Instance instance = 1;</code>
      * @param \Google\Cloud\Spanner\Admin\Instance\V1\Instance $var
      */
     public function setInstance(&$var)
@@ -75,14 +65,12 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. A mask specifying which fields in [][google.spanner.admin.instance.v1.UpdateInstanceRequest.instance] should be updated.
      * The field mask must always be specified; this prevents any future fields in
      * [][google.spanner.admin.instance.v1.Instance] from being erased accidentally by clients that do not know
      * about them.
-     * </pre>
      *
-     * <code>.google.protobuf.FieldMask field_mask = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 2;</code>
      * @return \Google\Protobuf\FieldMask
      */
     public function getFieldMask()
@@ -91,14 +79,12 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. A mask specifying which fields in [][google.spanner.admin.instance.v1.UpdateInstanceRequest.instance] should be updated.
      * The field mask must always be specified; this prevents any future fields in
      * [][google.spanner.admin.instance.v1.Instance] from being erased accidentally by clients that do not know
      * about them.
-     * </pre>
      *
-     * <code>.google.protobuf.FieldMask field_mask = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 2;</code>
      * @param \Google\Protobuf\FieldMask $var
      */
     public function setFieldMask(&$var)

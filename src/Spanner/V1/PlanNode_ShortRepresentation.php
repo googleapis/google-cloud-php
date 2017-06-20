@@ -9,33 +9,27 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Condensed representation of a node and its subtree. Only present for
  * `SCALAR` [PlanNode(s)][google.spanner.v1.PlanNode].
- * </pre>
  *
  * Protobuf type <code>Google\Spanner\V1\PlanNode\ShortRepresentation</code>
  */
 class PlanNode_ShortRepresentation extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * A string representation of the expression subtree rooted at this node.
-     * </pre>
      *
-     * <code>string description = 1;</code>
+     * Generated from protobuf field <code>string description = 1;</code>
      */
     private $description = '';
     /**
-     * <pre>
      * A mapping of (subquery variable name) -> (subquery node id) for cases
      * where the `description` string of this node references a `SCALAR`
      * subquery contained in the expression subtree rooted at this node. The
      * referenced `SCALAR` subquery may not necessarily be a direct child of
      * this node.
-     * </pre>
      *
-     * <code>map<string, int32> subqueries = 2;</code>
+     * Generated from protobuf field <code>map<string, int32> subqueries = 2;</code>
      */
     private $subqueries;
 
@@ -45,11 +39,9 @@ class PlanNode_ShortRepresentation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * A string representation of the expression subtree rooted at this node.
-     * </pre>
      *
-     * <code>string description = 1;</code>
+     * Generated from protobuf field <code>string description = 1;</code>
      * @return string
      */
     public function getDescription()
@@ -58,11 +50,9 @@ class PlanNode_ShortRepresentation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * A string representation of the expression subtree rooted at this node.
-     * </pre>
      *
-     * <code>string description = 1;</code>
+     * Generated from protobuf field <code>string description = 1;</code>
      * @param string $var
      */
     public function setDescription($var)
@@ -74,15 +64,13 @@ class PlanNode_ShortRepresentation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * A mapping of (subquery variable name) -> (subquery node id) for cases
      * where the `description` string of this node references a `SCALAR`
      * subquery contained in the expression subtree rooted at this node. The
      * referenced `SCALAR` subquery may not necessarily be a direct child of
      * this node.
-     * </pre>
      *
-     * <code>map<string, int32> subqueries = 2;</code>
+     * Generated from protobuf field <code>map<string, int32> subqueries = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getSubqueries()
@@ -91,15 +79,13 @@ class PlanNode_ShortRepresentation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * A mapping of (subquery variable name) -> (subquery node id) for cases
      * where the `description` string of this node references a `SCALAR`
      * subquery contained in the expression subtree rooted at this node. The
      * referenced `SCALAR` subquery may not necessarily be a direct child of
      * this node.
-     * </pre>
      *
-     * <code>map<string, int32> subqueries = 2;</code>
+     * Generated from protobuf field <code>map<string, int32> subqueries = 2;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setSubqueries(&$var)

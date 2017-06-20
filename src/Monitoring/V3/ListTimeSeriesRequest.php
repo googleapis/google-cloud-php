@@ -9,93 +9,75 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * The `ListTimeSeries` request.
- * </pre>
  *
  * Protobuf type <code>Google\Monitoring\V3\ListTimeSeriesRequest</code>
  */
 class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The project on which to execute the request. The format is
      * "projects/{project_id_or_number}".
-     * </pre>
      *
-     * <code>string name = 10;</code>
+     * Generated from protobuf field <code>string name = 10;</code>
      */
     private $name = '';
     /**
-     * <pre>
      * A [monitoring filter](/monitoring/api/v3/filters) that specifies which time
      * series should be returned.  The filter must specify a single metric type,
      * and can additionally specify metric labels and other information. For
      * example:
      *     metric.type = "compute.googleapis.com/instance/cpu/usage_time" AND
      *         metric.label.instance_name = "my-instance-name"
-     * </pre>
      *
-     * <code>string filter = 2;</code>
+     * Generated from protobuf field <code>string filter = 2;</code>
      */
     private $filter = '';
     /**
-     * <pre>
      * The time interval for which results should be returned. Only time series
      * that contain data points in the specified interval are included
      * in the response.
-     * </pre>
      *
-     * <code>.google.monitoring.v3.TimeInterval interval = 4;</code>
+     * Generated from protobuf field <code>.google.monitoring.v3.TimeInterval interval = 4;</code>
      */
     private $interval = null;
     /**
-     * <pre>
      * By default, the raw time series data is returned.
      * Use this field to combine multiple time series for different
      * views of the data.
-     * </pre>
      *
-     * <code>.google.monitoring.v3.Aggregation aggregation = 5;</code>
+     * Generated from protobuf field <code>.google.monitoring.v3.Aggregation aggregation = 5;</code>
      */
     private $aggregation = null;
     /**
-     * <pre>
      * Specifies the order in which the points of the time series should
      * be returned.  By default, results are not ordered.  Currently,
      * this field must be left blank.
-     * </pre>
      *
-     * <code>string order_by = 6;</code>
+     * Generated from protobuf field <code>string order_by = 6;</code>
      */
     private $order_by = '';
     /**
-     * <pre>
      * Specifies which information is returned about the time series.
-     * </pre>
      *
-     * <code>.google.monitoring.v3.ListTimeSeriesRequest.TimeSeriesView view = 7;</code>
+     * Generated from protobuf field <code>.google.monitoring.v3.ListTimeSeriesRequest.TimeSeriesView view = 7;</code>
      */
     private $view = 0;
     /**
-     * <pre>
      * A positive number that is the maximum number of results to return.
      * When `view` field sets to `FULL`, it limits the number of `Points` server
      * will return; if `view` field is `HEADERS`, it limits the number of
      * `TimeSeries` server will return.
-     * </pre>
      *
-     * <code>int32 page_size = 8;</code>
+     * Generated from protobuf field <code>int32 page_size = 8;</code>
      */
     private $page_size = 0;
     /**
-     * <pre>
      * If this field is not empty then it must contain the `nextPageToken` value
      * returned by a previous call to this method.  Using this field causes the
      * method to return additional results from the previous method call.
-     * </pre>
      *
-     * <code>string page_token = 9;</code>
+     * Generated from protobuf field <code>string page_token = 9;</code>
      */
     private $page_token = '';
 
@@ -105,12 +87,10 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The project on which to execute the request. The format is
      * "projects/{project_id_or_number}".
-     * </pre>
      *
-     * <code>string name = 10;</code>
+     * Generated from protobuf field <code>string name = 10;</code>
      * @return string
      */
     public function getName()
@@ -119,12 +99,10 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The project on which to execute the request. The format is
      * "projects/{project_id_or_number}".
-     * </pre>
      *
-     * <code>string name = 10;</code>
+     * Generated from protobuf field <code>string name = 10;</code>
      * @param string $var
      */
     public function setName($var)
@@ -136,16 +114,14 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * A [monitoring filter](/monitoring/api/v3/filters) that specifies which time
      * series should be returned.  The filter must specify a single metric type,
      * and can additionally specify metric labels and other information. For
      * example:
      *     metric.type = "compute.googleapis.com/instance/cpu/usage_time" AND
      *         metric.label.instance_name = "my-instance-name"
-     * </pre>
      *
-     * <code>string filter = 2;</code>
+     * Generated from protobuf field <code>string filter = 2;</code>
      * @return string
      */
     public function getFilter()
@@ -154,16 +130,14 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * A [monitoring filter](/monitoring/api/v3/filters) that specifies which time
      * series should be returned.  The filter must specify a single metric type,
      * and can additionally specify metric labels and other information. For
      * example:
      *     metric.type = "compute.googleapis.com/instance/cpu/usage_time" AND
      *         metric.label.instance_name = "my-instance-name"
-     * </pre>
      *
-     * <code>string filter = 2;</code>
+     * Generated from protobuf field <code>string filter = 2;</code>
      * @param string $var
      */
     public function setFilter($var)
@@ -175,13 +149,11 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The time interval for which results should be returned. Only time series
      * that contain data points in the specified interval are included
      * in the response.
-     * </pre>
      *
-     * <code>.google.monitoring.v3.TimeInterval interval = 4;</code>
+     * Generated from protobuf field <code>.google.monitoring.v3.TimeInterval interval = 4;</code>
      * @return \Google\Cloud\Monitoring\V3\TimeInterval
      */
     public function getInterval()
@@ -190,13 +162,11 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The time interval for which results should be returned. Only time series
      * that contain data points in the specified interval are included
      * in the response.
-     * </pre>
      *
-     * <code>.google.monitoring.v3.TimeInterval interval = 4;</code>
+     * Generated from protobuf field <code>.google.monitoring.v3.TimeInterval interval = 4;</code>
      * @param \Google\Cloud\Monitoring\V3\TimeInterval $var
      */
     public function setInterval(&$var)
@@ -208,13 +178,11 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * By default, the raw time series data is returned.
      * Use this field to combine multiple time series for different
      * views of the data.
-     * </pre>
      *
-     * <code>.google.monitoring.v3.Aggregation aggregation = 5;</code>
+     * Generated from protobuf field <code>.google.monitoring.v3.Aggregation aggregation = 5;</code>
      * @return \Google\Cloud\Monitoring\V3\Aggregation
      */
     public function getAggregation()
@@ -223,13 +191,11 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * By default, the raw time series data is returned.
      * Use this field to combine multiple time series for different
      * views of the data.
-     * </pre>
      *
-     * <code>.google.monitoring.v3.Aggregation aggregation = 5;</code>
+     * Generated from protobuf field <code>.google.monitoring.v3.Aggregation aggregation = 5;</code>
      * @param \Google\Cloud\Monitoring\V3\Aggregation $var
      */
     public function setAggregation(&$var)
@@ -241,13 +207,11 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Specifies the order in which the points of the time series should
      * be returned.  By default, results are not ordered.  Currently,
      * this field must be left blank.
-     * </pre>
      *
-     * <code>string order_by = 6;</code>
+     * Generated from protobuf field <code>string order_by = 6;</code>
      * @return string
      */
     public function getOrderBy()
@@ -256,13 +220,11 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Specifies the order in which the points of the time series should
      * be returned.  By default, results are not ordered.  Currently,
      * this field must be left blank.
-     * </pre>
      *
-     * <code>string order_by = 6;</code>
+     * Generated from protobuf field <code>string order_by = 6;</code>
      * @param string $var
      */
     public function setOrderBy($var)
@@ -274,11 +236,9 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Specifies which information is returned about the time series.
-     * </pre>
      *
-     * <code>.google.monitoring.v3.ListTimeSeriesRequest.TimeSeriesView view = 7;</code>
+     * Generated from protobuf field <code>.google.monitoring.v3.ListTimeSeriesRequest.TimeSeriesView view = 7;</code>
      * @return int
      */
     public function getView()
@@ -287,11 +247,9 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Specifies which information is returned about the time series.
-     * </pre>
      *
-     * <code>.google.monitoring.v3.ListTimeSeriesRequest.TimeSeriesView view = 7;</code>
+     * Generated from protobuf field <code>.google.monitoring.v3.ListTimeSeriesRequest.TimeSeriesView view = 7;</code>
      * @param int $var
      */
     public function setView($var)
@@ -303,14 +261,12 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * A positive number that is the maximum number of results to return.
      * When `view` field sets to `FULL`, it limits the number of `Points` server
      * will return; if `view` field is `HEADERS`, it limits the number of
      * `TimeSeries` server will return.
-     * </pre>
      *
-     * <code>int32 page_size = 8;</code>
+     * Generated from protobuf field <code>int32 page_size = 8;</code>
      * @return int
      */
     public function getPageSize()
@@ -319,14 +275,12 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * A positive number that is the maximum number of results to return.
      * When `view` field sets to `FULL`, it limits the number of `Points` server
      * will return; if `view` field is `HEADERS`, it limits the number of
      * `TimeSeries` server will return.
-     * </pre>
      *
-     * <code>int32 page_size = 8;</code>
+     * Generated from protobuf field <code>int32 page_size = 8;</code>
      * @param int $var
      */
     public function setPageSize($var)
@@ -338,13 +292,11 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If this field is not empty then it must contain the `nextPageToken` value
      * returned by a previous call to this method.  Using this field causes the
      * method to return additional results from the previous method call.
-     * </pre>
      *
-     * <code>string page_token = 9;</code>
+     * Generated from protobuf field <code>string page_token = 9;</code>
      * @return string
      */
     public function getPageToken()
@@ -353,13 +305,11 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If this field is not empty then it must contain the `nextPageToken` value
      * returned by a previous call to this method.  Using this field causes the
      * method to return additional results from the previous method call.
-     * </pre>
      *
-     * <code>string page_token = 9;</code>
+     * Generated from protobuf field <code>string page_token = 9;</code>
      * @param string $var
      */
     public function setPageToken($var)

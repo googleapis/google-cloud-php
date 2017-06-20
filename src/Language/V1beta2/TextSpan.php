@@ -9,29 +9,23 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Represents an output piece of text.
- * </pre>
  *
  * Protobuf type <code>Google\Cloud\Language\V1beta2\TextSpan</code>
  */
 class TextSpan extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The content of the output text.
-     * </pre>
      *
-     * <code>string content = 1;</code>
+     * Generated from protobuf field <code>string content = 1;</code>
      */
     private $content = '';
     /**
-     * <pre>
      * The API calculates the beginning offset of the content in the original
      * document according to the [EncodingType][google.cloud.language.v1beta2.EncodingType] specified in the API request.
-     * </pre>
      *
-     * <code>int32 begin_offset = 2;</code>
+     * Generated from protobuf field <code>int32 begin_offset = 2;</code>
      */
     private $begin_offset = 0;
 
@@ -41,11 +35,9 @@ class TextSpan extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The content of the output text.
-     * </pre>
      *
-     * <code>string content = 1;</code>
+     * Generated from protobuf field <code>string content = 1;</code>
      * @return string
      */
     public function getContent()
@@ -54,11 +46,9 @@ class TextSpan extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The content of the output text.
-     * </pre>
      *
-     * <code>string content = 1;</code>
+     * Generated from protobuf field <code>string content = 1;</code>
      * @param string $var
      */
     public function setContent($var)
@@ -70,12 +60,10 @@ class TextSpan extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The API calculates the beginning offset of the content in the original
      * document according to the [EncodingType][google.cloud.language.v1beta2.EncodingType] specified in the API request.
-     * </pre>
      *
-     * <code>int32 begin_offset = 2;</code>
+     * Generated from protobuf field <code>int32 begin_offset = 2;</code>
      * @return int
      */
     public function getBeginOffset()
@@ -84,12 +72,10 @@ class TextSpan extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The API calculates the beginning offset of the content in the original
      * document according to the [EncodingType][google.cloud.language.v1beta2.EncodingType] specified in the API request.
-     * </pre>
      *
-     * <code>int32 begin_offset = 2;</code>
+     * Generated from protobuf field <code>int32 begin_offset = 2;</code>
      * @param int $var
      */
     public function setBeginOffset($var)

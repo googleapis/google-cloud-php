@@ -9,25 +9,21 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * The only message returned to the client by the `LongRunningRecognize` method.
  * It contains the result as zero or more sequential `SpeechRecognitionResult`
  * messages. It is included in the `result.response` field of the `Operation`
  * returned by the `GetOperation` call of the `google::longrunning::Operations`
  * service.
- * </pre>
  *
  * Protobuf type <code>Google\Cloud\Speech\V1\LongRunningRecognizeResponse</code>
  */
 class LongRunningRecognizeResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * *Output-only* Sequential list of transcription results corresponding to
      * sequential portions of audio.
-     * </pre>
      *
-     * <code>repeated .google.cloud.speech.v1.SpeechRecognitionResult results = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.speech.v1.SpeechRecognitionResult results = 2;</code>
      */
     private $results;
 
@@ -37,12 +33,10 @@ class LongRunningRecognizeResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * *Output-only* Sequential list of transcription results corresponding to
      * sequential portions of audio.
-     * </pre>
      *
-     * <code>repeated .google.cloud.speech.v1.SpeechRecognitionResult results = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.speech.v1.SpeechRecognitionResult results = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getResults()
@@ -51,12 +45,10 @@ class LongRunningRecognizeResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * *Output-only* Sequential list of transcription results corresponding to
      * sequential portions of audio.
-     * </pre>
      *
-     * <code>repeated .google.cloud.speech.v1.SpeechRecognitionResult results = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.speech.v1.SpeechRecognitionResult results = 2;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setResults(&$var)

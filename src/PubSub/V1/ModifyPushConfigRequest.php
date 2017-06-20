@@ -9,33 +9,27 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Request for the ModifyPushConfig method.
- * </pre>
  *
  * Protobuf type <code>Google\Pubsub\V1\ModifyPushConfigRequest</code>
  */
 class ModifyPushConfigRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The name of the subscription.
      * Format is `projects/{project}/subscriptions/{sub}`.
-     * </pre>
      *
-     * <code>string subscription = 1;</code>
+     * Generated from protobuf field <code>string subscription = 1;</code>
      */
     private $subscription = '';
     /**
-     * <pre>
      * The push configuration for future deliveries.
      * An empty `pushConfig` indicates that the Pub/Sub system should
      * stop pushing messages from the given subscription and allow
      * messages to be pulled and acknowledged - effectively pausing
      * the subscription if `Pull` is not called.
-     * </pre>
      *
-     * <code>.google.pubsub.v1.PushConfig push_config = 2;</code>
+     * Generated from protobuf field <code>.google.pubsub.v1.PushConfig push_config = 2;</code>
      */
     private $push_config = null;
 
@@ -45,12 +39,10 @@ class ModifyPushConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The name of the subscription.
      * Format is `projects/{project}/subscriptions/{sub}`.
-     * </pre>
      *
-     * <code>string subscription = 1;</code>
+     * Generated from protobuf field <code>string subscription = 1;</code>
      * @return string
      */
     public function getSubscription()
@@ -59,12 +51,10 @@ class ModifyPushConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The name of the subscription.
      * Format is `projects/{project}/subscriptions/{sub}`.
-     * </pre>
      *
-     * <code>string subscription = 1;</code>
+     * Generated from protobuf field <code>string subscription = 1;</code>
      * @param string $var
      */
     public function setSubscription($var)
@@ -76,15 +66,13 @@ class ModifyPushConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The push configuration for future deliveries.
      * An empty `pushConfig` indicates that the Pub/Sub system should
      * stop pushing messages from the given subscription and allow
      * messages to be pulled and acknowledged - effectively pausing
      * the subscription if `Pull` is not called.
-     * </pre>
      *
-     * <code>.google.pubsub.v1.PushConfig push_config = 2;</code>
+     * Generated from protobuf field <code>.google.pubsub.v1.PushConfig push_config = 2;</code>
      * @return \Google\Cloud\PubSub\V1\PushConfig
      */
     public function getPushConfig()
@@ -93,15 +81,13 @@ class ModifyPushConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The push configuration for future deliveries.
      * An empty `pushConfig` indicates that the Pub/Sub system should
      * stop pushing messages from the given subscription and allow
      * messages to be pulled and acknowledged - effectively pausing
      * the subscription if `Pull` is not called.
-     * </pre>
      *
-     * <code>.google.pubsub.v1.PushConfig push_config = 2;</code>
+     * Generated from protobuf field <code>.google.pubsub.v1.PushConfig push_config = 2;</code>
      * @param \Google\Cloud\PubSub\V1\PushConfig $var
      */
     public function setPushConfig(&$var)

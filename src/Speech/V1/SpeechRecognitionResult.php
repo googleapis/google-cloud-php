@@ -9,21 +9,17 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * A speech recognition result corresponding to a portion of the audio.
- * </pre>
  *
  * Protobuf type <code>Google\Cloud\Speech\V1\SpeechRecognitionResult</code>
  */
 class SpeechRecognitionResult extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * *Output-only* May contain one or more recognition hypotheses (up to the
      * maximum specified in `max_alternatives`).
-     * </pre>
      *
-     * <code>repeated .google.cloud.speech.v1.SpeechRecognitionAlternative alternatives = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.speech.v1.SpeechRecognitionAlternative alternatives = 1;</code>
      */
     private $alternatives;
 
@@ -33,12 +29,10 @@ class SpeechRecognitionResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * *Output-only* May contain one or more recognition hypotheses (up to the
      * maximum specified in `max_alternatives`).
-     * </pre>
      *
-     * <code>repeated .google.cloud.speech.v1.SpeechRecognitionAlternative alternatives = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.speech.v1.SpeechRecognitionAlternative alternatives = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getAlternatives()
@@ -47,12 +41,10 @@ class SpeechRecognitionResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * *Output-only* May contain one or more recognition hypotheses (up to the
      * maximum specified in `max_alternatives`).
-     * </pre>
      *
-     * <code>repeated .google.cloud.speech.v1.SpeechRecognitionAlternative alternatives = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.speech.v1.SpeechRecognitionAlternative alternatives = 1;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setAlternatives(&$var)

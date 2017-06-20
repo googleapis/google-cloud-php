@@ -9,21 +9,17 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * The request for [GetInstance][google.spanner.admin.instance.v1.InstanceAdmin.GetInstance].
- * </pre>
  *
  * Protobuf type <code>Google\Spanner\Admin\Instance\V1\GetInstanceRequest</code>
  */
 class GetInstanceRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * Required. The name of the requested instance. Values are of the form
      * `projects/<project>/instances/<instance>`.
-     * </pre>
      *
-     * <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      */
     private $name = '';
 
@@ -33,12 +29,10 @@ class GetInstanceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. The name of the requested instance. Values are of the form
      * `projects/<project>/instances/<instance>`.
-     * </pre>
      *
-     * <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      * @return string
      */
     public function getName()
@@ -47,12 +41,10 @@ class GetInstanceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. The name of the requested instance. Values are of the form
      * `projects/<project>/instances/<instance>`.
-     * </pre>
      *
-     * <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
      */
     public function setName($var)

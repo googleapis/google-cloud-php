@@ -9,106 +9,82 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Response to an image annotation request.
- * </pre>
  *
  * Protobuf type <code>Google\Cloud\Vision\V1\AnnotateImageResponse</code>
  */
 class AnnotateImageResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * If present, face detection has completed successfully.
-     * </pre>
      *
-     * <code>repeated .google.cloud.vision.v1.FaceAnnotation face_annotations = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.FaceAnnotation face_annotations = 1;</code>
      */
     private $face_annotations;
     /**
-     * <pre>
      * If present, landmark detection has completed successfully.
-     * </pre>
      *
-     * <code>repeated .google.cloud.vision.v1.EntityAnnotation landmark_annotations = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.EntityAnnotation landmark_annotations = 2;</code>
      */
     private $landmark_annotations;
     /**
-     * <pre>
      * If present, logo detection has completed successfully.
-     * </pre>
      *
-     * <code>repeated .google.cloud.vision.v1.EntityAnnotation logo_annotations = 3;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.EntityAnnotation logo_annotations = 3;</code>
      */
     private $logo_annotations;
     /**
-     * <pre>
      * If present, label detection has completed successfully.
-     * </pre>
      *
-     * <code>repeated .google.cloud.vision.v1.EntityAnnotation label_annotations = 4;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.EntityAnnotation label_annotations = 4;</code>
      */
     private $label_annotations;
     /**
-     * <pre>
      * If present, text (OCR) detection or document (OCR) text detection has
      * completed successfully.
-     * </pre>
      *
-     * <code>repeated .google.cloud.vision.v1.EntityAnnotation text_annotations = 5;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.EntityAnnotation text_annotations = 5;</code>
      */
     private $text_annotations;
     /**
-     * <pre>
      * If present, text (OCR) detection or document (OCR) text detection has
      * completed successfully.
      * This annotation provides the structural hierarchy for the OCR detected
      * text.
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.TextAnnotation full_text_annotation = 12;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.TextAnnotation full_text_annotation = 12;</code>
      */
     private $full_text_annotation = null;
     /**
-     * <pre>
      * If present, safe-search annotation has completed successfully.
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.SafeSearchAnnotation safe_search_annotation = 6;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.SafeSearchAnnotation safe_search_annotation = 6;</code>
      */
     private $safe_search_annotation = null;
     /**
-     * <pre>
      * If present, image properties were extracted successfully.
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.ImageProperties image_properties_annotation = 8;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.ImageProperties image_properties_annotation = 8;</code>
      */
     private $image_properties_annotation = null;
     /**
-     * <pre>
      * If present, crop hints have completed successfully.
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.CropHintsAnnotation crop_hints_annotation = 11;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.CropHintsAnnotation crop_hints_annotation = 11;</code>
      */
     private $crop_hints_annotation = null;
     /**
-     * <pre>
      * If present, web detection has completed successfully.
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.WebDetection web_detection = 13;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.WebDetection web_detection = 13;</code>
      */
     private $web_detection = null;
     /**
-     * <pre>
      * If set, represents the error message for the operation.
      * Note that filled-in image annotations are guaranteed to be
      * correct, even when `error` is set.
-     * </pre>
      *
-     * <code>.google.rpc.Status error = 9;</code>
+     * Generated from protobuf field <code>.google.rpc.Status error = 9;</code>
      */
     private $error = null;
 
@@ -118,11 +94,9 @@ class AnnotateImageResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If present, face detection has completed successfully.
-     * </pre>
      *
-     * <code>repeated .google.cloud.vision.v1.FaceAnnotation face_annotations = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.FaceAnnotation face_annotations = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getFaceAnnotations()
@@ -131,11 +105,9 @@ class AnnotateImageResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If present, face detection has completed successfully.
-     * </pre>
      *
-     * <code>repeated .google.cloud.vision.v1.FaceAnnotation face_annotations = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.FaceAnnotation face_annotations = 1;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setFaceAnnotations(&$var)
@@ -147,11 +119,9 @@ class AnnotateImageResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If present, landmark detection has completed successfully.
-     * </pre>
      *
-     * <code>repeated .google.cloud.vision.v1.EntityAnnotation landmark_annotations = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.EntityAnnotation landmark_annotations = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getLandmarkAnnotations()
@@ -160,11 +130,9 @@ class AnnotateImageResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If present, landmark detection has completed successfully.
-     * </pre>
      *
-     * <code>repeated .google.cloud.vision.v1.EntityAnnotation landmark_annotations = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.EntityAnnotation landmark_annotations = 2;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setLandmarkAnnotations(&$var)
@@ -176,11 +144,9 @@ class AnnotateImageResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If present, logo detection has completed successfully.
-     * </pre>
      *
-     * <code>repeated .google.cloud.vision.v1.EntityAnnotation logo_annotations = 3;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.EntityAnnotation logo_annotations = 3;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getLogoAnnotations()
@@ -189,11 +155,9 @@ class AnnotateImageResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If present, logo detection has completed successfully.
-     * </pre>
      *
-     * <code>repeated .google.cloud.vision.v1.EntityAnnotation logo_annotations = 3;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.EntityAnnotation logo_annotations = 3;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setLogoAnnotations(&$var)
@@ -205,11 +169,9 @@ class AnnotateImageResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If present, label detection has completed successfully.
-     * </pre>
      *
-     * <code>repeated .google.cloud.vision.v1.EntityAnnotation label_annotations = 4;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.EntityAnnotation label_annotations = 4;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getLabelAnnotations()
@@ -218,11 +180,9 @@ class AnnotateImageResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If present, label detection has completed successfully.
-     * </pre>
      *
-     * <code>repeated .google.cloud.vision.v1.EntityAnnotation label_annotations = 4;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.EntityAnnotation label_annotations = 4;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setLabelAnnotations(&$var)
@@ -234,12 +194,10 @@ class AnnotateImageResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If present, text (OCR) detection or document (OCR) text detection has
      * completed successfully.
-     * </pre>
      *
-     * <code>repeated .google.cloud.vision.v1.EntityAnnotation text_annotations = 5;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.EntityAnnotation text_annotations = 5;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getTextAnnotations()
@@ -248,12 +206,10 @@ class AnnotateImageResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If present, text (OCR) detection or document (OCR) text detection has
      * completed successfully.
-     * </pre>
      *
-     * <code>repeated .google.cloud.vision.v1.EntityAnnotation text_annotations = 5;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.EntityAnnotation text_annotations = 5;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setTextAnnotations(&$var)
@@ -265,14 +221,12 @@ class AnnotateImageResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If present, text (OCR) detection or document (OCR) text detection has
      * completed successfully.
      * This annotation provides the structural hierarchy for the OCR detected
      * text.
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.TextAnnotation full_text_annotation = 12;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.TextAnnotation full_text_annotation = 12;</code>
      * @return \Google\Cloud\Vision\V1\TextAnnotation
      */
     public function getFullTextAnnotation()
@@ -281,14 +235,12 @@ class AnnotateImageResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If present, text (OCR) detection or document (OCR) text detection has
      * completed successfully.
      * This annotation provides the structural hierarchy for the OCR detected
      * text.
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.TextAnnotation full_text_annotation = 12;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.TextAnnotation full_text_annotation = 12;</code>
      * @param \Google\Cloud\Vision\V1\TextAnnotation $var
      */
     public function setFullTextAnnotation(&$var)
@@ -300,11 +252,9 @@ class AnnotateImageResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If present, safe-search annotation has completed successfully.
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.SafeSearchAnnotation safe_search_annotation = 6;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.SafeSearchAnnotation safe_search_annotation = 6;</code>
      * @return \Google\Cloud\Vision\V1\SafeSearchAnnotation
      */
     public function getSafeSearchAnnotation()
@@ -313,11 +263,9 @@ class AnnotateImageResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If present, safe-search annotation has completed successfully.
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.SafeSearchAnnotation safe_search_annotation = 6;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.SafeSearchAnnotation safe_search_annotation = 6;</code>
      * @param \Google\Cloud\Vision\V1\SafeSearchAnnotation $var
      */
     public function setSafeSearchAnnotation(&$var)
@@ -329,11 +277,9 @@ class AnnotateImageResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If present, image properties were extracted successfully.
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.ImageProperties image_properties_annotation = 8;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.ImageProperties image_properties_annotation = 8;</code>
      * @return \Google\Cloud\Vision\V1\ImageProperties
      */
     public function getImagePropertiesAnnotation()
@@ -342,11 +288,9 @@ class AnnotateImageResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If present, image properties were extracted successfully.
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.ImageProperties image_properties_annotation = 8;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.ImageProperties image_properties_annotation = 8;</code>
      * @param \Google\Cloud\Vision\V1\ImageProperties $var
      */
     public function setImagePropertiesAnnotation(&$var)
@@ -358,11 +302,9 @@ class AnnotateImageResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If present, crop hints have completed successfully.
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.CropHintsAnnotation crop_hints_annotation = 11;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.CropHintsAnnotation crop_hints_annotation = 11;</code>
      * @return \Google\Cloud\Vision\V1\CropHintsAnnotation
      */
     public function getCropHintsAnnotation()
@@ -371,11 +313,9 @@ class AnnotateImageResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If present, crop hints have completed successfully.
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.CropHintsAnnotation crop_hints_annotation = 11;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.CropHintsAnnotation crop_hints_annotation = 11;</code>
      * @param \Google\Cloud\Vision\V1\CropHintsAnnotation $var
      */
     public function setCropHintsAnnotation(&$var)
@@ -387,11 +327,9 @@ class AnnotateImageResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If present, web detection has completed successfully.
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.WebDetection web_detection = 13;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.WebDetection web_detection = 13;</code>
      * @return \Google\Cloud\Vision\V1\WebDetection
      */
     public function getWebDetection()
@@ -400,11 +338,9 @@ class AnnotateImageResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If present, web detection has completed successfully.
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.WebDetection web_detection = 13;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.WebDetection web_detection = 13;</code>
      * @param \Google\Cloud\Vision\V1\WebDetection $var
      */
     public function setWebDetection(&$var)
@@ -416,13 +352,11 @@ class AnnotateImageResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If set, represents the error message for the operation.
      * Note that filled-in image annotations are guaranteed to be
      * correct, even when `error` is set.
-     * </pre>
      *
-     * <code>.google.rpc.Status error = 9;</code>
+     * Generated from protobuf field <code>.google.rpc.Status error = 9;</code>
      * @return \Google\Rpc\Status
      */
     public function getError()
@@ -431,13 +365,11 @@ class AnnotateImageResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If set, represents the error message for the operation.
      * Note that filled-in image annotations are guaranteed to be
      * correct, even when `error` is set.
-     * </pre>
      *
-     * <code>.google.rpc.Status error = 9;</code>
+     * Generated from protobuf field <code>.google.rpc.Status error = 9;</code>
      * @param \Google\Rpc\Status $var
      */
     public function setError(&$var)

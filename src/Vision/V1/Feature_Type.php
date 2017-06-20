@@ -5,101 +5,77 @@
 namespace Google\Cloud\Vision\V1;
 
 /**
- * <pre>
  * Type of image feature.
- * </pre>
  *
  * Protobuf enum <code>Google\Cloud\Vision\V1\Feature\Type</code>
  */
 class Feature_Type
 {
     /**
-     * <pre>
      * Unspecified feature type.
-     * </pre>
      *
-     * <code>TYPE_UNSPECIFIED = 0;</code>
+     * Generated from protobuf enum <code>TYPE_UNSPECIFIED = 0;</code>
      */
     const TYPE_UNSPECIFIED = 0;
     /**
-     * <pre>
      * Run face detection.
-     * </pre>
      *
-     * <code>FACE_DETECTION = 1;</code>
+     * Generated from protobuf enum <code>FACE_DETECTION = 1;</code>
      */
     const FACE_DETECTION = 1;
     /**
-     * <pre>
      * Run landmark detection.
-     * </pre>
      *
-     * <code>LANDMARK_DETECTION = 2;</code>
+     * Generated from protobuf enum <code>LANDMARK_DETECTION = 2;</code>
      */
     const LANDMARK_DETECTION = 2;
     /**
-     * <pre>
      * Run logo detection.
-     * </pre>
      *
-     * <code>LOGO_DETECTION = 3;</code>
+     * Generated from protobuf enum <code>LOGO_DETECTION = 3;</code>
      */
     const LOGO_DETECTION = 3;
     /**
-     * <pre>
      * Run label detection.
-     * </pre>
      *
-     * <code>LABEL_DETECTION = 4;</code>
+     * Generated from protobuf enum <code>LABEL_DETECTION = 4;</code>
      */
     const LABEL_DETECTION = 4;
     /**
-     * <pre>
      * Run OCR.
-     * </pre>
      *
-     * <code>TEXT_DETECTION = 5;</code>
+     * Generated from protobuf enum <code>TEXT_DETECTION = 5;</code>
      */
     const TEXT_DETECTION = 5;
     /**
-     * <pre>
      * Run dense text document OCR. Takes precedence when both
      * DOCUMENT_TEXT_DETECTION and TEXT_DETECTION are present.
-     * </pre>
      *
-     * <code>DOCUMENT_TEXT_DETECTION = 11;</code>
+     * Generated from protobuf enum <code>DOCUMENT_TEXT_DETECTION = 11;</code>
      */
     const DOCUMENT_TEXT_DETECTION = 11;
     /**
-     * <pre>
      * Run computer vision models to compute image safe-search properties.
-     * </pre>
      *
-     * <code>SAFE_SEARCH_DETECTION = 6;</code>
+     * Generated from protobuf enum <code>SAFE_SEARCH_DETECTION = 6;</code>
      */
     const SAFE_SEARCH_DETECTION = 6;
     /**
-     * <pre>
      * Compute a set of image properties, such as the image's dominant colors.
-     * </pre>
      *
-     * <code>IMAGE_PROPERTIES = 7;</code>
+     * Generated from protobuf enum <code>IMAGE_PROPERTIES = 7;</code>
      */
     const IMAGE_PROPERTIES = 7;
     /**
-     * <pre>
      * Run crop hints.
-     * </pre>
      *
-     * <code>CROP_HINTS = 9;</code>
+     * Generated from protobuf enum <code>CROP_HINTS = 9;</code>
      */
     const CROP_HINTS = 9;
     /**
-     * <pre>
      * Run web detection.
-     * </pre>
      *
-     * <code>WEB_DETECTION = 10;</code>
+     * Generated from protobuf enum <code>WEB_DETECTION = 10;</code>
      */
     const WEB_DETECTION = 10;
 }

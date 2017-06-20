@@ -9,32 +9,26 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Represents the feeling associated with the entire text or entities in
  * the text.
- * </pre>
  *
  * Protobuf type <code>Google\Cloud\Language\V1beta2\Sentiment</code>
  */
 class Sentiment extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * A non-negative number in the [0, +inf) range, which represents
      * the absolute magnitude of sentiment regardless of score (positive or
      * negative).
-     * </pre>
      *
-     * <code>float magnitude = 2;</code>
+     * Generated from protobuf field <code>float magnitude = 2;</code>
      */
     private $magnitude = 0.0;
     /**
-     * <pre>
      * Sentiment score between -1.0 (negative sentiment) and 1.0
      * (positive sentiment).
-     * </pre>
      *
-     * <code>float score = 3;</code>
+     * Generated from protobuf field <code>float score = 3;</code>
      */
     private $score = 0.0;
 
@@ -44,13 +38,11 @@ class Sentiment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * A non-negative number in the [0, +inf) range, which represents
      * the absolute magnitude of sentiment regardless of score (positive or
      * negative).
-     * </pre>
      *
-     * <code>float magnitude = 2;</code>
+     * Generated from protobuf field <code>float magnitude = 2;</code>
      * @return float
      */
     public function getMagnitude()
@@ -59,13 +51,11 @@ class Sentiment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * A non-negative number in the [0, +inf) range, which represents
      * the absolute magnitude of sentiment regardless of score (positive or
      * negative).
-     * </pre>
      *
-     * <code>float magnitude = 2;</code>
+     * Generated from protobuf field <code>float magnitude = 2;</code>
      * @param float $var
      */
     public function setMagnitude($var)
@@ -77,12 +67,10 @@ class Sentiment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Sentiment score between -1.0 (negative sentiment) and 1.0
      * (positive sentiment).
-     * </pre>
      *
-     * <code>float score = 3;</code>
+     * Generated from protobuf field <code>float score = 3;</code>
      * @return float
      */
     public function getScore()
@@ -91,12 +79,10 @@ class Sentiment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Sentiment score between -1.0 (negative sentiment) and 1.0
      * (positive sentiment).
-     * </pre>
      *
-     * <code>float score = 3;</code>
+     * Generated from protobuf field <code>float score = 3;</code>
      * @param float $var
      */
     public function setScore($var)

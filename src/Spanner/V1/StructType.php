@@ -9,25 +9,21 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * `StructType` defines the fields of a [STRUCT][google.spanner.v1.TypeCode.STRUCT] type.
- * </pre>
  *
  * Protobuf type <code>Google\Spanner\V1\StructType</code>
  */
 class StructType extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The list of fields that make up this struct. Order is
      * significant, because values of this struct type are represented as
      * lists, where the order of field values matches the order of
      * fields in the [StructType][google.spanner.v1.StructType]. In turn, the order of fields
      * matches the order of columns in a read request, or the order of
      * fields in the `SELECT` clause of a query.
-     * </pre>
      *
-     * <code>repeated .google.spanner.v1.StructType.Field fields = 1;</code>
+     * Generated from protobuf field <code>repeated .google.spanner.v1.StructType.Field fields = 1;</code>
      */
     private $fields;
 
@@ -37,16 +33,14 @@ class StructType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The list of fields that make up this struct. Order is
      * significant, because values of this struct type are represented as
      * lists, where the order of field values matches the order of
      * fields in the [StructType][google.spanner.v1.StructType]. In turn, the order of fields
      * matches the order of columns in a read request, or the order of
      * fields in the `SELECT` clause of a query.
-     * </pre>
      *
-     * <code>repeated .google.spanner.v1.StructType.Field fields = 1;</code>
+     * Generated from protobuf field <code>repeated .google.spanner.v1.StructType.Field fields = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getFields()
@@ -55,16 +49,14 @@ class StructType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The list of fields that make up this struct. Order is
      * significant, because values of this struct type are represented as
      * lists, where the order of field values matches the order of
      * fields in the [StructType][google.spanner.v1.StructType]. In turn, the order of fields
      * matches the order of columns in a read request, or the order of
      * fields in the `SELECT` clause of a query.
-     * </pre>
      *
-     * <code>repeated .google.spanner.v1.StructType.Field fields = 1;</code>
+     * Generated from protobuf field <code>repeated .google.spanner.v1.StructType.Field fields = 1;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setFields(&$var)

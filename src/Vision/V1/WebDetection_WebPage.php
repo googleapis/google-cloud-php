@@ -9,29 +9,23 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Metadata for web pages.
- * </pre>
  *
  * Protobuf type <code>Google\Cloud\Vision\V1\WebDetection\WebPage</code>
  */
 class WebDetection_WebPage extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The result web page URL.
-     * </pre>
      *
-     * <code>string url = 1;</code>
+     * Generated from protobuf field <code>string url = 1;</code>
      */
     private $url = '';
     /**
-     * <pre>
      * Overall relevancy score for the web page.
      * Not normalized and not comparable across different image queries.
-     * </pre>
      *
-     * <code>float score = 2;</code>
+     * Generated from protobuf field <code>float score = 2;</code>
      */
     private $score = 0.0;
 
@@ -41,11 +35,9 @@ class WebDetection_WebPage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The result web page URL.
-     * </pre>
      *
-     * <code>string url = 1;</code>
+     * Generated from protobuf field <code>string url = 1;</code>
      * @return string
      */
     public function getUrl()
@@ -54,11 +46,9 @@ class WebDetection_WebPage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The result web page URL.
-     * </pre>
      *
-     * <code>string url = 1;</code>
+     * Generated from protobuf field <code>string url = 1;</code>
      * @param string $var
      */
     public function setUrl($var)
@@ -70,12 +60,10 @@ class WebDetection_WebPage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Overall relevancy score for the web page.
      * Not normalized and not comparable across different image queries.
-     * </pre>
      *
-     * <code>float score = 2;</code>
+     * Generated from protobuf field <code>float score = 2;</code>
      * @return float
      */
     public function getScore()
@@ -84,12 +72,10 @@ class WebDetection_WebPage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Overall relevancy score for the web page.
      * Not normalized and not comparable across different image queries.
-     * </pre>
      *
-     * <code>float score = 2;</code>
+     * Generated from protobuf field <code>float score = 2;</code>
      * @param float $var
      */
     public function setScore($var)

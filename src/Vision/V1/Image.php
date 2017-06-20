@@ -9,32 +9,26 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Client image to perform Google Cloud Vision API tasks over.
- * </pre>
  *
  * Protobuf type <code>Google\Cloud\Vision\V1\Image</code>
  */
 class Image extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * Image content, represented as a stream of bytes.
      * Note: as with all `bytes` fields, protobuffers use a pure binary
      * representation, whereas JSON representations use base64.
-     * </pre>
      *
-     * <code>bytes content = 1;</code>
+     * Generated from protobuf field <code>bytes content = 1;</code>
      */
     private $content = '';
     /**
-     * <pre>
      * Google Cloud Storage image location. If both `content` and `source`
      * are provided for an image, `content` takes precedence and is
      * used to perform the image annotation request.
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.ImageSource source = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.ImageSource source = 2;</code>
      */
     private $source = null;
 
@@ -44,13 +38,11 @@ class Image extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Image content, represented as a stream of bytes.
      * Note: as with all `bytes` fields, protobuffers use a pure binary
      * representation, whereas JSON representations use base64.
-     * </pre>
      *
-     * <code>bytes content = 1;</code>
+     * Generated from protobuf field <code>bytes content = 1;</code>
      * @return string
      */
     public function getContent()
@@ -59,13 +51,11 @@ class Image extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Image content, represented as a stream of bytes.
      * Note: as with all `bytes` fields, protobuffers use a pure binary
      * representation, whereas JSON representations use base64.
-     * </pre>
      *
-     * <code>bytes content = 1;</code>
+     * Generated from protobuf field <code>bytes content = 1;</code>
      * @param string $var
      */
     public function setContent($var)
@@ -77,13 +67,11 @@ class Image extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Google Cloud Storage image location. If both `content` and `source`
      * are provided for an image, `content` takes precedence and is
      * used to perform the image annotation request.
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.ImageSource source = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.ImageSource source = 2;</code>
      * @return \Google\Cloud\Vision\V1\ImageSource
      */
     public function getSource()
@@ -92,13 +80,11 @@ class Image extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Google Cloud Storage image location. If both `content` and `source`
      * are provided for an image, `content` takes precedence and is
      * used to perform the image annotation request.
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.ImageSource source = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.ImageSource source = 2;</code>
      * @param \Google\Cloud\Vision\V1\ImageSource $var
      */
     public function setSource(&$var)

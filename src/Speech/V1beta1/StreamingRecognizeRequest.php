@@ -9,13 +9,11 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * The top-level message sent by the client for the `StreamingRecognize` method.
  * Multiple `StreamingRecognizeRequest` messages are sent. The first message
  * must contain a `streaming_config` message and must not contain `audio` data.
  * All subsequent messages must contain `audio` data and must not contain a
  * `streaming_config` message.
- * </pre>
  *
  * Protobuf type <code>Google\Cloud\Speech\V1beta1\StreamingRecognizeRequest</code>
  */
@@ -29,13 +27,11 @@ class StreamingRecognizeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Provides information to the recognizer that specifies how to process the
      * request. The first `StreamingRecognizeRequest` message must contain a
      * `streaming_config`  message.
-     * </pre>
      *
-     * <code>.google.cloud.speech.v1beta1.StreamingRecognitionConfig streaming_config = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.speech.v1beta1.StreamingRecognitionConfig streaming_config = 1;</code>
      * @return \Google\Cloud\Speech\V1beta1\StreamingRecognitionConfig
      */
     public function getStreamingConfig()
@@ -44,13 +40,11 @@ class StreamingRecognizeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Provides information to the recognizer that specifies how to process the
      * request. The first `StreamingRecognizeRequest` message must contain a
      * `streaming_config`  message.
-     * </pre>
      *
-     * <code>.google.cloud.speech.v1beta1.StreamingRecognitionConfig streaming_config = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.speech.v1beta1.StreamingRecognitionConfig streaming_config = 1;</code>
      * @param \Google\Cloud\Speech\V1beta1\StreamingRecognitionConfig $var
      */
     public function setStreamingConfig(&$var)
@@ -62,7 +56,6 @@ class StreamingRecognizeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The audio data to be recognized. Sequential chunks of audio data are sent
      * in sequential `StreamingRecognizeRequest` messages. The first
      * `StreamingRecognizeRequest` message must not contain `audio_content` data
@@ -71,9 +64,8 @@ class StreamingRecognizeRequest extends \Google\Protobuf\Internal\Message
      * `RecognitionConfig`. Note: as with all bytes fields, protobuffers use a
      * pure binary representation (not base64). See
      * [audio limits](https://cloud.google.com/speech/limits#content).
-     * </pre>
      *
-     * <code>bytes audio_content = 2;</code>
+     * Generated from protobuf field <code>bytes audio_content = 2;</code>
      * @return string
      */
     public function getAudioContent()
@@ -82,7 +74,6 @@ class StreamingRecognizeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The audio data to be recognized. Sequential chunks of audio data are sent
      * in sequential `StreamingRecognizeRequest` messages. The first
      * `StreamingRecognizeRequest` message must not contain `audio_content` data
@@ -91,9 +82,8 @@ class StreamingRecognizeRequest extends \Google\Protobuf\Internal\Message
      * `RecognitionConfig`. Note: as with all bytes fields, protobuffers use a
      * pure binary representation (not base64). See
      * [audio limits](https://cloud.google.com/speech/limits#content).
-     * </pre>
      *
-     * <code>bytes audio_content = 2;</code>
+     * Generated from protobuf field <code>bytes audio_content = 2;</code>
      * @param string $var
      */
     public function setAudioContent($var)

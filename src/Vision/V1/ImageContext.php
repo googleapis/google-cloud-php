@@ -9,24 +9,19 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Image context and/or feature-specific parameters.
- * </pre>
  *
  * Protobuf type <code>Google\Cloud\Vision\V1\ImageContext</code>
  */
 class ImageContext extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * lat/long rectangle that specifies the location of the image.
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.LatLongRect lat_long_rect = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.LatLongRect lat_long_rect = 1;</code>
      */
     private $lat_long_rect = null;
     /**
-     * <pre>
      * List of languages to use for TEXT_DETECTION. In most cases, an empty value
      * yields the best results since it enables automatic language detection. For
      * languages based on the Latin alphabet, setting `language_hints` is not
@@ -35,17 +30,14 @@ class ImageContext extends \Google\Protobuf\Internal\Message
      * significant hindrance if the hint is wrong). Text detection returns an
      * error if one or more of the specified languages is not one of the
      * [supported languages](/vision/docs/languages).
-     * </pre>
      *
-     * <code>repeated string language_hints = 2;</code>
+     * Generated from protobuf field <code>repeated string language_hints = 2;</code>
      */
     private $language_hints;
     /**
-     * <pre>
      * Parameters for crop hints annotation request.
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.CropHintsParams crop_hints_params = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.CropHintsParams crop_hints_params = 4;</code>
      */
     private $crop_hints_params = null;
 
@@ -55,11 +47,9 @@ class ImageContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * lat/long rectangle that specifies the location of the image.
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.LatLongRect lat_long_rect = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.LatLongRect lat_long_rect = 1;</code>
      * @return \Google\Cloud\Vision\V1\LatLongRect
      */
     public function getLatLongRect()
@@ -68,11 +58,9 @@ class ImageContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * lat/long rectangle that specifies the location of the image.
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.LatLongRect lat_long_rect = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.LatLongRect lat_long_rect = 1;</code>
      * @param \Google\Cloud\Vision\V1\LatLongRect $var
      */
     public function setLatLongRect(&$var)
@@ -84,7 +72,6 @@ class ImageContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * List of languages to use for TEXT_DETECTION. In most cases, an empty value
      * yields the best results since it enables automatic language detection. For
      * languages based on the Latin alphabet, setting `language_hints` is not
@@ -93,9 +80,8 @@ class ImageContext extends \Google\Protobuf\Internal\Message
      * significant hindrance if the hint is wrong). Text detection returns an
      * error if one or more of the specified languages is not one of the
      * [supported languages](/vision/docs/languages).
-     * </pre>
      *
-     * <code>repeated string language_hints = 2;</code>
+     * Generated from protobuf field <code>repeated string language_hints = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getLanguageHints()
@@ -104,7 +90,6 @@ class ImageContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * List of languages to use for TEXT_DETECTION. In most cases, an empty value
      * yields the best results since it enables automatic language detection. For
      * languages based on the Latin alphabet, setting `language_hints` is not
@@ -113,9 +98,8 @@ class ImageContext extends \Google\Protobuf\Internal\Message
      * significant hindrance if the hint is wrong). Text detection returns an
      * error if one or more of the specified languages is not one of the
      * [supported languages](/vision/docs/languages).
-     * </pre>
      *
-     * <code>repeated string language_hints = 2;</code>
+     * Generated from protobuf field <code>repeated string language_hints = 2;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setLanguageHints(&$var)
@@ -127,11 +111,9 @@ class ImageContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Parameters for crop hints annotation request.
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.CropHintsParams crop_hints_params = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.CropHintsParams crop_hints_params = 4;</code>
      * @return \Google\Cloud\Vision\V1\CropHintsParams
      */
     public function getCropHintsParams()
@@ -140,11 +122,9 @@ class ImageContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Parameters for crop hints annotation request.
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.CropHintsParams crop_hints_params = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.CropHintsParams crop_hints_params = 4;</code>
      * @param \Google\Cloud\Vision\V1\CropHintsParams $var
      */
     public function setCropHintsParams(&$var)

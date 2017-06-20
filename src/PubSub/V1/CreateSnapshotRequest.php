@@ -9,28 +9,23 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Request for the `CreateSnapshot` method.
- * </pre>
  *
  * Protobuf type <code>Google\Pubsub\V1\CreateSnapshotRequest</code>
  */
 class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * Optional user-provided name for this snapshot.
      * If the name is not provided in the request, the server will assign a random
      * name for this snapshot on the same project as the subscription.
      * Note that for REST API requests, you must specify a name.
      * Format is `projects/{project}/snapshots/{snap}`.
-     * </pre>
      *
-     * <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      */
     private $name = '';
     /**
-     * <pre>
      * The subscription whose backlog the snapshot retains.
      * Specifically, the created snapshot is guaranteed to retain:
      *  (a) The existing backlog on the subscription. More precisely, this is
@@ -40,9 +35,8 @@ class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
      *  (b) Any messages published to the subscription's topic following the
      *      successful completion of the CreateSnapshot request.
      * Format is `projects/{project}/subscriptions/{sub}`.
-     * </pre>
      *
-     * <code>string subscription = 2;</code>
+     * Generated from protobuf field <code>string subscription = 2;</code>
      */
     private $subscription = '';
 
@@ -52,15 +46,13 @@ class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Optional user-provided name for this snapshot.
      * If the name is not provided in the request, the server will assign a random
      * name for this snapshot on the same project as the subscription.
      * Note that for REST API requests, you must specify a name.
      * Format is `projects/{project}/snapshots/{snap}`.
-     * </pre>
      *
-     * <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      * @return string
      */
     public function getName()
@@ -69,15 +61,13 @@ class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Optional user-provided name for this snapshot.
      * If the name is not provided in the request, the server will assign a random
      * name for this snapshot on the same project as the subscription.
      * Note that for REST API requests, you must specify a name.
      * Format is `projects/{project}/snapshots/{snap}`.
-     * </pre>
      *
-     * <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
      */
     public function setName($var)
@@ -89,7 +79,6 @@ class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The subscription whose backlog the snapshot retains.
      * Specifically, the created snapshot is guaranteed to retain:
      *  (a) The existing backlog on the subscription. More precisely, this is
@@ -99,9 +88,8 @@ class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
      *  (b) Any messages published to the subscription's topic following the
      *      successful completion of the CreateSnapshot request.
      * Format is `projects/{project}/subscriptions/{sub}`.
-     * </pre>
      *
-     * <code>string subscription = 2;</code>
+     * Generated from protobuf field <code>string subscription = 2;</code>
      * @return string
      */
     public function getSubscription()
@@ -110,7 +98,6 @@ class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The subscription whose backlog the snapshot retains.
      * Specifically, the created snapshot is guaranteed to retain:
      *  (a) The existing backlog on the subscription. More precisely, this is
@@ -120,9 +107,8 @@ class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
      *  (b) Any messages published to the subscription's topic following the
      *      successful completion of the CreateSnapshot request.
      * Format is `projects/{project}/subscriptions/{sub}`.
-     * </pre>
      *
-     * <code>string subscription = 2;</code>
+     * Generated from protobuf field <code>string subscription = 2;</code>
      * @param string $var
      */
     public function setSubscription($var)

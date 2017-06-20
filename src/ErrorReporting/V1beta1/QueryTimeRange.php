@@ -9,21 +9,17 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Requests might be rejected or the resulting timed count durations might be
  * adjusted for lower durations.
- * </pre>
  *
  * Protobuf type <code>Google\Devtools\Clouderrorreporting\V1beta1\QueryTimeRange</code>
  */
 class QueryTimeRange extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * Restricts the query to the specified time range.
-     * </pre>
      *
-     * <code>.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange.Period period = 1;</code>
+     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange.Period period = 1;</code>
      */
     private $period = 0;
 
@@ -33,11 +29,9 @@ class QueryTimeRange extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Restricts the query to the specified time range.
-     * </pre>
      *
-     * <code>.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange.Period period = 1;</code>
+     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange.Period period = 1;</code>
      * @return int
      */
     public function getPeriod()
@@ -46,11 +40,9 @@ class QueryTimeRange extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Restricts the query to the specified time range.
-     * </pre>
      *
-     * <code>.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange.Period period = 1;</code>
+     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange.Period period = 1;</code>
      * @param int $var
      */
     public function setPeriod($var)

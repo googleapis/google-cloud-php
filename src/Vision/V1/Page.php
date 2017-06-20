@@ -9,44 +9,34 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Detected page from OCR.
- * </pre>
  *
  * Protobuf type <code>Google\Cloud\Vision\V1\Page</code>
  */
 class Page extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * Additional information detected on the page.
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
      */
     private $property = null;
     /**
-     * <pre>
      * Page width in pixels.
-     * </pre>
      *
-     * <code>int32 width = 2;</code>
+     * Generated from protobuf field <code>int32 width = 2;</code>
      */
     private $width = 0;
     /**
-     * <pre>
      * Page height in pixels.
-     * </pre>
      *
-     * <code>int32 height = 3;</code>
+     * Generated from protobuf field <code>int32 height = 3;</code>
      */
     private $height = 0;
     /**
-     * <pre>
      * List of blocks of text, images etc on this page.
-     * </pre>
      *
-     * <code>repeated .google.cloud.vision.v1.Block blocks = 4;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.Block blocks = 4;</code>
      */
     private $blocks;
 
@@ -56,11 +46,9 @@ class Page extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Additional information detected on the page.
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
      * @return \Google\Cloud\Vision\V1\TextAnnotation_TextProperty
      */
     public function getProperty()
@@ -69,11 +57,9 @@ class Page extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Additional information detected on the page.
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
      * @param \Google\Cloud\Vision\V1\TextAnnotation_TextProperty $var
      */
     public function setProperty(&$var)
@@ -85,11 +71,9 @@ class Page extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Page width in pixels.
-     * </pre>
      *
-     * <code>int32 width = 2;</code>
+     * Generated from protobuf field <code>int32 width = 2;</code>
      * @return int
      */
     public function getWidth()
@@ -98,11 +82,9 @@ class Page extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Page width in pixels.
-     * </pre>
      *
-     * <code>int32 width = 2;</code>
+     * Generated from protobuf field <code>int32 width = 2;</code>
      * @param int $var
      */
     public function setWidth($var)
@@ -114,11 +96,9 @@ class Page extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Page height in pixels.
-     * </pre>
      *
-     * <code>int32 height = 3;</code>
+     * Generated from protobuf field <code>int32 height = 3;</code>
      * @return int
      */
     public function getHeight()
@@ -127,11 +107,9 @@ class Page extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Page height in pixels.
-     * </pre>
      *
-     * <code>int32 height = 3;</code>
+     * Generated from protobuf field <code>int32 height = 3;</code>
      * @param int $var
      */
     public function setHeight($var)
@@ -143,11 +121,9 @@ class Page extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * List of blocks of text, images etc on this page.
-     * </pre>
      *
-     * <code>repeated .google.cloud.vision.v1.Block blocks = 4;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.Block blocks = 4;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getBlocks()
@@ -156,11 +132,9 @@ class Page extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * List of blocks of text, images etc on this page.
-     * </pre>
      *
-     * <code>repeated .google.cloud.vision.v1.Block blocks = 4;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.Block blocks = 4;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setBlocks(&$var)

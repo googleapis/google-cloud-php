@@ -9,20 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Stores image properties, such as dominant colors.
- * </pre>
  *
  * Protobuf type <code>Google\Cloud\Vision\V1\ImageProperties</code>
  */
 class ImageProperties extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * If present, dominant colors completed successfully.
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.DominantColorsAnnotation dominant_colors = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.DominantColorsAnnotation dominant_colors = 1;</code>
      */
     private $dominant_colors = null;
 
@@ -32,11 +28,9 @@ class ImageProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If present, dominant colors completed successfully.
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.DominantColorsAnnotation dominant_colors = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.DominantColorsAnnotation dominant_colors = 1;</code>
      * @return \Google\Cloud\Vision\V1\DominantColorsAnnotation
      */
     public function getDominantColors()
@@ -45,11 +39,9 @@ class ImageProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If present, dominant colors completed successfully.
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.DominantColorsAnnotation dominant_colors = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.DominantColorsAnnotation dominant_colors = 1;</code>
      * @param \Google\Cloud\Vision\V1\DominantColorsAnnotation $var
      */
     public function setDominantColors(&$var)

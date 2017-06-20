@@ -9,21 +9,17 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * The `DeleteGroup` request. You can only delete a group if it has no children.
- * </pre>
  *
  * Protobuf type <code>Google\Monitoring\V3\DeleteGroupRequest</code>
  */
 class DeleteGroupRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The group to delete. The format is
      * `"projects/{project_id_or_number}/groups/{group_id}"`.
-     * </pre>
      *
-     * <code>string name = 3;</code>
+     * Generated from protobuf field <code>string name = 3;</code>
      */
     private $name = '';
 
@@ -33,12 +29,10 @@ class DeleteGroupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The group to delete. The format is
      * `"projects/{project_id_or_number}/groups/{group_id}"`.
-     * </pre>
      *
-     * <code>string name = 3;</code>
+     * Generated from protobuf field <code>string name = 3;</code>
      * @return string
      */
     public function getName()
@@ -47,12 +41,10 @@ class DeleteGroupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The group to delete. The format is
      * `"projects/{project_id_or_number}/groups/{group_id}"`.
-     * </pre>
      *
-     * <code>string name = 3;</code>
+     * Generated from protobuf field <code>string name = 3;</code>
      * @param string $var
      */
     public function setName($var)

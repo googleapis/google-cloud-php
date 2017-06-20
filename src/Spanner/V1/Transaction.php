@@ -9,16 +9,13 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * A transaction.
- * </pre>
  *
  * Protobuf type <code>Google\Spanner\V1\Transaction</code>
  */
 class Transaction extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * `id` may be used to identify the transaction in subsequent
      * [Read][google.spanner.v1.Spanner.Read],
      * [ExecuteSql][google.spanner.v1.Spanner.ExecuteSql],
@@ -26,19 +23,16 @@ class Transaction extends \Google\Protobuf\Internal\Message
      * [Rollback][google.spanner.v1.Spanner.Rollback] calls.
      * Single-use read-only transactions do not have IDs, because
      * single-use transactions do not support multiple requests.
-     * </pre>
      *
-     * <code>bytes id = 1;</code>
+     * Generated from protobuf field <code>bytes id = 1;</code>
      */
     private $id = '';
     /**
-     * <pre>
      * For snapshot read-only transactions, the read timestamp chosen
      * for the transaction. Not returned by default: see
      * [TransactionOptions.ReadOnly.return_read_timestamp][google.spanner.v1.TransactionOptions.ReadOnly.return_read_timestamp].
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp read_timestamp = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp read_timestamp = 2;</code>
      */
     private $read_timestamp = null;
 
@@ -48,7 +42,6 @@ class Transaction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * `id` may be used to identify the transaction in subsequent
      * [Read][google.spanner.v1.Spanner.Read],
      * [ExecuteSql][google.spanner.v1.Spanner.ExecuteSql],
@@ -56,9 +49,8 @@ class Transaction extends \Google\Protobuf\Internal\Message
      * [Rollback][google.spanner.v1.Spanner.Rollback] calls.
      * Single-use read-only transactions do not have IDs, because
      * single-use transactions do not support multiple requests.
-     * </pre>
      *
-     * <code>bytes id = 1;</code>
+     * Generated from protobuf field <code>bytes id = 1;</code>
      * @return string
      */
     public function getId()
@@ -67,7 +59,6 @@ class Transaction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * `id` may be used to identify the transaction in subsequent
      * [Read][google.spanner.v1.Spanner.Read],
      * [ExecuteSql][google.spanner.v1.Spanner.ExecuteSql],
@@ -75,9 +66,8 @@ class Transaction extends \Google\Protobuf\Internal\Message
      * [Rollback][google.spanner.v1.Spanner.Rollback] calls.
      * Single-use read-only transactions do not have IDs, because
      * single-use transactions do not support multiple requests.
-     * </pre>
      *
-     * <code>bytes id = 1;</code>
+     * Generated from protobuf field <code>bytes id = 1;</code>
      * @param string $var
      */
     public function setId($var)
@@ -89,13 +79,11 @@ class Transaction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * For snapshot read-only transactions, the read timestamp chosen
      * for the transaction. Not returned by default: see
      * [TransactionOptions.ReadOnly.return_read_timestamp][google.spanner.v1.TransactionOptions.ReadOnly.return_read_timestamp].
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp read_timestamp = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp read_timestamp = 2;</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getReadTimestamp()
@@ -104,13 +92,11 @@ class Transaction extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * For snapshot read-only transactions, the read timestamp chosen
      * for the transaction. Not returned by default: see
      * [TransactionOptions.ReadOnly.return_read_timestamp][google.spanner.v1.TransactionOptions.ReadOnly.return_read_timestamp].
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp read_timestamp = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp read_timestamp = 2;</code>
      * @param \Google\Protobuf\Timestamp $var
      */
     public function setReadTimestamp(&$var)

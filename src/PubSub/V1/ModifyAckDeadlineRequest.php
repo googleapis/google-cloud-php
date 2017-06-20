@@ -9,33 +9,26 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Request for the ModifyAckDeadline method.
- * </pre>
  *
  * Protobuf type <code>Google\Pubsub\V1\ModifyAckDeadlineRequest</code>
  */
 class ModifyAckDeadlineRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The name of the subscription.
      * Format is `projects/{project}/subscriptions/{sub}`.
-     * </pre>
      *
-     * <code>string subscription = 1;</code>
+     * Generated from protobuf field <code>string subscription = 1;</code>
      */
     private $subscription = '';
     /**
-     * <pre>
      * List of acknowledgment IDs.
-     * </pre>
      *
-     * <code>repeated string ack_ids = 4;</code>
+     * Generated from protobuf field <code>repeated string ack_ids = 4;</code>
      */
     private $ack_ids;
     /**
-     * <pre>
      * The new ack deadline with respect to the time this request was sent to
      * the Pub/Sub system. For example, if the value is 10, the new
      * ack deadline will expire 10 seconds after the `ModifyAckDeadline` call
@@ -43,9 +36,8 @@ class ModifyAckDeadlineRequest extends \Google\Protobuf\Internal\Message
      * another pull request.
      * The minimum deadline you can specify is 0 seconds.
      * The maximum deadline you can specify is 600 seconds (10 minutes).
-     * </pre>
      *
-     * <code>int32 ack_deadline_seconds = 3;</code>
+     * Generated from protobuf field <code>int32 ack_deadline_seconds = 3;</code>
      */
     private $ack_deadline_seconds = 0;
 
@@ -55,12 +47,10 @@ class ModifyAckDeadlineRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The name of the subscription.
      * Format is `projects/{project}/subscriptions/{sub}`.
-     * </pre>
      *
-     * <code>string subscription = 1;</code>
+     * Generated from protobuf field <code>string subscription = 1;</code>
      * @return string
      */
     public function getSubscription()
@@ -69,12 +59,10 @@ class ModifyAckDeadlineRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The name of the subscription.
      * Format is `projects/{project}/subscriptions/{sub}`.
-     * </pre>
      *
-     * <code>string subscription = 1;</code>
+     * Generated from protobuf field <code>string subscription = 1;</code>
      * @param string $var
      */
     public function setSubscription($var)
@@ -86,11 +74,9 @@ class ModifyAckDeadlineRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * List of acknowledgment IDs.
-     * </pre>
      *
-     * <code>repeated string ack_ids = 4;</code>
+     * Generated from protobuf field <code>repeated string ack_ids = 4;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getAckIds()
@@ -99,11 +85,9 @@ class ModifyAckDeadlineRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * List of acknowledgment IDs.
-     * </pre>
      *
-     * <code>repeated string ack_ids = 4;</code>
+     * Generated from protobuf field <code>repeated string ack_ids = 4;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setAckIds(&$var)
@@ -115,7 +99,6 @@ class ModifyAckDeadlineRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The new ack deadline with respect to the time this request was sent to
      * the Pub/Sub system. For example, if the value is 10, the new
      * ack deadline will expire 10 seconds after the `ModifyAckDeadline` call
@@ -123,9 +106,8 @@ class ModifyAckDeadlineRequest extends \Google\Protobuf\Internal\Message
      * another pull request.
      * The minimum deadline you can specify is 0 seconds.
      * The maximum deadline you can specify is 600 seconds (10 minutes).
-     * </pre>
      *
-     * <code>int32 ack_deadline_seconds = 3;</code>
+     * Generated from protobuf field <code>int32 ack_deadline_seconds = 3;</code>
      * @return int
      */
     public function getAckDeadlineSeconds()
@@ -134,7 +116,6 @@ class ModifyAckDeadlineRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The new ack deadline with respect to the time this request was sent to
      * the Pub/Sub system. For example, if the value is 10, the new
      * ack deadline will expire 10 seconds after the `ModifyAckDeadline` call
@@ -142,9 +123,8 @@ class ModifyAckDeadlineRequest extends \Google\Protobuf\Internal\Message
      * another pull request.
      * The minimum deadline you can specify is 0 seconds.
      * The maximum deadline you can specify is 600 seconds (10 minutes).
-     * </pre>
      *
-     * <code>int32 ack_deadline_seconds = 3;</code>
+     * Generated from protobuf field <code>int32 ack_deadline_seconds = 3;</code>
      * @param int $var
      */
     public function setAckDeadlineSeconds($var)

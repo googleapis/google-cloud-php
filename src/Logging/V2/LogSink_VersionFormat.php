@@ -5,38 +5,30 @@
 namespace Google\Cloud\Logging\V2;
 
 /**
- * <pre>
  * Available log entry formats. Log entries can be written to Stackdriver
  * Logging in either format and can be exported in either format.
  * Version 2 is the preferred format.
- * </pre>
  *
  * Protobuf enum <code>Google\Logging\V2\LogSink\VersionFormat</code>
  */
 class LogSink_VersionFormat
 {
     /**
-     * <pre>
      * An unspecified format version that will default to V2.
-     * </pre>
      *
-     * <code>VERSION_FORMAT_UNSPECIFIED = 0;</code>
+     * Generated from protobuf enum <code>VERSION_FORMAT_UNSPECIFIED = 0;</code>
      */
     const VERSION_FORMAT_UNSPECIFIED = 0;
     /**
-     * <pre>
      * `LogEntry` version 2 format.
-     * </pre>
      *
-     * <code>V2 = 1;</code>
+     * Generated from protobuf enum <code>V2 = 1;</code>
      */
     const V2 = 1;
     /**
-     * <pre>
      * `LogEntry` version 1 format.
-     * </pre>
      *
-     * <code>V1 = 2;</code>
+     * Generated from protobuf enum <code>V1 = 2;</code>
      */
     const V1 = 2;
 }

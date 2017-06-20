@@ -9,27 +9,22 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Partial results from a streaming read or SQL query. Streaming reads and
  * SQL queries better tolerate large result sets, large rows, and large
  * values, but are a little trickier to consume.
- * </pre>
  *
  * Protobuf type <code>Google\Spanner\V1\PartialResultSet</code>
  */
 class PartialResultSet extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * Metadata about the result set, such as row type information.
      * Only present in the first response.
-     * </pre>
      *
-     * <code>.google.spanner.v1.ResultSetMetadata metadata = 1;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.ResultSetMetadata metadata = 1;</code>
      */
     private $metadata = null;
     /**
-     * <pre>
      * A streamed result set consists of a stream of values, which might
      * be split into many `PartialResultSet` messages to accommodate
      * large rows and/or large values. Every N complete values defines a
@@ -89,42 +84,35 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
      * This sequence of `PartialResultSet`s encodes two rows, one
      * containing the field value `"Hello"`, and a second containing the
      * field value `"World" = "W" + "orl" + "d"`.
-     * </pre>
      *
-     * <code>repeated .google.protobuf.Value values = 2;</code>
+     * Generated from protobuf field <code>repeated .google.protobuf.Value values = 2;</code>
      */
     private $values;
     /**
-     * <pre>
      * If true, then the final value in [values][google.spanner.v1.PartialResultSet.values] is chunked, and must
      * be combined with more values from subsequent `PartialResultSet`s
      * to obtain a complete field value.
-     * </pre>
      *
-     * <code>bool chunked_value = 3;</code>
+     * Generated from protobuf field <code>bool chunked_value = 3;</code>
      */
     private $chunked_value = false;
     /**
-     * <pre>
      * Streaming calls might be interrupted for a variety of reasons, such
      * as TCP connection loss. If this occurs, the stream of results can
      * be resumed by re-sending the original request and including
      * `resume_token`. Note that executing any other transaction in the
      * same session invalidates the token.
-     * </pre>
      *
-     * <code>bytes resume_token = 4;</code>
+     * Generated from protobuf field <code>bytes resume_token = 4;</code>
      */
     private $resume_token = '';
     /**
-     * <pre>
      * Query plan and execution statistics for the query that produced this
      * streaming result set. These can be requested by setting
      * [ExecuteSqlRequest.query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode] and are sent
      * only once with the last response in the stream.
-     * </pre>
      *
-     * <code>.google.spanner.v1.ResultSetStats stats = 5;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.ResultSetStats stats = 5;</code>
      */
     private $stats = null;
 
@@ -134,12 +122,10 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Metadata about the result set, such as row type information.
      * Only present in the first response.
-     * </pre>
      *
-     * <code>.google.spanner.v1.ResultSetMetadata metadata = 1;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.ResultSetMetadata metadata = 1;</code>
      * @return \Google\Cloud\Spanner\V1\ResultSetMetadata
      */
     public function getMetadata()
@@ -148,12 +134,10 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Metadata about the result set, such as row type information.
      * Only present in the first response.
-     * </pre>
      *
-     * <code>.google.spanner.v1.ResultSetMetadata metadata = 1;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.ResultSetMetadata metadata = 1;</code>
      * @param \Google\Cloud\Spanner\V1\ResultSetMetadata $var
      */
     public function setMetadata(&$var)
@@ -165,7 +149,6 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * A streamed result set consists of a stream of values, which might
      * be split into many `PartialResultSet` messages to accommodate
      * large rows and/or large values. Every N complete values defines a
@@ -225,9 +208,8 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
      * This sequence of `PartialResultSet`s encodes two rows, one
      * containing the field value `"Hello"`, and a second containing the
      * field value `"World" = "W" + "orl" + "d"`.
-     * </pre>
      *
-     * <code>repeated .google.protobuf.Value values = 2;</code>
+     * Generated from protobuf field <code>repeated .google.protobuf.Value values = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getValues()
@@ -236,7 +218,6 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * A streamed result set consists of a stream of values, which might
      * be split into many `PartialResultSet` messages to accommodate
      * large rows and/or large values. Every N complete values defines a
@@ -296,9 +277,8 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
      * This sequence of `PartialResultSet`s encodes two rows, one
      * containing the field value `"Hello"`, and a second containing the
      * field value `"World" = "W" + "orl" + "d"`.
-     * </pre>
      *
-     * <code>repeated .google.protobuf.Value values = 2;</code>
+     * Generated from protobuf field <code>repeated .google.protobuf.Value values = 2;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setValues(&$var)
@@ -310,13 +290,11 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If true, then the final value in [values][google.spanner.v1.PartialResultSet.values] is chunked, and must
      * be combined with more values from subsequent `PartialResultSet`s
      * to obtain a complete field value.
-     * </pre>
      *
-     * <code>bool chunked_value = 3;</code>
+     * Generated from protobuf field <code>bool chunked_value = 3;</code>
      * @return bool
      */
     public function getChunkedValue()
@@ -325,13 +303,11 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If true, then the final value in [values][google.spanner.v1.PartialResultSet.values] is chunked, and must
      * be combined with more values from subsequent `PartialResultSet`s
      * to obtain a complete field value.
-     * </pre>
      *
-     * <code>bool chunked_value = 3;</code>
+     * Generated from protobuf field <code>bool chunked_value = 3;</code>
      * @param bool $var
      */
     public function setChunkedValue($var)
@@ -343,15 +319,13 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Streaming calls might be interrupted for a variety of reasons, such
      * as TCP connection loss. If this occurs, the stream of results can
      * be resumed by re-sending the original request and including
      * `resume_token`. Note that executing any other transaction in the
      * same session invalidates the token.
-     * </pre>
      *
-     * <code>bytes resume_token = 4;</code>
+     * Generated from protobuf field <code>bytes resume_token = 4;</code>
      * @return string
      */
     public function getResumeToken()
@@ -360,15 +334,13 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Streaming calls might be interrupted for a variety of reasons, such
      * as TCP connection loss. If this occurs, the stream of results can
      * be resumed by re-sending the original request and including
      * `resume_token`. Note that executing any other transaction in the
      * same session invalidates the token.
-     * </pre>
      *
-     * <code>bytes resume_token = 4;</code>
+     * Generated from protobuf field <code>bytes resume_token = 4;</code>
      * @param string $var
      */
     public function setResumeToken($var)
@@ -380,14 +352,12 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Query plan and execution statistics for the query that produced this
      * streaming result set. These can be requested by setting
      * [ExecuteSqlRequest.query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode] and are sent
      * only once with the last response in the stream.
-     * </pre>
      *
-     * <code>.google.spanner.v1.ResultSetStats stats = 5;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.ResultSetStats stats = 5;</code>
      * @return \Google\Cloud\Spanner\V1\ResultSetStats
      */
     public function getStats()
@@ -396,14 +366,12 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Query plan and execution statistics for the query that produced this
      * streaming result set. These can be requested by setting
      * [ExecuteSqlRequest.query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode] and are sent
      * only once with the last response in the stream.
-     * </pre>
      *
-     * <code>.google.spanner.v1.ResultSetStats stats = 5;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.ResultSetStats stats = 5;</code>
      * @param \Google\Cloud\Spanner\V1\ResultSetStats $var
      */
     public function setStats(&$var)

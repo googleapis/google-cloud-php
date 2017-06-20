@@ -9,32 +9,26 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * A time interval extending just after a start time through an end time.
  * If the start time is the same as the end time, then the interval
  * represents a single point in time.
- * </pre>
  *
  * Protobuf type <code>Google\Monitoring\V3\TimeInterval</code>
  */
 class TimeInterval extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * Required. The end of the time interval.
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp end_time = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 2;</code>
      */
     private $end_time = null;
     /**
-     * <pre>
      * Optional. The beginning of the time interval.  The default value
      * for the start time is the end time. The start time must not be
      * later than the end time.
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp start_time = 1;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 1;</code>
      */
     private $start_time = null;
 
@@ -44,11 +38,9 @@ class TimeInterval extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. The end of the time interval.
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp end_time = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 2;</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getEndTime()
@@ -57,11 +49,9 @@ class TimeInterval extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. The end of the time interval.
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp end_time = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 2;</code>
      * @param \Google\Protobuf\Timestamp $var
      */
     public function setEndTime(&$var)
@@ -73,13 +63,11 @@ class TimeInterval extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Optional. The beginning of the time interval.  The default value
      * for the start time is the end time. The start time must not be
      * later than the end time.
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp start_time = 1;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 1;</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getStartTime()
@@ -88,13 +76,11 @@ class TimeInterval extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Optional. The beginning of the time interval.  The default value
      * for the start time is the end time. The start time must not be
      * later than the end time.
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp start_time = 1;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 1;</code>
      * @param \Google\Protobuf\Timestamp $var
      */
     public function setStartTime(&$var)

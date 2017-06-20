@@ -9,9 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Options for read-write transactions.
- * </pre>
  *
  * Protobuf type <code>Google\Spanner\V1\TransactionOptions\ReadWrite</code>
  */

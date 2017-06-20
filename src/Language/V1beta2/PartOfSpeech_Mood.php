@@ -5,68 +5,52 @@
 namespace Google\Cloud\Language\V1beta2;
 
 /**
- * <pre>
  * The grammatical feature of verbs, used for showing modality and attitude.
- * </pre>
  *
  * Protobuf enum <code>Google\Cloud\Language\V1beta2\PartOfSpeech\Mood</code>
  */
 class PartOfSpeech_Mood
 {
     /**
-     * <pre>
      * Mood is not applicable in the analyzed language or is not predicted.
-     * </pre>
      *
-     * <code>MOOD_UNKNOWN = 0;</code>
+     * Generated from protobuf enum <code>MOOD_UNKNOWN = 0;</code>
      */
     const MOOD_UNKNOWN = 0;
     /**
-     * <pre>
      * Conditional
-     * </pre>
      *
-     * <code>CONDITIONAL_MOOD = 1;</code>
+     * Generated from protobuf enum <code>CONDITIONAL_MOOD = 1;</code>
      */
     const CONDITIONAL_MOOD = 1;
     /**
-     * <pre>
      * Imperative
-     * </pre>
      *
-     * <code>IMPERATIVE = 2;</code>
+     * Generated from protobuf enum <code>IMPERATIVE = 2;</code>
      */
     const IMPERATIVE = 2;
     /**
-     * <pre>
      * Indicative
-     * </pre>
      *
-     * <code>INDICATIVE = 3;</code>
+     * Generated from protobuf enum <code>INDICATIVE = 3;</code>
      */
     const INDICATIVE = 3;
     /**
-     * <pre>
      * Interrogative
-     * </pre>
      *
-     * <code>INTERROGATIVE = 4;</code>
+     * Generated from protobuf enum <code>INTERROGATIVE = 4;</code>
      */
     const INTERROGATIVE = 4;
     /**
-     * <pre>
      * Jussive
-     * </pre>
      *
-     * <code>JUSSIVE = 5;</code>
+     * Generated from protobuf enum <code>JUSSIVE = 5;</code>
      */
     const JUSSIVE = 5;
     /**
-     * <pre>
      * Subjunctive
-     * </pre>
      *
-     * <code>SUBJUNCTIVE = 6;</code>
+     * Generated from protobuf enum <code>SUBJUNCTIVE = 6;</code>
      */
     const SUBJUNCTIVE = 6;
 }

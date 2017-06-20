@@ -5,44 +5,34 @@
 namespace Google\Cloud\Language\V1beta2;
 
 /**
- * <pre>
  * Count distinctions.
- * </pre>
  *
  * Protobuf enum <code>Google\Cloud\Language\V1beta2\PartOfSpeech\Number</code>
  */
 class PartOfSpeech_Number
 {
     /**
-     * <pre>
      * Number is not applicable in the analyzed language or is not predicted.
-     * </pre>
      *
-     * <code>NUMBER_UNKNOWN = 0;</code>
+     * Generated from protobuf enum <code>NUMBER_UNKNOWN = 0;</code>
      */
     const NUMBER_UNKNOWN = 0;
     /**
-     * <pre>
      * Singular
-     * </pre>
      *
-     * <code>SINGULAR = 1;</code>
+     * Generated from protobuf enum <code>SINGULAR = 1;</code>
      */
     const SINGULAR = 1;
     /**
-     * <pre>
      * Plural
-     * </pre>
      *
-     * <code>PLURAL = 2;</code>
+     * Generated from protobuf enum <code>PLURAL = 2;</code>
      */
     const PLURAL = 2;
     /**
-     * <pre>
      * Dual
-     * </pre>
      *
-     * <code>DUAL = 3;</code>
+     * Generated from protobuf enum <code>DUAL = 3;</code>
      */
     const DUAL = 3;
 }

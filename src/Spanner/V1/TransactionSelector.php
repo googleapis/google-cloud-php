@@ -9,12 +9,10 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * This message is used to select the transaction in which a
  * [Read][google.spanner.v1.Spanner.Read] or
  * [ExecuteSql][google.spanner.v1.Spanner.ExecuteSql] call runs.
  * See [TransactionOptions][google.spanner.v1.TransactionOptions] for more information about transactions.
- * </pre>
  *
  * Protobuf type <code>Google\Spanner\V1\TransactionSelector</code>
  */
@@ -28,13 +26,11 @@ class TransactionSelector extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Execute the read or SQL query in a temporary transaction.
      * This is the most efficient way to execute a transaction that
      * consists of a single SQL query.
-     * </pre>
      *
-     * <code>.google.spanner.v1.TransactionOptions single_use = 1;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.TransactionOptions single_use = 1;</code>
      * @return \Google\Cloud\Spanner\V1\TransactionOptions
      */
     public function getSingleUse()
@@ -43,13 +39,11 @@ class TransactionSelector extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Execute the read or SQL query in a temporary transaction.
      * This is the most efficient way to execute a transaction that
      * consists of a single SQL query.
-     * </pre>
      *
-     * <code>.google.spanner.v1.TransactionOptions single_use = 1;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.TransactionOptions single_use = 1;</code>
      * @param \Google\Cloud\Spanner\V1\TransactionOptions $var
      */
     public function setSingleUse(&$var)
@@ -61,11 +55,9 @@ class TransactionSelector extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Execute the read or SQL query in a previously-started transaction.
-     * </pre>
      *
-     * <code>bytes id = 2;</code>
+     * Generated from protobuf field <code>bytes id = 2;</code>
      * @return string
      */
     public function getId()
@@ -74,11 +66,9 @@ class TransactionSelector extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Execute the read or SQL query in a previously-started transaction.
-     * </pre>
      *
-     * <code>bytes id = 2;</code>
+     * Generated from protobuf field <code>bytes id = 2;</code>
      * @param string $var
      */
     public function setId($var)
@@ -90,13 +80,11 @@ class TransactionSelector extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Begin a new transaction and execute this read or SQL query in
      * it. The transaction ID of the new transaction is returned in
      * [ResultSetMetadata.transaction][google.spanner.v1.ResultSetMetadata.transaction], which is a [Transaction][google.spanner.v1.Transaction].
-     * </pre>
      *
-     * <code>.google.spanner.v1.TransactionOptions begin = 3;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.TransactionOptions begin = 3;</code>
      * @return \Google\Cloud\Spanner\V1\TransactionOptions
      */
     public function getBegin()
@@ -105,13 +93,11 @@ class TransactionSelector extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Begin a new transaction and execute this read or SQL query in
      * it. The transaction ID of the new transaction is returned in
      * [ResultSetMetadata.transaction][google.spanner.v1.ResultSetMetadata.transaction], which is a [Transaction][google.spanner.v1.Transaction].
-     * </pre>
      *
-     * <code>.google.spanner.v1.TransactionOptions begin = 3;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.TransactionOptions begin = 3;</code>
      * @param \Google\Cloud\Spanner\V1\TransactionOptions $var
      */
     public function setBegin(&$var)

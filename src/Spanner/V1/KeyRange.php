@@ -9,7 +9,6 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * KeyRange represents a range of rows in a table or index.
  * A range has a start key and an end key. These keys can be open or
  * closed, indicating if the range includes rows with that key.
@@ -70,7 +69,6 @@ use Google\Protobuf\Internal\GPBUtil;
  *     "end_closed": ["1"]
  * Note that 100 is passed as the start, and 1 is passed as the end,
  * because `Key` is a descending column in the schema.
- * </pre>
  *
  * Protobuf type <code>Google\Spanner\V1\KeyRange</code>
  */
@@ -85,12 +83,10 @@ class KeyRange extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If the start is closed, then the range includes all rows whose
      * first `len(start_closed)` key columns exactly match `start_closed`.
-     * </pre>
      *
-     * <code>.google.protobuf.ListValue start_closed = 1;</code>
+     * Generated from protobuf field <code>.google.protobuf.ListValue start_closed = 1;</code>
      * @return \Google\Protobuf\ListValue
      */
     public function getStartClosed()
@@ -99,12 +95,10 @@ class KeyRange extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If the start is closed, then the range includes all rows whose
      * first `len(start_closed)` key columns exactly match `start_closed`.
-     * </pre>
      *
-     * <code>.google.protobuf.ListValue start_closed = 1;</code>
+     * Generated from protobuf field <code>.google.protobuf.ListValue start_closed = 1;</code>
      * @param \Google\Protobuf\ListValue $var
      */
     public function setStartClosed(&$var)
@@ -116,12 +110,10 @@ class KeyRange extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If the start is open, then the range excludes rows whose first
      * `len(start_open)` key columns exactly match `start_open`.
-     * </pre>
      *
-     * <code>.google.protobuf.ListValue start_open = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.ListValue start_open = 2;</code>
      * @return \Google\Protobuf\ListValue
      */
     public function getStartOpen()
@@ -130,12 +122,10 @@ class KeyRange extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If the start is open, then the range excludes rows whose first
      * `len(start_open)` key columns exactly match `start_open`.
-     * </pre>
      *
-     * <code>.google.protobuf.ListValue start_open = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.ListValue start_open = 2;</code>
      * @param \Google\Protobuf\ListValue $var
      */
     public function setStartOpen(&$var)
@@ -147,12 +137,10 @@ class KeyRange extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If the end is closed, then the range includes all rows whose
      * first `len(end_closed)` key columns exactly match `end_closed`.
-     * </pre>
      *
-     * <code>.google.protobuf.ListValue end_closed = 3;</code>
+     * Generated from protobuf field <code>.google.protobuf.ListValue end_closed = 3;</code>
      * @return \Google\Protobuf\ListValue
      */
     public function getEndClosed()
@@ -161,12 +149,10 @@ class KeyRange extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If the end is closed, then the range includes all rows whose
      * first `len(end_closed)` key columns exactly match `end_closed`.
-     * </pre>
      *
-     * <code>.google.protobuf.ListValue end_closed = 3;</code>
+     * Generated from protobuf field <code>.google.protobuf.ListValue end_closed = 3;</code>
      * @param \Google\Protobuf\ListValue $var
      */
     public function setEndClosed(&$var)
@@ -178,12 +164,10 @@ class KeyRange extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If the end is open, then the range excludes rows whose first
      * `len(end_open)` key columns exactly match `end_open`.
-     * </pre>
      *
-     * <code>.google.protobuf.ListValue end_open = 4;</code>
+     * Generated from protobuf field <code>.google.protobuf.ListValue end_open = 4;</code>
      * @return \Google\Protobuf\ListValue
      */
     public function getEndOpen()
@@ -192,12 +176,10 @@ class KeyRange extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If the end is open, then the range excludes rows whose first
      * `len(end_open)` key columns exactly match `end_open`.
-     * </pre>
      *
-     * <code>.google.protobuf.ListValue end_open = 4;</code>
+     * Generated from protobuf field <code>.google.protobuf.ListValue end_open = 4;</code>
      * @param \Google\Protobuf\ListValue $var
      */
     public function setEndOpen(&$var)

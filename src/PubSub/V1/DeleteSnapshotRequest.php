@@ -9,21 +9,17 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Request for the `DeleteSnapshot` method.
- * </pre>
  *
  * Protobuf type <code>Google\Pubsub\V1\DeleteSnapshotRequest</code>
  */
 class DeleteSnapshotRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The name of the snapshot to delete.
      * Format is `projects/{project}/snapshots/{snap}`.
-     * </pre>
      *
-     * <code>string snapshot = 1;</code>
+     * Generated from protobuf field <code>string snapshot = 1;</code>
      */
     private $snapshot = '';
 
@@ -33,12 +29,10 @@ class DeleteSnapshotRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The name of the snapshot to delete.
      * Format is `projects/{project}/snapshots/{snap}`.
-     * </pre>
      *
-     * <code>string snapshot = 1;</code>
+     * Generated from protobuf field <code>string snapshot = 1;</code>
      * @return string
      */
     public function getSnapshot()
@@ -47,12 +41,10 @@ class DeleteSnapshotRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The name of the snapshot to delete.
      * Format is `projects/{project}/snapshots/{snap}`.
-     * </pre>
      *
-     * <code>string snapshot = 1;</code>
+     * Generated from protobuf field <code>string snapshot = 1;</code>
      * @param string $var
      */
     public function setSnapshot($var)

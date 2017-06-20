@@ -9,37 +9,29 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Request for performing Google Cloud Vision API tasks over a user-provided
  * image, with user-requested features.
- * </pre>
  *
  * Protobuf type <code>Google\Cloud\Vision\V1\AnnotateImageRequest</code>
  */
 class AnnotateImageRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The image to be processed.
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.Image image = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.Image image = 1;</code>
      */
     private $image = null;
     /**
-     * <pre>
      * Requested features.
-     * </pre>
      *
-     * <code>repeated .google.cloud.vision.v1.Feature features = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.Feature features = 2;</code>
      */
     private $features;
     /**
-     * <pre>
      * Additional context that may accompany the image.
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.ImageContext image_context = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.ImageContext image_context = 3;</code>
      */
     private $image_context = null;
 
@@ -49,11 +41,9 @@ class AnnotateImageRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The image to be processed.
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.Image image = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.Image image = 1;</code>
      * @return \Google\Cloud\Vision\V1\Image
      */
     public function getImage()
@@ -62,11 +52,9 @@ class AnnotateImageRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The image to be processed.
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.Image image = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.Image image = 1;</code>
      * @param \Google\Cloud\Vision\V1\Image $var
      */
     public function setImage(&$var)
@@ -78,11 +66,9 @@ class AnnotateImageRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Requested features.
-     * </pre>
      *
-     * <code>repeated .google.cloud.vision.v1.Feature features = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.Feature features = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getFeatures()
@@ -91,11 +77,9 @@ class AnnotateImageRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Requested features.
-     * </pre>
      *
-     * <code>repeated .google.cloud.vision.v1.Feature features = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.Feature features = 2;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setFeatures(&$var)
@@ -107,11 +91,9 @@ class AnnotateImageRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Additional context that may accompany the image.
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.ImageContext image_context = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.ImageContext image_context = 3;</code>
      * @return \Google\Cloud\Vision\V1\ImageContext
      */
     public function getImageContext()
@@ -120,11 +102,9 @@ class AnnotateImageRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Additional context that may accompany the image.
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.ImageContext image_context = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.ImageContext image_context = 3;</code>
      * @param \Google\Cloud\Vision\V1\ImageContext $var
      */
     public function setImageContext(&$var)

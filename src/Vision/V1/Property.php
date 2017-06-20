@@ -9,28 +9,22 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * A `Property` consists of a user-supplied name/value pair.
- * </pre>
  *
  * Protobuf type <code>Google\Cloud\Vision\V1\Property</code>
  */
 class Property extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * Name of the property.
-     * </pre>
      *
-     * <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      */
     private $name = '';
     /**
-     * <pre>
      * Value of the property.
-     * </pre>
      *
-     * <code>string value = 2;</code>
+     * Generated from protobuf field <code>string value = 2;</code>
      */
     private $value = '';
 
@@ -40,11 +34,9 @@ class Property extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Name of the property.
-     * </pre>
      *
-     * <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      * @return string
      */
     public function getName()
@@ -53,11 +45,9 @@ class Property extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Name of the property.
-     * </pre>
      *
-     * <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
      */
     public function setName($var)
@@ -69,11 +59,9 @@ class Property extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Value of the property.
-     * </pre>
      *
-     * <code>string value = 2;</code>
+     * Generated from protobuf field <code>string value = 2;</code>
      * @return string
      */
     public function getValue()
@@ -82,11 +70,9 @@ class Property extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Value of the property.
-     * </pre>
      *
-     * <code>string value = 2;</code>
+     * Generated from protobuf field <code>string value = 2;</code>
      * @param string $var
      */
     public function setValue($var)

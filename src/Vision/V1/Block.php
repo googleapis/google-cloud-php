@@ -9,24 +9,19 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Logical element on the page.
- * </pre>
  *
  * Protobuf type <code>Google\Cloud\Vision\V1\Block</code>
  */
 class Block extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * Additional information detected for the block.
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
      */
     private $property = null;
     /**
-     * <pre>
      * The bounding box for the block.
      * The vertices are in the order of top-left, top-right, bottom-right,
      * bottom-left. When a rotation of the bounding box is detected the rotation
@@ -42,25 +37,20 @@ class Block extends \Google\Protobuf\Internal\Message
      *      |    |
      *      1----0
      *   and the vertice order will still be (0, 1, 2, 3).
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.BoundingPoly bounding_box = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.BoundingPoly bounding_box = 2;</code>
      */
     private $bounding_box = null;
     /**
-     * <pre>
      * List of paragraphs in this block (if this blocks is of type text).
-     * </pre>
      *
-     * <code>repeated .google.cloud.vision.v1.Paragraph paragraphs = 3;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.Paragraph paragraphs = 3;</code>
      */
     private $paragraphs;
     /**
-     * <pre>
      * Detected block type (text, image etc) for this block.
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.Block.BlockType block_type = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.Block.BlockType block_type = 4;</code>
      */
     private $block_type = 0;
 
@@ -70,11 +60,9 @@ class Block extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Additional information detected for the block.
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
      * @return \Google\Cloud\Vision\V1\TextAnnotation_TextProperty
      */
     public function getProperty()
@@ -83,11 +71,9 @@ class Block extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Additional information detected for the block.
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
      * @param \Google\Cloud\Vision\V1\TextAnnotation_TextProperty $var
      */
     public function setProperty(&$var)
@@ -99,7 +85,6 @@ class Block extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The bounding box for the block.
      * The vertices are in the order of top-left, top-right, bottom-right,
      * bottom-left. When a rotation of the bounding box is detected the rotation
@@ -115,9 +100,8 @@ class Block extends \Google\Protobuf\Internal\Message
      *      |    |
      *      1----0
      *   and the vertice order will still be (0, 1, 2, 3).
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.BoundingPoly bounding_box = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.BoundingPoly bounding_box = 2;</code>
      * @return \Google\Cloud\Vision\V1\BoundingPoly
      */
     public function getBoundingBox()
@@ -126,7 +110,6 @@ class Block extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The bounding box for the block.
      * The vertices are in the order of top-left, top-right, bottom-right,
      * bottom-left. When a rotation of the bounding box is detected the rotation
@@ -142,9 +125,8 @@ class Block extends \Google\Protobuf\Internal\Message
      *      |    |
      *      1----0
      *   and the vertice order will still be (0, 1, 2, 3).
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.BoundingPoly bounding_box = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.BoundingPoly bounding_box = 2;</code>
      * @param \Google\Cloud\Vision\V1\BoundingPoly $var
      */
     public function setBoundingBox(&$var)
@@ -156,11 +138,9 @@ class Block extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * List of paragraphs in this block (if this blocks is of type text).
-     * </pre>
      *
-     * <code>repeated .google.cloud.vision.v1.Paragraph paragraphs = 3;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.Paragraph paragraphs = 3;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getParagraphs()
@@ -169,11 +149,9 @@ class Block extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * List of paragraphs in this block (if this blocks is of type text).
-     * </pre>
      *
-     * <code>repeated .google.cloud.vision.v1.Paragraph paragraphs = 3;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.Paragraph paragraphs = 3;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setParagraphs(&$var)
@@ -185,11 +163,9 @@ class Block extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Detected block type (text, image etc) for this block.
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.Block.BlockType block_type = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.Block.BlockType block_type = 4;</code>
      * @return int
      */
     public function getBlockType()
@@ -198,11 +174,9 @@ class Block extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Detected block type (text, image etc) for this block.
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.Block.BlockType block_type = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.Block.BlockType block_type = 4;</code>
      * @param int $var
      */
     public function setBlockType($var)

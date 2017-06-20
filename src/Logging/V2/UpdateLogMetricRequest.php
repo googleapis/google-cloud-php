@@ -9,32 +9,26 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * The parameters to UpdateLogMetric.
- * </pre>
  *
  * Protobuf type <code>Google\Logging\V2\UpdateLogMetricRequest</code>
  */
 class UpdateLogMetricRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The resource name of the metric to update:
      *     "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
      * The updated metric must be provided in the request and it's
      * `name` field must be the same as `[METRIC_ID]` If the metric
      * does not exist in `[PROJECT_ID]`, then a new metric is created.
-     * </pre>
      *
-     * <code>string metric_name = 1;</code>
+     * Generated from protobuf field <code>string metric_name = 1;</code>
      */
     private $metric_name = '';
     /**
-     * <pre>
      * The updated metric.
-     * </pre>
      *
-     * <code>.google.logging.v2.LogMetric metric = 2;</code>
+     * Generated from protobuf field <code>.google.logging.v2.LogMetric metric = 2;</code>
      */
     private $metric = null;
 
@@ -44,15 +38,13 @@ class UpdateLogMetricRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The resource name of the metric to update:
      *     "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
      * The updated metric must be provided in the request and it's
      * `name` field must be the same as `[METRIC_ID]` If the metric
      * does not exist in `[PROJECT_ID]`, then a new metric is created.
-     * </pre>
      *
-     * <code>string metric_name = 1;</code>
+     * Generated from protobuf field <code>string metric_name = 1;</code>
      * @return string
      */
     public function getMetricName()
@@ -61,15 +53,13 @@ class UpdateLogMetricRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The resource name of the metric to update:
      *     "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
      * The updated metric must be provided in the request and it's
      * `name` field must be the same as `[METRIC_ID]` If the metric
      * does not exist in `[PROJECT_ID]`, then a new metric is created.
-     * </pre>
      *
-     * <code>string metric_name = 1;</code>
+     * Generated from protobuf field <code>string metric_name = 1;</code>
      * @param string $var
      */
     public function setMetricName($var)
@@ -81,11 +71,9 @@ class UpdateLogMetricRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The updated metric.
-     * </pre>
      *
-     * <code>.google.logging.v2.LogMetric metric = 2;</code>
+     * Generated from protobuf field <code>.google.logging.v2.LogMetric metric = 2;</code>
      * @return \Google\Cloud\Logging\V2\LogMetric
      */
     public function getMetric()
@@ -94,11 +82,9 @@ class UpdateLogMetricRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The updated metric.
-     * </pre>
      *
-     * <code>.google.logging.v2.LogMetric metric = 2;</code>
+     * Generated from protobuf field <code>.google.logging.v2.LogMetric metric = 2;</code>
      * @param \Google\Cloud\Logging\V2\LogMetric $var
      */
     public function setMetric(&$var)

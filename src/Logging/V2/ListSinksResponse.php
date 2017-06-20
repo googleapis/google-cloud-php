@@ -9,30 +9,24 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Result returned from `ListSinks`.
- * </pre>
  *
  * Protobuf type <code>Google\Logging\V2\ListSinksResponse</code>
  */
 class ListSinksResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * A list of sinks.
-     * </pre>
      *
-     * <code>repeated .google.logging.v2.LogSink sinks = 1;</code>
+     * Generated from protobuf field <code>repeated .google.logging.v2.LogSink sinks = 1;</code>
      */
     private $sinks;
     /**
-     * <pre>
      * If there might be more results than appear in this response, then
      * `nextPageToken` is included.  To get the next set of results, call the same
      * method again using the value of `nextPageToken` as `pageToken`.
-     * </pre>
      *
-     * <code>string next_page_token = 2;</code>
+     * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
     private $next_page_token = '';
 
@@ -42,11 +36,9 @@ class ListSinksResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * A list of sinks.
-     * </pre>
      *
-     * <code>repeated .google.logging.v2.LogSink sinks = 1;</code>
+     * Generated from protobuf field <code>repeated .google.logging.v2.LogSink sinks = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getSinks()
@@ -55,11 +47,9 @@ class ListSinksResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * A list of sinks.
-     * </pre>
      *
-     * <code>repeated .google.logging.v2.LogSink sinks = 1;</code>
+     * Generated from protobuf field <code>repeated .google.logging.v2.LogSink sinks = 1;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setSinks(&$var)
@@ -71,13 +61,11 @@ class ListSinksResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If there might be more results than appear in this response, then
      * `nextPageToken` is included.  To get the next set of results, call the same
      * method again using the value of `nextPageToken` as `pageToken`.
-     * </pre>
      *
-     * <code>string next_page_token = 2;</code>
+     * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @return string
      */
     public function getNextPageToken()
@@ -86,13 +74,11 @@ class ListSinksResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If there might be more results than appear in this response, then
      * `nextPageToken` is included.  To get the next set of results, call the same
      * method again using the value of `nextPageToken` as `pageToken`.
-     * </pre>
      *
-     * <code>string next_page_token = 2;</code>
+     * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @param string $var
      */
     public function setNextPageToken($var)

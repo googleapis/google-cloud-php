@@ -9,38 +9,30 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * The sentiment analysis response message.
- * </pre>
  *
  * Protobuf type <code>Google\Cloud\Language\V1beta2\AnalyzeSentimentResponse</code>
  */
 class AnalyzeSentimentResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The overall sentiment of the input document.
-     * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.Sentiment document_sentiment = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.Sentiment document_sentiment = 1;</code>
      */
     private $document_sentiment = null;
     /**
-     * <pre>
      * The language of the text, which will be the same as the language specified
      * in the request or, if not specified, the automatically-detected language.
      * See [Document.language][google.cloud.language.v1beta2.Document.language] field for more details.
-     * </pre>
      *
-     * <code>string language = 2;</code>
+     * Generated from protobuf field <code>string language = 2;</code>
      */
     private $language = '';
     /**
-     * <pre>
      * The sentiment for all the sentences in the document.
-     * </pre>
      *
-     * <code>repeated .google.cloud.language.v1beta2.Sentence sentences = 3;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.language.v1beta2.Sentence sentences = 3;</code>
      */
     private $sentences;
 
@@ -50,11 +42,9 @@ class AnalyzeSentimentResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The overall sentiment of the input document.
-     * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.Sentiment document_sentiment = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.Sentiment document_sentiment = 1;</code>
      * @return \Google\Cloud\Language\V1beta2\Sentiment
      */
     public function getDocumentSentiment()
@@ -63,11 +53,9 @@ class AnalyzeSentimentResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The overall sentiment of the input document.
-     * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.Sentiment document_sentiment = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.Sentiment document_sentiment = 1;</code>
      * @param \Google\Cloud\Language\V1beta2\Sentiment $var
      */
     public function setDocumentSentiment(&$var)
@@ -79,13 +67,11 @@ class AnalyzeSentimentResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The language of the text, which will be the same as the language specified
      * in the request or, if not specified, the automatically-detected language.
      * See [Document.language][google.cloud.language.v1beta2.Document.language] field for more details.
-     * </pre>
      *
-     * <code>string language = 2;</code>
+     * Generated from protobuf field <code>string language = 2;</code>
      * @return string
      */
     public function getLanguage()
@@ -94,13 +80,11 @@ class AnalyzeSentimentResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The language of the text, which will be the same as the language specified
      * in the request or, if not specified, the automatically-detected language.
      * See [Document.language][google.cloud.language.v1beta2.Document.language] field for more details.
-     * </pre>
      *
-     * <code>string language = 2;</code>
+     * Generated from protobuf field <code>string language = 2;</code>
      * @param string $var
      */
     public function setLanguage($var)
@@ -112,11 +96,9 @@ class AnalyzeSentimentResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The sentiment for all the sentences in the document.
-     * </pre>
      *
-     * <code>repeated .google.cloud.language.v1beta2.Sentence sentences = 3;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.language.v1beta2.Sentence sentences = 3;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getSentences()
@@ -125,11 +107,9 @@ class AnalyzeSentimentResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The sentiment for all the sentences in the document.
-     * </pre>
      *
-     * <code>repeated .google.cloud.language.v1beta2.Sentence sentences = 3;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.language.v1beta2.Sentence sentences = 3;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setSentences(&$var)

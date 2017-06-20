@@ -9,11 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * A modification to one or more Cloud Spanner rows.  Mutations can be
  * applied to a Cloud Spanner database by sending them in a
  * [Commit][google.spanner.v1.Spanner.Commit] call.
- * </pre>
  *
  * Protobuf type <code>Google\Spanner\V1\Mutation</code>
  */
@@ -27,12 +25,10 @@ class Mutation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Insert new rows in a table. If any of the rows already exist,
      * the write or transaction fails with error `ALREADY_EXISTS`.
-     * </pre>
      *
-     * <code>.google.spanner.v1.Mutation.Write insert = 1;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.Mutation.Write insert = 1;</code>
      * @return \Google\Cloud\Spanner\V1\Mutation_Write
      */
     public function getInsert()
@@ -41,12 +37,10 @@ class Mutation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Insert new rows in a table. If any of the rows already exist,
      * the write or transaction fails with error `ALREADY_EXISTS`.
-     * </pre>
      *
-     * <code>.google.spanner.v1.Mutation.Write insert = 1;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.Mutation.Write insert = 1;</code>
      * @param \Google\Cloud\Spanner\V1\Mutation_Write $var
      */
     public function setInsert(&$var)
@@ -58,12 +52,10 @@ class Mutation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Update existing rows in a table. If any of the rows does not
      * already exist, the transaction fails with error `NOT_FOUND`.
-     * </pre>
      *
-     * <code>.google.spanner.v1.Mutation.Write update = 2;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.Mutation.Write update = 2;</code>
      * @return \Google\Cloud\Spanner\V1\Mutation_Write
      */
     public function getUpdate()
@@ -72,12 +64,10 @@ class Mutation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Update existing rows in a table. If any of the rows does not
      * already exist, the transaction fails with error `NOT_FOUND`.
-     * </pre>
      *
-     * <code>.google.spanner.v1.Mutation.Write update = 2;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.Mutation.Write update = 2;</code>
      * @param \Google\Cloud\Spanner\V1\Mutation_Write $var
      */
     public function setUpdate(&$var)
@@ -89,13 +79,11 @@ class Mutation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Like [insert][google.spanner.v1.Mutation.insert], except that if the row already exists, then
      * its column values are overwritten with the ones provided. Any
      * column values not explicitly written are preserved.
-     * </pre>
      *
-     * <code>.google.spanner.v1.Mutation.Write insert_or_update = 3;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.Mutation.Write insert_or_update = 3;</code>
      * @return \Google\Cloud\Spanner\V1\Mutation_Write
      */
     public function getInsertOrUpdate()
@@ -104,13 +92,11 @@ class Mutation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Like [insert][google.spanner.v1.Mutation.insert], except that if the row already exists, then
      * its column values are overwritten with the ones provided. Any
      * column values not explicitly written are preserved.
-     * </pre>
      *
-     * <code>.google.spanner.v1.Mutation.Write insert_or_update = 3;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.Mutation.Write insert_or_update = 3;</code>
      * @param \Google\Cloud\Spanner\V1\Mutation_Write $var
      */
     public function setInsertOrUpdate(&$var)
@@ -122,14 +108,12 @@ class Mutation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Like [insert][google.spanner.v1.Mutation.insert], except that if the row already exists, it is
      * deleted, and the column values provided are inserted
      * instead. Unlike [insert_or_update][google.spanner.v1.Mutation.insert_or_update], this means any values not
      * explicitly written become `NULL`.
-     * </pre>
      *
-     * <code>.google.spanner.v1.Mutation.Write replace = 4;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.Mutation.Write replace = 4;</code>
      * @return \Google\Cloud\Spanner\V1\Mutation_Write
      */
     public function getReplace()
@@ -138,14 +122,12 @@ class Mutation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Like [insert][google.spanner.v1.Mutation.insert], except that if the row already exists, it is
      * deleted, and the column values provided are inserted
      * instead. Unlike [insert_or_update][google.spanner.v1.Mutation.insert_or_update], this means any values not
      * explicitly written become `NULL`.
-     * </pre>
      *
-     * <code>.google.spanner.v1.Mutation.Write replace = 4;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.Mutation.Write replace = 4;</code>
      * @param \Google\Cloud\Spanner\V1\Mutation_Write $var
      */
     public function setReplace(&$var)
@@ -157,12 +139,10 @@ class Mutation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Delete rows from a table. Succeeds whether or not the named
      * rows were present.
-     * </pre>
      *
-     * <code>.google.spanner.v1.Mutation.Delete delete = 5;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.Mutation.Delete delete = 5;</code>
      * @return \Google\Cloud\Spanner\V1\Mutation_Delete
      */
     public function getDelete()
@@ -171,12 +151,10 @@ class Mutation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Delete rows from a table. Succeeds whether or not the named
      * rows were present.
-     * </pre>
      *
-     * <code>.google.spanner.v1.Mutation.Delete delete = 5;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.Mutation.Delete delete = 5;</code>
      * @param \Google\Cloud\Spanner\V1\Mutation_Delete $var
      */
     public function setDelete(&$var)

@@ -9,28 +9,23 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * A description of the context in which an error occurred.
  * This data should be provided by the application when reporting an error,
  * unless the
  * error report has been generated automatically from Google App Engine logs.
- * </pre>
  *
  * Protobuf type <code>Google\Devtools\Clouderrorreporting\V1beta1\ErrorContext</code>
  */
 class ErrorContext extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The HTTP request which was processed when the error was
      * triggered.
-     * </pre>
      *
-     * <code>.google.devtools.clouderrorreporting.v1beta1.HttpRequestContext http_request = 1;</code>
+     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.HttpRequestContext http_request = 1;</code>
      */
     private $http_request = null;
     /**
-     * <pre>
      * The user who caused or was affected by the crash.
      * This can be a user ID, an email address, or an arbitrary token that
      * uniquely identifies the user.
@@ -39,22 +34,19 @@ class ErrorContext extends \Google\Protobuf\Internal\Message
      * Error Reporting system will use other data, such as remote IP address, to
      * distinguish affected users. See `affected_users_count` in
      * `ErrorGroupStats`.
-     * </pre>
      *
-     * <code>string user = 2;</code>
+     * Generated from protobuf field <code>string user = 2;</code>
      */
     private $user = '';
     /**
-     * <pre>
      * The location in the source code where the decision was made to
      * report the error, usually the place where it was logged.
      * For a logged exception this would be the source line where the
      * exception is logged, usually close to the place where it was
      * caught. This value is in contrast to `Exception.cause_location`,
      * which describes the source line where the exception was thrown.
-     * </pre>
      *
-     * <code>.google.devtools.clouderrorreporting.v1beta1.SourceLocation report_location = 3;</code>
+     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.SourceLocation report_location = 3;</code>
      */
     private $report_location = null;
 
@@ -64,12 +56,10 @@ class ErrorContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The HTTP request which was processed when the error was
      * triggered.
-     * </pre>
      *
-     * <code>.google.devtools.clouderrorreporting.v1beta1.HttpRequestContext http_request = 1;</code>
+     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.HttpRequestContext http_request = 1;</code>
      * @return \Google\Cloud\ErrorReporting\V1beta1\HttpRequestContext
      */
     public function getHttpRequest()
@@ -78,12 +68,10 @@ class ErrorContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The HTTP request which was processed when the error was
      * triggered.
-     * </pre>
      *
-     * <code>.google.devtools.clouderrorreporting.v1beta1.HttpRequestContext http_request = 1;</code>
+     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.HttpRequestContext http_request = 1;</code>
      * @param \Google\Cloud\ErrorReporting\V1beta1\HttpRequestContext $var
      */
     public function setHttpRequest(&$var)
@@ -95,7 +83,6 @@ class ErrorContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The user who caused or was affected by the crash.
      * This can be a user ID, an email address, or an arbitrary token that
      * uniquely identifies the user.
@@ -104,9 +91,8 @@ class ErrorContext extends \Google\Protobuf\Internal\Message
      * Error Reporting system will use other data, such as remote IP address, to
      * distinguish affected users. See `affected_users_count` in
      * `ErrorGroupStats`.
-     * </pre>
      *
-     * <code>string user = 2;</code>
+     * Generated from protobuf field <code>string user = 2;</code>
      * @return string
      */
     public function getUser()
@@ -115,7 +101,6 @@ class ErrorContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The user who caused or was affected by the crash.
      * This can be a user ID, an email address, or an arbitrary token that
      * uniquely identifies the user.
@@ -124,9 +109,8 @@ class ErrorContext extends \Google\Protobuf\Internal\Message
      * Error Reporting system will use other data, such as remote IP address, to
      * distinguish affected users. See `affected_users_count` in
      * `ErrorGroupStats`.
-     * </pre>
      *
-     * <code>string user = 2;</code>
+     * Generated from protobuf field <code>string user = 2;</code>
      * @param string $var
      */
     public function setUser($var)
@@ -138,16 +122,14 @@ class ErrorContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The location in the source code where the decision was made to
      * report the error, usually the place where it was logged.
      * For a logged exception this would be the source line where the
      * exception is logged, usually close to the place where it was
      * caught. This value is in contrast to `Exception.cause_location`,
      * which describes the source line where the exception was thrown.
-     * </pre>
      *
-     * <code>.google.devtools.clouderrorreporting.v1beta1.SourceLocation report_location = 3;</code>
+     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.SourceLocation report_location = 3;</code>
      * @return \Google\Cloud\ErrorReporting\V1beta1\SourceLocation
      */
     public function getReportLocation()
@@ -156,16 +138,14 @@ class ErrorContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The location in the source code where the decision was made to
      * report the error, usually the place where it was logged.
      * For a logged exception this would be the source line where the
      * exception is logged, usually close to the place where it was
      * caught. This value is in contrast to `Exception.cause_location`,
      * which describes the source line where the exception was thrown.
-     * </pre>
      *
-     * <code>.google.devtools.clouderrorreporting.v1beta1.SourceLocation report_location = 3;</code>
+     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.SourceLocation report_location = 3;</code>
      * @param \Google\Cloud\ErrorReporting\V1beta1\SourceLocation $var
      */
     public function setReportLocation(&$var)

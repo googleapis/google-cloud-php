@@ -9,42 +9,33 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * The request for [ExecuteSql][google.spanner.v1.Spanner.ExecuteSql] and
  * [ExecuteStreamingSql][google.spanner.v1.Spanner.ExecuteStreamingSql].
- * </pre>
  *
  * Protobuf type <code>Google\Spanner\V1\ExecuteSqlRequest</code>
  */
 class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * Required. The session in which the SQL query should be performed.
-     * </pre>
      *
-     * <code>string session = 1;</code>
+     * Generated from protobuf field <code>string session = 1;</code>
      */
     private $session = '';
     /**
-     * <pre>
      * The transaction to use. If none is provided, the default is a
      * temporary read-only transaction with strong concurrency.
-     * </pre>
      *
-     * <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
      */
     private $transaction = null;
     /**
-     * <pre>
      * Required. The SQL query string.
-     * </pre>
      *
-     * <code>string sql = 3;</code>
+     * Generated from protobuf field <code>string sql = 3;</code>
      */
     private $sql = '';
     /**
-     * <pre>
      * The SQL query string can contain parameter placeholders. A parameter
      * placeholder consists of `'&#64;'` followed by the parameter
      * name. Parameter names consist of any combination of letters,
@@ -56,13 +47,11 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      * Parameter values are specified using `params`, which is a JSON
      * object whose keys are parameter names, and whose values are the
      * corresponding parameter values.
-     * </pre>
      *
-     * <code>.google.protobuf.Struct params = 4;</code>
+     * Generated from protobuf field <code>.google.protobuf.Struct params = 4;</code>
      */
     private $params = null;
     /**
-     * <pre>
      * It is not always possible for Cloud Spanner to infer the right SQL type
      * from a JSON value.  For example, values of type `BYTES` and values
      * of type `STRING` both appear in [params][google.spanner.v1.ExecuteSqlRequest.params] as JSON strings.
@@ -70,31 +59,26 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      * SQL type for some or all of the SQL query parameters. See the
      * definition of [Type][google.spanner.v1.Type] for more information
      * about SQL types.
-     * </pre>
      *
-     * <code>map<string, .google.spanner.v1.Type> param_types = 5;</code>
+     * Generated from protobuf field <code>map<string, .google.spanner.v1.Type> param_types = 5;</code>
      */
     private $param_types;
     /**
-     * <pre>
      * If this request is resuming a previously interrupted SQL query
      * execution, `resume_token` should be copied from the last
      * [PartialResultSet][google.spanner.v1.PartialResultSet] yielded before the interruption. Doing this
      * enables the new SQL query execution to resume where the last one left
      * off. The rest of the request parameters must exactly match the
      * request that yielded this token.
-     * </pre>
      *
-     * <code>bytes resume_token = 6;</code>
+     * Generated from protobuf field <code>bytes resume_token = 6;</code>
      */
     private $resume_token = '';
     /**
-     * <pre>
      * Used to control the amount of debugging information returned in
      * [ResultSetStats][google.spanner.v1.ResultSetStats].
-     * </pre>
      *
-     * <code>.google.spanner.v1.ExecuteSqlRequest.QueryMode query_mode = 7;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.ExecuteSqlRequest.QueryMode query_mode = 7;</code>
      */
     private $query_mode = 0;
 
@@ -104,11 +88,9 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. The session in which the SQL query should be performed.
-     * </pre>
      *
-     * <code>string session = 1;</code>
+     * Generated from protobuf field <code>string session = 1;</code>
      * @return string
      */
     public function getSession()
@@ -117,11 +99,9 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. The session in which the SQL query should be performed.
-     * </pre>
      *
-     * <code>string session = 1;</code>
+     * Generated from protobuf field <code>string session = 1;</code>
      * @param string $var
      */
     public function setSession($var)
@@ -133,12 +113,10 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The transaction to use. If none is provided, the default is a
      * temporary read-only transaction with strong concurrency.
-     * </pre>
      *
-     * <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
      * @return \Google\Cloud\Spanner\V1\TransactionSelector
      */
     public function getTransaction()
@@ -147,12 +125,10 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The transaction to use. If none is provided, the default is a
      * temporary read-only transaction with strong concurrency.
-     * </pre>
      *
-     * <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
      * @param \Google\Cloud\Spanner\V1\TransactionSelector $var
      */
     public function setTransaction(&$var)
@@ -164,11 +140,9 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. The SQL query string.
-     * </pre>
      *
-     * <code>string sql = 3;</code>
+     * Generated from protobuf field <code>string sql = 3;</code>
      * @return string
      */
     public function getSql()
@@ -177,11 +151,9 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. The SQL query string.
-     * </pre>
      *
-     * <code>string sql = 3;</code>
+     * Generated from protobuf field <code>string sql = 3;</code>
      * @param string $var
      */
     public function setSql($var)
@@ -193,7 +165,6 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The SQL query string can contain parameter placeholders. A parameter
      * placeholder consists of `'&#64;'` followed by the parameter
      * name. Parameter names consist of any combination of letters,
@@ -205,9 +176,8 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      * Parameter values are specified using `params`, which is a JSON
      * object whose keys are parameter names, and whose values are the
      * corresponding parameter values.
-     * </pre>
      *
-     * <code>.google.protobuf.Struct params = 4;</code>
+     * Generated from protobuf field <code>.google.protobuf.Struct params = 4;</code>
      * @return \Google\Protobuf\Struct
      */
     public function getParams()
@@ -216,7 +186,6 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The SQL query string can contain parameter placeholders. A parameter
      * placeholder consists of `'&#64;'` followed by the parameter
      * name. Parameter names consist of any combination of letters,
@@ -228,9 +197,8 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      * Parameter values are specified using `params`, which is a JSON
      * object whose keys are parameter names, and whose values are the
      * corresponding parameter values.
-     * </pre>
      *
-     * <code>.google.protobuf.Struct params = 4;</code>
+     * Generated from protobuf field <code>.google.protobuf.Struct params = 4;</code>
      * @param \Google\Protobuf\Struct $var
      */
     public function setParams(&$var)
@@ -242,7 +210,6 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * It is not always possible for Cloud Spanner to infer the right SQL type
      * from a JSON value.  For example, values of type `BYTES` and values
      * of type `STRING` both appear in [params][google.spanner.v1.ExecuteSqlRequest.params] as JSON strings.
@@ -250,9 +217,8 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      * SQL type for some or all of the SQL query parameters. See the
      * definition of [Type][google.spanner.v1.Type] for more information
      * about SQL types.
-     * </pre>
      *
-     * <code>map<string, .google.spanner.v1.Type> param_types = 5;</code>
+     * Generated from protobuf field <code>map<string, .google.spanner.v1.Type> param_types = 5;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getParamTypes()
@@ -261,7 +227,6 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * It is not always possible for Cloud Spanner to infer the right SQL type
      * from a JSON value.  For example, values of type `BYTES` and values
      * of type `STRING` both appear in [params][google.spanner.v1.ExecuteSqlRequest.params] as JSON strings.
@@ -269,9 +234,8 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      * SQL type for some or all of the SQL query parameters. See the
      * definition of [Type][google.spanner.v1.Type] for more information
      * about SQL types.
-     * </pre>
      *
-     * <code>map<string, .google.spanner.v1.Type> param_types = 5;</code>
+     * Generated from protobuf field <code>map<string, .google.spanner.v1.Type> param_types = 5;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setParamTypes(&$var)
@@ -283,16 +247,14 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If this request is resuming a previously interrupted SQL query
      * execution, `resume_token` should be copied from the last
      * [PartialResultSet][google.spanner.v1.PartialResultSet] yielded before the interruption. Doing this
      * enables the new SQL query execution to resume where the last one left
      * off. The rest of the request parameters must exactly match the
      * request that yielded this token.
-     * </pre>
      *
-     * <code>bytes resume_token = 6;</code>
+     * Generated from protobuf field <code>bytes resume_token = 6;</code>
      * @return string
      */
     public function getResumeToken()
@@ -301,16 +263,14 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If this request is resuming a previously interrupted SQL query
      * execution, `resume_token` should be copied from the last
      * [PartialResultSet][google.spanner.v1.PartialResultSet] yielded before the interruption. Doing this
      * enables the new SQL query execution to resume where the last one left
      * off. The rest of the request parameters must exactly match the
      * request that yielded this token.
-     * </pre>
      *
-     * <code>bytes resume_token = 6;</code>
+     * Generated from protobuf field <code>bytes resume_token = 6;</code>
      * @param string $var
      */
     public function setResumeToken($var)
@@ -322,12 +282,10 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Used to control the amount of debugging information returned in
      * [ResultSetStats][google.spanner.v1.ResultSetStats].
-     * </pre>
      *
-     * <code>.google.spanner.v1.ExecuteSqlRequest.QueryMode query_mode = 7;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.ExecuteSqlRequest.QueryMode query_mode = 7;</code>
      * @return int
      */
     public function getQueryMode()
@@ -336,12 +294,10 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Used to control the amount of debugging information returned in
      * [ResultSetStats][google.spanner.v1.ResultSetStats].
-     * </pre>
      *
-     * <code>.google.spanner.v1.ExecuteSqlRequest.QueryMode query_mode = 7;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.ExecuteSqlRequest.QueryMode query_mode = 7;</code>
      * @param int $var
      */
     public function setQueryMode($var)

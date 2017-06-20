@@ -5,53 +5,41 @@
 namespace Google\Cloud\ErrorReporting\V1beta1;
 
 /**
- * <pre>
  * A sorting order of error groups.
- * </pre>
  *
  * Protobuf enum <code>Google\Devtools\Clouderrorreporting\V1beta1\ErrorGroupOrder</code>
  */
 class ErrorGroupOrder
 {
     /**
-     * <pre>
      * No group order specified.
-     * </pre>
      *
-     * <code>GROUP_ORDER_UNSPECIFIED = 0;</code>
+     * Generated from protobuf enum <code>GROUP_ORDER_UNSPECIFIED = 0;</code>
      */
     const GROUP_ORDER_UNSPECIFIED = 0;
     /**
-     * <pre>
      * Total count of errors in the given time window in descending order.
-     * </pre>
      *
-     * <code>COUNT_DESC = 1;</code>
+     * Generated from protobuf enum <code>COUNT_DESC = 1;</code>
      */
     const COUNT_DESC = 1;
     /**
-     * <pre>
      * Timestamp when the group was last seen in the given time window
      * in descending order.
-     * </pre>
      *
-     * <code>LAST_SEEN_DESC = 2;</code>
+     * Generated from protobuf enum <code>LAST_SEEN_DESC = 2;</code>
      */
     const LAST_SEEN_DESC = 2;
     /**
-     * <pre>
      * Timestamp when the group was created in descending order.
-     * </pre>
      *
-     * <code>CREATED_DESC = 3;</code>
+     * Generated from protobuf enum <code>CREATED_DESC = 3;</code>
      */
     const CREATED_DESC = 3;
     /**
-     * <pre>
      * Number of affected users in the given time window in descending order.
-     * </pre>
      *
-     * <code>AFFECTED_USERS_DESC = 4;</code>
+     * Generated from protobuf enum <code>AFFECTED_USERS_DESC = 4;</code>
      */
     const AFFECTED_USERS_DESC = 4;
 }

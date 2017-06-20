@@ -9,20 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Request for the `Seek` method.
- * </pre>
  *
  * Protobuf type <code>Google\Pubsub\V1\SeekRequest</code>
  */
 class SeekRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The subscription to affect.
-     * </pre>
      *
-     * <code>string subscription = 1;</code>
+     * Generated from protobuf field <code>string subscription = 1;</code>
      */
     private $subscription = '';
     protected $target;
@@ -33,11 +29,9 @@ class SeekRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The subscription to affect.
-     * </pre>
      *
-     * <code>string subscription = 1;</code>
+     * Generated from protobuf field <code>string subscription = 1;</code>
      * @return string
      */
     public function getSubscription()
@@ -46,11 +40,9 @@ class SeekRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The subscription to affect.
-     * </pre>
      *
-     * <code>string subscription = 1;</code>
+     * Generated from protobuf field <code>string subscription = 1;</code>
      * @param string $var
      */
     public function setSubscription($var)
@@ -62,7 +54,6 @@ class SeekRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The time to seek to.
      * Messages retained in the subscription that were published before this
      * time are marked as acknowledged, and messages retained in the
@@ -74,9 +65,8 @@ class SeekRequest extends \Google\Protobuf\Internal\Message
      * window (or to a point before the system's notion of the subscription
      * creation time), only retained messages will be marked as unacknowledged,
      * and already-expunged messages will not be restored.
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp time = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp time = 2;</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getTime()
@@ -85,7 +75,6 @@ class SeekRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The time to seek to.
      * Messages retained in the subscription that were published before this
      * time are marked as acknowledged, and messages retained in the
@@ -97,9 +86,8 @@ class SeekRequest extends \Google\Protobuf\Internal\Message
      * window (or to a point before the system's notion of the subscription
      * creation time), only retained messages will be marked as unacknowledged,
      * and already-expunged messages will not be restored.
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp time = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp time = 2;</code>
      * @param \Google\Protobuf\Timestamp $var
      */
     public function setTime(&$var)
@@ -111,13 +99,11 @@ class SeekRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The snapshot to seek to. The snapshot's topic must be the same as that of
      * the provided subscription.
      * Format is `projects/{project}/snapshots/{snap}`.
-     * </pre>
      *
-     * <code>string snapshot = 3;</code>
+     * Generated from protobuf field <code>string snapshot = 3;</code>
      * @return string
      */
     public function getSnapshot()
@@ -126,13 +112,11 @@ class SeekRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The snapshot to seek to. The snapshot's topic must be the same as that of
      * the provided subscription.
      * Format is `projects/{project}/snapshots/{snap}`.
-     * </pre>
      *
-     * <code>string snapshot = 3;</code>
+     * Generated from protobuf field <code>string snapshot = 3;</code>
      * @param string $var
      */
     public function setSnapshot($var)

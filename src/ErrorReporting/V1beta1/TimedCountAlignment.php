@@ -5,24 +5,19 @@
 namespace Google\Cloud\ErrorReporting\V1beta1;
 
 /**
- * <pre>
  * Specifies how the time periods of error group counts are aligned.
- * </pre>
  *
  * Protobuf enum <code>Google\Devtools\Clouderrorreporting\V1beta1\TimedCountAlignment</code>
  */
 class TimedCountAlignment
 {
     /**
-     * <pre>
      * No alignment specified.
-     * </pre>
      *
-     * <code>ERROR_COUNT_ALIGNMENT_UNSPECIFIED = 0;</code>
+     * Generated from protobuf enum <code>ERROR_COUNT_ALIGNMENT_UNSPECIFIED = 0;</code>
      */
     const ERROR_COUNT_ALIGNMENT_UNSPECIFIED = 0;
     /**
-     * <pre>
      * The time periods shall be consecutive, have width equal to the
      * requested duration, and be aligned at the `alignment_time` provided in
      * the request.
@@ -31,20 +26,17 @@ class TimedCountAlignment
      * with the query period.
      * A rounded alignment will typically result in a
      * different size of the first or the last time period.
-     * </pre>
      *
-     * <code>ALIGNMENT_EQUAL_ROUNDED = 1;</code>
+     * Generated from protobuf enum <code>ALIGNMENT_EQUAL_ROUNDED = 1;</code>
      */
     const ALIGNMENT_EQUAL_ROUNDED = 1;
     /**
-     * <pre>
      * The time periods shall be consecutive, have width equal to the
      * requested duration, and be aligned at the end of the requested time
      * period. This can result in a different size of the
      * first time period.
-     * </pre>
      *
-     * <code>ALIGNMENT_EQUAL_AT_END = 2;</code>
+     * Generated from protobuf enum <code>ALIGNMENT_EQUAL_AT_END = 2;</code>
      */
     const ALIGNMENT_EQUAL_AT_END = 2;
 }

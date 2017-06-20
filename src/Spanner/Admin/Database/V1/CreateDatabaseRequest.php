@@ -9,42 +9,34 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * The request for [CreateDatabase][google.spanner.admin.database.v1.DatabaseAdmin.CreateDatabase].
- * </pre>
  *
  * Protobuf type <code>Google\Spanner\Admin\Database\V1\CreateDatabaseRequest</code>
  */
 class CreateDatabaseRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * Required. The name of the instance that will serve the new database.
      * Values are of the form `projects/<project>/instances/<instance>`.
-     * </pre>
      *
-     * <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1;</code>
      */
     private $parent = '';
     /**
-     * <pre>
      * Required. A `CREATE DATABASE` statement, which specifies the ID of the
      * new database.  The database ID must conform to the regular expression
      * `[a-z][a-z0-9_\-]*[a-z0-9]` and be between 2 and 30 characters in length.
-     * </pre>
      *
-     * <code>string create_statement = 2;</code>
+     * Generated from protobuf field <code>string create_statement = 2;</code>
      */
     private $create_statement = '';
     /**
-     * <pre>
      * An optional list of DDL statements to run inside the newly created
      * database. Statements can create tables, indexes, etc. These
      * statements execute atomically with the creation of the database:
      * if there is an error in any statement, the database is not created.
-     * </pre>
      *
-     * <code>repeated string extra_statements = 3;</code>
+     * Generated from protobuf field <code>repeated string extra_statements = 3;</code>
      */
     private $extra_statements;
 
@@ -54,12 +46,10 @@ class CreateDatabaseRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. The name of the instance that will serve the new database.
      * Values are of the form `projects/<project>/instances/<instance>`.
-     * </pre>
      *
-     * <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1;</code>
      * @return string
      */
     public function getParent()
@@ -68,12 +58,10 @@ class CreateDatabaseRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. The name of the instance that will serve the new database.
      * Values are of the form `projects/<project>/instances/<instance>`.
-     * </pre>
      *
-     * <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1;</code>
      * @param string $var
      */
     public function setParent($var)
@@ -85,13 +73,11 @@ class CreateDatabaseRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. A `CREATE DATABASE` statement, which specifies the ID of the
      * new database.  The database ID must conform to the regular expression
      * `[a-z][a-z0-9_\-]*[a-z0-9]` and be between 2 and 30 characters in length.
-     * </pre>
      *
-     * <code>string create_statement = 2;</code>
+     * Generated from protobuf field <code>string create_statement = 2;</code>
      * @return string
      */
     public function getCreateStatement()
@@ -100,13 +86,11 @@ class CreateDatabaseRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. A `CREATE DATABASE` statement, which specifies the ID of the
      * new database.  The database ID must conform to the regular expression
      * `[a-z][a-z0-9_\-]*[a-z0-9]` and be between 2 and 30 characters in length.
-     * </pre>
      *
-     * <code>string create_statement = 2;</code>
+     * Generated from protobuf field <code>string create_statement = 2;</code>
      * @param string $var
      */
     public function setCreateStatement($var)
@@ -118,14 +102,12 @@ class CreateDatabaseRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * An optional list of DDL statements to run inside the newly created
      * database. Statements can create tables, indexes, etc. These
      * statements execute atomically with the creation of the database:
      * if there is an error in any statement, the database is not created.
-     * </pre>
      *
-     * <code>repeated string extra_statements = 3;</code>
+     * Generated from protobuf field <code>repeated string extra_statements = 3;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getExtraStatements()
@@ -134,14 +116,12 @@ class CreateDatabaseRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * An optional list of DDL statements to run inside the newly created
      * database. Statements can create tables, indexes, etc. These
      * statements execute atomically with the creation of the database:
      * if there is an error in any statement, the database is not created.
-     * </pre>
      *
-     * <code>repeated string extra_statements = 3;</code>
+     * Generated from protobuf field <code>repeated string extra_statements = 3;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setExtraStatements(&$var)

@@ -9,72 +9,58 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Represents a phrase in the text that is a known entity, such as
  * a person, an organization, or location. The API associates information, such
  * as salience and mentions, with entities.
- * </pre>
  *
  * Protobuf type <code>Google\Cloud\Language\V1beta2\Entity</code>
  */
 class Entity extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The representative name for the entity.
-     * </pre>
      *
-     * <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      */
     private $name = '';
     /**
-     * <pre>
      * The entity type.
-     * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.Entity.Type type = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.Entity.Type type = 2;</code>
      */
     private $type = 0;
     /**
-     * <pre>
      * Metadata associated with the entity.
      * Currently, Wikipedia URLs and Knowledge Graph MIDs are provided, if
      * available. The associated keys are "wikipedia_url" and "mid", respectively.
-     * </pre>
      *
-     * <code>map<string, string> metadata = 3;</code>
+     * Generated from protobuf field <code>map<string, string> metadata = 3;</code>
      */
     private $metadata;
     /**
-     * <pre>
      * The salience score associated with the entity in the [0, 1.0] range.
      * The salience score for an entity provides information about the
      * importance or centrality of that entity to the entire document text.
      * Scores closer to 0 are less salient, while scores closer to 1.0 are highly
      * salient.
-     * </pre>
      *
-     * <code>float salience = 4;</code>
+     * Generated from protobuf field <code>float salience = 4;</code>
      */
     private $salience = 0.0;
     /**
-     * <pre>
      * The mentions of this entity in the input document. The API currently
      * supports proper noun mentions.
-     * </pre>
      *
-     * <code>repeated .google.cloud.language.v1beta2.EntityMention mentions = 5;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.language.v1beta2.EntityMention mentions = 5;</code>
      */
     private $mentions;
     /**
-     * <pre>
      * For calls to [AnalyzeEntitySentiment][] or if
      * [AnnotateTextRequest.Features.extract_entity_sentiment][google.cloud.language.v1beta2.AnnotateTextRequest.Features.extract_entity_sentiment] is set to
      * true, this field will contain the aggregate sentiment expressed for this
      * entity in the provided document.
-     * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.Sentiment sentiment = 6;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.Sentiment sentiment = 6;</code>
      */
     private $sentiment = null;
 
@@ -84,11 +70,9 @@ class Entity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The representative name for the entity.
-     * </pre>
      *
-     * <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      * @return string
      */
     public function getName()
@@ -97,11 +81,9 @@ class Entity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The representative name for the entity.
-     * </pre>
      *
-     * <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
      */
     public function setName($var)
@@ -113,11 +95,9 @@ class Entity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The entity type.
-     * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.Entity.Type type = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.Entity.Type type = 2;</code>
      * @return int
      */
     public function getType()
@@ -126,11 +106,9 @@ class Entity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The entity type.
-     * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.Entity.Type type = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.Entity.Type type = 2;</code>
      * @param int $var
      */
     public function setType($var)
@@ -142,13 +120,11 @@ class Entity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Metadata associated with the entity.
      * Currently, Wikipedia URLs and Knowledge Graph MIDs are provided, if
      * available. The associated keys are "wikipedia_url" and "mid", respectively.
-     * </pre>
      *
-     * <code>map<string, string> metadata = 3;</code>
+     * Generated from protobuf field <code>map<string, string> metadata = 3;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getMetadata()
@@ -157,13 +133,11 @@ class Entity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Metadata associated with the entity.
      * Currently, Wikipedia URLs and Knowledge Graph MIDs are provided, if
      * available. The associated keys are "wikipedia_url" and "mid", respectively.
-     * </pre>
      *
-     * <code>map<string, string> metadata = 3;</code>
+     * Generated from protobuf field <code>map<string, string> metadata = 3;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setMetadata(&$var)
@@ -175,15 +149,13 @@ class Entity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The salience score associated with the entity in the [0, 1.0] range.
      * The salience score for an entity provides information about the
      * importance or centrality of that entity to the entire document text.
      * Scores closer to 0 are less salient, while scores closer to 1.0 are highly
      * salient.
-     * </pre>
      *
-     * <code>float salience = 4;</code>
+     * Generated from protobuf field <code>float salience = 4;</code>
      * @return float
      */
     public function getSalience()
@@ -192,15 +164,13 @@ class Entity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The salience score associated with the entity in the [0, 1.0] range.
      * The salience score for an entity provides information about the
      * importance or centrality of that entity to the entire document text.
      * Scores closer to 0 are less salient, while scores closer to 1.0 are highly
      * salient.
-     * </pre>
      *
-     * <code>float salience = 4;</code>
+     * Generated from protobuf field <code>float salience = 4;</code>
      * @param float $var
      */
     public function setSalience($var)
@@ -212,12 +182,10 @@ class Entity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The mentions of this entity in the input document. The API currently
      * supports proper noun mentions.
-     * </pre>
      *
-     * <code>repeated .google.cloud.language.v1beta2.EntityMention mentions = 5;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.language.v1beta2.EntityMention mentions = 5;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getMentions()
@@ -226,12 +194,10 @@ class Entity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The mentions of this entity in the input document. The API currently
      * supports proper noun mentions.
-     * </pre>
      *
-     * <code>repeated .google.cloud.language.v1beta2.EntityMention mentions = 5;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.language.v1beta2.EntityMention mentions = 5;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setMentions(&$var)
@@ -243,14 +209,12 @@ class Entity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * For calls to [AnalyzeEntitySentiment][] or if
      * [AnnotateTextRequest.Features.extract_entity_sentiment][google.cloud.language.v1beta2.AnnotateTextRequest.Features.extract_entity_sentiment] is set to
      * true, this field will contain the aggregate sentiment expressed for this
      * entity in the provided document.
-     * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.Sentiment sentiment = 6;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.Sentiment sentiment = 6;</code>
      * @return \Google\Cloud\Language\V1beta2\Sentiment
      */
     public function getSentiment()
@@ -259,14 +223,12 @@ class Entity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * For calls to [AnalyzeEntitySentiment][] or if
      * [AnnotateTextRequest.Features.extract_entity_sentiment][google.cloud.language.v1beta2.AnnotateTextRequest.Features.extract_entity_sentiment] is set to
      * true, this field will contain the aggregate sentiment expressed for this
      * entity in the provided document.
-     * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.Sentiment sentiment = 6;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.Sentiment sentiment = 6;</code>
      * @param \Google\Cloud\Language\V1beta2\Sentiment $var
      */
     public function setSentiment(&$var)

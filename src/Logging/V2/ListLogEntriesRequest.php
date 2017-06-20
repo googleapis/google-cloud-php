@@ -9,28 +9,23 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * The parameters to `ListLogEntries`.
- * </pre>
  *
  * Protobuf type <code>Google\Logging\V2\ListLogEntriesRequest</code>
  */
 class ListLogEntriesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * Deprecated. Use `resource_names` instead.  One or more project identifiers
      * or project numbers from which to retrieve log entries.  Example:
      * `"my-project-1A"`. If present, these project identifiers are converted to
      * resource name format and added to the list of resources in
      * `resource_names`.
-     * </pre>
      *
-     * <code>repeated string project_ids = 1;</code>
+     * Generated from protobuf field <code>repeated string project_ids = 1;</code>
      */
     private $project_ids;
     /**
-     * <pre>
      * Required. Names of one or more parent resources from which to
      * retrieve log entries:
      *     "projects/[PROJECT_ID]"
@@ -38,13 +33,11 @@ class ListLogEntriesRequest extends \Google\Protobuf\Internal\Message
      *     "billingAccounts/[BILLING_ACCOUNT_ID]"
      *     "folders/[FOLDER_ID]"
      * Projects listed in the `project_ids` field are added to this list.
-     * </pre>
      *
-     * <code>repeated string resource_names = 8;</code>
+     * Generated from protobuf field <code>repeated string resource_names = 8;</code>
      */
     private $resource_names;
     /**
-     * <pre>
      * Optional. A filter that chooses which log entries to return.  See [Advanced
      * Logs Filters](/logging/docs/view/advanced_filters).  Only log entries that
      * match the filter are returned.  An empty filter matches all log entries in
@@ -52,43 +45,36 @@ class ListLogEntriesRequest extends \Google\Protobuf\Internal\Message
      * that is not listed in `resource_names` will cause the filter to return no
      * results.
      * The maximum length of the filter is 20000 characters.
-     * </pre>
      *
-     * <code>string filter = 2;</code>
+     * Generated from protobuf field <code>string filter = 2;</code>
      */
     private $filter = '';
     /**
-     * <pre>
      * Optional. How the results should be sorted.  Presently, the only permitted
      * values are `"timestamp asc"` (default) and `"timestamp desc"`. The first
      * option returns entries in order of increasing values of
      * `LogEntry.timestamp` (oldest first), and the second option returns entries
      * in order of decreasing timestamps (newest first).  Entries with equal
      * timestamps are returned in order of their `insert_id` values.
-     * </pre>
      *
-     * <code>string order_by = 3;</code>
+     * Generated from protobuf field <code>string order_by = 3;</code>
      */
     private $order_by = '';
     /**
-     * <pre>
      * Optional. The maximum number of results to return from this request.
      * Non-positive values are ignored.  The presence of `next_page_token` in the
      * response indicates that more results might be available.
-     * </pre>
      *
-     * <code>int32 page_size = 4;</code>
+     * Generated from protobuf field <code>int32 page_size = 4;</code>
      */
     private $page_size = 0;
     /**
-     * <pre>
      * Optional. If present, then retrieve the next batch of results from the
      * preceding call to this method.  `page_token` must be the value of
      * `next_page_token` from the previous response.  The values of other method
      * parameters should be identical to those in the previous call.
-     * </pre>
      *
-     * <code>string page_token = 5;</code>
+     * Generated from protobuf field <code>string page_token = 5;</code>
      */
     private $page_token = '';
 
@@ -98,15 +84,13 @@ class ListLogEntriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Deprecated. Use `resource_names` instead.  One or more project identifiers
      * or project numbers from which to retrieve log entries.  Example:
      * `"my-project-1A"`. If present, these project identifiers are converted to
      * resource name format and added to the list of resources in
      * `resource_names`.
-     * </pre>
      *
-     * <code>repeated string project_ids = 1;</code>
+     * Generated from protobuf field <code>repeated string project_ids = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getProjectIds()
@@ -115,15 +99,13 @@ class ListLogEntriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Deprecated. Use `resource_names` instead.  One or more project identifiers
      * or project numbers from which to retrieve log entries.  Example:
      * `"my-project-1A"`. If present, these project identifiers are converted to
      * resource name format and added to the list of resources in
      * `resource_names`.
-     * </pre>
      *
-     * <code>repeated string project_ids = 1;</code>
+     * Generated from protobuf field <code>repeated string project_ids = 1;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setProjectIds(&$var)
@@ -135,7 +117,6 @@ class ListLogEntriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. Names of one or more parent resources from which to
      * retrieve log entries:
      *     "projects/[PROJECT_ID]"
@@ -143,9 +124,8 @@ class ListLogEntriesRequest extends \Google\Protobuf\Internal\Message
      *     "billingAccounts/[BILLING_ACCOUNT_ID]"
      *     "folders/[FOLDER_ID]"
      * Projects listed in the `project_ids` field are added to this list.
-     * </pre>
      *
-     * <code>repeated string resource_names = 8;</code>
+     * Generated from protobuf field <code>repeated string resource_names = 8;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getResourceNames()
@@ -154,7 +134,6 @@ class ListLogEntriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. Names of one or more parent resources from which to
      * retrieve log entries:
      *     "projects/[PROJECT_ID]"
@@ -162,9 +141,8 @@ class ListLogEntriesRequest extends \Google\Protobuf\Internal\Message
      *     "billingAccounts/[BILLING_ACCOUNT_ID]"
      *     "folders/[FOLDER_ID]"
      * Projects listed in the `project_ids` field are added to this list.
-     * </pre>
      *
-     * <code>repeated string resource_names = 8;</code>
+     * Generated from protobuf field <code>repeated string resource_names = 8;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setResourceNames(&$var)
@@ -176,7 +154,6 @@ class ListLogEntriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Optional. A filter that chooses which log entries to return.  See [Advanced
      * Logs Filters](/logging/docs/view/advanced_filters).  Only log entries that
      * match the filter are returned.  An empty filter matches all log entries in
@@ -184,9 +161,8 @@ class ListLogEntriesRequest extends \Google\Protobuf\Internal\Message
      * that is not listed in `resource_names` will cause the filter to return no
      * results.
      * The maximum length of the filter is 20000 characters.
-     * </pre>
      *
-     * <code>string filter = 2;</code>
+     * Generated from protobuf field <code>string filter = 2;</code>
      * @return string
      */
     public function getFilter()
@@ -195,7 +171,6 @@ class ListLogEntriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Optional. A filter that chooses which log entries to return.  See [Advanced
      * Logs Filters](/logging/docs/view/advanced_filters).  Only log entries that
      * match the filter are returned.  An empty filter matches all log entries in
@@ -203,9 +178,8 @@ class ListLogEntriesRequest extends \Google\Protobuf\Internal\Message
      * that is not listed in `resource_names` will cause the filter to return no
      * results.
      * The maximum length of the filter is 20000 characters.
-     * </pre>
      *
-     * <code>string filter = 2;</code>
+     * Generated from protobuf field <code>string filter = 2;</code>
      * @param string $var
      */
     public function setFilter($var)
@@ -217,16 +191,14 @@ class ListLogEntriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Optional. How the results should be sorted.  Presently, the only permitted
      * values are `"timestamp asc"` (default) and `"timestamp desc"`. The first
      * option returns entries in order of increasing values of
      * `LogEntry.timestamp` (oldest first), and the second option returns entries
      * in order of decreasing timestamps (newest first).  Entries with equal
      * timestamps are returned in order of their `insert_id` values.
-     * </pre>
      *
-     * <code>string order_by = 3;</code>
+     * Generated from protobuf field <code>string order_by = 3;</code>
      * @return string
      */
     public function getOrderBy()
@@ -235,16 +207,14 @@ class ListLogEntriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Optional. How the results should be sorted.  Presently, the only permitted
      * values are `"timestamp asc"` (default) and `"timestamp desc"`. The first
      * option returns entries in order of increasing values of
      * `LogEntry.timestamp` (oldest first), and the second option returns entries
      * in order of decreasing timestamps (newest first).  Entries with equal
      * timestamps are returned in order of their `insert_id` values.
-     * </pre>
      *
-     * <code>string order_by = 3;</code>
+     * Generated from protobuf field <code>string order_by = 3;</code>
      * @param string $var
      */
     public function setOrderBy($var)
@@ -256,13 +226,11 @@ class ListLogEntriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Optional. The maximum number of results to return from this request.
      * Non-positive values are ignored.  The presence of `next_page_token` in the
      * response indicates that more results might be available.
-     * </pre>
      *
-     * <code>int32 page_size = 4;</code>
+     * Generated from protobuf field <code>int32 page_size = 4;</code>
      * @return int
      */
     public function getPageSize()
@@ -271,13 +239,11 @@ class ListLogEntriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Optional. The maximum number of results to return from this request.
      * Non-positive values are ignored.  The presence of `next_page_token` in the
      * response indicates that more results might be available.
-     * </pre>
      *
-     * <code>int32 page_size = 4;</code>
+     * Generated from protobuf field <code>int32 page_size = 4;</code>
      * @param int $var
      */
     public function setPageSize($var)
@@ -289,14 +255,12 @@ class ListLogEntriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Optional. If present, then retrieve the next batch of results from the
      * preceding call to this method.  `page_token` must be the value of
      * `next_page_token` from the previous response.  The values of other method
      * parameters should be identical to those in the previous call.
-     * </pre>
      *
-     * <code>string page_token = 5;</code>
+     * Generated from protobuf field <code>string page_token = 5;</code>
      * @return string
      */
     public function getPageToken()
@@ -305,14 +269,12 @@ class ListLogEntriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Optional. If present, then retrieve the next batch of results from the
      * preceding call to this method.  `page_token` must be the value of
      * `next_page_token` from the previous response.  The values of other method
      * parameters should be identical to those in the previous call.
-     * </pre>
      *
-     * <code>string page_token = 5;</code>
+     * Generated from protobuf field <code>string page_token = 5;</code>
      * @param string $var
      */
     public function setPageToken($var)

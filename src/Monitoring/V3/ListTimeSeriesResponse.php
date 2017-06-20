@@ -9,30 +9,24 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * The `ListTimeSeries` response.
- * </pre>
  *
  * Protobuf type <code>Google\Monitoring\V3\ListTimeSeriesResponse</code>
  */
 class ListTimeSeriesResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * One or more time series that match the filter included in the request.
-     * </pre>
      *
-     * <code>repeated .google.monitoring.v3.TimeSeries time_series = 1;</code>
+     * Generated from protobuf field <code>repeated .google.monitoring.v3.TimeSeries time_series = 1;</code>
      */
     private $time_series;
     /**
-     * <pre>
      * If there are more results than have been returned, then this field is set
      * to a non-empty value.  To see the additional results,
      * use that value as `pageToken` in the next call to this method.
-     * </pre>
      *
-     * <code>string next_page_token = 2;</code>
+     * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
     private $next_page_token = '';
 
@@ -42,11 +36,9 @@ class ListTimeSeriesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * One or more time series that match the filter included in the request.
-     * </pre>
      *
-     * <code>repeated .google.monitoring.v3.TimeSeries time_series = 1;</code>
+     * Generated from protobuf field <code>repeated .google.monitoring.v3.TimeSeries time_series = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getTimeSeries()
@@ -55,11 +47,9 @@ class ListTimeSeriesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * One or more time series that match the filter included in the request.
-     * </pre>
      *
-     * <code>repeated .google.monitoring.v3.TimeSeries time_series = 1;</code>
+     * Generated from protobuf field <code>repeated .google.monitoring.v3.TimeSeries time_series = 1;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setTimeSeries(&$var)
@@ -71,13 +61,11 @@ class ListTimeSeriesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If there are more results than have been returned, then this field is set
      * to a non-empty value.  To see the additional results,
      * use that value as `pageToken` in the next call to this method.
-     * </pre>
      *
-     * <code>string next_page_token = 2;</code>
+     * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @return string
      */
     public function getNextPageToken()
@@ -86,13 +74,11 @@ class ListTimeSeriesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If there are more results than have been returned, then this field is set
      * to a non-empty value.  To see the additional results,
      * use that value as `pageToken` in the next call to this method.
-     * </pre>
      *
-     * <code>string next_page_token = 2;</code>
+     * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @param string $var
      */
     public function setNextPageToken($var)

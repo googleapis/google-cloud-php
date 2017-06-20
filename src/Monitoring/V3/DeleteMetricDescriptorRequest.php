@@ -9,23 +9,19 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * The `DeleteMetricDescriptor` request.
- * </pre>
  *
  * Protobuf type <code>Google\Monitoring\V3\DeleteMetricDescriptorRequest</code>
  */
 class DeleteMetricDescriptorRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The metric descriptor on which to execute the request. The format is
      * `"projects/{project_id_or_number}/metricDescriptors/{metric_id}"`.
      * An example of `{metric_id}` is:
      * `"custom.googleapis.com/my_test_metric"`.
-     * </pre>
      *
-     * <code>string name = 3;</code>
+     * Generated from protobuf field <code>string name = 3;</code>
      */
     private $name = '';
 
@@ -35,14 +31,12 @@ class DeleteMetricDescriptorRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The metric descriptor on which to execute the request. The format is
      * `"projects/{project_id_or_number}/metricDescriptors/{metric_id}"`.
      * An example of `{metric_id}` is:
      * `"custom.googleapis.com/my_test_metric"`.
-     * </pre>
      *
-     * <code>string name = 3;</code>
+     * Generated from protobuf field <code>string name = 3;</code>
      * @return string
      */
     public function getName()
@@ -51,14 +45,12 @@ class DeleteMetricDescriptorRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The metric descriptor on which to execute the request. The format is
      * `"projects/{project_id_or_number}/metricDescriptors/{metric_id}"`.
      * An example of `{metric_id}` is:
      * `"custom.googleapis.com/my_test_metric"`.
-     * </pre>
      *
-     * <code>string name = 3;</code>
+     * Generated from protobuf field <code>string name = 3;</code>
      * @param string $var
      */
     public function setName($var)

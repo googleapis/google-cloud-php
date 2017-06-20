@@ -9,39 +9,31 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Request for the `ListTopicSubscriptions` method.
- * </pre>
  *
  * Protobuf type <code>Google\Pubsub\V1\ListTopicSubscriptionsRequest</code>
  */
 class ListTopicSubscriptionsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The name of the topic that subscriptions are attached to.
      * Format is `projects/{project}/topics/{topic}`.
-     * </pre>
      *
-     * <code>string topic = 1;</code>
+     * Generated from protobuf field <code>string topic = 1;</code>
      */
     private $topic = '';
     /**
-     * <pre>
      * Maximum number of subscription names to return.
-     * </pre>
      *
-     * <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
     private $page_size = 0;
     /**
-     * <pre>
      * The value returned by the last `ListTopicSubscriptionsResponse`; indicates
      * that this is a continuation of a prior `ListTopicSubscriptions` call, and
      * that the system should return the next page of data.
-     * </pre>
      *
-     * <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3;</code>
      */
     private $page_token = '';
 
@@ -51,12 +43,10 @@ class ListTopicSubscriptionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The name of the topic that subscriptions are attached to.
      * Format is `projects/{project}/topics/{topic}`.
-     * </pre>
      *
-     * <code>string topic = 1;</code>
+     * Generated from protobuf field <code>string topic = 1;</code>
      * @return string
      */
     public function getTopic()
@@ -65,12 +55,10 @@ class ListTopicSubscriptionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The name of the topic that subscriptions are attached to.
      * Format is `projects/{project}/topics/{topic}`.
-     * </pre>
      *
-     * <code>string topic = 1;</code>
+     * Generated from protobuf field <code>string topic = 1;</code>
      * @param string $var
      */
     public function setTopic($var)
@@ -82,11 +70,9 @@ class ListTopicSubscriptionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Maximum number of subscription names to return.
-     * </pre>
      *
-     * <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2;</code>
      * @return int
      */
     public function getPageSize()
@@ -95,11 +81,9 @@ class ListTopicSubscriptionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Maximum number of subscription names to return.
-     * </pre>
      *
-     * <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2;</code>
      * @param int $var
      */
     public function setPageSize($var)
@@ -111,13 +95,11 @@ class ListTopicSubscriptionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The value returned by the last `ListTopicSubscriptionsResponse`; indicates
      * that this is a continuation of a prior `ListTopicSubscriptions` call, and
      * that the system should return the next page of data.
-     * </pre>
      *
-     * <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3;</code>
      * @return string
      */
     public function getPageToken()
@@ -126,13 +108,11 @@ class ListTopicSubscriptionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The value returned by the last `ListTopicSubscriptionsResponse`; indicates
      * that this is a continuation of a prior `ListTopicSubscriptions` call, and
      * that the system should return the next page of data.
-     * </pre>
      *
-     * <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3;</code>
      * @param string $var
      */
     public function setPageToken($var)

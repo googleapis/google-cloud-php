@@ -9,21 +9,17 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * The response for [GetDatabaseDdl][google.spanner.admin.database.v1.DatabaseAdmin.GetDatabaseDdl].
- * </pre>
  *
  * Protobuf type <code>Google\Spanner\Admin\Database\V1\GetDatabaseDdlResponse</code>
  */
 class GetDatabaseDdlResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * A list of formatted DDL statements defining the schema of the database
      * specified in the request.
-     * </pre>
      *
-     * <code>repeated string statements = 1;</code>
+     * Generated from protobuf field <code>repeated string statements = 1;</code>
      */
     private $statements;
 
@@ -33,12 +29,10 @@ class GetDatabaseDdlResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * A list of formatted DDL statements defining the schema of the database
      * specified in the request.
-     * </pre>
      *
-     * <code>repeated string statements = 1;</code>
+     * Generated from protobuf field <code>repeated string statements = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getStatements()
@@ -47,12 +41,10 @@ class GetDatabaseDdlResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * A list of formatted DDL statements defining the schema of the database
      * specified in the request.
-     * </pre>
      *
-     * <code>repeated string statements = 1;</code>
+     * Generated from protobuf field <code>repeated string statements = 1;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setStatements(&$var)

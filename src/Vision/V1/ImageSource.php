@@ -9,29 +9,24 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * External image source (Google Cloud Storage image location).
- * </pre>
  *
  * Protobuf type <code>Google\Cloud\Vision\V1\ImageSource</code>
  */
 class ImageSource extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * NOTE: For new code `image_uri` below is preferred.
      * Google Cloud Storage image URI, which must be in the following form:
      * `gs://bucket_name/object_name` (for details, see
      * [Google Cloud Storage Request
      * URIs](https://cloud.google.com/storage/docs/reference-uris)).
      * NOTE: Cloud Storage object versioning is not supported.
-     * </pre>
      *
-     * <code>string gcs_image_uri = 1;</code>
+     * Generated from protobuf field <code>string gcs_image_uri = 1;</code>
      */
     private $gcs_image_uri = '';
     /**
-     * <pre>
      * Image URI which supports:
      * 1) Google Cloud Storage image URI, which must be in the following form:
      * `gs://bucket_name/object_name` (for details, see
@@ -42,9 +37,8 @@ class ImageSource extends \Google\Protobuf\Internal\Message
      * This is preferred over the legacy `gcs_image_uri` above. When both
      * `gcs_image_uri` and `image_uri` are specified, `image_uri` takes
      * precedence.
-     * </pre>
      *
-     * <code>string image_uri = 2;</code>
+     * Generated from protobuf field <code>string image_uri = 2;</code>
      */
     private $image_uri = '';
 
@@ -54,16 +48,14 @@ class ImageSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * NOTE: For new code `image_uri` below is preferred.
      * Google Cloud Storage image URI, which must be in the following form:
      * `gs://bucket_name/object_name` (for details, see
      * [Google Cloud Storage Request
      * URIs](https://cloud.google.com/storage/docs/reference-uris)).
      * NOTE: Cloud Storage object versioning is not supported.
-     * </pre>
      *
-     * <code>string gcs_image_uri = 1;</code>
+     * Generated from protobuf field <code>string gcs_image_uri = 1;</code>
      * @return string
      */
     public function getGcsImageUri()
@@ -72,16 +64,14 @@ class ImageSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * NOTE: For new code `image_uri` below is preferred.
      * Google Cloud Storage image URI, which must be in the following form:
      * `gs://bucket_name/object_name` (for details, see
      * [Google Cloud Storage Request
      * URIs](https://cloud.google.com/storage/docs/reference-uris)).
      * NOTE: Cloud Storage object versioning is not supported.
-     * </pre>
      *
-     * <code>string gcs_image_uri = 1;</code>
+     * Generated from protobuf field <code>string gcs_image_uri = 1;</code>
      * @param string $var
      */
     public function setGcsImageUri($var)
@@ -93,7 +83,6 @@ class ImageSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Image URI which supports:
      * 1) Google Cloud Storage image URI, which must be in the following form:
      * `gs://bucket_name/object_name` (for details, see
@@ -104,9 +93,8 @@ class ImageSource extends \Google\Protobuf\Internal\Message
      * This is preferred over the legacy `gcs_image_uri` above. When both
      * `gcs_image_uri` and `image_uri` are specified, `image_uri` takes
      * precedence.
-     * </pre>
      *
-     * <code>string image_uri = 2;</code>
+     * Generated from protobuf field <code>string image_uri = 2;</code>
      * @return string
      */
     public function getImageUri()
@@ -115,7 +103,6 @@ class ImageSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Image URI which supports:
      * 1) Google Cloud Storage image URI, which must be in the following form:
      * `gs://bucket_name/object_name` (for details, see
@@ -126,9 +113,8 @@ class ImageSource extends \Google\Protobuf\Internal\Message
      * This is preferred over the legacy `gcs_image_uri` above. When both
      * `gcs_image_uri` and `image_uri` are specified, `image_uri` takes
      * precedence.
-     * </pre>
      *
-     * <code>string image_uri = 2;</code>
+     * Generated from protobuf field <code>string image_uri = 2;</code>
      * @param string $var
      */
     public function setImageUri($var)

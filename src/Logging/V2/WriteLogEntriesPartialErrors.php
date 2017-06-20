@@ -9,24 +9,20 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Error details for WriteLogEntries with partial success.
- * </pre>
  *
  * Protobuf type <code>Google\Logging\V2\WriteLogEntriesPartialErrors</code>
  */
 class WriteLogEntriesPartialErrors extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * When `WriteLogEntriesRequest.partial_success` is true, records the error
      * status for entries that were not written due to a permanent error, keyed
      * by the entry's zero-based index in `WriteLogEntriesRequest.entries`.
      * Failed requests for which no entries are written will not include
      * per-entry errors.
-     * </pre>
      *
-     * <code>map<int32, .google.rpc.Status> log_entry_errors = 1;</code>
+     * Generated from protobuf field <code>map<int32, .google.rpc.Status> log_entry_errors = 1;</code>
      */
     private $log_entry_errors;
 
@@ -36,15 +32,13 @@ class WriteLogEntriesPartialErrors extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * When `WriteLogEntriesRequest.partial_success` is true, records the error
      * status for entries that were not written due to a permanent error, keyed
      * by the entry's zero-based index in `WriteLogEntriesRequest.entries`.
      * Failed requests for which no entries are written will not include
      * per-entry errors.
-     * </pre>
      *
-     * <code>map<int32, .google.rpc.Status> log_entry_errors = 1;</code>
+     * Generated from protobuf field <code>map<int32, .google.rpc.Status> log_entry_errors = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getLogEntryErrors()
@@ -53,15 +47,13 @@ class WriteLogEntriesPartialErrors extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * When `WriteLogEntriesRequest.partial_success` is true, records the error
      * status for entries that were not written due to a permanent error, keyed
      * by the entry's zero-based index in `WriteLogEntriesRequest.entries`.
      * Failed requests for which no entries are written will not include
      * per-entry errors.
-     * </pre>
      *
-     * <code>map<int32, .google.rpc.Status> log_entry_errors = 1;</code>
+     * Generated from protobuf field <code>map<int32, .google.rpc.Status> log_entry_errors = 1;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setLogEntryErrors(&$var)

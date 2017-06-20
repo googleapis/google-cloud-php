@@ -9,22 +9,18 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Contains an ordered list of nodes appearing in the query plan.
- * </pre>
  *
  * Protobuf type <code>Google\Spanner\V1\QueryPlan</code>
  */
 class QueryPlan extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The nodes in the query plan. Plan nodes are returned in pre-order starting
      * with the plan root. Each [PlanNode][google.spanner.v1.PlanNode]'s `id` corresponds to its index in
      * `plan_nodes`.
-     * </pre>
      *
-     * <code>repeated .google.spanner.v1.PlanNode plan_nodes = 1;</code>
+     * Generated from protobuf field <code>repeated .google.spanner.v1.PlanNode plan_nodes = 1;</code>
      */
     private $plan_nodes;
 
@@ -34,13 +30,11 @@ class QueryPlan extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The nodes in the query plan. Plan nodes are returned in pre-order starting
      * with the plan root. Each [PlanNode][google.spanner.v1.PlanNode]'s `id` corresponds to its index in
      * `plan_nodes`.
-     * </pre>
      *
-     * <code>repeated .google.spanner.v1.PlanNode plan_nodes = 1;</code>
+     * Generated from protobuf field <code>repeated .google.spanner.v1.PlanNode plan_nodes = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getPlanNodes()
@@ -49,13 +43,11 @@ class QueryPlan extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The nodes in the query plan. Plan nodes are returned in pre-order starting
      * with the plan root. Each [PlanNode][google.spanner.v1.PlanNode]'s `id` corresponds to its index in
      * `plan_nodes`.
-     * </pre>
      *
-     * <code>repeated .google.spanner.v1.PlanNode plan_nodes = 1;</code>
+     * Generated from protobuf field <code>repeated .google.spanner.v1.PlanNode plan_nodes = 1;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setPlanNodes(&$var)

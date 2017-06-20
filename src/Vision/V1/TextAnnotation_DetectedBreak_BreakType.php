@@ -5,62 +5,48 @@
 namespace Google\Cloud\Vision\V1;
 
 /**
- * <pre>
  * Enum to denote the type of break found. New line, space etc.
- * </pre>
  *
  * Protobuf enum <code>Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak\BreakType</code>
  */
 class TextAnnotation_DetectedBreak_BreakType
 {
     /**
-     * <pre>
      * Unknown break label type.
-     * </pre>
      *
-     * <code>UNKNOWN = 0;</code>
+     * Generated from protobuf enum <code>UNKNOWN = 0;</code>
      */
     const UNKNOWN = 0;
     /**
-     * <pre>
      * Regular space.
-     * </pre>
      *
-     * <code>SPACE = 1;</code>
+     * Generated from protobuf enum <code>SPACE = 1;</code>
      */
     const SPACE = 1;
     /**
-     * <pre>
      * Sure space (very wide).
-     * </pre>
      *
-     * <code>SURE_SPACE = 2;</code>
+     * Generated from protobuf enum <code>SURE_SPACE = 2;</code>
      */
     const SURE_SPACE = 2;
     /**
-     * <pre>
      * Line-wrapping break.
-     * </pre>
      *
-     * <code>EOL_SURE_SPACE = 3;</code>
+     * Generated from protobuf enum <code>EOL_SURE_SPACE = 3;</code>
      */
     const EOL_SURE_SPACE = 3;
     /**
-     * <pre>
      * End-line hyphen that is not present in text; does
-     * </pre>
      *
-     * <code>HYPHEN = 4;</code>
+     * Generated from protobuf enum <code>HYPHEN = 4;</code>
      */
     const HYPHEN = 4;
     /**
-     * <pre>
      * not co-occur with SPACE, LEADER_SPACE, or
      * LINE_BREAK.
      * Line break that ends a paragraph.
-     * </pre>
      *
-     * <code>LINE_BREAK = 5;</code>
+     * Generated from protobuf enum <code>LINE_BREAK = 5;</code>
      */
     const LINE_BREAK = 5;
 }

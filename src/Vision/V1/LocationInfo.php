@@ -9,20 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Detected entity location information.
- * </pre>
  *
  * Protobuf type <code>Google\Cloud\Vision\V1\LocationInfo</code>
  */
 class LocationInfo extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * lat/long location coordinates.
-     * </pre>
      *
-     * <code>.google.type.LatLng lat_lng = 1;</code>
+     * Generated from protobuf field <code>.google.type.LatLng lat_lng = 1;</code>
      */
     private $lat_lng = null;
 
@@ -32,11 +28,9 @@ class LocationInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * lat/long location coordinates.
-     * </pre>
      *
-     * <code>.google.type.LatLng lat_lng = 1;</code>
+     * Generated from protobuf field <code>.google.type.LatLng lat_lng = 1;</code>
      * @return \Google\Type\LatLng
      */
     public function getLatLng()
@@ -45,11 +39,9 @@ class LocationInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * lat/long location coordinates.
-     * </pre>
      *
-     * <code>.google.type.LatLng lat_lng = 1;</code>
+     * Generated from protobuf field <code>.google.type.LatLng lat_lng = 1;</code>
      * @param \Google\Type\LatLng $var
      */
     public function setLatLng(&$var)

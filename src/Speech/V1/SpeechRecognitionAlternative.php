@@ -9,24 +9,19 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Alternative hypotheses (a.k.a. n-best list).
- * </pre>
  *
  * Protobuf type <code>Google\Cloud\Speech\V1\SpeechRecognitionAlternative</code>
  */
 class SpeechRecognitionAlternative extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * *Output-only* Transcript text representing the words that the user spoke.
-     * </pre>
      *
-     * <code>string transcript = 1;</code>
+     * Generated from protobuf field <code>string transcript = 1;</code>
      */
     private $transcript = '';
     /**
-     * <pre>
      * *Output-only* The confidence estimate between 0.0 and 1.0. A higher number
      * indicates an estimated greater likelihood that the recognized words are
      * correct. This field is typically provided only for the top hypothesis, and
@@ -34,9 +29,8 @@ class SpeechRecognitionAlternative extends \Google\Protobuf\Internal\Message
      * `confidence` field as it is not guaranteed to be accurate, or even set, in
      * any of the results.
      * The default of 0.0 is a sentinel value indicating `confidence` was not set.
-     * </pre>
      *
-     * <code>float confidence = 2;</code>
+     * Generated from protobuf field <code>float confidence = 2;</code>
      */
     private $confidence = 0.0;
 
@@ -46,11 +40,9 @@ class SpeechRecognitionAlternative extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * *Output-only* Transcript text representing the words that the user spoke.
-     * </pre>
      *
-     * <code>string transcript = 1;</code>
+     * Generated from protobuf field <code>string transcript = 1;</code>
      * @return string
      */
     public function getTranscript()
@@ -59,11 +51,9 @@ class SpeechRecognitionAlternative extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * *Output-only* Transcript text representing the words that the user spoke.
-     * </pre>
      *
-     * <code>string transcript = 1;</code>
+     * Generated from protobuf field <code>string transcript = 1;</code>
      * @param string $var
      */
     public function setTranscript($var)
@@ -75,7 +65,6 @@ class SpeechRecognitionAlternative extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * *Output-only* The confidence estimate between 0.0 and 1.0. A higher number
      * indicates an estimated greater likelihood that the recognized words are
      * correct. This field is typically provided only for the top hypothesis, and
@@ -83,9 +72,8 @@ class SpeechRecognitionAlternative extends \Google\Protobuf\Internal\Message
      * `confidence` field as it is not guaranteed to be accurate, or even set, in
      * any of the results.
      * The default of 0.0 is a sentinel value indicating `confidence` was not set.
-     * </pre>
      *
-     * <code>float confidence = 2;</code>
+     * Generated from protobuf field <code>float confidence = 2;</code>
      * @return float
      */
     public function getConfidence()
@@ -94,7 +82,6 @@ class SpeechRecognitionAlternative extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * *Output-only* The confidence estimate between 0.0 and 1.0. A higher number
      * indicates an estimated greater likelihood that the recognized words are
      * correct. This field is typically provided only for the top hypothesis, and
@@ -102,9 +89,8 @@ class SpeechRecognitionAlternative extends \Google\Protobuf\Internal\Message
      * `confidence` field as it is not guaranteed to be accurate, or even set, in
      * any of the results.
      * The default of 0.0 is a sentinel value indicating `confidence` was not set.
-     * </pre>
      *
-     * <code>float confidence = 2;</code>
+     * Generated from protobuf field <code>float confidence = 2;</code>
      * @param float $var
      */
     public function setConfidence($var)

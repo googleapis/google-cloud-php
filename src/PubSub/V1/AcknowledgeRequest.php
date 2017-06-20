@@ -9,30 +9,24 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Request for the Acknowledge method.
- * </pre>
  *
  * Protobuf type <code>Google\Pubsub\V1\AcknowledgeRequest</code>
  */
 class AcknowledgeRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The subscription whose message is being acknowledged.
      * Format is `projects/{project}/subscriptions/{sub}`.
-     * </pre>
      *
-     * <code>string subscription = 1;</code>
+     * Generated from protobuf field <code>string subscription = 1;</code>
      */
     private $subscription = '';
     /**
-     * <pre>
      * The acknowledgment ID for the messages being acknowledged that was returned
      * by the Pub/Sub system in the `Pull` response. Must not be empty.
-     * </pre>
      *
-     * <code>repeated string ack_ids = 2;</code>
+     * Generated from protobuf field <code>repeated string ack_ids = 2;</code>
      */
     private $ack_ids;
 
@@ -42,12 +36,10 @@ class AcknowledgeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The subscription whose message is being acknowledged.
      * Format is `projects/{project}/subscriptions/{sub}`.
-     * </pre>
      *
-     * <code>string subscription = 1;</code>
+     * Generated from protobuf field <code>string subscription = 1;</code>
      * @return string
      */
     public function getSubscription()
@@ -56,12 +48,10 @@ class AcknowledgeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The subscription whose message is being acknowledged.
      * Format is `projects/{project}/subscriptions/{sub}`.
-     * </pre>
      *
-     * <code>string subscription = 1;</code>
+     * Generated from protobuf field <code>string subscription = 1;</code>
      * @param string $var
      */
     public function setSubscription($var)
@@ -73,12 +63,10 @@ class AcknowledgeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The acknowledgment ID for the messages being acknowledged that was returned
      * by the Pub/Sub system in the `Pull` response. Must not be empty.
-     * </pre>
      *
-     * <code>repeated string ack_ids = 2;</code>
+     * Generated from protobuf field <code>repeated string ack_ids = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getAckIds()
@@ -87,12 +75,10 @@ class AcknowledgeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The acknowledgment ID for the messages being acknowledged that was returned
      * by the Pub/Sub system in the `Pull` response. Must not be empty.
-     * </pre>
      *
-     * <code>repeated string ack_ids = 2;</code>
+     * Generated from protobuf field <code>repeated string ack_ids = 2;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setAckIds(&$var)

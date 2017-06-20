@@ -24,6 +24,8 @@
  * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
  * more frequently than those which have been declared beta or 1.0, including changes which break
  * backwards compatibility.
+ *
+ * @experimental
  */
 
 namespace Google\Cloud\Speech\V1;
@@ -65,10 +67,7 @@ use Google\GAX\OperationResponse;
  * }
  * ```
  *
- * Many parameters require resource names to be formatted in a particular way. To assist
- * with these names, this class includes a format method for each type of name, and additionally
- * a parse method to extract the individual identifiers contained within names that are
- * returned.
+ * @experimental
  */
 class SpeechClient
 {
@@ -138,6 +137,7 @@ class SpeechClient
      * Return an OperationsClient object with the same endpoint as $this.
      *
      * @return \Google\GAX\LongRunning\OperationsClient
+     * @experimental
      */
     public function getOperationsClient()
     {
@@ -155,6 +155,7 @@ class SpeechClient
      * @param string $methodName    The name of the method used to start the operation
      *
      * @return \Google\GAX\OperationResponse
+     * @experimental
      */
     public function resumeOperation($operationName, $methodName = null)
     {
@@ -199,6 +200,7 @@ class SpeechClient
      *                              A CredentialsLoader object created using the
      *                              Google\Auth library.
      * }
+     * @experimental
      */
     public function __construct($options = [])
     {
@@ -305,9 +307,9 @@ class SpeechClient
      * }
      * ```
      *
-     * @param RecognitionConfig $config       &#42;Required&#42; Provides information to the recognizer that specifies how to
+     * @param RecognitionConfig $config       *Required* Provides information to the recognizer that specifies how to
      *                                        process the request.
-     * @param RecognitionAudio  $audio        &#42;Required&#42; The audio data to be recognized.
+     * @param RecognitionAudio  $audio        *Required* The audio data to be recognized.
      * @param array             $optionalArgs {
      *                                        Optional.
      *
@@ -322,6 +324,7 @@ class SpeechClient
      * @return \Google\Cloud\Speech\V1\RecognizeResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function recognize($config, $audio, $optionalArgs = [])
     {
@@ -396,9 +399,9 @@ class SpeechClient
      * }
      * ```
      *
-     * @param RecognitionConfig $config       &#42;Required&#42; Provides information to the recognizer that specifies how to
+     * @param RecognitionConfig $config       *Required* Provides information to the recognizer that specifies how to
      *                                        process the request.
-     * @param RecognitionAudio  $audio        &#42;Required&#42; The audio data to be recognized.
+     * @param RecognitionAudio  $audio        *Required* The audio data to be recognized.
      * @param array             $optionalArgs {
      *                                        Optional.
      *
@@ -413,6 +416,7 @@ class SpeechClient
      * @return \Google\LongRunning\Operation
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function longRunningRecognize($config, $audio, $optionalArgs = [])
     {
@@ -483,9 +487,10 @@ class SpeechClient
      *          Timeout to use for this call.
      * }
      *
-     * @return \Google\GAX\BidiStreamingResponse
+     * @return \Google\GAX\BidiStream
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function streamingRecognize($optionalArgs = [])
     {
@@ -508,6 +513,8 @@ class SpeechClient
     /**
      * Initiates an orderly shutdown in which preexisting calls continue but new
      * calls are immediately cancelled.
+     *
+     * @experimental
      */
     public function close()
     {

@@ -9,12 +9,10 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Contains audio data in the encoding specified in the `RecognitionConfig`.
  * Either `content` or `uri` must be supplied. Supplying both or neither
  * returns [google.rpc.Code.INVALID_ARGUMENT][]. See
  * [audio limits](https://cloud.google.com/speech/limits#content).
- * </pre>
  *
  * Protobuf type <code>Google\Cloud\Speech\V1\RecognitionAudio</code>
  */
@@ -28,13 +26,11 @@ class RecognitionAudio extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The audio data bytes encoded as specified in
      * `RecognitionConfig`. Note: as with all bytes fields, protobuffers use a
      * pure binary representation, whereas JSON representations use base64.
-     * </pre>
      *
-     * <code>bytes content = 1;</code>
+     * Generated from protobuf field <code>bytes content = 1;</code>
      * @return string
      */
     public function getContent()
@@ -43,13 +39,11 @@ class RecognitionAudio extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The audio data bytes encoded as specified in
      * `RecognitionConfig`. Note: as with all bytes fields, protobuffers use a
      * pure binary representation, whereas JSON representations use base64.
-     * </pre>
      *
-     * <code>bytes content = 1;</code>
+     * Generated from protobuf field <code>bytes content = 1;</code>
      * @param string $var
      */
     public function setContent($var)
@@ -61,16 +55,14 @@ class RecognitionAudio extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * URI that points to a file that contains audio data bytes as specified in
      * `RecognitionConfig`. Currently, only Google Cloud Storage URIs are
      * supported, which must be specified in the following format:
      * `gs://bucket_name/object_name` (other URI formats return
      * [google.rpc.Code.INVALID_ARGUMENT][]). For more information, see
      * [Request URIs](https://cloud.google.com/storage/docs/reference-uris).
-     * </pre>
      *
-     * <code>string uri = 2;</code>
+     * Generated from protobuf field <code>string uri = 2;</code>
      * @return string
      */
     public function getUri()
@@ -79,16 +71,14 @@ class RecognitionAudio extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * URI that points to a file that contains audio data bytes as specified in
      * `RecognitionConfig`. Currently, only Google Cloud Storage URIs are
      * supported, which must be specified in the following format:
      * `gs://bucket_name/object_name` (other URI formats return
      * [google.rpc.Code.INVALID_ARGUMENT][]). For more information, see
      * [Request URIs](https://cloud.google.com/storage/docs/reference-uris).
-     * </pre>
      *
-     * <code>string uri = 2;</code>
+     * Generated from protobuf field <code>string uri = 2;</code>
      * @param string $var
      */
     public function setUri($var)

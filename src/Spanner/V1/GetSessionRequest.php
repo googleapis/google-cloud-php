@@ -9,20 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * The request for [GetSession][google.spanner.v1.Spanner.GetSession].
- * </pre>
  *
  * Protobuf type <code>Google\Spanner\V1\GetSessionRequest</code>
  */
 class GetSessionRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * Required. The name of the session to retrieve.
-     * </pre>
      *
-     * <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      */
     private $name = '';
 
@@ -32,11 +28,9 @@ class GetSessionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. The name of the session to retrieve.
-     * </pre>
      *
-     * <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      * @return string
      */
     public function getName()
@@ -45,11 +39,9 @@ class GetSessionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. The name of the session to retrieve.
-     * </pre>
      *
-     * <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
      */
     public function setName($var)

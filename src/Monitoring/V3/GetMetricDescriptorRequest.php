@@ -9,23 +9,19 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * The `GetMetricDescriptor` request.
- * </pre>
  *
  * Protobuf type <code>Google\Monitoring\V3\GetMetricDescriptorRequest</code>
  */
 class GetMetricDescriptorRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The metric descriptor on which to execute the request. The format is
      * `"projects/{project_id_or_number}/metricDescriptors/{metric_id}"`.
      * An example value of `{metric_id}` is
      * `"compute.googleapis.com/instance/disk/read_bytes_count"`.
-     * </pre>
      *
-     * <code>string name = 3;</code>
+     * Generated from protobuf field <code>string name = 3;</code>
      */
     private $name = '';
 
@@ -35,14 +31,12 @@ class GetMetricDescriptorRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The metric descriptor on which to execute the request. The format is
      * `"projects/{project_id_or_number}/metricDescriptors/{metric_id}"`.
      * An example value of `{metric_id}` is
      * `"compute.googleapis.com/instance/disk/read_bytes_count"`.
-     * </pre>
      *
-     * <code>string name = 3;</code>
+     * Generated from protobuf field <code>string name = 3;</code>
      * @return string
      */
     public function getName()
@@ -51,14 +45,12 @@ class GetMetricDescriptorRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The metric descriptor on which to execute the request. The format is
      * `"projects/{project_id_or_number}/metricDescriptors/{metric_id}"`.
      * An example value of `{metric_id}` is
      * `"compute.googleapis.com/instance/disk/read_bytes_count"`.
-     * </pre>
      *
-     * <code>string name = 3;</code>
+     * Generated from protobuf field <code>string name = 3;</code>
      * @param string $var
      */
     public function setName($var)

@@ -9,7 +9,6 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * TextAnnotation contains a structured representation of OCR extracted text.
  * The hierarchy of an OCR extracted text structure is like this:
  *     TextAnnotation -> Page -> Block -> Paragraph -> Word -> Symbol
@@ -17,26 +16,21 @@ use Google\Protobuf\Internal\GPBUtil;
  * properties. Properties describe detected languages, breaks etc.. Please
  * refer to the [google.cloud.vision.v1.TextAnnotation.TextProperty][google.cloud.vision.v1.TextAnnotation.TextProperty] message
  * definition below for more detail.
- * </pre>
  *
  * Protobuf type <code>Google\Cloud\Vision\V1\TextAnnotation</code>
  */
 class TextAnnotation extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * List of pages detected by OCR.
-     * </pre>
      *
-     * <code>repeated .google.cloud.vision.v1.Page pages = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.Page pages = 1;</code>
      */
     private $pages;
     /**
-     * <pre>
      * UTF-8 text detected on the pages.
-     * </pre>
      *
-     * <code>string text = 2;</code>
+     * Generated from protobuf field <code>string text = 2;</code>
      */
     private $text = '';
 
@@ -46,11 +40,9 @@ class TextAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * List of pages detected by OCR.
-     * </pre>
      *
-     * <code>repeated .google.cloud.vision.v1.Page pages = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.Page pages = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getPages()
@@ -59,11 +51,9 @@ class TextAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * List of pages detected by OCR.
-     * </pre>
      *
-     * <code>repeated .google.cloud.vision.v1.Page pages = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.Page pages = 1;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setPages(&$var)
@@ -75,11 +65,9 @@ class TextAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * UTF-8 text detected on the pages.
-     * </pre>
      *
-     * <code>string text = 2;</code>
+     * Generated from protobuf field <code>string text = 2;</code>
      * @return string
      */
     public function getText()
@@ -88,11 +76,9 @@ class TextAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * UTF-8 text detected on the pages.
-     * </pre>
      *
-     * <code>string text = 2;</code>
+     * Generated from protobuf field <code>string text = 2;</code>
      * @param string $var
      */
     public function setText($var)

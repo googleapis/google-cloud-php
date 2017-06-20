@@ -5,39 +5,31 @@
 namespace Google\Cloud\Spanner\Admin\Instance\V1;
 
 /**
- * <pre>
  * Indicates the current state of the instance.
- * </pre>
  *
  * Protobuf enum <code>Google\Spanner\Admin\Instance\V1\Instance\State</code>
  */
 class Instance_State
 {
     /**
-     * <pre>
      * Not specified.
-     * </pre>
      *
-     * <code>STATE_UNSPECIFIED = 0;</code>
+     * Generated from protobuf enum <code>STATE_UNSPECIFIED = 0;</code>
      */
     const STATE_UNSPECIFIED = 0;
     /**
-     * <pre>
      * The instance is still being created. Resources may not be
      * available yet, and operations such as database creation may not
      * work.
-     * </pre>
      *
-     * <code>CREATING = 1;</code>
+     * Generated from protobuf enum <code>CREATING = 1;</code>
      */
     const CREATING = 1;
     /**
-     * <pre>
      * The instance is fully created and ready to do work such as
      * creating databases.
-     * </pre>
      *
-     * <code>READY = 2;</code>
+     * Generated from protobuf enum <code>READY = 2;</code>
      */
     const READY = 2;
 }

@@ -9,16 +9,13 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * An individual entry in a log.
- * </pre>
  *
  * Protobuf type <code>Google\Logging\V2\LogEntry</code>
  */
 class LogEntry extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * Required. The resource name of the log to which this log entry belongs:
      *     "projects/[PROJECT_ID]/logs/[LOG_ID]"
      *     "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
@@ -34,109 +31,88 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * forward-slash is removed. Listing the log entry will not show the leading
      * slash and filtering for a log name with a leading slash will never return
      * any results.
-     * </pre>
      *
-     * <code>string log_name = 12;</code>
+     * Generated from protobuf field <code>string log_name = 12;</code>
      */
     private $log_name = '';
     /**
-     * <pre>
      * Required. The monitored resource associated with this log entry.
      * Example: a log entry that reports a database error would be
      * associated with the monitored resource designating the particular
      * database that reported the error.
-     * </pre>
      *
-     * <code>.google.api.MonitoredResource resource = 8;</code>
+     * Generated from protobuf field <code>.google.api.MonitoredResource resource = 8;</code>
      */
     private $resource = null;
     /**
-     * <pre>
      * Optional. The time the event described by the log entry occurred.  If
      * omitted in a new log entry, Stackdriver Logging will insert the time the
      * log entry is received.  Stackdriver Logging might reject log entries whose
      * time stamps are more than a couple of hours in the future. Log entries
      * with time stamps in the past are accepted.
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp timestamp = 9;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp timestamp = 9;</code>
      */
     private $timestamp = null;
     /**
-     * <pre>
      * Output only. The time the log entry was received by Stackdriver Logging.
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp receive_timestamp = 24;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp receive_timestamp = 24;</code>
      */
     private $receive_timestamp = null;
     /**
-     * <pre>
      * Optional. The severity of the log entry. The default value is
      * `LogSeverity.DEFAULT`.
-     * </pre>
      *
-     * <code>.google.logging.type.LogSeverity severity = 10;</code>
+     * Generated from protobuf field <code>.google.logging.type.LogSeverity severity = 10;</code>
      */
     private $severity = 0;
     /**
-     * <pre>
      * Optional. A unique identifier for the log entry. If you provide a value,
      * then Stackdriver Logging considers other log entries in the same project,
      * with the same `timestamp`, and with the same `insert_id` to be duplicates
      * which can be removed.  If omitted in new log entries, then Stackdriver
      * Logging will insert its own unique identifier. The `insert_id` is used
      * to order log entries that have the same `timestamp` value.
-     * </pre>
      *
-     * <code>string insert_id = 4;</code>
+     * Generated from protobuf field <code>string insert_id = 4;</code>
      */
     private $insert_id = '';
     /**
-     * <pre>
      * Optional. Information about the HTTP request associated with this
      * log entry, if applicable.
-     * </pre>
      *
-     * <code>.google.logging.type.HttpRequest http_request = 7;</code>
+     * Generated from protobuf field <code>.google.logging.type.HttpRequest http_request = 7;</code>
      */
     private $http_request = null;
     /**
-     * <pre>
      * Optional. A set of user-defined (key, value) data that provides additional
      * information about the log entry.
-     * </pre>
      *
-     * <code>map<string, string> labels = 11;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 11;</code>
      */
     private $labels;
     /**
-     * <pre>
      * Optional. Information about an operation associated with the log entry, if
      * applicable.
-     * </pre>
      *
-     * <code>.google.logging.v2.LogEntryOperation operation = 15;</code>
+     * Generated from protobuf field <code>.google.logging.v2.LogEntryOperation operation = 15;</code>
      */
     private $operation = null;
     /**
-     * <pre>
      * Optional. Resource name of the trace associated with the log entry, if any.
      * If it contains a relative resource name, the name is assumed to be relative
      * to `//tracing.googleapis.com`. Example:
      * `projects/my-projectid/traces/06796866738c859f2f19b7cfb3214824`
-     * </pre>
      *
-     * <code>string trace = 22;</code>
+     * Generated from protobuf field <code>string trace = 22;</code>
      */
     private $trace = '';
     /**
-     * <pre>
      * Optional. Source code location information associated with the log entry,
      * if any.
-     * </pre>
      *
-     * <code>.google.logging.v2.LogEntrySourceLocation source_location = 23;</code>
+     * Generated from protobuf field <code>.google.logging.v2.LogEntrySourceLocation source_location = 23;</code>
      */
     private $source_location = null;
     protected $payload;
@@ -147,7 +123,6 @@ class LogEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. The resource name of the log to which this log entry belongs:
      *     "projects/[PROJECT_ID]/logs/[LOG_ID]"
      *     "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
@@ -163,9 +138,8 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * forward-slash is removed. Listing the log entry will not show the leading
      * slash and filtering for a log name with a leading slash will never return
      * any results.
-     * </pre>
      *
-     * <code>string log_name = 12;</code>
+     * Generated from protobuf field <code>string log_name = 12;</code>
      * @return string
      */
     public function getLogName()
@@ -174,7 +148,6 @@ class LogEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. The resource name of the log to which this log entry belongs:
      *     "projects/[PROJECT_ID]/logs/[LOG_ID]"
      *     "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
@@ -190,9 +163,8 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      * forward-slash is removed. Listing the log entry will not show the leading
      * slash and filtering for a log name with a leading slash will never return
      * any results.
-     * </pre>
      *
-     * <code>string log_name = 12;</code>
+     * Generated from protobuf field <code>string log_name = 12;</code>
      * @param string $var
      */
     public function setLogName($var)
@@ -204,14 +176,12 @@ class LogEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. The monitored resource associated with this log entry.
      * Example: a log entry that reports a database error would be
      * associated with the monitored resource designating the particular
      * database that reported the error.
-     * </pre>
      *
-     * <code>.google.api.MonitoredResource resource = 8;</code>
+     * Generated from protobuf field <code>.google.api.MonitoredResource resource = 8;</code>
      * @return \Google\Api\MonitoredResource
      */
     public function getResource()
@@ -220,14 +190,12 @@ class LogEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. The monitored resource associated with this log entry.
      * Example: a log entry that reports a database error would be
      * associated with the monitored resource designating the particular
      * database that reported the error.
-     * </pre>
      *
-     * <code>.google.api.MonitoredResource resource = 8;</code>
+     * Generated from protobuf field <code>.google.api.MonitoredResource resource = 8;</code>
      * @param \Google\Api\MonitoredResource $var
      */
     public function setResource(&$var)
@@ -239,13 +207,11 @@ class LogEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The log entry payload, represented as a protocol buffer.  Some
      * Google Cloud Platform services use this field for their log
      * entry payloads.
-     * </pre>
      *
-     * <code>.google.protobuf.Any proto_payload = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.Any proto_payload = 2;</code>
      * @return \Google\Protobuf\Any
      */
     public function getProtoPayload()
@@ -254,13 +220,11 @@ class LogEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The log entry payload, represented as a protocol buffer.  Some
      * Google Cloud Platform services use this field for their log
      * entry payloads.
-     * </pre>
      *
-     * <code>.google.protobuf.Any proto_payload = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.Any proto_payload = 2;</code>
      * @param \Google\Protobuf\Any $var
      */
     public function setProtoPayload(&$var)
@@ -272,11 +236,9 @@ class LogEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The log entry payload, represented as a Unicode string (UTF-8).
-     * </pre>
      *
-     * <code>string text_payload = 3;</code>
+     * Generated from protobuf field <code>string text_payload = 3;</code>
      * @return string
      */
     public function getTextPayload()
@@ -285,11 +247,9 @@ class LogEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The log entry payload, represented as a Unicode string (UTF-8).
-     * </pre>
      *
-     * <code>string text_payload = 3;</code>
+     * Generated from protobuf field <code>string text_payload = 3;</code>
      * @param string $var
      */
     public function setTextPayload($var)
@@ -301,12 +261,10 @@ class LogEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The log entry payload, represented as a structure that is
      * expressed as a JSON object.
-     * </pre>
      *
-     * <code>.google.protobuf.Struct json_payload = 6;</code>
+     * Generated from protobuf field <code>.google.protobuf.Struct json_payload = 6;</code>
      * @return \Google\Protobuf\Struct
      */
     public function getJsonPayload()
@@ -315,12 +273,10 @@ class LogEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The log entry payload, represented as a structure that is
      * expressed as a JSON object.
-     * </pre>
      *
-     * <code>.google.protobuf.Struct json_payload = 6;</code>
+     * Generated from protobuf field <code>.google.protobuf.Struct json_payload = 6;</code>
      * @param \Google\Protobuf\Struct $var
      */
     public function setJsonPayload(&$var)
@@ -332,15 +288,13 @@ class LogEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Optional. The time the event described by the log entry occurred.  If
      * omitted in a new log entry, Stackdriver Logging will insert the time the
      * log entry is received.  Stackdriver Logging might reject log entries whose
      * time stamps are more than a couple of hours in the future. Log entries
      * with time stamps in the past are accepted.
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp timestamp = 9;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp timestamp = 9;</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getTimestamp()
@@ -349,15 +303,13 @@ class LogEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Optional. The time the event described by the log entry occurred.  If
      * omitted in a new log entry, Stackdriver Logging will insert the time the
      * log entry is received.  Stackdriver Logging might reject log entries whose
      * time stamps are more than a couple of hours in the future. Log entries
      * with time stamps in the past are accepted.
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp timestamp = 9;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp timestamp = 9;</code>
      * @param \Google\Protobuf\Timestamp $var
      */
     public function setTimestamp(&$var)
@@ -369,11 +321,9 @@ class LogEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Output only. The time the log entry was received by Stackdriver Logging.
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp receive_timestamp = 24;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp receive_timestamp = 24;</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getReceiveTimestamp()
@@ -382,11 +332,9 @@ class LogEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Output only. The time the log entry was received by Stackdriver Logging.
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp receive_timestamp = 24;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp receive_timestamp = 24;</code>
      * @param \Google\Protobuf\Timestamp $var
      */
     public function setReceiveTimestamp(&$var)
@@ -398,12 +346,10 @@ class LogEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Optional. The severity of the log entry. The default value is
      * `LogSeverity.DEFAULT`.
-     * </pre>
      *
-     * <code>.google.logging.type.LogSeverity severity = 10;</code>
+     * Generated from protobuf field <code>.google.logging.type.LogSeverity severity = 10;</code>
      * @return int
      */
     public function getSeverity()
@@ -412,12 +358,10 @@ class LogEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Optional. The severity of the log entry. The default value is
      * `LogSeverity.DEFAULT`.
-     * </pre>
      *
-     * <code>.google.logging.type.LogSeverity severity = 10;</code>
+     * Generated from protobuf field <code>.google.logging.type.LogSeverity severity = 10;</code>
      * @param int $var
      */
     public function setSeverity($var)
@@ -429,16 +373,14 @@ class LogEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Optional. A unique identifier for the log entry. If you provide a value,
      * then Stackdriver Logging considers other log entries in the same project,
      * with the same `timestamp`, and with the same `insert_id` to be duplicates
      * which can be removed.  If omitted in new log entries, then Stackdriver
      * Logging will insert its own unique identifier. The `insert_id` is used
      * to order log entries that have the same `timestamp` value.
-     * </pre>
      *
-     * <code>string insert_id = 4;</code>
+     * Generated from protobuf field <code>string insert_id = 4;</code>
      * @return string
      */
     public function getInsertId()
@@ -447,16 +389,14 @@ class LogEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Optional. A unique identifier for the log entry. If you provide a value,
      * then Stackdriver Logging considers other log entries in the same project,
      * with the same `timestamp`, and with the same `insert_id` to be duplicates
      * which can be removed.  If omitted in new log entries, then Stackdriver
      * Logging will insert its own unique identifier. The `insert_id` is used
      * to order log entries that have the same `timestamp` value.
-     * </pre>
      *
-     * <code>string insert_id = 4;</code>
+     * Generated from protobuf field <code>string insert_id = 4;</code>
      * @param string $var
      */
     public function setInsertId($var)
@@ -468,12 +408,10 @@ class LogEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Optional. Information about the HTTP request associated with this
      * log entry, if applicable.
-     * </pre>
      *
-     * <code>.google.logging.type.HttpRequest http_request = 7;</code>
+     * Generated from protobuf field <code>.google.logging.type.HttpRequest http_request = 7;</code>
      * @return \Google\Cloud\Logging\Type\HttpRequest
      */
     public function getHttpRequest()
@@ -482,12 +420,10 @@ class LogEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Optional. Information about the HTTP request associated with this
      * log entry, if applicable.
-     * </pre>
      *
-     * <code>.google.logging.type.HttpRequest http_request = 7;</code>
+     * Generated from protobuf field <code>.google.logging.type.HttpRequest http_request = 7;</code>
      * @param \Google\Cloud\Logging\Type\HttpRequest $var
      */
     public function setHttpRequest(&$var)
@@ -499,12 +435,10 @@ class LogEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Optional. A set of user-defined (key, value) data that provides additional
      * information about the log entry.
-     * </pre>
      *
-     * <code>map<string, string> labels = 11;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 11;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getLabels()
@@ -513,12 +447,10 @@ class LogEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Optional. A set of user-defined (key, value) data that provides additional
      * information about the log entry.
-     * </pre>
      *
-     * <code>map<string, string> labels = 11;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 11;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setLabels(&$var)
@@ -530,12 +462,10 @@ class LogEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Optional. Information about an operation associated with the log entry, if
      * applicable.
-     * </pre>
      *
-     * <code>.google.logging.v2.LogEntryOperation operation = 15;</code>
+     * Generated from protobuf field <code>.google.logging.v2.LogEntryOperation operation = 15;</code>
      * @return \Google\Cloud\Logging\V2\LogEntryOperation
      */
     public function getOperation()
@@ -544,12 +474,10 @@ class LogEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Optional. Information about an operation associated with the log entry, if
      * applicable.
-     * </pre>
      *
-     * <code>.google.logging.v2.LogEntryOperation operation = 15;</code>
+     * Generated from protobuf field <code>.google.logging.v2.LogEntryOperation operation = 15;</code>
      * @param \Google\Cloud\Logging\V2\LogEntryOperation $var
      */
     public function setOperation(&$var)
@@ -561,14 +489,12 @@ class LogEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Optional. Resource name of the trace associated with the log entry, if any.
      * If it contains a relative resource name, the name is assumed to be relative
      * to `//tracing.googleapis.com`. Example:
      * `projects/my-projectid/traces/06796866738c859f2f19b7cfb3214824`
-     * </pre>
      *
-     * <code>string trace = 22;</code>
+     * Generated from protobuf field <code>string trace = 22;</code>
      * @return string
      */
     public function getTrace()
@@ -577,14 +503,12 @@ class LogEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Optional. Resource name of the trace associated with the log entry, if any.
      * If it contains a relative resource name, the name is assumed to be relative
      * to `//tracing.googleapis.com`. Example:
      * `projects/my-projectid/traces/06796866738c859f2f19b7cfb3214824`
-     * </pre>
      *
-     * <code>string trace = 22;</code>
+     * Generated from protobuf field <code>string trace = 22;</code>
      * @param string $var
      */
     public function setTrace($var)
@@ -596,12 +520,10 @@ class LogEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Optional. Source code location information associated with the log entry,
      * if any.
-     * </pre>
      *
-     * <code>.google.logging.v2.LogEntrySourceLocation source_location = 23;</code>
+     * Generated from protobuf field <code>.google.logging.v2.LogEntrySourceLocation source_location = 23;</code>
      * @return \Google\Cloud\Logging\V2\LogEntrySourceLocation
      */
     public function getSourceLocation()
@@ -610,12 +532,10 @@ class LogEntry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Optional. Source code location information associated with the log entry,
      * if any.
-     * </pre>
      *
-     * <code>.google.logging.v2.LogEntrySourceLocation source_location = 23;</code>
+     * Generated from protobuf field <code>.google.logging.v2.LogEntrySourceLocation source_location = 23;</code>
      * @param \Google\Cloud\Logging\V2\LogEntrySourceLocation $var
      */
     public function setSourceLocation(&$var)

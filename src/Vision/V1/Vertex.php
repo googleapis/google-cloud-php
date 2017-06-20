@@ -9,29 +9,23 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * A vertex represents a 2D point in the image.
  * NOTE: the vertex coordinates are in the same scale as the original image.
- * </pre>
  *
  * Protobuf type <code>Google\Cloud\Vision\V1\Vertex</code>
  */
 class Vertex extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * X coordinate.
-     * </pre>
      *
-     * <code>int32 x = 1;</code>
+     * Generated from protobuf field <code>int32 x = 1;</code>
      */
     private $x = 0;
     /**
-     * <pre>
      * Y coordinate.
-     * </pre>
      *
-     * <code>int32 y = 2;</code>
+     * Generated from protobuf field <code>int32 y = 2;</code>
      */
     private $y = 0;
 
@@ -41,11 +35,9 @@ class Vertex extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * X coordinate.
-     * </pre>
      *
-     * <code>int32 x = 1;</code>
+     * Generated from protobuf field <code>int32 x = 1;</code>
      * @return int
      */
     public function getX()
@@ -54,11 +46,9 @@ class Vertex extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * X coordinate.
-     * </pre>
      *
-     * <code>int32 x = 1;</code>
+     * Generated from protobuf field <code>int32 x = 1;</code>
      * @param int $var
      */
     public function setX($var)
@@ -70,11 +60,9 @@ class Vertex extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Y coordinate.
-     * </pre>
      *
-     * <code>int32 y = 2;</code>
+     * Generated from protobuf field <code>int32 y = 2;</code>
      * @return int
      */
     public function getY()
@@ -83,11 +71,9 @@ class Vertex extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Y coordinate.
-     * </pre>
      *
-     * <code>int32 y = 2;</code>
+     * Generated from protobuf field <code>int32 y = 2;</code>
      * @param int $var
      */
     public function setY($var)

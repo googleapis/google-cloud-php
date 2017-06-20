@@ -9,7 +9,6 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * `StreamingRecognizeResponse` is the only message returned to the client by
  * `StreamingRecognize`. A series of one or more `StreamingRecognizeResponse`
  * messages are streamed back to the client.
@@ -54,48 +53,39 @@ use Google\Protobuf\Internal\GPBUtil;
  *   results returned, and is no longer being processed. For example, the
  *   `results` in #6 and later correspond to the portion of audio after
  *   "to be or not to be".
- * </pre>
  *
  * Protobuf type <code>Google\Cloud\Speech\V1beta1\StreamingRecognizeResponse</code>
  */
 class StreamingRecognizeResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * *Output-only* If set, returns a [google.rpc.Status][google.rpc.Status] message that
      * specifies the error for the operation.
-     * </pre>
      *
-     * <code>.google.rpc.Status error = 1;</code>
+     * Generated from protobuf field <code>.google.rpc.Status error = 1;</code>
      */
     private $error = null;
     /**
-     * <pre>
      * *Output-only* This repeated list contains zero or more results that
      * correspond to consecutive portions of the audio currently being processed.
      * It contains zero or one `is_final=true` result (the newly settled portion),
      * followed by zero or more `is_final=false` results.
-     * </pre>
      *
-     * <code>repeated .google.cloud.speech.v1beta1.StreamingRecognitionResult results = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.speech.v1beta1.StreamingRecognitionResult results = 2;</code>
      */
     private $results;
     /**
-     * <pre>
      * *Output-only* Indicates the lowest index in the `results` array that has
      * changed. The repeated `StreamingRecognitionResult` results overwrite past
      * results at this index and higher.
-     * </pre>
      *
-     * <code>int32 result_index = 3;</code>
+     * Generated from protobuf field <code>int32 result_index = 3;</code>
      */
     private $result_index = 0;
     /**
-     * <pre>
      * *Output-only* Indicates the type of endpointer event.
-     * </pre>
      *
-     * <code>.google.cloud.speech.v1beta1.StreamingRecognizeResponse.EndpointerType endpointer_type = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.speech.v1beta1.StreamingRecognizeResponse.EndpointerType endpointer_type = 4;</code>
      */
     private $endpointer_type = 0;
 
@@ -105,12 +95,10 @@ class StreamingRecognizeResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * *Output-only* If set, returns a [google.rpc.Status][google.rpc.Status] message that
      * specifies the error for the operation.
-     * </pre>
      *
-     * <code>.google.rpc.Status error = 1;</code>
+     * Generated from protobuf field <code>.google.rpc.Status error = 1;</code>
      * @return \Google\Rpc\Status
      */
     public function getError()
@@ -119,12 +107,10 @@ class StreamingRecognizeResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * *Output-only* If set, returns a [google.rpc.Status][google.rpc.Status] message that
      * specifies the error for the operation.
-     * </pre>
      *
-     * <code>.google.rpc.Status error = 1;</code>
+     * Generated from protobuf field <code>.google.rpc.Status error = 1;</code>
      * @param \Google\Rpc\Status $var
      */
     public function setError(&$var)
@@ -136,14 +122,12 @@ class StreamingRecognizeResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * *Output-only* This repeated list contains zero or more results that
      * correspond to consecutive portions of the audio currently being processed.
      * It contains zero or one `is_final=true` result (the newly settled portion),
      * followed by zero or more `is_final=false` results.
-     * </pre>
      *
-     * <code>repeated .google.cloud.speech.v1beta1.StreamingRecognitionResult results = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.speech.v1beta1.StreamingRecognitionResult results = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getResults()
@@ -152,14 +136,12 @@ class StreamingRecognizeResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * *Output-only* This repeated list contains zero or more results that
      * correspond to consecutive portions of the audio currently being processed.
      * It contains zero or one `is_final=true` result (the newly settled portion),
      * followed by zero or more `is_final=false` results.
-     * </pre>
      *
-     * <code>repeated .google.cloud.speech.v1beta1.StreamingRecognitionResult results = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.speech.v1beta1.StreamingRecognitionResult results = 2;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setResults(&$var)
@@ -171,13 +153,11 @@ class StreamingRecognizeResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * *Output-only* Indicates the lowest index in the `results` array that has
      * changed. The repeated `StreamingRecognitionResult` results overwrite past
      * results at this index and higher.
-     * </pre>
      *
-     * <code>int32 result_index = 3;</code>
+     * Generated from protobuf field <code>int32 result_index = 3;</code>
      * @return int
      */
     public function getResultIndex()
@@ -186,13 +166,11 @@ class StreamingRecognizeResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * *Output-only* Indicates the lowest index in the `results` array that has
      * changed. The repeated `StreamingRecognitionResult` results overwrite past
      * results at this index and higher.
-     * </pre>
      *
-     * <code>int32 result_index = 3;</code>
+     * Generated from protobuf field <code>int32 result_index = 3;</code>
      * @param int $var
      */
     public function setResultIndex($var)
@@ -204,11 +182,9 @@ class StreamingRecognizeResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * *Output-only* Indicates the type of endpointer event.
-     * </pre>
      *
-     * <code>.google.cloud.speech.v1beta1.StreamingRecognizeResponse.EndpointerType endpointer_type = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.speech.v1beta1.StreamingRecognizeResponse.EndpointerType endpointer_type = 4;</code>
      * @return int
      */
     public function getEndpointerType()
@@ -217,11 +193,9 @@ class StreamingRecognizeResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * *Output-only* Indicates the type of endpointer event.
-     * </pre>
      *
-     * <code>.google.cloud.speech.v1beta1.StreamingRecognizeResponse.EndpointerType endpointer_type = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.speech.v1beta1.StreamingRecognizeResponse.EndpointerType endpointer_type = 4;</code>
      * @param int $var
      */
     public function setEndpointerType($var)

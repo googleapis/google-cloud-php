@@ -9,44 +9,36 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Results from [Read][google.spanner.v1.Spanner.Read] or
  * [ExecuteSql][google.spanner.v1.Spanner.ExecuteSql].
- * </pre>
  *
  * Protobuf type <code>Google\Spanner\V1\ResultSet</code>
  */
 class ResultSet extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * Metadata about the result set, such as row type information.
-     * </pre>
      *
-     * <code>.google.spanner.v1.ResultSetMetadata metadata = 1;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.ResultSetMetadata metadata = 1;</code>
      */
     private $metadata = null;
     /**
-     * <pre>
      * Each element in `rows` is a row whose format is defined by
      * [metadata.row_type][google.spanner.v1.ResultSetMetadata.row_type]. The ith element
      * in each row matches the ith field in
      * [metadata.row_type][google.spanner.v1.ResultSetMetadata.row_type]. Elements are
      * encoded based on type as described
      * [here][google.spanner.v1.TypeCode].
-     * </pre>
      *
-     * <code>repeated .google.protobuf.ListValue rows = 2;</code>
+     * Generated from protobuf field <code>repeated .google.protobuf.ListValue rows = 2;</code>
      */
     private $rows;
     /**
-     * <pre>
      * Query plan and execution statistics for the query that produced this
      * result set. These can be requested by setting
      * [ExecuteSqlRequest.query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode].
-     * </pre>
      *
-     * <code>.google.spanner.v1.ResultSetStats stats = 3;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.ResultSetStats stats = 3;</code>
      */
     private $stats = null;
 
@@ -56,11 +48,9 @@ class ResultSet extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Metadata about the result set, such as row type information.
-     * </pre>
      *
-     * <code>.google.spanner.v1.ResultSetMetadata metadata = 1;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.ResultSetMetadata metadata = 1;</code>
      * @return \Google\Cloud\Spanner\V1\ResultSetMetadata
      */
     public function getMetadata()
@@ -69,11 +59,9 @@ class ResultSet extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Metadata about the result set, such as row type information.
-     * </pre>
      *
-     * <code>.google.spanner.v1.ResultSetMetadata metadata = 1;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.ResultSetMetadata metadata = 1;</code>
      * @param \Google\Cloud\Spanner\V1\ResultSetMetadata $var
      */
     public function setMetadata(&$var)
@@ -85,16 +73,14 @@ class ResultSet extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Each element in `rows` is a row whose format is defined by
      * [metadata.row_type][google.spanner.v1.ResultSetMetadata.row_type]. The ith element
      * in each row matches the ith field in
      * [metadata.row_type][google.spanner.v1.ResultSetMetadata.row_type]. Elements are
      * encoded based on type as described
      * [here][google.spanner.v1.TypeCode].
-     * </pre>
      *
-     * <code>repeated .google.protobuf.ListValue rows = 2;</code>
+     * Generated from protobuf field <code>repeated .google.protobuf.ListValue rows = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getRows()
@@ -103,16 +89,14 @@ class ResultSet extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Each element in `rows` is a row whose format is defined by
      * [metadata.row_type][google.spanner.v1.ResultSetMetadata.row_type]. The ith element
      * in each row matches the ith field in
      * [metadata.row_type][google.spanner.v1.ResultSetMetadata.row_type]. Elements are
      * encoded based on type as described
      * [here][google.spanner.v1.TypeCode].
-     * </pre>
      *
-     * <code>repeated .google.protobuf.ListValue rows = 2;</code>
+     * Generated from protobuf field <code>repeated .google.protobuf.ListValue rows = 2;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setRows(&$var)
@@ -124,13 +108,11 @@ class ResultSet extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Query plan and execution statistics for the query that produced this
      * result set. These can be requested by setting
      * [ExecuteSqlRequest.query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode].
-     * </pre>
      *
-     * <code>.google.spanner.v1.ResultSetStats stats = 3;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.ResultSetStats stats = 3;</code>
      * @return \Google\Cloud\Spanner\V1\ResultSetStats
      */
     public function getStats()
@@ -139,13 +121,11 @@ class ResultSet extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Query plan and execution statistics for the query that produced this
      * result set. These can be requested by setting
      * [ExecuteSqlRequest.query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode].
-     * </pre>
      *
-     * <code>.google.spanner.v1.ResultSetStats stats = 3;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.ResultSetStats stats = 3;</code>
      * @param \Google\Cloud\Spanner\V1\ResultSetStats $var
      */
     public function setStats(&$var)

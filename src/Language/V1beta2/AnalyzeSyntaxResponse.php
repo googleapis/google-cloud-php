@@ -9,38 +9,30 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * The syntax analysis response message.
- * </pre>
  *
  * Protobuf type <code>Google\Cloud\Language\V1beta2\AnalyzeSyntaxResponse</code>
  */
 class AnalyzeSyntaxResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * Sentences in the input document.
-     * </pre>
      *
-     * <code>repeated .google.cloud.language.v1beta2.Sentence sentences = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.language.v1beta2.Sentence sentences = 1;</code>
      */
     private $sentences;
     /**
-     * <pre>
      * Tokens, along with their syntactic information, in the input document.
-     * </pre>
      *
-     * <code>repeated .google.cloud.language.v1beta2.Token tokens = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.language.v1beta2.Token tokens = 2;</code>
      */
     private $tokens;
     /**
-     * <pre>
      * The language of the text, which will be the same as the language specified
      * in the request or, if not specified, the automatically-detected language.
      * See [Document.language][google.cloud.language.v1beta2.Document.language] field for more details.
-     * </pre>
      *
-     * <code>string language = 3;</code>
+     * Generated from protobuf field <code>string language = 3;</code>
      */
     private $language = '';
 
@@ -50,11 +42,9 @@ class AnalyzeSyntaxResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Sentences in the input document.
-     * </pre>
      *
-     * <code>repeated .google.cloud.language.v1beta2.Sentence sentences = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.language.v1beta2.Sentence sentences = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getSentences()
@@ -63,11 +53,9 @@ class AnalyzeSyntaxResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Sentences in the input document.
-     * </pre>
      *
-     * <code>repeated .google.cloud.language.v1beta2.Sentence sentences = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.language.v1beta2.Sentence sentences = 1;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setSentences(&$var)
@@ -79,11 +67,9 @@ class AnalyzeSyntaxResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Tokens, along with their syntactic information, in the input document.
-     * </pre>
      *
-     * <code>repeated .google.cloud.language.v1beta2.Token tokens = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.language.v1beta2.Token tokens = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getTokens()
@@ -92,11 +78,9 @@ class AnalyzeSyntaxResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Tokens, along with their syntactic information, in the input document.
-     * </pre>
      *
-     * <code>repeated .google.cloud.language.v1beta2.Token tokens = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.language.v1beta2.Token tokens = 2;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setTokens(&$var)
@@ -108,13 +92,11 @@ class AnalyzeSyntaxResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The language of the text, which will be the same as the language specified
      * in the request or, if not specified, the automatically-detected language.
      * See [Document.language][google.cloud.language.v1beta2.Document.language] field for more details.
-     * </pre>
      *
-     * <code>string language = 3;</code>
+     * Generated from protobuf field <code>string language = 3;</code>
      * @return string
      */
     public function getLanguage()
@@ -123,13 +105,11 @@ class AnalyzeSyntaxResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The language of the text, which will be the same as the language specified
      * in the request or, if not specified, the automatically-detected language.
      * See [Document.language][google.cloud.language.v1beta2.Document.language] field for more details.
-     * </pre>
      *
-     * <code>string language = 3;</code>
+     * Generated from protobuf field <code>string language = 3;</code>
      * @param string $var
      */
     public function setLanguage($var)

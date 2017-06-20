@@ -9,38 +9,30 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * A 3D position in the image, used primarily for Face detection landmarks.
  * A valid Position must have both x and y coordinates.
  * The position coordinates are in the same scale as the original image.
- * </pre>
  *
  * Protobuf type <code>Google\Cloud\Vision\V1\Position</code>
  */
 class Position extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * X coordinate.
-     * </pre>
      *
-     * <code>float x = 1;</code>
+     * Generated from protobuf field <code>float x = 1;</code>
      */
     private $x = 0.0;
     /**
-     * <pre>
      * Y coordinate.
-     * </pre>
      *
-     * <code>float y = 2;</code>
+     * Generated from protobuf field <code>float y = 2;</code>
      */
     private $y = 0.0;
     /**
-     * <pre>
      * Z coordinate (or depth).
-     * </pre>
      *
-     * <code>float z = 3;</code>
+     * Generated from protobuf field <code>float z = 3;</code>
      */
     private $z = 0.0;
 
@@ -50,11 +42,9 @@ class Position extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * X coordinate.
-     * </pre>
      *
-     * <code>float x = 1;</code>
+     * Generated from protobuf field <code>float x = 1;</code>
      * @return float
      */
     public function getX()
@@ -63,11 +53,9 @@ class Position extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * X coordinate.
-     * </pre>
      *
-     * <code>float x = 1;</code>
+     * Generated from protobuf field <code>float x = 1;</code>
      * @param float $var
      */
     public function setX($var)
@@ -79,11 +67,9 @@ class Position extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Y coordinate.
-     * </pre>
      *
-     * <code>float y = 2;</code>
+     * Generated from protobuf field <code>float y = 2;</code>
      * @return float
      */
     public function getY()
@@ -92,11 +78,9 @@ class Position extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Y coordinate.
-     * </pre>
      *
-     * <code>float y = 2;</code>
+     * Generated from protobuf field <code>float y = 2;</code>
      * @param float $var
      */
     public function setY($var)
@@ -108,11 +92,9 @@ class Position extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Z coordinate (or depth).
-     * </pre>
      *
-     * <code>float z = 3;</code>
+     * Generated from protobuf field <code>float z = 3;</code>
      * @return float
      */
     public function getZ()
@@ -121,11 +103,9 @@ class Position extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Z coordinate (or depth).
-     * </pre>
      *
-     * <code>float z = 3;</code>
+     * Generated from protobuf field <code>float z = 3;</code>
      * @param float $var
      */
     public function setZ($var)

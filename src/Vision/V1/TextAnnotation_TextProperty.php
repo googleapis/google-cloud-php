@@ -9,28 +9,22 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Additional information detected on the structural component.
- * </pre>
  *
  * Protobuf type <code>Google\Cloud\Vision\V1\TextAnnotation\TextProperty</code>
  */
 class TextAnnotation_TextProperty extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * A list of detected languages together with confidence.
-     * </pre>
      *
-     * <code>repeated .google.cloud.vision.v1.TextAnnotation.DetectedLanguage detected_languages = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.TextAnnotation.DetectedLanguage detected_languages = 1;</code>
      */
     private $detected_languages;
     /**
-     * <pre>
      * Detected start or end of a text segment.
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.TextAnnotation.DetectedBreak detected_break = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.TextAnnotation.DetectedBreak detected_break = 2;</code>
      */
     private $detected_break = null;
 
@@ -40,11 +34,9 @@ class TextAnnotation_TextProperty extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * A list of detected languages together with confidence.
-     * </pre>
      *
-     * <code>repeated .google.cloud.vision.v1.TextAnnotation.DetectedLanguage detected_languages = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.TextAnnotation.DetectedLanguage detected_languages = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getDetectedLanguages()
@@ -53,11 +45,9 @@ class TextAnnotation_TextProperty extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * A list of detected languages together with confidence.
-     * </pre>
      *
-     * <code>repeated .google.cloud.vision.v1.TextAnnotation.DetectedLanguage detected_languages = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.TextAnnotation.DetectedLanguage detected_languages = 1;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setDetectedLanguages(&$var)
@@ -69,11 +59,9 @@ class TextAnnotation_TextProperty extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Detected start or end of a text segment.
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.TextAnnotation.DetectedBreak detected_break = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.TextAnnotation.DetectedBreak detected_break = 2;</code>
      * @return \Google\Cloud\Vision\V1\TextAnnotation_DetectedBreak
      */
     public function getDetectedBreak()
@@ -82,11 +70,9 @@ class TextAnnotation_TextProperty extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Detected start or end of a text segment.
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.TextAnnotation.DetectedBreak detected_break = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.TextAnnotation.DetectedBreak detected_break = 2;</code>
      * @param \Google\Cloud\Vision\V1\TextAnnotation_DetectedBreak $var
      */
     public function setDetectedBreak(&$var)

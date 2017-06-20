@@ -9,41 +9,33 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Contains a set of requested error group stats.
- * </pre>
  *
  * Protobuf type <code>Google\Devtools\Clouderrorreporting\V1beta1\ListGroupStatsResponse</code>
  */
 class ListGroupStatsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The error group stats which match the given request.
-     * </pre>
      *
-     * <code>repeated .google.devtools.clouderrorreporting.v1beta1.ErrorGroupStats error_group_stats = 1;</code>
+     * Generated from protobuf field <code>repeated .google.devtools.clouderrorreporting.v1beta1.ErrorGroupStats error_group_stats = 1;</code>
      */
     private $error_group_stats;
     /**
-     * <pre>
      * If non-empty, more results are available.
      * Pass this token, along with the same query parameters as the first
      * request, to view the next page of results.
-     * </pre>
      *
-     * <code>string next_page_token = 2;</code>
+     * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
     private $next_page_token = '';
     /**
-     * <pre>
      * The timestamp specifies the start time to which the request was restricted.
      * The start time is set based on the requested time range. It may be adjusted
      * to a later time if a project has exceeded the storage quota and older data
      * has been deleted.
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp time_range_begin = 4;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp time_range_begin = 4;</code>
      */
     private $time_range_begin = null;
 
@@ -53,11 +45,9 @@ class ListGroupStatsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The error group stats which match the given request.
-     * </pre>
      *
-     * <code>repeated .google.devtools.clouderrorreporting.v1beta1.ErrorGroupStats error_group_stats = 1;</code>
+     * Generated from protobuf field <code>repeated .google.devtools.clouderrorreporting.v1beta1.ErrorGroupStats error_group_stats = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getErrorGroupStats()
@@ -66,11 +56,9 @@ class ListGroupStatsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The error group stats which match the given request.
-     * </pre>
      *
-     * <code>repeated .google.devtools.clouderrorreporting.v1beta1.ErrorGroupStats error_group_stats = 1;</code>
+     * Generated from protobuf field <code>repeated .google.devtools.clouderrorreporting.v1beta1.ErrorGroupStats error_group_stats = 1;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setErrorGroupStats(&$var)
@@ -82,13 +70,11 @@ class ListGroupStatsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If non-empty, more results are available.
      * Pass this token, along with the same query parameters as the first
      * request, to view the next page of results.
-     * </pre>
      *
-     * <code>string next_page_token = 2;</code>
+     * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @return string
      */
     public function getNextPageToken()
@@ -97,13 +83,11 @@ class ListGroupStatsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If non-empty, more results are available.
      * Pass this token, along with the same query parameters as the first
      * request, to view the next page of results.
-     * </pre>
      *
-     * <code>string next_page_token = 2;</code>
+     * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @param string $var
      */
     public function setNextPageToken($var)
@@ -115,14 +99,12 @@ class ListGroupStatsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The timestamp specifies the start time to which the request was restricted.
      * The start time is set based on the requested time range. It may be adjusted
      * to a later time if a project has exceeded the storage quota and older data
      * has been deleted.
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp time_range_begin = 4;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp time_range_begin = 4;</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getTimeRangeBegin()
@@ -131,14 +113,12 @@ class ListGroupStatsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The timestamp specifies the start time to which the request was restricted.
      * The start time is set based on the requested time range. It may be adjusted
      * to a later time if a project has exceeded the storage quota and older data
      * has been deleted.
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp time_range_begin = 4;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp time_range_begin = 4;</code>
      * @param \Google\Protobuf\Timestamp $var
      */
     public function setTimeRangeBegin(&$var)

@@ -9,38 +9,30 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * The number of errors in a given time period.
  * All numbers are approximate since the error events are sampled
  * before counting them.
- * </pre>
  *
  * Protobuf type <code>Google\Devtools\Clouderrorreporting\V1beta1\TimedCount</code>
  */
 class TimedCount extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * Approximate number of occurrences in the given time period.
-     * </pre>
      *
-     * <code>int64 count = 1;</code>
+     * Generated from protobuf field <code>int64 count = 1;</code>
      */
     private $count = 0;
     /**
-     * <pre>
      * Start of the time period to which `count` refers (included).
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp start_time = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 2;</code>
      */
     private $start_time = null;
     /**
-     * <pre>
      * End of the time period to which `count` refers (excluded).
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp end_time = 3;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 3;</code>
      */
     private $end_time = null;
 
@@ -50,11 +42,9 @@ class TimedCount extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Approximate number of occurrences in the given time period.
-     * </pre>
      *
-     * <code>int64 count = 1;</code>
+     * Generated from protobuf field <code>int64 count = 1;</code>
      * @return int|string
      */
     public function getCount()
@@ -63,11 +53,9 @@ class TimedCount extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Approximate number of occurrences in the given time period.
-     * </pre>
      *
-     * <code>int64 count = 1;</code>
+     * Generated from protobuf field <code>int64 count = 1;</code>
      * @param int|string $var
      */
     public function setCount($var)
@@ -79,11 +67,9 @@ class TimedCount extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Start of the time period to which `count` refers (included).
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp start_time = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 2;</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getStartTime()
@@ -92,11 +78,9 @@ class TimedCount extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Start of the time period to which `count` refers (included).
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp start_time = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 2;</code>
      * @param \Google\Protobuf\Timestamp $var
      */
     public function setStartTime(&$var)
@@ -108,11 +92,9 @@ class TimedCount extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * End of the time period to which `count` refers (excluded).
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp end_time = 3;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 3;</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getEndTime()
@@ -121,11 +103,9 @@ class TimedCount extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * End of the time period to which `count` refers (excluded).
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp end_time = 3;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 3;</code>
      * @param \Google\Protobuf\Timestamp $var
      */
     public function setEndTime(&$var)

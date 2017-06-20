@@ -9,38 +9,30 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * The `ListGroupMembers` response.
- * </pre>
  *
  * Protobuf type <code>Google\Monitoring\V3\ListGroupMembersResponse</code>
  */
 class ListGroupMembersResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * A set of monitored resources in the group.
-     * </pre>
      *
-     * <code>repeated .google.api.MonitoredResource members = 1;</code>
+     * Generated from protobuf field <code>repeated .google.api.MonitoredResource members = 1;</code>
      */
     private $members;
     /**
-     * <pre>
      * If there are more results than have been returned, then this field is
      * set to a non-empty value.  To see the additional results, use that value as
      * `pageToken` in the next call to this method.
-     * </pre>
      *
-     * <code>string next_page_token = 2;</code>
+     * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
     private $next_page_token = '';
     /**
-     * <pre>
      * The total number of elements matching this request.
-     * </pre>
      *
-     * <code>int32 total_size = 3;</code>
+     * Generated from protobuf field <code>int32 total_size = 3;</code>
      */
     private $total_size = 0;
 
@@ -50,11 +42,9 @@ class ListGroupMembersResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * A set of monitored resources in the group.
-     * </pre>
      *
-     * <code>repeated .google.api.MonitoredResource members = 1;</code>
+     * Generated from protobuf field <code>repeated .google.api.MonitoredResource members = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getMembers()
@@ -63,11 +53,9 @@ class ListGroupMembersResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * A set of monitored resources in the group.
-     * </pre>
      *
-     * <code>repeated .google.api.MonitoredResource members = 1;</code>
+     * Generated from protobuf field <code>repeated .google.api.MonitoredResource members = 1;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setMembers(&$var)
@@ -79,13 +67,11 @@ class ListGroupMembersResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If there are more results than have been returned, then this field is
      * set to a non-empty value.  To see the additional results, use that value as
      * `pageToken` in the next call to this method.
-     * </pre>
      *
-     * <code>string next_page_token = 2;</code>
+     * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @return string
      */
     public function getNextPageToken()
@@ -94,13 +80,11 @@ class ListGroupMembersResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If there are more results than have been returned, then this field is
      * set to a non-empty value.  To see the additional results, use that value as
      * `pageToken` in the next call to this method.
-     * </pre>
      *
-     * <code>string next_page_token = 2;</code>
+     * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @param string $var
      */
     public function setNextPageToken($var)
@@ -112,11 +96,9 @@ class ListGroupMembersResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The total number of elements matching this request.
-     * </pre>
      *
-     * <code>int32 total_size = 3;</code>
+     * Generated from protobuf field <code>int32 total_size = 3;</code>
      * @return int
      */
     public function getTotalSize()
@@ -125,11 +107,9 @@ class ListGroupMembersResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The total number of elements matching this request.
-     * </pre>
      *
-     * <code>int32 total_size = 3;</code>
+     * Generated from protobuf field <code>int32 total_size = 3;</code>
      * @param int $var
      */
     public function setTotalSize($var)

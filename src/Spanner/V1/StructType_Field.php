@@ -9,16 +9,13 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Message representing a single field of a struct.
- * </pre>
  *
  * Protobuf type <code>Google\Spanner\V1\StructType\Field</code>
  */
 class StructType_Field extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The name of the field. For reads, this is the column name. For
      * SQL queries, it is the column alias (e.g., `"Word"` in the
      * query `"SELECT 'hello' AS Word"`), or the column name (e.g.,
@@ -26,17 +23,14 @@ class StructType_Field extends \Google\Protobuf\Internal\Message
      * columns might have an empty name (e.g., !"SELECT
      * UPPER(ColName)"`). Note that a query result can contain
      * multiple fields with the same name.
-     * </pre>
      *
-     * <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      */
     private $name = '';
     /**
-     * <pre>
      * The type of the field.
-     * </pre>
      *
-     * <code>.google.spanner.v1.Type type = 2;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.Type type = 2;</code>
      */
     private $type = null;
 
@@ -46,7 +40,6 @@ class StructType_Field extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The name of the field. For reads, this is the column name. For
      * SQL queries, it is the column alias (e.g., `"Word"` in the
      * query `"SELECT 'hello' AS Word"`), or the column name (e.g.,
@@ -54,9 +47,8 @@ class StructType_Field extends \Google\Protobuf\Internal\Message
      * columns might have an empty name (e.g., !"SELECT
      * UPPER(ColName)"`). Note that a query result can contain
      * multiple fields with the same name.
-     * </pre>
      *
-     * <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      * @return string
      */
     public function getName()
@@ -65,7 +57,6 @@ class StructType_Field extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The name of the field. For reads, this is the column name. For
      * SQL queries, it is the column alias (e.g., `"Word"` in the
      * query `"SELECT 'hello' AS Word"`), or the column name (e.g.,
@@ -73,9 +64,8 @@ class StructType_Field extends \Google\Protobuf\Internal\Message
      * columns might have an empty name (e.g., !"SELECT
      * UPPER(ColName)"`). Note that a query result can contain
      * multiple fields with the same name.
-     * </pre>
      *
-     * <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
      */
     public function setName($var)
@@ -87,11 +77,9 @@ class StructType_Field extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The type of the field.
-     * </pre>
      *
-     * <code>.google.spanner.v1.Type type = 2;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.Type type = 2;</code>
      * @return \Google\Cloud\Spanner\V1\Type
      */
     public function getType()
@@ -100,11 +88,9 @@ class StructType_Field extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The type of the field.
-     * </pre>
      *
-     * <code>.google.spanner.v1.Type type = 2;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.Type type = 2;</code>
      * @param \Google\Cloud\Spanner\V1\Type $var
      */
     public function setType(&$var)

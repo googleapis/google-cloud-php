@@ -9,30 +9,24 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * The response for [ListDatabases][google.spanner.admin.database.v1.DatabaseAdmin.ListDatabases].
- * </pre>
  *
  * Protobuf type <code>Google\Spanner\Admin\Database\V1\ListDatabasesResponse</code>
  */
 class ListDatabasesResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * Databases that matched the request.
-     * </pre>
      *
-     * <code>repeated .google.spanner.admin.database.v1.Database databases = 1;</code>
+     * Generated from protobuf field <code>repeated .google.spanner.admin.database.v1.Database databases = 1;</code>
      */
     private $databases;
     /**
-     * <pre>
      * `next_page_token` can be sent in a subsequent
      * [ListDatabases][google.spanner.admin.database.v1.DatabaseAdmin.ListDatabases] call to fetch more
      * of the matching databases.
-     * </pre>
      *
-     * <code>string next_page_token = 2;</code>
+     * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
     private $next_page_token = '';
 
@@ -42,11 +36,9 @@ class ListDatabasesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Databases that matched the request.
-     * </pre>
      *
-     * <code>repeated .google.spanner.admin.database.v1.Database databases = 1;</code>
+     * Generated from protobuf field <code>repeated .google.spanner.admin.database.v1.Database databases = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getDatabases()
@@ -55,11 +47,9 @@ class ListDatabasesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Databases that matched the request.
-     * </pre>
      *
-     * <code>repeated .google.spanner.admin.database.v1.Database databases = 1;</code>
+     * Generated from protobuf field <code>repeated .google.spanner.admin.database.v1.Database databases = 1;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setDatabases(&$var)
@@ -71,13 +61,11 @@ class ListDatabasesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * `next_page_token` can be sent in a subsequent
      * [ListDatabases][google.spanner.admin.database.v1.DatabaseAdmin.ListDatabases] call to fetch more
      * of the matching databases.
-     * </pre>
      *
-     * <code>string next_page_token = 2;</code>
+     * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @return string
      */
     public function getNextPageToken()
@@ -86,13 +74,11 @@ class ListDatabasesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * `next_page_token` can be sent in a subsequent
      * [ListDatabases][google.spanner.admin.database.v1.DatabaseAdmin.ListDatabases] call to fetch more
      * of the matching databases.
-     * </pre>
      *
-     * <code>string next_page_token = 2;</code>
+     * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @param string $var
      */
     public function setNextPageToken($var)

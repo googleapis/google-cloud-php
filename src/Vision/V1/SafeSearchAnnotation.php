@@ -9,48 +9,38 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Set of features pertaining to the image, computed by computer vision
  * methods over safe-search verticals (for example, adult, spoof, medical,
  * violence).
- * </pre>
  *
  * Protobuf type <code>Google\Cloud\Vision\V1\SafeSearchAnnotation</code>
  */
 class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * Represents the adult content likelihood for the image.
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.Likelihood adult = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.Likelihood adult = 1;</code>
      */
     private $adult = 0;
     /**
-     * <pre>
      * Spoof likelihood. The likelihood that an modification
      * was made to the image's canonical version to make it appear
      * funny or offensive.
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.Likelihood spoof = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.Likelihood spoof = 2;</code>
      */
     private $spoof = 0;
     /**
-     * <pre>
      * Likelihood that this is a medical image.
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.Likelihood medical = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.Likelihood medical = 3;</code>
      */
     private $medical = 0;
     /**
-     * <pre>
      * Violence likelihood.
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.Likelihood violence = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.Likelihood violence = 4;</code>
      */
     private $violence = 0;
 
@@ -60,11 +50,9 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Represents the adult content likelihood for the image.
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.Likelihood adult = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.Likelihood adult = 1;</code>
      * @return int
      */
     public function getAdult()
@@ -73,11 +61,9 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Represents the adult content likelihood for the image.
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.Likelihood adult = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.Likelihood adult = 1;</code>
      * @param int $var
      */
     public function setAdult($var)
@@ -89,13 +75,11 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Spoof likelihood. The likelihood that an modification
      * was made to the image's canonical version to make it appear
      * funny or offensive.
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.Likelihood spoof = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.Likelihood spoof = 2;</code>
      * @return int
      */
     public function getSpoof()
@@ -104,13 +88,11 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Spoof likelihood. The likelihood that an modification
      * was made to the image's canonical version to make it appear
      * funny or offensive.
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.Likelihood spoof = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.Likelihood spoof = 2;</code>
      * @param int $var
      */
     public function setSpoof($var)
@@ -122,11 +104,9 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Likelihood that this is a medical image.
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.Likelihood medical = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.Likelihood medical = 3;</code>
      * @return int
      */
     public function getMedical()
@@ -135,11 +115,9 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Likelihood that this is a medical image.
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.Likelihood medical = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.Likelihood medical = 3;</code>
      * @param int $var
      */
     public function setMedical($var)
@@ -151,11 +129,9 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Violence likelihood.
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.Likelihood violence = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.Likelihood violence = 4;</code>
      * @return int
      */
     public function getViolence()
@@ -164,11 +140,9 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Violence likelihood.
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.Likelihood violence = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.Likelihood violence = 4;</code>
      * @param int $var
      */
     public function setViolence($var)

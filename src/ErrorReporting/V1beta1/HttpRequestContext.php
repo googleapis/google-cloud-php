@@ -9,66 +9,52 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * HTTP request data that is related to a reported error.
  * This data should be provided by the application when reporting an error,
  * unless the
  * error report has been generated automatically from Google App Engine logs.
- * </pre>
  *
  * Protobuf type <code>Google\Devtools\Clouderrorreporting\V1beta1\HttpRequestContext</code>
  */
 class HttpRequestContext extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The type of HTTP request, such as `GET`, `POST`, etc.
-     * </pre>
      *
-     * <code>string method = 1;</code>
+     * Generated from protobuf field <code>string method = 1;</code>
      */
     private $method = '';
     /**
-     * <pre>
      * The URL of the request.
-     * </pre>
      *
-     * <code>string url = 2;</code>
+     * Generated from protobuf field <code>string url = 2;</code>
      */
     private $url = '';
     /**
-     * <pre>
      * The user agent information that is provided with the request.
-     * </pre>
      *
-     * <code>string user_agent = 3;</code>
+     * Generated from protobuf field <code>string user_agent = 3;</code>
      */
     private $user_agent = '';
     /**
-     * <pre>
      * The referrer information that is provided with the request.
-     * </pre>
      *
-     * <code>string referrer = 4;</code>
+     * Generated from protobuf field <code>string referrer = 4;</code>
      */
     private $referrer = '';
     /**
-     * <pre>
      * The HTTP response status code for the request.
-     * </pre>
      *
-     * <code>int32 response_status_code = 5;</code>
+     * Generated from protobuf field <code>int32 response_status_code = 5;</code>
      */
     private $response_status_code = 0;
     /**
-     * <pre>
      * The IP address from which the request originated.
      * This can be IPv4, IPv6, or a token which is derived from the
      * IP address, depending on the data that has been provided
      * in the error report.
-     * </pre>
      *
-     * <code>string remote_ip = 6;</code>
+     * Generated from protobuf field <code>string remote_ip = 6;</code>
      */
     private $remote_ip = '';
 
@@ -78,11 +64,9 @@ class HttpRequestContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The type of HTTP request, such as `GET`, `POST`, etc.
-     * </pre>
      *
-     * <code>string method = 1;</code>
+     * Generated from protobuf field <code>string method = 1;</code>
      * @return string
      */
     public function getMethod()
@@ -91,11 +75,9 @@ class HttpRequestContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The type of HTTP request, such as `GET`, `POST`, etc.
-     * </pre>
      *
-     * <code>string method = 1;</code>
+     * Generated from protobuf field <code>string method = 1;</code>
      * @param string $var
      */
     public function setMethod($var)
@@ -107,11 +89,9 @@ class HttpRequestContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The URL of the request.
-     * </pre>
      *
-     * <code>string url = 2;</code>
+     * Generated from protobuf field <code>string url = 2;</code>
      * @return string
      */
     public function getUrl()
@@ -120,11 +100,9 @@ class HttpRequestContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The URL of the request.
-     * </pre>
      *
-     * <code>string url = 2;</code>
+     * Generated from protobuf field <code>string url = 2;</code>
      * @param string $var
      */
     public function setUrl($var)
@@ -136,11 +114,9 @@ class HttpRequestContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The user agent information that is provided with the request.
-     * </pre>
      *
-     * <code>string user_agent = 3;</code>
+     * Generated from protobuf field <code>string user_agent = 3;</code>
      * @return string
      */
     public function getUserAgent()
@@ -149,11 +125,9 @@ class HttpRequestContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The user agent information that is provided with the request.
-     * </pre>
      *
-     * <code>string user_agent = 3;</code>
+     * Generated from protobuf field <code>string user_agent = 3;</code>
      * @param string $var
      */
     public function setUserAgent($var)
@@ -165,11 +139,9 @@ class HttpRequestContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The referrer information that is provided with the request.
-     * </pre>
      *
-     * <code>string referrer = 4;</code>
+     * Generated from protobuf field <code>string referrer = 4;</code>
      * @return string
      */
     public function getReferrer()
@@ -178,11 +150,9 @@ class HttpRequestContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The referrer information that is provided with the request.
-     * </pre>
      *
-     * <code>string referrer = 4;</code>
+     * Generated from protobuf field <code>string referrer = 4;</code>
      * @param string $var
      */
     public function setReferrer($var)
@@ -194,11 +164,9 @@ class HttpRequestContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The HTTP response status code for the request.
-     * </pre>
      *
-     * <code>int32 response_status_code = 5;</code>
+     * Generated from protobuf field <code>int32 response_status_code = 5;</code>
      * @return int
      */
     public function getResponseStatusCode()
@@ -207,11 +175,9 @@ class HttpRequestContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The HTTP response status code for the request.
-     * </pre>
      *
-     * <code>int32 response_status_code = 5;</code>
+     * Generated from protobuf field <code>int32 response_status_code = 5;</code>
      * @param int $var
      */
     public function setResponseStatusCode($var)
@@ -223,14 +189,12 @@ class HttpRequestContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The IP address from which the request originated.
      * This can be IPv4, IPv6, or a token which is derived from the
      * IP address, depending on the data that has been provided
      * in the error report.
-     * </pre>
      *
-     * <code>string remote_ip = 6;</code>
+     * Generated from protobuf field <code>string remote_ip = 6;</code>
      * @return string
      */
     public function getRemoteIp()
@@ -239,14 +203,12 @@ class HttpRequestContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The IP address from which the request originated.
      * This can be IPv4, IPv6, or a token which is derived from the
      * IP address, depending on the data that has been provided
      * in the error report.
-     * </pre>
      *
-     * <code>string remote_ip = 6;</code>
+     * Generated from protobuf field <code>string remote_ip = 6;</code>
      * @param string $var
      */
     public function setRemoteIp($var)

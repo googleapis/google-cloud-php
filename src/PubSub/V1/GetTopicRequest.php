@@ -9,21 +9,17 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Request for the GetTopic method.
- * </pre>
  *
  * Protobuf type <code>Google\Pubsub\V1\GetTopicRequest</code>
  */
 class GetTopicRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The name of the topic to get.
      * Format is `projects/{project}/topics/{topic}`.
-     * </pre>
      *
-     * <code>string topic = 1;</code>
+     * Generated from protobuf field <code>string topic = 1;</code>
      */
     private $topic = '';
 
@@ -33,12 +29,10 @@ class GetTopicRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The name of the topic to get.
      * Format is `projects/{project}/topics/{topic}`.
-     * </pre>
      *
-     * <code>string topic = 1;</code>
+     * Generated from protobuf field <code>string topic = 1;</code>
      * @return string
      */
     public function getTopic()
@@ -47,12 +41,10 @@ class GetTopicRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The name of the topic to get.
      * Format is `projects/{project}/topics/{topic}`.
-     * </pre>
      *
-     * <code>string topic = 1;</code>
+     * Generated from protobuf field <code>string topic = 1;</code>
      * @param string $var
      */
     public function setTopic($var)

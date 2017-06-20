@@ -9,16 +9,13 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * The parameters to DeleteLog.
- * </pre>
  *
  * Protobuf type <code>Google\Logging\V2\DeleteLogRequest</code>
  */
 class DeleteLogRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * Required. The resource name of the log to delete:
      *     "projects/[PROJECT_ID]/logs/[LOG_ID]"
      *     "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
@@ -29,9 +26,8 @@ class DeleteLogRequest extends \Google\Protobuf\Internal\Message
      * `"organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity"`.
      * For more information about log names, see
      * [LogEntry][google.logging.v2.LogEntry].
-     * </pre>
      *
-     * <code>string log_name = 1;</code>
+     * Generated from protobuf field <code>string log_name = 1;</code>
      */
     private $log_name = '';
 
@@ -41,7 +37,6 @@ class DeleteLogRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. The resource name of the log to delete:
      *     "projects/[PROJECT_ID]/logs/[LOG_ID]"
      *     "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
@@ -52,9 +47,8 @@ class DeleteLogRequest extends \Google\Protobuf\Internal\Message
      * `"organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity"`.
      * For more information about log names, see
      * [LogEntry][google.logging.v2.LogEntry].
-     * </pre>
      *
-     * <code>string log_name = 1;</code>
+     * Generated from protobuf field <code>string log_name = 1;</code>
      * @return string
      */
     public function getLogName()
@@ -63,7 +57,6 @@ class DeleteLogRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. The resource name of the log to delete:
      *     "projects/[PROJECT_ID]/logs/[LOG_ID]"
      *     "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]"
@@ -74,9 +67,8 @@ class DeleteLogRequest extends \Google\Protobuf\Internal\Message
      * `"organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity"`.
      * For more information about log names, see
      * [LogEntry][google.logging.v2.LogEntry].
-     * </pre>
      *
-     * <code>string log_name = 1;</code>
+     * Generated from protobuf field <code>string log_name = 1;</code>
      * @param string $var
      */
     public function setLogName($var)

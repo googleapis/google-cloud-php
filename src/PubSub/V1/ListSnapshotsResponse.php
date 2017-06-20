@@ -9,29 +9,23 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Response for the `ListSnapshots` method.
- * </pre>
  *
  * Protobuf type <code>Google\Pubsub\V1\ListSnapshotsResponse</code>
  */
 class ListSnapshotsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The resulting snapshots.
-     * </pre>
      *
-     * <code>repeated .google.pubsub.v1.Snapshot snapshots = 1;</code>
+     * Generated from protobuf field <code>repeated .google.pubsub.v1.Snapshot snapshots = 1;</code>
      */
     private $snapshots;
     /**
-     * <pre>
      * If not empty, indicates that there may be more snapshot that match the
      * request; this value should be passed in a new `ListSnapshotsRequest`.
-     * </pre>
      *
-     * <code>string next_page_token = 2;</code>
+     * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
     private $next_page_token = '';
 
@@ -41,11 +35,9 @@ class ListSnapshotsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The resulting snapshots.
-     * </pre>
      *
-     * <code>repeated .google.pubsub.v1.Snapshot snapshots = 1;</code>
+     * Generated from protobuf field <code>repeated .google.pubsub.v1.Snapshot snapshots = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getSnapshots()
@@ -54,11 +46,9 @@ class ListSnapshotsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The resulting snapshots.
-     * </pre>
      *
-     * <code>repeated .google.pubsub.v1.Snapshot snapshots = 1;</code>
+     * Generated from protobuf field <code>repeated .google.pubsub.v1.Snapshot snapshots = 1;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setSnapshots(&$var)
@@ -70,12 +60,10 @@ class ListSnapshotsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If not empty, indicates that there may be more snapshot that match the
      * request; this value should be passed in a new `ListSnapshotsRequest`.
-     * </pre>
      *
-     * <code>string next_page_token = 2;</code>
+     * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @return string
      */
     public function getNextPageToken()
@@ -84,12 +72,10 @@ class ListSnapshotsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If not empty, indicates that there may be more snapshot that match the
      * request; this value should be passed in a new `ListSnapshotsRequest`.
-     * </pre>
      *
-     * <code>string next_page_token = 2;</code>
+     * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @param string $var
      */
     public function setNextPageToken($var)

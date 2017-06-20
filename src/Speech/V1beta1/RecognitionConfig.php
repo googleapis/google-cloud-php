@@ -9,77 +9,63 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Provides information to the recognizer that specifies how to process the
  * request.
- * </pre>
  *
  * Protobuf type <code>Google\Cloud\Speech\V1beta1\RecognitionConfig</code>
  */
 class RecognitionConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * *Required* Encoding of audio data sent in all `RecognitionAudio` messages.
-     * </pre>
      *
-     * <code>.google.cloud.speech.v1beta1.RecognitionConfig.AudioEncoding encoding = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.speech.v1beta1.RecognitionConfig.AudioEncoding encoding = 1;</code>
      */
     private $encoding = 0;
     /**
-     * <pre>
      * *Required* Sample rate in Hertz of the audio data sent in all
      * `RecognitionAudio` messages. Valid values are: 8000-48000.
      * 16000 is optimal. For best results, set the sampling rate of the audio
      * source to 16000 Hz. If that's not possible, use the native sample rate of
      * the audio source (instead of re-sampling).
-     * </pre>
      *
-     * <code>int32 sample_rate = 2;</code>
+     * Generated from protobuf field <code>int32 sample_rate = 2;</code>
      */
     private $sample_rate = 0;
     /**
-     * <pre>
      * *Optional* The language of the supplied audio as a BCP-47 language tag.
      * Example: "en-GB"  https://www.rfc-editor.org/rfc/bcp/bcp47.txt
      * If omitted, defaults to "en-US". See
      * [Language Support](https://cloud.google.com/speech/docs/languages)
      * for a list of the currently supported language codes.
-     * </pre>
      *
-     * <code>string language_code = 3;</code>
+     * Generated from protobuf field <code>string language_code = 3;</code>
      */
     private $language_code = '';
     /**
-     * <pre>
      * *Optional* Maximum number of recognition hypotheses to be returned.
      * Specifically, the maximum number of `SpeechRecognitionAlternative` messages
      * within each `SpeechRecognitionResult`.
      * The server may return fewer than `max_alternatives`.
      * Valid values are `0`-`30`. A value of `0` or `1` will return a maximum of
      * one. If omitted, will return a maximum of one.
-     * </pre>
      *
-     * <code>int32 max_alternatives = 4;</code>
+     * Generated from protobuf field <code>int32 max_alternatives = 4;</code>
      */
     private $max_alternatives = 0;
     /**
-     * <pre>
      * *Optional* If set to `true`, the server will attempt to filter out
      * profanities, replacing all but the initial character in each filtered word
      * with asterisks, e.g. "f***". If set to `false` or omitted, profanities
      * won't be filtered out.
-     * </pre>
      *
-     * <code>bool profanity_filter = 5;</code>
+     * Generated from protobuf field <code>bool profanity_filter = 5;</code>
      */
     private $profanity_filter = false;
     /**
-     * <pre>
      * *Optional* A means to provide context to assist the speech recognition.
-     * </pre>
      *
-     * <code>.google.cloud.speech.v1beta1.SpeechContext speech_context = 6;</code>
+     * Generated from protobuf field <code>.google.cloud.speech.v1beta1.SpeechContext speech_context = 6;</code>
      */
     private $speech_context = null;
 
@@ -89,11 +75,9 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * *Required* Encoding of audio data sent in all `RecognitionAudio` messages.
-     * </pre>
      *
-     * <code>.google.cloud.speech.v1beta1.RecognitionConfig.AudioEncoding encoding = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.speech.v1beta1.RecognitionConfig.AudioEncoding encoding = 1;</code>
      * @return int
      */
     public function getEncoding()
@@ -102,11 +86,9 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * *Required* Encoding of audio data sent in all `RecognitionAudio` messages.
-     * </pre>
      *
-     * <code>.google.cloud.speech.v1beta1.RecognitionConfig.AudioEncoding encoding = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.speech.v1beta1.RecognitionConfig.AudioEncoding encoding = 1;</code>
      * @param int $var
      */
     public function setEncoding($var)
@@ -118,15 +100,13 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * *Required* Sample rate in Hertz of the audio data sent in all
      * `RecognitionAudio` messages. Valid values are: 8000-48000.
      * 16000 is optimal. For best results, set the sampling rate of the audio
      * source to 16000 Hz. If that's not possible, use the native sample rate of
      * the audio source (instead of re-sampling).
-     * </pre>
      *
-     * <code>int32 sample_rate = 2;</code>
+     * Generated from protobuf field <code>int32 sample_rate = 2;</code>
      * @return int
      */
     public function getSampleRate()
@@ -135,15 +115,13 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * *Required* Sample rate in Hertz of the audio data sent in all
      * `RecognitionAudio` messages. Valid values are: 8000-48000.
      * 16000 is optimal. For best results, set the sampling rate of the audio
      * source to 16000 Hz. If that's not possible, use the native sample rate of
      * the audio source (instead of re-sampling).
-     * </pre>
      *
-     * <code>int32 sample_rate = 2;</code>
+     * Generated from protobuf field <code>int32 sample_rate = 2;</code>
      * @param int $var
      */
     public function setSampleRate($var)
@@ -155,15 +133,13 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * *Optional* The language of the supplied audio as a BCP-47 language tag.
      * Example: "en-GB"  https://www.rfc-editor.org/rfc/bcp/bcp47.txt
      * If omitted, defaults to "en-US". See
      * [Language Support](https://cloud.google.com/speech/docs/languages)
      * for a list of the currently supported language codes.
-     * </pre>
      *
-     * <code>string language_code = 3;</code>
+     * Generated from protobuf field <code>string language_code = 3;</code>
      * @return string
      */
     public function getLanguageCode()
@@ -172,15 +148,13 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * *Optional* The language of the supplied audio as a BCP-47 language tag.
      * Example: "en-GB"  https://www.rfc-editor.org/rfc/bcp/bcp47.txt
      * If omitted, defaults to "en-US". See
      * [Language Support](https://cloud.google.com/speech/docs/languages)
      * for a list of the currently supported language codes.
-     * </pre>
      *
-     * <code>string language_code = 3;</code>
+     * Generated from protobuf field <code>string language_code = 3;</code>
      * @param string $var
      */
     public function setLanguageCode($var)
@@ -192,16 +166,14 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * *Optional* Maximum number of recognition hypotheses to be returned.
      * Specifically, the maximum number of `SpeechRecognitionAlternative` messages
      * within each `SpeechRecognitionResult`.
      * The server may return fewer than `max_alternatives`.
      * Valid values are `0`-`30`. A value of `0` or `1` will return a maximum of
      * one. If omitted, will return a maximum of one.
-     * </pre>
      *
-     * <code>int32 max_alternatives = 4;</code>
+     * Generated from protobuf field <code>int32 max_alternatives = 4;</code>
      * @return int
      */
     public function getMaxAlternatives()
@@ -210,16 +182,14 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * *Optional* Maximum number of recognition hypotheses to be returned.
      * Specifically, the maximum number of `SpeechRecognitionAlternative` messages
      * within each `SpeechRecognitionResult`.
      * The server may return fewer than `max_alternatives`.
      * Valid values are `0`-`30`. A value of `0` or `1` will return a maximum of
      * one. If omitted, will return a maximum of one.
-     * </pre>
      *
-     * <code>int32 max_alternatives = 4;</code>
+     * Generated from protobuf field <code>int32 max_alternatives = 4;</code>
      * @param int $var
      */
     public function setMaxAlternatives($var)
@@ -231,14 +201,12 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * *Optional* If set to `true`, the server will attempt to filter out
      * profanities, replacing all but the initial character in each filtered word
      * with asterisks, e.g. "f***". If set to `false` or omitted, profanities
      * won't be filtered out.
-     * </pre>
      *
-     * <code>bool profanity_filter = 5;</code>
+     * Generated from protobuf field <code>bool profanity_filter = 5;</code>
      * @return bool
      */
     public function getProfanityFilter()
@@ -247,14 +215,12 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * *Optional* If set to `true`, the server will attempt to filter out
      * profanities, replacing all but the initial character in each filtered word
      * with asterisks, e.g. "f***". If set to `false` or omitted, profanities
      * won't be filtered out.
-     * </pre>
      *
-     * <code>bool profanity_filter = 5;</code>
+     * Generated from protobuf field <code>bool profanity_filter = 5;</code>
      * @param bool $var
      */
     public function setProfanityFilter($var)
@@ -266,11 +232,9 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * *Optional* A means to provide context to assist the speech recognition.
-     * </pre>
      *
-     * <code>.google.cloud.speech.v1beta1.SpeechContext speech_context = 6;</code>
+     * Generated from protobuf field <code>.google.cloud.speech.v1beta1.SpeechContext speech_context = 6;</code>
      * @return \Google\Cloud\Speech\V1beta1\SpeechContext
      */
     public function getSpeechContext()
@@ -279,11 +243,9 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * *Optional* A means to provide context to assist the speech recognition.
-     * </pre>
      *
-     * <code>.google.cloud.speech.v1beta1.SpeechContext speech_context = 6;</code>
+     * Generated from protobuf field <code>.google.cloud.speech.v1beta1.SpeechContext speech_context = 6;</code>
      * @param \Google\Cloud\Speech\V1beta1\SpeechContext $var
      */
     public function setSpeechContext(&$var)

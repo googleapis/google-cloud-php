@@ -9,20 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * The request for [GetDatabaseDdl][google.spanner.admin.database.v1.DatabaseAdmin.GetDatabaseDdl].
- * </pre>
  *
  * Protobuf type <code>Google\Spanner\Admin\Database\V1\GetDatabaseDdlRequest</code>
  */
 class GetDatabaseDdlRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * Required. The database whose schema we wish to get.
-     * </pre>
      *
-     * <code>string database = 1;</code>
+     * Generated from protobuf field <code>string database = 1;</code>
      */
     private $database = '';
 
@@ -32,11 +28,9 @@ class GetDatabaseDdlRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. The database whose schema we wish to get.
-     * </pre>
      *
-     * <code>string database = 1;</code>
+     * Generated from protobuf field <code>string database = 1;</code>
      * @return string
      */
     public function getDatabase()
@@ -45,11 +39,9 @@ class GetDatabaseDdlRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. The database whose schema we wish to get.
-     * </pre>
      *
-     * <code>string database = 1;</code>
+     * Generated from protobuf field <code>string database = 1;</code>
      * @param string $var
      */
     public function setDatabase($var)

@@ -5,36 +5,28 @@
 namespace Google\Cloud\Language\V1beta2;
 
 /**
- * <pre>
  * The supported types of mentions.
- * </pre>
  *
  * Protobuf enum <code>Google\Cloud\Language\V1beta2\EntityMention\Type</code>
  */
 class EntityMention_Type
 {
     /**
-     * <pre>
      * Unknown
-     * </pre>
      *
-     * <code>TYPE_UNKNOWN = 0;</code>
+     * Generated from protobuf enum <code>TYPE_UNKNOWN = 0;</code>
      */
     const TYPE_UNKNOWN = 0;
     /**
-     * <pre>
      * Proper name
-     * </pre>
      *
-     * <code>PROPER = 1;</code>
+     * Generated from protobuf enum <code>PROPER = 1;</code>
      */
     const PROPER = 1;
     /**
-     * <pre>
      * Common noun (or noun compound)
-     * </pre>
      *
-     * <code>COMMON = 2;</code>
+     * Generated from protobuf enum <code>COMMON = 2;</code>
      */
     const COMMON = 2;
 }

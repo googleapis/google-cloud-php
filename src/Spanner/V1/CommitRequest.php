@@ -9,30 +9,24 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * The request for [Commit][google.spanner.v1.Spanner.Commit].
- * </pre>
  *
  * Protobuf type <code>Google\Spanner\V1\CommitRequest</code>
  */
 class CommitRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * Required. The session in which the transaction to be committed is running.
-     * </pre>
      *
-     * <code>string session = 1;</code>
+     * Generated from protobuf field <code>string session = 1;</code>
      */
     private $session = '';
     /**
-     * <pre>
      * The mutations to be executed when this transaction commits. All
      * mutations are applied atomically, in the order they appear in
      * this list.
-     * </pre>
      *
-     * <code>repeated .google.spanner.v1.Mutation mutations = 4;</code>
+     * Generated from protobuf field <code>repeated .google.spanner.v1.Mutation mutations = 4;</code>
      */
     private $mutations;
     protected $transaction;
@@ -43,11 +37,9 @@ class CommitRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. The session in which the transaction to be committed is running.
-     * </pre>
      *
-     * <code>string session = 1;</code>
+     * Generated from protobuf field <code>string session = 1;</code>
      * @return string
      */
     public function getSession()
@@ -56,11 +48,9 @@ class CommitRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. The session in which the transaction to be committed is running.
-     * </pre>
      *
-     * <code>string session = 1;</code>
+     * Generated from protobuf field <code>string session = 1;</code>
      * @param string $var
      */
     public function setSession($var)
@@ -72,11 +62,9 @@ class CommitRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Commit a previously-started transaction.
-     * </pre>
      *
-     * <code>bytes transaction_id = 2;</code>
+     * Generated from protobuf field <code>bytes transaction_id = 2;</code>
      * @return string
      */
     public function getTransactionId()
@@ -85,11 +73,9 @@ class CommitRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Commit a previously-started transaction.
-     * </pre>
      *
-     * <code>bytes transaction_id = 2;</code>
+     * Generated from protobuf field <code>bytes transaction_id = 2;</code>
      * @param string $var
      */
     public function setTransactionId($var)
@@ -101,7 +87,6 @@ class CommitRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Execute mutations in a temporary transaction. Note that unlike
      * commit of a previously-started transaction, commit with a
      * temporary transaction is non-idempotent. That is, if the
@@ -111,9 +96,8 @@ class CommitRequest extends \Google\Protobuf\Internal\Message
      * executed more than once. If this is undesirable, use
      * [BeginTransaction][google.spanner.v1.Spanner.BeginTransaction] and
      * [Commit][google.spanner.v1.Spanner.Commit] instead.
-     * </pre>
      *
-     * <code>.google.spanner.v1.TransactionOptions single_use_transaction = 3;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.TransactionOptions single_use_transaction = 3;</code>
      * @return \Google\Cloud\Spanner\V1\TransactionOptions
      */
     public function getSingleUseTransaction()
@@ -122,7 +106,6 @@ class CommitRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Execute mutations in a temporary transaction. Note that unlike
      * commit of a previously-started transaction, commit with a
      * temporary transaction is non-idempotent. That is, if the
@@ -132,9 +115,8 @@ class CommitRequest extends \Google\Protobuf\Internal\Message
      * executed more than once. If this is undesirable, use
      * [BeginTransaction][google.spanner.v1.Spanner.BeginTransaction] and
      * [Commit][google.spanner.v1.Spanner.Commit] instead.
-     * </pre>
      *
-     * <code>.google.spanner.v1.TransactionOptions single_use_transaction = 3;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.TransactionOptions single_use_transaction = 3;</code>
      * @param \Google\Cloud\Spanner\V1\TransactionOptions $var
      */
     public function setSingleUseTransaction(&$var)
@@ -146,13 +128,11 @@ class CommitRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The mutations to be executed when this transaction commits. All
      * mutations are applied atomically, in the order they appear in
      * this list.
-     * </pre>
      *
-     * <code>repeated .google.spanner.v1.Mutation mutations = 4;</code>
+     * Generated from protobuf field <code>repeated .google.spanner.v1.Mutation mutations = 4;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getMutations()
@@ -161,13 +141,11 @@ class CommitRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The mutations to be executed when this transaction commits. All
      * mutations are applied atomically, in the order they appear in
      * this list.
-     * </pre>
      *
-     * <code>repeated .google.spanner.v1.Mutation mutations = 4;</code>
+     * Generated from protobuf field <code>repeated .google.spanner.v1.Mutation mutations = 4;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setMutations(&$var)

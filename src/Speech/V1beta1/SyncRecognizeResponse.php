@@ -9,23 +9,19 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * The only message returned to the client by `SyncRecognize`. It
  * contains the result as zero or more sequential `SpeechRecognitionResult`
  * messages.
- * </pre>
  *
  * Protobuf type <code>Google\Cloud\Speech\V1beta1\SyncRecognizeResponse</code>
  */
 class SyncRecognizeResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * *Output-only* Sequential list of transcription results corresponding to
      * sequential portions of audio.
-     * </pre>
      *
-     * <code>repeated .google.cloud.speech.v1beta1.SpeechRecognitionResult results = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.speech.v1beta1.SpeechRecognitionResult results = 2;</code>
      */
     private $results;
 
@@ -35,12 +31,10 @@ class SyncRecognizeResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * *Output-only* Sequential list of transcription results corresponding to
      * sequential portions of audio.
-     * </pre>
      *
-     * <code>repeated .google.cloud.speech.v1beta1.SpeechRecognitionResult results = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.speech.v1beta1.SpeechRecognitionResult results = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getResults()
@@ -49,12 +43,10 @@ class SyncRecognizeResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * *Output-only* Sequential list of transcription results corresponding to
      * sequential portions of audio.
-     * </pre>
      *
-     * <code>repeated .google.cloud.speech.v1beta1.SpeechRecognitionResult results = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.speech.v1beta1.SpeechRecognitionResult results = 2;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setResults(&$var)

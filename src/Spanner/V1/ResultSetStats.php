@@ -9,24 +9,19 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Additional statistics about a [ResultSet][google.spanner.v1.ResultSet] or [PartialResultSet][google.spanner.v1.PartialResultSet].
- * </pre>
  *
  * Protobuf type <code>Google\Spanner\V1\ResultSetStats</code>
  */
 class ResultSetStats extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * [QueryPlan][google.spanner.v1.QueryPlan] for the query associated with this result.
-     * </pre>
      *
-     * <code>.google.spanner.v1.QueryPlan query_plan = 1;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.QueryPlan query_plan = 1;</code>
      */
     private $query_plan = null;
     /**
-     * <pre>
      * Aggregated statistics from the execution of the query. Only present when
      * the query is profiled. For example, a query could return the statistics as
      * follows:
@@ -35,9 +30,8 @@ class ResultSetStats extends \Google\Protobuf\Internal\Message
      *       "elapsed_time": "1.22 secs",
      *       "cpu_time": "1.19 secs"
      *     }
-     * </pre>
      *
-     * <code>.google.protobuf.Struct query_stats = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.Struct query_stats = 2;</code>
      */
     private $query_stats = null;
 
@@ -47,11 +41,9 @@ class ResultSetStats extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * [QueryPlan][google.spanner.v1.QueryPlan] for the query associated with this result.
-     * </pre>
      *
-     * <code>.google.spanner.v1.QueryPlan query_plan = 1;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.QueryPlan query_plan = 1;</code>
      * @return \Google\Cloud\Spanner\V1\QueryPlan
      */
     public function getQueryPlan()
@@ -60,11 +52,9 @@ class ResultSetStats extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * [QueryPlan][google.spanner.v1.QueryPlan] for the query associated with this result.
-     * </pre>
      *
-     * <code>.google.spanner.v1.QueryPlan query_plan = 1;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.QueryPlan query_plan = 1;</code>
      * @param \Google\Cloud\Spanner\V1\QueryPlan $var
      */
     public function setQueryPlan(&$var)
@@ -76,7 +66,6 @@ class ResultSetStats extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Aggregated statistics from the execution of the query. Only present when
      * the query is profiled. For example, a query could return the statistics as
      * follows:
@@ -85,9 +74,8 @@ class ResultSetStats extends \Google\Protobuf\Internal\Message
      *       "elapsed_time": "1.22 secs",
      *       "cpu_time": "1.19 secs"
      *     }
-     * </pre>
      *
-     * <code>.google.protobuf.Struct query_stats = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.Struct query_stats = 2;</code>
      * @return \Google\Protobuf\Struct
      */
     public function getQueryStats()
@@ -96,7 +84,6 @@ class ResultSetStats extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Aggregated statistics from the execution of the query. Only present when
      * the query is profiled. For example, a query could return the statistics as
      * follows:
@@ -105,9 +92,8 @@ class ResultSetStats extends \Google\Protobuf\Internal\Message
      *       "elapsed_time": "1.22 secs",
      *       "cpu_time": "1.19 secs"
      *     }
-     * </pre>
      *
-     * <code>.google.protobuf.Struct query_stats = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.Struct query_stats = 2;</code>
      * @param \Google\Protobuf\Struct $var
      */
     public function setQueryStats(&$var)

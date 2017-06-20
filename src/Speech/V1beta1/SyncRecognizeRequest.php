@@ -9,29 +9,23 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * The top-level message sent by the client for the `SyncRecognize` method.
- * </pre>
  *
  * Protobuf type <code>Google\Cloud\Speech\V1beta1\SyncRecognizeRequest</code>
  */
 class SyncRecognizeRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * *Required* Provides information to the recognizer that specifies how to
      * process the request.
-     * </pre>
      *
-     * <code>.google.cloud.speech.v1beta1.RecognitionConfig config = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.speech.v1beta1.RecognitionConfig config = 1;</code>
      */
     private $config = null;
     /**
-     * <pre>
      * *Required* The audio data to be recognized.
-     * </pre>
      *
-     * <code>.google.cloud.speech.v1beta1.RecognitionAudio audio = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.speech.v1beta1.RecognitionAudio audio = 2;</code>
      */
     private $audio = null;
 
@@ -41,12 +35,10 @@ class SyncRecognizeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * *Required* Provides information to the recognizer that specifies how to
      * process the request.
-     * </pre>
      *
-     * <code>.google.cloud.speech.v1beta1.RecognitionConfig config = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.speech.v1beta1.RecognitionConfig config = 1;</code>
      * @return \Google\Cloud\Speech\V1beta1\RecognitionConfig
      */
     public function getConfig()
@@ -55,12 +47,10 @@ class SyncRecognizeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * *Required* Provides information to the recognizer that specifies how to
      * process the request.
-     * </pre>
      *
-     * <code>.google.cloud.speech.v1beta1.RecognitionConfig config = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.speech.v1beta1.RecognitionConfig config = 1;</code>
      * @param \Google\Cloud\Speech\V1beta1\RecognitionConfig $var
      */
     public function setConfig(&$var)
@@ -72,11 +62,9 @@ class SyncRecognizeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * *Required* The audio data to be recognized.
-     * </pre>
      *
-     * <code>.google.cloud.speech.v1beta1.RecognitionAudio audio = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.speech.v1beta1.RecognitionAudio audio = 2;</code>
      * @return \Google\Cloud\Speech\V1beta1\RecognitionAudio
      */
     public function getAudio()
@@ -85,11 +73,9 @@ class SyncRecognizeRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * *Required* The audio data to be recognized.
-     * </pre>
      *
-     * <code>.google.cloud.speech.v1beta1.RecognitionAudio audio = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.speech.v1beta1.RecognitionAudio audio = 2;</code>
      * @param \Google\Cloud\Speech\V1beta1\RecognitionAudio $var
      */
     public function setAudio(&$var)

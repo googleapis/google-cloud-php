@@ -9,43 +9,35 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Indicates a location in the source code of the service for which
  * errors are reported.
  * This data should be provided by the application when reporting an error,
  * unless the error report has been generated automatically from Google App
  * Engine logs. All fields are optional.
- * </pre>
  *
  * Protobuf type <code>Google\Devtools\Clouderrorreporting\V1beta1\SourceLocation</code>
  */
 class SourceLocation extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The source code filename, which can include a truncated relative
      * path, or a full path from a production machine.
-     * </pre>
      *
-     * <code>string file_path = 1;</code>
+     * Generated from protobuf field <code>string file_path = 1;</code>
      */
     private $file_path = '';
     /**
-     * <pre>
      * 1-based. 0 indicates that the line number is unknown.
-     * </pre>
      *
-     * <code>int32 line_number = 2;</code>
+     * Generated from protobuf field <code>int32 line_number = 2;</code>
      */
     private $line_number = 0;
     /**
-     * <pre>
      * Human-readable name of a function or method.
      * The value can include optional context like the class or package name.
      * For example, `my.package.MyClass.method` in case of Java.
-     * </pre>
      *
-     * <code>string function_name = 4;</code>
+     * Generated from protobuf field <code>string function_name = 4;</code>
      */
     private $function_name = '';
 
@@ -55,12 +47,10 @@ class SourceLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The source code filename, which can include a truncated relative
      * path, or a full path from a production machine.
-     * </pre>
      *
-     * <code>string file_path = 1;</code>
+     * Generated from protobuf field <code>string file_path = 1;</code>
      * @return string
      */
     public function getFilePath()
@@ -69,12 +59,10 @@ class SourceLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The source code filename, which can include a truncated relative
      * path, or a full path from a production machine.
-     * </pre>
      *
-     * <code>string file_path = 1;</code>
+     * Generated from protobuf field <code>string file_path = 1;</code>
      * @param string $var
      */
     public function setFilePath($var)
@@ -86,11 +74,9 @@ class SourceLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * 1-based. 0 indicates that the line number is unknown.
-     * </pre>
      *
-     * <code>int32 line_number = 2;</code>
+     * Generated from protobuf field <code>int32 line_number = 2;</code>
      * @return int
      */
     public function getLineNumber()
@@ -99,11 +85,9 @@ class SourceLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * 1-based. 0 indicates that the line number is unknown.
-     * </pre>
      *
-     * <code>int32 line_number = 2;</code>
+     * Generated from protobuf field <code>int32 line_number = 2;</code>
      * @param int $var
      */
     public function setLineNumber($var)
@@ -115,13 +99,11 @@ class SourceLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Human-readable name of a function or method.
      * The value can include optional context like the class or package name.
      * For example, `my.package.MyClass.method` in case of Java.
-     * </pre>
      *
-     * <code>string function_name = 4;</code>
+     * Generated from protobuf field <code>string function_name = 4;</code>
      * @return string
      */
     public function getFunctionName()
@@ -130,13 +112,11 @@ class SourceLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Human-readable name of a function or method.
      * The value can include optional context like the class or package name.
      * For example, `my.package.MyClass.method` in case of Java.
-     * </pre>
      *
-     * <code>string function_name = 4;</code>
+     * Generated from protobuf field <code>string function_name = 4;</code>
      * @param string $var
      */
     public function setFunctionName($var)

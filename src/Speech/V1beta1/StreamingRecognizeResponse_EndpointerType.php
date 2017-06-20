@@ -5,55 +5,44 @@
 namespace Google\Cloud\Speech\V1beta1;
 
 /**
- * <pre>
  * Indicates the type of endpointer event.
- * </pre>
  *
  * Protobuf enum <code>Google\Cloud\Speech\V1beta1\StreamingRecognizeResponse\EndpointerType</code>
  */
 class StreamingRecognizeResponse_EndpointerType
 {
     /**
-     * <pre>
      * No endpointer event specified.
-     * </pre>
      *
-     * <code>ENDPOINTER_EVENT_UNSPECIFIED = 0;</code>
+     * Generated from protobuf enum <code>ENDPOINTER_EVENT_UNSPECIFIED = 0;</code>
      */
     const ENDPOINTER_EVENT_UNSPECIFIED = 0;
     /**
-     * <pre>
      * Speech has been detected in the audio stream, and the service is
      * beginning to process it.
-     * </pre>
      *
-     * <code>START_OF_SPEECH = 1;</code>
+     * Generated from protobuf enum <code>START_OF_SPEECH = 1;</code>
      */
     const START_OF_SPEECH = 1;
     /**
-     * <pre>
      * Speech has ceased to be detected in the audio stream. (For example, the
      * user may have paused after speaking.) If `single_utterance` is `false`,
      * the service will continue to process audio, and if subsequent speech is
      * detected, will send another START_OF_SPEECH event.
-     * </pre>
      *
-     * <code>END_OF_SPEECH = 2;</code>
+     * Generated from protobuf enum <code>END_OF_SPEECH = 2;</code>
      */
     const END_OF_SPEECH = 2;
     /**
-     * <pre>
      * This event is sent after the client has half-closed the input stream gRPC
      * connection and the server has received all of the audio. (The server may
      * still be processing the audio and may subsequently return additional
      * results.)
-     * </pre>
      *
-     * <code>END_OF_AUDIO = 3;</code>
+     * Generated from protobuf enum <code>END_OF_AUDIO = 3;</code>
      */
     const END_OF_AUDIO = 3;
     /**
-     * <pre>
      * This event is only sent when `single_utterance` is `true`. It indicates
      * that the server has detected the end of the user's speech utterance and
      * expects no additional speech. Therefore, the server will not process
@@ -61,9 +50,8 @@ class StreamingRecognizeResponse_EndpointerType
      * results). The client should stop sending additional audio data,
      * half-close the gRPC connection, and wait for any additional results
      * until the server closes the gRPC connection.
-     * </pre>
      *
-     * <code>END_OF_UTTERANCE = 4;</code>
+     * Generated from protobuf enum <code>END_OF_UTTERANCE = 4;</code>
      */
     const END_OF_UTTERANCE = 4;
 }

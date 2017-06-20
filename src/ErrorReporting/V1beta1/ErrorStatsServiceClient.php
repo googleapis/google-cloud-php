@@ -24,6 +24,8 @@
  * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
  * more frequently than those which have been declared beta or 1.0, including changes which break
  * backwards compatibility.
+ *
+ * @experimental
  */
 
 namespace Google\Cloud\ErrorReporting\V1beta1;
@@ -76,6 +78,8 @@ use Google\Protobuf\Timestamp;
  * with these names, this class includes a format method for each type of name, and additionally
  * a parse method to extract the individual identifiers contained within names that are
  * returned.
+ *
+ * @experimental
  */
 class ErrorStatsServiceClient
 {
@@ -115,6 +119,11 @@ class ErrorStatsServiceClient
     /**
      * Formats a string containing the fully-qualified path to represent
      * a project resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project resource.
+     * @experimental
      */
     public static function formatProjectName($project)
     {
@@ -126,6 +135,11 @@ class ErrorStatsServiceClient
     /**
      * Parses the project from the given fully-qualified path which
      * represents a project resource.
+     *
+     * @param string $projectName The fully-qualified project resource.
+     *
+     * @return string The extracted project value.
+     * @experimental
      */
     public static function parseProjectFromProjectName($projectName)
     {
@@ -210,6 +224,7 @@ class ErrorStatsServiceClient
      *                              A CredentialsLoader object created using the
      *                              Google\Auth library.
      * }
+     * @experimental
      */
     public function __construct($options = [])
     {
@@ -331,15 +346,17 @@ class ErrorStatsServiceClient
      *     @type Duration $timedCountDuration
      *          [Optional] The preferred duration for a single returned `TimedCount`.
      *          If not set, no timed counts are returned.
-     *     @type TimedCountAlignment $alignment
+     *     @type int $alignment
      *          [Optional] The alignment of the timed counts to be returned.
      *          Default is `ALIGNMENT_EQUAL_AT_END`.
+     *          For allowed values, use constants defined on {@see \Google\Cloud\ErrorReporting\V1beta1\TimedCountAlignment}
      *     @type Timestamp $alignmentTime
      *          [Optional] Time where the timed counts shall be aligned if rounded
      *          alignment is chosen. Default is 00:00 UTC.
-     *     @type ErrorGroupOrder $order
+     *     @type int $order
      *          [Optional] The sort order in which the results are returned.
      *          Default is `COUNT_DESC`.
+     *          For allowed values, use constants defined on {@see \Google\Cloud\ErrorReporting\V1beta1\ErrorGroupOrder}
      *     @type int $pageSize
      *          The maximum number of resources contained in the underlying API
      *          response. The API may return fewer values in a page, even if
@@ -360,6 +377,7 @@ class ErrorStatsServiceClient
      * @return \Google\GAX\PagedListResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function listGroupStats($projectName, $timeRange, $optionalArgs = [])
     {
@@ -471,6 +489,7 @@ class ErrorStatsServiceClient
      * @return \Google\GAX\PagedListResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function listEvents($projectName, $groupId, $optionalArgs = [])
     {
@@ -539,6 +558,7 @@ class ErrorStatsServiceClient
      * @return \Google\Cloud\ErrorReporting\V1beta1\DeleteEventsResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function deleteEvents($projectName, $optionalArgs = [])
     {
@@ -564,6 +584,8 @@ class ErrorStatsServiceClient
     /**
      * Initiates an orderly shutdown in which preexisting calls continue but new
      * calls are immediately cancelled.
+     *
+     * @experimental
      */
     public function close()
     {

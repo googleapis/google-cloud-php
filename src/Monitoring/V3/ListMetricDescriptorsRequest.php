@@ -9,25 +9,20 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * The `ListMetricDescriptors` request.
- * </pre>
  *
  * Protobuf type <code>Google\Monitoring\V3\ListMetricDescriptorsRequest</code>
  */
 class ListMetricDescriptorsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The project on which to execute the request. The format is
      * `"projects/{project_id_or_number}"`.
-     * </pre>
      *
-     * <code>string name = 5;</code>
+     * Generated from protobuf field <code>string name = 5;</code>
      */
     private $name = '';
     /**
-     * <pre>
      * If this field is empty, all custom and
      * system-defined metric descriptors are returned.
      * Otherwise, the [filter](/monitoring/api/v3/filters)
@@ -35,27 +30,22 @@ class ListMetricDescriptorsRequest extends \Google\Protobuf\Internal\Message
      * returned. For example, the following filter matches all
      * [custom metrics](/monitoring/custom-metrics):
      *     metric.type = starts_with("custom.googleapis.com/")
-     * </pre>
      *
-     * <code>string filter = 2;</code>
+     * Generated from protobuf field <code>string filter = 2;</code>
      */
     private $filter = '';
     /**
-     * <pre>
      * A positive number that is the maximum number of results to return.
-     * </pre>
      *
-     * <code>int32 page_size = 3;</code>
+     * Generated from protobuf field <code>int32 page_size = 3;</code>
      */
     private $page_size = 0;
     /**
-     * <pre>
      * If this field is not empty then it must contain the `nextPageToken` value
      * returned by a previous call to this method.  Using this field causes the
      * method to return additional results from the previous method call.
-     * </pre>
      *
-     * <code>string page_token = 4;</code>
+     * Generated from protobuf field <code>string page_token = 4;</code>
      */
     private $page_token = '';
 
@@ -65,12 +55,10 @@ class ListMetricDescriptorsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The project on which to execute the request. The format is
      * `"projects/{project_id_or_number}"`.
-     * </pre>
      *
-     * <code>string name = 5;</code>
+     * Generated from protobuf field <code>string name = 5;</code>
      * @return string
      */
     public function getName()
@@ -79,12 +67,10 @@ class ListMetricDescriptorsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The project on which to execute the request. The format is
      * `"projects/{project_id_or_number}"`.
-     * </pre>
      *
-     * <code>string name = 5;</code>
+     * Generated from protobuf field <code>string name = 5;</code>
      * @param string $var
      */
     public function setName($var)
@@ -96,7 +82,6 @@ class ListMetricDescriptorsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If this field is empty, all custom and
      * system-defined metric descriptors are returned.
      * Otherwise, the [filter](/monitoring/api/v3/filters)
@@ -104,9 +89,8 @@ class ListMetricDescriptorsRequest extends \Google\Protobuf\Internal\Message
      * returned. For example, the following filter matches all
      * [custom metrics](/monitoring/custom-metrics):
      *     metric.type = starts_with("custom.googleapis.com/")
-     * </pre>
      *
-     * <code>string filter = 2;</code>
+     * Generated from protobuf field <code>string filter = 2;</code>
      * @return string
      */
     public function getFilter()
@@ -115,7 +99,6 @@ class ListMetricDescriptorsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If this field is empty, all custom and
      * system-defined metric descriptors are returned.
      * Otherwise, the [filter](/monitoring/api/v3/filters)
@@ -123,9 +106,8 @@ class ListMetricDescriptorsRequest extends \Google\Protobuf\Internal\Message
      * returned. For example, the following filter matches all
      * [custom metrics](/monitoring/custom-metrics):
      *     metric.type = starts_with("custom.googleapis.com/")
-     * </pre>
      *
-     * <code>string filter = 2;</code>
+     * Generated from protobuf field <code>string filter = 2;</code>
      * @param string $var
      */
     public function setFilter($var)
@@ -137,11 +119,9 @@ class ListMetricDescriptorsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * A positive number that is the maximum number of results to return.
-     * </pre>
      *
-     * <code>int32 page_size = 3;</code>
+     * Generated from protobuf field <code>int32 page_size = 3;</code>
      * @return int
      */
     public function getPageSize()
@@ -150,11 +130,9 @@ class ListMetricDescriptorsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * A positive number that is the maximum number of results to return.
-     * </pre>
      *
-     * <code>int32 page_size = 3;</code>
+     * Generated from protobuf field <code>int32 page_size = 3;</code>
      * @param int $var
      */
     public function setPageSize($var)
@@ -166,13 +144,11 @@ class ListMetricDescriptorsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If this field is not empty then it must contain the `nextPageToken` value
      * returned by a previous call to this method.  Using this field causes the
      * method to return additional results from the previous method call.
-     * </pre>
      *
-     * <code>string page_token = 4;</code>
+     * Generated from protobuf field <code>string page_token = 4;</code>
      * @return string
      */
     public function getPageToken()
@@ -181,13 +157,11 @@ class ListMetricDescriptorsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If this field is not empty then it must contain the `nextPageToken` value
      * returned by a previous call to this method.  Using this field causes the
      * method to return additional results from the previous method call.
-     * </pre>
      *
-     * <code>string page_token = 4;</code>
+     * Generated from protobuf field <code>string page_token = 4;</code>
      * @param string $var
      */
     public function setPageToken($var)

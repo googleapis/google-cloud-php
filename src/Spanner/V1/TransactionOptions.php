@@ -9,7 +9,6 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * # Transactions
  * Each session can have at most one active transaction at a time. After the
  * active transaction is completed, the session can immediately be
@@ -178,7 +177,6 @@ use Google\Protobuf\Internal\GPBUtil;
  * restriction also applies to in-progress reads and/or SQL queries whose
  * timestamp become too old while executing. Reads and SQL queries with
  * too-old read timestamps fail with the error `FAILED_PRECONDITION`.
- * </pre>
  *
  * Protobuf type <code>Google\Spanner\V1\TransactionOptions</code>
  */
@@ -192,14 +190,12 @@ class TransactionOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Transaction may write.
      * Authorization to begin a read-write transaction requires
      * `spanner.databases.beginOrRollbackReadWriteTransaction` permission
      * on the `session` resource.
-     * </pre>
      *
-     * <code>.google.spanner.v1.TransactionOptions.ReadWrite read_write = 1;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.TransactionOptions.ReadWrite read_write = 1;</code>
      * @return \Google\Cloud\Spanner\V1\TransactionOptions_ReadWrite
      */
     public function getReadWrite()
@@ -208,14 +204,12 @@ class TransactionOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Transaction may write.
      * Authorization to begin a read-write transaction requires
      * `spanner.databases.beginOrRollbackReadWriteTransaction` permission
      * on the `session` resource.
-     * </pre>
      *
-     * <code>.google.spanner.v1.TransactionOptions.ReadWrite read_write = 1;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.TransactionOptions.ReadWrite read_write = 1;</code>
      * @param \Google\Cloud\Spanner\V1\TransactionOptions_ReadWrite $var
      */
     public function setReadWrite(&$var)
@@ -227,14 +221,12 @@ class TransactionOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Transaction will not write.
      * Authorization to begin a read-only transaction requires
      * `spanner.databases.beginReadOnlyTransaction` permission
      * on the `session` resource.
-     * </pre>
      *
-     * <code>.google.spanner.v1.TransactionOptions.ReadOnly read_only = 2;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.TransactionOptions.ReadOnly read_only = 2;</code>
      * @return \Google\Cloud\Spanner\V1\TransactionOptions_ReadOnly
      */
     public function getReadOnly()
@@ -243,14 +235,12 @@ class TransactionOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Transaction will not write.
      * Authorization to begin a read-only transaction requires
      * `spanner.databases.beginReadOnlyTransaction` permission
      * on the `session` resource.
-     * </pre>
      *
-     * <code>.google.spanner.v1.TransactionOptions.ReadOnly read_only = 2;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.TransactionOptions.ReadOnly read_only = 2;</code>
      * @param \Google\Cloud\Spanner\V1\TransactionOptions_ReadOnly $var
      */
     public function setReadOnly(&$var)

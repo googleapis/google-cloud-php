@@ -9,29 +9,23 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Response for the `ListTopics` method.
- * </pre>
  *
  * Protobuf type <code>Google\Pubsub\V1\ListTopicsResponse</code>
  */
 class ListTopicsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The resulting topics.
-     * </pre>
      *
-     * <code>repeated .google.pubsub.v1.Topic topics = 1;</code>
+     * Generated from protobuf field <code>repeated .google.pubsub.v1.Topic topics = 1;</code>
      */
     private $topics;
     /**
-     * <pre>
      * If not empty, indicates that there may be more topics that match the
      * request; this value should be passed in a new `ListTopicsRequest`.
-     * </pre>
      *
-     * <code>string next_page_token = 2;</code>
+     * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
     private $next_page_token = '';
 
@@ -41,11 +35,9 @@ class ListTopicsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The resulting topics.
-     * </pre>
      *
-     * <code>repeated .google.pubsub.v1.Topic topics = 1;</code>
+     * Generated from protobuf field <code>repeated .google.pubsub.v1.Topic topics = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getTopics()
@@ -54,11 +46,9 @@ class ListTopicsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The resulting topics.
-     * </pre>
      *
-     * <code>repeated .google.pubsub.v1.Topic topics = 1;</code>
+     * Generated from protobuf field <code>repeated .google.pubsub.v1.Topic topics = 1;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setTopics(&$var)
@@ -70,12 +60,10 @@ class ListTopicsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If not empty, indicates that there may be more topics that match the
      * request; this value should be passed in a new `ListTopicsRequest`.
-     * </pre>
      *
-     * <code>string next_page_token = 2;</code>
+     * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @return string
      */
     public function getNextPageToken()
@@ -84,12 +72,10 @@ class ListTopicsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If not empty, indicates that there may be more topics that match the
      * request; this value should be passed in a new `ListTopicsRequest`.
-     * </pre>
      *
-     * <code>string next_page_token = 2;</code>
+     * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @param string $var
      */
     public function setNextPageToken($var)

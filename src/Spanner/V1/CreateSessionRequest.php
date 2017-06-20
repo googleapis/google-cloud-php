@@ -9,20 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * The request for [CreateSession][google.spanner.v1.Spanner.CreateSession].
- * </pre>
  *
  * Protobuf type <code>Google\Spanner\V1\CreateSessionRequest</code>
  */
 class CreateSessionRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * Required. The database in which the new session is created.
-     * </pre>
      *
-     * <code>string database = 1;</code>
+     * Generated from protobuf field <code>string database = 1;</code>
      */
     private $database = '';
 
@@ -32,11 +28,9 @@ class CreateSessionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. The database in which the new session is created.
-     * </pre>
      *
-     * <code>string database = 1;</code>
+     * Generated from protobuf field <code>string database = 1;</code>
      * @return string
      */
     public function getDatabase()
@@ -45,11 +39,9 @@ class CreateSessionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. The database in which the new session is created.
-     * </pre>
      *
-     * <code>string database = 1;</code>
+     * Generated from protobuf field <code>string database = 1;</code>
      * @param string $var
      */
     public function setDatabase($var)

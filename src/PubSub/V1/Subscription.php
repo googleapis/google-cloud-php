@@ -9,50 +9,41 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * A subscription resource.
- * </pre>
  *
  * Protobuf type <code>Google\Pubsub\V1\Subscription</code>
  */
 class Subscription extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The name of the subscription. It must have the format
      * `"projects/{project}/subscriptions/{subscription}"`. `{subscription}` must
      * start with a letter, and contain only letters (`[A-Za-z]`), numbers
      * (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`),
      * plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters
      * in length, and it must not start with `"goog"`.
-     * </pre>
      *
-     * <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      */
     private $name = '';
     /**
-     * <pre>
      * The name of the topic from which this subscription is receiving messages.
      * Format is `projects/{project}/topics/{topic}`.
      * The value of this field will be `_deleted-topic_` if the topic has been
      * deleted.
-     * </pre>
      *
-     * <code>string topic = 2;</code>
+     * Generated from protobuf field <code>string topic = 2;</code>
      */
     private $topic = '';
     /**
-     * <pre>
      * If push delivery is used with this subscription, this field is
      * used to configure it. An empty `pushConfig` signifies that the subscriber
      * will pull and ack messages using API methods.
-     * </pre>
      *
-     * <code>.google.pubsub.v1.PushConfig push_config = 4;</code>
+     * Generated from protobuf field <code>.google.pubsub.v1.PushConfig push_config = 4;</code>
      */
     private $push_config = null;
     /**
-     * <pre>
      * This value is the maximum time after a subscriber receives a message
      * before the subscriber should acknowledge the message. After message
      * delivery but before the ack deadline expires and before the message is
@@ -69,33 +60,28 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * the call to the push endpoint.
      * If the subscriber never acknowledges the message, the Pub/Sub
      * system will eventually redeliver the message.
-     * </pre>
      *
-     * <code>int32 ack_deadline_seconds = 5;</code>
+     * Generated from protobuf field <code>int32 ack_deadline_seconds = 5;</code>
      */
     private $ack_deadline_seconds = 0;
     /**
-     * <pre>
      * Indicates whether to retain acknowledged messages. If true, then
      * messages are not expunged from the subscription's backlog, even if they are
      * acknowledged, until they fall out of the `message_retention_duration`
      * window.
-     * </pre>
      *
-     * <code>bool retain_acked_messages = 7;</code>
+     * Generated from protobuf field <code>bool retain_acked_messages = 7;</code>
      */
     private $retain_acked_messages = false;
     /**
-     * <pre>
      * How long to retain unacknowledged messages in the subscription's backlog,
      * from the moment a message is published.
      * If `retain_acked_messages` is true, then this also configures the retention
      * of acknowledged messages, and thus configures how far back in time a `Seek`
      * can be done. Defaults to 7 days. Cannot be more than 7 days or less than 10
      * minutes.
-     * </pre>
      *
-     * <code>.google.protobuf.Duration message_retention_duration = 8;</code>
+     * Generated from protobuf field <code>.google.protobuf.Duration message_retention_duration = 8;</code>
      */
     private $message_retention_duration = null;
 
@@ -105,16 +91,14 @@ class Subscription extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The name of the subscription. It must have the format
      * `"projects/{project}/subscriptions/{subscription}"`. `{subscription}` must
      * start with a letter, and contain only letters (`[A-Za-z]`), numbers
      * (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`),
      * plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters
      * in length, and it must not start with `"goog"`.
-     * </pre>
      *
-     * <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      * @return string
      */
     public function getName()
@@ -123,16 +107,14 @@ class Subscription extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The name of the subscription. It must have the format
      * `"projects/{project}/subscriptions/{subscription}"`. `{subscription}` must
      * start with a letter, and contain only letters (`[A-Za-z]`), numbers
      * (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`),
      * plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters
      * in length, and it must not start with `"goog"`.
-     * </pre>
      *
-     * <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
      */
     public function setName($var)
@@ -144,14 +126,12 @@ class Subscription extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The name of the topic from which this subscription is receiving messages.
      * Format is `projects/{project}/topics/{topic}`.
      * The value of this field will be `_deleted-topic_` if the topic has been
      * deleted.
-     * </pre>
      *
-     * <code>string topic = 2;</code>
+     * Generated from protobuf field <code>string topic = 2;</code>
      * @return string
      */
     public function getTopic()
@@ -160,14 +140,12 @@ class Subscription extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The name of the topic from which this subscription is receiving messages.
      * Format is `projects/{project}/topics/{topic}`.
      * The value of this field will be `_deleted-topic_` if the topic has been
      * deleted.
-     * </pre>
      *
-     * <code>string topic = 2;</code>
+     * Generated from protobuf field <code>string topic = 2;</code>
      * @param string $var
      */
     public function setTopic($var)
@@ -179,13 +157,11 @@ class Subscription extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If push delivery is used with this subscription, this field is
      * used to configure it. An empty `pushConfig` signifies that the subscriber
      * will pull and ack messages using API methods.
-     * </pre>
      *
-     * <code>.google.pubsub.v1.PushConfig push_config = 4;</code>
+     * Generated from protobuf field <code>.google.pubsub.v1.PushConfig push_config = 4;</code>
      * @return \Google\Cloud\PubSub\V1\PushConfig
      */
     public function getPushConfig()
@@ -194,13 +170,11 @@ class Subscription extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If push delivery is used with this subscription, this field is
      * used to configure it. An empty `pushConfig` signifies that the subscriber
      * will pull and ack messages using API methods.
-     * </pre>
      *
-     * <code>.google.pubsub.v1.PushConfig push_config = 4;</code>
+     * Generated from protobuf field <code>.google.pubsub.v1.PushConfig push_config = 4;</code>
      * @param \Google\Cloud\PubSub\V1\PushConfig $var
      */
     public function setPushConfig(&$var)
@@ -212,7 +186,6 @@ class Subscription extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * This value is the maximum time after a subscriber receives a message
      * before the subscriber should acknowledge the message. After message
      * delivery but before the ack deadline expires and before the message is
@@ -229,9 +202,8 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * the call to the push endpoint.
      * If the subscriber never acknowledges the message, the Pub/Sub
      * system will eventually redeliver the message.
-     * </pre>
      *
-     * <code>int32 ack_deadline_seconds = 5;</code>
+     * Generated from protobuf field <code>int32 ack_deadline_seconds = 5;</code>
      * @return int
      */
     public function getAckDeadlineSeconds()
@@ -240,7 +212,6 @@ class Subscription extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * This value is the maximum time after a subscriber receives a message
      * before the subscriber should acknowledge the message. After message
      * delivery but before the ack deadline expires and before the message is
@@ -257,9 +228,8 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * the call to the push endpoint.
      * If the subscriber never acknowledges the message, the Pub/Sub
      * system will eventually redeliver the message.
-     * </pre>
      *
-     * <code>int32 ack_deadline_seconds = 5;</code>
+     * Generated from protobuf field <code>int32 ack_deadline_seconds = 5;</code>
      * @param int $var
      */
     public function setAckDeadlineSeconds($var)
@@ -271,14 +241,12 @@ class Subscription extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Indicates whether to retain acknowledged messages. If true, then
      * messages are not expunged from the subscription's backlog, even if they are
      * acknowledged, until they fall out of the `message_retention_duration`
      * window.
-     * </pre>
      *
-     * <code>bool retain_acked_messages = 7;</code>
+     * Generated from protobuf field <code>bool retain_acked_messages = 7;</code>
      * @return bool
      */
     public function getRetainAckedMessages()
@@ -287,14 +255,12 @@ class Subscription extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Indicates whether to retain acknowledged messages. If true, then
      * messages are not expunged from the subscription's backlog, even if they are
      * acknowledged, until they fall out of the `message_retention_duration`
      * window.
-     * </pre>
      *
-     * <code>bool retain_acked_messages = 7;</code>
+     * Generated from protobuf field <code>bool retain_acked_messages = 7;</code>
      * @param bool $var
      */
     public function setRetainAckedMessages($var)
@@ -306,16 +272,14 @@ class Subscription extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * How long to retain unacknowledged messages in the subscription's backlog,
      * from the moment a message is published.
      * If `retain_acked_messages` is true, then this also configures the retention
      * of acknowledged messages, and thus configures how far back in time a `Seek`
      * can be done. Defaults to 7 days. Cannot be more than 7 days or less than 10
      * minutes.
-     * </pre>
      *
-     * <code>.google.protobuf.Duration message_retention_duration = 8;</code>
+     * Generated from protobuf field <code>.google.protobuf.Duration message_retention_duration = 8;</code>
      * @return \Google\Protobuf\Duration
      */
     public function getMessageRetentionDuration()
@@ -324,16 +288,14 @@ class Subscription extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * How long to retain unacknowledged messages in the subscription's backlog,
      * from the moment a message is published.
      * If `retain_acked_messages` is true, then this also configures the retention
      * of acknowledged messages, and thus configures how far back in time a `Seek`
      * can be done. Defaults to 7 days. Cannot be more than 7 days or less than 10
      * minutes.
-     * </pre>
      *
-     * <code>.google.protobuf.Duration message_retention_duration = 8;</code>
+     * Generated from protobuf field <code>.google.protobuf.Duration message_retention_duration = 8;</code>
      * @param \Google\Protobuf\Duration $var
      */
     public function setMessageRetentionDuration(&$var)

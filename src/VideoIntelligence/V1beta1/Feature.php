@@ -5,52 +5,40 @@
 namespace Google\Cloud\VideoIntelligence\V1beta1;
 
 /**
- * <pre>
  * Video annotation feature.
- * </pre>
  *
  * Protobuf enum <code>Google\Cloud\Videointelligence\V1beta1\Feature</code>
  */
 class Feature
 {
     /**
-     * <pre>
      * Unspecified.
-     * </pre>
      *
-     * <code>FEATURE_UNSPECIFIED = 0;</code>
+     * Generated from protobuf enum <code>FEATURE_UNSPECIFIED = 0;</code>
      */
     const FEATURE_UNSPECIFIED = 0;
     /**
-     * <pre>
      * Label detection. Detect objects, such as dog or flower.
-     * </pre>
      *
-     * <code>LABEL_DETECTION = 1;</code>
+     * Generated from protobuf enum <code>LABEL_DETECTION = 1;</code>
      */
     const LABEL_DETECTION = 1;
     /**
-     * <pre>
      * Human face detection and tracking.
-     * </pre>
      *
-     * <code>FACE_DETECTION = 2;</code>
+     * Generated from protobuf enum <code>FACE_DETECTION = 2;</code>
      */
     const FACE_DETECTION = 2;
     /**
-     * <pre>
      * Shot change detection.
-     * </pre>
      *
-     * <code>SHOT_CHANGE_DETECTION = 3;</code>
+     * Generated from protobuf enum <code>SHOT_CHANGE_DETECTION = 3;</code>
      */
     const SHOT_CHANGE_DETECTION = 3;
     /**
-     * <pre>
      * Safe search detection.
-     * </pre>
      *
-     * <code>SAFE_SEARCH_DETECTION = 4;</code>
+     * Generated from protobuf enum <code>SAFE_SEARCH_DETECTION = 4;</code>
      */
     const SAFE_SEARCH_DETECTION = 4;
 }

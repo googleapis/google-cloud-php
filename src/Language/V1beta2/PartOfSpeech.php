@@ -9,108 +9,82 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Represents part of speech information for a token.
- * </pre>
  *
  * Protobuf type <code>Google\Cloud\Language\V1beta2\PartOfSpeech</code>
  */
 class PartOfSpeech extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The part of speech tag.
-     * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.PartOfSpeech.Tag tag = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.PartOfSpeech.Tag tag = 1;</code>
      */
     private $tag = 0;
     /**
-     * <pre>
      * The grammatical aspect.
-     * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.PartOfSpeech.Aspect aspect = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.PartOfSpeech.Aspect aspect = 2;</code>
      */
     private $aspect = 0;
     /**
-     * <pre>
      * The grammatical case.
-     * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.PartOfSpeech.Case case = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.PartOfSpeech.Case case = 3;</code>
      */
     private $case = 0;
     /**
-     * <pre>
      * The grammatical form.
-     * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.PartOfSpeech.Form form = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.PartOfSpeech.Form form = 4;</code>
      */
     private $form = 0;
     /**
-     * <pre>
      * The grammatical gender.
-     * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.PartOfSpeech.Gender gender = 5;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.PartOfSpeech.Gender gender = 5;</code>
      */
     private $gender = 0;
     /**
-     * <pre>
      * The grammatical mood.
-     * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.PartOfSpeech.Mood mood = 6;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.PartOfSpeech.Mood mood = 6;</code>
      */
     private $mood = 0;
     /**
-     * <pre>
      * The grammatical number.
-     * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.PartOfSpeech.Number number = 7;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.PartOfSpeech.Number number = 7;</code>
      */
     private $number = 0;
     /**
-     * <pre>
      * The grammatical person.
-     * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.PartOfSpeech.Person person = 8;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.PartOfSpeech.Person person = 8;</code>
      */
     private $person = 0;
     /**
-     * <pre>
      * The grammatical properness.
-     * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.PartOfSpeech.Proper proper = 9;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.PartOfSpeech.Proper proper = 9;</code>
      */
     private $proper = 0;
     /**
-     * <pre>
      * The grammatical reciprocity.
-     * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.PartOfSpeech.Reciprocity reciprocity = 10;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.PartOfSpeech.Reciprocity reciprocity = 10;</code>
      */
     private $reciprocity = 0;
     /**
-     * <pre>
      * The grammatical tense.
-     * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.PartOfSpeech.Tense tense = 11;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.PartOfSpeech.Tense tense = 11;</code>
      */
     private $tense = 0;
     /**
-     * <pre>
      * The grammatical voice.
-     * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.PartOfSpeech.Voice voice = 12;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.PartOfSpeech.Voice voice = 12;</code>
      */
     private $voice = 0;
 
@@ -120,11 +94,9 @@ class PartOfSpeech extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The part of speech tag.
-     * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.PartOfSpeech.Tag tag = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.PartOfSpeech.Tag tag = 1;</code>
      * @return int
      */
     public function getTag()
@@ -133,11 +105,9 @@ class PartOfSpeech extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The part of speech tag.
-     * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.PartOfSpeech.Tag tag = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.PartOfSpeech.Tag tag = 1;</code>
      * @param int $var
      */
     public function setTag($var)
@@ -149,11 +119,9 @@ class PartOfSpeech extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The grammatical aspect.
-     * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.PartOfSpeech.Aspect aspect = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.PartOfSpeech.Aspect aspect = 2;</code>
      * @return int
      */
     public function getAspect()
@@ -162,11 +130,9 @@ class PartOfSpeech extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The grammatical aspect.
-     * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.PartOfSpeech.Aspect aspect = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.PartOfSpeech.Aspect aspect = 2;</code>
      * @param int $var
      */
     public function setAspect($var)
@@ -178,11 +144,9 @@ class PartOfSpeech extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The grammatical case.
-     * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.PartOfSpeech.Case case = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.PartOfSpeech.Case case = 3;</code>
      * @return int
      */
     public function getCase()
@@ -191,11 +155,9 @@ class PartOfSpeech extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The grammatical case.
-     * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.PartOfSpeech.Case case = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.PartOfSpeech.Case case = 3;</code>
      * @param int $var
      */
     public function setCase($var)
@@ -207,11 +169,9 @@ class PartOfSpeech extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The grammatical form.
-     * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.PartOfSpeech.Form form = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.PartOfSpeech.Form form = 4;</code>
      * @return int
      */
     public function getForm()
@@ -220,11 +180,9 @@ class PartOfSpeech extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The grammatical form.
-     * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.PartOfSpeech.Form form = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.PartOfSpeech.Form form = 4;</code>
      * @param int $var
      */
     public function setForm($var)
@@ -236,11 +194,9 @@ class PartOfSpeech extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The grammatical gender.
-     * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.PartOfSpeech.Gender gender = 5;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.PartOfSpeech.Gender gender = 5;</code>
      * @return int
      */
     public function getGender()
@@ -249,11 +205,9 @@ class PartOfSpeech extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The grammatical gender.
-     * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.PartOfSpeech.Gender gender = 5;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.PartOfSpeech.Gender gender = 5;</code>
      * @param int $var
      */
     public function setGender($var)
@@ -265,11 +219,9 @@ class PartOfSpeech extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The grammatical mood.
-     * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.PartOfSpeech.Mood mood = 6;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.PartOfSpeech.Mood mood = 6;</code>
      * @return int
      */
     public function getMood()
@@ -278,11 +230,9 @@ class PartOfSpeech extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The grammatical mood.
-     * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.PartOfSpeech.Mood mood = 6;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.PartOfSpeech.Mood mood = 6;</code>
      * @param int $var
      */
     public function setMood($var)
@@ -294,11 +244,9 @@ class PartOfSpeech extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The grammatical number.
-     * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.PartOfSpeech.Number number = 7;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.PartOfSpeech.Number number = 7;</code>
      * @return int
      */
     public function getNumber()
@@ -307,11 +255,9 @@ class PartOfSpeech extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The grammatical number.
-     * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.PartOfSpeech.Number number = 7;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.PartOfSpeech.Number number = 7;</code>
      * @param int $var
      */
     public function setNumber($var)
@@ -323,11 +269,9 @@ class PartOfSpeech extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The grammatical person.
-     * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.PartOfSpeech.Person person = 8;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.PartOfSpeech.Person person = 8;</code>
      * @return int
      */
     public function getPerson()
@@ -336,11 +280,9 @@ class PartOfSpeech extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The grammatical person.
-     * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.PartOfSpeech.Person person = 8;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.PartOfSpeech.Person person = 8;</code>
      * @param int $var
      */
     public function setPerson($var)
@@ -352,11 +294,9 @@ class PartOfSpeech extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The grammatical properness.
-     * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.PartOfSpeech.Proper proper = 9;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.PartOfSpeech.Proper proper = 9;</code>
      * @return int
      */
     public function getProper()
@@ -365,11 +305,9 @@ class PartOfSpeech extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The grammatical properness.
-     * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.PartOfSpeech.Proper proper = 9;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.PartOfSpeech.Proper proper = 9;</code>
      * @param int $var
      */
     public function setProper($var)
@@ -381,11 +319,9 @@ class PartOfSpeech extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The grammatical reciprocity.
-     * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.PartOfSpeech.Reciprocity reciprocity = 10;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.PartOfSpeech.Reciprocity reciprocity = 10;</code>
      * @return int
      */
     public function getReciprocity()
@@ -394,11 +330,9 @@ class PartOfSpeech extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The grammatical reciprocity.
-     * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.PartOfSpeech.Reciprocity reciprocity = 10;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.PartOfSpeech.Reciprocity reciprocity = 10;</code>
      * @param int $var
      */
     public function setReciprocity($var)
@@ -410,11 +344,9 @@ class PartOfSpeech extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The grammatical tense.
-     * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.PartOfSpeech.Tense tense = 11;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.PartOfSpeech.Tense tense = 11;</code>
      * @return int
      */
     public function getTense()
@@ -423,11 +355,9 @@ class PartOfSpeech extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The grammatical tense.
-     * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.PartOfSpeech.Tense tense = 11;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.PartOfSpeech.Tense tense = 11;</code>
      * @param int $var
      */
     public function setTense($var)
@@ -439,11 +369,9 @@ class PartOfSpeech extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The grammatical voice.
-     * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.PartOfSpeech.Voice voice = 12;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.PartOfSpeech.Voice voice = 12;</code>
      * @return int
      */
     public function getVoice()
@@ -452,11 +380,9 @@ class PartOfSpeech extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The grammatical voice.
-     * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.PartOfSpeech.Voice voice = 12;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.PartOfSpeech.Voice voice = 12;</code>
      * @param int $var
      */
     public function setVoice($var)

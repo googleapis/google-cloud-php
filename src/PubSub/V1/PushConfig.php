@@ -9,25 +9,20 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Configuration for a push delivery endpoint.
- * </pre>
  *
  * Protobuf type <code>Google\Pubsub\V1\PushConfig</code>
  */
 class PushConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * A URL locating the endpoint to which messages should be pushed.
      * For example, a Webhook endpoint might use "https://example.com/push".
-     * </pre>
      *
-     * <code>string push_endpoint = 1;</code>
+     * Generated from protobuf field <code>string push_endpoint = 1;</code>
      */
     private $push_endpoint = '';
     /**
-     * <pre>
      * Endpoint configuration attributes.
      * Every endpoint has a set of API supported attributes that can be used to
      * control different aspects of the message delivery.
@@ -44,9 +39,8 @@ class PushConfig extends \Google\Protobuf\Internal\Message
      * The possible values for this attribute are:
      * * `v1beta1`: uses the push format defined in the v1beta1 Pub/Sub API.
      * * `v1` or `v1beta2`: uses the push format defined in the v1 Pub/Sub API.
-     * </pre>
      *
-     * <code>map<string, string> attributes = 2;</code>
+     * Generated from protobuf field <code>map<string, string> attributes = 2;</code>
      */
     private $attributes;
 
@@ -56,12 +50,10 @@ class PushConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * A URL locating the endpoint to which messages should be pushed.
      * For example, a Webhook endpoint might use "https://example.com/push".
-     * </pre>
      *
-     * <code>string push_endpoint = 1;</code>
+     * Generated from protobuf field <code>string push_endpoint = 1;</code>
      * @return string
      */
     public function getPushEndpoint()
@@ -70,12 +62,10 @@ class PushConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * A URL locating the endpoint to which messages should be pushed.
      * For example, a Webhook endpoint might use "https://example.com/push".
-     * </pre>
      *
-     * <code>string push_endpoint = 1;</code>
+     * Generated from protobuf field <code>string push_endpoint = 1;</code>
      * @param string $var
      */
     public function setPushEndpoint($var)
@@ -87,7 +77,6 @@ class PushConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Endpoint configuration attributes.
      * Every endpoint has a set of API supported attributes that can be used to
      * control different aspects of the message delivery.
@@ -104,9 +93,8 @@ class PushConfig extends \Google\Protobuf\Internal\Message
      * The possible values for this attribute are:
      * * `v1beta1`: uses the push format defined in the v1beta1 Pub/Sub API.
      * * `v1` or `v1beta2`: uses the push format defined in the v1 Pub/Sub API.
-     * </pre>
      *
-     * <code>map<string, string> attributes = 2;</code>
+     * Generated from protobuf field <code>map<string, string> attributes = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getAttributes()
@@ -115,7 +103,6 @@ class PushConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Endpoint configuration attributes.
      * Every endpoint has a set of API supported attributes that can be used to
      * control different aspects of the message delivery.
@@ -132,9 +119,8 @@ class PushConfig extends \Google\Protobuf\Internal\Message
      * The possible values for this attribute are:
      * * `v1beta1`: uses the push format defined in the v1beta1 Pub/Sub API.
      * * `v1` or `v1beta2`: uses the push format defined in the v1 Pub/Sub API.
-     * </pre>
      *
-     * <code>map<string, string> attributes = 2;</code>
+     * Generated from protobuf field <code>map<string, string> attributes = 2;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setAttributes(&$var)

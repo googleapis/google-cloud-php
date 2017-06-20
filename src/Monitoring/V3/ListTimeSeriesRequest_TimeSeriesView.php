@@ -5,30 +5,24 @@
 namespace Google\Cloud\Monitoring\V3;
 
 /**
- * <pre>
  * Controls which fields are returned by `ListTimeSeries`.
- * </pre>
  *
  * Protobuf enum <code>Google\Monitoring\V3\ListTimeSeriesRequest\TimeSeriesView</code>
  */
 class ListTimeSeriesRequest_TimeSeriesView
 {
     /**
-     * <pre>
      * Returns the identity of the metric(s), the time series,
      * and the time series data.
-     * </pre>
      *
-     * <code>FULL = 0;</code>
+     * Generated from protobuf enum <code>FULL = 0;</code>
      */
     const FULL = 0;
     /**
-     * <pre>
      * Returns the identity of the metric and the time series resource,
      * but not the time series data.
-     * </pre>
      *
-     * <code>HEADERS = 1;</code>
+     * Generated from protobuf enum <code>HEADERS = 1;</code>
      */
     const HEADERS = 1;
 }

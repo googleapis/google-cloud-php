@@ -9,23 +9,19 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * The `GetMonitoredResourceDescriptor` request.
- * </pre>
  *
  * Protobuf type <code>Google\Monitoring\V3\GetMonitoredResourceDescriptorRequest</code>
  */
 class GetMonitoredResourceDescriptorRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The monitored resource descriptor to get.  The format is
      * `"projects/{project_id_or_number}/monitoredResourceDescriptors/{resource_type}"`.
      * The `{resource_type}` is a predefined type, such as
      * `cloudsql_database`.
-     * </pre>
      *
-     * <code>string name = 3;</code>
+     * Generated from protobuf field <code>string name = 3;</code>
      */
     private $name = '';
 
@@ -35,14 +31,12 @@ class GetMonitoredResourceDescriptorRequest extends \Google\Protobuf\Internal\Me
     }
 
     /**
-     * <pre>
      * The monitored resource descriptor to get.  The format is
      * `"projects/{project_id_or_number}/monitoredResourceDescriptors/{resource_type}"`.
      * The `{resource_type}` is a predefined type, such as
      * `cloudsql_database`.
-     * </pre>
      *
-     * <code>string name = 3;</code>
+     * Generated from protobuf field <code>string name = 3;</code>
      * @return string
      */
     public function getName()
@@ -51,14 +45,12 @@ class GetMonitoredResourceDescriptorRequest extends \Google\Protobuf\Internal\Me
     }
 
     /**
-     * <pre>
      * The monitored resource descriptor to get.  The format is
      * `"projects/{project_id_or_number}/monitoredResourceDescriptors/{resource_type}"`.
      * The `{resource_type}` is a predefined type, such as
      * `cloudsql_database`.
-     * </pre>
      *
-     * <code>string name = 3;</code>
+     * Generated from protobuf field <code>string name = 3;</code>
      * @param string $var
      */
     public function setName($var)

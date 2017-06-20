@@ -9,44 +9,36 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Additional information about the source code location that produced the log
  * entry.
- * </pre>
  *
  * Protobuf type <code>Google\Logging\V2\LogEntrySourceLocation</code>
  */
 class LogEntrySourceLocation extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * Optional. Source file name. Depending on the runtime environment, this
      * might be a simple name or a fully-qualified name.
-     * </pre>
      *
-     * <code>string file = 1;</code>
+     * Generated from protobuf field <code>string file = 1;</code>
      */
     private $file = '';
     /**
-     * <pre>
      * Optional. Line within the source file. 1-based; 0 indicates no line number
      * available.
-     * </pre>
      *
-     * <code>int64 line = 2;</code>
+     * Generated from protobuf field <code>int64 line = 2;</code>
      */
     private $line = 0;
     /**
-     * <pre>
      * Optional. Human-readable name of the function or method being invoked, with
      * optional context such as the class or package name. This information may be
      * used in contexts such as the logs viewer, where a file and line number are
      * less meaningful. The format can vary by language. For example:
      * `qual.if.ied.Class.method` (Java), `dir/package.func` (Go), `function`
      * (Python).
-     * </pre>
      *
-     * <code>string function = 3;</code>
+     * Generated from protobuf field <code>string function = 3;</code>
      */
     private $function = '';
 
@@ -56,12 +48,10 @@ class LogEntrySourceLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Optional. Source file name. Depending on the runtime environment, this
      * might be a simple name or a fully-qualified name.
-     * </pre>
      *
-     * <code>string file = 1;</code>
+     * Generated from protobuf field <code>string file = 1;</code>
      * @return string
      */
     public function getFile()
@@ -70,12 +60,10 @@ class LogEntrySourceLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Optional. Source file name. Depending on the runtime environment, this
      * might be a simple name or a fully-qualified name.
-     * </pre>
      *
-     * <code>string file = 1;</code>
+     * Generated from protobuf field <code>string file = 1;</code>
      * @param string $var
      */
     public function setFile($var)
@@ -87,12 +75,10 @@ class LogEntrySourceLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Optional. Line within the source file. 1-based; 0 indicates no line number
      * available.
-     * </pre>
      *
-     * <code>int64 line = 2;</code>
+     * Generated from protobuf field <code>int64 line = 2;</code>
      * @return int|string
      */
     public function getLine()
@@ -101,12 +87,10 @@ class LogEntrySourceLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Optional. Line within the source file. 1-based; 0 indicates no line number
      * available.
-     * </pre>
      *
-     * <code>int64 line = 2;</code>
+     * Generated from protobuf field <code>int64 line = 2;</code>
      * @param int|string $var
      */
     public function setLine($var)
@@ -118,16 +102,14 @@ class LogEntrySourceLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Optional. Human-readable name of the function or method being invoked, with
      * optional context such as the class or package name. This information may be
      * used in contexts such as the logs viewer, where a file and line number are
      * less meaningful. The format can vary by language. For example:
      * `qual.if.ied.Class.method` (Java), `dir/package.func` (Go), `function`
      * (Python).
-     * </pre>
      *
-     * <code>string function = 3;</code>
+     * Generated from protobuf field <code>string function = 3;</code>
      * @return string
      */
     public function getFunction()
@@ -136,16 +118,14 @@ class LogEntrySourceLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Optional. Human-readable name of the function or method being invoked, with
      * optional context such as the class or package name. This information may be
      * used in contexts such as the logs viewer, where a file and line number are
      * less meaningful. The format can vary by language. For example:
      * `qual.if.ied.Class.method` (Java), `dir/package.func` (Go), `function`
      * (Python).
-     * </pre>
      *
-     * <code>string function = 3;</code>
+     * Generated from protobuf field <code>string function = 3;</code>
      * @param string $var
      */
     public function setFunction($var)

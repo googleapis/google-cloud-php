@@ -5,44 +5,34 @@
 namespace Google\Cloud\Language\V1beta2;
 
 /**
- * <pre>
  * Gender classes of nouns reflected in the behaviour of associated words.
- * </pre>
  *
  * Protobuf enum <code>Google\Cloud\Language\V1beta2\PartOfSpeech\Gender</code>
  */
 class PartOfSpeech_Gender
 {
     /**
-     * <pre>
      * Gender is not applicable in the analyzed language or is not predicted.
-     * </pre>
      *
-     * <code>GENDER_UNKNOWN = 0;</code>
+     * Generated from protobuf enum <code>GENDER_UNKNOWN = 0;</code>
      */
     const GENDER_UNKNOWN = 0;
     /**
-     * <pre>
      * Feminine
-     * </pre>
      *
-     * <code>FEMININE = 1;</code>
+     * Generated from protobuf enum <code>FEMININE = 1;</code>
      */
     const FEMININE = 1;
     /**
-     * <pre>
      * Masculine
-     * </pre>
      *
-     * <code>MASCULINE = 2;</code>
+     * Generated from protobuf enum <code>MASCULINE = 2;</code>
      */
     const MASCULINE = 2;
     /**
-     * <pre>
      * Neuter
-     * </pre>
      *
-     * <code>NEUTER = 3;</code>
+     * Generated from protobuf enum <code>NEUTER = 3;</code>
      */
     const NEUTER = 3;
 }

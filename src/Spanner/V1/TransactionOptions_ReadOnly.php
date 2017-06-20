@@ -9,21 +9,17 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Options for read-only transactions.
- * </pre>
  *
  * Protobuf type <code>Google\Spanner\V1\TransactionOptions\ReadOnly</code>
  */
 class TransactionOptions_ReadOnly extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * If true, the Cloud Spanner-selected read timestamp is included in
      * the [Transaction][google.spanner.v1.Transaction] message that describes the transaction.
-     * </pre>
      *
-     * <code>bool return_read_timestamp = 6;</code>
+     * Generated from protobuf field <code>bool return_read_timestamp = 6;</code>
      */
     private $return_read_timestamp = false;
     protected $timestamp_bound;
@@ -34,12 +30,10 @@ class TransactionOptions_ReadOnly extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Read at a timestamp where all previously committed transactions
      * are visible.
-     * </pre>
      *
-     * <code>bool strong = 1;</code>
+     * Generated from protobuf field <code>bool strong = 1;</code>
      * @return bool
      */
     public function getStrong()
@@ -48,12 +42,10 @@ class TransactionOptions_ReadOnly extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Read at a timestamp where all previously committed transactions
      * are visible.
-     * </pre>
      *
-     * <code>bool strong = 1;</code>
+     * Generated from protobuf field <code>bool strong = 1;</code>
      * @param bool $var
      */
     public function setStrong($var)
@@ -65,15 +57,13 @@ class TransactionOptions_ReadOnly extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Executes all reads at a timestamp >= `min_read_timestamp`.
      * This is useful for requesting fresher data than some previous
      * read, or data that is fresh enough to observe the effects of some
      * previously committed transaction whose timestamp is known.
      * Note that this option can only be used in single-use transactions.
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp min_read_timestamp = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp min_read_timestamp = 2;</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getMinReadTimestamp()
@@ -82,15 +72,13 @@ class TransactionOptions_ReadOnly extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Executes all reads at a timestamp >= `min_read_timestamp`.
      * This is useful for requesting fresher data than some previous
      * read, or data that is fresh enough to observe the effects of some
      * previously committed transaction whose timestamp is known.
      * Note that this option can only be used in single-use transactions.
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp min_read_timestamp = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp min_read_timestamp = 2;</code>
      * @param \Google\Protobuf\Timestamp $var
      */
     public function setMinReadTimestamp(&$var)
@@ -102,7 +90,6 @@ class TransactionOptions_ReadOnly extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Read data at a timestamp >= `NOW - max_staleness`
      * seconds. Guarantees that all writes that have committed more
      * than the specified number of seconds ago are visible. Because
@@ -114,9 +101,8 @@ class TransactionOptions_ReadOnly extends \Google\Protobuf\Internal\Message
      * replica has fallen behind.
      * Note that this option can only be used in single-use
      * transactions.
-     * </pre>
      *
-     * <code>.google.protobuf.Duration max_staleness = 3;</code>
+     * Generated from protobuf field <code>.google.protobuf.Duration max_staleness = 3;</code>
      * @return \Google\Protobuf\Duration
      */
     public function getMaxStaleness()
@@ -125,7 +111,6 @@ class TransactionOptions_ReadOnly extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Read data at a timestamp >= `NOW - max_staleness`
      * seconds. Guarantees that all writes that have committed more
      * than the specified number of seconds ago are visible. Because
@@ -137,9 +122,8 @@ class TransactionOptions_ReadOnly extends \Google\Protobuf\Internal\Message
      * replica has fallen behind.
      * Note that this option can only be used in single-use
      * transactions.
-     * </pre>
      *
-     * <code>.google.protobuf.Duration max_staleness = 3;</code>
+     * Generated from protobuf field <code>.google.protobuf.Duration max_staleness = 3;</code>
      * @param \Google\Protobuf\Duration $var
      */
     public function setMaxStaleness(&$var)
@@ -151,7 +135,6 @@ class TransactionOptions_ReadOnly extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Executes all reads at the given timestamp. Unlike other modes,
      * reads at a specific timestamp are repeatable; the same read at
      * the same timestamp always returns the same data. If the
@@ -160,9 +143,8 @@ class TransactionOptions_ReadOnly extends \Google\Protobuf\Internal\Message
      * Useful for large scale consistent reads such as mapreduces, or
      * for coordinating many reads against a consistent snapshot of the
      * data.
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp read_timestamp = 4;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp read_timestamp = 4;</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getReadTimestamp()
@@ -171,7 +153,6 @@ class TransactionOptions_ReadOnly extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Executes all reads at the given timestamp. Unlike other modes,
      * reads at a specific timestamp are repeatable; the same read at
      * the same timestamp always returns the same data. If the
@@ -180,9 +161,8 @@ class TransactionOptions_ReadOnly extends \Google\Protobuf\Internal\Message
      * Useful for large scale consistent reads such as mapreduces, or
      * for coordinating many reads against a consistent snapshot of the
      * data.
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp read_timestamp = 4;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp read_timestamp = 4;</code>
      * @param \Google\Protobuf\Timestamp $var
      */
     public function setReadTimestamp(&$var)
@@ -194,7 +174,6 @@ class TransactionOptions_ReadOnly extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Executes all reads at a timestamp that is `exact_staleness`
      * old. The timestamp is chosen soon after the read is started.
      * Guarantees that all writes that have committed more than the
@@ -204,9 +183,8 @@ class TransactionOptions_ReadOnly extends \Google\Protobuf\Internal\Message
      * timestamps.
      * Useful for reading at nearby replicas without the distributed
      * timestamp negotiation overhead of `max_staleness`.
-     * </pre>
      *
-     * <code>.google.protobuf.Duration exact_staleness = 5;</code>
+     * Generated from protobuf field <code>.google.protobuf.Duration exact_staleness = 5;</code>
      * @return \Google\Protobuf\Duration
      */
     public function getExactStaleness()
@@ -215,7 +193,6 @@ class TransactionOptions_ReadOnly extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Executes all reads at a timestamp that is `exact_staleness`
      * old. The timestamp is chosen soon after the read is started.
      * Guarantees that all writes that have committed more than the
@@ -225,9 +202,8 @@ class TransactionOptions_ReadOnly extends \Google\Protobuf\Internal\Message
      * timestamps.
      * Useful for reading at nearby replicas without the distributed
      * timestamp negotiation overhead of `max_staleness`.
-     * </pre>
      *
-     * <code>.google.protobuf.Duration exact_staleness = 5;</code>
+     * Generated from protobuf field <code>.google.protobuf.Duration exact_staleness = 5;</code>
      * @param \Google\Protobuf\Duration $var
      */
     public function setExactStaleness(&$var)
@@ -239,12 +215,10 @@ class TransactionOptions_ReadOnly extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If true, the Cloud Spanner-selected read timestamp is included in
      * the [Transaction][google.spanner.v1.Transaction] message that describes the transaction.
-     * </pre>
      *
-     * <code>bool return_read_timestamp = 6;</code>
+     * Generated from protobuf field <code>bool return_read_timestamp = 6;</code>
      * @return bool
      */
     public function getReturnReadTimestamp()
@@ -253,12 +227,10 @@ class TransactionOptions_ReadOnly extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If true, the Cloud Spanner-selected read timestamp is included in
      * the [Transaction][google.spanner.v1.Transaction] message that describes the transaction.
-     * </pre>
      *
-     * <code>bool return_read_timestamp = 6;</code>
+     * Generated from protobuf field <code>bool return_read_timestamp = 6;</code>
      * @param bool $var
      */
     public function setReturnReadTimestamp($var)

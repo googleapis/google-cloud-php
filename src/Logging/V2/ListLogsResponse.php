@@ -9,32 +9,26 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Result returned from ListLogs.
- * </pre>
  *
  * Protobuf type <code>Google\Logging\V2\ListLogsResponse</code>
  */
 class ListLogsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * A list of log names. For example,
      * `"projects/my-project/syslog"` or
      * `"organizations/123/cloudresourcemanager.googleapis.com%2Factivity"`.
-     * </pre>
      *
-     * <code>repeated string log_names = 3;</code>
+     * Generated from protobuf field <code>repeated string log_names = 3;</code>
      */
     private $log_names;
     /**
-     * <pre>
      * If there might be more results than those appearing in this response, then
      * `nextPageToken` is included.  To get the next set of results, call this
      * method again using the value of `nextPageToken` as `pageToken`.
-     * </pre>
      *
-     * <code>string next_page_token = 2;</code>
+     * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
     private $next_page_token = '';
 
@@ -44,13 +38,11 @@ class ListLogsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * A list of log names. For example,
      * `"projects/my-project/syslog"` or
      * `"organizations/123/cloudresourcemanager.googleapis.com%2Factivity"`.
-     * </pre>
      *
-     * <code>repeated string log_names = 3;</code>
+     * Generated from protobuf field <code>repeated string log_names = 3;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getLogNames()
@@ -59,13 +51,11 @@ class ListLogsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * A list of log names. For example,
      * `"projects/my-project/syslog"` or
      * `"organizations/123/cloudresourcemanager.googleapis.com%2Factivity"`.
-     * </pre>
      *
-     * <code>repeated string log_names = 3;</code>
+     * Generated from protobuf field <code>repeated string log_names = 3;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setLogNames(&$var)
@@ -77,13 +67,11 @@ class ListLogsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If there might be more results than those appearing in this response, then
      * `nextPageToken` is included.  To get the next set of results, call this
      * method again using the value of `nextPageToken` as `pageToken`.
-     * </pre>
      *
-     * <code>string next_page_token = 2;</code>
+     * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @return string
      */
     public function getNextPageToken()
@@ -92,13 +80,11 @@ class ListLogsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If there might be more results than those appearing in this response, then
      * `nextPageToken` is included.  To get the next set of results, call this
      * method again using the value of `nextPageToken` as `pageToken`.
-     * </pre>
      *
-     * <code>string next_page_token = 2;</code>
+     * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @param string $var
      */
     public function setNextPageToken($var)

@@ -9,26 +9,21 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * ################################################################ #
  * Represents the input to API methods.
- * </pre>
  *
  * Protobuf type <code>Google\Cloud\Language\V1beta2\Document</code>
  */
 class Document extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * Required. If the type is not set or is `TYPE_UNSPECIFIED`,
      * returns an `INVALID_ARGUMENT` error.
-     * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.Document.Type type = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.Document.Type type = 1;</code>
      */
     private $type = 0;
     /**
-     * <pre>
      * The language of the document (if not specified, the language is
      * automatically detected). Both ISO and BCP-47 language codes are
      * accepted.<br>
@@ -37,9 +32,8 @@ class Document extends \Google\Protobuf\Internal\Message
      * If the language (either specified by the caller or automatically detected)
      * is not supported by the called API method, an `INVALID_ARGUMENT` error
      * is returned.
-     * </pre>
      *
-     * <code>string language = 4;</code>
+     * Generated from protobuf field <code>string language = 4;</code>
      */
     private $language = '';
     protected $source;
@@ -50,12 +44,10 @@ class Document extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. If the type is not set or is `TYPE_UNSPECIFIED`,
      * returns an `INVALID_ARGUMENT` error.
-     * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.Document.Type type = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.Document.Type type = 1;</code>
      * @return int
      */
     public function getType()
@@ -64,12 +56,10 @@ class Document extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. If the type is not set or is `TYPE_UNSPECIFIED`,
      * returns an `INVALID_ARGUMENT` error.
-     * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.Document.Type type = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.Document.Type type = 1;</code>
      * @param int $var
      */
     public function setType($var)
@@ -81,11 +71,9 @@ class Document extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The content of the input in string format.
-     * </pre>
      *
-     * <code>string content = 2;</code>
+     * Generated from protobuf field <code>string content = 2;</code>
      * @return string
      */
     public function getContent()
@@ -94,11 +82,9 @@ class Document extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The content of the input in string format.
-     * </pre>
      *
-     * <code>string content = 2;</code>
+     * Generated from protobuf field <code>string content = 2;</code>
      * @param string $var
      */
     public function setContent($var)
@@ -110,14 +96,12 @@ class Document extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The Google Cloud Storage URI where the file content is located.
      * This URI must be of the form: gs://bucket_name/object_name. For more
      * details, see https://cloud.google.com/storage/docs/reference-uris.
      * NOTE: Cloud Storage object versioning is not supported.
-     * </pre>
      *
-     * <code>string gcs_content_uri = 3;</code>
+     * Generated from protobuf field <code>string gcs_content_uri = 3;</code>
      * @return string
      */
     public function getGcsContentUri()
@@ -126,14 +110,12 @@ class Document extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The Google Cloud Storage URI where the file content is located.
      * This URI must be of the form: gs://bucket_name/object_name. For more
      * details, see https://cloud.google.com/storage/docs/reference-uris.
      * NOTE: Cloud Storage object versioning is not supported.
-     * </pre>
      *
-     * <code>string gcs_content_uri = 3;</code>
+     * Generated from protobuf field <code>string gcs_content_uri = 3;</code>
      * @param string $var
      */
     public function setGcsContentUri($var)
@@ -145,7 +127,6 @@ class Document extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The language of the document (if not specified, the language is
      * automatically detected). Both ISO and BCP-47 language codes are
      * accepted.<br>
@@ -154,9 +135,8 @@ class Document extends \Google\Protobuf\Internal\Message
      * If the language (either specified by the caller or automatically detected)
      * is not supported by the called API method, an `INVALID_ARGUMENT` error
      * is returned.
-     * </pre>
      *
-     * <code>string language = 4;</code>
+     * Generated from protobuf field <code>string language = 4;</code>
      * @return string
      */
     public function getLanguage()
@@ -165,7 +145,6 @@ class Document extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The language of the document (if not specified, the language is
      * automatically detected). Both ISO and BCP-47 language codes are
      * accepted.<br>
@@ -174,9 +153,8 @@ class Document extends \Google\Protobuf\Internal\Message
      * If the language (either specified by the caller or automatically detected)
      * is not supported by the called API method, an `INVALID_ARGUMENT` error
      * is returned.
-     * </pre>
      *
-     * <code>string language = 4;</code>
+     * Generated from protobuf field <code>string language = 4;</code>
      * @param string $var
      */
     public function setLanguage($var)

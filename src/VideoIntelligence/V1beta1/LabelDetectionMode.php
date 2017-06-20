@@ -5,44 +5,34 @@
 namespace Google\Cloud\VideoIntelligence\V1beta1;
 
 /**
- * <pre>
  * Label detection mode.
- * </pre>
  *
  * Protobuf enum <code>Google\Cloud\Videointelligence\V1beta1\LabelDetectionMode</code>
  */
 class LabelDetectionMode
 {
     /**
-     * <pre>
      * Unspecified.
-     * </pre>
      *
-     * <code>LABEL_DETECTION_MODE_UNSPECIFIED = 0;</code>
+     * Generated from protobuf enum <code>LABEL_DETECTION_MODE_UNSPECIFIED = 0;</code>
      */
     const LABEL_DETECTION_MODE_UNSPECIFIED = 0;
     /**
-     * <pre>
      * Detect shot-level labels.
-     * </pre>
      *
-     * <code>SHOT_MODE = 1;</code>
+     * Generated from protobuf enum <code>SHOT_MODE = 1;</code>
      */
     const SHOT_MODE = 1;
     /**
-     * <pre>
      * Detect frame-level labels.
-     * </pre>
      *
-     * <code>FRAME_MODE = 2;</code>
+     * Generated from protobuf enum <code>FRAME_MODE = 2;</code>
      */
     const FRAME_MODE = 2;
     /**
-     * <pre>
      * Detect both shot-level and frame-level labels.
-     * </pre>
      *
-     * <code>SHOT_AND_FRAME_MODE = 3;</code>
+     * Generated from protobuf enum <code>SHOT_AND_FRAME_MODE = 3;</code>
      */
     const SHOT_AND_FRAME_MODE = 3;
 }

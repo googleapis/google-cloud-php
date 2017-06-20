@@ -9,60 +9,47 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Node information for nodes appearing in a [QueryPlan.plan_nodes][google.spanner.v1.QueryPlan.plan_nodes].
- * </pre>
  *
  * Protobuf type <code>Google\Spanner\V1\PlanNode</code>
  */
 class PlanNode extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The `PlanNode`'s index in [node list][google.spanner.v1.QueryPlan.plan_nodes].
-     * </pre>
      *
-     * <code>int32 index = 1;</code>
+     * Generated from protobuf field <code>int32 index = 1;</code>
      */
     private $index = 0;
     /**
-     * <pre>
      * Used to determine the type of node. May be needed for visualizing
      * different kinds of nodes differently. For example, If the node is a
      * [SCALAR][google.spanner.v1.PlanNode.Kind.SCALAR] node, it will have a condensed representation
      * which can be used to directly embed a description of the node in its
      * parent.
-     * </pre>
      *
-     * <code>.google.spanner.v1.PlanNode.Kind kind = 2;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.PlanNode.Kind kind = 2;</code>
      */
     private $kind = 0;
     /**
-     * <pre>
      * The display name for the node.
-     * </pre>
      *
-     * <code>string display_name = 3;</code>
+     * Generated from protobuf field <code>string display_name = 3;</code>
      */
     private $display_name = '';
     /**
-     * <pre>
      * List of child node `index`es and their relationship to this parent.
-     * </pre>
      *
-     * <code>repeated .google.spanner.v1.PlanNode.ChildLink child_links = 4;</code>
+     * Generated from protobuf field <code>repeated .google.spanner.v1.PlanNode.ChildLink child_links = 4;</code>
      */
     private $child_links;
     /**
-     * <pre>
      * Condensed representation for [SCALAR][google.spanner.v1.PlanNode.Kind.SCALAR] nodes.
-     * </pre>
      *
-     * <code>.google.spanner.v1.PlanNode.ShortRepresentation short_representation = 5;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.PlanNode.ShortRepresentation short_representation = 5;</code>
      */
     private $short_representation = null;
     /**
-     * <pre>
      * Attributes relevant to the node contained in a group of key-value pairs.
      * For example, a Parameter Reference node could have the following
      * information in its metadata:
@@ -70,20 +57,17 @@ class PlanNode extends \Google\Protobuf\Internal\Message
      *       "parameter_reference": "param1",
      *       "parameter_type": "array"
      *     }
-     * </pre>
      *
-     * <code>.google.protobuf.Struct metadata = 6;</code>
+     * Generated from protobuf field <code>.google.protobuf.Struct metadata = 6;</code>
      */
     private $metadata = null;
     /**
-     * <pre>
      * The execution statistics associated with the node, contained in a group of
      * key-value pairs. Only present if the plan was returned as a result of a
      * profile query. For example, number of executions, number of rows/time per
      * execution etc.
-     * </pre>
      *
-     * <code>.google.protobuf.Struct execution_stats = 7;</code>
+     * Generated from protobuf field <code>.google.protobuf.Struct execution_stats = 7;</code>
      */
     private $execution_stats = null;
 
@@ -93,11 +77,9 @@ class PlanNode extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The `PlanNode`'s index in [node list][google.spanner.v1.QueryPlan.plan_nodes].
-     * </pre>
      *
-     * <code>int32 index = 1;</code>
+     * Generated from protobuf field <code>int32 index = 1;</code>
      * @return int
      */
     public function getIndex()
@@ -106,11 +88,9 @@ class PlanNode extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The `PlanNode`'s index in [node list][google.spanner.v1.QueryPlan.plan_nodes].
-     * </pre>
      *
-     * <code>int32 index = 1;</code>
+     * Generated from protobuf field <code>int32 index = 1;</code>
      * @param int $var
      */
     public function setIndex($var)
@@ -122,15 +102,13 @@ class PlanNode extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Used to determine the type of node. May be needed for visualizing
      * different kinds of nodes differently. For example, If the node is a
      * [SCALAR][google.spanner.v1.PlanNode.Kind.SCALAR] node, it will have a condensed representation
      * which can be used to directly embed a description of the node in its
      * parent.
-     * </pre>
      *
-     * <code>.google.spanner.v1.PlanNode.Kind kind = 2;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.PlanNode.Kind kind = 2;</code>
      * @return int
      */
     public function getKind()
@@ -139,15 +117,13 @@ class PlanNode extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Used to determine the type of node. May be needed for visualizing
      * different kinds of nodes differently. For example, If the node is a
      * [SCALAR][google.spanner.v1.PlanNode.Kind.SCALAR] node, it will have a condensed representation
      * which can be used to directly embed a description of the node in its
      * parent.
-     * </pre>
      *
-     * <code>.google.spanner.v1.PlanNode.Kind kind = 2;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.PlanNode.Kind kind = 2;</code>
      * @param int $var
      */
     public function setKind($var)
@@ -159,11 +135,9 @@ class PlanNode extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The display name for the node.
-     * </pre>
      *
-     * <code>string display_name = 3;</code>
+     * Generated from protobuf field <code>string display_name = 3;</code>
      * @return string
      */
     public function getDisplayName()
@@ -172,11 +146,9 @@ class PlanNode extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The display name for the node.
-     * </pre>
      *
-     * <code>string display_name = 3;</code>
+     * Generated from protobuf field <code>string display_name = 3;</code>
      * @param string $var
      */
     public function setDisplayName($var)
@@ -188,11 +160,9 @@ class PlanNode extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * List of child node `index`es and their relationship to this parent.
-     * </pre>
      *
-     * <code>repeated .google.spanner.v1.PlanNode.ChildLink child_links = 4;</code>
+     * Generated from protobuf field <code>repeated .google.spanner.v1.PlanNode.ChildLink child_links = 4;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getChildLinks()
@@ -201,11 +171,9 @@ class PlanNode extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * List of child node `index`es and their relationship to this parent.
-     * </pre>
      *
-     * <code>repeated .google.spanner.v1.PlanNode.ChildLink child_links = 4;</code>
+     * Generated from protobuf field <code>repeated .google.spanner.v1.PlanNode.ChildLink child_links = 4;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setChildLinks(&$var)
@@ -217,11 +185,9 @@ class PlanNode extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Condensed representation for [SCALAR][google.spanner.v1.PlanNode.Kind.SCALAR] nodes.
-     * </pre>
      *
-     * <code>.google.spanner.v1.PlanNode.ShortRepresentation short_representation = 5;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.PlanNode.ShortRepresentation short_representation = 5;</code>
      * @return \Google\Cloud\Spanner\V1\PlanNode_ShortRepresentation
      */
     public function getShortRepresentation()
@@ -230,11 +196,9 @@ class PlanNode extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Condensed representation for [SCALAR][google.spanner.v1.PlanNode.Kind.SCALAR] nodes.
-     * </pre>
      *
-     * <code>.google.spanner.v1.PlanNode.ShortRepresentation short_representation = 5;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.PlanNode.ShortRepresentation short_representation = 5;</code>
      * @param \Google\Cloud\Spanner\V1\PlanNode_ShortRepresentation $var
      */
     public function setShortRepresentation(&$var)
@@ -246,7 +210,6 @@ class PlanNode extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Attributes relevant to the node contained in a group of key-value pairs.
      * For example, a Parameter Reference node could have the following
      * information in its metadata:
@@ -254,9 +217,8 @@ class PlanNode extends \Google\Protobuf\Internal\Message
      *       "parameter_reference": "param1",
      *       "parameter_type": "array"
      *     }
-     * </pre>
      *
-     * <code>.google.protobuf.Struct metadata = 6;</code>
+     * Generated from protobuf field <code>.google.protobuf.Struct metadata = 6;</code>
      * @return \Google\Protobuf\Struct
      */
     public function getMetadata()
@@ -265,7 +227,6 @@ class PlanNode extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Attributes relevant to the node contained in a group of key-value pairs.
      * For example, a Parameter Reference node could have the following
      * information in its metadata:
@@ -273,9 +234,8 @@ class PlanNode extends \Google\Protobuf\Internal\Message
      *       "parameter_reference": "param1",
      *       "parameter_type": "array"
      *     }
-     * </pre>
      *
-     * <code>.google.protobuf.Struct metadata = 6;</code>
+     * Generated from protobuf field <code>.google.protobuf.Struct metadata = 6;</code>
      * @param \Google\Protobuf\Struct $var
      */
     public function setMetadata(&$var)
@@ -287,14 +247,12 @@ class PlanNode extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The execution statistics associated with the node, contained in a group of
      * key-value pairs. Only present if the plan was returned as a result of a
      * profile query. For example, number of executions, number of rows/time per
      * execution etc.
-     * </pre>
      *
-     * <code>.google.protobuf.Struct execution_stats = 7;</code>
+     * Generated from protobuf field <code>.google.protobuf.Struct execution_stats = 7;</code>
      * @return \Google\Protobuf\Struct
      */
     public function getExecutionStats()
@@ -303,14 +261,12 @@ class PlanNode extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The execution statistics associated with the node, contained in a group of
      * key-value pairs. Only present if the plan was returned as a result of a
      * profile query. For example, number of executions, number of rows/time per
      * execution etc.
-     * </pre>
      *
-     * <code>.google.protobuf.Struct execution_stats = 7;</code>
+     * Generated from protobuf field <code>.google.protobuf.Struct execution_stats = 7;</code>
      * @param \Google\Protobuf\Struct $var
      */
     public function setExecutionStats(&$var)

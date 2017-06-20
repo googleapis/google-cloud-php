@@ -24,6 +24,8 @@
  * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
  * more frequently than those which have been declared beta or 1.0, including changes which break
  * backwards compatibility.
+ *
+ * @experimental
  */
 
 namespace Google\Cloud\Logging\V2;
@@ -73,6 +75,8 @@ use Google\GAX\PathTemplate;
  * with these names, this class includes a format method for each type of name, and additionally
  * a parse method to extract the individual identifiers contained within names that are
  * returned.
+ *
+ * @experimental
  */
 class ConfigServiceV2Client
 {
@@ -113,6 +117,11 @@ class ConfigServiceV2Client
     /**
      * Formats a string containing the fully-qualified path to represent
      * a project resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project resource.
+     * @experimental
      */
     public static function formatProjectName($project)
     {
@@ -124,6 +133,12 @@ class ConfigServiceV2Client
     /**
      * Formats a string containing the fully-qualified path to represent
      * a sink resource.
+     *
+     * @param string $project
+     * @param string $sink
+     *
+     * @return string The formatted sink resource.
+     * @experimental
      */
     public static function formatSinkName($project, $sink)
     {
@@ -136,6 +151,11 @@ class ConfigServiceV2Client
     /**
      * Parses the project from the given fully-qualified path which
      * represents a project resource.
+     *
+     * @param string $projectName The fully-qualified project resource.
+     *
+     * @return string The extracted project value.
+     * @experimental
      */
     public static function parseProjectFromProjectName($projectName)
     {
@@ -145,6 +165,11 @@ class ConfigServiceV2Client
     /**
      * Parses the project from the given fully-qualified path which
      * represents a sink resource.
+     *
+     * @param string $sinkName The fully-qualified sink resource.
+     *
+     * @return string The extracted project value.
+     * @experimental
      */
     public static function parseProjectFromSinkName($sinkName)
     {
@@ -154,6 +179,11 @@ class ConfigServiceV2Client
     /**
      * Parses the sink from the given fully-qualified path which
      * represents a sink resource.
+     *
+     * @param string $sinkName The fully-qualified sink resource.
+     *
+     * @return string The extracted sink value.
+     * @experimental
      */
     public static function parseSinkFromSinkName($sinkName)
     {
@@ -237,6 +267,7 @@ class ConfigServiceV2Client
      *                              A CredentialsLoader object created using the
      *                              Google\Auth library.
      * }
+     * @experimental
      */
     public function __construct($options = [])
     {
@@ -367,6 +398,7 @@ class ConfigServiceV2Client
      * @return \Google\GAX\PagedListResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function listSinks($parent, $optionalArgs = [])
     {
@@ -431,6 +463,7 @@ class ConfigServiceV2Client
      * @return \Google\Cloud\Logging\V2\LogSink
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function getSink($sinkName, $optionalArgs = [])
     {
@@ -508,6 +541,7 @@ class ConfigServiceV2Client
      * @return \Google\Cloud\Logging\V2\LogSink
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function createSink($parent, $sink, $optionalArgs = [])
     {
@@ -594,6 +628,7 @@ class ConfigServiceV2Client
      * @return \Google\Cloud\Logging\V2\LogSink
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function updateSink($sinkName, $sink, $optionalArgs = [])
     {
@@ -656,6 +691,7 @@ class ConfigServiceV2Client
      * }
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function deleteSink($sinkName, $optionalArgs = [])
     {
@@ -681,6 +717,8 @@ class ConfigServiceV2Client
     /**
      * Initiates an orderly shutdown in which preexisting calls continue but new
      * calls are immediately cancelled.
+     *
+     * @experimental
      */
     public function close()
     {

@@ -9,29 +9,23 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * The `UpdateGroup` request.
- * </pre>
  *
  * Protobuf type <code>Google\Monitoring\V3\UpdateGroupRequest</code>
  */
 class UpdateGroupRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The new definition of the group.  All fields of the existing group,
      * excepting `name`, are replaced with the corresponding fields of this group.
-     * </pre>
      *
-     * <code>.google.monitoring.v3.Group group = 2;</code>
+     * Generated from protobuf field <code>.google.monitoring.v3.Group group = 2;</code>
      */
     private $group = null;
     /**
-     * <pre>
      * If true, validate this request but do not update the existing group.
-     * </pre>
      *
-     * <code>bool validate_only = 3;</code>
+     * Generated from protobuf field <code>bool validate_only = 3;</code>
      */
     private $validate_only = false;
 
@@ -41,12 +35,10 @@ class UpdateGroupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The new definition of the group.  All fields of the existing group,
      * excepting `name`, are replaced with the corresponding fields of this group.
-     * </pre>
      *
-     * <code>.google.monitoring.v3.Group group = 2;</code>
+     * Generated from protobuf field <code>.google.monitoring.v3.Group group = 2;</code>
      * @return \Google\Cloud\Monitoring\V3\Group
      */
     public function getGroup()
@@ -55,12 +47,10 @@ class UpdateGroupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The new definition of the group.  All fields of the existing group,
      * excepting `name`, are replaced with the corresponding fields of this group.
-     * </pre>
      *
-     * <code>.google.monitoring.v3.Group group = 2;</code>
+     * Generated from protobuf field <code>.google.monitoring.v3.Group group = 2;</code>
      * @param \Google\Cloud\Monitoring\V3\Group $var
      */
     public function setGroup(&$var)
@@ -72,11 +62,9 @@ class UpdateGroupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If true, validate this request but do not update the existing group.
-     * </pre>
      *
-     * <code>bool validate_only = 3;</code>
+     * Generated from protobuf field <code>bool validate_only = 3;</code>
      * @return bool
      */
     public function getValidateOnly()
@@ -85,11 +73,9 @@ class UpdateGroupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If true, validate this request but do not update the existing group.
-     * </pre>
      *
-     * <code>bool validate_only = 3;</code>
+     * Generated from protobuf field <code>bool validate_only = 3;</code>
      * @param bool $var
      */
     public function setValidateOnly($var)

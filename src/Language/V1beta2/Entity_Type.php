@@ -5,76 +5,58 @@
 namespace Google\Cloud\Language\V1beta2;
 
 /**
- * <pre>
  * The type of the entity.
- * </pre>
  *
  * Protobuf enum <code>Google\Cloud\Language\V1beta2\Entity\Type</code>
  */
 class Entity_Type
 {
     /**
-     * <pre>
      * Unknown
-     * </pre>
      *
-     * <code>UNKNOWN = 0;</code>
+     * Generated from protobuf enum <code>UNKNOWN = 0;</code>
      */
     const UNKNOWN = 0;
     /**
-     * <pre>
      * Person
-     * </pre>
      *
-     * <code>PERSON = 1;</code>
+     * Generated from protobuf enum <code>PERSON = 1;</code>
      */
     const PERSON = 1;
     /**
-     * <pre>
      * Location
-     * </pre>
      *
-     * <code>LOCATION = 2;</code>
+     * Generated from protobuf enum <code>LOCATION = 2;</code>
      */
     const LOCATION = 2;
     /**
-     * <pre>
      * Organization
-     * </pre>
      *
-     * <code>ORGANIZATION = 3;</code>
+     * Generated from protobuf enum <code>ORGANIZATION = 3;</code>
      */
     const ORGANIZATION = 3;
     /**
-     * <pre>
      * Event
-     * </pre>
      *
-     * <code>EVENT = 4;</code>
+     * Generated from protobuf enum <code>EVENT = 4;</code>
      */
     const EVENT = 4;
     /**
-     * <pre>
      * Work of art
-     * </pre>
      *
-     * <code>WORK_OF_ART = 5;</code>
+     * Generated from protobuf enum <code>WORK_OF_ART = 5;</code>
      */
     const WORK_OF_ART = 5;
     /**
-     * <pre>
      * Consumer goods
-     * </pre>
      *
-     * <code>CONSUMER_GOOD = 6;</code>
+     * Generated from protobuf enum <code>CONSUMER_GOOD = 6;</code>
      */
     const CONSUMER_GOOD = 6;
     /**
-     * <pre>
      * Other types
-     * </pre>
      *
-     * <code>OTHER = 7;</code>
+     * Generated from protobuf enum <code>OTHER = 7;</code>
      */
     const OTHER = 7;
 }

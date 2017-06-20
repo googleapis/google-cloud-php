@@ -9,21 +9,17 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Metadata type for the operation returned by
  * [CreateDatabase][google.spanner.admin.database.v1.DatabaseAdmin.CreateDatabase].
- * </pre>
  *
  * Protobuf type <code>Google\Spanner\Admin\Database\V1\CreateDatabaseMetadata</code>
  */
 class CreateDatabaseMetadata extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The database being created.
-     * </pre>
      *
-     * <code>string database = 1;</code>
+     * Generated from protobuf field <code>string database = 1;</code>
      */
     private $database = '';
 
@@ -33,11 +29,9 @@ class CreateDatabaseMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The database being created.
-     * </pre>
      *
-     * <code>string database = 1;</code>
+     * Generated from protobuf field <code>string database = 1;</code>
      * @return string
      */
     public function getDatabase()
@@ -46,11 +40,9 @@ class CreateDatabaseMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The database being created.
-     * </pre>
      *
-     * <code>string database = 1;</code>
+     * Generated from protobuf field <code>string database = 1;</code>
      * @param string $var
      */
     public function setDatabase($var)

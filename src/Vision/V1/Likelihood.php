@@ -5,61 +5,47 @@
 namespace Google\Cloud\Vision\V1;
 
 /**
- * <pre>
  * A bucketized representation of likelihood, which is intended to give clients
  * highly stable results across model upgrades.
- * </pre>
  *
  * Protobuf enum <code>Google\Cloud\Vision\V1\Likelihood</code>
  */
 class Likelihood
 {
     /**
-     * <pre>
      * Unknown likelihood.
-     * </pre>
      *
-     * <code>UNKNOWN = 0;</code>
+     * Generated from protobuf enum <code>UNKNOWN = 0;</code>
      */
     const UNKNOWN = 0;
     /**
-     * <pre>
      * It is very unlikely that the image belongs to the specified vertical.
-     * </pre>
      *
-     * <code>VERY_UNLIKELY = 1;</code>
+     * Generated from protobuf enum <code>VERY_UNLIKELY = 1;</code>
      */
     const VERY_UNLIKELY = 1;
     /**
-     * <pre>
      * It is unlikely that the image belongs to the specified vertical.
-     * </pre>
      *
-     * <code>UNLIKELY = 2;</code>
+     * Generated from protobuf enum <code>UNLIKELY = 2;</code>
      */
     const UNLIKELY = 2;
     /**
-     * <pre>
      * It is possible that the image belongs to the specified vertical.
-     * </pre>
      *
-     * <code>POSSIBLE = 3;</code>
+     * Generated from protobuf enum <code>POSSIBLE = 3;</code>
      */
     const POSSIBLE = 3;
     /**
-     * <pre>
      * It is likely that the image belongs to the specified vertical.
-     * </pre>
      *
-     * <code>LIKELY = 4;</code>
+     * Generated from protobuf enum <code>LIKELY = 4;</code>
      */
     const LIKELY = 4;
     /**
-     * <pre>
      * It is very likely that the image belongs to the specified vertical.
-     * </pre>
      *
-     * <code>VERY_LIKELY = 5;</code>
+     * Generated from protobuf enum <code>VERY_LIKELY = 5;</code>
      */
     const VERY_LIKELY = 5;
 }

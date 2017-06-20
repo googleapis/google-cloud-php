@@ -9,7 +9,6 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Enqueues the given DDL statements to be applied, in order but not
  * necessarily all at once, to the database schema at some point (or
  * points) in the future. The server checks that the statements
@@ -25,30 +24,24 @@ use Google\Protobuf\Internal\GPBUtil;
  * progress. See the
  * [operation_id][google.spanner.admin.database.v1.UpdateDatabaseDdlRequest.operation_id] field for more
  * details.
- * </pre>
  *
  * Protobuf type <code>Google\Spanner\Admin\Database\V1\UpdateDatabaseDdlRequest</code>
  */
 class UpdateDatabaseDdlRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * Required. The database to update.
-     * </pre>
      *
-     * <code>string database = 1;</code>
+     * Generated from protobuf field <code>string database = 1;</code>
      */
     private $database = '';
     /**
-     * <pre>
      * DDL statements to be applied to the database.
-     * </pre>
      *
-     * <code>repeated string statements = 2;</code>
+     * Generated from protobuf field <code>repeated string statements = 2;</code>
      */
     private $statements;
     /**
-     * <pre>
      * If empty, the new update request is assigned an
      * automatically-generated operation ID. Otherwise, `operation_id`
      * is used to construct the name of the resulting
@@ -66,9 +59,8 @@ class UpdateDatabaseDdlRequest extends \Google\Protobuf\Internal\Message
      * underscore. If the named operation already exists,
      * [UpdateDatabaseDdl][google.spanner.admin.database.v1.DatabaseAdmin.UpdateDatabaseDdl] returns
      * `ALREADY_EXISTS`.
-     * </pre>
      *
-     * <code>string operation_id = 3;</code>
+     * Generated from protobuf field <code>string operation_id = 3;</code>
      */
     private $operation_id = '';
 
@@ -78,11 +70,9 @@ class UpdateDatabaseDdlRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. The database to update.
-     * </pre>
      *
-     * <code>string database = 1;</code>
+     * Generated from protobuf field <code>string database = 1;</code>
      * @return string
      */
     public function getDatabase()
@@ -91,11 +81,9 @@ class UpdateDatabaseDdlRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. The database to update.
-     * </pre>
      *
-     * <code>string database = 1;</code>
+     * Generated from protobuf field <code>string database = 1;</code>
      * @param string $var
      */
     public function setDatabase($var)
@@ -107,11 +95,9 @@ class UpdateDatabaseDdlRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * DDL statements to be applied to the database.
-     * </pre>
      *
-     * <code>repeated string statements = 2;</code>
+     * Generated from protobuf field <code>repeated string statements = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getStatements()
@@ -120,11 +106,9 @@ class UpdateDatabaseDdlRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * DDL statements to be applied to the database.
-     * </pre>
      *
-     * <code>repeated string statements = 2;</code>
+     * Generated from protobuf field <code>repeated string statements = 2;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setStatements(&$var)
@@ -136,7 +120,6 @@ class UpdateDatabaseDdlRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If empty, the new update request is assigned an
      * automatically-generated operation ID. Otherwise, `operation_id`
      * is used to construct the name of the resulting
@@ -154,9 +137,8 @@ class UpdateDatabaseDdlRequest extends \Google\Protobuf\Internal\Message
      * underscore. If the named operation already exists,
      * [UpdateDatabaseDdl][google.spanner.admin.database.v1.DatabaseAdmin.UpdateDatabaseDdl] returns
      * `ALREADY_EXISTS`.
-     * </pre>
      *
-     * <code>string operation_id = 3;</code>
+     * Generated from protobuf field <code>string operation_id = 3;</code>
      * @return string
      */
     public function getOperationId()
@@ -165,7 +147,6 @@ class UpdateDatabaseDdlRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If empty, the new update request is assigned an
      * automatically-generated operation ID. Otherwise, `operation_id`
      * is used to construct the name of the resulting
@@ -183,9 +164,8 @@ class UpdateDatabaseDdlRequest extends \Google\Protobuf\Internal\Message
      * underscore. If the named operation already exists,
      * [UpdateDatabaseDdl][google.spanner.admin.database.v1.DatabaseAdmin.UpdateDatabaseDdl] returns
      * `ALREADY_EXISTS`.
-     * </pre>
      *
-     * <code>string operation_id = 3;</code>
+     * Generated from protobuf field <code>string operation_id = 3;</code>
      * @param string $var
      */
     public function setOperationId($var)

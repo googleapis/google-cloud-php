@@ -9,20 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Set of dominant colors and their corresponding scores.
- * </pre>
  *
  * Protobuf type <code>Google\Cloud\Vision\V1\DominantColorsAnnotation</code>
  */
 class DominantColorsAnnotation extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * RGB color values with their score and pixel fraction.
-     * </pre>
      *
-     * <code>repeated .google.cloud.vision.v1.ColorInfo colors = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.ColorInfo colors = 1;</code>
      */
     private $colors;
 
@@ -32,11 +28,9 @@ class DominantColorsAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * RGB color values with their score and pixel fraction.
-     * </pre>
      *
-     * <code>repeated .google.cloud.vision.v1.ColorInfo colors = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.ColorInfo colors = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getColors()
@@ -45,11 +39,9 @@ class DominantColorsAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * RGB color values with their score and pixel fraction.
-     * </pre>
      *
-     * <code>repeated .google.cloud.vision.v1.ColorInfo colors = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.ColorInfo colors = 1;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setColors(&$var)

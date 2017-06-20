@@ -9,46 +9,36 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * An error event which is returned by the Error Reporting system.
- * </pre>
  *
  * Protobuf type <code>Google\Devtools\Clouderrorreporting\V1beta1\ErrorEvent</code>
  */
 class ErrorEvent extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * Time when the event occurred as provided in the error report.
      * If the report did not contain a timestamp, the time the error was received
      * by the Error Reporting system is used.
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp event_time = 1;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp event_time = 1;</code>
      */
     private $event_time = null;
     /**
-     * <pre>
      * The `ServiceContext` for which this error was reported.
-     * </pre>
      *
-     * <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContext service_context = 2;</code>
+     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContext service_context = 2;</code>
      */
     private $service_context = null;
     /**
-     * <pre>
      * The stack trace that was reported or logged by the service.
-     * </pre>
      *
-     * <code>string message = 3;</code>
+     * Generated from protobuf field <code>string message = 3;</code>
      */
     private $message = '';
     /**
-     * <pre>
      * Data about the context in which the error occurred.
-     * </pre>
      *
-     * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorContext context = 5;</code>
+     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ErrorContext context = 5;</code>
      */
     private $context = null;
 
@@ -58,13 +48,11 @@ class ErrorEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Time when the event occurred as provided in the error report.
      * If the report did not contain a timestamp, the time the error was received
      * by the Error Reporting system is used.
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp event_time = 1;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp event_time = 1;</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getEventTime()
@@ -73,13 +61,11 @@ class ErrorEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Time when the event occurred as provided in the error report.
      * If the report did not contain a timestamp, the time the error was received
      * by the Error Reporting system is used.
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp event_time = 1;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp event_time = 1;</code>
      * @param \Google\Protobuf\Timestamp $var
      */
     public function setEventTime(&$var)
@@ -91,11 +77,9 @@ class ErrorEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The `ServiceContext` for which this error was reported.
-     * </pre>
      *
-     * <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContext service_context = 2;</code>
+     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContext service_context = 2;</code>
      * @return \Google\Cloud\ErrorReporting\V1beta1\ServiceContext
      */
     public function getServiceContext()
@@ -104,11 +88,9 @@ class ErrorEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The `ServiceContext` for which this error was reported.
-     * </pre>
      *
-     * <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContext service_context = 2;</code>
+     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContext service_context = 2;</code>
      * @param \Google\Cloud\ErrorReporting\V1beta1\ServiceContext $var
      */
     public function setServiceContext(&$var)
@@ -120,11 +102,9 @@ class ErrorEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The stack trace that was reported or logged by the service.
-     * </pre>
      *
-     * <code>string message = 3;</code>
+     * Generated from protobuf field <code>string message = 3;</code>
      * @return string
      */
     public function getMessage()
@@ -133,11 +113,9 @@ class ErrorEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The stack trace that was reported or logged by the service.
-     * </pre>
      *
-     * <code>string message = 3;</code>
+     * Generated from protobuf field <code>string message = 3;</code>
      * @param string $var
      */
     public function setMessage($var)
@@ -149,11 +127,9 @@ class ErrorEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Data about the context in which the error occurred.
-     * </pre>
      *
-     * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorContext context = 5;</code>
+     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ErrorContext context = 5;</code>
      * @return \Google\Cloud\ErrorReporting\V1beta1\ErrorContext
      */
     public function getContext()
@@ -162,11 +138,9 @@ class ErrorEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Data about the context in which the error occurred.
-     * </pre>
      *
-     * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorContext context = 5;</code>
+     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ErrorContext context = 5;</code>
      * @param \Google\Cloud\ErrorReporting\V1beta1\ErrorContext $var
      */
     public function setContext(&$var)

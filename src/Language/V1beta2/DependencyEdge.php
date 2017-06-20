@@ -9,32 +9,26 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Represents dependency parse tree information for a token.
- * </pre>
  *
  * Protobuf type <code>Google\Cloud\Language\V1beta2\DependencyEdge</code>
  */
 class DependencyEdge extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * Represents the head of this token in the dependency tree.
      * This is the index of the token which has an arc going to this token.
      * The index is the position of the token in the array of tokens returned
      * by the API method. If this token is a root token, then the
      * `head_token_index` is its own index.
-     * </pre>
      *
-     * <code>int32 head_token_index = 1;</code>
+     * Generated from protobuf field <code>int32 head_token_index = 1;</code>
      */
     private $head_token_index = 0;
     /**
-     * <pre>
      * The parse label for the token.
-     * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.DependencyEdge.Label label = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.DependencyEdge.Label label = 2;</code>
      */
     private $label = 0;
 
@@ -44,15 +38,13 @@ class DependencyEdge extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Represents the head of this token in the dependency tree.
      * This is the index of the token which has an arc going to this token.
      * The index is the position of the token in the array of tokens returned
      * by the API method. If this token is a root token, then the
      * `head_token_index` is its own index.
-     * </pre>
      *
-     * <code>int32 head_token_index = 1;</code>
+     * Generated from protobuf field <code>int32 head_token_index = 1;</code>
      * @return int
      */
     public function getHeadTokenIndex()
@@ -61,15 +53,13 @@ class DependencyEdge extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Represents the head of this token in the dependency tree.
      * This is the index of the token which has an arc going to this token.
      * The index is the position of the token in the array of tokens returned
      * by the API method. If this token is a root token, then the
      * `head_token_index` is its own index.
-     * </pre>
      *
-     * <code>int32 head_token_index = 1;</code>
+     * Generated from protobuf field <code>int32 head_token_index = 1;</code>
      * @param int $var
      */
     public function setHeadTokenIndex($var)
@@ -81,11 +71,9 @@ class DependencyEdge extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The parse label for the token.
-     * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.DependencyEdge.Label label = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.DependencyEdge.Label label = 2;</code>
      * @return int
      */
     public function getLabel()
@@ -94,11 +82,9 @@ class DependencyEdge extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The parse label for the token.
-     * </pre>
      *
-     * <code>.google.cloud.language.v1beta2.DependencyEdge.Label label = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.language.v1beta2.DependencyEdge.Label label = 2;</code>
      * @param int $var
      */
     public function setLabel($var)

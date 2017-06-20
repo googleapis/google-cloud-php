@@ -9,24 +9,19 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * A single symbol representation.
- * </pre>
  *
  * Protobuf type <code>Google\Cloud\Vision\V1\Symbol</code>
  */
 class Symbol extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * Additional information detected for the symbol.
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
      */
     private $property = null;
     /**
-     * <pre>
      * The bounding box for the symbol.
      * The vertices are in the order of top-left, top-right, bottom-right,
      * bottom-left. When a rotation of the bounding box is detected the rotation
@@ -42,17 +37,14 @@ class Symbol extends \Google\Protobuf\Internal\Message
      *      |    |
      *      1----0
      *   and the vertice order will still be (0, 1, 2, 3).
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.BoundingPoly bounding_box = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.BoundingPoly bounding_box = 2;</code>
      */
     private $bounding_box = null;
     /**
-     * <pre>
      * The actual UTF-8 representation of the symbol.
-     * </pre>
      *
-     * <code>string text = 3;</code>
+     * Generated from protobuf field <code>string text = 3;</code>
      */
     private $text = '';
 
@@ -62,11 +54,9 @@ class Symbol extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Additional information detected for the symbol.
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
      * @return \Google\Cloud\Vision\V1\TextAnnotation_TextProperty
      */
     public function getProperty()
@@ -75,11 +65,9 @@ class Symbol extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Additional information detected for the symbol.
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
      * @param \Google\Cloud\Vision\V1\TextAnnotation_TextProperty $var
      */
     public function setProperty(&$var)
@@ -91,7 +79,6 @@ class Symbol extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The bounding box for the symbol.
      * The vertices are in the order of top-left, top-right, bottom-right,
      * bottom-left. When a rotation of the bounding box is detected the rotation
@@ -107,9 +94,8 @@ class Symbol extends \Google\Protobuf\Internal\Message
      *      |    |
      *      1----0
      *   and the vertice order will still be (0, 1, 2, 3).
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.BoundingPoly bounding_box = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.BoundingPoly bounding_box = 2;</code>
      * @return \Google\Cloud\Vision\V1\BoundingPoly
      */
     public function getBoundingBox()
@@ -118,7 +104,6 @@ class Symbol extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The bounding box for the symbol.
      * The vertices are in the order of top-left, top-right, bottom-right,
      * bottom-left. When a rotation of the bounding box is detected the rotation
@@ -134,9 +119,8 @@ class Symbol extends \Google\Protobuf\Internal\Message
      *      |    |
      *      1----0
      *   and the vertice order will still be (0, 1, 2, 3).
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.BoundingPoly bounding_box = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.BoundingPoly bounding_box = 2;</code>
      * @param \Google\Cloud\Vision\V1\BoundingPoly $var
      */
     public function setBoundingBox(&$var)
@@ -148,11 +132,9 @@ class Symbol extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The actual UTF-8 representation of the symbol.
-     * </pre>
      *
-     * <code>string text = 3;</code>
+     * Generated from protobuf field <code>string text = 3;</code>
      * @return string
      */
     public function getText()
@@ -161,11 +143,9 @@ class Symbol extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The actual UTF-8 representation of the symbol.
-     * </pre>
      *
-     * <code>string text = 3;</code>
+     * Generated from protobuf field <code>string text = 3;</code>
      * @param string $var
      */
     public function setText($var)

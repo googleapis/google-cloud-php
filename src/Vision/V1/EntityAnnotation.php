@@ -9,101 +9,81 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Set of detected entity features.
- * </pre>
  *
  * Protobuf type <code>Google\Cloud\Vision\V1\EntityAnnotation</code>
  */
 class EntityAnnotation extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * Opaque entity ID. Some IDs may be available in
      * [Google Knowledge Graph Search API](https://developers.google.com/knowledge-graph/).
-     * </pre>
      *
-     * <code>string mid = 1;</code>
+     * Generated from protobuf field <code>string mid = 1;</code>
      */
     private $mid = '';
     /**
-     * <pre>
      * The language code for the locale in which the entity textual
      * `description` is expressed.
-     * </pre>
      *
-     * <code>string locale = 2;</code>
+     * Generated from protobuf field <code>string locale = 2;</code>
      */
     private $locale = '';
     /**
-     * <pre>
      * Entity textual description, expressed in its `locale` language.
-     * </pre>
      *
-     * <code>string description = 3;</code>
+     * Generated from protobuf field <code>string description = 3;</code>
      */
     private $description = '';
     /**
-     * <pre>
      * Overall score of the result. Range [0, 1].
-     * </pre>
      *
-     * <code>float score = 4;</code>
+     * Generated from protobuf field <code>float score = 4;</code>
      */
     private $score = 0.0;
     /**
-     * <pre>
      * The accuracy of the entity detection in an image.
      * For example, for an image in which the "Eiffel Tower" entity is detected,
      * this field represents the confidence that there is a tower in the query
      * image. Range [0, 1].
-     * </pre>
      *
-     * <code>float confidence = 5;</code>
+     * Generated from protobuf field <code>float confidence = 5;</code>
      */
     private $confidence = 0.0;
     /**
-     * <pre>
      * The relevancy of the ICA (Image Content Annotation) label to the
      * image. For example, the relevancy of "tower" is likely higher to an image
      * containing the detected "Eiffel Tower" than to an image containing a
      * detected distant towering building, even though the confidence that
      * there is a tower in each image may be the same. Range [0, 1].
-     * </pre>
      *
-     * <code>float topicality = 6;</code>
+     * Generated from protobuf field <code>float topicality = 6;</code>
      */
     private $topicality = 0.0;
     /**
-     * <pre>
      * Image region to which this entity belongs. Currently not produced
      * for `LABEL_DETECTION` features. For `TEXT_DETECTION` (OCR), `boundingPoly`s
      * are produced for the entire text detected in an image region, followed by
      * `boundingPoly`s for each word within the detected text.
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 7;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 7;</code>
      */
     private $bounding_poly = null;
     /**
-     * <pre>
      * The location information for the detected entity. Multiple
      * `LocationInfo` elements can be present because one location may
      * indicate the location of the scene in the image, and another location
      * may indicate the location of the place where the image was taken.
      * Location information is usually present for landmarks.
-     * </pre>
      *
-     * <code>repeated .google.cloud.vision.v1.LocationInfo locations = 8;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.LocationInfo locations = 8;</code>
      */
     private $locations;
     /**
-     * <pre>
      * Some entities may have optional user-supplied `Property` (name/value)
      * fields, such a score or string that qualifies the entity.
-     * </pre>
      *
-     * <code>repeated .google.cloud.vision.v1.Property properties = 9;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.Property properties = 9;</code>
      */
     private $properties;
 
@@ -113,12 +93,10 @@ class EntityAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Opaque entity ID. Some IDs may be available in
      * [Google Knowledge Graph Search API](https://developers.google.com/knowledge-graph/).
-     * </pre>
      *
-     * <code>string mid = 1;</code>
+     * Generated from protobuf field <code>string mid = 1;</code>
      * @return string
      */
     public function getMid()
@@ -127,12 +105,10 @@ class EntityAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Opaque entity ID. Some IDs may be available in
      * [Google Knowledge Graph Search API](https://developers.google.com/knowledge-graph/).
-     * </pre>
      *
-     * <code>string mid = 1;</code>
+     * Generated from protobuf field <code>string mid = 1;</code>
      * @param string $var
      */
     public function setMid($var)
@@ -144,12 +120,10 @@ class EntityAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The language code for the locale in which the entity textual
      * `description` is expressed.
-     * </pre>
      *
-     * <code>string locale = 2;</code>
+     * Generated from protobuf field <code>string locale = 2;</code>
      * @return string
      */
     public function getLocale()
@@ -158,12 +132,10 @@ class EntityAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The language code for the locale in which the entity textual
      * `description` is expressed.
-     * </pre>
      *
-     * <code>string locale = 2;</code>
+     * Generated from protobuf field <code>string locale = 2;</code>
      * @param string $var
      */
     public function setLocale($var)
@@ -175,11 +147,9 @@ class EntityAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Entity textual description, expressed in its `locale` language.
-     * </pre>
      *
-     * <code>string description = 3;</code>
+     * Generated from protobuf field <code>string description = 3;</code>
      * @return string
      */
     public function getDescription()
@@ -188,11 +158,9 @@ class EntityAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Entity textual description, expressed in its `locale` language.
-     * </pre>
      *
-     * <code>string description = 3;</code>
+     * Generated from protobuf field <code>string description = 3;</code>
      * @param string $var
      */
     public function setDescription($var)
@@ -204,11 +172,9 @@ class EntityAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Overall score of the result. Range [0, 1].
-     * </pre>
      *
-     * <code>float score = 4;</code>
+     * Generated from protobuf field <code>float score = 4;</code>
      * @return float
      */
     public function getScore()
@@ -217,11 +183,9 @@ class EntityAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Overall score of the result. Range [0, 1].
-     * </pre>
      *
-     * <code>float score = 4;</code>
+     * Generated from protobuf field <code>float score = 4;</code>
      * @param float $var
      */
     public function setScore($var)
@@ -233,14 +197,12 @@ class EntityAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The accuracy of the entity detection in an image.
      * For example, for an image in which the "Eiffel Tower" entity is detected,
      * this field represents the confidence that there is a tower in the query
      * image. Range [0, 1].
-     * </pre>
      *
-     * <code>float confidence = 5;</code>
+     * Generated from protobuf field <code>float confidence = 5;</code>
      * @return float
      */
     public function getConfidence()
@@ -249,14 +211,12 @@ class EntityAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The accuracy of the entity detection in an image.
      * For example, for an image in which the "Eiffel Tower" entity is detected,
      * this field represents the confidence that there is a tower in the query
      * image. Range [0, 1].
-     * </pre>
      *
-     * <code>float confidence = 5;</code>
+     * Generated from protobuf field <code>float confidence = 5;</code>
      * @param float $var
      */
     public function setConfidence($var)
@@ -268,15 +228,13 @@ class EntityAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The relevancy of the ICA (Image Content Annotation) label to the
      * image. For example, the relevancy of "tower" is likely higher to an image
      * containing the detected "Eiffel Tower" than to an image containing a
      * detected distant towering building, even though the confidence that
      * there is a tower in each image may be the same. Range [0, 1].
-     * </pre>
      *
-     * <code>float topicality = 6;</code>
+     * Generated from protobuf field <code>float topicality = 6;</code>
      * @return float
      */
     public function getTopicality()
@@ -285,15 +243,13 @@ class EntityAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The relevancy of the ICA (Image Content Annotation) label to the
      * image. For example, the relevancy of "tower" is likely higher to an image
      * containing the detected "Eiffel Tower" than to an image containing a
      * detected distant towering building, even though the confidence that
      * there is a tower in each image may be the same. Range [0, 1].
-     * </pre>
      *
-     * <code>float topicality = 6;</code>
+     * Generated from protobuf field <code>float topicality = 6;</code>
      * @param float $var
      */
     public function setTopicality($var)
@@ -305,14 +261,12 @@ class EntityAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Image region to which this entity belongs. Currently not produced
      * for `LABEL_DETECTION` features. For `TEXT_DETECTION` (OCR), `boundingPoly`s
      * are produced for the entire text detected in an image region, followed by
      * `boundingPoly`s for each word within the detected text.
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 7;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 7;</code>
      * @return \Google\Cloud\Vision\V1\BoundingPoly
      */
     public function getBoundingPoly()
@@ -321,14 +275,12 @@ class EntityAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Image region to which this entity belongs. Currently not produced
      * for `LABEL_DETECTION` features. For `TEXT_DETECTION` (OCR), `boundingPoly`s
      * are produced for the entire text detected in an image region, followed by
      * `boundingPoly`s for each word within the detected text.
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 7;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 7;</code>
      * @param \Google\Cloud\Vision\V1\BoundingPoly $var
      */
     public function setBoundingPoly(&$var)
@@ -340,15 +292,13 @@ class EntityAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The location information for the detected entity. Multiple
      * `LocationInfo` elements can be present because one location may
      * indicate the location of the scene in the image, and another location
      * may indicate the location of the place where the image was taken.
      * Location information is usually present for landmarks.
-     * </pre>
      *
-     * <code>repeated .google.cloud.vision.v1.LocationInfo locations = 8;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.LocationInfo locations = 8;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getLocations()
@@ -357,15 +307,13 @@ class EntityAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The location information for the detected entity. Multiple
      * `LocationInfo` elements can be present because one location may
      * indicate the location of the scene in the image, and another location
      * may indicate the location of the place where the image was taken.
      * Location information is usually present for landmarks.
-     * </pre>
      *
-     * <code>repeated .google.cloud.vision.v1.LocationInfo locations = 8;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.LocationInfo locations = 8;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setLocations(&$var)
@@ -377,12 +325,10 @@ class EntityAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Some entities may have optional user-supplied `Property` (name/value)
      * fields, such a score or string that qualifies the entity.
-     * </pre>
      *
-     * <code>repeated .google.cloud.vision.v1.Property properties = 9;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.Property properties = 9;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getProperties()
@@ -391,12 +337,10 @@ class EntityAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Some entities may have optional user-supplied `Property` (name/value)
      * fields, such a score or string that qualifies the entity.
-     * </pre>
      *
-     * <code>repeated .google.cloud.vision.v1.Property properties = 9;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.Property properties = 9;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setProperties(&$var)

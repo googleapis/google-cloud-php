@@ -9,16 +9,13 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * A request to return an individual group.
- * </pre>
  *
  * Protobuf type <code>Google\Devtools\Clouderrorreporting\V1beta1\GetGroupRequest</code>
  */
 class GetGroupRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * [Required] The group resource name. Written as
      * <code>projects/<var>projectID</var>/groups/<var>group_name</var></code>.
      * Call
@@ -26,9 +23,8 @@ class GetGroupRequest extends \Google\Protobuf\Internal\Message
      * <code>groupStats.list</code></a> to return a list of groups belonging to
      * this project.
      * Example: <code>projects/my-project-123/groups/my-group</code>
-     * </pre>
      *
-     * <code>string group_name = 1;</code>
+     * Generated from protobuf field <code>string group_name = 1;</code>
      */
     private $group_name = '';
 
@@ -38,7 +34,6 @@ class GetGroupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * [Required] The group resource name. Written as
      * <code>projects/<var>projectID</var>/groups/<var>group_name</var></code>.
      * Call
@@ -46,9 +41,8 @@ class GetGroupRequest extends \Google\Protobuf\Internal\Message
      * <code>groupStats.list</code></a> to return a list of groups belonging to
      * this project.
      * Example: <code>projects/my-project-123/groups/my-group</code>
-     * </pre>
      *
-     * <code>string group_name = 1;</code>
+     * Generated from protobuf field <code>string group_name = 1;</code>
      * @return string
      */
     public function getGroupName()
@@ -57,7 +51,6 @@ class GetGroupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * [Required] The group resource name. Written as
      * <code>projects/<var>projectID</var>/groups/<var>group_name</var></code>.
      * Call
@@ -65,9 +58,8 @@ class GetGroupRequest extends \Google\Protobuf\Internal\Message
      * <code>groupStats.list</code></a> to return a list of groups belonging to
      * this project.
      * Example: <code>projects/my-project-123/groups/my-group</code>
-     * </pre>
      *
-     * <code>string group_name = 1;</code>
+     * Generated from protobuf field <code>string group_name = 1;</code>
      * @param string $var
      */
     public function setGroupName($var)

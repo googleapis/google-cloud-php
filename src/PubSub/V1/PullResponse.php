@@ -9,23 +9,19 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Response for the `Pull` method.
- * </pre>
  *
  * Protobuf type <code>Google\Pubsub\V1\PullResponse</code>
  */
 class PullResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * Received Pub/Sub messages. The Pub/Sub system will return zero messages if
      * there are no more available in the backlog. The Pub/Sub system may return
      * fewer than the `maxMessages` requested even if there are more messages
      * available in the backlog.
-     * </pre>
      *
-     * <code>repeated .google.pubsub.v1.ReceivedMessage received_messages = 1;</code>
+     * Generated from protobuf field <code>repeated .google.pubsub.v1.ReceivedMessage received_messages = 1;</code>
      */
     private $received_messages;
 
@@ -35,14 +31,12 @@ class PullResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Received Pub/Sub messages. The Pub/Sub system will return zero messages if
      * there are no more available in the backlog. The Pub/Sub system may return
      * fewer than the `maxMessages` requested even if there are more messages
      * available in the backlog.
-     * </pre>
      *
-     * <code>repeated .google.pubsub.v1.ReceivedMessage received_messages = 1;</code>
+     * Generated from protobuf field <code>repeated .google.pubsub.v1.ReceivedMessage received_messages = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getReceivedMessages()
@@ -51,14 +45,12 @@ class PullResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Received Pub/Sub messages. The Pub/Sub system will return zero messages if
      * there are no more available in the backlog. The Pub/Sub system may return
      * fewer than the `maxMessages` requested even if there are more messages
      * available in the backlog.
-     * </pre>
      *
-     * <code>repeated .google.pubsub.v1.ReceivedMessage received_messages = 1;</code>
+     * Generated from protobuf field <code>repeated .google.pubsub.v1.ReceivedMessage received_messages = 1;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setReceivedMessages(&$var)

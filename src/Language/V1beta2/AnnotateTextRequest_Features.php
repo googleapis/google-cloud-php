@@ -9,45 +9,35 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * All available features for sentiment, syntax, and semantic analysis.
  * Setting each one to true will enable that specific analysis for the input.
- * </pre>
  *
  * Protobuf type <code>Google\Cloud\Language\V1beta2\AnnotateTextRequest\Features</code>
  */
 class AnnotateTextRequest_Features extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * Extract syntax information.
-     * </pre>
      *
-     * <code>bool extract_syntax = 1;</code>
+     * Generated from protobuf field <code>bool extract_syntax = 1;</code>
      */
     private $extract_syntax = false;
     /**
-     * <pre>
      * Extract entities.
-     * </pre>
      *
-     * <code>bool extract_entities = 2;</code>
+     * Generated from protobuf field <code>bool extract_entities = 2;</code>
      */
     private $extract_entities = false;
     /**
-     * <pre>
      * Extract document-level sentiment.
-     * </pre>
      *
-     * <code>bool extract_document_sentiment = 3;</code>
+     * Generated from protobuf field <code>bool extract_document_sentiment = 3;</code>
      */
     private $extract_document_sentiment = false;
     /**
-     * <pre>
      * Extract entities and their associated sentiment.
-     * </pre>
      *
-     * <code>bool extract_entity_sentiment = 4;</code>
+     * Generated from protobuf field <code>bool extract_entity_sentiment = 4;</code>
      */
     private $extract_entity_sentiment = false;
 
@@ -57,11 +47,9 @@ class AnnotateTextRequest_Features extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Extract syntax information.
-     * </pre>
      *
-     * <code>bool extract_syntax = 1;</code>
+     * Generated from protobuf field <code>bool extract_syntax = 1;</code>
      * @return bool
      */
     public function getExtractSyntax()
@@ -70,11 +58,9 @@ class AnnotateTextRequest_Features extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Extract syntax information.
-     * </pre>
      *
-     * <code>bool extract_syntax = 1;</code>
+     * Generated from protobuf field <code>bool extract_syntax = 1;</code>
      * @param bool $var
      */
     public function setExtractSyntax($var)
@@ -86,11 +72,9 @@ class AnnotateTextRequest_Features extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Extract entities.
-     * </pre>
      *
-     * <code>bool extract_entities = 2;</code>
+     * Generated from protobuf field <code>bool extract_entities = 2;</code>
      * @return bool
      */
     public function getExtractEntities()
@@ -99,11 +83,9 @@ class AnnotateTextRequest_Features extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Extract entities.
-     * </pre>
      *
-     * <code>bool extract_entities = 2;</code>
+     * Generated from protobuf field <code>bool extract_entities = 2;</code>
      * @param bool $var
      */
     public function setExtractEntities($var)
@@ -115,11 +97,9 @@ class AnnotateTextRequest_Features extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Extract document-level sentiment.
-     * </pre>
      *
-     * <code>bool extract_document_sentiment = 3;</code>
+     * Generated from protobuf field <code>bool extract_document_sentiment = 3;</code>
      * @return bool
      */
     public function getExtractDocumentSentiment()
@@ -128,11 +108,9 @@ class AnnotateTextRequest_Features extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Extract document-level sentiment.
-     * </pre>
      *
-     * <code>bool extract_document_sentiment = 3;</code>
+     * Generated from protobuf field <code>bool extract_document_sentiment = 3;</code>
      * @param bool $var
      */
     public function setExtractDocumentSentiment($var)
@@ -144,11 +122,9 @@ class AnnotateTextRequest_Features extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Extract entities and their associated sentiment.
-     * </pre>
      *
-     * <code>bool extract_entity_sentiment = 4;</code>
+     * Generated from protobuf field <code>bool extract_entity_sentiment = 4;</code>
      * @return bool
      */
     public function getExtractEntitySentiment()
@@ -157,11 +133,9 @@ class AnnotateTextRequest_Features extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Extract entities and their associated sentiment.
-     * </pre>
      *
-     * <code>bool extract_entity_sentiment = 4;</code>
+     * Generated from protobuf field <code>bool extract_entity_sentiment = 4;</code>
      * @param bool $var
      */
     public function setExtractEntitySentiment($var)

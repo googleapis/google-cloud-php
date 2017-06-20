@@ -9,30 +9,24 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Response for the `ListTopicSubscriptions` method.
- * </pre>
  *
  * Protobuf type <code>Google\Pubsub\V1\ListTopicSubscriptionsResponse</code>
  */
 class ListTopicSubscriptionsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The names of the subscriptions that match the request.
-     * </pre>
      *
-     * <code>repeated string subscriptions = 1;</code>
+     * Generated from protobuf field <code>repeated string subscriptions = 1;</code>
      */
     private $subscriptions;
     /**
-     * <pre>
      * If not empty, indicates that there may be more subscriptions that match
      * the request; this value should be passed in a new
      * `ListTopicSubscriptionsRequest` to get more subscriptions.
-     * </pre>
      *
-     * <code>string next_page_token = 2;</code>
+     * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
     private $next_page_token = '';
 
@@ -42,11 +36,9 @@ class ListTopicSubscriptionsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The names of the subscriptions that match the request.
-     * </pre>
      *
-     * <code>repeated string subscriptions = 1;</code>
+     * Generated from protobuf field <code>repeated string subscriptions = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getSubscriptions()
@@ -55,11 +47,9 @@ class ListTopicSubscriptionsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The names of the subscriptions that match the request.
-     * </pre>
      *
-     * <code>repeated string subscriptions = 1;</code>
+     * Generated from protobuf field <code>repeated string subscriptions = 1;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setSubscriptions(&$var)
@@ -71,13 +61,11 @@ class ListTopicSubscriptionsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If not empty, indicates that there may be more subscriptions that match
      * the request; this value should be passed in a new
      * `ListTopicSubscriptionsRequest` to get more subscriptions.
-     * </pre>
      *
-     * <code>string next_page_token = 2;</code>
+     * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @return string
      */
     public function getNextPageToken()
@@ -86,13 +74,11 @@ class ListTopicSubscriptionsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If not empty, indicates that there may be more subscriptions that match
      * the request; this value should be passed in a new
      * `ListTopicSubscriptionsRequest` to get more subscriptions.
-     * </pre>
      *
-     * <code>string next_page_token = 2;</code>
+     * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @param string $var
      */
     public function setNextPageToken($var)

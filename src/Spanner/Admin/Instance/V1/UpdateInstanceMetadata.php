@@ -9,48 +9,38 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Metadata type for the operation returned by
  * [UpdateInstance][google.spanner.admin.instance.v1.InstanceAdmin.UpdateInstance].
- * </pre>
  *
  * Protobuf type <code>Google\Spanner\Admin\Instance\V1\UpdateInstanceMetadata</code>
  */
 class UpdateInstanceMetadata extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The desired end state of the update.
-     * </pre>
      *
-     * <code>.google.spanner.admin.instance.v1.Instance instance = 1;</code>
+     * Generated from protobuf field <code>.google.spanner.admin.instance.v1.Instance instance = 1;</code>
      */
     private $instance = null;
     /**
-     * <pre>
      * The time at which [UpdateInstance][google.spanner.admin.instance.v1.InstanceAdmin.UpdateInstance]
      * request was received.
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp start_time = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 2;</code>
      */
     private $start_time = null;
     /**
-     * <pre>
      * The time at which this operation was cancelled. If set, this operation is
      * in the process of undoing itself (which is guaranteed to succeed) and
      * cannot be cancelled again.
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp cancel_time = 3;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp cancel_time = 3;</code>
      */
     private $cancel_time = null;
     /**
-     * <pre>
      * The time at which this operation failed or was completed successfully.
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp end_time = 4;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 4;</code>
      */
     private $end_time = null;
 
@@ -60,11 +50,9 @@ class UpdateInstanceMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The desired end state of the update.
-     * </pre>
      *
-     * <code>.google.spanner.admin.instance.v1.Instance instance = 1;</code>
+     * Generated from protobuf field <code>.google.spanner.admin.instance.v1.Instance instance = 1;</code>
      * @return \Google\Cloud\Spanner\Admin\Instance\V1\Instance
      */
     public function getInstance()
@@ -73,11 +61,9 @@ class UpdateInstanceMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The desired end state of the update.
-     * </pre>
      *
-     * <code>.google.spanner.admin.instance.v1.Instance instance = 1;</code>
+     * Generated from protobuf field <code>.google.spanner.admin.instance.v1.Instance instance = 1;</code>
      * @param \Google\Cloud\Spanner\Admin\Instance\V1\Instance $var
      */
     public function setInstance(&$var)
@@ -89,12 +75,10 @@ class UpdateInstanceMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The time at which [UpdateInstance][google.spanner.admin.instance.v1.InstanceAdmin.UpdateInstance]
      * request was received.
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp start_time = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 2;</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getStartTime()
@@ -103,12 +87,10 @@ class UpdateInstanceMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The time at which [UpdateInstance][google.spanner.admin.instance.v1.InstanceAdmin.UpdateInstance]
      * request was received.
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp start_time = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 2;</code>
      * @param \Google\Protobuf\Timestamp $var
      */
     public function setStartTime(&$var)
@@ -120,13 +102,11 @@ class UpdateInstanceMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The time at which this operation was cancelled. If set, this operation is
      * in the process of undoing itself (which is guaranteed to succeed) and
      * cannot be cancelled again.
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp cancel_time = 3;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp cancel_time = 3;</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getCancelTime()
@@ -135,13 +115,11 @@ class UpdateInstanceMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The time at which this operation was cancelled. If set, this operation is
      * in the process of undoing itself (which is guaranteed to succeed) and
      * cannot be cancelled again.
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp cancel_time = 3;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp cancel_time = 3;</code>
      * @param \Google\Protobuf\Timestamp $var
      */
     public function setCancelTime(&$var)
@@ -153,11 +131,9 @@ class UpdateInstanceMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The time at which this operation failed or was completed successfully.
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp end_time = 4;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 4;</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getEndTime()
@@ -166,11 +142,9 @@ class UpdateInstanceMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The time at which this operation failed or was completed successfully.
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp end_time = 4;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 4;</code>
      * @param \Google\Protobuf\Timestamp $var
      */
     public function setEndTime(&$var)

@@ -5,53 +5,41 @@
 namespace Google\Cloud\VideoIntelligence\V1beta1;
 
 /**
- * <pre>
  * Label level (scope).
- * </pre>
  *
  * Protobuf enum <code>Google\Cloud\Videointelligence\V1beta1\LabelLevel</code>
  */
 class LabelLevel
 {
     /**
-     * <pre>
      * Unspecified.
-     * </pre>
      *
-     * <code>LABEL_LEVEL_UNSPECIFIED = 0;</code>
+     * Generated from protobuf enum <code>LABEL_LEVEL_UNSPECIFIED = 0;</code>
      */
     const LABEL_LEVEL_UNSPECIFIED = 0;
     /**
-     * <pre>
      * Video-level. Corresponds to the whole video.
-     * </pre>
      *
-     * <code>VIDEO_LEVEL = 1;</code>
+     * Generated from protobuf enum <code>VIDEO_LEVEL = 1;</code>
      */
     const VIDEO_LEVEL = 1;
     /**
-     * <pre>
      * Segment-level. Corresponds to one of `AnnotateSpec.segments`.
-     * </pre>
      *
-     * <code>SEGMENT_LEVEL = 2;</code>
+     * Generated from protobuf enum <code>SEGMENT_LEVEL = 2;</code>
      */
     const SEGMENT_LEVEL = 2;
     /**
-     * <pre>
      * Shot-level. Corresponds to a single shot (i.e. a series of frames
      * without a major camera position or background change).
-     * </pre>
      *
-     * <code>SHOT_LEVEL = 3;</code>
+     * Generated from protobuf enum <code>SHOT_LEVEL = 3;</code>
      */
     const SHOT_LEVEL = 3;
     /**
-     * <pre>
      * Frame-level. Corresponds to a single video frame.
-     * </pre>
      *
-     * <code>FRAME_LEVEL = 4;</code>
+     * Generated from protobuf enum <code>FRAME_LEVEL = 4;</code>
      */
     const FRAME_LEVEL = 4;
 }

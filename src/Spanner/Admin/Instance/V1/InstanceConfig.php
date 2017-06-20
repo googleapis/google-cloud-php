@@ -9,31 +9,25 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * A possible configuration for a Cloud Spanner instance. Configurations
  * define the geographic placement of nodes and their replication.
- * </pre>
  *
  * Protobuf type <code>Google\Spanner\Admin\Instance\V1\InstanceConfig</code>
  */
 class InstanceConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * A unique identifier for the instance configuration.  Values
      * are of the form
      * `projects/<project>/instanceConfigs/[a-z][-a-z0-9]*`
-     * </pre>
      *
-     * <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      */
     private $name = '';
     /**
-     * <pre>
      * The name of this instance configuration as it appears in UIs.
-     * </pre>
      *
-     * <code>string display_name = 2;</code>
+     * Generated from protobuf field <code>string display_name = 2;</code>
      */
     private $display_name = '';
 
@@ -43,13 +37,11 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * A unique identifier for the instance configuration.  Values
      * are of the form
      * `projects/<project>/instanceConfigs/[a-z][-a-z0-9]*`
-     * </pre>
      *
-     * <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      * @return string
      */
     public function getName()
@@ -58,13 +50,11 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * A unique identifier for the instance configuration.  Values
      * are of the form
      * `projects/<project>/instanceConfigs/[a-z][-a-z0-9]*`
-     * </pre>
      *
-     * <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
      */
     public function setName($var)
@@ -76,11 +66,9 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The name of this instance configuration as it appears in UIs.
-     * </pre>
      *
-     * <code>string display_name = 2;</code>
+     * Generated from protobuf field <code>string display_name = 2;</code>
      * @return string
      */
     public function getDisplayName()
@@ -89,11 +77,9 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The name of this instance configuration as it appears in UIs.
-     * </pre>
      *
-     * <code>string display_name = 2;</code>
+     * Generated from protobuf field <code>string display_name = 2;</code>
      * @param string $var
      */
     public function setDisplayName($var)

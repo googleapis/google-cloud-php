@@ -9,21 +9,17 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * The parameters to DeleteLogMetric.
- * </pre>
  *
  * Protobuf type <code>Google\Logging\V2\DeleteLogMetricRequest</code>
  */
 class DeleteLogMetricRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The resource name of the metric to delete:
      *     "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
-     * </pre>
      *
-     * <code>string metric_name = 1;</code>
+     * Generated from protobuf field <code>string metric_name = 1;</code>
      */
     private $metric_name = '';
 
@@ -33,12 +29,10 @@ class DeleteLogMetricRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The resource name of the metric to delete:
      *     "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
-     * </pre>
      *
-     * <code>string metric_name = 1;</code>
+     * Generated from protobuf field <code>string metric_name = 1;</code>
      * @return string
      */
     public function getMetricName()
@@ -47,12 +41,10 @@ class DeleteLogMetricRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The resource name of the metric to delete:
      *     "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
-     * </pre>
      *
-     * <code>string metric_name = 1;</code>
+     * Generated from protobuf field <code>string metric_name = 1;</code>
      * @param string $var
      */
     public function setMetricName($var)

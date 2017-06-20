@@ -9,46 +9,38 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Describes a running service that sends errors.
  * Its version changes over time and multiple versions can run in parallel.
- * </pre>
  *
  * Protobuf type <code>Google\Devtools\Clouderrorreporting\V1beta1\ServiceContext</code>
  */
 class ServiceContext extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * An identifier of the service, such as the name of the
      * executable, job, or Google App Engine service name. This field is expected
      * to have a low number of values that are relatively stable over time, as
      * opposed to `version`, which can be changed whenever new code is deployed.
      * Contains the service name for error reports extracted from Google
      * App Engine logs or `default` if the App Engine default service is used.
-     * </pre>
      *
-     * <code>string service = 2;</code>
+     * Generated from protobuf field <code>string service = 2;</code>
      */
     private $service = '';
     /**
-     * <pre>
      * Represents the source code version that the developer provided,
      * which could represent a version label or a Git SHA-1 hash, for example.
-     * </pre>
      *
-     * <code>string version = 3;</code>
+     * Generated from protobuf field <code>string version = 3;</code>
      */
     private $version = '';
     /**
-     * <pre>
      * Type of the MonitoredResource. List of possible values:
      * https://cloud.google.com/monitoring/api/resources
      * Value is set automatically for incoming errors and must not be set when
      * reporting errors.
-     * </pre>
      *
-     * <code>string resource_type = 4;</code>
+     * Generated from protobuf field <code>string resource_type = 4;</code>
      */
     private $resource_type = '';
 
@@ -58,16 +50,14 @@ class ServiceContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * An identifier of the service, such as the name of the
      * executable, job, or Google App Engine service name. This field is expected
      * to have a low number of values that are relatively stable over time, as
      * opposed to `version`, which can be changed whenever new code is deployed.
      * Contains the service name for error reports extracted from Google
      * App Engine logs or `default` if the App Engine default service is used.
-     * </pre>
      *
-     * <code>string service = 2;</code>
+     * Generated from protobuf field <code>string service = 2;</code>
      * @return string
      */
     public function getService()
@@ -76,16 +66,14 @@ class ServiceContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * An identifier of the service, such as the name of the
      * executable, job, or Google App Engine service name. This field is expected
      * to have a low number of values that are relatively stable over time, as
      * opposed to `version`, which can be changed whenever new code is deployed.
      * Contains the service name for error reports extracted from Google
      * App Engine logs or `default` if the App Engine default service is used.
-     * </pre>
      *
-     * <code>string service = 2;</code>
+     * Generated from protobuf field <code>string service = 2;</code>
      * @param string $var
      */
     public function setService($var)
@@ -97,12 +85,10 @@ class ServiceContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Represents the source code version that the developer provided,
      * which could represent a version label or a Git SHA-1 hash, for example.
-     * </pre>
      *
-     * <code>string version = 3;</code>
+     * Generated from protobuf field <code>string version = 3;</code>
      * @return string
      */
     public function getVersion()
@@ -111,12 +97,10 @@ class ServiceContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Represents the source code version that the developer provided,
      * which could represent a version label or a Git SHA-1 hash, for example.
-     * </pre>
      *
-     * <code>string version = 3;</code>
+     * Generated from protobuf field <code>string version = 3;</code>
      * @param string $var
      */
     public function setVersion($var)
@@ -128,14 +112,12 @@ class ServiceContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Type of the MonitoredResource. List of possible values:
      * https://cloud.google.com/monitoring/api/resources
      * Value is set automatically for incoming errors and must not be set when
      * reporting errors.
-     * </pre>
      *
-     * <code>string resource_type = 4;</code>
+     * Generated from protobuf field <code>string resource_type = 4;</code>
      * @return string
      */
     public function getResourceType()
@@ -144,14 +126,12 @@ class ServiceContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Type of the MonitoredResource. List of possible values:
      * https://cloud.google.com/monitoring/api/resources
      * Value is set automatically for incoming errors and must not be set when
      * reporting errors.
-     * </pre>
      *
-     * <code>string resource_type = 4;</code>
+     * Generated from protobuf field <code>string resource_type = 4;</code>
      * @param string $var
      */
     public function setResourceType($var)

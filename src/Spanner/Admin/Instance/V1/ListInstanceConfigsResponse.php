@@ -9,30 +9,24 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * The response for [ListInstanceConfigs][google.spanner.admin.instance.v1.InstanceAdmin.ListInstanceConfigs].
- * </pre>
  *
  * Protobuf type <code>Google\Spanner\Admin\Instance\V1\ListInstanceConfigsResponse</code>
  */
 class ListInstanceConfigsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The list of requested instance configurations.
-     * </pre>
      *
-     * <code>repeated .google.spanner.admin.instance.v1.InstanceConfig instance_configs = 1;</code>
+     * Generated from protobuf field <code>repeated .google.spanner.admin.instance.v1.InstanceConfig instance_configs = 1;</code>
      */
     private $instance_configs;
     /**
-     * <pre>
      * `next_page_token` can be sent in a subsequent
      * [ListInstanceConfigs][google.spanner.admin.instance.v1.InstanceAdmin.ListInstanceConfigs] call to
      * fetch more of the matching instance configurations.
-     * </pre>
      *
-     * <code>string next_page_token = 2;</code>
+     * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
     private $next_page_token = '';
 
@@ -42,11 +36,9 @@ class ListInstanceConfigsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The list of requested instance configurations.
-     * </pre>
      *
-     * <code>repeated .google.spanner.admin.instance.v1.InstanceConfig instance_configs = 1;</code>
+     * Generated from protobuf field <code>repeated .google.spanner.admin.instance.v1.InstanceConfig instance_configs = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getInstanceConfigs()
@@ -55,11 +47,9 @@ class ListInstanceConfigsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The list of requested instance configurations.
-     * </pre>
      *
-     * <code>repeated .google.spanner.admin.instance.v1.InstanceConfig instance_configs = 1;</code>
+     * Generated from protobuf field <code>repeated .google.spanner.admin.instance.v1.InstanceConfig instance_configs = 1;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setInstanceConfigs(&$var)
@@ -71,13 +61,11 @@ class ListInstanceConfigsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * `next_page_token` can be sent in a subsequent
      * [ListInstanceConfigs][google.spanner.admin.instance.v1.InstanceAdmin.ListInstanceConfigs] call to
      * fetch more of the matching instance configurations.
-     * </pre>
      *
-     * <code>string next_page_token = 2;</code>
+     * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @return string
      */
     public function getNextPageToken()
@@ -86,13 +74,11 @@ class ListInstanceConfigsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * `next_page_token` can be sent in a subsequent
      * [ListInstanceConfigs][google.spanner.admin.instance.v1.InstanceAdmin.ListInstanceConfigs] call to
      * fetch more of the matching instance configurations.
-     * </pre>
      *
-     * <code>string next_page_token = 2;</code>
+     * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @param string $var
      */
     public function setNextPageToken($var)

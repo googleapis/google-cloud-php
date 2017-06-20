@@ -9,77 +9,61 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Video context and/or feature-specific parameters.
- * </pre>
  *
  * Protobuf type <code>Google\Cloud\Videointelligence\V1beta1\VideoContext</code>
  */
 class VideoContext extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * Video segments to annotate. The segments may overlap and are not required
      * to be contiguous or span the whole video. If unspecified, each video
      * is treated as a single segment.
-     * </pre>
      *
-     * <code>repeated .google.cloud.videointelligence.v1beta1.VideoSegment segments = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1beta1.VideoSegment segments = 1;</code>
      */
     private $segments;
     /**
-     * <pre>
      * If label detection has been requested, what labels should be detected
      * in addition to video-level labels or segment-level labels. If unspecified,
      * defaults to `SHOT_MODE`.
-     * </pre>
      *
-     * <code>.google.cloud.videointelligence.v1beta1.LabelDetectionMode label_detection_mode = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.videointelligence.v1beta1.LabelDetectionMode label_detection_mode = 2;</code>
      */
     private $label_detection_mode = 0;
     /**
-     * <pre>
      * Whether the video has been shot from a stationary (i.e. non-moving) camera.
      * When set to true, might improve detection accuracy for moving objects.
-     * </pre>
      *
-     * <code>bool stationary_camera = 3;</code>
+     * Generated from protobuf field <code>bool stationary_camera = 3;</code>
      */
     private $stationary_camera = false;
     /**
-     * <pre>
      * Model to use for label detection.
      * Supported values: "latest" and "stable" (the default).
-     * </pre>
      *
-     * <code>string label_detection_model = 4;</code>
+     * Generated from protobuf field <code>string label_detection_model = 4;</code>
      */
     private $label_detection_model = '';
     /**
-     * <pre>
      * Model to use for face detection.
      * Supported values: "latest" and "stable" (the default).
-     * </pre>
      *
-     * <code>string face_detection_model = 5;</code>
+     * Generated from protobuf field <code>string face_detection_model = 5;</code>
      */
     private $face_detection_model = '';
     /**
-     * <pre>
      * Model to use for shot change detection.
      * Supported values: "latest" and "stable" (the default).
-     * </pre>
      *
-     * <code>string shot_change_detection_model = 6;</code>
+     * Generated from protobuf field <code>string shot_change_detection_model = 6;</code>
      */
     private $shot_change_detection_model = '';
     /**
-     * <pre>
      * Model to use for safe search detection.
      * Supported values: "latest" and "stable" (the default).
-     * </pre>
      *
-     * <code>string safe_search_detection_model = 7;</code>
+     * Generated from protobuf field <code>string safe_search_detection_model = 7;</code>
      */
     private $safe_search_detection_model = '';
 
@@ -89,13 +73,11 @@ class VideoContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Video segments to annotate. The segments may overlap and are not required
      * to be contiguous or span the whole video. If unspecified, each video
      * is treated as a single segment.
-     * </pre>
      *
-     * <code>repeated .google.cloud.videointelligence.v1beta1.VideoSegment segments = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1beta1.VideoSegment segments = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getSegments()
@@ -104,13 +86,11 @@ class VideoContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Video segments to annotate. The segments may overlap and are not required
      * to be contiguous or span the whole video. If unspecified, each video
      * is treated as a single segment.
-     * </pre>
      *
-     * <code>repeated .google.cloud.videointelligence.v1beta1.VideoSegment segments = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1beta1.VideoSegment segments = 1;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setSegments(&$var)
@@ -122,13 +102,11 @@ class VideoContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If label detection has been requested, what labels should be detected
      * in addition to video-level labels or segment-level labels. If unspecified,
      * defaults to `SHOT_MODE`.
-     * </pre>
      *
-     * <code>.google.cloud.videointelligence.v1beta1.LabelDetectionMode label_detection_mode = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.videointelligence.v1beta1.LabelDetectionMode label_detection_mode = 2;</code>
      * @return int
      */
     public function getLabelDetectionMode()
@@ -137,13 +115,11 @@ class VideoContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If label detection has been requested, what labels should be detected
      * in addition to video-level labels or segment-level labels. If unspecified,
      * defaults to `SHOT_MODE`.
-     * </pre>
      *
-     * <code>.google.cloud.videointelligence.v1beta1.LabelDetectionMode label_detection_mode = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.videointelligence.v1beta1.LabelDetectionMode label_detection_mode = 2;</code>
      * @param int $var
      */
     public function setLabelDetectionMode($var)
@@ -155,12 +131,10 @@ class VideoContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Whether the video has been shot from a stationary (i.e. non-moving) camera.
      * When set to true, might improve detection accuracy for moving objects.
-     * </pre>
      *
-     * <code>bool stationary_camera = 3;</code>
+     * Generated from protobuf field <code>bool stationary_camera = 3;</code>
      * @return bool
      */
     public function getStationaryCamera()
@@ -169,12 +143,10 @@ class VideoContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Whether the video has been shot from a stationary (i.e. non-moving) camera.
      * When set to true, might improve detection accuracy for moving objects.
-     * </pre>
      *
-     * <code>bool stationary_camera = 3;</code>
+     * Generated from protobuf field <code>bool stationary_camera = 3;</code>
      * @param bool $var
      */
     public function setStationaryCamera($var)
@@ -186,12 +158,10 @@ class VideoContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Model to use for label detection.
      * Supported values: "latest" and "stable" (the default).
-     * </pre>
      *
-     * <code>string label_detection_model = 4;</code>
+     * Generated from protobuf field <code>string label_detection_model = 4;</code>
      * @return string
      */
     public function getLabelDetectionModel()
@@ -200,12 +170,10 @@ class VideoContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Model to use for label detection.
      * Supported values: "latest" and "stable" (the default).
-     * </pre>
      *
-     * <code>string label_detection_model = 4;</code>
+     * Generated from protobuf field <code>string label_detection_model = 4;</code>
      * @param string $var
      */
     public function setLabelDetectionModel($var)
@@ -217,12 +185,10 @@ class VideoContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Model to use for face detection.
      * Supported values: "latest" and "stable" (the default).
-     * </pre>
      *
-     * <code>string face_detection_model = 5;</code>
+     * Generated from protobuf field <code>string face_detection_model = 5;</code>
      * @return string
      */
     public function getFaceDetectionModel()
@@ -231,12 +197,10 @@ class VideoContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Model to use for face detection.
      * Supported values: "latest" and "stable" (the default).
-     * </pre>
      *
-     * <code>string face_detection_model = 5;</code>
+     * Generated from protobuf field <code>string face_detection_model = 5;</code>
      * @param string $var
      */
     public function setFaceDetectionModel($var)
@@ -248,12 +212,10 @@ class VideoContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Model to use for shot change detection.
      * Supported values: "latest" and "stable" (the default).
-     * </pre>
      *
-     * <code>string shot_change_detection_model = 6;</code>
+     * Generated from protobuf field <code>string shot_change_detection_model = 6;</code>
      * @return string
      */
     public function getShotChangeDetectionModel()
@@ -262,12 +224,10 @@ class VideoContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Model to use for shot change detection.
      * Supported values: "latest" and "stable" (the default).
-     * </pre>
      *
-     * <code>string shot_change_detection_model = 6;</code>
+     * Generated from protobuf field <code>string shot_change_detection_model = 6;</code>
      * @param string $var
      */
     public function setShotChangeDetectionModel($var)
@@ -279,12 +239,10 @@ class VideoContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Model to use for safe search detection.
      * Supported values: "latest" and "stable" (the default).
-     * </pre>
      *
-     * <code>string safe_search_detection_model = 7;</code>
+     * Generated from protobuf field <code>string safe_search_detection_model = 7;</code>
      * @return string
      */
     public function getSafeSearchDetectionModel()
@@ -293,12 +251,10 @@ class VideoContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Model to use for safe search detection.
      * Supported values: "latest" and "stable" (the default).
-     * </pre>
      *
-     * <code>string safe_search_detection_model = 7;</code>
+     * Generated from protobuf field <code>string safe_search_detection_model = 7;</code>
      * @param string $var
      */
     public function setSafeSearchDetectionModel($var)

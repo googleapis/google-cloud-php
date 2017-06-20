@@ -9,30 +9,24 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * The `CreateMetricDescriptor` request.
- * </pre>
  *
  * Protobuf type <code>Google\Monitoring\V3\CreateMetricDescriptorRequest</code>
  */
 class CreateMetricDescriptorRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The project on which to execute the request. The format is
      * `"projects/{project_id_or_number}"`.
-     * </pre>
      *
-     * <code>string name = 3;</code>
+     * Generated from protobuf field <code>string name = 3;</code>
      */
     private $name = '';
     /**
-     * <pre>
      * The new [custom metric](/monitoring/custom-metrics)
      * descriptor.
-     * </pre>
      *
-     * <code>.google.api.MetricDescriptor metric_descriptor = 2;</code>
+     * Generated from protobuf field <code>.google.api.MetricDescriptor metric_descriptor = 2;</code>
      */
     private $metric_descriptor = null;
 
@@ -42,12 +36,10 @@ class CreateMetricDescriptorRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The project on which to execute the request. The format is
      * `"projects/{project_id_or_number}"`.
-     * </pre>
      *
-     * <code>string name = 3;</code>
+     * Generated from protobuf field <code>string name = 3;</code>
      * @return string
      */
     public function getName()
@@ -56,12 +48,10 @@ class CreateMetricDescriptorRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The project on which to execute the request. The format is
      * `"projects/{project_id_or_number}"`.
-     * </pre>
      *
-     * <code>string name = 3;</code>
+     * Generated from protobuf field <code>string name = 3;</code>
      * @param string $var
      */
     public function setName($var)
@@ -73,12 +63,10 @@ class CreateMetricDescriptorRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The new [custom metric](/monitoring/custom-metrics)
      * descriptor.
-     * </pre>
      *
-     * <code>.google.api.MetricDescriptor metric_descriptor = 2;</code>
+     * Generated from protobuf field <code>.google.api.MetricDescriptor metric_descriptor = 2;</code>
      * @return \Google\Api\MetricDescriptor
      */
     public function getMetricDescriptor()
@@ -87,12 +75,10 @@ class CreateMetricDescriptorRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The new [custom metric](/monitoring/custom-metrics)
      * descriptor.
-     * </pre>
      *
-     * <code>.google.api.MetricDescriptor metric_descriptor = 2;</code>
+     * Generated from protobuf field <code>.google.api.MetricDescriptor metric_descriptor = 2;</code>
      * @param \Google\Api\MetricDescriptor $var
      */
     public function setMetricDescriptor(&$var)

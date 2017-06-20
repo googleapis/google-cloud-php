@@ -9,16 +9,13 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * The parameters to `DeleteSink`.
- * </pre>
  *
  * Protobuf type <code>Google\Logging\V2\DeleteSinkRequest</code>
  */
 class DeleteSinkRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * Required. The full resource name of the sink to delete, including the
      * parent resource and the sink identifier:
      *     "projects/[PROJECT_ID]/sinks/[SINK_ID]"
@@ -26,9 +23,8 @@ class DeleteSinkRequest extends \Google\Protobuf\Internal\Message
      *     "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
      *     "folders/[FOLDER_ID]/sinks/[SINK_ID]"
      * Example: `"projects/my-project-id/sinks/my-sink-id"`.
-     * </pre>
      *
-     * <code>string sink_name = 1;</code>
+     * Generated from protobuf field <code>string sink_name = 1;</code>
      */
     private $sink_name = '';
 
@@ -38,7 +34,6 @@ class DeleteSinkRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. The full resource name of the sink to delete, including the
      * parent resource and the sink identifier:
      *     "projects/[PROJECT_ID]/sinks/[SINK_ID]"
@@ -46,9 +41,8 @@ class DeleteSinkRequest extends \Google\Protobuf\Internal\Message
      *     "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
      *     "folders/[FOLDER_ID]/sinks/[SINK_ID]"
      * Example: `"projects/my-project-id/sinks/my-sink-id"`.
-     * </pre>
      *
-     * <code>string sink_name = 1;</code>
+     * Generated from protobuf field <code>string sink_name = 1;</code>
      * @return string
      */
     public function getSinkName()
@@ -57,7 +51,6 @@ class DeleteSinkRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. The full resource name of the sink to delete, including the
      * parent resource and the sink identifier:
      *     "projects/[PROJECT_ID]/sinks/[SINK_ID]"
@@ -65,9 +58,8 @@ class DeleteSinkRequest extends \Google\Protobuf\Internal\Message
      *     "billingAccounts/[BILLING_ACCOUNT_ID]/sinks/[SINK_ID]"
      *     "folders/[FOLDER_ID]/sinks/[SINK_ID]"
      * Example: `"projects/my-project-id/sinks/my-sink-id"`.
-     * </pre>
      *
-     * <code>string sink_name = 1;</code>
+     * Generated from protobuf field <code>string sink_name = 1;</code>
      * @param string $var
      */
     public function setSinkName($var)

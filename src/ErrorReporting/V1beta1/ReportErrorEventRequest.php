@@ -9,31 +9,25 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * A request for reporting an individual error event.
- * </pre>
  *
  * Protobuf type <code>Google\Devtools\Clouderrorreporting\V1beta1\ReportErrorEventRequest</code>
  */
 class ReportErrorEventRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * [Required] The resource name of the Google Cloud Platform project. Written
      * as `projects/` plus the
      * [Google Cloud Platform project ID](https://support.google.com/cloud/answer/6158840).
      * Example: `projects/my-project-123`.
-     * </pre>
      *
-     * <code>string project_name = 1;</code>
+     * Generated from protobuf field <code>string project_name = 1;</code>
      */
     private $project_name = '';
     /**
-     * <pre>
      * [Required] The error event to be reported.
-     * </pre>
      *
-     * <code>.google.devtools.clouderrorreporting.v1beta1.ReportedErrorEvent event = 2;</code>
+     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ReportedErrorEvent event = 2;</code>
      */
     private $event = null;
 
@@ -43,14 +37,12 @@ class ReportErrorEventRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * [Required] The resource name of the Google Cloud Platform project. Written
      * as `projects/` plus the
      * [Google Cloud Platform project ID](https://support.google.com/cloud/answer/6158840).
      * Example: `projects/my-project-123`.
-     * </pre>
      *
-     * <code>string project_name = 1;</code>
+     * Generated from protobuf field <code>string project_name = 1;</code>
      * @return string
      */
     public function getProjectName()
@@ -59,14 +51,12 @@ class ReportErrorEventRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * [Required] The resource name of the Google Cloud Platform project. Written
      * as `projects/` plus the
      * [Google Cloud Platform project ID](https://support.google.com/cloud/answer/6158840).
      * Example: `projects/my-project-123`.
-     * </pre>
      *
-     * <code>string project_name = 1;</code>
+     * Generated from protobuf field <code>string project_name = 1;</code>
      * @param string $var
      */
     public function setProjectName($var)
@@ -78,11 +68,9 @@ class ReportErrorEventRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * [Required] The error event to be reported.
-     * </pre>
      *
-     * <code>.google.devtools.clouderrorreporting.v1beta1.ReportedErrorEvent event = 2;</code>
+     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ReportedErrorEvent event = 2;</code>
      * @return \Google\Cloud\ErrorReporting\V1beta1\ReportedErrorEvent
      */
     public function getEvent()
@@ -91,11 +79,9 @@ class ReportErrorEventRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * [Required] The error event to be reported.
-     * </pre>
      *
-     * <code>.google.devtools.clouderrorreporting.v1beta1.ReportedErrorEvent event = 2;</code>
+     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ReportedErrorEvent event = 2;</code>
      * @param \Google\Cloud\ErrorReporting\V1beta1\ReportedErrorEvent $var
      */
     public function setEvent(&$var)

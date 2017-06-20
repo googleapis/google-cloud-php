@@ -9,30 +9,24 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Result returned from ListLogMetrics.
- * </pre>
  *
  * Protobuf type <code>Google\Logging\V2\ListLogMetricsResponse</code>
  */
 class ListLogMetricsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * A list of logs-based metrics.
-     * </pre>
      *
-     * <code>repeated .google.logging.v2.LogMetric metrics = 1;</code>
+     * Generated from protobuf field <code>repeated .google.logging.v2.LogMetric metrics = 1;</code>
      */
     private $metrics;
     /**
-     * <pre>
      * If there might be more results than appear in this response, then
      * `nextPageToken` is included.  To get the next set of results, call this
      * method again using the value of `nextPageToken` as `pageToken`.
-     * </pre>
      *
-     * <code>string next_page_token = 2;</code>
+     * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
     private $next_page_token = '';
 
@@ -42,11 +36,9 @@ class ListLogMetricsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * A list of logs-based metrics.
-     * </pre>
      *
-     * <code>repeated .google.logging.v2.LogMetric metrics = 1;</code>
+     * Generated from protobuf field <code>repeated .google.logging.v2.LogMetric metrics = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getMetrics()
@@ -55,11 +47,9 @@ class ListLogMetricsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * A list of logs-based metrics.
-     * </pre>
      *
-     * <code>repeated .google.logging.v2.LogMetric metrics = 1;</code>
+     * Generated from protobuf field <code>repeated .google.logging.v2.LogMetric metrics = 1;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setMetrics(&$var)
@@ -71,13 +61,11 @@ class ListLogMetricsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If there might be more results than appear in this response, then
      * `nextPageToken` is included.  To get the next set of results, call this
      * method again using the value of `nextPageToken` as `pageToken`.
-     * </pre>
      *
-     * <code>string next_page_token = 2;</code>
+     * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @return string
      */
     public function getNextPageToken()
@@ -86,13 +74,11 @@ class ListLogMetricsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If there might be more results than appear in this response, then
      * `nextPageToken` is included.  To get the next set of results, call this
      * method again using the value of `nextPageToken` as `pageToken`.
-     * </pre>
      *
-     * <code>string next_page_token = 2;</code>
+     * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @param string $var
      */
     public function setNextPageToken($var)

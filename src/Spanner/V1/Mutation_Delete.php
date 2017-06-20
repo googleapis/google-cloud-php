@@ -9,28 +9,22 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Arguments to [delete][google.spanner.v1.Mutation.delete] operations.
- * </pre>
  *
  * Protobuf type <code>Google\Spanner\V1\Mutation\Delete</code>
  */
 class Mutation_Delete extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * Required. The table whose rows will be deleted.
-     * </pre>
      *
-     * <code>string table = 1;</code>
+     * Generated from protobuf field <code>string table = 1;</code>
      */
     private $table = '';
     /**
-     * <pre>
      * Required. The primary keys of the rows within [table][google.spanner.v1.Mutation.Delete.table] to delete.
-     * </pre>
      *
-     * <code>.google.spanner.v1.KeySet key_set = 2;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.KeySet key_set = 2;</code>
      */
     private $key_set = null;
 
@@ -40,11 +34,9 @@ class Mutation_Delete extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. The table whose rows will be deleted.
-     * </pre>
      *
-     * <code>string table = 1;</code>
+     * Generated from protobuf field <code>string table = 1;</code>
      * @return string
      */
     public function getTable()
@@ -53,11 +45,9 @@ class Mutation_Delete extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. The table whose rows will be deleted.
-     * </pre>
      *
-     * <code>string table = 1;</code>
+     * Generated from protobuf field <code>string table = 1;</code>
      * @param string $var
      */
     public function setTable($var)
@@ -69,11 +59,9 @@ class Mutation_Delete extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. The primary keys of the rows within [table][google.spanner.v1.Mutation.Delete.table] to delete.
-     * </pre>
      *
-     * <code>.google.spanner.v1.KeySet key_set = 2;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.KeySet key_set = 2;</code>
      * @return \Google\Cloud\Spanner\V1\KeySet
      */
     public function getKeySet()
@@ -82,11 +70,9 @@ class Mutation_Delete extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. The primary keys of the rows within [table][google.spanner.v1.Mutation.Delete.table] to delete.
-     * </pre>
      *
-     * <code>.google.spanner.v1.KeySet key_set = 2;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.KeySet key_set = 2;</code>
      * @param \Google\Cloud\Spanner\V1\KeySet $var
      */
     public function setKeySet(&$var)

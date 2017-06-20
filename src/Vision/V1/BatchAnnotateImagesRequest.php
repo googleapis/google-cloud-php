@@ -9,20 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Multiple image annotation requests are batched into a single service call.
- * </pre>
  *
  * Protobuf type <code>Google\Cloud\Vision\V1\BatchAnnotateImagesRequest</code>
  */
 class BatchAnnotateImagesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * Individual image annotation requests for this batch.
-     * </pre>
      *
-     * <code>repeated .google.cloud.vision.v1.AnnotateImageRequest requests = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.AnnotateImageRequest requests = 1;</code>
      */
     private $requests;
 
@@ -32,11 +28,9 @@ class BatchAnnotateImagesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Individual image annotation requests for this batch.
-     * </pre>
      *
-     * <code>repeated .google.cloud.vision.v1.AnnotateImageRequest requests = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.AnnotateImageRequest requests = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getRequests()
@@ -45,11 +39,9 @@ class BatchAnnotateImagesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Individual image annotation requests for this batch.
-     * </pre>
      *
-     * <code>repeated .google.cloud.vision.v1.AnnotateImageRequest requests = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.AnnotateImageRequest requests = 1;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setRequests(&$var)

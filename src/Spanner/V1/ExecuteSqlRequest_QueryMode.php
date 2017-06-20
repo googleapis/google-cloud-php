@@ -5,39 +5,31 @@
 namespace Google\Cloud\Spanner\V1;
 
 /**
- * <pre>
  * Mode in which the query must be processed.
- * </pre>
  *
  * Protobuf enum <code>Google\Spanner\V1\ExecuteSqlRequest\QueryMode</code>
  */
 class ExecuteSqlRequest_QueryMode
 {
     /**
-     * <pre>
      * The default mode where only the query result, without any information
      * about the query plan is returned.
-     * </pre>
      *
-     * <code>NORMAL = 0;</code>
+     * Generated from protobuf enum <code>NORMAL = 0;</code>
      */
     const NORMAL = 0;
     /**
-     * <pre>
      * This mode returns only the query plan, without any result rows or
      * execution statistics information.
-     * </pre>
      *
-     * <code>PLAN = 1;</code>
+     * Generated from protobuf enum <code>PLAN = 1;</code>
      */
     const PLAN = 1;
     /**
-     * <pre>
      * This mode returns both the query plan and the execution statistics along
      * with the result rows.
-     * </pre>
      *
-     * <code>PROFILE = 2;</code>
+     * Generated from protobuf enum <code>PROFILE = 2;</code>
      */
     const PROFILE = 2;
 }

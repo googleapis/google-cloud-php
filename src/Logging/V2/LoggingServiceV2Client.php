@@ -24,6 +24,8 @@
  * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
  * more frequently than those which have been declared beta or 1.0, including changes which break
  * backwards compatibility.
+ *
+ * @experimental
  */
 
 namespace Google\Cloud\Logging\V2;
@@ -62,6 +64,8 @@ use Google\GAX\PathTemplate;
  * with these names, this class includes a format method for each type of name, and additionally
  * a parse method to extract the individual identifiers contained within names that are
  * returned.
+ *
+ * @experimental
  */
 class LoggingServiceV2Client
 {
@@ -102,6 +106,11 @@ class LoggingServiceV2Client
     /**
      * Formats a string containing the fully-qualified path to represent
      * a project resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project resource.
+     * @experimental
      */
     public static function formatProjectName($project)
     {
@@ -113,6 +122,12 @@ class LoggingServiceV2Client
     /**
      * Formats a string containing the fully-qualified path to represent
      * a log resource.
+     *
+     * @param string $project
+     * @param string $log
+     *
+     * @return string The formatted log resource.
+     * @experimental
      */
     public static function formatLogName($project, $log)
     {
@@ -125,6 +140,11 @@ class LoggingServiceV2Client
     /**
      * Parses the project from the given fully-qualified path which
      * represents a project resource.
+     *
+     * @param string $projectName The fully-qualified project resource.
+     *
+     * @return string The extracted project value.
+     * @experimental
      */
     public static function parseProjectFromProjectName($projectName)
     {
@@ -134,6 +154,11 @@ class LoggingServiceV2Client
     /**
      * Parses the project from the given fully-qualified path which
      * represents a log resource.
+     *
+     * @param string $logName The fully-qualified log resource.
+     *
+     * @return string The extracted project value.
+     * @experimental
      */
     public static function parseProjectFromLogName($logName)
     {
@@ -143,6 +168,11 @@ class LoggingServiceV2Client
     /**
      * Parses the log from the given fully-qualified path which
      * represents a log resource.
+     *
+     * @param string $logName The fully-qualified log resource.
+     *
+     * @return string The extracted log value.
+     * @experimental
      */
     public static function parseLogFromLogName($logName)
     {
@@ -246,6 +276,7 @@ class LoggingServiceV2Client
      *                              A CredentialsLoader object created using the
      *                              Google\Auth library.
      * }
+     * @experimental
      */
     public function __construct($options = [])
     {
@@ -362,6 +393,7 @@ class LoggingServiceV2Client
      * }
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function deleteLog($logName, $optionalArgs = [])
     {
@@ -461,6 +493,7 @@ class LoggingServiceV2Client
      * @return \Google\Cloud\Logging\V2\WriteLogEntriesResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function writeLogEntries($entries, $optionalArgs = [])
     {
@@ -576,6 +609,7 @@ class LoggingServiceV2Client
      * @return \Google\GAX\PagedListResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function listLogEntries($resourceNames, $optionalArgs = [])
     {
@@ -663,6 +697,7 @@ class LoggingServiceV2Client
      * @return \Google\GAX\PagedListResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function listMonitoredResourceDescriptors($optionalArgs = [])
     {
@@ -746,6 +781,7 @@ class LoggingServiceV2Client
      * @return \Google\GAX\PagedListResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function listLogs($parent, $optionalArgs = [])
     {
@@ -777,6 +813,8 @@ class LoggingServiceV2Client
     /**
      * Initiates an orderly shutdown in which preexisting calls continue but new
      * calls are immediately cancelled.
+     *
+     * @experimental
      */
     public function close()
     {

@@ -9,20 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Response to a batch image annotation request.
- * </pre>
  *
  * Protobuf type <code>Google\Cloud\Vision\V1\BatchAnnotateImagesResponse</code>
  */
 class BatchAnnotateImagesResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * Individual responses to image annotation requests within the batch.
-     * </pre>
      *
-     * <code>repeated .google.cloud.vision.v1.AnnotateImageResponse responses = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.AnnotateImageResponse responses = 1;</code>
      */
     private $responses;
 
@@ -32,11 +28,9 @@ class BatchAnnotateImagesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Individual responses to image annotation requests within the batch.
-     * </pre>
      *
-     * <code>repeated .google.cloud.vision.v1.AnnotateImageResponse responses = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.AnnotateImageResponse responses = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getResponses()
@@ -45,11 +39,9 @@ class BatchAnnotateImagesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Individual responses to image annotation requests within the batch.
-     * </pre>
      *
-     * <code>repeated .google.cloud.vision.v1.AnnotateImageResponse responses = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.AnnotateImageResponse responses = 1;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setResponses(&$var)

@@ -5,36 +5,28 @@
 namespace Google\Cloud\Language\V1beta2;
 
 /**
- * <pre>
  * The document types enum.
- * </pre>
  *
  * Protobuf enum <code>Google\Cloud\Language\V1beta2\Document\Type</code>
  */
 class Document_Type
 {
     /**
-     * <pre>
      * The content type is not specified.
-     * </pre>
      *
-     * <code>TYPE_UNSPECIFIED = 0;</code>
+     * Generated from protobuf enum <code>TYPE_UNSPECIFIED = 0;</code>
      */
     const TYPE_UNSPECIFIED = 0;
     /**
-     * <pre>
      * Plain text
-     * </pre>
      *
-     * <code>PLAIN_TEXT = 1;</code>
+     * Generated from protobuf enum <code>PLAIN_TEXT = 1;</code>
      */
     const PLAIN_TEXT = 1;
     /**
-     * <pre>
      * HTML
-     * </pre>
      *
-     * <code>HTML = 2;</code>
+     * Generated from protobuf enum <code>HTML = 2;</code>
      */
     const HTML = 2;
 }

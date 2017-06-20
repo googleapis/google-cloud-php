@@ -9,31 +9,25 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * The `ListMetricDescriptors` response.
- * </pre>
  *
  * Protobuf type <code>Google\Monitoring\V3\ListMetricDescriptorsResponse</code>
  */
 class ListMetricDescriptorsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The metric descriptors that are available to the project
      * and that match the value of `filter`, if present.
-     * </pre>
      *
-     * <code>repeated .google.api.MetricDescriptor metric_descriptors = 1;</code>
+     * Generated from protobuf field <code>repeated .google.api.MetricDescriptor metric_descriptors = 1;</code>
      */
     private $metric_descriptors;
     /**
-     * <pre>
      * If there are more results than have been returned, then this field is set
      * to a non-empty value.  To see the additional results,
      * use that value as `pageToken` in the next call to this method.
-     * </pre>
      *
-     * <code>string next_page_token = 2;</code>
+     * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
     private $next_page_token = '';
 
@@ -43,12 +37,10 @@ class ListMetricDescriptorsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The metric descriptors that are available to the project
      * and that match the value of `filter`, if present.
-     * </pre>
      *
-     * <code>repeated .google.api.MetricDescriptor metric_descriptors = 1;</code>
+     * Generated from protobuf field <code>repeated .google.api.MetricDescriptor metric_descriptors = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getMetricDescriptors()
@@ -57,12 +49,10 @@ class ListMetricDescriptorsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The metric descriptors that are available to the project
      * and that match the value of `filter`, if present.
-     * </pre>
      *
-     * <code>repeated .google.api.MetricDescriptor metric_descriptors = 1;</code>
+     * Generated from protobuf field <code>repeated .google.api.MetricDescriptor metric_descriptors = 1;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setMetricDescriptors(&$var)
@@ -74,13 +64,11 @@ class ListMetricDescriptorsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If there are more results than have been returned, then this field is set
      * to a non-empty value.  To see the additional results,
      * use that value as `pageToken` in the next call to this method.
-     * </pre>
      *
-     * <code>string next_page_token = 2;</code>
+     * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @return string
      */
     public function getNextPageToken()
@@ -89,13 +77,11 @@ class ListMetricDescriptorsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If there are more results than have been returned, then this field is set
      * to a non-empty value.  To see the additional results,
      * use that value as `pageToken` in the next call to this method.
-     * </pre>
      *
-     * <code>string next_page_token = 2;</code>
+     * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @param string $var
      */
     public function setNextPageToken($var)

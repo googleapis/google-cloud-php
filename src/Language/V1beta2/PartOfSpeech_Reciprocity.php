@@ -5,37 +5,29 @@
 namespace Google\Cloud\Language\V1beta2;
 
 /**
- * <pre>
  * Reciprocal features of a pronoun.
- * </pre>
  *
  * Protobuf enum <code>Google\Cloud\Language\V1beta2\PartOfSpeech\Reciprocity</code>
  */
 class PartOfSpeech_Reciprocity
 {
     /**
-     * <pre>
      * Reciprocity is not applicable in the analyzed language or is not
      * predicted.
-     * </pre>
      *
-     * <code>RECIPROCITY_UNKNOWN = 0;</code>
+     * Generated from protobuf enum <code>RECIPROCITY_UNKNOWN = 0;</code>
      */
     const RECIPROCITY_UNKNOWN = 0;
     /**
-     * <pre>
      * Reciprocal
-     * </pre>
      *
-     * <code>RECIPROCAL = 1;</code>
+     * Generated from protobuf enum <code>RECIPROCAL = 1;</code>
      */
     const RECIPROCAL = 1;
     /**
-     * <pre>
      * Non-reciprocal
-     * </pre>
      *
-     * <code>NON_RECIPROCAL = 2;</code>
+     * Generated from protobuf enum <code>NON_RECIPROCAL = 2;</code>
      */
     const NON_RECIPROCAL = 2;
 }

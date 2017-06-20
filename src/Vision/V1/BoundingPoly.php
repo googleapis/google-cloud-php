@@ -9,20 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * A bounding polygon for the detected image annotation.
- * </pre>
  *
  * Protobuf type <code>Google\Cloud\Vision\V1\BoundingPoly</code>
  */
 class BoundingPoly extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The bounding polygon vertices.
-     * </pre>
      *
-     * <code>repeated .google.cloud.vision.v1.Vertex vertices = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.Vertex vertices = 1;</code>
      */
     private $vertices;
 
@@ -32,11 +28,9 @@ class BoundingPoly extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The bounding polygon vertices.
-     * </pre>
      *
-     * <code>repeated .google.cloud.vision.v1.Vertex vertices = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.Vertex vertices = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getVertices()
@@ -45,11 +39,9 @@ class BoundingPoly extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The bounding polygon vertices.
-     * </pre>
      *
-     * <code>repeated .google.cloud.vision.v1.Vertex vertices = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.vision.v1.Vertex vertices = 1;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setVertices(&$var)

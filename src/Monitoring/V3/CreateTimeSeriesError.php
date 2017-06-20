@@ -9,31 +9,25 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Describes the result of a failed request to write data to a time series.
- * </pre>
  *
  * Protobuf type <code>Google\Monitoring\V3\CreateTimeSeriesError</code>
  */
 class CreateTimeSeriesError extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The time series, including the `Metric`, `MonitoredResource`,
      * and `Point`s (including timestamp and value) that resulted
      * in the error. This field provides all of the context that
      * would be needed to retry the operation.
-     * </pre>
      *
-     * <code>.google.monitoring.v3.TimeSeries time_series = 1;</code>
+     * Generated from protobuf field <code>.google.monitoring.v3.TimeSeries time_series = 1;</code>
      */
     private $time_series = null;
     /**
-     * <pre>
      * The status of the requested write operation.
-     * </pre>
      *
-     * <code>.google.rpc.Status status = 2;</code>
+     * Generated from protobuf field <code>.google.rpc.Status status = 2;</code>
      */
     private $status = null;
 
@@ -43,14 +37,12 @@ class CreateTimeSeriesError extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The time series, including the `Metric`, `MonitoredResource`,
      * and `Point`s (including timestamp and value) that resulted
      * in the error. This field provides all of the context that
      * would be needed to retry the operation.
-     * </pre>
      *
-     * <code>.google.monitoring.v3.TimeSeries time_series = 1;</code>
+     * Generated from protobuf field <code>.google.monitoring.v3.TimeSeries time_series = 1;</code>
      * @return \Google\Cloud\Monitoring\V3\TimeSeries
      */
     public function getTimeSeries()
@@ -59,14 +51,12 @@ class CreateTimeSeriesError extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The time series, including the `Metric`, `MonitoredResource`,
      * and `Point`s (including timestamp and value) that resulted
      * in the error. This field provides all of the context that
      * would be needed to retry the operation.
-     * </pre>
      *
-     * <code>.google.monitoring.v3.TimeSeries time_series = 1;</code>
+     * Generated from protobuf field <code>.google.monitoring.v3.TimeSeries time_series = 1;</code>
      * @param \Google\Cloud\Monitoring\V3\TimeSeries $var
      */
     public function setTimeSeries(&$var)
@@ -78,11 +68,9 @@ class CreateTimeSeriesError extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The status of the requested write operation.
-     * </pre>
      *
-     * <code>.google.rpc.Status status = 2;</code>
+     * Generated from protobuf field <code>.google.rpc.Status status = 2;</code>
      * @return \Google\Rpc\Status
      */
     public function getStatus()
@@ -91,11 +79,9 @@ class CreateTimeSeriesError extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The status of the requested write operation.
-     * </pre>
      *
-     * <code>.google.rpc.Status status = 2;</code>
+     * Generated from protobuf field <code>.google.rpc.Status status = 2;</code>
      * @param \Google\Rpc\Status $var
      */
     public function setStatus(&$var)

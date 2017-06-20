@@ -9,42 +9,34 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Specifies criteria for filtering a subset of service contexts.
  * The fields in the filter correspond to the fields in `ServiceContext`.
  * Only exact, case-sensitive matches are supported.
  * If a field is unset or empty, it matches arbitrary values.
- * </pre>
  *
  * Protobuf type <code>Google\Devtools\Clouderrorreporting\V1beta1\ServiceContextFilter</code>
  */
 class ServiceContextFilter extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * [Optional] The exact value to match against
      * [`ServiceContext.service`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.service).
-     * </pre>
      *
-     * <code>string service = 2;</code>
+     * Generated from protobuf field <code>string service = 2;</code>
      */
     private $service = '';
     /**
-     * <pre>
      * [Optional] The exact value to match against
      * [`ServiceContext.version`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.version).
-     * </pre>
      *
-     * <code>string version = 3;</code>
+     * Generated from protobuf field <code>string version = 3;</code>
      */
     private $version = '';
     /**
-     * <pre>
      * [Optional] The exact value to match against
      * [`ServiceContext.resource_type`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.resource_type).
-     * </pre>
      *
-     * <code>string resource_type = 4;</code>
+     * Generated from protobuf field <code>string resource_type = 4;</code>
      */
     private $resource_type = '';
 
@@ -54,12 +46,10 @@ class ServiceContextFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * [Optional] The exact value to match against
      * [`ServiceContext.service`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.service).
-     * </pre>
      *
-     * <code>string service = 2;</code>
+     * Generated from protobuf field <code>string service = 2;</code>
      * @return string
      */
     public function getService()
@@ -68,12 +58,10 @@ class ServiceContextFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * [Optional] The exact value to match against
      * [`ServiceContext.service`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.service).
-     * </pre>
      *
-     * <code>string service = 2;</code>
+     * Generated from protobuf field <code>string service = 2;</code>
      * @param string $var
      */
     public function setService($var)
@@ -85,12 +73,10 @@ class ServiceContextFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * [Optional] The exact value to match against
      * [`ServiceContext.version`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.version).
-     * </pre>
      *
-     * <code>string version = 3;</code>
+     * Generated from protobuf field <code>string version = 3;</code>
      * @return string
      */
     public function getVersion()
@@ -99,12 +85,10 @@ class ServiceContextFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * [Optional] The exact value to match against
      * [`ServiceContext.version`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.version).
-     * </pre>
      *
-     * <code>string version = 3;</code>
+     * Generated from protobuf field <code>string version = 3;</code>
      * @param string $var
      */
     public function setVersion($var)
@@ -116,12 +100,10 @@ class ServiceContextFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * [Optional] The exact value to match against
      * [`ServiceContext.resource_type`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.resource_type).
-     * </pre>
      *
-     * <code>string resource_type = 4;</code>
+     * Generated from protobuf field <code>string resource_type = 4;</code>
      * @return string
      */
     public function getResourceType()
@@ -130,12 +112,10 @@ class ServiceContextFilter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * [Optional] The exact value to match against
      * [`ServiceContext.resource_type`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.resource_type).
-     * </pre>
      *
-     * <code>string resource_type = 4;</code>
+     * Generated from protobuf field <code>string resource_type = 4;</code>
      * @param string $var
      */
     public function setResourceType($var)

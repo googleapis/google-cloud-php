@@ -9,10 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Result returned from WriteLogEntries.
  * empty
- * </pre>
  *
  * Protobuf type <code>Google\Logging\V2\WriteLogEntriesResponse</code>
  */

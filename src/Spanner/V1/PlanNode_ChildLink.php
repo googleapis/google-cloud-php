@@ -9,36 +9,29 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Metadata associated with a parent-child relationship appearing in a
  * [PlanNode][google.spanner.v1.PlanNode].
- * </pre>
  *
  * Protobuf type <code>Google\Spanner\V1\PlanNode\ChildLink</code>
  */
 class PlanNode_ChildLink extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The node to which the link points.
-     * </pre>
      *
-     * <code>int32 child_index = 1;</code>
+     * Generated from protobuf field <code>int32 child_index = 1;</code>
      */
     private $child_index = 0;
     /**
-     * <pre>
      * The type of the link. For example, in Hash Joins this could be used to
      * distinguish between the build child and the probe child, or in the case
      * of the child being an output variable, to represent the tag associated
      * with the output variable.
-     * </pre>
      *
-     * <code>string type = 2;</code>
+     * Generated from protobuf field <code>string type = 2;</code>
      */
     private $type = '';
     /**
-     * <pre>
      * Only present if the child node is [SCALAR][google.spanner.v1.PlanNode.Kind.SCALAR] and corresponds
      * to an output variable of the parent node. The field carries the name of
      * the output variable.
@@ -47,9 +40,8 @@ class PlanNode_ChildLink extends \Google\Protobuf\Internal\Message
      * created for each column that is read by the operator. The corresponding
      * `variable` fields will be set to the variable names assigned to the
      * columns.
-     * </pre>
      *
-     * <code>string variable = 3;</code>
+     * Generated from protobuf field <code>string variable = 3;</code>
      */
     private $variable = '';
 
@@ -59,11 +51,9 @@ class PlanNode_ChildLink extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The node to which the link points.
-     * </pre>
      *
-     * <code>int32 child_index = 1;</code>
+     * Generated from protobuf field <code>int32 child_index = 1;</code>
      * @return int
      */
     public function getChildIndex()
@@ -72,11 +62,9 @@ class PlanNode_ChildLink extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The node to which the link points.
-     * </pre>
      *
-     * <code>int32 child_index = 1;</code>
+     * Generated from protobuf field <code>int32 child_index = 1;</code>
      * @param int $var
      */
     public function setChildIndex($var)
@@ -88,14 +76,12 @@ class PlanNode_ChildLink extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The type of the link. For example, in Hash Joins this could be used to
      * distinguish between the build child and the probe child, or in the case
      * of the child being an output variable, to represent the tag associated
      * with the output variable.
-     * </pre>
      *
-     * <code>string type = 2;</code>
+     * Generated from protobuf field <code>string type = 2;</code>
      * @return string
      */
     public function getType()
@@ -104,14 +90,12 @@ class PlanNode_ChildLink extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The type of the link. For example, in Hash Joins this could be used to
      * distinguish between the build child and the probe child, or in the case
      * of the child being an output variable, to represent the tag associated
      * with the output variable.
-     * </pre>
      *
-     * <code>string type = 2;</code>
+     * Generated from protobuf field <code>string type = 2;</code>
      * @param string $var
      */
     public function setType($var)
@@ -123,7 +107,6 @@ class PlanNode_ChildLink extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Only present if the child node is [SCALAR][google.spanner.v1.PlanNode.Kind.SCALAR] and corresponds
      * to an output variable of the parent node. The field carries the name of
      * the output variable.
@@ -132,9 +115,8 @@ class PlanNode_ChildLink extends \Google\Protobuf\Internal\Message
      * created for each column that is read by the operator. The corresponding
      * `variable` fields will be set to the variable names assigned to the
      * columns.
-     * </pre>
      *
-     * <code>string variable = 3;</code>
+     * Generated from protobuf field <code>string variable = 3;</code>
      * @return string
      */
     public function getVariable()
@@ -143,7 +125,6 @@ class PlanNode_ChildLink extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Only present if the child node is [SCALAR][google.spanner.v1.PlanNode.Kind.SCALAR] and corresponds
      * to an output variable of the parent node. The field carries the name of
      * the output variable.
@@ -152,9 +133,8 @@ class PlanNode_ChildLink extends \Google\Protobuf\Internal\Message
      * created for each column that is read by the operator. The corresponding
      * `variable` fields will be set to the variable names assigned to the
      * columns.
-     * </pre>
      *
-     * <code>string variable = 3;</code>
+     * Generated from protobuf field <code>string variable = 3;</code>
      * @param string $var
      */
     public function setVariable($var)

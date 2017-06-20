@@ -9,44 +9,34 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Bounding box.
- * </pre>
  *
  * Protobuf type <code>Google\Cloud\Videointelligence\V1beta1\BoundingBox</code>
  */
 class BoundingBox extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * Left X coordinate.
-     * </pre>
      *
-     * <code>int32 left = 1;</code>
+     * Generated from protobuf field <code>int32 left = 1;</code>
      */
     private $left = 0;
     /**
-     * <pre>
      * Right X coordinate.
-     * </pre>
      *
-     * <code>int32 right = 2;</code>
+     * Generated from protobuf field <code>int32 right = 2;</code>
      */
     private $right = 0;
     /**
-     * <pre>
      * Bottom Y coordinate.
-     * </pre>
      *
-     * <code>int32 bottom = 3;</code>
+     * Generated from protobuf field <code>int32 bottom = 3;</code>
      */
     private $bottom = 0;
     /**
-     * <pre>
      * Top Y coordinate.
-     * </pre>
      *
-     * <code>int32 top = 4;</code>
+     * Generated from protobuf field <code>int32 top = 4;</code>
      */
     private $top = 0;
 
@@ -56,11 +46,9 @@ class BoundingBox extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Left X coordinate.
-     * </pre>
      *
-     * <code>int32 left = 1;</code>
+     * Generated from protobuf field <code>int32 left = 1;</code>
      * @return int
      */
     public function getLeft()
@@ -69,11 +57,9 @@ class BoundingBox extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Left X coordinate.
-     * </pre>
      *
-     * <code>int32 left = 1;</code>
+     * Generated from protobuf field <code>int32 left = 1;</code>
      * @param int $var
      */
     public function setLeft($var)
@@ -85,11 +71,9 @@ class BoundingBox extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Right X coordinate.
-     * </pre>
      *
-     * <code>int32 right = 2;</code>
+     * Generated from protobuf field <code>int32 right = 2;</code>
      * @return int
      */
     public function getRight()
@@ -98,11 +82,9 @@ class BoundingBox extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Right X coordinate.
-     * </pre>
      *
-     * <code>int32 right = 2;</code>
+     * Generated from protobuf field <code>int32 right = 2;</code>
      * @param int $var
      */
     public function setRight($var)
@@ -114,11 +96,9 @@ class BoundingBox extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Bottom Y coordinate.
-     * </pre>
      *
-     * <code>int32 bottom = 3;</code>
+     * Generated from protobuf field <code>int32 bottom = 3;</code>
      * @return int
      */
     public function getBottom()
@@ -127,11 +107,9 @@ class BoundingBox extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Bottom Y coordinate.
-     * </pre>
      *
-     * <code>int32 bottom = 3;</code>
+     * Generated from protobuf field <code>int32 bottom = 3;</code>
      * @param int $var
      */
     public function setBottom($var)
@@ -143,11 +121,9 @@ class BoundingBox extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Top Y coordinate.
-     * </pre>
      *
-     * <code>int32 top = 4;</code>
+     * Generated from protobuf field <code>int32 top = 4;</code>
      * @return int
      */
     public function getTop()
@@ -156,11 +132,9 @@ class BoundingBox extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Top Y coordinate.
-     * </pre>
      *
-     * <code>int32 top = 4;</code>
+     * Generated from protobuf field <code>int32 top = 4;</code>
      * @param int $var
      */
     public function setTop($var)

@@ -9,33 +9,27 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * The `CreateTimeSeries` request.
- * </pre>
  *
  * Protobuf type <code>Google\Monitoring\V3\CreateTimeSeriesRequest</code>
  */
 class CreateTimeSeriesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The project on which to execute the request. The format is
      * `"projects/{project_id_or_number}"`.
-     * </pre>
      *
-     * <code>string name = 3;</code>
+     * Generated from protobuf field <code>string name = 3;</code>
      */
     private $name = '';
     /**
-     * <pre>
      * The new data to be added to a list of time series.
      * Adds at most one data point to each of several time series.  The new data
      * point must be more recent than any other point in its time series.  Each
      * `TimeSeries` value must fully specify a unique time series by supplying
      * all label values for the metric and the monitored resource.
-     * </pre>
      *
-     * <code>repeated .google.monitoring.v3.TimeSeries time_series = 2;</code>
+     * Generated from protobuf field <code>repeated .google.monitoring.v3.TimeSeries time_series = 2;</code>
      */
     private $time_series;
 
@@ -45,12 +39,10 @@ class CreateTimeSeriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The project on which to execute the request. The format is
      * `"projects/{project_id_or_number}"`.
-     * </pre>
      *
-     * <code>string name = 3;</code>
+     * Generated from protobuf field <code>string name = 3;</code>
      * @return string
      */
     public function getName()
@@ -59,12 +51,10 @@ class CreateTimeSeriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The project on which to execute the request. The format is
      * `"projects/{project_id_or_number}"`.
-     * </pre>
      *
-     * <code>string name = 3;</code>
+     * Generated from protobuf field <code>string name = 3;</code>
      * @param string $var
      */
     public function setName($var)
@@ -76,15 +66,13 @@ class CreateTimeSeriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The new data to be added to a list of time series.
      * Adds at most one data point to each of several time series.  The new data
      * point must be more recent than any other point in its time series.  Each
      * `TimeSeries` value must fully specify a unique time series by supplying
      * all label values for the metric and the monitored resource.
-     * </pre>
      *
-     * <code>repeated .google.monitoring.v3.TimeSeries time_series = 2;</code>
+     * Generated from protobuf field <code>repeated .google.monitoring.v3.TimeSeries time_series = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getTimeSeries()
@@ -93,15 +81,13 @@ class CreateTimeSeriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The new data to be added to a list of time series.
      * Adds at most one data point to each of several time series.  The new data
      * point must be more recent than any other point in its time series.  Each
      * `TimeSeries` value must fully specify a unique time series by supplying
      * all label values for the metric and the monitored resource.
-     * </pre>
      *
-     * <code>repeated .google.monitoring.v3.TimeSeries time_series = 2;</code>
+     * Generated from protobuf field <code>repeated .google.monitoring.v3.TimeSeries time_series = 2;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setTimeSeries(&$var)

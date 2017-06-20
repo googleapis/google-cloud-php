@@ -9,17 +9,14 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Describes a logs-based metric.  The value of the metric is the
  * number of log entries that match a logs filter in a given time interval.
- * </pre>
  *
  * Protobuf type <code>Google\Logging\V2\LogMetric</code>
  */
 class LogMetric extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * Required. The client-assigned metric identifier.
      * Examples: `"error_count"`, `"nginx/requests"`.
      * Metric identifiers are limited to 100 characters and can include
@@ -33,39 +30,32 @@ class LogMetric extends \Google\Protobuf\Internal\Message
      * part of a `metric_name` API parameter, then the metric identifier
      * must be URL-encoded. Example:
      * `"projects/my-project/metrics/nginx%2Frequests"`.
-     * </pre>
      *
-     * <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      */
     private $name = '';
     /**
-     * <pre>
      * Optional. A description of this metric, which is used in documentation.
-     * </pre>
      *
-     * <code>string description = 2;</code>
+     * Generated from protobuf field <code>string description = 2;</code>
      */
     private $description = '';
     /**
-     * <pre>
      * Required. An [advanced logs filter](/logging/docs/view/advanced_filters)
      * which is used to match log entries.
      * Example:
      *     "resource.type=gae_app AND severity>=ERROR"
      * The maximum length of the filter is 20000 characters.
-     * </pre>
      *
-     * <code>string filter = 3;</code>
+     * Generated from protobuf field <code>string filter = 3;</code>
      */
     private $filter = '';
     /**
-     * <pre>
      * Output only. The API version that created or updated this metric.
      * The version also dictates the syntax of the filter expression. When a value
      * for this field is missing, the default value of V2 should be assumed.
-     * </pre>
      *
-     * <code>.google.logging.v2.LogMetric.ApiVersion version = 4;</code>
+     * Generated from protobuf field <code>.google.logging.v2.LogMetric.ApiVersion version = 4;</code>
      */
     private $version = 0;
 
@@ -75,7 +65,6 @@ class LogMetric extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. The client-assigned metric identifier.
      * Examples: `"error_count"`, `"nginx/requests"`.
      * Metric identifiers are limited to 100 characters and can include
@@ -89,9 +78,8 @@ class LogMetric extends \Google\Protobuf\Internal\Message
      * part of a `metric_name` API parameter, then the metric identifier
      * must be URL-encoded. Example:
      * `"projects/my-project/metrics/nginx%2Frequests"`.
-     * </pre>
      *
-     * <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      * @return string
      */
     public function getName()
@@ -100,7 +88,6 @@ class LogMetric extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. The client-assigned metric identifier.
      * Examples: `"error_count"`, `"nginx/requests"`.
      * Metric identifiers are limited to 100 characters and can include
@@ -114,9 +101,8 @@ class LogMetric extends \Google\Protobuf\Internal\Message
      * part of a `metric_name` API parameter, then the metric identifier
      * must be URL-encoded. Example:
      * `"projects/my-project/metrics/nginx%2Frequests"`.
-     * </pre>
      *
-     * <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
      */
     public function setName($var)
@@ -128,11 +114,9 @@ class LogMetric extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Optional. A description of this metric, which is used in documentation.
-     * </pre>
      *
-     * <code>string description = 2;</code>
+     * Generated from protobuf field <code>string description = 2;</code>
      * @return string
      */
     public function getDescription()
@@ -141,11 +125,9 @@ class LogMetric extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Optional. A description of this metric, which is used in documentation.
-     * </pre>
      *
-     * <code>string description = 2;</code>
+     * Generated from protobuf field <code>string description = 2;</code>
      * @param string $var
      */
     public function setDescription($var)
@@ -157,15 +139,13 @@ class LogMetric extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. An [advanced logs filter](/logging/docs/view/advanced_filters)
      * which is used to match log entries.
      * Example:
      *     "resource.type=gae_app AND severity>=ERROR"
      * The maximum length of the filter is 20000 characters.
-     * </pre>
      *
-     * <code>string filter = 3;</code>
+     * Generated from protobuf field <code>string filter = 3;</code>
      * @return string
      */
     public function getFilter()
@@ -174,15 +154,13 @@ class LogMetric extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. An [advanced logs filter](/logging/docs/view/advanced_filters)
      * which is used to match log entries.
      * Example:
      *     "resource.type=gae_app AND severity>=ERROR"
      * The maximum length of the filter is 20000 characters.
-     * </pre>
      *
-     * <code>string filter = 3;</code>
+     * Generated from protobuf field <code>string filter = 3;</code>
      * @param string $var
      */
     public function setFilter($var)
@@ -194,13 +172,11 @@ class LogMetric extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Output only. The API version that created or updated this metric.
      * The version also dictates the syntax of the filter expression. When a value
      * for this field is missing, the default value of V2 should be assumed.
-     * </pre>
      *
-     * <code>.google.logging.v2.LogMetric.ApiVersion version = 4;</code>
+     * Generated from protobuf field <code>.google.logging.v2.LogMetric.ApiVersion version = 4;</code>
      * @return int
      */
     public function getVersion()
@@ -209,13 +185,11 @@ class LogMetric extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Output only. The API version that created or updated this metric.
      * The version also dictates the syntax of the filter expression. When a value
      * for this field is missing, the default value of V2 should be assumed.
-     * </pre>
      *
-     * <code>.google.logging.v2.LogMetric.ApiVersion version = 4;</code>
+     * Generated from protobuf field <code>.google.logging.v2.LogMetric.ApiVersion version = 4;</code>
      * @param int $var
      */
     public function setVersion($var)

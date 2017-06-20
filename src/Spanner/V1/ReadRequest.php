@@ -9,61 +9,48 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * The request for [Read][google.spanner.v1.Spanner.Read] and
  * [StreamingRead][google.spanner.v1.Spanner.StreamingRead].
- * </pre>
  *
  * Protobuf type <code>Google\Spanner\V1\ReadRequest</code>
  */
 class ReadRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * Required. The session in which the read should be performed.
-     * </pre>
      *
-     * <code>string session = 1;</code>
+     * Generated from protobuf field <code>string session = 1;</code>
      */
     private $session = '';
     /**
-     * <pre>
      * The transaction to use. If none is provided, the default is a
      * temporary read-only transaction with strong concurrency.
-     * </pre>
      *
-     * <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
      */
     private $transaction = null;
     /**
-     * <pre>
      * Required. The name of the table in the database to be read.
-     * </pre>
      *
-     * <code>string table = 3;</code>
+     * Generated from protobuf field <code>string table = 3;</code>
      */
     private $table = '';
     /**
-     * <pre>
      * If non-empty, the name of an index on [table][google.spanner.v1.ReadRequest.table]. This index is
      * used instead of the table primary key when interpreting [key_set][google.spanner.v1.ReadRequest.key_set]
      * and sorting result rows. See [key_set][google.spanner.v1.ReadRequest.key_set] for further information.
-     * </pre>
      *
-     * <code>string index = 4;</code>
+     * Generated from protobuf field <code>string index = 4;</code>
      */
     private $index = '';
     /**
-     * <pre>
      * The columns of [table][google.spanner.v1.ReadRequest.table] to be returned for each row matching
      * this request.
-     * </pre>
      *
-     * <code>repeated string columns = 5;</code>
+     * Generated from protobuf field <code>repeated string columns = 5;</code>
      */
     private $columns;
     /**
-     * <pre>
      * Required. `key_set` identifies the rows to be yielded. `key_set` names the
      * primary keys of the rows in [table][google.spanner.v1.ReadRequest.table] to be yielded, unless [index][google.spanner.v1.ReadRequest.index]
      * is present. If [index][google.spanner.v1.ReadRequest.index] is present, then [key_set][google.spanner.v1.ReadRequest.key_set] instead names
@@ -72,31 +59,26 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
      * or index key order (if [index][google.spanner.v1.ReadRequest.index] is non-empty).
      * It is not an error for the `key_set` to name rows that do not
      * exist in the database. Read yields nothing for nonexistent rows.
-     * </pre>
      *
-     * <code>.google.spanner.v1.KeySet key_set = 6;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.KeySet key_set = 6;</code>
      */
     private $key_set = null;
     /**
-     * <pre>
      * If greater than zero, only the first `limit` rows are yielded. If `limit`
      * is zero, the default is no limit.
-     * </pre>
      *
-     * <code>int64 limit = 8;</code>
+     * Generated from protobuf field <code>int64 limit = 8;</code>
      */
     private $limit = 0;
     /**
-     * <pre>
      * If this request is resuming a previously interrupted read,
      * `resume_token` should be copied from the last
      * [PartialResultSet][google.spanner.v1.PartialResultSet] yielded before the interruption. Doing this
      * enables the new read to resume where the last read left off. The
      * rest of the request parameters must exactly match the request
      * that yielded this token.
-     * </pre>
      *
-     * <code>bytes resume_token = 9;</code>
+     * Generated from protobuf field <code>bytes resume_token = 9;</code>
      */
     private $resume_token = '';
 
@@ -106,11 +88,9 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. The session in which the read should be performed.
-     * </pre>
      *
-     * <code>string session = 1;</code>
+     * Generated from protobuf field <code>string session = 1;</code>
      * @return string
      */
     public function getSession()
@@ -119,11 +99,9 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. The session in which the read should be performed.
-     * </pre>
      *
-     * <code>string session = 1;</code>
+     * Generated from protobuf field <code>string session = 1;</code>
      * @param string $var
      */
     public function setSession($var)
@@ -135,12 +113,10 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The transaction to use. If none is provided, the default is a
      * temporary read-only transaction with strong concurrency.
-     * </pre>
      *
-     * <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
      * @return \Google\Cloud\Spanner\V1\TransactionSelector
      */
     public function getTransaction()
@@ -149,12 +125,10 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The transaction to use. If none is provided, the default is a
      * temporary read-only transaction with strong concurrency.
-     * </pre>
      *
-     * <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
      * @param \Google\Cloud\Spanner\V1\TransactionSelector $var
      */
     public function setTransaction(&$var)
@@ -166,11 +140,9 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. The name of the table in the database to be read.
-     * </pre>
      *
-     * <code>string table = 3;</code>
+     * Generated from protobuf field <code>string table = 3;</code>
      * @return string
      */
     public function getTable()
@@ -179,11 +151,9 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. The name of the table in the database to be read.
-     * </pre>
      *
-     * <code>string table = 3;</code>
+     * Generated from protobuf field <code>string table = 3;</code>
      * @param string $var
      */
     public function setTable($var)
@@ -195,13 +165,11 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If non-empty, the name of an index on [table][google.spanner.v1.ReadRequest.table]. This index is
      * used instead of the table primary key when interpreting [key_set][google.spanner.v1.ReadRequest.key_set]
      * and sorting result rows. See [key_set][google.spanner.v1.ReadRequest.key_set] for further information.
-     * </pre>
      *
-     * <code>string index = 4;</code>
+     * Generated from protobuf field <code>string index = 4;</code>
      * @return string
      */
     public function getIndex()
@@ -210,13 +178,11 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If non-empty, the name of an index on [table][google.spanner.v1.ReadRequest.table]. This index is
      * used instead of the table primary key when interpreting [key_set][google.spanner.v1.ReadRequest.key_set]
      * and sorting result rows. See [key_set][google.spanner.v1.ReadRequest.key_set] for further information.
-     * </pre>
      *
-     * <code>string index = 4;</code>
+     * Generated from protobuf field <code>string index = 4;</code>
      * @param string $var
      */
     public function setIndex($var)
@@ -228,12 +194,10 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The columns of [table][google.spanner.v1.ReadRequest.table] to be returned for each row matching
      * this request.
-     * </pre>
      *
-     * <code>repeated string columns = 5;</code>
+     * Generated from protobuf field <code>repeated string columns = 5;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getColumns()
@@ -242,12 +206,10 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The columns of [table][google.spanner.v1.ReadRequest.table] to be returned for each row matching
      * this request.
-     * </pre>
      *
-     * <code>repeated string columns = 5;</code>
+     * Generated from protobuf field <code>repeated string columns = 5;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setColumns(&$var)
@@ -259,7 +221,6 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. `key_set` identifies the rows to be yielded. `key_set` names the
      * primary keys of the rows in [table][google.spanner.v1.ReadRequest.table] to be yielded, unless [index][google.spanner.v1.ReadRequest.index]
      * is present. If [index][google.spanner.v1.ReadRequest.index] is present, then [key_set][google.spanner.v1.ReadRequest.key_set] instead names
@@ -268,9 +229,8 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
      * or index key order (if [index][google.spanner.v1.ReadRequest.index] is non-empty).
      * It is not an error for the `key_set` to name rows that do not
      * exist in the database. Read yields nothing for nonexistent rows.
-     * </pre>
      *
-     * <code>.google.spanner.v1.KeySet key_set = 6;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.KeySet key_set = 6;</code>
      * @return \Google\Cloud\Spanner\V1\KeySet
      */
     public function getKeySet()
@@ -279,7 +239,6 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Required. `key_set` identifies the rows to be yielded. `key_set` names the
      * primary keys of the rows in [table][google.spanner.v1.ReadRequest.table] to be yielded, unless [index][google.spanner.v1.ReadRequest.index]
      * is present. If [index][google.spanner.v1.ReadRequest.index] is present, then [key_set][google.spanner.v1.ReadRequest.key_set] instead names
@@ -288,9 +247,8 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
      * or index key order (if [index][google.spanner.v1.ReadRequest.index] is non-empty).
      * It is not an error for the `key_set` to name rows that do not
      * exist in the database. Read yields nothing for nonexistent rows.
-     * </pre>
      *
-     * <code>.google.spanner.v1.KeySet key_set = 6;</code>
+     * Generated from protobuf field <code>.google.spanner.v1.KeySet key_set = 6;</code>
      * @param \Google\Cloud\Spanner\V1\KeySet $var
      */
     public function setKeySet(&$var)
@@ -302,12 +260,10 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If greater than zero, only the first `limit` rows are yielded. If `limit`
      * is zero, the default is no limit.
-     * </pre>
      *
-     * <code>int64 limit = 8;</code>
+     * Generated from protobuf field <code>int64 limit = 8;</code>
      * @return int|string
      */
     public function getLimit()
@@ -316,12 +272,10 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If greater than zero, only the first `limit` rows are yielded. If `limit`
      * is zero, the default is no limit.
-     * </pre>
      *
-     * <code>int64 limit = 8;</code>
+     * Generated from protobuf field <code>int64 limit = 8;</code>
      * @param int|string $var
      */
     public function setLimit($var)
@@ -333,16 +287,14 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If this request is resuming a previously interrupted read,
      * `resume_token` should be copied from the last
      * [PartialResultSet][google.spanner.v1.PartialResultSet] yielded before the interruption. Doing this
      * enables the new read to resume where the last read left off. The
      * rest of the request parameters must exactly match the request
      * that yielded this token.
-     * </pre>
      *
-     * <code>bytes resume_token = 9;</code>
+     * Generated from protobuf field <code>bytes resume_token = 9;</code>
      * @return string
      */
     public function getResumeToken()
@@ -351,16 +303,14 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * If this request is resuming a previously interrupted read,
      * `resume_token` should be copied from the last
      * [PartialResultSet][google.spanner.v1.PartialResultSet] yielded before the interruption. Doing this
      * enables the new read to resume where the last read left off. The
      * rest of the request parameters must exactly match the request
      * that yielded this token.
-     * </pre>
      *
-     * <code>bytes resume_token = 9;</code>
+     * Generated from protobuf field <code>bytes resume_token = 9;</code>
      * @param string $var
      */
     public function setResumeToken($var)

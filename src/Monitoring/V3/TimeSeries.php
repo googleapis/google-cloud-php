@@ -9,37 +9,30 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * A collection of data points that describes the time-varying values
  * of a metric. A time series is identified by a combination of a
  * fully-specified monitored resource and a fully-specified metric.
  * This type is used for both listing and creating time series.
- * </pre>
  *
  * Protobuf type <code>Google\Monitoring\V3\TimeSeries</code>
  */
 class TimeSeries extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The associated metric. A fully-specified metric used to identify the time
      * series.
-     * </pre>
      *
-     * <code>.google.api.Metric metric = 1;</code>
+     * Generated from protobuf field <code>.google.api.Metric metric = 1;</code>
      */
     private $metric = null;
     /**
-     * <pre>
      * The associated resource. A fully-specified monitored resource used to
      * identify the time series.
-     * </pre>
      *
-     * <code>.google.api.MonitoredResource resource = 2;</code>
+     * Generated from protobuf field <code>.google.api.MonitoredResource resource = 2;</code>
      */
     private $resource = null;
     /**
-     * <pre>
      * The metric kind of the time series. When listing time series, this metric
      * kind might be different from the metric kind of the associated metric if
      * this time series is an alignment or reduction of other time series.
@@ -48,25 +41,21 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
      * metric's descriptor must be auto-created, then this field specifies the
      * metric kind of the new descriptor and must be either `GAUGE` (the default)
      * or `CUMULATIVE`.
-     * </pre>
      *
-     * <code>.google.api.MetricDescriptor.MetricKind metric_kind = 3;</code>
+     * Generated from protobuf field <code>.google.api.MetricDescriptor.MetricKind metric_kind = 3;</code>
      */
     private $metric_kind = 0;
     /**
-     * <pre>
      * The value type of the time series. When listing time series, this value
      * type might be different from the value type of the associated metric if
      * this time series is an alignment or reduction of other time series.
      * When creating a time series, this field is optional. If present, it must be
      * the same as the type of the data in the `points` field.
-     * </pre>
      *
-     * <code>.google.api.MetricDescriptor.ValueType value_type = 4;</code>
+     * Generated from protobuf field <code>.google.api.MetricDescriptor.ValueType value_type = 4;</code>
      */
     private $value_type = 0;
     /**
-     * <pre>
      * The data points of this time series. When listing time series, the order of
      * the points is specified by the list method.
      * When creating a time series, this field must contain exactly one point and
@@ -74,9 +63,8 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
      * metric. If the associated metric's descriptor must be auto-created, then
      * the value type of the descriptor is determined by the point's type, which
      * must be `BOOL`, `INT64`, `DOUBLE`, or `DISTRIBUTION`.
-     * </pre>
      *
-     * <code>repeated .google.monitoring.v3.Point points = 5;</code>
+     * Generated from protobuf field <code>repeated .google.monitoring.v3.Point points = 5;</code>
      */
     private $points;
 
@@ -86,12 +74,10 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The associated metric. A fully-specified metric used to identify the time
      * series.
-     * </pre>
      *
-     * <code>.google.api.Metric metric = 1;</code>
+     * Generated from protobuf field <code>.google.api.Metric metric = 1;</code>
      * @return \Google\Api\Metric
      */
     public function getMetric()
@@ -100,12 +86,10 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The associated metric. A fully-specified metric used to identify the time
      * series.
-     * </pre>
      *
-     * <code>.google.api.Metric metric = 1;</code>
+     * Generated from protobuf field <code>.google.api.Metric metric = 1;</code>
      * @param \Google\Api\Metric $var
      */
     public function setMetric(&$var)
@@ -117,12 +101,10 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The associated resource. A fully-specified monitored resource used to
      * identify the time series.
-     * </pre>
      *
-     * <code>.google.api.MonitoredResource resource = 2;</code>
+     * Generated from protobuf field <code>.google.api.MonitoredResource resource = 2;</code>
      * @return \Google\Api\MonitoredResource
      */
     public function getResource()
@@ -131,12 +113,10 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The associated resource. A fully-specified monitored resource used to
      * identify the time series.
-     * </pre>
      *
-     * <code>.google.api.MonitoredResource resource = 2;</code>
+     * Generated from protobuf field <code>.google.api.MonitoredResource resource = 2;</code>
      * @param \Google\Api\MonitoredResource $var
      */
     public function setResource(&$var)
@@ -148,7 +128,6 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The metric kind of the time series. When listing time series, this metric
      * kind might be different from the metric kind of the associated metric if
      * this time series is an alignment or reduction of other time series.
@@ -157,9 +136,8 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
      * metric's descriptor must be auto-created, then this field specifies the
      * metric kind of the new descriptor and must be either `GAUGE` (the default)
      * or `CUMULATIVE`.
-     * </pre>
      *
-     * <code>.google.api.MetricDescriptor.MetricKind metric_kind = 3;</code>
+     * Generated from protobuf field <code>.google.api.MetricDescriptor.MetricKind metric_kind = 3;</code>
      * @return int
      */
     public function getMetricKind()
@@ -168,7 +146,6 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The metric kind of the time series. When listing time series, this metric
      * kind might be different from the metric kind of the associated metric if
      * this time series is an alignment or reduction of other time series.
@@ -177,9 +154,8 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
      * metric's descriptor must be auto-created, then this field specifies the
      * metric kind of the new descriptor and must be either `GAUGE` (the default)
      * or `CUMULATIVE`.
-     * </pre>
      *
-     * <code>.google.api.MetricDescriptor.MetricKind metric_kind = 3;</code>
+     * Generated from protobuf field <code>.google.api.MetricDescriptor.MetricKind metric_kind = 3;</code>
      * @param int $var
      */
     public function setMetricKind($var)
@@ -191,15 +167,13 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The value type of the time series. When listing time series, this value
      * type might be different from the value type of the associated metric if
      * this time series is an alignment or reduction of other time series.
      * When creating a time series, this field is optional. If present, it must be
      * the same as the type of the data in the `points` field.
-     * </pre>
      *
-     * <code>.google.api.MetricDescriptor.ValueType value_type = 4;</code>
+     * Generated from protobuf field <code>.google.api.MetricDescriptor.ValueType value_type = 4;</code>
      * @return int
      */
     public function getValueType()
@@ -208,15 +182,13 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The value type of the time series. When listing time series, this value
      * type might be different from the value type of the associated metric if
      * this time series is an alignment or reduction of other time series.
      * When creating a time series, this field is optional. If present, it must be
      * the same as the type of the data in the `points` field.
-     * </pre>
      *
-     * <code>.google.api.MetricDescriptor.ValueType value_type = 4;</code>
+     * Generated from protobuf field <code>.google.api.MetricDescriptor.ValueType value_type = 4;</code>
      * @param int $var
      */
     public function setValueType($var)
@@ -228,7 +200,6 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The data points of this time series. When listing time series, the order of
      * the points is specified by the list method.
      * When creating a time series, this field must contain exactly one point and
@@ -236,9 +207,8 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
      * metric. If the associated metric's descriptor must be auto-created, then
      * the value type of the descriptor is determined by the point's type, which
      * must be `BOOL`, `INT64`, `DOUBLE`, or `DISTRIBUTION`.
-     * </pre>
      *
-     * <code>repeated .google.monitoring.v3.Point points = 5;</code>
+     * Generated from protobuf field <code>repeated .google.monitoring.v3.Point points = 5;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getPoints()
@@ -247,7 +217,6 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The data points of this time series. When listing time series, the order of
      * the points is specified by the list method.
      * When creating a time series, this field must contain exactly one point and
@@ -255,9 +224,8 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
      * metric. If the associated metric's descriptor must be auto-created, then
      * the value type of the descriptor is determined by the point's type, which
      * must be `BOOL`, `INT64`, `DOUBLE`, or `DISTRIBUTION`.
-     * </pre>
      *
-     * <code>repeated .google.monitoring.v3.Point points = 5;</code>
+     * Generated from protobuf field <code>repeated .google.monitoring.v3.Point points = 5;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setPoints(&$var)

@@ -9,20 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * A request to replace the existing data for the given group.
- * </pre>
  *
  * Protobuf type <code>Google\Devtools\Clouderrorreporting\V1beta1\UpdateGroupRequest</code>
  */
 class UpdateGroupRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * [Required] The group which replaces the resource on the server.
-     * </pre>
      *
-     * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
+     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
      */
     private $group = null;
 
@@ -32,11 +28,9 @@ class UpdateGroupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * [Required] The group which replaces the resource on the server.
-     * </pre>
      *
-     * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
+     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
      * @return \Google\Cloud\ErrorReporting\V1beta1\ErrorGroup
      */
     public function getGroup()
@@ -45,11 +39,9 @@ class UpdateGroupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * [Required] The group which replaces the resource on the server.
-     * </pre>
      *
-     * <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
+     * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
      * @param \Google\Cloud\ErrorReporting\V1beta1\ErrorGroup $var
      */
     public function setGroup(&$var)

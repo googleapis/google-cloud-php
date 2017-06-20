@@ -9,38 +9,30 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Color information consists of RGB channels, score, and the fraction of
  * the image that the color occupies in the image.
- * </pre>
  *
  * Protobuf type <code>Google\Cloud\Vision\V1\ColorInfo</code>
  */
 class ColorInfo extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * RGB components of the color.
-     * </pre>
      *
-     * <code>.google.type.Color color = 1;</code>
+     * Generated from protobuf field <code>.google.type.Color color = 1;</code>
      */
     private $color = null;
     /**
-     * <pre>
      * Image-specific score for this color. Value in range [0, 1].
-     * </pre>
      *
-     * <code>float score = 2;</code>
+     * Generated from protobuf field <code>float score = 2;</code>
      */
     private $score = 0.0;
     /**
-     * <pre>
      * The fraction of pixels the color occupies in the image.
      * Value in range [0, 1].
-     * </pre>
      *
-     * <code>float pixel_fraction = 3;</code>
+     * Generated from protobuf field <code>float pixel_fraction = 3;</code>
      */
     private $pixel_fraction = 0.0;
 
@@ -50,11 +42,9 @@ class ColorInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * RGB components of the color.
-     * </pre>
      *
-     * <code>.google.type.Color color = 1;</code>
+     * Generated from protobuf field <code>.google.type.Color color = 1;</code>
      * @return \Google\Type\Color
      */
     public function getColor()
@@ -63,11 +53,9 @@ class ColorInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * RGB components of the color.
-     * </pre>
      *
-     * <code>.google.type.Color color = 1;</code>
+     * Generated from protobuf field <code>.google.type.Color color = 1;</code>
      * @param \Google\Type\Color $var
      */
     public function setColor(&$var)
@@ -79,11 +67,9 @@ class ColorInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Image-specific score for this color. Value in range [0, 1].
-     * </pre>
      *
-     * <code>float score = 2;</code>
+     * Generated from protobuf field <code>float score = 2;</code>
      * @return float
      */
     public function getScore()
@@ -92,11 +78,9 @@ class ColorInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Image-specific score for this color. Value in range [0, 1].
-     * </pre>
      *
-     * <code>float score = 2;</code>
+     * Generated from protobuf field <code>float score = 2;</code>
      * @param float $var
      */
     public function setScore($var)
@@ -108,12 +92,10 @@ class ColorInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The fraction of pixels the color occupies in the image.
      * Value in range [0, 1].
-     * </pre>
      *
-     * <code>float pixel_fraction = 3;</code>
+     * Generated from protobuf field <code>float pixel_fraction = 3;</code>
      * @return float
      */
     public function getPixelFraction()
@@ -122,12 +104,10 @@ class ColorInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The fraction of pixels the color occupies in the image.
      * Value in range [0, 1].
-     * </pre>
      *
-     * <code>float pixel_fraction = 3;</code>
+     * Generated from protobuf field <code>float pixel_fraction = 3;</code>
      * @param float $var
      */
     public function setPixelFraction($var)

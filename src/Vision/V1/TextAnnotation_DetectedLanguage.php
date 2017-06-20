@@ -9,30 +9,24 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Detected language for a structural component.
- * </pre>
  *
  * Protobuf type <code>Google\Cloud\Vision\V1\TextAnnotation\DetectedLanguage</code>
  */
 class TextAnnotation_DetectedLanguage extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The BCP-47 language code, such as "en-US" or "sr-Latn". For more
      * information, see
      * http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
-     * </pre>
      *
-     * <code>string language_code = 1;</code>
+     * Generated from protobuf field <code>string language_code = 1;</code>
      */
     private $language_code = '';
     /**
-     * <pre>
      * Confidence of detected language. Range [0, 1].
-     * </pre>
      *
-     * <code>float confidence = 2;</code>
+     * Generated from protobuf field <code>float confidence = 2;</code>
      */
     private $confidence = 0.0;
 
@@ -42,13 +36,11 @@ class TextAnnotation_DetectedLanguage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The BCP-47 language code, such as "en-US" or "sr-Latn". For more
      * information, see
      * http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
-     * </pre>
      *
-     * <code>string language_code = 1;</code>
+     * Generated from protobuf field <code>string language_code = 1;</code>
      * @return string
      */
     public function getLanguageCode()
@@ -57,13 +49,11 @@ class TextAnnotation_DetectedLanguage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The BCP-47 language code, such as "en-US" or "sr-Latn". For more
      * information, see
      * http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
-     * </pre>
      *
-     * <code>string language_code = 1;</code>
+     * Generated from protobuf field <code>string language_code = 1;</code>
      * @param string $var
      */
     public function setLanguageCode($var)
@@ -75,11 +65,9 @@ class TextAnnotation_DetectedLanguage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Confidence of detected language. Range [0, 1].
-     * </pre>
      *
-     * <code>float confidence = 2;</code>
+     * Generated from protobuf field <code>float confidence = 2;</code>
      * @return float
      */
     public function getConfidence()
@@ -88,11 +76,9 @@ class TextAnnotation_DetectedLanguage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Confidence of detected language. Range [0, 1].
-     * </pre>
      *
-     * <code>float confidence = 2;</code>
+     * Generated from protobuf field <code>float confidence = 2;</code>
      * @param float $var
      */
     public function setConfidence($var)

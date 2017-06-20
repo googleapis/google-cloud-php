@@ -9,28 +9,22 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Face location.
- * </pre>
  *
  * Protobuf type <code>Google\Cloud\Videointelligence\V1beta1\FaceLocation</code>
  */
 class FaceLocation extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * Bounding box in a frame.
-     * </pre>
      *
-     * <code>.google.cloud.videointelligence.v1beta1.BoundingBox bounding_box = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.videointelligence.v1beta1.BoundingBox bounding_box = 1;</code>
      */
     private $bounding_box = null;
     /**
-     * <pre>
      * Video time offset in microseconds.
-     * </pre>
      *
-     * <code>int64 time_offset = 2;</code>
+     * Generated from protobuf field <code>int64 time_offset = 2;</code>
      */
     private $time_offset = 0;
 
@@ -40,11 +34,9 @@ class FaceLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Bounding box in a frame.
-     * </pre>
      *
-     * <code>.google.cloud.videointelligence.v1beta1.BoundingBox bounding_box = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.videointelligence.v1beta1.BoundingBox bounding_box = 1;</code>
      * @return \Google\Cloud\VideoIntelligence\V1beta1\BoundingBox
      */
     public function getBoundingBox()
@@ -53,11 +45,9 @@ class FaceLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Bounding box in a frame.
-     * </pre>
      *
-     * <code>.google.cloud.videointelligence.v1beta1.BoundingBox bounding_box = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.videointelligence.v1beta1.BoundingBox bounding_box = 1;</code>
      * @param \Google\Cloud\VideoIntelligence\V1beta1\BoundingBox $var
      */
     public function setBoundingBox(&$var)
@@ -69,11 +59,9 @@ class FaceLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Video time offset in microseconds.
-     * </pre>
      *
-     * <code>int64 time_offset = 2;</code>
+     * Generated from protobuf field <code>int64 time_offset = 2;</code>
      * @return int|string
      */
     public function getTimeOffset()
@@ -82,11 +70,9 @@ class FaceLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Video time offset in microseconds.
-     * </pre>
      *
-     * <code>int64 time_offset = 2;</code>
+     * Generated from protobuf field <code>int64 time_offset = 2;</code>
      * @param int|string $var
      */
     public function setTimeOffset($var)

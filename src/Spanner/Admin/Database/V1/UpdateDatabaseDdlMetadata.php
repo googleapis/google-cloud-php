@@ -9,40 +9,32 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Metadata type for the operation returned by
  * [UpdateDatabaseDdl][google.spanner.admin.database.v1.DatabaseAdmin.UpdateDatabaseDdl].
- * </pre>
  *
  * Protobuf type <code>Google\Spanner\Admin\Database\V1\UpdateDatabaseDdlMetadata</code>
  */
 class UpdateDatabaseDdlMetadata extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The database being modified.
-     * </pre>
      *
-     * <code>string database = 1;</code>
+     * Generated from protobuf field <code>string database = 1;</code>
      */
     private $database = '';
     /**
-     * <pre>
      * For an update this list contains all the statements. For an
      * individual statement, this list contains only that statement.
-     * </pre>
      *
-     * <code>repeated string statements = 2;</code>
+     * Generated from protobuf field <code>repeated string statements = 2;</code>
      */
     private $statements;
     /**
-     * <pre>
      * Reports the commit timestamps of all statements that have
      * succeeded so far, where `commit_timestamps[i]` is the commit
      * timestamp for the statement `statements[i]`.
-     * </pre>
      *
-     * <code>repeated .google.protobuf.Timestamp commit_timestamps = 3;</code>
+     * Generated from protobuf field <code>repeated .google.protobuf.Timestamp commit_timestamps = 3;</code>
      */
     private $commit_timestamps;
 
@@ -52,11 +44,9 @@ class UpdateDatabaseDdlMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The database being modified.
-     * </pre>
      *
-     * <code>string database = 1;</code>
+     * Generated from protobuf field <code>string database = 1;</code>
      * @return string
      */
     public function getDatabase()
@@ -65,11 +55,9 @@ class UpdateDatabaseDdlMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The database being modified.
-     * </pre>
      *
-     * <code>string database = 1;</code>
+     * Generated from protobuf field <code>string database = 1;</code>
      * @param string $var
      */
     public function setDatabase($var)
@@ -81,12 +69,10 @@ class UpdateDatabaseDdlMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * For an update this list contains all the statements. For an
      * individual statement, this list contains only that statement.
-     * </pre>
      *
-     * <code>repeated string statements = 2;</code>
+     * Generated from protobuf field <code>repeated string statements = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getStatements()
@@ -95,12 +81,10 @@ class UpdateDatabaseDdlMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * For an update this list contains all the statements. For an
      * individual statement, this list contains only that statement.
-     * </pre>
      *
-     * <code>repeated string statements = 2;</code>
+     * Generated from protobuf field <code>repeated string statements = 2;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setStatements(&$var)
@@ -112,13 +96,11 @@ class UpdateDatabaseDdlMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Reports the commit timestamps of all statements that have
      * succeeded so far, where `commit_timestamps[i]` is the commit
      * timestamp for the statement `statements[i]`.
-     * </pre>
      *
-     * <code>repeated .google.protobuf.Timestamp commit_timestamps = 3;</code>
+     * Generated from protobuf field <code>repeated .google.protobuf.Timestamp commit_timestamps = 3;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getCommitTimestamps()
@@ -127,13 +109,11 @@ class UpdateDatabaseDdlMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Reports the commit timestamps of all statements that have
      * succeeded so far, where `commit_timestamps[i]` is the commit
      * timestamp for the statement `statements[i]`.
-     * </pre>
      *
-     * <code>repeated .google.protobuf.Timestamp commit_timestamps = 3;</code>
+     * Generated from protobuf field <code>repeated .google.protobuf.Timestamp commit_timestamps = 3;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setCommitTimestamps(&$var)

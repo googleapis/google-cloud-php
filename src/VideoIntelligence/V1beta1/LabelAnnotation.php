@@ -9,36 +9,28 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Label annotation.
- * </pre>
  *
  * Protobuf type <code>Google\Cloud\Videointelligence\V1beta1\LabelAnnotation</code>
  */
 class LabelAnnotation extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * Textual description, e.g. `Fixed-gear bicycle`.
-     * </pre>
      *
-     * <code>string description = 1;</code>
+     * Generated from protobuf field <code>string description = 1;</code>
      */
     private $description = '';
     /**
-     * <pre>
      * Language code for `description` in BCP-47 format.
-     * </pre>
      *
-     * <code>string language_code = 2;</code>
+     * Generated from protobuf field <code>string language_code = 2;</code>
      */
     private $language_code = '';
     /**
-     * <pre>
      * Where the label was detected and with what confidence.
-     * </pre>
      *
-     * <code>repeated .google.cloud.videointelligence.v1beta1.LabelLocation locations = 3;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1beta1.LabelLocation locations = 3;</code>
      */
     private $locations;
 
@@ -48,11 +40,9 @@ class LabelAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Textual description, e.g. `Fixed-gear bicycle`.
-     * </pre>
      *
-     * <code>string description = 1;</code>
+     * Generated from protobuf field <code>string description = 1;</code>
      * @return string
      */
     public function getDescription()
@@ -61,11 +51,9 @@ class LabelAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Textual description, e.g. `Fixed-gear bicycle`.
-     * </pre>
      *
-     * <code>string description = 1;</code>
+     * Generated from protobuf field <code>string description = 1;</code>
      * @param string $var
      */
     public function setDescription($var)
@@ -77,11 +65,9 @@ class LabelAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Language code for `description` in BCP-47 format.
-     * </pre>
      *
-     * <code>string language_code = 2;</code>
+     * Generated from protobuf field <code>string language_code = 2;</code>
      * @return string
      */
     public function getLanguageCode()
@@ -90,11 +76,9 @@ class LabelAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Language code for `description` in BCP-47 format.
-     * </pre>
      *
-     * <code>string language_code = 2;</code>
+     * Generated from protobuf field <code>string language_code = 2;</code>
      * @param string $var
      */
     public function setLanguageCode($var)
@@ -106,11 +90,9 @@ class LabelAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Where the label was detected and with what confidence.
-     * </pre>
      *
-     * <code>repeated .google.cloud.videointelligence.v1beta1.LabelLocation locations = 3;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1beta1.LabelLocation locations = 3;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getLocations()
@@ -119,11 +101,9 @@ class LabelAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Where the label was detected and with what confidence.
-     * </pre>
      *
-     * <code>repeated .google.cloud.videointelligence.v1beta1.LabelLocation locations = 3;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1beta1.LabelLocation locations = 3;</code>
      * @param array|\Google\Protobuf\Internal\RepeatedField $var
      */
     public function setLocations(&$var)

@@ -9,32 +9,26 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * A face-specific landmark (for example, a face feature).
  * Landmark positions may fall outside the bounds of the image
  * if the face is near one or more edges of the image.
  * Therefore it is NOT guaranteed that `0 <= x < width` or
  * `0 <= y < height`.
- * </pre>
  *
  * Protobuf type <code>Google\Cloud\Vision\V1\FaceAnnotation\Landmark</code>
  */
 class FaceAnnotation_Landmark extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * Face landmark type.
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.FaceAnnotation.Landmark.Type type = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.FaceAnnotation.Landmark.Type type = 3;</code>
      */
     private $type = 0;
     /**
-     * <pre>
      * Face landmark position.
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.Position position = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.Position position = 4;</code>
      */
     private $position = null;
 
@@ -44,11 +38,9 @@ class FaceAnnotation_Landmark extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Face landmark type.
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.FaceAnnotation.Landmark.Type type = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.FaceAnnotation.Landmark.Type type = 3;</code>
      * @return int
      */
     public function getType()
@@ -57,11 +49,9 @@ class FaceAnnotation_Landmark extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Face landmark type.
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.FaceAnnotation.Landmark.Type type = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.FaceAnnotation.Landmark.Type type = 3;</code>
      * @param int $var
      */
     public function setType($var)
@@ -73,11 +63,9 @@ class FaceAnnotation_Landmark extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Face landmark position.
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.Position position = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.Position position = 4;</code>
      * @return \Google\Cloud\Vision\V1\Position
      */
     public function getPosition()
@@ -86,11 +74,9 @@ class FaceAnnotation_Landmark extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * Face landmark position.
-     * </pre>
      *
-     * <code>.google.cloud.vision.v1.Position position = 4;</code>
+     * Generated from protobuf field <code>.google.cloud.vision.v1.Position position = 4;</code>
      * @param \Google\Cloud\Vision\V1\Position $var
      */
     public function setPosition(&$var)

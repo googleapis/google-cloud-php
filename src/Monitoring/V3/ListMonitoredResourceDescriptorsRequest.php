@@ -9,52 +9,42 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * The `ListMonitoredResourceDescriptors` request.
- * </pre>
  *
  * Protobuf type <code>Google\Monitoring\V3\ListMonitoredResourceDescriptorsRequest</code>
  */
 class ListMonitoredResourceDescriptorsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The project on which to execute the request. The format is
      * `"projects/{project_id_or_number}"`.
-     * </pre>
      *
-     * <code>string name = 5;</code>
+     * Generated from protobuf field <code>string name = 5;</code>
      */
     private $name = '';
     /**
-     * <pre>
      * An optional [filter](/monitoring/api/v3/filters) describing
      * the descriptors to be returned.  The filter can reference
      * the descriptor's type and labels. For example, the
      * following filter returns only Google Compute Engine descriptors
      * that have an `id` label:
      *     resource.type = starts_with("gce_") AND resource.label:id
-     * </pre>
      *
-     * <code>string filter = 2;</code>
+     * Generated from protobuf field <code>string filter = 2;</code>
      */
     private $filter = '';
     /**
-     * <pre>
      * A positive number that is the maximum number of results to return.
-     * </pre>
      *
-     * <code>int32 page_size = 3;</code>
+     * Generated from protobuf field <code>int32 page_size = 3;</code>
      */
     private $page_size = 0;
     /**
-     * <pre>
      * If this field is not empty then it must contain the `nextPageToken` value
      * returned by a previous call to this method.  Using this field causes the
      * method to return additional results from the previous method call.
-     * </pre>
      *
-     * <code>string page_token = 4;</code>
+     * Generated from protobuf field <code>string page_token = 4;</code>
      */
     private $page_token = '';
 
@@ -64,12 +54,10 @@ class ListMonitoredResourceDescriptorsRequest extends \Google\Protobuf\Internal\
     }
 
     /**
-     * <pre>
      * The project on which to execute the request. The format is
      * `"projects/{project_id_or_number}"`.
-     * </pre>
      *
-     * <code>string name = 5;</code>
+     * Generated from protobuf field <code>string name = 5;</code>
      * @return string
      */
     public function getName()
@@ -78,12 +66,10 @@ class ListMonitoredResourceDescriptorsRequest extends \Google\Protobuf\Internal\
     }
 
     /**
-     * <pre>
      * The project on which to execute the request. The format is
      * `"projects/{project_id_or_number}"`.
-     * </pre>
      *
-     * <code>string name = 5;</code>
+     * Generated from protobuf field <code>string name = 5;</code>
      * @param string $var
      */
     public function setName($var)
@@ -95,16 +81,14 @@ class ListMonitoredResourceDescriptorsRequest extends \Google\Protobuf\Internal\
     }
 
     /**
-     * <pre>
      * An optional [filter](/monitoring/api/v3/filters) describing
      * the descriptors to be returned.  The filter can reference
      * the descriptor's type and labels. For example, the
      * following filter returns only Google Compute Engine descriptors
      * that have an `id` label:
      *     resource.type = starts_with("gce_") AND resource.label:id
-     * </pre>
      *
-     * <code>string filter = 2;</code>
+     * Generated from protobuf field <code>string filter = 2;</code>
      * @return string
      */
     public function getFilter()
@@ -113,16 +97,14 @@ class ListMonitoredResourceDescriptorsRequest extends \Google\Protobuf\Internal\
     }
 
     /**
-     * <pre>
      * An optional [filter](/monitoring/api/v3/filters) describing
      * the descriptors to be returned.  The filter can reference
      * the descriptor's type and labels. For example, the
      * following filter returns only Google Compute Engine descriptors
      * that have an `id` label:
      *     resource.type = starts_with("gce_") AND resource.label:id
-     * </pre>
      *
-     * <code>string filter = 2;</code>
+     * Generated from protobuf field <code>string filter = 2;</code>
      * @param string $var
      */
     public function setFilter($var)
@@ -134,11 +116,9 @@ class ListMonitoredResourceDescriptorsRequest extends \Google\Protobuf\Internal\
     }
 
     /**
-     * <pre>
      * A positive number that is the maximum number of results to return.
-     * </pre>
      *
-     * <code>int32 page_size = 3;</code>
+     * Generated from protobuf field <code>int32 page_size = 3;</code>
      * @return int
      */
     public function getPageSize()
@@ -147,11 +127,9 @@ class ListMonitoredResourceDescriptorsRequest extends \Google\Protobuf\Internal\
     }
 
     /**
-     * <pre>
      * A positive number that is the maximum number of results to return.
-     * </pre>
      *
-     * <code>int32 page_size = 3;</code>
+     * Generated from protobuf field <code>int32 page_size = 3;</code>
      * @param int $var
      */
     public function setPageSize($var)
@@ -163,13 +141,11 @@ class ListMonitoredResourceDescriptorsRequest extends \Google\Protobuf\Internal\
     }
 
     /**
-     * <pre>
      * If this field is not empty then it must contain the `nextPageToken` value
      * returned by a previous call to this method.  Using this field causes the
      * method to return additional results from the previous method call.
-     * </pre>
      *
-     * <code>string page_token = 4;</code>
+     * Generated from protobuf field <code>string page_token = 4;</code>
      * @return string
      */
     public function getPageToken()
@@ -178,13 +154,11 @@ class ListMonitoredResourceDescriptorsRequest extends \Google\Protobuf\Internal\
     }
 
     /**
-     * <pre>
      * If this field is not empty then it must contain the `nextPageToken` value
      * returned by a previous call to this method.  Using this field causes the
      * method to return additional results from the previous method call.
-     * </pre>
      *
-     * <code>string page_token = 4;</code>
+     * Generated from protobuf field <code>string page_token = 4;</code>
      * @param string $var
      */
     public function setPageToken($var)

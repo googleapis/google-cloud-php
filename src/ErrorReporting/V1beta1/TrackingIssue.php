@@ -9,21 +9,17 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * Information related to tracking the progress on resolving the error.
- * </pre>
  *
  * Protobuf type <code>Google\Devtools\Clouderrorreporting\V1beta1\TrackingIssue</code>
  */
 class TrackingIssue extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * A URL pointing to a related entry in an issue tracking system.
      * Example: https://github.com/user/project/issues/4
-     * </pre>
      *
-     * <code>string url = 1;</code>
+     * Generated from protobuf field <code>string url = 1;</code>
      */
     private $url = '';
 
@@ -33,12 +29,10 @@ class TrackingIssue extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * A URL pointing to a related entry in an issue tracking system.
      * Example: https://github.com/user/project/issues/4
-     * </pre>
      *
-     * <code>string url = 1;</code>
+     * Generated from protobuf field <code>string url = 1;</code>
      * @return string
      */
     public function getUrl()
@@ -47,12 +41,10 @@ class TrackingIssue extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * A URL pointing to a related entry in an issue tracking system.
      * Example: https://github.com/user/project/issues/4
-     * </pre>
      *
-     * <code>string url = 1;</code>
+     * Generated from protobuf field <code>string url = 1;</code>
      * @param string $var
      */
     public function setUrl($var)

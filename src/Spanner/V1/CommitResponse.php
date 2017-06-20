@@ -9,20 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * <pre>
  * The response for [Commit][google.spanner.v1.Spanner.Commit].
- * </pre>
  *
  * Protobuf type <code>Google\Spanner\V1\CommitResponse</code>
  */
 class CommitResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * <pre>
      * The Cloud Spanner timestamp at which the transaction committed.
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp commit_timestamp = 1;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp commit_timestamp = 1;</code>
      */
     private $commit_timestamp = null;
 
@@ -32,11 +28,9 @@ class CommitResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The Cloud Spanner timestamp at which the transaction committed.
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp commit_timestamp = 1;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp commit_timestamp = 1;</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getCommitTimestamp()
@@ -45,11 +39,9 @@ class CommitResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * <pre>
      * The Cloud Spanner timestamp at which the transaction committed.
-     * </pre>
      *
-     * <code>.google.protobuf.Timestamp commit_timestamp = 1;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp commit_timestamp = 1;</code>
      * @param \Google\Protobuf\Timestamp $var
      */
     public function setCommitTimestamp(&$var)

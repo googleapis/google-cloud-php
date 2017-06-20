@@ -5,7 +5,6 @@
 namespace Google\Cloud\Speech\V1;
 
 /**
- * <pre>
  * Audio encoding of the data sent in the audio message. All encodings support
  * only 1 channel (mono) audio. Only `FLAC` includes a header that describes
  * the bytes of audio that follow the header. The other encodings are raw
@@ -15,77 +14,61 @@ namespace Google\Cloud\Speech\V1;
  * reduced if lossy codecs, which include the other codecs listed in
  * this section, are used to capture or transmit the audio, particularly if
  * background noise is present.
- * </pre>
  *
  * Protobuf enum <code>Google\Cloud\Speech\V1\RecognitionConfig\AudioEncoding</code>
  */
 class RecognitionConfig_AudioEncoding
 {
     /**
-     * <pre>
      * Not specified. Will return result [google.rpc.Code.INVALID_ARGUMENT][].
-     * </pre>
      *
-     * <code>ENCODING_UNSPECIFIED = 0;</code>
+     * Generated from protobuf enum <code>ENCODING_UNSPECIFIED = 0;</code>
      */
     const ENCODING_UNSPECIFIED = 0;
     /**
-     * <pre>
      * Uncompressed 16-bit signed little-endian samples (Linear PCM).
-     * </pre>
      *
-     * <code>LINEAR16 = 1;</code>
+     * Generated from protobuf enum <code>LINEAR16 = 1;</code>
      */
     const LINEAR16 = 1;
     /**
-     * <pre>
      * [`FLAC`](https://xiph.org/flac/documentation.html) (Free Lossless Audio
      * Codec) is the recommended encoding because it is
      * lossless--therefore recognition is not compromised--and
      * requires only about half the bandwidth of `LINEAR16`. `FLAC` stream
      * encoding supports 16-bit and 24-bit samples, however, not all fields in
      * `STREAMINFO` are supported.
-     * </pre>
      *
-     * <code>FLAC = 2;</code>
+     * Generated from protobuf enum <code>FLAC = 2;</code>
      */
     const FLAC = 2;
     /**
-     * <pre>
      * 8-bit samples that compand 14-bit audio samples using G.711 PCMU/mu-law.
-     * </pre>
      *
-     * <code>MULAW = 3;</code>
+     * Generated from protobuf enum <code>MULAW = 3;</code>
      */
     const MULAW = 3;
     /**
-     * <pre>
      * Adaptive Multi-Rate Narrowband codec. `sample_rate_hertz` must be 8000.
-     * </pre>
      *
-     * <code>AMR = 4;</code>
+     * Generated from protobuf enum <code>AMR = 4;</code>
      */
     const AMR = 4;
     /**
-     * <pre>
      * Adaptive Multi-Rate Wideband codec. `sample_rate_hertz` must be 16000.
-     * </pre>
      *
-     * <code>AMR_WB = 5;</code>
+     * Generated from protobuf enum <code>AMR_WB = 5;</code>
      */
     const AMR_WB = 5;
     /**
-     * <pre>
      * Opus encoded audio frames in Ogg container
      * ([OggOpus](https://wiki.xiph.org/OggOpus)).
      * `sample_rate_hertz` must be 16000.
-     * </pre>
      *
-     * <code>OGG_OPUS = 6;</code>
+     * Generated from protobuf enum <code>OGG_OPUS = 6;</code>
      */
     const OGG_OPUS = 6;
     /**
-     * <pre>
      * Although the use of lossy encodings is not recommended, if a very low
      * bitrate encoding is required, `OGG_OPUS` is highly preferred over
      * Speex encoding. The [Speex](https://speex.org/)  encoding supported by
@@ -99,9 +82,8 @@ class RecognitionConfig_AudioEncoding
      * bytes (octets) as specified in RFC 5574. In other words, each RTP header
      * is replaced with a single byte containing the block length. Only Speex
      * wideband is supported. `sample_rate_hertz` must be 16000.
-     * </pre>
      *
-     * <code>SPEEX_WITH_HEADER_BYTE = 7;</code>
+     * Generated from protobuf enum <code>SPEEX_WITH_HEADER_BYTE = 7;</code>
      */
     const SPEEX_WITH_HEADER_BYTE = 7;
 }
