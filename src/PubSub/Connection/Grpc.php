@@ -27,9 +27,9 @@ use Google\GAX\Serializer;
 use Google\Iam\V1\Policy;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\Timestamp;
-use Google\PubSub\V1\PubsubMessage;
-use Google\PubSub\V1\PushConfig;
-use Google\PubSub\V1\Subscription;
+use Google\Pubsub\V1\PubsubMessage;
+use Google\Pubsub\V1\PushConfig;
+use Google\Pubsub\V1\Subscription;
 use Grpc\ChannelCredentials;
 
 /**
