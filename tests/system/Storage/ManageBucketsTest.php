@@ -100,7 +100,7 @@ class ManageBucketsTest extends StorageTestCase
         $resourceId = explode('#', $policy['resourceId'])[0];
 
         $bucketName = self::$bucket->name();
-        $this->assertEquals($resourceId, sprintf('buckets/%s', $bucketName));
+        $this->assertEquals($resourceId, sprintf('projects/_/buckets/%s', $bucketName));
 
         $role = 'roles/storage.admin';
 

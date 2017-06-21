@@ -19,6 +19,7 @@ namespace Google\Cloud\Tests\Snippets\Spanner;
 
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
 use Google\Cloud\Spanner\Bytes;
+use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\ValueMapper;
 use Psr\Http\Message\StreamInterface;
 
@@ -71,7 +72,7 @@ class BytesTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Bytes::class, 'type');
         $snippet->addLocal('bytes', $this->bytes);
         $res = $snippet->invoke();
-        $this->assertEquals(ValueMapper::TYPE_BYTES, $res->output());
+        $this->assertEquals(Database::TYPE_BYTES, $res->output());
     }
 
     public function testFormatAsString()

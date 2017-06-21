@@ -102,7 +102,6 @@ class StorageObjectTest extends \PHPUnit_Framework_TestCase
         $this->connection->patchObject($predefinedAcl + [
             'bucket' => $bucket,
             'object' => $object,
-            'generation' => null,
             'acl' => null
         ])->willReturn([]);
         $object = new StorageObject(
@@ -354,7 +353,6 @@ class StorageObjectTest extends \PHPUnit_Framework_TestCase
         $this->connection->downloadObject([
                 'bucket' => $bucket,
                 'object' => $object,
-                'generation' => null,
                 'restOptions' => [
                     'headers' => [
                         'x-goog-encryption-algorithm' => 'AES256',
@@ -384,7 +382,6 @@ class StorageObjectTest extends \PHPUnit_Framework_TestCase
         $this->connection->downloadObject([
                 'bucket' => $bucket,
                 'object' => $object,
-                'generation' => null,
                 'restOptions' => [
                     'headers' => [
                         'x-goog-encryption-algorithm' => 'AES256',
@@ -413,7 +410,6 @@ class StorageObjectTest extends \PHPUnit_Framework_TestCase
         $this->connection->downloadObject([
             'bucket' => $bucket,
             'object' => $object,
-            'generation' => null,
         ])
             ->willReturn($stream);
 
@@ -435,7 +431,6 @@ class StorageObjectTest extends \PHPUnit_Framework_TestCase
         $this->connection->downloadObject([
             'bucket' => $bucket,
             'object' => $object,
-            'generation' => null,
             'restOptions' => [
                 'headers' => [
                     'x-goog-encryption-algorithm' => 'AES256',
@@ -485,7 +480,6 @@ class StorageObjectTest extends \PHPUnit_Framework_TestCase
         $this->connection->getObject([
                 'bucket' => $bucket,
                 'object' => $object,
-                'generation' => null,
                 'restOptions' => [
                     'headers' => [
                         'x-goog-encryption-algorithm' => 'AES256',
@@ -864,5 +858,15 @@ class StorageObjectTest extends \PHPUnit_Framework_TestCase
 
         $this->assertTrue($this->verifySignature($pub, $input, base64_decode(urldecode($signature))));
         $this->assertTrue(in_array('response-content-type='. urlencode($responseType), $pieces));
+    }
+
+    public function testRequesterPays()
+    {
+        $this->connection->getObject(Argument::withEntry('userProject', 'foo'))
+            ->willReturn([]);
+
+        $object = new StorageObject($this->connection->reveal(), 'object', 'bucket', null, ['requesterProjectId' => 'foo']);
+
+        $object->reload();
     }
 }

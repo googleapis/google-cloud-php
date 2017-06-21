@@ -658,7 +658,7 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
                         [
                             'name' => 'ID',
                             'type' => [
-                                'code' => ValueMapper::TYPE_INT64
+                                'code' => Database::TYPE_INT64
                             ]
                         ]
                     ]

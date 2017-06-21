@@ -96,14 +96,14 @@ use RuntimeException;
  *               definitions are only necessary for null parameter values.
  *               Accepted values are defined as constants on
  *               {@see Google\Cloud\Spanner\ValueMapper}, and are as follows:
- *               `ValueMapper::TYPE_BOOL`, `ValueMapper::TYPE_INT64`,
- *               `ValueMapper::TYPE_FLOAT64`, `ValueMapper::TYPE_TIMESTAMP`,
- *               `ValueMapper::TYPE_DATE`, `ValueMapper::TYPE_STRING`,
- *               `ValueMapper::TYPE_BYTES`, `ValueMapper::TYPE_ARRAY` and
- *               `ValueMapper::TYPE_STRUCT`. If the parameter type is an array,
+ *               `Database::TYPE_BOOL`, `Database::TYPE_INT64`,
+ *               `Database::TYPE_FLOAT64`, `Database::TYPE_TIMESTAMP`,
+ *               `Database::TYPE_DATE`, `Database::TYPE_STRING`,
+ *               `Database::TYPE_BYTES`, `Database::TYPE_ARRAY` and
+ *               `Database::TYPE_STRUCT`. If the parameter type is an array,
  *               the type should be given as an array, where the first element
- *               is `ValueMapper::TYPE_ARRAY` and the second element is the
- *               array type, for instance `[ValueMapper::TYPE_ARRAY, ValueMapper::TYPE_INT64]`.
+ *               is `Database::TYPE_ARRAY` and the second element is the
+ *               array type, for instance `[Database::TYPE_ARRAY, Database::TYPE_INT64]`.
  *     }
  *     @return Result
  * }

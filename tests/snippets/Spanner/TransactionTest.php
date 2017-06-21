@@ -316,7 +316,7 @@ class TransactionTest extends SnippetTestCase
                         [
                             'name' => 'loginCount',
                             'type' => [
-                                'code' => ValueMapper::TYPE_INT64
+                                'code' => Database::TYPE_INT64
                             ]
                         ]
                     ]

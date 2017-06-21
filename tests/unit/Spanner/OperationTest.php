@@ -18,6 +18,7 @@
 namespace Google\Cloud\Tests\Unit\Spanner;
 
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
+use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\KeyRange;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Operation;
@@ -165,7 +166,7 @@ class OperationTest extends \PHPUnit_Framework_TestCase
             if ($arg['sql'] !== $sql) return false;
             if ($arg['session'] !== self::SESSION) return false;
             if ($arg['params'] !== ['id' => '10']) return false;
-            if ($arg['paramTypes']['id']['code'] !== ValueMapper::TYPE_INT64) return false;
+            if ($arg['paramTypes']['id']['code'] !== Database::TYPE_INT64) return false;
 
             return true;
         }))->shouldBeCalled()->willReturn($this->executeAndReadResponse());
@@ -311,7 +312,7 @@ class OperationTest extends \PHPUnit_Framework_TestCase
                         [
                             'name' => 'ID',
                             'type' => [
-                                'code' => ValueMapper::TYPE_INT64
+                                'code' => Database::TYPE_INT64
                             ]
                         ]
                     ]

@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Storage;
 
+use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Storage\Connection\ConnectionInterface;
@@ -39,6 +40,7 @@ use Psr\Http\Message\StreamInterface;
  */
 class StorageObject
 {
+    use ArrayTrait;
     use EncryptionTrait;
 
     const DEFAULT_DOWNLOAD_URL = 'https://storage.googleapis.com';
@@ -85,7 +87,7 @@ class StorageObject
         $name,
         $bucket,
         $generation = null,
-        array $info = null,
+        array $info = [],
         $encryptionKey = null,
         $encryptionKeySHA256 = null
     ) {
@@ -98,7 +100,8 @@ class StorageObject
         $this->identity = [
             'bucket' => $bucket,
             'object' => $name,
-            'generation' => $generation
+            'generation' => $generation,
+            'userProject' => $this->pluck('requesterProjectId', $info, false)
         ];
         $this->acl = new Acl($this->connection, 'objectAccessControls', $this->identity);
     }
@@ -130,12 +133,13 @@ class StorageObject
      * }
      * ```
      *
+     * @param array $options [optional] Configuration options.
      * @return bool
      */
-    public function exists()
+    public function exists(array $options = [])
     {
         try {
-            $this->connection->getObject($this->identity + ['fields' => 'name']);
+            $this->connection->getObject($this->identity + $options + ['fields' => 'name']);
         } catch (NotFoundException $ex) {
             return false;
         }
@@ -173,7 +177,7 @@ class StorageObject
      */
     public function delete(array $options = [])
     {
-        $this->connection->deleteObject($options + $this->identity);
+        $this->connection->deleteObject($options + array_filter($this->identity));
     }
 
     /**
@@ -229,7 +233,7 @@ class StorageObject
             $options['acl'] = null;
         }
 
-        return $this->info = $this->connection->patchObject($options + $this->identity);
+        return $this->info = $this->connection->patchObject($options + array_filter($this->identity));
     }
 
     /**
@@ -316,7 +320,7 @@ class StorageObject
             $response['name'],
             $response['bucket'],
             $response['generation'],
-            $response,
+            $response + ['requesterProjectId' => $this->identity['userProject']],
             $key,
             $keySHA256
         );
@@ -445,7 +449,7 @@ class StorageObject
             $response['resource']['name'],
             $response['resource']['bucket'],
             $response['resource']['generation'],
-            $response['resource'],
+            $response['resource'] + ['requesterProjectId' => $this->identity['userProject']],
             $destinationKey,
             $destinationKeySHA256
         );
@@ -626,7 +630,7 @@ class StorageObject
             $this->formatEncryptionHeaders(
                 $options
                 + $this->encryptionData
-                + $this->identity
+                + array_filter($this->identity)
             )
         );
     }
@@ -847,11 +851,7 @@ class StorageObject
      */
     public function info(array $options = [])
     {
-        if (!$this->info) {
-            $this->reload($options);
-        }
-
-        return $this->info;
+        return $this->info ?: $this->reload($options);
     }
 
     /**
@@ -900,7 +900,7 @@ class StorageObject
             $this->formatEncryptionHeaders(
                 $options
                 + $this->encryptionData
-                + $this->identity
+                + array_filter($this->identity)
             )
         );
     }
@@ -982,7 +982,8 @@ class StorageObject
             'destinationPredefinedAcl' => $destAcl,
             'sourceBucket' => $this->identity['bucket'],
             'sourceObject' => $this->identity['object'],
-            'sourceGeneration' => $this->identity['generation']
+            'sourceGeneration' => $this->identity['generation'],
+            'userProject' => $this->identity['userProject'],
         ]) + $this->formatEncryptionHeaders($options + $this->encryptionData);
     }
 }
