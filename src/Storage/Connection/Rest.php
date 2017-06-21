@@ -43,8 +43,6 @@ class Rest implements ConnectionInterface
     const UPLOAD_URI = 'https://www.googleapis.com/upload/storage/v1/b/{bucket}/o{?query*}';
     const DOWNLOAD_URI = 'https://storage.googleapis.com/{bucket}/{object}{?query*}';
 
-    private $config;
-
     /**
      * @param array $config
      */
@@ -60,8 +58,6 @@ class Rest implements ConnectionInterface
             $config['serviceDefinitionPath'],
             self::BASE_URI
         ));
-
-        $this->config = $config;
     }
 
     /**

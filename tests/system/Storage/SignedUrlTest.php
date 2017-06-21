@@ -18,6 +18,7 @@
 namespace Google\Cloud\Tests\System\Storage;
 
 use Google\Cloud\Core\Timestamp;
+use GuzzleHttp\Client;
 
 /**
  * @group storage
@@ -26,6 +27,13 @@ use Google\Cloud\Core\Timestamp;
 class SignedUrlTest extends StorageTestCase
 {
     const CONTENT = 'hello world!';
+
+    private $guzzle;
+
+    public function setUp()
+    {
+        $this->guzzle = new Client;
+    }
 
     public function testSignedUrl()
     {
@@ -53,7 +61,7 @@ class SignedUrlTest extends StorageTestCase
         ]);
 
         $this->deleteFile($url, [
-            'Content-type: text/plain'
+            'Content-type' => 'text/plain'
         ]);
 
         $obj->reload();
@@ -71,38 +79,16 @@ class SignedUrlTest extends StorageTestCase
 
     private function getFile($url)
     {
-        $ch = curl_init();
-        $timeout = 5;
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
-        $data = curl_exec($ch);
-        curl_close($ch);
-        return $data;
-    }
+        $res = $this->guzzle->request('GET', $url);
 
-    private function updateFile($url, $content, array $headers = [])
-    {
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $content);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-        $data = curl_exec($ch);
-        curl_close($ch);
-        return $data;
+        return (string) $res->getBody();
     }
 
     private function deleteFile($url, array $headers = [])
     {
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-        $data = curl_exec($ch);
-        curl_close($ch);
-        return $data;
+
+        $this->guzzle->request('DELETE', $url, [
+            'headers' => $headers
+        ]);
     }
 }

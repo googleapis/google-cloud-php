@@ -719,31 +719,6 @@ class StorageObject
             throw new \InvalidArgumentException('$options.method must be one of `GET`, `PUT` or `DELETE`.');
         }
 
-        $options['cname'] = trim($options['cname'], '/');
-
-        $resource = sprintf('/%s/%s', $this->identity['bucket'], $this->identity['object']);
-
-        $headers = [];
-        foreach ($options['headers'] as $name => $value) {
-            $value = (is_array($value))
-                ? implode(',', $value)
-                : $value;
-
-            $headers[] = $name .':'. $value;
-        }
-
-        if ($headers) {
-            $headers[] = "";
-        }
-
-        $toSign = [
-            $options['method'],
-            $options['contentMd5'],
-            $options['contentType'],
-            $seconds,
-            implode("\n", $headers) . $resource,
-        ];
-
         if ($options['keyFilePath']) {
             if (!file_exists($options['keyFilePath'])) {
                 throw new \InvalidArgumentException(sprintf(
@@ -772,6 +747,31 @@ class StorageObject
                 'Please ensure keyfile includes `private_key` and `client_email`.'
             );
         }
+
+        $options['cname'] = trim($options['cname'], '/');
+
+        $resource = sprintf('/%s/%s', $this->identity['bucket'], $this->identity['object']);
+
+        $headers = [];
+        foreach ($options['headers'] as $name => $value) {
+            $value = (is_array($value))
+                ? implode(',', $value)
+                : $value;
+
+            $headers[] = $name .':'. $value;
+        }
+
+        if ($headers) {
+            $headers[] = "";
+        }
+
+        $toSign = [
+            $options['method'],
+            $options['contentMd5'],
+            $options['contentType'],
+            $seconds,
+            implode("\n", $headers) . $resource,
+        ];
 
         $string = implode("\n", $toSign);
         $signature = $this->signString($keyFile['private_key'], $string);
