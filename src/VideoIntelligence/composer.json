@@ -5,6 +5,7 @@
     "minimum-stability": "stable",
     "require": {
         "ext-grpc": "*",
+        "google/proto-client-php": "^0.13",
         "google/gax": "^0.10"
     },
     "extra": {
@@ -18,9 +19,6 @@
     "autoload": {
         "psr-4": {
             "Google\\Cloud\\VideoIntelligence\\": ""
-        },
-        "classmap": [
-            "V1beta1/GPBMetadata"
-        ]
+        }
     }
 }

@@ -20,9 +20,6 @@
     "autoload": {
         "psr-4": {
             "Google\\Cloud\\Vision\\": ""
-        },
-        "classmap": [
-            "V1/GPBMetadata"
-        ]
+        }
     }
 }

@@ -8,7 +8,8 @@
     },
     "suggest": {
         "google/cloud-storage": "Analyze documents stored in Google Cloud Storage",
-        "google/gax": "Required to support gRPC"
+        "google/gax": "Required to support gRPC",
+        "google/proto-client-php": "Required to support gRPC"
     },
     "extra": {
         "component": {
@@ -21,9 +22,6 @@
     "autoload": {
         "psr-4": {
             "Google\\Cloud\\Language\\": ""
-        },
-        "classmap": [
-            "V1beta2/GPBMetadata"
-        ]
+        }
     }
 }
