@@ -22,7 +22,7 @@ use Google\Cloud\Core\CallTrait;
 /**
  * Represents a Document Text Detection result.
  *
- * Sample Code:
+ * Example:
  * ```
  * use Google\Cloud\Vision\VisionClient;
  *
@@ -38,7 +38,7 @@ use Google\Cloud\Core\CallTrait;
  * @method pages() {
  *     Get the document pages.
  *
- *     Sample Code:
+ *     Example:
  *     ```
  *     $pages = $document->pages();
  *     ```
@@ -48,7 +48,7 @@ use Google\Cloud\Core\CallTrait;
  * @method text() {
  *     Get the document text.
  *
- *     Sample Code:
+ *     Example:
  *     ```
  *     $text = $document->text();
  *     ```
@@ -58,7 +58,7 @@ use Google\Cloud\Core\CallTrait;
  * @method info() {
  *     Get the Document Text detection result.
  *
- *     Sample Code:
+ *     Example:
  *     ```
  *     $info = $document->info();
  *     ```

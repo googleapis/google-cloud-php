@@ -29,7 +29,7 @@ use Google\Cloud\Core\Compute\Metadata\Readers\ReaderInterface;
  * You can get the GCE metadata values very easily like:
  *
  *
- * Sample Code:
+ * Example:
  * ```
  * use Google\Cloud\Core\Compute\Metadata;
  *
@@ -75,7 +75,7 @@ class Metadata
     /**
      * Fetch a metadata item by its path
      *
-     * Sample Code:
+     * Example:
      * ```
      * $projectId = $metadata->get('project/project-id');
      * ```
@@ -90,7 +90,7 @@ class Metadata
     /**
      * Detect and return the project ID
      *
-     * Sample Code:
+     * Example:
      * ```
      * $projectId = $metadata->getProjectId();
      * ```
@@ -109,7 +109,7 @@ class Metadata
     /**
      * Fetch an item from the project metadata
      *
-     * Sample Code:
+     * Example:
      * ```
      * $foo = $metadata->getProjectMetadata('foo');
      * ```
@@ -126,7 +126,7 @@ class Metadata
     /**
      * Fetch an item from the instance metadata
      *
-     * Sample Code:
+     * Example:
      * ```
      * $foo = $metadata->getInstanceMetadata('foo');
      * ```

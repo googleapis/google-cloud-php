@@ -30,7 +30,7 @@ use Psr\Cache\CacheItemPoolInterface;
  * infrastructure. Find more information at the
  * [Google Cloud Storage API docs](https://developers.google.com/storage).
  *
- * Sample Code:
+ * Example:
  * ```
  * use Google\Cloud\Storage\StorageClient;
  *
@@ -99,7 +99,7 @@ class StorageClient
      * will be billed for all requests. This only has an effect when the bucket
      * is not owned by the current or given project ID.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $bucket = $storage->bucket('my-bucket');
      * ```
@@ -124,7 +124,7 @@ class StorageClient
     /**
      * Fetches all buckets in the project.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $buckets = $storage->buckets();
      * ```
@@ -180,7 +180,7 @@ class StorageClient
      * namespace. For more information please see
      * [bucket name requirements](https://cloud.google.com/storage/docs/naming#requirements)
      *
-     * Sample Code:
+     * Example:
      * ```
      * $bucket = $storage->createBucket('bucket');
      * ```

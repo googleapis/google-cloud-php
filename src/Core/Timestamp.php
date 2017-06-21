@@ -25,7 +25,7 @@ namespace Google\Cloud\Core;
  * precision in the timestamp will be overridden when encoding the timestamp
  * as a string.
  *
- * Sample Code:
+ * Example:
  * ```
  * use Google\Cloud\Core\Timestamp;
  *
@@ -68,7 +68,7 @@ class Timestamp
      *
      * Please note that nanosecond precision is not present in this method.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $dateTime = $timestamp->get();
      * ```
@@ -85,7 +85,7 @@ class Timestamp
      *
      * This method retains nanosecond precision, if available.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $value = $timestamp->formatAsString();
      * ```

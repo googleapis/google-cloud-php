@@ -21,7 +21,7 @@ namespace Google\Cloud\BigQuery;
  * Represents a value with a data type of
  * [Date](https://cloud.google.com/bigquery/docs/reference/standard-sql/data-types#date-type).
  *
- * Sample Code:
+ * Example:
  * ```
  * use Google\Cloud\BigQuery\BigQueryClient;
  *

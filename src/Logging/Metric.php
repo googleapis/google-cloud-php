@@ -25,7 +25,7 @@ use Google\Cloud\Logging\Connection\ConnectionInterface;
  * use these metrics to create charts and alerting policies in
  * [Stackdriver Monitoring](https://cloud.google.com/monitoring/docs).
  *
- * Sample Code:
+ * Example:
  * ```
  * use Google\Cloud\Logging\LoggingClient;
  *
@@ -69,7 +69,7 @@ class Metric
     /**
      * Check whether or not the metric exists.
      *
-     * Sample Code:
+     * Example:
      * ```
      * if ($metric->exists()) {
      *     echo 'Metric exists!';
@@ -93,7 +93,7 @@ class Metric
     /**
      * Delete the metric.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $metric->delete();
      * ```
@@ -115,7 +115,7 @@ class Metric
      * Update the metric. Please note this will trigger a network request if
      * cached data is not available to perform the update with.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $metric->update([
      *     'description' => 'A description for my metric.'
@@ -149,7 +149,7 @@ class Metric
      * Retrieves the metric's details. If no metric data is cached a network
      * request will be made to retrieve it.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $info = $metric->info();
      * echo $info['description'];
@@ -174,7 +174,7 @@ class Metric
     /**
      * Triggers a network request to reload the metric's details.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $metric->reload();
      * $info = $metric->info();
@@ -198,7 +198,7 @@ class Metric
     /**
      * Returns the metric's name.
      *
-     * Sample Code:
+     * Example:
      * ```
      * echo $metric->name();
      * ```

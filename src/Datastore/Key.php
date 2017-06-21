@@ -42,7 +42,7 @@ use JsonSerializable;
  * Key state can be checked by calling `Key::state()`. The return will be one of
  * `Key::STATE_NAMED` or `Key::STATE_INCOMPLETE`.
  *
- * Sample Code:
+ * Example:
  * ```
  * use Google\Cloud\Datastore\DatastoreClient;
  *
@@ -135,7 +135,7 @@ class Key implements JsonSerializable
      * an `InvalidArgumentException` will be thrown. Once an incomplete
      * pathElement is given, the key cannot be extended any further.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $key->pathElement('Person', 'Jane');
      * ```
@@ -185,7 +185,7 @@ class Key implements JsonSerializable
     /**
      * Add a path element to the beginning of the Key path.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $key->ancestor('Person', 'Jane');
      * ```
@@ -230,7 +230,7 @@ class Key implements JsonSerializable
      *
      * Given key path will be prepended to any path elements on the current key.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $parent = $datastore->key('Person', 'Dad');
      * $key->ancestorKey($parent);
@@ -258,7 +258,7 @@ class Key implements JsonSerializable
      *
      * Use `Key::STATE_NAMED` and `Key::STATE_INCOMPLETE` to check value.
      *
-     * Sample Code:
+     * Example:
      * ```
      * // An incomplete key does not have an ID on its last path element.
      * $key = $datastore->key('parent', 1234)
@@ -295,7 +295,7 @@ class Key implements JsonSerializable
      * This method is used internally when IDs are allocated to existing instances
      * of a Key. It should not generally be used externally.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $key = $datastore->key('Person');
      * $key->setLastElementIdentifier('Bob', Key::TYPE_NAME);
@@ -320,7 +320,7 @@ class Key implements JsonSerializable
     /**
      * Get the key path
      *
-     * Sample Code:
+     * Example:
      * ```
      * $path = $key->path();
      * ```
@@ -335,7 +335,7 @@ class Key implements JsonSerializable
     /**
      * Get the last pathElement in the key
      *
-     * Sample Code:
+     * Example:
      * ```
      * $lastPathElement = $key->pathEnd();
      * ```
@@ -355,7 +355,7 @@ class Key implements JsonSerializable
      *
      * If the key is incomplete, returns `null`.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $lastPathElementIndentifier = $key->pathEndIdentifier();
      * ```
@@ -382,7 +382,7 @@ class Key implements JsonSerializable
      *
      * If the key is incomplete, returns `null`.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $lastPathElementIdentifierType = $key->pathEndIdentifierType();
      * ```

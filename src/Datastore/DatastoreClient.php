@@ -44,7 +44,7 @@ use Psr\Http\Message\StreamInterface;
  * [Google Cloud Datastore Emulator](https://cloud.google.com/datastore/docs/tools/datastore-emulator),
  * set the [`DATASTORE_EMULATOR_HOST`](https://goo.gl/vCVZrY) environment variable.
  *
- * Sample Code:
+ * Example:
  * ```
  * use Google\Cloud\Datastore\DatastoreClient;
  *
@@ -151,7 +151,7 @@ class DatastoreClient
     /**
      * Create a single Key instance
      *
-     * Sample Code:
+     * Example:
      * ```
      * $key = $datastore->key('Person', 'Bob');
      * ```
@@ -195,7 +195,7 @@ class DatastoreClient
      * entity identity and ancestry are correct and that there will be no
      * collisions during the insert operation.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $keys = $datastore->keys('Person', [
      *     'number' => 10
@@ -250,7 +250,7 @@ class DatastoreClient
      * If the name of a subclass of Entity is given in the options array, an
      * entity will be created with that class rather than the default class.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $key = $datastore->key('Person', 'Bob');
      * $entity = $datastore->entity($key, [
@@ -334,7 +334,7 @@ class DatastoreClient
     /**
      * Create a new GeoPoint
      *
-     * Sample Code:
+     * Example:
      * ```
      * $geoPoint = $datastore->geoPoint(37.4220, -122.0841);
      * ```
@@ -353,7 +353,7 @@ class DatastoreClient
     /**
      * Create a new Blob
      *
-     * Sample Code:
+     * Example:
      * ```
      * $blob = $datastore->blob('hello world');
      * ```
@@ -375,7 +375,7 @@ class DatastoreClient
      * Create an Int64 object. This can be used to work with 64 bit integers as
      * a string value while on a 32 bit platform.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $int64 = $datastore->int64('9223372036854775807');
      * ```
@@ -396,7 +396,7 @@ class DatastoreClient
      *
      * This method will execute a service request.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $key = $datastore->key('Person');
      * $keyWithAllocatedId = $datastore->allocateId($key);
@@ -422,7 +422,7 @@ class DatastoreClient
      *
      * This method will execute a service request.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $keys = [
      *     $datastore->key('Person'),
@@ -446,7 +446,7 @@ class DatastoreClient
     /**
      * Create a Transaction
      *
-     * Sample Code:
+     * Example:
      * ```
      * $transaction = $datastore->transaction();
      * ```
@@ -477,7 +477,7 @@ class DatastoreClient
      * Insert by this method is non-transactional. If you need transaction
      * support, use {@see Google\Cloud\Datastore\Transaction::insert()}.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $key = $datastore->key('Person', 'Bob');
      * $entity = $datastore->entity($key, ['firstName' => 'Bob']);
@@ -506,7 +506,7 @@ class DatastoreClient
      * Insert by this method is non-transactional. If you need transaction
      * support, use {@see Google\Cloud\Datastore\Transaction::insertBatch()}.
      *
-     * Sample Code:
+     * Example:
      * ```
      *
      * $entities = [
@@ -544,7 +544,7 @@ class DatastoreClient
      * Update by this method is non-transactional. If you need transaction
      * support, use {@see Google\Cloud\Datastore\Transaction::update()}.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $entity['firstName'] = 'John';
      *
@@ -585,7 +585,7 @@ class DatastoreClient
      * Update by this method is non-transactional. If you need transaction
      * support, use {@see Google\Cloud\Datastore\Transaction::updateBatch()}.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $entities[0]['firstName'] = 'Bob';
      * $entities[1]['firstName'] = 'John';
@@ -639,7 +639,7 @@ class DatastoreClient
      * Upsert by this method is non-transactional. If you need transaction
      * support, use {@see Google\Cloud\Datastore\Transaction::upsert()}.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $key = $datastore->key('Person', 'Bob');
      * $entity = $datastore->entity($key, ['firstName' => 'Bob']);
@@ -674,7 +674,7 @@ class DatastoreClient
      * Upsert by this method is non-transactional. If you need transaction
      * support, use {@see Google\Cloud\Datastore\Transaction::upsertBatch()}.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $keys = [
      *     $datastore->key('Person', 'Bob'),
@@ -711,7 +711,7 @@ class DatastoreClient
      * Deletion by this method is non-transactional. If you need transaction
      * support, use {@see Google\Cloud\Datastore\Transaction::delete()}.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $key = $datastore->key('Person', 'Bob');
      *
@@ -744,7 +744,7 @@ class DatastoreClient
      * Deletion by this method is non-transactional. If you need transaction
      * support, use {@see Google\Cloud\Datastore\Transaction::deleteBatch()}.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $keys = [
      *     $datastore->key('Person', 'Bob'),
@@ -787,7 +787,7 @@ class DatastoreClient
      * To lookup an entity inside a transaction, use
      * {@see Google\Cloud\Datastore\Transaction::lookup()}.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $key = $datastore->key('Person', 'Bob');
      *
@@ -826,7 +826,7 @@ class DatastoreClient
      * To lookup entities inside a transaction, use
      * {@see Google\Cloud\Datastore\Transaction::lookupBatch()}.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $keys = [
      *     $datastore->key('Person', 'Bob'),
@@ -873,7 +873,7 @@ class DatastoreClient
      * The Query class can be used as a builder, or it can accept a query
      * representation at instantiation.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $query = $datastore->query();
      * ```
@@ -891,7 +891,7 @@ class DatastoreClient
     /**
      * Create a GqlQuery
      *
-     * Sample Code:
+     * Example:
      * ```
      * $query = $datastore->gqlQuery('SELECT * FROM Companies');
      * ```
@@ -951,7 +951,7 @@ class DatastoreClient
      * To query datastore inside a transaction, use
      * {@see Google\Cloud\Datastore\Transaction::runQuery()}.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $result = $datastore->runQuery($query);
      *

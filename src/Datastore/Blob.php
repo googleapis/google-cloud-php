@@ -25,7 +25,7 @@ use Psr\Http\Message\StreamInterface;
  *
  * Blobs can be used to store binary data in Google Cloud Datastore.
  *
- * Sample Code:
+ * Example:
  * ```
  * use Google\Cloud\Datastore\DatastoreClient;
  *
@@ -60,7 +60,7 @@ class Blob
     /**
      * Get the blob contents as a stream
      *
-     * Sample Code:
+     * Example:
      * ```
      * $value = $blob->get();
      * ```

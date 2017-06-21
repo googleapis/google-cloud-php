@@ -33,7 +33,7 @@ use InvalidArgumentException;
  * Idiomatic usage is via {@see Google\Cloud\Datastore\DatastoreClient::gqlQuery()}.
  *
  *
- * Sample Code:
+ * Example:
  * ```
  * use Google\Cloud\Datastore\DatastoreClient;
  *

@@ -73,7 +73,7 @@ use Symfony\Component\Lock\Store\FlockStore;
  * discontinued. Please also note, since this is a dev-master dependency it may
  * require modifications to your composer minimum-stability settings.
  *
- * Sample Code:
+ * Example:
  * ```
  * use Google\Cloud\Spanner\SpannerClient;
  * use Google\Cloud\Spanner\Session\CacheSessionPool;

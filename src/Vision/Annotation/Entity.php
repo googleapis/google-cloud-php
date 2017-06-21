@@ -24,7 +24,7 @@ use Google\Cloud\Core\CallTrait;
  * [Google Cloud Vision](https://cloud.google.com/vision/docs/) features, namely
  * `LANDMARK_DETECTION`, `LOGO_DETECTION`, `LABEL_DETECTION` and `TEXT_DETECTION`.
  *
- * Sample Code:
+ * Example:
  * ```
  * use Google\Cloud\Vision\VisionClient;
  *
@@ -42,7 +42,7 @@ use Google\Cloud\Core\CallTrait;
  *
  *     Some IDs might be available in Knowledge Graph(KG).
  *
- *     Sample Code:
+ *     Example:
  *     ```
  *     echo $text->mid();
  *     ```
@@ -55,7 +55,7 @@ use Google\Cloud\Core\CallTrait;
  *     The language code for the locale in which the entity textual description
  *     (next field) is expressed.
  *
- *     Sample Code:
+ *     Example:
  *     ```
  *     echo $text->locale();
  *     ```
@@ -65,7 +65,7 @@ use Google\Cloud\Core\CallTrait;
  * @method description() {
  *     Entity textual description, expressed in its locale language.
  *
- *     Sample Code:
+ *     Example:
  *     ```
  *     echo $text->description();
  *     ```
@@ -77,7 +77,7 @@ use Google\Cloud\Core\CallTrait;
  *
  *     Range [0, 1].
  *
- *     Sample Code:
+ *     Example:
  *     ```
  *     echo $text->score();
  *     ```
@@ -92,7 +92,7 @@ use Google\Cloud\Core\CallTrait;
  *
  *     Range [0, 1].
  *
- *     Sample Code:
+ *     Example:
  *     ```
  *     echo $text->confidence();
  *     ```
@@ -109,7 +109,7 @@ use Google\Cloud\Core\CallTrait;
  *
  *     Range [0, 1].
  *
- *     Sample Code:
+ *     Example:
  *     ```
  *     echo $text->topicality();
  *     ```
@@ -124,7 +124,7 @@ use Google\Cloud\Core\CallTrait;
  *     image region, followed by boundingPolys for each word within the detected
  *     text.
  *
- *     Sample Code:
+ *     Example:
  *     ```
  *     print_r($text->boundingPoly());
  *     ```
@@ -139,7 +139,7 @@ use Google\Cloud\Core\CallTrait;
  *     location of the place where the query image was taken. Location
  *     information is usually present for landmarks.
  *
- *     Sample Code:
+ *     Example:
  *     ```
  *     print_r($text->locations());
  *     ```
@@ -150,7 +150,7 @@ use Google\Cloud\Core\CallTrait;
  *     Some entities can have additional optional Property fields. For example a
  *     different kind of score or string that qualifies the entity.
  *
- *     Sample Code:
+ *     Example:
  *     ```
  *     print_r($text->properties());
  *     ```
@@ -160,7 +160,7 @@ use Google\Cloud\Core\CallTrait;
  * @method info() {
  *     Get the raw annotation result
  *
- *     Sample Code:
+ *     Example:
  *     ```
  *     $info = $text->info();
  *     ```

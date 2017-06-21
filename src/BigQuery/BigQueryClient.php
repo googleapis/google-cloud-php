@@ -32,7 +32,7 @@ use Psr\Http\Message\StreamInterface;
  * Find more information at the
  * [Google Cloud BigQuery Docs](https://cloud.google.com/bigquery/docs).
  *
- * Sample Code:
+ * Example:
  * ```
  * use Google\Cloud\BigQuery\BigQueryClient;
  *
@@ -130,7 +130,7 @@ class BigQueryClient
      * | `bool`                                     | `BOOL`                               |
      * | `object` (Outside types specified above)   | **ERROR** `InvalidArgumentException` |
      *
-     * Sample Code:
+     * Example:
      * ```
      * $queryResults = $bigQuery->runQuery('SELECT commit FROM [bigquery-public-data:github_repos.commits] LIMIT 100');
      *
@@ -252,7 +252,7 @@ class BigQueryClient
      * can take advantage of parametriziation. For more details and examples
      * please see {@see Google\Cloud\BigQuery\BigQueryClient::runQuery()}.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $job = $bigQuery->runQueryAsJob('SELECT commit FROM [bigquery-public-data:github_repos.commits] LIMIT 100');
      *
@@ -320,7 +320,7 @@ class BigQueryClient
      * point. To see the operations that can be performed on a job please
      * see {@see Google\Cloud\BigQuery\Job}.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $job = $bigQuery->job('myJobId');
      * ```
@@ -336,7 +336,7 @@ class BigQueryClient
     /**
      * Fetches jobs in the project.
      *
-     * Sample Code:
+     * Example:
      * ```
      * // Get all jobs with the state of 'done'
      * $jobs = $bigQuery->jobs([
@@ -395,7 +395,7 @@ class BigQueryClient
      * point. To see the operations that can be performed on a dataset please
      * see {@see Google\Cloud\BigQuery\Dataset}.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $dataset = $bigQuery->dataset('myDatasetId');
      * ```
@@ -416,7 +416,7 @@ class BigQueryClient
     /**
      * Fetches datasets in the project.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $datasets = $bigQuery->datasets();
      *
@@ -468,7 +468,7 @@ class BigQueryClient
     /**
      * Creates a dataset.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $dataset = $bigQuery->createDataset('aDataset');
      * ```
@@ -511,7 +511,7 @@ class BigQueryClient
     /**
      * Create a Bytes object.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $bytes = $bigQuery->bytes('hello world');
      * ```
@@ -527,7 +527,7 @@ class BigQueryClient
     /**
      * Create a Date object.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $date = $bigQuery->date(new \DateTime('1995-02-04'));
      * ```
@@ -544,7 +544,7 @@ class BigQueryClient
      * Create an Int64 object. This can be used to work with 64 bit integers as
      * a string value while on a 32 bit platform.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $int64 = $bigQuery->int64('9223372036854775807');
      * ```
@@ -560,7 +560,7 @@ class BigQueryClient
     /**
      * Create a Time object.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $time = $bigQuery->time(new \DateTime('12:15:00.482172'));
      * ```
@@ -576,7 +576,7 @@ class BigQueryClient
     /**
      * Create a Timestamp object.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $timestamp = $bigQuery->timestamp(new \DateTime('2003-02-05 11:15:02.421827Z'));
      * ```

@@ -23,7 +23,7 @@ use Google\Cloud\Vision\Annotation\AbstractFeature;
 /**
  * Represents an Entity deduced from similar images on the Internet.
  *
- * Sample Code:
+ * Example:
  * ```
  * use Google\Cloud\Vision\VisionClient;
  *
@@ -40,7 +40,7 @@ use Google\Cloud\Vision\Annotation\AbstractFeature;
  * @method entityId() {
  *     The Entity ID
  *
- *     Sample Code:
+ *     Example:
  *     ```
  *     $id = $entity->entityId();
  *     ```
@@ -52,7 +52,7 @@ use Google\Cloud\Vision\Annotation\AbstractFeature;
  *
  *     Not normalized and not comparable across different image queries.
  *
- *     Sample Code:
+ *     Example:
  *     ```
  *     $score = $entity->score();
  *     ```
@@ -62,7 +62,7 @@ use Google\Cloud\Vision\Annotation\AbstractFeature;
  * @method description() {
  *     Canonical description of the entity, in English.
  *
- *     Sample Code:
+ *     Example:
  *     ```
  *     $description = $entity->description();
  *     ```

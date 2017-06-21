@@ -47,7 +47,7 @@ trait ResourceNameTrait
     /**
      * Convert a fully-qualified name into a simple name.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $topic = $pubsub->topic('projects/my-awesome-project/topics/my-topic-name');
      * echo $topic->pluckName('topic', $name); // `my-topic-name`
@@ -75,7 +75,7 @@ trait ResourceNameTrait
      * Convert a simple name into the fully-qualified name required by
      * the API.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $topic = $pubsub->topic('my-topic-name');
      * echo $topic->formatName('topic', $name); // `projects/my-awesome-project/topics/my-topic-name`
@@ -102,7 +102,7 @@ trait ResourceNameTrait
     /**
      * Check if a name of a give type is a fully-qualified resource name.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $topic = $pubsub->topic('my-topic-name');
      * if ($topic->isFullyQualifiedName('project', 'projects/my-awesome-project/topics/my-topic-name')) {

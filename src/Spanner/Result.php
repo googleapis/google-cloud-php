@@ -26,7 +26,7 @@ use Google\Cloud\Spanner\Session\SessionPoolInterface;
 /**
  * Represent a Cloud Spanner lookup result (either read or executeSql).
  *
- * Sample Code:
+ * Example:
  * ```
  * use Google\Cloud\Spanner\SpannerClient;
  *
@@ -141,7 +141,7 @@ class Result implements \IteratorAggregate
      * a resume token is available, attempts will be made on your behalf to
      * resume.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $rows = $result->rows();
      * ```
@@ -235,7 +235,7 @@ class Result implements \IteratorAggregate
      *
      * Will be populated once the result set is iterated upon.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $columns = $result->columns();
      * ```
@@ -252,7 +252,7 @@ class Result implements \IteratorAggregate
      *
      * Will be populated once the result set is iterated upon.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $metadata = $result->metadata();
      * ```
@@ -269,7 +269,7 @@ class Result implements \IteratorAggregate
     /**
      * Return the session associated with the result stream.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $session = $result->session();
      * ```
@@ -288,7 +288,7 @@ class Result implements \IteratorAggregate
      * Stats are not returned by default and will not be accessible until the
      * entire set of results has been iterated through.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $stats = $result->stats();
      * ```
@@ -314,7 +314,7 @@ class Result implements \IteratorAggregate
      *
      * Will be populated once the result set is iterated upon.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $snapshot = $result->snapshot();
      * ```
@@ -331,7 +331,7 @@ class Result implements \IteratorAggregate
      *
      * Will be populated once the result set is iterated upon.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $transaction = $result->transaction();
      * ```

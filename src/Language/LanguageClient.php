@@ -31,7 +31,7 @@ use Psr\Cache\CacheItemPoolInterface;
  * context are supported. Find more information at the
  * [Google Cloud Natural Language docs](https://cloud.google.com/natural-language/docs/).
  *
- * Sample Code:
+ * Example:
  * ```
  * use Google\Cloud\Language\LanguageClient;
  *
@@ -103,7 +103,7 @@ class LanguageClient
      * types, salience, mentions for each entity, and other properties in the
      * document.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $annotation = $language->analyzeEntities('Google Cloud Platform is a powerful tool.');
      *
@@ -159,7 +159,7 @@ class LanguageClient
     /**
      * Analyzes the sentiment of the provided document.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $annotation = $language->analyzeSentiment('Google Cloud Platform is a powerful tool.');
      * $sentiment = $annotation->sentiment();
@@ -216,7 +216,7 @@ class LanguageClient
     /**
      * Analyzes the document and provides a full set of text annotations.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $annotation = $language->analyzeSyntax('Google Cloud Platform is a powerful tool.');
      *
@@ -273,7 +273,7 @@ class LanguageClient
      * Analyzes the document and provides a full set of text annotations,
      * including semantic, syntactic, and sentiment information.
      *
-     * Sample Code:
+     * Example:
      * ```
      * // Annotate text with all features enabled.
      * $annotation = $language->annotateText('Google Cloud Platform is a powerful tool.');

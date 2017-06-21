@@ -31,7 +31,7 @@ use InvalidArgumentException;
  * A named resource representing the stream of messages from a single, specific
  * topic, to be delivered to the subscribing application.
  *
- * Sample Code:
+ * Example:
  * ```
  * // Create subscription through a topic
  * use Google\Cloud\PubSub\PubSubClient;
@@ -144,7 +144,7 @@ class Subscription
     /**
      * Get the subscription name
      *
-     * Sample Code:
+     * Example:
      * ```
      * echo $subscription->name();
      * ```
@@ -168,7 +168,7 @@ class Subscription
      * **NOTE: Some methods of instantiation of a Subscription do not supply a
      * topic name. The topic name is required to create a subscription.**
      *
-     * Sample Code:
+     * Example:
      * ```
      * $topic = $pubsub->topic('my-new-topic');
      *
@@ -228,7 +228,7 @@ class Subscription
      * Note that subscription name and topic are immutable properties and may
      * not be modified.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $subscription->update([
      *     'retainAckedMessages' => true
@@ -271,7 +271,7 @@ class Subscription
     /**
      * Delete a subscription
      *
-     * Sample Code:
+     * Example:
      * ```
      * $subscription->delete();
      * ```
@@ -299,7 +299,7 @@ class Subscription
      * downloaded, call {@see Google\Cloud\PubSub\Subscription::reload()} first
      * to refresh the cached information.
      *
-     * Sample Code:
+     * Example:
      * ```
      * if ($subscription->exists()) {
      *     echo 'Subscription exists!';
@@ -325,7 +325,7 @@ class Subscription
      * If the info is already cached on the object, it will return that result.
      * To fetch a fresh result, use {@see Google\Cloud\PubSub\Subscription::reload()}.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $info = $subscription->info();
      * echo $info['name']; // `projects/my-awesome-project/subscriptions/my-new-subscription`
@@ -351,7 +351,7 @@ class Subscription
      * To use the previously cached result (if it exists), use
      * {@see Subscription::info()}.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $subscription->reload();
      * $info = $subscription->info();
@@ -373,7 +373,7 @@ class Subscription
     /**
      * Retrieve new messages from the topic.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $messages = $subscription->pull();
      * foreach ($messages as $message) {
@@ -424,7 +424,7 @@ class Subscription
      * Use {@see Google\Cloud\PubSub\Subscription::acknowledgeBatch()} to
      * acknowledge multiple messages at once.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $messages = $subscription->pull();
      *
@@ -450,7 +450,7 @@ class Subscription
      * Use {@see Google\Cloud\PubSub\Subscription::acknowledge()} to acknowledge
      * a single message.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $messages = $subscription->pull();
      *
@@ -481,7 +481,7 @@ class Subscription
      * Use {@see Google\Cloud\PubSub\Subscription::modifyAckDeadlineBatch()} to
      * modify the ack deadline for multiple messages at once.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $messages = $subscription->pull();
      *
@@ -521,7 +521,7 @@ class Subscription
      * Use {@see Google\Cloud\PubSub\Subscription::modifyAckDeadline()} to
      * modify the ack deadline for a single message.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $messages = $subscription->pull();
      *
@@ -563,7 +563,7 @@ class Subscription
     /**
      * Set the push config for the subscription
      *
-     * Sample Code:
+     * Example:
      * ```
      * $subscription->modifyPushConfig([
      *     'pushEndpoint' => 'https://www.example.com/foo/bar'
@@ -604,7 +604,7 @@ class Subscription
      *
      * Please note that this method may not yet be available in your project.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $time = $pubsub->timestamp(new \DateTime('2017-04-01'));
      * $subscription->seekToTime($time);
@@ -629,7 +629,7 @@ class Subscription
      *
      * Please note that this method may not yet be available in your project.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $snapshot = $pubsub->snapshot('my-snapshot');
      * $subscription->seekToSnapshot($snapshot);
@@ -649,7 +649,7 @@ class Subscription
     /**
      * Manage the IAM policy for the current Subscription.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $iam = $subscription->iam();
      * ```

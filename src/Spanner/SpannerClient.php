@@ -37,7 +37,7 @@ use Psr\Http\StreamInterface;
  * database service. Find more information at
  * [Cloud Spanner docs](https://cloud.google.com/spanner/).
  *
- * Sample Code:
+ * Example:
  * ```
  * use Google\Cloud\Spanner\SpannerClient;
  *
@@ -47,7 +47,7 @@ use Psr\Http\StreamInterface;
  * @method resumeOperation() {
  *     Resume a Long Running Operation
  *
- *     Sample Code:
+ *     Example:
  *     ```
  *     $operation = $spanner->resumeOperation($operationName);
  *     ```
@@ -147,7 +147,7 @@ class SpannerClient
     /**
      * List all available instance configurations.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $configurations = $spanner->instanceConfigurations();
      * ```
@@ -196,7 +196,7 @@ class SpannerClient
      * {@see Google\Cloud\Spanner\InstanceConfiguration::exists()} to verify
      * existence before attempting to use the configuration.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $configuration = $spanner->instanceConfiguration($configurationName);
      * ```
@@ -217,7 +217,7 @@ class SpannerClient
     /**
      * Create a new instance.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $operation = $spanner->createInstance($configuration, 'my-instance');
      * ```
@@ -247,7 +247,7 @@ class SpannerClient
     /**
      * Lazily instantiate an instance.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $instance = $spanner->instance('my-instance');
      * ```
@@ -271,7 +271,7 @@ class SpannerClient
     /**
      * List instances in the project
      *
-     * Sample Code:
+     * Example:
      * ```
      * $instances = $spanner->instances();
      * ```
@@ -320,7 +320,7 @@ class SpannerClient
     /**
      * Connect to a database to run queries or mutations.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $database = $spanner->connect('my-instance', 'my-application-database');
      * ```
@@ -349,7 +349,7 @@ class SpannerClient
     /**
      * Create a new KeySet object
      *
-     * Sample Code:
+     * Example:
      * ```
      * $keySet = $spanner->keySet();
      * ```
@@ -376,7 +376,7 @@ class SpannerClient
     /**
      * Create a new KeyRange object
      *
-     * Sample Code:
+     * Example:
      * ```
      * $range = $spanner->keyRange();
      * ```
@@ -413,7 +413,7 @@ class SpannerClient
     /**
      * Create a Bytes object.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $bytes = $spanner->bytes('hello world');
      * ```
@@ -429,7 +429,7 @@ class SpannerClient
     /**
      * Create a Date object.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $date = $spanner->date(new \DateTime('1995-02-04'));
      * ```
@@ -445,7 +445,7 @@ class SpannerClient
     /**
      * Create a Timestamp object.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $timestamp = $spanner->timestamp(new \DateTime('2003-02-05 11:15:02.421827Z'));
      * ```
@@ -463,7 +463,7 @@ class SpannerClient
      * Create an Int64 object. This can be used to work with 64 bit integers as
      * a string value while on a 32 bit platform.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $int64 = $spanner->int64('9223372036854775807');
      * ```
@@ -479,7 +479,7 @@ class SpannerClient
     /**
      * Create a Duration object.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $duration = $spanner->duration(100, 00001);
      * ```

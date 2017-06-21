@@ -25,7 +25,7 @@ use Google\GAX\ValidationException;
 /**
  * Represents a Cloud Spanner Instance Configuration.
  *
- * Sample Code:
+ * Example:
  * ```
  * use Google\Cloud\Spanner\SpannerClient;
  *
@@ -85,7 +85,7 @@ class InstanceConfiguration
     /**
      * Return the configuration name.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $name = $configuration->name();
      * ```
@@ -104,7 +104,7 @@ class InstanceConfiguration
      *
      * **NOTE**: Requires `https://www.googleapis.com/auth/spanner.admin` scope.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $info = $configuration->info();
      * ```
@@ -130,7 +130,7 @@ class InstanceConfiguration
      *
      * **NOTE**: Requires `https://www.googleapis.com/auth/spanner.admin` scope.
      *
-     * Sample Code:
+     * Example:
      * ```
      * if ($configuration->exists()) {
      *    echo 'Configuration exists!';
@@ -156,7 +156,7 @@ class InstanceConfiguration
      *
      * **NOTE**: Requires `https://www.googleapis.com/auth/spanner.admin` scope.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $info = $configuration->reload();
      * ```

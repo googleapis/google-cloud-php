@@ -61,7 +61,7 @@ class ServiceBuilder
      * Pass in an array of configuration options which will be shared between
      * clients.
      *
-     * Sample Code:
+     * Example:
      * ```
      * use Google\Cloud\ServiceBuilder;
      *
@@ -103,7 +103,7 @@ class ServiceBuilder
      * data. Find more information at the
      * [Google Cloud BigQuery Docs](https://cloud.google.com/bigquery/docs).
      *
-     * Sample Code:
+     * Example:
      * ```
      * $bigQuery = $cloud->bigQuery();
      * ```
@@ -128,7 +128,7 @@ class ServiceBuilder
      * applications. Find more information at the
      * [Google Cloud Datastore docs](https://cloud.google.com/datastore/docs/).
      *
-     * Sample Code:
+     * Example:
      * ```
      * $datastore = $cloud->datastore();
      * ```
@@ -153,7 +153,7 @@ class ServiceBuilder
      * Web Services. Find more information at the
      * [Google Stackdriver Logging docs](https://cloud.google.com/logging/docs/).
      *
-     * Sample Code:
+     * Example:
      * ```
      * $logging = $cloud->logging();
      * ```
@@ -174,7 +174,7 @@ class ServiceBuilder
      * and Japanese textual context are supported. Find more information at the
      * [Google Cloud Natural Language docs](https://cloud.google.com/natural-language/docs/).
      *
-     * Sample Code:
+     * Example:
      * ```
      * $language = $cloud->language();
      * ```
@@ -193,7 +193,7 @@ class ServiceBuilder
      * independent applications. Find more information at the
      * [Google Cloud Pub/Sub docs](https://cloud.google.com/pubsub/docs/).
      *
-     * Sample Code:
+     * Example:
      * ```
      * $pubsub = $cloud->pubsub();
      * ```
@@ -217,7 +217,7 @@ class ServiceBuilder
      * database service. Find more information at
      * [Google Cloud Spanner API docs](https://cloud.google.com/spanner/).
      *
-     * Sample Code:
+     * Example:
      * ```
      * $spanner = $cloud->spanner();
      * ```
@@ -243,7 +243,7 @@ class ServiceBuilder
      * transcription from the Cloud Speech API service. Find more information at
      * the [Google Cloud Speech API docs](https://cloud.google.com/speech/docs/).
      *
-     * Sample Code:
+     * Example:
      * ```
      * $speech = $cloud->speech([
      *     'languageCode' => 'en-US'
@@ -271,7 +271,7 @@ class ServiceBuilder
      * infrastructure. Find more information at the
      * [Google Cloud Storage API docs](https://developers.google.com/storage).
      *
-     * Sample Code:
+     * Example:
      * ```
      * $storage = $cloud->storage();
      * ```
@@ -291,7 +291,7 @@ class ServiceBuilder
      * and display it in the Google Cloud Platform Console. Find more information at
      * [Stackdriver Trace API docs](https://cloud.google.com/trace/docs/).
      *
-     * Sample Code:
+     * Example:
      * ```
      * $trace = $cloud->trace();
      * ```
@@ -311,7 +311,7 @@ class ServiceBuilder
      * Find more information at the
      * [Google Cloud Vision docs](https://cloud.google.com/vision/docs/).
      *
-     * Sample Code:
+     * Example:
      * ```
      * $vision = $cloud->vision();
      * ```
@@ -344,7 +344,7 @@ class ServiceBuilder
      * [before you begin](https://cloud.google.com/translation/v2/translating-text-with-rest#before-you-begin)
      * instructions to learn how to generate a key.
      *
-     * Sample Code:
+     * Example:
      * ```
      * use Google\Cloud\ServiceBuilder;
      *

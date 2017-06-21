@@ -22,7 +22,7 @@ use Google\Cloud\Core\ValidateTrait;
 /**
  * Represents a Cloud Spanner KeySet.
  *
- * Sample Code:
+ * Example:
  * ```
  * use Google\Cloud\Spanner\SpannerClient;
  *
@@ -90,7 +90,7 @@ class KeySet
     /**
      * Fetch the KeyRanges
      *
-     * Sample Code:
+     * Example:
      * ```
      * $ranges = $keySet->ranges();
      * ```
@@ -106,7 +106,7 @@ class KeySet
     /**
      * Add a single KeyRange.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $range = new KeyRange();
      * $keySet->addRange($range);
@@ -125,7 +125,7 @@ class KeySet
      *
      * Any existing KeyRanges will be overridden.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $range = new KeyRange();
      * $keySet->setRanges([$range]);
@@ -144,7 +144,7 @@ class KeySet
     /**
      * Fetch the keys.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $keys = $keySet->keys();
      * ```
@@ -162,7 +162,7 @@ class KeySet
      * A Key should have exactly as many elements as there are columns in the
      * primary or index key with which this KeySet is used.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $keySet->addKey('Bob');
      * ```
@@ -180,7 +180,7 @@ class KeySet
      *
      * Any existing keys will be overridden.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $keySet->setKeys(['Bob', 'Jill']);
      * ```
@@ -196,7 +196,7 @@ class KeySet
     /**
      * Get the value of Match All.
      *
-     * Sample Code:
+     * Example:
      * ```
      * if ($keySet->matchAll()) {
      *     echo "All keys will match";
@@ -213,7 +213,7 @@ class KeySet
     /**
      * Choose whether the KeySet should match all keys in a table.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $keySet->setMatchAll(true);
      * ```

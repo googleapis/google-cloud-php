@@ -26,7 +26,7 @@ namespace Google\Cloud\Spanner;
  * precision in the timestamp will be overridden when encoding the timestamp
  * as a string.
  *
- * Sample Code:
+ * Example:
  * ```
  * use Google\Cloud\Spanner\SpannerClient;
  *
@@ -70,7 +70,7 @@ class Timestamp implements ValueInterface
      *
      * Please note that nanosecond precision is not present in this method.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $dateTime = $timestamp->get();
      * ```
@@ -85,7 +85,7 @@ class Timestamp implements ValueInterface
     /**
      * Get the type.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $type = $timestamp->type();
      * ```
@@ -102,7 +102,7 @@ class Timestamp implements ValueInterface
      *
      * This method retains nanosecond precision, if available.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $value = $timestamp->formatAsString();
      * ```

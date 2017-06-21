@@ -23,7 +23,7 @@ use Google\Cloud\PubSub\Connection\ConnectionInterface;
 /**
  * Represents a Pub/Sub Snapshot
  *
- * Sample Code:
+ * Example:
  * ```
  * use Google\Cloud\PubSub\PubSubClient;
  *
@@ -94,7 +94,7 @@ class Snapshot
     /**
      * Get the Snapshot name.
      *
-     * Sample Code:
+     * Example:
      * ```
      * echo $snapshot->name();
      * ```
@@ -109,7 +109,7 @@ class Snapshot
     /**
      * Get the snapshot info.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $info = $snapshot->info();
      * ```
@@ -129,7 +129,7 @@ class Snapshot
      *
      * Please note that this method may not yet be available in your project.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $info = $snapshot->create();
      * ```
@@ -156,7 +156,7 @@ class Snapshot
      *
      * Please note that this method may not yet be available in your project.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $snapshot->delete();
      * ```
@@ -174,7 +174,7 @@ class Snapshot
     /**
      * Get the Topic attached to the snapshot, if one exists.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $topic = $snapshot->topic();
      * ```
@@ -191,7 +191,7 @@ class Snapshot
     /**
      * Get the Subscription attached to the snapshot, if one exists.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $subscription = $snapshot->subscription();
      * ```

@@ -48,7 +48,7 @@ use Psr\Http\Message\StreamInterface;
  * | `bool`                                     | `booleanValue`                       |
  * | `object` (Outside types specified above)   | **ERROR** `InvalidArgumentException` |
  *
- * Sample Code:
+ * Example:
  * ```
  * use Google\Cloud\Datastore\DatastoreClient;
  *
@@ -121,7 +121,7 @@ class Entity implements ArrayAccess
     /**
      * Get the entity data
      *
-     * Sample Code:
+     * Example:
      * ```
      * $data = $entity->get();
      * ```
@@ -139,7 +139,7 @@ class Entity implements ArrayAccess
      * Calling this method replaces the entire entity body. To add or modify a
      * single value on the entity, use the array syntax for assignment.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $entity->set([
      *     'firstName' => 'Dave'
@@ -157,7 +157,7 @@ class Entity implements ArrayAccess
     /**
      * Get the Entity Key
      *
-     * Sample Code:
+     * Example:
      * ```
      * $key = $entity->key();
      * ```
@@ -175,7 +175,7 @@ class Entity implements ArrayAccess
      * This is only set when the entity was obtained from a query result. It
      * can be used to manually paginate results.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $cursor = $entity->cursor();
      * ```
@@ -195,7 +195,7 @@ class Entity implements ArrayAccess
      * This is only set when the entity was obtained from a query result. It
      * is used for concurrency control internally.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $baseVersion = $entity->baseVersion();
      * ```
@@ -212,7 +212,7 @@ class Entity implements ArrayAccess
     /**
      * Indicate whether the entity was created as the result of an API call.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $populatedByService = $entity->populatedByService();
      * ```
@@ -227,7 +227,7 @@ class Entity implements ArrayAccess
     /**
      * A list of entity properties to exclude from datastore indexes.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $entity['birthDate'] = new DateTime('December 31, 1969');
      * $entity->setExcludeFromIndexes([
@@ -246,7 +246,7 @@ class Entity implements ArrayAccess
     /**
      * Return a list of properties excluded from datastore indexes
      *
-     * Sample Code:
+     * Example:
      * ```
      * $excludedFromIndexes = $entity->excludedProperties();
      * ```
@@ -261,7 +261,7 @@ class Entity implements ArrayAccess
     /**
      * return a list of meaning values
      *
-     * Sample Code:
+     * Example:
      * ```
      * $meanings = $entity->meanings();
      * ```

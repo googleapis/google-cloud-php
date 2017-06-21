@@ -20,7 +20,7 @@ namespace Google\Cloud\Spanner;
 /**
  * Represents a Duration protobuf type.
  *
- * Sample Code:
+ * Example:
  * ```
  * use Google\Cloud\Spanner\SpannerClient;
  *
@@ -63,7 +63,7 @@ class Duration implements ValueInterface
     /**
      * Get the duration
      *
-     * Sample Code:
+     * Example:
      * ```
      * $res = $duration->get();
      * ```
@@ -81,7 +81,7 @@ class Duration implements ValueInterface
     /**
      * Get the type.
      *
-     * Sample Code:
+     * Example:
      * ```
      * echo $duration->type();
      * ```
@@ -96,7 +96,7 @@ class Duration implements ValueInterface
     /**
      * Format the value as a string.
      *
-     * Sample Code:
+     * Example:
      * ```
      * echo $duration->formatAsString();
      * ```

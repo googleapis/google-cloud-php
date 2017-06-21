@@ -20,7 +20,7 @@ namespace Google\Cloud\PubSub;
 /**
  * Represents a PubSub Message.
  *
- * Sample Code:
+ * Example:
  * ```
  * use Google\Cloud\PubSub\PubSubClient;
  *
@@ -83,7 +83,7 @@ class Message
     /**
      * The message payload.
      *
-     * Sample Code:
+     * Example:
      * ```
      * echo $message->data();
      * ```
@@ -98,7 +98,7 @@ class Message
     /**
      * Retrieve a single message attribute.
      *
-     * Sample Code:
+     * Example:
      * ```
      * echo $message->attribute('browser-name');
      * ```
@@ -116,7 +116,7 @@ class Message
     /**
      * Retrieve all message attributes.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $attributes = $message->attributes();
      * ```
@@ -134,7 +134,7 @@ class Message
      * The message ID is assigned by the server when the message is published.
      * Guaranteed to be unique within the topic.
      *
-     * Sample Code:
+     * Example:
      * ```
      * echo $message->id();
      * ```
@@ -149,7 +149,7 @@ class Message
     /**
      * Get the message published time.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $time = $message->publishTime();
      * ```
@@ -169,7 +169,7 @@ class Message
      * This is only set when message is obtained via
      * {@see Google\Cloud\PubSub\Subscription::pull()}.
      *
-     * Sample Code:
+     * Example:
      * ```
      * echo $message->ackId();
      * ```
@@ -186,7 +186,7 @@ class Message
      *
      * This is only set when the message is obtained via push delivery.
      *
-     * Sample Code:
+     * Example:
      * ```
      * echo "Subscription Name: ". $message->subscription()->name();
      * ```
@@ -203,7 +203,7 @@ class Message
      *
      * Available keys are `ackId`, `subscription` and `message`.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $info = $message->info();
      * ```

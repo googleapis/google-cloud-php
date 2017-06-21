@@ -22,7 +22,7 @@ use InvalidArgumentException;
 /**
  * Helper class for creating valid IAM policies
  *
- * Sample Code:
+ * Example:
  * ```
  * use Google\Cloud\Core\Iam\PolicyBuilder;
  *
@@ -74,7 +74,7 @@ class PolicyBuilder
     /**
      * Override all stored bindings on the policy.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $builder->setBindings([
      *     [
@@ -103,7 +103,7 @@ class PolicyBuilder
     /**
      * Add a new binding to the policy.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $builder->addBinding('roles/admin', [ 'user:admin@domain.com' ]);
      * ```
@@ -126,7 +126,7 @@ class PolicyBuilder
     /**
      * Remove a binding from the policy.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $builder->setBindings([
      *     [
@@ -173,7 +173,7 @@ class PolicyBuilder
     /**
      * Update the etag on the policy.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $builder->setEtag($oldPolicy['etag']);
      * ```
@@ -193,7 +193,7 @@ class PolicyBuilder
     /**
      * Update the version of the policy.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $builder->setVersion(1);
      * ```
@@ -211,7 +211,7 @@ class PolicyBuilder
     /**
      * Create a policy array with data in the correct format.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $policy = $builder->result();
      * ```

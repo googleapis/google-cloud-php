@@ -26,7 +26,7 @@ use Google\Cloud\Spanner\Session\SessionPoolInterface;
  * For full usage details, please refer to
  * {@see Google\Cloud\Spanner\Database::snapshot()}.
  *
- * Sample Code:
+ * Example:
  * ```
  * use Google\Cloud\Spanner\SpannerClient;
  *
@@ -39,7 +39,7 @@ use Google\Cloud\Spanner\Session\SessionPoolInterface;
  * @method execute() {
  *     Run a query.
  *
- *     Sample Code:
+ *     Example:
  *     ```
  *     $result = $snapshot->execute(
  *         'SELECT * FROM Users WHERE id = @userId',
@@ -68,7 +68,7 @@ use Google\Cloud\Spanner\Session\SessionPoolInterface;
  * @method read() {
  *     Lookup rows in a table.
  *
- *     Sample Code:
+ *     Example:
  *     ```
  *     $keySet = new KeySet([
  *         'keys' => [10]
@@ -97,7 +97,7 @@ use Google\Cloud\Spanner\Session\SessionPoolInterface;
  * @method id() {
  *     Retrieve the Transaction ID.
  *
- *     Sample Code:
+ *     Example:
  *     ```
  *     $id = $snapshot->id();
  *     ```
@@ -158,7 +158,7 @@ class Snapshot implements TransactionalReadInterface
      * For snapshot read-only transactions, the read timestamp chosen for the
      * transaction.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $timestamp = $snapshot->readTimestamp();
      * ```
