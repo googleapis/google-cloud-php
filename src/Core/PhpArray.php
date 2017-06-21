@@ -26,6 +26,7 @@ use google\protobuf\Struct;
 /**
  * Extend the Protobuf-PHP array codec to allow messages to match the format
  * used for REST.
+ * @deprecated
  */
 class PhpArray extends Protobuf\Codec\PhpArray
 {
