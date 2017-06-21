@@ -18,11 +18,11 @@
 namespace Google\Cloud\Tests\Unit\Logging\Connection;
 
 use Google\Cloud\Logging\Connection\Grpc;
-use Google\Cloud\Core\GrpcRequestWrapper;
+use Google\Cloud\Core\GPBGrpcRequestWrapper;
 use Google\GAX\Serializer;
-use Google\Cloud\Logging\V2\LogEntry;
-use Google\Cloud\Logging\V2\LogMetric;
-use Google\Cloud\Logging\V2\LogSink;
+use Google\Logging\V2\LogEntry;
+use Google\Logging\V2\LogMetric;
+use Google\Logging\V2\LogSink;
 use Prophecy\Argument;
 
 /**
@@ -39,7 +39,7 @@ class GrpcTest extends \PHPUnit_Framework_TestCase
             $this->markTestSkipped('Must have the grpc extension installed to run this test.');
         }
 
-        $this->requestWrapper = $this->prophesize(GrpcRequestWrapper::class);
+        $this->requestWrapper = $this->prophesize(GPBGrpcRequestWrapper::class);
         $this->successMessage = 'success';
     }
 

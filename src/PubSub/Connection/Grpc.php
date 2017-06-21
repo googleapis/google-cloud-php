@@ -18,18 +18,18 @@
 namespace Google\Cloud\PubSub\Connection;
 
 use Google\Cloud\Core\EmulatorTrait;
-use Google\Cloud\Core\GrpcRequestWrapper;
-use Google\Cloud\Core\GrpcTrait;
+use Google\Cloud\Core\GPBGrpcRequestWrapper;
+use Google\Cloud\Core\GPBGrpcTrait;
 use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\PubSub\V1\PublisherClient;
 use Google\Cloud\PubSub\V1\SubscriberClient;
 use Google\GAX\Serializer;
-use Google\Cloud\Iam\V1\Policy;
+use Google\Iam\V1\Policy;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\Timestamp;
-use Google\Cloud\PubSub\V1\PubsubMessage;
-use Google\Cloud\PubSub\V1\PushConfig;
-use Google\Cloud\PubSub\V1\Subscription;
+use Google\PubSub\V1\PubsubMessage;
+use Google\PubSub\V1\PushConfig;
+use Google\PubSub\V1\Subscription;
 use Grpc\ChannelCredentials;
 
 /**
@@ -39,7 +39,7 @@ use Grpc\ChannelCredentials;
 class Grpc implements ConnectionInterface
 {
     use EmulatorTrait;
-    use GrpcTrait;
+    use GPBGrpcTrait;
 
     const BASE_URI = 'https://pubsub.googleapis.com/';
 
@@ -73,7 +73,7 @@ class Grpc implements ConnectionInterface
         ]);
 
         $config['serializer'] = $this->serializer;
-        $this->setRequestWrapper(new GrpcRequestWrapper($config));
+        $this->setRequestWrapper(new GPBGrpcRequestWrapper($config));
         $grpcConfig = $this->getGaxConfig(PubSubClient::VERSION);
         $emulatorHost = getenv('PUBSUB_EMULATOR_HOST');
         $baseUri = $this->getEmulatorBaseUri(self::BASE_URI, $emulatorHost);

@@ -31,7 +31,7 @@ use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Connection\IamInstance;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\GAX\ValidationException;
-use Google\Cloud\Spanner\Admin\Instance\V1\Instance_State;
+use Google\Spanner\Admin\Instance\V1\Instance_State;
 
 /**
  * Represents a Cloud Spanner instance

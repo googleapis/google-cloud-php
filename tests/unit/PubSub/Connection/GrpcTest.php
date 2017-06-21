@@ -17,25 +17,25 @@
 
 namespace Google\Cloud\Tests\Unit\PubSub\Connection;
 
-use Google\Cloud\Core\GrpcRequestWrapper;
-use Google\Cloud\Core\GrpcTrait;
+use Google\Cloud\Core\GPBGrpcRequestWrapper;
+use Google\Cloud\Core\GPBGrpcTrait;
 use Google\Cloud\PubSub\Connection\Grpc;
 use Google\GAX\Serializer;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\Timestamp;
 use Prophecy\Argument;
-use Google\Cloud\Iam\V1\Binding;
-use Google\Cloud\Iam\V1\Policy;
-use Google\Cloud\PubSub\V1\PubsubMessage;
-use Google\Cloud\PubSub\V1\PushConfig;
-use Google\Cloud\PubSub\V1\Subscription;
+use Google\Iam\V1\Binding;
+use Google\Iam\V1\Policy;
+use Google\Pubsub\V1\PubsubMessage;
+use Google\Pubsub\V1\PushConfig;
+use Google\Pubsub\V1\Subscription;
 
 /**
  * @group pubsub
  */
 class GrpcTest extends \PHPUnit_Framework_TestCase
 {
-    use GrpcTrait;
+    use GPBGrpcTrait;
 
     private $requestWrapper;
     private $successMessage;
@@ -46,7 +46,7 @@ class GrpcTest extends \PHPUnit_Framework_TestCase
             $this->markTestSkipped('Must have the grpc extension installed to run this test.');
         }
 
-        $this->requestWrapper = $this->prophesize(GrpcRequestWrapper::class);
+        $this->requestWrapper = $this->prophesize(GPBGrpcRequestWrapper::class);
         $this->successMessage = 'success';
     }
 

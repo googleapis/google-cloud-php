@@ -29,7 +29,7 @@ use Google\Protobuf\NullValue;
 /**
  * Provides shared functionality for gRPC service implementations.
  */
-trait GrpcTrait
+trait GPBGrpcTrait
 {
     use ArrayTrait;
     use WhitelistTrait;

@@ -17,18 +17,18 @@
 
 namespace Google\Cloud\Logging\Connection;
 
-use Google\Cloud\Core\GrpcRequestWrapper;
-use Google\Cloud\Core\GrpcTrait;
+use Google\Cloud\Core\GPBGrpcRequestWrapper;
+use Google\Cloud\Core\GPBGrpcTrait;
 use Google\Cloud\Logging\Logger;
 use Google\Cloud\Logging\LoggingClient;
 use Google\Cloud\Logging\V2\ConfigServiceV2Client;
 use Google\Cloud\Logging\V2\LoggingServiceV2Client;
 use Google\Cloud\Logging\V2\MetricsServiceV2Client;
 use Google\GAX\Serializer;
-use Google\Cloud\Logging\V2\LogEntry;
-use Google\Cloud\Logging\V2\LogMetric;
-use Google\Cloud\Logging\V2\LogSink;
-use Google\Cloud\Logging\V2\LogSink_VersionFormat;
+use Google\Logging\V2\LogEntry;
+use Google\Logging\V2\LogMetric;
+use Google\Logging\V2\LogSink;
+use Google\Logging\V2\LogSink_VersionFormat;
 
 /**
  * Implementation of the
@@ -36,7 +36,7 @@ use Google\Cloud\Logging\V2\LogSink_VersionFormat;
  */
 class Grpc implements ConnectionInterface
 {
-    use GrpcTrait;
+    use GPBGrpcTrait;
 
     private static $versionFormatMap = [
         LogSink_VersionFormat::VERSION_FORMAT_UNSPECIFIED => 'VERSION_FORMAT_UNSPECIFIED',
@@ -104,7 +104,7 @@ class Grpc implements ConnectionInterface
         ]);
 
         $config['serializer'] = $this->serializer;
-        $this->setRequestWrapper(new GrpcRequestWrapper($config));
+        $this->setRequestWrapper(new GPBGrpcRequestWrapper($config));
         $gaxConfig = $this->getGaxConfig(LoggingClient::VERSION);
 
         $this->configClient = new ConfigServiceV2Client($gaxConfig);
