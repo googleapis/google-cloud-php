@@ -27,7 +27,7 @@ use phpDocumentor\Reflection\DocBlock;
 /**
  * A class for parsing code snippets from a class and its methods.
  *
- * Sample Code:
+ * Example:
  * ```
  * $parser = new Parser;
  * ```
@@ -39,7 +39,7 @@ class Parser
     /**
      * Get a snippet from a class.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $snippet = $parser->classExample(Parser::class);
      * ```
@@ -72,7 +72,7 @@ class Parser
     /**
      * Get a snippet from a method.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $snippet = $parser->methodExample(Parser::class, 'methodExample');
      * ```
@@ -111,7 +111,7 @@ class Parser
     /**
      * Retrieve all examples from a class Doc Block.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $examples = $parser->examplesFromClass($parser);
      * ```
@@ -160,7 +160,7 @@ class Parser
     /**
      * Retrieve all examples from a method's Doc Block.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $examples = $parser->examplesFromMethod($parser, 'examplesFromMethod');
      * ```
@@ -196,7 +196,7 @@ class Parser
     /**
      * Retrieve all examples from a class and its methods.
      *
-     * Sample Code:
+     * Example:
      * ```
      * $examples = $parser->allExamples($parser);
      * ```
@@ -224,7 +224,7 @@ class Parser
     /**
      * Parse examples from a DocBlock object.
      *
-     * Sample Code:
+     * Example:
      * ```
      * // Yeah, this example is pretty useless.
      * $examples = $parser->examples($docBlock);
@@ -243,9 +243,9 @@ class Parser
         //     print_r($return[0]->getTypes());exit;
         // }
 
-        $parts = explode('Sample Code:', $text);
+        $parts = explode('Example:', $text);
 
-        if (strpos($text, 'Sample Code:' . PHP_EOL) === false) {
+        if (strpos($text, 'Example:') === false) {
             return [];
         }
 
