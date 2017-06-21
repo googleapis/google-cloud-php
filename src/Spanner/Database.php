@@ -516,6 +516,10 @@ class Database
      */
     public function snapshot(array $options = [])
     {
+        if ($this->isRunningTransaction) {
+            throw new \BadMethodCallException('Nested transactions are not supported by this client.');
+        }
+
         $options += [
             'singleUse' => false
         ];
@@ -568,6 +572,10 @@ class Database
      */
     public function transaction(array $options = [])
     {
+        if ($this->isRunningTransaction) {
+            throw new \BadMethodCallException('Nested transactions are not supported by this client.');
+        }
+
         // There isn't anything configurable here.
         $options['transactionOptions'] = $this->configureTransactionOptions();
 

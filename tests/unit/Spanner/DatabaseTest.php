@@ -300,6 +300,25 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
         $this->database->snapshot(['maxStaleness' => 'foo']);
     }
 
+    /**
+     * @expectedException BadMethodCallException
+     */
+    public function testSnapshotNestedTransaction()
+    {
+        $this->connection->beginTransaction(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn(['id' => self::TRANSACTION]);
+
+        $this->connection->rollback(Argument::any())
+            ->shouldNotBeCalled();
+
+        $this->refreshOperation();
+
+        $this->database->runTransaction(function ($t) {
+            $this->database->snapshot();
+        });
+    }
+
     public function testRunTransaction()
     {
         $this->connection->beginTransaction(Argument::any())
@@ -444,6 +463,25 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
 
         $t = $this->database->transaction();
         $this->assertInstanceOf(Transaction::class, $t);
+    }
+
+    /**
+     * @expectedException BadMethodCallException
+     */
+    public function testTransactionNestedTransaction()
+    {
+        $this->connection->beginTransaction(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn(['id' => self::TRANSACTION]);
+
+        $this->connection->rollback(Argument::any())
+            ->shouldNotBeCalled();
+
+        $this->refreshOperation();
+
+        $this->database->runTransaction(function ($t) {
+            $this->database->transaction();
+        });
     }
 
     public function testInsert()
