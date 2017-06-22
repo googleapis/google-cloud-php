@@ -135,6 +135,18 @@ $bucket->upload(
     fopen('/data/file.txt', 'r')
 );
 
+/**
+ * Upload file with public share 
+ * You can share this file and image with public
+ * add 2nd parameter as array options 
+ */
+$bucket->upload(
+    fopen('/data/file.txt', 'r'),
+    [
+        'predefinedAcl' => 'publicRead'
+    ]
+);
+
 // Download and store an object from the bucket locally.
 $object = $bucket->object('file_backup.txt');
 $object->downloadToFile('/data/file_backup.txt');
