@@ -27,6 +27,7 @@ use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\ValueMapper;
+use Google\Cloud\Tests\GrpcTestTrait;
 use Prophecy\Argument;
 
 /**
@@ -34,6 +35,8 @@ use Prophecy\Argument;
  */
 class TransactionTest extends SnippetTestCase
 {
+    use GrpcTestTrait;
+
     const TRANSACTION = 'my-transaction';
 
     private $connection;
@@ -67,9 +70,7 @@ class TransactionTest extends SnippetTestCase
 
     public function testClass()
     {
-        if (!extension_loaded('grpc')) {
-            $this->markTestSkipped('Must have the grpc extension installed to run this test.');
-        }
+        $this->checkAndSkipGrpcTests();
 
         $database = $this->prophesize(Database::class);
         $database->runTransaction(Argument::type('callable'))->shouldBeCalled();

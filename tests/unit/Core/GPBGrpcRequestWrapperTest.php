@@ -21,6 +21,7 @@ namespace Google\Cloud\Tests\Unit\Core;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Core\Exception;
 use Google\Cloud\Core\GPBGrpcRequestWrapper;
+use Google\Cloud\Tests\GrpcTestTrait;
 use Google\GAX\ApiException;
 use Google\GAX\Page;
 use Google\GAX\PagedListResponse;
@@ -33,11 +34,11 @@ use Prophecy\Argument;
  */
 class GPBGrpcRequestWrapperTest extends \PHPUnit_Framework_TestCase
 {
+    use GrpcTestTrait;
+
     public function setUp()
     {
-        if (!extension_loaded('grpc')) {
-            $this->markTestSkipped('Must have the grpc extension installed to run this test.');
-        }
+        $this->checkAndSkipGrpcTests();
     }
 
     /**

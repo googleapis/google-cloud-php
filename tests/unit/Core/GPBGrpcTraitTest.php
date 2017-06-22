@@ -22,6 +22,7 @@ use Google\Auth\FetchAuthTokenCache;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Core\GPBGrpcRequestWrapper;
 use Google\Cloud\Core\GPBGrpcTrait;
+use Google\Cloud\Tests\GrpcTestTrait;
 use Prophecy\Argument;
 
 /**
@@ -29,14 +30,14 @@ use Prophecy\Argument;
  */
 class GPBGrpcTraitTest extends \PHPUnit_Framework_TestCase
 {
+    use GrpcTestTrait;
+
     private $implementation;
     private $requestWrapper;
 
     public function setUp()
     {
-        if (!extension_loaded('grpc')) {
-            $this->markTestSkipped('Must have the grpc extension installed to run this test.');
-        }
+        $this->checkAndSkipGrpcTests();
 
         $this->implementation = new GrpcTraitStub();
         $this->requestWrapper = $this->prophesize(GPBGrpcRequestWrapper::class);

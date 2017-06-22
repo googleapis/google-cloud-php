@@ -21,6 +21,7 @@ use Google\Cloud\Core\GPBGrpcRequestWrapper;
 use Google\Cloud\Core\GPBGrpcTrait;
 use Google\Cloud\Spanner\Connection\Grpc;
 use Google\Cloud\Spanner\ValueMapper;
+use Google\Cloud\Tests\GrpcTestTrait;
 use Google\GAX\OperationResponse;
 use Google\GAX\Serializer;
 use Google\Protobuf\FieldMask;
@@ -42,6 +43,7 @@ use Google\Spanner\V1\Type;
  */
 class GrpcTest extends \PHPUnit_Framework_TestCase
 {
+    use GrpcTestTrait;
     use GPBGrpcTrait;
 
     const PROJECT = 'projects/my-project';
@@ -51,9 +53,7 @@ class GrpcTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        if (!extension_loaded('grpc')) {
-            $this->markTestSkipped('Must have the grpc extension installed to run this test.');
-        }
+        $this->checkAndSkipGrpcTests();
 
         $this->requestWrapper = $this->prophesize(GPBGrpcRequestWrapper::class);
         $this->successMessage = 'success';

@@ -28,6 +28,7 @@ use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\InstanceConfiguration;
+use Google\Cloud\Tests\GrpcTestTrait;
 use Prophecy\Argument;
 
 /**
@@ -36,6 +37,8 @@ use Prophecy\Argument;
  */
 class InstanceTest extends SnippetTestCase
 {
+    use GrpcTestTrait;
+
     const PROJECT = 'my-awesome-project';
     const INSTANCE = 'my-instance';
     const DATABASE = 'my-database';
@@ -57,9 +60,7 @@ class InstanceTest extends SnippetTestCase
 
     public function testClass()
     {
-        if (!extension_loaded('grpc')) {
-            $this->markTestSkipped('Must have the grpc extension installed to run this test.');
-        }
+        $this->checkAndSkipGrpcTests();
 
         $snippet = $this->snippetFromClass(Instance::class);
         $res = $snippet->invoke('instance');

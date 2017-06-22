@@ -20,12 +20,15 @@ namespace Google\Cloud\Tests\Snippets\Spanner;
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
 use Google\Cloud\Spanner\KeyRange;
 use Google\Cloud\Spanner\KeySet;
+use Google\Cloud\Tests\GrpcTestTrait;
 
 /**
  * @group spanner
  */
 class KeySetTest extends SnippetTestCase
 {
+    use GrpcTestTrait;
+
     private $keyset;
     private $range;
 
@@ -37,9 +40,7 @@ class KeySetTest extends SnippetTestCase
 
     public function testClass()
     {
-        if (!extension_loaded('grpc')) {
-            $this->markTestSkipped('Must have the grpc extension installed to run this test.');
-        }
+        $this->checkAndSkipGrpcTests();
 
         $snippet = $this->snippetFromClass(KeySet::class);
         $res = $snippet->invoke('keySet');
