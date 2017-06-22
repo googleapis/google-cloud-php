@@ -69,6 +69,10 @@ class GrpcTest extends \PHPUnit_Framework_TestCase
 
     public function methodProvider()
     {
+        if ($this->shouldSkipGrpcTests()) {
+            return [];
+        }
+
         $value = 'value';
         $pageSizeSetting = ['pageSize' => 3];
         $messageData = '123';

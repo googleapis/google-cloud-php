@@ -63,6 +63,10 @@ class GrpcTest extends \PHPUnit_Framework_TestCase
 
     public function methodProvider()
     {
+        if ($this->shouldSkipGrpcTests()) {
+            return [];
+        }
+
         $value = 'value';
         $entryData = [
             'logName' => $value,

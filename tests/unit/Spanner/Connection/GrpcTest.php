@@ -78,6 +78,10 @@ class GrpcTest extends \PHPUnit_Framework_TestCase
 
     public function methodProvider()
     {
+        if ($this->shouldSkipGrpcTests()) {
+            return [];
+        }
+
         $serializer = new Serializer();
 
         $configName = 'test-config';
