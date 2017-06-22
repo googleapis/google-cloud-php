@@ -225,6 +225,10 @@ class RequestWrapper
                 $exception = Exception\ConflictException::class;
                 break;
 
+            case 412:
+                $exception = Exception\FailedPreconditionException::class;
+                break;
+
             case 500:
                 $exception = Exception\ServerException::class;
                 break;

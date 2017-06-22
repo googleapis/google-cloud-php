@@ -43,7 +43,10 @@ class BucketTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->bucket = new \BucketStub($this->connection->reveal(), self::BUCKET);
+        $this->bucket = \Google\Cloud\Dev\stub(Bucket::class, [
+            $this->connection->reveal(),
+            self::BUCKET
+        ]);
     }
 
     public function testClass()
@@ -82,7 +85,7 @@ class BucketTest extends SnippetTestCase
         $this->connection->getBucket(Argument::any())
             ->shouldBeCalled();
 
-        $this->bucket->setConnection($this->connection->reveal());
+        $this->bucket->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke();
         $this->assertEquals('Bucket exists!', $res->output());
@@ -106,7 +109,7 @@ class BucketTest extends SnippetTestCase
             ->shouldBeCalled()
             ->willReturn($uploader->reveal());
 
-        $this->bucket->setConnection($this->connection->reveal());
+        $this->bucket->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke('object');
         $this->assertInstanceOf(StorageObject::class, $res->returnVal());
@@ -133,7 +136,7 @@ class BucketTest extends SnippetTestCase
             ->shouldBeCalled()
             ->willReturn($uploader->reveal());
 
-        $this->bucket->setConnection($this->connection->reveal());
+        $this->bucket->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke('object');
         $this->assertInstanceOf(StorageObject::class, $res->returnVal());
@@ -160,7 +163,7 @@ class BucketTest extends SnippetTestCase
             ->shouldBeCalled()
             ->willReturn($uploader->reveal());
 
-        $this->bucket->setConnection($this->connection->reveal());
+        $this->bucket->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke('object');
         $this->assertInstanceOf(StorageObject::class, $res->returnVal());
@@ -194,7 +197,7 @@ class BucketTest extends SnippetTestCase
             ->shouldBeCalled()
             ->willReturn($uploader->reveal());
 
-        $this->bucket->setConnection($this->connection->reveal());
+        $this->bucket->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke('object');
     }
@@ -214,7 +217,7 @@ class BucketTest extends SnippetTestCase
             ->shouldBeCalled()
             ->willReturn($uploader->reveal());
 
-        $this->bucket->setConnection($this->connection->reveal());
+        $this->bucket->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke();
     }
@@ -248,7 +251,7 @@ class BucketTest extends SnippetTestCase
                 ]
             ]);
 
-        $this->bucket->setConnection($this->connection->reveal());
+        $this->bucket->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke('objects');
         $this->assertInstanceOf(ObjectIterator::class, $res->returnVal());
@@ -264,7 +267,7 @@ class BucketTest extends SnippetTestCase
         $this->connection->deleteBucket(Argument::any())
             ->shouldBeCalled();
 
-        $this->bucket->setConnection($this->connection->reveal());
+        $this->bucket->___setProperty('connection', $this->connection->reveal());
 
         $snippet->invoke();
     }
@@ -283,7 +286,7 @@ class BucketTest extends SnippetTestCase
             ->shouldBeCalled()
             ->willReturn('foo');
 
-        $this->bucket->setConnection($this->connection->reveal());
+        $this->bucket->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke();
     }
@@ -300,7 +303,7 @@ class BucketTest extends SnippetTestCase
                 'generation' => 'foo'
             ]);
 
-        $this->bucket->setConnection($this->connection->reveal());
+        $this->bucket->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke('singleObject');
         $this->assertInstanceOf(StorageObject::class, $res->returnVal());
@@ -319,7 +322,7 @@ class BucketTest extends SnippetTestCase
                 'generation' => 'foo'
             ]);
 
-        $this->bucket->setConnection($this->connection->reveal());
+        $this->bucket->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke('singleObject');
         $this->assertInstanceOf(StorageObject::class, $res->returnVal());
@@ -338,7 +341,7 @@ class BucketTest extends SnippetTestCase
                 'location' => $loc
             ]);
 
-        $this->bucket->setConnection($this->connection->reveal());
+        $this->bucket->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke();
         $this->assertEquals($loc, $res->output());
@@ -356,7 +359,7 @@ class BucketTest extends SnippetTestCase
                 'location' => $loc
             ]);
 
-        $this->bucket->setConnection($this->connection->reveal());
+        $this->bucket->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke();
         $this->assertEquals($loc, $res->output());

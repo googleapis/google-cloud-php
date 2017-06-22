@@ -19,10 +19,12 @@ namespace Google\Cloud\Core;
 
 use DateTime;
 use DateTimeZone;
-use Google\Auth\FetchAuthTokenCache;
 use Google\Auth\Cache\MemoryCacheItemPool;
+use Google\Auth\FetchAuthTokenCache;
 use Google\Cloud\Core\ArrayTrait;
+use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\GrpcRequestWrapper;
+use google\protobuf;
 
 /**
  * Provides shared functionality for gRPC service implementations.
@@ -30,6 +32,7 @@ use Google\Cloud\Core\GrpcRequestWrapper;
 trait GrpcTrait
 {
     use ArrayTrait;
+    use WhitelistTrait;
 
     /**
      * @var GrpcRequestWrapper Wrapper used to handle sending requests to the
@@ -52,9 +55,10 @@ trait GrpcTrait
      *
      * @param callable $request
      * @param array $args
-     * @return array
+     * @param bool $whitelisted
+     * @return \Generator|array
      */
-    public function send(callable $request, array $args)
+    public function send(callable $request, array $args, $whitelisted = false)
     {
         $requestOptions = $this->pluckArray([
             'grpcOptions',
@@ -62,7 +66,15 @@ trait GrpcTrait
             'requestTimeout'
         ], $args[count($args) - 1]);
 
-        return $this->requestWrapper->send($request, $args, $requestOptions);
+        try {
+            return $this->requestWrapper->send($request, $args, $requestOptions);
+        } catch (NotFoundException $e) {
+            if ($whitelisted) {
+                throw $this->modifyWhitelistedError($e);
+            }
+
+            throw $e;
+        }
     }
 
     /**
@@ -88,10 +100,16 @@ trait GrpcTrait
      */
     private function formatTimestampFromApi(array $timestamp)
     {
+        $timestamp += [
+            'seconds' => 0,
+            'nanos' => 0
+        ];
+
         $formattedTime = (new DateTime())
             ->setTimeZone(new DateTimeZone('UTC'))
             ->setTimestamp($timestamp['seconds'])
             ->format('Y-m-d\TH:i:s');
+
         $timestamp['nanos'] = str_pad($timestamp['nanos'], 9, '0', STR_PAD_LEFT);
         return $formattedTime .= sprintf('.%sZ', rtrim($timestamp['nanos'], '0'));
     }
@@ -171,8 +189,10 @@ trait GrpcTrait
                 return ['number_value' => $value];
             case 'boolean':
                 return ['bool_value' => $value];
+            case 'NULL':
+                return ['null_value' => protobuf\NullValue::NULL_VALUE];
             case 'array':
-                if ($this->isAssoc($value)) {
+                if (!empty($value) && $this->isAssoc($value)) {
                     return ['struct_value' => $this->formatStructForApi($value)];
                 }
 
@@ -191,7 +211,7 @@ trait GrpcTrait
         preg_match('/\.(\d{1,9})Z/', $value, $matches);
         $value = preg_replace('/\.(\d{1,9})Z/', '.000000Z', $value);
         $dt = \DateTimeImmutable::createFromFormat('Y-m-d\TH:i:s.u\Z', $value);
-        $nanos = (isset($matches[1])) ? str_pad($matches[1], 9, '0') : 0;
+        $nanos = (isset($matches[1])) ? $matches[1] : 0;
 
         return [
             'seconds' => (int)$dt->format('U'),

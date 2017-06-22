@@ -27,16 +27,14 @@ use Prophecy\Argument;
  */
 class TraceClientTest extends SnippetTestCase
 {
-    const BUCKET = 'my-bucket';
-
     private $connection;
     private $client;
 
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->client = new \TraceClientStub;
-        $this->client->setConnection($this->connection->reveal());
+        $this->client = \Google\Cloud\Dev\stub(TraceClient::class);
+        $this->client->___setProperty('connection', $this->connection->reveal());
     }
 
     public function testClass()

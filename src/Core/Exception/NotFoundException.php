@@ -22,5 +22,15 @@ namespace Google\Cloud\Core\Exception;
  */
 class NotFoundException extends ServiceException
 {
-
+    /**
+     * Allows overriding message for injection of Whitelist Notice.
+     *
+     * @param string $message the new message
+     * @return void
+     * @access private
+     */
+    public function setMessage($message)
+    {
+        $this->message = $message;
+    }
 }

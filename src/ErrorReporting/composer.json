@@ -4,9 +4,9 @@
     "license": "Apache-2.0",
     "minimum-stability": "stable",
     "require": {
-        "google/cloud-core": "^1.0",
-        "google/proto-client-php": "^0.9",
-        "google/gax": "^0.8"
+        "ext-grpc": "*",
+        "google/proto-client-php": "^0.13",
+        "google/gax": "^0.10"
     },
     "extra": {
         "component": {

@@ -93,17 +93,32 @@ class StorageClient
      * point. To see the operations that can be performed on a bucket please
      * see {@see Google\Cloud\Storage\Bucket}.
      *
+     * If `$requesterPays` is set to true, the current project ID (used to
+     * instantiate the client) will be billed for all requests. If
+     * `$requesterPays` is a project ID, given as a string, that project
+     * will be billed for all requests. This only has an effect when the bucket
+     * is not owned by the current or given project ID.
+     *
      * Example:
      * ```
      * $bucket = $storage->bucket('my-bucket');
      * ```
      *
      * @param string $name The name of the bucket to request.
+     * @param string|bool $requesterPays If true, the current Project ID
+     *        will be used. If a string, that string will be used as the userProject
+     *        argument. **Defaults to** `false`.
      * @return Bucket
      */
-    public function bucket($name)
+    public function bucket($name, $requesterPays = false)
     {
-        return new Bucket($this->connection, $name);
+        if (!$requesterPays) {
+            $requesterPays = null;
+        } elseif (!is_string($requesterPays)) {
+            $requesterPays = $this->projectId;
+        }
+
+        return new Bucket($this->connection, $name, ['requesterProjectId' => $requesterPays]);
     }
 
     /**
@@ -217,6 +232,12 @@ class StorageClient
      *           **Defaults to** `STANDARD`.
      *     @type array $versioning The bucket's versioning configuration.
      *     @type array $website The bucket's website configuration.
+     *     @type array $billing The bucket's billing configuration. **Whitelist
+     *           Warning:** At the time of publication, this argument is subject
+     *           to a feature whitelist and may not be available in your project.
+     *     @type array $labels The Bucket labels. Labels are represented as an
+     *           array of keys and values. To remove an existing label, set its
+     *           value to `null`.
      * }
      * @return Bucket
      */

@@ -62,6 +62,16 @@ class PolicyBuilderTest extends SnippetTestCase
         $this->assertEquals('user:admin@domain.com', $this->pb->result()['bindings'][0]['members'][0]);
     }
 
+    public function testRemoveBinding()
+    {
+        $snippet = $this->snippetFromMethod(PolicyBuilder::class, 'removeBinding');
+        $snippet->addLocal('builder', $this->pb);
+
+        $res = $snippet->invoke();
+        $this->assertEquals('roles/admin', $this->pb->result()['bindings'][0]['role']);
+        $this->assertEquals('user2:admin@domain.com', $this->pb->result()['bindings'][0]['members'][0]);
+    }
+
     public function testSetEtag()
     {
         $snippet = $this->snippetFromMethod(PolicyBuilder::class, 'setEtag');

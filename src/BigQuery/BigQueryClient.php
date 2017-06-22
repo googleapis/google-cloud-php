@@ -45,7 +45,7 @@ class BigQueryClient
     use ClientTrait;
     use JobConfigurationTrait;
 
-    const VERSION = '0.2.0';
+    const VERSION = '0.2.1';
 
     const SCOPE = 'https://www.googleapis.com/auth/bigquery';
     const INSERT_SCOPE = 'https://www.googleapis.com/auth/bigquery.insertdata';
@@ -381,7 +381,7 @@ class BigQueryClient
                     );
                 },
                 [$this->connection, 'listJobs'],
-                $options + ['project' => $this->projectId],
+                $options + ['projectId' => $this->projectId],
                 [
                     'itemsKey' => 'jobs',
                     'resultLimit' => $resultLimit

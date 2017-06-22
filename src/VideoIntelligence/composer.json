@@ -1,0 +1,24 @@
+{
+    "name": "google/cloud-videointelligence",
+    "description": "Cloud Video Intelligence Client for PHP",
+    "license": "Apache-2.0",
+    "minimum-stability": "stable",
+    "require": {
+        "ext-grpc": "*",
+        "google/proto-client-php": "^0.13",
+        "google/gax": "^0.10"
+    },
+    "extra": {
+        "component": {
+            "id": "cloud-videointelligence",
+            "target": "GoogleCloudPlatform/google-cloud-php-videointelligence.git",
+            "path": "src/VideoIntelligence",
+            "entry": null
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Google\\Cloud\\VideoIntelligence\\": ""
+        }
+    }
+}

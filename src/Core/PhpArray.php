@@ -18,8 +18,10 @@
 namespace Google\Cloud\Core;
 
 use DrSlump\Protobuf;
-use google\protobuf\Struct;
+use google\protobuf\Value;
 use google\protobuf\ListValue;
+use google\protobuf\NullValue;
+use google\protobuf\Struct;
 
 /**
  * Extend the Protobuf-PHP array codec to allow messages to match the format
@@ -156,6 +158,10 @@ class PhpArray extends Protobuf\Codec\PhpArray
 
     protected function filterValue($value, Protobuf\Field $field)
     {
+        if (trim($field->getReference(), '\\') === NullValue::class) {
+            return null;
+        }
+
         if ($value instanceof Protobuf\Message) {
             if ($this->isKeyValueMessage($value)) {
                 $v = $value->getValue();
@@ -175,7 +181,7 @@ class PhpArray extends Protobuf\Codec\PhpArray
                         $field->getValue(),
                         $field->descriptor()->getFieldByName('value')
                     );
-                    $vals[$field->getKey()] = current($val);
+                    $vals[$field->getKey()] = $val;
                 }
 
                 return $vals;
@@ -185,10 +191,28 @@ class PhpArray extends Protobuf\Codec\PhpArray
                 $vals = [];
 
                 foreach ($value->getValuesList() as $val) {
-                    $vals[] = current($this->encodeMessage($val));
+                    $fields = $val->descriptor()->getFields();
+
+                    foreach ($fields as $field) {
+                        $name = $field->getName();
+                        if ($val->$name !== null) {
+                            $vals[] = $this->filterValue($val->$name, $field);
+                        }
+                    }
                 }
 
                 return $vals;
+            }
+
+            if ($value instanceof Value) {
+                $fields = $value->descriptor()->getFields();
+
+                foreach ($fields as $field) {
+                    $name = $field->getName();
+                    if ($value->$name !== null) {
+                        return $this->filterValue($value->$name, $field);
+                    }
+                }
             }
         }
 

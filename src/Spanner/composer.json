@@ -1,0 +1,28 @@
+{
+    "name": "google/cloud-spanner",
+    "description": "Cloud Spanner Client for PHP",
+    "license": "Apache-2.0",
+    "minimum-stability": "stable",
+    "require": {
+        "ext-grpc": "*",
+        "google/cloud-core": "^1.4",
+        "google/gax": "^0.10",
+        "google/proto-client-php": "^0.13"
+    },
+    "suggest": {
+        "symfony/lock": "Required for the default session handler. Should be included as follows: 3.3.x-dev#1ba6ac9"
+    },
+    "extra": {
+        "component": {
+            "id": "cloud-spanner",
+            "target": "GoogleCloudPlatform/google-cloud-php-spanner.git",
+            "path": "src/Spanner",
+            "entry": "SpannerClient.php"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Google\\Cloud\\Spanner\\": ""
+        }
+    }
+}

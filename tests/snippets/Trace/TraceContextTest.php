@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2016 Google Inc.
+ * Copyright 2017 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,12 +15,22 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Dev;
+namespace Google\Cloud\Tests\Snippets\Trace;
 
-trait SetStubConnectionTrait
+use Google\Cloud\Dev\Snippet\SnippetTestCase;
+use Google\Cloud\Trace\TraceContext;
+use Prophecy\Argument;
+
+/**
+ * @group trace
+ */
+class TraceContextTest extends SnippetTestCase
 {
-    public function setConnection($conn)
+    public function testClass()
     {
-        $this->connection = $conn;
+        $snippet = $this->snippetFromClass(TraceContext::class);
+        $res = $snippet->invoke('context');
+
+        $this->assertInstanceOf(TraceContext::class, $res->returnVal());
     }
 }

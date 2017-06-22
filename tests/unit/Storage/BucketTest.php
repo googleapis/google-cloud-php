@@ -222,11 +222,11 @@ class BucketTest extends \PHPUnit_Framework_TestCase
         $destinationBucket = 'bucket';
         $destinationObject = 'combined-files.txt';
         $this->connection->composeObject([
+                'destinationBucket' => $destinationBucket,
+                'destinationObject' => $destinationObject,
                 'destinationPredefinedAcl' => $acl,
                 'destination' => $metadata + ['contentType' => 'text/plain'],
                 'sourceObjects' => $expectedSourceObjects,
-                'destinationBucket' => $destinationBucket,
-                'destinationObject' => $destinationObject
             ])
             ->willReturn([
                 'name' => $destinationObject,
@@ -362,5 +362,15 @@ class BucketTest extends \PHPUnit_Framework_TestCase
         $bucket = new Bucket($this->connection->reveal(), 'bucket', $bucketInfo);
 
         $this->assertInstanceOf(Iam::class, $bucket->iam());
+    }
+
+    public function testRequesterPays()
+    {
+        $this->connection->getBucket(Argument::withEntry('userProject', 'foo'))
+            ->willReturn([]);
+
+        $bucket = new Bucket($this->connection->reveal(), 'bucket', ['requesterProjectId' => 'foo']);
+
+        $bucket->reload();
     }
 }

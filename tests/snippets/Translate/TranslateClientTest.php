@@ -33,8 +33,8 @@ class TranslateClientTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->client = new \TranslateClientStub;
-        $this->client->setConnection($this->connection->reveal());
+        $this->client = \Google\Cloud\Dev\stub(TranslateClient::class);
+        $this->client->___setProperty('connection', $this->connection->reveal());
     }
 
     public function testClass()
@@ -63,7 +63,7 @@ class TranslateClientTest extends SnippetTestCase
                 ]
             ]);
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke();
         $this->assertEquals('foobar', $res->output());
@@ -87,7 +87,7 @@ class TranslateClientTest extends SnippetTestCase
                 ]
             ]);
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke();
         $this->assertEquals('foobar', $res->output());
@@ -113,7 +113,7 @@ class TranslateClientTest extends SnippetTestCase
                 ]
             ]);
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke();
         $this->assertEquals('en', $res->output());
@@ -139,7 +139,7 @@ class TranslateClientTest extends SnippetTestCase
                 ]
             ]);
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke();
         $this->assertEquals('en', $res->output());
@@ -163,7 +163,7 @@ class TranslateClientTest extends SnippetTestCase
                 ]
             ]);
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke();
         $this->assertEquals('en', $res->output());
@@ -187,7 +187,7 @@ class TranslateClientTest extends SnippetTestCase
                 ]
             ]);
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke();
         $this->assertEquals('en', $res->output());

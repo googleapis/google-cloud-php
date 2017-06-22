@@ -45,8 +45,8 @@ class TraceTest extends \PHPUnit_Framework_TestCase
                     'spanId' => '12345',
                     'kind' => 'SPAN_KIND_UNSPECIFIED',
                     'name' => 'spanname',
-                    'startTime' => '',
-                    'endTime' => ''
+                    'startTime' => '2017-03-28T21:44:10.484299000Z',
+                    'endTime' => '2017-03-28T21:44:11.123456000Z'
                 ]
             ]
         );
