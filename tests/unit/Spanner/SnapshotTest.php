@@ -21,6 +21,7 @@ use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\Timestamp;
+use Google\Cloud\Tests\GrpcTestTrait;
 use Prophecy\Argument;
 
 /**
@@ -28,11 +29,15 @@ use Prophecy\Argument;
  */
 class SnapshotTest extends \PHPUnit_Framework_TestCase
 {
+    use GrpcTestTrait;
+
     private $timestamp;
     private $snapshot;
 
     public function setUp()
     {
+        $this->checkAndSkipGrpcTests();
+
         $this->timestamp = new Timestamp(new \DateTime);
 
         $args = [

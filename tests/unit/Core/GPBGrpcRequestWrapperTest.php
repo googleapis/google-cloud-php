@@ -65,6 +65,9 @@ class GPBGrpcRequestWrapperTest extends \PHPUnit_Framework_TestCase
 
     public function responseProvider()
     {
+        if ($this->shouldSkipGrpcTests()) {
+            return [];
+        }
         $expectedMessage = ['successful' => 'request'];
         $message = $this->prophesize(Message::class);
         $serializer = $this->prophesize(Serializer::class);

@@ -29,6 +29,7 @@ use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\ValueMapper;
+use Google\Cloud\Tests\GrpcTestTrait;
 use Prophecy\Argument;
 
 /**
@@ -36,6 +37,8 @@ use Prophecy\Argument;
  */
 class OperationTest extends \PHPUnit_Framework_TestCase
 {
+    use GrpcTestTrait;
+
     const SESSION = 'my-session-id';
     const TRANSACTION = 'my-transaction-id';
     const DATABASE = 'my-database';
@@ -47,6 +50,8 @@ class OperationTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
+        $this->checkAndSkipGrpcTests();
+
         $this->connection = $this->prophesize(ConnectionInterface::class);
 
         $this->operation = \Google\Cloud\Dev\stub(Operation::class, [
