@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Tests\Snippets\BigQuery;
 
+use Google\Cloud\BigQuery\BigQueryClient;
 use Google\Cloud\BigQuery\Timestamp;
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
 
@@ -28,7 +29,7 @@ class TimestampTest extends SnippetTestCase
     public function testClass()
     {
         $snippet = $this->snippetFromClass(Timestamp::class);
-        $snippet->addLocal('bigQuery', new \BigQueryClientStub);
+        $snippet->addLocal('bigQuery', \Google\Cloud\Dev\stub(BigQueryClient::class));
         $res = $snippet->invoke('timestamp');
 
         $this->assertInstanceOf(Timestamp::class, $res->returnVal());

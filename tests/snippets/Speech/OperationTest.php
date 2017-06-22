@@ -48,7 +48,11 @@ class OperationTest extends SnippetTestCase
         ];
 
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->operation = new \SpeechOperationStub($this->connection->reveal(), $this->opData['name'], $this->opData);
+        $this->operation = \Google\Cloud\Dev\stub(Operation::class, [
+            $this->connection->reveal(),
+            $this->opData['name'],
+            $this->opData
+        ]);
     }
 
     public function testClass()
@@ -118,7 +122,7 @@ class OperationTest extends SnippetTestCase
             ->shouldBeCalled()
             ->willReturn($this->opData);
 
-        $this->operation->setConnection($this->connection->reveal());
+        $this->operation->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke();
         $this->assertEquals(print_r($this->opData['response'], true), $res->output());

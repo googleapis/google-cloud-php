@@ -51,7 +51,7 @@ class TranslateClient
 {
     use ClientTrait;
 
-    const VERSION = '0.2.0';
+    const VERSION = '0.2.1';
 
     const ENGLISH_LANGUAGE_CODE = 'en';
 
@@ -260,13 +260,7 @@ class TranslateClient
      * @see https://cloud.google.com/translation/v2/detecting-language-with-rest Detecting Langauge
      *
      * @param string $string The string to detect the language of.
-     * @param array $options [optional] {
-     *     Configuration Options.
-     *
-     *     @type string $format Indicates whether the string is either
-     *           plain-text or HTML. Acceptable values are `html` or `text`.
-     *           **Defaults to** `"html"`.
-     * }
+     * @param array $options [optional] Configuration Options.
      * @return array A result including a `languageCode` key
      *         containing the detected ISO 639-1 language code, an `input` key
      *         containing the original string, and in most cases a `confidence`
@@ -296,13 +290,7 @@ class TranslateClient
      * @see https://cloud.google.com/translation/v2/detecting-language-with-rest Detecting Langauge
      *
      * @param string $string The string to detect the language of.
-     * @param array $options [optional] {
-     *     Configuration Options.
-     *
-     *     @type string $format Indicates whether the string is either
-     *           plain-text or HTML. Acceptable values are `html` or `text`.
-     *           **Defaults to** `"html"`.
-     * }
+     * @param array $options [optional] Configuration Options.
      * @return array A set of results. Each result includes a `languageCode` key
      *         containing the detected ISO 639-1 language code, an `input` key
      *         containing the original string, and in most cases a `confidence`

@@ -67,6 +67,13 @@ class TraceSpanTest extends \PHPUnit_Framework_TestCase
         $this->assertArrayNotHasKey('labels', $info);
     }
 
+    public function testEmptyLabels()
+    {
+        $traceSpan = new TraceSpan(['labels' => []]);
+        $info = $traceSpan->info();
+        $this->assertArrayNotHasKey('labels', $info);
+    }
+
     public function testGeneratesDefaultSpanName()
     {
         $traceSpan = new TraceSpan();
@@ -123,5 +130,26 @@ class TraceSpanTest extends \PHPUnit_Framework_TestCase
         $traceSpan = new TraceSpan(['extravalue' => 'something']);
         $info = $traceSpan->info();
         $this->assertArrayNotHasKey('extravalue', $info);
+    }
+
+    /**
+     * @dataProvider timestampFields
+     */
+    public function testCanFormatTimestamps($field, $timestamp, $expected)
+    {
+        $traceSpan = new TraceSpan([$field => $timestamp]);
+        $this->assertEquals($expected, $traceSpan->info()[$field]);
+    }
+
+    public function timestampFields()
+    {
+        return [
+            ['startTime', 1490737410, '2017-03-28T21:43:30.000000000Z'],
+            ['startTime', 1490737450.4843, '2017-03-28T21:44:10.484299000Z'],
+            ['startTime', '2017-03-28T21:44:10.484299000Z', '2017-03-28T21:44:10.484299000Z'],
+            ['endTime', 1490737410, '2017-03-28T21:43:30.000000000Z'],
+            ['endTime', 1490737450.4843, '2017-03-28T21:44:10.484299000Z'],
+            ['endTime', '2017-03-28T21:44:10.484299000Z', '2017-03-28T21:44:10.484299000Z'],
+        ];
     }
 }

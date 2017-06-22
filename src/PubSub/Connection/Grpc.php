@@ -288,10 +288,11 @@ class Grpc implements ConnectionInterface
      */
     public function listSnapshots(array $args)
     {
+        $whitelisted = true;
         return $this->send([$this->subscriberClient, 'listSnapshots'], [
             $this->pluck('project', $args),
             $args
-        ]);
+        ], $whitelisted);
     }
 
     /**
@@ -299,11 +300,12 @@ class Grpc implements ConnectionInterface
      */
     public function createSnapshot(array $args)
     {
+        $whitelisted = true;
         return $this->send([$this->subscriberClient, 'createSnapshot'], [
             $this->pluck('name', $args),
             $this->pluck('subscription', $args),
             $args
-        ]);
+        ], $whitelisted);
     }
 
     /**
@@ -311,10 +313,11 @@ class Grpc implements ConnectionInterface
      */
     public function deleteSnapshot(array $args)
     {
+        $whitelisted = true;
         return $this->send([$this->subscriberClient, 'deleteSnapshot'], [
             $this->pluck('snapshot', $args),
             $args
-        ]);
+        ], $whitelisted);
     }
 
     /**
@@ -327,10 +330,11 @@ class Grpc implements ConnectionInterface
             $args['time'] = (new protobuf\Timestamp)->deserialize($time, $this->codec);
         }
 
+        $whitelisted = true;
         return $this->send([$this->subscriberClient, 'seek'], [
             $this->pluck('subscription', $args),
             $args
-        ]);
+        ], $whitelisted);
     }
 
     /**

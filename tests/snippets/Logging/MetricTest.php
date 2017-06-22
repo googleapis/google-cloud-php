@@ -36,11 +36,11 @@ class MetricTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->metric = new \MetricStub(
+        $this->metric = \Google\Cloud\Dev\stub(Metric::class, [
             $this->connection->reveal(),
             self::METRIC,
             self::PROJECT
-        );
+        ]);
     }
 
     public function testClass()
@@ -60,7 +60,7 @@ class MetricTest extends SnippetTestCase
             ->shouldBeCalled()
             ->willReturn([]);
 
-        $this->metric->setConnection($this->connection->reveal());
+        $this->metric->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke();
         $this->assertEquals("Metric exists!", $res->output());
@@ -74,7 +74,7 @@ class MetricTest extends SnippetTestCase
         $this->connection->deleteMetric(Argument::any())
             ->shouldBeCalled();
 
-        $this->metric->setConnection($this->connection->reveal());
+        $this->metric->___setProperty('connection', $this->connection->reveal());
 
         $snippet->invoke();
     }
@@ -92,7 +92,7 @@ class MetricTest extends SnippetTestCase
             ->shouldBeCalled()
             ->willReturn(['description' => 'Foo']);
 
-        $this->metric->setConnection($this->connection->reveal());
+        $this->metric->___setProperty('connection', $this->connection->reveal());
 
         $snippet->invoke();
     }
@@ -106,7 +106,7 @@ class MetricTest extends SnippetTestCase
             ->shouldBeCalled()
             ->willReturn(['description' => 'Foo']);
 
-        $this->metric->setConnection($this->connection->reveal());
+        $this->metric->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke();
         $this->assertEquals('Foo', $res->output());
@@ -121,7 +121,7 @@ class MetricTest extends SnippetTestCase
             ->shouldBeCalled()
             ->willReturn(['description' => 'Foo']);
 
-        $this->metric->setConnection($this->connection->reveal());
+        $this->metric->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke();
         $this->assertEquals('Foo', $res->output());

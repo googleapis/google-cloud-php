@@ -38,11 +38,11 @@ class LoggerTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->logger = new \LoggerStub(
+        $this->logger = \Google\Cloud\Dev\stub(Logger::class, [
             $this->connection->reveal(),
             self::NAME,
             self::PROJECT
-        );
+        ]);
     }
 
     public function testClass()
@@ -61,7 +61,7 @@ class LoggerTest extends SnippetTestCase
         $this->connection->deleteLog(Argument::any())
             ->shouldBeCalled();
 
-        $this->logger->setConnection($this->connection->reveal());
+        $this->logger->___setProperty('connection', $this->connection->reveal());
 
         $snippet->invoke();
     }
@@ -80,7 +80,7 @@ class LoggerTest extends SnippetTestCase
                 ]
             ]);
 
-        $this->logger->setConnection($this->connection->reveal());
+        $this->logger->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke('entries');
         $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
@@ -106,7 +106,7 @@ class LoggerTest extends SnippetTestCase
                 ]
             ]);
 
-        $this->logger->setConnection($this->connection->reveal());
+        $this->logger->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke('entries');
         $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
@@ -150,7 +150,7 @@ class LoggerTest extends SnippetTestCase
         $this->connection->writeEntries(Argument::any())
             ->shouldBeCalled();
 
-        $this->logger->setConnection($this->connection->reveal());
+        $this->logger->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke();
     }
@@ -164,7 +164,7 @@ class LoggerTest extends SnippetTestCase
         $this->connection->writeEntries(Argument::any())
             ->shouldBeCalled();
 
-        $this->logger->setConnection($this->connection->reveal());
+        $this->logger->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke();
     }
@@ -177,7 +177,7 @@ class LoggerTest extends SnippetTestCase
         $this->connection->writeEntries(Argument::any())
             ->shouldBeCalled();
 
-        $this->logger->setConnection($this->connection->reveal());
+        $this->logger->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke();
     }
@@ -190,7 +190,7 @@ class LoggerTest extends SnippetTestCase
         $this->connection->writeEntries(Argument::any())
             ->shouldBeCalled();
 
-        $this->logger->setConnection($this->connection->reveal());
+        $this->logger->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke();
     }

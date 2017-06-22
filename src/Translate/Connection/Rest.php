@@ -57,7 +57,7 @@ class Rest implements ConnectionInterface
      */
     public function listDetections(array $args = [])
     {
-        return $this->send('detections', 'list', $args);
+        return $this->send('detections', 'detect', $args);
     }
 
     /**
@@ -75,6 +75,6 @@ class Rest implements ConnectionInterface
      */
     public function listTranslations(array $args = [])
     {
-        return $this->send('translations', 'list', $args);
+        return $this->send('translations', 'translate', $args);
     }
 }

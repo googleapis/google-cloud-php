@@ -20,7 +20,9 @@ This client supports the following Google Cloud Platform services at a [Beta](#v
 
 This client supports the following Google Cloud Platform services at an [Alpha](#versioning) quality level:
 * [Google Cloud Pub/Sub](#google-cloud-pubsub-alpha) (Alpha)
+* [Cloud Spanner](#cloud-spanner-alpha) (Alpha)
 * [Google Cloud Speech](#google-cloud-speech-alpha) (Alpha)
+* [Google Cloud Video Intelligence](#google-cloud-video-intelligence-alpha) (Alpha)
 * [Google Stackdriver Trace](#google-stackdriver-trace-alpha) (Alpha)
 
 If you need support for other Google APIs, please check out the [Google APIs Client Library for PHP](https://github.com/google/google-api-php-client).
@@ -390,6 +392,43 @@ Google Cloud Pub/Sub can be installed separately by requiring the `google/cloud-
 $ require google/cloud-pubsub
 ```
 
+## Cloud Spanner (Alpha)
+
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/spanner/spannerclient)
+- [Official Documentation](https://cloud.google.com/spanner/docs)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Spanner\SpannerClient;
+
+$spanner = new SpannerClient([
+    'projectId' => 'my_project'
+]);
+
+$db = $spanner->connect('my-instance', 'my-database');
+
+$userQuery = $db->execute('SELECT * FROM Users WHERE id = @id', [
+    'parameters' => [
+        'id' => $userId
+    ]
+]);
+
+$user = $userQuery->rows()->current();
+
+echo 'Hello ' . $user['firstName'];
+```
+
+#### google/cloud-spanner
+
+Cloud Spanner can be installed separately by requiring the `google/cloud-spanner` composer package:
+
+```
+$ require google/cloud-spanner
+```
+
 ## Google Cloud Speech (Alpha)
 
 - [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/speech/speechclient)
@@ -425,24 +464,46 @@ Google Cloud Speech can be installed separately by requiring the `google/cloud-s
 $ require google/cloud-speech
 ```
 
-## Caching Access Tokens
+## Google Cloud Video Intelligence (Alpha)
 
-By default the library will use a simple in-memory caching implementation, however it is possible to override this behavior by passing a [PSR-6](http://www.php-fig.org/psr/psr-6/) caching implementation in to the desired client.
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/videointelligence/readme)
+- [Official Documentation](https://cloud.google.com/video-intelligence/docs)
 
-The following example takes advantage of [Symfony's Cache Component](https://github.com/symfony/cache).
+#### Preview
 
 ```php
-require 'vendor/autoload.php';
+require __DIR__ . '/vendor/autoload.php';
 
-use Google\Cloud\Storage\StorageClient;
-use Symfony\Component\Cache\Adapter\ArrayAdapter;
+use Google\Cloud\VideoIntelligence\V1beta1\VideoIntelligenceServiceClient;
+use google\cloud\videointelligence\v1beta1\Feature;
 
-// Please take the proper precautions when storing your access tokens in a cache no matter the implementation.
-$cache = new ArrayAdapter();
+$client = new VideoIntelligenceServiceClient();
 
-$storage = new StorageClient([
-    'authCache' => $cache
-]);
+$inputUri = "gs://example-bucket/example-video.mp4";
+$features = [
+    Feature::LABEL_DETECTION,
+];
+$operationResponse = $client->annotateVideo($inputUri, $features);
+$operationResponse->pollUntilComplete();
+if ($operationResponse->operationSucceeded()) {
+    $results = $operationResponse->getResult();
+    foreach ($results->getAnnotationResultsList() as $result) {
+        foreach ($result->getLabelAnnotationsList() as $labelAnnotation) {
+            echo "Label: " . $labelAnnotation->getDescription() . "\n";
+        }
+    }
+} else {
+    $error = $operationResponse->getError();
+    echo "error: " . $error->getMessage() . "\n";
+}
+```
+
+#### google/cloud-videointelligence
+
+Cloud Video Intelligence can be installed separately by requiring the `google/cloud-videointelligence` composer package:
+
+```
+$ require google/cloud-videointelligence
 ```
 
 ## Google Stackdriver Trace (Alpha)
@@ -457,7 +518,7 @@ require 'vendor/autoload.php';
 
 use Google\Cloud\Trace\TraceClient;
 
-$traceClient = new SpeechClient([
+$traceClient = new TraceClient([
     'projectId' => 'my_project'
 ]);
 
@@ -476,6 +537,34 @@ $traceClient->insert($trace);
 foreach($traceClient->traces() as $trace) {
     var_dump($trace->traceId());
 }
+```
+
+#### google/cloud-trace
+
+Stackdriver Trace can be installed separately by requiring the `google/cloud-trace` composer package:
+
+```
+$ require google/cloud-trace
+```
+
+## Caching Access Tokens
+
+By default the library will use a simple in-memory caching implementation, however it is possible to override this behavior by passing a [PSR-6](http://www.php-fig.org/psr/psr-6/) caching implementation in to the desired client.
+
+The following example takes advantage of [Symfony's Cache Component](https://github.com/symfony/cache).
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Storage\StorageClient;
+use Symfony\Component\Cache\Adapter\ArrayAdapter;
+
+// Please take the proper precautions when storing your access tokens in a cache no matter the implementation.
+$cache = new ArrayAdapter();
+
+$storage = new StorageClient([
+    'authCache' => $cache
+]);
 ```
 
 ## Versioning

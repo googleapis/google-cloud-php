@@ -17,12 +17,6 @@
         "title": "Topic",
         "type": "pubsub/topic"
     }, {
-        "title": "Duration",
-        "type": "pubsub/duration"
-    }, {
-        "title": "Timestamp",
-        "type": "pubsub/timestamp"
-    }, {
         "title": "v1",
         "type": "pubsub/v1/readme",
         "patterns": [

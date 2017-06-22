@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Core;
 
+use Google\Cloud\Core\Exception\NotFoundException;
+
 /**
  * Provides shared functionality for REST service implementations.
  */
@@ -24,6 +26,7 @@ trait RestTrait
 {
     use ArrayTrait;
     use JsonTrait;
+    use WhitelistTrait;
 
     /**
      * @var RequestBuilder Builds PSR7 requests from a service definition.
@@ -64,9 +67,10 @@ trait RestTrait
      * @param string $resource The resource type used for the request.
      * @param string $method The method used for the request.
      * @param array $options [optional] Options used to build out the request.
+     * @param array $whitelisted [optional]
      * @return array
      */
-    public function send($resource, $method, array $options = [])
+    public function send($resource, $method, array $options = [], $whitelisted = false)
     {
         $requestOptions = $this->pluckArray([
             'restOptions',
@@ -74,12 +78,20 @@ trait RestTrait
             'requestTimeout'
         ], $options);
 
-        return json_decode(
-            $this->requestWrapper->send(
-                $this->requestBuilder->build($resource, $method, $options),
-                $requestOptions
-            )->getBody(),
-            true
-        );
+        try {
+            return json_decode(
+                $this->requestWrapper->send(
+                    $this->requestBuilder->build($resource, $method, $options),
+                    $requestOptions
+                )->getBody(),
+                true
+            );
+        } catch (NotFoundException $e) {
+            if ($whitelisted) {
+                throw $this->modifyWhitelistedError($e);
+            }
+
+            throw $e;
+        }
     }
 }

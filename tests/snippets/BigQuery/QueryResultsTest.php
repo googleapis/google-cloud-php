@@ -63,14 +63,14 @@ class QueryResultsTest extends SnippetTestCase
         $this->reload = [];
 
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->qr = new \QueryResultsStub(
+        $this->qr = \Google\Cloud\Dev\stub(QueryResults::class, [
             $this->connection->reveal(),
             self::JOB_ID,
             self::PROJECT,
             $this->info,
             $this->reload,
             new ValueMapper(false)
-        );
+        ]);
     }
 
     public function testRows()
@@ -82,7 +82,7 @@ class QueryResultsTest extends SnippetTestCase
         $this->connection->getQueryResults(Argument::any())
             ->willReturn($this->info);
 
-        $this->qr->setConnection($this->connection->reveal());
+        $this->qr->___setProperty('connection', $this->connection->reveal());
 
         $this->qr->reload();
 
@@ -99,7 +99,7 @@ class QueryResultsTest extends SnippetTestCase
         $this->connection->getQueryResults(Argument::any())
             ->willReturn($this->info);
 
-        $this->qr->setConnection($this->connection->reveal());
+        $this->qr->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke();
         $this->assertEquals('Query complete!', $res->output());
@@ -129,7 +129,7 @@ class QueryResultsTest extends SnippetTestCase
             ->shouldBeCalled()
             ->willReturn(['jobComplete' => true] + $this->info);
 
-        $this->qr->setConnection($this->connection->reveal());
+        $this->qr->___setProperty('connection', $this->connection->reveal());
 
         $snippet = $this->snippetFromMethod(QueryResults::class, 'reload');
         $snippet->addLocal('queryResults', $this->qr);

@@ -19,6 +19,7 @@
         "natural language",
         "pubsub",
         "pub sub",
+        "spanner",
         "speech",
         "storage",
         "gcs",
@@ -41,11 +42,12 @@
     "require": {
         "php": ">=5.5",
         "rize/uri-template": "~0.3",
-        "google/auth": "^0.11",
+        "google/auth": "^1.0",
         "guzzlehttp/guzzle": "^5.3|^6.0",
         "guzzlehttp/psr7": "^1.2",
         "monolog/monolog": "~1",
-        "psr/http-message": "1.0.*"
+        "psr/http-message": "1.0.*",
+        "ramsey/uuid": "~3"
     },
     "require-dev": {
         "phpunit/phpunit": "4.8.*",
@@ -55,12 +57,14 @@
         "league/json-guard": "^0.3",
         "erusev/parsedown": "^1.6",
         "vierbergenlars/php-semver": "^3.0",
-        "google/proto-client-php": "^0.12",
-        "google/gax": "^0.8"
+        "google/proto-client-php": "^0.13",
+        "google/gax": "^0.10",
+        "symfony/lock": "3.3.x-dev#1ba6ac9"
     },
     "suggest": {
         "google/gax": "Required to support gRPC",
-        "google/proto-client-php": "Required to support gRPC"
+        "google/proto-client-php": "Required to support gRPC",
+        "symfony/lock": "Required for the Spanner cached based session pool. Please require the following commit: 3.3.x-dev#1ba6ac9"
     },
     "autoload": {
         "psr-4": {
@@ -72,7 +76,8 @@
             "Google\\Cloud\\Dev\\": "dev/src",
             "Google\\Cloud\\Tests\\System\\": "tests/system",
             "Google\\Cloud\\Tests\\Unit\\": "tests/unit"
-        }
+        },
+        "files": ["dev/src/Functions.php"]
     },
     "scripts": {
         "google-cloud": "dev/google-cloud"

@@ -4,7 +4,13 @@
     "license": "Apache-2.0",
     "minimum-stability": "stable",
     "require": {
-        "google/cloud-core": "*"
+        "google/cloud-core": "^1.4",
+        "ramsey/uuid": "~3"
+    },
+    "suggest": {
+        "cache/apcu-adapter": "Enable QpsSampler to use apcu cache.",
+        "cache/apc-adapter": "Enable QpsSampler to use apc cache.",
+        "cache/memcached-adapter": "Enable QpsSampler to use memcached cache."
     },
     "extra": {
         "component": {

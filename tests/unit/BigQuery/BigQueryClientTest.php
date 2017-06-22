@@ -167,7 +167,7 @@ class BigQueryClientTest extends \PHPUnit_Framework_TestCase
 
     public function testGetsJobsWithNoResults()
     {
-        $this->connection->listJobs(Argument::any())
+        $this->connection->listJobs(['projectId' => $this->projectId])
             ->willReturn([])
             ->shouldBeCalledTimes(1);
 
@@ -179,7 +179,7 @@ class BigQueryClientTest extends \PHPUnit_Framework_TestCase
 
     public function testGetsJobsWithoutToken()
     {
-        $this->connection->listJobs(Argument::any())
+        $this->connection->listJobs(['projectId' => $this->projectId])
             ->willReturn([
                 'jobs' => [
                     ['jobReference' => ['jobId' => $this->jobId]]
@@ -195,21 +195,23 @@ class BigQueryClientTest extends \PHPUnit_Framework_TestCase
 
     public function testGetsJobsWithToken()
     {
-        $this->connection->listJobs(Argument::any())
-            ->willReturn(
-                [
-                    'nextPageToken' => 'token',
-                    'jobs' => [
-                        ['jobReference' => ['jobId' => 'someOtherJobId']]
-                    ]
-                ],
-                    [
-                    'jobs' => [
-                        ['jobReference' => ['jobId' => $this->jobId]]
-                    ]
+        $token = 'token';
+        $this->connection->listJobs(['projectId' => $this->projectId])
+            ->willReturn([
+                'nextPageToken' => $token,
+                'jobs' => [
+                    ['jobReference' => ['jobId' => 'someOtherJobId']]
                 ]
-            )
-            ->shouldBeCalledTimes(2);
+            ])->shouldBeCalledTimes(1);
+        $this->connection->listJobs([
+            'projectId' => $this->projectId,
+            'pageToken' => $token
+        ])
+            ->willReturn([
+                'jobs' => [
+                    ['jobReference' => ['jobId' => $this->jobId]]
+                ]
+            ])->shouldBeCalledTimes(1);
 
         $this->client->setConnection($this->connection->reveal());
         $job = iterator_to_array($this->client->jobs());

@@ -19,10 +19,12 @@ namespace Google\Cloud\Core\Upload;
 
 use Google\Cloud\Core\Exception\GoogleException;
 use Google\Cloud\Core\JsonTrait;
+use Google\Cloud\Core\RequestWrapper;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\LimitStream;
 use GuzzleHttp\Psr7\Request;
 use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\StreamInterface;
 
 /**
  * Resumable upload implementation.
@@ -30,6 +32,11 @@ use Psr\Http\Message\ResponseInterface;
 class ResumableUploader extends AbstractUploader
 {
     use JsonTrait;
+    
+    /**
+     * @var callable
+     */
+    private $uploadProgressCallback;
 
     /**
      * @var int
@@ -40,6 +47,41 @@ class ResumableUploader extends AbstractUploader
      * @var string
      */
     private $resumeUri;
+    
+    /**
+     * Extend the parent constructor with the specific
+     * for resumable upload option "uploadProgressCallback"
+     *
+     * @param RequestWrapper $requestWrapper
+     * @param string|resource|StreamInterface $data
+     * @param string $uri
+     * @param array $options [optional] {
+     *     Optional configuration.
+     *
+     *     @type array $metadata Metadata on the resource.
+     *     @type callable $uploadProgressCallback to be called on each
+     *           successfully uploaded chunk.
+     *     @type int $chunkSize Size of the chunks to send incrementally during
+     *           a resumable upload. Must be in multiples of 262144 bytes.
+     *     @type array $restOptions HTTP client specific configuration options.
+     *     @type int $retries Number of retries for a failed request.
+     *           **Defaults to** `3`.
+     *     @type string $contentType Content type of the resource.
+     * }
+     */
+    public function __construct(
+        RequestWrapper $requestWrapper,
+        $data,
+        $uri,
+        array $options = []
+    ) {
+        parent::__construct($requestWrapper, $data, $uri, $options);
+
+        // Set uploadProgressCallback if it's passed as an option.
+        if (isset($options['uploadProgressCallback'])) {
+            $this->uploadProgressCallback = $options['uploadProgressCallback'];
+        }
+    }
 
     /**
      * Gets the resume URI.
@@ -99,9 +141,13 @@ class ResumableUploader extends AbstractUploader
                 $this->chunkSize ?: - 1,
                 $rangeStart
             );
-            $rangeEnd = $rangeStart + ($data->getSize() - 1);
+            
+            $currStreamLimitSize = $data->getSize();
+            
+            $rangeEnd = $rangeStart + ($currStreamLimitSize - 1);
+            
             $headers = [
-                'Content-Length' => $data->getSize(),
+                'Content-Length' => $currStreamLimitSize,
                 'Content-Type' => $this->contentType,
                 'Content-Range' => "bytes $rangeStart-$rangeEnd/$size",
             ];
@@ -120,6 +166,10 @@ class ResumableUploader extends AbstractUploader
                     "Upload failed. Please use this URI to resume your upload: $this->resumeUri",
                     $ex->getCode()
                 );
+            }
+            
+            if (is_callable($this->uploadProgressCallback)) {
+                call_user_func($this->uploadProgressCallback, $currStreamLimitSize);
             }
 
             $rangeStart = $this->getRangeStart($response->getHeaderLine('Range'));
