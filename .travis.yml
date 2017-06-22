@@ -12,6 +12,8 @@ matrix:
     group: edge
   fast_finish: true
 
+before_install: echo "extension = <extension>.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+
 before_script:
   - pecl install grpc || echo 'Failed to install grpc'
   - composer install
