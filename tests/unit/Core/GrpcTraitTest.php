@@ -20,15 +20,15 @@ namespace Google\Cloud\Tests\Unit\Core;
 use Google\Auth\Cache\MemoryCacheItemPool;
 use Google\Auth\FetchAuthTokenCache;
 use Google\Auth\FetchAuthTokenInterface;
-use Google\Cloud\Core\GPBGrpcRequestWrapper;
-use Google\Cloud\Core\GPBGrpcTrait;
 use Google\Cloud\Tests\GrpcTestTrait;
+use Google\Cloud\Core\GrpcRequestWrapper;
+use Google\Cloud\Core\GrpcTrait;
 use Prophecy\Argument;
 
 /**
  * @group core
  */
-class GPBGrpcTraitTest extends \PHPUnit_Framework_TestCase
+class GrpcTraitTest extends \PHPUnit_Framework_TestCase
 {
     use GrpcTestTrait;
 
@@ -40,7 +40,7 @@ class GPBGrpcTraitTest extends \PHPUnit_Framework_TestCase
         $this->checkAndSkipGrpcTests();
 
         $this->implementation = new GrpcTraitStub();
-        $this->requestWrapper = $this->prophesize(GPBGrpcRequestWrapper::class);
+        $this->requestWrapper = $this->prophesize(GrpcRequestWrapper::class);
     }
 
     public function testSendsRequest()
@@ -215,7 +215,7 @@ class GPBGrpcTraitTest extends \PHPUnit_Framework_TestCase
 
 class GrpcTraitStub
 {
-    use GPBGrpcTrait;
+    use GrpcTrait;
 
     public function call($fn, array $args = [])
     {

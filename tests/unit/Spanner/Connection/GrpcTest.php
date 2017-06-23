@@ -17,8 +17,8 @@
 
 namespace Google\Cloud\Tests\Unit\Spanner\Connection;
 
-use Google\Cloud\Core\GPBGrpcRequestWrapper;
-use Google\Cloud\Core\GPBGrpcTrait;
+use Google\Cloud\Core\GrpcRequestWrapper;
+use Google\Cloud\Core\GrpcTrait;
 use Google\Cloud\Spanner\Connection\Grpc;
 use Google\Cloud\Spanner\ValueMapper;
 use Google\Cloud\Tests\GrpcTestTrait;
@@ -26,17 +26,17 @@ use Google\GAX\OperationResponse;
 use Google\GAX\Serializer;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\Struct;
-use Google\Spanner\Admin\Instance\V1\Instance;
-use Google\Spanner\Admin\Instance\V1\Instance_State;
-use Google\Spanner\V1\Mutation_Write;
-use Google\Spanner\V1\TransactionOptions_ReadOnly;
-use Google\Spanner\V1\TransactionOptions_ReadWrite;
+use Google\Cloud\Spanner\Admin\Instance\V1\Instance;
+use Google\Cloud\Spanner\Admin\Instance\V1\Instance_State;
+use Google\Cloud\Spanner\V1\Mutation_Write;
+use Google\Cloud\Spanner\V1\TransactionOptions_ReadOnly;
+use Google\Cloud\Spanner\V1\TransactionOptions_ReadWrite;
 use Prophecy\Argument;
-use Google\Spanner\V1\KeySet;
-use Google\Spanner\V1\Mutation;
-use Google\Spanner\V1\TransactionOptions;
-use Google\Spanner\V1\TransactionSelector;
-use Google\Spanner\V1\Type;
+use Google\Cloud\Spanner\V1\KeySet;
+use Google\Cloud\Spanner\V1\Mutation;
+use Google\Cloud\Spanner\V1\TransactionOptions;
+use Google\Cloud\Spanner\V1\TransactionSelector;
+use Google\Cloud\Spanner\V1\Type;
 
 /**
  * @group spanner
@@ -44,7 +44,7 @@ use Google\Spanner\V1\Type;
 class GrpcTest extends \PHPUnit_Framework_TestCase
 {
     use GrpcTestTrait;
-    use GPBGrpcTrait;
+    use GrpcTrait;
 
     const PROJECT = 'projects/my-project';
 
@@ -55,7 +55,7 @@ class GrpcTest extends \PHPUnit_Framework_TestCase
     {
         $this->checkAndSkipGrpcTests();
 
-        $this->requestWrapper = $this->prophesize(GPBGrpcRequestWrapper::class);
+        $this->requestWrapper = $this->prophesize(GrpcRequestWrapper::class);
         $this->successMessage = 'success';
     }
 

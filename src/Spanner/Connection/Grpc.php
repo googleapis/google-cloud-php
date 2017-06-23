@@ -17,39 +17,40 @@
 
 namespace Google\Cloud\Spanner\Connection;
 
-use Google\Cloud\Core\GPBGrpcRequestWrapper;
-use Google\Cloud\Core\GPBGrpcTrait;
-use Google\Cloud\Core\LongRunning\GPBOperationResponseTrait;
+use Google\Cloud\Core\GrpcRequestWrapper;
+use Google\Cloud\Core\GrpcTrait;
+use Google\Cloud\Core\LongRunning\OperationResponseTrait;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Operation;
-use Google\Cloud\Spanner\SpannerClient as ManualSpannerClient;
+use Google\Cloud\Spanner\SpannerClient as VeneerSpannerClient;
 use Google\Cloud\Spanner\V1\SpannerClient;
 use Google\GAX\Serializer;
+use Google\Protobuf;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Protobuf\ListValue;
 use Google\Protobuf\Struct;
 use Google\Protobuf\Value;
-use Google\Spanner\Admin\Database\V1\Database;
-use Google\Spanner\Admin\Instance\V1\Instance;
-use Google\Spanner\V1\KeySet;
-use Google\Spanner\V1\Mutation;
-use Google\Spanner\V1\Mutation_Delete;
-use Google\Spanner\V1\Mutation_Write;
-use Google\Spanner\V1\TransactionOptions;
-use Google\Spanner\V1\TransactionOptions_ReadOnly;
-use Google\Spanner\V1\TransactionOptions_ReadWrite;
-use Google\Spanner\V1\TransactionSelector;
-use Google\Spanner\V1\Type;
+use Google\Cloud\Spanner\Admin\Database\V1\Database;
+use Google\Cloud\Spanner\Admin\Instance\V1\Instance;
+use Google\Cloud\Spanner\V1\KeySet;
+use Google\Cloud\Spanner\V1\Mutation;
+use Google\Cloud\Spanner\V1\Mutation_Delete;
+use Google\Cloud\Spanner\V1\Mutation_Write;
+use Google\Cloud\Spanner\V1\TransactionOptions;
+use Google\Cloud\Spanner\V1\TransactionOptions_ReadOnly;
+use Google\Cloud\Spanner\V1\TransactionOptions_ReadWrite;
+use Google\Cloud\Spanner\V1\TransactionSelector;
+use Google\Cloud\Spanner\V1\Type;
 
 /**
  * Connection to Cloud Spanner over gRPC
  */
 class Grpc implements ConnectionInterface
 {
-    use GPBGrpcTrait;
-    use GPBOperationResponseTrait;
+    use GrpcTrait;
+    use OperationResponseTrait;
 
     /**
      * @var InstanceAdminClient
@@ -140,9 +141,9 @@ class Grpc implements ConnectionInterface
         ]);
 
         $config['serializer'] = $this->serializer;
-        $this->setRequestWrapper(new GPBGrpcRequestWrapper($config));
+        $this->setRequestWrapper(new GrpcRequestWrapper($config));
 
-        $grpcConfig = $this->getGaxConfig(ManualSpannerClient::VERSION);
+        $grpcConfig = $this->getGaxConfig(VeneerSpannerClient::VERSION);
         $this->instanceAdminClient = new InstanceAdminClient($grpcConfig);
         $this->databaseAdminClient = new DatabaseAdminClient($grpcConfig);
         $this->spannerClient = new SpannerClient($grpcConfig);

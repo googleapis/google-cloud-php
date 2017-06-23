@@ -20,8 +20,8 @@ namespace Google\Cloud\Tests\Unit\Core;
 
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Core\Exception;
-use Google\Cloud\Core\GPBGrpcRequestWrapper;
 use Google\Cloud\Tests\GrpcTestTrait;
+use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\GAX\ApiException;
 use Google\GAX\Page;
 use Google\GAX\PagedListResponse;
@@ -32,7 +32,7 @@ use Prophecy\Argument;
 /**
  * @group core
  */
-class GPBGrpcRequestWrapperTest extends \PHPUnit_Framework_TestCase
+class GrpcRequestWrapperTest extends \PHPUnit_Framework_TestCase
 {
     use GrpcTestTrait;
 
@@ -46,7 +46,7 @@ class GPBGrpcRequestWrapperTest extends \PHPUnit_Framework_TestCase
      */
     public function testSuccessfullySendsRequest($response, $expectedMessage, $serializer)
     {
-        $requestWrapper = new GPBGrpcRequestWrapper(['serializer' => $serializer]);
+        $requestWrapper = new GrpcRequestWrapper(['serializer' => $serializer]);
         $requestOptions = [
             'requestTimeout' => 3.5
         ];
@@ -85,11 +85,11 @@ class GPBGrpcRequestWrapperTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \Google\Cloud\Core\Exception\GoogleException
+     * @expectedException Google\Cloud\Core\Exception\GoogleException
      */
     public function testThrowsExceptionWhenRequestFails()
     {
-        $requestWrapper = new GPBGrpcRequestWrapper();
+        $requestWrapper = new GrpcRequestWrapper();
 
         $requestWrapper->send(function () {
             throw new ApiException('message', 5);
@@ -103,7 +103,7 @@ class GPBGrpcRequestWrapperTest extends \PHPUnit_Framework_TestCase
     {
         $credentialsFetcher = new \stdClass();
 
-        $requestWrapper = new GPBGrpcRequestWrapper([
+        $requestWrapper = new GrpcRequestWrapper([
             'credentialsFetcher' => $credentialsFetcher
         ]);
     }
@@ -113,7 +113,7 @@ class GPBGrpcRequestWrapperTest extends \PHPUnit_Framework_TestCase
      */
     public function testCredentialsFetcher($wrapperConfig)
     {
-        $requestWrapper = new GPBGrpcRequestWrapper($wrapperConfig);
+        $requestWrapper = new GrpcRequestWrapper($wrapperConfig);
 
         $this->assertInstanceOf(
             FetchAuthTokenInterface::class,
@@ -126,7 +126,7 @@ class GPBGrpcRequestWrapperTest extends \PHPUnit_Framework_TestCase
      */
     public function testCredentialsFromKeyFileStreamCanBeReadMultipleTimes($wrapperConfig)
     {
-        $requestWrapper = new GPBGrpcRequestWrapper($wrapperConfig);
+        $requestWrapper = new GrpcRequestWrapper($wrapperConfig);
 
         $requestWrapper->getCredentialsFetcher();
         $credentials = $requestWrapper->getCredentialsFetcher();
@@ -164,7 +164,7 @@ class GPBGrpcRequestWrapperTest extends \PHPUnit_Framework_TestCase
      */
     public function testCastsToProperException($code, $expectedException)
     {
-        $requestWrapper = new GPBGrpcRequestWrapper();
+        $requestWrapper = new GrpcRequestWrapper();
 
         try {
             $requestWrapper->send(function () use ($code) {
