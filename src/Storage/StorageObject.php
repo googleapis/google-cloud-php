@@ -766,7 +766,7 @@ class StorageObject
         }
 
         if ($headers) {
-            $headers[] = "";
+            $headers[] = '';
         }
 
         $toSign = [
@@ -774,37 +774,37 @@ class StorageObject
             $options['contentMd5'],
             $options['contentType'],
             $seconds,
-            implode("\n", $headers) . $resource,
+            implode(PHP_EOL, $headers) . $resource,
         ];
 
-        $string = implode("\n", $toSign);
+        $string = implode(PHP_EOL, $toSign);
         $signature = $this->signString($keyFile['private_key'], $string);
         $encodedSignature = urlencode(base64_encode($signature));
 
         $query = [];
-        $query[] = 'GoogleAccessId='. $keyFile['client_email'];
-        $query[] = 'Expires='. $seconds;
-        $query[] = 'Signature='. $encodedSignature;
+        $query[] = 'GoogleAccessId=' . $keyFile['client_email'];
+        $query[] = 'Expires=' . $seconds;
+        $query[] = 'Signature=' . $encodedSignature;
 
         if ($options['contentType']) {
-            $query[] = 'response-content-type='. urlencode($options['contentType']);
+            $query[] = 'response-content-type=' . urlencode($options['contentType']);
         }
 
         if ($options['responseDisposition']) {
-            $query[] = 'response-content-disposition='. urlencode($options['responseDisposition']);
+            $query[] = 'response-content-disposition=' . urlencode($options['responseDisposition']);
         } elseif ($options['saveAsName']) {
-            $query[] = 'response-content-disposition=attachment;filename="'. urlencode($options['saveAsName']) .'"';
+            $query[] = 'response-content-disposition=attachment;filename="' . urlencode($options['saveAsName']) . '"';
         }
 
         if ($options['responseType']) {
-            $query[] = 'response-content-type='. urlencode($options['responseType']);
+            $query[] = 'response-content-type=' . urlencode($options['responseType']);
         }
 
         if ($this->identity['generation']) {
-            $query[] = 'generation='. $this->identity['generation'];
+            $query[] = 'generation=' . $this->identity['generation'];
         }
 
-        return $options['cname'] . $resource .'?'. implode('&', $query);
+        return $options['cname'] . $resource . '?' . implode('&', $query);
     }
 
     /**

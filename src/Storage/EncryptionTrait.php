@@ -115,13 +115,12 @@ trait EncryptionTrait
      *
      * @param string $privateKey The private key to use to sign the data.
      * @param string $data The data to sign.
-     * @param mixed $algo The algorithm to use to sign.
      * @return string The signature
      */
-    private function signString($privateKey, $data, $algo = 'sha256WithRSAEncryption')
+    private function signString($privateKey, $data)
     {
         $signature = '';
-        $result = openssl_sign($data, $signature, $privateKey, $algo);
+        $result = openssl_sign($data, $signature, $privateKey, 'sha256WithRSAEncryption');
 
         return $signature;
     }
