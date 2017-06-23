@@ -26,17 +26,17 @@ use Google\GAX\OperationResponse;
 use Google\GAX\Serializer;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\Struct;
-use Google\Cloud\Spanner\Admin\Instance\V1\Instance;
-use Google\Cloud\Spanner\Admin\Instance\V1\Instance_State;
-use Google\Cloud\Spanner\V1\Mutation_Write;
-use Google\Cloud\Spanner\V1\TransactionOptions_ReadOnly;
-use Google\Cloud\Spanner\V1\TransactionOptions_ReadWrite;
+use Google\Spanner\Admin\Instance\V1\Instance;
+use Google\Spanner\Admin\Instance\V1\Instance_State;
+use Google\Spanner\V1\Mutation_Write;
+use Google\Spanner\V1\TransactionOptions_ReadOnly;
+use Google\Spanner\V1\TransactionOptions_ReadWrite;
 use Prophecy\Argument;
-use Google\Cloud\Spanner\V1\KeySet;
-use Google\Cloud\Spanner\V1\Mutation;
-use Google\Cloud\Spanner\V1\TransactionOptions;
-use Google\Cloud\Spanner\V1\TransactionSelector;
-use Google\Cloud\Spanner\V1\Type;
+use Google\Spanner\V1\KeySet;
+use Google\Spanner\V1\Mutation;
+use Google\Spanner\V1\TransactionOptions;
+use Google\Spanner\V1\TransactionSelector;
+use Google\Spanner\V1\Type;
 
 /**
  * @group spanner

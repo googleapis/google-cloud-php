@@ -25,10 +25,10 @@ use Google\Cloud\Logging\V2\ConfigServiceV2Client;
 use Google\Cloud\Logging\V2\LoggingServiceV2Client;
 use Google\Cloud\Logging\V2\MetricsServiceV2Client;
 use Google\GAX\Serializer;
-use Google\Cloud\Logging\V2\LogEntry;
-use Google\Cloud\Logging\V2\LogMetric;
-use Google\Cloud\Logging\V2\LogSink;
-use Google\Cloud\Logging\V2\LogSink_VersionFormat;
+use Google\Logging\V2\LogEntry;
+use Google\Logging\V2\LogMetric;
+use Google\Logging\V2\LogSink;
+use Google\Logging\V2\LogSink_VersionFormat;
 
 /**
  * Implementation of the

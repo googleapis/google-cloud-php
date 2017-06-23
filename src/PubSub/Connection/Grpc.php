@@ -24,7 +24,7 @@ use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\PubSub\V1\PublisherClient;
 use Google\Cloud\PubSub\V1\SubscriberClient;
 use Google\GAX\Serializer;
-use Google\Cloud\Iam\V1\Policy;
+use Google\Iam\V1\Policy;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\Timestamp;
 use Google\Pubsub\V1\PubsubMessage;
