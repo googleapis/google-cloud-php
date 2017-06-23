@@ -191,7 +191,7 @@ class OperationResponse
      */
     public function getResult()
     {
-        if (!$this->isDone() || !$this->lastProtoResponse->hasResponse()) {
+        if (!$this->isDone() || is_null($this->lastProtoResponse->getResponse())) {
             return null;
         }
 
@@ -201,7 +201,7 @@ class OperationResponse
         }
         $operationReturnType = $this->operationReturnType;
         $response = new $operationReturnType();
-        $response->parse($anyResponse->getValue());
+        $response->mergeFromString($anyResponse->getValue());
         return $response;
     }
 
@@ -213,7 +213,7 @@ class OperationResponse
      */
     public function getError()
     {
-        if (!$this->isDone() || !$this->lastProtoResponse->hasError()) {
+        if (!$this->isDone() || is_null($this->lastProtoResponse->getError())) {
             return null;
         }
         return $this->lastProtoResponse->getError();
@@ -304,7 +304,7 @@ class OperationResponse
         }
         $metadataReturnType = $this->metadataReturnType;
         $metadata = new $metadataReturnType();
-        $metadata->parse($any->getValue());
+        $metadata->mergeFromString($any->getValue());
         return $metadata;
     }
 }

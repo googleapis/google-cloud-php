@@ -32,8 +32,7 @@
 
 namespace Google\GAX\Testing;
 
-use google\rpc\Code;
-use google\rpc\Status;
+use Google\Rpc\Code;
 
 /**
  * The MockUnaryCall class is used to mock out the \Grpc\UnaryCall class
@@ -45,28 +44,24 @@ use google\rpc\Status;
  */
 class MockUnaryCall
 {
+    use SerializationTrait;
+
     private $response;
     private $deserialize;
     private $status;
 
     /**
      * MockUnaryCall constructor.
-     * @param $response The response object.
+     * @param \Google\Protobuf\Internal\Message $response The response object.
      * @param callable|null $deserialize An optional deserialize method for the response object.
-     * @param Status|null $status An optional status object. If set to null, a status of OK is used.
+     * @param MockStatus|null $status An optional status object. If set to null, a status of OK is used.
      */
     public function __construct($response, $deserialize = null, $status = null)
     {
         $this->response = $response;
-        if (is_null($deserialize)) {
-            $deserialize = function ($resp) {
-                return $resp;
-            };
-        }
         $this->deserialize = $deserialize;
         if (is_null($status)) {
-            $status = new Status();
-            $status->setCode(Code::OK);
+            $status = new MockStatus(Code::OK);
         }
         $this->status = $status;
     }
@@ -77,6 +72,7 @@ class MockUnaryCall
      */
     public function wait()
     {
-        return [call_user_func($this->deserialize, $this->response), $this->status];
+        $obj = $this->deserializeMessage($this->response, $this->deserialize);
+        return [$obj, $this->status];
     }
 }

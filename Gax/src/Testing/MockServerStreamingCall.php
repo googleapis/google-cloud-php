@@ -33,8 +33,7 @@
 namespace Google\GAX\Testing;
 
 use Google\GAX\ApiException;
-use google\rpc\Code;
-use google\rpc\Status;
+use Google\Rpc\Code;
 use Grpc;
 
 /**
@@ -43,6 +42,8 @@ use Grpc;
  */
 class MockServerStreamingCall
 {
+    use SerializationTrait;
+
     private $responses;
     private $deserialize;
     private $status;
@@ -51,20 +52,14 @@ class MockServerStreamingCall
      * MockServerStreamingCall constructor.
      * @param mixed[] $responses A list of response objects.
      * @param callable|null $deserialize An optional deserialize method for the response object.
-     * @param Status|null $status An optional status object. If set to null, a status of OK is used.
+     * @param MockStatus|null $status An optional status object. If set to null, a status of OK is used.
      */
     public function __construct($responses, $deserialize = null, $status = null)
     {
         $this->responses = $responses;
-        if (is_null($deserialize)) {
-            $deserialize = function ($resp) {
-                return $resp;
-            };
-        }
         $this->deserialize = $deserialize;
         if (is_null($status)) {
-            $status = new Status();
-            $status->setCode(Code::OK);
+            $status = new MockStatus(Code::OK);
         }
         $this->status = $status;
     }
@@ -73,7 +68,8 @@ class MockServerStreamingCall
     {
         while (count($this->responses) > 0) {
             $resp = array_shift($this->responses);
-            yield call_user_func($this->deserialize, $resp);
+            $obj = $this->deserializeMessage($resp, $this->deserialize);
+            yield $obj;
         }
     }
 

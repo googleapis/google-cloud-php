@@ -49,6 +49,12 @@ class Page implements IteratorAggregate
 
     private $response;
 
+    /**
+     * Page constructor.
+     * @param array $params
+     * @param callable $callable
+     * @param PageStreamingDescriptor $pageStreamingDescriptor
+     */
     public function __construct($params, $callable, $pageStreamingDescriptor)
     {
         if (empty($params) || !is_object($params[0])) {
@@ -58,8 +64,8 @@ class Page implements IteratorAggregate
         $this->callable = $callable;
         $this->pageStreamingDescriptor = $pageStreamingDescriptor;
 
-        $requestPageTokenField = $this->pageStreamingDescriptor->getRequestPageTokenField();
-        $this->pageToken = $params[0]->$requestPageTokenField;
+        $requestPageTokenGetMethod = $this->pageStreamingDescriptor->getRequestPageTokenGetMethod();
+        $this->pageToken = $params[0]->$requestPageTokenGetMethod();
 
         // Make gRPC call eagerly
         $this->response = call_user_func_array($this->callable, $this->parameters);
@@ -79,8 +85,8 @@ class Page implements IteratorAggregate
      */
     public function getNextPageToken()
     {
-        $responsePageTokenField = $this->pageStreamingDescriptor->getResponsePageTokenField();
-        return $this->getResponseObject()->$responsePageTokenField;
+        $responsePageTokenGetMethod = $this->pageStreamingDescriptor->getResponsePageTokenGetMethod();
+        return $this->getResponseObject()->$responsePageTokenGetMethod();
     }
 
     /**
@@ -97,8 +103,8 @@ class Page implements IteratorAggregate
 
         $newRequest = clone $this->getRequestObject();
 
-        $requestPageTokenField = $this->pageStreamingDescriptor->getRequestPageTokenField();
-        $newRequest->$requestPageTokenField = $this->getNextPageToken();
+        $requestPageTokenSetMethod = $this->pageStreamingDescriptor->getRequestPageTokenSetMethod();
+        $newRequest->$requestPageTokenSetMethod($this->getNextPageToken());
 
         if (isset($pageSize)) {
             if (!$this->pageStreamingDescriptor->requestHasPageSizeField()) {
@@ -107,8 +113,8 @@ class Page implements IteratorAggregate
                     'support a page size parameter in the optional array argument'
                 );
             }
-            $requestPageSizeField = $this->pageStreamingDescriptor->getRequestPageSizeField();
-            $newRequest->$requestPageSizeField = $pageSize;
+            $requestPageSizeSetMethod = $this->pageStreamingDescriptor->getRequestPageSizeSetMethod();
+            $newRequest->$requestPageSizeSetMethod($pageSize);
         }
 
         $nextParameters = [$newRequest, $this->parameters[1], $this->parameters[2]];
@@ -121,8 +127,8 @@ class Page implements IteratorAggregate
      */
     public function getPageElementCount()
     {
-        $resourceField = $this->pageStreamingDescriptor->getResourceField();
-        return count($this->getResponseObject()->$resourceField);
+        $resourcesGetMethod = $this->pageStreamingDescriptor->getResourcesGetMethod();
+        return count($this->getResponseObject()->$resourcesGetMethod());
     }
 
     /**
@@ -130,8 +136,8 @@ class Page implements IteratorAggregate
      */
     public function getIterator()
     {
-        $resourceField = $this->pageStreamingDescriptor->getResourceField();
-        foreach ($this->getResponseObject()->$resourceField as $element) {
+        $resourcesGetMethod = $this->pageStreamingDescriptor->getResourcesGetMethod();
+        foreach ($this->getResponseObject()->$resourcesGetMethod() as $element) {
             yield $element;
         }
     }
@@ -140,6 +146,7 @@ class Page implements IteratorAggregate
      * Return an iterator over Page objects, beginning with this object.
      * Additional Page objects are retrieved lazily via API calls until
      * all elements have been retrieved.
+     * @return Page[]
      */
     public function iteratePages()
     {
@@ -153,6 +160,7 @@ class Page implements IteratorAggregate
 
     /**
      * Gets the request object used to generate the Page.
+     * @return \Google\Protobuf\Internal\Message
      */
     public function getRequestObject()
     {

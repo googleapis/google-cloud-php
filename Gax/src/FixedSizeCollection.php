@@ -31,7 +31,9 @@
  */
 namespace Google\GAX;
 
+use InvalidArgumentException;
 use IteratorAggregate;
+use LengthException;
 
 /**
  * A collection of elements retrieved using one or more API calls. The
@@ -44,6 +46,11 @@ class FixedSizeCollection implements IteratorAggregate
     private $collectionSize;
     private $pageList;
 
+    /**
+     * FixedSizeCollection constructor.
+     * @param Page $initialPage
+     * @param integer $collectionSize
+     */
     public function __construct($initialPage, $collectionSize)
     {
         if ($collectionSize <= 0) {
@@ -54,8 +61,8 @@ class FixedSizeCollection implements IteratorAggregate
         if ($collectionSize < $initialPage->getPageElementCount()) {
             $ipc = $initialPage->getPageElementCount();
             throw new InvalidArgumentException(
-                "collectionSize must be greater than or equal to the number of " +
-                "elements in initialPage. collectionSize: $collectionSize, " +
+                "collectionSize must be greater than or equal to the number of " .
+                "elements in initialPage. collectionSize: $collectionSize, " .
                 "initialPage size: $ipc"
             );
         }
@@ -141,6 +148,11 @@ class FixedSizeCollection implements IteratorAggregate
         return $lastPage;
     }
 
+    /**
+     * @param Page $initialPage
+     * @param integer $collectionSize
+     * @return Page[]
+     */
     private static function createPageArray($initialPage, $collectionSize)
     {
         $pageList = [$initialPage];

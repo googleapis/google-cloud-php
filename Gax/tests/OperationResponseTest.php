@@ -34,12 +34,14 @@ namespace Google\GAX\UnitTests;
 use Google\GAX\OperationResponse;
 use google\longrunning\Operation;
 use Google\GAX\LongRunning\OperationsClient;
-use google\protobuf\Any;
-use google\rpc\Status;
+use Google\Protobuf\Any;
+use Google\Rpc\Status;
 use PHPUnit_Framework_TestCase;
 
 class OperationResponseTest extends PHPUnit_Framework_TestCase
 {
+    use TestTrait;
+
     public function testBasic()
     {
         $opName = 'operations/opname';
@@ -94,14 +96,16 @@ class OperationResponseTest extends PHPUnit_Framework_TestCase
         $error = self::createStatus(2, "error");
         $metadata = self::createAny(self::createStatus(0, "metadata"));
 
-        $protoResponse->setDone(true)->setResponse($response)->setMetadata($metadata);
+        $protoResponse->setDone(true);
+        $protoResponse->setResponse($response);
+        $protoResponse->setMetadata($metadata);
         $this->assertTrue($op->isDone());
         $this->assertSame($response, $op->getResult());
         $this->assertSame($metadata, $op->getMetadata());
         $this->assertTrue($op->operationSucceeded());
         $this->assertFalse($op->operationFailed());
 
-        $protoResponse->clearResponse()->setError($error);
+        $protoResponse->setError($error);
         $this->assertNull($op->getResult());
         $this->assertSame($error, $op->getError());
         $this->assertFalse($op->operationSucceeded());
@@ -114,8 +118,8 @@ class OperationResponseTest extends PHPUnit_Framework_TestCase
         $opClient = self::createOperationsClient();
         $protoResponse = new Operation();
         $op = new OperationResponse($opName, $opClient, [
-            'operationReturnType' => '\google\rpc\Status',
-            'metadataReturnType' => '\google\protobuf\Any',
+            'operationReturnType' => '\Google\Rpc\Status',
+            'metadataReturnType' => '\Google\Protobuf\Any',
             'lastProtoResponse' => $protoResponse,
         ]);
 
@@ -125,32 +129,23 @@ class OperationResponseTest extends PHPUnit_Framework_TestCase
         $this->assertNull($op->getError());
         $this->assertNull($op->getMetadata());
         $this->assertEquals([
-            'operationReturnType' => '\google\rpc\Status',
-            'metadataReturnType' => '\google\protobuf\Any',
+            'operationReturnType' => '\Google\Rpc\Status',
+            'metadataReturnType' => '\Google\Protobuf\Any',
         ], $op->getReturnTypeOptions());
 
         $innerResponse = self::createStatus(0, "response");
-        $innerMetadata = (new Any())->setValue("metadata");
+        $innerMetadata = new Any();
+        $innerMetadata->setValue("metadata");
 
         $response = self::createAny($innerResponse);
         $metadata = self::createAny($innerMetadata);
 
-        $protoResponse->setDone(true)->setResponse($response)->setMetadata($metadata);
+        $protoResponse->setDone(true);
+        $protoResponse->setResponse($response);
+        $protoResponse->setMetadata($metadata);
         $this->assertTrue($op->isDone());
         $this->assertEquals($innerResponse, $op->getResult());
         $this->assertEquals($innerMetadata, $op->getMetadata());
-    }
-
-    public static function createAny($value)
-    {
-        $any = new Any();
-        return $any->setValue($value->serialize());
-    }
-
-    public static function createStatus($code, $message)
-    {
-        $value = new Status();
-        return $value->setCode($code)->setMessage($message);
     }
 
     public static function createOperationsClient($stub = null)

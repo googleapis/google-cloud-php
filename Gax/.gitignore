@@ -10,3 +10,4 @@ artifacts/
 .metadata
 coverage.xml
 src/Jison/Parser.js
+*.iml

@@ -33,8 +33,8 @@ namespace Google\GAX\UnitTests;
 
 use Google\GAX\Page;
 use Google\GAX\PageStreamingDescriptor;
+use Google\GAX\Testing\MockStatus;
 use Google\GAX\UnitTests\Mocks\MockStub;
-use Google\GAX\UnitTests\Mocks\MockStatus;
 use Google\GAX\UnitTests\Mocks\MockPageStreamingRequest;
 use Google\GAX\UnitTests\Mocks\MockPageStreamingResponse;
 use PHPUnit_Framework_TestCase;
@@ -46,10 +46,10 @@ class PageTest extends PHPUnit_Framework_TestCase
     {
         $mockRequest = MockPageStreamingRequest::createPageStreamingRequest('token');
         $stub = MockStub::createWithResponseSequence($responseSequence);
-        $descriptor = new PageStreamingDescriptor([
+        $descriptor = PageStreamingDescriptor::createFromFields([
             'requestPageTokenField' => 'pageToken',
             'responsePageTokenField' => 'nextPageToken',
-            'resourceField' => 'resource'
+            'resourceField' => 'resourcesList'
         ]);
         $mockApiCall = function () use ($stub) {
             list($response, $status) =

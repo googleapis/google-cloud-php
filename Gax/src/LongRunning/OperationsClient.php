@@ -38,6 +38,8 @@
  * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
  * more frequently than those which have been declared beta or 1.0, including changes which break
  * backwards compatibility.
+ *
+ * @experimental
  */
 
 namespace Google\GAX\LongRunning;
@@ -49,11 +51,11 @@ use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\ValidationException;
-use google\longrunning\CancelOperationRequest;
-use google\longrunning\DeleteOperationRequest;
-use google\longrunning\GetOperationRequest;
-use google\longrunning\ListOperationsRequest;
-use google\longrunning\OperationsGrpcClient;
+use Google\Longrunning\CancelOperationRequest;
+use Google\Longrunning\DeleteOperationRequest;
+use Google\Longrunning\GetOperationRequest;
+use Google\Longrunning\ListOperationsRequest;
+use Google\Longrunning\OperationsGrpcClient;
 
 /**
  * Service Description: Manages long-running operations with an API service.
@@ -89,10 +91,7 @@ use google\longrunning\OperationsGrpcClient;
  * }
  * ```
  *
- * Many parameters require resource names to be formatted in a particular way. To assist
- * with these names, this class includes a format method for each type of name, and additionally
- * a parse method to extract the individual identifiers contained within names that are
- * returned.
+ * @experimental
  */
 class OperationsClient
 {
@@ -126,10 +125,12 @@ class OperationsClient
     {
         $listOperationsPageStreamingDescriptor =
                 new PageStreamingDescriptor([
-                    'requestPageTokenField' => 'page_token',
-                    'requestPageSizeField' => 'page_size',
-                    'responsePageTokenField' => 'next_page_token',
-                    'resourceField' => 'operations',
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getOperations',
                 ]);
 
         $pageStreamingDescriptors = [
@@ -181,6 +182,7 @@ class OperationsClient
      *
      * @throws ValidationException Throws a ValidationException if required arguments are missing
      *                             from the $options array.
+     * @experimental
      */
     public function __construct($options = [])
     {
@@ -287,9 +289,10 @@ class OperationsClient
      *          is not set.
      * }
      *
-     * @return \google\longrunning\Operation
+     * @return \Google\Longrunning\Operation
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function getOperation($name, $optionalArgs = [])
     {
@@ -374,6 +377,7 @@ class OperationsClient
      * @return \Google\GAX\PagedListResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function listOperations($name, $filter, $optionalArgs = [])
     {
@@ -445,6 +449,7 @@ class OperationsClient
      * }
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function cancelOperation($name, $optionalArgs = [])
     {
@@ -503,6 +508,7 @@ class OperationsClient
      * }
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function deleteOperation($name, $optionalArgs = [])
     {
@@ -528,6 +534,8 @@ class OperationsClient
     /**
      * Initiates an orderly shutdown in which preexisting calls continue but new
      * calls are immediately cancelled.
+     *
+     * @experimental
      */
     public function close()
     {

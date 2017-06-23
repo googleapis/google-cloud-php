@@ -33,15 +33,15 @@ namespace Google\GAX\UnitTests;
 
 use Google\GAX\ApiException;
 use Google\GAX\Serializer;
-use google\protobuf\Duration;
-use google\rpc\BadRequest;
-use google\rpc\DebugInfo;
-use google\rpc\Help;
-use google\rpc\LocalizedMessage;
-use google\rpc\QuotaFailure;
-use google\rpc\RequestInfo;
-use google\rpc\ResourceInfo;
-use google\rpc\RetryInfo;
+use Google\Protobuf\Duration;
+use Google\Rpc\BadRequest;
+use Google\Rpc\DebugInfo;
+use Google\Rpc\Help;
+use Google\Rpc\LocalizedMessage;
+use Google\Rpc\QuotaFailure;
+use Google\Rpc\RequestInfo;
+use Google\Rpc\ResourceInfo;
+use Google\Rpc\RetryInfo;
 use PHPUnit_Framework_TestCase;
 use Grpc;
 
@@ -104,7 +104,7 @@ class ApiExceptionTest extends PHPUnit_Framework_TestCase
         $retryInfoData = [
             'google.rpc.retryinfo-bin' => [
                 [
-                    'retry_delay' => [
+                    'retryDelay' => [
                         'seconds' => 1,
                         'nanos' => 2,
                     ]
@@ -113,28 +113,42 @@ class ApiExceptionTest extends PHPUnit_Framework_TestCase
         ];
         $allKnownTypesData = [
             'google.rpc.retryinfo-bin' => [[]],
-            'google.rpc.debuginfo-bin' => [[]],
-            'google.rpc.quotafailure-bin' => [[]],
-            'google.rpc.badrequest-bin' => [[]],
-            'google.rpc.requestinfo-bin' => [[]],
-            'google.rpc.resourceinfo-bin' => [[]],
-            'google.rpc.help-bin' => [[]],
-            'google.rpc.localizedmessage-bin' => [[]],
+            'google.rpc.debuginfo-bin' => [[
+                "stackEntries" => [],
+                "detail" => ""
+            ]],
+            'google.rpc.quotafailure-bin' => [["violations" => []]],
+            'google.rpc.badrequest-bin' => [["fieldViolations" => []]],
+            'google.rpc.requestinfo-bin' => [[
+                "requestId" => "",
+                "servingData" => "",
+            ]],
+            'google.rpc.resourceinfo-bin' => [[
+                "resourceType" => "",
+                "resourceName" => "",
+                "owner" => "",
+                "description" => ""
+            ]],
+            'google.rpc.help-bin' => [["links" => []]],
+            'google.rpc.localizedmessage-bin' => [[
+                "locale" => "",
+                "message" => "",
+            ]],
         ];
 
         return [
             [['unknown-bin' => ['some-data-that-should-not-appear']], $unknownBinData],
             [['ascii' => ['ascii-data']], $asciiData],
-            [['google.rpc.retryinfo-bin' => [$retryInfo->serialize()]], $retryInfoData],
+            [['google.rpc.retryinfo-bin' => [$retryInfo->serializeToString()]], $retryInfoData],
             [[
-                'google.rpc.retryinfo-bin' => [(new RetryInfo())->serialize()],
-                'google.rpc.debuginfo-bin' => [(new DebugInfo())->serialize()],
-                'google.rpc.quotafailure-bin' => [(new QuotaFailure())->serialize()],
-                'google.rpc.badrequest-bin' => [(new BadRequest())->serialize()],
-                'google.rpc.requestinfo-bin' => [(new RequestInfo())->serialize()],
-                'google.rpc.resourceinfo-bin' => [(new ResourceInfo())->serialize()],
-                'google.rpc.help-bin' => [(new Help())->serialize()],
-                'google.rpc.localizedmessage-bin' => [(new LocalizedMessage())->serialize()],
+                'google.rpc.retryinfo-bin' => [(new RetryInfo())->serializeToString()],
+                'google.rpc.debuginfo-bin' => [(new DebugInfo())->serializeToString()],
+                'google.rpc.quotafailure-bin' => [(new QuotaFailure())->serializeToString()],
+                'google.rpc.badrequest-bin' => [(new BadRequest())->serializeToString()],
+                'google.rpc.requestinfo-bin' => [(new RequestInfo())->serializeToString()],
+                'google.rpc.resourceinfo-bin' => [(new ResourceInfo())->serializeToString()],
+                'google.rpc.help-bin' => [(new Help())->serializeToString()],
+                'google.rpc.localizedmessage-bin' => [(new LocalizedMessage())->serializeToString()],
             ], $allKnownTypesData],
         ];
     }
