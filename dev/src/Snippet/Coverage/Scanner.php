@@ -88,10 +88,8 @@ class Scanner implements ScannerInterface
             $f->process();
             foreach ($f->getClasses() as $class) {
                 if ($this->checkExclude($class->getName(), $exclude)) {
-
                     continue;
                 }
-                echo "Including " . $class->getName() . PHP_EOL;
                 $classes[] = $class->getName();
             }
         }

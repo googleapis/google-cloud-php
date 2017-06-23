@@ -27,9 +27,6 @@ class Coverage
         '/\\\Google\\\Cloud\\\Core\\\PhpArray/',
     ];
 
-    private static $snippetGrpcList = [
-    ];
-
     /**
      * @var ScannerInterface
      */
@@ -55,11 +52,7 @@ class Coverage
 
     private function getSnippetExcludeList()
     {
-        $list = static::$snippetExcludeList;
-        if ($this->shouldSkipGrpcTests()) {
-            $list += static::$snippetGrpcList;
-        }
-        return $list;
+        return static::$snippetExcludeList;
     }
 
     /**
