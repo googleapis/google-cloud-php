@@ -32,6 +32,8 @@ use Google\Cloud\Tests\GrpcTestTrait;
 class ValueMapperTest extends \PHPUnit_Framework_TestCase
 {
     use GrpcTestTrait;
+    
+    const FORMAT_TEST_VALUE = 'abc';
 
     private $mapper;
 
