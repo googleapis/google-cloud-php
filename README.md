@@ -135,11 +135,9 @@ $bucket->upload(
     fopen('/data/file.txt', 'r')
 );
 
-/**
- * Upload file with public share 
- * You can share this file and image with public
- * add 2nd parameter as array options 
- */
+// Upload file with public share 
+// You can share this file or image with public url mode
+// The 2nd parameter as a array options 
 $bucket->upload(
     fopen('/data/file.txt', 'r'),
     [
