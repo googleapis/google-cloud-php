@@ -35,14 +35,14 @@ class DateTest extends SnippetTestCase
 
     public function setUp()
     {
+        $this->checkAndSkipGrpcTests();
+
         $this->dt = new \DateTimeImmutable;
         $this->date = new Date($this->dt);
     }
 
     public function testClass()
     {
-        $this->checkAndSkipGrpcTests();
-
         $snippet = $this->snippetFromClass(Date::class);
         $res = $snippet->invoke('date');
 

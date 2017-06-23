@@ -45,6 +45,8 @@ class SnapshotTest extends SnippetTestCase
 
     public function setUp()
     {
+        $this->checkAndSkipGrpcTests();
+
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $operation = $this->prophesize(Operation::class);
         $session = $this->prophesize(Session::class);
@@ -74,8 +76,6 @@ class SnapshotTest extends SnippetTestCase
 
     public function testClass()
     {
-        $this->checkAndSkipGrpcTests();
-
         $database = $this->prophesize(Database::class);
         $database->snapshot()->shouldBeCalled()->willReturn('foo');
 

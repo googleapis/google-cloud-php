@@ -21,6 +21,7 @@ use Google\Auth\Cache\MemoryCacheItemPool;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Session\CacheSessionPool;
 use Google\Cloud\Spanner\Session\Session;
+use Google\Cloud\Tests\GrpcTestTrait;
 use Psr\Cache\CacheItemInterface;
 use Psr\Cache\CacheItemPoolInterface;
 use Prophecy\Argument;
@@ -31,6 +32,8 @@ use Prophecy\Argument\ArgumentsWildcard;
  */
 class CacheSessionPoolTest extends \PHPUnit_Framework_TestCase
 {
+    use GrpcTestTrait;
+
     const CACHE_KEY_TEMPLATE = 'cache-session-pool.%s.%s.%s';
     const PROJECT_ID = 'project';
     const DATABASE_NAME = 'database';
@@ -40,6 +43,7 @@ class CacheSessionPoolTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
+        $this->checkAndSkipGrpcTests();
         $this->time = time();
     }
 

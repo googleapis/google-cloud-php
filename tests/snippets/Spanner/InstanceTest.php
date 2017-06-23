@@ -48,6 +48,8 @@ class InstanceTest extends SnippetTestCase
 
     public function setUp()
     {
+        $this->checkAndSkipGrpcTests();
+
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->instance = \Google\Cloud\Dev\stub(Instance::class, [
             $this->connection->reveal(),
@@ -60,8 +62,6 @@ class InstanceTest extends SnippetTestCase
 
     public function testClass()
     {
-        $this->checkAndSkipGrpcTests();
-
         $snippet = $this->snippetFromClass(Instance::class);
         $res = $snippet->invoke('instance');
         $this->assertInstanceOf(Instance::class, $res->returnVal());

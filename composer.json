@@ -60,7 +60,6 @@
         "google/proto-client-php": "dev-proto3",
         "google/gax": "dev-proto3",
         "google/protobuf": "3.3.2",
-        "stanley-cheung/protobuf-php": "*",
         "symfony/lock": "3.3.x-dev#1ba6ac9"
     },
     "suggest": {

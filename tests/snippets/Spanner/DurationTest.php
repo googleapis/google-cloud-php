@@ -35,13 +35,13 @@ class DurationTest extends SnippetTestCase
 
     public function setUp()
     {
+        $this->checkAndSkipGrpcTests();
+
         $this->duration = new Duration(self::SECONDS, self::NANOS);
     }
 
     public function testClass()
     {
-        $this->checkAndSkipGrpcTests();
-
         $snippet = $this->snippetFromClass(Duration::class);
         $res = $snippet->invoke('duration');
         $this->assertInstanceOf(Duration::class, $res->returnVal());

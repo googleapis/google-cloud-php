@@ -37,13 +37,12 @@ class BytesTest extends SnippetTestCase
 
     public function setUp()
     {
+        $this->checkAndSkipGrpcTests();
         $this->bytes = new Bytes(self::BYTES);
     }
 
     public function testClass()
     {
-        $this->checkAndSkipGrpcTests();
-
         $snippet = $this->snippetFromClass(Bytes::class);
         $res = $snippet->invoke('bytes');
         $this->assertInstanceOf(Bytes::class, $res->returnVal());

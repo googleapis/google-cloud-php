@@ -34,14 +34,14 @@ class TimestampTest extends SnippetTestCase
 
     public function setUp()
     {
+        $this->checkAndSkipGrpcTests();
+
         $this->dt = new \DateTime;
         $this->timestamp = new Timestamp($this->dt);
     }
 
     public function testClass()
     {
-        $this->checkAndSkipGrpcTests();
-
         $snippet = $this->snippetFromClass(Timestamp::class);
         $res = $snippet->invoke('timestamp');
         $this->assertInstanceOf(Timestamp::class, $res->returnVal());

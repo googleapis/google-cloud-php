@@ -41,6 +41,8 @@ class ResultTest extends SnippetTestCase
 
     public function setUp()
     {
+        $this->checkAndSkipGrpcTests();
+
         $result = $this->prophesize(Result::class);
         $database = $this->prophesize(Database::class);
         $result->rows()
@@ -65,8 +67,6 @@ class ResultTest extends SnippetTestCase
 
     public function testClass()
     {
-        $this->checkAndSkipGrpcTests();
-
         $snippet = $this->snippetFromClass(Result::class);
         $snippet->replace('$database =', '//$database =');
         $snippet->addLocal('database', $this->database);

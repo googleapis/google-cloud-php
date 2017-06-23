@@ -44,6 +44,8 @@ class TransactionTest extends SnippetTestCase
 
     public function setUp()
     {
+        $this->checkAndSkipGrpcTests();
+
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $operation = $this->prophesize(Operation::class);
         $session = $this->prophesize(Session::class);
@@ -70,8 +72,6 @@ class TransactionTest extends SnippetTestCase
 
     public function testClass()
     {
-        $this->checkAndSkipGrpcTests();
-
         $database = $this->prophesize(Database::class);
         $database->runTransaction(Argument::type('callable'))->shouldBeCalled();
 

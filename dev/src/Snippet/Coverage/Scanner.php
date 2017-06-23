@@ -67,20 +67,34 @@ class Scanner implements ScannerInterface
         return $files;
     }
 
+    private function checkExclude($className, array $exclude)
+    {
+        foreach ($exclude as $pattern) {
+            if (preg_match($pattern, $className)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     /**
      * {@inheritDoc}
      */
-    public function classes(array $files)
+    public function classes(array $files, array $exclude = [])
     {
         $classes = [];
         foreach ($files as $file) {
             $f = new FileReflector($file);
             $f->process();
             foreach ($f->getClasses() as $class) {
+                if ($this->checkExclude($class->getName(), $exclude)) {
+
+                    continue;
+                }
+                echo "Including " . $class->getName() . PHP_EOL;
                 $classes[] = $class->getName();
             }
         }
-
         return $classes;
     }
 

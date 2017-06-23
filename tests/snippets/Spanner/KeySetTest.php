@@ -34,14 +34,14 @@ class KeySetTest extends SnippetTestCase
 
     public function setUp()
     {
+        $this->checkAndSkipGrpcTests();
+
         $this->keyset = new KeySet();
         $this->range = new KeyRange();
     }
 
     public function testClass()
     {
-        $this->checkAndSkipGrpcTests();
-
         $snippet = $this->snippetFromClass(KeySet::class);
         $res = $snippet->invoke('keySet');
         $this->assertInstanceOf(KeySet::class, $res->returnVal());

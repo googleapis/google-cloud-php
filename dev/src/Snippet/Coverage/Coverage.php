@@ -17,8 +17,19 @@
 
 namespace Google\Cloud\Dev\Snippet\Coverage;
 
+use Google\Cloud\Dev\CheckGrpcTrait;
+
 class Coverage
 {
+    use CheckGrpcTrait;
+
+    private static $snippetExcludeList = [
+        '/\\\Google\\\Cloud\\\Core\\\PhpArray/',
+    ];
+
+    private static $snippetGrpcList = [
+    ];
+
     /**
      * @var ScannerInterface
      */
@@ -42,6 +53,15 @@ class Coverage
         $this->scanner = $scanner;
     }
 
+    private function getSnippetExcludeList()
+    {
+        $list = static::$snippetExcludeList;
+        if ($this->shouldSkipGrpcTests()) {
+            $list += static::$snippetGrpcList;
+        }
+        return $list;
+    }
+
     /**
      * Creates a list of all snippets which should be covered.
      *
@@ -50,7 +70,7 @@ class Coverage
     public function buildListToCover()
     {
         $files = $this->scanner->files();
-        $classes = $this->scanner->classes($files);
+        $classes = $this->scanner->classes($files, $this->getSnippetExcludeList());
 
         $this->snippets = $this->scanner->snippets($classes);
 

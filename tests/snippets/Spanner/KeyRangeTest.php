@@ -32,13 +32,13 @@ class KeyRangeTest extends SnippetTestCase
 
     public function setUp()
     {
+        $this->checkAndSkipGrpcTests();
+
         $this->range = new KeyRange;
     }
 
     public function testClass()
     {
-        $this->checkAndSkipGrpcTests();
-
         $snippet = $this->snippetFromClass(KeyRange::class);
         $snippet->addUse(KeyRange::class);
         $res = $snippet->invoke('range');
