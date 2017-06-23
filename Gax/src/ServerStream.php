@@ -39,7 +39,7 @@ use Grpc;
 class ServerStream
 {
     private $call;
-    private $resourcesField;
+    private $resourcesGetMethod;
 
     /**
      * ServerStream constructor.
@@ -50,8 +50,8 @@ class ServerStream
     public function __construct($serverStreamingCall, $grpcStreamingDescriptor = [])
     {
         $this->call = $serverStreamingCall;
-        if (array_key_exists('resourcesField', $grpcStreamingDescriptor)) {
-            $this->resourcesField = $grpcStreamingDescriptor['resourcesField'];
+        if (array_key_exists('resourcesGetMethod', $grpcStreamingDescriptor)) {
+            $this->resourcesGetMethod = $grpcStreamingDescriptor['resourcesGetMethod'];
         }
     }
 
@@ -77,10 +77,10 @@ class ServerStream
      */
     public function readAll()
     {
-        $resourcesField = $this->resourcesField;
-        if (!is_null($resourcesField)) {
+        $resourcesGetMethod = $this->resourcesGetMethod;
+        if (!is_null($resourcesGetMethod)) {
             foreach ($this->call->responses() as $response) {
-                foreach ($response->$resourcesField() as $resource) {
+                foreach ($response->$resourcesGetMethod() as $resource) {
                     yield $resource;
                 }
             }

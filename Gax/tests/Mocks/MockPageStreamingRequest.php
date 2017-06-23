@@ -34,8 +34,8 @@ namespace Google\GAX\UnitTests\Mocks;
 
 class MockPageStreamingRequest
 {
-    public $pageToken;
-    public $pageSize;
+    private $pageToken;
+    private $pageSize;
 
     public static function createPageStreamingRequest($pageToken, $pageSize = null)
     {
@@ -43,5 +43,25 @@ class MockPageStreamingRequest
         $request->pageToken = $pageToken;
         $request->pageSize = $pageSize;
         return $request;
+    }
+
+    public function getPageToken()
+    {
+        return $this->pageToken;
+    }
+
+    public function getPageSize()
+    {
+        return $this->pageSize;
+    }
+
+    public function setPageSize($pageSize)
+    {
+        $this->pageSize = $pageSize;
+    }
+
+    public function setPageToken($pageToken)
+    {
+        return $this->pageToken = $pageToken;
     }
 }

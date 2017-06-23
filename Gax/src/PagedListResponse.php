@@ -31,8 +31,6 @@
  */
 namespace Google\GAX;
 
-use Google\GAX\ValidationException;
-
 /**
  * Response object for paged results from a list API method
  *
@@ -66,6 +64,12 @@ class PagedListResponse
 
     private $firstPage;
 
+    /**
+     * PagedListResponse constructor.
+     * @param array $params
+     * @param callable $callable
+     * @param PageStreamingDescriptor $pageStreamingDescriptor
+     */
     public function __construct($params, $callable, $pageStreamingDescriptor)
     {
         if (empty($params) || !is_object($params[0])) {
@@ -112,6 +116,7 @@ class PagedListResponse
     /**
      * Returns an iterator over pages of results. The pages are
      * retrieved lazily from the underlying API.
+     * @return Page[]
      */
     public function iteratePages()
     {
@@ -142,8 +147,9 @@ class PagedListResponse
         // update the page size parameter before calling getPage
         $page = $this->getPage();
         $request = $page->getRequestObject();
-        $pageSizeField = $this->pageStreamingDescriptor->getRequestPageSizeField();
-        if (!isset($request->$pageSizeField)) {
+        $pageSizeGetMethod = $this->pageStreamingDescriptor->getRequestPageSizeGetMethod();
+        $pageSize = $request->$pageSizeGetMethod();
+        if (is_null($pageSize)) {
             throw new ValidationException(
                 "Error while expanding Page to FixedSizeCollection: No page size " .
                 "parameter found. The page size parameter must be set in the API " .
@@ -151,7 +157,6 @@ class PagedListResponse
                 "parameter, in order to create a FixedSizeCollection object."
             );
         }
-        $pageSize = $request->$pageSizeField;
         if ($pageSize > $collectionSize) {
             throw new ValidationException(
                 "Error while expanding Page to FixedSizeCollection: collectionSize " .

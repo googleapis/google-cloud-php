@@ -33,8 +33,7 @@
 namespace Google\GAX\Testing;
 
 use Google\GAX\ApiException;
-use google\rpc\Code;
-use google\rpc\Status;
+use Google\Rpc\Code;
 use Grpc;
 
 /**
@@ -43,6 +42,8 @@ use Grpc;
  */
 class MockBidiStreamingCall
 {
+    use SerializationTrait;
+
     private $responses;
     private $deserialize;
     private $status;
@@ -53,20 +54,14 @@ class MockBidiStreamingCall
      * MockBidiStreamingCall constructor.
      * @param mixed[] $responses A list of response objects.
      * @param callable|null $deserialize An optional deserialize method for the response object.
-     * @param Status|null $status An optional status object. If set to null, a status of OK is used.
+     * @param MockStatus|null $status An optional status object. If set to null, a status of OK is used.
      */
     public function __construct($responses, $deserialize = null, $status = null)
     {
         $this->responses = $responses;
-        if (is_null($deserialize)) {
-            $deserialize = function ($resp) {
-                return $resp;
-            };
-        }
         $this->deserialize = $deserialize;
         if (is_null($status)) {
-            $status = new Status();
-            $status->setCode(Code::OK);
+            $status = new MockStatus(Code::OK);
         }
         $this->status = $status;
     }
@@ -83,7 +78,8 @@ class MockBidiStreamingCall
                 $this->writesDone();
                 return null;
             }
-            return call_user_func($this->deserialize, $resp);
+            $obj = $this->deserializeMessage($resp, $this->deserialize);
+            return $obj;
         } elseif ($this->writesDone) {
             return null;
         } else {
@@ -111,7 +107,7 @@ class MockBidiStreamingCall
 
     /**
      * Save the request object, to be retrieved via getReceivedCalls()
-     * @param $request The request object
+     * @param \Google\Protobuf\Internal\Message|mixed $request The request object
      * @throws ApiException
      */
     public function write($request)
@@ -119,8 +115,10 @@ class MockBidiStreamingCall
         if ($this->writesDone) {
             throw new ApiException("Cannot call write() after writesDone()", Grpc\STATUS_INTERNAL);
         }
-        if (is_a($request, 'DrSlump\Protobuf\Message')) {
-            $request = $request::deserialize($request->serialize());
+        if (is_a($request, '\Google\Protobuf\Internal\Message')) {
+            $newRequest = new $request();
+            $newRequest->mergeFromString($request->serializeToString());
+            $request = $newRequest;
         }
         $this->receivedWrites[] = $request;
     }

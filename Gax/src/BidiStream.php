@@ -43,7 +43,7 @@ class BidiStream
     private $call;
     private $isComplete = false;
     private $writesClosed = false;
-    private $resourcesField = null;
+    private $resourcesGetMethod = null;
     private $pendingResources = [];
 
     /**
@@ -55,8 +55,8 @@ class BidiStream
     public function __construct($bidiStreamingCall, $grpcStreamingDescriptor = [])
     {
         $this->call = $bidiStreamingCall;
-        if (array_key_exists('resourcesField', $grpcStreamingDescriptor)) {
-            $this->resourcesField = $grpcStreamingDescriptor['resourcesField'];
+        if (array_key_exists('resourcesGetMethod', $grpcStreamingDescriptor)) {
+            $this->resourcesGetMethod = $grpcStreamingDescriptor['resourcesGetMethod'];
         }
     }
 
@@ -135,12 +135,12 @@ class BidiStream
         if ($this->isComplete) {
             throw new ValidationException("Cannot call read() after streaming call is complete.");
         }
-        $resourcesField = $this->resourcesField;
-        if (!is_null($resourcesField)) {
+        $resourcesGetMethod = $this->resourcesGetMethod;
+        if (!is_null($resourcesGetMethod)) {
             if (count($this->pendingResources) === 0) {
                 $response = $this->call->read();
                 if (!is_null($response)) {
-                    $this->pendingResources = array_reverse($response->$resourcesField());
+                    $this->pendingResources = array_reverse($response->$resourcesGetMethod());
                 }
             }
             $result = array_pop($this->pendingResources);

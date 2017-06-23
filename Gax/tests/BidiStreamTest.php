@@ -31,17 +31,17 @@
  */
 namespace Google\GAX\UnitTests;
 
-use Google\GAX\ApiException;
 use Google\GAX\BidiStream;
 use Google\GAX\Testing\MockBidiStreamingCall;
+use Google\GAX\Testing\MockStatus;
 use Google\GAX\UnitTests\Mocks\MockPageStreamingResponse;
-use Google\GAX\UnitTests\Mocks\MockStatus;
-use google\rpc\Status;
 use Grpc;
 use PHPUnit_Framework_TestCase;
 
 class BidiStreamTest extends PHPUnit_Framework_TestCase
 {
+    use TestTrait;
+
     public function testEmptySuccess()
     {
         $call = new MockBidiStreamingCall([]);
@@ -140,9 +140,9 @@ class BidiStreamTest extends PHPUnit_Framework_TestCase
         ];
         $serializedResponses = [];
         foreach ($responses as $response) {
-            $serializedResponses[] = $response->serialize();
+            $serializedResponses[] = $response->serializeToString();
         }
-        $call = new MockBidiStreamingCall($serializedResponses, '\google\rpc\Status::deserialize');
+        $call = new MockBidiStreamingCall($serializedResponses, ['\Google\Rpc\Status', 'mergeFromString']);
         $stream = new BidiStream($call);
 
         $this->assertSame($call, $stream->getBidiStreamingCall());
@@ -157,9 +157,9 @@ class BidiStreamTest extends PHPUnit_Framework_TestCase
         ];
         $serializedResponses = [];
         foreach ($responses as $response) {
-            $serializedResponses[] = $response->serialize();
+            $serializedResponses[] = $response->serializeToString();
         }
-        $call = new MockBidiStreamingCall($serializedResponses, '\google\rpc\Status::deserialize');
+        $call = new MockBidiStreamingCall($serializedResponses, ['\Google\Rpc\Status', 'mergeFromString']);
         $stream = new BidiStream($call);
 
         $this->assertSame($call, $stream->getBidiStreamingCall());
@@ -220,7 +220,7 @@ class BidiStreamTest extends PHPUnit_Framework_TestCase
             BidiStreamTest::createStatus(Grpc\STATUS_OK, 'request2')
         ];
         $responses = [];
-        $call = new MockBidiStreamingCall($responses, '\google\rpc\Status::deserialize');
+        $call = new MockBidiStreamingCall($responses, ['\Google\Rpc\Status', 'mergeFromString']);
         $stream = new BidiStream($call);
 
         $stream->writeAll($requests);
@@ -245,9 +245,9 @@ class BidiStreamTest extends PHPUnit_Framework_TestCase
         ];
         $serializedResponses = [];
         foreach ($responses as $response) {
-            $serializedResponses[] = $response->serialize();
+            $serializedResponses[] = $response->serializeToString();
         }
-        $call = new MockBidiStreamingCall($serializedResponses, '\google\rpc\Status::deserialize');
+        $call = new MockBidiStreamingCall($serializedResponses, ['\Google\Rpc\Status', 'mergeFromString']);
         $stream = new BidiStream($call);
 
         $index = 0;
@@ -303,17 +303,10 @@ class BidiStreamTest extends PHPUnit_Framework_TestCase
         ];
         $call = new MockBidiStreamingCall($responses);
         $stream = new BidiStream($call, [
-            'resourcesField' => 'getResourcesList'
+            'resourcesGetMethod' => 'getResourcesList'
         ]);
 
         $this->assertSame($call, $stream->getBidiStreamingCall());
         $this->assertEquals($resources, iterator_to_array($stream->closeWriteAndReadAll()));
-    }
-
-    private static function createStatus($code, $message)
-    {
-        $status = new Status();
-        $status->setCode($code)->setMessage($message);
-        return $status;
     }
 }

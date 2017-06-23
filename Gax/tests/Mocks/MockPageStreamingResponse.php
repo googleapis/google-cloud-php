@@ -34,8 +34,8 @@ namespace Google\GAX\UnitTests\Mocks;
 
 class MockPageStreamingResponse
 {
-    public $nextPageToken;
-    public $resource;
+    private $nextPageToken;
+    private $resource;
 
     public static function createPageStreamingResponse($nextPageToken, $resource)
     {
@@ -48,5 +48,10 @@ class MockPageStreamingResponse
     public function getResourcesList()
     {
         return $this->resource;
+    }
+
+    public function getNextPageToken()
+    {
+        return $this->nextPageToken;
     }
 }

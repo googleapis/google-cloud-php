@@ -43,10 +43,10 @@ class PagedListResponseTest extends PHPUnit_Framework_TestCase
     public function testNextPageToken()
     {
         $mockRequest = MockPageStreamingRequest::createPageStreamingRequest('mockToken');
-        $descriptor = new PageStreamingDescriptor([
+        $descriptor = PageStreamingDescriptor::createFromFields([
             'requestPageTokenField' => 'pageToken',
             'responsePageTokenField' => 'nextPageToken',
-            'resourceField' => 'resource'
+            'resourceField' => 'resourcesList'
         ]);
         $response = MockPageStreamingResponse::createPageStreamingResponse('nextPageToken1', ['resource1']);
         $stub = MockStub::create($response);

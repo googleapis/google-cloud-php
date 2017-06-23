@@ -33,7 +33,6 @@
 namespace Google\GAX\Testing;
 
 use Google\GAX\ApiException;
-use google\rpc\Status;
 use Grpc;
 
 /**
@@ -55,7 +54,7 @@ class MockClientStreamingCall
      * MockClientStreamingCall constructor.
      * @param $response The response object.
      * @param callable|null $deserialize An optional deserialize method for the response object.
-     * @param Status|null $status An optional status object. If set to null, a status of OK is used.
+     * @param MockStatus|null $status An optional status object. If set to null, a status of OK is used.
      */
     public function __construct($response, $deserialize = null, $status = null)
     {
@@ -74,7 +73,7 @@ class MockClientStreamingCall
 
     /**
      * Save the request object, to be retrieved via getReceivedCalls()
-     * @param $request The request object
+     * @param \Google\Protobuf\Internal\Message|mixed $request The request object
      * @throws ApiException
      */
     public function write($request)
@@ -82,8 +81,10 @@ class MockClientStreamingCall
         if ($this->waitCalled) {
             throw new ApiException("Cannot call write() after wait()", Grpc\STATUS_INTERNAL);
         }
-        if (is_a($request, 'DrSlump\Protobuf\Message')) {
-            $request = $request::deserialize($request->serialize());
+        if (is_a($request, '\Google\Protobuf\Internal\Message')) {
+            $newRequest = new $request();
+            $newRequest->mergeFromString($request->serializeToString());
+            $request = $newRequest;
         }
         $this->receivedWrites[] = $request;
     }

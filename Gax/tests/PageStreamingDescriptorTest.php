@@ -42,10 +42,10 @@ class PageStreamingDescriptorTest extends PHPUnit_Framework_TestCase
     public function testMissingFields()
     {
         $descriptor = new PageStreamingDescriptor([
-            'requestPageTokenField' => 'nextPageToken',
+            'requestPageTokenField' => 'getNextPageToken',
             // Missing field
-            // 'responsePageTokenField' => 'nextPageToken',
-            'resourceField' => 'resource'
+            // 'responsePageTokenField' => 'getNextPageToken',
+            'resourceField' => 'getResourcesList'
         ]);
     }
 }

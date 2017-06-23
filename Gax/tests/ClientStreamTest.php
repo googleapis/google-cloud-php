@@ -31,20 +31,16 @@
  */
 namespace Google\GAX\UnitTests;
 
-use Google\GAX\ApiException;
 use Google\GAX\ClientStream;
-use Google\GAX\OperationResponse;
-use Google\GAX\ServerStream;
 use Google\GAX\Testing\MockClientStreamingCall;
-use Google\GAX\Testing\MockServerStreamingCall;
-use Google\GAX\UnitTests\Mocks\MockPageStreamingResponse;
-use Google\GAX\UnitTests\Mocks\MockStatus;
-use google\rpc\Status;
+use Google\GAX\Testing\MockStatus;
 use Grpc;
 use PHPUnit_Framework_TestCase;
 
 class ClientStreamTest extends PHPUnit_Framework_TestCase
 {
+    use TestTrait;
+
     public function testNoWritesSuccess()
     {
         $response = 'response';
@@ -82,7 +78,7 @@ class ClientStreamTest extends PHPUnit_Framework_TestCase
             ClientStreamTest::createStatus(Grpc\STATUS_OK, 'request2')
         ];
         $response = ClientStreamTest::createStatus(Grpc\STATUS_OK, 'response');
-        $call = new MockClientStreamingCall($response->serialize(), '\google\rpc\Status::deserialize');
+        $call = new MockClientStreamingCall($response->serializeToString(), ['\Google\Rpc\Status', 'mergeFromString']);
         $stream = new ClientStream($call);
 
         foreach ($requests as $request) {
@@ -106,8 +102,8 @@ class ClientStreamTest extends PHPUnit_Framework_TestCase
         ];
         $response = ClientStreamTest::createStatus(Grpc\STATUS_OK, 'response');
         $call = new MockClientStreamingCall(
-            $response->serialize(),
-            '\google\rpc\Status::deserialize',
+            $response->serializeToString(),
+            ['\Google\Rpc\Status', 'mergeFromString'],
             new MockStatus(Grpc\STATUS_INTERNAL, 'manual writes failure')
         );
         $stream = new ClientStream($call);
@@ -128,7 +124,7 @@ class ClientStreamTest extends PHPUnit_Framework_TestCase
             ClientStreamTest::createStatus(Grpc\STATUS_OK, 'request2')
         ];
         $response = ClientStreamTest::createStatus(Grpc\STATUS_OK, 'response');
-        $call = new MockClientStreamingCall($response->serialize(), '\google\rpc\Status::deserialize');
+        $call = new MockClientStreamingCall($response->serializeToString(), ['\Google\Rpc\Status', 'mergeFromString']);
         $stream = new ClientStream($call);
 
         $actualResponse = $stream->writeAllAndReadResponse($requests);
@@ -150,8 +146,8 @@ class ClientStreamTest extends PHPUnit_Framework_TestCase
         ];
         $response = ClientStreamTest::createStatus(Grpc\STATUS_OK, 'response');
         $call = new MockClientStreamingCall(
-            $response->serialize(),
-            '\google\rpc\Status::deserialize',
+            $response->serializeToString(),
+            ['\Google\Rpc\Status', 'mergeFromString'],
             new MockStatus(Grpc\STATUS_INTERNAL, 'write all failure')
         );
         $stream = new ClientStream($call);
@@ -162,12 +158,5 @@ class ClientStreamTest extends PHPUnit_Framework_TestCase
             $this->assertSame($call, $stream->getClientStreamingCall());
             $this->assertEquals($requests, $call->popReceivedCalls());
         }
-    }
-
-    private static function createStatus($code, $message)
-    {
-        $status = new Status();
-        $status->setCode($code)->setMessage($message);
-        return $status;
     }
 }

@@ -31,57 +31,73 @@
  */
 namespace Google\GAX;
 
+use Google\Protobuf\Internal\Descriptor;
+use Google\Protobuf\Internal\DescriptorPool;
+use Google\Protobuf\Internal\FieldDescriptor;
+use Google\Protobuf\Internal\GPBType;
+use Google\Protobuf\Internal\MapField;
+use Google\Protobuf\Internal\Message;
+use RuntimeException;
+
 /**
  * Collection of methods to help with serialization of protobuf objects
  */
 class Serializer
 {
-    private static $jsonCodec;
-    private static $phpArrayCodec;
+    private static $phpArraySerializer;
 
     private static $metadataKnownTypes = [
-        'google.rpc.retryinfo-bin' => '\google\rpc\RetryInfo',
-        'google.rpc.debuginfo-bin' => '\google\rpc\DebugInfo',
-        'google.rpc.quotafailure-bin' => '\google\rpc\QuotaFailure',
-        'google.rpc.badrequest-bin' => '\google\rpc\BadRequest',
-        'google.rpc.requestinfo-bin' => '\google\rpc\RequestInfo',
-        'google.rpc.resourceinfo-bin' => '\google\rpc\ResourceInfo',
-        'google.rpc.help-bin' => '\google\rpc\Help',
-        'google.rpc.localizedmessage-bin' => '\google\rpc\LocalizedMessage',
+        'google.rpc.retryinfo-bin' => \Google\Rpc\RetryInfo::class,
+        'google.rpc.debuginfo-bin' => \Google\Rpc\DebugInfo::class,
+        'google.rpc.quotafailure-bin' => \Google\Rpc\QuotaFailure::class,
+        'google.rpc.badrequest-bin' => \Google\Rpc\BadRequest::class,
+        'google.rpc.requestinfo-bin' => \Google\Rpc\RequestInfo::class,
+        'google.rpc.resourceinfo-bin' => \Google\Rpc\ResourceInfo::class,
+        'google.rpc.help-bin' => \Google\Rpc\Help::class,
+        'google.rpc.localizedmessage-bin' => \Google\Rpc\LocalizedMessage::class,
     ];
 
-    private static function getJsonCodec()
+    private $fieldTransformers;
+    private $messageTypeTransformers;
+
+    public function __construct($fieldTransformers = [], $messageTypeTransformers = [])
     {
-        if (is_null(self::$jsonCodec)) {
-            self::$jsonCodec = new \DrSlump\Protobuf\Codec\Json();
-        }
-        return self::$jsonCodec;
+        $this->fieldTransformers = $fieldTransformers;
+        $this->messageTypeTransformers = $messageTypeTransformers;
     }
 
-    private static function getPhpArrayCodec()
+    public function encodeMessage(Message $message)
     {
-        if (is_null(self::$phpArrayCodec)) {
-            self::$phpArrayCodec = new \DrSlump\Protobuf\Codec\PhpArray();
-        }
-        return self::$phpArrayCodec;
+        // Get message descriptor
+        $pool = DescriptorPool::getGeneratedPool();
+        $messageType = $pool->getDescriptorByClassName(get_class($message));
+        return $this->encodeMessageImpl($message, $messageType);
+    }
+
+    public function decodeMessage(Message $message, $data)
+    {
+        // Get message descriptor
+        $pool = DescriptorPool::getGeneratedPool();
+        $messageType = $pool->getDescriptorByClassName(get_class($message));
+        return $this->decodeMessageImpl($message, $messageType, $data);
     }
 
     /**
-     * @param \DrSlump\Protobuf\Message $message
+     * @param \Google\Protobuf\Internal\Message $message
      * @return string
      */
     public static function serializeToJson($message)
     {
-        return $message->serialize(self::getJsonCodec());
+        return json_encode(self::serializeToPhpArray($message), JSON_PRETTY_PRINT);
     }
 
     /**
-     * @param \DrSlump\Protobuf\Message $message
+     * @param \Google\Protobuf\Internal\Message $message
      * @return string
      */
     public static function serializeToPhpArray($message)
     {
-        return $message->serialize(self::getPhpArrayCodec());
+        return self::getPhpArraySerializer()->encodeMessage($message);
     }
 
     /**
@@ -102,7 +118,7 @@ class Serializer
                     if (isset(self::$metadataKnownTypes[$key])) {
                         $class = self::$metadataKnownTypes[$key];
                         $message = new $class();
-                        $message->parse($value);
+                        $message->mergeFromString($value);
                         $decodedValue = self::serializeToPhpArray($message);
                     } else {
                         // The metadata contains an unexpected binary type
@@ -118,8 +134,164 @@ class Serializer
         return $result;
     }
 
+    private function encodeElement(FieldDescriptor $field, $data)
+    {
+        switch ($field->getType()) {
+            case GPBType::MESSAGE:
+                if (is_array($data)) {
+                    $result = $data;
+                } else {
+                    if (!($data instanceof Message)) {
+                        throw new RuntimeException("Expected message, instead got " . get_class($data));
+                    }
+                    $result = $this->encodeMessageImpl($data, $field->getMessageType());
+                }
+                $messageType = $field->getMessageType()->getFullName();
+                if (isset($this->messageTypeTransformers[$messageType])) {
+                    $result = $this->messageTypeTransformers[$messageType]($result);
+                }
+                break;
+            default:
+                $result = $data;
+                break;
+        }
+
+        if (isset($this->fieldTransformers[$field->getName()])) {
+            $result = $this->fieldTransformers[$field->getName()]($result);
+        }
+        return $result;
+    }
+
+    private function encodeMessageImpl(Message $message, Descriptor $messageType)
+    {
+        $data = [];
+
+        foreach ($messageType->getField() as $field) {
+            /** @var FieldDescriptor $field */
+            $key = $field->getName();
+            $getter = $field->getGetter();
+            $v = $message->$getter();
+
+            if (is_null($v)) {
+                continue;
+            }
+
+            if ($field->getOneofIndex() !== -1) {
+                $oneof = $messageType->getOneofDecl()[$field->getOneofIndex()];
+                $oneofName = $oneof->getName();
+                $oneofGetter = 'get' . ucfirst(self::toCamelCase($oneofName));
+                if ($message->$oneofGetter() !== $field->getName()) {
+                    continue;
+                }
+            }
+
+            if ($field->isMap()) {
+                $keyField = $field->getMessageType()->getFieldByNumber(1);
+                $valueField = $field->getMessageType()->getFieldByNumber(2);
+                $arr = [];
+                foreach ($v as $k => $vv) {
+                    $arr[$this->encodeElement($keyField, $k)] = $this->encodeElement($valueField, $vv);
+                }
+                $v = $arr;
+            } elseif ($field->isRepeated()) {
+                $arr = [];
+                foreach ($v as $k => $vv) {
+                    $arr[$k] = $this->encodeElement($field, $vv);
+                }
+                $v = $arr;
+            } else {
+                $v = $this->encodeElement($field, $v);
+            }
+
+            $key = self::toCamelCase($key);
+            $data[$key] = $v;
+        }
+
+        return $data;
+    }
+
+    private function decodeElement(FieldDescriptor $field, $data)
+    {
+        switch ($field->getType()) {
+            case GPBType::MESSAGE:
+                if ($data instanceof Message) {
+                    return $data;
+                }
+                /** @var Descriptor $messageType */
+                $messageType = $field->getMessageType();
+                $klass = $messageType->getClass();
+                $msg = new $klass();
+
+                return $this->decodeMessageImpl($msg, $messageType, $data);
+            default:
+                return $data;
+        }
+    }
+
+    private function decodeMessageImpl(Message $message, Descriptor $messageType, $data)
+    {
+        $fieldsByName = [];
+        foreach ($messageType->getField() as $field) {
+            /** @var FieldDescriptor $field */
+            $fieldsByName[$field->getName()] = $field;
+        }
+        foreach ($data as $key => $v) {
+            // Get the field by tag number or name
+            $fieldName = self::toSnakeCase($key);
+            $field = $fieldsByName[$fieldName];
+
+            // Unknown field found
+            if (!$field) {
+                throw new RuntimeException("cannot handle unknown field: $fieldName");
+            }
+
+            if ($field->isMap()) {
+                $keyField = $field->getMessageType()->getFieldByNumber(1);
+                $valueField = $field->getMessageType()->getFieldByNumber(2);
+                $klass = $valueField->getType() === GPBType::MESSAGE
+                    ? $valueField->getMessageType()->getClass()
+                    : null;
+                $arr = new MapField($keyField->getType(), $valueField->getType(), $klass);
+                foreach ($v as $k => $vv) {
+                    $arr[$this->decodeElement($keyField, $k)] = $this->decodeElement($valueField, $vv);
+                }
+                $v = $arr;
+            } elseif ($field->isRepeated()) {
+                $arr = [];
+                foreach ($v as $k => $vv) {
+                    $arr[$k] = $this->decodeElement($field, $vv);
+                }
+                $v = $arr;
+            } else {
+                $v = $this->decodeElement($field, $v);
+            }
+
+            $setter = $field->getSetter();
+            $message->$setter($v);
+        }
+        return $message;
+    }
+
+    public static function toSnakeCase($key)
+    {
+        return strtolower(preg_replace(['/([a-z\d])([A-Z])/', '/([^_])([A-Z][a-z])/'], '$1_$2', $key));
+    }
+
+    public static function toCamelCase($key)
+    {
+        return lcfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $key))));
+    }
+
     private static function hasBinaryHeaderSuffix($key)
     {
         return substr_compare($key, "-bin", strlen($key) - 4) === 0;
+    }
+
+    private static function getPhpArraySerializer()
+    {
+        if (is_null(self::$phpArraySerializer)) {
+            self::$phpArraySerializer = new Serializer();
+        }
+        return self::$phpArraySerializer;
     }
 }
