@@ -23,7 +23,7 @@ use Google\Cloud\Core\LongRunning\OperationResponseTrait;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Operation;
-use Google\Cloud\Spanner\SpannerClient as VeneerSpannerClient;
+use Google\Cloud\Spanner\SpannerClient as ManualSpannerClient;
 use Google\Cloud\Spanner\V1\SpannerClient;
 use Google\GAX\Serializer;
 use Google\Protobuf;
@@ -143,7 +143,7 @@ class Grpc implements ConnectionInterface
         $config['serializer'] = $this->serializer;
         $this->setRequestWrapper(new GrpcRequestWrapper($config));
 
-        $grpcConfig = $this->getGaxConfig(VeneerSpannerClient::VERSION);
+        $grpcConfig = $this->getGaxConfig(ManualSpannerClient::VERSION);
         $this->instanceAdminClient = new InstanceAdminClient($grpcConfig);
         $this->databaseAdminClient = new DatabaseAdminClient($grpcConfig);
         $this->spannerClient = new SpannerClient($grpcConfig);

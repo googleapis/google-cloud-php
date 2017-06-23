@@ -31,7 +31,7 @@ use Google\Cloud\Spanner\Connection\IamDatabase;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\Transaction;
-use Google\Cloud\Spanner\V1\SpannerClient as GrpcSpannerClient;
+use Google\Cloud\Spanner\V1\SpannerClient as GapicSpannerClient;
 use Google\GAX\ValidationException;
 use Google\Spanner\V1\TypeCode;
 
@@ -1400,9 +1400,9 @@ class Database
         return new Session(
             $this->connection,
             $this->projectId,
-            GrpcSpannerClient::parseInstanceFromSessionName($name),
-            GrpcSpannerClient::parseDatabaseFromSessionName($name),
-            GrpcSpannerClient::parseSessionFromSessionName($name)
+            GapicSpannerClient::parseInstanceFromSessionName($name),
+            GapicSpannerClient::parseDatabaseFromSessionName($name),
+            GapicSpannerClient::parseSessionFromSessionName($name)
         );
     }
 
@@ -1484,7 +1484,7 @@ class Database
         $instance = InstanceAdminClient::parseInstanceFromInstanceName($this->instance->name());
 
         try {
-            return GrpcSpannerClient::formatDatabaseName(
+            return GapicSpannerClient::formatDatabaseName(
                 $this->projectId,
                 $instance,
                 $name

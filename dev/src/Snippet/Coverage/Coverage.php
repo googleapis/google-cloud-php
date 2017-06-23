@@ -21,8 +21,6 @@ use Google\Cloud\Dev\CheckGrpcTrait;
 
 class Coverage
 {
-    use CheckGrpcTrait;
-
     private static $snippetExcludeList = [
         '/\\\Google\\\Cloud\\\Core\\\PhpArray/',
     ];
