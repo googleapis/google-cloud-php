@@ -1,98 +1,50 @@
 [{
   "name": "Google\\Auth\\",
-  "uri": "https://github.com/google/google-auth-library-php/blob/master/src/%s.php"
+  "uri": "https://github.com/google/google-auth-library-php/blob/master/src/%s.html"
 }, {
   "name": "Google\\GAX\\",
-  "uri": "https://github.com/googleapis/gax-php/tree/master/src/%s.php"
+  "uri": "https://googleapis.github.io/gax-php/master/Google/GAX/%s.html"
 }, {
-  "name": "google\\iam\\v1\\",
-  "uri": "https://github.com/googleapis/proto-client-php/blob/master/src/iam/v1"
+  "name": "Google\\Api\\",
+  "uri": "https://googleapis.github.io/gax-php/master/Google/Api/%s.html"
 }, {
-  "name": "google\\devtools\\clouderrorreporting\\v1beta1\\",
-  "uri": "https://github.com/googleapis/proto-client-php/tree/master/src/errorreporting/v1beta1"
+  "name": "Google\\Cloud\\Audit\\",
+  "uri": "https://googleapis.github.io/gax-php/master/Google/Cloud/Audit/%s.html"
 }, {
-  "name": "google\\cloud\\language\\v1\\",
-  "uri": "https://github.com/googleapis/proto-client-php/tree/master/src/language/v1"
+  "name": "Google\\Iam\\V1\\",
+  "uri": "https://googleapis.github.io/gax-php/master/Google/Iam/V1/%s.html"
 }, {
-  "name": "google\\cloud\\language\\v1beta2\\",
-  "uri": "https://github.com/googleapis/proto-client-php/tree/master/src/language/v1beta2"
+  "name": "Google\\Logging\\Type\\",
+  "uri": "https://googleapis.github.io/gax-php/master/Google/Logging/Type/%s.html"
 }, {
-  "name": "google\\logging\\v2\\",
-  "uri": "https://github.com/googleapis/proto-client-php/tree/master/src/logging/v2"
+  "name": "Google\\Longrunning\\",
+  "uri": "https://googleapis.github.io/gax-php/master/Google/Longrunning/%s.html"
 }, {
-  "name": "google\\monitoring\\v3\\",
-  "uri": "https://github.com/googleapis/proto-client-php/tree/master/src/monitoring/v3"
+  "name": "Google\\Protobuf\\",
+  "uri": "https://googleapis.github.io/gax-php/master/Google/Protobuf/%s.html"
 }, {
-  "name": "google\\pubsub\\v1\\",
-  "uri": "https://github.com/googleapis/proto-client-php/blob/master/src/pubsub/v1/pubsub.php"
+  "name": "Google\\Rpc\\",
+  "uri": "https://googleapis.github.io/gax-php/master/Google/Rpc/%s.html"
 }, {
-  "name": "google\\spanner\\admin\\database\\v1\\",
-  "name": "https://github.com/googleapis/proto-client-php/blob/master/src/spanner/admin/database/v1/spanner_database_admin.php"
+  "name": "Google\\Type\\",
+  "uri": "https://googleapis.github.io/gax-php/master/Google/Type/%s.html"
 }, {
-  "name": "google\\spanner\\admin\\instance\\v1\\",
-  "uri": "https://github.com/googleapis/proto-client-php/blob/master/src/spanner/admin/instance/v1/spanner_instance_admin.php"
+  "name": "Google\\Cloud\\",
+  "uri": "https://googleapis.github.io/gax-php/master/Google/Cloud/%s.html"
 }, {
-  "name": "google\\spanner\\v1\\",
-  "uri": "https://github.com/googleapis/proto-client-php/blob/master/src/spanner/v1"
+  "name": "Google\\Devtools\\",
+  "uri": "https://googleapis.github.io/gax-php/master/Google/Devtools/%s.html"
 }, {
-  "name": "google\\cloud\\speech\\v1beta1\\",
-  "uri": "https://github.com/googleapis/proto-client-php/blob/master/src/speech/v1beta1/cloud_speech.php"
+  "name": "Google\\Logging\\V2\\",
+  "uri": "https://googleapis.github.io/gax-php/master/Google/Logging/V2/%s.html"
 }, {
-  "name": "google\\cloud\\speech\\v1\\",
-  "uri": "https://github.com/googleapis/proto-client-php/blob/master/src/speech/v1/cloud_speech.php"
+  "name": "Google\\Monitoring\\",
+  "uri": "https://googleapis.github.io/gax-php/master/Google/Monitoring/%s.html"
 }, {
-  "name": "google\\devtools\\cloudtrace\\v1\\",
-  "uri": "https://github.com/googleapis/proto-client-php/blob/master/src/trace/v1/trace.php"
+  "name": "Google\\Pubsub\\",
+  "uri": "https://googleapis.github.io/gax-php/master/Google/Pubsub/%s.html"
 }, {
-  "name": "google\\cloud\\vision\\v1\\",
-  "uri": "https://github.com/googleapis/proto-client-php/tree/master/src/vision/v1"
-}, {
-  "name": "google\\longrunning\\",
-  "uri": "https://github.com/googleapis/gax-php/blob/master/src/generated/operations.php"
-}, {
-  "name": "MonitoredResource",
-  "uri": "https://github.com/googleapis/gax-php/blob/master/src/generated/monitored_resource.php"
-}, {
-  "name": "ServiceContextFilter",
-  "uri": "https://github.com/googleapis/proto-client-php/blob/master/src/errorreporting/v1beta1/error_stats_service.php#L1985"
-}, {
-  "name": "QueryTimeRange",
-  "uri": "https://github.com/googleapis/proto-client-php/blob/master/src/errorreporting/v1beta1/error_stats_service.php#L1915"
-}, {
-  "name": "Duration",
-  "uri": "https://github.com/googleapis/gax-php/blob/master/src/generated/well-known-types/duration.php"
-}, {
-  "name": "TimedCountAlignment",
-  "uri": "https://github.com/googleapis/proto-client-php/blob/master/src/errorreporting/v1beta1/error_stats_service.php#L8"
-}, {
-  "name": "Timestamp",
-  "uri": "https://github.com/googleapis/gax-php/blob/master/src/generated/well-known-types/timestamp.php"
-}, {
-  "name": "ErrorGroupOrder",
-  "uri": "https://github.com/googleapis/proto-client-php/blob/master/src/errorreporting/v1beta1/error_stats_service.php#L16"
-}, {
-  "name": "TimeInterval",
-  "uri": "https://github.com/googleapis/proto-client-php/blob/master/src/monitoring/v3/common.php#L270"
-}, {
-  "name": "google\\api\\MetricDescriptor",
-  "uri": "https://github.com/googleapis/gax-php/blob/master/src/generated/metric.php#L29"
-}, {
-  "name": "google\\api\\MonitoredResourceDescriptor",
-  "uri": "https://github.com/googleapis/gax-php/blob/master/src/generated/monitored_resource.php#L8"
-}, {
-  "name": "Aggregation",
-  "uri": "https://github.com/googleapis/proto-client-php/blob/master/src/monitoring/v3/common.php#L429"
-}, {
-  "name": "PushConfig",
-  "uri": "https://github.com/googleapis/proto-client-php/blob/master/src/pubsub/v1/pubsub.php#L1827"
-}, {
-  "name": "google\\cloud\\videointelligence\\v1beta1\\Feature",
-  "uri": "https://github.com/googleapis/proto-client-php/blob/master/src/videointelligence/v1beta1/video_intelligence.php#8"
-}, {
-  "name": "google\\cloud\\videointelligence\\v1beta1\\VideoContext",
-  "uri": "https://github.com/googleapis/proto-client-php/blob/master/src/videointelligence/v1beta1/video_intelligence.php#L379"
-}, {
-  "name": "google\\cloud\\videointelligence\\v1beta1\\",
-  "uri": "https://github.com/googleapis/proto-client-php/tree/master/src/videointelligence/v1beta1/video_intelligence.php"
+  "name": "Google\\Spanner\\",
+  "uri": "https://googleapis.github.io/gax-php/master/Google/Spanner/%s.html"
 }]
 
