@@ -5,7 +5,7 @@
     "minimum-stability": "stable",
     "require": {
         "ext-grpc": "*",
-        "google/cloud-core": "^1.6",
+        "google/cloud-core": "^1.5",
         "google/gax": "^0.20.0",
         "google/proto-client": "^0.20.0"
     },

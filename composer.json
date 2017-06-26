@@ -59,11 +59,11 @@
         "vierbergenlars/php-semver": "^3.0",
         "google/proto-client": "^0.20.0",
         "google/gax": "^0.20.0",
-        "google/protobuf": "3.3.2",
         "symfony/lock": "3.3.x-dev#1ba6ac9"
     },
     "suggest": {
         "google/gax": "Required to support gRPC",
+        "google/proto-client": "Required to support gRPC",
         "symfony/lock": "Required for the Spanner cached based session pool. Please require the following commit: 3.3.x-dev#1ba6ac9"
     },
     "autoload": {

@@ -17,8 +17,6 @@
 
 namespace Google\Cloud\Dev\Snippet\Coverage;
 
-use Google\Cloud\Dev\CheckGrpcTrait;
-
 class Coverage
 {
     private static $snippetExcludeList = [

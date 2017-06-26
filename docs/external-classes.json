@@ -1,50 +1,50 @@
 [{
   "name": "Google\\Auth\\",
-  "uri": "https://github.com/google/google-auth-library-php/blob/master/src/%s.html"
+  "uri": "https://github.com/google/google-auth-library-php/blob/master/src/%s.php"
 }, {
   "name": "Google\\GAX\\",
-  "uri": "https://googleapis.github.io/gax-php/master/Google/GAX/%s.html"
+  "uri": "https://googleapis.github.io/gax-php/#Google/GAX/%s.html"
 }, {
   "name": "Google\\Api\\",
-  "uri": "https://googleapis.github.io/gax-php/master/Google/Api/%s.html"
+  "uri": "https://googleapis.github.io/gax-php/#Google/Api/%s.html"
 }, {
   "name": "Google\\Cloud\\Audit\\",
-  "uri": "https://googleapis.github.io/gax-php/master/Google/Cloud/Audit/%s.html"
+  "uri": "https://googleapis.github.io/gax-php/#Google/Cloud/Audit/%s.html"
 }, {
   "name": "Google\\Iam\\V1\\",
-  "uri": "https://googleapis.github.io/gax-php/master/Google/Iam/V1/%s.html"
+  "uri": "https://googleapis.github.io/gax-php/#Google/Iam/V1/%s.html"
 }, {
   "name": "Google\\Logging\\Type\\",
-  "uri": "https://googleapis.github.io/gax-php/master/Google/Logging/Type/%s.html"
+  "uri": "https://googleapis.github.io/gax-php/#Google/Logging/Type/%s.html"
 }, {
   "name": "Google\\Longrunning\\",
-  "uri": "https://googleapis.github.io/gax-php/master/Google/Longrunning/%s.html"
+  "uri": "https://googleapis.github.io/gax-php/#Google/Longrunning/%s.html"
 }, {
   "name": "Google\\Protobuf\\",
-  "uri": "https://googleapis.github.io/gax-php/master/Google/Protobuf/%s.html"
+  "uri": "https://googleapis.github.io/gax-php/#Google/Protobuf/%s.html"
 }, {
   "name": "Google\\Rpc\\",
-  "uri": "https://googleapis.github.io/gax-php/master/Google/Rpc/%s.html"
+  "uri": "https://googleapis.github.io/gax-php/#Google/Rpc/%s.html"
 }, {
   "name": "Google\\Type\\",
-  "uri": "https://googleapis.github.io/gax-php/master/Google/Type/%s.html"
+  "uri": "https://googleapis.github.io/gax-php/#Google/Type/%s.html"
 }, {
   "name": "Google\\Cloud\\",
-  "uri": "https://googleapis.github.io/gax-php/master/Google/Cloud/%s.html"
+  "uri": "https://googleapis.github.io/gax-php/#Google/Cloud/%s.html"
 }, {
   "name": "Google\\Devtools\\",
-  "uri": "https://googleapis.github.io/gax-php/master/Google/Devtools/%s.html"
+  "uri": "https://googleapis.github.io/gax-php/#Google/Devtools/%s.html"
 }, {
   "name": "Google\\Logging\\V2\\",
-  "uri": "https://googleapis.github.io/gax-php/master/Google/Logging/V2/%s.html"
+  "uri": "https://googleapis.github.io/gax-php/#Google/Logging/V2/%s.html"
 }, {
   "name": "Google\\Monitoring\\",
-  "uri": "https://googleapis.github.io/gax-php/master/Google/Monitoring/%s.html"
+  "uri": "https://googleapis.github.io/gax-php/#Google/Monitoring/%s.html"
 }, {
   "name": "Google\\Pubsub\\",
-  "uri": "https://googleapis.github.io/gax-php/master/Google/Pubsub/%s.html"
+  "uri": "https://googleapis.github.io/gax-php/#Google/Pubsub/%s.html"
 }, {
   "name": "Google\\Spanner\\",
-  "uri": "https://googleapis.github.io/gax-php/master/Google/Spanner/%s.html"
+  "uri": "https://googleapis.github.io/gax-php/#Google/Spanner/%s.html"
 }]
 

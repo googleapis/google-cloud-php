@@ -17,14 +17,11 @@
 
 namespace Google\Cloud\Tests;
 
-use Google\Cloud\Dev\CheckGrpcTrait;
-
 /**
  * Provides checks for whether to run gRPC tests
  */
 trait GrpcTestTrait
 {
-    use CheckGrpcTrait;
     public function checkAndSkipGrpcTests()
     {
         if (!extension_loaded('grpc')) {
@@ -33,5 +30,10 @@ trait GrpcTestTrait
         if (defined('HHVM_VERSION')) {
             $this->markTestSkipped('gRPC is not supported on HHVM.');
         }
+    }
+
+    public function shouldSkipGrpcTests()
+    {
+        return !extension_loaded('grpc') || defined('HHVM_VERSION');
     }
 }
