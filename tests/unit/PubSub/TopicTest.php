@@ -20,6 +20,7 @@ namespace Google\Cloud\Tests\Unit\PubSub;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Iam\Iam;
 use Google\Cloud\Core\Iterator\ItemIterator;
+use Google\Cloud\PubSub\BatchPublisher;
 use Google\Cloud\PubSub\Connection\ConnectionInterface;
 use Google\Cloud\PubSub\Subscription;
 use Google\Cloud\PubSub\Topic;
@@ -236,6 +237,14 @@ class TopicTest extends \PHPUnit_Framework_TestCase
         $this->topic->setConnection($this->connection->reveal());
 
         $this->topic->publishBatch([$message]);
+    }
+
+    public function testBatchPublisher()
+    {
+        $this->assertInstanceOf(
+            BatchPublisher::class,
+            $this->topic->batchPublisher()
+        );
     }
 
     public function testSubscribe()
