@@ -19,8 +19,6 @@ namespace Google\Cloud\Trace\Reporter;
 
 use Google\Cloud\Core\Batch\BatchRunner;
 use Google\Cloud\Core\Batch\BatchTrait;
-use Google\Cloud\Trace\BatchInsertContainer;
-use Google\Cloud\Trace\Trace;
 use Google\Cloud\Trace\TraceClient;
 use Google\Cloud\Trace\Tracer\TracerInterface;
 
