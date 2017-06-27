@@ -55,7 +55,8 @@ class Guzzle
         }
     }
 
-    protected static function loadGuzzle5() {
+    protected static function loadGuzzle5()
+    {
         stackdriver_trace_method('GuzzleHttp\Client', 'send', function ($scope, $request) {
             return [
                 'name' => 'GuzzleHttp\Client::send',
@@ -67,7 +68,8 @@ class Guzzle
         });
     }
 
-    protected static function loadGuzzle6() {
+    protected static function loadGuzzle6()
+    {
         stackdriver_trace_method('GuzzleHttp\Client', 'send', function ($scope, $request) {
             return [
                 'name' => 'GuzzleHttp\Client::send',
