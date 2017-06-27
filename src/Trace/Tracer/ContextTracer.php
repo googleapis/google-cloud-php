@@ -18,7 +18,6 @@
 namespace Google\Cloud\Trace\Tracer;
 
 use Google\Cloud\Core\ArrayTrait;
-use Google\Cloud\Trace\TraceClient;
 use Google\Cloud\Trace\TraceSpan;
 use Google\Cloud\Trace\TraceContext;
 
@@ -50,7 +49,7 @@ class ContextTracer implements TracerInterface
      * Create a new ContextTracer
      *
      * @param TraceContext $context [optional] The TraceContext to begin with. If none
-     *      provided, a fresh TraceContext will be generated.
+     *        provided, a fresh TraceContext will be generated.
      */
     public function __construct(TraceContext $context = null)
     {
@@ -61,7 +60,7 @@ class ContextTracer implements TracerInterface
      * Instrument a callable by creating a Span that manages the startTime and endTime.
      *
      * @param array $spanOptions Options for the span.
-     *      {@see Google\Cloud\Trace\TraceSpan::__construct()}
+     *        {@see Google\Cloud\Trace\TraceSpan::__construct()}
      * @param callable $callable The callable to inSpan.
      * @param array $arguments [optional] Arguments for the callable.
      * @return mixed The result of the callable
@@ -80,7 +79,7 @@ class ContextTracer implements TracerInterface
      * Start a new Span. The start time is already set to the current time.
      *
      * @param array $spanOptions [optional] Options for the span.
-     *      {@see Google\Cloud\Trace\TraceSpan::__construct()}
+     *        {@see Google\Cloud\Trace\TraceSpan::__construct()}
      */
     public function startSpan(array $spanOptions = [])
     {

@@ -18,7 +18,7 @@
 namespace Google\Cloud\PubSub;
 
 use Google\Cloud\Core\Batch\BatchRunner;
-use Google\Cloud\Core\Batch\RegisterJobTrait;
+use Google\Cloud\Core\Batch\BatchTrait;
 
 /**
  * Publishes messages to Google Cloud Pub\Sub with background batching.
@@ -27,8 +27,8 @@ use Google\Cloud\Core\Batch\RegisterJobTrait;
  * ```
  * use Google\Cloud\PubSub\PubSubClient;
  *
- * $pubSub = new PubSubClient();
- * $batchPublisher = $pubSub->topic('my_topic')
+ * $pubsub = new PubSubClient();
+ * $batchPublisher = $pubsub->topic('my_topic')
  *     ->batchPublisher();
  *
  * $batchPublisher->publish([
@@ -38,33 +38,28 @@ use Google\Cloud\Core\Batch\RegisterJobTrait;
  */
 class BatchPublisher
 {
-    use RegisterJobTrait;
+    use BatchTrait;
 
     const ID_TEMPLATE = 'pubsub-topic-%s';
 
     /**
-     * @param string $topicName
+     * @var array
+     */
+    private static $topics = [];
+
+    /**
+     * @param string $topicName The topic name.
      * @param array $options [optional] Please see
      *        {@see Google\Cloud\PubSub\Topic::batchPublisher()} for
      *        configuration details.
      */
     public function __construct($topicName, array $options = [])
     {
-        $this->setJobProperties($options + [
-            'identifier' => sprintf(self::ID_TEMPLATE, $topicName)
+        $this->topicName = $topicName;
+        $this->setCommonBatchProperties($options + [
+            'identifier' => sprintf(self::ID_TEMPLATE, $topicName),
+            'batchMethod' => 'publishBatch'
         ]);
-
-        $container = new BatchPublishContainer(
-            $topicName,
-            $this->clientConfig,
-            $this->debugOutput
-        );
-
-        $this->batchRunner->registerJob(
-            $this->identifier,
-            [$container, 'send'],
-            $this->batchOptions
-        );
     }
 
     /**
@@ -83,5 +78,21 @@ class BatchPublisher
     public function publish(array $message)
     {
         return $this->batchRunner->submitItem($this->identifier, $message);
+    }
+
+    /**
+     * Returns an array representation of a callback which will be used to write
+     * batch items.
+     *
+     * @return array
+     */
+    protected function getCallback()
+    {
+        if (!array_key_exists($this->topicName, self::$topics)) {
+            $client = new PubSubClient($this->clientConfig);
+            self::$topics[$this->topicName] = $client->topic($this->topicName);
+        }
+
+        return [self::$topics[$this->topicName], $this->batchMethod];
     }
 }

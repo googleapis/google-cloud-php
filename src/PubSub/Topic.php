@@ -359,16 +359,19 @@ class Topic
      * ```
      *
      * @param array $options [optional] {
+     *     Configuration options.
+     *
      *     @type bool $debugOutput Whether or not to output debug information.
      *           **Defaults to** `false`.
      *     @type array $batchOptions A set of options for a BatchJob.
-     *           {@see \Google\Cloud\Core\Batch\BatchJob::__construct()}
-     *           **Defaults to** ['batchSize' => 100,
+     *           {@see \Google\Cloud\Core\Batch\BatchJob::__construct()} for
+     *           more details.
+     *           **Defaults to** ['batchSize' => 1000,
      *                            'callPeriod' => 2.0,
-     *                            'workerNum' => 10].
+     *                            'workerNum' => 2].
      *     @type array $clientConfig Configuration options for the PubSub client
-     *           used to handle processing of batch items through the daemon.
-     *           For valid options please see
+     *           used to handle processing of batch items. For valid options
+     *           please see
      *           {@see \Google\Cloud\PubSub\PubSubClient::__construct()}.
      *           **Defaults to** the options provided to the client associated
      *           with the current `Topic` instance.

@@ -130,7 +130,7 @@ class TraceClient
      * point. To see the operations that can be performed on a trace please
      * see {@see Google\Cloud\Trace\Trace}. If no traceId is provided, one will be
      * generated for you.
-
+     *
      * @param string $traceId [optional] The trace id of the trace to reference.
      * @return Trace
      */
@@ -140,7 +140,7 @@ class TraceClient
     }
 
     /**
-     * Fetch all traces in the project
+     * Fetch all traces in the project.
      *
      * @see https://cloud.google.com/trace/docs/reference/v1/rest/v1/projects.traces/list Traces list API documentation.
      *

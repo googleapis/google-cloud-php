@@ -35,9 +35,9 @@ class BatchRunner
     private $configStorage;
 
     /**
-     * @var SubmitItemInterface
+     * @var ProcessItemInterface
      */
-    private $submitter;
+    private $processor;
 
     /**
      * Determine internal implementation and loads the configuration.
@@ -45,24 +45,24 @@ class BatchRunner
      * @param ConfigStorageInterface $configStorage [optional] The
      *        ConfigStorage object to use. **Defaults to** null. This is only
      *        for testing purpose.
-     * @param SubmitItemInterface $submitter [optional] The submitter object
+     * @param ProcessItemInterface $processor [optional] The processor object
      *        to use. **Defaults to** null. This is only for testing purpose.
      */
     public function __construct(
         ConfigStorageInterface $configStorage = null,
-        SubmitItemInterface $submitter = null
+        ProcessItemInterface $processor = null
     ) {
-        if ($configStorage === null || $submitter === null) {
+        if ($configStorage === null || $processor === null) {
             if ($this->isSysvIPCLoaded() && $this->isDaemonRunning()) {
                 $configStorage = new SysvConfigStorage();
-                $submitter = new SysvSubmitter();
+                $processor = new SysvProcessor();
             } else {
                 $configStorage = InMemoryConfigStorage::getInstance();
-                $submitter = $configStorage;
+                $processor = $configStorage;
             }
         }
         $this->configStorage = $configStorage;
-        $this->submitter = $submitter;
+        $this->processor = $processor;
         $this->loadConfig();
     }
 
@@ -114,6 +114,7 @@ class BatchRunner
      * @param mixed $item It needs to be serializable.
      *
      * @return bool true on success, false on failure
+     * @throws \RuntimeException
      */
     public function submitItem($identifier, $item)
     {
@@ -124,7 +125,7 @@ class BatchRunner
             );
         }
         $idNum = $job->getIdnum();
-        return $this->submitter->submit($item, $idNum);
+        return $this->processor->submit($item, $idNum);
     }
 
     /**
@@ -180,5 +181,15 @@ class BatchRunner
         }
         $this->config = $result;
         return true;
+    }
+
+    /**
+     * Gets the item processor.
+     *
+     * @return ProcessItemInterface
+     */
+    public function getProcessor()
+    {
+        return $this->processor;
     }
 }

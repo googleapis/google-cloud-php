@@ -18,9 +18,9 @@
 namespace Google\Cloud\Core\Batch;
 
 /**
- * SubmitItemInterface implementation with SysV IPC message queue.
+ * ProcessItemInterface implementation with SysV IPC message queue.
  */
-class SysvSubmitter implements SubmitItemInterface
+class SysvProcessor implements ProcessItemInterface
 {
     use SysvTrait;
 
@@ -29,6 +29,7 @@ class SysvSubmitter implements SubmitItemInterface
 
     /**
      * Submit an item for async processing.
+     *
      * @param mixed $item An item to submit.
      * @param int $idNum A numeric id of the job.
      * @return void
@@ -67,5 +68,17 @@ class SysvSubmitter implements SubmitItemInterface
                 );
             }
         }
+    }
+
+    /**
+     * Run the job with the given id. This has no effect and simply always
+     * returns false when using the batch daemon.
+     *
+     * @param int $idNum A numeric id of the job.
+     * @return bool
+     */
+    public function flush($idNum)
+    {
+        return false;
     }
 }

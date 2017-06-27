@@ -18,9 +18,9 @@
 namespace Google\Cloud\Core\Batch;
 
 /**
- * An interface for submitting the items.
+ * An interface for processing the items.
  */
-interface SubmitItemInterface
+interface ProcessItemInterface
 {
     /**
      * Submit a job for async processing.
@@ -31,4 +31,12 @@ interface SubmitItemInterface
      * @throws \RuntimeException when failed to store the item.
      */
     public function submit($item, $idNum);
+
+    /**
+     * Run the job with the given id.
+     *
+     * @param int $idNum A numeric id of the job.
+     * @return bool
+     */
+    public function flush($idNum);
 }

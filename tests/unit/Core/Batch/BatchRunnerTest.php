@@ -21,7 +21,7 @@ use Google\Cloud\Core\Batch\BatchConfig;
 use Google\Cloud\Core\Batch\BatchJob;
 use Google\Cloud\Core\Batch\BatchRunner;
 use Google\Cloud\Core\Batch\ConfigStorageInterface;
-use Google\Cloud\Core\Batch\SubmitItemInterface;
+use Google\Cloud\Core\Batch\ProcessItemInterface;
 use Prophecy\Argument;
 
 /**
@@ -31,12 +31,12 @@ use Prophecy\Argument;
 class BatchRunnerTest extends \PHPUnit_Framework_TestCase
 {
     private $configStorage;
-    private $submitter;
+    private $processor;
 
     public function setUp()
     {
         $this->configStorage = $this->prophesize(ConfigStorageInterface::class);
-        $this->submitter = $this->prophesize(SubmitItemInterface::class);
+        $this->processor = $this->prophesize(ProcessItemInterface::class);
         $this->batchConfig = $this->prophesize(BatchConfig::class);
     }
 
@@ -47,7 +47,7 @@ class BatchRunnerTest extends \PHPUnit_Framework_TestCase
     {
         $runner = new BatchRunner(
             $this->configStorage->reveal(),
-            $this->submitter->reveal()
+            $this->processor->reveal()
         );
         $result = $runner->registerJob(
             'test',
@@ -80,7 +80,7 @@ class BatchRunnerTest extends \PHPUnit_Framework_TestCase
             ->shouldBeCalledTimes(1);
         $runner = new BatchRunner(
             $this->configStorage->reveal(),
-            $this->submitter->reveal()
+            $this->processor->reveal()
         );
         $this->assertEquals($job, $runner->getJobFromIdNum(1));
         $this->assertEquals($job, $runner->getJobFromId('test'));
@@ -106,7 +106,7 @@ class BatchRunnerTest extends \PHPUnit_Framework_TestCase
             ->shouldBeCalledTimes(2);
         $runner = new BatchRunner(
             $this->configStorage->reveal(),
-            $this->submitter->reveal()
+            $this->processor->reveal()
         );
         $result = $runner->registerJob('test', 'myFunc');
         $this->assertTrue($result);
@@ -128,11 +128,11 @@ class BatchRunnerTest extends \PHPUnit_Framework_TestCase
         $this->configStorage->unlock()
             ->willreturn(true)
             ->shouldBeCalledTimes(1);
-        $this->submitter->submit('item', 1)
+        $this->processor->submit('item', 1)
             ->shouldBeCalledTimes(1);
         $runner = new BatchRunner(
             $this->configStorage->reveal(),
-            $this->submitter->reveal()
+            $this->processor->reveal()
         );
         $runner->submitItem('test', 'item');
     }
