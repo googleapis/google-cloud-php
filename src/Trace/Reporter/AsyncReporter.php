@@ -54,7 +54,7 @@ class AsyncReporter implements ReporterInterface
      *     @type array $clientConfig Configuration options for the Trace client
      *           used to handle processing of batch items.
      *           For valid options please see
-     *           {@see \Google\Cloud\PubSub\PubSubClient::__construct()}.
+     *           {@see \Google\Cloud\Trace\TraceClient::__construct()}.
      *     @type BatchRunner $batchRunner A BatchRunner object. Mainly used for
      *           the tests to inject a mock. **Defaults to** a newly created
      *           BatchRunner.
