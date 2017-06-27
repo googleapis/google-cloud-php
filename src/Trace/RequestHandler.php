@@ -23,6 +23,7 @@ use Google\Cloud\Trace\Sampler\SamplerInterface;
 use Google\Cloud\Trace\TraceClient;
 use Google\Cloud\Trace\TraceSpan;
 use Google\Cloud\Trace\Tracer\ContextTracer;
+use Google\Cloud\Trace\Tracer\ExtensionTracer;
 use Google\Cloud\Trace\Tracer\NullTracer;
 use Google\Cloud\Trace\Tracer\TracerInterface;
 
@@ -100,7 +101,7 @@ class RequestHandler
         }
 
         $this->tracer = $context->enabled()
-            ? new ContextTracer($context)
+            ? extension_loaded('stackdriver_trace') ? new ExtensionTracer($context) : new ContextTracer($context)
             : new NullTracer();
 
         $spanOptions = $options + [
