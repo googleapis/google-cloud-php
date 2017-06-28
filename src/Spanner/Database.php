@@ -155,6 +155,11 @@ class Database
     private $sessionPool;
 
     /**
+     * @var bool
+     */
+    private $isRunningTransaction = false;
+
+    /**
      * Create an object representing a Database.
      *
      * @param ConnectionInterface $connection The connection to the
@@ -518,10 +523,16 @@ class Database
      *           **Defaults to** `false`.
      * }
      * @return Snapshot
+     * @throws \BadMethodCallException If attempting to call this method within
+     *         an existing transaction.
      * @codingStandardsIgnoreEnd
      */
     public function snapshot(array $options = [])
     {
+        if ($this->isRunningTransaction) {
+            throw new \BadMethodCallException('Nested transactions are not supported by this client.');
+        }
+
         $options += [
             'singleUse' => false
         ];
@@ -571,9 +582,15 @@ class Database
      *           **Defaults to** `false`.
      * }
      * @return Transaction
+     * @throws \BadMethodCallException If attempting to call this method within
+     *         an existing transaction.
      */
     public function transaction(array $options = [])
     {
+        if ($this->isRunningTransaction) {
+            throw new \BadMethodCallException('Nested transactions are not supported by this client.');
+        }
+
         // There isn't anything configurable here.
         $options['transactionOptions'] = $this->configureTransactionOptions();
 
@@ -603,6 +620,10 @@ class Database
      * data, preventing other users from modifying that data. For this reason,
      * it is important that every transaction commits or rolls back as early as
      * possible. Do not hold transactions open longer than necessary.
+     *
+     * Please also note that nested transactions are NOT supported by this client.
+     * Attempting to call `runTransaction` inside a transaction callable will
+     * raise a `BadMethodCallException`.
      *
      * If a callable finishes executing without invoking
      * {@see Google\Cloud\Spanner\Transaction::commit()} or
@@ -654,10 +675,16 @@ class Database
      *           `false`.
      * }
      * @return mixed The return value of `$operation`.
-     * @throws \RuntimeException
+     * @throws \RuntimeException If a transaction is not committed or rolled back.
+     * @throws \BadMethodCallException If attempting to call this method within
+     *         an existing transaction.
      */
     public function runTransaction(callable $operation, array $options = [])
     {
+        if ($this->isRunningTransaction) {
+            throw new \BadMethodCallException('Nested transactions are not supported by this client.');
+        }
+
         $options += [
             'maxRetries' => self::MAX_RETRIES,
         ];
@@ -694,7 +721,13 @@ class Database
                 $options
             ]);
 
-            $res = call_user_func($operation, $transaction);
+            // Prevent nested transactions.
+            $this->isRunningTransaction = true;
+            try {
+                $res = call_user_func($operation, $transaction);
+            } finally {
+                $this->isRunningTransaction = false;
+            }
 
             $active = $transaction->state() === Transaction::STATE_ACTIVE;
             $singleUse = $transaction->type() === Transaction::TYPE_SINGLE_USE;
