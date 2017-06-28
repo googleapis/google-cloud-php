@@ -40,6 +40,8 @@ class StorageObjectTest extends \PHPUnit_Framework_TestCase
 {
     use KeyPairGenerateTrait;
 
+    const TIMESTAMP = '2025-01-01';
+
     /** @var ConnectionInterface|ObjectProphecy */
     public $connection;
 
@@ -526,7 +528,7 @@ class StorageObjectTest extends \PHPUnit_Framework_TestCase
     public function testSignedUrl()
     {
         $object = new StorageObject($this->connection->reveal(), $name = 'object.txt', $bucketName = 'bucket', 'foo');
-        $ts = new Timestamp(new \DateTime('tomorrow'));
+        $ts = new Timestamp(new \DateTime(self::TIMESTAMP));
 
         $seconds = $ts->get()->format('U');
 
@@ -578,7 +580,7 @@ class StorageObjectTest extends \PHPUnit_Framework_TestCase
     public function testSignedUrlWithSaveAsName()
     {
         $object = new StorageObject($this->connection->reveal(), $name = 'object.txt', $bucketName = 'bucket');
-        $ts = new Timestamp(new \DateTime('tomorrow'));
+        $ts = new Timestamp(new \DateTime(self::TIMESTAMP));
 
         $seconds = $ts->get()->format('U');
 
@@ -627,7 +629,7 @@ class StorageObjectTest extends \PHPUnit_Framework_TestCase
         $conn->requestWrapper()->willReturn($rw->reveal());
 
         $object = new StorageObject($conn->reveal(), $name = 'object.txt', $bucketName = 'bucket');
-        $ts = new Timestamp(new \DateTime('tomorrow'));
+        $ts = new Timestamp(new \DateTime(self::TIMESTAMP));
 
         $seconds = $ts->get()->format('U');
 
@@ -667,7 +669,7 @@ class StorageObjectTest extends \PHPUnit_Framework_TestCase
     public function testSignedUrlInvalidMethod()
     {
         $object = new StorageObject($this->connection->reveal(), $name = 'object.txt', $bucketName = 'bucket');
-        $ts = new Timestamp(new \DateTime('tomorrow'));
+        $ts = new Timestamp(new \DateTime(self::TIMESTAMP));
         $object->signedUrl($ts, [
             'method' => 'FOO'
         ]);
@@ -679,7 +681,7 @@ class StorageObjectTest extends \PHPUnit_Framework_TestCase
     public function testSignedUrlInvalidMethodMissingAllowPostOption()
     {
         $object = new StorageObject($this->connection->reveal(), $name = 'object.txt', $bucketName = 'bucket');
-        $ts = new Timestamp(new \DateTime('tomorrow'));
+        $ts = new Timestamp(new \DateTime(self::TIMESTAMP));
         $object->signedUrl($ts, [
             'method' => 'POST'
         ]);
@@ -691,7 +693,7 @@ class StorageObjectTest extends \PHPUnit_Framework_TestCase
     public function testSignedUrlInvalidKeyFilePath()
     {
         $object = new StorageObject($this->connection->reveal(), $name = 'object.txt', $bucketName = 'bucket');
-        $ts = new Timestamp(new \DateTime('tomorrow'));
+        $ts = new Timestamp(new \DateTime(self::TIMESTAMP));
 
         $url = $object->signedUrl($ts, [
             'keyFilePath' => __DIR__ .'/InfiniteMonkeysOnInfiniteKeyboardsWouldTypeThisStringGivenInfiniteTime.json',
@@ -704,7 +706,7 @@ class StorageObjectTest extends \PHPUnit_Framework_TestCase
     public function testSignedUrlInvalidKeyFilePathData()
     {
         $object = new StorageObject($this->connection->reveal(), $name = 'object.txt', $bucketName = 'bucket');
-        $ts = new Timestamp(new \DateTime('tomorrow'));
+        $ts = new Timestamp(new \DateTime(self::TIMESTAMP));
 
         $url = $object->signedUrl($ts, [
             'keyFilePath' => __FILE__,
@@ -717,7 +719,7 @@ class StorageObjectTest extends \PHPUnit_Framework_TestCase
     public function testSignedUrlInvalidKeyFileMissingPrivateKey()
     {
         $object = new StorageObject($this->connection->reveal(), $name = 'object.txt', $bucketName = 'bucket');
-        $ts = new Timestamp(new \DateTime('tomorrow'));
+        $ts = new Timestamp(new \DateTime(self::TIMESTAMP));
 
         $url = $object->signedUrl($ts, [
             'keyFile' => ['client_email' => 'test@example.com'],
@@ -730,7 +732,7 @@ class StorageObjectTest extends \PHPUnit_Framework_TestCase
     public function testSignedUrlInvalidKeyFileMissingClientEmail()
     {
         $object = new StorageObject($this->connection->reveal(), $name = 'object.txt', $bucketName = 'bucket');
-        $ts = new Timestamp(new \DateTime('tomorrow'));
+        $ts = new Timestamp(new \DateTime(self::TIMESTAMP));
 
         $url = $object->signedUrl($ts, [
             'keyFile' => ['private_key' => '-----BEGIN PRIVATE KEY-----'],
@@ -740,7 +742,7 @@ class StorageObjectTest extends \PHPUnit_Framework_TestCase
     public function testSignedUploadUrl()
     {
         $object = new StorageObject($this->connection->reveal(), $name = 'object.txt', $bucketName = 'bucket', 'foo');
-        $ts = new Timestamp(new \DateTime('tomorrow'));
+        $ts = new Timestamp(new \DateTime(self::TIMESTAMP));
 
         $seconds = $ts->get()->format('U');
 

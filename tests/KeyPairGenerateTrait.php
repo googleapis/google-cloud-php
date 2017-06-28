@@ -38,7 +38,7 @@ trait KeyPairGenerateTrait
         $rsa->loadKey($privateKey);
         $rsa->setSignatureMode(RSA::SIGNATURE_PKCS1);
         $rsa->setHash('sha256');
-
+        usleep(500);
         $verify = $rsa->sign($input);
 
         return urlencode(base64_encode($verify)) === $signature;
