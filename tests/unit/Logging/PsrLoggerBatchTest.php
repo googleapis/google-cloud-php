@@ -19,19 +19,23 @@ namespace Google\Cloud\Tests\Unit\Logging;
 
 use Google\Cloud\Core\Batch\BatchRunner;
 use Google\Cloud\Core\Report\GAEFlexMetadataProvider;
+use Google\Cloud\Logging\Connection\Rest;
 use Google\Cloud\Logging\Entry;
 use Google\Cloud\Logging\Logger;
 use Google\Cloud\Logging\LoggingClient;
-use Google\Cloud\Logging\PsrBatchLogger;
+use Google\Cloud\Logging\PsrLogger;
 use GuzzleHttp\Psr7\Response;
 use Prophecy\Argument;
 
 /**
  * @group logging
  */
-class PsrBatchLoggerTest extends \PHPUnit_Framework_TestCase
+class PsrLoggerBatchTest extends \PHPUnit_Framework_TestCase
 {
+    const LOG_NAME = 'my-log';
+
     private $runner;
+    private $logger;
 
     private static $logName;
     private static $entry;
@@ -39,30 +43,39 @@ class PsrBatchLoggerTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->runner = $this->prophesize(BatchRunner::class);
+        $this->logger = $this->prophesize(Logger::class);
     }
 
     /**
      * @dataProvider optionProvider
      */
-    public function testSendEntries(
+    public function testSend(
         $logName,
         $options,
         $expectedOutput
     ) {
-        $logger = $this->prophesize(Logger::class);
-        $logger->writeBatch(Argument::any())
+        $this->logger->writeBatch(Argument::any())
             ->willReturn(true)
             ->shouldBeCalledTimes(1);
-        $psrBatchLogger = new PsrBatchLogger($logName, $options);
+        $this->logger->name()
+            ->willReturn($logName)
+            ->shouldBeCalledTimes(2);
+        $logger = $this->logger->reveal();
+        $temp = fopen('php://temp', 'rw');
+        $psrBatchLogger = new PsrLogger(
+            $logger,
+            null,
+            $options + ['debugOutputResource' => $temp]
+        );
         $class =
-            new \ReflectionClass('\\Google\\Cloud\\Logging\\PsrBatchLogger');
+            new \ReflectionClass('\\Google\\Cloud\\Logging\\PsrLogger');
         $prop = $class->getProperty('loggers');
         $prop->setAccessible(true);
-        $prop = $prop->setValue([$logName => $logger->reveal()]);
-        ob_start();
-        $psrBatchLogger->sendEntries([new Entry()]);
-        $output = ob_get_contents();
-        ob_end_clean();
+        $prop = $prop->setValue([$logName => $logger]);
+        $psrBatchLogger->send([new Entry()]);
+        rewind($temp);
+        $output = stream_get_contents($temp);
+
         if ($expectedOutput === false) {
             $this->assertEmpty($output);
         } else {
@@ -95,9 +108,16 @@ class PsrBatchLoggerTest extends \PHPUnit_Framework_TestCase
         $this->runner->registerJob(
             Argument::any(), Argument::any(), Argument::any()
         )->willReturn(true);
-        $psrBatchLogger = new PsrBatchLogger(
-            'my-log',
+        $logger = new Logger(
+            $this->prophesize(Rest::class)->reveal(),
+            self::LOG_NAME,
+            'my-project'
+        );
+        $psrBatchLogger = new PsrLogger(
+            $logger,
+            null,
             [
+                'batchEnabled' => true,
                 'batchRunner' => $this->runner->reveal(),
                 'metadataProvider' => new GaeFlexMetadataProvider($server)
             ]
@@ -127,9 +147,18 @@ class PsrBatchLoggerTest extends \PHPUnit_Framework_TestCase
         $this->runner->registerJob(
             Argument::any(), Argument::any(), Argument::any()
         )->willReturn(true);
-        $psrBatchLogger = new PsrBatchLogger(
-            'my-log',
-            ['batchRunner' => $this->runner->reveal()]
+        $logger = new Logger(
+            $this->prophesize(Rest::class)->reveal(),
+            self::LOG_NAME,
+            'my-project'
+        );
+        $psrBatchLogger = new PsrLogger(
+            $logger,
+            null,
+            [
+                'batchEnabled' => true,
+                'batchRunner' => $this->runner->reveal()
+            ]
         );
         $psrBatchLogger->$level('test log');
         $this->assertEquals('stackdriver-logging-my-log', self::$logName);
@@ -169,12 +198,18 @@ class PsrBatchLoggerTest extends \PHPUnit_Framework_TestCase
         return [
             [
                 'log1',
-                ['debugOutput' => true],
+                [
+                    'batchEnabled' => true,
+                    'debugOutput' => true
+                ],
                 'seconds for writeBatch',
             ],
             [
                 'log2',
-                ['debugOutput' => false],
+                [
+                    'batchEnabled' => true,
+                    'debugOutput' => false
+                ],
                 false,
             ],
         ];

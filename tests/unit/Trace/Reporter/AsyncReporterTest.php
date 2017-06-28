@@ -55,13 +55,19 @@ class AsyncReporterTest extends \PHPUnit_Framework_TestCase
                 'endTime' => microtime(true) + 10
             ])
         ];
-        $this->tracer->context()->willReturn(new TraceContext('testtraceid'));
+        $traceId = 'testtraceid';
+        $this->tracer->context()->willReturn(new TraceContext($traceId));
         $this->tracer->spans()->willReturn($spans);
-
-        $this->runner->submitItem(Argument::type('string'), Argument::type('array'))
+        $this->runner->submitItem(Argument::type('string'), Argument::type(Trace::class))
             ->willReturn(true);
+        $trace = $this->prophesize(Trace::class);
+        $trace->setSpans(Argument::any())->shouldBeCalled();
+        $client = $this->prophesize(TraceClient::class);
+        $client->insertBatch([$trace])->willReturn(true);
+        $client->trace($traceId)->willReturn($trace)->shouldBeCalled();
 
         $reporter = new AsyncReporter([
+            'client' => $client->reveal(),
             'batchRunner' => $this->runner->reveal()
         ]);
         $this->assertTrue($reporter->report($this->tracer->reveal()));
@@ -77,51 +83,20 @@ class AsyncReporterTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($reporter->report($this->tracer->reveal()));
     }
 
-    public function testCallback()
+    public function testGetCallback()
     {
-        $client = $this->prophesize(TraceClient::class);
-        $reporter = new TestAsyncReporter([
-            'batchRunner' => $this->runner->reveal()
-        ]);
-        $trace1 = $this->prophesize(Trace::class);
-        $trace2 = $this->prophesize(Trace::class);
-        $trace1->setSpans(Argument::any())->shouldBeCalled();
-        $trace2->setSpans(Argument::any())->shouldBeCalled();
+        $callbackArray = (new TestAsyncReporter())
+            ->getCallbackArray();
 
-        $client->insertBatch([$trace1, $trace2])->willReturn(true);
-        $client->trace('trace1')->willReturn($trace1)->shouldBeCalled();
-        $client->trace('trace2')->willReturn($trace2)->shouldBeCalled();
-
-        $reporter->setClient($client->reveal());
-        $entries = [
-            [
-                'traceId' => 'trace1',
-                'spans' => [[
-                    'name' => 'main',
-                    'spanId' => '012345',
-                    'startTime' => '2017-03-28T21:44:10.484299000Z',
-                    'endTime' => '2017-03-28T21:44:10.625299000Z'
-                ]]
-            ],
-            [
-                'traceId' => 'trace2',
-                'spans' => [[
-                    'name' => 'main',
-                    'spanId' => '234567',
-                    'startTime' => '2017-03-28T21:44:10.484299000Z',
-                    'endTime' => '2017-03-28T21:44:10.625299000Z'
-                ]]
-            ]
-        ];
-
-        $reporter->sendEntries($entries);
+        $this->assertInstanceOf(TraceClient::class, $callbackArray[0]);
+        $this->assertEquals('insertBatch', $callbackArray[1]);
     }
 }
 
 class TestAsyncReporter extends AsyncReporter
 {
-    public function setClient($client)
+    public function getCallbackArray()
     {
-        self::$client = $client;
+        return $this->getCallback();
     }
 }

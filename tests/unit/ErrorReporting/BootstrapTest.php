@@ -20,7 +20,7 @@ namespace Google\Cloud\Tests\Unit\ErrorReporting;
 use Google\Cloud\Core\Report\SimpleMetadataProvider;
 use Google\Cloud\ErrorReporting\Bootstrap;
 use Google\Cloud\ErrorReporting\MockValues;
-use Google\Cloud\Logging\PsrBatchLogger;
+use Google\Cloud\Logging\PsrLogger;
 use Prophecy\Argument;
 
 require_once __DIR__ . '/fakeGlobalFunctions.php';
@@ -36,7 +36,7 @@ class BootstrapTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->psrBatchLogger = $this->prophesize(PsrBatchLogger::class);
+        $this->psrBatchLogger = $this->prophesize(PsrLogger::class);
     }
 
     /**

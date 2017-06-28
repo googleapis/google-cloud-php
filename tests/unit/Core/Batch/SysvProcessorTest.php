@@ -17,14 +17,14 @@
 
 namespace Google\Cloud\Tests\Unit\Core\Batch;
 
+use Google\Cloud\Core\Batch\SysvProcessor;
 use Google\Cloud\Core\Batch\SysvTrait;
-use Google\Cloud\Core\Batch\SysvSubmitter;
 
 /**
  * @group core
  * @group batch
  */
-class SysvSubmitterTest extends \PHPUnit_Framework_TestCase
+class SysvProcessorTest extends \PHPUnit_Framework_TestCase
 {
     use SysvTrait;
 
@@ -37,7 +37,7 @@ class SysvSubmitterTest extends \PHPUnit_Framework_TestCase
             $this->markTestSkipped(
                 'Skipping because SystemV IPC extensions are not loaded');
         }
-        $this->submitter = new SysvSubmitter();
+        $this->processor = new SysvProcessor();
     }
 
     public function tearDown()
@@ -50,7 +50,7 @@ class SysvSubmitterTest extends \PHPUnit_Framework_TestCase
      */
     public function testSubmit($item, $exptectedType)
     {
-        $this->submitter->submit($item, 1);
+        $this->processor->submit($item, 1);
         $q = msg_get_queue($this->getSysvKey(1));
         $result = msg_receive(
             $q,

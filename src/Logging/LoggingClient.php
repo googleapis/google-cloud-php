@@ -21,6 +21,7 @@ use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
+use Google\Cloud\Core\Report\MetadataProviderInterface;
 use Google\Cloud\Logging\Connection\ConnectionInterface;
 use Google\Cloud\Logging\Connection\Grpc;
 use Google\Cloud\Logging\Connection\Rest;
@@ -428,6 +429,13 @@ class LoggingClient
      * $psrLogger = $logging->psrLogger('my-log');
      * ```
      *
+     * ```
+     * // Write entries with background batching.
+     * $psrLogger = $logging->psrLogger('my-log', [
+     *     'batchEnabled' => true
+     * ]);
+     * ```
+     *
      * @param string $name The name of the log to write entries to.
      * @param array $options [optional] {
      *     Configuration options.
@@ -439,6 +447,30 @@ class LoggingClient
      *           to associate log entries with. **Defaults to** type global.
      *     @type array $labels A set of user-defined (key, value) data that
      *           provides additional information about the log entry.
+     *     @type MetadataProviderInterface $metadataProvider **Defaults to** An
+     *           automatically chosen provider, based on detected environment
+     *           settings.
+     *     @type bool $batchEnabled Determines whether or not to use background
+     *           batching. **Defaults to** `false`.
+     *     @type bool $debugOutput Whether or not to output debug information.
+     *           **Defaults to** false. Applies only when `batchEnabled` is set
+     *           to `true`.
+     *     @type array $batchOptions A set of options for a BatchJob.
+     *           {@see \Google\Cloud\Core\Batch\BatchJob::__construct()} for
+     *           more details.
+     *           **Defaults to** ['batchSize' => 1000,
+     *                            'callPeriod' => 2.0,
+     *                            'workerNum' => 2]. Applies only when
+     *           `batchEnabled` is set to `true`.
+     *     @type array $clientConfig Configuration options for the Logging client
+     *           used to handle processing of batch items. For valid options
+     *           please see
+     *           {@see \Google\Cloud\Logging\LoggingClient::__construct()}.
+     *           **Defaults to** the options provided to the current client.
+     *           Applies only when `batchEnabled` is set to `true`.
+     *     @type BatchRunner $batchRunner A BatchRunner object. Mainly used for
+     *           the tests to inject a mock. **Defaults to** a newly created
+     *           BatchRunner. Applies only when `batchEnabled` is set to `true`.
      * }
      * @return PsrLogger
      */
@@ -451,30 +483,22 @@ class LoggingClient
             unset($options['messageKey']);
         }
 
-        return $messageKey
-            ? new PsrLogger($this->logger($name, $options), $messageKey)
-            : new PsrLogger($this->logger($name, $options));
-    }
+        $psrLoggerOptions = $this->pluckArray([
+            'metadataProvider',
+            'batchEnabled',
+            'debugOutput',
+            'batchOptions',
+            'clientConfig',
+            'batchRunner'
+        ], $options);
 
-    /**
-     * Fetches a logger which will write log entries to Stackdriver Logging in
-     * batch and implements the PSR-3 specification.
-     *
-     * Example:
-     * ```
-     * $psrBatchLogger = $logging->psrBatchLogger('my-log');
-     * ```
-     *
-     * @param string $name The name of the log to write entries to.
-     * @param array $options Options for PsrBatchLogger. **Defaults to** [].
-     *        {@see \Google\Cloud\Logging\PsrBatchLogger::__construct()}
-     *
-     * @return PsrBatchLogger
-     */
-    public function psrBatchLogger($name, array $options = [])
-    {
-        $options['clientConfig'] = $this->config;
-        return new PsrBatchLogger($name, $options);
+        return new PsrLogger(
+            $this->logger($name, $options),
+            $messageKey,
+            $psrLoggerOptions + [
+                'clientConfig' => $this->config
+            ]
+        );
     }
 
     /**

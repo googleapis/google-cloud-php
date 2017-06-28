@@ -18,7 +18,7 @@
 namespace Google\Cloud\Trace\Reporter;
 
 use Google\Cloud\Core\Batch\BatchRunner;
-use Google\Cloud\Core\Exception\ServiceException;
+use Google\Cloud\Core\Batch\BatchTrait;
 use Google\Cloud\Trace\TraceClient;
 use Google\Cloud\Trace\Tracer\TracerInterface;
 
@@ -28,74 +28,49 @@ use Google\Cloud\Trace\Tracer\TracerInterface;
  */
 class AsyncReporter implements ReporterInterface
 {
-    const BATCH_RUNNER_JOB_NAME = 'stackdriver-trace';
+    use BatchTrait;
 
     /**
      * @var TraceClient
      */
-    protected static $client;
+    private static $client;
 
     /**
-     * @var array
-     */
-    private $clientConfig;
-
-    /**
-     * @var BatchRunner
-     */
-    private $batchRunner;
-
-    /**
-     * @var bool
-     */
-    private $debugOutput;
-
-    /**
-     * Create a TraceReporter that uses the provided TraceClient to report.
+     * Create a TraceReporter that utilizes background batching.
      *
      * @param array $options [optional] {
      *     Configuration options.
      *
+     *     @type TraceClient $client A trace client used to instantiate traces
+     *           to be delivered to the batch queue.
      *     @type bool $debugOutput Whether or not to output debug information.
-     *           **Defaults to** false
-     *     @type array $batchOptions An option to BatchJob.
-     *           {@see \Google\Cloud\Core\Batch\BatchJob::__construct()}
+     *           **Defaults to** `false`.
+     *     @type array $batchOptions A set of options for a BatchJob.
+     *           {@see \Google\Cloud\Core\Batch\BatchJob::__construct()} for
+     *           more details.
      *           **Defaults to** ['batchSize' => 1000,
      *                            'callPeriod' => 2.0,
-     *                            'workerNum' => 2]
-     *     @type array $clientConfig A config to LoggingClient
-     *           {@see \Google\Cloud\Logging\LoggingClient::__construct()}
-     *           **Defaults to** []
+     *                            'workerNum' => 2].
+     *     @type array $clientConfig Configuration options for the Trace client
+     *           used to handle processing of batch items.
+     *           For valid options please see
+     *           {@see \Google\Cloud\Trace\TraceClient::__construct()}.
      *     @type BatchRunner $batchRunner A BatchRunner object. Mainly used for
      *           the tests to inject a mock. **Defaults to** a newly created
      *           BatchRunner.
+     *     @type string $identifier An identifier for the batch job.
+     *           **Defaults to** `stackdriver-trace`.
      * }
      */
     public function __construct(array $options = [])
     {
-        $this->debugOutput = array_key_exists('debugOutput', $options)
-            ? $options['debugOutput']
-            : false;
-        $this->clientConfig = array_key_exists('clientConfig', $options)
-            ? $options['clientConfig']
-            : [];
-        $batchOptions = array_key_exists('batchOptions', $options)
-            ? $options['batchOptions']
-            : [];
-        $this->batchOptions = $batchOptions + [
-            'batchSize' => 1000,
-            'callPeriod' => 2.0,
-            'workerNum' => 2
-        ];
-
-        $this->batchRunner = array_key_exists('batchRunner', $options)
-            ? $options['batchRunner']
-            : new BatchRunner();
-        $this->batchRunner->registerJob(
-            self::BATCH_RUNNER_JOB_NAME,
-            [$this, 'sendEntries'],
-            $this->batchOptions
-        );
+        $this->setCommonBatchProperties($options + [
+            'identifier' => 'stackdriver-trace',
+            'batchMethod' => 'insertBatch'
+        ]);
+        self::$client = isset($options['client'])
+            ? $options['client']
+            : new TraceClient($this->clientConfig);
     }
 
     /**
@@ -107,60 +82,35 @@ class AsyncReporter implements ReporterInterface
     public function report(TracerInterface $tracer)
     {
         $spans = $tracer->spans();
+
         if (empty($spans)) {
             return false;
         }
 
-        $entry = [
-            'traceId' => $tracer->context()->traceId(),
-            'spans' => $spans
-        ];
+        $trace = self::$client->trace(
+            $tracer->context()->traceId()
+        );
+        $trace->setSpans($spans);
+
         try {
-            return $this->batchRunner->submitItem(self::BATCH_RUNNER_JOB_NAME, $entry);
+            return $this->batchRunner->submitItem($this->identifier, $trace);
         } catch (\Exception $e) {
             return false;
         }
     }
 
     /**
-     * BatchRunner callback handler for reporting serialied traces
+     * Returns an array representation of a callback which will be used to write
+     * batch items.
      *
-     * @param  array $entries An array of traces to send.
-     * @return bool
+     * @return array
      */
-    public function sendEntries(array $entries)
-    {
-        $start = microtime(true);
-        $client = $this->getClient();
-        $traces = array_map(function ($entry) use ($client) {
-            $trace = $client->trace($entry['traceId']);
-            $trace->setSpans($entry['spans']);
-            return $trace;
-        }, $entries);
-
-        try {
-            $client->insertBatch($traces);
-        } catch (ServiceException $e) {
-            fwrite(STDERR, $e->getMessage() . PHP_EOL);
-            return false;
-        }
-        $end = microtime(true);
-        if ($this->debugOutput) {
-            printf(
-                '%f seconds for insertBatch %d entries' . PHP_EOL,
-                $end - $start,
-                count($entries)
-            );
-            printf('memory used: %d' . PHP_EOL, memory_get_usage());
-        }
-        return true;
-    }
-
-    protected function getClient()
+    protected function getCallback()
     {
         if (!isset(self::$client)) {
             self::$client = new TraceClient($this->clientConfig);
         }
-        return self::$client;
+
+        return [self::$client, $this->batchMethod];
     }
 }
