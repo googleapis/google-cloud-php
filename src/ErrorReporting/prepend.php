@@ -43,9 +43,9 @@ if (file_exists(__DIR__ . '/../../vendor/autoload.php')) {
  * Return a user specified PsrBatchLogger.
  *
  * Put a file named 'ErrorReportingBootstrap' in the project directory which
- * returns a PsrBatchLogger object.
+ * returns a PsrLogger object.
  *
- * @return \Google\Cloud\Logging\PsrBatchLogger
+ * @return \Google\Cloud\Logging\PsrLogger
  */
 function getPsrBatchLogger()
 {
