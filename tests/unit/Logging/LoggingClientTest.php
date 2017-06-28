@@ -45,6 +45,16 @@ class LoggingClientTest extends \PHPUnit_Framework_TestCase
         $this->client = new LoggingTestClient(['projectId' => $this->projectId]);
     }
 
+    public function testPsrBatchLogger()
+    {
+        $psrBatchLogger = LoggingClient::psrBatchLogger('app');
+        $this->assertInstanceOf(PsrLogger::class, $psrBatchLogger);
+        $psrBatchLogger = LoggingClient::psrBatchLogger(
+            'app',
+            ['clientConfig' => ['projectId' => 'my-project']]);
+        $this->assertInstanceOf(PsrLogger::class, $psrBatchLogger);
+    }
+
     public function testCreatesSink()
     {
         $destination = 'storage.googleapis.com/my-bucket';
