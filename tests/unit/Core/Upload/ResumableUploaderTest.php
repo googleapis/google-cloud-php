@@ -62,6 +62,46 @@ class ResumableUploaderTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(json_decode($this->successBody, true), $uploader->upload());
     }
 
+    public function testUploadsDataWithCallback()
+    {
+        $response = new Response(200, ['Location' => 'theResumeUri'], $this->successBody);
+
+        $called = false;
+        $callback = function() use (&$called) {
+            $called = true;
+        };
+
+        $this->requestWrapper->send(
+            Argument::type(RequestInterface::class),
+            Argument::type('array')
+        )->willReturn($response);
+
+        $uploader = new ResumableUploader(
+            $this->requestWrapper->reveal(),
+            $this->stream,
+            'http://www.example.com',
+            ['uploadProgressCallback' => $callback]
+        );
+
+        $this->assertEquals(json_decode($this->successBody, true), $uploader->upload());
+        $this->assertTrue($called);
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testUploadsDataWithInvalidCallback()
+    {
+        $callback = 'foo';
+
+        $uploader = new ResumableUploader(
+            $this->requestWrapper->reveal(),
+            $this->stream,
+            'http://www.example.com',
+            ['uploadProgressCallback' => $callback]
+        );
+    }
+
     public function testGetResumeUri()
     {
         $resumeUri = 'theResumeUri';

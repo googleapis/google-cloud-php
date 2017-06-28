@@ -20,6 +20,7 @@ namespace Google\Cloud\Storage;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Timestamp;
+use Google\Cloud\Core\Upload\SignedUrlUploader;
 use Google\Cloud\Storage\Connection\ConnectionInterface;
 use GuzzleHttp\Psr7;
 use Psr\Http\Message\StreamInterface;
@@ -638,10 +639,6 @@ class StorageObject
     /**
      * Create a Signed URL for this object.
      *
-     * Please note that using this method requires that the OpenSSL extension be
-     * available in your PHP installation. In most cases, it will be by default,
-     * but failures can often be rectified by installing OpenSSL.
-     *
      * Example:
      * ```
      * $url = $object->signedUrl(new Timestamp(new DateTime('tomorrow')));
@@ -654,14 +651,15 @@ class StorageObject
      * ]);
      * ```
      *
-     * @see http://php.net/manual/en/book.openssl.php OpenSSL
-     *
-     * @param Timestamp $expires A Timestamp specifying when the URL will expire.
+     * @param Timestamp|\DateTimeInterface|int $expires Specifies when the URL
+     *        will expire. May provide an instance of {@see Google\Cloud\Core\Timestamp},
+     *        [http://php.net/datetimeimmutable](`\DateTimeImmutable`), or a
+     *        UNIX timestamp as an integer.
      * @param array $options {
      *     Configuration Options.
      *
-     *     @type string $method One of `GET`, `PUT` or `DELETE`. **Defaults to**
-     *           `GET`.
+     *     @type string $method One of `GET`, `PUT` or `DELETE`.
+     *           **Defaults to** `GET`.
      *     @type string $cname The CNAME for the bucket, for instance
      *           `https://cdn.example.com`. **Defaults to**
      *           `https://storage.googleapis.com`.
@@ -674,7 +672,7 @@ class StorageObject
      *     @type array $headers If these headers are used, the server will check
      *           to make sure that the client provides matching values. Provide
      *           headers as a key/value array, where the key is the header name,
-     *           and the value is the header value.
+     *           and the value is an array of header values.
      *     @type string $saveAsName The filename to prompt the user to save the
      *           file as when the signed url is accessed. This is ignored if
      *           `$options.responseDisposition` is set.
@@ -688,17 +686,17 @@ class StorageObject
      *           set, this option is ignored.
      *     @type string $keyFilePath A path to a valid Keyfile to use in place
      *           of the keyfile with which the client was constructed.
+     *     @type bool $forceOpenssl If true, OpenSSL will be used regardless of
+     *           whether phpseclib is available. **Defaults to** `false`.
      * }
      * @return string
+     * @throws InvalidArgumentException If the given expiration is in the past.
+     * @throws InvalidArgumentException If the given `$options.method` is not valid.
+     * @throws InvalidArgumentException If the given `$options.keyFilePath` is not valid.
+     * @throws InvalidArgumentException If the keyfile does not contain the required information.
      */
-    public function signedUrl(Timestamp $expires, array $options = [])
+    public function signedUrl($expires, array $options = [])
     {
-        // @codeCoverageIgnoreStart
-        if (!extension_loaded('openssl')) {
-            throw new \RuntimeException('OpenSSL is not installed.');
-        }
-        // @codeCoverageIgnoreEnd
-
         $options += [
             'method' => 'GET',
             'cname' => self::DEFAULT_DOWNLOAD_URL,
@@ -709,18 +707,35 @@ class StorageObject
             'responseDisposition' => null,
             'responseType' => null,
             'keyFile' => null,
-            'keyFilePath' => null
+            'keyFilePath' => null,
+            'allowPost' => false,
+            'forceOpenssl' => false
         ];
 
-        $seconds = $expires->get()->format('U');
+        if ($expires instanceof Timestamp) {
+            $seconds = $expires->get()->format('U');
+        } elseif ($expires instanceof \DateTimeInterface) {
+            $seconds = $expires->format('U');
+        } elseif (is_numeric($expires)) {
+            $seconds = (int) $expires;
+        } else {
+            throw new \InvalidArgumentException('Invalid expiration.');
+        }
+
         if ($seconds < time()) {
             throw new \InvalidArgumentException('Expiration cannot be in the past.');
         }
 
-        $allowedMethods = ['GET', 'PUT', 'DELETE'];
+        $allowedMethods = ['GET', 'PUT', 'POST', 'DELETE'];
         $options['method'] = strtoupper($options['method']);
         if (!in_array($options['method'], $allowedMethods)) {
             throw new \InvalidArgumentException('$options.method must be one of `GET`, `PUT` or `DELETE`.');
+        }
+
+        if ($options['method'] === 'POST' && !$options['allowPost']) {
+            throw new \InvalidArgumentException(
+                'Invalid method. To create an upload URI, use StorageObject::signedUploadUrl().'
+            );
         }
 
         if ($options['keyFilePath']) {
@@ -752,10 +767,6 @@ class StorageObject
             );
         }
 
-        $options['cname'] = trim($options['cname'], '/');
-
-        $resource = sprintf('/%s/%s', $this->identity['bucket'], $this->identity['object']);
-
         $headers = [];
         foreach ($options['headers'] as $name => $value) {
             $value = (is_array($value))
@@ -769,6 +780,7 @@ class StorageObject
             $headers[] = '';
         }
 
+        $resource = sprintf('/%s/%s', $this->identity['bucket'], $this->identity['object']);
         $toSign = [
             $options['method'],
             $options['contentMd5'],
@@ -778,7 +790,7 @@ class StorageObject
         ];
 
         $string = implode(PHP_EOL, $toSign);
-        $signature = $this->signString($keyFile['private_key'], $string);
+        $signature = $this->signString($keyFile['private_key'], $string, $options['forceOpenssl']);
         $encodedSignature = urlencode(base64_encode($signature));
 
         $query = [];
@@ -804,7 +816,133 @@ class StorageObject
             $query[] = 'generation=' . $this->identity['generation'];
         }
 
+        $options['cname'] = trim($options['cname'], '/');
         return $options['cname'] . $resource . '?' . implode('&', $query);
+    }
+
+    /**
+     * Create a Signed Upload URL for this object.
+     *
+     * This method differs from {@see Google\Cloud\Storage\StorageObject::signedUrl()}
+     * in that it allows you to initiate a new resumable upload session. This
+     * can be used to allow non-authenticated users to insert an object into a
+     * bucket.
+     *
+     * In order to upload data, a session URI must be
+     * obtained by sending an HTTP POST request to the URL returned from this
+     * method. See the [Cloud Storage Documentation](https://goo.gl/b1ZiZm) for
+     * more information.
+     *
+     * If you prefer to skip this initial step, you may find
+     * {@see Google\Cloud\Storage\StorageObject::beginSignedUploadSession()} to
+     * fit your needs. Note that `beginSignedUploadSession()` cannot be used
+     * with Google Cloud PHP's Signed URL Uploader, and does not support a
+     * configurable expiration date.
+     *
+     * Example:
+     * ```
+     * $timestamp = new Timestamp(new \DateTime('tomorrow'));
+     * $url = $object->signedUploadUrl($timestamp);
+     * ```
+     *
+     * @param Timestamp|\DateTimeInterface|int $expires Specifies when the URL
+     *        will expire. May provide an instance of {@see Google\Cloud\Core\Timestamp},
+     *        [http://php.net/datetimeimmutable](`\DateTimeImmutable`), or a
+     *        UNIX timestamp as an integer.
+     * @param array $options {
+     *     Configuration Options.
+     *
+     *     @type string $contentType If you provide this value, the client must
+     *           provide this HTTP header set to the same value.
+     *     @type string $contentMd5 The MD5 digest value in base64. If you
+     *           provide this, the client must provide this HTTP header with
+     *           this same value in its request. If provided, take care to
+     *           always provide this value as a base64 encoded string.
+     *     @type array $headers If these headers are used, the server will check
+     *           to make sure that the client provides matching values. Provide
+     *           headers as a key/value array, where the key is the header name,
+     *           and the value is an array of header values.
+     *     @type array $keyFile Keyfile data to use in place of the keyfile with
+     *           which the client was constructed. If `$options.keyFilePath` is
+     *           set, this option is ignored.
+     *     @type string $keyFilePath A path to a valid Keyfile to use in place
+     *           of the keyfile with which the client was constructed.
+     *     @type bool $forceOpenssl If true, OpenSSL will be used regardless of
+     *           whether phpseclib is available. **Defaults to** `false`.
+     * }
+     * @return string
+     */
+    public function signedUploadUrl($expires, array $options = [])
+    {
+        $options += [
+            'headers' => [],
+            'contentType' => null,
+            'contentMd5' => null,
+        ];
+
+        unset(
+            $options['cname'],
+            $options['saveAsName'],
+            $options['responseDisposition'],
+            $options['responseType']
+        );
+
+        $options['headers']['x-goog-resumable'] = ['start'];
+
+        return $this->signedUrl($expires, [
+            'method' => 'POST',
+            'allowPost' => true
+        ] + $options);
+    }
+
+    /**
+     * Create a signed URL upload session.
+     *
+     * The returned URL differs from the return value of
+     * {@see Google\Cloud\Storage\StorageObject::signedUploadUrl()} in that it
+     * is ready to accept upload data immediately via an HTTP PUT request.
+     * Because an upload session is created by the client, the expiration date
+     * is not configurable. The URL generated by this method is valid for one
+     * week.
+     *
+     * Example:
+     * ```
+     * $url = $object->beginSignedUploadSession();
+     * ```
+     *
+     * @see https://cloud.google.com/storage/docs/xml-api/resumable-upload#practices Resumable Upload Best Practices
+     *
+     * @param array $options {
+     *     Configuration Options.
+     *
+     *     @type string $contentType If you provide this value, the client must
+     *           provide this HTTP header set to the same value.
+     *     @type string $contentMd5 The MD5 digest value in base64. If you
+     *           provide this, the client must provide this HTTP header with
+     *           this same value in its request. If provided, take care to
+     *           always provide this value as a base64 encoded string.
+     *     @type array $headers If these headers are used, the server will check
+     *           to make sure that the client provides matching values. Provide
+     *           headers as a key/value array, where the key is the header name,
+     *           and the value is an array of header values.
+     *     @type array $keyFile Keyfile data to use in place of the keyfile with
+     *           which the client was constructed. If `$options.keyFilePath` is
+     *           set, this option is ignored.
+     *     @type string $keyFilePath A path to a valid Keyfile to use in place
+     *           of the keyfile with which the client was constructed.
+     *     @type bool $forceOpenssl If true, OpenSSL will be used regardless of
+     *           whether phpseclib is available. **Defaults to** `false`.
+     * }
+     * @return string
+     */
+    public function beginSignedUploadSession(array $options = [])
+    {
+        $timestamp = new \DateTimeImmutable('+1 minute');
+        $startUri = $this->signedUploadUrl($timestamp, $options);
+
+        $uploader = new SignedUrlUploader($this->connection->requestWrapper(), '', $startUri);
+
+        return $uploader->getResumeUri();
     }
 
     /**

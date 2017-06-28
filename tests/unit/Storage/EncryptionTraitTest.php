@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Tests\Unit\Storage;
 
-use Google\Cloud\Dev\KeyPairGenerateTrait;
+use Google\Cloud\Tests\KeyPairGenerateTrait;
 use Google\Cloud\Storage\EncryptionTrait;
 
 /**
@@ -40,9 +40,20 @@ class EncryptionTraitTest extends \PHPUnit_Framework_TestCase
 
         list($pkey, $pub) = $this->getKeyPair();
 
-        $res = $this->implementation->call('signString', [$pkey, $testString, 'sha256WithRSAEncryption']);
+        $res = $this->implementation->call('signString', [$pkey, $testString]);
 
-        $this->assertTrue($this->verifySignature($pub, $testString, $res));
+        $this->assertTrue($this->verifySignature($pkey, $testString, urlencode(base64_encode($res))));
+    }
+
+    public function testSignStringWithOpenSsl()
+    {
+        $testString = 'hello world';
+
+        list($pkey, $pub) = $this->getKeyPair();
+
+        $res = $this->implementation->call('signString', [$pkey, $testString, true]);
+
+        $this->assertTrue($this->verifySignature($pkey, $testString, urlencode(base64_encode($res))));
     }
 
     /**

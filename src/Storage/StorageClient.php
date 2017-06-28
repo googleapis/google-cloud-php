@@ -21,6 +21,12 @@ use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
+use Google\Cloud\Core\Timestamp;
+use Google\Cloud\Core\Upload\AbstractUploader;
+use Google\Cloud\Core\Upload\MultipartUploader;
+use Google\Cloud\Core\Upload\ResumableUploader;
+use Google\Cloud\Core\Upload\SignedUrlUploader;
+use Google\Cloud\Core\Upload\StreamableUploader;
 use Google\Cloud\Storage\Connection\ConnectionInterface;
 use Google\Cloud\Storage\Connection\Rest;
 use Psr\Cache\CacheItemPoolInterface;
@@ -266,5 +272,41 @@ class StorageClient
     public function unregisterStreamWrapper($protocol = null)
     {
         StreamWrapper::unregister($protocol);
+    }
+
+    /**
+     * Create an uploader to handle a Signed URL.
+     *
+     * Example:
+     * ```
+     * $uploader = $storage->signedUrlUploader($uri, fopen('/path/to/myfile.doc', 'r'));
+     * ```
+     *
+     * @param string $uri The URI to accept an upload request.
+     * @param string|resource|StreamInterface $data The data to be uploaded
+     * @param array $options [optional] Configuration Options. Refer to
+     *        {@see Google\Cloud\Core\Upload\AbstractUploader::__construct()}.
+     * @return void
+     */
+    public function signedUrlUploader($uri, $data, array $options = [])
+    {
+        return new SignedUrlUploader($this->connection->requestWrapper(), $data, $uri, $options);
+    }
+
+    /**
+     * Create a Timestamp object.
+     *
+     * Example:
+     * ```
+     * $timestamp = $storage->timestamp(new \DateTime('2003-02-05 11:15:02.421827Z'));
+     * ```
+     *
+     * @param \DateTimeInterface $value The timestamp value.
+     * @param int $nanoSeconds [optional] The number of nanoseconds in the timestamp.
+     * @return Timestamp
+     */
+    public function timestamp(\DateTimeInterface $timestamp, $nanoSeconds = null)
+    {
+        return new Timestamp($timestamp, $nanoSeconds);
     }
 }

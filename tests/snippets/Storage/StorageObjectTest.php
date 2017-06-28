@@ -19,7 +19,6 @@ namespace Google\Cloud\Tests\Snippets\Storage;
 
 use Google\Cloud\Core\RequestWrapper;
 use Google\Cloud\Core\Timestamp;
-use Google\Cloud\Dev\KeyPairGenerateTrait;
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
 use Google\Cloud\Storage\Acl;
 use Google\Cloud\Storage\Bucket;
@@ -27,7 +26,10 @@ use Google\Cloud\Storage\Connection\ConnectionInterface;
 use Google\Cloud\Storage\Connection\Rest;
 use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Storage\StorageObject;
+use Google\Cloud\Tests\KeyPairGenerateTrait;
+use GuzzleHttp\Psr7\Response;
 use Prophecy\Argument;
+use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamInterface;
 
 /**
@@ -416,5 +418,61 @@ class StorageObjectTest extends SnippetTestCase
         $this->assertTrue(strpos($res->returnVal(), 'https://storage.googleapis.com/my-bucket/my-object') !== false);
         $this->assertTrue(strpos($res->returnVal(), 'Expires=') !== false);
         $this->assertTrue(strpos($res->returnVal(), 'Signature=') !== false);
+    }
+
+    public function testSignedUploadUrl()
+    {
+        $snippet = $this->snippetFromMethod(StorageObject::class, 'signedUploadUrl');
+        $snippet->addLocal('object', $this->object);
+        $snippet->addUse(Timestamp::class);
+
+        list($pkey, $pub) = $this->getKeyPair();
+        $kf = [
+            'private_key' => $pkey,
+            'client_email' => 'test@example.com'
+        ];
+
+        $rw = $this->prophesize(RequestWrapper::class);
+        $rw->keyFile()->willReturn($kf);
+
+        $conn = $this->prophesize(Rest::class);
+        $conn->requestWrapper()->willReturn($rw->reveal());
+
+        $this->object->___setProperty('connection', $conn->reveal());
+
+        $res = $snippet->invoke('url');
+        $this->assertTrue(strpos($res->returnVal(), 'https://storage.googleapis.com/my-bucket/my-object') !== false);
+        $this->assertTrue(strpos($res->returnVal(), 'Expires=') !== false);
+        $this->assertTrue(strpos($res->returnVal(), 'Signature=') !== false);
+    }
+
+    public function testBeginSignedUploadSession()
+    {
+        $snippet = $this->snippetFromMethod(StorageObject::class, 'beginSignedUploadSession');
+        $snippet->addLocal('object', $this->object);
+        $snippet->addUse(Timestamp::class);
+
+        list($pkey, $pub) = $this->getKeyPair();
+        $kf = [
+            'private_key' => $pkey,
+            'client_email' => 'test@example.com'
+        ];
+
+        $rw = $this->prophesize(RequestWrapper::class);
+        $rw->keyFile()->willReturn($kf);
+
+        $resumeUri = 'theResumeUri';
+        $response = new Response(200, ['Location' => $resumeUri]);
+
+        $rw->send(
+            Argument::type(RequestInterface::class),
+            Argument::type('array')
+        )->willReturn($response);
+
+        $this->connection->requestWrapper()->willReturn($rw->reveal());
+        $this->object->___setProperty('connection', $this->connection->reveal());
+
+        $res = $snippet->invoke('url');
+        $this->assertEquals($resumeUri, $res->returnVal());
     }
 }
