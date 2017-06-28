@@ -2,7 +2,8 @@
 
 namespace Google\Cloud\ErrorReporting;
 
-use Google\Cloud\Logging\PsrBatchLogger;
+use Google\Cloud\Logging\LoggingClient;
+use Google\Cloud\Logging\PsrLogger;
 
 /**
  * Static methods for bootstrapping Stackdriver Error Reporting.
@@ -11,26 +12,26 @@ class Bootstrap
 {
     const DEFAULT_LOGNAME = 'app-error';
 
-    /** @var PsrBatchLogger */
+    /** @var PsrLogger */
     public static $psrBatchLogger;
 
     /**
      * Register hooks for error reporting.
      *
-     * @param PsrBatchLogger $psrBatchLogger
+     * @param PsrLogger $psrBatchLogger
      * @return void
      * @codeCoverageIgnore
      */
-    public static function init(PsrBatchLogger $psrBatchLogger = null)
+    public static function init(PsrLogger $psrBatchLogger = null)
     {
-        self::$psrBatchLogger = $psrBatchLogger
-            ?: new psrBatchLogger(
-                self::DEFAULT_LOGNAME,
-                [
-                    'debugOutput' => true,
-                    'batchOptions' => ['workerNum' => 2]
+        self::$psrBatchLogger = $psrBatchLogger ?: (new LoggingClient())
+            ->psrLogger(self::DEFAULT_LOGNAME, [
+                'batchEnabled' => true,
+                'debugOutput' => true,
+                'batchOptions' => [
+                    'workerNum' => 2
                 ]
-            );
+            ]);
         register_shutdown_function([self::class, 'shutdownHandler']);
         set_exception_handler([self::class, 'exceptionHandler']);
         set_error_handler([self::class, 'errorHandler']);

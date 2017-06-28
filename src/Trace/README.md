@@ -22,6 +22,7 @@ $ composer require google/cloud-trace
 ```php
 use Google\Cloud\Trace\TraceClient;
 use Google\Cloud\Trace\Reporter\SyncReporter;
+use Google\Cloud\Trace\RequestTracer;
 
 $trace = new TraceClient();
 $reporter = new SyncReporter($trace);

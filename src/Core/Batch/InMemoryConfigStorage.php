@@ -22,7 +22,7 @@ namespace Google\Cloud\Core\Batch;
  */
 final class InMemoryConfigStorage implements
     ConfigStorageInterface,
-    SubmitItemInterface
+    ProcessItemInterface
 {
     use HandleFailureTrait;
 
@@ -161,7 +161,7 @@ final class InMemoryConfigStorage implements
         if ((count($this->items[$idNum]) >= $batchSize)
              || (count($this->items[$idNum]) !== 0
                  && microtime(true) > $this->lastInvoked[$idNum] + $period)) {
-            $this->run($idNum);
+            $this->flush($idNum);
             $this->items[$idNum] = [];
             $this->lastInvoked[$idNum] = microtime(true);
         }
@@ -169,14 +169,24 @@ final class InMemoryConfigStorage implements
 
     /**
      * Run the job with the given id.
+     *
      * @param int $idNum A numeric id for the job.
+     * @return bool
      */
-    private function run($idNum)
+    public function flush($idNum)
     {
-        $job = $this->config->getJobFromIdNum($idNum);
-        if (! $job->run($this->items[$idNum])) {
-            $this->handleFailure($idNum, $this->items[$idNum]);
+        if (isset($this->items[$idNum])) {
+            $job = $this->config->getJobFromIdNum($idNum);
+
+            if (!$job->run($this->items[$idNum])) {
+                $this->handleFailure($idNum, $this->items[$idNum]);
+            }
+
+            $this->items[$idNum] = [];
+            $this->lastInvoked[$idNum] = microtime(true);
         }
+
+        return true;
     }
 
     /**
@@ -186,7 +196,7 @@ final class InMemoryConfigStorage implements
     {
         foreach ($this->items as $idNum => $items) {
             if (count($items) !== 0) {
-                $this->run($idNum);
+                $this->flush($idNum);
             }
         }
     }

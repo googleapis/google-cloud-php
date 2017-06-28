@@ -20,6 +20,7 @@ namespace Google\Cloud\Tests\Snippets\PubSub;
 use Google\Cloud\Core\Iam\Iam;
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
 use Google\Cloud\PubSub\Connection\ConnectionInterface;
+use Google\Cloud\PubSub\BatchPublisher;
 use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\PubSub\Subscription;
 use Google\Cloud\PubSub\Topic;
@@ -178,6 +179,20 @@ class TopicTest extends SnippetTestCase
             ->shouldBeCalled();
 
         $this->topic->___setProperty('connection', $this->connection->reveal());
+
+        $snippet->invoke();
+    }
+
+    public function testBatchPublisher()
+    {
+        $snippet = $this->snippetFromMethod(Topic::class, 'batchPublisher');
+        $batchPublisher = $this->prophesize(BatchPublisher::class);
+        $batchPublisher->publish(Argument::type('array'))
+            ->willReturn(true);
+        $topic = $this->prophesize(Topic::class);
+        $topic->batchPublisher()
+            ->willReturn($batchPublisher->reveal());
+        $snippet->addLocal('topic', $topic->reveal());
 
         $snippet->invoke();
     }
