@@ -512,6 +512,8 @@ class Database
      *           **Defaults to** `false`.
      * }
      * @return Snapshot
+     * @throws \BadMethodCallException If attempting to call this method within
+     *         an existing transaction.
      * @codingStandardsIgnoreEnd
      */
     public function snapshot(array $options = [])
@@ -569,6 +571,8 @@ class Database
      *           **Defaults to** `false`.
      * }
      * @return Transaction
+     * @throws \BadMethodCallException If attempting to call this method within
+     *         an existing transaction.
      */
     public function transaction(array $options = [])
     {
@@ -661,7 +665,8 @@ class Database
      * }
      * @return mixed The return value of `$operation`.
      * @throws \RuntimeException If a transaction is not committed or rolled back.
-     * @throws \BadMethodCallException If a nested transaction is created.
+     * @throws \BadMethodCallException If attempting to call this method within
+     *         an existing transaction.
      */
     public function runTransaction(callable $operation, array $options = [])
     {
