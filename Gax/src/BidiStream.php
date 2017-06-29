@@ -140,7 +140,11 @@ class BidiStream
             if (count($this->pendingResources) === 0) {
                 $response = $this->call->read();
                 if (!is_null($response)) {
-                    $this->pendingResources = array_reverse($response->$resourcesGetMethod());
+                    $pendingResources = [];
+                    foreach ($response->$resourcesGetMethod() as $resource) {
+                        $pendingResources[] = $resource;
+                    }
+                    $this->pendingResources = array_reverse($pendingResources);
                 }
             }
             $result = array_pop($this->pendingResources);
