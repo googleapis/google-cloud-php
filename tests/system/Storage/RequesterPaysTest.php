@@ -85,11 +85,8 @@ class RequesterPaysTest extends StorageTestCase
         $getBody = function($bucket, $object) {
             $guzzle = new Client;
 
-            // running the same request three times seems to run into some caching mechanism in guzzle.
-            // change the query string to something that doesn't matter and baby, you've got a stew goin'.
-            $uri = 'https://storage.googleapis.com/%s/%s?='.uniqid(self::TESTING_PREFIX);
-
             try {
+                $uri = 'https://storage.googleapis.com/%s/%s';
                 $res = $guzzle->request('GET', sprintf($uri, $bucket, $object));
                 return (string) $res->getBody();
             } catch (ClientException $e) {
@@ -101,7 +98,10 @@ class RequesterPaysTest extends StorageTestCase
         $bucket = $client->createBucket($bucketName);
         $object = $bucket->upload($content, [
             'name' => $objectName,
-            'predefinedAcl' => 'publicRead'
+            'predefinedAcl' => 'publicRead',
+            'metadata' => [
+                'cacheControl' => 'private'
+            ]
         ]);
         $object = $bucket->object($objectName);
 
