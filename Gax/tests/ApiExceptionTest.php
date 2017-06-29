@@ -99,41 +99,65 @@ class ApiExceptionTest extends PHPUnit_Framework_TestCase
         $duration->setNanos(2);
         $retryInfo->setRetryDelay($duration);
 
-        $unknownBinData = ['unknown-bin' => ['<Binary Data>']];
-        $asciiData = ['ascii' => ['ascii-data']];
+        $unknownBinData = [
+            [
+                '@type' => 'unknown-bin',
+                'data' => '<Unknown Binary Data>'
+            ]
+        ];
+        $asciiData = [
+            [
+                '@type' => 'ascii',
+                'data' => 'ascii-data'
+            ]
+        ];
         $retryInfoData = [
-            'google.rpc.retryinfo-bin' => [
-                [
-                    'retryDelay' => [
-                        'seconds' => 1,
-                        'nanos' => 2,
-                    ]
-                ]
+            [
+                '@type' => 'google.rpc.retryinfo-bin',
+                'retryDelay' => [
+                    'seconds' => 1,
+                    'nanos' => 2,
+                ],
             ]
         ];
         $allKnownTypesData = [
-            'google.rpc.retryinfo-bin' => [[]],
-            'google.rpc.debuginfo-bin' => [[
+            [
+                '@type' => 'google.rpc.retryinfo-bin',
+            ],
+            [
+                '@type' => 'google.rpc.debuginfo-bin',
                 "stackEntries" => [],
                 "detail" => ""
-            ]],
-            'google.rpc.quotafailure-bin' => [["violations" => []]],
-            'google.rpc.badrequest-bin' => [["fieldViolations" => []]],
-            'google.rpc.requestinfo-bin' => [[
-                "requestId" => "",
-                "servingData" => "",
-            ]],
-            'google.rpc.resourceinfo-bin' => [[
-                "resourceType" => "",
-                "resourceName" => "",
-                "owner" => "",
-                "description" => ""
-            ]],
-            'google.rpc.help-bin' => [["links" => []]],
-            'google.rpc.localizedmessage-bin' => [[
-                "locale" => "",
-                "message" => "",
-            ]],
+            ],
+            [
+                '@type' => 'google.rpc.quotafailure-bin',
+                'violations' => [],
+            ],
+            [
+                '@type' => 'google.rpc.badrequest-bin',
+                'fieldViolations' => []
+            ],
+            [
+                '@type' => 'google.rpc.requestinfo-bin',
+                'requestId' => '',
+                'servingData' => '',
+            ],
+            [
+                '@type' => 'google.rpc.resourceinfo-bin',
+                'resourceType' => '',
+                'resourceName' => '',
+                'owner' => '',
+                'description' => '',
+            ],
+            [
+                '@type' => 'google.rpc.help-bin',
+                'links' => [],
+            ],
+            [
+                '@type' => 'google.rpc.localizedmessage-bin',
+                'locale' => '',
+                'message' => '',
+            ],
         ];
 
         return [
