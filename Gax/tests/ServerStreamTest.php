@@ -35,6 +35,8 @@ use Google\GAX\ServerStream;
 use Google\GAX\Testing\MockServerStreamingCall;
 use Google\GAX\Testing\MockStatus;
 use Google\GAX\UnitTests\Mocks\MockPageStreamingResponse;
+use Google\Protobuf\Internal\GPBType;
+use Google\Protobuf\Internal\RepeatedField;
 use Grpc;
 use PHPUnit_Framework_TestCase;
 
@@ -153,9 +155,14 @@ class ServerStreamTest extends PHPUnit_Framework_TestCase
     public function testResourcesSuccess()
     {
         $resources = ['resource1', 'resource2', 'resource3'];
+        $repeatedField1 = new RepeatedField(GPBType::STRING);
+        $repeatedField1[] = 'resource1';
+        $repeatedField2 = new RepeatedField(GPBType::STRING);
+        $repeatedField2[] = 'resource2';
+        $repeatedField2[] = 'resource3';
         $responses = [
-            MockPageStreamingResponse::createPageStreamingResponse('nextPageToken1', ['resource1']),
-            MockPageStreamingResponse::createPageStreamingResponse('nextPageToken1', ['resource2', 'resource3'])
+            MockPageStreamingResponse::createPageStreamingResponse('nextPageToken1', $repeatedField1),
+            MockPageStreamingResponse::createPageStreamingResponse('nextPageToken1', $repeatedField2)
         ];
         $call = new MockServerStreamingCall($responses);
         $stream = new ServerStream($call, [

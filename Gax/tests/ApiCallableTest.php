@@ -48,6 +48,8 @@ use Google\GAX\UnitTests\Mocks\MockPageStreamingRequest;
 use Google\GAX\UnitTests\Mocks\MockPageStreamingResponse;
 use Google\Longrunning\Operation;
 use Google\Protobuf\GPBEmpty;
+use Google\Protobuf\Internal\GPBType;
+use Google\Protobuf\Internal\RepeatedField;
 use Google\Rpc\Code;
 use Google\Rpc\Status;
 use PHPUnit_Framework_TestCase;
@@ -1183,9 +1185,13 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
         $request->setCode(Grpc\STATUS_OK);
         $request->setMessage('request');
         $resources = ['resource1', 'resource2'];
+        $repeatedField = new RepeatedField(GPBType::STRING);
+        foreach ($resources as $resource) {
+            $repeatedField[] = $resource;
+        }
         $response = MockPageStreamingResponse::createPageStreamingResponse(
             'nextPageToken',
-            $resources
+            $repeatedField
         );
         $responses = [$response];
         $descriptor = [
@@ -1323,9 +1329,13 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
         $request->setCode(Grpc\STATUS_OK);
         $request->setMessage('request');
         $resources = ['resource1', 'resource2'];
+        $repeatedField = new RepeatedField(GPBType::STRING);
+        foreach ($resources as $resource) {
+            $repeatedField[] = $resource;
+        }
         $response = MockPageStreamingResponse::createPageStreamingResponse(
             'nextPageToken',
-            $resources
+            $repeatedField
         );
         $descriptor = [
             'grpcStreamingType' => 'BidiStreaming',
