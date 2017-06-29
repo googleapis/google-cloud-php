@@ -93,7 +93,7 @@ class Serializer
 
     /**
      * @param \Google\Protobuf\Internal\Message $message
-     * @return string
+     * @return array
      */
     public static function serializeToPhpArray($message)
     {
@@ -112,24 +112,29 @@ class Serializer
         }
         $result = [];
         foreach ($metadata as $key => $values) {
-            $decodedValues = [];
             foreach ($values as $value) {
+                $decodedValue = [
+                    '@type' => $key,
+                ];
                 if (self::hasBinaryHeaderSuffix($key)) {
                     if (isset(self::$metadataKnownTypes[$key])) {
                         $class = self::$metadataKnownTypes[$key];
                         $message = new $class();
                         $message->mergeFromString($value);
-                        $decodedValue = self::serializeToPhpArray($message);
+                        $decodedValue += self::serializeToPhpArray($message);
                     } else {
                         // The metadata contains an unexpected binary type
-                        $decodedValue = "<Binary Data>";
+                        $decodedValue += [
+                            'data' => '<Unknown Binary Data>',
+                        ];
                     }
                 } else {
-                    $decodedValue = $value;
+                    $decodedValue += [
+                        'data' => $value,
+                    ];
                 }
-                $decodedValues[] = $decodedValue;
+                $result[] = $decodedValue;
             }
-            $result[$key] = $decodedValues;
         }
         return $result;
     }
