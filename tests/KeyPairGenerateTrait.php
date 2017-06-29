@@ -17,10 +17,13 @@
 
 namespace Google\Cloud\Tests;
 
+use Google\Cloud\Storage\EncryptionTrait;
 use phpseclib\Crypt\RSA;
 
 trait KeyPairGenerateTrait
 {
+    use EncryptionTrait;
+
     private function getKeyPair()
     {
         $rsa = new RSA;
@@ -34,12 +37,7 @@ trait KeyPairGenerateTrait
 
     private function verifySignature($privateKey, $input, $signature)
     {
-        $rsa = new RSA;
-        $rsa->loadKey($privateKey);
-        $rsa->setSignatureMode(RSA::SIGNATURE_PKCS1);
-        $rsa->setHash('sha256');
-        usleep(500);
-        $verify = $rsa->sign($input);
+        $verify = $this->signString($privateKey, $input);
 
         return urlencode(base64_encode($verify)) === $signature;
     }

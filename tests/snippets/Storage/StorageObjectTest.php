@@ -22,7 +22,6 @@ use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
 use Google\Cloud\Storage\Acl;
 use Google\Cloud\Storage\Bucket;
-use Google\Cloud\Storage\Connection\ConnectionInterface;
 use Google\Cloud\Storage\Connection\Rest;
 use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Storage\StorageObject;
@@ -47,7 +46,7 @@ class StorageObjectTest extends SnippetTestCase
 
     public function setUp()
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->connection = $this->prophesize(Rest::class);
         $this->object = \Google\Cloud\Dev\stub(StorageObject::class, [
             $this->connection->reveal(),
             self::OBJECT,

@@ -24,11 +24,6 @@ namespace Google\Cloud\Storage\Connection;
 interface ConnectionInterface
 {
     /**
-     * @return RequestWrapper
-     */
-    public function requestWrapper();
-
-    /**
      * @param array $args
      */
     public function deleteAcl(array $args = []);

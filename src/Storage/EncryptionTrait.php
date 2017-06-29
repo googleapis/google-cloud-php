@@ -120,7 +120,7 @@ trait EncryptionTrait
      *        whether phpseclib is available. **Defaults to** `false`.
      * @return string The signature
      */
-    private function signString($privateKey, $data, $forceOpenssl = false)
+    protected function signString($privateKey, $data, $forceOpenssl = false)
     {
         $signature = '';
 

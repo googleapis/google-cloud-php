@@ -23,7 +23,7 @@ use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\Upload\SignedUrlUploader;
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
 use Google\Cloud\Storage\Bucket;
-use Google\Cloud\Storage\Connection\ConnectionInterface;
+use Google\Cloud\Storage\Connection\Rest;
 use Google\Cloud\Storage\StorageClient;
 use Prophecy\Argument;
 
@@ -39,7 +39,7 @@ class StorageClientTest extends SnippetTestCase
 
     public function setUp()
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->connection = $this->prophesize(Rest::class);
         $this->client = \Google\Cloud\Dev\stub(StorageClient::class);
         $this->client->___setProperty('connection', $this->connection->reveal());
     }

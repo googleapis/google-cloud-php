@@ -30,6 +30,7 @@ use Google\Cloud\Core\Upload\StreamableUploader;
 use Google\Cloud\Storage\Connection\ConnectionInterface;
 use Google\Cloud\Storage\Connection\Rest;
 use Psr\Cache\CacheItemPoolInterface;
+use Psr\Http\Message\StreamInterface;
 
 /**
  * Google Cloud Storage allows you to store and retrieve data on Google's
