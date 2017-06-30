@@ -690,10 +690,10 @@ class StorageObject
      *           whether phpseclib is available. **Defaults to** `false`.
      * }
      * @return string
-     * @throws InvalidArgumentException If the given expiration is in the past.
-     * @throws InvalidArgumentException If the given `$options.method` is not valid.
-     * @throws InvalidArgumentException If the given `$options.keyFilePath` is not valid.
-     * @throws InvalidArgumentException If the keyfile does not contain the required information.
+     * @throws \InvalidArgumentException If the given expiration is in the past.
+     * @throws \InvalidArgumentException If the given `$options.method` is not valid.
+     * @throws \InvalidArgumentException If the given `$options.keyFilePath` is not valid.
+     * @throws \InvalidArgumentException If the keyfile does not contain the required information.
      */
     public function signedUrl($expires, array $options = [])
     {

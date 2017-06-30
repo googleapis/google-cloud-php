@@ -22,11 +22,7 @@ use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Core\Timestamp;
-use Google\Cloud\Core\Upload\AbstractUploader;
-use Google\Cloud\Core\Upload\MultipartUploader;
-use Google\Cloud\Core\Upload\ResumableUploader;
 use Google\Cloud\Core\Upload\SignedUrlUploader;
-use Google\Cloud\Core\Upload\StreamableUploader;
 use Google\Cloud\Storage\Connection\ConnectionInterface;
 use Google\Cloud\Storage\Connection\Rest;
 use Psr\Cache\CacheItemPoolInterface;
@@ -287,7 +283,7 @@ class StorageClient
      * @param string|resource|StreamInterface $data The data to be uploaded
      * @param array $options [optional] Configuration Options. Refer to
      *        {@see Google\Cloud\Core\Upload\AbstractUploader::__construct()}.
-     * @return void
+     * @return SignedUrlUploader
      */
     public function signedUrlUploader($uri, $data, array $options = [])
     {
