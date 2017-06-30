@@ -21,6 +21,7 @@ use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
+use Google\Cloud\Core\Report\MetadataProviderInterface;
 use Google\Cloud\Logging\Connection\ConnectionInterface;
 use Google\Cloud\Logging\Connection\Grpc;
 use Google\Cloud\Logging\Connection\Rest;
@@ -46,7 +47,7 @@ use Psr\Cache\CacheItemPoolInterface;
  * Afterwards, please install the following dependencies through composer:
  *
  * ```sh
- * $ composer require google/gax && composer require google/proto-client-php
+ * $ composer require google/gax && composer require google/proto-client
  * ```
  *
  * Please take care in installing the same version of these libraries that are
@@ -84,6 +85,56 @@ class LoggingClient
     private $formattedProjectName;
 
     /**
+     * @var array The config given to the constructor.
+     */
+    private $config;
+
+    /**
+     * Create a PsrLogger with batching enabled.
+     *
+     * @param string $name The name of the log to write entries to.
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type string $messageKey The key in the `jsonPayload` used to contain
+     *           the logged message. **Defaults to** `message`.
+     *     @type array $resource The
+     *           [monitored resource](https://cloud.google.com/logging/docs/api/reference/rest/v2/MonitoredResource)
+     *           to associate log entries with. **Defaults to** type global.
+     *     @type array $labels A set of user-defined (key, value) data that
+     *           provides additional information about the log entry.
+     *     @type MetadataProviderInterface $metadataProvider **Defaults to** An
+     *           automatically chosen provider, based on detected environment
+     *           settings.
+     *     @type bool $debugOutput Whether or not to output debug information.
+     *           **Defaults to** false.
+     *     @type array $batchOptions A set of options for a BatchJob.
+     *           {@see \Google\Cloud\Core\Batch\BatchJob::__construct()} for
+     *           more details.
+     *           **Defaults to** ['batchSize' => 1000,
+     *                            'callPeriod' => 2.0,
+     *                            'workerNum' => 2].
+     *     @type array $clientConfig Configuration options for the Logging client
+     *           used to handle processing of batch items. For valid options
+     *           please see
+     *           {@see \Google\Cloud\Logging\LoggingClient::__construct()}.
+     *     @type BatchRunner $batchRunner A BatchRunner object. Mainly used for
+     *           the tests to inject a mock. **Defaults to** a newly created
+     *           BatchRunner.
+     * }
+     * @return PsrLogger
+     **/
+    public static function psrBatchLogger($name, array $options = [])
+    {
+        $client = array_key_exists('clientConfig', $options)
+            ? new self($options['clientConfig'])
+            : new self();
+        // Force enabling batch.
+        $options['batchEnabled'] = true;
+        return $client->psrLogger($name, $options);
+    }
+
+    /**
      * Create a Logging client.
      *
      * @param array $config [optional] {
@@ -113,6 +164,7 @@ class LoggingClient
      */
     public function __construct(array $config = [])
     {
+        $this->config = $config;
         $connectionType = $this->getConnectionType($config);
         if (!isset($config['scopes'])) {
             $config['scopes'] = [self::FULL_CONTROL_SCOPE];
@@ -422,6 +474,13 @@ class LoggingClient
      * $psrLogger = $logging->psrLogger('my-log');
      * ```
      *
+     * ```
+     * // Write entries with background batching.
+     * $psrLogger = $logging->psrLogger('my-log', [
+     *     'batchEnabled' => true
+     * ]);
+     * ```
+     *
      * @param string $name The name of the log to write entries to.
      * @param array $options [optional] {
      *     Configuration options.
@@ -433,6 +492,30 @@ class LoggingClient
      *           to associate log entries with. **Defaults to** type global.
      *     @type array $labels A set of user-defined (key, value) data that
      *           provides additional information about the log entry.
+     *     @type MetadataProviderInterface $metadataProvider **Defaults to** An
+     *           automatically chosen provider, based on detected environment
+     *           settings.
+     *     @type bool $batchEnabled Determines whether or not to use background
+     *           batching. **Defaults to** `false`.
+     *     @type bool $debugOutput Whether or not to output debug information.
+     *           **Defaults to** false. Applies only when `batchEnabled` is set
+     *           to `true`.
+     *     @type array $batchOptions A set of options for a BatchJob.
+     *           {@see \Google\Cloud\Core\Batch\BatchJob::__construct()} for
+     *           more details.
+     *           **Defaults to** ['batchSize' => 1000,
+     *                            'callPeriod' => 2.0,
+     *                            'workerNum' => 2]. Applies only when
+     *           `batchEnabled` is set to `true`.
+     *     @type array $clientConfig Configuration options for the Logging client
+     *           used to handle processing of batch items. For valid options
+     *           please see
+     *           {@see \Google\Cloud\Logging\LoggingClient::__construct()}.
+     *           **Defaults to** the options provided to the current client.
+     *           Applies only when `batchEnabled` is set to `true`.
+     *     @type BatchRunner $batchRunner A BatchRunner object. Mainly used for
+     *           the tests to inject a mock. **Defaults to** a newly created
+     *           BatchRunner. Applies only when `batchEnabled` is set to `true`.
      * }
      * @return PsrLogger
      */
@@ -445,9 +528,22 @@ class LoggingClient
             unset($options['messageKey']);
         }
 
-        return $messageKey
-            ? new PsrLogger($this->logger($name, $options), $messageKey)
-            : new PsrLogger($this->logger($name, $options));
+        $psrLoggerOptions = $this->pluckArray([
+            'metadataProvider',
+            'batchEnabled',
+            'debugOutput',
+            'batchOptions',
+            'clientConfig',
+            'batchRunner'
+        ], $options);
+
+        return new PsrLogger(
+            $this->logger($name, $options),
+            $messageKey,
+            $psrLoggerOptions + [
+                'clientConfig' => $this->config
+            ]
+        );
     }
 
     /**

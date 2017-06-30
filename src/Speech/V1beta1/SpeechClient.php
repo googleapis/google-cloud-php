@@ -24,6 +24,8 @@
  * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
  * more frequently than those which have been declared beta or 1.0, including changes which break
  * backwards compatibility.
+ *
+ * @experimental
  */
 
 namespace Google\Cloud\Speech\V1beta1;
@@ -35,13 +37,6 @@ use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\LongRunning\OperationsClient;
 use Google\GAX\OperationResponse;
-use google\cloud\speech\v1beta1\AsyncRecognizeRequest;
-use google\cloud\speech\v1beta1\AsyncRecognizeResponse;
-use google\cloud\speech\v1beta1\RecognitionAudio;
-use google\cloud\speech\v1beta1\RecognitionConfig;
-use google\cloud\speech\v1beta1\SpeechGrpcClient;
-use google\cloud\speech\v1beta1\StreamingRecognizeRequest;
-use google\cloud\speech\v1beta1\SyncRecognizeRequest;
 
 /**
  * Service Description: Service that implements Google Cloud Speech API.
@@ -70,10 +65,7 @@ use google\cloud\speech\v1beta1\SyncRecognizeRequest;
  * }
  * ```
  *
- * Many parameters require resource names to be formatted in a particular way. To assist
- * with these names, this class includes a format method for each type of name, and additionally
- * a parse method to extract the individual identifiers contained within names that are
- * returned.
+ * @experimental
  */
 class SpeechClient
 {
@@ -113,8 +105,8 @@ class SpeechClient
     {
         return [
             'asyncRecognize' => [
-                'operationReturnType' => '\google\cloud\speech\v1beta1\AsyncRecognizeResponse',
-                'metadataReturnType' => '\google\cloud\speech\v1beta1\AsyncRecognizeMetadata',
+                'operationReturnType' => '\Google\Cloud\Speech\V1beta1\AsyncRecognizeResponse',
+                'metadataReturnType' => '\Google\Cloud\Speech\V1beta1\AsyncRecognizeMetadata',
             ],
         ];
     }
@@ -143,6 +135,7 @@ class SpeechClient
      * Return an OperationsClient object with the same endpoint as $this.
      *
      * @return \Google\GAX\LongRunning\OperationsClient
+     * @experimental
      */
     public function getOperationsClient()
     {
@@ -160,6 +153,7 @@ class SpeechClient
      * @param string $methodName    The name of the method used to start the operation
      *
      * @return \Google\GAX\OperationResponse
+     * @experimental
      */
     public function resumeOperation($operationName, $methodName = null)
     {
@@ -204,6 +198,7 @@ class SpeechClient
      *                              A CredentialsLoader object created using the
      *                              Google\Auth library.
      * }
+     * @experimental
      */
     public function __construct($options = [])
     {
@@ -308,9 +303,9 @@ class SpeechClient
      * }
      * ```
      *
-     * @param RecognitionConfig $config       &#42;Required&#42; Provides information to the recognizer that specifies how to
+     * @param RecognitionConfig $config       *Required* Provides information to the recognizer that specifies how to
      *                                        process the request.
-     * @param RecognitionAudio  $audio        &#42;Required&#42; The audio data to be recognized.
+     * @param RecognitionAudio  $audio        *Required* The audio data to be recognized.
      * @param array             $optionalArgs {
      *                                        Optional.
      *
@@ -322,9 +317,10 @@ class SpeechClient
      *          is not set.
      * }
      *
-     * @return \google\cloud\speech\v1beta1\SyncRecognizeResponse
+     * @return \Google\Cloud\Speech\V1beta1\SyncRecognizeResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function syncRecognize($config, $audio, $optionalArgs = [])
     {
@@ -351,7 +347,7 @@ class SpeechClient
     /**
      * Performs asynchronous speech recognition: receive results via the
      * [google.longrunning.Operations]
-     * (https://cloud.google.com/speech/reference/rest/v1beta1/operations#Operation)
+     * (/speech/reference/rest/v1beta1/operations#Operation)
      * interface. Returns either an
      * `Operation.error` or an `Operation.response` which contains
      * an `AsyncRecognizeResponse` message.
@@ -399,9 +395,9 @@ class SpeechClient
      * }
      * ```
      *
-     * @param RecognitionConfig $config       &#42;Required&#42; Provides information to the recognizer that specifies how to
+     * @param RecognitionConfig $config       *Required* Provides information to the recognizer that specifies how to
      *                                        process the request.
-     * @param RecognitionAudio  $audio        &#42;Required&#42; The audio data to be recognized.
+     * @param RecognitionAudio  $audio        *Required* The audio data to be recognized.
      * @param array             $optionalArgs {
      *                                        Optional.
      *
@@ -413,9 +409,10 @@ class SpeechClient
      *          is not set.
      * }
      *
-     * @return \google\longrunning\Operation
+     * @return \Google\Longrunning\Operation
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function asyncRecognize($config, $audio, $optionalArgs = [])
     {
@@ -486,9 +483,10 @@ class SpeechClient
      *          Timeout to use for this call.
      * }
      *
-     * @return \Google\GAX\BidiStreamingResponse
+     * @return \Google\GAX\BidiStream
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function streamingRecognize($optionalArgs = [])
     {
@@ -511,6 +509,8 @@ class SpeechClient
     /**
      * Initiates an orderly shutdown in which preexisting calls continue but new
      * calls are immediately cancelled.
+     *
+     * @experimental
      */
     public function close()
     {

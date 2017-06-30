@@ -18,6 +18,7 @@
 namespace Google\Cloud\Tests\Unit\Spanner;
 
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
+use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Operation;
@@ -27,6 +28,7 @@ use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\ValueMapper;
+use Google\Cloud\Tests\GrpcTestTrait;
 use Prophecy\Argument;
 
 /**
@@ -34,6 +36,8 @@ use Prophecy\Argument;
  */
 class TransactionTest extends \PHPUnit_Framework_TestCase
 {
+    use GrpcTestTrait;
+
     const TIMESTAMP = '2017-01-09T18:05:22.534799Z';
 
     const PROJECT = 'my-awesome-project';
@@ -52,6 +56,8 @@ class TransactionTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
+        $this->checkAndSkipGrpcTests();
+
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->operation = new Operation($this->connection->reveal(), false);
 
@@ -313,7 +319,7 @@ class TransactionTest extends \PHPUnit_Framework_TestCase
                         [
                             'name' => 'ID',
                             'type' => [
-                                'code' => ValueMapper::TYPE_INT64
+                                'code' => Database::TYPE_INT64
                             ]
                         ]
                     ]

@@ -5,8 +5,8 @@
     "minimum-stability": "stable",
     "require": {
         "ext-grpc": "*",
-        "google/proto-client-php": "^0.13",
-        "google/gax": "^0.9"
+        "google/proto-client": "^0.20.1",
+        "google/gax": "^0.20.1"
     },
     "extra": {
         "component": {

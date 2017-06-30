@@ -30,6 +30,8 @@ use Google\Cloud\Trace\Tracer\TracerInterface;
  * This class manages the logic for sampling and reporting a trace within a
  * single request. It is not meant to be used directly -- instead, it should
  * be managed by the RequestTracer as its singleton instance.
+ *
+ * @internal
  */
 class RequestHandler
 {
@@ -71,7 +73,7 @@ class RequestHandler
     private $tracer;
 
     /**
-     * Create a new RequestTracer and start tracing this request.
+     * Create a new RequestHandler.
      *
      * @param ReporterInterface $reporter How to report the trace at the end of the request
      * @param SamplerInterface $sampler Which sampler to use for sampling requests
@@ -115,8 +117,9 @@ class RequestHandler
     }
 
     /**
-     * The function registered as the shutdown function. Cleans up the trace and reports using the
-     * provided ReporterInterface. Adds additional labels to the root span detected from the response.
+     * The function registered as the shutdown function. Cleans up the trace and
+     * reports using the provided ReporterInterface. Adds additional labels to
+     * the root span detected from the response.
      */
     public function onExit()
     {
@@ -152,13 +155,14 @@ class RequestHandler
     }
 
     /**
-     * Instrument a callable by creating a TraceSpan that manages the startTime and endTime.
-     * If an exception is thrown while executing the callable, the exception will be caught,
-     * the span will be closed, and the exception will be re-thrown.
+     * Instrument a callable by creating a TraceSpan that manages the startTime
+     * and endTime. If an exception is thrown while executing the callable, the
+     * exception will be caught, the span will be closed, and the exception will
+     * be re-thrown.
      *
      * @param array $spanOptions Options for the span.
-     *      {@see Google\Cloud\Trace\TraceSpan::__construct()}
-     * @param  callable $callable    The callable to inSpan.
+     *        {@see Google\Cloud\Trace\TraceSpan::__construct()}
+     * @param callable $callable    The callable to inSpan.
      * @return mixed Returns whatever the callable returns
      */
     public function inSpan(array $spanOptions, callable $callable, array $arguments = [])
@@ -171,7 +175,7 @@ class RequestHandler
      * including handling any thrown exceptions.
      *
      * @param array $spanOptions [optional] Options for the span.
-     *      {@see Google\Cloud\Trace\TraceSpan::__construct()}
+     *        {@see Google\Cloud\Trace\TraceSpan::__construct()}
      * @return TraceSpan
      */
     public function startSpan(array $spanOptions = [])

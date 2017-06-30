@@ -157,6 +157,28 @@ class ClientTraitTest extends \PHPUnit_Framework_TestCase
         ]);
     }
 
+    public function testProjectIdFromEnv()
+    {
+        $projectId = 'project-from-env';
+
+        $trait = new ClientTraitStub();
+
+        $originalEnv = getenv('GCLOUD_PROJECT');
+        
+        try {
+            putenv('GCLOUD_PROJECT=' . $projectId);
+            $res = $trait->runDetectProjectId([]);
+
+            $this->assertEquals($res, $projectId);
+        } finally {
+            if ($originalEnv === false) {
+                putenv('GCLOUD_PROJECT');
+            } else {
+                putenv('GCLOUD_PROJECT=' . $originalEnv);
+            }
+        }
+    }
+
     public function testDetectProjectIdOnGce()
     {
         $projectId = 'gce-project-rawks';

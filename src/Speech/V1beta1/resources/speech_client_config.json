@@ -6,9 +6,7 @@
           "DEADLINE_EXCEEDED",
           "UNAVAILABLE"
         ],
-        "non_idempotent": [
-          "UNAVAILABLE"
-        ]
+        "non_idempotent": []
       },
       "retry_params": {
         "default": {
@@ -33,9 +31,7 @@
           "retry_params_name": "default"
         },
         "StreamingRecognize": {
-          "timeout_millis": 190000,
-          "retry_codes_name": "non_idempotent",
-          "retry_params_name": "default"
+          "timeout_millis": 190000
         }
       }
     }

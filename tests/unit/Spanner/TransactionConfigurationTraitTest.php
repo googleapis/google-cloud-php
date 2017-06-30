@@ -21,12 +21,15 @@ use Google\Cloud\Spanner\Duration;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\TransactionConfigurationTrait;
+use Google\Cloud\Tests\GrpcTestTrait;
 
 /**
  * @group spanner
  */
 class TransactionConfigurationTraitTest extends \PHPUnit_Framework_TestCase
 {
+    use GrpcTestTrait;
+
     const TRANSACTION = 'my-transaction';
     const TIMESTAMP = '2017-01-09T18:05:22.534799Z';
     const NANOS = '534799';
@@ -38,6 +41,8 @@ class TransactionConfigurationTraitTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
+        $this->checkAndSkipGrpcTests();
+
         $this->impl = new TransactionConfigurationTraitImplementation;
         $this->ts = new Timestamp(new \DateTime(self::TIMESTAMP), self::NANOS);
         $this->duration = new Duration(10,1);

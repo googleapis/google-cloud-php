@@ -28,6 +28,7 @@ use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\SpannerClient;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\ValueMapper;
+use Google\Cloud\Tests\GrpcTestTrait;
 use Prophecy\Argument;
 
 /**
@@ -35,6 +36,8 @@ use Prophecy\Argument;
  */
 class SnapshotTest extends SnippetTestCase
 {
+    use GrpcTestTrait;
+
     const TRANSACTION = 'my-transaction';
 
     private $connection;
@@ -42,6 +45,8 @@ class SnapshotTest extends SnippetTestCase
 
     public function setUp()
     {
+        $this->checkAndSkipGrpcTests();
+
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $operation = $this->prophesize(Operation::class);
         $session = $this->prophesize(Session::class);
@@ -71,10 +76,6 @@ class SnapshotTest extends SnippetTestCase
 
     public function testClass()
     {
-        if (!extension_loaded('grpc')) {
-            $this->markTestSkipped('Must have the grpc extension installed to run this test.');
-        }
-
         $database = $this->prophesize(Database::class);
         $database->snapshot()->shouldBeCalled()->willReturn('foo');
 
@@ -97,7 +98,7 @@ class SnapshotTest extends SnippetTestCase
                             [
                                 'name' => 'loginCount',
                                 'type' => [
-                                    'code' => ValueMapper::TYPE_INT64
+                                    'code' => Database::TYPE_INT64
                                 ]
                             ]
                         ]
@@ -126,7 +127,7 @@ class SnapshotTest extends SnippetTestCase
                             [
                                 'name' => 'loginCount',
                                 'type' => [
-                                    'code' => ValueMapper::TYPE_INT64
+                                    'code' => Database::TYPE_INT64
                                 ]
                             ]
                         ]

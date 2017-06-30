@@ -25,7 +25,7 @@ use Google\Cloud\Trace\Connection\ConnectionInterface;
  * This plain PHP class represents a Trace resource. For more information see
  * [TraceResource](https://cloud.google.com/trace/docs/reference/v1/rest/v1/projects.traces#resource-trace)
  */
-class Trace
+class Trace implements \Serializable
 {
     use IdGeneratorTrait;
     use ValidateTrait;
@@ -147,7 +147,7 @@ class Trace
      * Create an instance of {@see Google\Cloud\Trace\TraceSpan}
      *
      * @param array $options [optional] See {@see Google\Cloud\Trace\TraceSpan::__construct()}
-     *      for configuration details.
+     *        for configuration details.
      * @return TraceSpan
      */
     public function span(array $options = [])
@@ -164,5 +164,35 @@ class Trace
     {
         $this->validateBatch($spans, TraceSpan::class);
         $this->spans = $spans;
+    }
+
+    /**
+     * Serialize data.
+     *
+     * @return string
+     * @access private
+     */
+    public function serialize()
+    {
+        return serialize([
+            $this->projectId,
+            $this->traceId,
+            $this->spans
+        ]);
+    }
+
+    /**
+     * Unserialize data.
+     *
+     * @param string
+     * @access private
+     */
+    public function unserialize($data)
+    {
+        list(
+            $this->projectId,
+            $this->traceId,
+            $this->spans
+        ) = unserialize($data);
     }
 }

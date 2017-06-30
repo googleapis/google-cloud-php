@@ -6,7 +6,7 @@
     "require": {
         "php": ">=5.5",
         "rize/uri-template": "~0.3",
-        "google/auth": "^0.11",
+        "google/auth": "^1.0",
         "guzzlehttp/guzzle": "^5.3|^6.0",
         "guzzlehttp/psr7": "^1.2",
         "monolog/monolog": "~1",
@@ -23,6 +23,9 @@
             "entry": null
         }
     },
+    "bin": [
+        "bin/google-cloud-batch"
+    ],
     "autoload": {
         "psr-4": {
             "Google\\Cloud\\Core\\": ""

@@ -42,7 +42,7 @@
     "require": {
         "php": ">=5.5",
         "rize/uri-template": "~0.3",
-        "google/auth": "^0.11",
+        "google/auth": "^1.0",
         "guzzlehttp/guzzle": "^5.3|^6.0",
         "guzzlehttp/psr7": "^1.2",
         "monolog/monolog": "~1",
@@ -57,14 +57,16 @@
         "league/json-guard": "^0.3",
         "erusev/parsedown": "^1.6",
         "vierbergenlars/php-semver": "^3.0",
-        "google/proto-client-php": "^0.13",
-        "google/gax": "^0.9",
-        "symfony/lock": "3.3.x-dev#1ba6ac9"
+        "google/proto-client": "^0.20.1",
+        "google/gax": "^0.20.1",
+        "symfony/lock": "3.3.x-dev#1ba6ac9",
+        "phpseclib/phpseclib": "^2.0"
     },
     "suggest": {
         "google/gax": "Required to support gRPC",
         "google/proto-client-php": "Required to support gRPC",
-        "symfony/lock": "Required for the Spanner cached based session pool. Please require the following commit: 3.3.x-dev#1ba6ac9"
+        "symfony/lock": "Required for the Spanner cached based session pool. Please require the following commit: 3.3.x-dev#1ba6ac9",
+        "phpseclib/phpseclib": "May be used in place of OpenSSL for creating signed Cloud Storage URLs."
     },
     "autoload": {
         "psr-4": {
@@ -74,6 +76,7 @@
     "autoload-dev": {
         "psr-4": {
             "Google\\Cloud\\Dev\\": "dev/src",
+            "Google\\Cloud\\Tests\\": "tests",
             "Google\\Cloud\\Tests\\System\\": "tests/system",
             "Google\\Cloud\\Tests\\Unit\\": "tests/unit"
         },
@@ -82,6 +85,9 @@
     "scripts": {
         "google-cloud": "dev/google-cloud"
     },
+    "bin": [
+        "src/Core/bin/google-cloud-batch"
+    ],
     "extra": {
         "component": {
             "id": "google-cloud",

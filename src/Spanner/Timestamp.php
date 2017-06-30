@@ -94,7 +94,7 @@ class Timestamp implements ValueInterface
      */
     public function type()
     {
-        return ValueMapper::TYPE_TIMESTAMP;
+        return Database::TYPE_TIMESTAMP;
     }
 
     /**

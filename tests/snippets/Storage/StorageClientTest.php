@@ -17,11 +17,14 @@
 
 namespace Google\Cloud\Tests\Snippets\Storage;
 
+use Google\Cloud\Core\Iterator\ItemIterator;
+use Google\Cloud\Core\RequestWrapper;
+use Google\Cloud\Core\Timestamp;
+use Google\Cloud\Core\Upload\SignedUrlUploader;
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
 use Google\Cloud\Storage\Bucket;
-use Google\Cloud\Storage\Connection\ConnectionInterface;
+use Google\Cloud\Storage\Connection\Rest;
 use Google\Cloud\Storage\StorageClient;
-use Google\Cloud\Core\Iterator\ItemIterator;
 use Prophecy\Argument;
 
 /**
@@ -36,7 +39,7 @@ class StorageClientTest extends SnippetTestCase
 
     public function setUp()
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->connection = $this->prophesize(Rest::class);
         $this->client = \Google\Cloud\Dev\stub(StorageClient::class);
         $this->client->___setProperty('connection', $this->connection->reveal());
     }
@@ -132,4 +135,27 @@ class StorageClientTest extends SnippetTestCase
         $res = $snippet->invoke('bucket');
         $this->assertInstanceOf(Bucket::class, $res->returnVal());
     }
+
+    public function testSignedUrlUploader()
+    {
+        $rw = $this->prophesize(RequestWrapper::class);
+        $this->connection->requestWrapper()->willReturn($rw->reveal());
+
+        $snippet = $this->snippetFromMethod(StorageClient::class, 'signedUrlUploader');
+        $snippet->addLocal('storage', $this->client);
+        $snippet->addLocal('uri', 'test');
+        $snippet->replace('/path/to/myfile.doc', 'php://temp');
+
+        $res = $snippet->invoke('uploader');
+        $this->assertInstanceOf(SignedUrlUploader::class, $res->returnVal());
     }
+
+    public function testTimestamp()
+    {
+        $snippet = $this->snippetFromMethod(StorageClient::class, 'timestamp');
+        $snippet->addLocal('storage', $this->client);
+
+        $res = $snippet->invoke('timestamp');
+        $this->assertInstanceOf(Timestamp::class, $res->returnVal());
+    }
+}

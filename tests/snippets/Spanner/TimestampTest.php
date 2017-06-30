@@ -18,28 +18,30 @@
 namespace Google\Cloud\Tests\Snippets\Spanner;
 
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
+use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\ValueMapper;
+use Google\Cloud\Tests\GrpcTestTrait;
 
 /**
  * @group spanner
  */
 class TimestampTest extends SnippetTestCase
 {
+    use GrpcTestTrait;
+
     private $timestamp;
 
     public function setUp()
     {
+        $this->checkAndSkipGrpcTests();
+
         $this->dt = new \DateTime;
         $this->timestamp = new Timestamp($this->dt);
     }
 
     public function testClass()
     {
-        if (!extension_loaded('grpc')) {
-            $this->markTestSkipped('Must have the grpc extension installed to run this test.');
-        }
-
         $snippet = $this->snippetFromClass(Timestamp::class);
         $res = $snippet->invoke('timestamp');
         $this->assertInstanceOf(Timestamp::class, $res->returnVal());
@@ -69,7 +71,7 @@ class TimestampTest extends SnippetTestCase
         $snippet->addLocal('timestamp', $this->timestamp);
 
         $res = $snippet->invoke('type');
-        $this->assertEquals(ValueMapper::TYPE_TIMESTAMP, $res->returnVal());
+        $this->assertEquals(Database::TYPE_TIMESTAMP, $res->returnVal());
     }
 
     public function testFormatAsString()

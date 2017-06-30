@@ -69,7 +69,11 @@ class CodeParser implements ParserInterface
     public function parse()
     {
         $this->reflector->process();
-        return $this->buildDocument($this->getReflector($this->reflector));
+        $reflector = $this->getReflector($this->reflector);
+
+        return $reflector
+            ? $this->buildDocument($reflector)
+            : null;
     }
 
     private function getReflector($fileReflector)
@@ -86,7 +90,7 @@ class CodeParser implements ParserInterface
             return $fileReflector->getTraits()[0];
         }
 
-        throw new \Exception('Could not get reflector for '. $this->fileName);
+        return null;
     }
 
     private function buildDocument($reflector)
@@ -147,7 +151,7 @@ class CodeParser implements ParserInterface
                 if ($part instanceof Seetag) {
                     $reference = $part->getReference();
 
-                    if (substr_compare($reference, 'Google\Cloud', 0, 12) === 0) {
+                    if ($this->hasInternalType($reference)) {
                         $part = $this->buildLink($reference);
                     } elseif ($this->hasExternalType(trim(str_replace('@see', '', $part)))) {
                         $part = $this->buildExternalType(trim(str_replace('@see', '', $part)));
@@ -477,7 +481,7 @@ class CodeParser implements ParserInterface
                 }
 
                 $type = sprintf(htmlentities('%s<%s>'), $matches[1], $matches[2]);
-            } elseif (substr_compare($type, '\\Google\\Cloud', 0, 13) === 0) {
+            } elseif ($this->hasInternalType($type)) {
                 $type = $this->buildLink($type);
             } elseif ($this->hasExternalType($type)) {
                 $type = $this->buildExternalType($type);
@@ -498,6 +502,16 @@ class CodeParser implements ParserInterface
         }
 
         return $type;
+    }
+
+    private function hasInternalType($type)
+    {
+        $type = trim($type, '\\');
+        if (substr_compare($type, 'Google\\Cloud', 0, 12) === 0) {
+            $file = __DIR__ . '/../../../src/' . str_replace('\\', '/', $type) . ".php";
+            return file_exists($file);
+        }
+        return false;
     }
 
     private function hasExternalType($type)

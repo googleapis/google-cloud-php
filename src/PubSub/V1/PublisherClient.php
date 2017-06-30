@@ -24,6 +24,8 @@
  * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
  * more frequently than those which have been declared beta or 1.0, including changes which break
  * backwards compatibility.
+ *
+ * @experimental
  */
 
 namespace Google\Cloud\PubSub\V1;
@@ -35,19 +37,19 @@ use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
-use google\iam\v1\GetIamPolicyRequest;
-use google\iam\v1\IAMPolicyGrpcClient;
-use google\iam\v1\Policy;
-use google\iam\v1\SetIamPolicyRequest;
-use google\iam\v1\TestIamPermissionsRequest;
-use google\pubsub\v1\DeleteTopicRequest;
-use google\pubsub\v1\GetTopicRequest;
-use google\pubsub\v1\ListTopicSubscriptionsRequest;
-use google\pubsub\v1\ListTopicsRequest;
-use google\pubsub\v1\PublishRequest;
-use google\pubsub\v1\PublisherGrpcClient;
-use google\pubsub\v1\PubsubMessage;
-use google\pubsub\v1\Topic;
+use Google\Iam\V1\GetIamPolicyRequest;
+use Google\Iam\V1\IAMPolicyGrpcClient;
+use Google\Iam\V1\Policy;
+use Google\Iam\V1\SetIamPolicyRequest;
+use Google\Iam\V1\TestIamPermissionsRequest;
+use Google\Pubsub\V1\DeleteTopicRequest;
+use Google\Pubsub\V1\GetTopicRequest;
+use Google\Pubsub\V1\ListTopicSubscriptionsRequest;
+use Google\Pubsub\V1\ListTopicsRequest;
+use Google\Pubsub\V1\PublishRequest;
+use Google\Pubsub\V1\PublisherGrpcClient;
+use Google\Pubsub\V1\PubsubMessage;
+use Google\Pubsub\V1\Topic;
 
 /**
  * Service Description: The service that an application uses to manipulate topics, and to send
@@ -74,6 +76,8 @@ use google\pubsub\v1\Topic;
  * with these names, this class includes a format method for each type of name, and additionally
  * a parse method to extract the individual identifiers contained within names that are
  * returned.
+ *
+ * @experimental
  */
 class PublisherClient
 {
@@ -115,6 +119,11 @@ class PublisherClient
     /**
      * Formats a string containing the fully-qualified path to represent
      * a project resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project resource.
+     * @experimental
      */
     public static function formatProjectName($project)
     {
@@ -126,6 +135,12 @@ class PublisherClient
     /**
      * Formats a string containing the fully-qualified path to represent
      * a topic resource.
+     *
+     * @param string $project
+     * @param string $topic
+     *
+     * @return string The formatted topic resource.
+     * @experimental
      */
     public static function formatTopicName($project, $topic)
     {
@@ -138,6 +153,11 @@ class PublisherClient
     /**
      * Parses the project from the given fully-qualified path which
      * represents a project resource.
+     *
+     * @param string $projectName The fully-qualified project resource.
+     *
+     * @return string The extracted project value.
+     * @experimental
      */
     public static function parseProjectFromProjectName($projectName)
     {
@@ -147,6 +167,11 @@ class PublisherClient
     /**
      * Parses the project from the given fully-qualified path which
      * represents a topic resource.
+     *
+     * @param string $topicName The fully-qualified topic resource.
+     *
+     * @return string The extracted project value.
+     * @experimental
      */
     public static function parseProjectFromTopicName($topicName)
     {
@@ -156,6 +181,11 @@ class PublisherClient
     /**
      * Parses the topic from the given fully-qualified path which
      * represents a topic resource.
+     *
+     * @param string $topicName The fully-qualified topic resource.
+     *
+     * @return string The extracted topic value.
+     * @experimental
      */
     public static function parseTopicFromTopicName($topicName)
     {
@@ -184,17 +214,21 @@ class PublisherClient
     {
         $listTopicsPageStreamingDescriptor =
                 new PageStreamingDescriptor([
-                    'requestPageTokenField' => 'page_token',
-                    'requestPageSizeField' => 'page_size',
-                    'responsePageTokenField' => 'next_page_token',
-                    'resourceField' => 'topics',
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getTopics',
                 ]);
         $listTopicSubscriptionsPageStreamingDescriptor =
                 new PageStreamingDescriptor([
-                    'requestPageTokenField' => 'page_token',
-                    'requestPageSizeField' => 'page_size',
-                    'responsePageTokenField' => 'next_page_token',
-                    'resourceField' => 'subscriptions',
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getSubscriptions',
                 ]);
 
         $pageStreamingDescriptors = [
@@ -245,6 +279,7 @@ class PublisherClient
      *                              A CredentialsLoader object created using the
      *                              Google\Auth library.
      * }
+     * @experimental
      */
     public function __construct($options = [])
     {
@@ -364,9 +399,10 @@ class PublisherClient
      *          is not set.
      * }
      *
-     * @return \google\pubsub\v1\Topic
+     * @return \Google\Pubsub\V1\Topic
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function createTopic($name, $optionalArgs = [])
     {
@@ -423,17 +459,16 @@ class PublisherClient
      *          is not set.
      * }
      *
-     * @return \google\pubsub\v1\PublishResponse
+     * @return \Google\Pubsub\V1\PublishResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function publish($topic, $messages, $optionalArgs = [])
     {
         $request = new PublishRequest();
         $request->setTopic($topic);
-        foreach ($messages as $elem) {
-            $request->addMessages($elem);
-        }
+        $request->setMessages($messages);
 
         $mergedSettings = $this->defaultCallSettings['publish']->merge(
             new CallSettings($optionalArgs)
@@ -478,9 +513,10 @@ class PublisherClient
      *          is not set.
      * }
      *
-     * @return \google\pubsub\v1\Topic
+     * @return \Google\Pubsub\V1\Topic
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function getTopic($topic, $optionalArgs = [])
     {
@@ -554,6 +590,7 @@ class PublisherClient
      * @return \Google\GAX\PagedListResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function listTopics($project, $optionalArgs = [])
     {
@@ -633,6 +670,7 @@ class PublisherClient
      * @return \Google\GAX\PagedListResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function listTopicSubscriptions($topic, $optionalArgs = [])
     {
@@ -693,6 +731,7 @@ class PublisherClient
      * }
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function deleteTopic($topic, $optionalArgs = [])
     {
@@ -749,9 +788,10 @@ class PublisherClient
      *          is not set.
      * }
      *
-     * @return \google\iam\v1\Policy
+     * @return \Google\Iam\V1\Policy
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function setIamPolicy($resource, $policy, $optionalArgs = [])
     {
@@ -805,9 +845,10 @@ class PublisherClient
      *          is not set.
      * }
      *
-     * @return \google\iam\v1\Policy
+     * @return \Google\Iam\V1\Policy
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function getIamPolicy($resource, $optionalArgs = [])
     {
@@ -851,7 +892,7 @@ class PublisherClient
      *                               `resource` is usually specified as a path. For example, a Project
      *                               resource is specified as `projects/{project}`.
      * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
-     *                               wildcards (such as '&#42;' or 'storage.&#42;') are not allowed. For more
+     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
      *                               information see
      *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      * @param array    $optionalArgs {
@@ -865,17 +906,16 @@ class PublisherClient
      *          is not set.
      * }
      *
-     * @return \google\iam\v1\TestIamPermissionsResponse
+     * @return \Google\Iam\V1\TestIamPermissionsResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function testIamPermissions($resource, $permissions, $optionalArgs = [])
     {
         $request = new TestIamPermissionsRequest();
         $request->setResource($resource);
-        foreach ($permissions as $elem) {
-            $request->addPermissions($elem);
-        }
+        $request->setPermissions($permissions);
 
         $mergedSettings = $this->defaultCallSettings['testIamPermissions']->merge(
             new CallSettings($optionalArgs)
@@ -896,6 +936,8 @@ class PublisherClient
     /**
      * Initiates an orderly shutdown in which preexisting calls continue but new
      * calls are immediately cancelled.
+     *
+     * @experimental
      */
     public function close()
     {

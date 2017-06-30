@@ -32,7 +32,7 @@ use Psr\Http\Message\StreamInterface;
 class ResumableUploader extends AbstractUploader
 {
     use JsonTrait;
-    
+
     /**
      * @var callable
      */
@@ -47,11 +47,8 @@ class ResumableUploader extends AbstractUploader
      * @var string
      */
     private $resumeUri;
-    
+
     /**
-     * Extend the parent constructor with the specific
-     * for resumable upload option "uploadProgressCallback"
-     *
      * @param RequestWrapper $requestWrapper
      * @param string|resource|StreamInterface $data
      * @param string $uri
@@ -59,8 +56,14 @@ class ResumableUploader extends AbstractUploader
      *     Optional configuration.
      *
      *     @type array $metadata Metadata on the resource.
-     *     @type callable $uploadProgressCallback to be called on each
-     *           successfully uploaded chunk.
+     *     @type callable $uploadProgressCallback The given callable
+     *           function/method will be called after each successfully uploaded
+     *           chunk. The callable function/method will receive the number of
+     *           uploaded bytes after each uploaded chunk as a parameter to this
+     *           callable. It's useful if you want to create a progress bar when
+     *           using resumable upload type together with $chunkSize parameter.
+     *           If $chunkSize is not set the callable function/method will be
+     *           called only once after the successful file upload.
      *     @type int $chunkSize Size of the chunks to send incrementally during
      *           a resumable upload. Must be in multiples of 262144 bytes.
      *     @type array $restOptions HTTP client specific configuration options.
@@ -78,8 +81,10 @@ class ResumableUploader extends AbstractUploader
         parent::__construct($requestWrapper, $data, $uri, $options);
 
         // Set uploadProgressCallback if it's passed as an option.
-        if (isset($options['uploadProgressCallback'])) {
+        if (isset($options['uploadProgressCallback']) && is_callable($options['uploadProgressCallback'])) {
             $this->uploadProgressCallback = $options['uploadProgressCallback'];
+        } elseif (isset($options['uploadProgressCallback'])) {
+            throw new \InvalidArgumentException('$options.uploadProgressCallback must be a callable.');
         }
     }
 
@@ -114,7 +119,7 @@ class ResumableUploader extends AbstractUploader
         $response = $this->getStatusResponse();
 
         if ($response->getBody()->getSize() > 0) {
-            return $this->jsonDecode($response->getBody(), true);
+            return $this->decodeResponse($response);
         }
 
         $this->rangeStart = $this->getRangeStart($response->getHeaderLine('Range'));
@@ -141,11 +146,11 @@ class ResumableUploader extends AbstractUploader
                 $this->chunkSize ?: - 1,
                 $rangeStart
             );
-            
+
             $currStreamLimitSize = $data->getSize();
-            
+
             $rangeEnd = $rangeStart + ($currStreamLimitSize - 1);
-            
+
             $headers = [
                 'Content-Length' => $currStreamLimitSize,
                 'Content-Type' => $this->contentType,
@@ -167,7 +172,7 @@ class ResumableUploader extends AbstractUploader
                     $ex->getCode()
                 );
             }
-            
+
             if (is_callable($this->uploadProgressCallback)) {
                 call_user_func($this->uploadProgressCallback, $currStreamLimitSize);
             }
@@ -175,6 +180,17 @@ class ResumableUploader extends AbstractUploader
             $rangeStart = $this->getRangeStart($response->getHeaderLine('Range'));
         } while ($response->getStatusCode() === 308);
 
+        return $this->decodeResponse($response);
+    }
+
+    /**
+     * Fetch and decode the response body
+     *
+     * @param ResponseInterface $response
+     * @return array
+     */
+    protected function decodeResponse(ResponseInterface $response)
+    {
         return $this->jsonDecode($response->getBody(), true);
     }
 
@@ -183,7 +199,7 @@ class ResumableUploader extends AbstractUploader
      *
      * @return string
      */
-    private function createResumeUri()
+    protected function createResumeUri()
     {
         $headers = [
             'X-Upload-Content-Type' => $this->contentType,
@@ -191,17 +207,18 @@ class ResumableUploader extends AbstractUploader
             'Content-Type' => 'application/json'
         ];
 
+        $body = $this->jsonEncode($this->metadata);
+
         $request = new Request(
             'POST',
             $this->uri,
             $headers,
-            $this->jsonEncode($this->metadata)
+            $body
         );
 
         $response = $this->requestWrapper->send($request, $this->requestOptions);
-        $this->resumeUri = $response->getHeaderLine('Location');
 
-        return $this->resumeUri;
+        return $this->resumeUri = $response->getHeaderLine('Location');
     }
 
     /**
@@ -209,7 +226,7 @@ class ResumableUploader extends AbstractUploader
      *
      * @return ResponseInterface
      */
-    private function getStatusResponse()
+    protected function getStatusResponse()
     {
         $request = new Request(
             'PUT',
@@ -226,7 +243,7 @@ class ResumableUploader extends AbstractUploader
      * @param string $rangeHeader
      * @return int
      */
-    private function getRangeStart($rangeHeader)
+    protected function getRangeStart($rangeHeader)
     {
         if (!$rangeHeader) {
             return null;

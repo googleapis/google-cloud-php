@@ -82,10 +82,13 @@ class Bucket
      * @param string $name The bucket's name.
      * @param array $info [optional] The bucket's metadata.
      */
-    public function __construct(ConnectionInterface $connection, $name, array $info = null)
+    public function __construct(ConnectionInterface $connection, $name, array $info = [])
     {
         $this->connection = $connection;
-        $this->identity = ['bucket' => $name];
+        $this->identity = [
+            'bucket' => $name,
+            'userProject' => $this->pluck('requesterProjectId', $info, false)
+        ];
         $this->info = $info;
         $this->acl = new Acl($this->connection, 'bucketAccessControls', $this->identity);
         $this->defaultAcl = new Acl($this->connection, 'defaultObjectAccessControls', $this->identity);
@@ -244,8 +247,7 @@ class Bucket
         $encryptionKeySHA256 = isset($options['encryptionKeySHA256']) ? $options['encryptionKeySHA256'] : null;
 
         $response = $this->connection->insertObject(
-            $this->formatEncryptionHeaders($options) + [
-                'bucket' => $this->identity['bucket'],
+            $this->formatEncryptionHeaders($options) + $this->identity + [
                 'data' => $data
             ]
         )->upload();
@@ -307,6 +309,14 @@ class Bucket
      *           from the `encryptionKey` on your behalf if not provided, but
      *           for best performance it is recommended to pass in a cached
      *           version of the already calculated SHA.
+     *     @type callable $uploadProgressCallback The given callable
+     *           function/method will be called after each successfully uploaded
+     *           chunk. The callable function/method will receive the number of
+     *           uploaded bytes after each uploaded chunk as a parameter to this
+     *           callable. It's useful if you want to create a progress bar when
+     *           using resumable upload type together with $chunkSize parameter.
+     *           If $chunkSize is not set the callable function/method will be
+     *           called only once after the successful file upload.
      * }
      * @return ResumableUploader
      * @throws \InvalidArgumentException
@@ -318,8 +328,7 @@ class Bucket
         }
 
         return $this->connection->insertObject(
-            $this->formatEncryptionHeaders($options) + [
-                'bucket' => $this->identity['bucket'],
+            $this->formatEncryptionHeaders($options) + $this->identity + [
                 'data' => $data,
                 'resumable' => true
             ]
@@ -384,8 +393,7 @@ class Bucket
         }
 
         return $this->connection->insertObject(
-            $this->formatEncryptionHeaders($options) + [
-                'bucket' => $this->identity['bucket'],
+            $this->formatEncryptionHeaders($options) + $this->identity + [
                 'data' => $data,
                 'streamable' => true,
                 'validate' => false
@@ -430,7 +438,9 @@ class Bucket
             $name,
             $this->identity['bucket'],
             $generation,
-            null,
+            array_filter([
+                'requesterProjectId' => $this->identity['userProject']
+            ]),
             $encryptionKey,
             $encryptionKeySHA256
         );
@@ -491,7 +501,9 @@ class Bucket
                         $object['name'],
                         $this->identity['bucket'],
                         isset($object['generation']) ? $object['generation'] : null,
-                        $object
+                        $object + array_filter([
+                            'requesterProjectId' => $this->identity['userProject']
+                        ])
                     );
                 },
                 [$this->connection, 'listObjects'],
@@ -581,6 +593,14 @@ class Bucket
      *           `"STANDARD"` and `"DURABLE_REDUCED_AVAILABILITY"`.
      *     @type array $versioning The bucket's versioning configuration.
      *     @type array $website The bucket's website configuration.
+     *     @type array $billing The bucket's billing configuration. **Whitelist
+     *           Warning:** At the time of publication, this argument is subject
+     *           to a feature whitelist and may not be available in your project.
+     *     @type bool $billing['requesterPays'] When `true`, requests to this bucket
+     *           and objects within it must provide a project ID to which the
+     *           request will be billed. **Whitelist Warning:** At the time of
+     *           publication, this argument is subject to a feature whitelist
+     *           and may not be available in your project.
      *     @type array $labels The Bucket labels. Labels are represented as an
      *           array of keys and values. To remove an existing label, set its
      *           value to `null`.
@@ -647,6 +667,7 @@ class Bucket
             'destinationObject' => $name,
             'destinationPredefinedAcl' => isset($options['predefinedAcl']) ? $options['predefinedAcl'] : null,
             'destination' => isset($options['metadata']) ? $options['metadata'] : null,
+            'userProject' => $this->identity['userProject'],
             'sourceObjects' => array_map(function ($sourceObject) {
                 $name = null;
                 $generation = null;
@@ -683,7 +704,9 @@ class Bucket
             $response['name'],
             $this->identity['bucket'],
             $response['generation'],
-            $response
+            $response + array_filter([
+                'requesterProjectId' => $this->identity['userProject']
+            ])
         );
     }
 
@@ -715,11 +738,7 @@ class Bucket
      */
     public function info(array $options = [])
     {
-        if (!$this->info) {
-            $this->reload($options);
-        }
-
-        return $this->info;
+        return $this->info ?: $this->reload($options);
     }
 
     /**
@@ -825,9 +844,7 @@ class Bucket
                 $this->identity['bucket'],
                 [
                     'parent' => null,
-                    'args' => [
-                        'bucket' => $this->identity['bucket']
-                    ]
+                    'args' => $this->identity
                 ]
             );
         }
