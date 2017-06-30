@@ -368,7 +368,7 @@ class SubscriberClient
         return [
             'streamingPull' => [
                 'grpcStreamingType' => 'BidiStreaming',
-                'resourcesField' => 'getReceivedMessages',
+                'resourcesGetMethod' => 'getReceivedMessages',
             ],
         ];
     }
