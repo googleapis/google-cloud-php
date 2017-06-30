@@ -49,10 +49,21 @@ class LoggingClientTest extends \PHPUnit_Framework_TestCase
     {
         $psrBatchLogger = LoggingClient::psrBatchLogger('app');
         $this->assertInstanceOf(PsrLogger::class, $psrBatchLogger);
+        $r = new \ReflectionObject($psrBatchLogger);
+        $p = $r->getProperty('batchEnabled');
+        $p->setAccessible(true);
+        $this->assertTrue($p->getValue($psrBatchLogger));
         $psrBatchLogger = LoggingClient::psrBatchLogger(
             'app',
             ['clientConfig' => ['projectId' => 'my-project']]);
         $this->assertInstanceOf(PsrLogger::class, $psrBatchLogger);
+        $r = new \ReflectionObject($psrBatchLogger);
+        $p = $r->getProperty('clientConfig');
+        $p->setAccessible(true);
+        $this->assertEquals(
+            ['projectId' => 'my-project'],
+            $p->getValue($psrBatchLogger)
+        );
     }
 
     public function testCreatesSink()

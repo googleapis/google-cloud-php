@@ -106,27 +106,21 @@ class LoggingClient
      *     @type MetadataProviderInterface $metadataProvider **Defaults to** An
      *           automatically chosen provider, based on detected environment
      *           settings.
-     *     @type bool $batchEnabled Determines whether or not to use background
-     *           batching. **Defaults to** `false`.
      *     @type bool $debugOutput Whether or not to output debug information.
-     *           **Defaults to** false. Applies only when `batchEnabled` is set
-     *           to `true`.
+     *           **Defaults to** false.
      *     @type array $batchOptions A set of options for a BatchJob.
      *           {@see \Google\Cloud\Core\Batch\BatchJob::__construct()} for
      *           more details.
      *           **Defaults to** ['batchSize' => 1000,
      *                            'callPeriod' => 2.0,
-     *                            'workerNum' => 2]. Applies only when
-     *           `batchEnabled` is set to `true`.
+     *                            'workerNum' => 2].
      *     @type array $clientConfig Configuration options for the Logging client
      *           used to handle processing of batch items. For valid options
      *           please see
      *           {@see \Google\Cloud\Logging\LoggingClient::__construct()}.
-     *           **Defaults to** the options provided to the current client.
-     *           Applies only when `batchEnabled` is set to `true`.
      *     @type BatchRunner $batchRunner A BatchRunner object. Mainly used for
      *           the tests to inject a mock. **Defaults to** a newly created
-     *           BatchRunner. Applies only when `batchEnabled` is set to `true`.
+     *           BatchRunner.
      * }
      * @return PsrLogger
      **/
@@ -135,6 +129,8 @@ class LoggingClient
         $client = array_key_exists('clientConfig', $options)
             ? new self($options['clientConfig'])
             : new self();
+        // Force enabling batch.
+        $options['batchEnabled'] = true;
         return $client->psrLogger($name, $options);
     }
 
