@@ -6,8 +6,8 @@
     "require": {
         "ext-grpc": "*",
         "google/cloud-core": "^1.5",
-        "google/gax": "^0.20.0",
-        "google/proto-client": "^0.20.0"
+        "google/gax": "^0.20.1",
+        "google/proto-client": "^0.20.1"
     },
     "suggest": {
         "symfony/lock": "Required for the default session handler. Should be included as follows: 3.3.x-dev#1ba6ac9"
