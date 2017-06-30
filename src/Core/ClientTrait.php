@@ -60,7 +60,7 @@ trait ClientTrait
                     'from the command line: ' .
                     'pecl install grpc && ' .
                     'composer require google/gax && ' .
-                    'composer require google/proto-client-php'
+                    'composer require google/proto-client'
                 );
             }
         }

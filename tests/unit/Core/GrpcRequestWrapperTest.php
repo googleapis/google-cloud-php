@@ -18,13 +18,15 @@
 
 namespace Google\Cloud\Tests\Unit\Core;
 
-use DrSlump\Protobuf\Message;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Core\Exception;
+use Google\Cloud\Tests\GrpcTestTrait;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\GAX\ApiException;
 use Google\GAX\Page;
 use Google\GAX\PagedListResponse;
+use Google\GAX\Serializer;
+use Google\Protobuf\Internal\Message;
 use Prophecy\Argument;
 
 /**
@@ -32,11 +34,11 @@ use Prophecy\Argument;
  */
 class GrpcRequestWrapperTest extends \PHPUnit_Framework_TestCase
 {
+    use GrpcTestTrait;
+
     public function setUp()
     {
-        if (!extension_loaded('grpc')) {
-            $this->markTestSkipped('Must have the grpc extension installed to run this test.');
-        }
+        $this->checkAndSkipGrpcTests();
     }
 
     public function testGetKeyfile()
@@ -53,9 +55,9 @@ class GrpcRequestWrapperTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider responseProvider
      */
-    public function testSuccessfullySendsRequest($response, $expectedMessage)
+    public function testSuccessfullySendsRequest($response, $expectedMessage, $serializer)
     {
-        $requestWrapper = new GrpcRequestWrapper();
+        $requestWrapper = new GrpcRequestWrapper(['serializer' => $serializer]);
         $requestOptions = [
             'requestTimeout' => 3.5
         ];
@@ -74,18 +76,22 @@ class GrpcRequestWrapperTest extends \PHPUnit_Framework_TestCase
 
     public function responseProvider()
     {
+        if ($this->shouldSkipGrpcTests()) {
+            return [];
+        }
         $expectedMessage = ['successful' => 'request'];
         $message = $this->prophesize(Message::class);
-        $message->serialize(Argument::any())->willReturn($expectedMessage);
+        $serializer = $this->prophesize(Serializer::class);
+        $serializer->encodeMessage($message->reveal())->willReturn($expectedMessage);
         $pagedMessage = $this->prophesize(PagedListResponse::class);
         $page = $this->prophesize(Page::class);
         $page->getResponseObject()->willReturn($message->reveal());
         $pagedMessage->getPage()->willReturn($page->reveal());
 
         return [
-            [$message->reveal(), $expectedMessage],
-            [$pagedMessage->reveal(), $expectedMessage],
-            [null, null]
+            [$message->reveal(), $expectedMessage, $serializer->reveal()],
+            [$pagedMessage->reveal(), $expectedMessage, $serializer->reveal()],
+            [null, null, $serializer->reveal()]
         ];
     }
 

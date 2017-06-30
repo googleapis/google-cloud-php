@@ -17,27 +17,32 @@
 
 namespace Google\Cloud\Spanner\Connection;
 
-use Google\Auth\CredentialsLoader;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\GrpcTrait;
 use Google\Cloud\Core\LongRunning\OperationResponseTrait;
-use Google\Cloud\Core\PhpArray;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Operation;
-use Google\Cloud\Spanner\SpannerClient as VeneerSpannerClient;
+use Google\Cloud\Spanner\SpannerClient as ManualSpannerClient;
 use Google\Cloud\Spanner\V1\SpannerClient;
-use Google\GAX\ApiException;
-use google\protobuf;
-use google\spanner\admin\database\v1\Database;
-use google\spanner\admin\instance\v1\Instance;
-use google\spanner\admin\instance\v1\State;
-use google\spanner\v1;
-use google\spanner\v1\KeySet;
-use google\spanner\v1\Mutation;
-use google\spanner\v1\TransactionOptions;
-use google\spanner\v1\TransactionSelector;
-use google\spanner\v1\Type;
+use Google\GAX\Serializer;
+use Google\Protobuf;
+use Google\Protobuf\FieldMask;
+use Google\Protobuf\GPBEmpty;
+use Google\Protobuf\ListValue;
+use Google\Protobuf\Struct;
+use Google\Protobuf\Value;
+use Google\Spanner\Admin\Database\V1\Database;
+use Google\Spanner\Admin\Instance\V1\Instance;
+use Google\Spanner\V1\KeySet;
+use Google\Spanner\V1\Mutation;
+use Google\Spanner\V1\Mutation_Delete;
+use Google\Spanner\V1\Mutation_Write;
+use Google\Spanner\V1\TransactionOptions;
+use Google\Spanner\V1\TransactionOptions_ReadOnly;
+use Google\Spanner\V1\TransactionOptions_ReadWrite;
+use Google\Spanner\V1\TransactionSelector;
+use Google\Spanner\V1\Type;
 
 /**
  * Connection to Cloud Spanner over gRPC
@@ -68,9 +73,9 @@ class Grpc implements ConnectionInterface
     private $operationsClient;
 
     /**
-     * @var CodecInterface
+     * @var Serializer
      */
-    private $codec;
+    private $serializer;
 
     /**
      * @var array
@@ -90,7 +95,7 @@ class Grpc implements ConnectionInterface
         [
             'method' => 'updateDatabaseDdl',
             'typeUrl' => 'type.googleapis.com/google.spanner.admin.database.v1.UpdateDatabaseDdlMetadata',
-            'message' => protobuf\EmptyC::class
+            'message' => GPBEmpty::class
         ], [
             'method' => 'createDatabase',
             'typeUrl' => 'type.googleapis.com/google.spanner.admin.database.v1.CreateDatabaseMetadata',
@@ -116,19 +121,29 @@ class Grpc implements ConnectionInterface
      */
     public function __construct(array $config = [])
     {
-        $this->codec = new PhpArray([
-            'commitTimestamp' => function ($v) {
+        $this->serializer = new Serializer([
+            'commit_timestamp' => function ($v) {
                 return $this->formatTimestampFromApi($v);
             },
-            'readTimestamp' => function ($v) {
+            'read_timestamp' => function ($v) {
                 return $this->formatTimestampFromApi($v);
             }
+        ], [
+            '.google.protobuf.Value' => function ($v) {
+                return $this->flattenValue($v);
+            },
+            '.google.protobuf.ListValue' => function ($v) {
+                return $this->flattenListValue($v);
+            },
+            '.google.protobuf.Struct' => function ($v) {
+                return $this->flattenStruct($v);
+            },
         ]);
 
-        $config['codec'] = $this->codec;
+        $config['serializer'] = $this->serializer;
         $this->setRequestWrapper(new GrpcRequestWrapper($config));
 
-        $grpcConfig = $this->getGaxConfig(VeneerSpannerClient::VERSION);
+        $grpcConfig = $this->getGaxConfig(ManualSpannerClient::VERSION);
         $this->instanceAdminClient = new InstanceAdminClient($grpcConfig);
         $this->databaseAdminClient = new DatabaseAdminClient($grpcConfig);
         $this->spannerClient = new SpannerClient($grpcConfig);
@@ -202,7 +217,7 @@ class Grpc implements ConnectionInterface
             $this->addResourcePrefixHeader($args, $instanceName)
         ]);
 
-        return $this->operationToArray($res, $this->codec, $this->lroResponseMappers);
+        return $this->operationToArray($res, $this->serializer, $this->lroResponseMappers);
     }
 
     /**
@@ -211,11 +226,12 @@ class Grpc implements ConnectionInterface
     public function updateInstance(array $args)
     {
         $instanceName = $args['name'];
-        $instanceObject = $this->instanceObject($args);
 
-        $mask = array_keys($instanceObject->serialize(new PhpArray([], false)));
+        $instanceArray = $this->instanceArray($args);
 
-        $fieldMask = (new protobuf\FieldMask())->deserialize(['paths' => $mask], $this->codec);
+        $fieldMask = $this->fieldMask($instanceArray);
+
+        $instanceObject = $this->serializer->decodeMessage(new Instance(), $instanceArray);
 
         $res = $this->send([$this->instanceAdminClient, 'updateInstance'], [
             $instanceObject,
@@ -223,7 +239,7 @@ class Grpc implements ConnectionInterface
             $this->addResourcePrefixHeader($args, $instanceName)
         ]);
 
-        return $this->operationToArray($res, $this->codec, $this->lroResponseMappers);
+        return $this->operationToArray($res, $this->serializer, $this->lroResponseMappers);
     }
 
     /**
@@ -300,7 +316,7 @@ class Grpc implements ConnectionInterface
             $this->addResourcePrefixHeader($args, $instanceName)
         ]);
 
-        return $this->operationToArray($res, $this->codec, $this->lroResponseMappers);
+        return $this->operationToArray($res, $this->serializer, $this->lroResponseMappers);
     }
 
     /**
@@ -315,7 +331,7 @@ class Grpc implements ConnectionInterface
             $this->addResourcePrefixHeader($args, $databaseName)
         ]);
 
-        return $this->operationToArray($res, $this->codec, $this->lroResponseMappers);
+        return $this->operationToArray($res, $this->serializer, $this->lroResponseMappers);
     }
 
     /**
@@ -436,25 +452,17 @@ class Grpc implements ConnectionInterface
     {
         $params = $this->pluck('params', $args);
         if ($params) {
-            $args['params'] = [];
-
-            $args['params'] = new protobuf\Struct;
-
+            $modifiedParams = [];
             foreach ($params as $key => $param) {
-                $field = $this->fieldValue($param);
-
-                $fields = new protobuf\Struct\FieldsEntry;
-                $fields->setKey($key);
-                $fields->setValue($field);
-
-                $args['params']->addFields($fields);
+                $modifiedParams[$key] = $this->fieldValue($param);
             }
+            $args['params'] = new Struct;
+            $args['params']->setFields($modifiedParams);
         }
 
         if (isset($args['paramTypes']) && is_array($args['paramTypes'])) {
             foreach ($args['paramTypes'] as $key => $param) {
-                $args['paramTypes'][$key] = (new Type)
-                    ->deserialize($param, $this->codec);
+                $args['paramTypes'][$key] = $this->serializer->decodeMessage(new Type, $param);
             }
         }
 
@@ -475,8 +483,7 @@ class Grpc implements ConnectionInterface
     public function streamingRead(array $args)
     {
         $keySet = $this->pluck('keySet', $args);
-        $keySet = (new KeySet)
-            ->deserialize($this->formatKeySet($keySet), $this->codec);
+        $keySet = $this->serializer->decodeMessage(new KeySet, $this->formatKeySet($keySet));
 
         $args['transaction'] = $this->createTransactionSelector($args);
 
@@ -499,12 +506,13 @@ class Grpc implements ConnectionInterface
 
         $transactionOptions = $this->formatTransactionOptions($this->pluck('transactionOptions', $args));
         if (isset($transactionOptions['readOnly'])) {
-            $readOnly = (new TransactionOptions\ReadOnly)
-                ->deserialize($transactionOptions['readOnly'], $this->codec);
-
+            $readOnly = $this->serializer->decodeMessage(
+                new TransactionOptions_ReadOnly(),
+                $transactionOptions['readOnly']
+            );
             $options->setReadOnly($readOnly);
         } else {
-            $readWrite = new TransactionOptions\ReadWrite();
+            $readWrite = new TransactionOptions_ReadWrite();
             $options->setReadWrite($readWrite);
         }
 
@@ -535,23 +543,25 @@ class Grpc implements ConnectionInterface
                             $data['keySet'] = $this->formatKeySet($data['keySet']);
                         }
 
-                        $operation = (new Mutation\Delete)
-                            ->deserialize($data, $this->codec);
-
+                        $operation = $this->serializer->decodeMessage(
+                            new Mutation_Delete,
+                            $data
+                        );
                         break;
                     default:
-                        $operation = new Mutation\Write;
+                        $operation = new Mutation_Write;
                         $operation->setTable($data['table']);
                         $operation->setColumns($data['columns']);
 
-                        $list = new protobuf\ListValue;
+                        $modifiedData = [];
                         foreach ($data['values'] as $key => $param) {
-                            $field = $this->fieldValue($param);
-
-                            $list->addValues($field);
+                            $modifiedData[$key] = $this->fieldValue($param);
                         }
 
-                        $operation->setValues($list);
+                        $list = new ListValue;
+                        $list->setValues($modifiedData);
+                        $values = [$list];
+                        $operation->setValues($values);
 
                         break;
                 }
@@ -564,8 +574,10 @@ class Grpc implements ConnectionInterface
         }
 
         if (isset($args['singleUseTransaction'])) {
-            $readWrite = (new TransactionOptions\ReadWrite)
-                ->deserialize([], $this->codec);
+            $readWrite = $this->serializer->decodeMessage(
+                new TransactionOptions_ReadWrite,
+                []
+            );
 
             $options = new TransactionOptions;
             $options->setReadWrite($readWrite);
@@ -602,7 +614,7 @@ class Grpc implements ConnectionInterface
 
         $operation = $this->getOperationByName($this->databaseAdminClient, $name);
 
-        return $this->operationToArray($operation, $this->codec, $this->lroResponseMappers);
+        return $this->operationToArray($operation, $this->serializer, $this->lroResponseMappers);
     }
 
     /**
@@ -616,7 +628,7 @@ class Grpc implements ConnectionInterface
         $operation = $this->getOperationByName($this->databaseAdminClient, $name, $method);
         $operation->cancel();
 
-        return $this->operationToArray($operation, $this->codec, $this->lroResponseMappers);
+        return $this->operationToArray($operation, $this->serializer, $this->lroResponseMappers);
     }
 
     /**
@@ -630,7 +642,7 @@ class Grpc implements ConnectionInterface
         $operation = $this->getOperationByName($this->databaseAdminClient, $name, $method);
         $operation->delete();
 
-        return $this->operationToArray($operation, $this->codec, $this->lroResponseMappers);
+        return $this->operationToArray($operation, $this->serializer, $this->lroResponseMappers);
     }
 
     /**
@@ -684,7 +696,7 @@ class Grpc implements ConnectionInterface
 
     /**
      * @param array $args
-     * @return array
+     * @return TransactionSelector
      */
     private function createTransactionSelector(array &$args)
     {
@@ -700,9 +712,9 @@ class Grpc implements ConnectionInterface
                 $transaction['begin'] = $this->formatTransactionOptions($transaction['begin']);
             }
 
-            $selector = $selector->deserialize($transaction, $this->codec);
+            $selector = $this->serializer->decodeMessage($selector, $transaction);
         } elseif (isset($args['transactionId'])) {
-            $selector = $selector->deserialize(['id' => $this->pluck('transactionId', $args)], $this->codec);
+            $selector = $this->serializer->decodeMessage($selector, ['id' => $this->pluck('transactionId', $args)]);
         }
 
         return $selector;
@@ -710,23 +722,46 @@ class Grpc implements ConnectionInterface
 
     /**
      * @param array $args
-     * @param bool $isRequired
+     * @param bool $required
+     * @return Instance
      */
     private function instanceObject(array &$args, $required = false)
     {
-        $labels = null;
-        if (isset($args['labels'])) {
-            $labels = $this->formatLabelsForApi($this->pluck('labels', $args, $required));
-        }
+        return $this->serializer->decodeMessage(
+            new Instance(),
+            $this->instanceArray($args, $required)
+        );
+    }
 
-        return (new Instance())->deserialize(array_filter([
+    /**
+     * @param array $args
+     * @param bool $required
+     * @return array
+     */
+    private function instanceArray(array &$args, $required = false)
+    {
+        $argsCopy = $args;
+        return array_intersect_key([
             'name' => $this->pluck('name', $args, $required),
             'config' => $this->pluck('config', $args, $required),
             'displayName' => $this->pluck('displayName', $args, $required),
             'nodeCount' => $this->pluck('nodeCount', $args, $required),
             'state' => $this->pluck('state', $args, $required),
-            'labels' => $labels
-        ]), $this->codec);
+            'labels' => $this->pluck('labels', $args, $required),
+        ], $argsCopy);
+    }
+
+    /**
+     * @param array $instanceArray
+     * @return FieldMask
+     */
+    private function fieldMask($instanceArray)
+    {
+        $mask = [];
+        foreach (array_keys($instanceArray) as $key) {
+            $mask[] = Serializer::toSnakeCase($key);
+        }
+        return $this->serializer->decodeMessage(new FieldMask(), ['paths' => $mask]);
     }
 
     /**
@@ -735,7 +770,7 @@ class Grpc implements ConnectionInterface
      */
     private function fieldValue($param)
     {
-        $field = new protobuf\Value;
+        $field = new Value;
         $value = $this->formatValueForApi($param);
 
         switch (array_keys($value)[0]) {
@@ -756,11 +791,12 @@ class Grpc implements ConnectionInterface
                 break;
             case 'list_value':
                 $setter = 'setListValue';
-                $list = new protobuf\ListValue;
+                $modifiedParams = [];
                 foreach ($param as $item) {
-                    $list->addValues($this->fieldValue($item));
+                    $modifiedParams[] = $this->fieldValue($item);
                 }
-
+                $list = new ListValue;
+                $list->setValues($modifiedParams);
                 $value = $list;
 
                 break;

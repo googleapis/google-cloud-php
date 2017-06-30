@@ -24,18 +24,22 @@ use Google\Cloud\Spanner\Date;
 use Google\Cloud\Spanner\Result;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\ValueMapper;
+use Google\Cloud\Tests\GrpcTestTrait;
 
 /**
  * @group spanner
  */
 class ValueMapperTest extends \PHPUnit_Framework_TestCase
 {
+    use GrpcTestTrait;
+    
     const FORMAT_TEST_VALUE = 'abc';
 
     private $mapper;
 
     public function setUp()
     {
+        $this->checkAndSkipGrpcTests();
         $this->mapper = new ValueMapper(false);
     }
 

@@ -31,7 +31,7 @@ use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Connection\IamInstance;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\GAX\ValidationException;
-use google\spanner\admin\instance\v1\Instance\State;
+use Google\Spanner\Admin\Instance\V1\Instance_State;
 
 /**
  * Represents a Cloud Spanner instance
@@ -85,8 +85,8 @@ class Instance
     use ArrayTrait;
     use LROTrait;
 
-    const STATE_READY = State::READY;
-    const STATE_CREATING = State::CREATING;
+    const STATE_READY = Instance_State::READY;
+    const STATE_CREATING = Instance_State::CREATING;
 
     const DEFAULT_NODE_COUNT = 1;
 
@@ -276,7 +276,7 @@ class Instance
         ];
 
         // This must always be set to CREATING, so overwrite anything else.
-        $options['state'] = State::CREATING;
+        $options['state'] = Instance_State::CREATING;
 
         $operation = $this->connection->createInstance([
             'instanceId' => $instanceId,

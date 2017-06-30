@@ -36,6 +36,7 @@ use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\ValueMapper;
+use Google\Cloud\Tests\GrpcTestTrait;
 use Prophecy\Argument;
 
 /**
@@ -43,6 +44,8 @@ use Prophecy\Argument;
  */
 class DatabaseTest extends SnippetTestCase
 {
+    use GrpcTestTrait;
+
     const PROJECT = 'my-awesome-project';
     const DATABASE = 'my-database';
     const INSTANCE = 'my-instance';
@@ -53,6 +56,8 @@ class DatabaseTest extends SnippetTestCase
 
     public function setUp()
     {
+        $this->checkAndSkipGrpcTests();
+
         $instance = $this->prophesize(Instance::class);
         $instance->name()->willReturn(InstanceAdminClient::formatInstanceName(self::PROJECT, self::INSTANCE));
 
@@ -87,10 +92,6 @@ class DatabaseTest extends SnippetTestCase
 
     public function testClass()
     {
-        if (!extension_loaded('grpc')) {
-            $this->markTestSkipped('Must have the grpc extension installed to run this test.');
-        }
-
         $snippet = $this->snippetFromClass(Database::class);
         $res = $snippet->invoke('database');
         $this->assertInstanceOf(Database::class, $res->returnVal());

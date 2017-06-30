@@ -21,6 +21,7 @@ use Google\Auth\Cache\MemoryCacheItemPool;
 use Google\Auth\FetchAuthTokenCache;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\Tests\GrpcTestTrait;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\GrpcTrait;
 use google\protobuf;
@@ -31,14 +32,14 @@ use Prophecy\Argument;
  */
 class GrpcTraitTest extends \PHPUnit_Framework_TestCase
 {
+    use GrpcTestTrait;
+
     private $implementation;
     private $requestWrapper;
 
     public function setUp()
     {
-        if (!extension_loaded('grpc')) {
-            $this->markTestSkipped('Must have the grpc extension installed to run this test.');
-        }
+        $this->checkAndSkipGrpcTests();
 
         $this->implementation = \Google\Cloud\Dev\impl(GrpcTrait::class);
         $this->requestWrapper = $this->prophesize(GrpcRequestWrapper::class);
@@ -165,19 +166,6 @@ class GrpcTraitTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('2016-08-15T06:35:09.000000001Z', $this->implementation->call('formatTimestampFromApi', [$timestamp]));
     }
 
-    public function testFormatsLabels()
-    {
-        $labels = ['test' => 'label'];
-        $expected = [
-            [
-                'key' => key($labels),
-                'value' => current($labels)
-            ]
-        ];
-
-        $this->assertEquals($expected, $this->implementation->call('formatLabelsForApi', [$labels]));
-    }
-
     public function testFormatsStruct()
     {
         $value = 'test';
@@ -189,17 +177,11 @@ class GrpcTraitTest extends \PHPUnit_Framework_TestCase
 
         $expected = [
             'fields' => [
-                [
-                    'key' => $value,
-                    'value' => [
-                        'struct_value' => [
-                            'fields' => [
-                                [
-                                    'key' => $value,
-                                    'value' => [
-                                        'string_value' => $value
-                                    ]
-                                ]
+                $value => [
+                    'struct_value' => [
+                        'fields' => [
+                            $value => [
+                                'string_value' => $value
                             ]
                         ]
                     ]
@@ -257,7 +239,6 @@ class GrpcTraitTest extends \PHPUnit_Framework_TestCase
             ['string', ['string_value' => 'string']],
             [true, ['bool_value' => true]],
             [1, ['number_value' => 1]],
-            [null, ['null_value' => protobuf\NullValue::NULL_VALUE]],
             [
                 ['1'],
                 [
@@ -275,11 +256,8 @@ class GrpcTraitTest extends \PHPUnit_Framework_TestCase
                 [
                     'struct_value' => [
                         'fields' => [
-                            [
-                                'key' => 'test',
-                                'value' => [
-                                    'string_value' => 'test'
-                                ]
+                            'test' => [
+                                'string_value' => 'test'
                             ]
                         ]
                     ]

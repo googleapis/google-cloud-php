@@ -19,7 +19,7 @@ namespace Google\Cloud\Spanner;
 
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Int64;
-use google\spanner\v1\TypeCode;
+use Google\Spanner\V1\TypeCode;
 
 /**
  * Manage value mappings between Google Cloud PHP and Cloud Spanner
@@ -30,15 +30,15 @@ class ValueMapper
 
     const NANO_REGEX = '/(?:\.(\d{1,9})Z)|(?:Z)/';
 
-    const TYPE_BOOL = TypeCode::TYPE_BOOL;
-    const TYPE_INT64 = TypeCode::TYPE_INT64;
-    const TYPE_FLOAT64 = TypeCode::TYPE_FLOAT64;
-    const TYPE_TIMESTAMP = TypeCode::TYPE_TIMESTAMP;
-    const TYPE_DATE = TypeCode::TYPE_DATE;
-    const TYPE_STRING = TypeCode::TYPE_STRING;
-    const TYPE_BYTES = TypeCode::TYPE_BYTES;
-    const TYPE_ARRAY = TypeCode::TYPE_ARRAY;
-    const TYPE_STRUCT = TypeCode::TYPE_STRUCT;
+    const TYPE_BOOL = TypeCode::BOOL;
+    const TYPE_INT64 = TypeCode::INT64;
+    const TYPE_FLOAT64 = TypeCode::FLOAT64;
+    const TYPE_TIMESTAMP = TypeCode::TIMESTAMP;
+    const TYPE_DATE = TypeCode::DATE;
+    const TYPE_STRING = TypeCode::STRING;
+    const TYPE_BYTES = TypeCode::BYTES;
+    const TYPE_ARRAY = TypeCode::PBARRAY;
+    const TYPE_STRUCT = TypeCode::STRUCT;
 
     /**
      * @var array
@@ -420,7 +420,7 @@ class ValueMapper
 
     private function getColumnName($columns, $index)
     {
-        return isset($columns[$index]['name'])
+        return (isset($columns[$index]['name']) && $columns[$index]['name'])
             ? $columns[$index]['name']
             : $index;
     }

@@ -21,27 +21,28 @@ use Google\Cloud\Dev\Snippet\SnippetTestCase;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Date;
 use Google\Cloud\Spanner\ValueMapper;
+use Google\Cloud\Tests\GrpcTestTrait;
 
 /**
  * @group spanner
  */
 class DateTest extends SnippetTestCase
 {
+    use GrpcTestTrait;
+
     private $dt;
     private $date;
 
     public function setUp()
     {
+        $this->checkAndSkipGrpcTests();
+
         $this->dt = new \DateTimeImmutable;
         $this->date = new Date($this->dt);
     }
 
     public function testClass()
     {
-        if (!extension_loaded('grpc')) {
-            $this->markTestSkipped('Must have the grpc extension installed to run this test.');
-        }
-
         $snippet = $this->snippetFromClass(Date::class);
         $res = $snippet->invoke('date');
 

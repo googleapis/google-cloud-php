@@ -31,9 +31,9 @@ use Google\Cloud\Spanner\Connection\IamDatabase;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\Transaction;
-use Google\Cloud\Spanner\V1\SpannerClient as GrpcSpannerClient;
+use Google\Cloud\Spanner\V1\SpannerClient as GapicSpannerClient;
 use Google\GAX\ValidationException;
-use google\spanner\v1\TypeCode;
+use Google\Spanner\V1\TypeCode;
 
 /**
  * Represents a Cloud Spanner Database.
@@ -99,15 +99,15 @@ class Database
 
     const MAX_RETRIES = 10;
 
-    const TYPE_BOOL = TypeCode::TYPE_BOOL;
-    const TYPE_INT64 = TypeCode::TYPE_INT64;
-    const TYPE_FLOAT64 = TypeCode::TYPE_FLOAT64;
-    const TYPE_TIMESTAMP = TypeCode::TYPE_TIMESTAMP;
-    const TYPE_DATE = TypeCode::TYPE_DATE;
-    const TYPE_STRING = TypeCode::TYPE_STRING;
-    const TYPE_BYTES = TypeCode::TYPE_BYTES;
-    const TYPE_ARRAY = TypeCode::TYPE_ARRAY;
-    const TYPE_STRUCT = TypeCode::TYPE_STRUCT;
+    const TYPE_BOOL = TypeCode::BOOL;
+    const TYPE_INT64 = TypeCode::INT64;
+    const TYPE_FLOAT64 = TypeCode::FLOAT64;
+    const TYPE_TIMESTAMP = TypeCode::TIMESTAMP;
+    const TYPE_DATE = TypeCode::DATE;
+    const TYPE_STRING = TypeCode::STRING;
+    const TYPE_BYTES = TypeCode::BYTES;
+    const TYPE_ARRAY = TypeCode::PBARRAY;
+    const TYPE_STRUCT = TypeCode::STRUCT;
 
     /**
      * @var ConnectionInterface
@@ -153,6 +153,11 @@ class Database
      * @var SessionPoolInterface|null
      */
     private $sessionPool;
+
+    /**
+     * @var bool
+     */
+    private $isRunningTransaction = false;
 
     /**
      * Create an object representing a Database.
@@ -518,10 +523,16 @@ class Database
      *           **Defaults to** `false`.
      * }
      * @return Snapshot
+     * @throws \BadMethodCallException If attempting to call this method within
+     *         an existing transaction.
      * @codingStandardsIgnoreEnd
      */
     public function snapshot(array $options = [])
     {
+        if ($this->isRunningTransaction) {
+            throw new \BadMethodCallException('Nested transactions are not supported by this client.');
+        }
+
         $options += [
             'singleUse' => false
         ];
@@ -571,9 +582,15 @@ class Database
      *           **Defaults to** `false`.
      * }
      * @return Transaction
+     * @throws \BadMethodCallException If attempting to call this method within
+     *         an existing transaction.
      */
     public function transaction(array $options = [])
     {
+        if ($this->isRunningTransaction) {
+            throw new \BadMethodCallException('Nested transactions are not supported by this client.');
+        }
+
         // There isn't anything configurable here.
         $options['transactionOptions'] = $this->configureTransactionOptions();
 
@@ -603,6 +620,10 @@ class Database
      * data, preventing other users from modifying that data. For this reason,
      * it is important that every transaction commits or rolls back as early as
      * possible. Do not hold transactions open longer than necessary.
+     *
+     * Please also note that nested transactions are NOT supported by this client.
+     * Attempting to call `runTransaction` inside a transaction callable will
+     * raise a `BadMethodCallException`.
      *
      * If a callable finishes executing without invoking
      * {@see Google\Cloud\Spanner\Transaction::commit()} or
@@ -654,10 +675,16 @@ class Database
      *           `false`.
      * }
      * @return mixed The return value of `$operation`.
-     * @throws \RuntimeException
+     * @throws \RuntimeException If a transaction is not committed or rolled back.
+     * @throws \BadMethodCallException If attempting to call this method within
+     *         an existing transaction.
      */
     public function runTransaction(callable $operation, array $options = [])
     {
+        if ($this->isRunningTransaction) {
+            throw new \BadMethodCallException('Nested transactions are not supported by this client.');
+        }
+
         $options += [
             'maxRetries' => self::MAX_RETRIES,
         ];
@@ -694,7 +721,13 @@ class Database
                 $options
             ]);
 
-            $res = call_user_func($operation, $transaction);
+            // Prevent nested transactions.
+            $this->isRunningTransaction = true;
+            try {
+                $res = call_user_func($operation, $transaction);
+            } finally {
+                $this->isRunningTransaction = false;
+            }
 
             $active = $transaction->state() === Transaction::STATE_ACTIVE;
             $singleUse = $transaction->type() === Transaction::TYPE_SINGLE_USE;
@@ -1400,9 +1433,9 @@ class Database
         return new Session(
             $this->connection,
             $this->projectId,
-            GrpcSpannerClient::parseInstanceFromSessionName($name),
-            GrpcSpannerClient::parseDatabaseFromSessionName($name),
-            GrpcSpannerClient::parseSessionFromSessionName($name)
+            GapicSpannerClient::parseInstanceFromSessionName($name),
+            GapicSpannerClient::parseDatabaseFromSessionName($name),
+            GapicSpannerClient::parseSessionFromSessionName($name)
         );
     }
 
@@ -1484,7 +1517,7 @@ class Database
         $instance = InstanceAdminClient::parseInstanceFromInstanceName($this->instance->name());
 
         try {
-            return GrpcSpannerClient::formatDatabaseName(
+            return GapicSpannerClient::formatDatabaseName(
                 $this->projectId,
                 $instance,
                 $name

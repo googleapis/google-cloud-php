@@ -23,6 +23,7 @@ use Google\Cloud\Spanner\Result;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\ValueMapper;
+use Google\Cloud\Tests\GrpcTestTrait;
 use Prophecy\Argument;
 
 /**
@@ -30,6 +31,7 @@ use Prophecy\Argument;
  */
 class ResultTest extends \PHPUnit_Framework_TestCase
 {
+    use GrpcTestTrait;
     use ResultTestTrait;
 
     private $metadata = [
@@ -45,9 +47,7 @@ class ResultTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        if (!extension_loaded('grpc')) {
-            $this->markTestSkipped('Must have the grpc extension installed to run this test.');
-        }
+        $this->checkAndSkipGrpcTests();
     }
 
     /**

@@ -29,6 +29,7 @@ use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
+use Google\Cloud\Tests\GrpcTestTrait;
 use Prophecy\Argument;
 
 /**
@@ -37,6 +38,8 @@ use Prophecy\Argument;
  */
 class InstanceTest extends \PHPUnit_Framework_TestCase
 {
+    use GrpcTestTrait;
+
     const PROJECT_ID = 'test-project';
     const NAME = 'instance-name';
 
@@ -45,6 +48,8 @@ class InstanceTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
+        $this->checkAndSkipGrpcTests();
+
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->instance = \Google\Cloud\Dev\stub(Instance::class, [
             $this->connection->reveal(),

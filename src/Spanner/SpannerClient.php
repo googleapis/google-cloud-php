@@ -30,7 +30,6 @@ use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Connection\Grpc;
 use Google\Cloud\Spanner\Connection\LongRunningConnection;
-use google\spanner\admin\instance\v1\Instance\State;
 use Psr\Http\StreamInterface;
 
 /**

@@ -19,22 +19,31 @@ namespace Google\Cloud\Tests\Unit\Spanner\Connection;
 
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\GrpcTrait;
-use Google\Cloud\Core\PhpArray;
 use Google\Cloud\Spanner\Connection\Grpc;
 use Google\Cloud\Spanner\ValueMapper;
+use Google\Cloud\Tests\GrpcTestTrait;
 use Google\GAX\OperationResponse;
+use Google\GAX\Serializer;
+use Google\Protobuf\FieldMask;
+use Google\Protobuf\Struct;
+use Google\Spanner\Admin\Instance\V1\Instance;
+use Google\Spanner\Admin\Instance\V1\Instance_State;
+use Google\Spanner\V1\Mutation_Write;
+use Google\Spanner\V1\TransactionOptions_ReadOnly;
+use Google\Spanner\V1\TransactionOptions_ReadWrite;
 use Prophecy\Argument;
-use google\spanner\v1\KeySet;
-use google\spanner\v1\Mutation;
-use google\spanner\v1\TransactionOptions;
-use google\spanner\v1\TransactionSelector;
-use google\spanner\v1\Type;
+use Google\Spanner\V1\KeySet;
+use Google\Spanner\V1\Mutation;
+use Google\Spanner\V1\TransactionOptions;
+use Google\Spanner\V1\TransactionSelector;
+use Google\Spanner\V1\Type;
 
 /**
  * @group spanner
  */
 class GrpcTest extends \PHPUnit_Framework_TestCase
 {
+    use GrpcTestTrait;
     use GrpcTrait;
 
     const PROJECT = 'projects/my-project';
@@ -44,9 +53,7 @@ class GrpcTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        if (!extension_loaded('grpc')) {
-            $this->markTestSkipped('Must have the grpc extension installed to run this test.');
-        }
+        $this->checkAndSkipGrpcTests();
 
         $this->requestWrapper = $this->prophesize(GrpcRequestWrapper::class);
         $this->successMessage = 'success';
@@ -71,7 +78,11 @@ class GrpcTest extends \PHPUnit_Framework_TestCase
 
     public function methodProvider()
     {
-        $codec = new PhpArray;
+        if ($this->shouldSkipGrpcTests()) {
+            return [];
+        }
+
+        $serializer = new Serializer();
 
         $configName = 'test-config';
         $instanceName = 'test-instance';
@@ -86,52 +97,101 @@ class GrpcTest extends \PHPUnit_Framework_TestCase
             'config' => $configName,
             'displayName' => $instanceName,
             'nodeCount' => 1,
-            'state' => \google\spanner\admin\instance\v1\Instance\State::CREATING,
+            'state' => Instance_State::CREATING,
             'labels' => []
         ];
 
-        $instance = (new \google\spanner\admin\instance\v1\Instance)
-            ->deserialize(array_filter([
-                'labels' => $this->formatLabelsForApi([])
-            ] + $instanceArgs), $codec);
+        $instance = $serializer->decodeMessage(
+            new Instance(),
+            $instanceArgs
+        );
 
         $lro = $this->prophesize(OperationResponse::class)->reveal();
 
-        $mask = array_keys($instance->serialize(new PhpArray([], false)));
-        $fieldMask = (new \google\protobuf\FieldMask())->deserialize(['paths' => $mask], $codec);
+        $mask = [];
+        foreach (array_keys($instanceArgs) as $key) {
+            $mask[] = Serializer::toSnakeCase($key);
+        }
+
+        $fieldMask = $serializer->decodeMessage(new FieldMask(), ['paths' => $mask]);
+
+        $instanceArgsPartial = [
+            'name' => $instanceName,
+            'displayName' => "",
+        ];
+
+        $instancePartial = $serializer->decodeMessage(
+            new Instance(),
+            $instanceArgsPartial
+        );
+
+        $lroPartial = $this->prophesize(OperationResponse::class)->reveal();
+
+        $maskPartial = [];
+        foreach (array_keys($instanceArgsPartial) as $key) {
+            $maskPartial[] = Serializer::toSnakeCase($key);
+        }
+
+        $fieldMaskPartial = $serializer->decodeMessage(new FieldMask(), ['paths' => $maskPartial]);
 
         $tableName = 'foo';
 
         $createStmt = 'CREATE TABLE '. $tableName;
         $sql = 'SELECT * FROM '. $tableName;
 
-        $transactionSelector = (new TransactionSelector)
-            ->deserialize(['id' => $transactionName], $codec);
+        $transactionSelector = $serializer->decodeMessage(
+            new TransactionSelector,
+            ['id' => $transactionName]
+        );
 
         $mapper = new ValueMapper(false);
         $mapped = $mapper->formatParamsForExecuteSql(['foo' => 'bar']);
 
-        $expectedParams = (new \google\protobuf\Struct)
-            ->deserialize($this->formatStructForApi($mapped['params']), $codec);
+        $expectedParams = $serializer->decodeMessage(
+            new Struct,
+            $this->formatStructForApi($mapped['params'])
+        );
 
         $expectedParamTypes = $mapped['paramTypes'];
         foreach ($expectedParamTypes as $key => $param) {
-            $expectedParamTypes[$key] = (new Type)
-                ->deserialize($param, $codec);
+            $expectedParamTypes[$key] = $serializer->decodeMessage(new Type, $param);
         }
 
         $columns = ['id', 'name'];
         $keySetArgs = [];
-        $keySet = (new KeySet)
-            ->deserialize($keySetArgs, $codec);
-        $keySetSingular = (new KeySet())
-            ->deserialize(['keys' => [['values' => ['number_value' => 1]]]], $codec);
-        $keySetComposite = (new KeySet())
-            ->deserialize(['keys' => [['values' => [['number_value' => 1], ['number_value' => 1]]]]], $codec);
-
+        $keySet = $serializer->decodeMessage(new KeySet, $keySetArgs);
+        $keySetSingular = $serializer->decodeMessage(
+            new KeySet, [
+                'keys' => [
+                    [
+                        'values' => [
+                            [
+                                'number_value' => 1
+                            ]
+                        ]
+                    ],
+                ]
+            ]
+        );
+        $keySetComposite = $serializer->decodeMessage(
+            new KeySet, [
+                'keys' => [
+                    [
+                        'values' => [
+                            [
+                                'number_value' => 1
+                            ],
+                            [
+                                'number_value' => 1
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        );
         $readWriteTransactionArgs = ['readWrite' => []];
         $readWriteTransactionOptions = new TransactionOptions;
-        $rw = new TransactionOptions\ReadWrite;
+        $rw = new TransactionOptions_ReadWrite();
         $readWriteTransactionOptions->setReadWrite($rw);
 
         $ts = (new \DateTime)->format('Y-m-d\TH:i:s.u\Z');
@@ -146,8 +206,7 @@ class GrpcTest extends \PHPUnit_Framework_TestCase
         $roObjArgs['readOnly']['minReadTimestamp'] = $this->formatTimestampForApi($ts);
         $roObjArgs['readOnly']['readTimestamp'] = $this->formatTimestampForApi($ts);
         $readOnlyTransactionOptions = new TransactionOptions;
-        $ro = (new TransactionOptions\ReadOnly)
-            ->deserialize($roObjArgs['readOnly'], $codec);
+        $ro = $serializer->decodeMessage(new TransactionOptions_ReadOnly(), $roObjArgs['readOnly']);
 
         $readOnlyTransactionOptions->setReadOnly($ro);
 
@@ -156,16 +215,20 @@ class GrpcTest extends \PHPUnit_Framework_TestCase
                 'insert' => [
                     'table' => $tableName,
                     'columns' => ['foo'],
-                    'values' => ['bar']
+                    'values' => [
+                        ['bar']
+                    ]
                 ]
             ]
         ];
 
         $insertMutationsArr = [];
         $insert = $insertMutations[0]['insert'];
-        $insert['values'] = $this->formatListForApi($insertMutations[0]['insert']['values']);
-        $operation = (new Mutation\Write)
-            ->deserialize($insert, $codec);
+        $insert['values'] = [];
+        foreach ($insertMutations[0]['insert']['values'] as $list) {
+            $insert['values'][] = $this->formatListForApi($list);
+        }
+        $operation = $serializer->decodeMessage(new Mutation_Write, $insert);
 
         $mutation = new Mutation;
         $mutation->setInsert($operation);
@@ -204,6 +267,13 @@ class GrpcTest extends \PHPUnit_Framework_TestCase
                 $instanceArgs,
                 [$instance, $fieldMask, ['userHeaders' => ['google-cloud-resource-prefix' => [$instanceName]]]],
                 $lro,
+                null
+            ],
+            [
+                'updateInstance',
+                $instanceArgsPartial,
+                [$instancePartial, $fieldMaskPartial, ['userHeaders' => ['google-cloud-resource-prefix' => [$instanceName]]]],
+                $lroPartial,
                 null
             ],
             [

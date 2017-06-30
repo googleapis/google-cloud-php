@@ -8,7 +8,7 @@
     },
     "suggest": {
         "google/gax": "Required to support gRPC",
-        "google/proto-client-php": "Required to support gRPC",
+        "google/proto-client": "Required to support gRPC",
         "google/cloud-storage": "Run operations on files stored in Google Cloud Storage"
     },
     "extra": {

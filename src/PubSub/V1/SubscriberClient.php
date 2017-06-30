@@ -24,6 +24,8 @@
  * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
  * more frequently than those which have been declared beta or 1.0, including changes which break
  * backwards compatibility.
+ *
+ * @experimental
  */
 
 namespace Google\Cloud\PubSub\V1;
@@ -35,30 +37,30 @@ use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
-use google\iam\v1\GetIamPolicyRequest;
-use google\iam\v1\IAMPolicyGrpcClient;
-use google\iam\v1\Policy;
-use google\iam\v1\SetIamPolicyRequest;
-use google\iam\v1\TestIamPermissionsRequest;
-use google\protobuf\Duration;
-use google\protobuf\FieldMask;
-use google\protobuf\Timestamp;
-use google\pubsub\v1\AcknowledgeRequest;
-use google\pubsub\v1\CreateSnapshotRequest;
-use google\pubsub\v1\DeleteSnapshotRequest;
-use google\pubsub\v1\DeleteSubscriptionRequest;
-use google\pubsub\v1\GetSubscriptionRequest;
-use google\pubsub\v1\ListSnapshotsRequest;
-use google\pubsub\v1\ListSubscriptionsRequest;
-use google\pubsub\v1\ModifyAckDeadlineRequest;
-use google\pubsub\v1\ModifyPushConfigRequest;
-use google\pubsub\v1\PullRequest;
-use google\pubsub\v1\PushConfig;
-use google\pubsub\v1\SeekRequest;
-use google\pubsub\v1\StreamingPullRequest;
-use google\pubsub\v1\SubscriberGrpcClient;
-use google\pubsub\v1\Subscription;
-use google\pubsub\v1\UpdateSubscriptionRequest;
+use Google\Iam\V1\GetIamPolicyRequest;
+use Google\Iam\V1\IAMPolicyGrpcClient;
+use Google\Iam\V1\Policy;
+use Google\Iam\V1\SetIamPolicyRequest;
+use Google\Iam\V1\TestIamPermissionsRequest;
+use Google\Protobuf\Duration;
+use Google\Protobuf\FieldMask;
+use Google\Protobuf\Timestamp;
+use Google\Pubsub\V1\AcknowledgeRequest;
+use Google\Pubsub\V1\CreateSnapshotRequest;
+use Google\Pubsub\V1\DeleteSnapshotRequest;
+use Google\Pubsub\V1\DeleteSubscriptionRequest;
+use Google\Pubsub\V1\GetSubscriptionRequest;
+use Google\Pubsub\V1\ListSnapshotsRequest;
+use Google\Pubsub\V1\ListSubscriptionsRequest;
+use Google\Pubsub\V1\ModifyAckDeadlineRequest;
+use Google\Pubsub\V1\ModifyPushConfigRequest;
+use Google\Pubsub\V1\PullRequest;
+use Google\Pubsub\V1\PushConfig;
+use Google\Pubsub\V1\SeekRequest;
+use Google\Pubsub\V1\StreamingPullRequest;
+use Google\Pubsub\V1\SubscriberGrpcClient;
+use Google\Pubsub\V1\Subscription;
+use Google\Pubsub\V1\UpdateSubscriptionRequest;
 
 /**
  * Service Description: The service that an application uses to manipulate subscriptions and to
@@ -86,6 +88,8 @@ use google\pubsub\v1\UpdateSubscriptionRequest;
  * with these names, this class includes a format method for each type of name, and additionally
  * a parse method to extract the individual identifiers contained within names that are
  * returned.
+ *
+ * @experimental
  */
 class SubscriberClient
 {
@@ -129,6 +133,11 @@ class SubscriberClient
     /**
      * Formats a string containing the fully-qualified path to represent
      * a project resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project resource.
+     * @experimental
      */
     public static function formatProjectName($project)
     {
@@ -140,6 +149,12 @@ class SubscriberClient
     /**
      * Formats a string containing the fully-qualified path to represent
      * a snapshot resource.
+     *
+     * @param string $project
+     * @param string $snapshot
+     *
+     * @return string The formatted snapshot resource.
+     * @experimental
      */
     public static function formatSnapshotName($project, $snapshot)
     {
@@ -152,6 +167,12 @@ class SubscriberClient
     /**
      * Formats a string containing the fully-qualified path to represent
      * a subscription resource.
+     *
+     * @param string $project
+     * @param string $subscription
+     *
+     * @return string The formatted subscription resource.
+     * @experimental
      */
     public static function formatSubscriptionName($project, $subscription)
     {
@@ -164,6 +185,12 @@ class SubscriberClient
     /**
      * Formats a string containing the fully-qualified path to represent
      * a topic resource.
+     *
+     * @param string $project
+     * @param string $topic
+     *
+     * @return string The formatted topic resource.
+     * @experimental
      */
     public static function formatTopicName($project, $topic)
     {
@@ -176,6 +203,11 @@ class SubscriberClient
     /**
      * Parses the project from the given fully-qualified path which
      * represents a project resource.
+     *
+     * @param string $projectName The fully-qualified project resource.
+     *
+     * @return string The extracted project value.
+     * @experimental
      */
     public static function parseProjectFromProjectName($projectName)
     {
@@ -185,6 +217,11 @@ class SubscriberClient
     /**
      * Parses the project from the given fully-qualified path which
      * represents a snapshot resource.
+     *
+     * @param string $snapshotName The fully-qualified snapshot resource.
+     *
+     * @return string The extracted project value.
+     * @experimental
      */
     public static function parseProjectFromSnapshotName($snapshotName)
     {
@@ -194,6 +231,11 @@ class SubscriberClient
     /**
      * Parses the snapshot from the given fully-qualified path which
      * represents a snapshot resource.
+     *
+     * @param string $snapshotName The fully-qualified snapshot resource.
+     *
+     * @return string The extracted snapshot value.
+     * @experimental
      */
     public static function parseSnapshotFromSnapshotName($snapshotName)
     {
@@ -203,6 +245,11 @@ class SubscriberClient
     /**
      * Parses the project from the given fully-qualified path which
      * represents a subscription resource.
+     *
+     * @param string $subscriptionName The fully-qualified subscription resource.
+     *
+     * @return string The extracted project value.
+     * @experimental
      */
     public static function parseProjectFromSubscriptionName($subscriptionName)
     {
@@ -212,6 +259,11 @@ class SubscriberClient
     /**
      * Parses the subscription from the given fully-qualified path which
      * represents a subscription resource.
+     *
+     * @param string $subscriptionName The fully-qualified subscription resource.
+     *
+     * @return string The extracted subscription value.
+     * @experimental
      */
     public static function parseSubscriptionFromSubscriptionName($subscriptionName)
     {
@@ -221,6 +273,11 @@ class SubscriberClient
     /**
      * Parses the project from the given fully-qualified path which
      * represents a topic resource.
+     *
+     * @param string $topicName The fully-qualified topic resource.
+     *
+     * @return string The extracted project value.
+     * @experimental
      */
     public static function parseProjectFromTopicName($topicName)
     {
@@ -230,6 +287,11 @@ class SubscriberClient
     /**
      * Parses the topic from the given fully-qualified path which
      * represents a topic resource.
+     *
+     * @param string $topicName The fully-qualified topic resource.
+     *
+     * @return string The extracted topic value.
+     * @experimental
      */
     public static function parseTopicFromTopicName($topicName)
     {
@@ -276,17 +338,21 @@ class SubscriberClient
     {
         $listSubscriptionsPageStreamingDescriptor =
                 new PageStreamingDescriptor([
-                    'requestPageTokenField' => 'page_token',
-                    'requestPageSizeField' => 'page_size',
-                    'responsePageTokenField' => 'next_page_token',
-                    'resourceField' => 'subscriptions',
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getSubscriptions',
                 ]);
         $listSnapshotsPageStreamingDescriptor =
                 new PageStreamingDescriptor([
-                    'requestPageTokenField' => 'page_token',
-                    'requestPageSizeField' => 'page_size',
-                    'responsePageTokenField' => 'next_page_token',
-                    'resourceField' => 'snapshots',
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getSnapshots',
                 ]);
 
         $pageStreamingDescriptors = [
@@ -302,7 +368,7 @@ class SubscriberClient
         return [
             'streamingPull' => [
                 'grpcStreamingType' => 'BidiStreaming',
-                'resourcesField' => 'getReceivedMessagesList',
+                'resourcesField' => 'getReceivedMessages',
             ],
         ];
     }
@@ -347,6 +413,7 @@ class SubscriberClient
      *                              A CredentialsLoader object created using the
      *                              Google\Auth library.
      * }
+     * @experimental
      */
     public function __construct($options = [])
     {
@@ -528,9 +595,10 @@ class SubscriberClient
      *          is not set.
      * }
      *
-     * @return \google\pubsub\v1\Subscription
+     * @return \Google\Pubsub\V1\Subscription
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function createSubscription($name, $topic, $optionalArgs = [])
     {
@@ -593,9 +661,10 @@ class SubscriberClient
      *          is not set.
      * }
      *
-     * @return \google\pubsub\v1\Subscription
+     * @return \Google\Pubsub\V1\Subscription
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function getSubscription($subscription, $optionalArgs = [])
     {
@@ -648,9 +717,10 @@ class SubscriberClient
      *          is not set.
      * }
      *
-     * @return \google\pubsub\v1\Subscription
+     * @return \Google\Pubsub\V1\Subscription
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function updateSubscription($subscription, $updateMask, $optionalArgs = [])
     {
@@ -725,6 +795,7 @@ class SubscriberClient
      * @return \Google\GAX\PagedListResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function listSubscriptions($project, $optionalArgs = [])
     {
@@ -785,6 +856,7 @@ class SubscriberClient
      * }
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function deleteSubscription($subscription, $optionalArgs = [])
     {
@@ -849,14 +921,13 @@ class SubscriberClient
      * }
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function modifyAckDeadline($subscription, $ackIds, $ackDeadlineSeconds, $optionalArgs = [])
     {
         $request = new ModifyAckDeadlineRequest();
         $request->setSubscription($subscription);
-        foreach ($ackIds as $elem) {
-            $request->addAckIds($elem);
-        }
+        $request->setAckIds($ackIds);
         $request->setAckDeadlineSeconds($ackDeadlineSeconds);
 
         $mergedSettings = $this->defaultCallSettings['modifyAckDeadline']->merge(
@@ -912,14 +983,13 @@ class SubscriberClient
      * }
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function acknowledge($subscription, $ackIds, $optionalArgs = [])
     {
         $request = new AcknowledgeRequest();
         $request->setSubscription($subscription);
-        foreach ($ackIds as $elem) {
-            $request->addAckIds($elem);
-        }
+        $request->setAckIds($ackIds);
 
         $mergedSettings = $this->defaultCallSettings['acknowledge']->merge(
             new CallSettings($optionalArgs)
@@ -977,9 +1047,10 @@ class SubscriberClient
      *          is not set.
      * }
      *
-     * @return \google\pubsub\v1\PullResponse
+     * @return \Google\Pubsub\V1\PullResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function pull($subscription, $maxMessages, $optionalArgs = [])
     {
@@ -1067,9 +1138,10 @@ class SubscriberClient
      *          Timeout to use for this call.
      * }
      *
-     * @return \Google\GAX\BidiStreamingResponse
+     * @return \Google\GAX\BidiStream
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function streamingPull($optionalArgs = [])
     {
@@ -1129,6 +1201,7 @@ class SubscriberClient
      * }
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function modifyPushConfig($subscription, $pushConfig, $optionalArgs = [])
     {
@@ -1203,6 +1276,7 @@ class SubscriberClient
      * @return \Google\GAX\PagedListResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function listSnapshots($project, $optionalArgs = [])
     {
@@ -1280,9 +1354,10 @@ class SubscriberClient
      *          is not set.
      * }
      *
-     * @return \google\pubsub\v1\Snapshot
+     * @return \Google\Pubsub\V1\Snapshot
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function createSnapshot($name, $subscription, $optionalArgs = [])
     {
@@ -1337,6 +1412,7 @@ class SubscriberClient
      * }
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function deleteSnapshot($snapshot, $optionalArgs = [])
     {
@@ -1402,9 +1478,10 @@ class SubscriberClient
      *          is not set.
      * }
      *
-     * @return \google\pubsub\v1\SeekResponse
+     * @return \Google\Pubsub\V1\SeekResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function seek($subscription, $optionalArgs = [])
     {
@@ -1467,9 +1544,10 @@ class SubscriberClient
      *          is not set.
      * }
      *
-     * @return \google\iam\v1\Policy
+     * @return \Google\Iam\V1\Policy
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function setIamPolicy($resource, $policy, $optionalArgs = [])
     {
@@ -1523,9 +1601,10 @@ class SubscriberClient
      *          is not set.
      * }
      *
-     * @return \google\iam\v1\Policy
+     * @return \Google\Iam\V1\Policy
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function getIamPolicy($resource, $optionalArgs = [])
     {
@@ -1569,7 +1648,7 @@ class SubscriberClient
      *                               `resource` is usually specified as a path. For example, a Project
      *                               resource is specified as `projects/{project}`.
      * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
-     *                               wildcards (such as '&#42;' or 'storage.&#42;') are not allowed. For more
+     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
      *                               information see
      *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      * @param array    $optionalArgs {
@@ -1583,17 +1662,16 @@ class SubscriberClient
      *          is not set.
      * }
      *
-     * @return \google\iam\v1\TestIamPermissionsResponse
+     * @return \Google\Iam\V1\TestIamPermissionsResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function testIamPermissions($resource, $permissions, $optionalArgs = [])
     {
         $request = new TestIamPermissionsRequest();
         $request->setResource($resource);
-        foreach ($permissions as $elem) {
-            $request->addPermissions($elem);
-        }
+        $request->setPermissions($permissions);
 
         $mergedSettings = $this->defaultCallSettings['testIamPermissions']->merge(
             new CallSettings($optionalArgs)
@@ -1614,6 +1692,8 @@ class SubscriberClient
     /**
      * Initiates an orderly shutdown in which preexisting calls continue but new
      * calls are immediately cancelled.
+     *
+     * @experimental
      */
     public function close()
     {

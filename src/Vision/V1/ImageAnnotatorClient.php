@@ -24,6 +24,8 @@
  * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
  * more frequently than those which have been declared beta or 1.0, including changes which break
  * backwards compatibility.
+ *
+ * @experimental
  */
 
 namespace Google\Cloud\Vision\V1;
@@ -33,9 +35,6 @@ use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
 use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
-use google\cloud\vision\v1\AnnotateImageRequest;
-use google\cloud\vision\v1\BatchAnnotateImagesRequest;
-use google\cloud\vision\v1\ImageAnnotatorGrpcClient;
 
 /**
  * Service Description: Service that performs Google Cloud Vision API detection tasks over client
@@ -59,10 +58,7 @@ use google\cloud\vision\v1\ImageAnnotatorGrpcClient;
  * }
  * ```
  *
- * Many parameters require resource names to be formatted in a particular way. To assist
- * with these names, this class includes a format method for each type of name, and additionally
- * a parse method to extract the individual identifiers contained within names that are
- * returned.
+ * @experimental
  */
 class ImageAnnotatorClient
 {
@@ -137,6 +133,7 @@ class ImageAnnotatorClient
      *                              A CredentialsLoader object created using the
      *                              Google\Auth library.
      * }
+     * @experimental
      */
     public function __construct($options = [])
     {
@@ -226,16 +223,15 @@ class ImageAnnotatorClient
      *          is not set.
      * }
      *
-     * @return \google\cloud\vision\v1\BatchAnnotateImagesResponse
+     * @return \Google\Cloud\Vision\V1\BatchAnnotateImagesResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function batchAnnotateImages($requests, $optionalArgs = [])
     {
         $request = new BatchAnnotateImagesRequest();
-        foreach ($requests as $elem) {
-            $request->addRequests($elem);
-        }
+        $request->setRequests($requests);
 
         $mergedSettings = $this->defaultCallSettings['batchAnnotateImages']->merge(
             new CallSettings($optionalArgs)
@@ -256,6 +252,8 @@ class ImageAnnotatorClient
     /**
      * Initiates an orderly shutdown in which preexisting calls continue but new
      * calls are immediately cancelled.
+     *
+     * @experimental
      */
     public function close()
     {

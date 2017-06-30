@@ -18,17 +18,22 @@
 namespace Google\Cloud\Tests\Unit\Spanner;
 
 use Google\Cloud\Spanner\Timestamp;
+use Google\Cloud\Tests\GrpcTestTrait;
 
 /**
  * @group spanner
  */
 class TimestampTest extends \PHPUnit_Framework_TestCase
 {
+    use GrpcTestTrait;
+
     private $dt;
     private $ts;
 
     public function setUp()
     {
+        $this->checkAndSkipGrpcTests();
+
         $this->dt = new \DateTime('1989-10-11 08:58:00 +00:00');
         $this->ts = new Timestamp($this->dt);
     }
