@@ -59,6 +59,17 @@ class RequestWrapperTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expectedBody, (string) $actualResponse->getBody());
     }
 
+    public function testGetKeyfile()
+    {
+        $kf = 'hello world';
+
+        $requestWrapper = new RequestWrapper([
+            'keyFile' => $kf
+        ]);
+
+        $this->assertEquals($kf, $requestWrapper->keyFile());
+    }
+
     /**
      * @expectedException Google\Cloud\Core\Exception\GoogleException
      */
