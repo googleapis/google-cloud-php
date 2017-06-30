@@ -25,7 +25,7 @@ use Google\Cloud\Core\Upload\StreamableUploader;
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
 use Google\Cloud\Storage\Acl;
 use Google\Cloud\Storage\Bucket;
-use Google\Cloud\Storage\Connection\ConnectionInterface;
+use Google\Cloud\Storage\Connection\Rest;
 use Google\Cloud\Storage\ObjectIterator;
 use Google\Cloud\Storage\StorageObject;
 use Prophecy\Argument;
@@ -42,7 +42,7 @@ class BucketTest extends SnippetTestCase
 
     public function setUp()
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->connection = $this->prophesize(Rest::class);
         $this->bucket = \Google\Cloud\Dev\stub(Bucket::class, [
             $this->connection->reveal(),
             self::BUCKET

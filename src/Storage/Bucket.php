@@ -309,6 +309,14 @@ class Bucket
      *           from the `encryptionKey` on your behalf if not provided, but
      *           for best performance it is recommended to pass in a cached
      *           version of the already calculated SHA.
+     *     @type callable $uploadProgressCallback The given callable
+     *           function/method will be called after each successfully uploaded
+     *           chunk. The callable function/method will receive the number of
+     *           uploaded bytes after each uploaded chunk as a parameter to this
+     *           callable. It's useful if you want to create a progress bar when
+     *           using resumable upload type together with $chunkSize parameter.
+     *           If $chunkSize is not set the callable function/method will be
+     *           called only once after the successful file upload.
      * }
      * @return ResumableUploader
      * @throws \InvalidArgumentException

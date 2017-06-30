@@ -62,6 +62,16 @@ trait RestTrait
     }
 
     /**
+     * Get the RequestWrapper.
+     *
+     * @return RequestWrapper|null
+     */
+    public function requestWrapper()
+    {
+        return $this->requestWrapper;
+    }
+
+    /**
      * Delivers a request built from the service definition.
      *
      * @param string $resource The resource type used for the request.

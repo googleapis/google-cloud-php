@@ -20,7 +20,7 @@ namespace Google\Cloud\Tests\Unit\Core;
 use Google\Cloud\Core\JsonTrait;
 
 /**
- * @group root
+ * @group core
  */
 class JsonTraitTest extends \PHPUnit_Framework_TestCase
 {
@@ -28,7 +28,7 @@ class JsonTraitTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->implementation = new JsonTraitStub();
+        $this->implementation = \Google\Cloud\Dev\impl(JsonTrait::class);
     }
 
     public function testJsonEncode()
@@ -55,15 +55,5 @@ class JsonTraitTest extends \PHPUnit_Framework_TestCase
     public function testJsonDecodeThrowsException()
     {
         $this->implementation->call('jsonDecode', ['.|.']);
-    }
-}
-
-class JsonTraitStub
-{
-    use JsonTrait;
-
-    public function call($fn, array $args)
-    {
-        return call_user_func_array([$this, $fn], $args);
     }
 }

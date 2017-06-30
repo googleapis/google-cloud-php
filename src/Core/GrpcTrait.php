@@ -51,6 +51,16 @@ trait GrpcTrait
     }
 
     /**
+     * Get the GrpcRequestWrapper.
+     *
+     * @return GrpcRequestWrapper|null
+     */
+    public function requestWrapper()
+    {
+        return $this->requestWrapper;
+    }
+
+    /**
      * Delivers a request.
      *
      * @param callable $request

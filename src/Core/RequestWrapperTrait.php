@@ -118,6 +118,16 @@ trait RequestWrapperTrait
     }
 
     /**
+     * Get the Keyfile.
+     *
+     * @return array
+     */
+    public function keyFile()
+    {
+        return $this->keyFile;
+    }
+
+    /**
      * Gets the credentials fetcher and sets up caching. Precedence begins with
      * user supplied credentials fetcher instance, followed by a reference to a
      * key file stream, and finally the application default credentials.

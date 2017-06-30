@@ -41,6 +41,17 @@ class GrpcRequestWrapperTest extends \PHPUnit_Framework_TestCase
         $this->checkAndSkipGrpcTests();
     }
 
+    public function testGetKeyfile()
+    {
+        $kf = 'hello world';
+
+        $requestWrapper = new GrpcRequestWrapper([
+            'keyFile' => $kf
+        ]);
+
+        $this->assertEquals($kf, $requestWrapper->keyFile());
+    }
+
     /**
      * @dataProvider responseProvider
      */
@@ -180,10 +191,13 @@ class GrpcRequestWrapperTest extends \PHPUnit_Framework_TestCase
         return [
             [3, Exception\BadRequestException::class],
             [5, Exception\NotFoundException::class],
+            [12, Exception\NotFoundException::class],
             [6, Exception\ConflictException::class],
+            [9, Exception\FailedPreconditionException::class],
             [2, Exception\ServerException::class],
             [13, Exception\ServerException::class],
-            [15, Exception\ServiceException::class]
+            [10, Exception\AbortedException::class],
+            [999, Exception\ServiceException::class]
         ];
     }
 }
