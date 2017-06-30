@@ -90,6 +90,51 @@ class LoggingClient
     private $config;
 
     /**
+     * Create a PsrLogger with batching enabled.
+     *
+     * @param string $name The name of the log to write entries to.
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type string $messageKey The key in the `jsonPayload` used to contain
+     *           the logged message. **Defaults to** `message`.
+     *     @type array $resource The
+     *           [monitored resource](https://cloud.google.com/logging/docs/api/reference/rest/v2/MonitoredResource)
+     *           to associate log entries with. **Defaults to** type global.
+     *     @type array $labels A set of user-defined (key, value) data that
+     *           provides additional information about the log entry.
+     *     @type MetadataProviderInterface $metadataProvider **Defaults to** An
+     *           automatically chosen provider, based on detected environment
+     *           settings.
+     *     @type bool $debugOutput Whether or not to output debug information.
+     *           **Defaults to** false.
+     *     @type array $batchOptions A set of options for a BatchJob.
+     *           {@see \Google\Cloud\Core\Batch\BatchJob::__construct()} for
+     *           more details.
+     *           **Defaults to** ['batchSize' => 1000,
+     *                            'callPeriod' => 2.0,
+     *                            'workerNum' => 2].
+     *     @type array $clientConfig Configuration options for the Logging client
+     *           used to handle processing of batch items. For valid options
+     *           please see
+     *           {@see \Google\Cloud\Logging\LoggingClient::__construct()}.
+     *     @type BatchRunner $batchRunner A BatchRunner object. Mainly used for
+     *           the tests to inject a mock. **Defaults to** a newly created
+     *           BatchRunner.
+     * }
+     * @return PsrLogger
+     **/
+    public static function psrBatchLogger($name, array $options = [])
+    {
+        $client = array_key_exists('clientConfig', $options)
+            ? new self($options['clientConfig'])
+            : new self();
+        // Force enabling batch.
+        $options['batchEnabled'] = true;
+        return $client->psrLogger($name, $options);
+    }
+
+    /**
      * Create a Logging client.
      *
      * @param array $config [optional] {

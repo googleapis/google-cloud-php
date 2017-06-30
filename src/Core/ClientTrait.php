@@ -158,6 +158,10 @@ trait ClientTrait
             return $config['keyFile']['project_id'];
         }
 
+        if (false !== $projectFromEnv = getenv('GCLOUD_PROJECT')) {
+            return $projectFromEnv;
+        }
+        
         if ($this->onGce($config['httpHandler'])) {
             $metadata = $this->getMetaData();
             $projectId = $metadata->getProjectId();
