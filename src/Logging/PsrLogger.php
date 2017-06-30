@@ -92,7 +92,8 @@ class PsrLogger implements LoggerInterface, \Serializable
      *           automatically chosen provider, based on detected environment
      *           settings.
      *     @type bool $batchEnabled Determines whether or not to use background
-     *           batching. **Defaults to** `false`.
+     *           batching. **Defaults to** `false`. Note that this option is
+     *           currently considered **experimental** and is subject to change.
      *     @type bool $debugOutput Whether or not to output debug information.
      *           **Defaults to** false. Applies only when `batchEnabled` is set
      *           to `true`.

@@ -19,6 +19,11 @@ namespace Google\Cloud\Core\Batch;
 
 /**
  * An interface for storing the configuration.
+ *
+ * @experimental The experimental flag means that while we believe this method
+ *      or class is ready for use, it may change before release in backwards-
+ *      incompatible ways. Please use with caution, and test thoroughly when
+ *      upgrading.
  */
 interface ConfigStorageInterface
 {

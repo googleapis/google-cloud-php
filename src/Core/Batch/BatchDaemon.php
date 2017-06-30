@@ -24,6 +24,11 @@ namespace Google\Cloud\Core\Batch;
  *
  * The system test is responsible for testing this class.
  * {@see \Google\Cloud\Tests\System\Core\Batch}
+ *
+ * @experimental The experimental flag means that while we believe this method
+ *      or class is ready for use, it may change before release in backwards-
+ *      incompatible ways. Please use with caution, and test thoroughly when
+ *      upgrading.
  */
 class BatchDaemon
 {
