@@ -100,6 +100,11 @@ class PubSubClient
     private $encode;
 
     /**
+     * @var array
+     */
+    private $clientConfig;
+
+    /**
      * Create a PubSub client.
      *
      * @param array $config [optional] {
@@ -130,6 +135,7 @@ class PubSubClient
      */
     public function __construct(array $config = [])
     {
+        $this->clientConfig = $config;
         $connectionType = $this->getConnectionType($config);
         if (!isset($config['scopes'])) {
             $config['scopes'] = [self::FULL_CONTROL_SCOPE];
@@ -512,7 +518,8 @@ class PubSubClient
             $this->projectId,
             $name,
             $this->encode,
-            $info
+            $info,
+            $this->clientConfig
         );
     }
 
@@ -523,7 +530,7 @@ class PubSubClient
      * @param string $name The subscription name
      * @param string $topicName [optional] The topic name
      * @param array  $info [optional] Information about the subscription. Used
-     *        to populate subscriptons with an api result. Should be a
+     *        to populate subscriptons with an API result. Should be a
      *        representation of a [Subscription](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions#Subscription).
      * @return Subscription
      * @codingStandardsIgnoreEnd

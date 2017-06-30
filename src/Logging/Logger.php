@@ -83,6 +83,11 @@ class Logger
     ];
 
     /**
+     * @var string The logger's unformatted name.
+     */
+    private $name;
+
+    /**
      * @var string The logger's formatted name to be used in API requests.
      */
     private $formattedName;
@@ -122,6 +127,7 @@ class Logger
         array $labels = null
     ) {
         $this->connection = $connection;
+        $this->name = $name;
         $this->formattedName = "projects/$projectId/logs/$name";
         $this->projectId = $projectId;
         $this->resource = $resource ?: ['type' => 'global'];
@@ -381,6 +387,16 @@ class Logger
         }
 
         $this->connection->writeEntries($options + ['entries' => $entries]);
+    }
+
+    /**
+     * Returns the logger's name.
+     *
+     * @return string
+     */
+    public function name()
+    {
+        return $this->name;
     }
 
     /**

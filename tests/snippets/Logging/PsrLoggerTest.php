@@ -49,6 +49,13 @@ class PsrLoggerTest extends SnippetTestCase
         $this->assertInstanceOf(PsrLogger::class, $res->returnVal());
     }
 
+    public function testClassBatch()
+    {
+        $snippet = $this->snippetFromClass(PsrLogger::class, 1);
+        $res = $snippet->invoke('psrLogger');
+        $this->assertInstanceOf(PsrLogger::class, $res->returnVal());
+    }
+
     public function testEmergency()
     {
         $snippet = $this->snippetFromMethod(PsrLogger::class, 'emergency');

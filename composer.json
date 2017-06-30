@@ -85,6 +85,9 @@
     "scripts": {
         "google-cloud": "dev/google-cloud"
     },
+    "bin": [
+        "src/Core/bin/google-cloud-batch"
+    ],
     "extra": {
         "component": {
             "id": "google-cloud",
