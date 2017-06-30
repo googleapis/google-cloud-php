@@ -20,10 +20,12 @@ namespace Google\Cloud\Tests\System\Storage;
 use Google\Cloud\Storage\Bucket;
 use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Storage\StorageObject;
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\ClientException;
 
 /**
  * @group storage
- * @group requester-pays
+ * @group storage-requester-pays
  */
 class RequesterPaysTest extends StorageTestCase
 {
@@ -71,6 +73,48 @@ class RequesterPaysTest extends StorageTestCase
         $this->requesterPaysClient = new StorageClient([
             'keyFilePath' => $this->keyFilePath
         ]);
+    }
+
+    public function testBucketSettings()
+    {
+        $bucketName = uniqid(self::TESTING_PREFIX);
+        $objectName = uniqid(self::TESTING_PREFIX);
+        $content = uniqid(self::TESTING_PREFIX);
+
+        // run an http request to call the object's public link and see what we get.
+        $getBody = function($bucket, $object) {
+            $guzzle = new Client;
+
+            try {
+                $uri = 'https://storage.googleapis.com/%s/%s';
+                $res = $guzzle->request('GET', sprintf($uri, $bucket, $object));
+                return (string) $res->getBody();
+            } catch (ClientException $e) {
+                return null;
+            }
+        };
+
+        $client = self::$client;
+        $bucket = $client->createBucket($bucketName);
+        $object = $bucket->upload($content, [
+            'name' => $objectName,
+            'predefinedAcl' => 'publicRead',
+            'metadata' => [
+                'cacheControl' => 'private'
+            ]
+        ]);
+        $object = $bucket->object($objectName);
+
+        self::$deletionQueue[] = $object;
+        self::$deletionQueue[] = $bucket;
+
+        $this->assertEquals($content, $getBody($bucketName, $objectName));
+
+        $bucket->update(['billing' => ['requesterPays' => true]]);
+        $this->assertNull($getBody($bucketName, $objectName));
+
+        $bucket->update(['billing' => ['requesterPays' => false]]);
+        $this->assertEquals($content, $getBody($bucketName, $objectName));
     }
 
     /**
