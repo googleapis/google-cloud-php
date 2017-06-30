@@ -179,7 +179,8 @@ class Result implements \IteratorAggregate
                     return;
                 }
 
-                if (isset($result['resumeToken']) || count($bufferedResults) >= self::BUFFER_RESULT_LIMIT) {
+                $hasResumeToken = $this->isSetAndTrue($result, 'resumeToken');
+                if ($hasResumeToken || count($bufferedResults) >= self::BUFFER_RESULT_LIMIT) {
                     list($yieldableRows, $chunkedResult) = $this->parseRowsFromBufferedResults($bufferedResults);
 
                     foreach ($yieldableRows as $row) {
@@ -188,9 +189,7 @@ class Result implements \IteratorAggregate
 
                     // Now that we've yielded all available rows, flush the buffer.
                     $bufferedResults = [];
-                    $shouldRetry = isset($result['resumeToken'])
-                        ? true
-                        : false;
+                    $shouldRetry = $hasResumeToken;
 
                     // If the last item in the buffer had a chunked value let's
                     // hold on to it so we can stitch it together into a yieldable
@@ -361,7 +360,7 @@ class Result implements \IteratorAggregate
     {
         $values = [];
         $chunkedResult = null;
-        $shouldMergeValues = isset($bufferedResults[0]['chunkedValue']);
+        $shouldMergeValues = $this->isSetAndTrue($bufferedResults[0], 'chunkedValue');
 
         foreach ($bufferedResults as $key => $result) {
             if ($key === 0) {
@@ -372,14 +371,14 @@ class Result implements \IteratorAggregate
             $values = $shouldMergeValues
                 ? $this->mergeValues($values, $result['values'])
                 : array_merge($values, $result['values']);
-            $shouldMergeValues = (isset($result['chunkedValue']))
+            $shouldMergeValues = $this->isSetAndTrue($result, 'chunkedValue')
                 ? true
                 : false;
         }
 
         $yieldableRows = array_chunk($values, $this->columnCount);
 
-        if (isset($result['chunkedValue'])) {
+        if ($this->isSetAndTrue($result, 'chunkedValue')) {
             $chunkedResult = [
                 'values' => array_pop($yieldableRows),
                 'chunkedValue' => true
@@ -403,7 +402,7 @@ class Result implements \IteratorAggregate
             ? $result['stats']
             : null;
 
-        if (isset($result['resumeToken'])) {
+        if ($this->isSetAndTrue($result, 'resumeToken')) {
             $this->resumeToken = $result['resumeToken'];
         }
 
@@ -415,7 +414,7 @@ class Result implements \IteratorAggregate
             $this->columns = $result['metadata']['rowType']['fields'];
 
             foreach ($this->columns as $key => $column) {
-                $this->columnNames[] = isset($column['name'])
+                $this->columnNames[] = $this->isSetAndTrue($column, 'name')
                     ? $column['name']
                     : $key;
                 $this->columnCount++;
@@ -432,7 +431,7 @@ class Result implements \IteratorAggregate
             }
         }
 
-        if (isset($result['metadata']['transaction']['id'])) {
+        if (isset($result['metadata']['transaction']['id']) && $result['metadata']['transaction']['id']) {
             if ($this->transactionContext === SessionPoolInterface::CONTEXT_READ) {
                 $this->snapshot = $this->operation->createSnapshot(
                     $this->session,
@@ -470,5 +469,15 @@ class Result implements \IteratorAggregate
 
         array_push($set1, $item);
         return array_merge($set1, $set2);
+    }
+
+    /**
+     * @param array $arr
+     * @param string $key
+     * @return bool
+     */
+    private function isSetAndTrue($arr, $key)
+    {
+        return isset($arr[$key]) && $arr[$key];
     }
 }

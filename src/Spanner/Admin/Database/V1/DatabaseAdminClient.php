@@ -24,6 +24,8 @@
  * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
  * more frequently than those which have been declared beta or 1.0, including changes which break
  * backwards compatibility.
+ *
+ * @experimental
  */
 
 namespace Google\Cloud\Spanner\Admin\Database\V1;
@@ -37,20 +39,20 @@ use Google\GAX\LongRunning\OperationsClient;
 use Google\GAX\OperationResponse;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
-use google\iam\v1\GetIamPolicyRequest;
-use google\iam\v1\Policy;
-use google\iam\v1\SetIamPolicyRequest;
-use google\iam\v1\TestIamPermissionsRequest;
-use google\spanner\admin\database\v1\CreateDatabaseMetadata;
-use google\spanner\admin\database\v1\CreateDatabaseRequest;
-use google\spanner\admin\database\v1\Database;
-use google\spanner\admin\database\v1\DatabaseAdminGrpcClient;
-use google\spanner\admin\database\v1\DropDatabaseRequest;
-use google\spanner\admin\database\v1\GetDatabaseDdlRequest;
-use google\spanner\admin\database\v1\GetDatabaseRequest;
-use google\spanner\admin\database\v1\ListDatabasesRequest;
-use google\spanner\admin\database\v1\UpdateDatabaseDdlMetadata;
-use google\spanner\admin\database\v1\UpdateDatabaseDdlRequest;
+use Google\Iam\V1\GetIamPolicyRequest;
+use Google\Iam\V1\Policy;
+use Google\Iam\V1\SetIamPolicyRequest;
+use Google\Iam\V1\TestIamPermissionsRequest;
+use Google\Spanner\Admin\Database\V1\CreateDatabaseMetadata;
+use Google\Spanner\Admin\Database\V1\CreateDatabaseRequest;
+use Google\Spanner\Admin\Database\V1\Database;
+use Google\Spanner\Admin\Database\V1\DatabaseAdminGrpcClient;
+use Google\Spanner\Admin\Database\V1\DropDatabaseRequest;
+use Google\Spanner\Admin\Database\V1\GetDatabaseDdlRequest;
+use Google\Spanner\Admin\Database\V1\GetDatabaseRequest;
+use Google\Spanner\Admin\Database\V1\ListDatabasesRequest;
+use Google\Spanner\Admin\Database\V1\UpdateDatabaseDdlMetadata;
+use Google\Spanner\Admin\Database\V1\UpdateDatabaseDdlRequest;
 
 /**
  * Service Description: Cloud Spanner Database Admin API.
@@ -92,6 +94,8 @@ use google\spanner\admin\database\v1\UpdateDatabaseDdlRequest;
  * with these names, this class includes a format method for each type of name, and additionally
  * a parse method to extract the individual identifiers contained within names that are
  * returned.
+ *
+ * @experimental
  */
 class DatabaseAdminClient
 {
@@ -133,6 +137,12 @@ class DatabaseAdminClient
     /**
      * Formats a string containing the fully-qualified path to represent
      * a instance resource.
+     *
+     * @param string $project
+     * @param string $instance
+     *
+     * @return string The formatted instance resource.
+     * @experimental
      */
     public static function formatInstanceName($project, $instance)
     {
@@ -145,6 +155,13 @@ class DatabaseAdminClient
     /**
      * Formats a string containing the fully-qualified path to represent
      * a database resource.
+     *
+     * @param string $project
+     * @param string $instance
+     * @param string $database
+     *
+     * @return string The formatted database resource.
+     * @experimental
      */
     public static function formatDatabaseName($project, $instance, $database)
     {
@@ -158,6 +175,11 @@ class DatabaseAdminClient
     /**
      * Parses the project from the given fully-qualified path which
      * represents a instance resource.
+     *
+     * @param string $instanceName The fully-qualified instance resource.
+     *
+     * @return string The extracted project value.
+     * @experimental
      */
     public static function parseProjectFromInstanceName($instanceName)
     {
@@ -167,6 +189,11 @@ class DatabaseAdminClient
     /**
      * Parses the instance from the given fully-qualified path which
      * represents a instance resource.
+     *
+     * @param string $instanceName The fully-qualified instance resource.
+     *
+     * @return string The extracted instance value.
+     * @experimental
      */
     public static function parseInstanceFromInstanceName($instanceName)
     {
@@ -176,6 +203,11 @@ class DatabaseAdminClient
     /**
      * Parses the project from the given fully-qualified path which
      * represents a database resource.
+     *
+     * @param string $databaseName The fully-qualified database resource.
+     *
+     * @return string The extracted project value.
+     * @experimental
      */
     public static function parseProjectFromDatabaseName($databaseName)
     {
@@ -185,6 +217,11 @@ class DatabaseAdminClient
     /**
      * Parses the instance from the given fully-qualified path which
      * represents a database resource.
+     *
+     * @param string $databaseName The fully-qualified database resource.
+     *
+     * @return string The extracted instance value.
+     * @experimental
      */
     public static function parseInstanceFromDatabaseName($databaseName)
     {
@@ -194,6 +231,11 @@ class DatabaseAdminClient
     /**
      * Parses the database from the given fully-qualified path which
      * represents a database resource.
+     *
+     * @param string $databaseName The fully-qualified database resource.
+     *
+     * @return string The extracted database value.
+     * @experimental
      */
     public static function parseDatabaseFromDatabaseName($databaseName)
     {
@@ -222,10 +264,12 @@ class DatabaseAdminClient
     {
         $listDatabasesPageStreamingDescriptor =
                 new PageStreamingDescriptor([
-                    'requestPageTokenField' => 'page_token',
-                    'requestPageSizeField' => 'page_size',
-                    'responsePageTokenField' => 'next_page_token',
-                    'resourceField' => 'databases',
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getDatabases',
                 ]);
 
         $pageStreamingDescriptors = [
@@ -239,12 +283,12 @@ class DatabaseAdminClient
     {
         return [
             'createDatabase' => [
-                'operationReturnType' => '\google\spanner\admin\database\v1\Database',
-                'metadataReturnType' => '\google\spanner\admin\database\v1\CreateDatabaseMetadata',
+                'operationReturnType' => '\Google\Spanner\Admin\Database\V1\Database',
+                'metadataReturnType' => '\Google\Spanner\Admin\Database\V1\CreateDatabaseMetadata',
             ],
             'updateDatabaseDdl' => [
-                'operationReturnType' => '\google\protobuf\EmptyC',
-                'metadataReturnType' => '\google\spanner\admin\database\v1\UpdateDatabaseDdlMetadata',
+                'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                'metadataReturnType' => '\Google\Spanner\Admin\Database\V1\UpdateDatabaseDdlMetadata',
             ],
         ];
     }
@@ -264,6 +308,7 @@ class DatabaseAdminClient
      * Return an OperationsClient object with the same endpoint as $this.
      *
      * @return \Google\GAX\LongRunning\OperationsClient
+     * @experimental
      */
     public function getOperationsClient()
     {
@@ -281,6 +326,7 @@ class DatabaseAdminClient
      * @param string $methodName    The name of the method used to start the operation
      *
      * @return \Google\GAX\OperationResponse
+     * @experimental
      */
     public function resumeOperation($operationName, $methodName = null)
     {
@@ -325,6 +371,7 @@ class DatabaseAdminClient
      *                              A CredentialsLoader object created using the
      *                              Google\Auth library.
      * }
+     * @experimental
      */
     public function __construct($options = [])
     {
@@ -465,6 +512,7 @@ class DatabaseAdminClient
      * @return \Google\GAX\PagedListResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function listDatabases($parent, $optionalArgs = [])
     {
@@ -544,7 +592,7 @@ class DatabaseAdminClient
      *                                Values are of the form `projects/<project>/instances/<instance>`.
      * @param string $createStatement Required. A `CREATE DATABASE` statement, which specifies the ID of the
      *                                new database.  The database ID must conform to the regular expression
-     *                                `[a-z][a-z0-9_\-]&#42;[a-z0-9]` and be between 2 and 30 characters in length.
+     *                                `[a-z][a-z0-9_\-]*[a-z0-9]` and be between 2 and 30 characters in length.
      * @param array  $optionalArgs    {
      *                                Optional.
      *
@@ -561,9 +609,10 @@ class DatabaseAdminClient
      *          is not set.
      * }
      *
-     * @return \google\longrunning\Operation
+     * @return \Google\Longrunning\Operation
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function createDatabase($parent, $createStatement, $optionalArgs = [])
     {
@@ -571,9 +620,7 @@ class DatabaseAdminClient
         $request->setParent($parent);
         $request->setCreateStatement($createStatement);
         if (isset($optionalArgs['extraStatements'])) {
-            foreach ($optionalArgs['extraStatements'] as $elem) {
-                $request->addExtraStatements($elem);
-            }
+            $request->setExtraStatements($optionalArgs['extraStatements']);
         }
 
         $mergedSettings = $this->defaultCallSettings['createDatabase']->merge(
@@ -619,9 +666,10 @@ class DatabaseAdminClient
      *          is not set.
      * }
      *
-     * @return \google\spanner\admin\database\v1\Database
+     * @return \Google\Spanner\Admin\Database\V1\Database
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function getDatabase($name, $optionalArgs = [])
     {
@@ -708,7 +756,7 @@ class DatabaseAdminClient
      *          [longrunning.Operation][google.longrunning.Operation]: `<database>/operations/<operation_id>`.
      *
      *          `operation_id` should be unique within the database, and must be
-     *          a valid identifier: `[a-z][a-z0-9_]&#42;`. Note that
+     *          a valid identifier: `[a-z][a-z0-9_]*`. Note that
      *          automatically-generated operation IDs always begin with an
      *          underscore. If the named operation already exists,
      *          [UpdateDatabaseDdl][google.spanner.admin.database.v1.DatabaseAdmin.UpdateDatabaseDdl] returns
@@ -721,17 +769,16 @@ class DatabaseAdminClient
      *          is not set.
      * }
      *
-     * @return \google\longrunning\Operation
+     * @return \Google\Longrunning\Operation
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function updateDatabaseDdl($database, $statements, $optionalArgs = [])
     {
         $request = new UpdateDatabaseDdlRequest();
         $request->setDatabase($database);
-        foreach ($statements as $elem) {
-            $request->addStatements($elem);
-        }
+        $request->setStatements($statements);
         if (isset($optionalArgs['operationId'])) {
             $request->setOperationId($optionalArgs['operationId']);
         }
@@ -779,6 +826,7 @@ class DatabaseAdminClient
      * }
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function dropDatabase($database, $optionalArgs = [])
     {
@@ -829,9 +877,10 @@ class DatabaseAdminClient
      *          is not set.
      * }
      *
-     * @return \google\spanner\admin\database\v1\GetDatabaseDdlResponse
+     * @return \Google\Spanner\Admin\Database\V1\GetDatabaseDdlResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function getDatabaseDdl($database, $optionalArgs = [])
     {
@@ -891,9 +940,10 @@ class DatabaseAdminClient
      *          is not set.
      * }
      *
-     * @return \google\iam\v1\Policy
+     * @return \Google\Iam\V1\Policy
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function setIamPolicy($resource, $policy, $optionalArgs = [])
     {
@@ -949,9 +999,10 @@ class DatabaseAdminClient
      *          is not set.
      * }
      *
-     * @return \google\iam\v1\Policy
+     * @return \Google\Iam\V1\Policy
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function getIamPolicy($resource, $optionalArgs = [])
     {
@@ -998,7 +1049,7 @@ class DatabaseAdminClient
      *                               `resource` is usually specified as a path. For example, a Project
      *                               resource is specified as `projects/{project}`.
      * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
-     *                               wildcards (such as '&#42;' or 'storage.&#42;') are not allowed. For more
+     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
      *                               information see
      *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      * @param array    $optionalArgs {
@@ -1012,17 +1063,16 @@ class DatabaseAdminClient
      *          is not set.
      * }
      *
-     * @return \google\iam\v1\TestIamPermissionsResponse
+     * @return \Google\Iam\V1\TestIamPermissionsResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function testIamPermissions($resource, $permissions, $optionalArgs = [])
     {
         $request = new TestIamPermissionsRequest();
         $request->setResource($resource);
-        foreach ($permissions as $elem) {
-            $request->addPermissions($elem);
-        }
+        $request->setPermissions($permissions);
 
         $mergedSettings = $this->defaultCallSettings['testIamPermissions']->merge(
             new CallSettings($optionalArgs)
@@ -1043,6 +1093,8 @@ class DatabaseAdminClient
     /**
      * Initiates an orderly shutdown in which preexisting calls continue but new
      * calls are immediately cancelled.
+     *
+     * @experimental
      */
     public function close()
     {

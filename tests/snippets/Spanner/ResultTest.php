@@ -26,6 +26,7 @@ use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\SpannerClient;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\ValueMapper;
+use Google\Cloud\Tests\GrpcTestTrait;
 use Prophecy\Argument;
 
 /**
@@ -33,11 +34,15 @@ use Prophecy\Argument;
  */
 class ResultTest extends SnippetTestCase
 {
+    use GrpcTestTrait;
+
     private $database;
     private $result;
 
     public function setUp()
     {
+        $this->checkAndSkipGrpcTests();
+
         $result = $this->prophesize(Result::class);
         $database = $this->prophesize(Database::class);
         $result->rows()
@@ -62,10 +67,6 @@ class ResultTest extends SnippetTestCase
 
     public function testClass()
     {
-        if (!extension_loaded('grpc')) {
-            $this->markTestSkipped('Must have the grpc extension installed to run this test.');
-        }
-
         $snippet = $this->snippetFromClass(Result::class);
         $snippet->replace('$database =', '//$database =');
         $snippet->addLocal('database', $this->database);

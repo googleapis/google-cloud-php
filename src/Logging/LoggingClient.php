@@ -46,7 +46,7 @@ use Psr\Cache\CacheItemPoolInterface;
  * Afterwards, please install the following dependencies through composer:
  *
  * ```sh
- * $ composer require google/gax && composer require google/proto-client-php
+ * $ composer require google/gax && composer require google/proto-client
  * ```
  *
  * Please take care in installing the same version of these libraries that are

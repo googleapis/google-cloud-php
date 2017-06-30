@@ -24,6 +24,8 @@
  * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
  * more frequently than those which have been declared beta or 1.0, including changes which break
  * backwards compatibility.
+ *
+ * @experimental
  */
 
 namespace Google\Cloud\Logging\V2;
@@ -35,13 +37,13 @@ use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
-use google\logging\v2\CreateLogMetricRequest;
-use google\logging\v2\DeleteLogMetricRequest;
-use google\logging\v2\GetLogMetricRequest;
-use google\logging\v2\ListLogMetricsRequest;
-use google\logging\v2\LogMetric;
-use google\logging\v2\MetricsServiceV2GrpcClient;
-use google\logging\v2\UpdateLogMetricRequest;
+use Google\Logging\V2\CreateLogMetricRequest;
+use Google\Logging\V2\DeleteLogMetricRequest;
+use Google\Logging\V2\GetLogMetricRequest;
+use Google\Logging\V2\ListLogMetricsRequest;
+use Google\Logging\V2\LogMetric;
+use Google\Logging\V2\MetricsServiceV2GrpcClient;
+use Google\Logging\V2\UpdateLogMetricRequest;
 
 /**
  * Service Description: Service for configuring logs-based metrics.
@@ -79,6 +81,8 @@ use google\logging\v2\UpdateLogMetricRequest;
  * with these names, this class includes a format method for each type of name, and additionally
  * a parse method to extract the individual identifiers contained within names that are
  * returned.
+ *
+ * @experimental
  */
 class MetricsServiceV2Client
 {
@@ -119,6 +123,11 @@ class MetricsServiceV2Client
     /**
      * Formats a string containing the fully-qualified path to represent
      * a project resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project resource.
+     * @experimental
      */
     public static function formatProjectName($project)
     {
@@ -130,6 +139,12 @@ class MetricsServiceV2Client
     /**
      * Formats a string containing the fully-qualified path to represent
      * a metric resource.
+     *
+     * @param string $project
+     * @param string $metric
+     *
+     * @return string The formatted metric resource.
+     * @experimental
      */
     public static function formatMetricName($project, $metric)
     {
@@ -142,6 +157,11 @@ class MetricsServiceV2Client
     /**
      * Parses the project from the given fully-qualified path which
      * represents a project resource.
+     *
+     * @param string $projectName The fully-qualified project resource.
+     *
+     * @return string The extracted project value.
+     * @experimental
      */
     public static function parseProjectFromProjectName($projectName)
     {
@@ -151,6 +171,11 @@ class MetricsServiceV2Client
     /**
      * Parses the project from the given fully-qualified path which
      * represents a metric resource.
+     *
+     * @param string $metricName The fully-qualified metric resource.
+     *
+     * @return string The extracted project value.
+     * @experimental
      */
     public static function parseProjectFromMetricName($metricName)
     {
@@ -160,6 +185,11 @@ class MetricsServiceV2Client
     /**
      * Parses the metric from the given fully-qualified path which
      * represents a metric resource.
+     *
+     * @param string $metricName The fully-qualified metric resource.
+     *
+     * @return string The extracted metric value.
+     * @experimental
      */
     public static function parseMetricFromMetricName($metricName)
     {
@@ -188,10 +218,12 @@ class MetricsServiceV2Client
     {
         $listLogMetricsPageStreamingDescriptor =
                 new PageStreamingDescriptor([
-                    'requestPageTokenField' => 'page_token',
-                    'requestPageSizeField' => 'page_size',
-                    'responsePageTokenField' => 'next_page_token',
-                    'resourceField' => 'metrics',
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getMetrics',
                 ]);
 
         $pageStreamingDescriptors = [
@@ -241,6 +273,7 @@ class MetricsServiceV2Client
      *                              A CredentialsLoader object created using the
      *                              Google\Auth library.
      * }
+     * @experimental
      */
     public function __construct($options = [])
     {
@@ -368,6 +401,7 @@ class MetricsServiceV2Client
      * @return \Google\GAX\PagedListResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function listLogMetrics($parent, $optionalArgs = [])
     {
@@ -424,9 +458,10 @@ class MetricsServiceV2Client
      *          is not set.
      * }
      *
-     * @return \google\logging\v2\LogMetric
+     * @return \Google\Logging\V2\LogMetric
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function getLogMetric($metricName, $optionalArgs = [])
     {
@@ -482,9 +517,10 @@ class MetricsServiceV2Client
      *          is not set.
      * }
      *
-     * @return \google\logging\v2\LogMetric
+     * @return \Google\Logging\V2\LogMetric
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function createLogMetric($parent, $metric, $optionalArgs = [])
     {
@@ -542,9 +578,10 @@ class MetricsServiceV2Client
      *          is not set.
      * }
      *
-     * @return \google\logging\v2\LogMetric
+     * @return \Google\Logging\V2\LogMetric
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function updateLogMetric($metricName, $metric, $optionalArgs = [])
     {
@@ -597,6 +634,7 @@ class MetricsServiceV2Client
      * }
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function deleteLogMetric($metricName, $optionalArgs = [])
     {
@@ -622,6 +660,8 @@ class MetricsServiceV2Client
     /**
      * Initiates an orderly shutdown in which preexisting calls continue but new
      * calls are immediately cancelled.
+     *
+     * @experimental
      */
     public function close()
     {

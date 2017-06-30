@@ -28,6 +28,7 @@ use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\ValueMapper;
+use Google\Cloud\Tests\GrpcTestTrait;
 use Prophecy\Argument;
 
 /**
@@ -35,6 +36,8 @@ use Prophecy\Argument;
  */
 class TransactionTest extends \PHPUnit_Framework_TestCase
 {
+    use GrpcTestTrait;
+
     const TIMESTAMP = '2017-01-09T18:05:22.534799Z';
 
     const PROJECT = 'my-awesome-project';
@@ -53,6 +56,8 @@ class TransactionTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
+        $this->checkAndSkipGrpcTests();
+
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->operation = new Operation($this->connection->reveal(), false);
 

@@ -18,16 +18,21 @@
 namespace Google\Cloud\Tests\Unit\Spanner;
 
 use Google\Cloud\Spanner\KeyRange;
+use Google\Cloud\Tests\GrpcTestTrait;
 
 /**
  * @group spanner
  */
 class KeyRangeTest extends \PHPUnit_Framework_TestCase
 {
+    use GrpcTestTrait;
+
     private $range;
 
     public function setUp()
     {
+        $this->checkAndSkipGrpcTests();
+
         $this->range = new KeyRange;
     }
 

@@ -24,6 +24,8 @@
  * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
  * more frequently than those which have been declared beta or 1.0, including changes which break
  * backwards compatibility.
+ *
+ * @experimental
  */
 
 namespace Google\Cloud\Spanner\Admin\Instance\V1;
@@ -37,22 +39,22 @@ use Google\GAX\LongRunning\OperationsClient;
 use Google\GAX\OperationResponse;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
-use google\iam\v1\GetIamPolicyRequest;
-use google\iam\v1\Policy;
-use google\iam\v1\SetIamPolicyRequest;
-use google\iam\v1\TestIamPermissionsRequest;
-use google\protobuf\FieldMask;
-use google\spanner\admin\instance\v1\CreateInstanceMetadata;
-use google\spanner\admin\instance\v1\CreateInstanceRequest;
-use google\spanner\admin\instance\v1\DeleteInstanceRequest;
-use google\spanner\admin\instance\v1\GetInstanceConfigRequest;
-use google\spanner\admin\instance\v1\GetInstanceRequest;
-use google\spanner\admin\instance\v1\Instance;
-use google\spanner\admin\instance\v1\InstanceAdminGrpcClient;
-use google\spanner\admin\instance\v1\ListInstanceConfigsRequest;
-use google\spanner\admin\instance\v1\ListInstancesRequest;
-use google\spanner\admin\instance\v1\UpdateInstanceMetadata;
-use google\spanner\admin\instance\v1\UpdateInstanceRequest;
+use Google\Iam\V1\GetIamPolicyRequest;
+use Google\Iam\V1\Policy;
+use Google\Iam\V1\SetIamPolicyRequest;
+use Google\Iam\V1\TestIamPermissionsRequest;
+use Google\Protobuf\FieldMask;
+use Google\Spanner\Admin\Instance\V1\CreateInstanceMetadata;
+use Google\Spanner\Admin\Instance\V1\CreateInstanceRequest;
+use Google\Spanner\Admin\Instance\V1\DeleteInstanceRequest;
+use Google\Spanner\Admin\Instance\V1\GetInstanceConfigRequest;
+use Google\Spanner\Admin\Instance\V1\GetInstanceRequest;
+use Google\Spanner\Admin\Instance\V1\Instance;
+use Google\Spanner\Admin\Instance\V1\InstanceAdminGrpcClient;
+use Google\Spanner\Admin\Instance\V1\ListInstanceConfigsRequest;
+use Google\Spanner\Admin\Instance\V1\ListInstancesRequest;
+use Google\Spanner\Admin\Instance\V1\UpdateInstanceMetadata;
+use Google\Spanner\Admin\Instance\V1\UpdateInstanceRequest;
 
 /**
  * Service Description: Cloud Spanner Instance Admin API.
@@ -110,6 +112,8 @@ use google\spanner\admin\instance\v1\UpdateInstanceRequest;
  * with these names, this class includes a format method for each type of name, and additionally
  * a parse method to extract the individual identifiers contained within names that are
  * returned.
+ *
+ * @experimental
  */
 class InstanceAdminClient
 {
@@ -152,6 +156,11 @@ class InstanceAdminClient
     /**
      * Formats a string containing the fully-qualified path to represent
      * a project resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project resource.
+     * @experimental
      */
     public static function formatProjectName($project)
     {
@@ -163,6 +172,12 @@ class InstanceAdminClient
     /**
      * Formats a string containing the fully-qualified path to represent
      * a instance_config resource.
+     *
+     * @param string $project
+     * @param string $instanceConfig
+     *
+     * @return string The formatted instance_config resource.
+     * @experimental
      */
     public static function formatInstanceConfigName($project, $instanceConfig)
     {
@@ -175,6 +190,12 @@ class InstanceAdminClient
     /**
      * Formats a string containing the fully-qualified path to represent
      * a instance resource.
+     *
+     * @param string $project
+     * @param string $instance
+     *
+     * @return string The formatted instance resource.
+     * @experimental
      */
     public static function formatInstanceName($project, $instance)
     {
@@ -187,6 +208,11 @@ class InstanceAdminClient
     /**
      * Parses the project from the given fully-qualified path which
      * represents a project resource.
+     *
+     * @param string $projectName The fully-qualified project resource.
+     *
+     * @return string The extracted project value.
+     * @experimental
      */
     public static function parseProjectFromProjectName($projectName)
     {
@@ -196,6 +222,11 @@ class InstanceAdminClient
     /**
      * Parses the project from the given fully-qualified path which
      * represents a instance_config resource.
+     *
+     * @param string $instanceConfigName The fully-qualified instance_config resource.
+     *
+     * @return string The extracted project value.
+     * @experimental
      */
     public static function parseProjectFromInstanceConfigName($instanceConfigName)
     {
@@ -205,6 +236,11 @@ class InstanceAdminClient
     /**
      * Parses the instance_config from the given fully-qualified path which
      * represents a instance_config resource.
+     *
+     * @param string $instanceConfigName The fully-qualified instance_config resource.
+     *
+     * @return string The extracted instance_config value.
+     * @experimental
      */
     public static function parseInstanceConfigFromInstanceConfigName($instanceConfigName)
     {
@@ -214,6 +250,11 @@ class InstanceAdminClient
     /**
      * Parses the project from the given fully-qualified path which
      * represents a instance resource.
+     *
+     * @param string $instanceName The fully-qualified instance resource.
+     *
+     * @return string The extracted project value.
+     * @experimental
      */
     public static function parseProjectFromInstanceName($instanceName)
     {
@@ -223,6 +264,11 @@ class InstanceAdminClient
     /**
      * Parses the instance from the given fully-qualified path which
      * represents a instance resource.
+     *
+     * @param string $instanceName The fully-qualified instance resource.
+     *
+     * @return string The extracted instance value.
+     * @experimental
      */
     public static function parseInstanceFromInstanceName($instanceName)
     {
@@ -260,17 +306,21 @@ class InstanceAdminClient
     {
         $listInstanceConfigsPageStreamingDescriptor =
                 new PageStreamingDescriptor([
-                    'requestPageTokenField' => 'page_token',
-                    'requestPageSizeField' => 'page_size',
-                    'responsePageTokenField' => 'next_page_token',
-                    'resourceField' => 'instance_configs',
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getInstanceConfigs',
                 ]);
         $listInstancesPageStreamingDescriptor =
                 new PageStreamingDescriptor([
-                    'requestPageTokenField' => 'page_token',
-                    'requestPageSizeField' => 'page_size',
-                    'responsePageTokenField' => 'next_page_token',
-                    'resourceField' => 'instances',
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getInstances',
                 ]);
 
         $pageStreamingDescriptors = [
@@ -285,12 +335,12 @@ class InstanceAdminClient
     {
         return [
             'createInstance' => [
-                'operationReturnType' => '\google\spanner\admin\instance\v1\Instance',
-                'metadataReturnType' => '\google\spanner\admin\instance\v1\CreateInstanceMetadata',
+                'operationReturnType' => '\Google\Spanner\Admin\Instance\V1\Instance',
+                'metadataReturnType' => '\Google\Spanner\Admin\Instance\V1\CreateInstanceMetadata',
             ],
             'updateInstance' => [
-                'operationReturnType' => '\google\spanner\admin\instance\v1\Instance',
-                'metadataReturnType' => '\google\spanner\admin\instance\v1\UpdateInstanceMetadata',
+                'operationReturnType' => '\Google\Spanner\Admin\Instance\V1\Instance',
+                'metadataReturnType' => '\Google\Spanner\Admin\Instance\V1\UpdateInstanceMetadata',
             ],
         ];
     }
@@ -310,6 +360,7 @@ class InstanceAdminClient
      * Return an OperationsClient object with the same endpoint as $this.
      *
      * @return \Google\GAX\LongRunning\OperationsClient
+     * @experimental
      */
     public function getOperationsClient()
     {
@@ -327,6 +378,7 @@ class InstanceAdminClient
      * @param string $methodName    The name of the method used to start the operation
      *
      * @return \Google\GAX\OperationResponse
+     * @experimental
      */
     public function resumeOperation($operationName, $methodName = null)
     {
@@ -371,6 +423,7 @@ class InstanceAdminClient
      *                              A CredentialsLoader object created using the
      *                              Google\Auth library.
      * }
+     * @experimental
      */
     public function __construct($options = [])
     {
@@ -513,6 +566,7 @@ class InstanceAdminClient
      * @return \Google\GAX\PagedListResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function listInstanceConfigs($parent, $optionalArgs = [])
     {
@@ -568,9 +622,10 @@ class InstanceAdminClient
      *          is not set.
      * }
      *
-     * @return \google\spanner\admin\instance\v1\InstanceConfig
+     * @return \Google\Spanner\Admin\Instance\V1\InstanceConfig
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function getInstanceConfig($name, $optionalArgs = [])
     {
@@ -637,20 +692,20 @@ class InstanceAdminClient
      *          An expression for filtering the results of the request. Filter rules are
      *          case insensitive. The fields eligible for filtering are:
      *
-     *            &#42; name
-     *            &#42; display_name
-     *            &#42; labels.key where key is the name of a label
+     *            * name
+     *            * display_name
+     *            * labels.key where key is the name of a label
      *
      *          Some examples of using filters are:
      *
-     *            &#42; name:&#42; --> The instance has a name.
-     *            &#42; name:Howl --> The instance's name contains the string "howl".
-     *            &#42; name:HOWL --> Equivalent to above.
-     *            &#42; NAME:howl --> Equivalent to above.
-     *            &#42; labels.env:&#42; --> The instance has the label "env".
-     *            &#42; labels.env:dev --> The instance has the label "env" and the value of
+     *            * name:* --> The instance has a name.
+     *            * name:Howl --> The instance's name contains the string "howl".
+     *            * name:HOWL --> Equivalent to above.
+     *            * NAME:howl --> Equivalent to above.
+     *            * labels.env:* --> The instance has the label "env".
+     *            * labels.env:dev --> The instance has the label "env" and the value of
      *                                 the label contains the string "dev".
-     *            &#42; name:howl labels.env:dev --> The instance's name contains "howl" and
+     *            * name:howl labels.env:dev --> The instance's name contains "howl" and
      *                                           it has the label "env" with its value
      *                                           containing "dev".
      *     @type \Google\GAX\RetrySettings $retrySettings
@@ -664,6 +719,7 @@ class InstanceAdminClient
      * @return \Google\GAX\PagedListResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function listInstances($parent, $optionalArgs = [])
     {
@@ -722,9 +778,10 @@ class InstanceAdminClient
      *          is not set.
      * }
      *
-     * @return \google\spanner\admin\instance\v1\Instance
+     * @return \Google\Spanner\Admin\Instance\V1\Instance
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function getInstance($name, $optionalArgs = [])
     {
@@ -757,23 +814,23 @@ class InstanceAdminClient
      *
      * Immediately upon completion of this request:
      *
-     *   &#42; The instance is readable via the API, with all requested attributes
+     *   * The instance is readable via the API, with all requested attributes
      *     but no allocated resources. Its state is `CREATING`.
      *
      * Until completion of the returned operation:
      *
-     *   &#42; Cancelling the operation renders the instance immediately unreadable
+     *   * Cancelling the operation renders the instance immediately unreadable
      *     via the API.
-     *   &#42; The instance can be deleted.
-     *   &#42; All other attempts to modify the instance are rejected.
+     *   * The instance can be deleted.
+     *   * All other attempts to modify the instance are rejected.
      *
      * Upon completion of the returned operation:
      *
-     *   &#42; Billing for all successfully-allocated resources begins (some types
+     *   * Billing for all successfully-allocated resources begins (some types
      *     may have lower than the requested levels).
-     *   &#42; Databases can be created in the instance.
-     *   &#42; The instance's allocated resource levels are readable via the API.
-     *   &#42; The instance's state becomes `READY`.
+     *   * Databases can be created in the instance.
+     *   * The instance's allocated resource levels are readable via the API.
+     *   * The instance's state becomes `READY`.
      *
      * The returned [long-running operation][google.longrunning.Operation] will
      * have a name of the format `<instance_name>/operations/<operation_id>` and
@@ -824,7 +881,7 @@ class InstanceAdminClient
      * @param string   $parent       Required. The name of the project in which to create the instance. Values
      *                               are of the form `projects/<project>`.
      * @param string   $instanceId   Required. The ID of the instance to create.  Valid identifiers are of the
-     *                               form `[a-z][-a-z0-9]&#42;[a-z0-9]` and must be between 6 and 30 characters in
+     *                               form `[a-z][-a-z0-9]*[a-z0-9]` and must be between 6 and 30 characters in
      *                               length.
      * @param Instance $instance     Required. The instance to create.  The name may be omitted, but if
      *                               specified must be `<parent>/instances/<instance_id>`.
@@ -839,9 +896,10 @@ class InstanceAdminClient
      *          is not set.
      * }
      *
-     * @return \google\longrunning\Operation
+     * @return \Google\Longrunning\Operation
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function createInstance($parent, $instanceId, $instance, $optionalArgs = [])
     {
@@ -875,27 +933,27 @@ class InstanceAdminClient
      *
      * Immediately upon completion of this request:
      *
-     *   &#42; For resource types for which a decrease in the instance's allocation
+     *   * For resource types for which a decrease in the instance's allocation
      *     has been requested, billing is based on the newly-requested level.
      *
      * Until completion of the returned operation:
      *
-     *   &#42; Cancelling the operation sets its metadata's
+     *   * Cancelling the operation sets its metadata's
      *     [cancel_time][google.spanner.admin.instance.v1.UpdateInstanceMetadata.cancel_time], and begins
      *     restoring resources to their pre-request values. The operation
      *     is guaranteed to succeed at undoing all resource changes,
      *     after which point it terminates with a `CANCELLED` status.
-     *   &#42; All other attempts to modify the instance are rejected.
-     *   &#42; Reading the instance via the API continues to give the pre-request
+     *   * All other attempts to modify the instance are rejected.
+     *   * Reading the instance via the API continues to give the pre-request
      *     resource levels.
      *
      * Upon completion of the returned operation:
      *
-     *   &#42; Billing begins for all successfully-allocated resources (some types
+     *   * Billing begins for all successfully-allocated resources (some types
      *     may have lower than the requested levels).
-     *   &#42; All newly-reserved resources are available for serving the instance's
+     *   * All newly-reserved resources are available for serving the instance's
      *     tables.
-     *   &#42; The instance's new resource levels are readable via the API.
+     *   * The instance's new resource levels are readable via the API.
      *
      * The returned [long-running operation][google.longrunning.Operation] will
      * have a name of the format `<instance_name>/operations/<operation_id>` and
@@ -962,9 +1020,10 @@ class InstanceAdminClient
      *          is not set.
      * }
      *
-     * @return \google\longrunning\Operation
+     * @return \Google\Longrunning\Operation
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function updateInstance($instance, $fieldMask, $optionalArgs = [])
     {
@@ -993,11 +1052,11 @@ class InstanceAdminClient
      *
      * Immediately upon completion of the request:
      *
-     *   &#42; Billing ceases for all of the instance's reserved resources.
+     *   * Billing ceases for all of the instance's reserved resources.
      *
      * Soon afterward:
      *
-     *   &#42; The instance and &#42;all of its databases&#42; immediately and
+     *   * The instance and *all of its databases* immediately and
      *     irrevocably disappear from the API. All data in the databases
      *     is permanently deleted.
      *
@@ -1026,6 +1085,7 @@ class InstanceAdminClient
      * }
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function deleteInstance($name, $optionalArgs = [])
     {
@@ -1085,9 +1145,10 @@ class InstanceAdminClient
      *          is not set.
      * }
      *
-     * @return \google\iam\v1\Policy
+     * @return \Google\Iam\V1\Policy
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function setIamPolicy($resource, $policy, $optionalArgs = [])
     {
@@ -1143,9 +1204,10 @@ class InstanceAdminClient
      *          is not set.
      * }
      *
-     * @return \google\iam\v1\Policy
+     * @return \Google\Iam\V1\Policy
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function getIamPolicy($resource, $optionalArgs = [])
     {
@@ -1192,7 +1254,7 @@ class InstanceAdminClient
      *                               `resource` is usually specified as a path. For example, a Project
      *                               resource is specified as `projects/{project}`.
      * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
-     *                               wildcards (such as '&#42;' or 'storage.&#42;') are not allowed. For more
+     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
      *                               information see
      *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      * @param array    $optionalArgs {
@@ -1206,17 +1268,16 @@ class InstanceAdminClient
      *          is not set.
      * }
      *
-     * @return \google\iam\v1\TestIamPermissionsResponse
+     * @return \Google\Iam\V1\TestIamPermissionsResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function testIamPermissions($resource, $permissions, $optionalArgs = [])
     {
         $request = new TestIamPermissionsRequest();
         $request->setResource($resource);
-        foreach ($permissions as $elem) {
-            $request->addPermissions($elem);
-        }
+        $request->setPermissions($permissions);
 
         $mergedSettings = $this->defaultCallSettings['testIamPermissions']->merge(
             new CallSettings($optionalArgs)
@@ -1237,6 +1298,8 @@ class InstanceAdminClient
     /**
      * Initiates an orderly shutdown in which preexisting calls continue but new
      * calls are immediately cancelled.
+     *
+     * @experimental
      */
     public function close()
     {

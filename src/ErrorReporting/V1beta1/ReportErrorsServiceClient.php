@@ -24,19 +24,21 @@
  * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
  * more frequently than those which have been declared beta or 1.0, including changes which break
  * backwards compatibility.
+ *
+ * @experimental
  */
 
 namespace Google\Cloud\ErrorReporting\V1beta1;
 
+use Google\Devtools\Clouderrorreporting\V1beta1\ReportErrorEventRequest;
+use Google\Devtools\Clouderrorreporting\V1beta1\ReportErrorsServiceGrpcClient;
+use Google\Devtools\Clouderrorreporting\V1beta1\ReportedErrorEvent;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
 use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PathTemplate;
-use google\devtools\clouderrorreporting\v1beta1\ReportErrorEventRequest;
-use google\devtools\clouderrorreporting\v1beta1\ReportErrorsServiceGrpcClient;
-use google\devtools\clouderrorreporting\v1beta1\ReportedErrorEvent;
 
 /**
  * Service Description: An API for reporting error events.
@@ -63,6 +65,8 @@ use google\devtools\clouderrorreporting\v1beta1\ReportedErrorEvent;
  * with these names, this class includes a format method for each type of name, and additionally
  * a parse method to extract the individual identifiers contained within names that are
  * returned.
+ *
+ * @experimental
  */
 class ReportErrorsServiceClient
 {
@@ -102,6 +106,11 @@ class ReportErrorsServiceClient
     /**
      * Formats a string containing the fully-qualified path to represent
      * a project resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project resource.
+     * @experimental
      */
     public static function formatProjectName($project)
     {
@@ -113,6 +122,11 @@ class ReportErrorsServiceClient
     /**
      * Parses the project from the given fully-qualified path which
      * represents a project resource.
+     *
+     * @param string $projectName The fully-qualified project resource.
+     *
+     * @return string The extracted project value.
+     * @experimental
      */
     public static function parseProjectFromProjectName($projectName)
     {
@@ -168,6 +182,7 @@ class ReportErrorsServiceClient
      *                              A CredentialsLoader object created using the
      *                              Google\Auth library.
      * }
+     * @experimental
      */
     public function __construct($options = [])
     {
@@ -269,9 +284,10 @@ class ReportErrorsServiceClient
      *          is not set.
      * }
      *
-     * @return \google\devtools\clouderrorreporting\v1beta1\ReportErrorEventResponse
+     * @return \Google\Devtools\Clouderrorreporting\V1beta1\ReportErrorEventResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function reportErrorEvent($projectName, $event, $optionalArgs = [])
     {
@@ -298,6 +314,8 @@ class ReportErrorsServiceClient
     /**
      * Initiates an orderly shutdown in which preexisting calls continue but new
      * calls are immediately cancelled.
+     *
+     * @experimental
      */
     public function close()
     {

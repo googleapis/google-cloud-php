@@ -33,6 +33,7 @@ use Google\Cloud\Spanner\KeyRange;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\SpannerClient;
 use Google\Cloud\Spanner\Timestamp;
+use Google\Cloud\Tests\GrpcTestTrait;
 use Prophecy\Argument;
 
 /**
@@ -40,6 +41,8 @@ use Prophecy\Argument;
  */
 class SpannerClientTest extends \PHPUnit_Framework_TestCase
 {
+    use GrpcTestTrait;
+
     const PROJECT = 'my-awesome-project';
     const INSTANCE = 'inst';
     const DATABASE = 'db';
@@ -49,9 +52,7 @@ class SpannerClientTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        if (!extension_loaded('grpc')) {
-            $this->markTestSkipped('Must have the grpc extension installed to run this test.');
-        }
+        $this->checkAndSkipGrpcTests();
 
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->client = \Google\Cloud\Dev\stub(SpannerClient::class, [

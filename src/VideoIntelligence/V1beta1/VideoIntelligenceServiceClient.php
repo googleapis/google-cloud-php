@@ -24,10 +24,18 @@
  * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
  * more frequently than those which have been declared beta or 1.0, including changes which break
  * backwards compatibility.
+ *
+ * @experimental
  */
 
 namespace Google\Cloud\VideoIntelligence\V1beta1;
 
+use Google\Cloud\Videointelligence\V1beta1\AnnotateVideoProgress;
+use Google\Cloud\Videointelligence\V1beta1\AnnotateVideoRequest;
+use Google\Cloud\Videointelligence\V1beta1\AnnotateVideoResponse;
+use Google\Cloud\Videointelligence\V1beta1\Feature;
+use Google\Cloud\Videointelligence\V1beta1\VideoContext;
+use Google\Cloud\Videointelligence\V1beta1\VideoIntelligenceServiceGrpcClient;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
@@ -35,12 +43,6 @@ use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\LongRunning\OperationsClient;
 use Google\GAX\OperationResponse;
-use google\cloud\videointelligence\v1beta1\AnnotateVideoProgress;
-use google\cloud\videointelligence\v1beta1\AnnotateVideoRequest;
-use google\cloud\videointelligence\v1beta1\AnnotateVideoResponse;
-use google\cloud\videointelligence\v1beta1\Feature;
-use google\cloud\videointelligence\v1beta1\VideoContext;
-use google\cloud\videointelligence\v1beta1\VideoIntelligenceServiceGrpcClient;
 
 /**
  * Service Description: Service that implements Google Cloud Video Intelligence API.
@@ -88,10 +90,7 @@ use google\cloud\videointelligence\v1beta1\VideoIntelligenceServiceGrpcClient;
  * }
  * ```
  *
- * Many parameters require resource names to be formatted in a particular way. To assist
- * with these names, this class includes a format method for each type of name, and additionally
- * a parse method to extract the individual identifiers contained within names that are
- * returned.
+ * @experimental
  */
 class VideoIntelligenceServiceClient
 {
@@ -131,8 +130,8 @@ class VideoIntelligenceServiceClient
     {
         return [
             'annotateVideo' => [
-                'operationReturnType' => '\google\cloud\videointelligence\v1beta1\AnnotateVideoResponse',
-                'metadataReturnType' => '\google\cloud\videointelligence\v1beta1\AnnotateVideoProgress',
+                'operationReturnType' => '\Google\Cloud\Videointelligence\V1beta1\AnnotateVideoResponse',
+                'metadataReturnType' => '\Google\Cloud\Videointelligence\V1beta1\AnnotateVideoProgress',
             ],
         ];
     }
@@ -152,6 +151,7 @@ class VideoIntelligenceServiceClient
      * Return an OperationsClient object with the same endpoint as $this.
      *
      * @return \Google\GAX\LongRunning\OperationsClient
+     * @experimental
      */
     public function getOperationsClient()
     {
@@ -169,6 +169,7 @@ class VideoIntelligenceServiceClient
      * @param string $methodName    The name of the method used to start the operation
      *
      * @return \Google\GAX\OperationResponse
+     * @experimental
      */
     public function resumeOperation($operationName, $methodName = null)
     {
@@ -213,6 +214,7 @@ class VideoIntelligenceServiceClient
      *                              A CredentialsLoader object created using the
      *                              Google\Auth library.
      * }
+     * @experimental
      */
     public function __construct($options = [])
     {
@@ -332,20 +334,20 @@ class VideoIntelligenceServiceClient
      * }
      * ```
      *
-     * @param string    $inputUri     Input video location. Currently, only
-     *                                [Google Cloud Storage](https://cloud.google.com/storage/) URIs are
-     *                                supported, which must be specified in the following format:
-     *                                `gs://bucket-id/object-id` (other URI formats return
-     *                                [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT]). For more information, see
-     *                                [Request URIs](https://cloud.google.com/storage/docs/reference-uris).
-     *                                A video URI may include wildcards in `object-id`, and thus identify
-     *                                multiple videos. Supported wildcards: '*' to match 0 or more characters;
-     *                                '?' to match 1 character. If unset, the input video should be embedded
-     *                                in the request as `input_content`. If set, `input_content` should be unset.
-     * @param int[]     $features     Requested video annotation features. For allowed values, use constants defined on
-     *                                {@see google\cloud\videointelligence\v1beta1\Feature}.
-     * @param array     $optionalArgs {
-     *                                Optional.
+     * @param string $inputUri     Input video location. Currently, only
+     *                             [Google Cloud Storage](https://cloud.google.com/storage/) URIs are
+     *                             supported, which must be specified in the following format:
+     *                             `gs://bucket-id/object-id` (other URI formats return
+     *                             [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT]). For more information, see
+     *                             [Request URIs](https://cloud.google.com/storage/docs/reference-uris).
+     *                             A video URI may include wildcards in `object-id`, and thus identify
+     *                             multiple videos. Supported wildcards: '*' to match 0 or more characters;
+     *                             '?' to match 1 character. If unset, the input video should be embedded
+     *                             in the request as `input_content`. If set, `input_content` should be unset.
+     * @param int[]  $features     Requested video annotation features.
+     *                             For allowed values, use constants defined on {@see \Google\Cloud\Videointelligence\V1beta1\Feature}
+     * @param array  $optionalArgs {
+     *                             Optional.
      *
      *     @type string $inputContent
      *          The video data bytes. Encoding: base64. If unset, the input video(s)
@@ -371,17 +373,16 @@ class VideoIntelligenceServiceClient
      *          is not set.
      * }
      *
-     * @return \google\longrunning\Operation
+     * @return \Google\Longrunning\Operation
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function annotateVideo($inputUri, $features, $optionalArgs = [])
     {
         $request = new AnnotateVideoRequest();
         $request->setInputUri($inputUri);
-        foreach ($features as $elem) {
-            $request->addFeatures($elem);
-        }
+        $request->setFeatures($features);
         if (isset($optionalArgs['inputContent'])) {
             $request->setInputContent($optionalArgs['inputContent']);
         }
@@ -414,6 +415,8 @@ class VideoIntelligenceServiceClient
     /**
      * Initiates an orderly shutdown in which preexisting calls continue but new
      * calls are immediately cancelled.
+     *
+     * @experimental
      */
     public function close()
     {

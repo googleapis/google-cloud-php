@@ -21,6 +21,7 @@ use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\InstanceConfiguration;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
+use Google\Cloud\Tests\GrpcTestTrait;
 use Prophecy\Argument;
 
 /**
@@ -29,6 +30,8 @@ use Prophecy\Argument;
  */
 class InstanceConfigurationTest extends \PHPUnit_Framework_TestCase
 {
+    use GrpcTestTrait;
+
     const PROJECT_ID = 'test-project';
     const NAME = 'test-config';
 
@@ -37,6 +40,8 @@ class InstanceConfigurationTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
+        $this->checkAndSkipGrpcTests();
+
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->configuration = \Google\Cloud\Dev\stub(InstanceConfiguration::class, [
             $this->connection->reveal(),

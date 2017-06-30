@@ -31,9 +31,9 @@ use Google\Cloud\Spanner\Connection\IamDatabase;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\Transaction;
-use Google\Cloud\Spanner\V1\SpannerClient as GrpcSpannerClient;
+use Google\Cloud\Spanner\V1\SpannerClient as GapicSpannerClient;
 use Google\GAX\ValidationException;
-use google\spanner\v1\TypeCode;
+use Google\Spanner\V1\TypeCode;
 
 /**
  * Represents a Cloud Spanner Database.
@@ -99,15 +99,15 @@ class Database
 
     const MAX_RETRIES = 10;
 
-    const TYPE_BOOL = TypeCode::TYPE_BOOL;
-    const TYPE_INT64 = TypeCode::TYPE_INT64;
-    const TYPE_FLOAT64 = TypeCode::TYPE_FLOAT64;
-    const TYPE_TIMESTAMP = TypeCode::TYPE_TIMESTAMP;
-    const TYPE_DATE = TypeCode::TYPE_DATE;
-    const TYPE_STRING = TypeCode::TYPE_STRING;
-    const TYPE_BYTES = TypeCode::TYPE_BYTES;
-    const TYPE_ARRAY = TypeCode::TYPE_ARRAY;
-    const TYPE_STRUCT = TypeCode::TYPE_STRUCT;
+    const TYPE_BOOL = TypeCode::BOOL;
+    const TYPE_INT64 = TypeCode::INT64;
+    const TYPE_FLOAT64 = TypeCode::FLOAT64;
+    const TYPE_TIMESTAMP = TypeCode::TIMESTAMP;
+    const TYPE_DATE = TypeCode::DATE;
+    const TYPE_STRING = TypeCode::STRING;
+    const TYPE_BYTES = TypeCode::BYTES;
+    const TYPE_ARRAY = TypeCode::PBARRAY;
+    const TYPE_STRUCT = TypeCode::STRUCT;
 
     /**
      * @var ConnectionInterface
@@ -1433,9 +1433,9 @@ class Database
         return new Session(
             $this->connection,
             $this->projectId,
-            GrpcSpannerClient::parseInstanceFromSessionName($name),
-            GrpcSpannerClient::parseDatabaseFromSessionName($name),
-            GrpcSpannerClient::parseSessionFromSessionName($name)
+            GapicSpannerClient::parseInstanceFromSessionName($name),
+            GapicSpannerClient::parseDatabaseFromSessionName($name),
+            GapicSpannerClient::parseSessionFromSessionName($name)
         );
     }
 
@@ -1517,7 +1517,7 @@ class Database
         $instance = InstanceAdminClient::parseInstanceFromInstanceName($this->instance->name());
 
         try {
-            return GrpcSpannerClient::formatDatabaseName(
+            return GapicSpannerClient::formatDatabaseName(
                 $this->projectId,
                 $instance,
                 $name
