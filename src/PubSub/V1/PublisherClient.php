@@ -24,6 +24,8 @@
  * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
  * more frequently than those which have been declared beta or 1.0, including changes which break
  * backwards compatibility.
+ *
+ * @experimental
  */
 
 namespace Google\Cloud\PubSub\V1;
@@ -74,6 +76,8 @@ use google\pubsub\v1\Topic;
  * with these names, this class includes a format method for each type of name, and additionally
  * a parse method to extract the individual identifiers contained within names that are
  * returned.
+ *
+ * @experimental
  */
 class PublisherClient
 {
@@ -115,6 +119,11 @@ class PublisherClient
     /**
      * Formats a string containing the fully-qualified path to represent
      * a project resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project resource.
+     * @experimental
      */
     public static function formatProjectName($project)
     {
@@ -126,6 +135,12 @@ class PublisherClient
     /**
      * Formats a string containing the fully-qualified path to represent
      * a topic resource.
+     *
+     * @param string $project
+     * @param string $topic
+     *
+     * @return string The formatted topic resource.
+     * @experimental
      */
     public static function formatTopicName($project, $topic)
     {
@@ -138,6 +153,11 @@ class PublisherClient
     /**
      * Parses the project from the given fully-qualified path which
      * represents a project resource.
+     *
+     * @param string $projectName The fully-qualified project resource.
+     *
+     * @return string The extracted project value.
+     * @experimental
      */
     public static function parseProjectFromProjectName($projectName)
     {
@@ -147,6 +167,11 @@ class PublisherClient
     /**
      * Parses the project from the given fully-qualified path which
      * represents a topic resource.
+     *
+     * @param string $topicName The fully-qualified topic resource.
+     *
+     * @return string The extracted project value.
+     * @experimental
      */
     public static function parseProjectFromTopicName($topicName)
     {
@@ -156,6 +181,11 @@ class PublisherClient
     /**
      * Parses the topic from the given fully-qualified path which
      * represents a topic resource.
+     *
+     * @param string $topicName The fully-qualified topic resource.
+     *
+     * @return string The extracted topic value.
+     * @experimental
      */
     public static function parseTopicFromTopicName($topicName)
     {
@@ -245,6 +275,7 @@ class PublisherClient
      *                              A CredentialsLoader object created using the
      *                              Google\Auth library.
      * }
+     * @experimental
      */
     public function __construct($options = [])
     {
@@ -367,6 +398,7 @@ class PublisherClient
      * @return \google\pubsub\v1\Topic
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function createTopic($name, $optionalArgs = [])
     {
@@ -426,6 +458,7 @@ class PublisherClient
      * @return \google\pubsub\v1\PublishResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function publish($topic, $messages, $optionalArgs = [])
     {
@@ -481,6 +514,7 @@ class PublisherClient
      * @return \google\pubsub\v1\Topic
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function getTopic($topic, $optionalArgs = [])
     {
@@ -554,6 +588,7 @@ class PublisherClient
      * @return \Google\GAX\PagedListResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function listTopics($project, $optionalArgs = [])
     {
@@ -633,6 +668,7 @@ class PublisherClient
      * @return \Google\GAX\PagedListResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function listTopicSubscriptions($topic, $optionalArgs = [])
     {
@@ -693,6 +729,7 @@ class PublisherClient
      * }
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function deleteTopic($topic, $optionalArgs = [])
     {
@@ -752,6 +789,7 @@ class PublisherClient
      * @return \google\iam\v1\Policy
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function setIamPolicy($resource, $policy, $optionalArgs = [])
     {
@@ -808,6 +846,7 @@ class PublisherClient
      * @return \google\iam\v1\Policy
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function getIamPolicy($resource, $optionalArgs = [])
     {
@@ -851,7 +890,7 @@ class PublisherClient
      *                               `resource` is usually specified as a path. For example, a Project
      *                               resource is specified as `projects/{project}`.
      * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
-     *                               wildcards (such as '&#42;' or 'storage.&#42;') are not allowed. For more
+     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
      *                               information see
      *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      * @param array    $optionalArgs {
@@ -868,6 +907,7 @@ class PublisherClient
      * @return \google\iam\v1\TestIamPermissionsResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function testIamPermissions($resource, $permissions, $optionalArgs = [])
     {
@@ -896,6 +936,8 @@ class PublisherClient
     /**
      * Initiates an orderly shutdown in which preexisting calls continue but new
      * calls are immediately cancelled.
+     *
+     * @experimental
      */
     public function close()
     {

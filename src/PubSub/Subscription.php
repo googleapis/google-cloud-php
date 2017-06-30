@@ -612,6 +612,8 @@ class Subscription
      *
      * @param Timestamp $timestamp The time to seek to.
      * @return void
+     * @experimental
+     * @whitelisted
      */
     public function seekToTime(Timestamp $timestamp)
     {
@@ -637,6 +639,8 @@ class Subscription
      *
      * @param Snapshot $snapshot The snapshot to seek to.
      * @return void
+     * @experimental
+     * @whitelisted
      */
     public function seekToSnapshot(Snapshot $snapshot)
     {

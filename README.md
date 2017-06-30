@@ -576,7 +576,10 @@ Please note it is currently under active development. Any release versioned
 
 **GA**: Libraries defined at a GA quality level are stable, and will not
 introduce backwards-incompatible changes in any minor or patch releases. We will
-address issues and requests with the highest priority.
+address issues and requests with the highest priority. Note that classes and
+methods within a GA library that are marked with the `@experimental` annotation
+are not considered stable, and are subject to backwards-incompatible changes
+(see [Experimental Features](#experimental-features)).
 
 **Beta**: Libraries defined at a Beta quality level are expected to be mostly
 stable and we're working towards their release candidate. We will address issues
@@ -584,6 +587,39 @@ and requests with a higher priority.
 
 **Alpha**: Libraries defined at an Alpha quality level are still a
 work-in-progress and are more likely to get backwards-incompatible updates.
+
+## Experimental Features
+
+This library follows Semantic Versioning, meaning that backwards-incompatible
+changes will not be introduced into any libraries released as GA (see
+[Versioning](#versioning)).
+
+However, sometimes new features need to be introduced into a library that has
+already declared GA, and these new features may not be ready to make the same
+guarantee of stability as the rest of the library.
+
+In this case, features can be marked as **experimental**. Classes and methods
+for experimental features will be marked with the `@experimental` annotation.
+
+Once an experimental feature is ready to be declared stable, the `@experimental`
+annotations will be removed, and a note will be made in the release documentation.
+
+This use of experimental features is modeled on [Symfony Experimental Features](
+http://symfony.com/doc/current/contributing/code/experimental.html).
+
+## Whitelisted Features
+
+Sometimes Google Cloud APIs expose methods that are protected by a whitelist,
+meaning that they are not available to all projects. Often this is because a
+whitelisted feature is under development, and not yet ready to be made generally
+available.
+
+In such cases, client libraries may contain features, such as methods or optional
+arguments, that will not work correctly for projects that are not whitelisted.
+These features will be documented as being under whitelist, and marked with the
+`@whitelisted` annotation. Whitelisted features should be considered experimental,
+and must also be marked with the @experimental annotation (see [Experimental
+Features](#experimental-features)).
 
 ## Contributing
 
