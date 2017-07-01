@@ -112,13 +112,19 @@ trait ClientTrait
 
         if ($config['keyFilePath']) {
             if (!file_exists($config['keyFilePath'])) {
-                throw new GoogleException('Given keyfile path does not exist');
+                throw new GoogleException(sprintf(
+                    'Given keyfile path %s does not exist',
+                    $config['keyFilePath']
+                ));
             }
 
             try {
                 $keyFileData = $this->jsonDecode(file_get_contents($config['keyFilePath']), true);
             } catch (\InvalidArgumentException $ex) {
-                throw new GoogleException('Given keyfile was invalid');
+                throw new GoogleException(sprintf(
+                    'Given keyfile at path %swas invalid',
+                    $config['keyFilePath']
+                ));
             }
 
             return $keyFileData;
@@ -161,7 +167,7 @@ trait ClientTrait
         if (false !== $projectFromEnv = getenv('GCLOUD_PROJECT')) {
             return $projectFromEnv;
         }
-        
+
         if ($this->onGce($config['httpHandler'])) {
             $metadata = $this->getMetaData();
             $projectId = $metadata->getProjectId();

@@ -18,7 +18,7 @@
 namespace Google\Cloud\Tests\System\BigQuery;
 
 use Google\Cloud\BigQuery\BigQueryClient;
-use Google\Cloud\Core\ExponentialBackoff;
+use Google\Cloud\Dev\DeletionQueue;
 use Google\Cloud\Storage\StorageClient;
 
 class BigQueryTestCase extends \PHPUnit_Framework_TestCase
@@ -28,7 +28,7 @@ class BigQueryTestCase extends \PHPUnit_Framework_TestCase
     protected static $bucket;
     protected static $client;
     protected static $dataset;
-    protected static $deletionQueue = [];
+    protected static $deletionQueue;
     protected static $table;
     private static $hasSetUp = false;
 
@@ -37,6 +37,8 @@ class BigQueryTestCase extends \PHPUnit_Framework_TestCase
         if (self::$hasSetUp) {
             return;
         }
+
+        self::$deletionQueue = new DeletionQueue;
 
         $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
         $schema = json_decode(file_get_contents(__DIR__ . '/../data/table-schema.json'), true);
@@ -61,17 +63,11 @@ class BigQueryTestCase extends \PHPUnit_Framework_TestCase
             return;
         }
 
-        self::$deletionQueue[] = self::$bucket;
-        self::$deletionQueue[] = self::$table;
-        self::$deletionQueue[] = self::$dataset;
+        self::$deletionQueue->add(self::$bucket);
+        self::$deletionQueue->add(self::$table);
+        self::$deletionQueue->add(self::$dataset);
 
-        $backoff = new ExponentialBackoff(8);
-
-        foreach (self::$deletionQueue as $item) {
-            $backoff->execute(function () use ($item) {
-                $item->delete();
-            });
-        }
+        self::$deletionQueue->process();
     }
 }
 

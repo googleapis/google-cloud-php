@@ -129,6 +129,7 @@ class BatchRunnerTest extends \PHPUnit_Framework_TestCase
 
     public function testSubmit()
     {
+        ob_start();
         $this->runner->submitItem('batch-daemon-system-test', 'apple');
         // It should be still in the buffer.
         $this->assertEmpty($this->getResult());
@@ -164,5 +165,6 @@ class BatchRunnerTest extends \PHPUnit_Framework_TestCase
         }
         $this->assertResultContains('BANANA');
         $this->assertResultContains('LEMON');
+        ob_end_clean();
     }
 }

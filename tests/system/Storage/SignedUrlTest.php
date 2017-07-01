@@ -38,7 +38,6 @@ class SignedUrlTest extends StorageTestCase
     public function testSignedUrl()
     {
         $obj = $this->createFile();
-        self::$deletionQueue[] = $obj;
 
         $ts = new Timestamp(new \DateTime('tomorrow'));
         $url = $obj->signedUrl($ts);
@@ -65,7 +64,6 @@ class SignedUrlTest extends StorageTestCase
     public function testSignedUrlDelete()
     {
         $obj = $this->createFile();
-        self::$deletionQueue[] = $obj;
 
         $ts = new Timestamp(new \DateTime('tomorrow'));
         $url = $obj->signedUrl($ts, [

@@ -18,9 +18,13 @@
 namespace Google\Cloud\Tests\System\Storage;
 
 use Google\Cloud\Core\Exception\NotFoundException;
-use Google\Cloud\Core\ExponentialBackoff;
+use Google\Cloud\Dev\DeletionQueue;
 use Google\Cloud\Storage\StorageClient;
 
+/**
+ * Refer to README.md in this directory for some important information
+ * regarding resource management in the storage system test suite.
+ */
 class StorageTestCase extends \PHPUnit_Framework_TestCase
 {
     const TESTING_PREFIX = 'gcloud_testing_';
@@ -28,7 +32,7 @@ class StorageTestCase extends \PHPUnit_Framework_TestCase
 
     protected static $bucket;
     protected static $client;
-    protected static $deletionQueue = [];
+    protected static $deletionQueue;
     protected static $object;
     private static $hasSetUp = false;
 
@@ -38,12 +42,17 @@ class StorageTestCase extends \PHPUnit_Framework_TestCase
             return;
         }
 
+        self::$deletionQueue = new DeletionQueue;
+
         self::$client = new StorageClient([
             'keyFilePath' => getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH')
         ]);
+
         $bucket = getenv('BUCKET') ?: uniqid(self::TESTING_PREFIX);
-        self::$bucket = self::$client->createBucket($bucket);
+
+        self::$bucket = self::createBucket(self::$client, $bucket);
         self::$object = self::$bucket->upload('somedata', ['name' => uniqid(self::TESTING_PREFIX)]);
+
         self::$hasSetUp = true;
     }
 
@@ -53,17 +62,24 @@ class StorageTestCase extends \PHPUnit_Framework_TestCase
             return;
         }
 
-        self::$deletionQueue[] = self::$object;
-        self::$deletionQueue[] = self::$bucket;
+        self::$deletionQueue->add(self::$object);
+        self::$deletionQueue->add(self::$bucket);
 
-        $backoff = new ExponentialBackoff(8);
+        self::$deletionQueue->process();
+    }
 
-        foreach (self::$deletionQueue as $item) {
-            $backoff->execute(function () use ($item) {
-                try {
-                    $item->delete();
-                } catch (NotFoundException $e) {}
-            });
-        }
+    protected static function createBucket(StorageClient $client, $bucketName, array $options = [])
+    {
+        $bucket = $client->createBucket($bucketName, $options);
+
+        self::$deletionQueue->add(function () use ($bucket) {
+            foreach ($bucket->objects() as $object) {
+                $object->delete();
+            }
+
+            $bucket->delete();
+        });
+
+        return $bucket;
     }
 }

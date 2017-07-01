@@ -21,6 +21,7 @@ use Psr\Http\Message\StreamInterface;
 
 /**
  * @group storage
+ * @group storage-object
  */
 class ManageObjectsTest extends StorageTestCase
 {
@@ -33,7 +34,7 @@ class ManageObjectsTest extends StorageTestCase
         ];
 
         foreach ($objectsToCreate as $objectToCreate) {
-            self::$deletionQueue[] = self::$bucket->upload('somedata', ['name' => $objectToCreate]);
+            self::$bucket->upload('somedata', ['name' => $objectToCreate]);
         }
 
         $objects = self::$bucket->objects(['prefix' => self::TESTING_PREFIX]);
@@ -99,7 +100,6 @@ class ManageObjectsTest extends StorageTestCase
      */
     public function testComposeObjects($object)
     {
-        self::$deletionQueue[] = $object;
         $expectedContent = $object->downloadAsString();
         $expectedContent .= self::$object->downloadAsString();
         $name = uniqid(self::TESTING_PREFIX) . '.txt';
@@ -107,7 +107,6 @@ class ManageObjectsTest extends StorageTestCase
             [$object, self::$object],
             $name
         );
-        self::$deletionQueue[] = $composedObject;
 
         $this->assertEquals($name, $composedObject->name());
         $this->assertEquals($expectedContent, $composedObject->downloadAsString());
@@ -122,7 +121,6 @@ class ManageObjectsTest extends StorageTestCase
             'encryptionKey' => $key
         ];
         $object = self::$bucket->upload($data, $options);
-        self::$deletionQueue[] = $object;
 
         $dkey = base64_encode(openssl_random_pseudo_bytes(32));
         $dsha = base64_encode(hash('SHA256', base64_decode($dkey), true));

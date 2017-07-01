@@ -21,6 +21,7 @@ use Google\Cloud\Core\ExponentialBackoff;
 
 /**
  * @group bigquery
+ * @group bigquery-table
  */
 class ManageTablesTest extends BigQueryTestCase
 {
@@ -33,7 +34,7 @@ class ManageTablesTest extends BigQueryTestCase
         ];
 
         foreach ($tablesToCreate as $tableToCreate) {
-            self::$deletionQueue[] = self::$dataset->createTable($tableToCreate);
+            self::$deletionQueue->add(self::$dataset->createTable($tableToCreate));
         }
 
         $tables = self::$dataset->tables();
@@ -59,7 +60,7 @@ class ManageTablesTest extends BigQueryTestCase
         $this->assertFalse(self::$dataset->table($id)->exists());
 
         $table = self::$dataset->createTable($id, $options);
-        self::$deletionQueue[] = $table;
+        self::$deletionQueue->add($table);
 
         $this->assertTrue(self::$dataset->table($id)->exists());
         $this->assertEquals($id, $table->id());
@@ -96,7 +97,7 @@ class ManageTablesTest extends BigQueryTestCase
         $object = self::$bucket->object(
             uniqid(self::TESTING_PREFIX)
         );
-        self::$deletionQueue[] = $object;
+        self::$deletionQueue->add($object);
         $job = self::$table->export($object, [
             'jobConfig' => [
                 'destinationFormat' => 'NEWLINE_DELIMITED_JSON'

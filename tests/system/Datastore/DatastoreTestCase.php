@@ -19,6 +19,7 @@ namespace Google\Cloud\Tests\System\Datastore;
 
 use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\Datastore\DatastoreClient;
+use Google\Cloud\Dev\DeletionQueue;
 
 class DatastoreTestCase extends \PHPUnit_Framework_TestCase
 {
@@ -26,7 +27,7 @@ class DatastoreTestCase extends \PHPUnit_Framework_TestCase
 
     protected static $client;
     protected static $returnInt64AsObjectClient;
-    protected static $deletionQueue = [];
+    protected static $deletionQueue;
     private static $hasSetUp = false;
 
     public static function setUpBeforeClass()
@@ -34,6 +35,8 @@ class DatastoreTestCase extends \PHPUnit_Framework_TestCase
         if (self::$hasSetUp) {
             return;
         }
+
+        self::$deletionQueue = new DeletionQueue(false);
 
         $config = [
             'keyFilePath' => getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH'),
@@ -55,8 +58,11 @@ class DatastoreTestCase extends \PHPUnit_Framework_TestCase
 
         $backoff = new ExponentialBackoff(8);
         $transaction = self::$client->transaction();
-        $backoff->execute(function () use ($transaction) {
-            $transaction->deleteBatch(self::$deletionQueue);
+
+        self::$deletionQueue->process(function ($items) use ($backoff, $transaction) {
+            $backoff->execute(function() use ($items, $transaction) {
+                $transaction->deleteBatch($items);
+            });
         });
     }
 }

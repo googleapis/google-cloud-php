@@ -46,7 +46,7 @@ class RequesterPaysTest extends StorageTestCase
         $client = self::$client;
 
         self::$bucketName = uniqid(self::TESTING_PREFIX);
-        self::$ownerBucketInstance = $client->createBucket(self::$bucketName, [
+        self::$ownerBucketInstance = self::createBucket($client, self::$bucketName, [
             'billing' => ['requesterPays' => true]
         ]);
 
@@ -57,10 +57,6 @@ class RequesterPaysTest extends StorageTestCase
         self::$object2 = self::$ownerBucketInstance->upload(
             fopen(self::$path, 'r')
         );
-
-        self::$deletionQueue[] = self::$object1;
-        self::$deletionQueue[] = self::$object2;
-        self::$deletionQueue[] = self::$ownerBucketInstance;
     }
 
     public function setUp()
@@ -105,8 +101,7 @@ class RequesterPaysTest extends StorageTestCase
         ]);
         $object = $bucket->object($objectName);
 
-        self::$deletionQueue[] = $object;
-        self::$deletionQueue[] = $bucket;
+        self::$deletionQueue->add($bucket);
 
         $this->assertEquals($content, $getBody($bucketName, $objectName));
 

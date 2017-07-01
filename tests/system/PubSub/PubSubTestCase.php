@@ -17,14 +17,14 @@
 
 namespace Google\Cloud\Tests\System\PubSub;
 
-use Google\Cloud\Core\ExponentialBackoff;
+use Google\Cloud\Dev\DeletionQueue;
 use Google\Cloud\PubSub\PubSubClient;
 
 class PubSubTestCase extends \PHPUnit_Framework_TestCase
 {
     const TESTING_PREFIX = 'gcloud_testing_';
 
-    protected static $deletionQueue = [];
+    protected static $deletionQueue;
     protected static $grpcClient;
     protected static $restClient;
     protected static $topic;
@@ -46,6 +46,8 @@ class PubSubTestCase extends \PHPUnit_Framework_TestCase
             return;
         }
 
+        self::$deletionQueue = new DeletionQueue;
+
         $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
         self::$restClient = new PubSubClient([
             'keyFilePath' => $keyFilePath,
@@ -60,13 +62,7 @@ class PubSubTestCase extends \PHPUnit_Framework_TestCase
 
     public static function tearDownFixtures()
     {
-        $backoff = new ExponentialBackoff(8);
-
-        foreach (self::$deletionQueue as $item) {
-            $backoff->execute(function () use ($item) {
-                $item->delete();
-            });
-        }
+        self::$deletionQueue->process();
     }
 }
 

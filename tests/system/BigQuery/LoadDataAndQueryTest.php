@@ -27,6 +27,7 @@ use GuzzleHttp\Psr7;
 
 /**
  * @group bigquery
+ * @group bigquery-load
  */
 class LoadDataAndQueryTest extends BigQueryTestCase
 {
@@ -402,7 +403,7 @@ class LoadDataAndQueryTest extends BigQueryTestCase
         $object = self::$bucket->upload(
             fopen(__DIR__ . '/../data/table-data.json', 'r')
         );
-        self::$deletionQueue[] = $object;
+        self::$deletionQueue->add($object);
 
         $job = self::$table->loadFromStorage($object, [
             'jobConfig' => [

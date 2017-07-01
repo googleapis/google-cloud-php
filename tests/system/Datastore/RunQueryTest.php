@@ -19,6 +19,7 @@ namespace Google\Cloud\Tests\System\Datastore;
 
 /**
  * @group datastore
+ * @group datastore-query
  */
 class RunQueryTest extends DatastoreTestCase
 {
@@ -69,10 +70,10 @@ class RunQueryTest extends DatastoreTestCase
         // is intended to help alleviate this issue.
         sleep(1);
 
-        self::$deletionQueue[] = self::$ancestor;
-        self::$deletionQueue[] = $key1;
-        self::$deletionQueue[] = $key2;
-        self::$deletionQueue[] = $key3;
+        self::$deletionQueue->add(self::$ancestor);
+        self::$deletionQueue->add($key1);
+        self::$deletionQueue->add($key2);
+        self::$deletionQueue->add($key3);
     }
 
     public function testQueryWithOrder()

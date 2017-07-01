@@ -133,6 +133,7 @@ class ManageSinksTest extends LoggingTestCase
         ];
         $destination = sprintf('pubsub.googleapis.com/%s', self::$topic->info()['name']);
         $sink = $client->createSink($name, $destination, $options);
+        self::$deletionQueue[] = $sink;
 
         $this->assertEquals($options['outputVersionFormat'], $sink->reload()['outputVersionFormat']);
     }
