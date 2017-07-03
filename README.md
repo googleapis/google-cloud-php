@@ -135,9 +135,8 @@ $bucket->upload(
     fopen('/data/file.txt', 'r')
 );
 
-// Upload file with public share 
-// You can share this file or image with public url mode
-// The 2nd parameter as a array options 
+// Using Predefined ACLs to manage object permissions, you may
+// upload a file and give read access to anyone with the URL. 
 $bucket->upload(
     fopen('/data/file.txt', 'r'),
     [
