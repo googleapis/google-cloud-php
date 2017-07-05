@@ -62,7 +62,7 @@ class Rest implements ConnectionInterface
         return $this->send('controller.resources.debuggees.resources.breakpoints', 'list', $args);
     }
 
-    public function updateBreakpoints(array $args)
+    public function updateBreakpoint(array $args)
     {
         return $this->send('controller.resources.debuggees.resources.breakpoints', 'update', $args);
     }

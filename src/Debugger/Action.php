@@ -19,8 +19,20 @@ namespace Google\Cloud\Debugger;
 
 /**
  */
-class Action
+class Action implements \JsonSerializable
 {
     const CAPTURE = 'CAPTURE';
     const LOG = 'LOG';
+
+    private $value;
+
+    public function __construct($value)
+    {
+        $this->value = $value ?: self::CAPTURE;
+    }
+
+    public function jsonSerialize()
+    {
+        return $this->value;
+    }
 }

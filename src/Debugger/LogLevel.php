@@ -19,9 +19,21 @@ namespace Google\Cloud\Debugger;
 
 /**
  */
-class LogLevel
+class LogLevel implements \JsonSerializable
 {
     const INFO = 'INFO';
     const WARNING = 'WARNING';
     const ERROr = 'ERROR';
+
+    private $value;
+
+    public function __construct($value)
+    {
+        $this->value = $value;
+    }
+
+    public function jsonSerialize()
+    {
+        return $this->value;
+    }
 }

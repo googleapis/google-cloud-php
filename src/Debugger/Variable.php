@@ -19,7 +19,7 @@ namespace Google\Cloud\Debugger;
 
 /**
  */
-class Variable
+class Variable implements \JsonSerializable
 {
     /**
      * @var string
@@ -39,7 +39,7 @@ class Variable
     /**
      * @var Variable[]
      */
-    public $members;
+    public $members = [];
 
     /**
      * @var int
@@ -50,4 +50,15 @@ class Variable
      * @var StatusMessage
      */
     public $status;
+
+    public function jsonSerialize()
+    {
+        return [
+            'name' => $this->name,
+            'value' => $this->value,
+            'type' => $this->type,
+            'members' => $this->members,
+            'varTableIndex' => $this->varTableIndex
+        ];
+    }
 }

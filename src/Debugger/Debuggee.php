@@ -35,43 +35,43 @@ class Debuggee implements \JsonSerializable
      */
     private $connection;
 
-    /**
-     * @var array
-     */
-    private $info = [];
-
+    private $id;
+    private $project;
+    private $uniquifier;
+    private $description;
+    private $isInactive = false;
+    private $agentVersion = DebuggerClient::VERSION;
     private $sourceContexts = [];
-
     private $extSourceContexts = [];
-
     private $labels = [];
 
     public function __construct(ConnectionInterface $connection, array $info = [])
     {
         $this->connection = $connection;
-        $this->info = $this->pluckArray(
-            ['id', 'project', 'uniquifier', 'description', 'isInactive', 'agentVersion', 'status'],
-            $info
-        );
+
+        $this->id = $this->pluck('id', $info);
+        $this->project = $this->pluck('project', $info);
+        $this->uniquifier = $this->pluck('uniquifier', $info, false) ?: 'FIXME';
+        $this->description = $this->pluck('description', $info, false) ?: 'FIXME';
+        if (array_key_exists('isInactive', $info)) {
+            $this->isInactive = $info['isInactive'];
+        }
+        if (array_key_exists('agentVersion', $info)) {
+            $this->agentVersion = $info['agentVersion'];
+        }
+        $this->status = $this->pluck('status', $info, false);
         $this->sourceContexts = $this->pluck('sourceContexts', $info, false) ?: [];
+        $this->extSourceContexts = $this->pluck('extSourceContexts', $info, false) ?: [];
     }
 
     public function id()
     {
-        if (is_array($this->info) && array_key_exists('id', $this->info)) {
-            return $this->info['id'];
-        }
-        return null;
+        return $this->id;
     }
 
     public function register(array $args = [])
     {
         $this->connection->registerDebuggee($this->jsonSerialize());
-    }
-
-    public function info()
-    {
-        return $this->info;
     }
 
     public function sourceContexts()
@@ -97,9 +97,16 @@ class Debuggee implements \JsonSerializable
      */
     public function breakpoints(array $options = [])
     {
-        return $this->connection->listBreakpoints([
-            'debuggeeId' => $this->id()
+        $ret = $this->connection->listBreakpoints([
+            'debuggeeId' => $this->id
         ] + $options);
+
+        if (array_key_exists('breakpoints', $ret)) {
+            $ret['breakpoints'] = array_map(function ($bp) {
+                return new Breakpoint($bp);
+            }, $ret['breakpoints']);
+        }
+        return $ret;
     }
 
     public function breakpoint($breakpointId)
@@ -109,7 +116,11 @@ class Debuggee implements \JsonSerializable
 
     public function updateBreakpoint(Breakpoint $breakpoint)
     {
-
+        $data = [
+            'debuggeeId' => $this->id
+        ] + $breakpoint->jsonSerialize();
+        var_dump($data);
+        return $this->connection->updateBreakpoint($data);
     }
 
     public function deleteBreakpoint(Breakpoint $breakpoint)
@@ -119,10 +130,20 @@ class Debuggee implements \JsonSerializable
 
     public function jsonSerialize()
     {
-        return $this->info() + [
+        return [
+            'id' => $this->id,
+            'project' => $this->project,
+            'uniquifier' => $this->uniquifier,
+            'description' => $this->description,
+            'isInactive' => $this->isInactive,
+            'agentVersion' => $this->agentVersion,
+            'status' => $this->status,
             'sourceContexts' => array_map(function ($sc) {
                 return $sc->jsonSerialize();
-            }, $this->sourceContexts)
+            }, $this->sourceContexts),
+            'extSourceContexts' => array_map(function ($esc) {
+                return $esc->jsonSerialize();
+            }, $this->extSourceContexts)
         ];
     }
 }
