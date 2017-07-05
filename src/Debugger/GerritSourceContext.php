@@ -19,7 +19,7 @@ namespace Google\Cloud\Debugger;
 
 /**
  */
-class GerritSourceContext implements SourceContext
+class GerritSourceContext implements SourceContext, \JsonSerializable
 {
     /**
      * @var string
@@ -45,4 +45,17 @@ class GerritSourceContext implements SourceContext
      * @var AliasContext
      */
     public $aliasContext;
+
+    public function jsonSerialize()
+    {
+        return [
+            'gerrit' => [
+                'hostUri' => $this->hostUri,
+                'gerritProject' => $this->gerritProject,
+                'revisionId' => $this->revisionId,
+                'aliasName' => $this->aliasName,
+                'aliasContext' => $this->aliasContext->jsonSerialize()
+            ]
+        ];
+    }
 }

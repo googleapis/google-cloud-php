@@ -40,4 +40,16 @@ class CloudRepoSourceContext implements SourceContext
      * @var AliasContext
      */
     public $aliasContext;
+
+    public function jsonSerialize()
+    {
+        return [
+            'cloudRepo' => [
+                'repoId' => $this->repoId,
+                'revisionId' => $this->revisionId,
+                'aliasName' => $this->aliasName,
+                'aliasContext' => $this->aliasContext->jsonSerialize()
+            ]
+        ];
+    }
 }

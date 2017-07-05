@@ -19,7 +19,7 @@ namespace Google\Cloud\Debugger;
 
 /**
  */
-class CloudWorkspaceSourceContext
+class CloudWorkspaceSourceContext implements \JsonSerializable
 {
     /**
      * @var CloudWorkspaceId
@@ -30,4 +30,15 @@ class CloudWorkspaceSourceContext
      * @var string
      */
     public $snapshotId;
+
+
+    public function jsonSerialize()
+    {
+        return [
+            'cloudWorkspace' => [
+                'workspaceId' => $this->workspaceId->jsonSerialize(),
+                'snapshotId' => $this->snapshotId
+            ]
+        ];
+    }
 }

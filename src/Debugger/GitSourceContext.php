@@ -19,7 +19,7 @@ namespace Google\Cloud\Debugger;
 
 /**
  */
-class GitSourceContext implements SourceContext
+class GitSourceContext implements SourceContext, \JsonSerializable
 {
     /**
      * @var string
@@ -30,4 +30,14 @@ class GitSourceContext implements SourceContext
      * @var string
      */
     public $revisionId;
+
+    public function jsonSerialize()
+    {
+        return [
+            'git' => [
+                'url' => $this->url,
+                'revisionId' => $this->revisionId
+            ]
+        ];
+    }
 }

@@ -19,7 +19,7 @@ namespace Google\Cloud\Debugger;
 
 /**
  */
-class AliasContext
+class AliasContext implements \JsonSerializable
 {
     /**
      * @var Kind
@@ -30,4 +30,12 @@ class AliasContext
      * @var string
      */
     public $name;
+
+    public function jsonSerialize()
+    {
+        return [
+            'kind' => $this->kind,
+            'name' => $this->name
+        ];
+    }
 }

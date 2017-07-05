@@ -19,7 +19,7 @@ namespace Google\Cloud\Debugger;
 
 /**
  */
-class RepoId
+class RepoId implements \JsonSerializable
 {
     /**
      * @var ProjectRepoId
@@ -30,4 +30,12 @@ class RepoId
      * @var string
      */
     public $uid;
+
+    public function jsonSerialize()
+    {
+        return [
+            'projectRepoId' => $this->projectRepoId->jsonSerialize(),
+            'uid' => $this->uid
+        ];
+    }
 }

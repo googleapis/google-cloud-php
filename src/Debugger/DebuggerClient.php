@@ -82,17 +82,27 @@ class DebuggerClient
         $this->connection = new Rest($this->configureAuthentication($config));
     }
 
-    public function debuggee($id)
+    public function debuggee($id, array $extras = [])
     {
-        return new Debuggee($this->connection, ['id' => $id]);
+        return new Debuggee($this->connection, [
+            'id' => $id,
+            'project' => $this->projectId,
+            'agentVersion' => self::VERSION
+        ] + $extras);
     }
 
     /**
      * [debuggees description]
      * @return Debuggee[]
      */
-    public function debuggees()
+    public function debuggees(array $args = [])
     {
-
+        $res = $this->connection->listDebuggees(['project' => $this->projectId] + $args);
+        if (is_array($res) && array_key_exists('debuggees', $res)) {
+            return array_map(function ($info) {
+                return new Debuggee($this->connection, $info);
+            }, $res['debuggees']);
+        }
+        return [];
     }
 }

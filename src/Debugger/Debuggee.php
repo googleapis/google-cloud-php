@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Debugger;
 
+use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Debugger\Connection\ConnectionInterface;
@@ -25,30 +26,34 @@ use Google\Cloud\Debugger\Connection\ConnectionInterface;
  * This class represents a debuggee - a service that can handle breakpoints. For more information see
  * [Debugee](https://cloud.google.com/debugger/api/reference/rest/v2/Debuggee)
  */
-class Debuggee
+class Debuggee implements \JsonSerializable
 {
+    use ArrayTrait;
+
     /**
      * @var ConnectionInterface $connection Represents a connection to Debugger
      */
     private $connection;
 
-    private $info;
+    /**
+     * @var array
+     */
+    private $info = [];
 
-    public $id;
-    public $project;
-    public $uniquifier;
-    public $description;
-    public $isInactive;
-    public $agentVersion;
-    public $status;
-    public $sourceContexts;
-    public $extSourceContexts;
-    public $labels;
+    private $sourceContexts = [];
 
-    public function __construct(ConnectionInterface $connection, array $info = null)
+    private $extSourceContexts = [];
+
+    private $labels = [];
+
+    public function __construct(ConnectionInterface $connection, array $info = [])
     {
         $this->connection = $connection;
-        $this->info = $info;
+        $this->info = $this->pluckArray(
+            ['id', 'project', 'uniquifier', 'description', 'isInactive', 'agentVersion', 'status'],
+            $info
+        );
+        $this->sourceContexts = $this->pluck('sourceContexts', $info, false) ?: [];
     }
 
     public function id()
@@ -59,9 +64,19 @@ class Debuggee
         return null;
     }
 
-    public function register()
+    public function register(array $args = [])
     {
-        $this->connection->registerDebugee($this);
+        $this->connection->registerDebuggee($this->jsonSerialize());
+    }
+
+    public function info()
+    {
+        return $this->info;
+    }
+
+    public function sourceContexts()
+    {
+        return $this->sourceContexts;
     }
 
     /**
@@ -84,7 +99,7 @@ class Debuggee
     {
         return $this->connection->listBreakpoints([
             'debuggeeId' => $this->id()
-        ]);
+        ] + $options);
     }
 
     public function breakpoint($breakpointId)
@@ -100,5 +115,14 @@ class Debuggee
     public function deleteBreakpoint(Breakpoint $breakpoint)
     {
 
+    }
+
+    public function jsonSerialize()
+    {
+        return $this->info() + [
+            'sourceContexts' => array_map(function ($sc) {
+                return $sc->jsonSerialize();
+            }, $this->sourceContexts)
+        ];
     }
 }

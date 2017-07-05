@@ -47,37 +47,23 @@ class Rest implements ConnectionInterface
         ));
     }
 
+    public function listDebuggees(array $args)
+    {
+        return $this->send('debugger.resources.debuggees', 'list', $args);
+    }
+
     public function registerDebuggee(array $args)
     {
-        return $this->send('controller.debuggees', 'register', $args);
+        return $this->send('controller.resources.debuggees', 'register', ['debuggee' => $args]);
     }
 
     public function listBreakpoints(array $args)
     {
-        return $this->send('controller.debuggees.breakpoints', 'list', $args);
+        return $this->send('controller.resources.debuggees.resources.breakpoints', 'list', $args);
     }
 
-    /**
-     * @param  array $args
-     */
-    public function patchTraces(array $args)
+    public function updateBreakpoints(array $args)
     {
-        return $this->send('projects', 'patchTraces', $args);
-    }
-
-    /**
-     * @param  array $args
-     */
-    public function getTrace(array $args)
-    {
-        return $this->send('projects.resources.traces', 'get', $args);
-    }
-
-    /**
-     * @param  array $args
-     */
-    public function listTraces(array $args)
-    {
-        return $this->send('projects.resources.traces', 'list', $args);
+        return $this->send('controller.resources.debuggees.resources.breakpoints', 'update', $args);
     }
 }
