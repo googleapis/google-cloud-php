@@ -24,4 +24,83 @@ namespace Google\Cloud\Debugger;
 class Breakpoint
 {
 
+    /**
+     * @var string
+     */
+    private $id;
+
+    /**
+     * @var Action
+     */
+    private $action;
+
+    /**
+     * @var SourceLocation
+     */
+    public $location;
+
+    /**
+     * @var string
+     */
+    public $condition;
+
+    /**
+     * @var string[]
+     */
+    public $expressions;
+
+    /**
+     * @var string
+     */
+    public $logMessageFormat;
+
+    /**
+     * @var LogLevel
+     */
+    public $logLevel;
+
+    /**
+     * @var bool
+     */
+    public $isFinalState;
+
+    /**
+     * @var string
+     */
+    public $createTime;
+
+    /**
+     * @var string
+     */
+    public $finalTime
+
+    /**
+     * @var string
+     */
+    public $userEmail;
+
+    /**
+     * @var StatusMessage
+     */
+    public $status;
+
+    /**
+     * @var StackFrame[]
+     */
+    public $stackFrames;
+
+    /**
+     * @var Variable[]
+     */
+    public $evaluatedExpressions;
+
+    /**
+     * @var Variable[]
+     */
+    public $variableTable;
+
+    /**
+     * @var array
+     */
+    public $labels;
 }

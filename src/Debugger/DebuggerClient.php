@@ -35,7 +35,6 @@ use Google\Cloud\Debugger\Connection\Rest;
  */
 class DebuggerClient
 {
-    use ArrayTrait;
     use ClientTrait;
 
     const VERSION = '0.1.0';
@@ -81,5 +80,19 @@ class DebuggerClient
         }
 
         $this->connection = new Rest($this->configureAuthentication($config));
+    }
+
+    public function debuggee($id)
+    {
+        return new Debuggee($this->connection, ['id' => $id]);
+    }
+
+    /**
+     * [debuggees description]
+     * @return Debuggee[]
+     */
+    public function debuggees()
+    {
+
     }
 }

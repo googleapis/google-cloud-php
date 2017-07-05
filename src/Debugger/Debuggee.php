@@ -34,6 +34,17 @@ class Debuggee
 
     private $info;
 
+    public $id;
+    public $project;
+    public $uniquifier;
+    public $description;
+    public $isInactive;
+    public $agentVersion;
+    public $status;
+    public $sourceContexts;
+    public $extSourceContexts;
+    public $labels;
+
     public function __construct(ConnectionInterface $connection, array $info = null)
     {
         $this->connection = $connection;
@@ -76,7 +87,17 @@ class Debuggee
         ]);
     }
 
+    public function breakpoint($breakpointId)
+    {
+
+    }
+
     public function updateBreakpoint(Breakpoint $breakpoint)
+    {
+
+    }
+
+    public function deleteBreakpoint(Breakpoint $breakpoint)
     {
 
     }
