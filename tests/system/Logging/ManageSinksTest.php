@@ -41,7 +41,7 @@ class ManageSinksTest extends LoggingTestCase
                 'filter' => 'severity >= ERROR'
             ]
         );
-        self::$deletionQueue[] = $sink;
+        self::$deletionQueue->add($sink);
 
         $sinks = iterator_to_array($client->sinks());
 
@@ -67,7 +67,7 @@ class ManageSinksTest extends LoggingTestCase
         $this->assertFalse($client->sink($name)->exists());
 
         $sink = $client->createSink($name, $destination, $options);
-        self::$deletionQueue[] = $sink;
+        self::$deletionQueue->add($sink);
 
         $this->assertTrue($client->sink($name)->exists());
         $this->assertEquals($destination, $sink->info()['destination']);
@@ -113,7 +113,7 @@ class ManageSinksTest extends LoggingTestCase
             'filter' => 'severity >= DEBUG'
         ];
         $sink = $client->createSink($name, $destination, $createOptions);
-        self::$deletionQueue[] = $sink;
+        self::$deletionQueue->add($sink);
 
         $info = $sink->update($updateOptions);
 
@@ -133,7 +133,7 @@ class ManageSinksTest extends LoggingTestCase
         ];
         $destination = sprintf('pubsub.googleapis.com/%s', self::$topic->info()['name']);
         $sink = $client->createSink($name, $destination, $options);
-        self::$deletionQueue[] = $sink;
+        self::$deletionQueue->add($sink);
 
         $this->assertEquals($options['outputVersionFormat'], $sink->reload()['outputVersionFormat']);
     }

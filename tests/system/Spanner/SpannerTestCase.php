@@ -19,11 +19,12 @@ namespace Google\Cloud\Tests\System\Spanner;
 
 use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\Spanner\SpannerClient;
+use Google\Cloud\Tests\System\SystemTestCase;
 
 /**
  * @group spanner
  */
-class SpannerTestCase extends \PHPUnit_Framework_TestCase
+class SpannerTestCase extends SystemTestCase
 {
     const TESTING_PREFIX = 'gcloud_testing_';
     const INSTANCE_NAME = 'google-cloud-php-system-tests';
@@ -35,7 +36,6 @@ class SpannerTestCase extends \PHPUnit_Framework_TestCase
     protected static $instance;
     protected static $database;
     protected static $database2;
-    protected static $deletionQueue = [];
 
     private static $hasSetUp = false;
 
@@ -58,7 +58,9 @@ class SpannerTestCase extends \PHPUnit_Framework_TestCase
         $op->pollUntilComplete();
         $db = self::$client->connect(self::INSTANCE_NAME, $dbName);
 
-        self::$deletionQueue[] = function() use ($db) { $db->drop(); };
+        self::$deletionQueue->add(function() use ($db) {
+            $db->drop();
+        });
 
         $db->updateDdl(
             'CREATE TABLE '. self::TEST_TABLE_NAME .' (
@@ -75,19 +77,5 @@ class SpannerTestCase extends \PHPUnit_Framework_TestCase
 
         self::$database = $db;
         self::$database2 = self::$client->connect(self::INSTANCE_NAME, $dbName);
-    }
-
-    public static function tearDownFixtures()
-    {
-        $backoff = new ExponentialBackoff(8);
-
-        foreach (self::$deletionQueue as $item) {
-            $backoff->execute($item);
-        }
-    }
-
-    public static function randId()
-    {
-        return rand(1,9999999);
     }
 }

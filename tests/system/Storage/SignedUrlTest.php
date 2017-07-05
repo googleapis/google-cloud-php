@@ -22,7 +22,7 @@ use GuzzleHttp\Client;
 
 /**
  * @group storage
- * @group storage-signed-urls
+ * @group storage-signed-url
  */
 class SignedUrlTest extends StorageTestCase
 {
@@ -84,6 +84,8 @@ class SignedUrlTest extends StorageTestCase
         $object = $bucket->upload(self::CONTENT, [
             'name' => $name ?: uniqid(self::TESTING_PREFIX) .'.txt',
         ]);
+
+        self::$deletionQueue->add($object);
 
         return $object;
     }

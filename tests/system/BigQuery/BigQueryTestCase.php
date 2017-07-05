@@ -18,17 +18,19 @@
 namespace Google\Cloud\Tests\System\BigQuery;
 
 use Google\Cloud\BigQuery\BigQueryClient;
-use Google\Cloud\Dev\DeletionQueue;
 use Google\Cloud\Storage\StorageClient;
+use Google\Cloud\Tests\System\DeletionEnqueuedTrait;
+use Google\Cloud\Tests\System\SystemTestCase;
 
-class BigQueryTestCase extends \PHPUnit_Framework_TestCase
+class BigQueryTestCase extends SystemTestCase
 {
+    use DeletionEnqueuedTrait;
+
     const TESTING_PREFIX = 'gcloud_testing_';
 
     protected static $bucket;
     protected static $client;
     protected static $dataset;
-    protected static $deletionQueue;
     protected static $table;
     private static $hasSetUp = false;
 
@@ -38,36 +40,30 @@ class BigQueryTestCase extends \PHPUnit_Framework_TestCase
             return;
         }
 
-        self::$deletionQueue = new DeletionQueue;
-
         $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
         $schema = json_decode(file_get_contents(__DIR__ . '/../data/table-schema.json'), true);
-        self::$bucket = (new StorageClient([
+
+        $storage = new StorageClient([
             'keyFilePath' => $keyFilePath
-        ]))->createBucket(uniqid(self::TESTING_PREFIX));
+        ]);
+
+        self::$bucket = self::createBucket($storage, uniqid(self::TESTING_PREFIX));
+
         self::$client = new BigQueryClient([
             'keyFilePath' => $keyFilePath
         ]);
-        self::$dataset = self::$client->createDataset(uniqid(self::TESTING_PREFIX));
+        self::$dataset = self::createDataset(self::$client, uniqid(self::TESTING_PREFIX));
         self::$table = self::$dataset->createTable(uniqid(self::TESTING_PREFIX), [
             'schema' => [
                 'fields' => $schema
             ]
         ]);
+
+        self::$deletionQueue->add(function () {
+            self::$dataset->delete(['deleteContents' => true]);
+        });
+
         self::$hasSetUp = true;
-    }
-
-    public static function tearDownFixtures()
-    {
-        if (!self::$hasSetUp) {
-            return;
-        }
-
-        self::$deletionQueue->add(self::$bucket);
-        self::$deletionQueue->add(self::$table);
-        self::$deletionQueue->add(self::$dataset);
-
-        self::$deletionQueue->process();
     }
 }
 

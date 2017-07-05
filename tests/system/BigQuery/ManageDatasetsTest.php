@@ -32,7 +32,7 @@ class ManageDatasetsTest extends BigQueryTestCase
         ];
 
         foreach ($datasetsToCreate as $datasetToCreate) {
-            self::$deletionQueue->add(self::$client->createDataset($datasetToCreate));
+            $this->createDataset(self::$client, $datasetToCreate);
         }
 
         $datasets = self::$client->datasets();
@@ -57,8 +57,7 @@ class ManageDatasetsTest extends BigQueryTestCase
         ];
         $this->assertFalse(self::$client->dataset($id)->exists());
 
-        $dataset = self::$client->createDataset($id, $options);
-        self::$deletionQueue->add($dataset);
+        $dataset = $this->createDataset(self::$client, $id, $options);
 
         $this->assertTrue(self::$client->dataset($id)->exists());
         $this->assertEquals($id, $dataset->id());

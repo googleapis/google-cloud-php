@@ -29,7 +29,7 @@ function system () {
 unit
 snippets
 
-# if [ "${TRAVIS_EVENT_TYPE}" == "cron" ]; then
+if [ "${TRAVIS_EVENT_TYPE}" == "cron" ]; then
   composer
   system
-# fi
+fi

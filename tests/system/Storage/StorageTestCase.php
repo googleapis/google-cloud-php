@@ -18,21 +18,23 @@
 namespace Google\Cloud\Tests\System\Storage;
 
 use Google\Cloud\Core\Exception\NotFoundException;
-use Google\Cloud\Dev\DeletionQueue;
 use Google\Cloud\Storage\StorageClient;
+use Google\Cloud\Tests\System\DeletionEnqueuedTrait;
+use Google\Cloud\Tests\System\SystemTestCase;
 
 /**
  * Refer to README.md in this directory for some important information
  * regarding resource management in the storage system test suite.
  */
-class StorageTestCase extends \PHPUnit_Framework_TestCase
+class StorageTestCase extends SystemTestCase
 {
+    use DeletionEnqueuedTrait;
+
     const TESTING_PREFIX = 'gcloud_testing_';
     const NORMALIZATION_TEST_BUCKET = 'storage-library-test-bucket';
 
     protected static $bucket;
     protected static $client;
-    protected static $deletionQueue;
     protected static $object;
     private static $hasSetUp = false;
 
@@ -41,8 +43,6 @@ class StorageTestCase extends \PHPUnit_Framework_TestCase
         if (self::$hasSetUp) {
             return;
         }
-
-        self::$deletionQueue = new DeletionQueue;
 
         self::$client = new StorageClient([
             'keyFilePath' => getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH')
@@ -54,32 +54,5 @@ class StorageTestCase extends \PHPUnit_Framework_TestCase
         self::$object = self::$bucket->upload('somedata', ['name' => uniqid(self::TESTING_PREFIX)]);
 
         self::$hasSetUp = true;
-    }
-
-    public static function tearDownFixtures()
-    {
-        if (!self::$hasSetUp) {
-            return;
-        }
-
-        self::$deletionQueue->add(self::$object);
-        self::$deletionQueue->add(self::$bucket);
-
-        self::$deletionQueue->process();
-    }
-
-    protected static function createBucket(StorageClient $client, $bucketName, array $options = [])
-    {
-        $bucket = $client->createBucket($bucketName, $options);
-
-        self::$deletionQueue->add(function () use ($bucket) {
-            foreach ($bucket->objects() as $object) {
-                $object->delete();
-            }
-
-            $bucket->delete();
-        });
-
-        return $bucket;
     }
 }

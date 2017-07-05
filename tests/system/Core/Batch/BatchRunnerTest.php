@@ -25,7 +25,7 @@ use Google\Cloud\Core\Batch\Retry;
  * @group batch
  *
  * If SystemV IPC extensions are available, it'll spawn the BatchDaemon for
- * this system test. You can run the tests with the im-memory implementation
+ * this system test. You can run the tests with the in-memory implementation
  * by setting `GOOGLE_CLOUD_PHP_TESTS_WITHOUT_DAEMON` environment variable.
  */
 class BatchRunnerTest extends \PHPUnit_Framework_TestCase
@@ -129,7 +129,6 @@ class BatchRunnerTest extends \PHPUnit_Framework_TestCase
 
     public function testSubmit()
     {
-        ob_start();
         $this->runner->submitItem('batch-daemon-system-test', 'apple');
         // It should be still in the buffer.
         $this->assertEmpty($this->getResult());
@@ -165,6 +164,5 @@ class BatchRunnerTest extends \PHPUnit_Framework_TestCase
         }
         $this->assertResultContains('BANANA');
         $this->assertResultContains('LEMON');
-        ob_end_clean();
     }
 }

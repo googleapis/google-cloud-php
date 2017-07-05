@@ -36,8 +36,7 @@ class RequesterPaysTest extends StorageTestCase
     private static $ownerBucketInstance;
     private static $object1;
     private static $object2;
-
-    private static $path = __DIR__ . '/../data/CloudPlatform_128px_Retina.png';
+    private static $content;
 
     public static function setupBeforeClass()
     {
@@ -50,13 +49,14 @@ class RequesterPaysTest extends StorageTestCase
             'billing' => ['requesterPays' => true]
         ]);
 
-        self::$object1 = self::$ownerBucketInstance->upload(
-            fopen(self::$path, 'r')
-        );
+        self::$content = uniqid(self::TESTING_PREFIX);
+        self::$object1 = self::$ownerBucketInstance->upload(self::$content, [
+            'name' => uniqid(self::TESTING_PREFIX),
+        ]);
 
-        self::$object2 = self::$ownerBucketInstance->upload(
-            fopen(self::$path, 'r')
-        );
+        self::$object2 = self::$ownerBucketInstance->upload(self::$content, [
+            'name' => uniqid(self::TESTING_PREFIX)
+        ]);
     }
 
     public function setUp()
@@ -73,43 +73,35 @@ class RequesterPaysTest extends StorageTestCase
 
     public function testBucketSettings()
     {
-        $bucketName = uniqid(self::TESTING_PREFIX);
-        $objectName = uniqid(self::TESTING_PREFIX);
-        $content = uniqid(self::TESTING_PREFIX);
-
         // run an http request to call the object's public link and see what we get.
         $getBody = function($bucket, $object) {
             $guzzle = new Client;
 
             try {
-                $uri = 'https://storage.googleapis.com/%s/%s';
-                $res = $guzzle->request('GET', sprintf($uri, $bucket, $object));
+                $uri = sprintf('https://storage.googleapis.com/%s/%s', $bucket, $object);
+                $res = $guzzle->request('GET', $uri);
                 return (string) $res->getBody();
             } catch (ClientException $e) {
                 return null;
             }
         };
 
-        $client = self::$client;
-        $bucket = $client->createBucket($bucketName);
-        $object = $bucket->upload($content, [
-            'name' => $objectName,
+        $bucket = self::createBucket(self::$client, uniqid(self::TESTING_PREFIX));
+        $object = $bucket->upload(self::$content, [
+            'name' => uniqid(self::TESTING_PREFIX),
             'predefinedAcl' => 'publicRead',
             'metadata' => [
                 'cacheControl' => 'private'
             ]
         ]);
-        $object = $bucket->object($objectName);
 
-        self::$deletionQueue->add($bucket);
-
-        $this->assertEquals($content, $getBody($bucketName, $objectName));
+        $this->assertEquals(self::$content, $getBody($bucket->name(), $object->name()));
 
         $bucket->update(['billing' => ['requesterPays' => true]]);
-        $this->assertNull($getBody($bucketName, $objectName));
+        $this->assertNull($getBody($bucket->name(), $object->name()));
 
         $bucket->update(['billing' => ['requesterPays' => false]]);
-        $this->assertEquals($content, $getBody($bucketName, $objectName));
+        $this->assertEquals(self::$content, $getBody($bucket->name(), $object->name()));
     }
 
     /**
@@ -133,21 +125,21 @@ class RequesterPaysTest extends StorageTestCase
                 },
             ], [
                 function (Bucket $bucket) {
-                    $bucket->upload(
-                        fopen(self::$path, 'r')
-                    );
+                    $bucket->upload(self::$content, [
+                        'name' => uniqid(self::TESTING_PREFIX)
+                    ]);
                 },
             ], [
                 function (Bucket $bucket) {
-                    $bucket->getResumableUploader(
-                        fopen(self::$path, 'r')
-                    )->upload();
+                    $bucket->getResumableUploader(self::$content, [
+                        'name' => uniqid(self::TESTING_PREFIX)
+                    ])->upload();
                 },
             ], [
                 function (Bucket $bucket) {
-                    $bucket->getStreamableUploader(
-                        fopen(self::$path, 'r')
-                    )->upload();
+                    $bucket->getStreamableUploader(self::$content, [
+                        'name' => uniqid(self::TESTING_PREFIX)
+                    ])->upload();
                 },
             ], [
                 function (Bucket $bucket) {

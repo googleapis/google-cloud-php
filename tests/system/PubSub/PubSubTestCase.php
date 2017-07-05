@@ -17,14 +17,13 @@
 
 namespace Google\Cloud\Tests\System\PubSub;
 
-use Google\Cloud\Dev\DeletionQueue;
 use Google\Cloud\PubSub\PubSubClient;
+use Google\Cloud\Tests\System\SystemTestCase;
 
-class PubSubTestCase extends \PHPUnit_Framework_TestCase
+class PubSubTestCase extends SystemTestCase
 {
     const TESTING_PREFIX = 'gcloud_testing_';
 
-    protected static $deletionQueue;
     protected static $grpcClient;
     protected static $restClient;
     protected static $topic;
@@ -46,8 +45,6 @@ class PubSubTestCase extends \PHPUnit_Framework_TestCase
             return;
         }
 
-        self::$deletionQueue = new DeletionQueue;
-
         $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
         self::$restClient = new PubSubClient([
             'keyFilePath' => $keyFilePath,
@@ -58,11 +55,6 @@ class PubSubTestCase extends \PHPUnit_Framework_TestCase
             'transport' => 'grpc'
         ]);
         self::$hasSetUp = true;
-    }
-
-    public static function tearDownFixtures()
-    {
-        self::$deletionQueue->process();
     }
 }
 
