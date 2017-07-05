@@ -16,10 +16,10 @@ This client supports the following Google Cloud Platform services at a [Beta](#v
 
 * [Google BigQuery](#google-bigquery-beta) (Beta)
 * [Google Cloud Natural Language](#google-cloud-natural-language-beta) (Beta)
+* [Google Cloud Pub/Sub](#google-cloud-pubsub-beta) (Beta)
 * [Google Cloud Vision](#google-cloud-vision-beta) (Beta)
 
 This client supports the following Google Cloud Platform services at an [Alpha](#versioning) quality level:
-* [Google Cloud Pub/Sub](#google-cloud-pubsub-alpha) (Alpha)
 * [Cloud Spanner](#cloud-spanner-alpha) (Alpha)
 * [Google Cloud Speech](#google-cloud-speech-alpha) (Alpha)
 * [Google Cloud Video Intelligence](#google-cloud-video-intelligence-alpha) (Alpha)
@@ -133,6 +133,15 @@ $bucket = $storage->bucket('my_bucket');
 // Upload a file to the bucket.
 $bucket->upload(
     fopen('/data/file.txt', 'r')
+);
+
+// Using Predefined ACLs to manage object permissions, you may
+// upload a file and give read access to anyone with the URL. 
+$bucket->upload(
+    fopen('/data/file.txt', 'r'),
+    [
+        'predefinedAcl' => 'publicRead'
+    ]
 );
 
 // Download and store an object from the bucket locally.
@@ -305,47 +314,7 @@ Google Cloud Natural Language can be installed separately by requiring the `goog
 $ require google/cloud-language
 ```
 
-## Google Cloud Vision (Beta)
-
-- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/vision/visionclient)
-- [Official Documentation](https://cloud.google.com/vision/docs)
-
-#### Preview
-
-```php
-require 'vendor/autoload.php';
-
-use Google\Cloud\Vision\VisionClient;
-
-$vision = new VisionClient([
-    'projectId' => 'my_project'
-]);
-
-// Annotate an image, detecting faces.
-$image = $vision->image(
-    fopen('/data/family_photo.jpg', 'r'),
-    ['faces']
-);
-
-$annotation = $vision->annotate($image);
-
-// Determine if the detected faces have headwear.
-foreach ($annotation->faces() as $key => $face) {
-    if ($face->hasHeadwear()) {
-        echo "Face $key has headwear.\n";
-    }
-}
-```
-
-#### google/cloud-vision
-
-Google Cloud Vision can be installed separately by requiring the `google/cloud-vision` composer package:
-
-```
-$ require google/cloud-vision
-```
-
-## Google Cloud Pub/Sub (Alpha)
+## Google Cloud Pub/Sub (Beta)
 
 - [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/pubsub/pubsubclient)
 - [Official Documentation](https://cloud.google.com/pubsub/docs)
@@ -390,6 +359,46 @@ Google Cloud Pub/Sub can be installed separately by requiring the `google/cloud-
 
 ```
 $ require google/cloud-pubsub
+```
+
+## Google Cloud Vision (Beta)
+
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/vision/visionclient)
+- [Official Documentation](https://cloud.google.com/vision/docs)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Vision\VisionClient;
+
+$vision = new VisionClient([
+    'projectId' => 'my_project'
+]);
+
+// Annotate an image, detecting faces.
+$image = $vision->image(
+    fopen('/data/family_photo.jpg', 'r'),
+    ['faces']
+);
+
+$annotation = $vision->annotate($image);
+
+// Determine if the detected faces have headwear.
+foreach ($annotation->faces() as $key => $face) {
+    if ($face->hasHeadwear()) {
+        echo "Face $key has headwear.\n";
+    }
+}
+```
+
+#### google/cloud-vision
+
+Google Cloud Vision can be installed separately by requiring the `google/cloud-vision` composer package:
+
+```
+$ require google/cloud-vision
 ```
 
 ## Cloud Spanner (Alpha)

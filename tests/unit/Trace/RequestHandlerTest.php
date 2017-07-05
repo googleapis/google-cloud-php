@@ -99,7 +99,8 @@ class RequestHandlerTest extends \PHPUnit_Framework_TestCase
         }
         $this->assertArrayHasKey('/pid', $labels);
         $this->assertArrayHasKey('/agent', $labels);
-        $this->assertEquals('google-cloud-php 0.1.0', $labels['/agent']);
+        $version = file_get_contents(__DIR__ .'/../../../src/Trace/VERSION');
+        $this->assertEquals('google-cloud-php '. $version, $labels['/agent']);
     }
 
     public function testCanParseParentContext()

@@ -68,7 +68,7 @@ class LoggingClient
     use ArrayTrait;
     use ClientTrait;
 
-    const VERSION = '1.2.0';
+    const VERSION = '1.3.0';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/logging.admin';
     const READ_ONLY_SCOPE = 'https://www.googleapis.com/auth/logging.read';
@@ -123,6 +123,10 @@ class LoggingClient
      *           BatchRunner.
      * }
      * @return PsrLogger
+     * @experimental The experimental flag means that while we believe this method
+     *      or class is ready for use, it may change before release in backwards-
+     *      incompatible ways. Please use with caution, and test thoroughly when
+     *      upgrading.
      **/
     public static function psrBatchLogger($name, array $options = [])
     {
@@ -506,7 +510,8 @@ class LoggingClient
      *           **Defaults to** ['batchSize' => 1000,
      *                            'callPeriod' => 2.0,
      *                            'workerNum' => 2]. Applies only when
-     *           `batchEnabled` is set to `true`.
+     *           `batchEnabled` is set to `true`. Note that this option is
+     *           currently considered **experimental** and is subject to change.
      *     @type array $clientConfig Configuration options for the Logging client
      *           used to handle processing of batch items. For valid options
      *           please see

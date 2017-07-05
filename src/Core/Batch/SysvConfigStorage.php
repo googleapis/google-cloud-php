@@ -19,6 +19,11 @@ namespace Google\Cloud\Core\Batch;
 
 /**
  * ConfigStorageInterface implementation with SystemV IPC shared memory.
+ *
+ * @experimental The experimental flag means that while we believe this method
+ *      or class is ready for use, it may change before release in backwards-
+ *      incompatible ways. Please use with caution, and test thoroughly when
+ *      upgrading.
  */
 class SysvConfigStorage implements ConfigStorageInterface
 {
