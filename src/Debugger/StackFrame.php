@@ -17,10 +17,14 @@
 
 namespace Google\Cloud\Debugger;
 
+use Google\Cloud\Core\ArrayTrait;
+
 /**
  */
-class StackFrame
+class StackFrame implements \JsonSerializable
 {
+    use ArrayTrait;
+
     /**
      * @var string
      */
@@ -34,10 +38,41 @@ class StackFrame
     /**
      * @var Variable[]
      */
-    public $arguments;
+    public $arguments = [];
 
     /**
      * @var Variable[]
      */
-    public $locals;
+    public $locals = [];
+
+    public function __construct($data)
+    {
+        $this->function = $this->pluck('function', $data);
+        $this->location = new SourceLocation($this->pluck('location', $data));
+        // $this->arguments =
+    }
+
+    public static function fromBacktrace($bt)
+    {
+        // var_dump($bt);
+        return array_map(function ($stack) {
+            return new static([
+                'function' => $stack['function'],
+                'location' => [
+                    'path' => $stack['file'],
+                    'line' => $stack['line']
+                ]
+            ]);
+        }, $bt);
+    }
+
+    public function jsonSerialize()
+    {
+        return [
+            'function' => $this->function,
+            'location' => $this->location,
+            'arguments' => $this->arguments,
+            'locals' => $this->locals
+        ];
+    }
 }

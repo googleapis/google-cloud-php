@@ -132,12 +132,17 @@ class Breakpoint implements \JsonSerializable
         }, $this->pluck('variableTable', $data, false) ?: []);
     }
 
+    public function id()
+    {
+        return $this->id;
+    }
+
     public function jsonSerialize()
     {
         return [
             'id' => $this->id,
             'action' => $this->action->jsonSerialize(),
-            // 'location' => $this->location->jsonSerialize(),
+            'location' => $this->location->jsonSerialize(),
             'condition' => $this->condition,
             'expressions' => $this->expressions,
             'logMessageFormat' => $this->logMessageFormat,

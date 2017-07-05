@@ -17,10 +17,14 @@
 
 namespace Google\Cloud\Debugger;
 
+use Google\Cloud\Core\ArrayTrait;
+
 /**
  */
 class Variable implements \JsonSerializable
 {
+    use ArrayTrait;
+
     /**
      * @var string
      */
@@ -50,6 +54,26 @@ class Variable implements \JsonSerializable
      * @var StatusMessage
      */
     public $status;
+
+    public function __construct($data)
+    {
+        $this->name = $this->pluck('name', $data);
+        $this->value = $this->pluck('value', $data);
+        $this->type = $this->pluck('type', $data) ?: get_class($this->value);
+        $this->members = array_map(function ($member) {
+            return new static($members);
+        }, $this->pluck('members', $data, false) ?: []);
+        $this->varTableIndex = $this->pluck('varTableIndex', $data, false);
+    }
+
+    public static function fromVariable($name, $variable)
+    {
+        return new static([
+            'name' => $name,
+            'value' => is_object($variable) ? 'obj' : (string) $variable,
+            'type' => gettype($variable)
+        ]);
+    }
 
     public function jsonSerialize()
     {

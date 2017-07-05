@@ -117,9 +117,10 @@ class Debuggee implements \JsonSerializable
     public function updateBreakpoint(Breakpoint $breakpoint)
     {
         $data = [
-            'debuggeeId' => $this->id
-        ] + $breakpoint->jsonSerialize();
-        var_dump($data);
+            'debuggeeId' => $this->id,
+            'id' => $breakpoint->id(),
+            'breakpoint' => $breakpoint->jsonSerialize()
+        ];
         return $this->connection->updateBreakpoint($data);
     }
 
