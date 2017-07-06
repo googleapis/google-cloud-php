@@ -124,6 +124,14 @@ class Debuggee implements \JsonSerializable
         return $this->connection->updateBreakpoint($data);
     }
 
+    public function updateBreakpointBatch($breakpoints)
+    {
+        var_dump($breakpoints);
+        foreach ($breakpoints as $breakpoint) {
+            $this->updateBreakpoint($breakpoint);
+        }
+    }
+
     public function deleteBreakpoint(Breakpoint $breakpoint)
     {
 
