@@ -30,12 +30,12 @@ class Breakpoint implements \JsonSerializable
     /**
      * @var string
      */
-    private $id;
+    public $id;
 
     /**
      * @var Action
      */
-    private $action;
+    public $action;
 
     /**
      * @var SourceLocation
@@ -135,6 +135,11 @@ class Breakpoint implements \JsonSerializable
     public function id()
     {
         return $this->id;
+    }
+
+    public function location()
+    {
+        return $this->location;
     }
 
     public function jsonSerialize()

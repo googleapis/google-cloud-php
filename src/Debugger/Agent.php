@@ -50,10 +50,31 @@ class Agent
             return;
         }
 
+        $sourceFile = isset($options['sourceRoot'])
+            ? $options['sourceRoot'] . '/foo'
+            : debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 1)[0]['file'];
+
         foreach ($this->breakpoints as $breakpoint) {
             echo "attaching breakpoint...\n";
             var_dump($breakpoint);
-            stackdriver_debugger_add_snapshot("src/foo.php", 123, "condition", ["expressions"]);
+            switch ($breakpoint->action->value) {
+                case Action::CAPTURE:
+                    $sourceLocation = $breakpoint->location;
+                    stackdriver_debugger_add_snapshot(
+                        $sourceLocation->path,
+                        $sourceLocation->line,
+                        $breakpoint->id,
+                        $breakpoint->condition,
+                        $breakpoint->expressions,
+                        $sourceFile
+                    );
+
+                    break;
+                case Action::LOG:
+                default:
+                    echo "unsupported breakpoint type\n";
+                    continue;
+            }
         }
 
         register_shutdown_function([$this, 'onFinish']);
@@ -66,7 +87,6 @@ class Agent
             $this->fakeFill($breakpoint);
             $this->batchRunner->submitItem($this->identifier, $breakpoint);
         }
-        // return $this->batchRunner->submitItem($this->identifier, $this->breakpoints);
     }
 
     private function fakeFill($bp)
