@@ -780,7 +780,7 @@ class StorageObject
             $headers[] = '';
         }
 
-        $resource = sprintf('/%s/%s', $this->identity['bucket'], $this->identity['object']);
+        $resource = sprintf('/%s/%s', $this->identity['bucket'], rawurlencode($this->identity['object']));
         $toSign = [
             $options['method'],
             $options['contentMd5'],
