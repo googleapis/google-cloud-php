@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Trace\Integrations;
 
+use Illumniate\View\Engines\CompilerEngine;
+
 /**
  * This class handles instrumenting the Laravel framework's standard stack using the stackdriver_trace extension.
  *
@@ -40,7 +42,7 @@ class Laravel
         Eloquent::load();
 
         // Create a trace span for every template rendered
-        stackdriver_trace_method('Illuminate\View\Engines\CompilerEngine', 'get', function ($scope, $path, $data) {
+        stackdriver_trace_method(CompilerEngine::class, 'get', function ($scope, $path, $data) {
             return [
                 'name' => 'laravel/view',
                 'labels' => [

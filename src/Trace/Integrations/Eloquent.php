@@ -17,6 +17,9 @@
 
 namespace Google\Cloud\Trace\Integrations;
 
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
+
 /**
  * This class handles instrumenting the Eloquent ORM queries using the stackdriver_trace extension.
  *
@@ -37,8 +40,8 @@ class Eloquent
             return;
         }
 
-        stackdriver_trace_method('Illuminate\Database\Eloquent\Builder', 'getModels', function ($scope, $columns) {
-            $reflection = new \ReflectionClass('Illuminate\Database\Eloquent\Builder');
+        stackdriver_trace_method(Builder::class, 'getModels', function ($scope, $columns) {
+            $reflection = new \ReflectionClass(Builder::class);
             $modelProperty = $reflection->getProperty('model');
             $modelProperty->setAccessible(true);
             $model = $modelProperty->getValue($scope);
@@ -50,7 +53,7 @@ class Eloquent
                 ]
             ];
         });
-        stackdriver_trace_method('Illuminate\Database\Eloquent\Model', 'performInsert', function ($scope, $query) {
+        stackdriver_trace_method(Model::class, 'performInsert', function ($scope, $query) {
             return [
                 'name' => 'eloquent/insert',
                 'labels' => [
@@ -58,7 +61,7 @@ class Eloquent
                 ]
             ];
         });
-        stackdriver_trace_method('Illuminate\Database\Eloquent\Model', 'performUpdate', function ($scope, $query) {
+        stackdriver_trace_method(Model::class, 'performUpdate', function ($scope, $query) {
             return [
                 'name' => 'eloquent/update',
                 'labels' => [
@@ -66,7 +69,7 @@ class Eloquent
                 ]
             ];
         });
-        stackdriver_trace_method('Illuminate\Database\Eloquent\Model', 'delete', function ($scope, $query) {
+        stackdriver_trace_method(Model::class, 'delete', function ($scope, $query) {
             return [
                 'name' => 'eloquent/delete',
                 'labels' => [
@@ -74,7 +77,7 @@ class Eloquent
                 ]
             ];
         });
-        stackdriver_trace_method('Illuminate\Database\Eloquent\Model', 'destroy', function ($scope, $ids) {
+        stackdriver_trace_method(Model::class, 'destroy', function ($scope, $ids) {
             return [
                 'name' => 'eloquent/destroy',
                 'labels' => [

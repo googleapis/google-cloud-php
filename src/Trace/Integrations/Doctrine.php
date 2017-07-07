@@ -18,6 +18,7 @@
 namespace Google\Cloud\Trace\Integrations;
 
 use Doctrine\ORM\Version;
+use Doctrine\ORM\AbstractQuery;
 
 /**
  * This class handles instrumenting the Doctrine ORM queries using the stackdriver_trace extension.
@@ -50,6 +51,6 @@ class Doctrine
         };
         stackdriver_trace_method($persisterClass, 'load', $withCriteria);
         stackdriver_trace_method($persisterClass, 'loadAll', $withCriteria);
-        stackdriver_trace_method('Doctrine\ORM\AbstractQuery', 'execute');
+        stackdriver_trace_method(AbstractQuery::class, 'execute');
     }
 }
