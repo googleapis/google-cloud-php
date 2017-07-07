@@ -17,29 +17,7 @@
 
 namespace Google\Cloud\Trace\Integrations;
 
-/**
- * This class handles instrumenting curl requests using the stackdriver_trace extension.
- *
- * Example:
- * ```
- * use Google\Cloud\Trace\Integrations\Curl
- *
- * Curl::load();
- * ```
- */
-class Curl implements IntegrationInterface
+interface IntegrationInterface
 {
-    /**
-     * Static method to add instrumentation to curl requests
-     */
-    public static function load()
-    {
-        if (!extension_loaded('stackdriver_trace')) {
-            return;
-        }
-
-        stackdriver_trace_function('curl_exec');
-        stackdriver_trace_function('curl_multi_add_handle');
-        stackdriver_trace_function('curl_multi_remove_handle');
-    }
+    public static function load();
 }

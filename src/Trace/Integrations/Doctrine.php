@@ -29,7 +29,7 @@ use Doctrine\ORM\AbstractQuery;
  *
  * Doctrine::load();
  */
-class Doctrine
+class Doctrine implements IntegrationInterface
 {
     /**
      * Static method to add instrumentation to the Symfony framework

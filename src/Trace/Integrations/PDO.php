@@ -26,7 +26,7 @@ namespace Google\Cloud\Trace\Integrations;
  *
  * PDO::load();
  */
-class PDO
+class PDO implements IntegrationInterface
 {
     /**
      * Static method to add instrumentation to the PDO requests

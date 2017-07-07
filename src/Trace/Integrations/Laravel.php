@@ -28,7 +28,7 @@ use Illumniate\View\Engines\CompilerEngine;
  *
  * Laravel::load();
  */
-class Laravel
+class Laravel implements IntegrationInterface
 {
     /**
      * Static method to add instrumentation to the Laravel framework

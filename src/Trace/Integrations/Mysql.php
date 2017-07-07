@@ -26,7 +26,7 @@ namespace Google\Cloud\Trace\Integrations;
  *
  * Mysql::load();
  */
-class Mysql
+class Mysql implements IntegrationInterface
 {
     /**
      * Static method to add instrumentation to mysql requests

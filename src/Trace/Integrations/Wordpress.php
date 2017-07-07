@@ -20,7 +20,7 @@ namespace Google\Cloud\Trace\Integrations;
 /**
  * This class handles instrumenting the Wordpress framework's standard stack using the stackdriver_trace extension.
  */
-class Wordpress
+class Wordpress implements IntegrationInterface
 {
     /**
      * Static method to add instrumentation to the Wordpress framework

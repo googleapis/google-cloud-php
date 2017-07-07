@@ -29,7 +29,7 @@ use Illuminate\Database\Eloquent\Model;
  *
  * Eloquent::load();
  */
-class Eloquent
+class Eloquent implements IntegrationInterface
 {
     /**
      * Static method to add instrumentation to the Symfony framework

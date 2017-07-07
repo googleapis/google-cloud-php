@@ -26,7 +26,7 @@ namespace Google\Cloud\Trace\Integrations;
  *
  * Memcache::load();
  */
-class Memcache
+class Memcache implements IntegrationInterface
 {
     /**
      * Static method to add instrumentation to memcache requests

@@ -26,7 +26,7 @@ namespace Google\Cloud\Trace\Integrations;
  *
  * Symfony::load();
  */
-class Symfony
+class Symfony implements IntegrationInterface
 {
     /**
      * Static method to add instrumentation to the Symfony framework

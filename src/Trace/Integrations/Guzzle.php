@@ -31,7 +31,7 @@ use GuzzleHttp\ClientInterface;
  *
  * Guzzle::load();
  */
-class Guzzle
+class Guzzle implements IntegrationInterface
 {
     /**
      * Static method to add instrumentation to Guzzle http synchronous requests

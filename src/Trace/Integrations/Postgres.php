@@ -26,7 +26,7 @@ namespace Google\Cloud\Trace\Integrations;
  *
  * Postgres::load();
  */
-class Postgres
+class Postgres implements IntegrationInterface
 {
     /**
      * Static method to add instrumentation to the postgres requests
