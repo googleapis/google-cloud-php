@@ -72,7 +72,9 @@ class Result
      *         a `transcript` key which holds the transcribed text. Optionally
      *         a `confidence` key holding the confidence estimate ranging from
      *         0.0 to 1.0 may be present. `confidence` is typically provided
-     *         only for the top hypothesis.
+     *         only for the top hypothesis. If the `enableWordTimeOffsets`
+     *         option was set in the request, the top hypothesis will also
+     *         contain a list of `wordTimeOffsets`.
      */
     public function alternatives()
     {
@@ -93,6 +95,8 @@ class Result
      * @return array The top alternative. Contains a `transcript` key which
      *         holds the transcribed text. Optionally a `confidence` key holding
      *         the confidence estimate ranging from 0.0 to 1.0 may be present.
+     *         If the `enableWordTimeOffsets` option was set in the request, this
+     *         will also contain a list of `wordTimeOffsets`.
      */
     public function topAlternative()
     {
