@@ -1,0 +1,24 @@
+{
+    "name": "google/cloud-dlp",
+    "description": "Data Loss Prevention Client for PHP",
+    "license": "Apache-2.0",
+    "minimum-stability": "stable",
+    "require": {
+        "ext-grpc": "*",
+        "google/proto-client": "^0.21.0",
+        "google/gax": "^0.21.0"
+    },
+    "extra": {
+        "component": {
+            "id": "cloud-dlp",
+            "target": "GoogleCloudPlatform/google-cloud-php-dlp.git",
+            "path": "src/Dlp",
+            "entry": null
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Google\\Cloud\\Dlp\\": ""
+        }
+    }
+}
