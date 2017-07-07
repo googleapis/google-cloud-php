@@ -58,8 +58,8 @@ class Variable implements \JsonSerializable
     public function __construct($data)
     {
         $this->name = $this->pluck('name', $data);
-        $this->value = $this->pluck('value', $data);
-        $this->type = $this->pluck('type', $data) ?: get_class($this->value);
+        $this->value = $this->pluck('value', $data, false);
+        $this->type = $this->pluck('type', $data, false) ?: get_class($this->value);
         $this->members = array_map(function ($member) {
             return new static($members);
         }, $this->pluck('members', $data, false) ?: []);

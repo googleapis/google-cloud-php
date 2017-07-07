@@ -30,12 +30,13 @@ class Agent
     private static $debuggee;
     private $debuggeeId;
 
-    private $breakpoints;
+    private $breakpoints = [];
 
     public function __construct(array $options = [])
     {
         $storage = new BreakpointStorage();
-        list($this->debuggeeId, $this->breakpoints) = $storage->load();
+        list($this->debuggeeId, $breakpoints) = $storage->load();
+
 
         $this->setCommonBatchProperties($options + [
             'identifier' => 'stackdriver-debugger',
@@ -45,7 +46,7 @@ class Agent
             ? $options['debuggee']
             : $this->defaultDebuggee();
 
-        if (empty($this->breakpoints)) {
+        if (empty($breakpoints)) {
             echo "no breakpoints\n";
             return;
         }
@@ -54,9 +55,9 @@ class Agent
             ? $options['sourceRoot'] . '/foo'
             : debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 1)[0]['file'];
 
-        foreach ($this->breakpoints as $breakpoint) {
-            echo "attaching breakpoint...\n";
-            var_dump($breakpoint);
+        foreach ($breakpoints as $breakpoint) {
+            $this->breakpoints[$breakpoint->id] = $breakpoint;
+
             switch ($breakpoint->action->value) {
                 case Action::CAPTURE:
                     $sourceLocation = $breakpoint->location;
@@ -82,11 +83,52 @@ class Agent
 
     public function onFinish()
     {
-        echo 'Report collected debugger snapshots';
-        foreach ($this->breakpoints as $breakpoint) {
-            $this->fakeFill($breakpoint);
-            $this->batchRunner->submitItem($this->identifier, $breakpoint);
+        // echo 'Report collected debugger snapshots' . PHP_EOL;
+        foreach (stackdriver_debugger_list() as $snapshot) {
+            if (array_key_exists($snapshot['id'], $this->breakpoints)) {
+                $breakpoint = $this->breakpoints[$snapshot['id']];
+                $this->fillBreakpoint($breakpoint, $snapshot);
+                $this->batchRunner->submitItem($this->identifier, $breakpoint);
+            } else {
+                echo "found reported snapshot but couldn't find record\n";
+            }
         }
+    }
+
+    private function fillBreakpoint($breakpoint, $snapshot)
+    {
+        list($usec, $sec) = explode(' ', microtime());
+        $micro = sprintf("%06d", $usec * 1000000);
+        $when = new \DateTime(date('Y-m-d H:i:s.' . $micro));
+        $when->setTimezone(new \DateTimeZone('UTC'));
+        $breakpoint->finalTime = $when->format('Y-m-d\TH:i:s.u\Z');
+        $breakpoint->isFinalState = true;
+
+        $breakpoint->stackFrames = array_map(function ($stackFrameData) {
+            $sf = new StackFrame([]);
+            if (isset($stackFrameData['function'])) {
+                $sf->function = $stackFrameData['function'];
+            }
+            $sf->location = new SourceLocation([
+                'path' => $stackFrameData['filename'],
+                'line' => $stackFrameData['line']
+            ]);
+            if (isset($stackFrameData['locals'])) {
+                $sf->locals = array_map(function ($local) {
+                    return new Variable([
+                        'name' => $local['name']
+                    ]);
+                }, $stackFrameData['locals']);
+            }
+            if (isset($stackFrameData['arguments'])) {
+                $sf->arguments = array_map(function ($arg) {
+                    return new Variable([
+                        'name' => $arg['name']
+                    ]);
+                }, $stackFrameData['arguments']);
+            }
+            return $sf;
+        }, $snapshot['stackframes']);
     }
 
     private function fakeFill($bp)
@@ -97,14 +139,14 @@ class Agent
         $when->setTimezone(new \DateTimeZone('UTC'));
         $bp->finalTime = $when->format('Y-m-d\TH:i:s.u000\Z');
 
-        $variable = new Variable([
-            'name' => 'foo',
-            'value' => 'bar',
-            'type' => 'string',
-            'varTableIndex' => 0
-        ]);
-
-        array_push($bp->variableTable, $variable);
+        // $variable = new Variable([
+        //     'name' => 'foo',
+        //     'value' => 'bar',
+        //     'type' => 'string',
+        //     'varTableIndex' => 0
+        // ]);
+        //
+        // array_push($bp->variableTable, $variable);
         $bp->isFinalState = true;
 
         $bp->stackFrames = StackFrame::fromBacktrace(debug_backtrace());
@@ -123,8 +165,8 @@ class Agent
 
     private function defaultDebuggee()
     {
-        echo "creating new debugger client\n";
-        var_dump($this->debuggeeId);
+        // echo "creating new debugger client\n";
+        // var_dump($this->debuggeeId);
         $client = new DebuggerClient($this->clientConfig);
         return $client->debuggee($this->debuggeeId, [
             'uniquifier' => 'foo-bar2',

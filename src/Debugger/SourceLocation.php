@@ -37,8 +37,9 @@ class SourceLocation implements \JsonSerializable
 
     public function __construct($data)
     {
-        $this->path = $this->pluck('path', $data);
-        $this->line = $this->pluck('line', $data);
+        $data = $data ?: [];
+        $this->path = $this->pluck('path', $data, false);
+        $this->line = $this->pluck('line', $data, false);
     }
 
     public function jsonSerialize()
