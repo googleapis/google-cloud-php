@@ -189,8 +189,8 @@ class SpeechClient
      *           [SpeechContext](https://cloud.google.com/speech/reference/rest/v1/RecognitionConfig#SpeechContext)
      *           for more information.
      *     @type bool $enableWordTimeOffsets If set to `true`, a list of
-     *           `word_time_offsets` are returned with the top alternative. If
-     *           `false` or omitted, no `word_time_offsets` are returned.
+     *           `wordTimeOffsets` are returned with the top alternative. If
+     *           `false` or omitted, no `wordTimeOffsets` are returned.
      *           **Defaults to** `false`.
      *           **Whitelist Warning:** At the time of publication, this argument
      *           is subject to a feature whitelist and may not be available in
@@ -321,8 +321,8 @@ class SpeechClient
      *           [SpeechContext](https://cloud.google.com/speech/reference/rest/v1/RecognitionConfig#SpeechContext)
      *           for more information.
      *     @type bool $enableWordTimeOffsets If set to `true`, a list of
-     *           `word_time_offsets` are returned with the top alternative. If
-     *           `false` or omitted, no `word_time_offsets` are returned.
+     *           `wordTimeOffsets` are returned with the top alternative. If
+     *           `false` or omitted, no `wordTimeOffsets` are returned.
      *           **Defaults to** `false`.
      *           **Whitelist Warning:** At the time of publication, this argument
      *           is subject to a feature whitelist and may not be available in
