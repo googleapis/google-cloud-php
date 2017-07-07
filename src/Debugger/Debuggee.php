@@ -71,7 +71,10 @@ class Debuggee implements \JsonSerializable
 
     public function register(array $args = [])
     {
-        $this->connection->registerDebuggee($this->jsonSerialize());
+        $resp = $this->connection->registerDebuggee($this->jsonSerialize());
+        if (array_key_exists('debuggee', $resp)) {
+            $this->id = $resp['debuggee']['id'];
+        }
     }
 
     public function sourceContexts()
@@ -148,10 +151,10 @@ class Debuggee implements \JsonSerializable
             'agentVersion' => $this->agentVersion,
             'status' => $this->status,
             'sourceContexts' => array_map(function ($sc) {
-                return $sc->jsonSerialize();
+                return is_array($sc) ? $sc : $sc->jsonSerialize();
             }, $this->sourceContexts),
             'extSourceContexts' => array_map(function ($esc) {
-                return $esc->jsonSerialize();
+                return is_array($esc) ? $esc : $esc->jsonSerialize();
             }, $this->extSourceContexts)
         ];
     }
