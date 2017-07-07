@@ -19,12 +19,15 @@ namespace Google\Cloud\Tests\Snippets\Spanner;
 
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
 use Google\Cloud\Spanner\Duration;
+use Google\Cloud\Tests\GrpcTestTrait;
 
 /**
  * @group spanner
  */
 class DurationTest extends SnippetTestCase
 {
+    use GrpcTestTrait;
+
     const SECONDS = 1;
     const NANOS = 2;
 
@@ -32,15 +35,13 @@ class DurationTest extends SnippetTestCase
 
     public function setUp()
     {
+        $this->checkAndSkipGrpcTests();
+
         $this->duration = new Duration(self::SECONDS, self::NANOS);
     }
 
     public function testClass()
     {
-        if (!extension_loaded('grpc')) {
-            $this->markTestSkipped('Must have the grpc extension installed to run this test.');
-        }
-
         $snippet = $this->snippetFromClass(Duration::class);
         $res = $snippet->invoke('duration');
         $this->assertInstanceOf(Duration::class, $res->returnVal());

@@ -17,11 +17,13 @@
 
 namespace Google\Cloud\Logging;
 
+use Google\Cloud\Core\Batch\BatchTrait;
+use Google\Cloud\Core\Report\MetadataProviderInterface;
+use Google\Cloud\Core\Report\MetadataProviderUtils;
 use Monolog\Formatter\NormalizerFormatter;
 use Monolog\Processor\PsrLogMessageProcessor;
 use Psr\Log\InvalidArgumentException;
 use Psr\Log\LoggerInterface;
-use Psr\Log\LogLevel;
 
 /**
  * A PSR-3 compliant logger used to write entries to Google Stackdriver Logging.
@@ -35,10 +37,30 @@ use Psr\Log\LogLevel;
  * $psrLogger = $logging->psrLogger('my-log');
  * ```
  *
+ * ```
+ * // Write entries with background batching.
+ * use Google\Cloud\Logging\LoggingClient;
+ *
+ * $logging = new LoggingClient();
+ *
+ * $psrLogger = $logging->psrLogger('my-log', [
+ *     'batchEnabled' => true
+ * ]);
+ * ```
+ *
  * @see http://www.php-fig.org/psr/psr-3/#psrlogloggerinterface Psr\Log\LoggerInterface
  */
-class PsrLogger implements LoggerInterface
+class PsrLogger implements LoggerInterface, \Serializable
 {
+    use BatchTrait;
+
+    const ID_TEMPLATE = 'stackdriver-logging-%s';
+
+    /**
+     * @var array
+     */
+    private static $loggers = [];
+
     /**
      * @var Logger The logger used to write entries.
      */
@@ -50,14 +72,67 @@ class PsrLogger implements LoggerInterface
     private $messageKey;
 
     /**
+     * @var bool
+     */
+    private $batchEnabled;
+
+    /**
+     * @var MetadataProviderInterface
+     */
+    private $metadataProvider;
+
+    /**
      * @param Logger $logger The logger used to write entries.
      * @param string $messageKey The key in the `jsonPayload` used to contain
      *        the logged message. **Defaults to** `message`.
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type MetadataProviderInterface $metadataProvider **Defaults to** An
+     *           automatically chosen provider, based on detected environment
+     *           settings.
+     *     @type bool $batchEnabled Determines whether or not to use background
+     *           batching. **Defaults to** `false`. Note that this option is
+     *           currently considered **experimental** and is subject to change.
+     *     @type bool $debugOutput Whether or not to output debug information.
+     *           **Defaults to** false. Applies only when `batchEnabled` is set
+     *           to `true`.
+     *     @type array $batchOptions A set of options for a BatchJob.
+     *           {@see \Google\Cloud\Core\Batch\BatchJob::__construct()} for
+     *           more details.
+     *           **Defaults to** ['batchSize' => 1000,
+     *                            'callPeriod' => 2.0,
+     *                            'workerNum' => 2]. Applies only when
+     *           `batchEnabled` is set to `true`.
+     *     @type array $clientConfig Configuration options for the Logging client
+     *           used to handle processing of batch items. For valid options
+     *           please see
+     *           {@see \Google\Cloud\Logging\LoggingClient::__construct()}.
+     *           Applies only when `batchEnabled` is set to `true`.
+     *     @type BatchRunner $batchRunner A BatchRunner object. Mainly used for
+     *           the tests to inject a mock. **Defaults to** a newly created
+     *           BatchRunner. Applies only when `batchEnabled` is set to `true`.
+     * }
      */
-    public function __construct(Logger $logger, $messageKey = 'message')
-    {
+    public function __construct(
+        Logger $logger,
+        $messageKey = null,
+        array $options = []
+    ) {
         $this->logger = $logger;
-        $this->messageKey = $messageKey;
+        $this->logName = $logger->name();
+        $this->messageKey = $messageKey ?: 'message';
+        $this->metadataProvider = isset($options['metadataProvider'])
+            ? $options['metadataProvider']
+            : MetadataProviderUtils::autoSelect($_SERVER);
+
+        if (isset($options['batchEnabled']) && $options['batchEnabled'] === true) {
+            $this->batchEnabled = true;
+            $this->setCommonBatchProperties($options + [
+                'identifier' => sprintf(self::ID_TEMPLATE, $this->logger->name()),
+                'batchMethod' => 'writeBatch'
+            ]);
+        }
     }
 
     /**
@@ -289,14 +364,92 @@ class PsrLogger implements LoggerInterface
         ]);
         $jsonPayload = [$this->messageKey => $processedData['message']];
 
+        // Adding labels for log request correlation.
+        $labels = $this->getLabels();
+        if (! empty($labels)) {
+            $options['labels'] =
+                (isset($options['labels'])
+                 ? $options['labels']
+                 : []) + $labels;
+        }
+        // Adding MonitoredResource
+        $resource = $this->metadataProvider->monitoredResource();
+        if (! empty($resource)) {
+            $options['resource'] =
+                (isset($options['resource'])
+                 ? $options['resource']
+                 : []) + $resource;
+        }
         $entry = $this->logger->entry(
             $jsonPayload + $processedData['context'],
             $options + [
                 'severity' => $level
             ]
         );
+        $this->sendEntry($entry);
+    }
 
-        $this->logger->write($entry);
+    /**
+     * Return the MetadataProvider.
+     *
+     * @return MetadataProviderInterface
+     */
+    public function getMetadataProvider()
+    {
+        return $this->metadataProvider;
+    }
+
+    /**
+     * Serializes data.
+     *
+     * @return string
+     * @access private
+     */
+    public function serialize()
+    {
+        return serialize([
+            $this->messageKey,
+            $this->batchEnabled,
+            $this->metadataProvider,
+            $this->debugOutput,
+            $this->clientConfig,
+            $this->batchMethod,
+            $this->logName
+        ]);
+    }
+
+    /**
+     * Unserializes data.
+     *
+     * @param string
+     * @access private
+     */
+    public function unserialize($data)
+    {
+        list(
+            $this->messageKey,
+            $this->batchEnabled,
+            $this->metadataProvider,
+            $this->debugOutput,
+            $this->clientConfig,
+            $this->batchMethod,
+            $this->logName
+        ) = unserialize($data);
+    }
+
+    /**
+     * Returns an array representation of a callback which will be used to write
+     * batch items.
+     *
+     * @return array
+     */
+    protected function getCallback()
+    {
+        if (!array_key_exists($this->logName, self::$loggers)) {
+            $c = new LoggingClient($this->clientConfig);
+            self::$loggers[$this->logName] = $c->logger($this->logName);
+        }
+        return [self::$loggers[$this->logName], $this->batchMethod];
     }
 
     /**
@@ -308,7 +461,7 @@ class PsrLogger implements LoggerInterface
      */
     private function validateLogLevel($level)
     {
-        $map = $this->logger->getLogLevelMap();
+        $map = Logger::getLogLevelMap();
         $level = (string) $level;
 
         if (isset($map[$level]) || isset(array_flip($map)[strtoupper($level)])) {
@@ -316,5 +469,31 @@ class PsrLogger implements LoggerInterface
         }
 
         throw new InvalidArgumentException("Severity level '$level' is not defined.");
+    }
+
+    /**
+     * Send the given entry.
+     *
+     * @param Entry $entry
+     */
+    private function sendEntry(Entry $entry)
+    {
+        if ($this->batchEnabled) {
+            $this->batchRunner->submitItem($this->identifier, $entry);
+            return;
+        }
+
+        $this->logger->write($entry);
+    }
+
+    /**
+     * Return additional labels. Now it returns labels for log request
+     * correlation.
+     *
+     * @return array
+     */
+    private function getLabels()
+    {
+        return $this->metadataProvider->labels();
     }
 }

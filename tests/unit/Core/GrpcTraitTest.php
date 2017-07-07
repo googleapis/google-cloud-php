@@ -20,8 +20,11 @@ namespace Google\Cloud\Tests\Unit\Core;
 use Google\Auth\Cache\MemoryCacheItemPool;
 use Google\Auth\FetchAuthTokenCache;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\Tests\GrpcTestTrait;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\GrpcTrait;
+use google\protobuf;
 use Prophecy\Argument;
 
 /**
@@ -29,17 +32,23 @@ use Prophecy\Argument;
  */
 class GrpcTraitTest extends \PHPUnit_Framework_TestCase
 {
+    use GrpcTestTrait;
+
     private $implementation;
     private $requestWrapper;
 
     public function setUp()
     {
-        if (!extension_loaded('grpc')) {
-            $this->markTestSkipped('Must have the grpc extension installed to run this test.');
-        }
+        $this->checkAndSkipGrpcTests();
 
-        $this->implementation = new GrpcTraitStub();
+        $this->implementation = \Google\Cloud\Dev\impl(GrpcTrait::class);
         $this->requestWrapper = $this->prophesize(GrpcRequestWrapper::class);
+    }
+
+    public function testSetGetRequestWrapper()
+    {
+        $this->implementation->setRequestWrapper($this->requestWrapper->reveal());
+        $this->assertInstanceOf(GrpcRequestWrapper::class, $this->implementation->requestWrapper());
     }
 
     public function testSendsRequest()
@@ -84,6 +93,52 @@ class GrpcTraitTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($message, $actualResponse);
     }
 
+    public function testSendsRequestNotFoundWhitelisted()
+    {
+        $grpcOptions = [
+            'timeoutMs' => 100
+        ];
+        $this->requestWrapper->send(
+            Argument::type('callable'),
+            Argument::type('array'),
+            ['grpcOptions' => $grpcOptions]
+        )->willThrow(new NotFoundException('uh oh'));
+
+        $this->implementation->setRequestWrapper($this->requestWrapper->reveal());
+
+        $msg = null;
+        try {
+            $this->implementation->send(function () {}, [['grpcOptions' => $grpcOptions]], true);
+        } catch (NotFoundException $e) {
+            $msg = $e->getMessage();
+        }
+
+        $this->assertFalse(strpos($msg, 'NOTE: Error may be due to Whitelist Restriction.') === false);
+    }
+
+    public function testSendsRequestNotFoundNotWhitelisted()
+    {
+        $grpcOptions = [
+            'timeoutMs' => 100
+        ];
+        $this->requestWrapper->send(
+            Argument::type('callable'),
+            Argument::type('array'),
+            ['grpcOptions' => $grpcOptions]
+        )->willThrow(new NotFoundException('uh oh'));
+
+        $this->implementation->setRequestWrapper($this->requestWrapper->reveal());
+
+        $msg = null;
+        try {
+            $this->implementation->send(function () {}, [['grpcOptions' => $grpcOptions]], false);
+        } catch (NotFoundException $e) {
+            $msg = $e->getMessage();
+        }
+
+        $this->assertTrue(strpos($msg, 'NOTE: Error may be due to Whitelist Restriction.') === false);
+    }
+
     public function testGetsGaxConfig()
     {
         $version = '1.0.0';
@@ -111,19 +166,6 @@ class GrpcTraitTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('2016-08-15T06:35:09.000000001Z', $this->implementation->call('formatTimestampFromApi', [$timestamp]));
     }
 
-    public function testFormatsLabels()
-    {
-        $labels = ['test' => 'label'];
-        $expected = [
-            [
-                'key' => key($labels),
-                'value' => current($labels)
-            ]
-        ];
-
-        $this->assertEquals($expected, $this->implementation->call('formatLabelsForApi', [$labels]));
-    }
-
     public function testFormatsStruct()
     {
         $value = 'test';
@@ -135,17 +177,11 @@ class GrpcTraitTest extends \PHPUnit_Framework_TestCase
 
         $expected = [
             'fields' => [
-                [
-                    'key' => $value,
-                    'value' => [
-                        'struct_value' => [
-                            'fields' => [
-                                [
-                                    'key' => $value,
-                                    'value' => [
-                                        'string_value' => $value
-                                    ]
-                                ]
+                $value => [
+                    'struct_value' => [
+                        'fields' => [
+                            $value => [
+                                'string_value' => $value
                             ]
                         ]
                     ]
@@ -220,26 +256,13 @@ class GrpcTraitTest extends \PHPUnit_Framework_TestCase
                 [
                     'struct_value' => [
                         'fields' => [
-                            [
-                                'key' => 'test',
-                                'value' => [
-                                    'string_value' => 'test'
-                                ]
+                            'test' => [
+                                'string_value' => 'test'
                             ]
                         ]
                     ]
                 ]
             ]
         ];
-    }
-}
-
-class GrpcTraitStub
-{
-    use GrpcTrait;
-
-    public function call($fn, array $args = [])
-    {
-        return call_user_func_array([$this, $fn], $args);
     }
 }

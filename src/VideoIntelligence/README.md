@@ -20,7 +20,7 @@ If you are using Video Intelligence through the umbrella package (google/cloud),
 you will also need to install the following dependencies through composer:
 
 ```sh
-$ composer require google/gax && composer require google/proto-client-php
+$ composer require google/gax && composer require google/proto-client
 ```
 
 Please take care in installing the same version of these libraries that are

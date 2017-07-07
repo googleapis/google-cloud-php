@@ -24,7 +24,7 @@ use Google\Auth\FetchAuthTokenCache;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\GrpcRequestWrapper;
-use google\protobuf;
+use Google\Protobuf\NullValue;
 
 /**
  * Provides shared functionality for gRPC service implementations.
@@ -48,6 +48,16 @@ trait GrpcTrait
     public function setRequestWrapper(GrpcRequestWrapper $requestWrapper)
     {
         $this->requestWrapper = $requestWrapper;
+    }
+
+    /**
+     * Get the GrpcRequestWrapper.
+     *
+     * @return GrpcRequestWrapper|null
+     */
+    public function requestWrapper()
+    {
+        return $this->requestWrapper;
     }
 
     /**
@@ -115,26 +125,6 @@ trait GrpcTrait
     }
 
     /**
-     * Format a set of labels for the API.
-     *
-     * @param array $labels
-     * @return array
-     */
-    private function formatLabelsForApi(array $labels)
-    {
-        $fLabels = [];
-
-        foreach ($labels as $key => $value) {
-            $fLabels[] = [
-                'key' => $key,
-                'value' => $value
-            ];
-        }
-
-        return $fLabels;
-    }
-
-    /**
      * Format a struct for the API.
      *
      * @param array $fields
@@ -145,13 +135,64 @@ trait GrpcTrait
         $fFields = [];
 
         foreach ($fields as $key => $value) {
-            $fFields[] = [
-                'key' => $key,
-                'value' => $this->formatValueForApi($value)
-            ];
+            $fFields[$key] = $this->formatValueForApi($value);
         }
 
         return ['fields' => $fFields];
+    }
+
+    private function unpackStructFromApi(array $struct)
+    {
+        $vals = [];
+        foreach ($struct['fields'] as $key => $val) {
+            $vals[$key] = $this->unpackValue($val);
+        }
+        return $vals;
+    }
+
+    private function unpackValue($value)
+    {
+        if (count($value) > 1) {
+            throw new \RuntimeException("Unexpected fields in struct: $value");
+        }
+
+        foreach ($value as $setField => $setValue) {
+            switch ($setField) {
+                case 'listValue':
+                    $valueList = [];
+                    foreach ($setValue['values'] as $innerValue) {
+                        $valueList[] = $this->unpackValue($innerValue);
+                    }
+                    return $valueList;
+                case 'structValue':
+                    return $this->unpackStructFromApi($setValue['structValue']);
+                default:
+                    return $setValue;
+            }
+        }
+    }
+
+    private function flattenStruct(array $struct)
+    {
+        return $struct['fields'];
+    }
+
+    private function flattenValue(array $value)
+    {
+        if (count($value) > 1) {
+            throw new \RuntimeException("Unexpected fields in struct: $value");
+        }
+
+        if (isset($value['nullValue'])) {
+            return null;
+        }
+
+        return array_pop($value);
+    }
+
+    private function flattenListValue(array $value)
+    {
+        return $value['values'];
     }
 
     /**
@@ -190,7 +231,7 @@ trait GrpcTrait
             case 'boolean':
                 return ['bool_value' => $value];
             case 'NULL':
-                return ['null_value' => protobuf\NullValue::NULL_VALUE];
+                return ['null_value' => NullValue::NULL_VALUE];
             case 'array':
                 if (!empty($value) && $this->isAssoc($value)) {
                     return ['struct_value' => $this->formatStructForApi($value)];

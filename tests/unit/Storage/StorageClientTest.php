@@ -17,8 +17,13 @@
 
 namespace Google\Cloud\Tests\Unit\Storage;
 
+use Google\Cloud\Core\Timestamp;
+use Google\Cloud\Core\Upload\SignedUrlUploader;
+use Google\Cloud\Storage\Bucket;
+use Google\Cloud\Storage\Connection\ConnectionInterface;
 use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Storage\StreamWrapper;
+use GuzzleHttp\Psr7;
 use Prophecy\Argument;
 
 /**
@@ -26,18 +31,28 @@ use Prophecy\Argument;
  */
 class StorageClientTest extends \PHPUnit_Framework_TestCase
 {
+    const PROJECT = 'my-project';
     public $connection;
 
     public function setUp()
     {
-        $this->connection = $this->prophesize('Google\Cloud\Storage\Connection\ConnectionInterface');
-        $this->client = new StorageTestClient(['projectId' => 'project']);
+        $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->client = \Google\Cloud\Dev\stub(StorageClient::class, [['projectId' => self::PROJECT]]);
     }
 
     public function testGetBucket()
     {
-        $this->client->setConnection($this->connection->reveal());
-        $this->assertInstanceOf('Google\Cloud\Storage\Bucket', $this->client->bucket('myBucket'));
+        $this->client->___setProperty('connection', $this->connection->reveal());
+        $this->assertInstanceOf(Bucket::class, $this->client->bucket('myBucket'));
+    }
+
+    public function testGetBucketRequesterPaysDefaultProjectId()
+    {
+        $this->connection->getBucket(Argument::withEntry('userProject', self::PROJECT));
+        $this->client->___setProperty('connection', $this->connection->reveal());
+        $bucket = $this->client->bucket('myBucket', true);
+
+        $bucket->reload();
     }
 
     public function testGetsBucketsWithoutToken()
@@ -48,7 +63,7 @@ class StorageClientTest extends \PHPUnit_Framework_TestCase
             ]
         ]);
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
         $buckets = iterator_to_array($this->client->buckets());
 
         $this->assertEquals('bucket1', $buckets[0]->name());
@@ -70,7 +85,7 @@ class StorageClientTest extends \PHPUnit_Framework_TestCase
             ]
         );
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
         $bucket = iterator_to_array($this->client->buckets());
 
         $this->assertEquals('bucket2', $bucket[1]->name());
@@ -79,9 +94,9 @@ class StorageClientTest extends \PHPUnit_Framework_TestCase
     public function testCreatesBucket()
     {
         $this->connection->insertBucket(Argument::any())->willReturn(['name' => 'bucket']);
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
 
-        $this->assertInstanceOf('Google\Cloud\Storage\Bucket', $this->client->createBucket('bucket'));
+        $this->assertInstanceOf(Bucket::class, $this->client->createBucket('bucket'));
     }
 
     public function testRegisteringStreamWrapper()
@@ -91,12 +106,21 @@ class StorageClientTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(in_array('gs', stream_get_wrappers()));
         $this->client->unregisterStreamWrapper();
     }
-}
 
-class StorageTestClient extends StorageClient
-{
-    public function setConnection($connection)
+    public function testSignedUrlUploader()
     {
-        $this->connection = $connection;
+        $uri = 'http://example.com';
+        $data = Psr7\stream_for('hello world');
+
+        $uploader = $this->client->signedUrlUploader($uri, $data);
+        $this->assertInstanceOf(SignedUrlUploader::class, $uploader);
+    }
+
+    public function testTimestamp()
+    {
+        $dt = new \DateTime;
+        $ts = $this->client->timestamp($dt);
+        $this->assertInstanceOf(Timestamp::class, $ts);
+        $this->assertEquals($ts->get(), $dt);
     }
 }

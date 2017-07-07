@@ -18,17 +18,22 @@
 namespace Google\Cloud\Tests\Unit\Spanner;
 
 use Google\Cloud\Spanner\Date;
+use Google\Cloud\Tests\GrpcTestTrait;
 
 /**
  * @group spanner
  */
 class DateTest extends \PHPUnit_Framework_TestCase
 {
+    use GrpcTestTrait;
+
     private $dt;
     private $date;
 
     public function setUp()
     {
+        $this->checkAndSkipGrpcTests();
+
         $this->dt = new \DateTime('1989-10-11');
         $this->date = new Date($this->dt);
     }

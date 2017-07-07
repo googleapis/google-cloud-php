@@ -19,9 +19,10 @@ namespace Google\Cloud\Tests\Snippets\Trace;
 
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
 use Google\Cloud\Trace\Connection\ConnectionInterface;
+use Google\Cloud\Trace\Reporter\NullReporter;
 use Google\Cloud\Trace\Reporter\ReporterInterface;
-use Google\Cloud\Trace\RequestTracer;
 use Google\Cloud\Trace\RequestHandler;
+use Google\Cloud\Trace\RequestTracer;
 use Google\Cloud\Trace\Sampler\QpsSampler;
 use Google\Cloud\Trace\TraceClient;
 use Prophecy\Argument;
@@ -45,6 +46,9 @@ class RequestTracerTest extends SnippetTestCase
     public function testClass()
     {
         $snippet = $this->snippetFromClass(RequestTracer::class);
+        $snippet->addUse(NullReporter::class);
+        $snippet->replace('new SyncReporter', 'new NullReporter');
+
         $snippet->invoke();
         $handler = RequestTracer::instance();
 

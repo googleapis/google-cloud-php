@@ -27,3 +27,22 @@ function stub($extends, array $args = [], array $props = [])
     $reflection = new \ReflectionClass($name);
     return $reflection->newInstanceArgs($args);
 }
+
+/**
+ * Get a trait implementation.
+ *
+ * @param string $trait The fully-qualified name of the trait to implement.
+ * @return mixed
+ */
+function impl($trait)
+{
+    $tpl = 'class %s { use %s; public function call($fn, array $args = []) { return call_user_func_array([$this, $fn], $args); } }';
+
+    $name = 'Trait'. sha1($trait);
+
+    if (!class_exists($name)) {
+        eval(sprintf($tpl, $name, $trait));
+    }
+
+    return new $name;
+}

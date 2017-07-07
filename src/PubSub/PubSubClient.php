@@ -51,7 +51,7 @@ use Psr\Cache\CacheItemPoolInterface;
  * Afterwards, please install the following dependencies through composer:
  *
  * ```sh
- * $ composer require google/gax && composer require google/proto-client-php
+ * $ composer require google/gax && composer require google/proto-client
  * ```
  *
  * Please take care in installing the same version of these libraries that are
@@ -85,7 +85,7 @@ class PubSubClient
     use IncomingMessageTrait;
     use ResourceNameTrait;
 
-    const VERSION = '0.5.1';
+    const VERSION = '0.6.0';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/pubsub';
 
@@ -98,6 +98,11 @@ class PubSubClient
      * @var bool
      */
     private $encode;
+
+    /**
+     * @var array
+     */
+    private $clientConfig;
 
     /**
      * Create a PubSub client.
@@ -130,6 +135,7 @@ class PubSubClient
      */
     public function __construct(array $config = [])
     {
+        $this->clientConfig = $config;
         $connectionType = $this->getConnectionType($config);
         if (!isset($config['scopes'])) {
             $config['scopes'] = [self::FULL_CONTROL_SCOPE];
@@ -512,7 +518,8 @@ class PubSubClient
             $this->projectId,
             $name,
             $this->encode,
-            $info
+            $info,
+            $this->clientConfig
         );
     }
 
@@ -523,7 +530,7 @@ class PubSubClient
      * @param string $name The subscription name
      * @param string $topicName [optional] The topic name
      * @param array  $info [optional] Information about the subscription. Used
-     *        to populate subscriptons with an api result. Should be a
+     *        to populate subscriptons with an API result. Should be a
      *        representation of a [Subscription](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions#Subscription).
      * @return Subscription
      * @codingStandardsIgnoreEnd

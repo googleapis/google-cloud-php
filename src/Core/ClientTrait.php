@@ -60,7 +60,7 @@ trait ClientTrait
                     'from the command line: ' .
                     'pecl install grpc && ' .
                     'composer require google/gax && ' .
-                    'composer require google/proto-client-php'
+                    'composer require google/proto-client'
                 );
             }
         }
@@ -158,6 +158,10 @@ trait ClientTrait
             return $config['keyFile']['project_id'];
         }
 
+        if (false !== $projectFromEnv = getenv('GCLOUD_PROJECT')) {
+            return $projectFromEnv;
+        }
+        
         if ($this->onGce($config['httpHandler'])) {
             $metadata = $this->getMetaData();
             $projectId = $metadata->getProjectId();

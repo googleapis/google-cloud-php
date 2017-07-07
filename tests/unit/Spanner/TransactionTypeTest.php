@@ -30,6 +30,7 @@ use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\V1\SpannerClient;
+use Google\Cloud\Tests\GrpcTestTrait;
 use Prophecy\Argument;
 
 /**
@@ -37,6 +38,8 @@ use Prophecy\Argument;
  */
 class TransactionTypeTest extends \PHPUnit_Framework_TestCase
 {
+    use GrpcTestTrait;
+
     use ResultTestTrait;
 
     const PROJECT = 'my-project';
@@ -51,6 +54,8 @@ class TransactionTypeTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
+        $this->checkAndSkipGrpcTests();
+
         $this->timestamp = (new \DateTimeImmutable)->format(Timestamp::FORMAT);
 
         $this->connection = $this->prophesize(ConnectionInterface::class);

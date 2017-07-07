@@ -10,16 +10,16 @@ This client supports the following Google Cloud Platform services at a [General 
 * [Google Stackdriver Logging](#google-stackdriver-logging-ga) (GA)
 * [Google Cloud Datastore](#google-cloud-datastore-ga) (GA)
 * [Google Cloud Storage](#google-cloud-storage-ga) (GA)
+* [Google Cloud Translation](#google-cloud-translation-ga) (GA)
 
 This client supports the following Google Cloud Platform services at a [Beta](#versioning) quality level:
 
 * [Google BigQuery](#google-bigquery-beta) (Beta)
 * [Google Cloud Natural Language](#google-cloud-natural-language-beta) (Beta)
-* [Google Cloud Translation](#google-cloud-translation-beta) (Beta)
+* [Google Cloud Pub/Sub](#google-cloud-pubsub-beta) (Beta)
 * [Google Cloud Vision](#google-cloud-vision-beta) (Beta)
 
 This client supports the following Google Cloud Platform services at an [Alpha](#versioning) quality level:
-* [Google Cloud Pub/Sub](#google-cloud-pubsub-alpha) (Alpha)
 * [Cloud Spanner](#cloud-spanner-alpha) (Alpha)
 * [Google Cloud Speech](#google-cloud-speech-alpha) (Alpha)
 * [Google Cloud Video Intelligence](#google-cloud-video-intelligence-alpha) (Alpha)
@@ -135,6 +135,15 @@ $bucket->upload(
     fopen('/data/file.txt', 'r')
 );
 
+// Using Predefined ACLs to manage object permissions, you may
+// upload a file and give read access to anyone with the URL. 
+$bucket->upload(
+    fopen('/data/file.txt', 'r'),
+    [
+        'predefinedAcl' => 'publicRead'
+    ]
+);
+
 // Download and store an object from the bucket locally.
 $object = $bucket->object('file_backup.txt');
 $object->downloadToFile('/data/file_backup.txt');
@@ -161,6 +170,60 @@ Google Cloud Storage can be installed separately by requiring the `google/cloud-
 
 ```
 $ require google/cloud-storage
+```
+
+## Google Cloud Translation (GA)
+
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/translate/translateclient)
+- [Official Documentation](https://cloud.google.com/translation/docs)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Translate\TranslateClient;
+
+$translate = new TranslateClient([
+    'key' => 'your_key'
+]);
+
+// Translate text from english to french.
+$result = $translate->translate('Hello world!', [
+    'target' => 'fr'
+]);
+
+echo $result['text'] . "\n";
+
+// Detect the language of a string.
+$result = $translate->detectLanguage('Greetings from Michigan!');
+
+echo $result['languageCode'] . "\n";
+
+// Get the languages supported for translation specifically for your target language.
+$languages = $translate->localizedLanguages([
+    'target' => 'en'
+]);
+
+foreach ($languages as $language) {
+    echo $language['name'] . "\n";
+    echo $language['code'] . "\n";
+}
+
+// Get all languages supported for translation.
+$languages = $translate->languages();
+
+foreach ($languages as $language) {
+    echo $language . "\n";
+}
+```
+
+#### google/cloud-translate
+
+Google Cloud Translation can be installed separately by requiring the `google/cloud-translate` composer package:
+
+```
+$ require google/cloud-translate
 ```
 
 ## Google BigQuery (Beta)
@@ -251,101 +314,7 @@ Google Cloud Natural Language can be installed separately by requiring the `goog
 $ require google/cloud-language
 ```
 
-## Google Cloud Translation (Beta)
-
-- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/translate/translateclient)
-- [Official Documentation](https://cloud.google.com/translation/docs)
-
-#### Preview
-
-```php
-require 'vendor/autoload.php';
-
-use Google\Cloud\Translate\TranslateClient;
-
-$translate = new TranslateClient([
-    'key' => 'your_key'
-]);
-
-// Translate text from english to french.
-$result = $translate->translate('Hello world!', [
-    'target' => 'fr'
-]);
-
-echo $result['text'] . "\n";
-
-// Detect the language of a string.
-$result = $translate->detectLanguage('Greetings from Michigan!');
-
-echo $result['languageCode'] . "\n";
-
-// Get the languages supported for translation specifically for your target language.
-$languages = $translate->localizedLanguages([
-    'target' => 'en'
-]);
-
-foreach ($languages as $language) {
-    echo $language['name'] . "\n";
-    echo $language['code'] . "\n";
-}
-
-// Get all languages supported for translation.
-$languages = $translate->languages();
-
-foreach ($languages as $language) {
-    echo $language . "\n";
-}
-```
-
-#### google/cloud-translate
-
-Google Cloud Translation can be installed separately by requiring the `google/cloud-translate` composer package:
-
-```
-$ require google/cloud-translate
-```
-
-## Google Cloud Vision (Beta)
-
-- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/vision/visionclient)
-- [Official Documentation](https://cloud.google.com/vision/docs)
-
-#### Preview
-
-```php
-require 'vendor/autoload.php';
-
-use Google\Cloud\Vision\VisionClient;
-
-$vision = new VisionClient([
-    'projectId' => 'my_project'
-]);
-
-// Annotate an image, detecting faces.
-$image = $vision->image(
-    fopen('/data/family_photo.jpg', 'r'),
-    ['faces']
-);
-
-$annotation = $vision->annotate($image);
-
-// Determine if the detected faces have headwear.
-foreach ($annotation->faces() as $key => $face) {
-    if ($face->hasHeadwear()) {
-        echo "Face $key has headwear.\n";
-    }
-}
-```
-
-#### google/cloud-vision
-
-Google Cloud Vision can be installed separately by requiring the `google/cloud-vision` composer package:
-
-```
-$ require google/cloud-vision
-```
-
-## Google Cloud Pub/Sub (Alpha)
+## Google Cloud Pub/Sub (Beta)
 
 - [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/pubsub/pubsubclient)
 - [Official Documentation](https://cloud.google.com/pubsub/docs)
@@ -390,6 +359,46 @@ Google Cloud Pub/Sub can be installed separately by requiring the `google/cloud-
 
 ```
 $ require google/cloud-pubsub
+```
+
+## Google Cloud Vision (Beta)
+
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/vision/visionclient)
+- [Official Documentation](https://cloud.google.com/vision/docs)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Vision\VisionClient;
+
+$vision = new VisionClient([
+    'projectId' => 'my_project'
+]);
+
+// Annotate an image, detecting faces.
+$image = $vision->image(
+    fopen('/data/family_photo.jpg', 'r'),
+    ['faces']
+);
+
+$annotation = $vision->annotate($image);
+
+// Determine if the detected faces have headwear.
+foreach ($annotation->faces() as $key => $face) {
+    if ($face->hasHeadwear()) {
+        echo "Face $key has headwear.\n";
+    }
+}
+```
+
+#### google/cloud-vision
+
+Google Cloud Vision can be installed separately by requiring the `google/cloud-vision` composer package:
+
+```
+$ require google/cloud-vision
 ```
 
 ## Cloud Spanner (Alpha)

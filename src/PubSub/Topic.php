@@ -78,6 +78,11 @@ class Topic
     private $iam;
 
     /**
+     * @var array
+     */
+    private $clientConfig;
+
+    /**
      * Create a PubSub topic.
      *
      * @param ConnectionInterface $connection A connection to the Google Cloud
@@ -86,18 +91,26 @@ class Topic
      * @param string $name The topic name
      * @param bool $encode Whether messages should be base64 encoded.
      * @param array $info [optional] A [Topic](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics)
+     * @param array $clientConfig [optional] Configuration options for the
+     *        PubSub client used to handle processing of batch items through the
+     *        daemon. For valid options please see
+     *        {@see \Google\Cloud\PubSub\PubSubClient::__construct()}.
+     *        **Defaults to** the options provided to the PubSub client
+     *        associated with this instance.
      */
     public function __construct(
         ConnectionInterface $connection,
         $projectId,
         $name,
         $encode,
-        array $info = []
+        array $info = [],
+        array $clientConfig = []
     ) {
         $this->connection = $connection;
         $this->projectId = $projectId;
         $this->encode = (bool) $encode;
         $this->info = $info;
+        $this->clientConfig = $clientConfig;
 
         // Accept either a simple name or a fully-qualified name.
         if ($this->isFullyQualifiedName('topic', $name)) {
@@ -277,7 +290,7 @@ class Topic
      *
      * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics/publish Publish Message
      *
-     * @param array $message [Message Format](https://cloud.google.com/pubsub/docs/reference/rest/v1/PubsubMessage)
+     * @param array $message [Message Format](https://cloud.google.com/pubsub/docs/reference/rest/v1/PubsubMessage).
      * @param array $options [optional] Configuration Options
      * @return array A list of message IDs
      */
@@ -314,10 +327,6 @@ class Topic
      *
      * @param array $messages A list of messages. Each message must be in the correct
      *        [Message Format](https://cloud.google.com/pubsub/docs/reference/rest/v1/PubsubMessage).
-     *        If provided, $data will be base64 encoded before being published,
-     *        unless `$options['encode']` is set to false. (See below for more
-     *        information.)
-     * }
      * @param array $options [optional] Configuration Options
      * @return array A list of message IDs.
      */
@@ -331,6 +340,62 @@ class Topic
             'topic' => $this->name,
             'messages' => $messages
         ]);
+    }
+
+    /**
+     * Push a message into a batch queue, to be processed at a later point.
+     *
+     * Example:
+     * ```
+     * $topic->batchPublisher()
+     *     ->publish([
+     *         'data' => 'New User Registered',
+     *         'attributes' => [
+     *             'id' => '2',
+     *             'userName' => 'Dave',
+     *             'location' => 'Detroit'
+     *         ]
+     *     ]);
+     * ```
+     *
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type bool $debugOutput Whether or not to output debug information.
+     *           **Defaults to** `false`.
+     *     @type array $batchOptions A set of options for a BatchJob.
+     *           {@see \Google\Cloud\Core\Batch\BatchJob::__construct()} for
+     *           more details.
+     *           **Defaults to** ['batchSize' => 1000,
+     *                            'callPeriod' => 2.0,
+     *                            'workerNum' => 2].
+     *     @type array $clientConfig Configuration options for the PubSub client
+     *           used to handle processing of batch items. For valid options
+     *           please see
+     *           {@see \Google\Cloud\PubSub\PubSubClient::__construct()}.
+     *           **Defaults to** the options provided to the client associated
+     *           with the current `Topic` instance.
+     *     @type BatchRunner $batchRunner A BatchRunner object. Mainly used for
+     *           the tests to inject a mock. **Defaults to** a newly created
+     *           BatchRunner.
+     *     @type string $identifier An identifier for the batch job.
+     *           **Defaults to** `pubsub-topic-{topic-name}`.
+     *           Example: `pubsub-topic-mytopic`.
+     * }
+     * @return BatchPublisher
+     * @experimental The experimental flag means that while we believe this method
+     *      or class is ready for use, it may change before release in backwards-
+     *      incompatible ways. Please use with caution, and test thoroughly when
+     *      upgrading.
+     */
+    public function batchPublisher(array $options = [])
+    {
+        return new BatchPublisher(
+            $this->name,
+            $options + [
+                'clientConfig' => $this->clientConfig
+            ]
+        );
     }
 
     /**
@@ -448,6 +513,7 @@ class Topic
 
     /**
      * Present a nicer debug result to people using php 5.6 or greater.
+     *
      * @return array
      * @codeCoverageIgnore
      * @access private
@@ -465,6 +531,7 @@ class Topic
     /**
      * Ensure that the message is in a correct format,
      * base64_encode the data, and error if the input is too wrong to proceed.
+     *
      * @param  array $message
      * @return array The message data
      * @throws \InvalidArgumentException

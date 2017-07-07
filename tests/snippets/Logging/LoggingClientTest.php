@@ -196,6 +196,19 @@ class LoggingClientTest extends SnippetTestCase
         $this->assertInstanceOf(PsrLogger::class, $res->returnVal());
     }
 
+    public function testPsrBatchLogger()
+    {
+        $snippet = $this->snippetFromMethod(
+            LoggingClient::class,
+            'psrLogger',
+            1
+        );
+        $snippet->addLocal('logging', $this->client);
+
+        $res = $snippet->invoke('psrLogger');
+        $this->assertInstanceOf(PsrLogger::class, $res->returnVal());
+    }
+
     public function testLogger()
     {
         $snippet = $this->snippetFromMethod(LoggingClient::class, 'logger');

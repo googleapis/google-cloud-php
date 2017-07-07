@@ -21,6 +21,7 @@ use Google\Cloud\Dev\Snippet\SnippetTestCase;
 use Google\Cloud\Spanner\Bytes;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\ValueMapper;
+use Google\Cloud\Tests\GrpcTestTrait;
 use Psr\Http\Message\StreamInterface;
 
 /**
@@ -28,21 +29,20 @@ use Psr\Http\Message\StreamInterface;
  */
 class BytesTest extends SnippetTestCase
 {
+    use GrpcTestTrait;
+
     const BYTES = 'foobar';
 
     private $bytes;
 
     public function setUp()
     {
+        $this->checkAndSkipGrpcTests();
         $this->bytes = new Bytes(self::BYTES);
     }
 
     public function testClass()
     {
-        if (!extension_loaded('grpc')) {
-            $this->markTestSkipped('Must have the grpc extension installed to run this test.');
-        }
-
         $snippet = $this->snippetFromClass(Bytes::class);
         $res = $snippet->invoke('bytes');
         $this->assertInstanceOf(Bytes::class, $res->returnVal());

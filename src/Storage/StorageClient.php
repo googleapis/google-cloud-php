@@ -21,9 +21,12 @@ use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
+use Google\Cloud\Core\Timestamp;
+use Google\Cloud\Core\Upload\SignedUrlUploader;
 use Google\Cloud\Storage\Connection\ConnectionInterface;
 use Google\Cloud\Storage\Connection\Rest;
 use Psr\Cache\CacheItemPoolInterface;
+use Psr\Http\Message\StreamInterface;
 
 /**
  * Google Cloud Storage allows you to store and retrieve data on Google's
@@ -42,7 +45,7 @@ class StorageClient
     use ArrayTrait;
     use ClientTrait;
 
-    const VERSION = '1.0.0';
+    const VERSION = '1.1.0';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/devstorage.full_control';
     const READ_ONLY_SCOPE = 'https://www.googleapis.com/auth/devstorage.read_only';
@@ -235,6 +238,11 @@ class StorageClient
      *     @type array $billing The bucket's billing configuration. **Whitelist
      *           Warning:** At the time of publication, this argument is subject
      *           to a feature whitelist and may not be available in your project.
+     *     @type bool $billing['requesterPays'] When `true`, requests to this bucket
+     *           and objects within it must provide a project ID to which the
+     *           request will be billed. **Whitelist Warning:** At the time of
+     *           publication, this argument is subject to a feature whitelist
+     *           and may not be available in your project.
      *     @type array $labels The Bucket labels. Labels are represented as an
      *           array of keys and values. To remove an existing label, set its
      *           value to `null`.
@@ -266,5 +274,41 @@ class StorageClient
     public function unregisterStreamWrapper($protocol = null)
     {
         StreamWrapper::unregister($protocol);
+    }
+
+    /**
+     * Create an uploader to handle a Signed URL.
+     *
+     * Example:
+     * ```
+     * $uploader = $storage->signedUrlUploader($uri, fopen('/path/to/myfile.doc', 'r'));
+     * ```
+     *
+     * @param string $uri The URI to accept an upload request.
+     * @param string|resource|StreamInterface $data The data to be uploaded
+     * @param array $options [optional] Configuration Options. Refer to
+     *        {@see Google\Cloud\Core\Upload\AbstractUploader::__construct()}.
+     * @return SignedUrlUploader
+     */
+    public function signedUrlUploader($uri, $data, array $options = [])
+    {
+        return new SignedUrlUploader($this->connection->requestWrapper(), $data, $uri, $options);
+    }
+
+    /**
+     * Create a Timestamp object.
+     *
+     * Example:
+     * ```
+     * $timestamp = $storage->timestamp(new \DateTime('2003-02-05 11:15:02.421827Z'));
+     * ```
+     *
+     * @param \DateTimeInterface $value The timestamp value.
+     * @param int $nanoSeconds [optional] The number of nanoseconds in the timestamp.
+     * @return Timestamp
+     */
+    public function timestamp(\DateTimeInterface $timestamp, $nanoSeconds = null)
+    {
+        return new Timestamp($timestamp, $nanoSeconds);
     }
 }

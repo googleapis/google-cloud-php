@@ -9,7 +9,7 @@
     "suggest": {
         "google/cloud-storage": "Analyze documents stored in Google Cloud Storage",
         "google/gax": "Required to support gRPC",
-        "google/proto-client-php": "Required to support gRPC"
+        "google/proto-client": "Required to support gRPC"
     },
     "extra": {
         "component": {

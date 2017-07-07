@@ -24,10 +24,13 @@
  * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
  * more frequently than those which have been declared beta or 1.0, including changes which break
  * backwards compatibility.
+ *
+ * @experimental
  */
 
 namespace Google\Cloud\Monitoring\V3;
 
+use Google\Api\MetricDescriptor;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
@@ -35,20 +38,19 @@ use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
-use google\api\MetricDescriptor;
-use google\monitoring\v3\Aggregation;
-use google\monitoring\v3\CreateMetricDescriptorRequest;
-use google\monitoring\v3\CreateTimeSeriesRequest;
-use google\monitoring\v3\DeleteMetricDescriptorRequest;
-use google\monitoring\v3\GetMetricDescriptorRequest;
-use google\monitoring\v3\GetMonitoredResourceDescriptorRequest;
-use google\monitoring\v3\ListMetricDescriptorsRequest;
-use google\monitoring\v3\ListMonitoredResourceDescriptorsRequest;
-use google\monitoring\v3\ListTimeSeriesRequest;
-use google\monitoring\v3\ListTimeSeriesRequest\TimeSeriesView;
-use google\monitoring\v3\MetricServiceGrpcClient;
-use google\monitoring\v3\TimeInterval;
-use google\monitoring\v3\TimeSeries;
+use Google\Monitoring\V3\Aggregation;
+use Google\Monitoring\V3\CreateMetricDescriptorRequest;
+use Google\Monitoring\V3\CreateTimeSeriesRequest;
+use Google\Monitoring\V3\DeleteMetricDescriptorRequest;
+use Google\Monitoring\V3\GetMetricDescriptorRequest;
+use Google\Monitoring\V3\GetMonitoredResourceDescriptorRequest;
+use Google\Monitoring\V3\ListMetricDescriptorsRequest;
+use Google\Monitoring\V3\ListMonitoredResourceDescriptorsRequest;
+use Google\Monitoring\V3\ListTimeSeriesRequest;
+use Google\Monitoring\V3\ListTimeSeriesRequest_TimeSeriesView as TimeSeriesView;
+use Google\Monitoring\V3\MetricServiceGrpcClient;
+use Google\Monitoring\V3\TimeInterval;
+use Google\Monitoring\V3\TimeSeries;
 
 /**
  * Service Description: Manages metric descriptors, monitored resource descriptors, and
@@ -87,6 +89,8 @@ use google\monitoring\v3\TimeSeries;
  * with these names, this class includes a format method for each type of name, and additionally
  * a parse method to extract the individual identifiers contained within names that are
  * returned.
+ *
+ * @experimental
  */
 class MetricServiceClient
 {
@@ -128,6 +132,11 @@ class MetricServiceClient
     /**
      * Formats a string containing the fully-qualified path to represent
      * a project resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project resource.
+     * @experimental
      */
     public static function formatProjectName($project)
     {
@@ -139,6 +148,12 @@ class MetricServiceClient
     /**
      * Formats a string containing the fully-qualified path to represent
      * a metric_descriptor resource.
+     *
+     * @param string $project
+     * @param string $metricDescriptor
+     *
+     * @return string The formatted metric_descriptor resource.
+     * @experimental
      */
     public static function formatMetricDescriptorName($project, $metricDescriptor)
     {
@@ -151,6 +166,12 @@ class MetricServiceClient
     /**
      * Formats a string containing the fully-qualified path to represent
      * a monitored_resource_descriptor resource.
+     *
+     * @param string $project
+     * @param string $monitoredResourceDescriptor
+     *
+     * @return string The formatted monitored_resource_descriptor resource.
+     * @experimental
      */
     public static function formatMonitoredResourceDescriptorName($project, $monitoredResourceDescriptor)
     {
@@ -163,6 +184,11 @@ class MetricServiceClient
     /**
      * Parses the project from the given fully-qualified path which
      * represents a project resource.
+     *
+     * @param string $projectName The fully-qualified project resource.
+     *
+     * @return string The extracted project value.
+     * @experimental
      */
     public static function parseProjectFromProjectName($projectName)
     {
@@ -172,6 +198,11 @@ class MetricServiceClient
     /**
      * Parses the project from the given fully-qualified path which
      * represents a metric_descriptor resource.
+     *
+     * @param string $metricDescriptorName The fully-qualified metric_descriptor resource.
+     *
+     * @return string The extracted project value.
+     * @experimental
      */
     public static function parseProjectFromMetricDescriptorName($metricDescriptorName)
     {
@@ -181,6 +212,11 @@ class MetricServiceClient
     /**
      * Parses the metric_descriptor from the given fully-qualified path which
      * represents a metric_descriptor resource.
+     *
+     * @param string $metricDescriptorName The fully-qualified metric_descriptor resource.
+     *
+     * @return string The extracted metric_descriptor value.
+     * @experimental
      */
     public static function parseMetricDescriptorFromMetricDescriptorName($metricDescriptorName)
     {
@@ -190,6 +226,11 @@ class MetricServiceClient
     /**
      * Parses the project from the given fully-qualified path which
      * represents a monitored_resource_descriptor resource.
+     *
+     * @param string $monitoredResourceDescriptorName The fully-qualified monitored_resource_descriptor resource.
+     *
+     * @return string The extracted project value.
+     * @experimental
      */
     public static function parseProjectFromMonitoredResourceDescriptorName($monitoredResourceDescriptorName)
     {
@@ -199,6 +240,11 @@ class MetricServiceClient
     /**
      * Parses the monitored_resource_descriptor from the given fully-qualified path which
      * represents a monitored_resource_descriptor resource.
+     *
+     * @param string $monitoredResourceDescriptorName The fully-qualified monitored_resource_descriptor resource.
+     *
+     * @return string The extracted monitored_resource_descriptor value.
+     * @experimental
      */
     public static function parseMonitoredResourceDescriptorFromMonitoredResourceDescriptorName($monitoredResourceDescriptorName)
     {
@@ -236,24 +282,30 @@ class MetricServiceClient
     {
         $listMonitoredResourceDescriptorsPageStreamingDescriptor =
                 new PageStreamingDescriptor([
-                    'requestPageTokenField' => 'page_token',
-                    'requestPageSizeField' => 'page_size',
-                    'responsePageTokenField' => 'next_page_token',
-                    'resourceField' => 'resource_descriptors',
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getResourceDescriptors',
                 ]);
         $listMetricDescriptorsPageStreamingDescriptor =
                 new PageStreamingDescriptor([
-                    'requestPageTokenField' => 'page_token',
-                    'requestPageSizeField' => 'page_size',
-                    'responsePageTokenField' => 'next_page_token',
-                    'resourceField' => 'metric_descriptors',
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getMetricDescriptors',
                 ]);
         $listTimeSeriesPageStreamingDescriptor =
                 new PageStreamingDescriptor([
-                    'requestPageTokenField' => 'page_token',
-                    'requestPageSizeField' => 'page_size',
-                    'responsePageTokenField' => 'next_page_token',
-                    'resourceField' => 'time_series',
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getTimeSeries',
                 ]);
 
         $pageStreamingDescriptors = [
@@ -305,6 +357,7 @@ class MetricServiceClient
      *                              A CredentialsLoader object created using the
      *                              Google\Auth library.
      * }
+     * @experimental
      */
     public function __construct($options = [])
     {
@@ -441,6 +494,7 @@ class MetricServiceClient
      * @return \Google\GAX\PagedListResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function listMonitoredResourceDescriptors($name, $optionalArgs = [])
     {
@@ -501,9 +555,10 @@ class MetricServiceClient
      *          is not set.
      * }
      *
-     * @return \google\api\MonitoredResourceDescriptor
+     * @return \Google\Api\MonitoredResourceDescriptor
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function getMonitoredResourceDescriptor($name, $optionalArgs = [])
     {
@@ -586,6 +641,7 @@ class MetricServiceClient
      * @return \Google\GAX\PagedListResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function listMetricDescriptors($name, $optionalArgs = [])
     {
@@ -646,9 +702,10 @@ class MetricServiceClient
      *          is not set.
      * }
      *
-     * @return \google\api\MetricDescriptor
+     * @return \Google\Api\MetricDescriptor
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function getMetricDescriptor($name, $optionalArgs = [])
     {
@@ -703,9 +760,10 @@ class MetricServiceClient
      *          is not set.
      * }
      *
-     * @return \google\api\MetricDescriptor
+     * @return \Google\Api\MetricDescriptor
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function createMetricDescriptor($name, $metricDescriptor, $optionalArgs = [])
     {
@@ -760,6 +818,7 @@ class MetricServiceClient
      * }
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function deleteMetricDescriptor($name, $optionalArgs = [])
     {
@@ -820,12 +879,13 @@ class MetricServiceClient
      *
      *     metric.type = "compute.googleapis.com/instance/cpu/usage_time" AND
      *         metric.label.instance_name = "my-instance-name"
-     * @param TimeInterval   $interval     The time interval for which results should be returned. Only time series
-     *                                     that contain data points in the specified interval are included
-     *                                     in the response.
-     * @param TimeSeriesView $view         Specifies which information is returned about the time series.
-     * @param array          $optionalArgs {
-     *                                     Optional.
+     * @param TimeInterval $interval     The time interval for which results should be returned. Only time series
+     *                                   that contain data points in the specified interval are included
+     *                                   in the response.
+     * @param int          $view         Specifies which information is returned about the time series.
+     *                                   For allowed values, use constants defined on {@see \Google\Monitoring\V3\ListTimeSeriesRequest_TimeSeriesView}
+     * @param array        $optionalArgs {
+     *                                   Optional.
      *
      *     @type Aggregation $aggregation
      *          By default, the raw time series data is returned.
@@ -855,6 +915,7 @@ class MetricServiceClient
      * @return \Google\GAX\PagedListResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function listTimeSeries($name, $filter, $interval, $view, $optionalArgs = [])
     {
@@ -929,14 +990,13 @@ class MetricServiceClient
      * }
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function createTimeSeries($name, $timeSeries, $optionalArgs = [])
     {
         $request = new CreateTimeSeriesRequest();
         $request->setName($name);
-        foreach ($timeSeries as $elem) {
-            $request->addTimeSeries($elem);
-        }
+        $request->setTimeSeries($timeSeries);
 
         $mergedSettings = $this->defaultCallSettings['createTimeSeries']->merge(
             new CallSettings($optionalArgs)
@@ -957,6 +1017,8 @@ class MetricServiceClient
     /**
      * Initiates an orderly shutdown in which preexisting calls continue but new
      * calls are immediately cancelled.
+     *
+     * @experimental
      */
     public function close()
     {

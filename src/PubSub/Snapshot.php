@@ -62,6 +62,11 @@ class Snapshot
     private $info;
 
     /**
+     * @var array
+     */
+    private $clientConfig;
+
+    /**
      * @param ConnectionInterface $connection A connection to Cloud Pub/Sub
      * @param string $projectId The current Project ID.
      * @param string $name The snapshot name.
@@ -69,12 +74,25 @@ class Snapshot
      * @param array $info [optional] The snapshot data. When creating a
      *        Snapshot, this array **must** contain a `$info.subscription`
      *        argument with a fully-qualified subscription name.
+     * @param array $clientConfig [optional] Configuration options for the
+     *        PubSub client used to handle processing of batch items through the
+     *        daemon. For valid options please see
+     *        {@see \Google\Cloud\PubSub\PubSubClient::__construct()}.
+     *        **Defaults to** the options provided to the PubSub client
+     *        associated with this instance.
      */
-    public function __construct(ConnectionInterface $connection, $projectId, $name, $encode, array $info = [])
-    {
+    public function __construct(
+        ConnectionInterface $connection,
+        $projectId,
+        $name,
+        $encode,
+        array $info = [],
+        array $clientConfig = []
+    ) {
         $this->connection = $connection;
         $this->projectId = $projectId;
         $this->encode = $encode;
+        $this->clientConfig = $clientConfig;
 
         // Accept either a simple name or a fully-qualified name.
         if ($this->isFullyQualifiedName('snapshot', $name)) {
@@ -183,9 +201,18 @@ class Snapshot
      */
     public function topic()
     {
-        return $this->info['topic']
-            ? new Topic($this->connection, $this->projectId, $this->info['topic'], $this->encode)
-            : null;
+        if ($this->info['topic']) {
+            return new Topic(
+                $this->connection,
+                $this->projectId,
+                $this->info['topic'],
+                $this->encode,
+                [],
+                $this->clientConfig
+            );
+        }
+
+        return null;
     }
 
     /**

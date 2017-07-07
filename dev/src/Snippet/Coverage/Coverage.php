@@ -19,6 +19,10 @@ namespace Google\Cloud\Dev\Snippet\Coverage;
 
 class Coverage
 {
+    private static $snippetExcludeList = [
+        '/\\\Google\\\Cloud\\\Core\\\PhpArray/',
+    ];
+
     /**
      * @var ScannerInterface
      */
@@ -42,6 +46,11 @@ class Coverage
         $this->scanner = $scanner;
     }
 
+    private function getSnippetExcludeList()
+    {
+        return static::$snippetExcludeList;
+    }
+
     /**
      * Creates a list of all snippets which should be covered.
      *
@@ -50,7 +59,7 @@ class Coverage
     public function buildListToCover()
     {
         $files = $this->scanner->files();
-        $classes = $this->scanner->classes($files);
+        $classes = $this->scanner->classes($files, $this->getSnippetExcludeList());
 
         $this->snippets = $this->scanner->snippets($classes);
 

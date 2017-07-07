@@ -309,6 +309,14 @@ class Bucket
      *           from the `encryptionKey` on your behalf if not provided, but
      *           for best performance it is recommended to pass in a cached
      *           version of the already calculated SHA.
+     *     @type callable $uploadProgressCallback The given callable
+     *           function/method will be called after each successfully uploaded
+     *           chunk. The callable function/method will receive the number of
+     *           uploaded bytes after each uploaded chunk as a parameter to this
+     *           callable. It's useful if you want to create a progress bar when
+     *           using resumable upload type together with $chunkSize parameter.
+     *           If $chunkSize is not set the callable function/method will be
+     *           called only once after the successful file upload.
      * }
      * @return ResumableUploader
      * @throws \InvalidArgumentException
@@ -588,6 +596,11 @@ class Bucket
      *     @type array $billing The bucket's billing configuration. **Whitelist
      *           Warning:** At the time of publication, this argument is subject
      *           to a feature whitelist and may not be available in your project.
+     *     @type bool $billing['requesterPays'] When `true`, requests to this bucket
+     *           and objects within it must provide a project ID to which the
+     *           request will be billed. **Whitelist Warning:** At the time of
+     *           publication, this argument is subject to a feature whitelist
+     *           and may not be available in your project.
      *     @type array $labels The Bucket labels. Labels are represented as an
      *           array of keys and values. To remove an existing label, set its
      *           value to `null`.

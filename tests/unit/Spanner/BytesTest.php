@@ -18,13 +18,21 @@
 namespace Google\Cloud\Tests\Unit\Spanner;
 
 use Google\Cloud\Spanner\Bytes;
+use Google\Cloud\Tests\GrpcTestTrait;
 
 /**
  * @group spanner
  */
 class BytesTest extends \PHPUnit_Framework_TestCase
 {
+    use GrpcTestTrait;
+
     private $content = 'hello';
+
+    public function setUp()
+    {
+        $this->checkAndSkipGrpcTests();
+    }
 
     public function testGet()
     {

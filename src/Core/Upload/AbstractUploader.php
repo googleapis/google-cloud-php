@@ -31,6 +31,9 @@ abstract class AbstractUploader
 
     const UPLOAD_TYPE_RESUMABLE = 'resumable';
     const UPLOAD_TYPE_MULTIPART = 'multipart';
+    const UPLOAD_TYPE_STREAMABLE = 'streamable';
+    const UPLOAD_TYPE_SIGNED = 'signed';
+
     const RESUMABLE_LIMIT = 5000000;
 
     /**

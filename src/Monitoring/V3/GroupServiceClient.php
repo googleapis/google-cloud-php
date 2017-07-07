@@ -24,6 +24,8 @@
  * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
  * more frequently than those which have been declared beta or 1.0, including changes which break
  * backwards compatibility.
+ *
+ * @experimental
  */
 
 namespace Google\Cloud\Monitoring\V3;
@@ -35,19 +37,19 @@ use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
-use google\monitoring\v3\CreateGroupRequest;
-use google\monitoring\v3\DeleteGroupRequest;
-use google\monitoring\v3\GetGroupRequest;
-use google\monitoring\v3\Group;
-use google\monitoring\v3\GroupServiceGrpcClient;
-use google\monitoring\v3\ListGroupMembersRequest;
-use google\monitoring\v3\ListGroupsRequest;
-use google\monitoring\v3\TimeInterval;
-use google\monitoring\v3\UpdateGroupRequest;
+use Google\Monitoring\V3\CreateGroupRequest;
+use Google\Monitoring\V3\DeleteGroupRequest;
+use Google\Monitoring\V3\GetGroupRequest;
+use Google\Monitoring\V3\Group;
+use Google\Monitoring\V3\GroupServiceGrpcClient;
+use Google\Monitoring\V3\ListGroupMembersRequest;
+use Google\Monitoring\V3\ListGroupsRequest;
+use Google\Monitoring\V3\TimeInterval;
+use Google\Monitoring\V3\UpdateGroupRequest;
 
 /**
  * Service Description: The Group API lets you inspect and manage your
- * [groups][google.monitoring.v3.Group].
+ * [groups](https://cloud.google.comgoogle.monitoring.v3.Group).
  *
  * A group is a named filter that is used to identify
  * a collection of monitored resources. Groups are typically used to
@@ -92,6 +94,8 @@ use google\monitoring\v3\UpdateGroupRequest;
  * with these names, this class includes a format method for each type of name, and additionally
  * a parse method to extract the individual identifiers contained within names that are
  * returned.
+ *
+ * @experimental
  */
 class GroupServiceClient
 {
@@ -132,6 +136,11 @@ class GroupServiceClient
     /**
      * Formats a string containing the fully-qualified path to represent
      * a project resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project resource.
+     * @experimental
      */
     public static function formatProjectName($project)
     {
@@ -143,6 +152,12 @@ class GroupServiceClient
     /**
      * Formats a string containing the fully-qualified path to represent
      * a group resource.
+     *
+     * @param string $project
+     * @param string $group
+     *
+     * @return string The formatted group resource.
+     * @experimental
      */
     public static function formatGroupName($project, $group)
     {
@@ -155,6 +170,11 @@ class GroupServiceClient
     /**
      * Parses the project from the given fully-qualified path which
      * represents a project resource.
+     *
+     * @param string $projectName The fully-qualified project resource.
+     *
+     * @return string The extracted project value.
+     * @experimental
      */
     public static function parseProjectFromProjectName($projectName)
     {
@@ -164,6 +184,11 @@ class GroupServiceClient
     /**
      * Parses the project from the given fully-qualified path which
      * represents a group resource.
+     *
+     * @param string $groupName The fully-qualified group resource.
+     *
+     * @return string The extracted project value.
+     * @experimental
      */
     public static function parseProjectFromGroupName($groupName)
     {
@@ -173,6 +198,11 @@ class GroupServiceClient
     /**
      * Parses the group from the given fully-qualified path which
      * represents a group resource.
+     *
+     * @param string $groupName The fully-qualified group resource.
+     *
+     * @return string The extracted group value.
+     * @experimental
      */
     public static function parseGroupFromGroupName($groupName)
     {
@@ -201,17 +231,21 @@ class GroupServiceClient
     {
         $listGroupsPageStreamingDescriptor =
                 new PageStreamingDescriptor([
-                    'requestPageTokenField' => 'page_token',
-                    'requestPageSizeField' => 'page_size',
-                    'responsePageTokenField' => 'next_page_token',
-                    'resourceField' => 'group',
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getGroup',
                 ]);
         $listGroupMembersPageStreamingDescriptor =
                 new PageStreamingDescriptor([
-                    'requestPageTokenField' => 'page_token',
-                    'requestPageSizeField' => 'page_size',
-                    'responsePageTokenField' => 'next_page_token',
-                    'resourceField' => 'members',
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getMembers',
                 ]);
 
         $pageStreamingDescriptors = [
@@ -262,6 +296,7 @@ class GroupServiceClient
      *                              A CredentialsLoader object created using the
      *                              Google\Auth library.
      * }
+     * @experimental
      */
     public function __construct($options = [])
     {
@@ -403,6 +438,7 @@ class GroupServiceClient
      * @return \Google\GAX\PagedListResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function listGroups($name, $optionalArgs = [])
     {
@@ -467,9 +503,10 @@ class GroupServiceClient
      *          is not set.
      * }
      *
-     * @return \google\monitoring\v3\Group
+     * @return \Google\Monitoring\V3\Group
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function getGroup($name, $optionalArgs = [])
     {
@@ -524,9 +561,10 @@ class GroupServiceClient
      *          is not set.
      * }
      *
-     * @return \google\monitoring\v3\Group
+     * @return \Google\Monitoring\V3\Group
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function createGroup($name, $group, $optionalArgs = [])
     {
@@ -583,9 +621,10 @@ class GroupServiceClient
      *          is not set.
      * }
      *
-     * @return \google\monitoring\v3\Group
+     * @return \Google\Monitoring\V3\Group
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function updateGroup($group, $optionalArgs = [])
     {
@@ -639,6 +678,7 @@ class GroupServiceClient
      * }
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function deleteGroup($name, $optionalArgs = [])
     {
@@ -725,6 +765,7 @@ class GroupServiceClient
      * @return \Google\GAX\PagedListResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
      */
     public function listGroupMembers($name, $optionalArgs = [])
     {
@@ -762,6 +803,8 @@ class GroupServiceClient
     /**
      * Initiates an orderly shutdown in which preexisting calls continue but new
      * calls are immediately cancelled.
+     *
+     * @experimental
      */
     public function close()
     {
