@@ -34,7 +34,18 @@ RequestTracer::start($reporter);
 ### Reporting Traces
 
 The above sample uses the `SyncReporter` to sychronously report trace results to the
-Stackdriver servers at the end of the request.
+Stackdriver servers at the end of the request. This is not ideal as it will add
+latency to requests that are traced. You may instead use the `AsyncReporter` but
+you will also require the `AsyncBatchRunner` daemon running on your system. Your
+application will also need to set the `IS_BATCH_DAEMON_RUNNING=true` environment variable.
+
+```php
+use Google\Cloud\Trace\TraceClient;
+use Google\Cloud\Trace\Reporter\AsyncReporter;
+
+$reporter = new AsyncReporter();
+RequestTracer::start($reporter);
+```
 
 For testing/development, we also provide an `EchoReporter`, `FileReporter` and `LoggerReporter`.
 
