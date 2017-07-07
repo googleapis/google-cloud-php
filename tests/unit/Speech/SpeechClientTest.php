@@ -125,7 +125,8 @@ class SpeechClientTest extends \PHPUnit_Framework_TestCase
                         [
                             'phrases' => ['Test']
                         ]
-                    ]
+                    ],
+                    'enableWordTimeOffsets' => false
                 ],
                 [
                     'audio' => [
@@ -139,7 +140,8 @@ class SpeechClientTest extends \PHPUnit_Framework_TestCase
                             [
                                 'phrases' => ['Test']
                             ]
-                        ]
+                        ],
+                        'enableWordTimeOffsets' => false
                     ]
                 ]
             ],
