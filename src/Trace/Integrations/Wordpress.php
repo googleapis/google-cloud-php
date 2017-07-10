@@ -31,11 +31,37 @@ class Wordpress implements IntegrationInterface
             return;
         }
 
-        stackdriver_trace_function('get_sidebar');
-        stackdriver_trace_function('get_header');
-        stackdriver_trace_function('get_footer');
-        stackdriver_trace_function('load_textdomain');
+        // void function get_sidebar( $name = null )
+        stackdriver_trace_function('get_sidebar', function ($name) {
+            return [
+                'labels' => ['name' => $name]
+            ];
+        });
+
+        // void function get_header( $name = null )
+        stackdriver_trace_function('get_header', function ($name) {
+            return [
+                'labels' => ['name' => $name]
+            ];
+        });
+
+        // function get_footer( $name = null )
+        stackdriver_trace_function('get_footer', function ($name) {
+            return [
+                'labels' => ['name' => $name]
+            ];
+        });
+
+        // bool function load_textdomain( $domain, $mofile )
+        stackdriver_trace_function('load_textdomain', function ($name, $mofile) {
+            return [
+                'labels' => ['name' => $name]
+            ];
+        });
+
         stackdriver_trace_function('setup_theme');
+
+        // void load_template(string $template, bool $require_once = true)
         stackdriver_trace_function('load_template', function ($template) {
             return [
                 'labels' => ['template' => $template]

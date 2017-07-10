@@ -37,33 +37,84 @@ class Mysql implements IntegrationInterface
             return;
         }
 
+        // mixed mysqli_query ( mysqli $link , string $query [, int $resultmode = MYSQLI_STORE_RESULT ] )
         stackdriver_trace_function('mysqli_query', function ($mysqli, $query) {
             return [
                 'labels' => ['query' => $query]
             ];
         });
-        stackdriver_trace_function('mysqli_prepare');
-        stackdriver_trace_function('mysqli_commit');
+
+        // mysqli_stmt mysqli_prepare ( mysqli $link , string $query )
+        stackdriver_trace_function('mysqli_prepare', function ($mysqli, $query) {
+            return [
+                'labels' => ['query' => $query]
+            ];
+        });
+
+        // bool mysqli_commit ( mysqli $link [, int $flags [, string $name ]] )
+        stackdriver_trace_function('mysqli_commit', function ($mysqli) {
+            if (func_num_args() > 2) {
+                return [
+                    'labels' => [
+                        'name' => func_get_arg(3)
+                    ];
+                ]
+            }
+        });
+
+        // mysqli mysqli_connect ([ string $host = ini_get("mysqli.default_host")
+        //      [, string $username = ini_get("mysqli.default_user")
+        //      [, string $passwd = ini_get("mysqli.default_pw")
+        //      [, string $dbname = ""
+        //      [, int $port = ini_get("mysqli.default_port")
+        //      [, string $socket = ini_get("mysqli.default_socket") ]]]]]] )
         stackdriver_trace_function('mysqli_connect', function ($host) {
             return [
                 'labels' => ['host' => $host]
             ];
         });
+
+        // bool mysqli_stmt_execute ( mysqli_stmt $stmt )
         stackdriver_trace_function('mysqli_stmt_execute');
 
+        // mixed mysqli::query ( string $query [, int $resultmode = MYSQLI_STORE_RESULT ] )
         stackdriver_trace_method('mysqli', 'query', function ($mysqli, $query) {
             return [
                 'labels' => ['query' => $query]
             ];
         });
-        stackdriver_trace_method('mysqli', 'prepare');
-        stackdriver_trace_method('mysqli', 'commit');
+
+        // mysqli_stmt mysqli::prepare ( string $query )
+        stackdriver_trace_method('mysqli', 'prepare', function ($mysqli, $query) {
+            return [
+                'labels' => ['query' => $query]
+            ];
+        });
+
+        // bool mysqli::commit ([ int $flags [, string $name ]] )
+        stackdriver_trace_method('mysqli', 'commit', function ($mysqli) {
+            if (func_num_args() > 1) {
+                return [
+                    'labels' => [
+                        'name' => func_get_arg(2)
+                    ];
+                ]
+            }
+        });
+
+        // mysqli::__construct ([ string $host = ini_get("mysqli.default_host")
+        //      [, string $username = ini_get("mysqli.default_user")
+        //      [, string $passwd = ini_get("mysqli.default_pw")
+        //      [, string $dbname = ""
+        //      [, int $port = ini_get("mysqli.default_port")
+        //      [, string $socket = ini_get("mysqli.default_socket") ]]]]]] )
         stackdriver_trace_method('mysqli', '__construct', function ($mysqli, $host) {
             return [
                 'labels' => ['host' => $host]
             ];
         });
-        stackdriver_trace_method('mysqli', 'mysqli');
+
+        // bool mysqli_stmt::execute ( void )
         stackdriver_trace_method('mysqli_stmt', 'execute');
     }
 }

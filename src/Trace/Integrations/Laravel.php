@@ -42,6 +42,7 @@ class Laravel implements IntegrationInterface
         Eloquent::load();
 
         // Create a trace span for every template rendered
+        // public function get($path, array $data = array())
         stackdriver_trace_method(CompilerEngine::class, 'get', function ($scope, $path, $data) {
             return [
                 'name' => 'laravel/view',

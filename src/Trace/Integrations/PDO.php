@@ -37,22 +37,34 @@ class PDO implements IntegrationInterface
             return;
         }
 
+        // public int PDO::exec(string $query)
         stackdriver_trace_method('PDO', 'exec', function ($scope, $query) {
             return [
                 'labels' => ['query' => $query]
             ];
         });
+
+        // public PDOStatement PDO::query(string $query)
+        // public PDOStatement PDO::query(string $query, int PDO::FETCH_COLUMN, int $colno)
+        // public PDOStatement PDO::query(string $query, int PDO::FETCH_CLASS, string $classname, array $ctorargs)
+        // public PDOStatement PDO::query(string $query, int PDO::FETCH_INFO, object $object)
         stackdriver_trace_method('PDO', 'query', function ($scope, $query) {
             return [
                 'labels' => ['query' => $query]
             ];
         });
+
+        // public bool PDO::commit ( void )
         stackdriver_trace_method('PDO', 'commit');
+
+        // public PDO::__construct(string $dsn [, string $username [, string $password [, array $options]]])
         stackdriver_trace_method('PDO', '__construct', function ($scope, $dsn) {
             return [
                 'labels' => ['dsn' => $dsn]
             ];
         });
+
+        // public bool PDOStatement::execute([array $params])
         stackdriver_trace_method('PDOStatement', 'execute', function ($scope, $params) {
             return [
                 'labels' => ['query' => $scope->queryString]

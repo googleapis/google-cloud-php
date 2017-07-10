@@ -49,8 +49,19 @@ class Doctrine implements IntegrationInterface
                 'labels' => ['entity' => get_class($entity)]
             ];
         };
-        stackdriver_trace_method($persisterClass, 'load', $withCriteria);
+
+        // public function load(array $criteria, $entity = null, $assoc = null, array $hints = array(),
+        //      $lockMode = null, $limit = null, array $orderBy = null)
+        stackdriver_trace_method($persisterClass, 'load', function ($scope, $criteria, $entity) {
+            return [
+                'labels' => ['entity' => get_class($entity)]
+            ];
+        });
+
+        // FIXME: loadAll doesn't provide entity
+        // public function loadAll(array $criteria = array(), array $orderBy = null, $limit = null, $offset = null)
         stackdriver_trace_method($persisterClass, 'loadAll', $withCriteria);
+
         stackdriver_trace_method(AbstractQuery::class, 'execute');
     }
 }

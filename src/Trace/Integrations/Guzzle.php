@@ -55,8 +55,12 @@ class Guzzle implements IntegrationInterface
         }
     }
 
+    /**
+     * Add Guzzle 5 specific integrations
+     */
     protected static function loadGuzzle5()
     {
+        // public function send(RequestInterface $request)
         stackdriver_trace_method(Client::class, 'send', function ($scope, $request) {
             return [
                 'labels' => [
@@ -67,8 +71,12 @@ class Guzzle implements IntegrationInterface
         });
     }
 
+    /**
+     * Add Guzzle 6 specific integrations
+     */
     protected static function loadGuzzle6()
     {
+        // public function send(RequestInterface $request, array $options = [])
         stackdriver_trace_method(Client::class, 'send', function ($scope, $request) {
             return [
                 'labels' => [
@@ -77,6 +85,8 @@ class Guzzle implements IntegrationInterface
                 ]
             ];
         });
+
+        // public function request($method, $uri = '', array $options = [])
         stackdriver_trace_method(Client::class, 'request', function ($scope, $method, $uri) {
             return [
                 'labels' => [

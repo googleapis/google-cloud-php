@@ -44,13 +44,37 @@ class Memcache implements IntegrationInterface
             ];
         };
 
+        // bool Memcache::add ( string $key , mixed $var [, int $flag [, int $expire ]] )
+        stackdriver_trace_method('Memcache', 'add', $labelKeys);
+
+        // string Memcache::get ( string $key [, int &$flags ] )
+        // array Memcache::get ( array $keys [, array &$flags ] )
         stackdriver_trace_method('Memcache', 'get', $labelKeys);
+
+        // bool Memcache::set ( string $key , mixed $var [, int $flag [, int $expire ]] )
         stackdriver_trace_method('Memcache', 'set', $labelKeys);
 
+        // bool Memcache::delete ( string $key [, int $timeout = 0 ] )
         stackdriver_trace_method('Memcache', 'delete', $labelKeys);
+
         stackdriver_trace_method('Memcache', 'flush');
+
+        // bool Memcache::replace ( string $key , mixed $var [, int $flag [, int $expire ]] )
         stackdriver_trace_method('Memcache', 'replace', $labelKeys);
+
+        // int Memcache::increment ( string $key [, int $value = 1 ] )
         stackdriver_trace_method('Memcache', 'increment', $labelKeys);
+
+        // int Memcache::decrement ( string $key [, int $value = 1 ] )
         stackdriver_trace_method('Memcache', 'decrement', $labelKeys);
+
+        // bool Memcache::connect ( string $host [, int $port [, int $timeout ]] )
+        stackdriver_trace_method('Memcache', 'connect', function ($host) {
+            return [
+                'labels' => [
+                    'host' => $host
+                ]
+            ];
+        });
     }
 }

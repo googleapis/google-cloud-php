@@ -40,7 +40,9 @@ class Eloquent implements IntegrationInterface
             return;
         }
 
+        // public function getModels($columns = ['*'])
         stackdriver_trace_method(Builder::class, 'getModels', function ($scope, $columns) {
+            // Builder class has $model property but it's protected - use reflection to read the property
             $reflection = new \ReflectionClass(Builder::class);
             $modelProperty = $reflection->getProperty('model');
             $modelProperty->setAccessible(true);
@@ -53,6 +55,8 @@ class Eloquent implements IntegrationInterface
                 ]
             ];
         });
+
+        // protected function performInsert(Builder $query)
         stackdriver_trace_method(Model::class, 'performInsert', function ($scope, $query) {
             return [
                 'name' => 'eloquent/insert',
@@ -61,6 +65,8 @@ class Eloquent implements IntegrationInterface
                 ]
             ];
         });
+
+        // protected function performUpdate(Builder $query)
         stackdriver_trace_method(Model::class, 'performUpdate', function ($scope, $query) {
             return [
                 'name' => 'eloquent/update',
@@ -69,6 +75,8 @@ class Eloquent implements IntegrationInterface
                 ]
             ];
         });
+
+        // public function delete()
         stackdriver_trace_method(Model::class, 'delete', function ($scope, $query) {
             return [
                 'name' => 'eloquent/delete',
@@ -77,7 +85,10 @@ class Eloquent implements IntegrationInterface
                 ]
             ];
         });
-        stackdriver_trace_method(Model::class, 'destroy', function ($scope, $ids) {
+
+        // FIXME: get the class name
+        // public static function destroy($ids)
+        stackdriver_trace_method(Model::class, 'destroy', function ($ids) {
             return [
                 'name' => 'eloquent/destroy',
                 'labels' => [
