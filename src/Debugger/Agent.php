@@ -55,6 +55,8 @@ class Agent
             ? $options['sourceRoot'] . '/foo'
             : debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 1)[0]['file'];
 
+        echo "found " . count($breakpoints) . " breakpoints";
+
         foreach ($breakpoints as $breakpoint) {
             $this->breakpoints[$breakpoint->id] = $breakpoint;
 
@@ -83,8 +85,10 @@ class Agent
 
     public function onFinish()
     {
-        // echo 'Report collected debugger snapshots' . PHP_EOL;
-        foreach (stackdriver_debugger_list() as $snapshot) {
+        echo 'Report collected debugger snapshots' . PHP_EOL;
+        $list = stackdriver_debugger_list();
+        var_dump($list);
+        foreach ($list as $snapshot) {
             if (array_key_exists($snapshot['id'], $this->breakpoints)) {
                 $breakpoint = $this->breakpoints[$snapshot['id']];
                 $this->fillBreakpoint($breakpoint, $snapshot);

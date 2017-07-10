@@ -78,7 +78,7 @@ class Daemon
         $breakpoints = array_key_exists('breakpoints', $breakpoints)
             ? $breakpoints['breakpoints']
             : [];
-        echo "saving {count($breakpoints)}...\n";
+        // echo "saving {count($breakpoints)}...\n";
         var_dump($breakpoints);
         $this->storage->save($this->debuggee, $breakpoints);
     }
