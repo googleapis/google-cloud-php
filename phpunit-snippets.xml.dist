@@ -10,6 +10,7 @@
       <directory suffix=".php">src</directory>
       <exclude>
         <directory suffix=".php">src/*/V[!a-zA-Z]*</directory>
+        <directory suffix=".php">src/Trace/Integrations</director>
       </exclude>
     </whitelist>
   </filter>
