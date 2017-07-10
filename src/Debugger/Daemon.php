@@ -58,13 +58,13 @@ class Daemon
 
     public function run()
     {
-        echo "fetchin breakpoints...\n";
+        echo "fetching breakpoints...\n";
         $breakpoints = $this->debuggee->breakpoints();
         $this->setBreakpoints($breakpoints);
 
         while (array_key_exists('nextWaitToken', $breakpoints)) {
             try {
-                echo "fetchin breakpoints...\n";
+                echo "fetching breakpoints...\n";
                 $breakpoints = $this->debuggee->breakpoints(['waitToken' => $breakpoints['nextWaitToken']]);
                 $this->setBreakpoints($breakpoints);
             } catch (ConflictException $e) {
@@ -78,6 +78,8 @@ class Daemon
         $breakpoints = array_key_exists('breakpoints', $breakpoints)
             ? $breakpoints['breakpoints']
             : [];
+        echo "saving {count($breakpoints)}...\n";
+        var_dump($breakpoints);
         $this->storage->save($this->debuggee, $breakpoints);
     }
 
