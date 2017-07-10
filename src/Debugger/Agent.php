@@ -88,6 +88,8 @@ class Agent
             if (array_key_exists($snapshot['id'], $this->breakpoints)) {
                 $breakpoint = $this->breakpoints[$snapshot['id']];
                 $this->fillBreakpoint($breakpoint, $snapshot);
+                echo "submitting item...\n";
+                var_dump($breakpoint);
                 $this->batchRunner->submitItem($this->identifier, $breakpoint);
             } else {
                 echo "found reported snapshot but couldn't find record\n";
