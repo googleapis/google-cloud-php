@@ -38,7 +38,7 @@ class Wordpress implements IntegrationInterface
                 ];
             }
             return [];
-        }
+        };
 
         // void function get_sidebar( $name = null )
         stackdriver_trace_function('get_sidebar', $nameClosure);
