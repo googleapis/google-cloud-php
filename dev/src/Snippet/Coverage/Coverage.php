@@ -21,6 +21,7 @@ class Coverage
 {
     private static $snippetExcludeList = [
         '/\\\Google\\\Cloud\\\Core\\\PhpArray/',
+        '/\\\Google\\\Cloud\\\Trace\\\Integrations/',
     ];
 
     /**

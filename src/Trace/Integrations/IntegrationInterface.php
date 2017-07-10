@@ -17,7 +17,13 @@
 
 namespace Google\Cloud\Trace\Integrations;
 
+/**
+ * Common interface for enabling Trace integration for various frameworks and libraries.
+ */
 interface IntegrationInterface
 {
+    /**
+     * Static method to add instrumentation to a framework or library
+     */
     public static function load();
 }
