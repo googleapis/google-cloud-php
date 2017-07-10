@@ -19,7 +19,6 @@ namespace Google\Cloud\Tests\System\Storage;
 
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Storage\StorageClient;
-use Google\Cloud\Tests\System\DeletionEnqueuedTrait;
 use Google\Cloud\Tests\System\SystemTestCase;
 
 /**
@@ -28,8 +27,6 @@ use Google\Cloud\Tests\System\SystemTestCase;
  */
 class StorageTestCase extends SystemTestCase
 {
-    use DeletionEnqueuedTrait;
-
     const TESTING_PREFIX = 'gcloud_testing_';
     const NORMALIZATION_TEST_BUCKET = 'storage-library-test-bucket';
 

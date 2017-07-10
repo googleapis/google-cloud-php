@@ -19,13 +19,10 @@ namespace Google\Cloud\Tests\System\BigQuery;
 
 use Google\Cloud\BigQuery\BigQueryClient;
 use Google\Cloud\Storage\StorageClient;
-use Google\Cloud\Tests\System\DeletionEnqueuedTrait;
 use Google\Cloud\Tests\System\SystemTestCase;
 
 class BigQueryTestCase extends SystemTestCase
 {
-    use DeletionEnqueuedTrait;
-
     const TESTING_PREFIX = 'gcloud_testing_';
 
     protected static $bucket;

@@ -21,6 +21,8 @@ use Google\Cloud\Tests\System\DeletionQueue;
 
 class SystemTestCase extends \PHPUnit_Framework_TestCase
 {
+    use DeletionEnqueuedTrait;
+
     protected static $deletionQueue;
 
     public static function setupQueue()

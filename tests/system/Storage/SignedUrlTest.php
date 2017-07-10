@@ -50,7 +50,6 @@ class SignedUrlTest extends StorageTestCase
         $obj = $this->createFile(
             uniqid(self::TESTING_PREFIX . ' ' . self::TESTING_PREFIX)
         );
-        self::$deletionQueue[] = $obj;
 
         $ts = new Timestamp(new \DateTime('tomorrow'));
         $url = $obj->signedUrl($ts);

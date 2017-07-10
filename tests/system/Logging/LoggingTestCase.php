@@ -22,13 +22,10 @@ use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\Logging\LoggingClient;
 use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\Storage\StorageClient;
-use Google\Cloud\Tests\System\DeletionEnqueuedTrait;
 use Google\Cloud\Tests\System\SystemTestCase;
 
 class LoggingTestCase extends SystemTestCase
 {
-    use DeletionEnqueuedTrait;
-
     const TESTING_PREFIX = 'gcloud_testing_';
 
     protected static $bucket;
