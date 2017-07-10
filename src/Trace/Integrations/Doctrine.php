@@ -40,7 +40,7 @@ class Doctrine implements IntegrationInterface
             return;
         }
 
-        $persisterClass = (Version::compare(2.5.0) < 1)
+        $persisterClass = (Version::compare('2.5.0') < 1)
             ? 'Doctrine\ORM\Persisters\BasicEntityPersister'            // Doctrine 2.4 or earlier
             : 'Doctrine\ORM\Persisters\Entity\BasicEntityPersister';    // Doctrine 2.5 or greater
 
