@@ -21,11 +21,10 @@ $ composer require google/cloud-trace
 
 ```php
 use Google\Cloud\Trace\TraceClient;
-use Google\Cloud\Trace\Reporter\SyncReporter;
 use Google\Cloud\Trace\RequestTracer;
 
 $trace = new TraceClient();
-$reporter = new SyncReporter($trace);
+$reporter = $trace->reporter();
 RequestTracer::start($reporter);
 ```
 
@@ -33,8 +32,11 @@ RequestTracer::start($reporter);
 
 ### Reporting Traces
 
-The above sample uses the `SyncReporter` to sychronously report trace results to the
-Stackdriver servers at the end of the request.
+The above sample uses the `AsyncReporter` to report trace results to the Stackdriver servers.
+If you are using the experimental
+[google-cloud-batch daemon](https://github.com/GoogleCloudPlatform/google-cloud-php-core/blob/master/Batch/BatchDaemon.php)
+and have set the `IS_BATCH_DAEMON_RUNNING=true` environment variable, then the reporting of the trace will happen
+asynchronously. If not, the reporting will happen at the end of the request and can add some latency to your request.
 
 For testing/development, we also provide an `EchoReporter`, `FileReporter` and `LoggerReporter`.
 

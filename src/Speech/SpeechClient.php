@@ -188,6 +188,13 @@ class SpeechClient
      *           to favor specific words and phrases in the results. Please see
      *           [SpeechContext](https://cloud.google.com/speech/reference/rest/v1/RecognitionConfig#SpeechContext)
      *           for more information.
+     *     @type bool $enableWordTimeOffsets If set to `true`, a list of
+     *           `wordTimeOffsets` are returned with the top alternative. If
+     *           `false` or omitted, no `wordTimeOffsets` are returned.
+     *           **Defaults to** `false`.
+     *           **Whitelist Warning:** At the time of publication, this argument
+     *           is subject to a feature whitelist and may not be available in
+     *           your project.
      * }
      * @return array Result[]
      * @throws \InvalidArgumentException
@@ -313,6 +320,13 @@ class SpeechClient
      *           to favor specific words and phrases in the results. Please see
      *           [SpeechContext](https://cloud.google.com/speech/reference/rest/v1/RecognitionConfig#SpeechContext)
      *           for more information.
+     *     @type bool $enableWordTimeOffsets If set to `true`, a list of
+     *           `wordTimeOffsets` are returned with the top alternative. If
+     *           `false` or omitted, no `wordTimeOffsets` are returned.
+     *           **Defaults to** `false`.
+     *           **Whitelist Warning:** At the time of publication, this argument
+     *           is subject to a feature whitelist and may not be available in
+     *           your project.
      * }
      * @return Operation
      * @throws \InvalidArgumentException
@@ -370,7 +384,8 @@ class SpeechClient
             'languageCode',
             'maxAlternatives',
             'profanityFilter',
-            'speechContexts'
+            'speechContexts',
+            'enableWordTimeOffsets'
         ];
 
         if ($audio instanceof StorageObject) {

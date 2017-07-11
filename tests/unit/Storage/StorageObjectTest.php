@@ -567,9 +567,7 @@ class StorageObjectTest extends \PHPUnit_Framework_TestCase
         $query = explode('?', $url)[1];
         $pieces = explode('&', $query);
 
-        $signature = trim(current(array_filter($pieces, function ($piece) {
-            return strpos($piece, 'Signature') !== false;
-        })), 'Signature=');
+        $signature = $this->getSignatureFromSplitUrl($pieces);
 
         $this->assertTrue($object->___signatureIsCorrect($signature));
         $this->assertEquals($object->input, $input);
@@ -602,9 +600,7 @@ class StorageObjectTest extends \PHPUnit_Framework_TestCase
         $query = explode('?', $url)[1];
         $pieces = explode('&', $query);
 
-        $signature = trim(current(array_filter($pieces, function ($piece) {
-            return strpos($piece, 'Signature') !== false;
-        })), 'Signature=');
+        $signature = $this->getSignatureFromSplitUrl($pieces);
 
         $this->assertTrue($object->___signatureIsCorrect($signature));
         $this->assertEquals($object->input, $input);
@@ -637,12 +633,62 @@ class StorageObjectTest extends \PHPUnit_Framework_TestCase
         $query = explode('?', $url)[1];
         $pieces = explode('&', $query);
 
-        $signature = trim(current(array_filter($pieces, function ($piece) {
-            return strpos($piece, 'Signature') !== false;
-        })), 'Signature=');
+        $signature = $this->getSignatureFromSplitUrl($pieces);
 
         $this->assertTrue($object->___signatureIsCorrect($signature));
         $this->assertEquals($object->input, $input);
+    }
+
+    public function testSignedUrlWithSpace()
+    {
+        $object = new StorageObjectSignatureStub($this->connection->reveal(), $name = 'object object.txt', $bucketName = 'bucket', 'foo');
+        $ts = new Timestamp(new \DateTime(self::TIMESTAMP));
+
+        $seconds = $ts->get()->format('U');
+
+        $contentType = $responseType = 'text/plain';
+        $digest = base64_encode(md5('hello world'));
+
+        $url = $object->signedUrl($ts, [
+            'keyFile' => $this->kf,
+            'headers' => [
+                'foo' => ['bar', 'bar'],
+                'bat' => 'baz'
+            ],
+            'contentType' => $contentType,
+            'responseDisposition' => 'foo',
+            'responseType' => $responseType,
+            'contentMd5' => $digest
+        ]);
+
+        $input = implode(PHP_EOL, [
+            'GET',
+            $digest,
+            $contentType,
+            $seconds,
+            'foo:bar,bar',
+            'bat:baz',
+            sprintf('/%s/%s', $bucketName, rawurlencode($name))
+        ]);
+
+        $parts = explode('?', $url);
+        $resource = $parts[0];
+        $query = $parts[1];
+        $pieces = explode('&', $query);
+
+        $resourceParts = explode('/', $resource);
+        $objName = end($resourceParts);
+
+        $this->assertEquals(rawurldecode($objName), $name);
+
+        $signature = $this->getSignatureFromSplitUrl($pieces);
+
+        $this->assertTrue($object->___signatureIsCorrect($signature));
+        $this->assertEquals($object->input, $input);
+        $this->assertTrue(in_array('generation=foo', $pieces));
+        $this->assertTrue(in_array('response-content-type='. urlencode($contentType), $pieces));
+        $this->assertTrue(in_array('response-content-disposition=foo', $pieces));
+        $this->assertTrue(in_array('response-content-type='. urlencode($responseType), $pieces));
     }
 
     public function testSignedUploadUrl()
@@ -679,9 +725,7 @@ class StorageObjectTest extends \PHPUnit_Framework_TestCase
         $query = explode('?', $url)[1];
         $pieces = explode('&', $query);
 
-        $signature = trim(current(array_filter($pieces, function ($piece) {
-            return strpos($piece, 'Signature') !== false;
-        })), 'Signature=');
+        $signature = $this->getSignatureFromSplitUrl($pieces);
 
         $this->assertTrue($object->___signatureIsCorrect($signature));
         $this->assertEquals($object->input, $input);
@@ -813,6 +857,13 @@ class StorageObjectTest extends \PHPUnit_Framework_TestCase
         $object = new StorageObject($this->connection->reveal(), 'object', 'bucket', null, ['requesterProjectId' => 'foo']);
 
         $object->reload();
+    }
+
+    private function getSignatureFromSplitUrl(array $pieces)
+    {
+        return trim(current(array_filter($pieces, function ($piece) {
+            return strpos($piece, 'Signature') !== false;
+        })), 'Signature=');
     }
 }
 

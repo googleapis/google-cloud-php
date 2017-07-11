@@ -46,6 +46,19 @@ class SignedUrlTest extends StorageTestCase
         $this->assertEquals(self::CONTENT, $this->getFile($url));
     }
 
+    public function testSignedUrlWithSpaces()
+    {
+        $obj = $this->createFile(
+            uniqid(self::TESTING_PREFIX . ' ' . self::TESTING_PREFIX)
+        );
+        self::$deletionQueue[] = $obj;
+
+        $ts = new Timestamp(new \DateTime('tomorrow'));
+        $url = $obj->signedUrl($ts);
+
+        $this->assertEquals(self::CONTENT, $this->getFile($url));
+    }
+
     /**
      * @expectedException Google\Cloud\Core\Exception\NotFoundException
      */
@@ -67,11 +80,11 @@ class SignedUrlTest extends StorageTestCase
         $obj->reload();
     }
 
-    private function createFile()
+    private function createFile($name = null)
     {
         $bucket = self::$bucket;
         $object = $bucket->upload(self::CONTENT, [
-            'name' => uniqid(self::TESTING_PREFIX) .'.txt',
+            'name' => $name ?: uniqid(self::TESTING_PREFIX) .'.txt',
         ]);
 
         return $object;
