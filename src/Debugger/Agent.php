@@ -87,7 +87,7 @@ class Agent
     public function onFinish()
     {
         $loggingClient = new LoggingClient();
-        $logger = $loggingClient->psrBatchLogger();
+        $logger = $loggingClient->psrBatchLogger('foo');
         $logger->info("Report collected debugger snapshots\n");
         $list = stackdriver_debugger_list();
         var_dump($list);
