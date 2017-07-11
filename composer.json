@@ -114,5 +114,14 @@
             "path": "src",
             "entry": "ServiceBuilder.php"
         }
+    },
+    "replaces": {
+        "google/cloud-error-reporting": "0.4.1",
+        "google/cloud-monitoring": "0.4.1",
+        "google/cloud-spanner": "0.3.1",
+        "google/cloud-speech": "0.6.0",
+        "google/cloud-storage": "1.1.2",
+        "google/cloud-trace": "0.3.0",
+        "google/cloud-videointelligence": "0.3.1"
     }
 }
