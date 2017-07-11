@@ -19,6 +19,7 @@ namespace Google\Cloud\Debugger;
 
 use Google\Cloud\Core\Batch\BatchRunner;
 use Google\Cloud\Core\Batch\BatchTrait;
+use Google\Cloud\Logging\LoggingClient;
 
 class Agent
 {
@@ -55,7 +56,7 @@ class Agent
             ? $options['sourceRoot'] . '/foo'
             : debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 1)[0]['file'];
 
-        echo "found " . count($breakpoints) . " breakpoints";
+        echo "found " . count($breakpoints) . " breakpoints\n";
 
         foreach ($breakpoints as $breakpoint) {
             $this->breakpoints[$breakpoint->id] = $breakpoint;
@@ -85,9 +86,12 @@ class Agent
 
     public function onFinish()
     {
-        echo 'Report collected debugger snapshots' . PHP_EOL;
+        $loggingClient = new LoggingClient();
+        $logger = $loggingClient->psrBatchLogger();
+        $logger->info("Report collected debugger snapshots\n");
         $list = stackdriver_debugger_list();
         var_dump($list);
+        $logger->info(json_encode($list));
         foreach ($list as $snapshot) {
             if (array_key_exists($snapshot['id'], $this->breakpoints)) {
                 $breakpoint = $this->breakpoints[$snapshot['id']];
