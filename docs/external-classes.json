@@ -41,6 +41,9 @@
   "name": "Google\\Monitoring\\",
   "uri": "https://googleapis.github.io/gax-php/#Google/Monitoring/%s.html"
 }, {
+  "name": "Google\\Privacy\\",
+  "uri": "https://googleapis.github.io/gax-php/#Google/Privacy/%s.html"
+}, {
   "name": "Google\\Pubsub\\",
   "uri": "https://googleapis.github.io/gax-php/#Google/Pubsub/%s.html"
 }, {

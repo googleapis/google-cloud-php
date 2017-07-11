@@ -97,6 +97,15 @@
             ]
         },
         {
+            "id": "cloud-dlp",
+            "name": "google/cloud-dlp",
+            "defaultService": "dlp/readme",
+            "versions": [
+                "v0.1.0",
+                "master"
+            ]
+        },
+        {
             "id": "cloud-error-reporting",
             "name": "google/cloud-error-reporting",
             "defaultService": "errorreporting/readme",

@@ -1,0 +1,18 @@
+{
+    "title": "DLP",
+    "pattern": "dlp\/\\w{1,}",
+    "services": [{
+        "title": "Overview",
+        "type": "dlp/readme"
+    }, {
+        "title": "v2beta1",
+        "type": "dlp/v2beta1/readme",
+        "patterns": [
+          "dlp/v2beta1/\\w{1,}"
+        ],
+        "nav": [{
+            "title": "DlpServiceClient",
+            "type": "dlp/v2beta1/dlpserviceclient"
+        }]
+    }]
+}
