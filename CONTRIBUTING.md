@@ -17,7 +17,7 @@ You (and your authorized signer, if corporate) can sign the CLA electronically. 
 
 ## Opening an issue
 
-If you've tried everything in our [Troubleshooting](/troubleshooting/readme.md) guide and are still running into problems, it is probably time to open a GitHub issue. GitHub provides a guide, [Mastering Issues](https://guides.github.com/features/issues/), that is useful if you are unfamiliar with the process. Here are the specific steps for opening a gcloud issue:
+If you've tried everything in our [Troubleshooting](https://github.com/GoogleCloudPlatform/gcloud-common/blob/master/troubleshooting/readme.md) guide and are still running into problems, it is probably time to open a GitHub issue. GitHub provides a guide, [Mastering Issues](https://guides.github.com/features/issues/), that is useful if you are unfamiliar with the process. Here are the specific steps for opening a gcloud issue:
 
 1. Go to the project issues page on GitHub.
 1. Click the green `New Issue` button located in the upper right corner.
