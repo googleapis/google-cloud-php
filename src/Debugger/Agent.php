@@ -140,7 +140,7 @@ class Agent
                     $variableTable[$varTableIndex++] = new Variable([
                         'name' => $local['name'],
                         'type' => $type,
-                        'value' => is_object($local['value']) ? 'object' : (string)$local['value']
+                        'value' => 'value'//is_object($local['value']) ? 'object' : (string)$local['value']
                     ]);
                 }
             }
