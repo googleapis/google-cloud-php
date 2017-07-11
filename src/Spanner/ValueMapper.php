@@ -126,13 +126,15 @@ class ValueMapper
      * the Spanner API.
      *
      * @param array $values The list of values
+     * @param bool $allowMixedArrayType If true, array values may be of mixed type.
+     *        **Defaults to** `false`.
      * @return array The encoded values
      */
-    public function encodeValuesAsSimpleType(array $values)
+    public function encodeValuesAsSimpleType(array $values, $allowMixedArrayType = false)
     {
         $res = [];
         foreach ($values as $value) {
-            $res[] = $this->paramType($value)[0];
+            $res[] = $this->paramType($value, null, null, $allowMixedArrayType)[0];
         }
 
         return $res;
@@ -287,11 +289,14 @@ class ValueMapper
      * Create a spanner parameter type value object from a PHP value type.
      *
      * @param mixed $value The PHP value
-     * @param int $givenType
-     * @param int $arrayType
+     * @param int $givenType If set, this type will be used in place of an inferred type.
+     * @param int $arrayType Defines the type of array elements.
+     * @param bool $allowMixedArrayType If true, array values may be of mixed type.
+     *        This is useful when reading against complex keys containing multiple
+     *        elements of differing types.
      * @return array The Value type
      */
-    private function paramType($value, $givenType = null, $arrayType = null)
+    private function paramType($value, $givenType = null, $arrayType = null, $allowMixedArrayType = false)
     {
         $phpType = gettype($value);
         switch ($phpType) {
@@ -352,7 +357,7 @@ class ValueMapper
                     }
                 }
 
-                if (count(array_unique($types)) > 1) {
+                if (!$allowMixedArrayType && count(array_unique($types)) > 1) {
                     throw new \BadMethodCallException('Array values may not be of mixed type');
                 }
 

@@ -372,4 +372,41 @@ class WriteTest extends SpannerTestCase
             'boolField' => 'bar'
         ]);
     }
+
+    /**
+     * @dataProvider randomBytesProvider
+     * covers 88
+     */
+    public function testWriteAndReadBackRandomBytes($id, $bytes)
+    {
+        $db = self::$database;
+
+        $db->insert(self::TABLE_NAME, [
+            'id' => $id,
+            'bytesField' => $bytes
+        ]);
+
+        $res = $db->execute('SELECT bytesField FROM '. self::TABLE_NAME .' WHERE id = @id', [
+            'parameters' => [
+                'id' => $id
+            ]
+        ])->rows()->current()['bytesField'];
+
+        $this->assertEquals((string) $res->get(), (string) $bytes->get());
+    }
+
+    public function randomBytesProvider()
+    {
+        if (version_compare(phpversion(), 7) === -1) {
+            $this->markTestSkipped('This test can only be run on php 7+');
+        }
+
+        return [
+            [$this->randId(), new Bytes(base64_encode(random_bytes(rand(100,9999))))],
+            [$this->randId(), new Bytes(base64_encode(random_bytes(rand(100,9999))))],
+            [$this->randId(), new Bytes(base64_encode(random_bytes(rand(100,9999))))],
+            [$this->randId(), new Bytes(base64_encode(random_bytes(rand(100,9999))))],
+            [$this->randId(), new Bytes(base64_encode(random_bytes(rand(100,9999))))],
+        ];
+    }
 }

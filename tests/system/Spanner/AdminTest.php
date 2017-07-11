@@ -29,6 +29,9 @@ use Google\Cloud\Spanner\InstanceConfiguration;
  */
 class AdminTest extends SpannerTestCase
 {
+    /**
+     * covers 121
+     */
     public function testInstance()
     {
         $client = self::$client;
@@ -59,6 +62,9 @@ class AdminTest extends SpannerTestCase
         $this->assertEquals($displayName, $instance->info()['displayName']);
     }
 
+    /**
+     * covers 123
+     */
     public function testDatabase()
     {
         $instance = self::$instance;
@@ -93,6 +99,9 @@ class AdminTest extends SpannerTestCase
         $this->assertEquals($db->ddl()[0], $stmt);
     }
 
+    /**
+     * covers 120
+     */
     public function testConfigurations()
     {
         $client = self::$client;
