@@ -6,6 +6,9 @@
     "require": {
         "google/cloud-core": "^1.0"
     },
+    "suggest": {
+        "phpseclib/phpseclib": "May be used in place of OpenSSL for creating signed Cloud Storage URLs. Please require version ^2."
+    },
     "extra": {
         "component": {
             "id": "cloud-storage",
