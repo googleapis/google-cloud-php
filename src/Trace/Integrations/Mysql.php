@@ -57,8 +57,10 @@ class Mysql implements IntegrationInterface
                 return [
                     'labels' => [
                         'name' => func_get_arg(3)
-                    ];
-                ]
+                    ]
+                ];
+            } else {
+                return [];
             }
         });
 
@@ -97,8 +99,10 @@ class Mysql implements IntegrationInterface
                 return [
                     'labels' => [
                         'name' => func_get_arg(2)
-                    ];
-                ]
+                    ]
+                ];
+            } else {
+                return [];
             }
         });
 

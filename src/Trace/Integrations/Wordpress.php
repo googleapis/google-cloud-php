@@ -31,6 +31,8 @@ class Wordpress implements IntegrationInterface
             return;
         }
 
+        Mysql::load();
+
         $nameClosure = function () {
             if (func_num_args() > 0) {
                 return [
@@ -55,8 +57,6 @@ class Wordpress implements IntegrationInterface
                 'labels' => ['name' => $name]
             ];
         });
-
-        stackdriver_trace_function('setup_theme');
 
         // void load_template(string $template, bool $require_once = true)
         stackdriver_trace_function('load_template', function ($template) {
