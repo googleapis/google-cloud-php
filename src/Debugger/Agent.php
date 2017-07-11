@@ -88,19 +88,16 @@ class Agent
     {
         $loggingClient = new LoggingClient();
         $logger = $loggingClient->psrBatchLogger('foo');
-        $logger->info("Report collected debugger snapshots\n");
+        $logger->info("Report collected debugger snapshots");
         $list = stackdriver_debugger_list();
-        var_dump($list);
-        $logger->info(json_encode($list));
+        $logger->info("Found " . count($list) . " snapshots");
         foreach ($list as $snapshot) {
             if (array_key_exists($snapshot['id'], $this->breakpoints)) {
                 $breakpoint = $this->breakpoints[$snapshot['id']];
                 $this->fillBreakpoint($breakpoint, $snapshot);
-                echo "submitting item...\n";
-                var_dump($breakpoint);
                 $this->batchRunner->submitItem($this->identifier, $breakpoint);
             } else {
-                echo "found reported snapshot but couldn't find record\n";
+                $logger->error("found reported snapshot but couldn't find record");
             }
         }
     }
@@ -139,30 +136,6 @@ class Agent
             }
             return $sf;
         }, $snapshot['stackframes']);
-    }
-
-    private function fakeFill($bp)
-    {
-        list($usec, $sec) = explode(' ', microtime());
-        $micro = sprintf("%06d", $usec * 1000000);
-        $when = new \DateTime(date('Y-m-d H:i:s.' . $micro));
-        $when->setTimezone(new \DateTimeZone('UTC'));
-        $bp->finalTime = $when->format('Y-m-d\TH:i:s.u000\Z');
-
-        // $variable = new Variable([
-        //     'name' => 'foo',
-        //     'value' => 'bar',
-        //     'type' => 'string',
-        //     'varTableIndex' => 0
-        // ]);
-        //
-        // array_push($bp->variableTable, $variable);
-        $bp->isFinalState = true;
-
-        $bp->stackFrames = StackFrame::fromBacktrace(debug_backtrace());
-        foreach (get_defined_vars() as $name => $value) {
-            array_push($bp->stackFrames[0]->locals, Variable::fromVariable($name, $value));
-        }
     }
 
     protected function getCallback()
