@@ -566,7 +566,7 @@ class DlpServiceClient
      *
      * @param string $name         Identifier of the results set returned as metadata of
      *                             the longrunning operation created by a call to CreateInspectOperation.
-     *                             Should be in the format of `inspect/results/{id}.
+     *                             Should be in the format of `inspect/results/{id}`.
      * @param array  $optionalArgs {
      *                             Optional.
      *
