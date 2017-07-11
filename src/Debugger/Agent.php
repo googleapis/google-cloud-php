@@ -48,7 +48,7 @@ class Agent
             : $this->defaultDebuggee();
 
         if (empty($breakpoints)) {
-            echo "no breakpoints\n";
+            // echo "no breakpoints\n";
             return;
         }
 
@@ -56,7 +56,7 @@ class Agent
             ? $options['sourceRoot'] . '/foo'
             : debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 1)[0]['file'];
 
-        echo "found " . count($breakpoints) . " breakpoints\n";
+        // echo "found " . count($breakpoints) . " breakpoints\n";
 
         foreach ($breakpoints as $breakpoint) {
             $this->breakpoints[$breakpoint->id] = $breakpoint;
