@@ -60,13 +60,13 @@
         "google/proto-client": "^0.20.1",
         "google/gax": "^0.20.1",
         "symfony/lock": "3.3.x-dev#1ba6ac9",
-        "phpseclib/phpseclib": "^2.0"
+        "phpseclib/phpseclib": "^2"
     },
     "suggest": {
         "google/gax": "Required to support gRPC",
         "google/proto-client-php": "Required to support gRPC",
         "symfony/lock": "Required for the Spanner cached based session pool. Please require the following commit: 3.3.x-dev#1ba6ac9",
-        "phpseclib/phpseclib": "May be used in place of OpenSSL for creating signed Cloud Storage URLs."
+        "phpseclib/phpseclib": "May be used in place of OpenSSL for creating signed Cloud Storage URLs. Please require version ^2."
     },
     "autoload": {
         "psr-4": {
