@@ -38,7 +38,13 @@ class Curl implements IntegrationInterface
             return;
         }
 
-        stackdriver_trace_function('curl_exec');
+        stackdriver_trace_function('curl_exec', function ($resource) {
+            return [
+                'labels' => [
+                    'url' => curl_getinfo($resource, CURLINFO_EFFECTIVE_URL)
+                ]
+            ];
+        });
         stackdriver_trace_function('curl_multi_add_handle');
         stackdriver_trace_function('curl_multi_remove_handle');
     }
