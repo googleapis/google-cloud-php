@@ -7,6 +7,7 @@
     "includes": [
         "cloud-bigquery",
         "cloud-datastore",
+        "cloud-dlp",
         "cloud-error-reporting",
         "cloud-logging",
         "cloud-monitoring",
