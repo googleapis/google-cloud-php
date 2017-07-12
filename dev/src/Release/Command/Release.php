@@ -220,7 +220,7 @@ class Release extends Command
 
         $data = json_decode(file_get_contents($composer), true);
 
-        $data['replaces'][$component['name']] = $version;
+        $data['replace'][$component['name']] = $version;
 
         file_put_contents($composer, json_encode($data, JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES));
     }
