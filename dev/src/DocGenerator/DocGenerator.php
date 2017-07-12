@@ -19,8 +19,6 @@ namespace Google\Cloud\Dev\DocGenerator;
 
 use Google\Cloud\Dev\DocGenerator\Parser\CodeParser;
 use Google\Cloud\Dev\DocGenerator\Parser\MarkdownParser;
-use phpDocumentor\Reflection\DocBlock\Description;
-use phpDocumentor\Reflection\DocBlock\Tag\SeeTag;
 use phpDocumentor\Reflection\FileReflector;
 
 /**
@@ -88,6 +86,7 @@ class DocGenerator
                     $this->componentId,
                     $this->manifestPath,
                     $this->release,
+                    $basePath,
                     $this->isComponent
                 );
             } else {
