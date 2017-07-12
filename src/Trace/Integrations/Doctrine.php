@@ -44,18 +44,22 @@ class Doctrine implements IntegrationInterface
             ? 'Doctrine\ORM\Persisters\Entity\BasicEntityPersister'    // Doctrine 2.5 or greater
             : 'Doctrine\ORM\Persisters\BasicEntityPersister';          // Doctrine 2.4 or earlier
 
-        $nameFromPersister = function ($bep) {
-            return [
-                'labels' => ['entity' => $bep->getClassMetadata()->name]
-            ];
-        };
-
         // public function load(array $criteria, $entity = null, $assoc = null, array $hints = array(),
         //      $lockMode = null, $limit = null, array $orderBy = null)
-        stackdriver_trace_method($persisterClass, 'load', $nameFromPersister);
+        stackdriver_trace_method($persisterClass, 'load', function ($bep) {
+            return [
+                'name' => 'doctrine/load',
+                'labels' => ['entity' => $bep->getClassMetadata()->name]
+            ];
+        });
 
         // public function loadAll(array $criteria = array(), array $orderBy = null, $limit = null, $offset = null)
-        stackdriver_trace_method($persisterClass, 'loadAll', $nameFromPersister);
+        stackdriver_trace_method($persisterClass, 'loadAll', function ($bep) {
+            return [
+                'name' => 'doctrine/loadAll',
+                'labels' => ['entity' => $bep->getClassMetadata()->name]
+            ];
+        });
 
         stackdriver_trace_method(AbstractQuery::class, 'execute');
     }

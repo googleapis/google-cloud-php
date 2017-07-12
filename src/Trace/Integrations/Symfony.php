@@ -38,5 +38,20 @@ class Symfony implements IntegrationInterface
         }
 
         Doctrine::load();
+
+        // public function handle(Request $request, $type = HttpKernelInterface::MASTER_REQUEST, $catch = true)
+        stackdriver_trace_method(HttpKernel::class, 'handle', function ($kernel, $request) {
+            return [
+                'name' => 'kernel/handle'
+            ];
+        });
+
+        // public function dispatch($eventName, Event $event = null)
+        stackdriver_trace_method(EventDispatcher::class, 'dispatch', function ($dispatcher, $eventName) {
+            return [
+                'name' => $eventName,
+                'labels' => ['eventName' => $eventName]
+            ];
+        });
     }
 }
