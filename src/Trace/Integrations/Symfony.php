@@ -17,6 +17,9 @@
 
 namespace Google\Cloud\Trace\Integrations;
 
+use Symfony\Component\HttpKernel\HttpKernel;
+use Symfony\Component\EventDispatcher\EventDispatcher;
+
 /**
  * This class handles instrumenting the Symfony framework's standard stack using the stackdriver_trace extension.
  *
