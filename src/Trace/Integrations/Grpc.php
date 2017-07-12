@@ -44,10 +44,10 @@ class Grpc implements IntegrationInterface
         //                                   array $options = [])
         stackdriver_trace_method(BaseStub::class, '_simpleRequest', function ($stub, $method) {
             return [
-                'name' => $method,
+                'name' => 'grpc/simpleRequest',
                 'labels' => [
-                    'type' => 'simpleRequest',
-                    'url' => $stub->getTarget()
+                    'host' => $stub->getTarget(),
+                    'uri' => $method
                 ]
             ];
         });
@@ -56,10 +56,10 @@ class Grpc implements IntegrationInterface
         //                                         array $options = [])
         stackdriver_trace_method(BaseStub::class, '_clientStreamRequest', function ($stub, $method) {
             return [
-                'name' => $method,
+                'name' => 'grpc/clientStreamRequest',
                 'labels' => [
-                    'type' => 'clientStreamRequest',
-                    'url' => $stub->getTarget()
+                    'host' => $stub->getTarget(),
+                    'uri' => $method
                 ]
             ];
         });
@@ -68,10 +68,10 @@ class Grpc implements IntegrationInterface
         //                                         array $options = [])
         stackdriver_trace_method(BaseStub::class, '_serverStreamRequest', function ($stub, $method) {
             return [
-                'name' => $method,
+                'name' => 'grpc/serverStreamRequest',
                 'labels' => [
-                    'type' => 'serverStreamRequest',
-                    'url' => $stub->getTarget()
+                    'host' => $stub->getTarget(),
+                    'uri' => $method
                 ]
             ];
         });
@@ -79,10 +79,10 @@ class Grpc implements IntegrationInterface
         // protected function _bidiRequest($method, $deserialize, array $metadata = [], array $options = [])
         stackdriver_trace_method(BaseStub::class, '_bidiRequest', function ($stub, $method) {
             return [
-                'name' => $method,
+                'name' => 'grpc/bidiRequest',
                 'labels' => [
-                    'type' => 'bidiRequest',
-                    'url' => $stub->getTarget()
+                    'host' => $stub->getTarget(),
+                    'uri' => $method
                 ]
             ];
         });
