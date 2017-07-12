@@ -40,27 +40,22 @@ class Doctrine implements IntegrationInterface
             return;
         }
 
-        $persisterClass = (Version::compare('2.5.0') < 1)
-            ? 'Doctrine\ORM\Persisters\BasicEntityPersister'            // Doctrine 2.4 or earlier
-            : 'Doctrine\ORM\Persisters\Entity\BasicEntityPersister';    // Doctrine 2.5 or greater
+        $persisterClass = (Version::compare('2.5.0') < 0)
+            ? 'Doctrine\ORM\Persisters\Entity\BasicEntityPersister'    // Doctrine 2.5 or greater
+            : 'Doctrine\ORM\Persisters\BasicEntityPersister';          // Doctrine 2.4 or earlier
 
-        $withCriteria = function ($scope, $criteria, $entity) {
+        $nameFromPersister = function ($bep) {
             return [
-                'labels' => ['entity' => get_class($entity)]
+                'labels' => ['entity' => $bep->getClassMetadata()->name]
             ];
         };
 
         // public function load(array $criteria, $entity = null, $assoc = null, array $hints = array(),
         //      $lockMode = null, $limit = null, array $orderBy = null)
-        stackdriver_trace_method($persisterClass, 'load', function ($scope, $criteria, $entity) {
-            return [
-                'labels' => ['entity' => get_class($entity)]
-            ];
-        });
+        stackdriver_trace_method($persisterClass, 'load', $nameFromPersister);
 
-        // FIXME: loadAll doesn't provide entity
         // public function loadAll(array $criteria = array(), array $orderBy = null, $limit = null, $offset = null)
-        stackdriver_trace_method($persisterClass, 'loadAll', $withCriteria);
+        stackdriver_trace_method($persisterClass, 'loadAll', $nameFromPersister);
 
         stackdriver_trace_method(AbstractQuery::class, 'execute');
     }
