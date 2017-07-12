@@ -1,0 +1,29 @@
+<p>
+  First, install the <code>Google Cloud Client Library</code> with composer and require it into your project:
+</p>
+<div hljs>$ composer require google/cloud</div>
+<p>
+  If you are running your app on Google Compute Engine, you won't need to worry about supplying connection configuration options to the library&mdash; we figure that out for you.
+</p>
+<p>
+  However, if you're running your app elsewhere, you will need to provide project details to authenticate API requests.
+</p>
+<div hljs hljs-language="php" no-escape>
+use Google\Cloud\ServiceBuilder;
+
+// Compute Engine
+$gcloud = new ServiceBuilder([
+    'projectId' => 'myProject'
+]);
+
+// Elsewhere
+$gcloud = new ServiceBuilder([
+    'keyFilePath' => '/path/to/key/file.json',
+    'projectId' => 'myProject'
+]);
+
+// Fetch an instance of the Storage Client
+$storage = $gcloud->storage();</div>
+<p>
+  The full set of options which can be passed to the ServiceBuilder and sub-modules are <a href="#/docs">outlined here</a>.
+</p>

@@ -1,0 +1,1 @@
+{"id":"core\/retrydecidertrait","type":"","title":"Google\\Cloud\\Core\\RetryDeciderTrait","name":"RetryDeciderTrait","description":"<p>Provides methods for deciding if a request should be retried.<\/p>","examples":[],"resources":[],"methods":[]}
