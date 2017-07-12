@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Trace\Integrations;
 
-use Illumniate\View\Engines\CompilerEngine;
+use Illuminate\View\Engines\CompilerEngine;
 
 /**
  * This class handles instrumenting the Laravel framework's standard stack using the stackdriver_trace extension.
