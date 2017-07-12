@@ -554,7 +554,7 @@ class StorageObjectTest extends \PHPUnit_Framework_TestCase
             'contentMd5' => $digest
         ]);
 
-        $input = implode(PHP_EOL, [
+        $input = implode("\n", [
             'GET',
             $digest,
             $contentType,
@@ -589,7 +589,7 @@ class StorageObjectTest extends \PHPUnit_Framework_TestCase
             'saveAsName' => 'foo'
         ]);
 
-        $input = implode(PHP_EOL, [
+        $input = implode("\n", [
             'GET',
             '',
             '',
@@ -622,7 +622,7 @@ class StorageObjectTest extends \PHPUnit_Framework_TestCase
 
         $url = $object->signedUrl($ts);
 
-        $input = implode(PHP_EOL, [
+        $input = implode("\n", [
             'GET',
             '',
             '',
@@ -661,7 +661,7 @@ class StorageObjectTest extends \PHPUnit_Framework_TestCase
             'contentMd5' => $digest
         ]);
 
-        $input = implode(PHP_EOL, [
+        $input = implode("\n", [
             'GET',
             $digest,
             $contentType,
@@ -711,7 +711,7 @@ class StorageObjectTest extends \PHPUnit_Framework_TestCase
             'contentMd5' => $digest
         ]);
 
-        $input = implode(PHP_EOL, [
+        $input = implode("\n", [
             'POST',
             $digest,
             $contentType,
