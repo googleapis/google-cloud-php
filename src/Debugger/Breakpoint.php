@@ -127,9 +127,8 @@ class Breakpoint implements \JsonSerializable
         $this->evaluatedExpressions = array_map(function ($ee) {
             return new Variable($ee);
         }, $this->pluck('evaluatedExpressions', $data, false) ?: []);
-        $this->variableTable = array_map(function ($v) {
-            return new Variable($v);
-        }, $this->pluck('variableTable', $data, false) ?: []);
+
+        $this->variableTable = new VariableTable();
     }
 
     public function id()
@@ -163,9 +162,42 @@ class Breakpoint implements \JsonSerializable
             'evaluatedExpressions' => array_map(function ($v) {
                 return $v->jsonSerialize();
             }, $this->evaluatedExpressions),
-            'variableTable' => array_map(function ($v) {
-                return $v->jsonSerialize();
-            }, $this->variableTable)
+            'variableTable' => $this->variableTable->jsonSerialize()
         ];
+    }
+
+    public function addStackFrames($stackFrames)
+    {
+        foreach ($stackFrames as $stackFrame) {
+            $this->addStackFrame($stackFrame);
+        }
+    }
+
+    public function addStackFrame($stackFrameData)
+    {
+        $sf = new StackFrame([]);
+        if (isset($stackFrameData['function'])) {
+            $sf->function = $stackFrameData['function'];
+        }
+        $sf->location = new SourceLocation([
+            'path' => $stackFrameData['filename'],
+            'line' => $stackFrameData['line']
+        ]);
+
+        if (isset($stackFrameData['locals'])) {
+            $sf->locals = [];
+            foreach ($stackFrameData['locals'] as $local) {
+                $value = isset($local['value']) ? $local['value'] : null;
+                $variable = $this->addValue($local['name'], $value);
+
+                array_push($sf->locals, $variable);
+            }
+        }
+        array_push($this->stackFrames, $sf);
+    }
+
+    public function addValue($name, $value)
+    {
+        return $this->variableTable->register($name, $value);
     }
 }

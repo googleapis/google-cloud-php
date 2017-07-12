@@ -110,43 +110,7 @@ class Agent
         $when->setTimezone(new \DateTimeZone('UTC'));
         $breakpoint->finalTime = $when->format('Y-m-d\TH:i:s.u\Z');
         $breakpoint->isFinalState = true;
-
-        $variableTable = [];
-        $varTableIndex = 0;
-        $breakpoint->stackFrames = [];
-        foreach ($snapshot['stackframes'] as $stackFrameData) {
-            $sf = new StackFrame([]);
-            if (isset($stackFrameData['function'])) {
-                $sf->function = $stackFrameData['function'];
-            }
-            $sf->location = new SourceLocation([
-                'path' => $stackFrameData['filename'],
-                'line' => $stackFrameData['line']
-            ]);
-
-            if (isset($stackFrameData['locals'])) {
-                $sf->locals = [];
-                foreach ($stackFrameData['locals'] as $local) {
-                    $type = gettype($local['value']);
-                    if ($type == 'object') {
-                        $type = get_class($local['value']);
-
-                    }
-                    array_push($sf->locals, new Variable([
-                        'name' => $local['name'],
-                        'type' => $type,
-                        'varTableIndex' => $varTableIndex
-                    ]));
-                    $variableTable[$varTableIndex++] = new Variable([
-                        'name' => $local['name'],
-                        'type' => $type,
-                        'value' => 'value'//is_object($local['value']) ? 'object' : (string)$local['value']
-                    ]);
-                }
-            }
-            array_push($breakpoint->stackFrames, $sf);
-        }
-        $breakpoint->variableTable = array_values($variableTable);
+        $breakpoint->addStackFrames($snapshot['stackframes']);
     }
 
     protected function getCallback()
