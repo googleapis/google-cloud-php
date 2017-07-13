@@ -73,7 +73,8 @@ class Doctrine implements IntegrationInterface
 
         // public PDOStatement PDOConnection::query(string $query)
         // public PDOStatement PDOConnection::query(string $query, int PDO::FETCH_COLUMN, int $colno)
-        // public PDOStatement PDOConnection::query(string $query, int PDO::FETCH_CLASS, string $classname, array $ctorargs)
+        // public PDOStatement PDOConnection::query(string $query, int PDO::FETCH_CLASS, string $classname,
+        //                                          array $ctorargs)
         // public PDOStatement PDOConnection::query(string $query, int PDO::FETCH_INFO, object $object)
         stackdriver_trace_method(PDOConnection::class, 'query', function ($scope, $query) {
             return [
@@ -91,7 +92,6 @@ class Doctrine implements IntegrationInterface
                 'name' => 'doctrine/connect',
                 'labels' => ['dsn' => $dsn ? $dsn : 'unknown']
             ];
-
         });
 
         // public bool PDOStatement::execute([array $params])
