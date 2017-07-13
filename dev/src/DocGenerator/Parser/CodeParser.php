@@ -268,26 +268,34 @@ class CodeParser implements ParserInterface
     {
         $content = '';
         if (method_exists($reflector, 'getParentClass')) {
-            $parentClass = $reflector->getParentClass();
-            if (isset($parentClass)) {
-                $content .= "\nExtends " . $this->buildReference($parentClass);
-            }
+            $content .= $this->buildInheritDocContent([$reflector->getParentClass()], "Extends");
         } elseif (method_exists($reflector, 'getParentInterfaces')) {
-            foreach($reflector->getParentInterfaces() as $trait) {
-                $content .= "\nExtends " . $this->buildReference($trait);
-            }
+            $content .= $this->buildInheritDocContent($reflector->getParentInterfaces(), "Extends");
         }
 
         if (method_exists($reflector, 'getTraits')) {
-            foreach($reflector->getTraits() as $trait) {
-                $content .= "\nUses " . $this->buildReference($trait);
-            }
+            $content .= $this->buildInheritDocContent($reflector->getTraits(), "Uses");
         }
 
         if (method_exists($reflector, 'getInterfaces')) {
-            foreach($reflector->getInterfaces() as $trait) {
-                $content .= "\nImplements " . $this->buildReference($trait);
+            $content .= $this->buildInheritDocContent($reflector->getInterfaces(), "Implements");
+        }
+
+        return $content;
+    }
+
+    private function buildInheritDocContent($items, $prefix)
+    {
+        $refs = [];
+        foreach($items as $item) {
+            if (!empty($item)) {
+                $refs[] = $this->buildReference($item);
             }
+        }
+        if (count($refs) > 0) {
+            return "\n\n$prefix " . implode(", ", $refs);
+        } else {
+            return "";
         }
     }
 
