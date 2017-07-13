@@ -61,8 +61,8 @@ trait MockStubTrait
         $method,
         $argument,
         $deserialize,
-        $metadata = [],
-        $options = []
+        array $metadata = [],
+        array $options = []
     ) {
         if (is_a($argument, '\Google\Protobuf\Internal\Message')) {
             $newArgument = new $argument();
