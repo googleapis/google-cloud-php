@@ -85,16 +85,5 @@ class Eloquent implements IntegrationInterface
                 ]
             ];
         });
-
-        // FIXME: get the class name
-        // public static function destroy($ids)
-        stackdriver_trace_method(Model::class, 'destroy', function ($ids) {
-            return [
-                'name' => 'eloquent/destroy',
-                'labels' => [
-                    'model' => get_class($scope)
-                ]
-            ];
-        });
     }
 }
