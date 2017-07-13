@@ -204,7 +204,7 @@ class Instance
      * ```
      *
      * @param array $options [optional] Configuration options.
-     * @return array
+     * @return bool
      */
     public function exists(array $options = [])
     {
@@ -303,7 +303,7 @@ class Instance
      * ```
      *
      * @param array $options [optional] Configuration options.
-     * @return string
+     * @return string|null
      */
     public function state(array $options = [])
     {
