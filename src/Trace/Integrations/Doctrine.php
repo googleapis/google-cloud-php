@@ -61,6 +61,43 @@ class Doctrine implements IntegrationInterface
             ];
         });
 
-        stackdriver_trace_method(AbstractQuery::class, 'execute');
+        // public int PDOConnection::exec(string $query)
+        stackdriver_trace_method(PDOConnection::class, 'exec', function ($scope, $query) {
+            return [
+                'name' => 'doctrine/exec',
+                'labels' => ['query' => $query]
+            ];
+        });
+
+        // public PDOStatement PDOConnection::query(string $query)
+        // public PDOStatement PDOConnection::query(string $query, int PDO::FETCH_COLUMN, int $colno)
+        // public PDOStatement PDOConnection::query(string $query, int PDO::FETCH_CLASS, string $classname, array $ctorargs)
+        // public PDOStatement PDOConnection::query(string $query, int PDO::FETCH_INFO, object $object)
+        stackdriver_trace_method(PDOConnection::class, 'query', function ($scope, $query) {
+            return [
+                'name' => 'doctrine/query',
+                'labels' => ['query' => $query ? $query : 'unknown']
+            ];
+        });
+
+        // public bool PDOConnection::commit ( void )
+        stackdriver_trace_method(PDOConnection::class, 'commit');
+
+        // public PDOConnection::__construct(string $dsn [, string $username [, string $password [, array $options]]])
+        stackdriver_trace_method(PDOConnection::class, '__construct', function ($scope, $dsn) {
+            return [
+                'name' => 'doctrine/connect',
+                'labels' => ['dsn' => $dsn ? $dsn : 'unknown']
+            ];
+
+        });
+
+        // public bool PDOStatement::execute([array $params])
+        stackdriver_trace_method(PDOStatement::class, 'execute', function ($scope) {
+            return [
+                'name' => 'doctrine/statement/execute',
+                'labels' => ['query' => $scope->queryString]
+            ];
+        });
     }
 }
