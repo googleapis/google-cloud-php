@@ -65,7 +65,7 @@ class PDO implements IntegrationInterface
         });
 
         // public bool PDOStatement::execute([array $params])
-        stackdriver_trace_method('PDOStatement', 'execute', function ($scope, $params) {
+        stackdriver_trace_method('PDOStatement', 'execute', function ($scope) {
             return [
                 'labels' => ['query' => $scope->queryString]
             ];
