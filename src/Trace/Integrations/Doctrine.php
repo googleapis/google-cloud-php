@@ -18,9 +18,6 @@
 namespace Google\Cloud\Trace\Integrations;
 
 use Doctrine\ORM\Version;
-use Doctrine\ORM\AbstractQuery;
-use Doctrine\DBAL\Driver\PDOConnection;
-use Doctrine\DBAL\Driver\PDOStatement;
 
 /**
  * This class handles instrumenting the Doctrine ORM queries using the stackdriver_trace extension.
@@ -41,6 +38,8 @@ class Doctrine implements IntegrationInterface
         if (!extension_loaded('stackdriver_trace')) {
             return;
         }
+
+        PDO::load();
 
         $persisterClass = (Version::compare('2.5.0') < 0)
             ? 'Doctrine\ORM\Persisters\Entity\BasicEntityPersister'    // Doctrine 2.5 or greater
@@ -68,37 +67,6 @@ class Doctrine implements IntegrationInterface
             return [
                 'name' => 'doctrine/exec',
                 'labels' => ['query' => $query]
-            ];
-        });
-
-        // public PDOStatement PDOConnection::query(string $query)
-        // public PDOStatement PDOConnection::query(string $query, int PDO::FETCH_COLUMN, int $colno)
-        // public PDOStatement PDOConnection::query(string $query, int PDO::FETCH_CLASS, string $classname,
-        //                                          array $ctorargs)
-        // public PDOStatement PDOConnection::query(string $query, int PDO::FETCH_INFO, object $object)
-        stackdriver_trace_method(PDOConnection::class, 'query', function ($scope, $query) {
-            return [
-                'name' => 'doctrine/query',
-                'labels' => ['query' => $query ? $query : 'unknown']
-            ];
-        });
-
-        // public bool PDOConnection::commit ( void )
-        stackdriver_trace_method(PDOConnection::class, 'commit');
-
-        // public PDOConnection::__construct(string $dsn [, string $username [, string $password [, array $options]]])
-        stackdriver_trace_method(PDOConnection::class, '__construct', function ($scope, $dsn) {
-            return [
-                'name' => 'doctrine/connect',
-                'labels' => ['dsn' => $dsn ? $dsn : 'unknown']
-            ];
-        });
-
-        // public bool PDOStatement::execute([array $params])
-        stackdriver_trace_method(PDOStatement::class, 'execute', function ($scope) {
-            return [
-                'name' => 'doctrine/statement/execute',
-                'labels' => ['query' => $scope->queryString]
             ];
         });
     }
