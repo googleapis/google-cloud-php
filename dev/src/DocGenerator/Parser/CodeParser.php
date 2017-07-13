@@ -60,7 +60,7 @@ class CodeParser implements ParserInterface
         $this->reflector = $reflector;
         $this->markdown = \Parsedown::instance();
         $this->projectRoot = $projectRoot;
-        $this->externalTypes = json_decode(file_get_contents(__DIR__ .'/../../../../docs/external-classes.json'), true);
+        $this->externalTypes = json_decode(file_get_contents($this->projectRoot . '/docs/external-classes.json'), true);
         $this->componentId = $componentId;
         $this->manifestPath = $manifestPath;
         $this->release = $release;
@@ -513,7 +513,7 @@ class CodeParser implements ParserInterface
             $matches = [];
             preg_match(self::CLASS_TYPE_REGEX, $type, $matches);
             $type = $matches[1];
-            $file = __DIR__ . '/../../../../src/' . str_replace('\\', '/', substr($type, 12)) . '.php';
+            $file = $this->projectRoot . '/src' . str_replace('\\', '/', substr($type, 12)) . '.php';
             return file_exists($file);
         }
 
