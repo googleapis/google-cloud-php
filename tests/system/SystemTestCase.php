@@ -17,12 +17,14 @@
 
 namespace Google\Cloud\Tests\System;
 
+use Google\Cloud\BigQuery\BigQueryClient;
+use Google\Cloud\Core\ExponentialBackoff;
+use Google\Cloud\PubSub\PubSubClient;
+use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Tests\System\DeletionQueue;
 
 class SystemTestCase extends \PHPUnit_Framework_TestCase
 {
-    use DeletionEnqueuedTrait;
-
     protected static $deletionQueue;
 
     public static function setupQueue()
@@ -35,8 +37,111 @@ class SystemTestCase extends \PHPUnit_Framework_TestCase
         self::$deletionQueue->process();
     }
 
+    /**
+     * Create a random integer ID for test entities.
+     *
+     * @return int
+     */
     public static function randId()
     {
         return rand(1,9999999);
+    }
+
+    /**
+     * Create a bucket and enqueue it for deletion.
+     *
+     * This method provides a means of creating a bucket with pre-configured
+     * flush+delete functionality. Use in place of `StorageClient::createBucket()`.
+     *
+     * When inserting objects into a bucket created with this method, you do NOT need
+     * to enqueue those objects for deletion or concern yourself with order of
+     * operations.
+     *
+     * @param StorageClient $client
+     * @param string $bucketName
+     * @param array $options
+     * @return Google\Cloud\Storage\Bucket
+     */
+    public static function createBucket(StorageClient $client, $bucketName, array $options = [])
+    {
+        $backoff = new ExponentialBackoff(8);
+
+        $bucket = $backoff->execute(function () use ($client, $bucketName, $options) {
+            return $client->createBucket($bucketName, $options);
+        });
+
+        self::$deletionQueue->add(function () use ($backoff, $bucket) {
+            $backoff->execute(function () use ($bucket) {
+                foreach ($bucket->objects() as $object) {
+                    $object->delete();
+                }
+
+                $bucket->delete();
+            });
+        });
+
+        return $bucket;
+    }
+
+    /**
+     * Create a dataset and enqueue it for deletion.
+     *
+     * This method provides a means of creating a dataset with pre-configured
+     * flush+delete functionality. Use in place of `BigQueryClient::createDataset()`.
+     *
+     * When inserting tables into a dataset created with this method, you do NOT need
+     * to enqueue those tables for deletion or concern yourself with order of
+     * operations.
+     *
+     * @param BigQueryClient $client
+     * @param string $datasetName
+     * @param array $options
+     * @return Google\Cloud\BigQuery\Dataset
+     */
+    public static function createDataset(BigQueryClient $client, $datasetName, array $options = [])
+    {
+        $dataset = $client->createDataset($datasetName, $options);
+
+        self::$deletionQueue->add(function () use ($dataset) {
+            $dataset->delete(['deleteContents' => true]);
+        });
+
+        return $dataset;
+    }
+
+    /**
+     * Create a topic and enqueue it for deletion.
+     *
+     * This method provides a means of creating a topic with pre-configured
+     * flush+delete functionality. Use in place of `PubSubClient::createTopic()`.
+     *
+     * When inserting subscriptions into a topic created with this method, you do NOT need
+     * to enqueue those subscriptions for deletion or concern yourself with order of
+     * operations.
+     *
+     * @param PubSubClient $client
+     * @param string $topicName
+     * @param array $options
+     * @return Google\Cloud\PubSub\Topic
+     */
+    public static function createTopic(PubSubClient $client, $topicName, array $options = [])
+    {
+        $backoff = new ExponentialBackoff(8);
+
+        $topic = $backoff->execute(function () use ($client, $topicName, $options) {
+            return $client->createTopic($topicName, $options);
+        });
+
+        self::$deletionQueue->add(function () use ($backoff, $topic) {
+            $backoff->execute(function () use ($topic) {
+                foreach ($topic->subscriptions() as $subscription) {
+                    $subscription->delete();
+                }
+
+                $topic->delete();
+            });
+        });
+
+        return $topic;
     }
 }
