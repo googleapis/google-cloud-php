@@ -29,6 +29,7 @@ class CodeParser implements ParserInterface
 {
     use GetComponentsTrait;
 
+    const CLASS_TYPE_REGEX = '/[Generator\<]?(Google\\\Cloud\\\[\w\\\]{0,})[\>]?[\[\]]?/';
     const SNIPPET_NAME_REGEX = '/\/\/\s?\[snippet\=(\w{0,})\]/';
 
     private static $composerFiles = [];
@@ -507,10 +508,15 @@ class CodeParser implements ParserInterface
     private function hasInternalType($type)
     {
         $type = trim($type, '\\');
+
         if (substr_compare($type, 'Google\\Cloud', 0, 12) === 0) {
-            $file = __DIR__ . '/../../../src/' . str_replace('\\', '/', $type) . ".php";
+            $matches = [];
+            preg_match(self::CLASS_TYPE_REGEX, $type, $matches);
+            $type = $matches[1];
+            $file = __DIR__ . '/../../../../src/' . str_replace('\\', '/', substr($type, 12)) . '.php';
             return file_exists($file);
         }
+
         return false;
     }
 
@@ -551,7 +557,7 @@ class CodeParser implements ParserInterface
         if ($this->isComponent && substr_compare(trim($content, '\\'), 'Google\Cloud', 0, 12) === 0) {
             try {
                 $matches = [];
-                preg_match('/[Generator\<]?(Google\\\Cloud\\\[\w\\\]{0,})[\>]?[\[\]]?/', $content, $matches);
+                preg_match(self::CLASS_TYPE_REGEX, $content, $matches);
                 $ref = new \ReflectionClass($matches[1]);
             } catch (\ReflectionException $e) {
                 throw new \Exception(sprintf(
