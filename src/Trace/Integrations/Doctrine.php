@@ -19,6 +19,8 @@ namespace Google\Cloud\Trace\Integrations;
 
 use Doctrine\ORM\Version;
 use Doctrine\ORM\AbstractQuery;
+use Doctrine\DBAL\Driver\PDOConnection;
+use Doctrine\DBAL\Driver\PDOStatement;
 
 /**
  * This class handles instrumenting the Doctrine ORM queries using the stackdriver_trace extension.
