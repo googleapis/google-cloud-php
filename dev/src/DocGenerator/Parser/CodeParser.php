@@ -38,7 +38,6 @@ class CodeParser implements ParserInterface
 
     private $path;
     private $fileName;
-    private $fileReflector;
     private $register;
     private $markdown;
     private $projectRoot;
@@ -52,7 +51,6 @@ class CodeParser implements ParserInterface
     public function __construct(
         $path,
         $fileName,
-        FileReflector $fileReflector,
         ReflectorRegister $register,
         $projectRoot,
         $componentId,
@@ -63,7 +61,6 @@ class CodeParser implements ParserInterface
     ) {
         $this->path = $path;
         $this->fileName = $fileName;
-        $this->fileReflector = $fileReflector;
         $this->register = $register;
         $this->markdown = \Parsedown::instance();
         $this->projectRoot = $projectRoot;
@@ -77,10 +74,10 @@ class CodeParser implements ParserInterface
 
     public function parse()
     {
-        $reflector = $this->register->getReflectorFromFileReflector($this->fileReflector);
+        list($fileReflector, $reflector) = $this->register->getReflectorsFromFileName($this->path);
 
         return $reflector
-            ? $this->buildDocument($this->fileReflector, $reflector)
+            ? $this->buildDocument($fileReflector, $reflector)
             : null;
     }
 
@@ -99,6 +96,39 @@ class CodeParser implements ParserInterface
         return $classInfo;
     }
 
+    private function buildClassInfoRecursive($fileReflector, $reflector, &$classInfo)
+    {
+        if (is_null($fileReflector) || is_null($reflector)) {
+            return;
+        }
+
+        $methods = $this->buildMethodInfo($fileReflector, $reflector);
+
+        $isInternal = substr_compare($reflector->getName(), '\Google\Cloud', 0, 13) === 0;
+        if ($isInternal) {
+            $classInfo['methods'] += $methods;
+        }
+
+        foreach ($reflector->getTraits() as $trait) {
+            list($traitFileReflector, $traitReflector) = $this->register->getReflectors($trait);
+            $this->buildClassInfoRecursive($traitFileReflector, $traitReflector, $classInfo);
+        }
+
+        foreach ($reflector->getInterfaces() as $interface) {
+            list($interfaceFileReflector, $interfaceReflector) = $this->register->getReflectors($interface);
+            $this->buildInterfaceInfoRecursive($interfaceFileReflector, $interfaceReflector, $classInfo);
+        }
+
+        $parent = $reflector->getParentClass();
+        if (!empty($parent)) {
+            list($parentFileReflector, $parentReflector) = $this->register->getReflectors($parent);
+            $this->buildClassInfoRecursive($parentFileReflector, $parentReflector, $classInfo);
+            // Add $parent to array after calling getMethodsRecursive so that parents are correctly
+            // ordered
+            $classInfo['parents'][] = $parent;
+        }
+    }
+
     private function buildInterfaceInfo($fileReflector, $reflector)
     {
         $classInfo = [
@@ -109,78 +139,6 @@ class CodeParser implements ParserInterface
         $this->buildInterfaceInfoRecursive($fileReflector, $reflector, $classInfo);
 
         return $classInfo;
-    }
-
-    private function buildMethodInfo($fileReflector, $reflector)
-    {
-        $methods = [];
-        foreach ($reflector->getMethods() as $name => $method) {
-            if ($method->getVisibility() !== 'public') {
-                continue;
-            }
-            $methods[$name] = [
-                'methodReflector' => $method,
-                'source' => $this->getPath($fileReflector),
-            ];
-        }
-        return $methods;
-    }
-
-    private function getReflectors($name)
-    {
-        $fileName = $this->register->getFileForName($name);
-        if (empty($fileName)) {
-            return [null, null];
-        }
-        $fileReflector = $this->register->getFileReflector($fileName);
-        if (is_null($fileReflector)) {
-            return [null, null];
-        }
-        $reflector = $this->register->getReflectorFromFileReflector($fileReflector);
-        if (is_null($reflector)) {
-            return [$fileReflector, null];
-        }
-        return [$fileReflector, $reflector];
-    }
-
-    private function buildClassInfoRecursive($fileReflector, $reflector, &$classInfo)
-    {
-        if (is_null($fileReflector) || is_null($reflector)) {
-            return false;
-        }
-
-        $methods = $this->buildMethodInfo($fileReflector, $reflector);
-        $containsPublicMethods = count($methods) > 0;
-
-        $isInternal = substr_compare($reflector->getName(), '\Google\Cloud', 0, 13) === 0;
-        if ($isInternal) {
-            $classInfo['methods'] += $methods;
-        }
-
-        foreach ($reflector->getTraits() as $trait) {
-            // Add $trait to array before calling getMethodsRecursive to use PHP array ordering, so
-            // that this $trait is before more deeply nested traits
-            $classInfo['traits'][$trait] = [];
-            list($traitFileReflector, $traitReflector) = $this->getReflectors($trait);
-            $classInfo['traits'][$trait]['containsPublicMethods'] = $this->buildClassInfoRecursive($traitFileReflector, $traitReflector, $classInfo);
-            $containsPublicMethods |= $classInfo['traits'][$trait]['containsPublicMethods'];
-        }
-
-        foreach ($reflector->getInterfaces() as $interface) {
-            list($interfaceFileReflector, $interfaceReflector) = $this->getReflectors($interface);
-            $this->buildInterfaceInfoRecursive($interfaceFileReflector, $interfaceReflector, $classInfo);
-        }
-
-        $parent = $reflector->getParentClass();
-        if (!empty($parent)) {
-            // Add $parent to array before calling getMethodsRecursive so that parents are correctly
-            // ordered
-            $classInfo['parents'][] = $parent;
-            list($parentFileReflector, $parentReflector) = $this->getReflectors($parent);
-            $containsPublicMethods |= $this->buildClassInfoRecursive($parentFileReflector, $parentReflector, $classInfo);
-        }
-
-        return $containsPublicMethods;
     }
 
     private function buildInterfaceInfoRecursive($fileReflector, $reflector, &$classInfo)
@@ -198,9 +156,25 @@ class CodeParser implements ParserInterface
         // ordering, so that parent interfaces are before more deeply nested interfaces
         $classInfo['interfaces'] += $reflector->getParentInterfaces();
         foreach ($reflector->getParentInterfaces() as $parentInterface) {
-            list($parentFileReflector, $parentReflector) = $this->getReflectors($parentInterface);
+            list($parentFileReflector, $parentReflector) = $this->register->getReflectors($parentInterface);
             $this->buildInterfaceInfoRecursive($parentFileReflector, $parentReflector, $classInfo);
         }
+    }
+
+    private function buildMethodInfo($fileReflector, $reflector)
+    {
+        $methods = [];
+        foreach ($reflector->getMethods() as $name => $method) {
+            if ($method->getVisibility() !== 'public') {
+                continue;
+            }
+            $methods[$name] = [
+                'methodReflector' => $method,
+                'source' => $this->getPath($fileReflector),
+                'container' => $reflector->getName(),
+            ];
+        }
+        return $methods;
     }
 
     private function getPath($fileReflector)
@@ -212,7 +186,8 @@ class CodeParser implements ParserInterface
     private function buildDocument($fileReflector, $reflector)
     {
         $name = $reflector->getShortName();
-        $id = substr($reflector->getName(), 14);
+        $fullName = $reflector->getName();
+        $id = substr($fullName, 14);
         $id = str_replace('\\', '/', $id);
         // @todo see if there is a better way to determine the type
         $parts = explode('_', get_class($reflector->getNode()));
@@ -226,11 +201,11 @@ class CodeParser implements ParserInterface
                 return ($tag->getName() === 'method');
             });
 
-            $magic = $this->buildMagicMethods($magicMethods, $name);
+            $magic = $this->buildMagicMethods($magicMethods, $fullName);
         }
 
         if (is_null($docBlock)) {
-            throw new \Exception(sprintf('%s has no description', $reflector->getName()));
+            throw new \Exception(sprintf('%s has no description', $fullName));
         }
 
         $split = $this->splitDescription($docBlock->getText());
@@ -238,11 +213,11 @@ class CodeParser implements ParserInterface
         if ($this->isInterface($reflector)) {
             $classInfo = $this->buildInterfaceInfo($fileReflector, $reflector);
             $description = $this->buildInterfaceDescription($classInfo, $docBlock, $split['description']);
-            $methods = $this->buildMethods($classInfo['interfaceMethods'], $name);
+            $methods = $this->buildMethods($classInfo['interfaceMethods'], $fullName);
         } else {
             $classInfo = $this->buildInfo($fileReflector, $reflector);
             $description = $this->buildClassDescription($classInfo, $docBlock, $split['description']);
-            $methods = $this->buildMethods($classInfo['methods'], $name);
+            $methods = $this->buildMethods($classInfo['methods'], $fullName);
         }
 
         return [
@@ -321,16 +296,7 @@ class CodeParser implements ParserInterface
     {
         $content = '';
         if (count($classInfo['parents']) > 0) {
-            $content .= $this->implodeInheritDocLinks(" < ", $classInfo['parents'], "Extends");
-        }
-        $filteredTraits = [];
-        foreach ($classInfo['traits'] as $trait => $traitInfo) {
-            if ($traitInfo['containsPublicMethods']) {
-                $filteredTraits[] = $trait;
-            }
-        }
-        if (count($filteredTraits) > 0) {
-            $content .= $this->implodeInheritDocLinks(", ", $filteredTraits, "Uses");
+            $content .= $this->implodeInheritDocLinks(" > ", $classInfo['parents'], "Extends");
         }
         if (count($classInfo['interfaces']) > 0) {
             $content .= $this->implodeInheritDocLinks(", ", $classInfo['interfaces'], "Implements");
@@ -352,39 +318,6 @@ class CodeParser implements ParserInterface
     private function implodeInheritDocLinks($glue, $pieces, $prefix)
     {
         return "\n\n$prefix " . implode($glue, array_map([$this, 'buildReference'], $pieces));
-    }
-
-    private function buildInheritDocRecursive($reflector, &$contentArray)
-    {
-        if (method_exists($reflector, 'getTraits')) {
-            $contentArray['traits'] += $reflector->getTraits();
-        }
-
-        if (method_exists($reflector, 'getInterfaces')) {
-            $contentArray['interfaces'] += $reflector->getInterfaces();
-        }
-
-        if (method_exists($reflector, 'getParentInterfaces')) {
-            $parentInterfaces = $reflector->getParentInterfaces();
-            $contentArray['parentInterfaces'] += $parentInterfaces;
-            foreach ($parentInterfaces as $parentInterface) {
-                $parentReflector = $this->register->getReflector($parentInterface);
-                if (isset($parentReflector)) {
-                    $this->buildInheritDocRecursive($parentReflector, $contentArray);
-                }
-            }
-        }
-
-        if (method_exists($reflector, 'getParentClass')) {
-            $parentClass = $reflector->getParentClass();
-            if (!empty($parentClass)) {
-                $contentArray['parents'][] = $parentClass;
-                $parentReflector = $this->register->getReflector($parentClass);
-                if (isset($parentReflector)) {
-                    $this->buildInheritDocRecursive($parentReflector, $contentArray);
-                }
-            }
-        }
     }
 
     private function buildMethods($methods, $className)
@@ -410,7 +343,7 @@ class CodeParser implements ParserInterface
                 }
             }
 
-            $methodArray[] = $this->buildMethod($method, $methodInfo);
+            $methodArray[] = $this->buildMethod($method, $methodInfo, $className);
         }
 
         return $methodArray;
@@ -431,7 +364,7 @@ class CodeParser implements ParserInterface
         return $methodArray;
     }
 
-    private function buildMethod($method, $methodInfo)
+    private function buildMethod($method, $methodInfo, $className)
     {
         $docBlock = $method->getDocBlock();
         $fullDescription = $docBlock->getText();
@@ -443,12 +376,17 @@ class CodeParser implements ParserInterface
 
         $split = $this->splitDescription($fullDescription);
 
+        $description = $this->buildDescription($docBlock, $split['description']);
+        if ($methodInfo['container'] !== $className) {
+            $description .= "\n\nImplemented in " . $this->buildReference($methodInfo['container']);
+        }
+
         return [
             'id' => $method->getName(),
             'type' => $method->getName() === '__construct' ? 'constructor' : 'instance',
             'name' => $method->getName(),
             'source' => $methodInfo['source'] . '#L' . $method->getLineNumber(),
-            'description' => $this->buildDescription($docBlock, $split['description']),
+            'description' => $description,
             'examples' => $this->buildExamples($split['examples']),
             'resources' => $this->buildResources($resources),
             'params' => $this->buildParams($params),

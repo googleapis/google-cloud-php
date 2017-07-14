@@ -78,11 +78,9 @@ class DocGenerator
             $isPhp = strrpos($file, '.php') == strlen($file) - strlen('.php');
 
             if ($isPhp) {
-                $fileReflector = $fileReflectorRegister->getFileReflector($file);
                 $parser = new CodeParser(
                     $file,
                     $currentFile,
-                    $fileReflector,
                     $fileReflectorRegister,
                     dirname($this->executionPath),
                     $this->componentId,

@@ -19,16 +19,47 @@ namespace Google\Cloud\Dev\DocGenerator;
 
 use Google\Cloud\Dev\DocGenerator\Parser\CodeParser;
 use Google\Cloud\Dev\DocGenerator\Parser\MarkdownParser;
+use phpDocumentor\Reflection\ClassReflector;
 use phpDocumentor\Reflection\FileReflector;
+use phpDocumentor\Reflection\InterfaceReflector;
+use phpDocumentor\Reflection\TraitReflector;
 
 class ReflectorRegister
 {
-    private $reflectors = [];
     private $fileReflectors = [];
     private $nameFileMap = [];
 
-    public function getFileReflector($fileName)
+    /**
+     * @param string $name The name of a class, trait or interface
+     * @return array [$fileReflector, $reflector]
+     */
+    public function getReflectors($name)
     {
+        $fileName = $this->getFileForName($name);
+        return $this->getReflectorsFromFileName($fileName);
+    }
+
+    /**
+     * @param string $fileName The file name containing a single class, trait or interface
+     * @return array [$fileReflector, $reflector]
+     */
+    public function getReflectorsFromFileName($fileName)
+    {
+        $fileReflector = $this->getFileReflector($fileName);
+        $reflector = $this->getReflectorFromFileReflector($fileReflector);
+        return [$fileReflector, $reflector];
+    }
+
+    /**
+     * @param $fileName
+     * @return FileReflector|null
+     */
+    private function getFileReflector($fileName)
+    {
+        if (empty($fileName)) {
+            return null;
+        }
+
         if (!isset($this->fileReflectors[$fileName])) {
             $this->fileReflectors[$fileName] = new FileReflector($fileName);
             $this->fileReflectors[$fileName]->process();
@@ -36,22 +67,16 @@ class ReflectorRegister
         return $this->fileReflectors[$fileName];
     }
 
-    public function getReflector($name)
+    /**
+     * @param FileReflector $fileReflector
+     * @return InterfaceReflector|ClassReflector|TraitReflector|null
+     */
+    private function getReflectorFromFileReflector($fileReflector)
     {
-        if (!isset($this->reflectors[$name])) {
-            $fileName = $this->getFileForName($name);
-            if (empty($fileName)) {
-                return null;
-            }
-            $fileReflector = $this->getFileReflector($fileName);
-            $reflector = $this->getReflectorFromFileReflector($fileReflector);
-            $this->reflectors[$name] = $reflector;
+        if (is_null($fileReflector)) {
+            return null;
         }
-        return $this->reflectors[$name];
-    }
 
-    public function getReflectorFromFileReflector($fileReflector)
-    {
         if (isset($fileReflector->getClasses()[0])) {
             return $fileReflector->getClasses()[0];
         }
@@ -67,18 +92,25 @@ class ReflectorRegister
         return null;
     }
 
-    public function getFileForName($name)
+    /**
+     * @param $name
+     * @return string|null
+     */
+    private function getFileForName($name)
     {
-        // FIXME: handle nulls correctly
-        if (!isset($this->nameFileMap[$name])) {
-            if (!(class_exists($name) || interface_exists($name) || trait_exists($name))) {
+        if (empty($name)) {
+            return null;
+        }
+        if (!array_key_exists($name, $this->nameFileMap)) {
+            if (class_exists($name) || interface_exists($name) || trait_exists($name)) {
+                $refClass = new \ReflectionClass((string)$name);
+                $fileName = $refClass->getFileName();
+                if (empty($fileName)) {
+                    echo "Could not find file for $name\n";
+                }
+            } else {
+                $fileName = null;
                 echo "Could not find class, trait or interface for $name\n";
-                return null;
-            }
-            $refClass = new \ReflectionClass((string)$name);
-            $fileName = $refClass->getFileName();
-            if (empty($fileName)) {
-                echo "Could not find file for $name\n";
             }
             $this->nameFileMap[$name] = $fileName;
         }
