@@ -65,6 +65,7 @@ class DocGenerator
      */
     public function generate($basePath, $pretty)
     {
+        $fileReflectorRegister = new ReflectorRegister();
         foreach ($this->files as $file) {
 
             if ($basePath) {
@@ -77,11 +78,12 @@ class DocGenerator
             $isPhp = strrpos($file, '.php') == strlen($file) - strlen('.php');
 
             if ($isPhp) {
-                $fileReflector = new FileReflector($file);
+                $fileReflector = $fileReflectorRegister->getFileReflector($file);
                 $parser = new CodeParser(
                     $file,
                     $currentFile,
                     $fileReflector,
+                    $fileReflectorRegister,
                     dirname($this->executionPath),
                     $this->componentId,
                     $this->manifestPath,
