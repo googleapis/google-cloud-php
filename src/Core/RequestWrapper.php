@@ -235,6 +235,7 @@ class RequestWrapper
 
             case 504:
                 $exception = Exception\DeadlineExceededException::class;
+                break;
 
             default:
                 $exception = Exception\ServiceException::class;
