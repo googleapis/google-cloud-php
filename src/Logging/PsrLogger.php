@@ -95,8 +95,9 @@ class PsrLogger implements LoggerInterface, \Serializable
      *           batching. **Defaults to** `false`. Note that this option is
      *           currently considered **experimental** and is subject to change.
      *     @type bool $debugOutput Whether or not to output debug information.
-     *           **Defaults to** false. Applies only when `batchEnabled` is set
-     *           to `true`.
+     *           Please note debug output currently only applies in CLI based
+     *           applications. **Defaults to** `false`. Applies only when
+     *           `batchEnabled` is set to `true`.
      *     @type array $batchOptions A set of options for a BatchJob.
      *           {@see \Google\Cloud\Core\Batch\BatchJob::__construct()} for
      *           more details.
