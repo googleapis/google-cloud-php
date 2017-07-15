@@ -81,7 +81,7 @@
     },
     "suggest": {
         "google/gax": "Required to support gRPC",
-        "google/proto-client-php": "Required to support gRPC",
+        "google/proto-client": "Required to support gRPC",
         "phpseclib/phpseclib": "May be used in place of OpenSSL for creating signed Cloud Storage URLs. Please require version ^2."
     },
     "autoload": {
