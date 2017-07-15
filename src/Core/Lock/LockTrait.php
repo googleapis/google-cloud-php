@@ -18,9 +18,9 @@
 namespace Google\Cloud\Core\Lock;
 
 /**
- * Contract for a basic locking mechanism.
+ * Utility trait for locks.
  */
-interface LockInterface
+trait LockTrait
 {
     /**
      * Acquires a lock that will block until released.
@@ -28,20 +28,41 @@ interface LockInterface
      * @return bool
      * @throws \RuntimeException
      */
-    public function acquire();
+    abstract public function acquire();
 
     /**
      * Releases the lock.
      *
      * @throws \RuntimeException
      */
-    public function release();
+    abstract public function release();
 
     /**
-     * Execute a callable within a lock.
+     * Execute a callable within a lock. If an exception is caught during
+     * execution of the callable the lock will first be released before throwing
+     * it.
      *
      * @param callable $func The callable to execute.
      * @return mixed
      */
-    public function synchronize(callable $func);
+    public function synchronize(callable $func)
+    {
+        $result = null;
+        $exception = null;
+
+        if ($this->acquire()) {
+            try {
+                $result = $func();
+            } catch (\Exception $ex) {
+                $exception = $ex;
+            }
+            $this->release();
+        }
+
+        if ($exception) {
+            throw $exception;
+        }
+
+        return $result;
+    }
 }

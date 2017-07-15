@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Core\Batch;
+namespace Google\Cloud\Core;
 
 /**
  * A utility trait related to System V IPC.
@@ -27,8 +27,6 @@ namespace Google\Cloud\Core\Batch;
  */
 trait SysvTrait
 {
-    private static $typeDirect = 1;
-    private static $typeFile = 2;
     private static $productionKey = 'P';
 
     /**
@@ -36,8 +34,7 @@ trait SysvTrait
      *
      * Set GOOGLE_CLOUD_SYSV_ID envvar to change the base id.
      *
-     * @param int $idNum An id number of the job
-     *
+     * @param int $idNum An id number.
      * @return int
      */
     private function getSysvKey($idNum)
@@ -60,20 +57,5 @@ trait SysvTrait
         return extension_loaded('sysvmsg')
             && extension_loaded('sysvsem')
             && extension_loaded('sysvshm');
-    }
-
-    /**
-     * Returns if the BatchDaemon is supposed running.
-     *
-     * @return bool
-     */
-    private function isDaemonRunning()
-    {
-        $isDaemonRunning = filter_var(
-            getenv('IS_BATCH_DAEMON_RUNNING'),
-            FILTER_VALIDATE_BOOLEAN
-        );
-
-        return $isDaemonRunning !== false;
     }
 }
