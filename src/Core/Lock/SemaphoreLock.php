@@ -50,12 +50,12 @@ class SemaphoreLock implements LockInterface
      */
     public function __construct($key)
     {
-        if (!is_int($key)) {
-            throw new \InvalidArgumentException('The provided key must be an integer.');
-        }
-
         if (!$this->isSysvIPCLoaded()) {
             throw new \RuntimeException('SystemV IPC extensions are required.');
+        }
+
+        if (!is_int($key)) {
+            throw new \InvalidArgumentException('The provided key must be an integer.');
         }
 
         $this->key = $key;
