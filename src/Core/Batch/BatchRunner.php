@@ -182,11 +182,15 @@ class BatchRunner
         if ($result === false) {
             throw new \RuntimeException('Failed to lock the configStorage');
         }
-        $result = $this->configStorage->load();
-        $this->configStorage->unlock();
-        if ($result === false) {
-            throw new \RuntimeException('Failed to load the BatchConfig');
+        try {
+            $result = $this->configStorage->load();
+        } catch (\RuntimeException $e) {
+            $this->configStorage->clear();
+            return false;
+        } finally {
+            $this->configStorage->unlock();
         }
+
         $this->config = $result;
         return true;
     }

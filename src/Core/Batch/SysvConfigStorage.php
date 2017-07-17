@@ -102,7 +102,21 @@ class SysvConfigStorage implements ConfigStorageInterface
             $result = new BatchConfig();
         } else {
             $result = shm_get_var($shmid, self::VAR_KEY);
+            if ($result === false) {
+                throw new \RuntimeException(
+                    'Failed to deserialize data from shared memory'
+                );
+            }
         }
         return $result;
+    }
+
+    /**
+     * Clear the BatchConfig from storage.
+     */
+    public function clear()
+    {
+        $shmid = shm_attach($this->sysvKey);
+        shm_remove_var($shmid, self::VAR_KEY);
     }
 }
