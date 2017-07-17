@@ -17,36 +17,17 @@
 
 namespace Google\Cloud\Tests\Unit\Core\Batch;
 
-use Google\Cloud\Core\Batch\SysvTrait;
+use Google\Cloud\Core\Batch\BatchDaemonTrait;
 
 /**
  * @group core
  * @group batch
  */
-class SysvTraitTest extends \PHPUnit_Framework_TestCase
+class BatchDaemonTraitTest extends \PHPUnit_Framework_TestCase
 {
     public function setUp()
     {
-        $this->impl = new MySysvClass();
-    }
-
-    public function testGetSysvKey()
-    {
-        if (! $this->impl->isSysvIPCLoaded()) {
-            $this->markTestSkipped(
-                'SysV IPC extensions are not available, skipped');
-        }
-        $key1 = $this->impl->getSysvKey(1);
-        $key2 = $this->impl->getSysvKey(2);
-        $this->assertEquals(1, $key2 - $key1);
-    }
-
-    public function testIsSysvIPCLoaded()
-    {
-        $expected = extension_loaded('sysvmsg')
-            && extension_loaded('sysvsem')
-            && extension_loaded('sysvshm');
-        $this->assertEquals($expected, $this->impl->isSysvIPCLoaded());
+        $this->impl = new MyBatchDaemonTraitClass();
     }
 
     public function testIsDaemonRunning()
@@ -68,26 +49,14 @@ class SysvTraitTest extends \PHPUnit_Framework_TestCase
     }
 }
 
-class MySysvClass
+class MyBatchDaemonTraitClass
 {
-    use SysvTrait {
+    use BatchDaemonTrait {
         isDaemonRunning as privateIsDaemonRunning;
-        isSysvIPCLoaded as privateIsSysvIPCLoaded;
-        getSysvKey as privateGetSysvKey;
     }
 
     function isDaemonRunning()
     {
         return $this->privateIsDaemonRunning();
-    }
-
-    function isSysvIPCLoaded()
-    {
-        return $this->privateIsSysvIPCLoaded();
-    }
-
-    function getSysvKey($id)
-    {
-        return $this->privateGetSysvKey($id);
     }
 }

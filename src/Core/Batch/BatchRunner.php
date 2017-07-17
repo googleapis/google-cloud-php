@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Core\Batch;
 
+use Google\Cloud\Core\SysvTrait;
+
 /**
  * A class for executing jobs in batch.
  *
@@ -27,6 +29,7 @@ namespace Google\Cloud\Core\Batch;
  */
 class BatchRunner
 {
+    use BatchDaemonTrait;
     use SysvTrait;
 
     /**
