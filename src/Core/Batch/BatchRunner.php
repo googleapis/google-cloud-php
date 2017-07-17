@@ -112,7 +112,7 @@ class BatchRunner
         } finally {
             $this->configStorage->unlock();
         }
-        return true;
+        return $result;
     }
 
     /**
