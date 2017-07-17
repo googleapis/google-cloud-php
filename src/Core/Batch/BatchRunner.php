@@ -109,9 +109,6 @@ class BatchRunner
 
         try {
             $result = $this->configStorage->save($this->config);
-        } catch (\Exception $e) {
-            $this->configStorage->clear();
-            throw $e;
         } finally {
             $this->configStorage->unlock();
         }
@@ -189,7 +186,7 @@ class BatchRunner
             $result = $this->configStorage->load();
         } catch (\RuntimeException $e) {
             $this->configStorage->clear();
-            return false;
+            throw $e;
         } finally {
             $this->configStorage->unlock();
         }
