@@ -107,11 +107,14 @@ class BatchRunner
         $this->config = $this->configStorage->load();
         $this->config->registerJob($identifier, $func, $options);
 
-        $result = $this->configStorage->save($this->config);
-        if ($result === false) {
-            return false;
+        try {
+            $result = $this->configStorage->save($this->config);
+        } catch (\Exception $e) {
+            $this->configStorage->clear();
+            throw $e;
+        } finally {
+            $this->configStorage->unlock();
         }
-        $this->configStorage->unlock();
         return true;
     }
 

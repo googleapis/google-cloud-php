@@ -70,6 +70,7 @@ class SysvConfigStorage implements ConfigStorageInterface
      * @param BatchConfig $config A BatchConfig to save.
      * @return bool
      * @throws \RuntimeException when failed to attach to the shared memory.
+     * @throws \Exception when serialization of the BatchConfig fails
      */
     public function save(BatchConfig $config)
     {
@@ -102,11 +103,13 @@ class SysvConfigStorage implements ConfigStorageInterface
             $result = new BatchConfig();
         } else {
             $result = shm_get_var($shmid, self::VAR_KEY);
-            if ($result === false) {
-                throw new \RuntimeException(
-                    'Failed to deserialize data from shared memory'
-                );
-            }
+        }
+        shm_detach($shmid);
+
+        if ($result === false) {
+            throw new \RuntimeException(
+                'Failed to deserialize data from shared memory'
+            );
         }
         return $result;
     }
