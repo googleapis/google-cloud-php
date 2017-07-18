@@ -23,7 +23,7 @@ use Google\Cloud\Spanner\Timestamp;
 
 /**
  * @group spanner
- * @group spanner-transactions
+ * @group spanner-transaction
  */
 class TransactionTest extends SpannerTestCase
 {
@@ -77,11 +77,12 @@ class TransactionTest extends SpannerTestCase
 
     /**
      * covers 73
+     *
+     * @requires extension pcntl
      */
     public function testConcurrentTransactionsIncrementValueWithRead()
     {
         $db = self::$database;
-        $db2 = self::$database2;
 
         $id = $this->randId();
         $db->insert(self::$tableName, [
@@ -92,27 +93,24 @@ class TransactionTest extends SpannerTestCase
         $keyset = new KeySet(['keys' => [$id]]);
         $columns = ['id','number'];
 
-        $iteration = 0;
-        $db->runTransaction(function ($transaction) use ($db2, &$iteration, $keyset, $columns) {
-            $row = $transaction->read(self::$tableName, $keyset, $columns)->rows()->current();
+        // Amount a microsecond used to order async actions
+        $clockDelay = 50000;
 
-            if ($iteration === 0) {
-                $db2->runTransaction(function ($t2) use ($keyset, $columns) {
-                    $row = $t2->read(self::$tableName, $keyset, $columns)->rows()->current();
+        if ($childPID1 = pcntl_fork()) {
+            // give time to fork to start
+            usleep(2 * $clockDelay);
 
-                    $row['number'] = $row['number']+1;
+            echo 'hello world';
 
-                    $t2->update(self::$tableName, $row);
-                    $t2->commit();
-                });
-            }
+            // Now, assert the child process worked well
+            pcntl_waitpid($childPID1, $status1);
+            $this->assertSame(0, pcntl_wexitstatus($status1), 'The child process couldn\'t lock the resource');
+        } else {
 
-            $row['number'] = $row['number']+1;
-            $iteration++;
-
-            $transaction->update(self::$tableName, $row);
-            $transaction->commit();
-        });
+            usleep(3 * $clockDelay);
+            echo 'goodbye world';
+            posix_kill($childPID1, SIGTERM);
+        }
 
         $row = $db->execute('SELECT * FROM '. self::$tableName .' WHERE id = @id', [
             'parameters' => [
