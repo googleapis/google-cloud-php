@@ -11,6 +11,7 @@
             "name": "google/cloud",
             "defaultService": "servicebuilder",
             "versions": [
+                "v0.35.0",
                 "v0.34.1",
                 "v0.34.0",
                 "v0.33.1",
@@ -73,6 +74,7 @@
             "name": "google/cloud-core",
             "defaultService": "core/readme",
             "versions": [
+                "v1.7.0",
                 "v1.6.0",
                 "v1.5.1",
                 "v1.5.0",
@@ -126,6 +128,7 @@
             "name": "google/cloud-logging",
             "defaultService": "logging/loggingclient",
             "versions": [
+                "v1.3.1",
                 "v1.3.0",
                 "v1.2.0",
                 "v1.1.0",
@@ -165,6 +168,7 @@
             "name": "google/cloud-pubsub",
             "defaultService": "pubsub/pubsubclient",
             "versions": [
+                "v0.6.1",
                 "v0.6.0",
                 "v0.5.1",
                 "v0.5.0",
@@ -180,6 +184,7 @@
             "name": "google/cloud-spanner",
             "defaultService": "spanner/spannerclient",
             "versions": [
+                "v0.4.0",
                 "v0.3.1",
                 "v0.3.0",
                 "v0.2.2",
@@ -223,6 +228,7 @@
             "name": "google/cloud-trace",
             "defaultService": "trace/traceclient",
             "versions": [
+                "v0.3.1",
                 "v0.3.0",
                 "v0.2.0",
                 "v0.1.0",
