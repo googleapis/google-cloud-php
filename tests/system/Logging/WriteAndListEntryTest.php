@@ -30,7 +30,7 @@ class WriteAndListEntryTest extends LoggingTestCase
     public function testWriteTextEntry($client)
     {
         $logger = $client->logger(uniqid(self::TESTING_PREFIX));
-        self::$deletionQueue[] = $logger;
+        self::$deletionQueue->add($logger);
         $data = 'test';
         $entry = $logger->entry($data);
 
@@ -56,7 +56,7 @@ class WriteAndListEntryTest extends LoggingTestCase
     public function testWriteJsonEntry($client)
     {
         $logger = $client->logger(uniqid(self::TESTING_PREFIX));
-        self::$deletionQueue[] = $logger;
+        self::$deletionQueue->add($logger);
         $data = [
             'test' => true,
             'hello' => 'world',
@@ -89,7 +89,7 @@ class WriteAndListEntryTest extends LoggingTestCase
     public function testWritesMultipleTextEntries($client)
     {
         $logger = $client->logger(uniqid(self::TESTING_PREFIX));
-        self::$deletionQueue[] = $logger;
+        self::$deletionQueue->add($logger);
         $data = 'test';
         $entriesToWrite = [
             $logger->entry($data),
@@ -119,7 +119,7 @@ class WriteAndListEntryTest extends LoggingTestCase
     public function testWritesEntryWithMetadata($client)
     {
         $logger = $client->logger(uniqid(self::TESTING_PREFIX));
-        self::$deletionQueue[] = $logger;
+        self::$deletionQueue->add($logger);
         $data = 'test';
         $httpRequest = [
             'requestMethod' => 'GET',
@@ -228,7 +228,7 @@ class WriteAndListEntryTest extends LoggingTestCase
         $logName = uniqid(self::TESTING_PREFIX);
         $psrLogger = $client->psrLogger($logName);
         $logger = $client->logger($logName);
-        self::$deletionQueue[] = $logger;
+        self::$deletionQueue->add($logger);
         $data = $level;
         $httpRequest = [
             'requestMethod' => 'GET'

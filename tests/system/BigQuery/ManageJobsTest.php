@@ -21,6 +21,7 @@ use Google\Cloud\BigQuery\Job;
 
 /**
  * @group bigquery
+ * @group bigquery-job
  */
 class ManageJobsTest extends BigQueryTestCase
 {

@@ -22,7 +22,7 @@ use GuzzleHttp\Client;
 
 /**
  * @group storage
- * @group storage-signed-urls
+ * @group storage-signed-url
  */
 class SignedUrlTest extends StorageTestCase
 {
@@ -38,7 +38,6 @@ class SignedUrlTest extends StorageTestCase
     public function testSignedUrl()
     {
         $obj = $this->createFile();
-        self::$deletionQueue[] = $obj;
 
         $ts = new Timestamp(new \DateTime('tomorrow'));
         $url = $obj->signedUrl($ts);
@@ -51,7 +50,6 @@ class SignedUrlTest extends StorageTestCase
         $obj = $this->createFile(
             uniqid(self::TESTING_PREFIX . ' ' . self::TESTING_PREFIX)
         );
-        self::$deletionQueue[] = $obj;
 
         $ts = new Timestamp(new \DateTime('tomorrow'));
         $url = $obj->signedUrl($ts);
@@ -65,7 +63,6 @@ class SignedUrlTest extends StorageTestCase
     public function testSignedUrlDelete()
     {
         $obj = $this->createFile();
-        self::$deletionQueue[] = $obj;
 
         $ts = new Timestamp(new \DateTime('tomorrow'));
         $url = $obj->signedUrl($ts, [
@@ -86,6 +83,8 @@ class SignedUrlTest extends StorageTestCase
         $object = $bucket->upload(self::CONTENT, [
             'name' => $name ?: uniqid(self::TESTING_PREFIX) .'.txt',
         ]);
+
+        self::$deletionQueue->add($object);
 
         return $object;
     }

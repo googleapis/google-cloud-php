@@ -19,6 +19,7 @@ namespace Google\Cloud\Tests\System\Datastore;
 
 /**
  * @group datastore
+ * @group datastore-transaction
  */
 class RunTransactionTest extends DatastoreTestCase
 {
@@ -37,8 +38,8 @@ class RunTransactionTest extends DatastoreTestCase
         $transaction->insert($entity1);
         $transaction->upsert($entity2);
         $transaction->commit();
-        self::$deletionQueue[] = $key1;
-        self::$deletionQueue[] = $key2;
+        self::$localDeletionQueue->add($key1);
+        self::$localDeletionQueue->add($key2);
 
         // transaction with query
         $transaction2 = self::$client->transaction();

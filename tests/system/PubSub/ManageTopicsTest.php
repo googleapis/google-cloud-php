@@ -19,6 +19,7 @@ namespace Google\Cloud\Tests\System\PubSub;
 
 /**
  * @group pubsub
+ * @group pubsub-topic
  */
 class ManageTopicsTest extends PubSubTestCase
 {
@@ -34,7 +35,7 @@ class ManageTopicsTest extends PubSubTestCase
         ];
 
         foreach ($topicsToCreate as $topicToCreate) {
-            self::$deletionQueue[] = $client->createTopic($topicToCreate);
+            self::$deletionQueue->add($client->createTopic($topicToCreate));
         }
 
         $topics = $client->topics();
@@ -60,7 +61,7 @@ class ManageTopicsTest extends PubSubTestCase
         $shortName = uniqid(self::TESTING_PREFIX);
         $this->assertFalse($client->topic($shortName)->exists());
         $topic = $client->createTopic($shortName);
-        self::$deletionQueue[] = $topic;
+        self::$deletionQueue->add($topic);
 
         $this->assertTrue($client->topic($shortName)->exists());
         $this->assertEquals($topic->name(), $topic->reload()['name']);

@@ -22,6 +22,7 @@ use Google\Cloud\Core\Exception\NotFoundException;
 
 /**
  * @group storage
+ * @group storage-acl
  */
 class ManageAclTest extends StorageTestCase
 {

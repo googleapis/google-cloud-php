@@ -21,6 +21,7 @@ use GuzzleHttp\Psr7;
 
 /**
  * @group storage
+ * @group storage-upload
  */
 class UploadObjectsTest extends StorageTestCase
 {
@@ -36,7 +37,6 @@ class UploadObjectsTest extends StorageTestCase
             ]
         ];
         $object = self::$bucket->upload($data, $options);
-        self::$deletionQueue[] = $object;
 
         $this->assertEquals($options['name'], $object->name());
         $this->assertEquals(strlen($data), $object->info()['size']);
@@ -49,7 +49,6 @@ class UploadObjectsTest extends StorageTestCase
         $object = self::$bucket->upload(
             fopen($path, 'r')
         );
-        self::$deletionQueue[] = $object;
 
         $this->assertEquals('CloudPlatform_128px_Retina.png', $object->name());
         $this->assertEquals(filesize($path), $object->info()['size']);
@@ -61,7 +60,6 @@ class UploadObjectsTest extends StorageTestCase
         $object = self::$bucket->upload(
             fopen($path, 'r')
         );
-        self::$deletionQueue[] = $object;
 
         $this->assertEquals('5mb.txt', $object->name());
         $this->assertEquals(filesize($path), $object->info()['size']);
@@ -72,7 +70,6 @@ class UploadObjectsTest extends StorageTestCase
         $stream = Psr7\stream_for('somedata');
         $options = ['name' => uniqid(self::TESTING_PREFIX)];
         $object = self::$bucket->upload($stream, $options);
-        self::$deletionQueue[] = $object;
 
         $this->assertEquals($options['name'], $object->name());
         $this->assertEquals($stream->getSize(), $object->info()['size']);
@@ -89,19 +86,18 @@ class UploadObjectsTest extends StorageTestCase
         ];
 
         $object = self::$bucket->upload($data, $options);
-        self::$deletionQueue[] = $object;
 
         $this->assertEquals($sha, $object->info()['customerEncryption']['keySha256']);
         $this->assertEquals(strlen($data), $object->info()['size']);
     }
-    
+
     private $testFileSize = 0;
     private $totalStoredBytes = 0;
-    
+
     public function testUploadsObjectWithProgressTracking()
     {
         $path = __DIR__ . '/../data/5mb.txt';
-        
+
         $this->testFileSize = filesize($path);
 
         $options = [
@@ -112,17 +108,16 @@ class UploadObjectsTest extends StorageTestCase
 
         $object = self::$bucket->upload(fopen($path, 'r'), $options);
 
-        self::$deletionQueue[] = $object;
 
         $this->assertEquals('5mb.txt', $object->name());
     }
-    
+
     public function onStoredFileChunk($storedBytes)
     {
         $this->totalStoredBytes += $storedBytes;
-        
+
         $this->assertFalse($this->testFileSize < $this->totalStoredBytes);
-        
+
         if ($this->testFileSize == $this->totalStoredBytes) {
             $this->assertEquals(filesize(__DIR__ . '/../data/5mb.txt'), $this->totalStoredBytes);
         }

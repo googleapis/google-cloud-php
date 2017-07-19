@@ -20,16 +20,16 @@ namespace Google\Cloud\Tests\System\Whitelist;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\PubSub\PubSubClient;
+use Google\Cloud\Tests\System\SystemTestCase;
 
 /**
  * @group whitelist
  */
-class WhitelistTest extends \PHPUnit_Framework_TestCase
+class WhitelistTest extends SystemTestCase
 {
     const MESSAGE = 'NOTE: Error may be due to Whitelist Restriction.';
     const TESTING_PREFIX = 'gcloud_whitelist_testing_';
 
-    private static $deletionQueue = [];
     private $keyFilePath;
 
     public function setUp()
@@ -73,14 +73,10 @@ class WhitelistTest extends \PHPUnit_Framework_TestCase
         ]);
 
         $topic = $client->createTopic(uniqid(self::TESTING_PREFIX));
-        self::$deletionQueue[] = function () use ($topic) {
-            $topic->delete();
-        };
+        self::$deletionQueue->add($topic);
 
         $sub = $topic->subscribe(uniqid(self::TESTING_PREFIX));
-        self::$deletionQueue[] = function () use ($sub) {
-            $sub->delete();
-        };
+        self::$deletionQueue->add($sub);
 
         $this->checkException(function () use ($client, $sub) {
             $client->createSnapshot(uniqid(self::TESTING_PREFIX), $sub);
@@ -95,14 +91,10 @@ class WhitelistTest extends \PHPUnit_Framework_TestCase
         ]);
 
         $topic = $client->createTopic(uniqid(self::TESTING_PREFIX));
-        self::$deletionQueue[] = function () use ($topic) {
-            $topic->delete();
-        };
+        self::$deletionQueue->add($topic);
 
         $sub = $topic->subscribe(uniqid(self::TESTING_PREFIX));
-        self::$deletionQueue[] = function () use ($sub) {
-            $sub->delete();
-        };
+        self::$deletionQueue->add($sub);
 
         $this->checkException(function () use ($client, $sub) {
             $client->createSnapshot(uniqid(self::TESTING_PREFIX), $sub);
@@ -117,14 +109,10 @@ class WhitelistTest extends \PHPUnit_Framework_TestCase
         ]);
 
         $topic = $client->createTopic(uniqid(self::TESTING_PREFIX));
-        self::$deletionQueue[] = function () use ($topic) {
-            $topic->delete();
-        };
+        self::$deletionQueue->add($topic);
 
         $sub = $topic->subscribe(uniqid(self::TESTING_PREFIX));
-        self::$deletionQueue[] = function () use ($sub) {
-            $sub->delete();
-        };
+        self::$deletionQueue->add($sub);
 
         $this->checkException(function () use ($sub) {
             $sub->seekToTime(new Timestamp(new \DateTime));
@@ -139,14 +127,10 @@ class WhitelistTest extends \PHPUnit_Framework_TestCase
         ]);
 
         $topic = $client->createTopic(uniqid(self::TESTING_PREFIX));
-        self::$deletionQueue[] = function () use ($topic) {
-            $topic->delete();
-        };
+        self::$deletionQueue->add($topic);
 
         $sub = $topic->subscribe(uniqid(self::TESTING_PREFIX));
-        self::$deletionQueue[] = function () use ($sub) {
-            $sub->delete();
-        };
+        self::$deletionQueue->add($sub);
 
         $this->checkException(function () use ($sub) {
             $sub->seekToTime(new Timestamp(new \DateTime));
@@ -167,16 +151,5 @@ class WhitelistTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($thrown);
         $this->assertInstanceOf(NotFoundException::class, $ex);
         $this->assertTrue(strpos($ex->getMessage(), self::MESSAGE) !== false);
-    }
-
-    public static function tearDownFixtures()
-    {
-        foreach (self::$deletionQueue as $toDelete) {
-            if (!is_callable($toDelete)) {
-                throw new \Exception('fixtures must be callables');
-            }
-
-            call_user_func($toDelete);
-        }
     }
 }

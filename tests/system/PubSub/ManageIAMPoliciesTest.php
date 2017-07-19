@@ -19,6 +19,7 @@ namespace Google\Cloud\Tests\System\PubSub;
 
 /**
  * @group pubsub
+ * @group pubsub-iam
  */
 class ManageIAMPoliciesTest extends PubSubTestCase
 {
@@ -28,7 +29,7 @@ class ManageIAMPoliciesTest extends PubSubTestCase
     public function testManageTopicIAM($client)
     {
         $topic = $client->createTopic(uniqid(self::TESTING_PREFIX));
-        self::$deletionQueue[] = $topic;
+        self::$deletionQueue->add($topic);
         $this->assertIam($topic->iam());
     }
 
@@ -38,9 +39,10 @@ class ManageIAMPoliciesTest extends PubSubTestCase
     public function testManageSubscriptionIAM($client)
     {
         $topic = $client->createTopic(uniqid(self::TESTING_PREFIX));
-        self::$deletionQueue[] = $topic;
+        self::$deletionQueue->add($topic);
+
         $sub = $client->subscribe(uniqid(self::TESTING_PREFIX), $topic->name());
-        self::$deletionQueue[] = $sub;
+        self::$deletionQueue->add($sub);
 
         $this->assertIam($sub->iam());
     }

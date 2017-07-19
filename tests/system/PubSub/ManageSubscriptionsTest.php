@@ -17,8 +17,11 @@
 
 namespace Google\Cloud\Tests\System\PubSub;
 
+use Google\Cloud\PubSub\Snapshot;
+
 /**
  * @group pubsub
+ * @group pubsub-subscription
  */
 class ManageSubscriptionsTest extends PubSubTestCase
 {
@@ -29,13 +32,15 @@ class ManageSubscriptionsTest extends PubSubTestCase
     {
         $topicName = uniqid(self::TESTING_PREFIX);
         $topic = $client->createTopic($topicName);
+        self::$deletionQueue->add($topic);
+
         $subsToCreate = [
             uniqid(self::TESTING_PREFIX),
             uniqid(self::TESTING_PREFIX)
         ];
 
         foreach ($subsToCreate as $subToCreate) {
-            self::$deletionQueue[] = $client->subscribe($subToCreate, $topicName);
+            self::$deletionQueue->add($client->subscribe($subToCreate, $topicName));
         }
 
         $subs = $client->subscriptions();
@@ -52,11 +57,13 @@ class ManageSubscriptionsTest extends PubSubTestCase
     {
         $topicName = uniqid(self::TESTING_PREFIX);
         $topic = $client->createTopic($topicName);
-        self::$deletionQueue[] = $topic;
+        self::$deletionQueue->add($topic);
+
         $shortName = uniqid(self::TESTING_PREFIX);
         $this->assertFalse($topic->subscription($shortName)->exists());
+
         $sub = $client->subscribe($shortName, $topic->name());
-        self::$deletionQueue[] = $sub;
+        self::$deletionQueue->add($sub);
 
         $this->assertTrue($topic->subscription($shortName)->exists());
         $this->assertEquals($sub->name(), $sub->reload()['name']);
@@ -73,6 +80,8 @@ class ManageSubscriptionsTest extends PubSubTestCase
         $snapName = uniqid(self::TESTING_PREFIX);
 
         $snap = $client->createSnapshot($snapName, $sub);
+        self::$deletionQueue->add($snap);
+
         $this->assertInstanceOf(Snapshot::class, $snap);
 
         $snaps = $client->snapshots();
@@ -82,11 +91,9 @@ class ManageSubscriptionsTest extends PubSubTestCase
 
         $this->assertEquals(1, count($filtered));
 
-        self::$deletionQueue[] = $snap;
+        $sub->seekToSnapshot($client->snapshot($snapName));
 
-        $this->sub->seekToSnapshot($client->snapshot($this->snapName));
-
-        $this->sub->seekToTime($client->timestamp(new \DateTime));
+        $sub->seekToTime($client->timestamp(new \DateTime));
     }
 
     private function assertSubsFound($subs, $expectedSubs)

@@ -19,14 +19,20 @@ namespace Google\Cloud\Tests\System\Datastore;
 
 use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\Datastore\DatastoreClient;
+use Google\Cloud\Tests\System\DeletionQueue;
 
+/**
+ * Datastore does not use the default deletion queue. Because of the way
+ * datastore entities are deleted, a local queue is required.
+ * Be sure to use `self::$localDeletionQueue` for all datastore entities.
+ */
 class DatastoreTestCase extends \PHPUnit_Framework_TestCase
 {
     const TESTING_PREFIX = 'gcloud_testing_';
 
     protected static $client;
     protected static $returnInt64AsObjectClient;
-    protected static $deletionQueue = [];
+    protected static $localDeletionQueue;
     private static $hasSetUp = false;
 
     public static function setUpBeforeClass()
@@ -34,6 +40,8 @@ class DatastoreTestCase extends \PHPUnit_Framework_TestCase
         if (self::$hasSetUp) {
             return;
         }
+
+        self::$localDeletionQueue = new DeletionQueue(true);
 
         $config = [
             'keyFilePath' => getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH'),
@@ -49,14 +57,17 @@ class DatastoreTestCase extends \PHPUnit_Framework_TestCase
 
     public static function tearDownFixtures()
     {
-        if (empty(self::$deletionQueue)) {
+        if (empty(self::$localDeletionQueue)) {
             return;
         }
 
         $backoff = new ExponentialBackoff(8);
         $transaction = self::$client->transaction();
-        $backoff->execute(function () use ($transaction) {
-            $transaction->deleteBatch(self::$deletionQueue);
+
+        self::$localDeletionQueue->process(function ($items) use ($backoff, $transaction) {
+            $backoff->execute(function() use ($items, $transaction) {
+                $transaction->deleteBatch($items);
+            });
         });
     }
 }

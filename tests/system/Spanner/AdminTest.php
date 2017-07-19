@@ -70,7 +70,9 @@ class AdminTest extends SpannerTestCase
         $db = $op->pollUntilComplete();
         $this->assertInstanceOf(Database::class, $db);
 
-        self::$deletionQueue[] = function() use ($db) { $db->drop(); };
+        self::$deletionQueue->add(function() use ($db) {
+            $db->drop();
+        });
 
         $databases = $instance->databases();
         $database = array_filter(iterator_to_array($databases), function ($db) use ($dbName) {

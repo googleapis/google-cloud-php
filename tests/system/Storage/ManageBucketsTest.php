@@ -32,7 +32,7 @@ class ManageBucketsTest extends StorageTestCase
         ];
 
         foreach ($bucketsToCreate as $bucketToCreate) {
-            self::$deletionQueue[] = self::$client->createBucket($bucketToCreate);
+            self::createBucket(self::$client, $bucketToCreate);
         }
 
         $buckets = self::$client->buckets(['prefix' => self::TESTING_PREFIX]);
@@ -60,8 +60,7 @@ class ManageBucketsTest extends StorageTestCase
         ];
         $this->assertFalse(self::$client->bucket($name)->exists());
 
-        $bucket = self::$client->createBucket($name, $options);
-        self::$deletionQueue[] = $bucket;
+        $bucket = self::createBucket(self::$client, $name, $options);
 
         $this->assertTrue(self::$client->bucket($name)->exists());
         $this->assertEquals($name, $bucket->name());
