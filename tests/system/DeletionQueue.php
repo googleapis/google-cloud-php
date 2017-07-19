@@ -33,24 +33,28 @@ class DeletionQueue
     /**
      * @var bool
      */
-    private $validate;
+    private $acceptAllInputs;
 
-    public function __construct($validate = true)
+    /**
+     * @param bool $acceptAllInputs If false, only callables or objects with
+     *        `delete` methods are allowed. **Defaults to** `false`.
+     */
+    public function __construct($acceptAllInputs = false)
     {
-        $this->validate = $validate;
+        $this->acceptAllInputs = $acceptAllInputs;
     }
 
     /**
      * Add an item to be cleaned up.
      *
      * @param mixed $toDelete Unless the class was created with
-     *        `$validate = false`, either a callable with no arguments, or an
-     *        object with a `delete` method.
+     *        `$acceptAllInputs = true`, either a callable with no arguments, or
+     *        an object with a `delete` method.
      * @return void
      */
     public function add($toDelete)
     {
-        if ($this->validate) {
+        if (!$this->acceptAllInputs) {
             if (!is_callable($toDelete) && !method_exists($toDelete, 'delete')) {
                 throw new \BadMethodCallException(
                     'Deletion Queue requires a callable, or an object with a `delete` method.'
