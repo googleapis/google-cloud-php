@@ -107,12 +107,12 @@ class BatchRunner
         $this->config = $this->configStorage->load();
         $this->config->registerJob($identifier, $func, $options);
 
-        $result = $this->configStorage->save($this->config);
-        if ($result === false) {
-            return false;
+        try {
+            $result = $this->configStorage->save($this->config);
+        } finally {
+            $this->configStorage->unlock();
         }
-        $this->configStorage->unlock();
-        return true;
+        return $result;
     }
 
     /**
@@ -182,11 +182,15 @@ class BatchRunner
         if ($result === false) {
             throw new \RuntimeException('Failed to lock the configStorage');
         }
-        $result = $this->configStorage->load();
-        $this->configStorage->unlock();
-        if ($result === false) {
-            throw new \RuntimeException('Failed to load the BatchConfig');
+        try {
+            $result = $this->configStorage->load();
+        } catch (\RuntimeException $e) {
+            $this->configStorage->clear();
+            throw $e;
+        } finally {
+            $this->configStorage->unlock();
         }
+
         $this->config = $result;
         return true;
     }

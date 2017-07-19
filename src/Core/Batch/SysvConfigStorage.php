@@ -69,7 +69,7 @@ class SysvConfigStorage implements ConfigStorageInterface
      *
      * @param BatchConfig $config A BatchConfig to save.
      * @return bool
-     * @throws \RuntimeException when failed to attach to the shared memory.
+     * @throws \RuntimeException when failed to attach to the shared memory or serialization fails
      */
     public function save(BatchConfig $config)
     {
@@ -79,8 +79,16 @@ class SysvConfigStorage implements ConfigStorageInterface
                 'Failed to attach to the shared memory'
             );
         }
-        $result = shm_put_var($shmid, self::VAR_KEY, $config);
-        shm_detach($shmid);
+
+        // If the variable write fails, clear the memory and re-raise the exception
+        try {
+            $result = shm_put_var($shmid, self::VAR_KEY, $config);
+        } catch (\Exception $e) {
+            $this->clear();
+            throw new \RuntimeException($e->getMessage());
+        } finally {
+            shm_detach($shmid);
+        }
         return $result;
     }
 
@@ -88,7 +96,7 @@ class SysvConfigStorage implements ConfigStorageInterface
      * Load a BatchConfig from the storage.
      *
      * @return BatchConfig
-     * @throws \RuntimeException when failed to attach to the shared memory.
+     * @throws \RuntimeException when failed to attach to the shared memory or deserialization fails
      */
     public function load()
     {
@@ -103,6 +111,22 @@ class SysvConfigStorage implements ConfigStorageInterface
         } else {
             $result = shm_get_var($shmid, self::VAR_KEY);
         }
+        shm_detach($shmid);
+
+        if ($result === false) {
+            throw new \RuntimeException(
+                'Failed to deserialize data from shared memory'
+            );
+        }
         return $result;
+    }
+
+    /**
+     * Clear the BatchConfig from storage.
+     */
+    public function clear()
+    {
+        $shmid = shm_attach($this->sysvKey);
+        shm_remove_var($shmid, self::VAR_KEY);
     }
 }

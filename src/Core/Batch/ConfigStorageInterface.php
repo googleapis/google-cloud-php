@@ -55,4 +55,9 @@ interface ConfigStorageInterface
      * @throws \RuntimeException when failed to load the BatchConfig.
      */
     public function load();
+
+    /**
+     * Clear the BatchConfig from storage.
+     */
+    public function clear();
 }

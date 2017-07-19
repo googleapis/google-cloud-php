@@ -52,4 +52,35 @@ class SysvConfigStorageTest extends \PHPUnit_Framework_TestCase
         $this->storage->save($config);
         $this->assertEquals($config, $this->storage->load());
     }
+
+    public function testSaveBadConfig()
+    {
+        $object = new TestSerializableObjectWithClosure();
+        $config = new BatchConfig();
+        $config->registerJob('badConfig', [$object, 'callback']);
+
+        try {
+            $this->storage->save($config);
+        } catch (\RuntimeException $e) {
+            // verify we didn't corrupt memory
+            $this->storage->load();
+            return;
+        }
+
+        $this->assertTrue(false, 'should have thrown an exception');
+    }
+}
+
+class TestSerializableObjectWithClosure
+{
+    public $closure;
+
+    public function __construct()
+    {
+        $this->closure = function () {};
+    }
+
+    public function callback()
+    {
+    }
 }
