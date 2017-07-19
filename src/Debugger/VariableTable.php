@@ -35,7 +35,7 @@ class VariableTable implements \JsonSerializable
             'type' => $type,
             'value' => $valueString
         ]);
-        if ($depth < MAX_MEMBER_DEPTH) {
+        if ($depth < self::MAX_MEMBER_DEPTH) {
             foreach ($members as $index => $member) {
                 array_push($variable->members, $this->register($index, $member));
             }
