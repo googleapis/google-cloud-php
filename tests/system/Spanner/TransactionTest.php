@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Tests\System\Spanner;
 
+use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Date;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Timestamp;
@@ -79,10 +80,12 @@ class TransactionTest extends SpannerTestCase
      * covers 73
      *
      * @requires extension pcntl
+     * @group fork
      */
     public function testConcurrentTransactionsIncrementValueWithRead()
     {
         $db = self::$database;
+        $db2 = self::$database2;
 
         $id = $this->randId();
         $db->insert(self::$tableName, [
@@ -93,24 +96,27 @@ class TransactionTest extends SpannerTestCase
         $keyset = new KeySet(['keys' => [$id]]);
         $columns = ['id','number'];
 
-        // Amount a microsecond used to order async actions
-        $clockDelay = 50000;
+        $iterations = 0;
+        $callable = function(Database $db, Keyset $keyset, array $columns, $tableName) use (&$iterations) {
+            $db->runTransaction(function ($transaction) use ($keyset, $columns, $tableName, &$iterations) {
+                $row = $transaction->read($tableName, $keyset, $columns)->rows()->current();
 
-        if ($childPID1 = pcntl_fork()) {
-            // give time to fork to start
-            usleep(2 * $clockDelay);
+                $row['number'] = $row['number']+1;
 
-            echo 'hello world';
+                $iterations++;
 
-            // Now, assert the child process worked well
-            pcntl_waitpid($childPID1, $status1);
-            $this->assertSame(0, pcntl_wexitstatus($status1), 'The child process couldn\'t lock the resource');
-        } else {
+                $transaction->update($tableName, $row);
+                $transaction->commit();
+            });
+        };
 
-            usleep(3 * $clockDelay);
-            echo 'goodbye world';
-            posix_kill($childPID1, SIGTERM);
-        }
+        $args = [
+            $keyset,
+            $columns,
+            self::$tableName
+        ];
+
+        $this->executeInForkedProcess(50000, $callable, $callable, array_merge([$db], $args), array_merge([$db2], $args));
 
         $row = $db->execute('SELECT * FROM '. self::$tableName .' WHERE id = @id', [
             'parameters' => [
@@ -119,6 +125,7 @@ class TransactionTest extends SpannerTestCase
         ])->rows()->current();
 
         $this->assertEquals(2, $row['number']);
+        $this->assertTrue(count($iterations) > 2);
     }
 
     /**
