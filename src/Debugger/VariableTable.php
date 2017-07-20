@@ -11,6 +11,7 @@ class VariableTable implements \JsonSerializable
 
     public function register($name, $value, $depth = 0)
     {
+        $name = (string)$name;
         $type = gettype($value);
         $index = $this->nextIndex;
         $members = [];
