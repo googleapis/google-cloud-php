@@ -22,6 +22,7 @@ use Google\Cloud\Core\Iterator\PageIterator;
 
 /**
  * @group core
+ * @group iterator
  */
 class PageIteratorTest extends \PHPUnit_Framework_TestCase
 {

@@ -113,7 +113,7 @@ trait ItemIteratorTrait
         $this->pageIndex++;
         $this->position++;
 
-        if (count($this->pageIterator->current()) <= $this->pageIndex && $this->pageIterator->nextResultToken()) {
+        if (count($this->pageIterator->current()) <= $this->pageIndex && $this->nextResultToken()) {
             $this->pageIterator->next();
             $this->pageIndex = 0;
         }
@@ -126,8 +126,21 @@ trait ItemIteratorTrait
      */
     public function valid()
     {
-        if (isset($this->pageIterator->current()[$this->pageIndex])) {
+        $page = $this->pageIterator->current();
+
+        if (isset($page[$this->pageIndex])) {
             return true;
+        }
+
+        // If there are no results, but a token for the next page
+        // exists let's continue paging until there are results.
+        while ($this->nextResultToken()) {
+            $this->pageIterator->next();
+            $page = $this->pageIterator->current();
+
+            if (isset($page[$this->pageIndex])) {
+                return true;
+            }
         }
 
         return false;
