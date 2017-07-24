@@ -41,7 +41,7 @@ class WriteAndListEntryTest extends LoggingTestCase
             $entries = iterator_to_array($logger->entries());
 
             if (count($entries) === 0) {
-                throw new \Exception();
+                throw new \Exception('Entries not found in the allotted number of attempts.');
             }
 
             return $entries;
@@ -64,7 +64,6 @@ class WriteAndListEntryTest extends LoggingTestCase
                 'data'
             ]
         ];
-
         $entry = $logger->entry($data);
 
         $logger->write($entry);
@@ -74,7 +73,7 @@ class WriteAndListEntryTest extends LoggingTestCase
             $entries = iterator_to_array($logger->entries());
 
             if (count($entries) === 0) {
-                throw new \Exception();
+                throw new \Exception('Entries not found in the allotted number of attempts.');
             }
 
             return $entries;
@@ -103,7 +102,7 @@ class WriteAndListEntryTest extends LoggingTestCase
             $entries = iterator_to_array($logger->entries());
 
             if (count($entries) !== count($entriesToWrite)) {
-                throw new \Exception();
+                throw new \Exception('Entries not found in the allotted number of attempts.');
             }
 
             return $entries;
@@ -130,7 +129,6 @@ class WriteAndListEntryTest extends LoggingTestCase
             'test' => 'label'
         ];
         $severity = 'INFO';
-
         $entry = $logger->entry($data, [
             'httpRequest' => $httpRequest,
             'labels' => $labels,
@@ -144,7 +142,7 @@ class WriteAndListEntryTest extends LoggingTestCase
             $entries = iterator_to_array($logger->entries());
 
             if (count($entries) === 0) {
-                throw new \Exception();
+                throw new \Exception('Entries not found in the allotted number of attempts.');
             }
 
             return $entries;
@@ -245,7 +243,7 @@ class WriteAndListEntryTest extends LoggingTestCase
             $entries = iterator_to_array($logger->entries());
 
             if (count($entries) === 0) {
-                throw new \Exception();
+                throw new \Exception('Entries not found in the allotted number of attempts.');
             }
 
             return $entries;
