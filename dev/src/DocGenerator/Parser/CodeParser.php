@@ -273,7 +273,7 @@ class CodeParser implements ParserInterface
                 if ($part instanceof SeeTag) {
                     $part = $this->buildReference($part->getReference(), $part);
                 } elseif ($this->isInheritDocTag($part)) {
-                    if (empty($reflector)) {
+                    if ($reflector === null) {
                         throw new \Exception(sprintf(
                             "Inherit Doc tag ({@inheritdoc}) is only supported when \$reflector is not null.\nContext:\n%s",
                             $content));
