@@ -60,7 +60,7 @@ use Google\GAX\GrpcCredentialsHelper;
  *
  * @experimental
  */
-class ImageAnnotatorGapic
+class ImageAnnotatorGapicClient
 {
     /**
      * The default address of the service.

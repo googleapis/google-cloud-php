@@ -33,7 +33,7 @@ namespace Google\Cloud\Vision\V1;
 /**
  * {@inheritdoc}
  */
-class ImageAnnotatorClient extends ImageAnnotatorGapic
+class ImageAnnotatorClient extends ImageAnnotatorGapicClient
 {
     // This class is intentionally empty, and is intended to hold manual additions to the generated {@see ImageAnnotatorClientImpl} class.
 }
