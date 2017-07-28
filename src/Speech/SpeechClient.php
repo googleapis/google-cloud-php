@@ -192,9 +192,6 @@ class SpeechClient
      *           `wordTimeOffsets` are returned with the top alternative. If
      *           `false` or omitted, no `wordTimeOffsets` are returned.
      *           **Defaults to** `false`.
-     *           **Whitelist Warning:** At the time of publication, this argument
-     *           is subject to a feature whitelist and may not be available in
-     *           your project.
      * }
      * @return array Result[]
      * @throws \InvalidArgumentException
@@ -324,9 +321,6 @@ class SpeechClient
      *           `wordTimeOffsets` are returned with the top alternative. If
      *           `false` or omitted, no `wordTimeOffsets` are returned.
      *           **Defaults to** `false`.
-     *           **Whitelist Warning:** At the time of publication, this argument
-     *           is subject to a feature whitelist and may not be available in
-     *           your project.
      * }
      * @return Operation
      * @throws \InvalidArgumentException
