@@ -145,8 +145,8 @@ class OperationResponse
      *     @type float $maxPollingDurationSeconds The maximum amount of time to continue polling.
      *                                            Default: 0.0 (no maximum)
      * }
-     * @return bool Indicates if the operation completed.
      * @throws ApiException If an API call fails.
+     * @return bool Indicates if the operation completed.
      */
     public function pollUntilComplete($options = [])
     {

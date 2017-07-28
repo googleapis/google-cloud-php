@@ -31,11 +31,11 @@
  */
 namespace Google\GAX;
 
-use Exception;
-
-/**
- * ValidationException represents a local error (i.e. not during an RPC call).
- */
-class ValidationException extends Exception
+trait CallHelperTrait
 {
+    private static function callWithoutRequest($callable, $params)
+    {
+        array_shift($params);
+        return call_user_func_array($callable, $params);
+    }
 }

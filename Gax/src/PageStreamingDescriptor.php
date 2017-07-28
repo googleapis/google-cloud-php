@@ -103,36 +103,57 @@ class PageStreamingDescriptor
         return 'set' . ucfirst($field);
     }
 
+    /**
+     * @return string The page token get method on the request object
+     */
     public function getRequestPageTokenGetMethod()
     {
         return $this->descriptor['requestPageTokenGetMethod'];
     }
 
+    /**
+     * @return string The page size get method on the request object
+     */
     public function getRequestPageSizeGetMethod()
     {
         return $this->descriptor['requestPageSizeGetMethod'];
     }
 
+    /**
+     * @return bool True if the request object has a page size field
+     */
     public function requestHasPageSizeField()
     {
         return array_key_exists('requestPageSizeGetMethod', $this->descriptor);
     }
 
+    /**
+     * @return string The page token get method on the response object
+     */
     public function getResponsePageTokenGetMethod()
     {
         return $this->descriptor['responsePageTokenGetMethod'];
     }
 
+    /**
+     * @return string The resources get method on the response object
+     */
     public function getResourcesGetMethod()
     {
         return $this->descriptor['resourcesGetMethod'];
     }
 
+    /**
+     * @return string The page token set method on the request object
+     */
     public function getRequestPageTokenSetMethod()
     {
         return $this->descriptor['requestPageTokenSetMethod'];
     }
 
+    /**
+     * @return string The page size set method on the request object
+     */
     public function getRequestPageSizeSetMethod()
     {
         return $this->descriptor['requestPageSizeSetMethod'];

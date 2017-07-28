@@ -94,6 +94,8 @@ class GrpcCredentialsHelper
     /**
      * Creates the callback function to be passed to gRPC for providing the credentials
      * for a call.
+     *
+     * @return callable
      */
     public function createCallCredentialsCallback()
     {
@@ -126,6 +128,7 @@ class GrpcCredentialsHelper
      *           Default: a credentials object returned from
      *           \Grpc\ChannelCredentials::createSsl()
      * }
+     * @return \Grpc\BaseStub
      */
     public function createStub($generatedCreateStub, $serviceAddress, $port, $options = [])
     {
@@ -145,6 +148,8 @@ class GrpcCredentialsHelper
 
     /**
      * Gets credentials from ADC. This exists to allow overriding in unit tests.
+     *
+     * @return CredentialsLoader
      */
     protected function getADCCredentials($scopes)
     {
@@ -153,6 +158,8 @@ class GrpcCredentialsHelper
 
     /**
      * Construct ssl channel credentials. This exists to allow overriding in unit tests.
+     *
+     * @return \Grpc\ChannelCredentials
      */
     protected function createSslChannelCredentials()
     {

@@ -31,6 +31,8 @@
  */
 namespace Google\GAX;
 
+use Generator;
+use InvalidArgumentException;
 use IteratorAggregate;
 
 /**
@@ -74,6 +76,8 @@ class Page implements IteratorAggregate
     /**
      * Returns true if there are more pages that can be retrieved from the
      * API.
+     *
+     * @return bool
      */
     public function hasNextPage()
     {
@@ -82,6 +86,8 @@ class Page implements IteratorAggregate
 
     /**
      * Returns the next page token from the response.
+     *
+     * @return string
      */
     public function getNextPageToken()
     {
@@ -91,6 +97,11 @@ class Page implements IteratorAggregate
 
     /**
      * Retrieves the next Page object using the next page token.
+     *
+     * @param int|null $pageSize
+     * @throws ValidationException if there are no pages remaining, or if pageSize is supplied but
+     * is not supported by the API
+     * @return Page
      */
     public function getNextPage($pageSize = null)
     {
@@ -124,6 +135,8 @@ class Page implements IteratorAggregate
 
     /**
      * Return the number of elements in the response.
+     *
+     * @return int
      */
     public function getPageElementCount()
     {
@@ -133,6 +146,8 @@ class Page implements IteratorAggregate
 
     /**
      * Return an iterator over the elements in the response.
+     *
+     * @return Generator
      */
     public function getIterator()
     {
@@ -146,6 +161,7 @@ class Page implements IteratorAggregate
      * Return an iterator over Page objects, beginning with this object.
      * Additional Page objects are retrieved lazily via API calls until
      * all elements have been retrieved.
+     *
      * @return Page[]
      */
     public function iteratePages()
@@ -160,6 +176,7 @@ class Page implements IteratorAggregate
 
     /**
      * Gets the request object used to generate the Page.
+     *
      * @return \Google\Protobuf\Internal\Message
      */
     public function getRequestObject()
@@ -169,6 +186,8 @@ class Page implements IteratorAggregate
 
     /**
      * Gets the API response object.
+     *
+     * @return \Google\Protobuf\Internal\Message
      */
     public function getResponseObject()
     {

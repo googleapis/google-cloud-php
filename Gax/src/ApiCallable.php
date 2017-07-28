@@ -134,12 +134,6 @@ class ApiCallable
         return $inner;
     }
 
-    public static function callWithoutRequest($callable, $params)
-    {
-        array_shift($params);
-        return call_user_func_array($callable, $params);
-    }
-
     private static function createUnaryApiCall($callable)
     {
         return function () use ($callable) {
@@ -207,8 +201,8 @@ class ApiCallable
      *           the descriptor used for creating GAPIC header.
      * }
      *
-     * @return callable
      * @throws ValidationException
+     * @return callable
      */
     public static function createApiCall($stub, $methodName, CallSettings $settings, $options = [])
     {

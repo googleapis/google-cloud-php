@@ -38,6 +38,8 @@ use Grpc;
  */
 class ClientStream
 {
+    use CallHelperTrait;
+
     private $call;
 
     /**
@@ -59,7 +61,7 @@ class ClientStream
     public static function createApiCall($callable, $grpcStreamingDescriptor)
     {
         return function () use ($callable, $grpcStreamingDescriptor) {
-            $response = ApiCallable::callWithoutRequest($callable, func_get_args());
+            $response = self::callWithoutRequest($callable, func_get_args());
             return new ClientStream($response, $grpcStreamingDescriptor);
         };
     }
@@ -77,8 +79,8 @@ class ClientStream
     /**
      * Read the response from the server, completing the streaming call.
      *
-     * @return mixed The response object from the server
      * @throws ApiException
+     * @return mixed The response object from the server
      */
     public function readResponse()
     {

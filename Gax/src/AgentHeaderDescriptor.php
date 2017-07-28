@@ -101,6 +101,8 @@ class AgentHeaderDescriptor
 
     /**
      * Returns an associative array that contains GAPIC header metadata.
+     *
+     * @return array
      */
     public function getHeader()
     {
@@ -113,6 +115,8 @@ class AgentHeaderDescriptor
 
     /**
      * Returns the version string for GAX.
+     *
+     * @return string
      */
     public static function getGaxVersion()
     {

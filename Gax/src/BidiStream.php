@@ -40,6 +40,8 @@ use Google\GAX\ValidationException;
  */
 class BidiStream
 {
+    use CallHelperTrait;
+
     private $call;
     private $isComplete = false;
     private $writesClosed = false;
@@ -68,7 +70,7 @@ class BidiStream
     public static function createApiCall($callable, $grpcStreamingDescriptor)
     {
         return function () use ($callable, $grpcStreamingDescriptor) {
-            $response = ApiCallable::callWithoutRequest($callable, func_get_args());
+            $response = self::callWithoutRequest($callable, func_get_args());
             return new BidiStream($response, $grpcStreamingDescriptor);
         };
     }
@@ -126,9 +128,9 @@ class BidiStream
      * Read the next response from the server. Returns null if the streaming call completed
      * successfully. Throws an ApiException if the streaming call failed.
      *
-     * @return mixed
      * @throws ValidationException
      * @throws ApiException
+     * @return mixed
      */
     public function read()
     {
@@ -165,9 +167,9 @@ class BidiStream
      * Call closeWrite(), and read all responses from the server, until the streaming call is
      * completed. Throws an ApiException if the streaming call failed.
      *
-     * @return \Generator|mixed[]
      * @throws ValidationException
      * @throws ApiException
+     * @return \Generator|mixed[]
      */
     public function closeWriteAndReadAll()
     {

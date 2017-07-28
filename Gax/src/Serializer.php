@@ -60,12 +60,24 @@ class Serializer
     private $fieldTransformers;
     private $messageTypeTransformers;
 
+    /**
+     * Serializer constructor.
+     *
+     * @param array $fieldTransformers An array mapping field names to transformation functions
+     * @param array $messageTypeTransformers An array mapping message names to transformation functions
+     */
     public function __construct($fieldTransformers = [], $messageTypeTransformers = [])
     {
         $this->fieldTransformers = $fieldTransformers;
         $this->messageTypeTransformers = $messageTypeTransformers;
     }
 
+    /**
+     * Encode protobuf message as a PHP array
+     *
+     * @param Message $message
+     * @return array
+     */
     public function encodeMessage(Message $message)
     {
         // Get message descriptor
@@ -74,6 +86,13 @@ class Serializer
         return $this->encodeMessageImpl($message, $messageType);
     }
 
+    /**
+     * Decode protobuf array into the specified protobuf message
+     *
+     * @param Message $message
+     * @param array $data
+     * @return Message
+     */
     public function decodeMessage(Message $message, $data)
     {
         // Get message descriptor
@@ -84,7 +103,7 @@ class Serializer
 
     /**
      * @param \Google\Protobuf\Internal\Message $message
-     * @return string
+     * @return string Json representation of $message
      */
     public static function serializeToJson($message)
     {
@@ -93,7 +112,7 @@ class Serializer
 
     /**
      * @param \Google\Protobuf\Internal\Message $message
-     * @return array
+     * @return array PHP array representation of $message
      */
     public static function serializeToPhpArray($message)
     {
@@ -102,7 +121,8 @@ class Serializer
 
     /**
      * Decode metadata received from gRPC status object
-     * @param $metadata
+     *
+     * @param array $metadata
      * @return array
      */
     public static function decodeMetadata($metadata)
@@ -277,11 +297,23 @@ class Serializer
         return $message;
     }
 
+    /**
+     * Convert string from camelCase to snake_case
+     *
+     * @param string $key
+     * @return string
+     */
     public static function toSnakeCase($key)
     {
         return strtolower(preg_replace(['/([a-z\d])([A-Z])/', '/([^_])([A-Z][a-z])/'], '$1_$2', $key));
     }
 
+    /**
+     * Convert string from snake_case to camelCase
+     *
+     * @param string $key
+     * @return string
+     */
     public static function toCamelCase($key)
     {
         return lcfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $key))));

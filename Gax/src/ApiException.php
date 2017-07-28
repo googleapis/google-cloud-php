@@ -33,11 +33,22 @@ namespace Google\GAX;
 
 use Exception;
 
+/**
+ * Represents an exception thrown during an RPC.
+ */
 class ApiException extends Exception
 {
     private $metadata;
     private $basicMessage;
 
+    /**
+     * ApiException constructor.
+     * @param string $message
+     * @param int $code
+     * @param Exception|null $previous
+     * @param array|null $metadata
+     * @param string|null $basicMessage
+     */
     public function __construct($message, $code, \Exception $previous = null, $metadata = null, $basicMessage = null)
     {
         parent::__construct($message, $code, $previous);
@@ -67,6 +78,9 @@ class ApiException extends Exception
         return new ApiException($message, $code, null, $metadata, $basicMessage);
     }
 
+    /**
+     * @return null|string
+     */
     public function getBasicMessage()
     {
         return $this->basicMessage;

@@ -31,6 +31,7 @@
  */
 namespace Google\GAX;
 
+use Generator;
 use InvalidArgumentException;
 use IteratorAggregate;
 use LengthException;
@@ -75,6 +76,8 @@ class FixedSizeCollection implements IteratorAggregate
      * Returns the number of elements in the collection. This will be
      * equal to the collectionSize parameter used at construction
      * unless there are no elements remaining to be retrieved.
+     *
+     * @return int
      */
     public function getCollectionSize()
     {
@@ -88,6 +91,8 @@ class FixedSizeCollection implements IteratorAggregate
     /**
      * Returns true if there are more elements that can be retrieved
      * from the API.
+     *
+     * @return bool
      */
     public function hasNextCollection()
     {
@@ -97,6 +102,8 @@ class FixedSizeCollection implements IteratorAggregate
     /**
      * Returns a page token that can be passed into the API list
      * method to retrieve additional elements.
+     *
+     * @return string
      */
     public function getNextPageToken()
     {
@@ -105,6 +112,8 @@ class FixedSizeCollection implements IteratorAggregate
 
     /**
      * Retrieves the next FixedSizeCollection using one or more API calls.
+     *
+     * @return FixedSizeCollection
      */
     public function getNextCollection()
     {
@@ -115,6 +124,8 @@ class FixedSizeCollection implements IteratorAggregate
 
     /**
      * Returns an iterator over the elements of the collection.
+     *
+     * @return Generator
      */
     public function getIterator()
     {
@@ -129,6 +140,8 @@ class FixedSizeCollection implements IteratorAggregate
      * Returns an iterator over FixedSizeCollections, starting with this
      * and making API calls as required until all of the elements have
      * been retrieved.
+     *
+     * @return Generator|FixedSizeCollection[]
      */
     public function iterateCollections()
     {
@@ -144,7 +157,8 @@ class FixedSizeCollection implements IteratorAggregate
     {
         $pageList = $this->pageList;
         // Get last element in array...
-        $lastPage = array_pop((array_slice($pageList, -1)));
+        $lastPage = end($pageList);
+        reset($pageList);
         return $lastPage;
     }
 
