@@ -35,22 +35,27 @@ use Google\GAX\Jison\Parser as BaseParser;
 use Google\GAX\Jison\Segment;
 use Exception;
 
+/**
+ * Parser used by {@see PathTemplate} to parse path template strings
+ */
 class Parser
 {
     private $parser;
     private $segmentCount;
 
+    /**
+     * Parser constructor.
+     */
     public function __construct()
     {
         $this->parser = new BaseParser();
     }
+
     /**
      * Returns an array of path template segments parsed from data.
      *
      * @param string $data A path template string
-     *
      * @throws ValidationException when $data cannot be parsed
-     *
      * @return array An array of Segment
      */
     public function parse($data)
@@ -80,6 +85,9 @@ class Parser
         }
     }
 
+    /**
+     * @return int
+     */
     public function getSegmentCount()
     {
         return $this->segmentCount;

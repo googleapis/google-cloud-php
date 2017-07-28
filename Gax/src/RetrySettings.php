@@ -49,6 +49,8 @@ class RetrySettings
     /**
      * Create a special instance that indicates that the retry settings should
      * be inherited from defaults.
+     *
+     * @return RetrySettings
      */
     public static function inherit()
     {
@@ -59,6 +61,9 @@ class RetrySettings
 
     /**
      * Construct an instance.
+     *
+     * @param int[] $retryableCodes Status codes to retry
+     * @param BackoffSettings $backoffSettings Backoff settings
      */
     public function __construct($retryableCodes, $backoffSettings)
     {
@@ -67,16 +72,25 @@ class RetrySettings
         $this->inherit = false;
     }
 
+    /**
+     * @return int[] Status codes to retry
+     */
     public function getRetryableCodes()
     {
         return $this->retryableCodes;
     }
 
+    /**
+     * @return BackoffSettings Backoff settings
+     */
     public function getBackoffSettings()
     {
         return $this->backoffSettings;
     }
 
+    /**
+     * @return bool Should inherit settings when merging
+     */
     public function shouldInherit()
     {
         return $this->inherit;

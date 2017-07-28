@@ -35,11 +35,24 @@ namespace Google\GAX;
 use Google\GAX\Jison\Segment;
 use Countable;
 
+/**
+ * Represents a path template.
+ *
+ * Templates use the syntax of the API platform; see the protobuf of HttpRule for
+ * details. A template consists of a sequence of literals, wildcards, and variable bindings,
+ * where each binding can have a sub-path. A string representation can be parsed into an
+ * instance of PathTemplate, which can then be used to perform matching and instantiation.
+ */
 class PathTemplate implements Countable
 {
     private $segments;
     private $segmentCount;
 
+    /**
+     * PathTemplate constructor.
+     *
+     * @param string $data A path template string
+     */
     public function __construct($data)
     {
         $parser = new Parser();
@@ -47,11 +60,17 @@ class PathTemplate implements Countable
         $this->segmentCount = $parser->getSegmentCount();
     }
 
+    /**
+     * @return string A string representation of the path template
+     */
     public function __toString()
     {
         return self::format($this->segments);
     }
 
+    /**
+     * @return int The number of segments in the path template
+     */
     public function count()
     {
         return $this->segmentCount;
@@ -61,10 +80,8 @@ class PathTemplate implements Countable
      * Renders a path template using the provided bindings.
      *
      * @param array $bindings An array matching var names to binding strings.
-     *
      * @throws ValidationException if a key isn't provided or if a sub-template
      *    can't be parsed.
-     *
      * @return string A rendered representation of this path template.
      */
     public function render($bindings)
@@ -106,9 +123,7 @@ class PathTemplate implements Countable
      * Matches a fully qualified path template string.
      *
      * @param string $path A fully qualified path template string.
-     *
      * @throws ValidationException if path can't be matched to the template.
-     *
      * @return array Array matching var names to binding values.
      */
     public function match($path)

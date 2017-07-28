@@ -77,6 +77,8 @@ class GrpcConstants
     /**
      * Provides an array that maps from status code name to an object
      * representing that status code.
+     *
+     * @return array
      */
     public static function getStatusCodeNames()
     {
@@ -88,6 +90,7 @@ class GrpcConstants
 
     /**
      * Provides an array that maps from status codes to status names.
+     *
      * @return array
      */
     public static function getStatusCodesToNamesMap()

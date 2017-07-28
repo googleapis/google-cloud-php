@@ -72,8 +72,8 @@ class ServerStream
      * A generator which yields results from the server until the streaming call
      * completes. Throws an ApiException if the streaming call failed.
      *
-     * @return \Generator|mixed
      * @throws ApiException
+     * @return \Generator|mixed
      */
     public function readAll()
     {

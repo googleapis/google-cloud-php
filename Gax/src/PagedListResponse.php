@@ -31,6 +31,9 @@
  */
 namespace Google\GAX;
 
+use Generator;
+use InvalidArgumentException;
+
 /**
  * Response object for paged results from a list API method
  *
@@ -45,16 +48,6 @@ namespace Google\GAX;
  *  - As pages of elements, using the getPage and iteratePages methods
  *  - As fixed size collections of elements, using the
  *    getFixedSizeCollection and iterateFixedSizeCollections methods
- *
- * @param array $params {
- *     The parameters used to make the API call.
- *     @type  object the request object
- *     @type  array the metadata
- *     @type  array the options of the API call
- * }
- * @param \Google\GAX\ApiCallable $callable the callable object that makes the API method calls.
- * @param \Google\GAX\PageStreamingDescriptor $pageStreamingDescriptor the descriptor that
- *     contains the field names related to page-streaming.
  */
 class PagedListResponse
 {
@@ -66,9 +59,15 @@ class PagedListResponse
 
     /**
      * PagedListResponse constructor.
-     * @param array $params
-     * @param callable $callable
-     * @param PageStreamingDescriptor $pageStreamingDescriptor
+     * @param array $params {
+     *     The parameters used to make the API call.
+     *     @type  object the request object
+     *     @type  array the metadata
+     *     @type  array the options of the API call
+     * }
+     * @param callable $callable the callable object that makes the API method calls.
+     * @param PageStreamingDescriptor $pageStreamingDescriptor the descriptor that
+     *     contains the field names related to page-streaming.
      */
     public function __construct($params, $callable, $pageStreamingDescriptor)
     {
@@ -86,6 +85,8 @@ class PagedListResponse
     /**
      * Returns an iterator over the full list of elements. Elements
      * of the list are retrieved lazily using the underlying API.
+     *
+     * @return Generator
      */
     public function iterateAllElements()
     {
@@ -100,6 +101,8 @@ class PagedListResponse
      * Return the current page of results. If the page has not
      * previously been accessed, it will be retrieved with a call to
      * the underlying API.
+     *
+     * @return Page
      */
     public function getPage()
     {
@@ -116,6 +119,7 @@ class PagedListResponse
     /**
      * Returns an iterator over pages of results. The pages are
      * retrieved lazily from the underlying API.
+     *
      * @return Page[]
      */
     public function iteratePages()
@@ -133,6 +137,10 @@ class PagedListResponse
      * to set the page size is not supported or has not been set in the
      * original API call. It is also an error if the collectionSize parameter
      * is less than the page size that has been set.
+     *
+     * @param $collectionSize int
+     * @throws ValidationException if a FixedSizeCollection of the specified size cannot be constructed
+     * @return FixedSizeCollection
      */
     public function expandToFixedSizeCollection($collectionSize)
     {
@@ -179,6 +187,10 @@ class PagedListResponse
      * to set the page size is not supported or has not been set in the
      * original API call. It is also an error if the collectionSize parameter
      * is less than the page size that has been set.
+     *
+     * @param $collectionSize int
+     * @throws ValidationException if a FixedSizeCollection of the specified size cannot be constructed
+     * @return Generator|FixedSizeCollection[]
      */
     public function iterateFixedSizeCollections($collectionSize)
     {
