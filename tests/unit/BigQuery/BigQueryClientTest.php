@@ -26,6 +26,7 @@ use Google\Cloud\BigQuery\Job;
 use Google\Cloud\BigQuery\QueryResults;
 use Google\Cloud\BigQuery\Time;
 use Google\Cloud\BigQuery\Timestamp;
+use Google\Cloud\Core\Iterator\ItemIterator;
 use Prophecy\Argument;
 
 /**
@@ -54,9 +55,40 @@ class BigQueryClientTest extends \PHPUnit_Framework_TestCase
             ->willReturn([
                 'jobReference' => [
                     'jobId' => $this->jobId
-                ]
+                ],
+                'jobComplete' => true
             ])
             ->shouldBeCalledTimes(1);
+        $this->client->setConnection($this->connection->reveal());
+        $queryResults = $this->client->runQuery($query, $options);
+
+        $this->assertInstanceOf(QueryResults::class, $queryResults);
+        $this->assertEquals($this->jobId, $queryResults->identity()['jobId']);
+    }
+
+    /**
+     * @dataProvider queryDataProvider
+     */
+    public function testRunsQueryWithRetry($query, $options, $expected)
+    {
+        $this->connection->query($expected)
+            ->willReturn([
+                'jobReference' => [
+                    'jobId' => $this->jobId
+                ],
+                'jobComplete' => false
+            ])
+            ->shouldBeCalledTimes(1);
+
+        $this->connection->getQueryResults(Argument::any())
+            ->willReturn([
+                'jobReference' => [
+                    'jobId' => $this->jobId
+                ],
+                'jobComplete' => true
+            ])
+            ->shouldBeCalledTimes(1);
+
         $this->client->setConnection($this->connection->reveal());
         $queryResults = $this->client->runQuery($query, $options);
 
