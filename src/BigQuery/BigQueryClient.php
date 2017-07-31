@@ -203,6 +203,8 @@ class BigQueryClient
      *           named parameters will be used (`@name`).
      * }
      * @return QueryResults
+     * @throws \RuntimeException if the maximum number of retries while waiting
+     *         for query completion has been exceeded.
      */
     public function runQuery($query, array $options = [])
     {
@@ -237,7 +239,7 @@ class BigQueryClient
                 $results->reload($options);
 
                 if (!$results->isComplete()) {
-                    throw new \Exception('Job did not complete within the allowed number of retries.');
+                    throw new \RuntimeException('Job did not complete within the allowed number of retries.');
                 }
             };
 
