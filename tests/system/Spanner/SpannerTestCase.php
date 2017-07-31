@@ -36,6 +36,7 @@ class SpannerTestCase extends SystemTestCase
     protected static $instance;
     protected static $database;
     protected static $database2;
+    protected static $dbName;
 
     private static $hasSetUp = false;
 
@@ -45,18 +46,15 @@ class SpannerTestCase extends SystemTestCase
             return;
         }
 
-        $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
-
-        self::$client = new SpannerClient([
-            'keyFilePath' => $keyFilePath
-        ]);
+        self::getClient();
 
         self::$instance = self::$client->instance(self::INSTANCE_NAME);
 
-        $dbName = uniqid(self::TESTING_PREFIX);
-        $op = self::$instance->createDatabase($dbName);
+        self::$dbName = uniqid(self::TESTING_PREFIX);
+        $op = self::$instance->createDatabase(self::$dbName);
         $op->pollUntilComplete();
-        $db = self::$client->connect(self::INSTANCE_NAME, $dbName);
+
+        $db = self::getDatabaseInstance(self::$dbName);
 
         self::$deletionQueue->add(function() use ($db) {
             $db->drop();
@@ -76,6 +74,26 @@ class SpannerTestCase extends SystemTestCase
         )->pollUntilComplete();
 
         self::$database = $db;
-        self::$database2 = self::$client->connect(self::INSTANCE_NAME, $dbName);
+        self::$database2 = self::getDatabaseInstance(self::$dbName);
+    }
+
+    private static function getClient()
+    {
+        if (self::$client) {
+            return self::$client;
+        }
+
+        $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
+        self::$client = new SpannerClient([
+            'keyFilePath' => $keyFilePath
+        ]);
+
+        return self::$client;
+    }
+
+    public static function getDatabaseInstance($dbName)
+    {
+        $client = self::getClient();
+        return $client->connect(self::INSTANCE_NAME, $dbName);
     }
 }

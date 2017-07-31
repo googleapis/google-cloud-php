@@ -38,6 +38,7 @@ class RunTransactionTest extends DatastoreTestCase
         $transaction->insert($entity1);
         $transaction->upsert($entity2);
         $transaction->commit();
+
         self::$localDeletionQueue->add($key1);
         self::$localDeletionQueue->add($key2);
 

@@ -17,13 +17,14 @@
 
 namespace Google\Cloud\Tests\System\Spanner;
 
+use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Date;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Timestamp;
 
 /**
  * @group spanner
- * @group spanner-transactions
+ * @group spanner-transaction
  */
 class TransactionTest extends SpannerTestCase
 {
@@ -77,6 +78,9 @@ class TransactionTest extends SpannerTestCase
 
     /**
      * covers 73
+     *
+     * @requires extension pcntl
+     * @group fork
      */
     public function testConcurrentTransactionsIncrementValueWithRead()
     {
@@ -92,27 +96,27 @@ class TransactionTest extends SpannerTestCase
         $keyset = new KeySet(['keys' => [$id]]);
         $columns = ['id','number'];
 
-        $iteration = 0;
-        $db->runTransaction(function ($transaction) use ($db2, &$iteration, $keyset, $columns) {
-            $row = $transaction->read(self::$tableName, $keyset, $columns)->rows()->current();
+        $iterations = 0;
+        $callable = function(Database $db, Keyset $keyset, array $columns, $tableName) use (&$iterations) {
+            $db->runTransaction(function ($transaction) use ($keyset, $columns, $tableName, &$iterations) {
+                $row = $transaction->read($tableName, $keyset, $columns)->rows()->current();
 
-            if ($iteration === 0) {
-                $db2->runTransaction(function ($t2) use ($keyset, $columns) {
-                    $row = $t2->read(self::$tableName, $keyset, $columns)->rows()->current();
+                $row['number'] = $row['number']+1;
 
-                    $row['number'] = $row['number']+1;
+                $iterations++;
 
-                    $t2->update(self::$tableName, $row);
-                    $t2->commit();
-                });
-            }
+                $transaction->update($tableName, $row);
+                $transaction->commit();
+            });
+        };
 
-            $row['number'] = $row['number']+1;
-            $iteration++;
+        $args = [
+            $keyset,
+            $columns,
+            self::$tableName
+        ];
 
-            $transaction->update(self::$tableName, $row);
-            $transaction->commit();
-        });
+        $this->executeInForkedProcess(50000, $callable, $callable, array_merge([$db], $args), array_merge([$db2], $args));
 
         $row = $db->execute('SELECT * FROM '. self::$tableName .' WHERE id = @id', [
             'parameters' => [
@@ -121,6 +125,7 @@ class TransactionTest extends SpannerTestCase
         ])->rows()->current();
 
         $this->assertEquals(2, $row['number']);
+        $this->assertTrue(count($iterations) > 2);
     }
 
     /**

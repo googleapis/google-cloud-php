@@ -384,7 +384,7 @@ class Operation
         }
 
         if (!empty($keys['keys'])) {
-            $keys['keys'] = $this->mapper->encodeValuesAsSimpleType($keys['keys']);
+            $keys['keys'] = $this->mapper->encodeValuesAsSimpleType($keys['keys'], true);
         }
 
         return $this->arrayFilterRemoveNull($keys);

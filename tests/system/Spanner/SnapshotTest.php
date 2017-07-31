@@ -207,6 +207,32 @@ class SnapshotTest extends SpannerTestCase
         $this->assertEquals($res, $newRow);
     }
 
+    /**
+     * covers 71
+     * @expectedException \BadMethodCallException
+     */
+    public function testSnapshotMinReadTimestampFails()
+    {
+        $db = self::$database;
+
+        $db->snapshot([
+            'minReadTimestamp' => new Timestamp(new \DateTimeImmutable)
+        ]);
+    }
+
+    /**
+     * covers 72
+     * @expectedException \BadMethodCallException
+     */
+    public function testSnapshotMaxStalenessFails()
+    {
+        $db = self::$database;
+
+        $db->snapshot([
+            'maxStaleness' => new Duration(1)
+        ]);
+    }
+
     private function getRow($client, $id)
     {
         $result = $client->execute('SELECT * FROM '. self::$tableName .' WHERE id=@id', [

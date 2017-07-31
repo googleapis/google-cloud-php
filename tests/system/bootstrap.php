@@ -23,7 +23,13 @@ if (getenv('GOOGLE_CLOUD_PHP_TESTS_WHITELIST_KEY_PATH')) {
 
 SystemTestCase::setupQueue();
 
-register_shutdown_function(function () {
+$pid = getmypid();
+register_shutdown_function(function () use ($pid) {
+    // Skip flushing deletion queue if exiting a forked process.
+    if ($pid !== getmypid()) {
+        return;
+    }
+
     DatastoreTestCase::tearDownFixtures();
 
     // This should always be last.

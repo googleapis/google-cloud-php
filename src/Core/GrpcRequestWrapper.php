@@ -231,6 +231,10 @@ class GrpcRequestWrapper
                 $exception = Exception\AbortedException::class;
                 break;
 
+            case Grpc\STATUS_DEADLINE_EXCEEDED:
+                $exception = Exception\DeadlineExceededException::class;
+                break;
+
             default:
                 $exception = Exception\ServiceException::class;
                 break;
