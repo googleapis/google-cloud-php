@@ -42,7 +42,6 @@ use Google\Iam\V1\IAMPolicyGrpcClient;
 use Google\Iam\V1\Policy;
 use Google\Iam\V1\SetIamPolicyRequest;
 use Google\Iam\V1\TestIamPermissionsRequest;
-use Google\Protobuf\FieldMask;
 use Google\Pubsub\V1\DeleteTopicRequest;
 use Google\Pubsub\V1\GetTopicRequest;
 use Google\Pubsub\V1\ListTopicSubscriptionsRequest;
@@ -51,7 +50,6 @@ use Google\Pubsub\V1\PublishRequest;
 use Google\Pubsub\V1\PublisherGrpcClient;
 use Google\Pubsub\V1\PubsubMessage;
 use Google\Pubsub\V1\Topic;
-use Google\Pubsub\V1\UpdateTopicRequest;
 
 /**
  * Service Description: The service that an application uses to manipulate topics, and to send
@@ -310,7 +308,6 @@ class PublisherGapicClient
         $defaultDescriptors = ['headerDescriptor' => $headerDescriptor];
         $this->descriptors = [
             'createTopic' => $defaultDescriptors,
-            'updateTopic' => $defaultDescriptors,
             'publish' => $defaultDescriptors,
             'getTopic' => $defaultDescriptors,
             'listTopics' => $defaultDescriptors,
@@ -425,67 +422,6 @@ class PublisherGapicClient
             'CreateTopic',
             $mergedSettings,
             $this->descriptors['createTopic']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
-    }
-
-    /**
-     * Updates an existing topic. Note that certain properties of a topic are not
-     * modifiable.  Options settings follow the style guide:
-     * NOTE:  The style guide requires body: "topic" instead of body: "*".
-     * Keeping the latter for internal consistency in V1, however it should be
-     * corrected in V2.  See
-     * https://cloud.google.com/apis/design/standard_methods#update for details.
-     *
-     * Sample code:
-     * ```
-     * try {
-     *     $publisherClient = new PublisherClient();
-     *     $topic = new Topic();
-     *     $updateMask = new FieldMask();
-     *     $response = $publisherClient->updateTopic($topic, $updateMask);
-     * } finally {
-     *     $publisherClient->close();
-     * }
-     * ```
-     *
-     * @param Topic     $topic        The topic to update.
-     * @param FieldMask $updateMask   Indicates which fields in the provided topic to update.
-     *                                Must be specified and non-empty.
-     * @param array     $optionalArgs {
-     *                                Optional.
-     *
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
-     * }
-     *
-     * @return \Google\Pubsub\V1\Topic
-     *
-     * @throws \Google\GAX\ApiException if the remote call fails
-     * @experimental
-     */
-    public function updateTopic($topic, $updateMask, $optionalArgs = [])
-    {
-        $request = new UpdateTopicRequest();
-        $request->setTopic($topic);
-        $request->setUpdateMask($updateMask);
-
-        $mergedSettings = $this->defaultCallSettings['updateTopic']->merge(
-            new CallSettings($optionalArgs)
-        );
-        $callable = ApiCallable::createApiCall(
-            $this->publisherStub,
-            'UpdateTopic',
-            $mergedSettings,
-            $this->descriptors['updateTopic']
         );
 
         return $callable(
