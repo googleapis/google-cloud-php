@@ -587,6 +587,8 @@ class SubscriberClient
      *          of acknowledged messages, and thus configures how far back in time a `Seek`
      *          can be done. Defaults to 7 days. Cannot be more than 7 days or less than 10
      *          minutes.
+     *     @type array $labels
+     *          User labels.
      *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
@@ -616,6 +618,9 @@ class SubscriberClient
         }
         if (isset($optionalArgs['messageRetentionDuration'])) {
             $request->setMessageRetentionDuration($optionalArgs['messageRetentionDuration']);
+        }
+        if (isset($optionalArgs['labels'])) {
+            $request->setLabels($optionalArgs['labels']);
         }
 
         $mergedSettings = $this->defaultCallSettings['createSubscription']->merge(
@@ -690,6 +695,10 @@ class SubscriberClient
     /**
      * Updates an existing subscription. Note that certain properties of a
      * subscription, such as its topic, are not modifiable.
+     * NOTE:  The style guide requires body: "subscription" instead of body: "*".
+     * Keeping the latter for internal consistency in V1, however it should be
+     * corrected in V2.  See
+     * https://cloud.google.com/apis/design/standard_methods#update for details.
      *
      * Sample code:
      * ```
