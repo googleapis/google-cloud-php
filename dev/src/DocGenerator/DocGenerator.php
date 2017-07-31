@@ -19,8 +19,6 @@ namespace Google\Cloud\Dev\DocGenerator;
 
 use Google\Cloud\Dev\DocGenerator\Parser\CodeParser;
 use Google\Cloud\Dev\DocGenerator\Parser\MarkdownParser;
-use phpDocumentor\Reflection\DocBlock\Description;
-use phpDocumentor\Reflection\DocBlock\Tag\SeeTag;
 use phpDocumentor\Reflection\FileReflector;
 
 /**
@@ -67,6 +65,7 @@ class DocGenerator
      */
     public function generate($basePath, $pretty)
     {
+        $fileReflectorRegister = new ReflectorRegister();
         foreach ($this->files as $file) {
 
             if ($basePath) {
@@ -79,15 +78,15 @@ class DocGenerator
             $isPhp = strrpos($file, '.php') == strlen($file) - strlen('.php');
 
             if ($isPhp) {
-                $fileReflector = new FileReflector($file);
                 $parser = new CodeParser(
                     $file,
                     $currentFile,
-                    $fileReflector,
+                    $fileReflectorRegister,
                     dirname($this->executionPath),
                     $this->componentId,
                     $this->manifestPath,
                     $this->release,
+                    $basePath,
                     $this->isComponent
                 );
             } else {

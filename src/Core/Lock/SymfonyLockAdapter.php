@@ -24,6 +24,8 @@ use Symfony\Component\Lock\LockInterface as SymfonyLockInterface;
  */
 class SymfonyLockAdapter implements LockInterface
 {
+    use LockTrait;
+
     /**
      * @var SymfonyLockInterface
      */
@@ -64,32 +66,5 @@ class SymfonyLockAdapter implements LockInterface
         } catch (\Exception $ex) {
             throw new \RunTimeException($ex->getMessage());
         }
-    }
-
-    /**
-     * Execute a callable within a lock.
-     *
-     * @return mixed
-     * @throws \RuntimeException
-     */
-    public function synchronize(callable $func)
-    {
-        $result = null;
-        $exception = null;
-
-        if ($this->acquire()) {
-            try {
-                $result = $func();
-            } catch (\Exception $ex) {
-                $exception = $ex;
-            }
-            $this->release();
-        }
-
-        if ($exception) {
-            throw $exception;
-        }
-
-        return $result;
     }
 }

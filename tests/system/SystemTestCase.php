@@ -144,28 +144,4 @@ class SystemTestCase extends \PHPUnit_Framework_TestCase
 
         return $topic;
     }
-
-    protected function executeInForkedProcess(
-        $delay,
-        callable $process1,
-        callable $process2,
-        array $process1Args = [],
-        array $process2Args = []
-    ) {
-        // if ($childPID1 = pcntl_fork()) {
-        //     // give time to fork to start
-        //     usleep(2 * $delay);
-
-            call_user_func_array($process1, $process1Args);
-
-        //     pcntl_waitpid($childPID1, $status1);
-        // } else {
-
-        //     usleep(3 * $delay);
-
-        //     call_user_func_array($process2, $process2Args);
-
-        //     exit(0);
-        // }
-    }
 }

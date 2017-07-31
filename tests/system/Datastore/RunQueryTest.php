@@ -70,10 +70,10 @@ class RunQueryTest extends DatastoreTestCase
         // is intended to help alleviate this issue.
         sleep(1);
 
-        self::$deletionQueue->add(self::$ancestor);
-        self::$deletionQueue->add($key1);
-        self::$deletionQueue->add($key2);
-        self::$deletionQueue->add($key3);
+        self::$localDeletionQueue->add(self::$ancestor);
+        self::$localDeletionQueue->add($key1);
+        self::$localDeletionQueue->add($key2);
+        self::$localDeletionQueue->add($key3);
     }
 
     public function testQueryWithOrder()

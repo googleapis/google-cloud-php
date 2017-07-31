@@ -22,6 +22,7 @@ use Google\Cloud\Core\Iterator\PageIterator;
 
 /**
  * @group core
+ * @group iterator
  */
 class ItemIteratorTest extends \PHPUnit_Framework_TestCase
 {
@@ -35,7 +36,7 @@ class ItemIteratorTest extends \PHPUnit_Framework_TestCase
             ->shouldBeCalledTimes(1);
         $pageIterator->nextResultToken()
             ->willReturn('abc', null)
-            ->shouldBeCalledTimes(2);
+            ->shouldBeCalledTimes(3);
         $pageIterator->current()
             ->willReturn($page1)
             ->shouldBeCalledTimes(19);

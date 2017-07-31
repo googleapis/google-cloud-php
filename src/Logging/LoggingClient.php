@@ -68,7 +68,7 @@ class LoggingClient
     use ArrayTrait;
     use ClientTrait;
 
-    const VERSION = '1.3.0';
+    const VERSION = '1.3.1';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/logging.admin';
     const READ_ONLY_SCOPE = 'https://www.googleapis.com/auth/logging.read';
@@ -107,7 +107,8 @@ class LoggingClient
      *           automatically chosen provider, based on detected environment
      *           settings.
      *     @type bool $debugOutput Whether or not to output debug information.
-     *           **Defaults to** false.
+     *           Please note debug output currently only applies in CLI based
+     *           applications. **Defaults to** `false`.
      *     @type array $batchOptions A set of options for a BatchJob.
      *           {@see \Google\Cloud\Core\Batch\BatchJob::__construct()} for
      *           more details.
@@ -502,8 +503,9 @@ class LoggingClient
      *     @type bool $batchEnabled Determines whether or not to use background
      *           batching. **Defaults to** `false`.
      *     @type bool $debugOutput Whether or not to output debug information.
-     *           **Defaults to** false. Applies only when `batchEnabled` is set
-     *           to `true`.
+     *           Please note debug output currently only applies in CLI based
+     *           applications. **Defaults to** `false`. Applies only when
+     *           `batchEnabled` is set to `true`.
      *     @type array $batchOptions A set of options for a BatchJob.
      *           {@see \Google\Cloud\Core\Batch\BatchJob::__construct()} for
      *           more details.

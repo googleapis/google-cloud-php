@@ -18,8 +18,8 @@
 namespace Google\Cloud\Tests\Unit\Core\Batch;
 
 use Google\Cloud\Core\Batch\BatchConfig;
-use Google\Cloud\Core\Batch\SysvTrait;
 use Google\Cloud\Core\Batch\SysvConfigStorage;
+use Google\Cloud\Core\SysvTrait;
 
 /**
  * @group core
@@ -51,5 +51,36 @@ class SysvConfigStorageTest extends \PHPUnit_Framework_TestCase
         $config = new BatchConfig();
         $this->storage->save($config);
         $this->assertEquals($config, $this->storage->load());
+    }
+
+    public function testSaveBadConfig()
+    {
+        $object = new TestSerializableObjectWithClosure();
+        $config = new BatchConfig();
+        $config->registerJob('badConfig', [$object, 'callback']);
+
+        try {
+            $this->storage->save($config);
+        } catch (\RuntimeException $e) {
+            // verify we didn't corrupt memory
+            $this->storage->load();
+            return;
+        }
+
+        $this->assertTrue(false, 'should have thrown an exception');
+    }
+}
+
+class TestSerializableObjectWithClosure
+{
+    public $closure;
+
+    public function __construct()
+    {
+        $this->closure = function () {};
+    }
+
+    public function callback()
+    {
     }
 }

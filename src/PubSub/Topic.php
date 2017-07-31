@@ -362,7 +362,8 @@ class Topic
      *     Configuration options.
      *
      *     @type bool $debugOutput Whether or not to output debug information.
-     *           **Defaults to** `false`.
+     *           Please note debug output currently only applies in CLI based
+     *           applications. **Defaults to** `false`.
      *     @type array $batchOptions A set of options for a BatchJob.
      *           {@see \Google\Cloud\Core\Batch\BatchJob::__construct()} for
      *           more details.

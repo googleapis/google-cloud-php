@@ -96,7 +96,7 @@ class Session
      * Check if the session exists.
      *
      * @param array $options [optional] Configuration options.
-     * @return array
+     * @return bool
      */
     public function exists(array $options = [])
     {

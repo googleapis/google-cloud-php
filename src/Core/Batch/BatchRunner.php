@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Core\Batch;
 
+use Google\Cloud\Core\SysvTrait;
+
 /**
  * A class for executing jobs in batch.
  *
@@ -27,6 +29,7 @@ namespace Google\Cloud\Core\Batch;
  */
 class BatchRunner
 {
+    use BatchDaemonTrait;
     use SysvTrait;
 
     /**
@@ -84,7 +87,7 @@ class BatchRunner
      *     @type float $callPeriod The period in seconds from the last execution
      *                 to force executing the job.
      *     @type int $workerNum The number of child processes. It only takes
-     *               effect with the {@see \Google\Cloud\Core\BatchDaemon}.
+     *               effect with the {@see \Google\Cloud\Core\Batch\BatchDaemon}.
      *     @type string $bootstrapFile A file to load before executing the
      *                  job. It's needed for registering global functions.
      * }
@@ -104,12 +107,12 @@ class BatchRunner
         $this->config = $this->configStorage->load();
         $this->config->registerJob($identifier, $func, $options);
 
-        $result = $this->configStorage->save($this->config);
-        if ($result === false) {
-            return false;
+        try {
+            $result = $this->configStorage->save($this->config);
+        } finally {
+            $this->configStorage->unlock();
         }
-        $this->configStorage->unlock();
-        return true;
+        return $result;
     }
 
     /**
@@ -179,11 +182,15 @@ class BatchRunner
         if ($result === false) {
             throw new \RuntimeException('Failed to lock the configStorage');
         }
-        $result = $this->configStorage->load();
-        $this->configStorage->unlock();
-        if ($result === false) {
-            throw new \RuntimeException('Failed to load the BatchConfig');
+        try {
+            $result = $this->configStorage->load();
+        } catch (\RuntimeException $e) {
+            $this->configStorage->clear();
+            throw $e;
+        } finally {
+            $this->configStorage->unlock();
         }
+
         $this->config = $result;
         return true;
     }

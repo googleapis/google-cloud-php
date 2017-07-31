@@ -17,8 +17,9 @@
 
 namespace Google\Cloud\Tests\Unit\Core\Batch;
 
+use Google\Cloud\Core\Batch\BatchDaemonTrait;
 use Google\Cloud\Core\Batch\SysvProcessor;
-use Google\Cloud\Core\Batch\SysvTrait;
+use Google\Cloud\Core\SysvTrait;
 
 /**
  * @group core
@@ -26,6 +27,7 @@ use Google\Cloud\Core\Batch\SysvTrait;
  */
 class SysvProcessorTest extends \PHPUnit_Framework_TestCase
 {
+    use BatchDaemonTrait;
     use SysvTrait;
 
     private $submitter;

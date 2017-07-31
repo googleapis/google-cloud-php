@@ -44,6 +44,7 @@ class CacheSessionPoolTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->checkAndSkipGrpcTests();
+        putenv('GOOGLE_CLOUD_SYSV_ID=U');
         $this->time = time();
     }
 

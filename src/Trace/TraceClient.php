@@ -23,6 +23,8 @@ use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Trace\Connection\ConnectionInterface;
 use Google\Cloud\Trace\Connection\Rest;
+use Google\Cloud\Trace\Reporter\AsyncReporter;
+use Google\Cloud\Trace\Reporter\ReporterInterface;
 
 /**
  * Google Stackdriver Trace allows you to collect latency data from
@@ -41,7 +43,7 @@ class TraceClient
     use ArrayTrait;
     use ClientTrait;
 
-    const VERSION = '0.2.0';
+    const VERSION = '0.3.1';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/cloud-platform';
     const READ_ONLY_SCOPE = 'https://www.googleapis.com/auth/trace.readonly';
@@ -50,6 +52,11 @@ class TraceClient
      * @var ConnectionInterface $connection Represents a connection to Trace
      */
     protected $connection;
+
+    /**
+     * @var array
+     */
+    private $clientConfig;
 
     /**
      * Create a Trace client.
@@ -79,6 +86,7 @@ class TraceClient
      */
     public function __construct(array $config = [])
     {
+        $this->clientConfig = $config;
         if (!isset($config['scopes'])) {
             $config['scopes'] = [self::FULL_CONTROL_SCOPE];
         }
@@ -186,5 +194,19 @@ class TraceClient
                 ]
             )
         );
+    }
+
+    /**
+     * Return a Trace reporter that utilizes this client's configuration
+     *
+     * @param  array $options [optional] Reporter options.
+     *      {@see Google\Cloud\Trace\Reporter\AsyncReporter::__construct()}
+     * @return ReporterInterface
+     */
+    public function reporter(array $options = [])
+    {
+        return new AsyncReporter($options + [
+            'clientConfig' => $this->clientConfig
+        ]);
     }
 }

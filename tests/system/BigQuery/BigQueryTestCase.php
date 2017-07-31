@@ -56,10 +56,6 @@ class BigQueryTestCase extends SystemTestCase
             ]
         ]);
 
-        self::$deletionQueue->add(function () {
-            self::$dataset->delete(['deleteContents' => true]);
-        });
-
         self::$hasSetUp = true;
     }
 }

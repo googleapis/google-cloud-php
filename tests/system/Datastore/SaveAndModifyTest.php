@@ -58,7 +58,7 @@ class SaveAndModifyTest extends DatastoreTestCase
         $entity = self::$client->entity($key, $data);
 
         self::$client->insert($entity);
-        self::$deletionQueue->add($key);
+        self::$localDeletionQueue->add($key);
         $entity = self::$client->lookup($key);
 
         $blobValue = (string) $data['blob'];
@@ -94,7 +94,7 @@ class SaveAndModifyTest extends DatastoreTestCase
 
         self::$client->insert($entity);
         $key = $entity->key();
-        self::$deletionQueue->add($key);
+        self::$localDeletionQueue->add($key);
         $entity = self::$client->lookup($key);
 
         $this->assertEquals([$entityDataKey => $entityDataValue], $entity->get());
@@ -110,7 +110,7 @@ class SaveAndModifyTest extends DatastoreTestCase
 
         self::$returnInt64AsObjectClient->insert($entity);
         $key = $entity->key();
-        self::$deletionQueue->add($key);
+        self::$localDeletionQueue->add($key);
         $entity = self::$returnInt64AsObjectClient->lookup($key);
 
         $this->assertInstanceOf(Int64::class, $entity[$entityDataKey]);

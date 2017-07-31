@@ -49,7 +49,8 @@ class AsyncReporter implements ReporterInterface
      *     @type TraceClient $client A trace client used to instantiate traces
      *           to be delivered to the batch queue.
      *     @type bool $debugOutput Whether or not to output debug information.
-     *           **Defaults to** `false`.
+     *           Please note debug output currently only applies in CLI based
+     *           applications. **Defaults to** `false`.
      *     @type array $batchOptions A set of options for a BatchJob.
      *           {@see \Google\Cloud\Core\Batch\BatchJob::__construct()} for
      *           more details.

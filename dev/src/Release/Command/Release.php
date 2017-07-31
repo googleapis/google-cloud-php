@@ -126,6 +126,14 @@ class Release extends Command
                 $component['id'],
                 $version
             ));
+
+            $this->updateComposerReplacesVersion($version, $component);
+
+            $output->writeln(sprintf(
+                'google-cloud composer replaces for component %s updated to version %s',
+                $component['id'],
+                $version
+            ));
         }
 
         $output->writeln(sprintf(
@@ -201,5 +209,19 @@ class Release extends Command
         }
 
         return true;
+    }
+
+    private function updateComposerReplacesVersion($version, array $component)
+    {
+        $composer = $this->cliBasePath .'/../composer.json';
+        if (!file_exists($composer)) {
+            throw new \Exception('Invalid composer.json path');
+        }
+
+        $data = json_decode(file_get_contents($composer), true);
+
+        $data['replace'][$component['name']] = $version;
+
+        file_put_contents($composer, json_encode($data, JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES));
     }
 }
