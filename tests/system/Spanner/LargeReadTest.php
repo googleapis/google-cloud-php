@@ -35,8 +35,6 @@ class LargeReadTest extends SpannerTestCase
 
     public static function setupBeforeClass()
     {
-        ini_set('memory_limit', '256M');
-
         parent::setupBeforeClass();
 
         self::$tableName = uniqid(self::TESTING_PREFIX);
@@ -75,7 +73,6 @@ class LargeReadTest extends SpannerTestCase
         ];
 
         for ($i=0; $i < 10; $i++) {
-            echo "Inserting row ". $i .". Allocated memory: ". memory_get_usage() . PHP_EOL;
             self::$database->insert(self::$tableName, self::$row + ['id' => self::randId()], [
                 'timeoutMillis' => 50000
             ]);
