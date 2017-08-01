@@ -110,7 +110,11 @@ class Agent
         $when->setTimezone(new \DateTimeZone('UTC'));
         $breakpoint->finalTime = $when->format('Y-m-d\TH:i:s.u\Z');
         $breakpoint->isFinalState = true;
-        $breakpoint->addStackFrames($snapshot['stackframes']);
+        try {
+            $breakpoint->addStackFrames($snapshot['stackframes']);
+        } catch (\Exception $e) {
+            var_dump($e->getMessage());
+        }
     }
 
     protected function getCallback()

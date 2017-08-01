@@ -8,6 +8,7 @@ class VariableTable implements \JsonSerializable
 
     private $nextIndex = 0;
     private $variables = [];
+    private $sharedVariableIndex = [];
 
     public function register($name, $value, $depth = 0)
     {
@@ -15,12 +16,20 @@ class VariableTable implements \JsonSerializable
         $type = gettype($value);
         $index = $this->nextIndex;
         $members = [];
+        $shared = false;
 
         switch ($type) {
             case 'object':
                 $type = get_class($value);
-                $index = spl_object_hash($value);
-                $valueString = 'object';
+                $hash = spl_object_hash($value);
+
+                if (array_key_exists($hash, $this->sharedVariableIndex)) {
+                    $index = $this->sharedVariableIndex[$hash];
+                    $shared = true;
+                } else {
+                    $this->sharedVariableIndex[$hash] = $index;
+                }
+                $valueString = "$type ($hash)";
                 $members = get_object_vars($value);
                 break;
             case 'array':
@@ -31,35 +40,29 @@ class VariableTable implements \JsonSerializable
                 $valueString = (string)$value;
         }
 
-        if (array_key_exists($index, $this->variables)) {
-            return new Variable([
-                'name' => $name,
-                'type' => $type,
-                'varTableIndex' => $this->variables[$index]->varTableIndex
-            ]);
-        } else {
+        if (!$shared) {
             $variable = new Variable([
                 'name' => $name,
                 'type' => $type,
-                'value' => $valueString,
-                'varTableIndex' => $this->nextIndex
+                'value' => $valueString
             ]);
             if ($depth < self::MAX_MEMBER_DEPTH) {
-                foreach ($members as $index => $member) {
-                    array_push($variable->members, $this->register($index, $member, $depth + 1));
+                foreach ($members as $key => $member) {
+                    array_push($variable->members, $this->register($key, $member, $depth + 1));
                 }
             }
-            $this->variables[$index] = $variable;
-            return new Variable([
-                'name' => $name,
-                'type' => $type,
-                'varTableIndex' => $this->nextIndex++
-            ]);
+            $this->nextIndex++;
+            array_push($this->variables, $variable);
         }
+        return new Variable([
+            'name' => $name,
+            'type' => $type,
+            'varTableIndex' => $index
+        ]);
     }
 
     public function jsonSerialize()
     {
-        return array_values($this->variables);
+        return $this->variables;
     }
 }
