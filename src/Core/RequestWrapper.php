@@ -161,7 +161,7 @@ class RequestWrapper
     {
         $headers = [
             'User-Agent' => 'gcloud-php/' . $this->componentVersion,
-            'x-goog-api-client' => 'gl-php/' . phpversion() . ' gccl/' . $this->componentVersion,
+            'x-goog-api-client' => 'gl-php/' . PHP_VERSION . ' gccl/' . $this->componentVersion,
         ];
 
         if ($this->shouldSignRequest) {
