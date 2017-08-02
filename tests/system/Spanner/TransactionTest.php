@@ -80,12 +80,10 @@ class TransactionTest extends SpannerTestCase
      * covers 73
      *
      * @requires extension pcntl
-     * @group fork
      */
     public function testConcurrentTransactionsIncrementValueWithRead()
     {
         $db = self::$database;
-        $db2 = self::$database2;
 
         $id = $this->randId();
         $db->insert(self::$tableName, [
@@ -93,30 +91,14 @@ class TransactionTest extends SpannerTestCase
             'number' => 0
         ]);
 
-        $keyset = new KeySet(['keys' => [$id]]);
-        $columns = ['id','number'];
 
-        $iterations = 0;
-        $callable = function(Database $db, Keyset $keyset, array $columns, $tableName) use (&$iterations) {
-            $db->runTransaction(function ($transaction) use ($keyset, $columns, $tableName, &$iterations) {
-                $row = $transaction->read($tableName, $keyset, $columns)->rows()->current();
-
-                $row['number'] = $row['number']+1;
-
-                $iterations++;
-
-                $transaction->update($tableName, $row);
-                $transaction->commit();
-            });
-        };
-
-        $args = [
-            $keyset,
-            $columns,
-            self::$tableName
-        ];
-
-        $this->executeInForkedProcess(50000, $callable, $callable, array_merge([$db], $args), array_merge([$db2], $args));
+        $iterations = shell_exec(implode(' ', [
+            'php',
+            __DIR__ . '/pcntl/ConcurrentTransactionsIncrementValueWithRead.php',
+            $db->name(),
+            self::$tableName,
+            $id
+        ]));
 
         $row = $db->execute('SELECT * FROM '. self::$tableName .' WHERE id = @id', [
             'parameters' => [
@@ -125,7 +107,7 @@ class TransactionTest extends SpannerTestCase
         ])->rows()->current();
 
         $this->assertEquals(2, $row['number']);
-        $this->assertTrue(count($iterations) > 2);
+        $this->assertTrue($iterations > 2);
     }
 
     /**
@@ -150,63 +132,10 @@ class TransactionTest extends SpannerTestCase
 
     /**
      * covers 76
+     *
+     * @requires extension pcntl
      */
     public function testAbortedErrorCausesRetry()
-    {
-        $db = self::$database;
-        $db2 = self::$database2;
-
-        $args = [
-            'id' => $this->randId(),
-            'it' => 0,
-            'pre' => null,
-            'edit' => null,
-            'post' => null
-        ];
-
-        $db->insert(self::$tableName, [
-            'id' => $args['id'],
-            'number' => 0
-        ]);
-
-        $db->runTransaction(function ($t) use ($db2, &$args) {
-            if ($args['it'] === 0) {
-                $row = $t->execute('SELECT * FROM '. self::$tableName .' WHERE id = @id', [
-                    'parameters' => ['id' => $args['id']]
-                ])->rows()->current();
-
-                $args['pre'] = $row['number'];
-
-                $db2->runTransaction(function ($t2) use (&$args) {
-                    $row = $t2->execute('SELECT * FROM '. self::$tableName .' WHERE id = @id', [
-                        'parameters' => ['id' => $args['id']]
-                    ])->rows()->current();
-
-                    $args['edit'] = $row['number']+1;
-                    $row['number'] = $args['edit'];
-                    $t2->replace(self::$tableName, $row);
-                    $t2->commit();
-                });
-            }
-
-            $args['it']++;
-
-            $row = $t->execute('SELECT * FROM '. self::$tableName .' WHERE id = @id', [
-                'parameters' => ['id' => $args['id']]
-            ])->rows()->current();
-
-            $args['post'] = $row['number'];
-            $this->assertEquals($row['number'], $args['post']);
-            $this->assertEquals($args['pre']+1, $row['number']);
-
-            $t->rollback();
-        });
-    }
-
-    /**
-     * covers 74
-     */
-    public function testConcurrentTransactionsIncrementValueWithExecute()
     {
         $db = self::$database;
         $db2 = self::$database2;
@@ -217,35 +146,13 @@ class TransactionTest extends SpannerTestCase
             'number' => 0
         ]);
 
-        $iteration = 0;
-        $db->runTransaction(function ($transaction) use ($db2, $id, &$iteration) {
-            $row = $transaction->execute('SELECT * FROM '. self::$tableName .' WHERE id = @id', [
-                'parameters' => [
-                    'id' => $id
-                ]
-            ])->rows()->current();
-
-            if ($iteration === 0) {
-                $db2->runTransaction(function ($t2) use ($id) {
-                    $row = $t2->execute('SELECT * FROM '. self::$tableName .' WHERE id = @id', [
-                        'parameters' => [
-                            'id' => $id
-                        ]
-                    ])->rows()->current();
-
-                    $row['number'] = $row['number']+1;
-
-                    $t2->update(self::$tableName, $row);
-                    $t2->commit();
-                });
-            }
-
-            $row['number'] = $row['number']+1;
-            $iteration++;
-
-            $transaction->update(self::$tableName, $row);
-            $transaction->commit();
-        });
+        $iterations = shell_exec(implode(' ', [
+            'php',
+            __DIR__ . '/pcntl/AbortedErrorCausesRetry.php',
+            $db->name(),
+            self::$tableName,
+            $id
+        ]));
 
         $row = $db->execute('SELECT * FROM '. self::$tableName .' WHERE id = @id', [
             'parameters' => [
@@ -254,6 +161,40 @@ class TransactionTest extends SpannerTestCase
         ])->rows()->current();
 
         $this->assertEquals(2, $row['number']);
+        $this->assertEquals(2, $iterations);
+    }
+
+    /**
+     * covers 74
+     *
+     * @requires extension pcntl
+     */
+    public function testConcurrentTransactionsIncrementValueWithExecute()
+    {
+        $db = self::$database;
+
+        $id = $this->randId();
+        $db->insert(self::$tableName, [
+            'id' => $id,
+            'number' => 0
+        ]);
+
+        $iterations = shell_exec(implode(' ', [
+            'php',
+            __DIR__ . '/pcntl/ConcurrentTransactionsIncrementValueWithExecute.php',
+            $db->name(),
+            self::$tableName,
+            $id
+        ]));
+
+        $row = $db->execute('SELECT * FROM '. self::$tableName .' WHERE id = @id', [
+            'parameters' => [
+                'id' => $id
+            ]
+        ])->rows()->current();
+
+        $this->assertEquals(2, $row['number']);
+        $this->assertTrue($iterations > 2);
     }
 
     public function testStrongRead()

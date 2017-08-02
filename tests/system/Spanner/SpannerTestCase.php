@@ -93,7 +93,10 @@ class SpannerTestCase extends SystemTestCase
 
     public static function getDatabaseInstance($dbName)
     {
-        $client = self::getClient();
-        return $client->connect(self::INSTANCE_NAME, $dbName);
+        $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
+
+        return (new SpannerClient([
+            'keyFilePath' => $keyFilePath
+        ]))->connect(self::INSTANCE_NAME, $dbName);
     }
 }
