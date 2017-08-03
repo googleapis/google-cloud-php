@@ -23,7 +23,7 @@ namespace Google\Cloud\ErrorReporting;
  * reporting.
  *
  * ```
- * auto_prepend_file = '/app/vendor/google/cloud-error-reporting/prepend.inc'
+ * auto_prepend_file = '/app/vendor/google/cloud-error-reporting/prepend.php'
  * ```
  *
  * @codingStandardsIgnoreFile
