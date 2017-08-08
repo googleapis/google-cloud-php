@@ -5,7 +5,7 @@ set -e
 function unit () {
   echo "Running Unit Test Suite"
 
-  $(dirname $0)/../../vendor/bin/phpunit
+  $(dirname $0)/../../vendor/bin/phpunit --debug
 }
 
 function snippets() {
