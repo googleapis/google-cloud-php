@@ -144,7 +144,7 @@ class DatastoreSessionHandler implements SessionHandlerInterface
      *     Configuration Options
      *
      *     @type array $defaultEntityOptions Default options to be passed to the
-     *           {@see Datastore::entity} method when writing session data to Datastore.
+     *           {@see \Google\Cloud\Datastore\DatastoreClient::entity} method when writing session data to Datastore.
      *           If not specified, defaults to [].
      * }
      */
@@ -217,9 +217,9 @@ class DatastoreSessionHandler implements SessionHandlerInterface
     /**
      * Write the session data to Cloud Datastore.
      *
-     * @param string $id Identifier used to construct a {@see Key} for the {@see Entity} to be written.
-     * @param string $data The session data to write to the {@see Entity}.
-     * @param array $entityOptions Optional arguments that will be passed to the {@see DatastoreClient::entity} method
+     * @param string $id Identifier used to construct a {@see \Google\Cloud\Datastore\Key} for the {@see \Google\Cloud\Datastore\Entity} to be written.
+     * @param string $data The session data to write to the {@see \Google\Cloud\Datastore\Entity}.
+     * @param array $entityOptions Optional arguments that will be passed to the {@see \Google\Cloud\Datastore\DatastoreClient::entity} method
      * @return bool
      */
     public function write($id, $data, $entityOptions = null)
