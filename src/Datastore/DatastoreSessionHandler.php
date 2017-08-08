@@ -130,6 +130,9 @@ class DatastoreSessionHandler implements SessionHandlerInterface
     /* @var Transaction */
     private $transaction;
 
+    /* @var array */
+    private $options;
+
     /**
      * Create a custom session handler backed by Cloud Datastore.
      *
@@ -137,14 +140,23 @@ class DatastoreSessionHandler implements SessionHandlerInterface
      * @param int $gcLimit [optional] A number of entities to delete in the
      *        garbage collection.  Defaults to 0 which means it does nothing.
      *        The value larger than 1000 will be cut down to 1000.
+     * @param array $options [optional]  {
+     *     Configuration Options
+     *
+     *     @type array $defaultEntityOptions Default options to be passed to the
+     *           {@see Datastore::entity} method when writing session data to Datastore.
+     *           If not specified, defaults to [].
+     * }
      */
     public function __construct(
         DatastoreClient $datastore,
-        $gcLimit = self::DEFAULT_GC_LIMIT
+        $gcLimit = self::DEFAULT_GC_LIMIT,
+        $options = []
     ) {
         $this->datastore = $datastore;
         // Cut down to 1000
         $this->gcLimit = min($gcLimit, 1000);
+        $this->options = $options;
     }
 
     /**
@@ -204,9 +216,21 @@ class DatastoreSessionHandler implements SessionHandlerInterface
 
     /**
      * Write the session data to Cloud Datastore.
+     *
+     * @param string $id Identifier used to construct a {@see Key} for the {@see Entity} to be written.
+     * @param string $data The session data to write to the {@see Entity}.
+     * @param array $entityOptions Optional arguments that will be passed to the {@see DatastoreClient::entity} method
+     * @return bool
      */
-    public function write($id, $data)
+    public function write($id, $data, $entityOptions = null)
     {
+        // Null default and check allows the user to override defaultEntityOptions with []
+        if (is_null($entityOptions)) {
+            $entityOptions = isset($this->options['defaultEntityOptions'])
+                ? $this->options['defaultEntityOptions']
+                : [];
+        }
+
         try {
             $key = $this->datastore->key(
                 $this->kind,
@@ -218,7 +242,8 @@ class DatastoreSessionHandler implements SessionHandlerInterface
                 [
                     'data' => $data,
                     't' => time()
-                ]
+                ],
+                $entityOptions
             );
             $this->transaction->upsert($entity);
             $this->transaction->commit();

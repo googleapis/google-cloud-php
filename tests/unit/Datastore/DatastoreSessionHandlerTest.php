@@ -190,7 +190,7 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
             ->shouldBeCalledTimes(1)
             ->willReturn($key);
         $that = $this;
-        $this->datastore->entity($key, Argument::type('array'))
+        $this->datastore->entity($key, Argument::type('array'), Argument::type('array'))
             ->will(function($args) use ($that, $key, $entity) {
                 $that->assertEquals($key, $args[0]);
                 $that->assertEquals('sessiondata', $args[1]['data']);
@@ -198,6 +198,7 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
                 $that->assertTrue(time() >= $args[1]['t']);
                 // 2 seconds grace period should be enough
                 $that->assertTrue(time() - $args[1]['t'] <= 2);
+                $that->assertEquals([], $args[2]);
                 return $entity;
             });
         $datastoreSessionHandler = new DatastoreSessionHandler(
@@ -234,7 +235,7 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
             ->shouldBeCalledTimes(1)
             ->willReturn($key);
         $that = $this;
-        $this->datastore->entity($key, Argument::type('array'))
+        $this->datastore->entity($key, Argument::type('array'), Argument::type('array'))
             ->will(function($args) use ($that, $key, $entity) {
                 $that->assertEquals($key, $args[0]);
                 $that->assertEquals('sessiondata', $args[1]['data']);
@@ -242,6 +243,7 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
                 $that->assertTrue(time() >= $args[1]['t']);
                 // 2 seconds grace period should be enough
                 $that->assertTrue(time() - $args[1]['t'] <= 2);
+                $that->assertEquals([], $args[2]);
                 return $entity;
             });
 
@@ -252,6 +254,141 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
         $ret = $datastoreSessionHandler->write('sessionid', $data);
 
         $this->assertEquals(false, $ret);
+    }
+
+    public function testWriteWithEntityOptions()
+    {
+        $data = 'sessiondata';
+        $key = new Key('projectid');
+        $key->pathElement(self::KIND, 'sessionid');
+        $entityOptions = ['excludeFromIndexes' => ['data']];
+        $entity = new Entity($key, ['data' => $data]);
+        $this->transaction->upsert($entity)
+            ->shouldBeCalledTimes(1);
+        $this->transaction->commit()
+            ->shouldBeCalledTimes(1);
+        $this->datastore->transaction()
+            ->shouldBeCalledTimes(1)
+            ->willReturn($this->transaction->reveal());
+        $this->datastore->key(
+            self::KIND,
+            'sessionid',
+            ['namespaceId' => self::NAMESPACE_ID]
+        )
+            ->shouldBeCalledTimes(1)
+            ->willReturn($key);
+        $that = $this;
+        $this->datastore->entity($key, Argument::type('array'), Argument::type('array'))
+            ->will(function($args) use ($that, $key, $entity) {
+                $that->assertEquals($key, $args[0]);
+                $that->assertEquals('sessiondata', $args[1]['data']);
+                $that->assertInternalType('int', $args[1]['t']);
+                $that->assertTrue(time() >= $args[1]['t']);
+                // 2 seconds grace period should be enough
+                $that->assertTrue(time() - $args[1]['t'] <= 2);
+                $that->assertEquals(['excludeFromIndexes' => ['data']], $args[2]);
+                return $entity;
+            });
+        $datastoreSessionHandler = new DatastoreSessionHandler(
+            $this->datastore->reveal()
+        );
+        $datastoreSessionHandler->open(self::NAMESPACE_ID, self::KIND);
+        $ret = $datastoreSessionHandler->write('sessionid', $data, $entityOptions);
+
+        $this->assertEquals(true, $ret);
+    }
+
+    public function testWriteWithDefaultEntityOptions()
+    {
+        $data = 'sessiondata';
+        $key = new Key('projectid');
+        $key->pathElement(self::KIND, 'sessionid');
+        $datastoreSessionHandlerOptions = [
+            'defaultEntityOptions' => ['excludeFromIndexes' => ['data']],
+        ];
+        $entity = new Entity($key, ['data' => $data]);
+        $this->transaction->upsert($entity)
+            ->shouldBeCalledTimes(1);
+        $this->transaction->commit()
+            ->shouldBeCalledTimes(1);
+        $this->datastore->transaction()
+            ->shouldBeCalledTimes(1)
+            ->willReturn($this->transaction->reveal());
+        $this->datastore->key(
+            self::KIND,
+            'sessionid',
+            ['namespaceId' => self::NAMESPACE_ID]
+        )
+            ->shouldBeCalledTimes(1)
+            ->willReturn($key);
+        $that = $this;
+        $this->datastore->entity($key, Argument::type('array'), Argument::type('array'))
+            ->will(function($args) use ($that, $key, $entity) {
+                $that->assertEquals($key, $args[0]);
+                $that->assertEquals('sessiondata', $args[1]['data']);
+                $that->assertInternalType('int', $args[1]['t']);
+                $that->assertTrue(time() >= $args[1]['t']);
+                // 2 seconds grace period should be enough
+                $that->assertTrue(time() - $args[1]['t'] <= 2);
+                $that->assertEquals(['excludeFromIndexes' => ['data']], $args[2]);
+                return $entity;
+            });
+        $datastoreSessionHandler = new DatastoreSessionHandler(
+            $this->datastore->reveal(),
+            DatastoreSessionHandler::DEFAULT_GC_LIMIT,
+            $datastoreSessionHandlerOptions
+        );
+        $datastoreSessionHandler->open(self::NAMESPACE_ID, self::KIND);
+        $ret = $datastoreSessionHandler->write('sessionid', $data);
+
+        $this->assertEquals(true, $ret);
+    }
+
+    public function testWriteWithOverrideDefaultEntityOptions()
+    {
+        $data = 'sessiondata';
+        $key = new Key('projectid');
+        $key->pathElement(self::KIND, 'sessionid');
+        $entityOptions = [];
+        $datastoreSessionHandlerOptions = [
+            'defaultEntityOptions' => ['excludeFromIndexes' => ['data']],
+        ];
+        $entity = new Entity($key, ['data' => $data]);
+        $this->transaction->upsert($entity)
+            ->shouldBeCalledTimes(1);
+        $this->transaction->commit()
+            ->shouldBeCalledTimes(1);
+        $this->datastore->transaction()
+            ->shouldBeCalledTimes(1)
+            ->willReturn($this->transaction->reveal());
+        $this->datastore->key(
+            self::KIND,
+            'sessionid',
+            ['namespaceId' => self::NAMESPACE_ID]
+        )
+            ->shouldBeCalledTimes(1)
+            ->willReturn($key);
+        $that = $this;
+        $this->datastore->entity($key, Argument::type('array'), Argument::type('array'))
+            ->will(function($args) use ($that, $key, $entity) {
+                $that->assertEquals($key, $args[0]);
+                $that->assertEquals('sessiondata', $args[1]['data']);
+                $that->assertInternalType('int', $args[1]['t']);
+                $that->assertTrue(time() >= $args[1]['t']);
+                // 2 seconds grace period should be enough
+                $that->assertTrue(time() - $args[1]['t'] <= 2);
+                $that->assertEquals([], $args[2]);
+                return $entity;
+            });
+        $datastoreSessionHandler = new DatastoreSessionHandler(
+            $this->datastore->reveal(),
+            DatastoreSessionHandler::DEFAULT_GC_LIMIT,
+            $datastoreSessionHandlerOptions
+        );
+        $datastoreSessionHandler->open(self::NAMESPACE_ID, self::KIND);
+        $ret = $datastoreSessionHandler->write('sessionid', $data, $entityOptions = []);
+
+        $this->assertEquals(true, $ret);
     }
 
     public function testDestroy()
