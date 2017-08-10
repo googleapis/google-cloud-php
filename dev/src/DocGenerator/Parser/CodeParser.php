@@ -180,8 +180,12 @@ class CodeParser implements ParserInterface
 
     private function getPath($fileReflector)
     {
-        $fileSplit = explode($this->basePath, trim($fileReflector->getFileName(), '/'));
-        return 'src/' . trim($fileSplit[1], '/');
+        if (strpos($fileReflector->getFileName(), $this->basePath) !== false) {
+            $fileSplit = explode($this->basePath, trim($fileReflector->getFileName(), '/'));
+            return 'src/' . trim($fileSplit[1], '/');
+        } else {
+            return 'src/'. trim(explode('src', $fileReflector->getFileName())[1]);
+        }
     }
 
     private function buildDocument($fileReflector, $reflector)
@@ -324,7 +328,7 @@ class CodeParser implements ParserInterface
     {
         $content = '';
         if (count($classInfo['parents']) > 0) {
-            $content .= $this->implodeInheritDocLinks(" > ", $classInfo['parents'], "Extends");
+            $content .= $this->implodeInheritDocLinks(" &raquo; ", $classInfo['parents'], "Extends");
         }
         if (count($classInfo['interfaces']) > 0) {
             $content .= $this->implodeInheritDocLinks(", ", $classInfo['interfaces'], "Implements");

@@ -19,12 +19,14 @@ namespace Google\Cloud\Tests\Unit;
 
 use Google\Cloud\BigQuery\BigQueryClient;
 use Google\Cloud\Datastore\DatastoreClient;
-use Google\Cloud\Logging\LoggingClient;
 use Google\Cloud\Language\LanguageClient;
+use Google\Cloud\Logging\LoggingClient;
 use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\ServiceBuilder;
+use Google\Cloud\Spanner\SpannerClient;
 use Google\Cloud\Speech\SpeechClient;
 use Google\Cloud\Storage\StorageClient;
+use Google\Cloud\Tests\GrpcTestTrait;
 use Google\Cloud\Translate\TranslateClient;
 use Google\Cloud\Vision\VisionClient;
 
@@ -33,11 +35,17 @@ use Google\Cloud\Vision\VisionClient;
  */
 class ServiceBuilderTest extends \PHPUnit_Framework_TestCase
 {
+    use GrpcTestTrait;
+
     /**
      * @dataProvider serviceProvider
      */
-    public function testBuildsClients($serviceName, $expectedClient, array $args = [])
+    public function testBuildsClients($serviceName, $expectedClient, array $args = [], callable $beforeCallable = null)
     {
+        if ($beforeCallable) {
+            call_user_func($beforeCallable);
+        }
+
         $serviceBuilder = new ServiceBuilder(['projectId' => 'myProject']);
         $config = [
             'projectId' => 'myProject',
@@ -79,6 +87,11 @@ class ServiceBuilderTest extends \PHPUnit_Framework_TestCase
             ], [
                 'pubsub',
                 PubSubClient::class
+            ], [
+                'spanner',
+                SpannerClient::class,
+                [],
+                [$this, 'checkAndSkipGrpcTests']
             ], [
                 'speech',
                 SpeechClient::class,
