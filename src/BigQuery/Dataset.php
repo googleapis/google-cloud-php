@@ -266,7 +266,7 @@ class Dataset
      * Example:
      * ```
      * $info = $dataset->info();
-     * echo $info['friendlyName'];
+     * echo $info['selfLink'];
      * ```
      *
      * @see https://cloud.google.com/bigquery/docs/reference/v2/datasets#resource Datasets resource documentation.
@@ -290,7 +290,7 @@ class Dataset
      * ```
      * $dataset->reload();
      * $info = $dataset->info();
-     * echo $info['friendlyName'];
+     * echo $info['selfLink'];
      * ```
      *
      * @see https://cloud.google.com/bigquery/docs/reference/v2/datasets/get Datasets get API documentation.

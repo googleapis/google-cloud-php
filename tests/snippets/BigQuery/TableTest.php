@@ -62,7 +62,8 @@ class TableTest extends SnippetTestCase
                     ]
                 ]
             ],
-            'friendlyName' => 'Jeffrey'
+            'friendlyName' => 'Jeffrey',
+            'selfLink' => 'https://www.googleapis.com/bigquery/v2/projects/my-project/datasets/mynewdataset',
         ];
 
         $this->mapper = new ValueMapper(false);
@@ -274,7 +275,7 @@ class TableTest extends SnippetTestCase
         $snippet->addLocal('table', $this->table);
 
         $res = $snippet->invoke();
-        $this->assertEquals('Jeffrey', $res->output());
+        $this->assertEquals('https://www.googleapis.com/bigquery/v2/projects/my-project/datasets/mynewdataset', $res->output());
     }
 
     public function testReload()
@@ -285,13 +286,13 @@ class TableTest extends SnippetTestCase
         $this->connection->getTable(Argument::any())
             ->shouldBeCalled()
             ->willReturn([
-                'friendlyName' => 'El Jefe'
+                'selfLink' => 'https://www.googleapis.com/bigquery/v2/projects/my-project/datasets/myupdateddataset'
             ]);
 
         $this->table->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke();
-        $this->assertEquals('El Jefe', $res->output());
+        $this->assertEquals('https://www.googleapis.com/bigquery/v2/projects/my-project/datasets/myupdateddataset', $res->output());
     }
 
     public function testId()

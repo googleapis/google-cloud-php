@@ -539,7 +539,7 @@ class Table
      * Example:
      * ```
      * $info = $table->info();
-     * echo $info['friendlyName'];
+     * echo $info['selfLink'];
      * ```
      *
      * @see https://cloud.google.com/bigquery/docs/reference/v2/tables#resource Tables resource documentation.
@@ -563,7 +563,7 @@ class Table
      * ```
      * $table->reload();
      * $info = $table->info();
-     * echo $info['friendlyName'];
+     * echo $info['selfLink'];
      * ```
      *
      * @see https://cloud.google.com/bigquery/docs/reference/v2/tables/get Tables get API documentation.
