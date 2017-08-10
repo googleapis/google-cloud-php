@@ -224,8 +224,9 @@ class Bucket
      *           Acceptable values include, `"authenticatedRead"`,
      *           `"bucketOwnerFullControl"`, `"bucketOwnerRead"`, `"private"`,
      *           `"projectPrivate"`, and `"publicRead"`.
-     *     @type array $metadata The available options for metadata are outlined
+     *     @type array $metadata The full list of available options are outlined
      *           at the [JSON API docs](https://cloud.google.com/storage/docs/json_api/v1/objects/insert#request-body).
+     *     @type array $metadata['metadata'] User-provided metadata, in key/value pairs.
      *     @type string $encryptionKey A base64 encoded AES-256 customer-supplied
      *           encryption key.
      *     @type string $encryptionKeySHA256 Base64 encoded SHA256 hash of the
