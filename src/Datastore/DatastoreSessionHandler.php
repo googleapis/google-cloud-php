@@ -224,7 +224,8 @@ class DatastoreSessionHandler implements SessionHandlerInterface
     /**
      * Write the session data to Cloud Datastore.
      *
-     * @param string $id Identifier used to construct a {@see \Google\Cloud\Datastore\Key} for the {@see \Google\Cloud\Datastore\Entity} to be written.
+     * @param string $id Identifier used to construct a {@see \Google\Cloud\Datastore\Key}
+     *        for the {@see \Google\Cloud\Datastore\Entity} to be written.
      * @param string $data The session data to write to the {@see \Google\Cloud\Datastore\Entity}.
      * @return bool
      */
