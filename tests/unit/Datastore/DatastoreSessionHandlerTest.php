@@ -348,6 +348,31 @@ class DatastoreSessionHandlerTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(true, $ret);
     }
 
+    /**
+     * @dataProvider invalidEntityOptions
+     * @expectedException InvalidArgumentException
+     */
+    public function testInvalidEntityOptions($datastoreSessionHandlerOptions)
+    {
+        new DatastoreSessionHandler(
+            $this->datastore->reveal(),
+            DatastoreSessionHandler::DEFAULT_GC_LIMIT,
+            $datastoreSessionHandlerOptions
+        );
+    }
+
+    public function invalidEntityOptions()
+    {
+        return [
+            [
+                ['entityOptions' => 1]
+            ],
+            [
+                ['entityOptions' => new \stdClass()]
+            ],
+        ];
+    }
+
     public function testDestroy()
     {
         $key = new Key('projectid');

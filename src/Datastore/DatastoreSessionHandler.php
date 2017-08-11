@@ -145,7 +145,7 @@ class DatastoreSessionHandler implements SessionHandlerInterface
      *
      *     @type array $entityOptions Default options to be passed to the
      *           {@see \Google\Cloud\Datastore\DatastoreClient::entity()} method when writing session data to Datastore.
-     *           If not specified, defaults to ['excludeFromIndexes' => ['data']].
+     *           If not specified, defaults to `['excludeFromIndexes' => ['data']]`.
      * }
      */
     public function __construct(
@@ -161,6 +161,13 @@ class DatastoreSessionHandler implements SessionHandlerInterface
             $options['entityOptions'] = [
                 'excludeFromIndexes' => ['data']
             ];
+        }
+        if (!is_array($options['entityOptions'])) {
+            throw new InvalidArgumentException(
+                'Optional argument `entityOptions` must be an array, got ' .
+                (is_object($options['entityOptions'])
+                    ? get_class($options['entityOptions'])
+                    : gettype($options['entityOptions'])));
         }
 
         $this->options = $options;
