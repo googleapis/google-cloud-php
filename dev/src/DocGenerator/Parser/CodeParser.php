@@ -24,6 +24,7 @@ use phpDocumentor\Reflection\ClassReflector;
 use phpDocumentor\Reflection\DocBlock\Description;
 use phpDocumentor\Reflection\DocBlock\Tag;
 use phpDocumentor\Reflection\DocBlock\Tag\SeeTag;
+use phpDocumentor\Reflection\DocBlock\Type\Collection;
 use phpDocumentor\Reflection\FileReflector;
 use phpDocumentor\Reflection\InterfaceReflector;
 use phpDocumentor\Reflection\TraitReflector;
@@ -583,7 +584,11 @@ class CodeParser implements ParserInterface
             list($type, $name, $description) = $nestedParam;
             $name = substr($name, 1);
             $description = preg_replace('/\s+/', ' ', $description);
-            $types = explode('|', $type);
+
+            $types = new Collection(
+                array($type),
+                $origParam->getDocBlock() ? $origParam->getDocBlock()->getContext() : null
+            );
 
             $paramsArray[] = [
                 'name' => substr($origParam->getVariableName(), 1) . '.' . $name,
