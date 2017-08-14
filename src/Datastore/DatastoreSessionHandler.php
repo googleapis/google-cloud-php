@@ -167,7 +167,8 @@ class DatastoreSessionHandler implements SessionHandlerInterface
                 'Optional argument `entityOptions` must be an array, got ' .
                 (is_object($options['entityOptions'])
                     ? get_class($options['entityOptions'])
-                    : gettype($options['entityOptions'])));
+                    : gettype($options['entityOptions']))
+            );
         }
 
         $this->options = $options;
