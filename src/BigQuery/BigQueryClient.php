@@ -19,11 +19,13 @@ namespace Google\Cloud\BigQuery;
 
 use Google\Cloud\BigQuery\Connection\ConnectionInterface;
 use Google\Cloud\BigQuery\Connection\Rest;
+use Google\Cloud\BigQuery\Job;
 use Google\Cloud\Core\ArrayTrait;
+use Google\Cloud\Core\ClientTrait;
+use Google\Cloud\Core\ExponentialBackoff;
+use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
-use Google\Cloud\Core\ClientTrait;
-use Google\Cloud\Core\Int64;
 use Psr\Cache\CacheItemPoolInterface;
 use Psr\Http\Message\StreamInterface;
 
@@ -138,14 +140,6 @@ class BigQueryClient
      * ```
      * $queryResults = $bigQuery->runQuery('SELECT commit FROM [bigquery-public-data:github_repos.commits] LIMIT 100');
      *
-     * $isComplete = $queryResults->isComplete();
-     *
-     * while (!$isComplete) {
-     *     sleep(1); // let's wait for a moment...
-     *     $queryResults->reload(); // trigger a network request
-     *     $isComplete = $queryResults->isComplete(); // check the query's status
-     * }
-     *
      * foreach ($queryResults->rows() as $row) {
      *     echo $row['commit'];
      * }
@@ -162,14 +156,6 @@ class BigQueryClient
      *     ]
      * ]);
      *
-     * $isComplete = $queryResults->isComplete();
-     *
-     * while (!$isComplete) {
-     *     sleep(1); // let's wait for a moment...
-     *     $queryResults->reload(); // trigger a network request
-     *     $isComplete = $queryResults->isComplete(); // check the query's status
-     * }
-     *
      * foreach ($queryResults->rows() as $row) {
      *     echo $row['commit'];
      * }
@@ -181,14 +167,6 @@ class BigQueryClient
      * $queryResults = $bigQuery->runQuery($query, [
      *     'parameters' => ['A commit message.']
      * ]);
-     *
-     * $isComplete = $queryResults->isComplete();
-     *
-     * while (!$isComplete) {
-     *     sleep(1); // let's wait for a moment...
-     *     $queryResults->reload(); // trigger a network request
-     *     $isComplete = $queryResults->isComplete(); // check the query's status
-     * }
      *
      * foreach ($queryResults->rows() as $row) {
      *     echo $row['commit'];
@@ -211,6 +189,8 @@ class BigQueryClient
      *           qualified in the format 'datasetId.tableId'.
      *     @type int $timeoutMs How long to wait for the query to complete, in
      *           milliseconds. **Defaults to** `10000` milliseconds (10 seconds).
+     *     @type int $maxRetries The number of times to retry, checking if the
+     *           query has completed. **Defaults to** `100`.
      *     @type bool $useQueryCache Whether to look for the result in the query
      *           cache.
      *     @type bool $useLegacySql Specifies whether to use BigQuery's legacy
@@ -223,20 +203,29 @@ class BigQueryClient
      *           named parameters will be used (`@name`).
      * }
      * @return QueryResults
+     * @throws \RuntimeException if the maximum number of retries while waiting
+     *         for query completion has been exceeded.
      */
     public function runQuery($query, array $options = [])
     {
+        $options += [
+            'maxRetries' => 100
+        ];
+
         if (isset($options['parameters'])) {
             $options += $this->formatQueryParameters($options['parameters']);
             unset($options['parameters']);
         }
 
+        $queryOptions = $options;
+        unset($queryOptions['timeoutMs'], $queryOptions['maxRetries']);
+
         $response = $this->connection->query([
             'projectId' => $this->projectId,
             'query' => $query
-        ] + $options);
+        ] + $queryOptions);
 
-        return new QueryResults(
+        $results = new QueryResults(
             $this->connection,
             $response['jobReference']['jobId'],
             $this->projectId,
@@ -244,6 +233,21 @@ class BigQueryClient
             $options,
             $this->mapper
         );
+
+        if (!$results->isComplete()) {
+            $retryFn = function (QueryResults $results, array $options) {
+                $results->reload($options);
+
+                if (!$results->isComplete()) {
+                    throw new \RuntimeException('Job did not complete within the allowed number of retries.');
+                }
+            };
+
+            $retry = new ExponentialBackoff($options['maxRetries']);
+            $retry->execute($retryFn, [$results, $options]);
+        }
+
+        return $results;
     }
 
     /**
