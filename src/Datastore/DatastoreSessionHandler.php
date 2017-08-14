@@ -130,6 +130,9 @@ class DatastoreSessionHandler implements SessionHandlerInterface
     /* @var Transaction */
     private $transaction;
 
+    /* @var array */
+    private $options;
+
     /**
      * Create a custom session handler backed by Cloud Datastore.
      *
@@ -137,14 +140,38 @@ class DatastoreSessionHandler implements SessionHandlerInterface
      * @param int $gcLimit [optional] A number of entities to delete in the
      *        garbage collection.  Defaults to 0 which means it does nothing.
      *        The value larger than 1000 will be cut down to 1000.
+     * @param array $options [optional]  {
+     *     Configuration Options
+     *
+     *     @type array $entityOptions Default options to be passed to the
+     *           {@see \Google\Cloud\Datastore\DatastoreClient::entity()} method when writing session data to Datastore.
+     *           If not specified, defaults to `['excludeFromIndexes' => ['data']]`.
+     * }
      */
     public function __construct(
         DatastoreClient $datastore,
-        $gcLimit = self::DEFAULT_GC_LIMIT
+        $gcLimit = self::DEFAULT_GC_LIMIT,
+        array $options = []
     ) {
         $this->datastore = $datastore;
         // Cut down to 1000
         $this->gcLimit = min($gcLimit, 1000);
+
+        if (!isset($options['entityOptions'])) {
+            $options['entityOptions'] = [
+                'excludeFromIndexes' => ['data']
+            ];
+        }
+        if (!is_array($options['entityOptions'])) {
+            throw new InvalidArgumentException(
+                'Optional argument `entityOptions` must be an array, got ' .
+                (is_object($options['entityOptions'])
+                    ? get_class($options['entityOptions'])
+                    : gettype($options['entityOptions']))
+            );
+        }
+
+        $this->options = $options;
     }
 
     /**
@@ -204,6 +231,11 @@ class DatastoreSessionHandler implements SessionHandlerInterface
 
     /**
      * Write the session data to Cloud Datastore.
+     *
+     * @param string $id Identifier used to construct a {@see \Google\Cloud\Datastore\Key}
+     *        for the {@see \Google\Cloud\Datastore\Entity} to be written.
+     * @param string $data The session data to write to the {@see \Google\Cloud\Datastore\Entity}.
+     * @return bool
      */
     public function write($id, $data)
     {
@@ -218,7 +250,8 @@ class DatastoreSessionHandler implements SessionHandlerInterface
                 [
                     'data' => $data,
                     't' => time()
-                ]
+                ],
+                $this->options['entityOptions']
             );
             $this->transaction->upsert($entity);
             $this->transaction->commit();
