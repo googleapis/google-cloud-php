@@ -19,7 +19,6 @@ namespace Google\Cloud\BigQuery;
 
 use Google\Cloud\BigQuery\Connection\ConnectionInterface;
 use Google\Cloud\BigQuery\Connection\Rest;
-use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Core\ClientTrait;
@@ -41,7 +40,6 @@ use Psr\Http\Message\StreamInterface;
  */
 class BigQueryClient
 {
-    use ArrayTrait;
     use ClientTrait;
     use JobConfigurationTrait;
 
@@ -287,6 +285,8 @@ class BigQueryClient
      *     @type array $jobConfig Configuration settings for a query job are
      *           outlined in the [API Docs for `configuration.query`](https://goo.gl/PuRa3I).
      *           If not provided default settings will be used.
+     *     @type string $jobIdPrefix [optional] If given, the returned job ID will
+     *           be of format `{$jobIdPrefix-}{jobId}`. **Defaults to** `null`.
      * }
      * @return Job
      */

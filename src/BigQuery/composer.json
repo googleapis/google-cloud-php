@@ -4,7 +4,8 @@
     "license": "Apache-2.0",
     "minimum-stability": "stable",
     "require": {
-        "google/cloud-core": "^1.0"
+        "google/cloud-core": "^1.0",
+        "ramsey/uuid": "~3"
     },
     "suggest": {
         "google/cloud-storage": "Makes it easier to load data from Cloud Storage into BigQuery"
