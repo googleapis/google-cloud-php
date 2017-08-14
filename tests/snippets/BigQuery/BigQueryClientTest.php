@@ -79,7 +79,6 @@ class BigQueryClientTest extends SnippetTestCase
     {
         $snippet = $this->snippetFromMethod(BigQueryClient::class, 'runQuery');
         $snippet->addLocal('bigQuery', $this->client);
-        $snippet->replace('sleep(1);', '');
         $this->connection->query(Argument::any())
             ->shouldBeCalled()
             ->willReturn([
@@ -102,7 +101,6 @@ class BigQueryClientTest extends SnippetTestCase
     {
         $snippet = $this->snippetFromMethod(BigQueryClient::class, 'runQuery', 1);
         $snippet->addLocal('bigQuery', $this->client);
-        $snippet->replace('sleep(1);', '');
         $this->connection
             ->query(Argument::withEntry('queryParameters', [
                 [
@@ -145,7 +143,6 @@ class BigQueryClientTest extends SnippetTestCase
     {
         $snippet = $this->snippetFromMethod(BigQueryClient::class, 'runQuery', 2);
         $snippet->addLocal('bigQuery', $this->client);
-        $snippet->replace('sleep(1);', '');
         $this->connection
             ->query(Argument::withEntry('queryParameters', [
                 [
