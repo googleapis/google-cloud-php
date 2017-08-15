@@ -59,6 +59,8 @@ use InvalidArgumentException;
  */
 class BackoffSettings
 {
+    use ValidationTrait;
+
     private $initialRetryDelayMillis;
     private $retryDelayMultiplier;
     private $maxRetryDelayMillis;
@@ -81,6 +83,7 @@ class BackoffSettings
      *     @type integer $max_rpc_timeout_millis The max timout of rpc call in milliseconds.
      *     @type integer $total_timeout_millis The max accumulative timeout in total.
      * }
+     * @return BackoffSettings
      */
     public static function fromSnakeCase($settings)
     {
@@ -110,7 +113,15 @@ class BackoffSettings
      */
     public function __construct($settings)
     {
-        self::validate($settings);
+        $this->validateNotNull($settings, [
+            'initialRetryDelayMillis',
+            'retryDelayMultiplier',
+            'maxRetryDelayMillis',
+            'initialRpcTimeoutMillis',
+            'rpcTimeoutMultiplier',
+            'maxRpcTimeoutMillis',
+            'totalTimeoutMillis'
+        ]);
         $this->initialRetryDelayMillis = $settings['initialRetryDelayMillis'];
         $this->retryDelayMultiplier = $settings['retryDelayMultiplier'];
         $this->maxRetryDelayMillis = $settings['maxRetryDelayMillis'];
@@ -153,17 +164,5 @@ class BackoffSettings
     public function getTotalTimeoutMillis()
     {
         return $this->totalTimeoutMillis;
-    }
-
-    private static function validate($settings)
-    {
-        $requiredFields = ['initialRetryDelayMillis',
-            'retryDelayMultiplier', 'maxRetryDelayMillis', 'initialRpcTimeoutMillis',
-            'rpcTimeoutMultiplier', 'maxRpcTimeoutMillis', 'totalTimeoutMillis'];
-        foreach ($requiredFields as $field) {
-            if (empty($settings[$field])) {
-                throw new InvalidArgumentException("$field is required for BackoffSettings");
-            }
-        }
     }
 }

@@ -1,6 +1,7 @@
 <?php
 /*
- * Copyright 2017, Google Inc. All rights reserved.
+ * Copyright 2017, Google Inc.
+ * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -28,31 +29,39 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+namespace Google\GAX;
 
-/*
- * GENERATED CODE WARNING
- * This file was automatically generated - do not edit!
- */
-
-namespace Google\GAX\Testing\LongRunning;
-
-use Google\GAX\ApiException;
-use Google\GAX\BidiStream;
-use Google\GAX\GrpcCredentialsHelper;
-use Google\GAX\LongRunning\OperationsClient;
-use Google\GAX\ServerStream;
-use Google\GAX\Testing\GeneratedTest;
-use Google\GAX\Testing\LongRunning\MockOperationsImpl;
-use Google\GAX\Testing\MockStubTrait;
-use Google\Longrunning\GetOperationRequest;
-use Google\Longrunning\OperationsGrpcClient;
-use Google\Protobuf\Any;
-use Google\Protobuf\GPBEmpty;
-use Grpc;
-use PHPUnit_Framework_TestCase;
-use stdClass;
-
-class MockOperationsImpl extends OperationsGrpcClient
+trait ValidationTrait
 {
-    use MockStubTrait;
+    /**
+     * @param array $arr Associative array
+     * @param array $requiredKeys List of keys to check for in $arr
+     * @return array Returns $arr for fluent use
+     */
+    public function validate($arr, $requiredKeys)
+    {
+        return $this->validateImpl($arr, $requiredKeys, true);
+    }
+
+    /**
+     * @param array $arr Associative array
+     * @param array $requiredKeys List of keys to check for in $arr
+     * @return array Returns $arr for fluent use
+     */
+    public function validateNotNull($arr, $requiredKeys)
+    {
+        return $this->validateImpl($arr, $requiredKeys, false);
+    }
+
+    private function validateImpl($arr, $requiredKeys, $allowNull)
+    {
+        foreach ($requiredKeys as $requiredKey) {
+            $valid = array_key_exists($requiredKey, $arr)
+                && ($allowNull || !is_null($arr[$requiredKey]));
+            if (!$valid) {
+                throw new ValidationException("Missing required argument $requiredKey");
+            }
+        }
+        return $arr;
+    }
 }

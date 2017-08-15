@@ -42,53 +42,82 @@ use Grpc\ChannelCredentials;
  */
 class GrpcCredentialsHelper
 {
-    private $scopes;
-    private $credentialsLoader;
+    use ValidationTrait;
+
+    private $args;
 
     /**
      * Accepts an optional credentialsLoader argument, to be used instead of using
      * the ApplicationDefaultCredentials
      *
-     * @param string[] $scopes A list of scopes required for API access
+     * @param array $args {
+     *     Required. An array of required and optional arguments. Arguments in addition to those documented below
+     *     will be passed as optional arguments to Google\Auth\FetchAuthTokenCache when caching is enabled.
      *
-     * @param array $optionalArgs {
-     *     Optional arguments. Arguments in addition to those documented below
-     *     will be passed as optional arguments to Google\Auth\FetchAuthTokenCache
-     *     when caching is enabled.
-     *
-     *     @var \Google\Auth\CredentialsLoader $credentialsLoader
-     *          A user-created CredentialsLoader object. Defaults to using
-     *          ApplicationDefaultCredentials
-     *     @var boolean $enableCaching
-     *          Enable caching of access tokens. Defaults to true
+     *     @type string $serviceAddress
+     *           Required. The domain name of the API remote host.
+     *     @type mixed $port
+     *           Required. The port on which to connect to the remote host.
+     *     @type string[] $scopes
+     *           Optional. A list of scopes required for API access.
+     *           Exactly one of $scopes or $credentialsLoader must be provided.
+     *           NOTE: if $credentialsLoader is provided, this argument is ignored.
+     *     @type \Google\Auth\CredentialsLoader $credentialsLoader
+     *           Optional. A user-created CredentialsLoader object. Defaults to using
+     *           ApplicationDefaultCredentials with the provided $scopes argument.
+     *           Exactly one of $scopes or $credentialsLoader must be provided.
+     *     @type \Grpc\Channel $channel
+     *           Optional. A `Channel` object to be used by gRPC. If not specified, a channel will be constructed.
+     *     @type \Grpc\ChannelCredentials $sslCreds
+     *           Optional. A `ChannelCredentials` object for use with an SSL-enabled channel.
+     *           Default: a credentials object returned from
+     *           \Grpc\ChannelCredentials::createSsl()
+     *           NOTE: if the $channel optional argument is specified, then this option is unused.
+     *     @type bool $forceNewChannel
+     *           Optional. If true, this forces gRPC to create a new channel instead of using a persistent channel.
+     *           Defaults to false.
+     *           NOTE: if the $channel optional argument is specified, then this option is unused.
+     *     @type boolean $enableCaching
+     *           Optional. Enable caching of access tokens. Defaults to true.
      * }
-     *
      */
-    public function __construct($scopes, $optionalArgs = [])
+    public function __construct($args)
     {
+        $this->validateNotNull($args, [
+            'serviceAddress',
+            'port',
+        ]);
+
         $defaultOptions = [
-            'credentialsLoader' => null,
+            'forceNewChannel' => false,
             'enableCaching' => true,
         ];
-        $opts = array_merge($defaultOptions, $optionalArgs);
-        $cachingOptions = array_diff_key($opts, $defaultOptions);
+        $args = array_merge($defaultOptions, $args);
 
-        $this->scopes = $scopes;
-
-        if (isset($opts['credentialsLoader'])) {
-            $credentialsLoader = $opts['credentialsLoader'];
-        } else {
-            $credentialsLoader = $this->getADCCredentials($scopes);
+        if (empty($args['credentialsLoader'])) {
+            $this->validateNotNull($args, ['scopes']);
+            $args['credentialsLoader'] = $this->getADCCredentials($args['scopes']);
         }
 
-        if ($opts['enableCaching']) {
-            $credentialsLoader = new FetchAuthTokenCache(
-                $credentialsLoader,
+        if ($args['enableCaching']) {
+            $cachingOptions = array_diff_key($args, array_flip([
+                'serviceAddress',
+                'port',
+                'scopes',
+                'credentialsLoader',
+                'channel',
+                'sslCreds',
+                'forceNewChannel',
+                'enableCaching'
+            ]));
+            $args['credentialsLoader'] = new FetchAuthTokenCache(
+                $args['credentialsLoader'],
                 $cachingOptions,
                 new MemoryCacheItemPool()
             );
         }
-        $this->credentialsLoader = $credentialsLoader;
+
+        $this->args = $args;
     }
 
     /**
@@ -99,7 +128,7 @@ class GrpcCredentialsHelper
      */
     public function createCallCredentialsCallback()
     {
-        $credentialsLoader = $this->credentialsLoader;
+        $credentialsLoader = $this->args['credentialsLoader'];
         $callback = function () use ($credentialsLoader) {
             $token = $credentialsLoader->fetchAuthToken();
             return ['authorization' => array('Bearer ' . $token['access_token'])];
@@ -107,48 +136,50 @@ class GrpcCredentialsHelper
         return $callback;
     }
 
-    // TODO(garrettjones):
-    // add:
-    //   1. (when supported in gRPC) channel
     /**
      * Creates a gRPC client stub.
      *
      * @param callable $generatedCreateStub
-     *        Function callback which must accept two arguments ($hostname, $opts)
+     *        Function callback which must accept three arguments ($hostname, $opts, $channel)
      *        and return an instance of the stub of the specific API to call.
      *        Generally, this should just call the stub's constructor and return
      *        the instance.
-     * @param string $serviceAddress The domain name of the API remote host.
-     * @param mixed $port The port on which to connect to the remote host.
-     * @param array $options {
-     *     Optional. Options for configuring the gRPC stub.
-     *
-     *     @type \Grpc\ChannelCredentials $sslCreds
-     *           A `ChannelCredentials` for use with an SSL-enabled channel.
-     *           Default: a credentials object returned from
-     *           \Grpc\ChannelCredentials::createSsl()
-     * }
+     * @param array $args Optional parameters that override those set in the GrpcCredentialsHelper constructor
      * @return \Grpc\BaseStub
      */
-    public function createStub($generatedCreateStub, $serviceAddress, $port, $options = [])
+    public function createStub($generatedCreateStub, $args = [])
     {
+        $args = array_merge($this->args, $args);
+
         $stubOpts = [];
         // We need to use array_key_exists here because null is a valid value
-        if (!array_key_exists('sslCreds', $options)) {
+        if (!array_key_exists('sslCreds', $args)) {
             $stubOpts['credentials'] = $this->createSslChannelCredentials();
         } else {
-            $stubOpts['credentials'] = $options['sslCreds'];
+            $stubOpts['credentials'] = $args['sslCreds'];
         }
 
+        $serviceAddress = $args['serviceAddress'];
+        $port = $args['port'];
         $fullAddress = "$serviceAddress:$port";
         $stubOpts['grpc.ssl_target_name_override'] = $fullAddress;
 
-        return $generatedCreateStub($fullAddress, $stubOpts);
+        if (isset($args['channel'])) {
+            $channel = $args['channel'];
+        } else {
+            $channel = null;
+        }
+
+        if (isset($args['forceNewChannel']) && $args['forceNewChannel']) {
+            $stubOpts['force_new'] = true;
+        }
+        return $generatedCreateStub($fullAddress, $stubOpts, $channel);
     }
 
     /**
      * Gets credentials from ADC. This exists to allow overriding in unit tests.
      *
+     * @param string[] $scopes
      * @return CredentialsLoader
      */
     protected function getADCCredentials($scopes)
