@@ -122,6 +122,22 @@ class TableTest extends \PHPUnit_Framework_TestCase
 
     public function testUpdatesData()
     {
+        $updateData = ['friendlyName' => 'wow a name', 'etag' => 'foo'];
+        $this->connection->patchTable(Argument::that(function ($args) {
+            if ($args['restOptions']['headers']['If-Match'] !== 'foo') return false;
+
+            return true;
+        }))
+            ->willReturn($updateData)
+            ->shouldBeCalledTimes(1);
+        $table = $this->getTable($this->connection, ['friendlyName' => 'another name']);
+        $table->update($updateData);
+
+        $this->assertEquals($updateData['friendlyName'], $table->info()['friendlyName']);
+    }
+
+    public function testUpdatesDataWithEtag()
+    {
         $updateData = ['friendlyName' => 'wow a name'];
         $this->connection->patchTable(Argument::any())
             ->willReturn($updateData)

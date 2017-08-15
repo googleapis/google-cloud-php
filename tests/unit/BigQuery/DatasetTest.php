@@ -94,6 +94,22 @@ class DatasetTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($updateData['friendlyName'], $dataset->info()['friendlyName']);
     }
 
+    public function testUpdatesDataWithEtag()
+    {
+        $updateData = ['friendlyName' => 'wow a name', 'etag' => 'foo'];
+        $this->connection->patchDataset(Argument::that(function ($args) {
+            if ($args['restOptions']['headers']['If-Match'] !== 'foo') return false;
+
+            return true;
+        }))
+            ->willReturn($updateData)
+            ->shouldBeCalledTimes(1);
+        $dataset = $this->getDataset($this->connection, ['friendlyName' => 'another name']);
+        $dataset->update($updateData);
+
+        $this->assertEquals($updateData['friendlyName'], $dataset->info()['friendlyName']);
+    }
+
     public function testGetsTable()
     {
         $dataset = $this->getDataset($this->connection);
