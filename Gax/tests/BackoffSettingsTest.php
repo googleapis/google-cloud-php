@@ -31,15 +31,14 @@
  */
 namespace Google\GAX\UnitTests;
 
-use Google\GAX\ApiCallable;
-use Google\GAX\RetrySettings;
 use Google\GAX\BackoffSettings;
+use Google\GAX\ValidationException;
 use PHPUnit_Framework_TestCase;
 
 class BackoffSettingsTest extends PHPUnit_Framework_TestCase
 {
     /**
-     * @expectedException \InvalidArgumentException
+     * @expectedException \Google\GAX\ValidationException
      */
     public function testBackoffSettingsMissingFields()
     {
