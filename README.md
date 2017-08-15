@@ -29,9 +29,56 @@ If you need support for other Google APIs, please check out the [Google APIs Cli
 
 ## Quick Start
 
+We recommend installing individual component packages when possible. A list of available packages can be found on [Packagist](https://packagist.org/search/?q=google%2Fgoogle-cloud-).
+
+For example:
+
+```sh
+$ composer require google/cloud-bigquery
+$ composer require google/cloud-datastore
+```
+
+We also provide the `google/cloud` package, which includes all Google Cloud clients.
+
 ```sh
 $ composer require google/cloud
 ```
+
+### Authentication
+
+Authentication is handled by the client library automatically. You just need to provide the authentication details when creating a client. Generally, authentication is accomplished using a Service Account. For more information on obtaining Service Account credentials, see our [Authentication Guide](https://googlecloudplatform.github.io/google-cloud-php/#/docs/google-cloud/latest/guides/authentication).
+
+Once you've obtained your credentials file, it may be used to create an authenticated client.
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\ServiceBuilder;
+
+// Authenticate using a keyfile path
+$cloud = new ServiceBuilder([
+    'keyFilePath' => 'path/to/keyfile.json'
+]);
+
+// Authenticate using keyfile data
+$cloud = new ServiceBuilder([
+    'keyFile' => json_decode(file_get_contents('/path/to/keyfile.json'), true)
+]);
+```
+
+If you do not wish to embed your authentication information in your application code, you may also make use of [Application Default Credentials](https://developers.google.com/identity/protocols/application-default-credentials).
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\ServiceBuilder;
+
+putenv('GOOGLE_APPLICATION_CREDENTIALS=/path/to/keyfile.json');
+
+$cloud = new ServiceBuilder();
+```
+
+The `GOOGLE_APPLICATION_CREDENTIALS` environment variable may be set in your server configuration.
 
 ## Google Stackdriver Logging (GA)
 
@@ -136,7 +183,7 @@ $bucket->upload(
 );
 
 // Using Predefined ACLs to manage object permissions, you may
-// upload a file and give read access to anyone with the URL. 
+// upload a file and give read access to anyone with the URL.
 $bucket->upload(
     fopen('/data/file.txt', 'r'),
     [
