@@ -97,8 +97,8 @@ class ReportErrorsServiceGapicClient
 
     private static $projectNameTemplate;
 
-    private $grpcCredentialsHelper;
-    private $reportErrorsServiceStub;
+    protected $grpcCredentialsHelper;
+    protected $reportErrorsServiceStub;
     private $scopes;
     private $defaultCallSettings;
     private $descriptors;
@@ -153,7 +153,6 @@ class ReportErrorsServiceGapicClient
         }
     }
 
-    // TODO(garrettjones): add channel (when supported in gRPC)
     /**
      * Constructor.
      *
@@ -163,12 +162,21 @@ class ReportErrorsServiceGapicClient
      *     @type string $serviceAddress The domain name of the API remote host.
      *                                  Default 'clouderrorreporting.googleapis.com'.
      *     @type mixed $port The port on which to connect to the remote host. Default 443.
+     *     @type \Grpc\Channel $channel
+     *           A `Channel` object to be used by gRPC. If not specified, a channel will be constructed.
      *     @type \Grpc\ChannelCredentials $sslCreds
-     *           A `ChannelCredentials` for use with an SSL-enabled channel.
+     *           A `ChannelCredentials` object for use with an SSL-enabled channel.
      *           Default: a credentials object returned from
      *           \Grpc\ChannelCredentials::createSsl()
+     *           NOTE: if the $channel optional argument is specified, then this argument is unused.
+     *     @type bool $forceNewChannel
+     *           If true, this forces gRPC to create a new channel instead of using a persistent channel.
+     *           Defaults to false.
+     *           NOTE: if the $channel optional argument is specified, then this option is unused.
+     *     @type \Google\Auth\CredentialsLoader $credentialsLoader
+     *           A CredentialsLoader object created using the Google\Auth library.
      *     @type array $scopes A string array of scopes to use when acquiring credentials.
-     *                         Default the scopes for the Stackdriver Error Reporting API.
+     *                          Defaults to the scopes for the Stackdriver Error Reporting API.
      *     @type array $retryingOverride
      *           An associative array of string => RetryOptions, where the keys
      *           are method names (e.g. 'createFoo'), that overrides default retrying
@@ -178,9 +186,6 @@ class ReportErrorsServiceGapicClient
      *                              that don't use retries. For calls that use retries,
      *                              set the timeout in RetryOptions.
      *                              Default: 30000 (30 seconds)
-     *     @type \Google\Auth\CredentialsLoader $credentialsLoader
-     *                              A CredentialsLoader object created using the
-     *                              Google\Auth library.
      * }
      * @experimental
      */
@@ -229,21 +234,15 @@ class ReportErrorsServiceGapicClient
         if (array_key_exists('sslCreds', $options)) {
             $createStubOptions['sslCreds'] = $options['sslCreds'];
         }
-        $grpcCredentialsHelperOptions = array_diff_key($options, $defaultOptions);
-        $this->grpcCredentialsHelper = new GrpcCredentialsHelper($this->scopes, $grpcCredentialsHelperOptions);
+        $this->grpcCredentialsHelper = new GrpcCredentialsHelper($options);
 
-        $createReportErrorsServiceStubFunction = function ($hostname, $opts) {
-            return new ReportErrorsServiceGrpcClient($hostname, $opts);
+        $createReportErrorsServiceStubFunction = function ($hostname, $opts, $channel) {
+            return new ReportErrorsServiceGrpcClient($hostname, $opts, $channel);
         };
         if (array_key_exists('createReportErrorsServiceStubFunction', $options)) {
             $createReportErrorsServiceStubFunction = $options['createReportErrorsServiceStubFunction'];
         }
-        $this->reportErrorsServiceStub = $this->grpcCredentialsHelper->createStub(
-            $createReportErrorsServiceStubFunction,
-            $options['serviceAddress'],
-            $options['port'],
-            $createStubOptions
-        );
+        $this->reportErrorsServiceStub = $this->grpcCredentialsHelper->createStub($createReportErrorsServiceStubFunction);
     }
 
     /**

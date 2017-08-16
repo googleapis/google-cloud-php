@@ -127,8 +127,8 @@ class GroupServiceGapicClient
     private static $projectNameTemplate;
     private static $groupNameTemplate;
 
-    private $grpcCredentialsHelper;
-    private $groupServiceStub;
+    protected $grpcCredentialsHelper;
+    protected $groupServiceStub;
     private $scopes;
     private $defaultCallSettings;
     private $descriptors;
@@ -267,7 +267,6 @@ class GroupServiceGapicClient
         }
     }
 
-    // TODO(garrettjones): add channel (when supported in gRPC)
     /**
      * Constructor.
      *
@@ -277,12 +276,21 @@ class GroupServiceGapicClient
      *     @type string $serviceAddress The domain name of the API remote host.
      *                                  Default 'monitoring.googleapis.com'.
      *     @type mixed $port The port on which to connect to the remote host. Default 443.
+     *     @type \Grpc\Channel $channel
+     *           A `Channel` object to be used by gRPC. If not specified, a channel will be constructed.
      *     @type \Grpc\ChannelCredentials $sslCreds
-     *           A `ChannelCredentials` for use with an SSL-enabled channel.
+     *           A `ChannelCredentials` object for use with an SSL-enabled channel.
      *           Default: a credentials object returned from
      *           \Grpc\ChannelCredentials::createSsl()
+     *           NOTE: if the $channel optional argument is specified, then this argument is unused.
+     *     @type bool $forceNewChannel
+     *           If true, this forces gRPC to create a new channel instead of using a persistent channel.
+     *           Defaults to false.
+     *           NOTE: if the $channel optional argument is specified, then this option is unused.
+     *     @type \Google\Auth\CredentialsLoader $credentialsLoader
+     *           A CredentialsLoader object created using the Google\Auth library.
      *     @type array $scopes A string array of scopes to use when acquiring credentials.
-     *                         Default the scopes for the Stackdriver Monitoring API.
+     *                          Defaults to the scopes for the Stackdriver Monitoring API.
      *     @type array $retryingOverride
      *           An associative array of string => RetryOptions, where the keys
      *           are method names (e.g. 'createFoo'), that overrides default retrying
@@ -292,9 +300,6 @@ class GroupServiceGapicClient
      *                              that don't use retries. For calls that use retries,
      *                              set the timeout in RetryOptions.
      *                              Default: 30000 (30 seconds)
-     *     @type \Google\Auth\CredentialsLoader $credentialsLoader
-     *                              A CredentialsLoader object created using the
-     *                              Google\Auth library.
      * }
      * @experimental
      */
@@ -355,21 +360,15 @@ class GroupServiceGapicClient
         if (array_key_exists('sslCreds', $options)) {
             $createStubOptions['sslCreds'] = $options['sslCreds'];
         }
-        $grpcCredentialsHelperOptions = array_diff_key($options, $defaultOptions);
-        $this->grpcCredentialsHelper = new GrpcCredentialsHelper($this->scopes, $grpcCredentialsHelperOptions);
+        $this->grpcCredentialsHelper = new GrpcCredentialsHelper($options);
 
-        $createGroupServiceStubFunction = function ($hostname, $opts) {
-            return new GroupServiceGrpcClient($hostname, $opts);
+        $createGroupServiceStubFunction = function ($hostname, $opts, $channel) {
+            return new GroupServiceGrpcClient($hostname, $opts, $channel);
         };
         if (array_key_exists('createGroupServiceStubFunction', $options)) {
             $createGroupServiceStubFunction = $options['createGroupServiceStubFunction'];
         }
-        $this->groupServiceStub = $this->grpcCredentialsHelper->createStub(
-            $createGroupServiceStubFunction,
-            $options['serviceAddress'],
-            $options['port'],
-            $createStubOptions
-        );
+        $this->groupServiceStub = $this->grpcCredentialsHelper->createStub($createGroupServiceStubFunction);
     }
 
     /**
