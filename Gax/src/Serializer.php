@@ -31,12 +31,9 @@
  */
 namespace Google\GAX;
 
-use Google\Protobuf\Internal\Descriptor;
-use Google\Protobuf\Internal\DescriptorPool;
-use Google\Protobuf\Internal\FieldDescriptor;
-use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\MapField;
-use Google\Protobuf\Internal\Message;
+use Google\Protobuf\Descriptor;
+use Google\Protobuf\DescriptorPool;
+use Google\Protobuf\FieldDescriptor;
 use RuntimeException;
 
 /**
@@ -44,6 +41,9 @@ use RuntimeException;
  */
 class Serializer
 {
+    const MAP_KEY_FIELD_NAME = 'key';
+    const MAP_VALUE_FIELD_NAME = 'value';
+
     private static $phpArraySerializer;
 
     private static $metadataKnownTypes = [
@@ -60,6 +60,8 @@ class Serializer
     private $fieldTransformers;
     private $messageTypeTransformers;
 
+    private $descriptorMaps = [];
+
     /**
      * Serializer constructor.
      *
@@ -75,10 +77,10 @@ class Serializer
     /**
      * Encode protobuf message as a PHP array
      *
-     * @param Message $message
+     * @param mixed $message
      * @return array
      */
-    public function encodeMessage(Message $message)
+    public function encodeMessage($message)
     {
         // Get message descriptor
         $pool = DescriptorPool::getGeneratedPool();
@@ -87,13 +89,13 @@ class Serializer
     }
 
     /**
-     * Decode protobuf array into the specified protobuf message
+     * Decode PHP array into the specified protobuf message
      *
-     * @param Message $message
+     * @param mixed $message
      * @param array $data
-     * @return Message
+     * @return mixed
      */
-    public function decodeMessage(Message $message, $data)
+    public function decodeMessage($message, $data)
     {
         // Get message descriptor
         $pool = DescriptorPool::getGeneratedPool();
@@ -166,9 +168,6 @@ class Serializer
                 if (is_array($data)) {
                     $result = $data;
                 } else {
-                    if (!($data instanceof Message)) {
-                        throw new RuntimeException("Expected message, instead got " . get_class($data));
-                    }
                     $result = $this->encodeMessageImpl($data, $field->getMessageType());
                 }
                 $messageType = $field->getMessageType()->getFullName();
@@ -187,38 +186,65 @@ class Serializer
         return $result;
     }
 
-    private function encodeMessageImpl(Message $message, Descriptor $messageType)
+    private function getDescriptorMaps(Descriptor $descriptor)
+    {
+        if (!isset($this->descriptorMaps[$descriptor->getFullName()])) {
+            $fieldsByName = [];
+            $fieldCount = $descriptor->getFieldCount();
+            for ($i = 0; $i < $fieldCount; $i++) {
+                $field = $descriptor->getField($i);
+                $fieldsByName[$field->getName()] = $field;
+            }
+            $fieldToOneof = [];
+            $oneofCount = $descriptor->getOneofDeclCount();
+            for ($i = 0; $i < $oneofCount; $i++) {
+                $oneof = $descriptor->getOneofDecl($i);
+                $oneofFieldCount = $oneof->getFieldCount();
+                for ($j = 0; $j < $oneofFieldCount; $j++) {
+                    $field = $oneof->getField($j);
+                    $fieldToOneof[$field->getName()] = $oneof->getName();
+                }
+            }
+            $this->descriptorMaps[$descriptor->getFullName()] = [$fieldsByName, $fieldToOneof];
+        }
+        return $this->descriptorMaps[$descriptor->getFullName()];
+    }
+
+    private function encodeMessageImpl($message, Descriptor $messageType)
     {
         $data = [];
 
-        foreach ($messageType->getField() as $field) {
-            /** @var FieldDescriptor $field */
+        $fieldCount = $messageType->getFieldCount();
+        for ($i = 0; $i < $fieldCount; $i++) {
+            $field = $messageType->getField($i);
             $key = $field->getName();
-            $getter = $field->getGetter();
+            $getter = $this->getGetter($key);
             $v = $message->$getter();
 
             if (is_null($v)) {
                 continue;
             }
 
-            if ($field->getOneofIndex() !== -1) {
-                $oneof = $messageType->getOneofDecl()[$field->getOneofIndex()];
-                $oneofName = $oneof->getName();
-                $oneofGetter = 'get' . ucfirst(self::toCamelCase($oneofName));
-                if ($message->$oneofGetter() !== $field->getName()) {
+            // Check and skip unset fields inside oneofs
+            list($_, $fieldsToOneof) = $this->getDescriptorMaps($messageType);
+            if (isset($fieldsToOneof[$key])) {
+                $oneofName = $fieldsToOneof[$key];
+                $oneofGetter =  $this->getGetter($oneofName);
+                if ($message->$oneofGetter() !== $key) {
                     continue;
                 }
             }
 
             if ($field->isMap()) {
-                $keyField = $field->getMessageType()->getFieldByNumber(1);
-                $valueField = $field->getMessageType()->getFieldByNumber(2);
+                list($mapFieldsByName, $_) = $this->getDescriptorMaps($field->getMessageType());
+                $keyField = $mapFieldsByName[self::MAP_KEY_FIELD_NAME];
+                $valueField = $mapFieldsByName[self::MAP_VALUE_FIELD_NAME];
                 $arr = [];
                 foreach ($v as $k => $vv) {
                     $arr[$this->encodeElement($keyField, $k)] = $this->encodeElement($valueField, $vv);
                 }
                 $v = $arr;
-            } elseif ($field->isRepeated()) {
+            } elseif ($field->getLabel() === GPBLabel::REPEATED) {
                 $arr = [];
                 foreach ($v as $k => $vv) {
                     $arr[$k] = $this->encodeElement($field, $vv);
@@ -239,10 +265,9 @@ class Serializer
     {
         switch ($field->getType()) {
             case GPBType::MESSAGE:
-                if ($data instanceof Message) {
+                if ($data instanceof \Google\Protobuf\Internal\Message) {
                     return $data;
                 }
-                /** @var Descriptor $messageType */
                 $messageType = $field->getMessageType();
                 $klass = $messageType->getClass();
                 $msg = new $klass();
@@ -253,16 +278,13 @@ class Serializer
         }
     }
 
-    private function decodeMessageImpl(Message $message, Descriptor $messageType, $data)
+    private function decodeMessageImpl($message, Descriptor $messageType, $data)
     {
-        $fieldsByName = [];
-        foreach ($messageType->getField() as $field) {
-            /** @var FieldDescriptor $field */
-            $fieldsByName[$field->getName()] = $field;
-        }
+        list($fieldsByName, $_) = $this->getDescriptorMaps($messageType);
         foreach ($data as $key => $v) {
             // Get the field by tag number or name
             $fieldName = self::toSnakeCase($key);
+            /** @var $field FieldDescriptor */
             $field = $fieldsByName[$fieldName];
 
             // Unknown field found
@@ -271,30 +293,54 @@ class Serializer
             }
 
             if ($field->isMap()) {
-                $keyField = $field->getMessageType()->getFieldByNumber(1);
-                $valueField = $field->getMessageType()->getFieldByNumber(2);
+                list($mapFieldsByName, $_) = $this->getDescriptorMaps($field->getMessageType());
+                $keyField = $mapFieldsByName[self::MAP_KEY_FIELD_NAME];
+                $valueField = $mapFieldsByName[self::MAP_VALUE_FIELD_NAME];
+
                 $klass = $valueField->getType() === GPBType::MESSAGE
                     ? $valueField->getMessageType()->getClass()
                     : null;
-                $arr = new MapField($keyField->getType(), $valueField->getType(), $klass);
+                $arr = [];
                 foreach ($v as $k => $vv) {
                     $arr[$this->decodeElement($keyField, $k)] = $this->decodeElement($valueField, $vv);
                 }
-                $v = $arr;
-            } elseif ($field->isRepeated()) {
+                $value = $arr;
+            } elseif ($field->getLabel() === GPBLabel::REPEATED) {
                 $arr = [];
                 foreach ($v as $k => $vv) {
                     $arr[$k] = $this->decodeElement($field, $vv);
                 }
-                $v = $arr;
+                $value = $arr;
             } else {
-                $v = $this->decodeElement($field, $v);
+                $value = $this->decodeElement($field, $v);
             }
 
-            $setter = $field->getSetter();
-            $message->$setter($v);
+            $setter = $this->getSetter($field->getName());
+            $message->$setter($value);
+
+            // We must unset $value here, otherwise the protobuf c extension will mix up the references
+            // and setting one value will change all others
+            unset($value);
         }
         return $message;
+    }
+
+    /**
+     * @param string $name
+     * @return string Getter function
+     */
+    public static function getGetter($name)
+    {
+        return 'get' . ucfirst(self::toCamelCase($name));
+    }
+
+    /**
+     * @param string $name
+     * @return string Setter function
+     */
+    public static function getSetter($name)
+    {
+        return 'set' . ucfirst(self::toCamelCase($name));
     }
 
     /**

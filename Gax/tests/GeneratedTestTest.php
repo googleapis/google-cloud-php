@@ -42,7 +42,7 @@ class GeneratedTestTest extends GeneratedTest
      */
     public function testSuccess($expected, $actual)
     {
-        $this->assertRepeatedFieldEquals($expected, $actual);
+        $this->assertProtobufEquals($expected, $actual);
     }
 
     /**
@@ -51,7 +51,7 @@ class GeneratedTestTest extends GeneratedTest
     public function testFailure($expected, $actual)
     {
         try {
-            $this->assertRepeatedFieldEquals($expected, $actual);
+            $this->assertProtobufEquals($expected, $actual);
         } catch (PHPUnit_Framework_ExpectationFailedException $ex) {
             // As expected the assertion failed, silently return
             return;
@@ -70,11 +70,14 @@ class GeneratedTestTest extends GeneratedTest
         $emptyRepeatedA = $monitoringA->getMetrics();
         $emptyRepeatedB = $monitoringB->getMetrics();
 
-        $repeatedA = clone $emptyRepeatedA;
-        $repeatedA[] = "metric";
+        $monitoringC = new Monitoring_MonitoringDestination();
+        $monitoringD = new Monitoring_MonitoringDestination();
 
-        $repeatedB = clone $emptyRepeatedB;
-        $repeatedB[] = "metric";
+        $repeatedC = $monitoringC->getMetrics();
+        $repeatedC[] = "metric";
+
+        $repeatedD = $monitoringD->getMetrics();
+        $repeatedD[] = "metric";
 
         return [
             [[], []],
@@ -83,9 +86,9 @@ class GeneratedTestTest extends GeneratedTest
             [$emptyRepeatedA, $emptyRepeatedB],
             [[1, 2], [1, 2]],
             [["abc", $monitoringA], ["abc", $monitoringB]],
-            [["metric"], $repeatedB],
-            [$repeatedA, ["metric"]],
-            [$repeatedA, $repeatedB],
+            [["metric"], $repeatedD],
+            [$repeatedC, ["metric"]],
+            [$repeatedC, $repeatedD],
         ];
     }
 
@@ -99,24 +102,27 @@ class GeneratedTestTest extends GeneratedTest
         $emptyRepeatedA = $monitoringA->getMetrics();
         $emptyRepeatedB = $monitoringB->getMetrics();
 
-        $repeatedA = clone $emptyRepeatedA;
-        $repeatedA[] = "metricA";
+        $monitoringC = new Monitoring_MonitoringDestination();
+        $monitoringD = new Monitoring_MonitoringDestination();
 
-        $repeatedB = clone $emptyRepeatedB;
-        $repeatedB[] = "metricB";
+        $repeatedC = $monitoringC->getMetrics();
+        $repeatedC[] = "metricA";
+
+        $repeatedD = $monitoringD->getMetrics();
+        $repeatedD[] = "metricB";
 
         return [
             [[], [1]],
             [[1], []],
             [[1], [2]],
             [[$monitoringA], [$monitoringB]],
-            [[], $repeatedB],
-            [$repeatedA, []],
+            [[], $repeatedD],
+            [$repeatedC, []],
             [$emptyRepeatedA, [1]],
             [[1], $emptyRepeatedB],
-            [$emptyRepeatedA, $repeatedB],
-            [$repeatedA, $emptyRepeatedB],
-            [$repeatedA, $repeatedB],
+            [$emptyRepeatedA, $repeatedD],
+            [$repeatedC, $emptyRepeatedB],
+            [$repeatedC, $repeatedD],
         ];
     }
 }
