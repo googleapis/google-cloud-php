@@ -9,7 +9,7 @@
         "php": ">=5.5",
         "google/auth": "~0.9|^1.0",
         "grpc/grpc": "^1.4",
-        "google/protobuf": "^3.3.2"
+        "google/protobuf": "^3.4"
     },
     "require-dev": {
         "phpunit/phpunit": "4.8.*",

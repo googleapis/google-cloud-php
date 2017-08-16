@@ -31,18 +31,46 @@
  */
 namespace Google\GAX\Testing;
 
+use Google\GAX\Serializer;
+use Google\Protobuf\DescriptorPool;
+use Google\Protobuf\Internal\Message;
+use Google\Protobuf\Internal\RepeatedField;
 use PHPUnit_Framework_TestCase;
 
 class GeneratedTest extends PHPUnit_Framework_TestCase
 {
-    public function assertRepeatedFieldEquals(&$expected, &$actual)
+
+    public function assertProtobufEquals(&$expected, &$actual)
     {
-        if (is_array($expected) === is_array($actual)) {
-            $this->assertEquals($expected, $actual);
-        } else {
+        if ($expected === $actual) {
+            return;
+        }
+
+        if (is_array($expected) || $expected instanceof RepeatedField) {
+            if (is_array($expected) === is_array($actual)) {
+                $this->assertEquals($expected, $actual);
+            }
+
             $this->assertSame(count($expected), count($actual));
             for ($i = 0; $i < count($expected); $i++) {
-                $this->assertEquals($expected[$i], $actual[$i]);
+                $expectedElement = $expected[$i];
+                $actualElement = $actual[$i];
+                $this->assertProtobufEquals($expectedElement, $actualElement);
+            }
+        } else {
+            $this->assertEquals($expected, $actual);
+            if ($expected instanceof Message) {
+                $pool = DescriptorPool::getGeneratedPool();
+                $descriptor = $pool->getDescriptorByClassName(get_class($expected));
+
+                $fieldCount = $descriptor->getFieldCount();
+                for ($i = 0; $i < $fieldCount; $i++) {
+                    $field = $descriptor->getField($i);
+                    $getter = Serializer::getGetter($field->getName());
+                    $expectedFieldValue = $expected->$getter();
+                    $actualFieldValue = $actual->$getter();
+                    $this->assertProtobufEquals($expectedFieldValue, $actualFieldValue);
+                }
             }
         }
     }
