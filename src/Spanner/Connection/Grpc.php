@@ -129,13 +129,13 @@ class Grpc implements ConnectionInterface
                 return $this->formatTimestampFromApi($v);
             }
         ], [
-            '.google.protobuf.Value' => function ($v) {
+            'google.protobuf.Value' => function ($v) {
                 return $this->flattenValue($v);
             },
-            '.google.protobuf.ListValue' => function ($v) {
+            'google.protobuf.ListValue' => function ($v) {
                 return $this->flattenListValue($v);
             },
-            '.google.protobuf.Struct' => function ($v) {
+            'google.protobuf.Struct' => function ($v) {
                 return $this->flattenStruct($v);
             },
         ]);
