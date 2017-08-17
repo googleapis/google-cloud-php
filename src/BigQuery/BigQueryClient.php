@@ -114,7 +114,7 @@ class BigQueryClient
      *
      * Queries constructed using
      * [standard SQL](https://cloud.google.com/bigquery/docs/reference/standard-sql/)
-     * can take advantage of parametriziation.
+     * can take advantage of parameterization.
      *
      * Refer to the table below for a guide on how parameter types are mapped to
      * their BigQuery equivalents.
@@ -194,8 +194,8 @@ class BigQueryClient
      *     @type bool $useQueryCache Whether to look for the result in the query
      *           cache.
      *     @type bool $useLegacySql Specifies whether to use BigQuery's legacy
-     *           SQL dialect for this query. **Defaults to** `true`. If set to
-     *           false, the query will use
+     *           SQL dialect for this query. **Defaults to** `false`. Unless set to
+     *           true, the query will use
      *           [BigQuery's standard SQL](https://cloud.google.com/bigquery/sql-reference).
      *     @type array $parameters Only available for standard SQL queries.
      *           When providing a non-associative array positional parameters
@@ -209,7 +209,8 @@ class BigQueryClient
     public function runQuery($query, array $options = [])
     {
         $options += [
-            'maxRetries' => 100
+            'maxRetries' => 100,
+            'useLegacySql' => false
         ];
 
         if (isset($options['parameters'])) {
@@ -257,7 +258,7 @@ class BigQueryClient
      *
      * Queries constructed using
      * [standard SQL](https://cloud.google.com/bigquery/docs/reference/standard-sql/)
-     * can take advantage of parametriziation. For more details and examples
+     * can take advantage of parameterization. For more details and examples
      * please see {@see Google\Cloud\BigQuery\BigQueryClient::runQuery()}.
      *
      * Example:
@@ -296,6 +297,12 @@ class BigQueryClient
      */
     public function runQueryAsJob($query, array $options = [])
     {
+        $options = array_merge_recursive($options, [
+            'jobConfig' => [
+                'useLegacySql' => false
+            ]
+        ]);
+
         if (isset($options['parameters'])) {
             if (!isset($options['jobConfig'])) {
                 $options['jobConfig'] = [];
