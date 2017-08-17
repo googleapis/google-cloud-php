@@ -7,7 +7,7 @@ php:
 sudo: required
 dist: trusty
 install:
-  - pecl install grpc
+  - travis_retry pecl install grpc
   - composer install
 script:
   - vendor/bin/phpunit --coverage-clover=coverage.xml
