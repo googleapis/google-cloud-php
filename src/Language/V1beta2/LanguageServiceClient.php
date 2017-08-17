@@ -270,19 +270,19 @@ class LanguageServiceClient
      * try {
      *     $languageServiceClient = new LanguageServiceClient();
      *     $document = new Document();
-     *     $encodingType = EncodingType::NONE;
-     *     $response = $languageServiceClient->analyzeEntities($document, $encodingType);
+     *     $response = $languageServiceClient->analyzeEntities($document);
      * } finally {
      *     $languageServiceClient->close();
      * }
      * ```
      *
      * @param Document $document     Input document.
-     * @param int      $encodingType The encoding type used by the API to calculate offsets.
-     *                               For allowed values, use constants defined on {@see \Google\Cloud\Language\V1beta2\EncodingType}
      * @param array    $optionalArgs {
      *                               Optional.
      *
+     *     @type int $encodingType
+     *          The encoding type used by the API to calculate offsets.
+     *          For allowed values, use constants defined on {@see \Google\Cloud\Language\V1beta2\EncodingType}
      *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
@@ -296,11 +296,13 @@ class LanguageServiceClient
      * @throws \Google\GAX\ApiException if the remote call fails
      * @experimental
      */
-    public function analyzeEntities($document, $encodingType, $optionalArgs = [])
+    public function analyzeEntities($document, $optionalArgs = [])
     {
         $request = new AnalyzeEntitiesRequest();
         $request->setDocument($document);
-        $request->setEncodingType($encodingType);
+        if (isset($optionalArgs['encodingType'])) {
+            $request->setEncodingType($optionalArgs['encodingType']);
+        }
 
         $mergedSettings = $this->defaultCallSettings['analyzeEntities']->merge(
             new CallSettings($optionalArgs)
@@ -327,19 +329,19 @@ class LanguageServiceClient
      * try {
      *     $languageServiceClient = new LanguageServiceClient();
      *     $document = new Document();
-     *     $encodingType = EncodingType::NONE;
-     *     $response = $languageServiceClient->analyzeEntitySentiment($document, $encodingType);
+     *     $response = $languageServiceClient->analyzeEntitySentiment($document);
      * } finally {
      *     $languageServiceClient->close();
      * }
      * ```
      *
      * @param Document $document     Input document.
-     * @param int      $encodingType The encoding type used by the API to calculate offsets.
-     *                               For allowed values, use constants defined on {@see \Google\Cloud\Language\V1beta2\EncodingType}
      * @param array    $optionalArgs {
      *                               Optional.
      *
+     *     @type int $encodingType
+     *          The encoding type used by the API to calculate offsets.
+     *          For allowed values, use constants defined on {@see \Google\Cloud\Language\V1beta2\EncodingType}
      *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
@@ -353,11 +355,13 @@ class LanguageServiceClient
      * @throws \Google\GAX\ApiException if the remote call fails
      * @experimental
      */
-    public function analyzeEntitySentiment($document, $encodingType, $optionalArgs = [])
+    public function analyzeEntitySentiment($document, $optionalArgs = [])
     {
         $request = new AnalyzeEntitySentimentRequest();
         $request->setDocument($document);
-        $request->setEncodingType($encodingType);
+        if (isset($optionalArgs['encodingType'])) {
+            $request->setEncodingType($optionalArgs['encodingType']);
+        }
 
         $mergedSettings = $this->defaultCallSettings['analyzeEntitySentiment']->merge(
             new CallSettings($optionalArgs)
@@ -385,19 +389,19 @@ class LanguageServiceClient
      * try {
      *     $languageServiceClient = new LanguageServiceClient();
      *     $document = new Document();
-     *     $encodingType = EncodingType::NONE;
-     *     $response = $languageServiceClient->analyzeSyntax($document, $encodingType);
+     *     $response = $languageServiceClient->analyzeSyntax($document);
      * } finally {
      *     $languageServiceClient->close();
      * }
      * ```
      *
      * @param Document $document     Input document.
-     * @param int      $encodingType The encoding type used by the API to calculate offsets.
-     *                               For allowed values, use constants defined on {@see \Google\Cloud\Language\V1beta2\EncodingType}
      * @param array    $optionalArgs {
      *                               Optional.
      *
+     *     @type int $encodingType
+     *          The encoding type used by the API to calculate offsets.
+     *          For allowed values, use constants defined on {@see \Google\Cloud\Language\V1beta2\EncodingType}
      *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
@@ -411,11 +415,13 @@ class LanguageServiceClient
      * @throws \Google\GAX\ApiException if the remote call fails
      * @experimental
      */
-    public function analyzeSyntax($document, $encodingType, $optionalArgs = [])
+    public function analyzeSyntax($document, $optionalArgs = [])
     {
         $request = new AnalyzeSyntaxRequest();
         $request->setDocument($document);
-        $request->setEncodingType($encodingType);
+        if (isset($optionalArgs['encodingType'])) {
+            $request->setEncodingType($optionalArgs['encodingType']);
+        }
 
         $mergedSettings = $this->defaultCallSettings['analyzeSyntax']->merge(
             new CallSettings($optionalArgs)
@@ -443,8 +449,7 @@ class LanguageServiceClient
      *     $languageServiceClient = new LanguageServiceClient();
      *     $document = new Document();
      *     $features = new Features();
-     *     $encodingType = EncodingType::NONE;
-     *     $response = $languageServiceClient->annotateText($document, $features, $encodingType);
+     *     $response = $languageServiceClient->annotateText($document, $features);
      * } finally {
      *     $languageServiceClient->close();
      * }
@@ -452,11 +457,12 @@ class LanguageServiceClient
      *
      * @param Document $document     Input document.
      * @param Features $features     The enabled features.
-     * @param int      $encodingType The encoding type used by the API to calculate offsets.
-     *                               For allowed values, use constants defined on {@see \Google\Cloud\Language\V1beta2\EncodingType}
      * @param array    $optionalArgs {
      *                               Optional.
      *
+     *     @type int $encodingType
+     *          The encoding type used by the API to calculate offsets.
+     *          For allowed values, use constants defined on {@see \Google\Cloud\Language\V1beta2\EncodingType}
      *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
@@ -470,12 +476,14 @@ class LanguageServiceClient
      * @throws \Google\GAX\ApiException if the remote call fails
      * @experimental
      */
-    public function annotateText($document, $features, $encodingType, $optionalArgs = [])
+    public function annotateText($document, $features, $optionalArgs = [])
     {
         $request = new AnnotateTextRequest();
         $request->setDocument($document);
         $request->setFeatures($features);
-        $request->setEncodingType($encodingType);
+        if (isset($optionalArgs['encodingType'])) {
+            $request->setEncodingType($optionalArgs['encodingType']);
+        }
 
         $mergedSettings = $this->defaultCallSettings['annotateText']->merge(
             new CallSettings($optionalArgs)

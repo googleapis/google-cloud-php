@@ -391,6 +391,8 @@ class PublisherClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
+     *     @type array $labels
+     *          User labels.
      *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
@@ -408,6 +410,9 @@ class PublisherClient
     {
         $request = new Topic();
         $request->setName($name);
+        if (isset($optionalArgs['labels'])) {
+            $request->setLabels($optionalArgs['labels']);
+        }
 
         $mergedSettings = $this->defaultCallSettings['createTopic']->merge(
             new CallSettings($optionalArgs)
