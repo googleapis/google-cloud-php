@@ -75,6 +75,19 @@ class ManageDatasetsTest extends BigQueryTestCase
         $this->assertEquals($metadata['friendlyName'], $info['friendlyName']);
     }
 
+    /**
+     * @expectedException Google\Cloud\Core\Exception\FailedPreconditionException
+     */
+    public function testUpdateDatasetConcurrentUpdateFails()
+    {
+        $data = [
+            'friendlyName' => 'foo',
+            'etag' => 'blah'
+        ];
+
+        self::$dataset->update($data);
+    }
+
     public function testReloadsDataset()
     {
         $this->assertEquals('bigquery#dataset', self::$dataset->reload()['kind']);

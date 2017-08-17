@@ -129,6 +129,19 @@ class ManageTablesTest extends BigQueryTestCase
         $this->assertEquals($metadata['friendlyName'], $info['friendlyName']);
     }
 
+    /**
+     * @expectedException Google\Cloud\Core\Exception\FailedPreconditionException
+     */
+    public function testUpdateTableConcurrentUpdateFails()
+    {
+        $data = [
+            'friendlyName' => 'foo',
+            'etag' => 'blah'
+        ];
+
+        self::$table->update($data);
+    }
+
     public function testReloadsTable()
     {
         $this->assertEquals('bigquery#table', self::$table->reload()['kind']);
