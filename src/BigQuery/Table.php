@@ -19,6 +19,7 @@ namespace Google\Cloud\BigQuery;
 
 use Google\Cloud\BigQuery\Connection\ConnectionInterface;
 use Google\Cloud\Core\ArrayTrait;
+use Google\Cloud\Core\ConcurrencyControlTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
@@ -33,6 +34,7 @@ use Psr\Http\Message\StreamInterface;
 class Table
 {
     use ArrayTrait;
+    use ConcurrencyControlTrait;
     use JobConfigurationTrait;
 
     /**
@@ -125,6 +127,11 @@ class Table
     /**
      * Update the table.
      *
+     * Providing an `etag` key as part of `$metadata` will enable simultaneous
+     * update protection. This is useful in preventing override of modifications
+     * made by another user. The resource's current etag can be obtained via a
+     * GET request on the resource.
+     *
      * Example:
      * ```
      * $table->update([
@@ -133,6 +140,7 @@ class Table
      * ```
      *
      * @see https://cloud.google.com/bigquery/docs/reference/v2/tables/patch Tables patch API documentation.
+     * @see https://cloud.google.com/bigquery/docs/api-performance#patch Patch (Partial Update)
      *
      * @param array $metadata The available options for metadata are outlined
      *        at the [Table Resource API docs](https://cloud.google.com/bigquery/docs/reference/v2/tables#resource)
@@ -141,7 +149,9 @@ class Table
     public function update(array $metadata, array $options = [])
     {
         $options += $metadata;
-        $this->info = $this->connection->patchTable($options + $this->identity);
+        $this->info = $this->connection->patchTable(
+            $this->applyEtagHeader($options + $this->identity)
+        );
 
         return $this->info;
     }

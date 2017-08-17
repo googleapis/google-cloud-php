@@ -19,6 +19,7 @@ namespace Google\Cloud\BigQuery;
 
 use Google\Cloud\BigQuery\Connection\ConnectionInterface;
 use Google\Cloud\Core\ArrayTrait;
+use Google\Cloud\Core\ConcurrencyControlTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
@@ -30,6 +31,7 @@ use Google\Cloud\Core\Iterator\PageIterator;
 class Dataset
 {
     use ArrayTrait;
+    use ConcurrencyControlTrait;
 
     /**
      * @var ConnectionInterface Represents a connection to BigQuery.
@@ -121,6 +123,11 @@ class Dataset
     /**
      * Update the dataset.
      *
+     * Providing an `etag` key as part of `$metadata` will enable simultaneous
+     * update protection. This is useful in preventing override of modifications
+     * made by another user. The resource's current etag can be obtained via a
+     * GET request on the resource.
+     *
      * Example:
      * ```
      * $dataset->update([
@@ -129,6 +136,7 @@ class Dataset
      * ```
      *
      * @see https://cloud.google.com/bigquery/docs/reference/v2/datasets/patch Datasets patch API documentation.
+     * @see https://cloud.google.com/bigquery/docs/api-performance#patch Patch (Partial Update)
      *
      * @param array $metadata The available options for metadata are outlined
      *        at the [Dataset Resource API docs](https://cloud.google.com/bigquery/docs/reference/v2/datasets#resource)
@@ -137,7 +145,9 @@ class Dataset
     public function update(array $metadata, array $options = [])
     {
         $options += $metadata;
-        $this->info = $this->connection->patchDataset($options + $this->identity);
+        $this->info = $this->connection->patchDataset(
+            $this->applyEtagHeader($options + $this->identity)
+        );
 
         return $this->info;
     }
