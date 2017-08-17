@@ -27,7 +27,7 @@ class LogSeverity
      *
      * Generated from protobuf enum <code>DEFAULT = 0;</code>
      */
-    const DEFAULT = 0;
+    const GPBDEFAULT = 0;
     /**
      * (100) Debug or trace information.
      *
