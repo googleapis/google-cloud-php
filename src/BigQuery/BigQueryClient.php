@@ -138,7 +138,7 @@ class BigQueryClient
      *
      * Example:
      * ```
-     * $queryResults = $bigQuery->runQuery('SELECT commit FROM [bigquery-public-data:github_repos.commits] LIMIT 100');
+     * $queryResults = $bigQuery->runQuery('SELECT commit FROM `bigquery-public-data.github_repos.commits` LIMIT 100');
      *
      * foreach ($queryResults->rows() as $row) {
      *     echo $row['commit'];
@@ -193,10 +193,10 @@ class BigQueryClient
      *           query has completed. **Defaults to** `100`.
      *     @type bool $useQueryCache Whether to look for the result in the query
      *           cache.
-     *     @type bool $useLegacySql Specifies whether to use BigQuery's legacy
-     *           SQL dialect for this query. **Defaults to** `false`. Unless set to
-     *           true, the query will use
-     *           [BigQuery's standard SQL](https://cloud.google.com/bigquery/sql-reference).
+     *     @type bool $useLegacySql If set to true the query will use
+     *           [BigQuery's legacy SQL](https://cloud.google.com/bigquery/docs/reference/legacy-sql),
+     *           otherwise [BigQuery's standard SQL](https://cloud.google.com/bigquery/sql-reference).
+     *           **Defaults to** `false`.
      *     @type array $parameters Only available for standard SQL queries.
      *           When providing a non-associative array positional parameters
      *           (`?`) will be used. When providing an associative array
@@ -263,7 +263,7 @@ class BigQueryClient
      *
      * Example:
      * ```
-     * $job = $bigQuery->runQueryAsJob('SELECT commit FROM [bigquery-public-data:github_repos.commits] LIMIT 100');
+     * $job = $bigQuery->runQueryAsJob('SELECT commit FROM `bigquery-public-data.github_repos.commits` LIMIT 100');
      *
      * $isComplete = false;
      * $queryResults = $job->queryResults();
