@@ -114,7 +114,7 @@ class BigQueryClient
      *
      * Queries constructed using
      * [standard SQL](https://cloud.google.com/bigquery/docs/reference/standard-sql/)
-     * can take advantage of parametriziation.
+     * can take advantage of parameterization.
      *
      * Refer to the table below for a guide on how parameter types are mapped to
      * their BigQuery equivalents.
@@ -138,7 +138,7 @@ class BigQueryClient
      *
      * Example:
      * ```
-     * $queryResults = $bigQuery->runQuery('SELECT commit FROM [bigquery-public-data:github_repos.commits] LIMIT 100');
+     * $queryResults = $bigQuery->runQuery('SELECT commit FROM `bigquery-public-data.github_repos.commits` LIMIT 100');
      *
      * foreach ($queryResults->rows() as $row) {
      *     echo $row['commit'];
@@ -193,10 +193,10 @@ class BigQueryClient
      *           query has completed. **Defaults to** `100`.
      *     @type bool $useQueryCache Whether to look for the result in the query
      *           cache.
-     *     @type bool $useLegacySql Specifies whether to use BigQuery's legacy
-     *           SQL dialect for this query. **Defaults to** `true`. If set to
-     *           false, the query will use
-     *           [BigQuery's standard SQL](https://cloud.google.com/bigquery/sql-reference).
+     *     @type bool $useLegacySql If set to true the query will use
+     *           [BigQuery's legacy SQL](https://cloud.google.com/bigquery/docs/reference/legacy-sql),
+     *           otherwise [BigQuery's standard SQL](https://cloud.google.com/bigquery/sql-reference).
+     *           **Defaults to** `false`.
      *     @type array $parameters Only available for standard SQL queries.
      *           When providing a non-associative array positional parameters
      *           (`?`) will be used. When providing an associative array
@@ -209,7 +209,8 @@ class BigQueryClient
     public function runQuery($query, array $options = [])
     {
         $options += [
-            'maxRetries' => 100
+            'maxRetries' => 100,
+            'useLegacySql' => false
         ];
 
         if (isset($options['parameters'])) {
@@ -257,12 +258,12 @@ class BigQueryClient
      *
      * Queries constructed using
      * [standard SQL](https://cloud.google.com/bigquery/docs/reference/standard-sql/)
-     * can take advantage of parametriziation. For more details and examples
+     * can take advantage of parameterization. For more details and examples
      * please see {@see Google\Cloud\BigQuery\BigQueryClient::runQuery()}.
      *
      * Example:
      * ```
-     * $job = $bigQuery->runQueryAsJob('SELECT commit FROM [bigquery-public-data:github_repos.commits] LIMIT 100');
+     * $job = $bigQuery->runQueryAsJob('SELECT commit FROM `bigquery-public-data.github_repos.commits` LIMIT 100');
      *
      * $isComplete = false;
      * $queryResults = $job->queryResults();
@@ -290,20 +291,27 @@ class BigQueryClient
      *           named parameters will be used (`@name`).
      *     @type array $jobConfig Configuration settings for a query job are
      *           outlined in the [API Docs for `configuration.query`](https://goo.gl/PuRa3I).
-     *           If not provided default settings will be used.
+     *           If not provided default settings will be used, with the exception
+     *           of `configuration.query.useLegacySql`, which defaults to `false`
+     *           in this client.
      * }
      * @return Job
      */
     public function runQueryAsJob($query, array $options = [])
     {
-        if (isset($options['parameters'])) {
-            if (!isset($options['jobConfig'])) {
-                $options['jobConfig'] = [];
-            }
+        $options += [
+            'jobConfig' => []
+        ];
 
+        if (isset($options['parameters'])) {
             $options['jobConfig'] += $this->formatQueryParameters($options['parameters']);
+
             unset($options['parameters']);
         }
+
+        $options['jobConfig'] += [
+            'useLegacySql' => false
+        ];
 
         $config = $this->buildJobConfig(
             'query',
