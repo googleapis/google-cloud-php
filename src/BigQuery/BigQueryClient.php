@@ -299,17 +299,19 @@ class BigQueryClient
      */
     public function runQueryAsJob($query, array $options = [])
     {
-        if (isset($options['parameters'])) {
-            if (!isset($options['jobConfig'])) {
-                $options['jobConfig'] = [];
-            }
+        $options += [
+            'jobConfig' => []
+        ];
 
-            $options['jobConfig'] += $this->formatQueryParameters($options['parameters']) + [
-                'useLegacySql' => false
-            ];
+        if (isset($options['parameters'])) {
+            $options['jobConfig'] += $this->formatQueryParameters($options['parameters']);
 
             unset($options['parameters']);
         }
+
+        $options['jobConfig'] += [
+            'useLegacySql' => false
+        ];
 
         $config = $this->buildJobConfig(
             'query',
