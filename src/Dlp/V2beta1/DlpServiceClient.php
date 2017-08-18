@@ -30,6 +30,8 @@
 
 namespace Google\Cloud\Dlp\V2beta1;
 
+use Google\Cloud\Dlp\V2beta1\Gapic\DlpServiceGapicClient;
+
 /**
  * {@inheritdoc}
  */

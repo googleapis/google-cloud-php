@@ -18,7 +18,7 @@
 /*
  * GENERATED CODE WARNING
  * This file was generated from the file
- * https://github.com/google/googleapis/blob/master/google/cloud/speech/v1/cloud_speech.proto
+ * https://github.com/google/googleapis/blob/master/google/cloud/speech/v1beta1/cloud_speech.proto
  * and updates to that file get reflected here through a refresh process.
  *
  * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
@@ -28,8 +28,15 @@
  * @experimental
  */
 
-namespace Google\Cloud\Speech\V1;
+namespace Google\Cloud\Speech\V1beta1\Gapic;
 
+use Google\Cloud\Speech\V1beta1\AsyncRecognizeRequest;
+use Google\Cloud\Speech\V1beta1\AsyncRecognizeResponse;
+use Google\Cloud\Speech\V1beta1\RecognitionAudio;
+use Google\Cloud\Speech\V1beta1\RecognitionConfig;
+use Google\Cloud\Speech\V1beta1\SpeechGrpcClient;
+use Google\Cloud\Speech\V1beta1\StreamingRecognizeRequest;
+use Google\Cloud\Speech\V1beta1\SyncRecognizeRequest;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
@@ -52,16 +59,14 @@ use Google\GAX\OperationResponse;
  * try {
  *     $speechClient = new SpeechClient();
  *     $encoding = AudioEncoding::FLAC;
- *     $sampleRateHertz = 44100;
- *     $languageCode = "en-US";
+ *     $sampleRate = 44100;
  *     $config = new RecognitionConfig();
  *     $config->setEncoding($encoding);
- *     $config->setSampleRateHertz($sampleRateHertz);
- *     $config->setLanguageCode($languageCode);
+ *     $config->setSampleRate($sampleRate);
  *     $uri = "gs://bucket_name/file_name.flac";
  *     $audio = new RecognitionAudio();
  *     $audio->setUri($uri);
- *     $response = $speechClient->recognize($config, $audio);
+ *     $response = $speechClient->syncRecognize($config, $audio);
  * } finally {
  *     $speechClient->close();
  * }
@@ -106,9 +111,9 @@ class SpeechGapicClient
     private static function getLongRunningDescriptors()
     {
         return [
-            'longRunningRecognize' => [
-                'operationReturnType' => '\Google\Cloud\Speech\V1\LongRunningRecognizeResponse',
-                'metadataReturnType' => '\Google\Cloud\Speech\V1\LongRunningRecognizeMetadata',
+            'asyncRecognize' => [
+                'operationReturnType' => '\Google\Cloud\Speech\V1beta1\AsyncRecognizeResponse',
+                'metadataReturnType' => '\Google\Cloud\Speech\V1beta1\AsyncRecognizeMetadata',
             ],
         ];
     }
@@ -241,8 +246,8 @@ class SpeechGapicClient
 
         $defaultDescriptors = ['headerDescriptor' => $headerDescriptor];
         $this->descriptors = [
-            'recognize' => $defaultDescriptors,
-            'longRunningRecognize' => $defaultDescriptors,
+            'syncRecognize' => $defaultDescriptors,
+            'asyncRecognize' => $defaultDescriptors,
             'streamingRecognize' => $defaultDescriptors,
         ];
         $longRunningDescriptors = self::getLongRunningDescriptors();
@@ -254,11 +259,11 @@ class SpeechGapicClient
             $this->descriptors[$method]['grpcStreamingDescriptor'] = $grpcStreamingDescriptor;
         }
 
-        $clientConfigJsonString = file_get_contents(__DIR__.'/resources/speech_client_config.json');
+        $clientConfigJsonString = file_get_contents(__DIR__.'/../resources/speech_client_config.json');
         $clientConfig = json_decode($clientConfigJsonString, true);
         $this->defaultCallSettings =
                 CallSettings::load(
-                    'google.cloud.speech.v1.Speech',
+                    'google.cloud.speech.v1beta1.Speech',
                     $clientConfig,
                     $options['retryingOverride'],
                     GrpcConstants::getStatusCodeNames(),
@@ -291,16 +296,14 @@ class SpeechGapicClient
      * try {
      *     $speechClient = new SpeechClient();
      *     $encoding = AudioEncoding::FLAC;
-     *     $sampleRateHertz = 44100;
-     *     $languageCode = "en-US";
+     *     $sampleRate = 44100;
      *     $config = new RecognitionConfig();
      *     $config->setEncoding($encoding);
-     *     $config->setSampleRateHertz($sampleRateHertz);
-     *     $config->setLanguageCode($languageCode);
+     *     $config->setSampleRate($sampleRate);
      *     $uri = "gs://bucket_name/file_name.flac";
      *     $audio = new RecognitionAudio();
      *     $audio->setUri($uri);
-     *     $response = $speechClient->recognize($config, $audio);
+     *     $response = $speechClient->syncRecognize($config, $audio);
      * } finally {
      *     $speechClient->close();
      * }
@@ -320,25 +323,25 @@ class SpeechGapicClient
      *          is not set.
      * }
      *
-     * @return \Google\Cloud\Speech\V1\RecognizeResponse
+     * @return \Google\Cloud\Speech\V1beta1\SyncRecognizeResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      * @experimental
      */
-    public function recognize($config, $audio, $optionalArgs = [])
+    public function syncRecognize($config, $audio, $optionalArgs = [])
     {
-        $request = new RecognizeRequest();
+        $request = new SyncRecognizeRequest();
         $request->setConfig($config);
         $request->setAudio($audio);
 
-        $mergedSettings = $this->defaultCallSettings['recognize']->merge(
+        $mergedSettings = $this->defaultCallSettings['syncRecognize']->merge(
             new CallSettings($optionalArgs)
         );
         $callable = ApiCallable::createApiCall(
             $this->speechStub,
-            'Recognize',
+            'SyncRecognize',
             $mergedSettings,
-            $this->descriptors['recognize']
+            $this->descriptors['syncRecognize']
         );
 
         return $callable(
@@ -349,25 +352,25 @@ class SpeechGapicClient
 
     /**
      * Performs asynchronous speech recognition: receive results via the
-     * google.longrunning.Operations interface. Returns either an
+     * [google.longrunning.Operations]
+     * (/speech/reference/rest/v1beta1/operations#Operation)
+     * interface. Returns either an
      * `Operation.error` or an `Operation.response` which contains
-     * a `LongRunningRecognizeResponse` message.
+     * an `AsyncRecognizeResponse` message.
      *
      * Sample code:
      * ```
      * try {
      *     $speechClient = new SpeechClient();
      *     $encoding = AudioEncoding::FLAC;
-     *     $sampleRateHertz = 44100;
-     *     $languageCode = "en-US";
+     *     $sampleRate = 44100;
      *     $config = new RecognitionConfig();
      *     $config->setEncoding($encoding);
-     *     $config->setSampleRateHertz($sampleRateHertz);
-     *     $config->setLanguageCode($languageCode);
+     *     $config->setSampleRate($sampleRate);
      *     $uri = "gs://bucket_name/file_name.flac";
      *     $audio = new RecognitionAudio();
      *     $audio->setUri($uri);
-     *     $operationResponse = $speechClient->longRunningRecognize($config, $audio);
+     *     $operationResponse = $speechClient->asyncRecognize($config, $audio);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *       $result = $operationResponse->getResult();
@@ -378,10 +381,10 @@ class SpeechGapicClient
      *     }
      *
      *     // OR start the operation, keep the operation name, and resume later
-     *     $operationResponse = $speechClient->longRunningRecognize($config, $audio);
+     *     $operationResponse = $speechClient->asyncRecognize($config, $audio);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
-     *     $newOperationResponse = $speechClient->resumeOperation($operationName, 'longRunningRecognize');
+     *     $newOperationResponse = $speechClient->resumeOperation($operationName, 'asyncRecognize');
      *     while (!$newOperationResponse->isDone()) {
      *         // ... do other work
      *         $newOperationResponse->reload();
@@ -417,20 +420,20 @@ class SpeechGapicClient
      * @throws \Google\GAX\ApiException if the remote call fails
      * @experimental
      */
-    public function longRunningRecognize($config, $audio, $optionalArgs = [])
+    public function asyncRecognize($config, $audio, $optionalArgs = [])
     {
-        $request = new LongRunningRecognizeRequest();
+        $request = new AsyncRecognizeRequest();
         $request->setConfig($config);
         $request->setAudio($audio);
 
-        $mergedSettings = $this->defaultCallSettings['longRunningRecognize']->merge(
+        $mergedSettings = $this->defaultCallSettings['asyncRecognize']->merge(
             new CallSettings($optionalArgs)
         );
         $callable = ApiCallable::createApiCall(
             $this->speechStub,
-            'LongRunningRecognize',
+            'AsyncRecognize',
             $mergedSettings,
-            $this->descriptors['longRunningRecognize']
+            $this->descriptors['asyncRecognize']
         );
 
         return $callable(

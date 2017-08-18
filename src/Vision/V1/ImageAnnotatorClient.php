@@ -30,6 +30,8 @@
 
 namespace Google\Cloud\Vision\V1;
 
+use Google\Cloud\Vision\V1\Gapic\ImageAnnotatorGapicClient;
+
 /**
  * {@inheritdoc}
  */

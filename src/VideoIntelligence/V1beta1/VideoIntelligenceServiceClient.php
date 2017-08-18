@@ -30,6 +30,8 @@
 
 namespace Google\Cloud\VideoIntelligence\V1beta1;
 
+use Google\Cloud\VideoIntelligence\V1beta1\Gapic\VideoIntelligenceServiceGapicClient;
+
 /**
  * {@inheritdoc}
  */

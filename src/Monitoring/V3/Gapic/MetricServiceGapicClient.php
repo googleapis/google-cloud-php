@@ -28,7 +28,7 @@
  * @experimental
  */
 
-namespace Google\Cloud\Monitoring\V3;
+namespace Google\Cloud\Monitoring\V3\Gapic;
 
 use Google\Api\MetricDescriptor;
 use Google\GAX\AgentHeaderDescriptor;
@@ -406,7 +406,7 @@ class MetricServiceGapicClient
             $this->descriptors[$method]['pageStreamingDescriptor'] = $pageStreamingDescriptor;
         }
 
-        $clientConfigJsonString = file_get_contents(__DIR__.'/resources/metric_service_client_config.json');
+        $clientConfigJsonString = file_get_contents(__DIR__.'/../resources/metric_service_client_config.json');
         $clientConfig = json_decode($clientConfigJsonString, true);
         $this->defaultCallSettings =
                 CallSettings::load(

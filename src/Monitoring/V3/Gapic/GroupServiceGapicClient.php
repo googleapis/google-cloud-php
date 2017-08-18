@@ -28,7 +28,7 @@
  * @experimental
  */
 
-namespace Google\Cloud\Monitoring\V3;
+namespace Google\Cloud\Monitoring\V3\Gapic;
 
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
@@ -343,7 +343,7 @@ class GroupServiceGapicClient
             $this->descriptors[$method]['pageStreamingDescriptor'] = $pageStreamingDescriptor;
         }
 
-        $clientConfigJsonString = file_get_contents(__DIR__.'/resources/group_service_client_config.json');
+        $clientConfigJsonString = file_get_contents(__DIR__.'/../resources/group_service_client_config.json');
         $clientConfig = json_decode($clientConfigJsonString, true);
         $this->defaultCallSettings =
                 CallSettings::load(

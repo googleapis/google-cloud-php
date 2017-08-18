@@ -28,7 +28,7 @@
  * @experimental
  */
 
-namespace Google\Cloud\Spanner\Admin\Instance\V1;
+namespace Google\Cloud\Spanner\Admin\Instance\V1\Gapic;
 
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
@@ -485,7 +485,7 @@ class InstanceAdminGapicClient
             $this->descriptors[$method]['longRunningDescriptor'] = $longRunningDescriptor + ['operationsClient' => $this->operationsClient];
         }
 
-        $clientConfigJsonString = file_get_contents(__DIR__.'/resources/instance_admin_client_config.json');
+        $clientConfigJsonString = file_get_contents(__DIR__.'/../resources/instance_admin_client_config.json');
         $clientConfig = json_decode($clientConfigJsonString, true);
         $this->defaultCallSettings =
                 CallSettings::load(

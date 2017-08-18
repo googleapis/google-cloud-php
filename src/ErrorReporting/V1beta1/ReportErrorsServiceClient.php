@@ -30,6 +30,8 @@
 
 namespace Google\Cloud\ErrorReporting\V1beta1;
 
+use Google\Cloud\ErrorReporting\V1beta1\Gapic\ReportErrorsServiceGapicClient;
+
 /**
  * {@inheritdoc}
  */

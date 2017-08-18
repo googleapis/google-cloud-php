@@ -28,7 +28,7 @@
  * @experimental
  */
 
-namespace Google\Cloud\ErrorReporting\V1beta1;
+namespace Google\Cloud\ErrorReporting\V1beta1\Gapic;
 
 use Google\Devtools\Clouderrorreporting\V1beta1\ReportErrorEventRequest;
 use Google\Devtools\Clouderrorreporting\V1beta1\ReportErrorsServiceGrpcClient;
@@ -217,7 +217,7 @@ class ReportErrorsServiceGapicClient
             'reportErrorEvent' => $defaultDescriptors,
         ];
 
-        $clientConfigJsonString = file_get_contents(__DIR__.'/resources/report_errors_service_client_config.json');
+        $clientConfigJsonString = file_get_contents(__DIR__.'/../resources/report_errors_service_client_config.json');
         $clientConfig = json_decode($clientConfigJsonString, true);
         $this->defaultCallSettings =
                 CallSettings::load(

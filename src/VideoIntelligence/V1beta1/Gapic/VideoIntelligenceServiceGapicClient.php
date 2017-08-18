@@ -28,7 +28,7 @@
  * @experimental
  */
 
-namespace Google\Cloud\VideoIntelligence\V1beta1;
+namespace Google\Cloud\VideoIntelligence\V1beta1\Gapic;
 
 use Google\Cloud\Videointelligence\V1beta1\AnnotateVideoProgress;
 use Google\Cloud\Videointelligence\V1beta1\AnnotateVideoRequest;
@@ -262,7 +262,7 @@ class VideoIntelligenceServiceGapicClient
             $this->descriptors[$method]['longRunningDescriptor'] = $longRunningDescriptor + ['operationsClient' => $this->operationsClient];
         }
 
-        $clientConfigJsonString = file_get_contents(__DIR__.'/resources/video_intelligence_service_client_config.json');
+        $clientConfigJsonString = file_get_contents(__DIR__.'/../resources/video_intelligence_service_client_config.json');
         $clientConfig = json_decode($clientConfigJsonString, true);
         $this->defaultCallSettings =
                 CallSettings::load(

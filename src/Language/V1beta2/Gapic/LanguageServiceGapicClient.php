@@ -28,9 +28,17 @@
  * @experimental
  */
 
-namespace Google\Cloud\Language\V1beta2;
+namespace Google\Cloud\Language\V1beta2\Gapic;
 
+use Google\Cloud\Language\V1beta2\AnalyzeEntitiesRequest;
+use Google\Cloud\Language\V1beta2\AnalyzeEntitySentimentRequest;
+use Google\Cloud\Language\V1beta2\AnalyzeSentimentRequest;
+use Google\Cloud\Language\V1beta2\AnalyzeSyntaxRequest;
+use Google\Cloud\Language\V1beta2\AnnotateTextRequest;
 use Google\Cloud\Language\V1beta2\AnnotateTextRequest_Features as Features;
+use Google\Cloud\Language\V1beta2\Document;
+use Google\Cloud\Language\V1beta2\EncodingType;
+use Google\Cloud\Language\V1beta2\LanguageServiceGrpcClient;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
@@ -172,7 +180,7 @@ class LanguageServiceGapicClient
             'annotateText' => $defaultDescriptors,
         ];
 
-        $clientConfigJsonString = file_get_contents(__DIR__.'/resources/language_service_client_config.json');
+        $clientConfigJsonString = file_get_contents(__DIR__.'/../resources/language_service_client_config.json');
         $clientConfig = json_decode($clientConfigJsonString, true);
         $this->defaultCallSettings =
                 CallSettings::load(

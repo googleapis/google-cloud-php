@@ -28,8 +28,11 @@
  * @experimental
  */
 
-namespace Google\Cloud\Vision\V1;
+namespace Google\Cloud\Vision\V1\Gapic;
 
+use Google\Cloud\Vision\V1\AnnotateImageRequest;
+use Google\Cloud\Vision\V1\BatchAnnotateImagesRequest;
+use Google\Cloud\Vision\V1\ImageAnnotatorGrpcClient;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
@@ -168,7 +171,7 @@ class ImageAnnotatorGapicClient
             'batchAnnotateImages' => $defaultDescriptors,
         ];
 
-        $clientConfigJsonString = file_get_contents(__DIR__.'/resources/image_annotator_client_config.json');
+        $clientConfigJsonString = file_get_contents(__DIR__.'/../resources/image_annotator_client_config.json');
         $clientConfig = json_decode($clientConfigJsonString, true);
         $this->defaultCallSettings =
                 CallSettings::load(

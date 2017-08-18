@@ -28,7 +28,7 @@
  * @experimental
  */
 
-namespace Google\Cloud\Spanner\V1;
+namespace Google\Cloud\Spanner\V1\Gapic;
 
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
@@ -377,7 +377,7 @@ class SpannerGapicClient
             $this->descriptors[$method]['grpcStreamingDescriptor'] = $grpcStreamingDescriptor;
         }
 
-        $clientConfigJsonString = file_get_contents(__DIR__.'/resources/spanner_client_config.json');
+        $clientConfigJsonString = file_get_contents(__DIR__.'/../resources/spanner_client_config.json');
         $clientConfig = json_decode($clientConfigJsonString, true);
         $this->defaultCallSettings =
                 CallSettings::load(

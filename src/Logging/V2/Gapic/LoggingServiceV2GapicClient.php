@@ -28,7 +28,7 @@
  * @experimental
  */
 
-namespace Google\Cloud\Logging\V2;
+namespace Google\Cloud\Logging\V2\Gapic;
 
 use Google\Api\MonitoredResource;
 use Google\GAX\AgentHeaderDescriptor;
@@ -329,7 +329,7 @@ class LoggingServiceV2GapicClient
             $this->descriptors[$method]['pageStreamingDescriptor'] = $pageStreamingDescriptor;
         }
 
-        $clientConfigJsonString = file_get_contents(__DIR__.'/resources/logging_service_v2_client_config.json');
+        $clientConfigJsonString = file_get_contents(__DIR__.'/../resources/logging_service_v2_client_config.json');
         $clientConfig = json_decode($clientConfigJsonString, true);
         $this->defaultCallSettings =
                 CallSettings::load(

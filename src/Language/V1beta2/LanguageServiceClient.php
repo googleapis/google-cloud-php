@@ -30,6 +30,8 @@
 
 namespace Google\Cloud\Language\V1beta2;
 
+use Google\Cloud\Language\V1beta2\Gapic\LanguageServiceGapicClient;
+
 /**
  * {@inheritdoc}
  */

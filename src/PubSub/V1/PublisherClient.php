@@ -30,6 +30,8 @@
 
 namespace Google\Cloud\PubSub\V1;
 
+use Google\Cloud\PubSub\V1\Gapic\PublisherGapicClient;
+
 /**
  * {@inheritdoc}
  */

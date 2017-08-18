@@ -30,6 +30,8 @@
 
 namespace Google\Cloud\Logging\V2;
 
+use Google\Cloud\Logging\V2\Gapic\LoggingServiceV2GapicClient;
+
 /**
  * {@inheritdoc}
  */

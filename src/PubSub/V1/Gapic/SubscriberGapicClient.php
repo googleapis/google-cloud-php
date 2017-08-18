@@ -28,7 +28,7 @@
  * @experimental
  */
 
-namespace Google\Cloud\PubSub\V1;
+namespace Google\Cloud\PubSub\V1\Gapic;
 
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
@@ -473,7 +473,7 @@ class SubscriberGapicClient
             $this->descriptors[$method]['grpcStreamingDescriptor'] = $grpcStreamingDescriptor;
         }
 
-        $clientConfigJsonString = file_get_contents(__DIR__.'/resources/subscriber_client_config.json');
+        $clientConfigJsonString = file_get_contents(__DIR__.'/../resources/subscriber_client_config.json');
         $clientConfig = json_decode($clientConfigJsonString, true);
         $this->defaultCallSettings =
                 CallSettings::load(

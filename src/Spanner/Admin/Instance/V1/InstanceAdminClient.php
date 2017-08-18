@@ -30,7 +30,7 @@
 
 namespace Google\Cloud\Spanner\Admin\Instance\V1;
 
-use Google\Spanner\Admin\Instance\V1\Instance;
+use Google\Cloud\Spanner\Admin\Instance\V1\Gapic\InstanceAdminGapicClient;
 
 /**
  * {@inheritdoc}

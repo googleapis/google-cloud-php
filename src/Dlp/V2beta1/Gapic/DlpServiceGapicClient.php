@@ -28,7 +28,7 @@
  * @experimental
  */
 
-namespace Google\Cloud\Dlp\V2beta1;
+namespace Google\Cloud\Dlp\V2beta1\Gapic;
 
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
@@ -46,6 +46,7 @@ use Google\Privacy\Dlp\V2beta1\InspectContentRequest;
 use Google\Privacy\Dlp\V2beta1\ListInfoTypesRequest;
 use Google\Privacy\Dlp\V2beta1\ListInspectFindingsRequest;
 use Google\Privacy\Dlp\V2beta1\ListRootCategoriesRequest;
+use Google\Privacy\Dlp\V2beta1\OperationConfig;
 use Google\Privacy\Dlp\V2beta1\OutputStorageConfig;
 use Google\Privacy\Dlp\V2beta1\RedactContentRequest;
 use Google\Privacy\Dlp\V2beta1\RedactContentRequest_ImageRedactionConfig as ImageRedactionConfig;
@@ -301,7 +302,7 @@ class DlpServiceGapicClient
             $this->descriptors[$method]['longRunningDescriptor'] = $longRunningDescriptor + ['operationsClient' => $this->operationsClient];
         }
 
-        $clientConfigJsonString = file_get_contents(__DIR__.'/resources/dlp_service_client_config.json');
+        $clientConfigJsonString = file_get_contents(__DIR__.'/../resources/dlp_service_client_config.json');
         $clientConfig = json_decode($clientConfigJsonString, true);
         $this->defaultCallSettings =
                 CallSettings::load(
@@ -515,6 +516,8 @@ class DlpServiceGapicClient
      * @param array               $optionalArgs  {
      *                                           Optional.
      *
+     *     @type OperationConfig $operationConfig
+     *          Additional configuration settings for long running operations.
      *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
@@ -534,6 +537,9 @@ class DlpServiceGapicClient
         $request->setInspectConfig($inspectConfig);
         $request->setStorageConfig($storageConfig);
         $request->setOutputConfig($outputConfig);
+        if (isset($optionalArgs['operationConfig'])) {
+            $request->setOperationConfig($optionalArgs['operationConfig']);
+        }
 
         $mergedSettings = $this->defaultCallSettings['createInspectOperation']->merge(
             new CallSettings($optionalArgs)

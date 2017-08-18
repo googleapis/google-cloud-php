@@ -30,6 +30,8 @@
 
 namespace Google\Cloud\Spanner\V1;
 
+use Google\Cloud\Spanner\V1\Gapic\SpannerGapicClient;
+
 /**
  * {@inheritdoc}
  */

@@ -30,6 +30,8 @@
 
 namespace Google\Cloud\Speech\V1;
 
+use Google\Cloud\Speech\V1\Gapic\SpeechGapicClient;
+
 /**
  * {@inheritdoc}
  */

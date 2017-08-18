@@ -30,6 +30,8 @@
 
 namespace Google\Cloud\Monitoring\V3;
 
+use Google\Cloud\Monitoring\V3\Gapic\MetricServiceGapicClient;
+
 /**
  * {@inheritdoc}
  */

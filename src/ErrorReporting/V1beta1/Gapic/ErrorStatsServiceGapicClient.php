@@ -28,7 +28,7 @@
  * @experimental
  */
 
-namespace Google\Cloud\ErrorReporting\V1beta1;
+namespace Google\Cloud\ErrorReporting\V1beta1\Gapic;
 
 use Google\Devtools\Clouderrorreporting\V1beta1\DeleteEventsRequest;
 use Google\Devtools\Clouderrorreporting\V1beta1\ErrorStatsServiceGrpcClient;
@@ -271,7 +271,7 @@ class ErrorStatsServiceGapicClient
             $this->descriptors[$method]['pageStreamingDescriptor'] = $pageStreamingDescriptor;
         }
 
-        $clientConfigJsonString = file_get_contents(__DIR__.'/resources/error_stats_service_client_config.json');
+        $clientConfigJsonString = file_get_contents(__DIR__.'/../resources/error_stats_service_client_config.json');
         $clientConfig = json_decode($clientConfigJsonString, true);
         $this->defaultCallSettings =
                 CallSettings::load(
