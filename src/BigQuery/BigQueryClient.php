@@ -291,24 +291,23 @@ class BigQueryClient
      *           named parameters will be used (`@name`).
      *     @type array $jobConfig Configuration settings for a query job are
      *           outlined in the [API Docs for `configuration.query`](https://goo.gl/PuRa3I).
-     *           If not provided default settings will be used.
+     *           If not provided default settings will be used, with the exception
+     *           of `configuration.query.useLegacySql`, which defaults to `false`
+     *           in this client.
      * }
      * @return Job
      */
     public function runQueryAsJob($query, array $options = [])
     {
-        $options = array_merge_recursive($options, [
-            'jobConfig' => [
-                'useLegacySql' => false
-            ]
-        ]);
-
         if (isset($options['parameters'])) {
             if (!isset($options['jobConfig'])) {
                 $options['jobConfig'] = [];
             }
 
-            $options['jobConfig'] += $this->formatQueryParameters($options['parameters']);
+            $options['jobConfig'] += $this->formatQueryParameters($options['parameters']) + [
+                'useLegacySql' => false
+            ];
+
             unset($options['parameters']);
         }
 
