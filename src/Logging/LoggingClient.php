@@ -168,7 +168,8 @@ class LoggingClient
      *           **Defaults to** `3`.
      *     @type array $scopes Scopes to be used for the request.
      *     @type string $transport The transport type used for requests. May be
-     *           either `grpc` or `rest`. **Defaults to** `rest`.
+     *           either `grpc` or `rest`. **Defaults to** `grpc` if gRPC support
+     *           is detected on the system.
      * }
      */
     public function __construct(array $config = [])

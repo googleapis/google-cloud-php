@@ -38,8 +38,8 @@ trait ClientTrait
     private $projectId;
 
     /**
-     * Get either a gRPC or REST connection based on the provided config.
-     *
+     * Get either a gRPC or REST connection based on the provided config
+     * and system settings.
      *
      * @param array $config
      * @return string
@@ -47,13 +47,14 @@ trait ClientTrait
      */
     private function getConnectionType(array $config)
     {
+        list($isGrpcExtensionLoaded, $isGrpcLibraryLoaded, $isGaxLibraryLoaded) = $this->getGrpcDependencyStatus();
+        $defaultTransport = $isGrpcExtensionLoaded && $isGrpcLibraryLoaded && $isGaxLibraryLoaded ? 'grpc' : 'rest';
         $transport = isset($config['transport'])
             ? strtolower($config['transport'])
-            : 'rest';
+            : $defaultTransport;
+
         if ($transport === 'grpc') {
-            list($isGrpcExtensionLoaded, $isGrpcLibraryLoaded) =
-                $this->getGrpcDependencyStatus();
-            if (!$isGrpcExtensionLoaded || !$isGrpcLibraryLoaded) {
+            if (!$isGrpcExtensionLoaded || !$isGrpcLibraryLoaded || !$isGaxLibraryLoaded) {
                 throw new GoogleException(
                     'gRPC support has been requested but required dependencies ' .
                     'have not been found. Please make sure to run the following ' .
@@ -214,7 +215,8 @@ trait ClientTrait
     {
         return [
             extension_loaded('grpc'),
-            class_exists('Grpc\BaseStub')
+            class_exists('Grpc\BaseStub'),
+            class_exists('Google\GAX\ApiCallable')
         ];
     }
 }
