@@ -130,7 +130,8 @@ class BigQueryClientTest extends \PHPUnit_Framework_TestCase
                 [],
                 [
                     'projectId' => $this->projectId,
-                    'query' => $query
+                    'query' => $query,
+                    'useLegacySql' => false
                 ]
             ],
             [
