@@ -28,6 +28,7 @@ use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\PubSub\Snapshot;
 use Google\Cloud\PubSub\Subscription;
 use Google\Cloud\PubSub\Topic;
+use Google\Cloud\Tests\GrpcTestTrait;
 use Prophecy\Argument;
 
 /**
@@ -35,6 +36,8 @@ use Prophecy\Argument;
  */
 class PubSubClientTest extends \PHPUnit_Framework_TestCase
 {
+    use GrpcTestTrait;
+
     private $connection;
 
     private $client;
@@ -51,9 +54,7 @@ class PubSubClientTest extends \PHPUnit_Framework_TestCase
 
     public function testUsesGrpcConnectionByDefault()
     {
-        if (!extension_loaded('grpc')) {
-            $this->markTestSkipped('Must have the grpc extension installed to run this test.');
-        }
+        $this->checkAndSkipGrpcTests();
         $client = new PubSubClientStub(['projectId' => 'project']);
 
         $this->assertInstanceOf(Grpc::class, $client->getConnection());

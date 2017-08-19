@@ -39,7 +39,7 @@ trait ClientTrait
 
     /**
      * Get either a gRPC or REST connection based on the provided config
-     * and system settings.
+     * and the system dependencies available.
      *
      * @param array $config
      * @return string
