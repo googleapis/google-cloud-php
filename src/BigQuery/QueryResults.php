@@ -223,7 +223,8 @@ class QueryResults implements \IteratorAggregate
 
     /**
      * @access private
-     * @return \Generator
+     * @return ItemIterator
+     * @throws GoogleException Thrown in the case of a malformed response.
      */
     public function getIterator()
     {
