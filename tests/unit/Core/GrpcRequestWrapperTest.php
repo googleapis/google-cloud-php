@@ -18,6 +18,7 @@
 
 namespace Google\Cloud\Tests\Unit\Core;
 
+use Google\Api\Http;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Core\Exception;
 use Google\Cloud\Tests\GrpcTestTrait;
@@ -80,16 +81,16 @@ class GrpcRequestWrapperTest extends \PHPUnit_Framework_TestCase
             return [];
         }
         $expectedMessage = ['successful' => 'request'];
-        $message = $this->prophesize(Message::class);
+        $message = new Http();
         $serializer = $this->prophesize(Serializer::class);
-        $serializer->encodeMessage($message->reveal())->willReturn($expectedMessage);
+        $serializer->encodeMessage($message)->willReturn($expectedMessage);
         $pagedMessage = $this->prophesize(PagedListResponse::class);
         $page = $this->prophesize(Page::class);
-        $page->getResponseObject()->willReturn($message->reveal());
+        $page->getResponseObject()->willReturn($message);
         $pagedMessage->getPage()->willReturn($page->reveal());
 
         return [
-            [$message->reveal(), $expectedMessage, $serializer->reveal()],
+            [$message, $expectedMessage, $serializer->reveal()],
             [$pagedMessage->reveal(), $expectedMessage, $serializer->reveal()],
             [null, null, $serializer->reveal()]
         ];
