@@ -51,7 +51,19 @@ class BigQueryClientTest extends \PHPUnit_Framework_TestCase
      */
     public function testRunsQuery($query, $options, $expected)
     {
-        $this->connection->query($expected)
+        $projectId = $expected['projectId'];
+        unset($expected['projectId']);
+        $this->connection->insertJob([
+            'projectId' => $projectId,
+            'configuration' => [
+                'query' => $expected
+            ]
+        ])
+            ->willReturn([
+                'jobReference' => ['jobId' => $this->jobId]
+            ])
+            ->shouldBeCalledTimes(1);
+        $this->connection->getQueryResults(Argument::any())
             ->willReturn([
                 'jobReference' => [
                     'jobId' => $this->jobId
@@ -71,15 +83,18 @@ class BigQueryClientTest extends \PHPUnit_Framework_TestCase
      */
     public function testRunsQueryWithRetry($query, $options, $expected)
     {
-        $this->connection->query($expected)
+        $projectId = $expected['projectId'];
+        unset($expected['projectId']);
+        $this->connection->insertJob([
+            'projectId' => $projectId,
+            'configuration' => [
+                'query' => $expected
+            ]
+        ])
             ->willReturn([
-                'jobReference' => [
-                    'jobId' => $this->jobId
-                ],
-                'jobComplete' => false
+                'jobReference' => ['jobId' => $this->jobId]
             ])
             ->shouldBeCalledTimes(1);
-
         $this->connection->getQueryResults(Argument::any())
             ->willReturn([
                 'jobReference' => [

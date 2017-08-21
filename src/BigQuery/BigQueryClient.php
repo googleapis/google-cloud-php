@@ -140,7 +140,7 @@ class BigQueryClient
      * ```
      * $queryResults = $bigQuery->runQuery('SELECT commit FROM `bigquery-public-data.github_repos.commits` LIMIT 100');
      *
-     * foreach ($queryResults->rows() as $row) {
+     * foreach ($queryResults as $row) {
      *     echo $row['commit'];
      * }
      * ```
@@ -156,7 +156,7 @@ class BigQueryClient
      *     ]
      * ]);
      *
-     * foreach ($queryResults->rows() as $row) {
+     * foreach ($queryResults as $row) {
      *     echo $row['commit'];
      * }
      * ```
@@ -168,7 +168,7 @@ class BigQueryClient
      *     'parameters' => ['A commit message.']
      * ]);
      *
-     * foreach ($queryResults->rows() as $row) {
+     * foreach ($queryResults as $row) {
      *     echo $row['commit'];
      * }
      * ```
@@ -183,78 +183,46 @@ class BigQueryClient
      *           of results. Setting this flag to a small value such as 1000 and
      *           then paging through results might improve reliability when the
      *           query result set is large.
-     *     @type array $defaultDataset Specifies the default datasetId and
-     *           projectId to assume for any unqualified table names in the
-     *           query. If not set, all table names in the query string must be
-     *           qualified in the format 'datasetId.tableId'.
+     *     @type int $startIndex Zero-based index of the starting row.
      *     @type int $timeoutMs How long to wait for the query to complete, in
      *           milliseconds. **Defaults to** `10000` milliseconds (10 seconds).
      *     @type int $maxRetries The number of times to retry, checking if the
      *           query has completed. **Defaults to** `100`.
-     *     @type bool $useQueryCache Whether to look for the result in the query
-     *           cache.
-     *     @type bool $useLegacySql If set to true the query will use
-     *           [BigQuery's legacy SQL](https://cloud.google.com/bigquery/docs/reference/legacy-sql),
-     *           otherwise [BigQuery's standard SQL](https://cloud.google.com/bigquery/sql-reference).
-     *           **Defaults to** `false`.
      *     @type array $parameters Only available for standard SQL queries.
      *           When providing a non-associative array positional parameters
      *           (`?`) will be used. When providing an associative array
      *           named parameters will be used (`@name`).
+     *     @type array $jobConfig Configuration settings for a query job are
+     *           outlined in the [API Docs for `configuration.query`](https://goo.gl/PuRa3I).
+     *           If not provided default settings will be used, with the exception
+     *           of `configuration.query.useLegacySql`, which defaults to `false`
+     *           in this client.
      * }
      * @return QueryResults
-     * @throws \RuntimeException if the maximum number of retries while waiting
+     * @throws \RuntimeException If the maximum number of retries while waiting
      *         for query completion has been exceeded.
      */
     public function runQuery($query, array $options = [])
     {
-        $options += [
-            'maxRetries' => 100,
-            'useLegacySql' => false
-        ];
+        $jobOptions = $this->pluckArray([
+            'parameters',
+            'jobConfig'
+        ], $options);
+        $queryResultsOptions = $this->pluckArray([
+            'maxResults',
+            'startIndex',
+            'timeoutMs',
+            'maxRetries'
+        ], $options);
 
-        if (isset($options['parameters'])) {
-            $options += $this->formatQueryParameters($options['parameters']);
-            unset($options['parameters']);
-        }
-
-        $queryOptions = $options;
-        unset($queryOptions['timeoutMs'], $queryOptions['maxRetries']);
-
-        $response = $this->connection->query([
-            'projectId' => $this->projectId,
-            'query' => $query
-        ] + $queryOptions);
-
-        $results = new QueryResults(
-            $this->connection,
-            $response['jobReference']['jobId'],
-            $this->projectId,
-            $response,
-            $options,
-            $this->mapper
-        );
-
-        if (!$results->isComplete()) {
-            $retryFn = function (QueryResults $results, array $options) {
-                $results->reload($options);
-
-                if (!$results->isComplete()) {
-                    throw new \RuntimeException('Job did not complete within the allowed number of retries.');
-                }
-            };
-
-            $retry = new ExponentialBackoff($options['maxRetries']);
-            $retry->execute($retryFn, [$results, $options]);
-        }
-
-        return $results;
+        return $this->runQueryAsJob(
+            $query,
+            $jobOptions + $options
+        )->queryResults($queryResultsOptions + $options);
     }
 
     /**
-     * Runs a BigQuery SQL query in an asynchronous fashion. Running a query
-     * in this fashion requires you to poll for the status before being able
-     * to access results.
+     * Runs a BigQuery SQL query in an asynchronous fashion.
      *
      * Queries constructed using
      * [standard SQL](https://cloud.google.com/bigquery/docs/reference/standard-sql/)
@@ -264,17 +232,9 @@ class BigQueryClient
      * Example:
      * ```
      * $job = $bigQuery->runQueryAsJob('SELECT commit FROM `bigquery-public-data.github_repos.commits` LIMIT 100');
-     *
-     * $isComplete = false;
      * $queryResults = $job->queryResults();
      *
-     * while (!$isComplete) {
-     *     sleep(1); // let's wait for a moment...
-     *     $queryResults->reload(); // trigger a network request
-     *     $isComplete = $queryResults->isComplete(); // check the query's status
-     * }
-     *
-     * foreach ($queryResults->rows() as $row) {
+     * foreach ($queryResults as $row) {
      *     echo $row['commit'];
      * }
      * ```

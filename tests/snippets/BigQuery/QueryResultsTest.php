@@ -60,7 +60,6 @@ class QueryResultsTest extends SnippetTestCase
                 ]
             ]
         ];
-        $this->reload = [];
 
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->qr = \Google\Cloud\Dev\stub(QueryResults::class, [
@@ -68,7 +67,6 @@ class QueryResultsTest extends SnippetTestCase
             self::JOB_ID,
             self::PROJECT,
             $this->info,
-            $this->reload,
             new ValueMapper(false)
         ]);
     }
@@ -88,21 +86,6 @@ class QueryResultsTest extends SnippetTestCase
 
         $res = $snippet->invoke();
         $this->assertEquals('abcd', trim($res->output()));
-    }
-
-    public function testIsComplete()
-    {
-        $snippet = $this->snippetFromMethod(QueryResults::class, 'isComplete');
-        $snippet->addLocal('queryResults', $this->qr);
-
-        $this->info['jobComplete'] = true;
-        $this->connection->getQueryResults(Argument::any())
-            ->willReturn($this->info);
-
-        $this->qr->___setProperty('connection', $this->connection->reveal());
-
-        $res = $snippet->invoke();
-        $this->assertEquals('Query complete!', $res->output());
     }
 
     public function testIdentity()
@@ -133,9 +116,7 @@ class QueryResultsTest extends SnippetTestCase
 
         $snippet = $this->snippetFromMethod(QueryResults::class, 'reload');
         $snippet->addLocal('queryResults', $this->qr);
-        $snippet->replace('sleep(1);', '');
 
         $res = $snippet->invoke();
-        $this->assertEquals('Query complete!', $res->output());
     }
 }

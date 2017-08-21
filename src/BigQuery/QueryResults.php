@@ -30,7 +30,7 @@ use Google\Cloud\Core\Iterator\PageIterator;
  * calling {@see Google\Cloud\BigQuery\BigQueryClient::runQuery()} or
  * {@see Google\Cloud\BigQuery\Job::queryResults()}.
  */
-class QueryResults
+class QueryResults implements \IteratorAggregate
 {
     /**
      * @var ConnectionInterface Represents a connection to BigQuery.
@@ -53,17 +53,11 @@ class QueryResults
     private $mapper;
 
     /**
-     * @var array The options to use when reloading query data.
-     */
-    private $reloadOptions;
-
-    /**
      * @param ConnectionInterface $connection Represents a connection to
      *        BigQuery.
      * @param string $jobId The job's ID.
      * @param string $projectId The project's ID.
      * @param array $info The query result's metadata.
-     * @param array $reloadOptions The options to use when reloading query data.
      * @param ValueMapper $mapper Maps values between PHP and BigQuery.
      */
     public function __construct(
@@ -71,12 +65,10 @@ class QueryResults
         $jobId,
         $projectId,
         array $info,
-        array $reloadOptions,
         ValueMapper $mapper
     ) {
         $this->connection = $connection;
         $this->info = $info;
-        $this->reloadOptions = $reloadOptions;
         $this->identity = [
             'jobId' => $jobId,
             'projectId' => $projectId
@@ -86,8 +78,7 @@ class QueryResults
 
     /**
      * Retrieves the rows associated with the query and merges them together
-     * with the table's schema. It is recommended to check the completeness of
-     * the query before attempting to access rows.
+     * with the table's schema.
      *
      * Refer to the table below for a guide on how BigQuery types are mapped as
      * they come back from the API.
@@ -109,27 +100,19 @@ class QueryResults
      *
      * Example:
      * ```
-     * $isComplete = $queryResults->isComplete();
+     * $rows = $queryResults->rows();
      *
-     * if ($isComplete) {
-     *     $rows = $queryResults->rows();
-     *
-     *     foreach ($rows as $row) {
-     *         echo $row['name'] . PHP_EOL;
-     *     }
+     * foreach ($rows as $row) {
+     *     echo $row['name'] . PHP_EOL;
      * }
      * ```
      *
      * @param array $options [optional] Configuration options.
      * @return ItemIterator
-     * @throws GoogleException Thrown if the query has not yet completed.
+     * @throws GoogleException Thrown in the case of a malformed response.
      */
     public function rows(array $options = [])
     {
-        if (!$this->isComplete()) {
-            throw new GoogleException('The query has not completed yet.');
-        }
-
         $schema = $this->info['schema']['fields'];
 
         return new ItemIterator(
@@ -164,30 +147,6 @@ class QueryResults
     }
 
     /**
-     * Checks the query's completeness. Useful in combination with
-     * {@see Google\Cloud\BigQuery\QueryResults::reload()} to poll for query status.
-     *
-     * Example:
-     * ```
-     * $isComplete = $queryResults->isComplete();
-     *
-     * while (!$isComplete) {
-     *     sleep(1); // small delay between requests
-     *     $queryResults->reload();
-     *     $isComplete = $queryResults->isComplete();
-     * }
-     *
-     * echo 'Query complete!';
-     * ```
-     *
-     * @return bool
-     */
-    public function isComplete()
-    {
-        return $this->info['jobComplete'];
-    }
-
-    /**
      * Retrieves the cached query details.
      *
      * Example:
@@ -209,20 +168,9 @@ class QueryResults
     /**
      * Triggers a network request to reload the query's details.
      *
-     * Useful when needing to poll an incomplete query
-     * for status. Configuration options will be inherited from
-     * {@see Google\Cloud\BigQuery\Job::queryResults()} or
-     * {@see Google\Cloud\BigQuery\BigQueryClient::runQuery()}, but they can be
-     * overridden if needed.
-     *
      * Example:
      * ```
-     * $queryResults->isComplete(); // returns false
-     * sleep(1); // let's wait for a moment...
-     * $queryResults->reload(); // executes a network request
-     * if ($queryResults->isComplete()) {
-     *     echo "Query complete!";
-     * }
+     * $queryResults->reload();
      * ```
      *
      * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs/getQueryResults
@@ -240,8 +188,9 @@ class QueryResults
      */
     public function reload(array $options = [])
     {
-        $options += $this->identity;
-        return $this->info = $this->connection->getQueryResults($options + $this->reloadOptions);
+        return $this->info = $this->connection->getQueryResults(
+            $options + $this->identity
+        );
     }
 
     /**
@@ -259,5 +208,25 @@ class QueryResults
     public function identity()
     {
         return $this->identity;
+    }
+
+    /**
+     * Checks the query's completeness.
+     *
+     * @access private
+     * @return bool
+     */
+    public function isComplete()
+    {
+        return $this->info['jobComplete'];
+    }
+
+    /**
+     * @access private
+     * @return \Generator
+     */
+    public function getIterator()
+    {
+        return $this->rows();
     }
 }
