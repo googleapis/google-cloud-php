@@ -79,7 +79,7 @@ class BigQueryClientTest extends SnippetTestCase
     {
         $snippet = $this->snippetFromMethod(BigQueryClient::class, 'runQuery');
         $snippet->addLocal('bigQuery', $this->client);
-        $this->connection->query(Argument::any())
+        $this->connection->insertJob(Argument::any())
             ->shouldBeCalled()
             ->willReturn([
                 'jobComplete' => false,
@@ -101,27 +101,39 @@ class BigQueryClientTest extends SnippetTestCase
     {
         $snippet = $this->snippetFromMethod(BigQueryClient::class, 'runQuery', 1);
         $snippet->addLocal('bigQuery', $this->client);
+        $expectedQuery = 'SELECT commit FROM `bigquery-public-data.github_repos.commits`' .
+                         'WHERE author.date < @date AND message = @message LIMIT 100';
         $this->connection
-            ->query(Argument::withEntry('queryParameters', [
-                [
-                    'name' => 'date',
-                    'parameterType' => [
-                        'type' => 'TIMESTAMP'
-                    ],
-                    'parameterValue' => [
-                        'value' => '1980-01-01 12:15:00.000000+00:00'
-                    ]
-                ],
-                [
-                    'name' => 'message',
-                    'parameterType' => [
-                        'type' => 'STRING'
-                    ],
-                    'parameterValue' => [
-                        'value' => 'A commit message.'
+            ->insertJob([
+                'projectId' => 'my-awesome-project',
+                'configuration' => [
+                    'query' => [
+                        'parameterMode' => 'named',
+                        'useLegacySql' => false,
+                        'queryParameters' => [
+                            [
+                                'name' => 'date',
+                                'parameterType' => [
+                                    'type' => 'TIMESTAMP'
+                                ],
+                                'parameterValue' => [
+                                    'value' => '1980-01-01 12:15:00.000000+00:00'
+                                ]
+                            ],
+                            [
+                                'name' => 'message',
+                                'parameterType' => [
+                                    'type' => 'STRING'
+                                ],
+                                'parameterValue' => [
+                                    'value' => 'A commit message.'
+                                ]
+                            ]
+                        ],
+                        'query' => $expectedQuery
                     ]
                 ]
-            ]))
+            ])
             ->shouldBeCalledTimes(1)
             ->willReturn([
                 'jobComplete' => false,
@@ -143,17 +155,28 @@ class BigQueryClientTest extends SnippetTestCase
     {
         $snippet = $this->snippetFromMethod(BigQueryClient::class, 'runQuery', 2);
         $snippet->addLocal('bigQuery', $this->client);
+        $expectedQuery = 'SELECT commit FROM `bigquery-public-data.github_repos.commits` WHERE message = ? LIMIT 100';
         $this->connection
-            ->query(Argument::withEntry('queryParameters', [
-                [
-                    'parameterType' => [
-                        'type' => 'STRING'
-                    ],
-                    'parameterValue' => [
-                        'value' => 'A commit message.'
+            ->insertJob([
+                'projectId' => 'my-awesome-project',
+                'configuration' => [
+                    'query' => [
+                        'parameterMode' => 'positional',
+                        'useLegacySql' => false,
+                        'queryParameters' => [
+                            [
+                                'parameterType' => [
+                                    'type' => 'STRING'
+                                ],
+                                'parameterValue' => [
+                                    'value' => 'A commit message.'
+                                ]
+                            ]
+                        ],
+                        'query' => $expectedQuery
                     ]
                 ]
-            ]))
+            ])
             ->shouldBeCalledTimes(1)
             ->willReturn([
                 'jobComplete' => false,
@@ -175,7 +198,6 @@ class BigQueryClientTest extends SnippetTestCase
     {
         $snippet = $this->snippetFromMethod(BigQueryClient::class, 'runQueryAsJob');
         $snippet->addLocal('bigQuery', $this->client);
-        $snippet->replace('sleep(1);', '');
         $this->connection->insertJob(Argument::any())
             ->shouldBeCalledTimes(1)
             ->willReturn([
