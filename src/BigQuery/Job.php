@@ -18,7 +18,9 @@
 namespace Google\Cloud\BigQuery;
 
 use Google\Cloud\BigQuery\Connection\ConnectionInterface;
+use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\Core\ExponentialBackoff;
 
 /**
  * [Jobs](https://cloud.google.com/bigquery/docs/reference/v2/jobs) are objects
@@ -27,6 +29,10 @@ use Google\Cloud\Core\Exception\NotFoundException;
  */
 class Job
 {
+    use ArrayTrait;
+
+    const MAX_RETRIES = 100;
+
     /**
      * @var ConnectionInterface Represents a connection to BigQuery.
      */
@@ -121,7 +127,8 @@ class Job
     }
 
     /**
-     * Retrieves the results of a query job.
+     * Retrieves the results of a query job, blocking until results are
+     * available.
      *
      * Example:
      * ```
@@ -138,21 +145,50 @@ class Job
      *     @type int $startIndex Zero-based index of the starting row.
      *     @type int $timeoutMs How long to wait for the query to complete, in
      *           milliseconds. **Defaults to** `10000` milliseconds (10 seconds).
+     *     @type int $maxRetries The number of times to retry, checking if the
+     *           query has completed. **Defaults to** `100`.
      * }
      * @return QueryResults
+     * @throws \RuntimeException If the maximum number of retries while waiting
+     *         for query completion has been exceeded.
      */
     public function queryResults(array $options = [])
     {
-        $response = $this->connection->getQueryResults($options + $this->identity);
-
-        return new QueryResults(
+        $maxRetries = $this->pluck('maxRetries', $options, false);
+        $results = new QueryResults(
             $this->connection,
             $this->identity['jobId'],
             $this->identity['projectId'],
-            $response,
-            $options,
+            $this->connection->getQueryResults($options + $this->identity),
             $this->mapper
         );
+        $this->wait($results, $options + [
+            'maxRetries' => $maxRetries
+        ]);
+
+        return $results;
+    }
+
+    /**
+     * Blocks until the job is complete.
+     *
+     * Example:
+     * ```
+     * $job->waitUntilComplete();
+     * ```
+     *
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type int $maxRetries The number of times to retry, checking if the
+     *           query has completed. **Defaults to** `100`.
+     * }
+     * @throws \RuntimeException If the maximum number of retries while waiting
+     *         for query completion has been exceeded.
+     */
+    public function waitUntilComplete(array $options = [])
+    {
+        $this->wait($this, $options);
     }
 
     /**
@@ -171,6 +207,7 @@ class Job
      *
      * echo 'Query complete!';
      * ```
+     *
      * @param array $options [optional] Configuration options.
      * @return bool
      */
@@ -254,5 +291,28 @@ class Job
     public function identity()
     {
         return $this->identity;
+    }
+
+    /**
+     * Waits for an operation to complete.
+     *
+     * @param mixed $context
+     * @param array $options
+     */
+    private function wait($context, array $options)
+    {
+        if (!$context->isComplete()) {
+            $maxRetries = $this->pluck('maxRetries', $options, false) ?: self::MAX_RETRIES;
+            $retryFn = function () use ($context, $options) {
+                $context->reload($options);
+
+                if (!$context->isComplete()) {
+                    throw new \RuntimeException('Job did not complete within the allowed number of retries.');
+                }
+            };
+
+            $retry = new ExponentialBackoff($maxRetries);
+            $retry->execute($retryFn);
+        }
     }
 }

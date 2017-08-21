@@ -82,7 +82,6 @@ class JobTest extends SnippetTestCase
             ]
         ]);
         $snippet = $this->snippetFromMethod(Job::class, 'cancel');
-        $snippet->replace('sleep(1);', '');
         $snippet->addLocal('job', $job);
         $snippet->invoke();
     }
@@ -91,13 +90,25 @@ class JobTest extends SnippetTestCase
     {
         $this->connection->getQueryResults(Argument::any())
             ->shouldBeCalledTimes(1)
-            ->willReturn([]);
+            ->willReturn(['jobComplete' => true]);
         $job = $this->getJob($this->connection);
         $snippet = $this->snippetFromMethod(Job::class, 'queryResults');
         $snippet->addLocal('job', $job);
         $res = $snippet->invoke('queryResults');
 
         $this->assertInstanceOf(QueryResults::class, $res->returnVal());
+    }
+
+    public function testWaitUntilComplete()
+    {
+        $job = $this->getJob($this->connection, [
+            'status' => [
+                'state' => 'DONE'
+            ]
+        ]);
+        $snippet = $this->snippetFromMethod(Job::class, 'waitUntilComplete');
+        $snippet->addLocal('job', $job);
+        $snippet->invoke();
     }
 
     public function testIsComplete()
@@ -116,7 +127,6 @@ class JobTest extends SnippetTestCase
         ]);
         $snippet = $this->snippetFromMethod(Job::class, 'isComplete');
         $snippet->addLocal('job', $job);
-        $snippet->replace('sleep(1);', '');
         $snippet->invoke();
     }
 
@@ -151,7 +161,6 @@ class JobTest extends SnippetTestCase
         ]);
         $snippet = $this->snippetFromMethod(Job::class, 'reload');
         $snippet->addLocal('job', $job);
-        $snippet->replace('sleep(1);', '');
         $snippet->invoke();
     }
 

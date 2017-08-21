@@ -57,21 +57,8 @@ class QueryResultsTest extends \PHPUnit_Framework_TestCase
             $this->jobId,
             $this->projectId,
             $data,
-            [],
             new ValueMapper(false)
         );
-    }
-
-    /**
-     * @expectedException \Google\Cloud\Core\Exception\GoogleException
-     */
-    public function testGetsRowsThrowsExceptionWhenQueryNotComplete()
-    {
-        $this->queryData['jobComplete'] = false;
-        unset($this->queryData['rows']);
-        $this->connection->getQueryResults()->shouldNotBeCalled();
-        $queryResults = $this->getQueryResults($this->connection, $this->queryData);
-        $queryResults->rows()->next();
     }
 
     public function testGetsRowsWithNoResults()
@@ -105,6 +92,16 @@ class QueryResultsTest extends \PHPUnit_Framework_TestCase
         $rows = iterator_to_array($queryResults->rows());
 
         $this->assertEquals('Alton', $rows[1]['first_name']);
+    }
+
+    public function testGetIterator()
+    {
+        $this->connection->getQueryResults()->shouldNotBeCalled();
+        unset($this->queryData['rows']);
+        $queryResults = $this->getQueryResults($this->connection, $this->queryData);
+        $rows = iterator_to_array($queryResults);
+
+        $this->assertEmpty($rows);
     }
 
     public function testIsCompleteTrue()
