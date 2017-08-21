@@ -17,5 +17,44 @@
 
 namespace Google\Cloud\Firestore\Connection;
 
+use Google\Cloud\Core\GrpcRequestWrapper;
+use Google\Cloud\Core\GrpcTrait;
+use Google\Cloud\Firestore\FirestoreClient as ManualFirestoreClient;
+use Google\Cloud\Firestore\V1beta1\FirestoreAdminGapicClient;
+use Google\Cloud\Firestore\V1beta1\FirestoreGapicClient;
+
 class Grpc implements ConnectionInterface
-{}
+{
+    use GrpcTrait;
+
+    private $serializer;
+
+    private $admin;
+
+    private $firestore;
+
+    /**
+     * @param array $config [optional]
+     */
+    public function __construct(array $config = [])
+    {
+        $this->serializer = new Serializer([], [
+            'google.protobuf.Value' => function ($v) {
+                return $this->flattenValue($v);
+            },
+            'google.protobuf.ListValue' => function ($v) {
+                return $this->flattenListValue($v);
+            },
+            'google.protobuf.Struct' => function ($v) {
+                return $this->flattenStruct($v);
+            },
+        ]);
+
+        $config['serializer'] = $this->serializer;
+        $this->setRequestWrapper(new GrpcRequestWrapper($config));
+
+        $grpcConfig = $this->getGaxConfig(ManualFirestoreClient::VERSION);
+        $this->admin = new FirestoreAdminGapicClient($grpcConfig);
+        $this->firestore = new FirestoreGapicClient($grpcConfig);
+    }
+}

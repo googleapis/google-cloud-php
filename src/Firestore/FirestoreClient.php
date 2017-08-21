@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Firestore;
 
-use Google\Cloud\Firestore\Connection\Rest;
+use Google\Cloud\Firestore\Connection\Grpc;
 
 class FirestoreClient
 {
@@ -66,7 +66,7 @@ class FirestoreClient
             'scopes' => [self::FULL_CONTROL_SCOPE]
         ];
 
-        $this->connection = new Rest($this->configureAuthentication($config));
+        $this->connection = new Grpc($this->configureAuthentication($config));
     }
 
     public function collection($collectionPath, array $options = [])
