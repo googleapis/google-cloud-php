@@ -18,7 +18,6 @@
 namespace Google\Cloud\BigQuery;
 
 use Google\Cloud\BigQuery\Connection\ConnectionInterface;
-use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\ConcurrencyControlTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Iterator\ItemIterator;
@@ -33,7 +32,6 @@ use Psr\Http\Message\StreamInterface;
  */
 class Table
 {
-    use ArrayTrait;
     use ConcurrencyControlTrait;
     use JobConfigurationTrait;
 
@@ -240,6 +238,8 @@ class Table
      *     @type array $jobConfig Configuration settings for a copy job are
      *           outlined in the [API Docs for `configuration.copy`](https://goo.gl/m8dro9).
      *           If not provided default settings will be used.
+     *     @type string $jobIdPrefix If given, the returned job ID will be of
+     *           format `{$jobIdPrefix-}{jobId}`. **Defaults to** `null`.
      * }
      * @return Job
      */
@@ -288,6 +288,8 @@ class Table
      *     @type array $jobConfig Configuration settings for an extract job are
      *           outlined in the [API Docs for `configuration.extract`](https://goo.gl/SQ9XAE).
      *           If not provided default settings will be used.
+     *     @type string $jobIdPrefix If given, the returned job ID will be of
+     *           format `{$jobIdPrefix-}{jobId}`. **Defaults to** `null`.
      * }
      * @return Job
      */
@@ -335,6 +337,8 @@ class Table
      *     @type array $jobConfig Configuration settings for a load job are
      *           outlined in the [API Docs for `configuration.load`](https://goo.gl/j6jyHv).
      *           If not provided default settings will be used.
+     *     @type string $jobIdPrefix If given, the returned job ID will be of
+     *           format `{$jobIdPrefix-}{jobId}`. **Defaults to** `null`.
      * }
      * @return Job
      */

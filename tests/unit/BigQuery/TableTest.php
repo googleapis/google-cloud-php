@@ -33,6 +33,8 @@ use Prophecy\Argument;
  */
 class TableTest extends \PHPUnit_Framework_TestCase
 {
+    const JOBID = 'myJobId';
+
     public $connection;
     public $storageConnection;
     public $mapper;
@@ -58,7 +60,7 @@ class TableTest extends \PHPUnit_Framework_TestCase
     ];
     public $insertJobResponse = [
         'jobReference' => [
-            'jobId' => 'myJobId'
+            'jobId' => self::JOBID
         ]
     ];
 
@@ -80,7 +82,7 @@ class TableTest extends \PHPUnit_Framework_TestCase
 
     public function getTable($connection, array $data = [], $tableId = null)
     {
-        return new Table(
+        return new TableStub(
             $connection->reveal(),
             $tableId ?: $this->tableId,
             $this->datasetId,
@@ -221,6 +223,10 @@ class TableTest extends \PHPUnit_Framework_TestCase
                         'projectId' => $this->projectId
                     ]
                 ]
+            ],
+            'jobReference' => [
+                'projectId' => $this->projectId,
+                'jobId' => self::JOBID
             ]
         ];
         $this->connection->insertJob(Argument::exact($expectedArguments))
@@ -251,6 +257,10 @@ class TableTest extends \PHPUnit_Framework_TestCase
                         'projectId' => $this->projectId
                     ]
                 ]
+            ],
+            'jobReference' => [
+                'projectId' => $this->projectId,
+                'jobId' => self::JOBID
             ]
         ];
         $this->connection->insertJob(Argument::exact($expectedArguments))
@@ -295,6 +305,10 @@ class TableTest extends \PHPUnit_Framework_TestCase
                         'projectId' => $this->projectId
                     ]
                 ]
+            ],
+            'jobReference' => [
+                'projectId' => $this->projectId,
+                'jobId' => self::JOBID
             ]
         ];
         $this->connection->insertJobUpload(Argument::exact($expectedArguments))
@@ -323,6 +337,10 @@ class TableTest extends \PHPUnit_Framework_TestCase
                         'projectId' => $this->projectId
                     ]
                 ]
+            ],
+            'jobReference' => [
+                'projectId' => $this->projectId,
+                'jobId' => self::JOBID
             ]
         ];
         $this->connection->insertJob(Argument::exact($expectedArguments))
@@ -437,5 +455,13 @@ class TableTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals($this->tableId, $table->identity()['tableId']);
         $this->assertEquals($this->projectId, $table->identity()['projectId']);
+    }
+}
+
+class TableStub extends Table
+{
+    protected function generateJobId($jobIdPrefix = null)
+    {
+        return $jobIdPrefix ? $jobIdPrefix . '-' . BigQueryClientTest::JOBID : BigQueryClientTest::JOBID;
     }
 }
