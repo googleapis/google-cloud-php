@@ -17,11 +17,16 @@
 
 namespace Google\Cloud\BigQuery;
 
+use Google\Cloud\Core\ArrayTrait;
+use Ramsey\Uuid\Uuid;
+
 /**
  * A trait used to build out configuration for jobs.
  */
 trait JobConfigurationTrait
 {
+    use ArrayTrait;
+
     /**
      * Builds a configuration for a job.
      *
@@ -33,6 +38,8 @@ trait JobConfigurationTrait
      */
     public function buildJobConfig($name, $projectId, array $config, array $userDefinedOptions)
     {
+        $jobIdPrefix = $this->pluck('jobIdPrefix', $userDefinedOptions, false);
+
         if (isset($userDefinedOptions['jobConfig'])) {
             $config = $userDefinedOptions['jobConfig'] + $config;
         }
@@ -41,9 +48,31 @@ trait JobConfigurationTrait
 
         return [
             'projectId' => $projectId,
+            'jobReference' => [
+                'projectId' => $projectId,
+                'jobId' => $this->generateJobId($jobIdPrefix)
+            ],
             'configuration' => [
                 $name => $config
             ]
         ] + $userDefinedOptions;
+    }
+
+    /**
+     * Generate a Job ID with an optional user-defined prefix.
+     *
+     * @param string $jobIdPrefix [optional] If given, the returned job ID will
+     *        be of format `{$jobIdPrefix-}{jobId}`. **Defaults to** `null`.
+     * @return string
+     */
+    protected function generateJobId($jobIdPrefix = null)
+    {
+        $jobId = '';
+
+        if ($jobIdPrefix) {
+            $jobId = $jobIdPrefix . '-';
+        }
+
+        return $jobId . Uuid::uuid4();
     }
 }

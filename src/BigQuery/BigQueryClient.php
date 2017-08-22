@@ -20,7 +20,6 @@ namespace Google\Cloud\BigQuery;
 use Google\Cloud\BigQuery\Connection\ConnectionInterface;
 use Google\Cloud\BigQuery\Connection\Rest;
 use Google\Cloud\BigQuery\Job;
-use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\Core\Int64;
@@ -43,7 +42,6 @@ use Psr\Http\Message\StreamInterface;
  */
 class BigQueryClient
 {
-    use ArrayTrait;
     use ClientTrait;
     use JobConfigurationTrait;
 
@@ -254,6 +252,8 @@ class BigQueryClient
      *           If not provided default settings will be used, with the exception
      *           of `configuration.query.useLegacySql`, which defaults to `false`
      *           in this client.
+     *     @type string $jobIdPrefix If given, the returned job ID will be of
+     *           format `{$jobIdPrefix-}{jobId}`. **Defaults to** `null`.
      * }
      * @return Job
      */
