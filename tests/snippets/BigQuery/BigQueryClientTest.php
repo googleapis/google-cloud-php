@@ -36,6 +36,8 @@ use Prophecy\Argument;
  */
 class BigQueryClientTest extends SnippetTestCase
 {
+    const JOBID = 'myJobId';
+
     private $connection;
     private $client;
     private $result = [
@@ -63,7 +65,7 @@ class BigQueryClientTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->client = \Google\Cloud\Dev\stub(BigQueryClient::class);
+        $this->client = \Google\Cloud\Dev\stub(BigQueryTestClient::class);
         $this->client->___setProperty('connection', $this->connection->reveal());
     }
 
@@ -106,6 +108,7 @@ class BigQueryClientTest extends SnippetTestCase
         $this->connection
             ->insertJob([
                 'projectId' => 'my-awesome-project',
+                'jobReference' => ['projectId' => 'my-awesome-project', 'jobId' => self::JOBID],
                 'configuration' => [
                     'query' => [
                         'parameterMode' => 'named',
@@ -159,6 +162,7 @@ class BigQueryClientTest extends SnippetTestCase
         $this->connection
             ->insertJob([
                 'projectId' => 'my-awesome-project',
+                'jobReference' => ['projectId' => 'my-awesome-project', 'jobId' => self::JOBID],
                 'configuration' => [
                     'query' => [
                         'parameterMode' => 'positional',
@@ -349,5 +353,13 @@ class BigQueryClientTest extends SnippetTestCase
         $res = $snippet->invoke('timestamp');
 
         $this->assertInstanceOf(Timestamp::class, $res->returnVal());
+    }
+}
+
+class BigQueryTestClient extends BigQueryClient
+{
+    protected function generateJobId($jobIdPrefix = null)
+    {
+        return $jobIdPrefix ? $jobIdPrefix . '-' . BigQueryClientTest::JOBID : BigQueryClientTest::JOBID;
     }
 }

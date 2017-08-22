@@ -34,8 +34,9 @@ use Prophecy\Argument;
  */
 class BigQueryClientTest extends \PHPUnit_Framework_TestCase
 {
+    const JOBID = 'myJobId';
+
     public $connection;
-    public $jobId = 'myJobId';
     public $projectId = 'myProjectId';
     public $datasetId = 'myDatasetId';
     public $client;
@@ -43,7 +44,7 @@ class BigQueryClientTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->client = new BigQueryTestClient(['projectId' => $this->projectId]);
+        $this->client = \Google\Cloud\Dev\stub(BigQueryTestClient::class, ['options' => ['projectId' => $this->projectId]]);
     }
 
     /**
@@ -57,25 +58,26 @@ class BigQueryClientTest extends \PHPUnit_Framework_TestCase
             'projectId' => $projectId,
             'configuration' => [
                 'query' => $expected
-            ]
+            ],
+            'jobReference' => ['projectId' => $projectId, 'jobId' => self::JOBID]
         ])
             ->willReturn([
-                'jobReference' => ['jobId' => $this->jobId]
+                'jobReference' => ['jobId' => self::JOBID]
             ])
             ->shouldBeCalledTimes(1);
         $this->connection->getQueryResults(Argument::any())
             ->willReturn([
                 'jobReference' => [
-                    'jobId' => $this->jobId
+                    'jobId' => self::JOBID
                 ],
                 'jobComplete' => true
             ])
             ->shouldBeCalledTimes(1);
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
         $queryResults = $this->client->runQuery($query, $options);
 
         $this->assertInstanceOf(QueryResults::class, $queryResults);
-        $this->assertEquals($this->jobId, $queryResults->identity()['jobId']);
+        $this->assertEquals(self::JOBID, $queryResults->identity()['jobId']);
     }
 
     /**
@@ -89,26 +91,30 @@ class BigQueryClientTest extends \PHPUnit_Framework_TestCase
             'projectId' => $projectId,
             'configuration' => [
                 'query' => $expected
-            ]
+            ],
+            'jobReference' => ['projectId' => $projectId, 'jobId' => self::JOBID]
         ])
             ->willReturn([
-                'jobReference' => ['jobId' => $this->jobId]
+                'jobReference' => [
+                    'jobId' => self::JOBID
+                ],
+                'jobComplete' => false
             ])
             ->shouldBeCalledTimes(1);
         $this->connection->getQueryResults(Argument::any())
             ->willReturn([
                 'jobReference' => [
-                    'jobId' => $this->jobId
+                    'jobId' => self::JOBID
                 ],
                 'jobComplete' => true
             ])
             ->shouldBeCalledTimes(1);
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
         $queryResults = $this->client->runQuery($query, $options);
 
         $this->assertInstanceOf(QueryResults::class, $queryResults);
-        $this->assertEquals($this->jobId, $queryResults->identity()['jobId']);
+        $this->assertEquals(self::JOBID, $queryResults->identity()['jobId']);
     }
 
     /**
@@ -122,17 +128,22 @@ class BigQueryClientTest extends \PHPUnit_Framework_TestCase
             'projectId' => $projectId,
             'configuration' => [
                 'query' => $expected
+            ],
+            'jobReference' => [
+                'projectId' => $projectId,
+                'jobId' => self::JOBID
             ]
         ])
             ->willReturn([
-                'jobReference' => ['jobId' => $this->jobId]
+                'jobReference' => ['jobId' => self::JOBID]
             ])
             ->shouldBeCalledTimes(1);
-        $this->client->setConnection($this->connection->reveal());
+
+        $this->client->___setProperty('connection', $this->connection->reveal());
         $job = $this->client->runQueryAsJob($query, $options);
 
         $this->assertInstanceOf(Job::class, $job);
-        $this->assertEquals($this->jobId, $job->id());
+        $this->assertEquals(self::JOBID, $job->id());
     }
 
     public function queryDataProvider()
@@ -209,8 +220,8 @@ class BigQueryClientTest extends \PHPUnit_Framework_TestCase
 
     public function testGetsJob()
     {
-        $this->client->setConnection($this->connection->reveal());
-        $this->assertInstanceOf(Job::class, $this->client->job($this->jobId));
+        $this->client->___setProperty('connection', $this->connection->reveal());
+        $this->assertInstanceOf(Job::class, $this->client->job(self::JOBID));
     }
 
     public function testGetsJobsWithNoResults()
@@ -219,7 +230,7 @@ class BigQueryClientTest extends \PHPUnit_Framework_TestCase
             ->willReturn([])
             ->shouldBeCalledTimes(1);
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
         $jobs = iterator_to_array($this->client->jobs());
 
         $this->assertEmpty($jobs);
@@ -230,15 +241,15 @@ class BigQueryClientTest extends \PHPUnit_Framework_TestCase
         $this->connection->listJobs(['projectId' => $this->projectId])
             ->willReturn([
                 'jobs' => [
-                    ['jobReference' => ['jobId' => $this->jobId]]
+                    ['jobReference' => ['jobId' => self::JOBID]]
                 ]
             ])
             ->shouldBeCalledTimes(1);
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
         $jobs = iterator_to_array($this->client->jobs());
 
-        $this->assertEquals($this->jobId, $jobs[0]->id());
+        $this->assertEquals(self::JOBID, $jobs[0]->id());
     }
 
     public function testGetsJobsWithToken()
@@ -257,19 +268,19 @@ class BigQueryClientTest extends \PHPUnit_Framework_TestCase
         ])
             ->willReturn([
                 'jobs' => [
-                    ['jobReference' => ['jobId' => $this->jobId]]
+                    ['jobReference' => ['jobId' => self::JOBID]]
                 ]
             ])->shouldBeCalledTimes(1);
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
         $job = iterator_to_array($this->client->jobs());
 
-        $this->assertEquals($this->jobId, $job[1]->id());
+        $this->assertEquals(self::JOBID, $job[1]->id());
     }
 
     public function testGetsDataset()
     {
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
         $this->assertInstanceOf(Dataset::class, $this->client->dataset($this->datasetId));
     }
 
@@ -279,7 +290,7 @@ class BigQueryClientTest extends \PHPUnit_Framework_TestCase
             ->willReturn([])
             ->shouldBeCalledTimes(1);
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
         $datasets = iterator_to_array($this->client->datasets());
 
         $this->assertEmpty($datasets);
@@ -295,7 +306,7 @@ class BigQueryClientTest extends \PHPUnit_Framework_TestCase
             ])
             ->shouldBeCalledTimes(1);
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
         $datasets = iterator_to_array($this->client->datasets());
 
         $this->assertEquals($this->datasetId, $datasets[0]->id());
@@ -319,7 +330,7 @@ class BigQueryClientTest extends \PHPUnit_Framework_TestCase
             )
             ->shouldBeCalledTimes(2);
 
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
         $dataset = iterator_to_array($this->client->datasets());
 
         $this->assertEquals($this->datasetId, $dataset[1]->id());
@@ -334,7 +345,7 @@ class BigQueryClientTest extends \PHPUnit_Framework_TestCase
                 ]
             ])
             ->shouldBeCalledTimes(1);
-        $this->client->setConnection($this->connection->reveal());
+        $this->client->___setProperty('connection', $this->connection->reveal());
 
         $dataset = $this->client->createDataset($this->datasetId, [
             'metadata' => [
@@ -376,8 +387,8 @@ class BigQueryClientTest extends \PHPUnit_Framework_TestCase
 
 class BigQueryTestClient extends BigQueryClient
 {
-    public function setConnection($connection)
+    protected function generateJobId($jobIdPrefix = null)
     {
-        $this->connection = $connection;
+        return $jobIdPrefix ? $jobIdPrefix . '-' . BigQueryClientTest::JOBID : BigQueryClientTest::JOBID;
     }
 }
