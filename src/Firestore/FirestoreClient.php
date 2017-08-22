@@ -17,15 +17,18 @@
 
 namespace Google\Cloud\Firestore;
 
+use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Firestore\Connection\Grpc;
 
 class FirestoreClient
 {
+    use ClientTrait;
+
     const VERSION = 'master';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/datastore';
 
-    private $rest;
+    private $connection;
 
     private $database = 'default';
 
@@ -72,15 +75,49 @@ class FirestoreClient
     public function collection($collectionPath, array $options = [])
     {}
 
+    /**
+     * List root-level collections in the database.
+     *
+     * Example:
+     * ```
+     * $collections = $firestore->collections();
+     * ```
+     *
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.admin.instance.v1#listinstancesrequest ListInstancesRequest
+     * @codingStandardsIgnoreEnd
+     *
+     * @param array $options [optional] {
+     *     Configuration options
+     *
+     *     @type string $filter An expression for filtering the results of the
+     *           request.
+     *     @type int $pageSize Maximum number of results to return per
+     *           request.
+     *     @type int $resultLimit Limit the number of results returned in total.
+     *           **Defaults to** `0` (return all results).
+     *     @type string $pageToken A previously-returned page token used to
+     *           resume the loading of results from a specific point.
+     * }
+     * @return ItemIterator<Collection>
+     */
     public function collections(array $options = [])
     {}
 
-    public function document($documentPath, array $options = [])
-    {}
+    public function document($path)
+    {
+        return new Document($this->connection, $this->fullPath($path));
+    }
 
     public function documents(array $references, array $options = [])
     {}
 
     public function runTransaction(callable $transaction, array $options = [])
     {}
+
+    private function fullPath($relativePath)
+    {
+        $template = 'projects/%s/databases/%s/%s';
+        return sprintf($template, $this->projectId, $this->database, $relativePath);
+    }
 }

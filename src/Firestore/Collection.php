@@ -17,5 +17,5 @@
 
 namespace Google\Cloud\Firestore;
 
-class DocumentReference
+class Collection
 {}

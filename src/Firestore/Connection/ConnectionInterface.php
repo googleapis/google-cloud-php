@@ -18,4 +18,6 @@
 namespace Google\Cloud\Firestore\Connection;
 
 interface ConnectionInterface
-{}
+{
+    public function getDocument(array $args);
+}

@@ -17,5 +17,28 @@
 
 namespace Google\Cloud\Firestore;
 
-class CollectionReference
-{}
+use Google\Cloud\Firestore\Connection\ConnectionInterface;
+
+class Document
+{
+    private $connection;
+    private $path;
+
+    public function __construct(ConnectionInterface $connection, $path)
+    {
+        $this->connection = $connection;
+        $this->path = $path;
+    }
+
+    public function info(array $options = [])
+    {
+        return $this->info ?: $this->reload($options);
+    }
+
+    public function reload(array $options = [])
+    {
+        return $this->info = $this->connection->getDocument([
+            'name' => $this->path
+        ] + $options);
+    }
+}

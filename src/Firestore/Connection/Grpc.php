@@ -22,6 +22,7 @@ use Google\Cloud\Core\GrpcTrait;
 use Google\Cloud\Firestore\FirestoreClient as ManualFirestoreClient;
 use Google\Cloud\Firestore\V1beta1\FirestoreAdminGapicClient;
 use Google\Cloud\Firestore\V1beta1\FirestoreGapicClient;
+use Google\GAX\Serializer;
 
 class Grpc implements ConnectionInterface
 {
@@ -56,5 +57,10 @@ class Grpc implements ConnectionInterface
         $grpcConfig = $this->getGaxConfig(ManualFirestoreClient::VERSION);
         $this->admin = new FirestoreAdminGapicClient($grpcConfig);
         $this->firestore = new FirestoreGapicClient($grpcConfig);
+    }
+
+    public function getDocument(array $args)
+    {
+        return $this->firestore->getDocument($this->pluck('name', $args), $args);
     }
 }
