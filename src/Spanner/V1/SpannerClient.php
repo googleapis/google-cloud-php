@@ -31,11 +31,35 @@
 namespace Google\Cloud\Spanner\V1;
 
 use Google\Cloud\Spanner\V1\Gapic\SpannerGapicClient;
+use Google\GAX\GrpcCredentialsHelper;
+use Google\Spanner\V1\SpannerGrpcClient;
 
 /**
  * {@inheritdoc}
  */
 class SpannerClient extends SpannerGapicClient
 {
-    // This class is intentionally empty, and is intended to hold manual additions to the generated {@see SpannerClientImpl} class.
+    /**
+     * Returns the underyling stub.
+     *
+     * @access private
+     * @return SpannerGrpcClient
+     * @experimental
+     */
+    public function getStub()
+    {
+        return $this->spannerStub;
+    }
+
+    /**
+     * Returns the underyling gRPC credentials helper.
+     *
+     * @access private
+     * @return GrpcCredentialsHelper
+     * @experimental
+     */
+    public function getCredentialsHelper()
+    {
+        return $this->grpcCredentialsHelper;
+    }
 }

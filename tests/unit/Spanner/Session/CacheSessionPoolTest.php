@@ -21,10 +21,12 @@ require_once __DIR__ . '../../../Core/Lock/MockGlobals.php';
 
 use Google\Auth\Cache\MemoryCacheItemPool;
 use Google\Cloud\Core\Lock\MockValues;
+use Google\Cloud\Spanner\Connection\Grpc;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Session\CacheSessionPool;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Tests\GrpcTestTrait;
+use Grpc\UnaryCall;
 use Psr\Cache\CacheItemInterface;
 use Psr\Cache\CacheItemPoolInterface;
 use Prophecy\Argument;
@@ -98,7 +100,9 @@ class CacheSessionPoolTest extends \PHPUnit_Framework_TestCase
                     'lastActive' => $this->time
                 ]
             ],
-            'toCreate' => []
+            'toCreate' => [],
+            'windowStart' => $this->time,
+            'maxInUseSessions' => 1
         ];
         $pool = new CacheSessionPoolStub($this->getCacheItemPool($cacheData), $config, $this->time);
         $pool->setDatabase($this->getDatabase());
@@ -123,7 +127,9 @@ class CacheSessionPoolTest extends \PHPUnit_Framework_TestCase
                     'lastActive' => $this->time
                 ]
             ],
-            'toCreate' => []
+            'toCreate' => [],
+            'windowStart' => $this->time,
+            'maxInUseSessions' => 1
         ];
         $pool = new CacheSessionPoolStub($this->getCacheItemPool($cacheData), $config, $this->time);
         $pool->setDatabase($this->getDatabase());
@@ -163,7 +169,9 @@ class CacheSessionPoolTest extends \PHPUnit_Framework_TestCase
                     'lastActive' => $this->time
                 ]
             ],
-            'toCreate' => []
+            'toCreate' => [],
+            'windowStart' => $this->time,
+            'maxInUseSessions' => 1
         ];
         $expectedCacheData = [
             'queue' => [
@@ -173,7 +181,9 @@ class CacheSessionPoolTest extends \PHPUnit_Framework_TestCase
                 ]
             ],
             'inUse' => [],
-            'toCreate' => []
+            'toCreate' => [],
+            'windowStart' => $this->time,
+            'maxInUseSessions' => 1
         ];
         $session = $this->prophesize(Session::class);
         $session->name()
@@ -207,7 +217,9 @@ class CacheSessionPoolTest extends \PHPUnit_Framework_TestCase
                     'lastActive' => $lastActiveOriginal
                 ]
             ],
-            'toCreate' => []
+            'toCreate' => [],
+            'windowStart' => $this->time,
+            'maxInUseSessions' => 1
         ]), [], $this->time);
         $pool->setDatabase($this->getDatabase());
         $actualItemPool = $pool->cacheItemPool();
@@ -255,7 +267,9 @@ class CacheSessionPoolTest extends \PHPUnit_Framework_TestCase
                 ]
             ],
             'inUse' => [],
-            'toCreate' => []
+            'toCreate' => [],
+            'windowStart' => $this->time,
+            'maxInUseSessions' => 1
         ]));
         $pool->setDatabase($this->getDatabase(false, true));
 
@@ -272,6 +286,33 @@ class CacheSessionPoolTest extends \PHPUnit_Framework_TestCase
             [1, 1],
             [100, 4]
         ];
+    }
+
+    public function testDownsizeFails()
+    {
+        $time = time() + 3600;
+        $pool = new CacheSessionPoolStub($this->getCacheItemPool([
+            'queue' => [
+                [
+                    'name' => 'session0',
+                    'expiration' => $time
+                ],
+                [
+                    'name' => 'session1',
+                    'expiration' => $time
+                ]
+            ],
+            'inUse' => [],
+            'toCreate' => [],
+            'windowStart' => $this->time,
+            'maxInUseSessions' => 1
+        ]));
+        $pool->setDatabase($this->getDatabase());
+        $response = $pool->downsize(100);
+
+        $this->assertEquals(0, $response['deleted']);
+        $this->assertEquals(1, count($response['failed']));
+        $this->assertContainsOnlyInstancesOf(Session::class, $response['failed']);
     }
 
     /**
@@ -361,7 +402,9 @@ class CacheSessionPoolTest extends \PHPUnit_Framework_TestCase
                             'lastActive' => $time
                         ]
                     ],
-                    'toCreate' => []
+                    'toCreate' => [],
+                    'windowStart' => $time,
+                    'maxInUseSessions' => 1
                 ],
                 $time
             ],
@@ -376,7 +419,9 @@ class CacheSessionPoolTest extends \PHPUnit_Framework_TestCase
                         ]
                     ],
                     'inUse' => [],
-                    'toCreate' => []
+                    'toCreate' => [],
+                    'windowStart' => $time,
+                    'maxInUseSessions' => 1
                 ],
                 [
                     'queue' => [],
@@ -387,7 +432,9 @@ class CacheSessionPoolTest extends \PHPUnit_Framework_TestCase
                             'lastActive' => $time
                         ]
                     ],
-                    'toCreate' => []
+                    'toCreate' => [],
+                    'windowStart' => $time,
+                    'maxInUseSessions' => 1
                 ],
                 $time
             ],
@@ -404,7 +451,9 @@ class CacheSessionPoolTest extends \PHPUnit_Framework_TestCase
                             'lastActive' => $time
                         ]
                     ],
-                    'toCreate' => []
+                    'toCreate' => [],
+                    'windowStart' => $time,
+                    'maxInUseSessions' => 1
                 ],
                 [
                     'queue' => [],
@@ -420,7 +469,9 @@ class CacheSessionPoolTest extends \PHPUnit_Framework_TestCase
                             'lastActive' => $time
                         ]
                     ],
-                    'toCreate' => []
+                    'toCreate' => [],
+                    'windowStart' => $time,
+                    'maxInUseSessions' => 2
                 ],
                 $time
             ],
@@ -443,7 +494,9 @@ class CacheSessionPoolTest extends \PHPUnit_Framework_TestCase
                     ],
                     'toCreate' => [
                         'oldguy' => $time - 1201
-                    ]
+                    ],
+                    'windowStart' => $time,
+                    'maxInUseSessions' => 2
                 ],
                 [
                     'queue' => [],
@@ -454,7 +507,9 @@ class CacheSessionPoolTest extends \PHPUnit_Framework_TestCase
                             'lastActive' => $time
                         ]
                     ],
-                    'toCreate' => []
+                    'toCreate' => [],
+                    'windowStart' => $time,
+                    'maxInUseSessions' => 2
                 ],
                 $time
             ],
@@ -469,7 +524,9 @@ class CacheSessionPoolTest extends \PHPUnit_Framework_TestCase
                         ]
                     ],
                     'inUse' => [],
-                    'toCreate' => []
+                    'toCreate' => [],
+                    'windowStart' => $time,
+                    'maxInUseSessions' => 1
                 ],
                 [
                     'queue' => [],
@@ -480,7 +537,9 @@ class CacheSessionPoolTest extends \PHPUnit_Framework_TestCase
                             'lastActive' => $time
                         ]
                     ],
-                    'toCreate' => []
+                    'toCreate' => [],
+                    'windowStart' => $time,
+                    'maxInUseSessions' => 1
                 ],
                 $time
             ],
@@ -499,7 +558,9 @@ class CacheSessionPoolTest extends \PHPUnit_Framework_TestCase
                         ]
                     ],
                     'inUse' => [],
-                    'toCreate' => []
+                    'toCreate' => [],
+                    'windowStart' => $time,
+                    'maxInUseSessions' => 1
                 ],
                 [
                     'queue' => [],
@@ -510,7 +571,9 @@ class CacheSessionPoolTest extends \PHPUnit_Framework_TestCase
                             'lastActive' => $time
                         ]
                     ],
-                    'toCreate' => []
+                    'toCreate' => [],
+                    'windowStart' => $time,
+                    'maxInUseSessions' => 1
                 ],
                 $time
             ],
@@ -526,7 +589,9 @@ class CacheSessionPoolTest extends \PHPUnit_Framework_TestCase
                             'lastActive' => $time - 1201
                         ]
                     ],
-                    'toCreate' => []
+                    'toCreate' => [],
+                    'windowStart' => $time,
+                    'maxInUseSessions' => 1
                 ],
                 [
                     'queue' => [],
@@ -537,10 +602,54 @@ class CacheSessionPoolTest extends \PHPUnit_Framework_TestCase
                             'lastActive' => $time
                         ]
                     ],
-                    'toCreate' => []
+                    'toCreate' => [],
+                    'windowStart' => $time,
+                    'maxInUseSessions' => 1
                 ],
                 $time
             ],
+            // Set #7: Auto downsize pool
+            [
+                ['maxSessions' => 5],
+                [
+                    'queue' => [
+                        [
+                            'name' => 'session1',
+                            'expiration' => $time + 3600
+                        ],
+                        [
+                            'name' => 'session2',
+                            'expiration' => $time + 3600
+                        ],
+                        [
+                            'name' => 'session3',
+                            'expiration' => $time + 3600
+                        ],
+                        [
+                            'name' => 'session4',
+                            'expiration' => $time + 3600
+                        ]
+                    ],
+                    'inUse' => [],
+                    'toCreate' => [],
+                    'windowStart' => $time - 601,
+                    'maxInUseSessions' => 1
+                ],
+                [
+                    'queue' => [],
+                    'inUse' => [
+                        'session1' => [
+                            'name' => 'session1',
+                            'expiration' => $time + 3600,
+                            'lastActive' => $time
+                        ]
+                    ],
+                    'toCreate' => [],
+                    'windowStart' => $time,
+                    'maxInUseSessions' => 1
+                ],
+                $time
+            ]
         ];
     }
 
@@ -549,17 +658,25 @@ class CacheSessionPoolTest extends \PHPUnit_Framework_TestCase
         $database = $this->prophesize(Database::class);
         $createdSession = $this->prophesize(Session::class);
         $session = $this->prophesize(Session::class);
+        $connection = $this->prophesize(Grpc::class);
+        $unaryCall = $this->prophesize(UnaryCall::class);
         $createdSession->expiration()
             ->willReturn($this->time + 3600);
         $session->expiration()
             ->willReturn($this->time + 3600);
         $session->exists()
             ->willReturn(false);
+        $unaryCall->wait()
+            ->willReturn(null);
+        $connection->deleteSessionAsync(Argument::any())
+            ->willReturn($unaryCall->reveal());
 
         if ($willDeleteSessions) {
             $session->delete()
                 ->willReturn(null);
         }
+        $database->connection()
+            ->willReturn($connection->reveal());
         $database->session(Argument::any())
             ->will(function ($args) use ($session) {
                 $session->name()
@@ -573,6 +690,8 @@ class CacheSessionPoolTest extends \PHPUnit_Framework_TestCase
                 'database' => self::DATABASE_NAME,
                 'instance' => self::INSTANCE_NAME
             ]);
+        $database->name()
+            ->willReturn(self::DATABASE_NAME);
 
         if ($shouldCreateThrowException) {
             $database->createSession()

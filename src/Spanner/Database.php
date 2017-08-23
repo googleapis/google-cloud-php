@@ -1458,6 +1458,18 @@ class Database
     }
 
     /**
+     * Returns the underlying connection.
+     *
+     * @access private
+     * @return ConnectionInterface
+     * @experimental
+     */
+    public function connection()
+    {
+        return $this->connection;
+    }
+
+    /**
      * Represent the class in a more readable and digestable fashion.
      *
      * @access private
