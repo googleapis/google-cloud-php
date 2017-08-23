@@ -120,6 +120,11 @@ class Grpc implements ConnectionInterface
     private $longRunningGrpcClients;
 
     /**
+     * @var AgentHeaderDescriptor
+     */
+    private $headerDescriptor;
+
+    /**
      * @param array $config [optional]
      */
     public function __construct(array $config = [])
@@ -156,6 +161,9 @@ class Grpc implements ConnectionInterface
             $this->instanceAdminClient,
             $this->databaseAdminClient
         ];
+        $this->headerDescriptor = new AgentHeaderDescriptor([
+            'gapicVersion' => trim(file_get_contents(__DIR__ . '/../VERSION'))
+        ]);
     }
 
     /**
@@ -460,10 +468,7 @@ class Grpc implements ConnectionInterface
     public function deleteSessionAsync(array $args)
     {
         $database = $this->pluck('database', $args);
-        $headerDescriptor = new AgentHeaderDescriptor([
-            'gapicVersion' => trim(file_get_contents(__DIR__ . '/../VERSION'))
-        ]);
-        $headers = $headerDescriptor->getHeader()
+        $headers = $this->headerDescriptor->getHeader()
             + $this->addResourcePrefixHeader($args, $database)['userHeaders'];
         $request = new DeleteSessionRequest();
         $request->setName($this->pluck('name', $args));

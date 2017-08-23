@@ -40,7 +40,7 @@ use Google\Spanner\V1\SpannerGrpcClient;
 class SpannerClient extends SpannerGapicClient
 {
     /**
-     * Returns the underyling stub.
+     * Returns the underlying stub.
      *
      * @access private
      * @return SpannerGrpcClient
@@ -52,7 +52,7 @@ class SpannerClient extends SpannerGapicClient
     }
 
     /**
-     * Returns the underyling gRPC credentials helper.
+     * Returns the underlying gRPC credentials helper.
      *
      * @access private
      * @return GrpcCredentialsHelper
