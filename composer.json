@@ -92,6 +92,7 @@
         "psr-4": {
             "Google\\Cloud\\Dev\\": "dev/src",
             "Google\\Cloud\\Tests\\": "tests",
+            "Google\\Cloud\\Tests\\Perf\\": "tests/perf",
             "Google\\Cloud\\Tests\\System\\": "tests/system",
             "Google\\Cloud\\Tests\\Unit\\": "tests/unit"
         },
