@@ -18,19 +18,24 @@
 namespace Google\Cloud\Firestore;
 
 use Google\Cloud\Core\ClientTrait;
+use Google\Cloud\Core\ValidateTrait;
 use Google\Cloud\Firestore\Connection\Grpc;
 
 class FirestoreClient
 {
     use ClientTrait;
+    use PathTrait;
+    use ValidateTrait;
 
     const VERSION = 'master';
 
-    const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/datastore';
+    const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/cloud-platform';
 
     private $connection;
 
-    private $database = 'default';
+    private $database = '(default)';
+
+    private $valueMapper;
 
     /**
      * Create a Firestore client.
@@ -70,10 +75,27 @@ class FirestoreClient
         ];
 
         $this->connection = new Grpc($this->configureAuthentication($config));
+        $this->valueMapper = new ValueMapper($config['returnInt64AsObject']);
     }
 
-    public function collection($collectionPath, array $options = [])
-    {}
+    /**
+     * Lazily instantiate a Collection.
+     *
+     * @param string $relativeName
+     * @return Collection
+     */
+    public function collection($relativeName)
+    {
+        if (!$this->isCollection($relativeName)) {
+            throw new \InvalidArgumentException('Given path is not a valid collection path.');
+        }
+
+        return new Collection($this->connection, $this->fullName(
+            $this->projectId,
+            $this->database,
+            $relativeName
+        ));
+    }
 
     /**
      * List root-level collections in the database.
@@ -104,20 +126,53 @@ class FirestoreClient
     public function collections(array $options = [])
     {}
 
-    public function document($path)
+    /**
+     * Lazily instantiate a Document instance.
+     *
+     * @param string $relativeName The document path, relative to the database name.
+     * @return Document
+     * @throws InvalidArgumentException If the given path is not a valid document path.
+     */
+    public function document($relativeName)
     {
-        return new Document($this->connection, $this->fullPath($path));
+        if (!$this->isDocument($relativeName)) {
+            throw new \InvalidArgumentException('Given path is not a valid document path.');
+        }
+
+        return new Document(
+            $this->connection,
+            $this->valueMapper,
+            $this->fullName(
+                $this->projectId,
+                $this->database,
+                $relativeName
+            )
+        );
     }
 
+    /**
+     * Get a list of documents by {@see Google\Cloud\Firestore\Document} objects.
+     *
+     * @param Document[] $references
+     * @param array $options
+     * @return Document[]
+     */
     public function documents(array $references, array $options = [])
-    {}
+    {
+        $this->validateBatch($references, Document::class);
+
+        $refs = [];
+        array_walk($references, function ($reference) use ($refs) {
+            $refs[] = $reference->path();
+        });
+
+        $documents = $this->connection->getDocuments([
+            'refs' => $refs
+        ] + $options);
+
+        return $documents;
+    }
 
     public function runTransaction(callable $transaction, array $options = [])
     {}
-
-    private function fullPath($relativePath)
-    {
-        $template = 'projects/%s/databases/%s/%s';
-        return sprintf($template, $this->projectId, $this->database, $relativePath);
-    }
 }

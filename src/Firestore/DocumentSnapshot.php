@@ -17,5 +17,72 @@
 
 namespace Google\Cloud\Firestore;
 
-class DocumentSnapshot
-{}
+class DocumentSnapshot implements \ArrayAccess
+{
+    private $name;
+    private $info;
+    private $fields;
+    private $exists;
+
+    public function __construct($name, array $info, array $fields, $exists)
+    {
+        $this->name = $name;
+        $this->info = $info;
+        $this->fields = $fields;
+        $this->exists = $exists;
+    }
+
+    public function name()
+    {
+        return $this->name;
+    }
+
+    public function info()
+    {
+        return $this->info;
+    }
+
+    public function fields()
+    {
+        return $this->fields;
+    }
+
+    public function exists()
+    {
+        return $this->exists;
+    }
+
+    /**
+     * @access private
+     */
+    public function offsetSet($offset, $value)
+    {
+        throw new \BadMethodCallException('DocumentSnapshots are read-only.');
+    }
+
+    /**
+     * @access private
+     */
+    public function offsetExists($offset)
+    {
+        return isset($this->fields[$offset]);
+    }
+
+    /**
+     * @access private
+     */
+    public function offsetUnset($offset)
+    {
+        throw new \BadMethodCallException('DocumentSnapshots are read-only.');
+    }
+
+    /**
+     * @access private
+     */
+    public function offsetGet($offset)
+    {
+        return isset($this->fields[$offset])
+            ? $this->fields[$offset]
+            : null;
+    }
+}

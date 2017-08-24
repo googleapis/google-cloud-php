@@ -39,7 +39,14 @@ class Grpc implements ConnectionInterface
      */
     public function __construct(array $config = [])
     {
-        $this->serializer = new Serializer([], [
+        $this->serializer = new Serializer([
+            'create_time' => function ($v) {
+                return $this->formatTimestampFromApi($v);
+            },
+            'update_time' => function ($v) {
+                return $this->formatTimestampFromApi($v);
+            },
+        ], [
             'google.protobuf.Value' => function ($v) {
                 return $this->flattenValue($v);
             },
@@ -59,8 +66,222 @@ class Grpc implements ConnectionInterface
         $this->firestore = new FirestoreGapicClient($grpcConfig);
     }
 
+        /**
+     * @param array $args
+     */
+    public function batchGetDocuments(array $args)
+    {
+        throw new \BadMethodCallException('not implemented');
+    }
+
+    /**
+     * @param array $args
+     */
+    public function beginTransaction(array $args)
+    {
+        throw new \BadMethodCallException('not implemented');
+    }
+
+    /**
+     * @param array $args
+     */
+    public function commit(array $args)
+    {
+        throw new \BadMethodCallException('not implemented');
+    }
+
+    /**
+     * @param array $args
+     */
+    public function createDocument(array $args)
+    {
+        throw new \BadMethodCallException('not implemented');
+    }
+
+    /**
+     * @param array $args
+     */
+    public function createIndex(array $args)
+    {
+        throw new \BadMethodCallException('not implemented');
+    }
+
+    /**
+     * @param array $args
+     */
+    public function deleteDocument(array $args)
+    {
+        throw new \BadMethodCallException('not implemented');
+    }
+
+    /**
+     * @param array $args
+     */
+    public function deleteIndex(array $args)
+    {
+        throw new \BadMethodCallException('not implemented');
+    }
+
+    /**
+     * @param array $args
+     */
+    public function disableIndex(array $args)
+    {
+        throw new \BadMethodCallException('not implemented');
+    }
+
+    /**
+     * @param array $args
+     */
+    public function enableIndex(array $args)
+    {
+        throw new \BadMethodCallException('not implemented');
+    }
+
+    /**
+     * @param array $args
+     */
+    public function getCollectionGroup(array $args)
+    {
+        throw new \BadMethodCallException('not implemented');
+    }
+
+    /**
+     * @param array $args
+     */
+    public function getDatabase(array $args)
+    {
+        throw new \BadMethodCallException('not implemented');
+    }
+
+    /**
+     * @param array $args
+     */
     public function getDocument(array $args)
     {
-        return $this->firestore->getDocument($this->pluck('name', $args), $args);
+        return $this->send([$this->firestore, 'getDocument'], [
+            $this->pluck('name', $args),
+            $args
+        ]);
+    }
+
+    /**
+     * @param array $args
+     */
+    public function getField(array $args)
+    {
+        throw new \BadMethodCallException('not implemented');
+    }
+
+    /**
+     * @param array $args
+     */
+    public function getIndex(array $args)
+    {
+        throw new \BadMethodCallException('not implemented');
+    }
+
+    /**
+     * @param array $args
+     */
+    public function getNamespace(array $args)
+    {
+        throw new \BadMethodCallException('not implemented');
+    }
+
+    /**
+     * @param array $args
+     */
+    public function listCollectionGroups(array $args)
+    {
+        throw new \BadMethodCallException('not implemented');
+    }
+
+    /**
+     * @param array $args
+     */
+    public function listCollectionIds(array $args)
+    {
+        throw new \BadMethodCallException('not implemented');
+    }
+
+    /**
+     * @param array $args
+     */
+    public function listDatabases(array $args)
+    {
+        throw new \BadMethodCallException('not implemented');
+    }
+
+    /**
+     * @param array $args
+     */
+    public function listDocuments(array $args)
+    {
+        throw new \BadMethodCallException('not implemented');
+    }
+
+    /**
+     * @param array $args
+     */
+    public function listFields(array $args)
+    {
+        throw new \BadMethodCallException('not implemented');
+    }
+
+    /**
+     * @param array $args
+     */
+    public function listIndexes(array $args)
+    {
+        throw new \BadMethodCallException('not implemented');
+    }
+
+    /**
+     * @param array $args
+     */
+    public function listNamespaces(array $args)
+    {
+        throw new \BadMethodCallException('not implemented');
+    }
+
+    /**
+     * @param array $args
+     */
+    public function listen(array $args)
+    {
+        throw new \BadMethodCallException('not implemented');
+    }
+
+    /**
+     * @param array $args
+     */
+    public function rollback(array $args)
+    {
+        throw new \BadMethodCallException('not implemented');
+    }
+
+    /**
+     * @param array $args
+     */
+    public function runQuery(array $args)
+    {
+        throw new \BadMethodCallException('not implemented');
+    }
+
+    /**
+     * @param array $args
+     */
+    public function updateDocument(array $args)
+    {
+        throw new \BadMethodCallException('not implemented');
+    }
+
+    /**
+     * @param array $args
+     */
+    public function write(array $args)
+    {
+        throw new \BadMethodCallException('not implemented');
     }
 }

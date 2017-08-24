@@ -17,28 +17,74 @@
 
 namespace Google\Cloud\Firestore;
 
+use Google\Cloud\Core\ArrayTrait;
+use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 
+/**
+ * Represents a reference to a Firestore document.
+ */
 class Document
 {
-    private $connection;
-    private $path;
+    use ArrayTrait;
 
-    public function __construct(ConnectionInterface $connection, $path)
+    private $connection;
+    private $valueMapper;
+    private $name;
+
+    public function __construct(ConnectionInterface $connection, ValueMapper $valueMapper, $name)
     {
         $this->connection = $connection;
-        $this->path = $path;
+        $this->valueMapper = $valueMapper;
+        $this->name = $name;
     }
 
-    public function info(array $options = [])
+    public function create(array $fields = [], array $options = [])
     {
-        return $this->info ?: $this->reload($options);
-    }
-
-    public function reload(array $options = [])
-    {
-        return $this->info = $this->connection->getDocument([
-            'name' => $this->path
+        return $this->connection->createDocument([
+            'name' => $this->name,
+            'fields' => $fields
         ] + $options);
+    }
+
+    public function set($key, $value, array $options = [])
+    {}
+
+    public function update(array $fields, array $options = [])
+    {}
+
+    public function delete(array $options = [])
+    {}
+
+    /**
+     * Get a document snapshot.
+     *
+     * @param array $options {
+     *     Configuration Options
+     *
+     *     @type array $mask A list of fields to return. If not set, returns all
+     *           fields.
+     * }
+     * @return DocumentSnapshot
+     */
+    public function get(array $options = [])
+    {
+        $exists = true;
+        $document = [];
+        $fields = [];
+
+        try {
+            $document = $this->connection->getDocument([
+                'name' => $this->name,
+            ] + $options);
+
+            $fields = $this->valueMapper->decodeValues(
+                $this->pluck('fields', $document)
+            );
+        } catch (NotFoundException $e) {
+            $exists = false;
+        }
+
+        return new DocumentSnapshot($this->name, $document, $fields, $exists);
     }
 }
