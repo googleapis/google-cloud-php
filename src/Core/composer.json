@@ -20,7 +20,7 @@
             "id": "cloud-core",
             "target": "GoogleCloudPlatform/google-cloud-php-core.git",
             "path": "src/Core",
-            "entry": null
+            "entry": "ServiceBuilder.php"
         }
     },
     "bin": [
