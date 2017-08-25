@@ -311,22 +311,12 @@ class CacheSessionPool implements SessionPoolInterface
      * would leave 6 sessions in the queue. The count of items to be deleted will
      * be rounded up in the case of a fraction.
      *
-     * A session may be removed from the cache, but still tracked as active by
-     * the Spanner backend if a delete operation failed. To ensure you do not
-     * exceed the maximum number of sessions available per node, please be sure
-     * to check the return value of this method to be certain all sessions have
-     * been deleted.
-     *
      * Please note this method will attempt to synchronously delete sessions and
      * will block until complete.
      *
      * @param int $percent The percentage to downsize the pool by. Must be
      *        between 1 and 100.
-     * @return array An associative array containing a key `deleted` which holds
-     *         an integer value representing the number of queued sessions
-     *         deleted on the backend and a key `failed` which holds a list of
-     *         queued {@see Google\Cloud\Spanner\Session\Session} objects which
-     *         failed to delete.
+     * @return int The number of sessions removed from the pool.
      * @throws \InvaldArgumentException
      */
     public function downsize($percent)
@@ -335,7 +325,6 @@ class CacheSessionPool implements SessionPoolInterface
             throw new \InvalidArgumentException('The provided percent must be between 1 and 100.');
         }
 
-        $failed = [];
         $toDelete = $this->config['lock']->synchronize(function () use ($percent) {
             $item = $this->cacheItemPool->getItem($this->cacheKey);
             $data = (array) $item->get() ?: $this->initialize();
@@ -361,15 +350,10 @@ class CacheSessionPool implements SessionPoolInterface
                 if ($ex instanceof NotFoundException) {
                     continue;
                 }
-
-                $failed[] = $session;
             }
         }
 
-        return [
-            'deleted' => count($toDelete) - count($failed),
-            'failed' => $failed
-        ];
+        return count($toDelete);
     }
 
     /**
@@ -430,22 +414,11 @@ class CacheSessionPool implements SessionPoolInterface
     /**
      * Clear the cache and attempt to delete all sessions in the pool.
      *
-     * A session may be removed from the cache, but still tracked as active by
-     * the Spanner backend if a delete operation failed. To ensure you do not
-     * exceed the maximum number of sessions available per node, please be sure
-     * to check the return value of this method to be certain all sessions have
-     * been deleted.
-     *
      * Please note this method will attempt to synchronously delete sessions and
      * will block until complete.
-     *
-     * @return array An array containing a list of
-     *         {@see Google\Cloud\Spanner\Session\Session} objects which failed
-     *         to delete.
      */
     public function clear()
     {
-        $failed = [];
         $sessions = $this->config['lock']->synchronize(function () {
             $sessions = [];
             $item = $this->cacheItemPool->getItem($this->cacheKey);
@@ -473,12 +446,8 @@ class CacheSessionPool implements SessionPoolInterface
                 if ($ex instanceof NotFoundException) {
                     continue;
                 }
-
-                $failed[] = $session;
             }
         }
-
-        return $failed;
     }
 
     /**
