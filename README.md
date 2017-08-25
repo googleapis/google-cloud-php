@@ -17,10 +17,10 @@ This client supports the following Google Cloud Platform services at a [Beta](#v
 * [Google BigQuery](#google-bigquery-beta) (Beta)
 * [Google Cloud Natural Language](#google-cloud-natural-language-beta) (Beta)
 * [Google Cloud Pub/Sub](#google-cloud-pubsub-beta) (Beta)
+* [Cloud Spanner](#cloud-spanner-beta) (Beta)
 * [Google Cloud Vision](#google-cloud-vision-beta) (Beta)
 
 This client supports the following Google Cloud Platform services at an [Alpha](#versioning) quality level:
-* [Cloud Spanner](#cloud-spanner-alpha) (Alpha)
 * [Google Cloud Speech](#google-cloud-speech-alpha) (Alpha)
 * [Google Cloud Video Intelligence](#google-cloud-video-intelligence-alpha) (Alpha)
 * [Google Stackdriver Trace](#google-stackdriver-trace-alpha) (Alpha)
@@ -408,6 +408,43 @@ Google Cloud Pub/Sub can be installed separately by requiring the `google/cloud-
 $ require google/cloud-pubsub
 ```
 
+## Cloud Spanner (Beta)
+
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/spanner/spannerclient)
+- [Official Documentation](https://cloud.google.com/spanner/docs)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Spanner\SpannerClient;
+
+$spanner = new SpannerClient([
+    'projectId' => 'my_project'
+]);
+
+$db = $spanner->connect('my-instance', 'my-database');
+
+$userQuery = $db->execute('SELECT * FROM Users WHERE id = @id', [
+    'parameters' => [
+        'id' => $userId
+    ]
+]);
+
+$user = $userQuery->rows()->current();
+
+echo 'Hello ' . $user['firstName'];
+```
+
+#### google/cloud-spanner
+
+Cloud Spanner can be installed separately by requiring the `google/cloud-spanner` composer package:
+
+```
+$ require google/cloud-spanner
+```
+
 ## Google Cloud Vision (Beta)
 
 - [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/vision/visionclient)
@@ -446,43 +483,6 @@ Google Cloud Vision can be installed separately by requiring the `google/cloud-v
 
 ```
 $ require google/cloud-vision
-```
-
-## Cloud Spanner (Alpha)
-
-- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/spanner/spannerclient)
-- [Official Documentation](https://cloud.google.com/spanner/docs)
-
-#### Preview
-
-```php
-require 'vendor/autoload.php';
-
-use Google\Cloud\Spanner\SpannerClient;
-
-$spanner = new SpannerClient([
-    'projectId' => 'my_project'
-]);
-
-$db = $spanner->connect('my-instance', 'my-database');
-
-$userQuery = $db->execute('SELECT * FROM Users WHERE id = @id', [
-    'parameters' => [
-        'id' => $userId
-    ]
-]);
-
-$user = $userQuery->rows()->current();
-
-echo 'Hello ' . $user['firstName'];
-```
-
-#### google/cloud-spanner
-
-Cloud Spanner can be installed separately by requiring the `google/cloud-spanner` composer package:
-
-```
-$ require google/cloud-spanner
 ```
 
 ## Google Cloud Speech (Alpha)
