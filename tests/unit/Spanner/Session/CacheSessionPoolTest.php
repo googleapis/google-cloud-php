@@ -288,33 +288,6 @@ class CacheSessionPoolTest extends \PHPUnit_Framework_TestCase
         ];
     }
 
-    public function testDownsizeFails()
-    {
-        $time = time() + 3600;
-        $pool = new CacheSessionPoolStub($this->getCacheItemPool([
-            'queue' => [
-                [
-                    'name' => 'session0',
-                    'expiration' => $time
-                ],
-                [
-                    'name' => 'session1',
-                    'expiration' => $time
-                ]
-            ],
-            'inUse' => [],
-            'toCreate' => [],
-            'windowStart' => $this->time,
-            'maxInUseSessions' => 1
-        ]));
-        $pool->setDatabase($this->getDatabase());
-        $response = $pool->downsize(100);
-
-        $this->assertEquals(0, $response['deleted']);
-        $this->assertEquals(1, count($response['failed']));
-        $this->assertContainsOnlyInstancesOf(Session::class, $response['failed']);
-    }
-
     /**
      * @dataProvider invalidPercentDownsizeDataProvider
      */

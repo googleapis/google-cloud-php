@@ -23,6 +23,7 @@ use Google\Cloud\Core\Lock\LockInterface;
 use Google\Cloud\Core\Lock\SemaphoreLock;
 use Google\Cloud\Core\SysvTrait;
 use Google\Cloud\Spanner\Database;
+use Grpc\UnaryCall;
 use Psr\Cache\CacheItemPoolInterface;
 
 /**
@@ -117,6 +118,11 @@ class CacheSessionPool implements SessionPoolInterface
      * @var Database|null
      */
     private $database;
+
+    /**
+     * @var UnaryCall[]
+     */
+    private $deleteCalls = [];
 
     /**
      * @var array
@@ -756,18 +762,17 @@ class CacheSessionPool implements SessionPoolInterface
      */
     private function deleteSessions(array $sessions)
     {
-        $calls = [];
+        // gRPC calls appear to cancel when the corresponding UnaryCall object
+        // goes out of scope. Keeping the calls in scope allows time for the
+        // calls to complete at the expense of a small memory footprint.
+        $this->deleteCalls = [];
 
         foreach ($sessions as $session) {
-            $calls[] = $this->database->connection()
+            $this->deleteCalls[] = $this->database->connection()
                 ->deleteSessionAsync([
                     'name' => $session['name'],
                     'database' => $this->database->name()
                 ]);
-        }
-
-        foreach ($calls as $call) {
-            $call->wait();
         }
     }
 
