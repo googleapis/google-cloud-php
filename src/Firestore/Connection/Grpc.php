@@ -23,6 +23,7 @@ use Google\Cloud\Firestore\FirestoreClient as ManualFirestoreClient;
 use Google\Cloud\Firestore\V1beta1\FirestoreAdminGapicClient;
 use Google\Cloud\Firestore\V1beta1\FirestoreGapicClient;
 use Google\Firestore\V1beta1\DocumentMask;
+use Google\Firestore\V1beta1\Write;
 use Google\GAX\Serializer;
 
 class Grpc implements ConnectionInterface
@@ -45,6 +46,9 @@ class Grpc implements ConnectionInterface
                 return $this->formatTimestampFromApi($v);
             },
             'update_time' => function ($v) {
+                return $this->formatTimestampFromApi($v);
+            },
+            'commit_time' => function ($v) {
                 return $this->formatTimestampFromApi($v);
             },
         ], [
@@ -88,7 +92,16 @@ class Grpc implements ConnectionInterface
      */
     public function commit(array $args)
     {
-        throw new \BadMethodCallException('not implemented');
+        $writes = $this->pluck('writes', $args);
+        foreach ($writes as $idx => $write) {
+            $writes[$idx] = $this->serializer->decodeMessage(new Write, $write);
+        }
+
+        return $this->send([$this->firestore, 'commit'], [
+            $this->pluck('database', $args),
+            $writes,
+            $args
+        ]);
     }
 
     /**

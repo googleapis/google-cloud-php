@@ -25,6 +25,12 @@ trait PathTrait
         return sprintf($template, $projectId, $database, $relativeName);
     }
 
+    private function databaseName($name)
+    {
+        $parts = explode('/databases/', $name);
+        return $parts[0] . '/databases/' . explode('/', $parts[1])[0];
+    }
+
     private function isDocument($name)
     {
         $parts = $this->splitName($name);
@@ -58,12 +64,12 @@ trait PathTrait
         return end($parts);
     }
 
-    private function child($name, $child)
+    private function childPath($name, $child)
     {
         return $name . '/' . $child;
     }
 
-    private function parent($name)
+    private function parentPath($name)
     {
         $parts = $this->splitName($name);
         array_pop($parts);

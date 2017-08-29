@@ -17,14 +17,18 @@
 
 namespace Google\Cloud\Firestore;
 
+use Google\Cloud\Core\ArrayTrait;
+use Google\Cloud\Core\Blob;
 use Google\Cloud\Core\DebugInfoTrait;
 use Google\Cloud\Core\GeoPoint;
 use Google\Cloud\Core\Int64;
+use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\ValueMapperTrait;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 
 class ValueMapper
 {
+    use ArrayTrait;
     use DebugInfoTrait;
     use ValueMapperTrait;
 
@@ -61,8 +65,16 @@ class ValueMapper
         return $output;
     }
 
-    public function encodeValues()
-    {}
+    public function encodeValues(array $fields)
+    {
+        $output = [];
+
+        foreach ($fields as $key => $val) {
+            $output[$key] = $this->encodeValue($val);
+        }
+
+        return $output;
+    }
 
     private function decodeValue($type, $value)
     {
@@ -130,5 +142,110 @@ class ValueMapper
 
                 break;
         }
+    }
+
+    private function encodeValue($value)
+    {
+        $type = gettype($value);
+
+        switch ($type) {
+            case 'boolean':
+                return ['booleanValue' => $value];
+                break;
+
+            case 'integer':
+                return ['integerValue' => $value];
+                break;
+
+            case 'double':
+                return ['doubleValue' => $value];
+                break;
+
+            case 'string':
+                return ['stringValue' => $value];
+                break;
+
+            case 'resource':
+                return base64_encode(stream_get_contents($value));
+                break;
+
+            case 'object':
+                return $this->encodeObjectValue($value);
+                break;
+
+            case 'array':
+                if ($this->isAssoc($value)) {
+                    return $this->encodeAssociativeArrayValue($value);
+                }
+
+                return $this->encodeArrayValue($value);
+                break;
+
+            case 'NULL':
+                return ['nullValue' => null];
+                break;
+
+            default:
+                throw new \RuntimeException(sprintf(
+                    'Invalid value type %s',
+                    $type
+                ));
+                break;
+        }
+    }
+
+    private function encodeObjectValue($value)
+    {
+        $class = get_class($value);
+
+        switch ($class) {
+            case 'stdClass':
+                return $this->encodeAssociativeArrayValue((array) $value);
+
+            case Blob::class:
+                return ['blobValue' => (string) $value];
+
+            case Timestamp::class:
+                return ['timestampValue' => [
+                    'seconds' => $value->get()->format('U'),
+                    'nanos' => $value->nanoSeconds()
+                ]];
+
+            case GeoPoint::class:
+                return ['geoPointValue' => $value->point()];
+
+            case Document::class:
+                return ['referenceValue' => $value->name()];
+
+            default:
+                throw new \BadMethodCallException(sprintf(
+                    'Object of type %s cannot be encoded to a Firestore value type.',
+                    $class
+                ));
+        }
+    }
+
+    private function encodeAssociativeArrayValue(array $value)
+    {
+        $out = [];
+        foreach ($value as $key => $item) {
+            $out[$key] = $this->encodeValue($item);
+        }
+
+        return ['mapValue' => ['fields' => $out]];
+    }
+
+    private function encodeArrayValue(array $value)
+    {
+        $out = [];
+        foreach ($value as $item) {
+            if (is_array($item)) {
+                throw new \BadMethodCallException('Nested array values are not permitted.');
+            }
+
+            $out[] = $this->encodeValue($item);
+        }
+
+        return ['arrayValue' => ['values' => $out]];
     }
 }

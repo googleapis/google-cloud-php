@@ -17,7 +17,6 @@
 
 namespace Google\Cloud\Firestore;
 
-use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\DebugInfoTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Iterator\ItemIterator;
@@ -29,7 +28,7 @@ use Google\Cloud\Firestore\Connection\ConnectionInterface;
  */
 class Document
 {
-    use ArrayTrait;
+    use OperationTrait;
     use DebugInfoTrait;
     use PathTrait;
 
@@ -44,12 +43,26 @@ class Document
         $this->name = $name;
     }
 
+    public function parent()
+    {
+        return new Collection($this->connection, $this->valueMapper, $this->parentPath($this->name));
+    }
+
     public function create(array $fields = [], array $options = [])
     {
-        return $this->connection->createDocument([
-            'name' => $this->name,
-            'fields' => $fields
-        ] + $options);
+        $fields = $this->valueMapper->encodeValues($fields);
+
+        $writes = [
+            $this->createDatabaseWrite('update', $this->name, [
+                'fields' => $fields,
+                'currentDocument' => ['exists' => false]
+            ])
+        ];
+
+        return $this->commitResponse($this->connection->commit([
+            'database' => $this->databaseName($this->name),
+            'writes' => $writes
+        ] + $options));
     }
 
     public function set($key, $value, array $options = [])
@@ -72,7 +85,7 @@ class Document
      * }
      * @return DocumentSnapshot
      */
-    public function get(array $options = [])
+    public function snapshot(array $options = [])
     {
         $exists = true;
         $document = [];
@@ -93,13 +106,18 @@ class Document
         return new DocumentSnapshot($this->name, $document, $fields, $exists);
     }
 
+    public function collection($collectionId)
+    {
+        return new Collection($this->connection, $this->valueMapper, $this->childPath($this->name, $collectionId));
+    }
+
     public function collections(array $options = [])
     {
         $resultLimit = $this->pluck('resultLimit', $options, false);
         return new ItemIterator(
             new PageIterator(
                 function ($collectionId) {
-                    return new Collection($this->connection, $this->valueMapper, $this->child($this->name, $collectionId));
+                    return new Collection($this->connection, $this->valueMapper, $this->childPath($this->name, $collectionId));
                 },
                 [$this->connection, 'listCollectionIds'],
                 $options + ['parent' => $this->name],

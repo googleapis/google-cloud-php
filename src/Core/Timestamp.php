@@ -81,6 +81,16 @@ class Timestamp
     }
 
     /**
+     * Return the number of nanoseconds.
+     *
+     * @return int
+     */
+    public function nanoSeconds()
+    {
+        return $this->nanoSeconds;
+    }
+
+    /**
      * Format the value as a string.
      *
      * This method retains nanosecond precision, if available.
