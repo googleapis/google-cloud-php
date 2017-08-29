@@ -22,6 +22,7 @@ use Google\Cloud\Core\GrpcTrait;
 use Google\Cloud\Firestore\FirestoreClient as ManualFirestoreClient;
 use Google\Cloud\Firestore\V1beta1\FirestoreAdminGapicClient;
 use Google\Cloud\Firestore\V1beta1\FirestoreGapicClient;
+use Google\Firestore\V1beta1\DocumentMask;
 use Google\GAX\Serializer;
 
 class Grpc implements ConnectionInterface
@@ -202,7 +203,10 @@ class Grpc implements ConnectionInterface
      */
     public function listCollectionIds(array $args)
     {
-        throw new \BadMethodCallException('not implemented');
+        return $this->send([$this->firestore, 'listCollectionIds'], [
+            $this->pluck('parent', $args),
+            $args
+        ]);
     }
 
     /**
@@ -218,7 +222,18 @@ class Grpc implements ConnectionInterface
      */
     public function listDocuments(array $args)
     {
-        throw new \BadMethodCallException('not implemented');
+        if (isset($args['mask'])) {
+            $mask = $args['mask'];
+
+            $args['mask'] = new DocumentMask;
+            $args['mask']->setFieldPaths($mask);
+        }
+
+        return $this->send([$this->firestore, 'listDocuments'], [
+            $this->pluck('parent', $args),
+            $this->pluck('collectionId', $args),
+            $args
+        ]);
     }
 
     /**

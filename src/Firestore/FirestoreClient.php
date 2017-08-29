@@ -75,7 +75,10 @@ class FirestoreClient
         ];
 
         $this->connection = new Grpc($this->configureAuthentication($config));
-        $this->valueMapper = new ValueMapper($config['returnInt64AsObject']);
+        $this->valueMapper = new ValueMapper(
+            $this->connection,
+            $config['returnInt64AsObject']
+        );
     }
 
     /**

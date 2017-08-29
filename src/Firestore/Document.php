@@ -18,7 +18,10 @@
 namespace Google\Cloud\Firestore;
 
 use Google\Cloud\Core\ArrayTrait;
+use Google\Cloud\Core\DebugInfoTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\Core\Iterator\ItemIterator;
+use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 
 /**
@@ -27,6 +30,8 @@ use Google\Cloud\Firestore\Connection\ConnectionInterface;
 class Document
 {
     use ArrayTrait;
+    use DebugInfoTrait;
+    use PathTrait;
 
     private $connection;
     private $valueMapper;
@@ -86,5 +91,23 @@ class Document
         }
 
         return new DocumentSnapshot($this->name, $document, $fields, $exists);
+    }
+
+    public function collections(array $options = [])
+    {
+        $resultLimit = $this->pluck('resultLimit', $options, false);
+        return new ItemIterator(
+            new PageIterator(
+                function ($collectionId) {
+                    return new Collection($this->connection, $this->valueMapper, $this->child($this->name, $collectionId));
+                },
+                [$this->connection, 'listCollectionIds'],
+                $options + ['parent' => $this->name],
+                [
+                    'itemsKey' => 'collectionIds',
+                    'resultLimit' => $resultLimit
+                ]
+            )
+        );
     }
 }

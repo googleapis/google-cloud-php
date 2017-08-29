@@ -24,7 +24,10 @@ trait ValueMapperTrait
      * class with nanosecond support.
      *
      * @param string|array $timestamp The timestamp as a string or an array.
-     * @return Timestamp
+     * @param string $returnType The type to create and return. Any object used
+     *        must provide a constructor compatible with {@see Google\Cloud\Core\Timestamp}.
+     *        **Defaults to** `Google\Cloud\Core\Timestamp`.
+     * @return mixed
      */
     private function createTimestampWithNanos($timestamp, $returnType = Timestamp::class)
     {

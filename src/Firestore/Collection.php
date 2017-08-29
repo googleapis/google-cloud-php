@@ -17,5 +17,73 @@
 
 namespace Google\Cloud\Firestore;
 
+use Google\Cloud\Core\ArrayTrait;
+use Google\Cloud\Core\DebugInfoTrait;
+use Google\Cloud\Core\Iterator\ItemIterator;
+use Google\Cloud\Core\Iterator\PageIterator;
+use Google\Cloud\Firestore\Connection\ConnectionInterface;
+
 class Collection
-{}
+{
+    use ArrayTrait;
+    use DebugInfoTrait;
+    use PathTrait;
+
+    /**
+     * @var ConnectionInterface
+     */
+    private $connection;
+
+    /**
+     * @var ValueMapper
+     */
+    private $valueMapper;
+
+    /**
+     * @var string
+     */
+    private $name;
+
+    /**
+     * @param ConnectionInterface $connection
+     * @param ValueMapper $valueMapper
+     * @param string $name
+     */
+    public function __construct(ConnectionInterface $connection, ValueMapper $valueMapper, $name)
+    {
+        $this->connection = $connection;
+        $this->valueMapper = $valueMapper;
+        $this->name = $name;
+    }
+
+    public function name()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @todo This method is not in the document defining the API behavior, so it may have been omitted for a reason (and
+     * may therefore be removed later). In testing, I found it useful to list documents in a collection, so I've
+     * included it for the time being. (jdp)
+     */
+    public function documents(array $options = [])
+    {
+        $resultLimit = $this->pluck('resultLimit', $options, false);
+        return new ItemIterator(
+            new PageIterator(
+                function (array $document) {
+                    return new Document($this->connection, $this->valueMapper, $document['name']);
+                },
+                [$this->connection, 'listDocuments'],
+                [
+                    'parent' => $this->parent($this->name),
+                    'collectionId' => $this->id($this->name),
+                    'mask' => [] // do not return any fields, since we only need a list of document names.
+                ] + $options, [
+                    'itemsKey' => 'documents',
+                    'resultLimit' => $resultLimit
+                ]
+            )
+        );
+    }
+}

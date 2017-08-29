@@ -25,30 +25,49 @@ trait PathTrait
         return sprintf($template, $projectId, $database, $relativeName);
     }
 
-    private function isDocument($relativeName)
+    private function isDocument($name)
     {
-        $parts = $this->splitName($relativeName);
+        $parts = $this->splitName($name);
         return count($parts) > 0 && count($parts) % 2 === 0;
     }
 
-    private function isCollection($relativeName)
+    private function isCollection($name)
     {
-        $parts = $this->splitName($relativeName);
+        $parts = $this->splitName($name);
         return count($parts) % 2 === 1;
     }
 
-    private function splitName($relativeName)
+    private function isRelative($name)
     {
-        return explode('/', trim($relativeName, '/'));
+        $parts = $this->splitName($name);
+        return count($parts) > 0 && $parts[0] !== 'projects';
     }
 
-    private function id($relativeName)
+    private function splitName($name)
     {
-        $parts = $this->splitName($relativeName);
-        if (count($parts) === 0) {
+        return explode('/', trim($name, '/'));
+    }
+
+    private function id($name)
+    {
+        $parts = $this->splitName($name);
+        if (!is_array($parts) || count($parts) === 0) {
             return null;
         }
 
-        return end($this->parts);
+        return end($parts);
+    }
+
+    private function child($name, $child)
+    {
+        return $name . '/' . $child;
+    }
+
+    private function parent($name)
+    {
+        $parts = $this->splitName($name);
+        array_pop($parts);
+
+        return implode('/', $parts);
     }
 }

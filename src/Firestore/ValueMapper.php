@@ -17,11 +17,21 @@
 
 namespace Google\Cloud\Firestore;
 
+use Google\Cloud\Core\DebugInfoTrait;
+use Google\Cloud\Core\GeoPoint;
+use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\ValueMapperTrait;
+use Google\Cloud\Firestore\Connection\ConnectionInterface;
 
 class ValueMapper
 {
+    use DebugInfoTrait;
     use ValueMapperTrait;
+
+    /**
+     * @var ConnectionInterface
+     */
+    private $connection;
 
     /**
      * @var bool
@@ -31,8 +41,9 @@ class ValueMapper
     /**
      * @param bool $returnInt64AsObject
      */
-    public function __construct($returnInt64AsObject)
+    public function __construct(ConnectionInterface $connection, $returnInt64AsObject)
     {
+        $this->connection = $connection;
         $this->returnInt64AsObject = $returnInt64AsObject;
     }
 
@@ -56,16 +67,67 @@ class ValueMapper
     private function decodeValue($type, $value)
     {
         switch ($type) {
-            case 'stringValue' :
+            case 'booleanValue':
+            case 'nullValue':
+            case 'stringValue':
+            case 'doubleValue':
                 return $value;
                 break;
 
-            case 'timestampValue' :
+            case 'bytesValue':
+                return new Blob($value);
+
+            case 'integerValue':
+                return $this->returnInt64AsObject
+                    ? new Int64($value)
+                    : $value;
+
+            case 'timestampValue':
                 return $this->createTimestampWithNanos($value);
                 break;
 
-            default :
-                return $value;
+            case 'geoPointValue':
+                $value += [
+                    'latitude' => null,
+                    'longitude' => null
+                ];
+
+                return new GeoPoint($value['latitude'], $value['longitude']);
+                break;
+
+            case 'arrayValue':
+                $res = [];
+
+                foreach ($value['values'] as $val) {
+                    $type = array_keys($val)[0];
+
+                    $res[] = $this->decodeValue($type, current($val));
+                }
+
+                return $res;
+                break;
+
+            case 'mapValue':
+                $res = [];
+
+                foreach ($value['fields'] as $key => $val) {
+                    $type = array_keys($val)[0];
+
+                    $res[$key] = $this->decodeValue($type, current($val));
+                }
+
+                return $res;
+                break;
+
+            case 'referenceValue':
+                return new Document($this->connection, $this, $value);
+
+            default:
+                throw new \RuntimeException(sprintf(
+                    'unexpected value type %s!',
+                    $type
+                ));
+
                 break;
         }
     }
