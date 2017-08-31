@@ -21,7 +21,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * number of retires have been reached or a maximum retry delay cap has been
  * reached.
  *
- * Protobuf type <code>Google\Rpc\RetryInfo</code>
+ * Generated from protobuf message <code>google.rpc.RetryInfo</code>
  */
 class RetryInfo extends \Google\Protobuf\Internal\Message
 {
@@ -53,11 +53,14 @@ class RetryInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration retry_delay = 1;</code>
      * @param \Google\Protobuf\Duration $var
+     * @return $this
      */
-    public function setRetryDelay(&$var)
+    public function setRetryDelay($var)
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
         $this->retry_delay = $var;
+
+        return $this;
     }
 
 }

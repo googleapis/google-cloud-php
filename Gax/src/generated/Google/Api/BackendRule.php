@@ -11,7 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * A backend rule provides configuration for an individual API element.
  *
- * Protobuf type <code>Google\Api\BackendRule</code>
+ * Generated from protobuf message <code>google.api.BackendRule</code>
  */
 class BackendRule extends \Google\Protobuf\Internal\Message
 {
@@ -59,11 +59,14 @@ class BackendRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string selector = 1;</code>
      * @param string $var
+     * @return $this
      */
     public function setSelector($var)
     {
         GPBUtil::checkString($var, True);
         $this->selector = $var;
+
+        return $this;
     }
 
     /**
@@ -82,11 +85,14 @@ class BackendRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string address = 2;</code>
      * @param string $var
+     * @return $this
      */
     public function setAddress($var)
     {
         GPBUtil::checkString($var, True);
         $this->address = $var;
+
+        return $this;
     }
 
     /**
@@ -107,11 +113,14 @@ class BackendRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double deadline = 3;</code>
      * @param float $var
+     * @return $this
      */
     public function setDeadline($var)
     {
         GPBUtil::checkDouble($var);
         $this->deadline = $var;
+
+        return $this;
     }
 
 }

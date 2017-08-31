@@ -11,7 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Associates `members` with a `role`.
  *
- * Protobuf type <code>Google\Iam\V1\Binding</code>
+ * Generated from protobuf message <code>google.iam.v1.Binding</code>
  */
 class Binding extends \Google\Protobuf\Internal\Message
 {
@@ -68,11 +68,14 @@ class Binding extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string role = 1;</code>
      * @param string $var
+     * @return $this
      */
     public function setRole($var)
     {
         GPBUtil::checkString($var, True);
         $this->role = $var;
+
+        return $this;
     }
 
     /**
@@ -116,12 +119,15 @@ class Binding extends \Google\Protobuf\Internal\Message
      *    users of that domain. For example, `google.com` or `example.com`.
      *
      * Generated from protobuf field <code>repeated string members = 2;</code>
-     * @param array|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setMembers(&$var)
+    public function setMembers($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->members = $arr;
+
+        return $this;
     }
 
 }

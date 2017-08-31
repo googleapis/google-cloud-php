@@ -17,7 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * of year, e.g. anniversary date. Related types are [google.type.TimeOfDay][google.type.TimeOfDay]
  * and `google.protobuf.Timestamp`.
  *
- * Protobuf type <code>Google\Type\Date</code>
+ * Generated from protobuf message <code>google.type.Date</code>
  */
 class Date extends \Google\Protobuf\Internal\Message
 {
@@ -65,11 +65,14 @@ class Date extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 year = 1;</code>
      * @param int $var
+     * @return $this
      */
     public function setYear($var)
     {
         GPBUtil::checkInt32($var);
         $this->year = $var;
+
+        return $this;
     }
 
     /**
@@ -88,11 +91,14 @@ class Date extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 month = 2;</code>
      * @param int $var
+     * @return $this
      */
     public function setMonth($var)
     {
         GPBUtil::checkInt32($var);
         $this->month = $var;
+
+        return $this;
     }
 
     /**
@@ -113,11 +119,14 @@ class Date extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 day = 3;</code>
      * @param int $var
+     * @return $this
      */
     public function setDay($var)
     {
         GPBUtil::checkInt32($var);
         $this->day = $var;
+
+        return $this;
     }
 
 }

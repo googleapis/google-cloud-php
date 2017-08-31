@@ -11,7 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * The range of the population values.
  *
- * Protobuf type <code>Google\Api\Distribution\Range</code>
+ * Generated from protobuf message <code>google.api.Distribution.Range</code>
  */
 class Distribution_Range extends \Google\Protobuf\Internal\Message
 {
@@ -49,11 +49,14 @@ class Distribution_Range extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double min = 1;</code>
      * @param float $var
+     * @return $this
      */
     public function setMin($var)
     {
         GPBUtil::checkDouble($var);
         $this->min = $var;
+
+        return $this;
     }
 
     /**
@@ -72,11 +75,14 @@ class Distribution_Range extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double max = 2;</code>
      * @param float $var
+     * @return $this
      */
     public function setMax($var)
     {
         GPBUtil::checkDouble($var);
         $this->max = $var;
+
+        return $this;
     }
 
 }

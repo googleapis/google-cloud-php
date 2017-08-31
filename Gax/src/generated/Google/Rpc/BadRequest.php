@@ -12,7 +12,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Describes violations in a client request. This error type focuses on the
  * syntactic aspects of the request.
  *
- * Protobuf type <code>Google\Rpc\BadRequest</code>
+ * Generated from protobuf message <code>google.rpc.BadRequest</code>
  */
 class BadRequest extends \Google\Protobuf\Internal\Message
 {
@@ -43,12 +43,15 @@ class BadRequest extends \Google\Protobuf\Internal\Message
      * Describes all violations in a client request.
      *
      * Generated from protobuf field <code>repeated .google.rpc.BadRequest.FieldViolation field_violations = 1;</code>
-     * @param array|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Rpc\BadRequest_FieldViolation[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setFieldViolations(&$var)
+    public function setFieldViolations($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Rpc\BadRequest_FieldViolation::class);
         $this->field_violations = $arr;
+
+        return $this;
     }
 
 }

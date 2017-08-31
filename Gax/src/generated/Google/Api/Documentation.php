@@ -63,7 +63,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * The directive `suppress_warning` does not directly affect documentation
  * and is documented together with service config validation.
  *
- * Protobuf type <code>Google\Api\Documentation</code>
+ * Generated from protobuf message <code>google.api.Documentation</code>
  */
 class Documentation extends \Google\Protobuf\Internal\Message
 {
@@ -135,11 +135,14 @@ class Documentation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string summary = 1;</code>
      * @param string $var
+     * @return $this
      */
     public function setSummary($var)
     {
         GPBUtil::checkString($var, True);
         $this->summary = $var;
+
+        return $this;
     }
 
     /**
@@ -157,12 +160,15 @@ class Documentation extends \Google\Protobuf\Internal\Message
      * The top level pages for the documentation set.
      *
      * Generated from protobuf field <code>repeated .google.api.Page pages = 5;</code>
-     * @param array|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Api\Page[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setPages(&$var)
+    public function setPages($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Api\Page::class);
         $this->pages = $arr;
+
+        return $this;
     }
 
     /**
@@ -182,12 +188,15 @@ class Documentation extends \Google\Protobuf\Internal\Message
      * **NOTE:** All service configuration rules follow "last one wins" order.
      *
      * Generated from protobuf field <code>repeated .google.api.DocumentationRule rules = 3;</code>
-     * @param array|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Api\DocumentationRule[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setRules(&$var)
+    public function setRules($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Api\DocumentationRule::class);
         $this->rules = $arr;
+
+        return $this;
     }
 
     /**
@@ -206,11 +215,14 @@ class Documentation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string documentation_root_url = 4;</code>
      * @param string $var
+     * @return $this
      */
     public function setDocumentationRootUrl($var)
     {
         GPBUtil::checkString($var, True);
         $this->documentation_root_url = $var;
+
+        return $this;
     }
 
     /**
@@ -253,11 +265,14 @@ class Documentation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string overview = 2;</code>
      * @param string $var
+     * @return $this
      */
     public function setOverview($var)
     {
         GPBUtil::checkString($var, True);
         $this->overview = $var;
+
+        return $this;
     }
 
 }

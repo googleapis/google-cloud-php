@@ -36,7 +36,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * For a description of IAM and its features, see the
  * [IAM developer's guide](https://cloud.google.com/iam).
  *
- * Protobuf type <code>Google\Iam\V1\Policy</code>
+ * Generated from protobuf message <code>google.iam.v1.Policy</code>
  */
 class Policy extends \Google\Protobuf\Internal\Message
 {
@@ -90,11 +90,14 @@ class Policy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 version = 1;</code>
      * @param int $var
+     * @return $this
      */
     public function setVersion($var)
     {
         GPBUtil::checkInt32($var);
         $this->version = $var;
+
+        return $this;
     }
 
     /**
@@ -116,12 +119,15 @@ class Policy extends \Google\Protobuf\Internal\Message
      * `bindings` with no members will result in an error.
      *
      * Generated from protobuf field <code>repeated .google.iam.v1.Binding bindings = 4;</code>
-     * @param array|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Iam\V1\Binding[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setBindings(&$var)
+    public function setBindings($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Iam\V1\Binding::class);
         $this->bindings = $arr;
+
+        return $this;
     }
 
     /**
@@ -156,11 +162,14 @@ class Policy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes etag = 3;</code>
      * @param string $var
+     * @return $this
      */
     public function setEtag($var)
     {
         GPBUtil::checkString($var, False);
         $this->etag = $var;
+
+        return $this;
     }
 
 }

@@ -12,7 +12,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * A context rule provides information about the context for an individual API
  * element.
  *
- * Protobuf type <code>Google\Api\ContextRule</code>
+ * Generated from protobuf message <code>google.api.ContextRule</code>
  */
 class ContextRule extends \Google\Protobuf\Internal\Message
 {
@@ -59,11 +59,14 @@ class ContextRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string selector = 1;</code>
      * @param string $var
+     * @return $this
      */
     public function setSelector($var)
     {
         GPBUtil::checkString($var, True);
         $this->selector = $var;
+
+        return $this;
     }
 
     /**
@@ -81,12 +84,15 @@ class ContextRule extends \Google\Protobuf\Internal\Message
      * A list of full type names of requested contexts.
      *
      * Generated from protobuf field <code>repeated string requested = 2;</code>
-     * @param array|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setRequested(&$var)
+    public function setRequested($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->requested = $arr;
+
+        return $this;
     }
 
     /**
@@ -104,12 +110,15 @@ class ContextRule extends \Google\Protobuf\Internal\Message
      * A list of full type names of provided contexts.
      *
      * Generated from protobuf field <code>repeated string provided = 3;</code>
-     * @param array|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setProvided(&$var)
+    public function setProvided($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->provided = $arr;
+
+        return $this;
     }
 
 }

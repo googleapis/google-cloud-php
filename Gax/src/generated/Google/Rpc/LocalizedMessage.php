@@ -12,7 +12,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Provides a localized error message that is safe to return to the user
  * which can be attached to an RPC error.
  *
- * Protobuf type <code>Google\Rpc\LocalizedMessage</code>
+ * Generated from protobuf message <code>google.rpc.LocalizedMessage</code>
  */
 class LocalizedMessage extends \Google\Protobuf\Internal\Message
 {
@@ -56,11 +56,14 @@ class LocalizedMessage extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string locale = 1;</code>
      * @param string $var
+     * @return $this
      */
     public function setLocale($var)
     {
         GPBUtil::checkString($var, True);
         $this->locale = $var;
+
+        return $this;
     }
 
     /**
@@ -79,11 +82,14 @@ class LocalizedMessage extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string message = 2;</code>
      * @param string $var
+     * @return $this
      */
     public function setMessage($var)
     {
         GPBUtil::checkString($var, True);
         $this->message = $var;
+
+        return $this;
     }
 
 }

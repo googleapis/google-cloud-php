@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * or are specified elsewhere. An API may chose to allow leap seconds. Related
  * types are [google.type.Date][google.type.Date] and `google.protobuf.Timestamp`.
  *
- * Protobuf type <code>Google\Type\TimeOfDay</code>
+ * Generated from protobuf message <code>google.type.TimeOfDay</code>
  */
 class TimeOfDay extends \Google\Protobuf\Internal\Message
 {
@@ -67,11 +67,14 @@ class TimeOfDay extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 hours = 1;</code>
      * @param int $var
+     * @return $this
      */
     public function setHours($var)
     {
         GPBUtil::checkInt32($var);
         $this->hours = $var;
+
+        return $this;
     }
 
     /**
@@ -90,11 +93,14 @@ class TimeOfDay extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 minutes = 2;</code>
      * @param int $var
+     * @return $this
      */
     public function setMinutes($var)
     {
         GPBUtil::checkInt32($var);
         $this->minutes = $var;
+
+        return $this;
     }
 
     /**
@@ -115,11 +121,14 @@ class TimeOfDay extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 seconds = 3;</code>
      * @param int $var
+     * @return $this
      */
     public function setSeconds($var)
     {
         GPBUtil::checkInt32($var);
         $this->seconds = $var;
+
+        return $this;
     }
 
     /**
@@ -138,11 +147,14 @@ class TimeOfDay extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 nanos = 4;</code>
      * @param int $var
+     * @return $this
      */
     public function setNanos($var)
     {
         GPBUtil::checkInt32($var);
         $this->nanos = $var;
+
+        return $this;
     }
 
 }

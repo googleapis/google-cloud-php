@@ -24,7 +24,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * For more guidance on how to use this schema, please see:
  * https://support.google.com/business/answer/6397478
  *
- * Protobuf type <code>Google\Type\PostalAddress</code>
+ * Generated from protobuf message <code>google.type.PostalAddress</code>
  */
 class PostalAddress extends \Google\Protobuf\Internal\Message
 {
@@ -169,11 +169,14 @@ class PostalAddress extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 revision = 1;</code>
      * @param int $var
+     * @return $this
      */
     public function setRevision($var)
     {
         GPBUtil::checkInt32($var);
         $this->revision = $var;
+
+        return $this;
     }
 
     /**
@@ -200,11 +203,14 @@ class PostalAddress extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string region_code = 2;</code>
      * @param string $var
+     * @return $this
      */
     public function setRegionCode($var)
     {
         GPBUtil::checkString($var, True);
         $this->region_code = $var;
+
+        return $this;
     }
 
     /**
@@ -241,11 +247,14 @@ class PostalAddress extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string language_code = 3;</code>
      * @param string $var
+     * @return $this
      */
     public function setLanguageCode($var)
     {
         GPBUtil::checkString($var, True);
         $this->language_code = $var;
+
+        return $this;
     }
 
     /**
@@ -270,11 +279,14 @@ class PostalAddress extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string postal_code = 4;</code>
      * @param string $var
+     * @return $this
      */
     public function setPostalCode($var)
     {
         GPBUtil::checkString($var, True);
         $this->postal_code = $var;
+
+        return $this;
     }
 
     /**
@@ -301,11 +313,14 @@ class PostalAddress extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string sorting_code = 5;</code>
      * @param string $var
+     * @return $this
      */
     public function setSortingCode($var)
     {
         GPBUtil::checkString($var, True);
         $this->sorting_code = $var;
+
+        return $this;
     }
 
     /**
@@ -336,11 +351,14 @@ class PostalAddress extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string administrative_area = 6;</code>
      * @param string $var
+     * @return $this
      */
     public function setAdministrativeArea($var)
     {
         GPBUtil::checkString($var, True);
         $this->administrative_area = $var;
+
+        return $this;
     }
 
     /**
@@ -365,11 +383,14 @@ class PostalAddress extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string locality = 7;</code>
      * @param string $var
+     * @return $this
      */
     public function setLocality($var)
     {
         GPBUtil::checkString($var, True);
         $this->locality = $var;
+
+        return $this;
     }
 
     /**
@@ -390,11 +411,14 @@ class PostalAddress extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string sublocality = 8;</code>
      * @param string $var
+     * @return $this
      */
     public function setSublocality($var)
     {
         GPBUtil::checkString($var, True);
         $this->sublocality = $var;
+
+        return $this;
     }
 
     /**
@@ -448,12 +472,15 @@ class PostalAddress extends \Google\Protobuf\Internal\Message
      * localities or administrative areas).
      *
      * Generated from protobuf field <code>repeated string address_lines = 9;</code>
-     * @param array|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setAddressLines(&$var)
+    public function setAddressLines($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->address_lines = $arr;
+
+        return $this;
     }
 
     /**
@@ -475,12 +502,15 @@ class PostalAddress extends \Google\Protobuf\Internal\Message
      * For example, it might contain "care of" information.
      *
      * Generated from protobuf field <code>repeated string recipients = 10;</code>
-     * @param array|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setRecipients(&$var)
+    public function setRecipients($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->recipients = $arr;
+
+        return $this;
     }
 
     /**
@@ -499,11 +529,14 @@ class PostalAddress extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string organization = 11;</code>
      * @param string $var
+     * @return $this
      */
     public function setOrganization($var)
     {
         GPBUtil::checkString($var, True);
         $this->organization = $var;
+
+        return $this;
     }
 
 }

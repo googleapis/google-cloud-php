@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * defined by the HTTP specification. Product-specific logging
  * information MUST be defined in a separate message.
  *
- * Protobuf type <code>Google\Logging\Type\HttpRequest</code>
+ * Generated from protobuf message <code>google.logging.type.HttpRequest</code>
  */
 class HttpRequest extends \Google\Protobuf\Internal\Message
 {
@@ -137,11 +137,14 @@ class HttpRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_method = 1;</code>
      * @param string $var
+     * @return $this
      */
     public function setRequestMethod($var)
     {
         GPBUtil::checkString($var, True);
         $this->request_method = $var;
+
+        return $this;
     }
 
     /**
@@ -164,11 +167,14 @@ class HttpRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_url = 2;</code>
      * @param string $var
+     * @return $this
      */
     public function setRequestUrl($var)
     {
         GPBUtil::checkString($var, True);
         $this->request_url = $var;
+
+        return $this;
     }
 
     /**
@@ -189,11 +195,14 @@ class HttpRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 request_size = 3;</code>
      * @param int|string $var
+     * @return $this
      */
     public function setRequestSize($var)
     {
         GPBUtil::checkInt64($var);
         $this->request_size = $var;
+
+        return $this;
     }
 
     /**
@@ -214,11 +223,14 @@ class HttpRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 status = 4;</code>
      * @param int $var
+     * @return $this
      */
     public function setStatus($var)
     {
         GPBUtil::checkInt32($var);
         $this->status = $var;
+
+        return $this;
     }
 
     /**
@@ -239,11 +251,14 @@ class HttpRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 response_size = 5;</code>
      * @param int|string $var
+     * @return $this
      */
     public function setResponseSize($var)
     {
         GPBUtil::checkInt64($var);
         $this->response_size = $var;
+
+        return $this;
     }
 
     /**
@@ -264,11 +279,14 @@ class HttpRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string user_agent = 6;</code>
      * @param string $var
+     * @return $this
      */
     public function setUserAgent($var)
     {
         GPBUtil::checkString($var, True);
         $this->user_agent = $var;
+
+        return $this;
     }
 
     /**
@@ -289,11 +307,14 @@ class HttpRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string remote_ip = 7;</code>
      * @param string $var
+     * @return $this
      */
     public function setRemoteIp($var)
     {
         GPBUtil::checkString($var, True);
         $this->remote_ip = $var;
+
+        return $this;
     }
 
     /**
@@ -314,11 +335,14 @@ class HttpRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string server_ip = 13;</code>
      * @param string $var
+     * @return $this
      */
     public function setServerIp($var)
     {
         GPBUtil::checkString($var, True);
         $this->server_ip = $var;
+
+        return $this;
     }
 
     /**
@@ -339,11 +363,14 @@ class HttpRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string referer = 8;</code>
      * @param string $var
+     * @return $this
      */
     public function setReferer($var)
     {
         GPBUtil::checkString($var, True);
         $this->referer = $var;
+
+        return $this;
     }
 
     /**
@@ -364,11 +391,14 @@ class HttpRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration latency = 14;</code>
      * @param \Google\Protobuf\Duration $var
+     * @return $this
      */
-    public function setLatency(&$var)
+    public function setLatency($var)
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
         $this->latency = $var;
+
+        return $this;
     }
 
     /**
@@ -387,11 +417,14 @@ class HttpRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool cache_lookup = 11;</code>
      * @param bool $var
+     * @return $this
      */
     public function setCacheLookup($var)
     {
         GPBUtil::checkBool($var);
         $this->cache_lookup = $var;
+
+        return $this;
     }
 
     /**
@@ -412,11 +445,14 @@ class HttpRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool cache_hit = 9;</code>
      * @param bool $var
+     * @return $this
      */
     public function setCacheHit($var)
     {
         GPBUtil::checkBool($var);
         $this->cache_hit = $var;
+
+        return $this;
     }
 
     /**
@@ -439,11 +475,14 @@ class HttpRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool cache_validated_with_origin_server = 10;</code>
      * @param bool $var
+     * @return $this
      */
     public function setCacheValidatedWithOriginServer($var)
     {
         GPBUtil::checkBool($var);
         $this->cache_validated_with_origin_server = $var;
+
+        return $this;
     }
 
     /**
@@ -464,11 +503,14 @@ class HttpRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 cache_fill_bytes = 12;</code>
      * @param int|string $var
+     * @return $this
      */
     public function setCacheFillBytes($var)
     {
         GPBUtil::checkInt64($var);
         $this->cache_fill_bytes = $var;
+
+        return $this;
     }
 
 }

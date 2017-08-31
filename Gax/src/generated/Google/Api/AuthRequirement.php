@@ -12,7 +12,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * User-defined authentication requirements, including support for
  * [JSON Web Token (JWT)](https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32).
  *
- * Protobuf type <code>Google\Api\AuthRequirement</code>
+ * Generated from protobuf message <code>google.api.AuthRequirement</code>
  */
 class AuthRequirement extends \Google\Protobuf\Internal\Message
 {
@@ -68,11 +68,14 @@ class AuthRequirement extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string provider_id = 1;</code>
      * @param string $var
+     * @return $this
      */
     public function setProviderId($var)
     {
         GPBUtil::checkString($var, True);
         $this->provider_id = $var;
+
+        return $this;
     }
 
     /**
@@ -115,11 +118,14 @@ class AuthRequirement extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string audiences = 2;</code>
      * @param string $var
+     * @return $this
      */
     public function setAudiences($var)
     {
         GPBUtil::checkString($var, True);
         $this->audiences = $var;
+
+        return $this;
     }
 
 }

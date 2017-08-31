@@ -42,7 +42,7 @@
  * @experimental
  */
 
-namespace Google\GAX\LongRunning;
+namespace Google\GAX\LongRunning\Gapic;
 
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
@@ -166,14 +166,13 @@ class OperationsGapicClient
      *           A `ChannelCredentials` object for use with an SSL-enabled channel.
      *           Default: a credentials object returned from
      *           \Grpc\ChannelCredentials::createSsl()
-     *           NOTE: if the $channel optional argument is specified, then this option is unused.
+     *           NOTE: if the $channel optional argument is specified, then this argument is unused.
      *     @type bool $forceNewChannel
      *           If true, this forces gRPC to create a new channel instead of using a persistent channel.
      *           Defaults to false.
      *           NOTE: if the $channel optional argument is specified, then this option is unused.
      *     @type \Google\Auth\CredentialsLoader $credentialsLoader
-     *                              A CredentialsLoader object created using the
-     *                              Google\Auth library.
+     *           A CredentialsLoader object created using the Google\Auth library.
      *     @type array $scopes Required. A string array of scopes to use when acquiring credentials.
      *     @type array $retryingOverride
      *           An associative array of string => RetryOptions, where the keys
@@ -227,7 +226,7 @@ class OperationsGapicClient
             $this->descriptors[$method]['pageStreamingDescriptor'] = $pageStreamingDescriptor;
         }
 
-        $clientConfigJsonString = file_get_contents(__DIR__.'/resources/operations_client_config.json');
+        $clientConfigJsonString = file_get_contents(__DIR__.'/../resources/operations_client_config.json');
         $clientConfig = json_decode($clientConfigJsonString, true);
         $this->defaultCallSettings =
                 CallSettings::load(

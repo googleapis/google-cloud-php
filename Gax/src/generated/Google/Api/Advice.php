@@ -12,7 +12,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Generated advice about this change, used for providing more
  * information about how a change will affect the existing service.
  *
- * Protobuf type <code>Google\Api\Advice</code>
+ * Generated from protobuf message <code>google.api.Advice</code>
  */
 class Advice extends \Google\Protobuf\Internal\Message
 {
@@ -47,11 +47,14 @@ class Advice extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 2;</code>
      * @param string $var
+     * @return $this
      */
     public function setDescription($var)
     {
         GPBUtil::checkString($var, True);
         $this->description = $var;
+
+        return $this;
     }
 
 }

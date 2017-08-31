@@ -11,7 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Request message for `SetIamPolicy` method.
  *
- * Protobuf type <code>Google\Iam\V1\SetIamPolicyRequest</code>
+ * Generated from protobuf message <code>google.iam.v1.SetIamPolicyRequest</code>
  */
 class SetIamPolicyRequest extends \Google\Protobuf\Internal\Message
 {
@@ -58,11 +58,14 @@ class SetIamPolicyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string resource = 1;</code>
      * @param string $var
+     * @return $this
      */
     public function setResource($var)
     {
         GPBUtil::checkString($var, True);
         $this->resource = $var;
+
+        return $this;
     }
 
     /**
@@ -87,11 +90,14 @@ class SetIamPolicyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.iam.v1.Policy policy = 2;</code>
      * @param \Google\Iam\V1\Policy $var
+     * @return $this
      */
-    public function setPolicy(&$var)
+    public function setPolicy($var)
     {
         GPBUtil::checkMessage($var, \Google\Iam\V1\Policy::class);
         $this->policy = $var;
+
+        return $this;
     }
 
 }

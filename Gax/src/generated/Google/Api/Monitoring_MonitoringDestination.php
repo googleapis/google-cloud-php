@@ -12,7 +12,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Configuration of a specific monitoring destination (the producer project
  * or the consumer project).
  *
- * Protobuf type <code>Google\Api\Monitoring\MonitoringDestination</code>
+ * Generated from protobuf message <code>google.api.Monitoring.MonitoringDestination</code>
  */
 class Monitoring_MonitoringDestination extends \Google\Protobuf\Internal\Message
 {
@@ -54,11 +54,14 @@ class Monitoring_MonitoringDestination extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string monitored_resource = 1;</code>
      * @param string $var
+     * @return $this
      */
     public function setMonitoredResource($var)
     {
         GPBUtil::checkString($var, True);
         $this->monitored_resource = $var;
+
+        return $this;
     }
 
     /**
@@ -78,12 +81,15 @@ class Monitoring_MonitoringDestination extends \Google\Protobuf\Internal\Message
      * Each name must be defined in [Service.metrics][google.api.Service.metrics] section.
      *
      * Generated from protobuf field <code>repeated string metrics = 2;</code>
-     * @param array|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setMetrics(&$var)
+    public function setMetrics($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->metrics = $arr;
+
+        return $this;
     }
 
 }

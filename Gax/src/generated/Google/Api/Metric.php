@@ -12,7 +12,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * A specific metric, identified by specifying values for all of the
  * labels of a [`MetricDescriptor`][google.api.MetricDescriptor].
  *
- * Protobuf type <code>Google\Api\Metric</code>
+ * Generated from protobuf message <code>google.api.Metric</code>
  */
 class Metric extends \Google\Protobuf\Internal\Message
 {
@@ -54,11 +54,14 @@ class Metric extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string type = 3;</code>
      * @param string $var
+     * @return $this
      */
     public function setType($var)
     {
         GPBUtil::checkString($var, True);
         $this->type = $var;
+
+        return $this;
     }
 
     /**
@@ -66,7 +69,7 @@ class Metric extends \Google\Protobuf\Internal\Message
      * labels listed in the `MetricDescriptor` must be assigned values.
      *
      * Generated from protobuf field <code>map<string, string> labels = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return \Google\Protobuf\Internal\MapField
      */
     public function getLabels()
     {
@@ -78,12 +81,15 @@ class Metric extends \Google\Protobuf\Internal\Message
      * labels listed in the `MetricDescriptor` must be assigned values.
      *
      * Generated from protobuf field <code>map<string, string> labels = 2;</code>
-     * @param array|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
      */
-    public function setLabels(&$var)
+    public function setLabels($var)
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->labels = $arr;
+
+        return $this;
     }
 
 }

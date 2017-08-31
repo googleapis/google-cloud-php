@@ -22,7 +22,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * statuses when serving read-only requests to resources. If the list of
  * allowed_statuses is empty, it means no billing requirement.
  *
- * Protobuf type <code>Google\Api\BillingStatusRule</code>
+ * Generated from protobuf message <code>google.api.BillingStatusRule</code>
  */
 class BillingStatusRule extends \Google\Protobuf\Internal\Message
 {
@@ -64,11 +64,14 @@ class BillingStatusRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string selector = 1;</code>
      * @param string $var
+     * @return $this
      */
     public function setSelector($var)
     {
         GPBUtil::checkString($var, True);
         $this->selector = $var;
+
+        return $this;
     }
 
     /**
@@ -88,12 +91,15 @@ class BillingStatusRule extends \Google\Protobuf\Internal\Message
      * billing status matches any of the provided values here.
      *
      * Generated from protobuf field <code>repeated string allowed_statuses = 2;</code>
-     * @param array|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setAllowedStatuses(&$var)
+    public function setAllowedStatuses($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->allowed_statuses = $arr;
+
+        return $this;
     }
 
 }

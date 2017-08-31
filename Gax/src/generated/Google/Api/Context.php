@@ -23,7 +23,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Available context types are defined in package
  * `google.rpc.context`.
  *
- * Protobuf type <code>Google\Api\Context</code>
+ * Generated from protobuf message <code>google.api.Context</code>
  */
 class Context extends \Google\Protobuf\Internal\Message
 {
@@ -57,12 +57,15 @@ class Context extends \Google\Protobuf\Internal\Message
      * **NOTE:** All service configuration rules follow "last one wins" order.
      *
      * Generated from protobuf field <code>repeated .google.api.ContextRule rules = 1;</code>
-     * @param array|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Api\ContextRule[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setRules(&$var)
+    public function setRules($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Api\ContextRule::class);
         $this->rules = $arr;
+
+        return $this;
     }
 
 }

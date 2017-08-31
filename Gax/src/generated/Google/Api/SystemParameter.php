@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * an HTTP header or a URL query parameter, and if both are passed the behavior
  * is implementation-dependent.
  *
- * Protobuf type <code>Google\Api\SystemParameter</code>
+ * Generated from protobuf message <code>google.api.SystemParameter</code>
  */
 class SystemParameter extends \Google\Protobuf\Internal\Message
 {
@@ -59,11 +59,14 @@ class SystemParameter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
+     * @return $this
      */
     public function setName($var)
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
     }
 
     /**
@@ -84,11 +87,14 @@ class SystemParameter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string http_header = 2;</code>
      * @param string $var
+     * @return $this
      */
     public function setHttpHeader($var)
     {
         GPBUtil::checkString($var, True);
         $this->http_header = $var;
+
+        return $this;
     }
 
     /**
@@ -109,11 +115,14 @@ class SystemParameter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string url_query_parameter = 3;</code>
      * @param string $var
+     * @return $this
      */
     public function setUrlQueryParameter($var)
     {
         GPBUtil::checkString($var, True);
         $this->url_query_parameter = $var;
+
+        return $this;
     }
 
 }

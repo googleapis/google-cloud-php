@@ -11,7 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Represents an amount of money with its currency type.
  *
- * Protobuf type <code>Google\Type\Money</code>
+ * Generated from protobuf message <code>google.type.Money</code>
  */
 class Money extends \Google\Protobuf\Internal\Message
 {
@@ -61,11 +61,14 @@ class Money extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string currency_code = 1;</code>
      * @param string $var
+     * @return $this
      */
     public function setCurrencyCode($var)
     {
         GPBUtil::checkString($var, True);
         $this->currency_code = $var;
+
+        return $this;
     }
 
     /**
@@ -86,11 +89,14 @@ class Money extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 units = 2;</code>
      * @param int|string $var
+     * @return $this
      */
     public function setUnits($var)
     {
         GPBUtil::checkInt64($var);
         $this->units = $var;
+
+        return $this;
     }
 
     /**
@@ -119,11 +125,14 @@ class Money extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 nanos = 3;</code>
      * @param int $var
+     * @return $this
      */
     public function setNanos($var)
     {
         GPBUtil::checkInt32($var);
         $this->nanos = $var;
+
+        return $this;
     }
 
 }

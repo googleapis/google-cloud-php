@@ -12,7 +12,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Represents a documentation page. A page can contain subpages to represent
  * nested documentation set structure.
  *
- * Protobuf type <code>Google\Api\Page</code>
+ * Generated from protobuf message <code>google.api.Page</code>
  */
 class Page extends \Google\Protobuf\Internal\Message
 {
@@ -97,11 +97,14 @@ class Page extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
+     * @return $this
      */
     public function setName($var)
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
     }
 
     /**
@@ -122,11 +125,14 @@ class Page extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string content = 2;</code>
      * @param string $var
+     * @return $this
      */
     public function setContent($var)
     {
         GPBUtil::checkString($var, True);
         $this->content = $var;
+
+        return $this;
     }
 
     /**
@@ -146,12 +152,15 @@ class Page extends \Google\Protobuf\Internal\Message
      * honored in the generated docset.
      *
      * Generated from protobuf field <code>repeated .google.api.Page subpages = 3;</code>
-     * @param array|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Api\Page[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setSubpages(&$var)
+    public function setSubpages($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Api\Page::class);
         $this->subpages = $arr;
+
+        return $this;
     }
 
 }

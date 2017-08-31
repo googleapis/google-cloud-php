@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * method call.
  * Used by metric-based quotas only.
  *
- * Protobuf type <code>Google\Api\MetricRule</code>
+ * Generated from protobuf message <code>google.api.MetricRule</code>
  */
 class MetricRule extends \Google\Protobuf\Internal\Message
 {
@@ -59,11 +59,14 @@ class MetricRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string selector = 1;</code>
      * @param string $var
+     * @return $this
      */
     public function setSelector($var)
     {
         GPBUtil::checkString($var, True);
         $this->selector = $var;
+
+        return $this;
     }
 
     /**
@@ -74,7 +77,7 @@ class MetricRule extends \Google\Protobuf\Internal\Message
      * The value must not be negative.
      *
      * Generated from protobuf field <code>map<string, int64> metric_costs = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return \Google\Protobuf\Internal\MapField
      */
     public function getMetricCosts()
     {
@@ -89,12 +92,15 @@ class MetricRule extends \Google\Protobuf\Internal\Message
      * The value must not be negative.
      *
      * Generated from protobuf field <code>map<string, int64> metric_costs = 2;</code>
-     * @param array|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
      */
-    public function setMetricCosts(&$var)
+    public function setMetricCosts($var)
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::INT64);
         $this->metric_costs = $arr;
+
+        return $this;
     }
 
 }

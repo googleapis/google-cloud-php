@@ -11,7 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * A custom pattern is used for defining custom HTTP verb.
  *
- * Protobuf type <code>Google\Api\CustomHttpPattern</code>
+ * Generated from protobuf message <code>google.api.CustomHttpPattern</code>
  */
 class CustomHttpPattern extends \Google\Protobuf\Internal\Message
 {
@@ -49,11 +49,14 @@ class CustomHttpPattern extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      * @param string $var
+     * @return $this
      */
     public function setKind($var)
     {
         GPBUtil::checkString($var, True);
         $this->kind = $var;
+
+        return $this;
     }
 
     /**
@@ -72,11 +75,14 @@ class CustomHttpPattern extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string path = 2;</code>
      * @param string $var
+     * @return $this
      */
     public function setPath($var)
     {
         GPBUtil::checkString($var, True);
         $this->path = $var;
+
+        return $this;
     }
 
 }

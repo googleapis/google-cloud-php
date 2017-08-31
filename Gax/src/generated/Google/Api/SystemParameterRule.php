@@ -12,7 +12,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Define a system parameter rule mapping system parameter definitions to
  * methods.
  *
- * Protobuf type <code>Google\Api\SystemParameterRule</code>
+ * Generated from protobuf message <code>google.api.SystemParameterRule</code>
  */
 class SystemParameterRule extends \Google\Protobuf\Internal\Message
 {
@@ -60,11 +60,14 @@ class SystemParameterRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string selector = 1;</code>
      * @param string $var
+     * @return $this
      */
     public function setSelector($var)
     {
         GPBUtil::checkString($var, True);
         $this->selector = $var;
+
+        return $this;
     }
 
     /**
@@ -90,12 +93,15 @@ class SystemParameterRule extends \Google\Protobuf\Internal\Message
      * parameter-dependent.
      *
      * Generated from protobuf field <code>repeated .google.api.SystemParameter parameters = 2;</code>
-     * @param array|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Api\SystemParameter[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setParameters(&$var)
+    public function setParameters($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Api\SystemParameter::class);
         $this->parameters = $arr;
+
+        return $this;
     }
 
 }

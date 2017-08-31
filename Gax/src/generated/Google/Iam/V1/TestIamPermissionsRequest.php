@@ -11,7 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Request message for `TestIamPermissions` method.
  *
- * Protobuf type <code>Google\Iam\V1\TestIamPermissionsRequest</code>
+ * Generated from protobuf message <code>google.iam.v1.TestIamPermissionsRequest</code>
  */
 class TestIamPermissionsRequest extends \Google\Protobuf\Internal\Message
 {
@@ -58,11 +58,14 @@ class TestIamPermissionsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string resource = 1;</code>
      * @param string $var
+     * @return $this
      */
     public function setResource($var)
     {
         GPBUtil::checkString($var, True);
         $this->resource = $var;
+
+        return $this;
     }
 
     /**
@@ -86,12 +89,15 @@ class TestIamPermissionsRequest extends \Google\Protobuf\Internal\Message
      * [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      *
      * Generated from protobuf field <code>repeated string permissions = 2;</code>
-     * @param array|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setPermissions(&$var)
+    public function setPermissions($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->permissions = $arr;
+
+        return $this;
     }
 
 }

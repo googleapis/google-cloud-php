@@ -37,7 +37,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *         logs:
  *         - activity_history
  *
- * Protobuf type <code>Google\Api\Logging</code>
+ * Generated from protobuf message <code>google.api.Logging</code>
  */
 class Logging extends \Google\Protobuf\Internal\Message
 {
@@ -86,12 +86,15 @@ class Logging extends \Google\Protobuf\Internal\Message
      * one producer destination.
      *
      * Generated from protobuf field <code>repeated .google.api.Logging.LoggingDestination producer_destinations = 1;</code>
-     * @param array|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Api\Logging_LoggingDestination[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setProducerDestinations(&$var)
+    public function setProducerDestinations($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Api\Logging_LoggingDestination::class);
         $this->producer_destinations = $arr;
+
+        return $this;
     }
 
     /**
@@ -115,12 +118,15 @@ class Logging extends \Google\Protobuf\Internal\Message
      * one consumer destination.
      *
      * Generated from protobuf field <code>repeated .google.api.Logging.LoggingDestination consumer_destinations = 2;</code>
-     * @param array|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Api\Logging_LoggingDestination[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setConsumerDestinations(&$var)
+    public function setConsumerDestinations($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Api\Logging_LoggingDestination::class);
         $this->consumer_destinations = $arr;
+
+        return $this;
     }
 
 }

@@ -12,7 +12,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Configuration of a specific logging destination (the producer project
  * or the consumer project).
  *
- * Protobuf type <code>Google\Api\Logging\LoggingDestination</code>
+ * Generated from protobuf message <code>google.api.Logging.LoggingDestination</code>
  */
 class Logging_LoggingDestination extends \Google\Protobuf\Internal\Message
 {
@@ -56,11 +56,14 @@ class Logging_LoggingDestination extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string monitored_resource = 3;</code>
      * @param string $var
+     * @return $this
      */
     public function setMonitoredResource($var)
     {
         GPBUtil::checkString($var, True);
         $this->monitored_resource = $var;
+
+        return $this;
     }
 
     /**
@@ -84,12 +87,15 @@ class Logging_LoggingDestination extends \Google\Protobuf\Internal\Message
      * the service name followed by "/".
      *
      * Generated from protobuf field <code>repeated string logs = 1;</code>
-     * @param array|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setLogs(&$var)
+    public function setLogs($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->logs = $arr;
+
+        return $this;
     }
 
 }

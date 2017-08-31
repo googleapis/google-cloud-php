@@ -12,7 +12,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Configuration for an anthentication provider, including support for
  * [JSON Web Token (JWT)](https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32).
  *
- * Protobuf type <code>Google\Api\AuthProvider</code>
+ * Generated from protobuf message <code>google.api.AuthProvider</code>
  */
 class AuthProvider extends \Google\Protobuf\Internal\Message
 {
@@ -63,6 +63,13 @@ class AuthProvider extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string audiences = 4;</code>
      */
     private $audiences = '';
+    /**
+     * Redirect URL if JWT token is required but no present or is expired.
+     * Implement authorizationUrl of securityDefinitions in OpenAPI spec.
+     *
+     * Generated from protobuf field <code>string authorization_url = 5;</code>
+     */
+    private $authorization_url = '';
 
     public function __construct() {
         \GPBMetadata\Google\Api\Auth::initOnce();
@@ -89,11 +96,14 @@ class AuthProvider extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string id = 1;</code>
      * @param string $var
+     * @return $this
      */
     public function setId($var)
     {
         GPBUtil::checkString($var, True);
         $this->id = $var;
+
+        return $this;
     }
 
     /**
@@ -120,11 +130,14 @@ class AuthProvider extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string issuer = 2;</code>
      * @param string $var
+     * @return $this
      */
     public function setIssuer($var)
     {
         GPBUtil::checkString($var, True);
         $this->issuer = $var;
+
+        return $this;
     }
 
     /**
@@ -157,11 +170,14 @@ class AuthProvider extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string jwks_uri = 3;</code>
      * @param string $var
+     * @return $this
      */
     public function setJwksUri($var)
     {
         GPBUtil::checkString($var, True);
         $this->jwks_uri = $var;
+
+        return $this;
     }
 
     /**
@@ -200,11 +216,42 @@ class AuthProvider extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string audiences = 4;</code>
      * @param string $var
+     * @return $this
      */
     public function setAudiences($var)
     {
         GPBUtil::checkString($var, True);
         $this->audiences = $var;
+
+        return $this;
+    }
+
+    /**
+     * Redirect URL if JWT token is required but no present or is expired.
+     * Implement authorizationUrl of securityDefinitions in OpenAPI spec.
+     *
+     * Generated from protobuf field <code>string authorization_url = 5;</code>
+     * @return string
+     */
+    public function getAuthorizationUrl()
+    {
+        return $this->authorization_url;
+    }
+
+    /**
+     * Redirect URL if JWT token is required but no present or is expired.
+     * Implement authorizationUrl of securityDefinitions in OpenAPI spec.
+     *
+     * Generated from protobuf field <code>string authorization_url = 5;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAuthorizationUrl($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->authorization_url = $var;
+
+        return $this;
     }
 
 }

@@ -22,7 +22,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *         requirements:
  *           provider_id: google_calendar_auth
  *
- * Protobuf type <code>Google\Api\Authentication</code>
+ * Generated from protobuf message <code>google.api.Authentication</code>
  */
 class Authentication extends \Google\Protobuf\Internal\Message
 {
@@ -62,12 +62,15 @@ class Authentication extends \Google\Protobuf\Internal\Message
      * **NOTE:** All service configuration rules follow "last one wins" order.
      *
      * Generated from protobuf field <code>repeated .google.api.AuthenticationRule rules = 3;</code>
-     * @param array|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Api\AuthenticationRule[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setRules(&$var)
+    public function setRules($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Api\AuthenticationRule::class);
         $this->rules = $arr;
+
+        return $this;
     }
 
     /**
@@ -85,12 +88,15 @@ class Authentication extends \Google\Protobuf\Internal\Message
      * Defines a set of authentication providers that a service supports.
      *
      * Generated from protobuf field <code>repeated .google.api.AuthProvider providers = 4;</code>
-     * @param array|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Api\AuthProvider[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setProviders(&$var)
+    public function setProviders($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Api\AuthProvider::class);
         $this->providers = $arr;
+
+        return $this;
     }
 
 }

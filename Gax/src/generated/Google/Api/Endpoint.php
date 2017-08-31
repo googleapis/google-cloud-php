@@ -24,7 +24,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *     - name: library-example.googleapis.com
  *       allow_cors: true
  *
- * Protobuf type <code>Google\Api\Endpoint</code>
+ * Generated from protobuf message <code>google.api.Endpoint</code>
  */
 class Endpoint extends \Google\Protobuf\Internal\Message
 {
@@ -97,11 +97,14 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
+     * @return $this
      */
     public function setName($var)
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
     }
 
     /**
@@ -125,12 +128,15 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      * Additional names that this endpoint will be hosted on.
      *
      * Generated from protobuf field <code>repeated string aliases = 2;</code>
-     * @param array|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setAliases(&$var)
+    public function setAliases($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->aliases = $arr;
+
+        return $this;
     }
 
     /**
@@ -148,12 +154,15 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      * The list of APIs served by this endpoint.
      *
      * Generated from protobuf field <code>repeated string apis = 3;</code>
-     * @param array|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setApis(&$var)
+    public function setApis($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->apis = $arr;
+
+        return $this;
     }
 
     /**
@@ -171,12 +180,15 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      * The list of features enabled on this endpoint.
      *
      * Generated from protobuf field <code>repeated string features = 4;</code>
-     * @param array|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setFeatures(&$var)
+    public function setFeatures($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->features = $arr;
+
+        return $this;
     }
 
     /**
@@ -201,11 +213,14 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string target = 101;</code>
      * @param string $var
+     * @return $this
      */
     public function setTarget($var)
     {
         GPBUtil::checkString($var, True);
         $this->target = $var;
+
+        return $this;
     }
 
     /**
@@ -234,11 +249,14 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool allow_cors = 5;</code>
      * @param bool $var
+     * @return $this
      */
     public function setAllowCors($var)
     {
         GPBUtil::checkBool($var);
         $this->allow_cors = $var;
+
+        return $this;
     }
 
 }

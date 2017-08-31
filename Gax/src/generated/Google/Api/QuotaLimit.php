@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * for a limit type. There can be at most one limit for a duration and limit
  * type combination defined within a `QuotaGroup`.
  *
- * Protobuf type <code>Google\Api\QuotaLimit</code>
+ * Generated from protobuf message <code>google.api.QuotaLimit</code>
  */
 class QuotaLimit extends \Google\Protobuf\Internal\Message
 {
@@ -219,11 +219,14 @@ class QuotaLimit extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 6;</code>
      * @param string $var
+     * @return $this
      */
     public function setName($var)
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
     }
 
     /**
@@ -246,11 +249,14 @@ class QuotaLimit extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 2;</code>
      * @param string $var
+     * @return $this
      */
     public function setDescription($var)
     {
         GPBUtil::checkString($var, True);
         $this->description = $var;
+
+        return $this;
     }
 
     /**
@@ -283,11 +289,14 @@ class QuotaLimit extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 default_limit = 3;</code>
      * @param int|string $var
+     * @return $this
      */
     public function setDefaultLimit($var)
     {
         GPBUtil::checkInt64($var);
         $this->default_limit = $var;
+
+        return $this;
     }
 
     /**
@@ -318,11 +327,14 @@ class QuotaLimit extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 max_limit = 4;</code>
      * @param int|string $var
+     * @return $this
      */
     public function setMaxLimit($var)
     {
         GPBUtil::checkInt64($var);
         $this->max_limit = $var;
+
+        return $this;
     }
 
     /**
@@ -353,11 +365,14 @@ class QuotaLimit extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 free_tier = 7;</code>
      * @param int|string $var
+     * @return $this
      */
     public function setFreeTier($var)
     {
         GPBUtil::checkInt64($var);
         $this->free_tier = $var;
+
+        return $this;
     }
 
     /**
@@ -384,11 +399,14 @@ class QuotaLimit extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string duration = 5;</code>
      * @param string $var
+     * @return $this
      */
     public function setDuration($var)
     {
         GPBUtil::checkString($var, True);
         $this->duration = $var;
+
+        return $this;
     }
 
     /**
@@ -413,11 +431,14 @@ class QuotaLimit extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string metric = 8;</code>
      * @param string $var
+     * @return $this
      */
     public function setMetric($var)
     {
         GPBUtil::checkString($var, True);
         $this->metric = $var;
+
+        return $this;
     }
 
     /**
@@ -488,11 +509,14 @@ class QuotaLimit extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string unit = 9;</code>
      * @param string $var
+     * @return $this
      */
     public function setUnit($var)
     {
         GPBUtil::checkString($var, True);
         $this->unit = $var;
+
+        return $this;
     }
 
     /**
@@ -523,7 +547,7 @@ class QuotaLimit extends \Google\Protobuf\Internal\Message
      * Used by metric-based quotas only.
      *
      * Generated from protobuf field <code>map<string, int64> values = 10;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return \Google\Protobuf\Internal\MapField
      */
     public function getValues()
     {
@@ -558,12 +582,15 @@ class QuotaLimit extends \Google\Protobuf\Internal\Message
      * Used by metric-based quotas only.
      *
      * Generated from protobuf field <code>map<string, int64> values = 10;</code>
-     * @param array|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
      */
-    public function setValues(&$var)
+    public function setValues($var)
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::INT64);
         $this->values = $arr;
+
+        return $this;
     }
 
     /**
@@ -588,11 +615,14 @@ class QuotaLimit extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 12;</code>
      * @param string $var
+     * @return $this
      */
     public function setDisplayName($var)
     {
         GPBUtil::checkString($var, True);
         $this->display_name = $var;
+
+        return $this;
     }
 
 }

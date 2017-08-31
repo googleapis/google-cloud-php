@@ -11,7 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Authentication information for the operation.
  *
- * Protobuf type <code>Google\Cloud\Audit\AuthenticationInfo</code>
+ * Generated from protobuf message <code>google.cloud.audit.AuthenticationInfo</code>
  */
 class AuthenticationInfo extends \Google\Protobuf\Internal\Message
 {
@@ -43,11 +43,14 @@ class AuthenticationInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string principal_email = 1;</code>
      * @param string $var
+     * @return $this
      */
     public function setPrincipalEmail($var)
     {
         GPBUtil::checkString($var, True);
         $this->principal_email = $var;
+
+        return $this;
     }
 
 }

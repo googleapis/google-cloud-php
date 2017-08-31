@@ -44,6 +44,8 @@
 
 namespace Google\GAX\LongRunning;
 
+use Google\GAX\LongRunning\Gapic\OperationsGapicClient;
+
 /**
  * {@inheritdoc}
  */

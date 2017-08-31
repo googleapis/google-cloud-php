@@ -28,7 +28,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *       - selector: "google.example.library.v1.LibraryService.CreateBook"
  *         allow_unregistered_calls: true
  *
- * Protobuf type <code>Google\Api\UsageRule</code>
+ * Generated from protobuf message <code>google.api.UsageRule</code>
  */
 class UsageRule extends \Google\Protobuf\Internal\Message
 {
@@ -79,11 +79,14 @@ class UsageRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string selector = 1;</code>
      * @param string $var
+     * @return $this
      */
     public function setSelector($var)
     {
         GPBUtil::checkString($var, True);
         $this->selector = $var;
+
+        return $this;
     }
 
     /**
@@ -102,11 +105,14 @@ class UsageRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool allow_unregistered_calls = 2;</code>
      * @param bool $var
+     * @return $this
      */
     public function setAllowUnregisteredCalls($var)
     {
         GPBUtil::checkBool($var);
         $this->allow_unregistered_calls = $var;
+
+        return $this;
     }
 
     /**
@@ -127,11 +133,14 @@ class UsageRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool skip_service_control = 3;</code>
      * @param bool $var
+     * @return $this
      */
     public function setSkipServiceControl($var)
     {
         GPBUtil::checkBool($var);
         $this->skip_service_control = $var;
+
+        return $this;
     }
 
 }

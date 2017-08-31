@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * service controller handles features like abuse, quota, billing, logging,
  * monitoring, etc.
  *
- * Protobuf type <code>Google\Api\Control</code>
+ * Generated from protobuf message <code>google.api.Control</code>
  */
 class Control extends \Google\Protobuf\Internal\Message
 {
@@ -48,11 +48,14 @@ class Control extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string environment = 1;</code>
      * @param string $var
+     * @return $this
      */
     public function setEnvironment($var)
     {
         GPBUtil::checkString($var, True);
         $this->environment = $var;
+
+        return $this;
     }
 
 }

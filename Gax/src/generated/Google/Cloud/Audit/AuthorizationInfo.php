@@ -11,7 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Authorization information for the operation.
  *
- * Protobuf type <code>Google\Cloud\Audit\AuthorizationInfo</code>
+ * Generated from protobuf message <code>google.cloud.audit.AuthorizationInfo</code>
  */
 class AuthorizationInfo extends \Google\Protobuf\Internal\Message
 {
@@ -59,11 +59,14 @@ class AuthorizationInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string resource = 1;</code>
      * @param string $var
+     * @return $this
      */
     public function setResource($var)
     {
         GPBUtil::checkString($var, True);
         $this->resource = $var;
+
+        return $this;
     }
 
     /**
@@ -82,11 +85,14 @@ class AuthorizationInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string permission = 2;</code>
      * @param string $var
+     * @return $this
      */
     public function setPermission($var)
     {
         GPBUtil::checkString($var, True);
         $this->permission = $var;
+
+        return $this;
     }
 
     /**
@@ -107,11 +113,14 @@ class AuthorizationInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool granted = 3;</code>
      * @param bool $var
+     * @return $this
      */
     public function setGranted($var)
     {
         GPBUtil::checkBool($var);
         $this->granted = $var;
+
+        return $this;
     }
 
 }

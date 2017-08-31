@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * project hasn't enabled the accessed service, this can contain a URL pointing
  * directly to the right place in the developer console to flip the bit.
  *
- * Protobuf type <code>Google\Rpc\Help</code>
+ * Generated from protobuf message <code>google.rpc.Help</code>
  */
 class Help extends \Google\Protobuf\Internal\Message
 {
@@ -45,12 +45,15 @@ class Help extends \Google\Protobuf\Internal\Message
      * URL(s) pointing to additional information on handling the current error.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Help.Link links = 1;</code>
-     * @param array|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Rpc\Help_Link[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setLinks(&$var)
+    public function setLinks($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Rpc\Help_Link::class);
         $this->links = $arr;
+
+        return $this;
     }
 
 }

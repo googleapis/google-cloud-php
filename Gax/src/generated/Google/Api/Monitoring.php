@@ -45,7 +45,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *         - library.googleapis.com/book/returned_count
  *         - library.googleapis.com/book/overdue_count
  *
- * Protobuf type <code>Google\Api\Monitoring</code>
+ * Generated from protobuf message <code>google.api.Monitoring</code>
  */
 class Monitoring extends \Google\Protobuf\Internal\Message
 {
@@ -94,12 +94,15 @@ class Monitoring extends \Google\Protobuf\Internal\Message
      * one producer destination.
      *
      * Generated from protobuf field <code>repeated .google.api.Monitoring.MonitoringDestination producer_destinations = 1;</code>
-     * @param array|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Api\Monitoring_MonitoringDestination[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setProducerDestinations(&$var)
+    public function setProducerDestinations($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Api\Monitoring_MonitoringDestination::class);
         $this->producer_destinations = $arr;
+
+        return $this;
     }
 
     /**
@@ -123,12 +126,15 @@ class Monitoring extends \Google\Protobuf\Internal\Message
      * one consumer destination.
      *
      * Generated from protobuf field <code>repeated .google.api.Monitoring.MonitoringDestination consumer_destinations = 2;</code>
-     * @param array|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Api\Monitoring_MonitoringDestination[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setConsumerDestinations(&$var)
+    public function setConsumerDestinations($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Api\Monitoring_MonitoringDestination::class);
         $this->consumer_destinations = $arr;
+
+        return $this;
     }
 
 }

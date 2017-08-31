@@ -49,7 +49,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * - Logging. If some API errors are stored in logs, the message `Status` could
  *     be used directly after any stripping needed for security/privacy reasons.
  *
- * Protobuf type <code>Google\Rpc\Status</code>
+ * Generated from protobuf message <code>google.rpc.Status</code>
  */
 class Status extends \Google\Protobuf\Internal\Message
 {
@@ -96,11 +96,14 @@ class Status extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 code = 1;</code>
      * @param int $var
+     * @return $this
      */
     public function setCode($var)
     {
         GPBUtil::checkInt32($var);
         $this->code = $var;
+
+        return $this;
     }
 
     /**
@@ -123,11 +126,14 @@ class Status extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string message = 2;</code>
      * @param string $var
+     * @return $this
      */
     public function setMessage($var)
     {
         GPBUtil::checkString($var, True);
         $this->message = $var;
+
+        return $this;
     }
 
     /**
@@ -147,12 +153,15 @@ class Status extends \Google\Protobuf\Internal\Message
      * common set of message types for APIs to use.
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Any details = 3;</code>
-     * @param array|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Protobuf\Any[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setDetails(&$var)
+    public function setDetails($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Protobuf\Any::class);
         $this->details = $arr;
+
+        return $this;
     }
 
 }
