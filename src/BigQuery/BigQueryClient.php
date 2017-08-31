@@ -19,6 +19,7 @@ namespace Google\Cloud\BigQuery;
 
 use Google\Cloud\BigQuery\Connection\ConnectionInterface;
 use Google\Cloud\BigQuery\Connection\Rest;
+use Google\Cloud\BigQuery\Exception\JobException;
 use Google\Cloud\BigQuery\Job;
 use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Core\ExponentialBackoff;
@@ -197,8 +198,8 @@ class BigQueryClient
      *           in this client.
      * }
      * @return QueryResults
-     * @throws \RuntimeException If the maximum number of retries while waiting
-     *         for query completion has been exceeded.
+     * @throws JobException If the maximum number of retries while waiting for
+     *         query completion has been exceeded.
      */
     public function runQuery($query, array $options = [])
     {
