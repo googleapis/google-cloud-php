@@ -17,7 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *    Upper bound (0 <= i < N-1):     scale * (growth_factor ^ i).
  *    Lower bound (1 <= i < N):       scale * (growth_factor ^ (i - 1)).
  *
- * Protobuf type <code>Google\Api\Distribution\BucketOptions\Exponential</code>
+ * Generated from protobuf message <code>google.api.Distribution.BucketOptions.Exponential</code>
  */
 class Distribution_BucketOptions_Exponential extends \Google\Protobuf\Internal\Message
 {
@@ -61,11 +61,14 @@ class Distribution_BucketOptions_Exponential extends \Google\Protobuf\Internal\M
      *
      * Generated from protobuf field <code>int32 num_finite_buckets = 1;</code>
      * @param int $var
+     * @return $this
      */
     public function setNumFiniteBuckets($var)
     {
         GPBUtil::checkInt32($var);
         $this->num_finite_buckets = $var;
+
+        return $this;
     }
 
     /**
@@ -84,11 +87,14 @@ class Distribution_BucketOptions_Exponential extends \Google\Protobuf\Internal\M
      *
      * Generated from protobuf field <code>double growth_factor = 2;</code>
      * @param float $var
+     * @return $this
      */
     public function setGrowthFactor($var)
     {
         GPBUtil::checkDouble($var);
         $this->growth_factor = $var;
+
+        return $this;
     }
 
     /**
@@ -107,11 +113,14 @@ class Distribution_BucketOptions_Exponential extends \Google\Protobuf\Internal\M
      *
      * Generated from protobuf field <code>double scale = 3;</code>
      * @param float $var
+     * @return $this
      */
     public function setScale($var)
     {
         GPBUtil::checkDouble($var);
         $this->scale = $var;
+
+        return $this;
     }
 
 }

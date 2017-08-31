@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * and/or a URL query parameter. This configuration specifies which methods
  * change the names of the system parameters.
  *
- * Protobuf type <code>Google\Api\SystemParameters</code>
+ * Generated from protobuf message <code>google.api.SystemParameters</code>
  */
 class SystemParameters extends \Google\Protobuf\Internal\Message
 {
@@ -109,12 +109,15 @@ class SystemParameters extends \Google\Protobuf\Internal\Message
      * **NOTE:** All service configuration rules follow "last one wins" order.
      *
      * Generated from protobuf field <code>repeated .google.api.SystemParameterRule rules = 1;</code>
-     * @param array|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Api\SystemParameterRule[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setRules(&$var)
+    public function setRules($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Api\SystemParameterRule::class);
         $this->rules = $arr;
+
+        return $this;
     }
 
 }

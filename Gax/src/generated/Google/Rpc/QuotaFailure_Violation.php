@@ -12,7 +12,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * A message type used to describe a single quota violation.  For example, a
  * daily quota or a custom quota that was exceeded.
  *
- * Protobuf type <code>Google\Rpc\QuotaFailure\Violation</code>
+ * Generated from protobuf message <code>google.rpc.QuotaFailure.Violation</code>
  */
 class QuotaFailure_Violation extends \Google\Protobuf\Internal\Message
 {
@@ -61,11 +61,14 @@ class QuotaFailure_Violation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string subject = 1;</code>
      * @param string $var
+     * @return $this
      */
     public function setSubject($var)
     {
         GPBUtil::checkString($var, True);
         $this->subject = $var;
+
+        return $this;
     }
 
     /**
@@ -94,11 +97,14 @@ class QuotaFailure_Violation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 2;</code>
      * @param string $var
+     * @return $this
      */
     public function setDescription($var)
     {
         GPBUtil::checkString($var, True);
         $this->description = $var;
+
+        return $this;
     }
 
 }

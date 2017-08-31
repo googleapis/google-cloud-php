@@ -31,7 +31,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *         requirements:
  *           provider_id: google_calendar_auth
  *
- * Protobuf type <code>Google\Api\Service</code>
+ * Generated from protobuf message <code>google.api.Service</code>
  */
 class Service extends \Google\Protobuf\Internal\Message
 {
@@ -239,11 +239,14 @@ class Service extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.UInt32Value config_version = 20;</code>
      * @param \Google\Protobuf\UInt32Value $var
+     * @return $this
      */
-    public function setConfigVersion(&$var)
+    public function setConfigVersion($var)
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\UInt32Value::class);
         $this->config_version = $var;
+
+        return $this;
     }
 
     /**
@@ -264,11 +267,14 @@ class Service extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
+     * @return $this
      */
     public function setName($var)
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
     }
 
     /**
@@ -291,11 +297,14 @@ class Service extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string id = 33;</code>
      * @param string $var
+     * @return $this
      */
     public function setId($var)
     {
         GPBUtil::checkString($var, True);
         $this->id = $var;
+
+        return $this;
     }
 
     /**
@@ -314,11 +323,14 @@ class Service extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string title = 2;</code>
      * @param string $var
+     * @return $this
      */
     public function setTitle($var)
     {
         GPBUtil::checkString($var, True);
         $this->title = $var;
+
+        return $this;
     }
 
     /**
@@ -341,11 +353,14 @@ class Service extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string producer_project_id = 22;</code>
      * @param string $var
+     * @return $this
      */
     public function setProducerProjectId($var)
     {
         GPBUtil::checkString($var, True);
         $this->producer_project_id = $var;
+
+        return $this;
     }
 
     /**
@@ -371,12 +386,15 @@ class Service extends \Google\Protobuf\Internal\Message
      * which cannot be resolved against the associated IDL files.
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Api apis = 3;</code>
-     * @param array|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Protobuf\Api[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setApis(&$var)
+    public function setApis($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Protobuf\Api::class);
         $this->apis = $arr;
+
+        return $this;
     }
 
     /**
@@ -406,12 +424,15 @@ class Service extends \Google\Protobuf\Internal\Message
      *     - name: google.protobuf.Int32
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Type types = 4;</code>
-     * @param array|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Protobuf\Type[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setTypes(&$var)
+    public function setTypes($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Protobuf\Type::class);
         $this->types = $arr;
+
+        return $this;
     }
 
     /**
@@ -439,12 +460,15 @@ class Service extends \Google\Protobuf\Internal\Message
      *     - name: google.someapi.v1.SomeEnum
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Enum enums = 5;</code>
-     * @param array|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Protobuf\Enum[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setEnums(&$var)
+    public function setEnums($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Protobuf\Enum::class);
         $this->enums = $arr;
+
+        return $this;
     }
 
     /**
@@ -463,11 +487,14 @@ class Service extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.api.Documentation documentation = 6;</code>
      * @param \Google\Api\Documentation $var
+     * @return $this
      */
-    public function setDocumentation(&$var)
+    public function setDocumentation($var)
     {
         GPBUtil::checkMessage($var, \Google\Api\Documentation::class);
         $this->documentation = $var;
+
+        return $this;
     }
 
     /**
@@ -486,11 +513,14 @@ class Service extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.api.Backend backend = 8;</code>
      * @param \Google\Api\Backend $var
+     * @return $this
      */
-    public function setBackend(&$var)
+    public function setBackend($var)
     {
         GPBUtil::checkMessage($var, \Google\Api\Backend::class);
         $this->backend = $var;
+
+        return $this;
     }
 
     /**
@@ -509,11 +539,14 @@ class Service extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.api.Http http = 9;</code>
      * @param \Google\Api\Http $var
+     * @return $this
      */
-    public function setHttp(&$var)
+    public function setHttp($var)
     {
         GPBUtil::checkMessage($var, \Google\Api\Http::class);
         $this->http = $var;
+
+        return $this;
     }
 
     /**
@@ -532,11 +565,14 @@ class Service extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.api.Quota quota = 10;</code>
      * @param \Google\Api\Quota $var
+     * @return $this
      */
-    public function setQuota(&$var)
+    public function setQuota($var)
     {
         GPBUtil::checkMessage($var, \Google\Api\Quota::class);
         $this->quota = $var;
+
+        return $this;
     }
 
     /**
@@ -555,11 +591,14 @@ class Service extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.api.Authentication authentication = 11;</code>
      * @param \Google\Api\Authentication $var
+     * @return $this
      */
-    public function setAuthentication(&$var)
+    public function setAuthentication($var)
     {
         GPBUtil::checkMessage($var, \Google\Api\Authentication::class);
         $this->authentication = $var;
+
+        return $this;
     }
 
     /**
@@ -578,11 +617,14 @@ class Service extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.api.Context context = 12;</code>
      * @param \Google\Api\Context $var
+     * @return $this
      */
-    public function setContext(&$var)
+    public function setContext($var)
     {
         GPBUtil::checkMessage($var, \Google\Api\Context::class);
         $this->context = $var;
+
+        return $this;
     }
 
     /**
@@ -601,11 +643,14 @@ class Service extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.api.Usage usage = 15;</code>
      * @param \Google\Api\Usage $var
+     * @return $this
      */
-    public function setUsage(&$var)
+    public function setUsage($var)
     {
         GPBUtil::checkMessage($var, \Google\Api\Usage::class);
         $this->usage = $var;
+
+        return $this;
     }
 
     /**
@@ -627,12 +672,15 @@ class Service extends \Google\Protobuf\Internal\Message
      * defined APIs.
      *
      * Generated from protobuf field <code>repeated .google.api.Endpoint endpoints = 18;</code>
-     * @param array|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Api\Endpoint[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setEndpoints(&$var)
+    public function setEndpoints($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Api\Endpoint::class);
         $this->endpoints = $arr;
+
+        return $this;
     }
 
     /**
@@ -651,11 +699,14 @@ class Service extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.api.Control control = 21;</code>
      * @param \Google\Api\Control $var
+     * @return $this
      */
-    public function setControl(&$var)
+    public function setControl($var)
     {
         GPBUtil::checkMessage($var, \Google\Api\Control::class);
         $this->control = $var;
+
+        return $this;
     }
 
     /**
@@ -673,12 +724,15 @@ class Service extends \Google\Protobuf\Internal\Message
      * Defines the logs used by this service.
      *
      * Generated from protobuf field <code>repeated .google.api.LogDescriptor logs = 23;</code>
-     * @param array|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Api\LogDescriptor[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setLogs(&$var)
+    public function setLogs($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Api\LogDescriptor::class);
         $this->logs = $arr;
+
+        return $this;
     }
 
     /**
@@ -696,12 +750,15 @@ class Service extends \Google\Protobuf\Internal\Message
      * Defines the metrics used by this service.
      *
      * Generated from protobuf field <code>repeated .google.api.MetricDescriptor metrics = 24;</code>
-     * @param array|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Api\MetricDescriptor[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setMetrics(&$var)
+    public function setMetrics($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Api\MetricDescriptor::class);
         $this->metrics = $arr;
+
+        return $this;
     }
 
     /**
@@ -721,12 +778,15 @@ class Service extends \Google\Protobuf\Internal\Message
      * by the [Service.monitoring][google.api.Service.monitoring] and [Service.logging][google.api.Service.logging] configurations.
      *
      * Generated from protobuf field <code>repeated .google.api.MonitoredResourceDescriptor monitored_resources = 25;</code>
-     * @param array|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Api\MonitoredResourceDescriptor[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setMonitoredResources(&$var)
+    public function setMonitoredResources($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Api\MonitoredResourceDescriptor::class);
         $this->monitored_resources = $arr;
+
+        return $this;
     }
 
     /**
@@ -745,11 +805,14 @@ class Service extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.api.Logging logging = 27;</code>
      * @param \Google\Api\Logging $var
+     * @return $this
      */
-    public function setLogging(&$var)
+    public function setLogging($var)
     {
         GPBUtil::checkMessage($var, \Google\Api\Logging::class);
         $this->logging = $var;
+
+        return $this;
     }
 
     /**
@@ -768,11 +831,14 @@ class Service extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.api.Monitoring monitoring = 28;</code>
      * @param \Google\Api\Monitoring $var
+     * @return $this
      */
-    public function setMonitoring(&$var)
+    public function setMonitoring($var)
     {
         GPBUtil::checkMessage($var, \Google\Api\Monitoring::class);
         $this->monitoring = $var;
+
+        return $this;
     }
 
     /**
@@ -791,11 +857,14 @@ class Service extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.api.SystemParameters system_parameters = 29;</code>
      * @param \Google\Api\SystemParameters $var
+     * @return $this
      */
-    public function setSystemParameters(&$var)
+    public function setSystemParameters($var)
     {
         GPBUtil::checkMessage($var, \Google\Api\SystemParameters::class);
         $this->system_parameters = $var;
+
+        return $this;
     }
 
     /**
@@ -814,11 +883,14 @@ class Service extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.api.SourceInfo source_info = 37;</code>
      * @param \Google\Api\SourceInfo $var
+     * @return $this
      */
-    public function setSourceInfo(&$var)
+    public function setSourceInfo($var)
     {
         GPBUtil::checkMessage($var, \Google\Api\SourceInfo::class);
         $this->source_info = $var;
+
+        return $this;
     }
 
     /**
@@ -837,11 +909,14 @@ class Service extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.api.Experimental experimental = 101;</code>
      * @param \Google\Api\Experimental $var
+     * @return $this
      */
-    public function setExperimental(&$var)
+    public function setExperimental($var)
     {
         GPBUtil::checkMessage($var, \Google\Api\Experimental::class);
         $this->experimental = $var;
+
+        return $this;
     }
 
 }

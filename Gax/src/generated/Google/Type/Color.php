@@ -109,7 +109,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *     };
  *     // ...
  *
- * Protobuf type <code>Google\Type\Color</code>
+ * Generated from protobuf message <code>google.type.Color</code>
  */
 class Color extends \Google\Protobuf\Internal\Message
 {
@@ -167,11 +167,14 @@ class Color extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float red = 1;</code>
      * @param float $var
+     * @return $this
      */
     public function setRed($var)
     {
         GPBUtil::checkFloat($var);
         $this->red = $var;
+
+        return $this;
     }
 
     /**
@@ -190,11 +193,14 @@ class Color extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float green = 2;</code>
      * @param float $var
+     * @return $this
      */
     public function setGreen($var)
     {
         GPBUtil::checkFloat($var);
         $this->green = $var;
+
+        return $this;
     }
 
     /**
@@ -213,11 +219,14 @@ class Color extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float blue = 3;</code>
      * @param float $var
+     * @return $this
      */
     public function setBlue($var)
     {
         GPBUtil::checkFloat($var);
         $this->blue = $var;
+
+        return $this;
     }
 
     /**
@@ -252,11 +261,14 @@ class Color extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FloatValue alpha = 4;</code>
      * @param \Google\Protobuf\FloatValue $var
+     * @return $this
      */
-    public function setAlpha(&$var)
+    public function setAlpha($var)
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\FloatValue::class);
         $this->alpha = $var;
+
+        return $this;
     }
 
 }

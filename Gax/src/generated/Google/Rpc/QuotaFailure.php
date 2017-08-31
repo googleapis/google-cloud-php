@@ -19,7 +19,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Also see RetryDetail and Help types for other details about handling a
  * quota failure.
  *
- * Protobuf type <code>Google\Rpc\QuotaFailure</code>
+ * Generated from protobuf message <code>google.rpc.QuotaFailure</code>
  */
 class QuotaFailure extends \Google\Protobuf\Internal\Message
 {
@@ -50,12 +50,15 @@ class QuotaFailure extends \Google\Protobuf\Internal\Message
      * Describes all quota violations.
      *
      * Generated from protobuf field <code>repeated .google.rpc.QuotaFailure.Violation violations = 1;</code>
-     * @param array|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Rpc\QuotaFailure_Violation[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setViolations(&$var)
+    public function setViolations($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Rpc\QuotaFailure_Violation::class);
         $this->violations = $arr;
+
+        return $this;
     }
 
 }

@@ -12,7 +12,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * This resource represents a long-running operation that is the result of a
  * network API call.
  *
- * Protobuf type <code>Google\Longrunning\Operation</code>
+ * Generated from protobuf message <code>google.longrunning.Operation</code>
  */
 class Operation extends \Google\Protobuf\Internal\Message
 {
@@ -68,11 +68,14 @@ class Operation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
+     * @return $this
      */
     public function setName($var)
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
     }
 
     /**
@@ -97,11 +100,14 @@ class Operation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Any metadata = 2;</code>
      * @param \Google\Protobuf\Any $var
+     * @return $this
      */
-    public function setMetadata(&$var)
+    public function setMetadata($var)
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Any::class);
         $this->metadata = $var;
+
+        return $this;
     }
 
     /**
@@ -124,11 +130,14 @@ class Operation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool done = 3;</code>
      * @param bool $var
+     * @return $this
      */
     public function setDone($var)
     {
         GPBUtil::checkBool($var);
         $this->done = $var;
+
+        return $this;
     }
 
     /**
@@ -147,11 +156,14 @@ class Operation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.rpc.Status error = 4;</code>
      * @param \Google\Rpc\Status $var
+     * @return $this
      */
-    public function setError(&$var)
+    public function setError($var)
     {
         GPBUtil::checkMessage($var, \Google\Rpc\Status::class);
         $this->writeOneof(4, $var);
+
+        return $this;
     }
 
     /**
@@ -184,11 +196,14 @@ class Operation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Any response = 5;</code>
      * @param \Google\Protobuf\Any $var
+     * @return $this
      */
-    public function setResponse(&$var)
+    public function setResponse($var)
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Any::class);
         $this->writeOneof(5, $var);
+
+        return $this;
     }
 
     /**

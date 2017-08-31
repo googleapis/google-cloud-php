@@ -22,7 +22,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * non-finite values (infinities or NaNs) in the population of values, as this
  * will render the `mean` and `sum_of_squared_deviation` fields meaningless.
  *
- * Protobuf type <code>Google\Api\Distribution</code>
+ * Generated from protobuf message <code>google.api.Distribution</code>
  */
 class Distribution extends \Google\Protobuf\Internal\Message
 {
@@ -99,11 +99,14 @@ class Distribution extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 count = 1;</code>
      * @param int|string $var
+     * @return $this
      */
     public function setCount($var)
     {
         GPBUtil::checkInt64($var);
         $this->count = $var;
+
+        return $this;
     }
 
     /**
@@ -124,11 +127,14 @@ class Distribution extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double mean = 2;</code>
      * @param float $var
+     * @return $this
      */
     public function setMean($var)
     {
         GPBUtil::checkDouble($var);
         $this->mean = $var;
+
+        return $this;
     }
 
     /**
@@ -157,11 +163,14 @@ class Distribution extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double sum_of_squared_deviation = 3;</code>
      * @param float $var
+     * @return $this
      */
     public function setSumOfSquaredDeviation($var)
     {
         GPBUtil::checkDouble($var);
         $this->sum_of_squared_deviation = $var;
+
+        return $this;
     }
 
     /**
@@ -182,11 +191,14 @@ class Distribution extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.api.Distribution.Range range = 4;</code>
      * @param \Google\Api\Distribution_Range $var
+     * @return $this
      */
-    public function setRange(&$var)
+    public function setRange($var)
     {
         GPBUtil::checkMessage($var, \Google\Api\Distribution_Range::class);
         $this->range = $var;
+
+        return $this;
     }
 
     /**
@@ -205,11 +217,14 @@ class Distribution extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.api.Distribution.BucketOptions bucket_options = 6;</code>
      * @param \Google\Api\Distribution_BucketOptions $var
+     * @return $this
      */
-    public function setBucketOptions(&$var)
+    public function setBucketOptions($var)
     {
         GPBUtil::checkMessage($var, \Google\Api\Distribution_BucketOptions::class);
         $this->bucket_options = $var;
+
+        return $this;
     }
 
     /**
@@ -243,12 +258,15 @@ class Distribution extends \Google\Protobuf\Internal\Message
      * Any suffix of trailing zero bucket_count fields may be omitted.
      *
      * Generated from protobuf field <code>repeated int64 bucket_counts = 7;</code>
-     * @param array|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[]|string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setBucketCounts(&$var)
+    public function setBucketCounts($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::INT64);
         $this->bucket_counts = $arr;
+
+        return $this;
     }
 
 }

@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * applicable advice about potential consequences for the change, such as
  * backwards-incompatibility.
  *
- * Protobuf type <code>Google\Api\ConfigChange</code>
+ * Generated from protobuf message <code>google.api.ConfigChange</code>
  */
 class ConfigChange extends \Google\Protobuf\Internal\Message
 {
@@ -98,11 +98,14 @@ class ConfigChange extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string element = 1;</code>
      * @param string $var
+     * @return $this
      */
     public function setElement($var)
     {
         GPBUtil::checkString($var, True);
         $this->element = $var;
+
+        return $this;
     }
 
     /**
@@ -123,11 +126,14 @@ class ConfigChange extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string old_value = 2;</code>
      * @param string $var
+     * @return $this
      */
     public function setOldValue($var)
     {
         GPBUtil::checkString($var, True);
         $this->old_value = $var;
+
+        return $this;
     }
 
     /**
@@ -148,11 +154,14 @@ class ConfigChange extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string new_value = 3;</code>
      * @param string $var
+     * @return $this
      */
     public function setNewValue($var)
     {
         GPBUtil::checkString($var, True);
         $this->new_value = $var;
+
+        return $this;
     }
 
     /**
@@ -171,11 +180,14 @@ class ConfigChange extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.api.ChangeType change_type = 4;</code>
      * @param int $var
+     * @return $this
      */
     public function setChangeType($var)
     {
         GPBUtil::checkEnum($var, \Google\Api\ChangeType::class);
         $this->change_type = $var;
+
+        return $this;
     }
 
     /**
@@ -195,12 +207,15 @@ class ConfigChange extends \Google\Protobuf\Internal\Message
      * possible impact of this change.
      *
      * Generated from protobuf field <code>repeated .google.api.Advice advices = 5;</code>
-     * @param array|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Api\Advice[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setAdvices(&$var)
+    public function setAdvices($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Api\Advice::class);
         $this->advices = $arr;
+
+        return $this;
     }
 
 }

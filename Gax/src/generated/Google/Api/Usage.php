@@ -11,7 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Configuration controlling usage of a service.
  *
- * Protobuf type <code>Google\Api\Usage</code>
+ * Generated from protobuf message <code>google.api.Usage</code>
  */
 class Usage extends \Google\Protobuf\Internal\Message
 {
@@ -67,12 +67,15 @@ class Usage extends \Google\Protobuf\Internal\Message
      * for example 'serviceusage.googleapis.com/billing-enabled'.
      *
      * Generated from protobuf field <code>repeated string requirements = 1;</code>
-     * @param array|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setRequirements(&$var)
+    public function setRequirements($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->requirements = $arr;
+
+        return $this;
     }
 
     /**
@@ -92,12 +95,15 @@ class Usage extends \Google\Protobuf\Internal\Message
      * **NOTE:** All service configuration rules follow "last one wins" order.
      *
      * Generated from protobuf field <code>repeated .google.api.UsageRule rules = 6;</code>
-     * @param array|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Api\UsageRule[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setRules(&$var)
+    public function setRules($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Api\UsageRule::class);
         $this->rules = $arr;
+
+        return $this;
     }
 
     /**
@@ -128,11 +134,14 @@ class Usage extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string producer_notification_channel = 7;</code>
      * @param string $var
+     * @return $this
      */
     public function setProducerNotificationChannel($var)
     {
         GPBUtil::checkString($var, True);
         $this->producer_notification_channel = $var;
+
+        return $this;
     }
 
 }

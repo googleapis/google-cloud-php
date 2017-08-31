@@ -11,7 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * `Backend` defines the backend configuration for a service.
  *
- * Protobuf type <code>Google\Api\Backend</code>
+ * Generated from protobuf message <code>google.api.Backend</code>
  */
 class Backend extends \Google\Protobuf\Internal\Message
 {
@@ -45,12 +45,15 @@ class Backend extends \Google\Protobuf\Internal\Message
      * **NOTE:** All service configuration rules follow "last one wins" order.
      *
      * Generated from protobuf field <code>repeated .google.api.BackendRule rules = 1;</code>
-     * @param array|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Api\BackendRule[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setRules(&$var)
+    public function setRules($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Api\BackendRule::class);
         $this->rules = $arr;
+
+        return $this;
     }
 
 }

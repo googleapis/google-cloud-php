@@ -24,7 +24,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * request to be accepted and passed to the backend, a request can still fail
  * due to the backend requiring additional scopes or permissions.
  *
- * Protobuf type <code>Google\Api\OAuthRequirements</code>
+ * Generated from protobuf message <code>google.api.OAuthRequirements</code>
  */
 class OAuthRequirements extends \Google\Protobuf\Internal\Message
 {
@@ -68,11 +68,14 @@ class OAuthRequirements extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string canonical_scopes = 1;</code>
      * @param string $var
+     * @return $this
      */
     public function setCanonicalScopes($var)
     {
         GPBUtil::checkString($var, True);
         $this->canonical_scopes = $var;
+
+        return $this;
     }
 
 }

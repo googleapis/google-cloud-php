@@ -11,7 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * The request message for [Operations.ListOperations][google.longrunning.Operations.ListOperations].
  *
- * Protobuf type <code>Google\Longrunning\ListOperationsRequest</code>
+ * Generated from protobuf message <code>google.longrunning.ListOperationsRequest</code>
  */
 class ListOperationsRequest extends \Google\Protobuf\Internal\Message
 {
@@ -61,11 +61,14 @@ class ListOperationsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 4;</code>
      * @param string $var
+     * @return $this
      */
     public function setName($var)
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
     }
 
     /**
@@ -84,11 +87,14 @@ class ListOperationsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string filter = 1;</code>
      * @param string $var
+     * @return $this
      */
     public function setFilter($var)
     {
         GPBUtil::checkString($var, True);
         $this->filter = $var;
+
+        return $this;
     }
 
     /**
@@ -107,11 +113,14 @@ class ListOperationsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      * @param int $var
+     * @return $this
      */
     public function setPageSize($var)
     {
         GPBUtil::checkInt32($var);
         $this->page_size = $var;
+
+        return $this;
     }
 
     /**
@@ -130,11 +139,14 @@ class ListOperationsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      * @param string $var
+     * @return $this
      */
     public function setPageToken($var)
     {
         GPBUtil::checkString($var, True);
         $this->page_token = $var;
+
+        return $this;
     }
 
 }

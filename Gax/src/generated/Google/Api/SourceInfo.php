@@ -11,7 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Source information used to create a Service Config
  *
- * Protobuf type <code>Google\Api\SourceInfo</code>
+ * Generated from protobuf message <code>google.api.SourceInfo</code>
  */
 class SourceInfo extends \Google\Protobuf\Internal\Message
 {
@@ -42,12 +42,15 @@ class SourceInfo extends \Google\Protobuf\Internal\Message
      * All files used during config generation.
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Any source_files = 1;</code>
-     * @param array|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Protobuf\Any[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setSourceFiles(&$var)
+    public function setSourceFiles($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Protobuf\Any::class);
         $this->source_files = $arr;
+
+        return $this;
     }
 
 }

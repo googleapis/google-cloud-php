@@ -41,7 +41,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * statuses when serving read-only requests to resources. If there's no
  * matching selector for operation, no billing status check will be performed.
  *
- * Protobuf type <code>Google\Api\Billing</code>
+ * Generated from protobuf message <code>google.api.Billing</code>
  */
 class Billing extends \Google\Protobuf\Internal\Message
 {
@@ -81,12 +81,15 @@ class Billing extends \Google\Protobuf\Internal\Message
      * be defined in [Service.metrics][google.api.Service.metrics] section.
      *
      * Generated from protobuf field <code>repeated string metrics = 1;</code>
-     * @param array|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setMetrics(&$var)
+    public function setMetrics($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->metrics = $arr;
+
+        return $this;
     }
 
     /**
@@ -104,12 +107,15 @@ class Billing extends \Google\Protobuf\Internal\Message
      * A list of billing status rules for configuring billing status check.
      *
      * Generated from protobuf field <code>repeated .google.api.BillingStatusRule rules = 5;</code>
-     * @param array|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Api\BillingStatusRule[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setRules(&$var)
+    public function setRules($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Api\BillingStatusRule::class);
         $this->rules = $arr;
+
+        return $this;
     }
 
 }

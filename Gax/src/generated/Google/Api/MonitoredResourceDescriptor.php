@@ -18,7 +18,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * provide a `list` method that returns the monitored resource descriptors used
  * by the API.
  *
- * Protobuf type <code>Google\Api\MonitoredResourceDescriptor</code>
+ * Generated from protobuf message <code>google.api.MonitoredResourceDescriptor</code>
  */
 class MonitoredResourceDescriptor extends \Google\Protobuf\Internal\Message
 {
@@ -97,11 +97,14 @@ class MonitoredResourceDescriptor extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 5;</code>
      * @param string $var
+     * @return $this
      */
     public function setName($var)
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
     }
 
     /**
@@ -124,11 +127,14 @@ class MonitoredResourceDescriptor extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string type = 1;</code>
      * @param string $var
+     * @return $this
      */
     public function setType($var)
     {
         GPBUtil::checkString($var, True);
         $this->type = $var;
+
+        return $this;
     }
 
     /**
@@ -153,11 +159,14 @@ class MonitoredResourceDescriptor extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      * @param string $var
+     * @return $this
      */
     public function setDisplayName($var)
     {
         GPBUtil::checkString($var, True);
         $this->display_name = $var;
+
+        return $this;
     }
 
     /**
@@ -178,11 +187,14 @@ class MonitoredResourceDescriptor extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 3;</code>
      * @param string $var
+     * @return $this
      */
     public function setDescription($var)
     {
         GPBUtil::checkString($var, True);
         $this->description = $var;
+
+        return $this;
     }
 
     /**
@@ -204,12 +216,15 @@ class MonitoredResourceDescriptor extends \Google\Protobuf\Internal\Message
      * identified by values for the labels `"database_id"` and `"zone"`.
      *
      * Generated from protobuf field <code>repeated .google.api.LabelDescriptor labels = 4;</code>
-     * @param array|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Api\LabelDescriptor[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setLabels(&$var)
+    public function setLabels($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Api\LabelDescriptor::class);
         $this->labels = $arr;
+
+        return $this;
     }
 
 }

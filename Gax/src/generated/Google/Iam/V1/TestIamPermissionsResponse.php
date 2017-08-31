@@ -11,7 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Response message for `TestIamPermissions` method.
  *
- * Protobuf type <code>Google\Iam\V1\TestIamPermissionsResponse</code>
+ * Generated from protobuf message <code>google.iam.v1.TestIamPermissionsResponse</code>
  */
 class TestIamPermissionsResponse extends \Google\Protobuf\Internal\Message
 {
@@ -45,12 +45,15 @@ class TestIamPermissionsResponse extends \Google\Protobuf\Internal\Message
      * allowed.
      *
      * Generated from protobuf field <code>repeated string permissions = 1;</code>
-     * @param array|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setPermissions(&$var)
+    public function setPermissions($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->permissions = $arr;
+
+        return $this;
     }
 
 }

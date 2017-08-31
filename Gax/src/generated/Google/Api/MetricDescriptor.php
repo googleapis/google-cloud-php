@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * deleting or altering it stops data collection and makes the metric type's
  * existing data unusable.
  *
- * Protobuf type <code>Google\Api\MetricDescriptor</code>
+ * Generated from protobuf message <code>google.api.MetricDescriptor</code>
  */
 class MetricDescriptor extends \Google\Protobuf\Internal\Message
 {
@@ -167,11 +167,14 @@ class MetricDescriptor extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
+     * @return $this
      */
     public function setName($var)
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
     }
 
     /**
@@ -200,11 +203,14 @@ class MetricDescriptor extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string type = 8;</code>
      * @param string $var
+     * @return $this
      */
     public function setType($var)
     {
         GPBUtil::checkString($var, True);
         $this->type = $var;
+
+        return $this;
     }
 
     /**
@@ -232,12 +238,15 @@ class MetricDescriptor extends \Google\Protobuf\Internal\Message
      * for responses that failed.
      *
      * Generated from protobuf field <code>repeated .google.api.LabelDescriptor labels = 2;</code>
-     * @param array|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Api\LabelDescriptor[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setLabels(&$var)
+    public function setLabels($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Api\LabelDescriptor::class);
         $this->labels = $arr;
+
+        return $this;
     }
 
     /**
@@ -258,11 +267,14 @@ class MetricDescriptor extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.api.MetricDescriptor.MetricKind metric_kind = 3;</code>
      * @param int $var
+     * @return $this
      */
     public function setMetricKind($var)
     {
         GPBUtil::checkEnum($var, \Google\Api\MetricDescriptor_MetricKind::class);
         $this->metric_kind = $var;
+
+        return $this;
     }
 
     /**
@@ -283,11 +295,14 @@ class MetricDescriptor extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.api.MetricDescriptor.ValueType value_type = 4;</code>
      * @param int $var
+     * @return $this
      */
     public function setValueType($var)
     {
         GPBUtil::checkEnum($var, \Google\Api\MetricDescriptor_ValueType::class);
         $this->value_type = $var;
+
+        return $this;
     }
 
     /**
@@ -404,11 +419,14 @@ class MetricDescriptor extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string unit = 5;</code>
      * @param string $var
+     * @return $this
      */
     public function setUnit($var)
     {
         GPBUtil::checkString($var, True);
         $this->unit = $var;
+
+        return $this;
     }
 
     /**
@@ -427,11 +445,14 @@ class MetricDescriptor extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 6;</code>
      * @param string $var
+     * @return $this
      */
     public function setDescription($var)
     {
         GPBUtil::checkString($var, True);
         $this->description = $var;
+
+        return $this;
     }
 
     /**
@@ -452,11 +473,14 @@ class MetricDescriptor extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string display_name = 7;</code>
      * @param string $var
+     * @return $this
      */
     public function setDisplayName($var)
     {
         GPBUtil::checkString($var, True);
         $this->display_name = $var;
+
+        return $this;
     }
 
 }

@@ -12,7 +12,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Contains metadata about the request that clients can attach when filing a bug
  * or providing other forms of feedback.
  *
- * Protobuf type <code>Google\Rpc\RequestInfo</code>
+ * Generated from protobuf message <code>google.rpc.RequestInfo</code>
  */
 class RequestInfo extends \Google\Protobuf\Internal\Message
 {
@@ -54,11 +54,14 @@ class RequestInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 1;</code>
      * @param string $var
+     * @return $this
      */
     public function setRequestId($var)
     {
         GPBUtil::checkString($var, True);
         $this->request_id = $var;
+
+        return $this;
     }
 
     /**
@@ -79,11 +82,14 @@ class RequestInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string serving_data = 2;</code>
      * @param string $var
+     * @return $this
      */
     public function setServingData($var)
     {
         GPBUtil::checkString($var, True);
         $this->serving_data = $var;
+
+        return $this;
     }
 
 }

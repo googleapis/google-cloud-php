@@ -11,7 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * The difference delta between two policies.
  *
- * Protobuf type <code>Google\Iam\V1\PolicyDelta</code>
+ * Generated from protobuf message <code>google.iam.v1.PolicyDelta</code>
  */
 class PolicyDelta extends \Google\Protobuf\Internal\Message
 {
@@ -42,12 +42,15 @@ class PolicyDelta extends \Google\Protobuf\Internal\Message
      * The delta for Bindings between two policies.
      *
      * Generated from protobuf field <code>repeated .google.iam.v1.BindingDelta binding_deltas = 1;</code>
-     * @param array|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Iam\V1\BindingDelta[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setBindingDeltas(&$var)
+    public function setBindingDeltas($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Iam\V1\BindingDelta::class);
         $this->binding_deltas = $arr;
+
+        return $this;
     }
 
 }

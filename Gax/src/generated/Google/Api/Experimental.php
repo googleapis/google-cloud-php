@@ -12,7 +12,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Experimental service configuration. These configuration options can
  * only be used by whitelisted users.
  *
- * Protobuf type <code>Google\Api\Experimental</code>
+ * Generated from protobuf message <code>google.api.Experimental</code>
  */
 class Experimental extends \Google\Protobuf\Internal\Message
 {
@@ -44,11 +44,14 @@ class Experimental extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.api.AuthorizationConfig authorization = 8;</code>
      * @param \Google\Api\AuthorizationConfig $var
+     * @return $this
      */
-    public function setAuthorization(&$var)
+    public function setAuthorization($var)
     {
         GPBUtil::checkMessage($var, \Google\Api\AuthorizationConfig::class);
         $this->authorization = $var;
+
+        return $this;
     }
 
 }

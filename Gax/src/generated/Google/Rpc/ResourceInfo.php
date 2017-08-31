@@ -11,7 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Describes the resource that is being accessed.
  *
- * Protobuf type <code>Google\Rpc\ResourceInfo</code>
+ * Generated from protobuf message <code>google.rpc.ResourceInfo</code>
  */
 class ResourceInfo extends \Google\Protobuf\Internal\Message
 {
@@ -73,11 +73,14 @@ class ResourceInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string resource_type = 1;</code>
      * @param string $var
+     * @return $this
      */
     public function setResourceType($var)
     {
         GPBUtil::checkString($var, True);
         $this->resource_type = $var;
+
+        return $this;
     }
 
     /**
@@ -100,11 +103,14 @@ class ResourceInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string resource_name = 2;</code>
      * @param string $var
+     * @return $this
      */
     public function setResourceName($var)
     {
         GPBUtil::checkString($var, True);
         $this->resource_name = $var;
+
+        return $this;
     }
 
     /**
@@ -127,11 +133,14 @@ class ResourceInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string owner = 3;</code>
      * @param string $var
+     * @return $this
      */
     public function setOwner($var)
     {
         GPBUtil::checkString($var, True);
         $this->owner = $var;
+
+        return $this;
     }
 
     /**
@@ -154,11 +163,14 @@ class ResourceInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 4;</code>
      * @param string $var
+     * @return $this
      */
     public function setDescription($var)
     {
         GPBUtil::checkString($var, True);
         $this->description = $var;
+
+        return $this;
     }
 
 }

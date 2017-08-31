@@ -11,7 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * The response message for [Operations.ListOperations][google.longrunning.Operations.ListOperations].
  *
- * Protobuf type <code>Google\Longrunning\ListOperationsResponse</code>
+ * Generated from protobuf message <code>google.longrunning.ListOperationsResponse</code>
  */
 class ListOperationsResponse extends \Google\Protobuf\Internal\Message
 {
@@ -48,12 +48,15 @@ class ListOperationsResponse extends \Google\Protobuf\Internal\Message
      * A list of operations that matches the specified filter in the request.
      *
      * Generated from protobuf field <code>repeated .google.longrunning.Operation operations = 1;</code>
-     * @param array|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Longrunning\Operation[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setOperations(&$var)
+    public function setOperations($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Longrunning\Operation::class);
         $this->operations = $arr;
+
+        return $this;
     }
 
     /**
@@ -72,11 +75,14 @@ class ListOperationsResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @param string $var
+     * @return $this
      */
     public function setNextPageToken($var)
     {
         GPBUtil::checkString($var, True);
         $this->next_page_token = $var;
+
+        return $this;
     }
 
 }

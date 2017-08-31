@@ -24,7 +24,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *      - name: EXTENDED_TILE_CACHE_PERIOD
  *        type: INT64
  *
- * Protobuf type <code>Google\Api\ProjectProperties</code>
+ * Generated from protobuf message <code>google.api.ProjectProperties</code>
  */
 class ProjectProperties extends \Google\Protobuf\Internal\Message
 {
@@ -55,12 +55,15 @@ class ProjectProperties extends \Google\Protobuf\Internal\Message
      * List of per consumer project-specific properties.
      *
      * Generated from protobuf field <code>repeated .google.api.Property properties = 1;</code>
-     * @param array|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Api\Property[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setProperties(&$var)
+    public function setProperties($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Api\Property::class);
         $this->properties = $arr;
+
+        return $this;
     }
 
 }

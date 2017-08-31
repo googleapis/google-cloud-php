@@ -45,7 +45,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *     assert (-90.0, 10.0) == NormalizeLatLng(270.0, 10.0)
  *     assert (90.0, 10.0) == NormalizeLatLng(-270.0, 10.0)
  *
- * Protobuf type <code>Google\Type\LatLng</code>
+ * Generated from protobuf message <code>google.type.LatLng</code>
  */
 class LatLng extends \Google\Protobuf\Internal\Message
 {
@@ -83,11 +83,14 @@ class LatLng extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double latitude = 1;</code>
      * @param float $var
+     * @return $this
      */
     public function setLatitude($var)
     {
         GPBUtil::checkDouble($var);
         $this->latitude = $var;
+
+        return $this;
     }
 
     /**
@@ -106,11 +109,14 @@ class LatLng extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double longitude = 2;</code>
      * @param float $var
+     * @return $this
      */
     public function setLongitude($var)
     {
         GPBUtil::checkDouble($var);
         $this->longitude = $var;
+
+        return $this;
     }
 
 }

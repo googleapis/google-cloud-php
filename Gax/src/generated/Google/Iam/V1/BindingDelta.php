@@ -12,7 +12,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * One delta entry for Binding. Each individual change (only one member in each
  * entry) to a binding will be a separate entry.
  *
- * Protobuf type <code>Google\Iam\V1\BindingDelta</code>
+ * Generated from protobuf message <code>google.iam.v1.BindingDelta</code>
  */
 class BindingDelta extends \Google\Protobuf\Internal\Message
 {
@@ -63,11 +63,14 @@ class BindingDelta extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.iam.v1.BindingDelta.Action action = 1;</code>
      * @param int $var
+     * @return $this
      */
     public function setAction($var)
     {
         GPBUtil::checkEnum($var, \Google\Iam\V1\BindingDelta_Action::class);
         $this->action = $var;
+
+        return $this;
     }
 
     /**
@@ -90,11 +93,14 @@ class BindingDelta extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string role = 2;</code>
      * @param string $var
+     * @return $this
      */
     public function setRole($var)
     {
         GPBUtil::checkString($var, True);
         $this->role = $var;
+
+        return $this;
     }
 
     /**
@@ -117,11 +123,14 @@ class BindingDelta extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string member = 3;</code>
      * @param string $var
+     * @return $this
      */
     public function setMember($var)
     {
         GPBUtil::checkString($var, True);
         $this->member = $var;
+
+        return $this;
     }
 
 }

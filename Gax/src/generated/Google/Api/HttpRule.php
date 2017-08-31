@@ -173,7 +173,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * a given URL path rule. The wild-card rule is useful for services that provide
  * content to Web (HTML) clients.
  *
- * Protobuf type <code>Google\Api\HttpRule</code>
+ * Generated from protobuf message <code>google.api.HttpRule</code>
  */
 class HttpRule extends \Google\Protobuf\Internal\Message
 {
@@ -226,11 +226,14 @@ class HttpRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string selector = 1;</code>
      * @param string $var
+     * @return $this
      */
     public function setSelector($var)
     {
         GPBUtil::checkString($var, True);
         $this->selector = $var;
+
+        return $this;
     }
 
     /**
@@ -249,11 +252,14 @@ class HttpRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string get = 2;</code>
      * @param string $var
+     * @return $this
      */
     public function setGet($var)
     {
         GPBUtil::checkString($var, True);
         $this->writeOneof(2, $var);
+
+        return $this;
     }
 
     /**
@@ -272,11 +278,14 @@ class HttpRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string put = 3;</code>
      * @param string $var
+     * @return $this
      */
     public function setPut($var)
     {
         GPBUtil::checkString($var, True);
         $this->writeOneof(3, $var);
+
+        return $this;
     }
 
     /**
@@ -295,11 +304,14 @@ class HttpRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string post = 4;</code>
      * @param string $var
+     * @return $this
      */
     public function setPost($var)
     {
         GPBUtil::checkString($var, True);
         $this->writeOneof(4, $var);
+
+        return $this;
     }
 
     /**
@@ -318,11 +330,14 @@ class HttpRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string delete = 5;</code>
      * @param string $var
+     * @return $this
      */
     public function setDelete($var)
     {
         GPBUtil::checkString($var, True);
         $this->writeOneof(5, $var);
+
+        return $this;
     }
 
     /**
@@ -341,11 +356,14 @@ class HttpRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string patch = 6;</code>
      * @param string $var
+     * @return $this
      */
     public function setPatch($var)
     {
         GPBUtil::checkString($var, True);
         $this->writeOneof(6, $var);
+
+        return $this;
     }
 
     /**
@@ -364,11 +382,14 @@ class HttpRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.api.CustomHttpPattern custom = 8;</code>
      * @param \Google\Api\CustomHttpPattern $var
+     * @return $this
      */
-    public function setCustom(&$var)
+    public function setCustom($var)
     {
         GPBUtil::checkMessage($var, \Google\Api\CustomHttpPattern::class);
         $this->writeOneof(8, $var);
+
+        return $this;
     }
 
     /**
@@ -393,11 +414,14 @@ class HttpRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string body = 7;</code>
      * @param string $var
+     * @return $this
      */
     public function setBody($var)
     {
         GPBUtil::checkString($var, True);
         $this->body = $var;
+
+        return $this;
     }
 
     /**
@@ -419,12 +443,15 @@ class HttpRule extends \Google\Protobuf\Internal\Message
      * the nesting may only be one level deep).
      *
      * Generated from protobuf field <code>repeated .google.api.HttpRule additional_bindings = 11;</code>
-     * @param array|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Api\HttpRule[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setAdditionalBindings(&$var)
+    public function setAdditionalBindings($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Api\HttpRule::class);
         $this->additional_bindings = $arr;
+
+        return $this;
     }
 
     /**

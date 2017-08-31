@@ -13,7 +13,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * [HttpRule][google.api.HttpRule], each specifying the mapping of an RPC method
  * to one or more HTTP REST API methods.
  *
- * Protobuf type <code>Google\Api\Http</code>
+ * Generated from protobuf message <code>google.api.Http</code>
  */
 class Http extends \Google\Protobuf\Internal\Message
 {
@@ -47,12 +47,15 @@ class Http extends \Google\Protobuf\Internal\Message
      * **NOTE:** All service configuration rules follow "last one wins" order.
      *
      * Generated from protobuf field <code>repeated .google.api.HttpRule rules = 1;</code>
-     * @param array|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Api\HttpRule[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setRules(&$var)
+    public function setRules($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Api\HttpRule::class);
         $this->rules = $arr;
+
+        return $this;
     }
 
 }

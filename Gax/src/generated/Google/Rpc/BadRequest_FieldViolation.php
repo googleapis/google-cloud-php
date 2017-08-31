@@ -11,7 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * A message type used to describe a single bad request field.
  *
- * Protobuf type <code>Google\Rpc\BadRequest\FieldViolation</code>
+ * Generated from protobuf message <code>google.rpc.BadRequest.FieldViolation</code>
  */
 class BadRequest_FieldViolation extends \Google\Protobuf\Internal\Message
 {
@@ -55,11 +55,14 @@ class BadRequest_FieldViolation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string field = 1;</code>
      * @param string $var
+     * @return $this
      */
     public function setField($var)
     {
         GPBUtil::checkString($var, True);
         $this->field = $var;
+
+        return $this;
     }
 
     /**
@@ -78,11 +81,14 @@ class BadRequest_FieldViolation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 2;</code>
      * @param string $var
+     * @return $this
      */
     public function setDescription($var)
     {
         GPBUtil::checkString($var, True);
         $this->description = $var;
+
+        return $this;
     }
 
 }

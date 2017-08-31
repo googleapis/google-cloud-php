@@ -11,7 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * The request message for [Operations.GetOperation][google.longrunning.Operations.GetOperation].
  *
- * Protobuf type <code>Google\Longrunning\GetOperationRequest</code>
+ * Generated from protobuf message <code>google.longrunning.GetOperationRequest</code>
  */
 class GetOperationRequest extends \Google\Protobuf\Internal\Message
 {
@@ -43,11 +43,14 @@ class GetOperationRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
+     * @return $this
      */
     public function setName($var)
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
     }
 
 }

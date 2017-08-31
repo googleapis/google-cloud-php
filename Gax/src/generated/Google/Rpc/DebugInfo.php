@@ -11,7 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Describes additional debugging info.
  *
- * Protobuf type <code>Google\Rpc\DebugInfo</code>
+ * Generated from protobuf message <code>google.rpc.DebugInfo</code>
  */
 class DebugInfo extends \Google\Protobuf\Internal\Message
 {
@@ -48,12 +48,15 @@ class DebugInfo extends \Google\Protobuf\Internal\Message
      * The stack trace entries indicating where the error occurred.
      *
      * Generated from protobuf field <code>repeated string stack_entries = 1;</code>
-     * @param array|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setStackEntries(&$var)
+    public function setStackEntries($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->stack_entries = $arr;
+
+        return $this;
     }
 
     /**
@@ -72,11 +75,14 @@ class DebugInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string detail = 2;</code>
      * @param string $var
+     * @return $this
      */
     public function setDetail($var)
     {
         GPBUtil::checkString($var, True);
         $this->detail = $var;
+
+        return $this;
     }
 
 }

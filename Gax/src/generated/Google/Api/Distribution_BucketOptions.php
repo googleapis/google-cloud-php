@@ -29,7 +29,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * boundaries and one gives the bucket boundaries explicitly.
  * If `bucket_boundaries` is not given, then no `bucket_counts` may be given.
  *
- * Protobuf type <code>Google\Api\Distribution\BucketOptions</code>
+ * Generated from protobuf message <code>google.api.Distribution.BucketOptions</code>
  */
 class Distribution_BucketOptions extends \Google\Protobuf\Internal\Message
 {
@@ -56,11 +56,14 @@ class Distribution_BucketOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.api.Distribution.BucketOptions.Linear linear_buckets = 1;</code>
      * @param \Google\Api\Distribution_BucketOptions_Linear $var
+     * @return $this
      */
-    public function setLinearBuckets(&$var)
+    public function setLinearBuckets($var)
     {
         GPBUtil::checkMessage($var, \Google\Api\Distribution_BucketOptions_Linear::class);
         $this->writeOneof(1, $var);
+
+        return $this;
     }
 
     /**
@@ -79,11 +82,14 @@ class Distribution_BucketOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.api.Distribution.BucketOptions.Exponential exponential_buckets = 2;</code>
      * @param \Google\Api\Distribution_BucketOptions_Exponential $var
+     * @return $this
      */
-    public function setExponentialBuckets(&$var)
+    public function setExponentialBuckets($var)
     {
         GPBUtil::checkMessage($var, \Google\Api\Distribution_BucketOptions_Exponential::class);
         $this->writeOneof(2, $var);
+
+        return $this;
     }
 
     /**
@@ -102,11 +108,14 @@ class Distribution_BucketOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.api.Distribution.BucketOptions.Explicit explicit_buckets = 3;</code>
      * @param \Google\Api\Distribution_BucketOptions_Explicit $var
+     * @return $this
      */
-    public function setExplicitBuckets(&$var)
+    public function setExplicitBuckets($var)
     {
         GPBUtil::checkMessage($var, \Google\Api\Distribution_BucketOptions_Explicit::class);
         $this->writeOneof(3, $var);
+
+        return $this;
     }
 
     /**

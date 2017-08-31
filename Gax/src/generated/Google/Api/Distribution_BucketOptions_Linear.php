@@ -17,7 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *    Upper bound (0 <= i < N-1):     offset + (width * i).
  *    Lower bound (1 <= i < N):       offset + (width * (i - 1)).
  *
- * Protobuf type <code>Google\Api\Distribution\BucketOptions\Linear</code>
+ * Generated from protobuf message <code>google.api.Distribution.BucketOptions.Linear</code>
  */
 class Distribution_BucketOptions_Linear extends \Google\Protobuf\Internal\Message
 {
@@ -61,11 +61,14 @@ class Distribution_BucketOptions_Linear extends \Google\Protobuf\Internal\Messag
      *
      * Generated from protobuf field <code>int32 num_finite_buckets = 1;</code>
      * @param int $var
+     * @return $this
      */
     public function setNumFiniteBuckets($var)
     {
         GPBUtil::checkInt32($var);
         $this->num_finite_buckets = $var;
+
+        return $this;
     }
 
     /**
@@ -84,11 +87,14 @@ class Distribution_BucketOptions_Linear extends \Google\Protobuf\Internal\Messag
      *
      * Generated from protobuf field <code>double width = 2;</code>
      * @param float $var
+     * @return $this
      */
     public function setWidth($var)
     {
         GPBUtil::checkDouble($var);
         $this->width = $var;
+
+        return $this;
     }
 
     /**
@@ -107,11 +113,14 @@ class Distribution_BucketOptions_Linear extends \Google\Protobuf\Internal\Messag
      *
      * Generated from protobuf field <code>double offset = 3;</code>
      * @param float $var
+     * @return $this
      */
     public function setOffset($var)
     {
         GPBUtil::checkDouble($var);
         $this->offset = $var;
+
+        return $this;
     }
 
 }

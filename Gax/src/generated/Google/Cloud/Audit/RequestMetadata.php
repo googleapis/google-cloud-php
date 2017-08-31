@@ -11,7 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Metadata about the request.
  *
- * Protobuf type <code>Google\Cloud\Audit\RequestMetadata</code>
+ * Generated from protobuf message <code>google.cloud.audit.RequestMetadata</code>
  */
 class RequestMetadata extends \Google\Protobuf\Internal\Message
 {
@@ -57,11 +57,14 @@ class RequestMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string caller_ip = 1;</code>
      * @param string $var
+     * @return $this
      */
     public function setCallerIp($var)
     {
         GPBUtil::checkString($var, True);
         $this->caller_ip = $var;
+
+        return $this;
     }
 
     /**
@@ -96,11 +99,14 @@ class RequestMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string caller_supplied_user_agent = 2;</code>
      * @param string $var
+     * @return $this
      */
     public function setCallerSuppliedUserAgent($var)
     {
         GPBUtil::checkString($var, True);
         $this->caller_supplied_user_agent = $var;
+
+        return $this;
     }
 
 }

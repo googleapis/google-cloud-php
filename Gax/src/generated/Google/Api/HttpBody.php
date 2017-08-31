@@ -38,7 +38,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * Use of this type only changes how the request and response bodies are
  * handled, all other features will continue to work unchanged.
  *
- * Protobuf type <code>Google\Api\HttpBody</code>
+ * Generated from protobuf message <code>google.api.HttpBody</code>
  */
 class HttpBody extends \Google\Protobuf\Internal\Message
 {
@@ -76,11 +76,14 @@ class HttpBody extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string content_type = 1;</code>
      * @param string $var
+     * @return $this
      */
     public function setContentType($var)
     {
         GPBUtil::checkString($var, True);
         $this->content_type = $var;
+
+        return $this;
     }
 
     /**
@@ -99,11 +102,14 @@ class HttpBody extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bytes data = 2;</code>
      * @param string $var
+     * @return $this
      */
     public function setData($var)
     {
         GPBUtil::checkString($var, False);
         $this->data = $var;
+
+        return $this;
     }
 
 }

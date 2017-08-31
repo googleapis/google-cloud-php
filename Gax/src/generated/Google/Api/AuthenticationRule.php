@@ -17,7 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * If a method doesn't have any auth requirements, request credentials will be
  * ignored.
  *
- * Protobuf type <code>Google\Api\AuthenticationRule</code>
+ * Generated from protobuf message <code>google.api.AuthenticationRule</code>
  */
 class AuthenticationRule extends \Google\Protobuf\Internal\Message
 {
@@ -75,11 +75,14 @@ class AuthenticationRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string selector = 1;</code>
      * @param string $var
+     * @return $this
      */
     public function setSelector($var)
     {
         GPBUtil::checkString($var, True);
         $this->selector = $var;
+
+        return $this;
     }
 
     /**
@@ -98,11 +101,14 @@ class AuthenticationRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.api.OAuthRequirements oauth = 2;</code>
      * @param \Google\Api\OAuthRequirements $var
+     * @return $this
      */
-    public function setOauth(&$var)
+    public function setOauth($var)
     {
         GPBUtil::checkMessage($var, \Google\Api\OAuthRequirements::class);
         $this->oauth = $var;
+
+        return $this;
     }
 
     /**
@@ -131,11 +137,14 @@ class AuthenticationRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool allow_without_credential = 5;</code>
      * @param bool $var
+     * @return $this
      */
     public function setAllowWithoutCredential($var)
     {
         GPBUtil::checkBool($var);
         $this->allow_without_credential = $var;
+
+        return $this;
     }
 
     /**
@@ -153,12 +162,15 @@ class AuthenticationRule extends \Google\Protobuf\Internal\Message
      * Requirements for additional authentication providers.
      *
      * Generated from protobuf field <code>repeated .google.api.AuthRequirement requirements = 7;</code>
-     * @param array|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Api\AuthRequirement[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setRequirements(&$var)
+    public function setRequirements($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Api\AuthRequirement::class);
         $this->requirements = $arr;
+
+        return $this;
     }
 
 }

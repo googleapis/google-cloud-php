@@ -11,7 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * A description of a label.
  *
- * Protobuf type <code>Google\Api\LabelDescriptor</code>
+ * Generated from protobuf message <code>google.api.LabelDescriptor</code>
  */
 class LabelDescriptor extends \Google\Protobuf\Internal\Message
 {
@@ -55,11 +55,14 @@ class LabelDescriptor extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string key = 1;</code>
      * @param string $var
+     * @return $this
      */
     public function setKey($var)
     {
         GPBUtil::checkString($var, True);
         $this->key = $var;
+
+        return $this;
     }
 
     /**
@@ -78,11 +81,14 @@ class LabelDescriptor extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.api.LabelDescriptor.ValueType value_type = 2;</code>
      * @param int $var
+     * @return $this
      */
     public function setValueType($var)
     {
         GPBUtil::checkEnum($var, \Google\Api\LabelDescriptor_ValueType::class);
         $this->value_type = $var;
+
+        return $this;
     }
 
     /**
@@ -101,11 +107,14 @@ class LabelDescriptor extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 3;</code>
      * @param string $var
+     * @return $this
      */
     public function setDescription($var)
     {
         GPBUtil::checkString($var, True);
         $this->description = $var;
+
+        return $this;
     }
 
 }

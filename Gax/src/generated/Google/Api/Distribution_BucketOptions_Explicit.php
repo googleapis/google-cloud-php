@@ -18,7 +18,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * element, there are no finite buckets, and that single element is the
  * common boundary of the overflow and underflow buckets.
  *
- * Protobuf type <code>Google\Api\Distribution\BucketOptions\Explicit</code>
+ * Generated from protobuf message <code>google.api.Distribution.BucketOptions.Explicit</code>
  */
 class Distribution_BucketOptions_Explicit extends \Google\Protobuf\Internal\Message
 {
@@ -49,12 +49,15 @@ class Distribution_BucketOptions_Explicit extends \Google\Protobuf\Internal\Mess
      * The values must be monotonically increasing.
      *
      * Generated from protobuf field <code>repeated double bounds = 1;</code>
-     * @param array|\Google\Protobuf\Internal\RepeatedField $var
+     * @param float[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
      */
-    public function setBounds(&$var)
+    public function setBounds($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::DOUBLE);
         $this->bounds = $arr;
+
+        return $this;
     }
 
 }

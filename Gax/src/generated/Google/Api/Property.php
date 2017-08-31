@@ -18,7 +18,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * These values can be set via API producer console. Only API providers can
  * define and set these properties.
  *
- * Protobuf type <code>Google\Api\Property</code>
+ * Generated from protobuf message <code>google.api.Property</code>
  */
 class Property extends \Google\Protobuf\Internal\Message
 {
@@ -62,11 +62,14 @@ class Property extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
+     * @return $this
      */
     public function setName($var)
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
     }
 
     /**
@@ -85,11 +88,14 @@ class Property extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.api.Property.PropertyType type = 2;</code>
      * @param int $var
+     * @return $this
      */
     public function setType($var)
     {
         GPBUtil::checkEnum($var, \Google\Api\Property_PropertyType::class);
         $this->type = $var;
+
+        return $this;
     }
 
     /**
@@ -108,11 +114,14 @@ class Property extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 3;</code>
      * @param string $var
+     * @return $this
      */
     public function setDescription($var)
     {
         GPBUtil::checkString($var, True);
         $this->description = $var;
+
+        return $this;
     }
 
 }

@@ -17,7 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *       authorization:
  *         provider: firebaserules.googleapis.com
  *
- * Protobuf type <code>Google\Api\AuthorizationConfig</code>
+ * Generated from protobuf message <code>google.api.AuthorizationConfig</code>
  */
 class AuthorizationConfig extends \Google\Protobuf\Internal\Message
 {
@@ -52,11 +52,14 @@ class AuthorizationConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string provider = 1;</code>
      * @param string $var
+     * @return $this
      */
     public function setProvider($var)
     {
         GPBUtil::checkString($var, True);
         $this->provider = $var;
+
+        return $this;
     }
 
 }

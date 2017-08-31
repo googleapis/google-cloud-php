@@ -11,7 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Describes a URL link.
  *
- * Protobuf type <code>Google\Rpc\Help\Link</code>
+ * Generated from protobuf message <code>google.rpc.Help.Link</code>
  */
 class Help_Link extends \Google\Protobuf\Internal\Message
 {
@@ -49,11 +49,14 @@ class Help_Link extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 1;</code>
      * @param string $var
+     * @return $this
      */
     public function setDescription($var)
     {
         GPBUtil::checkString($var, True);
         $this->description = $var;
+
+        return $this;
     }
 
     /**
@@ -72,11 +75,14 @@ class Help_Link extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string url = 2;</code>
      * @param string $var
+     * @return $this
      */
     public function setUrl($var)
     {
         GPBUtil::checkString($var, True);
         $this->url = $var;
+
+        return $this;
     }
 
 }

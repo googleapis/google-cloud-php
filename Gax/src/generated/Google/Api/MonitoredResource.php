@@ -22,7 +22,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *       "labels": { "instance_id": "12345678901234",
  *                   "zone": "us-central1-a" }}
  *
- * Protobuf type <code>Google\Api\MonitoredResource</code>
+ * Generated from protobuf message <code>google.api.MonitoredResource</code>
  */
 class MonitoredResource extends \Google\Protobuf\Internal\Message
 {
@@ -68,11 +68,14 @@ class MonitoredResource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string type = 1;</code>
      * @param string $var
+     * @return $this
      */
     public function setType($var)
     {
         GPBUtil::checkString($var, True);
         $this->type = $var;
+
+        return $this;
     }
 
     /**
@@ -81,7 +84,7 @@ class MonitoredResource extends \Google\Protobuf\Internal\Message
      * `"database_id"` and `"zone"`.
      *
      * Generated from protobuf field <code>map<string, string> labels = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return \Google\Protobuf\Internal\MapField
      */
     public function getLabels()
     {
@@ -94,12 +97,15 @@ class MonitoredResource extends \Google\Protobuf\Internal\Message
      * `"database_id"` and `"zone"`.
      *
      * Generated from protobuf field <code>map<string, string> labels = 2;</code>
-     * @param array|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
      */
-    public function setLabels(&$var)
+    public function setLabels($var)
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->labels = $arr;
+
+        return $this;
     }
 
 }
