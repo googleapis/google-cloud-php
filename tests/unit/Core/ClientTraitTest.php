@@ -51,19 +51,7 @@ class ClientTraitTest extends \PHPUnit_Framework_TestCase
     {
         return [
             [
-                [false, false, false],
-                ['transport' => 'grpc'],
-            ],
-            [
-                [true, true, false],
-                ['transport' => 'grpc'],
-            ],
-            [
-                [true, false, true],
-                ['transport' => 'grpc'],
-            ],
-            [
-                [false, true, true],
+                false,
                 ['transport' => 'grpc'],
             ],
         ];
@@ -73,27 +61,27 @@ class ClientTraitTest extends \PHPUnit_Framework_TestCase
     {
         return [
             [
-                [true, true, true],
+                true,
                 [],
                 'grpc'
             ],
             [
-                [false, false, false],
-                ['transport' => 'rest'],
-                'rest'
-            ],
-            [
-                [true, true, true],
-                ['transport' => 'rest'],
-                'rest'
-            ],
-            [
-                [true, true, false],
+                false,
                 [],
                 'rest'
             ],
             [
-                [true, true, true],
+                false,
+                ['transport' => 'rest'],
+                'rest'
+            ],
+            [
+                true,
+                ['transport' => 'rest'],
+                'rest'
+            ],
+            [
+                true,
                 ['transport' => 'grpc'],
                 'grpc'
             ],
@@ -290,7 +278,7 @@ class ClientTraitStubGrpcDependencyChecks extends ClientTraitStub
 
     private $dependencyStatus;
 
-    public function __construct(array $dependencyStatus)
+    public function __construct($dependencyStatus)
     {
         $this->dependencyStatus = $dependencyStatus;
     }
