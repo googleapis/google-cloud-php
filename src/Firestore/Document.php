@@ -50,19 +50,12 @@ class Document
 
     public function create(array $fields = [], array $options = [])
     {
-        $fields = $this->valueMapper->encodeValues($fields);
+        $writer = new WriteBatch($this->valueMapper, $this->databaseName($this->name));
+        $writer->update($this->name, $fields, [
+            'currentDocument' => ['exists' => false]
+        ]);
 
-        $writes = [
-            $this->createDatabaseWrite('update', $this->name, [
-                'fields' => $fields,
-                'currentDocument' => ['exists' => false]
-            ])
-        ];
-
-        return $this->commitResponse($this->connection->commit([
-            'database' => $this->databaseName($this->name),
-            'writes' => $writes
-        ] + $options));
+        return $this->commitWrites($writer, $options);
     }
 
     public function set($key, $value, array $options = [])
@@ -75,7 +68,7 @@ class Document
     {}
 
     /**
-     * Get a document snapshot.
+     * Get a read-only snapshot of the document.
      *
      * @param array $options {
      *     Configuration Options
