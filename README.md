@@ -7,20 +7,20 @@
 * [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs)
 
 This client supports the following Google Cloud Platform services at a [General Availability](#versioning) quality level:
-* [Google Stackdriver Logging](#google-stackdriver-logging-ga) (GA)
 * [Google Cloud Datastore](#google-cloud-datastore-ga) (GA)
 * [Google Cloud Storage](#google-cloud-storage-ga) (GA)
 * [Google Cloud Translation](#google-cloud-translation-ga) (GA)
+* [Google Stackdriver Logging](#google-stackdriver-logging-ga) (GA)
 
 This client supports the following Google Cloud Platform services at a [Beta](#versioning) quality level:
 
+* [Cloud Spanner](#cloud-spanner-beta) (Beta)
 * [Google BigQuery](#google-bigquery-beta) (Beta)
 * [Google Cloud Natural Language](#google-cloud-natural-language-beta) (Beta)
 * [Google Cloud Pub/Sub](#google-cloud-pubsub-beta) (Beta)
 * [Google Cloud Vision](#google-cloud-vision-beta) (Beta)
 
 This client supports the following Google Cloud Platform services at an [Alpha](#versioning) quality level:
-* [Cloud Spanner](#cloud-spanner-alpha) (Alpha)
 * [Google Cloud Speech](#google-cloud-speech-alpha) (Alpha)
 * [Google Cloud Video Intelligence](#google-cloud-video-intelligence-alpha) (Alpha)
 * [Google Stackdriver Trace](#google-stackdriver-trace-alpha) (Alpha)
@@ -79,46 +79,6 @@ $cloud = new ServiceBuilder();
 ```
 
 The `GOOGLE_APPLICATION_CREDENTIALS` environment variable may be set in your server configuration.
-
-## Google Stackdriver Logging (GA)
-
-- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/logging/loggingclient)
-- [Official Documentation](https://cloud.google.com/logging/docs)
-
-#### Preview
-
-```php
-require 'vendor/autoload.php';
-
-use Google\Cloud\Logging\LoggingClient;
-
-$logging = new LoggingClient([
-    'projectId' => 'my_project'
-]);
-
-// Get a logger instance.
-$logger = $logging->logger('my_log');
-
-// Write a log entry.
-$logger->write('my message');
-
-// List log entries from a specific log.
-$entries = $logging->entries([
-    'filter' => 'logName = projects/my_project/logs/my_log'
-]);
-
-foreach ($entries as $entry) {
-    echo $entry->info()['textPayload'] . "\n";
-}
-```
-
-#### google/cloud-logging
-
-Google Stackdriver Logging can be installed separately by requiring the `google/cloud-logging` composer package:
-
-```
-$ require google/cloud-logging
-```
 
 ## Google Cloud Datastore (GA)
 
@@ -271,6 +231,83 @@ Google Cloud Translation can be installed separately by requiring the `google/cl
 
 ```
 $ require google/cloud-translate
+```
+
+## Google Stackdriver Logging (GA)
+
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/logging/loggingclient)
+- [Official Documentation](https://cloud.google.com/logging/docs)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Logging\LoggingClient;
+
+$logging = new LoggingClient([
+    'projectId' => 'my_project'
+]);
+
+// Get a logger instance.
+$logger = $logging->logger('my_log');
+
+// Write a log entry.
+$logger->write('my message');
+
+// List log entries from a specific log.
+$entries = $logging->entries([
+    'filter' => 'logName = projects/my_project/logs/my_log'
+]);
+
+foreach ($entries as $entry) {
+    echo $entry->info()['textPayload'] . "\n";
+}
+```
+
+#### google/cloud-logging
+
+Google Stackdriver Logging can be installed separately by requiring the `google/cloud-logging` composer package:
+
+```
+$ require google/cloud-logging
+```
+
+## Cloud Spanner (Beta)
+
+- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/spanner/spannerclient)
+- [Official Documentation](https://cloud.google.com/spanner/docs)
+
+#### Preview
+
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Spanner\SpannerClient;
+
+$spanner = new SpannerClient([
+    'projectId' => 'my_project'
+]);
+
+$db = $spanner->connect('my-instance', 'my-database');
+
+$userQuery = $db->execute('SELECT * FROM Users WHERE id = @id', [
+    'parameters' => [
+        'id' => $userId
+    ]
+]);
+
+$user = $userQuery->rows()->current();
+
+echo 'Hello ' . $user['firstName'];
+```
+
+#### google/cloud-spanner
+
+Cloud Spanner can be installed separately by requiring the `google/cloud-spanner` composer package:
+
+```
+$ require google/cloud-spanner
 ```
 
 ## Google BigQuery (Beta)
@@ -446,43 +483,6 @@ Google Cloud Vision can be installed separately by requiring the `google/cloud-v
 
 ```
 $ require google/cloud-vision
-```
-
-## Cloud Spanner (Alpha)
-
-- [API Documentation](http://googlecloudplatform.github.io/google-cloud-php/#/docs/latest/spanner/spannerclient)
-- [Official Documentation](https://cloud.google.com/spanner/docs)
-
-#### Preview
-
-```php
-require 'vendor/autoload.php';
-
-use Google\Cloud\Spanner\SpannerClient;
-
-$spanner = new SpannerClient([
-    'projectId' => 'my_project'
-]);
-
-$db = $spanner->connect('my-instance', 'my-database');
-
-$userQuery = $db->execute('SELECT * FROM Users WHERE id = @id', [
-    'parameters' => [
-        'id' => $userId
-    ]
-]);
-
-$user = $userQuery->rows()->current();
-
-echo 'Hello ' . $user['firstName'];
-```
-
-#### google/cloud-spanner
-
-Cloud Spanner can be installed separately by requiring the `google/cloud-spanner` composer package:
-
-```
-$ require google/cloud-spanner
 ```
 
 ## Google Cloud Speech (Alpha)

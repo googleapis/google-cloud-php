@@ -17,7 +17,10 @@
 
 namespace Google\Cloud\Tests\Unit\Spanner\Session;
 
+require_once __DIR__ . '../../../Core/Lock/MockGlobals.php';
+
 use Google\Auth\Cache\MemoryCacheItemPool;
+use Google\Cloud\Core\Lock\MockValues;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Session\CacheSessionPool;
 use Google\Cloud\Spanner\Session\Session;
@@ -46,6 +49,7 @@ class CacheSessionPoolTest extends \PHPUnit_Framework_TestCase
         $this->checkAndSkipGrpcTests();
         putenv('GOOGLE_CLOUD_SYSV_ID=U');
         $this->time = time();
+        MockValues::initialize();
     }
 
     /**
@@ -254,9 +258,11 @@ class CacheSessionPoolTest extends \PHPUnit_Framework_TestCase
             'toCreate' => []
         ]));
         $pool->setDatabase($this->getDatabase(false, true));
-        $response = $pool->downsize($percent);
 
-        $this->assertEquals($expectedDeleteCount, $response['deleted']);
+        $this->assertEquals(
+            $expectedDeleteCount,
+            $pool->downsize($percent)
+        );
     }
 
     public function downsizeDataProvider()
@@ -266,31 +272,6 @@ class CacheSessionPoolTest extends \PHPUnit_Framework_TestCase
             [1, 1],
             [100, 4]
         ];
-    }
-
-    public function testDownsizeFails()
-    {
-        $time = time() + 3600;
-        $pool = new CacheSessionPoolStub($this->getCacheItemPool([
-            'queue' => [
-                [
-                    'name' => 'session0',
-                    'expiration' => $time
-                ],
-                [
-                    'name' => 'session1',
-                    'expiration' => $time
-                ]
-            ],
-            'inUse' => [],
-            'toCreate' => []
-        ]));
-        $pool->setDatabase($this->getDatabase());
-        $response = $pool->downsize(100);
-
-        $this->assertEquals(0, $response['deleted']);
-        $this->assertEquals(1, count($response['failed']));
-        $this->assertContainsOnlyInstancesOf(Session::class, $response['failed']);
     }
 
     /**
