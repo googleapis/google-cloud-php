@@ -104,18 +104,6 @@ class JobTest extends \PHPUnit_Framework_TestCase
         $job->waitUntilComplete();
     }
 
-    /**
-     * @expectedException \RuntimeException
-     * @expectedExceptionMessage Job did not complete within the allowed number of retries.
-     */
-    public function testWaitsUntilCompleteThrowsExceptionAfterMaxRetries()
-    {
-        $this->jobInfo['status']['state'] = 'RUNNING';
-
-        $job = $this->getJob($this->connection, $this->jobInfo);
-        $job->waitUntilComplete(['maxRetries' => 1]);
-    }
-
     public function testIsCompleteTrue()
     {
         $job = $this->getJob($this->connection, $this->jobInfo);

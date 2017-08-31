@@ -18,6 +18,7 @@
 namespace Google\Cloud\Tests\Snippets\BigQuery;
 
 use Google\Cloud\BigQuery\Connection\ConnectionInterface;
+use Google\Cloud\BigQuery\Job;
 use Google\Cloud\BigQuery\QueryResults;
 use Google\Cloud\BigQuery\ValueMapper;
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
@@ -67,7 +68,8 @@ class QueryResultsTest extends SnippetTestCase
             self::JOB_ID,
             self::PROJECT,
             $this->info,
-            new ValueMapper(false)
+            new ValueMapper(false),
+            $this->prophesize(Job::class)->reveal()
         ]);
     }
 
@@ -88,6 +90,35 @@ class QueryResultsTest extends SnippetTestCase
         $this->assertEquals('abcd', trim($res->output()));
     }
 
+    public function testWaitUntilComplete()
+    {
+        $snippet = $this->snippetFromMethod(QueryResults::class, 'waitUntilComplete');
+        $snippet->addLocal('queryResults', $this->qr);
+
+        $this->info['jobComplete'] = true;
+        $this->connection->getQueryResults(Argument::any())
+            ->willReturn($this->info);
+
+        $this->qr->___setProperty('connection', $this->connection->reveal());
+
+        $snippet->invoke();
+    }
+
+    public function testIsComplete()
+    {
+        $snippet = $this->snippetFromMethod(QueryResults::class, 'isComplete');
+        $snippet->addLocal('queryResults', $this->qr);
+
+        $this->info['jobComplete'] = true;
+        $this->connection->getQueryResults(Argument::any())
+            ->willReturn($this->info);
+
+        $this->qr->___setProperty('connection', $this->connection->reveal());
+
+        $res = $snippet->invoke();
+        $this->assertEquals('Query complete!', $res->output());
+    }
+
     public function testIdentity()
     {
         $snippet = $this->snippetFromMethod(QueryResults::class, 'identity');
@@ -104,6 +135,15 @@ class QueryResultsTest extends SnippetTestCase
 
         $res = $snippet->invoke();
         $this->assertEquals($this->info['totalBytesProcessed'], $res->output());
+    }
+
+    public function testJob()
+    {
+        $snippet = $this->snippetFromMethod(QueryResults::class, 'job');
+        $snippet->addLocal('queryResults', $this->qr);
+
+        $res = $snippet->invoke('job');
+        $this->assertInstanceOf(Job::class, $res->returnVal());
     }
 
     public function testReload()

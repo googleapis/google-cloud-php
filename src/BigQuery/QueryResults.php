@@ -18,6 +18,7 @@
 namespace Google\Cloud\BigQuery;
 
 use Google\Cloud\BigQuery\Connection\ConnectionInterface;
+use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Exception\GoogleException;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
@@ -32,6 +33,9 @@ use Google\Cloud\Core\Iterator\PageIterator;
  */
 class QueryResults implements \IteratorAggregate
 {
+    use ArrayTrait;
+    use JobWaitTrait;
+
     /**
      * @var ConnectionInterface Represents a connection to BigQuery.
      */
@@ -48,7 +52,12 @@ class QueryResults implements \IteratorAggregate
     private $info;
 
     /**
-     * @var ValueMapper $mapper Maps values between PHP and BigQuery.
+     * @var Job The job from which the query results originated.
+     */
+    private $job;
+
+    /**
+     * @var ValueMapper Maps values between PHP and BigQuery.
      */
     private $mapper;
 
@@ -59,13 +68,15 @@ class QueryResults implements \IteratorAggregate
      * @param string $projectId The project's ID.
      * @param array $info The query result's metadata.
      * @param ValueMapper $mapper Maps values between PHP and BigQuery.
+     * @param Job $job The job from which the query results originated.
      */
     public function __construct(
         ConnectionInterface $connection,
         $jobId,
         $projectId,
         array $info,
-        ValueMapper $mapper
+        ValueMapper $mapper,
+        Job $job
     ) {
         $this->connection = $connection;
         $this->info = $info;
@@ -74,6 +85,7 @@ class QueryResults implements \IteratorAggregate
             'projectId' => $projectId
         ];
         $this->mapper = $mapper;
+        $this->job = $job;
     }
 
     /**
@@ -107,12 +119,24 @@ class QueryResults implements \IteratorAggregate
      * }
      * ```
      *
-     * @param array $options [optional] Configuration options.
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type int $maxResults Maximum number of results to read per page.
+     *     @type int $startIndex Zero-based index of the starting row.
+     *     @type int $timeoutMs If not yet complete, how long to wait in
+     *           milliseconds. **Defaults to** `10000` milliseconds (10 seconds).
+     *     @type int $maxRetries The number of times to retry, checking if the
+     *           query has completed. **Defaults to** `100`.
+     * }
      * @return ItemIterator
+     * @throws JobException If the maximum number of retries while waiting for
+     *         query completion has been exceeded.
      * @throws GoogleException Thrown in the case of a malformed response.
      */
     public function rows(array $options = [])
     {
+        $this->waitUntilComplete($options);
         $schema = $this->info['schema']['fields'];
 
         return new ItemIterator(
@@ -143,6 +167,43 @@ class QueryResults implements \IteratorAggregate
                     'nextResultTokenKey' => 'pageToken'
                 ]
             )
+        );
+    }
+
+    /**
+     * Blocks until the query is complete.
+     *
+     * Example:
+     * ```
+     * $queryResults->waitUntilComplete();
+     * ```
+     *
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type int $maxResults Maximum number of results to read per page.
+     *     @type int $startIndex Zero-based index of the starting row.
+     *     @type int $timeoutMs If not yet complete, how long to wait for the
+     *           query to complete, in milliseconds. **Defaults to**
+     *           `10000` milliseconds (10 seconds).
+     *     @type int $maxRetries The number of times to retry, checking if the
+     *           query has completed. **Defaults to** `100`.
+     * }
+     * @throws JobException If the maximum number of retries while waiting for
+     *         query completion has been exceeded.
+     */
+    public function waitUntilComplete(array $options = [])
+    {
+        $maxRetries = $this->pluck('maxRetries', $options, false);
+        $this->wait(
+            function () {
+                return $this->isComplete();
+            },
+            function () use ($options) {
+                return $this->reload($options);
+            },
+            $this->job,
+            $maxRetries
         );
     }
 
@@ -211,9 +272,23 @@ class QueryResults implements \IteratorAggregate
     }
 
     /**
-     * Checks the query's completeness.
+     * Checks the job's completeness. Useful in combination with
+     * {@see Google\Cloud\BigQuery\QueryResults::reload()} to poll for query
+     * status.
      *
-     * @access private
+     * Example:
+     * ```
+     * $isComplete = $queryResults->isComplete();
+     *
+     * while (!$isComplete) {
+     *     sleep(1); // let's wait for a moment...
+     *     $queryResults->reload();
+     *     $isComplete = $queryResults->isComplete();
+     * }
+     *
+     * echo 'Query complete!';
+     * ```
+     *
      * @return bool
      */
     public function isComplete()
@@ -222,8 +297,28 @@ class QueryResults implements \IteratorAggregate
     }
 
     /**
+     * Returns a reference to the {@see Google\Cloud\BigQuery\Job} instance used
+     * to fetch the query results. This is especially useful when attempting to
+     * access job statistics after calling
+     * {@see Google\Cloud\BigQuery\BigQueryClient::runQuery()}.
+     *
+     * Example:
+     * ```
+     * $job = $queryResults->job();
+     * ```
+     *
+     * @return array
+     */
+    public function job()
+    {
+        return $this->job;
+    }
+
+    /**
      * @access private
      * @return ItemIterator
+     * @throws JobException If the maximum number of retries while waiting for
+     *         query completion has been exceeded.
      * @throws GoogleException Thrown in the case of a malformed response.
      */
     public function getIterator()
