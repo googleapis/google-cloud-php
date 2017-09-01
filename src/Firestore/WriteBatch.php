@@ -17,8 +17,12 @@
 
 namespace Google\Cloud\Firestore;
 
+use Google\Cloud\Core\ArrayTrait;
+
 class WriteBatch
 {
+    use ArrayTrait;
+
     const TYPE_UPDATE = 'update';
     const TYPE_DELETE = 'delete';
     const TYPE_VERIFY = 'verify';
@@ -45,7 +49,8 @@ class WriteBatch
         }
 
         $this->writes[] = $this->createDatabaseWrite(self::TYPE_UPDATE, $documentName, [
-            'fields' => $this->valueMapper->encodeValues($fields)
+            'fields' => $this->valueMapper->encodeValues($fields),
+            'updateMask' => $this->valueMapper->fieldPaths($fields)
         ] + $options);
     }
 

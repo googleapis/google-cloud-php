@@ -94,6 +94,12 @@ class Grpc implements ConnectionInterface
     {
         $writes = $this->pluck('writes', $args);
         foreach ($writes as $idx => $write) {
+            if (isset($write['updateMask'])) {
+                $maskFields = $write['updateMask'];
+                $write['updateMask'] = new DocumentMask;
+                $write['updateMask']->setFieldPaths($maskFields);
+            }
+
             $writes[$idx] = $this->serializer->decodeMessage(new Write, $write);
         }
 

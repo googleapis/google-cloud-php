@@ -46,7 +46,9 @@ trait OperationTrait
 
         if (isset($response['writeResults'])) {
             foreach ($response['writeResults'] as &$result) {
-                $result['updateTime'] = $this->createTimestampWithNanos($result['updateTime']);
+                if (isset($result['updateTime'])) {
+                    $result['updateTime'] = $this->createTimestampWithNanos($result['updateTime']);
+                }
             }
         }
 

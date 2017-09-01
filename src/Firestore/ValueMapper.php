@@ -25,6 +25,7 @@ use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\ValueMapperTrait;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
+use Google\Protobuf\NullValue;
 
 class ValueMapper
 {
@@ -71,6 +72,27 @@ class ValueMapper
 
         foreach ($fields as $key => $val) {
             $output[$key] = $this->encodeValue($val);
+        }
+
+        return $output;
+    }
+
+    public function fieldPaths(array $fields, $parentPath = '')
+    {
+        $output = [];
+
+        foreach ($fields as $key => $val) {
+            if (is_array($val)) {
+                $nestedParentPath = $parentPath
+                    ? $parentPath . '.' . $key
+                    : $key;
+
+                $output = array_merge($output, $this->fieldPaths($val, $nestedParentPath));
+            } else {
+                $output[] = $parentPath
+                    ? $parentPath . '.' . $key
+                    : $key;
+            }
         }
 
         return $output;
@@ -166,7 +188,7 @@ class ValueMapper
                 break;
 
             case 'resource':
-                return base64_encode(stream_get_contents($value));
+                return ['bytesValue' => base64_encode(stream_get_contents($value))];
                 break;
 
             case 'object':
@@ -182,7 +204,8 @@ class ValueMapper
                 break;
 
             case 'NULL':
-                return ['nullValue' => null];
+                // @todo encode this in a way such that is compatible with a potential future REST transport.
+                return ['nullValue' => NullValue::NULL_VALUE];
                 break;
 
             default:
@@ -203,7 +226,7 @@ class ValueMapper
                 return $this->encodeAssociativeArrayValue((array) $value);
 
             case Blob::class:
-                return ['blobValue' => (string) $value];
+                return ['bytesValue' => (string) $value];
 
             case Timestamp::class:
                 return ['timestampValue' => [

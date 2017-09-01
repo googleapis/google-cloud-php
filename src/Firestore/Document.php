@@ -48,6 +48,14 @@ class Document
         return new Collection($this->connection, $this->valueMapper, $this->parentPath($this->name));
     }
 
+    /**
+     * Create a new document in Firestore. If the document already exists, this method will fail.
+     *
+     * @param array $fields
+     * @param array $options
+     * @return array
+     * @throws \Google\Cloud\Core\Exception\ConflictException
+     */
     public function create(array $fields = [], array $options = [])
     {
         $writer = new WriteBatch($this->valueMapper, $this->databaseName($this->name));
@@ -58,14 +66,98 @@ class Document
         return $this->commitWrites($writer, $options);
     }
 
+    /**
+     * Replace all fields in a Firestore document.
+     *
+     * @param array $fields
+     * @param array $options {
+     *     Configuration Options
+     *
+     *     @type array $precondition An optional precondition on the document. If
+     *           this is set and not met by the target document, the write will
+     *           fail. Allowed arguments are `(bool) $exists` and
+     *           {@see Google\Cloud\Core\Timestamp} `$updateTime`.
+     *           To completely disable precondition checks, provide an empty array
+     *           as the value of `$precondition`. **Defaults to**
+     *           `['exists' => true]` (i.e. Document must exist in Firestore).
+     * }
+     * @return array
+     * @throws \Google\Cloud\Core\Exception\ConflictException If the
+     *         precondition is not met.
+     */
     public function set($key, $value, array $options = [])
-    {}
+    {
+        $options += [
+            'precondition' => ['exists' => true]
+        ];
+    }
 
+    /**
+     * Update a Firestore document. Merges provided data with data stored in Firestore.
+     *
+     * By default, this method will fail if the document does not exist.
+     *
+     * @param array $fields
+     * @param array $options {
+     *     Configuration Options
+     *
+     *     @type array $precondition An optional precondition on the document. If
+     *           this is set and not met by the target document, the write will
+     *           fail. Allowed arguments are `(bool) $exists` and
+     *           {@see Google\Cloud\Core\Timestamp} `$updateTime`.
+     *           To completely disable precondition checks, provide an empty array
+     *           as the value of `$precondition`. **Defaults to**
+     *           `['exists' => true]` (i.e. Document must exist in Firestore).
+     * }
+     * @return array
+     * @throws \Google\Cloud\Core\Exception\ConflictException If the
+     *         precondition is not met.
+     */
     public function update(array $fields, array $options = [])
-    {}
+    {
+        $options += [
+            'precondition' => ['exists' => true]
+        ];
 
+        $writer = new WriteBatch($this->valueMapper, $this->databaseName($this->name));
+        $writer->update($this->name, $fields, [
+            'currentDocument' => $this->pluck('precondition', $options)
+        ]);
+
+        return $this->commitWrites($writer, $options);
+    }
+
+    /**
+     * Delete a Firestore document.
+     *
+     * @param array $options {
+     *     Configuration Options
+     *
+     *     @type array $precondition An optional precondition on the document. If
+     *           this is set and not met by the target document, the write will
+     *           fail. Allowed arguments are `(bool) $exists` and
+     *           {@see Google\Cloud\Core\Timestamp} `$updateTime`.
+     *           To completely disable precondition checks, provide an empty array
+     *           as the value of `$precondition`. **Defaults to**
+     *           `['exists' => true]` (i.e. Document must exist in Firestore).
+     * }
+     * @return array
+     * @throws \Google\Cloud\Core\Exception\ConflictException If the
+     *         precondition is not met.
+     */
     public function delete(array $options = [])
-    {}
+    {
+        $options += [
+            'precondition' => ['exists' => true]
+        ];
+
+        $writer = new WriteBatch($this->valueMapper, $this->databaseName($this->name));
+        $writer->delete($this->name, [
+            'currentDocument' => $this->pluck('precondition', $options)
+        ]);
+
+        return $this->commitWrites($writer, $options);
+    }
 
     /**
      * Get a read-only snapshot of the document.
