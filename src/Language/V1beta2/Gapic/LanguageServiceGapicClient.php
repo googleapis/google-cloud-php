@@ -36,6 +36,7 @@ use Google\Cloud\Language\V1beta2\AnalyzeSentimentRequest;
 use Google\Cloud\Language\V1beta2\AnalyzeSyntaxRequest;
 use Google\Cloud\Language\V1beta2\AnnotateTextRequest;
 use Google\Cloud\Language\V1beta2\AnnotateTextRequest_Features as Features;
+use Google\Cloud\Language\V1beta2\ClassifyTextRequest;
 use Google\Cloud\Language\V1beta2\Document;
 use Google\Cloud\Language\V1beta2\EncodingType;
 use Google\Cloud\Language\V1beta2\LanguageServiceGrpcClient;
@@ -177,6 +178,7 @@ class LanguageServiceGapicClient
             'analyzeEntities' => $defaultDescriptors,
             'analyzeEntitySentiment' => $defaultDescriptors,
             'analyzeSyntax' => $defaultDescriptors,
+            'classifyText' => $defaultDescriptors,
             'annotateText' => $defaultDescriptors,
         ];
 
@@ -447,8 +449,60 @@ class LanguageServiceGapicClient
     }
 
     /**
-     * A convenience method that provides all syntax, sentiment, and entity
-     * features in one call.
+     * Classifies a document into categories.
+     *
+     * Sample code:
+     * ```
+     * try {
+     *     $languageServiceClient = new LanguageServiceClient();
+     *     $document = new Document();
+     *     $response = $languageServiceClient->classifyText($document);
+     * } finally {
+     *     $languageServiceClient->close();
+     * }
+     * ```
+     *
+     * @param Document $document     Input document.
+     * @param array    $optionalArgs {
+     *                               Optional.
+     *
+     *     @type \Google\GAX\RetrySettings $retrySettings
+     *          Retry settings to use for this call. If present, then
+     *          $timeoutMillis is ignored.
+     *     @type int $timeoutMillis
+     *          Timeout to use for this call. Only used if $retrySettings
+     *          is not set.
+     * }
+     *
+     * @return \Google\Cloud\Language\V1beta2\ClassifyTextResponse
+     *
+     * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
+     */
+    public function classifyText($document, $optionalArgs = [])
+    {
+        $request = new ClassifyTextRequest();
+        $request->setDocument($document);
+
+        $mergedSettings = $this->defaultCallSettings['classifyText']->merge(
+            new CallSettings($optionalArgs)
+        );
+        $callable = ApiCallable::createApiCall(
+            $this->languageServiceStub,
+            'ClassifyText',
+            $mergedSettings,
+            $this->descriptors['classifyText']
+        );
+
+        return $callable(
+            $request,
+            [],
+            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+    }
+
+    /**
+     * A convenience method that provides all syntax, sentiment, entity, and
+     * classification features in one call.
      *
      * Sample code:
      * ```
