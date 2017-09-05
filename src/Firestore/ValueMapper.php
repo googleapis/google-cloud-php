@@ -71,13 +71,17 @@ class ValueMapper
         $output = [];
 
         foreach ($fields as $key => $val) {
+            if ($val === Document::DELETE_FIELD) {
+                continue;
+            }
+
             $output[$key] = $this->encodeValue($val);
         }
 
         return $output;
     }
 
-    public function fieldPaths(array $fields, $parentPath = '')
+    public function encodeFieldPaths(array $fields, $parentPath = '')
     {
         $output = [];
 
@@ -87,12 +91,40 @@ class ValueMapper
                     ? $parentPath . '.' . $key
                     : $key;
 
-                $output = array_merge($output, $this->fieldPaths($val, $nestedParentPath));
+                $output = array_merge($output, $this->encodeFieldPaths($val, $nestedParentPath));
             } else {
                 $output[] = $parentPath
                     ? $parentPath . '.' . $key
                     : $key;
             }
+        }
+
+        return $output;
+    }
+
+    /**
+     * Accepts a list of [string,mixed], where the key is a field path and the
+     * value is a document field value, and returns a nested array.
+     *
+     * @param array $fieldPaths
+     * @return array
+     */
+    public function decodeFieldPaths(array $fieldPaths)
+    {
+        $output = [];
+
+        $mapper = function (&$arr, $path, $value) {
+            $keys = explode('.', $path);
+
+            foreach ($keys as $key) {
+                $arr = &$arr[$key];
+            }
+
+            $arr = $value;
+        };
+
+        foreach ($fieldPaths as $fieldPath => $fieldValue) {
+            $mapper($output, $fieldPath, $fieldValue);
         }
 
         return $output;

@@ -48,9 +48,17 @@ class WriteBatch
             );
         }
 
+        $options += [
+            'updateMask' => null
+        ];
+
         $this->writes[] = $this->createDatabaseWrite(self::TYPE_UPDATE, $documentName, [
-            'fields' => $this->valueMapper->encodeValues($fields),
-            'updateMask' => $this->valueMapper->fieldPaths($fields)
+            'fields' => $this->valueMapper->decodeFieldPaths(
+                $this->valueMapper->encodeValues($fields)
+            ),
+            'updateMask' => ($options['updateMask'] !== null)
+                ? $options['updateMask']
+                : $this->valueMapper->encodeFieldPaths($fields)
         ] + $options);
     }
 

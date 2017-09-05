@@ -28,6 +28,10 @@ use Google\Cloud\Firestore\Connection\ConnectionInterface;
  */
 class Document
 {
+    // Sentinel values, chosen for uniqueness and extreme unlikeliness to match any real field value.
+    const DELETE_FIELD = '___google-cloud-php__deleteField___';
+    const SERVER_TIMESTAMP = '___google-cloud-php__serverTimestamp___';
+
     use OperationTrait;
     use DebugInfoTrait;
     use PathTrait;
@@ -85,11 +89,19 @@ class Document
      * @throws \Google\Cloud\Core\Exception\ConflictException If the
      *         precondition is not met.
      */
-    public function set($key, $value, array $options = [])
+    public function set(array $fields, array $options = [])
     {
         $options += [
-            'precondition' => ['exists' => true]
+            'precondition' => ['exists' => true],
+            'updateMask' => []
         ];
+
+        $writer = new WriteBatch($this->valueMapper, $this->databaseName($this->name));
+        $writer->update($this->name, $fields, [
+            'currentDocument' => $this->pluck('precondition', $options)
+        ]);
+
+        return $this->commitWrites($writer, $options);
     }
 
     /**

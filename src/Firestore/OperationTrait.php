@@ -35,6 +35,7 @@ trait OperationTrait
      */
     private function commitWrites(WriteBatch $writes, array $options = [])
     {
+        // print_r($writes->writes());exit;
         $response = $this->connection->commit([
             'database' => $writes->database(),
             'writes' => $writes->writes()
