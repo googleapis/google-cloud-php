@@ -27,10 +27,15 @@ trait PathTrait
      * @param string $relativeName
      * @return string
      */
-    private function fullName($projectId, $database, $relativeName)
+    private function fullName($projectId, $database, $relativeName = '')
     {
-        $template = 'projects/%s/databases/%s/documents/%s';
-        return sprintf($template, $projectId, $database, $relativeName);
+        if ($relativeName) {
+            $template = 'projects/%s/databases/%s/documents/%s';
+            return sprintf($template, $projectId, $database, $relativeName);
+        }
+
+        $template = 'projects/%s/databases/%s';
+        return sprintf($template, $projectId, $database);
     }
 
     /**

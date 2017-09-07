@@ -31,6 +31,7 @@ class ValueMapper
 {
     use ArrayTrait;
     use DebugInfoTrait;
+    use PathTrait;
     use ValueMapperTrait;
 
     /**
@@ -107,7 +108,7 @@ class ValueMapper
         $output = [];
 
         foreach ($fields as $key => $val) {
-            if (is_array($val)) {
+            if (is_array($val) && $this->isAssoc($val)) {
                 $nestedParentPath = $parentPath
                     ? $parentPath . '.' . $key
                     : $key;
@@ -207,7 +208,8 @@ class ValueMapper
                 break;
 
             case 'referenceValue':
-                return new Document($this->connection, $this, $value);
+                $parent = new Collection($this->connection, $this, $this->parentPath($value));
+                return new Document($this->connection, $this, $parent, $value);
 
             default:
                 throw new \RuntimeException(sprintf(

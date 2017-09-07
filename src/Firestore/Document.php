@@ -246,7 +246,7 @@ class Document
      */
     public function snapshot(array $options = [])
     {
-        return $this->getSnapshot($this->name, $options);
+        return $this->createSnapshot($this, $options);
     }
 
     /**

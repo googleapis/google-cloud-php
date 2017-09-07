@@ -55,33 +55,46 @@ trait OperationTrait
         return $response;
     }
 
-    private function getSnapshot($name, array $options = [])
+    private function rollback($database, $transactionId, array $options = [])
+    {
+        $this->connection->rollback([
+            'database' => $database,
+            'transaction' => $transactionId
+        ] + $options);
+    }
+
+    private function createSnapshot(Document $document, array $options = [])
     {
         $exists = true;
-        $document = [];
+        $data = [];
         $fields = [];
 
         try {
-            $document = $this->connection->getDocument([
-                'name' => $this->name,
-            ] + $options);
+            $data = $this->getSnapshot($document->name(), $options);
 
             $fields = $this->valueMapper->decodeValues(
-                $this->pluck('fields', $document)
+                $this->pluck('fields', $data)
             );
 
-            $document['createTime'] = isset($document['createTime'])
-                ? $this->valueMapper->createTimestampWithNanos($document['createTime'])
+            $data['createTime'] = isset($data['createTime'])
+                ? $this->valueMapper->createTimestampWithNanos($data['createTime'])
                 : null;
 
-            $document['updateTime'] = isset($document['updateTime'])
-                ? $this->valueMapper->createTimestampWithNanos($document['updateTime'])
+            $data['updateTime'] = isset($data['updateTime'])
+                ? $this->valueMapper->createTimestampWithNanos($data['updateTime'])
                 : null;
 
         } catch (NotFoundException $e) {
             $exists = false;
         }
 
-        return new DocumentSnapshot($this, $this->name, $document, $fields, $exists);
+        return new DocumentSnapshot($document, $data, $fields, $exists);
+    }
+
+    private function getSnapshot($name, array $options = [])
+    {
+        return $this->connection->getDocument([
+            'name' => $name,
+        ] + $options);
     }
 }

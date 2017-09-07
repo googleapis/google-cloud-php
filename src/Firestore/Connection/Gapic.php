@@ -23,10 +23,12 @@ use Google\Cloud\Firestore\FirestoreClient as ManualFirestoreClient;
 use Google\Cloud\Firestore\V1beta1\FirestoreAdminClient;
 use Google\Cloud\Firestore\V1beta1\FirestoreClient;
 use Google\Firestore\V1beta1\DocumentMask;
+use Google\Firestore\V1beta1\TransactionOptions;
+use Google\Firestore\V1beta1\TransactionOptions_ReadWrite;
 use Google\Firestore\V1beta1\Write;
 use Google\GAX\Serializer;
 
-class Grpc implements ConnectionInterface
+class Gapic implements ConnectionInterface
 {
     use GrpcTrait;
 
@@ -84,7 +86,16 @@ class Grpc implements ConnectionInterface
      */
     public function beginTransaction(array $args)
     {
-        throw new \BadMethodCallException('not implemented');
+        $rw = new TransactionOptions_ReadWrite;
+        $rw->setRetryTransaction($this->pluck('retryTransaction', $args, false));
+
+        $args['options'] = new TransactionOptions;
+        $args['options']->setReadWrite($rw);
+
+        return $this->send([$this->firestore, 'beginTransaction'], [
+            $this->pluck('database', $args),
+            $args
+        ]);
     }
 
     /**
@@ -292,7 +303,11 @@ class Grpc implements ConnectionInterface
      */
     public function rollback(array $args)
     {
-        throw new \BadMethodCallException('not implemented');
+        return $this->send([$this->firestore, 'rollback'], [
+            $this->pluck('database', $args),
+            $this->pluck('transaction', $args),
+            $args
+        ]);
     }
 
     /**

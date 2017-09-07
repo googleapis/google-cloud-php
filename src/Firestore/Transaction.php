@@ -17,5 +17,137 @@
 
 namespace Google\Cloud\Firestore;
 
+use Google\Cloud\Core\DebugInfoTrait;
+use Google\Cloud\Firestore\Connection\ConnectionInterface;
+
 class Transaction
-{}
+{
+    use OperationTrait;
+    use PathTrait;
+    use DebugInfoTrait;
+
+    /**
+     * @var ConnectionInterface
+     */
+    private $connection;
+
+    /**
+     * @var ValueMapper
+     */
+    private $valueMapper;
+
+    /**
+     * @var string
+     */
+    private $transactionId;
+
+    /**
+     * @var WriteBatch
+     */
+    private $writer;
+
+    /**
+     * @var array
+     */
+    private $commitOptions = [];
+
+    public function __construct(ConnectionInterface $connection, ValueMapper $valueMapper, $database, $transactionId)
+    {
+        $this->connection = $connection;
+        $this->valueMapper = $valueMapper;
+        $this->transactionId = $transactionId;
+        $this->writer = new WriteBatch($this->valueMapper, $database);
+    }
+
+    public function snapshot(Document $document, array $options = [])
+    {
+        return $this->createSnapshot($document, [
+            'transaction' => $this->transactionId
+        ] + $options);
+    }
+
+    public function query(Query $query)
+    {}
+
+    public function create(Document $document, array $fields)
+    {
+        $this->writer->update($document->name(), $fields, [
+            'currentDocument' => ['exists' => false]
+        ]);
+
+        return $this;
+    }
+
+    public function set(Document $document, array $fields, array $options = [])
+    {
+        $options += [
+            'precondition' => ['exists' => true],
+            'updateMask' => []
+        ];
+
+        $this->writer->update($document->name(), $fields, [
+            'currentDocument' => $this->pluck('precondition', $options)
+        ]);
+
+        return $this;
+    }
+
+    public function update(Document $document, array $fields, array $options = [])
+    {
+        $options += [
+            'precondition' => ['exists' => true]
+        ];
+
+        $this->writer->update($document->name(), $fields, [
+            'currentDocument' => $this->pluck('precondition', $options)
+        ]);
+
+        return $this;
+    }
+
+    public function delete(Document $document, array $options = [])
+    {
+        $options += [
+            'precondition' => ['exists' => true]
+        ];
+
+        $this->writer->delete($document->name(), [
+            'currentDocument' => $this->pluck('precondition', $options)
+        ]);
+
+        return $this;
+    }
+
+    /**
+     * Set the `$options` value passed to the Transaction commit RPC.
+     *
+     * @param array $options
+     * @return void
+     */
+    public function setCommitOptions(array $options)
+    {
+        $this->commitOptions = $options;
+    }
+
+    /**
+     * Get the `$options` value to pass to the Transaction commit RPC.
+     *
+     * @access private
+     * @return array
+     */
+    public function commitOptions()
+    {
+        return $this->commitOptions;
+    }
+
+    /**
+     * Get the WriteBatch object.
+     *
+     * @access private
+     * @return WriteBatch
+     */
+    public function writer()
+    {
+        return $this->writer;
+    }
+}

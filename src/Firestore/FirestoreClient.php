@@ -19,11 +19,14 @@ namespace Google\Cloud\Firestore;
 
 use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Core\ValidateTrait;
-use Google\Cloud\Firestore\Connection\Grpc;
+use Google\Cloud\Core\ExponentialBackoff;
+use Google\Cloud\Firestore\Connection\Gapic;
+use Google\Cloud\Core\Exception\AbortedException;
 
 class FirestoreClient
 {
     use ClientTrait;
+    use OperationTrait;
     use PathTrait;
     use ValidateTrait;
 
@@ -31,11 +34,15 @@ class FirestoreClient
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/cloud-platform';
 
+    const MAX_RETRIES = 5;
+
     private $connection;
 
     private $database = '(default)';
 
     private $valueMapper;
+
+    private $isRunningTransaction = false;
 
     /**
      * Create a Firestore client.
@@ -74,7 +81,7 @@ class FirestoreClient
             'scopes' => [self::FULL_CONTROL_SCOPE]
         ];
 
-        $this->connection = new Grpc($this->configureAuthentication($config));
+        $this->connection = new Gapic($this->configureAuthentication($config));
         $this->valueMapper = new ValueMapper(
             $this->connection,
             $config['returnInt64AsObject']
@@ -161,28 +168,143 @@ class FirestoreClient
     }
 
     /**
-     * Get a list of documents by {@see Google\Cloud\Firestore\Document} objects.
+     * Get a list of documents by their path.
      *
-     * @param Document[] $references
+     * @param array $paths
      * @param array $options
-     * @return Document[]
+     * @return ItemIterator<Document>
      */
-    public function documents(array $references, array $options = [])
+    public function documents(array $paths, array $options = [])
     {
-        $this->validateBatch($references, Document::class);
-
-        $refs = [];
-        array_walk($references, function ($reference) use ($refs) {
-            $refs[] = $reference->path();
-        });
-
-        $documents = $this->connection->getDocuments([
-            'refs' => $refs
-        ] + $options);
-
-        return $documents;
+        $resultLimit = $this->pluck('resultLimit', $options, false);
+        return new ItemIterator(
+            new PageIterator(
+                function (array $document) {
+                    return $this->documentFactory($document['name']);
+                },
+                [$this->connection, 'listDocuments'],
+                [
+                    'parent' => $this->parent($this->name),
+                    'collectionId' => $this->id($this->name),
+                    'mask' => [] // do not return any fields, since we only need a list of document names.
+                ] + $options, [
+                    'itemsKey' => 'documents',
+                    'resultLimit' => $resultLimit
+                ]
+            )
+        );
     }
 
-    public function runTransaction(callable $transaction, array $options = [])
-    {}
+    /**
+     * Executes a function in a Firestore transaction.
+     *
+     * Transactions offer atomic operations, guaranteeing that either all
+     * writes will be applied, or none will be applied. The Google Cloud PHP
+     * Firestore client also handles automatic retry in cases where transactions
+     * fail due to a retryable error.
+     *
+     * Transactions will be committed once the provided callable has finished
+     * execution. Thrown exceptions will prevent commit and trigger a rollback,
+     * and will bubble up to your level to be handled in whatever fashion is
+     * appropriate.
+     *
+     * Example:
+     * ```
+     * $transferAmount = 500.00;
+     * $from = $firestore->document('users/john');
+     * $to = $firestore->document('users/dave');
+     *
+     * $firestore->runTransaction(function (Transaction $t) use ($from, $to, $transferAmount) {
+     *
+     *     $fromSnapshot = $t->snapshot($from);
+     *     $toSnapshot = $t->snapshot($to);
+     *
+     *     $fromNewBalance = $fromSnapshot['balance'] - $transferAmount;
+     *     $toNewBalance = $toSnapshot['balance'] + $transferAmount;
+     *
+     *     if ($fromNewBalance < 0) {
+     *         throw new \Exception('User 1 has insufficient funds!');
+     *     }
+     *
+     *     $t->update($from, [
+     *         'balance' => $fromNewBalance
+     *     ])->update($to, [
+     *         'balance' => $toNewBalance
+     *     ]);
+     * });
+     * ```
+     *
+     * @param callable $callable A callable function, allowing atomic operations
+     *        against the Firestore API. Function signature:
+     *        `function (Transaction $t, bool $isRetry)`.
+     * @param array $options Configuration Options for BeginTransaction.
+     * @return array
+     */
+    public function runTransaction(callable $callable, array $options = [])
+    {
+        $options += [
+            'maxRetries' => self::MAX_RETRIES
+        ];
+
+        $retryableErrors = [
+            AbortedException::class
+        ];
+
+        $retryFn = function (\Exception $e) use ($retryableErrors) {
+            return in_array(get_class($e), $retryableErrors);
+        };
+
+        // Track the Transaction ID outside the retry function.
+        // If the transaction is retried after an abort, the previous transaction
+        // must be provided to the subsequent `beginTransaction` rpc.
+        // It also provides a convenient indication to the user whether the
+        // transaction is retried or not.
+        $transactionId = null;
+
+        $backoff = new ExponentialBackoff($options['maxRetries'], $retryFn);
+
+        return $backoff->execute(function (callable $callable, array $options) use (&$transactionId, $retryableErrors) {
+            $this->isRunningTransaction = true;
+
+            $database = $this->fullName($this->projectId, $this->database);
+
+            $beginTransaction = $this->connection->beginTransaction(array_filter([
+                'database' => $database,
+                'retryTransaction' => $transactionId
+            ]) + $options);
+            $transactionId = $beginTransaction['transaction'];
+
+            $transaction = new Transaction($this->connection, $this->valueMapper, $database, $transactionId);
+
+            try {
+                $callable($transaction, ($transaction !== null));
+
+                return $this->commitWrites($transaction->writer(), [
+                    'transaction' => $transactionId
+                ] + $transaction->commitOptions());
+            } catch (\Exception $e) {
+                if (!in_array(get_class($e), $retryableErrors)) {
+                    $this->rollback($database, $transactionId, $transaction->commitOptions());
+                }
+
+                throw $e;
+            } finally {
+                $this->isRunningTransaction = false;
+            }
+        }, [
+            $callable,
+            $options
+        ]);
+    }
+
+    /**
+     * Create a document instance with the given document name.
+     *
+     * @param string $name
+     * @return Document
+     */
+    private function documentFactory($name)
+    {
+        return new Document($this->connection, $this->valueMapper, $this, $name);
+    }
 }
