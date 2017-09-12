@@ -110,7 +110,7 @@
             "id": "google-cloud",
             "target": "git@github.com:jdpedrie-gcp/google-cloud-php.git",
             "path": "src",
-            "entry": null
+            "entry": ["Version.php", "ServiceBuilder.php"]
         }
     }
 }
