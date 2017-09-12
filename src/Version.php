@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2015 Google Inc. All Rights Reserved.
+ * Copyright 2017 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,5 +22,5 @@ namespace Google\Cloud;
  */
 class Version
 {
-    const VERSION = '0.37.0';
+    const VERSION = '0.38.0';
 }
