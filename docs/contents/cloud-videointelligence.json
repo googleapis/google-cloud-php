@@ -14,5 +14,15 @@
             "title": "VideoIntelligenceServiceClient",
             "type": "videointelligence/v1beta1/videointelligenceserviceclient"
         }]
+    }, {
+        "title": "v1beta2",
+        "type": "videointelligence/v1beta2/readme",
+        "patterns": [
+          "videointelligence/v1beta2/\\w{1,}"
+        ],
+        "nav": [{
+            "title": "VideoIntelligenceServiceClient",
+            "type": "videointelligence/v1beta2/videointelligenceserviceclient"
+        }]
     }]
 }
