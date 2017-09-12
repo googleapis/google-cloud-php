@@ -34,11 +34,8 @@ class Release extends Command
     const DEFAULT_COMPONENT = 'google-cloud';
     const DEFAULT_COMPONENT_COMPOSER = '%s/../composer.json';
     const PATH_MANIFEST = '%s/../docs/manifest.json';
-    const PATH_SERVICE_BUILDER = '%s/../src/ServiceBuilder.php';
 
     private $cliBasePath;
-
-    private $defaultClient;
 
     private $manifest;
 
@@ -54,7 +51,6 @@ class Release extends Command
     {
         $this->cliBasePath = $cliBasePath;
 
-        $this->defaultClient = sprintf(self::PATH_SERVICE_BUILDER, $cliBasePath);
         $this->manifest = sprintf(self::PATH_MANIFEST, $cliBasePath);
         $this->defaultComponentComposer = sprintf(self::DEFAULT_COMPONENT_COMPOSER, $cliBasePath);
         $this->components = sprintf(self::COMPONENT_BASE, $cliBasePath);

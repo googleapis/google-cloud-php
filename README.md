@@ -53,7 +53,7 @@ Once you've obtained your credentials file, it may be used to create an authenti
 ```php
 require 'vendor/autoload.php';
 
-use Google\Cloud\ServiceBuilder;
+use Google\Cloud\Core\ServiceBuilder;
 
 // Authenticate using a keyfile path
 $cloud = new ServiceBuilder([
@@ -71,7 +71,7 @@ If you do not wish to embed your authentication information in your application 
 ```php
 require 'vendor/autoload.php';
 
-use Google\Cloud\ServiceBuilder;
+use Google\Cloud\Core\ServiceBuilder;
 
 putenv('GOOGLE_APPLICATION_CREDENTIALS=/path/to/keyfile.json');
 
