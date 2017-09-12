@@ -71,8 +71,18 @@ use Google\Privacy\Dlp\V2beta1\StorageConfig;
  * ```
  * try {
  *     $dlpServiceClient = new DlpServiceClient();
+ *     $name = "EMAIL_ADDRESS";
+ *     $infoTypesElement = new InfoType();
+ *     $infoTypesElement->setName($name);
+ *     $infoTypes = [$infoTypesElement];
  *     $inspectConfig = new InspectConfig();
- *     $items = [];
+ *     $inspectConfig->setInfoTypes($infoTypes);
+ *     $type = "text/plain";
+ *     $value = "My email is example@example.com.";
+ *     $itemsElement = new ContentItem();
+ *     $itemsElement->setType($type);
+ *     $itemsElement->setValue($value);
+ *     $items = [$itemsElement];
  *     $response = $dlpServiceClient->inspectContent($inspectConfig, $items);
  * } finally {
  *     $dlpServiceClient->close();
@@ -338,8 +348,18 @@ class DlpServiceGapicClient
      * ```
      * try {
      *     $dlpServiceClient = new DlpServiceClient();
+     *     $name = "EMAIL_ADDRESS";
+     *     $infoTypesElement = new InfoType();
+     *     $infoTypesElement->setName($name);
+     *     $infoTypes = [$infoTypesElement];
      *     $inspectConfig = new InspectConfig();
-     *     $items = [];
+     *     $inspectConfig->setInfoTypes($infoTypes);
+     *     $type = "text/plain";
+     *     $value = "My email is example@example.com.";
+     *     $itemsElement = new ContentItem();
+     *     $itemsElement->setType($type);
+     *     $itemsElement->setValue($value);
+     *     $items = [$itemsElement];
      *     $response = $dlpServiceClient->inspectContent($inspectConfig, $items);
      * } finally {
      *     $dlpServiceClient->close();
@@ -396,9 +416,26 @@ class DlpServiceGapicClient
      * ```
      * try {
      *     $dlpServiceClient = new DlpServiceClient();
+     *     $name = "EMAIL_ADDRESS";
+     *     $infoTypesElement = new InfoType();
+     *     $infoTypesElement->setName($name);
+     *     $infoTypes = [$infoTypesElement];
      *     $inspectConfig = new InspectConfig();
-     *     $items = [];
-     *     $replaceConfigs = [];
+     *     $inspectConfig->setInfoTypes($infoTypes);
+     *     $type = "text/plain";
+     *     $value = "My email is example@example.com.";
+     *     $itemsElement = new ContentItem();
+     *     $itemsElement->setType($type);
+     *     $itemsElement->setValue($value);
+     *     $items = [$itemsElement];
+     *     $name2 = "EMAIL_ADDRESS";
+     *     $infoType = new InfoType();
+     *     $infoType->setName($name2);
+     *     $replaceWith = "REDACTED";
+     *     $replaceConfigsElement = new ReplaceConfig();
+     *     $replaceConfigsElement->setInfoType($infoType);
+     *     $replaceConfigsElement->setReplaceWith($replaceWith);
+     *     $replaceConfigs = [$replaceConfigsElement];
      *     $response = $dlpServiceClient->redactContent($inspectConfig, $items, $replaceConfigs);
      * } finally {
      *     $dlpServiceClient->close();
@@ -461,8 +498,19 @@ class DlpServiceGapicClient
      * ```
      * try {
      *     $dlpServiceClient = new DlpServiceClient();
+     *     $name = "EMAIL_ADDRESS";
+     *     $infoTypesElement = new InfoType();
+     *     $infoTypesElement->setName($name);
+     *     $infoTypes = [$infoTypesElement];
      *     $inspectConfig = new InspectConfig();
+     *     $inspectConfig->setInfoTypes($infoTypes);
+     *     $url = "gs://example_bucket/example_file.png";
+     *     $fileSet = new FileSet();
+     *     $fileSet->setUrl($url);
+     *     $cloudStorageOptions = new CloudStorageOptions();
+     *     $cloudStorageOptions->setFileSet($fileSet);
      *     $storageConfig = new StorageConfig();
+     *     $storageConfig->setCloudStorageOptions($cloudStorageOptions);
      *     $outputConfig = new OutputStorageConfig();
      *     $operationResponse = $dlpServiceClient->createInspectOperation($inspectConfig, $storageConfig, $outputConfig);
      *     $operationResponse->pollUntilComplete();
@@ -642,8 +690,8 @@ class DlpServiceGapicClient
      * ```
      * try {
      *     $dlpServiceClient = new DlpServiceClient();
-     *     $category = "";
-     *     $languageCode = "";
+     *     $category = "PII";
+     *     $languageCode = "en";
      *     $response = $dlpServiceClient->listInfoTypes($category, $languageCode);
      * } finally {
      *     $dlpServiceClient->close();
@@ -699,7 +747,7 @@ class DlpServiceGapicClient
      * ```
      * try {
      *     $dlpServiceClient = new DlpServiceClient();
-     *     $languageCode = "";
+     *     $languageCode = "en";
      *     $response = $dlpServiceClient->listRootCategories($languageCode);
      * } finally {
      *     $dlpServiceClient->close();
