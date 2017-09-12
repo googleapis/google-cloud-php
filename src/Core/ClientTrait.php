@@ -38,8 +38,8 @@ trait ClientTrait
     private $projectId;
 
     /**
-     * Get either a gRPC or REST connection based on the provided config.
-     *
+     * Get either a gRPC or REST connection based on the provided config
+     * and the system dependencies available.
      *
      * @param array $config
      * @return string
@@ -47,20 +47,18 @@ trait ClientTrait
      */
     private function getConnectionType(array $config)
     {
+        $isGrpcExtensionLoaded = $this->getGrpcDependencyStatus();
+        $defaultTransport = $isGrpcExtensionLoaded ? 'grpc' : 'rest';
         $transport = isset($config['transport'])
             ? strtolower($config['transport'])
-            : 'rest';
+            : $defaultTransport;
+
         if ($transport === 'grpc') {
-            list($isGrpcExtensionLoaded, $isGrpcLibraryLoaded) =
-                $this->getGrpcDependencyStatus();
-            if (!$isGrpcExtensionLoaded || !$isGrpcLibraryLoaded) {
+            if (!$isGrpcExtensionLoaded) {
                 throw new GoogleException(
                     'gRPC support has been requested but required dependencies ' .
                     'have not been found. Please make sure to run the following ' .
-                    'from the command line: ' .
-                    'pecl install grpc && ' .
-                    'composer require google/gax && ' .
-                    'composer require google/proto-client'
+                    'from the command line: pecl install grpc'
                 );
             }
         }
@@ -205,16 +203,13 @@ trait ClientTrait
     }
 
     /**
-     * Abstract the checking of extensions/classes for unit testing.
+     * Abstract the checking of the grpc extension for unit testing.
      *
      * @codeCoverageIgnore
-     * @return array
+     * @return bool
      */
     protected function getGrpcDependencyStatus()
     {
-        return [
-            extension_loaded('grpc'),
-            class_exists('Grpc\BaseStub')
-        ];
+        return extension_loaded('grpc');
     }
 }
