@@ -108,12 +108,20 @@ class Release extends Command
             $version
         ));
 
-        $this->updateComponentVersionConstant($version, $component);
-        $output->writeln(sprintf(
-            'File %s VERSION constant updated to %s',
-            $component['entry'],
-            $version
-        ));
+        foreach ((array) $component['entry'] as $entry) {
+            $entryUpdated = $this->updateComponentVersionConstant(
+                $version,
+                $component['path'],
+                $entry
+            );
+            if ($entryUpdated) {
+                $output->writeln(sprintf(
+                    'File %s VERSION constant updated to %s',
+                    $entry,
+                    $version
+                ));
+            }
+        }
 
         if ($component['id'] !== 'google-cloud') {
             $this->updateComponentVersionFile($version, $component);
@@ -166,13 +174,13 @@ class Release extends Command
         }
     }
 
-    private function updateComponentVersionConstant($version, array $component)
+    private function updateComponentVersionConstant($version, $componentPath, $componentEntry)
     {
-        if (is_null($component['entry'])) {
+        if (is_null($componentEntry)) {
             return false;
         }
 
-        $path = $this->cliBasePath .'/../'. $component['path'] .'/'. $component['entry'];
+        $path = $this->cliBasePath .'/../'. $componentPath .'/'. $componentEntry;
         if (!file_exists($path)) {
             throw new \RuntimeException(sprintf(
                 'Component entry file %s does not exist',
