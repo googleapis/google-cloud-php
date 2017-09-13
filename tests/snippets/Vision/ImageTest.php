@@ -17,8 +17,8 @@
 
 namespace Google\Cloud\Tests\Snippets\Vision;
 
+use Google\Cloud\Core\ServiceBuilder;
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
-use Google\Cloud\ServiceBuilder;
 use Google\Cloud\Vision\Image;
 
 /**
@@ -26,7 +26,7 @@ use Google\Cloud\Vision\Image;
  */
 class ImageTest extends SnippetTestCase
 {
-    public function testImageFromServiceBuilder()
+    public function testImage()
     {
         $snippet = $this->snippetFromClass(Image::class, 'default');
         $snippet->replace(

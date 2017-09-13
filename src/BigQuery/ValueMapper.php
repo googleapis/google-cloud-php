@@ -346,7 +346,12 @@ class ValueMapper
             }
         }
 
-        list($unixTimestamp, $microSeconds) = explode('.', $value);
+        $parts = explode('.', $value);
+        $unixTimestamp = $parts[0];
+        $microSeconds = isset($parts[1])
+            ? $parts[1]
+            : 0;
+
         $dateTime = new \DateTime("@$unixTimestamp");
 
         // If the timestamp is before the epoch, make sure we account for that

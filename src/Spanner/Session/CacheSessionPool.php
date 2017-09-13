@@ -18,12 +18,12 @@
 namespace Google\Cloud\Spanner\Session;
 
 use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\Core\Lock\FlockLock;
 use Google\Cloud\Core\Lock\LockInterface;
-use Google\Cloud\Core\Lock\SymfonyLockAdapter;
+use Google\Cloud\Core\Lock\SemaphoreLock;
+use Google\Cloud\Core\SysvTrait;
 use Google\Cloud\Spanner\Database;
 use Psr\Cache\CacheItemPoolInterface;
-use Symfony\Component\Lock\Factory;
-use Symfony\Component\Lock\Store\FlockStore;
 
 /**
  * This session pool implementation accepts a PSR-6 compatible cache
@@ -63,16 +63,6 @@ use Symfony\Component\Lock\Store\FlockStore;
  * implementations please see the
  * [Packagist PHP Package Repository](https://packagist.org/providers/psr/cache-implementation).
  *
- * Furthermore, [Symfony's Lock Component](https://github.com/symfony/lock) is
- * also required to be installed as a separate dependency. In our current alpha
- * state with Spanner we are relying on the following dev commit:
- *
- * `composer require symfony/lock:3.3.x-dev#1ba6ac9`
- *
- * As development continues, this dependency on a dev-master branch will be
- * discontinued. Please also note, since this is a dev-master dependency it may
- * require modifications to your composer minimum-stability settings.
- *
  * Example:
  * ```
  * use Google\Cloud\Spanner\SpannerClient;
@@ -90,6 +80,8 @@ use Symfony\Component\Lock\Store\FlockStore;
  */
 class CacheSessionPool implements SessionPoolInterface
 {
+    use SysvTrait;
+
     const CACHE_KEY_TEMPLATE = 'cache-session-pool.%s.%s.%s';
 
     const DURATION_TWENTY_MINUTES = 1200;
@@ -112,7 +104,7 @@ class CacheSessionPool implements SessionPoolInterface
     private $cacheItemPool;
 
     /**
-     * @var string
+     * @var string|null
      */
     private $cacheKey;
 
@@ -122,7 +114,7 @@ class CacheSessionPool implements SessionPoolInterface
     private $config;
 
     /**
-     * @var Database
+     * @var Database|null
      */
     private $database;
 
@@ -145,7 +137,9 @@ class CacheSessionPool implements SessionPoolInterface
      *           **Defaults to** `0.5`. Ignored when $shouldWaitForSession is
      *           `false`.
      *     @type LockInterface $lock A lock implementation capable of blocking.
-     *           **Defaults to** an flock based implementation.
+     *           **Defaults to** a semaphore based implementation if the
+     *           required extensions are installed, otherwise an flock based
+     *           implementation.
      * }
      * @throws \InvalidArgumentException
      */
@@ -153,11 +147,6 @@ class CacheSessionPool implements SessionPoolInterface
     {
         $this->cacheItemPool = $cacheItemPool;
         $this->config = $config + self::$defaultConfig;
-
-        if (!isset($this->config['lock'])) {
-            $this->config['lock'] = $this->getDefaultLock();
-        }
-
         $this->validateConfig();
     }
 
@@ -322,22 +311,12 @@ class CacheSessionPool implements SessionPoolInterface
      * would leave 6 sessions in the queue. The count of items to be deleted will
      * be rounded up in the case of a fraction.
      *
-     * A session may be removed from the cache, but still tracked as active by
-     * the Spanner backend if a delete operation failed. To ensure you do not
-     * exceed the maximum number of sessions available per node, please be sure
-     * to check the return value of this method to be certain all sessions have
-     * been deleted.
-     *
      * Please note this method will attempt to synchronously delete sessions and
      * will block until complete.
      *
      * @param int $percent The percentage to downsize the pool by. Must be
      *        between 1 and 100.
-     * @return array An associative array containing a key `deleted` which holds
-     *         an integer value representing the number of queued sessions
-     *         deleted on the backend and a key `failed` which holds a list of
-     *         queued {@see Google\Cloud\Spanner\Session\Session} objects which
-     *         failed to delete.
+     * @return int The number of sessions removed from the pool.
      * @throws \InvaldArgumentException
      */
     public function downsize($percent)
@@ -346,7 +325,6 @@ class CacheSessionPool implements SessionPoolInterface
             throw new \InvalidArgumentException('The provided percent must be between 1 and 100.');
         }
 
-        $failed = [];
         $toDelete = $this->config['lock']->synchronize(function () use ($percent) {
             $item = $this->cacheItemPool->getItem($this->cacheKey);
             $data = (array) $item->get() ?: $this->initialize();
@@ -372,15 +350,10 @@ class CacheSessionPool implements SessionPoolInterface
                 if ($ex instanceof NotFoundException) {
                     continue;
                 }
-
-                $failed[] = $session;
             }
         }
 
-        return [
-            'deleted' => count($toDelete) - count($failed),
-            'failed' => $failed
-        ];
+        return count($toDelete);
     }
 
     /**
@@ -441,22 +414,11 @@ class CacheSessionPool implements SessionPoolInterface
     /**
      * Clear the cache and attempt to delete all sessions in the pool.
      *
-     * A session may be removed from the cache, but still tracked as active by
-     * the Spanner backend if a delete operation failed. To ensure you do not
-     * exceed the maximum number of sessions available per node, please be sure
-     * to check the return value of this method to be certain all sessions have
-     * been deleted.
-     *
      * Please note this method will attempt to synchronously delete sessions and
      * will block until complete.
-     *
-     * @return array An array containing a list of
-     *         {@see Google\Cloud\Spanner\Session\Session} objects which failed
-     *         to delete.
      */
     public function clear()
     {
-        $failed = [];
         $sessions = $this->config['lock']->synchronize(function () {
             $sessions = [];
             $item = $this->cacheItemPool->getItem($this->cacheKey);
@@ -484,12 +446,8 @@ class CacheSessionPool implements SessionPoolInterface
                 if ($ex instanceof NotFoundException) {
                     continue;
                 }
-
-                $failed[] = $session;
             }
         }
-
-        return $failed;
     }
 
     /**
@@ -507,6 +465,10 @@ class CacheSessionPool implements SessionPoolInterface
             $identity['instance'],
             $identity['database']
         );
+
+        if (!isset($this->config['lock'])) {
+            $this->config['lock'] = $this->getDefaultLock();
+        }
     }
 
     /**
@@ -746,26 +708,16 @@ class CacheSessionPool implements SessionPoolInterface
      * Get the default lock.
      *
      * @return LockInterface
-     * @throws \RunTimeException
      */
     private function getDefaultLock()
     {
-        if (!class_exists(FlockStore::class)) {
-            throw new \RuntimeException(
-                'The symfony/lock component must be installed in order for ' .
-                'a default lock to be assumed. Please run the following from ' .
-                'the command line: composer require symfony/lock:3.3.x-dev#1ba6ac9. ' .
-                'Please note, since this is a dev-master dependency it may ' .
-                'require modifications to your composer minimum-stability ' .
-                'settings.'
+        if ($this->isSysvIPCLoaded()) {
+            return new SemaphoreLock(
+                $this->getSysvKey(crc32($this->cacheKey))
             );
         }
 
-        $store = new FlockStore(sys_get_temp_dir());
-
-        return new SymfonyLockAdapter(
-            (new Factory($store))->createLock($this->cacheKey)
-        );
+        return new FlockLock($this->cacheKey);
     }
 
     /**
@@ -788,7 +740,7 @@ class CacheSessionPool implements SessionPoolInterface
             throw new \InvalidArgumentException('minSessions cannot exceed maxSessions');
         }
 
-        if (!$this->config['lock'] instanceof LockInterface) {
+        if (isset($this->config['lock']) && !$this->config['lock'] instanceof LockInterface) {
             throw new \InvalidArgumentException(
                 'The lock must implement Google\Cloud\Core\Lock\LockInterface'
             );

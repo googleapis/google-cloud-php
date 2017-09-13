@@ -40,8 +40,8 @@ interface LockInterface
     /**
      * Execute a callable within a lock.
      *
+     * @param callable $func The callable to execute.
      * @return mixed
-     * @throws \RuntimeException
      */
     public function synchronize(callable $func);
 }

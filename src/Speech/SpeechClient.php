@@ -42,7 +42,7 @@ class SpeechClient
 {
     use ClientTrait;
 
-    const VERSION = '0.5.0';
+    const VERSION = '0.7.0';
 
     const SCOPE = 'https://www.googleapis.com/auth/cloud-platform';
 
@@ -69,6 +69,8 @@ class SpeechClient
      *     @type array $authCacheOptions Cache configuration options.
      *     @type callable $authHttpHandler A handler used to deliver Psr7
      *           requests specifically for authentication.
+     *     @type FetchAuthTokenInterface $credentialsFetcher A credentials
+     *           fetcher instance.
      *     @type callable $httpHandler A handler used to deliver Psr7 requests.
      *           Only valid for requests sent over REST.
      *     @type array $keyFile The contents of the service account credentials
@@ -77,6 +79,8 @@ class SpeechClient
      *     @type string $keyFilePath The full path to your service account
      *           credentials .json file retrieved from the Google Developers
      *           Console.
+     *     @type float $requestTimeout Seconds to wait before timing out the
+     *           request. **Defaults to** `0` with REST and `60` with gRPC.
      *     @type int $retries Number of retries for a failed request.
      *           **Defaults to** `3`.
      *     @type array $scopes Scopes to be used for the request.
@@ -192,9 +196,6 @@ class SpeechClient
      *           `wordTimeOffsets` are returned with the top alternative. If
      *           `false` or omitted, no `wordTimeOffsets` are returned.
      *           **Defaults to** `false`.
-     *           **Whitelist Warning:** At the time of publication, this argument
-     *           is subject to a feature whitelist and may not be available in
-     *           your project.
      * }
      * @return array Result[]
      * @throws \InvalidArgumentException
@@ -324,9 +325,6 @@ class SpeechClient
      *           `wordTimeOffsets` are returned with the top alternative. If
      *           `false` or omitted, no `wordTimeOffsets` are returned.
      *           **Defaults to** `false`.
-     *           **Whitelist Warning:** At the time of publication, this argument
-     *           is subject to a feature whitelist and may not be available in
-     *           your project.
      * }
      * @return Operation
      * @throws \InvalidArgumentException

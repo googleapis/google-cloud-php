@@ -136,27 +136,27 @@ class DatasetTest extends SnippetTestCase
 
     public function testInfo()
     {
-        $friendlyName = 'Friendly.';
-        $dataset = $this->getDataset($this->connection, ['friendlyName' => $friendlyName]);
+        $selfLink = 'https://www.googleapis.com/bigquery/v2/projects/my-project/datasets/mynewdataset';
+        $dataset = $this->getDataset($this->connection, ['selfLink' => $selfLink]);
         $snippet = $this->snippetFromMethod(Dataset::class, 'info');
         $snippet->addLocal('dataset', $dataset);
         $res = $snippet->invoke();
 
-        $this->assertEquals($friendlyName, $res->output());
+        $this->assertEquals($selfLink, $res->output());
     }
 
     public function testReload()
     {
-        $friendlyName = 'Friendly.';
+        $selfLink = 'https://www.googleapis.com/bigquery/v2/projects/my-project/datasets/mynewdataset';
         $this->connection->getDataset(Argument::any())
             ->shouldBeCalledTimes(1)
-            ->willReturn(['friendlyName' => $friendlyName]);
+            ->willReturn(['selfLink' => $selfLink]);
         $dataset = $this->getDataset($this->connection);
         $snippet = $this->snippetFromMethod(Dataset::class, 'reload');
         $snippet->addLocal('dataset', $dataset);
         $res = $snippet->invoke();
 
-        $this->assertEquals($friendlyName, $res->output());
+        $this->assertEquals($selfLink, $res->output());
     }
 
     public function testId()

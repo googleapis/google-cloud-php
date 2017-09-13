@@ -44,15 +44,6 @@ use Psr\Cache\CacheItemPoolInterface;
  * $ pecl install grpc
  * ```
  *
- * Afterwards, please install the following dependencies through composer:
- *
- * ```sh
- * $ composer require google/gax && composer require google/proto-client
- * ```
- *
- * Please take care in installing the same version of these libraries that are
- * outlined in the project's composer.json require-dev keyword.
- *
  * NOTE: Support for gRPC is currently at an Alpha quality level, meaning it is still
  * a work in progress and is more likely to get backwards-incompatible updates.
  *
@@ -68,7 +59,7 @@ class LoggingClient
     use ArrayTrait;
     use ClientTrait;
 
-    const VERSION = '1.3.0';
+    const VERSION = '1.4.0';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/logging.admin';
     const READ_ONLY_SCOPE = 'https://www.googleapis.com/auth/logging.read';
@@ -107,7 +98,8 @@ class LoggingClient
      *           automatically chosen provider, based on detected environment
      *           settings.
      *     @type bool $debugOutput Whether or not to output debug information.
-     *           **Defaults to** false.
+     *           Please note debug output currently only applies in CLI based
+     *           applications. **Defaults to** `false`.
      *     @type array $batchOptions A set of options for a BatchJob.
      *           {@see \Google\Cloud\Core\Batch\BatchJob::__construct()} for
      *           more details.
@@ -151,6 +143,8 @@ class LoggingClient
      *     @type array $authCacheOptions Cache configuration options.
      *     @type callable $authHttpHandler A handler used to deliver Psr7
      *           requests specifically for authentication.
+     *     @type FetchAuthTokenInterface $credentialsFetcher A credentials
+     *           fetcher instance.
      *     @type callable $httpHandler A handler used to deliver Psr7 requests.
      *           Only valid for requests sent over REST.
      *     @type array $keyFile The contents of the service account credentials
@@ -159,11 +153,14 @@ class LoggingClient
      *     @type string $keyFilePath The full path to your service account
      *           credentials .json file retrieved from the Google Developers
      *           Console.
+     *     @type float $requestTimeout Seconds to wait before timing out the
+     *           request. **Defaults to** `0` with REST and `60` with gRPC.
      *     @type int $retries Number of retries for a failed request.
      *           **Defaults to** `3`.
      *     @type array $scopes Scopes to be used for the request.
      *     @type string $transport The transport type used for requests. May be
-     *           either `grpc` or `rest`. **Defaults to** `rest`.
+     *           either `grpc` or `rest`. **Defaults to** `grpc` if gRPC support
+     *           is detected on the system.
      * }
      */
     public function __construct(array $config = [])
@@ -502,8 +499,9 @@ class LoggingClient
      *     @type bool $batchEnabled Determines whether or not to use background
      *           batching. **Defaults to** `false`.
      *     @type bool $debugOutput Whether or not to output debug information.
-     *           **Defaults to** false. Applies only when `batchEnabled` is set
-     *           to `true`.
+     *           Please note debug output currently only applies in CLI based
+     *           applications. **Defaults to** `false`. Applies only when
+     *           `batchEnabled` is set to `true`.
      *     @type array $batchOptions A set of options for a BatchJob.
      *           {@see \Google\Cloud\Core\Batch\BatchJob::__construct()} for
      *           more details.

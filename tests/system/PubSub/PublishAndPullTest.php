@@ -19,6 +19,7 @@ namespace Google\Cloud\Tests\System\PubSub;
 
 /**
  * @group pubsub
+ * @group pubsub-publish
  */
 class PublishAndPullTest extends PubSubTestCase
 {
@@ -31,8 +32,8 @@ class PublishAndPullTest extends PubSubTestCase
         $subName = uniqid(self::TESTING_PREFIX);
         $topic = $client->createTopic($topicName);
         $sub = $client->subscribe($subName, $topicName);
-        self::$deletionQueue[] = $topic;
-        self::$deletionQueue[] = $sub;
+        self::$deletionQueue->add($topic);
+        self::$deletionQueue->add($sub);
 
         $message = [
             'data' => 'A message.',
@@ -59,8 +60,8 @@ class PublishAndPullTest extends PubSubTestCase
         $subName = uniqid(self::TESTING_PREFIX);
         $topic = $client->createTopic($topicName);
         $sub = $client->subscribe($subName, $topicName);
-        self::$deletionQueue[] = $topic;
-        self::$deletionQueue[] = $sub;
+        self::$deletionQueue->add($topic);
+        self::$deletionQueue->add($sub);
 
         $messages = [
             [

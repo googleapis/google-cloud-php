@@ -161,7 +161,7 @@ class RequestWrapper
     {
         $headers = [
             'User-Agent' => 'gcloud-php/' . $this->componentVersion,
-            'x-goog-api-client' => 'gl-php/' . phpversion() . ' gccl/' . $this->componentVersion,
+            'x-goog-api-client' => 'gl-php/' . PHP_VERSION . ' gccl/' . $this->componentVersion,
         ];
 
         if ($this->shouldSignRequest) {
@@ -231,6 +231,10 @@ class RequestWrapper
 
             case 500:
                 $exception = Exception\ServerException::class;
+                break;
+
+            case 504:
+                $exception = Exception\DeadlineExceededException::class;
                 break;
 
             default:

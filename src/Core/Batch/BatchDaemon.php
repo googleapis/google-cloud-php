@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Core\Batch;
 
+use Google\Cloud\Core\SysvTrait;
+
 /**
  * An external daemon script for executing the batch jobs.
  *
@@ -32,8 +34,9 @@ namespace Google\Cloud\Core\Batch;
  */
 class BatchDaemon
 {
-    use SysvTrait;
+    use BatchDaemonTrait;
     use HandleFailureTrait;
+    use SysvTrait;
 
     /* @var BatchRunner */
     private $runner;
@@ -51,6 +54,7 @@ class BatchDaemon
      * Prepare the descriptor spec and install signal handlers.
      *
      * @param string $entrypoint Daemon's entrypoint script.
+     * @throws \RuntimeException
      */
     public function __construct($entrypoint)
     {

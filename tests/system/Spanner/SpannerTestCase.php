@@ -19,11 +19,12 @@ namespace Google\Cloud\Tests\System\Spanner;
 
 use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\Spanner\SpannerClient;
+use Google\Cloud\Tests\System\SystemTestCase;
 
 /**
  * @group spanner
  */
-class SpannerTestCase extends \PHPUnit_Framework_TestCase
+class SpannerTestCase extends SystemTestCase
 {
     const TESTING_PREFIX = 'gcloud_testing_';
     const INSTANCE_NAME = 'google-cloud-php-system-tests';
@@ -35,7 +36,7 @@ class SpannerTestCase extends \PHPUnit_Framework_TestCase
     protected static $instance;
     protected static $database;
     protected static $database2;
-    protected static $deletionQueue = [];
+    protected static $dbName;
 
     private static $hasSetUp = false;
 
@@ -45,20 +46,19 @@ class SpannerTestCase extends \PHPUnit_Framework_TestCase
             return;
         }
 
-        $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
-
-        self::$client = new SpannerClient([
-            'keyFilePath' => $keyFilePath
-        ]);
+        self::getClient();
 
         self::$instance = self::$client->instance(self::INSTANCE_NAME);
 
-        $dbName = uniqid(self::TESTING_PREFIX);
-        $op = self::$instance->createDatabase($dbName);
+        self::$dbName = uniqid(self::TESTING_PREFIX);
+        $op = self::$instance->createDatabase(self::$dbName);
         $op->pollUntilComplete();
-        $db = self::$client->connect(self::INSTANCE_NAME, $dbName);
 
-        self::$deletionQueue[] = function() use ($db) { $db->drop(); };
+        $db = self::getDatabaseInstance(self::$dbName);
+
+        self::$deletionQueue->add(function() use ($db) {
+            $db->drop();
+        });
 
         $db->updateDdl(
             'CREATE TABLE '. self::TEST_TABLE_NAME .' (
@@ -74,20 +74,29 @@ class SpannerTestCase extends \PHPUnit_Framework_TestCase
         )->pollUntilComplete();
 
         self::$database = $db;
-        self::$database2 = self::$client->connect(self::INSTANCE_NAME, $dbName);
+        self::$database2 = self::getDatabaseInstance(self::$dbName);
     }
 
-    public static function tearDownFixtures()
+    private static function getClient()
     {
-        $backoff = new ExponentialBackoff(8);
-
-        foreach (self::$deletionQueue as $item) {
-            $backoff->execute($item);
+        if (self::$client) {
+            return self::$client;
         }
+
+        $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
+        self::$client = new SpannerClient([
+            'keyFilePath' => $keyFilePath
+        ]);
+
+        return self::$client;
     }
 
-    public static function randId()
+    public static function getDatabaseInstance($dbName)
     {
-        return rand(1,9999999);
+        $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
+
+        return (new SpannerClient([
+            'keyFilePath' => $keyFilePath
+        ]))->connect(self::INSTANCE_NAME, $dbName);
     }
 }

@@ -786,10 +786,12 @@ class StorageObject
             $options['contentMd5'],
             $options['contentType'],
             $seconds,
-            implode(PHP_EOL, $headers) . $resource,
+            implode("\n", $headers) . $resource,
         ];
 
-        $string = implode(PHP_EOL, $toSign);
+        // NOTE: While in most cases `PHP_EOL` is preferable to a system-specific character,
+        // in this case `\n` is required.
+        $string = implode("\n", $toSign);
         $signature = $this->signString($keyFile['private_key'], $string, $options['forceOpenssl']);
         $encodedSignature = urlencode(base64_encode($signature));
 

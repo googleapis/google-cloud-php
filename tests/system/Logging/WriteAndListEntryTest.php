@@ -30,7 +30,7 @@ class WriteAndListEntryTest extends LoggingTestCase
     public function testWriteTextEntry($client)
     {
         $logger = $client->logger(uniqid(self::TESTING_PREFIX));
-        self::$deletionQueue[] = $logger;
+        self::$deletionQueue->add($logger);
         $data = 'test';
         $entry = $logger->entry($data);
 
@@ -41,7 +41,7 @@ class WriteAndListEntryTest extends LoggingTestCase
             $entries = iterator_to_array($logger->entries());
 
             if (count($entries) === 0) {
-                throw new \Exception();
+                throw new \Exception('Entries not found in the allotted number of attempts.');
             }
 
             return $entries;
@@ -56,7 +56,7 @@ class WriteAndListEntryTest extends LoggingTestCase
     public function testWriteJsonEntry($client)
     {
         $logger = $client->logger(uniqid(self::TESTING_PREFIX));
-        self::$deletionQueue[] = $logger;
+        self::$deletionQueue->add($logger);
         $data = [
             'test' => true,
             'hello' => 'world',
@@ -64,7 +64,6 @@ class WriteAndListEntryTest extends LoggingTestCase
                 'data'
             ]
         ];
-
         $entry = $logger->entry($data);
 
         $logger->write($entry);
@@ -74,7 +73,7 @@ class WriteAndListEntryTest extends LoggingTestCase
             $entries = iterator_to_array($logger->entries());
 
             if (count($entries) === 0) {
-                throw new \Exception();
+                throw new \Exception('Entries not found in the allotted number of attempts.');
             }
 
             return $entries;
@@ -89,7 +88,7 @@ class WriteAndListEntryTest extends LoggingTestCase
     public function testWritesMultipleTextEntries($client)
     {
         $logger = $client->logger(uniqid(self::TESTING_PREFIX));
-        self::$deletionQueue[] = $logger;
+        self::$deletionQueue->add($logger);
         $data = 'test';
         $entriesToWrite = [
             $logger->entry($data),
@@ -103,7 +102,7 @@ class WriteAndListEntryTest extends LoggingTestCase
             $entries = iterator_to_array($logger->entries());
 
             if (count($entries) !== count($entriesToWrite)) {
-                throw new \Exception();
+                throw new \Exception('Entries not found in the allotted number of attempts.');
             }
 
             return $entries;
@@ -119,7 +118,7 @@ class WriteAndListEntryTest extends LoggingTestCase
     public function testWritesEntryWithMetadata($client)
     {
         $logger = $client->logger(uniqid(self::TESTING_PREFIX));
-        self::$deletionQueue[] = $logger;
+        self::$deletionQueue->add($logger);
         $data = 'test';
         $httpRequest = [
             'requestMethod' => 'GET',
@@ -130,7 +129,6 @@ class WriteAndListEntryTest extends LoggingTestCase
             'test' => 'label'
         ];
         $severity = 'INFO';
-
         $entry = $logger->entry($data, [
             'httpRequest' => $httpRequest,
             'labels' => $labels,
@@ -144,7 +142,7 @@ class WriteAndListEntryTest extends LoggingTestCase
             $entries = iterator_to_array($logger->entries());
 
             if (count($entries) === 0) {
-                throw new \Exception();
+                throw new \Exception('Entries not found in the allotted number of attempts.');
             }
 
             return $entries;
@@ -228,7 +226,7 @@ class WriteAndListEntryTest extends LoggingTestCase
         $logName = uniqid(self::TESTING_PREFIX);
         $psrLogger = $client->psrLogger($logName);
         $logger = $client->logger($logName);
-        self::$deletionQueue[] = $logger;
+        self::$deletionQueue->add($logger);
         $data = $level;
         $httpRequest = [
             'requestMethod' => 'GET'
@@ -245,7 +243,7 @@ class WriteAndListEntryTest extends LoggingTestCase
             $entries = iterator_to_array($logger->entries());
 
             if (count($entries) === 0) {
-                throw new \Exception();
+                throw new \Exception('Entries not found in the allotted number of attempts.');
             }
 
             return $entries;

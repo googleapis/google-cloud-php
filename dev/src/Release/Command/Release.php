@@ -34,11 +34,8 @@ class Release extends Command
     const DEFAULT_COMPONENT = 'google-cloud';
     const DEFAULT_COMPONENT_COMPOSER = '%s/../composer.json';
     const PATH_MANIFEST = '%s/../docs/manifest.json';
-    const PATH_SERVICE_BUILDER = '%s/../src/ServiceBuilder.php';
 
     private $cliBasePath;
-
-    private $defaultClient;
 
     private $manifest;
 
@@ -54,7 +51,6 @@ class Release extends Command
     {
         $this->cliBasePath = $cliBasePath;
 
-        $this->defaultClient = sprintf(self::PATH_SERVICE_BUILDER, $cliBasePath);
         $this->manifest = sprintf(self::PATH_MANIFEST, $cliBasePath);
         $this->defaultComponentComposer = sprintf(self::DEFAULT_COMPONENT_COMPOSER, $cliBasePath);
         $this->components = sprintf(self::COMPONENT_BASE, $cliBasePath);
@@ -112,17 +108,33 @@ class Release extends Command
             $version
         ));
 
-        $this->updateComponentVersionConstant($version, $component);
-        $output->writeln(sprintf(
-            'File %s VERSION constant updated to %s',
-            $component['entry'],
-            $version
-        ));
+        foreach ((array) $component['entry'] as $entry) {
+            $entryUpdated = $this->updateComponentVersionConstant(
+                $version,
+                $component['path'],
+                $entry
+            );
+            if ($entryUpdated) {
+                $output->writeln(sprintf(
+                    'File %s VERSION constant updated to %s',
+                    $entry,
+                    $version
+                ));
+            }
+        }
 
         if ($component['id'] !== 'google-cloud') {
             $this->updateComponentVersionFile($version, $component);
             $output->writeln(sprintf(
                 'Component %s VERSION file updated to %s',
+                $component['id'],
+                $version
+            ));
+
+            $this->updateComposerReplacesVersion($version, $component);
+
+            $output->writeln(sprintf(
+                'google-cloud composer replaces for component %s updated to version %s',
                 $component['id'],
                 $version
             ));
@@ -162,13 +174,13 @@ class Release extends Command
         }
     }
 
-    private function updateComponentVersionConstant($version, array $component)
+    private function updateComponentVersionConstant($version, $componentPath, $componentEntry)
     {
-        if (is_null($component['entry'])) {
+        if (is_null($componentEntry)) {
             return false;
         }
 
-        $path = $this->cliBasePath .'/../'. $component['path'] .'/'. $component['entry'];
+        $path = $this->cliBasePath .'/../'. $componentPath .'/'. $componentEntry;
         if (!file_exists($path)) {
             throw new \RuntimeException(sprintf(
                 'Component entry file %s does not exist',
@@ -201,5 +213,19 @@ class Release extends Command
         }
 
         return true;
+    }
+
+    private function updateComposerReplacesVersion($version, array $component)
+    {
+        $composer = $this->cliBasePath .'/../composer.json';
+        if (!file_exists($composer)) {
+            throw new \Exception('Invalid composer.json path');
+        }
+
+        $data = json_decode(file_get_contents($composer), true);
+
+        $data['replace'][$component['name']] = $version;
+
+        file_put_contents($composer, json_encode($data, JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES));
     }
 }

@@ -28,11 +28,12 @@ class ClientTraitTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @expectedException Google\Cloud\Core\Exception\GoogleException
+     * @dataProvider invalidDependencyStatusProvider
      */
-    public function testGetConnectionTypeThrowsExceptionWhenAttempingGrpcWithoutDeps()
+    public function testGetConnectionTypeInvalidStatus($dependencyStatus, $config)
     {
-        $trait = new ClientTraitStubGrpcDependencyChecks([false, false]);
-        $trait->runGetConnectionType(['transport' => 'grpc']);
+        $trait = new ClientTraitStubGrpcDependencyChecks($dependencyStatus);
+        $trait->runGetConnectionType($config);
     }
 
     /**
@@ -46,29 +47,44 @@ class ClientTraitTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expectedConnectionType, $actualConnectionType);
     }
 
+    public function invalidDependencyStatusProvider()
+    {
+        return [
+            [
+                false,
+                ['transport' => 'grpc'],
+            ],
+        ];
+    }
+
     public function dependencyStatusProvider()
     {
         return [
             [
-                [true, true],
+                true,
+                [],
+                'grpc'
+            ],
+            [
+                false,
                 [],
                 'rest'
             ],
             [
-                [false, false],
+                false,
                 ['transport' => 'rest'],
                 'rest'
             ],
             [
-                [false, true],
-                [],
+                true,
+                ['transport' => 'rest'],
                 'rest'
             ],
             [
-                [true, true],
+                true,
                 ['transport' => 'grpc'],
                 'grpc'
-            ]
+            ],
         ];
     }
 
@@ -164,7 +180,7 @@ class ClientTraitTest extends \PHPUnit_Framework_TestCase
         $trait = new ClientTraitStub();
 
         $originalEnv = getenv('GCLOUD_PROJECT');
-        
+
         try {
             putenv('GCLOUD_PROJECT=' . $projectId);
             $res = $trait->runDetectProjectId([]);
@@ -262,7 +278,7 @@ class ClientTraitStubGrpcDependencyChecks extends ClientTraitStub
 
     private $dependencyStatus;
 
-    public function __construct(array $dependencyStatus)
+    public function __construct($dependencyStatus)
     {
         $this->dependencyStatus = $dependencyStatus;
     }

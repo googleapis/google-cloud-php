@@ -17,12 +17,14 @@
 
 namespace Google\Cloud\Tests\Unit\Logging;
 
+use Google\Cloud\Logging\Connection\Grpc;
 use Google\Cloud\Logging\Logger;
 use Google\Cloud\Logging\LoggingClient;
 use Google\Cloud\Logging\Metric;
 use Google\Cloud\Logging\PsrLogger;
 use Google\Cloud\Logging\Sink;
 use Google\Cloud\Logging\Connection\ConnectionInterface;
+use Google\Cloud\Tests\GrpcTestTrait;
 use Prophecy\Argument;
 
 /**
@@ -30,6 +32,8 @@ use Prophecy\Argument;
  */
 class LoggingClientTest extends \PHPUnit_Framework_TestCase
 {
+    use GrpcTestTrait;
+
     public $connection;
     public $formattedProjectId;
     public $sinkName = 'mySink';
@@ -43,6 +47,14 @@ class LoggingClientTest extends \PHPUnit_Framework_TestCase
         $this->formattedProjectId = "projects/$this->projectId";
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->client = new LoggingTestClient(['projectId' => $this->projectId]);
+    }
+
+    public function testUsesGrpcConnectionByDefault()
+    {
+        $this->checkAndSkipGrpcTests();
+        $client = new LoggingTestClient(['projectId' => 'project']);
+
+        $this->assertInstanceOf(Grpc::class, $client->getConnection());
     }
 
     public function testPsrBatchLogger()
@@ -301,5 +313,10 @@ class LoggingTestClient extends LoggingClient
     public function setConnection($connection)
     {
         $this->connection = $connection;
+    }
+
+    public function getConnection()
+    {
+        return $this->connection;
     }
 }

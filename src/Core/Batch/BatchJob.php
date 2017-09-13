@@ -78,7 +78,7 @@ class BatchJob
      *     @type float $callPeriod The period in seconds from the last execution
      *                 to force executing the job. **Defaults to** `2.0`.
      *     @type int $workerNum The number of child processes. It only takes
-     *               effect with the {@see \Google\Cloud\Core\BatchDaemon}.
+     *               effect with the {@see \Google\Cloud\Core\Batch\BatchDaemon}.
      *               **Defaults to** `1`.
      *     @type string $bootstrapFile A file to load before executing the
      *                  job. It's needed for registering global functions.

@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Core\Batch;
 
+use Google\Cloud\Core\SysvTrait;
+
 /**
  * ProcessItemInterface implementation with SysV IPC message queue.
  *
@@ -27,6 +29,7 @@ namespace Google\Cloud\Core\Batch;
  */
 class SysvProcessor implements ProcessItemInterface
 {
+    use BatchDaemonTrait;
     use SysvTrait;
 
     /* @var array */

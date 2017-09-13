@@ -137,6 +137,14 @@ final class InMemoryConfigStorage implements
     }
 
     /**
+     * Clear the BatchConfig from storage.
+     */
+    public function clear()
+    {
+        $this->config = new BatchConfig();
+    }
+
+    /**
      * Hold the items in memory and run the job in the same process when it
      * meets the condition.
      *

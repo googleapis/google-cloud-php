@@ -92,10 +92,12 @@ trait BatchTrait
         try {
             call_user_func_array($this->getCallback(), [$items]);
         } catch (\Exception $e) {
-            fwrite(
-                $this->debugOutputResource ?: STDERR,
-                $e->getMessage() . PHP_EOL
-            );
+            if ($this->debugOutput) {
+                fwrite(
+                    $this->debugOutputResource ?: STDERR,
+                    $e->getMessage() . PHP_EOL
+                );
+            }
 
             return false;
         }
@@ -137,7 +139,8 @@ trait BatchTrait
      *     @type resource $debugOutputResource A resource to output debug output
      *           to.
      *     @type bool $debugOutput Whether or not to output debug information.
-     *           **Defaults to** false.
+     *           Please note debug output currently only applies in CLI based
+     *           applications. **Defaults to** `false`.
      *     @type array $batchOptions A set of options for a BatchJob.
      *           {@see \Google\Cloud\Core\Batch\BatchJob::__construct()} for
      *           more details.

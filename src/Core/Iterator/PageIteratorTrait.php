@@ -171,11 +171,17 @@ trait PageIteratorTrait
      */
     public function current()
     {
-        if (!$this->page) {
+        if ($this->page === null) {
             $this->page = $this->executeCall();
         }
 
-        return $this->get($this->itemsPath, $this->page);
+        $page = $this->get($this->itemsPath, $this->page);
+
+        if ($this->nextResultToken()) {
+            return $page ?: [];
+        }
+
+        return $page;
     }
 
     /**
@@ -196,12 +202,9 @@ trait PageIteratorTrait
     public function next()
     {
         $this->position++;
-
-        if ($this->nextResultToken()) {
-            $this->page = $this->executeCall();
-        } else {
-            $this->page = null;
-        }
+        $this->page = $this->nextResultToken()
+            ? $this->executeCall()
+            : null;
     }
 
     /**

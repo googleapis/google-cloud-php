@@ -19,6 +19,7 @@ namespace Google\Cloud\Tests\System\Datastore;
 
 /**
  * @group datastore
+ * @group datastore-key
  */
 class AllocateKeyTest extends DatastoreTestCase
 {

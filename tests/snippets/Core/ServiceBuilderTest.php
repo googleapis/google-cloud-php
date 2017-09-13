@@ -15,15 +15,15 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Snippets;
+namespace Google\Cloud\Tests\Snippets\Core;
 
 use Google\Cloud\BigQuery\BigQueryClient;
+use Google\Cloud\Core\ServiceBuilder;
 use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
 use Google\Cloud\Logging\LoggingClient;
 use Google\Cloud\Language\LanguageClient;
 use Google\Cloud\PubSub\PubSubClient;
-use Google\Cloud\ServiceBuilder;
 use Google\Cloud\Spanner\SpannerClient;
 use Google\Cloud\Speech\SpeechClient;
 use Google\Cloud\Storage\StorageClient;
