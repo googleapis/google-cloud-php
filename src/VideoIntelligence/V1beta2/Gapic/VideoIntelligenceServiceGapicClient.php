@@ -18,7 +18,7 @@
 /*
  * GENERATED CODE WARNING
  * This file was generated from the file
- * https://github.com/google/googleapis/blob/master/google/cloud/speech/v1beta1/cloud_speech.proto
+ * https://github.com/google/googleapis/blob/master/google/cloud/videointelligence/v1beta2/video_intelligence.proto
  * and updates to that file get reflected here through a refresh process.
  *
  * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
@@ -28,15 +28,14 @@
  * @experimental
  */
 
-namespace Google\Cloud\Speech\V1beta1\Gapic;
+namespace Google\Cloud\VideoIntelligence\V1beta2\Gapic;
 
-use Google\Cloud\Speech\V1beta1\AsyncRecognizeRequest;
-use Google\Cloud\Speech\V1beta1\AsyncRecognizeResponse;
-use Google\Cloud\Speech\V1beta1\RecognitionAudio;
-use Google\Cloud\Speech\V1beta1\RecognitionConfig;
-use Google\Cloud\Speech\V1beta1\SpeechGrpcClient;
-use Google\Cloud\Speech\V1beta1\StreamingRecognizeRequest;
-use Google\Cloud\Speech\V1beta1\SyncRecognizeRequest;
+use Google\Cloud\Videointelligence\V1beta2\AnnotateVideoProgress;
+use Google\Cloud\Videointelligence\V1beta2\AnnotateVideoRequest;
+use Google\Cloud\Videointelligence\V1beta2\AnnotateVideoResponse;
+use Google\Cloud\Videointelligence\V1beta2\Feature;
+use Google\Cloud\Videointelligence\V1beta2\VideoContext;
+use Google\Cloud\Videointelligence\V1beta2\VideoIntelligenceServiceGrpcClient;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
@@ -46,7 +45,7 @@ use Google\GAX\LongRunning\OperationsClient;
 use Google\GAX\OperationResponse;
 
 /**
- * Service Description: Service that implements Google Cloud Speech API.
+ * Service Description: Service that implements Google Cloud Video Intelligence API.
  *
  * EXPERIMENTAL: this client library class has not yet been declared beta. This class may change
  * more frequently than those which have been declared beta or 1.0, including changes which break
@@ -57,29 +56,48 @@ use Google\GAX\OperationResponse;
  *
  * ```
  * try {
- *     $speechClient = new SpeechClient();
- *     $encoding = AudioEncoding::FLAC;
- *     $sampleRate = 44100;
- *     $config = new RecognitionConfig();
- *     $config->setEncoding($encoding);
- *     $config->setSampleRate($sampleRate);
- *     $uri = "gs://bucket_name/file_name.flac";
- *     $audio = new RecognitionAudio();
- *     $audio->setUri($uri);
- *     $response = $speechClient->syncRecognize($config, $audio);
+ *     $videoIntelligenceServiceClient = new VideoIntelligenceServiceClient();
+ *     $inputUri = "";
+ *     $features = [];
+ *     $operationResponse = $videoIntelligenceServiceClient->annotateVideo($inputUri, $features);
+ *     $operationResponse->pollUntilComplete();
+ *     if ($operationResponse->operationSucceeded()) {
+ *       $result = $operationResponse->getResult();
+ *       // doSomethingWith($result)
+ *     } else {
+ *       $error = $operationResponse->getError();
+ *       // handleError($error)
+ *     }
+ *
+ *     // OR start the operation, keep the operation name, and resume later
+ *     $operationResponse = $videoIntelligenceServiceClient->annotateVideo($inputUri, $features);
+ *     $operationName = $operationResponse->getName();
+ *     // ... do other work
+ *     $newOperationResponse = $videoIntelligenceServiceClient->resumeOperation($operationName, 'annotateVideo');
+ *     while (!$newOperationResponse->isDone()) {
+ *         // ... do other work
+ *         $newOperationResponse->reload();
+ *     }
+ *     if ($newOperationResponse->operationSucceeded()) {
+ *       $result = $newOperationResponse->getResult();
+ *       // doSomethingWith($result)
+ *     } else {
+ *       $error = $newOperationResponse->getError();
+ *       // handleError($error)
+ *     }
  * } finally {
- *     $speechClient->close();
+ *     $videoIntelligenceServiceClient->close();
  * }
  * ```
  *
  * @experimental
  */
-class SpeechGapicClient
+class VideoIntelligenceServiceGapicClient
 {
     /**
      * The default address of the service.
      */
-    const SERVICE_ADDRESS = 'speech.googleapis.com';
+    const SERVICE_ADDRESS = 'videointelligence.googleapis.com';
 
     /**
      * The default port of the service.
@@ -105,7 +123,7 @@ class SpeechGapicClient
     private static $gapicVersionLoaded = false;
 
     protected $grpcCredentialsHelper;
-    protected $speechStub;
+    protected $videoIntelligenceServiceStub;
     private $scopes;
     private $defaultCallSettings;
     private $descriptors;
@@ -114,18 +132,9 @@ class SpeechGapicClient
     private static function getLongRunningDescriptors()
     {
         return [
-            'asyncRecognize' => [
-                'operationReturnType' => '\Google\Cloud\Speech\V1beta1\AsyncRecognizeResponse',
-                'metadataReturnType' => '\Google\Cloud\Speech\V1beta1\AsyncRecognizeMetadata',
-            ],
-        ];
-    }
-
-    private static function getGrpcStreamingDescriptors()
-    {
-        return [
-            'streamingRecognize' => [
-                'grpcStreamingType' => 'BidiStreaming',
+            'annotateVideo' => [
+                'operationReturnType' => '\Google\Cloud\Videointelligence\V1beta2\AnnotateVideoResponse',
+                'metadataReturnType' => '\Google\Cloud\Videointelligence\V1beta2\AnnotateVideoProgress',
             ],
         ];
     }
@@ -189,7 +198,7 @@ class SpeechGapicClient
      *                       Optional. Options for configuring the service API wrapper.
      *
      *     @type string $serviceAddress The domain name of the API remote host.
-     *                                  Default 'speech.googleapis.com'.
+     *                                  Default 'videointelligence.googleapis.com'.
      *     @type mixed $port The port on which to connect to the remote host. Default 443.
      *     @type \Grpc\Channel $channel
      *           A `Channel` object to be used by gRPC. If not specified, a channel will be constructed.
@@ -205,7 +214,7 @@ class SpeechGapicClient
      *     @type \Google\Auth\CredentialsLoader $credentialsLoader
      *           A CredentialsLoader object created using the Google\Auth library.
      *     @type array $scopes A string array of scopes to use when acquiring credentials.
-     *                          Defaults to the scopes for the Google Cloud Speech API.
+     *                          Defaults to the scopes for the Google Cloud Video Intelligence API.
      *     @type array $retryingOverride
      *           An associative array of string => RetryOptions, where the keys
      *           are method names (e.g. 'createFoo'), that overrides default retrying
@@ -252,24 +261,18 @@ class SpeechGapicClient
 
         $defaultDescriptors = ['headerDescriptor' => $headerDescriptor];
         $this->descriptors = [
-            'syncRecognize' => $defaultDescriptors,
-            'asyncRecognize' => $defaultDescriptors,
-            'streamingRecognize' => $defaultDescriptors,
+            'annotateVideo' => $defaultDescriptors,
         ];
         $longRunningDescriptors = self::getLongRunningDescriptors();
         foreach ($longRunningDescriptors as $method => $longRunningDescriptor) {
             $this->descriptors[$method]['longRunningDescriptor'] = $longRunningDescriptor + ['operationsClient' => $this->operationsClient];
         }
-        $grpcStreamingDescriptors = self::getGrpcStreamingDescriptors();
-        foreach ($grpcStreamingDescriptors as $method => $grpcStreamingDescriptor) {
-            $this->descriptors[$method]['grpcStreamingDescriptor'] = $grpcStreamingDescriptor;
-        }
 
-        $clientConfigJsonString = file_get_contents(__DIR__.'/../resources/speech_client_config.json');
+        $clientConfigJsonString = file_get_contents(__DIR__.'/../resources/video_intelligence_service_client_config.json');
         $clientConfig = json_decode($clientConfigJsonString, true);
         $this->defaultCallSettings =
                 CallSettings::load(
-                    'google.cloud.speech.v1beta1.Speech',
+                    'google.cloud.videointelligence.v1beta2.VideoIntelligenceService',
                     $clientConfig,
                     $options['retryingOverride'],
                     GrpcConstants::getStatusCodeNames(),
@@ -284,99 +287,28 @@ class SpeechGapicClient
         }
         $this->grpcCredentialsHelper = new GrpcCredentialsHelper($options);
 
-        $createSpeechStubFunction = function ($hostname, $opts, $channel) {
-            return new SpeechGrpcClient($hostname, $opts, $channel);
+        $createVideoIntelligenceServiceStubFunction = function ($hostname, $opts, $channel) {
+            return new VideoIntelligenceServiceGrpcClient($hostname, $opts, $channel);
         };
-        if (array_key_exists('createSpeechStubFunction', $options)) {
-            $createSpeechStubFunction = $options['createSpeechStubFunction'];
+        if (array_key_exists('createVideoIntelligenceServiceStubFunction', $options)) {
+            $createVideoIntelligenceServiceStubFunction = $options['createVideoIntelligenceServiceStubFunction'];
         }
-        $this->speechStub = $this->grpcCredentialsHelper->createStub($createSpeechStubFunction);
+        $this->videoIntelligenceServiceStub = $this->grpcCredentialsHelper->createStub($createVideoIntelligenceServiceStubFunction);
     }
 
     /**
-     * Performs synchronous speech recognition: receive results after all audio
-     * has been sent and processed.
+     * Performs asynchronous video annotation. Progress and results can be
+     * retrieved through the `google.longrunning.Operations` interface.
+     * `Operation.metadata` contains `AnnotateVideoProgress` (progress).
+     * `Operation.response` contains `AnnotateVideoResponse` (results).
      *
      * Sample code:
      * ```
      * try {
-     *     $speechClient = new SpeechClient();
-     *     $encoding = AudioEncoding::FLAC;
-     *     $sampleRate = 44100;
-     *     $config = new RecognitionConfig();
-     *     $config->setEncoding($encoding);
-     *     $config->setSampleRate($sampleRate);
-     *     $uri = "gs://bucket_name/file_name.flac";
-     *     $audio = new RecognitionAudio();
-     *     $audio->setUri($uri);
-     *     $response = $speechClient->syncRecognize($config, $audio);
-     * } finally {
-     *     $speechClient->close();
-     * }
-     * ```
-     *
-     * @param RecognitionConfig $config       *Required* Provides information to the recognizer that specifies how to
-     *                                        process the request.
-     * @param RecognitionAudio  $audio        *Required* The audio data to be recognized.
-     * @param array             $optionalArgs {
-     *                                        Optional.
-     *
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
-     * }
-     *
-     * @return \Google\Cloud\Speech\V1beta1\SyncRecognizeResponse
-     *
-     * @throws \Google\GAX\ApiException if the remote call fails
-     * @experimental
-     */
-    public function syncRecognize($config, $audio, $optionalArgs = [])
-    {
-        $request = new SyncRecognizeRequest();
-        $request->setConfig($config);
-        $request->setAudio($audio);
-
-        $mergedSettings = $this->defaultCallSettings['syncRecognize']->merge(
-            new CallSettings($optionalArgs)
-        );
-        $callable = ApiCallable::createApiCall(
-            $this->speechStub,
-            'SyncRecognize',
-            $mergedSettings,
-            $this->descriptors['syncRecognize']
-        );
-
-        return $callable(
-            $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
-    }
-
-    /**
-     * Performs asynchronous speech recognition: receive results via the
-     * [google.longrunning.Operations]
-     * (/speech/reference/rest/v1beta1/operations#Operation)
-     * interface. Returns either an
-     * `Operation.error` or an `Operation.response` which contains
-     * an `AsyncRecognizeResponse` message.
-     *
-     * Sample code:
-     * ```
-     * try {
-     *     $speechClient = new SpeechClient();
-     *     $encoding = AudioEncoding::FLAC;
-     *     $sampleRate = 44100;
-     *     $config = new RecognitionConfig();
-     *     $config->setEncoding($encoding);
-     *     $config->setSampleRate($sampleRate);
-     *     $uri = "gs://bucket_name/file_name.flac";
-     *     $audio = new RecognitionAudio();
-     *     $audio->setUri($uri);
-     *     $operationResponse = $speechClient->asyncRecognize($config, $audio);
+     *     $videoIntelligenceServiceClient = new VideoIntelligenceServiceClient();
+     *     $inputUri = "";
+     *     $features = [];
+     *     $operationResponse = $videoIntelligenceServiceClient->annotateVideo($inputUri, $features);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *       $result = $operationResponse->getResult();
@@ -387,10 +319,10 @@ class SpeechGapicClient
      *     }
      *
      *     // OR start the operation, keep the operation name, and resume later
-     *     $operationResponse = $speechClient->asyncRecognize($config, $audio);
+     *     $operationResponse = $videoIntelligenceServiceClient->annotateVideo($inputUri, $features);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
-     *     $newOperationResponse = $speechClient->resumeOperation($operationName, 'asyncRecognize');
+     *     $newOperationResponse = $videoIntelligenceServiceClient->resumeOperation($operationName, 'annotateVideo');
      *     while (!$newOperationResponse->isDone()) {
      *         // ... do other work
      *         $newOperationResponse->reload();
@@ -403,16 +335,41 @@ class SpeechGapicClient
      *       // handleError($error)
      *     }
      * } finally {
-     *     $speechClient->close();
+     *     $videoIntelligenceServiceClient->close();
      * }
      * ```
      *
-     * @param RecognitionConfig $config       *Required* Provides information to the recognizer that specifies how to
-     *                                        process the request.
-     * @param RecognitionAudio  $audio        *Required* The audio data to be recognized.
-     * @param array             $optionalArgs {
-     *                                        Optional.
+     * @param string $inputUri     Input video location. Currently, only
+     *                             [Google Cloud Storage](https://cloud.google.com/storage/) URIs are
+     *                             supported, which must be specified in the following format:
+     *                             `gs://bucket-id/object-id` (other URI formats return
+     *                             [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT]). For more information, see
+     *                             [Request URIs](https://cloud.google.com/storage/docs/reference-uris).
+     *                             A video URI may include wildcards in `object-id`, and thus identify
+     *                             multiple videos. Supported wildcards: '*' to match 0 or more characters;
+     *                             '?' to match 1 character. If unset, the input video should be embedded
+     *                             in the request as `input_content`. If set, `input_content` should be unset.
+     * @param int[]  $features     Requested video annotation features.
+     *                             For allowed values, use constants defined on {@see \Google\Cloud\Videointelligence\V1beta2\Feature}
+     * @param array  $optionalArgs {
+     *                             Optional.
      *
+     *     @type string $inputContent
+     *          The video data bytes. Encoding: base64. If unset, the input video(s)
+     *          should be specified via `input_uri`. If set, `input_uri` should be unset.
+     *     @type VideoContext $videoContext
+     *          Additional video context and/or feature-specific parameters.
+     *     @type string $outputUri
+     *          Optional location where the output (in JSON format) should be stored.
+     *          Currently, only [Google Cloud Storage](https://cloud.google.com/storage/)
+     *          URIs are supported, which must be specified in the following format:
+     *          `gs://bucket-id/object-id` (other URI formats return
+     *          [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT]). For more information, see
+     *          [Request URIs](https://cloud.google.com/storage/docs/reference-uris).
+     *     @type string $locationId
+     *          Optional cloud region where annotation should take place. Supported cloud
+     *          regions: `us-east1`, `us-west1`, `europe-west1`, `asia-east1`. If no region
+     *          is specified, a region will be determined based on video file location.
      *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
@@ -426,94 +383,36 @@ class SpeechGapicClient
      * @throws \Google\GAX\ApiException if the remote call fails
      * @experimental
      */
-    public function asyncRecognize($config, $audio, $optionalArgs = [])
+    public function annotateVideo($inputUri, $features, $optionalArgs = [])
     {
-        $request = new AsyncRecognizeRequest();
-        $request->setConfig($config);
-        $request->setAudio($audio);
+        $request = new AnnotateVideoRequest();
+        $request->setInputUri($inputUri);
+        $request->setFeatures($features);
+        if (isset($optionalArgs['inputContent'])) {
+            $request->setInputContent($optionalArgs['inputContent']);
+        }
+        if (isset($optionalArgs['videoContext'])) {
+            $request->setVideoContext($optionalArgs['videoContext']);
+        }
+        if (isset($optionalArgs['outputUri'])) {
+            $request->setOutputUri($optionalArgs['outputUri']);
+        }
+        if (isset($optionalArgs['locationId'])) {
+            $request->setLocationId($optionalArgs['locationId']);
+        }
 
-        $mergedSettings = $this->defaultCallSettings['asyncRecognize']->merge(
+        $mergedSettings = $this->defaultCallSettings['annotateVideo']->merge(
             new CallSettings($optionalArgs)
         );
         $callable = ApiCallable::createApiCall(
-            $this->speechStub,
-            'AsyncRecognize',
+            $this->videoIntelligenceServiceStub,
+            'AnnotateVideo',
             $mergedSettings,
-            $this->descriptors['asyncRecognize']
+            $this->descriptors['annotateVideo']
         );
 
         return $callable(
             $request,
-            [],
-            ['call_credentials_callback' => $this->createCredentialsCallback()]);
-    }
-
-    /**
-     * Performs bidirectional streaming speech recognition: receive results while
-     * sending audio. This method is only available via the gRPC API (not REST).
-     *
-     * Sample code:
-     * ```
-     * try {
-     *     $speechClient = new SpeechClient();
-     *     $request = new StreamingRecognizeRequest();
-     *     $requests = [$request];
-     *
-     *     // Write all requests to the server, then read all responses until the
-     *     // stream is complete
-     *     $stream = $speechClient->streamingRecognize();
-     *     $stream->writeAll($requests);
-     *     foreach ($stream->closeWriteAndReadAll() as $element) {
-     *         // doSomethingWith($element);
-     *     }
-     *
-     *     // OR write requests individually, making read() calls if
-     *     // required. Call closeWrite() once writes are complete, and read the
-     *     // remaining responses from the server.
-     *     $stream = $speechClient->streamingRecognize();
-     *     foreach ($requests as $request) {
-     *         $stream->write($request);
-     *         // if required, read a single response from the stream
-     *         $element = $stream->read();
-     *         // doSomethingWith($element)
-     *     }
-     *     $stream->closeWrite();
-     *     $element = $stream->read();
-     *     while (!is_null($element)) {
-     *         // doSomethingWith($element)
-     *         $element = $stream->read();
-     *     }
-     * } finally {
-     *     $speechClient->close();
-     * }
-     * ```
-     *
-     * @param array $optionalArgs {
-     *                            Optional.
-     *
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call.
-     * }
-     *
-     * @return \Google\GAX\BidiStream
-     *
-     * @throws \Google\GAX\ApiException if the remote call fails
-     * @experimental
-     */
-    public function streamingRecognize($optionalArgs = [])
-    {
-        $mergedSettings = $this->defaultCallSettings['streamingRecognize']->merge(
-            new CallSettings($optionalArgs)
-        );
-        $callable = ApiCallable::createApiCall(
-            $this->speechStub,
-            'StreamingRecognize',
-            $mergedSettings,
-            $this->descriptors['streamingRecognize']
-        );
-
-        return $callable(
-            null,
             [],
             ['call_credentials_callback' => $this->createCredentialsCallback()]);
     }
@@ -526,7 +425,7 @@ class SpeechGapicClient
      */
     public function close()
     {
-        $this->speechStub->close();
+        $this->videoIntelligenceServiceStub->close();
     }
 
     private function createCredentialsCallback()

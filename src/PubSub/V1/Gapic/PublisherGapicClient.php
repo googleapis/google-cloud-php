@@ -37,11 +37,13 @@ use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
+use Google\GAX\ValidationException;
 use Google\Iam\V1\GetIamPolicyRequest;
 use Google\Iam\V1\IAMPolicyGrpcClient;
 use Google\Iam\V1\Policy;
 use Google\Iam\V1\SetIamPolicyRequest;
 use Google\Iam\V1\TestIamPermissionsRequest;
+use Google\Protobuf\FieldMask;
 use Google\Pubsub\V1\DeleteTopicRequest;
 use Google\Pubsub\V1\GetTopicRequest;
 use Google\Pubsub\V1\ListTopicSubscriptionsRequest;
@@ -50,6 +52,7 @@ use Google\Pubsub\V1\PublishRequest;
 use Google\Pubsub\V1\PublisherGrpcClient;
 use Google\Pubsub\V1\PubsubMessage;
 use Google\Pubsub\V1\Topic;
+use Google\Pubsub\V1\UpdateTopicRequest;
 
 /**
  * Service Description: The service that an application uses to manipulate topics, and to send
@@ -65,7 +68,7 @@ use Google\Pubsub\V1\Topic;
  * ```
  * try {
  *     $publisherClient = new PublisherClient();
- *     $formattedName = PublisherClient::formatTopicName("[PROJECT]", "[TOPIC]");
+ *     $formattedName = $publisherClient->topicName("[PROJECT]", "[TOPIC]");
  *     $response = $publisherClient->createTopic($formattedName);
  * } finally {
  *     $publisherClient->close();
@@ -74,8 +77,8 @@ use Google\Pubsub\V1\Topic;
  *
  * Many parameters require resource names to be formatted in a particular way. To assist
  * with these names, this class includes a format method for each type of name, and additionally
- * a parse method to extract the individual identifiers contained within names that are
- * returned.
+ * a parseName method to extract the individual identifiers contained within formatted names
+ * that are returned by the API.
  *
  * @experimental
  */
@@ -108,6 +111,9 @@ class PublisherGapicClient
 
     private static $projectNameTemplate;
     private static $topicNameTemplate;
+    private static $pathTemplateList = null;
+    private static $gapicVersion = null;
+    private static $gapicVersionLoaded = false;
 
     protected $grpcCredentialsHelper;
     protected $iamPolicyStub;
@@ -115,82 +121,6 @@ class PublisherGapicClient
     private $scopes;
     private $defaultCallSettings;
     private $descriptors;
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a project resource.
-     *
-     * @param string $project
-     *
-     * @return string The formatted project resource.
-     * @experimental
-     */
-    public static function formatProjectName($project)
-    {
-        return self::getProjectNameTemplate()->render([
-            'project' => $project,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a topic resource.
-     *
-     * @param string $project
-     * @param string $topic
-     *
-     * @return string The formatted topic resource.
-     * @experimental
-     */
-    public static function formatTopicName($project, $topic)
-    {
-        return self::getTopicNameTemplate()->render([
-            'project' => $project,
-            'topic' => $topic,
-        ]);
-    }
-
-    /**
-     * Parses the project from the given fully-qualified path which
-     * represents a project resource.
-     *
-     * @param string $projectName The fully-qualified project resource.
-     *
-     * @return string The extracted project value.
-     * @experimental
-     */
-    public static function parseProjectFromProjectName($projectName)
-    {
-        return self::getProjectNameTemplate()->match($projectName)['project'];
-    }
-
-    /**
-     * Parses the project from the given fully-qualified path which
-     * represents a topic resource.
-     *
-     * @param string $topicName The fully-qualified topic resource.
-     *
-     * @return string The extracted project value.
-     * @experimental
-     */
-    public static function parseProjectFromTopicName($topicName)
-    {
-        return self::getTopicNameTemplate()->match($topicName)['project'];
-    }
-
-    /**
-     * Parses the topic from the given fully-qualified path which
-     * represents a topic resource.
-     *
-     * @param string $topicName The fully-qualified topic resource.
-     *
-     * @return string The extracted topic value.
-     * @experimental
-     */
-    public static function parseTopicFromTopicName($topicName)
-    {
-        return self::getTopicNameTemplate()->match($topicName)['topic'];
-    }
 
     private static function getProjectNameTemplate()
     {
@@ -209,7 +139,17 @@ class PublisherGapicClient
 
         return self::$topicNameTemplate;
     }
+    private static function getPathTemplateList()
+    {
+        if (self::$pathTemplateList == null) {
+            self::$pathTemplateList = [
+                self::getProjectNameTemplate(),
+                self::getTopicNameTemplate(),
+            ];
+        }
 
+        return self::$pathTemplateList;
+    }
     private static function getPageStreamingDescriptors()
     {
         $listTopicsPageStreamingDescriptor =
@@ -241,13 +181,73 @@ class PublisherGapicClient
 
     private static function getGapicVersion()
     {
-        if (file_exists(__DIR__.'/../VERSION')) {
-            return trim(file_get_contents(__DIR__.'/../VERSION'));
-        } elseif (class_exists('\Google\Cloud\ServiceBuilder')) {
-            return \Google\Cloud\ServiceBuilder::VERSION;
-        } else {
-            return;
+        if (!self::$gapicVersionLoaded) {
+            if (file_exists(__DIR__.'/../VERSION')) {
+                self::$gapicVersion = trim(file_get_contents(__DIR__.'/../VERSION'));
+            } elseif (class_exists('\Google\Cloud\ServiceBuilder')) {
+                self::$gapicVersion = \Google\Cloud\ServiceBuilder::VERSION;
+            }
+            self::$gapicVersionLoaded = true;
         }
+
+        return self::$gapicVersion;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project resource.
+     * @experimental
+     */
+    public static function projectName($project)
+    {
+        return self::getProjectNameTemplate()->render([
+            'project' => $project,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a topic resource.
+     *
+     * @param string $project
+     * @param string $topic
+     *
+     * @return string The formatted topic resource.
+     * @experimental
+     */
+    public static function topicName($project, $topic)
+    {
+        return self::getTopicNameTemplate()->render([
+            'project' => $project,
+            'topic' => $topic,
+        ]);
+    }
+
+    /**
+     * Parses a formatted name string and returns an associative array of the components in the name.
+     * The following name formats are supported:
+     * - projects/{project}
+     * - projects/{project}/topics/{topic}.
+     *
+     * @param string $formattedName The formatted name string
+     *
+     * @return array An associative array from name component IDs to component values.
+     * @experimental
+     */
+    public static function parseName($formattedName)
+    {
+        foreach (self::getPathTemplateList() as $pathTemplate) {
+            try {
+                return $pathTemplate->match($formattedName);
+            } catch (ValidationException $ex) {
+                // Swallow the exception to continue trying other path templates
+            }
+        }
+        throw new ValidationException("Input did not match any known format. Input: $formattedName");
     }
 
     /**
@@ -313,6 +313,7 @@ class PublisherGapicClient
         $defaultDescriptors = ['headerDescriptor' => $headerDescriptor];
         $this->descriptors = [
             'createTopic' => $defaultDescriptors,
+            'updateTopic' => $defaultDescriptors,
             'publish' => $defaultDescriptors,
             'getTopic' => $defaultDescriptors,
             'listTopics' => $defaultDescriptors,
@@ -369,7 +370,7 @@ class PublisherGapicClient
      * ```
      * try {
      *     $publisherClient = new PublisherClient();
-     *     $formattedName = PublisherClient::formatTopicName("[PROJECT]", "[TOPIC]");
+     *     $formattedName = $publisherClient->topicName("[PROJECT]", "[TOPIC]");
      *     $response = $publisherClient->createTopic($formattedName);
      * } finally {
      *     $publisherClient->close();
@@ -425,6 +426,67 @@ class PublisherGapicClient
     }
 
     /**
+     * Updates an existing topic. Note that certain properties of a topic are not
+     * modifiable.  Options settings follow the style guide:
+     * NOTE:  The style guide requires body: "topic" instead of body: "*".
+     * Keeping the latter for internal consistency in V1, however it should be
+     * corrected in V2.  See
+     * https://cloud.google.com/apis/design/standard_methods#update for details.
+     *
+     * Sample code:
+     * ```
+     * try {
+     *     $publisherClient = new PublisherClient();
+     *     $topic = new Topic();
+     *     $updateMask = new FieldMask();
+     *     $response = $publisherClient->updateTopic($topic, $updateMask);
+     * } finally {
+     *     $publisherClient->close();
+     * }
+     * ```
+     *
+     * @param Topic     $topic        The topic to update.
+     * @param FieldMask $updateMask   Indicates which fields in the provided topic to update.
+     *                                Must be specified and non-empty.
+     * @param array     $optionalArgs {
+     *                                Optional.
+     *
+     *     @type \Google\GAX\RetrySettings $retrySettings
+     *          Retry settings to use for this call. If present, then
+     *          $timeoutMillis is ignored.
+     *     @type int $timeoutMillis
+     *          Timeout to use for this call. Only used if $retrySettings
+     *          is not set.
+     * }
+     *
+     * @return \Google\Pubsub\V1\Topic
+     *
+     * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
+     */
+    public function updateTopic($topic, $updateMask, $optionalArgs = [])
+    {
+        $request = new UpdateTopicRequest();
+        $request->setTopic($topic);
+        $request->setUpdateMask($updateMask);
+
+        $mergedSettings = $this->defaultCallSettings['updateTopic']->merge(
+            new CallSettings($optionalArgs)
+        );
+        $callable = ApiCallable::createApiCall(
+            $this->publisherStub,
+            'UpdateTopic',
+            $mergedSettings,
+            $this->descriptors['updateTopic']
+        );
+
+        return $callable(
+            $request,
+            [],
+            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+    }
+
+    /**
      * Adds one or more messages to the topic. Returns `NOT_FOUND` if the topic
      * does not exist. The message payload must not be empty; it must contain
      *  either a non-empty data field, or at least one attribute.
@@ -433,7 +495,7 @@ class PublisherGapicClient
      * ```
      * try {
      *     $publisherClient = new PublisherClient();
-     *     $formattedTopic = PublisherClient::formatTopicName("[PROJECT]", "[TOPIC]");
+     *     $formattedTopic = $publisherClient->topicName("[PROJECT]", "[TOPIC]");
      *     $data = "";
      *     $messagesElement = new PubsubMessage();
      *     $messagesElement->setData($data);
@@ -492,7 +554,7 @@ class PublisherGapicClient
      * ```
      * try {
      *     $publisherClient = new PublisherClient();
-     *     $formattedTopic = PublisherClient::formatTopicName("[PROJECT]", "[TOPIC]");
+     *     $formattedTopic = $publisherClient->topicName("[PROJECT]", "[TOPIC]");
      *     $response = $publisherClient->getTopic($formattedTopic);
      * } finally {
      *     $publisherClient->close();
@@ -545,7 +607,7 @@ class PublisherGapicClient
      * ```
      * try {
      *     $publisherClient = new PublisherClient();
-     *     $formattedProject = PublisherClient::formatProjectName("[PROJECT]");
+     *     $formattedProject = $publisherClient->projectName("[PROJECT]");
      *     // Iterate through all elements
      *     $pagedResponse = $publisherClient->listTopics($formattedProject);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
@@ -625,7 +687,7 @@ class PublisherGapicClient
      * ```
      * try {
      *     $publisherClient = new PublisherClient();
-     *     $formattedTopic = PublisherClient::formatTopicName("[PROJECT]", "[TOPIC]");
+     *     $formattedTopic = $publisherClient->topicName("[PROJECT]", "[TOPIC]");
      *     // Iterate through all elements
      *     $pagedResponse = $publisherClient->listTopicSubscriptions($formattedTopic);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
@@ -709,7 +771,7 @@ class PublisherGapicClient
      * ```
      * try {
      *     $publisherClient = new PublisherClient();
-     *     $formattedTopic = PublisherClient::formatTopicName("[PROJECT]", "[TOPIC]");
+     *     $formattedTopic = $publisherClient->topicName("[PROJECT]", "[TOPIC]");
      *     $publisherClient->deleteTopic($formattedTopic);
      * } finally {
      *     $publisherClient->close();
@@ -761,7 +823,7 @@ class PublisherGapicClient
      * ```
      * try {
      *     $publisherClient = new PublisherClient();
-     *     $formattedResource = PublisherClient::formatTopicName("[PROJECT]", "[TOPIC]");
+     *     $formattedResource = $publisherClient->topicName("[PROJECT]", "[TOPIC]");
      *     $policy = new Policy();
      *     $response = $publisherClient->setIamPolicy($formattedResource, $policy);
      * } finally {
@@ -823,7 +885,7 @@ class PublisherGapicClient
      * ```
      * try {
      *     $publisherClient = new PublisherClient();
-     *     $formattedResource = PublisherClient::formatTopicName("[PROJECT]", "[TOPIC]");
+     *     $formattedResource = $publisherClient->topicName("[PROJECT]", "[TOPIC]");
      *     $response = $publisherClient->getIamPolicy($formattedResource);
      * } finally {
      *     $publisherClient->close();
@@ -879,7 +941,7 @@ class PublisherGapicClient
      * ```
      * try {
      *     $publisherClient = new PublisherClient();
-     *     $formattedResource = PublisherClient::formatTopicName("[PROJECT]", "[TOPIC]");
+     *     $formattedResource = $publisherClient->topicName("[PROJECT]", "[TOPIC]");
      *     $permissions = [];
      *     $response = $publisherClient->testIamPermissions($formattedResource, $permissions);
      * } finally {

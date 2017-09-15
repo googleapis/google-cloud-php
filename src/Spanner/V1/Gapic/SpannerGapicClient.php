@@ -36,6 +36,7 @@ use Google\GAX\CallSettings;
 use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PathTemplate;
+use Google\GAX\ValidationException;
 use Google\Protobuf\Struct;
 use Google\Spanner\V1\BeginTransactionRequest;
 use Google\Spanner\V1\CommitRequest;
@@ -68,7 +69,7 @@ use Google\Spanner\V1\TransactionSelector;
  * ```
  * try {
  *     $spannerClient = new SpannerClient();
- *     $formattedDatabase = SpannerClient::formatDatabaseName("[PROJECT]", "[INSTANCE]", "[DATABASE]");
+ *     $formattedDatabase = $spannerClient->databaseName("[PROJECT]", "[INSTANCE]", "[DATABASE]");
  *     $response = $spannerClient->createSession($formattedDatabase);
  * } finally {
  *     $spannerClient->close();
@@ -77,8 +78,8 @@ use Google\Spanner\V1\TransactionSelector;
  *
  * Many parameters require resource names to be formatted in a particular way. To assist
  * with these names, this class includes a format method for each type of name, and additionally
- * a parse method to extract the individual identifiers contained within names that are
- * returned.
+ * a parseName method to extract the individual identifiers contained within formatted names
+ * that are returned by the API.
  *
  * @experimental
  */
@@ -111,12 +112,70 @@ class SpannerGapicClient
 
     private static $databaseNameTemplate;
     private static $sessionNameTemplate;
+    private static $pathTemplateList = null;
+    private static $gapicVersion = null;
+    private static $gapicVersionLoaded = false;
 
     protected $grpcCredentialsHelper;
     protected $spannerStub;
     private $scopes;
     private $defaultCallSettings;
     private $descriptors;
+
+    private static function getDatabaseNameTemplate()
+    {
+        if (self::$databaseNameTemplate == null) {
+            self::$databaseNameTemplate = new PathTemplate('projects/{project}/instances/{instance}/databases/{database}');
+        }
+
+        return self::$databaseNameTemplate;
+    }
+
+    private static function getSessionNameTemplate()
+    {
+        if (self::$sessionNameTemplate == null) {
+            self::$sessionNameTemplate = new PathTemplate('projects/{project}/instances/{instance}/databases/{database}/sessions/{session}');
+        }
+
+        return self::$sessionNameTemplate;
+    }
+    private static function getPathTemplateList()
+    {
+        if (self::$pathTemplateList == null) {
+            self::$pathTemplateList = [
+                self::getDatabaseNameTemplate(),
+                self::getSessionNameTemplate(),
+            ];
+        }
+
+        return self::$pathTemplateList;
+    }
+
+    private static function getGrpcStreamingDescriptors()
+    {
+        return [
+            'executeStreamingSql' => [
+                'grpcStreamingType' => 'ServerStreaming',
+            ],
+            'streamingRead' => [
+                'grpcStreamingType' => 'ServerStreaming',
+            ],
+        ];
+    }
+
+    private static function getGapicVersion()
+    {
+        if (!self::$gapicVersionLoaded) {
+            if (file_exists(__DIR__.'/../VERSION')) {
+                self::$gapicVersion = trim(file_get_contents(__DIR__.'/../VERSION'));
+            } elseif (class_exists('\Google\Cloud\ServiceBuilder')) {
+                self::$gapicVersion = \Google\Cloud\ServiceBuilder::VERSION;
+            }
+            self::$gapicVersionLoaded = true;
+        }
+
+        return self::$gapicVersion;
+    }
 
     /**
      * Formats a string containing the fully-qualified path to represent
@@ -129,7 +188,7 @@ class SpannerGapicClient
      * @return string The formatted database resource.
      * @experimental
      */
-    public static function formatDatabaseName($project, $instance, $database)
+    public static function databaseName($project, $instance, $database)
     {
         return self::getDatabaseNameTemplate()->render([
             'project' => $project,
@@ -150,7 +209,7 @@ class SpannerGapicClient
      * @return string The formatted session resource.
      * @experimental
      */
-    public static function formatSessionName($project, $instance, $database, $session)
+    public static function sessionName($project, $instance, $database, $session)
     {
         return self::getSessionNameTemplate()->render([
             'project' => $project,
@@ -161,142 +220,26 @@ class SpannerGapicClient
     }
 
     /**
-     * Parses the project from the given fully-qualified path which
-     * represents a database resource.
+     * Parses a formatted name string and returns an associative array of the components in the name.
+     * The following name formats are supported:
+     * - projects/{project}/instances/{instance}/databases/{database}
+     * - projects/{project}/instances/{instance}/databases/{database}/sessions/{session}.
      *
-     * @param string $databaseName The fully-qualified database resource.
+     * @param string $formattedName The formatted name string
      *
-     * @return string The extracted project value.
+     * @return array An associative array from name component IDs to component values.
      * @experimental
      */
-    public static function parseProjectFromDatabaseName($databaseName)
+    public static function parseName($formattedName)
     {
-        return self::getDatabaseNameTemplate()->match($databaseName)['project'];
-    }
-
-    /**
-     * Parses the instance from the given fully-qualified path which
-     * represents a database resource.
-     *
-     * @param string $databaseName The fully-qualified database resource.
-     *
-     * @return string The extracted instance value.
-     * @experimental
-     */
-    public static function parseInstanceFromDatabaseName($databaseName)
-    {
-        return self::getDatabaseNameTemplate()->match($databaseName)['instance'];
-    }
-
-    /**
-     * Parses the database from the given fully-qualified path which
-     * represents a database resource.
-     *
-     * @param string $databaseName The fully-qualified database resource.
-     *
-     * @return string The extracted database value.
-     * @experimental
-     */
-    public static function parseDatabaseFromDatabaseName($databaseName)
-    {
-        return self::getDatabaseNameTemplate()->match($databaseName)['database'];
-    }
-
-    /**
-     * Parses the project from the given fully-qualified path which
-     * represents a session resource.
-     *
-     * @param string $sessionName The fully-qualified session resource.
-     *
-     * @return string The extracted project value.
-     * @experimental
-     */
-    public static function parseProjectFromSessionName($sessionName)
-    {
-        return self::getSessionNameTemplate()->match($sessionName)['project'];
-    }
-
-    /**
-     * Parses the instance from the given fully-qualified path which
-     * represents a session resource.
-     *
-     * @param string $sessionName The fully-qualified session resource.
-     *
-     * @return string The extracted instance value.
-     * @experimental
-     */
-    public static function parseInstanceFromSessionName($sessionName)
-    {
-        return self::getSessionNameTemplate()->match($sessionName)['instance'];
-    }
-
-    /**
-     * Parses the database from the given fully-qualified path which
-     * represents a session resource.
-     *
-     * @param string $sessionName The fully-qualified session resource.
-     *
-     * @return string The extracted database value.
-     * @experimental
-     */
-    public static function parseDatabaseFromSessionName($sessionName)
-    {
-        return self::getSessionNameTemplate()->match($sessionName)['database'];
-    }
-
-    /**
-     * Parses the session from the given fully-qualified path which
-     * represents a session resource.
-     *
-     * @param string $sessionName The fully-qualified session resource.
-     *
-     * @return string The extracted session value.
-     * @experimental
-     */
-    public static function parseSessionFromSessionName($sessionName)
-    {
-        return self::getSessionNameTemplate()->match($sessionName)['session'];
-    }
-
-    private static function getDatabaseNameTemplate()
-    {
-        if (self::$databaseNameTemplate == null) {
-            self::$databaseNameTemplate = new PathTemplate('projects/{project}/instances/{instance}/databases/{database}');
+        foreach (self::getPathTemplateList() as $pathTemplate) {
+            try {
+                return $pathTemplate->match($formattedName);
+            } catch (ValidationException $ex) {
+                // Swallow the exception to continue trying other path templates
+            }
         }
-
-        return self::$databaseNameTemplate;
-    }
-
-    private static function getSessionNameTemplate()
-    {
-        if (self::$sessionNameTemplate == null) {
-            self::$sessionNameTemplate = new PathTemplate('projects/{project}/instances/{instance}/databases/{database}/sessions/{session}');
-        }
-
-        return self::$sessionNameTemplate;
-    }
-
-    private static function getGrpcStreamingDescriptors()
-    {
-        return [
-            'executeStreamingSql' => [
-                'grpcStreamingType' => 'ServerStreaming',
-            ],
-            'streamingRead' => [
-                'grpcStreamingType' => 'ServerStreaming',
-            ],
-        ];
-    }
-
-    private static function getGapicVersion()
-    {
-        if (file_exists(__DIR__.'/../VERSION')) {
-            return trim(file_get_contents(__DIR__.'/../VERSION'));
-        } elseif (class_exists('\Google\Cloud\ServiceBuilder')) {
-            return \Google\Cloud\ServiceBuilder::VERSION;
-        } else {
-            return;
-        }
+        throw new ValidationException("Input did not match any known format. Input: $formattedName");
     }
 
     /**
@@ -430,7 +373,7 @@ class SpannerGapicClient
      * ```
      * try {
      *     $spannerClient = new SpannerClient();
-     *     $formattedDatabase = SpannerClient::formatDatabaseName("[PROJECT]", "[INSTANCE]", "[DATABASE]");
+     *     $formattedDatabase = $spannerClient->databaseName("[PROJECT]", "[INSTANCE]", "[DATABASE]");
      *     $response = $spannerClient->createSession($formattedDatabase);
      * } finally {
      *     $spannerClient->close();
@@ -484,7 +427,7 @@ class SpannerGapicClient
      * ```
      * try {
      *     $spannerClient = new SpannerClient();
-     *     $formattedName = SpannerClient::formatSessionName("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
+     *     $formattedName = $spannerClient->sessionName("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
      *     $response = $spannerClient->getSession($formattedName);
      * } finally {
      *     $spannerClient->close();
@@ -536,7 +479,7 @@ class SpannerGapicClient
      * ```
      * try {
      *     $spannerClient = new SpannerClient();
-     *     $formattedName = SpannerClient::formatSessionName("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
+     *     $formattedName = $spannerClient->sessionName("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
      *     $spannerClient->deleteSession($formattedName);
      * } finally {
      *     $spannerClient->close();
@@ -596,7 +539,7 @@ class SpannerGapicClient
      * ```
      * try {
      *     $spannerClient = new SpannerClient();
-     *     $formattedSession = SpannerClient::formatSessionName("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
+     *     $formattedSession = $spannerClient->sessionName("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
      *     $sql = "";
      *     $response = $spannerClient->executeSql($formattedSession, $sql);
      * } finally {
@@ -708,7 +651,7 @@ class SpannerGapicClient
      * ```
      * try {
      *     $spannerClient = new SpannerClient();
-     *     $formattedSession = SpannerClient::formatSessionName("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
+     *     $formattedSession = $spannerClient->sessionName("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
      *     $sql = "";
      *     // Read all responses until the stream is complete
      *     $stream = $spannerClient->executeStreamingSql($formattedSession, $sql);
@@ -828,7 +771,7 @@ class SpannerGapicClient
      * ```
      * try {
      *     $spannerClient = new SpannerClient();
-     *     $formattedSession = SpannerClient::formatSessionName("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
+     *     $formattedSession = $spannerClient->sessionName("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
      *     $table = "";
      *     $columns = [];
      *     $keySet = new KeySet();
@@ -932,7 +875,7 @@ class SpannerGapicClient
      * ```
      * try {
      *     $spannerClient = new SpannerClient();
-     *     $formattedSession = SpannerClient::formatSessionName("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
+     *     $formattedSession = $spannerClient->sessionName("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
      *     $table = "";
      *     $columns = [];
      *     $keySet = new KeySet();
@@ -1035,7 +978,7 @@ class SpannerGapicClient
      * ```
      * try {
      *     $spannerClient = new SpannerClient();
-     *     $formattedSession = SpannerClient::formatSessionName("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
+     *     $formattedSession = $spannerClient->sessionName("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
      *     $options = new TransactionOptions();
      *     $response = $spannerClient->beginTransaction($formattedSession, $options);
      * } finally {
@@ -1097,7 +1040,7 @@ class SpannerGapicClient
      * ```
      * try {
      *     $spannerClient = new SpannerClient();
-     *     $formattedSession = SpannerClient::formatSessionName("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
+     *     $formattedSession = $spannerClient->sessionName("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
      *     $mutations = [];
      *     $response = $spannerClient->commit($formattedSession, $mutations);
      * } finally {
@@ -1179,7 +1122,7 @@ class SpannerGapicClient
      * ```
      * try {
      *     $spannerClient = new SpannerClient();
-     *     $formattedSession = SpannerClient::formatSessionName("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
+     *     $formattedSession = $spannerClient->sessionName("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
      *     $transactionId = "";
      *     $spannerClient->rollback($formattedSession, $transactionId);
      * } finally {
