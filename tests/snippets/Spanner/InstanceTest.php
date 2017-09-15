@@ -65,7 +65,7 @@ class InstanceTest extends SnippetTestCase
         $snippet = $this->snippetFromClass(Instance::class);
         $res = $snippet->invoke('instance');
         $this->assertInstanceOf(Instance::class, $res->returnVal());
-        $this->assertEquals(InstanceAdminClient::formatInstanceName(self::PROJECT, self::INSTANCE), $res->returnVal()->name());
+        $this->assertEquals(InstanceAdminClient::instanceName(self::PROJECT, self::INSTANCE), $res->returnVal()->name());
     }
 
     /**
@@ -74,7 +74,7 @@ class InstanceTest extends SnippetTestCase
     public function testCreate()
     {
         $config = $this->prophesize(InstanceConfiguration::class);
-        $config->name()->willReturn(InstanceAdminClient::formatInstanceConfigName(self::PROJECT, 'foo'));
+        $config->name()->willReturn(InstanceAdminClient::instanceConfigName(self::PROJECT, 'foo'));
 
         $snippet = $this->snippetFromMethod(Instance::class, 'create');
         $snippet->addLocal('configuration', $config->reveal());
@@ -96,7 +96,7 @@ class InstanceTest extends SnippetTestCase
         $snippet->addLocal('instance', $this->instance);
 
         $res = $snippet->invoke('name');
-        $this->assertEquals(InstanceAdminClient::formatInstanceName(self::PROJECT, self::INSTANCE), $res->returnVal());
+        $this->assertEquals(InstanceAdminClient::instanceName(self::PROJECT, self::INSTANCE), $res->returnVal());
     }
 
     public function testInfo()
@@ -212,7 +212,7 @@ class InstanceTest extends SnippetTestCase
 
         $res = $snippet->invoke('database');
         $this->assertInstanceOf(Database::class, $res->returnVal());
-        $this->assertEquals(self::DATABASE, DatabaseAdminClient::parseDatabaseFromDatabaseName($res->returnVal()->name()));
+        $this->assertEquals(self::DATABASE, DatabaseAdminClient::parseName($res->returnVal()->name())['database']);
     }
 
     public function testDatabases()
@@ -225,7 +225,7 @@ class InstanceTest extends SnippetTestCase
             ->willReturn([
                 'databases' => [
                     [
-                        'name' => DatabaseAdminClient::formatDatabaseName(self::PROJECT, self::INSTANCE, self::DATABASE)
+                        'name' => DatabaseAdminClient::databaseName(self::PROJECT, self::INSTANCE, self::DATABASE)
                     ]
                 ]
             ]);

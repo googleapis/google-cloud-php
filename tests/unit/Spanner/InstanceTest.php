@@ -65,7 +65,7 @@ class InstanceTest extends \PHPUnit_Framework_TestCase
 
     public function testName()
     {
-        $this->assertEquals(self::NAME, InstanceAdminClient::parseInstanceFromInstanceName($this->instance->name()));
+        $this->assertEquals(self::NAME, InstanceAdminClient::parseName($this->instance->name())['instance']);
     }
 
     public function testInfo()
@@ -213,7 +213,7 @@ class InstanceTest extends \PHPUnit_Framework_TestCase
     public function testDelete()
     {
         $this->connection->deleteInstance([
-            'name' => InstanceAdminClient::formatInstanceName(self::PROJECT_ID, self::NAME)
+            'name' => InstanceAdminClient::instanceName(self::PROJECT_ID, self::NAME)
         ])->shouldBeCalled();
 
         $this->instance->___setProperty('connection', $this->connection->reveal());
@@ -226,7 +226,7 @@ class InstanceTest extends \PHPUnit_Framework_TestCase
         $extra = ['foo', 'bar'];
 
         $this->connection->createDatabase([
-            'instance' => InstanceAdminClient::formatInstanceName(self::PROJECT_ID, self::NAME),
+            'instance' => InstanceAdminClient::instanceName(self::PROJECT_ID, self::NAME),
             'createStatement' => 'CREATE DATABASE `test-database`',
             'extraStatements' => $extra
         ])
@@ -246,14 +246,14 @@ class InstanceTest extends \PHPUnit_Framework_TestCase
     {
         $database = $this->instance->database('test-database');
         $this->assertInstanceOf(Database::class, $database);
-        $this->assertEquals('test-database', DatabaseAdminClient::parseDatabaseFromDatabaseName($database->name()));
+        $this->assertEquals('test-database', DatabaseAdminClient::parseName($database->name())['database']);
     }
 
     public function testDatabases()
     {
         $databases = [
-            ['name' => DatabaseAdminClient::formatDatabaseName(self::PROJECT_ID, self::NAME, 'database1')],
-            ['name' => DatabaseAdminClient::formatDatabaseName(self::PROJECT_ID, self::NAME, 'database2')]
+            ['name' => DatabaseAdminClient::databaseName(self::PROJECT_ID, self::NAME, 'database1')],
+            ['name' => DatabaseAdminClient::databaseName(self::PROJECT_ID, self::NAME, 'database2')]
         ];
 
         $this->connection->listDatabases(Argument::any())
@@ -269,15 +269,15 @@ class InstanceTest extends \PHPUnit_Framework_TestCase
         $dbs = iterator_to_array($dbs);
 
         $this->assertEquals(2, count($dbs));
-        $this->assertEquals('database1', DatabaseAdminClient::parseDatabaseFromDatabaseName($dbs[0]->name()));
-        $this->assertEquals('database2', DatabaseAdminClient::parseDatabaseFromDatabaseName($dbs[1]->name()));
+        $this->assertEquals('database1', DatabaseAdminClient::parseName($dbs[0]->name())['database']);
+        $this->assertEquals('database2', DatabaseAdminClient::parseName($dbs[1]->name())['database']);
     }
 
     public function testDatabasesPaged()
     {
         $databases = [
-            ['name' => DatabaseAdminClient::formatDatabaseName(self::PROJECT_ID, self::NAME, 'database1')],
-            ['name' => DatabaseAdminClient::formatDatabaseName(self::PROJECT_ID, self::NAME, 'database2')]
+            ['name' => DatabaseAdminClient::databaseName(self::PROJECT_ID, self::NAME, 'database1')],
+            ['name' => DatabaseAdminClient::databaseName(self::PROJECT_ID, self::NAME, 'database2')]
         ];
 
         $iteration = 0;
@@ -294,8 +294,8 @@ class InstanceTest extends \PHPUnit_Framework_TestCase
         $dbs = iterator_to_array($dbs);
 
         $this->assertEquals(2, count($dbs));
-        $this->assertEquals('database1', DatabaseAdminClient::parseDatabaseFromDatabaseName($dbs[0]->name()));
-        $this->assertEquals('database2', DatabaseAdminClient::parseDatabaseFromDatabaseName($dbs[1]->name()));
+        $this->assertEquals('database1', DatabaseAdminClient::parseName($dbs[0]->name())['database']);
+        $this->assertEquals('database2', DatabaseAdminClient::parseName($dbs[1]->name())['database']);
     }
 
     public function testIam()

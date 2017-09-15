@@ -105,7 +105,7 @@ class SpannerClientTest extends SnippetTestCase
 
         $res = $snippet->invoke('configuration');
         $this->assertInstanceOf(InstanceConfiguration::class, $res->returnVal());
-        $this->assertEquals(InstanceAdminClient::formatInstanceConfigName(self::PROJECT, $configName), $res->returnVal()->name());
+        $this->assertEquals(InstanceAdminClient::instanceConfigName(self::PROJECT, $configName), $res->returnVal()->name());
     }
 
     /**
@@ -137,7 +137,7 @@ class SpannerClientTest extends SnippetTestCase
 
         $res = $snippet->invoke('instance');
         $this->assertInstanceOf(Instance::class, $res->returnVal());
-        $this->assertEquals(InstanceAdminClient::formatInstanceName(self::PROJECT, self::INSTANCE), $res->returnVal()->name());
+        $this->assertEquals(InstanceAdminClient::instanceName(self::PROJECT, self::INSTANCE), $res->returnVal()->name());
     }
 
     /**
@@ -152,8 +152,8 @@ class SpannerClientTest extends SnippetTestCase
             ->shouldBeCalled()
             ->willReturn([
                 'instances' => [
-                    ['name' => InstanceAdminClient::formatInstanceName(self::PROJECT, self::INSTANCE)],
-                    ['name' => InstanceAdminClient::formatInstanceName(self::PROJECT, 'bar')]
+                    ['name' => InstanceAdminClient::instanceName(self::PROJECT, self::INSTANCE)],
+                    ['name' => InstanceAdminClient::instanceName(self::PROJECT, 'bar')]
                 ]
             ]);
 
@@ -162,7 +162,7 @@ class SpannerClientTest extends SnippetTestCase
         $res = $snippet->invoke('instances');
         $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
         $this->assertInstanceOf(Instance::class, $res->returnVal()->current());
-        $this->assertEquals(InstanceAdminClient::formatInstanceName(self::PROJECT, self::INSTANCE), $res->returnVal()->current()->name());
+        $this->assertEquals(InstanceAdminClient::instanceName(self::PROJECT, self::INSTANCE), $res->returnVal()->current()->name());
     }
 
     public function testConnect()
