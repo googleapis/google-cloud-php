@@ -63,7 +63,7 @@
         "phpseclib/phpseclib": "^2"
     },
     "replace": {
-        "google/cloud-bigquery": "0.2.3",
+        "google/cloud-bigquery": "0.2.4",
         "google/cloud-core": "1.9.0",
         "google/cloud-datastore": "1.0.1",
         "google/cloud-error-reporting": "0.4.3",
@@ -110,7 +110,10 @@
             "id": "google-cloud",
             "target": "git@github.com:jdpedrie-gcp/google-cloud-php.git",
             "path": "src",
-            "entry": ["Version.php", "ServiceBuilder.php"]
+            "entry": [
+                "Version.php",
+                "ServiceBuilder.php"
+            ]
         }
     }
 }
