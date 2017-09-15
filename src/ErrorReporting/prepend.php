@@ -18,51 +18,16 @@
 namespace Google\Cloud\ErrorReporting;
 
 /**
- * auto_prepend_file for Stackdriver Error Reporting. Put this file as
- * `auto_prepend_file` php configuration directive to enable automatic error
- * reporting.
- *
- * ```
- * auto_prepend_file = '/app/vendor/google/cloud-error-reporting/prepend.php'
- * ```
- *
- * @codingStandardsIgnoreFile
+ * This class has been moved to src/Logging/prepend.php
  */
-if (file_exists(__DIR__ . '/../../vendor/autoload.php')) {
+if (file_exists(__DIR__ . '/../Logging/prepend.php')) {
     // when running from a git clone.
-    require_once __DIR__ . '/../../vendor/autoload.php';
-} elseif (file_exists(__DIR__ . '/../../../vendor/autoload.php')) {
+    require_once __DIR__ . '/../Logging/prepend.php';
+} elseif (file_exists(__DIR__ . '/../cloud-logging/prepend.php')) {
     // when running from google/cloud-error-reporting installation.
-    require_once __DIR__ . '/../../../vendor/autoload.php';
-} elseif (file_exists(__DIR__ . '/../../../../../vendor/autoload.php')) {
-    // when running from google/cloud installation.
-    require_once __DIR__ . '/../../../../../vendor/autoload.php';
+    require_once __DIR__ . '/../cloud-logging/prepend.php';
 }
 
-/**
- * Return a user specified PsrBatchLogger.
- *
- * Put a file named 'ErrorReportingBootstrap' in the project directory which
- * returns a PsrLogger object.
- *
- * @return \Google\Cloud\Logging\PsrLogger
- */
-function getPsrBatchLogger()
-{
-    $bootstrapFile = 'ErrorReportingBootstrap';
-    if (file_exists(__DIR__ . '/../../' . $bootstrapFile)) {
-        // when running from a git clone
-        return include __DIR__ . '/../../' . $bootstrapFile;
-    }
-    if (file_exists(__DIR__ . '/../../../' . $bootstrapFile)) {
-        // when running from a google/cloud-error-reporting installation.
-        return include __DIR__ . '/../../../' . $bootstrapFile;
-    }
-    if (file_exists(__DIR__ . '/../../../../../' . $bootstrapFile)) {
-        // when running from google/cloud installation.
-        return include __DIR__ . '/../../../../../' . $bootstrapFile;
-    }
-    return null;
-}
-
-Bootstrap::init(getPsrBatchLogger());
+throw new \Exception('This file is deprecated, run "composer require '
+    . '"google/cloud-logging" and use "vendor/google/cloud-logging/prepend.php"'
+    . 'instead.');
