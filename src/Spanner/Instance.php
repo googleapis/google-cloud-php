@@ -268,7 +268,8 @@ class Instance
      */
     public function create(InstanceConfiguration $config, array $options = [])
     {
-        $instanceId = InstanceAdminClient::parseInstanceFromInstanceName($this->name);
+        $instanceNameComponents = InstanceAdminClient::parseName($this->name);
+        $instanceId = $instanceNameComponents['instance'];
         $options += [
             'displayName' => $instanceId,
             'nodeCount' => self::DEFAULT_NODE_COUNT,
@@ -281,7 +282,7 @@ class Instance
         $operation = $this->connection->createInstance([
             'instanceId' => $instanceId,
             'name' => $this->name,
-            'projectId' => InstanceAdminClient::formatProjectName($this->projectId),
+            'projectId' => InstanceAdminClient::projectName($this->projectId),
             'config' => $config->name()
         ] + $options);
 
@@ -508,7 +509,7 @@ class Instance
     private function fullyQualifiedInstanceName($name, $project)
     {
         // try {
-            return InstanceAdminClient::formatInstanceName(
+            return InstanceAdminClient::instanceName(
                 $project,
                 $name
             );

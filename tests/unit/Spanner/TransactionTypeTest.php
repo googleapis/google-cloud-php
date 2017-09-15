@@ -61,7 +61,7 @@ class TransactionTypeTest extends \PHPUnit_Framework_TestCase
         $this->connection = $this->prophesize(ConnectionInterface::class);
 
         $this->connection->createSession(Argument::any())
-            ->willReturn(['name' => SpannerClient::formatSessionName(
+            ->willReturn(['name' => SpannerClient::sessionName(
                 self::PROJECT,
                 self::INSTANCE,
                 self::DATABASE,
@@ -732,7 +732,7 @@ class TransactionTypeTest extends \PHPUnit_Framework_TestCase
 
         $this->connection->rollback(Argument::that(function ($arg) {
             if ($arg['transactionId'] !== self::TRANSACTION) return false;
-            if ($arg['session'] !== SpannerClient::formatSessionName(
+            if ($arg['session'] !== SpannerClient::sessionName(
                 self::PROJECT,
                 self::INSTANCE,
                 self::DATABASE,
@@ -764,7 +764,7 @@ class TransactionTypeTest extends \PHPUnit_Framework_TestCase
     {
         $operation = new Operation($connection, false);
         $instance = $this->prophesize(Instance::class);
-        $instance->name()->willReturn(InstanceAdminClient::formatInstanceName(self::PROJECT, self::INSTANCE));
+        $instance->name()->willReturn(InstanceAdminClient::instanceName(self::PROJECT, self::INSTANCE));
 
         $database = \Google\Cloud\Dev\stub(Database::class, [
             $connection,
