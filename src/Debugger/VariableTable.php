@@ -30,7 +30,25 @@ class VariableTable implements \JsonSerializable
                     $this->sharedVariableIndex[$hash] = $index;
                     $valueString = "$type ($hash)";
                     $members = get_object_vars($value);
+
+                    $variable = new Variable([
+                        'name' => $name,
+                        'type' => $type,
+                        'value' => $valueString
+                    ]);
+                    if ($depth < self::MAX_MEMBER_DEPTH) {
+                        foreach ($members as $key => $member) {
+                            array_push($variable->members, $this->register($key, $member, $depth + 1));
+                        }
+                    }
+                    $this->nextIndex++;
+                    array_push($this->variables, $variable);
                 }
+                return new Variable([
+                    'name' => $name,
+                    'type' => $type,
+                    'varTableIndex' => $index
+                ]);
                 break;
             case 'array':
                 $arraySize = count($value);
@@ -43,24 +61,10 @@ class VariableTable implements \JsonSerializable
                 $valueString = (string)$value;
         }
 
-        if (!$shared) {
-            $variable = new Variable([
-                'name' => $name,
-                'type' => $type,
-                'value' => $valueString
-            ]);
-            if ($depth < self::MAX_MEMBER_DEPTH) {
-                foreach ($members as $key => $member) {
-                    array_push($variable->members, $this->register($key, $member, $depth + 1));
-                }
-            }
-            $this->nextIndex++;
-            array_push($this->variables, $variable);
-        }
         return new Variable([
             'name' => $name,
             'type' => $type,
-            'varTableIndex' => $index
+            'value' => $valueString
         ]);
     }
 
