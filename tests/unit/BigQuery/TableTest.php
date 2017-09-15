@@ -175,7 +175,7 @@ class TableTest extends \PHPUnit_Framework_TestCase
             ->shouldBeCalledTimes(1);
         $this->connection->listTableData(Argument::any())
             ->willReturn(
-                $this->rowData + ['nextPageToken' => 'abc'],
+                $this->rowData + ['pageToken' => 'abc'],
                 $secondRowData
             )
             ->shouldBeCalledTimes(2);
