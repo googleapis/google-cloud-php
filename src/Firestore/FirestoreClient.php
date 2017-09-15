@@ -297,6 +297,14 @@ class FirestoreClient
         ]);
     }
 
+    public function runQuery(Query $query)
+    {
+        return $this->connection->runQuery([
+            'parent' => $this->parentPath($query->name()),
+            'structuredQuery' => $query->query()
+        ]);
+    }
+
     /**
      * Create a document instance with the given document name.
      *

@@ -221,7 +221,7 @@ class ValueMapper
         }
     }
 
-    private function encodeValue($value)
+    public function encodeValue($value)
     {
         $type = gettype($value);
 

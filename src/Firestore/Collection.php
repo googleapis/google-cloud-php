@@ -23,7 +23,7 @@ use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 
-class Collection
+class Collection extends Query
 {
     use ArrayTrait;
     use DebugInfoTrait;
@@ -145,5 +145,10 @@ class Collection
     private function documentFactory($name)
     {
         return new Document($this->connection, $this->valueMapper, $this, $name);
+    }
+
+    protected function valueMapper()
+    {
+        return $this->valueMapper;
     }
 }

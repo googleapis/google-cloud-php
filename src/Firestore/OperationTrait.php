@@ -23,7 +23,6 @@ use Google\Cloud\Core\ValueMapperTrait;
 trait OperationTrait
 {
     use ArrayTrait;
-    use ValueMapperTrait;
 
     /**
      * Commit writes to the database.
@@ -41,13 +40,13 @@ trait OperationTrait
         ] + $options);
 
         if (isset($response['commitTime'])) {
-            $response['commitTime'] = $this->createTimestampWithNanos($response['commitTime']);
+            $response['commitTime'] = $this->valueMapper->createTimestampWithNanos($response['commitTime']);
         }
 
         if (isset($response['writeResults'])) {
             foreach ($response['writeResults'] as &$result) {
                 if (isset($result['updateTime'])) {
-                    $result['updateTime'] = $this->createTimestampWithNanos($result['updateTime']);
+                    $result['updateTime'] = $this->valueMapper->createTimestampWithNanos($result['updateTime']);
                 }
             }
         }

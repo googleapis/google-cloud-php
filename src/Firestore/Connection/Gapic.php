@@ -17,16 +17,17 @@
 
 namespace Google\Cloud\Firestore\Connection;
 
-use Google\Cloud\Core\GrpcRequestWrapper;
-use Google\Cloud\Core\GrpcTrait;
-use Google\Cloud\Firestore\FirestoreClient as ManualFirestoreClient;
-use Google\Cloud\Firestore\V1beta1\FirestoreAdminClient;
-use Google\Cloud\Firestore\V1beta1\FirestoreClient;
-use Google\Firestore\V1beta1\DocumentMask;
-use Google\Firestore\V1beta1\TransactionOptions;
-use Google\Firestore\V1beta1\TransactionOptions_ReadWrite;
-use Google\Firestore\V1beta1\Write;
 use Google\GAX\Serializer;
+use Google\Cloud\Core\GrpcTrait;
+use Google\Firestore\V1beta1\Write;
+use Google\Cloud\Core\GrpcRequestWrapper;
+use Google\Firestore\V1beta1\DocumentMask;
+use Google\Firestore\V1beta1\StructuredQuery;
+use Google\Firestore\V1beta1\TransactionOptions;
+use Google\Cloud\Firestore\V1beta1\FirestoreClient;
+use Google\Cloud\Firestore\V1beta1\FirestoreAdminClient;
+use Google\Firestore\V1beta1\TransactionOptions_ReadWrite;
+use Google\Cloud\Firestore\FirestoreClient as ManualFirestoreClient;
 
 class Gapic implements ConnectionInterface
 {
@@ -315,7 +316,18 @@ class Gapic implements ConnectionInterface
      */
     public function runQuery(array $args)
     {
-        throw new \BadMethodCallException('not implemented');
+        $q = $this->pluck('structuredQuery', $args);
+
+        // print_r($q);exit;
+        $args['structuredQuery'] = $this->serializer->decodeMessage(
+            new StructuredQuery,
+            $q
+        );
+        
+        return $this->send([$this->firestore, 'runQuery'], [
+            $this->pluck('parent', $args),
+            $args
+        ]);
     }
 
     /**
