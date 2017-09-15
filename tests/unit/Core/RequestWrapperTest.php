@@ -20,7 +20,6 @@ namespace Google\Cloud\Tests\Unit\Core;
 
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Core\RequestWrapper;
-use Google\Cloud\ServiceBuilder;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;

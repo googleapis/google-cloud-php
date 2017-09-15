@@ -9,8 +9,10 @@
         {
             "id": "google-cloud",
             "name": "google/cloud",
-            "defaultService": "servicebuilder",
+            "defaultService": "readme",
             "versions": [
+                "v0.39.1",
+                "v0.39.0",
                 "v0.38.0",
                 "v0.37.0",
                 "v0.36.0",
@@ -66,6 +68,7 @@
             "name": "google/cloud-bigquery",
             "defaultService": "bigquery/bigqueryclient",
             "versions": [
+                "v0.2.4",
                 "v0.2.3",
                 "v0.2.2",
                 "v0.2.1",
@@ -77,8 +80,9 @@
         {
             "id": "cloud-core",
             "name": "google/cloud-core",
-            "defaultService": "core/readme",
+            "defaultService": "core/servicebuilder",
             "versions": [
+                "v1.9.0",
                 "v1.8.1",
                 "v1.8.0",
                 "v1.7.0",
@@ -140,6 +144,7 @@
             "name": "google/cloud-logging",
             "defaultService": "logging/loggingclient",
             "versions": [
+                "v1.4.0",
                 "v1.3.2",
                 "v1.3.1",
                 "v1.3.0",
@@ -185,6 +190,7 @@
             "name": "google/cloud-pubsub",
             "defaultService": "pubsub/pubsubclient",
             "versions": [
+                "v0.7.0",
                 "v0.6.2",
                 "v0.6.1",
                 "v0.6.0",
@@ -220,6 +226,7 @@
             "name": "google/cloud-speech",
             "defaultService": "speech/speechclient",
             "versions": [
+                "v0.7.0",
                 "v0.6.2",
                 "v0.6.1",
                 "v0.6.0",
@@ -277,6 +284,7 @@
             "name": "google/cloud-videointelligence",
             "defaultService": "videointelligence/videointelligenceserviceclient",
             "versions": [
+                "v0.4.0",
                 "v0.3.3",
                 "v0.3.2",
                 "v0.3.1",

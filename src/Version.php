@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2015 Google Inc. All Rights Reserved.
+ * Copyright 2017 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,18 +17,10 @@
 
 namespace Google\Cloud;
 
-use Google\Cloud\Core\ServiceBuilder as CoreServiceBuilder;
-
 /**
- * This class is here to maintain backwards compatibility with previous
- * versions.
- *
- * @deprecated use Google\Cloud\Core\ServiceBuilder instead
+ * This class serves as a simple wrapper for the google/cloud library version.
  */
-class ServiceBuilder extends CoreServiceBuilder
+class Version
 {
-    /**
-     * @deprecated
-     */
     const VERSION = '0.39.1';
 }

@@ -202,6 +202,7 @@ class Table
                 [$this->connection, 'listTableData'],
                 $options + $this->identity,
                 [
+                    'nextResultTokenKey' => 'pageToken',
                     'itemsKey' => 'rows',
                     'resultLimit' => $resultLimit
                 ]

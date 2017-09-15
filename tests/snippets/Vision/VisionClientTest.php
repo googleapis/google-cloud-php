@@ -39,7 +39,7 @@ class VisionClientTest extends SnippetTestCase
         $this->client->___setProperty('connection', $this->connection->reveal());
     }
 
-    public function testClassWithServiceBuilder()
+    public function testClass()
     {
         $snippet = $this->snippetFromClass(VisionClient::class);
         $res = $snippet->invoke('vision');
