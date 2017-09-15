@@ -38,7 +38,6 @@ class Agent
         $storage = new BreakpointStorage();
         list($this->debuggeeId, $breakpoints) = $storage->load();
 
-
         $this->setCommonBatchProperties($options + [
             'identifier' => 'stackdriver-debugger',
             'batchMethod' => 'insertBatch'
@@ -48,7 +47,6 @@ class Agent
             : $this->defaultDebuggee();
 
         if (empty($breakpoints)) {
-            // echo "no breakpoints\n";
             return;
         }
 
@@ -56,11 +54,8 @@ class Agent
             ? $options['sourceRoot'] . '/foo'
             : debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 1)[0]['file'];
 
-        // echo "found " . count($breakpoints) . " breakpoints\n";
-
         foreach ($breakpoints as $breakpoint) {
             $this->breakpoints[$breakpoint->id] = $breakpoint;
-
             switch ($breakpoint->action->value) {
                 case Action::CAPTURE:
                     $sourceLocation = $breakpoint->location;
@@ -76,7 +71,6 @@ class Agent
                     break;
                 case Action::LOG:
                 default:
-                    echo "unsupported breakpoint type\n";
                     continue;
             }
         }
@@ -89,12 +83,14 @@ class Agent
         $loggingClient = new LoggingClient();
         $logger = $loggingClient->psrBatchLogger('foo');
         $logger->info("Report collected debugger snapshots");
+
         $list = stackdriver_debugger_list();
         $logger->info("Found " . count($list) . " snapshots");
         foreach ($list as $snapshot) {
             if (array_key_exists($snapshot['id'], $this->breakpoints)) {
                 $breakpoint = $this->breakpoints[$snapshot['id']];
                 $this->fillBreakpoint($breakpoint, $snapshot);
+                file_put_contents('./breakpoint.json', json_encode($breakpoint));
                 $this->batchRunner->submitItem($this->identifier, $breakpoint);
             } else {
                 $logger->error("found reported snapshot but couldn't find record");
@@ -127,8 +123,6 @@ class Agent
 
     private function defaultDebuggee()
     {
-        // echo "creating new debugger client\n";
-        // var_dump($this->debuggeeId);
         $client = new DebuggerClient($this->clientConfig);
         return $client->debuggee($this->debuggeeId, [
             'uniquifier' => 'foo-bar2',

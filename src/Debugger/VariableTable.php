@@ -28,14 +28,17 @@ class VariableTable implements \JsonSerializable
                     $shared = true;
                 } else {
                     $this->sharedVariableIndex[$hash] = $index;
+                    $valueString = "$type ($hash)";
+                    $members = get_object_vars($value);
                 }
-                $valueString = "$type ($hash)";
-                $members = get_object_vars($value);
                 break;
             case 'array':
-                $valueString = 'array';
+                $arraySize = count($value);
+                $valueString = "array ($arraySize)";
                 $members = $value;
                 break;
+            case 'NULL':
+                $valueString = 'NULL';
             default:
                 $valueString = (string)$value;
         }
