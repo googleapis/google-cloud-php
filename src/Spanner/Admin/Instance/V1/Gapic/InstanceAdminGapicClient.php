@@ -895,7 +895,7 @@ class InstanceAdminGapicClient
      *          is not set.
      * }
      *
-     * @return \Google\Longrunning\Operation
+     * @return \Google\GAX\OperationResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      * @experimental
@@ -1019,7 +1019,7 @@ class InstanceAdminGapicClient
      *          is not set.
      * }
      *
-     * @return \Google\Longrunning\Operation
+     * @return \Google\GAX\OperationResponse
      *
      * @throws \Google\GAX\ApiException if the remote call fails
      * @experimental
