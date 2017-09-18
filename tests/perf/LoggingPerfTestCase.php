@@ -27,21 +27,25 @@ class LoggingPerfTestCase extends \PHPUnit_Framework_TestCase
     /* @var PsrLogger */
     private $grpcClient;
 
-    public static function setUpBeforeClass()
-    {
-        if (getenv('GCLOUD_PROJECT') === false) {
-            self::fail('Set GCLOUD_PROJECT env var');
-        }
-    }
-
     public function setUp()
     {
+        $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
         $this->restLogger = LoggingClient::psrBatchLogger(
-            'perf-rest'
+            'perf-rest',
+            [
+                'clientConfig' => [
+                    'keyFilePath' => $keyFilePath
+                ]
+            ]
         );
         $this->grpcLogger = LoggingClient::psrBatchLogger(
             'perf-grpc',
-            ['clientConfig' => ['transport' => 'grpc']]
+            [
+                'clientConfig' => [
+                    'keyFilePath' => $keyFilePath,
+                    'transport' => 'grpc'
+                ]
+            ]
         );
     }
 
