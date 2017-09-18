@@ -80,20 +80,14 @@ class Agent
 
     public function onFinish()
     {
-        $loggingClient = new LoggingClient();
-        $logger = $loggingClient->psrBatchLogger('foo');
-        $logger->info("Report collected debugger snapshots");
-
         $list = stackdriver_debugger_list();
-        $logger->info("Found " . count($list) . " snapshots");
         foreach ($list as $snapshot) {
             if (array_key_exists($snapshot['id'], $this->breakpoints)) {
                 $breakpoint = $this->breakpoints[$snapshot['id']];
                 $this->fillBreakpoint($breakpoint, $snapshot);
-                file_put_contents('./breakpoint.json', json_encode($breakpoint));
                 $this->batchRunner->submitItem($this->identifier, $breakpoint);
-            } else {
-                $logger->error("found reported snapshot but couldn't find record");
+            // } else {
+            //     $logger->error("found reported snapshot but couldn't find record");
             }
         }
     }
