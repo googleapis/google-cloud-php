@@ -31,7 +31,6 @@
  */
 namespace Google\GAX;
 
-use Grpc;
 use Exception;
 use InvalidArgumentException;
 
@@ -70,17 +69,16 @@ class ApiCallable
         }
 
         $inner = function () use ($apiCall, $retrySettings, $timeFuncMillis) {
-            $backoffSettings = $retrySettings->getBackoffSettings();
 
             // Initialize retry parameters
-            $delayMult = $backoffSettings->getRetryDelayMultiplier();
-            $maxDelayMillis = $backoffSettings->getMaxRetryDelayMillis();
-            $timeoutMult = $backoffSettings->getRpcTimeoutMultiplier();
-            $maxTimeoutMillis = $backoffSettings->getMaxRpcTimeoutMillis();
-            $totalTimeoutMillis = $backoffSettings->getTotalTimeoutMillis();
+            $delayMult = $retrySettings->getRetryDelayMultiplier();
+            $maxDelayMillis = $retrySettings->getMaxRetryDelayMillis();
+            $timeoutMult = $retrySettings->getRpcTimeoutMultiplier();
+            $maxTimeoutMillis = $retrySettings->getMaxRpcTimeoutMillis();
+            $totalTimeoutMillis = $retrySettings->getTotalTimeoutMillis();
 
-            $delayMillis = $backoffSettings->getInitialRetryDelayMillis();
-            $timeoutMillis = $backoffSettings->getInitialRpcTimeoutMillis();
+            $delayMillis = $retrySettings->getInitialRetryDelayMillis();
+            $timeoutMillis = $retrySettings->getInitialRpcTimeoutMillis();
             $currentTimeMillis = $timeFuncMillis();
             $deadlineMillis = $currentTimeMillis + $totalTimeoutMillis;
 
@@ -89,14 +87,14 @@ class ApiCallable
                 try {
                     return call_user_func_array($nextApiCall, func_get_args());
                 } catch (ApiException $e) {
-                    if (!in_array($e->getCode(), $retrySettings->getRetryableCodes())) {
+                    if (!in_array($e->getStatus(), $retrySettings->getRetryableCodes())) {
                         throw $e;
                     }
                 } catch (Exception $e) {
                     throw $e;
                 }
                 // Don't sleep if the failure was a timeout
-                if ($e->getCode() != Grpc\STATUS_DEADLINE_EXCEEDED) {
+                if ($e->getStatus() != ApiStatus::DEADLINE_EXCEEDED) {
                     usleep($delayMillis * 1000);
                 }
                 $currentTimeMillis = $timeFuncMillis();
@@ -107,7 +105,11 @@ class ApiCallable
                     $deadlineMillis - $currentTimeMillis
                 );
             }
-            throw new ApiException("Retry total timeout exceeded.", Grpc\STATUS_DEADLINE_EXCEEDED);
+            throw new ApiException(
+                "Retry total timeout exceeded.",
+                \Google\Rpc\Code::DEADLINE_EXCEEDED,
+                ApiStatus::DEADLINE_EXCEEDED
+            );
         };
         return $inner;
     }
@@ -139,7 +141,7 @@ class ApiCallable
         return function () use ($callable) {
             list($response, $status) =
                 call_user_func_array($callable, func_get_args())->wait();
-            if ($status->code == Grpc\STATUS_OK) {
+            if ($status->code == \Google\Rpc\Code::OK) {
                 return $response;
             } else {
                 throw ApiException::createFromStdClass($status);
@@ -219,14 +221,16 @@ class ApiCallable
         }
 
         $retrySettings = $settings->getRetrySettings();
-        if (!is_null($retrySettings) && !is_null($retrySettings->getRetryableCodes())) {
-            $timeFuncMillis = null;
-            if (array_key_exists('timeFuncMillis', $options)) {
-                $timeFuncMillis = $options['timeFuncMillis'];
+        if (!is_null($retrySettings)) {
+            if ($retrySettings->retriesEnabled()) {
+                $timeFuncMillis = null;
+                if (array_key_exists('timeFuncMillis', $options)) {
+                    $timeFuncMillis = $options['timeFuncMillis'];
+                }
+                $apiCall = self::setRetry($apiCall, $retrySettings, $timeFuncMillis);
+            } elseif ($retrySettings->getNoRetriesRpcTimeoutMillis() > 0) {
+                $apiCall = self::setTimeout($apiCall, $retrySettings->getNoRetriesRpcTimeoutMillis());
             }
-            $apiCall = self::setRetry($apiCall, $settings->getRetrySettings(), $timeFuncMillis);
-        } elseif ($settings->getTimeoutMillis() > 0) {
-            $apiCall = self::setTimeout($apiCall, $settings->getTimeoutMillis());
         }
 
         if (array_key_exists('pageStreamingDescriptor', $options)) {

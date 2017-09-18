@@ -31,12 +31,10 @@
  */
 namespace Google\GAX\UnitTests;
 
-use Google\GAX\BackoffSettings;
 use Google\GAX\CallSettings;
-use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\RetrySettings;
+use Google\GAX\ValidationException;
 use PHPUnit_Framework_TestCase;
-use Grpc;
 
 class CallSettingsTest extends PHPUnit_Framework_TestCase
 {
@@ -44,130 +42,130 @@ class CallSettingsTest extends PHPUnit_Framework_TestCase
 
     private static function buildInputConfig()
     {
-        return [
-            'interfaces' => [
-                CallSettingsTest::SERVICE_NAME => [
-                    'retry_codes' => [
-                        'foo_retry' => ['code_a', 'code_b'],
-                        'bar_retry' => ['code_c']
-                    ],
-                    'retry_params' => [
-                        'default' => [
-                            'initial_retry_delay_millis' => 100,
-                            'retry_delay_multiplier' => 1.2,
-                            'max_retry_delay_millis' => 1000,
-                            'initial_rpc_timeout_millis' => 300,
-                            'rpc_timeout_multiplier' => 1.3,
-                            'max_rpc_timeout_millis' => 3000,
-                            'total_timeout_millis' => 30000
-                        ]
-                    ],
-                    'methods' => [
-                        'SimpleMethod' => [
-                            'retry_codes_name' => 'foo_retry',
-                            'retry_params_name' => 'default'
-                        ],
-                        'PageStreamingMethod' => [
-                            'retry_codes_name' => 'bar_retry',
-                            'retry_params_name' => 'default'
-                        ]
-                    ]
-                ]
-            ]
-        ];
+        $contents = file_get_contents(__DIR__ . '/testdata/test_service_client_config.json');
+        return json_decode($contents, true);
     }
+
+    private static function buildInvalidInputConfig()
+    {
+        $contents = file_get_contents(__DIR__ . '/testdata/test_service_invalid_client_config.json');
+        return json_decode($contents, true);
+    }
+
 
     public function testConstructSettings()
     {
-        $statusCodes = ['code_a' => 'code_val_a',
-            'code_b' => 'code_val_b',
-            'code_c' => 'code_val_c'
-        ];
         $inputConfig = CallSettingsTest::buildInputConfig();
 
         $defaultCallSettings =
                 CallSettings::load(
                     CallSettingsTest::SERVICE_NAME,
                     $inputConfig,
-                    [],
-                    $statusCodes,
-                    30
+                    []
                 );
         $simpleMethod = $defaultCallSettings['simpleMethod'];
-        $this->assertEquals(30, $simpleMethod->getTimeoutMillis());
+        $this->assertTrue($simpleMethod->getRetrySettings()->retriesEnabled());
+        $this->assertEquals(40000, $simpleMethod->getRetrySettings()->getNoRetriesRpcTimeoutMillis());
         $simpleMethodRetry = $simpleMethod->getRetrySettings();
-        $this->assertEquals(['code_val_a', 'code_val_b'], $simpleMethodRetry->getRetryableCodes());
-        $this->assertEquals(100, $simpleMethodRetry->getBackoffSettings()->getInitialRetryDelayMillis());
+        $this->assertEquals(['DEADLINE_EXCEEDED', 'UNAVAILABLE'], $simpleMethodRetry->getRetryableCodes());
+        $this->assertEquals(100, $simpleMethodRetry->getInitialRetryDelayMillis());
         $pageStreamingMethod = $defaultCallSettings['pageStreamingMethod'];
         $pageStreamingMethodRetry = $pageStreamingMethod->getRetrySettings();
-        $this->assertEquals(['code_val_c'], $pageStreamingMethodRetry->getRetryableCodes());
+        $this->assertEquals(['INTERNAL'], $pageStreamingMethodRetry->getRetryableCodes());
+    }
+
+    /**
+     * @expectedException \Google\GAX\ValidationException
+     */
+    public function testLoadInvalid()
+    {
+        $inputConfig = CallSettingsTest::buildInvalidInputConfig();
+        CallSettings::load(
+            CallSettingsTest::SERVICE_NAME,
+            $inputConfig,
+            []
+        );
     }
 
     public function testConstructSettingsOverride()
     {
-        $statusCodes = ['code_a' => 'code_val_a',
-            'code_b' => 'code_val_b',
-            'code_c' => 'code_val_c'
-        ];
         $inputConfig = CallSettingsTest::buildInputConfig();
 
         // Turn off retries for simpleMethod
-        $retryingOverride = ['simpleMethod' => null];
+        $retryingOverride = ['simpleMethod' => [
+            'retriesEnabled' => false,
+        ]];
         $defaultCallSettings =
                 CallSettings::load(
                     CallSettingsTest::SERVICE_NAME,
                     $inputConfig,
-                    $retryingOverride,
-                    $statusCodes,
-                    30
+                    $retryingOverride
                 );
         $simpleMethod = $defaultCallSettings['simpleMethod'];
-        $this->assertEquals(30, $simpleMethod->getTimeoutMillis());
-        $simpleMethodRetry = $simpleMethod->getRetrySettings();
-        $this->assertNull($simpleMethodRetry);
+        $this->assertFalse($simpleMethod->getRetrySettings()->retriesEnabled());
+        $this->assertEquals(40000, $simpleMethod->getRetrySettings()->getNoRetriesRpcTimeoutMillis());
         $pageStreamingMethod = $defaultCallSettings['pageStreamingMethod'];
         $pageStreamingMethodRetry = $pageStreamingMethod->getRetrySettings();
-        $this->assertEquals(['code_val_c'], $pageStreamingMethodRetry->getRetryableCodes());
+        $this->assertEquals(['INTERNAL'], $pageStreamingMethodRetry->getRetryableCodes());
     }
 
     public function testMergeEmpty()
     {
-        $backoffSettings = new BackoffSettings([
+        $settings = [
             'initialRetryDelayMillis' => 100,
             'retryDelayMultiplier' => 1.3,
             'maxRetryDelayMillis' => 400,
             'initialRpcTimeoutMillis' => 150,
             'rpcTimeoutMultiplier' => 2,
             'maxRpcTimeoutMillis' => 500,
-            'totalTimeoutMillis' => 2000
-        ]);
+            'totalTimeoutMillis' => 2000,
+            'noRetriesRpcTimeoutMillis' => 10,
+            'retryableCodes' => ['DEADLINE_EXCEEDED', 'UNAVAILABLE']
+        ];
 
-        $retrySettings = new RetrySettings(['a', 'b'], $backoffSettings);
-        $settings = new CallSettings(['timeoutMillis' => 10, 'retrySettings' => $retrySettings]);
+        $retrySettings = new RetrySettings($settings);
+        $callSettings = new CallSettings(['retrySettings' => $retrySettings]);
         $emptySettings = new CallSettings([]);
-        $mergedSettings = $settings->merge($emptySettings);
-        $this->assertEquals(10, $mergedSettings->getTimeoutMillis());
-        $this->assertEquals(['a', 'b'], $mergedSettings->getRetrySettings()->getRetryableCodes());
+        $mergedSettings = $callSettings->merge($emptySettings);
+        $this->assertEquals(10, $mergedSettings->getRetrySettings()->getNoRetriesRpcTimeoutMillis());
+        $this->assertEquals(
+            ['DEADLINE_EXCEEDED', 'UNAVAILABLE'],
+            $mergedSettings->getRetrySettings()->getRetryableCodes()
+        );
     }
 
     public function testMerge()
     {
-        $backoffSettings = new BackoffSettings([
+        $settings = [
             'initialRetryDelayMillis' => 100,
             'retryDelayMultiplier' => 1.3,
             'maxRetryDelayMillis' => 400,
             'initialRpcTimeoutMillis' => 150,
             'rpcTimeoutMultiplier' => 2,
             'maxRpcTimeoutMillis' => 500,
-            'totalTimeoutMillis' => 2000
-        ]);
+            'totalTimeoutMillis' => 2000,
+            'noRetriesRpcTimeoutMillis' => 10,
+            'retryableCodes' => ['DEADLINE_EXCEEDED', 'UNAVAILABLE']
+        ];
 
-        $retrySettings = new RetrySettings(['a', 'b'], $backoffSettings);
-        $settings = new CallSettings(['timeoutMillis' => 10, 'retrySettings' => $retrySettings]);
-        $otherRetrySettings = new RetrySettings(['c'], $backoffSettings);
-        $otherSettings = new CallSettings(['timeoutMillis' => 20, 'retrySettings' => $otherRetrySettings]);
+        $otherSettings = [
+            'initialRetryDelayMillis' => 100,
+            'retryDelayMultiplier' => 1.3,
+            'maxRetryDelayMillis' => 400,
+            'initialRpcTimeoutMillis' => 150,
+            'rpcTimeoutMultiplier' => 2,
+            'maxRpcTimeoutMillis' => 500,
+            'totalTimeoutMillis' => 2000,
+            'noRetriesRpcTimeoutMillis' => 20,
+            'retryableCodes' => ['INTERNAL']
+        ];
+
+        $retrySettings = new RetrySettings($settings);
+        $settings = new CallSettings(['retrySettings' => $retrySettings]);
+        $otherRetrySettings = new RetrySettings($otherSettings);
+        $otherSettings = new CallSettings(['retrySettings' => $otherRetrySettings]);
         $mergedSettings = $settings->merge($otherSettings);
-        $this->assertEquals(20, $mergedSettings->getTimeoutMillis());
-        $this->assertEquals(['c'], $mergedSettings->getRetrySettings()->getRetryableCodes());
+        $this->assertEquals(20, $mergedSettings->getRetrySettings()->getNoRetriesRpcTimeoutMillis());
+        $this->assertEquals(['INTERNAL'], $mergedSettings->getRetrySettings()->getRetryableCodes());
     }
 }

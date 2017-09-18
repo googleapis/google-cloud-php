@@ -32,16 +32,11 @@
 
 namespace Google\GAX;
 
-use InvalidArgumentException;
-
 /**
  * Encapsulates the call settings for an API call.
  */
 class CallSettings
 {
-    const INHERIT_TIMEOUT = -1;
-
-    private $timeoutMillis;
     private $retrySettings;
     private $userHeaders;
 
@@ -56,108 +51,77 @@ class CallSettings
      * @param array $retryingOverrides
      *     A dictionary of method names to RetrySettings that
      *     override those specified in $clientConfig.
-     * @param array $statusCodes
-     *     An array which maps the strings referring to response status
-     *     codes to the PHP objects representing those codes.
-     * @param int $timeoutMillisDefault
-     *     The timeout (in milliseconds) to use for calls that don't
-     *     have a retry configured, and don't have timeout_millis set
-     *     in $clientConfig.
-     *
+     * @throws ValidationException
      * @return CallSettings[] $callSettings
      */
     public static function load(
         $serviceName,
         $clientConfig,
-        $retryingOverrides,
-        $statusCodes,
-        $timeoutMillisDefault
+        $retryingOverrides
     ) {
-    
         $callSettings = [];
 
         $serviceConfig = $clientConfig['interfaces'][$serviceName];
         foreach ($serviceConfig['methods'] as $methodName => $methodConfig) {
             $phpMethodKey = lcfirst($methodName);
-            $retrySettings = null;
-            if (self::inheritRetrySettings($retryingOverrides, $phpMethodKey)) {
-                $retrySettings =
-                        self::constructRetry(
-                            $methodConfig,
-                            $statusCodes,
-                            $serviceConfig['retry_codes'],
-                            $serviceConfig['retry_params']
-                        );
-            } else {
-                $retrySettings = $retryingOverrides[$phpMethodKey];
-            }
-
-            if (array_key_exists('timeout_millis', $methodConfig)) {
-                $timeoutMillis = $methodConfig['timeout_millis'];
-            } else {
-                $timeoutMillis = $timeoutMillisDefault;
-            }
-
-            $callSettings[$phpMethodKey] = new CallSettings(
-                ['timeoutMillis' => $timeoutMillis,
-                'retrySettings' => $retrySettings]
+            $retrySettings = self::constructRetry(
+                $methodConfig,
+                $serviceConfig['retry_codes'],
+                $serviceConfig['retry_params']
             );
+            if (isset($retryingOverrides[$phpMethodKey])) {
+                $retrySettingsOverride = $retryingOverrides[$phpMethodKey];
+                if (is_array($retrySettingsOverride)) {
+                    $retrySettings = $retrySettings->with($retrySettingsOverride);
+                } elseif ($retrySettingsOverride instanceof RetrySettings) {
+                    $retrySettings = $retrySettingsOverride;
+                } else {
+                    throw new ValidationException(
+                        "Unexpected value in retryingOverrides for method " .
+                        "$phpMethodKey: $retrySettingsOverride"
+                    );
+                }
+            }
+
+            $callSettings[$phpMethodKey] = new CallSettings(['retrySettings' => $retrySettings]);
         }
         return $callSettings;
     }
 
-    private static function inheritRetrySettings($retryingOverrides, $phpMethodKey)
-    {
-        if (empty($retryingOverrides)) {
-            return true;
-        }
-        if (!array_key_exists($phpMethodKey, $retryingOverrides)) {
-            return true;
-        }
-        $retrySettings = $retryingOverrides[$phpMethodKey];
-        if (is_null($retrySettings)) {
-            // Retry has been turned off explicitly.
-            return false;
-        }
-        return $retrySettings->shouldInherit();
-    }
-
     private static function constructRetry(
         $methodConfig,
-        $statusCodes,
         $retryCodes,
         $retryParams
     ) {
-    
-        $codes = [];
-        if (!empty($retryCodes)) {
-            foreach ($retryCodes as $retryCodesName => $retryCodeList) {
-                if (isset($methodConfig['retry_codes_name']) &&
-                    $retryCodesName === $methodConfig['retry_codes_name'] &&
-                    !empty($retryCodeList)) {
-                    foreach ($retryCodeList as $retryCodeName) {
-                        if (!array_key_exists($retryCodeName, $statusCodes)) {
-                            throw new InvalidArgumentException("Invalid status code: $retryCodeName");
-                        }
-                        array_push($codes, $statusCodes[$retryCodeName]);
-                    }
-                    break;
-                }
-            }
-        }
-        $backoffSettings = null;
-        if (!empty($methodConfig['retry_params_name'])) {
-            foreach ($retryParams as $retryParamsName => $retryParamValues) {
-                if ($retryParamsName === $methodConfig['retry_params_name']) {
-                    $backoffSettings = BackoffSettings::fromSnakeCase($retryParamValues);
-                }
-            }
-        }
-        if (!empty($codes) && !empty($backoffSettings)) {
-            return new RetrySettings($codes, $backoffSettings);
-        } else {
+        if (empty($methodConfig['retry_codes_name']) || empty($methodConfig['retry_params_name'])) {
             return null;
         }
+
+        $retryCodesName = $methodConfig['retry_codes_name'];
+        $retryParamsName = $methodConfig['retry_params_name'];
+        $timeoutMillis = $methodConfig['timeout_millis'];
+
+        if (!array_key_exists($retryCodesName, $retryCodes)) {
+            throw new ValidationException("Invalid retry_codes_name setting: '$retryCodesName'");
+        }
+        if (!array_key_exists($retryParamsName, $retryParams)) {
+            throw new ValidationException("Invalid retry_params_name setting: '$retryParamsName'");
+        }
+
+        foreach ($retryCodes[$retryCodesName] as $status) {
+            if (!ApiStatus::isValidStatus($status)) {
+                throw new ValidationException("Invalid status code: '$status'");
+            }
+        }
+
+        $retryParameters = self::convertArrayFromSnakeCase($retryParams[$retryParamsName]);
+
+        $retrySettings = $retryParameters + [
+            'retryableCodes' => $retryCodes[$retryCodesName],
+            'noRetriesRpcTimeoutMillis' => $timeoutMillis,
+        ];
+
+        return new RetrySettings($retrySettings);
     }
 
     /**
@@ -166,23 +130,13 @@ class CallSettings
      * @param array $settings {
      *    Optional.
      *    @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this method. If present, then
-     *          $timeout is ignored.
-     *    @type integer $timeoutMillis
-     *          Timeout to use for the call. Only used if $retrySettings
-     *          is not set.
+     *          Retry settings to use for this method.
      *    @type array $userHeaders
      *          An array of headers to be included in the request.
      * }
      */
-    public function __construct($settings = [])
+    public function __construct(array $settings = [])
     {
-        $this->timeoutMillis = self::INHERIT_TIMEOUT;
-        $this->retrySettings = RetrySettings::inherit();
-
-        if (array_key_exists('timeoutMillis', $settings)) {
-            $this->timeoutMillis = $settings['timeoutMillis'];
-        }
         if (array_key_exists('retrySettings', $settings)) {
             $this->retrySettings = $settings['retrySettings'];
         }
@@ -191,16 +145,36 @@ class CallSettings
         }
     }
 
-    public function getTimeoutMillis()
+    /**
+     * Creates a new instance of CallSettings that updates the settings in the existing instance
+     * with the settings specified in the $settings parameter.
+     *
+     * @param array $settings {
+     *    Optional.
+     * @type \Google\GAX\RetrySettings $retrySettings
+     *          Retry settings to use for CallSettings object.
+     * @type array $userHeaders
+     *          An array of headers to be included in the request.
+     * }
+     * @return CallSettings
+     */
+    public function with(array $settings)
     {
-        return $this->timeoutMillis;
+        $existingSettings = $this->toArray();
+        return new CallSettings($settings + $existingSettings);
     }
 
+    /**
+     * @return RetrySettings|null Retry settings
+     */
     public function getRetrySettings()
     {
         return $this->retrySettings;
     }
 
+    /**
+     * @return array User headers
+     */
     public function getUserHeaders()
     {
         return $this->userHeaders;
@@ -217,30 +191,33 @@ class CallSettings
     public function merge(CallSettings $otherSettings = null)
     {
         if (is_null($otherSettings)) {
-            return new CallSettings([
-                'timeoutMillis' => $this->timeoutMillis,
-                'retrySettings' => $this->retrySettings,
-                'userHeaders' => $this->userHeaders,
-            ]);
-        } else {
-            $timeoutMillis = $this->timeoutMillis;
-            if ($otherSettings->getTimeoutMillis() != self::INHERIT_TIMEOUT) {
-                $timeoutMillis = $otherSettings->getTimeoutMillis();
-            }
-            $retrySettings = $this->retrySettings;
-            if (is_null($otherSettings->getRetrySettings())
-                || !$otherSettings->getRetrySettings()->shouldInherit()) {
-                $retrySettings = $otherSettings->getRetrySettings();
-            }
-            $userHeaders = $this->userHeaders;
-            if (!is_null($otherSettings->userHeaders)) {
-                $userHeaders = $otherSettings->userHeaders;
-            }
-            return new CallSettings([
-                'timeoutMillis' => $timeoutMillis,
-                'retrySettings' => $retrySettings,
-                'userHeaders' => $userHeaders,
-            ]);
+            return $this->with([]);
         }
+        return $this->with($otherSettings->toArray());
+    }
+
+    /**
+     * @return array
+     */
+    private function toArray()
+    {
+        $arr = [];
+        if (!is_null($this->getRetrySettings())) {
+            $arr['retrySettings'] = $this->getRetrySettings();
+        }
+        if (!is_null($this->getUserHeaders())) {
+            $arr['userHeaders'] = $this->getUserHeaders();
+        }
+        return $arr;
+    }
+
+    private static function convertArrayFromSnakeCase($settings)
+    {
+        $camelCaseSettings = [];
+        foreach ($settings as $key => $value) {
+            $camelCaseKey = str_replace('_', '', ucwords($key, '_'));
+            $camelCaseSettings[lcfirst($camelCaseKey)] = $value;
+        }
+        return $camelCaseSettings;
     }
 }
