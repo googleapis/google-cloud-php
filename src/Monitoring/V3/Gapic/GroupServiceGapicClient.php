@@ -33,10 +33,10 @@ namespace Google\Cloud\Monitoring\V3\Gapic;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
-use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
+use Google\GAX\ValidationException;
 use Google\Monitoring\V3\CreateGroupRequest;
 use Google\Monitoring\V3\DeleteGroupRequest;
 use Google\Monitoring\V3\GetGroupRequest;
@@ -71,7 +71,7 @@ use Google\Monitoring\V3\UpdateGroupRequest;
  * ```
  * try {
  *     $groupServiceClient = new GroupServiceClient();
- *     $formattedName = GroupServiceClient::formatProjectName("[PROJECT]");
+ *     $formattedName = $groupServiceClient->projectName("[PROJECT]");
  *     // Iterate through all elements
  *     $pagedResponse = $groupServiceClient->listGroups($formattedName);
  *     foreach ($pagedResponse->iterateAllElements() as $element) {
@@ -92,8 +92,8 @@ use Google\Monitoring\V3\UpdateGroupRequest;
  *
  * Many parameters require resource names to be formatted in a particular way. To assist
  * with these names, this class includes a format method for each type of name, and additionally
- * a parse method to extract the individual identifiers contained within names that are
- * returned.
+ * a parseName method to extract the individual identifiers contained within formatted names
+ * that are returned by the API.
  *
  * @experimental
  */
@@ -126,88 +126,15 @@ class GroupServiceGapicClient
 
     private static $projectNameTemplate;
     private static $groupNameTemplate;
+    private static $pathTemplateList = null;
+    private static $gapicVersion = null;
+    private static $gapicVersionLoaded = false;
 
     protected $grpcCredentialsHelper;
     protected $groupServiceStub;
     private $scopes;
     private $defaultCallSettings;
     private $descriptors;
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a project resource.
-     *
-     * @param string $project
-     *
-     * @return string The formatted project resource.
-     * @experimental
-     */
-    public static function formatProjectName($project)
-    {
-        return self::getProjectNameTemplate()->render([
-            'project' => $project,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a group resource.
-     *
-     * @param string $project
-     * @param string $group
-     *
-     * @return string The formatted group resource.
-     * @experimental
-     */
-    public static function formatGroupName($project, $group)
-    {
-        return self::getGroupNameTemplate()->render([
-            'project' => $project,
-            'group' => $group,
-        ]);
-    }
-
-    /**
-     * Parses the project from the given fully-qualified path which
-     * represents a project resource.
-     *
-     * @param string $projectName The fully-qualified project resource.
-     *
-     * @return string The extracted project value.
-     * @experimental
-     */
-    public static function parseProjectFromProjectName($projectName)
-    {
-        return self::getProjectNameTemplate()->match($projectName)['project'];
-    }
-
-    /**
-     * Parses the project from the given fully-qualified path which
-     * represents a group resource.
-     *
-     * @param string $groupName The fully-qualified group resource.
-     *
-     * @return string The extracted project value.
-     * @experimental
-     */
-    public static function parseProjectFromGroupName($groupName)
-    {
-        return self::getGroupNameTemplate()->match($groupName)['project'];
-    }
-
-    /**
-     * Parses the group from the given fully-qualified path which
-     * represents a group resource.
-     *
-     * @param string $groupName The fully-qualified group resource.
-     *
-     * @return string The extracted group value.
-     * @experimental
-     */
-    public static function parseGroupFromGroupName($groupName)
-    {
-        return self::getGroupNameTemplate()->match($groupName)['group'];
-    }
 
     private static function getProjectNameTemplate()
     {
@@ -226,7 +153,17 @@ class GroupServiceGapicClient
 
         return self::$groupNameTemplate;
     }
+    private static function getPathTemplateList()
+    {
+        if (self::$pathTemplateList == null) {
+            self::$pathTemplateList = [
+                self::getProjectNameTemplate(),
+                self::getGroupNameTemplate(),
+            ];
+        }
 
+        return self::$pathTemplateList;
+    }
     private static function getPageStreamingDescriptors()
     {
         $listGroupsPageStreamingDescriptor =
@@ -258,13 +195,73 @@ class GroupServiceGapicClient
 
     private static function getGapicVersion()
     {
-        if (file_exists(__DIR__.'/../VERSION')) {
-            return trim(file_get_contents(__DIR__.'/../VERSION'));
-        } elseif (class_exists('\Google\Cloud\ServiceBuilder')) {
-            return \Google\Cloud\ServiceBuilder::VERSION;
-        } else {
-            return;
+        if (!self::$gapicVersionLoaded) {
+            if (file_exists(__DIR__.'/../VERSION')) {
+                self::$gapicVersion = trim(file_get_contents(__DIR__.'/../VERSION'));
+            } elseif (class_exists('\Google\Cloud\ServiceBuilder')) {
+                self::$gapicVersion = \Google\Cloud\ServiceBuilder::VERSION;
+            }
+            self::$gapicVersionLoaded = true;
         }
+
+        return self::$gapicVersion;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project resource.
+     * @experimental
+     */
+    public static function projectName($project)
+    {
+        return self::getProjectNameTemplate()->render([
+            'project' => $project,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a group resource.
+     *
+     * @param string $project
+     * @param string $group
+     *
+     * @return string The formatted group resource.
+     * @experimental
+     */
+    public static function groupName($project, $group)
+    {
+        return self::getGroupNameTemplate()->render([
+            'project' => $project,
+            'group' => $group,
+        ]);
+    }
+
+    /**
+     * Parses a formatted name string and returns an associative array of the components in the name.
+     * The following name formats are supported:
+     * - projects/{project}
+     * - projects/{project}/groups/{group}.
+     *
+     * @param string $formattedName The formatted name string
+     *
+     * @return array An associative array from name component IDs to component values.
+     * @experimental
+     */
+    public static function parseName($formattedName)
+    {
+        foreach (self::getPathTemplateList() as $pathTemplate) {
+            try {
+                return $pathTemplate->match($formattedName);
+            } catch (ValidationException $ex) {
+                // Swallow the exception to continue trying other path templates
+            }
+        }
+        throw new ValidationException("Input did not match any known format. Input: $formattedName");
     }
 
     /**
@@ -291,15 +288,18 @@ class GroupServiceGapicClient
      *           A CredentialsLoader object created using the Google\Auth library.
      *     @type array $scopes A string array of scopes to use when acquiring credentials.
      *                          Defaults to the scopes for the Stackdriver Monitoring API.
+     *     @type string $clientConfigPath
+     *           Path to a JSON file containing client method configuration, including retry settings.
+     *           Specify this setting to specify the retry behavior of all methods on the client.
+     *           By default this settings points to the default client config file, which is provided
+     *           in the resources folder.
      *     @type array $retryingOverride
-     *           An associative array of string => RetryOptions, where the keys
-     *           are method names (e.g. 'createFoo'), that overrides default retrying
-     *           settings. A value of null indicates that the method in question should
-     *           not retry.
-     *     @type int $timeoutMillis The timeout in milliseconds to use for calls
-     *                              that don't use retries. For calls that use retries,
-     *                              set the timeout in RetryOptions.
-     *                              Default: 30000 (30 seconds)
+     *           An associative array in which the keys are method names (e.g. 'createFoo'), and
+     *           the values are retry settings to use for that method. The retry settings for each
+     *           method can be a {@see Google\GAX\RetrySettings} object, or an associative array
+     *           of retry settings parameters. See the documentation on {@see Google\GAX\RetrySettings}
+     *           for example usage. Passing a value of null is equivalent to a value of
+     *           ['retriesEnabled' => false].
      * }
      * @experimental
      */
@@ -318,6 +318,7 @@ class GroupServiceGapicClient
             'timeoutMillis' => self::DEFAULT_TIMEOUT_MILLIS,
             'libName' => null,
             'libVersion' => null,
+            'clientConfigPath' => __DIR__.'/../resources/group_service_client_config.json',
         ];
         $options = array_merge($defaultOptions, $options);
 
@@ -343,15 +344,13 @@ class GroupServiceGapicClient
             $this->descriptors[$method]['pageStreamingDescriptor'] = $pageStreamingDescriptor;
         }
 
-        $clientConfigJsonString = file_get_contents(__DIR__.'/../resources/group_service_client_config.json');
+        $clientConfigJsonString = file_get_contents($options['clientConfigPath']);
         $clientConfig = json_decode($clientConfigJsonString, true);
         $this->defaultCallSettings =
                 CallSettings::load(
                     'google.monitoring.v3.GroupService',
                     $clientConfig,
-                    $options['retryingOverride'],
-                    GrpcConstants::getStatusCodeNames(),
-                    $options['timeoutMillis']
+                    $options['retryingOverride']
                 );
 
         $this->scopes = $options['scopes'];
@@ -378,7 +377,7 @@ class GroupServiceGapicClient
      * ```
      * try {
      *     $groupServiceClient = new GroupServiceClient();
-     *     $formattedName = GroupServiceClient::formatProjectName("[PROJECT]");
+     *     $formattedName = $groupServiceClient->projectName("[PROJECT]");
      *     // Iterate through all elements
      *     $pagedResponse = $groupServiceClient->listGroups($formattedName);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
@@ -426,12 +425,11 @@ class GroupServiceGapicClient
      *          If no page token is specified (the default), the first page
      *          of values will be returned. Any page token used here must have
      *          been generated by a previous call to the API.
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\GAX\PagedListResponse
@@ -482,7 +480,7 @@ class GroupServiceGapicClient
      * ```
      * try {
      *     $groupServiceClient = new GroupServiceClient();
-     *     $formattedName = GroupServiceClient::formatGroupName("[PROJECT]", "[GROUP]");
+     *     $formattedName = $groupServiceClient->groupName("[PROJECT]", "[GROUP]");
      *     $response = $groupServiceClient->getGroup($formattedName);
      * } finally {
      *     $groupServiceClient->close();
@@ -494,12 +492,11 @@ class GroupServiceGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Monitoring\V3\Group
@@ -535,7 +532,7 @@ class GroupServiceGapicClient
      * ```
      * try {
      *     $groupServiceClient = new GroupServiceClient();
-     *     $formattedName = GroupServiceClient::formatProjectName("[PROJECT]");
+     *     $formattedName = $groupServiceClient->projectName("[PROJECT]");
      *     $group = new Group();
      *     $response = $groupServiceClient->createGroup($formattedName, $group);
      * } finally {
@@ -552,12 +549,11 @@ class GroupServiceGapicClient
      *
      *     @type bool $validateOnly
      *          If true, validate this request but do not create the group.
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Monitoring\V3\Group
@@ -612,12 +608,11 @@ class GroupServiceGapicClient
      *
      *     @type bool $validateOnly
      *          If true, validate this request but do not update the existing group.
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Monitoring\V3\Group
@@ -656,7 +651,7 @@ class GroupServiceGapicClient
      * ```
      * try {
      *     $groupServiceClient = new GroupServiceClient();
-     *     $formattedName = GroupServiceClient::formatGroupName("[PROJECT]", "[GROUP]");
+     *     $formattedName = $groupServiceClient->groupName("[PROJECT]", "[GROUP]");
      *     $groupServiceClient->deleteGroup($formattedName);
      * } finally {
      *     $groupServiceClient->close();
@@ -668,12 +663,11 @@ class GroupServiceGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @throws \Google\GAX\ApiException if the remote call fails
@@ -707,7 +701,7 @@ class GroupServiceGapicClient
      * ```
      * try {
      *     $groupServiceClient = new GroupServiceClient();
-     *     $formattedName = GroupServiceClient::formatGroupName("[PROJECT]", "[GROUP]");
+     *     $formattedName = $groupServiceClient->groupName("[PROJECT]", "[GROUP]");
      *     // Iterate through all elements
      *     $pagedResponse = $groupServiceClient->listGroupMembers($formattedName);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
@@ -753,12 +747,11 @@ class GroupServiceGapicClient
      *          members that were part of the group during the specified interval are
      *          included in the response.  If no interval is provided then the group
      *          membership over the last minute is returned.
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\GAX\PagedListResponse

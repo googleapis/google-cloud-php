@@ -33,10 +33,10 @@ namespace Google\Cloud\PubSub\V1\Gapic;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
-use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
+use Google\GAX\ValidationException;
 use Google\Iam\V1\GetIamPolicyRequest;
 use Google\Iam\V1\IAMPolicyGrpcClient;
 use Google\Iam\V1\Policy;
@@ -65,7 +65,7 @@ use Google\Pubsub\V1\Topic;
  * ```
  * try {
  *     $publisherClient = new PublisherClient();
- *     $formattedName = PublisherClient::formatTopicName("[PROJECT]", "[TOPIC]");
+ *     $formattedName = $publisherClient->topicName("[PROJECT]", "[TOPIC]");
  *     $response = $publisherClient->createTopic($formattedName);
  * } finally {
  *     $publisherClient->close();
@@ -74,8 +74,8 @@ use Google\Pubsub\V1\Topic;
  *
  * Many parameters require resource names to be formatted in a particular way. To assist
  * with these names, this class includes a format method for each type of name, and additionally
- * a parse method to extract the individual identifiers contained within names that are
- * returned.
+ * a parseName method to extract the individual identifiers contained within formatted names
+ * that are returned by the API.
  *
  * @experimental
  */
@@ -108,6 +108,9 @@ class PublisherGapicClient
 
     private static $projectNameTemplate;
     private static $topicNameTemplate;
+    private static $pathTemplateList = null;
+    private static $gapicVersion = null;
+    private static $gapicVersionLoaded = false;
 
     protected $grpcCredentialsHelper;
     protected $iamPolicyStub;
@@ -115,82 +118,6 @@ class PublisherGapicClient
     private $scopes;
     private $defaultCallSettings;
     private $descriptors;
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a project resource.
-     *
-     * @param string $project
-     *
-     * @return string The formatted project resource.
-     * @experimental
-     */
-    public static function formatProjectName($project)
-    {
-        return self::getProjectNameTemplate()->render([
-            'project' => $project,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a topic resource.
-     *
-     * @param string $project
-     * @param string $topic
-     *
-     * @return string The formatted topic resource.
-     * @experimental
-     */
-    public static function formatTopicName($project, $topic)
-    {
-        return self::getTopicNameTemplate()->render([
-            'project' => $project,
-            'topic' => $topic,
-        ]);
-    }
-
-    /**
-     * Parses the project from the given fully-qualified path which
-     * represents a project resource.
-     *
-     * @param string $projectName The fully-qualified project resource.
-     *
-     * @return string The extracted project value.
-     * @experimental
-     */
-    public static function parseProjectFromProjectName($projectName)
-    {
-        return self::getProjectNameTemplate()->match($projectName)['project'];
-    }
-
-    /**
-     * Parses the project from the given fully-qualified path which
-     * represents a topic resource.
-     *
-     * @param string $topicName The fully-qualified topic resource.
-     *
-     * @return string The extracted project value.
-     * @experimental
-     */
-    public static function parseProjectFromTopicName($topicName)
-    {
-        return self::getTopicNameTemplate()->match($topicName)['project'];
-    }
-
-    /**
-     * Parses the topic from the given fully-qualified path which
-     * represents a topic resource.
-     *
-     * @param string $topicName The fully-qualified topic resource.
-     *
-     * @return string The extracted topic value.
-     * @experimental
-     */
-    public static function parseTopicFromTopicName($topicName)
-    {
-        return self::getTopicNameTemplate()->match($topicName)['topic'];
-    }
 
     private static function getProjectNameTemplate()
     {
@@ -209,7 +136,17 @@ class PublisherGapicClient
 
         return self::$topicNameTemplate;
     }
+    private static function getPathTemplateList()
+    {
+        if (self::$pathTemplateList == null) {
+            self::$pathTemplateList = [
+                self::getProjectNameTemplate(),
+                self::getTopicNameTemplate(),
+            ];
+        }
 
+        return self::$pathTemplateList;
+    }
     private static function getPageStreamingDescriptors()
     {
         $listTopicsPageStreamingDescriptor =
@@ -241,13 +178,73 @@ class PublisherGapicClient
 
     private static function getGapicVersion()
     {
-        if (file_exists(__DIR__.'/../VERSION')) {
-            return trim(file_get_contents(__DIR__.'/../VERSION'));
-        } elseif (class_exists('\Google\Cloud\ServiceBuilder')) {
-            return \Google\Cloud\ServiceBuilder::VERSION;
-        } else {
-            return;
+        if (!self::$gapicVersionLoaded) {
+            if (file_exists(__DIR__.'/../VERSION')) {
+                self::$gapicVersion = trim(file_get_contents(__DIR__.'/../VERSION'));
+            } elseif (class_exists('\Google\Cloud\ServiceBuilder')) {
+                self::$gapicVersion = \Google\Cloud\ServiceBuilder::VERSION;
+            }
+            self::$gapicVersionLoaded = true;
         }
+
+        return self::$gapicVersion;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project resource.
+     * @experimental
+     */
+    public static function projectName($project)
+    {
+        return self::getProjectNameTemplate()->render([
+            'project' => $project,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a topic resource.
+     *
+     * @param string $project
+     * @param string $topic
+     *
+     * @return string The formatted topic resource.
+     * @experimental
+     */
+    public static function topicName($project, $topic)
+    {
+        return self::getTopicNameTemplate()->render([
+            'project' => $project,
+            'topic' => $topic,
+        ]);
+    }
+
+    /**
+     * Parses a formatted name string and returns an associative array of the components in the name.
+     * The following name formats are supported:
+     * - projects/{project}
+     * - projects/{project}/topics/{topic}.
+     *
+     * @param string $formattedName The formatted name string
+     *
+     * @return array An associative array from name component IDs to component values.
+     * @experimental
+     */
+    public static function parseName($formattedName)
+    {
+        foreach (self::getPathTemplateList() as $pathTemplate) {
+            try {
+                return $pathTemplate->match($formattedName);
+            } catch (ValidationException $ex) {
+                // Swallow the exception to continue trying other path templates
+            }
+        }
+        throw new ValidationException("Input did not match any known format. Input: $formattedName");
     }
 
     /**
@@ -274,15 +271,18 @@ class PublisherGapicClient
      *           A CredentialsLoader object created using the Google\Auth library.
      *     @type array $scopes A string array of scopes to use when acquiring credentials.
      *                          Defaults to the scopes for the Google Cloud Pub/Sub API.
+     *     @type string $clientConfigPath
+     *           Path to a JSON file containing client method configuration, including retry settings.
+     *           Specify this setting to specify the retry behavior of all methods on the client.
+     *           By default this settings points to the default client config file, which is provided
+     *           in the resources folder.
      *     @type array $retryingOverride
-     *           An associative array of string => RetryOptions, where the keys
-     *           are method names (e.g. 'createFoo'), that overrides default retrying
-     *           settings. A value of null indicates that the method in question should
-     *           not retry.
-     *     @type int $timeoutMillis The timeout in milliseconds to use for calls
-     *                              that don't use retries. For calls that use retries,
-     *                              set the timeout in RetryOptions.
-     *                              Default: 30000 (30 seconds)
+     *           An associative array in which the keys are method names (e.g. 'createFoo'), and
+     *           the values are retry settings to use for that method. The retry settings for each
+     *           method can be a {@see Google\GAX\RetrySettings} object, or an associative array
+     *           of retry settings parameters. See the documentation on {@see Google\GAX\RetrySettings}
+     *           for example usage. Passing a value of null is equivalent to a value of
+     *           ['retriesEnabled' => false].
      * }
      * @experimental
      */
@@ -299,6 +299,7 @@ class PublisherGapicClient
             'timeoutMillis' => self::DEFAULT_TIMEOUT_MILLIS,
             'libName' => null,
             'libVersion' => null,
+            'clientConfigPath' => __DIR__.'/../resources/publisher_client_config.json',
         ];
         $options = array_merge($defaultOptions, $options);
 
@@ -327,15 +328,13 @@ class PublisherGapicClient
             $this->descriptors[$method]['pageStreamingDescriptor'] = $pageStreamingDescriptor;
         }
 
-        $clientConfigJsonString = file_get_contents(__DIR__.'/../resources/publisher_client_config.json');
+        $clientConfigJsonString = file_get_contents($options['clientConfigPath']);
         $clientConfig = json_decode($clientConfigJsonString, true);
         $this->defaultCallSettings =
                 CallSettings::load(
                     'google.pubsub.v1.Publisher',
                     $clientConfig,
-                    $options['retryingOverride'],
-                    GrpcConstants::getStatusCodeNames(),
-                    $options['timeoutMillis']
+                    $options['retryingOverride']
                 );
 
         $this->scopes = $options['scopes'];
@@ -369,7 +368,7 @@ class PublisherGapicClient
      * ```
      * try {
      *     $publisherClient = new PublisherClient();
-     *     $formattedName = PublisherClient::formatTopicName("[PROJECT]", "[TOPIC]");
+     *     $formattedName = $publisherClient->topicName("[PROJECT]", "[TOPIC]");
      *     $response = $publisherClient->createTopic($formattedName);
      * } finally {
      *     $publisherClient->close();
@@ -387,12 +386,11 @@ class PublisherGapicClient
      *
      *     @type array $labels
      *          User labels.
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Pubsub\V1\Topic
@@ -433,7 +431,7 @@ class PublisherGapicClient
      * ```
      * try {
      *     $publisherClient = new PublisherClient();
-     *     $formattedTopic = PublisherClient::formatTopicName("[PROJECT]", "[TOPIC]");
+     *     $formattedTopic = $publisherClient->topicName("[PROJECT]", "[TOPIC]");
      *     $data = "";
      *     $messagesElement = new PubsubMessage();
      *     $messagesElement->setData($data);
@@ -450,12 +448,11 @@ class PublisherGapicClient
      * @param array           $optionalArgs {
      *                                      Optional.
      *
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Pubsub\V1\PublishResponse
@@ -492,7 +489,7 @@ class PublisherGapicClient
      * ```
      * try {
      *     $publisherClient = new PublisherClient();
-     *     $formattedTopic = PublisherClient::formatTopicName("[PROJECT]", "[TOPIC]");
+     *     $formattedTopic = $publisherClient->topicName("[PROJECT]", "[TOPIC]");
      *     $response = $publisherClient->getTopic($formattedTopic);
      * } finally {
      *     $publisherClient->close();
@@ -504,12 +501,11 @@ class PublisherGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Pubsub\V1\Topic
@@ -545,7 +541,7 @@ class PublisherGapicClient
      * ```
      * try {
      *     $publisherClient = new PublisherClient();
-     *     $formattedProject = PublisherClient::formatProjectName("[PROJECT]");
+     *     $formattedProject = $publisherClient->projectName("[PROJECT]");
      *     // Iterate through all elements
      *     $pagedResponse = $publisherClient->listTopics($formattedProject);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
@@ -578,12 +574,11 @@ class PublisherGapicClient
      *          If no page token is specified (the default), the first page
      *          of values will be returned. Any page token used here must have
      *          been generated by a previous call to the API.
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\GAX\PagedListResponse
@@ -625,7 +620,7 @@ class PublisherGapicClient
      * ```
      * try {
      *     $publisherClient = new PublisherClient();
-     *     $formattedTopic = PublisherClient::formatTopicName("[PROJECT]", "[TOPIC]");
+     *     $formattedTopic = $publisherClient->topicName("[PROJECT]", "[TOPIC]");
      *     // Iterate through all elements
      *     $pagedResponse = $publisherClient->listTopicSubscriptions($formattedTopic);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
@@ -658,12 +653,11 @@ class PublisherGapicClient
      *          If no page token is specified (the default), the first page
      *          of values will be returned. Any page token used here must have
      *          been generated by a previous call to the API.
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\GAX\PagedListResponse
@@ -709,7 +703,7 @@ class PublisherGapicClient
      * ```
      * try {
      *     $publisherClient = new PublisherClient();
-     *     $formattedTopic = PublisherClient::formatTopicName("[PROJECT]", "[TOPIC]");
+     *     $formattedTopic = $publisherClient->topicName("[PROJECT]", "[TOPIC]");
      *     $publisherClient->deleteTopic($formattedTopic);
      * } finally {
      *     $publisherClient->close();
@@ -721,12 +715,11 @@ class PublisherGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @throws \Google\GAX\ApiException if the remote call fails
@@ -761,7 +754,7 @@ class PublisherGapicClient
      * ```
      * try {
      *     $publisherClient = new PublisherClient();
-     *     $formattedResource = PublisherClient::formatTopicName("[PROJECT]", "[TOPIC]");
+     *     $formattedResource = $publisherClient->topicName("[PROJECT]", "[TOPIC]");
      *     $policy = new Policy();
      *     $response = $publisherClient->setIamPolicy($formattedResource, $policy);
      * } finally {
@@ -779,12 +772,11 @@ class PublisherGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Iam\V1\Policy
@@ -823,7 +815,7 @@ class PublisherGapicClient
      * ```
      * try {
      *     $publisherClient = new PublisherClient();
-     *     $formattedResource = PublisherClient::formatTopicName("[PROJECT]", "[TOPIC]");
+     *     $formattedResource = $publisherClient->topicName("[PROJECT]", "[TOPIC]");
      *     $response = $publisherClient->getIamPolicy($formattedResource);
      * } finally {
      *     $publisherClient->close();
@@ -836,12 +828,11 @@ class PublisherGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Iam\V1\Policy
@@ -879,7 +870,7 @@ class PublisherGapicClient
      * ```
      * try {
      *     $publisherClient = new PublisherClient();
-     *     $formattedResource = PublisherClient::formatTopicName("[PROJECT]", "[TOPIC]");
+     *     $formattedResource = $publisherClient->topicName("[PROJECT]", "[TOPIC]");
      *     $permissions = [];
      *     $response = $publisherClient->testIamPermissions($formattedResource, $permissions);
      * } finally {
@@ -897,12 +888,11 @@ class PublisherGapicClient
      * @param array    $optionalArgs {
      *                               Optional.
      *
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Iam\V1\TestIamPermissionsResponse

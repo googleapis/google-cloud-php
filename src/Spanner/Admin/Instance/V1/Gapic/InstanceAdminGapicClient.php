@@ -33,12 +33,12 @@ namespace Google\Cloud\Spanner\Admin\Instance\V1\Gapic;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
-use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\LongRunning\OperationsClient;
 use Google\GAX\OperationResponse;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
+use Google\GAX\ValidationException;
 use Google\Iam\V1\GetIamPolicyRequest;
 use Google\Iam\V1\Policy;
 use Google\Iam\V1\SetIamPolicyRequest;
@@ -89,7 +89,7 @@ use Google\Spanner\Admin\Instance\V1\UpdateInstanceRequest;
  * ```
  * try {
  *     $instanceAdminClient = new InstanceAdminClient();
- *     $formattedParent = InstanceAdminClient::formatProjectName("[PROJECT]");
+ *     $formattedParent = $instanceAdminClient->projectName("[PROJECT]");
  *     // Iterate through all elements
  *     $pagedResponse = $instanceAdminClient->listInstanceConfigs($formattedParent);
  *     foreach ($pagedResponse->iterateAllElements() as $element) {
@@ -110,8 +110,8 @@ use Google\Spanner\Admin\Instance\V1\UpdateInstanceRequest;
  *
  * Many parameters require resource names to be formatted in a particular way. To assist
  * with these names, this class includes a format method for each type of name, and additionally
- * a parse method to extract the individual identifiers contained within names that are
- * returned.
+ * a parseName method to extract the individual identifiers contained within formatted names
+ * that are returned by the API.
  *
  * @experimental
  */
@@ -145,6 +145,9 @@ class InstanceAdminGapicClient
     private static $projectNameTemplate;
     private static $instanceConfigNameTemplate;
     private static $instanceNameTemplate;
+    private static $pathTemplateList = null;
+    private static $gapicVersion = null;
+    private static $gapicVersionLoaded = false;
 
     protected $grpcCredentialsHelper;
     protected $instanceAdminStub;
@@ -152,128 +155,6 @@ class InstanceAdminGapicClient
     private $defaultCallSettings;
     private $descriptors;
     private $operationsClient;
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a project resource.
-     *
-     * @param string $project
-     *
-     * @return string The formatted project resource.
-     * @experimental
-     */
-    public static function formatProjectName($project)
-    {
-        return self::getProjectNameTemplate()->render([
-            'project' => $project,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a instance_config resource.
-     *
-     * @param string $project
-     * @param string $instanceConfig
-     *
-     * @return string The formatted instance_config resource.
-     * @experimental
-     */
-    public static function formatInstanceConfigName($project, $instanceConfig)
-    {
-        return self::getInstanceConfigNameTemplate()->render([
-            'project' => $project,
-            'instance_config' => $instanceConfig,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a instance resource.
-     *
-     * @param string $project
-     * @param string $instance
-     *
-     * @return string The formatted instance resource.
-     * @experimental
-     */
-    public static function formatInstanceName($project, $instance)
-    {
-        return self::getInstanceNameTemplate()->render([
-            'project' => $project,
-            'instance' => $instance,
-        ]);
-    }
-
-    /**
-     * Parses the project from the given fully-qualified path which
-     * represents a project resource.
-     *
-     * @param string $projectName The fully-qualified project resource.
-     *
-     * @return string The extracted project value.
-     * @experimental
-     */
-    public static function parseProjectFromProjectName($projectName)
-    {
-        return self::getProjectNameTemplate()->match($projectName)['project'];
-    }
-
-    /**
-     * Parses the project from the given fully-qualified path which
-     * represents a instance_config resource.
-     *
-     * @param string $instanceConfigName The fully-qualified instance_config resource.
-     *
-     * @return string The extracted project value.
-     * @experimental
-     */
-    public static function parseProjectFromInstanceConfigName($instanceConfigName)
-    {
-        return self::getInstanceConfigNameTemplate()->match($instanceConfigName)['project'];
-    }
-
-    /**
-     * Parses the instance_config from the given fully-qualified path which
-     * represents a instance_config resource.
-     *
-     * @param string $instanceConfigName The fully-qualified instance_config resource.
-     *
-     * @return string The extracted instance_config value.
-     * @experimental
-     */
-    public static function parseInstanceConfigFromInstanceConfigName($instanceConfigName)
-    {
-        return self::getInstanceConfigNameTemplate()->match($instanceConfigName)['instance_config'];
-    }
-
-    /**
-     * Parses the project from the given fully-qualified path which
-     * represents a instance resource.
-     *
-     * @param string $instanceName The fully-qualified instance resource.
-     *
-     * @return string The extracted project value.
-     * @experimental
-     */
-    public static function parseProjectFromInstanceName($instanceName)
-    {
-        return self::getInstanceNameTemplate()->match($instanceName)['project'];
-    }
-
-    /**
-     * Parses the instance from the given fully-qualified path which
-     * represents a instance resource.
-     *
-     * @param string $instanceName The fully-qualified instance resource.
-     *
-     * @return string The extracted instance value.
-     * @experimental
-     */
-    public static function parseInstanceFromInstanceName($instanceName)
-    {
-        return self::getInstanceNameTemplate()->match($instanceName)['instance'];
-    }
 
     private static function getProjectNameTemplate()
     {
@@ -301,7 +182,18 @@ class InstanceAdminGapicClient
 
         return self::$instanceNameTemplate;
     }
+    private static function getPathTemplateList()
+    {
+        if (self::$pathTemplateList == null) {
+            self::$pathTemplateList = [
+                self::getProjectNameTemplate(),
+                self::getInstanceConfigNameTemplate(),
+                self::getInstanceNameTemplate(),
+            ];
+        }
 
+        return self::$pathTemplateList;
+    }
     private static function getPageStreamingDescriptors()
     {
         $listInstanceConfigsPageStreamingDescriptor =
@@ -347,13 +239,92 @@ class InstanceAdminGapicClient
 
     private static function getGapicVersion()
     {
-        if (file_exists(__DIR__.'/../VERSION')) {
-            return trim(file_get_contents(__DIR__.'/../VERSION'));
-        } elseif (class_exists('\Google\Cloud\ServiceBuilder')) {
-            return \Google\Cloud\ServiceBuilder::VERSION;
-        } else {
-            return;
+        if (!self::$gapicVersionLoaded) {
+            if (file_exists(__DIR__.'/../VERSION')) {
+                self::$gapicVersion = trim(file_get_contents(__DIR__.'/../VERSION'));
+            } elseif (class_exists('\Google\Cloud\ServiceBuilder')) {
+                self::$gapicVersion = \Google\Cloud\ServiceBuilder::VERSION;
+            }
+            self::$gapicVersionLoaded = true;
         }
+
+        return self::$gapicVersion;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project resource.
+     * @experimental
+     */
+    public static function projectName($project)
+    {
+        return self::getProjectNameTemplate()->render([
+            'project' => $project,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a instance_config resource.
+     *
+     * @param string $project
+     * @param string $instanceConfig
+     *
+     * @return string The formatted instance_config resource.
+     * @experimental
+     */
+    public static function instanceConfigName($project, $instanceConfig)
+    {
+        return self::getInstanceConfigNameTemplate()->render([
+            'project' => $project,
+            'instance_config' => $instanceConfig,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a instance resource.
+     *
+     * @param string $project
+     * @param string $instance
+     *
+     * @return string The formatted instance resource.
+     * @experimental
+     */
+    public static function instanceName($project, $instance)
+    {
+        return self::getInstanceNameTemplate()->render([
+            'project' => $project,
+            'instance' => $instance,
+        ]);
+    }
+
+    /**
+     * Parses a formatted name string and returns an associative array of the components in the name.
+     * The following name formats are supported:
+     * - projects/{project}
+     * - projects/{project}/instanceConfigs/{instance_config}
+     * - projects/{project}/instances/{instance}.
+     *
+     * @param string $formattedName The formatted name string
+     *
+     * @return array An associative array from name component IDs to component values.
+     * @experimental
+     */
+    public static function parseName($formattedName)
+    {
+        foreach (self::getPathTemplateList() as $pathTemplate) {
+            try {
+                return $pathTemplate->match($formattedName);
+            } catch (ValidationException $ex) {
+                // Swallow the exception to continue trying other path templates
+            }
+        }
+        throw new ValidationException("Input did not match any known format. Input: $formattedName");
     }
 
     /**
@@ -418,15 +389,18 @@ class InstanceAdminGapicClient
      *           A CredentialsLoader object created using the Google\Auth library.
      *     @type array $scopes A string array of scopes to use when acquiring credentials.
      *                          Defaults to the scopes for the Cloud Spanner Instance Admin API.
+     *     @type string $clientConfigPath
+     *           Path to a JSON file containing client method configuration, including retry settings.
+     *           Specify this setting to specify the retry behavior of all methods on the client.
+     *           By default this settings points to the default client config file, which is provided
+     *           in the resources folder.
      *     @type array $retryingOverride
-     *           An associative array of string => RetryOptions, where the keys
-     *           are method names (e.g. 'createFoo'), that overrides default retrying
-     *           settings. A value of null indicates that the method in question should
-     *           not retry.
-     *     @type int $timeoutMillis The timeout in milliseconds to use for calls
-     *                              that don't use retries. For calls that use retries,
-     *                              set the timeout in RetryOptions.
-     *                              Default: 30000 (30 seconds)
+     *           An associative array in which the keys are method names (e.g. 'createFoo'), and
+     *           the values are retry settings to use for that method. The retry settings for each
+     *           method can be a {@see Google\GAX\RetrySettings} object, or an associative array
+     *           of retry settings parameters. See the documentation on {@see Google\GAX\RetrySettings}
+     *           for example usage. Passing a value of null is equivalent to a value of
+     *           ['retriesEnabled' => false].
      * }
      * @experimental
      */
@@ -443,6 +417,7 @@ class InstanceAdminGapicClient
             'timeoutMillis' => self::DEFAULT_TIMEOUT_MILLIS,
             'libName' => null,
             'libVersion' => null,
+            'clientConfigPath' => __DIR__.'/../resources/instance_admin_client_config.json',
         ];
         $options = array_merge($defaultOptions, $options);
 
@@ -452,6 +427,7 @@ class InstanceAdminGapicClient
             $operationsClientOptions = $options;
             unset($operationsClientOptions['timeoutMillis']);
             unset($operationsClientOptions['retryingOverride']);
+            unset($operationsClientOptions['clientConfigPath']);
             $this->operationsClient = new OperationsClient($operationsClientOptions);
         }
 
@@ -485,15 +461,13 @@ class InstanceAdminGapicClient
             $this->descriptors[$method]['longRunningDescriptor'] = $longRunningDescriptor + ['operationsClient' => $this->operationsClient];
         }
 
-        $clientConfigJsonString = file_get_contents(__DIR__.'/../resources/instance_admin_client_config.json');
+        $clientConfigJsonString = file_get_contents($options['clientConfigPath']);
         $clientConfig = json_decode($clientConfigJsonString, true);
         $this->defaultCallSettings =
                 CallSettings::load(
                     'google.spanner.admin.instance.v1.InstanceAdmin',
                     $clientConfig,
-                    $options['retryingOverride'],
-                    GrpcConstants::getStatusCodeNames(),
-                    $options['timeoutMillis']
+                    $options['retryingOverride']
                 );
 
         $this->scopes = $options['scopes'];
@@ -520,7 +494,7 @@ class InstanceAdminGapicClient
      * ```
      * try {
      *     $instanceAdminClient = new InstanceAdminClient();
-     *     $formattedParent = InstanceAdminClient::formatProjectName("[PROJECT]");
+     *     $formattedParent = $instanceAdminClient->projectName("[PROJECT]");
      *     // Iterate through all elements
      *     $pagedResponse = $instanceAdminClient->listInstanceConfigs($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
@@ -554,12 +528,11 @@ class InstanceAdminGapicClient
      *          If no page token is specified (the default), the first page
      *          of values will be returned. Any page token used here must have
      *          been generated by a previous call to the API.
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\GAX\PagedListResponse
@@ -601,7 +574,7 @@ class InstanceAdminGapicClient
      * ```
      * try {
      *     $instanceAdminClient = new InstanceAdminClient();
-     *     $formattedName = InstanceAdminClient::formatInstanceConfigName("[PROJECT]", "[INSTANCE_CONFIG]");
+     *     $formattedName = $instanceAdminClient->instanceConfigName("[PROJECT]", "[INSTANCE_CONFIG]");
      *     $response = $instanceAdminClient->getInstanceConfig($formattedName);
      * } finally {
      *     $instanceAdminClient->close();
@@ -613,12 +586,11 @@ class InstanceAdminGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Spanner\Admin\Instance\V1\InstanceConfig
@@ -654,7 +626,7 @@ class InstanceAdminGapicClient
      * ```
      * try {
      *     $instanceAdminClient = new InstanceAdminClient();
-     *     $formattedParent = InstanceAdminClient::formatProjectName("[PROJECT]");
+     *     $formattedParent = $instanceAdminClient->projectName("[PROJECT]");
      *     // Iterate through all elements
      *     $pagedResponse = $instanceAdminClient->listInstances($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
@@ -707,12 +679,11 @@ class InstanceAdminGapicClient
      *            * name:howl labels.env:dev --> The instance's name contains "howl" and
      *                                           it has the label "env" with its value
      *                                           containing "dev".
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\GAX\PagedListResponse
@@ -757,7 +728,7 @@ class InstanceAdminGapicClient
      * ```
      * try {
      *     $instanceAdminClient = new InstanceAdminClient();
-     *     $formattedName = InstanceAdminClient::formatInstanceName("[PROJECT]", "[INSTANCE]");
+     *     $formattedName = $instanceAdminClient->instanceName("[PROJECT]", "[INSTANCE]");
      *     $response = $instanceAdminClient->getInstance($formattedName);
      * } finally {
      *     $instanceAdminClient->close();
@@ -769,12 +740,11 @@ class InstanceAdminGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Spanner\Admin\Instance\V1\Instance
@@ -843,7 +813,7 @@ class InstanceAdminGapicClient
      * ```
      * try {
      *     $instanceAdminClient = new InstanceAdminClient();
-     *     $formattedParent = InstanceAdminClient::formatProjectName("[PROJECT]");
+     *     $formattedParent = $instanceAdminClient->projectName("[PROJECT]");
      *     $instanceId = "";
      *     $instance = new Instance();
      *     $operationResponse = $instanceAdminClient->createInstance($formattedParent, $instanceId, $instance);
@@ -887,12 +857,11 @@ class InstanceAdminGapicClient
      * @param array    $optionalArgs {
      *                               Optional.
      *
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\GAX\OperationResponse
@@ -1011,12 +980,11 @@ class InstanceAdminGapicClient
      * @param array     $optionalArgs {
      *                                Optional.
      *
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\GAX\OperationResponse
@@ -1063,7 +1031,7 @@ class InstanceAdminGapicClient
      * ```
      * try {
      *     $instanceAdminClient = new InstanceAdminClient();
-     *     $formattedName = InstanceAdminClient::formatInstanceName("[PROJECT]", "[INSTANCE]");
+     *     $formattedName = $instanceAdminClient->instanceName("[PROJECT]", "[INSTANCE]");
      *     $instanceAdminClient->deleteInstance($formattedName);
      * } finally {
      *     $instanceAdminClient->close();
@@ -1075,12 +1043,11 @@ class InstanceAdminGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @throws \Google\GAX\ApiException if the remote call fails
@@ -1118,7 +1085,7 @@ class InstanceAdminGapicClient
      * ```
      * try {
      *     $instanceAdminClient = new InstanceAdminClient();
-     *     $formattedResource = InstanceAdminClient::formatInstanceName("[PROJECT]", "[INSTANCE]");
+     *     $formattedResource = $instanceAdminClient->instanceName("[PROJECT]", "[INSTANCE]");
      *     $policy = new Policy();
      *     $response = $instanceAdminClient->setIamPolicy($formattedResource, $policy);
      * } finally {
@@ -1136,12 +1103,11 @@ class InstanceAdminGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Iam\V1\Policy
@@ -1182,7 +1148,7 @@ class InstanceAdminGapicClient
      * ```
      * try {
      *     $instanceAdminClient = new InstanceAdminClient();
-     *     $formattedResource = InstanceAdminClient::formatInstanceName("[PROJECT]", "[INSTANCE]");
+     *     $formattedResource = $instanceAdminClient->instanceName("[PROJECT]", "[INSTANCE]");
      *     $response = $instanceAdminClient->getIamPolicy($formattedResource);
      * } finally {
      *     $instanceAdminClient->close();
@@ -1195,12 +1161,11 @@ class InstanceAdminGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Iam\V1\Policy
@@ -1241,7 +1206,7 @@ class InstanceAdminGapicClient
      * ```
      * try {
      *     $instanceAdminClient = new InstanceAdminClient();
-     *     $formattedResource = InstanceAdminClient::formatInstanceName("[PROJECT]", "[INSTANCE]");
+     *     $formattedResource = $instanceAdminClient->instanceName("[PROJECT]", "[INSTANCE]");
      *     $permissions = [];
      *     $response = $instanceAdminClient->testIamPermissions($formattedResource, $permissions);
      * } finally {
@@ -1259,12 +1224,11 @@ class InstanceAdminGapicClient
      * @param array    $optionalArgs {
      *                               Optional.
      *
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Iam\V1\TestIamPermissionsResponse

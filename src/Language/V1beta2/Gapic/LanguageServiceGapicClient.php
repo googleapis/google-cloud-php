@@ -43,7 +43,6 @@ use Google\Cloud\Language\V1beta2\LanguageServiceGrpcClient;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
-use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 
 /**
@@ -96,6 +95,9 @@ class LanguageServiceGapicClient
      */
     const CODEGEN_VERSION = '0.0.5';
 
+    private static $gapicVersion = null;
+    private static $gapicVersionLoaded = false;
+
     protected $grpcCredentialsHelper;
     protected $languageServiceStub;
     private $scopes;
@@ -104,13 +106,16 @@ class LanguageServiceGapicClient
 
     private static function getGapicVersion()
     {
-        if (file_exists(__DIR__.'/../VERSION')) {
-            return trim(file_get_contents(__DIR__.'/../VERSION'));
-        } elseif (class_exists('\Google\Cloud\ServiceBuilder')) {
-            return \Google\Cloud\ServiceBuilder::VERSION;
-        } else {
-            return;
+        if (!self::$gapicVersionLoaded) {
+            if (file_exists(__DIR__.'/../VERSION')) {
+                self::$gapicVersion = trim(file_get_contents(__DIR__.'/../VERSION'));
+            } elseif (class_exists('\Google\Cloud\ServiceBuilder')) {
+                self::$gapicVersion = \Google\Cloud\ServiceBuilder::VERSION;
+            }
+            self::$gapicVersionLoaded = true;
         }
+
+        return self::$gapicVersion;
     }
 
     /**
@@ -137,15 +142,18 @@ class LanguageServiceGapicClient
      *           A CredentialsLoader object created using the Google\Auth library.
      *     @type array $scopes A string array of scopes to use when acquiring credentials.
      *                          Defaults to the scopes for the Google Cloud Natural Language API.
+     *     @type string $clientConfigPath
+     *           Path to a JSON file containing client method configuration, including retry settings.
+     *           Specify this setting to specify the retry behavior of all methods on the client.
+     *           By default this settings points to the default client config file, which is provided
+     *           in the resources folder.
      *     @type array $retryingOverride
-     *           An associative array of string => RetryOptions, where the keys
-     *           are method names (e.g. 'createFoo'), that overrides default retrying
-     *           settings. A value of null indicates that the method in question should
-     *           not retry.
-     *     @type int $timeoutMillis The timeout in milliseconds to use for calls
-     *                              that don't use retries. For calls that use retries,
-     *                              set the timeout in RetryOptions.
-     *                              Default: 30000 (30 seconds)
+     *           An associative array in which the keys are method names (e.g. 'createFoo'), and
+     *           the values are retry settings to use for that method. The retry settings for each
+     *           method can be a {@see Google\GAX\RetrySettings} object, or an associative array
+     *           of retry settings parameters. See the documentation on {@see Google\GAX\RetrySettings}
+     *           for example usage. Passing a value of null is equivalent to a value of
+     *           ['retriesEnabled' => false].
      * }
      * @experimental
      */
@@ -161,6 +169,7 @@ class LanguageServiceGapicClient
             'timeoutMillis' => self::DEFAULT_TIMEOUT_MILLIS,
             'libName' => null,
             'libVersion' => null,
+            'clientConfigPath' => __DIR__.'/../resources/language_service_client_config.json',
         ];
         $options = array_merge($defaultOptions, $options);
 
@@ -182,15 +191,13 @@ class LanguageServiceGapicClient
             'annotateText' => $defaultDescriptors,
         ];
 
-        $clientConfigJsonString = file_get_contents(__DIR__.'/../resources/language_service_client_config.json');
+        $clientConfigJsonString = file_get_contents($options['clientConfigPath']);
         $clientConfig = json_decode($clientConfigJsonString, true);
         $this->defaultCallSettings =
                 CallSettings::load(
                     'google.cloud.language.v1beta2.LanguageService',
                     $clientConfig,
-                    $options['retryingOverride'],
-                    GrpcConstants::getStatusCodeNames(),
-                    $options['timeoutMillis']
+                    $options['retryingOverride']
                 );
 
         $this->scopes = $options['scopes'];
@@ -232,12 +239,11 @@ class LanguageServiceGapicClient
      *          The encoding type used by the API to calculate sentence offsets for the
      *          sentence sentiment.
      *          For allowed values, use constants defined on {@see \Google\Cloud\Language\V1beta2\EncodingType}
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Language\V1beta2\AnalyzeSentimentResponse
@@ -292,12 +298,11 @@ class LanguageServiceGapicClient
      *     @type int $encodingType
      *          The encoding type used by the API to calculate offsets.
      *          For allowed values, use constants defined on {@see \Google\Cloud\Language\V1beta2\EncodingType}
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Language\V1beta2\AnalyzeEntitiesResponse
@@ -351,12 +356,11 @@ class LanguageServiceGapicClient
      *     @type int $encodingType
      *          The encoding type used by the API to calculate offsets.
      *          For allowed values, use constants defined on {@see \Google\Cloud\Language\V1beta2\EncodingType}
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Language\V1beta2\AnalyzeEntitySentimentResponse
@@ -411,12 +415,11 @@ class LanguageServiceGapicClient
      *     @type int $encodingType
      *          The encoding type used by the API to calculate offsets.
      *          For allowed values, use constants defined on {@see \Google\Cloud\Language\V1beta2\EncodingType}
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Language\V1beta2\AnalyzeSyntaxResponse
@@ -466,12 +469,11 @@ class LanguageServiceGapicClient
      * @param array    $optionalArgs {
      *                               Optional.
      *
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Language\V1beta2\ClassifyTextResponse
@@ -524,12 +526,11 @@ class LanguageServiceGapicClient
      *     @type int $encodingType
      *          The encoding type used by the API to calculate offsets.
      *          For allowed values, use constants defined on {@see \Google\Cloud\Language\V1beta2\EncodingType}
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Language\V1beta2\AnnotateTextResponse

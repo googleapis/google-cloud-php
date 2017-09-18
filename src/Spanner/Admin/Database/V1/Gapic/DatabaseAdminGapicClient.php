@@ -33,12 +33,12 @@ namespace Google\Cloud\Spanner\Admin\Database\V1\Gapic;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
-use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\LongRunning\OperationsClient;
 use Google\GAX\OperationResponse;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
+use Google\GAX\ValidationException;
 use Google\Iam\V1\GetIamPolicyRequest;
 use Google\Iam\V1\Policy;
 use Google\Iam\V1\SetIamPolicyRequest;
@@ -71,7 +71,7 @@ use Google\Spanner\Admin\Database\V1\UpdateDatabaseDdlRequest;
  * ```
  * try {
  *     $databaseAdminClient = new DatabaseAdminClient();
- *     $formattedParent = DatabaseAdminClient::formatInstanceName("[PROJECT]", "[INSTANCE]");
+ *     $formattedParent = $databaseAdminClient->instanceName("[PROJECT]", "[INSTANCE]");
  *     // Iterate through all elements
  *     $pagedResponse = $databaseAdminClient->listDatabases($formattedParent);
  *     foreach ($pagedResponse->iterateAllElements() as $element) {
@@ -92,8 +92,8 @@ use Google\Spanner\Admin\Database\V1\UpdateDatabaseDdlRequest;
  *
  * Many parameters require resource names to be formatted in a particular way. To assist
  * with these names, this class includes a format method for each type of name, and additionally
- * a parse method to extract the individual identifiers contained within names that are
- * returned.
+ * a parseName method to extract the individual identifiers contained within formatted names
+ * that are returned by the API.
  *
  * @experimental
  */
@@ -126,6 +126,9 @@ class DatabaseAdminGapicClient
 
     private static $instanceNameTemplate;
     private static $databaseNameTemplate;
+    private static $pathTemplateList = null;
+    private static $gapicVersion = null;
+    private static $gapicVersionLoaded = false;
 
     protected $grpcCredentialsHelper;
     protected $databaseAdminStub;
@@ -133,114 +136,6 @@ class DatabaseAdminGapicClient
     private $defaultCallSettings;
     private $descriptors;
     private $operationsClient;
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a instance resource.
-     *
-     * @param string $project
-     * @param string $instance
-     *
-     * @return string The formatted instance resource.
-     * @experimental
-     */
-    public static function formatInstanceName($project, $instance)
-    {
-        return self::getInstanceNameTemplate()->render([
-            'project' => $project,
-            'instance' => $instance,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a database resource.
-     *
-     * @param string $project
-     * @param string $instance
-     * @param string $database
-     *
-     * @return string The formatted database resource.
-     * @experimental
-     */
-    public static function formatDatabaseName($project, $instance, $database)
-    {
-        return self::getDatabaseNameTemplate()->render([
-            'project' => $project,
-            'instance' => $instance,
-            'database' => $database,
-        ]);
-    }
-
-    /**
-     * Parses the project from the given fully-qualified path which
-     * represents a instance resource.
-     *
-     * @param string $instanceName The fully-qualified instance resource.
-     *
-     * @return string The extracted project value.
-     * @experimental
-     */
-    public static function parseProjectFromInstanceName($instanceName)
-    {
-        return self::getInstanceNameTemplate()->match($instanceName)['project'];
-    }
-
-    /**
-     * Parses the instance from the given fully-qualified path which
-     * represents a instance resource.
-     *
-     * @param string $instanceName The fully-qualified instance resource.
-     *
-     * @return string The extracted instance value.
-     * @experimental
-     */
-    public static function parseInstanceFromInstanceName($instanceName)
-    {
-        return self::getInstanceNameTemplate()->match($instanceName)['instance'];
-    }
-
-    /**
-     * Parses the project from the given fully-qualified path which
-     * represents a database resource.
-     *
-     * @param string $databaseName The fully-qualified database resource.
-     *
-     * @return string The extracted project value.
-     * @experimental
-     */
-    public static function parseProjectFromDatabaseName($databaseName)
-    {
-        return self::getDatabaseNameTemplate()->match($databaseName)['project'];
-    }
-
-    /**
-     * Parses the instance from the given fully-qualified path which
-     * represents a database resource.
-     *
-     * @param string $databaseName The fully-qualified database resource.
-     *
-     * @return string The extracted instance value.
-     * @experimental
-     */
-    public static function parseInstanceFromDatabaseName($databaseName)
-    {
-        return self::getDatabaseNameTemplate()->match($databaseName)['instance'];
-    }
-
-    /**
-     * Parses the database from the given fully-qualified path which
-     * represents a database resource.
-     *
-     * @param string $databaseName The fully-qualified database resource.
-     *
-     * @return string The extracted database value.
-     * @experimental
-     */
-    public static function parseDatabaseFromDatabaseName($databaseName)
-    {
-        return self::getDatabaseNameTemplate()->match($databaseName)['database'];
-    }
 
     private static function getInstanceNameTemplate()
     {
@@ -259,7 +154,17 @@ class DatabaseAdminGapicClient
 
         return self::$databaseNameTemplate;
     }
+    private static function getPathTemplateList()
+    {
+        if (self::$pathTemplateList == null) {
+            self::$pathTemplateList = [
+                self::getInstanceNameTemplate(),
+                self::getDatabaseNameTemplate(),
+            ];
+        }
 
+        return self::$pathTemplateList;
+    }
     private static function getPageStreamingDescriptors()
     {
         $listDatabasesPageStreamingDescriptor =
@@ -295,13 +200,77 @@ class DatabaseAdminGapicClient
 
     private static function getGapicVersion()
     {
-        if (file_exists(__DIR__.'/../VERSION')) {
-            return trim(file_get_contents(__DIR__.'/../VERSION'));
-        } elseif (class_exists('\Google\Cloud\ServiceBuilder')) {
-            return \Google\Cloud\ServiceBuilder::VERSION;
-        } else {
-            return;
+        if (!self::$gapicVersionLoaded) {
+            if (file_exists(__DIR__.'/../VERSION')) {
+                self::$gapicVersion = trim(file_get_contents(__DIR__.'/../VERSION'));
+            } elseif (class_exists('\Google\Cloud\ServiceBuilder')) {
+                self::$gapicVersion = \Google\Cloud\ServiceBuilder::VERSION;
+            }
+            self::$gapicVersionLoaded = true;
         }
+
+        return self::$gapicVersion;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a instance resource.
+     *
+     * @param string $project
+     * @param string $instance
+     *
+     * @return string The formatted instance resource.
+     * @experimental
+     */
+    public static function instanceName($project, $instance)
+    {
+        return self::getInstanceNameTemplate()->render([
+            'project' => $project,
+            'instance' => $instance,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a database resource.
+     *
+     * @param string $project
+     * @param string $instance
+     * @param string $database
+     *
+     * @return string The formatted database resource.
+     * @experimental
+     */
+    public static function databaseName($project, $instance, $database)
+    {
+        return self::getDatabaseNameTemplate()->render([
+            'project' => $project,
+            'instance' => $instance,
+            'database' => $database,
+        ]);
+    }
+
+    /**
+     * Parses a formatted name string and returns an associative array of the components in the name.
+     * The following name formats are supported:
+     * - projects/{project}/instances/{instance}
+     * - projects/{project}/instances/{instance}/databases/{database}.
+     *
+     * @param string $formattedName The formatted name string
+     *
+     * @return array An associative array from name component IDs to component values.
+     * @experimental
+     */
+    public static function parseName($formattedName)
+    {
+        foreach (self::getPathTemplateList() as $pathTemplate) {
+            try {
+                return $pathTemplate->match($formattedName);
+            } catch (ValidationException $ex) {
+                // Swallow the exception to continue trying other path templates
+            }
+        }
+        throw new ValidationException("Input did not match any known format. Input: $formattedName");
     }
 
     /**
@@ -366,15 +335,18 @@ class DatabaseAdminGapicClient
      *           A CredentialsLoader object created using the Google\Auth library.
      *     @type array $scopes A string array of scopes to use when acquiring credentials.
      *                          Defaults to the scopes for the Cloud Spanner Database Admin API.
+     *     @type string $clientConfigPath
+     *           Path to a JSON file containing client method configuration, including retry settings.
+     *           Specify this setting to specify the retry behavior of all methods on the client.
+     *           By default this settings points to the default client config file, which is provided
+     *           in the resources folder.
      *     @type array $retryingOverride
-     *           An associative array of string => RetryOptions, where the keys
-     *           are method names (e.g. 'createFoo'), that overrides default retrying
-     *           settings. A value of null indicates that the method in question should
-     *           not retry.
-     *     @type int $timeoutMillis The timeout in milliseconds to use for calls
-     *                              that don't use retries. For calls that use retries,
-     *                              set the timeout in RetryOptions.
-     *                              Default: 30000 (30 seconds)
+     *           An associative array in which the keys are method names (e.g. 'createFoo'), and
+     *           the values are retry settings to use for that method. The retry settings for each
+     *           method can be a {@see Google\GAX\RetrySettings} object, or an associative array
+     *           of retry settings parameters. See the documentation on {@see Google\GAX\RetrySettings}
+     *           for example usage. Passing a value of null is equivalent to a value of
+     *           ['retriesEnabled' => false].
      * }
      * @experimental
      */
@@ -391,6 +363,7 @@ class DatabaseAdminGapicClient
             'timeoutMillis' => self::DEFAULT_TIMEOUT_MILLIS,
             'libName' => null,
             'libVersion' => null,
+            'clientConfigPath' => __DIR__.'/../resources/database_admin_client_config.json',
         ];
         $options = array_merge($defaultOptions, $options);
 
@@ -400,6 +373,7 @@ class DatabaseAdminGapicClient
             $operationsClientOptions = $options;
             unset($operationsClientOptions['timeoutMillis']);
             unset($operationsClientOptions['retryingOverride']);
+            unset($operationsClientOptions['clientConfigPath']);
             $this->operationsClient = new OperationsClient($operationsClientOptions);
         }
 
@@ -432,15 +406,13 @@ class DatabaseAdminGapicClient
             $this->descriptors[$method]['longRunningDescriptor'] = $longRunningDescriptor + ['operationsClient' => $this->operationsClient];
         }
 
-        $clientConfigJsonString = file_get_contents(__DIR__.'/../resources/database_admin_client_config.json');
+        $clientConfigJsonString = file_get_contents($options['clientConfigPath']);
         $clientConfig = json_decode($clientConfigJsonString, true);
         $this->defaultCallSettings =
                 CallSettings::load(
                     'google.spanner.admin.database.v1.DatabaseAdmin',
                     $clientConfig,
-                    $options['retryingOverride'],
-                    GrpcConstants::getStatusCodeNames(),
-                    $options['timeoutMillis']
+                    $options['retryingOverride']
                 );
 
         $this->scopes = $options['scopes'];
@@ -467,7 +439,7 @@ class DatabaseAdminGapicClient
      * ```
      * try {
      *     $databaseAdminClient = new DatabaseAdminClient();
-     *     $formattedParent = DatabaseAdminClient::formatInstanceName("[PROJECT]", "[INSTANCE]");
+     *     $formattedParent = $databaseAdminClient->instanceName("[PROJECT]", "[INSTANCE]");
      *     // Iterate through all elements
      *     $pagedResponse = $databaseAdminClient->listDatabases($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
@@ -500,12 +472,11 @@ class DatabaseAdminGapicClient
      *          If no page token is specified (the default), the first page
      *          of values will be returned. Any page token used here must have
      *          been generated by a previous call to the API.
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\GAX\PagedListResponse
@@ -554,7 +525,7 @@ class DatabaseAdminGapicClient
      * ```
      * try {
      *     $databaseAdminClient = new DatabaseAdminClient();
-     *     $formattedParent = DatabaseAdminClient::formatInstanceName("[PROJECT]", "[INSTANCE]");
+     *     $formattedParent = $databaseAdminClient->instanceName("[PROJECT]", "[INSTANCE]");
      *     $createStatement = "";
      *     $operationResponse = $databaseAdminClient->createDatabase($formattedParent, $createStatement);
      *     $operationResponse->pollUntilComplete();
@@ -600,12 +571,11 @@ class DatabaseAdminGapicClient
      *          database. Statements can create tables, indexes, etc. These
      *          statements execute atomically with the creation of the database:
      *          if there is an error in any statement, the database is not created.
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\GAX\OperationResponse
@@ -645,7 +615,7 @@ class DatabaseAdminGapicClient
      * ```
      * try {
      *     $databaseAdminClient = new DatabaseAdminClient();
-     *     $formattedName = DatabaseAdminClient::formatDatabaseName("[PROJECT]", "[INSTANCE]", "[DATABASE]");
+     *     $formattedName = $databaseAdminClient->databaseName("[PROJECT]", "[INSTANCE]", "[DATABASE]");
      *     $response = $databaseAdminClient->getDatabase($formattedName);
      * } finally {
      *     $databaseAdminClient->close();
@@ -657,12 +627,11 @@ class DatabaseAdminGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Spanner\Admin\Database\V1\Database
@@ -704,7 +673,7 @@ class DatabaseAdminGapicClient
      * ```
      * try {
      *     $databaseAdminClient = new DatabaseAdminClient();
-     *     $formattedDatabase = DatabaseAdminClient::formatDatabaseName("[PROJECT]", "[INSTANCE]", "[DATABASE]");
+     *     $formattedDatabase = $databaseAdminClient->databaseName("[PROJECT]", "[INSTANCE]", "[DATABASE]");
      *     $statements = [];
      *     $operationResponse = $databaseAdminClient->updateDatabaseDdl($formattedDatabase, $statements);
      *     $operationResponse->pollUntilComplete();
@@ -760,12 +729,11 @@ class DatabaseAdminGapicClient
      *          underscore. If the named operation already exists,
      *          [UpdateDatabaseDdl][google.spanner.admin.database.v1.DatabaseAdmin.UpdateDatabaseDdl] returns
      *          `ALREADY_EXISTS`.
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\GAX\OperationResponse
@@ -805,7 +773,7 @@ class DatabaseAdminGapicClient
      * ```
      * try {
      *     $databaseAdminClient = new DatabaseAdminClient();
-     *     $formattedDatabase = DatabaseAdminClient::formatDatabaseName("[PROJECT]", "[INSTANCE]", "[DATABASE]");
+     *     $formattedDatabase = $databaseAdminClient->databaseName("[PROJECT]", "[INSTANCE]", "[DATABASE]");
      *     $databaseAdminClient->dropDatabase($formattedDatabase);
      * } finally {
      *     $databaseAdminClient->close();
@@ -816,12 +784,11 @@ class DatabaseAdminGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @throws \Google\GAX\ApiException if the remote call fails
@@ -857,7 +824,7 @@ class DatabaseAdminGapicClient
      * ```
      * try {
      *     $databaseAdminClient = new DatabaseAdminClient();
-     *     $formattedDatabase = DatabaseAdminClient::formatDatabaseName("[PROJECT]", "[INSTANCE]", "[DATABASE]");
+     *     $formattedDatabase = $databaseAdminClient->databaseName("[PROJECT]", "[INSTANCE]", "[DATABASE]");
      *     $response = $databaseAdminClient->getDatabaseDdl($formattedDatabase);
      * } finally {
      *     $databaseAdminClient->close();
@@ -868,12 +835,11 @@ class DatabaseAdminGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Spanner\Admin\Database\V1\GetDatabaseDdlResponse
@@ -913,7 +879,7 @@ class DatabaseAdminGapicClient
      * ```
      * try {
      *     $databaseAdminClient = new DatabaseAdminClient();
-     *     $formattedResource = DatabaseAdminClient::formatDatabaseName("[PROJECT]", "[INSTANCE]", "[DATABASE]");
+     *     $formattedResource = $databaseAdminClient->databaseName("[PROJECT]", "[INSTANCE]", "[DATABASE]");
      *     $policy = new Policy();
      *     $response = $databaseAdminClient->setIamPolicy($formattedResource, $policy);
      * } finally {
@@ -931,12 +897,11 @@ class DatabaseAdminGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Iam\V1\Policy
@@ -977,7 +942,7 @@ class DatabaseAdminGapicClient
      * ```
      * try {
      *     $databaseAdminClient = new DatabaseAdminClient();
-     *     $formattedResource = DatabaseAdminClient::formatDatabaseName("[PROJECT]", "[INSTANCE]", "[DATABASE]");
+     *     $formattedResource = $databaseAdminClient->databaseName("[PROJECT]", "[INSTANCE]", "[DATABASE]");
      *     $response = $databaseAdminClient->getIamPolicy($formattedResource);
      * } finally {
      *     $databaseAdminClient->close();
@@ -990,12 +955,11 @@ class DatabaseAdminGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Iam\V1\Policy
@@ -1036,7 +1000,7 @@ class DatabaseAdminGapicClient
      * ```
      * try {
      *     $databaseAdminClient = new DatabaseAdminClient();
-     *     $formattedResource = DatabaseAdminClient::formatDatabaseName("[PROJECT]", "[INSTANCE]", "[DATABASE]");
+     *     $formattedResource = $databaseAdminClient->databaseName("[PROJECT]", "[INSTANCE]", "[DATABASE]");
      *     $permissions = [];
      *     $response = $databaseAdminClient->testIamPermissions($formattedResource, $permissions);
      * } finally {
@@ -1054,12 +1018,11 @@ class DatabaseAdminGapicClient
      * @param array    $optionalArgs {
      *                               Optional.
      *
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Iam\V1\TestIamPermissionsResponse

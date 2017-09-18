@@ -33,9 +33,9 @@ namespace Google\Cloud\Spanner\V1\Gapic;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
-use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PathTemplate;
+use Google\GAX\ValidationException;
 use Google\Protobuf\Struct;
 use Google\Spanner\V1\BeginTransactionRequest;
 use Google\Spanner\V1\CommitRequest;
@@ -68,7 +68,7 @@ use Google\Spanner\V1\TransactionSelector;
  * ```
  * try {
  *     $spannerClient = new SpannerClient();
- *     $formattedDatabase = SpannerClient::formatDatabaseName("[PROJECT]", "[INSTANCE]", "[DATABASE]");
+ *     $formattedDatabase = $spannerClient->databaseName("[PROJECT]", "[INSTANCE]", "[DATABASE]");
  *     $response = $spannerClient->createSession($formattedDatabase);
  * } finally {
  *     $spannerClient->close();
@@ -77,8 +77,8 @@ use Google\Spanner\V1\TransactionSelector;
  *
  * Many parameters require resource names to be formatted in a particular way. To assist
  * with these names, this class includes a format method for each type of name, and additionally
- * a parse method to extract the individual identifiers contained within names that are
- * returned.
+ * a parseName method to extract the individual identifiers contained within formatted names
+ * that are returned by the API.
  *
  * @experimental
  */
@@ -111,12 +111,70 @@ class SpannerGapicClient
 
     private static $databaseNameTemplate;
     private static $sessionNameTemplate;
+    private static $pathTemplateList = null;
+    private static $gapicVersion = null;
+    private static $gapicVersionLoaded = false;
 
     protected $grpcCredentialsHelper;
     protected $spannerStub;
     private $scopes;
     private $defaultCallSettings;
     private $descriptors;
+
+    private static function getDatabaseNameTemplate()
+    {
+        if (self::$databaseNameTemplate == null) {
+            self::$databaseNameTemplate = new PathTemplate('projects/{project}/instances/{instance}/databases/{database}');
+        }
+
+        return self::$databaseNameTemplate;
+    }
+
+    private static function getSessionNameTemplate()
+    {
+        if (self::$sessionNameTemplate == null) {
+            self::$sessionNameTemplate = new PathTemplate('projects/{project}/instances/{instance}/databases/{database}/sessions/{session}');
+        }
+
+        return self::$sessionNameTemplate;
+    }
+    private static function getPathTemplateList()
+    {
+        if (self::$pathTemplateList == null) {
+            self::$pathTemplateList = [
+                self::getDatabaseNameTemplate(),
+                self::getSessionNameTemplate(),
+            ];
+        }
+
+        return self::$pathTemplateList;
+    }
+
+    private static function getGrpcStreamingDescriptors()
+    {
+        return [
+            'executeStreamingSql' => [
+                'grpcStreamingType' => 'ServerStreaming',
+            ],
+            'streamingRead' => [
+                'grpcStreamingType' => 'ServerStreaming',
+            ],
+        ];
+    }
+
+    private static function getGapicVersion()
+    {
+        if (!self::$gapicVersionLoaded) {
+            if (file_exists(__DIR__.'/../VERSION')) {
+                self::$gapicVersion = trim(file_get_contents(__DIR__.'/../VERSION'));
+            } elseif (class_exists('\Google\Cloud\ServiceBuilder')) {
+                self::$gapicVersion = \Google\Cloud\ServiceBuilder::VERSION;
+            }
+            self::$gapicVersionLoaded = true;
+        }
+
+        return self::$gapicVersion;
+    }
 
     /**
      * Formats a string containing the fully-qualified path to represent
@@ -129,7 +187,7 @@ class SpannerGapicClient
      * @return string The formatted database resource.
      * @experimental
      */
-    public static function formatDatabaseName($project, $instance, $database)
+    public static function databaseName($project, $instance, $database)
     {
         return self::getDatabaseNameTemplate()->render([
             'project' => $project,
@@ -150,7 +208,7 @@ class SpannerGapicClient
      * @return string The formatted session resource.
      * @experimental
      */
-    public static function formatSessionName($project, $instance, $database, $session)
+    public static function sessionName($project, $instance, $database, $session)
     {
         return self::getSessionNameTemplate()->render([
             'project' => $project,
@@ -161,142 +219,26 @@ class SpannerGapicClient
     }
 
     /**
-     * Parses the project from the given fully-qualified path which
-     * represents a database resource.
+     * Parses a formatted name string and returns an associative array of the components in the name.
+     * The following name formats are supported:
+     * - projects/{project}/instances/{instance}/databases/{database}
+     * - projects/{project}/instances/{instance}/databases/{database}/sessions/{session}.
      *
-     * @param string $databaseName The fully-qualified database resource.
+     * @param string $formattedName The formatted name string
      *
-     * @return string The extracted project value.
+     * @return array An associative array from name component IDs to component values.
      * @experimental
      */
-    public static function parseProjectFromDatabaseName($databaseName)
+    public static function parseName($formattedName)
     {
-        return self::getDatabaseNameTemplate()->match($databaseName)['project'];
-    }
-
-    /**
-     * Parses the instance from the given fully-qualified path which
-     * represents a database resource.
-     *
-     * @param string $databaseName The fully-qualified database resource.
-     *
-     * @return string The extracted instance value.
-     * @experimental
-     */
-    public static function parseInstanceFromDatabaseName($databaseName)
-    {
-        return self::getDatabaseNameTemplate()->match($databaseName)['instance'];
-    }
-
-    /**
-     * Parses the database from the given fully-qualified path which
-     * represents a database resource.
-     *
-     * @param string $databaseName The fully-qualified database resource.
-     *
-     * @return string The extracted database value.
-     * @experimental
-     */
-    public static function parseDatabaseFromDatabaseName($databaseName)
-    {
-        return self::getDatabaseNameTemplate()->match($databaseName)['database'];
-    }
-
-    /**
-     * Parses the project from the given fully-qualified path which
-     * represents a session resource.
-     *
-     * @param string $sessionName The fully-qualified session resource.
-     *
-     * @return string The extracted project value.
-     * @experimental
-     */
-    public static function parseProjectFromSessionName($sessionName)
-    {
-        return self::getSessionNameTemplate()->match($sessionName)['project'];
-    }
-
-    /**
-     * Parses the instance from the given fully-qualified path which
-     * represents a session resource.
-     *
-     * @param string $sessionName The fully-qualified session resource.
-     *
-     * @return string The extracted instance value.
-     * @experimental
-     */
-    public static function parseInstanceFromSessionName($sessionName)
-    {
-        return self::getSessionNameTemplate()->match($sessionName)['instance'];
-    }
-
-    /**
-     * Parses the database from the given fully-qualified path which
-     * represents a session resource.
-     *
-     * @param string $sessionName The fully-qualified session resource.
-     *
-     * @return string The extracted database value.
-     * @experimental
-     */
-    public static function parseDatabaseFromSessionName($sessionName)
-    {
-        return self::getSessionNameTemplate()->match($sessionName)['database'];
-    }
-
-    /**
-     * Parses the session from the given fully-qualified path which
-     * represents a session resource.
-     *
-     * @param string $sessionName The fully-qualified session resource.
-     *
-     * @return string The extracted session value.
-     * @experimental
-     */
-    public static function parseSessionFromSessionName($sessionName)
-    {
-        return self::getSessionNameTemplate()->match($sessionName)['session'];
-    }
-
-    private static function getDatabaseNameTemplate()
-    {
-        if (self::$databaseNameTemplate == null) {
-            self::$databaseNameTemplate = new PathTemplate('projects/{project}/instances/{instance}/databases/{database}');
+        foreach (self::getPathTemplateList() as $pathTemplate) {
+            try {
+                return $pathTemplate->match($formattedName);
+            } catch (ValidationException $ex) {
+                // Swallow the exception to continue trying other path templates
+            }
         }
-
-        return self::$databaseNameTemplate;
-    }
-
-    private static function getSessionNameTemplate()
-    {
-        if (self::$sessionNameTemplate == null) {
-            self::$sessionNameTemplate = new PathTemplate('projects/{project}/instances/{instance}/databases/{database}/sessions/{session}');
-        }
-
-        return self::$sessionNameTemplate;
-    }
-
-    private static function getGrpcStreamingDescriptors()
-    {
-        return [
-            'executeStreamingSql' => [
-                'grpcStreamingType' => 'ServerStreaming',
-            ],
-            'streamingRead' => [
-                'grpcStreamingType' => 'ServerStreaming',
-            ],
-        ];
-    }
-
-    private static function getGapicVersion()
-    {
-        if (file_exists(__DIR__.'/../VERSION')) {
-            return trim(file_get_contents(__DIR__.'/../VERSION'));
-        } elseif (class_exists('\Google\Cloud\ServiceBuilder')) {
-            return \Google\Cloud\ServiceBuilder::VERSION;
-        } else {
-            return;
-        }
+        throw new ValidationException("Input did not match any known format. Input: $formattedName");
     }
 
     /**
@@ -323,15 +265,18 @@ class SpannerGapicClient
      *           A CredentialsLoader object created using the Google\Auth library.
      *     @type array $scopes A string array of scopes to use when acquiring credentials.
      *                          Defaults to the scopes for the Cloud Spanner API.
+     *     @type string $clientConfigPath
+     *           Path to a JSON file containing client method configuration, including retry settings.
+     *           Specify this setting to specify the retry behavior of all methods on the client.
+     *           By default this settings points to the default client config file, which is provided
+     *           in the resources folder.
      *     @type array $retryingOverride
-     *           An associative array of string => RetryOptions, where the keys
-     *           are method names (e.g. 'createFoo'), that overrides default retrying
-     *           settings. A value of null indicates that the method in question should
-     *           not retry.
-     *     @type int $timeoutMillis The timeout in milliseconds to use for calls
-     *                              that don't use retries. For calls that use retries,
-     *                              set the timeout in RetryOptions.
-     *                              Default: 30000 (30 seconds)
+     *           An associative array in which the keys are method names (e.g. 'createFoo'), and
+     *           the values are retry settings to use for that method. The retry settings for each
+     *           method can be a {@see Google\GAX\RetrySettings} object, or an associative array
+     *           of retry settings parameters. See the documentation on {@see Google\GAX\RetrySettings}
+     *           for example usage. Passing a value of null is equivalent to a value of
+     *           ['retriesEnabled' => false].
      * }
      * @experimental
      */
@@ -348,6 +293,7 @@ class SpannerGapicClient
             'timeoutMillis' => self::DEFAULT_TIMEOUT_MILLIS,
             'libName' => null,
             'libVersion' => null,
+            'clientConfigPath' => __DIR__.'/../resources/spanner_client_config.json',
         ];
         $options = array_merge($defaultOptions, $options);
 
@@ -377,15 +323,13 @@ class SpannerGapicClient
             $this->descriptors[$method]['grpcStreamingDescriptor'] = $grpcStreamingDescriptor;
         }
 
-        $clientConfigJsonString = file_get_contents(__DIR__.'/../resources/spanner_client_config.json');
+        $clientConfigJsonString = file_get_contents($options['clientConfigPath']);
         $clientConfig = json_decode($clientConfigJsonString, true);
         $this->defaultCallSettings =
                 CallSettings::load(
                     'google.spanner.v1.Spanner',
                     $clientConfig,
-                    $options['retryingOverride'],
-                    GrpcConstants::getStatusCodeNames(),
-                    $options['timeoutMillis']
+                    $options['retryingOverride']
                 );
 
         $this->scopes = $options['scopes'];
@@ -430,7 +374,7 @@ class SpannerGapicClient
      * ```
      * try {
      *     $spannerClient = new SpannerClient();
-     *     $formattedDatabase = SpannerClient::formatDatabaseName("[PROJECT]", "[INSTANCE]", "[DATABASE]");
+     *     $formattedDatabase = $spannerClient->databaseName("[PROJECT]", "[INSTANCE]", "[DATABASE]");
      *     $response = $spannerClient->createSession($formattedDatabase);
      * } finally {
      *     $spannerClient->close();
@@ -441,12 +385,11 @@ class SpannerGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Spanner\V1\Session
@@ -484,7 +427,7 @@ class SpannerGapicClient
      * ```
      * try {
      *     $spannerClient = new SpannerClient();
-     *     $formattedName = SpannerClient::formatSessionName("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
+     *     $formattedName = $spannerClient->sessionName("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
      *     $response = $spannerClient->getSession($formattedName);
      * } finally {
      *     $spannerClient->close();
@@ -495,12 +438,11 @@ class SpannerGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Spanner\V1\Session
@@ -536,7 +478,7 @@ class SpannerGapicClient
      * ```
      * try {
      *     $spannerClient = new SpannerClient();
-     *     $formattedName = SpannerClient::formatSessionName("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
+     *     $formattedName = $spannerClient->sessionName("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
      *     $spannerClient->deleteSession($formattedName);
      * } finally {
      *     $spannerClient->close();
@@ -547,12 +489,11 @@ class SpannerGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @throws \Google\GAX\ApiException if the remote call fails
@@ -596,7 +537,7 @@ class SpannerGapicClient
      * ```
      * try {
      *     $spannerClient = new SpannerClient();
-     *     $formattedSession = SpannerClient::formatSessionName("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
+     *     $formattedSession = $spannerClient->sessionName("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
      *     $sql = "";
      *     $response = $spannerClient->executeSql($formattedSession, $sql);
      * } finally {
@@ -647,12 +588,11 @@ class SpannerGapicClient
      *          Used to control the amount of debugging information returned in
      *          [ResultSetStats][google.spanner.v1.ResultSetStats].
      *          For allowed values, use constants defined on {@see \Google\Spanner\V1\ExecuteSqlRequest_QueryMode}
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Spanner\V1\ResultSet
@@ -708,7 +648,7 @@ class SpannerGapicClient
      * ```
      * try {
      *     $spannerClient = new SpannerClient();
-     *     $formattedSession = SpannerClient::formatSessionName("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
+     *     $formattedSession = $spannerClient->sessionName("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
      *     $sql = "";
      *     // Read all responses until the stream is complete
      *     $stream = $spannerClient->executeStreamingSql($formattedSession, $sql);
@@ -793,6 +733,13 @@ class SpannerGapicClient
             $request->setQueryMode($optionalArgs['queryMode']);
         }
 
+        if (array_key_exists('timeoutMillis', $optionalArgs)) {
+            $optionalArgs['retrySettings'] = [
+                'retriesEnabled' => false,
+                'noRetriesRpcTimeoutMillis' => $optionalArgs['timeoutMillis'],
+            ];
+        }
+
         $mergedSettings = $this->defaultCallSettings['executeStreamingSql']->merge(
             new CallSettings($optionalArgs)
         );
@@ -828,7 +775,7 @@ class SpannerGapicClient
      * ```
      * try {
      *     $spannerClient = new SpannerClient();
-     *     $formattedSession = SpannerClient::formatSessionName("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
+     *     $formattedSession = $spannerClient->sessionName("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
      *     $table = "";
      *     $columns = [];
      *     $keySet = new KeySet();
@@ -872,12 +819,11 @@ class SpannerGapicClient
      *          enables the new read to resume where the last read left off. The
      *          rest of the request parameters must exactly match the request
      *          that yielded this token.
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Spanner\V1\ResultSet
@@ -932,7 +878,7 @@ class SpannerGapicClient
      * ```
      * try {
      *     $spannerClient = new SpannerClient();
-     *     $formattedSession = SpannerClient::formatSessionName("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
+     *     $formattedSession = $spannerClient->sessionName("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
      *     $table = "";
      *     $columns = [];
      *     $keySet = new KeySet();
@@ -1009,6 +955,13 @@ class SpannerGapicClient
             $request->setResumeToken($optionalArgs['resumeToken']);
         }
 
+        if (array_key_exists('timeoutMillis', $optionalArgs)) {
+            $optionalArgs['retrySettings'] = [
+                'retriesEnabled' => false,
+                'noRetriesRpcTimeoutMillis' => $optionalArgs['timeoutMillis'],
+            ];
+        }
+
         $mergedSettings = $this->defaultCallSettings['streamingRead']->merge(
             new CallSettings($optionalArgs)
         );
@@ -1035,7 +988,7 @@ class SpannerGapicClient
      * ```
      * try {
      *     $spannerClient = new SpannerClient();
-     *     $formattedSession = SpannerClient::formatSessionName("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
+     *     $formattedSession = $spannerClient->sessionName("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
      *     $options = new TransactionOptions();
      *     $response = $spannerClient->beginTransaction($formattedSession, $options);
      * } finally {
@@ -1048,12 +1001,11 @@ class SpannerGapicClient
      * @param array              $optionalArgs {
      *                                         Optional.
      *
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Spanner\V1\Transaction
@@ -1097,7 +1049,7 @@ class SpannerGapicClient
      * ```
      * try {
      *     $spannerClient = new SpannerClient();
-     *     $formattedSession = SpannerClient::formatSessionName("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
+     *     $formattedSession = $spannerClient->sessionName("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
      *     $mutations = [];
      *     $response = $spannerClient->commit($formattedSession, $mutations);
      * } finally {
@@ -1124,12 +1076,11 @@ class SpannerGapicClient
      *          executed more than once. If this is undesirable, use
      *          [BeginTransaction][google.spanner.v1.Spanner.BeginTransaction] and
      *          [Commit][google.spanner.v1.Spanner.Commit] instead.
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Spanner\V1\CommitResponse
@@ -1179,7 +1130,7 @@ class SpannerGapicClient
      * ```
      * try {
      *     $spannerClient = new SpannerClient();
-     *     $formattedSession = SpannerClient::formatSessionName("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
+     *     $formattedSession = $spannerClient->sessionName("[PROJECT]", "[INSTANCE]", "[DATABASE]", "[SESSION]");
      *     $transactionId = "";
      *     $spannerClient->rollback($formattedSession, $transactionId);
      * } finally {
@@ -1192,12 +1143,11 @@ class SpannerGapicClient
      * @param array  $optionalArgs  {
      *                              Optional.
      *
-     *     @type \Google\GAX\RetrySettings $retrySettings
-     *          Retry settings to use for this call. If present, then
-     *          $timeoutMillis is ignored.
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call. Only used if $retrySettings
-     *          is not set.
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
      * }
      *
      * @throws \Google\GAX\ApiException if the remote call fails
