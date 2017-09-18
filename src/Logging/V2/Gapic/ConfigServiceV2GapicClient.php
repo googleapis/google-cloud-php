@@ -37,6 +37,7 @@ use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
+use Google\GAX\ValidationException;
 use Google\Logging\V2\ConfigServiceV2GrpcClient;
 use Google\Logging\V2\CreateSinkRequest;
 use Google\Logging\V2\DeleteSinkRequest;
@@ -59,7 +60,7 @@ use Google\Logging\V2\UpdateSinkRequest;
  * ```
  * try {
  *     $configServiceV2Client = new ConfigServiceV2Client();
- *     $formattedParent = ConfigServiceV2Client::formatProjectName("[PROJECT]");
+ *     $formattedParent = $configServiceV2Client->projectName("[PROJECT]");
  *     // Iterate through all elements
  *     $pagedResponse = $configServiceV2Client->listSinks($formattedParent);
  *     foreach ($pagedResponse->iterateAllElements() as $element) {
@@ -80,8 +81,8 @@ use Google\Logging\V2\UpdateSinkRequest;
  *
  * Many parameters require resource names to be formatted in a particular way. To assist
  * with these names, this class includes a format method for each type of name, and additionally
- * a parse method to extract the individual identifiers contained within names that are
- * returned.
+ * a parseName method to extract the individual identifiers contained within formatted names
+ * that are returned by the API.
  *
  * @experimental
  */
@@ -114,88 +115,15 @@ class ConfigServiceV2GapicClient
 
     private static $projectNameTemplate;
     private static $sinkNameTemplate;
+    private static $pathTemplateList = null;
+    private static $gapicVersion = null;
+    private static $gapicVersionLoaded = false;
 
     protected $grpcCredentialsHelper;
     protected $configServiceV2Stub;
     private $scopes;
     private $defaultCallSettings;
     private $descriptors;
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a project resource.
-     *
-     * @param string $project
-     *
-     * @return string The formatted project resource.
-     * @experimental
-     */
-    public static function formatProjectName($project)
-    {
-        return self::getProjectNameTemplate()->render([
-            'project' => $project,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a sink resource.
-     *
-     * @param string $project
-     * @param string $sink
-     *
-     * @return string The formatted sink resource.
-     * @experimental
-     */
-    public static function formatSinkName($project, $sink)
-    {
-        return self::getSinkNameTemplate()->render([
-            'project' => $project,
-            'sink' => $sink,
-        ]);
-    }
-
-    /**
-     * Parses the project from the given fully-qualified path which
-     * represents a project resource.
-     *
-     * @param string $projectName The fully-qualified project resource.
-     *
-     * @return string The extracted project value.
-     * @experimental
-     */
-    public static function parseProjectFromProjectName($projectName)
-    {
-        return self::getProjectNameTemplate()->match($projectName)['project'];
-    }
-
-    /**
-     * Parses the project from the given fully-qualified path which
-     * represents a sink resource.
-     *
-     * @param string $sinkName The fully-qualified sink resource.
-     *
-     * @return string The extracted project value.
-     * @experimental
-     */
-    public static function parseProjectFromSinkName($sinkName)
-    {
-        return self::getSinkNameTemplate()->match($sinkName)['project'];
-    }
-
-    /**
-     * Parses the sink from the given fully-qualified path which
-     * represents a sink resource.
-     *
-     * @param string $sinkName The fully-qualified sink resource.
-     *
-     * @return string The extracted sink value.
-     * @experimental
-     */
-    public static function parseSinkFromSinkName($sinkName)
-    {
-        return self::getSinkNameTemplate()->match($sinkName)['sink'];
-    }
 
     private static function getProjectNameTemplate()
     {
@@ -214,7 +142,17 @@ class ConfigServiceV2GapicClient
 
         return self::$sinkNameTemplate;
     }
+    private static function getPathTemplateList()
+    {
+        if (self::$pathTemplateList == null) {
+            self::$pathTemplateList = [
+                self::getProjectNameTemplate(),
+                self::getSinkNameTemplate(),
+            ];
+        }
 
+        return self::$pathTemplateList;
+    }
     private static function getPageStreamingDescriptors()
     {
         $listSinksPageStreamingDescriptor =
@@ -236,13 +174,73 @@ class ConfigServiceV2GapicClient
 
     private static function getGapicVersion()
     {
-        if (file_exists(__DIR__.'/../VERSION')) {
-            return trim(file_get_contents(__DIR__.'/../VERSION'));
-        } elseif (class_exists('\Google\Cloud\ServiceBuilder')) {
-            return \Google\Cloud\ServiceBuilder::VERSION;
-        } else {
-            return;
+        if (!self::$gapicVersionLoaded) {
+            if (file_exists(__DIR__.'/../VERSION')) {
+                self::$gapicVersion = trim(file_get_contents(__DIR__.'/../VERSION'));
+            } elseif (class_exists('\Google\Cloud\ServiceBuilder')) {
+                self::$gapicVersion = \Google\Cloud\ServiceBuilder::VERSION;
+            }
+            self::$gapicVersionLoaded = true;
         }
+
+        return self::$gapicVersion;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project resource.
+     * @experimental
+     */
+    public static function projectName($project)
+    {
+        return self::getProjectNameTemplate()->render([
+            'project' => $project,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a sink resource.
+     *
+     * @param string $project
+     * @param string $sink
+     *
+     * @return string The formatted sink resource.
+     * @experimental
+     */
+    public static function sinkName($project, $sink)
+    {
+        return self::getSinkNameTemplate()->render([
+            'project' => $project,
+            'sink' => $sink,
+        ]);
+    }
+
+    /**
+     * Parses a formatted name string and returns an associative array of the components in the name.
+     * The following name formats are supported:
+     * - projects/{project}
+     * - projects/{project}/sinks/{sink}.
+     *
+     * @param string $formattedName The formatted name string
+     *
+     * @return array An associative array from name component IDs to component values.
+     * @experimental
+     */
+    public static function parseName($formattedName)
+    {
+        foreach (self::getPathTemplateList() as $pathTemplate) {
+            try {
+                return $pathTemplate->match($formattedName);
+            } catch (ValidationException $ex) {
+                // Swallow the exception to continue trying other path templates
+            }
+        }
+        throw new ValidationException("Input did not match any known format. Input: $formattedName");
     }
 
     /**
@@ -356,7 +354,7 @@ class ConfigServiceV2GapicClient
      * ```
      * try {
      *     $configServiceV2Client = new ConfigServiceV2Client();
-     *     $formattedParent = ConfigServiceV2Client::formatProjectName("[PROJECT]");
+     *     $formattedParent = $configServiceV2Client->projectName("[PROJECT]");
      *     // Iterate through all elements
      *     $pagedResponse = $configServiceV2Client->listSinks($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
@@ -440,7 +438,7 @@ class ConfigServiceV2GapicClient
      * ```
      * try {
      *     $configServiceV2Client = new ConfigServiceV2Client();
-     *     $formattedSinkName = ConfigServiceV2Client::formatSinkName("[PROJECT]", "[SINK]");
+     *     $formattedSinkName = $configServiceV2Client->sinkName("[PROJECT]", "[SINK]");
      *     $response = $configServiceV2Client->getSink($formattedSinkName);
      * } finally {
      *     $configServiceV2Client->close();
@@ -503,7 +501,7 @@ class ConfigServiceV2GapicClient
      * ```
      * try {
      *     $configServiceV2Client = new ConfigServiceV2Client();
-     *     $formattedParent = ConfigServiceV2Client::formatProjectName("[PROJECT]");
+     *     $formattedParent = $configServiceV2Client->projectName("[PROJECT]");
      *     $sink = new LogSink();
      *     $response = $configServiceV2Client->createSink($formattedParent, $sink);
      * } finally {
@@ -585,7 +583,7 @@ class ConfigServiceV2GapicClient
      * ```
      * try {
      *     $configServiceV2Client = new ConfigServiceV2Client();
-     *     $formattedSinkName = ConfigServiceV2Client::formatSinkName("[PROJECT]", "[SINK]");
+     *     $formattedSinkName = $configServiceV2Client->sinkName("[PROJECT]", "[SINK]");
      *     $sink = new LogSink();
      *     $response = $configServiceV2Client->updateSink($formattedSinkName, $sink);
      * } finally {
@@ -666,7 +664,7 @@ class ConfigServiceV2GapicClient
      * ```
      * try {
      *     $configServiceV2Client = new ConfigServiceV2Client();
-     *     $formattedSinkName = ConfigServiceV2Client::formatSinkName("[PROJECT]", "[SINK]");
+     *     $formattedSinkName = $configServiceV2Client->sinkName("[PROJECT]", "[SINK]");
      *     $configServiceV2Client->deleteSink($formattedSinkName);
      * } finally {
      *     $configServiceV2Client->close();

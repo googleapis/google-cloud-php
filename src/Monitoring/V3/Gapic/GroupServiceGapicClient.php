@@ -37,6 +37,7 @@ use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
+use Google\GAX\ValidationException;
 use Google\Monitoring\V3\CreateGroupRequest;
 use Google\Monitoring\V3\DeleteGroupRequest;
 use Google\Monitoring\V3\GetGroupRequest;
@@ -71,7 +72,7 @@ use Google\Monitoring\V3\UpdateGroupRequest;
  * ```
  * try {
  *     $groupServiceClient = new GroupServiceClient();
- *     $formattedName = GroupServiceClient::formatProjectName("[PROJECT]");
+ *     $formattedName = $groupServiceClient->projectName("[PROJECT]");
  *     // Iterate through all elements
  *     $pagedResponse = $groupServiceClient->listGroups($formattedName);
  *     foreach ($pagedResponse->iterateAllElements() as $element) {
@@ -92,8 +93,8 @@ use Google\Monitoring\V3\UpdateGroupRequest;
  *
  * Many parameters require resource names to be formatted in a particular way. To assist
  * with these names, this class includes a format method for each type of name, and additionally
- * a parse method to extract the individual identifiers contained within names that are
- * returned.
+ * a parseName method to extract the individual identifiers contained within formatted names
+ * that are returned by the API.
  *
  * @experimental
  */
@@ -126,88 +127,15 @@ class GroupServiceGapicClient
 
     private static $projectNameTemplate;
     private static $groupNameTemplate;
+    private static $pathTemplateList = null;
+    private static $gapicVersion = null;
+    private static $gapicVersionLoaded = false;
 
     protected $grpcCredentialsHelper;
     protected $groupServiceStub;
     private $scopes;
     private $defaultCallSettings;
     private $descriptors;
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a project resource.
-     *
-     * @param string $project
-     *
-     * @return string The formatted project resource.
-     * @experimental
-     */
-    public static function formatProjectName($project)
-    {
-        return self::getProjectNameTemplate()->render([
-            'project' => $project,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a group resource.
-     *
-     * @param string $project
-     * @param string $group
-     *
-     * @return string The formatted group resource.
-     * @experimental
-     */
-    public static function formatGroupName($project, $group)
-    {
-        return self::getGroupNameTemplate()->render([
-            'project' => $project,
-            'group' => $group,
-        ]);
-    }
-
-    /**
-     * Parses the project from the given fully-qualified path which
-     * represents a project resource.
-     *
-     * @param string $projectName The fully-qualified project resource.
-     *
-     * @return string The extracted project value.
-     * @experimental
-     */
-    public static function parseProjectFromProjectName($projectName)
-    {
-        return self::getProjectNameTemplate()->match($projectName)['project'];
-    }
-
-    /**
-     * Parses the project from the given fully-qualified path which
-     * represents a group resource.
-     *
-     * @param string $groupName The fully-qualified group resource.
-     *
-     * @return string The extracted project value.
-     * @experimental
-     */
-    public static function parseProjectFromGroupName($groupName)
-    {
-        return self::getGroupNameTemplate()->match($groupName)['project'];
-    }
-
-    /**
-     * Parses the group from the given fully-qualified path which
-     * represents a group resource.
-     *
-     * @param string $groupName The fully-qualified group resource.
-     *
-     * @return string The extracted group value.
-     * @experimental
-     */
-    public static function parseGroupFromGroupName($groupName)
-    {
-        return self::getGroupNameTemplate()->match($groupName)['group'];
-    }
 
     private static function getProjectNameTemplate()
     {
@@ -226,7 +154,17 @@ class GroupServiceGapicClient
 
         return self::$groupNameTemplate;
     }
+    private static function getPathTemplateList()
+    {
+        if (self::$pathTemplateList == null) {
+            self::$pathTemplateList = [
+                self::getProjectNameTemplate(),
+                self::getGroupNameTemplate(),
+            ];
+        }
 
+        return self::$pathTemplateList;
+    }
     private static function getPageStreamingDescriptors()
     {
         $listGroupsPageStreamingDescriptor =
@@ -258,13 +196,73 @@ class GroupServiceGapicClient
 
     private static function getGapicVersion()
     {
-        if (file_exists(__DIR__.'/../VERSION')) {
-            return trim(file_get_contents(__DIR__.'/../VERSION'));
-        } elseif (class_exists('\Google\Cloud\ServiceBuilder')) {
-            return \Google\Cloud\ServiceBuilder::VERSION;
-        } else {
-            return;
+        if (!self::$gapicVersionLoaded) {
+            if (file_exists(__DIR__.'/../VERSION')) {
+                self::$gapicVersion = trim(file_get_contents(__DIR__.'/../VERSION'));
+            } elseif (class_exists('\Google\Cloud\ServiceBuilder')) {
+                self::$gapicVersion = \Google\Cloud\ServiceBuilder::VERSION;
+            }
+            self::$gapicVersionLoaded = true;
         }
+
+        return self::$gapicVersion;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project resource.
+     * @experimental
+     */
+    public static function projectName($project)
+    {
+        return self::getProjectNameTemplate()->render([
+            'project' => $project,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a group resource.
+     *
+     * @param string $project
+     * @param string $group
+     *
+     * @return string The formatted group resource.
+     * @experimental
+     */
+    public static function groupName($project, $group)
+    {
+        return self::getGroupNameTemplate()->render([
+            'project' => $project,
+            'group' => $group,
+        ]);
+    }
+
+    /**
+     * Parses a formatted name string and returns an associative array of the components in the name.
+     * The following name formats are supported:
+     * - projects/{project}
+     * - projects/{project}/groups/{group}.
+     *
+     * @param string $formattedName The formatted name string
+     *
+     * @return array An associative array from name component IDs to component values.
+     * @experimental
+     */
+    public static function parseName($formattedName)
+    {
+        foreach (self::getPathTemplateList() as $pathTemplate) {
+            try {
+                return $pathTemplate->match($formattedName);
+            } catch (ValidationException $ex) {
+                // Swallow the exception to continue trying other path templates
+            }
+        }
+        throw new ValidationException("Input did not match any known format. Input: $formattedName");
     }
 
     /**
@@ -378,7 +376,7 @@ class GroupServiceGapicClient
      * ```
      * try {
      *     $groupServiceClient = new GroupServiceClient();
-     *     $formattedName = GroupServiceClient::formatProjectName("[PROJECT]");
+     *     $formattedName = $groupServiceClient->projectName("[PROJECT]");
      *     // Iterate through all elements
      *     $pagedResponse = $groupServiceClient->listGroups($formattedName);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
@@ -482,7 +480,7 @@ class GroupServiceGapicClient
      * ```
      * try {
      *     $groupServiceClient = new GroupServiceClient();
-     *     $formattedName = GroupServiceClient::formatGroupName("[PROJECT]", "[GROUP]");
+     *     $formattedName = $groupServiceClient->groupName("[PROJECT]", "[GROUP]");
      *     $response = $groupServiceClient->getGroup($formattedName);
      * } finally {
      *     $groupServiceClient->close();
@@ -535,7 +533,7 @@ class GroupServiceGapicClient
      * ```
      * try {
      *     $groupServiceClient = new GroupServiceClient();
-     *     $formattedName = GroupServiceClient::formatProjectName("[PROJECT]");
+     *     $formattedName = $groupServiceClient->projectName("[PROJECT]");
      *     $group = new Group();
      *     $response = $groupServiceClient->createGroup($formattedName, $group);
      * } finally {
@@ -656,7 +654,7 @@ class GroupServiceGapicClient
      * ```
      * try {
      *     $groupServiceClient = new GroupServiceClient();
-     *     $formattedName = GroupServiceClient::formatGroupName("[PROJECT]", "[GROUP]");
+     *     $formattedName = $groupServiceClient->groupName("[PROJECT]", "[GROUP]");
      *     $groupServiceClient->deleteGroup($formattedName);
      * } finally {
      *     $groupServiceClient->close();
@@ -707,7 +705,7 @@ class GroupServiceGapicClient
      * ```
      * try {
      *     $groupServiceClient = new GroupServiceClient();
-     *     $formattedName = GroupServiceClient::formatGroupName("[PROJECT]", "[GROUP]");
+     *     $formattedName = $groupServiceClient->groupName("[PROJECT]", "[GROUP]");
      *     // Iterate through all elements
      *     $pagedResponse = $groupServiceClient->listGroupMembers($formattedName);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {

@@ -37,6 +37,7 @@ use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
+use Google\GAX\ValidationException;
 use Google\Iam\V1\GetIamPolicyRequest;
 use Google\Iam\V1\IAMPolicyGrpcClient;
 use Google\Iam\V1\Policy;
@@ -57,9 +58,11 @@ use Google\Pubsub\V1\ModifyPushConfigRequest;
 use Google\Pubsub\V1\PullRequest;
 use Google\Pubsub\V1\PushConfig;
 use Google\Pubsub\V1\SeekRequest;
+use Google\Pubsub\V1\Snapshot;
 use Google\Pubsub\V1\StreamingPullRequest;
 use Google\Pubsub\V1\SubscriberGrpcClient;
 use Google\Pubsub\V1\Subscription;
+use Google\Pubsub\V1\UpdateSnapshotRequest;
 use Google\Pubsub\V1\UpdateSubscriptionRequest;
 
 /**
@@ -76,8 +79,8 @@ use Google\Pubsub\V1\UpdateSubscriptionRequest;
  * ```
  * try {
  *     $subscriberClient = new SubscriberClient();
- *     $formattedName = SubscriberClient::formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
- *     $formattedTopic = SubscriberClient::formatTopicName("[PROJECT]", "[TOPIC]");
+ *     $formattedName = $subscriberClient->subscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+ *     $formattedTopic = $subscriberClient->topicName("[PROJECT]", "[TOPIC]");
  *     $response = $subscriberClient->createSubscription($formattedName, $formattedTopic);
  * } finally {
  *     $subscriberClient->close();
@@ -86,8 +89,8 @@ use Google\Pubsub\V1\UpdateSubscriptionRequest;
  *
  * Many parameters require resource names to be formatted in a particular way. To assist
  * with these names, this class includes a format method for each type of name, and additionally
- * a parse method to extract the individual identifiers contained within names that are
- * returned.
+ * a parseName method to extract the individual identifiers contained within formatted names
+ * that are returned by the API.
  *
  * @experimental
  */
@@ -122,6 +125,9 @@ class SubscriberGapicClient
     private static $snapshotNameTemplate;
     private static $subscriptionNameTemplate;
     private static $topicNameTemplate;
+    private static $pathTemplateList = null;
+    private static $gapicVersion = null;
+    private static $gapicVersionLoaded = false;
 
     protected $grpcCredentialsHelper;
     protected $iamPolicyStub;
@@ -129,174 +135,6 @@ class SubscriberGapicClient
     private $scopes;
     private $defaultCallSettings;
     private $descriptors;
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a project resource.
-     *
-     * @param string $project
-     *
-     * @return string The formatted project resource.
-     * @experimental
-     */
-    public static function formatProjectName($project)
-    {
-        return self::getProjectNameTemplate()->render([
-            'project' => $project,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a snapshot resource.
-     *
-     * @param string $project
-     * @param string $snapshot
-     *
-     * @return string The formatted snapshot resource.
-     * @experimental
-     */
-    public static function formatSnapshotName($project, $snapshot)
-    {
-        return self::getSnapshotNameTemplate()->render([
-            'project' => $project,
-            'snapshot' => $snapshot,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a subscription resource.
-     *
-     * @param string $project
-     * @param string $subscription
-     *
-     * @return string The formatted subscription resource.
-     * @experimental
-     */
-    public static function formatSubscriptionName($project, $subscription)
-    {
-        return self::getSubscriptionNameTemplate()->render([
-            'project' => $project,
-            'subscription' => $subscription,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a topic resource.
-     *
-     * @param string $project
-     * @param string $topic
-     *
-     * @return string The formatted topic resource.
-     * @experimental
-     */
-    public static function formatTopicName($project, $topic)
-    {
-        return self::getTopicNameTemplate()->render([
-            'project' => $project,
-            'topic' => $topic,
-        ]);
-    }
-
-    /**
-     * Parses the project from the given fully-qualified path which
-     * represents a project resource.
-     *
-     * @param string $projectName The fully-qualified project resource.
-     *
-     * @return string The extracted project value.
-     * @experimental
-     */
-    public static function parseProjectFromProjectName($projectName)
-    {
-        return self::getProjectNameTemplate()->match($projectName)['project'];
-    }
-
-    /**
-     * Parses the project from the given fully-qualified path which
-     * represents a snapshot resource.
-     *
-     * @param string $snapshotName The fully-qualified snapshot resource.
-     *
-     * @return string The extracted project value.
-     * @experimental
-     */
-    public static function parseProjectFromSnapshotName($snapshotName)
-    {
-        return self::getSnapshotNameTemplate()->match($snapshotName)['project'];
-    }
-
-    /**
-     * Parses the snapshot from the given fully-qualified path which
-     * represents a snapshot resource.
-     *
-     * @param string $snapshotName The fully-qualified snapshot resource.
-     *
-     * @return string The extracted snapshot value.
-     * @experimental
-     */
-    public static function parseSnapshotFromSnapshotName($snapshotName)
-    {
-        return self::getSnapshotNameTemplate()->match($snapshotName)['snapshot'];
-    }
-
-    /**
-     * Parses the project from the given fully-qualified path which
-     * represents a subscription resource.
-     *
-     * @param string $subscriptionName The fully-qualified subscription resource.
-     *
-     * @return string The extracted project value.
-     * @experimental
-     */
-    public static function parseProjectFromSubscriptionName($subscriptionName)
-    {
-        return self::getSubscriptionNameTemplate()->match($subscriptionName)['project'];
-    }
-
-    /**
-     * Parses the subscription from the given fully-qualified path which
-     * represents a subscription resource.
-     *
-     * @param string $subscriptionName The fully-qualified subscription resource.
-     *
-     * @return string The extracted subscription value.
-     * @experimental
-     */
-    public static function parseSubscriptionFromSubscriptionName($subscriptionName)
-    {
-        return self::getSubscriptionNameTemplate()->match($subscriptionName)['subscription'];
-    }
-
-    /**
-     * Parses the project from the given fully-qualified path which
-     * represents a topic resource.
-     *
-     * @param string $topicName The fully-qualified topic resource.
-     *
-     * @return string The extracted project value.
-     * @experimental
-     */
-    public static function parseProjectFromTopicName($topicName)
-    {
-        return self::getTopicNameTemplate()->match($topicName)['project'];
-    }
-
-    /**
-     * Parses the topic from the given fully-qualified path which
-     * represents a topic resource.
-     *
-     * @param string $topicName The fully-qualified topic resource.
-     *
-     * @return string The extracted topic value.
-     * @experimental
-     */
-    public static function parseTopicFromTopicName($topicName)
-    {
-        return self::getTopicNameTemplate()->match($topicName)['topic'];
-    }
 
     private static function getProjectNameTemplate()
     {
@@ -333,7 +171,19 @@ class SubscriberGapicClient
 
         return self::$topicNameTemplate;
     }
+    private static function getPathTemplateList()
+    {
+        if (self::$pathTemplateList == null) {
+            self::$pathTemplateList = [
+                self::getProjectNameTemplate(),
+                self::getSnapshotNameTemplate(),
+                self::getSubscriptionNameTemplate(),
+                self::getTopicNameTemplate(),
+            ];
+        }
 
+        return self::$pathTemplateList;
+    }
     private static function getPageStreamingDescriptors()
     {
         $listSubscriptionsPageStreamingDescriptor =
@@ -375,13 +225,111 @@ class SubscriberGapicClient
 
     private static function getGapicVersion()
     {
-        if (file_exists(__DIR__.'/../VERSION')) {
-            return trim(file_get_contents(__DIR__.'/../VERSION'));
-        } elseif (class_exists('\Google\Cloud\ServiceBuilder')) {
-            return \Google\Cloud\ServiceBuilder::VERSION;
-        } else {
-            return;
+        if (!self::$gapicVersionLoaded) {
+            if (file_exists(__DIR__.'/../VERSION')) {
+                self::$gapicVersion = trim(file_get_contents(__DIR__.'/../VERSION'));
+            } elseif (class_exists('\Google\Cloud\ServiceBuilder')) {
+                self::$gapicVersion = \Google\Cloud\ServiceBuilder::VERSION;
+            }
+            self::$gapicVersionLoaded = true;
         }
+
+        return self::$gapicVersion;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project resource.
+     * @experimental
+     */
+    public static function projectName($project)
+    {
+        return self::getProjectNameTemplate()->render([
+            'project' => $project,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a snapshot resource.
+     *
+     * @param string $project
+     * @param string $snapshot
+     *
+     * @return string The formatted snapshot resource.
+     * @experimental
+     */
+    public static function snapshotName($project, $snapshot)
+    {
+        return self::getSnapshotNameTemplate()->render([
+            'project' => $project,
+            'snapshot' => $snapshot,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a subscription resource.
+     *
+     * @param string $project
+     * @param string $subscription
+     *
+     * @return string The formatted subscription resource.
+     * @experimental
+     */
+    public static function subscriptionName($project, $subscription)
+    {
+        return self::getSubscriptionNameTemplate()->render([
+            'project' => $project,
+            'subscription' => $subscription,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a topic resource.
+     *
+     * @param string $project
+     * @param string $topic
+     *
+     * @return string The formatted topic resource.
+     * @experimental
+     */
+    public static function topicName($project, $topic)
+    {
+        return self::getTopicNameTemplate()->render([
+            'project' => $project,
+            'topic' => $topic,
+        ]);
+    }
+
+    /**
+     * Parses a formatted name string and returns an associative array of the components in the name.
+     * The following name formats are supported:
+     * - projects/{project}
+     * - projects/{project}/snapshots/{snapshot}
+     * - projects/{project}/subscriptions/{subscription}
+     * - projects/{project}/topics/{topic}.
+     *
+     * @param string $formattedName The formatted name string
+     *
+     * @return array An associative array from name component IDs to component values.
+     * @experimental
+     */
+    public static function parseName($formattedName)
+    {
+        foreach (self::getPathTemplateList() as $pathTemplate) {
+            try {
+                return $pathTemplate->match($formattedName);
+            } catch (ValidationException $ex) {
+                // Swallow the exception to continue trying other path templates
+            }
+        }
+        throw new ValidationException("Input did not match any known format. Input: $formattedName");
     }
 
     /**
@@ -458,6 +406,7 @@ class SubscriberGapicClient
             'modifyPushConfig' => $defaultDescriptors,
             'listSnapshots' => $defaultDescriptors,
             'createSnapshot' => $defaultDescriptors,
+            'updateSnapshot' => $defaultDescriptors,
             'deleteSnapshot' => $defaultDescriptors,
             'seek' => $defaultDescriptors,
             'setIamPolicy' => $defaultDescriptors,
@@ -524,8 +473,8 @@ class SubscriberGapicClient
      * ```
      * try {
      *     $subscriberClient = new SubscriberClient();
-     *     $formattedName = SubscriberClient::formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
-     *     $formattedTopic = SubscriberClient::formatTopicName("[PROJECT]", "[TOPIC]");
+     *     $formattedName = $subscriberClient->subscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+     *     $formattedTopic = $subscriberClient->topicName("[PROJECT]", "[TOPIC]");
      *     $response = $subscriberClient->createSubscription($formattedName, $formattedTopic);
      * } finally {
      *     $subscriberClient->close();
@@ -640,7 +589,7 @@ class SubscriberGapicClient
      * ```
      * try {
      *     $subscriberClient = new SubscriberClient();
-     *     $formattedSubscription = SubscriberClient::formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+     *     $formattedSubscription = $subscriberClient->subscriptionName("[PROJECT]", "[SUBSCRIPTION]");
      *     $response = $subscriberClient->getSubscription($formattedSubscription);
      * } finally {
      *     $subscriberClient->close();
@@ -754,7 +703,7 @@ class SubscriberGapicClient
      * ```
      * try {
      *     $subscriberClient = new SubscriberClient();
-     *     $formattedProject = SubscriberClient::formatProjectName("[PROJECT]");
+     *     $formattedProject = $subscriberClient->projectName("[PROJECT]");
      *     // Iterate through all elements
      *     $pagedResponse = $subscriberClient->listSubscriptions($formattedProject);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
@@ -838,7 +787,7 @@ class SubscriberGapicClient
      * ```
      * try {
      *     $subscriberClient = new SubscriberClient();
-     *     $formattedSubscription = SubscriberClient::formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+     *     $formattedSubscription = $subscriberClient->subscriptionName("[PROJECT]", "[SUBSCRIPTION]");
      *     $subscriberClient->deleteSubscription($formattedSubscription);
      * } finally {
      *     $subscriberClient->close();
@@ -893,7 +842,7 @@ class SubscriberGapicClient
      * ```
      * try {
      *     $subscriberClient = new SubscriberClient();
-     *     $formattedSubscription = SubscriberClient::formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+     *     $formattedSubscription = $subscriberClient->subscriptionName("[PROJECT]", "[SUBSCRIPTION]");
      *     $ackIds = [];
      *     $ackDeadlineSeconds = 0;
      *     $subscriberClient->modifyAckDeadline($formattedSubscription, $ackIds, $ackDeadlineSeconds);
@@ -962,7 +911,7 @@ class SubscriberGapicClient
      * ```
      * try {
      *     $subscriberClient = new SubscriberClient();
-     *     $formattedSubscription = SubscriberClient::formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+     *     $formattedSubscription = $subscriberClient->subscriptionName("[PROJECT]", "[SUBSCRIPTION]");
      *     $ackIds = [];
      *     $subscriberClient->acknowledge($formattedSubscription, $ackIds);
      * } finally {
@@ -1020,7 +969,7 @@ class SubscriberGapicClient
      * ```
      * try {
      *     $subscriberClient = new SubscriberClient();
-     *     $formattedSubscription = SubscriberClient::formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+     *     $formattedSubscription = $subscriberClient->subscriptionName("[PROJECT]", "[SUBSCRIPTION]");
      *     $maxMessages = 0;
      *     $response = $subscriberClient->pull($formattedSubscription, $maxMessages);
      * } finally {
@@ -1098,7 +1047,7 @@ class SubscriberGapicClient
      * ```
      * try {
      *     $subscriberClient = new SubscriberClient();
-     *     $formattedSubscription = SubscriberClient::formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+     *     $formattedSubscription = $subscriberClient->subscriptionName("[PROJECT]", "[SUBSCRIPTION]");
      *     $streamAckDeadlineSeconds = 0;
      *     $request = new StreamingPullRequest();
      *     $request->setSubscription($formattedSubscription);
@@ -1176,7 +1125,7 @@ class SubscriberGapicClient
      * ```
      * try {
      *     $subscriberClient = new SubscriberClient();
-     *     $formattedSubscription = SubscriberClient::formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+     *     $formattedSubscription = $subscriberClient->subscriptionName("[PROJECT]", "[SUBSCRIPTION]");
      *     $pushConfig = new PushConfig();
      *     $subscriberClient->modifyPushConfig($formattedSubscription, $pushConfig);
      * } finally {
@@ -1235,7 +1184,7 @@ class SubscriberGapicClient
      * ```
      * try {
      *     $subscriberClient = new SubscriberClient();
-     *     $formattedProject = SubscriberClient::formatProjectName("[PROJECT]");
+     *     $formattedProject = $subscriberClient->projectName("[PROJECT]");
      *     // Iterate through all elements
      *     $pagedResponse = $subscriberClient->listSnapshots($formattedProject);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
@@ -1324,8 +1273,8 @@ class SubscriberGapicClient
      * ```
      * try {
      *     $subscriberClient = new SubscriberClient();
-     *     $formattedName = SubscriberClient::formatSnapshotName("[PROJECT]", "[SNAPSHOT]");
-     *     $formattedSubscription = SubscriberClient::formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+     *     $formattedName = $subscriberClient->snapshotName("[PROJECT]", "[SNAPSHOT]");
+     *     $formattedSubscription = $subscriberClient->subscriptionName("[PROJECT]", "[SUBSCRIPTION]");
      *     $response = $subscriberClient->createSnapshot($formattedName, $formattedSubscription);
      * } finally {
      *     $subscriberClient->close();
@@ -1385,6 +1334,67 @@ class SubscriberGapicClient
     }
 
     /**
+     * Updates an existing snapshot. Note that certain properties of a snapshot
+     * are not modifiable.
+     * NOTE:  The style guide requires body: "snapshot" instead of body: "*".
+     * Keeping the latter for internal consistency in V1, however it should be
+     * corrected in V2.  See
+     * https://cloud.google.com/apis/design/standard_methods#update for details.
+     *
+     * Sample code:
+     * ```
+     * try {
+     *     $subscriberClient = new SubscriberClient();
+     *     $snapshot = new Snapshot();
+     *     $updateMask = new FieldMask();
+     *     $response = $subscriberClient->updateSnapshot($snapshot, $updateMask);
+     * } finally {
+     *     $subscriberClient->close();
+     * }
+     * ```
+     *
+     * @param Snapshot  $snapshot     The updated snpashot object.
+     * @param FieldMask $updateMask   Indicates which fields in the provided snapshot to update.
+     *                                Must be specified and non-empty.
+     * @param array     $optionalArgs {
+     *                                Optional.
+     *
+     *     @type \Google\GAX\RetrySettings $retrySettings
+     *          Retry settings to use for this call. If present, then
+     *          $timeoutMillis is ignored.
+     *     @type int $timeoutMillis
+     *          Timeout to use for this call. Only used if $retrySettings
+     *          is not set.
+     * }
+     *
+     * @return \Google\Pubsub\V1\Snapshot
+     *
+     * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
+     */
+    public function updateSnapshot($snapshot, $updateMask, $optionalArgs = [])
+    {
+        $request = new UpdateSnapshotRequest();
+        $request->setSnapshot($snapshot);
+        $request->setUpdateMask($updateMask);
+
+        $mergedSettings = $this->defaultCallSettings['updateSnapshot']->merge(
+            new CallSettings($optionalArgs)
+        );
+        $callable = ApiCallable::createApiCall(
+            $this->subscriberStub,
+            'UpdateSnapshot',
+            $mergedSettings,
+            $this->descriptors['updateSnapshot']
+        );
+
+        return $callable(
+            $request,
+            [],
+            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+    }
+
+    /**
      * Removes an existing snapshot. All messages retained in the snapshot
      * are immediately dropped. After a snapshot is deleted, a new one may be
      * created with the same name, but the new one has no association with the old
@@ -1394,7 +1404,7 @@ class SubscriberGapicClient
      * ```
      * try {
      *     $subscriberClient = new SubscriberClient();
-     *     $formattedSnapshot = SubscriberClient::formatSnapshotName("[PROJECT]", "[SNAPSHOT]");
+     *     $formattedSnapshot = $subscriberClient->snapshotName("[PROJECT]", "[SNAPSHOT]");
      *     $subscriberClient->deleteSnapshot($formattedSnapshot);
      * } finally {
      *     $subscriberClient->close();
@@ -1446,7 +1456,7 @@ class SubscriberGapicClient
      * ```
      * try {
      *     $subscriberClient = new SubscriberClient();
-     *     $formattedSubscription = SubscriberClient::formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+     *     $formattedSubscription = $subscriberClient->subscriptionName("[PROJECT]", "[SUBSCRIPTION]");
      *     $response = $subscriberClient->seek($formattedSubscription);
      * } finally {
      *     $subscriberClient->close();
@@ -1521,7 +1531,7 @@ class SubscriberGapicClient
      * ```
      * try {
      *     $subscriberClient = new SubscriberClient();
-     *     $formattedResource = SubscriberClient::formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+     *     $formattedResource = $subscriberClient->subscriptionName("[PROJECT]", "[SUBSCRIPTION]");
      *     $policy = new Policy();
      *     $response = $subscriberClient->setIamPolicy($formattedResource, $policy);
      * } finally {
@@ -1583,7 +1593,7 @@ class SubscriberGapicClient
      * ```
      * try {
      *     $subscriberClient = new SubscriberClient();
-     *     $formattedResource = SubscriberClient::formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+     *     $formattedResource = $subscriberClient->subscriptionName("[PROJECT]", "[SUBSCRIPTION]");
      *     $response = $subscriberClient->getIamPolicy($formattedResource);
      * } finally {
      *     $subscriberClient->close();
@@ -1639,7 +1649,7 @@ class SubscriberGapicClient
      * ```
      * try {
      *     $subscriberClient = new SubscriberClient();
-     *     $formattedResource = SubscriberClient::formatSubscriptionName("[PROJECT]", "[SUBSCRIPTION]");
+     *     $formattedResource = $subscriberClient->subscriptionName("[PROJECT]", "[SUBSCRIPTION]");
      *     $permissions = [];
      *     $response = $subscriberClient->testIamPermissions($formattedResource, $permissions);
      * } finally {

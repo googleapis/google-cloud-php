@@ -70,10 +70,10 @@ class SpannerClientTest extends \PHPUnit_Framework_TestCase
             ->willReturn([
                 'instanceConfigs' => [
                     [
-                        'name' => InstanceAdminClient::formatInstanceConfigName(self::PROJECT, self::CONFIG),
+                        'name' => InstanceAdminClient::instanceConfigName(self::PROJECT, self::CONFIG),
                         'displayName' => 'Bar'
                     ], [
-                        'name' => InstanceAdminClient::formatInstanceConfigName(self::PROJECT, self::CONFIG),
+                        'name' => InstanceAdminClient::instanceConfigName(self::PROJECT, self::CONFIG),
                         'displayName' => 'Bat'
                     ]
                 ]
@@ -139,7 +139,7 @@ class SpannerClientTest extends \PHPUnit_Framework_TestCase
         $config = $this->client->instanceConfiguration('bar');
 
         $this->assertInstanceOf(InstanceConfiguration::class, $config);
-        $this->assertEquals('bar', InstanceAdminClient::parseInstanceConfigFromInstanceConfigName($config->name()));
+        $this->assertEquals('bar', InstanceAdminClient::parseName($config->name())['instance_config']);
     }
 
     /**
@@ -148,8 +148,8 @@ class SpannerClientTest extends \PHPUnit_Framework_TestCase
     public function testCreateInstance()
     {
         $this->connection->createInstance(Argument::that(function ($arg) {
-            if ($arg['name'] !== InstanceAdminClient::formatInstanceName(self::PROJECT, self::INSTANCE)) return false;
-            if ($arg['config'] !== InstanceAdminClient::formatInstanceConfigName(self::PROJECT, self::CONFIG)) return false;
+            if ($arg['name'] !== InstanceAdminClient::instanceName(self::PROJECT, self::INSTANCE)) return false;
+            if ($arg['config'] !== InstanceAdminClient::instanceConfigName(self::PROJECT, self::CONFIG)) return false;
 
             return true;
         }))
@@ -161,7 +161,7 @@ class SpannerClientTest extends \PHPUnit_Framework_TestCase
         $this->client->___setProperty('connection', $this->connection->reveal());
 
         $config = $this->prophesize(InstanceConfiguration::class);
-        $config->name()->willReturn(InstanceAdminClient::formatInstanceConfigName(self::PROJECT, self::CONFIG));
+        $config->name()->willReturn(InstanceAdminClient::instanceConfigName(self::PROJECT, self::CONFIG));
 
         $operation = $this->client->createInstance($config->reveal(), self::INSTANCE);
 
@@ -175,7 +175,7 @@ class SpannerClientTest extends \PHPUnit_Framework_TestCase
     {
         $i = $this->client->instance('foo');
         $this->assertInstanceOf(Instance::class, $i);
-        $this->assertEquals('foo', InstanceAdminClient::parseInstanceFromInstanceName($i->name()));
+        $this->assertEquals('foo', InstanceAdminClient::parseName($i->name())['instance']);
     }
 
     /**
@@ -208,8 +208,8 @@ class SpannerClientTest extends \PHPUnit_Framework_TestCase
 
         $instances = iterator_to_array($instances);
         $this->assertEquals(2, count($instances));
-        $this->assertEquals('foo', InstanceAdminClient::parseInstanceFromInstanceName($instances[0]->name()));
-        $this->assertEquals('bar', InstanceAdminClient::parseInstanceFromInstanceName($instances[1]->name()));
+        $this->assertEquals('foo', InstanceAdminClient::parseName($instances[0]->name())['instance']);
+        $this->assertEquals('bar', InstanceAdminClient::parseName($instances[1]->name())['instance']);
     }
 
     /**
@@ -228,7 +228,7 @@ class SpannerClientTest extends \PHPUnit_Framework_TestCase
     {
         $database = $this->client->connect(self::INSTANCE, self::DATABASE);
         $this->assertInstanceOf(Database::class, $database);
-        $this->assertEquals(self::DATABASE, DatabaseAdminClient::parseDatabaseFromDatabaseName($database->name()));
+        $this->assertEquals(self::DATABASE, DatabaseAdminClient::parseName($database->name())['database']);
     }
 
     public function testConnectWithInstance()
@@ -236,7 +236,7 @@ class SpannerClientTest extends \PHPUnit_Framework_TestCase
         $inst = $this->client->instance(self::INSTANCE);
         $database = $this->client->connect($inst, self::DATABASE);
         $this->assertInstanceOf(Database::class, $database);
-        $this->assertEquals(self::DATABASE, DatabaseAdminClient::parseDatabaseFromDatabaseName($database->name()));
+        $this->assertEquals(self::DATABASE, DatabaseAdminClient::parseName($database->name())['database']);
     }
 
     public function testKeyset()

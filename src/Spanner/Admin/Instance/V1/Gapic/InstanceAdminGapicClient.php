@@ -39,6 +39,7 @@ use Google\GAX\LongRunning\OperationsClient;
 use Google\GAX\OperationResponse;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
+use Google\GAX\ValidationException;
 use Google\Iam\V1\GetIamPolicyRequest;
 use Google\Iam\V1\Policy;
 use Google\Iam\V1\SetIamPolicyRequest;
@@ -89,7 +90,7 @@ use Google\Spanner\Admin\Instance\V1\UpdateInstanceRequest;
  * ```
  * try {
  *     $instanceAdminClient = new InstanceAdminClient();
- *     $formattedParent = InstanceAdminClient::formatProjectName("[PROJECT]");
+ *     $formattedParent = $instanceAdminClient->projectName("[PROJECT]");
  *     // Iterate through all elements
  *     $pagedResponse = $instanceAdminClient->listInstanceConfigs($formattedParent);
  *     foreach ($pagedResponse->iterateAllElements() as $element) {
@@ -110,8 +111,8 @@ use Google\Spanner\Admin\Instance\V1\UpdateInstanceRequest;
  *
  * Many parameters require resource names to be formatted in a particular way. To assist
  * with these names, this class includes a format method for each type of name, and additionally
- * a parse method to extract the individual identifiers contained within names that are
- * returned.
+ * a parseName method to extract the individual identifiers contained within formatted names
+ * that are returned by the API.
  *
  * @experimental
  */
@@ -145,6 +146,9 @@ class InstanceAdminGapicClient
     private static $projectNameTemplate;
     private static $instanceConfigNameTemplate;
     private static $instanceNameTemplate;
+    private static $pathTemplateList = null;
+    private static $gapicVersion = null;
+    private static $gapicVersionLoaded = false;
 
     protected $grpcCredentialsHelper;
     protected $instanceAdminStub;
@@ -152,128 +156,6 @@ class InstanceAdminGapicClient
     private $defaultCallSettings;
     private $descriptors;
     private $operationsClient;
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a project resource.
-     *
-     * @param string $project
-     *
-     * @return string The formatted project resource.
-     * @experimental
-     */
-    public static function formatProjectName($project)
-    {
-        return self::getProjectNameTemplate()->render([
-            'project' => $project,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a instance_config resource.
-     *
-     * @param string $project
-     * @param string $instanceConfig
-     *
-     * @return string The formatted instance_config resource.
-     * @experimental
-     */
-    public static function formatInstanceConfigName($project, $instanceConfig)
-    {
-        return self::getInstanceConfigNameTemplate()->render([
-            'project' => $project,
-            'instance_config' => $instanceConfig,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a instance resource.
-     *
-     * @param string $project
-     * @param string $instance
-     *
-     * @return string The formatted instance resource.
-     * @experimental
-     */
-    public static function formatInstanceName($project, $instance)
-    {
-        return self::getInstanceNameTemplate()->render([
-            'project' => $project,
-            'instance' => $instance,
-        ]);
-    }
-
-    /**
-     * Parses the project from the given fully-qualified path which
-     * represents a project resource.
-     *
-     * @param string $projectName The fully-qualified project resource.
-     *
-     * @return string The extracted project value.
-     * @experimental
-     */
-    public static function parseProjectFromProjectName($projectName)
-    {
-        return self::getProjectNameTemplate()->match($projectName)['project'];
-    }
-
-    /**
-     * Parses the project from the given fully-qualified path which
-     * represents a instance_config resource.
-     *
-     * @param string $instanceConfigName The fully-qualified instance_config resource.
-     *
-     * @return string The extracted project value.
-     * @experimental
-     */
-    public static function parseProjectFromInstanceConfigName($instanceConfigName)
-    {
-        return self::getInstanceConfigNameTemplate()->match($instanceConfigName)['project'];
-    }
-
-    /**
-     * Parses the instance_config from the given fully-qualified path which
-     * represents a instance_config resource.
-     *
-     * @param string $instanceConfigName The fully-qualified instance_config resource.
-     *
-     * @return string The extracted instance_config value.
-     * @experimental
-     */
-    public static function parseInstanceConfigFromInstanceConfigName($instanceConfigName)
-    {
-        return self::getInstanceConfigNameTemplate()->match($instanceConfigName)['instance_config'];
-    }
-
-    /**
-     * Parses the project from the given fully-qualified path which
-     * represents a instance resource.
-     *
-     * @param string $instanceName The fully-qualified instance resource.
-     *
-     * @return string The extracted project value.
-     * @experimental
-     */
-    public static function parseProjectFromInstanceName($instanceName)
-    {
-        return self::getInstanceNameTemplate()->match($instanceName)['project'];
-    }
-
-    /**
-     * Parses the instance from the given fully-qualified path which
-     * represents a instance resource.
-     *
-     * @param string $instanceName The fully-qualified instance resource.
-     *
-     * @return string The extracted instance value.
-     * @experimental
-     */
-    public static function parseInstanceFromInstanceName($instanceName)
-    {
-        return self::getInstanceNameTemplate()->match($instanceName)['instance'];
-    }
 
     private static function getProjectNameTemplate()
     {
@@ -301,7 +183,18 @@ class InstanceAdminGapicClient
 
         return self::$instanceNameTemplate;
     }
+    private static function getPathTemplateList()
+    {
+        if (self::$pathTemplateList == null) {
+            self::$pathTemplateList = [
+                self::getProjectNameTemplate(),
+                self::getInstanceConfigNameTemplate(),
+                self::getInstanceNameTemplate(),
+            ];
+        }
 
+        return self::$pathTemplateList;
+    }
     private static function getPageStreamingDescriptors()
     {
         $listInstanceConfigsPageStreamingDescriptor =
@@ -347,13 +240,92 @@ class InstanceAdminGapicClient
 
     private static function getGapicVersion()
     {
-        if (file_exists(__DIR__.'/../VERSION')) {
-            return trim(file_get_contents(__DIR__.'/../VERSION'));
-        } elseif (class_exists('\Google\Cloud\ServiceBuilder')) {
-            return \Google\Cloud\ServiceBuilder::VERSION;
-        } else {
-            return;
+        if (!self::$gapicVersionLoaded) {
+            if (file_exists(__DIR__.'/../VERSION')) {
+                self::$gapicVersion = trim(file_get_contents(__DIR__.'/../VERSION'));
+            } elseif (class_exists('\Google\Cloud\ServiceBuilder')) {
+                self::$gapicVersion = \Google\Cloud\ServiceBuilder::VERSION;
+            }
+            self::$gapicVersionLoaded = true;
         }
+
+        return self::$gapicVersion;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project resource.
+     * @experimental
+     */
+    public static function projectName($project)
+    {
+        return self::getProjectNameTemplate()->render([
+            'project' => $project,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a instance_config resource.
+     *
+     * @param string $project
+     * @param string $instanceConfig
+     *
+     * @return string The formatted instance_config resource.
+     * @experimental
+     */
+    public static function instanceConfigName($project, $instanceConfig)
+    {
+        return self::getInstanceConfigNameTemplate()->render([
+            'project' => $project,
+            'instance_config' => $instanceConfig,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a instance resource.
+     *
+     * @param string $project
+     * @param string $instance
+     *
+     * @return string The formatted instance resource.
+     * @experimental
+     */
+    public static function instanceName($project, $instance)
+    {
+        return self::getInstanceNameTemplate()->render([
+            'project' => $project,
+            'instance' => $instance,
+        ]);
+    }
+
+    /**
+     * Parses a formatted name string and returns an associative array of the components in the name.
+     * The following name formats are supported:
+     * - projects/{project}
+     * - projects/{project}/instanceConfigs/{instance_config}
+     * - projects/{project}/instances/{instance}.
+     *
+     * @param string $formattedName The formatted name string
+     *
+     * @return array An associative array from name component IDs to component values.
+     * @experimental
+     */
+    public static function parseName($formattedName)
+    {
+        foreach (self::getPathTemplateList() as $pathTemplate) {
+            try {
+                return $pathTemplate->match($formattedName);
+            } catch (ValidationException $ex) {
+                // Swallow the exception to continue trying other path templates
+            }
+        }
+        throw new ValidationException("Input did not match any known format. Input: $formattedName");
     }
 
     /**
@@ -520,7 +492,7 @@ class InstanceAdminGapicClient
      * ```
      * try {
      *     $instanceAdminClient = new InstanceAdminClient();
-     *     $formattedParent = InstanceAdminClient::formatProjectName("[PROJECT]");
+     *     $formattedParent = $instanceAdminClient->projectName("[PROJECT]");
      *     // Iterate through all elements
      *     $pagedResponse = $instanceAdminClient->listInstanceConfigs($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
@@ -601,7 +573,7 @@ class InstanceAdminGapicClient
      * ```
      * try {
      *     $instanceAdminClient = new InstanceAdminClient();
-     *     $formattedName = InstanceAdminClient::formatInstanceConfigName("[PROJECT]", "[INSTANCE_CONFIG]");
+     *     $formattedName = $instanceAdminClient->instanceConfigName("[PROJECT]", "[INSTANCE_CONFIG]");
      *     $response = $instanceAdminClient->getInstanceConfig($formattedName);
      * } finally {
      *     $instanceAdminClient->close();
@@ -654,7 +626,7 @@ class InstanceAdminGapicClient
      * ```
      * try {
      *     $instanceAdminClient = new InstanceAdminClient();
-     *     $formattedParent = InstanceAdminClient::formatProjectName("[PROJECT]");
+     *     $formattedParent = $instanceAdminClient->projectName("[PROJECT]");
      *     // Iterate through all elements
      *     $pagedResponse = $instanceAdminClient->listInstances($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
@@ -757,7 +729,7 @@ class InstanceAdminGapicClient
      * ```
      * try {
      *     $instanceAdminClient = new InstanceAdminClient();
-     *     $formattedName = InstanceAdminClient::formatInstanceName("[PROJECT]", "[INSTANCE]");
+     *     $formattedName = $instanceAdminClient->instanceName("[PROJECT]", "[INSTANCE]");
      *     $response = $instanceAdminClient->getInstance($formattedName);
      * } finally {
      *     $instanceAdminClient->close();
@@ -843,7 +815,7 @@ class InstanceAdminGapicClient
      * ```
      * try {
      *     $instanceAdminClient = new InstanceAdminClient();
-     *     $formattedParent = InstanceAdminClient::formatProjectName("[PROJECT]");
+     *     $formattedParent = $instanceAdminClient->projectName("[PROJECT]");
      *     $instanceId = "";
      *     $instance = new Instance();
      *     $operationResponse = $instanceAdminClient->createInstance($formattedParent, $instanceId, $instance);
@@ -1063,7 +1035,7 @@ class InstanceAdminGapicClient
      * ```
      * try {
      *     $instanceAdminClient = new InstanceAdminClient();
-     *     $formattedName = InstanceAdminClient::formatInstanceName("[PROJECT]", "[INSTANCE]");
+     *     $formattedName = $instanceAdminClient->instanceName("[PROJECT]", "[INSTANCE]");
      *     $instanceAdminClient->deleteInstance($formattedName);
      * } finally {
      *     $instanceAdminClient->close();
@@ -1118,7 +1090,7 @@ class InstanceAdminGapicClient
      * ```
      * try {
      *     $instanceAdminClient = new InstanceAdminClient();
-     *     $formattedResource = InstanceAdminClient::formatInstanceName("[PROJECT]", "[INSTANCE]");
+     *     $formattedResource = $instanceAdminClient->instanceName("[PROJECT]", "[INSTANCE]");
      *     $policy = new Policy();
      *     $response = $instanceAdminClient->setIamPolicy($formattedResource, $policy);
      * } finally {
@@ -1182,7 +1154,7 @@ class InstanceAdminGapicClient
      * ```
      * try {
      *     $instanceAdminClient = new InstanceAdminClient();
-     *     $formattedResource = InstanceAdminClient::formatInstanceName("[PROJECT]", "[INSTANCE]");
+     *     $formattedResource = $instanceAdminClient->instanceName("[PROJECT]", "[INSTANCE]");
      *     $response = $instanceAdminClient->getIamPolicy($formattedResource);
      * } finally {
      *     $instanceAdminClient->close();
@@ -1241,7 +1213,7 @@ class InstanceAdminGapicClient
      * ```
      * try {
      *     $instanceAdminClient = new InstanceAdminClient();
-     *     $formattedResource = InstanceAdminClient::formatInstanceName("[PROJECT]", "[INSTANCE]");
+     *     $formattedResource = $instanceAdminClient->instanceName("[PROJECT]", "[INSTANCE]");
      *     $permissions = [];
      *     $response = $instanceAdminClient->testIamPermissions($formattedResource, $permissions);
      * } finally {

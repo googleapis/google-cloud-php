@@ -38,6 +38,7 @@ use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
+use Google\GAX\ValidationException;
 use Google\Logging\V2\DeleteLogRequest;
 use Google\Logging\V2\ListLogEntriesRequest;
 use Google\Logging\V2\ListLogsRequest;
@@ -59,7 +60,7 @@ use Google\Logging\V2\WriteLogEntriesRequest;
  * ```
  * try {
  *     $loggingServiceV2Client = new LoggingServiceV2Client();
- *     $formattedLogName = LoggingServiceV2Client::formatLogName("[PROJECT]", "[LOG]");
+ *     $formattedLogName = $loggingServiceV2Client->logName("[PROJECT]", "[LOG]");
  *     $loggingServiceV2Client->deleteLog($formattedLogName);
  * } finally {
  *     $loggingServiceV2Client->close();
@@ -68,8 +69,8 @@ use Google\Logging\V2\WriteLogEntriesRequest;
  *
  * Many parameters require resource names to be formatted in a particular way. To assist
  * with these names, this class includes a format method for each type of name, and additionally
- * a parse method to extract the individual identifiers contained within names that are
- * returned.
+ * a parseName method to extract the individual identifiers contained within formatted names
+ * that are returned by the API.
  *
  * @experimental
  */
@@ -102,88 +103,15 @@ class LoggingServiceV2GapicClient
 
     private static $projectNameTemplate;
     private static $logNameTemplate;
+    private static $pathTemplateList = null;
+    private static $gapicVersion = null;
+    private static $gapicVersionLoaded = false;
 
     protected $grpcCredentialsHelper;
     protected $loggingServiceV2Stub;
     private $scopes;
     private $defaultCallSettings;
     private $descriptors;
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a project resource.
-     *
-     * @param string $project
-     *
-     * @return string The formatted project resource.
-     * @experimental
-     */
-    public static function formatProjectName($project)
-    {
-        return self::getProjectNameTemplate()->render([
-            'project' => $project,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a log resource.
-     *
-     * @param string $project
-     * @param string $log
-     *
-     * @return string The formatted log resource.
-     * @experimental
-     */
-    public static function formatLogName($project, $log)
-    {
-        return self::getLogNameTemplate()->render([
-            'project' => $project,
-            'log' => $log,
-        ]);
-    }
-
-    /**
-     * Parses the project from the given fully-qualified path which
-     * represents a project resource.
-     *
-     * @param string $projectName The fully-qualified project resource.
-     *
-     * @return string The extracted project value.
-     * @experimental
-     */
-    public static function parseProjectFromProjectName($projectName)
-    {
-        return self::getProjectNameTemplate()->match($projectName)['project'];
-    }
-
-    /**
-     * Parses the project from the given fully-qualified path which
-     * represents a log resource.
-     *
-     * @param string $logName The fully-qualified log resource.
-     *
-     * @return string The extracted project value.
-     * @experimental
-     */
-    public static function parseProjectFromLogName($logName)
-    {
-        return self::getLogNameTemplate()->match($logName)['project'];
-    }
-
-    /**
-     * Parses the log from the given fully-qualified path which
-     * represents a log resource.
-     *
-     * @param string $logName The fully-qualified log resource.
-     *
-     * @return string The extracted log value.
-     * @experimental
-     */
-    public static function parseLogFromLogName($logName)
-    {
-        return self::getLogNameTemplate()->match($logName)['log'];
-    }
 
     private static function getProjectNameTemplate()
     {
@@ -202,7 +130,17 @@ class LoggingServiceV2GapicClient
 
         return self::$logNameTemplate;
     }
+    private static function getPathTemplateList()
+    {
+        if (self::$pathTemplateList == null) {
+            self::$pathTemplateList = [
+                self::getProjectNameTemplate(),
+                self::getLogNameTemplate(),
+            ];
+        }
 
+        return self::$pathTemplateList;
+    }
     private static function getPageStreamingDescriptors()
     {
         $listLogEntriesPageStreamingDescriptor =
@@ -244,13 +182,73 @@ class LoggingServiceV2GapicClient
 
     private static function getGapicVersion()
     {
-        if (file_exists(__DIR__.'/../VERSION')) {
-            return trim(file_get_contents(__DIR__.'/../VERSION'));
-        } elseif (class_exists('\Google\Cloud\ServiceBuilder')) {
-            return \Google\Cloud\ServiceBuilder::VERSION;
-        } else {
-            return;
+        if (!self::$gapicVersionLoaded) {
+            if (file_exists(__DIR__.'/../VERSION')) {
+                self::$gapicVersion = trim(file_get_contents(__DIR__.'/../VERSION'));
+            } elseif (class_exists('\Google\Cloud\ServiceBuilder')) {
+                self::$gapicVersion = \Google\Cloud\ServiceBuilder::VERSION;
+            }
+            self::$gapicVersionLoaded = true;
         }
+
+        return self::$gapicVersion;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project resource.
+     * @experimental
+     */
+    public static function projectName($project)
+    {
+        return self::getProjectNameTemplate()->render([
+            'project' => $project,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a log resource.
+     *
+     * @param string $project
+     * @param string $log
+     *
+     * @return string The formatted log resource.
+     * @experimental
+     */
+    public static function logName($project, $log)
+    {
+        return self::getLogNameTemplate()->render([
+            'project' => $project,
+            'log' => $log,
+        ]);
+    }
+
+    /**
+     * Parses a formatted name string and returns an associative array of the components in the name.
+     * The following name formats are supported:
+     * - projects/{project}
+     * - projects/{project}/logs/{log}.
+     *
+     * @param string $formattedName The formatted name string
+     *
+     * @return array An associative array from name component IDs to component values.
+     * @experimental
+     */
+    public static function parseName($formattedName)
+    {
+        foreach (self::getPathTemplateList() as $pathTemplate) {
+            try {
+                return $pathTemplate->match($formattedName);
+            } catch (ValidationException $ex) {
+                // Swallow the exception to continue trying other path templates
+            }
+        }
+        throw new ValidationException("Input did not match any known format. Input: $formattedName");
     }
 
     /**
@@ -367,7 +365,7 @@ class LoggingServiceV2GapicClient
      * ```
      * try {
      *     $loggingServiceV2Client = new LoggingServiceV2Client();
-     *     $formattedLogName = LoggingServiceV2Client::formatLogName("[PROJECT]", "[LOG]");
+     *     $formattedLogName = $loggingServiceV2Client->logName("[PROJECT]", "[LOG]");
      *     $loggingServiceV2Client->deleteLog($formattedLogName);
      * } finally {
      *     $loggingServiceV2Client->close();
@@ -750,7 +748,7 @@ class LoggingServiceV2GapicClient
      * ```
      * try {
      *     $loggingServiceV2Client = new LoggingServiceV2Client();
-     *     $formattedParent = LoggingServiceV2Client::formatProjectName("[PROJECT]");
+     *     $formattedParent = $loggingServiceV2Client->projectName("[PROJECT]");
      *     // Iterate through all elements
      *     $pagedResponse = $loggingServiceV2Client->listLogs($formattedParent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {

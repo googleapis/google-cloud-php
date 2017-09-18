@@ -38,6 +38,7 @@ use Google\GAX\GrpcConstants;
 use Google\GAX\GrpcCredentialsHelper;
 use Google\GAX\PageStreamingDescriptor;
 use Google\GAX\PathTemplate;
+use Google\GAX\ValidationException;
 use Google\Monitoring\V3\Aggregation;
 use Google\Monitoring\V3\CreateMetricDescriptorRequest;
 use Google\Monitoring\V3\CreateTimeSeriesRequest;
@@ -66,7 +67,7 @@ use Google\Monitoring\V3\TimeSeries;
  * ```
  * try {
  *     $metricServiceClient = new MetricServiceClient();
- *     $formattedName = MetricServiceClient::formatProjectName("[PROJECT]");
+ *     $formattedName = $metricServiceClient->projectName("[PROJECT]");
  *     // Iterate through all elements
  *     $pagedResponse = $metricServiceClient->listMonitoredResourceDescriptors($formattedName);
  *     foreach ($pagedResponse->iterateAllElements() as $element) {
@@ -87,8 +88,8 @@ use Google\Monitoring\V3\TimeSeries;
  *
  * Many parameters require resource names to be formatted in a particular way. To assist
  * with these names, this class includes a format method for each type of name, and additionally
- * a parse method to extract the individual identifiers contained within names that are
- * returned.
+ * a parseName method to extract the individual identifiers contained within formatted names
+ * that are returned by the API.
  *
  * @experimental
  */
@@ -122,134 +123,15 @@ class MetricServiceGapicClient
     private static $projectNameTemplate;
     private static $metricDescriptorNameTemplate;
     private static $monitoredResourceDescriptorNameTemplate;
+    private static $pathTemplateList = null;
+    private static $gapicVersion = null;
+    private static $gapicVersionLoaded = false;
 
     protected $grpcCredentialsHelper;
     protected $metricServiceStub;
     private $scopes;
     private $defaultCallSettings;
     private $descriptors;
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a project resource.
-     *
-     * @param string $project
-     *
-     * @return string The formatted project resource.
-     * @experimental
-     */
-    public static function formatProjectName($project)
-    {
-        return self::getProjectNameTemplate()->render([
-            'project' => $project,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a metric_descriptor resource.
-     *
-     * @param string $project
-     * @param string $metricDescriptor
-     *
-     * @return string The formatted metric_descriptor resource.
-     * @experimental
-     */
-    public static function formatMetricDescriptorName($project, $metricDescriptor)
-    {
-        return self::getMetricDescriptorNameTemplate()->render([
-            'project' => $project,
-            'metric_descriptor' => $metricDescriptor,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a monitored_resource_descriptor resource.
-     *
-     * @param string $project
-     * @param string $monitoredResourceDescriptor
-     *
-     * @return string The formatted monitored_resource_descriptor resource.
-     * @experimental
-     */
-    public static function formatMonitoredResourceDescriptorName($project, $monitoredResourceDescriptor)
-    {
-        return self::getMonitoredResourceDescriptorNameTemplate()->render([
-            'project' => $project,
-            'monitored_resource_descriptor' => $monitoredResourceDescriptor,
-        ]);
-    }
-
-    /**
-     * Parses the project from the given fully-qualified path which
-     * represents a project resource.
-     *
-     * @param string $projectName The fully-qualified project resource.
-     *
-     * @return string The extracted project value.
-     * @experimental
-     */
-    public static function parseProjectFromProjectName($projectName)
-    {
-        return self::getProjectNameTemplate()->match($projectName)['project'];
-    }
-
-    /**
-     * Parses the project from the given fully-qualified path which
-     * represents a metric_descriptor resource.
-     *
-     * @param string $metricDescriptorName The fully-qualified metric_descriptor resource.
-     *
-     * @return string The extracted project value.
-     * @experimental
-     */
-    public static function parseProjectFromMetricDescriptorName($metricDescriptorName)
-    {
-        return self::getMetricDescriptorNameTemplate()->match($metricDescriptorName)['project'];
-    }
-
-    /**
-     * Parses the metric_descriptor from the given fully-qualified path which
-     * represents a metric_descriptor resource.
-     *
-     * @param string $metricDescriptorName The fully-qualified metric_descriptor resource.
-     *
-     * @return string The extracted metric_descriptor value.
-     * @experimental
-     */
-    public static function parseMetricDescriptorFromMetricDescriptorName($metricDescriptorName)
-    {
-        return self::getMetricDescriptorNameTemplate()->match($metricDescriptorName)['metric_descriptor'];
-    }
-
-    /**
-     * Parses the project from the given fully-qualified path which
-     * represents a monitored_resource_descriptor resource.
-     *
-     * @param string $monitoredResourceDescriptorName The fully-qualified monitored_resource_descriptor resource.
-     *
-     * @return string The extracted project value.
-     * @experimental
-     */
-    public static function parseProjectFromMonitoredResourceDescriptorName($monitoredResourceDescriptorName)
-    {
-        return self::getMonitoredResourceDescriptorNameTemplate()->match($monitoredResourceDescriptorName)['project'];
-    }
-
-    /**
-     * Parses the monitored_resource_descriptor from the given fully-qualified path which
-     * represents a monitored_resource_descriptor resource.
-     *
-     * @param string $monitoredResourceDescriptorName The fully-qualified monitored_resource_descriptor resource.
-     *
-     * @return string The extracted monitored_resource_descriptor value.
-     * @experimental
-     */
-    public static function parseMonitoredResourceDescriptorFromMonitoredResourceDescriptorName($monitoredResourceDescriptorName)
-    {
-        return self::getMonitoredResourceDescriptorNameTemplate()->match($monitoredResourceDescriptorName)['monitored_resource_descriptor'];
-    }
 
     private static function getProjectNameTemplate()
     {
@@ -277,7 +159,18 @@ class MetricServiceGapicClient
 
         return self::$monitoredResourceDescriptorNameTemplate;
     }
+    private static function getPathTemplateList()
+    {
+        if (self::$pathTemplateList == null) {
+            self::$pathTemplateList = [
+                self::getProjectNameTemplate(),
+                self::getMetricDescriptorNameTemplate(),
+                self::getMonitoredResourceDescriptorNameTemplate(),
+            ];
+        }
 
+        return self::$pathTemplateList;
+    }
     private static function getPageStreamingDescriptors()
     {
         $listMonitoredResourceDescriptorsPageStreamingDescriptor =
@@ -319,13 +212,92 @@ class MetricServiceGapicClient
 
     private static function getGapicVersion()
     {
-        if (file_exists(__DIR__.'/../VERSION')) {
-            return trim(file_get_contents(__DIR__.'/../VERSION'));
-        } elseif (class_exists('\Google\Cloud\ServiceBuilder')) {
-            return \Google\Cloud\ServiceBuilder::VERSION;
-        } else {
-            return;
+        if (!self::$gapicVersionLoaded) {
+            if (file_exists(__DIR__.'/../VERSION')) {
+                self::$gapicVersion = trim(file_get_contents(__DIR__.'/../VERSION'));
+            } elseif (class_exists('\Google\Cloud\ServiceBuilder')) {
+                self::$gapicVersion = \Google\Cloud\ServiceBuilder::VERSION;
+            }
+            self::$gapicVersionLoaded = true;
         }
+
+        return self::$gapicVersion;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project resource.
+     * @experimental
+     */
+    public static function projectName($project)
+    {
+        return self::getProjectNameTemplate()->render([
+            'project' => $project,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a metric_descriptor resource.
+     *
+     * @param string $project
+     * @param string $metricDescriptor
+     *
+     * @return string The formatted metric_descriptor resource.
+     * @experimental
+     */
+    public static function metricDescriptorName($project, $metricDescriptor)
+    {
+        return self::getMetricDescriptorNameTemplate()->render([
+            'project' => $project,
+            'metric_descriptor' => $metricDescriptor,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a monitored_resource_descriptor resource.
+     *
+     * @param string $project
+     * @param string $monitoredResourceDescriptor
+     *
+     * @return string The formatted monitored_resource_descriptor resource.
+     * @experimental
+     */
+    public static function monitoredResourceDescriptorName($project, $monitoredResourceDescriptor)
+    {
+        return self::getMonitoredResourceDescriptorNameTemplate()->render([
+            'project' => $project,
+            'monitored_resource_descriptor' => $monitoredResourceDescriptor,
+        ]);
+    }
+
+    /**
+     * Parses a formatted name string and returns an associative array of the components in the name.
+     * The following name formats are supported:
+     * - projects/{project}
+     * - projects/{project}/metricDescriptors/{metric_descriptor=**}
+     * - projects/{project}/monitoredResourceDescriptors/{monitored_resource_descriptor}.
+     *
+     * @param string $formattedName The formatted name string
+     *
+     * @return array An associative array from name component IDs to component values.
+     * @experimental
+     */
+    public static function parseName($formattedName)
+    {
+        foreach (self::getPathTemplateList() as $pathTemplate) {
+            try {
+                return $pathTemplate->match($formattedName);
+            } catch (ValidationException $ex) {
+                // Swallow the exception to continue trying other path templates
+            }
+        }
+        throw new ValidationException("Input did not match any known format. Input: $formattedName");
     }
 
     /**
@@ -441,7 +413,7 @@ class MetricServiceGapicClient
      * ```
      * try {
      *     $metricServiceClient = new MetricServiceClient();
-     *     $formattedName = MetricServiceClient::formatProjectName("[PROJECT]");
+     *     $formattedName = $metricServiceClient->projectName("[PROJECT]");
      *     // Iterate through all elements
      *     $pagedResponse = $metricServiceClient->listMonitoredResourceDescriptors($formattedName);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
@@ -532,7 +504,7 @@ class MetricServiceGapicClient
      * ```
      * try {
      *     $metricServiceClient = new MetricServiceClient();
-     *     $formattedName = MetricServiceClient::formatMonitoredResourceDescriptorName("[PROJECT]", "[MONITORED_RESOURCE_DESCRIPTOR]");
+     *     $formattedName = $metricServiceClient->monitoredResourceDescriptorName("[PROJECT]", "[MONITORED_RESOURCE_DESCRIPTOR]");
      *     $response = $metricServiceClient->getMonitoredResourceDescriptor($formattedName);
      * } finally {
      *     $metricServiceClient->close();
@@ -587,7 +559,7 @@ class MetricServiceGapicClient
      * ```
      * try {
      *     $metricServiceClient = new MetricServiceClient();
-     *     $formattedName = MetricServiceClient::formatProjectName("[PROJECT]");
+     *     $formattedName = $metricServiceClient->projectName("[PROJECT]");
      *     // Iterate through all elements
      *     $pagedResponse = $metricServiceClient->listMetricDescriptors($formattedName);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
@@ -679,7 +651,7 @@ class MetricServiceGapicClient
      * ```
      * try {
      *     $metricServiceClient = new MetricServiceClient();
-     *     $formattedName = MetricServiceClient::formatMetricDescriptorName("[PROJECT]", "[METRIC_DESCRIPTOR]");
+     *     $formattedName = $metricServiceClient->metricDescriptorName("[PROJECT]", "[METRIC_DESCRIPTOR]");
      *     $response = $metricServiceClient->getMetricDescriptor($formattedName);
      * } finally {
      *     $metricServiceClient->close();
@@ -736,7 +708,7 @@ class MetricServiceGapicClient
      * ```
      * try {
      *     $metricServiceClient = new MetricServiceClient();
-     *     $formattedName = MetricServiceClient::formatProjectName("[PROJECT]");
+     *     $formattedName = $metricServiceClient->projectName("[PROJECT]");
      *     $metricDescriptor = new MetricDescriptor();
      *     $response = $metricServiceClient->createMetricDescriptor($formattedName, $metricDescriptor);
      * } finally {
@@ -794,7 +766,7 @@ class MetricServiceGapicClient
      * ```
      * try {
      *     $metricServiceClient = new MetricServiceClient();
-     *     $formattedName = MetricServiceClient::formatMetricDescriptorName("[PROJECT]", "[METRIC_DESCRIPTOR]");
+     *     $formattedName = $metricServiceClient->metricDescriptorName("[PROJECT]", "[METRIC_DESCRIPTOR]");
      *     $metricServiceClient->deleteMetricDescriptor($formattedName);
      * } finally {
      *     $metricServiceClient->close();
@@ -847,7 +819,7 @@ class MetricServiceGapicClient
      * ```
      * try {
      *     $metricServiceClient = new MetricServiceClient();
-     *     $formattedName = MetricServiceClient::formatProjectName("[PROJECT]");
+     *     $formattedName = $metricServiceClient->projectName("[PROJECT]");
      *     $filter = "";
      *     $interval = new TimeInterval();
      *     $view = TimeSeriesView::FULL;
@@ -962,7 +934,7 @@ class MetricServiceGapicClient
      * ```
      * try {
      *     $metricServiceClient = new MetricServiceClient();
-     *     $formattedName = MetricServiceClient::formatProjectName("[PROJECT]");
+     *     $formattedName = $metricServiceClient->projectName("[PROJECT]");
      *     $timeSeries = [];
      *     $metricServiceClient->createTimeSeries($formattedName, $timeSeries);
      * } finally {
