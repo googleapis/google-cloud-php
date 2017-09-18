@@ -148,14 +148,6 @@ class Rest implements ConnectionInterface
     /**
      * @param array $args
      */
-    public function updateSubscription(array $args)
-    {
-        return $this->send('subscriptions', 'patch', $args);
-    }
-
-    /**
-     * @param array $args
-     */
     public function getSubscription(array $args)
     {
         return $this->send('subscriptions', 'get', $args);

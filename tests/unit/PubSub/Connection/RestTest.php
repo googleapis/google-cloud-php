@@ -84,7 +84,6 @@ class RestTest extends \PHPUnit_Framework_TestCase
             ['setTopicIamPolicy'],
             ['testTopicIamPermissions'],
             ['createSubscription'],
-            ['updateSubscription'],
             ['getSubscription'],
             ['listSubscriptions'],
             ['deleteSubscription'],

@@ -115,11 +115,6 @@ class GrpcTest extends \PHPUnit_Framework_TestCase
 
         return [
             [
-                'updateSubscription',
-                ['name' => 'projects/foo/subscriptions/bar', 'retainAckedMessages' => true],
-                [$subscription, $fieldMask, []]
-            ],
-            [
                 'listSnapshots',
                 ['project' => 'projectId'],
                 ['projectId', []]
