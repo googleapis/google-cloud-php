@@ -575,13 +575,10 @@ class ConfigServiceV2GapicClient
     }
 
     /**
-     * Updates a sink. If the named sink doesn't exist, then this method is
-     * identical to
-     * [sinks.create](https://cloud.google.com/logging/docs/api/reference/rest/v2/projects.sinks/create).
-     * If the named sink does exist, then this method replaces the following
-     * fields in the existing sink with values from the new sink: `destination`,
-     * `filter`, `output_version_format`, `start_time`, and `end_time`.
-     * The updated filter might also have a new `writer_identity`; see the
+     * Updates a sink.  This method replaces the following fields in the existing
+     * sink with values from the new sink: `destination`, `filter`,
+     * `output_version_format`, `start_time`, and `end_time`.
+     * The updated sink might also have a new `writer_identity`; see the
      * `unique_writer_identity` field.
      *
      * Sample code:
@@ -606,8 +603,7 @@ class ConfigServiceV2GapicClient
      *
      * Example: `"projects/my-project-id/sinks/my-sink-id"`.
      * @param LogSink $sink         Required. The updated sink, whose name is the same identifier that appears
-     *                              as part of `sink_name`.  If `sink_name` does not exist, then
-     *                              this method creates a new sink.
+     *                              as part of `sink_name`.
      * @param array   $optionalArgs {
      *                              Optional.
      *
@@ -622,7 +618,8 @@ class ConfigServiceV2GapicClient
      *              then there is no change to the sink's `writer_identity`.
      *          +   If the old value is false and the new value is true, then
      *              `writer_identity` is changed to a unique service account.
-     *          +   It is an error if the old value is true and the new value is false.
+     *          +   It is an error if the old value is true and the new value is
+     *              set to false or defaulted to false.
      *     @type \Google\GAX\RetrySettings $retrySettings
      *          Retry settings to use for this call. If present, then
      *          $timeoutMillis is ignored.
