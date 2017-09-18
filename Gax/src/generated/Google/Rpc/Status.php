@@ -23,7 +23,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * error message is needed, put the localized message in the error details or
  * localize it in the client. The optional error details may contain arbitrary
  * information about the error. There is a predefined set of error detail types
- * in the package `google.rpc` which can be used for common error conditions.
+ * in the package `google.rpc` that can be used for common error conditions.
  * # Language mapping
  * The `Status` message is the logical representation of the error model, but it
  * is not necessarily the actual wire format. When the `Status` message is
@@ -39,7 +39,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *     it may embed the `Status` in the normal response to indicate the partial
  *     errors.
  * - Workflow errors. A typical workflow has multiple steps. Each step may
- *     have a `Status` message for error reporting purpose.
+ *     have a `Status` message for error reporting.
  * - Batch operations. If a client uses batch request and batch response, the
  *     `Status` message should be used directly inside batch response, one for
  *     each error sub-response.
@@ -68,8 +68,8 @@ class Status extends \Google\Protobuf\Internal\Message
      */
     private $message = '';
     /**
-     * A list of messages that carry the error details.  There will be a
-     * common set of message types for APIs to use.
+     * A list of messages that carry the error details.  There is a common set of
+     * message types for APIs to use.
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Any details = 3;</code>
      */
@@ -137,8 +137,8 @@ class Status extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of messages that carry the error details.  There will be a
-     * common set of message types for APIs to use.
+     * A list of messages that carry the error details.  There is a common set of
+     * message types for APIs to use.
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Any details = 3;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -149,8 +149,8 @@ class Status extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of messages that carry the error details.  There will be a
-     * common set of message types for APIs to use.
+     * A list of messages that carry the error details.  There is a common set of
+     * message types for APIs to use.
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Any details = 3;</code>
      * @param \Google\Protobuf\Any[]|\Google\Protobuf\Internal\RepeatedField $var

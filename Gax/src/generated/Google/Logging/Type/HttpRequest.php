@@ -115,6 +115,12 @@ class HttpRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int64 cache_fill_bytes = 12;</code>
      */
     private $cache_fill_bytes = 0;
+    /**
+     * Protocol used for the request. Examples: "HTTP/1.1", "HTTP/2", "websocket"
+     *
+     * Generated from protobuf field <code>string protocol = 15;</code>
+     */
+    private $protocol = '';
 
     public function __construct() {
         \GPBMetadata\Google\Logging\Type\HttpRequest::initOnce();
@@ -509,6 +515,32 @@ class HttpRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->cache_fill_bytes = $var;
+
+        return $this;
+    }
+
+    /**
+     * Protocol used for the request. Examples: "HTTP/1.1", "HTTP/2", "websocket"
+     *
+     * Generated from protobuf field <code>string protocol = 15;</code>
+     * @return string
+     */
+    public function getProtocol()
+    {
+        return $this->protocol;
+    }
+
+    /**
+     * Protocol used for the request. Examples: "HTTP/1.1", "HTTP/2", "websocket"
+     *
+     * Generated from protobuf field <code>string protocol = 15;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setProtocol($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->protocol = $var;
 
         return $this;
     }
