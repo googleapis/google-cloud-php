@@ -73,7 +73,7 @@
         "google/cloud-pubsub": "0.7.0",
         "google/cloud-spanner": "0.6.0",
         "google/cloud-speech": "0.7.0",
-        "google/cloud-storage": "1.1.4",
+        "google/cloud-storage": "1.1.5",
         "google/cloud-trace": "0.3.2",
         "google/cloud-translate": "1.0.1",
         "google/cloud-videointelligence": "0.4.0",
