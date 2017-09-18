@@ -41,7 +41,7 @@ class Rest implements ConnectionInterface
 
     const BASE_URI = 'https://www.googleapis.com/storage/v1/';
     const UPLOAD_URI = 'https://www.googleapis.com/upload/storage/v1/b/{bucket}/o{?query*}';
-    const DOWNLOAD_URI = 'https://storage.googleapis.com/{bucket}/{object}{?query*}';
+    const DOWNLOAD_URI = 'https://www.googleapis.com/storage/v1/b/{bucket}/o/{object}{?query*}';
 
     /**
      * @param array $config
@@ -204,7 +204,8 @@ class Rest implements ConnectionInterface
         $args += [
             'bucket' => null,
             'object' => null,
-            'generation' => null
+            'generation' => null,
+            'userProject' => null
         ];
 
         $requestOptions = array_intersect_key($args, [
@@ -217,7 +218,8 @@ class Rest implements ConnectionInterface
             'object' => $args['object'],
             'query' => [
                 'generation' => $args['generation'],
-                'alt' => 'media'
+                'alt' => 'media',
+                'userProject' => $args['userProject']
             ]
         ]);
 
