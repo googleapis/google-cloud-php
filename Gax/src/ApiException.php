@@ -38,6 +38,7 @@ use Exception;
  */
 class ApiException extends Exception
 {
+    private $status;
     private $metadata;
     private $basicMessage;
 
@@ -45,15 +46,33 @@ class ApiException extends Exception
      * ApiException constructor.
      * @param string $message
      * @param int $code
-     * @param Exception|null $previous
-     * @param array|null $metadata
-     * @param string|null $basicMessage
+     * @param string $status
+     * @param array $optionalArgs {
+     *     @type Exception|null $previous
+     *     @type array|null $metadata
+     *     @type string|null $basicMessage
+     * }
      */
-    public function __construct($message, $code, \Exception $previous = null, $metadata = null, $basicMessage = null)
+    public function __construct(
+        $message,
+        $code,
+        $status,
+        array $optionalArgs = []
+    ) {
+        $optionalArgs += [
+            'previous' => null,
+            'metadata' => null,
+            'basicMessage' => $message,
+        ];
+        parent::__construct($message, $code, $optionalArgs['previous']);
+        $this->status = $status;
+        $this->metadata = $optionalArgs['metadata'];
+        $this->basicMessage = $optionalArgs['basicMessage'];
+    }
+
+    public function getStatus()
     {
-        parent::__construct($message, $code, $previous);
-        $this->metadata = $metadata;
-        $this->basicMessage = isset($basicMessage) ? $basicMessage : $message;
+        return $this->status;
     }
 
     /**
@@ -64,18 +83,22 @@ class ApiException extends Exception
     {
         $basicMessage = $status->details;
         $code = $status->code;
+        $rpcStatus = ApiStatus::statusFromRpcCode($code);
         $metadata = property_exists($status, 'metadata') ? $status->metadata : null;
 
         $messageData = [
             'message' => $basicMessage,
             'code' => $code,
-            'status' => GrpcConstants::getStatusNameFromCode($status->code),
+            'status' => $rpcStatus,
             'details' => Serializer::decodeMetadata($metadata)
         ];
 
         $message = json_encode($messageData, JSON_PRETTY_PRINT);
 
-        return new ApiException($message, $code, null, $metadata, $basicMessage);
+        return new ApiException($message, $code, $rpcStatus, [
+            'metadata' => $metadata,
+            'basicMessage' => $basicMessage,
+        ]);
     }
 
     /**
