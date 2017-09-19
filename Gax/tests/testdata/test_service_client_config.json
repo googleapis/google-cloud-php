@@ -29,6 +29,9 @@
           "timeout_millis": 40000,
           "retry_codes_name": "non_idempotent",
           "retry_params_name": "default"
+        },
+        "TimeoutOnlyMethod": {
+          "timeout_millis": 40000
         }
       }
     }
