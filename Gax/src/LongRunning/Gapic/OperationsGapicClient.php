@@ -44,6 +44,7 @@
 
 namespace Google\GAX\LongRunning\Gapic;
 
+use Google\Cloud\Version;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
@@ -100,11 +101,6 @@ class OperationsGapicClient
     const DEFAULT_SERVICE_PORT = 443;
 
     /**
-     * The default timeout for non-retrying methods.
-     */
-    const DEFAULT_TIMEOUT_MILLIS = 30000;
-
-    /**
      * The name of the code generator, to be included in the agent header.
      */
     const CODEGEN_NAME = 'gapic';
@@ -113,6 +109,9 @@ class OperationsGapicClient
      * The code generator version, to be included in the agent header.
      */
     const CODEGEN_VERSION = '0.0.5';
+
+    private static $gapicVersion;
+    private static $gapicVersionLoaded = false;
 
     protected $grpcCredentialsHelper;
     protected $operationsStub;
@@ -141,13 +140,16 @@ class OperationsGapicClient
 
     private static function getGapicVersion()
     {
-        if (file_exists(__DIR__.'/../VERSION')) {
-            return trim(file_get_contents(__DIR__.'/../VERSION'));
-        } elseif (class_exists('\Google\Cloud\ServiceBuilder')) {
-            return \Google\Cloud\ServiceBuilder::VERSION;
-        } else {
-            return;
+        if (!self::$gapicVersionLoaded) {
+            if (file_exists(__DIR__.'/../VERSION')) {
+                self::$gapicVersion = trim(file_get_contents(__DIR__.'/../VERSION'));
+            } elseif (class_exists(Version::class)) {
+                self::$gapicVersion = Version::VERSION;
+            }
+            self::$gapicVersionLoaded = true;
         }
+
+        return self::$gapicVersion;
     }
 
     /**
@@ -177,14 +179,16 @@ class OperationsGapicClient
      *           Path to a JSON file containing client method configuration, including retry settings.
      *           Specify this setting to specify the retry behavior of all methods on the client.
      *           By default this settings points to the default client config file, which is provided
-     *           in the resources folder.
+     *           in the resources folder. The retry settings provided in this option can be overridden
+     *           by settings in $retryingOverride
      *     @type array $retryingOverride
      *           An associative array in which the keys are method names (e.g. 'createFoo'), and
      *           the values are retry settings to use for that method. The retry settings for each
      *           method can be a {@see Google\GAX\RetrySettings} object, or an associative array
      *           of retry settings parameters. See the documentation on {@see Google\GAX\RetrySettings}
      *           for example usage. Passing a value of null is equivalent to a value of
-     *           ['retriesEnabled' => false].
+     *           ['retriesEnabled' => false]. Retry settings provided in this setting override the
+     *           settings in $clientConfigPath.
      * }
      *
      * @throws ValidationException Throws a ValidationException if required arguments are missing
@@ -202,7 +206,6 @@ class OperationsGapicClient
         $defaultOptions = [
             'port' => self::DEFAULT_SERVICE_PORT,
             'retryingOverride' => null,
-            'timeoutMillis' => self::DEFAULT_TIMEOUT_MILLIS,
             'libName' => null,
             'libVersion' => null,
             'clientConfigPath' => __DIR__.'/../resources/operations_client_config.json',
@@ -298,9 +301,13 @@ class OperationsGapicClient
         $request = new GetOperationRequest();
         $request->setName($name);
 
-        $mergedSettings = $this->defaultCallSettings['getOperation']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['getOperation'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->operationsStub,
             'GetOperation',
@@ -389,9 +396,13 @@ class OperationsGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $mergedSettings = $this->defaultCallSettings['listOperations']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['listOperations'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->operationsStub,
             'ListOperations',
@@ -453,9 +464,13 @@ class OperationsGapicClient
         $request = new CancelOperationRequest();
         $request->setName($name);
 
-        $mergedSettings = $this->defaultCallSettings['cancelOperation']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['cancelOperation'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->operationsStub,
             'CancelOperation',
@@ -511,9 +526,13 @@ class OperationsGapicClient
         $request = new DeleteOperationRequest();
         $request->setName($name);
 
-        $mergedSettings = $this->defaultCallSettings['deleteOperation']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['deleteOperation'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->operationsStub,
             'DeleteOperation',
