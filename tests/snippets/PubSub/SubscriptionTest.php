@@ -95,19 +95,6 @@ class SubscriptionTest extends SnippetTestCase
         $this->assertEquals($return, $res->returnVal());
     }
 
-    public function testUpdate()
-    {
-        $snippet = $this->snippetFromMethod(Subscription::class, 'update');
-        $snippet->addLocal('subscription', $this->subscription);
-
-        $this->connection->updateSubscription(Argument::any())
-            ->shouldBeCalled();
-
-        $this->subscription->___setProperty('connection', $this->connection->reveal());
-
-        $snippet->invoke();
-    }
-
     public function testDelete()
     {
         $snippet = $this->snippetFromMethod(Subscription::class, 'delete');

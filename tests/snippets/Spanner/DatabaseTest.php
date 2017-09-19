@@ -115,7 +115,7 @@ class DatabaseTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Database::class, 'name');
         $snippet->addLocal('database', $this->database);
         $res = $snippet->invoke('name');
-        $this->assertEquals(self::DATABASE, DatabaseAdminClient::parseName($res->returnVal()->name())['database']);
+        $this->assertEquals(self::DATABASE, DatabaseAdminClient::parseName($res->returnVal())['database']);
     }
 
     /**
