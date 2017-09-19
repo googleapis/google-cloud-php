@@ -97,11 +97,6 @@ class MetricsServiceV2GapicClient
     const DEFAULT_SERVICE_PORT = 443;
 
     /**
-     * The default timeout for non-retrying methods.
-     */
-    const DEFAULT_TIMEOUT_MILLIS = 30000;
-
-    /**
      * The name of the code generator, to be included in the agent header.
      */
     const CODEGEN_NAME = 'gapic';
@@ -113,8 +108,8 @@ class MetricsServiceV2GapicClient
 
     private static $projectNameTemplate;
     private static $metricNameTemplate;
-    private static $pathTemplateList = null;
-    private static $gapicVersion = null;
+    private static $pathTemplateList;
+    private static $gapicVersion;
     private static $gapicVersionLoaded = false;
 
     protected $grpcCredentialsHelper;
@@ -140,6 +135,7 @@ class MetricsServiceV2GapicClient
 
         return self::$metricNameTemplate;
     }
+
     private static function getPathTemplateList()
     {
         if (self::$pathTemplateList == null) {
@@ -269,14 +265,16 @@ class MetricsServiceV2GapicClient
      *           Path to a JSON file containing client method configuration, including retry settings.
      *           Specify this setting to specify the retry behavior of all methods on the client.
      *           By default this settings points to the default client config file, which is provided
-     *           in the resources folder.
+     *           in the resources folder. The retry settings provided in this option can be overridden
+     *           by settings in $retryingOverride
      *     @type array $retryingOverride
      *           An associative array in which the keys are method names (e.g. 'createFoo'), and
      *           the values are retry settings to use for that method. The retry settings for each
      *           method can be a {@see Google\GAX\RetrySettings} object, or an associative array
      *           of retry settings parameters. See the documentation on {@see Google\GAX\RetrySettings}
      *           for example usage. Passing a value of null is equivalent to a value of
-     *           ['retriesEnabled' => false].
+     *           ['retriesEnabled' => false]. Retry settings provided in this setting override the
+     *           settings in $clientConfigPath.
      * }
      * @experimental
      */
@@ -293,7 +291,6 @@ class MetricsServiceV2GapicClient
                 'https://www.googleapis.com/auth/logging.write',
             ],
             'retryingOverride' => null,
-            'timeoutMillis' => self::DEFAULT_TIMEOUT_MILLIS,
             'libName' => null,
             'libVersion' => null,
             'clientConfigPath' => __DIR__.'/../resources/metrics_service_v2_client_config.json',

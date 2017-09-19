@@ -43,6 +43,7 @@ use Google\Iam\V1\Policy;
 use Google\Iam\V1\SetIamPolicyRequest;
 use Google\Iam\V1\TestIamPermissionsRequest;
 use Google\Protobuf\Duration;
+use Google\Protobuf\FieldMask;
 use Google\Protobuf\Timestamp;
 use Google\Pubsub\V1\AcknowledgeRequest;
 use Google\Pubsub\V1\CreateSnapshotRequest;
@@ -56,9 +57,12 @@ use Google\Pubsub\V1\ModifyPushConfigRequest;
 use Google\Pubsub\V1\PullRequest;
 use Google\Pubsub\V1\PushConfig;
 use Google\Pubsub\V1\SeekRequest;
+use Google\Pubsub\V1\Snapshot;
 use Google\Pubsub\V1\StreamingPullRequest;
 use Google\Pubsub\V1\SubscriberGrpcClient;
 use Google\Pubsub\V1\Subscription;
+use Google\Pubsub\V1\UpdateSnapshotRequest;
+use Google\Pubsub\V1\UpdateSubscriptionRequest;
 
 /**
  * Service Description: The service that an application uses to manipulate subscriptions and to
@@ -102,11 +106,6 @@ class SubscriberGapicClient
     const DEFAULT_SERVICE_PORT = 443;
 
     /**
-     * The default timeout for non-retrying methods.
-     */
-    const DEFAULT_TIMEOUT_MILLIS = 30000;
-
-    /**
      * The name of the code generator, to be included in the agent header.
      */
     const CODEGEN_NAME = 'gapic';
@@ -120,8 +119,8 @@ class SubscriberGapicClient
     private static $snapshotNameTemplate;
     private static $subscriptionNameTemplate;
     private static $topicNameTemplate;
-    private static $pathTemplateList = null;
-    private static $gapicVersion = null;
+    private static $pathTemplateList;
+    private static $gapicVersion;
     private static $gapicVersionLoaded = false;
 
     protected $grpcCredentialsHelper;
@@ -166,6 +165,7 @@ class SubscriberGapicClient
 
         return self::$topicNameTemplate;
     }
+
     private static function getPathTemplateList()
     {
         if (self::$pathTemplateList == null) {
@@ -355,14 +355,16 @@ class SubscriberGapicClient
      *           Path to a JSON file containing client method configuration, including retry settings.
      *           Specify this setting to specify the retry behavior of all methods on the client.
      *           By default this settings points to the default client config file, which is provided
-     *           in the resources folder.
+     *           in the resources folder. The retry settings provided in this option can be overridden
+     *           by settings in $retryingOverride
      *     @type array $retryingOverride
      *           An associative array in which the keys are method names (e.g. 'createFoo'), and
      *           the values are retry settings to use for that method. The retry settings for each
      *           method can be a {@see Google\GAX\RetrySettings} object, or an associative array
      *           of retry settings parameters. See the documentation on {@see Google\GAX\RetrySettings}
      *           for example usage. Passing a value of null is equivalent to a value of
-     *           ['retriesEnabled' => false].
+     *           ['retriesEnabled' => false]. Retry settings provided in this setting override the
+     *           settings in $clientConfigPath.
      * }
      * @experimental
      */
@@ -376,7 +378,6 @@ class SubscriberGapicClient
                 'https://www.googleapis.com/auth/pubsub',
             ],
             'retryingOverride' => null,
-            'timeoutMillis' => self::DEFAULT_TIMEOUT_MILLIS,
             'libName' => null,
             'libVersion' => null,
             'clientConfigPath' => __DIR__.'/../resources/subscriber_client_config.json',
@@ -395,6 +396,7 @@ class SubscriberGapicClient
         $this->descriptors = [
             'createSubscription' => $defaultDescriptors,
             'getSubscription' => $defaultDescriptors,
+            'updateSubscription' => $defaultDescriptors,
             'listSubscriptions' => $defaultDescriptors,
             'deleteSubscription' => $defaultDescriptors,
             'modifyAckDeadline' => $defaultDescriptors,
@@ -404,6 +406,7 @@ class SubscriberGapicClient
             'modifyPushConfig' => $defaultDescriptors,
             'listSnapshots' => $defaultDescriptors,
             'createSnapshot' => $defaultDescriptors,
+            'updateSnapshot' => $defaultDescriptors,
             'deleteSnapshot' => $defaultDescriptors,
             'seek' => $defaultDescriptors,
             'setIamPolicy' => $defaultDescriptors,
@@ -620,6 +623,66 @@ class SubscriberGapicClient
             'GetSubscription',
             $mergedSettings,
             $this->descriptors['getSubscription']
+        );
+
+        return $callable(
+            $request,
+            [],
+            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+    }
+
+    /**
+     * Updates an existing subscription. Note that certain properties of a
+     * subscription, such as its topic, are not modifiable.
+     * NOTE:  The style guide requires body: "subscription" instead of body: "*".
+     * Keeping the latter for internal consistency in V1, however it should be
+     * corrected in V2.  See
+     * https://cloud.google.com/apis/design/standard_methods#update for details.
+     *
+     * Sample code:
+     * ```
+     * try {
+     *     $subscriberClient = new SubscriberClient();
+     *     $subscription = new Subscription();
+     *     $updateMask = new FieldMask();
+     *     $response = $subscriberClient->updateSubscription($subscription, $updateMask);
+     * } finally {
+     *     $subscriberClient->close();
+     * }
+     * ```
+     *
+     * @param Subscription $subscription The updated subscription object.
+     * @param FieldMask    $updateMask   Indicates which fields in the provided subscription to update.
+     *                                   Must be specified and non-empty.
+     * @param array        $optionalArgs {
+     *                                   Optional.
+     *
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Pubsub\V1\Subscription
+     *
+     * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
+     */
+    public function updateSubscription($subscription, $updateMask, $optionalArgs = [])
+    {
+        $request = new UpdateSubscriptionRequest();
+        $request->setSubscription($subscription);
+        $request->setUpdateMask($updateMask);
+
+        $mergedSettings = $this->defaultCallSettings['updateSubscription']->merge(
+            new CallSettings($optionalArgs)
+        );
+        $callable = ApiCallable::createApiCall(
+            $this->subscriberStub,
+            'UpdateSubscription',
+            $mergedSettings,
+            $this->descriptors['updateSubscription']
         );
 
         return $callable(
@@ -1256,6 +1319,66 @@ class SubscriberGapicClient
             'CreateSnapshot',
             $mergedSettings,
             $this->descriptors['createSnapshot']
+        );
+
+        return $callable(
+            $request,
+            [],
+            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+    }
+
+    /**
+     * Updates an existing snapshot. Note that certain properties of a snapshot
+     * are not modifiable.
+     * NOTE:  The style guide requires body: "snapshot" instead of body: "*".
+     * Keeping the latter for internal consistency in V1, however it should be
+     * corrected in V2.  See
+     * https://cloud.google.com/apis/design/standard_methods#update for details.
+     *
+     * Sample code:
+     * ```
+     * try {
+     *     $subscriberClient = new SubscriberClient();
+     *     $snapshot = new Snapshot();
+     *     $updateMask = new FieldMask();
+     *     $response = $subscriberClient->updateSnapshot($snapshot, $updateMask);
+     * } finally {
+     *     $subscriberClient->close();
+     * }
+     * ```
+     *
+     * @param Snapshot  $snapshot     The updated snpashot object.
+     * @param FieldMask $updateMask   Indicates which fields in the provided snapshot to update.
+     *                                Must be specified and non-empty.
+     * @param array     $optionalArgs {
+     *                                Optional.
+     *
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Pubsub\V1\Snapshot
+     *
+     * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
+     */
+    public function updateSnapshot($snapshot, $updateMask, $optionalArgs = [])
+    {
+        $request = new UpdateSnapshotRequest();
+        $request->setSnapshot($snapshot);
+        $request->setUpdateMask($updateMask);
+
+        $mergedSettings = $this->defaultCallSettings['updateSnapshot']->merge(
+            new CallSettings($optionalArgs)
+        );
+        $callable = ApiCallable::createApiCall(
+            $this->subscriberStub,
+            'UpdateSnapshot',
+            $mergedSettings,
+            $this->descriptors['updateSnapshot']
         );
 
         return $callable(

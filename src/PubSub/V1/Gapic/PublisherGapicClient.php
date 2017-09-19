@@ -42,6 +42,7 @@ use Google\Iam\V1\IAMPolicyGrpcClient;
 use Google\Iam\V1\Policy;
 use Google\Iam\V1\SetIamPolicyRequest;
 use Google\Iam\V1\TestIamPermissionsRequest;
+use Google\Protobuf\FieldMask;
 use Google\Pubsub\V1\DeleteTopicRequest;
 use Google\Pubsub\V1\GetTopicRequest;
 use Google\Pubsub\V1\ListTopicSubscriptionsRequest;
@@ -50,6 +51,7 @@ use Google\Pubsub\V1\PublishRequest;
 use Google\Pubsub\V1\PublisherGrpcClient;
 use Google\Pubsub\V1\PubsubMessage;
 use Google\Pubsub\V1\Topic;
+use Google\Pubsub\V1\UpdateTopicRequest;
 
 /**
  * Service Description: The service that an application uses to manipulate topics, and to send
@@ -92,11 +94,6 @@ class PublisherGapicClient
     const DEFAULT_SERVICE_PORT = 443;
 
     /**
-     * The default timeout for non-retrying methods.
-     */
-    const DEFAULT_TIMEOUT_MILLIS = 30000;
-
-    /**
      * The name of the code generator, to be included in the agent header.
      */
     const CODEGEN_NAME = 'gapic';
@@ -108,8 +105,8 @@ class PublisherGapicClient
 
     private static $projectNameTemplate;
     private static $topicNameTemplate;
-    private static $pathTemplateList = null;
-    private static $gapicVersion = null;
+    private static $pathTemplateList;
+    private static $gapicVersion;
     private static $gapicVersionLoaded = false;
 
     protected $grpcCredentialsHelper;
@@ -136,6 +133,7 @@ class PublisherGapicClient
 
         return self::$topicNameTemplate;
     }
+
     private static function getPathTemplateList()
     {
         if (self::$pathTemplateList == null) {
@@ -275,14 +273,16 @@ class PublisherGapicClient
      *           Path to a JSON file containing client method configuration, including retry settings.
      *           Specify this setting to specify the retry behavior of all methods on the client.
      *           By default this settings points to the default client config file, which is provided
-     *           in the resources folder.
+     *           in the resources folder. The retry settings provided in this option can be overridden
+     *           by settings in $retryingOverride
      *     @type array $retryingOverride
      *           An associative array in which the keys are method names (e.g. 'createFoo'), and
      *           the values are retry settings to use for that method. The retry settings for each
      *           method can be a {@see Google\GAX\RetrySettings} object, or an associative array
      *           of retry settings parameters. See the documentation on {@see Google\GAX\RetrySettings}
      *           for example usage. Passing a value of null is equivalent to a value of
-     *           ['retriesEnabled' => false].
+     *           ['retriesEnabled' => false]. Retry settings provided in this setting override the
+     *           settings in $clientConfigPath.
      * }
      * @experimental
      */
@@ -296,7 +296,6 @@ class PublisherGapicClient
                 'https://www.googleapis.com/auth/pubsub',
             ],
             'retryingOverride' => null,
-            'timeoutMillis' => self::DEFAULT_TIMEOUT_MILLIS,
             'libName' => null,
             'libVersion' => null,
             'clientConfigPath' => __DIR__.'/../resources/publisher_client_config.json',
@@ -314,6 +313,7 @@ class PublisherGapicClient
         $defaultDescriptors = ['headerDescriptor' => $headerDescriptor];
         $this->descriptors = [
             'createTopic' => $defaultDescriptors,
+            'updateTopic' => $defaultDescriptors,
             'publish' => $defaultDescriptors,
             'getTopic' => $defaultDescriptors,
             'listTopics' => $defaultDescriptors,
@@ -414,6 +414,66 @@ class PublisherGapicClient
             'CreateTopic',
             $mergedSettings,
             $this->descriptors['createTopic']
+        );
+
+        return $callable(
+            $request,
+            [],
+            ['call_credentials_callback' => $this->createCredentialsCallback()]);
+    }
+
+    /**
+     * Updates an existing topic. Note that certain properties of a topic are not
+     * modifiable.  Options settings follow the style guide:
+     * NOTE:  The style guide requires body: "topic" instead of body: "*".
+     * Keeping the latter for internal consistency in V1, however it should be
+     * corrected in V2.  See
+     * https://cloud.google.com/apis/design/standard_methods#update for details.
+     *
+     * Sample code:
+     * ```
+     * try {
+     *     $publisherClient = new PublisherClient();
+     *     $topic = new Topic();
+     *     $updateMask = new FieldMask();
+     *     $response = $publisherClient->updateTopic($topic, $updateMask);
+     * } finally {
+     *     $publisherClient->close();
+     * }
+     * ```
+     *
+     * @param Topic     $topic        The topic to update.
+     * @param FieldMask $updateMask   Indicates which fields in the provided topic to update.
+     *                                Must be specified and non-empty.
+     * @param array     $optionalArgs {
+     *                                Optional.
+     *
+     *     @type \Google\GAX\RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\GAX\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\GAX\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Pubsub\V1\Topic
+     *
+     * @throws \Google\GAX\ApiException if the remote call fails
+     * @experimental
+     */
+    public function updateTopic($topic, $updateMask, $optionalArgs = [])
+    {
+        $request = new UpdateTopicRequest();
+        $request->setTopic($topic);
+        $request->setUpdateMask($updateMask);
+
+        $mergedSettings = $this->defaultCallSettings['updateTopic']->merge(
+            new CallSettings($optionalArgs)
+        );
+        $callable = ApiCallable::createApiCall(
+            $this->publisherStub,
+            'UpdateTopic',
+            $mergedSettings,
+            $this->descriptors['updateTopic']
         );
 
         return $callable(
