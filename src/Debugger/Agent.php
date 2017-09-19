@@ -86,8 +86,6 @@ class Agent
                 $breakpoint = $this->breakpoints[$snapshot['id']];
                 $this->fillBreakpoint($breakpoint, $snapshot);
                 $this->batchRunner->submitItem($this->identifier, $breakpoint);
-            // } else {
-            //     $logger->error("found reported snapshot but couldn't find record");
             }
         }
     }
@@ -100,11 +98,8 @@ class Agent
         $when->setTimezone(new \DateTimeZone('UTC'));
         $breakpoint->finalTime = $when->format('Y-m-d\TH:i:s.u\Z');
         $breakpoint->isFinalState = true;
-        try {
-            $breakpoint->addStackFrames($snapshot['stackframes']);
-        } catch (\Exception $e) {
-            var_dump($e->getMessage());
-        }
+        $breakpoint->addEvaluatedExpressions($snapshot['evaluatedExpressions']);
+        $breakpoint->addStackFrames($snapshot['stackframes']);
     }
 
     protected function getCallback()

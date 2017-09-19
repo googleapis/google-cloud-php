@@ -196,6 +196,15 @@ class Breakpoint implements \JsonSerializable
         array_push($this->stackFrames, $sf);
     }
 
+    public function addEvaluatedExpressions($expressions)
+    {
+        foreach ($expressions as $expression => $result) {
+            $variable = $this->addValue($expression, $result);
+
+            array_push($this->evaluatedExpressions, $variable);
+        }
+    }
+
     public function addValue($name, $value)
     {
         return $this->variableTable->register($name, $value);
