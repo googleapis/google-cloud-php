@@ -62,7 +62,10 @@ class Variable implements \JsonSerializable
         $this->value = $this->pluck('value', $data, false);
         $this->type = $this->pluck('type', $data, false) ?: get_class($this->value);
         $this->members = array_map(function ($member) {
-            return new static($members);
+            if ($member instanceof static) {
+                return $member;
+            }
+            return new static($member);
         }, $this->pluck('members', $data, false) ?: []);
         $this->varTableIndex = $this->pluck('varTableIndex', $data, false);
     }

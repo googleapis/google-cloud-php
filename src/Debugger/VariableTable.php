@@ -30,12 +30,10 @@ class VariableTable implements \JsonSerializable
         $name = (string)$name;
         $members = [];
         $shared = false;
-        $variable = new Variable([
-            'name' => $name,
-            'type' => gettype($value)
-        ]);
+        $type = gettype($value);
+        $variableValue = null;
 
-        switch ($variable->type) {
+        switch ($type) {
             case 'object':
                 $type = get_class($value);
                 $hash = spl_object_hash($value);
@@ -46,16 +44,21 @@ class VariableTable implements \JsonSerializable
                 } else {
                     $index = $this->nextIndex;
                     $this->sharedVariableIndex[$hash] = $index;
-                    $variable->type = $type;
-                    $variable->value = "$type ($hash)";
 
+                    $members = [];
                     if ($depth < self::MAX_MEMBER_DEPTH) {
                         foreach (get_object_vars($value) as $key => $member) {
-                            array_push($variable->members, $this->register($key, $member, $depth + 1));
+                            array_push($members, $this->register($key, $member, $depth + 1));
                         }
                     }
+
                     $this->nextIndex++;
-                    array_push($this->variables, $variable);
+                    array_push($this->variables, new Variable([
+                        'name' => $name,
+                        'type' => $type,
+                        'value' => "$type ($hash)",
+                        'members' => $members
+                    ]));
                 }
                 return new Variable([
                     'name' => $name,
@@ -65,20 +68,30 @@ class VariableTable implements \JsonSerializable
                 break;
             case 'array':
                 $arraySize = count($value);
-                $variable->value = "array ($arraySize)";
+                $members = [];
                 if ($depth < self::MAX_MEMBER_DEPTH) {
                     foreach ($value as $key => $member) {
-                        array_push($variable->members, $this->register($key, $member, $depth + 1));
+                        array_push($members, $this->register($key, $member, $depth + 1));
                     }
                 }
+                return new Variable([
+                    'name' => $name,
+                    'type' => $type,
+                    'value' => "array ($arraySize)",
+                    'members' => $members
+                ]);
                 break;
             case 'NULL':
-                $variable->value = 'NULL';
+                $variableValue = 'NULL';
             default:
-                $variable->value = (string)$value;
+                $variableValue = (string)$value;
         }
 
-        return $variable;
+        return new Variable([
+            'name' => $name,
+            'type' => $type,
+            'value' => $variableValue
+        ]);
     }
 
     /**

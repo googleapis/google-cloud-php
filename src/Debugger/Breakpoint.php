@@ -259,10 +259,10 @@ class Breakpoint implements \JsonSerializable
 
         $sf = new StackFrame([
             'function' => $function,
-            'location' => new SourceLocation([
+            'location' => [
                 'path' => $stackFrameData['filename'],
                 'line' => $stackFrameData['line']
-            ])
+            ]
         ]);
 
         if (isset($stackFrameData['locals'])) {
