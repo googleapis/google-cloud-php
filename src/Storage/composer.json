@@ -8,7 +8,7 @@
     },
     "suggest": {
         "phpseclib/phpseclib": "May be used in place of OpenSSL for creating signed Cloud Storage URLs. Please require version ^2.",
-        "google/cloud-pubsub": "May be used to register a topic to receive bucket notifications."
+        "google/cloud-pubsub": "May be used to register a topic to publish bucket notifications."
     },
     "extra": {
         "component": {
