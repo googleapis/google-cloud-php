@@ -36,7 +36,7 @@ class CloudWorkspaceSourceContext implements \JsonSerializable
     {
         return [
             'cloudWorkspace' => [
-                'workspaceId' => $this->workspaceId->jsonSerialize(),
+                'workspaceId' => $this->workspaceId,
                 'snapshotId' => $this->snapshotId
             ]
         ];

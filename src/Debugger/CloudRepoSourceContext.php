@@ -48,7 +48,7 @@ class CloudRepoSourceContext implements SourceContext
                 'repoId' => $this->repoId,
                 'revisionId' => $this->revisionId,
                 'aliasName' => $this->aliasName,
-                'aliasContext' => $this->aliasContext->jsonSerialize()
+                'aliasContext' => $this->aliasContext
             ]
         ];
     }

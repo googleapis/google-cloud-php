@@ -34,7 +34,7 @@ class CloudWorkspaceId implements \JsonSerializable
     public function jsonSerialize()
     {
         return [
-            'repoId' => $this->repoId->jsonSerialize(),
+            'repoId' => $this->repoId,
             'name' => $this->name
         ];
     }

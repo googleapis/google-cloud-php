@@ -34,7 +34,7 @@ class RepoId implements \JsonSerializable
     public function jsonSerialize()
     {
         return [
-            'projectRepoId' => $this->projectRepoId->jsonSerialize(),
+            'projectRepoId' => $this->projectRepoId,
             'uid' => $this->uid
         ];
     }

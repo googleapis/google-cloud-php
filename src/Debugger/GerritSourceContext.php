@@ -54,7 +54,7 @@ class GerritSourceContext implements SourceContext, \JsonSerializable
                 'gerritProject' => $this->gerritProject,
                 'revisionId' => $this->revisionId,
                 'aliasName' => $this->aliasName,
-                'aliasContext' => $this->aliasContext->jsonSerialize()
+                'aliasContext' => $this->aliasContext
             ]
         ];
     }

@@ -145,23 +145,19 @@ class Breakpoint implements \JsonSerializable
     {
         $data = [
             'id' => $this->id,
-            'action' => $this->action->jsonSerialize(),
-            'location' => $this->location->jsonSerialize(),
+            'action' => $this->action,
+            'location' => $this->location,
             'condition' => $this->condition,
             'expressions' => $this->expressions,
             'logMessageFormat' => $this->logMessageFormat,
-            'logLevel' => $this->logLevel->jsonSerialize(),
+            'logLevel' => $this->logLevel,
             'isFinalState' => $this->isFinalState,
             'createTime' => $this->createTime,
             'finalTime' => $this->finalTime,
             'userEmail' => $this->userEmail,
-            'stackFrames' => array_map(function ($sf) {
-                return $sf->jsonSerialize();
-            }, $this->stackFrames),
-            'evaluatedExpressions' => array_map(function ($v) {
-                return $v->jsonSerialize();
-            }, $this->evaluatedExpressions),
-            'variableTable' => $this->variableTable->jsonSerialize()
+            'stackFrames' => $this->stackFrames,
+            'evaluatedExpressions' => $this->evaluatedExpressions,
+            'variableTable' => $this->variableTable
         ];
         if ($this->status) {
             $data['status'] = $this->status;
