@@ -18,6 +18,7 @@
 namespace Google\Cloud\Debugger;
 
 /**
+ * Represents a message with parameters.
  */
 class FormatMessage
 {
@@ -30,4 +31,9 @@ class FormatMessage
      * @var string[]
      */
     public $parameters;
+
+    public function __construct(array $data = []) {
+        $this->format = $data['format'];
+        $this->parameters = $data['parameters'];
+    }
 }

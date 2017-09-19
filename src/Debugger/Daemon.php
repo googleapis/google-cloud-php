@@ -80,11 +80,24 @@ class Daemon
             : [];
         $count = count($breakpoints);
         echo "saving $count breakpoints...\n";
+        $validBreakpoints = [];
+        $invalidBreakpoints = [];
         foreach ($breakpoints as $breakpoint) {
             echo "{$breakpoint->id}: {$breakpoint->location->path}:{$breakpoint->location->line}\n";
+            // validate breakpoint condition and/or expressions
+            if ($breakpoint->validate()) {
+                array_push($validBreakpoints, $breakpoint);
+            } else {
+                $breakpoint->isFinalState = true;
+                array_push($invalidBreakpoints, $breakpoint);
+            }
         }
 
-        $this->storage->save($this->debuggee, $breakpoints);
+        $this->storage->save($this->debuggee, $validBreakpoints);
+
+        if (!empty($invalidBreakpoints)) {
+            $this->debuggee->updateBreakpointBatch($invalidBreakpoints);
+        }
     }
 
     private function defaultUniquifier()

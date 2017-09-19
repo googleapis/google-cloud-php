@@ -18,6 +18,10 @@
 namespace Google\Cloud\Debugger;
 
 /**
+ * Represents a contextual status message. The message can indicate an error or
+ * informational status, and refer to specific parts of the containing object.
+ * For example, the Breakpoint.status field can indicate an error referring to
+ * the BREAKPOINT_SOURCE_LOCATION with the message Location not found.
  */
 class StatusMessage
 {
@@ -35,4 +39,13 @@ class StatusMessage
      * @var FormatMessage
      */
     public $description;
+
+    public function __construct($data)
+    {
+        if ($data) {
+            $this->isError = $data['isError'];
+            $this->refersTo = $data['refersTo'];
+            $this->description = $data['description'];
+        }
+    }
 }

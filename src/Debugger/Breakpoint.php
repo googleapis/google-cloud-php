@@ -143,7 +143,7 @@ class Breakpoint implements \JsonSerializable
 
     public function jsonSerialize()
     {
-        return [
+        $data = [
             'id' => $this->id,
             'action' => $this->action->jsonSerialize(),
             'location' => $this->location->jsonSerialize(),
@@ -155,7 +155,6 @@ class Breakpoint implements \JsonSerializable
             'createTime' => $this->createTime,
             'finalTime' => $this->finalTime,
             'userEmail' => $this->userEmail,
-            // 'status' => $this->status->jsonSerialize(),
             'stackFrames' => array_map(function ($sf) {
                 return $sf->jsonSerialize();
             }, $this->stackFrames),
@@ -164,6 +163,10 @@ class Breakpoint implements \JsonSerializable
             }, $this->evaluatedExpressions),
             'variableTable' => $this->variableTable->jsonSerialize()
         ];
+        if ($this->status) {
+            $data['status'] = $this->status;
+        }
+        return $data;
     }
 
     public function addStackFrames($stackFrames)
@@ -208,5 +211,36 @@ class Breakpoint implements \JsonSerializable
     public function addValue($name, $value)
     {
         return $this->variableTable->register($name, $value);
+    }
+
+    private function setError($type, $message, $parameters)
+    {
+        $this->status = new StatusMessage([
+            'isError' => true,
+            'refersTo' => $type,
+            'description' => new FormatMessage([
+                'format' => $message,
+                'parameters' => $parameters
+            ])
+        ]);
+    }
+
+    public function validate()
+    {
+        if ($this->condition && !empty($this->condition)) {
+            // validate that the condition is ok for debugging
+            if (!stackdriver_debugger_valid_statement($this->condition)) {
+                $this->setError(Reference::BREAKPOINT_CONDITION, 'Invalid breakpoint condition: $0.', [$this->condition]);
+                return false;
+            }
+        }
+
+        foreach ($this->expressions as $expression) {
+            if (!stackdriver_debugger_valid_statement($expression)) {
+                $this->setError(Reference::BREAKPOINT_EXPRESSION, 'Invalid breakpoint expression: $0', [$expression]);
+                return false;
+            }
+        }
+        return true;
     }
 }
