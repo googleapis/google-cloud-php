@@ -50,6 +50,7 @@ class Daemon
             'uniquifier' => $uniquifier,
             'description' => $description,
             'sourceContexts' => [$sourceContext]
+            // FIXME: add extended source context - plain source context is deprecated
         ]);
         $this->debuggee->register();
 

@@ -89,6 +89,23 @@ class VariableTableTest extends \PHPUnit_Framework_TestCase
         $this->assertCount(2, $variableTable->variables());
     }
 
+    public function testRegistersArrayAsSameObjects()
+    {
+        $variableTable = new VariableTable();
+        $object = ['abc', 123];
+
+        $variable1 = $variableTable->register('int', $object);
+        $variable2 = $variableTable->register('int2', $object);
+
+        $data1 = $variable1;
+        $this->assertEquals(0, $data1->jsonSerialize()['varTableIndex']);
+
+        $data2 = $variable2;
+        $this->assertEquals(0, $data2->jsonSerialize()['varTableIndex']);
+
+        $this->assertCount(1, $variableTable->variables());
+    }
+
     /**
      * @dataProvider primitiveValues
      */

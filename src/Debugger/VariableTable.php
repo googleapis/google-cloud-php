@@ -21,11 +21,34 @@ class VariableTable implements \JsonSerializable
      *
      * @param string $name The name of the variable
      * @param mixed $value The value of the variable
-     * @param integer $depth [optional] Current recursion depth. Used to limit
-     *        the depth we inspect public object members. **Defaults to** 0.
      * @return Variable
      */
-    public function register($name, $value, $depth = 0)
+    public function register($name, $value)
+    {
+        return $this->doRegister($name, $value, 0);
+    }
+
+    /**
+     * Callback to implement JsonSerializable interface
+     *
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        return $this->variables;
+    }
+
+    /**
+     * Return the shared variables
+     *
+     * @return Variable[]
+     */
+    public function variables()
+    {
+        return $this->variables;
+    }
+
+    private function doRegister($name, $value, $depth, $index = null)
     {
         $name = (string)$name;
         $members = [];
@@ -48,7 +71,7 @@ class VariableTable implements \JsonSerializable
                     $members = [];
                     if ($depth < self::MAX_MEMBER_DEPTH) {
                         foreach (get_object_vars($value) as $key => $member) {
-                            array_push($members, $this->register($key, $member, $depth + 1));
+                            array_push($members, $this->doRegister($key, $member, $depth + 1));
                         }
                     }
 
@@ -71,7 +94,7 @@ class VariableTable implements \JsonSerializable
                 $members = [];
                 if ($depth < self::MAX_MEMBER_DEPTH) {
                     foreach ($value as $key => $member) {
-                        array_push($members, $this->register($key, $member, $depth + 1));
+                        array_push($members, $this->doRegister($key, $member, $depth + 1));
                     }
                 }
                 return new Variable([
@@ -93,25 +116,5 @@ class VariableTable implements \JsonSerializable
             'type' => $type,
             'value' => $variableValue
         ]);
-    }
-
-    /**
-     * Callback to implement JsonSerializable interface
-     *
-     * @return array
-     */
-    public function jsonSerialize()
-    {
-        return $this->variables;
-    }
-
-    /**
-     * Return the shared variables
-     *
-     * @return Variable[]
-     */
-    public function variables()
-    {
-        return $this->variables;
     }
 }
