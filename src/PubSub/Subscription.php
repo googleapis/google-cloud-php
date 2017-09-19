@@ -223,6 +223,52 @@ class Subscription
     }
 
     /**
+     * Update the subscription.
+     *
+     * Note that subscription name and topic are immutable properties and may
+     * not be modified.
+     *
+     * Example:
+     * ```
+     * $subscription->update([
+     *     'retainAckedMessages' => true
+     * ]);
+     * ```
+     *
+     * @param array $subscription {
+     *     The Subscription data.
+     *
+     *     For information regarding the push configuration settings, see
+     *     [PushConfig](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions#PushConfig).
+     *
+     *     @type string $pushConfig.pushEndpoint A URL locating the endpoint to which
+     *           messages should be pushed. For example, a Webhook endpoint
+     *           might use "https://example.com/push".
+     *     @type array $pushConfig.attributes Endpoint configuration attributes.
+     *     @type int $ackDeadlineSeconds The maximum time after a subscriber
+     *           receives a message before the subscriber should acknowledge the
+     *           message.
+     *     @type bool $retainAckedMessages Indicates whether to retain
+     *           acknowledged messages.
+     *     @type Duration $messageRetentionDuration How long to retain
+     *           unacknowledged messages in the subscription's backlog, from the
+     *           moment a message is published. If `$retainAckedMessages` is
+     *           true, then this also configures the retention of acknowledged
+     *           messages, and thus configures how far back in time a `Seek`
+     *           can be done. Cannot be more than 7 days or less than 10 minutes.
+     *           **Defaults to** 7 days.
+     * }
+     * @param array $options [optional] Configuration options.
+     * @return array The subscription info.
+     */
+    public function update(array $subscription, array $options = [])
+    {
+        return $this->info = $this->connection->updateSubscription([
+            'name' => $this->name
+        ] + $options + $subscription);
+    }
+
+    /**
      * Delete a subscription
      *
      * Example:

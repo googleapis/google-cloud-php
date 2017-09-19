@@ -76,6 +76,11 @@ interface ConnectionInterface
     /**
      * @param array $args
      */
+    public function updateSubscription(array $args);
+
+    /**
+     * @param array $args
+     */
     public function getSubscription(array $args);
 
     /**

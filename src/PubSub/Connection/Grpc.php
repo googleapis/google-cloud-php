@@ -183,6 +183,28 @@ class Grpc implements ConnectionInterface
     /**
      * @param array $args
      */
+    public function updateSubscription(array $args)
+    {
+        // Get a list of keys used before building subscription, which modifies $args
+        $mask = array_keys($args);
+
+        // Remove immutable properties.
+        $mask = array_values(array_diff($mask, ['name', 'topic']));
+
+        $fieldMask = $this->serializer->decodeMessage(new FieldMask(), ['paths' => $mask]);
+
+        $subscriptionObject = $this->buildSubscription($args);
+
+        return $this->send([$this->subscriberClient, 'updateSubscription'], [
+            $subscriptionObject,
+            $fieldMask,
+            $args
+        ]);
+    }
+
+    /**
+     * @param array $args
+     */
     public function getSubscription(array $args)
     {
         return $this->send([$this->subscriberClient, 'getSubscription'], [
