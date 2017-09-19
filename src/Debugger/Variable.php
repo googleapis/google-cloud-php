@@ -44,7 +44,7 @@ class Variable implements \JsonSerializable
     /**
      * @var Variable[]
      */
-    private $members = [];
+    private $members;
 
     /**
      * @var int
@@ -61,12 +61,14 @@ class Variable implements \JsonSerializable
         $this->name = $this->pluck('name', $data);
         $this->value = $this->pluck('value', $data, false);
         $this->type = $this->pluck('type', $data, false) ?: get_class($this->value);
-        $this->members = array_map(function ($member) {
-            if ($member instanceof static) {
-                return $member;
-            }
-            return new static($member);
-        }, $this->pluck('members', $data, false) ?: []);
+        if (array_key_exists('members', $data)) {
+            $this->members = array_map(function ($member) {
+                if ($member instanceof static) {
+                    return $member;
+                }
+                return new static($member);
+            }, $data['members']);
+        }
         $this->varTableIndex = $this->pluck('varTableIndex', $data, false);
     }
 
@@ -86,12 +88,22 @@ class Variable implements \JsonSerializable
      */
     public function jsonSerialize()
     {
-        return [
+        $data = [
             'name' => $this->name,
-            'value' => $this->value,
-            'type' => $this->type,
-            'members' => $this->members,
-            'varTableIndex' => $this->varTableIndex
+            'type' => $this->type
         ];
+        if ($this->value !== NULL) {
+            $data['value'] = $this->value;
+        }
+        if ($this->members !== NULL) {
+            $data['members'] = $this->members;
+        }
+        if ($this->varTableIndex !== NULL) {
+            $data['varTableIndex'] = $this->varTableIndex;
+        }
+        if ($this->status) {
+            $data['status'] = $this->status;
+        }
+        return $data;
     }
 }

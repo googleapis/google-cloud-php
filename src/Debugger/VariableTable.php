@@ -83,6 +83,7 @@ class VariableTable implements \JsonSerializable
                 break;
             case 'NULL':
                 $variableValue = 'NULL';
+                break;
             default:
                 $variableValue = (string)$value;
         }
@@ -100,6 +101,16 @@ class VariableTable implements \JsonSerializable
      * @return array
      */
     public function jsonSerialize()
+    {
+        return $this->variables;
+    }
+
+    /**
+     * Return the shared variables
+     *
+     * @return Variable[]
+     */
+    public function variables()
     {
         return $this->variables;
     }
