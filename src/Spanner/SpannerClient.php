@@ -133,7 +133,7 @@ class SpannerClient
             ], [
                 'typeUrl' => 'type.googleapis.com/google.spanner.admin.database.v1.CreateDatabaseMetadata',
                 'callable' => function ($database) {
-                    $databaseNameComponents = InstanceAdminClient::parseName($database['name']);
+                    $databaseNameComponents = DatabaseAdminClient::parseName($database['name']);
                     $instanceName = $databaseNameComponents['instance'];
                     $databaseName = $databaseNameComponents['database'];
 
