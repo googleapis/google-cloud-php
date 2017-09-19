@@ -115,7 +115,7 @@ class Breakpoint implements \JsonSerializable
     public function __construct($data)
     {
         $this->id = $this->pluck('id', $data);
-        $this->action = $this->pluck('action', $data);
+        $this->action = $this->pluck('action', $data, false) ?: Action::CAPTURE;
         $this->location = new SourceLocation($this->pluck('location', $data, false));
         $this->condition = $this->pluck('condition', $data, false) ?: '';
         $this->expressions = $this->pluck('expressions', $data, false) ?: [];
