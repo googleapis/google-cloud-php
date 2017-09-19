@@ -65,6 +65,11 @@ class StackFrame implements \JsonSerializable
         }, $bt);
     }
 
+    public function addLocal(Variable $variable)
+    {
+        array_push($this->locals, $variable);
+    }
+
     public function jsonSerialize()
     {
         return [

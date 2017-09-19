@@ -253,22 +253,23 @@ class Breakpoint implements \JsonSerializable
      */
     public function addStackFrame($stackFrameData)
     {
-        $sf = new StackFrame([]);
-        if (isset($stackFrameData['function'])) {
-            $sf->function = $stackFrameData['function'];
-        }
-        $sf->location = new SourceLocation([
-            'path' => $stackFrameData['filename'],
-            'line' => $stackFrameData['line']
+        $function = isset($stackFrameData['function'])
+            ? $stackFrameData['function']
+            : null;
+
+        $sf = new StackFrame([
+            'function' => $function,
+            'location' => new SourceLocation([
+                'path' => $stackFrameData['filename'],
+                'line' => $stackFrameData['line']
+            ])
         ]);
 
         if (isset($stackFrameData['locals'])) {
-            $sf->locals = [];
             foreach ($stackFrameData['locals'] as $local) {
                 $value = isset($local['value']) ? $local['value'] : null;
                 $variable = $this->variableTable->register($local['name'], $value);
-
-                array_push($sf->locals, $variable);
+                $sf->addLocal($variable);
             }
         }
         array_push($this->stackFrames, $sf);
