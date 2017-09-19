@@ -33,7 +33,7 @@ class Breakpoint implements \JsonSerializable
     private $id;
 
     /**
-     * @var Action
+     * @var string
      */
     private $action;
 
@@ -115,7 +115,7 @@ class Breakpoint implements \JsonSerializable
     public function __construct($data)
     {
         $this->id = $this->pluck('id', $data);
-        $this->action = new Action($this->pluck('action', $data, false));
+        $this->action = $this->pluck('action', $data);
         $this->location = new SourceLocation($this->pluck('location', $data, false));
         $this->condition = $this->pluck('condition', $data, false) ?: '';
         $this->expressions = $this->pluck('expressions', $data, false) ?: [];
@@ -144,6 +144,16 @@ class Breakpoint implements \JsonSerializable
     public function id()
     {
         return $this->id;
+    }
+
+    /**
+     * Return the type of breakpoint.
+     *
+     * @return string
+     */
+    public function action()
+    {
+        return $this->action;
     }
 
     /**

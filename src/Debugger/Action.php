@@ -18,21 +18,11 @@
 namespace Google\Cloud\Debugger;
 
 /**
+ * Actions that can be taken when a breakpoint hits. Agents should reject
+ * breakpoints with unsupported or unknown action values.
  */
-class Action implements \JsonSerializable
+class Action
 {
     const CAPTURE = 'CAPTURE';
     const LOG = 'LOG';
-
-    private $value;
-
-    public function __construct($value)
-    {
-        $this->value = $value ?: self::CAPTURE;
-    }
-
-    public function jsonSerialize()
-    {
-        return $this->value;
-    }
 }

@@ -56,7 +56,7 @@ class Agent
 
         foreach ($breakpoints as $breakpoint) {
             $this->breakpoints[$breakpoint->id()] = $breakpoint;
-            switch ($breakpoint->action->value) {
+            switch ($breakpoint->action()) {
                 case Action::CAPTURE:
                     $sourceLocation = $breakpoint->location();
                     stackdriver_debugger_add_snapshot(
