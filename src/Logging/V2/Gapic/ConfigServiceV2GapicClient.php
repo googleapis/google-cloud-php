@@ -176,8 +176,8 @@ class ConfigServiceV2GapicClient
         if (!self::$gapicVersionLoaded) {
             if (file_exists(__DIR__.'/../VERSION')) {
                 self::$gapicVersion = trim(file_get_contents(__DIR__.'/../VERSION'));
-            } elseif (class_exists('\Google\Cloud\ServiceBuilder')) {
-                self::$gapicVersion = \Google\Cloud\ServiceBuilder::VERSION;
+            } elseif (class_exists('\Google\Cloud\Version')) {
+                self::$gapicVersion = \Google\Cloud\Version::VERSION;
             }
             self::$gapicVersionLoaded = true;
         }
