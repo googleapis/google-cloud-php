@@ -125,7 +125,7 @@ class Breakpoint implements \JsonSerializable
         $this->createTime = $this->pluck('createTime', $data);
         $this->finalTime = $this->pluck('finalTime', $data, false);
         $this->userEmail = $this->pluck('userEmail', $data, false);
-        $this->status = new StatusMessage($this->pluck('status', $data, false));
+        $this->status = isset($data['status']) ? new StatusMessage($data['status']) : null;
         $this->stackFrames = array_map(function ($sf) {
             return new StackFrame($sf);
         }, $this->pluck('stackFrames', $data, false) ?: []);
