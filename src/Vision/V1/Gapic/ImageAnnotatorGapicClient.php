@@ -30,6 +30,7 @@
 
 namespace Google\Cloud\Vision\V1\Gapic;
 
+use Google\Cloud\Version;
 use Google\Cloud\Vision\V1\AnnotateImageRequest;
 use Google\Cloud\Vision\V1\BatchAnnotateImagesRequest;
 use Google\Cloud\Vision\V1\ImageAnnotatorGrpcClient;
@@ -98,8 +99,8 @@ class ImageAnnotatorGapicClient
         if (!self::$gapicVersionLoaded) {
             if (file_exists(__DIR__.'/../VERSION')) {
                 self::$gapicVersion = trim(file_get_contents(__DIR__.'/../VERSION'));
-            } elseif (class_exists('\Google\Cloud\Version')) {
-                self::$gapicVersion = \Google\Cloud\Version::VERSION;
+            } elseif (class_exists(Version::class)) {
+                self::$gapicVersion = Version::VERSION;
             }
             self::$gapicVersionLoaded = true;
         }

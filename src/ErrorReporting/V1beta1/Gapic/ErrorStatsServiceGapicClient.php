@@ -30,6 +30,7 @@
 
 namespace Google\Cloud\ErrorReporting\V1beta1\Gapic;
 
+use Google\Cloud\Version;
 use Google\Devtools\Clouderrorreporting\V1beta1\DeleteEventsRequest;
 use Google\Devtools\Clouderrorreporting\V1beta1\ErrorStatsServiceGrpcClient;
 use Google\Devtools\Clouderrorreporting\V1beta1\ListEventsRequest;
@@ -110,7 +111,7 @@ class ErrorStatsServiceGapicClient
     const CODEGEN_VERSION = '0.0.5';
 
     private static $projectNameTemplate;
-    private static $pathTemplateList;
+    private static $pathTemplateMap;
     private static $gapicVersion;
     private static $gapicVersionLoaded = false;
 
@@ -129,15 +130,15 @@ class ErrorStatsServiceGapicClient
         return self::$projectNameTemplate;
     }
 
-    private static function getPathTemplateList()
+    private static function getPathTemplateMap()
     {
-        if (self::$pathTemplateList == null) {
-            self::$pathTemplateList = [
-                self::getProjectNameTemplate(),
+        if (self::$pathTemplateMap == null) {
+            self::$pathTemplateMap = [
+                'project' => self::getProjectNameTemplate(),
             ];
         }
 
-        return self::$pathTemplateList;
+        return self::$pathTemplateMap;
     }
     private static function getPageStreamingDescriptors()
     {
@@ -173,8 +174,8 @@ class ErrorStatsServiceGapicClient
         if (!self::$gapicVersionLoaded) {
             if (file_exists(__DIR__.'/../VERSION')) {
                 self::$gapicVersion = trim(file_get_contents(__DIR__.'/../VERSION'));
-            } elseif (class_exists('\Google\Cloud\Version')) {
-                self::$gapicVersion = \Google\Cloud\Version::VERSION;
+            } elseif (class_exists(Version::class)) {
+                self::$gapicVersion = Version::VERSION;
             }
             self::$gapicVersionLoaded = true;
         }
@@ -201,16 +202,31 @@ class ErrorStatsServiceGapicClient
     /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
-     * - projects/{project}.
+     * Template: Pattern
+     * - project: projects/{project}.
+     *
+     * The optional $template argument can be supplied to specify a particular pattern, and must
+     * match one of the templates listed above. If no $template argument is provided, or if the
+     * $template argument does not match one of the templates listed, then parseName will check
+     * each of the supported templates, and return the first match.
      *
      * @param string $formattedName The formatted name string
+     * @param string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
+     *
+     * @throws ValidationException If $formattedName could not be matched.
      * @experimental
      */
-    public static function parseName($formattedName)
+    public static function parseName($formattedName, $template = null)
     {
-        foreach (self::getPathTemplateList() as $pathTemplate) {
+        $templateMap = self::getPathTemplateMap();
+
+        if (isset($templateMap[$template])) {
+            return $templateMap[$template]->match($formattedName);
+        }
+
+        foreach ($templateMap as $templateName => $pathTemplate) {
             try {
                 return $pathTemplate->match($formattedName);
             } catch (ValidationException $ex) {

@@ -30,6 +30,7 @@
 
 namespace Google\Cloud\VideoIntelligence\V1beta1\Gapic;
 
+use Google\Cloud\Version;
 use Google\Cloud\Videointelligence\V1beta1\AnnotateVideoProgress;
 use Google\Cloud\Videointelligence\V1beta1\AnnotateVideoRequest;
 use Google\Cloud\Videointelligence\V1beta1\AnnotateVideoResponse;
@@ -138,8 +139,8 @@ class VideoIntelligenceServiceGapicClient
         if (!self::$gapicVersionLoaded) {
             if (file_exists(__DIR__.'/../VERSION')) {
                 self::$gapicVersion = trim(file_get_contents(__DIR__.'/../VERSION'));
-            } elseif (class_exists('\Google\Cloud\Version')) {
-                self::$gapicVersion = \Google\Cloud\Version::VERSION;
+            } elseif (class_exists(Version::class)) {
+                self::$gapicVersion = Version::VERSION;
             }
             self::$gapicVersionLoaded = true;
         }

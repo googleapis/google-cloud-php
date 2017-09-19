@@ -30,6 +30,7 @@
 
 namespace Google\Cloud\Spanner\Admin\Database\V1\Gapic;
 
+use Google\Cloud\Version;
 use Google\GAX\AgentHeaderDescriptor;
 use Google\GAX\ApiCallable;
 use Google\GAX\CallSettings;
@@ -121,7 +122,7 @@ class DatabaseAdminGapicClient
 
     private static $instanceNameTemplate;
     private static $databaseNameTemplate;
-    private static $pathTemplateList;
+    private static $pathTemplateMap;
     private static $gapicVersion;
     private static $gapicVersionLoaded = false;
 
@@ -150,16 +151,16 @@ class DatabaseAdminGapicClient
         return self::$databaseNameTemplate;
     }
 
-    private static function getPathTemplateList()
+    private static function getPathTemplateMap()
     {
-        if (self::$pathTemplateList == null) {
-            self::$pathTemplateList = [
-                self::getInstanceNameTemplate(),
-                self::getDatabaseNameTemplate(),
+        if (self::$pathTemplateMap == null) {
+            self::$pathTemplateMap = [
+                'instance' => self::getInstanceNameTemplate(),
+                'database' => self::getDatabaseNameTemplate(),
             ];
         }
 
-        return self::$pathTemplateList;
+        return self::$pathTemplateMap;
     }
     private static function getPageStreamingDescriptors()
     {
@@ -199,8 +200,8 @@ class DatabaseAdminGapicClient
         if (!self::$gapicVersionLoaded) {
             if (file_exists(__DIR__.'/../VERSION')) {
                 self::$gapicVersion = trim(file_get_contents(__DIR__.'/../VERSION'));
-            } elseif (class_exists('\Google\Cloud\Version')) {
-                self::$gapicVersion = \Google\Cloud\Version::VERSION;
+            } elseif (class_exists(Version::class)) {
+                self::$gapicVersion = Version::VERSION;
             }
             self::$gapicVersionLoaded = true;
         }
@@ -249,17 +250,32 @@ class DatabaseAdminGapicClient
     /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
-     * - projects/{project}/instances/{instance}
-     * - projects/{project}/instances/{instance}/databases/{database}.
+     * Template: Pattern
+     * - instance: projects/{project}/instances/{instance}
+     * - database: projects/{project}/instances/{instance}/databases/{database}.
+     *
+     * The optional $template argument can be supplied to specify a particular pattern, and must
+     * match one of the templates listed above. If no $template argument is provided, or if the
+     * $template argument does not match one of the templates listed, then parseName will check
+     * each of the supported templates, and return the first match.
      *
      * @param string $formattedName The formatted name string
+     * @param string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
+     *
+     * @throws ValidationException If $formattedName could not be matched.
      * @experimental
      */
-    public static function parseName($formattedName)
+    public static function parseName($formattedName, $template = null)
     {
-        foreach (self::getPathTemplateList() as $pathTemplate) {
+        $templateMap = self::getPathTemplateMap();
+
+        if (isset($templateMap[$template])) {
+            return $templateMap[$template]->match($formattedName);
+        }
+
+        foreach ($templateMap as $templateName => $pathTemplate) {
             try {
                 return $pathTemplate->match($formattedName);
             } catch (ValidationException $ex) {
