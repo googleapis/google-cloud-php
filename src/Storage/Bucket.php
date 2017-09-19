@@ -21,8 +21,11 @@ use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Core\Iam\Iam;
+use Google\Cloud\Core\Iterator\ItemIterator;
+use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Core\Upload\ResumableUploader;
 use Google\Cloud\Core\Upload\StreamableUploader;
+use Google\Cloud\PubSub\Topic;
 use Google\Cloud\Storage\Connection\ConnectionInterface;
 use Google\Cloud\Storage\Connection\IamBucket;
 use GuzzleHttp\Psr7;
@@ -46,6 +49,10 @@ class Bucket
     use ArrayTrait;
     use EncryptionTrait;
 
+    const NOTIFICATION_TEMPLATE = '//pubsub.googleapis.com/%s';
+    const TOPIC_TEMPLATE = 'projects/%s/topics/%s';
+    const TOPIC_REGEX = '/projects\/[^\/]*\/topics\/(.*)/';
+
     /**
      * @var Acl ACL for the bucket.
      */
@@ -67,6 +74,11 @@ class Bucket
     private $identity;
 
     /**
+     * @var string The project ID.
+     */
+    private $projectId;
+
+    /**
      * @var array|null The bucket's metadata.
      */
     private $info;
@@ -81,8 +93,9 @@ class Bucket
      *        Storage.
      * @param string $name The bucket's name.
      * @param array $info [optional] The bucket's metadata.
+     * @param string $projectId The project ID.
      */
-    public function __construct(ConnectionInterface $connection, $name, array $info = [])
+    public function __construct(ConnectionInterface $connection, $name, array $info = [], $projectId)
     {
         $this->connection = $connection;
         $this->identity = [
@@ -90,6 +103,7 @@ class Bucket
             'userProject' => $this->pluck('requesterProjectId', $info, false)
         ];
         $this->info = $info;
+        $this->projectId = $projectId;
         $this->acl = new Acl($this->connection, 'bucketAccessControls', $this->identity);
         $this->defaultAcl = new Acl($this->connection, 'defaultObjectAccessControls', $this->identity);
     }
@@ -515,6 +529,167 @@ class Bucket
     }
 
     /**
+     * Create a Cloud PubSub notification.
+     *
+     * Example:
+     * ```
+     * // Assume the topic uses the same project ID as that configured on the
+     * // existing client.
+     * $notification = $bucket->createNotification('my-topic');
+     * ```
+     *
+     * ```
+     * // Use a fully qualified topic name.
+     * $notification = $bucket->createNotification('projects/my-project/topics/my-topic');
+     * ```
+     *
+     * ```
+     * // Provide a Topic object from the Cloud PubSub component.
+     * $topic = $pubSub->topic('my-topic');
+     * $notification = $bucket->createNotification($topic);
+     * ```
+     *
+     * ```
+     * // Supplying event types to trigger the notification.
+     * $notification = $bucket->createNotification('my-topic', [
+     *     'event_types' => [
+     *         'OBJECT_DELETE',
+     *         'OBJECT_METADATA_UPDATE'
+     *     ]
+     * ]);
+     * ```
+     *
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/storage/docs/pubsub-notifications Cloud PubSub Notifications
+     * @see https://cloud.google.com/storage/docs/json_api/v1/notifications/insert Notifications insert API documentation.
+     * @codingStandardsIgnoreEnd
+     *
+     * @param string|Topic $topic The topic to publish notifications to.
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type array $custom_attributes An optional list of additional
+     *           attributes to attach to each Cloud PubSub message published for
+     *           this notification subscription.
+     *     @type array $event_types If present, only send notifications about
+     *           listed event types. If empty, sent notifications for all event
+     *           types. Acceptablue values include `"OBJECT_FINALIZE"`,
+     *           `"OBJECT_METADATA_UPDATE"`, `"OBJECT_DELETE"`
+     *           , `"OBJECT_ARCHIVE"`.
+     *     @type string $object_name_prefix If present, only apply this
+     *           notification configuration to object names that begin with this
+     *           prefix.
+     *     @type string $payload_format The desired content of the Payload.
+     *           Acceptable values include `"JSON_API_V1"`, `"NONE"`.
+     *           **Defaults to** `"JSON_API_V1"`.
+     * }
+     * @return Notification
+     * @throws \InvalidArgumentException When providing a type other than string
+     *         or {@see Google\Cloud\PubSub\Topic} as $topic.
+     * @experimental The experimental flag means that while we believe this
+     *      method or class is ready for use, it may change before release in
+     *      backwards-incompatible ways. Please use with caution, and test
+     *      thoroughly when upgrading.
+     */
+    public function createNotification($topic, array $options = [])
+    {
+        $res = $this->connection->insertNotification($options + [
+            'bucket' => $this->identity['bucket'],
+            'topic' => $this->getFormattedTopic($topic),
+            'payload_format' => 'JSON_API_V1'
+        ]);
+
+        return new Notification(
+            $this->connection,
+            $res['id'],
+            $this->identity['bucket'],
+            $res + [
+                'requesterProjectId' => $this->identity['userProject']
+            ]
+        );
+    }
+
+    /**
+     * Lazily instantiates a notification. There are no network requests made at
+     * this point. To see the operations that can be performed on a notification
+     * please see {@see Google\Cloud\Storage\Notification}.
+     *
+     * Example:
+     * ```
+     * $notification = $bucket->notification('4582');
+     * ```
+     *
+     * @see https://cloud.google.com/storage/docs/json_api/v1/notifications#resource Notifications API documentation.
+     *
+     * @param string $id The ID of the notification to access.
+     * @return Notification
+     * @experimental The experimental flag means that while we believe this
+     *      method or class is ready for use, it may change before release in
+     *      backwards-incompatible ways. Please use with caution, and test
+     *      thoroughly when upgrading.
+     */
+    public function notification($id)
+    {
+        return new Notification(
+            $this->connection,
+            $id,
+            $this->identity['bucket'],
+            ['requesterProjectId' => $this->identity['userProject']]
+        );
+    }
+
+    /**
+     * Fetches all notifications associated with this bucket.
+     *
+     * Example:
+     * ```
+     * $notifications = $bucket->notifications();
+     *
+     * foreach ($notifications as $notification) {
+     *     echo $notification->id() . PHP_EOL;
+     * }
+     * ```
+     *
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/storage/docs/json_api/v1/notifications/list Notifications list API documentation.
+     * @codingStandardsIgnoreEnd
+     *
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type int $resultLimit Limit the number of results returned in total.
+     *           **Defaults to** `0` (return all results).
+     * }
+     * @return ItemIterator<Google\Cloud\Storage\Notification>
+     * @experimental The experimental flag means that while we believe this
+     *      method or class is ready for use, it may change before release in
+     *      backwards-incompatible ways. Please use with caution, and test
+     *      thoroughly when upgrading.
+     */
+    public function notifications(array $options = [])
+    {
+        $resultLimit = $this->pluck('resultLimit', $options, false);
+
+        return new ItemIterator(
+            new PageIterator(
+                function (array $notification) {
+                    return new Notification(
+                        $this->connection,
+                        $notification['id'],
+                        $this->identity['bucket'],
+                        $notification + [
+                            'requesterProjectId' => $this->identity['userProject']
+                        ]
+                    );
+                },
+                [$this->connection, 'listNotifications'],
+                $options + $this->identity,
+                ['resultLimit' => $resultLimit]
+            )
+        );
+    }
+
+    /**
      * Delete the bucket.
      *
      * Example:
@@ -853,7 +1028,7 @@ class Bucket
         return $this->iam;
     }
 
-    /*
+    /**
      * Determines if an object name is required.
      *
      * @param mixed $data
@@ -866,5 +1041,34 @@ class Bucket
         }
 
         return false;
+    }
+
+    /**
+     * Return a topic name in it's fully qualified format.
+     *
+     * @param Topic|string $topic
+     * @return string
+     * @throws \InvalidArgumentException
+     */
+    private function getFormattedTopic($topic)
+    {
+        if ($topic instanceof Topic) {
+            return sprintf('//pubsub.googleapis.com/%s', $topic->name());
+        }
+
+        if (!is_string($topic)) {
+            throw new \InvalidArgumentException(
+                '$topic may only be a string or instance of Google\Cloud\PubSub\Topic'
+            );
+        }
+
+        if (preg_match('/projects\/[^\/]*\/topics\/(.*)/', $topic) === 1) {
+            return sprintf(self::NOTIFICATION_TEMPLATE, $topic);
+        }
+
+        return sprintf(
+            self::NOTIFICATION_TEMPLATE,
+            sprintf(self::TOPIC_TEMPLATE, $this->projectId, $topic)
+        );
     }
 }

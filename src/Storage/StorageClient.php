@@ -127,7 +127,12 @@ class StorageClient
             $requesterPays = $this->projectId;
         }
 
-        return new Bucket($this->connection, $name, ['requesterProjectId' => $requesterPays]);
+        return new Bucket(
+            $this->connection,
+            $name,
+            ['requesterProjectId' => $requesterPays],
+            $this->projectId
+        );
     }
 
     /**
@@ -175,7 +180,12 @@ class StorageClient
         return new ItemIterator(
             new PageIterator(
                 function (array $bucket) {
-                    return new Bucket($this->connection, $bucket['name'], $bucket);
+                    return new Bucket(
+                        $this->connection,
+                        $bucket['name'],
+                        $bucket,
+                        $this->projectId
+                    );
                 },
                 [$this->connection, 'listBuckets'],
                 $options + ['project' => $this->projectId],
@@ -258,7 +268,12 @@ class StorageClient
     public function createBucket($name, array $options = [])
     {
         $response = $this->connection->insertBucket($options + ['name' => $name, 'project' => $this->projectId]);
-        return new Bucket($this->connection, $name, $response);
+        return new Bucket(
+            $this->connection,
+            $name,
+            $response,
+            $this->projectId
+        );
     }
 
     /**

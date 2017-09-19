@@ -101,6 +101,10 @@ class RestTest extends \PHPUnit_Framework_TestCase
             ['getBucketIamPolicy'],
             ['setBucketIamPolicy'],
             ['testBucketIamPermissions'],
+            ['getNotification'],
+            ['deleteNotification'],
+            ['insertNotification'],
+            ['listNotifications'],
         ];
     }
 
