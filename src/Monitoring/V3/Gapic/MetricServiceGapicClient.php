@@ -297,7 +297,11 @@ class MetricServiceGapicClient
     {
         $templateMap = self::getPathTemplateMap();
 
-        if (isset($templateMap[$template])) {
+        if ($template) {
+            if (!isset($templateMap[$template])) {
+                throw new ValidationException("Template name $template does not exist");
+            }
+
             return $templateMap[$template]->match($formattedName);
         }
 
@@ -494,9 +498,13 @@ class MetricServiceGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $mergedSettings = $this->defaultCallSettings['listMonitoredResourceDescriptors']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['listMonitoredResourceDescriptors'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->metricServiceStub,
             'ListMonitoredResourceDescriptors',
@@ -548,9 +556,13 @@ class MetricServiceGapicClient
         $request = new GetMonitoredResourceDescriptorRequest();
         $request->setName($name);
 
-        $mergedSettings = $this->defaultCallSettings['getMonitoredResourceDescriptor']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['getMonitoredResourceDescriptor'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->metricServiceStub,
             'GetMonitoredResourceDescriptor',
@@ -639,9 +651,13 @@ class MetricServiceGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $mergedSettings = $this->defaultCallSettings['listMetricDescriptors']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['listMetricDescriptors'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->metricServiceStub,
             'ListMetricDescriptors',
@@ -693,9 +709,13 @@ class MetricServiceGapicClient
         $request = new GetMetricDescriptorRequest();
         $request->setName($name);
 
-        $mergedSettings = $this->defaultCallSettings['getMetricDescriptor']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['getMetricDescriptor'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->metricServiceStub,
             'GetMetricDescriptor',
@@ -751,9 +771,13 @@ class MetricServiceGapicClient
         $request->setName($name);
         $request->setMetricDescriptor($metricDescriptor);
 
-        $mergedSettings = $this->defaultCallSettings['createMetricDescriptor']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['createMetricDescriptor'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->metricServiceStub,
             'CreateMetricDescriptor',
@@ -804,9 +828,13 @@ class MetricServiceGapicClient
         $request = new DeleteMetricDescriptorRequest();
         $request->setName($name);
 
-        $mergedSettings = $this->defaultCallSettings['deleteMetricDescriptor']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['deleteMetricDescriptor'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->metricServiceStub,
             'DeleteMetricDescriptor',
@@ -915,9 +943,13 @@ class MetricServiceGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $mergedSettings = $this->defaultCallSettings['listTimeSeries']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['listTimeSeries'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->metricServiceStub,
             'ListTimeSeries',
@@ -975,9 +1007,13 @@ class MetricServiceGapicClient
         $request->setName($name);
         $request->setTimeSeries($timeSeries);
 
-        $mergedSettings = $this->defaultCallSettings['createTimeSeries']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['createTimeSeries'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->metricServiceStub,
             'CreateTimeSeries',

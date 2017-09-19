@@ -247,7 +247,11 @@ class PublisherGapicClient
     {
         $templateMap = self::getPathTemplateMap();
 
-        if (isset($templateMap[$template])) {
+        if ($template) {
+            if (!isset($templateMap[$template])) {
+                throw new ValidationException("Template name $template does not exist");
+            }
+
             return $templateMap[$template]->match($formattedName);
         }
 
@@ -422,9 +426,13 @@ class PublisherGapicClient
             $request->setLabels($optionalArgs['labels']);
         }
 
-        $mergedSettings = $this->defaultCallSettings['createTopic']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['createTopic'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->publisherStub,
             'CreateTopic',
@@ -482,9 +490,13 @@ class PublisherGapicClient
         $request->setTopic($topic);
         $request->setUpdateMask($updateMask);
 
-        $mergedSettings = $this->defaultCallSettings['updateTopic']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['updateTopic'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->publisherStub,
             'UpdateTopic',
@@ -542,9 +554,13 @@ class PublisherGapicClient
         $request->setTopic($topic);
         $request->setMessages($messages);
 
-        $mergedSettings = $this->defaultCallSettings['publish']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['publish'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->publisherStub,
             'Publish',
@@ -594,9 +610,13 @@ class PublisherGapicClient
         $request = new GetTopicRequest();
         $request->setTopic($topic);
 
-        $mergedSettings = $this->defaultCallSettings['getTopic']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['getTopic'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->publisherStub,
             'GetTopic',
@@ -673,9 +693,13 @@ class PublisherGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $mergedSettings = $this->defaultCallSettings['listTopics']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['listTopics'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->publisherStub,
             'ListTopics',
@@ -752,9 +776,13 @@ class PublisherGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $mergedSettings = $this->defaultCallSettings['listTopicSubscriptions']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['listTopicSubscriptions'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->publisherStub,
             'ListTopicSubscriptions',
@@ -806,9 +834,13 @@ class PublisherGapicClient
         $request = new DeleteTopicRequest();
         $request->setTopic($topic);
 
-        $mergedSettings = $this->defaultCallSettings['deleteTopic']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['deleteTopic'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->publisherStub,
             'DeleteTopic',
@@ -866,9 +898,13 @@ class PublisherGapicClient
         $request->setResource($resource);
         $request->setPolicy($policy);
 
-        $mergedSettings = $this->defaultCallSettings['setIamPolicy']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['setIamPolicy'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->iamPolicyStub,
             'SetIamPolicy',
@@ -921,9 +957,13 @@ class PublisherGapicClient
         $request = new GetIamPolicyRequest();
         $request->setResource($resource);
 
-        $mergedSettings = $this->defaultCallSettings['getIamPolicy']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['getIamPolicy'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->iamPolicyStub,
             'GetIamPolicy',
@@ -982,9 +1022,13 @@ class PublisherGapicClient
         $request->setResource($resource);
         $request->setPermissions($permissions);
 
-        $mergedSettings = $this->defaultCallSettings['testIamPermissions']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['testIamPermissions'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->iamPolicyStub,
             'TestIamPermissions',

@@ -177,7 +177,11 @@ class ErrorGroupServiceGapicClient
     {
         $templateMap = self::getPathTemplateMap();
 
-        if (isset($templateMap[$template])) {
+        if ($template) {
+            if (!isset($templateMap[$template])) {
+                throw new ValidationException("Template name $template does not exist");
+            }
+
             return $templateMap[$template]->match($formattedName);
         }
 
@@ -329,9 +333,13 @@ class ErrorGroupServiceGapicClient
         $request = new GetGroupRequest();
         $request->setGroupName($groupName);
 
-        $mergedSettings = $this->defaultCallSettings['getGroup']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['getGroup'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->errorGroupServiceStub,
             'GetGroup',
@@ -381,9 +389,13 @@ class ErrorGroupServiceGapicClient
         $request = new UpdateGroupRequest();
         $request->setGroup($group);
 
-        $mergedSettings = $this->defaultCallSettings['updateGroup']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['updateGroup'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->errorGroupServiceStub,
             'UpdateGroup',

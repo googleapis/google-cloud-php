@@ -239,7 +239,11 @@ class MetricsServiceV2GapicClient
     {
         $templateMap = self::getPathTemplateMap();
 
-        if (isset($templateMap[$template])) {
+        if ($template) {
+            if (!isset($templateMap[$template])) {
+                throw new ValidationException("Template name $template does not exist");
+            }
+
             return $templateMap[$template]->match($formattedName);
         }
 
@@ -424,9 +428,13 @@ class MetricsServiceV2GapicClient
             $request->setPageSize($optionalArgs['pageSize']);
         }
 
-        $mergedSettings = $this->defaultCallSettings['listLogMetrics']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['listLogMetrics'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->metricsServiceV2Stub,
             'ListLogMetrics',
@@ -477,9 +485,13 @@ class MetricsServiceV2GapicClient
         $request = new GetLogMetricRequest();
         $request->setMetricName($metricName);
 
-        $mergedSettings = $this->defaultCallSettings['getLogMetric']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['getLogMetric'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->metricsServiceV2Stub,
             'GetLogMetric',
@@ -536,9 +548,13 @@ class MetricsServiceV2GapicClient
         $request->setParent($parent);
         $request->setMetric($metric);
 
-        $mergedSettings = $this->defaultCallSettings['createLogMetric']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['createLogMetric'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->metricsServiceV2Stub,
             'CreateLogMetric',
@@ -596,9 +612,13 @@ class MetricsServiceV2GapicClient
         $request->setMetricName($metricName);
         $request->setMetric($metric);
 
-        $mergedSettings = $this->defaultCallSettings['updateLogMetric']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['updateLogMetric'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->metricsServiceV2Stub,
             'UpdateLogMetric',
@@ -647,9 +667,13 @@ class MetricsServiceV2GapicClient
         $request = new DeleteLogMetricRequest();
         $request->setMetricName($metricName);
 
-        $mergedSettings = $this->defaultCallSettings['deleteLogMetric']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['deleteLogMetric'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->metricsServiceV2Stub,
             'DeleteLogMetric',

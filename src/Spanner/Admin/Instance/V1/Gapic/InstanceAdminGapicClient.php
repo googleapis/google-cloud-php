@@ -325,7 +325,11 @@ class InstanceAdminGapicClient
     {
         $templateMap = self::getPathTemplateMap();
 
-        if (isset($templateMap[$template])) {
+        if ($template) {
+            if (!isset($templateMap[$template])) {
+                throw new ValidationException("Template name $template does not exist");
+            }
+
             return $templateMap[$template]->match($formattedName);
         }
 
@@ -563,9 +567,13 @@ class InstanceAdminGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $mergedSettings = $this->defaultCallSettings['listInstanceConfigs']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['listInstanceConfigs'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->instanceAdminStub,
             'ListInstanceConfigs',
@@ -615,9 +623,13 @@ class InstanceAdminGapicClient
         $request = new GetInstanceConfigRequest();
         $request->setName($name);
 
-        $mergedSettings = $this->defaultCallSettings['getInstanceConfig']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['getInstanceConfig'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->instanceAdminStub,
             'GetInstanceConfig',
@@ -717,9 +729,13 @@ class InstanceAdminGapicClient
             $request->setFilter($optionalArgs['filter']);
         }
 
-        $mergedSettings = $this->defaultCallSettings['listInstances']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['listInstances'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->instanceAdminStub,
             'ListInstances',
@@ -769,9 +785,13 @@ class InstanceAdminGapicClient
         $request = new GetInstanceRequest();
         $request->setName($name);
 
-        $mergedSettings = $this->defaultCallSettings['getInstance']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['getInstance'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->instanceAdminStub,
             'GetInstance',
@@ -888,9 +908,13 @@ class InstanceAdminGapicClient
         $request->setInstanceId($instanceId);
         $request->setInstance($instance);
 
-        $mergedSettings = $this->defaultCallSettings['createInstance']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['createInstance'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->instanceAdminStub,
             'CreateInstance',
@@ -1010,9 +1034,13 @@ class InstanceAdminGapicClient
         $request->setInstance($instance);
         $request->setFieldMask($fieldMask);
 
-        $mergedSettings = $this->defaultCallSettings['updateInstance']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['updateInstance'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->instanceAdminStub,
             'UpdateInstance',
@@ -1070,9 +1098,13 @@ class InstanceAdminGapicClient
         $request = new DeleteInstanceRequest();
         $request->setName($name);
 
-        $mergedSettings = $this->defaultCallSettings['deleteInstance']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['deleteInstance'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->instanceAdminStub,
             'DeleteInstance',
@@ -1133,9 +1165,13 @@ class InstanceAdminGapicClient
         $request->setResource($resource);
         $request->setPolicy($policy);
 
-        $mergedSettings = $this->defaultCallSettings['setIamPolicy']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['setIamPolicy'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->instanceAdminStub,
             'SetIamPolicy',
@@ -1190,9 +1226,13 @@ class InstanceAdminGapicClient
         $request = new GetIamPolicyRequest();
         $request->setResource($resource);
 
-        $mergedSettings = $this->defaultCallSettings['getIamPolicy']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['getIamPolicy'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->instanceAdminStub,
             'GetIamPolicy',
@@ -1254,9 +1294,13 @@ class InstanceAdminGapicClient
         $request->setResource($resource);
         $request->setPermissions($permissions);
 
-        $mergedSettings = $this->defaultCallSettings['testIamPermissions']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['testIamPermissions'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->instanceAdminStub,
             'TestIamPermissions',

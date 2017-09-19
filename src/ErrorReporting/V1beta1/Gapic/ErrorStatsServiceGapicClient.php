@@ -222,7 +222,11 @@ class ErrorStatsServiceGapicClient
     {
         $templateMap = self::getPathTemplateMap();
 
-        if (isset($templateMap[$template])) {
+        if ($template) {
+            if (!isset($templateMap[$template])) {
+                throw new ValidationException("Template name $template does not exist");
+            }
+
             return $templateMap[$template]->match($formattedName);
         }
 
@@ -451,9 +455,13 @@ class ErrorStatsServiceGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $mergedSettings = $this->defaultCallSettings['listGroupStats']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['listGroupStats'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->errorStatsServiceStub,
             'ListGroupStats',
@@ -550,9 +558,13 @@ class ErrorStatsServiceGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $mergedSettings = $this->defaultCallSettings['listEvents']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['listEvents'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->errorStatsServiceStub,
             'ListEvents',
@@ -605,9 +617,13 @@ class ErrorStatsServiceGapicClient
         $request = new DeleteEventsRequest();
         $request->setProjectName($projectName);
 
-        $mergedSettings = $this->defaultCallSettings['deleteEvents']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['deleteEvents'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->errorStatsServiceStub,
             'DeleteEvents',

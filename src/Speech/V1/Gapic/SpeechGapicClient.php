@@ -341,9 +341,13 @@ class SpeechGapicClient
         $request->setConfig($config);
         $request->setAudio($audio);
 
-        $mergedSettings = $this->defaultCallSettings['recognize']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['recognize'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->speechStub,
             'Recognize',
@@ -432,9 +436,13 @@ class SpeechGapicClient
         $request->setConfig($config);
         $request->setAudio($audio);
 
-        $mergedSettings = $this->defaultCallSettings['longRunningRecognize']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['longRunningRecognize'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->speechStub,
             'LongRunningRecognize',
@@ -509,9 +517,13 @@ class SpeechGapicClient
             ];
         }
 
-        $mergedSettings = $this->defaultCallSettings['streamingRecognize']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['streamingRecognize'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->speechStub,
             'StreamingRecognize',

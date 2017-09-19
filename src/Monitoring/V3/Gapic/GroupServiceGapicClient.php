@@ -262,7 +262,11 @@ class GroupServiceGapicClient
     {
         $templateMap = self::getPathTemplateMap();
 
-        if (isset($templateMap[$template])) {
+        if ($template) {
+            if (!isset($templateMap[$template])) {
+                throw new ValidationException("Template name $template does not exist");
+            }
+
             return $templateMap[$template]->match($formattedName);
         }
 
@@ -470,9 +474,13 @@ class GroupServiceGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $mergedSettings = $this->defaultCallSettings['listGroups']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['listGroups'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->groupServiceStub,
             'ListGroups',
@@ -522,9 +530,13 @@ class GroupServiceGapicClient
         $request = new GetGroupRequest();
         $request->setName($name);
 
-        $mergedSettings = $this->defaultCallSettings['getGroup']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['getGroup'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->groupServiceStub,
             'GetGroup',
@@ -583,9 +595,13 @@ class GroupServiceGapicClient
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
 
-        $mergedSettings = $this->defaultCallSettings['createGroup']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['createGroup'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->groupServiceStub,
             'CreateGroup',
@@ -641,9 +657,13 @@ class GroupServiceGapicClient
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
 
-        $mergedSettings = $this->defaultCallSettings['updateGroup']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['updateGroup'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->groupServiceStub,
             'UpdateGroup',
@@ -691,9 +711,13 @@ class GroupServiceGapicClient
         $request = new DeleteGroupRequest();
         $request->setName($name);
 
-        $mergedSettings = $this->defaultCallSettings['deleteGroup']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['deleteGroup'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->groupServiceStub,
             'DeleteGroup',
@@ -789,9 +813,13 @@ class GroupServiceGapicClient
             $request->setInterval($optionalArgs['interval']);
         }
 
-        $mergedSettings = $this->defaultCallSettings['listGroupMembers']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['listGroupMembers'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->groupServiceStub,
             'ListGroupMembers',

@@ -398,9 +398,13 @@ class VideoIntelligenceServiceGapicClient
             $request->setLocationId($optionalArgs['locationId']);
         }
 
-        $mergedSettings = $this->defaultCallSettings['annotateVideo']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['annotateVideo'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->videoIntelligenceServiceStub,
             'AnnotateVideo',

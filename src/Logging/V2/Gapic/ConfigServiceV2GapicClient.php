@@ -240,7 +240,11 @@ class ConfigServiceV2GapicClient
     {
         $templateMap = self::getPathTemplateMap();
 
-        if (isset($templateMap[$template])) {
+        if ($template) {
+            if (!isset($templateMap[$template])) {
+                throw new ValidationException("Template name $template does not exist");
+            }
+
             return $templateMap[$template]->match($formattedName);
         }
 
@@ -428,9 +432,13 @@ class ConfigServiceV2GapicClient
             $request->setPageSize($optionalArgs['pageSize']);
         }
 
-        $mergedSettings = $this->defaultCallSettings['listSinks']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['listSinks'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->configServiceV2Stub,
             'ListSinks',
@@ -486,9 +494,13 @@ class ConfigServiceV2GapicClient
         $request = new GetSinkRequest();
         $request->setSinkName($sinkName);
 
-        $mergedSettings = $this->defaultCallSettings['getSink']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['getSink'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->configServiceV2Stub,
             'GetSink',
@@ -567,9 +579,13 @@ class ConfigServiceV2GapicClient
             $request->setUniqueWriterIdentity($optionalArgs['uniqueWriterIdentity']);
         }
 
-        $mergedSettings = $this->defaultCallSettings['createSink']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['createSink'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->configServiceV2Stub,
             'CreateSink',
@@ -650,9 +666,13 @@ class ConfigServiceV2GapicClient
             $request->setUniqueWriterIdentity($optionalArgs['uniqueWriterIdentity']);
         }
 
-        $mergedSettings = $this->defaultCallSettings['updateSink']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['updateSink'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->configServiceV2Stub,
             'UpdateSink',
@@ -708,9 +728,13 @@ class ConfigServiceV2GapicClient
         $request = new DeleteSinkRequest();
         $request->setSinkName($sinkName);
 
-        $mergedSettings = $this->defaultCallSettings['deleteSink']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['deleteSink'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->configServiceV2Stub,
             'DeleteSink',

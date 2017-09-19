@@ -214,7 +214,11 @@ class DlpServiceGapicClient
     {
         $templateMap = self::getPathTemplateMap();
 
-        if (isset($templateMap[$template])) {
+        if ($template) {
+            if (!isset($templateMap[$template])) {
+                throw new ValidationException("Template name $template does not exist");
+            }
+
             return $templateMap[$template]->match($formattedName);
         }
 
@@ -430,9 +434,13 @@ class DlpServiceGapicClient
         $request->setInspectConfig($inspectConfig);
         $request->setItems($items);
 
-        $mergedSettings = $this->defaultCallSettings['inspectContent']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['inspectContent'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->dlpServiceStub,
             'InspectContent',
@@ -511,9 +519,13 @@ class DlpServiceGapicClient
             $request->setImageRedactionConfigs($optionalArgs['imageRedactionConfigs']);
         }
 
-        $mergedSettings = $this->defaultCallSettings['redactContent']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['redactContent'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->dlpServiceStub,
             'RedactContent',
@@ -625,9 +637,13 @@ class DlpServiceGapicClient
             $request->setOperationConfig($optionalArgs['operationConfig']);
         }
 
-        $mergedSettings = $this->defaultCallSettings['createInspectOperation']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['createInspectOperation'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->dlpServiceStub,
             'CreateInspectOperation',
@@ -702,9 +718,13 @@ class DlpServiceGapicClient
             $request->setFilter($optionalArgs['filter']);
         }
 
-        $mergedSettings = $this->defaultCallSettings['listInspectFindings']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['listInspectFindings'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->dlpServiceStub,
             'ListInspectFindings',
@@ -758,9 +778,13 @@ class DlpServiceGapicClient
         $request->setCategory($category);
         $request->setLanguageCode($languageCode);
 
-        $mergedSettings = $this->defaultCallSettings['listInfoTypes']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['listInfoTypes'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->dlpServiceStub,
             'ListInfoTypes',
@@ -811,9 +835,13 @@ class DlpServiceGapicClient
         $request = new ListRootCategoriesRequest();
         $request->setLanguageCode($languageCode);
 
-        $mergedSettings = $this->defaultCallSettings['listRootCategories']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['listRootCategories'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->dlpServiceStub,
             'ListRootCategories',

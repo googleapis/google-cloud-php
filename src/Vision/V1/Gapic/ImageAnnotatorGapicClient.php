@@ -238,9 +238,13 @@ class ImageAnnotatorGapicClient
         $request = new BatchAnnotateImagesRequest();
         $request->setRequests($requests);
 
-        $mergedSettings = $this->defaultCallSettings['batchAnnotateImages']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['batchAnnotateImages'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->imageAnnotatorStub,
             'BatchAnnotateImages',

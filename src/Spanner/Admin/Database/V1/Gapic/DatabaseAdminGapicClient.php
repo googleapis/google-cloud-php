@@ -271,7 +271,11 @@ class DatabaseAdminGapicClient
     {
         $templateMap = self::getPathTemplateMap();
 
-        if (isset($templateMap[$template])) {
+        if ($template) {
+            if (!isset($templateMap[$template])) {
+                throw new ValidationException("Template name $template does not exist");
+            }
+
             return $templateMap[$template]->match($formattedName);
         }
 
@@ -507,9 +511,13 @@ class DatabaseAdminGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $mergedSettings = $this->defaultCallSettings['listDatabases']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['listDatabases'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->databaseAdminStub,
             'ListDatabases',
@@ -604,9 +612,13 @@ class DatabaseAdminGapicClient
             $request->setExtraStatements($optionalArgs['extraStatements']);
         }
 
-        $mergedSettings = $this->defaultCallSettings['createDatabase']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['createDatabase'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->databaseAdminStub,
             'CreateDatabase',
@@ -656,9 +668,13 @@ class DatabaseAdminGapicClient
         $request = new GetDatabaseRequest();
         $request->setName($name);
 
-        $mergedSettings = $this->defaultCallSettings['getDatabase']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['getDatabase'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->databaseAdminStub,
             'GetDatabase',
@@ -762,9 +778,13 @@ class DatabaseAdminGapicClient
             $request->setOperationId($optionalArgs['operationId']);
         }
 
-        $mergedSettings = $this->defaultCallSettings['updateDatabaseDdl']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['updateDatabaseDdl'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->databaseAdminStub,
             'UpdateDatabaseDdl',
@@ -811,9 +831,13 @@ class DatabaseAdminGapicClient
         $request = new DropDatabaseRequest();
         $request->setDatabase($database);
 
-        $mergedSettings = $this->defaultCallSettings['dropDatabase']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['dropDatabase'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->databaseAdminStub,
             'DropDatabase',
@@ -864,9 +888,13 @@ class DatabaseAdminGapicClient
         $request = new GetDatabaseDdlRequest();
         $request->setDatabase($database);
 
-        $mergedSettings = $this->defaultCallSettings['getDatabaseDdl']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['getDatabaseDdl'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->databaseAdminStub,
             'GetDatabaseDdl',
@@ -927,9 +955,13 @@ class DatabaseAdminGapicClient
         $request->setResource($resource);
         $request->setPolicy($policy);
 
-        $mergedSettings = $this->defaultCallSettings['setIamPolicy']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['setIamPolicy'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->databaseAdminStub,
             'SetIamPolicy',
@@ -984,9 +1016,13 @@ class DatabaseAdminGapicClient
         $request = new GetIamPolicyRequest();
         $request->setResource($resource);
 
-        $mergedSettings = $this->defaultCallSettings['getIamPolicy']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['getIamPolicy'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->databaseAdminStub,
             'GetIamPolicy',
@@ -1048,9 +1084,13 @@ class DatabaseAdminGapicClient
         $request->setResource($resource);
         $request->setPermissions($permissions);
 
-        $mergedSettings = $this->defaultCallSettings['testIamPermissions']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['testIamPermissions'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->databaseAdminStub,
             'TestIamPermissions',

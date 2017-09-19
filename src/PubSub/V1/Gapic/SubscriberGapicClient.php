@@ -329,7 +329,11 @@ class SubscriberGapicClient
     {
         $templateMap = self::getPathTemplateMap();
 
-        if (isset($templateMap[$template])) {
+        if ($template) {
+            if (!isset($templateMap[$template])) {
+                throw new ValidationException("Template name $template does not exist");
+            }
+
             return $templateMap[$template]->match($formattedName);
         }
 
@@ -579,9 +583,13 @@ class SubscriberGapicClient
             $request->setLabels($optionalArgs['labels']);
         }
 
-        $mergedSettings = $this->defaultCallSettings['createSubscription']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['createSubscription'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->subscriberStub,
             'CreateSubscription',
@@ -631,9 +639,13 @@ class SubscriberGapicClient
         $request = new GetSubscriptionRequest();
         $request->setSubscription($subscription);
 
-        $mergedSettings = $this->defaultCallSettings['getSubscription']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['getSubscription'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->subscriberStub,
             'GetSubscription',
@@ -691,9 +703,13 @@ class SubscriberGapicClient
         $request->setSubscription($subscription);
         $request->setUpdateMask($updateMask);
 
-        $mergedSettings = $this->defaultCallSettings['updateSubscription']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['updateSubscription'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->subscriberStub,
             'UpdateSubscription',
@@ -770,9 +786,13 @@ class SubscriberGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $mergedSettings = $this->defaultCallSettings['listSubscriptions']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['listSubscriptions'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->subscriberStub,
             'ListSubscriptions',
@@ -824,9 +844,13 @@ class SubscriberGapicClient
         $request = new DeleteSubscriptionRequest();
         $request->setSubscription($subscription);
 
-        $mergedSettings = $this->defaultCallSettings['deleteSubscription']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['deleteSubscription'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->subscriberStub,
             'DeleteSubscription',
@@ -890,9 +914,13 @@ class SubscriberGapicClient
         $request->setAckIds($ackIds);
         $request->setAckDeadlineSeconds($ackDeadlineSeconds);
 
-        $mergedSettings = $this->defaultCallSettings['modifyAckDeadline']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['modifyAckDeadline'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->subscriberStub,
             'ModifyAckDeadline',
@@ -950,9 +978,13 @@ class SubscriberGapicClient
         $request->setSubscription($subscription);
         $request->setAckIds($ackIds);
 
-        $mergedSettings = $this->defaultCallSettings['acknowledge']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['acknowledge'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->subscriberStub,
             'Acknowledge',
@@ -1019,9 +1051,13 @@ class SubscriberGapicClient
             $request->setReturnImmediately($optionalArgs['returnImmediately']);
         }
 
-        $mergedSettings = $this->defaultCallSettings['pull']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['pull'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->subscriberStub,
             'Pull',
@@ -1110,9 +1146,13 @@ class SubscriberGapicClient
             ];
         }
 
-        $mergedSettings = $this->defaultCallSettings['streamingPull']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['streamingPull'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->subscriberStub,
             'StreamingPull',
@@ -1173,9 +1213,13 @@ class SubscriberGapicClient
         $request->setSubscription($subscription);
         $request->setPushConfig($pushConfig);
 
-        $mergedSettings = $this->defaultCallSettings['modifyPushConfig']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['modifyPushConfig'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->subscriberStub,
             'ModifyPushConfig',
@@ -1252,9 +1296,13 @@ class SubscriberGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $mergedSettings = $this->defaultCallSettings['listSnapshots']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['listSnapshots'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->subscriberStub,
             'ListSnapshots',
@@ -1327,9 +1375,13 @@ class SubscriberGapicClient
         $request->setName($name);
         $request->setSubscription($subscription);
 
-        $mergedSettings = $this->defaultCallSettings['createSnapshot']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['createSnapshot'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->subscriberStub,
             'CreateSnapshot',
@@ -1387,9 +1439,13 @@ class SubscriberGapicClient
         $request->setSnapshot($snapshot);
         $request->setUpdateMask($updateMask);
 
-        $mergedSettings = $this->defaultCallSettings['updateSnapshot']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['updateSnapshot'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->subscriberStub,
             'UpdateSnapshot',
@@ -1440,9 +1496,13 @@ class SubscriberGapicClient
         $request = new DeleteSnapshotRequest();
         $request->setSnapshot($snapshot);
 
-        $mergedSettings = $this->defaultCallSettings['deleteSnapshot']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['deleteSnapshot'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->subscriberStub,
             'DeleteSnapshot',
@@ -1514,9 +1574,13 @@ class SubscriberGapicClient
             $request->setSnapshot($optionalArgs['snapshot']);
         }
 
-        $mergedSettings = $this->defaultCallSettings['seek']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['seek'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->subscriberStub,
             'Seek',
@@ -1574,9 +1638,13 @@ class SubscriberGapicClient
         $request->setResource($resource);
         $request->setPolicy($policy);
 
-        $mergedSettings = $this->defaultCallSettings['setIamPolicy']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['setIamPolicy'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->iamPolicyStub,
             'SetIamPolicy',
@@ -1629,9 +1697,13 @@ class SubscriberGapicClient
         $request = new GetIamPolicyRequest();
         $request->setResource($resource);
 
-        $mergedSettings = $this->defaultCallSettings['getIamPolicy']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['getIamPolicy'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->iamPolicyStub,
             'GetIamPolicy',
@@ -1690,9 +1762,13 @@ class SubscriberGapicClient
         $request->setResource($resource);
         $request->setPermissions($permissions);
 
-        $mergedSettings = $this->defaultCallSettings['testIamPermissions']->merge(
-            new CallSettings($optionalArgs)
-        );
+        $defaultCallSettings = $this->defaultCallSettings['testIamPermissions'];
+        if (isset($optionalArgs['retrySettings']) && is_array($optionalArgs['retrySettings'])) {
+            $optionalArgs['retrySettings'] = $defaultCallSettings->getRetrySettings()->with(
+                $optionalArgs['retrySettings']
+            );
+        }
+        $mergedSettings = $defaultCallSettings->merge(new CallSettings($optionalArgs));
         $callable = ApiCallable::createApiCall(
             $this->iamPolicyStub,
             'TestIamPermissions',
