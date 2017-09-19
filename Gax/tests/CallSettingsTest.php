@@ -72,6 +72,10 @@ class CallSettingsTest extends PHPUnit_Framework_TestCase
         $pageStreamingMethod = $defaultCallSettings['pageStreamingMethod'];
         $pageStreamingMethodRetry = $pageStreamingMethod->getRetrySettings();
         $this->assertEquals(['INTERNAL'], $pageStreamingMethodRetry->getRetryableCodes());
+        $timeoutOnlyMethod = $defaultCallSettings['timeoutOnlyMethod'];
+        $timeoutOnlyMethodRetry = $timeoutOnlyMethod->getRetrySettings();
+        $this->assertFalse($timeoutOnlyMethodRetry->retriesEnabled());
+        $this->assertEquals(40000, $timeoutOnlyMethodRetry->getNoRetriesRpcTimeoutMillis());
     }
 
     /**
@@ -92,9 +96,14 @@ class CallSettingsTest extends PHPUnit_Framework_TestCase
         $inputConfig = CallSettingsTest::buildInputConfig();
 
         // Turn off retries for simpleMethod
-        $retryingOverride = ['simpleMethod' => [
-            'retriesEnabled' => false,
-        ]];
+        $retryingOverride = [
+            'simpleMethod' => [
+                'retriesEnabled' => false,
+            ],
+            'timeoutOnlyMethod' => [
+                'noRetriesRpcTimeoutMillis' => 20000
+            ]
+        ];
         $defaultCallSettings =
                 CallSettings::load(
                     CallSettingsTest::SERVICE_NAME,
@@ -107,6 +116,10 @@ class CallSettingsTest extends PHPUnit_Framework_TestCase
         $pageStreamingMethod = $defaultCallSettings['pageStreamingMethod'];
         $pageStreamingMethodRetry = $pageStreamingMethod->getRetrySettings();
         $this->assertEquals(['INTERNAL'], $pageStreamingMethodRetry->getRetryableCodes());
+        $timeoutOnlyMethod = $defaultCallSettings['timeoutOnlyMethod'];
+        $timeoutOnlyMethodRetry = $timeoutOnlyMethod->getRetrySettings();
+        $this->assertFalse($timeoutOnlyMethodRetry->retriesEnabled());
+        $this->assertEquals(20000, $timeoutOnlyMethodRetry->getNoRetriesRpcTimeoutMillis());
     }
 
     public function testMergeEmpty()

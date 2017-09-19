@@ -252,7 +252,7 @@ class ApiCallable
         $retrySettings = $settings->getRetrySettings();
         $isGrpcStreaming = array_key_exists('grpcStreamingDescriptor', $options);
         if ($isGrpcStreaming) {
-            if (!is_null($retrySettings) && !is_null($retrySettings->getRetryableCodes())) {
+            if (!is_null($retrySettings) && $retrySettings->retriesEnabled()) {
                 throw new ValidationException(
                     'grpcStreamingDescriptor not compatible with retry settings'
                 );
