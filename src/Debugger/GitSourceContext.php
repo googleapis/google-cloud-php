@@ -18,19 +18,38 @@
 namespace Google\Cloud\Debugger;
 
 /**
+ * A GitSourceContext denotes a particular revision in a third party Git
+ * repository (e.g. GitHub).
  */
 class GitSourceContext implements SourceContext, \JsonSerializable
 {
     /**
      * @var string
      */
-    public $url;
+    private $url;
 
     /**
      * @var string
      */
-    public $revisionId;
+    private $revisionId;
 
+    /**
+     * Instantiate a new GitSourceContext.
+     *
+     * @param string $url Git repository URL.
+     * @param string $revisionId Git commit hash. required.
+     */
+    public function __construct($url, $revisionId)
+    {
+        $this->url = $url;
+        $this->revisionId = $revisionId;
+    }
+
+    /**
+     * Callback to implement JsonSerializable interface
+     *
+     * @return array
+     */
     public function jsonSerialize()
     {
         return [

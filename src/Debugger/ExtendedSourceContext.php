@@ -18,16 +18,45 @@
 namespace Google\Cloud\Debugger;
 
 /**
+ * An ExtendedSourceContext is a SourceContext combined with additional details
+ * describing the context.
  */
 class ExtendedSourceContext implements SourceContext
 {
     /**
      * @var SourceContext
      */
-    public $context;
+    private $context;
 
     /**
      * @var array
      */
-    public $labels;
+    private $labels;
+
+    /**
+     * Instantiate a new ExtendedSourceContext.
+     *
+     * @param SourceContext $context Any source context.
+     * @param array $labels Labels with user defined metadata. An object
+     *        containing a list of "key": value pairs. Example:
+     *        { "name": "wrench", "mass": "1.3kg", "count": "3" }.
+     */
+    public function __construct($context, $labels)
+    {
+        $this->context = $context;
+        $this->labels = $labels;
+    }
+
+    /**
+     * Callback to implement JsonSerializable interface
+     *
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        return [
+            'context' => $this->context,
+            'labels' => $this->labels
+        ];
+    }
 }

@@ -18,34 +18,65 @@
 namespace Google\Cloud\Debugger;
 
 /**
+ * A SourceContext referring to a Gerrit project.
  */
 class GerritSourceContext implements SourceContext, \JsonSerializable
 {
     /**
      * @var string
      */
-    public $hostUri;
+    private $hostUri;
 
     /**
      * @var string
      */
-    public $gerritProject;
+    private $gerritProject;
 
     /**
      * @var string
      */
-    public $revisionId;
+    private $revisionId;
 
     /**
      * @var string
      */
-    public $aliasName;
+    private $aliasName;
 
     /**
      * @var AliasContext
      */
-    public $aliasContext;
+    private $aliasContext;
 
+    /**
+     * Instantiate a new GerritSourceContext.
+     *
+     * @param string $hostUri The URI of a running Gerrit instance.
+     * @param string $gerritProject The full project name within the host.
+     *        Projects may be nested, so "project/subproject" is a valid project
+     *        name. The "repo name" is hostURI/project.
+     * @param string $revisionId A revision (commit) ID.
+     * @param string $aliasName The name of an alias (branch, tag, etc.).
+     * @param AliasContext $aliasContext An alias, which may be a branch or tag.
+     */
+    public function __construct(
+        $hostUri,
+        $gerritProject,
+        $revisionId,
+        $aliasName,
+        AliasContext $aliasContext
+    ) {
+        $this->hostUri = $hostUri;
+        $this->gerritProject = $gerritProject;
+        $this->revisionId = $revisionId;
+        $this->aliasName = $aliasName;
+        $this->aliasContext = $aliasContext;
+    }
+
+    /**
+     * Callback to implement JsonSerializable interface
+     *
+     * @return array
+     */
     public function jsonSerialize()
     {
         return [

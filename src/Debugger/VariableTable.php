@@ -2,6 +2,11 @@
 
 namespace Google\Cloud\Debugger;
 
+/**
+ * This class represents a collection of Variables that are referenced by index
+ * within a Breakpoint. It's main use to reduce duplication of identical objects
+ * by checking a unique identifier for objects.
+ */
 class VariableTable implements \JsonSerializable
 {
     const MAX_MEMBER_DEPTH = 5;
@@ -10,6 +15,16 @@ class VariableTable implements \JsonSerializable
     private $variables = [];
     private $sharedVariableIndex = [];
 
+    /**
+     * Register a variable in the VariableTable and return a Variable reference.
+     * The reference should be stored in the correct Breakpoint location.
+     *
+     * @param string $name The name of the variable
+     * @param mixed $value The value of the variable
+     * @param integer $depth [optional] Current recursion depth. Used to limit
+     *        the depth we inspect public object members. **Defaults to** 0.
+     * @return Variable
+     */
     public function register($name, $value, $depth = 0)
     {
         $name = (string)$name;
@@ -66,6 +81,11 @@ class VariableTable implements \JsonSerializable
         return $variable;
     }
 
+    /**
+     * Callback to implement JsonSerializable interface
+     *
+     * @return array
+     */
     public function jsonSerialize()
     {
         return $this->variables;

@@ -18,20 +18,38 @@
 namespace Google\Cloud\Debugger;
 
 /**
+ * A CloudWorkspaceSourceContext denotes a workspace at a particular snapshot.
  */
 class CloudWorkspaceSourceContext implements \JsonSerializable
 {
     /**
      * @var CloudWorkspaceId
      */
-    public $workspaceId;
+    private $workspaceId;
 
     /**
      * @var string
      */
-    public $snapshotId;
+    private $snapshotId;
 
+    /**
+     * Instantiate a new CloudWorkspaceSourceContext.
+     *
+     * @param CloudWorkspaceId $workspaceId The ID of the workspace.
+     * @param string $snapshotId The ID of the snapshot. An empty snapshotId
+     *        refers to the most recent snapshot.
+     */
+    public function __construct($workspaceId, $snapshotId)
+    {
+        $this->workspaceId = $workspaceId;
+        $this->snapshotId = $snapshotId;
+    }
 
+    /**
+     * Callback to implement JsonSerializable interface
+     *
+     * @return array
+     */
     public function jsonSerialize()
     {
         return [

@@ -20,6 +20,7 @@ namespace Google\Cloud\Debugger;
 use Google\Cloud\Core\ArrayTrait;
 
 /**
+ * Represents a variable or an argument possibly of a compound object type.
  */
 class Variable implements \JsonSerializable
 {
@@ -28,32 +29,32 @@ class Variable implements \JsonSerializable
     /**
      * @var string
      */
-    public $name;
+    private $name;
 
     /**
      * @var string
      */
-    public $value;
+    private $value;
 
     /**
      * @var string
      */
-    public $type;
+    private $type;
 
     /**
      * @var Variable[]
      */
-    public $members = [];
+    private $members = [];
 
     /**
      * @var int
      */
-    public $varTableIndex;
+    private $varTableIndex;
 
     /**
      * @var StatusMessage
      */
-    public $status;
+    private $status;
 
     public function __construct($data)
     {
@@ -75,6 +76,11 @@ class Variable implements \JsonSerializable
         ]);
     }
 
+    /**
+     * Callback to implement JsonSerializable interface
+     *
+     * @return array
+     */
     public function jsonSerialize()
     {
         return [

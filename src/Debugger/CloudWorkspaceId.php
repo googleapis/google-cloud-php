@@ -18,19 +18,41 @@
 namespace Google\Cloud\Debugger;
 
 /**
+ * A CloudWorkspaceId is a unique identifier for a cloud workspace. A cloud
+ * workspace is a place associated with a repo where modified files can be
+ * stored before they are committed.
  */
 class CloudWorkspaceId implements \JsonSerializable
 {
     /**
      * @var RepoId
      */
-    public $repoId;
+    private $repoId;
 
     /**
      * @var string
      */
-    public $name;
+    private $name;
 
+    /**
+     * Instantiate a new CloudWorkspaceId.
+     *
+     * @param RepoId $repoId The ID of the repo.
+     * @param string $name The unique name of the workspace within the repo.
+     *        This is the name chosen by the client in the Source API's
+     *        CreateWorkspace method.
+     */
+    public function __construct($repoId, $name)
+    {
+        $this->repoId = $repoId;
+        $this->name = $name;
+    }
+
+    /**
+     * Callback to implement JsonSerializable interface
+     *
+     * @return array
+     */
     public function jsonSerialize()
     {
         return [

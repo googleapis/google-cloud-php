@@ -24,7 +24,7 @@ class Action implements \JsonSerializable
     const CAPTURE = 'CAPTURE';
     const LOG = 'LOG';
 
-    public $value;
+    private $value;
 
     public function __construct($value)
     {

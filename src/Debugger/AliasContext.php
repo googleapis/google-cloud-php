@@ -18,11 +18,12 @@
 namespace Google\Cloud\Debugger;
 
 /**
+ * An alias to a repo revision.
  */
 class AliasContext implements \JsonSerializable
 {
     /**
-     * @var Kind
+     * @var string
      */
     public $kind;
 
@@ -31,6 +32,23 @@ class AliasContext implements \JsonSerializable
      */
     public $name;
 
+    /**
+     * Instantiate a new AliasContext.
+     *
+     * @param string $kind The alias kind.
+     * @param string $name The alias name.
+     */
+    public function __construct($kind, $name)
+    {
+        $this->kind = $kind;
+        $this->name = $name;
+    }
+
+    /**
+     * Callback to implement JsonSerializable interface
+     *
+     * @return array
+     */
     public function jsonSerialize()
     {
         return [

@@ -55,16 +55,16 @@ class Agent
             : debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 1)[0]['file'];
 
         foreach ($breakpoints as $breakpoint) {
-            $this->breakpoints[$breakpoint->id] = $breakpoint;
+            $this->breakpoints[$breakpoint->id()] = $breakpoint;
             switch ($breakpoint->action->value) {
                 case Action::CAPTURE:
-                    $sourceLocation = $breakpoint->location;
+                    $sourceLocation = $breakpoint->location();
                     stackdriver_debugger_add_snapshot(
-                        $sourceLocation->path,
-                        $sourceLocation->line,
-                        $breakpoint->id,
-                        $breakpoint->condition,
-                        $breakpoint->expressions,
+                        $sourceLocation->path(),
+                        $sourceLocation->line(),
+                        $breakpoint->id(),
+                        $breakpoint->condition(),
+                        $breakpoint->expressions(),
                         $sourceFile
                     );
 
@@ -84,22 +84,12 @@ class Agent
         foreach ($list as $snapshot) {
             if (array_key_exists($snapshot['id'], $this->breakpoints)) {
                 $breakpoint = $this->breakpoints[$snapshot['id']];
-                $this->fillBreakpoint($breakpoint, $snapshot);
+                $breakpoint->finalize();
+                $breakpoint->addEvaluatedExpressions($snapshot['evaluatedExpressions']);
+                $breakpoint->addStackFrames($snapshot['stackframes']);
                 $this->batchRunner->submitItem($this->identifier, $breakpoint);
             }
         }
-    }
-
-    private function fillBreakpoint($breakpoint, $snapshot)
-    {
-        list($usec, $sec) = explode(' ', microtime());
-        $micro = sprintf("%06d", $usec * 1000000);
-        $when = new \DateTime(date('Y-m-d H:i:s.' . $micro));
-        $when->setTimezone(new \DateTimeZone('UTC'));
-        $breakpoint->finalTime = $when->format('Y-m-d\TH:i:s.u\Z');
-        $breakpoint->isFinalState = true;
-        $breakpoint->addEvaluatedExpressions($snapshot['evaluatedExpressions']);
-        $breakpoint->addStackFrames($snapshot['stackframes']);
     }
 
     protected function getCallback()

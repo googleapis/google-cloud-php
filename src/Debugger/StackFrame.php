@@ -20,6 +20,7 @@ namespace Google\Cloud\Debugger;
 use Google\Cloud\Core\ArrayTrait;
 
 /**
+ * Represents a stack frame context.
  */
 class StackFrame implements \JsonSerializable
 {
@@ -28,22 +29,22 @@ class StackFrame implements \JsonSerializable
     /**
      * @var string
      */
-    public $function;
+    private $function;
 
     /**
      * @var SourceLocation
      */
-    public $location;
+    private $location;
 
     /**
      * @var Variable[]
      */
-    public $arguments = [];
+    private $arguments = [];
 
     /**
      * @var Variable[]
      */
-    public $locals = [];
+    private $locals = [];
 
     public function __construct($data)
     {

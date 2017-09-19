@@ -23,22 +23,22 @@ namespace Google\Cloud\Debugger;
  * For example, the Breakpoint.status field can indicate an error referring to
  * the BREAKPOINT_SOURCE_LOCATION with the message Location not found.
  */
-class StatusMessage
+class StatusMessage implements \JsonSerializable
 {
     /**
      * @var bool
      */
-    public $isError;
+    private $isError;
 
     /**
      * @var Reference
      */
-    public $refersTo;
+    private $refersTo;
 
     /**
      * @var FormatMessage
      */
-    public $description;
+    private $description;
 
     public function __construct($data)
     {
@@ -47,5 +47,19 @@ class StatusMessage
             $this->refersTo = $data['refersTo'];
             $this->description = $data['description'];
         }
+    }
+
+    /**
+     * Callback to implement JsonSerializable interface
+     *
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        return [
+            'isError' => $this->isError,
+            'refersTo' => $this->refersTo,
+            'description' => $this->description
+        ];
     }
 }

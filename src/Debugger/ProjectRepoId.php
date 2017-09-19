@@ -18,19 +18,39 @@
 namespace Google\Cloud\Debugger;
 
 /**
+ * Selects a repo using a Google Cloud Platform project ID
+ * (e.g. winged-cargo-31) and a repo name within that project.
  */
 class ProjectRepoId implements \JsonSerializable
 {
     /**
      * @var string
      */
-    public $projectId;
+    private $projectId;
 
     /**
      * @var string
      */
-    public $repoName;
+    private $repoName;
 
+    /**
+     * Instantiate a new ProjectRepoId
+     *
+     * @param string $projectId The ID of the project.
+     * @param string $repoName The name of the repo. Leave empty for the default
+     *        repo.
+     */
+    public function __construct($projectId, $repoName)
+    {
+        $this->projectId = $projectId;
+        $this->repoName = $repoName;
+    }
+
+    /**
+     * Callback to implement JsonSerializable interface
+     *
+     * @return array
+     */
     public function jsonSerialize()
     {
         return [

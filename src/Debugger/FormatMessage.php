@@ -25,15 +25,33 @@ class FormatMessage
     /**
      * @var string
      */
-    public $format;
+    private $format;
 
     /**
      * @var string[]
      */
-    public $parameters;
+    private $parameters;
 
+    /**
+     * Instantiate a new FormatMessage
+     *
+     * @param array $data
+     */
     public function __construct(array $data = []) {
         $this->format = $data['format'];
         $this->parameters = $data['parameters'];
+    }
+
+    /**
+     * Callback to implement JsonSerializable interface
+     *
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        return [
+            'format' => $this->format,
+            'parameters' => $this->parameters
+        ];
     }
 }

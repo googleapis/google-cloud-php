@@ -18,19 +18,38 @@
 namespace Google\Cloud\Debugger;
 
 /**
+ * A unique identifier for a cloud repo.
  */
 class RepoId implements \JsonSerializable
 {
     /**
      * @var ProjectRepoId
      */
-    public $projectRepoId;
+    private $projectRepoId;
 
     /**
      * @var string
      */
-    public $uid;
+    private $uid;
 
+    /**
+     * Instantiate a new RepoId
+     *
+     * @param ProjectRepoId $projectRepoId A combination of a project ID and a
+     *        repo name.
+     * @param string $uid A server-assigned, globally unique identifier.
+     */
+    public function __construct(ProjectRepoId $projectRepoId, $uid)
+    {
+        $this->projectRepoId = $projectRepoId;
+        $this->uid = $uid;
+    }
+
+    /**
+     * Callback to implement JsonSerializable interface
+     *
+     * @return array
+     */
     public function jsonSerialize()
     {
         return [

@@ -30,83 +30,88 @@ class Breakpoint implements \JsonSerializable
     /**
      * @var string
      */
-    public $id;
+    private $id;
 
     /**
      * @var Action
      */
-    public $action;
+    private $action;
 
     /**
      * @var SourceLocation
      */
-    public $location;
+    private $location;
 
     /**
      * @var string
      */
-    public $condition;
+    private $condition;
 
     /**
      * @var string[]
      */
-    public $expressions;
+    private $expressions;
 
     /**
      * @var string
      */
-    public $logMessageFormat;
+    private $logMessageFormat;
 
     /**
      * @var LogLevel
      */
-    public $logLevel;
+    private $logLevel;
 
     /**
      * @var bool
      */
-    public $isFinalState;
+    private $isFinalState;
 
     /**
      * @var string
      */
-    public $createTime;
+    private $createTime;
 
     /**
      * @var string
      */
-    public $finalTime;
+    private $finalTime;
 
     /**
      * @var string
      */
-    public $userEmail;
+    private $userEmail;
 
     /**
      * @var StatusMessage
      */
-    public $status;
+    private $status;
 
     /**
      * @var StackFrame[]
      */
-    public $stackFrames;
+    private $stackFrames;
 
     /**
      * @var Variable[]
      */
-    public $evaluatedExpressions;
+    private $evaluatedExpressions;
 
     /**
      * @var Variable[]
      */
-    public $variableTable;
+    private $variableTable;
 
     /**
      * @var array
      */
-    public $labels;
+    private $labels;
 
+    /**
+     * Instantiate a Breakpoint from its JSON representation
+     *
+     * @param array $data
+     */
     public function __construct($data)
     {
         $this->id = $this->pluck('id', $data);
@@ -131,16 +136,51 @@ class Breakpoint implements \JsonSerializable
         $this->variableTable = new VariableTable();
     }
 
+    /**
+     * Return the breakpoint id.
+     *
+     * @return string
+     */
     public function id()
     {
         return $this->id;
     }
 
+    /**
+     * Return the source location for this breakpoint.
+     *
+     * @return SourceLocation
+     */
     public function location()
     {
         return $this->location;
     }
 
+    /**
+     * Return the condition for this breakpoint.
+     *
+     * @return string
+     */
+    public function condition()
+    {
+        return $this->condition;
+    }
+
+    /**
+     * Return the expressions to evaluate for this breakpoint.
+     *
+     * @return string[]
+     */
+    public function expressions()
+    {
+        return $this->expressions;
+    }
+
+    /**
+     * Callback to implement JsonSerializable interface
+     *
+     * @return array
+     */
     public function jsonSerialize()
     {
         $data = [
@@ -165,6 +205,24 @@ class Breakpoint implements \JsonSerializable
         return $data;
     }
 
+    /**
+     * Mark this breakpoint as final state and record the current timestamp.
+     */
+    public function finalize()
+    {
+        list($usec, $sec) = explode(' ', microtime());
+        $micro = sprintf("%06d", $usec * 1000000);
+        $when = new \DateTime(date('Y-m-d H:i:s.' . $micro));
+        $when->setTimezone(new \DateTimeZone('UTC'));
+        $this->finalTime = $when->format('Y-m-d\TH:i:s.u\Z');
+        $this->isFinalState = true;
+    }
+
+    /**
+     * Add collected data to this breakpoint.
+     *
+     * @param array $stackFrames
+     */
     public function addStackFrames($stackFrames)
     {
         foreach ($stackFrames as $stackFrame) {
@@ -172,6 +230,17 @@ class Breakpoint implements \JsonSerializable
         }
     }
 
+    /**
+     * Add single stackframe of data to this breakpoint.
+     *
+     * @param array $stackFrameData {
+     *      Stackframe information.
+     *
+     *      @type string $function The name of the function executed.
+     *      @type string $filename The name of the file executed.
+     *      @type int $line The line number of the file executed.
+     *      @type array $locals Captured local variables.
+     */
     public function addStackFrame($stackFrameData)
     {
         $sf = new StackFrame([]);
@@ -187,7 +256,7 @@ class Breakpoint implements \JsonSerializable
             $sf->locals = [];
             foreach ($stackFrameData['locals'] as $local) {
                 $value = isset($local['value']) ? $local['value'] : null;
-                $variable = $this->addValue($local['name'], $value);
+                $variable = $this->variableTable->register($local['name'], $value);
 
                 array_push($sf->locals, $variable);
             }
@@ -195,32 +264,27 @@ class Breakpoint implements \JsonSerializable
         array_push($this->stackFrames, $sf);
     }
 
+    /**
+     * Add evaluated expression results to this breakpoint.
+     *
+     * @param array $expressions Key is the expression executed. Value is the
+     *        execution result.
+     */
     public function addEvaluatedExpressions($expressions)
     {
         foreach ($expressions as $expression => $result) {
-            $variable = $this->addValue($expression, $result);
+            $variable = $this->variableTable->register($expression, $result);
 
             array_push($this->evaluatedExpressions, $variable);
         }
     }
 
-    public function addValue($name, $value)
-    {
-        return $this->variableTable->register($name, $value);
-    }
-
-    private function setError($type, $message, $parameters)
-    {
-        $this->status = new StatusMessage([
-            'isError' => true,
-            'refersTo' => $type,
-            'description' => new FormatMessage([
-                'format' => $message,
-                'parameters' => $parameters
-            ])
-        ]);
-    }
-
+    /**
+     * Validate that this breakpoint can be executed. If not valid, the status
+     * field will be populated with the corresponding error message.
+     *
+     * @return bool
+     */
     public function validate()
     {
         if ($this->condition && !empty($this->condition)) {
@@ -238,5 +302,17 @@ class Breakpoint implements \JsonSerializable
             }
         }
         return true;
+    }
+
+    private function setError($type, $message, $parameters)
+    {
+        $this->status = new StatusMessage([
+            'isError' => true,
+            'refersTo' => $type,
+            'description' => new FormatMessage([
+                'format' => $message,
+                'parameters' => $parameters
+            ])
+        ]);
     }
 }

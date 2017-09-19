@@ -18,6 +18,7 @@
 namespace Google\Cloud\Debugger;
 
 /**
+ * The type of an Alias.
  */
 class Kind
 {
