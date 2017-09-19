@@ -550,7 +550,7 @@ class Bucket
      * ```
      *
      * ```
-     * // Supplying event types to trigger the notification.
+     * // Supplying event types to trigger the notifications.
      * $notification = $bucket->createNotification('my-topic', [
      *     'event_types' => [
      *         'OBJECT_DELETE',
@@ -564,7 +564,7 @@ class Bucket
      * @see https://cloud.google.com/storage/docs/json_api/v1/notifications/insert Notifications insert API documentation.
      * @codingStandardsIgnoreEnd
      *
-     * @param string|Topic $topic The topic to publish notifications to.
+     * @param string|Topic $topic The topic used to publish notifications.
      * @param array $options [optional] {
      *     Configuration options.
      *
