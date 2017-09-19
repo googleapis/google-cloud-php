@@ -127,8 +127,7 @@ class SpannerClient
             [
                 'typeUrl' => 'type.googleapis.com/google.spanner.admin.instance.v1.UpdateInstanceMetadata',
                 'callable' => function ($instance) {
-                    $instanceNameComponents = InstanceAdminClient::parseName($instance['name']);
-                    $name = $instanceNameComponents['instance'];
+                    $name = InstanceAdminClient::parseName($instance['name'])['instance'];
                     return $this->instance($name, $instance);
                 }
             ], [
@@ -144,8 +143,7 @@ class SpannerClient
             ], [
                 'typeUrl' => 'type.googleapis.com/google.spanner.admin.instance.v1.CreateInstanceMetadata',
                 'callable' => function ($instance) {
-                    $instanceNameComponents = InstanceAdminClient::parseName($instance['name']);
-                    $name = $instanceNameComponents['instance'];
+                    $name = InstanceAdminClient::parseName($instance['name'])['instance'];
                     return $this->instance($name, $instance);
                 }
             ]
@@ -312,8 +310,7 @@ class SpannerClient
         return new ItemIterator(
             new PageIterator(
                 function (array $instance) {
-                    $instanceNameComponents = InstanceAdminClient::parseName($instance['name']);
-                    $name = $instanceNameComponents['instance'];
+                    $name = InstanceAdminClient::parseName($instance['name'])['instance'];
                     return $this->instance($name, $instance);
                 },
                 [$this->connection, 'listInstances'],

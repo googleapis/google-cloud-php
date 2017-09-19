@@ -134,7 +134,7 @@ class GrpcRequestWrapper
             $retrySettings = [
                 'retriesEnabled' => false
             ];
-            if ($timeout && !array_key_exists('timeoutMs', $grpcOptions)) {
+            if ($timeout) {
                 $retrySettings['noRetriesRpcTimeoutMillis'] = $timeout * 1000;
             }
             $grpcOptions['retrySettings'] = $retrySettings;

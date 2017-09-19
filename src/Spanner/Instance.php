@@ -268,8 +268,7 @@ class Instance
      */
     public function create(InstanceConfiguration $config, array $options = [])
     {
-        $instanceNameComponents = InstanceAdminClient::parseName($this->name);
-        $instanceId = $instanceNameComponents['instance'];
+        $instanceId = InstanceAdminClient::parseName($this->name)['instance'];
         $options += [
             'displayName' => $instanceId,
             'nodeCount' => self::DEFAULT_NODE_COUNT,

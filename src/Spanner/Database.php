@@ -309,8 +309,7 @@ class Database
             'statements' => [],
         ];
 
-        $databaseNameComponents = DatabaseAdminClient::parseName($this->name());
-        $databaseName = $databaseNameComponents['database'];
+        $databaseName = DatabaseAdminClient::parseName($this->name())['database'];
         $statement = sprintf('CREATE DATABASE `%s`', $databaseName);
 
         $operation = $this->connection->createDatabase([
@@ -1529,8 +1528,7 @@ class Database
      */
     private function fullyQualifiedDatabaseName($name)
     {
-        $instanceNameComponents = InstanceAdminClient::parseName($this->instance->name());
-        $instance = $instanceNameComponents['instance'];
+        $instance = InstanceAdminClient::parseName($this->instance->name())['instance'];
 
         try {
             return GapicSpannerClient::databaseName(
