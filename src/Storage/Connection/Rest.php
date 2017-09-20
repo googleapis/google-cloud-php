@@ -44,6 +44,11 @@ class Rest implements ConnectionInterface
     const DOWNLOAD_URI = 'https://www.googleapis.com/storage/v1/b/{bucket}/o/{object}{?query*}';
 
     /**
+     * @var string
+     */
+    private $projectId;
+
+    /**
      * @param array $config
      */
     public function __construct(array $config = [])
@@ -58,6 +63,16 @@ class Rest implements ConnectionInterface
             $config['serviceDefinitionPath'],
             self::BASE_URI
         ));
+
+        $this->projectId = $this->pluck('projectId', $config, false);
+    }
+
+    /**
+     * @return string
+     */
+    public function projectId()
+    {
+        return $this->projectId;
     }
 
     /**

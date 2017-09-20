@@ -92,7 +92,9 @@ class StorageClient
             $config['scopes'] = [self::FULL_CONTROL_SCOPE];
         }
 
-        $this->connection = new Rest($this->configureAuthentication($config));
+        $this->connection = new Rest($this->configureAuthentication($config) + [
+            'projectId' => $this->projectId
+        ]);
     }
 
     /**
