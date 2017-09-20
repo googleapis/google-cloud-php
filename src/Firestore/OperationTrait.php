@@ -69,7 +69,9 @@ trait OperationTrait
         $fields = [];
 
         try {
-            $data = $this->getSnapshot($document->name(), $options);
+            $data = (isset($options['data']))
+                ? $options['data']
+                : $this->getSnapshot($document->name(), $options);
 
             $fields = $this->valueMapper->decodeValues(
                 $this->pluck('fields', $data)

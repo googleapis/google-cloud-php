@@ -297,14 +297,6 @@ class FirestoreClient
         ]);
     }
 
-    public function runQuery(Query $query)
-    {
-        return $this->connection->runQuery([
-            'parent' => $this->parentPath($query->name()),
-            'structuredQuery' => $query->query()
-        ]);
-    }
-
     /**
      * Create a document instance with the given document name.
      *
@@ -313,6 +305,8 @@ class FirestoreClient
      */
     private function documentFactory($name)
     {
-        return new Document($this->connection, $this->valueMapper, $this, $name);
+        $collectionId = $this->relativeName($this->parentPath($name));
+        $collection = $this->collection($collectionId);
+        return new Document($this->connection, $this->valueMapper, $collection, $name);
     }
 }

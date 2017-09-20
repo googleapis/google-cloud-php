@@ -17,5 +17,69 @@
 
 namespace Google\Cloud\Firestore;
 
-class QuerySnapshot
-{}
+/**
+ * Query Results
+ * 
+ * @todo make iterable -- page results?
+ */
+class QuerySnapshot implements \IteratorAggregate
+{
+    /**
+     * @var ConnectionInterface
+     */
+    private $connection;
+    
+    /**
+     * @var Query
+     */
+    private $query;
+
+    /**
+     * @var ValueMapper
+     */
+    private $valueMapper;
+
+    /**
+     * @var callable
+     */
+    private $call;
+
+    /**
+     * @var array
+     */
+    private $res;
+
+    public function __construct(ConnectionInterface $connection, Query $query, ValueMapper $valueMapper, callable $call)
+    {
+        $this->connection = $connection;
+        $this->query = $query;
+        $this->valueMapper = $valueMapper;
+        $this->call = $call;
+    }
+
+    public function query()
+    {
+        return $this->query;
+    }
+
+    public function documents()
+    {
+        $this->res = $this->res ?: call_user_func_array($this->call, $this->query);
+
+        foreach ($this->res as $document) {
+            $ref = $this->documentFactory($document['document']['name']);
+            yield $ref->snapshot([
+                'data' => $document['document']
+            ]);
+        }
+    }
+
+    /**
+     * @access private
+     * @return \Generator
+     */
+    public function getIterator()
+    {
+        return $this->documents();
+    }
+}

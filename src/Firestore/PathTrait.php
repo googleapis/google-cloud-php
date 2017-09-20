@@ -149,4 +149,21 @@ trait PathTrait
         $rand = preg_filter('/[^a-zA-Z0-9]{0,}/', '', base64_encode(random_bytes(30)));
         return $this->childPath($name, substr($rand, 0, 20));
     }
+
+    /**
+     * Get a relative name from an absolute name.
+     * @param string $name
+     * @return string
+     */
+    private function relativeName($name)
+    {
+        $parts = $this->splitName($name);
+        if ($parts[0] === 'projects' && $parts[2] === 'databases') {
+            $parts = array_slice($parts, 5);
+
+            $name = implode('/', $parts);
+        }
+
+        return $name;
+    }
 }

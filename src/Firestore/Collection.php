@@ -21,13 +21,53 @@ use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\DebugInfoTrait;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
+use Google\Firestore\V1beta1\StructuredQuery_Direction;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
+use Google\Firestore\V1beta1\StructuredQuery_FieldFilter_Operator;
+use Google\Firestore\V1beta1\StructuredQuery_CompositeFilter_Operator;
 
-class Collection extends Query
+class Collection
 {
     use ArrayTrait;
     use DebugInfoTrait;
     use PathTrait;
+
+    const OP_LESS_THAN = StructuredQuery_FieldFilter_Operator::LESS_THAN;
+    const OP_LESS_THAN_OR_EQUAL = StructuredQuery_FieldFilter_Operator::LESS_THAN_OR_EQUAL;
+    const OP_GREATER_THAN = StructuredQuery_FieldFilter_Operator::GREATER_THAN;
+    const OP_GREATER_THAN_OR_EQUAL = StructuredQuery_FieldFilter_Operator::GREATER_THAN_OR_EQUAL;
+    const OP_EQUAL = StructuredQuery_FieldFilter_Operator::EQUAL;
+
+    const DIR_ASCENDING = StructuredQuery_Direction::ASCENDING;
+    const DIR_DESCENDING = StructuredQuery_Direction::DESCENDING;
+
+    private $allowedOperators = [
+        self::OP_LESS_THAN,
+        self::OP_LESS_THAN_OR_EQUAL,
+        self::OP_EQUAL,
+        self::OP_GREATER_THAN,
+        self::OP_GREATER_THAN_OR_EQUAL,
+    ];
+
+    private $shortOperators = [
+        '<'  => self::OP_LESS_THAN,
+        '<=' => self::OP_LESS_THAN_OR_EQUAL,
+        '>'  => self::OP_GREATER_THAN,
+        '>=' => self::OP_GREATER_THAN_OR_EQUAL,
+        '='  => self::OP_EQUAL
+    ];
+
+    private $allowedDirections = [
+        self::DIR_ASCENDING,
+        self::DIR_DESCENDING
+    ];
+
+    private $shortDirections = [
+        'ASC' => self::DIR_ASCENDING,
+        'ASCENDING' => self::DIR_ASCENDING,
+        'DESC' => self::DIR_DESCENDING,
+        'DESCENDING' => self::DIR_DESCENDING
+    ];
 
     /**
      * @var ConnectionInterface
@@ -45,17 +85,31 @@ class Collection extends Query
     private $name;
 
     /**
+     * @var array
+     */
+    private $query = [];
+
+    /**
      * @param ConnectionInterface $connection
      * @param ValueMapper $valueMapper
      * @param string $name
+     * @param array $info
      */
-    public function __construct(ConnectionInterface $connection, ValueMapper $valueMapper, $name)
+    public function __construct(ConnectionInterface $connection, ValueMapper $valueMapper, $name, array $info = [])
     {
         $this->connection = $connection;
         $this->valueMapper = $valueMapper;
         $this->name = $name;
+        $this->query = isset($info['query'])
+            ? $info['query']
+            : [];
     }
 
+    /**
+     * Get the collection name
+     *
+     * @return string
+     */
     public function name()
     {
         return $this->name;
@@ -64,32 +118,21 @@ class Collection extends Query
     /**
      * Get all documents belonging to this collection.
      *
-     * @todo This method is not in the document defining the API behavior, so it may have been omitted for a reason (and
-     * may therefore be removed later). In testing, I found it useful to list documents in a collection, so I've
-     * included it for the time being. (jdp)
+     * If query filters have been provided, they will be applied.
      *
      * @param array $options
-     * @return ItemIterator<Document>
+     * @return QuerySnapshot<Document>
      */
     public function documents(array $options = [])
     {
-        $resultLimit = $this->pluck('resultLimit', $options, false);
-        return new ItemIterator(
-            new PageIterator(
-                function (array $document) {
-                    return $this->documentFactory($document['name']);
-                },
-                [$this->connection, 'listDocuments'],
-                [
-                    'parent' => $this->parent($this->name),
-                    'collectionId' => $this->id($this->name),
-                    'mask' => [] // do not return any fields, since we only need a list of document names.
-                ] + $options, [
-                    'itemsKey' => 'documents',
-                    'resultLimit' => $resultLimit
-                ]
-            )
-        );
+        $call = function () {
+            $res = $this->connection->runQuery([
+                'parent' => $this->name,
+                'structuredQuery' => $this->query
+            ]);
+        };
+
+        return new QuerySnapshot($query, $call);
     }
 
     /**
@@ -137,6 +180,192 @@ class Collection extends Query
     }
 
     /**
+     * Add a SELECT to the Query.
+     * 
+     * @param array $fieldPaths
+     * @return Collection
+     */
+    public function select(array $fieldPaths)
+    {
+        $fields = [];
+        foreach ($fieldPaths as $field) {
+            $fields[] = [
+                'fieldPath' => $field
+            ];
+        }
+        
+        return $this->newQuery([
+            'select' => [
+                'fields' => $fields
+            ]
+        ]);
+    }
+
+    /**
+     * Add a WHERE clause to the Query.
+     *
+     * @param string $fieldPath
+     * @param string $operator
+     * @param mixed $value
+     * @return Collection
+     */
+    public function where($fieldPath, $operator, $value)
+    {
+        $operator = array_key_exists($operator, $this->shortOperators)
+            ? $this->shortOperators[$operator]
+            : $operator;
+
+        if (!in_array($operator, $this->allowedOperators)) {
+            throw new \BadMethodCallException(sprintf(
+                'Operator %s is not a valid operator',
+                $operator
+            ));
+        }
+
+        $query = [
+            'where' => [
+                'compositeFilter' => [
+                    'op' => StructuredQuery_CompositeFilter_Operator::AND,
+                    'filters' => [
+                        [
+                            'fieldFilter' => [
+                                'field' => [
+                                    'fieldPath' => $fieldPath,
+                                ],
+                                'op' => $operator,
+                                'value' => $this->valueMapper->encodeValue($value)
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ];
+
+        return $this->newQuery($query);
+    }
+
+    /**
+     * Add an ORDER BY clause to the Query
+     * 
+     * @param string $fieldPath
+     * @param string $direction
+     * @return Collection
+     */
+    public function orderBy($fieldPath, $direction)
+    {
+        $direction = strtoupper($direction);
+
+        $direction = array_key_exists($direction, $this->shortDirections)
+            ? $this->shortDirections[$direction]
+            : $direction;
+
+        if (!in_array($direction, $this->allowedDirections)) {
+            throw new \BadMethodCallException(sprintf(
+                'Direction %s is not a valid direction',
+                $direction
+            ));
+        }
+
+        return $this->newQuery([
+            'order' => [
+                'field' => [
+                    'fieldPath' => $fieldPath
+                ],
+                'direction' => $direction
+            ]
+        ]);
+    }
+
+    public function limit($number)
+    {
+        return $this->newQuery([
+            'limit' => [
+                'value' => $number
+            ]
+        ]);
+    }
+
+    public function offset($number)
+    {
+        return $this->newQuery([
+            'offset' => $number
+        ]);
+    }
+
+    public function startAt(array $fieldValues)
+    {
+        return $this->newQuery([
+            'startAt' => [
+                'before' => true,
+                'values' => $this->valueMapper->encodeValues($fieldValues)
+            ]
+        ]);
+    }
+
+    public function startAfter(array $fieldValues)
+    {
+        return $this->newQuery([
+            'startAt' => [
+                'before' => false,
+                'values' => $this->valueMapper->encodeValues($fieldValues)
+            ]
+        ]);
+    }
+
+    public function endBefore(array $fieldValues)
+    {
+        return $this->newQuery([
+            'endAt' => [
+                'before' => true,
+                'values' => $this->valueMapper->encodeValues($fieldValues)
+            ]
+        ]);
+    }
+
+    public function endAt(array $fieldValues)
+    {
+        return $this->newQuery([
+            'endAt' => [
+                'before' => false,
+                'values' => $this->valueMapper->encodeValues($fieldValues)
+            ]
+        ]);
+    }
+
+    public function clearQuery()
+    {
+        return $this->newQuery([], true);
+    }
+
+    /**
+     * Create a new Query instance
+     *
+     * @param array $additionalConfig
+     * @return Query
+     */
+    private function newQuery(array $additionalConfig, $reset = false)
+    {
+        $info = [
+            'query' => !$reset
+                ? array_merge_recursive($this->query, $additionalConfig)
+                : []
+        ];
+
+        return new Collection($this->connection, $this->valueMapper, $this->name, $info);
+    }
+
+    public function query()
+    {
+        return $this->query + [
+            'from' => [
+                [
+                    'collectionId' => $this->pathId($this->name())
+                ]
+            ]
+        ];
+    }
+
+    /**
      * Create a document instance with the given document name.
      *
      * @param string $name
@@ -145,10 +374,5 @@ class Collection extends Query
     private function documentFactory($name)
     {
         return new Document($this->connection, $this->valueMapper, $this, $name);
-    }
-
-    protected function valueMapper()
-    {
-        return $this->valueMapper;
     }
 }
