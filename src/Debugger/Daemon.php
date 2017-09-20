@@ -41,7 +41,7 @@ class Daemon
         $sourceContext = array_key_exists('sourceContext', $info)
             ? $info['sourceContext']
             : $this->defaultSourceContext();
-            var_dump($sourceContext);
+        var_dump($sourceContext);
 
         $uniquifier = $this->defaultUniquifier();
         $name = $uniquifier;

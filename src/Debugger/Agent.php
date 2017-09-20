@@ -19,8 +19,21 @@ namespace Google\Cloud\Debugger;
 
 use Google\Cloud\Core\Batch\BatchRunner;
 use Google\Cloud\Core\Batch\BatchTrait;
-use Google\Cloud\Logging\LoggingClient;
+use Google\Cloud\Debugger\BreakpointStorage\BreakpointStorageInterface;
+use Google\Cloud\Debugger\BreakpointStorage\SysvBreakpointStorage;
 
+/**
+ * This class is responsible for registering all debugger breakpoints and
+ * logpoints for each request. It should be created as early as possible in
+ * your application.
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\Debugger\Agent;
+ *
+ * $agent = new Agent();
+ * ```
+ */
 class Agent
 {
     use BatchTrait;
@@ -29,13 +42,38 @@ class Agent
      * @var Debuggee
      */
     private static $debuggee;
+
+    /**
+     * @var string
+     */
     private $debuggeeId;
 
+    /**
+     * @var array string => Breakpoint
+     */
     private $breakpoints = [];
 
+    /**
+     * Create a new Debugger Agent, registers all breakpoints for collection
+     * or execution, and registers a shutdown function for reporting results.
+     *
+     * @param array $options [optional] {
+     *      Configuration options.
+     *
+     *      @type BreakpointStorageInterface $storage Breakpoint storage
+     *            to fetch breakpoints from. **Defaults to** a new
+     *            SysvBreakpointStorage instance.
+     *      @type Debuggee $debuggee Unique debuggee instance. **Defaults to**
+     *            a generated debuggee instance.
+     *      @type string $sourceRoot Path to the root of the source repository.
+     *            **Defaults to** the directory of the calling file.
+     * }
+     */
     public function __construct(array $options = [])
     {
-        $storage = new BreakpointStorage();
+        $storage = isset($options['storage'])
+            ? $options['storage']
+            : new SysvBreakpointStorage();
         list($this->debuggeeId, $breakpoints) = $storage->load();
 
         $this->setCommonBatchProperties($options + [
@@ -57,7 +95,7 @@ class Agent
         foreach ($breakpoints as $breakpoint) {
             $this->breakpoints[$breakpoint->id()] = $breakpoint;
             switch ($breakpoint->action()) {
-                case null:
+                case null: // default action (not set) is a snapsoht
                 case Action::CAPTURE:
                     $sourceLocation = $breakpoint->location();
                     stackdriver_debugger_add_snapshot(
@@ -76,10 +114,14 @@ class Agent
             }
         }
 
-        register_shutdown_function([$this, 'onFinish']);
+        register_shutdown_function([$this, 'onExit']);
     }
 
-    public function onFinish()
+    /**
+     * The function is registered as the shutdown function. Reports any captured
+     * breakpoint data and reportes it to the Stackdriver Debugger backend.
+     */
+    public function onExit()
     {
         $list = stackdriver_debugger_list();
         foreach ($list as $snapshot) {

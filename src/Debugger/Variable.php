@@ -27,58 +27,33 @@ class Variable implements \JsonSerializable
     use ArrayTrait;
 
     /**
-     * @var string
+     * @var array
      */
-    private $name;
+    private $info;
 
     /**
-     * @var string
+     * Instantiate a new Variable
+     *
+     * @param array $data
      */
-    private $value;
-
-    /**
-     * @var string
-     */
-    private $type;
-
-    /**
-     * @var Variable[]
-     */
-    private $members;
-
-    /**
-     * @var int
-     */
-    private $varTableIndex;
-
-    /**
-     * @var StatusMessage
-     */
-    private $status;
-
-    public function __construct($data)
+    public function __construct($data = [])
     {
-        $this->name = $this->pluck('name', $data);
-        $this->value = $this->pluck('value', $data, false);
-        $this->type = $this->pluck('type', $data, false) ?: get_class($this->value);
+        $this->info = $this->pluckArray([
+            'name',
+            'value',
+            'type',
+            'varTableIndex'
+        ], $data);
+
         if (array_key_exists('members', $data)) {
-            $this->members = array_map(function ($member) {
-                if ($member instanceof static) {
-                    return $member;
-                }
+            $this->info['members'] = array_map(function ($member) {
                 return new static($member);
             }, $data['members']);
         }
-        $this->varTableIndex = $this->pluck('varTableIndex', $data, false);
-    }
 
-    public static function fromVariable($name, $variable)
-    {
-        return new static([
-            'name' => $name,
-            'value' => is_object($variable) ? 'obj' : (string) $variable,
-            'type' => gettype($variable)
-        ]);
+        if (array_key_exists('status', $data)) {
+            $this->info['status'] = new StatusMessage($data['status']);
+        }
     }
 
     /**
@@ -88,22 +63,6 @@ class Variable implements \JsonSerializable
      */
     public function jsonSerialize()
     {
-        $data = [
-            'name' => $this->name,
-            'type' => $this->type
-        ];
-        if ($this->value !== NULL) {
-            $data['value'] = $this->value;
-        }
-        if ($this->members !== NULL) {
-            $data['members'] = $this->members;
-        }
-        if ($this->varTableIndex !== NULL) {
-            $data['varTableIndex'] = $this->varTableIndex;
-        }
-        if ($this->status) {
-            $data['status'] = $this->status;
-        }
-        return $data;
+        return $this->info;
     }
 }

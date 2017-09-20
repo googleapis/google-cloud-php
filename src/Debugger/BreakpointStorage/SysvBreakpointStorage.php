@@ -15,9 +15,9 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Debugger;
+namespace Google\Cloud\Debugger\BreakpointStorage;
 
-class BreakpointStorage
+class SysvBreakpointStorage implements BreakpointStorageInterface
 {
     const VAR_KEY = 1;
 
@@ -36,27 +36,7 @@ class BreakpointStorage
     }
 
     /**
-     * Acquire a lock.
-     *
-     * @return bool
-     */
-    public function lock()
-    {
-        return sem_acquire($this->semid);
-    }
-
-    /**
-     * Release a lock.
-     *
-     * @return bool
-     */
-    public function unlock()
-    {
-        return sem_release($this->semid);
-    }
-
-    /**
-     * Save the given BatchConfig.
+     * Save the given debugger breakpoints.
      *
      * @param Breakpoint[] $breakpoints
      * @return bool
@@ -76,7 +56,7 @@ class BreakpointStorage
     }
 
     /**
-     * Load a BatchConfig from the storage.
+     * Load debugger breakpoints from the storage.
      *
      * @return BatchConfig
      * @throws \RuntimeException when failed to attach to the shared memory.
@@ -89,7 +69,7 @@ class BreakpointStorage
                 'Failed to attach to the shared memory'
             );
         }
-        if (! shm_has_var($shmid, self::VAR_KEY)) {
+        if (!shm_has_var($shmid, self::VAR_KEY)) {
             $result = [];
         } else {
             $result = shm_get_var($shmid, self::VAR_KEY);
