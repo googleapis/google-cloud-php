@@ -1044,7 +1044,7 @@ class Bucket
     }
 
     /**
-     * Return a topic name in it's fully qualified format.
+     * Return a topic name in its fully qualified format.
      *
      * @param Topic|string $topic
      * @return string
