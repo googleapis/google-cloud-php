@@ -52,19 +52,6 @@ class StackFrame implements \JsonSerializable
         $this->location = new SourceLocation($this->pluck('location', $data, false));
     }
 
-    public static function fromBacktrace($bt)
-    {
-        return array_map(function ($stack) {
-            return new static([
-                'function' => $stack['function'],
-                'location' => [
-                    'path' => $stack['file'],
-                    'line' => $stack['line']
-                ]
-            ]);
-        }, $bt);
-    }
-
     public function addLocal(Variable $variable)
     {
         array_push($this->locals, $variable);

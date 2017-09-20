@@ -28,76 +28,6 @@ class Breakpoint implements \JsonSerializable
     use ArrayTrait;
 
     /**
-     * @var string
-     */
-    private $id;
-
-    /**
-     * @var string
-     */
-    private $action;
-
-    /**
-     * @var SourceLocation
-     */
-    private $location;
-
-    /**
-     * @var string
-     */
-    private $condition;
-
-    /**
-     * @var string[]
-     */
-    private $expressions;
-
-    /**
-     * @var string
-     */
-    private $logMessageFormat;
-
-    /**
-     * @var LogLevel
-     */
-    private $logLevel;
-
-    /**
-     * @var bool
-     */
-    private $isFinalState;
-
-    /**
-     * @var string
-     */
-    private $createTime;
-
-    /**
-     * @var string
-     */
-    private $finalTime;
-
-    /**
-     * @var string
-     */
-    private $userEmail;
-
-    /**
-     * @var StatusMessage
-     */
-    private $status;
-
-    /**
-     * @var StackFrame[]
-     */
-    private $stackFrames;
-
-    /**
-     * @var Variable[]
-     */
-    private $evaluatedExpressions;
-
-    /**
      * @var Variable[]
      */
     private $variableTable;
@@ -105,33 +35,55 @@ class Breakpoint implements \JsonSerializable
     /**
      * @var array
      */
-    private $labels;
+    private $info;
 
     /**
      * Instantiate a Breakpoint from its JSON representation
      *
      * @param array $data
      */
-    public function __construct($data)
+    public function __construct($data = [])
     {
-        $this->id = $this->pluck('id', $data);
-        $this->action = $this->pluck('action', $data, false) ?: Action::CAPTURE;
-        $this->location = new SourceLocation($this->pluck('location', $data, false));
-        $this->condition = $this->pluck('condition', $data, false) ?: '';
-        $this->expressions = $this->pluck('expressions', $data, false) ?: [];
-        $this->logMessageFormat = $this->pluck('logMessageFormat', $data, false);
-        $this->logLevel = new LogLevel($this->pluck('logLevel', $data, false));
-        $this->isFinalState = $this->pluck('isFinalState', $data, false) ?: false;
-        $this->createTime = $this->pluck('createTime', $data);
-        $this->finalTime = $this->pluck('finalTime', $data, false);
-        $this->userEmail = $this->pluck('userEmail', $data, false);
-        $this->status = isset($data['status']) ? new StatusMessage($data['status']) : null;
-        $this->stackFrames = array_map(function ($sf) {
-            return new StackFrame($sf);
-        }, $this->pluck('stackFrames', $data, false) ?: []);
-        $this->evaluatedExpressions = array_map(function ($ee) {
-            return new Variable($ee);
-        }, $this->pluck('evaluatedExpressions', $data, false) ?: []);
+        $this->info = $this->pluckArray([
+            'id',
+            'condition',
+            'expressions',
+            'logMessageFormat',
+            'logLevel',
+            'isFinalState',
+            'createTime',
+            'finalTime',
+            'userEmail',
+            'labels'
+        ], $data);
+
+        $this->info['action'] = $this->pluck('action', $data, false) ?: Action::CAPTURE;
+
+        if (array_key_exists('location', $data)) {
+            $this->info['location'] = new SourceLocation($data['location']);
+        }
+
+        if (array_key_exists('status', $data)) {
+            $this->info['status'] = new StatusMessage($data['status']);
+        }
+
+        if (array_key_exists('stackFrames', $data)) {
+            $this->info['stackFrames'] = array_map(
+                function ($data) {
+                    return new StackFrame($data);
+                },
+                $data['stackFrames']
+            );
+        }
+
+        if (array_key_exists('evaluatedExpressions', $data)) {
+            $this->info['evaluatedExpressions'] = array_map(
+                function ($data) {
+                    return new Variable($data);
+                },
+                $data['evaluatedExpressions']
+            );
+        }
 
         $this->variableTable = new VariableTable();
     }
@@ -143,7 +95,7 @@ class Breakpoint implements \JsonSerializable
      */
     public function id()
     {
-        return $this->id;
+        return $this->info['id'];
     }
 
     /**
@@ -153,7 +105,7 @@ class Breakpoint implements \JsonSerializable
      */
     public function action()
     {
-        return $this->action;
+        return $this->info['action'];
     }
 
     /**
@@ -163,7 +115,7 @@ class Breakpoint implements \JsonSerializable
      */
     public function location()
     {
-        return $this->location;
+        return $this->info['location'];
     }
 
     /**
@@ -173,7 +125,7 @@ class Breakpoint implements \JsonSerializable
      */
     public function condition()
     {
-        return $this->condition;
+        return isset($this->info['condition']) ? $this->info['condition'] : null;
     }
 
     /**
@@ -183,7 +135,17 @@ class Breakpoint implements \JsonSerializable
      */
     public function expressions()
     {
-        return $this->expressions;
+        return isset($this->info['expressions']) ? $this->info['expressions'] : []];
+    }
+
+    /**
+     * Return the breakpoint's data
+     *
+     * @return array
+     */
+    public function info()
+    {
+        return $this->info;
     }
 
     /**
@@ -193,26 +155,7 @@ class Breakpoint implements \JsonSerializable
      */
     public function jsonSerialize()
     {
-        $data = [
-            'id' => $this->id,
-            'action' => $this->action,
-            'location' => $this->location,
-            'condition' => $this->condition,
-            'expressions' => $this->expressions,
-            'logMessageFormat' => $this->logMessageFormat,
-            'logLevel' => $this->logLevel,
-            'isFinalState' => $this->isFinalState,
-            'createTime' => $this->createTime,
-            'finalTime' => $this->finalTime,
-            'userEmail' => $this->userEmail,
-            'stackFrames' => $this->stackFrames,
-            'evaluatedExpressions' => $this->evaluatedExpressions,
-            'variableTable' => $this->variableTable
-        ];
-        if ($this->status) {
-            $data['status'] = $this->status;
-        }
-        return $data;
+        return $this->info;
     }
 
     /**
@@ -224,8 +167,8 @@ class Breakpoint implements \JsonSerializable
         $micro = sprintf("%06d", $usec * 1000000);
         $when = new \DateTime(date('Y-m-d H:i:s.' . $micro));
         $when->setTimezone(new \DateTimeZone('UTC'));
-        $this->finalTime = $when->format('Y-m-d\TH:i:s.u\Z');
-        $this->isFinalState = true;
+        $this->info['finalTime'] = $when->format('Y-m-d\TH:i:s.u\Z');
+        $this->info['isFinalState'] = true;
     }
 
     /**
@@ -272,7 +215,10 @@ class Breakpoint implements \JsonSerializable
                 $sf->addLocal($variable);
             }
         }
-        array_push($this->stackFrames, $sf);
+        if (!array_key_exists('stackFrames', $this->info)) {
+            $this->info['stackFrames'] = [];
+        }
+        array_push($this->info['stackFrames'], $sf);
     }
 
     /**
@@ -283,10 +229,12 @@ class Breakpoint implements \JsonSerializable
      */
     public function addEvaluatedExpressions($expressions)
     {
+        if (!array_key_exists('evaluatedExpressions', $this->info)) {
+            $this->info['evaluatedExpressions'] = [];
+        }
         foreach ($expressions as $expression => $result) {
             $variable = $this->variableTable->register($expression, $result);
-
-            array_push($this->evaluatedExpressions, $variable);
+            array_push($this->info['evaluatedExpressions'], $variable);
         }
     }
 
@@ -298,7 +246,7 @@ class Breakpoint implements \JsonSerializable
      */
     public function validate()
     {
-        if ($this->condition && !empty($this->condition)) {
+        if ($this->condition() && !empty($this->condition())) {
             // validate that the condition is ok for debugging
             if (!stackdriver_debugger_valid_statement($this->condition)) {
                 $this->setError(Reference::BREAKPOINT_CONDITION, 'Invalid breakpoint condition: $0.', [$this->condition]);
@@ -306,10 +254,12 @@ class Breakpoint implements \JsonSerializable
             }
         }
 
-        foreach ($this->expressions as $expression) {
-            if (!stackdriver_debugger_valid_statement($expression)) {
-                $this->setError(Reference::BREAKPOINT_EXPRESSION, 'Invalid breakpoint expression: $0', [$expression]);
-                return false;
+        if ($this->expressions()) {
+            foreach ($this->expressions() as $expression) {
+                if (!stackdriver_debugger_valid_statement($expression)) {
+                    $this->setError(Reference::BREAKPOINT_EXPRESSION, 'Invalid breakpoint expression: $0', [$expression]);
+                    return false;
+                }
             }
         }
         return true;
@@ -317,7 +267,7 @@ class Breakpoint implements \JsonSerializable
 
     private function setError($type, $message, $parameters)
     {
-        $this->status = new StatusMessage([
+        $this->info['status'] = new StatusMessage([
             'isError' => true,
             'refersTo' => $type,
             'description' => new FormatMessage([

@@ -105,9 +105,12 @@ class Debuggee implements \JsonSerializable
         ] + $options);
 
         if (array_key_exists('breakpoints', $ret)) {
-            $ret['breakpoints'] = array_map(function ($bp) {
-                return new Breakpoint($bp);
-            }, $ret['breakpoints']);
+            $ret['breakpoints'] = array_map(
+                function ($data) {
+                    return new Breakpoint($data);
+                },
+                $ret['breakpoints']
+            );
         }
         return $ret;
     }
