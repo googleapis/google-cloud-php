@@ -18,6 +18,7 @@
 namespace Google\Cloud\Debugger;
 
 use Google\Cloud\Core\Exception\ConflictException;
+use Google\Cloud\Debugger\BreakpointStorage\SysvBreakpointStorage;
 
 class Daemon
 {
@@ -54,7 +55,7 @@ class Daemon
         ]);
         $this->debuggee->register();
 
-        $this->storage = new BreakpointStorage();
+        $this->storage = new SysvBreakpointStorage();
     }
 
     public function run()

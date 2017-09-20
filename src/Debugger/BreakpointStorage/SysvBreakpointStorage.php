@@ -17,6 +17,9 @@
 
 namespace Google\Cloud\Debugger\BreakpointStorage;
 
+use Google\Cloud\Debugger\Breakpoint;
+use Google\Cloud\Debugger\Debuggee;
+
 class SysvBreakpointStorage implements BreakpointStorageInterface
 {
     const VAR_KEY = 1;

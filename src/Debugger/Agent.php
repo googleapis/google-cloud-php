@@ -88,6 +88,11 @@ class Agent
             return;
         }
 
+        if (!extension_loaded('stackdriver_debugger')) {
+            trigger_error('Breakpoints set but "stackdriver_debugger extension not loaded"', E_USER_WARNING);
+            return;
+        }
+
         $sourceFile = isset($options['sourceRoot'])
             ? $options['sourceRoot'] . '/foo'
             : debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 1)[0]['file'];
@@ -106,9 +111,9 @@ class Agent
                         $breakpoint->expressions(),
                         $sourceFile
                     );
-
                     break;
                 case Action::LOG:
+                    trigger_error('Logpoints not yet implemented', E_USER_ERROR);
                 default:
                     continue;
             }

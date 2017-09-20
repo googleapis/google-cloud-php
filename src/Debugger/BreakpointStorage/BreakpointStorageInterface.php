@@ -17,8 +17,8 @@
 
 namespace Google\Cloud\Debugger\BreakpointStorage;
 
-use Googel\Cloud\Debugger\Breakpoint;
-use Googel\Cloud\Debugger\Debuggee;
+use Google\Cloud\Debugger\Breakpoint;
+use Google\Cloud\Debugger\Debuggee;
 
 interface BreakpointStorageInterface
 {
