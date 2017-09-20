@@ -47,7 +47,9 @@ class Variable implements \JsonSerializable
 
         if (array_key_exists('members', $data)) {
             $this->info['members'] = array_map(function ($member) {
-                return new static($member);
+                return ($member instanceof static)
+                    ? $member
+                    : new static ($memeber);
             }, $data['members']);
         }
 
