@@ -41,6 +41,7 @@ class Breakpoint implements \JsonSerializable
     {
         $this->info = $this->pluckArray([
             'id',
+            'action',
             'condition',
             'expressions',
             'logMessageFormat',
@@ -51,8 +52,6 @@ class Breakpoint implements \JsonSerializable
             'userEmail',
             'labels'
         ], $data);
-
-        $this->info['action'] = $this->pluck('action', $data, false) ?: Action::CAPTURE;
 
         if (array_key_exists('location', $data)) {
             $this->info['location'] = new SourceLocation($data['location']);

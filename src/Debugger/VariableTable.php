@@ -24,7 +24,7 @@ class VariableTable implements \JsonSerializable
     {
         $this->variables = array_map(function ($variable) {
             return new Variable($variable);
-        }; $data);
+        }, $data);
         $this->nextIndex = count($this->variables);
         $this->sharedVariableIndex = [];
     }
