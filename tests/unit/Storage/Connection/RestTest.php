@@ -104,6 +104,18 @@ class RestTest extends \PHPUnit_Framework_TestCase
         ];
     }
 
+    public function testProjectId()
+    {
+        $rest = new Rest(['projectId' => 'foo']);
+        $this->assertEquals('foo', $rest->projectId());
+    }
+
+    public function testProjectIdNull()
+    {
+        $rest = new Rest();
+        $this->assertNull($rest->projectId());
+    }
+
     public function testDownloadObject()
     {
         $actualRequest = null;
