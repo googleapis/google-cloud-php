@@ -28,11 +28,6 @@ class Breakpoint implements \JsonSerializable
     use ArrayTrait;
 
     /**
-     * @var Variable[]
-     */
-    private $variableTable;
-
-    /**
      * @var array
      */
     private $info;
@@ -85,7 +80,9 @@ class Breakpoint implements \JsonSerializable
             );
         }
 
-        $this->variableTable = new VariableTable();
+        if (array_key_exists('variableTable', $data)) {
+            $this->info['variableTable'] = new VariableTable($data['variableTable']);
+        }
     }
 
     /**
@@ -135,7 +132,7 @@ class Breakpoint implements \JsonSerializable
      */
     public function expressions()
     {
-        return isset($this->info['expressions']) ? $this->info['expressions'] : []];
+        return isset($this->info['expressions']) ? $this->info['expressions'] : [];
     }
 
     /**
@@ -211,7 +208,7 @@ class Breakpoint implements \JsonSerializable
         if (isset($stackFrameData['locals'])) {
             foreach ($stackFrameData['locals'] as $local) {
                 $value = isset($local['value']) ? $local['value'] : null;
-                $variable = $this->variableTable->register($local['name'], $value);
+                $variable = $this->addVariable($local['name'], $value);
                 $sf->addLocal($variable);
             }
         }
@@ -233,7 +230,7 @@ class Breakpoint implements \JsonSerializable
             $this->info['evaluatedExpressions'] = [];
         }
         foreach ($expressions as $expression => $result) {
-            $variable = $this->variableTable->register($expression, $result);
+            $variable = $this->addVariable($expression, $result);
             array_push($this->info['evaluatedExpressions'], $variable);
         }
     }
@@ -275,5 +272,13 @@ class Breakpoint implements \JsonSerializable
                 'parameters' => $parameters
             ])
         ]);
+    }
+
+    private function addVariable($name, $value)
+    {
+        if (!array_key_exists('variableTable', $this->info)) {
+            $this->info['variableTable'] = new VariableTable();
+        }
+        return $this->info['variableTable']->register($name, $value);
     }
 }

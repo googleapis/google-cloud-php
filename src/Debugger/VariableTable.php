@@ -11,9 +11,23 @@ class VariableTable implements \JsonSerializable
 {
     const MAX_MEMBER_DEPTH = 5;
 
-    private $nextIndex = 0;
-    private $variables = [];
-    private $sharedVariableIndex = [];
+    private $nextIndex;
+    private $variables;
+    private $sharedVariableIndex;
+
+    /**
+     * Initialize a new VariableTable with optional initial values.
+     *
+     * @param array $data
+     */
+    public function __construct($data = [])
+    {
+        $this->variables = array_map(function ($variable) {
+            return new Variable($variable);
+        }; $data);
+        $this->nextIndex = count($this->variables);
+        $this->sharedVariableIndex = [];
+    }
 
     /**
      * Register a variable in the VariableTable and return a Variable reference.
