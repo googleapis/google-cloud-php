@@ -244,8 +244,13 @@ class Breakpoint implements \JsonSerializable
     {
         if ($this->condition() && !empty($this->condition())) {
             // validate that the condition is ok for debugging
-            if (!stackdriver_debugger_valid_statement($this->condition)) {
-                $this->setError(Reference::BREAKPOINT_CONDITION, 'Invalid breakpoint condition: $0.', [$this->condition]);
+            try {
+                if (!stackdriver_debugger_valid_statement($this->condition())) {
+                    $this->setError(Reference::BREAKPOINT_CONDITION, 'Invalid breakpoint condition - Invalid operations: $0.', [$this->condition]);
+                    return false;
+                }
+            } catch (\ParseError $e) {
+                $this->setError(Reference::BREAKPOINT_CONDITION, 'Invalid breakpoint condition - Parse error: $0.', [$this->condition]);
                 return false;
             }
         }

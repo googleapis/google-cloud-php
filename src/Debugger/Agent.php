@@ -54,6 +54,11 @@ class Agent
     private $breakpoints = [];
 
     /**
+     * @var string
+     */
+    private $sourceRoot;
+
+    /**
      * Create a new Debugger Agent, registers all breakpoints for collection
      * or execution, and registers a shutdown function for reporting results.
      *
@@ -96,6 +101,7 @@ class Agent
         $sourceFile = isset($options['sourceRoot'])
             ? $options['sourceRoot'] . '/foo'
             : debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 1)[0]['file'];
+        $this->sourceRoot = dirname($sourceFile);
 
         foreach ($breakpoints as $breakpoint) {
             $this->breakpoints[$breakpoint->id()] = $breakpoint;
@@ -103,6 +109,7 @@ class Agent
                 case null: // default action (not set) is a snapsoht
                 case Action::CAPTURE:
                     $sourceLocation = $breakpoint->location();
+                    $this->invalidateOpcache($breakpoint);
                     stackdriver_debugger_add_snapshot(
                         $sourceLocation->path(),
                         $sourceLocation->line(),
@@ -132,6 +139,7 @@ class Agent
         foreach ($list as $snapshot) {
             if (array_key_exists($snapshot['id'], $this->breakpoints)) {
                 $breakpoint = $this->breakpoints[$snapshot['id']];
+                $this->invalidateOpcache($breakpoint);
                 $breakpoint->finalize();
                 $breakpoint->addEvaluatedExpressions($snapshot['evaluatedExpressions']);
                 $breakpoint->addStackFrames($snapshot['stackframes']);
@@ -155,5 +163,14 @@ class Agent
             'uniquifier' => 'foo-bar2',
             'description' => 'Debugger for test'
         ]);
+    }
+
+    private function invalidateOpcache($breakpoint)
+    {
+        if (!extension_loaded('Zend OPcache') || ini_get('opcache.enable') != '1') {
+            return false;
+        }
+
+        return opcache_invalidate($this->sourceRoot . DIRECTORY_SEPARATOR . $breakpoint->location()->path(), true);
     }
 }
