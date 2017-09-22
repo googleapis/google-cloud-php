@@ -36,9 +36,24 @@ class Document
     use DebugInfoTrait;
     use PathTrait;
 
+    /**
+     * @var ConnectionInterface
+     */
     private $connection;
+
+    /**
+     * @var ValueMapper
+     */
     private $valueMapper;
+
+    /**
+     * @var Collection
+     */
     private $parent;
+
+    /**
+     * @var string
+     */
     private $name;
 
     public function __construct(ConnectionInterface $connection, ValueMapper $valueMapper, Collection $parent, $name)
@@ -89,7 +104,7 @@ class Document
      */
     public function create(array $fields = [], array $options = [])
     {
-        $writer = new WriteBatch($this->valueMapper, $this->databaseName($this->name));
+        $writer = new WriteBatch($this->valueMapper, $this->databaseFromName($this->name));
         $writer->update($this->name, $fields, [
             'currentDocument' => ['exists' => false]
         ]);
@@ -125,7 +140,7 @@ class Document
             'updateMask' => []
         ];
 
-        $writer = new WriteBatch($this->valueMapper, $this->databaseName($this->name));
+        $writer = new WriteBatch($this->valueMapper, $this->databaseFromName($this->name));
         $writer->update($this->name, $fields, [
             'currentDocument' => $this->pluck('precondition', $options)
         ]);
@@ -193,7 +208,7 @@ class Document
             'precondition' => ['exists' => true]
         ];
 
-        $writer = new WriteBatch($this->valueMapper, $this->databaseName($this->name));
+        $writer = new WriteBatch($this->valueMapper, $this->databaseFromName($this->name));
         $writer->update($this->name, $fields, [
             'currentDocument' => $this->pluck('precondition', $options)
         ]);
@@ -225,7 +240,7 @@ class Document
             'precondition' => ['exists' => true]
         ];
 
-        $writer = new WriteBatch($this->valueMapper, $this->databaseName($this->name));
+        $writer = new WriteBatch($this->valueMapper, $this->databaseFromName($this->name));
         $writer->delete($this->name, [
             'currentDocument' => $this->pluck('precondition', $options)
         ]);

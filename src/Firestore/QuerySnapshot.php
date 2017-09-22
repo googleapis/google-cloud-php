@@ -19,7 +19,7 @@ namespace Google\Cloud\Firestore;
 
 /**
  * Query Results
- * 
+ *
  * @todo make iterable -- page results?
  */
 class QuerySnapshot implements \IteratorAggregate
@@ -28,7 +28,7 @@ class QuerySnapshot implements \IteratorAggregate
      * @var ConnectionInterface
      */
     private $connection;
-    
+
     /**
      * @var Query
      */
@@ -49,6 +49,12 @@ class QuerySnapshot implements \IteratorAggregate
      */
     private $res;
 
+    /**
+     * @param ConnectionInterface $connection
+     * @param Query $query
+     * @param ValueMapper $valueMapper
+     * @param callable $call
+     */
     public function __construct(ConnectionInterface $connection, Query $query, ValueMapper $valueMapper, callable $call)
     {
         $this->connection = $connection;
@@ -57,11 +63,17 @@ class QuerySnapshot implements \IteratorAggregate
         $this->call = $call;
     }
 
+    /**
+     * @return Query
+     */
     public function query()
     {
         return $this->query;
     }
 
+    /**
+     * @return DocumentSnapshot
+     */
     public function documents()
     {
         $this->res = $this->res ?: call_user_func_array($this->call, $this->query);

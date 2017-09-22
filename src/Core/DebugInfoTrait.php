@@ -27,6 +27,15 @@ trait DebugInfoTrait
             $props['connection'] = get_class($this->connection);
         }
 
+        if (isset($props['__excludeFromDebug'])) {
+            $exclude = $props['__excludeFromDebug'];
+            unset($props['__excludeFromDebug']);
+
+            foreach ($exclude as $e) {
+                unset($props[$e]);
+            }
+        }
+
         return $props;
     }
 }

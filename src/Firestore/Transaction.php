@@ -66,9 +66,6 @@ class Transaction
         ] + $options);
     }
 
-    public function query(Query $query)
-    {}
-
     public function create(Document $document, array $fields)
     {
         $this->writer->update($document->name(), $fields, [

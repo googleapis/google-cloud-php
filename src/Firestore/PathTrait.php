@@ -39,12 +39,21 @@ trait PathTrait
     }
 
     /**
+     * @param string $projectId The project ID.
+     * @param string $database The database name.
+     */
+    private function databaseName($projectId, $database)
+    {
+        return sprintf('projects/%s/databases/%s', $projectId, $database);
+    }
+
+    /**
      * Get the database name from a path.
      *
      * @param string $name
      * @return string
      */
-    private function databaseName($name)
+    private function databaseFromName($name)
     {
         $parts = explode('/databases/', $name);
         return $parts[0] . '/databases/' . explode('/', $parts[1])[0];
@@ -58,6 +67,10 @@ trait PathTrait
      */
     private function isDocument($name)
     {
+        if (!$this->isRelative($name)) {
+            $name = $this->relativeName($name);
+        }
+
         $parts = $this->splitName($name);
         return count($parts) > 0 && count($parts) % 2 === 0;
     }
@@ -70,6 +83,10 @@ trait PathTrait
      */
     private function isCollection($name)
     {
+        if (!$this->isRelative($name)) {
+            $name = $this->relativeName($name);
+        }
+
         $parts = $this->splitName($name);
         return count($parts) % 2 === 1;
     }

@@ -62,31 +62,57 @@ trait OperationTrait
         ] + $options);
     }
 
+    /**
+     * Create and return a document snapshot.
+     *
+     * If `$options['data']` is set, no service request will be triggered, and
+     * the returned snapshot will indicate that the document does exist, and
+     * will be populated with the data provided.
+     *
+     * @param Document $document The parent document.
+     * @param array $options {
+     *     Configuration Options
+     *
+     *     @type bool $exists If set to false, no service request will be
+     *           triggered, and the returned snapshot will indicate that the
+     *           document does not exist. **Defaults to** `false`.
+     *     @type array $data If set, no service request will be triggered, and
+     *           the returned snapshot will indicate that the document does
+     *           exist, and will be populated with the data provided.
+     * }
+     * @return DocumentSnapshot
+     */
     private function createSnapshot(Document $document, array $options = [])
     {
+        $options += [
+            'exists' => true
+        ];
+
         $exists = true;
         $data = [];
         $fields = [];
 
-        try {
-            $data = (isset($options['data']))
-                ? $options['data']
-                : $this->getSnapshot($document->name(), $options);
+        if ($options['exists']) {
+            try {
+                $data = (isset($options['data']))
+                    ? $options['data']
+                    : $this->getSnapshot($document->name(), $options);
 
-            $fields = $this->valueMapper->decodeValues(
-                $this->pluck('fields', $data)
-            );
+                $fields = $this->valueMapper->decodeValues(
+                    $this->pluck('fields', $data)
+                );
 
-            $data['createTime'] = isset($data['createTime'])
-                ? $this->valueMapper->createTimestampWithNanos($data['createTime'])
-                : null;
+                $data = $this->transformSnapshotTimestamps($data);
 
-            $data['updateTime'] = isset($data['updateTime'])
-                ? $this->valueMapper->createTimestampWithNanos($data['updateTime'])
-                : null;
-
-        } catch (NotFoundException $e) {
+            } catch (NotFoundException $e) {
+                $exists = false;
+            }
+        } else {
             $exists = false;
+
+            if (isset($options['data'])) {
+                $data = $this->transformSnapshotTimestamps($options['data']);
+            }
         }
 
         return new DocumentSnapshot($document, $data, $fields, $exists);
@@ -97,5 +123,22 @@ trait OperationTrait
         return $this->connection->getDocument([
             'name' => $name,
         ] + $options);
+    }
+
+    private function transformSnapshotTimestamps(array $data)
+    {
+        $data['createTime'] = isset($data['createTime'])
+            ? $this->valueMapper->createTimestampWithNanos($data['createTime'])
+            : null;
+
+        $data['updateTime'] = isset($data['updateTime'])
+            ? $this->valueMapper->createTimestampWithNanos($data['updateTime'])
+            : null;
+
+        $data['readTime'] = isset($data['readTime'])
+            ? $this->valueMapper->createTimestampWithNanos($data['readTime'])
+            : null;
+
+        return $data;
     }
 }

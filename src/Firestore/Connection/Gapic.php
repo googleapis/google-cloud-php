@@ -79,7 +79,11 @@ class Gapic implements ConnectionInterface
      */
     public function batchGetDocuments(array $args)
     {
-        throw new \BadMethodCallException('not implemented');
+        return $this->send([$this->firestore, 'batchGetDocuments'], [
+            $this->pluck('database', $args),
+            $this->pluck('documents', $args),
+            $args
+        ]);
     }
 
     /**

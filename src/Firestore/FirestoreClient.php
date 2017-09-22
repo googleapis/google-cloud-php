@@ -21,8 +21,20 @@ use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Core\ValidateTrait;
 use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\Firestore\Connection\Gapic;
+use Google\Cloud\Core\Iterator\ItemIterator;
+use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Core\Exception\AbortedException;
 
+/**
+ * Cloud Firestore is a flexible, scalable, realtime database for mobile, web, and server development.
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\Firestore\FirestoreClient;
+ *
+ * $firestore = new FirestoreClient();
+ * ```
+ */
 class FirestoreClient
 {
     use ClientTrait;
@@ -36,12 +48,24 @@ class FirestoreClient
 
     const MAX_RETRIES = 5;
 
+    /**
+     * @var ConnectionInterface
+     */
     private $connection;
 
+    /**
+     * @var string
+     */
     private $database = '(default)';
 
+    /**
+     * @var ValueMapper
+     */
     private $valueMapper;
 
+    /**
+     * @var bool
+     */
     private $isRunningTransaction = false;
 
     /**
@@ -91,6 +115,11 @@ class FirestoreClient
     /**
      * Lazily instantiate a Collection.
      *
+     * Example:
+     * ```
+     * $collection = $firestore->collection('users');
+     * ```
+     *
      * @param string $relativeName
      * @return Collection
      */
@@ -122,8 +151,6 @@ class FirestoreClient
      * @param array $options [optional] {
      *     Configuration options
      *
-     *     @type string $filter An expression for filtering the results of the
-     *           request.
      *     @type int $pageSize Maximum number of results to return per
      *           request.
      *     @type int $resultLimit Limit the number of results returned in total.
@@ -134,26 +161,40 @@ class FirestoreClient
      * @return ItemIterator<Collection>
      */
     public function collections(array $options = [])
-    {}
+    {
+        $resultLimit = $this->pluck('resultLimit', $options, false);
+        return new ItemIterator(
+            new PageIterator(
+                function ($collectionId) {
+                    return $this->collection($collectionId);
+                },
+                [$this->connection, 'listCollectionIds'],
+                [
+                    'parent' => $this->databaseName($this->projectId, $this->database),
+                ] + $options, [
+                    'itemsKey' => 'collectionIds',
+                    'resultLimit' => $resultLimit
+                ]
+            )
+        );
+    }
 
     /**
      * Lazily instantiate a Document instance.
      *
-     * @param string $relativeName The document path, relative to the database name.
+     * @param string $name The document name or a path, relative to the database.
      * @return Document
      * @throws InvalidArgumentException If the given path is not a valid document path.
      */
-    public function document($relativeName)
+    public function document($name)
     {
-        if (!$this->isDocument($relativeName)) {
-            throw new \InvalidArgumentException('Given path is not a valid document path.');
+        if ($this->isRelative($name)) {
+            $name = $this->fullName($this->projectId, $this->database, $name);
         }
 
-        $name = $this->fullName(
-            $this->projectId,
-            $this->database,
-            $relativeName
-        );
+        if (!$this->isDocument($name)) {
+            throw new \InvalidArgumentException('Given path is not a valid document path.');
+        }
 
         return new Document(
             $this->connection,
@@ -172,27 +213,36 @@ class FirestoreClient
      *
      * @param array $paths
      * @param array $options
-     * @return ItemIterator<Document>
+     * @return \Generator
      */
     public function documents(array $paths, array $options = [])
     {
-        $resultLimit = $this->pluck('resultLimit', $options, false);
-        return new ItemIterator(
-            new PageIterator(
-                function (array $document) {
-                    return $this->documentFactory($document['name']);
-                },
-                [$this->connection, 'listDocuments'],
-                [
-                    'parent' => $this->parent($this->name),
-                    'collectionId' => $this->id($this->name),
-                    'mask' => [] // do not return any fields, since we only need a list of document names.
-                ] + $options, [
-                    'itemsKey' => 'documents',
-                    'resultLimit' => $resultLimit
-                ]
-            )
-        );
+        array_walk($paths, function (&$path) {
+            $path = $this->isRelative($path)
+                ? $this->fullName($this->projectId, $this->database, $path)
+                : $path;
+        });
+
+        $documents = $this->connection->batchGetDocuments([
+            'database' => $this->databaseName($this->projectId, $this->database),
+            'documents' => $paths,
+        ] + $options);
+
+        foreach ($documents as $document) {
+            $exists = isset($document['found']);
+            $data = $exists
+                ? $document['found'] + ['readTime' => $document['readTime']]
+                : ['readTime' => $document['readTime']];
+
+            $name = $exists
+                ? $document['found']['name']
+                : $document['missing'];
+
+            yield $this->document($name)->snapshot([
+                'data' => $data,
+                'exists' => $exists
+            ]);
+        }
     }
 
     /**

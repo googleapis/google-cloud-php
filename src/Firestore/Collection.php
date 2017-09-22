@@ -85,9 +85,15 @@ class Collection
     private $name;
 
     /**
+     * A list of properties to exclude from the print_r and var_dump output.
      * @var array
      */
-    private $query = [];
+    private $__excludeFromDebug = [
+        'allowedOperators',
+        'shortOperators',
+        'allowedDirections',
+        'shortDirections',
+    ];
 
     /**
      * @param ConnectionInterface $connection
@@ -113,26 +119,6 @@ class Collection
     public function name()
     {
         return $this->name;
-    }
-
-    /**
-     * Get all documents belonging to this collection.
-     *
-     * If query filters have been provided, they will be applied.
-     *
-     * @param array $options
-     * @return QuerySnapshot<Document>
-     */
-    public function documents(array $options = [])
-    {
-        $call = function () {
-            $res = $this->connection->runQuery([
-                'parent' => $this->name,
-                'structuredQuery' => $this->query
-            ]);
-        };
-
-        return new QuerySnapshot($query, $call);
     }
 
     /**
@@ -180,189 +166,22 @@ class Collection
     }
 
     /**
-     * Add a SELECT to the Query.
-     * 
-     * @param array $fieldPaths
-     * @return Collection
-     */
-    public function select(array $fieldPaths)
-    {
-        $fields = [];
-        foreach ($fieldPaths as $field) {
-            $fields[] = [
-                'fieldPath' => $field
-            ];
-        }
-        
-        return $this->newQuery([
-            'select' => [
-                'fields' => $fields
-            ]
-        ]);
-    }
-
-    /**
-     * Add a WHERE clause to the Query.
+     * Query the current collection.
      *
-     * @param string $fieldPath
-     * @param string $operator
-     * @param mixed $value
-     * @return Collection
-     */
-    public function where($fieldPath, $operator, $value)
-    {
-        $operator = array_key_exists($operator, $this->shortOperators)
-            ? $this->shortOperators[$operator]
-            : $operator;
-
-        if (!in_array($operator, $this->allowedOperators)) {
-            throw new \BadMethodCallException(sprintf(
-                'Operator %s is not a valid operator',
-                $operator
-            ));
-        }
-
-        $query = [
-            'where' => [
-                'compositeFilter' => [
-                    'op' => StructuredQuery_CompositeFilter_Operator::AND,
-                    'filters' => [
-                        [
-                            'fieldFilter' => [
-                                'field' => [
-                                    'fieldPath' => $fieldPath,
-                                ],
-                                'op' => $operator,
-                                'value' => $this->valueMapper->encodeValue($value)
-                            ]
-                        ]
-                    ]
-                ]
-            ]
-        ];
-
-        return $this->newQuery($query);
-    }
-
-    /**
-     * Add an ORDER BY clause to the Query
-     * 
-     * @param string $fieldPath
-     * @param string $direction
-     * @return Collection
-     */
-    public function orderBy($fieldPath, $direction)
-    {
-        $direction = strtoupper($direction);
-
-        $direction = array_key_exists($direction, $this->shortDirections)
-            ? $this->shortDirections[$direction]
-            : $direction;
-
-        if (!in_array($direction, $this->allowedDirections)) {
-            throw new \BadMethodCallException(sprintf(
-                'Direction %s is not a valid direction',
-                $direction
-            ));
-        }
-
-        return $this->newQuery([
-            'order' => [
-                'field' => [
-                    'fieldPath' => $fieldPath
-                ],
-                'direction' => $direction
-            ]
-        ]);
-    }
-
-    public function limit($number)
-    {
-        return $this->newQuery([
-            'limit' => [
-                'value' => $number
-            ]
-        ]);
-    }
-
-    public function offset($number)
-    {
-        return $this->newQuery([
-            'offset' => $number
-        ]);
-    }
-
-    public function startAt(array $fieldValues)
-    {
-        return $this->newQuery([
-            'startAt' => [
-                'before' => true,
-                'values' => $this->valueMapper->encodeValues($fieldValues)
-            ]
-        ]);
-    }
-
-    public function startAfter(array $fieldValues)
-    {
-        return $this->newQuery([
-            'startAt' => [
-                'before' => false,
-                'values' => $this->valueMapper->encodeValues($fieldValues)
-            ]
-        ]);
-    }
-
-    public function endBefore(array $fieldValues)
-    {
-        return $this->newQuery([
-            'endAt' => [
-                'before' => true,
-                'values' => $this->valueMapper->encodeValues($fieldValues)
-            ]
-        ]);
-    }
-
-    public function endAt(array $fieldValues)
-    {
-        return $this->newQuery([
-            'endAt' => [
-                'before' => false,
-                'values' => $this->valueMapper->encodeValues($fieldValues)
-            ]
-        ]);
-    }
-
-    public function clearQuery()
-    {
-        return $this->newQuery([], true);
-    }
-
-    /**
-     * Create a new Query instance
-     *
-     * @param array $additionalConfig
+     * @codingStandardsIgnoreStart
+     * @param array $query [StructuredQuery](https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1beta1#structuredquery)
      * @return Query
+     * @codingStandardsIgnoreEnd
      */
-    private function newQuery(array $additionalConfig, $reset = false)
+    public function query(array $query = [])
     {
-        $info = [
-            'query' => !$reset
-                ? array_merge_recursive($this->query, $additionalConfig)
-                : []
-        ];
-
-        return new Collection($this->connection, $this->valueMapper, $this->name, $info);
-    }
-
-    public function query()
-    {
-        return $this->query + [
+        return new Query($this->connection, $this->valueMapper, [
             'from' => [
                 [
                     'collectionId' => $this->pathId($this->name())
                 ]
-            ]
-        ];
+            ] + $query
+        ]);
     }
 
     /**
