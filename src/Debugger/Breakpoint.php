@@ -125,6 +125,16 @@ class Breakpoint implements \JsonSerializable
     }
 
     /**
+     * Return the log message format for this breakpoint.
+     *
+     * @return string
+     */
+    public function logMessageFormat()
+    {
+        return isset($this->info['logMessageFormat']) ? $this->info['logMessageFormat'] : null;
+    }
+
+    /**
      * Return the expressions to evaluate for this breakpoint.
      *
      * @return string[]

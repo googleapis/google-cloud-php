@@ -78,7 +78,7 @@ class Agent
     {
         $storage = isset($options['storage'])
             ? $options['storage']
-            : new SysvBreakpointStorage();
+            : $this->defaultStorage();
         list($this->debuggeeId, $breakpoints) = $storage->load();
 
         $this->setCommonBatchProperties($options + [
@@ -94,7 +94,7 @@ class Agent
         }
 
         if (!extension_loaded('stackdriver_debugger')) {
-            trigger_error('Breakpoints set but "stackdriver_debugger extension not loaded"', E_USER_WARNING);
+            trigger_error('Breakpoints set but "stackdriver_debugger" extension not loaded', E_USER_WARNING);
             return;
         }
 
@@ -120,6 +120,15 @@ class Agent
                     );
                     break;
                 case Action::LOG:
+                    stackdriver_debugger_add_logpoint(
+                        $sourceLocation->path(),
+                        $sourceLocation->line(),
+                        $breakpoint->id(),
+                        $breakpoint->condition(),
+                        $breakpoint->logMessageFormat(),
+                        $breakpoint->expressions(),
+                        $sourceFile
+                    );
                     trigger_error('Logpoints not yet implemented', E_USER_ERROR);
                 default:
                     continue;
@@ -139,7 +148,6 @@ class Agent
         foreach ($list as $snapshot) {
             if (array_key_exists($snapshot['id'], $this->breakpoints)) {
                 $breakpoint = $this->breakpoints[$snapshot['id']];
-                $this->invalidateOpcache($breakpoint);
                 $breakpoint->finalize();
                 $breakpoint->addEvaluatedExpressions($snapshot['evaluatedExpressions']);
                 $breakpoint->addStackFrames($snapshot['stackframes']);
@@ -154,6 +162,12 @@ class Agent
             self::$debuggee = $this->defaultDebuggee();
         }
         return [self::$debuggee, 'updateBreakpointBatch'];
+    }
+
+    private function defaultStorage()
+    {
+        // FIXME: detect whether sysv is available and fallback to file storage
+        return new SysvBreakpointStorage();
     }
 
     private function defaultDebuggee()
