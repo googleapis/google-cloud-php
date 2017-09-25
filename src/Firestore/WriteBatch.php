@@ -62,6 +62,22 @@ class WriteBatch
         ] + $options);
     }
 
+    public function set($documentName, array $fields, $merge = false)
+    {
+        if ($this->hasPreviousTransform) {
+            throw new \BadMethodCallException(
+                'Cannot apply an UPDATE operation after a TRANSFORM operation has been enqueued.'
+            );
+        }
+
+        $write = array_filter([
+            'fields' => $this->valueMapper->encodeValues($fields),
+            'updateMask' => $merge ? $this->valueMapper->encodeFieldPaths($fields) : null
+        ]);
+
+        $this->writes[] = $this->createDatabaseWrite(self::TYPE_UPDATE, $documentName, $write + $options);
+    }
+
     public function delete($documentName, array $options = [])
     {
         $this->writes[] = $this->createDatabaseWrite(self::TYPE_DELETE, $documentName, $options);

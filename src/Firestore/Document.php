@@ -115,19 +115,16 @@ class Document
     /**
      * Replace all fields in a Firestore document.
      *
-     * @todo HOW do I replace all fields? This is only partially implemented.
-     *
-     * @param array $fields
+     * @param array $fields An array containing fields, where keys are the field
+     *        names, and values are field values. Nested arrays are allowed.
+     *        Note that unlike {@see Google\Cloud\Firestore\Document::update()},
+     *        field paths are NOT supported by this method.
      * @param array $options {
      *     Configuration Options
      *
-     *     @type array $precondition An optional precondition on the document. If
-     *           this is set and not met by the target document, the write will
-     *           fail. Allowed arguments are `(bool) $exists` and
-     *           {@see Google\Cloud\Core\Timestamp} `$updateTime`.
-     *           To completely disable precondition checks, provide an empty array
-     *           as the value of `$precondition`. **Defaults to**
-     *           `['exists' => true]` (i.e. Document must exist in Firestore).
+     *     @type bool $merge If true, unwritten fields will be preserved.
+     *           Otherwise, they will be overwritten (removed). **Defaults to**
+     *           `false`.
      * }
      * @return array
      * @throws \Google\Cloud\Core\Exception\ConflictException If the
@@ -136,14 +133,11 @@ class Document
     public function set(array $fields, array $options = [])
     {
         $options += [
-            'precondition' => ['exists' => true],
-            'updateMask' => []
+            'merge' => false
         ];
 
         $writer = new WriteBatch($this->valueMapper, $this->databaseFromName($this->name));
-        $writer->update($this->name, $fields, [
-            'currentDocument' => $this->pluck('precondition', $options)
-        ]);
+        $writer->set($this->name, $fields, $this->pluck('merge', $options));
 
         return $this->commitWrites($writer, $options);
     }
