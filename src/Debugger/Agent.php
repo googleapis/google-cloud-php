@@ -21,6 +21,7 @@ use Google\Cloud\Core\Batch\BatchRunner;
 use Google\Cloud\Core\Batch\BatchTrait;
 use Google\Cloud\Debugger\BreakpointStorage\BreakpointStorageInterface;
 use Google\Cloud\Debugger\BreakpointStorage\SysvBreakpointStorage;
+use Psr\Log\LoggerInterface;
 
 /**
  * This class is responsible for registering all debugger breakpoints and
@@ -59,6 +60,11 @@ class Agent
     private $sourceRoot;
 
     /**
+     * @var LoggerInterface
+     */
+    private $logger;
+
+    /**
      * Create a new Debugger Agent, registers all breakpoints for collection
      * or execution, and registers a shutdown function for reporting results.
      *
@@ -72,6 +78,8 @@ class Agent
      *            a generated debuggee instance.
      *      @type string $sourceRoot Path to the root of the source repository.
      *            **Defaults to** the directory of the calling file.
+     *      @type LoggerInterface $logger PSR-3 compliant logger used to write
+     *            logpoint records.
      * }
      */
     public function __construct(array $options = [])
@@ -88,6 +96,9 @@ class Agent
         self::$debuggee = isset($options['debuggee'])
             ? $options['debuggee']
             : $this->defaultDebuggee();
+        $this->logger = isset($options['logger'])
+            ? $options['logger']
+            : $this->defaultLogger();
 
         if (empty($breakpoints)) {
             return;
@@ -129,7 +140,6 @@ class Agent
                         $breakpoint->expressions(),
                         $sourceFile
                     );
-                    trigger_error('Logpoints not yet implemented', E_USER_ERROR);
                 default:
                     continue;
             }
@@ -144,14 +154,21 @@ class Agent
      */
     public function onExit()
     {
-        $list = stackdriver_debugger_list();
-        foreach ($list as $snapshot) {
+        $snapshots = stackdriver_debugger_list_snapshots();
+        foreach ($snapshots as $snapshot) {
             if (array_key_exists($snapshot['id'], $this->breakpoints)) {
                 $breakpoint = $this->breakpoints[$snapshot['id']];
                 $breakpoint->finalize();
                 $breakpoint->addEvaluatedExpressions($snapshot['evaluatedExpressions']);
                 $breakpoint->addStackFrames($snapshot['stackframes']);
                 $this->batchRunner->submitItem($this->identifier, $breakpoint);
+            }
+        }
+
+        if ($this->logger) {
+            $logpoints = stackdriver_debugger_list_logpoints();
+            foreach ($logpoint as $logpoint) {
+                $this->logger->log($logpoint['level'], $logpoint['message']);
             }
         }
     }
@@ -177,6 +194,11 @@ class Agent
             'uniquifier' => 'foo-bar2',
             'description' => 'Debugger for test'
         ]);
+    }
+
+    private function defaultLogger()
+    {
+        return null;
     }
 
     private function invalidateOpcache($breakpoint)
