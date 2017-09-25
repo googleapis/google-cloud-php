@@ -131,12 +131,14 @@ class Agent
                     );
                     break;
                 case Action::LOG:
+                    $sourceLocation = $breakpoint->location();
                     stackdriver_debugger_add_logpoint(
                         $sourceLocation->path(),
                         $sourceLocation->line(),
+                        $breakpoint->logLevel(),
+                        $breakpoint->logMessageFormat(),
                         $breakpoint->id(),
                         $breakpoint->condition(),
-                        $breakpoint->logMessageFormat(),
                         $breakpoint->expressions(),
                         $sourceFile
                     );
@@ -167,8 +169,10 @@ class Agent
 
         if ($this->logger) {
             $logpoints = stackdriver_debugger_list_logpoints();
-            foreach ($logpoint as $logpoint) {
-                $this->logger->log($logpoint['level'], $logpoint['message']);
+            foreach ($logpoints as $logpoint) {
+                $this->logger->log($logpoint['level'], $logpoint['message'], [
+                    'timestamp' => $logpoint['timestamp']
+                ]);
             }
         }
     }

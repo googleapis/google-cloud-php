@@ -124,6 +124,11 @@ class Breakpoint implements \JsonSerializable
         return isset($this->info['condition']) ? $this->info['condition'] : null;
     }
 
+    public function logLevel()
+    {
+        return isset($this->info['logLevel']) ? $this->info['logLevel'] : LogLevel::INFO;
+    }
+
     /**
      * Return the log message format for this breakpoint.
      *
