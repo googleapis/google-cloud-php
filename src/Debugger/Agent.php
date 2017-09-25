@@ -132,6 +132,7 @@ class Agent
                     break;
                 case Action::LOG:
                     $sourceLocation = $breakpoint->location();
+                    $this->invalidateOpcache($breakpoint);
                     stackdriver_debugger_add_logpoint(
                         $sourceLocation->path(),
                         $sourceLocation->line(),
