@@ -127,12 +127,9 @@ class StorageClient
             $requesterPays = $this->projectId;
         }
 
-        return new Bucket(
-            $this->connection,
-            $name,
-            ['requesterProjectId' => $requesterPays],
-            $this->projectId
-        );
+        return new Bucket($this->connection, $name, [
+            'requesterProjectId' => $requesterPays
+        ]);
     }
 
     /**
@@ -183,8 +180,7 @@ class StorageClient
                     return new Bucket(
                         $this->connection,
                         $bucket['name'],
-                        $bucket,
-                        $this->projectId
+                        $bucket
                     );
                 },
                 [$this->connection, 'listBuckets'],
@@ -271,8 +267,7 @@ class StorageClient
         return new Bucket(
             $this->connection,
             $name,
-            $response,
-            $this->projectId
+            $response
         );
     }
 

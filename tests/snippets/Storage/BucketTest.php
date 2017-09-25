@@ -49,11 +49,12 @@ class BucketTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(Rest::class);
+        $this->connection->projectId()
+            ->willReturn(self::PROJECT_ID);
         $this->bucket = \Google\Cloud\Dev\stub(Bucket::class, [
             $this->connection->reveal(),
             self::BUCKET,
-            [],
-            self::PROJECT_ID
+            []
         ]);
     }
 

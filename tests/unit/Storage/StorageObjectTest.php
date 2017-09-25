@@ -171,7 +171,7 @@ class StorageObjectTest extends \PHPUnit_Framework_TestCase
         $sourceObject = 'object.txt';
         $bucketConnection = $this->prophesize(Rest::class)->reveal();
         $destinationBucketName = 'bucket2';
-        $destinationBucket = new Bucket($bucketConnection, $destinationBucketName, [], 'projectId');
+        $destinationBucket = new Bucket($bucketConnection, $destinationBucketName, []);
         $destinationObject = 'object2.txt';
         $acl = 'private';
         $this->connection->copyObject([
@@ -260,7 +260,7 @@ class StorageObjectTest extends \PHPUnit_Framework_TestCase
         $sourceObject = 'object.txt';
         $bucketConnection = $this->prophesize(Rest::class)->reveal();
         $destinationBucketName = 'bucket2';
-        $destinationBucket = new Bucket($bucketConnection, $destinationBucketName, [], 'projectId');
+        $destinationBucket = new Bucket($bucketConnection, $destinationBucketName, []);
         $destinationObject = 'object2.txt';
         $acl = 'private';
         $rewriteToken = 'abc';

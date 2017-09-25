@@ -25,7 +25,7 @@ use Google\Cloud\Core\Upload\ResumableUploader;
 use Google\Cloud\PubSub\Topic;
 use Google\Cloud\Storage\Acl;
 use Google\Cloud\Storage\Bucket;
-use Google\Cloud\Storage\Connection\ConnectionInterface;
+use Google\Cloud\Storage\Connection\Rest;
 use Google\Cloud\Storage\Notification;
 use Google\Cloud\Storage\StorageObject;
 use Prophecy\Argument;
@@ -44,17 +44,21 @@ class BucketTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->connection = $this->prophesize(Rest::class);
         $this->resumableUploader = $this->prophesize(ResumableUploader::class);
     }
 
-    private function getBucket(array $data = [])
+    private function getBucket(array $data = [], $shouldExpectProjectIdCall = true)
     {
+        if ($shouldExpectProjectIdCall) {
+            $this->connection->projectId()
+                ->willReturn(self::PROJECT_ID);
+        }
+
         return new Bucket(
             $this->connection->reveal(),
             self::BUCKET_NAME,
-            $data,
-            self::PROJECT_ID
+            $data
         );
     }
 
@@ -201,7 +205,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
 
     public function testDelete()
     {
-        $bucket = $this->getBucket();
+        $bucket = $this->getBucket([], false);
 
         $this->assertNull($bucket->delete());
     }

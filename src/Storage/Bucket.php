@@ -95,7 +95,7 @@ class Bucket
      * @param array $info [optional] The bucket's metadata.
      * @param string $projectId The project ID.
      */
-    public function __construct(ConnectionInterface $connection, $name, array $info = [], $projectId)
+    public function __construct(ConnectionInterface $connection, $name, array $info = [])
     {
         $this->connection = $connection;
         $this->identity = [
@@ -103,7 +103,7 @@ class Bucket
             'userProject' => $this->pluck('requesterProjectId', $info, false)
         ];
         $this->info = $info;
-        $this->projectId = $projectId;
+        $this->projectId = $this->connection->projectId();
         $this->acl = new Acl($this->connection, 'bucketAccessControls', $this->identity);
         $this->defaultAcl = new Acl($this->connection, 'defaultObjectAccessControls', $this->identity);
     }
