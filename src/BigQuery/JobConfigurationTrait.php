@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2016 Google Inc. All Rights Reserved.
+ * Copyright 2017 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,58 +21,108 @@ use Google\Cloud\Core\ArrayTrait;
 use Ramsey\Uuid\Uuid;
 
 /**
- * A trait used to build out configuration for jobs.
+ * A utility trait implementing shared behavior between job configurations.
  */
 trait JobConfigurationTrait
 {
     use ArrayTrait;
 
     /**
-     * Builds a configuration for a job.
-     *
-     * @param string $name
-     * @param string $projectId
-     * @param array $config
-     * @param array $userDefinedOptions
-     * @return array
+     * @var string $jobIdPrefix
      */
-    public function buildJobConfig($name, $projectId, array $config, array $userDefinedOptions)
+    private $jobIdPrefix;
+
+    /**
+     * @var array $config
+     */
+    private $config;
+
+    /**
+     * Sets shared job configuration properties.
+     *
+     * @access private
+     * @param string $projectId The project's ID.
+     * @param array $config A set of configuration options for a job.
+     */
+    public function jobConfigurationProperties($projectId, array $config)
     {
-        $jobIdPrefix = $this->pluck('jobIdPrefix', $userDefinedOptions, false);
-
-        if (isset($userDefinedOptions['jobConfig'])) {
-            $config = $userDefinedOptions['jobConfig'] + $config;
-        }
-
-        unset($userDefinedOptions['jobConfig']);
-
-        return [
+        $this->config = $config + [
             'projectId' => $projectId,
             'jobReference' => [
-                'projectId' => $projectId,
-                'jobId' => $this->generateJobId($jobIdPrefix)
-            ],
-            'configuration' => [
-                $name => $config
+                'jobId' => $this->generateJobId(),
+                'projectId' => $projectId
             ]
-        ] + $userDefinedOptions;
+        ];
     }
 
     /**
-     * Generate a Job ID with an optional user-defined prefix.
+     * Specifies the default dataset to use for unqualified table names in the
+     * query.
      *
-     * @param string $jobIdPrefix [optional] If given, the returned job ID will
-     *        be of format `{$jobIdPrefix-}{jobId}`. **Defaults to** `null`.
-     * @return string
+     * @param bool $dryRun
+     * @return JobConfigInterface
      */
-    protected function generateJobId($jobIdPrefix = null)
+    public function dryRun($dryRun)
     {
-        $jobId = '';
+        $this->config['configuration']['dryRun'] = $dryRun;
 
-        if ($jobIdPrefix) {
-            $jobId = $jobIdPrefix . '-';
+        return $this;
+    }
+
+    /**
+     * Sets a prefix for the job ID.
+     *
+     * @param string $jobIdPrefix If provided, the job ID will be of format
+     *        `{$jobIdPrefix-}{jobId}`.
+     * @return JobConfigInterface
+     */
+    public function jobIdPrefix($jobIdPrefix)
+    {
+        $this->jobIdPrefix = $jobIdPrefix;
+
+        return $this;
+    }
+
+    /**
+     * Specifies the default dataset to use for unqualified table names in the
+     * query.
+     *
+     * @param array $labels
+     * @return JobConfigInterface
+     */
+    public function labels(array $labels)
+    {
+        $this->config['configuration']['labels'] = $labels;
+
+        return $this;
+    }
+
+    /**
+     * Returns the job config as an array.
+     *
+     * @access private
+     * @return array
+     */
+    public function toArray()
+    {
+        if ($this->jobIdPrefix) {
+            $this->config['jobReference']['jobId'] = sprintf(
+                '%s-%s',
+                $this->jobIdPrefix,
+                $this->config['jobReference']['jobId']
+            );
         }
 
-        return $jobId . Uuid::uuid4();
+        return $this->config;
+    }
+
+    /**
+     * Generate a Job ID.
+     *
+     * @return string
+     */
+    protected function generateJobId()
+    {
+        return Uuid::uuid4();
     }
 }

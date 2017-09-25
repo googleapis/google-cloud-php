@@ -18,6 +18,7 @@
 namespace Google\Cloud\BigQuery;
 
 use Google\Cloud\BigQuery\Connection\ConnectionInterface;
+use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\ConcurrencyControlTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Iterator\ItemIterator;
@@ -32,8 +33,8 @@ use Psr\Http\Message\StreamInterface;
  */
 class Table
 {
+    use ArrayTrait;
     use ConcurrencyControlTrait;
-    use JobConfigurationTrait;
 
     /**
      * @var ConnectionInterface Represents a connection to BigQuery.
@@ -218,47 +219,64 @@ class Table
     }
 
     /**
-     * Runs a copy job which copies this table to a specified destination table.
+     * Starts a job in an synchronous fashion, waiting for the job to complete
+     * before returning.
      *
      * Example:
      * ```
-     * $sourceTable = $bigQuery->dataset('myDataset')->table('mySourceTable');
-     * $destinationTable = $bigQuery->dataset('myDataset')->table('myDestinationTable');
-     *
-     * $job = $sourceTable->copy($destinationTable);
+     * $job = $table->runJob($jobConfig);
+     * echo $job->isComplete(); // true
      * ```
      *
      * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs Jobs insert API Documentation.
      *
-     * @param Table $destination The destination table.
+     * @param JobConfigurationInterface $config The job configuration.
      * @param array $options [optional] {
      *     Configuration options.
      *
-     *     @type array $jobConfig Configuration settings for a copy job are
-     *           outlined in the [API Docs for `configuration.copy`](https://goo.gl/m8dro9).
-     *           If not provided default settings will be used.
-     *     @type string $jobIdPrefix If given, the returned job ID will be of
-     *           format `{$jobIdPrefix-}{jobId}`. **Defaults to** `null`.
+     *     @type int $maxRetries The number of times to retry, checking if the
+     *           job has completed. **Defaults to** `100`.
      * }
      * @return Job
      */
-    public function copy(Table $destination, array $options = [])
+    public function runJob(JobConfigurationInterface $config, array $options = [])
     {
-        $config = $this->buildJobConfig(
-            'copy',
-            $this->identity['projectId'],
-            [
-                'destinationTable' => $destination->identity(),
-                'sourceTable' => $this->identity
-            ],
-            $options
-        );
+        $maxRetries = $this->pluck('maxRetries', $options, false);
+        $job = $this->startJob($config, $options);
+        $job->waitUntilComplete(['maxRetries' => $maxRetries]);
 
-        $response = $this->connection->insertJob($config);
+        return $job;
+    }
+
+    /**
+     * Starts a job in an asynchronous fashion.
+     *
+     * Example:
+     * ```
+     * $job = $table->startJob($jobConfig);
+     * ```
+     *
+     * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs Jobs insert API Documentation.
+     *
+     * @param JobConfigurationInterface $config The job configuration.
+     * @param array $options [optional] Configuration options.
+     * @return Job
+     */
+    public function startJob(JobConfigurationInterface $config, array $options = [])
+    {
+        $response = null;
+        $loadJob = $config instanceof LoadJobConfiguration;
+        $config = $config->toArray() + $options;
+
+        if ($loadJob && isset($config['data'])) {
+            $response = $this->connection->insertJobUpload($config)->upload();
+        } else {
+            $response = $this->connection->insertJob($config);
+        }
 
         return new Job(
             $this->connection,
-            $response['jobReference']['jobId'],
+            $config['jobReference']['jobId'],
             $this->identity['projectId'],
             $this->mapper,
             $response
@@ -266,13 +284,47 @@ class Table
     }
 
     /**
-     * Runs an extract job which exports the contents of a table to Cloud
-     * Storage.
+     * Returns a job configuration to be passed to either
+     * {@see Google\Cloud\BigQuery\Table::runJob()} or
+     * {@see Google\Cloud\BigQuery\Table::startJob()}. A
+     * configuration can be built using fluent setters or by providing a full
+     * set of options at once.
+     *
+     * Example:
+     * ```
+     * $sourceTable = $bigQuery->dataset('myDataset')
+     *     ->table('mySourceTable');
+     * $destinationTable = $bigQuery->dataset('myDataset')
+     *     ->table('myDestinationTable');
+     *
+     * $copyJobConfig = $sourceTable->copy($destinationTable);
+     * ```
+     *
+     * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs Jobs insert API Documentation.
+     *
+     * @param Table $destination The destination table.
+     * @param array $options [optional] Please see the
+     *        [upstream API documentation for Job configuration]
+     *        (https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs#configuration)
+     *        for the available options.
+     * @return CopyJobConfiguration
+     */
+    public function copy(Table $destination, array $options = [])
+    {
+        //
+    }
+
+    /**
+     * Returns a job configuration to be passed to either
+     * {@see Google\Cloud\BigQuery\Table::runJob()} or
+     * {@see Google\Cloud\BigQuery\Table::startJob()}. A
+     * configuration can be built using fluent setters or by providing a full
+     * set of options at once.
      *
      * Example:
      * ```
      * $destinationObject = $storage->bucket('myBucket')->object('tableOutput');
-     * $job = $table->export($destinationObject);
+     * $exportJobConfig = $table->export($destinationObject);
      * ```
      *
      * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs Jobs insert API Documentation.
@@ -281,100 +333,63 @@ class Table
      *        a {@see Google\Cloud\Storage\StorageObject} or a URI pointing to
      *        a Google Cloud Storage object in the format of
      *        `gs://{bucket-name}/{object-name}`.
-     * @param array $options [optional] {
-     *     Configuration options.
-     *
-     *     @type array $jobConfig Configuration settings for an extract job are
-     *           outlined in the [API Docs for `configuration.extract`](https://goo.gl/SQ9XAE).
-     *           If not provided default settings will be used.
-     *     @type string $jobIdPrefix If given, the returned job ID will be of
-     *           format `{$jobIdPrefix-}{jobId}`. **Defaults to** `null`.
-     * }
-     * @return Job
+     * @param array $options [optional] Please see the
+     *        [upstream API documentation for Job configuration]
+     *        (https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs#configuration)
+     *        for the available options.
+     * @return ExportJobConfiguration
      */
-    public function export($destination, array $options = [])
+    public function extract($destination, array $options = [])
     {
         if ($destination instanceof StorageObject) {
             $destination = $destination->gcsUri();
         }
 
-        $config = $this->buildJobConfig(
-            'extract',
+        return (new ExtractJobConfiguration(
             $this->identity['projectId'],
-            [
-                'sourceTable' => $this->identity,
-                'destinationUris' => [$destination]
-            ],
             $options
-        );
-
-        $response = $this->connection->insertJob($config);
-
-        return new Job(
-            $this->connection,
-            $response['jobReference']['jobId'],
-            $this->identity['projectId'],
-            $this->mapper,
-            $response
-        );
+        ))
+            ->destinationUris([$destination])
+            ->sourceTable($this->identity);
     }
 
     /**
-     * Runs a load job which loads the provided data into the table.
+     * Returns a job configuration to be passed to either
+     * {@see Google\Cloud\BigQuery\Table::runJob()} or
+     * {@see Google\Cloud\BigQuery\Table::startJob()}. A
+     * configuration can be built using fluent setters or by providing a full
+     * set of options at once.
      *
      * Example:
      * ```
-     * $job = $table->load(fopen('/path/to/my/data.csv', 'r'));
+     * $loadJobConfig = $table->load(fopen('/path/to/my/data.csv', 'r'));
      * ```
      *
      * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs Jobs insert API Documentation.
      *
      * @param string|resource|StreamInterface $data The data to load.
-     * @param array $options [optional] {
-     *     Configuration options.
-     *
-     *     @type array $jobConfig Configuration settings for a load job are
-     *           outlined in the [API Docs for `configuration.load`](https://goo.gl/j6jyHv).
-     *           If not provided default settings will be used.
-     *     @type string $jobIdPrefix If given, the returned job ID will be of
-     *           format `{$jobIdPrefix-}{jobId}`. **Defaults to** `null`.
-     * }
-     * @return Job
+     * @param array $options [optional] Please see the
+     *        [upstream API documentation for Job configuration]
+     *        (https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs#configuration)
+     *        for the available options.
+     * @return LoadJobConfiguration
      */
     public function load($data, array $options = [])
     {
-        $response = null;
-        $config = $this->buildJobConfig(
-            'load',
-            $this->identity['projectId'],
-            ['destinationTable' => $this->identity],
-            $options
-        );
-
-        if ($data) {
-            $config['data'] = $data;
-            $response = $this->connection->insertJobUpload($config)->upload();
-        } else {
-            $response = $this->connection->insertJob($config);
-        }
-
-        return new Job(
-            $this->connection,
-            $response['jobReference']['jobId'],
-            $this->identity['projectId'],
-            $this->mapper,
-            $response
-        );
+        //
     }
 
     /**
-     * Runs a load job which loads data from a file in a Storage bucket into the
-     * table.
+     * Returns a job configuration to be passed to either
+     * {@see Google\Cloud\BigQuery\Table::runJob()} or
+     * {@see Google\Cloud\BigQuery\Table::startJob()}. A
+     * configuration can be built using fluent setters or by providing a full
+     * set of options at once.
      *
      * Example:
      * ```
      * $object = $storage->bucket('myBucket')->object('important-data.csv');
-     * $job = $table->load($object);
+     * $loadJobConfig = $table->loadFromStorage($object);
      * ```
      *
      * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs Jobs insert API Documentation.
@@ -383,24 +398,15 @@ class Table
      *        a {@see Google\Cloud\Storage\StorageObject} or a URI pointing to a
      *        Google Cloud Storage object in the format of
      *        `gs://{bucket-name}/{object-name}`.
-     * @param array $options [optional] {
-     *     Configuration options.
-     *
-     *     @type array $jobConfig Configuration settings for a load job are
-     *           outlined in the [API Docs for `configuration.load`](https://goo.gl/j6jyHv).
-     *           If not provided default settings will be used.
-     * }
-     * @return Job
+     * @param array $options [optional] Please see the
+     *        [upstream API documentation for Job configuration]
+     *        (https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs#configuration)
+     *        for the available options.
+     * @return LoadJobConfiguration
      */
     public function loadFromStorage($object, array $options = [])
     {
-        if ($object instanceof StorageObject) {
-            $object = $object->gcsUri();
-        }
-
-        $options['jobConfig']['sourceUris'] = [$object];
-
-        return $this->load(null, $options);
+        //
     }
 
     /**

@@ -22,7 +22,6 @@ use Google\Cloud\BigQuery\Connection\Rest;
 use Google\Cloud\BigQuery\Exception\JobException;
 use Google\Cloud\BigQuery\Job;
 use Google\Cloud\Core\ClientTrait;
-use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
@@ -44,7 +43,6 @@ use Psr\Http\Message\StreamInterface;
 class BigQueryClient
 {
     use ClientTrait;
-    use JobConfigurationTrait;
 
     const VERSION = '0.2.2';
 
@@ -57,7 +55,7 @@ class BigQueryClient
     protected $connection;
 
     /**
-     * @var ValueMapper $mapper Maps values between PHP and BigQuery.
+     * @var ValueMapper Maps values between PHP and BigQuery.
      */
     private $mapper;
 
@@ -106,6 +104,64 @@ class BigQueryClient
     }
 
     /**
+     * Returns a job configuration to be passed to either
+     * {@see Google\Cloud\BigQuery\BigQueryClient::runQuery()} or
+     * {@see Google\Cloud\BigQuery\BigQueryClient::startQuery()}. A
+     * configuration can be built using fluent setters or by providing a full
+     * set of options at once.
+     *
+     * Unless otherwise specified, all configuration options will default based
+     * on the
+     * [Jobs configuration API documentation](https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs#configuration)
+     * except for `configuration.query.useLegacy`, which defaults to `false` in
+     * this client.
+     *
+     * Example:
+     * ```
+     * $queryJobConfig = $bigQuery->query(
+     *     'SELECT commit FROM `bigquery-public-data.github_repos.commits` LIMIT 100'
+     * );
+     * ```
+     *
+     * ```
+     * // Set create disposition using fluent setters.
+     * $queryJobConfig = $bigQuery->query(
+     *     'SELECT commit FROM `bigquery-public-data.github_repos.commits` LIMIT 100'
+     * )->createDisposition(QueryJobConfiguration::CREATE_DISPOSITION_CREATE_NEVER);
+     * ```
+     *
+     * ```
+     * // This is equivalent to the above example, using array configuration
+     * // instead of fluent setters.
+     * $queryJobConfig = $bigQuery->query(
+     *     'SELECT commit FROM `bigquery-public-data.github_repos.commits` LIMIT 100',
+     *     [
+     *         'configuration' => [
+     *             'query' => [
+     *                 'createDisposition' => QueryJobConfiguration::CREATE_DISPOSITION_CREATE_NEVER
+     *             ]
+     *         ]
+     *     ]
+     * );
+     * ```
+     *
+     * @param string $query A BigQuery SQL query.
+     * @param array $options [optional] Please see the
+     *        [API documentation for Job configuration]
+     *        (https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs#configuration)
+     *        for the available options.
+     * @return QueryJobConfiguration
+     */
+    public function query($query, array $options = [])
+    {
+        return (new QueryJobConfiguration(
+            $this->mapper,
+            $this->projectId,
+            $options
+        ))->query($query);
+    }
+
+    /**
      * Runs a BigQuery SQL query in a synchronous fashion. Rows are returned
      * immediately as long as the query completes within a specified timeout. In
      * the case that the query does not complete in the specified timeout, you
@@ -137,7 +193,10 @@ class BigQueryClient
      *
      * Example:
      * ```
-     * $queryResults = $bigQuery->runQuery('SELECT commit FROM `bigquery-public-data.github_repos.commits` LIMIT 100');
+     * $queryJobConfig = $bigQuery->query(
+     *     'SELECT commit FROM `bigquery-public-data.github_repos.commits` LIMIT 100'
+     * );
+     * $queryResults = $bigQuery->runQuery($queryJobConfig);
      *
      * foreach ($queryResults as $row) {
      *     echo $row['commit'];
@@ -148,12 +207,12 @@ class BigQueryClient
      * // Construct a query utilizing named parameters.
      * $query = 'SELECT commit FROM `bigquery-public-data.github_repos.commits`' .
      *          'WHERE author.date < @date AND message = @message LIMIT 100';
-     * $queryResults = $bigQuery->runQuery($query, [
-     *     'parameters' => [
+     * $queryJobConfig = $bigQuery->query($query)
+     *     ->parameters([
      *         'date' => $bigQuery->timestamp(new \DateTime('1980-01-01 12:15:00Z')),
      *         'message' => 'A commit message.'
-     *     ]
-     * ]);
+     *     ]);
+     * $queryResults = $bigQuery->runQuery($queryJobConfig);
      *
      * foreach ($queryResults as $row) {
      *     echo $row['commit'];
@@ -163,9 +222,9 @@ class BigQueryClient
      * ```
      * // Construct a query utilizing positional parameters.
      * $query = 'SELECT commit FROM `bigquery-public-data.github_repos.commits` WHERE message = ? LIMIT 100';
-     * $queryResults = $bigQuery->runQuery($query, [
-     *     'parameters' => ['A commit message.']
-     * ]);
+     * $queryJobConfig = $bigQuery->query($query)
+     *     ->parameters(['A commit message.']);
+     * $queryResults = $bigQuery->runQuery($queryJobConfig);
      *
      * foreach ($queryResults as $row) {
      *     echo $row['commit'];
@@ -174,7 +233,7 @@ class BigQueryClient
      *
      * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs/query Query API documentation.
      *
-     * @param string $query A BigQuery SQL query.
+     * @param QueryJobConfiguration $query A BigQuery SQL query.
      * @param array $options [optional] {
      *     Configuration options.
      *
@@ -187,26 +246,13 @@ class BigQueryClient
      *           milliseconds. **Defaults to** `10000` milliseconds (10 seconds).
      *     @type int $maxRetries The number of times to retry, checking if the
      *           query has completed. **Defaults to** `100`.
-     *     @type array $parameters Only available for standard SQL queries.
-     *           When providing a non-associative array positional parameters
-     *           (`?`) will be used. When providing an associative array
-     *           named parameters will be used (`@name`).
-     *     @type array $jobConfig Configuration settings for a query job are
-     *           outlined in the [API Docs for `configuration.query`](https://goo.gl/PuRa3I).
-     *           If not provided default settings will be used, with the exception
-     *           of `configuration.query.useLegacySql`, which defaults to `false`
-     *           in this client.
      * }
      * @return QueryResults
      * @throws JobException If the maximum number of retries while waiting for
      *         query completion has been exceeded.
      */
-    public function runQuery($query, array $options = [])
+    public function runQuery(QueryJobConfiguration $query, array $options = [])
     {
-        $jobOptions = $this->pluckArray([
-            'parameters',
-            'jobConfig'
-        ], $options);
         $queryResultsOptions = $this->pluckArray([
             'maxResults',
             'startIndex',
@@ -214,9 +260,9 @@ class BigQueryClient
             'maxRetries'
         ], $options);
 
-        return $this->runQueryAsJob(
+        return $this->startQuery(
             $query,
-            $jobOptions + $options
+            $options
         )->queryResults($queryResultsOptions + $options);
     }
 
@@ -230,7 +276,10 @@ class BigQueryClient
      *
      * Example:
      * ```
-     * $job = $bigQuery->runQueryAsJob('SELECT commit FROM `bigquery-public-data.github_repos.commits` LIMIT 100');
+     * $queryJobConfig = $bigQuery->query(
+     *     'SELECT commit FROM `bigquery-public-data.github_repos.commits` LIMIT 100'
+     * );
+     * $job = $bigQuery->startQuery($queryJobConfig);
      * $queryResults = $job->queryResults();
      *
      * foreach ($queryResults as $row) {
@@ -240,52 +289,18 @@ class BigQueryClient
      *
      * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs/insert Jobs insert API documentation.
      *
-     * @param string $query A BigQuery SQL query.
-     * @param array $options [optional] {
-     *     Configuration options.
-     *
-     *     @type array $parameters Only available for standard SQL queries.
-     *           When providing a non-associative array positional parameters
-     *           (`?`) will be used. When providing an associative array
-     *           named parameters will be used (`@name`).
-     *     @type array $jobConfig Configuration settings for a query job are
-     *           outlined in the [API Docs for `configuration.query`](https://goo.gl/PuRa3I).
-     *           If not provided default settings will be used, with the exception
-     *           of `configuration.query.useLegacySql`, which defaults to `false`
-     *           in this client.
-     *     @type string $jobIdPrefix If given, the returned job ID will be of
-     *           format `{$jobIdPrefix-}{jobId}`. **Defaults to** `null`.
-     * }
+     * @param QueryJobConfiguration $query A BigQuery SQL query.
+     * @param array $options [optional] Configuration options.
      * @return Job
      */
-    public function runQueryAsJob($query, array $options = [])
+    public function startQuery(QueryJobConfiguration $query, array $options = [])
     {
-        $options += [
-            'jobConfig' => []
-        ];
-
-        if (isset($options['parameters'])) {
-            $options['jobConfig'] += $this->formatQueryParameters($options['parameters']);
-
-            unset($options['parameters']);
-        }
-
-        $options['jobConfig'] += [
-            'useLegacySql' => false
-        ];
-
-        $config = $this->buildJobConfig(
-            'query',
-            $this->projectId,
-            ['query' => $query],
-            $options
-        );
-
-        $response = $this->connection->insertJob($config);
+        $config = $query->toArray();
+        $response = $this->connection->insertJob($config + $options);
 
         return new Job(
             $this->connection,
-            $response['jobReference']['jobId'],
+            $config['jobReference']['jobId'],
             $this->projectId,
             $this->mapper,
             $response
@@ -302,7 +317,7 @@ class BigQueryClient
      * $job = $bigQuery->job('myJobId');
      * ```
      *
-     * @param string $id The id of the job to request.
+     * @param string $id The id of the already run or running job to request.
      * @return Job
      */
     public function job($id)
@@ -564,31 +579,5 @@ class BigQueryClient
     public function timestamp(\DateTimeInterface $value)
     {
         return new Timestamp($value);
-    }
-
-    /**
-     * Formats query parameters for the API.
-     *
-     * @param array $parameters The parameters to format.
-     * @return array
-     */
-    private function formatQueryParameters(array $parameters)
-    {
-        $options = [
-            'parameterMode' => $this->isAssoc($parameters) ? 'named' : 'positional',
-            'useLegacySql' => false
-        ];
-
-        foreach ($parameters as $name => $value) {
-            $param = $this->mapper->toParameter($value);
-
-            if ($options['parameterMode'] === 'named') {
-                $param += ['name' => $name];
-            }
-
-            $options['queryParameters'][] = $param;
-        }
-
-        return $options;
     }
 }
