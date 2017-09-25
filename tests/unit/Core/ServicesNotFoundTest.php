@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\System\Core;
+namespace Google\Cloud\Tests\Unit\Core;
 
 use Google\Cloud\Core\ServiceBuilder;
 use Composer\Autoload\ClassLoader;
@@ -66,6 +66,8 @@ class ServicesNotFoundTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @runInSeparateProcess
+     * @preserveGlobalState disabled
      * @dataProvider serviceBuilderMethods
      */
     public function testServicesNotFound($method)
