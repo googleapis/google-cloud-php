@@ -15,32 +15,37 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\System\Core;
+namespace Google\Cloud\Tests\Unit\Core;
 
 use Google\Cloud\Core\ServiceBuilder;
+use Composer\Autoload\ClassLoader;
 
 /**
  * @group core
  */
 class ServicesNotFoundTest extends \PHPUnit_Framework_TestCase
 {
-    private static $autoloaders;
+    private static $previousAutoloadFunc;
+    private static $newAutoloadFunc;
     private static $cloud;
 
     public static function setUpBeforeClass()
     {
         self::$cloud = new ServiceBuilder;
-        self::$autoloaders = spl_autoload_functions();
-        foreach (self::$autoloaders as $function) {
-            spl_autoload_unregister($function);
+        foreach (spl_autoload_functions() as $function) {
+            if ($function[0] instanceof ClassLoader) {
+                $newAutoloader = clone $function[0];
+                $newAutoloader->setPsr4('Google\Cloud\\', '/tmp');
+                spl_autoload_register(self::$newAutoloadFunc = [$newAutoloader, 'loadClass']);
+                spl_autoload_unregister(self::$previousAutoloadFunc = $function);
+            }
         }
     }
 
     public static function tearDownAfterClass()
     {
-        foreach (self::$autoloaders as $function) {
-            spl_autoload_register($function);
-        }
+        spl_autoload_register(self::$previousAutoloadFunc);
+        spl_autoload_unregister(self::$newAutoloadFunc);
     }
 
     public function serviceBuilderMethods()
@@ -61,11 +66,13 @@ class ServicesNotFoundTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @runInSeparateProcess
+     * @preserveGlobalState disabled
      * @dataProvider serviceBuilderMethods
      */
     public function testServicesNotFound($method)
     {
-        $this->setExpectedException('Exception', sprintf(
+        $this->setExpectedException(\Exception::class, sprintf(
             'The google/cloud-%s package is missing and must be installed.',
             strtolower($method)
         ));
