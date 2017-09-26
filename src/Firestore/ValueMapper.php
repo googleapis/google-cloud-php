@@ -137,24 +137,20 @@ class ValueMapper
 
         foreach ($fieldPaths as $fieldPath => $fieldValue) {
             $keys = explode('.', $fieldPath);
+            $num = count($keys);
 
-            $res = null;
-            if (count($keys) > 1) {
-                foreach ($keys as $index => $key) {
-                    if ($index === count($keys) - 1) {
-                        $res = $this->encodeValue($fieldValue);
-                    }
+            $val = $fieldValue;
+            foreach (array_reverse($keys) as $index => $key) {
+
+                if ($num >= $index+1) {
+                    $val = [$key => $val];
                 }
             }
 
-            $output[$keys[0]] = $fieldValue;
+            $output = array_merge_recursive($output, $val);
         }
 
-        print_r($output);
-
-        exit;
-
-        return $output;
+        return $this->encodeValues($output);
     }
 
     private function decodeValue($type, $value)

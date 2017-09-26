@@ -27,19 +27,9 @@ class Transaction
     use DebugInfoTrait;
 
     /**
-     * @var ConnectionInterface
-     */
-    private $connection;
-
-    /**
      * @var ValueMapper
      */
     private $valueMapper;
-
-    /**
-     * @var string
-     */
-    private $transactionId;
 
     /**
      * @var WriteBatch
@@ -53,10 +43,8 @@ class Transaction
 
     public function __construct(ConnectionInterface $connection, ValueMapper $valueMapper, $database, $transactionId)
     {
-        $this->connection = $connection;
         $this->valueMapper = $valueMapper;
-        $this->transactionId = $transactionId;
-        $this->writer = new WriteBatch($this->valueMapper, $database);
+        $this->writer = new WriteBatch($connection, $valueMapper, $database, $transactionId);
     }
 
     public function snapshot(Document $document, array $options = [])

@@ -87,9 +87,7 @@ class WriteBatch
         ];
 
         $this->writes[] = $this->createDatabaseWrite(self::TYPE_UPDATE, $documentName, [
-            'fields' => $this->valueMapper->decodeFieldPaths(
-                $this->valueMapper->encodeValues($fields)
-            ),
+            'fields' => $this->valueMapper->decodeFieldPaths($fields),
             'updateMask' => ($options['updateMask'] !== null)
                 ? $options['updateMask']
                 : $this->valueMapper->encodeFieldPaths($fields)
@@ -142,7 +140,6 @@ class WriteBatch
      */
     public function commit(array $options = [])
     {
-        print_r($this->writes);exit;
         $response = $this->connection->commit(array_filter([
             'database' => $this->database,
             'writes' => $this->writes,
