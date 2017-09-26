@@ -29,7 +29,7 @@ class DocumentSnapshot implements \ArrayAccess
     use PathTrait;
 
     /**
-     * @var Document
+     * @var DocumentReference
      */
     private $reference;
 
@@ -49,12 +49,12 @@ class DocumentSnapshot implements \ArrayAccess
     private $exists;
 
     /**
-     * @param Document $reference The document which created the snapshot.
+     * @param DocumentReference $reference The document which created the snapshot.
      * @param array $info Document information, such as create and update timestamps.
      * @param array $fields Document field data.
      * @param bool $exists Whether the document exists in the Firestore database.
      */
-    public function __construct(Document $reference, array $info, array $fields, $exists)
+    public function __construct(DocumentReference $reference, array $info, array $fields, $exists)
     {
         $this->reference = $reference;
         $this->info = $info;
@@ -65,7 +65,7 @@ class DocumentSnapshot implements \ArrayAccess
     /**
      * Get the document which created the snapshot.
      *
-     * @return Document
+     * @return DocumentReference
      */
     public function reference()
     {

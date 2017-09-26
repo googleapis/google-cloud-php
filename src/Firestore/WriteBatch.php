@@ -17,9 +17,18 @@
 
 namespace Google\Cloud\Firestore;
 
+use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 
+/**
+ * Enqueue and write multiple mutations to Cloud Firestore
+ *
+ * This class may be used directly for multiple non-transactional writes. To
+ * run changes in a transaction (with automatic retry/rollback on failure),
+ * use {@see Google\Cloud\Firestore\Transaction}. Single modifications can be
+ * made using the various methods on {@see Google\Cloud\Firestore\DocumentReference}.
+ */
 class WriteBatch
 {
     use ArrayTrait;
@@ -74,6 +83,35 @@ class WriteBatch
         $this->transactionId = $transactionId;
     }
 
+    /**
+     * Enqueue an update.
+     *
+     * Merges provided data with data stored in Firestore.
+     *
+     * By default, this method will fail if the document does not exist.
+     *
+     * To remove a field, set the field value to `FirestoreClient::DELETE_FIELD`.
+     *
+     * @codingStandardsIgnoreStart
+     * @param string $documentName The document to update.
+     * @param array $fields An array containing field names paired with their value.
+     *        Accepts a nested array, or a simple array of field paths.
+     * @param array $options {
+     *     Configuration options
+     *
+     *     @type array $precondition An optional precondition on the document. If
+     *           this is set and not met by the target document, the write will
+     *           fail. Allowed arguments are `(bool) $exists` and
+     *           {@see Google\Cloud\Core\Timestamp} `$updateTime`.
+     *           To completely disable precondition checks, provide an empty array
+     *           as the value of `$precondition`. **Defaults to**
+     *           `['exists' => true]` (i.e. Document must exist in Firestore).
+     *           For more information, refer to the [Precondition](https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.Precondition)
+     *           documentation.
+     * }
+     * @return WriteBatch
+     * @codingStandardsIgnoreEnd
+     */
     public function update($documentName, array $fields, array $options = [])
     {
         if ($this->hasPreviousTransform) {
@@ -83,17 +121,38 @@ class WriteBatch
         }
 
         $options += [
-            'updateMask' => null
+            'precondition' => ['exists' => true]
         ];
 
         $this->writes[] = $this->createDatabaseWrite(self::TYPE_UPDATE, $documentName, [
             'fields' => $this->valueMapper->decodeFieldPaths($fields),
-            'updateMask' => ($options['updateMask'] !== null)
-                ? $options['updateMask']
-                : $this->valueMapper->encodeFieldPaths($fields)
+            'updateMask' => $this->valueMapper->encodeFieldPaths($fields)
         ] + $options);
+
+        return $this;
     }
 
+    /**
+     * Enqueue a set mutation.
+     *
+     * Replaces all fields in a Firestore document.
+     *
+     * @codingStandardsIgnoreStart
+     * @param string $documentName The document to update.
+     * @param array $fields An array containing fields, where keys are the field
+     *        names, and values are field values. Nested arrays are allowed.
+     *        Note that unlike {@see Google\Cloud\Firestore\WriteBatch::update()},
+     *        field paths are NOT supported by this method.
+     * @param array $options {
+     *     Configuration Options
+     *
+     *     @type bool $merge If true, unwritten fields will be preserved.
+     *           Otherwise, they will be overwritten (removed). **Defaults to**
+     *           `false`.
+     * }
+     * @return WriteBatch
+     * @codingStandardsIgnoreEnd
+     */
     public function set($documentName, array $fields, $merge = false)
     {
         if ($this->hasPreviousTransform) {
@@ -110,11 +169,57 @@ class WriteBatch
         $this->writes[] = $this->createDatabaseWrite(self::TYPE_UPDATE, $documentName, $write);
     }
 
+    /**
+     * Delete a Firestore document.
+     *
+     * @codingStandardsIgnoreStart
+     * @param string $documentName The document to delete.
+     * @param array $options {
+     *     Configuration Options
+     *
+     *     @type array $precondition An optional precondition on the document. If
+     *           this is set and not met by the target document, the write will
+     *           fail. Allowed arguments are `(bool) $exists` and
+     *           {@see Google\Cloud\Core\Timestamp} `$updateTime`.
+     *           To completely disable precondition checks, provide an empty array
+     *           as the value of `$precondition`. **Defaults to**
+     *           `['exists' => true]` (i.e. Document must exist in Firestore).
+     *           For more information, refer to the [Precondition](https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.Precondition)
+     *           documentation.
+     * }
+     * @return WriteBatch
+     * @codingStandardsIgnoreEnd
+     */
     public function delete($documentName, array $options = [])
     {
+        $options += [
+            'precondition' => ['exists' => true]
+        ];
+
         $this->writes[] = $this->createDatabaseWrite(self::TYPE_DELETE, $documentName, $options);
     }
 
+    /**
+     * Verify a precondition without performing a write.
+     *
+     * @codingStandardsIgnoreStart
+     * @param string $documentName The document to delete.
+     * @param array $options {
+     *     Configuration Options
+     *
+     *     @type array $precondition An optional precondition on the document. If
+     *           this is set and not met by the target document, the write will
+     *           fail. Allowed arguments are `(bool) $exists` and
+     *           {@see Google\Cloud\Core\Timestamp} `$updateTime`.
+     *           To completely disable precondition checks, provide an empty array
+     *           as the value of `$precondition`. **Defaults to**
+     *           `['exists' => true]` (i.e. Document must exist in Firestore).
+     *           For more information, refer to the [Precondition](https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.Precondition)
+     *           documentation.
+     * }
+     * @return WriteBatch
+     * @codingStandardsIgnoreEnd
+     */
     public function verify($documentName, array $options = [])
     {
         $this->writes[] = $this->createDatabaseWrite(self::TYPE_VERIFY, $documentName, $options);
@@ -125,11 +230,17 @@ class WriteBatch
         $this->writes[] = $this->createDatabaseWrite(self::TYPE_TRANSFORM, $documentName, [
             'fieldTransforms' => $transforms
         ] + $options);
+
         $this->hasPreviousTransform = true;
     }
 
     /**
      * Commit writes to the database.
+     *
+     * Example:
+     * ```
+     * $writer->commit();
+     * ```
      *
      * @codingStandardsIgnoreStart
      * @see https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.Firestore.Commit Commit
@@ -164,6 +275,8 @@ class WriteBatch
     /**
      * Rollback a transaction.
      *
+     * If the class was created without a Transaction ID, this method will fail.
+     *
      * Example:
      * ```
      * $batch->rollback();
@@ -171,6 +284,7 @@ class WriteBatch
      *
      * @param array $options Configuration Options
      * @return void
+     * @throws \BadMethodCallException
      */
     public function rollback(array $options = [])
     {
@@ -201,34 +315,79 @@ class WriteBatch
     {
         return array_filter([
             'updateMask' => $this->pluck('updateMask', $options, false),
-            'currentDocument' => $this->pluck('currentDocument', $options, false),
+            'currentDocument' => $this->validatePrecondition($options),
         ]) + $this->createDatabaseWriteOperation($type, $name, $options);
     }
 
+    /**
+     * Validates a document precondition, if set.
+     *
+     * @codingStandardsIgnoreStart
+     * @param array $options Configuration Options
+     * @return array [Precondition](https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.Precondition)
+     * @throws \InvalidArgumentException If the precondition is invalid.
+     * @codingStandardsIgnoreEnd
+     */
+    private function validatePrecondition(array &$options)
+    {
+        $precondition = $this->pluck('currentDocument', $options, false);
+
+        if (!$precondition) {
+            return;
+        }
+
+        if (isset($precondition['exists'])) {
+            return $precondition;
+        }
+
+        if (isset($precondition['updateTime'])) {
+            if (!($precondition['updateTime'] instanceof Timestamp)) {
+                throw new \InvalidArgumentException(
+                    'Precondition Update Time must be an instance of Google\\Cloud\\Core\\Timestamp'
+                );
+            }
+
+            return [
+                'updateTime' => $precondition['updateTime']->formatForApi()
+            ];
+        }
+
+        throw new \InvalidArgumentException('Preconditions must provide either `exists` or `updateTime`.');
+    }
+
+    /**
+     * Create the write operation object.
+     *
+     * @param string $type The write type.
+     * @param string $name The document name.
+     * @param array $options Configuration Options.
+     * @return array
+     * @throws \InvalidArgumentException If $type is not a valid value.
+     */
     private function createDatabaseWriteOperation($type, $name, array $options = [])
     {
         switch ($type) {
-            case 'update':
+            case self::TYPE_UPDATE:
                 return ['update' => [
                     'name' => $name,
                     'fields' => $this->pluck('fields', $options)
                 ]];
                 break;
 
-            case 'delete':
+            case self::TYPE_DELETE:
                 return ['delete' => $name];
                 break;
 
-            case 'verify':
+            case self::TYPE_VERIFY:
                 return ['verify' => $name];
                 break;
 
-            case 'transform':
+            case self::TYPE_TRANSFORM:
                 throw new \BadMethodCallException('not implemented');
                 break;
 
             default:
-                throw new \BadMethodCallException(sprintf(
+                throw new \InvalidArgumentException(sprintf(
                     'Write operation type `%s is not valid. Allowed values are update, delete, verify, transform.',
                     $type
                 ));

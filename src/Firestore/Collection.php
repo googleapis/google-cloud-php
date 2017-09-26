@@ -125,7 +125,7 @@ class Collection
      * Lazily get a document which is a direct child of this collection.
      *
      * @param string $documentId The document ID.
-     * @return Document
+     * @return DocumentReference
      */
     public function document($documentId)
     {
@@ -139,7 +139,7 @@ class Collection
      *
      * @param array $fields
      * @param array $options
-     * @return Document
+     * @return DocumentReference
      */
     public function newDocument()
     {
@@ -188,10 +188,10 @@ class Collection
      * Create a document instance with the given document name.
      *
      * @param string $name
-     * @return Document
+     * @return DocumentReference
      */
     private function documentFactory($name)
     {
-        return new Document($this->connection, $this->valueMapper, $this, $name);
+        return new DocumentReference($this->connection, $this->valueMapper, $this, $name);
     }
 }

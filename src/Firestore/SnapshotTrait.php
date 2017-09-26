@@ -20,7 +20,7 @@ namespace Google\Cloud\Firestore;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\ValueMapperTrait;
 
-trait OperationTrait
+trait SnapshotTrait
 {
     use ArrayTrait;
 
@@ -31,7 +31,7 @@ trait OperationTrait
      * the returned snapshot will indicate that the document does exist, and
      * will be populated with the data provided.
      *
-     * @param Document $document The parent document.
+     * @param DocumentReference $document The parent document.
      * @param array $options {
      *     Configuration Options
      *
@@ -44,7 +44,7 @@ trait OperationTrait
      * }
      * @return DocumentSnapshot
      */
-    private function createSnapshot(Document $document, array $options = [])
+    private function createSnapshot(DocumentReference $document, array $options = [])
     {
         $options += [
             'exists' => true

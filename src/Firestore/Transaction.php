@@ -22,7 +22,7 @@ use Google\Cloud\Firestore\Connection\ConnectionInterface;
 
 class Transaction
 {
-    use OperationTrait;
+    use SnapshotTrait;
     use PathTrait;
     use DebugInfoTrait;
 
@@ -47,14 +47,14 @@ class Transaction
         $this->writer = new WriteBatch($connection, $valueMapper, $database, $transactionId);
     }
 
-    public function snapshot(Document $document, array $options = [])
+    public function snapshot(DocumentReference $document, array $options = [])
     {
         return $this->createSnapshot($document, [
             'transaction' => $this->transactionId
         ] + $options);
     }
 
-    public function create(Document $document, array $fields)
+    public function create(DocumentReference $document, array $fields)
     {
         $this->writer->update($document->name(), $fields, [
             'currentDocument' => ['exists' => false]
@@ -63,7 +63,7 @@ class Transaction
         return $this;
     }
 
-    public function set(Document $document, array $fields, array $options = [])
+    public function set(DocumentReference $document, array $fields, array $options = [])
     {
         $options += [
             'precondition' => ['exists' => true],
@@ -77,7 +77,7 @@ class Transaction
         return $this;
     }
 
-    public function update(Document $document, array $fields, array $options = [])
+    public function update(DocumentReference $document, array $fields, array $options = [])
     {
         $options += [
             'precondition' => ['exists' => true]
@@ -90,7 +90,7 @@ class Transaction
         return $this;
     }
 
-    public function delete(Document $document, array $options = [])
+    public function delete(DocumentReference $document, array $options = [])
     {
         $options += [
             'precondition' => ['exists' => true]

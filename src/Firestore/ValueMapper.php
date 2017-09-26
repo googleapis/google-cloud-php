@@ -86,7 +86,7 @@ class ValueMapper
         $output = [];
 
         foreach ($fields as $key => $val) {
-            if ($val === Document::DELETE_FIELD) {
+            if ($val === FirestoreClient::DELETE_FIELD) {
                 continue;
             }
 

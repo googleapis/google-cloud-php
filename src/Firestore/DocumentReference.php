@@ -27,13 +27,9 @@ use Google\Cloud\Firestore\Connection\ConnectionInterface;
 /**
  * Represents a reference to a Firestore document.
  */
-class Document
+class DocumentReference
 {
-    // Sentinel values, chosen for uniqueness and extreme unlikeliness to match any real field value.
-    const DELETE_FIELD = '___google-cloud-php__deleteField___';
-    const SERVER_TIMESTAMP = '___google-cloud-php__serverTimestamp___';
-
-    use OperationTrait;
+    use SnapshotTrait;
     use DebugInfoTrait;
     use PathTrait;
 
@@ -158,7 +154,7 @@ class Document
      *
      * By default, this method will fail if the document does not exist.
      *
-     * To remove a field, set the field value to `Document::DELETE_FIELD`.
+     * To remove a field, set the field value to `FirestoreClient::DELETE_FIELD`.
      *
      * Example:
      * ```
@@ -173,9 +169,9 @@ class Document
      * ]);
      *
      * ```
-     * // Remove a field using the `Document::DELETE_FIELD` special value.
+     * // Remove a field using the `FirestoreClient::DELETE_FIELD` special value.
      * $document->update([
-     *     'country' => Document::DELETE_FIELD
+     *     'country' => FirestoreClient::DELETE_FIELD
      * ]);
      * ```
      *
@@ -209,10 +205,6 @@ class Document
      */
     public function update(array $fields, array $options = [])
     {
-        $options += [
-            'precondition' => ['exists' => true]
-        ];
-
         $writer = new WriteBatch(
             $this->connection,
             $this->valueMapper,
@@ -241,15 +233,10 @@ class Document
      *           `['exists' => true]` (i.e. Document must exist in Firestore).
      * }
      * @return array
-     * @throws ConflictException If the
-     *         precondition is not met.
+     * @throws ConflictException If the precondition is not met.
      */
     public function delete(array $options = [])
     {
-        $options += [
-            'precondition' => ['exists' => true]
-        ];
-
         $writer = new WriteBatch(
             $this->connection,
             $this->valueMapper,

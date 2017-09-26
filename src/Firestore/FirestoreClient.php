@@ -38,7 +38,6 @@ use Google\Cloud\Core\Exception\AbortedException;
 class FirestoreClient
 {
     use ClientTrait;
-    use OperationTrait;
     use PathTrait;
     use ValidateTrait;
 
@@ -47,6 +46,10 @@ class FirestoreClient
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/cloud-platform';
 
     const MAX_RETRIES = 5;
+
+    // Sentinel values, chosen for uniqueness and extreme unlikeliness to match any real field value.
+    const DELETE_FIELD = '___google-cloud-php__deleteField___';
+    const SERVER_TIMESTAMP = '___google-cloud-php__serverTimestamp___';
 
     /**
      * @var ConnectionInterface
@@ -215,7 +218,7 @@ class FirestoreClient
      * ```
      *
      * @param string $name The document name or a path, relative to the database.
-     * @return Document
+     * @return DocumentReference
      * @throws InvalidArgumentException If the given path is not a valid document path.
      */
     public function document($name)
@@ -228,7 +231,7 @@ class FirestoreClient
             throw new \InvalidArgumentException('Given path is not a valid document path.');
         }
 
-        return new Document(
+        return new DocumentReference(
             $this->connection,
             $this->valueMapper,
             $this->collection($this->pathId(
@@ -391,12 +394,12 @@ class FirestoreClient
      * Create a document instance with the given document name.
      *
      * @param string $name
-     * @return Document
+     * @return DocumentReference
      */
     private function documentFactory($name)
     {
         $collectionId = $this->relativeName($this->parentPath($name));
         $collection = $this->collection($collectionId);
-        return new Document($this->connection, $this->valueMapper, $collection, $name);
+        return new DocumentReference($this->connection, $this->valueMapper, $collection, $name);
     }
 }

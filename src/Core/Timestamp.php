@@ -119,4 +119,17 @@ class Timestamp
     {
         return $this->formatAsString();
     }
+
+    /**
+     * Format a timestamp for the API with nanosecond precision.
+     *
+     * @return array
+     */
+    public function formatForApi()
+    {
+        return [
+            'seconds' => (int)$this->value->format('U'),
+            'nanos' => (int)$this->nanos
+        ];
+    }
 }
