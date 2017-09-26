@@ -37,102 +37,7 @@ interface ConnectionInterface
     /**
      * @param array $args
      */
-    public function createDocument(array $args);
-
-    /**
-     * @param array $args
-     */
-    public function createIndex(array $args);
-
-    /**
-     * @param array $args
-     */
-    public function deleteDocument(array $args);
-
-    /**
-     * @param array $args
-     */
-    public function deleteIndex(array $args);
-
-    /**
-     * @param array $args
-     */
-    public function disableIndex(array $args);
-
-    /**
-     * @param array $args
-     */
-    public function enableIndex(array $args);
-
-    /**
-     * @param array $args
-     */
-    public function getCollectionGroup(array $args);
-
-    /**
-     * @param array $args
-     */
-    public function getDatabase(array $args);
-
-    /**
-     * @param array $args
-     */
-    public function getDocument(array $args);
-
-    /**
-     * @param array $args
-     */
-    public function getField(array $args);
-
-    /**
-     * @param array $args
-     */
-    public function getIndex(array $args);
-
-    /**
-     * @param array $args
-     */
-    public function getNamespace(array $args);
-
-    /**
-     * @param array $args
-     */
-    public function listCollectionGroups(array $args);
-
-    /**
-     * @param array $args
-     */
     public function listCollectionIds(array $args);
-
-    /**
-     * @param array $args
-     */
-    public function listDatabases(array $args);
-
-    /**
-     * @param array $args
-     */
-    public function listDocuments(array $args);
-
-    /**
-     * @param array $args
-     */
-    public function listFields(array $args);
-
-    /**
-     * @param array $args
-     */
-    public function listIndexes(array $args);
-
-    /**
-     * @param array $args
-     */
-    public function listNamespaces(array $args);
-
-    /**
-     * @param array $args
-     */
-    public function listen(array $args);
 
     /**
      * @param array $args
@@ -143,14 +48,4 @@ interface ConnectionInterface
      * @param array $args
      */
     public function runQuery(array $args);
-
-    /**
-     * @param array $args
-     */
-    public function updateDocument(array $args);
-
-    /**
-     * @param array $args
-     */
-    public function write(array $args);
 }

@@ -129,178 +129,12 @@ class Gapic implements ConnectionInterface
     /**
      * @param array $args
      */
-    public function createDocument(array $args)
-    {
-        throw new \BadMethodCallException('not implemented');
-    }
-
-    /**
-     * @param array $args
-     */
-    public function createIndex(array $args)
-    {
-        throw new \BadMethodCallException('not implemented');
-    }
-
-    /**
-     * @param array $args
-     */
-    public function deleteDocument(array $args)
-    {
-        throw new \BadMethodCallException('not implemented');
-    }
-
-    /**
-     * @param array $args
-     */
-    public function deleteIndex(array $args)
-    {
-        throw new \BadMethodCallException('not implemented');
-    }
-
-    /**
-     * @param array $args
-     */
-    public function disableIndex(array $args)
-    {
-        throw new \BadMethodCallException('not implemented');
-    }
-
-    /**
-     * @param array $args
-     */
-    public function enableIndex(array $args)
-    {
-        throw new \BadMethodCallException('not implemented');
-    }
-
-    /**
-     * @param array $args
-     */
-    public function getCollectionGroup(array $args)
-    {
-        throw new \BadMethodCallException('not implemented');
-    }
-
-    /**
-     * @param array $args
-     */
-    public function getDatabase(array $args)
-    {
-        throw new \BadMethodCallException('not implemented');
-    }
-
-    /**
-     * @param array $args
-     */
-    public function getDocument(array $args)
-    {
-        return $this->send([$this->firestore, 'getDocument'], [
-            $this->pluck('name', $args),
-            $args
-        ]);
-    }
-
-    /**
-     * @param array $args
-     */
-    public function getField(array $args)
-    {
-        throw new \BadMethodCallException('not implemented');
-    }
-
-    /**
-     * @param array $args
-     */
-    public function getIndex(array $args)
-    {
-        throw new \BadMethodCallException('not implemented');
-    }
-
-    /**
-     * @param array $args
-     */
-    public function getNamespace(array $args)
-    {
-        throw new \BadMethodCallException('not implemented');
-    }
-
-    /**
-     * @param array $args
-     */
-    public function listCollectionGroups(array $args)
-    {
-        throw new \BadMethodCallException('not implemented');
-    }
-
-    /**
-     * @param array $args
-     */
     public function listCollectionIds(array $args)
     {
         return $this->send([$this->firestore, 'listCollectionIds'], [
             $this->pluck('parent', $args),
             $args
         ]);
-    }
-
-    /**
-     * @param array $args
-     */
-    public function listDatabases(array $args)
-    {
-        throw new \BadMethodCallException('not implemented');
-    }
-
-    /**
-     * @param array $args
-     */
-    public function listDocuments(array $args)
-    {
-        if (isset($args['mask'])) {
-            $mask = $args['mask'];
-
-            $args['mask'] = new DocumentMask;
-            $args['mask']->setFieldPaths($mask);
-        }
-
-        return $this->send([$this->firestore, 'listDocuments'], [
-            $this->pluck('parent', $args),
-            $this->pluck('collectionId', $args),
-            $args
-        ]);
-    }
-
-    /**
-     * @param array $args
-     */
-    public function listFields(array $args)
-    {
-        throw new \BadMethodCallException('not implemented');
-    }
-
-    /**
-     * @param array $args
-     */
-    public function listIndexes(array $args)
-    {
-        throw new \BadMethodCallException('not implemented');
-    }
-
-    /**
-     * @param array $args
-     */
-    public function listNamespaces(array $args)
-    {
-        throw new \BadMethodCallException('not implemented');
-    }
-
-    /**
-     * @param array $args
-     */
-    public function listen(array $args)
-    {
-        throw new \BadMethodCallException('not implemented');
     }
 
     /**
@@ -327,26 +161,10 @@ class Gapic implements ConnectionInterface
             new StructuredQuery,
             $q
         );
-        
+
         return $this->send([$this->firestore, 'runQuery'], [
             $this->pluck('parent', $args),
             $args
         ]);
-    }
-
-    /**
-     * @param array $args
-     */
-    public function updateDocument(array $args)
-    {
-        throw new \BadMethodCallException('not implemented');
-    }
-
-    /**
-     * @param array $args
-     */
-    public function write(array $args)
-    {
-        throw new \BadMethodCallException('not implemented');
     }
 }
