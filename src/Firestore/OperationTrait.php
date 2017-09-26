@@ -25,44 +25,6 @@ trait OperationTrait
     use ArrayTrait;
 
     /**
-     * Commit writes to the database.
-     *
-     * @param string $database
-     * @param WriteBatch $writes
-     * @param array $options
-     * @return array [https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1beta1#commitresponse](CommitResponse)
-     */
-    private function commitWrites(WriteBatch $writes, array $options = [])
-    {
-        $response = $this->connection->commit([
-            'database' => $writes->database(),
-            'writes' => $writes->writes()
-        ] + $options);
-
-        if (isset($response['commitTime'])) {
-            $response['commitTime'] = $this->valueMapper->createTimestampWithNanos($response['commitTime']);
-        }
-
-        if (isset($response['writeResults'])) {
-            foreach ($response['writeResults'] as &$result) {
-                if (isset($result['updateTime'])) {
-                    $result['updateTime'] = $this->valueMapper->createTimestampWithNanos($result['updateTime']);
-                }
-            }
-        }
-
-        return $response;
-    }
-
-    private function rollback($database, $transactionId, array $options = [])
-    {
-        $this->connection->rollback([
-            'database' => $database,
-            'transaction' => $transactionId
-        ] + $options);
-    }
-
-    /**
      * Create and return a document snapshot.
      *
      * If `$options['data']` is set, no service request will be triggered, and

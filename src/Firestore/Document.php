@@ -18,9 +18,10 @@
 namespace Google\Cloud\Firestore;
 
 use Google\Cloud\Core\DebugInfoTrait;
-use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
+use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\Core\Exception\ConflictException;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 
 /**
@@ -100,16 +101,21 @@ class Document
      * @param array $fields
      * @param array $options
      * @return array
-     * @throws \Google\Cloud\Core\Exception\ConflictException
+     * @throws ConflictException
      */
     public function create(array $fields = [], array $options = [])
     {
-        $writer = new WriteBatch($this->valueMapper, $this->databaseFromName($this->name));
+        $writer = new WriteBatch(
+            $this->connection,
+            $this->valueMapper,
+            $this->databaseFromName($this->name)
+        );
+
         $writer->update($this->name, $fields, [
             'currentDocument' => ['exists' => false]
         ]);
 
-        return $this->commitWrites($writer, $options);
+        return $writer->commit($options);
     }
 
     /**
@@ -127,7 +133,7 @@ class Document
      *           `false`.
      * }
      * @return array
-     * @throws \Google\Cloud\Core\Exception\ConflictException If the
+     * @throws ConflictException If the
      *         precondition is not met.
      */
     public function set(array $fields, array $options = [])
@@ -136,10 +142,15 @@ class Document
             'merge' => false
         ];
 
-        $writer = new WriteBatch($this->valueMapper, $this->databaseFromName($this->name));
+        $writer = new WriteBatch(
+            $this->connection,
+            $this->valueMapper,
+            $this->databaseFromName($this->name)
+        );
+
         $writer->set($this->name, $fields, $this->pluck('merge', $options));
 
-        return $this->commitWrites($writer, $options);
+        return $writer->commit($options);
     }
 
     /**
@@ -193,7 +204,7 @@ class Document
      *           `['exists' => true]` (i.e. Document must exist in Firestore).
      * }
      * @return array
-     * @throws \Google\Cloud\Core\Exception\ConflictException If the
+     * @throws ConflictException If the
      *         precondition is not met.
      */
     public function update(array $fields, array $options = [])
@@ -202,12 +213,17 @@ class Document
             'precondition' => ['exists' => true]
         ];
 
-        $writer = new WriteBatch($this->valueMapper, $this->databaseFromName($this->name));
+        $writer = new WriteBatch(
+            $this->connection,
+            $this->valueMapper,
+            $this->databaseFromName($this->name)
+        );
+
         $writer->update($this->name, $fields, [
             'currentDocument' => $this->pluck('precondition', $options)
         ]);
 
-        return $this->commitWrites($writer, $options);
+        return $writer->commit($options);
     }
 
     /**
@@ -225,7 +241,7 @@ class Document
      *           `['exists' => true]` (i.e. Document must exist in Firestore).
      * }
      * @return array
-     * @throws \Google\Cloud\Core\Exception\ConflictException If the
+     * @throws ConflictException If the
      *         precondition is not met.
      */
     public function delete(array $options = [])
@@ -234,12 +250,17 @@ class Document
             'precondition' => ['exists' => true]
         ];
 
-        $writer = new WriteBatch($this->valueMapper, $this->databaseFromName($this->name));
+        $writer = new WriteBatch(
+            $this->connection,
+            $this->valueMapper,
+            $this->databaseFromName($this->name)
+        );
+
         $writer->delete($this->name, [
             'currentDocument' => $this->pluck('precondition', $options)
         ]);
 
-        return $this->commitWrites($writer, $options);
+        return $writer->commit($options);
     }
 
     /**

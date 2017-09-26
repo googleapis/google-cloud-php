@@ -135,19 +135,24 @@ class ValueMapper
     {
         $output = [];
 
-        $mapper = function (&$arr, $path, $value) {
-            $keys = explode('.', $path);
+        foreach ($fieldPaths as $fieldPath => $fieldValue) {
+            $keys = explode('.', $fieldPath);
 
-            foreach ($keys as $key) {
-                $arr = &$arr[$key];
+            $res = null;
+            if (count($keys) > 1) {
+                foreach ($keys as $index => $key) {
+                    if ($index === count($keys) - 1) {
+                        $res = $this->encodeValue($fieldValue);
+                    }
+                }
             }
 
-            $arr = $value;
-        };
-
-        foreach ($fieldPaths as $fieldPath => $fieldValue) {
-            $mapper($output, $fieldPath, $fieldValue);
+            $output[$keys[0]] = $fieldValue;
         }
+
+        print_r($output);
+
+        exit;
 
         return $output;
     }

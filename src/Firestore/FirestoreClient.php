@@ -113,7 +113,34 @@ class FirestoreClient
     }
 
     /**
+     * Get a Batch Writer
+     *
+     * The {@see Google\Cloud\Firestore\WriteBatch} class is useful for closer
+     * to direct database writes. Most operations can be accomplished via other
+     * means.
+     *
+     * Example:
+     * ```
+     * $batch = $firestore->batch();
+     * ```
+     *
+     * @return WriteBatch
+     */
+    public function batch()
+    {
+        return new WriteBatch(
+            $this->connection,
+            $this->valueMapper,
+            $this->database
+        );
+    }
+
+    /**
      * Lazily instantiate a Collection.
+     *
+     * Collections hold Firestore documents. Collections cannot be created or
+     * deleted directly - they exist only as implicit namespaces. Once no child
+     * documents remain in a collection, it ceases to exist.
      *
      * Example:
      * ```
@@ -145,7 +172,7 @@ class FirestoreClient
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.admin.instance.v1#listinstancesrequest ListInstancesRequest
+     * @see https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.Firestore.ListCollectionIds ListCollectionIds
      * @codingStandardsIgnoreEnd
      *
      * @param array $options [optional] {
@@ -182,6 +209,11 @@ class FirestoreClient
     /**
      * Lazily instantiate a Document instance.
      *
+     * Example:
+     * ```
+     * $document = $firestore->document('users/john');
+     * ```
+     *
      * @param string $name The document name or a path, relative to the database.
      * @return Document
      * @throws InvalidArgumentException If the given path is not a valid document path.
@@ -210,6 +242,14 @@ class FirestoreClient
 
     /**
      * Get a list of documents by their path.
+     *
+     * Example:
+     * ```
+     * $documents = $firestore->documents([
+     *     'users/john',
+     *     'users/dave'
+     * ]);
+     * ```
      *
      * @param array $paths
      * @param array $options
@@ -329,12 +369,12 @@ class FirestoreClient
             try {
                 $callable($transaction, ($transaction !== null));
 
-                return $this->commitWrites($transaction->writer(), [
+                return $transaction->writer()->commit([
                     'transaction' => $transactionId
                 ] + $transaction->commitOptions());
             } catch (\Exception $e) {
                 if (!in_array(get_class($e), $retryableErrors)) {
-                    $this->rollback($database, $transactionId, $transaction->commitOptions());
+                    $transaction->writer()->rollback($database, $transactionId, $transaction->commitOptions());
                 }
 
                 throw $e;
