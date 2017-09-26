@@ -312,7 +312,7 @@ class Grpc implements ConnectionInterface
         }
 
         if (isset($entry['severity']) && is_string($entry['severity'])) {
-            $entry['severity'] = array_flip(Logger::getLogLevelMap())[$entry['severity']];
+            $entry['severity'] = array_flip(Logger::getLogLevelMap())[strtoupper($entry['severity'])];
         }
 
         return $this->serializer->decodeMessage(new LogEntry(), $entry);
