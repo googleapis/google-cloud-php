@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\ErrorReporting;
+namespace Google\Cloud\Logging;
 
 /**
  * auto_prepend_file for Stackdriver Error Reporting. Put this file as
@@ -45,7 +45,7 @@ if (file_exists(__DIR__ . '/../../vendor/autoload.php')) {
  * Put a file named 'ErrorReportingBootstrap' in the project directory which
  * returns a PsrLogger object.
  *
- * @return \Google\Cloud\Logging\PsrLogger
+ * @return PsrLogger
  */
 function getPsrBatchLogger()
 {

@@ -1,12 +1,9 @@
 <?php
 
-namespace Google\Cloud\ErrorReporting;
-
-use Google\Cloud\Logging\LoggingClient;
-use Google\Cloud\Logging\PsrLogger;
+namespace Google\Cloud\Logging;
 
 /**
- * Static methods for bootstrapping Stackdriver Error Reporting.
+ * Static methods for bootstrapping Stackdriver Logging.
  */
 class Bootstrap
 {

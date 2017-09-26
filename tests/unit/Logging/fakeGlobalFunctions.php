@@ -1,6 +1,6 @@
 <?php
 
-namespace Google\Cloud\ErrorReporting {
+namespace Google\Cloud\Logging {
     class MockValues {
         public static $type;
         public static $message;

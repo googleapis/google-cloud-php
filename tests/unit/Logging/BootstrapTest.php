@@ -15,11 +15,11 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Tests\Unit\ErrorReporting;
+namespace Google\Cloud\Tests\Unit\Logging;
 
 use Google\Cloud\Core\Report\SimpleMetadataProvider;
-use Google\Cloud\ErrorReporting\Bootstrap;
-use Google\Cloud\ErrorReporting\MockValues;
+use Google\Cloud\Logging\Bootstrap;
+use Google\Cloud\Logging\MockValues;
 use Google\Cloud\Logging\PsrLogger;
 use Prophecy\Argument;
 
