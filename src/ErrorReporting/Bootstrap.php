@@ -13,18 +13,18 @@ class Bootstrap
     const DEFAULT_LOGNAME = 'app-error';
 
     /** @var PsrLogger */
-    public static $psrBatchLogger;
+    public static $psrLogger;
 
     /**
      * Register hooks for error reporting.
      *
-     * @param PsrLogger $psrBatchLogger
+     * @param PsrLogger $psrLogger
      * @return void
      * @codeCoverageIgnore
      */
-    public static function init(PsrLogger $psrBatchLogger = null)
+    public static function init(PsrLogger $psrLogger = null)
     {
-        self::$psrBatchLogger = $psrBatchLogger ?: (new LoggingClient())
+        self::$psrLogger = $psrLogger ?: (new LoggingClient())
             ->psrLogger(self::DEFAULT_LOGNAME, [
                 'batchEnabled' => true,
                 'debugOutput' => true,
@@ -116,8 +116,8 @@ class Bootstrap
     public static function exceptionHandler($ex)
     {
         $message = sprintf('PHP Notice: %s', (string)$ex);
-        if (self::$psrBatchLogger) {
-            self::$psrBatchLogger->error($message);
+        if (self::$psrLogger) {
+            self::$psrLogger->error($message);
         } else {
             fwrite(STDERR, $message . PHP_EOL);
         }
@@ -141,11 +141,11 @@ class Bootstrap
             $file,
             $line
         );
-        if (!self::$psrBatchLogger) {
+        if (!self::$psrLogger) {
             return false;
         }
-        $service = self::$psrBatchLogger->getMetadataProvider()->serviceId();
-        $version = self::$psrBatchLogger->getMetadataProvider()->versionId();
+        $service = self::$psrLogger->getMetadataProvider()->serviceId();
+        $version = self::$psrLogger->getMetadataProvider()->versionId();
         $context = [
             'context' => [
                 'reportLocation' => [
@@ -159,7 +159,7 @@ class Bootstrap
                 'version' => $version
             ]
         ];
-        self::$psrBatchLogger->log(
+        self::$psrLogger->log(
             self::getErrorLevelString($level),
             $message,
             $context
@@ -178,10 +178,10 @@ class Bootstrap
                 case E_PARSE:
                 case E_COMPILE_ERROR:
                 case E_CORE_ERROR:
-                    $service = self::$psrBatchLogger
+                    $service = self::$psrLogger
                         ->getMetadataProvider()
                         ->serviceId();
-                    $version = self::$psrBatchLogger
+                    $version = self::$psrLogger
                         ->getMetadataProvider()
                         ->versionId();
                     $message = sprintf(
@@ -204,8 +204,8 @@ class Bootstrap
                             'version' => $version
                         ]
                     ];
-                    if (self::$psrBatchLogger) {
-                        self::$psrBatchLogger->log(
+                    if (self::$psrLogger) {
+                        self::$psrLogger->log(
                             self::getErrorLevelString($err['type']),
                             $message,
                             $context
