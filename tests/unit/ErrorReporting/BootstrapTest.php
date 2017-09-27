@@ -106,7 +106,7 @@ class BootstrapTest extends \PHPUnit_Framework_TestCase
         $expectedMessage = sprintf('PHP Notice: %s', (string)$exception);
         $this->psrBatchLogger->error($expectedMessage)
             ->shouldBeCalledTimes(1);
-        Bootstrap::$psrBatchLogger = $this->psrBatchLogger->reveal();
+        Bootstrap::$psrLogger = $this->psrBatchLogger->reveal();
         Bootstrap::exceptionHandler($exception);
     }
 
@@ -117,7 +117,7 @@ class BootstrapTest extends \PHPUnit_Framework_TestCase
         $exception
     ) {
         $expectedMessage = sprintf('PHP Notice: %s', (string)$exception);
-        Bootstrap::$psrBatchLogger = null;
+        Bootstrap::$psrLogger = null;
         Bootstrap::exceptionHandler($exception);
         $this->assertEquals($expectedMessage . PHP_EOL, MockValues::$stderr);
     }
@@ -173,7 +173,7 @@ class BootstrapTest extends \PHPUnit_Framework_TestCase
             $expectedMessage,
             $expectedContext
         )->shouldBeCalledTimes(1);
-        Bootstrap::$psrBatchLogger = $this->psrBatchLogger->reveal();
+        Bootstrap::$psrLogger = $this->psrBatchLogger->reveal();
         MockValues::$errorReporting = $error['type']; // always match
         BootStrap::errorHandler(
             $error['type'],
@@ -185,7 +185,7 @@ class BootstrapTest extends \PHPUnit_Framework_TestCase
 
     public function testErrorHandlerWithMinorError()
     {
-        Bootstrap::$psrBatchLogger = null;
+        Bootstrap::$psrLogger = null;
         MockValues::$errorReporting = 0;
         $result = BootStrap::errorHandler(
             E_ERROR,
@@ -197,7 +197,7 @@ class BootstrapTest extends \PHPUnit_Framework_TestCase
     }
 
     public function testErrorHandlerWithoutLogger() {
-        Bootstrap::$psrBatchLogger = null;
+        Bootstrap::$psrLogger = null;
         MockValues::$errorReporting = E_ERROR;
         $result = BootStrap::errorHandler(
             E_ERROR,
@@ -234,7 +234,7 @@ class BootstrapTest extends \PHPUnit_Framework_TestCase
         if (!in_array($error['type'], $fatalErrors, true)) {
             // The shutdownHandler should not do anything, so it should pass
             // with the empty psrBatchLogger mock.
-            Bootstrap::$psrBatchLogger = $this->psrBatchLogger->reveal();
+            Bootstrap::$psrLogger = $this->psrBatchLogger->reveal();
             $this->assertNull(BootStrap::shutdownHandler());
             return;
         }
@@ -266,7 +266,7 @@ class BootstrapTest extends \PHPUnit_Framework_TestCase
             $expectedMessage,
             $expectedContext
         )->shouldBeCalledTimes(1);
-        Bootstrap::$psrBatchLogger = $this->psrBatchLogger->reveal();
+        Bootstrap::$psrLogger = $this->psrBatchLogger->reveal();
         BootStrap::shutdownHandler();
     }
 
