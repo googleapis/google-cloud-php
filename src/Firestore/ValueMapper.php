@@ -27,6 +27,9 @@ use Google\Cloud\Core\ValueMapperTrait;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Protobuf\NullValue;
 
+/**
+ * Normalizes values between Google Cloud PHP and Cloud Firestore.
+ */
 class ValueMapper
 {
     use ArrayTrait;
@@ -45,6 +48,7 @@ class ValueMapper
     private $returnInt64AsObject;
 
     /**
+     * @param ConnectionInterface $connection
      * @param bool $returnInt64AsObject
      */
     public function __construct(ConnectionInterface $connection, $returnInt64AsObject)
@@ -125,8 +129,8 @@ class ValueMapper
     }
 
     /**
-     * Accepts a list of [string,mixed], where the key is a field path and the
-     * value is a document field value, and returns a nested array.
+     * Accepts an array of form array<string, mixed>, where the key is a field
+     * path and the value is a document field value, and returns a nested array.
      *
      * @param array $fieldPaths
      * @return array
@@ -153,6 +157,14 @@ class ValueMapper
         return $this->encodeValues($output);
     }
 
+    /**
+     * Convert a Firestore value to a Google Cloud PHP value.
+     *
+     * @see https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1beta1#value Value
+     * @param string $type The Firestore value type.
+     * @param mixed $value The firestore value.
+     * @return mixed
+     */
     private function decodeValue($type, $value)
     {
         switch ($type) {
@@ -210,7 +222,7 @@ class ValueMapper
 
             case 'referenceValue':
                 $parent = new Collection($this->connection, $this, $this->parentPath($value));
-                return new Document($this->connection, $this, $parent, $value);
+                return new DocumentReference($this->connection, $this, $parent, $value);
 
             default:
                 throw new \RuntimeException(sprintf(
@@ -222,6 +234,12 @@ class ValueMapper
         }
     }
 
+    /**
+     * Encode a Google Cloud PHP value as a Firestore value.
+     *
+     * @param mixed $value
+     * @return array [Value](https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1beta1#value)
+     */
     public function encodeValue($value)
     {
         $type = gettype($value);
@@ -273,6 +291,13 @@ class ValueMapper
         }
     }
 
+    /**
+     * Encode a value of type `object` as a Firestore value.
+     *
+     * @param object $value
+     * @return array
+     * @throws \BadMethodCallException If an invalid object type is provided.
+     */
     private function encodeObjectValue($value)
     {
         $class = get_class($value);
@@ -304,6 +329,14 @@ class ValueMapper
         }
     }
 
+    /**
+     * Encode an associative array as a Firestore Map value.
+     *
+     * @codingStandardsIgnoreStart
+     * @param array $value
+     * @return array [MapValue](https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.MapValue)
+     * @codingStandardsIgnoreEnd
+     */
     private function encodeAssociativeArrayValue(array $value)
     {
         $out = [];
@@ -314,11 +347,20 @@ class ValueMapper
         return ['mapValue' => ['fields' => $out]];
     }
 
+    /**
+     * Encode a simple array as a Firestore array value.
+     *
+     * @codingStandardsIgnoreStart
+     * @param array $value
+     * @return array [ArrayValue](https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.ArrayValue)
+     * @throws \BadMethodCallException If the array contains a nested array.
+     * @codingStandardsIgnoreEnd
+     */
     private function encodeArrayValue(array $value)
     {
         $out = [];
         foreach ($value as $item) {
-            if (is_array($item)) {
+            if (is_array($item) && !$this->isAssoc($item)) {
                 throw new \BadMethodCallException('Nested array values are not permitted.');
             }
 

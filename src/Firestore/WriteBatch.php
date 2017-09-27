@@ -84,6 +84,24 @@ class WriteBatch
     }
 
     /**
+     * Enqueue a document creation.
+     *
+     * This operation will fail (when committed) if the document already exists.
+     *
+     * @param string $documentName The document to create.
+     * @param array $fields An array containing field names paired with their value.
+     *        Accepts a nested array, or a simple array of field paths.
+     * @param array $options Configuration options
+     * @return WriteBatch
+     */
+    public function create($documentName, array $fields, array $options = [])
+    {
+        return $this->update($documentName, $fields, [
+            'precondition' => ['exists' => false]
+        ] + $options);
+    }
+
+    /**
      * Enqueue an update.
      *
      * Merges provided data with data stored in Firestore.
@@ -153,13 +171,17 @@ class WriteBatch
      * @return WriteBatch
      * @codingStandardsIgnoreEnd
      */
-    public function set($documentName, array $fields, $merge = false)
+    public function set($documentName, array $fields, array $options = [])
     {
         if ($this->hasPreviousTransform) {
             throw new \BadMethodCallException(
                 'Cannot apply an UPDATE operation after a TRANSFORM operation has been enqueued.'
             );
         }
+
+        $options += [
+            'merge' => false
+        ];
 
         $write = array_filter([
             'fields' => $this->valueMapper->encodeValues($fields),
@@ -174,27 +196,13 @@ class WriteBatch
      *
      * @codingStandardsIgnoreStart
      * @param string $documentName The document to delete.
-     * @param array $options {
-     *     Configuration Options
-     *
-     *     @type array $precondition An optional precondition on the document. If
-     *           this is set and not met by the target document, the write will
-     *           fail. Allowed arguments are `(bool) $exists` and
-     *           {@see Google\Cloud\Core\Timestamp} `$updateTime`.
-     *           To completely disable precondition checks, provide an empty array
-     *           as the value of `$precondition`. **Defaults to**
-     *           `['exists' => true]` (i.e. Document must exist in Firestore).
-     *           For more information, refer to the [Precondition](https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.Precondition)
-     *           documentation.
-     * }
+     * @param array Configuration Options
      * @return WriteBatch
      * @codingStandardsIgnoreEnd
      */
     public function delete($documentName, array $options = [])
     {
-        $options += [
-            'precondition' => ['exists' => true]
-        ];
+        $options['precondition'] = [];
 
         $this->writes[] = $this->createDatabaseWrite(self::TYPE_DELETE, $documentName, $options);
     }
@@ -330,7 +338,7 @@ class WriteBatch
      */
     private function validatePrecondition(array &$options)
     {
-        $precondition = $this->pluck('currentDocument', $options, false);
+        $precondition = $this->pluck('precondition', $options, false);
 
         if (!$precondition) {
             return;

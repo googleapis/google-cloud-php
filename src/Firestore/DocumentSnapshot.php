@@ -23,6 +23,20 @@ namespace Google\Cloud\Firestore;
  *
  * Fields may be read in array-style syntax. Note that writing using array-style
  * syntax is NOT supported and will result in a `\BadMethodCallException`.
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\Firestore\FirestoreClient;
+ *
+ * $firestore = new FirestoreClient();
+ * $document = $firestore->document('users/john');
+ * $snapshot = $document->shapshot();
+ * ```
+ *
+ * ```
+ * // Fields may be accessed via array-style accessors:
+ * $bitcoinWalletValue = $snapshot['wallet']['cryptoCurrency']['bitcoin'];
+ * ```
  */
 class DocumentSnapshot implements \ArrayAccess
 {
@@ -65,6 +79,11 @@ class DocumentSnapshot implements \ArrayAccess
     /**
      * Get the document which created the snapshot.
      *
+     * Example:
+     * ```
+     * $reference = $snapshot->reference();
+     * ```
+     *
      * @return DocumentReference
      */
     public function reference()
@@ -74,6 +93,11 @@ class DocumentSnapshot implements \ArrayAccess
 
     /**
      * Get the document path.
+     *
+     * Example:
+     * ```
+     * $name = $snapshot->name();
+     * ```
      *
      * @return string
      */
@@ -85,6 +109,11 @@ class DocumentSnapshot implements \ArrayAccess
     /**
      * Get the document identifier (i.e. the last path element).
      *
+     * Example:
+     * ```
+     * $id = $snapshot->id();
+     * ```
+     *
      * @return string
      */
     public function id()
@@ -94,6 +123,11 @@ class DocumentSnapshot implements \ArrayAccess
 
     /**
      * Returns create and update timestamps.
+     *
+     * Example:
+     * ```
+     * $info = $snapshot->info();
+     * ```
      *
      * @return array
      */
@@ -105,6 +139,11 @@ class DocumentSnapshot implements \ArrayAccess
     /**
      * Returns document field data as an array.
      *
+     * Example:
+     * ```
+     * $fields = $snapshot->fields();
+     * ```
+     *
      * @return array
      */
     public function fields()
@@ -114,6 +153,13 @@ class DocumentSnapshot implements \ArrayAccess
 
     /**
      * Returns true if the document exists in the database.
+     *
+     * Example:
+     * ```
+     * if ($snapshot->exists()) {
+     *     echo "The document exists!";
+     * }
+     * ```
      *
      * @return bool
      */
@@ -129,6 +175,11 @@ class DocumentSnapshot implements \ArrayAccess
      * top level or nested, delimited by `.`. For instance, the structured field
      * `{ "foo" : { "bar" : "hello" }}` would be represented by the field path
      * `foo.bar`.
+     *
+     * Example:
+     * ```
+     * $bitcoinWalletValue = $snapshot->get('wallet.cryptoCurrency.bitcoin');
+     * ```
      *
      * @param string $fieldPath The field path to return.
      * @return mixed

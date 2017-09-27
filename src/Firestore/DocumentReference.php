@@ -107,9 +107,7 @@ class DocumentReference
             $this->databaseFromName($this->name)
         );
 
-        $writer->update($this->name, $fields, [
-            'currentDocument' => ['exists' => false]
-        ]);
+        $writer->create($this->name, $fields, $options);
 
         return $writer->commit($options);
     }
@@ -129,22 +127,17 @@ class DocumentReference
      *           `false`.
      * }
      * @return array
-     * @throws ConflictException If the
-     *         precondition is not met.
+     * @throws ConflictException If the precondition is not met.
      */
     public function set(array $fields, array $options = [])
     {
-        $options += [
-            'merge' => false
-        ];
-
         $writer = new WriteBatch(
             $this->connection,
             $this->valueMapper,
             $this->databaseFromName($this->name)
         );
 
-        $writer->set($this->name, $fields, $this->pluck('merge', $options));
+        $writer->set($this->name, $fields, $options);
 
         return $writer->commit($options);
     }
@@ -211,9 +204,7 @@ class DocumentReference
             $this->databaseFromName($this->name)
         );
 
-        $writer->update($this->name, $fields, [
-            'currentDocument' => $this->pluck('precondition', $options)
-        ]);
+        $writer->update($this->name, $fields, $options);
 
         return $writer->commit($options);
     }
@@ -243,9 +234,7 @@ class DocumentReference
             $this->databaseFromName($this->name)
         );
 
-        $writer->delete($this->name, [
-            'currentDocument' => $this->pluck('precondition', $options)
-        ]);
+        $writer->delete($this->name, $options);
 
         return $writer->commit($options);
     }

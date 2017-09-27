@@ -330,13 +330,24 @@ class FirestoreClient
      * @param callable $callable A callable function, allowing atomic operations
      *        against the Firestore API. Function signature:
      *        `function (Transaction $t, bool $isRetry)`.
-     * @param array $options Configuration Options for BeginTransaction.
+     * @param array $options {
+     *     Configuration Options.
+     *
+     *     @param array $begin Configuration options for BeginTransaction.
+     *     @param array $commit Configuration options for Commit.
+     *     @param array $rollback Configuration options for rollback.
+     *     @param int $maxRetries The maximum number of times to retry failures.
+     *            **Defaults to** `5`.
+     * }
      * @return array
      */
     public function runTransaction(callable $callable, array $options = [])
     {
         $options += [
-            'maxRetries' => self::MAX_RETRIES
+            'maxRetries' => self::MAX_RETRIES,
+            'begin' => [],
+            'commit' => [],
+            'rollback' => []
         ];
 
         $retryableErrors = [
@@ -364,7 +375,7 @@ class FirestoreClient
             $beginTransaction = $this->connection->beginTransaction(array_filter([
                 'database' => $database,
                 'retryTransaction' => $transactionId
-            ]) + $options);
+            ]) + $options['begin']);
             $transactionId = $beginTransaction['transaction'];
 
             $transaction = new Transaction($this->connection, $this->valueMapper, $database, $transactionId);
@@ -374,10 +385,10 @@ class FirestoreClient
 
                 return $transaction->writer()->commit([
                     'transaction' => $transactionId
-                ] + $transaction->commitOptions());
+                ] + $options['commit'];
             } catch (\Exception $e) {
                 if (!in_array(get_class($e), $retryableErrors)) {
-                    $transaction->writer()->rollback($database, $transactionId, $transaction->commitOptions());
+                    $transaction->writer()->rollback($database, $transactionId, $options['rollback']);
                 }
 
                 throw $e;

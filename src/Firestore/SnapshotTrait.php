@@ -41,13 +41,20 @@ trait SnapshotTrait
      *     @type array $data If set, no service request will be triggered, and
      *           the returned snapshot will indicate that the document does
      *           exist, and will be populated with the data provided.
+     *     @type string $transactionId The transaction ID to fetch the snapshot.
+     *     @type bool $allowNonExistence If true, a DocumentSnapshot will be
+     *           returned, even if the document does not exist. **Defaults to**
+     *           `true`.
      * }
      * @return DocumentSnapshot
+     * @throws NotFoundException If the document does not exist, and
+     *         `$options['allowNonExistence'] is `false`.
      */
     private function createSnapshot(DocumentReference $document, array $options = [])
     {
         $options += [
-            'exists' => true
+            'exists' => true,
+            'allowNonExistence' => true
         ];
 
         $exists = true;
@@ -67,6 +74,10 @@ trait SnapshotTrait
                 $data = $this->transformSnapshotTimestamps($data);
 
             } catch (NotFoundException $e) {
+                if (!$options['allowNonExistence']) {
+                    throw $e;
+                }
+
                 $exists = false;
             }
         } else {
@@ -80,6 +91,13 @@ trait SnapshotTrait
         return new DocumentSnapshot($document, $data, $fields, $exists);
     }
 
+    /**
+     * Send a service request for a snapshot, and return the raw data
+     *
+     * @param string $name The document name.
+     * @param array $options Configuration options.
+     * @return array
+     */
     private function getSnapshot($name, array $options = [])
     {
         return $this->connection->getDocument([
@@ -87,6 +105,12 @@ trait SnapshotTrait
         ] + $options);
     }
 
+    /**
+     * Convert snapshot timestamps to google cloud php types.
+     *
+     * @param array $data The snapshot data.
+     * @return array
+     */
     private function transformSnapshotTimestamps(array $data)
     {
         $data['createTime'] = isset($data['createTime'])
