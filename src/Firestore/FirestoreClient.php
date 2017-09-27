@@ -385,7 +385,7 @@ class FirestoreClient
 
                 return $transaction->writer()->commit([
                     'transaction' => $transactionId
-                ] + $options['commit'];
+                ] + $options['commit']);
             } catch (\Exception $e) {
                 if (!in_array(get_class($e), $retryableErrors)) {
                     $transaction->writer()->rollback($database, $transactionId, $options['rollback']);

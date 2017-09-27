@@ -90,10 +90,6 @@ class ValueMapper
         $output = [];
 
         foreach ($fields as $key => $val) {
-            if ($val === FirestoreClient::DELETE_FIELD) {
-                continue;
-            }
-
             $output[$key] = $this->encodeValue($val);
         }
 
@@ -155,6 +151,60 @@ class ValueMapper
         }
 
         return $this->encodeValues($output);
+    }
+
+    /**
+     * Search an array for sentinel values, returning the array of fields with
+     * sentinels removed, and a list of delete and server timestamp value field
+     * paths.
+     *
+     * @param array $fields The input field data.
+     * @return array `[$fields, $timestamps, $deletes]`
+     */
+    public function findSentinels(array $fields)
+    {
+        $timestamps = [];
+        $deletes = [];
+        $fields = $this->removeSentinel($fields, $timestamps, $deletes);
+
+        return [$fields, $timestamps, $deletes];
+    }
+
+    /**
+     * Recurse through fields and find and remove sentinel values.
+     *
+     * @param array $fields The input field data.
+     * @param array $timestamps The timestamps field paths. (reference)
+     * @param array $deletes the deletes field paths. (reference)
+     * @param string $path The current field path.
+     * @return array
+     */
+    private function removeSentinel(array $fields, array &$timestamps, array &$deletes, $path = '')
+    {
+        if ($path !== '') {
+            $path .= '.';
+        }
+
+        foreach ($fields as $key => $value) {
+            $currPath = $path . (string) $key;
+            if (is_array($value)) {
+                $fields[$key] = $this->removeSentinel($value, $timestamps, $deletes, $currPath);
+            } else {
+                if ($value === FirestoreClient::DELETE_FIELD || $value === FirestoreClient::SERVER_TIMESTAMP) {
+                    if ($value === FirestoreClient::DELETE_FIELD) {
+                        $deletes[] = $currPath;
+                    }
+
+                    if ($value === FirestoreClient::SERVER_TIMESTAMP) {
+                        $timestamps[] = $currPath;
+                    }
+
+                    unset($fields[$key]);
+                }
+            }
+        }
+
+        return $fields;
     }
 
     /**

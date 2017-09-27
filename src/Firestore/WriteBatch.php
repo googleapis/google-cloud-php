@@ -20,6 +20,7 @@ namespace Google\Cloud\Firestore;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
+use Google\Firestore\V1beta1\DocumentTransform_FieldTransform_ServerValue;
 
 /**
  * Enqueue and write multiple mutations to Cloud Firestore
@@ -142,10 +143,25 @@ class WriteBatch
             'precondition' => ['exists' => true]
         ];
 
+        list($fields, $timestamps, $deletes) = $this->valueMapper->findSentinels($fields);
+
         $this->writes[] = $this->createDatabaseWrite(self::TYPE_UPDATE, $documentName, [
             'fields' => $this->valueMapper->decodeFieldPaths($fields),
-            'updateMask' => $this->valueMapper->encodeFieldPaths($fields)
+            'updateMask' => array_merge($this->valueMapper->encodeFieldPaths($fields), $deletes)
         ] + $options);
+
+        // Setting values to the server timestamp is implemented as a document tranformation.
+        if ($timestamps) {
+            $transforms = [];
+            foreach ($timestamps as $timestamp) {
+                $transforms[] = [
+                    'fieldPath' => $timestamp,
+                    'setToServerValue' => DocumentTransform_FieldTransform_ServerValue::REQUEST_TIME
+                ];
+            }
+
+            $this->transform($documentName, $transforms);
+        }
 
         return $this;
     }
@@ -189,6 +205,8 @@ class WriteBatch
         ]);
 
         $this->writes[] = $this->createDatabaseWrite(self::TYPE_UPDATE, $documentName, $write);
+
+        return $this;
     }
 
     /**
@@ -205,6 +223,8 @@ class WriteBatch
         $options['precondition'] = [];
 
         $this->writes[] = $this->createDatabaseWrite(self::TYPE_DELETE, $documentName, $options);
+
+        return $this;
     }
 
     /**
@@ -231,6 +251,8 @@ class WriteBatch
     public function verify($documentName, array $options = [])
     {
         $this->writes[] = $this->createDatabaseWrite(self::TYPE_VERIFY, $documentName, $options);
+
+        return $this;
     }
 
     public function transform($documentName, array $transforms = [], array $options = [])
@@ -240,6 +262,8 @@ class WriteBatch
         ] + $options);
 
         $this->hasPreviousTransform = true;
+
+        return $this;
     }
 
     /**
@@ -391,7 +415,10 @@ class WriteBatch
                 break;
 
             case self::TYPE_TRANSFORM:
-                throw new \BadMethodCallException('not implemented');
+                return ['transform' => [
+                    'document' => $name,
+                    'fieldTransforms' => $this->pluck('fieldTransforms', $options)
+                ]];
                 break;
 
             default:
