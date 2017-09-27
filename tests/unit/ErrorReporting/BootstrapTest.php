@@ -104,8 +104,17 @@ class BootstrapTest extends \PHPUnit_Framework_TestCase
         $exception
     ) {
         $expectedMessage = sprintf('PHP Notice: %s', (string)$exception);
-        $this->psrBatchLogger->error($expectedMessage)
+        $expectedContext = [
+            'serviceContext' => [
+                'service' => '',
+                'version' => ''
+            ]
+        ];
+        $this->psrBatchLogger->error($expectedMessage, $expectedContext)
             ->shouldBeCalledTimes(1);
+        $this->psrBatchLogger->getMetadataProvider()
+            ->willReturn(new SimpleMetadataProvider())
+            ->shouldBeCalledTimes(2);
         Bootstrap::$psrBatchLogger = $this->psrBatchLogger->reveal();
         Bootstrap::exceptionHandler($exception);
     }
