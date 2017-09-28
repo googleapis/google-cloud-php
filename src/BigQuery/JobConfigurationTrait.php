@@ -39,11 +39,11 @@ trait JobConfigurationTrait
 
         unset($userDefinedOptions['jobConfig']);
 
-        return [
+        return array_merge_recursive([
             'projectId' => $projectId,
             'configuration' => [
                 $name => $config
             ]
-        ] + $userDefinedOptions;
+        ], $userDefinedOptions);
     }
 }
