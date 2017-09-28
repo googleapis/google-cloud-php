@@ -117,7 +117,14 @@ class Bootstrap
     {
         $message = sprintf('PHP Notice: %s', (string)$ex);
         if (self::$psrLogger) {
-            self::$psrLogger->error($message);
+            $service = self::$psrLogger->getMetadataProvider()->serviceId();
+            $version = self::$psrLogger->getMetadataProvider()->versionId();
+            self::$psrLogger->error($message, [
+                'serviceContext' => [
+                    'service' => $service,
+                    'version' => $version,
+                ]
+            ]);
         } else {
             fwrite(STDERR, $message . PHP_EOL);
         }
