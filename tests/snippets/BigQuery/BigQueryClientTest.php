@@ -25,7 +25,9 @@ use Google\Cloud\BigQuery\Timestamp;
 use Google\Cloud\BigQuery\Connection\ConnectionInterface;
 use Google\Cloud\BigQuery\Dataset;
 use Google\Cloud\BigQuery\Job;
+use Google\Cloud\BigQuery\QueryJobConfiguration;
 use Google\Cloud\BigQuery\QueryResults;
+use Google\Cloud\BigQuery\ValueMapper;
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
@@ -36,7 +38,10 @@ use Prophecy\Argument;
  */
 class BigQueryClientTest extends SnippetTestCase
 {
-    const JOBID = 'myJobId';
+    const JOB_ID = 'myJobId';
+    const PROJECT_ID = 'my-awesome-project';
+    const CREATE_DISPOSITION = 'CREATE_NEVER';
+    const QUERY_STRING = 'SELECT commit FROM `bigquery-public-data.github_repos.commits` LIMIT 100';
 
     private $connection;
     private $client;
@@ -77,6 +82,46 @@ class BigQueryClientTest extends SnippetTestCase
         $this->assertInstanceOf(BigQueryClient::class, $res->returnVal());
     }
 
+    public function testQuery()
+    {
+        $snippet = $this->snippetFromMethod(BigQueryClient::class, 'query');
+        $snippet->addLocal('bigQuery', $this->client);
+        $config = $snippet->invoke('queryJobConfig')
+            ->returnVal();
+
+        $this->assertInstanceOf(QueryJobConfiguration::class, $config);
+        $this->assertEquals(
+            self::QUERY_STRING,
+            $config->toArray()['configuration']['query']['query']
+        );
+    }
+
+    public function testQueryWithFluentSetters()
+    {
+        $snippet = $this->snippetFromMethod(BigQueryClient::class, 'query', 1);
+        $snippet->addLocal('bigQuery', $this->client);
+        $config = $snippet->invoke('queryJobConfig')
+            ->returnVal();
+        $array = $config->toArray();
+
+        $this->assertInstanceOf(QueryJobConfiguration::class, $config);
+        $this->assertEquals(self::QUERY_STRING, $array['configuration']['query']['query']);
+        $this->assertEquals(self::CREATE_DISPOSITION, $array['configuration']['query']['createDisposition']);
+    }
+
+    public function testQueryWithArrayOfOptions()
+    {
+        $snippet = $this->snippetFromMethod(BigQueryClient::class, 'query', 2);
+        $snippet->addLocal('bigQuery', $this->client);
+        $config = $snippet->invoke('queryJobConfig')
+            ->returnVal();
+        $array = $config->toArray();
+
+        $this->assertInstanceOf(QueryJobConfiguration::class, $config);
+        $this->assertEquals(self::QUERY_STRING, $array['configuration']['query']['query']);
+        $this->assertEquals(self::CREATE_DISPOSITION, $array['configuration']['query']['createDisposition']);
+    }
+
     public function testRunQuery()
     {
         $snippet = $this->snippetFromMethod(BigQueryClient::class, 'runQuery');
@@ -107,8 +152,8 @@ class BigQueryClientTest extends SnippetTestCase
                          'WHERE author.date < @date AND message = @message LIMIT 100';
         $this->connection
             ->insertJob([
-                'projectId' => 'my-awesome-project',
-                'jobReference' => ['projectId' => 'my-awesome-project', 'jobId' => self::JOBID],
+                'projectId' => self::PROJECT_ID,
+                'jobReference' => ['projectId' => self::PROJECT_ID, 'jobId' => self::JOB_ID],
                 'configuration' => [
                     'query' => [
                         'parameterMode' => 'named',
@@ -161,8 +206,8 @@ class BigQueryClientTest extends SnippetTestCase
         $expectedQuery = 'SELECT commit FROM `bigquery-public-data.github_repos.commits` WHERE message = ? LIMIT 100';
         $this->connection
             ->insertJob([
-                'projectId' => 'my-awesome-project',
-                'jobReference' => ['projectId' => 'my-awesome-project', 'jobId' => self::JOBID],
+                'projectId' => self::PROJECT_ID,
+                'jobReference' => ['projectId' => self::PROJECT_ID, 'jobId' => self::JOB_ID],
                 'configuration' => [
                     'query' => [
                         'parameterMode' => 'positional',
@@ -198,9 +243,9 @@ class BigQueryClientTest extends SnippetTestCase
         $this->assertEquals('abcd', $res->output());
     }
 
-    public function testRunQueryAsJob()
+    public function testStartQuery()
     {
-        $snippet = $this->snippetFromMethod(BigQueryClient::class, 'runQueryAsJob');
+        $snippet = $this->snippetFromMethod(BigQueryClient::class, 'startQuery');
         $snippet->addLocal('bigQuery', $this->client);
         $this->connection->insertJob(Argument::any())
             ->shouldBeCalledTimes(1)
@@ -358,8 +403,20 @@ class BigQueryClientTest extends SnippetTestCase
 
 class BigQueryTestClient extends BigQueryClient
 {
-    protected function generateJobId($jobIdPrefix = null)
+    public function query($query, array $options = [])
     {
-        return $jobIdPrefix ? $jobIdPrefix . '-' . BigQueryClientTest::JOBID : BigQueryClientTest::JOBID;
+        return (new QueryJobConfigurationStub(
+            new ValueMapper(false),
+            BigQueryClientTest::PROJECT_ID,
+            $options
+        ))->query($query);
+    }
+}
+
+class QueryJobConfigurationStub extends QueryJobConfiguration
+{
+    protected function generateJobId()
+    {
+        return BigQueryClientTest::JOB_ID;
     }
 }

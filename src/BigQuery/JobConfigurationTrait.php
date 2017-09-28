@@ -35,7 +35,7 @@ trait JobConfigurationTrait
     /**
      * @var array $config
      */
-    private $config;
+    private $config = [];
 
     /**
      * Sets shared job configuration properties.
@@ -46,13 +46,14 @@ trait JobConfigurationTrait
      */
     public function jobConfigurationProperties($projectId, array $config)
     {
-        $this->config = $config + [
+        $this->config = array_replace_recursive([
             'projectId' => $projectId,
-            'jobReference' => [
-                'jobId' => $this->generateJobId(),
-                'projectId' => $projectId
-            ]
-        ];
+            'jobReference' => ['projectId' => $projectId]
+        ], $config);
+
+        if (!isset($this->config['jobReference']['jobId'])) {
+            $this->config['jobReference']['jobId'] = $this->generateJobId();
+        }
     }
 
     /**
@@ -73,7 +74,7 @@ trait JobConfigurationTrait
      * Sets a prefix for the job ID.
      *
      * @param string $jobIdPrefix If provided, the job ID will be of format
-     *        `{$jobIdPrefix-}{jobId}`.
+     *        `{$jobIdPrefix}-{jobId}`.
      * @return JobConfigInterface
      */
     public function jobIdPrefix($jobIdPrefix)
@@ -123,6 +124,6 @@ trait JobConfigurationTrait
      */
     protected function generateJobId()
     {
-        return Uuid::uuid4();
+        return (string) Uuid::uuid4();
     }
 }

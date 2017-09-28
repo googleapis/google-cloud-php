@@ -17,7 +17,22 @@
 
 namespace Google\Cloud\BigQuery;
 
-class ExtractJobConfiguration
+/**
+ * Represents a configuration for an extract job. For more information on the
+ * available settings please see the
+ * [Jobs configuration API documentation](https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs#configuration).
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\BigQuery\BigQueryClient;
+ *
+ * $bigQuery = new BigQueryClient();
+ * $table = $bigQuery->dataset('my_dataset')
+ *     ->table('my_table');
+ * $extractJobConfig = $table->extract('gs://my_bucket/target.csv');
+ * ```
+ */
+class ExtractJobConfiguration implements JobConfigurationInterface
 {
     use JobConfigurationTrait;
 
@@ -31,8 +46,16 @@ class ExtractJobConfiguration
     }
 
     /**
-     * @param string $compression
-     * @return LoadJobConfiguration
+     * Sets the compression type to use for exported files.
+     *
+     * Example:
+     * ```
+     * $extractJobConfig->compression('GZIP');
+     * ```
+     *
+     * @param string $compression The compression type. Acceptable values
+     *        include `"GZIP"`, `"NONE"`. **Defaults to** `"NONE"`.
+     * @return ExtractJobConfiguration
      */
     public function compression($compression)
     {
@@ -42,19 +65,18 @@ class ExtractJobConfiguration
     }
 
     /**
-     * @param string|resource|StreamInterface $data
-     * @return LoadJobConfiguration
-     */
-    public function data($data)
-    {
-        $this->config['data'] = $data;
-
-        return $this;
-    }
-
-    /**
-     * @param string $destinationFormat
-     * @return LoadJobConfiguration
+     * Sets the exported file format. Tables with nested or repeated fields
+     * cannot be exported as CSV.
+     *
+     * Example:
+     * ```
+     * $extractJobConfig->destinationFormat('NEWLINE_DELIMITED_JSON');
+     * ```
+     *
+     * @param string $destinationFormat The exported file format. Acceptable
+     *        values include `"CSV"`, `"NEWLINE_DELIMITED_JSON"`, `"AVRO"`.
+     *        **Defaults to** `"CSV"`.
+     * @return ExtractJobConfiguration
      */
     public function destinationFormat($destinationFormat)
     {
@@ -64,8 +86,18 @@ class ExtractJobConfiguration
     }
 
     /**
-     * @param array $destinationUris
-     * @return LoadJobConfiguration
+     * Sets a list of fully-qualified Google Cloud Storage URIs where the
+     * extracted table should be written.
+     *
+     * Example:
+     * ```
+     * $extractJobConfig->destinationUris([
+     *     'gs://my_bucket/destination.csv'
+     * ]);
+     * ```
+     *
+     * @param array $destinationUris The destination URIs.
+     * @return ExtractJobConfiguration
      */
     public function destinationUris(array $destinationUris)
     {
@@ -75,8 +107,15 @@ class ExtractJobConfiguration
     }
 
     /**
-     * @param string $fieldDelimiter
-     * @return LoadJobConfiguration
+     * Sets the delimiter to use between fields in the exported data.
+     *
+     * Example:
+     * ```
+     * $extractJobConfig->fieldDelimiter(',');
+     * ```
+     *
+     * @param string $fieldDelimiter The field delimiter. **Defaults to** `","`.
+     * @return ExtractJobConfiguration
      */
     public function fieldDelimiter($fieldDelimiter)
     {
@@ -86,8 +125,16 @@ class ExtractJobConfiguration
     }
 
     /**
-     * @param string $printHeader
-     * @return LoadJobConfiguration
+     * Sets whether or not to print out a header row in the results.
+     *
+     * Example:
+     * ```
+     * $extractJobConfig->printHeader(false);
+     * ```
+     *
+     * @param bool $printHeader Whether or not to print out a header row.
+     *        **Defaults to** `true`.
+     * @return ExtractJobConfiguration
      */
     public function printHeader($printHeader)
     {
@@ -97,12 +144,21 @@ class ExtractJobConfiguration
     }
 
     /**
-     * @param array $sourceTable
-     * @return LoadJobConfiguration
+     * Sets a reference to the table being exported.
+     *
+     * Example:
+     * ```
+     * $table = $bigQuery->dataset('my_dataset')
+     *     ->table('my_table');
+     * $extractJobConfig->sourceTable($table);
+     * ```
+     *
+     * @param Table $sourceTable
+     * @return ExtractJobConfiguration
      */
-    public function sourceTable(array $sourceTable)
+    public function sourceTable(Table $sourceTable)
     {
-        $this->config['configuration']['extract']['sourceTable'] = $sourceTable;
+        $this->config['configuration']['extract']['sourceTable'] = $sourceTable->identity();
 
         return $this;
     }

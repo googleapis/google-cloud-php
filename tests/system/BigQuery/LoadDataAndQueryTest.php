@@ -91,16 +91,16 @@ class LoadDataAndQueryTest extends BigQueryTestCase
      */
     public function testRunQuery($useLegacySql)
     {
-        $query =  sprintf(
+        $queryString =  sprintf(
             $useLegacySql
                 ? 'SELECT Name, Age, Weight, IsMagic, Spells.* FROM [%s.%s]'
                 : 'SELECT Name, Age, Weight, IsMagic, Spells FROM `%s.%s`',
             self::$dataset->id(),
             self::$table->id()
         );
-        $results = self::$client->runQuery($query, [
-            'useLegacySql' => $useLegacySql
-        ]);
+        $query = self::$client->query($queryString)
+            ->useLegacySql($useLegacySql);
+        $results = self::$client->runQuery($query);
         $backoff = new ExponentialBackoff(8);
         $backoff->execute(function () use ($results) {
             $results->reload();
@@ -147,20 +147,18 @@ class LoadDataAndQueryTest extends BigQueryTestCase
      * @depends testInsertRowToTable
      * @dataProvider useLegacySqlProvider
      */
-    public function testRunQueryAsJob($useLegacySql)
+    public function testStartQuery($useLegacySql)
     {
-        $query = sprintf(
+        $queryString = sprintf(
             $useLegacySql
                 ? 'SELECT FavoriteNumbers, ImportantDates.* FROM [%s.%s]'
                 : 'SELECT FavoriteNumbers, ImportantDates FROM `%s.%s`',
             self::$dataset->id(),
             self::$table->id()
         );
-        $job = self::$client->runQueryAsJob($query, [
-            'jobConfig' => [
-                'useLegacySql' => $useLegacySql
-            ]
-        ]);
+        $query = self::$client->query($queryString)
+            ->useLegacySql($useLegacySql);
+        $job = self::$client->startQuery($query);
         $results = $job->queryResults();
         $backoff = new ExponentialBackoff(8);
         $backoff->execute(function () use ($results) {
@@ -206,7 +204,7 @@ class LoadDataAndQueryTest extends BigQueryTestCase
 
     public function testRunQueryWithNamedParameters()
     {
-        $query = 'SELECT'
+        $queryString = 'SELECT'
             . '@structType as structType,'
             . '@arrayStruct as arrayStruct,'
             . '@nestedStruct as nestedStruct,'
@@ -245,7 +243,9 @@ class LoadDataAndQueryTest extends BigQueryTestCase
             'time' => self::$client->time(new \DateTime('11:15:02')),
             'bytes' => $bytes
         ];
-        $results = self::$client->runQuery($query, ['parameters' => $params]);
+        $query = self::$client->query($queryString)
+            ->parameters($params);
+        $results = self::$client->runQuery($query);
 
         $backoff = new ExponentialBackoff(8);
         $backoff->execute(function () use ($results) {
@@ -271,19 +271,11 @@ class LoadDataAndQueryTest extends BigQueryTestCase
 
     public function testRunQueryWithPositionalParameters()
     {
-        $results = self::$client->runQuery('SELECT 1 IN UNNEST(?) AS arr', [
-            'parameters' => [
+        $query = self::$client->query('SELECT 1 IN UNNEST(?) AS arr')
+            ->parameters([
                 [1, 2, 3]
-            ]
-        ]);
-        $backoff = new ExponentialBackoff(8);
-        $backoff->execute(function () use ($results) {
-            $results->reload();
-
-            if (!$results->isComplete()) {
-                throw new \Exception();
-            }
-        });
+            ]);
+        $results = self::$client->runQuery($query);
 
         if (!$results->isComplete()) {
             $this->fail('Query did not complete within the allotted time.');
@@ -297,14 +289,13 @@ class LoadDataAndQueryTest extends BigQueryTestCase
         $this->assertEquals($expectedRows, $actualRows);
     }
 
-    public function testRunQueryAsJobWithNamedParameters()
+    public function testStartQueryWithNamedParameters()
     {
-        $query = 'SELECT @int as int';
-        $job = self::$client->runQueryAsJob($query, [
-            'parameters' => [
+        $query = self::$client->query('SELECT @int as int')
+            ->parameters([
                 'int' => 5
-            ]
-        ]);
+            ]);
+        $job = self::$client->startQuery($query);
         $results = $job->queryResults();
         $backoff = new ExponentialBackoff(8);
         $backoff->execute(function () use ($results) {
@@ -325,13 +316,13 @@ class LoadDataAndQueryTest extends BigQueryTestCase
         $this->assertEquals($expectedRows, $actualRows);
     }
 
-    public function testRunQueryAsJobWithPositionalParameters()
+    public function testStartQueryWithPositionalParameters()
     {
-        $job = self::$client->runQueryAsJob('SELECT 1 IN UNNEST(?) AS arr', [
-            'parameters' => [
+        $query = self::$client->query('SELECT 1 IN UNNEST(?) AS arr')
+            ->parameters([
                 [1, 2, 3]
-            ]
-        ]);
+            ]);
+        $job = self::$client->startQuery($query);
         $results = $job->queryResults();
         $backoff = new ExponentialBackoff(8);
         $backoff->execute(function () use ($results) {
@@ -356,15 +347,13 @@ class LoadDataAndQueryTest extends BigQueryTestCase
 
     /**
      * @dataProvider rowProvider
-     * @depends testInsertRowToTable
      */
     public function testLoadsDataToTable($data)
     {
-        $job = self::$table->load($data, [
-            'jobConfig' => [
-                'sourceFormat' => 'NEWLINE_DELIMITED_JSON'
-            ]
-        ]);
+        $loadJobConfig = self::$table->load($data)
+            ->sourceFormat('NEWLINE_DELIMITED_JSON');
+
+        $job = self::$table->startJob($loadJobConfig);
         $backoff = new ExponentialBackoff(8);
         $backoff->execute(function () use ($job) {
             $job->reload();
@@ -404,11 +393,9 @@ class LoadDataAndQueryTest extends BigQueryTestCase
             fopen(__DIR__ . '/../data/table-data.json', 'r')
         );
 
-        $job = self::$table->loadFromStorage($object, [
-            'jobConfig' => [
-                'sourceFormat' => 'NEWLINE_DELIMITED_JSON'
-            ]
-        ]);
+        $loadJobConfig = self::$table->loadFromStorage($object)
+            ->sourceFormat('NEWLINE_DELIMITED_JSON');
+        $job = self::$table->startJob($loadJobConfig);
         $backoff = new ExponentialBackoff(8);
         $backoff->execute(function () use ($job) {
             $job->reload();

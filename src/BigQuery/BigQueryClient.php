@@ -21,6 +21,7 @@ use Google\Cloud\BigQuery\Connection\ConnectionInterface;
 use Google\Cloud\BigQuery\Connection\Rest;
 use Google\Cloud\BigQuery\Exception\JobException;
 use Google\Cloud\BigQuery\Job;
+use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\Iterator\ItemIterator;
@@ -42,6 +43,7 @@ use Psr\Http\Message\StreamInterface;
  */
 class BigQueryClient
 {
+    use ArrayTrait;
     use ClientTrait;
 
     const VERSION = '0.2.2';
@@ -111,10 +113,10 @@ class BigQueryClient
      * set of options at once.
      *
      * Unless otherwise specified, all configuration options will default based
-     * on the
-     * [Jobs configuration API documentation](https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs#configuration)
-     * except for `configuration.query.useLegacy`, which defaults to `false` in
-     * this client.
+     * on the [Jobs configuration API documentation]
+     * (https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs#configuration)
+     * except for `configuration.query.useLegacySql`, which defaults to `false`
+     * in this client.
      *
      * Example:
      * ```
@@ -127,7 +129,7 @@ class BigQueryClient
      * // Set create disposition using fluent setters.
      * $queryJobConfig = $bigQuery->query(
      *     'SELECT commit FROM `bigquery-public-data.github_repos.commits` LIMIT 100'
-     * )->createDisposition(QueryJobConfiguration::CREATE_DISPOSITION_CREATE_NEVER);
+     * )->createDisposition('CREATE_NEVER');
      * ```
      *
      * ```
@@ -138,7 +140,7 @@ class BigQueryClient
      *     [
      *         'configuration' => [
      *             'query' => [
-     *                 'createDisposition' => QueryJobConfiguration::CREATE_DISPOSITION_CREATE_NEVER
+     *                 'createDisposition' => 'CREATE_NEVER'
      *             ]
      *         ]
      *     ]
@@ -233,7 +235,7 @@ class BigQueryClient
      *
      * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs/query Query API documentation.
      *
-     * @param QueryJobConfiguration $query A BigQuery SQL query.
+     * @param QueryJobConfiguration $query A BigQuery SQL query configuration.
      * @param array $options [optional] {
      *     Configuration options.
      *
@@ -251,7 +253,7 @@ class BigQueryClient
      * @throws JobException If the maximum number of retries while waiting for
      *         query completion has been exceeded.
      */
-    public function runQuery(QueryJobConfiguration $query, array $options = [])
+    public function runQuery(JobConfigurationInterface $query, array $options = [])
     {
         $queryResultsOptions = $this->pluckArray([
             'maxResults',
@@ -289,11 +291,11 @@ class BigQueryClient
      *
      * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs/insert Jobs insert API documentation.
      *
-     * @param QueryJobConfiguration $query A BigQuery SQL query.
+     * @param QueryJobConfiguration $query A BigQuery SQL query configuration.
      * @param array $options [optional] Configuration options.
      * @return Job
      */
-    public function startQuery(QueryJobConfiguration $query, array $options = [])
+    public function startQuery(JobConfigurationInterface $query, array $options = [])
     {
         $config = $query->toArray();
         $response = $this->connection->insertJob($config + $options);

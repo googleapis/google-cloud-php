@@ -249,7 +249,8 @@ class Table
     }
 
     /**
-     * Starts a job in an asynchronous fashion.
+     * Starts a job in an asynchronous fashion. In this case, it will be
+     * required to manually trigger a call to wait for job completion.
      *
      * Example:
      * ```
@@ -265,10 +266,9 @@ class Table
     public function startJob(JobConfigurationInterface $config, array $options = [])
     {
         $response = null;
-        $loadJob = $config instanceof LoadJobConfiguration;
         $config = $config->toArray() + $options;
 
-        if ($loadJob && isset($config['data'])) {
+        if (isset($config['data'])) {
             $response = $this->connection->insertJobUpload($config)->upload();
         } else {
             $response = $this->connection->insertJob($config);
@@ -284,7 +284,7 @@ class Table
     }
 
     /**
-     * Returns a job configuration to be passed to either
+     * Returns a copy job configuration to be passed to either
      * {@see Google\Cloud\BigQuery\Table::runJob()} or
      * {@see Google\Cloud\BigQuery\Table::startJob()}. A
      * configuration can be built using fluent setters or by providing a full
@@ -311,11 +311,16 @@ class Table
      */
     public function copy(Table $destination, array $options = [])
     {
-        //
+        return (new CopyJobConfiguration(
+            $this->identity['projectId'],
+            $options
+        ))
+            ->destinationTable($destination)
+            ->sourceTable($this);
     }
 
     /**
-     * Returns a job configuration to be passed to either
+     * Returns an extract job configuration to be passed to either
      * {@see Google\Cloud\BigQuery\Table::runJob()} or
      * {@see Google\Cloud\BigQuery\Table::startJob()}. A
      * configuration can be built using fluent setters or by providing a full
@@ -324,7 +329,7 @@ class Table
      * Example:
      * ```
      * $destinationObject = $storage->bucket('myBucket')->object('tableOutput');
-     * $exportJobConfig = $table->export($destinationObject);
+     * $extractJobConfig = $table->extract($destinationObject);
      * ```
      *
      * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs Jobs insert API Documentation.
@@ -350,11 +355,11 @@ class Table
             $options
         ))
             ->destinationUris([$destination])
-            ->sourceTable($this->identity);
+            ->sourceTable($this);
     }
 
     /**
-     * Returns a job configuration to be passed to either
+     * Returns a load job configuration to be passed to either
      * {@see Google\Cloud\BigQuery\Table::runJob()} or
      * {@see Google\Cloud\BigQuery\Table::startJob()}. A
      * configuration can be built using fluent setters or by providing a full
@@ -376,11 +381,21 @@ class Table
      */
     public function load($data, array $options = [])
     {
-        //
+        $config = (new LoadJobConfiguration(
+            $this->identity['projectId'],
+            $options
+        ))
+            ->destinationTable($this);
+
+        if ($data) {
+            $config->data($data);
+        }
+
+        return $config;
     }
 
     /**
-     * Returns a job configuration to be passed to either
+     * Returns a load job configuration to be passed to either
      * {@see Google\Cloud\BigQuery\Table::runJob()} or
      * {@see Google\Cloud\BigQuery\Table::startJob()}. A
      * configuration can be built using fluent setters or by providing a full
@@ -406,7 +421,13 @@ class Table
      */
     public function loadFromStorage($object, array $options = [])
     {
-        //
+        if ($object instanceof StorageObject) {
+            $object = $object->gcsUri();
+        }
+
+        $options['configuration']['load']['sourceUris'] = [$object];
+
+        return $this->load(null, $options);
     }
 
     /**
