@@ -21,53 +21,28 @@ use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\DebugInfoTrait;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
-use Google\Firestore\V1beta1\StructuredQuery_Direction;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
-use Google\Firestore\V1beta1\StructuredQuery_FieldFilter_Operator;
-use Google\Firestore\V1beta1\StructuredQuery_CompositeFilter_Operator;
 
+/**
+ * Represents a Cloud Firestore Collection.
+ *
+ * Collections are implicit namespaces for Firestore Documents. They are created
+ * when the first document is inserted, and cease to exist when the last
+ * document is removed.
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\Firestore\FirestoreClient;
+ *
+ * $firestore = new FirestoreClient();
+ * $collection = $firestore->collection('users');
+ * ```
+ */
 class CollectionReference
 {
     use ArrayTrait;
     use DebugInfoTrait;
     use PathTrait;
-
-    const OP_LESS_THAN = StructuredQuery_FieldFilter_Operator::LESS_THAN;
-    const OP_LESS_THAN_OR_EQUAL = StructuredQuery_FieldFilter_Operator::LESS_THAN_OR_EQUAL;
-    const OP_GREATER_THAN = StructuredQuery_FieldFilter_Operator::GREATER_THAN;
-    const OP_GREATER_THAN_OR_EQUAL = StructuredQuery_FieldFilter_Operator::GREATER_THAN_OR_EQUAL;
-    const OP_EQUAL = StructuredQuery_FieldFilter_Operator::EQUAL;
-
-    const DIR_ASCENDING = StructuredQuery_Direction::ASCENDING;
-    const DIR_DESCENDING = StructuredQuery_Direction::DESCENDING;
-
-    private $allowedOperators = [
-        self::OP_LESS_THAN,
-        self::OP_LESS_THAN_OR_EQUAL,
-        self::OP_EQUAL,
-        self::OP_GREATER_THAN,
-        self::OP_GREATER_THAN_OR_EQUAL,
-    ];
-
-    private $shortOperators = [
-        '<'  => self::OP_LESS_THAN,
-        '<=' => self::OP_LESS_THAN_OR_EQUAL,
-        '>'  => self::OP_GREATER_THAN,
-        '>=' => self::OP_GREATER_THAN_OR_EQUAL,
-        '='  => self::OP_EQUAL
-    ];
-
-    private $allowedDirections = [
-        self::DIR_ASCENDING,
-        self::DIR_DESCENDING
-    ];
-
-    private $shortDirections = [
-        'ASC' => self::DIR_ASCENDING,
-        'ASCENDING' => self::DIR_ASCENDING,
-        'DESC' => self::DIR_DESCENDING,
-        'DESCENDING' => self::DIR_DESCENDING
-    ];
 
     /**
      * @var ConnectionInterface
@@ -85,23 +60,11 @@ class CollectionReference
     private $name;
 
     /**
-     * A list of properties to exclude from the print_r and var_dump output.
-     * @var array
+     * @param ConnectionInterface $connection A Connection to Cloud Firestore.
+     * @param ValueMapper $valueMapper A Firestore Value Mapper.
+     * @param string $name The absolute name of the collection.
      */
-    private $__excludeFromDebug = [
-        'allowedOperators',
-        'shortOperators',
-        'allowedDirections',
-        'shortDirections',
-    ];
-
-    /**
-     * @param ConnectionInterface $connection
-     * @param ValueMapper $valueMapper
-     * @param string $name
-     * @param array $info
-     */
-    public function __construct(ConnectionInterface $connection, ValueMapper $valueMapper, $name, array $info = [])
+    public function __construct(ConnectionInterface $connection, ValueMapper $valueMapper, $name)
     {
         $this->connection = $connection;
         $this->valueMapper = $valueMapper;
@@ -109,7 +72,18 @@ class CollectionReference
     }
 
     /**
-     * Get the collection name
+     * Get the collection name.
+     *
+     * Names are absolute. The result of this call would be of the form
+     * `projects/<project-id>/databases/<database-id>/documents/<relative-path>`.
+     *
+     * To retrieve the collection ID (the last element of the path), use
+     * {@see Google\Cloud\Firestore\CollectionReference::id()}.
+     *
+     * Example:
+     * ```
+     * $name = $collection->name();
+     * ```
      *
      * @return string
      */
@@ -121,6 +95,15 @@ class CollectionReference
     /**
      * Get the collection ID.
      *
+     * IDs are the path element which identifies a resource. To retrieve the
+     * full path to a resource (the resource name), use
+     * {@see Google\Cloud\Firestore\CollectionReference::name()}.
+     *
+     * Example:
+     * ```
+     * $id = $collection->id();
+     * ```
+     *
      * @return string
      */
     public function id()
@@ -131,12 +114,17 @@ class CollectionReference
     /**
      * Lazily get a document which is a direct child of this collection.
      *
+     * Example:
+     * ```
+     * $document = $collection->document('john');
+     * ```
+     *
      * @param string $documentId The document ID.
      * @return DocumentReference
      */
     public function document($documentId)
     {
-        return $this->documentFactory($this->child($this->name, $documentId));
+        return $this->documentFactory($this->childPath($this->name, $documentId));
     }
 
     /**
@@ -144,8 +132,11 @@ class CollectionReference
      *
      * This method does NOT insert the document until you call {@see Google\Cloud\Firestore\Document::create()}.
      *
-     * @param array $fields
-     * @param array $options
+     * Example:
+     * ```
+     * $newUser = $collection->newDocument();
+     * ```
+     *
      * @return DocumentReference
      */
     public function newDocument()
@@ -154,26 +145,58 @@ class CollectionReference
     }
 
     /**
-     * Generate a new document with a random name, and insert it with the given field data.
+     * Generate a new document, and insert it with the given field data.
      *
-     * This method immediately inserts the document. If you wish for lazy creation of a Document instance,
-     * refer to {@see Google\Cloud\Firestore\Collection::document()} or
+     * This method immediately inserts the document. If you wish for lazy
+     * creation of a Document instance, refer to
+     * {@see Google\Cloud\Firestore\Collection::document()} or
      * {@see Google\Cloud\Firestore\Collection::newDocument()}.
      *
-     * @param array $fields
-     * @param array $options
-     * @return array [{@see Google\Cloud\Firestore\Document}, array $result]
+     * Example:
+     * ```
+     * $newUser = $collection->add([
+     *     'name' => 'Kate'
+     * ]);
+     * ```
+     *
+     * ```
+     * // To specify a document ID, supply it in `$options`.
+     * $newUser = $collection->add([
+     *     'name' => 'David'
+     * ], [
+     *     'documentId' => 'david'
+     * ]);
+     * ```
+     *
+     * @param array $fields An array containing field names paired with their value.
+     *        Accepts a nested array, or a simple array of field paths.
+     * @param array $options {
+     *     Configuration Options.
+     *
+     *     @type string $documentId The ID of the new document. If not set, a
+     *           random name will be generated. **Defaults to** `null`.
+     * }
+     * @return DocumentReference
      */
     public function add(array $fields = [], array $options = [])
     {
-        $document = $this->documentFactory($this->randomName($this->name));
+        $name = isset($options['documentId'])
+            ? $this->childPath($this->name, $this->pluck('documentId', $options))
+            : $this->randomName($this->name);
+
+        $document = $this->documentFactory($name);
         $result = $document->create($fields, $options);
 
-        return [$document, $result];
+        return $document;
     }
 
     /**
      * Query the current collection.
+     *
+     * Example:
+     * ```
+     * $query = $collection->query();
+     * ```
      *
      * @codingStandardsIgnoreStart
      * @param array $query [StructuredQuery](https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1beta1#structuredquery)
@@ -182,10 +205,10 @@ class CollectionReference
      */
     public function query(array $query = [])
     {
-        return new Query($this->connection, $this->valueMapper, [
+        return new Query($this->connection, $this->valueMapper, $this->name, [
             'from' => [
                 [
-                    'collectionId' => $this->pathId($this->name())
+                    'collectionId' => $this->pathId($this->name)
                 ]
             ] + $query
         ]);

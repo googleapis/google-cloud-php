@@ -33,7 +33,8 @@ use Google\Cloud\Firestore\Connection\ConnectionInterface;
  * use Google\Cloud\Firestore\Transaction;
  *
  * $firestore = new FirestoreClient();
- * $firestore->runTransaction(function (Transaction $transaction) {
+ * $document = $firestore->document('users/john');
+ * $firestore->runTransaction(function (Transaction $transaction) use ($document) {
  *     // Manage Transaction.
  * });
  * ```
@@ -41,8 +42,12 @@ use Google\Cloud\Firestore\Connection\ConnectionInterface;
 class Transaction
 {
     use SnapshotTrait;
-    use PathTrait;
     use DebugInfoTrait;
+
+    /**
+     * @var ConnectionInterface
+     */
+    private $connection;
 
     /**
      * @var ValueMapper
@@ -55,6 +60,11 @@ class Transaction
     private $writer;
 
     /**
+     * @var string
+     */
+    private $transaction;
+
+    /**
      * @var array
      */
     private $commitOptions = [];
@@ -63,12 +73,14 @@ class Transaction
      * @param ConnectionInterface $connection A connection to Cloud Firestore.
      * @param ValueMapper $valueMapper A Firestore Value Mapper.
      * @param string $database The database name.
-     * @param string $transactionId The transaction ID.
+     * @param string $transaction The transaction ID.
      */
-    public function __construct(ConnectionInterface $connection, ValueMapper $valueMapper, $database, $transactionId)
+    public function __construct(ConnectionInterface $connection, ValueMapper $valueMapper, $database, $transaction)
     {
+        $this->connection = $connection;
         $this->valueMapper = $valueMapper;
-        $this->writer = new WriteBatch($connection, $valueMapper, $database, $transactionId);
+        $this->writer = new WriteBatch($connection, $valueMapper, $database, $transaction);
+        $this->transaction = $transaction;
     }
 
     /**
@@ -76,12 +88,11 @@ class Transaction
      *
      * Unlike {@see Google\Cloud\Firestore\Document::snapshot()}, if the document
      * does not exist, this method will throw
-     * `Google\Cloud\Core\Exception\NotFoundException`.
+     * {@see Google\Cloud\Core\Exception\NotFoundException}.
      *
      * Example:
      * ```
-     * $reference = $firestore->document('users/john');
-     * $snapshot = $transaction->snapshot($reference);
+     * $snapshot = $transaction->snapshot($document);
      * ```
      *
      * @param DocumentReference $document The document to retrieve.
@@ -92,13 +103,21 @@ class Transaction
     public function snapshot(DocumentReference $document, array $options = [])
     {
         return $this->createSnapshot($document, [
-            'transaction' => $this->transactionId,
+            'transaction' => $this->transaction,
             'allowNonExistence' => false
         ] + $options);
     }
 
     /**
      * Create a Firestore document.
+     *
+     * Example:
+     * ```
+     * $transaction->create($document, [
+     *     'name' => 'John',
+     *     'country' => 'USA'
+     * ]);
+     * ```
      *
      * @param DocumentReference $document The document to create.
      * @param array $fields An array containing fields, where keys are the field
@@ -117,6 +136,23 @@ class Transaction
     /**
      * Modify or replace a Firestore document.
      *
+     * Example:
+     * ```
+     * // In this example, all field not explicitly specified will be removed.
+     * $transaction->set($document, [
+     *     'name' => 'Johnny'
+     * ]);
+     * ```
+     *
+     * ```
+     * // To specify MERGE over REPLACE, set `$options.merge` to `true`.
+     * $transaction->set($document, [
+     *     'name' => 'Johnny'
+     * ], [
+     *     'merge' => true
+     * ]);
+     * ```
+     *
      * @param DocumentReference $document The document to modify or replace.
      * @param array $fields An array containing fields, where keys are the field
      *        names, and values are field values. Nested arrays are allowed.
@@ -133,7 +169,7 @@ class Transaction
      */
     public function set(DocumentReference $document, array $fields, array $options = [])
     {
-        $this->writer->update($document->name(), $fields, $options);
+        $this->writer->set($document->name(), $fields, $options);
 
         return $this;
     }
@@ -146,6 +182,20 @@ class Transaction
      * By default, this method will fail if the document does not exist.
      *
      * To remove a field, set the field value to `FirestoreClient::DELETE_FIELD`.
+     *
+     * Example:
+     * ```
+     * $transaction->update($document, [
+     *     'name' => 'John'
+     * ]);
+     * ```
+     *
+     * ```
+     * // Fields may be deleted by setting them to a special value.
+     * $transaction->update($document, [
+     *     'country' => FirestoreClient::DELETE_FIELD
+     * ]);
+     * ```
      *
      * @codingStandardsIgnoreStart
      * @param string $documentName The document to update.
@@ -180,6 +230,11 @@ class Transaction
 
     /**
      * Delete a Firestore document.
+     *
+     * Example:
+     * ```
+     * $transaction->delete($document);
+     * ```
      *
      * @param array $options Configuration Options.
      * @return Transaction

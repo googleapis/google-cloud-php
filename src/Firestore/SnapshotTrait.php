@@ -19,10 +19,12 @@ namespace Google\Cloud\Firestore;
 
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\ValueMapperTrait;
+use Google\Cloud\Core\Exception\NotFoundException;
 
 trait SnapshotTrait
 {
     use ArrayTrait;
+    use PathTrait;
 
     /**
      * Create and return a document snapshot.
@@ -61,7 +63,8 @@ trait SnapshotTrait
         $data = [];
         $fields = [];
 
-        if ($options['exists']) {
+        $allowNonExistence = $this->pluck('allowNonExistence', $options);
+        if ($this->pluck('exists', $options)) {
             try {
                 $data = (isset($options['data']))
                     ? $options['data']
@@ -74,7 +77,7 @@ trait SnapshotTrait
                 $data = $this->transformSnapshotTimestamps($data);
 
             } catch (NotFoundException $e) {
-                if (!$options['allowNonExistence']) {
+                if (!$allowNonExistence) {
                     throw $e;
                 }
 
@@ -100,9 +103,16 @@ trait SnapshotTrait
      */
     private function getSnapshot($name, array $options = [])
     {
-        return $this->connection->getDocument([
-            'name' => $name,
-        ] + $options);
+        $snapshot = current($this->connection->batchGetDocuments([
+            'database' => $this->databaseFromName($name),
+            'documents' => [$name],
+        ] + $options));
+
+        if (!isset($snapshot['found'])) {
+            throw new NotFoundException('');
+        }
+
+        return $snapshot['found'];
     }
 
     /**

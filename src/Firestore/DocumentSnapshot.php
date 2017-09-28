@@ -40,8 +40,6 @@ namespace Google\Cloud\Firestore;
  */
 class DocumentSnapshot implements \ArrayAccess
 {
-    use PathTrait;
-
     /**
      * @var DocumentReference
      */
@@ -118,7 +116,7 @@ class DocumentSnapshot implements \ArrayAccess
      */
     public function id()
     {
-        return $this->pathId($this->reference->name());
+        return $this->reference->id();
     }
 
     /**
@@ -192,18 +190,23 @@ class DocumentSnapshot implements \ArrayAccess
         $parts = explode('.', $fieldPath);
         $len = count($parts);
 
+        $res = null;
+
         $fields = $this->fields;
         foreach ($parts as $idx => $part) {
             if ($idx === $len-1 && isset($fields[$part])) {
-                return $fields[$part];
-            }
+                $res = $fields[$part];
+                break;
+            } else {
+                if (!isset($fields[$part])) {
+                    throw new \InvalidArgumentException('field path does not exist.');
+                }
 
-            if (!isset($fields[$part])) {
-                throw new \InvalidArgumentException('field path does not exist.');
+                $fields = $fields[$part];
             }
-
-            $fields = $fields[$part];
         }
+
+        return $res;
     }
 
     /**

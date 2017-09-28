@@ -74,7 +74,7 @@ class Gapic implements ConnectionInterface
         $this->firestore = new FirestoreClient($grpcConfig);
     }
 
-        /**
+    /**
      * @param array $args
      */
     public function batchGetDocuments(array $args)
@@ -156,7 +156,6 @@ class Gapic implements ConnectionInterface
     {
         $q = $this->pluck('structuredQuery', $args);
 
-        // print_r($q);exit;
         $args['structuredQuery'] = $this->serializer->decodeMessage(
             new StructuredQuery,
             $q

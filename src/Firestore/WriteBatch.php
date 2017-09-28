@@ -57,7 +57,7 @@ class WriteBatch
     /**
      * @var string|null
      */
-    private $transactionId;
+    private $transaction;
 
     /**
      * @var array
@@ -73,15 +73,15 @@ class WriteBatch
      * @param ConnectionInterface $connection A connection to Cloud Firestore
      * @param ValueMapper $valueMapper A Value Mapper instance
      * @param string $database The current database
-     * @param string|null $transactionId The transaction to run commits in.
+     * @param string|null $transaction The transaction to run commits in.
      *        **Defaults to** `null`.
      */
-    public function __construct(ConnectionInterface $connection, $valueMapper, $database, $transactionId = null)
+    public function __construct(ConnectionInterface $connection, $valueMapper, $database, $transaction = null)
     {
         $this->connection = $connection;
         $this->valueMapper = $valueMapper;
         $this->database = $database;
-        $this->transactionId = $transactionId;
+        $this->transaction = $transaction;
     }
 
     /**
@@ -92,7 +92,6 @@ class WriteBatch
      * @param string $documentName The document to create.
      * @param array $fields An array containing field names paired with their value.
      *        Accepts a nested array, or a simple array of field paths.
-     * @param array $options Configuration options
      * @return WriteBatch
      */
     public function create($documentName, array $fields, array $options = [])
@@ -147,10 +146,14 @@ class WriteBatch
 
         list($fields, $timestamps, $deletes) = $this->valueMapper->findSentinels($fields);
 
-        $this->writes[] = $this->createDatabaseWrite(self::TYPE_UPDATE, $documentName, [
-            'fields' => $this->valueMapper->decodeFieldPaths($fields),
-            'updateMask' => array_merge($this->valueMapper->encodeFieldPaths($fields), $deletes)
-        ] + $options);
+        if ($fields) {
+            $this->writes[] = $this->createDatabaseWrite(self::TYPE_UPDATE, $documentName, [
+                'fields' => $this->valueMapper->encodeValues(
+                    $this->valueMapper->decodeFieldPaths($fields)
+                ),
+                'updateMask' => array_merge($this->valueMapper->encodeFieldPaths($fields), $deletes)
+            ] + $options);
+        }
 
         // Setting values to the server timestamp is implemented as a document tranformation.
         $this->updateTransformations($documentName, $timestamps);
@@ -193,12 +196,14 @@ class WriteBatch
 
         list($fields, $timestamps) = $this->valueMapper->findSentinels($fields);
 
-        $write = array_filter([
-            'fields' => $this->valueMapper->encodeValues($fields),
-            'updateMask' => $options['merge'] ? $this->valueMapper->encodeFieldPaths($fields) : null
-        ]);
+        if ($fields) {
+            $write = array_filter([
+                'fields' => $this->valueMapper->encodeValues($fields),
+                'updateMask' => $options['merge'] ? $this->valueMapper->encodeFieldPaths($fields) : null
+            ]);
 
-        $this->writes[] = $this->createDatabaseWrite(self::TYPE_UPDATE, $documentName, $write);
+            $this->writes[] = $this->createDatabaseWrite(self::TYPE_UPDATE, $documentName, $write);
+        }
 
         // Setting values to the server timestamp is implemented as a document tranformation.
         $this->updateTransformations($documentName, $timestamps);
@@ -252,6 +257,23 @@ class WriteBatch
         return $this;
     }
 
+    /**
+     * Enqueue a Transform operation.
+     *
+     * Note that UPDATE cannot follow TRANSFORM, so once any transforms are
+     * enqueued (either by this method, or by using the `FirestoreClient::SERVER_TIMESTAMP`
+     * sentinel value), any subsequent updates will fail.
+     *
+     * @param string $documentName The document to apply the transformation to.
+     * @param array $transforms {
+     *     A list of Document transformations.
+     *
+     *     @param string $fieldPath The path of the field.
+     *     @param string $setToServerValue Sets the field to the given server value.
+     * }
+     * @param array $options Configuration options.
+     * @return WriteBatch
+     */
     public function transform($documentName, array $transforms = [], array $options = [])
     {
         $this->writes[] = $this->createDatabaseWrite(self::TYPE_TRANSFORM, $documentName, [
@@ -283,7 +305,7 @@ class WriteBatch
         $response = $this->connection->commit(array_filter([
             'database' => $this->database,
             'writes' => $this->writes,
-            'transaction' => $this->transactionId
+            'transaction' => $this->transaction
         ]) + $options);
 
         if (isset($response['commitTime'])) {
@@ -313,17 +335,17 @@ class WriteBatch
      *
      * @param array $options Configuration Options
      * @return void
-     * @throws \BadMethodCallException
+     * @throws \RuntimeException If no transaction ID is provided at class construction.
      */
     public function rollback(array $options = [])
     {
-        if (!$this->transactionId) {
-            throw new \BadMethodCallException('Cannot rollback because no transaction id was provided.');
+        if (!$this->transaction) {
+            throw new \RuntimeException('Cannot rollback because no transaction id was provided.');
         }
 
         $this->connection->rollback([
             'database' => $this->database,
-            'transaction' => $this->transactionId
+            'transaction' => $this->transaction
         ] + $options);
     }
 
@@ -433,12 +455,14 @@ class WriteBatch
                 ]];
                 break;
 
+            // @codeCoverageIgnoreStart
             default:
                 throw new \InvalidArgumentException(sprintf(
                     'Write operation type `%s is not valid. Allowed values are update, delete, verify, transform.',
                     $type
                 ));
                 break;
+            // @codeCoverageIgnoreEnd
         }
     }
 }

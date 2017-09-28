@@ -31,7 +31,6 @@ class DocumentReference
 {
     use SnapshotTrait;
     use DebugInfoTrait;
-    use PathTrait;
 
     /**
      * @var ConnectionInterface
@@ -94,8 +93,9 @@ class DocumentReference
     /**
      * Create a new document in Firestore. If the document already exists, this method will fail.
      *
-     * @param array $fields
-     * @param array $options
+     * @param array $fields An array containing field names paired with their value.
+     *        Accepts a nested array, or a simple array of field paths.
+     * @param array $options Configuration Options.
      * @return array
      * @throws ConflictException
      */
@@ -247,6 +247,8 @@ class DocumentReference
      *
      *     @type array $mask A list of fields to return. If not set, returns all
      *           fields.
+     *     @type Timestamp $readTime Reads the version of the document at the
+     *           given time. This may not be older than 60 seconds.
      * }
      * @return DocumentSnapshot
      */

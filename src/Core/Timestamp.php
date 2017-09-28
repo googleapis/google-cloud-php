@@ -129,7 +129,7 @@ class Timestamp
     {
         return [
             'seconds' => (int)$this->value->format('U'),
-            'nanos' => (int)$this->nanos
+            'nanos' => (int)$this->nanoSeconds
         ];
     }
 }

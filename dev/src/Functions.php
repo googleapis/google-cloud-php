@@ -34,14 +34,29 @@ function stub($extends, array $args = [], array $props = [])
  * @param string $trait The fully-qualified name of the trait to implement.
  * @return mixed
  */
-function impl($trait)
+function impl($trait, array $props = [])
 {
-    $tpl = 'class %s { use %s; public function call($fn, array $args = []) { return call_user_func_array([$this, $fn], $args); } }';
+    if (empty($props)) {
+        $props = [];
+    }
+
+    $properties = [];
+    foreach ($props as $prop) {
+        $properties[] = 'private $'. $prop .';';
+    }
+
+    $tpl = 'class %s {
+        use %s;
+        use \Google\Cloud\Dev\StubTrait;
+        private $___props = \'%s\';
+        %s
+        public function call($fn, array $args = []) { return call_user_func_array([$this, $fn], $args); }
+    }';
 
     $name = 'Trait'. sha1($trait);
 
     if (!class_exists($name)) {
-        eval(sprintf($tpl, $name, $trait));
+        eval(sprintf($tpl, $name, $trait, json_encode($props), implode("\n", $properties)));
     }
 
     return new $name;

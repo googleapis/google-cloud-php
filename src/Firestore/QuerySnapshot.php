@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Firestore;
 
+use Google\Cloud\Firestore\Connection\ConnectionInterface;
+
 /**
  * Query Results
  *
@@ -40,11 +42,6 @@ class QuerySnapshot implements \IteratorAggregate
     private $valueMapper;
 
     /**
-     * @var callable
-     */
-    private $call;
-
-    /**
      * @var array
      */
     private $res;
@@ -55,12 +52,11 @@ class QuerySnapshot implements \IteratorAggregate
      * @param ValueMapper $valueMapper
      * @param callable $call
      */
-    public function __construct(ConnectionInterface $connection, Query $query, ValueMapper $valueMapper, callable $call)
+    public function __construct(ConnectionInterface $connection, Query $query, ValueMapper $valueMapper)
     {
         $this->connection = $connection;
         $this->query = $query;
         $this->valueMapper = $valueMapper;
-        $this->call = $call;
     }
 
     /**
@@ -69,21 +65,6 @@ class QuerySnapshot implements \IteratorAggregate
     public function query()
     {
         return $this->query;
-    }
-
-    /**
-     * @return DocumentSnapshot
-     */
-    public function documents()
-    {
-        $this->res = $this->res ?: call_user_func_array($this->call, $this->query);
-
-        foreach ($this->res as $document) {
-            $ref = $this->documentFactory($document['document']['name']);
-            yield $ref->snapshot([
-                'data' => $document['document']
-            ]);
-        }
     }
 
     /**

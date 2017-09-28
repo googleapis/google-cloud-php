@@ -42,7 +42,7 @@ trait StubTrait
     private function ___getPropertyReflector($property)
     {
         $trait = new \ReflectionClass($this);
-        $ref = $trait->getParentClass();
+        $ref = $trait->getParentClass() ?: $trait;
 
         try {
             $property = $ref->getProperty($property);
