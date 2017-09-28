@@ -93,7 +93,7 @@ class Query
      * Add a SELECT to the Query.
      *
      * @param array $fieldPaths
-     * @return Collection
+     * @return CollectionReference
      */
     public function select(array $fieldPaths)
     {
@@ -117,7 +117,7 @@ class Query
      * @param string $fieldPath
      * @param string $operator
      * @param mixed $value
-     * @return Collection
+     * @return CollectionReference
      */
     public function where($fieldPath, $operator, $value)
     {
@@ -159,7 +159,7 @@ class Query
      *
      * @param string $fieldPath
      * @param string $direction
-     * @return Collection
+     * @return CollectionReference
      */
     public function orderBy($fieldPath, $direction)
     {

@@ -44,7 +44,7 @@ class DocumentReference
     private $valueMapper;
 
     /**
-     * @var Collection
+     * @var CollectionReference
      */
     private $parent;
 
@@ -53,7 +53,7 @@ class DocumentReference
      */
     private $name;
 
-    public function __construct(ConnectionInterface $connection, ValueMapper $valueMapper, Collection $parent, $name)
+    public function __construct(ConnectionInterface $connection, ValueMapper $valueMapper, CollectionReference $parent, $name)
     {
         $this->connection = $connection;
         $this->valueMapper = $valueMapper;
@@ -64,7 +64,7 @@ class DocumentReference
     /**
      * Returns the parent collection.
      *
-     * @return Collection
+     * @return CollectionReference
      */
     public function parent()
     {
@@ -259,11 +259,11 @@ class DocumentReference
      * Lazily get a collection which is a child of the current document.
      *
      * @param string $collectionId
-     * @return Collection
+     * @return CollectionReference
      */
     public function collection($collectionId)
     {
-        return new Collection($this->connection, $this->valueMapper, $this->childPath($this->name, $collectionId));
+        return new CollectionReference($this->connection, $this->valueMapper, $this->childPath($this->name, $collectionId));
     }
 
     /**
@@ -278,7 +278,7 @@ class DocumentReference
         return new ItemIterator(
             new PageIterator(
                 function ($collectionId) {
-                    return new Collection($this->connection, $this->valueMapper, $this->childPath($this->name, $collectionId));
+                    return new CollectionReference($this->connection, $this->valueMapper, $this->childPath($this->name, $collectionId));
                 },
                 [$this->connection, 'listCollectionIds'],
                 $options + ['parent' => $this->name],

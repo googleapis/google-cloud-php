@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Firestore;
 
+use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Core\ValidateTrait;
 use Google\Cloud\Core\ExponentialBackoff;
@@ -37,6 +38,7 @@ use Google\Cloud\Core\Exception\AbortedException;
  */
 class FirestoreClient
 {
+    use ArrayTrait;
     use ClientTrait;
     use PathTrait;
     use ValidateTrait;
@@ -151,7 +153,7 @@ class FirestoreClient
      * ```
      *
      * @param string $relativeName
-     * @return Collection
+     * @return CollectionReference
      */
     public function collection($relativeName)
     {
@@ -159,7 +161,7 @@ class FirestoreClient
             throw new \InvalidArgumentException('Given path is not a valid collection path.');
         }
 
-        return new Collection($this->connection, $this->valueMapper, $this->fullName(
+        return new CollectionReference($this->connection, $this->valueMapper, $this->fullName(
             $this->projectId,
             $this->database,
             $relativeName
@@ -246,6 +248,14 @@ class FirestoreClient
     /**
      * Get a list of documents by their path.
      *
+     * The number of results generated will be equal to the number of documents
+     * requested, except in case of error. This method does NOT guarantee that
+     * results will be returned in the order requested.
+     *
+     * Note that this method will **always** yield instances of
+     * {@see Google\Cloud\Firestore\DocumentSnapshot}, even if the documents
+     * requested do not exist.
+     *
      * Example:
      * ```
      * $documents = $firestore->documents([
@@ -254,13 +264,30 @@ class FirestoreClient
      * ]);
      * ```
      *
-     * @param array $paths
-     * @param array $options
-     * @return \Generator
+     * ```
+     * // To check whether a given document exists, use `DocumentSnapshot::exists()`.
+     * $documents = $firestore->documents([
+     *     'users/deleted-guy'
+     * ]);
+     *
+     * foreach ($documents as $document) {
+     *     if (!$document->exists()) {
+     *         echo $document->id() . ' Does Not Exist';
+     *     }
+     * }
+     * ```
+     *
+     * @param string[]|DocumentReference[] $paths Any combination of string paths or DocumentReference instances.
+     * @param array $options Configuration options.
+     * @return \Generator<DocumentSnapshot>
      */
     public function documents(array $paths, array $options = [])
     {
         array_walk($paths, function (&$path) {
+            if ($path instanceof DocumentReference) {
+                $path = $path->name();
+            }
+
             $path = $this->isRelative($path)
                 ? $this->fullName($this->projectId, $this->database, $path)
                 : $path;
@@ -343,6 +370,10 @@ class FirestoreClient
      */
     public function runTransaction(callable $callable, array $options = [])
     {
+        if ($this->isRunningTransaction) {
+            throw new \RuntimeException('Another transaction is currently in progress in this client.');
+        }
+
         $options += [
             'maxRetries' => self::MAX_RETRIES,
             'begin' => [],
@@ -370,7 +401,7 @@ class FirestoreClient
         return $backoff->execute(function (callable $callable, array $options) use (&$transactionId, $retryableErrors) {
             $this->isRunningTransaction = true;
 
-            $database = $this->fullName($this->projectId, $this->database);
+            $database = $this->databaseName($this->projectId, $this->database);
 
             $beginTransaction = $this->connection->beginTransaction(array_filter([
                 'database' => $database,
@@ -387,9 +418,7 @@ class FirestoreClient
                     'transaction' => $transactionId
                 ] + $options['commit']);
             } catch (\Exception $e) {
-                if (!in_array(get_class($e), $retryableErrors)) {
-                    $transaction->writer()->rollback($database, $transactionId, $options['rollback']);
-                }
+                $transaction->writer()->rollback($options['rollback']);
 
                 throw $e;
             } finally {
@@ -399,18 +428,5 @@ class FirestoreClient
             $callable,
             $options
         ]);
-    }
-
-    /**
-     * Create a document instance with the given document name.
-     *
-     * @param string $name
-     * @return DocumentReference
-     */
-    private function documentFactory($name)
-    {
-        $collectionId = $this->relativeName($this->parentPath($name));
-        $collection = $this->collection($collectionId);
-        return new DocumentReference($this->connection, $this->valueMapper, $collection, $name);
     }
 }

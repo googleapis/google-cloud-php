@@ -103,7 +103,7 @@ class DocumentSnapshot implements \ArrayAccess
      */
     public function name()
     {
-        return $this->document->name();
+        return $this->reference->name();
     }
 
     /**
@@ -118,7 +118,7 @@ class DocumentSnapshot implements \ArrayAccess
      */
     public function id()
     {
-        return $this->pathId($this->document->name());
+        return $this->pathId($this->reference->name());
     }
 
     /**

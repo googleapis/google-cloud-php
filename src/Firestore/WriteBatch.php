@@ -110,6 +110,8 @@ class WriteBatch
      * By default, this method will fail if the document does not exist.
      *
      * To remove a field, set the field value to `FirestoreClient::DELETE_FIELD`.
+     * To set a field to the current server timestamp, set the field value to
+     * `FirestoreClient::SERVER_TIMESTAMP`.
      *
      * @codingStandardsIgnoreStart
      * @param string $documentName The document to update.
@@ -151,17 +153,7 @@ class WriteBatch
         ] + $options);
 
         // Setting values to the server timestamp is implemented as a document tranformation.
-        if ($timestamps) {
-            $transforms = [];
-            foreach ($timestamps as $timestamp) {
-                $transforms[] = [
-                    'fieldPath' => $timestamp,
-                    'setToServerValue' => DocumentTransform_FieldTransform_ServerValue::REQUEST_TIME
-                ];
-            }
-
-            $this->transform($documentName, $transforms);
-        }
+        $this->updateTransformations($documentName, $timestamps);
 
         return $this;
     }
@@ -199,12 +191,17 @@ class WriteBatch
             'merge' => false
         ];
 
+        list($fields, $timestamps) = $this->valueMapper->findSentinels($fields);
+
         $write = array_filter([
             'fields' => $this->valueMapper->encodeValues($fields),
-            'updateMask' => $merge ? $this->valueMapper->encodeFieldPaths($fields) : null
+            'updateMask' => $options['merge'] ? $this->valueMapper->encodeFieldPaths($fields) : null
         ]);
 
         $this->writes[] = $this->createDatabaseWrite(self::TYPE_UPDATE, $documentName, $write);
+
+        // Setting values to the server timestamp is implemented as a document tranformation.
+        $this->updateTransformations($documentName, $timestamps);
 
         return $this;
     }
@@ -328,6 +325,21 @@ class WriteBatch
             'database' => $this->database,
             'transaction' => $this->transactionId
         ] + $options);
+    }
+
+    private function updateTransformations($documentName, array $timestamps)
+    {
+        $transforms = [];
+        foreach ($timestamps as $timestamp) {
+            $transforms[] = [
+                'fieldPath' => $timestamp,
+                'setToServerValue' => DocumentTransform_FieldTransform_ServerValue::REQUEST_TIME
+            ];
+        }
+
+        if ($transforms) {
+            $this->transform($documentName, $transforms);
+        }
     }
 
     /**

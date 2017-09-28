@@ -26,7 +26,7 @@ use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Firestore\V1beta1\StructuredQuery_FieldFilter_Operator;
 use Google\Firestore\V1beta1\StructuredQuery_CompositeFilter_Operator;
 
-class Collection
+class CollectionReference
 {
     use ArrayTrait;
     use DebugInfoTrait;
@@ -106,9 +106,6 @@ class Collection
         $this->connection = $connection;
         $this->valueMapper = $valueMapper;
         $this->name = $name;
-        $this->query = isset($info['query'])
-            ? $info['query']
-            : [];
     }
 
     /**
@@ -119,6 +116,16 @@ class Collection
     public function name()
     {
         return $this->name;
+    }
+
+    /**
+     * Get the collection ID.
+     *
+     * @return string
+     */
+    public function id()
+    {
+        return $this->pathId($this->name);
     }
 
     /**

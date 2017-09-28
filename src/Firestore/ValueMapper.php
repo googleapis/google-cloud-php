@@ -271,7 +271,7 @@ class ValueMapper
                 break;
 
             case 'referenceValue':
-                $parent = new Collection($this->connection, $this, $this->parentPath($value));
+                $parent = new CollectionReference($this->connection, $this, $this->parentPath($value));
                 return new DocumentReference($this->connection, $this, $parent, $value);
 
             default:
