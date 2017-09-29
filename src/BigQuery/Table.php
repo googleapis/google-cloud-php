@@ -109,6 +109,9 @@ class Table
     /**
      * Delete the table.
      *
+     * Please note that by default the library will not attempt to retry this
+     * call on your behalf.
+     *
      * Example:
      * ```
      * $table->delete();
@@ -120,7 +123,11 @@ class Table
      */
     public function delete(array $options = [])
     {
-        $this->connection->deleteTable($options + $this->identity);
+        $this->connection->deleteTable(
+            $options
+            + ['retries' => 0]
+            + $this->identity
+        );
     }
 
     /**
@@ -130,6 +137,9 @@ class Table
      * update protection. This is useful in preventing override of modifications
      * made by another user. The resource's current etag can be obtained via a
      * GET request on the resource.
+     *
+     * Please note that by default the library will not automatically retry this
+     * call on your behalf unless an `etag` is set.
      *
      * Example:
      * ```
@@ -147,12 +157,17 @@ class Table
      */
     public function update(array $metadata, array $options = [])
     {
-        $options += $metadata;
-        $this->info = $this->connection->patchTable(
-            $this->applyEtagHeader($options + $this->identity)
+        $options = $this->applyEtagHeader(
+            $options
+            + $metadata
+            + $this->identity
         );
 
-        return $this->info;
+        if (!isset($options['etag']) && !isset($options['retries'])) {
+            $options['retries'] = 0;
+        }
+
+        return $this->info = $this->connection->patchTable($options);
     }
 
     /**
@@ -433,6 +448,9 @@ class Table
     /**
      * Insert a record into the table without running a load job.
      *
+     * Please note that by default the library will not automatically retry this
+     * call on your behalf unless an `insertId` is set.
+     *
      * Example:
      * ```
      * $row = [
@@ -486,6 +504,9 @@ class Table
 
     /**
      * Insert records into the table without running a load job.
+     *
+     * Please note that by default the library will not automatically retry this
+     * call on your behalf unless an `insertId` is set.
      *
      * Example:
      * ```
@@ -556,6 +577,10 @@ class Table
         foreach ($rows as $row) {
             if (!isset($row['data'])) {
                 throw new \InvalidArgumentException('A row must have a data key.');
+            }
+
+            if (!isset($options['retries']) && !isset($row['insertId'])) {
+                $options['retries'] = 0;
             }
 
             foreach ($row['data'] as $key => $item) {

@@ -103,6 +103,9 @@ class Job
      * Requests that a job be cancelled. You will need to poll the job to ensure
      * the cancel request successfully goes through.
      *
+     * Please note that by default the library will not attempt to retry this
+     * call on your behalf.
+     *
      * Example:
      * ```
      * $job->cancel();
@@ -124,7 +127,11 @@ class Job
      */
     public function cancel(array $options = [])
     {
-        $this->connection->cancelJob($options + $this->identity);
+        $this->connection->cancelJob(
+            $options
+            + ['retries' => 0]
+            + $this->identity
+        );
     }
 
     /**

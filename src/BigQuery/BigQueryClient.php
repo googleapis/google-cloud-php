@@ -26,6 +26,7 @@ use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
+use Google\Cloud\Core\RetryDeciderTrait;
 use Psr\Cache\CacheItemPoolInterface;
 use Psr\Http\Message\StreamInterface;
 
@@ -45,8 +46,11 @@ class BigQueryClient
 {
     use ArrayTrait;
     use ClientTrait;
+    use RetryDeciderTrait;
 
     const VERSION = '0.2.2';
+
+    const MAX_DELAY_MICROSECONDS = 32000000;
 
     const SCOPE = 'https://www.googleapis.com/auth/bigquery';
     const INSERT_SCOPE = 'https://www.googleapis.com/auth/bigquery.insertdata';
@@ -96,9 +100,21 @@ class BigQueryClient
      */
     public function __construct(array $config = [])
     {
+        $this->setHttpRetryCodes([]);
+        $this->setHttpRetryMessages([
+            'rateLimitExceeded',
+            'backendError'
+        ]);
         $config += [
             'scopes' => [self::SCOPE],
-            'returnInt64AsObject' => false
+            'returnInt64AsObject' => false,
+            'restRetryFunction' => $this->getRetryFunction(),
+            'restDelayFunction' => function ($attempt) {
+                return min(
+                    mt_rand(0, 1000000) + (pow(2, $attempt) * 1000000),
+                    self::MAX_DELAY_MICROSECONDS
+                );
+            }
         ];
 
         $this->connection = new Rest($this->configureAuthentication($config));
@@ -462,6 +478,9 @@ class BigQueryClient
     /**
      * Creates a dataset.
      *
+     * Please note that by default the library will not attempt to retry this
+     * call on your behalf.
+     *
      * Example:
      * ```
      * $dataset = $bigQuery->createDataset('aDataset');
@@ -486,12 +505,16 @@ class BigQueryClient
             unset($options['metadata']);
         }
 
-        $response = $this->connection->insertDataset([
-            'projectId' => $this->projectId,
-            'datasetReference' => [
-                'datasetId' => $id
+        $response = $this->connection->insertDataset(
+            [
+                'projectId' => $this->projectId,
+                'datasetReference' => [
+                    'datasetId' => $id
+                ]
             ]
-        ] + $options);
+            + $options
+            + ['retries' => 0]
+        );
 
         return new Dataset(
             $this->connection,
