@@ -23,7 +23,7 @@ use Google\Cloud\BigQuery\ValueMapper;
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
 
 /**
- * @group bigquery-2
+ * @group bigquery
  */
 class QueryJobConfigurationTest extends SnippetTestCase
 {

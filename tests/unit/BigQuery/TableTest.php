@@ -26,6 +26,7 @@ use Google\Cloud\BigQuery\JobConfigurationInterface;
 use Google\Cloud\BigQuery\LoadJobConfiguration;
 use Google\Cloud\BigQuery\Table;
 use Google\Cloud\BigQuery\ValueMapper;
+use Google\Cloud\Core\Exception\ConflictException;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Upload\AbstractUploader;
 use Google\Cloud\Storage\Connection\ConnectionInterface as StorageConnectionInterface;
@@ -479,8 +480,72 @@ class TableTest extends \PHPUnit_Framework_TestCase
             ->willReturn([])
             ->shouldBeCalledTimes(1);
         $table = $this->getTable($this->connection);
-
         $insertResponse = $table->insertRows($rowData);
+
+        $this->assertInstanceOf(InsertResponse::class, $insertResponse);
+        $this->assertTrue($insertResponse->isSuccessful());
+    }
+
+    public function testInsertsRowsWithAutoCreate()
+    {
+        $insertId = '1';
+        $data = ['key' => 'value'];
+        $rowData = [
+            [
+                'insertId' => $insertId,
+                'data' => $data
+            ]
+        ];
+        $schema = [
+            'fields' => [
+                [
+                    'name' => 'key',
+                    'type' => 'STRING'
+                ]
+            ]
+        ];
+        $expectedInsertTableDataArguments = [
+            'tableId' => self::TABLE_ID,
+            'projectId' => self::PROJECT_ID,
+            'datasetId' => self::DATASET_ID,
+            'rows' => [
+                [
+                    'json' => $data,
+                    'insertId' => $insertId
+                ]
+            ]
+        ];
+        $expectedInsertTableArguments = [
+            'schema' => $schema,
+            'retries' => 0,
+            'projectId' => self::PROJECT_ID,
+            'datasetId' => self::DATASET_ID,
+            'tableReference' => [
+                'projectId' => self::PROJECT_ID,
+                'datasetId' => self::DATASET_ID,
+                'tableId' => self::TABLE_ID
+            ]
+        ];
+        $callCount = 0;
+        $this->connection->insertAllTableData($expectedInsertTableDataArguments)
+            ->will(function () use (&$callCount) {
+                if ($callCount === 0) {
+                    $callCount++;
+                    throw new NotFoundException(null);
+                }
+
+                return [];
+            })
+            ->shouldBeCalledTimes(2);
+        $this->connection->insertTable($expectedInsertTableArguments)
+            ->willReturn([]);
+        $table = $this->getTable($this->connection);
+        $insertResponse = $table->insertRows($rowData, [
+            'autoCreate' => true,
+            'tableMetadata' => [
+                'schema' => $schema
+            ]
+        ]);
 
         $this->assertInstanceOf(InsertResponse::class, $insertResponse);
         $this->assertTrue($insertResponse->isSuccessful());
@@ -488,11 +553,94 @@ class TableTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @expectedException \InvalidArgumentException
+     * @expectedMessage A schema is required when creating a table.
      */
-    public function testInsertRowsThrowsException()
+    public function testInsertRowsThrowsExceptionWithoutSchema()
+    {
+        $options = [
+            'autoCreate' => true
+        ];
+        $this->connection->insertAllTableData(Argument::any())
+            ->willThrow(new NotFoundException(null));
+        $table = $this->getTable($this->connection);
+        $table->insertRows([
+            [
+                'data' => [
+                    'city' => 'state'
+                ]
+            ]
+        ], $options);
+    }
+
+    /**
+     * @expectedException \Exception
+     */
+    public function testInsertRowsThrowsExceptionWithUnretryableTableFailure()
+    {
+        $options = [
+            'autoCreate' => true,
+            'tableMetadata' => [
+                'schema' => []
+            ]
+        ];
+        $this->connection->insertAllTableData(Argument::any())
+            ->willThrow(new NotFoundException(null));
+        $this->connection->insertTable(Argument::any())
+            ->willThrow(new \Exception());
+        $table = $this->getTable($this->connection);
+        $table->insertRows([
+            [
+                'data' => [
+                    'city' => 'state'
+                ]
+            ]
+        ], $options);
+    }
+
+    /**
+     * @expectedException Google\Cloud\Core\Exception\NotFoundException
+     */
+    public function testInsertRowsThrowsExceptionWhenMaxRetryLimitHit()
+    {
+        $options = [
+            'autoCreate' => true,
+            'maxRetries' => 0,
+            'tableMetadata' => [
+                'schema' => []
+            ]
+        ];
+        $this->connection->insertAllTableData(Argument::any())
+            ->willThrow(new NotFoundException(null));
+        $this->connection->insertTable(Argument::any())
+            ->willThrow(new ConflictException(null));
+        $table = $this->getTable($this->connection);
+        $table->insertRows([
+            [
+                'data' => [
+                    'city' => 'state'
+                ]
+            ]
+        ], $options);
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     * @expectedMessage A row must have a data key.
+     */
+    public function testInsertRowsThrowsExceptionWithoutDataKey()
     {
         $table = $this->getTable($this->connection);
         $table->insertRows([[], []]);
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     * @expectedMessage Must provide at least a single row.
+     */
+    public function testInsertRowsThrowsExceptionWithZeroRows()
+    {
+        $table = $this->getTable($this->connection);
+        $table->insertRows([]);
     }
 
     public function testGetsInfo()
@@ -533,8 +681,8 @@ class TableTest extends \PHPUnit_Framework_TestCase
 
 class TableStub extends Table
 {
-    protected function generateJobId($jobIdPrefix = null)
+    protected function usleep($ms)
     {
-        return $jobIdPrefix ? $jobIdPrefix . '-' . BigQueryClientTest::JOBID : BigQueryClientTest::JOBID;
+        return;
     }
 }

@@ -430,4 +430,33 @@ class LoadDataAndQueryTest extends BigQueryTestCase
         $this->assertTrue($insertResponse->isSuccessful());
         $this->assertEquals(self::$expectedRows, $actualRows);
     }
+
+    public function testInsertRowsToTableWithAutoCreate()
+    {
+        $tName = uniqid(BigQueryTestCase::TESTING_PREFIX);
+        $rows = [
+            ['data' => ['hello' => 'world']]
+        ];
+        $insertResponse = self::$dataset->table($tName)
+            ->insertRows($rows, [
+                'autoCreate' => true,
+                'tableMetadata' => [
+                    'schema' => [
+                        'fields' => [
+                            [
+                                'name' => 'hello',
+                                'type' => 'STRING'
+                            ]
+                        ]
+                    ]
+                ]
+            ]);
+        $results = self::$dataset
+            ->table($tName)
+            ->rows();
+        $actualRows = count(iterator_to_array($results));
+
+        $this->assertTrue($insertResponse->isSuccessful());
+        $this->assertEquals(count($rows), $actualRows);
+    }
 }

@@ -20,9 +20,11 @@ namespace Google\Cloud\BigQuery;
 use Google\Cloud\BigQuery\Connection\ConnectionInterface;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\ConcurrencyControlTrait;
+use Google\Cloud\Core\Exception\ConflictException;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
+use Google\Cloud\Core\RetryDeciderTrait;
 use Google\Cloud\Storage\StorageObject;
 use Psr\Http\Message\StreamInterface;
 
@@ -33,8 +35,12 @@ use Psr\Http\Message\StreamInterface;
  */
 class Table
 {
+    const MAX_RETRIES = 100;
+    const INSERT_CREATE_MAX_DELAY_MICROSECONDS = 60000000;
+
     use ArrayTrait;
     use ConcurrencyControlTrait;
+    use RetryDeciderTrait;
 
     /**
      * @var ConnectionInterface Represents a connection to BigQuery.
@@ -81,6 +87,11 @@ class Table
             'datasetId' => $datasetId,
             'projectId' => $projectId
         ];
+        $this->setHttpRetryCodes([]);
+        $this->setHttpRetryMessages([
+            'rateLimitExceeded',
+            'backendError'
+        ]);
     }
 
     /**
@@ -552,6 +563,19 @@ class Table
      * @param array $options [optional] {
      *     Configuration options.
      *
+     *     @type bool $autoCreate Whether or not to attempt to automatically
+     *           create the table in the case it does not exist. Please note, it
+     *           will be required to provide a schema through
+     *           $tableMetadata['schema'] in the case the table does not already
+     *           exist. **Defaults to** `false`.
+     *     @type $tableMetadata Metadata to apply to table to be created. The
+     *           full set of metadata are outlined at the
+     *           [Table Resource API docs](https://cloud.google.com/bigquery/docs/reference/v2/tables#resource).
+     *           Only applies when `autoCreate` is `true`.
+     *     @type $maxRetries The maximum number of times to attempt creating the
+     *           table in the case of failure. Please note, each retry attempt
+     *           may take up to two minutes. Only applies when `autoCreate` is
+     *           `true`. **Defaults to** `100`.
      *     @type bool $skipInvalidRows Insert all valid rows of a request, even
      *           if invalid rows exist. The default value is `false`, which
      *           causes the entire request to fail if any invalid rows exist.
@@ -569,11 +593,17 @@ class Table
      *           for considerations when working with templates tables.
      * }
      * @return InsertResponse
-     * @throws \InvalidArgumentException
+     * @throws \InvalidArgumentException If a provided row does not contain a
+     *         `data` key, if a schema is not defined when `autoCreate` is
+     *         `true`, or if less than 1 row is provided.
      * @codingStandardsIgnoreEnd
      */
     public function insertRows(array $rows, array $options = [])
     {
+        if (count($rows) === 0) {
+            throw new \InvalidArgumentException('Must provide at least a single row.');
+        }
+
         foreach ($rows as $row) {
             if (!isset($row['data'])) {
                 throw new \InvalidArgumentException('A row must have a data key.');
@@ -593,7 +623,7 @@ class Table
         }
 
         return new InsertResponse(
-            $this->connection->insertAllTableData($this->identity + $options),
+            $this->handleInsert($options),
             $options['rows']
         );
     }
@@ -672,5 +702,69 @@ class Table
     public function identity()
     {
         return $this->identity;
+    }
+
+    /**
+     * Delay execution in microseconds.
+     *
+     * @param int $microSeconds
+     */
+    protected function usleep($microSeconds)
+    {
+        usleep($microSeconds);
+    }
+
+    /**
+     * Handles inserting table data and manages custom retry logic in the case
+     * a table needs to be created.
+     *
+     * @param array $options Configuration options.
+     * @return array
+     */
+    private function handleInsert(array $options)
+    {
+        $attempt = 0;
+        $metadata = $this->pluck('tableMetadata', $options, false) ?: [];
+        $autoCreate = $this->pluck('autoCreate', $options, false) ?: false;
+        $maxRetries = $this->pluck('maxRetries', $options, false) ?: self::MAX_RETRIES;
+
+        while (true) {
+            try {
+                return $this->connection->insertAllTableData(
+                    $this->identity + $options
+                );
+            } catch (NotFoundException $ex) {
+                if ($autoCreate === true && $attempt <= $maxRetries) {
+                    if (!isset($metadata['schema'])) {
+                        throw new \InvalidArgumentException(
+                            'A schema is required when creating a table.'
+                        );
+                    }
+
+                    $this->usleep(mt_rand(1, self::INSERT_CREATE_MAX_DELAY_MICROSECONDS));
+
+                    try {
+                        $this->connection->insertTable($metadata + [
+                            'projectId' => $this->identity['projectId'],
+                            'datasetId' => $this->identity['datasetId'],
+                            'tableReference' => $this->identity,
+                            'retries' => 0
+                        ]);
+                    } catch (ConflictException $ex) {
+                    } catch (\Exception $ex) {
+                        $retryFunction = $this->getRetryFunction();
+
+                        if (!$retryFunction($ex)) {
+                            throw $ex;
+                        }
+                    }
+
+                    $this->usleep(self::INSERT_CREATE_MAX_DELAY_MICROSECONDS);
+                    $attempt++;
+                } else {
+                    throw $ex;
+                }
+            }
+        }
     }
 }
