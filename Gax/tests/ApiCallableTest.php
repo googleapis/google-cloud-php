@@ -34,7 +34,6 @@ namespace Google\GAX\UnitTests;
 use Google\GAX\ApiCallable;
 use Google\GAX\ApiException;
 use Google\GAX\AgentHeaderDescriptor;
-use Google\GAX\BackoffSettings;
 use Google\GAX\CallSettings;
 use Google\GAX\PagedListResponse;
 use Google\GAX\PageStreamingDescriptor;
@@ -47,6 +46,7 @@ use Google\GAX\UnitTests\Mocks\MockServerStreamingStub;
 use Google\GAX\UnitTests\Mocks\MockStub;
 use Google\GAX\UnitTests\Mocks\MockPageStreamingRequest;
 use Google\GAX\UnitTests\Mocks\MockPageStreamingResponse;
+use Google\GAX\ValidationException;
 use Google\Longrunning\Operation;
 use Google\Protobuf\GPBEmpty;
 use Google\Protobuf\Internal\GPBType;
@@ -54,7 +54,6 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Rpc\Code;
 use Google\Rpc\Status;
 use PHPUnit_Framework_TestCase;
-use Grpc;
 
 class ApiCallableTest extends PHPUnit_Framework_TestCase
 {
@@ -222,6 +221,39 @@ class ApiCallableTest extends PHPUnit_Framework_TestCase
                 $callSettings,
                 ['timeFuncMillis' => $timeFuncMillis]
             );
+            $response = $apiCall($request, [], []);
+        } catch (ApiException $e) {
+            $raisedException = $e;
+        }
+
+        $actualCalls = $stub->popReceivedCalls();
+        $this->assertEquals(3, count($actualCalls));
+        $this->assertEquals($request, $actualCalls[0]->getRequestObject());
+
+        $this->assertTrue(!empty($raisedException));
+        $this->assertEquals(Code::DEADLINE_EXCEEDED, $raisedException->getCode());
+    }
+
+    public function testRetryTimeoutExceedsRealTime()
+    {
+        $request = "request";
+        $response = "response";
+        $stub = MockStub::createWithResponseSequence([]);
+        $retrySettings = new RetrySettings([
+            'initialRetryDelayMillis' => 10,
+            'retryDelayMultiplier' => 1,
+            'maxRetryDelayMillis' => 10,
+            'initialRpcTimeoutMillis' => 350,
+            'rpcTimeoutMultiplier' => 1,
+            'maxRpcTimeoutMillis' => 350,
+            'totalTimeoutMillis' => 1000,
+            'retryableCodes' => [ApiStatus::DEADLINE_EXCEEDED],
+        ]);
+        $callSettings = new CallSettings(['retrySettings' => $retrySettings]);
+
+        $raisedException = null;
+        try {
+            $apiCall = ApiCallable::createApiCall($stub, 'methodThatSleeps', $callSettings);
             $response = $apiCall($request, [], []);
         } catch (ApiException $e) {
             $raisedException = $e;
