@@ -33,7 +33,11 @@
 namespace Google\GAX\UnitTests\Mocks;
 
 use Google\GAX\Testing\MockStubTrait;
+use Google\GAX\Testing\MockUnaryCall;
+use Google\GAX\Testing\ReceivedRequest;
+use Google\GAX\ValidationException;
 use InvalidArgumentException;
+use UnderflowException;
 
 class MockStub
 {
@@ -66,9 +70,6 @@ class MockStub
      */
     public static function createWithResponseSequence($sequence, $deserialize = null)
     {
-        if (count($sequence) == 0) {
-            throw new InvalidArgumentException("createResponseSequence: need at least 1 response");
-        }
         $stub = new MockStub($deserialize);
         foreach ($sequence as $elem) {
             list($resp, $status) = $elem;
@@ -82,5 +83,20 @@ class MockStub
         list($argument, $metadata, $options) = $arguments;
         $newArgs = [$name, $argument, $this->deserialize, $metadata, $options];
         return call_user_func_array(array($this, '_simpleRequest'), $newArgs);
+    }
+
+    public function methodThatSleeps($argument, $metadata, $options)
+    {
+        $this->receivedFuncCalls[] = new ReceivedRequest(
+            'methodThatSleeps',
+            $argument,
+            $this->deserialize,
+            $metadata,
+            $options
+        );
+        $timeoutMicros = isset($options['timeout']) ? $options['timeout'] : null;
+        $call = new MockDeadlineExceededUnaryCall($timeoutMicros);
+        $this->callObjects[] = $call;
+        return $call;
     }
 }
