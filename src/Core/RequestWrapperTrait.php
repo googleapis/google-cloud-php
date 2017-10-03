@@ -149,7 +149,8 @@ trait RequestWrapperTrait
         return new FetchAuthTokenCache(
             $fetcher,
             $this->authCacheOptions,
-            $this->authCache
+            $this->authCache,
+            $this->authHttpHandler
         );
     }
 }
