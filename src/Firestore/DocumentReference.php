@@ -26,6 +26,14 @@ use Google\Cloud\Firestore\Connection\ConnectionInterface;
 
 /**
  * Represents a reference to a Firestore document.
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\Firestore\FirestoreClient;
+ *
+ * $firestore = new FirestoreClient();
+ * $document = $firestore->document('users/john');
+ * ```
  */
 class DocumentReference
 {
@@ -52,8 +60,18 @@ class DocumentReference
      */
     private $name;
 
-    public function __construct(ConnectionInterface $connection, ValueMapper $valueMapper, CollectionReference $parent, $name)
-    {
+    /**
+     * @param ConnectionInterface $connection A Connection to Cloud Firestore.
+     * @param ValueMapper $valueMapper A Firestore Value Mapper.
+     * @param CollectionReference $parent The collection in which this document is contained.
+     * @param string $name The fully-qualified document name.
+     */
+    public function __construct(
+        ConnectionInterface $connection,
+        ValueMapper $valueMapper,
+        CollectionReference $parent,
+        $name
+    ) {
         $this->connection = $connection;
         $this->valueMapper = $valueMapper;
         $this->parent = $parent;
@@ -62,6 +80,11 @@ class DocumentReference
 
     /**
      * Returns the parent collection.
+     *
+     * Example:
+     * ```
+     * $parent = $document->parent();
+     * ```
      *
      * @return CollectionReference
      */
@@ -73,6 +96,11 @@ class DocumentReference
     /**
      * Get the document name.
      *
+     * Example:
+     * ```
+     * $name = $document->name();
+     * ```
+     *
      * @return string
      */
     public function name()
@@ -83,6 +111,11 @@ class DocumentReference
     /**
      * Get the document identifier (i.e. the last path element).
      *
+     * Example:
+     * ```
+     * $id = $document->id();
+     * ```
+     *
      * @return string
      */
     public function id()
@@ -92,6 +125,14 @@ class DocumentReference
 
     /**
      * Create a new document in Firestore. If the document already exists, this method will fail.
+     *
+     * Example:
+     * ```
+     * $document->create([
+     *     'name' => 'John',
+     *     'country' => 'USA'
+     * ]);
+     * ```
      *
      * @param array $fields An array containing field names paired with their value.
      *        Accepts a nested array, or a simple array of field paths.
@@ -114,6 +155,13 @@ class DocumentReference
 
     /**
      * Replace all fields in a Firestore document.
+     *
+     * Example:
+     * ```
+     * $document->set([
+     *     'name' => 'Dave'
+     * ]);
+     * ```
      *
      * @param array $fields An array containing fields, where keys are the field
      *        names, and values are field values. Nested arrays are allowed.
@@ -212,6 +260,11 @@ class DocumentReference
     /**
      * Delete a Firestore document.
      *
+     * Example:
+     * ```
+     * $document->delete();
+     * ```
+     *
      * @param array $options {
      *     Configuration Options
      *
@@ -242,6 +295,11 @@ class DocumentReference
     /**
      * Get a read-only snapshot of the document.
      *
+     * Example:
+     * ```
+     * $snapshot = $document->snapshot();
+     * ```
+     *
      * @param array $options {
      *     Configuration Options
      *
@@ -260,18 +318,34 @@ class DocumentReference
     /**
      * Lazily get a collection which is a child of the current document.
      *
-     * @param string $collectionId
+     * Example:
+     * ```
+     * $child = $document->collection('wallet');
+     * ```
+     *
+     * @param string $collectionId The ID of the child collection.
      * @return CollectionReference
      */
     public function collection($collectionId)
     {
-        return new CollectionReference($this->connection, $this->valueMapper, $this->childPath($this->name, $collectionId));
+        return new CollectionReference(
+            $this->connection,
+            $this->valueMapper,
+            $this->childPath($this->name, $collectionId)
+        );
     }
 
     /**
      * List all collections which are children of the current document.
      *
-     * @param array $options
+     * Example:
+     * ```
+     * foreach ($document->collections() as $child) {
+     *     echo $child->id() . PHP_EOL;
+     * }
+     * ```
+     *
+     * @param array $options Configuration options.
      * @return ItemIterator<Collection>
      */
     public function collections(array $options = [])
@@ -280,7 +354,11 @@ class DocumentReference
         return new ItemIterator(
             new PageIterator(
                 function ($collectionId) {
-                    return new CollectionReference($this->connection, $this->valueMapper, $this->childPath($this->name, $collectionId));
+                    return new CollectionReference(
+                        $this->connection,
+                        $this->valueMapper,
+                        $this->childPath($this->name, $collectionId)
+                    );
                 },
                 [$this->connection, 'listCollectionIds'],
                 $options + ['parent' => $this->name],

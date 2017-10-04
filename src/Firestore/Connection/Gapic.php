@@ -29,6 +29,9 @@ use Google\Cloud\Firestore\V1beta1\FirestoreAdminClient;
 use Google\Firestore\V1beta1\TransactionOptions_ReadWrite;
 use Google\Cloud\Firestore\FirestoreClient as ManualFirestoreClient;
 
+/**
+ * A gRPC connection to Cloud Firestore via GAPIC.
+ */
 class Gapic implements ConnectionInterface
 {
     use GrpcTrait;

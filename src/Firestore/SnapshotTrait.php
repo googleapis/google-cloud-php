@@ -21,6 +21,9 @@ use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\ValueMapperTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
 
+/**
+ * Methods common to representing Document Snapshots.
+ */
 trait SnapshotTrait
 {
     use ArrayTrait;
@@ -75,7 +78,6 @@ trait SnapshotTrait
                 );
 
                 $data = $this->transformSnapshotTimestamps($data);
-
             } catch (NotFoundException $e) {
                 if (!$allowNonExistence) {
                     throw $e;

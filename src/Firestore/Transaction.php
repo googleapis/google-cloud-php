@@ -236,6 +236,7 @@ class Transaction
      * $transaction->delete($document);
      * ```
      *
+     * @param DocumentReference $document The document to delete.
      * @param array $options Configuration Options.
      * @return Transaction
      * @throws ConflictException If the precondition is not met.

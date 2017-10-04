@@ -32,14 +32,14 @@ class QuerySnapshot implements \IteratorAggregate
     private $connection;
 
     /**
-     * @var Query
-     */
-    private $query;
-
-    /**
      * @var ValueMapper
      */
     private $valueMapper;
+
+    /**
+     * @var Query
+     */
+    private $query;
 
     /**
      * @var array
@@ -47,16 +47,16 @@ class QuerySnapshot implements \IteratorAggregate
     private $res;
 
     /**
-     * @param ConnectionInterface $connection
-     * @param Query $query
-     * @param ValueMapper $valueMapper
+     * @param ConnectionInterface $connection A Connection to Cloud Firestore.
+     * @param ValueMapper $valueMapper A Firestore Value Mapper.
+     * @param Query $query The Query which originated the call.
      * @param callable $call
      */
-    public function __construct(ConnectionInterface $connection, Query $query, ValueMapper $valueMapper)
+    public function __construct(ConnectionInterface $connection, ValueMapper $valueMapper, Query $query)
     {
         $this->connection = $connection;
-        $this->query = $query;
         $this->valueMapper = $valueMapper;
+        $this->query = $query;
     }
 
     /**

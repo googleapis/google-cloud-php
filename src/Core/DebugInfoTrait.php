@@ -17,8 +17,14 @@
 
 namespace Google\Cloud\Core;
 
+/**
+ * Provides easier to read debug information when dumping a class to stdout.
+ */
 trait DebugInfoTrait
 {
+    /**
+     * @access private
+     */
     public function __debugInfo()
     {
         $props = get_object_vars($this);

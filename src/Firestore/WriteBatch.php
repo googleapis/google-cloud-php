@@ -216,7 +216,7 @@ class WriteBatch
      *
      * @codingStandardsIgnoreStart
      * @param string $documentName The document to delete.
-     * @param array Configuration Options
+     * @param array $options Configuration Options
      * @return WriteBatch
      * @codingStandardsIgnoreEnd
      */
@@ -349,6 +349,13 @@ class WriteBatch
         ] + $options);
     }
 
+    /**
+     * Enqueue transformations for sentinels found in UPDATE calls.
+     *
+     * @param string $documentName
+     * @param array $timestamps
+     * @return void
+     */
     private function updateTransformations($documentName, array $timestamps)
     {
         $transforms = [];

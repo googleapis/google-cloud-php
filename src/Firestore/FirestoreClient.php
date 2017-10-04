@@ -152,20 +152,20 @@ class FirestoreClient
      * $collection = $firestore->collection('users');
      * ```
      *
-     * @param string $relativeName
+     * @param string $name The name of the collection.
      * @return CollectionReference
      */
-    public function collection($relativeName)
+    public function collection($name)
     {
-        if (!$this->isCollection($relativeName)) {
+        if ($this->isRelative($name)) {
+            $name = $this->fullName($this->projectId, $this->database, $name);
+        }
+
+        if (!$this->isCollection($name)) {
             throw new \InvalidArgumentException('Given path is not a valid collection path.');
         }
 
-        return new CollectionReference($this->connection, $this->valueMapper, $this->fullName(
-            $this->projectId,
-            $this->database,
-            $relativeName
-        ));
+        return new CollectionReference($this->connection, $this->valueMapper, $name);
     }
 
     /**
@@ -203,7 +203,8 @@ class FirestoreClient
                 [$this->connection, 'listCollectionIds'],
                 [
                     'parent' => $this->databaseName($this->projectId, $this->database),
-                ] + $options, [
+                ] + $options,
+                [
                     'itemsKey' => 'collectionIds',
                     'resultLimit' => $resultLimit
                 ]

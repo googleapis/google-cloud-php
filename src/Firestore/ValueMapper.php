@@ -48,8 +48,9 @@ class ValueMapper
     private $returnInt64AsObject;
 
     /**
-     * @param ConnectionInterface $connection
-     * @param bool $returnInt64AsObject
+     * @param ConnectionInterface $connection A connection to Cloud Firestore
+     * @param bool $returnInt64AsObject Whether to wrap int types in a wrapper
+     *        (to preserve values in 32-bit environments).
      */
     public function __construct(ConnectionInterface $connection, $returnInt64AsObject)
     {
@@ -61,7 +62,7 @@ class ValueMapper
      * Convert a list of fields from the API to corresponding PHP values in a
      * nested key/value array.
      *
-     * @param array $fields
+     * @param array $fields A list of fields to decode.
      * @return array
      */
     public function decodeValues(array $fields)
@@ -82,7 +83,7 @@ class ValueMapper
      * Convert a PHP array containing google-cloud-php and simple types to an
      * array ready to be sent to Firestore.
      *
-     * @param array $fields
+     * @param array $fields A list of fields to encode.
      * @return array
      */
     public function encodeValues(array $fields)
@@ -102,8 +103,8 @@ class ValueMapper
      * The return value of this method does not include the field values. It
      * merely provides a list of field paths which were included in the input.
      *
-     * @param array $fields
-     * @param string $parentPath
+     * @param array $fields A list of fields to map as paths.
+     * @param string $parentPath The parent path (used internally).
      * @return array
      */
     public function encodeFieldPaths(array $fields, $parentPath = '')
@@ -133,7 +134,7 @@ class ValueMapper
      * Accepts an array of form array<string, mixed>, where the key is a field
      * path and the value is a document field value, and returns a nested array.
      *
-     * @param array $fieldPaths
+     * @param array $fieldPaths A list of field paths and values.
      * @return array
      */
     public function decodeFieldPaths(array $fieldPaths)
@@ -146,7 +147,6 @@ class ValueMapper
 
             $val = $fieldValue;
             foreach (array_reverse($keys) as $index => $key) {
-
                 if ($num >= $index+1) {
                     $val = [$key => $val];
                 }

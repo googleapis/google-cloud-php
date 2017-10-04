@@ -217,7 +217,7 @@ class CollectionReference
     /**
      * Create a document instance with the given document name.
      *
-     * @param string $name
+     * @param string $name The document name.
      * @return DocumentReference
      */
     private function documentFactory($name)

@@ -17,6 +17,9 @@
 
 namespace Google\Cloud\Firestore\Connection;
 
+/**
+ * Represents a connection to Cloud Firestore.
+ */
 interface ConnectionInterface
 {
     /**

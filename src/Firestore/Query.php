@@ -108,10 +108,10 @@ class Query
     private $transactionId;
 
     /**
-     * @param ConnectionInterface $connection
-     * @param ValueMapper $valueMapper
-     * @param array $query
-     * @param string? $transactionId
+     * @param ConnectionInterface $connection A Connection to Cloud Firestore.
+     * @param ValueMapper $valueMapper A Firestore Value Mapper.
+     * @param array $query The Query object
+     * @param string|null The transaction ID, if the query is run in a transaction.
      */
     public function __construct(
         ConnectionInterface $connection,
@@ -136,8 +136,12 @@ class Query
     /**
      * Get all documents matching the provided query filters.
      *
-     * @param array $options
-     * @return Query A new instance of Query with the given changes applied.Snapshot<Document>
+     * Example:
+     * ```
+     * $result = $query->documents();
+     *
+     * @param array $options Configuration options.
+     * @return QuerySnapshot
      */
     public function documents(array $options = [])
     {

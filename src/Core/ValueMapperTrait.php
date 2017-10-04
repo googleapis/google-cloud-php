@@ -17,6 +17,9 @@
 
 namespace Google\Cloud\Core;
 
+/**
+ * Provides common value mapping methods.
+ */
 trait ValueMapperTrait
 {
     /**
@@ -40,8 +43,7 @@ trait ValueMapperTrait
 
             $dt = \DateTimeImmutable::createFromFormat('U', $timestamp['seconds']);
             $nanos = $timestamp['nanos'];
-        }
-        else {
+        } else {
             $nanoRegex = '/(?:\.(\d{1,9})Z)|(?:Z)/';
 
             $matches = [];

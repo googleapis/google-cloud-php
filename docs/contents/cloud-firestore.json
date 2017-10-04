@@ -1,0 +1,8 @@
+{
+    "title": "Firestore",
+    "pattern": "firestore\/\\w{1,}",
+    "services": [{
+        "title": "FirestoreClient",
+        "type": "firestore/firestoreclient"
+    }]
+}

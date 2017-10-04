@@ -17,6 +17,9 @@
 
 namespace Google\Cloud\Firestore;
 
+/**
+ * Provides methods for managing resource paths.
+ */
 trait PathTrait
 {
     /**
