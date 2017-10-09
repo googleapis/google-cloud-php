@@ -86,6 +86,28 @@ class SubscriptionTest extends \PHPUnit_Framework_TestCase
         $sub = $subscription->create();
     }
 
+    public function testUpdate()
+    {
+        $args = [
+            'foo' => 'bar'
+        ];
+
+        $argsWithName = $args + [
+            'name' => $this->subscription->name()
+        ];
+
+        $this->connection->updateSubscription($argsWithName)
+            ->shouldBeCalled()
+            ->willReturn($argsWithName);
+
+        $this->subscription->setConnection($this->connection->reveal());
+
+        $res = $this->subscription->update($args);
+
+        $this->assertEquals($res, $argsWithName);
+        $this->assertEquals($this->subscription->info(), $argsWithName);
+    }
+
     public function testDelete()
     {
         $this->connection->deleteSubscription(Argument::withEntry('foo', 'bar'))
