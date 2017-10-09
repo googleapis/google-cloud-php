@@ -29,6 +29,14 @@ use Google\Firestore\V1beta1\DocumentTransform_FieldTransform_ServerValue;
  * run changes in a transaction (with automatic retry/rollback on failure),
  * use {@see Google\Cloud\Firestore\Transaction}. Single modifications can be
  * made using the various methods on {@see Google\Cloud\Firestore\DocumentReference}.
+ *
+ * Example:
+ * ```
+ * use Google\Cloud\Firestore\FirestoreClient;
+ *
+ * $firestore = new FirestoreClient();
+ * $batch = $firestore->batch();
+ * ```
  */
 class WriteBatch
 {
@@ -38,6 +46,8 @@ class WriteBatch
     const TYPE_DELETE = 'delete';
     const TYPE_VERIFY = 'verify';
     const TYPE_TRANSFORM = 'transform';
+
+    const REQUEST_TIME = DocumentTransform_FieldTransform_ServerValue::REQUEST_TIME;
 
     /**
      * @var ConnectionInterface
@@ -89,6 +99,13 @@ class WriteBatch
      *
      * This operation will fail (when committed) if the document already exists.
      *
+     * Example:
+     * ```
+     * $batch->create($documentName, [
+     *     'name' => 'John'
+     * ]);
+     * ```
+     *
      * @param string $documentName The document to create.
      * @param array $fields An array containing field names paired with their value.
      *        Accepts a nested array, or a simple array of field paths.
@@ -111,6 +128,13 @@ class WriteBatch
      * To remove a field, set the field value to `FirestoreClient::DELETE_FIELD`.
      * To set a field to the current server timestamp, set the field value to
      * `FirestoreClient::SERVER_TIMESTAMP`.
+     *
+     * Example:
+     * ```
+     * $batch->update($documentName, [
+     *     'name' => 'John'
+     * ]);
+     * ```
      *
      * @codingStandardsIgnoreStart
      * @param string $documentName The document to update.
@@ -166,6 +190,12 @@ class WriteBatch
      *
      * Replaces all fields in a Firestore document.
      *
+     * Example:
+     * ```
+     * $batch->set($documentName, [
+     *     'name' => 'John'
+     * ]);
+     *
      * @codingStandardsIgnoreStart
      * @param string $documentName The document to update.
      * @param array $fields An array containing fields, where keys are the field
@@ -214,6 +244,11 @@ class WriteBatch
     /**
      * Delete a Firestore document.
      *
+     * Example:
+     * ```
+     * $batch->delete($documentName);
+     * ```
+     *
      * @codingStandardsIgnoreStart
      * @param string $documentName The document to delete.
      * @param array $options Configuration Options
@@ -231,6 +266,15 @@ class WriteBatch
 
     /**
      * Verify a precondition without performing a write.
+     *
+     * Example:
+     * ```
+     * $batch->verify($documentName, [
+     *     'precondition' => [
+     *         'exists' => true
+     *     ]
+     * ]);
+     * ```
      *
      * @codingStandardsIgnoreStart
      * @param string $documentName The document to delete.
@@ -264,8 +308,18 @@ class WriteBatch
      * enqueued (either by this method, or by using the `FirestoreClient::SERVER_TIMESTAMP`
      * sentinel value), any subsequent updates will fail.
      *
+     * Example:
+     * ```
+     * $batch->transform($documentName, [
+     *     [
+     *         'fieldPath' => 'lastLoginTime',
+     *         'setToServerValue' => WriteBatch::REQUEST_TIME
+     *     ]
+     * ]);
+     * ```
+     *
      * @param string $documentName The document to apply the transformation to.
-     * @param array $transforms {
+     * @param array[] $transforms {
      *     A list of Document transformations.
      *
      *     @param string $fieldPath The path of the field.
@@ -290,7 +344,7 @@ class WriteBatch
      *
      * Example:
      * ```
-     * $writer->commit();
+     * $batch->commit();
      * ```
      *
      * @codingStandardsIgnoreStart
@@ -362,7 +416,7 @@ class WriteBatch
         foreach ($timestamps as $timestamp) {
             $transforms[] = [
                 'fieldPath' => $timestamp,
-                'setToServerValue' => DocumentTransform_FieldTransform_ServerValue::REQUEST_TIME
+                'setToServerValue' => self::REQUEST_TIME
             ];
         }
 

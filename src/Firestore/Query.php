@@ -139,6 +139,7 @@ class Query
      * Example:
      * ```
      * $result = $query->documents();
+     * ```
      *
      * @param array $options Configuration options.
      * @return QuerySnapshot
@@ -382,7 +383,7 @@ class Query
      *
      * Example:
      * ```
-     * $query = $query->endAfter($cursor);
+     * $query = $query->endAt($cursor);
      * ```
      *
      * @param array $cursor A list of values.

@@ -255,7 +255,8 @@ class FirestoreClient
      *
      * Note that this method will **always** yield instances of
      * {@see Google\Cloud\Firestore\DocumentSnapshot}, even if the documents
-     * requested do not exist.
+     * requested do not exist. It is highly recommended that you check for
+     * existence before accessing document data.
      *
      * Example:
      * ```
@@ -268,7 +269,7 @@ class FirestoreClient
      * ```
      * // To check whether a given document exists, use `DocumentSnapshot::exists()`.
      * $documents = $firestore->documents([
-     *     'users/deleted-guy'
+     *     'users/deleted-user'
      * ]);
      *
      * foreach ($documents as $document) {
@@ -336,13 +337,14 @@ class FirestoreClient
      * $to = $firestore->document('users/dave');
      *
      * $firestore->runTransaction(function (Transaction $t) use ($from, $to, $transferAmount) {
-     *
      *     $fromSnapshot = $t->snapshot($from);
      *     $toSnapshot = $t->snapshot($to);
      *
      *     $fromNewBalance = $fromSnapshot['balance'] - $transferAmount;
      *     $toNewBalance = $toSnapshot['balance'] + $transferAmount;
      *
+     *     // If the transaction cannot be completed, throwing any exception
+     *     // will trigger a rollback operation.
      *     if ($fromNewBalance < 0) {
      *         throw new \Exception('User 1 has insufficient funds!');
      *     }

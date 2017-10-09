@@ -142,11 +142,7 @@ class DocumentReference
      */
     public function create(array $fields = [], array $options = [])
     {
-        $writer = new WriteBatch(
-            $this->connection,
-            $this->valueMapper,
-            $this->databaseFromName($this->name)
-        );
+        $writer = $this->batchFactory();
 
         $writer->create($this->name, $fields, $options);
 
@@ -154,7 +150,12 @@ class DocumentReference
     }
 
     /**
-     * Replace all fields in a Firestore document.
+     * Update a Firestore document, with optional merge behavior.
+     *
+     * This method will create the document if it does not already exist.
+     *
+     * Unless `$options.merge` is set to true, this method will replace all
+     * existing document data.
      *
      * Example:
      * ```
@@ -179,11 +180,7 @@ class DocumentReference
      */
     public function set(array $fields, array $options = [])
     {
-        $writer = new WriteBatch(
-            $this->connection,
-            $this->valueMapper,
-            $this->databaseFromName($this->name)
-        );
+        $writer = $this->batchFactory();
 
         $writer->set($this->name, $fields, $options);
 
@@ -208,6 +205,7 @@ class DocumentReference
      *         'litecoin' => 5.51
      *     ]
      * ]);
+     * ```
      *
      * ```
      * // Remove a field using the `FirestoreClient::DELETE_FIELD` special value.
@@ -246,11 +244,7 @@ class DocumentReference
      */
     public function update(array $fields, array $options = [])
     {
-        $writer = new WriteBatch(
-            $this->connection,
-            $this->valueMapper,
-            $this->databaseFromName($this->name)
-        );
+        $writer = $this->batchFactory();
 
         $writer->update($this->name, $fields, $options);
 
@@ -281,11 +275,7 @@ class DocumentReference
      */
     public function delete(array $options = [])
     {
-        $writer = new WriteBatch(
-            $this->connection,
-            $this->valueMapper,
-            $this->databaseFromName($this->name)
-        );
+        $writer = $this->batchFactory();
 
         $writer->delete($this->name, $options);
 
@@ -340,9 +330,7 @@ class DocumentReference
      *
      * Example:
      * ```
-     * foreach ($document->collections() as $child) {
-     *     echo $child->id() . PHP_EOL;
-     * }
+     * $collections = $document->collections();
      * ```
      *
      * @param array $options Configuration options.
@@ -367,6 +355,20 @@ class DocumentReference
                     'resultLimit' => $resultLimit
                 ]
             )
+        );
+    }
+
+    /**
+     * Create a Batch Writer for single-use mutations in this class.
+     *
+     * @return WriteBatch
+     */
+    protected function batchFactory()
+    {
+        return new WriteBatch(
+            $this->connection,
+            $this->valueMapper,
+            $this->databaseFromName($this->name)
         );
     }
 }

@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Firestore;
 
+use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\ValueMapperTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
@@ -50,6 +51,8 @@ trait SnapshotTrait
      *     @type bool $allowNonExistence If true, a DocumentSnapshot will be
      *           returned, even if the document does not exist. **Defaults to**
      *           `true`.
+     *     @type Timestamp $readTime Reads the version of the document at the
+     *           given time. This may not be older than 60 seconds.
      * }
      * @return DocumentSnapshot
      * @throws NotFoundException If the document does not exist, and
@@ -59,7 +62,7 @@ trait SnapshotTrait
     {
         $options += [
             'exists' => true,
-            'allowNonExistence' => true
+            'allowNonExistence' => true,
         ];
 
         $exists = true;
@@ -105,6 +108,16 @@ trait SnapshotTrait
      */
     private function getSnapshot($name, array $options = [])
     {
+        if (isset($options['readTime'])) {
+            if (!($options['readTime'] instanceof Timestamp)) {
+                throw new \InvalidArgumentException(
+                    '`$options.readTime` must be an instance of Google\\Cloud\\Core\\Timestamp'
+                );
+            }
+
+            $options['readTime'] = $options['readTime']->formatForApi();
+        }
+
         $snapshot = current($this->connection->batchGetDocuments([
             'database' => $this->databaseFromName($name),
             'documents' => [$name],

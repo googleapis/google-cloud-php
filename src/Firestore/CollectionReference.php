@@ -116,7 +116,7 @@ class CollectionReference
      *
      * Example:
      * ```
-     * $document = $collection->document('john');
+     * $newUser = $collection->document('john');
      * ```
      *
      * @param string $documentId The document ID.

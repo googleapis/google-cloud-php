@@ -30,11 +30,11 @@ namespace Google\Cloud\Firestore;
  *
  * $firestore = new FirestoreClient();
  * $document = $firestore->document('users/john');
- * $snapshot = $document->shapshot();
+ * $snapshot = $document->snapshot();
  * ```
  *
  * ```
- * // Fields may be accessed via array-style accessors:
+ * // Fields are exposed via array-style accessors:
  * $bitcoinWalletValue = $snapshot['wallet']['cryptoCurrency']['bitcoin'];
  * ```
  */

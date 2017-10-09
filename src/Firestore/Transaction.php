@@ -27,6 +27,10 @@ use Google\Cloud\Firestore\Connection\ConnectionInterface;
  * This class should be accessed inside a transaction callable, obtained via
  * {@see Google\Cloud\Firestore\FirestoreClient::runTransaction()}.
  *
+ * Note that method examples, while shown as being called directly for the sake
+ * of brevity, should be called only within the context of a transaction
+ * callable, as noted above.
+ *
  * Example:
  * ```
  * use Google\Cloud\Firestore\FirestoreClient;
