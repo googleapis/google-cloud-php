@@ -25,6 +25,9 @@ use Ramsey\Uuid\Uuid;
  */
 class JobConfigurationTraitTest extends \PHPUnit_Framework_TestCase
 {
+    const PROJECT_ID = 'project-id';
+    const JOB_ID = '1234';
+
     private $trait;
 
     public function setUp()
@@ -32,15 +35,75 @@ class JobConfigurationTraitTest extends \PHPUnit_Framework_TestCase
         $this->trait = \Google\Cloud\Dev\impl(JobConfigurationTrait::class);
     }
 
+    public function testJobConfigurationProperties()
+    {
+        $this->trait->call('jobConfigurationProperties', [
+            self::PROJECT_ID,
+            ['jobReference' => ['jobId' => self::JOB_ID]]
+        ]);
+
+        $this->assertEquals([
+            'projectId' => self::PROJECT_ID,
+            'jobReference' => [
+                'jobId' => self::JOB_ID,
+                'projectId' => self::PROJECT_ID
+            ]
+        ], $this->trait->call('toArray'));
+    }
+
+    public function testJobConfigurationPropertiesSetsJobIDWhenNotProvided()
+    {
+        $this->trait->call('jobConfigurationProperties', [
+            self::PROJECT_ID,
+            []
+        ]);
+        $jobId = $this->trait->call('toArray')['jobReference']['jobId'];
+
+        $this->assertTrue(is_string($jobId));
+        $this->assertTrue(Uuid::isValid($jobId));
+    }
+
+    public function testDryRun()
+    {
+        $isDryRun = true;
+        $this->trait->call('dryRun', [$isDryRun]);
+
+        $this->assertEquals(
+            $isDryRun,
+            $this->trait->call('toArray')['configuration']['dryRun']
+        );
+    }
+
+    public function testJobIdPrefix()
+    {
+        $jobIdPrefix = 'prefix';
+        $this->trait->call('jobConfigurationProperties', [
+            self::PROJECT_ID,
+            ['jobReference' => ['jobId' => self::JOB_ID]]
+        ]);
+        $this->trait->call('jobIdPrefix', [$jobIdPrefix]);
+
+        $this->assertEquals(
+            sprintf('%s-%s', $jobIdPrefix, self::JOB_ID),
+            $this->trait->call('toArray')['jobReference']['jobId']
+        );
+    }
+
+    public function testLabels()
+    {
+        $labels = ['test' => 'label'];
+        $this->trait->call('labels', [$labels]);
+
+        $this->assertEquals(
+            $labels,
+            $this->trait->call('toArray')['configuration']['labels']
+        );
+    }
+
     public function testGenerateJobId()
     {
         $uuid = $this->trait->call('generateJobId');
         $this->assertTrue(is_string($uuid));
         $this->assertTrue(Uuid::isValid($uuid));
-    }
-
-    public function testGenerateJobIdWithPrefix()
-    {
-        $this->assertTrue(strpos($this->trait->call('generateJobId', ['foobar']), 'foobar-') === 0);
     }
 }

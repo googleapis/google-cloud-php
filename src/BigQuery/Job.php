@@ -103,6 +103,9 @@ class Job
      * Requests that a job be cancelled. You will need to poll the job to ensure
      * the cancel request successfully goes through.
      *
+     * Please note that by default the library will not attempt to retry this
+     * call on your behalf.
+     *
      * Example:
      * ```
      * $job->cancel();
@@ -124,7 +127,11 @@ class Job
      */
     public function cancel(array $options = [])
     {
-        $this->connection->cancelJob($options + $this->identity);
+        $this->connection->cancelJob(
+            $options
+            + ['retries' => 0]
+            + $this->identity
+        );
     }
 
     /**
@@ -172,7 +179,7 @@ class Job
      *     Configuration options.
      *
      *     @type int $maxRetries The number of times to retry, checking if the
-     *           query has completed. **Defaults to** `100`.
+     *           job has completed. **Defaults to** `100`.
      * }
      * @throws JobException If the maximum number of retries while waiting for
      *         job completion has been exceeded.
