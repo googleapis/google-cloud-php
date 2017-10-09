@@ -24,6 +24,7 @@ use Google\Cloud\Core\Exception;
 use Google\Cloud\Tests\GrpcTestTrait;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\GAX\ApiException;
+use Google\GAX\ApiStatus;
 use Google\GAX\Page;
 use Google\GAX\PagedListResponse;
 use Google\GAX\Serializer;
@@ -65,7 +66,7 @@ class GrpcRequestWrapperTest extends \PHPUnit_Framework_TestCase
 
         $actualResponse = $requestWrapper->send(
             function ($test, $options) use ($response, $requestOptions) {
-                $this->assertEquals($requestOptions['requestTimeout'] * 1000, $options['timeoutMs']);
+                $this->assertEquals($requestOptions['requestTimeout'] * 1000, $options['retrySettings']['noRetriesRpcTimeoutMillis']);
                 return $response;
             },
             ['test', []],
@@ -104,7 +105,10 @@ class GrpcRequestWrapperTest extends \PHPUnit_Framework_TestCase
         $requestWrapper = new GrpcRequestWrapper();
 
         $requestWrapper->send(function () {
-            throw new ApiException('message', 5);
+            throw new ApiException('message',
+                \Google\Rpc\Code::NOT_FOUND,
+                \Google\GAX\ApiStatus::NOT_FOUND
+            );
         }, [[]]);
     }
 
@@ -180,7 +184,8 @@ class GrpcRequestWrapperTest extends \PHPUnit_Framework_TestCase
 
         try {
             $requestWrapper->send(function () use ($code) {
-                throw new ApiException('message', $code);
+                $status = ApiStatus::statusFromRpcCode($code);
+                throw new ApiException('message', $code, $status);
             }, [[]], ['retries' => 0]);
         } catch (\Exception $ex) {
             $this->assertInstanceOf($expectedException, $ex);

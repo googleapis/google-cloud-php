@@ -82,7 +82,7 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
         $this->sessionPool->release(Argument::type(Session::class))
             ->willReturn(null);
 
-        $this->instance->name()->willReturn(InstanceAdminClient::formatInstanceName(self::PROJECT, self::INSTANCE));
+        $this->instance->name()->willReturn(InstanceAdminClient::instanceName(self::PROJECT, self::INSTANCE));
 
         $args = [
             $this->connection->reveal(),
@@ -103,7 +103,7 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
 
     public function testName()
     {
-        $this->assertEquals($this->database->name(), DatabaseAdminClient::formatDatabaseName(self::PROJECT, self::INSTANCE, self::DATABASE));
+        $this->assertEquals($this->database->name(), DatabaseAdminClient::databaseName(self::PROJECT, self::INSTANCE, self::DATABASE));
     }
 
     public function testInfo()
@@ -148,7 +148,7 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
     public function testExists()
     {
         $this->connection->getDatabase(Argument::withEntry(
-            'name', DatabaseAdminClient::formatDatabaseName(self::PROJECT, self::INSTANCE, self::DATABASE)
+            'name', DatabaseAdminClient::databaseName(self::PROJECT, self::INSTANCE, self::DATABASE)
         ))
             ->shouldBeCalled()
             ->willReturn([]);
@@ -179,7 +179,7 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
     {
         $statement = 'foo';
         $this->connection->updateDatabaseDdl([
-            'name' => DatabaseAdminClient::formatDatabaseName(self::PROJECT, self::INSTANCE, self::DATABASE),
+            'name' => DatabaseAdminClient::databaseName(self::PROJECT, self::INSTANCE, self::DATABASE),
             'statements' => [$statement]
         ])->willReturn([
             'name' => 'my-operation'
@@ -197,7 +197,7 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
     {
         $statements = ['foo', 'bar'];
         $this->connection->updateDatabaseDdl([
-            'name' => DatabaseAdminClient::formatDatabaseName(self::PROJECT, self::INSTANCE, self::DATABASE),
+            'name' => DatabaseAdminClient::databaseName(self::PROJECT, self::INSTANCE, self::DATABASE),
             'statements' => $statements
         ])->willReturn([
             'name' => 'my-operation'
@@ -215,7 +215,7 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
     {
         $statement = 'foo';
         $this->connection->updateDatabaseDdl([
-            'name' => DatabaseAdminClient::formatDatabaseName(self::PROJECT, self::INSTANCE, self::DATABASE),
+            'name' => DatabaseAdminClient::databaseName(self::PROJECT, self::INSTANCE, self::DATABASE),
             'statements' => ['foo']
         ])->shouldBeCalled()->willReturn(['name' => 'operations/foo']);
 
@@ -231,7 +231,7 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
     public function testDrop()
     {
         $this->connection->dropDatabase([
-            'name' => DatabaseAdminClient::formatDatabaseName(self::PROJECT, self::INSTANCE, self::DATABASE)
+            'name' => DatabaseAdminClient::databaseName(self::PROJECT, self::INSTANCE, self::DATABASE)
         ])->shouldBeCalled();
 
         $this->database->___setProperty('connection', $this->connection->reveal());
@@ -246,7 +246,7 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
     {
         $ddl = ['create table users', 'create table posts'];
         $this->connection->getDatabaseDDL([
-            'name' => DatabaseAdminClient::formatDatabaseName(self::PROJECT, self::INSTANCE, self::DATABASE)
+            'name' => DatabaseAdminClient::databaseName(self::PROJECT, self::INSTANCE, self::DATABASE)
         ])->willReturn(['statements' => $ddl]);
 
         $this->database->___setProperty('connection', $this->connection->reveal());
@@ -260,7 +260,7 @@ class DatabaseTest extends \PHPUnit_Framework_TestCase
     public function testDdlNoResult()
     {
         $this->connection->getDatabaseDDL([
-            'name' => DatabaseAdminClient::formatDatabaseName(self::PROJECT, self::INSTANCE, self::DATABASE)
+            'name' => DatabaseAdminClient::databaseName(self::PROJECT, self::INSTANCE, self::DATABASE)
         ])->willReturn([]);
 
         $this->database->___setProperty('connection', $this->connection->reveal());
