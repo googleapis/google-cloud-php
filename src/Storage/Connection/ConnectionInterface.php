@@ -132,4 +132,24 @@ interface ConnectionInterface
      * @param array $args
      */
     public function insertObject(array $args = []);
+
+    /**
+     * @param array $args
+     */
+    public function getNotification(array $args = []);
+
+    /**
+     * @param array $args
+     */
+    public function deleteNotification(array $args = []);
+
+    /**
+     * @param array $args
+     */
+    public function insertNotification(array $args = []);
+
+    /**
+     * @param array $args
+     */
+    public function listNotifications(array $args = []);
 }

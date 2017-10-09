@@ -22,9 +22,11 @@ use Google\Cloud\Core\Exception\ServerException;
 use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Core\Iam\Iam;
 use Google\Cloud\Core\Upload\ResumableUploader;
+use Google\Cloud\PubSub\Topic;
 use Google\Cloud\Storage\Acl;
 use Google\Cloud\Storage\Bucket;
-use Google\Cloud\Storage\Connection\ConnectionInterface;
+use Google\Cloud\Storage\Connection\Rest;
+use Google\Cloud\Storage\Notification;
 use Google\Cloud\Storage\StorageObject;
 use Prophecy\Argument;
 
@@ -33,33 +35,51 @@ use Prophecy\Argument;
  */
 class BucketTest extends \PHPUnit_Framework_TestCase
 {
+    const BUCKET_NAME = 'my-bucket';
+    const PROJECT_ID = 'my-project';
+    const NOTIFICATION_ID = '1234';
+
     private $connection;
     private $resumableUploader;
 
     public function setUp()
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->connection = $this->prophesize(Rest::class);
         $this->resumableUploader = $this->prophesize(ResumableUploader::class);
+    }
+
+    private function getBucket(array $data = [], $shouldExpectProjectIdCall = true)
+    {
+        if ($shouldExpectProjectIdCall) {
+            $this->connection->projectId()
+                ->willReturn(self::PROJECT_ID);
+        }
+
+        return new Bucket(
+            $this->connection->reveal(),
+            self::BUCKET_NAME,
+            $data
+        );
     }
 
     public function testGetsAcl()
     {
-        $bucket = new Bucket($this->connection->reveal(), 'bucket');
+        $bucket = $this->getBucket();
 
         $this->assertInstanceOf(Acl::class, $bucket->acl());
     }
 
     public function testGetsDefaultAcl()
     {
-        $bucket = new Bucket($this->connection->reveal(), 'bucket');
+        $bucket = $this->getBucket();
 
         $this->assertInstanceOf(Acl::class, $bucket->defaultAcl());
     }
 
     public function testDoesExistTrue()
     {
-        $this->connection->getBucket(Argument::any())->willReturn(['name' => 'bucket']);
-        $bucket = new Bucket($this->connection->reveal(), 'bucket');
+        $this->connection->getBucket(Argument::any())->willReturn(['name' => self::BUCKET_NAME]);
+        $bucket = $this->getBucket();
 
         $this->assertTrue($bucket->exists());
     }
@@ -67,7 +87,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
     public function testDoesExistFalse()
     {
         $this->connection->getBucket(Argument::any())->willThrow(new NotFoundException(null));
-        $bucket = new Bucket($this->connection->reveal(), 'bucket');
+        $bucket = $this->getBucket();
 
         $this->assertFalse($bucket->exists());
     }
@@ -75,11 +95,11 @@ class BucketTest extends \PHPUnit_Framework_TestCase
     public function testUploadData()
     {
         $this->resumableUploader->upload()->willReturn([
-            'name' => 'file.txt',
+            'name' => 'data.txt',
             'generation' => 123
         ]);
         $this->connection->insertObject(Argument::any())->willReturn($this->resumableUploader);
-        $bucket = new Bucket($this->connection->reveal(), 'bucket');
+        $bucket = $this->getBucket();
 
         $this->assertInstanceOf(
             StorageObject::class,
@@ -92,7 +112,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
      */
     public function testUploadDataAsStringWithNoName()
     {
-        $bucket = new Bucket($this->connection->reveal(), 'bucket');
+        $bucket = $this->getBucket();
 
         $bucket->upload('some more data');
     }
@@ -100,7 +120,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
     public function testGetResumableUploader()
     {
         $this->connection->insertObject(Argument::any())->willReturn($this->resumableUploader->reveal());
-        $bucket = new Bucket($this->connection->reveal(), 'bucket');
+        $bucket = $this->getBucket();
 
         $this->assertInstanceOf(
             ResumableUploader::class,
@@ -113,21 +133,21 @@ class BucketTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetResumableUploaderWithStringWithNoName()
     {
-        $bucket = new Bucket($this->connection->reveal(), 'bucket');
+        $bucket = $this->getBucket();
 
         $bucket->getResumableUploader('some more data');
     }
 
     public function testGetObject()
     {
-        $bucket = new Bucket($this->connection->reveal(), 'bucket');
+        $bucket = $this->getBucket();
 
         $this->assertInstanceOf(StorageObject::class, $bucket->object('peter-venkman.jpg'));
     }
 
     public function testInstantiateObjectWithOptions()
     {
-        $bucket = new Bucket($this->connection->reveal(), 'bucket');
+        $bucket = $this->getBucket();
 
         $object = $bucket->object('peter-venkman.jpg', [
             'generation' => '5',
@@ -149,7 +169,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
             ]
         ]);
 
-        $bucket = new Bucket($this->connection->reveal(), 'bucket');
+        $bucket = $this->getBucket();
         $objects = iterator_to_array($bucket->objects());
 
         $this->assertEquals('file.txt', $objects[0]->name());
@@ -177,7 +197,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
             ]
         );
 
-        $bucket = new Bucket($this->connection->reveal(), 'bucket');
+        $bucket = $this->getBucket();
         $objects = iterator_to_array($bucket->objects());
 
         $this->assertEquals('file2.txt', $objects[1]->name());
@@ -185,7 +205,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
 
     public function testDelete()
     {
-        $bucket = new Bucket($this->connection->reveal(), 'bucket');
+        $bucket = $this->getBucket([], false);
 
         $this->assertNull($bucket->delete());
     }
@@ -195,7 +215,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
      */
     public function testComposeThrowsExceptionWithLessThanTwoSources()
     {
-        $bucket = new Bucket($this->connection->reveal(), 'bucket');
+        $bucket = $this->getBucket();
 
         $bucket->compose(['file1.txt'], 'combined-files.txt');
     }
@@ -205,7 +225,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
      */
     public function testComposeThrowsExceptionWithUnknownContentType()
     {
-        $bucket = new Bucket($this->connection->reveal(), 'bucket');
+        $bucket = $this->getBucket();
 
         $bucket->compose(['file1.txt', 'file2.txt'], 'combined-files.abc');
     }
@@ -219,10 +239,9 @@ class BucketTest extends \PHPUnit_Framework_TestCase
         $expectedSourceObjects
     ) {
         $acl = 'private';
-        $destinationBucket = 'bucket';
         $destinationObject = 'combined-files.txt';
         $this->connection->composeObject([
-                'destinationBucket' => $destinationBucket,
+                'destinationBucket' => self::BUCKET_NAME,
                 'destinationObject' => $destinationObject,
                 'destinationPredefinedAcl' => $acl,
                 'destination' => $metadata + ['contentType' => 'text/plain'],
@@ -233,7 +252,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
                 'generation' => 1
             ])
             ->shouldBeCalledTimes(1);
-        $bucket = new Bucket($this->connection->reveal(), $destinationBucket);
+        $bucket = $this->getBucket();
 
         $object = $bucket->compose($objects, $destinationObject, [
             'predefinedAcl' => $acl,
@@ -279,7 +298,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
             ]
         ];
         $this->connection->patchBucket(Argument::any())->willReturn(['name' => 'bucket'] + $versioningData);
-        $bucket = new Bucket($this->connection->reveal(), 'bucket', [
+        $bucket = $this->getBucket([
             'name' => 'bucket',
             'versioning' => [
                 'enabled' => false
@@ -298,7 +317,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
             'etag' => 'ABC',
             'kind' => 'storage#bucket'
         ];
-        $bucket = new Bucket($this->connection->reveal(), 'bucket', $bucketInfo);
+        $bucket = $this->getBucket($bucketInfo);
 
         $this->assertEquals($bucketInfo, $bucket->info());
     }
@@ -313,23 +332,23 @@ class BucketTest extends \PHPUnit_Framework_TestCase
         $this->connection->getBucket(Argument::any())
             ->willReturn($bucketInfo)
             ->shouldBeCalledTimes(1);
-        $bucket = new Bucket($this->connection->reveal(), 'bucket');
+        $bucket = $this->getBucket();
 
         $this->assertEquals($bucketInfo, $bucket->info());
     }
 
     public function testGetsName()
     {
-        $bucket = new Bucket($this->connection->reveal(), $name = 'bucket');
+        $bucket = $this->getBucket();
 
-        $this->assertEquals($name, $bucket->name());
+        $this->assertEquals(self::BUCKET_NAME, $bucket->name());
     }
 
     public function testIsWritable()
     {
         $this->connection->insertObject(Argument::any())->willReturn($this->resumableUploader);
         $this->resumableUploader->getResumeUri()->willReturn('http://some-uri/');
-        $bucket = new Bucket($this->connection->reveal(), $name = 'bucket');
+        $bucket = $this->getBucket();
         $this->assertTrue($bucket->isWritable());
     }
 
@@ -337,7 +356,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
     {
         $this->connection->insertObject(Argument::any())->willReturn($this->resumableUploader);
         $this->resumableUploader->getResumeUri()->willThrow(new ServiceException('access denied', 403));
-        $bucket = new Bucket($this->connection->reveal(), $name = 'bucket');
+        $bucket = $this->getBucket();
         $this->assertFalse($bucket->isWritable());
     }
 
@@ -348,7 +367,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
     {
         $this->connection->insertObject(Argument::any())->willReturn($this->resumableUploader);
         $this->resumableUploader->getResumeUri()->willThrow(new ServerException('maintainence'));
-        $bucket = new Bucket($this->connection->reveal(), $name = 'bucket');
+        $bucket = $this->getBucket();
         $bucket->isWritable(); // raises exception
     }
 
@@ -359,7 +378,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
             'etag' => 'ABC',
             'kind' => 'storage#bucket'
         ];
-        $bucket = new Bucket($this->connection->reveal(), 'bucket', $bucketInfo);
+        $bucket = $this->getBucket($bucketInfo);
 
         $this->assertInstanceOf(Iam::class, $bucket->iam());
     }
@@ -369,8 +388,77 @@ class BucketTest extends \PHPUnit_Framework_TestCase
         $this->connection->getBucket(Argument::withEntry('userProject', 'foo'))
             ->willReturn([]);
 
-        $bucket = new Bucket($this->connection->reveal(), 'bucket', ['requesterProjectId' => 'foo']);
+        $bucket = $this->getBucket(['requesterProjectId' => 'foo']);
 
         $bucket->reload();
+    }
+
+    /**
+     * @dataProvider topicDataProvider
+     */
+    public function testCreatesNotification($topic, $expectedTopic)
+    {
+        $this->connection
+            ->insertNotification([
+                'bucket' => self::BUCKET_NAME,
+                'topic' => sprintf('//pubsub.googleapis.com/projects/%s/topics/%s', self::PROJECT_ID, $expectedTopic),
+                'payload_format' => 'JSON_API_V1'
+            ])
+            ->willReturn(['id' => self::NOTIFICATION_ID]);
+        $bucket = $this->getBucket();
+        $notification = $bucket->createNotification($topic);
+
+        $this->assertInstanceOf(Notification::class, $notification);
+        $this->assertEquals(self::NOTIFICATION_ID, $notification->id());
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage $topic may only be a string or instance of Google\Cloud\PubSub\Topic
+     */
+    public function testCreatesNotificationThrowsExceptionWithInvalidTopicType()
+    {
+        $bucket = $this->getBucket();
+        $bucket->createNotification(9124);
+    }
+
+    public function topicDataProvider()
+    {
+        $topicName = 'topic';
+        $fullTopicName = sprintf('projects/%s/topics/%s', self::PROJECT_ID, $topicName);
+        $topic = $this->prophesize(Topic::class);
+        $topic->name()
+            ->willReturn($fullTopicName);
+
+        return [
+            [$topicName, $topicName],
+            [$fullTopicName, $topicName],
+            [$topic->reveal(), $topicName]
+        ];
+    }
+
+    public function testGetNotification()
+    {
+        $bucket = $this->getBucket();
+        $notification = $bucket->notification(self::NOTIFICATION_ID);
+
+        $this->assertInstanceOf(Notification::class, $notification);
+        $this->assertEquals(self::NOTIFICATION_ID, $notification->id());
+    }
+
+    public function testGetNotifications()
+    {
+        $notificationID = '1234';
+        $this->connection->listNotifications(Argument::any())->willReturn([
+            'items' => [
+                ['id' => $notificationID]
+            ]
+        ]);
+
+        $bucket = $this->getBucket();
+        $notifications = iterator_to_array($bucket->notifications());
+
+        $this->assertInstanceOf(Notification::class, $notifications[0]);
+        $this->assertEquals($notificationID, $notifications[0]->id());
     }
 }

@@ -20,7 +20,7 @@ namespace Google\Cloud\Tests\Unit\Storage;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\Upload\SignedUrlUploader;
 use Google\Cloud\Storage\Bucket;
-use Google\Cloud\Storage\Connection\ConnectionInterface;
+use Google\Cloud\Storage\Connection\Rest;
 use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Storage\StreamWrapper;
 use GuzzleHttp\Psr7;
@@ -36,7 +36,7 @@ class StorageClientTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->connection = $this->prophesize(Rest::class);
         $this->client = \Google\Cloud\Dev\stub(StorageClient::class, [['projectId' => self::PROJECT]]);
     }
 
@@ -62,6 +62,8 @@ class StorageClientTest extends \PHPUnit_Framework_TestCase
                 ['name' => 'bucket1']
             ]
         ]);
+        $this->connection->projectId()
+            ->willReturn(self::PROJECT);
 
         $this->client->___setProperty('connection', $this->connection->reveal());
         $buckets = iterator_to_array($this->client->buckets());
@@ -84,6 +86,8 @@ class StorageClientTest extends \PHPUnit_Framework_TestCase
                 ]
             ]
         );
+        $this->connection->projectId()
+            ->willReturn(self::PROJECT);
 
         $this->client->___setProperty('connection', $this->connection->reveal());
         $bucket = iterator_to_array($this->client->buckets());
@@ -94,6 +98,8 @@ class StorageClientTest extends \PHPUnit_Framework_TestCase
     public function testCreatesBucket()
     {
         $this->connection->insertBucket(Argument::any())->willReturn(['name' => 'bucket']);
+        $this->connection->projectId()
+            ->willReturn(self::PROJECT);
         $this->client->___setProperty('connection', $this->connection->reveal());
 
         $this->assertInstanceOf(Bucket::class, $this->client->createBucket('bucket'));

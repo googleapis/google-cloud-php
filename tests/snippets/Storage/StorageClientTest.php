@@ -33,6 +33,7 @@ use Prophecy\Argument;
 class StorageClientTest extends SnippetTestCase
 {
     const BUCKET = 'my-bucket';
+    const PROJECT_ID = 'my-project';
 
     private $connection;
     private $client;
@@ -40,6 +41,8 @@ class StorageClientTest extends SnippetTestCase
     public function setUp()
     {
         $this->connection = $this->prophesize(Rest::class);
+        $this->connection->projectId()
+            ->willReturn(self::PROJECT_ID);
         $this->client = \Google\Cloud\Dev\stub(StorageClient::class);
         $this->client->___setProperty('connection', $this->connection->reveal());
     }

@@ -26,7 +26,7 @@ use Google\Cloud\BigQuery\ValueMapper;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Upload\MultipartUploader;
 use Google\Cloud\Dev\Snippet\SnippetTestCase;
-use Google\Cloud\Storage\Connection\ConnectionInterface as StorageConnectionInterface;
+use Google\Cloud\Storage\Connection\Rest as StorageConnection;
 use Google\Cloud\Storage\StorageClient;
 use Prophecy\Argument;
 
@@ -162,7 +162,7 @@ class TableTest extends SnippetTestCase
     public function testExport()
     {
         $storage = \Google\Cloud\Dev\stub(StorageClient::class);
-        $storage->___setProperty('connection', $this->prophesize(StorageConnectionInterface::class)->reveal());
+        $storage->___setProperty('connection', $this->prophesize(StorageConnection::class)->reveal());
 
         $snippet = $this->snippetFromMethod(Table::class, 'export');
         $snippet->addLocal('storage', $storage);
@@ -210,7 +210,7 @@ class TableTest extends SnippetTestCase
     public function testLoadFromStorage()
     {
         $storage = \Google\Cloud\Dev\stub(StorageClient::class);
-        $storage->___setProperty('connection', $this->prophesize(StorageConnectionInterface::class)->reveal());
+        $storage->___setProperty('connection', $this->prophesize(StorageConnection::class)->reveal());
 
         $snippet = $this->snippetFromMethod(Table::class, 'loadFromStorage');
         $snippet->addLocal('storage', $storage);

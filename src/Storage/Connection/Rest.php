@@ -352,4 +352,36 @@ class Rest implements ConnectionInterface
     {
         return $this->send('buckets', 'testIamPermissions', $args);
     }
+
+    /**
+     * @param array $args
+     */
+    public function getNotification(array $args = [])
+    {
+        return $this->send('notifications', 'get', $args);
+    }
+
+    /**
+     * @param array $args
+     */
+    public function deleteNotification(array $args = [])
+    {
+        return $this->send('notifications', 'delete', $args);
+    }
+
+    /**
+     * @param array $args
+     */
+    public function insertNotification(array $args = [])
+    {
+        return $this->send('notifications', 'insert', $args);
+    }
+
+    /**
+     * @param array $args
+     */
+    public function listNotifications(array $args = [])
+    {
+        return $this->send('notifications', 'list', $args);
+    }
 }
