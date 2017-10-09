@@ -93,7 +93,6 @@ class Bucket
      *        Storage.
      * @param string $name The bucket's name.
      * @param array $info [optional] The bucket's metadata.
-     * @param string $projectId The project ID.
      */
     public function __construct(ConnectionInterface $connection, $name, array $info = [])
     {
@@ -1053,7 +1052,7 @@ class Bucket
     private function getFormattedTopic($topic)
     {
         if ($topic instanceof Topic) {
-            return sprintf('//pubsub.googleapis.com/%s', $topic->name());
+            return sprintf(self::NOTIFICATION_TEMPLATE, $topic->name());
         }
 
         if (!is_string($topic)) {
