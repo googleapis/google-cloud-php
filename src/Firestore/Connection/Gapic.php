@@ -25,7 +25,6 @@ use Google\Firestore\V1beta1\DocumentMask;
 use Google\Firestore\V1beta1\StructuredQuery;
 use Google\Firestore\V1beta1\TransactionOptions;
 use Google\Cloud\Firestore\V1beta1\FirestoreClient;
-use Google\Cloud\Firestore\V1beta1\FirestoreAdminClient;
 use Google\Firestore\V1beta1\TransactionOptions_ReadWrite;
 use Google\Cloud\Firestore\FirestoreClient as ManualFirestoreClient;
 
@@ -37,8 +36,6 @@ class Gapic implements ConnectionInterface
     use GrpcTrait;
 
     private $serializer;
-
-    private $admin;
 
     private $firestore;
 
@@ -73,7 +70,6 @@ class Gapic implements ConnectionInterface
         $this->setRequestWrapper(new GrpcRequestWrapper($config));
 
         $grpcConfig = $this->getGaxConfig(ManualFirestoreClient::VERSION);
-        $this->admin = new FirestoreAdminClient($grpcConfig);
         $this->firestore = new FirestoreClient($grpcConfig);
     }
 

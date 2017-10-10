@@ -160,7 +160,7 @@ class DocumentReferenceTest extends \PHPUnit_Framework_TestCase
         $this->connection->batchGetDocuments([
             'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
             'documents' => [self::NAME]
-        ])->shouldBeCalled()->willReturn([
+        ])->shouldBeCalled()->willReturn(new \ArrayIterator([
             [
                 'found' => [
                     'name' => self::NAME,
@@ -171,7 +171,7 @@ class DocumentReferenceTest extends \PHPUnit_Framework_TestCase
                     ]
                 ]
             ]
-        ]);
+        ]));
 
         $this->document->___setProperty('connection', $this->connection->reveal());
 

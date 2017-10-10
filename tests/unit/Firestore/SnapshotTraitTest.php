@@ -51,7 +51,7 @@ class SnapshotTraitTest extends \PHPUnit_Framework_TestCase
         $this->connection->batchGetDocuments([
             'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
             'documents' => [self::NAME]
-        ])->shouldBeCalled()->willReturn([
+        ])->shouldBeCalled()->willReturn(new \ArrayIterator([
             ['found' => [
                 'name' => self::NAME,
                 'fields' => [
@@ -60,7 +60,7 @@ class SnapshotTraitTest extends \PHPUnit_Framework_TestCase
                     ]
                 ]
             ]]
-        ]);
+        ]));
 
         $this->impl->___setProperty('connection', $this->connection->reveal());
 
@@ -79,9 +79,9 @@ class SnapshotTraitTest extends \PHPUnit_Framework_TestCase
         $this->connection->batchGetDocuments([
             'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
             'documents' => [self::NAME]
-        ])->shouldBeCalled()->willReturn([
+        ])->shouldBeCalled()->willReturn(new \ArrayIterator([
             ['missing' => self::NAME]
-        ]);
+        ]));
 
         $this->impl->___setProperty('connection', $this->connection->reveal());
 
@@ -102,9 +102,9 @@ class SnapshotTraitTest extends \PHPUnit_Framework_TestCase
         $this->connection->batchGetDocuments([
             'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
             'documents' => [self::NAME]
-        ])->shouldBeCalled()->willReturn([
+        ])->shouldBeCalled()->willReturn(new \ArrayIterator([
             ['missing' => self::NAME]
-        ]);
+        ]));
 
         $this->impl->___setProperty('connection', $this->connection->reveal());
 
@@ -157,9 +157,9 @@ class SnapshotTraitTest extends \PHPUnit_Framework_TestCase
         $this->connection->batchGetDocuments([
             'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
             'documents' => [self::NAME]
-        ])->shouldBeCalled()->willReturn([
+        ])->shouldBeCalled()->willReturn(new \ArrayIterator([
             ['found' => 'foo']
-        ]);
+        ]));
 
         $this->impl->___setProperty('connection', $this->connection->reveal());
 
@@ -174,9 +174,9 @@ class SnapshotTraitTest extends \PHPUnit_Framework_TestCase
         $this->connection->batchGetDocuments([
             'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
             'documents' => [self::NAME]
-        ])->shouldBeCalled()->willReturn([
+        ])->shouldBeCalled()->willReturn(new \ArrayIterator([
             ['missing' => self::NAME]
-        ]);
+        ]));
 
         $this->impl->___setProperty('connection', $this->connection->reveal());
 

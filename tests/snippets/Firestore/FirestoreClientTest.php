@@ -162,7 +162,7 @@ class FirestoreClientTest extends SnippetTestCase
 
         $this->connection->batchGetDocuments(Argument::withEntry('documents', [$from]))
             ->shouldBeCalled()
-            ->willReturn([
+            ->willReturn(new \ArrayIterator([
                 [
                     'found' => [
                         'name' => $from,
@@ -174,11 +174,11 @@ class FirestoreClientTest extends SnippetTestCase
                         ]
                     ]
                 ]
-            ]);
+            ]));
 
         $this->connection->batchGetDocuments(Argument::withEntry('documents', [$to]))
             ->shouldBeCalled()
-            ->willReturn([
+            ->willReturn(new \ArrayIterator([
                 [
                     'found' => [
                         'name' => $to,
@@ -190,7 +190,7 @@ class FirestoreClientTest extends SnippetTestCase
                         ]
                     ]
                 ]
-            ]);
+            ]));
 
         $this->connection->commit(Argument::any())
             ->shouldBeCalled();

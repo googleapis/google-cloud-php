@@ -160,7 +160,7 @@ class DocumentReferenceTest extends SnippetTestCase
     {
         $this->connection->batchGetDocuments(Argument::any())
             ->shouldBeCalled()
-            ->willReturn([
+            ->willReturn(new \ArrayIterator([
                 [
                     'found' => [
                         'name' => self::DOCUMENT,
@@ -168,7 +168,7 @@ class DocumentReferenceTest extends SnippetTestCase
                         'readTime' => ['seconds' => time()]
                     ]
                 ]
-            ]);
+            ]));
 
         $this->document->___setProperty('connection', $this->connection->reveal());
 

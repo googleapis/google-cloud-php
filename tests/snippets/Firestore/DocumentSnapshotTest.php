@@ -53,7 +53,9 @@ class DocumentSnapshotTest extends SnippetTestCase
         $connection = $this->prophesize(ConnectionInterface::class);
         $connection->batchGetDocuments(Argument::any())
             ->shouldBeCalled()
-            ->willReturn(['missing' => self::DOCUMENT]);
+            ->willReturn(new \ArrayIterator([
+                ['missing' => self::DOCUMENT]
+            ]));
 
         $client = \Google\Cloud\Dev\stub(FirestoreClient::class);
         $client->___setProperty('connection', $connection->reveal());

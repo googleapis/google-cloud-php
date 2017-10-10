@@ -118,10 +118,10 @@ trait SnapshotTrait
             $options['readTime'] = $options['readTime']->formatForApi();
         }
 
-        $snapshot = current($this->connection->batchGetDocuments([
+        $snapshot = $this->connection->batchGetDocuments([
             'database' => $this->databaseFromName($name),
             'documents' => [$name],
-        ] + $options));
+        ] + $options)->current();
 
         if (!isset($snapshot['found'])) {
             throw new NotFoundException('');

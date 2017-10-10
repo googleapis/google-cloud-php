@@ -80,7 +80,7 @@ class TransactionTest extends SnippetTestCase
     {
         $this->connection->batchGetDocuments(Argument::any())
             ->shouldBeCalled()
-            ->willReturn([
+            ->willReturn(new \ArrayIterator([
                 [
                     'found' => [
                         'name' => self::DOCUMENT,
@@ -88,7 +88,7 @@ class TransactionTest extends SnippetTestCase
                         'readTime' => ['seconds' => time()]
                     ]
                 ]
-            ]);
+            ]));
 
         $this->transaction->setConnection($this->connection->reveal());
 

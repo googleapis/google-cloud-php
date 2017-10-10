@@ -59,16 +59,18 @@ class TransactionTest extends \PHPUnit_Framework_TestCase
             'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
             'documents' => [self::DOCUMENT],
             'transaction' => self::TRANSACTION
-        ])->shouldBeCalled()->willReturn([
-            ['found' => [
-                'name' => self::DOCUMENT,
-                'fields' => [
-                    'hello' => [
-                        'stringValue' => 'world'
+        ])->shouldBeCalled()->willReturn(new \ArrayIterator([
+            [
+                'found' => [
+                    'name' => self::DOCUMENT,
+                    'fields' => [
+                        'hello' => [
+                            'stringValue' => 'world'
+                        ]
                     ]
                 ]
-            ]]
-        ]);
+            ]
+        ]));
 
         $this->transaction->___setProperty('connection', $this->connection->reveal());
 
@@ -87,9 +89,9 @@ class TransactionTest extends \PHPUnit_Framework_TestCase
             'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
             'documents' => [self::DOCUMENT],
             'transaction' => self::TRANSACTION
-        ])->shouldBeCalled()->willReturn([
+        ])->shouldBeCalled()->willReturn(new \ArrayIterator([
             ['missing' => self::DOCUMENT]
-        ]);
+        ]));
 
         $this->transaction->___setProperty('connection', $this->connection->reveal());
 
