@@ -34,7 +34,8 @@ class LoggingPerfTestCase extends \PHPUnit_Framework_TestCase
             'perf-rest',
             [
                 'clientConfig' => [
-                    'keyFilePath' => $keyFilePath
+                    'keyFilePath' => $keyFilePath,
+                    'transport' => 'rest'
                 ]
             ]
         );
