@@ -128,7 +128,7 @@ class Agent
                             'snapshotId'    => $breakpoint->id(),
                             'condition'     => $breakpoint->condition(),
                             'expressions'   => $breakpoint->expressions(),
-                            'sourceFile'    => $sourceFile
+                            'currentFile'   => $sourceFile
                         ]
                     );
                     break;
@@ -144,7 +144,7 @@ class Agent
                             'snapshotId'    => $breakpoint->id(),
                             'condition'     => $breakpoint->condition(),
                             'expressions'   => $breakpoint->expressions(),
-                            'sourceFile'    => $sourceFile
+                            'currentFile'   => $sourceFile
                         ]
                     );
                 default:
