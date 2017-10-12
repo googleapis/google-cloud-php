@@ -400,6 +400,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
     {
         $this->connection
             ->insertNotification([
+                'userProject' => null,
                 'bucket' => self::BUCKET_NAME,
                 'topic' => sprintf('//pubsub.googleapis.com/projects/%s/topics/%s', self::PROJECT_ID, $expectedTopic),
                 'payload_format' => 'JSON_API_V1'

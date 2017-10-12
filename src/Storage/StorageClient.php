@@ -102,9 +102,9 @@ class StorageClient
      * point. To see the operations that can be performed on a bucket please
      * see {@see Google\Cloud\Storage\Bucket}.
      *
-     * If `$requesterPays` is set to true, the current project ID (used to
+     * If `$userProject` is set to true, the current project ID (used to
      * instantiate the client) will be billed for all requests. If
-     * `$requesterPays` is a project ID, given as a string, that project
+     * `$userProject` is a project ID, given as a string, that project
      * will be billed for all requests. This only has an effect when the bucket
      * is not owned by the current or given project ID.
      *
@@ -114,21 +114,21 @@ class StorageClient
      * ```
      *
      * @param string $name The name of the bucket to request.
-     * @param string|bool $requesterPays If true, the current Project ID
+     * @param string|bool $userProject If true, the current Project ID
      *        will be used. If a string, that string will be used as the userProject
      *        argument. **Defaults to** `false`.
      * @return Bucket
      */
-    public function bucket($name, $requesterPays = false)
+    public function bucket($name, $userProject = false)
     {
-        if (!$requesterPays) {
-            $requesterPays = null;
-        } elseif (!is_string($requesterPays)) {
-            $requesterPays = $this->projectId;
+        if (!$userProject) {
+            $userProject = null;
+        } elseif (!is_string($userProject)) {
+            $userProject = $this->projectId;
         }
 
         return new Bucket($this->connection, $name, [
-            'requesterProjectId' => $requesterPays
+            'requesterProjectId' => $userProject
         ]);
     }
 
@@ -169,25 +169,36 @@ class StorageClient
      *           return the specified fields.
      *     @type string $userProject The user project to be used for
      *           requester pays operations.
-     *     @type bool $bucketRequesterPays Whether each bucket should enable
-     *           requester pays. Only applies if `$options.userProject` is set.
-     *           **Defaults to** `true`.
+     *     @type bool $bucketUserProject If true, each returned instance will
+     *           have `$userProject` set to the value of `$options.userProject`.
+     *           If false, `$options.userProject` will be used ONLY for the
+     *           listBuckets operation. If `$options.userProject` is not set,
+     *           this option has no effect. **Defaults to** `true`.
      * }
      * @return ItemIterator<Google\Cloud\Storage\Bucket>
      */
     public function buckets(array $options = [])
     {
         $resultLimit = $this->pluck('resultLimit', $options, false);
-        $bucketRequesterPays = $this->pluck('bucketRequesterPays', $options, false) ?: false;
 
-        $requesterPays = (isset($options['userProject']) && $bucketRequesterPays)
+        $bucketUserProject = $this->pluck('bucketUserProject', $options, false);
+
+        $bucketUserProject = !is_null($bucketUserProject)
+            ? $bucketUserProject
+            : true;
+
+        $userProject = (isset($options['userProject']) && $bucketUserProject)
             ? $options['userProject']
-            : false;
+            : null;
 
         return new ItemIterator(
             new PageIterator(
-                function (array $bucket) use ($requesterPays) {
-                    return new Bucket($this->connection, $bucket['name'], $bucket, $requesterPays);
+                function (array $bucket) use ($userProject) {
+                    return new Bucket(
+                        $this->connection,
+                        $bucket['name'],
+                        $bucket + ['requesterProjectId' => $userProject]
+                    );
                 },
                 [$this->connection, 'listBuckets'],
                 $options + ['project' => $this->projectId],
@@ -266,26 +277,31 @@ class StorageClient
      *           value to `null`.
      *     @type string $userProject The user project to be used for
      *           requester pays operations.
-     *     @type bool $bucketRequesterPays Whether the new bucket instance should enable
-     *           requester pays. Only applies if `$options.userProject` is set.
-     *           **Defaults to** `true`.
+     *     @type bool $bucketUserProject If true, the returned instance will
+     *           have `$userProject` set to the value of `$options.userProject`.
+     *           If false, `$options.userProject` will be used ONLY for the
+     *           createBucket operation. If `$options.userProject` is not set,
+     *           this option has no effect. **Defaults to** `true`.
      * }
      * @return Bucket
      */
     public function createBucket($name, array $options = [])
     {
-        $bucketRequesterPays = $this->pluck('bucketRequesterPays', $options, false) ?: false;
+        $bucketUserProject = $this->pluck('bucketUserProject', $options, false);
 
-        $requesterPays = (isset($options['userProject']) && $bucketRequesterPays)
+        $bucketUserProject = !is_null($bucketUserProject)
+            ? $bucketUserProject
+            : true;
+
+        $userProject = (isset($options['userProject']) && $bucketUserProject)
             ? $options['userProject']
-            : false;
+            : null;
 
         $response = $this->connection->insertBucket($options + ['name' => $name, 'project' => $this->projectId]);
         return new Bucket(
             $this->connection,
             $name,
-            $response,
-            $requesterPays
+            $response + ['requesterProjectId' => $userProject]
         );
     }
 

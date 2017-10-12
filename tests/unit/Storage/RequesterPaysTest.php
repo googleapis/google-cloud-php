@@ -48,22 +48,14 @@ class RequesterPaysTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider methods
      */
-    public function testRequesterPaysMethods($mockedMethod, callable $invoke, $res = [])
+    public function testRequesterPaysMethods(callable $invoke, $res = [])
     {
         // we're using a real connection instance, but the request handler is stubbed out
         // to throw the request query string back to us.
         $this->connection->setRequestWrapper(new RequestWrapperStub);
         $this->client->___setProperty('connection', $this->connection);
 
-        try {
-            $invoke($this->client);
-
-            // if no exception, something is wrong.
-            $this->assertTrue(false);
-        } catch(\Exception $e) {
-            parse_str($e->getMessage(), $query);
-            $this->assertEquals(self::USER_PROJECT, $query['userProject']);
-        }
+        $this->checkRequest($invoke);
     }
 
     public function methods()
@@ -73,125 +65,101 @@ class RequesterPaysTest extends \PHPUnit_Framework_TestCase
 
         return [
             [
-                'deleteAcl',
                 function ($client) {
                     return $this->bucket($client)->acl()->delete('foo');
                 }
             ], [
-                'getAcl',
                 function ($client) {
                     return $this->bucket($client)->acl()->get(['entity' => 'foo']);
                 }
             ], [
-                'listAcl',
                 function ($client) {
                     return $this->bucket($client)->acl()->get();
                 },
                 ['items' => []]
             ], [
-                'insertAcl',
                 function ($client) {
                     return $this->bucket($client)->acl()->add('foo', 'bar');
                 }
             ], [
-                'patchAcl',
                 function ($client) {
                     return $this->bucket($client)->acl()->update('foo', 'bar');
                 }
             ], [
-                'deleteBucket',
                 function ($client) {
                     return $this->bucket($client)->delete();
                 }
             ], [
-                'insertBucket',
                 function ($client) {
                     return $client->createBucket('foo', ['userProject' => self::USER_PROJECT]);
                 }
             ], [
-                'listBuckets',
                 function ($client) {
                     return $client->buckets(['userProject' => self::USER_PROJECT])->current();
                 }
             ], [
-                'getBucket',
                 function ($client) {
                     return $this->bucket($client)->reload();
                 }
             ], [
-                'getBucketIamPolicy',
                 function ($client) {
                     return $this->bucket($client)->iam()->policy();
                 }
             ], [
-                'setBucketIamPolicy',
                 function ($client) {
                     return $this->bucket($client)->iam()->setPolicy([]);
                 }
             ], [
-                'testBucketIamPermissions',
                 function ($client) {
                     return $this->bucket($client)->iam()->testPermissions([]);
                 }
             ], [
-                'patchBucket',
                 function ($client) {
                     return $this->bucket($client)->update();
                 }
             ], [
-                'deleteAcl',
                 function ($client) {
                     return $this->bucket($client)->defaultAcl()->delete('foo');
                 }
             ], [
-                'getAcl',
                 function ($client) {
                     return $this->bucket($client)->defaultAcl()->get(['entity' => 'foo']);
                 }
             ], [
-                'listAcl',
                 function ($client) {
                     return $this->bucket($client)->defaultAcl()->get();
                 },
                 ['items' => []]
             ], [
-                'insertAcl',
                 function ($client) {
                     return $this->bucket($client)->defaultAcl()->add('foo', 'bar');
                 }
             ], [
-                'patchAcl',
                 function ($client) {
                     return $this->bucket($client)->defaultAcl()->update('foo', 'bar');
                 }
             ], [
-                'deleteAcl',
                 function ($client) {
                     return $this->object($client)->acl()->delete('foo');
                 }
             ], [
-                'getAcl',
                 function ($client) {
                     return $this->object($client)->acl()->get(['entity' => 'foo']);
                 }
             ], [
-                'listAcl',
                 function ($client) {
                     return $this->object($client)->acl()->get();
                 },
                 ['items' => []]
             ], [
-                'insertAcl',
                 function ($client) {
                     return $this->object($client)->acl()->add('foo', 'bar');
                 }
             ], [
-                'patchAcl',
                 function ($client) {
                     return $this->object($client)->acl()->update('foo', 'bar');
                 }
             ], [
-                'composeObject',
                 function ($client) {
                     return $this->bucket($client)->compose([
                         $this->object($client),
@@ -206,7 +174,6 @@ class RequesterPaysTest extends \PHPUnit_Framework_TestCase
                     'generation' => 'bar'
                 ]
             ], [
-                'copyObject',
                 function ($client) {
                     return $this->object($client)->copy(self::BUCKET);
                 }, [
@@ -215,33 +182,27 @@ class RequesterPaysTest extends \PHPUnit_Framework_TestCase
                     'generation' => 'foo'
                 ]
             ], [
-                'deleteObject',
                 function ($client) {
                     return $this->object($client)->delete();
                 }
             ], [
-                'getObject',
                 function ($client) {
                     return $this->object($client)->reload();
                 }
             ], [
-                'insertObject',
                 function ($client) {
                     return $this->bucket($client)->upload('foo', ['name' => self::OBJ]);
                 },
                 $uploader->reveal()
             ], [
-                'listObjects',
                 function ($client) {
                     return $this->bucket($client)->objects()->current();
                 }
             ], [
-                'patchObject',
                 function ($client) {
                     return $this->object($client)->update([]);
                 }
             ], [
-                'rewriteObject',
                 function ($client) {
                     return $this->object($client)->rewrite(self::BUCKET);
                 }, [
@@ -252,27 +213,131 @@ class RequesterPaysTest extends \PHPUnit_Framework_TestCase
                     ]
                 ]
             ], [
-                'getNotification',
                 function ($client) {
                     return $this->notification($client)->reload();
                 }
             ], [
-                'deleteNotification',
                 function ($client) {
                     return $this->notification($client)->delete();
                 }
             ], [
-                'insertNotification',
                 function ($client) {
                     return $this->bucket($client)->createNotification('topic');
                 }
             ], [
-                'listNotifications',
                 function ($client) {
                     return $this->bucket($client)->notifications()->current();
                 }
             ]
         ];
+    }
+
+    public function testUserProjectCreateBucket()
+    {
+        $connection = $this->prophesize(Rest::class);
+        $connection->projectId()->willReturn(self::PROJECT);
+        $connection->insertBucket(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([]);
+        $connection->listObjects(['bucket' => 'foo', 'userProject' => self::USER_PROJECT])
+            ->shouldBeCalled()
+            ->willReturn([
+                'objects' => []
+            ]);
+
+        $this->client->___setProperty('connection', $connection->reveal());
+
+        $bucket = $this->client->createBucket('foo', [
+            'userProject' => self::USER_PROJECT
+        ]);
+
+        $bucket->objects()->current();
+    }
+
+    public function testUserProjectCreateBucketDisableUserProject()
+    {
+        $connection = $this->prophesize(Rest::class);
+        $connection->projectId()->willReturn(self::PROJECT);
+        $connection->insertBucket(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([]);
+        $connection->listObjects(['bucket' => 'foo', 'userProject' => null])
+            ->shouldBeCalled()
+            ->willReturn([
+                'objects' => []
+            ]);
+
+        $this->client->___setProperty('connection', $connection->reveal());
+
+        $bucket = $this->client->createBucket('foo', [
+            'userProject' => self::USER_PROJECT,
+            'bucketUserProject' => false
+        ]);
+
+        $bucket->objects()->current();
+    }
+
+    public function testUserProjectListBuckets()
+    {
+        $connection = $this->prophesize(Rest::class);
+        $connection->projectId()->willReturn(self::PROJECT);
+        $connection->listBuckets(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([
+                'items' => [
+                    [
+                        'name' => 'foo'
+                    ]
+                ]
+            ]);
+
+        $connection->listObjects(['bucket' => 'foo', 'userProject' => self::USER_PROJECT])
+            ->shouldBeCalled()
+            ->willReturn([
+                'objects' => []
+            ]);
+
+        $this->client->___setProperty('connection', $connection->reveal());
+        $bucket = $this->client->buckets(['userProject' => self::USER_PROJECT])->current();
+        $bucket->objects()->current();
+    }
+
+    public function testUserProjectListBucketsDisableUserProject()
+    {
+        $connection = $this->prophesize(Rest::class);
+        $connection->projectId()->willReturn(self::PROJECT);
+        $connection->listBuckets(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([
+                'items' => [
+                    [
+                        'name' => 'foo'
+                    ]
+                ]
+            ]);
+
+        $connection->listObjects(['bucket' => 'foo', 'userProject' => null])
+            ->shouldBeCalled()
+            ->willReturn([
+                'objects' => []
+            ]);
+
+        $this->client->___setProperty('connection', $connection->reveal());
+        $bucket = $this->client->buckets(['userProject' => self::USER_PROJECT, 'bucketUserProject' => false])->current();
+        $bucket->objects()->current();
+    }
+
+    private function checkRequest(callable $invoke)
+    {
+        try {
+            $invoke($this->client);
+
+            // if no exception, something is wrong.
+            $this->assertTrue(false);
+        } catch(\Exception $e) {
+            parse_str($e->getMessage(), $query);
+            $this->assertEquals(self::USER_PROJECT, $query['userProject']);
+        }
     }
 
     private function bucket(StorageClient $client)
