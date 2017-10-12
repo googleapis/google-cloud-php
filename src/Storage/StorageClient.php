@@ -169,21 +169,25 @@ class StorageClient
      *           return the specified fields.
      *     @type string $userProject The user project to be used for
      *           requester pays operations.
+     *     @type bool $bucketRequesterPays Whether each bucket should enable
+     *           requester pays. Only applies if `$options.userProject` is set.
+     *           **Defaults to** `true`.
      * }
      * @return ItemIterator<Google\Cloud\Storage\Bucket>
      */
     public function buckets(array $options = [])
     {
         $resultLimit = $this->pluck('resultLimit', $options, false);
+        $bucketRequesterPays = $this->pluck('bucketRequesterPays', $options, false) ?: false;
+
+        $requesterPays = (isset($options['userProject']) && $bucketRequesterPays)
+            ? $options['userProject']
+            : false;
 
         return new ItemIterator(
             new PageIterator(
-                function (array $bucket) {
-                    return new Bucket(
-                        $this->connection,
-                        $bucket['name'],
-                        $bucket
-                    );
+                function (array $bucket) use ($requesterPays) {
+                    return new Bucket($this->connection, $bucket['name'], $bucket, $requesterPays);
                 },
                 [$this->connection, 'listBuckets'],
                 $options + ['project' => $this->projectId],
@@ -262,16 +266,26 @@ class StorageClient
      *           value to `null`.
      *     @type string $userProject The user project to be used for
      *           requester pays operations.
+     *     @type bool $bucketRequesterPays Whether the new bucket instance should enable
+     *           requester pays. Only applies if `$options.userProject` is set.
+     *           **Defaults to** `true`.
      * }
      * @return Bucket
      */
     public function createBucket($name, array $options = [])
     {
+        $bucketRequesterPays = $this->pluck('bucketRequesterPays', $options, false) ?: false;
+
+        $requesterPays = (isset($options['userProject']) && $bucketRequesterPays)
+            ? $options['userProject']
+            : false;
+
         $response = $this->connection->insertBucket($options + ['name' => $name, 'project' => $this->projectId]);
         return new Bucket(
             $this->connection,
             $name,
-            $response
+            $response,
+            $requesterPays
         );
     }
 
