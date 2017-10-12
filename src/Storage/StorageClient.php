@@ -167,6 +167,8 @@ class StorageClient
      *           be either 'full' or 'noAcl'.
      *     @type string $fields Selector which will cause the response to only
      *           return the specified fields.
+     *     @type string $userProject The user project to be used for
+     *           requester pays operations.
      * }
      * @return ItemIterator<Google\Cloud\Storage\Bucket>
      */
@@ -258,6 +260,8 @@ class StorageClient
      *     @type array $labels The Bucket labels. Labels are represented as an
      *           array of keys and values. To remove an existing label, set its
      *           value to `null`.
+     *     @type string $userProject The user project to be used for
+     *           requester pays operations.
      * }
      * @return Bucket
      */
