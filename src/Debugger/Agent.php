@@ -124,10 +124,12 @@ class Agent
                     stackdriver_debugger_add_snapshot(
                         $sourceLocation->path(),
                         $sourceLocation->line(),
-                        $breakpoint->id(),
-                        $breakpoint->condition(),
-                        $breakpoint->expressions(),
-                        $sourceFile
+                        [
+                            'snapshotId'    => $breakpoint->id(),
+                            'condition'     => $breakpoint->condition(),
+                            'expressions'   => $breakpoint->expressions(),
+                            'sourceFile'    => $sourceFile
+                        ]
                     );
                     break;
                 case Action::LOG:
@@ -138,10 +140,12 @@ class Agent
                         $sourceLocation->line(),
                         $breakpoint->logLevel(),
                         $breakpoint->logMessageFormat(),
-                        $breakpoint->id(),
-                        $breakpoint->condition(),
-                        $breakpoint->expressions(),
-                        $sourceFile
+                        [
+                            'snapshotId'    => $breakpoint->id(),
+                            'condition'     => $breakpoint->condition(),
+                            'expressions'   => $breakpoint->expressions(),
+                            'sourceFile'    => $sourceFile
+                        ]
                     );
                 default:
                     continue;

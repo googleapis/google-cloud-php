@@ -49,7 +49,7 @@ class Variable implements \JsonSerializable
             $this->info['members'] = array_map(function ($member) {
                 return ($member instanceof static)
                     ? $member
-                    : new static ($memeber);
+                    : new static ($member);
             }, $data['members']);
         }
 
