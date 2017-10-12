@@ -265,7 +265,8 @@ class Rest implements ConnectionInterface
             'bucket' => $args['bucket'],
             'query' => [
                 'predefinedAcl' => $args['predefinedAcl'],
-                'uploadType' => $uploadType
+                'uploadType' => $uploadType,
+                'userProject' => $args['userProject']
             ]
         ];
 
@@ -289,7 +290,8 @@ class Rest implements ConnectionInterface
             'resumable' => null,
             'streamable' => null,
             'predefinedAcl' => null,
-            'metadata' => []
+            'metadata' => [],
+            'userProject' => null,
         ];
 
         $args['data'] = Psr7\stream_for($args['data']);
