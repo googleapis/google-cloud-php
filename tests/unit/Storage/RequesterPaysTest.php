@@ -18,9 +18,9 @@
 namespace Google\Cloud\Tests\Unit\Storage;
 
 use Prophecy\Argument;
-use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Core\Upload\AbstractUploader;
-use Google\Cloud\Storage\Connection\ConnectionInterface;
+use Google\Cloud\Storage\StorageClient;
+use Google\Cloud\Storage\Connection\Rest;
 
 /**
  * @group storage
@@ -37,7 +37,7 @@ class RequesterPaysTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->connection = $this->prophesize(Rest::class);
         $this->client = \Google\Cloud\Dev\stub(StorageClient::class);
     }
 
@@ -46,6 +46,8 @@ class RequesterPaysTest extends \PHPUnit_Framework_TestCase
      */
     public function testRequesterPaysMethods($mockedMethod, callable $invoke, $res = [])
     {
+        $this->connection->projectId()->willReturn(self::USER_PROJECT);
+
         $this->connection->$mockedMethod(Argument::withEntry('userProject', self::USER_PROJECT))
             ->shouldBeCalled()
             ->willReturn($res);
