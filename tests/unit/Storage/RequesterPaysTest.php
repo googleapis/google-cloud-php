@@ -327,6 +327,70 @@ class RequesterPaysTest extends \PHPUnit_Framework_TestCase
         $bucket->objects()->current();
     }
 
+    public function testUserProjectCreateNotification()
+    {
+        $connection = $this->prophesize(Rest::class);
+        $connection->projectId()->willReturn(self::PROJECT);
+
+        $connection->insertNotification(Argument::withEntry('userProject', self::USER_PROJECT))
+            ->shouldBeCalled()
+            ->willReturn([
+                'id' => 'foo'
+            ]);
+
+        $connection->getNotification(Argument::withEntry('userProject', self::USER_PROJECT))
+            ->shouldBeCalled();
+
+        $this->client->___setProperty('connection', $connection->reveal());
+
+        $bucket = $this->client->bucket('foo', self::USER_PROJECT);
+
+        $notification = $bucket->createNotification('foo');
+        $notification->reload();
+    }
+
+    public function testUserProjectNotification()
+    {
+        $connection = $this->prophesize(Rest::class);
+        $connection->projectId()->willReturn(self::PROJECT);
+
+        $connection->getNotification(Argument::withEntry('userProject', self::USER_PROJECT))
+            ->shouldBeCalled();
+
+        $this->client->___setProperty('connection', $connection->reveal());
+
+        $bucket = $this->client->bucket('foo', self::USER_PROJECT);
+
+        $notification = $bucket->notification('foo');
+        $notification->reload();
+    }
+
+    public function testUserProjectListNotifications()
+    {
+        $connection = $this->prophesize(Rest::class);
+        $connection->projectId()->willReturn(self::PROJECT);
+
+        $connection->listNotifications(Argument::withEntry('userProject', self::USER_PROJECT))
+            ->shouldBeCalled()
+            ->willReturn([
+                'items' => [
+                    [
+                        'id' => 'foo'
+                    ]
+                ]
+            ]);
+
+        $connection->getNotification(Argument::withEntry('userProject', self::USER_PROJECT))
+            ->shouldBeCalled();
+
+        $this->client->___setProperty('connection', $connection->reveal());
+
+        $bucket = $this->client->bucket('foo', self::USER_PROJECT);
+
+        $notification = $bucket->notifications()->current();
+        $notification->reload();
+    }
+
     private function checkRequest(callable $invoke)
     {
         try {
