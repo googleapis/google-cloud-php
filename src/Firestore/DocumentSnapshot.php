@@ -238,8 +238,15 @@ class DocumentSnapshot implements \ArrayAccess
      */
     public function offsetGet($offset)
     {
-        return isset($this->fields[$offset])
-            ? $this->fields[$offset]
-            : null;
+        if (!$this->offsetExists($offset)) {
+            trigger_error(sprintf(
+                'Undefined index: %s. Document field does not exist.',
+                $offset
+            ), E_USER_NOTICE);
+
+            return null;
+        }
+
+        return $this->fields[$offset];
     }
 }

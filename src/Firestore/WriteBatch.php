@@ -170,7 +170,12 @@ class WriteBatch
 
         list($fields, $timestamps, $deletes) = $this->valueMapper->findSentinels($fields);
 
-        if ($fields) {
+        // We only want to enqueue an update write if there are non-sentinel fields
+        // OR no timestamp sentinels are found.
+        // We MUST always enqueue at least one write, so if there are no fields
+        // and no timestamp sentinels, we can assume an empty write is intended
+        // and enqueue an empty UPDATE operation.
+        if ($fields || !$timestamps) {
             $this->writes[] = $this->createDatabaseWrite(self::TYPE_UPDATE, $documentName, [
                 'fields' => $this->valueMapper->encodeValues(
                     $this->valueMapper->decodeFieldPaths($fields)
