@@ -167,8 +167,8 @@ class StorageClient
      *           be either 'full' or 'noAcl'.
      *     @type string $fields Selector which will cause the response to only
      *           return the specified fields.
-     *     @type string $userProject The user project to be used for
-     *           requester pays operations.
+     *     @type string $userProject If set, this is the ID of the project which
+     *           will be billed for the request.
      *     @type bool $bucketUserProject If true, each returned instance will
      *           have `$userProject` set to the value of `$options.userProject`.
      *           If false, `$options.userProject` will be used ONLY for the
@@ -275,8 +275,8 @@ class StorageClient
      *     @type array $labels The Bucket labels. Labels are represented as an
      *           array of keys and values. To remove an existing label, set its
      *           value to `null`.
-     *     @type string $userProject The user project to be used for
-     *           requester pays operations.
+     *     @type string $userProject If set, this is the ID of the project which
+     *           will be billed for the request.
      *     @type bool $bucketUserProject If true, the returned instance will
      *           have `$userProject` set to the value of `$options.userProject`.
      *           If false, `$options.userProject` will be used ONLY for the
