@@ -115,8 +115,9 @@ class StorageClient
      *
      * @param string $name The name of the bucket to request.
      * @param string|bool $userProject If true, the current Project ID
-     *        will be used. If a string, that string will be used as the userProject
-     *        argument. **Defaults to** `false`.
+     *        will be used. If a string, that string will be used as the
+     *        userProject argument, and that project will be billed for the
+     *        request. **Defaults to** `false`.
      * @return Bucket
      */
     public function bucket($name, $userProject = false)
