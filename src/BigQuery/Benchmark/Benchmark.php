@@ -20,8 +20,8 @@ require 'vendor/autoload.php';
 use Google\Cloud\BigQuery\BigQueryClient;
 
 if (count($argv) < 2) {
-  print("usage: php {$argv[0]} <queries.json>");
-  exit(1);
+    print("usage: php {$argv[0]} <queries.json>");
+    exit(1);
 }
 
 $requests = json_decode(file_get_contents($argv[1]));
@@ -29,31 +29,30 @@ $requests = json_decode(file_get_contents($argv[1]));
 $bigQuery = new BigQueryClient();
 
 foreach ($requests as $request) {
-  $start = microtime(true);
-  $queryResults = $bigQuery->runQuery($request, [
-    'useLegacySql' => false,
-  ]);
+    $start = microtime(true);
+    $queryResults = $bigQuery->runQuery($request, [
+        'useLegacySql' => false,
+    ]);
 
-  while (!$queryResults->isComplete()) {
-    sleep(1);
-    $queryResults->reload();
-  }
-
-  $rows = 0;
-  $cols = 0;
-  $firstByteDur = 0;
-
-  foreach ($queryResults->rows() as $row) {
-    $rows++;
-    if ($cols == 0) {
-      $firstByteDur = microtime(true) - $start;
-      $cols = count($row);
-    } else if ($cols != count($row)) {
-      throw new Exception("expected $cols cols, found " . count($row));
+    while (!$queryResults->isComplete()) {
+        sleep(1);
+        $queryResults->reload();
     }
-  }
 
-  $totalDur = microtime(true)-$start;
-  print "query $request: $rows rows, $cols cols, first byte $firstByteDur, total $totalDur\n";
+    $rows = 0;
+    $cols = 0;
+    $firstByteDur = 0;
+
+    foreach ($queryResults->rows() as $row) {
+        $rows++;
+        if ($cols == 0) {
+            $firstByteDur = microtime(true) - $start;
+            $cols = count($row);
+        } elseif ($cols != count($row)) {
+            throw new Exception("expected $cols cols, found " . count($row));
+        }
+    }
+
+    $totalDur = microtime(true)-$start;
+    print "query $request: $rows rows, $cols cols, first byte $firstByteDur, total $totalDur\n";
 }
-?>
