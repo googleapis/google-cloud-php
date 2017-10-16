@@ -592,8 +592,7 @@ class Bucket
      */
     public function createNotification($topic, array $options = [])
     {
-        $res = $this->connection->insertNotification($options + [
-            'bucket' => $this->identity['bucket'],
+        $res = $this->connection->insertNotification($options + $this->identity + [
             'topic' => $this->getFormattedTopic($topic),
             'payload_format' => 'JSON_API_V1'
         ]);
